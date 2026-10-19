@@ -4,7 +4,7 @@ import { loadStorybooks, storyCredit } from './storybooks'
 describe('loadStorybooks', () => {
   it('loads English storybooks with valid structure and Turkish translations', async () => {
     const stories = await loadStorybooks('en')
-    expect(stories.length).toBeGreaterThanOrEqual(7)
+    expect(stories.length).toBe(15)
 
     for (const story of stories) {
       expect(story.language).toBe('en')

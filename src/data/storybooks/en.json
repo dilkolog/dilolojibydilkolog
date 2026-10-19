@@ -192,6 +192,66 @@
     ]
   },
   {
+    "id": "gsb-en-0095",
+    "language": "en",
+    "title": "Zama is great!",
+    "level": 2,
+    "words": 127,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0095/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0095/en-0095_zama.mp3",
+    "credit": {
+      "writer": "Michael Oguttu",
+      "illustrator": "Vusi Malindi",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "My little brother sleeps very late. I wake early, because I am great!",
+      "I am the one who lets in the sun.",
+      "“You’re my morning star,” says Ma.",
+      "I wash myself, I don’t need any help.",
+      "I can cope with cold water and blue smelly soap.",
+      "Ma reminds, “Don’t forget teeth.” I reply, “Never, not me!”",
+      "After washing, I greet Grandpa and Auntie, and wish them a good day.",
+      "Then I dress myself, “I’m big now Ma,” I say.",
+      "I can close my buttons and buckle my shoes.",
+      "And I make sure little brother knows all the school news.",
+      "In class I do my best in every way.",
+      "I do all these good things every day. But the thing I like most, is to play and play!"
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0095/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0095/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0095/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0095/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0095/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0095/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0095/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0095/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0095/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0095/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0095/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0095/13.jpg"
+    ],
+    "turkish": [
+      "Küçük erkek kardeşim geç saatlere kadar uyuyor. Ben erken kalkıyorum çünkü ben harika bir çocuğum.",
+      "Güneşi içeri alan benim.",
+      "Annem hep, “Sen benim sabah yıldızımsın,” diyor.",
+      "Kendim yıkanıyorum, hiç yardıma ihtiyacım yok.",
+      "Soğuk su ve kötü kokulu sabunla pekala işimi görebiliyorum.",
+      "Annem hatırlatıyor, “Aman dişlerini unutma.” Ben de, “Ben mi? Ben hiç bir zaman unutmam!” diye cevap veriyorum.",
+      "Yıkandıktan sonra büyükbabamı ve teyzemi selamlıyorum ve onlara iyi günler diliyorum.",
+      "Sonra kendi kendime giyiniyorum, “Anne bak, ben büyüdüm artık,” diyorum.",
+      "Düğmelerimi ilikliyorum ve ayakkabılarımı bağlıyorum.",
+      "Ve küçük erkek kardeşimin mutlaka okulla ilgili haberleri öğrenmesini sağlıyorum.",
+      "Sınıfta her gün elimden gelenin en iyisini yapmaya gayret ediyorum.",
+      "Her gün bütün bu iyi şeyleri yapıyorum. Ama tabii en çok sevdiğim şey bir sürü oyunlar oynamak!"
+    ]
+  },
+  {
     "id": "gsb-en-0004",
     "language": "en",
     "title": "Goat, Dog and Cow",
@@ -237,6 +297,54 @@
       "Bu yüzden, bugün bile, Köpek, arabaların içine bakmak ve kendisine borçlu olan taksiciyi bulmak için arabaların peşinden koşar.",
       "Keçi araba sesinden kaçar. Ücretini ödemediği için tutuklanmaktan korkar.",
       "Ve İnek arabanın geldiğini görünce hiç rahatsız olmaz. Karşıdan karşıya geçmek için hiç acele etmez. Çünkü o bilir ki, ücretini tam olarak ödemiştir."
+    ]
+  },
+  {
+    "id": "gsb-en-0089",
+    "language": "en",
+    "title": "Khalai talks to plants",
+    "level": 2,
+    "words": 163,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0089/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0089/en-0089_khalai.mp3",
+    "credit": {
+      "writer": "Ursula Nafula",
+      "illustrator": "Jesse Pietersen",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 4.0 International License",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "pages": [
+      "This is Khalai. She is seven years old. Her name means ‘the good one’ in her language, Lubukusu.",
+      "Khalai wakes up and talks to the orange tree. “Please orange tree, grow big and give us lots of ripe oranges.”",
+      "Khalai walks to school. On the way she talks to the grass. “Please grass, grow greener and don’t dry up.”",
+      "Khalai passes wild flowers. “Please flowers, keep blooming so I can put you in my hair.”",
+      "At school, Khalai talks to the tree in the middle of the compound. “Please tree, put out big branches so we can read under your shade.”",
+      "Khalai talks to the hedge around her school. “Please grow strong and stop bad people from coming in.”",
+      "When Khalai returns home from school, she visits the orange tree. “Are your oranges ripe yet?” asks Khalai.",
+      "“The oranges are still green,” sighs Khalai. “I will see you tomorrow orange tree,” says Khalai. “Perhaps then you will have a ripe orange for me!”"
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0089/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0089/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0089/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0089/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0089/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0089/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0089/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0089/09.jpg"
+    ],
+    "turkish": [
+      "Adı Khalai, yedi yaşında. Adının anlamı Lubukusu dilinde “iyi biri”.",
+      "Khalai uyanıyor ve portakal ağacına sesleniyor. “Lütfen portakal ağacı, iyice büyü ve bize bir çok olgun portakallar ver.”",
+      "Khalai okula yürüyerek gidiyor. Yolda otlara sesleniyor. “Lütfen otlar, daha da yeşerin, sakın kurumayın.”",
+      "Khalai kır çiçeklerinin önünden geçiyor. “Çiçekler, lütfen açmaya devam edin ki sizi saçıma takabileyim.”",
+      "Okulda Khalai bahçenin ortasındaki ağaca sesleniyor. “Lütfen, ağaç uzun ve büyük dalların olsun ki altında, gölgende kitap okuyabilelim.”",
+      "Khalai okulu çevreleyen çalılıklara sesleniyor. “Lütfen büyüyüp çok kuvvetli olun ki kötü kişiler içeri giremesin.”",
+      "Khalai okuldan evine döndüğünde, portakal ağacını ziyaret ediyor. “Portakalların olgunlaştı mı?” diye soruyor.",
+      "“Portakallar hala yeşil,” diye iç geçiriyor Khalai. “Yarın gene görüşürüz portakal ağacı” diyor ve ekliyor. “Belki yarın bana olgun bir portakal verebilirsin!”"
     ]
   },
   {
@@ -312,6 +420,114 @@
     ]
   },
   {
+    "id": "gsb-en-0111",
+    "language": "en",
+    "title": "Why hippos have no hair",
+    "level": 2,
+    "words": 206,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0111/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0111/en-0111_hippos.mp3",
+    "credit": {
+      "writer": "Basilio Gimo, David Ker",
+      "illustrator": "Carol Liddiment",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "One day, Rabbit was walking by the riverside.",
+      "Hippo was there too, going for a stroll and eating some nice green grass.",
+      "Hippo didn’t see that Rabbit was there and she accidentally stepped on Rabbit’s foot. Rabbit started screaming at Hippo, “You Hippo! Can’t you see that you’re stepping on my foot?”",
+      "Hippo apologised to Rabbit, “I’m so sorry. I didn’t see you. Please forgive me!” But Rabbit wouldn’t listen and he shouted at Hippo, “You did that on purpose! Someday, you’ll see! You’re going to pay!”",
+      "Rabbit went to find Fire and said, “Go, burn Hippo when she comes out of the water to eat grass. She stepped on me!” Fire answered, “No problem, Rabbit, my friend. I’ll do just what you ask.”",
+      "Later, Hippo was eating grass far from the river when, “Whoosh!” Fire burst into flame. The flames began to burn Hippo’s hair.",
+      "Hippo started to cry and ran for the water. All her hair was burned off by the fire. Hippo kept crying, “My hair has burned in the fire! My hair is all gone! My beautiful hair!”",
+      "Rabbit was happy that Hippo’s hair was burned. And to this day, for fear of fire, the hippo never goes far from the water."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0111/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0111/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0111/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0111/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0111/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0111/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0111/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0111/09.jpg"
+    ],
+    "turkish": [
+      "Bir gün, Tavşan nehir kenarında yürüyordu.",
+      "Gezip dolaşmak ve güzel yeşil otlardan yemek için Su Aygırı da orada idi.",
+      "Su Aygırı, Tavşan’ın orada olduğunu görmedi, ve yanlışlıkla Tavşan’ın ayağına bastı. Tavşan Su Aygırına bağırmaya başladı. “Sen, Su Aygırı! Ayağıma bastığını göremiyor musun?”",
+      "Su Aygırı, Tavşandan özür diledi, “Çok özür dilerim. Seni görmedim. Lütfen beni affet!” Ama Tavşan Su Aygırını dinlemedi ve Su Aygırının yüzüne karşı bağırmaya devam etti, “Sen bunu bilerek yaptın! Gün gelecek göreceksin! Sen bunu ödeyeceksin!”",
+      "Tavşan Ateş’ı bulmaya gitti, ve dedi ki “Git, ve ot yemek için sudan çıktığında Su Aygırı’nı yak. O benim üzerime bastı”. Ateş cevapladı, “Problem değil Tavşan, arkadaşım benim. Ne istiyorsan yapacağım.”",
+      "Ardından, Su Aygırı nehirden uzakta ot yediği bir zaman “Harr” diye Ateş birden alev aldı. Alevler Su Aygırı’nın tüylerini yakmaya başladı.",
+      "Su Aygırı ağlamaya başladı ve suya doğru koştu. Tüm tüyleri ateş tarafından yanmıştı. Su aygırı ağlamaya devam etti, “Tüylerim ateşte yandı! Tüylerimin hepsi gitti! Benim güzel tüylerim!”",
+      "Tavşan, Su aygırı’nın tüyleri yandığı için mutluydu. Ve bugün bile, su aygırı, ateşten korkusu yüzünden, asla su kenarından uzağa gitmiyor."
+    ]
+  },
+  {
+    "id": "gsb-en-0141",
+    "language": "en",
+    "title": "Chicken and Millipede",
+    "level": 3,
+    "words": 268,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0141/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0141/en-0141_chicken.mp3",
+    "credit": {
+      "writer": "Winny Asara",
+      "illustrator": "Magriet Brink",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "Chicken and Millipede were friends. But they were always competing with each other. One day they decided to play football to see who the best player was.",
+      "They went to the football field and started their game. Chicken was fast, but Millipede was faster. Chicken kicked far, but Millipede kicked further. Chicken started to feel grumpy.",
+      "They decided to play a penalty shoot-out. First Millipede was goal keeper. Chicken scored only one goal. Then it was the chicken’s turn to defend the goal.",
+      "Millipede kicked the ball and scored. Millipede dribbled the ball and scored. Millipede headed the ball and scored. Millipede scored five goals.",
+      "Chicken was furious that she lost. She was a very bad loser. Millipede started laughing because his friend was making such a fuss.",
+      "Chicken was so angry that she opened her beak wide and swallowed the millipede.",
+      "As Chicken was walking home, she met Mother Millipede. Mother Millipede asked, “Have you seen my child?” Chicken didn’t say anything. Mother Millipede was worried.",
+      "Then Mother Millipede heard a tiny voice. “Help me mom!” cried the voice. Mother Millipede looked around and listened carefully. The voice came from inside the chicken.",
+      "Mother Millipede shouted, “Use your special power my child!” Millipedes can make a bad smell and a terrible taste. Chicken began to feel ill.",
+      "Chicken burped. Then she swallowed and spat. Then she sneezed and coughed. And coughed. The millipede was disgusting!",
+      "Chicken coughed until she coughed out the millipede that was in her stomach. Mother Millipede and her child crawled up a tree to hide.",
+      "From that time, chickens and millipedes were enemies."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0141/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0141/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0141/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0141/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0141/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0141/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0141/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0141/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0141/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0141/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0141/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0141/13.jpg"
+    ],
+    "turkish": [
+      "Tavuk ve Kırkayak arkadaş olmuşlardı. Ama hep birbirleriyle yarış halindeydiler. Birgün futbol oynayıp kimin daha usta oyuncu olduğunu görmeye karar verdiler.",
+      "Futbol sahasına gidip oynamaya başladılar. Tavuk hızlı idi fakat Kırkayak ondan daha hızlı idi. Tavuk topu çok uzaklara atabiliyordu ama Kırkayak ondan daha uzaklara atıyordu topu. Tavuk bu işe bozulmaya başlamıştı.",
+      "Penaltı vuruşları denemeye karar verdiler. Önce Kırkayak kaleci oldu. Tavuk sadece bir gol atabildi. Sıra Tavuğun kaleyi savunmasına gelmişti.",
+      "Kırkayak şutu çekti ve ilk golünü attı. Sonra topu çalımladı ve ikinci şutu da gol oldu. Kırkayağın kafa atışı da gol oldu. Toplam tam 5 tane gol atmıştı Kırkayak.",
+      "Tavuk kaybettiği için çok sinirlenmişti. Adeta rezil olmuştu. Kırkayak arkadaşı bu kadar kızdığı için gülmeye başladı.",
+      "Tavuk öyle öfkelenmişti ki ağzını açıp Kırkayağı yutuverdi.",
+      "Tavuk eve dönerken yolda Kırkayağın annesiyle karşılaştı. Anne Kırkayak sordu, “Çocuğumu gördün mü?” Tavuk hiç sesini çıkarmadı. Anne Kırkayak telaşlanmıştı.",
+      "Derken Anne Kırkayak incecik bir ses duydu. “Yardım et bana anne!” diye ağlıyordu ses. Anne Kırkayak etrafa bakındı ve çok dikkatle dinledi. Ses tavuğun içinden geliyordu.",
+      "Anne Kırkayak bağırdı, “Özel gücünü kullan çocuğum!” Kırkayaklar çok kötü bir koku ve tat yayabiliyorlar. Tavuk kendini hasta hissetmeye başladı.",
+      "Tavuk önce gaz çıkardı sonra tükürdü, hapşırdı ve öksürdü. Ve gene öksürdü. Kırkayağın yaydığı koku ve tat iğrençti.",
+      "Tavuk midesindeki Kırkayak dışarı fırlayana kadar öksürdü. Anne Kırkayak ve çocuğu hemen bir ağaca tırmanarak saklandılar.",
+      "O günden beri Tavuklar ve Kırkayaklar birbirlerinin düşmanı oldular."
+    ]
+  },
+  {
     "id": "gsb-en-0006",
     "language": "en",
     "title": "Anansi and wisdom",
@@ -351,6 +567,240 @@
       "Tüm bu zaman boyunca, Anansi’nin oğlu, ağacın altında babasını izleyerek durmuş. “Eğer kaseyi sırtına bağlarsan tırmanmak daha kolay olmayacak mı?” diye sormuş. Anansi, bilgelik dolu kil kaseyi sırtına bağlamayı denemiş ve gerçekten de kaseyi bu şekilde taşımak çok daha kolaymış.",
       "Hızlı bir şekilde ağacın tepesine varmış. Ama ardından durmuş ve düşünmüş, “Benim tüm bilgeliğe sahip tek kişi olmam gerekiyordu, ve burada benim oğlum benden daha akıllı.” Anansi bu duruma o kadar çok sinirlenmiş ki, kil kaseyi ağacın tepesinden aşağı atmış.",
       "Kase yerde parçalara ayrılmış. Bilgelik, herkesin birbiriyle paylaşması için artık serbestmiş. İşte bu, insanların nasıl çiftçilik yapılacağını, kıyafet dokumayı ve demir işlemeyi ve nasıl yapacaklarını bildikleri diğer her şeyi nasıl öğrendiklerinin hikayesidir."
+    ]
+  },
+  {
+    "id": "gsb-en-0066",
+    "language": "en",
+    "title": "Nozibele and the three hairs",
+    "level": 3,
+    "words": 390,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0066/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0066/en-0066_nozibele.mp3",
+    "credit": {
+      "writer": "Tessa Welch",
+      "illustrator": "Wiehan de Jager",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "A long time ago, three girls went out to collect wood.",
+      "It was a hot day so they went down to the river to swim. They played and splashed and swam in the water.",
+      "Suddenly, they realised that it was late. They hurried back to the village.",
+      "When they were nearly home, Nozibele put her hand to her neck. She had forgotten her necklace! “Please come back with me!” she begged her friends. But her friends said it was too late.",
+      "So Nozibele went back to the river alone. She found her necklace and hurried home. But she got lost in the dark.",
+      "In the distance she saw light coming from a hut. She hurried towards it and knocked at the door.",
+      "To her surprise, a dog opened the door and said, “What do you want?” “I’m lost and I need a place to sleep,” said Nozibele. “Come in, or I’ll bite you!” said the dog. So Nozibele went in.",
+      "Then the dog said, “Cook for me!” “But I’ve never cooked for a dog before,” she answered. “Cook, or I’ll bite you!” said the dog. So Nozibele cooked some food for the dog.",
+      "Then the dog said, “Make the bed for me!” Nozibele answered, “I’ve never made a bed for a dog.” “Make the bed, or I’ll bite you!” the dog said. So Nozibele made the bed.",
+      "Every day she had to cook and sweep and wash for the dog. Then one day the dog said, “Nozibele, today I have to visit some friends. Sweep the house, cook the food and wash my things before I come back.”",
+      "As soon as the dog had gone, Nozibele took three hairs from her head. She put one hair under the bed, one behind the door, and one in the kraal. Then she ran home as fast as she could.",
+      "When the dog came back, he looked for Nozibele. “Nozibele, where are you?” he shouted. “I’m here, under the bed,” said the first hair. “I’m here, behind the door,” said the second hair. “I’m here, in the kraal,” said the third hair.",
+      "Then the dog knew that Nozibele had tricked him. So he ran and ran all the way to the village. But Nozibele’s brothers were waiting there with big sticks. The dog turned and ran away and has never been seen since."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/13.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0066/14.jpg"
+    ],
+    "turkish": [
+      "Çok uzun zaman önce, üç kız arkadaş odun toplamaya gitmişler.",
+      "Hava çok sıcak olduğu için dereye girip serinlemek istemişler. Suyun içinde oyunlar oynayıp yüzmüşler.",
+      "Sonra bir anda geç kaldıklarını fark edip köye doğru koşmaya başlamışlar.",
+      "Tam köye yaklaştıklarında Nozibele elini ensesine götürmüş. Boynundaki kolyesi yerinde yokmuş! Arkadaşlarına “Lütfen benimle geri dönün!” diye yalvarmış. Ama onlar zaten çok geç kaldıklarını söylemişler.",
+      "Böylece Nozibele dereye tek başına geri dönmüş. Kolyesini bulmuş ve eve doğru koşmaya başlamış. Ancak hava karardığından, yolunu kaybetmiş.",
+      "Uzakta bir kulübenin ışıklarını görmüş. Hemen oraya gidip kapıyı çalmış.",
+      "Kapıyı bir köpek açınca çok şaşırmış. “Ne istiyorsun?” demiş köpek. Nozibele de “Evimin yolunu kaybettim, kalacak yere ihtiyacım var,” demiş. Köpek “İçeri gel yoksa seni ısırırım!” deyince, Nozibele içeri girmiş.",
+      "Köpek “Bana yemek pişir!” demiş. “Ama ben hiç bir köpeğe yemek yapmadım ki,” demiş Nozibele. “Yap yoksa ısırırım!” demiş köpek. Nozibele de köpeğe biraz yemek pişirmiş.",
+      "Köpek sonra “Yatağımı hazırla!” demiş. Nozibele “Ama ben hiç köpeğe yatak hazırlamadım,” demiş. Köpek gene “Yap yoksa ısırırım!” demiş. Ve Nozibele yatağı hazırlamış.",
+      "Böylece Nozibele her gün köpeğin yemek ve temizlik işlerini yapmaya başlamış. Sonra birgün köpek, “Nozibele, bugün bir kaç arkadaşımı ziyaret edeceğim. Ben gelene kadar, evi temizle, yemek pişir ve çamaşırlarımı yıka,” demiş.",
+      "Nozibele köpek gider gitmez saçından üç tel koparmış. Birini yatağın altına, birini kapının arkasına, birini de ağıla bırakmış. Sonra da olanca hızıyla evine doğru koşmaya başlamış.",
+      "Köpek geri geldiğinde Nozibele’yi aramış. “Nozibele neredesin?” diye bağırmaya başlamış. Yatağın altındaki saç “Buradayım yatağın altında,” demiş. İkinci saç, “Buradayım, kapının arkasında,” demiş. Üçüncü saç da, “Buradayım, ağılda,” diye seslenmiş.",
+      "O zaman köpek Nozibele’nin kendisini kandırdığını anlamış ve hemen evden fırlayıp köye kadar koşmuş. Ancak köyde Nozibele’nin ağabeyleri, ellerinde kocaman sopalarla bekliyorlarmış. Bunu gören köpek hemen dönüp oradan hızla uzaklaşmış ve onu bir daha gören olmamış."
+    ]
+  },
+  {
+    "id": "gsb-en-0158",
+    "language": "en",
+    "title": "Hen and Eagle",
+    "level": 3,
+    "words": 390,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0158/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0158/en-0158_hen.mp3",
+    "credit": {
+      "writer": "Ann Nduku",
+      "illustrator": "Wiehan de Jager",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "Once upon a time, Hen and Eagle were friends. They lived in peace with all the other birds. None of them could fly.",
+      "One day, there was famine in the land. Eagle had to walk very far to find food. She came back very tired. “There must be an easier way to travel!” said Eagle.",
+      "After a good night’s sleep, Hen had a brilliant idea. She began collecting the fallen feathers from all their bird friends. “Let’s sew them together on top of our own feathers,” she said. “Perhaps that will make it easier to travel.”",
+      "Eagle was the only one in the village with a needle, so she started sewing first. She made herself a pair of beautiful wings and flew high above Hen. Hen borrowed the needle but she soon got tired of sewing. She left the needle on the cupboard and went into the kitchen to prepare food for her children.",
+      "But the other birds had seen Eagle flying away. They asked Hen to lend them the needle to make wings for themselves too. Soon there were birds flying all over the sky.",
+      "When the last bird returned the borrowed needle, Hen was not there. So her children took the needle and started playing with it. When they got tired of the game, they left the needle in the sand.",
+      "Later that afternoon, Eagle returned. She asked for the needle to fix some feathers that had loosened on her journey. Hen looked on the cupboard. She looked in the kitchen. She looked in the yard. But the needle was nowhere to be found.",
+      "“Just give me a day,” Hen begged Eagle. “Then you can fix your wing and fly away to get food again.” “Just one more day,” said Eagle. “If you can’t find the needle, you’ll have to give me one of your chicks as payment.”",
+      "When Eagle came the next day, she found Hen scratching in the sand, but no needle. So Eagle flew down very fast and caught one of the chicks. She carried it away. Forever after that, whenever Eagle appears, she finds Hen scratching in the sand for the needle.",
+      "As the shadow of Eagle’s wing falls on the ground, Hen warns her chicks. “Get out of the bare and dry land.” And they respond: “We are not fools. We will run.”"
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0158/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0158/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0158/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0158/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0158/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0158/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0158/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0158/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0158/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0158/11.jpg"
+    ],
+    "turkish": [
+      "Bir zamanlar Horoz ve Kartal arkadaşmışlar. Diğer kuşlarla birlikte barış içinde yaşıyorlarmış. Hiçbiri uçmasını bilmiyormuş.",
+      "Bir gün ülkede kıtlık olmuş. Kartal yemek bulmak için çok uzaklara kadar yürümek zorunda kalmiş. Geri döndüğünde çok yorulmuş. “Yolculuk yapmanın daha kolay bir yolu olmalı!” demiş Kartal.",
+      "İyi bir gece uykusundan sonra, Tavuğun aklına parlak bir fikir gelmiş. Kuş arkadaşlarından dökülen tüyleri toplamaya başlamış. “Gel bu tüyleri birleştirip dikelim ve kendi kanatlarımızın üzerine ekleyelim,” demiş Horoz. “Belki daha kolay yolculuk yapmamızı sağlar.”",
+      "Köyde dikiş iğnesi sadece Kartal’da varmış, böylece ilk o dikmeye başlamış. Kendine çok güzel iki kanat dikip yükselerek Tavuğun üzerinde uçmuş. Tavuk iğneyi ödünç almış ama dikerken yorulmuş. İğneyi dolaba koyup mutfağa çocuklarına yemek hazırlamaya gitmiş.",
+      "Ancak diğer kuşlar Kartal’ın uçtuğunu görmüşler. Onlar da kendilerine kanat yapabilmek için Tavuk’tan iğneyi ödünç vermesini istemişler. Az sonra gökyüzü uçan kuşlarla dolmuş.",
+      "Son kuş ödünç iğneyi geri getirdiğinde Tavuk evde değilmiş. İğneyi çocukları almış ve onunla oynamaya başlamışlar. Yorulduklarında da iğneyi kumun üstünde bırakmışlar.",
+      "Saatler sonra Kartal geri dönmüş. Yolculuğu sırasında bollaşan bazı tüylerini sağlamlaştırmak için iğneyi geri istemiş. Tavuk dolaba bakmış. Mutfağa bakmış. Bahçeye bakmış. Ama iğneyi hiç bir yerde bulamamış.",
+      "“Bana bir gün izin ver,” diye yalvarmış Tavuk. “Sonra kanadını tamir edip gene yemek aramak için uçarsın.” “Sadece bir gün ama,” demiş Kartal. “Eğer iğneyi bulamazsan karşılığında civcivlerinden birini alırım.”",
+      "Ertesi gün Kartal geldiğinde, Tavuğu kumun içinde iğneyi ararken görmüş, ama iğne hâlâ yokmuş. Kartal da hızla aşağıya doğru uçup civcivlerden birini kapmış. Ve götürmüş. Ondan sonra ne zaman Kartal gelse, Tavuğun kumu karıştırarak iğne aradığını görürmüş.",
+      "Ve Kartal’ın kanatlarının gölgesi yere vurur vurmaz, Tavuk civcivlerini uyarırmış. “Açık ve düz yerlerden uzaklaşın.” Ve onlar cevap verirlermiş. “Aptal değiliz ki elbette kaçacağız.”"
+    ]
+  },
+  {
+    "id": "gsb-en-0110",
+    "language": "en",
+    "title": "A Tiny Seed: The Story of Wangari Maathai",
+    "level": 3,
+    "words": 412,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0110/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0110/en-0110_wangari.mp3",
+    "credit": {
+      "writer": "Nicola Rijsdijk",
+      "illustrator": "Maya Marshak",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 4.0 International License",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "pages": [
+      "In a village on the slopes of Mount Kenya in East Africa, a little girl worked in the fields with her mother. Her name was Wangari.",
+      "Wangari loved being outside. In her family’s food garden she broke up the soil with her machete. She pressed tiny seeds into the warm earth.",
+      "Her favourite time of day was just after sunset. When it got too dark to see the plants, Wangari knew it was time to go home. She would follow the narrow paths through the fields, crossing rivers as she went.",
+      "Wangari was a clever child and couldn’t wait to go to school. But her mother and father wanted her to stay and help them at home. When she was seven years old, her big brother persuaded her parents to let her go to school.",
+      "She liked to learn! Wangari learnt more and more with every book she read. She did so well at school that she was invited to study in the United States of America. Wangari was excited! She wanted to know more about the world.",
+      "At the American university Wangari learnt many new things. She studied plants and how they grow. And she remembered how she grew: playing games with her brothers in the shade of the trees in the beautiful Kenyan forests.",
+      "The more she learnt, the more she realised that she loved the people of Kenya. She wanted them to be happy and free. The more she learnt, the more she remembered her African home.",
+      "When she had finished her studies, she returned to Kenya. But her country had changed. Huge farms stretched across the land. Women had no wood to make cooking fires. The people were poor and the children were hungry.",
+      "Wangari knew what to do. She taught the women how to plant trees from seeds. The women sold the trees and used the money to look after their families. The women were very happy. Wangari had helped them to feel powerful and strong.",
+      "As time passed, the new trees grew into forests, and the rivers started flowing again. Wangari’s message spread across Africa. Today, millions of trees have grown from Wangari’s seeds.",
+      "Wangari had worked hard. People all over the world took notice, and gave her a famous prize. It is called the Nobel Peace Prize, and she was the first African woman ever to receive it.",
+      "Wangari died in 2011, but we can think of her every time we see a beautiful tree."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0110/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0110/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0110/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0110/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0110/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0110/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0110/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0110/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0110/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0110/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0110/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0110/13.jpg"
+    ],
+    "turkish": [
+      "Güney Afrika’da Kenya Dağı’nın eteklerindeki bir köyde, küçük bir kız annesiyle birlikte tarlalarda çalışırdı. Bu kızın adı Wangari idi.",
+      "Wangari dışarıda olmayı çok severdi. Ailesinin yiyecek bahçesinde, büyük keskin bıçağıyla toprağı kazar, küçük tohumları sıcak toprağın içine bastırırdı.",
+      "Onun için günün favori zamanı, güneş batışından hemen sonrası idi. Hava bitkileri göremeyecek kadar çok karanlık olduğu zaman, Wangari eve gitme zamanının geldiğini anlardı. Eve giderken, tarlalar boyunca dar patikalardan geçer, nehirleri aşardı.",
+      "Wangari akıllı bir çocuktu ve okula gitmek için sabırsızlanıyordu. Fakat, annesi ve babası ondan evde kalmasını ve onlara yardım etmesini istiyorlardı. Yedi yaşına geldiğinde, büyük erkek kardeşi Wangari’nin okula gitmesi için ailesini ikna etti.",
+      "O, öğrenmeyi sevdi! Wangari, okuduğu her kitapla daha fazla, daha fazla şey öğrendi. Okulda o kadar iyiydi ki; Amerika Birleşik Devletlerin’de okumak için davet aldı. Wangari çok heyecanlanmıştı! O, dünya hakkında daha fazla şey bilmek istiyordu.",
+      "Amerika üniversitesinde, Wangari bir sürü yeni şeyler öğrendi. O, bitkiler ve bitkilerin nasıl yetişeceği alanında okudu. Ve nasıl büyüdüğünü anımsadı: erkek kardeşiyle güzel Kenya ormanlarının ağaçlarının gölgesinde oyunlar oynamalarını.",
+      "Daha çok öğrendikçe daha da farkına vardı ki o Kenya’nın insanlarını çok seviyordu. Onların mutlu ve özgür olmalarını istiyordu. Daha çok şey öğrendikçe Afrika’daki evi hakkında daha çok şey hatırladı.",
+      "Çalışmalarını bitirdiği zaman Kenya’ya döndü. Ama ülkesi değişmişti. Koca çiftlikler arazi boyunca uzatılmıştı. Kadınların yemek yapmak için ateş yakacak odunları yoktu. İnsanlar fakirdi, ve çocuklar açtı.",
+      "Wangari ne yapacağını biliyordu. O, kadınlara tohum halinden ağaçları nasıl yetiştireceklerini öğretti. Kadınlar bu ağaçları sattılar, ve parayı ailelerine bakmak için kullandılar. Kadınlar çok mutlulardı. Wangari, onlara güçlü hissetmeleri için yardım etmişti.",
+      "Zaman geçtikçe, ormanda yeni ağaçlar büyüdü, ve nehir tekrar akmaya başladı. Wangari’nin mesajı Afrika boyunca yayıldı. Bugün, milyonlarca ağaç, Wangari’nin tohumlarından büyümekte.",
+      "Wangari çok çalıştı. Dünyanın her yerindeki insanlar bunu dikkate aldılar, ve ona çok ünlü bir ödül verdiler. Bu ödül Nobel Barış Ödülü olarak adlandırılıyor, ve Wangari bu ödülü almış ilk Afrikalı kadındı.",
+      "Wangari 2011 de öldü, ama biz onu güzel bir ağaç gördüğümüz her zaman anımsayabiliriz."
+    ]
+  },
+  {
+    "id": "gsb-en-0072",
+    "language": "en",
+    "title": "The Honeyguide’s revenge",
+    "level": 4,
+    "words": 713,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0072/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0072/en-0072_honeyguide.mp3",
+    "credit": {
+      "writer": "Zulu folktale",
+      "illustrator": "Wiehan de Jager",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "This is the story of Ngede, the Honeyguide, and a greedy young man named Gingile. One day while Gingile was out hunting he heard the call of Ngede. Gingile’s mouth began to water at the thought of honey. He stopped and listened carefully, searching until he saw the bird in the branches above his head. “Chitik-chitik-chitik,” the little bird rattled, as he flew to the next tree, and the next. “Chitik, chitik, chitik,” he called, stopping from time to time to be sure that Gingile followed.",
+      "After half an hour, they reached a huge wild fig tree. Ngede hopped about madly among the branches. He then settled on one branch and cocked his head at Gingile as if to say, “Here it is! Come now! What is taking you so long?” Gingile couldn’t see any bees from under the tree, but he trusted Ngede.",
+      "So Gingile put down his hunting spear under the tree, gathered some dry twigs and made a small fire. When the fire was burning well, he put a long dry stick into the heart of the fire. This wood was especially known to make lots of smoke while it burned. He began climbing, holding the cool end of the smoking stick in his teeth.",
+      "Soon he could hear the loud buzzing of the busy bees. They were coming in and out of a hollow in the tree trunk – their hive. When Gingile reached the hive he pushed the smoking end of the stick into the hollow. The bees came rushing out, angry and mean. They flew away because they didn’t like the smoke – but not before they had given Gingile some painful stings!",
+      "When the bees were out, Gingile pushed his hands into the nest. He took out handfuls of the heavy comb, dripping with rich honey and full of fat, white grubs. He put the comb carefully in the pouch he carried on his shoulder, and started to climb down the tree.",
+      "Ngede eagerly watched everything that Gingile was doing. He was waiting for him to leave a fat piece of honeycomb as a thank-you offering to the Honeyguide. Ngede flittered from branch to branch, closer and closer to the ground. Finally Gingile reached the bottom of the tree. Ngede perched on a rock near the boy and waited for his reward.",
+      "But, Gingile put out the fire, picked up his spear and started walking home, ignoring the bird. Ngede called out angrily, “VIC-torr! VIC-torrr!” Gingile stopped, stared at the little bird and laughed aloud. “You want some honey, do you, my friend? Ha! But I did all the work, and got all the stings. Why should I share any of this lovely honey with you?” Then he walked off. Ngede was furious! This was no way to treat him! But he would get his revenge.",
+      "One day several weeks later Gingile again heard the honey call of Ngede. He remembered the delicious honey, and eagerly followed the bird once again. After leading Gingile along the edge of the forest, Ngede stopped to rest in a great umbrella thorn. “Ahh,” thought Gingile. “The hive must be in this tree.” He quickly made his small fire and began to climb, the smoking branch in his teeth. Ngede sat and watched.",
+      "Gingile climbed, wondering why he didn’t hear the usual buzzing. “Perhaps the hive is deep in the tree,” he thought to himself. He pulled himself up another branch. But instead of the hive, he was staring into the face of a leopard! Leopard was very angry at having her sleep so rudely interrupted. She narrowed her eyes, opened her mouth to reveal her very large and very sharp teeth.",
+      "Before Leopard could take a swipe at Gingile, he rushed down the tree. In his hurry he missed a branch, and landed with a heavy thud on the ground twisting his ankle. He hobbled off as fast as he could. Luckily for him, Leopard was still too sleepy to chase him. Ngede, the Honeyguide, had his revenge. And Gingile learned his lesson.",
+      "And so, when the children of Gingile hear the story of Ngede they have respect for the little bird. Whenever they harvest honey, they make sure to leave the biggest part of the comb for Honeyguide!"
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0072/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0072/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0072/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0072/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0072/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0072/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0072/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0072/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0072/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0072/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0072/12.jpg"
+    ],
+    "turkish": [
+      "Bu hikaye bal kuşu Ngede ile Gingile adında aç gözlü bir genç adamın hikayesi. Bir gün Gingile avlanmaya gittiğinde Ngede’nin sesini duymuş. Gingile’nin ağzı bal bulurum düşüncesiyle sulanmaya başlamış. Durmuş ve kuşun sesini dikkatlice izleyerek onun bulunduğu dalların altina gelmiş. “Çitik, çitik, çitik,” diye ötmüş kuş ve ara ara arkasına bakarak Gingile’nin onu izlediğinden emin olmak istemiş.",
+      "Yarım saat sonra, bir incir ağacına ulaşmışlar. Ngede dallar arasında çılgınca zıplamaya başlamış. Sonra bir dalın üstünde durup kafasını ileri geri sallamış. Böyle yaparak Gingile’ye mesaj vermeye çalışmış: “Hadi bak burada işte! Gel, hadi ne duruyorsun?” Gingile ağacın altından baktığında hiç arı görmemiş ama gene de Ngede’ye güvenmiş.",
+      "Böylece Gingile avcı mızrağını ağacın altına bırakmış, bir kaç dal toplayıp ateş yakmış. Ateş iyice yandığında uzunca bir tahta çubuğu ateşin tam ortasına yerleştirmiş. Çubuk, yandığında çok duman çıkartan bir cins tahtadan yapılmışmış. Gingile yanan çubuğun soğuk kısmını dişlerinin arasında tutarak ağaca tırmanmaya başlamış.",
+      "Yukarı tırmandıkça da arıların vızıltısını duymaya başlamış. Ağacın kovuğundaki kovanlarından geliyormuş arıların sesi. Gingile elindeki duman tüten çubuğu kovuğa doğru yaklaştırıp içeri sokmuş. Arılar sinir içinde kovanlarından dışarı kaçışmaya başlamışlar. Tabii bu arada Gingile’yi de bir kaç kez sokup canını yakmışlar.",
+      "Arılar gittikten sonra, Gingile elini kovanın içine sokup kocaman bal, yağ ve bir miktar arı larvası dolu petekleri dışarı çıkartmış. Petekleri dikkatlice omuzunda taşıdığı torbasına yerleştirmiş ve ağaçtan inmeye başlamış.",
+      "Ngede, bütün olup biteni dikkatlice izlemiş ve Gingile’nin ona teşekkür etmek için bal dolu bir parça petek vereceğini düşünerek daldan dala uçup o da yavaş yavaş alçalmış. Gingile nihayet ağaçtan inmiş. Ngede’de ona yakın bir kayanın üstüne konup ödülünü beklemeye başlamış.",
+      "Ama Gingile ateşi söndürüp mızrağını toplayıp bal kuşunu hiç düşünmeden evine doğru yürümeye koyulmuş. Ngede kızgın kızgın seslenmiş: “Çık-karrt, çık-karrt, çık-karrt!” Gingile durmuş, küçük kuşa bakmış ve kahkahalar atarak gülmeye başlamış. “Yani sen şimdi bal falan mı istiyorsun benden arkadaş? Ha? Ama bütün işi ben yaptım, arıların sokmalarına katlandım. Neden şimdi bu cânım balımı seninle paylaşayım?” Ve yürümeye devam etmiş. Ngede çok sinirlenmiş. Böyle bir davranışı hak etmediğini düşünmüş. Ama er geç intikamını almaya kararlıymış.",
+      "Bir kaç hafta sonra bir gün Gingile gene Ngede’nin bal çağrısını duymuş. Lezzetli balı hatırlayıp gene kuşu izlemiş. Ngede Gingile’yi ormanın kenarına kadar getirmiş. Orada “şemsiye dikeni” denen bir ağacın üstüne konmuş. “Tamam,” diye düşünmüş Gingile “kovan bu ağaçta olmalı.” Hemen gene ateş yakmış ve duman tüten çubuğu dişlerinin arasına alıp tırmanmaya başlamış. Ngede de izlemeye koyulmuş.",
+      "Gingile tırmandığında arı sesi duymadığına şaşırmış. “Belki de kovan ağacın içinde çok derin bir yerdedir,” diye düşünmüş kendi kendine. Biraz daha yukarı tırmanıp daha yüksek bir dalda durmuş. Fakat kovan yerine bir Leoparın yüzüyle karşılaşmış. Leopar böyle saygısızca uykusundan uyandırıldığı için son derece kızmış. Gözlerini kısıp ağzını açarak kocaman sivri dişlerini göstermiş.",
+      "Leopar onu yakalamadan Gingile olanca hızıyla ağaçtan inmeye başlamış. Fakat telaştan bir dalı atlayınca paldır küldür yere yuvarlanmış ve bileğini incitmiş. Topallaya topallaya oradan hızla uzaklaşmış. Leopar onun peşine düşmek istemeyecek kadar yorgun olduğu için çok şanslıymış. Böylece hem Ngede intikamını hem de Gingile iyi bir ders almış.",
+      "Ve o gün bu gündür Ngede’nin hikâyesini dinleyen çocuklar her zaman bu küçük kuşa saygı duymuşlar. Ne zaman bal toplamaya gitseler büyük bir parça bal peteğini ona bırakmayı unutmamışlar."
     ]
   }
 ]
