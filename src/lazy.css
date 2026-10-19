@@ -1601,17 +1601,13 @@ button.badge-card:active { transform: none; }
 .account-password .field { display: grid; gap: 0.375rem; }
 .account-google { gap: 0.625rem; }
 .account-advanced { border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface); overflow: hidden; margin-top: 0.5rem; }
-.account-accordion-summary, .account-danger-summary { list-style: none; cursor: pointer; user-select: none; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.75rem 1rem; background: var(--surface-2); color: var(--ink); font-weight: 600; transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
-.account-accordion-summary::-webkit-details-marker, .account-danger-summary::-webkit-details-marker { display: none; }
+.account-accordion-summary { list-style: none; cursor: pointer; user-select: none; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.75rem 1rem; background: var(--surface-2); color: var(--ink); font-weight: 600; transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
+.account-accordion-summary::-webkit-details-marker { display: none; }
 .account-accordion-summary:hover { background: color-mix(in srgb, var(--lang-soft) 60%, var(--surface-2)); color: var(--lang-text); }
-.account-accordion-title, .account-danger-title { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; }
+.account-accordion-title { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; }
 .account-accordion-arrow { flex: none; color: var(--ink-soft); transition: transform var(--dur-fast) var(--ease-out); }
-details[open] > .account-accordion-summary .account-accordion-arrow, details[open] > .account-danger-summary .account-accordion-arrow { transform: rotate(180deg); }
+details[open] > .account-accordion-summary .account-accordion-arrow { transform: rotate(180deg); }
 .account-accordion-body { padding: 0.875rem 1rem 1rem; border-top: 1px solid var(--rule); }
-.account-danger-details { border-color: color-mix(in srgb, #dc2626 30%, var(--rule)); }
-.account-danger-summary { background: color-mix(in srgb, #dc2626 5%, var(--surface-2)); color: color-mix(in srgb, #dc2626 85%, var(--ink)); }
-.account-danger-summary:hover { background: color-mix(in srgb, #dc2626 10%, var(--surface-2)); color: #dc2626; }
-.account-danger-body { padding: 0.875rem 1rem 1rem; border-top: 1px solid color-mix(in srgb, #dc2626 25%, var(--rule)); display: grid; gap: 0.75rem; justify-items: start; background: color-mix(in srgb, #dc2626 2%, var(--surface)); }
 @media (max-width: 40rem) {
   .account-perks { padding: 0.875rem; }
 }
@@ -3393,3 +3389,20 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   justify-content: center;
 }
 
+
+/* Deleting the account (AccountDeleteDialog): what goes and what stays, the typed phrase, the work. */
+.delete-dialog { width: min(32rem, 100%); }
+.delete-body { display: grid; gap: 0.875rem; }
+.delete-body p { margin: 0; }
+.delete-box { display: grid; gap: 0.5rem; padding: 0.75rem 0.875rem; border-radius: var(--r-md); background: var(--surface-2); }
+.delete-box-title { margin: 0; font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.delete-box-gone .delete-box-title { color: var(--bad-text); }
+.delete-box ul { display: grid; gap: 0.375rem; margin: 0; padding: 0; list-style: none; }
+.delete-box li { display: grid; grid-template-columns: 1rem 1fr; gap: 0.5rem; align-items: start; font-size: var(--t-sm); line-height: 1.45; color: var(--ink); }
+.delete-box li .icon { margin-top: 0.2rem; color: var(--ink-soft); }
+.delete-box-gone li .icon { color: var(--bad-text); }
+.delete-backup { justify-self: start; gap: 0.5rem; }
+.delete-phrase { display: inline-block; padding: 0.05rem 0.5rem; border-radius: var(--r-sm); background: var(--bad-soft); color: var(--bad-text); font-weight: 700; }
+.delete-working { display: flex; align-items: center; gap: 0.75rem; color: var(--ink); }
+.delete-spinner { flex: none; inline-size: 1.25rem; block-size: 1.25rem; border: 2.5px solid var(--rule); border-top-color: var(--bad); border-radius: 50%; animation: delete-spin 0.9s linear infinite; }
+@keyframes delete-spin { to { transform: rotate(360deg); } }

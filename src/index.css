@@ -2732,9 +2732,17 @@ button.access-badge:hover { border-color: var(--ink-soft); }
 .auth-links { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; }
 .auth-links .link { min-inline-size: 1.5rem; min-block-size: 1.5rem; display: inline-flex; align-items: center; }
 .auth-submit { width: 100%; justify-content: center; min-height: 2.875rem; margin-top: 0.25rem; }
-.auth-note { display: grid; justify-items: center; gap: 0.375rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--ink-soft); text-align: center; }
-.auth-note p { margin: 0; max-width: 22rem; text-wrap: balance; }
+.auth-note { display: grid; justify-items: center; gap: 0.25rem; padding-top: 0.875rem; border-top: 1px solid var(--rule); color: var(--ink-soft); text-align: center; }
+.auth-note p { margin: 0; max-width: 26rem; text-wrap: balance; line-height: 1.45; }
+.auth-note-line .icon { display: inline-block; vertical-align: -0.2em; margin-inline-end: 0.375rem; }
+.auth-legal { font-size: var(--t-xs); }
 .auth-legal a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
+.password-field { position: relative; display: block; }
+.password-field .input { width: 100%; padding-inline-end: 2.75rem; }
+.password-toggle { position: absolute; inset-block: 0; inset-inline-end: 0.25rem; margin-block: auto; inline-size: 2.25rem; block-size: 2.25rem; display: grid; place-items: center; border: 0; border-radius: var(--r-sm); background: transparent; color: var(--ink-soft); cursor: pointer; transition: color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out); }
+.password-toggle:hover { color: var(--ink); background: var(--surface-2); }
+.password-toggle:focus-visible { outline: 2px solid var(--lang); outline-offset: -2px; }
+.password-toggle[aria-pressed='true'] { color: var(--lang-text); }
 .auth-sent { display: grid; justify-items: center; gap: 1rem; text-align: center; }
 .auth-sent-lead { font-size: var(--t-md, 1rem); line-height: 1.5; text-wrap: balance; max-width: none; }
 .auth-sent-tips { width: 100%; margin: 0; padding: 0.875rem 1rem 0.875rem 2rem; text-align: left; border-radius: var(--r-md); background: var(--surface-2); display: grid; gap: 0.5rem; line-height: 1.5; }

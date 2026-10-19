@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 import { approvalEnabled } from '../data/access'
 import { reportError } from '../data/errorReport'
 import { VaultError } from '../data/vault'
-import { clearReturn, currentSession, isRecoveryReturn, returnError, sendMagicLink, sendPasswordReset, setNewPassword, signIn, signInWithGoogle, signUp, supabase, authErrorText } from '../data/supabase'
+import { clearReturn, currentSession, isRecoveryReturn, returnError, resendConfirmation, sendMagicLink, sendPasswordReset, setNewPassword, signIn, signInWithGoogle, signUp, supabase, authErrorText } from '../data/supabase'
 import { ChevronLeftIcon, LockIcon } from './icons'
 import { BrandLogo } from './BrandLogo'
+import { PasswordInput } from './PasswordInput'
 import { completeSignIn, vaultErrorText, type SignInOutcome } from './signInFlow'
 import { showToast } from './toastFeed'
 
@@ -45,6 +46,8 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
   const [sentWhat, setSentWhat] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  // A link from a mail that no longer works (used or expired): the form offers to send the confirmation again.
+  const [linkFailed, setLinkFailed] = useState(false)
   // Whether the owner approves accounts at all: the sign-up text about it is only true then (until known, it is left out).
   const [approvalOn, setApprovalOn] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
@@ -86,6 +89,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
       if (failed) {
         clearReturn()
         setStep('login')
+        setLinkFailed(true)
         setError(authErrorText(failed))
         return
       }
@@ -94,7 +98,8 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
       clearReturn()
       if (!s) {
         setStep('login')
-        setError('Bağlantının süresi dolmuş ya da kullanılmış; yeniden giriş yap.')
+        setLinkFailed(true)
+        setError('Bu bağlantı daha önce kullanılmış ya da süresi dolmuş. Hesabını zaten onayladıysan e-posta ve şifrenle giriş yap; onaylamadıysan yeni onay maili iste.')
         return
       }
       session.current = s
@@ -138,6 +143,16 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
       if (!s) throw new Error('Giriş tamamlanamadı; tekrar dene.')
       session.current = s
       finish(await completeSignIn(s))
+    })
+
+  const resend = () =>
+    attempt(async () => {
+      const mail = email.trim()
+      if (!EMAIL.test(mail)) throw new Error('Önce yukarıya e-posta adresini yaz.')
+      await resendConfirmation(mail)
+      setLinkFailed(false)
+      setSentWhat('Onay mailini yeniden gönderdik. En son gelen maildeki bağlantıya dokun; eski mailler çalışmaz.')
+      setStep('sent')
     })
 
   const title: Record<Step, string> = {
@@ -200,20 +215,15 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
             {(step === 'login' || step === 'create') && (
               <label className="field">
                 <span className="field-label">Şifre</span>
-                <input className="input" type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} autoComplete={step === 'create' ? 'new-password' : 'current-password'} />
+                <PasswordInput value={password} onChange={setPassword} autoComplete={step === 'create' ? 'new-password' : 'current-password'} shown={showPassword} onShownChange={setShowPassword} />
                 {step === 'create' && <span className="help">En az 8 karakter</span>}
               </label>
-            )}
-            {(step === 'login' || step === 'create') && (
-              <button type="button" className="link small" aria-pressed={showPassword} onClick={() => setShowPassword((on) => !on)}>
-                {showPassword ? 'Şifreyi gizle' : 'Şifreyi göster'}
-              </button>
             )}
             {step === 'create' && (
               <>
                 <label className="field">
                   <span className="field-label">Şifre (tekrar)</span>
-                  <input className="input" type={showPassword ? 'text' : 'password'} value={repeat} onChange={(e) => setRepeat(e.target.value)} autoComplete="new-password" />
+                  <PasswordInput value={repeat} onChange={setRepeat} autoComplete="new-password" shown={showPassword} onShownChange={setShowPassword} />
                 </label>
                 <label className="field">
                   <span className="field-label">Adın (isteğe bağlı)</span>
@@ -234,6 +244,11 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
               <p className="error" role="alert">
                 {error}
               </p>
+            )}
+            {linkFailed && (
+              <button type="button" className="link small" disabled={busy} onClick={() => void resend()}>
+                Onay mailini yeniden gönder
+              </button>
             )}
             <button className="btn auth-submit" type="submit" disabled={busy || !email.trim() || ((step === 'login' || step === 'create') && !password)}>
               {busy ? 'Bekle…' : step === 'create' ? 'Hesap oluştur' : step === 'login' ? 'Giriş yap' : 'Bağlantı gönder'}
@@ -298,10 +313,12 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
 
 
         <div className="auth-note">
-          <LockIcon size={16} />
-          <p className="small muted">Şifreni unutsan da verilerin kaybolmaz: e‑postanla yenilersin.</p>
-          <p className="small muted auth-legal">
-            Devam edersen <a href="/kosullar.html" target="_blank" rel="noopener">Kullanım koşulları</a> ve <a href="/gizlilik.html" target="_blank" rel="noopener">Gizlilik politikası</a> geçerli olur.
+          <p className="small muted auth-note-line">
+            <LockIcon size={15} />
+            Şifreni unutsan da verilerin kaybolmaz; e‑postanla yenilersin.
+          </p>
+          <p className="muted auth-legal">
+            Devam edince <a href="/kosullar.html" target="_blank" rel="noopener">Kullanım koşulları</a> ve <a href="/gizlilik.html" target="_blank" rel="noopener">Gizlilik politikası</a> geçerli olur.
           </p>
         </div>
       </div>
@@ -312,6 +329,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
 function Recovery({ onSaved }: { onSaved: () => void }) {
   const [password, setPassword] = useState('')
   const [repeat, setRepeat] = useState('')
+  const [shown, setShown] = useState(false)
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
   return (
@@ -334,11 +352,11 @@ function Recovery({ onSaved }: { onSaved: () => void }) {
     >
       <label className="field">
         <span className="field-label">Yeni şifre</span>
-        <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="new-password" autoFocus />
+        <PasswordInput value={password} onChange={setPassword} autoComplete="new-password" autoFocus shown={shown} onShownChange={setShown} />
       </label>
       <label className="field">
         <span className="field-label">Yeni şifre (tekrar)</span>
-        <input className="input" type="password" value={repeat} onChange={(e) => setRepeat(e.target.value)} autoComplete="new-password" />
+        <PasswordInput value={repeat} onChange={setRepeat} autoComplete="new-password" shown={shown} onShownChange={setShown} />
       </label>
       {error && (
         <p className="error" role="alert">

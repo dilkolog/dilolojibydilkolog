@@ -36,7 +36,8 @@ export default defineConfig({
         // The privacy and terms pages are static files, not app screens: never answer them with the app's index.html.
         navigateFallbackDenylist: [/^\/hakkinda/, /^\/gizlilik/, /^\/kosullar/, /^\/api\//],
         // Only Latin glyphs are needed for TR/EN/FR/ES; the browser never requests the other subsets.
-        globIgnores: ['**/*-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*'],
+        globIgnores: ['**/*-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*', 'fonts/**', 'mail/**'],
+        // The static pages' fonts (public/fonts) and the mails' pictures (public/mail) are served to those who open them, not stored on every device.
         // Server push reminders (public/push-sw.js).
         importScripts: ['push-sw.js'],
         // Word packs (src/data/wordpack.ts) are fetched when a language first needs one, then kept
