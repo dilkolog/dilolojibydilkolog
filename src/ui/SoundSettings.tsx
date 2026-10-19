@@ -35,7 +35,8 @@ export function SoundSettings({
     <section className="card stack">
       <h2 className="section-title">Ses</h2>
       <Toggle label="Kelimeleri otomatik seslendir" help="Yeni kelimede ve dinleme sorularında ses kendiliğinden çalar." checked={settings.autoPlayAudio} onChange={(v) => set('autoPlayAudio', v)} />
-      <Toggle label="Ses efektleri" help="Doğru, yanlış, seri ve seviye atlama sesleri; destekleyen telefonlarda kısa titreşim." checked={settings.soundEffects} onChange={(v) => set('soundEffects', v)} />
+      <Toggle label="Ses efektleri" help="Doğru, yanlış, seri ve seviye atlama sesleri." checked={settings.soundEffects} onChange={(v) => set('soundEffects', v)} />
+      <Toggle label="Dokunsal titreşim (Haptik)" help="Doğru, yanlış, seri ve kart çevirmelerde destekleyen telefonlarda kısa titreşim." checked={settings.haptics ?? true} onChange={(v) => set('haptics', v)} />
       <Toggle
         label="Konuşarak cevap soruları"
         help={canListen() ? 'Bazı sorularda kelimeyi sesli söylemen istenir; yazılı sorularda mikrofonla da cevaplayabilirsin.' : 'Bu tarayıcı konuşma tanımayı desteklemiyor (Safari ya da Chrome kullan).'}

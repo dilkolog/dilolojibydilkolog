@@ -106,6 +106,7 @@ export function Summary({
   }, [newBadges.map((a) => a.id).join()]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (leveledUp || newBadges.length) sfx.levelUp()
+    else if (accuracy >= 0.85 && summary.answered >= 5) sfx.combo()
     if (after) markLevelSeen(after.level.level)
     if (leveledUp && after) void notify(levelNotice(after.level.level, after.level.title))
     // Play once when the summary opens.
@@ -139,9 +140,8 @@ export function Summary({
       )}
       <div className="summary-main stack">
       <div className="celebrate celebrate-card">
-        {/* Words that grew are the celebration (below); confetti only when none did. */}
-        {(leveledUp || blooms > 0 || (accuracy >= 0.7 && !grown.length)) && <Burst />}
-        <img className="result-art" src={RESULT_ART[resultKind(accuracy, summary.answered, { leveledUp, streakSaved: !!after?.frozenYesterday })]} alt="" draggable={false} />
+        {(leveledUp || blooms > 0 || accuracy >= 0.8) && <Burst />}
+        <img className={`result-art${accuracy >= 0.8 ? ' art-pop' : ''}`} src={RESULT_ART[resultKind(accuracy, summary.answered, { leveledUp, streakSaved: !!after?.frozenYesterday })]} alt="" draggable={false} />
         <Ring value={accuracy} size={140} stroke={14} label={`%${Math.round(accuracy * 100)}`} doneLabel="%100" />
         {topic === 'difficult' && (
           <span className="topic-chip">
