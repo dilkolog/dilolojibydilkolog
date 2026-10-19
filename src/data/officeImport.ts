@@ -1,4 +1,5 @@
 import { strFromU8, unzipSync } from 'fflate'
+import { apkgToText } from './ankiImport'
 
 /**
  * Word lists from Excel (.xlsx) and Word (.docx) files, as the tab-separated text the list importer
@@ -71,10 +72,11 @@ export function docxToText(bytes: Uint8Array): string {
   return lines.join('\n').trimEnd()
 }
 
-/** The text of a list file: Excel and Word are read as above, anything else as plain text. */
+/** The text of a list file: Excel, Word and Anki packages are read as above, anything else as plain text. */
 export async function listFileText(file: File): Promise<string> {
   const name = file.name.toLowerCase()
   if (name.endsWith('.xlsx')) return xlsxToText(new Uint8Array(await file.arrayBuffer()))
   if (name.endsWith('.docx')) return docxToText(new Uint8Array(await file.arrayBuffer()))
+  if (name.endsWith('.apkg')) return apkgToText(new Uint8Array(await file.arrayBuffer()))
   return file.text()
 }

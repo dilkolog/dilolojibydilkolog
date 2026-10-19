@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { supabaseConfigured } from '../data/supabase'
 import { ACCOUNT_EVENT, approvalEnabled, cachedAccess, forgetAccess, getStoredAccount, probeAccount, requestAccess, saveAccess, type AccessStatus } from '../data/access'
 import type { AccessState } from './accessContext'
 import { notify } from './noticeCenter'
@@ -42,7 +43,8 @@ export function useAccessStatus(): AccessState {
     try {
       const probe = await probeAccount(account)
       let next: AccessStatus = probe.match ? probe.status : 'none'
-      if (next === 'none') next = await requestAccess(account, account.username)
+      // With Supabase sign-in the server turns old username requests away (410), every time the app comes to the front: an old account just waits to be replaced by a sign-in.
+      if (next === 'none' && !supabaseConfigured()) next = await requestAccess(account, account.username)
       else await saveAccess(next)
       setStatus(next)
     } catch {
