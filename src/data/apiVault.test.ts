@@ -172,11 +172,9 @@ describe('/api/access: the Supabase vault', () => {
 
   it('an account from before deletes itself with its own token only', async () => {
     const del = (headers: Record<string, string>) => access.POST(new Request('https://app.test/api/access', { method: 'POST', headers: { ...APP, ...headers }, body: JSON.stringify({ action: 'account-delete' }) }))
-    expect((await del({ 'x-sync-id': OLD.id, 'x-sync-auth': '9'.repeat(64) })).status).toBe(403)
+    // With Supabase the person's own sign-in deletes them; the old token alone would leave their Supabase data behind.
+    expect((await del({ 'x-sync-id': OLD.id, 'x-sync-auth': OLD.auth })).status).toBe(401)
     expect(blobs.has(`sync/${OLD.id}/auth.txt`)).toBe(true)
-    expect((await del({ 'x-sync-id': OLD.id, 'x-sync-auth': OLD.auth })).status).toBe(200)
-    expect(blobs.has(`sync/${OLD.id}/auth.txt`)).toBe(false)
-    expect(blobs.has(`access/approved/${OLD.id}.json`)).toBe(false)
     expect(deletedUsers).toEqual([])
   })
 

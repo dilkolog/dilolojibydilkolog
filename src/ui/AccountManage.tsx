@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { currentSession, setNewPassword, signOutSupabase, authErrorText, providersText, type Identity } from '../data/supabase'
+import { currentSession, setNewPassword, signOutSupabase, authErrorText, providersText, supabaseConfigured, type Identity } from '../data/supabase'
 import type { Account } from '../data/sync'
 import { deleteAccount } from '../data/vault'
 import { ConfirmDialog } from './Dialog'
@@ -141,6 +141,11 @@ export function AccountDelete({
     setBusy(true)
     try {
       const session = identity ? await currentSession() : null
+      // The sign-in is what deletes the person's Supabase data too: without it only half would go, and the screen would say all did.
+      if (supabaseConfigured() && !session) {
+        showToast('Oturumun düşmüş görünüyor. Çıkış yapıp yeniden giriş yaptıktan sonra hesabı silmeyi tekrar dene.', undefined, 7000, 'info')
+        return
+      }
       await deleteAccount(session?.access_token ?? null, account)
       await setAccount(null)
       await signOutSupabase()

@@ -139,6 +139,8 @@ async function vaultLink(request: Request, body: Record<string, unknown>): Promi
 async function accountDelete(request: Request): Promise<Response> {
   if (overLimit(request, 'account-delete', 5)) return tooMany()
   try {
+    // With Supabase the person's own sign-in is what deletes them: the legacy token alone would leave their Supabase data behind.
+    if (supabaseOn() && !request.headers.has('authorization')) return json({ error: 'signed_out' }, 401)
     const user = request.headers.has('authorization') ? await supabaseUser(request) : null
     if (request.headers.has('authorization') && !user) return json({ error: 'signed_out' }, 401)
     const id = user ? ((await vaultOf(user.id))?.id ?? null) : await accountOf(request)
