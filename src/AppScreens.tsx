@@ -367,6 +367,7 @@ export function AppScreens(props: AppScreensProps) {
           }}
           onProfile={go({ name: 'profile' })}
           onStory={apiKey && data.states.length >= 3 ? go({ name: 'story' }) : undefined}
+          onReading={go({ name: 'reading' })}
           onGames={data.vocabulary.length >= 4 ? go({ name: 'games' }) : undefined}
           onShortRound={startShortRound}
           onQuest={startQuest}

@@ -46,6 +46,7 @@ import emTrophy from '../assets/art/emblem-trophy.webp'
 import srcVideo from '../assets/art/src-video.webp'
 import srcEbook from '../assets/art/src-ebook.webp'
 import srcNotes from '../assets/art/src-notes.webp'
+import srcNews from '../assets/art/src-news.webp'
 import pot0 from '../assets/art/pot-0.webp'
 import pot2 from '../assets/art/pot-2.webp'
 import pot4 from '../assets/art/pot-4.webp'
@@ -357,6 +358,7 @@ export const TILE_ART = {
   games: headGamesArt,
   free: stickerThumbs,
   early: tileCards,
+  news: srcNews,
 }
 
 /** Covers for word lists; a list gets the one its name suggests (Turkish, English, French or Spanish). */
