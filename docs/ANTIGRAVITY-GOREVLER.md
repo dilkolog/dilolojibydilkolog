@@ -603,14 +603,14 @@ Actions kotası dönünce `gh workflow run snapshots.yml --ref main`.
 
 Yarın 1–2 kişi siteyi deneyecek. Önce raporun §5 tablosunu oku (bulgu kodları aşağıda parantezde). **Claude Code şu dosyalara dokunuyor, sen dokunma:** `api/*`, `worker/*`, `src/data/supabase.ts`, `src/data/sync*.ts`, `src/data/vault.ts`, `src/ui/SupabaseAuth.tsx`, `src/ui/AccountManage.tsx`, `src/ui/AccountSettings.tsx`, `src/ui/signInFlow.ts`, `src/ui/useSignedIn.ts`, `src/ui/syncRunner.ts`, `src/ui/syncTarget.ts`, `src/ui/syncData.ts`. İlk mesajında "16.x'e başlıyorum" de; bitince PR numarasını bu dosyaya yaz. Her görev ayrı PR. Sunucuya, Supabase'e ya da canlı siteye **yazan** hiçbir şey yapma; yalnızca oku.
 
-### 16.1 Statik sayfalar ve paylaşım önizlemesi (UX7, UX8, L1–L4)
+### 16.1 Statik sayfalar ve paylaşım önizlemesi (UX7, UX8, L1–L4) — TAMAMLANDI (#506)
 Dosyalar: `index.html`, `public/hakkinda.html`, `public/gizlilik.html`, `public/kosullar.html` (başka kimse dokunmuyor).
 - `index.html`: `<meta name="description">`, `og:title`, `og:description`, `og:image` (`/pwa-512.png` ya da 1200×630 yeni bir görsel), `og:url`, `twitter:card`. `noindex` kalsın.
 - Üç statik sayfaya: `<link rel="icon">`, `theme-color`, `canonical`, `og` etiketleri, `lang`.
 - **Gizlilik politikası içeriği** koddaki gerçek davranışa göre tamamlansın: tarayıcıdan doğrudan giden istekleri koddan tara (`grep -rn "fetch(" src`; Tatoeba `src/data/corpus.ts`, Wiktionary/Wikipedia/Commons, Open-Meteo `src/data/weather.ts`, YouTube, archive.org, Pixabay/Openverse, Google TTS, LanguageTool, Azure) ve her birini "ne gider, ne zaman" diye listele; "Reklam ve izleme yoktur" cümlesini buna uydur. Yurt dışına aktarım (Supabase, Cloudflare, Resend, DeepL), saklama süresi, veri sorumlusu (taslak, ad boş bırak: sahibi dolduracak), yaş sınırı maddesi, çıkışta cihazdaki verinin kaldığı (Claude Code çıkışta silme seçeneği ekleyecek, o zamana kadar "kalır" yaz). **Onay (site sahibi onayı) maddesini kaldır**: onay sistemi kapalı. Bu bir hukuk metni taslağıdır: PR açıklamasına "hukukçu gözden geçirmeli" yaz.
 - Üç sayfayı `e2e/a11y.e2e.ts` axe taramasına ekle (açık, koyu tema: sayfalar `prefers-color-scheme` kullanıyor; telefon genişliği).
 
-### 16.2 Gerçek giriş sayfasının erişilebilirliği ve testi (E1, E2, F6)
+### 16.2 Gerçek giriş sayfasının erişilebilirliği ve testi (E1, E2, F6) — TAMAMLANDI (#510)
 Dosyalar: `src/index.css` (yalnızca `.link` ve `auth-*` kuralları), yeni test dosyaları.
 - `.link` düğmelerine en az 24×24 px hedef (WCAG 2.2 AA 2.5.8): "Şifremi unuttum", "Şifresiz giriş", "Gizle".
 - `SupabaseAuth` adımları (login, create, magic, reset, sent, recovery, working) için vitest + axe testi (`@axe-core/playwright` yerine bileşen düzeyinde `axe-core` varsa onu kullan, yoksa e2e tarafında `vite build` çıktısını Supabase ayarlı ve `page.route` ile taklit edilmiş Supabase uçlarıyla koşan **ikinci bir Playwright projesi** kur). Senaryolar: oturumsuz kullanıcı yalnızca giriş sayfasını görür; çıkışta yerel kelimeler silinmez; e-posta/şifre ve Google dönüş adımları. `.env.local` değişkenleri normal vitest/E2E koşusuna sızmamalı (`vite.config.ts` `test.env` zaten var; E2E için `npm run test:e2e` kullan).
