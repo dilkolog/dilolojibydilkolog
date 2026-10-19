@@ -74,6 +74,22 @@ export function SpeakButton({ text, entry, big, auto, vary, rate }: { text: stri
   )
 }
 
+/** Plays the word at a slow (0.72x) speed for careful listening. */
+export function SlowSpeakButton({ text, entry }: { text: string; entry: VocabularyEntry }) {
+  if (!canSpeak()) return null
+  return (
+    <button
+      type="button"
+      className="btn btn-quiet btn-sm slow-speak-btn"
+      onClick={() => playWord(entry, text, false, 0.72)}
+      title="Yavaş dinle (0.75x)"
+      aria-label="Yavaş dinle"
+    >
+      🐢 Yavaş
+    </button>
+  )
+}
+
 
 
 /** The word in large type, with its article. */

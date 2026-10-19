@@ -345,7 +345,17 @@ export function Home({
         )}
         <li>
           <StreakPicture streak={streak} size={28} /> {streak > 0 ? <><strong>{streak}</strong> günlük seri</> : 'Seri bugün başlar'}
+          {game && (game.freezes ?? 0) > 0 && (
+            <span className="freeze-chip small" title={`${game.freezes} gün seri kalkanı devrede: bir gün kaçırsan bile serin sıfırlanmaz`}>
+              🛡️ {game.freezes} kalkan
+            </span>
+          )}
         </li>
+        {game?.frozenYesterday && (
+          <li className="is-nudge streak-frozen-note" role="status">
+            🛡️ Dün çalışamadın ama Seri Kalkanın gün serini korudu! Serin kaldığı yerden devam ediyor.
+          </li>
+        )}
         {/* The streak counts any language, so today's XP (all languages) says whether it is safe. */}
         {streak > 0 && (game?.xp.today ?? 0) === 0 && remaining > 0 && <li className="is-nudge">Seriyi korumak için bugün bir tur yeter</li>}
         {/* A streak lost a day or two ago can be won back with the recall exam: one try per break. */}

@@ -5804,4 +5804,32 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
   color: var(--ink-soft);
 }
 
+/* ── Seri Kalkanı ve Yavaş Dinle Butonu ───────────────────────────────────────── */
+.freeze-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--r-full);
+  background: color-mix(in srgb, #0ea5e9 15%, var(--surface-2));
+  color: #0284c7;
+  font-weight: 600;
+  border: 1px solid color-mix(in srgb, #0ea5e9 30%, transparent);
+}
+
+.streak-frozen-note {
+  color: #0284c7 !important;
+  background: color-mix(in srgb, #0ea5e9 12%, var(--surface-2)) !important;
+  border-left: 3px solid #0ea5e9 !important;
+}
+
+.slow-speak-btn {
+  margin-left: 0.25rem;
+  font-size: var(--t-xs) !important;
+  padding: 0.25rem 0.625rem !important;
+  border-radius: var(--r-full) !important;
+}
+
+
 

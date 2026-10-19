@@ -7,7 +7,7 @@ import { LANGUAGE_NAME } from '../labels'
 import { prefs } from '../prefs'
 import { canSpeak, speechPrefs } from '../speech'
 import { useMediaUrl } from '../useMedia'
-import { SpeakButton, Word, Sentence } from './shared'
+import { SpeakButton, SlowSpeakButton, Word, Sentence } from './shared'
 import { wordFit } from './wordFit'
 
 /** What the question shows: the word, its meaning, a sentence with a blank, audio or a picture. */
@@ -25,6 +25,7 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
       return canSpeak() ? (
         <div className="row">
           <SpeakButton text={exercise.audioText!} entry={entry} big auto vary rate={listenRate} />
+          <SlowSpeakButton text={exercise.audioText!} entry={entry} />
           <RateNote rate={listenRate} />
         </div>
       ) : (
@@ -47,7 +48,12 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
       return <PictureFrame id={exercise.imageId} />
     case 'dictation':
       // The slow replay sits beside "Emin değilim" as a small icon (see Session).
-      return <SpeakButton text={exercise.audioText!} entry={entry} big auto vary rate={listenRate} />
+      return (
+        <div className="row">
+          <SpeakButton text={exercise.audioText!} entry={entry} big auto vary rate={listenRate} />
+          <SlowSpeakButton text={exercise.audioText!} entry={entry} />
+        </div>
+      )
     case 'speak_word':
       return <MeaningPrompt exercise={exercise} entry={entry} />
     case 'back_translation':
