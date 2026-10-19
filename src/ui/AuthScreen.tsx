@@ -8,7 +8,7 @@ import { reportError } from '../data/errorReport'
 import { ChevronLeftIcon, LockIcon } from './icons'
 import { CONFLICT, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, runSync, setAccount, setSyncCode, TOO_LARGE } from './syncRunner'
 import { showToast } from './toastFeed'
-import { ACCOUNT_ART, REACT } from './drawnArt'
+import { ACCOUNT_ART } from './drawnArt'
 import { supabaseConfigured } from '../data/supabase'
 import { SupabaseAuth } from './SupabaseAuth'
 
@@ -106,7 +106,7 @@ function UsernameAuth({ initialMode = 'login', onDone, onBack }: { initialMode?:
       )}
       <div className="auth-card card">
         <div className="auth-head">
-          <img className="account-art auth-art art-pop" src={creating ? REACT.hello : ACCOUNT_ART.out} alt="" height={84} draggable={false} />
+          <img className="account-art auth-art art-pop" src={creating ? ACCOUNT_ART.create : ACCOUNT_ART.out} alt="" height={84} draggable={false} />
           <h1 className="auth-title">{creating ? 'Hesap oluştur' : 'Hesabına giriş yap'}</h1>
           <p className="muted">{creating ? 'İlerlemen sunucuda şifreli saklanır; her cihazda aynı kullanıcı adı ve şifreyle devam edersin.' : 'İlerlemen bu cihazdakiyle birleşir ve her cihazda aynı olur.'}</p>
         </div>
