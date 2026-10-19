@@ -9,6 +9,9 @@ export interface GrammarIssue {
   /** Suggested replacements, best first (may be empty). */
   replacements: string[]
   kind: 'spelling' | 'grammar' | 'style'
+  /** The checker's rule and category ids (LanguageTool), for sorting a finding into a kind of mistake (engine/writingErrors). */
+  ruleId?: string
+  category?: string
 }
 
 export type TextPart = { text: string; issue?: GrammarIssue }

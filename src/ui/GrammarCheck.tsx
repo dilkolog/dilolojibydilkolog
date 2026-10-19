@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { checkGrammar, GrammarError, LANGUAGETOOL_URL } from '../data/grammarCheck'
 import { applyFix, markIssues, type GrammarIssue } from '../engine/grammarIssues'
 import type { TargetLanguage } from '../engine/types'
+import { classifyIssue, WRITING_LABEL, writingRows } from '../engine/writingErrors'
 import { CheckIcon } from './icons'
+import { noteWriting } from './writingNote'
 
 const KIND: Record<GrammarIssue['kind'], string> = { spelling: 'Yazım', grammar: 'Dil bilgisi', style: 'Üslup' }
 
@@ -15,6 +17,8 @@ export function GrammarCheck({ text, language, onChange }: { text: string; langu
   const [result, setResult] = useState<{ text: string; issues: GrammarIssue[]; found: number } | null>(null)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  // What this check added to the writing error notebook: the kinds it found, with how many times each has come up in all.
+  const [noted, setNoted] = useState<string[]>([])
   // Typed on since the check: the marks no longer fit the text.
   const current = result && result.text === text ? result : null
 
@@ -24,6 +28,12 @@ export function GrammarCheck({ text, language, onChange }: { text: string; langu
     try {
       const issues = await checkGrammar(text, language)
       setResult({ text, issues, found: issues.length })
+      setNoted([])
+      void noteWriting(language, text, issues).then((log) => {
+        if (!log) return
+        const kinds = new Set(issues.map((i) => classifyIssue(i, language, text)))
+        setNoted(writingRows(log, language).filter((r) => kinds.has(r.kind) && r.kind !== 'punctuation').slice(0, 3).map((r) => `${WRITING_LABEL[r.kind]} ×${r.n}`))
+      })
     } catch (e) {
       setError(e instanceof GrammarError ? e.message : 'Denetim şu an yapılamadı.')
     } finally {
@@ -89,6 +99,11 @@ export function GrammarCheck({ text, language, onChange }: { text: string; langu
                 ))}
               </ul>
             </>
+          )}
+          {noted.length > 0 && (
+            <p className="small muted gc-noted">
+              Yazı hata defterine işlendi: {noted.join(' · ')}. İlerleme → “Yazı hata defterim”.
+            </p>
           )}
           <p className="small muted">
             <a className="link" href={LANGUAGETOOL_URL} target="_blank" rel="noreferrer">

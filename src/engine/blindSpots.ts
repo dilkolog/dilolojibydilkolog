@@ -4,6 +4,7 @@ import { MINIMAL_PAIRS, pairKey } from './listening'
 import { TENSE_BRIEF } from './tenseBrief'
 import type { TrapWord } from './traps'
 import type { ErrorType, TargetLanguage } from './types'
+import { repairFor, WRITING_LABEL, type WritingRow } from './writingErrors'
 
 /** Where a blind spot is worked on: a game of Games ('verbs' is the verb lab). */
 export type RepairTarget = 'verbs' | 'gender' | 'article' | 'accent' | 'traps' | 'boss' | 'grammar' | 'pairs' | 'reflex' | 'ear' | 'register'
@@ -38,6 +39,8 @@ export interface BlindSpotInput {
   register?: GrammarLog
   /** Words the ear still misses in dictation. */
   earMissed: number
+  /** What the grammar checker found in the learner's own writing (engine/writingErrors), most frequent first. */
+  writing?: readonly WritingRow[]
 }
 
 /** How many findings the card shows. */
@@ -136,6 +139,25 @@ export function blindSpots(input: BlindSpotInput): BlindSpot[] {
   const regN = reg.ok + reg.wrong
   if (regN >= 6 && reg.wrong / regN >= 0.4) {
     out.push({ id: 'register', title: 'Ortama uygun söyleyişi seçmekte zorlanıyorsun', detail: `${regN} cevabın ${pct(reg.wrong / regN)} kadarında sokak, standart ya da resmî söyleyişi karıştırdın.`, target: 'register', action: 'Kayıt farkı', score: (reg.wrong / regN) * weight(regN) })
+  }
+
+  // The kind of mistake that keeps coming back in the learner's own writing (not spelling and punctuation: those have no practice).
+  const written = (input.writing ?? []).filter((r) => r.kind !== 'punctuation')
+  const writtenTotal = written.reduce((n, r) => n + r.n, 0)
+  const top = written.find((r) => repairFor(r.kind, input.language))
+  if (top && top.n >= 4 && top.n / writtenTotal >= 0.25) {
+    const fix = repairFor(top.kind, input.language)!
+    const share = top.n / writtenTotal
+    const example = top.samples[0]
+    out.push({
+      id: `writing:${top.kind}`,
+      title: `Yazılarında en çok “${WRITING_LABEL[top.kind]}” hatası yapıyorsun`,
+      detail: `Denetlenen yazılarındaki ${writtenTotal} hatanın ${pct(share)} kadarı bu türden (${top.n} kez)${example ? `; örnek: “${example.wrong}” → “${example.fix}”` : ''}.`,
+      target: fix.target,
+      action: fix.action,
+      score: share * weight(top.n),
+      lesson: fix.lesson ? { topic: fix.lesson } : undefined,
+    })
   }
 
   // Words the ear misses in dictation.

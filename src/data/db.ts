@@ -2,6 +2,7 @@ import Dexie, { type Table } from 'dexie'
 import type { Cue } from '../engine/subtitles'
 import type { TranslationEntry } from '../engine/translationMemory'
 import type { EarLog, EarMiss } from '../engine/earMisses'
+import type { WritingLog } from '../engine/writingErrors'
 import type { GrammarLog } from '../engine/grammar'
 import type { Diagram } from '../engine/diagram'
 import type { DeductionLog } from '../engine/deduction'
@@ -805,6 +806,16 @@ export class KelimeDB extends Dexie {
 
   saveEarLog(log: EarLog) {
     return this.meta.put({ key: 'earMisses', value: log })
+  }
+
+  /** The writing error notebook (see engine/writingErrors). Kept on this device: it is not part of the backup or the sync. */
+  async getWritingLog(): Promise<WritingLog> {
+    const raw = (await this.meta.get('writingErrors'))?.value
+    return raw && typeof raw === 'object' ? (raw as WritingLog) : {}
+  }
+
+  saveWritingLog(log: WritingLog) {
+    return this.meta.put({ key: 'writingErrors', value: log })
   }
 
   /** The per-item right/wrong logs share one shape and one `meta` row each. */

@@ -8,3 +8,12 @@ export function relativeTime(d: Date, now = new Date()): string {
   if (diff < 7) return `${d.toLocaleDateString('tr-TR', { weekday: 'long' }).toLocaleLowerCase('tr-TR')} ${time}`
   return d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })
 }
+
+/** A day (yyyy-mm-dd) as the learner counts it: "bugün", "dün", "3 gün önce". Only the day is known, so no time of day is made up. */
+export function dayAgo(day: string, now = new Date()): string {
+  const [y, m, d] = day.split('-').map(Number)
+  const then = new Date(y, m - 1, d)
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  const n = Math.max(0, Math.round((today.getTime() - then.getTime()) / 86_400_000))
+  return n === 0 ? 'bugün' : n === 1 ? 'dün' : `${n} gün önce`
+}
