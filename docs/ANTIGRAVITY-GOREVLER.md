@@ -616,7 +616,7 @@ Dosyalar: `src/index.css` (yalnızca `.link` ve `auth-*` kuralları), yeni test 
 - `SupabaseAuth` adımları (login, create, magic, reset, sent, recovery, working) için vitest + axe testi (`@axe-core/playwright` yerine bileşen düzeyinde `axe-core` varsa onu kullan, yoksa e2e tarafında `vite build` çıktısını Supabase ayarlı ve `page.route` ile taklit edilmiş Supabase uçlarıyla koşan **ikinci bir Playwright projesi** kur). Senaryolar: oturumsuz kullanıcı yalnızca giriş sayfasını görür; çıkışta yerel kelimeler silinmez; e-posta/şifre ve Google dönüş adımları. `.env.local` değişkenleri normal vitest/E2E koşusuna sızmamalı (`vite.config.ts` `test.env` zaten var; E2E için `npm run test:e2e` kullan).
 - `e2e/a11y.e2e.ts` içinde `color-contrast` kapalı: giriş sayfası ve Onboarding için ayrıca kontrast denetimi ekle (açık/koyu/sakin).
 
-### 16.3 Worker ve sunucu testleri (F5)
+### 16.3 Worker ve sunucu testleri (F5) — TAMAMLANDI (#513)
 Dosyalar: yalnızca yeni test dosyaları (`worker/index.test.ts`, `src/data/apiRoutes.test.ts`); `worker/index.ts`'e dokunma, bulgu çıkarsa PR açıklamasına yaz.
 - `ROUTES` tablosunun `api/*.ts` ile eşitliği: `import.meta.glob('../../api/*.ts')` ile `_` ile başlamayan her dosyanın `worker/index.ts`'te yönlendirildiğini doğrula (yeni uç Worker'a eklenmeyi unutulmasın).
 - `worker/index.ts`: 404/405, hata sarmalayıcı (`[worker-error]`), `scheduled` saat hesabı, `CRON_SECRET` taşıma, cron'un 401/500 yanıtında davranışı (şu an hata fırlatmıyor: testle belgele, düzeltmeyi Claude Code yapacak).
