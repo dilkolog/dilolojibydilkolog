@@ -5835,7 +5835,7 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 .monologue-card {
   border-left: 3px solid var(--lang);
   background: color-mix(in srgb, var(--lang) 4%, var(--surface));
-  transition: opacity var(--dur-normal) var(--ease-out), border-color var(--dur-normal) var(--ease-out);
+  transition: opacity var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
 
 .monologue-card.is-done {
@@ -5846,7 +5846,7 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 .monologue-kicker {
   font-weight: 700;
   letter-spacing: 0.05em;
-  font-size: var(--t-2xs);
+  font-size: var(--t-xs);
 }
 
 .monologue-prompt {
