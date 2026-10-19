@@ -72,4 +72,72 @@ export const es = define('es', [
     lemma: 'ventana', pos: 'noun', gender: 'f', article: 'la', cefr: 'A1', rank: 1500, tr: 'pencere',
     ex: [['Abre la ventana, por favor.', 'Pencereyi aç lütfen.', 'ventana']],
   },
+  {
+    lemma: 'casa', pos: 'noun', gender: 'f', article: 'la', cefr: 'A1', rank: 120, tr: 'ev',
+    ex: [['Vamos a casa después del trabajo.', 'İşten sonra eve gidiyoruz.', 'casa']],
+    col: [['en casa', 'evde']],
+  },
+  {
+    lemma: 'tiempo', pos: 'noun', gender: 'm', article: 'el', cefr: 'A1', rank: 90, tr: ['zaman', 'hava'],
+    ex: [['No tengo mucho tiempo hoy.', 'Bugün fazla zamanım yok.', 'tiempo']],
+    col: [['pasar tiempo', 'vakit geçirmek']],
+  },
+  {
+    lemma: 'agua', pos: 'noun', gender: 'f', article: 'el', cefr: 'A1', rank: 320, tr: 'su',
+    ex: [['Bebo un vaso de agua por la mañana.', 'Sabahları bir bardak su içerim.', 'agua']],
+  },
+  {
+    lemma: 'libro', pos: 'noun', gender: 'm', article: 'el', cefr: 'A1', rank: 450, tr: 'kitap',
+    ex: [['Leo un libro muy interesante.', 'Çok ilginç bir kitap okuyorum.', 'libro']],
+  },
+  {
+    lemma: 'noche', pos: 'noun', gender: 'f', article: 'la', cefr: 'A1', rank: 210, tr: 'gece',
+    ex: [['Buenas noches a todos.', 'Herkese iyi geceler.', 'noches']],
+    col: [['de noche', 'geceleyin']],
+  },
+  {
+    lemma: 'día', pos: 'noun', gender: 'm', article: 'el', cefr: 'A1', rank: 70, tr: 'gün',
+    ex: [['Hoy es un buen día.', 'Bugün güzel bir gün.', 'día']],
+    col: [['buenos días', 'günaydın']],
+  },
+  {
+    lemma: 'vida', pos: 'noun', gender: 'f', article: 'la', cefr: 'A1', rank: 110, tr: 'hayat, yaşam',
+    ex: [['La vida es bella.', 'Hayat güzeldir.', 'vida']],
+  },
+  {
+    lemma: 'hacer', pos: 'verb', cefr: 'A1', rank: 30, tr: 'yapmak',
+    ex: [['¿Qué vas a hacer mañana?', 'Yarın ne yapacaksın?', 'hacer']],
+    col: [['hacer una pregunta', 'soru sormak']],
+  },
+  {
+    lemma: 'tener', pos: 'verb', cefr: 'A1', rank: 25, tr: 'sahip olmak',
+    ex: [['Tengo dos hermanos y una hermana.', 'İki erkek kardeşim ve bir kız kardeşim var.', 'Tengo']],
+  },
+  {
+    lemma: 'hablar', pos: 'verb', cefr: 'A1', rank: 140, tr: 'konuşmak',
+    ex: [['Ella habla tres idiomas con fluidez.', 'O akıcı bir şekilde üç dil konuşuyor.', 'habla']],
+  },
+  {
+    lemma: 'escuchar', pos: 'verb', cefr: 'A1', rank: 480, tr: 'dinlemek',
+    ex: [['Me gusta escuchar música clásica.', 'Klasik müzik dinlemeyi severim.', 'escuchar']],
+    col: [['escuchar música', 'müzik dinlemek']],
+  },
+  {
+    lemma: 'aprender', pos: 'verb', cefr: 'A1', rank: 650, tr: 'öğrenmek',
+    ex: [['Queremos aprender español juntos.', 'Birlikte İspanyolca öğrenmek istiyoruz.', 'aprender']],
+  },
+  {
+    lemma: 'amigo', pos: 'noun', gender: 'm', article: 'el', cefr: 'A1', rank: 280, tr: 'arkadaş',
+    ex: [['Carlos es un buen amigo mío.', 'Carlos benim iyi bir arkadaşımdır.', 'amigo']],
+  },
+  {
+    lemma: 'trabajo', pos: 'noun', gender: 'm', article: 'el', cefr: 'A1', rank: 260, tr: 'iş, çalışma',
+    ex: [['Tengo mucho trabajo esta semana.', 'Bu hafta çok işim var.', 'trabajo']],
+    fam: [['trabajar', 'verb', 'çalışmak', 'trabajo → trabajar (-ar)']],
+  },
+  {
+    lemma: 'trabajar', pos: 'verb', cefr: 'A1', rank: 310, tr: 'çalışmak',
+    ex: [['Ella trabaja en un hospital moderno.', 'O modern bir hastanede çalışıyor.', 'trabaja']],
+    fam: [['trabajo', 'noun', 'iş', 'trabajar → trabajo']],
+  },
 ])
