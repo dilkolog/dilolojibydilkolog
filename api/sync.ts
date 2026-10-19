@@ -2,6 +2,7 @@ import { del, get, list, put } from '@vercel/blob'
 import { isAllowed } from './_allow.js'
 import { approvalOn, claimAccount, isApproved, storedAuth, StorageError as AccountStorageError, TOKEN as ACCOUNT_TOKEN } from './_account.js'
 import { overLimit, tooMany } from './_rate.js'
+import { supabaseOn } from './_supabase.js'
 
 /**
  * Encrypted sync storage. The app sends opaque, client-encrypted bytes under an id derived from
@@ -65,6 +66,9 @@ async function checkAuth(request: Request, write: boolean): Promise<Response | n
   if (token !== null && !TOKEN.test(token)) return new Response('bad token', { status: 400 })
   const stored = await storedAuth(id)
   if (stored) return token && (await sha256(token)) === stored ? null : new Response('forbidden', { status: 403 })
+  // With Supabase sign-in an account exists only through its sign-in (vault-link claims it): a first write must not make one,
+  // or anyone could open accounts (and fill the store) without signing in.
+  if (supabaseOn()) return new Response('account required', { status: 403 })
   // Two first writes at once: only one claim sticks; the other must match it.
   if (token && write && !(await claimAccount(id, token))) return new Response('forbidden', { status: 403 })
   return null
@@ -77,6 +81,8 @@ async function checkAuth(request: Request, write: boolean): Promise<Response | n
 async function permitted(request: Request, id: string): Promise<Response | null> {
   const token = request.headers.get('x-sync-auth')
   if (token !== null && !ACCOUNT_TOKEN.test(token)) return new Response('bad token', { status: 400 })
+  // Sync codes (no token) are gone with the sign-in: every request names an account.
+  if (token === null && supabaseOn()) return new Response('account required', { status: 403 })
   if (token !== null && approvalOn()) return (await isApproved(id)) ? null : new Response('approval required', { status: 403 })
   return (await isAllowed(id)) ? null : new Response('not allowed', { status: 403 })
 }

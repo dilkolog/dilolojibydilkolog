@@ -1,6 +1,7 @@
 import { ACCOUNT_ART } from './drawnArt'
 import type { Session } from '@supabase/supabase-js'
 import { useEffect, useRef, useState } from 'react'
+import { approvalEnabled } from '../data/access'
 import { reportError } from '../data/errorReport'
 import { VaultError } from '../data/vault'
 import { clearReturn, currentSession, isRecoveryReturn, returnError, sendMagicLink, sendPasswordReset, setNewPassword, signIn, signInWithGoogle, signUp, supabase, authErrorText } from '../data/supabase'
@@ -41,7 +42,17 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
   const [sentWhat, setSentWhat] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  // Whether the owner approves accounts at all: the sign-up text about it is only true then (until known, it is left out).
+  const [approvalOn, setApprovalOn] = useState(false)
   const session = useRef<Session | null>(null)
+
+  useEffect(() => {
+    let alive = true
+    void approvalEnabled().then((on) => alive && setApprovalOn(on === true))
+    return () => {
+      alive = false
+    }
+  }, [])
 
   const finish = (outcome: SignInOutcome) => {
     showToast(outcome.waiting ? 'Giriş yapıldı. Hesabın site sahibinin onayını bekliyor; onaylanınca eşitleme ve diğer özellikler açılır.' : outcome.fresh ? 'Hesabın hazır; ilerlemen kaydedildi.' : 'Giriş yapıldı; ilerlemen bu cihazla birleştirildi.')
@@ -199,11 +210,13 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
                   <span className="field-label">Adın (isteğe bağlı)</span>
                   <input className="input" value={username} onChange={(e) => setUsername(e.target.value)} autoComplete="nickname" maxLength={32} />
                 </label>
-                <label className="field">
-                  <span className="field-label">Kendini kısaca tanıt (isteğe bağlı)</span>
-                  <input className="input" value={note} maxLength={200} onChange={(e) => setNote(e.target.value)} placeholder="Kimsin, uygulamayı ne için kullanacaksın?" />
-                  <span className="help">Hesaplar site sahibinin onayından geçer; adın, e-postan ve bu not ona görünür.</span>
-                </label>
+                {approvalOn && (
+                  <label className="field">
+                    <span className="field-label">Kendini kısaca tanıt (isteğe bağlı)</span>
+                    <input className="input" value={note} maxLength={200} onChange={(e) => setNote(e.target.value)} placeholder="Kimsin, uygulamayı ne için kullanacaksın?" />
+                    <span className="help">Hesaplar site sahibinin onayından geçer; adın, e-postan ve bu not ona görünür.</span>
+                  </label>
+                )}
               </>
             )}
             {step === 'magic' && <p className="small muted">Şifre gerekmez: e-postana bir giriş bağlantısı göndeririz. Hesabın yoksa o bağlantı hesabını da açar.</p>}
@@ -238,6 +251,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
           <div className="stack gap-2">
             <p>{sentWhat}</p>
             <p className="small muted">Gelmediyse istenmeyen (spam) klasörüne bak. Bağlantıyı bu cihazda aç.</p>
+            <p className="small muted">Uygulamayı telefonda ana ekrana eklediysen bağlantı tarayıcıda açılır ve uygulamaya geçmez: uygulamada Google ile ya da şifreyle giriş yap.</p>
             <button type="button" className="link small" onClick={() => go('login')}>
               Giriş ekranına dön
             </button>

@@ -55,22 +55,27 @@ export async function currentSession(): Promise<Session | null> {
 }
 
 /** Supabase's English error messages, in Turkish for the ones a person meets. */
-export function authErrorText(message: string): string {
+export function authErrorText(message: string, unknownAsGeneric = false): string {
   const m = message.toLowerCase()
   if (m.includes('invalid login credentials')) return 'E-posta ya da şifre yanlış.'
   if (m.includes('email not confirmed')) return 'E-postanı henüz onaylamadın: gelen kutundaki bağlantıya dokun.'
   if (m.includes('user already registered')) return 'Bu e-postayla zaten bir hesap var. "Giriş yap"a geç.'
   if (m.includes('password should be') || m.includes('weak password')) return 'Şifre çok zayıf: en az 8 karakter, harf ve rakam karışık olsun.'
+  if (m.includes('for security purposes') || m.includes('only request this after')) return 'Bunu kısa sürede ikinci kez istedin; bir dakika bekleyip tekrar dene.'
+  if (m.includes('unable to validate email') || m.includes('invalid format') || m.includes('invalid email')) return 'E-posta adresi geçersiz görünüyor; kontrol edip tekrar yaz.'
+  if (m.includes('sending') && m.includes('email')) return 'Mail şu an gönderilemedi; biraz sonra tekrar dene ya da Google ile giriş yap.'
+  if (m.includes('not authorized') || m.includes('email address') && m.includes('authorized')) return 'Bu adrese şu an mail gönderilemiyor; başka bir adres dene ya da Google ile giriş yap.'
   if (m.includes('rate limit') || m.includes('too many')) return 'Kısa sürede çok deneme oldu; birkaç dakika bekleyip tekrar dene.'
   if (m.includes('expired') || (m.includes('invalid') && m.includes('link'))) return 'Bağlantının süresi dolmuş; yenisini iste.'
   if (m.includes('provider is not enabled')) return 'Bu giriş yolu henüz açılmadı (site sahibi Supabase\'te açmalı).'
   if (m.includes('fetch')) return 'Sunucuya bağlanılamadı; internet bağlantını kontrol et.'
-  return message
+  // A message the library sends that nothing above knows is English and technical: say it plainly instead.
+  return unknownAsGeneric ? 'Bir sorun oldu; biraz sonra tekrar dene. Sürerse destek@diloloji.com adresine yaz.' : message
 }
 
 async function run<T extends { error: { message: string } | null }>(p: Promise<T>): Promise<T> {
   const r = await p
-  if (r.error) throw new Error(authErrorText(r.error.message))
+  if (r.error) throw new Error(authErrorText(r.error.message, true))
   return r
 }
 

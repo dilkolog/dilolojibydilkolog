@@ -161,7 +161,9 @@ async function handleMail(request: Request, body: Record<string, unknown>): Prom
   const state = existing ? (existing.confirmed ? 'on' : 'pending') : 'none'
   if (body.action === 'email-status') return Response.json({ state })
   if (body.action === 'email-remove') {
-    if (existing) await store.remove(mailRecordKey(key))
+    // An address still waiting for its confirmation stays an hour after the mail went out: adding and removing it
+    // over and over must not send a new confirmation each time (mail bombing a stranger, spending the sending quota).
+    if (existing && (existing.confirmed || Date.now() - (existing.confirmSentAt ?? 0) > 3_600_000)) await store.remove(mailRecordKey(key))
     return new Response(null, { status: 204 })
   }
   if (!existing && body.update) return Response.json({ state: 'none' })

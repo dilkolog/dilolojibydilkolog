@@ -1,6 +1,6 @@
 import { del, get, put } from '@vercel/blob'
 import { allowedIds } from './_allow.js'
-import { profileStatus } from './_supabase.js'
+import { profileStatus, supabaseOn } from './_supabase.js'
 
 /**
  * Accounts and their approval. An account is an id (from the username) plus an access token whose
@@ -111,8 +111,18 @@ const refusal = (error: string, status: AccessStatus) => Response.json({ error, 
  * approved account, otherwise the 403 to send back.
  */
 export async function requireApproved(request: Request): Promise<Response | null> {
-  // Before the owner sets ADMIN_TOKEN nothing is withheld, anonymous visitors included (the old behavior).
-  if (!approvalOn()) return null
+  if (!approvalOn()) {
+    // No approval list: every account counts as approved. With Supabase sign-in the site is for people with an
+    // account though, so the quota-using endpoints still want one (a sync account claimed through its sign-in:
+    // sync.ts never creates one by a first write). Without Supabase (local development) nothing is withheld.
+    if (!supabaseOn()) return null
+    try {
+      return (await accountOf(request)) ? null : refusal('account_required', 'none')
+    } catch (e) {
+      if (e instanceof StorageError) return Response.json({ error: 'storage unavailable' }, { status: 502 })
+      throw e
+    }
+  }
   try {
     const id = await accountOf(request)
     if (!id) return refusal('account_required', 'none')

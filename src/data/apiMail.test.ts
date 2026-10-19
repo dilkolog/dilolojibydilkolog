@@ -151,6 +151,14 @@ describe('registering an address', () => {
     expect(await (await post({ action: 'email-status', email: EMAIL })).json()).toEqual({ state: 'none' })
     await post({ action: 'email', email: EMAIL, ...state })
     expect(await (await post({ action: 'email-status', email: EMAIL })).json()).toEqual({ state: 'pending' })
+    // Still waiting and the confirmation just went out: taking it out and putting it in again must not send another.
+    expect((await post({ action: 'email-remove', email: EMAIL })).status).toBe(204)
+    expect(blobs.size).toBe(1)
+    await post({ action: 'email', email: EMAIL, ...state })
+    expect(mails).toHaveLength(1)
+    // After the hour it goes; a confirmed address goes at once.
+    const key = [...blobs.keys()][0]
+    blobs.set(key, JSON.stringify({ ...JSON.parse(blobs.get(key)!), confirmSentAt: Date.now() - 2 * 3_600_000 }))
     expect((await post({ action: 'email-remove', email: EMAIL })).status).toBe(204)
     expect(blobs.size).toBe(0)
   })
