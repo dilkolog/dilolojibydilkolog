@@ -23,9 +23,14 @@ const MESSAGES: Record<string, string> = {
   'bad text': `Çeviri bir seferde en fazla ${MAX_CHARS} karakter.`,
 }
 
+/** A refusal (signed out, not approved) is not asked again for a minute: every screen that offers translation asks on open. */
+let deniedUntil = 0
+const DENIED_FOR_MS = 60_000
+
 /** Whether the server can translate (it has a key and answers). */
 export function translationReady(): Promise<boolean> {
   if (typeof navigator !== 'undefined' && !navigator.onLine) return Promise.resolve(false)
+  if (Date.now() < deniedUntil) return Promise.resolve(false)
   // A real answer carries the month's limit; a page served in its place (no server function) does not.
   // A yes is kept for the session; a no is asked again next time (offline at first, online later).
   ready ??= translationUsage().then((u) => {
@@ -40,6 +45,7 @@ export function translationReady(): Promise<boolean> {
 export async function translationUsage(): Promise<{ count: number; limit: number } | null> {
   try {
     const r = await accessFetch('/api/translate?usage=1')
+    if (r.status === 403) deniedUntil = Date.now() + DENIED_FOR_MS
     if (!r.ok) return null
     const u = (await r.json()) as { count?: unknown; limit?: unknown }
     return typeof u.count === 'number' && typeof u.limit === 'number' ? { count: u.count, limit: u.limit } : null

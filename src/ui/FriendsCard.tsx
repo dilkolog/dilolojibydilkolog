@@ -14,6 +14,7 @@ import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { FriendLeague } from './FriendLeague'
 import { notify } from './noticeCenter'
 import { friendNotice } from './noticeTexts'
+import { inviteLink } from './invite'
 // A friend's page (the chart, the gifts) is only needed when a name is tapped.
 const FriendSheet = lazy(() => import('./FriendSheet').then((m) => ({ default: m.FriendSheet })))
 
@@ -192,14 +193,15 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
     showToast(`${displayName} listenden çıkarıldı.`)
     await refresh()
   }
+  /** The invite link (/?davet=code): a friend with no account opens it, signs up and is added; one with an account is added at once. */
   const copy = async () => {
     if (!data) return
-    const text = `Diloloji'de arkadaş kodum: ${showCode(data.me.code)}`
+    const link = inviteLink(data.me.code)
     try {
-      if (navigator.share) await navigator.share({ text })
+      if (navigator.share) await navigator.share({ title: 'Diloloji', text: "Diloloji'de kelime öğreniyorum. Katıl, birlikte çalışalım:", url: link })
       else {
-        await navigator.clipboard.writeText(showCode(data.me.code))
-        showToast('Kodun kopyalandı.')
+        await navigator.clipboard.writeText(link)
+        showToast('Davet bağlantın kopyalandı.')
       }
       setCopied(true)
       setTimeout(() => setCopied(false), 2200)
@@ -391,7 +393,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
             <div className="friends-code-card">
               <div className="friends-code-meta">
                 <span className="friends-code-eyebrow">Senin davet kodun</span>
-                <span className="small muted">Arkadaşına ver, seni yarışa eklesin</span>
+                <span className="small muted">Bağlantıyı gönder: hesabı olmayan arkadaşın da katılıp seni ekler</span>
               </div>
               <div className="friends-code-row">
                 <div className="friends-code small">
@@ -403,10 +405,10 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
                   type="button"
                   className={`btn btn-sm ${copied ? 'btn-ok friends-copy-ok' : ''}`}
                   onClick={() => void copy()}
-                  title="Kodu kopyala ya da paylaş"
+                  title="Davet bağlantısını paylaş"
                 >
                   <CopyIcon size={14} className="inline-icon" />
-                  <span>{copied ? 'Kopyalandı!' : 'Paylaş'}</span>
+                  <span>{copied ? 'Hazır!' : 'Davet et'}</span>
                 </button>
               </div>
             </div>

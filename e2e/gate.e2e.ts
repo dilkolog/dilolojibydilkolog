@@ -151,3 +151,22 @@ test('the landing page fits the screen and passes the accessibility check in lig
     expect(violations.map((v) => `${scheme}: ${v.id} → ${v.nodes.slice(0, 3).map((n) => n.target.join(' ')).join(', ')}`)).toEqual([])
   }
 })
+
+test('an invite link is kept off the address, named on the landing page, and kept through the sign-in', async ({ page }) => {
+  await stubNetwork(page)
+  await page.goto('/?davet=abcd-2345')
+  await expect(landing(page)).toBeVisible()
+  await expect(page.getByRole('status').filter({ hasText: 'Bir arkadaşın seni davet etti' })).toBeVisible()
+  expect(new URL(page.url()).search).toBe('')
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('diloloji:invite-in') ?? 'null')?.code)).toBe('ABCD2345')
+  // Through the sign-up page and a reload (a Google or mail sign-in leaves the page and comes back): still waiting.
+  await page.getByRole('button', { name: 'Hesap aç ve başla' }).first().click()
+  await expect(page.getByLabel('E-posta')).toBeVisible()
+  await page.reload()
+  await expect(landing(page)).toBeVisible()
+  await expect(page.getByRole('status').filter({ hasText: 'Bir arkadaşın seni davet etti' })).toBeVisible()
+  // Not named without one.
+  await page.evaluate(() => localStorage.removeItem('diloloji:invite-in'))
+  await page.reload()
+  await expect(page.getByRole('status').filter({ hasText: 'Bir arkadaşın seni davet etti' })).toHaveCount(0)
+})

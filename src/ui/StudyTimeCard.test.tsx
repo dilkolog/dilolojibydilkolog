@@ -42,7 +42,7 @@ describe('StudyTimeCard', () => {
     const root = createRoot(el)
     act(() => root.render(<StudyTimeCard db={db} language="fr" goal={undefined} onGoal={() => {}} />))
     await flush()
-    expect(el.textContent).toContain('Son 7 günde bu dilde okuma ya da dinleme yok')
+    expect(el.textContent).toContain('Son 7 günde bu dilde okuma, dinleme ya da konuşma yok')
     expect(el.querySelector('[role=progressbar]')).toBeNull()
     act(() => root.unmount())
     el.remove()

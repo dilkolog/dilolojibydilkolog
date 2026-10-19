@@ -244,18 +244,6 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
                 >
                   {(close) => (
                     <>
-                      {onPlay && vocabulary.length > 0 && (
-                        <MenuItem
-                          icon={<GameIcon id="swipe" emoji="👆" size={18} />}
-                          title="Flaş kartları çevir"
-                          hint="Quizlet tarzı 3D kart çevirme ve pratik"
-                          onSelect={() => {
-                            close()
-                            presetScope('flashcards', 'all')
-                            onPlay('swipe')
-                          }}
-                        />
-                      )}
                       <MenuItem
                         icon={<PlusIcon size={18} />}
                         title="Tek kelime ekle"
@@ -274,6 +262,18 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
                           setSection('import')
                         }}
                       />
+                      {onPlay && vocabulary.length > 0 && (
+                        <MenuItem
+                          icon={<GameIcon id="swipe" emoji="👆" size={18} />}
+                          title="Flaş kartları çevir"
+                          hint="Quizlet tarzı 3D kart çevirme ve pratik"
+                          onSelect={() => {
+                            close()
+                            presetScope('flashcards', 'all')
+                            onPlay('swipe')
+                          }}
+                        />
+                      )}
                     </>
                   )}
                 </Popover>

@@ -3,6 +3,7 @@ import { AiError, enrichWords, wordInfoToInput } from '../ai'
 import { displayForm } from '../engine/exercises'
 import type { TargetLanguage } from '../engine/types'
 import type { KelimeDB } from '../data/db'
+import { AnkiFileError } from '../data/ankiImport'
 import { listFileText } from '../data/officeImport'
 import { createEntry, DEFAULT_FORMAT, importWords, parseWordList, type ListFormat, type RowSeparator, type TermSeparator } from '../data/wordInput'
 import { useAi } from './aiContext'
@@ -60,7 +61,7 @@ export function BulkImport({
       setText(await listFileText(file))
       setMessage(null)
     } catch (e) {
-      setMessage({ ok: false, text: e instanceof Error && /bulunamadı/.test(e.message) ? e.message : 'Dosya okunamadı: bozuk ya da desteklenmeyen bir dosya olabilir.' })
+      setMessage({ ok: false, text: e instanceof AnkiFileError || (e instanceof Error && /bulunamadı/.test(e.message)) ? (e as Error).message : 'Dosya okunamadı: bozuk ya da desteklenmeyen bir dosya olabilir.' })
     }
   }
 
@@ -132,7 +133,7 @@ export function BulkImport({
       <summary>Toplu ekle</summary>
       <div className="stack">
         <p className="small muted">
-          Bir liste yapıştır (Excel, Word ve Google Docs'tan kopyalanan tablo olduğu gibi çalışır) ya da dosya seç (Excel, Word, CSV, TSV, TXT, JSON, Anki ya da Quizlet dışa aktarımı). Her satır bir kelime: önce
+          Bir liste yapıştır (Excel, Word ve Google Docs'tan kopyalanan tablo olduğu gibi çalışır) ya da dosya seç (Excel, Word, CSV, TSV, TXT, JSON, Anki paketi (.apkg) ya da Quizlet dışa aktarımı). Her satır bir kelime: önce
           kelime, sonra anlam; istersen üçüncü olarak geçtiği cümle (örnek cümle olur), dördüncü olarak da cümlenin çevirisi.
         </p>
         <textarea
@@ -149,7 +150,7 @@ export function BulkImport({
         <div className="row">
           <label className="btn btn-quiet">
             Dosya seç
-            <input type="file" accept=".csv,.tsv,.txt,.json,.xlsx,.docx" className="sr-only" onChange={(e) => e.target.files?.[0] && readFile(e.target.files[0])} />
+            <input type="file" accept=".csv,.tsv,.txt,.json,.xlsx,.docx,.apkg" className="sr-only" onChange={(e) => e.target.files?.[0] && readFile(e.target.files[0])} />
           </label>
           <label className="row small gap-2 pointer">
             <input type="checkbox" checked={!!fmt.swap} onChange={(e) => setFmt({ ...fmt, swap: e.target.checked })} />

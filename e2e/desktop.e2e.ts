@@ -2978,3 +2978,28 @@ test('reading screen displays daily micro news with offline capability and bulle
   expect(await overflow(page)).toEqual([])
 })
 
+
+test('invite link: opening /?davet=code adds the inviter as a friend, says who, and takes the link off the address', async ({ page }) => {
+  const added: string[] = []
+  const me = { code: 'ALIK2345', name: 'Sen', avatar: 'monki', color: '#c6317c', today: 0, week: 0, streak: 0, level: 1, at: '2026-10-15T10:00:00Z' }
+  const ayse = { code: 'ABCD2345', name: 'Ayşe', avatar: 'owl', color: '#10b981', today: 20, week: 80, streak: 2, level: 2, at: '2026-10-15T10:00:00Z' }
+  await startWithSamples(page)
+  await approveAccount(page)
+  await page.route('**/api/access*', async (route) => {
+    const url = new URL(route.request().url())
+    if (route.request().method() === 'POST') {
+      const data = route.request().postDataJSON() as { action?: string; code?: string }
+      if (data?.action === 'friends-add') added.push(data.code ?? '')
+      return route.fulfill({ json: data?.action === 'friends-publish' ? { me } : { ok: true } })
+    }
+    if (url.searchParams.get('friends') === '1') return route.fulfill({ json: { me, friends: added.length ? [ayse] : [] } })
+    if (url.searchParams.get('inbox') === '1') return route.fulfill({ json: { items: [] } })
+    return route.fulfill({ json: { status: 'approved', exists: true, match: true, enabled: true } })
+  })
+  // A code as it may be typed (lower case, a dash): the link is read forgivingly.
+  await page.goto('/?davet=abcd-2345')
+  await expect(page.getByText('Ayşe ile arkadaş oldun.')).toBeVisible()
+  expect(added).toEqual(['ABCD2345'])
+  expect(new URL(page.url()).search).toBe('')
+  expect(await page.evaluate(() => localStorage.getItem('diloloji:invite-in'))).toBeNull()
+})

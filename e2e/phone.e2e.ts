@@ -1,5 +1,19 @@
 import { expect, test } from '@playwright/test'
 import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, guideMarkValues, seedGuideMarks, startWithSamples } from './helpers'
+import { readdirSync, readFileSync } from 'node:fs'
+import { ES_LESSONS_2 } from '../src/data/guide/lessons-es-2'
+type CheckItem = { prompt: string; options: string[]; answer: number }
+const squash = (t: string) => t.replace(/\s+/g, ' ').trim()
+/** Every question the "Hay mı, está mı?" lesson can ask: its own and the pool files' (the check draws 3 of them at random). */
+function hayEstarQuestions(): CheckItem[] {
+  const own = ES_LESSONS_2.find((l) => l.topic === 'basics_es_hay_estar')?.check ?? []
+  const dir = new URL('../src/data/guide/checks/', import.meta.url)
+  const pool = readdirSync(dir)
+    .filter((f) => f.startsWith('es-') && f.endsWith('.json'))
+    .flatMap((f) => (JSON.parse(readFileSync(new URL(f, dir), 'utf8')) as { lessons: Record<string, CheckItem[]> }).lessons.basics_es_hay_estar ?? [])
+  return [...own, ...pool]
+}
+
 
 test('first run: four steps, each fits the screen, and the choices are kept', async ({ page }) => {
   await page.goto('/')
@@ -1352,16 +1366,14 @@ test('guide on phone: open basic lesson, pass quiz for learned tag, Today review
   await expect(check.getByRole('heading', { name: 'Kendini dene' })).toBeVisible()
 
   for (let i = 0; i < 3; i++) {
-    const prompt = ((await check.locator('.lesson-check-prompt').textContent()) || '').toLowerCase()
-    if (prompt.includes('dónde') || prompt.includes('donde') || prompt.includes('museo')) {
-      await check.getByRole('button', { name: /^\d*\s*está$/ }).click()
-    } else if (prompt.includes('llaves')) {
-      await check.getByRole('button', { name: /^\d*\s*están$/ }).click()
-    } else if (prompt.includes('había') || prompt.includes('habia')) {
-      await check.getByRole('button', { name: /^\d*\s*había$/ }).click()
-    } else {
-      await check.getByRole('button', { name: /^\d*\s*[Hh]ay$/ }).click()
-    }
+    // The 3 questions come from the lesson's own and the pool's, in any order: each is found by its shown options and answered from the data.
+    const shown = (await check.locator('.option').allTextContents()).map((o) => o.replace(/^\d+\s*/, '').trim())
+    const prompt = squash((await check.locator('.lesson-check-prompt').textContent()) || '')
+    const sameOptions = (c: { options: string[] }) => c.options.length === shown.length && c.options.every((o) => shown.includes(o))
+    const bank = hayEstarQuestions()
+    const item = bank.find((c) => squash(c.prompt) === prompt && sameOptions(c)) ?? bank.find(sameOptions)
+    expect(item, `question not in the data: ${prompt}`).toBeTruthy()
+    await check.locator('.option').nth(shown.indexOf(item!.options[item!.answer])).click()
     await expect(check.getByRole('status')).toContainText('Doğru!')
     if (i < 2) {
       await check.getByRole('button', { name: 'Sonraki' }).click()

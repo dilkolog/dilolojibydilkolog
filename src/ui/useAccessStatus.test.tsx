@@ -9,6 +9,9 @@ import { db } from '../data/instance'
 import type { AccessState } from './accessContext'
 import { useAccessStatus } from './useAccessStatus'
 
+const supabase = vi.hoisted(() => ({ on: false }))
+vi.mock('../data/supabase', async (orig) => ({ ...(await orig<typeof import('../data/supabase')>()), supabaseConfigured: () => supabase.on }))
+
 const ACCOUNT = { kind: 'account', username: 'ali', id: 'a'.repeat(64), enc: 'e'.repeat(64), auth: '1'.repeat(64) }
 let root: ReturnType<typeof createRoot> | undefined
 let state: AccessState
@@ -27,6 +30,7 @@ const wait = () => act(async () => void (await new Promise((r) => setTimeout(r, 
 beforeEach(async () => {
   await db.meta.bulkDelete(['syncAccount', 'accessStatus'])
   posted.length = 0
+  supabase.on = false
   server = { status: 'none', exists: true, match: true }
   vi.stubGlobal('fetch', async (_url: string, init: RequestInit = {}) => {
     if (server === 'offline') throw new TypeError('offline')
@@ -85,6 +89,14 @@ describe('useAccessStatus', () => {
     await mount()
     expect(posted).toEqual([{ username: 'ali', note: '' }])
     expect(state).toMatchObject({ status: 'pending', approved: false })
+  })
+
+  it('with Supabase sign-in an old account does not file a request (the server answers those with 410)', async () => {
+    supabase.on = true
+    await db.meta.put({ key: 'syncAccount', value: ACCOUNT })
+    await mount()
+    expect(posted).toEqual([])
+    expect(state).toMatchObject({ approved: false })
   })
 
   it('a token the server does not recognise is not approval', async () => {

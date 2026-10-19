@@ -5,7 +5,7 @@ import readingShot from '../assets/landing/reading.webp'
 import verbsShot from '../assets/landing/verbs.webp'
 import guideShot from '../assets/landing/guide.webp'
 import { BrandLogo } from './BrandLogo'
-import { BookIcon, CheckIcon, ChevronDownIcon, CloudOffIcon, ConjugationsIcon, DataIcon, GameIcon, LockIcon, MessageIcon, ReadIcon, SchoolIcon, SparkleIcon } from './icons'
+import { BookIcon, CheckIcon, ChevronDownIcon, CloudOffIcon, ConjugationsIcon, DataIcon, GameIcon, HeartIcon, LockIcon, MessageIcon, ReadIcon, SchoolIcon, SparkleIcon } from './icons'
 import { Sticker } from './Sticker'
 
 export type LandingStart = 'create' | 'login'
@@ -43,7 +43,7 @@ function Shot({ src, alt }: { src: string; alt: string }) {
  * What a visitor sees before signing in: what Diloloji is, how it works, with the app's own screens, and the
  * two ways in. It stands where the sign-in page used to be the whole site; the sign-in page is one step on.
  */
-export function Landing({ onStart }: { onStart: (mode: LandingStart) => void }) {
+export function Landing({ onStart, invited = false }: { onStart: (mode: LandingStart) => void; invited?: boolean }) {
   return (
     <div className="lp">
       <header className="lp-top">
@@ -59,6 +59,12 @@ export function Landing({ onStart }: { onStart: (mode: LandingStart) => void }) 
       <main>
         <section className="lp-hero" aria-labelledby="lp-h1">
           <div className="lp-hero-text">
+            {invited && (
+              <p className="note lp-invite" role="status">
+                <HeartIcon size={16} />
+                <span>Bir arkadaşın seni davet etti. Hesap açınca otomatik arkadaş olursunuz; birbirinizin günlük çalışmasını görürsünüz.</span>
+              </p>
+            )}
             <p className="eyebrow">İngilizce · Fransızca · İspanyolca</p>
             <h1 id="lp-h1">Kelimeleri unutmadan önce tekrar et.</h1>
             <p className="lp-lead">

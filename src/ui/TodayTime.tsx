@@ -4,7 +4,7 @@ import { durationText, goalProgress, weekOf, type TimeLog } from '../engine/stud
 import type { TargetLanguage } from '../engine/types'
 
 /**
- * Today: the time spent reading and listening in this language, today and over the week, with the
+ * Today: the time spent reading, listening and speaking in this language, today and over the week, with the
  * progress to the weekly goal when there is one. Shown only once there is something to show (some
  * time this week, or a goal), and it opens the progress screen, where the goal is set.
  */
@@ -21,12 +21,12 @@ export function TodayTime({ db, language, goal, onOpen }: { db: KelimeDB; langua
   const week = weekOf(log, language, new Date())
   if (week.total === 0 && !goal) return null
   const today = week.days[week.days.length - 1]
-  const todaySeconds = today.read + today.listen
+  const todaySeconds = today.read + today.listen + today.speak
   const progress = goalProgress(week.total, goal)
   return (
-    <section className="today-time" aria-label="Okuma ve dinleme süren">
+    <section className="today-time" aria-label="Okuma, dinleme ve konuşma süren">
       <div className="today-time-head">
-        <h2 className="section-title">Okuma ve dinleme</h2>
+        <h2 className="section-title">Okuma, dinleme ve konuşma</h2>
         <button type="button" className="link small" onClick={onOpen}>
           Ayrıntı
         </button>

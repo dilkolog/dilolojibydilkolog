@@ -10,13 +10,14 @@ import { addEntry, emptyNotes, findAdded, noteLookup, removeEntry, setFix, type 
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { verbFormsOf } from '../engine/verbLookup'
 import type { Example, Gender, PartOfSpeech, TargetLanguage, VocabularyEntry, WordList } from '../engine/types'
-import { CheckIcon, ChevronDownIcon, SearchIcon, TagIcon, TargetIcon } from './icons'
+import { CheckIcon, ChevronDownIcon, MicIcon, SearchIcon, TagIcon, TargetIcon } from './icons'
 import { MenuItem, Popover } from './Popover'
 import { LANGUAGE_NAME } from './labels'
 import { createEntry } from '../data/wordInput'
 import { formIn } from '../engine/inflection'
 import { defaultPlacement, lastPlacement, rememberPlacement } from './listMemory'
 import { parsePlacement } from './listOptions'
+import { canListen, listen, type Listening } from './speechInput'
 import { showToast } from './toastFeed'
 import { PageHeader } from './PageHeader'
 import { daySeed } from '../appNav'
@@ -74,6 +75,24 @@ const ownEntry = (vocabulary: readonly VocabularyEntry[], word: string, language
 
 export function DictionaryScreen({ language, vocabulary, lists: propLists, initialQuery = '', onOpenWord, onAdd: openForm, onAdded, onOpenLab, onSwitchLanguage, onOpenList }: Props) {
   const [query, setQuery] = useState(initialQuery)
+  // Saying the word instead of typing it: the heard word goes into the search box.
+  const [hearing, setHearing] = useState(false)
+  const hearer = useRef<Listening | null>(null)
+  useEffect(() => () => hearer.current?.(), [])
+  useEffect(() => {
+    hearer.current?.()
+    setHearing(false)
+  }, [language])
+  const dictate = () => {
+    if (hearing) return hearer.current?.finish()
+    setHearing(true)
+    hearer.current = listen(language, {
+      onInterim: (t) => setQuery(t),
+      onFinal: (alts) => setQuery((alts[0] ?? '').replace(/[.,!?¡¿]+$/g, '').toLocaleLowerCase(language)),
+      onError: (m) => showToast(m, undefined, 5000, 'info'),
+      onEnd: () => setHearing(false),
+    })
+  }
   const [pack, setPack] = useState<Pack | null | undefined>(undefined)
   const [recent, setRecent] = useState(() => loadRecent(language))
   const [notes, setNotes] = useState<DictionaryNotes>(emptyNotes)
@@ -267,6 +286,11 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
+          {canListen() && (
+            <button type="button" className={`search-mic${hearing ? ' is-on' : ''}`} onClick={dictate} aria-pressed={hearing} aria-label={hearing ? 'Dinlemeyi bitir' : `Sesle ara: kelimeyi ${LANGUAGE_NAME[language]} söyle`}>
+              <MicIcon size={18} />
+            </button>
+          )}
         </form>
         <div className="dict-target-bar">
           <span className="dict-target-title">

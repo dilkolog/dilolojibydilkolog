@@ -2,11 +2,11 @@ import { localDate } from './progress'
 import type { TargetLanguage } from './types'
 
 /**
- * How long the learner read and listened, per language and local day, in seconds. Only the time they
+ * How long the learner read, listened and spoke, per language and local day, in seconds. Only the time they
  * were really at it counts (see ui/useStudyClock.ts); the numbers are for a weekly goal and a look
  * at the habit, not for points.
  */
-export type TimeKind = 'read' | 'listen'
+export type TimeKind = 'read' | 'listen' | 'speak'
 export type TimeLog = Record<string, number>
 
 /** Days kept: a year's calendar is not needed, a few months of weeks are. */
@@ -45,7 +45,7 @@ export function cleanTimeLog(raw: unknown): TimeLog {
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return {}
   const out: TimeLog = {}
   for (const [key, value] of Object.entries(raw as Record<string, unknown>)) {
-    if (/^(read|listen)\|(en|fr|es)\|\d{4}-\d{2}-\d{2}$/.test(key) && typeof value === 'number' && Number.isFinite(value) && value > 0) out[key] = Math.round(value)
+    if (/^(read|listen|speak)\|(en|fr|es)\|\d{4}-\d{2}-\d{2}$/.test(key) && typeof value === 'number' && Number.isFinite(value) && value > 0) out[key] = Math.round(value)
   }
   return out
 }
@@ -54,12 +54,14 @@ export interface TimeDay {
   day: string
   read: number
   listen: number
+  speak: number
 }
 export interface TimeWeek {
   /** The last seven days, today last. */
   days: TimeDay[]
   read: number
   listen: number
+  speak: number
   total: number
 }
 
@@ -70,11 +72,12 @@ export function weekOf(log: TimeLog, language: TargetLanguage, today: Date): Tim
     const d = new Date(today)
     d.setDate(d.getDate() - i)
     const day = localDate(d)
-    days.push({ day, read: log[timeKey('read', language, day)] ?? 0, listen: log[timeKey('listen', language, day)] ?? 0 })
+    days.push({ day, read: log[timeKey('read', language, day)] ?? 0, listen: log[timeKey('listen', language, day)] ?? 0, speak: log[timeKey('speak', language, day)] ?? 0 })
   }
   const read = days.reduce((n, d) => n + d.read, 0)
   const listen = days.reduce((n, d) => n + d.listen, 0)
-  return { days, read, listen, total: read + listen }
+  const speak = days.reduce((n, d) => n + d.speak, 0)
+  return { days, read, listen, speak, total: read + listen + speak }
 }
 
 /** "1 sa 05 dk", "12 dk", "45 sn" (under a minute is shown, so a first minute does not look like nothing). */
@@ -94,7 +97,7 @@ export function goalProgress(totalSeconds: number, goalMinutes: number | undefin
   return { share, done: share >= 1, leftMinutes: Math.max(0, Math.ceil(goalMinutes - totalSeconds / 60)) }
 }
 
-/** Seconds read and listened on one day, all languages and both kinds together. */
+/** Seconds read, listened and spoken on one day, all languages and kinds together. */
 export function daySeconds(log: TimeLog, day: string): number {
   let total = 0
   for (const [key, seconds] of Object.entries(log)) if (key.endsWith(`|${day}`)) total += seconds

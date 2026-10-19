@@ -8,6 +8,7 @@ import paragraph from '../assets/art/game-paragraph.webp'
 import picture from '../assets/art/game-picture.webp'
 import puzzle from '../assets/art/game-puzzle.webp'
 import stopwatch from '../assets/art/game-stopwatch.webp'
+import gTwins from '../assets/art/game-twins.webp'
 import swap from '../assets/art/game-swap.webp'
 import target from '../assets/art/game-target.webp'
 import tiles from '../assets/art/game-tiles.webp'
@@ -44,7 +45,6 @@ export const GAME_ART: Partial<Record<GameId, string>> = {
   flow: paragraph,
   register: chat,
   traps: mask,
-  confusables: swap,
   affix: magnifier,
   diagram: picture,
   grammar: puzzle,
@@ -74,4 +74,6 @@ export const GAME_ART: Partial<Record<GameId, string>> = {
   'spot-error': gSpotError,
   rewrite: gRewrite,
   collocations: gCollocations,
+  // A stopgap: the swap sign mirrored, until the owner draws twins.
+  confusables: gTwins,
 }
