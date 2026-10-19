@@ -1251,3 +1251,20 @@ test('progress story card modal and reading daily news pass automated accessibil
   expect(problems).toEqual([])
 })
 
+test('static public pages (hakkinda, gizlilik, kosullar) pass automated accessibility checks in light and dark themes on phone', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 667 })
+  const problems: string[] = []
+  const staticPages = ['/hakkinda.html', '/gizlilik.html', '/kosullar.html']
+
+  for (const path of staticPages) {
+    for (const scheme of ['light', 'dark'] as const) {
+      await page.emulateMedia({ colorScheme: scheme })
+      await page.goto(path)
+      await expect(page.locator('main')).toBeVisible()
+      problems.push(...(await scan(page, `${path}-${scheme}`)))
+    }
+  }
+
+  expect(problems).toEqual([])
+})
+
