@@ -621,7 +621,7 @@ Dosyalar: yalnızca yeni test dosyaları (`worker/index.test.ts`, `src/data/apiR
 - `ROUTES` tablosunun `api/*.ts` ile eşitliği: `import.meta.glob('../../api/*.ts')` ile `_` ile başlamayan her dosyanın `worker/index.ts`'te yönlendirildiğini doğrula (yeni uç Worker'a eklenmeyi unutulmasın).
 - `worker/index.ts`: 404/405, hata sarmalayıcı (`[worker-error]`), `scheduled` saat hesabı, `CRON_SECRET` taşıma, cron'un 401/500 yanıtında davranışı (şu an hata fırlatmıyor: testle belgele, düzeltmeyi Claude Code yapacak).
 
-### 16.4 İçerik: İspanyolca ve İngilizce ilk deneyim (UX12)
+### 16.4 İçerik: İspanyolca ve İngilizce ilk deneyim (UX12) — TAMAMLANDI (#514)
 Dosyalar: `src/data/seed/*.ts`, `src/data/storybooks/`, `docs/kaynaklar/`.
 - İspanyolca örnek kelimeleri 15 → 30 (FR 29 / EN 30 ile dengele); aynı kurallar (Türkçe anlam, örnek cümle, cinsiyet/artikel).
 - İngilizce için kolay okuma kaynağı araştırması (CC BY / kamu malı kademeli okuma metinleri, resimli hikâye): `docs/kaynaklar/english-graded.md` raporu (kaynak, lisans, bağlantı doğrulaması: bu ortamda ağ var; her bağlantıyı aç ve doğrula). Uygulama sonraki tur.
