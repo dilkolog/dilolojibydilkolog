@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ACCOUNT_EVENT } from '../data/access'
 import { hasStoredSession, supabaseConfigured } from '../data/supabase'
+import { signingIn } from './signInGate'
 import { getAccount } from './syncRunner'
 
 /**
@@ -18,7 +19,9 @@ export function useSignedIn(): boolean | undefined {
       void getAccount()
         .catch(() => null)
         .then((account) => {
-          if (live) setSignedIn(!!account && hasStoredSession())
+          // A sign-in still completing keeps a closed gate closed (the account is set before its first sync is done);
+          // a device already in the app is not thrown back to the sign-in page by it.
+          if (live) setSignedIn((was) => (signingIn() && was === false ? false : !!account && hasStoredSession()))
         })
     }
     check()

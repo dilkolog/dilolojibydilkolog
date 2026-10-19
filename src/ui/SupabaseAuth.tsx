@@ -55,7 +55,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
   }, [])
 
   const finish = (outcome: SignInOutcome) => {
-    showToast(outcome.waiting ? 'Giriş yapıldı. Hesabın site sahibinin onayını bekliyor; onaylanınca eşitleme ve diğer özellikler açılır.' : outcome.fresh ? 'Hesabın hazır; ilerlemen kaydedildi.' : 'Giriş yapıldı; ilerlemen bu cihazla birleştirildi.')
+    showToast(outcome.waiting ? 'Giriş yapıldı. Hesabın site sahibinin onayını bekliyor; onaylanınca eşitleme ve diğer özellikler açılır.' : outcome.fresh ? 'Hoş geldin! Hesabın hazır.' : 'Giriş yapıldı; ilerlemen bu cihazla birleştirildi.')
     onDone()
   }
 
@@ -157,7 +157,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
         <div className="auth-head">
           {step === 'login' || step === 'create' ? <img className="account-art auth-art" src={ACCOUNT_ART.out} alt="" height={84} draggable={false} /> : <BrandLogo className="auth-mark" size={30} />}
           <h1 className="auth-title">{title[step]}</h1>
-          {step === 'login' && <p className="muted">İlerlemen bu cihazdakiyle birleşir ve her cihazda aynı olur.</p>}
+          {step === 'login' && <p className="muted">Giriş yap: ilerlemen her cihazda aynı olur.</p>}
           {step === 'create' && <p className="muted">E-postanla bir hesap aç; her cihazda aynı ilerlemeyle devam et.</p>}
         </div>
 
@@ -265,9 +265,21 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
           </div>
         )}
         {step === 'working' && error && (
-          <p className="error auth-error" role="alert">
-            {error}
-          </p>
+          <>
+            <p className="error auth-error" role="alert">
+              {error}
+            </p>
+            <div className="stack gap-2">
+              {session.current && (
+                <button type="button" className="btn auth-submit" disabled={busy} onClick={() => void attempt(async () => finish(await completeSignIn(session.current!)))}>
+                  {busy ? 'Bekle…' : 'Tekrar dene'}
+                </button>
+              )}
+              <button type="button" className="link small" onClick={() => go('login')}>
+                Giriş ekranına dön
+              </button>
+            </div>
+          </>
         )}
 
         {step === 'recovery' && <Recovery onSaved={() => session.current && void attempt(async () => finish(await completeSignIn(session.current!)))} />}
@@ -275,7 +287,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
 
         <div className="auth-note">
           <LockIcon size={16} />
-          <p className="small muted">Şifreni unutsan da verilerin kaybolmaz: e-postanla yenilersin. Girişini Supabase yönetir.</p>
+          <p className="small muted">Şifreni unutsan da verilerin kaybolmaz: e-postanla yenilersin.</p>
           <p className="small muted auth-legal">
             Devam edersen <a href="/kosullar.html" target="_blank" rel="noopener">Kullanım koşulları</a> ve <a href="/gizlilik.html" target="_blank" rel="noopener">Gizlilik politikası</a> geçerli olur.
           </p>

@@ -12,6 +12,8 @@ Yöntem: Kod okunarak çıkarılan bulguların büyük kısmı **canlı sistemde
 
 P0 maddeleri düzeltildi ve main'e girdi (PR #504): **B1, B2, B3, A1, UX1, UX2, UX4**. **Canlıya henüz çıkmadı**: ajan ortamından dağıtım denendi ama statik dosya yüklemesi 401 verdi (AGENTS.md "Ajanla Cloudflare dağıtımı"); Mac'te `git pull && npm run deploy:cf` gerekiyor. P0'dan sana kalan: **UX3** (gerçek Gmail ile kayıt, onay maili, Resend SMTP) ve **F1** (uptime izleme + Cloudflare uyarıları). Cloudflare'in "DMARC Record Error" uyarısı (bölüm 5, F13) ve `/.well-known/security.txt` (eklendi) aşağıda. Antigravity için görev listesi: `docs/ANTIGRAVITY-GOREVLER.md` 16. tur.
 
+**P1 turu (PR sırada):** A2, A4, A5, A7, B6, B7, B8 ve B9 (HSTS + nosniff) düzeltildi; UX10'un metin kısmı (giriş altbaşlığı, "hesabın hazır", Supabase jargonu) düzeltildi. Hepsi AGENTS.md "P1 düzeltme turu" notunda. Kalan P1 sunucu maddeleri: B4 (Cloudflare hız sınırı: panel/`wrangler` ayarı gerektirir), B5 (anonim topluluk yayını: onay sistemi kararına bağlı), B10 (CSP), A3 (çıkışta cihaz verisi, K3 kararı).
+
 ## 1. Tek bakışta durum
 
 **İyi haber:** Site canlı, giriş çalışıyor, Google marka doğrulaması geçti, e-posta yönlendirme çalışıyor, tanıtım/gizlilik/koşullar sayfaları açılıyor, kodda gizli anahtar sızıntısı yok, bağımlılıklarda bilinen açık yok.

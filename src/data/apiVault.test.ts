@@ -162,8 +162,13 @@ describe('/api/access: the Supabase vault', () => {
     put(`push/mail-${'a'.repeat(40)}.json`, { owner: OLD.id, email: 'ali@example.com' })
     put(`push/mail-${'b'.repeat(40)}.json`, { owner: NEW.id, email: 'veli@example.com' })
     put(`sync/${NEW.id}/core`, {})
+    // The devices that registered for push reminders: the leaving account's go, someone else's stay.
+    put(`push/${'c'.repeat(40)}.json`, { owner: OLD.id, endpoint: 'https://fcm.googleapis.com/a' })
+    put(`push/${'d'.repeat(40)}.json`, { owner: NEW.id, endpoint: 'https://fcm.googleapis.com/b' })
     const res = await access.POST(new Request('https://app.test/api/access', { method: 'POST', headers: bearer('tok-ali'), body: JSON.stringify({ action: 'account-delete' }) }))
     expect(res.status).toBe(200)
+    expect(blobs.has(`push/${'c'.repeat(40)}.json`)).toBe(false)
+    expect(blobs.has(`push/${'d'.repeat(40)}.json`)).toBe(true)
     expect([...blobs.keys()].filter((k) => k.includes(OLD.id) || k === `push/mail-${'a'.repeat(40)}.json`)).toEqual([])
     expect(blobs.has(`push/mail-${'b'.repeat(40)}.json`) && blobs.has(`sync/${NEW.id}/core`)).toBe(true)
     expect(deletedUsers).toEqual([USERS['tok-ali']!.id])

@@ -3,6 +3,7 @@ import { db } from '../data/instance'
 import type { Session } from '@supabase/supabase-js'
 import { SyncApprovalError, type Account } from '../data/sync'
 import { fetchVault, freshAccount, linkVault, VaultError } from '../data/vault'
+import { whileSigningIn } from './signInGate'
 import { getSyncCode, runSync, setAccount, setSyncCode } from './syncRunner'
 
 /** The name a person goes by: the one chosen at sign-up, Google's, or the email's first part. */
@@ -33,7 +34,9 @@ async function takeAccount(account: Account, fresh: boolean): Promise<SignInOutc
  * Whatever this device holds (words, progress) merges into it on the first sync, so nothing studied here
  * is left behind; accounts from the old username sign-in are not carried over.
  */
-export async function completeSignIn(session: Session): Promise<SignInOutcome> {
+export const completeSignIn = (session: Session): Promise<SignInOutcome> => whileSigningIn(() => completeSignInNow(session))
+
+async function completeSignInNow(session: Session): Promise<SignInOutcome> {
   const kept = await fetchVault(session.access_token, nameOf(session))
   let outcome: SignInOutcome
   if (kept) outcome = await takeAccount(kept, false)
