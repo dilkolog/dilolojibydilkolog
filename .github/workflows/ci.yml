@@ -50,6 +50,8 @@ jobs:
       - if: steps.browsers.outputs.cache-hit == 'true'
         run: npx playwright install-deps chromium
       - run: npx playwright test
+      # The sign-in gate needs a build with Supabase set up (a fake address; the tests stub every request).
+      - run: npm run test:e2e:gate
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
