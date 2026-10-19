@@ -404,24 +404,25 @@ export function Home({
                     <button type="button" className="btn btn-quiet" onClick={onShortRound}>
                       Kısa tur ({SHORT_ROUND} soru)
                     </button>
-                  ) : (
-                    // A long day looks like a wall: the same day in 5 or 10 minutes is one tap away.
-                    onMinutes &&
-                    plan.estimatedMinutes > 7 && (
-                      <span className="hero-minutes small">
-                        Vaktin kısaysa:{' '}
-                        {[5, 10]
-                          .filter((m) => m + 2 < plan.estimatedMinutes)
-                          .map((m, i) => (
-                            <Fragment key={m}>
-                              {i > 0 && ' · '}
-                              <button type="button" className="link" onClick={() => onMinutes(m)}>
-                                {m} dakika
-                              </button>
-                            </Fragment>
-                          ))}
-                      </span>
-                    )
+                  ) : onShortRound ? (
+                    <button type="button" className="btn btn-quiet" onClick={onShortRound} title="En acil kelimelerle 3 dakikalık hızlı seans">
+                      ⚡ 3 dk hızlı tur
+                    </button>
+                  ) : null}
+                  {!piled && onMinutes && plan.estimatedMinutes > 7 && (
+                    <span className="hero-minutes small">
+                      Vaktin kısaysa:{' '}
+                      {[5, 10]
+                        .filter((m) => m + 2 < plan.estimatedMinutes)
+                        .map((m, i) => (
+                          <Fragment key={m}>
+                            {i > 0 && ' · '}
+                            <button type="button" className="link" onClick={() => onMinutes(m)}>
+                              {m} dakika
+                            </button>
+                          </Fragment>
+                        ))}
+                    </span>
                   )}
                 </div>
                 {piled ? (

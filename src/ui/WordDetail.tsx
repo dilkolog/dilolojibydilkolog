@@ -27,6 +27,8 @@ import { relativeTime } from './format'
 import { canSpeak, playWord } from './speech'
 import { WordForm } from './Words'
 import { CrossLanguageNotes, OriginNotes, TriLanguageCard } from './CrossLanguage'
+import { useEquivalents } from './useCrossLanguage'
+import { confusableRuleFor } from '../data/confusableRules'
 import { PatternsSection } from './Patterns'
 import { MemoryCurveChart } from './MemoryCurve'
 import { PitchCompare } from './PitchCompare'
@@ -157,6 +159,8 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
   const hasConjugation = tensesOf(entry).length > 0
   const heroImage = useMediaUrl(entry.imageId)
   const confusables = entry.relations.filter((r) => r.type === 'confusable').map((r) => byId.get(r.targetId))
+  const equiv = useEquivalents(entry)
+  const selfConfusableRule = confusableRuleFor(entry.lemma, entry.language)
 
   const setRetired = async (retired: boolean) => {
     if (!state) return
@@ -259,6 +263,21 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
               {sense.definition}
             </p>
           )}
+          {(() => {
+            if (!equiv || equiv === 'loading') return null
+            const otherForms = equiv.forms.filter((f) => f.language !== entry.language && f.word)
+            if (otherForms.length === 0) return null
+            return (
+              <div className="polyglot-strip small muted" title="Diller arası poliglott eşdeğerleri">
+                <span className="polyglot-icon">🌐</span>
+                {otherForms.map((f) => (
+                  <span key={f.language + f.word} className="polyglot-tag">
+                    {f.language === 'fr' ? '🇫🇷' : f.language === 'es' ? '🇪🇸' : '🇬🇧'} {f.word}
+                  </span>
+                ))}
+              </div>
+            )
+          })()}
         </div>
         {heroImage && <img className="word-hero-image" src={heroImage} alt={`${entry.lemma} görseli`} />}
         <div className="word-hero-actions">
@@ -327,6 +346,18 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         <CrossLanguageNotes entry={entry} />
         <OriginNotes entry={entry} />
         {ruleFor(entry) && <p className={`small gender-rule${ruleFor(entry)!.exception ? ' is-exception' : ''}`}>{genderRuleText(ruleFor(entry)!, displayForm(entry))}</p>}
+        {selfConfusableRule && (
+          <div className="confusable-note-card small">
+            <p>
+              <strong>💡 Karışan İkizler ({selfConfusableRule.words.join(' ↔ ')}):</strong> {selfConfusableRule.distinction}
+            </p>
+            {selfConfusableRule.example && (
+              <p className="muted" lang={entry.language}>
+                {selfConfusableRule.example[0]} · {selfConfusableRule.example[1]}
+              </p>
+            )}
+          </div>
+        )}
         {fragile && (
           <p className="small fragile-note"><SlowIcon size={16} className="inline-icon" />Doğru biliyorsun ama yavaş hatırlıyorsun: bilgi kırılgan. Akıcılık turu ve hızlı tekrarlar onu otomatikleştirir.</p>
         )}
@@ -468,10 +499,15 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
                       .filter((r) => r.type === 'confusable')
                       .map((r) => {
                         const other = byId.get(r.targetId)
+                        const otherLemma = other ? other.lemma : r.targetId.split(':')[1]
+                        const rule = confusableRuleFor(entry.lemma, entry.language, otherLemma)
                         return (
-                          <li key={r.targetId}>
-                            <span className="target" lang={entry.language}>{other ? displayForm(other) : r.targetId.split(':')[1]}</span>{' '}
-                            <span className="muted">{other ? other.senses[0].gloss : 'listende yok'}</span>
+                          <li key={r.targetId} className="confusable-item">
+                            <div>
+                              <span className="target" lang={entry.language}>{other ? displayForm(other) : r.targetId.split(':')[1]}</span>{' '}
+                              <span className="muted">{other ? other.senses[0].gloss : 'listende yok'}</span>
+                            </div>
+                            {rule && <p className="small muted confusable-distinction">💡 {rule.distinction}</p>}
                           </li>
                         )
                       })}

@@ -65,5 +65,14 @@ describe('feedback after an answer', () => {
     expect(html).toContain('formative-tip')
     expect(html).toContain('Zaman kuralı: Şimdiki / geniş zaman (présent)')
   })
+
+  it('displays a formative confusable rule tip on confusion error', () => {
+    const enAffect = { ...decision, lemma: 'affect', id: 'en:affect' }
+    const wrongConf = { verdict: 'wrong', correct: false, errorType: 'confusion', given: 'effect', expected: 'affect' } as unknown as Graded
+    const html = renderToStaticMarkup(<Feedback ev={wrongConf} entry={enAffect} continueRef={createRef()} onContinue={() => {}} />)
+    expect(html).toContain('formative-tip')
+    expect(html).toContain('Karışan İkizler Ayrımı')
+    expect(html).toContain('affect ↔ effect')
+  })
 })
 
