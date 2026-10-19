@@ -40,7 +40,7 @@ test('settings on a wide screen: title row, group strip and cards end on one lin
   expect(Math.max(...edges) - Math.min(...edges)).toBeLessThanOrEqual(2)
   const strip = await page.locator('.settings-menu').boundingBox()
   const tabs = await page.locator('.settings-menu-item').evaluateAll((els) => els.map((e) => e.getBoundingClientRect()))
-  expect(tabs).toHaveLength(8)
+  expect(tabs).toHaveLength(9)
   for (const t of tabs) {
     expect(t.left).toBeGreaterThanOrEqual(strip!.x - 1)
     expect(t.right).toBeLessThanOrEqual(strip!.x + strip!.width + 1)

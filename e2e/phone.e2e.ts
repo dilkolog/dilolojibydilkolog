@@ -1001,7 +1001,7 @@ test('the account card says where you stand: three reasons and wide buttons sign
   await expect(card.locator('.status-pill')).toHaveText(/Onay|Onaylı/)
   await expect(card.locator('.account-name')).toHaveText('ali')
   await expect(card.getByRole('button', { name: 'Şimdi eşitle' })).toBeVisible()
-  await expect(card.getByRole('button', { name: 'Çıkış yap' })).toBeVisible()
+  await expect(card.getByRole('button', { name: 'Çıkış yap', exact: true })).toBeVisible()
   // Deleting the account sits in a folded danger zone, so it is never in the way of a stray tap.
   const danger = page.locator('#s-account .account-danger-details')
   await expect(danger.getByRole('button', { name: 'Hesabımı kalıcı olarak sil' })).toBeHidden()
