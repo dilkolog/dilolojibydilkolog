@@ -60,4 +60,14 @@ describe('ShadowControls', () => {
     expect(el.textContent).toContain('Tekrar')
     expect(stopped.length).toBe(2)
   })
+
+  it('renders audio waveform bars during speaking phase', async () => {
+    await act(async () => root.render(<ShadowControls hear={async () => {}} ms={500} />))
+    await act(async () => void el.querySelector('button')!.dispatchEvent(new MouseEvent('click', { bubbles: true })))
+    await wait(50)
+    const waveform = el.querySelector('.shadow-waveform')
+    expect(waveform).not.toBeNull()
+    const bars = el.querySelectorAll('.shadow-wave-bar')
+    expect(bars.length).toBe(5)
+  })
 })

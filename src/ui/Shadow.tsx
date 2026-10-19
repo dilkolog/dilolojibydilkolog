@@ -29,20 +29,42 @@ export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { 
   const [url, setUrl] = useState<string>()
   const [until, setUntil] = useState(0)
   const [, tick] = useState(0)
+  const [levels, setLevels] = useState<number[]>([0.1, 0.2, 0.3, 0.2, 0.1])
   const live = useRef(true)
+  const audioContextRef = useRef<AudioContext | null>(null)
+  const analyserRef = useRef<AnalyserNode | null>(null)
 
   // Leaving the screen ends a recording in progress; the recording's address is let go when it changes or at the end.
   useEffect(() => {
     live.current = true
     return () => {
       live.current = false
+      if (audioContextRef.current) {
+        audioContextRef.current.close().catch(() => {})
+        audioContextRef.current = null
+        analyserRef.current = null
+      }
     }
   }, [])
   useEffect(() => () => (url ? URL.revokeObjectURL(url) : undefined), [url])
 
   useEffect(() => {
     if (phase !== 'speak') return
-    const t = setInterval(() => tick((n) => n + 1), 100)
+    const t = setInterval(() => {
+      tick((n) => n + 1)
+      const an = analyserRef.current
+      if (an) {
+        const data = new Uint8Array(an.frequencyBinCount)
+        an.getByteFrequencyData(data)
+        setLevels([
+          (data[0] || 0) / 255,
+          (data[2] || 0) / 255,
+          (data[4] || 0) / 255,
+          (data[6] || 0) / 255,
+          (data[8] || 0) / 255,
+        ])
+      }
+    }, 80)
     return () => clearInterval(t)
   }, [phase])
 
@@ -59,6 +81,20 @@ export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { 
       setError('Mikrofona erişilemedi.')
       return
     }
+    try {
+      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+      if (AudioCtx) {
+        const audioCtx = new AudioCtx()
+        const source = audioCtx.createMediaStreamSource(stream)
+        const analyser = audioCtx.createAnalyser()
+        analyser.fftSize = 32
+        source.connect(analyser)
+        audioContextRef.current = audioCtx
+        analyserRef.current = analyser
+      }
+    } catch {
+      // AudioContext not supported in test or restricted environment
+    }
     setPhase('hear')
     await hear()
     if (!live.current) return stream.getTracks().forEach((t) => t.stop())
@@ -67,6 +103,11 @@ export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { 
     rec.ondataavailable = (e) => e.data.size && chunks.push(e.data)
     rec.onstop = () => {
       stream.getTracks().forEach((t) => t.stop())
+      if (audioContextRef.current) {
+        audioContextRef.current.close().catch(() => {})
+        audioContextRef.current = null
+        analyserRef.current = null
+      }
       if (!live.current) return
       setUrl(URL.createObjectURL(new Blob(chunks, { type: rec.mimeType })))
       setPhase('done')
@@ -98,6 +139,11 @@ export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { 
       {phase === 'speak' && (
         <span className="small shadow-rec">
           ● Şimdi sen söyle <span className="shadow-bar" style={{ transform: `scaleX(${Math.max(0, Math.min(1, left / answer))})` }} />
+          <span className="shadow-waveform" aria-hidden="true" title="Canlı ses ritmi">
+            {levels.map((lvl, idx) => (
+              <span key={idx} className="shadow-wave-bar" style={{ height: `${Math.max(3, Math.round(lvl * 12) + 3)}px` }} />
+            ))}
+          </span>
         </span>
       )}
       {phase === 'done' && (
