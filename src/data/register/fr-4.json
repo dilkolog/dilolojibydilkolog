@@ -1,0 +1,92 @@
+[
+  {
+    "id": "fr-tired-heavy",
+    "language": "fr",
+    "tr": "aşırı yorgun / bitkin",
+    "informal": "Je suis claqué, au bout de ma vie !",
+    "standard": "Je suis complètement épuisé.",
+    "formal": "Je ressens une profonde lassitude.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-busy",
+    "language": "fr",
+    "tr": "başımı kaşıyacak vaktim yok / çok meşgulüm",
+    "informal": "J'ai la tête sous l'eau avec le taf.",
+    "standard": "Je suis particulièrement occupé en ce moment.",
+    "formal": "Mon emploi du temps est actuellement à pleine charge.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-agree",
+    "language": "fr",
+    "tr": "kesinlikle katılıyorum",
+    "informal": "Carrément, grave !",
+    "standard": "Je suis tout à fait d'accord.",
+    "formal": "Je partage pleinement votre analyse.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-cost",
+    "language": "fr",
+    "tr": "ateş pahası / çok masraflı",
+    "informal": "Ça coûte une blinde !",
+    "standard": "C'est extrêmement cher.",
+    "formal": "Cela représente un coût particulièrement onéreux.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-help",
+    "language": "fr",
+    "tr": "bana bir el at / yardım et",
+    "informal": "File-moi un coup de main !",
+    "standard": "Pourrais-tu m'aider, s'il te plaît ?",
+    "formal": "Auriez-vous l'obligeance de bien vouloir m'assister ?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-delay",
+    "language": "fr",
+    "tr": "biraz gecikeceğim",
+    "informal": "Désolé, je suis à la bourre !",
+    "standard": "Je vais avoir un peu de retard.",
+    "formal": "Veuillez accepter mes excuses pour ce retard imprévu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-bored",
+    "language": "fr",
+    "tr": "çok sıkıldım",
+    "informal": "C'est relou, je m'ennuie à mourir.",
+    "standard": "Je trouve cela vraiment ennuyeux.",
+    "formal": "Cette activité s'avère particulièrement fastidieuse.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-understand",
+    "language": "fr",
+    "tr": "tamamdır, anladım",
+    "informal": "Je capte, ça roule !",
+    "standard": "Je comprends très bien.",
+    "formal": "J'ai bien pris note de l'ensemble de ces éléments.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-crazy",
+    "language": "fr",
+    "tr": "inanılmaz / çılgınca bir şey",
+    "informal": "C'est un truc de ouf !",
+    "standard": "C'est véritablement incroyable.",
+    "formal": "Cela relève de l'extraordinaire.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-leave",
+    "language": "fr",
+    "tr": "artık ben kaçıyorum / ayrılıyorum",
+    "informal": "Allez, je me casse !",
+    "standard": "Je dois y aller maintenant.",
+    "formal": "Je vous prie de bien vouloir excuser mon départ.",
+    "source": "Diloloji (özgün)"
+  }
+]

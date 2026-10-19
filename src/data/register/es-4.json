@@ -1,0 +1,92 @@
+[
+  {
+    "id": "es-tired-heavy",
+    "language": "es",
+    "tr": "aşırı yorgun / bitkin",
+    "informal": "¡Estoy hecho polvo, no puedo con mi vida!",
+    "standard": "Estoy completamente agotado.",
+    "formal": "Me encuentro en un estado de profunda fatiga.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-busy",
+    "language": "es",
+    "tr": "başımı kaşıyacak vaktim yok / çok meşgulüm",
+    "informal": "Voy de culo con el curro.",
+    "standard": "Tengo mucho trabajo estos días.",
+    "formal": "Mi disponibilidad laboral se encuentra sumamente limitada.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-agree",
+    "language": "es",
+    "tr": "kesinlikle katılıyorum",
+    "informal": "¡Totalmente, de una!",
+    "standard": "Estoy completamente de acuerdo.",
+    "formal": "Comparto plenamente sus apreciaciones.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-cost",
+    "language": "es",
+    "tr": "ateş pahası / çok masraflı",
+    "informal": "¡Cuesta un ojo de la cara!",
+    "standard": "Es sumamente costoso.",
+    "formal": "Supone un desembolso económico extraordinario.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-help",
+    "language": "es",
+    "tr": "bana bir el at / yardım et",
+    "informal": "¡Échame un cable, tío!",
+    "standard": "¿Me puedes echar una mano, por favor?",
+    "formal": "¿Sería tan amable de prestarme su colaboración?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-delay",
+    "language": "es",
+    "tr": "biraz gecikeceğim",
+    "informal": "¡Voy tarde, salgo pitando!",
+    "standard": "Llegaré con un poco de retraso.",
+    "formal": "Les ruego disculpen esta demora imprevista.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-bored",
+    "language": "es",
+    "tr": "çok sıkıldım",
+    "informal": "Me aburro como una ostra, es un rollo.",
+    "standard": "Esto me resulta bastante aburrido.",
+    "formal": "Esta circunstancia me resulta sumamente tediosa.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-understand",
+    "language": "es",
+    "tr": "tamamdır, anladım",
+    "informal": "¡Pillo la onda, vale!",
+    "standard": "Entendido, me queda claro.",
+    "formal": "He tomado debida nota de todas sus consideraciones.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-crazy",
+    "language": "es",
+    "tr": "inanılmaz / çılgınca bir şey",
+    "informal": "¡Es una pasada brutal!",
+    "standard": "Es algo realmente increíble.",
+    "formal": "Este acontecimiento resulta verdaderamente excepcional.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-leave",
+    "language": "es",
+    "tr": "artık ben kaçıyorum / ayrılıyorum",
+    "informal": "¡Bueno, me piro!",
+    "standard": "Ya me tengo que ir.",
+    "formal": "Debo retirarme con su debido permiso.",
+    "source": "Diloloji (özgün)"
+  }
+]

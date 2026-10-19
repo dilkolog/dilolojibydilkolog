@@ -69,4 +69,18 @@ describe('RegisterRound', () => {
     expect(host.textContent).toContain('la nourriture')
     expect(host.textContent).toContain('les mets')
   })
+
+  it('renders register breakdown stats on round completion', async () => {
+    const host = await mount()
+    await click(byText(host, 'tura başla'))
+    for (let i = 0; i < 8; i++) {
+      const optBtn = host.querySelector<HTMLButtonElement>('.option')
+      await click(optBtn)
+      const nextBtn = byText(host, 'Devam')
+      await click(nextBtn)
+    }
+    expect(host.textContent).toContain('Tur bitti')
+    expect(host.querySelector('.game-result')).not.toBeNull()
+    expect(host.textContent).toMatch(/Sokak|Standart|Resmî/)
+  })
 })

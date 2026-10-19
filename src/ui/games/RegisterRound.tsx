@@ -256,6 +256,19 @@ export function RegisterRound({ language, onExit, onLesson }: { language: Target
           headline={`${round.length - missed.length} / ${round.length} doğru`}
           accuracy={round.length ? (round.length - missed.length) / round.length : 0}
           record={record}
+          stats={
+            (['informal', 'standard', 'formal'] as const)
+              .map((r) => {
+                const totalInTier = results.filter((x) => x.q.register === r).length
+                if (!totalInTier) return null
+                const okInTier = results.filter((x) => x.q.register === r && x.ok).length
+                return {
+                  label: `${REGISTER_TIERS[r].emoji} ${REGISTER_TIERS[r].title}`,
+                  value: `${okInTier} / ${totalInTier}`,
+                }
+              })
+              .filter(Boolean) as { label: string; value: string }[]
+          }
           missed={missed.map((m) => `${m.q.answer} (${REGISTER_NAME[m.q.register]})`)}
           missedLabel="Ortama uymayanlar"
           language={language}
