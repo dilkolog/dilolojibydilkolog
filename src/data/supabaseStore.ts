@@ -6,6 +6,30 @@ type Bytes = Uint8Array<ArrayBuffer>
 const MEDIA_BUCKET = 'media'
 const encode = (text: string) => new TextEncoder().encode(text) as Bytes
 
+// eslint-disable-next-line no-control-regex
+const NUL = /\u0000/g
+
+/**
+ * The value without U+0000 in any string or key. Postgres jsonb refuses that character, so one text
+ * pasted from a PDF or EPUB that carried it would make every sync fail until the text was deleted.
+ */
+export function withoutNul(value: unknown): unknown {
+  if (typeof value === 'string') return value.replace(NUL, '')
+  if (Array.isArray(value)) return value.map(withoutNul)
+  if (value && typeof value === 'object') {
+    const out: Record<string, unknown> = {}
+    for (const [k, v] of Object.entries(value)) out[k.replace(NUL, '')] = withoutNul(v)
+    return out
+  }
+  return value
+}
+
+/** The JSON of a part, ready for jsonb: only walked when the text has an escaped NUL at all (rare). */
+export function parseForJsonb(text: string): unknown {
+  const value = JSON.parse(text) as unknown
+  return text.includes('\\u0000') ? withoutNul(value) : value
+}
+
 /** A database error as the sync knows them (codes raised by put_sync_part, supabase/migrations/0002_sync_data.sql). */
 function syncError(error: { code?: string; message?: string }): Error {
   switch (error.code) {
@@ -49,7 +73,7 @@ export function supabaseStore(client: SupabaseClient, userId: string): PartStore
         if (error) throw new Error(`media upload: ${error.message}`)
         return data.length
       }
-      const value = JSON.parse(new TextDecoder().decode(data)) as unknown
+      const value = parseForJsonb(new TextDecoder().decode(data))
       const { error } = await client.rpc('put_sync_part', { p_name: part, p_data: value, p_expect: opts.ifMatch ? Number(opts.ifMatch) : null, p_create: !!opts.createOnly })
       if (error) throw syncError(error)
       return data.length
