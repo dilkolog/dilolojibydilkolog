@@ -1268,3 +1268,84 @@ test('static public pages (hakkinda, gizlilik, kosullar) pass automated accessib
   expect(problems).toEqual([])
 })
 
+test('auth screen and onboarding pass color contrast checks across light, dark, and calm themes (WCAG AA)', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 })
+  const problems: string[] = []
+
+  const setTheme = (theme: 'light' | 'dark' | 'calm') =>
+    page.evaluate((theme) => {
+      const root = document.documentElement
+      if (theme === 'calm') {
+        root.dataset.theme = 'light'
+        root.dataset.calm = ''
+      } else {
+        root.dataset.theme = theme
+        delete root.dataset.calm
+      }
+    }, theme)
+
+  const checkContrast = async (where: string) => {
+    for (const theme of ['light', 'dark', 'calm'] as const) {
+      await setTheme(theme)
+      await page.waitForTimeout(300)
+      const contrastViolations = await new AxeBuilder({ page }).withRules(['color-contrast']).analyze()
+      for (const v of contrastViolations.violations) {
+        problems.push(`${where} [${theme}] (axe: ${v.nodes.map((n) => n.target.join(' ')).join(', ')})`)
+      }
+      for (const c of await contrastProblems(page)) {
+        problems.push(`${where} [${theme}] (manual: ${c})`)
+      }
+    }
+  }
+
+  // 1. Onboarding steps contrast
+  await page.goto('/')
+  await expect(page.getByRole('button', { name: 'Başlayalım', exact: true })).toBeVisible()
+  await checkContrast('onboarding-step-1-welcome')
+
+  // Step 2: Language
+  await page.getByRole('button', { name: 'Başlayalım', exact: true }).click()
+  await expect(page.getByRole('heading', { name: 'Hangi dille başlayalım?' })).toBeVisible()
+  await checkContrast('onboarding-step-2-language')
+
+  // Step 3: Goal
+  await page.locator('.lang-card', { hasText: 'İspanyolca' }).click()
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  await expect(page.getByPlaceholder('Adın')).toBeVisible()
+  await checkContrast('onboarding-step-3-goal')
+
+  // Step 4: Ready recap
+  await page.getByPlaceholder('Adın').fill('Ayşe')
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  await expect(page.getByRole('heading', { name: 'Hazırsın, Ayşe!' })).toBeVisible()
+  await checkContrast('onboarding-step-4-ready')
+
+  // Finish onboarding into main app
+  await page.getByRole('button', { name: /İspanyolca ile başlayalım/ }).click()
+  await page.getByRole('button', { name: /örnek kelime yükle/ }).click()
+  await page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first().click()
+  await expect(page.getByRole('button', { name: /^(Başla|Devam et)$/ })).toBeVisible()
+
+  // 2. Auth / Sign-in screen contrast via Ayarlar -> Hesap
+  await openScreen(page, 'Ayarlar')
+  await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
+  const accountCard = page.locator('.account-card')
+  await expect(accountCard).toBeVisible()
+  await accountCard.getByRole('button', { name: 'Giriş yap' }).click()
+
+  await expect(page.locator('.auth-card')).toBeVisible()
+  await checkContrast('auth-login')
+
+  // Auth: Create account tab
+  const createTab = page.getByRole('button', { name: 'Hesap oluştur' })
+  if (await createTab.isVisible()) {
+    await createTab.click()
+    await expect(page.getByRole('heading', { name: 'Hesap oluştur' })).toBeVisible()
+    await checkContrast('auth-create')
+  }
+
+  await setTheme('light')
+  expect(problems).toEqual([])
+})
+
+

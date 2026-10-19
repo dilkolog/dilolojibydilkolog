@@ -395,7 +395,15 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .btn-quiet:active:not(:disabled) { box-shadow: 0 1px 0 var(--rule); }
 
 .link { background: none; border: 0; padding: 0; color: var(--lang-text); font-weight: 500; cursor: pointer; text-decoration: none; }
-button.link { padding-block: 0.125rem; margin-block: -0.125rem; }   /* a 24px target, same line height */
+button.link {
+  display: inline-flex;
+  align-items: center;
+  min-inline-size: 1.5rem;
+  min-block-size: 1.5rem;
+  padding-block: 0.125rem;
+  padding-inline: 0.125rem;
+  box-sizing: border-box;
+}
 .link:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .field { display: grid; gap: 0.375rem; align-content: start; }
@@ -2706,7 +2714,7 @@ button.access-badge:hover { border-color: var(--ink-soft); }
 
 /* ── Sign-in page ─────────────────────────────────────────────────────────────────────────── */
 .auth-page { display: grid; justify-items: center; gap: 1rem; padding-block: 1rem 3rem; }
-.auth-back { justify-self: start; display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 600; }
+.auth-back { justify-self: start; display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 600; min-inline-size: 1.5rem; min-block-size: 1.5rem; }
 .auth-card { width: 100%; max-width: 26rem; display: grid; gap: 1.25rem; padding: 2rem 1.75rem 1.5rem; }
 .auth-head { display: grid; justify-items: center; text-align: center; gap: 0.5rem; }
 .auth-mark { width: 3.25rem; height: 3.25rem; border-radius: 0.875rem; margin-bottom: 0.25rem; }
@@ -2722,6 +2730,7 @@ button.access-badge:hover { border-color: var(--ink-soft); }
 .auth-or { display: flex; align-items: center; gap: 0.75rem; margin: 0; }
 .auth-or::before, .auth-or::after { content: ''; flex: 1; border-top: 1px solid var(--rule); }
 .auth-links { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; }
+.auth-links .link { min-inline-size: 1.5rem; min-block-size: 1.5rem; display: inline-flex; align-items: center; }
 .auth-submit { width: 100%; justify-content: center; min-height: 2.875rem; margin-top: 0.25rem; }
 .auth-note { display: grid; justify-items: center; gap: 0.375rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--ink-soft); text-align: center; }
 .auth-note p { margin: 0; max-width: 22rem; text-wrap: balance; }
