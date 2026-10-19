@@ -34,15 +34,29 @@ async function deleteOwnMail(id: string): Promise<number> {
   return removed
 }
 
+/** Runs one step of a deletion and notes how long it took (milliseconds, by name) in `steps`. */
+export async function timed<T>(steps: Record<string, number> | undefined, name: string, run: () => Promise<T>): Promise<T> {
+  const start = Date.now()
+  try {
+    return await run()
+  } finally {
+    if (steps) steps[name] = Date.now() - start
+  }
+}
+
 /**
  * Everything the server keeps for a sync account: its synced data and claim, its place in the owner's
  * approval, its friend card and its mail reminders. Shared lists stay (others may have opened them; the
  * learner takes them back from the list page). The device keeps its own copy.
+ * The three groups do not depend on each other, so they run side by side: each is a chain of store calls
+ * and waiting for them one after another made a deletion take many seconds.
  */
-export async function deleteAccountData(id: string): Promise<number> {
-  let removed = await deletePrefix(`sync/${id}/`)
-  await Promise.all([removeBlob(requestPath(id)), removeBlob(approvedPath(id)), removeBlob(rejectedPath(id)), forgetFriends(id)])
-  removed += await deleteOwnMail(id)
+export async function deleteAccountData(id: string, steps?: Record<string, number>): Promise<number> {
+  const [synced, , mails] = await Promise.all([
+    timed(steps, 'synced', () => deletePrefix(`sync/${id}/`)),
+    timed(steps, 'markers+friends', () => Promise.all([removeBlob(requestPath(id)), removeBlob(approvedPath(id)), removeBlob(rejectedPath(id)), forgetFriends(id)])),
+    timed(steps, 'mail', () => deleteOwnMail(id)),
+  ])
   clearAccessCache()
-  return removed
+  return synced + mails
 }

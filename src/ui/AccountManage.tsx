@@ -200,9 +200,14 @@ export function AccountDelete({
         <p className="small muted">
           Hesabın ve bulutta eşitlenen tüm verilerin kalıcı olarak silinir. Bu cihazdaki yerel kelimelerin ve ilerlemen korunur.
         </p>
-        <button type="button" className="btn btn-sm btn-danger" disabled={busy} onClick={() => setConfirming(true)}>
-          Hesabımı kalıcı olarak sil
+        <button type="button" className="btn btn-sm btn-danger" disabled={busy} aria-busy={busy} onClick={() => setConfirming(true)}>
+          {busy ? 'Siliniyor…' : 'Hesabımı kalıcı olarak sil'}
         </button>
+        {busy && (
+          <p className="small muted" role="status">
+            Sunucudaki verilerin siliniyor; bu birkaç saniye sürebilir. Sayfayı kapatma.
+          </p>
+        )}
       </div>
       {confirming && (
         <ConfirmDialog
