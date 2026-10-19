@@ -76,6 +76,21 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
       })
   }
 
+  /** A shared device: sync first (nothing is lost), then sign out and clear what this device holds. */
+  const signOutAndWipe = async () => {
+    try {
+      await runSync(true)
+    } catch {
+      showToast('Önce hesabınla eşitlenemedi; verilerin silinmesin diye bir şey yapılmadı. İnternetini kontrol edip tekrar dene.', undefined, 7000, 'info')
+      return
+    }
+    await import('./pushReminders').then((m) => m.forgetPushRecord())
+    await setAccount(null)
+    await signOutSupabase()
+    await (await import('../data/deviceWipe')).wipeDevice()
+    location.reload()
+  }
+
   const google = async () => {
     try {
       await signInWithGoogle()
@@ -199,7 +214,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
         </p>
       )}
 
-      <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} />
+      <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} onSignOutAndWipe={signOutAndWipe} />
       <RestorePoints />
       <AccountDelete account={account} identity={identity} onGone={() => void refresh()} />
     </section>
