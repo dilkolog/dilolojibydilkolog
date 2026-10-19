@@ -634,7 +634,7 @@ Dosyalar: `src/data/seed/*.ts`, `src/data/storybooks/`, `docs/kaynaklar/`.
 - `scripts/smoke-live.mjs` çalıştırma (ayrı deneme hesabı gerektirirse yapma, nedenini yaz).
 - `docs/CLOUDFLARE.md`'ye "Günlükler ve hata izleme" bölümü yaz: Workers Logs'ta `[client-error]`, `[csp-report]`, `[worker-error]` nerede görülür, `npx wrangler tail diloloji`; AGENTS.md'deki "Vercel günlükleri" ifadelerini Cloudflare'e çevir (F1).
 
-### 16.6 Ayarlar → Yardım grubu (UX5)
+### 16.6 Ayarlar → Yardım grubu (UX5) — TAMAMLANDI (#517)
 Dosyalar: yeni `src/ui/settings/HelpSettings.tsx`, `src/ui/SettingsScreen.tsx` (yalnızca grup listesi), `src/ui/RootBoundary.tsx`, `src/ui/ScreenBoundary.tsx` (yalnızca iletişim bağlantısı), `vite.config.ts` (`define` ile derleme kimliği: yalnızca bu satır).
 - Ayarlar'a "Yardım" grubu: `mailto:destek@diloloji.com` (konuya sürüm/derleme kimliği, dil, tarayıcı otomatik), Gizlilik ve Koşullar bağlantıları, derleme kimliği (kısa git sha ya da tarih), 6–8 maddelik SSS (şifre/giriş, eşitleme, bildirim, ses/mikrofon, sözlük paketi indirme, hesap silme).
 - Hata sınırlarına aynı destek bağlantısı (ham `error.message` kalsın, altına "Sürerse bize yaz" bağlantısı).
