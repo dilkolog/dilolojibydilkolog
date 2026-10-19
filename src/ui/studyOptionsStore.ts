@@ -28,10 +28,16 @@ export function useStudyOptions(use: string, defaults: Partial<StudyOptions> = {
 
 /** Sets a use's next round to one list (from that list's page), keeping its other choices. */
 export function presetList(use: string, listId: string) {
+  presetScope(use, 'list', listId)
+}
+
+/** Sets a use's next round scope (e.g. 'all', 'hard', 'weak', 'list'), keeping other choices. */
+export function presetScope(use: string, scope: StudyOptions['scope'], listId?: string) {
   try {
     const stored = JSON.parse(localStorage.getItem(`${KEY}:${use}`) ?? 'null') as Partial<StudyOptions> | null
-    localStorage.setItem(`${KEY}:${use}`, JSON.stringify({ ...stored, scope: 'list', listId }))
+    localStorage.setItem(`${KEY}:${use}`, JSON.stringify({ ...stored, scope, listId }))
   } catch {
     /* the round opens on its last choices */
   }
 }
+
