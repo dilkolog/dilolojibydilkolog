@@ -626,7 +626,7 @@ Dosyalar: `src/data/seed/*.ts`, `src/data/storybooks/`, `docs/kaynaklar/`.
 - İspanyolca örnek kelimeleri 15 → 30 (FR 29 / EN 30 ile dengele); aynı kurallar (Türkçe anlam, örnek cümle, cinsiyet/artikel).
 - İngilizce için kolay okuma kaynağı araştırması (CC BY / kamu malı kademeli okuma metinleri, resimli hikâye): `docs/kaynaklar/english-graded.md` raporu (kaynak, lisans, bağlantı doğrulaması: bu ortamda ağ var; her bağlantıyı aç ve doğrula). Uygulama sonraki tur.
 
-### 16.5 Canlı doğrulama (ağ gerektirir; yalnızca okuma)
+### 16.5 Canlı doğrulama (ağ gerektirir; yalnızca okuma) — TAMAMLANDI (#516)
 Çıktı: `docs/veri/canli-dogrulama-2026-10-19.md`.
 - `https://diloloji.com` ve `/api/*` için yanıt başlıkları (HSTS, CSP, nosniff, cache-control), `curl -I --compressed` ile brotli/gzip sıkıştırması: `en/fr/es-*.json` sözlük paketleri (10/5,8/4,9 MB) gerçekte kaç bayt iniyor? (UX9)
 - Lighthouse (mobil, yavaş 4G) skoru ve ilk yükleme süresi: giriş sayfası ve `/hakkinda`.
