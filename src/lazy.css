@@ -470,6 +470,8 @@
 .shadow { display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 0.25rem; }
 .shadow-rec { color: var(--bad-text); display: inline-flex; align-items: center; gap: 0.5rem; }
 .shadow-bar { display: inline-block; width: 3rem; height: 0.25rem; border-radius: var(--r-full); background: var(--bad); transform-origin: left; transition: transform 100ms linear; }
+.shadow-waveform { display: inline-flex; align-items: flex-end; gap: 2px; height: 1rem; margin-left: 0.25rem; vertical-align: middle; }
+.shadow-wave-bar { width: 3px; border-radius: var(--r-full); background: var(--bad); transition: height 80ms ease-out; min-height: 3px; }
 .fragile-note { padding: 0.5rem 0.75rem; border-radius: var(--r-md); background: var(--surface-2); color: var(--ink-soft); }
 .personal-tag { margin-left: 0.5rem; font-family: var(--sans, inherit); font-size: var(--t-xs); font-weight: 700; padding: 0.0625rem 0.5rem; border-radius: var(--r-full); background: var(--lang-soft); color: var(--lang-text); vertical-align: middle; }
 .own-link { justify-self: start; text-align: left; }
