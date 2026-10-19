@@ -599,6 +599,54 @@ Actions kotası dönünce `gh workflow run snapshots.yml --ref main`.
 
 ---
 
+## 16. tur: kusursuz site (2026-10-19, kullanıcı istedi; kaynak: `docs/KUSURSUZ-SITE-RAPORU.md`)
+
+Yarın 1–2 kişi siteyi deneyecek. Önce raporun §5 tablosunu oku (bulgu kodları aşağıda parantezde). **Claude Code şu dosyalara dokunuyor, sen dokunma:** `api/*`, `worker/*`, `src/data/supabase.ts`, `src/data/sync*.ts`, `src/data/vault.ts`, `src/ui/SupabaseAuth.tsx`, `src/ui/AccountManage.tsx`, `src/ui/AccountSettings.tsx`, `src/ui/signInFlow.ts`, `src/ui/useSignedIn.ts`, `src/ui/syncRunner.ts`, `src/ui/syncTarget.ts`, `src/ui/syncData.ts`. İlk mesajında "16.x'e başlıyorum" de; bitince PR numarasını bu dosyaya yaz. Her görev ayrı PR. Sunucuya, Supabase'e ya da canlı siteye **yazan** hiçbir şey yapma; yalnızca oku.
+
+### 16.1 Statik sayfalar ve paylaşım önizlemesi (UX7, UX8, L1–L4)
+Dosyalar: `index.html`, `public/hakkinda.html`, `public/gizlilik.html`, `public/kosullar.html` (başka kimse dokunmuyor).
+- `index.html`: `<meta name="description">`, `og:title`, `og:description`, `og:image` (`/pwa-512.png` ya da 1200×630 yeni bir görsel), `og:url`, `twitter:card`. `noindex` kalsın.
+- Üç statik sayfaya: `<link rel="icon">`, `theme-color`, `canonical`, `og` etiketleri, `lang`.
+- **Gizlilik politikası içeriği** koddaki gerçek davranışa göre tamamlansın: tarayıcıdan doğrudan giden istekleri koddan tara (`grep -rn "fetch(" src`; Tatoeba `src/data/corpus.ts`, Wiktionary/Wikipedia/Commons, Open-Meteo `src/data/weather.ts`, YouTube, archive.org, Pixabay/Openverse, Google TTS, LanguageTool, Azure) ve her birini "ne gider, ne zaman" diye listele; "Reklam ve izleme yoktur" cümlesini buna uydur. Yurt dışına aktarım (Supabase, Cloudflare, Resend, DeepL), saklama süresi, veri sorumlusu (taslak, ad boş bırak: sahibi dolduracak), yaş sınırı maddesi, çıkışta cihazdaki verinin kaldığı (Claude Code çıkışta silme seçeneği ekleyecek, o zamana kadar "kalır" yaz). **Onay (site sahibi onayı) maddesini kaldır**: onay sistemi kapalı. Bu bir hukuk metni taslağıdır: PR açıklamasına "hukukçu gözden geçirmeli" yaz.
+- Üç sayfayı `e2e/a11y.e2e.ts` axe taramasına ekle (açık, koyu tema: sayfalar `prefers-color-scheme` kullanıyor; telefon genişliği).
+
+### 16.2 Gerçek giriş sayfasının erişilebilirliği ve testi (E1, E2, F6)
+Dosyalar: `src/index.css` (yalnızca `.link` ve `auth-*` kuralları), yeni test dosyaları.
+- `.link` düğmelerine en az 24×24 px hedef (WCAG 2.2 AA 2.5.8): "Şifremi unuttum", "Şifresiz giriş", "Gizle".
+- `SupabaseAuth` adımları (login, create, magic, reset, sent, recovery, working) için vitest + axe testi (`@axe-core/playwright` yerine bileşen düzeyinde `axe-core` varsa onu kullan, yoksa e2e tarafında `vite build` çıktısını Supabase ayarlı ve `page.route` ile taklit edilmiş Supabase uçlarıyla koşan **ikinci bir Playwright projesi** kur). Senaryolar: oturumsuz kullanıcı yalnızca giriş sayfasını görür; çıkışta yerel kelimeler silinmez; e-posta/şifre ve Google dönüş adımları. `.env.local` değişkenleri normal vitest/E2E koşusuna sızmamalı (`vite.config.ts` `test.env` zaten var; E2E için `npm run test:e2e` kullan).
+- `e2e/a11y.e2e.ts` içinde `color-contrast` kapalı: giriş sayfası ve Onboarding için ayrıca kontrast denetimi ekle (açık/koyu/sakin).
+
+### 16.3 Worker ve sunucu testleri (F5)
+Dosyalar: yalnızca yeni test dosyaları (`worker/index.test.ts`, `src/data/apiRoutes.test.ts`); `worker/index.ts`'e dokunma, bulgu çıkarsa PR açıklamasına yaz.
+- `ROUTES` tablosunun `api/*.ts` ile eşitliği: `import.meta.glob('../../api/*.ts')` ile `_` ile başlamayan her dosyanın `worker/index.ts`'te yönlendirildiğini doğrula (yeni uç Worker'a eklenmeyi unutulmasın).
+- `worker/index.ts`: 404/405, hata sarmalayıcı (`[worker-error]`), `scheduled` saat hesabı, `CRON_SECRET` taşıma, cron'un 401/500 yanıtında davranışı (şu an hata fırlatmıyor: testle belgele, düzeltmeyi Claude Code yapacak).
+
+### 16.4 İçerik: İspanyolca ve İngilizce ilk deneyim (UX12)
+Dosyalar: `src/data/seed/*.ts`, `src/data/storybooks/`, `docs/kaynaklar/`.
+- İspanyolca örnek kelimeleri 15 → 30 (FR 29 / EN 30 ile dengele); aynı kurallar (Türkçe anlam, örnek cümle, cinsiyet/artikel).
+- İngilizce için kolay okuma kaynağı araştırması (CC BY / kamu malı kademeli okuma metinleri, resimli hikâye): `docs/kaynaklar/english-graded.md` raporu (kaynak, lisans, bağlantı doğrulaması: bu ortamda ağ var; her bağlantıyı aç ve doğrula). Uygulama sonraki tur.
+
+### 16.5 Canlı doğrulama (ağ gerektirir; yalnızca okuma)
+Çıktı: `docs/veri/canli-dogrulama-2026-10-19.md`.
+- `https://diloloji.com` ve `/api/*` için yanıt başlıkları (HSTS, CSP, nosniff, cache-control), `curl -I --compressed` ile brotli/gzip sıkıştırması: `en/fr/es-*.json` sözlük paketleri (10/5,8/4,9 MB) gerçekte kaç bayt iniyor? (UX9)
+- Lighthouse (mobil, yavaş 4G) skoru ve ilk yükleme süresi: giriş sayfası ve `/hakkinda`.
+- DNS (DoH ile): `_dmarc.diloloji.com`, kök SPF, MX, DKIM. Cloudflare "DMARC Record Error detected" uyarısı veriyor: kayıt neden hatalı sayılıyor? Tam değeri yaz ve neyin düzeltileceğini öner.
+- `scripts/smoke-live.mjs` çalıştırma (ayrı deneme hesabı gerektirirse yapma, nedenini yaz).
+- `docs/CLOUDFLARE.md`'ye "Günlükler ve hata izleme" bölümü yaz: Workers Logs'ta `[client-error]`, `[csp-report]`, `[worker-error]` nerede görülür, `npx wrangler tail diloloji`; AGENTS.md'deki "Vercel günlükleri" ifadelerini Cloudflare'e çevir (F1).
+
+### 16.6 Ayarlar → Yardım grubu (UX5)
+Dosyalar: yeni `src/ui/settings/HelpSettings.tsx`, `src/ui/SettingsScreen.tsx` (yalnızca grup listesi), `src/ui/RootBoundary.tsx`, `src/ui/ScreenBoundary.tsx` (yalnızca iletişim bağlantısı), `vite.config.ts` (`define` ile derleme kimliği: yalnızca bu satır).
+- Ayarlar'a "Yardım" grubu: `mailto:destek@diloloji.com` (konuya sürüm/derleme kimliği, dil, tarayıcı otomatik), Gizlilik ve Koşullar bağlantıları, derleme kimliği (kısa git sha ya da tarih), 6–8 maddelik SSS (şifre/giriş, eşitleme, bildirim, ses/mikrofon, sözlük paketi indirme, hesap silme).
+- Hata sınırlarına aynı destek bağlantısı (ham `error.message` kalsın, altına "Sürerse bize yaz" bağlantısı).
+- `DESIGN.md` bileşenlerini kullan; telefon + koyu tema ekran görüntüsü; a11y testi.
+
+### 16.7 CSP zorunlu moda geçiş raporu (B10)
+Çıktı: `docs/veri/csp-gecis.md` (kod değiştirme). `vercel.json` ve `scripts/cf-headers.mjs` başlıklarını oku; `script-src` hash'lerinin derlemede nasıl üretilebileceğini, `connect-src`'nin açık listesini (kodda kullanılan her dış adres) ve report-only'den zorunluya adım adım planı yaz.
+
+**Tur sonu ölçütü:** 16.1–16.3 ve 16.5–16.6 birleşmiş; 16.4 ve 16.7 raporları yazılmış; hepsinde yerel doğrulama yeşil.
+
+---
+
 ## Her PR için kontrol listesi
 - [ ] Tek konu, Türkçe açıklama (neyi, neden)
 - [ ] `typecheck`, `oxlint` (0 uyarı), `vitest`, E2E yerelde yeşil

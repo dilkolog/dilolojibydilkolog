@@ -8,6 +8,10 @@ Yöntem: Kod okunarak çıkarılan bulguların büyük kısmı **canlı sistemde
 
 ---
 
+## 0. Güncelleme (19 Ekim, öğleden sonra)
+
+P0 maddeleri düzeltildi ve main'e girdi (PR #504): **B1, B2, B3, A1, UX1, UX2, UX4**. **Canlıya henüz çıkmadı**: ajan ortamından dağıtım denendi ama statik dosya yüklemesi 401 verdi (AGENTS.md "Ajanla Cloudflare dağıtımı"); Mac'te `git pull && npm run deploy:cf` gerekiyor. P0'dan sana kalan: **UX3** (gerçek Gmail ile kayıt, onay maili, Resend SMTP) ve **F1** (uptime izleme + Cloudflare uyarıları). Cloudflare'in "DMARC Record Error" uyarısı (bölüm 5, F13) ve `/.well-known/security.txt` (eklendi) aşağıda. Antigravity için görev listesi: `docs/ANTIGRAVITY-GOREVLER.md` 16. tur.
+
 ## 1. Tek bakışta durum
 
 **İyi haber:** Site canlı, giriş çalışıyor, Google marka doğrulaması geçti, e-posta yönlendirme çalışıyor, tanıtım/gizlilik/koşullar sayfaları açılıyor, kodda gizli anahtar sızıntısı yok, bağımlılıklarda bilinen açık yok.
@@ -163,6 +167,8 @@ Bunların dışında hiçbir şeyi kendi başıma değiştirmedim; geri kalanı 
 | F9 | P2 | İlk yükleme: giriş JS 551 kB (175 kB gzip), CSS 63 kB gzip, ~50 modulepreload; `lessonOf` 438 kB gzip birçok ekrandan içe aktarılıyor [ajan] | `lessonTitle`/`topicOfTense` gibi küçük meta bilgiyi ayır; Lighthouse ile gerçek 3G ölç. |
 | F10 | P2 | Dependabot/Renovate yok; küçük sürüm gerilikleri (anthropic-sdk, playwright, vitest) [ajan] | Haftalık gruplu güncelleme. |
 | F11 | P2 | Sunucu yönlendirmesi `X-Robots-Tag: noindex` her sayfada, `/hakkinda`, `/gizlilik`, `/kosullar` dahil [ajan] | Marka doğrulaması geçti, sorun yok; ilerde arama motoru görünürlüğü istersen bu üç sayfa için istisna ver. |
+| F13 | P1 | Cloudflare Güvenlik Öngörüleri: **"DMARC Record Error detected"** (diloloji.com, 19 Ekim 07:36 UTC taraması): "MX kaydı var ama karşılığında doğru biçimli bir DMARC kaydı yok". DNS listesinde `_dmarc` TXT kaydı görünüyordu; tarama geç kalmış ya da kayıt biçimi hatalı olabilir [CSV + ekran görüntüsü] | DNS'te `_dmarc` kaydı tam olarak `v=DMARC1; p=none; rua=mailto:destek@diloloji.com` olmalı (tırnağı Cloudflare ekler, sen yazma; baş/son boşluk yok). Antigravity 16.5 DoH ile gerçek değeri okuyacak. |
+| F14 | P2 | Aynı raporda: Bot Fight Mode kapalı (orta), AI Labyrinth kapalı, Security.txt yok (`public/.well-known/security.txt` eklendi). `nigalingo.online` bölgesi hâlâ hesapta: artık kullanılmıyorsa sil ya da bu adresten diloloji.com'a yönlendir [CSV] | Bot Fight Mode'u aç (ücretsiz; tarayıcıdan gelen gerçek kullanıcıları etkilemez, `curl` ile yapılan duman testlerini zorlaştırabilir). |
 | F12 | P2 | Bilinen kararsız E2E'ler `openScreen` içinde `dispatchEvent('click')` ile geçiştirilmiş: gerçek bir tıklanamaz sekme sorunu testi geçirebilir [ajan] | Kök neden bulunamadı; izlemeye devam. |
 
 ---
