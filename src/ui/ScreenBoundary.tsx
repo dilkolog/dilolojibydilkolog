@@ -2,6 +2,7 @@ import { Component, type ReactNode } from 'react'
 import { reportError } from '../data/errorReport'
 import { isChunkError } from './chunkError'
 import { StatusPicture } from './StatusArt'
+import { buildSupportMailto } from './settings/buildId'
 
 /**
  * Keeps one broken screen from blanking the whole app: says what happened and offers a way out.
@@ -42,6 +43,20 @@ export class ScreenBoundary extends Component<{ resetKey: string; onHome: () => 
             : 'Beklenmedik bir hata oldu. Verilerin güvende; yeniden denemek ya da sayfayı yenilemek genelde yeter.'}
         </p>
         {!chunk && error instanceof Error && <p className="small muted screen-error-detail">{error.message}</p>}
+        {!chunk && (
+          <p className="small muted">
+            Sorun devam ederse:{' '}
+            <a
+              className="link"
+              href={buildSupportMailto({
+                context: this.props.resetKey,
+                error: error instanceof Error ? error.message : String(error),
+              })}
+            >
+              Sürerse bize yaz
+            </a>
+          </p>
+        )}
         <div className="row">
           <button className="btn" onClick={() => (chunk ? location.reload() : this.setState({ error: null }))}>
             {chunk ? 'Sayfayı yenile' : 'Yeniden dene'}

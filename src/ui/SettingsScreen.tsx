@@ -5,7 +5,7 @@ import { AccountSettings } from './AccountSettings'
 import { AnswerSettings } from './AnswerSettings'
 import type { AuthMode } from './AuthScreen'
 import { DataSettings } from './DataSettings'
-import { BellIcon, DataIcon, PaletteIcon, PenIcon, SearchIcon, SpeakerIcon, TargetIcon, ToolIcon, UserIcon } from './icons'
+import { BellIcon, DataIcon, HelpIcon, PaletteIcon, PenIcon, SearchIcon, SpeakerIcon, TargetIcon, ToolIcon, UserIcon } from './icons'
 import { LookSettings } from './LookSettings'
 import { PageHeader } from './PageHeader'
 import type { PushState } from './pushReminders'
@@ -15,8 +15,9 @@ import { PANE_KEY } from './settingsPane'
 import { SoundSettings } from './SoundSettings'
 import { StudySettings } from './StudySettings'
 import { ToolsSettings } from './ToolsSettings'
+import { HelpSettings } from './settings/HelpSettings'
 
-type GroupId = 's-account' | 's-study' | 's-answers' | 's-sound' | 's-look' | 's-remind' | 's-tools' | 's-data'
+type GroupId = 's-account' | 's-study' | 's-answers' | 's-sound' | 's-look' | 's-remind' | 's-tools' | 's-data' | 's-help'
 
 interface Group {
   id: GroupId
@@ -35,6 +36,7 @@ const GROUP_LIST: Group[] = [
   { id: 's-remind', name: 'Bildirimler', sub: 'Hatırlatma, takvim ve çan', icon: <BellIcon size={18} /> },
   { id: 's-tools', name: 'Araçlar', sub: 'Yapay zekâ, kısayollar ve çevrimdışı paket', icon: <ToolIcon size={18} /> },
   { id: 's-data', name: 'Veriler', sub: 'Yedek, dışa aktarma ve sıfırlama', icon: <DataIcon size={18} /> },
+  { id: 's-help', name: 'Yardım', sub: 'Destek, sıkça sorulanlar ve koşullar', icon: <HelpIcon size={18} /> },
 ]
 const GROUP_BY_ID = Object.fromEntries(GROUP_LIST.map((g) => [g.id, g])) as Record<GroupId, Group>
 
@@ -190,6 +192,10 @@ export function SettingsScreen({
 
           <Pane {...pane('s-data')}>
             <DataSettings language={settings.activeLanguage} onDataChanged={onDataChanged} />
+          </Pane>
+
+          <Pane {...pane('s-help')}>
+            <HelpSettings language={settings.activeLanguage} />
           </Pane>
         </div>
       </div>

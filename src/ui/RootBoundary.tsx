@@ -3,6 +3,7 @@ import { reportError } from '../data/errorReport'
 import { db } from '../data/instance'
 import { downloadBackup } from './backup'
 import { StatusPicture } from './StatusArt'
+import { buildSupportMailto } from './settings/buildId'
 
 /**
  * The last net: a render error outside any screen (the side bar, the top bar, the toasts) used to blank the
@@ -44,6 +45,18 @@ export class RootBoundary extends Component<{ children: ReactNode }, { error: un
             {this.state.saved ? 'Yedek indirildi' : 'Yedeği indir'}
           </button>
         </div>
+        <p className="small muted">
+          Sorun devam ederse bize iletebilirsin:{' '}
+          <a
+            className="link"
+            href={buildSupportMailto({
+              context: 'root-boundary',
+              error: this.state.error instanceof Error ? this.state.error.message : String(this.state.error),
+            })}
+          >
+            Sürerse bize yaz
+          </a>
+        </p>
       </main>
     )
   }

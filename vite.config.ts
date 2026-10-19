@@ -9,6 +9,7 @@ export default defineConfig({
   // Drawings are never inlined into the scripts: a small one would otherwise ride in the start-up
   // bundle as base64 (larger, not cacheable on its own) even when its screen is never opened.
   build: { assetsInlineLimit: (file) => (file.endsWith('.webp') ? false : undefined) },
+  define: { __APP_BUILD_ID__: JSON.stringify(process.env.CF_PAGES_COMMIT_SHA?.slice(0, 7) || new Date().toISOString().slice(0, 10)) },
   // Server functions (api/) run on Vercel; in local development they are reached on the live site.
   server: { proxy: { '/api': { target: 'https://diloloji.com', changeOrigin: true } } },
   plugins: [

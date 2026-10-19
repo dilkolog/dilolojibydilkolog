@@ -5705,3 +5705,82 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
   border-radius: var(--r-full);
   font-weight: 500;
 }
+
+/* ── Ayarlar > Yardım ve SSS ────────────────────────────────────────────── */
+.help-settings {
+  display: grid;
+  gap: 1rem;
+}
+.help-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.help-build-id {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  font-size: var(--t-xs);
+  color: var(--ink-soft);
+  font-family: var(--font-mono, monospace);
+}
+.help-links-list {
+  display: grid;
+  gap: 0.5rem;
+}
+.help-link-row {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem;
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.help-link-row:hover {
+  background: var(--lang-soft);
+}
+.help-link-icon {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--r-full);
+  background: var(--lang-soft);
+  color: var(--lang-text);
+  flex-shrink: 0;
+}
+.faq-list {
+  display: grid;
+}
+.faq-item {
+  border-bottom: 1px solid var(--rule);
+}
+.faq-item:last-child {
+  border-bottom: none;
+}
+.faq-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 0;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink);
+  user-select: none;
+}
+.faq-summary:hover {
+  color: var(--lang-text);
+}
+.faq-answer {
+  padding-bottom: 0.875rem;
+}
+.faq-answer p {
+  margin: 0;
+  line-height: 1.5;
+}
+
