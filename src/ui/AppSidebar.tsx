@@ -144,6 +144,7 @@ export function Sidebar({
             {game && (
               <span className="small muted">
                 Seviye {game.level.level} · <StreakFlame streak={game.streak} frozen={game.frozenYesterday} size={13} /> {game.streak}
+                {(game.freezes ?? 0) > 0 ? ` · 🛡️${game.freezes}` : ''}
               </span>
             )}
             {game && (

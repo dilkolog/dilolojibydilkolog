@@ -125,24 +125,24 @@ export function playWord(entry: VocabularyEntry, text = displayForm(entry), vary
     const url = entry.audioUrl
     const ready = readyAudio(url)
     if (ready) {
-      playUrl(ready).catch(fallback)
+      playUrl(ready, rate).catch(fallback)
       return
     }
     if (navigator.onLine) {
-      playUrl(url).catch(fallback)
+      playUrl(url, rate).catch(fallback)
       void cacheAudio(url)
       return
     }
-    void cachedAudio(url).then((local) => (local ? playUrl(local).catch(fallback) : fallback()))
+    void cachedAudio(url).then((local) => (local ? playUrl(local, rate).catch(fallback) : fallback()))
     return
   }
   if (entry.audioId && text === displayForm(entry)) {
     const ready = recordings.get(entry.audioId)
     if (ready) {
-      playUrl(ready).catch(fallback)
+      playUrl(ready, rate).catch(fallback)
       return
     }
-    void preloadRecording(entry.audioId).then((url) => (url ? playUrl(url).catch(fallback) : fallback()))
+    void preloadRecording(entry.audioId).then((url) => (url ? playUrl(url, rate).catch(fallback) : fallback()))
     return
   }
   fallback()

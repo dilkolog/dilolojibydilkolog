@@ -182,7 +182,7 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
       } else if (e.code === 'Space') setFlipped((f) => !f)
       else if (e.key === 'ArrowRight') grade(2)
       else if (e.key === 'ArrowLeft') grade(0)
-      else if (flipped && ['1', '2', '3'].includes(e.key)) grade((Number(e.key) - 1) as FlashGrade)
+      else if (['1', '2', '3'].includes(e.key)) grade((Number(e.key) - 1) as FlashGrade)
       else if (e.key.toLowerCase() === 's') void toggleStar()
       else return
       e.preventDefault()
