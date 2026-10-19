@@ -1,4 +1,4 @@
-import { ACCOUNT_ART } from './drawnArt'
+import { ACCOUNT_ART, REACT } from './drawnArt'
 import type { Session } from '@supabase/supabase-js'
 import { useEffect, useRef, useState } from 'react'
 import { approvalEnabled } from '../data/access'
@@ -6,7 +6,6 @@ import { reportError } from '../data/errorReport'
 import { VaultError } from '../data/vault'
 import { clearReturn, currentSession, isRecoveryReturn, returnError, resendConfirmation, sendMagicLink, sendPasswordReset, setNewPassword, signIn, signInWithGoogle, signUp, supabase, authErrorText } from '../data/supabase'
 import { ChevronLeftIcon, LockIcon } from './icons'
-import { BrandLogo } from './BrandLogo'
 import { PasswordInput } from './PasswordInput'
 import { completeSignIn, vaultErrorText, type SignInOutcome } from './signInFlow'
 import { showToast } from './toastFeed'
@@ -16,6 +15,16 @@ export type SupabaseMode = 'login' | 'create' | 'return'
 const FINE_POINTER = typeof window !== 'undefined' && !!window.matchMedia?.('(pointer: fine)').matches
 
 type Step = 'login' | 'create' | 'magic' | 'reset' | 'sent' | 'recovery' | 'working'
+
+const STEP_ART: Record<Step, string> = {
+  login: ACCOUNT_ART.out,
+  create: REACT.hello,
+  magic: ACCOUNT_ART.out,
+  reset: REACT.forgot,
+  sent: ACCOUNT_ART.pending,
+  recovery: ACCOUNT_ART.out,
+  working: ACCOUNT_ART.pending,
+}
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -174,7 +183,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
       )}
       <div className="auth-card card">
         <div className="auth-head">
-          {step === 'login' || step === 'create' ? <img className="account-art auth-art" src={ACCOUNT_ART.out} alt="" height={84} draggable={false} /> : <BrandLogo className="auth-mark" size={30} />}
+          <img className="account-art auth-art art-pop" src={STEP_ART[step]} alt="" height={84} draggable={false} />
           <h1 className="auth-title">{title[step]}</h1>
           {step === 'login' && <p className="muted">Giriş yap: ilerlemen her cihazda aynı olur.</p>}
           {step === 'create' && <p className="muted">E-postanla bir hesap aç; her cihazda aynı ilerlemeyle devam et.</p>}
