@@ -15,6 +15,7 @@ import book from '../assets/art/game-book.webp'
 import cards from '../assets/art/game-cards.webp'
 import chat from '../assets/art/game-chat.webp'
 import headphones from '../assets/art/game-headphones.webp'
+import headBack from '../assets/art/head-back.webp'
 import gSwipe from '../assets/art/game-swipe.webp'
 import gTruefalse from '../assets/art/game-truefalse.webp'
 import gStrip from '../assets/art/game-strip.webp'
@@ -51,7 +52,7 @@ export const GAME_ART: Partial<Record<GameId, string>> = {
   podcast: gPodcast,
   song: gSong,
   dictation: headphones,
-  back: swap,
+  back: headBack,
   pron: mic,
   aspect: hourglass,
   test: target,

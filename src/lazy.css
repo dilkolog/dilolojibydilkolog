@@ -651,7 +651,7 @@
 .dd-accent { color: var(--near-text); text-decoration: underline wavy var(--near); text-underline-offset: 4px; }
 .dd-missed { color: var(--bad-text); background: var(--bad-soft); border-radius: var(--r-xs); }
 .dd-extra { color: var(--ink-soft); text-decoration: line-through; }
-.back-diff-view { display: flex; flex-direction: column; gap: var(--space-2); margin: var(--space-1) 0; }
+.back-diff-view { display: flex; flex-direction: column; gap: 0.5rem; margin: 0.25rem 0; }
 .back-diff-block { padding: 0.625rem 0.875rem; border-radius: var(--r-md); background: var(--surface-2); border: 1px solid var(--rule); }
 .back-diff-label { display: block; font-size: var(--t-xs); font-weight: 700; color: var(--ink-soft); margin-bottom: 0.25rem; }
 .back-diff-user { font-family: var(--serif); font-size: var(--t-md); line-height: 1.6; }
