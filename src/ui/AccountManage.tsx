@@ -3,7 +3,8 @@ import { currentSession, setNewPassword, signOutSupabase, authErrorText, provide
 import type { Account } from '../data/sync'
 import { deleteAccount } from '../data/vault'
 import { ConfirmDialog } from './Dialog'
-import { ChevronDownIcon } from './icons'
+import { AccountDeleteDialog } from './AccountDeleteDialog'
+import { PasswordInput } from './PasswordInput'
 import { setAccount } from './syncRunner'
 import { showToast } from './toastFeed'
 
@@ -27,6 +28,7 @@ export function AccountManage({
   const [changing, setChanging] = useState(false)
   const [password, setPassword] = useState('')
   const [repeat, setRepeat] = useState('')
+  const [shown, setShown] = useState(false)
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
   const hasPassword = !identity || identity.providers.includes('email')
@@ -84,11 +86,11 @@ export function AccountManage({
             >
               <label className="field">
                 <span className="field-label">Yeni şifre</span>
-                <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="new-password" autoFocus />
+                <PasswordInput value={password} onChange={setPassword} autoComplete="new-password" autoFocus shown={shown} onShownChange={setShown} />
               </label>
               <label className="field">
                 <span className="field-label">Yeni şifre (tekrar)</span>
-                <input className="input" type="password" value={repeat} onChange={(e) => setRepeat(e.target.value)} autoComplete="new-password" />
+                <PasswordInput value={repeat} onChange={setRepeat} autoComplete="new-password" shown={shown} onShownChange={setShown} />
               </label>
               {error && (
                 <p className="error" role="alert">
@@ -150,8 +152,8 @@ export function AccountManage({
 }
 
 /**
- * Account deletion placed safely at the very bottom or in Data settings.
- * Hidden inside a collapsible details section so it is never in the way or accidentally pressed.
+ * Deleting the account: a quiet row in the account's settings. It opens a dialog that walks through what goes and
+ * what stays, asks for a typed phrase, then deletes (AccountDeleteDialog); the screen below the dialog stays as it is.
  */
 export function AccountDelete({
   account,
@@ -162,64 +164,38 @@ export function AccountDelete({
   identity: Identity | null
   onGone: () => void
 }) {
-  const [confirming, setConfirming] = useState(false)
-  const [busy, setBusy] = useState(false)
+  const [open, setOpen] = useState(false)
 
   const remove = async () => {
-    setConfirming(false)
-    setBusy(true)
+    const session = identity ? await currentSession() : null
+    // The sign-in is what deletes the person's Supabase data too: without it only half would go, and the screen would say all did.
+    if (supabaseConfigured() && !session) throw new Error('Oturumun düşmüş görünüyor. Çıkış yapıp yeniden giriş yaptıktan sonra hesabı silmeyi tekrar dene.')
     try {
-      const session = identity ? await currentSession() : null
-      // The sign-in is what deletes the person's Supabase data too: without it only half would go, and the screen would say all did.
-      if (supabaseConfigured() && !session) {
-        showToast('Oturumun düşmüş görünüyor. Çıkış yapıp yeniden giriş yaptıktan sonra hesabı silmeyi tekrar dene.', undefined, 7000, 'info')
-        return
-      }
       await deleteAccount(session?.access_token ?? null, account)
-      await setAccount(null)
-      await signOutSupabase()
-      showToast('Hesabın ve sunucudaki verilerin silindi. Bu cihazdaki kelimelerin ve ilerlemen duruyor.', undefined, 6000)
-      onGone()
     } catch {
-      showToast('Hesap silinemedi; biraz sonra tekrar dene.', undefined, 5000, 'info')
-    } finally {
-      setBusy(false)
+      throw new Error('Hesap silinemedi; biraz sonra tekrar dene.')
     }
+    await setAccount(null)
+    await signOutSupabase()
+    setOpen(false)
+    showToast('Hesabın ve sunucudaki verilerin silindi. Bu cihazdaki kelimelerin ve ilerlemen duruyor.', undefined, 6000)
+    onGone()
   }
 
   return (
-    <details className="account-advanced account-danger-details">
-      <summary className="account-danger-summary small">
-        <span className="account-danger-title">
-          <span>⚠️ Hesabı sil</span>
-          <span className="small muted font-normal">(Tehlikeli bölge)</span>
-        </span>
-        <ChevronDownIcon size={16} className="account-accordion-arrow" />
-      </summary>
-      <div className="account-danger-body">
-        <p className="small muted">
-          Hesabın ve bulutta eşitlenen tüm verilerin kalıcı olarak silinir. Bu cihazdaki yerel kelimelerin ve ilerlemen korunur.
-        </p>
-        <button type="button" className="btn btn-sm btn-danger" disabled={busy} aria-busy={busy} onClick={() => setConfirming(true)}>
-          {busy ? 'Siliniyor…' : 'Hesabımı kalıcı olarak sil'}
-        </button>
-        {busy && (
-          <p className="small muted" role="status">
-            Sunucudaki verilerin siliniyor; bu birkaç saniye sürebilir. Sayfayı kapatma.
-          </p>
-        )}
+    <>
+      <div className="account-group">
+        <div className="account-row">
+          <div className="account-row-text">
+            <strong>Hesabı sil</strong>
+            <span className="small muted">Hesabını ve sunucudaki verilerini kalıcı olarak siler.</span>
+          </div>
+          <button type="button" className="btn btn-sm btn-danger" onClick={() => setOpen(true)}>
+            Hesabı sil…
+          </button>
+        </div>
       </div>
-      {confirming && (
-        <ConfirmDialog
-          title="Hesabın silinsin mi?"
-          confirmLabel="Hesabımı sil"
-          danger
-          onConfirm={() => void remove()}
-          onCancel={() => setConfirming(false)}
-        >
-          Hesabın, sunucuda eşitlenen verilerin, arkadaş kartın ve mail hatırlatmaların kalıcı olarak silinir; geri alınamaz. Bu cihazdaki kelimelerin ve ilerlemen silinmez; ama hesabın olmadan uygulamayı açamazsın, yeni bir hesapla girersen cihazdaki veriler o hesaba katılır. Paylaştığın listeler kalır: istersen önce liste sayfasından paylaşımı geri al.
-        </ConfirmDialog>
-      )}
-    </details>
+      {open && <AccountDeleteDialog onDelete={remove} onClose={() => setOpen(false)} />}
+    </>
   )
 }

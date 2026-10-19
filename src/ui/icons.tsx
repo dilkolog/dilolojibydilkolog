@@ -306,6 +306,20 @@ export const LockIcon = (p: P) => (
   </Icon>
 )
 
+export const EyeIcon = (p: P) => (
+  <Icon {...p}>
+    <S d="M2.5 12s3.6-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.6 6.5-9.5 6.5S2.5 12 2.5 12z" />
+    <circle cx="12" cy="12" r="2.8" />
+  </Icon>
+)
+export const EyeOffIcon = (p: P) => (
+  <Icon {...p}>
+    <S d="M2.5 12s3.6-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.6 6.5-9.5 6.5S2.5 12 2.5 12z" />
+    <circle cx="12" cy="12" r="2.8" />
+    <path d="M4 4l16 16" />
+  </Icon>
+)
+
 // ── Sound and speech ───────────────────────────────────────────────────────────────────────
 export const SpeakerIcon = (p: P) => (
   <Icon {...p}>

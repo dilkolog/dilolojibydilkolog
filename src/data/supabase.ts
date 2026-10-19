@@ -94,6 +94,11 @@ export async function sendMagicLink(email: string): Promise<void> {
   await run((await supabase()).auth.signInWithOtp({ email, options: { emailRedirectTo: back(), shouldCreateUser: true } }))
 }
 
+/** Sends the account's confirmation mail again (the first link was used, expired or lost). */
+export async function resendConfirmation(email: string): Promise<void> {
+  await run((await supabase()).auth.resend({ type: 'signup', email, options: { emailRedirectTo: back() } }))
+}
+
 /** Leaves for Google; the person comes back to the app signed in. */
 export async function signInWithGoogle(): Promise<void> {
   await run((await supabase()).auth.signInWithOAuth({ provider: 'google', options: { redirectTo: back() } }))
