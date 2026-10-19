@@ -10,6 +10,7 @@ import { Plant } from '../Plant'
 import { isFormId } from '../../engine/dailyPlan'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
 import type { Tense } from '../../engine/tenses'
+import { confusableRuleFor } from '../../data/confusableRules'
 import { BulbIcon, CheckIcon, CloseIcon, NearIcon, PenIcon, UndoIcon } from '../icons'
 import { PosTag } from '../PosTag'
 import { WrittenForm } from '../WrittenForm'
@@ -204,6 +205,23 @@ export function Feedback({
               ))}
             </div>
           )}
+          {ev.verdict !== 'correct' && ev.errorType === 'confusion' && (() => {
+            const rule = confusableRuleFor(entry.lemma, entry.language, ev.given)
+            if (!rule) return null
+            return (
+              <div className="formative-tip formative-warning">
+                <div className="formative-tip-head">
+                  <BulbIcon size={14} /> <strong>Karışan İkizler Ayrımı: {rule.words.join(' ↔ ')}</strong>
+                </div>
+                <p className="small">{rule.distinction}</p>
+                {rule.example && (
+                  <p className="small muted formative-formation" lang={entry.language}>
+                    {rule.example[0]} · {rule.example[1]}
+                  </p>
+                )}
+              </div>
+            )
+          })()}
           {ev.verdict === 'wrong' && !confidentError && !forgot && (
             <p className="small return-note">
               <Plant stage={1} size={26} live /> {soft} Bu kelimeyi birazdan bir kez daha soracağım.

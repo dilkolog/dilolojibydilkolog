@@ -37,6 +37,8 @@ import { ContextReview } from './games/ContextReview'
 import { AffixHunt } from './games/AffixHunt'
 import { flowItems } from '../data/flow'
 import { trapWords } from '../data/traps'
+import { CONFUSABLE_RULES } from '../data/confusableRules'
+import { ConfusablesGame } from './games/ConfusablesGame'
 import { grammarExercises } from '../data/grammar'
 import { dueSentences } from '../engine/sentences'
 import { useOnline } from './useOnline'
@@ -162,6 +164,7 @@ export function GamesScreen(
     if (game === 'affix') return <AffixHunt language={p.language} onExit={() => setGame(null)} />
     if (game === 'flow') return <FlowRound language={p.language} onLesson={p.onOpenLesson} onExit={() => setGame(null)} />
     if (game === 'traps') return <TrapRound language={p.language} onExit={() => setGame(null)} />
+    if (game === 'confusables') return <ConfusablesGame language={p.language} best={records[`confusables:${p.language}`]} recordKey={`confusables:${p.language}`} onExit={() => setGame(null)} />
     if (game === 'reflex') return <ReflexRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'song') return <SongGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'podcast') return <MiniPodcast {...p} onExit={() => setGame(null)} />
@@ -242,11 +245,12 @@ export function GamesScreen(
   const rewriteCard: GameCard = { id: 'rewrite', emoji: '🔄', name: 'Cümle dönüşümü', text: 'Verilen anahtar kelimeyle cümleyi anlamını koruyarak yeniden kur (C1 seviye).', status: `${SENTENCE_REWRITES.filter((s) => s.language === p.language).length} kalıp · B2–C1` }
   const collocationsCard: GameCard = { id: 'collocations', emoji: '🔗', name: 'Edat ve kalıplar', text: 'Fiillerin aldığı edatlar ve doğal eşdizimler: boşluğu doğru kelimeyle tamamla.', status: `${COLLOCATION_DRILLS.filter((c) => c.language === p.language).length} kalıp · B1–C1` }
   const trapCard: GameCard = { id: 'traps', emoji: '⚠️', name: 'Tuzak kelimeler', text: 'Başka bir kelimeye benzeyip başka şey diyenler: gerçek anlamı seç.', status: `${trapWords.filter((t) => t.language === p.language).length} kelime` }
+  const confusablesCard: GameCard = { id: 'confusables', emoji: '👯', name: 'İkizler Arenası', text: 'Birbirine benzeyen veya karıştırılan ikiz kelimeleri ayırt et: aradaki farkı kuralıyla öğren.', status: record(`confusables:${p.language}`, (v) => `%${v}`) ?? `${CONFUSABLE_RULES.filter((r) => r.language === p.language).length} kural çifti` }
   const registerCard: GameCard = { id: 'register', emoji: '🎭', name: 'Kayıt farkı', text: 'Sokakta, standart ve resmî: durumu oku, ortama uyan söyleyişi seç.', status: record(`register:${p.language}`, (v) => `%${v}`) ?? `${registerItems.filter((r) => r.language === p.language).length} düşünce · B1–C1` }
   const flowCard: GameCard = { id: 'flow', emoji: '🧱', name: 'Metin akışı', text: 'Paragrafta eksik bağlaçları yerleştir: zıtlık, neden, taviz.', status: record(`flow:${p.language}`, (v) => `%${v}`) ?? `${flowItems.filter((r) => r.language === p.language).length} paragraf · B1–C1` }
   const duelCard: GameCard = { id: 'duel', emoji: '🥊', name: 'Arkadaşla düello', text: 'Aynı 10 soruyu ikiniz de çözün; sonuç bir bağlantıyla gider gelir, hesap gerekmez.', status: 'Bağlantıyla, kendi zamanınızda' }
   const affixCard: GameCard = { id: 'affix', emoji: '🌱', name: 'Ek avı', text: 'Bir kelime ve türevi: hangi ek ya da ön ek getirir? Kelimeyi sen kur.', status: 'Kendi kelimelerinden' }
-  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, spotErrorCard, rewriteCard, collocationsCard, duelCard, trapCard, registerCard, flowCard, affixCard] })
+  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, spotErrorCard, rewriteCard, collocationsCard, duelCard, trapCard, confusablesCard, registerCard, flowCard, affixCard] })
   else
     groups.push({
       title: 'Dilbilgisi',
@@ -258,6 +262,7 @@ export function GamesScreen(
         collocationsCard,
         duelCard,
         trapCard,
+        confusablesCard,
         registerCard,
         flowCard,
         affixCard,
