@@ -1,0 +1,92 @@
+[
+  {
+    "id": "en-tired-heavy",
+    "language": "en",
+    "tr": "aşırı yorgun / bitkin",
+    "informal": "I'm knackered, absolutely dead beat!",
+    "standard": "I'm completely exhausted.",
+    "formal": "I am currently experiencing severe physical fatigue.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-busy",
+    "language": "en",
+    "tr": "başımı kaşıyacak vaktim yok / çok meşgulüm",
+    "informal": "I'm snowed under with stuff right now.",
+    "standard": "I'm extremely busy at the moment.",
+    "formal": "My professional commitments are currently at full capacity.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-agree",
+    "language": "en",
+    "tr": "kesinlikle katılıyorum",
+    "informal": "Tell me about it! Spot on!",
+    "standard": "I completely agree with you.",
+    "formal": "I concur entirely with your assessment.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cost",
+    "language": "en",
+    "tr": "ateş pahası / çok masraflı",
+    "informal": "That costs an absolute fortune / an arm and a leg!",
+    "standard": "That is exceptionally expensive.",
+    "formal": "This represents a considerable financial undertaking.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-help",
+    "language": "en",
+    "tr": "bana bir el at / yardım et",
+    "informal": "Give me a hand with this, mate!",
+    "standard": "Could you give me a hand, please?",
+    "formal": "Would you be so kind as to assist me in this matter?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-delay",
+    "language": "en",
+    "tr": "biraz gecikeceğim",
+    "informal": "Running late, be right there!",
+    "standard": "I'm going to be a few minutes late.",
+    "formal": "Please accept my sincerest apologies for this unavoidable delay.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-bored",
+    "language": "en",
+    "tr": "çok sıkıldım",
+    "informal": "I'm bored stiff, this sucks.",
+    "standard": "I find this really quite dull.",
+    "formal": "I perceive this matter to be rather unengaging.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-understand",
+    "language": "en",
+    "tr": "tamamdır, anladım",
+    "informal": "Gotcha, loud and clear!",
+    "standard": "I understand completely.",
+    "formal": "I have duly noted your remarks.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-crazy",
+    "language": "en",
+    "tr": "inanılmaz / çılgınca bir şey",
+    "informal": "That is absolutely mental / nuts!",
+    "standard": "That is truly astonishing.",
+    "formal": "Such an occurrence is quite extraordinary.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-leave",
+    "language": "en",
+    "tr": "artık ben kaçıyorum / ayrılıyorum",
+    "informal": "Alright, I'm gonna bounce / make tracks!",
+    "standard": "I should probably get going now.",
+    "formal": "I must respectfully take my leave.",
+    "source": "Diloloji (özgün)"
+  }
+]
