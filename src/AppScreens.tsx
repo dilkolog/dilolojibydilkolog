@@ -34,6 +34,7 @@ import { GainsNudge } from './ui/GainsNudge'
 import { studyGains } from './engine/gains'
 
 import { PANE_KEY } from './ui/settingsPane'
+import { MemoryNudge } from './ui/MemoryNudge'
 
 import { GARDEN_HARD_KEY, GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
@@ -448,6 +449,17 @@ export function AppScreens(props: AppScreensProps) {
             <WeeklyNudge language={data.language} line={weekText} summary={weekData} lemmaOf={(id) => byId.get(id)?.lemma} now={new Date()} onOpen={go({ name: 'progress' })} onWord={(entryId) => setScreen({ name: 'word', entryId })} />
             <SuggestWords db={db} language={data.language} vocabulary={data.vocabulary} settings={settings} onAdded={reload} onlyWhenDue />
             <WhatsNew words={data.vocabulary.filter((v) => v.source !== 'sample').length} onReading={go({ name: 'reading' })} onPractice={go({ name: 'games', game: 'pron' })} onGrammar={go({ name: 'games', game: 'grammar' })} />
+            <MemoryNudge
+              settings={settings}
+              onOpen={() => {
+                try {
+                  localStorage.setItem(PANE_KEY, 's-study')
+                } catch {
+                  // Settings just opens on its last pane.
+                }
+                setScreen({ name: 'settings' })
+              }}
+            />
             <BackupNudge
               onOpenSync={() => {
                 try {

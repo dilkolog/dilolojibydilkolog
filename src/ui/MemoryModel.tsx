@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Help } from './SettingHelp'
 import { historiesFrom, MIN_REVIEWS, scoredReviews, type FitResult } from '../engine/optimizer'
+import { MIN_GAIN } from '../engine/memoryAdvice'
+import { setTried } from './memoryAdvice'
 import type { Settings } from '../data/db'
 import { db } from '../data/instance'
 
@@ -35,10 +37,12 @@ export function MemoryModel({ settings, onChange, id }: { settings: Settings; on
       running.current = null
       setProgress(null)
       const pct = Math.round(r.improvement * 1000) / 10
-      if (r.improvement > 0) {
+      if (r.improvement >= MIN_GAIN) {
+        setTried(null)
         onChange({ ...settings, fsrsWeights: r.weights, fsrsFit: { at: new Date().toISOString(), reviews: r.reviews, improvement: r.improvement } })
         setMessage({ ok: true, text: `Kişisel model hazır: görmediği cevapları %${pct.toString().replace('.', ',')} daha iyi tahmin ediyor. Bundan sonraki tekrarlar buna göre planlanacak.` })
       } else {
+        setTried(r.reviews)
         setMessage({ ok: true, text: 'Varsayılan model seni zaten iyi tahmin ediyor; değiştirmedim. Daha çok tekrardan sonra yeniden dene.' })
       }
     }
