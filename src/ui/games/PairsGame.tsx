@@ -10,6 +10,7 @@ import { logsSaved, noteIn } from './logNote'
 import { SpeakerIcon } from '../icons'
 import { sfx } from '../sounds'
 import { speakAsync } from '../speech'
+import { haptics } from '../haptics'
 import { isPctRecord, type Props } from './shared'
 
 const PAIR_ROUND = 12
@@ -76,8 +77,13 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
   const choose = (side: 'a' | 'b') => {
     if (!q || chosen) return
     const ok = side === q.answer
-    if (ok) sfx.correct()
-    else sfx.wrong()
+    if (ok) {
+      sfx.correct()
+      haptics.success()
+    } else {
+      sfx.wrong()
+      haptics.error()
+    }
     setChosen(side)
     setAnswers((a) => [...a, { q, ok }])
     void notePair(language, q, ok)
@@ -142,7 +148,14 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
       {!done && q && (
         <div className="stack">
           <div className="row">
-            <button className="speak speak-big" onClick={() => void say(q.pair[q.answer].word)} aria-label="Tekrar dinle">
+            <button
+              className="speak speak-big"
+              onClick={() => {
+                haptics.tap()
+                void say(q.pair[q.answer].word)
+              }}
+              aria-label="Tekrar dinle"
+            >
               <SpeakerIcon size={36} />
             </button>
             <span className="small muted">Hangisini duydun? Boşluk: tekrar dinle · 1–2: seç · Fark: {q.pair.contrast}</span>
