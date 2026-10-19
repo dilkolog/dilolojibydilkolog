@@ -38,3 +38,30 @@ Uygulama tek bir Cloudflare Worker olarak çalışır: statik dosyalar (`dist/`)
 - İstek başına 10 ms CPU ve 50 alt istek (fetch, R2, Supabase çağrıları dahil). Haber/altyazı çekme ya da çok
   cihazlı saatlik cron bunu aşarsa günlükte "Exceeded CPU/subrequest limit" görünür; çözüm Workers Paid (ayda 5 dolar).
 - R2: 10 GB, ayda 1 milyon yazma, 10 milyon okuma işlemi, çıkış ücretsiz.
+
+## Günlükler ve hata izleme
+Worker ve istemci hatalarını canlı veya geçmişe dönük izlemek için Cloudflare iki araç sunar:
+
+1. **Canlı Akış (Wrangler Tail):**
+   Terminalden anlık olarak tüm istek ve günlük akışını izlemek için:
+   ```bash
+   npx wrangler tail diloloji
+   ```
+   Filtreleme örnekleri:
+   ```bash
+   # Yalnızca hataları izle
+   npx wrangler tail diloloji --status error
+   # Yalnızca belirli bir arama kelimesini içeren günlükler
+   npx wrangler tail diloloji --search "[client-error]"
+   ```
+
+2. **Cloudflare Dashboard (Workers Logs):**
+   - **Konum:** Cloudflare Dashboard → Workers & Pages → `diloloji` → **Logs** (veya **Metrics**).
+   - "Begin log stream" düğmesine basıldığında tarayıcı üzerinden anlık JSON log akışı açılır.
+   - Workers Logs açık tutulduğunda geriye dönük son logları filtreleme imkanı sağlar.
+
+3. **Log Etiketleri ve Arama:**
+   - `[client-error]`: İstemcide (`src/main.tsx`, `RootBoundary.tsx` vb.) yakalanan ve `/api/log` ucuna `POST` edilen React ve JS çalışma zamanı hataları.
+   - `[worker-error]`: `worker/index.ts` içindeki genel try/catch mekanizması tarafından yakalanan sunucu uç noktası hataları (500 Internal Server Error durumları).
+   - `[csp-report]`: Tarayıcının Content Security Policy Report-Only ihlallerini `/api/log?csp=1` ucuna gönderdiği raporlar.
+
