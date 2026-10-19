@@ -119,7 +119,7 @@ export function WordCard({
           {rec.i && <span className="ipa">{rec.i}</span>}
           {editing ? (
             <form
-              className="stack gap-2"
+              className="stack gap-2 dict-fix-form"
               onSubmit={(e) => {
                 e.preventDefault()
                 onFix(parseMeanings(draft))
@@ -127,10 +127,19 @@ export function WordCard({
               }}
             >
               <label className="small" htmlFor="dict-fix">
-                Türkçe anlamları (virgülle ayır)
+                <strong>Kendi Türkçe anlamın veya hafıza notun</strong>
+                <span className="muted block">Birden çok anlamı virgülle ayırabilirsin. Sözlükte ve kartlarda bu anlam kullanılır.</span>
               </label>
-              <input id="dict-fix" className="input" lang="tr" autoFocus value={draft} onChange={(e) => setDraft(e.target.value)} />
-              <div className="row">
+              <input
+                id="dict-fix"
+                className="input"
+                lang="tr"
+                autoFocus
+                placeholder={packMeanings.join(', ') || 'Kendi anlamını yaz…'}
+                value={draft}
+                onChange={(e) => setDraft(e.target.value)}
+              />
+              <div className="row wrap gap-2">
                 <button type="submit" className="btn btn-sm">
                   Kaydet
                 </button>
@@ -152,22 +161,44 @@ export function WordCard({
               </div>
             </form>
           ) : (
-            <>
-              {meanings.length > 0 ? <p className="gloss">{meanings.join(', ')}</p> : <p className="gloss muted">Türkçe karşılığı pakette yok.</p>}
-              <p className="small">
-                {fix && <span className="muted">Senin düzeltmen{packMeanings.length > 0 && <> · paketteki: {packMeanings.join(', ')}</>} · </span>}
+            <div className="dict-meaning-box">
+              <div className="dict-meaning-head">
+                {meanings.length > 0 ? <p className="gloss">{meanings.join(', ')}</p> : <p className="gloss muted">Türkçe karşılığı pakette yok.</p>}
                 <button
                   type="button"
-                  className="link small"
+                  className="chip chip-sm dict-fix-btn"
                   onClick={() => {
                     setDraft(meanings.join(', '))
                     setEditing(true)
                   }}
+                  aria-label={fix ? 'Kendi anlamını düzenle' : 'Kendi anlamını veya notunu ekle'}
+                  title="Bu kelimeye kendi Türkçe karşılığını veya hafıza notunu belirle"
                 >
-                  <PenIcon size={14} className="inline-icon" /> {meanings.length ? 'Anlamı düzelt' : 'Kendi anlamını ekle'}
+                  <PenIcon size={13} className="inline-icon" /> {meanings.length ? 'Anlamı düzelt' : 'Kendi anlamını ekle'}
                 </button>
-              </p>
-            </>
+              </div>
+              {fix && (
+                <div className="dict-fix-meta small">
+                  <span className="chip chip-sm dict-custom-badge">✏️ Senin anlamın</span>
+                  {packMeanings.length > 0 && <span className="muted">Pakette: {packMeanings.join(', ')}</span>}
+                  <button
+                    type="button"
+                    className="link small"
+                    onClick={() => {
+                      onFix([])
+                      setEditing(false)
+                    }}
+                  >
+                    Paketteki anlama dön
+                  </button>
+                </div>
+              )}
+              {own?.notes && (
+                <div className="dict-own-note note note-soft small">
+                  💡 <strong>Hafıza ipucun:</strong> {own.notes}
+                </div>
+              )}
+            </div>
           )}
           {alsoFormOf && (
             <p className="small">
