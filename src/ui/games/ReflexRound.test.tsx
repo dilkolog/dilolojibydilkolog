@@ -10,6 +10,7 @@ import { reflexPhrases } from '../../data/reflex'
 // A short "3 seconds" so the miss can be waited for.
 vi.mock('../../engine/reflex', async (orig) => ({ ...(await orig<typeof import('../../engine/reflex')>()), REFLEX_SECONDS: 0.15 }))
 vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), near: vi.fn() } }))
+vi.mock('../haptics', () => ({ haptics: { tap: vi.fn(), success: vi.fn(), error: vi.fn(), victory: vi.fn() } }))
 const { ReflexRound } = await import('./ReflexRound')
 
 let root: ReturnType<typeof createRoot> | undefined
