@@ -99,10 +99,14 @@ describe('GuideScreen', () => {
     for (let i = 0; i < 3; i++) {
       // Each question answered right: the item is found by its options.
       const options = [...host.querySelectorAll<HTMLButtonElement>('.lesson-check .option')]
-      const shown = options.map((o) => o.textContent ?? '')
+      // The shown options without their number key; the question is found by its text and by exactly these options
+      // (questions of a lesson can share a text, or an option can sit inside another one).
+      const shown = options.map((o) => (o.textContent ?? '').replace(/^\d+\s*/, ''))
+      const prompt = (host.querySelector('.lesson-check-prompt')?.textContent ?? '').replace(/\s+/g, ' ').trim()
+      const sameOptions = (c: { options: string[] }) => c.options.length === shown.length && c.options.every((o) => shown.includes(o))
       const pool = checkPool(lesson)
-      const item = pool.find((c) => c.options.every((o) => shown.some((t) => t.includes(o))))!
-      const at = shown.findIndex((t) => t.includes(item.options[item.answer]))
+      const item = pool.find((c) => c.prompt.replace(/\s+/g, ' ').trim() === prompt && sameOptions(c)) ?? pool.find(sameOptions)!
+      const at = shown.indexOf(item.options[item.answer])
       await act(async () => options[at]!.click())
       await act(async () => button(host, i < 2 ? 'Sonraki' : 'Bitir')!.click())
     }
