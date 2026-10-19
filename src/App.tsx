@@ -44,7 +44,8 @@ import { CommandPalette, IncomingSet, Monki, prefetchScreens } from './lazyScree
 import { useScreenHistory } from './ui/useScreenHistory'
 import { useLanguageData } from './ui/useLanguageData'
 import { useAppSettings } from './ui/useAppSettings'
-import { AuthScreen } from './lazyScreens'
+import { AuthScreen, Landing } from './lazyScreens'
+import type { LandingStart } from './ui/Landing'
 import { useSignedIn } from './ui/useSignedIn'
 import { ALL_SCREENS, GROUPS, NAV, RESTORABLE, SCREEN_KEY, WIDE_SCREENS, daySeed, placeOf, restoreScreen, type NavScreen, type Screen, type ScreenName } from './appNav'
 import { Onboarding } from './ui/Onboarding'
@@ -117,6 +118,8 @@ export default function App() {
   const [incoming, setIncoming] = useState<IncomingWord | null>(() => readIncoming())
   const { settings, setSettings, updateSettings, access, apiKey, ai } = useAppSettings()
   const signedIn = useSignedIn()
+  // Signed out: the landing page first; null until a way in is chosen on it (a return from a mail or Google link goes straight in).
+  const [entered, setEntered] = useState<LandingStart | null>(null)
   const language = settings?.activeLanguage
   const speechOn = settings ? settings.speechExercises && canListen() : false
   const flags = useMemo(() => engineFlags(settings?.exercisePrefs, settings?.typedBlanks), [settings?.exercisePrefs, settings?.typedBlanks])
@@ -440,10 +443,23 @@ export default function App() {
   if (settings === undefined || signedIn === undefined) return null
   // An account is required: until there is one, the app is the sign-in page.
   if (!signedIn) {
+    // Only the landing page is shown to someone who has not chosen a way in and is not coming back from a link.
+    if (entered === null && screen.name !== 'account') {
+      return (
+        <Suspense fallback={null}>
+          <Landing onStart={setEntered} />
+        </Suspense>
+      )
+    }
     return (
       <div className="app">
         <Suspense fallback={null}>
-          <AuthScreen initialMode={screen.name === 'account' ? screen.mode : 'login'} onDone={() => setScreen((now) => (now.name === 'account' ? { name: 'home' } : now))} />
+          <AuthScreen
+            key={entered ?? 'return'}
+            initialMode={screen.name === 'account' ? screen.mode : entered === 'create' ? 'create' : 'login'}
+            onDone={() => setScreen((now) => (now.name === 'account' ? { name: 'home' } : now))}
+            onBack={entered === null ? undefined : () => setEntered(null)}
+          />
         </Suspense>
       </div>
     )

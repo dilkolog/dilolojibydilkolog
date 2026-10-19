@@ -46,6 +46,9 @@ export const GuideScreen = lazy(() => screenModules.Guide().then((m) => ({ defau
 export const AuthScreen = lazy(() => screenModules.Auth().then((m) => ({ default: m.AuthScreen })))
 export const CommandPalette = lazy(() => screenModules.Palette().then((m) => ({ default: m.CommandPalette })))
 
+/** What a signed-out visitor sees first: only for them, so not in the screen list that is prefetched. */
+export const Landing = lazy(() => import('./ui/Landing').then((m) => ({ default: m.Landing })))
+
 /** A list somebody shared, opened from a link: rarely, so not in the startup code and not prefetched. */
 export const IncomingSet = lazy(() => import('./ui/IncomingSet'))
 
