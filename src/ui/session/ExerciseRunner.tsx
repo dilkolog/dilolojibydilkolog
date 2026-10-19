@@ -3,6 +3,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import type { IntrusionSources } from '../../engine/crossLanguage'
 import type { PlanItem } from '../../engine/dailyPlan'
 import { buildExercise, evaluateChoice, evaluateTyped, type Evaluation, type Exercise } from '../../engine/exercises'
+import type { LeechHelp } from '../../engine/leechHelp'
 import { MASTERY_STAGES } from '../../engine/mastery'
 import type { Rng } from '../../engine/rng'
 import type { SessionLogEntry } from '../../engine/session'
@@ -41,8 +42,10 @@ export interface RunnerProps {
   /** Speech rate for listening exercises, adapted to how well the word is heard already. */
   listenRate: number
   intrusionSources?: IntrusionSources
-  /** The word has been missed several times in a row: offer a memory hook. */
-  struggling: () => boolean
+  /** After a miss: what a word that keeps failing is offered (a memory hook, or starting over), or nothing (engine/leechHelp). */
+  helpFor: () => LeechHelp | null
+  /** Starts the word over (its progress is reset; "Geri al" brings it back). */
+  onRelearn: () => Promise<void>
   /** The word's memory right now (read on each render, so it shows the answer's effect). */
   wordState: () => UserWordState | undefined
   onEntryUpdated: (entry: VocabularyEntry) => void
@@ -57,8 +60,9 @@ const canOverride = (exercise: Exercise, ev: Evaluation) =>
   exercise.kind === 'typed' && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation' && ev.verdict !== 'correct'
 
 /** One question of the session: asks it, grades the answer, then shows the feedback and what can be done next. */
-export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDiscard, onContinue, struggling, wordState, onEntryUpdated, onToggleDifficult, listenRate, intrusionSources, onTypePref, combo }: RunnerProps) {
+export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDiscard, onContinue, helpFor, onRelearn, wordState, onEntryUpdated, onToggleDifficult, listenRate, intrusionSources, onTypePref, combo }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
+  const [relearn, setRelearn] = useState(false)
   const [editing, setEditing] = useState(false)
   const [typeInstead, setTypeInstead] = useState(false)
   const [exercise] = useState<Exercise>(() => {
@@ -128,7 +132,11 @@ export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride
       return
     }
     setResult({ ev, log, chosen, confidence, ...(forgot ? { forgot: true } : {}) })
-    if (ev.verdict === 'wrong' && struggling()) setMnemonic('offer')
+    if (ev.verdict === 'wrong') {
+      const help = helpFor()
+      if (help === 'mnemonic') setMnemonic('offer')
+      else if (help === 'relearn') setRelearn(true)
+    }
     if (exercise.type !== 'listen_type' && exercise.type !== 'listen_choose') return
     playWord(entry, undefined, true, listenRate)
   }
@@ -338,6 +346,11 @@ export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride
             entry={entry}
             mnemonic={mnemonic}
             onMnemonic={() => setMnemonic('open')}
+            relearn={relearn}
+            onRelearn={() => {
+              setRelearn(false)
+              void onRelearn()
+            }}
             onEdit={() => setEditing(true)}
             continueRef={continueBtn}
             onContinue={() => onContinue(result.log)}

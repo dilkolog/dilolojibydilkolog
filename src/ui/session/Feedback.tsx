@@ -7,7 +7,7 @@ import { MASTERY_STAGES, type MasteryStage } from '../../engine/mastery'
 import type { Confidence, VocabularyEntry } from '../../engine/types'
 import { ERROR_HINT, genderRuleText, LANGUAGE_NAME, STAGE_NAME } from '../labels'
 import { Plant } from '../Plant'
-import { BulbIcon, CheckIcon, CloseIcon, NearIcon, PenIcon } from '../icons'
+import { BulbIcon, CheckIcon, CloseIcon, NearIcon, PenIcon, UndoIcon } from '../icons'
 import { PosTag } from '../PosTag'
 import { WrittenForm } from '../WrittenForm'
 import type { Graded } from './shared'
@@ -39,6 +39,8 @@ export function Feedback({
   combo,
   mnemonic,
   onMnemonic,
+  relearn,
+  onRelearn,
   onEdit,
   forgot,
   typeName,
@@ -54,6 +56,9 @@ export function Feedback({
   combo?: number
   mnemonic?: 'offer' | 'open' | 'saved' | null
   onMnemonic?: () => void
+  /** A word with a note that still keeps failing: offer starting it over (its progress is reset, "Geri al" brings it back). */
+  relearn?: boolean
+  onRelearn?: () => void
   /** Fix a typo in the word or its meaning without leaving the session. */
   onEdit?: () => void
   ev: Graded
@@ -236,6 +241,11 @@ export function Feedback({
             </button>
           )}
           {mnemonic === 'saved' && <span className="small"><BulbIcon size={16} className="inline-icon" />Not kaydedildi</span>}
+          {relearn && (
+            <button className="btn btn-quiet" onClick={onRelearn} title="Hâlâ takılıyor: ilerlemesi sıfırlanır, yeni kelime gibi yeniden tanıtılır (Geri al ile döner)">
+              <UndoIcon size={18} /> Baştan öğren
+            </button>
+          )}
           <button ref={continueRef} className={`btn btn-lg ${btnClass}`} onClick={onContinue} disabled={!ready}>
             Devam
           </button>
