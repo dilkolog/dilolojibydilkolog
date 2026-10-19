@@ -257,11 +257,14 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
         )}
 
         {step === 'sent' && (
-          <div className="stack gap-2">
-            <p>{sentWhat}</p>
-            <p className="small muted">Gelmediyse istenmeyen (spam) klasörüne bak. Bağlantıyı bu cihazda aç.</p>
-            <p className="small muted">Uygulamayı telefonda ana ekrana eklediysen bağlantı tarayıcıda açılır ve uygulamaya geçmez: uygulamada Google ile ya da şifreyle giriş yap.</p>
-            <button type="button" className="link small" onClick={() => go('login')}>
+          <div className="auth-sent">
+            <p className="auth-sent-lead">{sentWhat}</p>
+            <ul className="auth-sent-tips small muted">
+              <li>Gelmediyse istenmeyen (spam) klasörüne bak.</li>
+              <li>Bağlantıyı bu cihazda aç.</li>
+              <li>Uygulamayı telefonda ana ekrana eklediysen bağlantı tarayıcıda açılır ve uygulamaya geçmez: uygulamada Google ile ya da şifreyle giriş yap.</li>
+            </ul>
+            <button type="button" className="link" onClick={() => go('login')}>
               Giriş ekranına dön
             </button>
           </div>
@@ -296,7 +299,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
 
         <div className="auth-note">
           <LockIcon size={16} />
-          <p className="small muted">Şifreni unutsan da verilerin kaybolmaz: e-postanla yenilersin.</p>
+          <p className="small muted">Şifreni unutsan da verilerin kaybolmaz: e‑postanla yenilersin.</p>
           <p className="small muted auth-legal">
             Devam edersen <a href="/kosullar.html" target="_blank" rel="noopener">Kullanım koşulları</a> ve <a href="/gizlilik.html" target="_blank" rel="noopener">Gizlilik politikası</a> geçerli olur.
           </p>

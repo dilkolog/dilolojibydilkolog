@@ -1041,6 +1041,9 @@ section:has(> .media-split) { container-type: inline-size; }
 .settings-content .setting-row > div:last-child { justify-self: end; max-width: 100%; }
 .settings-content :is(.setting-row, .toggle-row) strong { font-size: var(--t-sm); font-weight: 600; }
 .settings-content .setting-row p { margin: 0; }
+.setting-row.help-q { display: block; }
+.help-q summary { cursor: pointer; font-size: var(--t-sm); font-weight: 600; padding: 0.125rem 0; }
+.help-q p { margin: 0.375rem 0 0; }
 .settings-content .setting-row > div { min-width: 0; }
 @container main (max-width: 40rem) {
   .settings-content .setting-row { grid-template-columns: minmax(0, 1fr); }

@@ -2,6 +2,7 @@ import { Component, type ReactNode } from 'react'
 import { reportError } from '../data/errorReport'
 import { db } from '../data/instance'
 import { downloadBackup } from './backup'
+import { supportMailto } from './helpInfo'
 import { StatusPicture } from './StatusArt'
 
 /**
@@ -43,6 +44,9 @@ export class RootBoundary extends Component<{ children: ReactNode }, { error: un
           >
             {this.state.saved ? 'Yedek indirildi' : 'Yedeği indir'}
           </button>
+          <a className="btn btn-quiet" href={supportMailto('Uygulama açılamadı')}>
+            Bize yaz
+          </a>
         </div>
       </main>
     )
