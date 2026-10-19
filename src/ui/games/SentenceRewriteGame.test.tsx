@@ -8,6 +8,7 @@ import { db } from '../../data/instance'
 import { SENTENCE_REWRITES } from '../../data/sentenceRewrites'
 
 vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), near: vi.fn() } }))
+vi.mock('../haptics', () => ({ haptics: { tap: vi.fn(), success: vi.fn(), error: vi.fn(), victory: vi.fn() } }))
 const { SentenceRewriteGame } = await import('./SentenceRewriteGame')
 
 let root: ReturnType<typeof createRoot> | undefined

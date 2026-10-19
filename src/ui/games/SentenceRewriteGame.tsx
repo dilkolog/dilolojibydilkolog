@@ -14,6 +14,7 @@ import { createRng } from '../../engine/rng'
 import { db } from '../../data/instance'
 import { noteIn } from './logNote'
 import { sfx } from '../sounds'
+import { haptics } from '../haptics'
 import { isPctRecord } from './shared'
 import { CheckIcon } from '../icons'
 
@@ -76,8 +77,13 @@ export function SentenceRewriteGame({
     const trimmed = input.trim()
     if (!trimmed) return
     const ok = isRewriteAnswerCorrect(trimmed, q.acceptedAnswers)
-    if (ok) sfx.correct()
-    else sfx.wrong()
+    if (ok) {
+      sfx.correct()
+      haptics.success()
+    } else {
+      sfx.wrong()
+      haptics.error()
+    }
     setSubmitted(true)
     setResults((prev) => [...prev, { q, ok, given: trimmed }])
     void noteRewrite(q.id, ok)
@@ -99,11 +105,13 @@ export function SentenceRewriteGame({
       setRecord(best !== undefined)
     }
     sfx.levelUp()
+    haptics.victory()
     setPhase('over')
   }
 
   const revealHint = () => {
     if (!q || submitted) return
+    haptics.tap()
     setHintLevel((h) => h + 1)
   }
 
