@@ -48,6 +48,7 @@ const STAGE_FILTERS: [StageFilter, string][] = [
 ]
 
 const CEFR_LEVELS_LIST: readonly CefrLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
+const BASE_ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
 /** Sort key for frequency: known ranks first, then words rarer than the list, then unknown. */
 const freqKey = (e: VocabularyEntry) => (e.frequencyRank > 0 ? e.frequencyRank : e.frequencyRank < 0 ? 1e6 : 2e6)
@@ -233,6 +234,38 @@ export function WordList({
   const [limit, setLimit] = useState(ROW_PAGE)
   useEffect(() => setLimit(ROW_PAGE), [list])
   const shown = list.length > limit ? list.slice(0, limit) : list
+
+  const availableLetters = useMemo(() => {
+    if (sort !== 'alpha') return new Map<string, number>()
+    const map = new Map<string, number>()
+    for (let i = 0; i < list.length; i++) {
+      const ch = list[i].lemma.charAt(0).toLocaleUpperCase(language || 'tr')
+      if (!map.has(ch)) {
+        map.set(ch, i)
+      }
+    }
+    return map
+  }, [sort, list, language])
+
+  const displayAlphabet = useMemo(() => {
+    if (sort !== 'alpha') return []
+    const set = new Set([...BASE_ALPHABET, ...availableLetters.keys()])
+    return Array.from(set).sort((a, b) => a.localeCompare(b, language || 'tr'))
+  }, [sort, availableLetters, language])
+
+  const jumpToLetter = (char: string) => {
+    const idx = availableLetters.get(char)
+    if (idx === undefined) return
+    if (idx >= limit) {
+      setLimit(idx + ROW_PAGE)
+    }
+    setTimeout(() => {
+      const target = document.getElementById(`alpha-letter-${char}`)
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 50)
+  }
 
   const toggle = (k: keyof typeof flags) => setFlags((f) => ({ ...f, [k]: !f[k] }))
   // What the filter panel has set apart from its defaults, for the badge on its button.
@@ -645,6 +678,25 @@ export function WordList({
               </div>
             </div>
           )}
+          {sort === 'alpha' && list.length > 0 && displayAlphabet.length > 0 && (
+            <nav className="alpha-jump-bar" aria-label="Harfe göre atla">
+              {displayAlphabet.map((char) => {
+                const has = availableLetters.has(char)
+                return (
+                  <button
+                    key={char}
+                    type="button"
+                    className={`alpha-jump-btn${has ? ' has-words' : ' is-empty'}`}
+                    disabled={!has}
+                    onClick={() => jumpToLetter(char)}
+                    title={has ? `${char} harfine atla` : undefined}
+                  >
+                    {char}
+                  </button>
+                )
+              })}
+            </nav>
+          )}
           {list.length === 0 ? (
             <EmptyState
               art="nothing-found"
@@ -669,8 +721,10 @@ export function WordList({
             <ul className="word-gallery">
               {shown.map((v, index) => {
                 const isSel = selected.has(v.id)
+                const firstChar = sort === 'alpha' ? v.lemma.charAt(0).toLocaleUpperCase(language || 'tr') : ''
+                const isFirstOfLetter = sort === 'alpha' && availableLetters.get(firstChar) === index
                 return (
-                  <li key={v.id}>
+                  <li key={v.id} id={isFirstOfLetter ? `alpha-letter-${firstChar}` : undefined}>
                     <button className={`gallery-tile${isSel ? ' is-selected' : ''}`} onClick={(e) => clickRow(index, v.id, e.shiftKey)} aria-pressed={selecting ? isSel : undefined}>
                       <GalleryArt entry={v} />
                       {selecting && <span className={`row-check gallery-check${isSel ? ' is-on' : ''}`} aria-hidden>{isSel && <CheckIcon size={14} />}</span>}
@@ -703,8 +757,10 @@ export function WordList({
                       const st = stateById.get(v.id)
                       const isSel = selected.has(v.id)
                       const due = st && nextReviewAt(st)
+                      const firstChar = sort === 'alpha' ? v.lemma.charAt(0).toLocaleUpperCase(language || 'tr') : ''
+                      const isFirstOfLetter = sort === 'alpha' && availableLetters.get(firstChar) === index
                       return (
-                        <tr key={v.id} className={isSel ? 'is-selected' : ''} onClick={(e) => clickRow(index, v.id, e.shiftKey)} tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && clickRow(index, v.id, e.shiftKey)}>
+                        <tr key={v.id} id={isFirstOfLetter ? `alpha-letter-${firstChar}` : undefined} className={isSel ? 'is-selected' : ''} onClick={(e) => clickRow(index, v.id, e.shiftKey)} tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && clickRow(index, v.id, e.shiftKey)}>
                           {selecting && (
                             <td>
                               <span className={`row-check${isSel ? ' is-on' : ''}`} aria-hidden>
@@ -758,8 +814,10 @@ export function WordList({
                 const st = stateById.get(v.id)
                 const isSel = selected.has(v.id)
                 const due = st && !st.retired ? nextReviewAt(st) : undefined
+                const firstChar = sort === 'alpha' ? v.lemma.charAt(0).toLocaleUpperCase(language || 'tr') : ''
+                const isFirstOfLetter = sort === 'alpha' && availableLetters.get(firstChar) === index
                 return (
-                  <li key={v.id} className={isSel ? 'is-selected' : ''}>
+                  <li key={v.id} id={isFirstOfLetter ? `alpha-letter-${firstChar}` : undefined} className={isSel ? 'is-selected' : ''}>
                     <button
                       className="word-row"
                       onClick={(e) => clickRow(index, v.id, e.shiftKey)}

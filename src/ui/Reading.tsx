@@ -679,6 +679,7 @@ export function ReadingScreen({
           language={language}
           sheetBox={sheetBox}
           sheet={sheet}
+          deduceMode={deduce}
           rating={deduce && guess && selected.token.key === guess ? <GuessRating word={cleanToken(selected.token.text, language)} language={language} onDone={() => setGuess(null)} /> : undefined}
           ignored={ignored}
           skipped={skipped}

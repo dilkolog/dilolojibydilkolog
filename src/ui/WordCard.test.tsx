@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { FormAnalysis } from '../engine/tenses'
 import type { VocabularyEntry } from '../engine/types'
+import { createEntry } from '../data/wordInput'
 import { WordCard, type Selected } from './WordCard'
 
 vi.mock('./WordPopExtras', () => ({
@@ -469,4 +470,52 @@ describe('WordCard', () => {
     expect(tag?.textContent).toContain('Seyahat › Havalimanı')
     expect(tag?.getAttribute('title')).toContain('Seyahat › Havalimanı')
   })
+
+  it('masks meaning initially when deduceMode is true, reveals on click', () => {
+    const entry: VocabularyEntry = {
+      ...createEntry({ word: 'manger', meaning: 'yemek yemek' }, 'fr', new Date('2026-01-01')),
+      id: 'fr:manger',
+      frequencyRank: 50,
+    }
+
+    act(() => {
+      root.render(
+        <WordCard
+          selected={baseSelected}
+          entry={entry}
+          forms={[]}
+          verbEntry={() => undefined}
+          language="fr"
+          sheetBox={null}
+          sheet={mockSheet}
+          ignored={new Set()}
+          skipped={new Set()}
+          deduceMode={true}
+          canListenFrom={false}
+          onClose={() => {}}
+          onAdd={() => {}}
+          onKnown={() => {}}
+          onIgnore={() => {}}
+          onUnknown={() => {}}
+          onSkip={() => {}}
+          onKeepSentence={() => {}}
+          onListenFrom={() => {}}
+          onOpen={() => {}}
+        />,
+      )
+    })
+
+    expect(rootEl.textContent).toContain('Bağlamdan Çıkarım')
+    expect(rootEl.textContent).not.toContain('yemek yemek')
+
+    const revealBtn = Array.from(rootEl.querySelectorAll<HTMLButtonElement>('button')).find((b) =>
+      b.textContent?.includes('Tahmin ettim, anlamı göster'),
+    )
+    act(() => {
+      revealBtn?.click()
+    })
+
+    expect(rootEl.textContent).toContain('yemek yemek')
+  })
 })
+
