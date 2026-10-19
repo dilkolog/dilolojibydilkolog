@@ -443,7 +443,7 @@ export default function App() {
     return (
       <div className="app">
         <Suspense fallback={null}>
-          <AuthScreen initialMode={screen.name === 'account' ? screen.mode : 'login'} onDone={() => setScreen({ name: 'home' })} />
+          <AuthScreen initialMode={screen.name === 'account' ? screen.mode : 'login'} onDone={() => setScreen((now) => (now.name === 'account' ? { name: 'home' } : now))} />
         </Suspense>
       </div>
     )

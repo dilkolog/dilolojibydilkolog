@@ -14,12 +14,16 @@ import { showToast } from './toastFeed'
 export function AccountManage({
   identity,
   onSignOut,
+  onSignOutAndWipe,
 }: {
   account?: Account
   identity: Identity | null
   onSignOut: () => void
+  /** Syncs, signs out and clears this device's data (a shared device). */
+  onSignOutAndWipe?: () => Promise<void>
   onGone?: () => void
 }) {
+  const [wiping, setWiping] = useState(false)
   const [changing, setChanging] = useState(false)
   const [password, setPassword] = useState('')
   const [repeat, setRepeat] = useState('')
@@ -115,7 +119,32 @@ export function AccountManage({
             Çıkış yap
           </button>
         </div>
+        {onSignOutAndWipe && (
+          <div className="account-row">
+            <div className="account-row-text">
+              <strong>Ortak cihaz</strong>
+              <span className="small muted">Çıkış yapar ve bu cihazdaki kelime ve ilerleme kopyasını siler. Hepsi hesabında durur.</span>
+            </div>
+            <button type="button" className="btn btn-sm btn-quiet" disabled={busy} onClick={() => setWiping(true)}>
+              Çıkış yap ve sil
+            </button>
+          </div>
+        )}
       </div>
+      {wiping && onSignOutAndWipe && (
+        <ConfirmDialog
+          title="Çıkış yapılıp bu cihaz temizlensin mi?"
+          confirmLabel="Çıkış yap ve sil"
+          danger
+          onConfirm={() => {
+            setWiping(false)
+            void onSignOutAndWipe()
+          }}
+          onCancel={() => setWiping(false)}
+        >
+          Önce hesabınla eşitlenir; eşitlenemezse hiçbir şey silinmez. Sonra bu cihazdaki kelimelerin, cevapların, metinlerin ve ayarların silinir. Hesabına tekrar girince hepsi geri gelir. Yalnızca başkasıyla ortak kullandığın bir cihazdaysan seç.
+        </ConfirmDialog>
+      )}
     </>
   )
 }
@@ -183,7 +212,7 @@ export function AccountDelete({
           onConfirm={() => void remove()}
           onCancel={() => setConfirming(false)}
         >
-          Hesabın, sunucuda eşitlenen verilerin, arkadaş kartın ve mail hatırlatmaların kalıcı olarak silinir; geri alınamaz. Bu cihazdaki kelimelerin ve ilerlemen silinmez, hesapsız kullanmaya devam edebilirsin. Paylaştığın listeler kalır: istersen önce liste sayfasından paylaşımı geri al.
+          Hesabın, sunucuda eşitlenen verilerin, arkadaş kartın ve mail hatırlatmaların kalıcı olarak silinir; geri alınamaz. Bu cihazdaki kelimelerin ve ilerlemen silinmez; ama hesabın olmadan uygulamayı açamazsın, yeni bir hesapla girersen cihazdaki veriler o hesaba katılır. Paylaştığın listeler kalır: istersen önce liste sayfasından paylaşımı geri al.
         </ConfirmDialog>
       )}
     </details>
