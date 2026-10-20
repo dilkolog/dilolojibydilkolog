@@ -1,0 +1,197 @@
+[
+ {
+  "id": "es-remote",
+  "language": "es",
+  "text": "El teletrabajo se ha vuelto habitual. {1}, permite ahorrar tiempo de transporte cada día. {2} algunos empleados se sienten aislados, la mayoría aprecia esa libertad. Por eso los equipos se reúnen una vez por semana, {3} mantener el contacto entre compañeros.",
+  "tr": "Uzaktan çalışma yaygınlaştı. Öncelikle her gün ulaşım süresinden tasarruf ettiriyor. Bazı çalışanlar kendini yalnız hissetse de çoğu bu özgürlüğü seviyor. Bu yüzden ekipler, iş arkadaşları arasındaki bağı korumak için haftada bir kez toplanıyor.",
+  "gaps": [
+   {
+    "answer": "En primer lugar",
+    "options": [
+     "En primer lugar",
+     "Sin embargo",
+     "De lo contrario"
+    ],
+    "kind": "Sıralama",
+    "why": "Bir avantaj sayılıyor: “öncelikle”. Sin embargo zıtlık, de lo contrario “yoksa” demektir."
+   },
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Porque",
+     "Para que"
+    ],
+    "kind": "Taviz",
+    "why": "“Bazıları yalnız hissetse de”: aunque. Porque neden, para que amaç (subjuntivo) bildirir."
+   },
+   {
+    "answer": "para",
+    "options": [
+     "para",
+     "aunque",
+     "porque"
+    ],
+    "kind": "Amaç",
+    "why": "“Teması korumak için” + mastar: para + infinitivo. Aunque ve porque mastar almaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-recycling",
+  "language": "es",
+  "text": "Separar la basura lleva unos minutos. {1}, muchas familias ya lo hacen todos los días. {2} reciclamos el vidrio, ahorramos materias primas. Los ayuntamientos instalan nuevos contenedores {3} los vecinos ya no tengan excusa.",
+  "tr": "Çöpleri ayırmak birkaç dakika alır. Neyse ki birçok aile bunu zaten her gün yapıyor. Camı geri dönüştürürsek hammadde tasarrufu yaparız. Belediyeler, sakinlerin artık mazereti kalmasın diye yeni kutular yerleştiriyor.",
+  "gaps": [
+   {
+    "answer": "Afortunadamente",
+    "options": [
+     "Afortunadamente",
+     "De lo contrario",
+     "Porque"
+    ],
+    "kind": "Tutum",
+    "why": "“Neyse ki”: iyi bir durumu anlatır. De lo contrario “yoksa”, porque “çünkü” demektir."
+   },
+   {
+    "answer": "Si",
+    "options": [
+     "Si",
+     "Sin embargo",
+     "Aunque"
+    ],
+    "kind": "Koşul",
+    "why": "“Camı geri dönüştürürsek…”: koşul. Sin embargo zıtlık, aunque taviz verir."
+   },
+   {
+    "answer": "para que",
+    "options": [
+     "para que",
+     "porque",
+     "aunque"
+    ],
+    "kind": "Amaç",
+    "why": "“Mazereti kalmasın diye”: para que + subjuntivo (tengan). Porque nedeni, aunque tavizi anlatır."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-market",
+  "language": "es",
+  "text": "Los sábados por la mañana voy al mercado de mi barrio. {1} las verduras son más frescas que en el supermercado, siempre encuentro algo bueno. {2}, los precios son a veces un poco más altos. Sigo yendo, {3} me gusta hablar con los vendedores.",
+  "tr": "Cumartesi sabahları mahallemin pazarına giderim. Sebzeler orada süpermarkettekinden daha taze olduğu için hep güzel bir şey bulurum. Doğru, fiyatlar bazen biraz daha yüksek. Yine de oraya gitmeye devam ediyorum, çünkü satıcılarla konuşmayı seviyorum.",
+  "gaps": [
+   {
+    "answer": "Como",
+    "options": [
+     "Como",
+     "Sin embargo",
+     "Para que"
+    ],
+    "kind": "Neden",
+    "why": "“Sebzeler daha taze olduğu için”: como (neden). Sin embargo zıtlık, para que amaç bildirir."
+   },
+   {
+    "answer": "Eso sí",
+    "options": [
+     "Eso sí",
+     "Por eso",
+     "Porque"
+    ],
+    "kind": "Taviz",
+    "why": "“Doğru, fiyatlar biraz yüksek”: eso sí bir tavizi kabul eder. Por eso sonuç, porque neden verir."
+   },
+   {
+    "answer": "porque",
+    "options": [
+     "porque",
+     "aunque",
+     "para"
+    ],
+    "kind": "Neden",
+    "why": "“…çünkü satıcılarla konuşmayı seviyorum”: porque açıklayıcı nedendir. Aunque zıtlık, para yan cümle açmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-cooking",
+  "language": "es",
+  "text": "Aprender a cocinar no es tan difícil como se cree. {1}, basta con seguir una receta sencilla con atención. {2} te sale mal el primer plato, no te desanimes. Con un poco de práctica, cocinarás tan bien {3} tus amigos te pedirán la receta.",
+  "tr": "Yemek yapmayı öğrenmek sanıldığı kadar zor değil. Aslında dikkatle basit bir tarifi izlemek yeter. İlk yemeği yakarsanız bile cesaretiniz kırılmasın. Biraz pratikle o kadar güzel pişireceksiniz ki arkadaşlarınız tarifi soracak.",
+  "gaps": [
+   {
+    "answer": "En realidad",
+    "options": [
+     "En realidad",
+     "Por lo tanto",
+     "Aunque"
+    ],
+    "kind": "Açıklama",
+    "why": "“Aslında”: önceki cümleyi açıklar. Por lo tanto sonuç, aunque taviz bildirir."
+   },
+   {
+    "answer": "Si",
+    "options": [
+     "Si",
+     "Porque",
+     "Para que"
+    ],
+    "kind": "Koşul",
+    "why": "“İlk yemek kötü olursa”: si + şimdiki zaman. Porque ve para que burada anlamsızdır."
+   },
+   {
+    "answer": "que",
+    "options": [
+     "que",
+     "para",
+     "porque"
+    ],
+    "kind": "Sonuç",
+    "why": "“O kadar iyi ki…”: tan bien que + gösterge. Para ve porque bu yapıyı kuramaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-rain",
+  "language": "es",
+  "text": "Durante nuestras vacaciones en Galicia llovió casi todos los días. {1}, visitamos museos y cafeterías. {2} hacía mal tiempo, pasamos momentos muy buenos. {3}, el año que viene quizá elijamos un país más cálido.",
+  "tr": "Tatilimizde neredeyse her gün yağmur yağdı. Bu yüzden müzeleri ve kafeleri gezdik. Hava kötü olsa da çok güzel anlar yaşadık. Ancak gelecek yıl belki daha sıcak bir ülke seçeriz.",
+  "gaps": [
+   {
+    "answer": "Por eso",
+    "options": [
+     "Por eso",
+     "Aunque",
+     "Porque"
+    ],
+    "kind": "Sonuç",
+    "why": "Yağmurun sonucu: “bu yüzden”. Aunque taviz, porque neden bildirir."
+   },
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Porque",
+     "Para que"
+    ],
+    "kind": "Taviz",
+    "why": "“Hava kötüydü ama güzel anlar yaşadık”: aunque + gösterge. Porque ve para que anlamı bozar."
+   },
+   {
+    "answer": "Sin embargo",
+    "options": [
+     "Sin embargo",
+     "Porque",
+     "Para que"
+    ],
+    "kind": "Zıtlık",
+    "why": "“Ancak gelecek yıl…”: sin embargo karşıtlık kurar. Porque ve para que cümle başında yer bulmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -1,0 +1,197 @@
+[
+ {
+  "id": "en-remote",
+  "language": "en",
+  "text": "Remote work has become common. {1}, it saves commuting time every day. {2} some employees feel isolated, most people value the freedom. That is why teams meet once a week, {3} keep in touch.",
+  "tr": "Uzaktan çalışma yaygınlaştı. Öncelikle her gün ulaşım süresinden tasarruf ettiriyor. Bazı çalışanlar kendini yalnız hissetse de çoğu bu özgürlüğü seviyor. Bu yüzden ekipler, iş arkadaşları arasındaki bağı korumak için haftada bir kez toplanıyor.",
+  "gaps": [
+   {
+    "answer": "First of all",
+    "options": [
+     "First of all",
+     "However",
+     "Otherwise"
+    ],
+    "kind": "Sıralama",
+    "why": "Bir avantaj sayılıyor: “öncelikle”. However zıtlık, otherwise “yoksa” demektir."
+   },
+   {
+    "answer": "Although",
+    "options": [
+     "Although",
+     "Because",
+     "So that"
+    ],
+    "kind": "Taviz",
+    "why": "“Bazıları yalnız hissetse de”: although. Because neden, so that amaç bildirir."
+   },
+   {
+    "answer": "in order to",
+    "options": [
+     "in order to",
+     "although",
+     "because"
+    ],
+    "kind": "Amaç",
+    "why": "“Teması korumak için” + mastar: in order to + fiil. Although ve because fiil yalın hâlini almaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-recycling",
+  "language": "en",
+  "text": "Sorting rubbish takes only a few minutes. {1}, many families already do it every day. {2} we recycle glass, we save raw materials. Councils are putting out new bins {3} residents no longer have an excuse.",
+  "tr": "Çöpleri ayırmak birkaç dakika alır. Neyse ki birçok aile bunu zaten her gün yapıyor. Camı geri dönüştürürsek hammadde tasarrufu yaparız. Belediyeler, sakinlerin artık mazereti kalmasın diye yeni kutular yerleştiriyor.",
+  "gaps": [
+   {
+    "answer": "Fortunately",
+    "options": [
+     "Fortunately",
+     "Otherwise",
+     "Because"
+    ],
+    "kind": "Tutum",
+    "why": "“Neyse ki”: iyi bir durumu anlatır. Otherwise “yoksa”, because “çünkü” demektir."
+   },
+   {
+    "answer": "If",
+    "options": [
+     "If",
+     "However",
+     "Although"
+    ],
+    "kind": "Koşul",
+    "why": "“Camı geri dönüştürürsek…”: koşul. However zıtlık, although taviz verir."
+   },
+   {
+    "answer": "so that",
+    "options": [
+     "so that",
+     "because",
+     "although"
+    ],
+    "kind": "Amaç",
+    "why": "“Mazereti kalmasın diye”: so that amaç bildirir. Because ve although anlamı bozar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-market",
+  "language": "en",
+  "text": "On Saturday mornings I go to my local market. {1} the vegetables are fresher than in the supermarket, I always find something good. {2}, the prices are sometimes a little higher. I keep going, {3} I enjoy talking to the sellers.",
+  "tr": "Cumartesi sabahları mahallemin pazarına giderim. Sebzeler orada süpermarkettekinden daha taze olduğu için hep güzel bir şey bulurum. Doğru, fiyatlar bazen biraz daha yüksek. Yine de oraya gitmeye devam ediyorum, çünkü satıcılarla konuşmayı seviyorum.",
+  "gaps": [
+   {
+    "answer": "Since",
+    "options": [
+     "Since",
+     "However",
+     "So that"
+    ],
+    "kind": "Neden",
+    "why": "“Sebzeler daha taze olduğu için”: since (neden). However zıtlık, so that amaç bildirir."
+   },
+   {
+    "answer": "Admittedly",
+    "options": [
+     "Admittedly",
+     "Therefore",
+     "Because"
+    ],
+    "kind": "Taviz",
+    "why": "“Doğru, fiyatlar biraz yüksek”: admittedly bir tavizi kabul eder. Therefore sonuç verir."
+   },
+   {
+    "answer": "because",
+    "options": [
+     "because",
+     "although",
+     "in order to"
+    ],
+    "kind": "Neden",
+    "why": "“…çünkü satıcılarla konuşmayı seviyorum”: because açıklayıcı nedendir. Although zıtlık kurar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-cooking",
+  "language": "en",
+  "text": "Learning to cook is not as hard as people think. {1}, you only need to follow a simple recipe carefully. {2} you spoil your first dish, do not give up. With a little practice, you will cook {3} well that your friends will ask for the recipe.",
+  "tr": "Yemek yapmayı öğrenmek sanıldığı kadar zor değil. Aslında dikkatle basit bir tarifi izlemek yeter. İlk yemeği yakarsanız bile cesaretiniz kırılmasın. Biraz pratikle o kadar güzel pişireceksiniz ki arkadaşlarınız tarifi soracak.",
+  "gaps": [
+   {
+    "answer": "In fact",
+    "options": [
+     "In fact",
+     "Otherwise",
+     "Although"
+    ],
+    "kind": "Açıklama",
+    "why": "“Aslında”: önceki cümleyi açıklar. Otherwise “yoksa”, although taviz bildirir."
+   },
+   {
+    "answer": "Even if",
+    "options": [
+     "Even if",
+     "Because",
+     "So that"
+    ],
+    "kind": "Taviz",
+    "why": "“İlk yemeği yakarsanız bile”: even if. Because ve so that burada anlamsızdır."
+   },
+   {
+    "answer": "so",
+    "options": [
+     "so",
+     "such",
+     "too"
+    ],
+    "kind": "Sonuç",
+    "why": "“O kadar iyi ki…”: so + zarf + that. Such ve too bu yapıda uymaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-rain",
+  "language": "en",
+  "text": "During our holiday in Wales it rained almost every day. {1}, we visited museums and cafés. {2} the weather was bad, we had a lovely time. {3}, next year we may choose a warmer country.",
+  "tr": "Tatilimizde neredeyse her gün yağmur yağdı. Bu yüzden müzeleri ve kafeleri gezdik. Hava kötü olsa da çok güzel anlar yaşadık. Ancak gelecek yıl belki daha sıcak bir ülke seçeriz.",
+  "gaps": [
+   {
+    "answer": "So",
+    "options": [
+     "So",
+     "Although",
+     "Because"
+    ],
+    "kind": "Sonuç",
+    "why": "Yağmurun sonucu: “bu yüzden”. Although taviz, because neden bildirir."
+   },
+   {
+    "answer": "Although",
+    "options": [
+     "Although",
+     "Because",
+     "So that"
+    ],
+    "kind": "Taviz",
+    "why": "“Hava kötüydü ama güzel vakit geçirdik”: although. Because ve so that anlamı bozar."
+   },
+   {
+    "answer": "However",
+    "options": [
+     "However",
+     "Because",
+     "So that"
+    ],
+    "kind": "Zıtlık",
+    "why": "“Ancak gelecek yıl…”: however karşıtlık kurar. Because ve so that cümle başında yer bulmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]
