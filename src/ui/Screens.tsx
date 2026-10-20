@@ -10,7 +10,7 @@ import { SKILLS, type Skill, type TargetLanguage } from '../engine/types'
 import { relativeTime } from './format'
 import { greetingFor } from './dayPart'
 import { pinnedBadges } from '../engine/profileStyle'
-import { SnowflakeIcon } from './icons'
+import { BoltIcon, SnowflakeIcon } from './icons'
 import { HELLO, LANGUAGE_NAME, SKILL_NAME } from './labels'
 import { RaceCard } from './Race'
 import { CHALLENGE_XP } from '../engine/challenges'
@@ -410,16 +410,16 @@ export function Home({
                 </ul>
                 {/* One row of actions: the day, and the shorter way through it when there is one. */}
                 <div className="hero-actions">
-                  <button className="btn btn-lg" onClick={onStart} autoFocus>
+                  <button className="btn btn-lg" onClick={onStart}>
                     {answeredToday > 0 ? 'Devam et' : 'Başla'}
                   </button>
                   {piled ? (
-                    <button type="button" className="btn btn-quiet" onClick={onShortRound}>
-                      Kısa tur ({SHORT_ROUND} soru)
+                    <button type="button" className="btn btn-lg btn-ghost-on-hero" onClick={onShortRound}>
+                      <BoltIcon size={18} /> Kısa tur ({SHORT_ROUND} soru)
                     </button>
                   ) : onShortRound ? (
-                    <button type="button" className="btn btn-quiet" onClick={onShortRound} title="En acil kelimelerle 3 dakikalık hızlı seans">
-                      ⚡ 3 dk hızlı tur
+                    <button type="button" className="btn btn-lg btn-ghost-on-hero" onClick={onShortRound} title="En acil kelimelerle 3 dakikalık hızlı seans">
+                      <BoltIcon size={18} /> 3 dk hızlı tur
                     </button>
                   ) : null}
                   {!piled && onMinutes && plan.estimatedMinutes > 7 && (
