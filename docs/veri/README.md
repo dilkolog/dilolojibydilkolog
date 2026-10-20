@@ -149,3 +149,5 @@ Sözlük paketlerine (`src/data/wordpack/{fr,es,en}.json`, sürüm `2026-10-20.1
 - **Türkçe anlam:** `tr-missing-*.csv`'deki “yüksek” güvenli satırlar olduğu gibi **alınmadı** (FR/ES önerileri çoğu yerde yanlış: *dit → bahsi geçen*, *heures → sögen*, *nos → ABD*); onların yerine elle yazılan anlamlarla FR 153, ES 146, EN 23 kelime dolduruldu. Özel adlar (roger, robin, mason…), kısaltmalar ve anlamsız satırlar (h, and, in, to) atlandı. “Orta/düşük” güvenli satırlar uygulanmadı.
 - **Bozuk ses:** `plus` (FR) için transcode MP3'ü 404; Ogg'un Safari'de çalmaması yüzünden bağlantı kaldırıldı (cihaz sesi okur).
 - Sürüm artışı (`v`) her cihazda bir kez yeniden yama geçişi yaptırır; mevcut kartların boş cinsiyeti dolar, dolu alanlara dokunulmaz. Türkçe anlamlar kartlara yazılmaz (`packUpdate` yalnızca ses, IPA, köken, eş anlam, karşılıklar ve cinsiyeti doldurur); yeni kelime eklerken ve Sözlük'te görünür.
+
+- **Fiil tablosu kapsamı (2026-10-21):** İspanyolca eksik 99 fiilden 63'ü eklendi (kalan eksikler çoğunlukla zaten sonradan elle eklenmişti ya da kusurlu: `placer`). Tatoeba cümle genişletmesi ve ek ses kaynakları ağ gerektirdiğinden yapılmadı.
