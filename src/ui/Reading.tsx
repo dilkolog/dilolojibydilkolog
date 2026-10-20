@@ -8,16 +8,13 @@ import { ComprehensionCard } from './ComprehensionCard'
 import { saveSentence } from './saveSentence'
 import { analyzeText, coverageLine, type ReadToken } from '../engine/reading'
 import { type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
-import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
-import { importEpub, textOfFile, youtubeText } from './readingImport'
+import { type KelimeDB, type ReadingText } from '../data/db'
 import { SameTopic } from './News'
 import { AudioPanel } from './Listening'
 import { wordKeys } from '../data/wordInput'
 import { ConfirmDialog } from './Dialog'
-import { showToast, undoable } from './toastFeed'
+import { showToast } from './toastFeed'
 import { useTenses } from './tenseGroups'
-import { defaultPlacement } from './listMemory'
-import { parsePlacement } from './listOptions'
 
 import { type Tense } from '../engine/tenses'
 import { groupByTense, textForms } from '../engine/textForms'
@@ -31,21 +28,22 @@ import { useSheetSwipe } from './useSheetSwipe'
 import { useListenFollow } from './useListenFollow'
 import { useMultiSelect } from './useMultiSelect'
 import { useReaderMarks } from './useReaderMarks'
+import { useReadingLibrary } from './useReadingLibrary'
+import { useSentenceTools } from './useSentenceTools'
+import { useTargetListName, useWordFrequency } from './useReadingTargets'
 import { useFinishReading } from './useFinishReading'
 import { useWordSheetLayout } from './useWordSheetLayout'
 import { addFormsToReview } from '../engine/labProgress'
 import { scheduler } from '../data/instance'
-import { loadFrequency } from '../data/frequency'
 import { maskPositions } from '../engine/deduction'
 import { GuessRating } from './GuessRating'
 import { translate, translationReady } from '../data/translate'
 
 import { ReaderParagraph } from './ReaderParagraph'
 import { TextDictation } from './TextDictation'
-import { canSpeak, speakAsync } from './speech'
+import { canSpeak } from './speech'
 import { canRecord } from './audioRecord'
 import { TextShadow } from './TextShadow'
-import { reportError } from '../data/errorReport'
 import { useTranslationReady } from './useTranslationReady'
 import { useStudyClock } from './useStudyClock'
 import { readerStyle, useReaderPrefs } from './readerSettings'
@@ -91,11 +89,6 @@ export function ReadingScreen({
   /** Something shared to the app (Share → Diloloji): put in the add card, ready to start. */
   shared?: SharedRead
 }) {
-  const [library, setLibrary] = useState<ReadingText[] | null>(null)
-  const [current, setCurrent] = useState<ReadingText | null>(null)
-  const text = current?.text ?? ''
-  const [draft, setDraft] = useState(shared?.text ?? '')
-  const [title, setTitle] = useState(shared?.title ?? '')
   // Coverage when this reading started: saved with the text on finishing, to show progress.
   const [startCoverage, setStartCoverage] = useState<number | null>(null)
   const [known, setKnown] = useState<Set<string>>(new Set())
@@ -106,11 +99,8 @@ export function ReadingScreen({
   const [adding, setAdding] = useState<{ word: string; sentence: string } | null>(null)
   const [confirmFinish, setConfirmFinish] = useState(false)
   const [message, setMessage] = useState('')
-  const [bookError, setBookError] = useState<{ ok: boolean; text: string } | null>(null)
   const [reader, setReader] = useReaderPrefs()
   const { multi, setMulti, multiMode, setMultiMode, toggleMulti, markMulti } = useMultiSelect({ db, language, setKnown, setSkipped, setIgnored })
-  const [youtube, setYoutube] = useState(shared?.url && !shared.text ? shared.url : '')
-  const [ytBusy, setYtBusy] = useState(false)
   // Listening episodes start with the text hidden: listen first, then read.
   const [listenFirst, setListenFirst] = useState(false)
   // Deduction mode: some unknown words are hidden until tapped; the guess is rated after.
@@ -125,7 +115,6 @@ export function ReadingScreen({
   const [guess, setGuess] = useState<string | null>(null)
   // The text's Turkish under each paragraph, on request (per text: each new text starts without it).
   const [showTurkish, setShowTurkish] = useState(false)
-  const [loadFailed, setLoadFailed] = useState(false)
   // Dictation of this text, from a sentence on (null: reading).
   const [dictating, setDictating] = useState<number | null>(null)
   // Shadowing this text, from a sentence on (null: reading).
@@ -138,68 +127,41 @@ export function ReadingScreen({
   const tensesReady = useTenses(language)
   // The verb forms of this text, listed on request.
   const [showForms, setShowForms] = useState(false)
-  // A sentence the learner asked to be shown (from the forms list), lit for a moment.
-  const [flash, setFlash] = useState<number | null>(null)
-  const [freq, setFreq] = useState<ReadonlyMap<string, number>>(new Map())
-  const [targetListName, setTargetListName] = useState<string>('Listesiz')
-  useEffect(() => {
-    let live = true
-    void Promise.all([db.getLists(language), db.getSettings()]).then(([allLists, s]) => {
-      if (!live) return
-      const placement = defaultPlacement(language, allLists, s?.focusList?.[language])
-      if (!placement || placement === '__none') {
-        setTargetListName('Listesiz')
-        return
-      }
-      const { listId, levelId } = parsePlacement(placement)
-      const list = allLists.find((l) => l.id === listId)
-      if (!list) {
-        setTargetListName('Listesiz')
-        return
-      }
-      if (levelId) {
-        const level = list.levels?.find((lv) => lv.id === levelId)
-        if (level) {
-          setTargetListName(`${list.name} › ${level.name}`)
-          return
-        }
-      }
-      setTargetListName(list.name)
-    })
-    return () => {
-      live = false
-    }
-  }, [db, language])
+  const freq = useWordFrequency(language)
+  const targetListName = useTargetListName(db, language)
 
-  useEffect(() => {
-    let live = true
-    void loadFrequency(language).then((m) => live && setFreq(m))
-    return () => {
-      live = false
-    }
-  }, [language])
-
-  useEffect(() => {
-    Promise.all([db.getLibrary(language), db.getCurrentText(language), db.getKnownWords(language), db.getIgnored(language)]).then(([lib, id, k, ig]) => {
-      setLibrary(lib)
-      const open = lib.find((t) => t.id === id) ?? null
-      setCurrent(open)
+  const {
+    library, setLibrary, current, setCurrent,
+    draft, setDraft, title, setTitle, youtube, setYoutube, ytBusy, bookError, loadFailed,
+    open, start, loadFile, importBook, importYoutube, removeBook, remove, nextChapter,
+  } = useReadingLibrary({
+    db,
+    language,
+    shared,
+    setMessage,
+    onLoaded: ({ open: opened, known: k, ignored: ig }) => {
       // A listening episode not read yet resumes in listen-first mode.
-      setListenFirst(!!open?.audio && !open.readAt)
+      setListenFirst(!!opened?.audio && !opened.readAt)
       setShowTurkish(false)
       setDictating(null)
       setShadowing(null)
       setKnown(k)
       setIgnored(ig)
-    })
-      // Whatever goes wrong in loading, the screen still opens (with a note), never blank.
-      .catch((e) => {
-        reportError(e, 'reading-load')
-        setLoadFailed(true)
-        setLibrary((l) => l ?? [])
-      })
-  }, [db, language])
-
+    },
+    onOpened: (item) => {
+      setStartCoverage(null)
+      setSkipped(new Set())
+      setRevealed(new Set())
+      setGuess(null)
+      setSelected(null)
+      setAdding(null)
+      setMessage('')
+      setMulti(new Set())
+      // A new listening episode opens with its text hidden; one already read shows it.
+      setListenFirst(!!item?.audio && !item.readAt)
+    },
+  })
+  const text = current?.text ?? ''
   const analysis = useMemo(() => (text ? analyzeText(text, language, vocabulary, states, known, ignored) : null), [text, language, vocabulary, states, known, ignored])
   // Reading and listening time (a weekly goal and the Progress card): counted only while a text is open and touched.
   const addListened = useCallback((seconds: number) => void db.addStudyTime('listen', language, seconds).catch(() => {}), [db, language])
@@ -216,14 +178,14 @@ export function ReadingScreen({
   const formGroups = useMemo(() => (showForms && tensesReady && analysis && language !== 'en' ? groupByTense(textForms(language, analysis)) : []), [showForms, tensesReady, analysis, language])
   // Listening: the sentence being heard, lit in the text; a sentence's start, to jump to.
   const { audioDuration, setAudioDuration, heard, seekRef, rangeRef, sentencesFlat, paragraphStart, times, heardAt, followTime } = useListenFollow(current, analysis)
-  // Dictation plays a sentence from the text's own recording when its subtitles time it exactly,
-  // else the device reads it (approximate times would cut sentences in the middle).
-  const recorded = !!(current?.audio && current.cues?.length && times)
-  const sentenceEnd = (i: number) => (times ? (times[i + 1] ?? audioDuration ?? times[i] + 10) : 0)
-  const playSentence = (i: number, slow: boolean): Promise<void> => {
-    if (recorded && times && rangeRef.current) return rangeRef.current(times[i], sentenceEnd(i), slow)
-    return speakAsync(sentencesFlat[i], language, slow ? 0.7 : undefined)
-  }
+  const { recorded, sentenceEnd, playSentence, setAnchors, pinHeard, flash, showSentence } = useSentenceTools({
+    db,
+    language,
+    current,
+    setCurrent,
+    setLibrary,
+    follow: { audioDuration, rangeRef, sentencesFlat, paragraphStart, times, heardAt },
+  })
   const sheet = useSheetSwipe(() => setSelected(null))
   const sheetBox = useWordSheetLayout(selected?.token.key, selected?.at)
   const shade = useMemo(() => shadeFor(states), [states])
@@ -253,84 +215,6 @@ export function ReadingScreen({
     if (deduce && openedKey) setRevealed((r) => (r.has(openedKey) ? r : new Set(r).add(openedKey)))
   }, [deduce, openedKey])
 
-  const open = async (item: ReadingText | null) => {
-    await db.setCurrentText(language, item?.id ?? null)
-    setCurrent(item)
-    setStartCoverage(null)
-    setSkipped(new Set())
-    setRevealed(new Set())
-    setGuess(null)
-    setSelected(null)
-    setAdding(null)
-    setMessage('')
-    setMulti(new Set())
-    // A new listening episode opens with its text hidden; one already read shows it.
-    setListenFirst(!!item?.audio && !item.readAt)
-  }
-
-  const start = async () => {
-    const t = draft.trim()
-    if (!t) return
-    const item: ReadingText = { id: crypto.randomUUID(), language, title: title.trim() || titleOf(t), text: t, addedAt: new Date().toISOString(), history: [] }
-    await db.saveText(item)
-    setLibrary((lib) => [item, ...(lib ?? [])])
-    setDraft('')
-    setTitle('')
-    await open(item)
-  }
-
-  /** A subtitle (.srt/.vtt) or plain-text file goes into the draft; subtitles are cleaned up first. */
-  const loadFile = async (file: File) => {
-    const loaded = textOfFile(file.name, await file.text())
-    setDraft(loaded.text)
-    setTitle(loaded.title)
-  }
-
-  /** An EPUB becomes one library entry per chapter, read in order. */
-  const importBook = async (file: File) => {
-    setMessage('')
-    setBookError(null)
-    const { note, texts, forThisLanguage } = await importEpub(db, file, language)
-    if (forThisLanguage) setLibrary((lib) => [...texts, ...(lib ?? [])])
-    setBookError(note)
-  }
-
-  /** A YouTube video's subtitles in this language, as a reading text with a link back to the video. */
-  const importYoutube = async () => {
-    setBookError(null)
-    setYtBusy(true)
-    try {
-      const got = await youtubeText(youtube, language)
-      if ('note' in got) {
-        setBookError(got.note)
-        return
-      }
-      await db.saveText(got.item)
-      setLibrary((lib) => [got.item, ...(lib ?? [])])
-      setYoutube('')
-      await open(got.item)
-    } catch {
-      setBookError({ ok: false, text: 'Altyazı alınamadı; internet bağlantını kontrol et.' })
-    } finally {
-      setYtBusy(false)
-    }
-  }
-
-  const removeBook = async (bookId: string) => {
-    const chapters = (library ?? []).filter((t) => t.book?.id === bookId)
-    await db.deleteBook(bookId)
-    setLibrary((lib) => (lib ?? []).filter((t) => t.book?.id !== bookId))
-    undoable(`${chapters[0]?.book?.title ?? 'Kitap'} silindi`, () => restore(chapters))
-  }
-
-  const restore = async (items: ReadingText[]) => {
-    await db.restoreTexts(items)
-    setLibrary(await db.getLibrary(language))
-  }
-
-  /** The next chapter of the current book, if any. */
-  const nextChapter = current?.book ? (library ?? []).find((t) => t.book?.id === current.book!.id && t.book.index === current.book!.index + 1) : undefined
-
   /** Keeps the whole sentence as a sentence card, with the word it was saved for. */
   const keepSentence = async (sentence: string, focus: string) => {
     // With translation on, the card comes with its Turkish (and so with the translation exercise).
@@ -340,12 +224,6 @@ export function ReadingScreen({
       await db.addFirstEncounters({ [`${language}:${focus.trim().toLowerCase()}`]: { title: current.title, sentence, at: new Date().toISOString() } })
     }
     showToast(ok ? 'Cümle kaydedildi: Oyunlar → Cümle kartları' : 'Bu cümle zaten kayıtlı', undefined, 3500, ok ? 'success' : 'info')
-  }
-
-  const remove = async (item: ReadingText) => {
-    await db.deleteText(item.id)
-    setLibrary((lib) => (lib ?? []).filter((t) => t.id !== item.id))
-    undoable(`“${item.title}” silindi`, () => restore([item]))
   }
 
   const { markKnown, toggleIgnored, skip, markUnknown } = useReaderMarks({ db, language, openTokens, skipped, ignored, selected, adding, setKnown, setIgnored, setSkipped, setSelected, setAdding })
@@ -358,29 +236,6 @@ export function ReadingScreen({
     showToast(added ? `${added} çekim fiil tekrarına eklendi.` : 'Bunlar zaten fiil tekrarında.')
   }
 
-  /** Saves a text with new follow pins (the audio's follow is fitted to them), in the library too. */
-  const setAnchors = async (anchors: { sentence: number; time: number }[]) => {
-    if (!current) return
-    const updated: ReadingText = { ...current, syncAnchors: anchors.length ? anchors : undefined }
-    await db.saveText(updated)
-    setCurrent(updated)
-    setLibrary((lib) => (lib ?? []).map((t) => (t.id === updated.id ? updated : t)))
-  }
-  /** The sentence of the open word card is the one being heard now: the follow shifts to fit. */
-  const pinHeard = (at: string) => {
-    const [pi, si] = at.split('.').map(Number)
-    const sentence = paragraphStart[pi] + si
-    if (!(heardAt.current > 0) || !Number.isFinite(sentence)) return showToast('Önce sesi çal; sonra duyduğun cümleye dokun.', undefined, 3500, 'info')
-    void setAnchors([...(current?.syncAnchors ?? []).filter((a) => a.sentence !== sentence), { sentence, time: heardAt.current }])
-    showToast('Takip ayarlandı: bu cümle şimdi okunan cümle.')
-  }
-
-  /** Scrolls the text to a sentence and lights it for a moment. */
-  const showSentence = (index: number) => {
-    document.querySelector<HTMLElement>(`.reader [data-s="${index}"]`)?.scrollIntoView({ block: 'center', behavior: 'smooth' })
-    setFlash(index)
-    setTimeout(() => setFlash((f) => (f === index ? null : f)), 2200)
-  }
   const readKey = current?.id ?? text
   const { endSeen, metNote, finish } = useFinishReading({ db, language, analysis, current, readKey, skipped, startCoverage, setKnown, setCurrent, setLibrary, setConfirmFinish, setMessage, onChanged })
 
