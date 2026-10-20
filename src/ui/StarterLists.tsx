@@ -1,27 +1,10 @@
 import { useEffect, useState } from 'react'
 import type { KelimeDB } from '../data/db'
 import { loadStarterLists, type StarterList } from '../data/starterLists'
-import { formIn } from '../engine/inflection'
-import { splitArticle } from '../engine/answerCheck'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
-import { addKeyList, type KeyItem } from './keyWordsList'
+import { addKeyList } from './keyWordsList'
+import { starterItems } from './starterItems'
 import { showToast } from './toastFeed'
-
-/** A starter word as the card builder takes it: its form in the sentence, so the sentence can blank it out. */
-export function starterItems(list: StarterList, language: TargetLanguage): KeyItem[] {
-  return list.items.map((i) => {
-    const bare = splitArticle(i.w.toLowerCase(), language).rest || i.w
-    return {
-      word: formIn(i.s, bare, language) ?? bare,
-      lemma: i.w,
-      turkish: i.t.split(/,\s*/).filter(Boolean),
-      sentence: i.s,
-      translation: i.tr,
-      pos: i.p,
-      gender: i.g,
-    }
-  })
-}
 
 /**
  * Ready-made lists of everyday words (greetings, family, food, home, city, travel, time, body, work, shopping):

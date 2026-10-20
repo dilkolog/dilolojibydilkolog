@@ -2,17 +2,16 @@ import { currentIdentity, signInWithGoogle, signOutSupabase, supabaseConfigured,
 import { AccountManage, AccountDelete } from './AccountManage'
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
-import { ChartIcon, CheckIcon, LockIcon } from './icons'
+import { ChartIcon, LockIcon } from './icons'
 import { db } from '../data/instance'
 import { BackupVersionError } from '../data/db'
 import { SyncAuthError, SyncConflictError, SyncMovedError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
 import { relativeTime } from './format'
 import type { AuthMode } from './AuthScreen'
-import { CONFLICT, MOVED, getAccount, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setAccount } from './syncRunner'
+import { CONFLICT, MOVED, getAccount, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setAccount } from './syncRunner'
 import { RestorePoints } from './RestorePoints'
 import { ACCOUNT_ART } from './drawnArt'
 import { StatusPicture } from './StatusArt'
-import { SyncSettings } from './SyncSettings'
 import { useAccess } from './accessContext'
 import { GoogleMark } from './GoogleMark'
 import { signOutThisDevice } from './signOut'
@@ -26,7 +25,6 @@ const STATUS_TEXT = { approved: 'Onaylı', rejected: 'Onaylanmadı', pending: 'O
  */
 export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) => void }) {
   const [account, setAcc] = useState<Account | null | undefined>(undefined)
-  const [hasCode, setHasCode] = useState(false)
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState<{ ok: boolean; text: string; conflict?: boolean } | null>(null)
   const [at, setAt] = useState<Date | null>(null)
@@ -38,7 +36,6 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
     const acc = await getAccount()
     setAcc(acc)
     setIdentity(acc ? await currentIdentity().catch(() => null) : null)
-    setHasCode(!!(await getSyncCode()))
     const v = (await db.meta.get('syncAt'))?.value as string | undefined
     setAt(v ? new Date(v) : null)
   }
@@ -134,25 +131,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
               <p className="small muted">{modern ? 'Verilerin hesabına bağlı saklanır; şifreni unutursan e-postanla yenilersin.' : 'Veriler cihazında şifrenle şifrelenir; şifren hiçbir yere gönderilmez.'}</p>
             </div>
           </li>
-          {!modern && (
-            <li>
-              <span className="perk-icon" aria-hidden>
-                <CheckIcon size={18} />
-              </span>
-              <div>
-                <strong>Hesap şart değil</strong>
-                <p className="small muted">Hesapsız da kelime ekleyip çalışabilirsin; her şey bu cihazda durur. Eşitleme, çeviri ve yapay zekâ onaylı hesaplara açık.</p>
-              </div>
-            </li>
-          )}
         </ul>
-        {hasCode && <p className="small muted">Şu an eşitleme koduyla eşitliyorsun; hesaba geçince bu cihazdaki ilerleme hesaba taşınır.</p>}
-        {!modern && (
-          <details className="account-advanced">
-            <summary className="small">Hesapsız: eşitleme koduyla eşitle (gelişmiş)</summary>
-            <SyncSettings />
-          </details>
-        )}
       </section>
     )
 

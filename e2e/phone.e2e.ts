@@ -969,7 +969,7 @@ test('the badges on show sit beside the greeting on Today and open the profile',
   await expect(page.getByRole('tab', { name: 'Rozetler' })).toBeVisible()
 })
 
-test('the account card says where you stand: three reasons and wide buttons signed out, who and when signed in', async ({ page }) => {
+test('the account card says where you stand: two reasons and wide buttons signed out, who and when signed in', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Profil')
   await page.locator('.profile-settings').click()
@@ -980,7 +980,7 @@ test('the account card says where you stand: three reasons and wide buttons sign
   await expect(page.locator('.top-profile:visible')).toHaveCount(1)
   await expect(card.locator('.avatar, .account-initial')).toHaveCount(0)
   await expect(card.locator('.account-intro')).toContainText('Hesabınla her cihazda')
-  await expect(card.locator('.account-perks li')).toHaveCount(3)
+  await expect(card.locator('.account-perks li')).toHaveCount(2)
   // On a phone the two ways in are full-width buttons, inside the card.
   const box = await card.boundingBox()
   for (const name of ['Giriş yap', 'Hesap oluştur']) {

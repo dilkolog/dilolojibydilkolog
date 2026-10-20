@@ -20,7 +20,7 @@
     "security": "npm run scan:secrets && npm run audit:deps",
     "build:ext": "node extension/build.mjs",
     "typecheck:ext": "tsc -p extension",
-    "test:e2e": "VITE_SUPABASE_URL=\"\" VITE_SUPABASE_PUBLISHABLE_KEY=\"\" VITE_SUPABASE_ANON_KEY=\"\" vite build && playwright test && npm run test:e2e:gate",
+    "test:e2e": "VITE_ALLOW_GUEST=1 VITE_SUPABASE_URL=\"\" VITE_SUPABASE_PUBLISHABLE_KEY=\"\" VITE_SUPABASE_ANON_KEY=\"\" vite build && playwright test && npm run test:e2e:gate",
     "test:e2e:gate": "VITE_SUPABASE_URL=https://gate.supabase.test VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_gate VITE_SUPABASE_ANON_KEY=\"\" vite build --outDir dist-gate && playwright test -c playwright.gate.config.ts",
     "build:cf": "npm run build && node scripts/cf-headers.mjs",
     "deploy:cf": "node scripts/check-deploy-env.mjs && npm run build:cf && wrangler deploy && node scripts/verify-deploy.mjs",
