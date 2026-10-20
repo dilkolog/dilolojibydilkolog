@@ -18,7 +18,7 @@ afterEach(() => {
   signOut.mockClear()
 })
 
-const mount = (go = vi.fn(() => vi.fn())) => {
+const mount = (go: (s: { name: string }) => () => void = () => () => {}) => {
   const host = document.createElement('div')
   document.body.append(host)
   root = createRoot(host)
@@ -38,7 +38,7 @@ const mount = (go = vi.fn(() => vi.fn())) => {
         badgeLabel={{}}
         current={() => false}
         goPlace={() => vi.fn()}
-        go={go}
+        go={go as never}
         inSettings={false}
         onProfilePage={false}
       />,
