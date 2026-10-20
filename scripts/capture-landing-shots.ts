@@ -1,259 +1,218 @@
-import { chromium } from '@playwright/test'
-import { execSync } from 'node:child_process'
-import { existsSync, mkdirSync } from 'node:fs'
+import { chromium, type Page } from '@playwright/test'
+import { mkdirSync } from 'node:fs'
 import { join } from 'node:path'
+import sharp from 'sharp'
+import { readingKey } from '../src/engine/reading'
+import type { TargetLanguage } from '../src/engine/types'
 
+/**
+ * The landing page's phone screenshots, one set per language: Today, Reading, Verbs (French and Spanish only) and
+ * the Guide. Run against a preview of a build WITHOUT Supabase (so the app opens without a sign-in):
+ *   env -u VITE_SUPABASE_URL -u VITE_SUPABASE_PUBLISHABLE_KEY npx vite build && npx vite preview --port 4196 --strictPort
+ *   npx rolldown scripts/capture-landing-shots.ts -o capture.tmp.mjs -p node --external @playwright/test --external sharp && PORT=4196 node capture.tmp.mjs [fr|es|en …]   (delete capture.tmp.mjs after)
+ * Needs a Chromium (CHROMIUM_PATH=… when Playwright's own is not installed). Output: src/assets/landing/<screen>-<lang>.webp.
+ * Reading shows an easy text (97,5% known: "öğrenmek için ideal"): the sample words are new to a fresh install, so
+ * the text avoids them except the one tapped, and every other word of it is marked known first.
+ */
+const PORT = process.env.PORT ?? '4179'
 const OUT_DIR = join(process.cwd(), 'src/assets/landing')
-const TMP_DIR = '/tmp/landing_capture'
+const CHROMIUM = process.env.CHROMIUM_PATH
 
-if (!existsSync(TMP_DIR)) mkdirSync(TMP_DIR, { recursive: true })
+const CARD: Record<TargetLanguage, string> = { fr: 'Fransızca', es: 'İspanyolca', en: 'İngilizce' }
+const START: Record<TargetLanguage, RegExp> = { fr: /Fransızca ile başlayalım/, es: /İspanyolca ile başlayalım/, en: /İngilizce ile başlayalım/ }
 
-async function capture() {
-  console.log('🚀 Starting master landing shots capture...')
-  const browser = await chromium.launch({ headless: true })
+interface Plan {
+  /** The reading text: no sample word in it but `tap`. */
+  text: string
+  tap: string
+  /** A verb for the lab (none for English). */
+  verb?: string
+  /** The guide lesson to open. */
+  lesson: RegExp
+}
+const PLANS: Record<TargetLanguage, Plan> = {
+  fr: {
+    text: 'Chaque matin, nous marchons ensemble près de la maison. Ensuite, nous retournons chez nous et nous préparons le repas avec nos amis. Le soir, mes parents parlent un peu, puis ils lisent un livre pendant que je regarde la télé.',
+    tap: 'maison',
+    verb: 'attendre',
+    lesson: /Artikeller/,
+  },
+  es: {
+    text: 'Cada mañana, caminamos juntos por la ciudad. Luego volvemos al hogar y preparamos el almuerzo con nuestros vecinos. Por la tarde, mis padres hablan un poco y después leen un periódico mientras yo miro la tele.',
+    tap: 'ciudad',
+    verb: 'hablar',
+    lesson: /Artikeller/,
+  },
+  en: {
+    text: 'Every morning, we walk together near the park. Then we go back home and prepare lunch with our friends. In the evening, my parents talk for a while, and then they read a book while I watch a movie about a long journey.',
+    tap: 'journey',
+    lesson: /Artikeller/,
+  },
+}
+
+/** Every stem of the text but the tapped word's: those are "known" before the screenshot. */
+function knownKeys(language: TargetLanguage, plan: Plan): string[] {
+  const words = [...new Set(plan.text.match(/[\p{L}'’-]+/gu) ?? [])]
+  const tapKey = readingKey(plan.tap, language)
+  return [...new Set(words.map((w) => readingKey(w, language)).filter((k) => k && k !== tapKey))]
+}
+
+async function seedKnown(page: Page, language: TargetLanguage, keys: string[]) {
+  await page.evaluate(
+    ([lang, list]) =>
+      new Promise<void>((resolve, reject) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onerror = () => reject(open.error)
+        open.onsuccess = () => {
+          const db = open.result
+          const tx = db.transaction(['meta'], 'readwrite')
+          tx.objectStore('meta').put({ key: `known:${lang}`, value: list })
+          tx.oncomplete = () => {
+            db.close()
+            resolve()
+          }
+        }
+      }),
+    [language, keys] as const,
+  )
+}
+
+const tab = (page: Page, name: string) => page.locator(':is(.nav-btn, .tab):visible', { hasText: new RegExp(`^${name}\\d*$`) }).first()
+
+async function capture(language: TargetLanguage) {
+  const plan = PLANS[language]
+  const browser = await chromium.launch({ headless: true, ...(CHROMIUM ? { executablePath: CHROMIUM } : {}) })
   const context = await browser.newContext({
     viewport: { width: 375, height: 812 },
     deviceScaleFactor: 2,
     userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
   })
   const page = await context.newPage()
-
   await page.route((u) => u.pathname === '/api/translate', (r) => r.fulfill({ status: 503, json: { error: 'mocked' } }))
+  const shots: Record<string, Buffer> = {}
+  const snap = async (name: string) => void (shots[name] = await page.screenshot())
 
-  console.log('📱 Loading initial page...')
-  await page.goto('http://localhost:4179')
-
-  // Seed session
-  await page.evaluate(() => {
-    localStorage.setItem(
-      'diloloji-auth',
-      JSON.stringify({
-        access_token: 'mock-token',
-        refresh_token: 'mock-refresh',
-        expires_at: 4102444800,
-        user: { id: 'u1', email: 'ogrenci@diloloji.com' },
-      }),
-    )
-  })
-
-  // Seed IndexedDB meta
-  await page.evaluate(() => {
-    return new Promise<void>((resolve, reject) => {
-      const open = indexedDB.open('kelime-koc')
-      open.onerror = () => reject(open.error)
-      open.onsuccess = () => {
-        const db = open.result
-        const stores = [...db.objectStoreNames]
-        if (!stores.includes('meta')) {
-          db.close()
-          return resolve()
-        }
-        const tx = db.transaction(['meta'], 'readwrite')
-        tx.objectStore('meta').put({
-          key: 'syncAccount',
-          value: { kind: 'account', username: 'ogrenci', id: 'a'.repeat(32), enc: 'b'.repeat(64), auth: 'c'.repeat(64) },
-        })
-        tx.oncomplete = () => {
-          db.close()
-          resolve()
-        }
-        tx.onerror = () => reject(tx.error)
-      }
-    })
-  })
-
+  await page.goto(`http://localhost:${PORT}`)
+  await page.getByRole('button', { name: 'Başlayalım', exact: true }).click()
+  await page.locator('.lang-card', { hasText: CARD[language] }).click()
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  await page.getByRole('button', { name: START[language] }).click()
+  await page.getByRole('button', { name: /örnek kelime yükle/ }).click()
+  await page.waitForTimeout(1500)
+  await seedKnown(page, language, knownKeys(language, plan))
   await page.reload()
+  await page.waitForTimeout(1500)
+
+  // 1. Today
+  await tab(page, 'Bugün').click()
   await page.waitForTimeout(500)
-
-  // Onboarding
-  const onboardingBtn = page.getByRole('button', { name: 'Başlayalım', exact: true })
-  if (await onboardingBtn.count()) {
-    console.log('✨ Onboarding...')
-    await onboardingBtn.click()
-    await page.locator('.lang-card', { hasText: 'Fransızca' }).click()
-    await page.getByRole('button', { name: 'Devam', exact: true }).click()
-    await page.getByRole('button', { name: 'Devam', exact: true }).click()
-    await page.getByRole('button', { name: /Fransızca ile başlayalım/ }).click()
-    await page.getByRole('button', { name: /örnek kelime yükle/ }).click()
-    await page.waitForTimeout(1000)
-  }
-
-  // 1. TODAY SCREEN (today.png)
-  console.log('📸 1. Capturing Today screen...')
-  const todayNav = page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first()
-  if (await todayNav.count()) await todayNav.click()
-  await page.waitForTimeout(500)
-
   await page.evaluate(() => {
     const nudge = document.querySelector('.habit-nudge, [class*="habit"]')
     if (nudge) (nudge as HTMLElement).style.display = 'none'
     window.scrollTo(0, 0)
   })
   await page.waitForTimeout(300)
-  const todayPng = join(TMP_DIR, 'today.png')
-  await page.screenshot({ path: todayPng })
+  await snap('today')
 
-  // 2. READING SCREEN (reading.png)
-  console.log('📸 2. Capturing Reading screen...')
-  const okumaNav = page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Okuma\d*$/ }).first()
-  await okumaNav.click()
+  // 2. Reading: an easy text, one word tapped, the sheet cut down to what shows the idea.
+  await tab(page, 'Okuma').click()
   await page.waitForTimeout(500)
-
-  const metinlerTab = page.locator('.hub-tab', { hasText: /^Metinler$/ })
-  if (await metinlerTab.count()) await metinlerTab.click()
-  await page.waitForTimeout(400)
-
-  // Open add text form
+  const texts = page.locator('.hub-tab', { hasText: /^Metinler$/ })
+  if (await texts.count()) await texts.click()
   await page.evaluate(() => {
-    const d = document.querySelector('details.add-text') as HTMLDetailsElement
+    const d = document.querySelector('details.add-text') as HTMLDetailsElement | null
     if (d) d.open = true
   })
-
-  const textarea = page.getByLabel('Metin', { exact: true })
-  if (await textarea.count()) {
-    const storyText =
-      'Nous marchons souvent près de la maison. L’arbre ancien devant le jardin est grand et beau. Chaque matin, le soleil brille doucement sur les collines.'
-    await textarea.fill(storyText)
-    const submitBtn = page.getByRole('button', { name: 'Okumaya başla' })
-    if (await submitBtn.count()) {
-      await submitBtn.click()
-      await page.waitForTimeout(800)
-    }
+  await page.getByLabel('Metin', { exact: true }).fill(plan.text)
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await page.waitForTimeout(900)
+  const hide = page.locator('button, a', { hasText: /^Gizle$/ }).first()
+  if (await hide.count()) {
+    await hide.click()
+    await page.waitForTimeout(400)
   }
-
-  // Dismiss "Okumadan önce: anahtar kelimeler" card by clicking "Gizle"
-  const gizleBtn = page.locator('button, a', { hasText: /^Gizle$/ }).first()
-  if (await gizleBtn.count()) {
-    await gizleBtn.click()
-    await page.waitForTimeout(500)
-  }
-
-  // Click on "jardin" or "maison" to open word bottom sheet
-  const wordBtn = page.locator('.rw', { hasText: 'maison' }).first()
-  if (await wordBtn.count()) {
-    console.log('👉 Clicking word "maison"...')
-    await wordBtn.click()
-    await page.waitForTimeout(700)
-  }
-
-  // Clean up long English etymology and topbar overlapping
+  await page.locator('.rw', { hasText: plan.tap }).first().click()
+  await page.waitForTimeout(800)
   await page.evaluate(() => {
-    // Ensure all paragraphs in word-pop with English Wiktionary text are hidden
-    document.querySelectorAll('.word-pop p').forEach((p) => {
-      if (p.textContent && (p.textContent.includes('Inherited') || p.textContent.includes('Latin') || p.textContent.includes('Old French'))) {
-        ;(p as HTMLElement).style.display = 'none'
-      }
+    for (const label of ['Seyrek satır', 'Dar']) {
+      const b = [...document.querySelectorAll('button')].find((x) => x.textContent?.trim().includes(label))
+      const row = b?.closest('.reader-tools') as HTMLElement | null
+      if (row) row.style.display = 'none'
+    }
+    const legend = document.querySelector('.reader-legend') as HTMLElement | null
+    if (legend) legend.style.display = 'none'
+    const pop = document.querySelector('.word-pop')
+    pop?.querySelectorAll('.word-pop-extras, .origin-notes').forEach((el) => ((el as HTMLElement).style.display = 'none'))
+    pop?.querySelectorAll('p, a, button, li, div, span').forEach((el) => {
+      const t = (el.textContent ?? '').trim()
+      if (/^(Eş anlamlılar|Sözlükte aç|Kelimelerinde, henüz|Kalıp olarak ekle)/.test(t) && el.children.length < 3) (el as HTMLElement).style.display = 'none'
     })
-    const extras = document.querySelector('.word-pop-extras')
-    if (extras) (extras as HTMLElement).style.display = 'none'
-    const readerHead = document.querySelector('.reader-legend')
-    if (readerHead) (readerHead as HTMLElement).style.display = 'none'
-    const main = document.querySelector('.main')
-    if (main) main.scrollTop = 0
     window.scrollTo(0, 0)
   })
-  await page.waitForTimeout(300)
-
-  const readingPng = join(TMP_DIR, 'reading.png')
-  await page.screenshot({ path: readingPng })
-
-  // 3. VERBS SCREEN (verbs.png)
-  console.log('📸 3. Capturing Verbs screen...')
-  const pratikNav = page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Pratik\d*$/ }).first()
-  await pratikNav.click()
   await page.waitForTimeout(400)
-  const fiillerTab = page.locator('.hub-tab', { hasText: /^Fiiller$/ })
-  if (await fiillerTab.count()) await fiillerTab.click()
-  await page.waitForTimeout(500)
+  await snap('reading')
 
-  // Dismiss daily verb tour card
-  await page.evaluate(() => {
-    const tourCard = document.querySelector('.lab-tour-card, [class*="tour"]')
-    if (tourCard) (tourCard as HTMLElement).style.display = 'none'
-  })
-
-  const verbInput = page.getByRole('combobox')
-  if (await verbInput.count()) {
-    await verbInput.fill('attendre')
-    await verbInput.press('Enter')
-    await page.waitForTimeout(700)
+  // 3. Verbs (French and Spanish)
+  if (plan.verb) {
+    await tab(page, 'Pratik').click()
+    await page.waitForTimeout(400)
+    const verbs = page.locator('.hub-tab', { hasText: /^Fiiller$/ })
+    if (await verbs.count()) await verbs.click()
+    await page.waitForTimeout(500)
+    await page.evaluate(() => {
+      const tour = document.querySelector('.lab-tour-card, [class*="tour"]') as HTMLElement | null
+      if (tour) tour.style.display = 'none'
+    })
+    const input = page.getByRole('combobox')
+    if (await input.count()) {
+      await input.fill(plan.verb)
+      await input.press('Enter')
+      await page.waitForTimeout(700)
+    }
+    await page.evaluate(() => {
+      const hubTabs = document.querySelector('.hub-tabs') as HTMLElement | null
+      if (hubTabs) hubTabs.style.display = 'none'
+      const search = document.querySelector('.lab-search, .combobox-wrap, [role="combobox"]')
+      const parent = search?.closest('.row, .card, form') as HTMLElement | null
+      if (parent) parent.style.display = 'none'
+      window.scrollTo(0, 0)
+    })
+    await page.waitForTimeout(400)
+    await snap('verbs')
+    await page.evaluate(() => {
+      const hubTabs = document.querySelector('.hub-tabs') as HTMLElement | null
+      if (hubTabs) hubTabs.style.display = ''
+    })
   }
 
-  // Hide the hub-tabs and search bar so Attendre table is completely at top without ghosting
-  await page.evaluate(() => {
-    const hubTabs = document.querySelector('.hub-tabs')
-    if (hubTabs) (hubTabs as HTMLElement).style.display = 'none'
-    const labSearch = document.querySelector('.lab-search, .combobox-wrap, [role="combobox"]')
-    if (labSearch) {
-      const parent = labSearch.closest('.row, .card, form')
-      if (parent) (parent as HTMLElement).style.display = 'none'
-    }
-    const labMain = document.querySelector('.lab-main, .main')
-    if (labMain) {
-      labMain.scrollTop = 0
-    }
-    window.scrollTo(0, 0)
-  })
+  // 4. Guide
+  await tab(page, 'Pratik').click()
   await page.waitForTimeout(400)
-  const verbsPng = join(TMP_DIR, 'verbs.png')
-  await page.screenshot({ path: verbsPng })
-
-  // 4. GUIDE SCREEN (guide.png)
-  console.log('📸 4. Capturing Guide screen...')
-  await page.evaluate(() => {
-    const hubTabs = document.querySelector('.hub-tabs')
-    if (hubTabs) (hubTabs as HTMLElement).style.display = ''
-  })
-  await pratikNav.click()
-  await page.waitForTimeout(400)
-  const rehberTab = page.locator('.hub-tab', { hasText: /^Rehber$/ })
-  if (await rehberTab.count()) await rehberTab.click()
+  const guide = page.locator('.hub-tab', { hasText: /^Rehber$/ })
+  if (await guide.count()) await guide.click()
   await page.waitForTimeout(500)
-
-  const firstLesson = page.locator('.guide-tile, .lesson-item, .card').filter({ hasText: /Cinsiyet|Artikel|Zaman/i }).first()
-  if (await firstLesson.count()) {
-    await firstLesson.click()
+  const lesson = page.locator('.guide-card').filter({ hasText: plan.lesson }).first()
+  if (await lesson.count()) {
+    await lesson.click()
     await page.waitForTimeout(600)
   }
-
   await page.evaluate(() => {
     const rules = document.querySelectorAll('.guide-rules li, .rule-item, .guide-section li')
-    if (rules.length > 2) {
-      for (let i = 2; i < rules.length; i++) {
-        (rules[i] as HTMLElement).style.display = 'none'
-      }
-    }
-    const main = document.querySelector('.main, .guide-lesson')
-    if (main) {
-      main.scrollTop = 0
-    } else {
-      window.scrollTo(0, 0)
-    }
+    for (let i = 2; i < rules.length; i++) (rules[i] as HTMLElement).style.display = 'none'
+    window.scrollTo(0, 0)
   })
   await page.waitForTimeout(400)
-
-  const guidePng = join(TMP_DIR, 'guide.png')
-  await page.screenshot({ path: guidePng })
+  await snap('guide')
 
   await browser.close()
-  console.log('🎉 Screenshots captured! Converting to WebP with cwebp...')
-
-  const shots = [
-    { name: 'today', src: todayPng },
-    { name: 'reading', src: readingPng },
-    { name: 'verbs', src: verbsPng },
-    { name: 'guide', src: guidePng },
-  ]
-
-  for (const s of shots) {
-    const destWebp = join(OUT_DIR, `${s.name}.webp`)
-    execSync(`cwebp -q 92 -resize 560 1213 "${s.src}" -o "${destWebp}"`)
-    console.log(`✅ Saved ${destWebp}`)
+  mkdirSync(OUT_DIR, { recursive: true })
+  for (const [name, png] of Object.entries(shots)) {
+    const dest = join(OUT_DIR, `${name}-${language}.webp`)
+    await sharp(png).resize(560, 1213).webp({ quality: 92 }).toFile(dest)
+    console.log('saved', dest)
   }
-  console.log('🌟 All landing shots successfully updated!')
 }
 
-capture().catch((err) => {
-  console.error('❌ Error capturing shots:', err)
-  process.exit(1)
-})
+const wanted = (process.argv.slice(2).length ? process.argv.slice(2) : ['fr', 'es', 'en']) as TargetLanguage[]
+for (const language of wanted) await capture(language)
