@@ -2,8 +2,6 @@ import '../lazy.css'
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import { cleanToken } from '../engine/extract'
-import { KnownWordsCard } from './KnownWords'
-import { DailyNewsHero } from './DailyNewsHero'
 import { KeyWordsCard } from './KeyWords'
 import { PrequestionsCard } from './Prequestions'
 import { ComprehensionCard } from './ComprehensionCard'
@@ -14,27 +12,20 @@ import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
 import { importEpub, textOfFile, youtubeText } from './readingImport'
 import { SameTopic } from './News'
 import { AudioPanel } from './Listening'
-import { markWord, wordKeys } from '../data/wordInput'
+import { wordKeys } from '../data/wordInput'
 import { ConfirmDialog } from './Dialog'
-import { LANGUAGE_NAME } from './labels'
-import { WordForm } from './Words'
 import { showToast, undoable } from './toastFeed'
-import { EmptyState } from './EmptyState'
-import { PageHeader } from './PageHeader'
 import { useTenses } from './tenseGroups'
 import { defaultPlacement } from './listMemory'
 import { parsePlacement } from './listOptions'
 
-import { analyzeForm, type FormAnalysis, type Tense } from '../engine/tenses'
-import { compoundsAround, groupByTense, textForms } from '../engine/textForms'
+import { type Tense } from '../engine/tenses'
+import { groupByTense, textForms } from '../engine/textForms'
 import { TextForms } from './TextForms'
 import { WordCard, type Selected } from './WordCard'
-import { BookItem } from './ReadingBooks'
-import { AddTextCard, LibraryItem, SourcePickers } from './ReadingLibrary'
 import { CoverageCard } from './CoverageCard'
-import { ExternalResources } from './ExternalResources'
 import { SingleUnknownSentences } from './SingleUnknownSentences'
-import { groupBooks, openTokensOf, shadeFor } from './readingHelpers'
+import { openTokensOf, shadeFor } from './readingHelpers'
 import type { SharedRead } from './incoming'
 import { useSheetSwipe } from './useSheetSwipe'
 import { useListenFollow } from './useListenFollow'
@@ -44,9 +35,7 @@ import { useFinishReading } from './useFinishReading'
 import { useWordSheetLayout } from './useWordSheetLayout'
 import { addFormsToReview } from '../engine/labProgress'
 import { scheduler } from '../data/instance'
-import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
-import { BrainIcon, GlobeIcon, PlusIcon, ConjugationsIcon, DictationIcon, ShadowingIcon } from './icons'
 import { maskPositions } from '../engine/deduction'
 import { GuessRating } from './GuessRating'
 import { translate, translationReady } from '../data/translate'
@@ -59,9 +48,12 @@ import { TextShadow } from './TextShadow'
 import { reportError } from '../data/errorReport'
 import { useTranslationReady } from './useTranslationReady'
 import { useStudyClock } from './useStudyClock'
-import { ReaderViewMenu } from './readerPrefs'
 import { readerStyle, useReaderPrefs } from './readerSettings'
 import { Sticker } from './Sticker'
+import { ReaderTools } from './ReaderTools'
+import { ReadingHome } from './ReadingHome'
+import { AddingCard, MultiBar } from './ReaderAside'
+import { formsOfSelection, ownVerb } from './readerForms'
 
 /** No word of the paragraph is in the multi-selection: one stable empty set, so its paragraph keeps equal props. */
 const NO_KEYS: ReadonlySet<string> = new Set()
@@ -395,99 +387,44 @@ export function ReadingScreen({
   if (library === null) return null
 
   if (!text || !analysis) {
-    const now = Date.now()
     return (
-      <div className="stack">
-        <PageHeader
-          art="read"
-          title="Okuma"
-          sub={`${LANGUAGE_NAME[language]} metinlerde ne kadarını bildiğini gör, bilmediklerini kelimelerine ekle.`}
-          // With an empty library the form below is already open: one way in, not three.
-          action={
-            library.length > 0 ? (
-              <button
-                className="btn"
-                onClick={() => {
-                  const add = document.querySelector<HTMLDetailsElement>('details.add-text')
-                  if (add) {
-                    add.open = true
-                    add.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                  }
-                }}
-              >
-                <PlusIcon size={18} /> Metin ekle
-              </button>
-            ) : undefined
-          }
-        />
-        {loadFailed && <p className="note">Kütüphanen şu an okunamadı; metinlerin silinmedi. Sayfayı yenile; düzelmezse haber ver.</p>}
-        <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
-        <DailyNewsHero db={db} language={language} vocabulary={vocabulary} states={states} known={known} onOpen={open} />
-        {library.length === 0 && (
-          <EmptyState art="shelf" title="Kütüphanen boş">
-            Bir haber, kitaptan bir bölüm ya da bir videonun alt yazısı: ne kadarını bildiğini görürsün, bilmediklerini kelimelerine eklersin. Aşağıdan ilk metnini ekle veya klasik masallar ve öyküler koleksiyonundan başla.
-          </EmptyState>
-        )}
-        {library.length > 0 && (
-          <section className="section stack">
-            <h2 className="section-title">Kütüphanen: kaldığın yerden devam et</h2>
-            <ul className="library">
-              {groupBooks(library).map((group) =>
-                'chapters' in group ? (
-                  <BookItem
-                    key={group.id}
-                    title={group.title}
-                    chapters={group.chapters}
-                    language={language}
-                    vocabulary={vocabulary}
-                    states={states}
-                    known={known}
-                    onOpen={open}
-                    onRemove={() => removeBook(group.id)}
-                  />
-                ) : (
-                  <LibraryItem key={group.id} item={group} now={now} preview={previews.get(group.id)} onOpen={open} onRemove={remove} />
-                ),
-              )}
-            </ul>
-          </section>
-        )}
-        <AddTextCard
-          language={language}
-          startOpen={!library.length || !!shared}
-          title={title}
-          onTitle={setTitle}
-          draft={draft}
-          onDraft={setDraft}
-          onStart={start}
-          onFile={loadFile}
-          onBook={importBook}
-          youtube={youtube}
-          onYoutube={setYoutube}
-          onFetchYoutube={() => void importYoutube()}
-          ytBusy={ytBusy}
-          bookError={bookError}
-        />
-        <SourcePickers db={db} language={language} vocabulary={vocabulary} states={states} known={known} library={library} setLibrary={setLibrary} open={open} />
-        <ExternalResources language={language} />
-      </div>
+      <ReadingHome
+        db={db}
+        language={language}
+        vocabulary={vocabulary}
+        states={states}
+        known={known}
+        library={library}
+        setLibrary={setLibrary}
+        previews={previews}
+        loadFailed={loadFailed}
+        shared={!!shared}
+        open={open}
+        remove={remove}
+        removeBook={removeBook}
+        title={title}
+        onTitle={setTitle}
+        draft={draft}
+        onDraft={setDraft}
+        onStart={start}
+        onFile={loadFile}
+        onBook={importBook}
+        youtube={youtube}
+        onYoutube={setYoutube}
+        onFetchYoutube={() => void importYoutube()}
+        ytBusy={ytBusy}
+        bookError={bookError}
+      />
     )
   }
 
   const unseenKeys = new Set(analysis.paragraphs.flat().flatMap((s) => s.tokens).filter((t) => t.status === 'unseen' && t.key && !skipped.has(t.key)).map((t) => t.key))
   const selectedEntry = selected?.token.entryId ? byId.get(selected.token.entryId) : undefined
   // A conjugated form (allions, tuve): the verb, tense and person, and the learner's own card for
-  // that verb if there is one.
-  const verbEntry = (lemma: string) => vocabulary.find((v) => v.language === language && v.partOfSpeech === 'verb' && normalize(v.lemma).toLocaleLowerCase(language) === lemma)
-  const verbRank = (lemma: string) => (verbEntry(lemma) ? -1 : (freq.get(lemma) ?? Infinity))
-  // A word inside a compound tense ("ai" or "mangé" in "j'ai mangé") shows the whole form first.
+  // that verb if there is one; a word inside a compound tense shows the whole form first.
+  const verbEntry = (lemma: string) => ownVerb(vocabulary, language, lemma)
   const selectedToken = selected?.token.key && !selectedEntry ? selected : undefined
-  const selectedCompounds: FormAnalysis[] = selectedToken && language !== 'en' ? compoundsAround(language, selectedToken.sentence, selectedToken.token.text) : []
-  const selectedSingles = (selectedToken ? analyzeForm(language, cleanToken(selectedToken.token.text, language)) : [])
-    .map((a, i) => ({ a, i }))
-    .sort((x, y) => verbRank(x.a.lemma) - verbRank(y.a.lemma) || x.i - y.i)
-    .map((x) => x.a)
-  const selectedForms = [...selectedCompounds, ...selectedSingles]
+  const selectedForms = formsOfSelection(selectedToken, language, vocabulary, freq)
 
   return (
     <div className="stack">
@@ -539,62 +476,38 @@ export function ReadingScreen({
         />
       )}
 
-      <div className="row reader-tools">
-        <span className="reader-legend small" aria-hidden>
-          <i className="legend-unseen">yeni</i> <i className="legend-learning">öğreniliyor</i> <i>bilinen</i>
-        </span>
-        <span className="grow" />
-        <ReaderViewMenu prefs={reader} onChange={setReader} />
-        <div className="reader-modes">
-        {(canTranslate || !!current?.turkish) && !listenFirst && (
-          <button className="chip chip-sm" aria-pressed={showTurkish} onClick={() => setShowTurkish((v) => !v)} title="Her paragrafın altında Türkçesi">
-            <GlobeIcon size={14} /> Türkçesi
-          </button>
-        )}
-        {(recorded || canSpeak()) && (
-          <button className="chip chip-sm" aria-pressed={dictating !== null} onClick={() => (setShadowing(null), setDictating((d) => (d === null ? Math.max(0, heard) : null)))} title="Metni cümle cümle dinleyip yaz">
-            <DictationIcon size={14} /> Dikte
-          </button>
-        )}
-        {(recorded || canSpeak()) && canRecord() && (
-          <button className="chip chip-sm" aria-pressed={shadowing !== null} onClick={() => (setDictating(null), setShadowing((d) => (d === null ? Math.max(0, heard) : null)))} title="Cümleyi dinle, hemen ardından söyle, sonra karşılaştır">
-            <ShadowingIcon size={14} /> Gölgele
-          </button>
-        )}
-        {!listenFirst && dictating === null && (
-          <button
-            type="button"
-            className="chip chip-sm"
-            aria-pressed={deduce}
-            onClick={() => {
-              setDeduce((v) => {
-                try {
-                  localStorage.setItem('diloloji:deduce', v ? '0' : '1')
-                } catch {
-                  // Just not remembered.
-                }
-                return !v
-              })
-              setGuess(null)
-            }}
-            title="Bilinmeyen kelimelerin bir kısmı gizlenir: anlamını cümleden tahmin et, sonra dokunup aç"
-          >
-            <BrainIcon size={14} /> Çıkarım
-          </button>
-        )}
-        {language !== 'en' && !listenFirst && (
-          <button type="button" className="chip chip-sm" aria-pressed={showForms} onClick={() => setShowForms((v) => !v)} title="Metindeki fiil çekimleri, zamana göre">
-            <ConjugationsIcon size={14} /> Çekimler
-          </button>
-        )}
-        <button type="button" className="chip chip-sm" onClick={() => setConfirmFinish(true)}>
-          Okumayı bitir
-        </button>
-        <button className={`chip chip-sm${multiMode ? ' is-on' : ''}`} aria-pressed={multiMode} onClick={() => setMultiMode((m) => !m)} title="ya da ⌘/Ctrl ile kelimelere tıkla">
-          Çoklu seç
-        </button>
-        </div>
-      </div>
+      <ReaderTools
+        language={language}
+        reader={reader}
+        onReader={setReader}
+        listenFirst={listenFirst}
+        showTurkishButton={canTranslate || !!current?.turkish}
+        showTurkish={showTurkish}
+        onTurkish={() => setShowTurkish((v) => !v)}
+        canPractise={recorded || canSpeak()}
+        canShadow={(recorded || canSpeak()) && canRecord()}
+        dictating={dictating !== null}
+        onDictation={() => (setShadowing(null), setDictating((d) => (d === null ? Math.max(0, heard) : null)))}
+        shadowing={shadowing !== null}
+        onShadowing={() => (setDictating(null), setShadowing((d) => (d === null ? Math.max(0, heard) : null)))}
+        deduce={deduce}
+        onDeduce={() => {
+          setDeduce((v) => {
+            try {
+              localStorage.setItem('diloloji:deduce', v ? '0' : '1')
+            } catch {
+              // Just not remembered.
+            }
+            return !v
+          })
+          setGuess(null)
+        }}
+        showForms={showForms}
+        onForms={() => setShowForms((v) => !v)}
+        onFinish={() => setConfirmFinish(true)}
+        multiMode={multiMode}
+        onMulti={() => setMultiMode((m) => !m)}
+      />
       {showForms && language !== 'en' && <TextForms groups={formGroups} language={language} onOpenLab={onOpenLab} onLesson={onLesson} onReview={reviewForms} onShow={showSentence} onClose={() => setShowForms(false)} />}
       {dictating !== null && (
         <TextDictation key={`dict-${current?.id}-${dictating}`} sentences={sentencesFlat} language={language} start={dictating} voice={recorded ? 'recording' : 'device'} play={playSentence} onClose={() => setDictating(null)} />
@@ -654,23 +567,7 @@ export function ReadingScreen({
       {!selected && !multi.size && !adding && (
         <p className="reader-hint small muted">Bir kelimeye tıkla: anlamı, cümlesi ve ekleme seçenekleri burada açılır. Klavyeyle ← → yeni kelimeler arasında gezer.</p>
       )}
-      {multi.size > 0 && (
-        <section className="card multi-bar" role="toolbar" aria-label="Seçili kelimeler">
-          <strong>{multi.size} kelime seçili</strong>
-          <button className="btn btn-sm" onClick={() => markMulti('known')}>
-            Biliyorum
-          </button>
-          <button className="btn btn-sm btn-quiet" onClick={() => markMulti('skip')}>
-            Bilmiyorum
-          </button>
-          <button className="btn btn-sm btn-quiet" onClick={() => markMulti('ignore')}>
-            Yok say
-          </button>
-          <button className="link small" onClick={() => setMulti(new Set())}>
-            Temizle
-          </button>
-        </section>
-      )}
+      {multi.size > 0 && <MultiBar count={multi.size} onMark={markMulti} onClear={() => setMulti(new Set())} />}
 
       {selected && selected.token.key && (
         <WordCard
@@ -708,25 +605,19 @@ export function ReadingScreen({
       )}
 
       {adding && (
-        <section className="card stack">
-          <h2 className="section-title">Kelimelerime ekle</h2>
-          <WordForm
-            db={db}
-            language={language}
-            existing={existing}
-            initial={{ word: adding.word, meaning: '', example: markWord(adding.sentence, adding.word), exampleTranslation: '', exampleMetIn: current?.title }}
-            onSaved={async () => {
-              if (current?.title && adding?.word) {
-                const entryId = `${language}:${adding.word.trim().toLowerCase()}`
-                await db.addFirstEncounters({ [entryId]: { title: current.title, sentence: adding.sentence, at: new Date().toISOString() } })
-              }
-              setAdding(null)
-              setSelected(null)
-              onChanged()
-            }}
-            onCancel={() => setAdding(null)}
-          />
-        </section>
+        <AddingCard
+          db={db}
+          language={language}
+          existing={existing}
+          adding={adding}
+          title={current?.title}
+          onSaved={() => {
+            setAdding(null)
+            setSelected(null)
+            onChanged()
+          }}
+          onCancel={() => setAdding(null)}
+        />
       )}
       </aside>
       </div>
