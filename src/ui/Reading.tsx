@@ -59,7 +59,7 @@ import { TextShadow } from './TextShadow'
 import { reportError } from '../data/errorReport'
 import { useTranslationReady } from './useTranslationReady'
 import { useStudyClock } from './useStudyClock'
-import { ReaderControls } from './readerPrefs'
+import { ReaderViewMenu } from './readerPrefs'
 import { readerStyle, useReaderPrefs } from './readerSettings'
 import { Sticker } from './Sticker'
 
@@ -544,7 +544,8 @@ export function ReadingScreen({
           <i className="legend-unseen">yeni</i> <i className="legend-learning">öğreniliyor</i> <i>bilinen</i>
         </span>
         <span className="grow" />
-        <ReaderControls prefs={reader} onChange={setReader} />
+        <ReaderViewMenu prefs={reader} onChange={setReader} />
+        <div className="reader-modes">
         {(canTranslate || !!current?.turkish) && !listenFirst && (
           <button className="chip chip-sm" aria-pressed={showTurkish} onClick={() => setShowTurkish((v) => !v)} title="Her paragrafın altında Türkçesi">
             <GlobeIcon size={14} /> Türkçesi
@@ -592,6 +593,7 @@ export function ReadingScreen({
         <button className={`chip chip-sm${multiMode ? ' is-on' : ''}`} aria-pressed={multiMode} onClick={() => setMultiMode((m) => !m)} title="ya da ⌘/Ctrl ile kelimelere tıkla">
           Çoklu seç
         </button>
+        </div>
       </div>
       {showForms && language !== 'en' && <TextForms groups={formGroups} language={language} onOpenLab={onOpenLab} onLesson={onLesson} onReview={reviewForms} onShow={showSentence} onClose={() => setShowForms(false)} />}
       {dictating !== null && (

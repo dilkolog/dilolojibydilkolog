@@ -16,7 +16,7 @@ import { speak } from './speech'
 import { PageHeader } from './PageHeader'
 import { EmptyState } from './EmptyState'
 import { GrammarCheck } from './GrammarCheck'
-import { ReaderControls } from './readerPrefs'
+import { ReaderViewMenu } from './readerPrefs'
 import { readerStyle, useReaderPrefs } from './readerSettings'
 import { Sticker } from './Sticker'
 
@@ -341,7 +341,7 @@ function Episode({
         <div className="row justify-between items-center story-meta">
           <span className="level-badge">{episode.number}. bölüm</span>
           <span className="row gap-2 reader-tools">
-            <ReaderControls prefs={reader} onChange={setReader} />
+            <ReaderViewMenu prefs={reader} onChange={setReader} />
           </span>
         </div>
         <h2 className="story-title">{episode.title}</h2>
