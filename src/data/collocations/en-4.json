@@ -1,0 +1,332 @@
+[
+ {
+  "id": "en-colloc4-01",
+  "language": "en",
+  "lemmas": [
+   "bus"
+  ],
+  "pattern": "take the bus",
+  "example": "I take the bus to work every day.",
+  "tr": "Her gün işe otobüsle giderim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-02",
+  "language": "en",
+  "lemmas": [
+   "breakfast"
+  ],
+  "pattern": "have breakfast",
+  "example": "We have breakfast at seven.",
+  "tr": "Kahvaltıyı yedide yaparız.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-03",
+  "language": "en",
+  "lemmas": [
+   "time"
+  ],
+  "pattern": "have a good time",
+  "example": "Did you have a good time at the party?",
+  "tr": "Partide iyi vakit geçirdin mi?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-04",
+  "language": "en",
+  "lemmas": [
+   "exercise"
+  ],
+  "pattern": "do exercise",
+  "example": "She does exercise every morning.",
+  "tr": "Her sabah egzersiz yapar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-05",
+  "language": "en",
+  "lemmas": [
+   "washing-up"
+  ],
+  "pattern": "do the washing-up",
+  "example": "I'll do the washing-up tonight.",
+  "tr": "Bu akşam bulaşıkları ben yıkarım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-06",
+  "language": "en",
+  "lemmas": [
+   "friend"
+  ],
+  "pattern": "make friends",
+  "example": "It is easy to make friends at university.",
+  "tr": "Üniversitede arkadaş edinmek kolay.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-07",
+  "language": "en",
+  "lemmas": [
+   "call"
+  ],
+  "pattern": "make a phone call",
+  "example": "I need to make a phone call.",
+  "tr": "Bir telefon etmem lazım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-08",
+  "language": "en",
+  "lemmas": [
+   "reservation"
+  ],
+  "pattern": "make a reservation",
+  "example": "I would like to make a reservation for two.",
+  "tr": "İki kişilik bir rezervasyon yaptırmak istiyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-09",
+  "language": "en",
+  "lemmas": [
+   "appointment"
+  ],
+  "pattern": "make an appointment",
+  "example": "I'd like to make an appointment with the doctor.",
+  "tr": "Doktordan randevu almak istiyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-10",
+  "language": "en",
+  "lemmas": [
+   "job"
+  ],
+  "pattern": "get a job",
+  "example": "He got a job in a bank.",
+  "tr": "Bir bankada iş buldu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-11",
+  "language": "en",
+  "lemmas": [
+   "married"
+  ],
+  "pattern": "get married",
+  "example": "They got married last summer.",
+  "tr": "Geçen yaz evlendiler.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-12",
+  "language": "en",
+  "lemmas": [
+   "lost"
+  ],
+  "pattern": "get lost",
+  "example": "We got lost in the old town.",
+  "tr": "Eski şehirde kaybolduk.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-13",
+  "language": "en",
+  "lemmas": [
+   "train"
+  ],
+  "pattern": "catch the train",
+  "example": "We have to catch the eight o'clock train.",
+  "tr": "Sekiz treniyle gitmemiz lazım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-14",
+  "language": "en",
+  "lemmas": [
+   "bus"
+  ],
+  "pattern": "miss the bus",
+  "example": "I missed the bus again this morning.",
+  "tr": "Bu sabah otobüsü yine kaçırdım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-15",
+  "language": "en",
+  "lemmas": [
+   "part"
+  ],
+  "pattern": "take part in",
+  "example": "Everyone can take part in the game.",
+  "tr": "Herkes oyuna katılabilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-16",
+  "language": "en",
+  "lemmas": [
+   "exam"
+  ],
+  "pattern": "pass an exam",
+  "example": "She passed her driving test.",
+  "tr": "Direksiyon sınavını geçti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-17",
+  "language": "en",
+  "lemmas": [
+   "exam"
+  ],
+  "pattern": "fail an exam",
+  "example": "He failed the history exam.",
+  "tr": "Tarih sınavından kaldı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-18",
+  "language": "en",
+  "lemmas": [
+   "message"
+  ],
+  "pattern": "leave a message",
+  "example": "Please leave a message after the tone.",
+  "tr": "Lütfen sinyalden sonra mesaj bırakın.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-19",
+  "language": "en",
+  "lemmas": [
+   "walk"
+  ],
+  "pattern": "go for a walk",
+  "example": "Let's go for a walk after dinner.",
+  "tr": "Akşam yemeğinden sonra yürüyüşe çıkalım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-20",
+  "language": "en",
+  "lemmas": [
+   "holiday"
+  ],
+  "pattern": "go on holiday",
+  "example": "We go on holiday in August.",
+  "tr": "Ağustosta tatile çıkıyoruz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-21",
+  "language": "en",
+  "lemmas": [
+   "late"
+  ],
+  "pattern": "be late for",
+  "example": "Sorry, I am late for the meeting.",
+  "tr": "Kusura bakma, toplantıya geciktim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-22",
+  "language": "en",
+  "lemmas": [
+   "mood"
+  ],
+  "pattern": "be in a good mood",
+  "example": "She is in a good mood today.",
+  "tr": "Bugün keyfi yerinde.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-23",
+  "language": "en",
+  "lemmas": [
+   "feel"
+  ],
+  "pattern": "feel like + -ing",
+  "example": "I feel like going for a walk.",
+  "tr": "Yürüyüşe çıkasım var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-24",
+  "language": "en",
+  "lemmas": [
+   "care"
+  ],
+  "pattern": "take care of",
+  "example": "She takes care of her grandparents.",
+  "tr": "Büyükanne ve büyükbabasına bakıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-25",
+  "language": "en",
+  "lemmas": [
+   "headache"
+  ],
+  "pattern": "have a headache",
+  "example": "I have had a headache since this morning.",
+  "tr": "Sabahtan beri başım ağrıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-26",
+  "language": "en",
+  "lemmas": [
+   "time"
+  ],
+  "pattern": "spend time on",
+  "example": "He spends too much time on his phone.",
+  "tr": "Telefonuyla çok fazla vakit geçiriyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-27",
+  "language": "en",
+  "lemmas": [
+   "eye"
+  ],
+  "pattern": "keep an eye on",
+  "example": "Can you keep an eye on my bag?",
+  "tr": "Çantama göz kulak olabilir misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-28",
+  "language": "en",
+  "lemmas": [
+   "hand"
+  ],
+  "pattern": "give someone a hand",
+  "example": "Can you give me a hand with the boxes?",
+  "tr": "Kolilerde bana yardım edebilir misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-29",
+  "language": "en",
+  "lemmas": [
+   "idea"
+  ],
+  "pattern": "come up with",
+  "example": "She came up with a great idea.",
+  "tr": "Harika bir fikir buldu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc4-30",
+  "language": "en",
+  "lemmas": [
+   "get"
+  ],
+  "pattern": "get on with",
+  "example": "I get on well with my neighbours.",
+  "tr": "Komşularımla iyi anlaşırım.",
+  "source": "Diloloji (özgün)"
+ }
+]

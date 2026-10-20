@@ -1,0 +1,137 @@
+[
+ {
+  "id": "fr-r4-window",
+  "language": "fr",
+  "tr": "pencereyi açabilir miyim?",
+  "informal": "Je peux ouvrir la fenêtre ?",
+  "standard": "Est-ce que je peux ouvrir la fenêtre ?",
+  "formal": "Cela vous dérange-t-il si j'ouvre la fenêtre ?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-number",
+  "language": "fr",
+  "tr": "numaranı verir misin?",
+  "informal": "Tu me donnes ton numéro ?",
+  "standard": "Pouvez-vous me donner votre numéro ?",
+  "formal": "Pourriez-vous me communiquer votre numéro de téléphone ?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-wrong",
+  "language": "fr",
+  "tr": "yanlış numara, pardon",
+  "informal": "Oups, mauvais numéro !",
+  "standard": "Excusez-moi, je me suis trompé de numéro.",
+  "formal": "Veuillez m'excuser, j'ai composé un mauvais numéro.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-appt",
+  "language": "fr",
+  "tr": "randevu almak istiyorum",
+  "informal": "Je peux avoir un rendez-vous ?",
+  "standard": "Je voudrais prendre rendez-vous, s'il vous plaît.",
+  "formal": "Je souhaiterais obtenir un rendez-vous, si vos disponibilités le permettent.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-complaint",
+  "language": "fr",
+  "tr": "bir sorunum var (şikâyet)",
+  "informal": "Y'a un souci, là.",
+  "standard": "J'ai un problème avec ma commande.",
+  "formal": "Je me permets de vous signaler un problème avec ma commande.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-disturb",
+  "language": "fr",
+  "tr": "rahatsız ediyorum, pardon",
+  "informal": "Désolé de te déranger.",
+  "standard": "Excusez-moi de vous déranger.",
+  "formal": "Veuillez excuser mon dérangement.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-welcome",
+  "language": "fr",
+  "tr": "bir şey değil, rica ederim",
+  "informal": "De rien !",
+  "standard": "Je vous en prie.",
+  "formal": "Je vous en prie, c'est tout naturel.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-getwell",
+  "language": "fr",
+  "tr": "geçmiş olsun",
+  "informal": "Rétablis-toi vite !",
+  "standard": "Je vous souhaite un bon rétablissement.",
+  "formal": "Je vous présente tous mes vœux de prompt rétablissement.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-come-in",
+  "language": "fr",
+  "tr": "hoş geldin",
+  "informal": "Salut, entre !",
+  "standard": "Bienvenue chez nous !",
+  "formal": "Soyez les bienvenus.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-night",
+  "language": "fr",
+  "tr": "iyi geceler",
+  "informal": "Bonne nuit, à demain !",
+  "standard": "Bonne nuit.",
+  "formal": "Je vous souhaite une excellente nuit.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-name",
+  "language": "fr",
+  "tr": "adın ne?",
+  "informal": "Tu t'appelles comment ?",
+  "standard": "Comment vous appelez-vous ?",
+  "formal": "Puis-je savoir votre nom ?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-origin",
+  "language": "fr",
+  "tr": "nerelisin?",
+  "informal": "Tu viens d'où ?",
+  "standard": "D'où venez-vous ?",
+  "formal": "De quel pays êtes-vous originaire ?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-check",
+  "language": "fr",
+  "tr": "bakıp haber veririm",
+  "informal": "Je regarde et je te dis.",
+  "standard": "Je vérifie et je vous préviens.",
+  "formal": "Je vais vérifier et vous tiendrai informé dans les plus brefs délais.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-wait",
+  "language": "fr",
+  "tr": "bekletiyorum, özür dilerim",
+  "informal": "Désolé de t'avoir fait attendre.",
+  "standard": "Excusez-moi de vous avoir fait attendre.",
+  "formal": "Je vous prie de bien vouloir excuser cette attente.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-r4-thanks",
+  "language": "fr",
+  "tr": "yardımın için teşekkürler",
+  "informal": "Merci pour ton coup de main !",
+  "standard": "Merci pour votre aide.",
+  "formal": "Je vous remercie vivement de votre aide précieuse.",
+  "source": "Diloloji (özgün)"
+ }
+]

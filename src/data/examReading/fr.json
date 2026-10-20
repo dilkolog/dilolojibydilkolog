@@ -397,6 +397,94 @@
     }
    ],
    "language": "fr"
+  },
+  {
+   "id": "fr-read-marche",
+   "exam": "DELF",
+   "level": "B1",
+   "title": "Le marché du jeudi",
+   "text": "Depuis vingt ans, le marché du jeudi anime la place de mon quartier. Les habitants y viennent pour acheter des fruits, du fromage ou simplement pour discuter avec les marchands. Pourtant, la mairie veut déplacer le marché dans une rue voisine, car la place doit être rénovée pendant six mois. Beaucoup de commerçants sont inquiets : ils craignent de perdre une partie de leurs clients, surtout les personnes âgées qui habitent tout près. Une réunion publique aura lieu mardi soir à la mairie. Chacun pourra poser des questions et proposer des solutions.",
+   "tr": "Yirmi yıldır perşembe pazarı mahallemin meydanını canlandırıyor. Sakinler buraya meyve, peynir almaya ya da sadece satıcılarla sohbet etmeye geliyor. Ancak belediye, meydan altı ay boyunca yenileneceği için pazarı yakındaki bir sokağa taşımak istiyor. Birçok esnaf endişeli: müşterilerinin bir kısmını, özellikle çok yakında yaşayan yaşlıları kaybetmekten korkuyorlar. Salı akşamı belediyede halka açık bir toplantı olacak. Herkes soru sorabilecek ve çözüm önerebilecek.",
+   "questions": [
+    {
+     "prompt": "Pourquoi la mairie veut-elle déplacer le marché ?",
+     "options": [
+      "Les marchands le demandent",
+      "La place doit être rénovée",
+      "Il y a trop de clients",
+      "Le marché est trop bruyant"
+     ],
+     "answer": 1,
+     "why": "“La place doit être rénovée pendant six mois”: meydan yenilenecek."
+    },
+    {
+     "prompt": "De quoi les commerçants ont-ils peur ?",
+     "options": [
+      "De devoir payer plus cher",
+      "De manquer de produits",
+      "De perdre une partie de leurs clients",
+      "De changer de métier"
+     ],
+     "answer": 2,
+     "why": "“Ils craignent de perdre une partie de leurs clients”: müşteri kaybetmekten korkuyorlar."
+    },
+    {
+     "prompt": "Que se passera-t-il mardi soir ?",
+     "options": [
+      "La fermeture du marché",
+      "Une réunion publique",
+      "Le début des travaux",
+      "Une fête de quartier"
+     ],
+     "answer": 1,
+     "why": "“Une réunion publique aura lieu mardi soir”: salı akşamı halka açık toplantı var."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-musees",
+   "exam": "DELF",
+   "level": "B2",
+   "title": "Des musées gratuits ?",
+   "text": "Plusieurs villes envisagent de rendre l'entrée des musées gratuite le premier dimanche de chaque mois. Les partisans de cette mesure affirment qu'elle attire un public nouveau, notamment des familles qui n'osent pas pousser la porte d'un musée par crainte du prix. Les opposants, eux, rappellent que la gratuité ne règle pas tout : un habitant qui ne s'intéresse pas à l'art n'ira pas davantage au musée parce que l'entrée ne coûte rien. Ils préféreraient que cet argent serve à financer des visites scolaires et des animations. Une étude menée dans trois villes montre cependant que la fréquentation double lors des journées gratuites, sans que les recettes annuelles ne diminuent beaucoup.",
+   "tr": "Birçok şehir, müzeleri her ayın ilk pazar günü ücretsiz yapmayı düşünüyor. Bu önlemin savunucuları, ücretsiz giriş sayesinde yeni bir kitlenin, özellikle fiyattan çekindiği için müzeye adım atmaya cesaret edemeyen ailelerin geleceğini söylüyor. Karşı çıkanlar ise ücretsizliğin her sorunu çözmediğini hatırlatıyor: sanata ilgi duymayan biri, giriş ücretsiz diye müzeye daha çok gitmeyecek. Bu paranın okul gezilerini ve etkinlikleri finanse etmesini tercih ediyorlar. Üç şehirde yapılan bir araştırma ise ücretsiz günlerde ziyaretçi sayısının iki katına çıktığını, buna rağmen yıllık gelirlerin pek düşmediğini gösteriyor.",
+   "questions": [
+    {
+     "prompt": "Selon les partisans, que permet la gratuité ?",
+     "options": [
+      "De fermer certains musées",
+      "D'augmenter le prix des billets",
+      "De réduire le nombre de visiteurs",
+      "D'attirer un public nouveau"
+     ],
+     "answer": 3,
+     "why": "“Elle attire un public nouveau”: yeni bir kitleyi çekiyor."
+    },
+    {
+     "prompt": "Quel est l'argument principal des opposants ?",
+     "options": [
+      "Les musées sont déjà trop fréquentés",
+      "La gratuité ne crée pas à elle seule l'intérêt pour l'art",
+      "Les familles préfèrent le cinéma",
+      "Les musées manquent de place"
+     ],
+     "answer": 1,
+     "why": "Karşı çıkanlar: sanata ilgi duymayan biri ücretsiz diye gitmez."
+    },
+    {
+     "prompt": "Que montre l'étude citée ?",
+     "options": [
+      "Les recettes s'effondrent",
+      "Les visiteurs sont plus âgés",
+      "La fréquentation double les jours gratuits",
+      "Les écoles refusent les visites"
+     ],
+     "answer": 2,
+     "why": "“La fréquentation double lors des journées gratuites”: ücretsiz günlerde ziyaret iki katına çıkıyor."
+    }
+   ],
+   "language": "fr"
   }
  ]
 }

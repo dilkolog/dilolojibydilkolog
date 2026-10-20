@@ -1,0 +1,197 @@
+[
+ {
+  "id": "fr-remote",
+  "language": "fr",
+  "text": "Le télétravail est devenu courant. {1}, il permet de gagner du temps de transport chaque jour. {2} certains salariés se sentent isolés, la plupart apprécient cette liberté. Les équipes se réunissent donc une fois par semaine, {3} garder un lien entre collègues.",
+  "tr": "Uzaktan çalışma yaygınlaştı. Öncelikle her gün ulaşım süresinden tasarruf ettiriyor. Bazı çalışanlar kendini yalnız hissetse de çoğu bu özgürlüğü seviyor. Bu yüzden ekipler, iş arkadaşları arasındaki bağı korumak için haftada bir kez toplanıyor.",
+  "gaps": [
+   {
+    "answer": "D'abord",
+    "options": [
+     "D'abord",
+     "Pourtant",
+     "Sinon"
+    ],
+    "kind": "Sıralama",
+    "why": "Bir avantaj sayılıyor: “öncelikle”. Pourtant zıtlık, sinon “yoksa” anlamı verir."
+   },
+   {
+    "answer": "Bien que",
+    "options": [
+     "Bien que",
+     "Parce que",
+     "Afin que"
+    ],
+    "kind": "Taviz",
+    "why": "“Bazıları yalnız hissetse de”: taviz. Parce que neden, afin que amaç bildirir; burada anlamsız kalır."
+   },
+   {
+    "answer": "afin de",
+    "options": [
+     "afin de",
+     "alors que",
+     "parce que"
+    ],
+    "kind": "Amaç",
+    "why": "“Bağı korumak için” + mastar: afin de + infinitif. Parce que ve alors que mastar almaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-recycling",
+  "language": "fr",
+  "text": "Trier les déchets prend quelques minutes. {1}, beaucoup de familles le font déjà chaque jour. {2} on recycle le verre, on économise des matières premières. Les mairies installent de nouveaux bacs, {3} les habitants n'aient plus d'excuse.",
+  "tr": "Çöpleri ayırmak birkaç dakika alır. Neyse ki birçok aile bunu zaten her gün yapıyor. Camı geri dönüştürürsek hammadde tasarrufu yaparız. Belediyeler, sakinlerin artık mazereti kalmasın diye yeni kutular yerleştiriyor.",
+  "gaps": [
+   {
+    "answer": "Heureusement",
+    "options": [
+     "Heureusement",
+     "Sinon",
+     "Parce que"
+    ],
+    "kind": "Tutum",
+    "why": "“Neyse ki” iyi bir durumu anlatır. Sinon “yoksa”, parce que “çünkü” demektir ve cümleye uymaz."
+   },
+   {
+    "answer": "Si",
+    "options": [
+     "Si",
+     "Pourtant",
+     "Bien que"
+    ],
+    "kind": "Koşul",
+    "why": "“Camı geri dönüştürürsek…”: koşul. Pourtant zıtlıktır, bien que “-e rağmen” demektir ve subjonctif ister."
+   },
+   {
+    "answer": "pour que",
+    "options": [
+     "pour que",
+     "parce que",
+     "bien que"
+    ],
+    "kind": "Amaç",
+    "why": "“Mazereti kalmasın diye”: amaç, pour que + subjonctif (aient). Parce que gösterge kipi ister, bien que zıtlık kurar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-market",
+  "language": "fr",
+  "text": "Le samedi matin, je vais au marché de mon quartier. {1} les légumes y sont plus frais qu'au supermarché, j'y trouve toujours quelque chose de bon. {2}, les prix sont parfois un peu plus élevés. Je continue pourtant d'y aller, {3} j'aime parler avec les vendeurs.",
+  "tr": "Cumartesi sabahları mahallemin pazarına giderim. Sebzeler orada süpermarkettekinden daha taze olduğu için hep güzel bir şey bulurum. Doğru, fiyatlar bazen biraz daha yüksek. Yine de oraya gitmeye devam ediyorum, çünkü satıcılarla konuşmayı seviyorum.",
+  "gaps": [
+   {
+    "answer": "Comme",
+    "options": [
+     "Comme",
+     "Pourtant",
+     "Afin que"
+    ],
+    "kind": "Neden",
+    "why": "“Sebzeler daha taze olduğu için”: comme (neden). Pourtant zıtlık, afin que amaç bildirir."
+   },
+   {
+    "answer": "Certes",
+    "options": [
+     "Certes",
+     "Donc",
+     "Parce que"
+    ],
+    "kind": "Taviz",
+    "why": "“Doğru, fiyatlar biraz yüksek” (ardından pourtant gelir): certes bir tavizi kabul eder. Donc sonuç verir."
+   },
+   {
+    "answer": "car",
+    "options": [
+     "car",
+     "mais",
+     "pour"
+    ],
+    "kind": "Neden",
+    "why": "“…çünkü satıcılarla konuşmayı seviyorum”: car açıklayıcı nedendir. Mais zıtlık katar, pour burada cümle kurmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-cooking",
+  "language": "fr",
+  "text": "Apprendre à cuisiner n'est pas aussi difficile qu'on le croit. {1}, il suffit de suivre une recette simple avec attention. {2} vous ratez le premier plat, ne vous découragez pas. Avec un peu de pratique, vous cuisinerez {3} vos amis vous demanderont la recette.",
+  "tr": "Yemek yapmayı öğrenmek sanıldığı kadar zor değil. Aslında dikkatle basit bir tarifi izlemek yeter. İlk yemeği yakarsanız bile cesaretiniz kırılmasın. Biraz pratikle o kadar güzel pişireceksiniz ki arkadaşlarınız tarifi soracak.",
+  "gaps": [
+   {
+    "answer": "En réalité",
+    "options": [
+     "En réalité",
+     "Sinon",
+     "Afin que"
+    ],
+    "kind": "Açıklama",
+    "why": "“Aslında”: önceki cümleyi açıklar. Sinon “yoksa”, afin que amaç yan cümlesi açar."
+   },
+   {
+    "answer": "Même si",
+    "options": [
+     "Même si",
+     "Parce que",
+     "Pour que"
+    ],
+    "kind": "Taviz",
+    "why": "“İlk yemeği yakarsanız bile”: même si (gösterge kipi). Parce que ve pour que burada anlamsız kalır."
+   },
+   {
+    "answer": "si bien que",
+    "options": [
+     "si bien que",
+     "bien que",
+     "pour que"
+    ],
+    "kind": "Sonuç",
+    "why": "“O kadar iyi ki…”: si bien que + gösterge (demanderont). Bien que ve pour que subjonctif ister."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-rain",
+  "language": "fr",
+  "text": "Pendant nos vacances en Bretagne, il a plu presque tous les jours. {1}, nous avons visité des musées et des cafés. {2} le temps était mauvais, nous avons passé de bons moments. {3}, l'année prochaine, nous choisirons peut-être un pays plus chaud.",
+  "tr": "Tatilimizde neredeyse her gün yağmur yağdı. Bu yüzden müzeleri ve kafeleri gezdik. Hava kötü olsa da çok güzel anlar yaşadık. Ancak gelecek yıl belki daha sıcak bir ülke seçeriz.",
+  "gaps": [
+   {
+    "answer": "Alors",
+    "options": [
+     "Alors",
+     "Bien que",
+     "Parce que"
+    ],
+    "kind": "Sonuç",
+    "why": "Yağmurun sonucu: “bu yüzden müzeleri gezdik”. Bien que taviz, parce que neden bildirir."
+   },
+   {
+    "answer": "Même si",
+    "options": [
+     "Même si",
+     "Parce que",
+     "Afin que"
+    ],
+    "kind": "Taviz",
+    "why": "“Hava kötü olsa da güzel anlar yaşadık”: même si + imparfait. Parce que ve afin que anlamı bozar."
+   },
+   {
+    "answer": "Cependant",
+    "options": [
+     "Cependant",
+     "Parce que",
+     "Afin que"
+    ],
+    "kind": "Zıtlık",
+    "why": "“Ancak gelecek yıl…”: cependant bir karşıtlık getirir. Parce que ve afin que cümle başında burada yer bulmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]

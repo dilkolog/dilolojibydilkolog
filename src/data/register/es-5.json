@@ -1,0 +1,137 @@
+[
+ {
+  "id": "es-r4-window",
+  "language": "es",
+  "tr": "pencereyi açabilir miyim?",
+  "informal": "¿Abro la ventana?",
+  "standard": "¿Puedo abrir la ventana?",
+  "formal": "¿Le importaría que abriese la ventana?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-number",
+  "language": "es",
+  "tr": "numaranı verir misin?",
+  "informal": "¿Me pasas tu número?",
+  "standard": "¿Me puede dar su número de teléfono?",
+  "formal": "¿Podría facilitarme su número de teléfono?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-wrong",
+  "language": "es",
+  "tr": "yanlış numara, pardon",
+  "informal": "Uy, número equivocado.",
+  "standard": "Perdone, me he equivocado de número.",
+  "formal": "Disculpe, he marcado un número erróneo.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-appt",
+  "language": "es",
+  "tr": "randevu almak istiyorum",
+  "informal": "¿Puedo pedir cita?",
+  "standard": "Quisiera pedir una cita, por favor.",
+  "formal": "Desearía concertar una cita, si su agenda lo permite.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-complaint",
+  "language": "es",
+  "tr": "bir sorunum var (şikâyet)",
+  "informal": "Hay un problema, oye.",
+  "standard": "Tengo un problema con mi pedido.",
+  "formal": "Me permito comunicarle un problema con mi pedido.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-disturb",
+  "language": "es",
+  "tr": "rahatsız ediyorum, pardon",
+  "informal": "Perdona la molestia.",
+  "standard": "Perdone que le moleste.",
+  "formal": "Disculpe las molestias.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-welcome",
+  "language": "es",
+  "tr": "bir şey değil, rica ederim",
+  "informal": "De nada.",
+  "standard": "No hay de qué.",
+  "formal": "Ha sido un placer, no hay nada que agradecer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-getwell",
+  "language": "es",
+  "tr": "geçmiş olsun",
+  "informal": "¡Que te mejores!",
+  "standard": "Que se mejore pronto.",
+  "formal": "Le deseo una pronta recuperación.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-come-in",
+  "language": "es",
+  "tr": "hoş geldin",
+  "informal": "¡Pasa, pasa!",
+  "standard": "¡Bienvenido a nuestra casa!",
+  "formal": "Sea usted bienvenido.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-night",
+  "language": "es",
+  "tr": "iyi geceler",
+  "informal": "¡Buenas noches, hasta mañana!",
+  "standard": "Buenas noches.",
+  "formal": "Le deseo que descanse.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-name",
+  "language": "es",
+  "tr": "adın ne?",
+  "informal": "¿Cómo te llamas?",
+  "standard": "¿Cómo se llama usted?",
+  "formal": "¿Podría decirme su nombre?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-origin",
+  "language": "es",
+  "tr": "nerelisin?",
+  "informal": "¿De dónde eres?",
+  "standard": "¿De dónde es usted?",
+  "formal": "¿De qué país es usted originario?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-check",
+  "language": "es",
+  "tr": "bakıp haber veririm",
+  "informal": "Miro y te cuento.",
+  "standard": "Lo compruebo y le aviso.",
+  "formal": "Lo comprobaré y le informaré a la mayor brevedad.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-wait",
+  "language": "es",
+  "tr": "bekletiyorum, özür dilerim",
+  "informal": "Perdona que te haya hecho esperar.",
+  "standard": "Perdone la espera.",
+  "formal": "Le ruego disculpe la espera.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-r4-thanks",
+  "language": "es",
+  "tr": "yardımın için teşekkürler",
+  "informal": "¡Gracias por la ayuda!",
+  "standard": "Gracias por su ayuda.",
+  "formal": "Le agradezco enormemente su valiosa ayuda.",
+  "source": "Diloloji (özgün)"
+ }
+]
