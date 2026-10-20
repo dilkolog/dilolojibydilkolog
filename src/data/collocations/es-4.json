@@ -1,0 +1,341 @@
+[
+ {
+  "id": "es-colloc4-01",
+  "language": "es",
+  "lemmas": [
+   "deporte"
+  ],
+  "pattern": "hacer deporte",
+  "example": "Hace deporte tres veces por semana.",
+  "tr": "Haftada üç kez spor yapıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-02",
+  "language": "es",
+  "lemmas": [
+   "maleta"
+  ],
+  "pattern": "hacer la maleta",
+  "example": "Mañana hago la maleta.",
+  "tr": "Yarın bavulumu hazırlıyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-03",
+  "language": "es",
+  "lemmas": [
+   "sol"
+  ],
+  "pattern": "tomar el sol",
+  "example": "Me gusta tomar el sol en la playa.",
+  "tr": "Plajda güneşlenmeyi severim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-04",
+  "language": "es",
+  "lemmas": [
+   "copa"
+  ],
+  "pattern": "tomar una copa",
+  "example": "¿Quieres tomar una copa después del trabajo?",
+  "tr": "İşten sonra bir şeyler içmek ister misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-05",
+  "language": "es",
+  "lemmas": [
+   "autobús"
+  ],
+  "pattern": "tomar el autobús",
+  "example": "Tomo el autobús todos los días.",
+  "tr": "Her gün otobüse biniyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-06",
+  "language": "es",
+  "lemmas": [
+   "suerte"
+  ],
+  "pattern": "tener suerte",
+  "example": "Tienes suerte, queda una plaza.",
+  "tr": "Şanslısın, bir yer kalmış.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-07",
+  "language": "es",
+  "lemmas": [
+   "lugar"
+  ],
+  "pattern": "tener lugar",
+  "example": "El concierto tiene lugar el sábado.",
+  "tr": "Konser cumartesi günü yapılıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-08",
+  "language": "es",
+  "lemmas": [
+   "tiempo"
+  ],
+  "pattern": "tener tiempo para",
+  "example": "No tengo tiempo para comer.",
+  "tr": "Yemek yemeye vaktim yok.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-09",
+  "language": "es",
+  "lemmas": [
+   "mesa"
+  ],
+  "pattern": "poner la mesa",
+  "example": "¿Puedes poner la mesa, por favor?",
+  "tr": "Sofrayı kurar mısın, lütfen?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-10",
+  "language": "es",
+  "lemmas": [
+   "mensaje"
+  ],
+  "pattern": "dejar un mensaje",
+  "example": "Puede dejar un mensaje después de la señal.",
+  "tr": "Sinyalden sonra mesaj bırakabilirsiniz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-11",
+  "language": "es",
+  "lemmas": [
+   "favor"
+  ],
+  "pattern": "hacer un favor",
+  "example": "¿Me puedes hacer un favor?",
+  "tr": "Bana bir iyilik yapabilir misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-12",
+  "language": "es",
+  "lemmas": [
+   "examen",
+   "aprobar"
+  ],
+  "pattern": "aprobar un examen",
+  "example": "Ella aprobó el examen de conducir.",
+  "tr": "Direksiyon sınavını geçti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-13",
+  "language": "es",
+  "lemmas": [
+   "examen",
+   "suspender"
+  ],
+  "pattern": "suspender un examen",
+  "example": "Suspendí el examen de historia.",
+  "tr": "Tarih sınavından kaldım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-14",
+  "language": "es",
+  "lemmas": [
+   "tren",
+   "perder"
+  ],
+  "pattern": "perder el tren",
+  "example": "Perdí el último tren.",
+  "tr": "Son treni kaçırdım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-15",
+  "language": "es",
+  "lemmas": [
+   "recuerdo"
+  ],
+  "pattern": "dar recuerdos a",
+  "example": "Dale recuerdos a tu madre de mi parte.",
+  "tr": "Annene benden selam söyle.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-16",
+  "language": "es",
+  "lemmas": [
+   "enfadarse"
+  ],
+  "pattern": "enfadarse con",
+  "example": "Se enfada con su hermano por todo.",
+  "tr": "Her şey için kardeşine kızıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-17",
+  "language": "es",
+  "lemmas": [
+   "cuidar"
+  ],
+  "pattern": "cuidar de",
+  "example": "Ella cuida de sus abuelos.",
+  "tr": "Büyükanne ve büyükbabasına bakıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-18",
+  "language": "es",
+  "lemmas": [
+   "tarde",
+   "llegar"
+  ],
+  "pattern": "llegar tarde",
+  "example": "Perdona, llego tarde.",
+  "tr": "Kusura bakma, geç kaldım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-19",
+  "language": "es",
+  "lemmas": [
+   "forma"
+  ],
+  "pattern": "estar en forma",
+  "example": "Hoy estoy en plena forma.",
+  "tr": "Bugün formumun doruğundayım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-20",
+  "language": "es",
+  "lemmas": [
+   "dolor"
+  ],
+  "pattern": "tener dolor de",
+  "example": "Tengo dolor de cabeza desde esta mañana.",
+  "tr": "Sabahtan beri başım ağrıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-21",
+  "language": "es",
+  "lemmas": [
+   "opinión",
+   "cambiar"
+  ],
+  "pattern": "cambiar de opinión",
+  "example": "Cambió de opinión en el último momento.",
+  "tr": "Son anda fikrini değiştirdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-22",
+  "language": "es",
+  "lemmas": [
+   "tiempo",
+   "llegar"
+  ],
+  "pattern": "llegar a tiempo",
+  "example": "El tren llega a tiempo.",
+  "tr": "Tren zamanında geliyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-23",
+  "language": "es",
+  "lemmas": [
+   "parte",
+   "formar"
+  ],
+  "pattern": "formar parte de",
+  "example": "Forma parte del equipo.",
+  "tr": "Takımın bir parçası.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-24",
+  "language": "es",
+  "lemmas": [
+   "parecer"
+  ],
+  "pattern": "parecer + adjetivo",
+  "example": "Pareces cansado.",
+  "tr": "Yorgun görünüyorsun.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-25",
+  "language": "es",
+  "lemmas": [
+   "ganas"
+  ],
+  "pattern": "dar ganas de + infinitivo",
+  "example": "Esta película me da ganas de viajar.",
+  "tr": "Bu film bana seyahat etme isteği veriyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-26",
+  "language": "es",
+  "lemmas": [
+   "mano",
+   "echar"
+  ],
+  "pattern": "echar una mano",
+  "example": "¿Puedes echarme una mano con la mudanza?",
+  "tr": "Taşınmada bana yardım edebilir misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-27",
+  "language": "es",
+  "lemmas": [
+   "ejercicio"
+  ],
+  "pattern": "hacer ejercicio",
+  "example": "Hago ejercicio por la mañana.",
+  "tr": "Sabahları egzersiz yaparım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-28",
+  "language": "es",
+  "lemmas": [
+   "perdón",
+   "pedir"
+  ],
+  "pattern": "pedir perdón",
+  "example": "Le pedí perdón por llegar tarde.",
+  "tr": "Geç kaldığım için ondan özür diledim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-29",
+  "language": "es",
+  "lemmas": [
+   "razón"
+  ],
+  "pattern": "dar la razón a",
+  "example": "Al final le di la razón a mi hermana.",
+  "tr": "Sonunda ablama hak verdim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc4-30",
+  "language": "es",
+  "lemmas": [
+   "llevar"
+  ],
+  "pattern": "llevar + tiempo + gerundio",
+  "example": "Llevo una hora esperando el autobús.",
+  "tr": "Bir saattir otobüsü bekliyorum.",
+  "source": "Diloloji (özgün)"
+ }
+]
