@@ -1,0 +1,392 @@
+[
+  {
+    "id": "en-languages",
+    "language": "en",
+    "text": "Learning a foreign language takes time. {1}, fifteen minutes a day is often enough to make progress. Many adults give up after a month; {2}, they expect results far too quickly. {3} we cannot study for hours, it is still better to study a little every day than once a week.",
+    "tr": "Yabancı dil öğrenmek zaman alır. Yine de ilerlemek için günde on beş dakika çoğu zaman yeter. Birçok yetişkin bir ay sonra bırakıyor; gerçekten de çok hızlı sonuç bekliyorlar. Saatlerce çalışamasak da haftada bir kez çalışmaktansa her gün biraz çalışmak yine de daha iyidir.",
+    "gaps": [
+      {
+        "answer": "Even so",
+        "options": [
+          "Even so",
+          "Therefore",
+          "Because"
+        ],
+        "kind": "Zıtlık",
+        "why": "Zaman almasına karşın az sürenin yetmesi: “yine de”."
+      },
+      {
+        "answer": "in fact",
+        "options": [
+          "in fact",
+          "however",
+          "so that"
+        ],
+        "kind": "Açıklama",
+        "why": "Bırakma nedenini açıklıyor: “gerçekten de”. So that amaç bildirir ve cümleyi bozar."
+      },
+      {
+        "answer": "Although",
+        "options": [
+          "Although",
+          "Because",
+          "So that"
+        ],
+        "kind": "Taviz",
+        "why": "“Saatlerce çalışamasak da”: taviz. Because neden bildirir, ama “yine de” ile çelişir."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-food",
+    "language": "en",
+    "text": "Eating healthily is not always easy. {1}, ready meals often contain a lot of salt and sugar. Cooking at home takes time; {2}, it is the best way to know what you eat. {3} you add a few seasonal vegetables, any meal improves.",
+    "tr": "Sağlıklı beslenmek her zaman kolay değildir. Gerçekten de hazır yemekler çoğu zaman çok tuz ve şeker içerir. Evde pişirmek zaman alır; yine de ne yediğini bilmenin en iyi yoludur. Birkaç mevsim sebzesi eklersen her yemek iyileşir.",
+    "gaps": [
+      {
+        "answer": "In fact",
+        "options": [
+          "In fact",
+          "However",
+          "Unless"
+        ],
+        "kind": "Açıklama",
+        "why": "Birinci cümlenin nedenini açıklıyor: “gerçekten de”."
+      },
+      {
+        "answer": "nevertheless",
+        "options": [
+          "nevertheless",
+          "therefore",
+          "because"
+        ],
+        "kind": "Zıtlık",
+        "why": "Zaman almasına karşın en iyi yol olması: “yine de”."
+      },
+      {
+        "answer": "If",
+        "options": [
+          "If",
+          "Although",
+          "So that"
+        ],
+        "kind": "Koşul",
+        "why": "“Eklersen yemek iyileşir”: koşul."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-museum",
+    "language": "en",
+    "text": "Free museums attract a lot of visitors. {1}, some directors fear that the crowds may damage the works. {2} you book a time slot, you avoid the queues. {3}, many museums now offer online tours.",
+    "tr": "Ücretsiz müzeler çok sayıda ziyaretçi çekiyor. Ancak bazı müdürler kalabalığın eserlere zarar verebileceğinden korkuyor. Saat dilimi ayırtırsan kuyruklardan kaçınırsın. Bu yüzden birçok müze artık çevrimiçi turlar sunuyor.",
+    "gaps": [
+      {
+        "answer": "However",
+        "options": [
+          "However",
+          "For example",
+          "So that"
+        ],
+        "kind": "Zıtlık",
+        "why": "Ziyaretçi çekmenin olumlu yanına karşı bir endişe: “ancak”."
+      },
+      {
+        "answer": "If",
+        "options": [
+          "If",
+          "Although",
+          "So that"
+        ],
+        "kind": "Koşul",
+        "why": "“Saat ayırtırsan kuyruktan kaçınırsın”: koşul."
+      },
+      {
+        "answer": "For this reason",
+        "options": [
+          "For this reason",
+          "Even so",
+          "Although"
+        ],
+        "kind": "Sonuç",
+        "why": "Kalabalık sorununun sonucu: “bu yüzden”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-electric",
+    "language": "en",
+    "text": "Electric cars are selling better and better. {1}, their price is still too high for many families. Charging points are multiplying; {2}, long journeys are becoming less complicated. {3} the battery is expensive to produce, these cars pollute less in cities.",
+    "tr": "Elektrikli arabalar giderek daha çok satılıyor. Ancak fiyatları birçok aile için hâlâ çok yüksek. Şarj noktaları çoğalıyor; bu nedenle uzun yolculuklar daha az zahmetli hale geliyor. Batarya üretimi pahalı olsa da bu arabalar şehirde daha az kirletiyor.",
+    "gaps": [
+      {
+        "answer": "However",
+        "options": [
+          "However",
+          "Therefore",
+          "Because"
+        ],
+        "kind": "Zıtlık",
+        "why": "Satışların artışına karşı bir engel: “ancak”."
+      },
+      {
+        "answer": "as a result",
+        "options": [
+          "as a result",
+          "nevertheless",
+          "although"
+        ],
+        "kind": "Sonuç",
+        "why": "Şarj noktalarının çoğalmasının sonucu: “bu nedenle”."
+      },
+      {
+        "answer": "Although",
+        "options": [
+          "Although",
+          "Because",
+          "So that"
+        ],
+        "kind": "Taviz",
+        "why": "“Batarya pahalı olsa da”: taviz. Because anlamı bozar."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-homework",
+    "language": "en",
+    "text": "Some teachers think that homework is useless. {1}, others say that it helps pupils to revise. Not every family has the same time to give to it; {2}, the gaps between pupils can grow. {3} the homework is short, it remains useful.",
+    "tr": "Bazı öğretmenler ev ödevinin işe yaramadığını düşünüyor. Buna karşılık diğerleri bunun öğrencilerin tekrar yapmasına yardım ettiğini söylüyor. Her ailenin buna ayıracak aynı zamanı yok; bu yüzden öğrenciler arasındaki farklar büyüyebilir. Ödev kısa olduğu sürece faydalı kalır.",
+    "gaps": [
+      {
+        "answer": "In contrast",
+        "options": [
+          "In contrast",
+          "As a result",
+          "Provided that"
+        ],
+        "kind": "Karşıtlık",
+        "why": "İki karşıt görüşü karşılaştırıyor: “buna karşılık”."
+      },
+      {
+        "answer": "as a result",
+        "options": [
+          "as a result",
+          "nevertheless",
+          "although"
+        ],
+        "kind": "Sonuç",
+        "why": "Zaman eşitsizliğinin sonucu: “bu yüzden”."
+      },
+      {
+        "answer": "As long as",
+        "options": [
+          "As long as",
+          "Unless",
+          "So that"
+        ],
+        "kind": "Koşul",
+        "why": "“Kısa olduğu sürece”: koşul. Unless olumsuz koşul, so that amaç bildirir."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-streaming",
+    "language": "en",
+    "text": "Streaming platforms have changed our habits. {1}, we can watch a film whenever we want, without waiting for television. {2} this freedom is pleasant, it sometimes leads us to watch too many episodes in a row. {3}, some viewers set themselves a limit before they start.",
+    "tr": "Dijital yayın platformları alışkanlıklarımızı değiştirdi. Artık televizyonu beklemeden istediğimiz zaman film izleyebiliyoruz. Bu özgürlük hoş olsa da bazen art arda çok fazla bölüm izletiyor. Bu nedenle bazı izleyiciler başlamadan önce kendilerine bir sınır koyuyor.",
+    "gaps": [
+      {
+        "answer": "Nowadays",
+        "options": [
+          "Nowadays",
+          "However",
+          "Otherwise"
+        ],
+        "kind": "Zaman",
+        "why": "Değişimin yeni durumu: “bugünlerde, artık”."
+      },
+      {
+        "answer": "Although",
+        "options": [
+          "Although",
+          "So that",
+          "Unless"
+        ],
+        "kind": "Taviz",
+        "why": "“Hoş olsa da”: taviz."
+      },
+      {
+        "answer": "For this reason",
+        "options": [
+          "For this reason",
+          "In contrast",
+          "Even though"
+        ],
+        "kind": "Sonuç",
+        "why": "Fazla izleme riskinin sonucu: “bu nedenle”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-neighbours",
+    "language": "en",
+    "text": "Noise is one of the main causes of conflict between neighbours. {1}, a simple conversation is often enough to solve the problem. {2} the conflict goes on, the situation gets worse. {3} the neighbour refuses to talk, you can always contact the landlord.",
+    "tr": "Gürültü komşular arasındaki çatışmaların başlıca nedenlerinden biri. Yine de basit bir konuşma çoğu zaman sorunu çözmeye yeter. Çatışma sürdükçe durum kötüleşir. Komşu konuşmayı reddederse ev sahibiyle her zaman iletişime geçebilirsin.",
+    "gaps": [
+      {
+        "answer": "Nevertheless",
+        "options": [
+          "Nevertheless",
+          "Therefore",
+          "Because"
+        ],
+        "kind": "Zıtlık",
+        "why": "Büyük soruna karşın çözümün basit olması: “yine de”."
+      },
+      {
+        "answer": "As",
+        "options": [
+          "As",
+          "Although",
+          "So that"
+        ],
+        "kind": "Zaman",
+        "why": "“Sürdükçe kötüleşir”: eş zamanlı artış, as."
+      },
+      {
+        "answer": "If",
+        "options": [
+          "If",
+          "So that",
+          "Before"
+        ],
+        "kind": "Koşul",
+        "why": "“Komşu reddederse”: koşul."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-greenery",
+    "language": "en",
+    "text": "Cities are planting more and more trees. {1}, they give shade during very hot summers. {2}, green spaces improve air quality. {3} the work is expensive, many councils consider the investment worthwhile.",
+    "tr": "Şehirler giderek daha çok ağaç dikiyor. Öncelikle çok sıcak yazlarda gölge sağlıyorlar. Ayrıca yeşil alanlar hava kalitesini iyileştiriyor. Çalışmalar pahalı olsa da birçok belediye yatırımı değerli buluyor.",
+    "gaps": [
+      {
+        "answer": "First of all",
+        "options": [
+          "First of all",
+          "However",
+          "Therefore"
+        ],
+        "kind": "Sıralama",
+        "why": "Sayılan nedenlerden ilki: “öncelikle”."
+      },
+      {
+        "answer": "In addition",
+        "options": [
+          "In addition",
+          "Otherwise",
+          "Although"
+        ],
+        "kind": "Ekleme",
+        "why": "İkinci bir yarar ekleniyor: “ayrıca”."
+      },
+      {
+        "answer": "Although",
+        "options": [
+          "Although",
+          "Because",
+          "So that"
+        ],
+        "kind": "Taviz",
+        "why": "“Pahalı olsa da”: taviz. Because anlamı bozar."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-train",
+    "language": "en",
+    "text": "For a journey of less than five hours, the train is often the better choice. {1}, it produces far less CO2 than a plane. {2}, stations are usually in the city centre. {3} a train ticket is sometimes more expensive, many travellers prefer it.",
+    "tr": "Beş saatten kısa yolculuklarda tren çoğu zaman daha iyi seçimdir. Gerçekten de uçaktan çok daha az CO2 üretir. Ayrıca garlar genellikle şehir merkezindedir. Tren bileti bazen daha pahalı olsa da birçok yolcu treni tercih ediyor.",
+    "gaps": [
+      {
+        "answer": "In fact",
+        "options": [
+          "In fact",
+          "However",
+          "Unless"
+        ],
+        "kind": "Açıklama",
+        "why": "Trenin neden iyi bir seçim olduğunu açıklıyor: “gerçekten de”."
+      },
+      {
+        "answer": "Moreover",
+        "options": [
+          "Moreover",
+          "Otherwise",
+          "Although"
+        ],
+        "kind": "Ekleme",
+        "why": "İkinci bir avantaj: “üstelik”."
+      },
+      {
+        "answer": "Although",
+        "options": [
+          "Although",
+          "Because",
+          "As soon as"
+        ],
+        "kind": "Taviz",
+        "why": "“Pahalı olsa da”: taviz."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-internship",
+    "language": "en",
+    "text": "A first internship is often an important step. {1}, it lets you discover the world of work. Places are limited; {2}, it is better to apply several months in advance. {3} you show that you are curious and serious, you may even find a job there.",
+    "tr": "İlk staj çoğu zaman önemli bir adımdır. Birincisi iş dünyasını keşfetmeye olanak tanır. Kontenjanlar sınırlı; bu yüzden aylar öncesinden başvurmak daha iyidir. Meraklı ve ciddi olduğunu gösterirsen orada iş bile bulabilirsin.",
+    "gaps": [
+      {
+        "answer": "Firstly",
+        "options": [
+          "Firstly",
+          "However",
+          "Otherwise"
+        ],
+        "kind": "Sıralama",
+        "why": "Önemli olmasının ilk nedeni: “birincisi”."
+      },
+      {
+        "answer": "that is why",
+        "options": [
+          "that is why",
+          "even so",
+          "although"
+        ],
+        "kind": "Sonuç",
+        "why": "Kontenjanın sınırlı olmasının sonucu: “bu yüzden”."
+      },
+      {
+        "answer": "If",
+        "options": [
+          "If",
+          "Unless",
+          "So that"
+        ],
+        "kind": "Koşul",
+        "why": "“Gösterirsen”: koşul."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  }
+]

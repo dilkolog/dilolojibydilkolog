@@ -238,6 +238,8 @@ Birleşti: #37–#285 (aşağıdaki liste kronolojik değil, konuya göre birikm
 
 - **Telaffuz dersleri (2026-10-20):** `data/guide/lessons-pron.ts` (`PRON_LESSONS`, 9 ders: FR burun ünlüleri / u-ou-r / liaison, ES ünlü-h-b/v / j-c-ll-rr / vurgu-tilde, EN th-w-v / kısa-uzun ünlü / -ed -s ve vurgu; konu kimlikleri `basics_<dil>_pron_*`, A1–A2, Türkçe konuşana göre) ve her ders için 7 ek soru `data/guide/checks/{fr,es,en}-pron.json` (havuz 10 şartı). İkinci ders birincisini önkoşul sayar (`prereqs.ts`). **Seçenek yazarken:** havuz testi seçenekleri küçük harfe çevirip karşılaştırır, yani `CA-sa` ile `ca-SA` aynı sayılır; vurgu sorularında seçenekleri “İlk hece / Son hece” gibi yaz.
 
+- **Metin akışı +30 paragraf (2026-10-20):** `data/flow/{fr,es,en}-3.json` (dil başına 10: dil öğrenmek, sağlıklı beslenme, müze, elektrikli araba, ev ödevi, dijital yayın, komşu gürültüsü, kentsel yeşil, tren, staj; paragraf başına 3 boşluk, toplam 25/dil). Seçenek yazarken tek cevap kalsın diye yanlış seçenekleri dilbilgisi ya da yön bakımından geçersiz yap (ör. subjonctif/subjuntivo isteyen bağlaç gösterge cümlesinde); “neden” ile “taviz” gibi iki bağlaç aynı cümleye uyuyorsa cümleye ipucu ekle (en-languages'ta “still”). **Rol yapma sahneleri eklenmedi:** `Monki.tsx` `SCENES` her sahne için çizim ister (`ROLE_ART`); yeni sahne için sahibi çizim üretince eklenir.
+
 ## Bekleyenler (2026-10-12)
 - **Kullanıcı:** yeni yedek dosyası → kişisel öğrenme analizi (dikte/geri çeviri kullanımı, cümle kartı tutma oranı, CEFR kapsamı); Ayarlar → Kullanım'daki oyun/fiil sayıları birkaç hafta birikince sadeleştirme.
 - Görsel test referansları: Actions kotası dönünce (`gh workflow run snapshots.yml --ref main`).
