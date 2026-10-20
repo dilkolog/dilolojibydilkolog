@@ -172,4 +172,26 @@ describe('DataSettings', () => {
     await waitFor(() => !container.querySelector('[role="alertdialog"]') && !undoButton(), 5000)
     expect(undoButton()).toBeUndefined()
   })
+
+  it('allows copying word list in Quizlet format', async () => {
+    const writeTextMock = vi.fn().mockResolvedValue(undefined)
+    Object.defineProperty(navigator, 'clipboard', {
+      value: { writeText: writeTextMock },
+      configurable: true,
+      writable: true,
+    })
+
+    await mount()
+    const quizletBtn = Array.from(container.querySelectorAll('button')).find(
+      (b) => b.textContent?.trim() === 'Quizlet',
+    )
+    expect(quizletBtn).toBeDefined()
+
+    await act(async () => {
+      quizletBtn!.click()
+    })
+
+    expect(writeTextMock).toHaveBeenCalled()
+    expect(writeTextMock.mock.calls[0][0]).toContain('bonjour\tmerhaba')
+  })
 })

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addExample, ankiHeader, createEntry, DEFAULT_FORMAT, entryToInput, findForm, guessPartOfSpeech, importWords, isHeaderRow, parseCollocations, parseDelimited, parseWordList, removeExample, updateEntry, WordInputError, wordKeys } from './wordInput'
+import { addExample, ankiHeader, autoDetectColumns, createEntry, DEFAULT_FORMAT, detectSource, entryToInput, findForm, guessPartOfSpeech, importWords, isHeaderRow, parseCollocations, parseDelimited, parseRawGrid, parseWordList, removeExample, updateEntry, WordInputError, wordKeys } from './wordInput'
 
 const NOW = new Date('2026-10-01T10:00:00Z')
 
@@ -197,6 +197,94 @@ describe('parseWordList (bulk formats)', () => {
     expect(r.entries.map((e) => e.tags)).toEqual([['dizi', 's1'], ['dizi', 's1']])
   })
 })
+
+describe('Quizlet & Memrise import wizard, column mapping and detection', () => {
+  it('auto-detects columns from standard headers (English, Turkish, Quizlet, Memrise)', () => {
+    expect(autoDetectColumns(['Word', 'Meaning', 'Example'], true)).toEqual(['word', 'meaning', 'example'])
+    expect(autoDetectColumns(['Front', 'Back'], true)).toEqual(['word', 'meaning'])
+    expect(autoDetectColumns(['Term', 'Definition'], true)).toEqual(['word', 'meaning'])
+    expect(autoDetectColumns(['Kelime', 'Anlam', 'Örnek Cümle', 'Çeviri'], true)).toEqual(['word', 'meaning', 'example', 'exampleTranslation'])
+    expect(autoDetectColumns(['Anlam', 'Kelime'], true)).toEqual(['meaning', 'word'])
+    expect(autoDetectColumns(['English', 'Turkish', 'Audio', 'Part of speech'], true)).toEqual(['word', 'meaning', 'ignore', 'notes'])
+    expect(autoDetectColumns(['#', 'Lemma', 'Translation', 'Tags'], true)).toEqual(['ignore', 'word', 'meaning', 'tags'])
+  })
+
+  it('auto-detects columns from raw cell content when headers are absent', () => {
+    expect(autoDetectColumns(['apple', 'elma'], false)).toEqual(['word', 'meaning'])
+    // Turkish in first cell, foreign in second -> meaning, word
+    expect(autoDetectColumns(['ağaç', 'arbre'], false)).toEqual(['meaning', 'word'])
+    // 3 columns with a sentence -> word, meaning, example
+    expect(autoDetectColumns(['thrive', 'gelişmek', 'Plants thrive in the spring.'], false)).toEqual(['word', 'meaning', 'example'])
+  })
+
+  it('detects sources accurately (Quizlet, Memrise, Anki, CSV)', () => {
+    const quizletText = 'thrive\tgelişmek\nabandon\tterk etmek'
+    const qDetect = detectSource(quizletText)
+    expect(qDetect.preset).toBe('quizlet')
+    expect(qDetect.delimiter).toBe('tab')
+    expect(qDetect.columns).toEqual(['word', 'meaning'])
+
+    const memriseText = 'Word\tMeaning\tPart of Speech\tExample\nthrive\tgelişmek\tverb\tPlants thrive in spring.'
+    const mDetect = detectSource(memriseText)
+    expect(mDetect.preset).toBe('memrise')
+    expect(mDetect.delimiter).toBe('tab')
+    expect(mDetect.hasHeader).toBe(true)
+
+    const ankiText = '#separator:tab\n#html:true\nthrive\tgelişmek'
+    const aDetect = detectSource(ankiText)
+    expect(aDetect.preset).toBe('anki')
+
+    const csvText = '"thrive","gelişmek"\n"decision","karar"'
+    const cDetect = detectSource(csvText)
+    expect(cDetect.preset).toBe('csv')
+  })
+
+  it('parseRawGrid returns raw cells without reordering', () => {
+    const text = 'gelişmek\tthrive\tPlants thrive.'
+    const raw = parseRawGrid(text, { term: 'tab', row: 'newline' })
+    expect(raw).toEqual([['gelişmek', 'thrive', 'Plants thrive.']])
+  })
+
+  it('parseWordList respects custom column mapping', () => {
+    const text = '1\tverb\telma\tapple\tShe ate an apple.\tBir elma yedi.'
+    const fmt = {
+      term: 'tab' as const,
+      row: 'newline' as const,
+      columns: ['ignore', 'notes', 'meaning', 'word', 'example', 'exampleTranslation'] as const,
+    }
+    const mapped = parseWordList(text, fmt)
+    // [word, meaning, example, exampleTranslation, notes, tags]
+    expect(mapped[0]).toEqual(['apple', 'elma', 'She ate an apple.', 'Bir elma yedi.', 'verb', ''])
+  })
+
+  it('importWords imports entries mapped with columns, notes, tags and skipHeader', () => {
+    const text = [
+      'ID\tHedef\tTürkçe\tNot\tEtiket',
+      '101\tthrive\tgelişmek, büyümek\tdüzenli fiil\tA2, biyoloji',
+      '102\tabandon\tterk etmek\tfiil\tB1',
+    ].join('\n')
+
+    const fmt = {
+      term: 'tab' as const,
+      row: 'newline' as const,
+      columns: ['ignore', 'word', 'meaning', 'notes', 'tags'] as const,
+      skipHeader: true,
+      tags: 'genel',
+    }
+
+    const r = importWords(text, 'en', new Set(), NOW, fmt)
+    expect(r.errors).toEqual([])
+    expect(r.entries).toHaveLength(2)
+    expect(r.entries[0].lemma).toBe('thrive')
+    expect(r.entries[0].senses[0].gloss).toBe('gelişmek')
+    expect(r.entries[0].senses[0].altGlosses).toEqual(['büyümek'])
+    expect(r.entries[0].notes).toBe('düzenli fiil')
+    expect(r.entries[0].tags).toEqual(['genel', 'A2', 'biyoloji'])
+    expect(r.entries[1].lemma).toBe('abandon')
+    expect(r.entries[1].notes).toBe('fiil')
+  })
+})
+
 
 describe('guessPartOfSpeech', () => {
   it.each([

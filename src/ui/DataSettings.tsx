@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { parseBackup, restoreBackup, type Backup, type Settings } from '../data/db'
-import { dictionaryHtml, flashcardsHtml, toCsv, toXlsx } from '../data/exportList'
+import { dictionaryHtml, flashcardsHtml, toCsv, toMemriseTsv, toQuizletText, toXlsx } from '../data/exportList'
 import { openPrint } from './printWindow'
 import { db } from '../data/instance'
 import { getSafetySnapshot, restoreSafetySnapshot, saveSafetySnapshot, type SafetySnapshot } from '../data/safetyBackup'
@@ -106,6 +106,18 @@ export function DataSettings({
     if (!openPrint(html)) setMessage({ ok: false, text: 'Yeni pencere açılamadı; tarayıcı açılır pencereleri engelliyor olabilir.' })
   }
 
+  const exportQuizletOrMemrise = async (format: 'quizlet' | 'memrise') => {
+    const vocabulary = await db.vocabulary.where('language').equals(lang).toArray()
+    const words = vocabulary.filter((e) => e.source !== 'sample')
+    const content = format === 'quizlet' ? toQuizletText(words, { includeExample: true }) : toMemriseTsv(words)
+    await navigator.clipboard.writeText(content)
+    showToast(
+      format === 'quizlet'
+        ? `${words.length} kelime Quizlet formatında panoya kopyalandı!`
+        : `${words.length} kelime Memrise formatında panoya kopyalandı!`,
+    )
+  }
+
   const resetLanguage = async () => {
     const ids = (await db.vocabulary.where('language').equals(lang).primaryKeys()) as string[]
     await db.transaction('rw', [db.wordStates, db.events, db.mistakes, db.meta], async () => {
@@ -173,6 +185,16 @@ export function DataSettings({
           ·{' '}
           <button className="link small" onClick={() => exportList(true, 'csv')}>
             üç dil
+          </button>
+        </p>
+        <p className="small muted">
+          Quizlet / Memrise formatı (panoya kopyala):{' '}
+          <button className="link small" onClick={() => exportQuizletOrMemrise('quizlet')}>
+            Quizlet
+          </button>{' '}
+          ·{' '}
+          <button className="link small" onClick={() => exportQuizletOrMemrise('memrise')}>
+            Memrise (TSV)
           </button>
         </p>
       </section>

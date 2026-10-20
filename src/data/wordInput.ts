@@ -303,6 +303,9 @@ export interface ImportResult {
   warnings: { line: number; message: string }[]
 }
 
+/** Column roles for importing spreadsheets and flashcard deck exports. */
+export type ColumnRole = 'word' | 'meaning' | 'example' | 'exampleTranslation' | 'notes' | 'tags' | 'ignore'
+
 /** How a pasted word list is laid out (Quizlet-style options). */
 export type TermSeparator = 'auto' | 'tab' | 'comma' | 'semicolon' | 'dash' | 'equals' | 'colon' | 'custom'
 export type RowSeparator = 'newline' | 'semicolon' | 'custom'
@@ -312,8 +315,12 @@ export interface ListFormat {
   row: RowSeparator
   customTerm?: string
   customRow?: string
-  /** Meaning comes first ("karar - decision"). */
+  /** Meaning comes first ("karar - decision"). Kept for backward compatibility. */
   swap?: boolean
+  /** Explicit column mapping (e.g. ['word', 'meaning', 'example']). */
+  columns?: readonly ColumnRole[]
+  /** Whether to explicitly skip the first row (e.g. header). */
+  skipHeader?: boolean
   /** Tags added to every imported word. */
   tags?: string
 }
@@ -349,6 +356,221 @@ export function detectTermSeparator(lines: string[]): Exclude<TermSeparator, 'au
 const HEADER_WORDS = new Set(['kelime', 'sozcuk', 'word', 'term', 'front', 'on yuz', 'anlam', 'meaning', 'back', 'arka yuz', 'translation', 'ceviri', 'definition', 'tanim'])
 export const isHeaderRow = (cells: readonly string[]) => HEADER_WORDS.has(stripDiacritics(normalize(cells[0] ?? '')).replace(/ı/g, 'i'))
 
+const WORD_HEADER_RE = /^(word|lemma|term|front|prompt|expression|phrase|hedef|kelime|sozcuk|english|french|spanish|francais|espagnol|almanca|ingilizce|fransizca|ispanyolca)$/i
+const MEANING_HEADER_RE = /^(meaning|definition|back|solution|translation|anlam|tanim|turkce|turkish|karsilik|ceviri)$/i
+const EXAMPLE_HEADER_RE = /^(example|sentence|sample|context|ornek|cumle|ornek\s*cumle|baglam)$/i
+const EXAMPLE_TRANS_HEADER_RE = /^(example\s*translation|sentence\s*translation|ornek\s*ceviri|cumle\s*ceviri|ornek\s*anlam)$/i
+const NOTES_HEADER_RE = /^(notes?|hint|extra|explanation|comment|not|notlar|aciklama|ipucu|part\s*of\s*speech|tur)$/i
+const TAGS_HEADER_RE = /^(tags?|labels?|category|categories|etiket|etiketler|kategori)$/i
+const IGNORE_HEADER_RE = /^(id|guid|#|no|index|audio|sound|media|image|picture|photo|ses|resim|gorsel|deck|notetype)$/i
+
+/**
+ * Guesses the role of each column from header titles or data row patterns.
+ */
+export function autoDetectColumns(
+  sampleRow: readonly string[],
+  hasHeader: boolean,
+  _language?: TargetLanguage,
+): ColumnRole[] {
+  if (!sampleRow.length) return ['word', 'meaning']
+
+  if (hasHeader) {
+    let wordAssigned = false
+    let meaningAssigned = false
+    let exampleAssigned = false
+    let exTransAssigned = false
+
+    return sampleRow.map((cell) => {
+      const clean = stripDiacritics(normalize(cell ?? '')).replace(/ı/g, 'i').trim()
+      if (IGNORE_HEADER_RE.test(clean)) return 'ignore'
+      if (EXAMPLE_TRANS_HEADER_RE.test(clean)) {
+        exTransAssigned = true
+        return 'exampleTranslation'
+      }
+      if (EXAMPLE_HEADER_RE.test(clean)) {
+        exampleAssigned = true
+        return 'example'
+      }
+      if (NOTES_HEADER_RE.test(clean)) return 'notes'
+      if (TAGS_HEADER_RE.test(clean)) return 'tags'
+      if (!wordAssigned && WORD_HEADER_RE.test(clean)) {
+        wordAssigned = true
+        return 'word'
+      }
+      if (!meaningAssigned && MEANING_HEADER_RE.test(clean)) {
+        meaningAssigned = true
+        return 'meaning'
+      }
+      // If meaning is already assigned and header is "ceviri" or "translation", it refers to sentence translation
+      if (meaningAssigned && (clean === 'ceviri' || clean === 'translation') && !exTransAssigned) {
+        exTransAssigned = true
+        return 'exampleTranslation'
+      }
+      if (!wordAssigned) {
+        wordAssigned = true
+        return 'word'
+      }
+      if (!meaningAssigned) {
+        meaningAssigned = true
+        return 'meaning'
+      }
+      if (!exampleAssigned) {
+        exampleAssigned = true
+        return 'example'
+      }
+      return 'ignore'
+    })
+  }
+
+
+  // Without headers: inspect data cells
+  if (sampleRow.length === 2) {
+    const c0 = sampleRow[0]?.trim() ?? ''
+    const c1 = sampleRow[1]?.trim() ?? ''
+    const tr0 = /[çğıöşüÇĞİÖŞÜ]/.test(c0)
+    const tr1 = /[çğıöşüÇĞİÖŞÜ]/.test(c1)
+    if (tr0 && !tr1) return ['meaning', 'word']
+    return ['word', 'meaning']
+  }
+
+  let wordAssigned = false
+  let meaningAssigned = false
+  let exampleAssigned = false
+
+  return sampleRow.map((cell, idx) => {
+    const c = cell?.trim() ?? ''
+    if (!c) return 'ignore'
+    if (/^\[sound:.*\]$/.test(c) || /\.(mp3|wav|ogg|jpg|png|webp)$/i.test(c)) return 'ignore'
+    if (looksLikeSentence(c) && !exampleAssigned) {
+      exampleAssigned = true
+      return 'example'
+    }
+    if (!wordAssigned) {
+      wordAssigned = true
+      return 'word'
+    }
+    if (!meaningAssigned) {
+      meaningAssigned = true
+      return 'meaning'
+    }
+    if (!exampleAssigned && looksLikeSentence(c)) {
+      exampleAssigned = true
+      return 'example'
+    }
+    if (idx === 3 && exampleAssigned) {
+      return 'exampleTranslation'
+    }
+    return 'notes'
+  })
+}
+
+export interface DetectedSource {
+  preset: 'quizlet' | 'memrise' | 'anki' | 'csv' | 'generic'
+  label: string
+  description: string
+  delimiter: TermSeparator
+  customDelimiter?: string
+  hasHeader: boolean
+  columns: ColumnRole[]
+}
+
+/**
+ * Analyzes the text and identifies source format (Quizlet, Memrise, Anki, CSV).
+ */
+export function detectSource(text: string, language?: TargetLanguage): DetectedSource {
+  const trimmed = text.trim()
+  if (!trimmed) {
+    return {
+      preset: 'generic',
+      label: 'Metin Listesi',
+      description: 'Her satırda bir kelime ve anlam',
+      delimiter: 'auto',
+      hasHeader: false,
+      columns: ['word', 'meaning'],
+    }
+  }
+
+  if (trimmed.startsWith('#separator:') || trimmed.startsWith('#html:')) {
+    const anki = ankiHeader(text)
+    const lines = text.split('\n').filter((l) => l.trim() && !l.startsWith('#'))
+    const firstLine = lines[0] ?? ''
+    const sep = anki.term === 'tab' ? '\t' : anki.term === 'semicolon' ? ';' : anki.term === 'comma' ? ',' : anki.customTerm ?? '\t'
+    const cells = firstLine.split(sep)
+    return {
+      preset: 'anki',
+      label: 'Anki Düz Metin',
+      description: 'Anki "#separator" başlıkları algılandı',
+      delimiter: anki.term ?? 'tab',
+      customDelimiter: anki.customTerm,
+      hasHeader: false,
+      columns: autoDetectColumns(cells, false, language),
+    }
+  }
+
+  const lines = trimmed.split('\n').filter((l) => l.trim())
+  const firstLine = lines[0] ?? ''
+  const sep = detectTermSeparator(lines)
+
+  let sampleCells: string[] = []
+  if (sep === 'tab') {
+    sampleCells = firstLine.split('\t')
+  } else if (sep === 'comma') {
+    sampleCells = parseDelimited(firstLine)[0] ?? []
+  } else if (sep === 'semicolon') {
+    sampleCells = firstLine.split(';')
+  } else {
+    sampleCells = firstLine.split(TERM_SEP[sep] ?? '\t')
+  }
+
+  const hasHeader = isHeaderRow(sampleCells)
+  const cols = autoDetectColumns(sampleCells, hasHeader, language)
+
+  if (sep === 'tab' && sampleCells.length === 2 && !hasHeader) {
+    return {
+      preset: 'quizlet',
+      label: 'Quizlet Dışa Aktarımı',
+      description: 'Sekme ile ayrılmış 2 sütun (Kelime ve Anlam)',
+      delimiter: 'tab',
+      hasHeader: false,
+      columns: cols,
+    }
+  }
+
+  if (
+    (sep === 'tab' && sampleCells.length >= 3) ||
+    sampleCells.some((c) => /prompt|solution|target/i.test(c))
+  ) {
+    return {
+      preset: 'memrise',
+      label: 'Memrise Destesi',
+      description: `${sampleCells.length} sütunlu sekmeli liste (TSV)`,
+      delimiter: 'tab',
+      hasHeader,
+      columns: cols,
+    }
+  }
+
+  if (sep === 'comma') {
+    return {
+      preset: 'csv',
+      label: 'CSV Tablosu',
+      description: 'Virgülle ayrılmış elektronik tablo formatı',
+      delimiter: 'comma',
+      hasHeader,
+      columns: cols,
+    }
+  }
+
+  return {
+    preset: 'generic',
+    label: 'Metin Listesi',
+    description: `Ayrıştırma yöntemi: ${sep}`,
+    delimiter: sep,
+    hasHeader,
+    columns: cols,
+  }
+}
+
 /**
  * What the "#…" lines at the top of an Anki "Notes in Plain Text" export say: the separator and the columns that are
  * not card fields (the note's id, its type, deck and tags), numbered from 1. Without these headers: nothing special.
@@ -381,9 +603,9 @@ function looksLikeSentence(t: string): boolean {
   return x.split(/\s+/).length >= 3 || /[.!?…]$/.test(x)
 }
 
-export function parseWordList(text: string, fmt: ListFormat = DEFAULT_FORMAT): string[][] {
+/** Parses text into rows of raw cells without reordering or column mapping. */
+export function parseRawGrid(text: string, fmt: Pick<ListFormat, 'term' | 'row' | 'customTerm' | 'customRow'> = DEFAULT_FORMAT): string[][] {
   const trimmed = text.trim()
-  // JSON: [{word, meaning, …}] or Quizlet-like [{term, definition}].
   if (trimmed.startsWith('[')) {
     try {
       const data = JSON.parse(trimmed) as Record<string, unknown>[]
@@ -397,28 +619,26 @@ export function parseWordList(text: string, fmt: ListFormat = DEFAULT_FORMAT): s
         str(o.confusables),
       ])
     } catch {
-      // Not JSON after all; fall through to text parsing.
+      // Not JSON; fall through
     }
   }
   const rowSep = fmt.row === 'semicolon' ? ';' : fmt.row === 'custom' && fmt.customRow ? fmt.customRow : '\n'
   const lines = text
     .replace(/\r/g, '')
     .split(rowSep)
-    .filter((l) => l.trim() && !l.startsWith('#')) // Anki exports start with "#separator:tab" headers.
+    .filter((l) => l.trim() && !l.startsWith('#'))
   const anki = text.trimStart().startsWith('#') ? ankiHeader(text) : null
   const term = fmt.term !== 'auto' ? fmt.term : anki?.term ?? detectTermSeparator(lines)
-  if (term === 'custom' && !fmt.customTerm && anki?.customTerm) fmt = { ...fmt, customTerm: anki.customTerm }
+  const customTerm = term === 'custom' ? (fmt.customTerm || anki?.customTerm) : undefined
+
   let rows: string[][]
   if (term === 'tab' || term === 'comma') {
-    // Spreadsheet-like: full CSV/TSV parsing with quotes, all columns kept.
     rows = term === 'tab' ? lines.map((l) => l.split('\t')) : parseDelimited(lines.join('\n'))
   } else if (anki && (term === 'semicolon' || term === 'custom')) {
-    // An Anki export names its columns (some are not card fields) and has them all in every row: split at every separator.
-    const sep = term === 'custom' ? fmt.customTerm || '\t' : ';'
+    const sep = term === 'custom' ? customTerm || '\t' : ';'
     rows = lines.map((l) => l.split(sep))
   } else {
-    // Word-list notations split on the FIRST separator only, so meanings may contain it.
-    const sep = term === 'custom' ? fmt.customTerm || '\t' : TERM_SEP[term]
+    const sep = term === 'custom' ? customTerm || '\t' : TERM_SEP[term]
     const re = term === 'dash' ? /\s[-–—]\s/ : null
     const cut = (l: string): [string, string] | null => {
       const m = re ? l.match(re) : null
@@ -428,20 +648,40 @@ export function parseWordList(text: string, fmt: ListFormat = DEFAULT_FORMAT): s
     }
     rows = lines.map((l) => {
       const first = cut(l)
-      // "breeze -" (meaning left empty): drop the dangling separator from the word.
       if (!first) return [l.replace(/\s*([-–—=:;|]|\t)\s*$/, '')]
       const [word, rest] = first
-      // "word - meaning - sentence it was met in [- its translation]": a third part that reads like a
-      // sentence becomes the example; otherwise the separator stays part of the meaning.
       const second = cut(rest)
       if (!second || !looksLikeSentence(second[1].split(re ?? sep)[0] ?? '')) return [word, rest]
       const third = cut(second[1])
       return third && looksLikeSentence(third[1]) ? [word, second[0], third[0], third[1]] : [word, second[0], second[1]]
     })
   }
-  // The columns the Anki header marks as not card fields (note id, type, deck, tags) go; the rest is plain text (markup, sound tags and entities removed).
-  rows = rows.map((r) => r.filter((_, i) => !anki?.skip.has(i)).map((c) => plainField(c)))
-  return fmt.swap ? rows.map(([a = '', b = '', ...rest]) => [b, a, ...rest]) : rows
+
+  return rows.map((r) => r.filter((_, i) => !anki?.skip.has(i)).map((c) => plainField(c)))
+}
+
+export function parseWordList(text: string, fmt: ListFormat = DEFAULT_FORMAT): string[][] {
+  const rawRows = parseRawGrid(text, fmt)
+
+  if (fmt.columns && fmt.columns.length > 0) {
+    const wordIdx = fmt.columns.indexOf('word')
+    const meaningIdx = fmt.columns.indexOf('meaning')
+    const exampleIdx = fmt.columns.indexOf('example')
+    const exTransIdx = fmt.columns.indexOf('exampleTranslation')
+    const notesIdx = fmt.columns.indexOf('notes')
+    const tagsIdx = fmt.columns.indexOf('tags')
+
+    return rawRows.map((cells) => [
+      wordIdx >= 0 ? (cells[wordIdx] ?? '') : '',
+      meaningIdx >= 0 ? (cells[meaningIdx] ?? '') : '',
+      exampleIdx >= 0 ? (cells[exampleIdx] ?? '') : '',
+      exTransIdx >= 0 ? (cells[exTransIdx] ?? '') : '',
+      notesIdx >= 0 ? (cells[notesIdx] ?? '') : '',
+      tagsIdx >= 0 ? (cells[tagsIdx] ?? '') : '',
+    ])
+  }
+
+  return fmt.swap ? rawRows.map(([a = '', b = '', ...rest]) => [b, a, ...rest]) : rawRows
 }
 
 export function importWords(
@@ -456,12 +696,18 @@ export function importWords(
   const seen = new Set(existingIds)
   rows.forEach((cells, i) => {
     const line = i + 1
-    if (i === 0 && isHeaderRow(cells)) return
-    const [word, meaning, example, exampleTranslation, collocations, confusables] = cells.map((c) => c.trim())
+    if (i === 0 && (fmt.skipHeader || isHeaderRow(cells))) return
+    const [word, meaning, example, exampleTranslation, extra1, extra2] = cells.map((c) => c.trim())
+    const notes = fmt.columns ? extra1 : undefined
+    const collocations = fmt.columns ? undefined : extra1
+    const confusables = fmt.columns ? undefined : extra2
+    const cellTags = fmt.columns && extra2 ? extra2 : undefined
+    const tags = [fmt.tags, cellTags].filter(Boolean).join(', ')
+
     try {
       // Spread `now` by row so the file order is kept as the introduction order.
       const entry = createEntry(
-        { word, meaning, example, exampleTranslation, collocations, confusables, tags: fmt.tags },
+        { word, meaning, example, exampleTranslation, collocations, confusables, notes, tags: tags || undefined },
         language,
         new Date(now.getTime() + i),
         'import',
@@ -481,6 +727,7 @@ export function importWords(
   })
   return result
 }
+
 
 // ---------------------------------------------------------------------------
 // Editing

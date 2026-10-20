@@ -78,6 +78,7 @@ describe('RegisterRound', () => {
       await click(optBtn)
       const nextBtn = byText(host, 'Devam')
       await click(nextBtn)
+      await wait()
     }
     expect(host.textContent).toContain('Tur bitti')
     expect(host.querySelector('.game-result')).not.toBeNull()
