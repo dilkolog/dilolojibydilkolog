@@ -133,6 +133,28 @@ export async function publishCard(id: string, body: Record<string, unknown>, tod
   return next
 }
 
+/** What an invite shows of the one who sent it, before anything is added: their card's face, never an id. */
+export interface InviterCard {
+  name: string
+  avatar: string
+  color: string
+  level: number
+}
+
+/**
+ * The card behind an invite code, so the invited person sees who it really is (the name in the link is only what the
+ * link says) before becoming friends. Null for a code no one holds, 'self' for one's own.
+ */
+export async function inviterCard(id: string, code: string): Promise<InviterCard | 'self' | null> {
+  if (!CODE.test(code)) return null
+  const store = await friendStore()
+  const owner = await store.ownerOf(code)
+  if (!owner) return null
+  if (owner === id) return 'self'
+  const card = await store.card(owner)
+  return card?.code ? { name: card.name, avatar: card.avatar, color: card.color, level: card.level } : null
+}
+
 /** Follows the code's owner. Errors: unknown code, one's own code, too many friends. */
 export async function addFriend(id: string, code: string): Promise<'ok' | 'unknown' | 'self' | 'full'> {
   if (!CODE.test(code)) return 'unknown'

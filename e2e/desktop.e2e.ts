@@ -3137,7 +3137,7 @@ test('reading screen displays daily micro news with offline capability and bulle
 })
 
 
-test('invite link: opening /?davet=code adds the inviter as a friend, says who, and takes the link off the address', async ({ page }) => {
+test('invite link: opening /?davet=code asks first, then adds the inviter as a friend, says who, and takes the link off the address', async ({ page }) => {
   const added: string[] = []
   const sent: string[] = []
   const me = { code: 'ALIK2345', name: 'Sen', avatar: 'monki', color: '#c6317c', today: 0, week: 0, streak: 0, level: 1, at: '2026-10-15T10:00:00Z' }
@@ -3154,10 +3154,16 @@ test('invite link: opening /?davet=code adds the inviter as a friend, says who, 
     }
     if (url.searchParams.get('friends') === '1') return route.fulfill({ json: { me, friends: added.length ? [ayse] : [] } })
     if (url.searchParams.get('inbox') === '1') return route.fulfill({ json: { items: [] } })
+    if (url.searchParams.get('friend-invite') === 'ABCD2345') return route.fulfill({ json: { inviter: { name: ayse.name, avatar: ayse.avatar, color: ayse.color, level: ayse.level } } })
     return route.fulfill({ json: { status: 'approved', exists: true, match: true, enabled: true } })
   })
   // A code as it may be typed (lower case, a dash): the link is read forgivingly.
   await page.goto('/?davet=abcd-2345')
+  // Nothing is added before the person sees whose code it is and says yes.
+  const ask = page.getByRole('alertdialog', { name: 'Arkadaş daveti' })
+  await expect(ask).toContainText('Ayşe')
+  expect(added).toEqual([])
+  await ask.getByRole('button', { name: 'Arkadaş ekle' }).click()
   await expect(page.getByText('Ayşe ile arkadaş oldun. Davet bonusu: +20 XP.')).toBeVisible()
   expect(added).toEqual(['ABCD2345'])
   // The one who invited is told.

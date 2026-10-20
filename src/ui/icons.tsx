@@ -300,6 +300,12 @@ export const LinkIcon = (p: P) => (
     <path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" />
   </Icon>
 )
+/** Share: a tray with an arrow up out of it (the gesture phones use for sharing). */
+export const ShareIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M12 15V3.5M7.5 8 12 3.5 16.5 8M8 11.5H6.5A1.5 1.5 0 0 0 5 13v6a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 19v-6a1.5 1.5 0 0 0-1.5-1.5H16" />
+  </Icon>
+)
 export const KeyboardIcon = (p: P) => (
   <Icon {...p}>
     <S d="M4 5.5h16A1.5 1.5 0 0 1 21.5 7v10a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 17V7A1.5 1.5 0 0 1 4 5.5z" />

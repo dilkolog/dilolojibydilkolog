@@ -409,4 +409,21 @@ describe('/api/access: finding a friend by a chosen name', () => {
     await forgetFriends(ALI)
     expect(JSON.parse(new TextDecoder().decode(blobs.get('friends/handle/ali_fr.json')))).toEqual({ id: VELI })
   })
+
+  it('an invite code shows its owner\'s card (no id, no code) before it is accepted; unknown and own codes are refused', async () => {
+    const ali = (await (await post(as(ALI, ALI_TOKEN), { action: 'friends-publish', ...card })).json()) as { me: { code: string } }
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-publish', ...card, name: 'Veli' })
+    const ask = (headers: Record<string, string>, code: string) => access.GET(new Request(`https://app.test/api/access?friend-invite=${code}`, { headers }))
+    const res = await ask(as(VELI, VELI_TOKEN), ali.me.code)
+    expect(res.status).toBe(200)
+    const body = (await res.json()) as { inviter: Record<string, unknown> }
+    expect(body.inviter).toEqual({ name: 'Ali', avatar: 'fox', color: '#2f6de6', level: 6 })
+    expect(JSON.stringify(body)).not.toContain(ALI)
+    expect(JSON.stringify(body)).not.toContain(ali.me.code)
+    // Looking is not adding.
+    const veli = (await (await view(as(VELI, VELI_TOKEN))).json()) as { friends: unknown[] }
+    expect(veli.friends).toEqual([])
+    expect((await ask(as(VELI, VELI_TOKEN), 'ZZZZ2222')).status).toBe(404)
+    expect((await ask(as(ALI, ALI_TOKEN), ali.me.code)).status).toBe(400)
+  })
 })

@@ -129,6 +129,7 @@ export function ProgressScreen({
     <div className="progress-page">
       <PageHeader
         art="time"
+        inline
         title="İlerleme"
         sub="Ne kadar bildiğin, neyi unuttuğun ve nasıl çalıştığın."
         action={

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Tense } from '../../engine/tenses'
+import { ChevronLeftIcon, ChevronRightIcon } from '../icons'
 import { TensePicker } from './LearnTab'
 import { TenseInfoButton } from './TenseLessonSheet'
 import { CORE_TENSES, stepTense, tenseName, type LabLanguage } from './labShared'
@@ -9,6 +10,22 @@ import { CORE_TENSES, stepTense, tenseName, type LabLanguage } from './labShared
  * to step through them all (when not typing). It sticks to the top while the table scrolls, so the
  * tense being read is never out of sight.
  */
+/** Where the row of tense chips gives way to one tense with arrows: it would take three or four lines on a phone. */
+const COMPACT = '(max-width: 40rem)'
+
+function useCompact(): boolean {
+  const [compact, setCompact] = useState(() => typeof matchMedia === 'function' && matchMedia(COMPACT).matches)
+  useEffect(() => {
+    if (typeof matchMedia !== 'function') return
+    const query = matchMedia(COMPACT)
+    const on = () => setCompact(query.matches)
+    on()
+    query.addEventListener?.('change', on)
+    return () => query.removeEventListener?.('change', on)
+  }, [])
+  return compact
+}
+
 export function TenseBar({ language, verb, tense, available, onTense }: { language: LabLanguage; verb: string; tense: Tense; available: readonly Tense[]; onTense: (t: Tense) => void }) {
   // Stuck to the top of the screen: the verb's name joins the bar (the heading has scrolled away).
   const sentinel = useRef<HTMLSpanElement>(null)
@@ -20,8 +37,11 @@ export function TenseBar({ language, verb, tense, available, onTense }: { langua
     io.observe(el)
     return () => io.disconnect()
   }, [])
+  const compact = useCompact()
   const core = CORE_TENSES[language].filter((t) => available.includes(t))
   const other = !core.includes(tense)
+  const prev = stepTense(language, available, tense, -1)
+  const next = stepTense(language, available, tense, 1)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
@@ -39,6 +59,24 @@ export function TenseBar({ language, verb, tense, available, onTense }: { langua
   return (
     <>
       <span ref={sentinel} className="lab-tense-sentinel" aria-hidden />
+      {compact ? (
+        // A phone: one tense in the middle, the arrows (or a swipe on the table) step through them, the name opens them all.
+        <div className={`lab-tense-bar is-compact${stuck ? ' is-stuck' : ''}`} role="group" aria-label="Zaman">
+          {stuck && (
+            <strong className="lab-tense-verb" lang={language}>
+              {verb}
+            </strong>
+          )}
+          <button type="button" className="icon-btn lab-tense-step" aria-label={prev ? `Önceki zaman: ${tenseName(prev)}` : 'Önceki zaman'} disabled={!prev} onClick={() => prev && onTense(prev)}>
+            <ChevronLeftIcon size={18} />
+          </button>
+          <TensePicker language={language} tense={tense} onPick={onTense} available={available} buttonClassName="chip chip-sm lab-tense-current" />
+          <button type="button" className="icon-btn lab-tense-step" aria-label={next ? `Sonraki zaman: ${tenseName(next)}` : 'Sonraki zaman'} disabled={!next} onClick={() => next && onTense(next)}>
+            <ChevronRightIcon size={18} />
+          </button>
+          <TenseInfoButton language={language} tense={tense} />
+        </div>
+      ) : (
       <div className={`lab-tense-bar${stuck ? ' is-stuck' : ''}`} role="group" aria-label="Zaman">
         {stuck && (
           <strong className="lab-tense-verb" lang={language}>
@@ -58,6 +96,7 @@ export function TenseBar({ language, verb, tense, available, onTense }: { langua
         <TensePicker language={language} tense={tense} onPick={onTense} available={available} label="Diğer" exclude={core} buttonClassName="chip chip-sm lab-tense-more" />
         <TenseInfoButton language={language} tense={tense} />
       </div>
+      )}
     </>
   )
 }
