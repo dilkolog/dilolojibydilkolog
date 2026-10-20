@@ -1,0 +1,1362 @@
+[
+ {
+  "id": "fr-a1-articles-1",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_articles",
+  "type": "choice",
+  "prompt": "J'ai ___ sœur et deux frères.",
+  "answer": "une",
+  "options": [
+   "des",
+   "une",
+   "un"
+  ],
+  "hint": "sœur dişil → une",
+  "explanation": "Fransızcada isim artikelle kullanılır: le/un eril, la/une dişil, les/des çoğul. Sesli harfle başlayan isimde le/la l' olur; à + le = au, à + les = aux, de + le = du.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-articles-2",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_articles",
+  "type": "choice",
+  "prompt": "___ livre est sur la table.",
+  "answer": "Le",
+  "options": [
+   "La",
+   "Les",
+   "Le"
+  ],
+  "hint": "livre eril tekil → le",
+  "explanation": "Fransızcada isim artikelle kullanılır: le/un eril, la/une dişil, les/des çoğul. Sesli harfle başlayan isimde le/la l' olur; à + le = au, à + les = aux, de + le = du.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-articles-3",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_articles",
+  "type": "choice",
+  "prompt": "Elle habite à côté de ___ école.",
+  "answer": "l'",
+  "options": [
+   "l'",
+   "la",
+   "le"
+  ],
+  "hint": "sesli harf önünde l'",
+  "explanation": "Fransızcada isim artikelle kullanılır: le/un eril, la/une dişil, les/des çoğul. Sesli harfle başlayan isimde le/la l' olur; à + le = au, à + les = aux, de + le = du.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-articles-4",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_articles",
+  "type": "choice",
+  "prompt": "Nous allons ___ cinéma ce soir.",
+  "answer": "au",
+  "options": [
+   "à la",
+   "au",
+   "à le"
+  ],
+  "hint": "à + le = au",
+  "explanation": "Fransızcada isim artikelle kullanılır: le/un eril, la/une dişil, les/des çoğul. Sesli harfle başlayan isimde le/la l' olur; à + le = au, à + les = aux, de + le = du.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-articles-5",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_articles",
+  "type": "choice",
+  "prompt": "Je parle ___ enfants.",
+  "answer": "aux",
+  "options": [
+   "à les",
+   "au",
+   "aux"
+  ],
+  "hint": "à + les = aux",
+  "explanation": "Fransızcada isim artikelle kullanılır: le/un eril, la/une dişil, les/des çoğul. Sesli harfle başlayan isimde le/la l' olur; à + le = au, à + les = aux, de + le = du.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-articles-6",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_articles",
+  "type": "choice",
+  "prompt": "Ils ont ___ chats très mignons.",
+  "answer": "des",
+  "options": [
+   "des",
+   "un",
+   "une"
+  ],
+  "hint": "çoğul belirsiz → des",
+  "explanation": "Fransızcada isim artikelle kullanılır: le/un eril, la/une dişil, les/des çoğul. Sesli harfle başlayan isimde le/la l' olur; à + le = au, à + les = aux, de + le = du.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-articles-7",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_articles",
+  "type": "choice",
+  "prompt": "Elle revient ___ marché.",
+  "answer": "du",
+  "options": [
+   "de la",
+   "du",
+   "de le"
+  ],
+  "hint": "de + le = du",
+  "explanation": "Fransızcada isim artikelle kullanılır: le/un eril, la/une dişil, les/des çoğul. Sesli harfle başlayan isimde le/la l' olur; à + le = au, à + les = aux, de + le = du.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-articles-8",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_articles",
+  "type": "choice",
+  "prompt": "Je déteste ___ épinards.",
+  "answer": "les",
+  "options": [
+   "des",
+   "aux",
+   "les"
+  ],
+  "hint": "beğenmeme bildiren fiil → belirli artikel",
+  "explanation": "Fransızcada isim artikelle kullanılır: le/un eril, la/une dişil, les/des çoğul. Sesli harfle başlayan isimde le/la l' olur; à + le = au, à + les = aux, de + le = du.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-etre_avoir-1",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_etre_avoir",
+  "type": "choice",
+  "prompt": "Nous ___ étudiants.",
+  "answer": "sommes",
+  "options": [
+   "êtes",
+   "sommes",
+   "avons"
+  ],
+  "hint": "être, nous → sommes",
+  "explanation": "Être: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont. Avoir: j'ai, tu as, il a, nous avons, vous avez, ils ont. Yaş ve fiziksel durum (faim, froid) avoir ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-etre_avoir-2",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_etre_avoir",
+  "type": "choice",
+  "prompt": "Elle ___ quinze ans.",
+  "answer": "a",
+  "options": [
+   "est",
+   "as",
+   "a"
+  ],
+  "hint": "yaş avoir ile söylenir",
+  "explanation": "Être: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont. Avoir: j'ai, tu as, il a, nous avons, vous avez, ils ont. Yaş ve fiziksel durum (faim, froid) avoir ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-etre_avoir-3",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_etre_avoir",
+  "type": "choice",
+  "prompt": "Tu ___ très gentil.",
+  "answer": "es",
+  "options": [
+   "es",
+   "as",
+   "est"
+  ],
+  "hint": "être, tu → es",
+  "explanation": "Être: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont. Avoir: j'ai, tu as, il a, nous avons, vous avez, ils ont. Yaş ve fiziksel durum (faim, froid) avoir ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-etre_avoir-4",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_etre_avoir",
+  "type": "choice",
+  "prompt": "Ils ___ une grande maison.",
+  "answer": "ont",
+  "options": [
+   "avons",
+   "ont",
+   "sont"
+  ],
+  "hint": "avoir, ils → ont",
+  "explanation": "Être: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont. Avoir: j'ai, tu as, il a, nous avons, vous avez, ils ont. Yaş ve fiziksel durum (faim, froid) avoir ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-etre_avoir-5",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_etre_avoir",
+  "type": "choice",
+  "prompt": "J'___ faim.",
+  "answer": "ai",
+  "options": [
+   "suis",
+   "es",
+   "ai"
+  ],
+  "hint": "faim avoir ile",
+  "explanation": "Être: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont. Avoir: j'ai, tu as, il a, nous avons, vous avez, ils ont. Yaş ve fiziksel durum (faim, froid) avoir ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-etre_avoir-6",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_etre_avoir",
+  "type": "choice",
+  "prompt": "Vous ___ français ?",
+  "answer": "êtes",
+  "options": [
+   "êtes",
+   "avez",
+   "sont"
+  ],
+  "hint": "être, vous → êtes",
+  "explanation": "Être: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont. Avoir: j'ai, tu as, il a, nous avons, vous avez, ils ont. Yaş ve fiziksel durum (faim, froid) avoir ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-etre_avoir-7",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_etre_avoir",
+  "type": "choice",
+  "prompt": "Mon père ___ médecin.",
+  "answer": "est",
+  "options": [
+   "ont",
+   "est",
+   "a"
+  ],
+  "hint": "meslek için être",
+  "explanation": "Être: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont. Avoir: j'ai, tu as, il a, nous avons, vous avez, ils ont. Yaş ve fiziksel durum (faim, froid) avoir ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-etre_avoir-8",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_etre_avoir",
+  "type": "choice",
+  "prompt": "Les enfants ___ froid.",
+  "answer": "ont",
+  "options": [
+   "sont",
+   "est",
+   "ont"
+  ],
+  "hint": "froid avoir ile",
+  "explanation": "Être: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont. Avoir: j'ai, tu as, il a, nous avons, vous avez, ils ont. Yaş ve fiziksel durum (faim, froid) avoir ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-present-1",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_present",
+  "type": "choice",
+  "prompt": "Je ___ au café tous les matins.",
+  "answer": "vais",
+  "options": [
+   "va",
+   "vais",
+   "vas"
+  ],
+  "hint": "aller, je → vais",
+  "explanation": "Présent: -er fiillerinde je -e, tu -es, il -e, nous -ons, vous -ez, ils -ent. Aller, faire, savoir gibi düzensiz fiiller ezberlenir: je vais, il fait, je sais.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-present-2",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_present",
+  "type": "choice",
+  "prompt": "Nous ___ le français.",
+  "answer": "parlons",
+  "options": [
+   "parlez",
+   "parlent",
+   "parlons"
+  ],
+  "hint": "nous → -ons",
+  "explanation": "Présent: -er fiillerinde je -e, tu -es, il -e, nous -ons, vous -ez, ils -ent. Aller, faire, savoir gibi düzensiz fiiller ezberlenir: je vais, il fait, je sais.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-present-3",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_present",
+  "type": "choice",
+  "prompt": "Elle ___ du sport le samedi.",
+  "answer": "fait",
+  "options": [
+   "fait",
+   "fais",
+   "faites"
+  ],
+  "hint": "faire, elle → fait",
+  "explanation": "Présent: -er fiillerinde je -e, tu -es, il -e, nous -ons, vous -ez, ils -ent. Aller, faire, savoir gibi düzensiz fiiller ezberlenir: je vais, il fait, je sais.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-present-4",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_present",
+  "type": "choice",
+  "prompt": "Ils ___ une pizza.",
+  "answer": "mangent",
+  "options": [
+   "mangeons",
+   "mangent",
+   "mange"
+  ],
+  "hint": "ils → -ent",
+  "explanation": "Présent: -er fiillerinde je -e, tu -es, il -e, nous -ons, vous -ez, ils -ent. Aller, faire, savoir gibi düzensiz fiiller ezberlenir: je vais, il fait, je sais.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-present-5",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_present",
+  "type": "choice",
+  "prompt": "Tu ___ la télévision ?",
+  "answer": "regardes",
+  "options": [
+   "regarde",
+   "regardez",
+   "regardes"
+  ],
+  "hint": "tu → -es",
+  "explanation": "Présent: -er fiillerinde je -e, tu -es, il -e, nous -ons, vous -ez, ils -ent. Aller, faire, savoir gibi düzensiz fiiller ezberlenir: je vais, il fait, je sais.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-present-6",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_present",
+  "type": "choice",
+  "prompt": "Vous ___ à quelle heure ?",
+  "answer": "finissez",
+  "options": [
+   "finissez",
+   "finit",
+   "finissons"
+  ],
+  "hint": "vous → -ez",
+  "explanation": "Présent: -er fiillerinde je -e, tu -es, il -e, nous -ons, vous -ez, ils -ent. Aller, faire, savoir gibi düzensiz fiiller ezberlenir: je vais, il fait, je sais.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-present-7",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_present",
+  "type": "choice",
+  "prompt": "Je ne ___ pas la réponse.",
+  "answer": "sais",
+  "options": [
+   "savez",
+   "sais",
+   "sait"
+  ],
+  "hint": "savoir, je → sais",
+  "explanation": "Présent: -er fiillerinde je -e, tu -es, il -e, nous -ons, vous -ez, ils -ent. Aller, faire, savoir gibi düzensiz fiiller ezberlenir: je vais, il fait, je sais.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-present-8",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_present",
+  "type": "choice",
+  "prompt": "On ___ ensemble ce soir ?",
+  "answer": "dîne",
+  "options": [
+   "dînent",
+   "dînes",
+   "dîne"
+  ],
+  "hint": "on + il/elle ile aynı çekim",
+  "explanation": "Présent: -er fiillerinde je -e, tu -es, il -e, nous -ons, vous -ez, ils -ent. Aller, faire, savoir gibi düzensiz fiiller ezberlenir: je vais, il fait, je sais.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-negation-1",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_negation",
+  "type": "choice",
+  "prompt": "Il ne mange ___ de viande.",
+  "answer": "pas",
+  "options": [
+   "personne",
+   "pas",
+   "rien"
+  ],
+  "hint": "ne ... pas",
+  "explanation": "Olumsuzluk: ne ... pas fiili çevreler (je ne parle pas); ne sesli harften önce n' olur. Olumsuz cümlede un/une/des/du yerine de gelir: je n'ai pas de voiture.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-negation-2",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_negation",
+  "type": "choice",
+  "prompt": "Nous n'avons pas ___ voiture.",
+  "answer": "de",
+  "options": [
+   "des",
+   "du",
+   "de"
+  ],
+  "hint": "olumsuzda artikel → de",
+  "explanation": "Olumsuzluk: ne ... pas fiili çevreler (je ne parle pas); ne sesli harften önce n' olur. Olumsuz cümlede un/une/des/du yerine de gelir: je n'ai pas de voiture.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-negation-3",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_negation",
+  "type": "choice",
+  "prompt": "Je ___ comprends pas.",
+  "answer": "ne",
+  "options": [
+   "ne",
+   "n'",
+   "non"
+  ],
+  "hint": "ne ... pas, comprends sessiz harfle başlar",
+  "explanation": "Olumsuzluk: ne ... pas fiili çevreler (je ne parle pas); ne sesli harften önce n' olur. Olumsuz cümlede un/une/des/du yerine de gelir: je n'ai pas de voiture.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-negation-4",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_negation",
+  "type": "choice",
+  "prompt": "Il ___ aime pas le café.",
+  "answer": "n'",
+  "options": [
+   "non",
+   "n'",
+   "ne"
+  ],
+  "hint": "aime sesli harfle başlar → n'",
+  "explanation": "Olumsuzluk: ne ... pas fiili çevreler (je ne parle pas); ne sesli harften önce n' olur. Olumsuz cümlede un/une/des/du yerine de gelir: je n'ai pas de voiture.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-negation-5",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_negation",
+  "type": "choice",
+  "prompt": "Tu ne viens ___ ?",
+  "answer": "pas",
+  "options": [
+   "rien",
+   "personne",
+   "pas"
+  ],
+  "hint": "ne ... pas",
+  "explanation": "Olumsuzluk: ne ... pas fiili çevreler (je ne parle pas); ne sesli harften önce n' olur. Olumsuz cümlede un/une/des/du yerine de gelir: je n'ai pas de voiture.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-negation-6",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_negation",
+  "type": "choice",
+  "prompt": "Ils ne ___ pas à Paris.",
+  "answer": "habitent",
+  "options": [
+   "habitent",
+   "habiter",
+   "habitant"
+  ],
+  "hint": "ne + çekimli fiil + pas",
+  "explanation": "Olumsuzluk: ne ... pas fiili çevreler (je ne parle pas); ne sesli harften önce n' olur. Olumsuz cümlede un/une/des/du yerine de gelir: je n'ai pas de voiture.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-negation-7",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_negation",
+  "type": "choice",
+  "prompt": "Ce n'est ___ difficile.",
+  "answer": "pas",
+  "options": [
+   "rien",
+   "pas",
+   "non"
+  ],
+  "hint": "ne ... pas",
+  "explanation": "Olumsuzluk: ne ... pas fiili çevreler (je ne parle pas); ne sesli harften önce n' olur. Olumsuz cümlede un/une/des/du yerine de gelir: je n'ai pas de voiture.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-negation-8",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_negation",
+  "type": "choice",
+  "prompt": "Elle n'a pas ___ frère.",
+  "answer": "de",
+  "options": [
+   "un",
+   "des",
+   "de"
+  ],
+  "hint": "olumsuzda artikel → de",
+  "explanation": "Olumsuzluk: ne ... pas fiili çevreler (je ne parle pas); ne sesli harften önce n' olur. Olumsuz cümlede un/une/des/du yerine de gelir: je n'ai pas de voiture.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-possessifs-1",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_possessifs",
+  "type": "choice",
+  "prompt": "Voici ___ sœur.",
+  "answer": "ma",
+  "options": [
+   "mes",
+   "ma",
+   "mon"
+  ],
+  "hint": "sœur dişil → ma",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına uyar: mon/ma/mes, ton/ta/tes, son/sa/ses, notre/nos, votre/vos, leur/leurs. Sesli harfle başlayan dişil isimde mon/ton/son kullanılır (mon amie, son école).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-possessifs-2",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_possessifs",
+  "type": "choice",
+  "prompt": "Ce sont ___ amis.",
+  "answer": "mes",
+  "options": [
+   "mon",
+   "ma",
+   "mes"
+  ],
+  "hint": "çoğul → mes",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına uyar: mon/ma/mes, ton/ta/tes, son/sa/ses, notre/nos, votre/vos, leur/leurs. Sesli harfle başlayan dişil isimde mon/ton/son kullanılır (mon amie, son école).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-possessifs-3",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_possessifs",
+  "type": "choice",
+  "prompt": "Elle aime ___ école.",
+  "answer": "son",
+  "options": [
+   "son",
+   "sa",
+   "ses"
+  ],
+  "hint": "sesli harfle başlayan dişil isim → son",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına uyar: mon/ma/mes, ton/ta/tes, son/sa/ses, notre/nos, votre/vos, leur/leurs. Sesli harfle başlayan dişil isimde mon/ton/son kullanılır (mon amie, son école).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-possessifs-4",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_possessifs",
+  "type": "choice",
+  "prompt": "Nous aimons ___ maison.",
+  "answer": "notre",
+  "options": [
+   "votre",
+   "notre",
+   "nos"
+  ],
+  "hint": "nous → notre",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına uyar: mon/ma/mes, ton/ta/tes, son/sa/ses, notre/nos, votre/vos, leur/leurs. Sesli harfle başlayan dişil isimde mon/ton/son kullanılır (mon amie, son école).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-possessifs-5",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_possessifs",
+  "type": "choice",
+  "prompt": "Vous avez ___ clés ?",
+  "answer": "vos",
+  "options": [
+   "votre",
+   "ta",
+   "vos"
+  ],
+  "hint": "çoğul + vous → vos",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına uyar: mon/ma/mes, ton/ta/tes, son/sa/ses, notre/nos, votre/vos, leur/leurs. Sesli harfle başlayan dişil isimde mon/ton/son kullanılır (mon amie, son école).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-possessifs-6",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_possessifs",
+  "type": "choice",
+  "prompt": "Il parle à ___ mère.",
+  "answer": "sa",
+  "options": [
+   "sa",
+   "son",
+   "ses"
+  ],
+  "hint": "mère dişil → sa",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına uyar: mon/ma/mes, ton/ta/tes, son/sa/ses, notre/nos, votre/vos, leur/leurs. Sesli harfle başlayan dişil isimde mon/ton/son kullanılır (mon amie, son école).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-possessifs-7",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_possessifs",
+  "type": "choice",
+  "prompt": "Ils vendent ___ voiture.",
+  "answer": "leur",
+  "options": [
+   "lui",
+   "leur",
+   "leurs"
+  ],
+  "hint": "tek nesne → leur",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına uyar: mon/ma/mes, ton/ta/tes, son/sa/ses, notre/nos, votre/vos, leur/leurs. Sesli harfle başlayan dişil isimde mon/ton/son kullanılır (mon amie, son école).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-possessifs-8",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_possessifs",
+  "type": "choice",
+  "prompt": "___ femme est médecin. (bu)",
+  "answer": "Cette",
+  "options": [
+   "Ce",
+   "Ces",
+   "Cette"
+  ],
+  "hint": "femme dişil → cette",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına uyar: mon/ma/mes, ton/ta/tes, son/sa/ses, notre/nos, votre/vos, leur/leurs. Sesli harfle başlayan dişil isimde mon/ton/son kullanılır (mon amie, son école).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-questions-1",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_questions",
+  "type": "choice",
+  "prompt": "___ tu habites ? — À Lyon.",
+  "answer": "Où",
+  "options": [
+   "Qui",
+   "Où",
+   "Quand"
+  ],
+  "hint": "yer sorusu → où",
+  "explanation": "Soru sözcükleri: où (nerede), quand (ne zaman), comment (nasıl), combien (ne kadar), pourquoi (neden), qui (kim). Evet/hayır sorusu est-ce que ile ya da özne-fiil ters çevrilerek kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-questions-2",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_questions",
+  "type": "choice",
+  "prompt": "___ est-ce que tu arrives ? — Demain.",
+  "answer": "Quand",
+  "options": [
+   "Où",
+   "Pourquoi",
+   "Quand"
+  ],
+  "hint": "zaman sorusu → quand",
+  "explanation": "Soru sözcükleri: où (nerede), quand (ne zaman), comment (nasıl), combien (ne kadar), pourquoi (neden), qui (kim). Evet/hayır sorusu est-ce que ile ya da özne-fiil ters çevrilerek kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-questions-3",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_questions",
+  "type": "choice",
+  "prompt": "___ coûte ce livre ? — Dix euros.",
+  "answer": "Combien",
+  "options": [
+   "Combien",
+   "Comment",
+   "Qui"
+  ],
+  "hint": "fiyat → combien",
+  "explanation": "Soru sözcükleri: où (nerede), quand (ne zaman), comment (nasıl), combien (ne kadar), pourquoi (neden), qui (kim). Evet/hayır sorusu est-ce que ile ya da özne-fiil ters çevrilerek kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-questions-4",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_questions",
+  "type": "choice",
+  "prompt": "___ tu t'appelles ? — Julie.",
+  "answer": "Comment",
+  "options": [
+   "Où",
+   "Comment",
+   "Combien"
+  ],
+  "hint": "ad sorusu → comment",
+  "explanation": "Soru sözcükleri: où (nerede), quand (ne zaman), comment (nasıl), combien (ne kadar), pourquoi (neden), qui (kim). Evet/hayır sorusu est-ce que ile ya da özne-fiil ters çevrilerek kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-questions-5",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_questions",
+  "type": "choice",
+  "prompt": "___ est-ce qu'elle pleure ? — Parce qu'elle est triste.",
+  "answer": "Pourquoi",
+  "options": [
+   "Quand",
+   "Où",
+   "Pourquoi"
+  ],
+  "hint": "neden → pourquoi",
+  "explanation": "Soru sözcükleri: où (nerede), quand (ne zaman), comment (nasıl), combien (ne kadar), pourquoi (neden), qui (kim). Evet/hayır sorusu est-ce que ile ya da özne-fiil ters çevrilerek kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-questions-6",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_questions",
+  "type": "choice",
+  "prompt": "___ est ton professeur ? — M. Durand.",
+  "answer": "Qui",
+  "options": [
+   "Qui",
+   "Quand",
+   "Combien"
+  ],
+  "hint": "kişi → qui",
+  "explanation": "Soru sözcükleri: où (nerede), quand (ne zaman), comment (nasıl), combien (ne kadar), pourquoi (neden), qui (kim). Evet/hayır sorusu est-ce que ile ya da özne-fiil ters çevrilerek kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-questions-7",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_questions",
+  "type": "choice",
+  "prompt": "___ que tu veux du thé ?",
+  "answer": "Est-ce",
+  "options": [
+   "Est-il",
+   "Est-ce",
+   "Es-tu"
+  ],
+  "hint": "evet/hayır sorusu → est-ce que",
+  "explanation": "Soru sözcükleri: où (nerede), quand (ne zaman), comment (nasıl), combien (ne kadar), pourquoi (neden), qui (kim). Evet/hayır sorusu est-ce que ile ya da özne-fiil ters çevrilerek kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a1-questions-8",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_questions",
+  "type": "choice",
+  "prompt": "___-tu ce soir ? (venir)",
+  "answer": "Viens",
+  "options": [
+   "Vient",
+   "Venez",
+   "Viens"
+  ],
+  "hint": "tu → viens",
+  "explanation": "Soru sözcükleri: où (nerede), quand (ne zaman), comment (nasıl), combien (ne kadar), pourquoi (neden), qui (kim). Evet/hayır sorusu est-ce que ile ya da özne-fiil ters çevrilerek kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-passe_compose-1",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_passe_compose",
+  "type": "choice",
+  "prompt": "Hier, j'___ un film.",
+  "answer": "ai vu",
+  "options": [
+   "ai voir",
+   "ai vu",
+   "suis vu"
+  ],
+  "hint": "voir → avoir + vu",
+  "explanation": "Passé composé: avoir (ya da bazı fiillerde être) + participe passé. Çoğu fiil avoir alır (j'ai vu); aller, arriver, partir gibi hareket fiilleri être alır ve özneyle uyar (elle est allée).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-passe_compose-2",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_passe_compose",
+  "type": "choice",
+  "prompt": "Elle ___ au cinéma hier soir.",
+  "answer": "est allée",
+  "options": [
+   "a allé",
+   "est allé",
+   "est allée"
+  ],
+  "hint": "aller → être, özne dişil → allée",
+  "explanation": "Passé composé: avoir (ya da bazı fiillerde être) + participe passé. Çoğu fiil avoir alır (j'ai vu); aller, arriver, partir gibi hareket fiilleri être alır ve özneyle uyar (elle est allée).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-passe_compose-3",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_passe_compose",
+  "type": "choice",
+  "prompt": "Nous ___ au restaurant samedi.",
+  "answer": "avons mangé",
+  "options": [
+   "avons mangé",
+   "sommes mangé",
+   "mangeons"
+  ],
+  "hint": "manger → avoir + mangé",
+  "explanation": "Passé composé: avoir (ya da bazı fiillerde être) + participe passé. Çoğu fiil avoir alır (j'ai vu); aller, arriver, partir gibi hareket fiilleri être alır ve özneyle uyar (elle est allée).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-passe_compose-4",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_passe_compose",
+  "type": "choice",
+  "prompt": "Hier, tu ___ tes clés ?",
+  "answer": "as trouvé",
+  "options": [
+   "trouves",
+   "as trouvé",
+   "es trouvé"
+  ],
+  "hint": "trouver → avoir",
+  "explanation": "Passé composé: avoir (ya da bazı fiillerde être) + participe passé. Çoğu fiil avoir alır (j'ai vu); aller, arriver, partir gibi hareket fiilleri être alır ve özneyle uyar (elle est allée).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-passe_compose-5",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_passe_compose",
+  "type": "choice",
+  "prompt": "Hier, ils ___ à huit heures.",
+  "answer": "sont arrivés",
+  "options": [
+   "ont arrivé",
+   "arrivent",
+   "sont arrivés"
+  ],
+  "hint": "arriver → être, çoğul → arrivés",
+  "explanation": "Passé composé: avoir (ya da bazı fiillerde être) + participe passé. Çoğu fiil avoir alır (j'ai vu); aller, arriver, partir gibi hareket fiilleri être alır ve özneyle uyar (elle est allée).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-passe_compose-6",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_passe_compose",
+  "type": "choice",
+  "prompt": "Elle a ___ un message.",
+  "answer": "envoyé",
+  "options": [
+   "envoyé",
+   "envoyer",
+   "envoie"
+  ],
+  "hint": "avoir + participe passé",
+  "explanation": "Passé composé: avoir (ya da bazı fiillerde être) + participe passé. Çoğu fiil avoir alır (j'ai vu); aller, arriver, partir gibi hareket fiilleri être alır ve özneyle uyar (elle est allée).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-passe_compose-7",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_passe_compose",
+  "type": "choice",
+  "prompt": "Je n'ai pas ___ le train.",
+  "answer": "pris",
+  "options": [
+   "prise",
+   "pris",
+   "prendre"
+  ],
+  "hint": "prendre → pris",
+  "explanation": "Passé composé: avoir (ya da bazı fiillerde être) + participe passé. Çoğu fiil avoir alır (j'ai vu); aller, arriver, partir gibi hareket fiilleri être alır ve özneyle uyar (elle est allée).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-passe_compose-8",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_passe_compose",
+  "type": "choice",
+  "prompt": "Samedi, nous ___ à la plage.",
+  "answer": "sommes allés",
+  "options": [
+   "avons allé",
+   "allons",
+   "sommes allés"
+  ],
+  "hint": "aller → être",
+  "explanation": "Passé composé: avoir (ya da bazı fiillerde être) + participe passé. Çoğu fiil avoir alır (j'ai vu); aller, arriver, partir gibi hareket fiilleri être alır ve özneyle uyar (elle est allée).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-adjectifs-1",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_adjectifs",
+  "type": "choice",
+  "prompt": "Une voiture ___.",
+  "answer": "rouge",
+  "options": [
+   "roux",
+   "rouge",
+   "rouges"
+  ],
+  "hint": "dişil tekil, -e ile biten sıfat aynı kalır",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar: dişilde çoğunlukla -e, çoğulda -s eklenir (grand, grande, grands). Çoğu sıfat isimden sonra gelir; grand, petit, bon, beau, jeune gibi kısa ve sık sıfatlar isimden önce gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-adjectifs-2",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_adjectifs",
+  "type": "choice",
+  "prompt": "Des fleurs ___.",
+  "answer": "blanches",
+  "options": [
+   "blanc",
+   "blancs",
+   "blanches"
+  ],
+  "hint": "dişil çoğul → blanches",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar: dişilde çoğunlukla -e, çoğulda -s eklenir (grand, grande, grands). Çoğu sıfat isimden sonra gelir; grand, petit, bon, beau, jeune gibi kısa ve sık sıfatlar isimden önce gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-adjectifs-3",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_adjectifs",
+  "type": "choice",
+  "prompt": "C'est une ___ maison.",
+  "answer": "grande",
+  "options": [
+   "grande",
+   "grand",
+   "grands"
+  ],
+  "hint": "grand isimden önce, dişil → grande",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar: dişilde çoğunlukla -e, çoğulda -s eklenir (grand, grande, grands). Çoğu sıfat isimden sonra gelir; grand, petit, bon, beau, jeune gibi kısa ve sık sıfatlar isimden önce gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-adjectifs-4",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_adjectifs",
+  "type": "choice",
+  "prompt": "Un ___ garçon.",
+  "answer": "petit",
+  "options": [
+   "petits",
+   "petit",
+   "petite"
+  ],
+  "hint": "petit isimden önce, eril tekil",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar: dişilde çoğunlukla -e, çoğulda -s eklenir (grand, grande, grands). Çoğu sıfat isimden sonra gelir; grand, petit, bon, beau, jeune gibi kısa ve sık sıfatlar isimden önce gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-adjectifs-5",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_adjectifs",
+  "type": "choice",
+  "prompt": "Elle est ___.",
+  "answer": "contente",
+  "options": [
+   "content",
+   "contents",
+   "contente"
+  ],
+  "hint": "dişil → contente",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar: dişilde çoğunlukla -e, çoğulda -s eklenir (grand, grande, grands). Çoğu sıfat isimden sonra gelir; grand, petit, bon, beau, jeune gibi kısa ve sık sıfatlar isimden önce gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-adjectifs-6",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_adjectifs",
+  "type": "choice",
+  "prompt": "Ils sont ___.",
+  "answer": "heureux",
+  "options": [
+   "heureux",
+   "heureuse",
+   "heureuxs"
+  ],
+  "hint": "-eux ile biten sıfat çoğulda değişmez",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar: dişilde çoğunlukla -e, çoğulda -s eklenir (grand, grande, grands). Çoğu sıfat isimden sonra gelir; grand, petit, bon, beau, jeune gibi kısa ve sık sıfatlar isimden önce gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-adjectifs-7",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_adjectifs",
+  "type": "choice",
+  "prompt": "Une ___ idée.",
+  "answer": "bonne",
+  "options": [
+   "bons",
+   "bonne",
+   "bon"
+  ],
+  "hint": "bon isimden önce, dişil → bonne",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar: dişilde çoğunlukla -e, çoğulda -s eklenir (grand, grande, grands). Çoğu sıfat isimden sonra gelir; grand, petit, bon, beau, jeune gibi kısa ve sık sıfatlar isimden önce gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-adjectifs-8",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_adjectifs",
+  "type": "choice",
+  "prompt": "Un chien ___.",
+  "answer": "intelligent",
+  "options": [
+   "intelligente",
+   "intelligents",
+   "intelligent"
+  ],
+  "hint": "eril tekil",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar: dişilde çoğunlukla -e, çoğulda -s eklenir (grand, grande, grands). Çoğu sıfat isimden sonra gelir; grand, petit, bon, beau, jeune gibi kısa ve sık sıfatlar isimden önce gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-lieux-1",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_lieux",
+  "type": "choice",
+  "prompt": "Le livre est ___ la table.",
+  "answer": "sur",
+  "options": [
+   "pendant",
+   "sur",
+   "chez"
+  ],
+  "hint": "sur = üstünde",
+  "explanation": "Yer edatları: sur (üstünde), dans (içinde), sous (altında), devant (önünde), derrière (arkasında), entre (arasında), à côté de (yanında), près de (yakınında), chez (birinin evinde, iş yerinde).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-lieux-2",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_lieux",
+  "type": "choice",
+  "prompt": "Je vais ___ Pierre ce soir.",
+  "answer": "chez",
+  "options": [
+   "à",
+   "dans",
+   "chez"
+  ],
+  "hint": "kişinin evine → chez",
+  "explanation": "Yer edatları: sur (üstünde), dans (içinde), sous (altında), devant (önünde), derrière (arkasında), entre (arasında), à côté de (yanında), près de (yakınında), chez (birinin evinde, iş yerinde).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-lieux-3",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_lieux",
+  "type": "choice",
+  "prompt": "Le chat est ___ la boîte.",
+  "answer": "dans",
+  "options": [
+   "dans",
+   "chez",
+   "pendant"
+  ],
+  "hint": "dans = içinde",
+  "explanation": "Yer edatları: sur (üstünde), dans (içinde), sous (altında), devant (önünde), derrière (arkasında), entre (arasında), à côté de (yanında), près de (yakınında), chez (birinin evinde, iş yerinde).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-lieux-4",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_lieux",
+  "type": "choice",
+  "prompt": "La banque est ___ la poste.",
+  "answer": "à côté de",
+  "options": [
+   "pendant",
+   "à côté de",
+   "chez"
+  ],
+  "hint": "à côté de = yanında",
+  "explanation": "Yer edatları: sur (üstünde), dans (içinde), sous (altında), devant (önünde), derrière (arkasında), entre (arasında), à côté de (yanında), près de (yakınında), chez (birinin evinde, iş yerinde).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-lieux-5",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_lieux",
+  "type": "choice",
+  "prompt": "Elle est ___ le canapé.",
+  "answer": "derrière",
+  "options": [
+   "depuis",
+   "chez",
+   "derrière"
+  ],
+  "hint": "derrière = arkasında",
+  "explanation": "Yer edatları: sur (üstünde), dans (içinde), sous (altında), devant (önünde), derrière (arkasında), entre (arasında), à côté de (yanında), près de (yakınında), chez (birinin evinde, iş yerinde).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-lieux-6",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_lieux",
+  "type": "choice",
+  "prompt": "Le stylo est ___ le livre et le cahier.",
+  "answer": "entre",
+  "options": [
+   "entre",
+   "chez",
+   "pendant"
+  ],
+  "hint": "entre = arasında",
+  "explanation": "Yer edatları: sur (üstünde), dans (içinde), sous (altında), devant (önünde), derrière (arkasında), entre (arasında), à côté de (yanında), près de (yakınında), chez (birinin evinde, iş yerinde).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-lieux-7",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_lieux",
+  "type": "choice",
+  "prompt": "Nous sommes ___ la maison.",
+  "answer": "devant",
+  "options": [
+   "chez",
+   "devant",
+   "pendant"
+  ],
+  "hint": "devant = önünde",
+  "explanation": "Yer edatları: sur (üstünde), dans (içinde), sous (altında), devant (önünde), derrière (arkasında), entre (arasında), à côté de (yanında), près de (yakınında), chez (birinin evinde, iş yerinde).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-lieux-8",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_lieux",
+  "type": "choice",
+  "prompt": "Il habite ___ la mer.",
+  "answer": "près de",
+  "options": [
+   "chez",
+   "pendant",
+   "près de"
+  ],
+  "hint": "près de = yakınında",
+  "explanation": "Yer edatları: sur (üstünde), dans (içinde), sous (altında), devant (önünde), derrière (arkasında), entre (arasında), à côté de (yanında), près de (yakınında), chez (birinin evinde, iş yerinde).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-depuis-1",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_depuis",
+  "type": "choice",
+  "prompt": "J'habite à Paris ___ trois ans.",
+  "answer": "depuis",
+  "options": [
+   "pendant",
+   "depuis",
+   "il y a"
+  ],
+  "hint": "hâlâ sürüyor → depuis",
+  "explanation": "Süre ifadeleri: depuis (hâlâ süren eylem, şimdiki zamanla), il y a (geçmişte ne kadar önce, passé composé ile), pendant (süre boyunca), dans (gelecekte ne kadar sonra).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-depuis-2",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_depuis",
+  "type": "choice",
+  "prompt": "Elle est arrivée ___ deux jours.",
+  "answer": "il y a",
+  "options": [
+   "depuis",
+   "pendant",
+   "il y a"
+  ],
+  "hint": "geçmişte ne kadar önce → il y a",
+  "explanation": "Süre ifadeleri: depuis (hâlâ süren eylem, şimdiki zamanla), il y a (geçmişte ne kadar önce, passé composé ile), pendant (süre boyunca), dans (gelecekte ne kadar sonra).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-depuis-3",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_depuis",
+  "type": "choice",
+  "prompt": "Nous avons dormi ___ huit heures.",
+  "answer": "pendant",
+  "options": [
+   "pendant",
+   "depuis",
+   "il y a"
+  ],
+  "hint": "tamamlanmış süre → pendant",
+  "explanation": "Süre ifadeleri: depuis (hâlâ süren eylem, şimdiki zamanla), il y a (geçmişte ne kadar önce, passé composé ile), pendant (süre boyunca), dans (gelecekte ne kadar sonra).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-depuis-4",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_depuis",
+  "type": "choice",
+  "prompt": "Le film commence ___ dix minutes.",
+  "answer": "dans",
+  "options": [
+   "pendant",
+   "dans",
+   "depuis"
+  ],
+  "hint": "gelecekte → dans",
+  "explanation": "Süre ifadeleri: depuis (hâlâ süren eylem, şimdiki zamanla), il y a (geçmişte ne kadar önce, passé composé ile), pendant (süre boyunca), dans (gelecekte ne kadar sonra).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-depuis-5",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_depuis",
+  "type": "choice",
+  "prompt": "Il travaille ici ___ 2020.",
+  "answer": "depuis",
+  "options": [
+   "il y a",
+   "dans",
+   "depuis"
+  ],
+  "hint": "başlangıç noktası → depuis",
+  "explanation": "Süre ifadeleri: depuis (hâlâ süren eylem, şimdiki zamanla), il y a (geçmişte ne kadar önce, passé composé ile), pendant (süre boyunca), dans (gelecekte ne kadar sonra).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-depuis-6",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_depuis",
+  "type": "choice",
+  "prompt": "J'ai vu Marie ___ une semaine.",
+  "answer": "il y a",
+  "options": [
+   "il y a",
+   "depuis",
+   "dans"
+  ],
+  "hint": "bir hafta önce → il y a",
+  "explanation": "Süre ifadeleri: depuis (hâlâ süren eylem, şimdiki zamanla), il y a (geçmişte ne kadar önce, passé composé ile), pendant (süre boyunca), dans (gelecekte ne kadar sonra).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-depuis-7",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_depuis",
+  "type": "choice",
+  "prompt": "Il pleut ___ ce matin.",
+  "answer": "depuis",
+  "options": [
+   "pendant",
+   "depuis",
+   "il y a"
+  ],
+  "hint": "hâlâ yağıyor → depuis",
+  "explanation": "Süre ifadeleri: depuis (hâlâ süren eylem, şimdiki zamanla), il y a (geçmişte ne kadar önce, passé composé ile), pendant (süre boyunca), dans (gelecekte ne kadar sonra).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-a2-depuis-8",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_depuis",
+  "type": "choice",
+  "prompt": "Ils partent ___ une heure.",
+  "answer": "dans",
+  "options": [
+   "il y a",
+   "depuis",
+   "dans"
+  ],
+  "hint": "bir saat sonra → dans",
+  "explanation": "Süre ifadeleri: depuis (hâlâ süren eylem, şimdiki zamanla), il y a (geçmişte ne kadar önce, passé composé ile), pendant (süre boyunca), dans (gelecekte ne kadar sonra).",
+  "source": "Diloloji (özgün)"
+ }
+]

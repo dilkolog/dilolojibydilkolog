@@ -1,0 +1,1362 @@
+[
+ {
+  "id": "en-a1-to_be-1",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_to_be",
+  "type": "choice",
+  "prompt": "She ___ a teacher.",
+  "answer": "is",
+  "options": [
+   "are",
+   "is",
+   "am"
+  ],
+  "hint": "she → is",
+  "explanation": "To be: I am, you are, he/she/it is, we are, you are, they are. Olumsuz: am not, isn't, aren't. Soruda fiil özneden önce gelir: Are you hungry? Is he your teacher?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-to_be-2",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_to_be",
+  "type": "choice",
+  "prompt": "I ___ from Turkey.",
+  "answer": "am",
+  "options": [
+   "is",
+   "are",
+   "am"
+  ],
+  "hint": "I → am",
+  "explanation": "To be: I am, you are, he/she/it is, we are, you are, they are. Olumsuz: am not, isn't, aren't. Soruda fiil özneden önce gelir: Are you hungry? Is he your teacher?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-to_be-3",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_to_be",
+  "type": "choice",
+  "prompt": "They ___ at home.",
+  "answer": "are",
+  "options": [
+   "are",
+   "is",
+   "am"
+  ],
+  "hint": "they → are",
+  "explanation": "To be: I am, you are, he/she/it is, we are, you are, they are. Olumsuz: am not, isn't, aren't. Soruda fiil özneden önce gelir: Are you hungry? Is he your teacher?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-to_be-4",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_to_be",
+  "type": "choice",
+  "prompt": "___ you hungry?",
+  "answer": "Are",
+  "options": [
+   "Am",
+   "Are",
+   "Is"
+  ],
+  "hint": "you → are",
+  "explanation": "To be: I am, you are, he/she/it is, we are, you are, they are. Olumsuz: am not, isn't, aren't. Soruda fiil özneden önce gelir: Are you hungry? Is he your teacher?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-to_be-5",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_to_be",
+  "type": "choice",
+  "prompt": "My brother ___ 20 years old.",
+  "answer": "is",
+  "options": [
+   "are",
+   "has",
+   "is"
+  ],
+  "hint": "tek kişi → is (yaş to be ile)",
+  "explanation": "To be: I am, you are, he/she/it is, we are, you are, they are. Olumsuz: am not, isn't, aren't. Soruda fiil özneden önce gelir: Are you hungry? Is he your teacher?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-to_be-6",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_to_be",
+  "type": "choice",
+  "prompt": "We ___ not late.",
+  "answer": "are",
+  "options": [
+   "are",
+   "is",
+   "am"
+  ],
+  "hint": "we → are",
+  "explanation": "To be: I am, you are, he/she/it is, we are, you are, they are. Olumsuz: am not, isn't, aren't. Soruda fiil özneden önce gelir: Are you hungry? Is he your teacher?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-to_be-7",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_to_be",
+  "type": "choice",
+  "prompt": "It ___ cold today.",
+  "answer": "is",
+  "options": [
+   "am",
+   "is",
+   "are"
+  ],
+  "hint": "it → is",
+  "explanation": "To be: I am, you are, he/she/it is, we are, you are, they are. Olumsuz: am not, isn't, aren't. Soruda fiil özneden önce gelir: Are you hungry? Is he your teacher?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-to_be-8",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_to_be",
+  "type": "choice",
+  "prompt": "___ he your teacher?",
+  "answer": "Is",
+  "options": [
+   "Are",
+   "Do",
+   "Is"
+  ],
+  "hint": "he → is",
+  "explanation": "To be: I am, you are, he/she/it is, we are, you are, they are. Olumsuz: am not, isn't, aren't. Soruda fiil özneden önce gelir: Are you hungry? Is he your teacher?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-present_simple-1",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_simple",
+  "type": "choice",
+  "prompt": "He ___ coffee every morning.",
+  "answer": "drinks",
+  "options": [
+   "drinking",
+   "drinks",
+   "drink"
+  ],
+  "hint": "he → -s",
+  "explanation": "Present simple: alışkanlık ve genel gerçekler için. He/she/it ile fiile -s/-es eklenir (he drinks, she goes). Olumsuz ve soru yardımcı fiille kurulur: do/does + yalın fiil (she doesn't like, does she work?).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-present_simple-2",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_simple",
+  "type": "choice",
+  "prompt": "They ___ in London.",
+  "answer": "live",
+  "options": [
+   "lives",
+   "living",
+   "live"
+  ],
+  "hint": "they → yalın fiil",
+  "explanation": "Present simple: alışkanlık ve genel gerçekler için. He/she/it ile fiile -s/-es eklenir (he drinks, she goes). Olumsuz ve soru yardımcı fiille kurulur: do/does + yalın fiil (she doesn't like, does she work?).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-present_simple-3",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_simple",
+  "type": "choice",
+  "prompt": "She ___ not like fish.",
+  "answer": "does",
+  "options": [
+   "does",
+   "do",
+   "is"
+  ],
+  "hint": "she → does not",
+  "explanation": "Present simple: alışkanlık ve genel gerçekler için. He/she/it ile fiile -s/-es eklenir (he drinks, she goes). Olumsuz ve soru yardımcı fiille kurulur: do/does + yalın fiil (she doesn't like, does she work?).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-present_simple-4",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_simple",
+  "type": "choice",
+  "prompt": "Do you ___ English?",
+  "answer": "speak",
+  "options": [
+   "speaking",
+   "speak",
+   "speaks"
+  ],
+  "hint": "do'dan sonra yalın fiil",
+  "explanation": "Present simple: alışkanlık ve genel gerçekler için. He/she/it ile fiile -s/-es eklenir (he drinks, she goes). Olumsuz ve soru yardımcı fiille kurulur: do/does + yalın fiil (she doesn't like, does she work?).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-present_simple-5",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_simple",
+  "type": "choice",
+  "prompt": "My dad ___ to work by bus.",
+  "answer": "goes",
+  "options": [
+   "go",
+   "going",
+   "goes"
+  ],
+  "hint": "go → goes",
+  "explanation": "Present simple: alışkanlık ve genel gerçekler için. He/she/it ile fiile -s/-es eklenir (he drinks, she goes). Olumsuz ve soru yardımcı fiille kurulur: do/does + yalın fiil (she doesn't like, does she work?).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-present_simple-6",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_simple",
+  "type": "choice",
+  "prompt": "We don't ___ TV in the morning.",
+  "answer": "watch",
+  "options": [
+   "watch",
+   "watches",
+   "watching"
+  ],
+  "hint": "don't'dan sonra yalın fiil",
+  "explanation": "Present simple: alışkanlık ve genel gerçekler için. He/she/it ile fiile -s/-es eklenir (he drinks, she goes). Olumsuz ve soru yardımcı fiille kurulur: do/does + yalın fiil (she doesn't like, does she work?).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-present_simple-7",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_simple",
+  "type": "choice",
+  "prompt": "The shop ___ at nine.",
+  "answer": "opens",
+  "options": [
+   "opening",
+   "opens",
+   "open"
+  ],
+  "hint": "it/the shop → -s",
+  "explanation": "Present simple: alışkanlık ve genel gerçekler için. He/she/it ile fiile -s/-es eklenir (he drinks, she goes). Olumsuz ve soru yardımcı fiille kurulur: do/does + yalın fiil (she doesn't like, does she work?).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-present_simple-8",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_simple",
+  "type": "choice",
+  "prompt": "___ she work here?",
+  "answer": "Does",
+  "options": [
+   "Do",
+   "Is",
+   "Does"
+  ],
+  "hint": "she → does",
+  "explanation": "Present simple: alışkanlık ve genel gerçekler için. He/she/it ile fiile -s/-es eklenir (he drinks, she goes). Olumsuz ve soru yardımcı fiille kurulur: do/does + yalın fiil (she doesn't like, does she work?).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-articles-1",
+  "language": "en",
+  "level": "A1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "I need ___ umbrella.",
+  "answer": "an",
+  "options": [
+   "many",
+   "an",
+   "a"
+  ],
+  "hint": "sesli sesle başlıyor → an",
+  "explanation": "A/an belirsiz ve tekil sayılabilir isimle kullanılır (a cat, an umbrella: sesli ses önünde an). The, bilinen ya da ikinci kez anılan şeyi gösterir. Çoğul ve sayılamayan isimlerle a/an kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-articles-2",
+  "language": "en",
+  "level": "A1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "She has ___ cat.",
+  "answer": "a",
+  "options": [
+   "an",
+   "many",
+   "a"
+  ],
+  "hint": "ünsüz sesle başlıyor → a",
+  "explanation": "A/an belirsiz ve tekil sayılabilir isimle kullanılır (a cat, an umbrella: sesli ses önünde an). The, bilinen ya da ikinci kez anılan şeyi gösterir. Çoğul ve sayılamayan isimlerle a/an kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-articles-3",
+  "language": "en",
+  "level": "A1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "My father is ___ engineer.",
+  "answer": "an",
+  "options": [
+   "an",
+   "a",
+   "many"
+  ],
+  "hint": "engineer sesli sesle başlıyor → an",
+  "explanation": "A/an belirsiz ve tekil sayılabilir isimle kullanılır (a cat, an umbrella: sesli ses önünde an). The, bilinen ya da ikinci kez anılan şeyi gösterir. Çoğul ve sayılamayan isimlerle a/an kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-articles-4",
+  "language": "en",
+  "level": "A1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "I saw a dog. ___ dog was big.",
+  "answer": "The",
+  "options": [
+   "An",
+   "The",
+   "A"
+  ],
+  "hint": "ikinci kez anılıyor → the",
+  "explanation": "A/an belirsiz ve tekil sayılabilir isimle kullanılır (a cat, an umbrella: sesli ses önünde an). The, bilinen ya da ikinci kez anılan şeyi gösterir. Çoğul ve sayılamayan isimlerle a/an kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-articles-5",
+  "language": "en",
+  "level": "A1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "Please close ___ door.",
+  "answer": "the",
+  "options": [
+   "an",
+   "many",
+   "the"
+  ],
+  "hint": "belirli kapı → the",
+  "explanation": "A/an belirsiz ve tekil sayılabilir isimle kullanılır (a cat, an umbrella: sesli ses önünde an). The, bilinen ya da ikinci kez anılan şeyi gösterir. Çoğul ve sayılamayan isimlerle a/an kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-articles-6",
+  "language": "en",
+  "level": "A1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "___ sun is hot in summer.",
+  "answer": "The",
+  "options": [
+   "The",
+   "A",
+   "An"
+  ],
+  "hint": "tek olan şey → the",
+  "explanation": "A/an belirsiz ve tekil sayılabilir isimle kullanılır (a cat, an umbrella: sesli ses önünde an). The, bilinen ya da ikinci kez anılan şeyi gösterir. Çoğul ve sayılamayan isimlerle a/an kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-articles-7",
+  "language": "en",
+  "level": "A1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "He plays ___ guitar.",
+  "answer": "the",
+  "options": [
+   "many",
+   "the",
+   "an"
+  ],
+  "hint": "çalgı aletleriyle → the",
+  "explanation": "A/an belirsiz ve tekil sayılabilir isimle kullanılır (a cat, an umbrella: sesli ses önünde an). The, bilinen ya da ikinci kez anılan şeyi gösterir. Çoğul ve sayılamayan isimlerle a/an kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-articles-8",
+  "language": "en",
+  "level": "A1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "It takes ___ hour.",
+  "answer": "an",
+  "options": [
+   "a",
+   "many",
+   "an"
+  ],
+  "hint": "hour sesli sesle başlıyor → an",
+  "explanation": "A/an belirsiz ve tekil sayılabilir isimle kullanılır (a cat, an umbrella: sesli ses önünde an). The, bilinen ya da ikinci kez anılan şeyi gösterir. Çoğul ve sayılamayan isimlerle a/an kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-pronouns-1",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_pronouns",
+  "type": "choice",
+  "prompt": "___ am a student.",
+  "answer": "I",
+  "options": [
+   "My",
+   "I",
+   "Me"
+  ],
+  "hint": "özne → I",
+  "explanation": "Özne zamirleri: I, you, he, she, it, we, they. Nesne zamirleri: me, you, him, her, it, us, them. İyelik sıfatları: my, your, his, her, its, our, their; isimsiz iyelik: mine, yours, his, hers, ours, theirs.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-pronouns-2",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_pronouns",
+  "type": "choice",
+  "prompt": "Give ___ the book.",
+  "answer": "me",
+  "options": [
+   "I",
+   "my",
+   "me"
+  ],
+  "hint": "nesne → me",
+  "explanation": "Özne zamirleri: I, you, he, she, it, we, they. Nesne zamirleri: me, you, him, her, it, us, them. İyelik sıfatları: my, your, his, her, its, our, their; isimsiz iyelik: mine, yours, his, hers, ours, theirs.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-pronouns-3",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_pronouns",
+  "type": "choice",
+  "prompt": "This is ___ car.",
+  "answer": "my",
+  "options": [
+   "my",
+   "me",
+   "I"
+  ],
+  "hint": "ismin önünde → my",
+  "explanation": "Özne zamirleri: I, you, he, she, it, we, they. Nesne zamirleri: me, you, him, her, it, us, them. İyelik sıfatları: my, your, his, her, its, our, their; isimsiz iyelik: mine, yours, his, hers, ours, theirs.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-pronouns-4",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_pronouns",
+  "type": "choice",
+  "prompt": "She loves ___.",
+  "answer": "him",
+  "options": [
+   "his",
+   "him",
+   "he"
+  ],
+  "hint": "nesne → him",
+  "explanation": "Özne zamirleri: I, you, he, she, it, we, they. Nesne zamirleri: me, you, him, her, it, us, them. İyelik sıfatları: my, your, his, her, its, our, their; isimsiz iyelik: mine, yours, his, hers, ours, theirs.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-pronouns-5",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_pronouns",
+  "type": "choice",
+  "prompt": "That book is ___.",
+  "answer": "mine",
+  "options": [
+   "my",
+   "me",
+   "mine"
+  ],
+  "hint": "isimsiz → mine",
+  "explanation": "Özne zamirleri: I, you, he, she, it, we, they. Nesne zamirleri: me, you, him, her, it, us, them. İyelik sıfatları: my, your, his, her, its, our, their; isimsiz iyelik: mine, yours, his, hers, ours, theirs.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-pronouns-6",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_pronouns",
+  "type": "choice",
+  "prompt": "We like ___ teacher.",
+  "answer": "our",
+  "options": [
+   "our",
+   "us",
+   "we"
+  ],
+  "hint": "ismin önünde → our",
+  "explanation": "Özne zamirleri: I, you, he, she, it, we, they. Nesne zamirleri: me, you, him, her, it, us, them. İyelik sıfatları: my, your, his, her, its, our, their; isimsiz iyelik: mine, yours, his, hers, ours, theirs.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-pronouns-7",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_pronouns",
+  "type": "choice",
+  "prompt": "I know ___. He is my neighbour.",
+  "answer": "him",
+  "options": [
+   "his",
+   "him",
+   "he"
+  ],
+  "hint": "nesne → him",
+  "explanation": "Özne zamirleri: I, you, he, she, it, we, they. Nesne zamirleri: me, you, him, her, it, us, them. İyelik sıfatları: my, your, his, her, its, our, their; isimsiz iyelik: mine, yours, his, hers, ours, theirs.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-pronouns-8",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_pronouns",
+  "type": "choice",
+  "prompt": "They live with ___ parents.",
+  "answer": "their",
+  "options": [
+   "them",
+   "they",
+   "their"
+  ],
+  "hint": "ismin önünde → their",
+  "explanation": "Özne zamirleri: I, you, he, she, it, we, they. Nesne zamirleri: me, you, him, her, it, us, them. İyelik sıfatları: my, your, his, her, its, our, their; isimsiz iyelik: mine, yours, his, hers, ours, theirs.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-there_is-1",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_there_is",
+  "type": "choice",
+  "prompt": "___ a book on the table.",
+  "answer": "There is",
+  "options": [
+   "It is",
+   "There is",
+   "There are"
+  ],
+  "hint": "tekil → there is",
+  "explanation": "There is + tekil ya da sayılamayan isim, there are + çoğul isim: there is a book, there are two cats. Soru: Is there ...? Are there ...? Olumsuz ve sorularda çoğul ve sayılamayan isimle any kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-there_is-2",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_there_is",
+  "type": "choice",
+  "prompt": "___ two cats in the garden.",
+  "answer": "There are",
+  "options": [
+   "There is",
+   "They are",
+   "There are"
+  ],
+  "hint": "çoğul → there are",
+  "explanation": "There is + tekil ya da sayılamayan isim, there are + çoğul isim: there is a book, there are two cats. Soru: Is there ...? Are there ...? Olumsuz ve sorularda çoğul ve sayılamayan isimle any kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-there_is-3",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_there_is",
+  "type": "choice",
+  "prompt": "Is there ___ milk in the fridge?",
+  "answer": "any",
+  "options": [
+   "any",
+   "a",
+   "many"
+  ],
+  "hint": "sayılamayan, soru → any",
+  "explanation": "There is + tekil ya da sayılamayan isim, there are + çoğul isim: there is a book, there are two cats. Soru: Is there ...? Are there ...? Olumsuz ve sorularda çoğul ve sayılamayan isimle any kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-there_is-4",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_there_is",
+  "type": "choice",
+  "prompt": "There ___ a problem.",
+  "answer": "is",
+  "options": [
+   "have",
+   "is",
+   "are"
+  ],
+  "hint": "tekil → is",
+  "explanation": "There is + tekil ya da sayılamayan isim, there are + çoğul isim: there is a book, there are two cats. Soru: Is there ...? Are there ...? Olumsuz ve sorularda çoğul ve sayılamayan isimle any kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-there_is-5",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_there_is",
+  "type": "choice",
+  "prompt": "There ___ any students in class.",
+  "answer": "aren't",
+  "options": [
+   "isn't",
+   "not",
+   "aren't"
+  ],
+  "hint": "çoğul olumsuz → aren't",
+  "explanation": "There is + tekil ya da sayılamayan isim, there are + çoğul isim: there is a book, there are two cats. Soru: Is there ...? Are there ...? Olumsuz ve sorularda çoğul ve sayılamayan isimle any kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-there_is-6",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_there_is",
+  "type": "choice",
+  "prompt": "___ there a bank near here?",
+  "answer": "Is",
+  "options": [
+   "Is",
+   "Are",
+   "Do"
+  ],
+  "hint": "tekil soru → is there",
+  "explanation": "There is + tekil ya da sayılamayan isim, there are + çoğul isim: there is a book, there are two cats. Soru: Is there ...? Are there ...? Olumsuz ve sorularda çoğul ve sayılamayan isimle any kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-there_is-7",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_there_is",
+  "type": "choice",
+  "prompt": "There ___ three bedrooms.",
+  "answer": "are",
+  "options": [
+   "has",
+   "are",
+   "is"
+  ],
+  "hint": "çoğul → are",
+  "explanation": "There is + tekil ya da sayılamayan isim, there are + çoğul isim: there is a book, there are two cats. Soru: Is there ...? Are there ...? Olumsuz ve sorularda çoğul ve sayılamayan isimle any kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-there_is-8",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_there_is",
+  "type": "choice",
+  "prompt": "Are there ___ chairs?",
+  "answer": "any",
+  "options": [
+   "a",
+   "much",
+   "any"
+  ],
+  "hint": "çoğul soru → any",
+  "explanation": "There is + tekil ya da sayılamayan isim, there are + çoğul isim: there is a book, there are two cats. Soru: Is there ...? Are there ...? Olumsuz ve sorularda çoğul ve sayılamayan isimle any kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-demonstratives-1",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_demonstratives",
+  "type": "choice",
+  "prompt": "___ book (near me) is interesting.",
+  "answer": "This",
+  "options": [
+   "Those",
+   "This",
+   "These"
+  ],
+  "hint": "yakın, tekil → this",
+  "explanation": "This/these yakındaki, that/those uzaktaki şeyleri gösterir. Tekil: this, that; çoğul: these, those.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-demonstratives-2",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_demonstratives",
+  "type": "choice",
+  "prompt": "___ shoes (near me) are new.",
+  "answer": "These",
+  "options": [
+   "This",
+   "That",
+   "These"
+  ],
+  "hint": "yakın, çoğul → these",
+  "explanation": "This/these yakındaki, that/those uzaktaki şeyleri gösterir. Tekil: this, that; çoğul: these, those.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-demonstratives-3",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_demonstratives",
+  "type": "choice",
+  "prompt": "___ house over there is big.",
+  "answer": "That",
+  "options": [
+   "That",
+   "This",
+   "These"
+  ],
+  "hint": "uzak, tekil → that",
+  "explanation": "This/these yakındaki, that/those uzaktaki şeyleri gösterir. Tekil: this, that; çoğul: these, those.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-demonstratives-4",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_demonstratives",
+  "type": "choice",
+  "prompt": "___ flowers over there are red.",
+  "answer": "Those",
+  "options": [
+   "This",
+   "Those",
+   "That"
+  ],
+  "hint": "uzak, çoğul → those",
+  "explanation": "This/these yakındaki, that/those uzaktaki şeyleri gösterir. Tekil: this, that; çoğul: these, those.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-demonstratives-5",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_demonstratives",
+  "type": "choice",
+  "prompt": "Look at ___ photo. (near me)",
+  "answer": "this",
+  "options": [
+   "these",
+   "those",
+   "this"
+  ],
+  "hint": "yakın, tekil → this",
+  "explanation": "This/these yakındaki, that/those uzaktaki şeyleri gösterir. Tekil: this, that; çoğul: these, those.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-demonstratives-6",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_demonstratives",
+  "type": "choice",
+  "prompt": "Do you like ___ apples? (near me)",
+  "answer": "these",
+  "options": [
+   "these",
+   "this",
+   "that"
+  ],
+  "hint": "yakın, çoğul → these",
+  "explanation": "This/these yakındaki, that/those uzaktaki şeyleri gösterir. Tekil: this, that; çoğul: these, those.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-demonstratives-7",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_demonstratives",
+  "type": "choice",
+  "prompt": "___ is my friend, Sara. (introducing someone next to you)",
+  "answer": "This",
+  "options": [
+   "These",
+   "This",
+   "That"
+  ],
+  "hint": "tanıştırırken → this",
+  "explanation": "This/these yakındaki, that/those uzaktaki şeyleri gösterir. Tekil: this, that; çoğul: these, those.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-demonstratives-8",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_demonstratives",
+  "type": "choice",
+  "prompt": "What's ___ over there?",
+  "answer": "that",
+  "options": [
+   "this",
+   "these",
+   "that"
+  ],
+  "hint": "uzak → that",
+  "explanation": "This/these yakındaki, that/those uzaktaki şeyleri gösterir. Tekil: this, that; çoğul: these, those.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-questions-1",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_questions",
+  "type": "choice",
+  "prompt": "___ do you live? — In Izmir.",
+  "answer": "Where",
+  "options": [
+   "Who",
+   "Where",
+   "When"
+  ],
+  "hint": "yer → where",
+  "explanation": "Soru sözcükleri: what (ne), where (nerede), when (ne zaman), who (kim), why (neden), how (nasıl), how many (kaç, sayılabilen), how much (ne kadar, sayılamayan ya da fiyat), how old (kaç yaşında).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-questions-2",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_questions",
+  "type": "choice",
+  "prompt": "___ is your birthday? — In May.",
+  "answer": "When",
+  "options": [
+   "Where",
+   "Who",
+   "When"
+  ],
+  "hint": "zaman → when",
+  "explanation": "Soru sözcükleri: what (ne), where (nerede), when (ne zaman), who (kim), why (neden), how (nasıl), how many (kaç, sayılabilen), how much (ne kadar, sayılamayan ya da fiyat), how old (kaç yaşında).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-questions-3",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_questions",
+  "type": "choice",
+  "prompt": "___ old are you?",
+  "answer": "How",
+  "options": [
+   "How",
+   "What",
+   "Who"
+  ],
+  "hint": "yaş → how old",
+  "explanation": "Soru sözcükleri: what (ne), where (nerede), when (ne zaman), who (kim), why (neden), how (nasıl), how many (kaç, sayılabilen), how much (ne kadar, sayılamayan ya da fiyat), how old (kaç yaşında).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-questions-4",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_questions",
+  "type": "choice",
+  "prompt": "___ is that man? — My uncle.",
+  "answer": "Who",
+  "options": [
+   "Where",
+   "Who",
+   "What"
+  ],
+  "hint": "kişi → who",
+  "explanation": "Soru sözcükleri: what (ne), where (nerede), when (ne zaman), who (kim), why (neden), how (nasıl), how many (kaç, sayılabilen), how much (ne kadar, sayılamayan ya da fiyat), how old (kaç yaşında).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-questions-5",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_questions",
+  "type": "choice",
+  "prompt": "___ does she work? — At a bank.",
+  "answer": "Where",
+  "options": [
+   "Who",
+   "How many",
+   "Where"
+  ],
+  "hint": "yer → where",
+  "explanation": "Soru sözcükleri: what (ne), where (nerede), when (ne zaman), who (kim), why (neden), how (nasıl), how many (kaç, sayılabilen), how much (ne kadar, sayılamayan ya da fiyat), how old (kaç yaşında).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-questions-6",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_questions",
+  "type": "choice",
+  "prompt": "___ do you like? — Pizza.",
+  "answer": "What",
+  "options": [
+   "What",
+   "Where",
+   "When"
+  ],
+  "hint": "şey → what",
+  "explanation": "Soru sözcükleri: what (ne), where (nerede), when (ne zaman), who (kim), why (neden), how (nasıl), how many (kaç, sayılabilen), how much (ne kadar, sayılamayan ya da fiyat), how old (kaç yaşında).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-questions-7",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_questions",
+  "type": "choice",
+  "prompt": "___ books do you have? — Ten.",
+  "answer": "How many",
+  "options": [
+   "How",
+   "How many",
+   "How much"
+  ],
+  "hint": "sayılabilen çoğul → how many",
+  "explanation": "Soru sözcükleri: what (ne), where (nerede), when (ne zaman), who (kim), why (neden), how (nasıl), how many (kaç, sayılabilen), how much (ne kadar, sayılamayan ya da fiyat), how old (kaç yaşında).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-questions-8",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_questions",
+  "type": "choice",
+  "prompt": "___ does it cost? — Five pounds.",
+  "answer": "How much",
+  "options": [
+   "How many",
+   "How old",
+   "How much"
+  ],
+  "hint": "fiyat → how much",
+  "explanation": "Soru sözcükleri: what (ne), where (nerede), when (ne zaman), who (kim), why (neden), how (nasıl), how many (kaç, sayılabilen), how much (ne kadar, sayılamayan ya da fiyat), how old (kaç yaşında).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-time_prepositions-1",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_time_prepositions",
+  "type": "choice",
+  "prompt": "I get up ___ 7 o'clock.",
+  "answer": "at",
+  "options": [
+   "on",
+   "at",
+   "in"
+  ],
+  "hint": "saat → at",
+  "explanation": "Zaman edatları: at + saat ve gün bölümü (at 7 o'clock, at night); on + gün ve tarih (on Monday, on 5 June); in + ay, yıl, mevsim ve gün bölümü (in August, in 1995, in the morning).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-time_prepositions-2",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_time_prepositions",
+  "type": "choice",
+  "prompt": "The meeting is ___ Monday.",
+  "answer": "on",
+  "options": [
+   "at",
+   "in",
+   "on"
+  ],
+  "hint": "gün → on",
+  "explanation": "Zaman edatları: at + saat ve gün bölümü (at 7 o'clock, at night); on + gün ve tarih (on Monday, on 5 June); in + ay, yıl, mevsim ve gün bölümü (in August, in 1995, in the morning).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-time_prepositions-3",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_time_prepositions",
+  "type": "choice",
+  "prompt": "We go on holiday ___ August.",
+  "answer": "in",
+  "options": [
+   "in",
+   "on",
+   "at"
+  ],
+  "hint": "ay → in",
+  "explanation": "Zaman edatları: at + saat ve gün bölümü (at 7 o'clock, at night); on + gün ve tarih (on Monday, on 5 June); in + ay, yıl, mevsim ve gün bölümü (in August, in 1995, in the morning).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-time_prepositions-4",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_time_prepositions",
+  "type": "choice",
+  "prompt": "She was born ___ 1995.",
+  "answer": "in",
+  "options": [
+   "at",
+   "in",
+   "on"
+  ],
+  "hint": "yıl → in",
+  "explanation": "Zaman edatları: at + saat ve gün bölümü (at 7 o'clock, at night); on + gün ve tarih (on Monday, on 5 June); in + ay, yıl, mevsim ve gün bölümü (in August, in 1995, in the morning).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-time_prepositions-5",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_time_prepositions",
+  "type": "choice",
+  "prompt": "He works ___ night.",
+  "answer": "at",
+  "options": [
+   "on",
+   "in",
+   "at"
+  ],
+  "hint": "at night",
+  "explanation": "Zaman edatları: at + saat ve gün bölümü (at 7 o'clock, at night); on + gün ve tarih (on Monday, on 5 June); in + ay, yıl, mevsim ve gün bölümü (in August, in 1995, in the morning).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-time_prepositions-6",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_time_prepositions",
+  "type": "choice",
+  "prompt": "My birthday is ___ 5 June.",
+  "answer": "on",
+  "options": [
+   "on",
+   "in",
+   "at"
+  ],
+  "hint": "tarih → on",
+  "explanation": "Zaman edatları: at + saat ve gün bölümü (at 7 o'clock, at night); on + gün ve tarih (on Monday, on 5 June); in + ay, yıl, mevsim ve gün bölümü (in August, in 1995, in the morning).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-time_prepositions-7",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_time_prepositions",
+  "type": "choice",
+  "prompt": "They arrive ___ the morning.",
+  "answer": "in",
+  "options": [
+   "at",
+   "in",
+   "on"
+  ],
+  "hint": "in the morning",
+  "explanation": "Zaman edatları: at + saat ve gün bölümü (at 7 o'clock, at night); on + gün ve tarih (on Monday, on 5 June); in + ay, yıl, mevsim ve gün bölümü (in August, in 1995, in the morning).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a1-time_prepositions-8",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_time_prepositions",
+  "type": "choice",
+  "prompt": "We have dinner ___ 8 pm.",
+  "answer": "at",
+  "options": [
+   "in",
+   "on",
+   "at"
+  ],
+  "hint": "saat → at",
+  "explanation": "Zaman edatları: at + saat ve gün bölümü (at 7 o'clock, at night); on + gün ve tarih (on Monday, on 5 June); in + ay, yıl, mevsim ve gün bölümü (in August, in 1995, in the morning).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-past_simple-1",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_simple",
+  "type": "choice",
+  "prompt": "I ___ to the cinema yesterday.",
+  "answer": "went",
+  "options": [
+   "gone",
+   "went",
+   "go"
+  ],
+  "hint": "yesterday → past simple, go → went",
+  "explanation": "Past simple: bitmiş geçmişi anlatır (yesterday, last night). Düzenli fiillere -ed eklenir (played), düzensizlerin ikinci hali ezberlenir (go → went, write → wrote). Olumsuz ve soru did ile kurulur, fiil yalın kalır: didn't like, did you see?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-past_simple-2",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_simple",
+  "type": "choice",
+  "prompt": "She ___ a letter last night.",
+  "answer": "wrote",
+  "options": [
+   "write",
+   "written",
+   "wrote"
+  ],
+  "hint": "write → wrote",
+  "explanation": "Past simple: bitmiş geçmişi anlatır (yesterday, last night). Düzenli fiillere -ed eklenir (played), düzensizlerin ikinci hali ezberlenir (go → went, write → wrote). Olumsuz ve soru did ile kurulur, fiil yalın kalır: didn't like, did you see?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-past_simple-3",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_simple",
+  "type": "choice",
+  "prompt": "They ___ football on Sunday.",
+  "answer": "played",
+  "options": [
+   "played",
+   "play",
+   "plays"
+  ],
+  "hint": "düzenli fiil → -ed",
+  "explanation": "Past simple: bitmiş geçmişi anlatır (yesterday, last night). Düzenli fiillere -ed eklenir (played), düzensizlerin ikinci hali ezberlenir (go → went, write → wrote). Olumsuz ve soru did ile kurulur, fiil yalın kalır: didn't like, did you see?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-past_simple-4",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_simple",
+  "type": "choice",
+  "prompt": "We didn't ___ the film.",
+  "answer": "like",
+  "options": [
+   "likes",
+   "like",
+   "liked"
+  ],
+  "hint": "didn't'tan sonra yalın fiil",
+  "explanation": "Past simple: bitmiş geçmişi anlatır (yesterday, last night). Düzenli fiillere -ed eklenir (played), düzensizlerin ikinci hali ezberlenir (go → went, write → wrote). Olumsuz ve soru did ile kurulur, fiil yalın kalır: didn't like, did you see?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-past_simple-5",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_simple",
+  "type": "choice",
+  "prompt": "___ you see him yesterday?",
+  "answer": "Did",
+  "options": [
+   "Do",
+   "Were",
+   "Did"
+  ],
+  "hint": "geçmiş soru → did",
+  "explanation": "Past simple: bitmiş geçmişi anlatır (yesterday, last night). Düzenli fiillere -ed eklenir (played), düzensizlerin ikinci hali ezberlenir (go → went, write → wrote). Olumsuz ve soru did ile kurulur, fiil yalın kalır: didn't like, did you see?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-past_simple-6",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_simple",
+  "type": "choice",
+  "prompt": "He ___ breakfast at 8.",
+  "answer": "had",
+  "options": [
+   "had",
+   "has",
+   "haves"
+  ],
+  "hint": "have → had",
+  "explanation": "Past simple: bitmiş geçmişi anlatır (yesterday, last night). Düzenli fiillere -ed eklenir (played), düzensizlerin ikinci hali ezberlenir (go → went, write → wrote). Olumsuz ve soru did ile kurulur, fiil yalın kalır: didn't like, did you see?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-past_simple-7",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_simple",
+  "type": "choice",
+  "prompt": "I ___ my keys yesterday.",
+  "answer": "lost",
+  "options": [
+   "losted",
+   "lost",
+   "lose"
+  ],
+  "hint": "lose → lost",
+  "explanation": "Past simple: bitmiş geçmişi anlatır (yesterday, last night). Düzenli fiillere -ed eklenir (played), düzensizlerin ikinci hali ezberlenir (go → went, write → wrote). Olumsuz ve soru did ile kurulur, fiil yalın kalır: didn't like, did you see?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-past_simple-8",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_simple",
+  "type": "choice",
+  "prompt": "The train ___ at six.",
+  "answer": "arrived",
+  "options": [
+   "arrive",
+   "arrives",
+   "arrived"
+  ],
+  "hint": "düzenli fiil → -ed",
+  "explanation": "Past simple: bitmiş geçmişi anlatır (yesterday, last night). Düzenli fiillere -ed eklenir (played), düzensizlerin ikinci hali ezberlenir (go → went, write → wrote). Olumsuz ve soru did ile kurulur, fiil yalın kalır: didn't like, did you see?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-comparatives-1",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_comparatives",
+  "type": "choice",
+  "prompt": "My brother is ___ than me.",
+  "answer": "taller",
+  "options": [
+   "tallest",
+   "taller",
+   "tall"
+  ],
+  "hint": "kısa sıfat → -er",
+  "explanation": "Karşılaştırma: kısa sıfatlara -er/-est (tall → taller → the tallest), uzun sıfatlara more/the most (more interesting). Düzensizler: good → better → the best. Eşitlik: as ... as.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-comparatives-2",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_comparatives",
+  "type": "choice",
+  "prompt": "This book is ___ than that one.",
+  "answer": "more interesting",
+  "options": [
+   "interestinger",
+   "most interesting",
+   "more interesting"
+  ],
+  "hint": "uzun sıfat → more",
+  "explanation": "Karşılaştırma: kısa sıfatlara -er/-est (tall → taller → the tallest), uzun sıfatlara more/the most (more interesting). Düzensizler: good → better → the best. Eşitlik: as ... as.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-comparatives-3",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_comparatives",
+  "type": "choice",
+  "prompt": "She is the ___ student in class.",
+  "answer": "best",
+  "options": [
+   "best",
+   "better",
+   "good"
+  ],
+  "hint": "en üstünlük → the best",
+  "explanation": "Karşılaştırma: kısa sıfatlara -er/-est (tall → taller → the tallest), uzun sıfatlara more/the most (more interesting). Düzensizler: good → better → the best. Eşitlik: as ... as.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-comparatives-4",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_comparatives",
+  "type": "choice",
+  "prompt": "Turkey is ___ than Greece.",
+  "answer": "bigger",
+  "options": [
+   "biggest",
+   "bigger",
+   "big"
+  ],
+  "hint": "big → bigger (çift ünsüz)",
+  "explanation": "Karşılaştırma: kısa sıfatlara -er/-est (tall → taller → the tallest), uzun sıfatlara more/the most (more interesting). Düzensizler: good → better → the best. Eşitlik: as ... as.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-comparatives-5",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_comparatives",
+  "type": "choice",
+  "prompt": "Today is ___ than yesterday.",
+  "answer": "hotter",
+  "options": [
+   "hoter",
+   "more hot",
+   "hotter"
+  ],
+  "hint": "hot → hotter",
+  "explanation": "Karşılaştırma: kısa sıfatlara -er/-est (tall → taller → the tallest), uzun sıfatlara more/the most (more interesting). Düzensizler: good → better → the best. Eşitlik: as ... as.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-comparatives-6",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_comparatives",
+  "type": "choice",
+  "prompt": "He is the ___ person I know.",
+  "answer": "funniest",
+  "options": [
+   "funniest",
+   "funnier",
+   "funny"
+  ],
+  "hint": "en üstünlük → the funniest",
+  "explanation": "Karşılaştırma: kısa sıfatlara -er/-est (tall → taller → the tallest), uzun sıfatlara more/the most (more interesting). Düzensizler: good → better → the best. Eşitlik: as ... as.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-comparatives-7",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_comparatives",
+  "type": "choice",
+  "prompt": "This is ___ expensive than that.",
+  "answer": "more",
+  "options": [
+   "much",
+   "more",
+   "most"
+  ],
+  "hint": "karşılaştırma → more",
+  "explanation": "Karşılaştırma: kısa sıfatlara -er/-est (tall → taller → the tallest), uzun sıfatlara more/the most (more interesting). Düzensizler: good → better → the best. Eşitlik: as ... as.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-a2-comparatives-8",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_comparatives",
+  "type": "choice",
+  "prompt": "English is not as ___ as Turkish.",
+  "answer": "difficult",
+  "options": [
+   "more difficult",
+   "difficulter",
+   "difficult"
+  ],
+  "hint": "as ... as arasında yalın sıfat",
+  "explanation": "Karşılaştırma: kısa sıfatlara -er/-est (tall → taller → the tallest), uzun sıfatlara more/the most (more interesting). Düzensizler: good → better → the best. Eşitlik: as ... as.",
+  "source": "Diloloji (özgün)"
+ }
+]
