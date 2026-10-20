@@ -3,7 +3,6 @@ import {
   achievements,
   computeXp,
   levelFromXp,
-  longestStreak,
   longestStreakFromDays,
   perfectDays,
   type AchievementState,
