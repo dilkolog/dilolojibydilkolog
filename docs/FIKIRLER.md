@@ -15,9 +15,9 @@ Yapılabilecek ama henüz yapılmamış işler. Her maddede kısa gerekçe ve il
 11. **Okuma kulübü.** Aynı metni iki arkadaş aynı anda açar, işaretledikleri bilinmeyen kelimeleri birbirinde görür (canlı düello odası altyapısı yeniden kullanılabilir).
 
 ## Kullanım kolaylığı
-12. **Anki .apkg yeni biçim (zstd).** `collection.anki21b` okunsun; küçük bir zstd çözücü (WASM) gerekir. Şimdi kullanıcıya "eski sürümleri destekle" yönergesi gösteriliyor.
-13. ~~**Quizlet/Memrise aktarma sihirbazı.** Dosya biçimini otomatik tanıyıp sütun eşleştirme önizlemesi göstersin.~~ (Tamamlandı: otomatik Quizlet/Memrise/CSV tespiti, sütun eşleştirme açılır menüleri, kelime/anlam takas, panoya kopyalama ve indirme ile Quizlet/Memrise export)
-14. **Çevrimdışı mod güvence testi.** Servis çalışanı gerçek çevrimdışı yeniden yüklemeyi E2E'de denemiyor (uçak/metro). Gerçek ağ kesintisiyle bir test.
+12. ~~**Anki .apkg yeni biçim (zstd).** `collection.anki21b` okunsun; küçük bir zstd çözücü (WASM) gerekir.~~ (Tamamlandı: `fzstd` ile `collection.anki21b` desteği eklendi, #557)
+13. ~~**Quizlet/Memrise aktarma sihirbazı.** Dosya biçimini otomatik tanıyıp sütun eşleştirme önizlemesi göstersin.~~ (Tamamlandı: otomatik Quizlet/Memrise/CSV tespiti, sütun eşleştirme açılır menüleri, kelime/anlam takas, panoya kopyalama ve indirme ile Quizlet/Memrise export, #561)
+14. ~~**Çevrimdışı mod güvence testi.** Servis çalışanı gerçek çevrimdışı yeniden yüklemeyi E2E'de denemiyor (uçak/metro). Gerçek ağ kesintisiyle bir test.~~ (Tamamlandı: gerçek service worker önbelleği ve offline bağlam testi eklendi, `e2e/offline.e2e.ts`, #557)
 15. **Büyük yazı ve okuma yazı tipi (disleksi dostu).** Okuma görünümü paneline OpenDyslexic benzeri bir seçenek; lisansı uygun bir yazı tipi bulunmalı.
 16. **Haftalık özet mailine kişisel hedef.** Mailde "bu hafta şu kadar daha" satırı (sayılar sunucuda doğrulanan kalıpla gider).
 
