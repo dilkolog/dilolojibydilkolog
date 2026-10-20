@@ -33,7 +33,7 @@ Claude Code ve Antigravity aynı listeden çalışır; çakışmamak için:
 ## Teknik ve dayanıklılık
 17. **Workers Builds ile otomatik dağıtım.** `docs/CLOUDFLARE.md`'de adımlar var; sahibinin Cloudflare panelinde bağlaması gerekiyor.
 18. ~~**Dağıtım sonrası duman testi canlı hesapla.**~~ (Tamamlandı: `verify-deploy.mjs` ve `smoke-live.mjs` birleştirildi; başlıklar, bundle anahtarları, açık API uçları ve gerçek canlı hesap eşitleme döngüsü, #570)
-19. **Blob → Supabase (arkadaş gelen kutusu).** Yalnızca küçük ve riski düşük parça: gelen kutusu. Hesap kimliği ve onay işaretleri taşınmasın (yüksek risk, kazanç az).
+19. ~~**Blob → Supabase (arkadaş gelen kutusu).**~~ (Tamamlandı: `friend_inbox` tablosu, `0004_friend_inbox.sql` çalıştırılınca açılır, Blob'dan lazy taşıma, geri düşüş; sahibi SQL'i çalıştırmalı, `docs/SUPABASE.md`)
 20. ~~**loadGame günlük özeti.**~~ (Tamamlandı: 8+ filtre/harita geçişi tek $O(N)$ döngüye indirgendi, `longestStreakFromDays`, 30 bin olayda ~16 ms ve denklik testi, #571)
 22. **Kararsız E2E'leri kökten çözmek.** Yük altında düşen testler (bahçe kartı, oturum akışı birim testi) için süre ve bekleme stratejisini ortak yardımcıya taşı.
 

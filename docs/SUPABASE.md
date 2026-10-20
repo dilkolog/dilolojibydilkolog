@@ -133,6 +133,11 @@ Yeniden çalıştırmak güvenlidir (yarım kalanı tamamlar). Blob dosyaları s
 2. **Uygulamada:** Ayarlar → Hesap → Yönetici → anahtarla Listele → "Sunucu verileri" altında **Supabase'e taşı**. Sonuç satırı kaç kart, takip, liste ve hatırlatmanın tablolarda olduğunu söyler.
 3. **Denetle:** Table Editor → `friend_cards`, `shared_lists`, `reminders`; Views → `friend_overview`, `reminder_overview`.
 
+### Arkadaş gelen kutusu (0004)
+`supabase/migrations/0004_friend_inbox.sql` gelen kutusunu (tebrik, dürtme, hediye kelime, metin, katıldı, arkadaşlık isteği) tabloya taşır: `friend_inbox`, ileti başına bir satır (alıcı `sync_id`, tür, gönderenin kodu ve adı, hediye/metin jsonb, `at`); RLS açık, politika yok. **Geçiş düğmesi yok: SQL'i çalıştırmak geçiştir**, çünkü dosyanın son satırı `server_flags`a `inbox` işaretini yazar (`api/_tables.ts` `inboxTableOn`, 15 sn önbellek). Tablo ya da işaret yoksa sunucu Blob'u kullanmaya devam eder (güvenli geri düşüş). Blob'da bekleyen ileti kaybolmaz: kişinin gelen kutusu okunurken Blob dosyasıyla birleştirilir, ilk değişiklikte tabloya yazılır ve dosya silinir (örnek başına 10 dk "Blob'da yok" önbelleği). Satır başına yazma olduğundan iki gönderen birbirini ezmez (Blob'da `If-Match` ile yeniden deniyordu). 30 günden eski satırlar okunmaz, sonraki değişiklikte silinir; hesap silme satırları da siler. Testler `src/data/apiInboxTable.test.ts`.
+
+**Sahibinin yapacağı:** SQL Editor'de `0004_friend_inbox.sql`'i bir kez çalıştırmak (0003'ten sonra).
+
 Hâlâ Blob'da kalanlar: hesap onay işaretleri (`access/…`, Supabase'de `profiles.approved` ile yansıtılıyor) ve eski eşitleme dosyaları (`sync/…`, Supabase'e geçmiş hesaplar için yalnızca `movedTo` işareti).
 
 ---
