@@ -205,8 +205,8 @@ export async function forgetFriends(id: string): Promise<void> {
 // Kept in Blob files in both modes (a few hundred bytes per person, so no table needed).
 // ---------------------------------------------------------------------------
 
-export type InboxKind = 'cheer' | 'nudge' | 'gift' | 'text'
-export const INBOX_KINDS: readonly InboxKind[] = ['cheer', 'nudge', 'gift', 'text']
+export type InboxKind = 'cheer' | 'nudge' | 'gift' | 'text' | 'joined'
+export const INBOX_KINDS: readonly InboxKind[] = ['cheer', 'nudge', 'gift', 'text', 'joined']
 const MAX_INBOX = 30
 const KEEP_DAYS = 30
 /** A friend can have this many gifts (and as many texts) waiting from the same sender: more would be spam. */
@@ -376,10 +376,12 @@ export async function sendToFriend(
 async function deliver(recipient: string, me: FriendCard, kind: InboxKind, gift: GiftWord | null, text: SentText | null, now: Date, today: string, onItem: (item: InboxItem) => void): Promise<SendResult> {
   const item: InboxItem = { id: crypto.randomUUID(), kind, from: { code: me.code, name: me.name }, at: now.toISOString(), ...(gift ? { gift } : {}), ...(text ? { text } : {}) }
   await changeInbox(recipient, (waiting) => {
-    // A cheer or a nudge replaces the sender's one of the day; gifts and texts pile up to a few.
+    // A cheer or a nudge replaces the sender's one of the day, "joined" (a friend came in by your invite) the sender's one at all; gifts and texts pile up to a few.
     const sameKind = waiting.filter((i) => i.from.code === me.code && i.kind === kind)
     const dropped = new Set(
-      kind === 'cheer' || kind === 'nudge'
+      kind === 'joined'
+        ? sameKind.map((i) => i.id)
+        : kind === 'cheer' || kind === 'nudge'
         ? sameKind.filter((i) => i.at.slice(0, 10) === today).map((i) => i.id)
         : [...sameKind].sort((a, b) => b.at.localeCompare(a.at)).slice(PENDING_PER_SENDER - 1).map((i) => i.id),
     )

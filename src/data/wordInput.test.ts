@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addExample, createEntry, DEFAULT_FORMAT, entryToInput, findForm, guessPartOfSpeech, importWords, parseCollocations, parseDelimited, parseWordList, removeExample, updateEntry, WordInputError, wordKeys } from './wordInput'
+import { addExample, ankiHeader, createEntry, DEFAULT_FORMAT, entryToInput, findForm, guessPartOfSpeech, importWords, isHeaderRow, parseCollocations, parseDelimited, parseWordList, removeExample, updateEntry, WordInputError, wordKeys } from './wordInput'
 
 const NOW = new Date('2026-10-01T10:00:00Z')
 
@@ -165,6 +165,32 @@ describe('parseWordList (bulk formats)', () => {
   })
   it('reads Anki exports: skips # headers and strips HTML', () => {
     expect(parseWordList('#separator:tab\n#html:true\n<b>decision</b>\tkarar<br>seçim')).toEqual([['decision', 'karar seçim']])
+  })
+  it('reads an Anki plain-text export with its id, note type, deck and tags columns, and its own separator', () => {
+    const text = [
+      '#separator:semicolon',
+      '#html:true',
+      '#guid column:1',
+      '#notetype column:2',
+      '#deck column:3',
+      '#tags column:6',
+      'abc123;Basic;Fransızca;<b>la maison</b>;ev [sound:maison.mp3];dilolojı',
+      'def456;Basic;Fransızca;<i>décider</i> de;karar vermek;',
+    ].join('\n')
+    expect(ankiHeader(text).skip).toEqual(new Set([0, 1, 2, 5]))
+    expect(parseWordList(text)).toEqual([['la maison', 'ev'], ['décider de', 'karar vermek']])
+  })
+  it('an Anki header with a pipe or a space as its separator is followed too, unless the user chose one', () => {
+    expect(parseWordList('#separator:pipe\ndecision|karar')).toEqual([['decision', 'karar']])
+    expect(parseWordList('#separator:pipe\ndecision|karar - ek', { term: 'dash', row: 'newline' })).toEqual([['decision|karar', 'ek']])
+  })
+  it('knows a header row of a spreadsheet by its first cell, in Turkish and English', () => {
+    expect(isHeaderRow(['Front', 'Back'])).toBe(true)
+    expect(isHeaderRow(['Sözcük', 'Anlam'])).toBe(true)
+    expect(isHeaderRow(['décider', 'karar vermek'])).toBe(false)
+    const r = importWords('Front,Back\ndecision,karar', 'en', new Set(), NOW)
+    expect(r.entries).toHaveLength(1)
+    expect(r.errors).toEqual([])
   })
   it('applies tags to every imported word', () => {
     const r = importWords('decision - karar\nthrive - gelişmek', 'en', new Set(), NOW, { term: 'auto', row: 'newline', tags: 'dizi, s1' })

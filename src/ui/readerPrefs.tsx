@@ -17,8 +17,18 @@ export function ReaderControls({ prefs, onChange }: { prefs: ReaderPrefs; onChan
         </button>
       </div>
       <button className="chip chip-sm" aria-pressed={prefs.airy} onClick={() => onChange((r) => ({ ...r, airy: !r.airy }))}>
-        Geniş satır
+        Seyrek satır
       </button>
+      <button className="chip chip-sm" aria-pressed={prefs.sans} onClick={() => onChange((r) => ({ ...r, sans: !r.sans }))}>
+        Sade yazı
+      </button>
+      <div className="segmented reader-seg" role="group" aria-label="Sütun genişliği">
+        {(['Dar', 'Orta', 'Geniş'] as const).map((label, i) => (
+          <button key={label} className="segmented-btn" aria-pressed={prefs.width === i} onClick={() => onChange((r) => ({ ...r, width: i as ReaderPrefs['width'] }))}>
+            {label}
+          </button>
+        ))}
+      </div>
       <button className="chip chip-sm" aria-pressed={prefs.sepia} onClick={() => onChange((r) => ({ ...r, sepia: !r.sepia }))}>
         Sepya
       </button>

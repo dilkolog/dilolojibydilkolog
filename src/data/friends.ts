@@ -53,8 +53,8 @@ export async function loadFriends(today: string): Promise<{ me: FriendView; frie
   return { me: data.me, friends: data.friends ?? [] }
 }
 
-/** What a friend can send: a cheer, a nudge, a word or a text. */
-export type InboxKind = 'cheer' | 'nudge' | 'gift' | 'text'
+/** What a friend can send: a cheer, a nudge, a word or a text; and "joined", which the app itself sends the one whose invite was used. */
+export type InboxKind = 'cheer' | 'nudge' | 'gift' | 'text' | 'joined'
 
 /** A word given to a friend. */
 export interface GiftWord {

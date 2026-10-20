@@ -29,7 +29,9 @@ export function friendMessage(item: Pick<InboxItem, 'kind' | 'from'>): PushMessa
         ? `👋 ${who} seni dürttü: bugün biraz çalışmaya ne dersin?`
         : item.kind === 'gift'
           ? `🎁 ${who} sana bir kelime gönderdi`
-          : `📖 ${who} sana bir metin gönderdi`
+          : item.kind === 'joined'
+            ? `🎉 ${who} davetinle katıldı`
+            : `📖 ${who} sana bir metin gönderdi`
   return { title: 'Diloloji', body, url: '/', kind: 'friend' }
 }
 

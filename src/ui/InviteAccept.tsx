@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
-import { addFriend, FriendsError, loadFriends } from '../data/friends'
+import { addFriend, FriendsError, loadFriends, sendToFriend } from '../data/friends'
 import { localDate } from '../engine/progress'
+import { INVITED_XP } from '../engine/xpLedger'
 import { useAccess } from './accessContext'
 import { clearInvite, pendingInvite } from './invite'
+import { rewardInvited } from './inviteReward'
 import { showToast } from './toastFeed'
 
 /** What the server answers that no retry will change: the link is let go. */
@@ -31,10 +33,13 @@ export function InviteAccept({ onDone }: { onDone?: () => void }) {
       try {
         await addFriend(code)
         clearInvite()
+        // Tells the one who invited (a message in their inbox, a notification), and a little for being invited. Neither can hold up the add.
+        void sendToFriend(code, 'joined').catch(() => undefined)
+        const earned = await rewardInvited().catch(() => false)
         const name = await loadFriends(localDate(new Date()))
           .then((r) => r.friends.find((f) => f.code === code)?.name)
           .catch(() => undefined)
-        showToast(name ? `${name} ile arkadaş oldun.` : 'Seni davet eden arkadaşın listene eklendi.')
+        showToast(`${name ? `${name} ile arkadaş oldun.` : 'Seni davet eden arkadaşın listene eklendi.'}${earned ? ` Davet bonusu: +${INVITED_XP} XP.` : ''}`)
         onDone?.()
       } catch (e) {
         if (e instanceof FriendsError && e.reason in FINAL) {

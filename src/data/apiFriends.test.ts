@@ -149,6 +149,19 @@ describe('/api/access: friends inbox and days', () => {
     expect(((await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: unknown[] }).items).toHaveLength(1)
   })
 
+  it('"joined" tells the one who invited, replacing the same friend\'s earlier one at any time, and reaches only friends', async () => {
+    const aliCode = await publish(ALI, ALI_TOKEN)
+    const veliCode = await publish(VELI, VELI_TOKEN, { name: 'Veli' })
+    // Not friends yet: refused.
+    expect((await post(as(VELI, VELI_TOKEN), { action: 'friends-send', code: aliCode, kind: 'joined' })).status).not.toBe(200)
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: aliCode })
+    expect((await post(as(VELI, VELI_TOKEN), { action: 'friends-send', code: aliCode, kind: 'joined' })).status).toBe(200)
+    expect((await post(as(VELI, VELI_TOKEN), { action: 'friends-send', code: aliCode, kind: 'joined' })).status).toBe(200)
+    const body = (await (await inbox(as(ALI, ALI_TOKEN))).json()) as { items: { kind: string; from: { code: string; name: string } }[] }
+    expect(body.items).toHaveLength(1)
+    expect(body.items[0]).toMatchObject({ kind: 'joined', from: { code: veliCode, name: 'Veli' } })
+  })
+
   it('a message also arrives as a push notification, on the devices of the account that asked for it', async () => {
     vi.stubEnv('VAPID_PRIVATE_KEY', 'test-private-key')
     const aliCode = await publish(ALI, ALI_TOKEN)

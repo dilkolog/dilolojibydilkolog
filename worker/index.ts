@@ -3,7 +3,7 @@
  * Request and Response), a cron trigger in place of Vercel's 24 daily crons, and the static app from the
  * assets binding. Only /api/* runs the Worker; the app files are served by the assets layer (free and unlimited).
  */
-import type { ExecutionContext, Fetcher, R2Bucket, ScheduledController } from '@cloudflare/workers-types'
+import type { DurableObjectNamespace, ExecutionContext, Fetcher, R2Bucket, ScheduledController } from '@cloudflare/workers-types'
 import * as access from '../api/access.js'
 import * as admin from '../api/admin.js'
 import * as clips from '../api/clips.js'
@@ -16,11 +16,18 @@ import * as share from '../api/share.js'
 import * as sync from '../api/sync.js'
 import * as translate from '../api/translate.js'
 import * as youtube from '../api/youtube.js'
+import { fromApp } from '../api/_origin.js'
+import { overLimit, tooMany } from '../api/_rate.js'
+import { cleanRoomCode } from '../src/engine/liveDuel.js'
 import { bindBucket } from './blob.js'
+
+export { DuelRoom } from './duelRoom.js'
 
 interface Env {
   BLOBS: R2Bucket
   ASSETS: Fetcher
+  /** Live duel rooms, one Durable Object per room code (worker/duelRoom.ts). */
+  DUEL?: DurableObjectNamespace
   CRON_SECRET?: string
 }
 
@@ -43,7 +50,17 @@ const ROUTES: Record<string, Module> = { access, admin, clips, 'cron-reminder': 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     bindBucket(env.BLOBS)
-    const { pathname } = new URL(request.url)
+    const { pathname, searchParams } = new URL(request.url)
+    // A live duel room: a WebSocket to the room's Durable Object (named by its code), only from the app's own pages.
+    if (pathname === '/api/room') {
+      const code = cleanRoomCode(searchParams.get('code'))
+      if (!code) return new Response('bad room code', { status: 400 })
+      if (request.headers.get('upgrade')?.toLowerCase() !== 'websocket') return new Response('expected a websocket', { status: 426 })
+      if (!fromApp(request)) return new Response('forbidden', { status: 403 })
+      if (overLimit(request, 'room', 30)) return tooMany()
+      if (!env.DUEL) return new Response('rooms are not set up', { status: 503 })
+      return env.DUEL.get(env.DUEL.idFromName(code)).fetch(request as never) as unknown as Promise<Response>
+    }
     const name = /^\/api\/([a-z-]+)\/?$/.exec(pathname)?.[1]
     const route = name ? ROUTES[name] : undefined
     if (!route && pathname.startsWith('/api/')) return new Response('not found', { status: 404 })

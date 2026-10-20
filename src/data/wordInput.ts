@@ -1,4 +1,5 @@
-import { normalize, splitArticle } from '../engine/answerCheck'
+import { normalize, splitArticle, stripDiacritics } from '../engine/answerCheck'
+import { plainField } from './plainField'
 import type {
   CefrLevel,
   Collocation,
@@ -344,7 +345,34 @@ export function detectTermSeparator(lines: string[]): Exclude<TermSeparator, 'au
   return 'tab'
 }
 
-const stripHtml = (s: string) => s.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')
+/** The first cell of a header row ("Front", "Kelime"…): such a row names the columns and is not a word. */
+const HEADER_WORDS = new Set(['kelime', 'sozcuk', 'word', 'term', 'front', 'on yuz', 'anlam', 'meaning', 'back', 'arka yuz', 'translation', 'ceviri', 'definition', 'tanim'])
+export const isHeaderRow = (cells: readonly string[]) => HEADER_WORDS.has(stripDiacritics(normalize(cells[0] ?? '')).replace(/ı/g, 'i'))
+
+/**
+ * What the "#…" lines at the top of an Anki "Notes in Plain Text" export say: the separator and the columns that are
+ * not card fields (the note's id, its type, deck and tags), numbered from 1. Without these headers: nothing special.
+ */
+export function ankiHeader(text: string): { term?: Exclude<TermSeparator, 'auto'>; customTerm?: string; skip: Set<number> } {
+  const skip = new Set<number>()
+  let term: Exclude<TermSeparator, 'auto'> | undefined
+  let customTerm: string | undefined
+  for (const line of text.replace(/\r/g, '').split('\n')) {
+    if (!line.startsWith('#')) break
+    const sep = /^#separator:\s*(.+)$/i.exec(line)?.[1]?.trim().toLowerCase()
+    if (sep) {
+      if (sep === 'tab') term = 'tab'
+      else if (sep === 'comma') term = 'comma'
+      else if (sep === 'semicolon') term = 'semicolon'
+      else if (sep === 'pipe') [term, customTerm] = ['custom', '|']
+      else if (sep === 'space') [term, customTerm] = ['custom', ' ']
+      else if (sep.length === 1) [term, customTerm] = ['custom', sep]
+    }
+    const column = /^#(?:guid|notetype|deck|tags) column:\s*(\d+)/i.exec(line)?.[1]
+    if (column) skip.add(Number(column) - 1)
+  }
+  return { term, customTerm, skip }
+}
 
 /** Rows of cells from a pasted list, JSON array, CSV/TSV or Anki export. */
 /** At least three words, or ends like a sentence: a third column is an example, not more meaning. */
@@ -377,11 +405,17 @@ export function parseWordList(text: string, fmt: ListFormat = DEFAULT_FORMAT): s
     .replace(/\r/g, '')
     .split(rowSep)
     .filter((l) => l.trim() && !l.startsWith('#')) // Anki exports start with "#separator:tab" headers.
-  const term = fmt.term === 'auto' ? detectTermSeparator(lines) : fmt.term
+  const anki = text.trimStart().startsWith('#') ? ankiHeader(text) : null
+  const term = fmt.term !== 'auto' ? fmt.term : anki?.term ?? detectTermSeparator(lines)
+  if (term === 'custom' && !fmt.customTerm && anki?.customTerm) fmt = { ...fmt, customTerm: anki.customTerm }
   let rows: string[][]
   if (term === 'tab' || term === 'comma') {
     // Spreadsheet-like: full CSV/TSV parsing with quotes, all columns kept.
     rows = term === 'tab' ? lines.map((l) => l.split('\t')) : parseDelimited(lines.join('\n'))
+  } else if (anki && (term === 'semicolon' || term === 'custom')) {
+    // An Anki export names its columns (some are not card fields) and has them all in every row: split at every separator.
+    const sep = term === 'custom' ? fmt.customTerm || '\t' : ';'
+    rows = lines.map((l) => l.split(sep))
   } else {
     // Word-list notations split on the FIRST separator only, so meanings may contain it.
     const sep = term === 'custom' ? fmt.customTerm || '\t' : TERM_SEP[term]
@@ -405,7 +439,8 @@ export function parseWordList(text: string, fmt: ListFormat = DEFAULT_FORMAT): s
       return third && looksLikeSentence(third[1]) ? [word, second[0], third[0], third[1]] : [word, second[0], second[1]]
     })
   }
-  rows = rows.map((r) => r.map((c) => stripHtml(c).trim()))
+  // The columns the Anki header marks as not card fields (note id, type, deck, tags) go; the rest is plain text (markup, sound tags and entities removed).
+  rows = rows.map((r) => r.filter((_, i) => !anki?.skip.has(i)).map((c) => plainField(c)))
   return fmt.swap ? rows.map(([a = '', b = '', ...rest]) => [b, a, ...rest]) : rows
 }
 
@@ -421,7 +456,7 @@ export function importWords(
   const seen = new Set(existingIds)
   rows.forEach((cells, i) => {
     const line = i + 1
-    if (i === 0 && ['kelime', 'word', 'term', 'anlam', 'meaning'].includes(normalize(cells[0] ?? ''))) return
+    if (i === 0 && isHeaderRow(cells)) return
     const [word, meaning, example, exampleTranslation, collocations, confusables] = cells.map((c) => c.trim())
     try {
       // Spread `now` by row so the file order is kept as the introduction order.

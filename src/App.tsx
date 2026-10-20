@@ -40,6 +40,7 @@ import { gardenSummary } from './engine/growth'
 import { Sidebar, TabBar, type NavMark } from './ui/AppSidebar'
 import { AppScreens, type AppScreensProps } from './AppScreens'
 import { DUEL_INBOX } from './engine/duel'
+import { cleanRoomCode, ROOM_INBOX } from './engine/liveDuel'
 import { CommandPalette, IncomingSet, Monki, prefetchScreens } from './lazyScreens'
 import { useScreenHistory } from './ui/useScreenHistory'
 import { useLanguageData } from './ui/useLanguageData'
@@ -207,6 +208,23 @@ export default function App() {
       sessionStorage.setItem(DUEL_INBOX, code)
     } catch {
       // No session storage: the code can be pasted into the game.
+    }
+    setScreen({ name: 'games', game: 'duel' })
+  }, [])
+
+  // A live duel room somebody called to (?oda=…): its code waits for the duel game, which opens.
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    if (!params.has('oda')) return
+    const code = cleanRoomCode(params.get('oda'))
+    params.delete('oda')
+    const rest = params.toString()
+    history.replaceState(null, '', `${location.pathname}${rest ? `?${rest}` : ''}${location.hash}`)
+    if (!code) return
+    try {
+      sessionStorage.setItem(ROOM_INBOX, code)
+    } catch {
+      // No session storage: the code can be typed into the game.
     }
     setScreen({ name: 'games', game: 'duel' })
   }, [])

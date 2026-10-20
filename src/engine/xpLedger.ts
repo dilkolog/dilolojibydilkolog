@@ -19,6 +19,10 @@ export const TIME_DAY_CAP = 30
 export const LESSON_XP = 20
 export const REVIEW_XP = 10
 export const CERT_XP = 100
+/** An invite used: the one who invited earns this for each friend who came (at most MAX_INVITE_REWARDS of them), the one who came a little for being invited. */
+export const INVITE_XP = 30
+export const INVITED_XP = 20
+export const MAX_INVITE_REWARDS = 5
 
 export const timeXp = (seconds: number): number => Math.min(TIME_DAY_CAP, Math.floor(Math.max(0, seconds) / TIME_STEP_SECONDS) * TIME_STEP_XP)
 
@@ -26,6 +30,9 @@ export const timeAwardKey = (day: string) => `time|${day}`
 export const lessonAwardKey = (topic: string) => `lesson|${topic}`
 export const reviewAwardKey = (topic: string, step: number) => `review|${topic}|${step}`
 export const certAwardKey = (language: string, level: string) => `cert|${language}|${level}`
+/** For the inviter: one per friend who came (their friend code); for the invited: one, ever. */
+export const inviteAwardKey = (friendCode: string) => `invite|${friendCode}`
+export const INVITED_AWARD_KEY = 'invite|in'
 
 /** The ledger with the award in it: a key already there keeps its day and never goes down (a new object; the same one when nothing changed). */
 export function award(ledger: XpLedger, key: string, day: string, xp: number): XpLedger {
@@ -45,7 +52,7 @@ export function mergeLedgers(a: XpLedger | undefined, b: XpLedger | undefined): 
   return out
 }
 
-const KEY = /^(?:time\|\d{4}-\d{2}-\d{2}|lesson\|[\w-]+|review\|[\w-]+\|\d|cert\|(?:en|fr|es)\|[A-C][12])$/
+const KEY = /^(?:time\|\d{4}-\d{2}-\d{2}|lesson\|[\w-]+|review\|[\w-]+\|\d|cert\|(?:en|fr|es)\|[A-C][12]|invite\|(?:in|[2-9A-HJKMNP-Z]{8}))$/
 
 /** Only awards of a known kind with a day and sensible points survive (a hand-edited or damaged backup). */
 export function cleanLedger(raw: unknown): XpLedger {

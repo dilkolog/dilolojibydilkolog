@@ -1,5 +1,6 @@
 import type { InboxItem } from '../data/friends'
 import type { Notice } from '../engine/notices'
+import { INVITE_XP } from '../engine/xpLedger'
 
 type Draft = Omit<Notice, 'at' | 'read'>
 
@@ -14,7 +15,9 @@ export function friendNotice(item: InboxItem, who: string): Draft {
           ? `${who} sana bir kelime gönderdi: ${item.gift.lemma} = ${item.gift.meaning}`
           : item.kind === 'text' && item.text
             ? `${who} bir metin gönderdi: “${item.text.title}”`
-            : `${who} sana bir ileti gönderdi`
+            : item.kind === 'joined'
+              ? `${who} davetinle katıldı: +${INVITE_XP} XP`
+              : `${who} sana bir ileti gönderdi`
   return { id: `friend|${item.id.replace(/[^\w.:-]/g, '')}`, kind: 'friend', text, target: 'home' }
 }
 

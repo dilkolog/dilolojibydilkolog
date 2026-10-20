@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { grammarExercises } from '../../data/grammar'
 import { db } from '../../data/instance'
+import { cleanRoomCode, newRoomCode, ROOM_INBOX } from '../../engine/liveDuel'
 import { DUEL_INBOX, DUEL_ROUNDS, decodeDuel, duelLine, duelOptions, duelPool, duelQuestions, duelWinner, encodeDuel, pickDuelIds, type DuelChallenge, type DuelFilter, type DuelResult } from '../../engine/duel'
 import { addRecord, byOpponent, cleanRecords, recordOf, tally, type DuelRecord } from '../../engine/duelHistory'
 import { checkGrammar, filled, topicName } from '../../engine/grammar'
@@ -8,7 +9,9 @@ import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
-import { showToast } from '../toastFeed'
+import { DuelSide } from './duelParts'
+import { share } from './shareLink'
+import { LiveDuel } from './LiveDuel'
 import { noteIn } from './logNote'
 
 const NAME_KEY = 'diloloji:duel-name'
@@ -37,20 +40,6 @@ const storedName = () => {
 
 const linkOf = (c: DuelChallenge) => `${location.origin}/?duel=${encodeDuel(c)}`
 
-/** Hands the link to the share sheet where there is one, otherwise to the clipboard. */
-async function share(text: string, url: string) {
-  try {
-    if (typeof navigator.share === 'function') {
-      await navigator.share({ title: 'Diloloji düellosu', text, url })
-      return
-    }
-    await navigator.clipboard.writeText(`${text} ${url}`)
-    showToast('Bağlantı kopyalandı: arkadaşına yapıştır.')
-  } catch {
-    // The share sheet was closed, or the clipboard is blocked: the link is also shown on screen.
-  }
-}
-
 type Phase = 'lobby' | 'play' | 'over'
 
 /**
@@ -61,6 +50,9 @@ export function DuelGame({ language, onExit }: { language: TargetLanguage; onExi
   const [phase, setPhase] = useState<Phase>('lobby')
   const [name, setName] = useState(storedName)
   const [paste, setPaste] = useState('')
+  // A live room (the code), played at the same time with a friend; null: the duel by link.
+  const [liveCode, setLiveCode] = useState<string | null>(null)
+  const [roomPaste, setRoomPaste] = useState('')
   const [problem, setProblem] = useState('')
   // The challenge being played (or looked at): mine to send, or one I was sent.
   const [challenge, setChallenge] = useState<DuelChallenge | null>(null)
@@ -110,9 +102,15 @@ export function DuelGame({ language, onExit }: { language: TargetLanguage; onExi
     }
   }
 
-  // A link opened in the app waits in the inbox.
+  // A link opened in the app waits in the inbox (a duel by link, or a live room).
   useEffect(() => {
     try {
+      const room = cleanRoomCode(sessionStorage.getItem(ROOM_INBOX))
+      sessionStorage.removeItem(ROOM_INBOX)
+      if (room) {
+        setLiveCode(room)
+        return
+      }
       const code = sessionStorage.getItem(DUEL_INBOX)
       if (!code) return
       sessionStorage.removeItem(DUEL_INBOX)
@@ -204,6 +202,8 @@ export function DuelGame({ language, onExit }: { language: TargetLanguage; onExi
     })
   }, [phase, challenge, final, mine])
 
+  if (liveCode) return <LiveDuel language={language} name={player} code={liveCode} onExit={() => setLiveCode(null)} />
+
   return (
     <div className="stack duel-game">
       <div className="game-top">
@@ -257,6 +257,29 @@ export function DuelGame({ language, onExit }: { language: TargetLanguage; onExi
               {LANGUAGE_NAME[language]} düellosu başlat
             </button>
           </div>
+          <section className="card stack live-lobby" aria-label="Canlı düello">
+            <h2 className="section-title">Canlı düello</h2>
+            <p className="small muted">Arkadaşınla aynı anda, ayrı telefonlarda: aynı sorular, birbirinizin ilerleyişini görürsünüz. Bir oda kur, kodu ya da bağlantıyı gönder.</p>
+            <div className="row">
+              <button className="btn btn-sm" onClick={() => setLiveCode(newRoomCode())}>
+                Oda kur
+              </button>
+            </div>
+            <form
+              className="row"
+              onSubmit={(e) => {
+                e.preventDefault()
+                const code = cleanRoomCode(roomPaste.replace(/^.*[?&]oda=/, ''))
+                if (code) setLiveCode(code)
+                else setProblem('Oda kodu 6 harf ve rakamdan oluşur (örn. K7M-P9R).')
+              }}
+            >
+              <input className="input" value={roomPaste} onChange={(e) => setRoomPaste(e.target.value)} placeholder="Oda kodu ya da bağlantı" aria-label="Oda kodu" autoComplete="off" autoCapitalize="characters" />
+              <button className="btn btn-sm btn-quiet" type="submit" disabled={!roomPaste.trim()}>
+                Odaya katıl
+              </button>
+            </form>
+          </section>
           {history.length > 0 && <DuelHistory history={history} />}
           <section className="card stack duel-open">
             <h2 className="section-title">Gelen düelloyu aç</h2>
@@ -400,19 +423,6 @@ function duelTitle(challenge: DuelChallenge, mine: DuelResult, opponent: DuelRes
   }
   const w = opponent ? duelWinner(opponent, mine) : 'tie'
   return w === 'tie' ? 'Berabere!' : w === 'reply' ? 'Kazandın!' : `${opponent!.name} kazandı`
-}
-
-function DuelSide({ result, of, you = false, winner = false }: { result: DuelResult; of: number; you?: boolean; winner?: boolean }) {
-  return (
-    <div className={`duel-side${winner ? ' duel-won' : ''}`}>
-      <strong>{you ? `${result.name} (sen)` : result.name}</strong>
-      <span className="duel-score">
-        {result.score}/{of}
-      </span>
-      <span className="small muted">{Math.round(result.ms / 1000)} sn</span>
-      {winner && <span className="small">🏆</span>}
-    </div>
-  )
 }
 
 function DuelHistory({ history }: { history: DuelRecord[] }) {

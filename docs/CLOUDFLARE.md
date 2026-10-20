@@ -77,3 +77,7 @@ Her dağıtımı elle yapmak yerine Cloudflare, GitHub'daki `main` dalına birle
 5. Kaydet; sonraki her birleştirme otomatik dağıtılır. Yanlış kopyalanmış bir anahtar `check-deploy-env.mjs` ile derleme aşamasında durdurulur (yayına çıkmaz).
 
 Dağıtımdan sonra canlıyı denetlemek için: `npm run verify:deploy` (ana sayfa, HSTS, canlı paketteki Supabase anahtarı, Supabase'in anahtara cevabı, birkaç uç). `npm run deploy:cf` bunu kendisi de çalıştırır.
+
+## Canlı düello odaları (Durable Object)
+
+`worker/duelRoom.ts` oda başına bir Durable Object'tir (`DUEL` bağlaması, `wrangler.jsonc` `durable_objects` + `migrations`). Kullanıcı `/?oda=KOD` bağlantısıyla ya da kodla girer; tarayıcı `wss://…/api/room?code=KOD` adresine bağlanır, Worker bağlantıyı koda göre adlandırılmış nesneye verir. Oda yalnızca bellektedir (kimse bağlı değilken nesne boşalır, hiçbir şey saklanmaz). Ücretsiz plan SQLite tabanlı Durable Object'lere izin verir (`new_sqlite_classes`); ilk dağıtımda `v1` göçü kendiliğinden uygulanır. Yerelde denemek: `npx wrangler dev --local` ve `ws` paketiyle iki bağlantı (Origin başlığı uygulamanın adresi olmalı).

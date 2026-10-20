@@ -1,5 +1,6 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
+import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
 
 /**
@@ -615,7 +616,7 @@ test('new games and insight cards pass accessibility check across dark and calm 
   }
 
   // 5. Oyunlar → Ses ayırt etme (oyun ekranı)
-  const pairsCard = page.locator('.game-card', { hasText: 'Ses ayırt etme' })
+  const pairsCard = page.locator('.game-card', { hasText: 'Kulak jimnastiği' })
   if (await pairsCard.count()) {
     await pairsCard.click()
     await expect(page.locator('.game-stage')).toBeVisible()
@@ -834,7 +835,7 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
   await page.locator('button.link', { hasText: '← Oyunlar' }).click()
 
   // 7. Oyunlar → Ses ayırt etme (oyun ekranı)
-  const pairsCard = page.locator('.game-card', { hasText: 'Ses ayırt etme' })
+  const pairsCard = page.locator('.game-card', { hasText: 'Kulak jimnastiği' })
   await pairsCard.click()
   await expect(page.locator('.game-stage')).toBeVisible()
   await scanBoth('phone-pairs-play')
@@ -1408,4 +1409,48 @@ test('reading: the questions after a finished text work and pass the accessibili
   await expect(card).toContainText("3 sorudan 2'ini bildin")
   expect(await scan(page, 'comprehension card')).toEqual([])
   expect(await contrastProblems(page)).toEqual([])
+})
+
+test('live duel: the room, a question and the result pass accessibility checks in light and dark themes on a phone', async ({ page }) => {
+  test.setTimeout(120_000)
+  let room = emptyRoom()
+  await page.routeWebSocket(/\/api\/room\?code=/, (ws) => {
+    let slot: number | undefined
+    ws.onMessage((raw) => {
+      const message = JSON.parse(String(raw)) as { t: string }
+      if (message.t === 'ping') return
+      const result = liveHandle(room, slot, message)
+      if (result.error) return ws.send(JSON.stringify({ t: 'error', reason: result.error }))
+      room = result.state
+      slot = result.slot ?? slot
+      if (message.t === 'join') room = liveJoin(room, 'Veli').state
+      // The friend answers the first question only: the game stays on until the player is done too.
+      if (message.t === 'start') room = liveAnswer(room, 1, 0, true, 500).state
+      ws.send(JSON.stringify({ t: 'state', room: viewFor(room, slot ?? 0) }))
+    })
+  })
+  await page.setViewportSize({ width: 375, height: 667 })
+  await startWithSamples(page)
+  const problems: string[] = []
+  const both = async (where: string) => {
+    for (const theme of ['light', 'dark'] as const) {
+      await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+      problems.push(...(await scan(page, `${where} (${theme})`)))
+    }
+  }
+  await page.goto('/?oda=K7MP9R')
+  await expect(page.getByText('● bağlı')).toHaveCount(2)
+  await both('room')
+  await page.getByRole('button', { name: /düellosunu başlat/ }).click()
+  await expect(page.locator('.options .option').first()).toBeVisible()
+  await both('question')
+  await page.locator('.options .option').first().click()
+  await expect(page.locator('.grammar-feedback')).toBeVisible()
+  await both('answered')
+  for (let i = 0; i < 10; i++) {
+    if (i > 0) await page.locator('.options .option').first().click()
+    await page.getByRole('button', { name: /^(Devam|Bitir)$/ }).click()
+  }
+  await both('waiting')
+  expect(problems).toEqual([])
 })
