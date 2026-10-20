@@ -1,0 +1,156 @@
+[
+ {
+  "id": "fr-dans",
+  "language": "fr",
+  "lemma": "dans",
+  "looks": "dans",
+  "trap": "dans",
+  "meaning": "içinde",
+  "text": "Le livre est dans mon sac.",
+  "tr": "Kitap çantamın içinde.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-ses",
+  "language": "fr",
+  "lemma": "ses",
+  "looks": "ses",
+  "trap": "ses (sesli çıkan)",
+  "meaning": "onun (çoğul nesneler için)",
+  "text": "Il aime ses parents.",
+  "tr": "Anne babasını seviyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-son",
+  "language": "fr",
+  "lemma": "son",
+  "looks": "son",
+  "trap": "son, sonuncu",
+  "meaning": "onun (tekil, eril nesne için); ses",
+  "text": "Elle prend son parapluie.",
+  "tr": "Şemsiyesini alıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pas",
+  "language": "fr",
+  "lemma": "pas",
+  "looks": "pas",
+  "trap": "pas (demir pası)",
+  "meaning": "değil (olumsuzluk); adım",
+  "text": "Je ne sais pas.",
+  "tr": "Bilmiyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pire",
+  "language": "fr",
+  "lemma": "pire",
+  "looks": "pire",
+  "trap": "pire (böcek)",
+  "meaning": "daha kötü",
+  "text": "Cette situation est pire.",
+  "tr": "Bu durum daha kötü.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-mal",
+  "language": "fr",
+  "lemma": "mal",
+  "looks": "mal",
+  "trap": "mal, eşya",
+  "meaning": "kötü; ağrı, acı",
+  "text": "J'ai mal à la tête.",
+  "tr": "Başım ağrıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-an",
+  "language": "fr",
+  "lemma": "an",
+  "looks": "an",
+  "trap": "an (zaman dilimi)",
+  "meaning": "yıl",
+  "text": "J'habite ici depuis un an.",
+  "tr": "Bir yıldır burada oturuyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-ile",
+  "language": "fr",
+  "lemma": "île",
+  "looks": "ile",
+  "trap": "ile (birlikte)",
+  "meaning": "ada",
+  "text": "Nous passons nos vacances sur une île.",
+  "tr": "Tatilimizi bir adada geçiriyoruz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-parole",
+  "language": "fr",
+  "lemma": "parole",
+  "looks": "parola",
+  "trap": "parola, şifre",
+  "meaning": "söz; şarkı sözü",
+  "text": "Je te donne ma parole.",
+  "tr": "Sana söz veriyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-journal",
+  "language": "fr",
+  "lemma": "journal",
+  "looks": "jurnal",
+  "trap": "jurnal, ihbar",
+  "meaning": "gazete; günlük",
+  "text": "Mon père lit le journal tous les matins.",
+  "tr": "Babam her sabah gazete okur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-magasin",
+  "language": "fr",
+  "lemma": "magasin",
+  "looks": "magazin",
+  "trap": "magazin, dergi",
+  "meaning": "mağaza, dükkân",
+  "text": "Le magasin ferme à dix-neuf heures.",
+  "tr": "Mağaza on dokuzda kapanıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-essence",
+  "language": "fr",
+  "lemma": "essence",
+  "looks": "esans",
+  "trap": "esans, parfüm özü",
+  "meaning": "benzin",
+  "text": "Il faut faire le plein d'essence.",
+  "tr": "Depoyu benzinle doldurmamız gerek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pull",
+  "language": "fr",
+  "lemma": "pull",
+  "looks": "pul",
+  "trap": "pul, damga pulu",
+  "meaning": "kazak",
+  "text": "Mets un pull, il fait froid.",
+  "tr": "Kazak giy, hava soğuk.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-carnet",
+  "language": "fr",
+  "lemma": "carnet",
+  "looks": "karne",
+  "trap": "karne (okul)",
+  "meaning": "not defteri; bilet destesi",
+  "text": "Elle écrit tout dans un petit carnet.",
+  "tr": "Her şeyi küçük bir deftere yazıyor.",
+  "source": "Diloloji (özgün)"
+ }
+]
