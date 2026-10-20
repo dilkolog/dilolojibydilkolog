@@ -3590,6 +3590,8 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .enverb-table th, .enverb-table td { text-align: left; padding: 0.5rem 0.625rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
 .enverb-table thead th { font-weight: 700; color: var(--ink-soft); white-space: nowrap; }
 .enverb-table tbody th { font-weight: 600; white-space: nowrap; }
+.enverb-example { display: grid; gap: 0.125rem; margin-top: 0.25rem; font-size: var(--t-sm); }
+.enverb-example [lang='en'] { color: var(--ink); }
 .enverb-phrasals { gap: 0.75rem; }
 .enverb-phrasal { padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule); }
 .enverb-quiz .field { display: grid; gap: 0.25rem; max-width: 22rem; }

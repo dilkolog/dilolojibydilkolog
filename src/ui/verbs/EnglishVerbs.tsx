@@ -89,6 +89,12 @@ function IrregularList() {
                 <td lang="en">{formsText(v.pp)}</td>
                 <td lang="tr" className="muted">
                   {v.tr}
+                  <span className="enverb-example">
+                    <span lang="en">
+                      {v.text} <Say text={v.text} />
+                    </span>
+                    <span lang="tr">{v.textTr}</span>
+                  </span>
                 </td>
               </tr>
             ))}
@@ -242,6 +248,16 @@ function IrregularQuiz({ onExit }: { onExit: () => void }) {
             {v.base} – {formsText(v.past)} – {formsText(v.pp)}
           </strong>{' '}
           <Say text={`${v.base}, ${v.past[0]}, ${v.pp[0]}`} />
+        </p>
+      )}
+      {checked && (
+        <p className="enverb-example">
+          <span lang="en">
+            {v.text} <Say text={v.text} />
+          </span>
+          <span lang="tr" className="muted">
+            {v.textTr}
+          </span>
         </p>
       )}
       <div className="row">

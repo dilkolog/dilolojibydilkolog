@@ -5,17 +5,19 @@ import { createRng } from '../rng'
 
 describe('English verbs: the data', () => {
   it('irregular verbs have unique ids and every form filled in', () => {
-    expect(irregularVerbs.length).toBeGreaterThanOrEqual(100)
+    expect(irregularVerbs.length).toBeGreaterThanOrEqual(160)
     expect(new Set(irregularVerbs.map((v) => v.id)).size).toBe(irregularVerbs.length)
     for (const v of irregularVerbs) {
       expect(v.id, v.base).toBe(`irr|${v.base}`)
       expect(v.past.length && v.pp.length, v.base).toBeTruthy()
-      for (const f of [...v.past, ...v.pp, v.tr]) expect(f.trim(), v.base).not.toBe('')
+      for (const f of [...v.past, ...v.pp, v.tr, v.text, v.textTr]) expect(f.trim(), v.base).not.toBe('')
+      // The example sentence uses one of the past simple forms as a word of its own.
+      expect(v.past.some((f) => new RegExp(`(?<![A-Za-z])${f}(?![A-Za-z])`, 'i').test(v.text)), `${v.base}: ${v.text}`).toBe(true)
     }
   })
 
   it('phrasal verbs have unique ids and a sentence that contains the verb', () => {
-    expect(phrasalVerbs.length).toBeGreaterThanOrEqual(100)
+    expect(phrasalVerbs.length).toBeGreaterThanOrEqual(170)
     expect(new Set(phrasalVerbs.map((v) => v.id)).size).toBe(phrasalVerbs.length)
     for (const v of phrasalVerbs) {
       expect(v.id).toBe(`phr|${v.phrasal}`)

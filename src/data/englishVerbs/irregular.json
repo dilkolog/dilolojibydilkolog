@@ -2,6 +2,32 @@
  "source": "Diloloji (özgün)",
  "verbs": [
   {
+   "id": "irr|arise",
+   "base": "arise",
+   "past": [
+    "arose"
+   ],
+   "pp": [
+    "arisen"
+   ],
+   "tr": "ortaya çıkmak",
+   "text": "A problem arose during the meeting.",
+   "textTr": "Toplantı sırasında bir sorun çıktı."
+  },
+  {
+   "id": "irr|awake",
+   "base": "awake",
+   "past": [
+    "awoke"
+   ],
+   "pp": [
+    "awoken"
+   ],
+   "tr": "uyanmak",
+   "text": "She awoke to the sound of rain.",
+   "textTr": "Yağmur sesiyle uyandı."
+  },
+  {
    "id": "irr|be",
    "base": "be",
    "past": [
@@ -11,7 +37,36 @@
    "pp": [
     "been"
    ],
-   "tr": "olmak"
+   "tr": "olmak",
+   "text": "She was very tired after the long flight.",
+   "textTr": "Uzun uçuştan sonra çok yorgundu."
+  },
+  {
+   "id": "irr|bear",
+   "base": "bear",
+   "past": [
+    "bore"
+   ],
+   "pp": [
+    "borne",
+    "born"
+   ],
+   "tr": "katlanmak, taşımak",
+   "text": "She bore the pain without a word.",
+   "textTr": "Acıya tek kelime etmeden katlandı."
+  },
+  {
+   "id": "irr|beat",
+   "base": "beat",
+   "past": [
+    "beat"
+   ],
+   "pp": [
+    "beaten"
+   ],
+   "tr": "yenmek, dövmek",
+   "text": "Our team beat the champions.",
+   "textTr": "Takımımız şampiyonları yendi."
   },
   {
    "id": "irr|become",
@@ -22,7 +77,9 @@
    "pp": [
     "become"
    ],
-   "tr": "olmak, haline gelmek"
+   "tr": "olmak, haline gelmek",
+   "text": "He became a teacher at the age of twenty-five.",
+   "textTr": "Yirmi beş yaşında öğretmen oldu."
   },
   {
    "id": "irr|begin",
@@ -33,7 +90,9 @@
    "pp": [
     "begun"
    ],
-   "tr": "başlamak"
+   "tr": "başlamak",
+   "text": "The film began at eight o'clock.",
+   "textTr": "Film saat sekizde başladı."
   },
   {
    "id": "irr|bend",
@@ -44,7 +103,9 @@
    "pp": [
     "bent"
    ],
-   "tr": "bükmek, eğmek"
+   "tr": "bükmek, eğmek",
+   "text": "She bent down to pick up the keys.",
+   "textTr": "Anahtarları almak için eğildi."
   },
   {
    "id": "irr|bet",
@@ -55,7 +116,35 @@
    "pp": [
     "bet"
    ],
-   "tr": "bahse girmek"
+   "tr": "bahse girmek",
+   "text": "He bet ten euros on the wrong horse.",
+   "textTr": "Yanlış ata on avro yatırdı."
+  },
+  {
+   "id": "irr|bid",
+   "base": "bid",
+   "past": [
+    "bid"
+   ],
+   "pp": [
+    "bid"
+   ],
+   "tr": "teklif vermek",
+   "text": "He bid a thousand euros for the painting.",
+   "textTr": "Tablo için bin avro teklif etti."
+  },
+  {
+   "id": "irr|bind",
+   "base": "bind",
+   "past": [
+    "bound"
+   ],
+   "pp": [
+    "bound"
+   ],
+   "tr": "bağlamak",
+   "text": "They bound the papers with string.",
+   "textTr": "Kâğıtları iple bağladılar."
   },
   {
    "id": "irr|bite",
@@ -66,7 +155,9 @@
    "pp": [
     "bitten"
    ],
-   "tr": "ısırmak"
+   "tr": "ısırmak",
+   "text": "The dog bit the postman yesterday.",
+   "textTr": "Köpek dün postacıyı ısırdı."
   },
   {
    "id": "irr|bleed",
@@ -77,7 +168,9 @@
    "pp": [
     "bled"
    ],
-   "tr": "kanamak"
+   "tr": "kanamak",
+   "text": "His finger bled for a few minutes.",
+   "textTr": "Parmağı birkaç dakika kanadı."
   },
   {
    "id": "irr|blow",
@@ -88,7 +181,9 @@
    "pp": [
     "blown"
    ],
-   "tr": "üflemek, esmek"
+   "tr": "üflemek, esmek",
+   "text": "A strong wind blew all night.",
+   "textTr": "Bütün gece kuvvetli bir rüzgâr esti."
   },
   {
    "id": "irr|break",
@@ -99,7 +194,22 @@
    "pp": [
     "broken"
    ],
-   "tr": "kırmak"
+   "tr": "kırmak",
+   "text": "Someone broke the window last night.",
+   "textTr": "Biri dün gece camı kırdı."
+  },
+  {
+   "id": "irr|breed",
+   "base": "breed",
+   "past": [
+    "bred"
+   ],
+   "pp": [
+    "bred"
+   ],
+   "tr": "yetiştirmek, üretmek",
+   "text": "The farmer bred horses for twenty years.",
+   "textTr": "Çiftçi yirmi yıl at yetiştirdi."
   },
   {
    "id": "irr|bring",
@@ -110,7 +220,9 @@
    "pp": [
     "brought"
    ],
-   "tr": "getirmek"
+   "tr": "getirmek",
+   "text": "She brought a cake to the party.",
+   "textTr": "Partiye bir pasta getirdi."
   },
   {
    "id": "irr|broadcast",
@@ -121,7 +233,9 @@
    "pp": [
     "broadcast"
    ],
-   "tr": "yayın yapmak"
+   "tr": "yayın yapmak",
+   "text": "The channel broadcast the match live.",
+   "textTr": "Kanal maçı canlı yayınladı."
   },
   {
    "id": "irr|build",
@@ -132,7 +246,9 @@
    "pp": [
     "built"
    ],
-   "tr": "inşa etmek"
+   "tr": "inşa etmek",
+   "text": "They built this bridge in 1950.",
+   "textTr": "Bu köprüyü 1950'de inşa ettiler."
   },
   {
    "id": "irr|burn",
@@ -145,7 +261,9 @@
     "burnt",
     "burned"
    ],
-   "tr": "yanmak, yakmak"
+   "tr": "yanmak, yakmak",
+   "text": "The toast burnt while I was on the phone.",
+   "textTr": "Ben telefondayken tost yandı."
   },
   {
    "id": "irr|burst",
@@ -156,7 +274,9 @@
    "pp": [
     "burst"
    ],
-   "tr": "patlamak"
+   "tr": "patlamak",
+   "text": "The balloon burst with a loud bang.",
+   "textTr": "Balon büyük bir patlamayla patladı."
   },
   {
    "id": "irr|buy",
@@ -167,7 +287,22 @@
    "pp": [
     "bought"
    ],
-   "tr": "satın almak"
+   "tr": "satın almak",
+   "text": "I bought a new phone last week.",
+   "textTr": "Geçen hafta yeni bir telefon aldım."
+  },
+  {
+   "id": "irr|cast",
+   "base": "cast",
+   "past": [
+    "cast"
+   ],
+   "pp": [
+    "cast"
+   ],
+   "tr": "atmak; rol vermek",
+   "text": "The director cast a young actor in the lead.",
+   "textTr": "Yönetmen başrole genç bir oyuncu seçti."
   },
   {
    "id": "irr|catch",
@@ -178,7 +313,9 @@
    "pp": [
     "caught"
    ],
-   "tr": "yakalamak"
+   "tr": "yakalamak",
+   "text": "He caught the ball with one hand.",
+   "textTr": "Topu tek elle yakaladı."
   },
   {
    "id": "irr|choose",
@@ -189,7 +326,9 @@
    "pp": [
     "chosen"
    ],
-   "tr": "seçmek"
+   "tr": "seçmek",
+   "text": "She chose the blue dress.",
+   "textTr": "Mavi elbiseyi seçti."
   },
   {
    "id": "irr|cling",
@@ -200,7 +339,9 @@
    "pp": [
     "clung"
    ],
-   "tr": "sıkıca tutunmak"
+   "tr": "sıkıca tutunmak",
+   "text": "The child clung to his mother's hand.",
+   "textTr": "Çocuk annesinin eline sıkıca tutundu."
   },
   {
    "id": "irr|come",
@@ -211,7 +352,9 @@
    "pp": [
     "come"
    ],
-   "tr": "gelmek"
+   "tr": "gelmek",
+   "text": "My cousin came to see us on Sunday.",
+   "textTr": "Kuzenim pazar günü bizi görmeye geldi."
   },
   {
    "id": "irr|cost",
@@ -222,7 +365,9 @@
    "pp": [
     "cost"
    ],
-   "tr": "(para) tutmak, mal olmak"
+   "tr": "(para) tutmak, mal olmak",
+   "text": "The ticket cost fifty euros.",
+   "textTr": "Bilet elli avroya mal oldu."
   },
   {
    "id": "irr|creep",
@@ -233,7 +378,9 @@
    "pp": [
     "crept"
    ],
-   "tr": "sürünmek, sinsice yaklaşmak"
+   "tr": "sürünmek, sinsice yaklaşmak",
+   "text": "The cat crept slowly towards the bird.",
+   "textTr": "Kedi kuşa doğru yavaşça sinsice yaklaştı."
   },
   {
    "id": "irr|cut",
@@ -244,7 +391,9 @@
    "pp": [
     "cut"
    ],
-   "tr": "kesmek"
+   "tr": "kesmek",
+   "text": "She cut the bread into thick slices.",
+   "textTr": "Ekmeği kalın dilimlere kesti."
   },
   {
    "id": "irr|deal",
@@ -255,7 +404,9 @@
    "pp": [
     "dealt"
    ],
-   "tr": "ilgilenmek, dağıtmak"
+   "tr": "ilgilenmek, dağıtmak",
+   "text": "He dealt the cards to all the players.",
+   "textTr": "Kartları bütün oyunculara dağıttı."
   },
   {
    "id": "irr|dig",
@@ -266,7 +417,23 @@
    "pp": [
     "dug"
    ],
-   "tr": "kazmak"
+   "tr": "kazmak",
+   "text": "The workers dug a deep hole in the road.",
+   "textTr": "İşçiler yolda derin bir çukur kazdı."
+  },
+  {
+   "id": "irr|dive",
+   "base": "dive",
+   "past": [
+    "dived",
+    "dove"
+   ],
+   "pp": [
+    "dived"
+   ],
+   "tr": "dalmak",
+   "text": "The boy dived into the pool.",
+   "textTr": "Çocuk havuza daldı."
   },
   {
    "id": "irr|do",
@@ -277,7 +444,9 @@
    "pp": [
     "done"
    ],
-   "tr": "yapmak"
+   "tr": "yapmak",
+   "text": "I did my homework before dinner.",
+   "textTr": "Ödevimi akşam yemeğinden önce yaptım."
   },
   {
    "id": "irr|draw",
@@ -288,7 +457,9 @@
    "pp": [
     "drawn"
    ],
-   "tr": "çizmek, çekmek"
+   "tr": "çizmek, çekmek",
+   "text": "The little girl drew a house and a tree.",
+   "textTr": "Küçük kız bir ev ve bir ağaç çizdi."
   },
   {
    "id": "irr|dream",
@@ -301,7 +472,9 @@
     "dreamt",
     "dreamed"
    ],
-   "tr": "rüya görmek"
+   "tr": "rüya görmek",
+   "text": "I dreamt about my grandmother last night.",
+   "textTr": "Dün gece büyükannemi rüyamda gördüm."
   },
   {
    "id": "irr|drink",
@@ -312,7 +485,9 @@
    "pp": [
     "drunk"
    ],
-   "tr": "içmek"
+   "tr": "içmek",
+   "text": "He drank two glasses of water.",
+   "textTr": "İki bardak su içti."
   },
   {
    "id": "irr|drive",
@@ -323,7 +498,24 @@
    "pp": [
     "driven"
    ],
-   "tr": "sürmek (araç)"
+   "tr": "sürmek (araç)",
+   "text": "My father drove us to the airport.",
+   "textTr": "Babam bizi havalimanına götürdü."
+  },
+  {
+   "id": "irr|dwell",
+   "base": "dwell",
+   "past": [
+    "dwelt",
+    "dwelled"
+   ],
+   "pp": [
+    "dwelt",
+    "dwelled"
+   ],
+   "tr": "yaşamak, oturmak",
+   "text": "A hermit dwelt in the cave.",
+   "textTr": "Bir münzevi mağarada yaşıyordu."
   },
   {
    "id": "irr|eat",
@@ -334,7 +526,9 @@
    "pp": [
     "eaten"
    ],
-   "tr": "yemek"
+   "tr": "yemek",
+   "text": "We ate lunch in the garden.",
+   "textTr": "Öğle yemeğini bahçede yedik."
   },
   {
    "id": "irr|fall",
@@ -345,7 +539,9 @@
    "pp": [
     "fallen"
    ],
-   "tr": "düşmek"
+   "tr": "düşmek",
+   "text": "The vase fell off the table.",
+   "textTr": "Vazo masadan düştü."
   },
   {
    "id": "irr|feed",
@@ -356,7 +552,9 @@
    "pp": [
     "fed"
    ],
-   "tr": "beslemek"
+   "tr": "beslemek",
+   "text": "She fed the ducks in the park.",
+   "textTr": "Parkta ördekleri besledi."
   },
   {
    "id": "irr|feel",
@@ -367,7 +565,9 @@
    "pp": [
     "felt"
    ],
-   "tr": "hissetmek"
+   "tr": "hissetmek",
+   "text": "I felt a sharp pain in my back.",
+   "textTr": "Sırtımda keskin bir ağrı hissettim."
   },
   {
    "id": "irr|fight",
@@ -378,7 +578,9 @@
    "pp": [
     "fought"
    ],
-   "tr": "savaşmak, dövüşmek"
+   "tr": "savaşmak, dövüşmek",
+   "text": "The two brothers fought over the remote control.",
+   "textTr": "İki kardeş kumanda yüzünden kavga etti."
   },
   {
    "id": "irr|find",
@@ -389,7 +591,22 @@
    "pp": [
     "found"
    ],
-   "tr": "bulmak"
+   "tr": "bulmak",
+   "text": "I found my keys under the sofa.",
+   "textTr": "Anahtarlarımı kanepenin altında buldum."
+  },
+  {
+   "id": "irr|flee",
+   "base": "flee",
+   "past": [
+    "fled"
+   ],
+   "pp": [
+    "fled"
+   ],
+   "tr": "kaçmak",
+   "text": "The family fled the burning house.",
+   "textTr": "Aile yanan evden kaçtı."
   },
   {
    "id": "irr|fling",
@@ -400,7 +617,9 @@
    "pp": [
     "flung"
    ],
-   "tr": "fırlatmak"
+   "tr": "fırlatmak",
+   "text": "He flung his coat onto the chair.",
+   "textTr": "Montunu sandalyenin üstüne fırlattı."
   },
   {
    "id": "irr|fly",
@@ -411,7 +630,9 @@
    "pp": [
     "flown"
    ],
-   "tr": "uçmak"
+   "tr": "uçmak",
+   "text": "We flew to Madrid on Friday.",
+   "textTr": "Cuma günü Madrid'e uçtuk."
   },
   {
    "id": "irr|forbid",
@@ -423,7 +644,37 @@
    "pp": [
     "forbidden"
    ],
-   "tr": "yasaklamak"
+   "tr": "yasaklamak",
+   "text": "The doctor forbade him to smoke.",
+   "textTr": "Doktor ona sigara içmeyi yasakladı."
+  },
+  {
+   "id": "irr|forecast",
+   "base": "forecast",
+   "past": [
+    "forecast",
+    "forecasted"
+   ],
+   "pp": [
+    "forecast",
+    "forecasted"
+   ],
+   "tr": "tahmin etmek",
+   "text": "The weatherman forecast rain for Sunday.",
+   "textTr": "Hava durumu sunucusu pazar için yağmur tahmin etti."
+  },
+  {
+   "id": "irr|foresee",
+   "base": "foresee",
+   "past": [
+    "foresaw"
+   ],
+   "pp": [
+    "foreseen"
+   ],
+   "tr": "önceden görmek",
+   "text": "Nobody foresaw the problem.",
+   "textTr": "Kimse sorunu önceden görmedi."
   },
   {
    "id": "irr|forget",
@@ -434,7 +685,9 @@
    "pp": [
     "forgotten"
    ],
-   "tr": "unutmak"
+   "tr": "unutmak",
+   "text": "I forgot my umbrella on the bus.",
+   "textTr": "Şemsiyemi otobüste unuttum."
   },
   {
    "id": "irr|forgive",
@@ -445,7 +698,9 @@
    "pp": [
     "forgiven"
    ],
-   "tr": "affetmek"
+   "tr": "affetmek",
+   "text": "She forgave him for being late.",
+   "textTr": "Geç kaldığı için onu affetti."
   },
   {
    "id": "irr|freeze",
@@ -456,7 +711,9 @@
    "pp": [
     "frozen"
    ],
-   "tr": "donmak"
+   "tr": "donmak",
+   "text": "The lake froze in January.",
+   "textTr": "Göl ocak ayında dondu."
   },
   {
    "id": "irr|get",
@@ -468,7 +725,9 @@
     "got",
     "gotten"
    ],
-   "tr": "almak, olmak"
+   "tr": "almak, olmak",
+   "text": "She got a letter from her aunt.",
+   "textTr": "Teyzesinden bir mektup aldı."
   },
   {
    "id": "irr|give",
@@ -479,7 +738,9 @@
    "pp": [
     "given"
    ],
-   "tr": "vermek"
+   "tr": "vermek",
+   "text": "He gave me a book for my birthday.",
+   "textTr": "Bana doğum günümde bir kitap verdi."
   },
   {
    "id": "irr|go",
@@ -490,7 +751,9 @@
    "pp": [
     "gone"
    ],
-   "tr": "gitmek"
+   "tr": "gitmek",
+   "text": "We went to the cinema last night.",
+   "textTr": "Dün gece sinemaya gittik."
   },
   {
    "id": "irr|grind",
@@ -501,7 +764,9 @@
    "pp": [
     "ground"
    ],
-   "tr": "öğütmek"
+   "tr": "öğütmek",
+   "text": "She ground the coffee beans by hand.",
+   "textTr": "Kahve çekirdeklerini elle öğüttü."
   },
   {
    "id": "irr|grow",
@@ -512,7 +777,9 @@
    "pp": [
     "grown"
    ],
-   "tr": "büyümek, yetiştirmek"
+   "tr": "büyümek, yetiştirmek",
+   "text": "The plant grew very quickly in spring.",
+   "textTr": "Bitki ilkbaharda çok hızlı büyüdü."
   },
   {
    "id": "irr|hang",
@@ -523,7 +790,9 @@
    "pp": [
     "hung"
    ],
-   "tr": "asmak, asılı durmak"
+   "tr": "asmak, asılı durmak",
+   "text": "He hung his jacket on the hook.",
+   "textTr": "Ceketini askıya astı."
   },
   {
    "id": "irr|have",
@@ -534,7 +803,9 @@
    "pp": [
     "had"
    ],
-   "tr": "sahip olmak"
+   "tr": "sahip olmak",
+   "text": "We had a great time at the beach.",
+   "textTr": "Sahilde harika vakit geçirdik."
   },
   {
    "id": "irr|hear",
@@ -545,7 +816,9 @@
    "pp": [
     "heard"
    ],
-   "tr": "duymak"
+   "tr": "duymak",
+   "text": "I heard a strange noise in the kitchen.",
+   "textTr": "Mutfakta garip bir ses duydum."
   },
   {
    "id": "irr|hide",
@@ -556,7 +829,9 @@
    "pp": [
     "hidden"
    ],
-   "tr": "saklamak, saklanmak"
+   "tr": "saklamak, saklanmak",
+   "text": "The children hid behind the curtain.",
+   "textTr": "Çocuklar perdenin arkasına saklandı."
   },
   {
    "id": "irr|hit",
@@ -567,7 +842,9 @@
    "pp": [
     "hit"
    ],
-   "tr": "vurmak"
+   "tr": "vurmak",
+   "text": "The ball hit the window.",
+   "textTr": "Top cama çarptı."
   },
   {
    "id": "irr|hold",
@@ -578,7 +855,9 @@
    "pp": [
     "held"
    ],
-   "tr": "tutmak"
+   "tr": "tutmak",
+   "text": "She held the baby in her arms.",
+   "textTr": "Bebeği kollarında tuttu."
   },
   {
    "id": "irr|hurt",
@@ -589,7 +868,9 @@
    "pp": [
     "hurt"
    ],
-   "tr": "acıtmak, incitmek"
+   "tr": "acıtmak, incitmek",
+   "text": "He hurt his knee while playing football.",
+   "textTr": "Futbol oynarken dizini incitti."
   },
   {
    "id": "irr|keep",
@@ -600,7 +881,24 @@
    "pp": [
     "kept"
    ],
-   "tr": "tutmak, saklamak"
+   "tr": "tutmak, saklamak",
+   "text": "They kept the old letters in a box.",
+   "textTr": "Eski mektupları bir kutuda sakladılar."
+  },
+  {
+   "id": "irr|kneel",
+   "base": "kneel",
+   "past": [
+    "knelt",
+    "kneeled"
+   ],
+   "pp": [
+    "knelt",
+    "kneeled"
+   ],
+   "tr": "diz çökmek",
+   "text": "She knelt beside the bed.",
+   "textTr": "Yatağın yanında diz çöktü."
   },
   {
    "id": "irr|know",
@@ -611,7 +909,9 @@
    "pp": [
     "known"
    ],
-   "tr": "bilmek"
+   "tr": "bilmek",
+   "text": "I knew her when we were children.",
+   "textTr": "Onu çocukken tanıyordum."
   },
   {
    "id": "irr|lay",
@@ -622,7 +922,9 @@
    "pp": [
     "laid"
    ],
-   "tr": "koymak, sermek"
+   "tr": "koymak, sermek",
+   "text": "She laid the plates on the table.",
+   "textTr": "Tabakları masaya dizdi."
   },
   {
    "id": "irr|lead",
@@ -633,7 +935,39 @@
    "pp": [
     "led"
    ],
-   "tr": "yönetmek, götürmek"
+   "tr": "yönetmek, götürmek",
+   "text": "The guide led us through the forest.",
+   "textTr": "Rehber bizi ormanın içinden geçirdi."
+  },
+  {
+   "id": "irr|lean",
+   "base": "lean",
+   "past": [
+    "leant",
+    "leaned"
+   ],
+   "pp": [
+    "leant",
+    "leaned"
+   ],
+   "tr": "yaslanmak, eğilmek",
+   "text": "He leant against the wall and waited.",
+   "textTr": "Duvara yaslanıp bekledi."
+  },
+  {
+   "id": "irr|leap",
+   "base": "leap",
+   "past": [
+    "leapt",
+    "leaped"
+   ],
+   "pp": [
+    "leapt",
+    "leaped"
+   ],
+   "tr": "sıçramak",
+   "text": "The cat leapt onto the shelf.",
+   "textTr": "Kedi rafa sıçradı."
   },
   {
    "id": "irr|learn",
@@ -646,7 +980,9 @@
     "learnt",
     "learned"
    ],
-   "tr": "öğrenmek"
+   "tr": "öğrenmek",
+   "text": "He learnt to swim at the age of six.",
+   "textTr": "Altı yaşında yüzmeyi öğrendi."
   },
   {
    "id": "irr|leave",
@@ -657,7 +993,9 @@
    "pp": [
     "left"
    ],
-   "tr": "ayrılmak, bırakmak"
+   "tr": "ayrılmak, bırakmak",
+   "text": "They left the house at seven.",
+   "textTr": "Yediyi evden çıktılar."
   },
   {
    "id": "irr|lend",
@@ -668,7 +1006,9 @@
    "pp": [
     "lent"
    ],
-   "tr": "ödünç vermek"
+   "tr": "ödünç vermek",
+   "text": "I lent him my bike for the weekend.",
+   "textTr": "Ona hafta sonu için bisikletimi ödünç verdim."
   },
   {
    "id": "irr|let",
@@ -679,7 +1019,9 @@
    "pp": [
     "let"
    ],
-   "tr": "izin vermek"
+   "tr": "izin vermek",
+   "text": "She let the cat out of the house.",
+   "textTr": "Kediyi evden dışarı çıkardı."
   },
   {
    "id": "irr|lie",
@@ -690,7 +1032,9 @@
    "pp": [
     "lain"
    ],
-   "tr": "uzanmak, yatmak"
+   "tr": "uzanmak, yatmak",
+   "text": "The cat lay on the sofa all afternoon.",
+   "textTr": "Kedi bütün öğleden sonra kanepede yattı."
   },
   {
    "id": "irr|light",
@@ -701,7 +1045,9 @@
    "pp": [
     "lit"
    ],
-   "tr": "yakmak, aydınlatmak"
+   "tr": "yakmak, aydınlatmak",
+   "text": "He lit a candle in the dark room.",
+   "textTr": "Karanlık odada bir mum yaktı."
   },
   {
    "id": "irr|lose",
@@ -712,7 +1058,9 @@
    "pp": [
     "lost"
    ],
-   "tr": "kaybetmek"
+   "tr": "kaybetmek",
+   "text": "I lost my wallet in the market.",
+   "textTr": "Cüzdanımı pazarda kaybettim."
   },
   {
    "id": "irr|make",
@@ -723,7 +1071,9 @@
    "pp": [
     "made"
    ],
-   "tr": "yapmak, üretmek"
+   "tr": "yapmak, üretmek",
+   "text": "She made a delicious soup for dinner.",
+   "textTr": "Akşam yemeği için lezzetli bir çorba yaptı."
   },
   {
    "id": "irr|mean",
@@ -734,7 +1084,9 @@
    "pp": [
     "meant"
    ],
-   "tr": "anlamına gelmek"
+   "tr": "anlamına gelmek",
+   "text": "I meant to call you, but I forgot.",
+   "textTr": "Seni aramak istemiştim ama unuttum."
   },
   {
    "id": "irr|meet",
@@ -745,7 +1097,22 @@
    "pp": [
     "met"
    ],
-   "tr": "buluşmak, tanışmak"
+   "tr": "buluşmak, tanışmak",
+   "text": "We met at a language course in Paris.",
+   "textTr": "Paris'te bir dil kursunda tanıştık."
+  },
+  {
+   "id": "irr|mislead",
+   "base": "mislead",
+   "past": [
+    "misled"
+   ],
+   "pp": [
+    "misled"
+   ],
+   "tr": "yanıltmak",
+   "text": "The advert misled many customers.",
+   "textTr": "Reklam birçok müşteriyi yanılttı."
   },
   {
    "id": "irr|mistake",
@@ -756,7 +1123,35 @@
    "pp": [
     "mistaken"
    ],
-   "tr": "yanlış anlamak"
+   "tr": "yanlış anlamak",
+   "text": "I mistook him for his brother.",
+   "textTr": "Onu kardeşiyle karıştırdım."
+  },
+  {
+   "id": "irr|misunderstand",
+   "base": "misunderstand",
+   "past": [
+    "misunderstood"
+   ],
+   "pp": [
+    "misunderstood"
+   ],
+   "tr": "yanlış anlamak",
+   "text": "I misunderstood the instructions.",
+   "textTr": "Talimatları yanlış anladım."
+  },
+  {
+   "id": "irr|outdo",
+   "base": "outdo",
+   "past": [
+    "outdid"
+   ],
+   "pp": [
+    "outdone"
+   ],
+   "tr": "geçmek, alt etmek",
+   "text": "She outdid all the other candidates.",
+   "textTr": "Diğer bütün adayları geride bıraktı."
   },
   {
    "id": "irr|overcome",
@@ -767,7 +1162,35 @@
    "pp": [
     "overcome"
    ],
-   "tr": "üstesinden gelmek"
+   "tr": "üstesinden gelmek",
+   "text": "She overcame her fear of flying.",
+   "textTr": "Uçma korkusunun üstesinden geldi."
+  },
+  {
+   "id": "irr|oversleep",
+   "base": "oversleep",
+   "past": [
+    "overslept"
+   ],
+   "pp": [
+    "overslept"
+   ],
+   "tr": "uyuyakalmak",
+   "text": "I overslept and missed the train.",
+   "textTr": "Uyuyakaldım ve treni kaçırdım."
+  },
+  {
+   "id": "irr|overtake",
+   "base": "overtake",
+   "past": [
+    "overtook"
+   ],
+   "pp": [
+    "overtaken"
+   ],
+   "tr": "(araç) geçmek",
+   "text": "The bus overtook a lorry on the hill.",
+   "textTr": "Otobüs yokuşta bir kamyonu geçti."
   },
   {
    "id": "irr|pay",
@@ -778,7 +1201,23 @@
    "pp": [
     "paid"
    ],
-   "tr": "ödemek"
+   "tr": "ödemek",
+   "text": "He paid the bill and left.",
+   "textTr": "Hesabı ödedi ve gitti."
+  },
+  {
+   "id": "irr|prove",
+   "base": "prove",
+   "past": [
+    "proved"
+   ],
+   "pp": [
+    "proved",
+    "proven"
+   ],
+   "tr": "kanıtlamak",
+   "text": "The experiment proved her theory.",
+   "textTr": "Deney onun teorisini kanıtladı."
   },
   {
    "id": "irr|put",
@@ -789,7 +1228,9 @@
    "pp": [
     "put"
    ],
-   "tr": "koymak"
+   "tr": "koymak",
+   "text": "I put the milk in the fridge.",
+   "textTr": "Sütü buzdolabına koydum."
   },
   {
    "id": "irr|quit",
@@ -800,7 +1241,9 @@
    "pp": [
     "quit"
    ],
-   "tr": "bırakmak, vazgeçmek"
+   "tr": "bırakmak, vazgeçmek",
+   "text": "He quit his job last month.",
+   "textTr": "Geçen ay işinden ayrıldı."
   },
   {
    "id": "irr|read",
@@ -811,7 +1254,61 @@
    "pp": [
     "read"
    ],
-   "tr": "okumak"
+   "tr": "okumak",
+   "text": "I read three chapters yesterday.",
+   "textTr": "Dün üç bölüm okudum."
+  },
+  {
+   "id": "irr|rebuild",
+   "base": "rebuild",
+   "past": [
+    "rebuilt"
+   ],
+   "pp": [
+    "rebuilt"
+   ],
+   "tr": "yeniden inşa etmek",
+   "text": "They rebuilt the bridge after the flood.",
+   "textTr": "Selden sonra köprüyü yeniden inşa ettiler."
+  },
+  {
+   "id": "irr|repay",
+   "base": "repay",
+   "past": [
+    "repaid"
+   ],
+   "pp": [
+    "repaid"
+   ],
+   "tr": "geri ödemek",
+   "text": "He repaid the loan in two years.",
+   "textTr": "Krediyi iki yılda geri ödedi."
+  },
+  {
+   "id": "irr|rewrite",
+   "base": "rewrite",
+   "past": [
+    "rewrote"
+   ],
+   "pp": [
+    "rewritten"
+   ],
+   "tr": "yeniden yazmak",
+   "text": "She rewrote the essay twice.",
+   "textTr": "Kompozisyonu iki kez yeniden yazdı."
+  },
+  {
+   "id": "irr|rid",
+   "base": "rid",
+   "past": [
+    "rid"
+   ],
+   "pp": [
+    "rid"
+   ],
+   "tr": "kurtarmak (rid of)",
+   "text": "We rid the house of mice.",
+   "textTr": "Evi farelerden kurtardık."
   },
   {
    "id": "irr|ride",
@@ -822,7 +1319,9 @@
    "pp": [
     "ridden"
    ],
-   "tr": "binmek (at, bisiklet)"
+   "tr": "binmek (at, bisiklet)",
+   "text": "She rode her bike to school.",
+   "textTr": "Okula bisikletiyle gitti."
   },
   {
    "id": "irr|ring",
@@ -833,7 +1332,9 @@
    "pp": [
     "rung"
    ],
-   "tr": "çalmak (zil)"
+   "tr": "çalmak (zil)",
+   "text": "The phone rang twice and stopped.",
+   "textTr": "Telefon iki kez çaldı ve sustu."
   },
   {
    "id": "irr|rise",
@@ -844,7 +1345,9 @@
    "pp": [
     "risen"
    ],
-   "tr": "yükselmek"
+   "tr": "yükselmek",
+   "text": "The sun rose at six this morning.",
+   "textTr": "Güneş bu sabah altıda doğdu."
   },
   {
    "id": "irr|run",
@@ -855,7 +1358,9 @@
    "pp": [
     "run"
    ],
-   "tr": "koşmak"
+   "tr": "koşmak",
+   "text": "He ran five kilometres in the park.",
+   "textTr": "Parkta beş kilometre koştu."
   },
   {
    "id": "irr|say",
@@ -866,7 +1371,9 @@
    "pp": [
     "said"
    ],
-   "tr": "söylemek"
+   "tr": "söylemek",
+   "text": "She said goodbye and closed the door.",
+   "textTr": "Hoşça kal dedi ve kapıyı kapattı."
   },
   {
    "id": "irr|see",
@@ -877,7 +1384,9 @@
    "pp": [
     "seen"
    ],
-   "tr": "görmek"
+   "tr": "görmek",
+   "text": "We saw a beautiful rainbow after the rain.",
+   "textTr": "Yağmurdan sonra güzel bir gökkuşağı gördük."
   },
   {
    "id": "irr|seek",
@@ -888,7 +1397,9 @@
    "pp": [
     "sought"
    ],
-   "tr": "aramak, peşinde olmak"
+   "tr": "aramak, peşinde olmak",
+   "text": "They sought shelter from the storm.",
+   "textTr": "Fırtınadan korunmak için sığınak aradılar."
   },
   {
    "id": "irr|sell",
@@ -899,7 +1410,9 @@
    "pp": [
     "sold"
    ],
-   "tr": "satmak"
+   "tr": "satmak",
+   "text": "He sold his old car for a thousand euros.",
+   "textTr": "Eski arabasını bin avroya sattı."
   },
   {
    "id": "irr|send",
@@ -910,7 +1423,9 @@
    "pp": [
     "sent"
    ],
-   "tr": "göndermek"
+   "tr": "göndermek",
+   "text": "I sent her a message this morning.",
+   "textTr": "Ona bu sabah bir mesaj gönderdim."
   },
   {
    "id": "irr|set",
@@ -921,7 +1436,9 @@
    "pp": [
     "set"
    ],
-   "tr": "ayarlamak, kurmak"
+   "tr": "ayarlamak, kurmak",
+   "text": "She set the alarm for six o'clock.",
+   "textTr": "Alarmı altıya kurdu."
   },
   {
    "id": "irr|sew",
@@ -933,7 +1450,9 @@
     "sewn",
     "sewed"
    ],
-   "tr": "dikmek"
+   "tr": "dikmek",
+   "text": "My grandmother sewed all our clothes.",
+   "textTr": "Büyükannem bütün giysilerimizi dikerdi."
   },
   {
    "id": "irr|shake",
@@ -944,7 +1463,23 @@
    "pp": [
     "shaken"
    ],
-   "tr": "sallamak, titremek"
+   "tr": "sallamak, titremek",
+   "text": "He shook my hand and smiled.",
+   "textTr": "Elimi sıktı ve gülümsedi."
+  },
+  {
+   "id": "irr|shave",
+   "base": "shave",
+   "past": [
+    "shaved"
+   ],
+   "pp": [
+    "shaved",
+    "shaven"
+   ],
+   "tr": "tıraş etmek",
+   "text": "He shaved before the interview.",
+   "textTr": "Mülakattan önce tıraş oldu."
   },
   {
    "id": "irr|shed",
@@ -955,7 +1490,9 @@
    "pp": [
     "shed"
    ],
-   "tr": "dökmek"
+   "tr": "dökmek",
+   "text": "The tree shed its leaves in autumn.",
+   "textTr": "Ağaç sonbaharda yapraklarını döktü."
   },
   {
    "id": "irr|shine",
@@ -966,7 +1503,9 @@
    "pp": [
     "shone"
    ],
-   "tr": "parlamak"
+   "tr": "parlamak",
+   "text": "The sun shone all day.",
+   "textTr": "Güneş bütün gün parladı."
   },
   {
    "id": "irr|shoot",
@@ -977,7 +1516,9 @@
    "pp": [
     "shot"
    ],
-   "tr": "ateş etmek, vurmak"
+   "tr": "ateş etmek, vurmak",
+   "text": "The photographer shot the whole wedding.",
+   "textTr": "Fotoğrafçı bütün düğünü çekti."
   },
   {
    "id": "irr|show",
@@ -989,7 +1530,9 @@
     "shown",
     "showed"
    ],
-   "tr": "göstermek"
+   "tr": "göstermek",
+   "text": "She showed me her holiday photos.",
+   "textTr": "Bana tatil fotoğraflarını gösterdi."
   },
   {
    "id": "irr|shrink",
@@ -1000,7 +1543,9 @@
    "pp": [
     "shrunk"
    ],
-   "tr": "küçülmek"
+   "tr": "küçülmek",
+   "text": "My sweater shrank in the wash.",
+   "textTr": "Kazağım yıkamada küçüldü."
   },
   {
    "id": "irr|shut",
@@ -1011,7 +1556,9 @@
    "pp": [
     "shut"
    ],
-   "tr": "kapatmak"
+   "tr": "kapatmak",
+   "text": "He shut the window because of the noise.",
+   "textTr": "Gürültüden dolayı pencereyi kapattı."
   },
   {
    "id": "irr|sing",
@@ -1022,7 +1569,9 @@
    "pp": [
     "sung"
    ],
-   "tr": "şarkı söylemek"
+   "tr": "şarkı söylemek",
+   "text": "The whole class sang a song for the teacher.",
+   "textTr": "Bütün sınıf öğretmen için bir şarkı söyledi."
   },
   {
    "id": "irr|sink",
@@ -1033,7 +1582,9 @@
    "pp": [
     "sunk"
    ],
-   "tr": "batmak"
+   "tr": "batmak",
+   "text": "The boat sank in a few minutes.",
+   "textTr": "Tekne birkaç dakikada battı."
   },
   {
    "id": "irr|sit",
@@ -1044,7 +1595,9 @@
    "pp": [
     "sat"
    ],
-   "tr": "oturmak"
+   "tr": "oturmak",
+   "text": "We sat in the front row.",
+   "textTr": "Ön sırada oturduk."
   },
   {
    "id": "irr|sleep",
@@ -1055,7 +1608,9 @@
    "pp": [
     "slept"
    ],
-   "tr": "uyumak"
+   "tr": "uyumak",
+   "text": "The baby slept all night.",
+   "textTr": "Bebek bütün gece uyudu."
   },
   {
    "id": "irr|slide",
@@ -1066,7 +1621,53 @@
    "pp": [
     "slid"
    ],
-   "tr": "kaymak"
+   "tr": "kaymak",
+   "text": "The children slid down the hill on a sled.",
+   "textTr": "Çocuklar kızakla tepeden kaydı."
+  },
+  {
+   "id": "irr|smell",
+   "base": "smell",
+   "past": [
+    "smelled",
+    "smelt"
+   ],
+   "pp": [
+    "smelled",
+    "smelt"
+   ],
+   "tr": "koklamak, kokmak",
+   "text": "The kitchen smelled of fresh bread.",
+   "textTr": "Mutfak taze ekmek koktu."
+  },
+  {
+   "id": "irr|sneak",
+   "base": "sneak",
+   "past": [
+    "sneaked",
+    "snuck"
+   ],
+   "pp": [
+    "sneaked",
+    "snuck"
+   ],
+   "tr": "gizlice girmek/çıkmak",
+   "text": "The boy sneaked out of the house.",
+   "textTr": "Çocuk evden gizlice çıktı."
+  },
+  {
+   "id": "irr|sow",
+   "base": "sow",
+   "past": [
+    "sowed"
+   ],
+   "pp": [
+    "sown",
+    "sowed"
+   ],
+   "tr": "ekmek (tohum)",
+   "text": "The farmer sowed the wheat in October.",
+   "textTr": "Çiftçi buğdayı ekimde ekti."
   },
   {
    "id": "irr|speak",
@@ -1077,7 +1678,9 @@
    "pp": [
     "spoken"
    ],
-   "tr": "konuşmak"
+   "tr": "konuşmak",
+   "text": "She spoke to the manager about the problem.",
+   "textTr": "Sorun hakkında müdürle konuştu."
   },
   {
    "id": "irr|spell",
@@ -1090,7 +1693,9 @@
     "spelt",
     "spelled"
    ],
-   "tr": "hecelemek"
+   "tr": "hecelemek",
+   "text": "He spelt his name slowly for the clerk.",
+   "textTr": "Memura adını yavaşça heceledi."
   },
   {
    "id": "irr|spend",
@@ -1101,7 +1706,9 @@
    "pp": [
     "spent"
    ],
-   "tr": "harcamak, geçirmek"
+   "tr": "harcamak, geçirmek",
+   "text": "We spent a week in the mountains.",
+   "textTr": "Bir haftayı dağlarda geçirdik."
   },
   {
    "id": "irr|spin",
@@ -1112,7 +1719,9 @@
    "pp": [
     "spun"
    ],
-   "tr": "döndürmek, eğirmek"
+   "tr": "döndürmek, eğirmek",
+   "text": "The dancer spun round and round.",
+   "textTr": "Dansçı durmadan döndü."
   },
   {
    "id": "irr|spit",
@@ -1123,7 +1732,9 @@
    "pp": [
     "spat"
    ],
-   "tr": "tükürmek"
+   "tr": "tükürmek",
+   "text": "The boy spat the seed onto the plate.",
+   "textTr": "Çocuk çekirdeği tabağa tükürdü."
   },
   {
    "id": "irr|split",
@@ -1134,7 +1745,24 @@
    "pp": [
     "split"
    ],
-   "tr": "bölmek, yarmak"
+   "tr": "bölmek, yarmak",
+   "text": "They split the bill between four people.",
+   "textTr": "Hesabı dört kişi arasında paylaştılar."
+  },
+  {
+   "id": "irr|spoil",
+   "base": "spoil",
+   "past": [
+    "spoiled",
+    "spoilt"
+   ],
+   "pp": [
+    "spoiled",
+    "spoilt"
+   ],
+   "tr": "bozmak, şımartmak",
+   "text": "The rain spoiled our picnic.",
+   "textTr": "Yağmur pikniğimizi bozdu."
   },
   {
    "id": "irr|spread",
@@ -1145,7 +1773,9 @@
    "pp": [
     "spread"
    ],
-   "tr": "yaymak"
+   "tr": "yaymak",
+   "text": "He spread butter on the toast.",
+   "textTr": "Tosta tereyağı sürdü."
   },
   {
    "id": "irr|stand",
@@ -1156,7 +1786,9 @@
    "pp": [
     "stood"
    ],
-   "tr": "ayakta durmak"
+   "tr": "ayakta durmak",
+   "text": "She stood at the bus stop for an hour.",
+   "textTr": "Bir saat otobüs durağında bekledi."
   },
   {
    "id": "irr|steal",
@@ -1167,7 +1799,9 @@
    "pp": [
     "stolen"
    ],
-   "tr": "çalmak (hırsızlık)"
+   "tr": "çalmak (hırsızlık)",
+   "text": "Someone stole my bike outside the station.",
+   "textTr": "Biri bisikletimi istasyonun önünde çaldı."
   },
   {
    "id": "irr|stick",
@@ -1178,7 +1812,9 @@
    "pp": [
     "stuck"
    ],
-   "tr": "yapıştırmak, saplamak"
+   "tr": "yapıştırmak, saplamak",
+   "text": "He stuck a stamp on the envelope.",
+   "textTr": "Zarfa bir pul yapıştırdı."
   },
   {
    "id": "irr|sting",
@@ -1189,7 +1825,9 @@
    "pp": [
     "stung"
    ],
-   "tr": "sokmak"
+   "tr": "sokmak",
+   "text": "A bee stung me on the arm.",
+   "textTr": "Bir arı kolumdan soktu."
   },
   {
    "id": "irr|stink",
@@ -1200,7 +1838,9 @@
    "pp": [
     "stunk"
    ],
-   "tr": "kötü kokmak"
+   "tr": "kötü kokmak",
+   "text": "The old cheese stank of garlic.",
+   "textTr": "Eski peynir sarımsak gibi kokuyordu."
   },
   {
    "id": "irr|strike",
@@ -1211,7 +1851,22 @@
    "pp": [
     "struck"
    ],
-   "tr": "vurmak, çarpmak"
+   "tr": "vurmak, çarpmak",
+   "text": "The clock struck midnight.",
+   "textTr": "Saat gece yarısını vurdu."
+  },
+  {
+   "id": "irr|strive",
+   "base": "strive",
+   "past": [
+    "strove"
+   ],
+   "pp": [
+    "striven"
+   ],
+   "tr": "çabalamak",
+   "text": "She strove to finish the work on time.",
+   "textTr": "İşi zamanında bitirmek için çabaladı."
   },
   {
    "id": "irr|swear",
@@ -1222,7 +1877,9 @@
    "pp": [
     "sworn"
    ],
-   "tr": "yemin etmek, küfretmek"
+   "tr": "yemin etmek, küfretmek",
+   "text": "He swore to tell the truth.",
+   "textTr": "Doğruyu söyleyeceğine yemin etti."
   },
   {
    "id": "irr|sweep",
@@ -1233,7 +1890,23 @@
    "pp": [
     "swept"
    ],
-   "tr": "süpürmek"
+   "tr": "süpürmek",
+   "text": "She swept the floor after dinner.",
+   "textTr": "Akşam yemeğinden sonra yeri süpürdü."
+  },
+  {
+   "id": "irr|swell",
+   "base": "swell",
+   "past": [
+    "swelled"
+   ],
+   "pp": [
+    "swollen",
+    "swelled"
+   ],
+   "tr": "şişmek",
+   "text": "His ankle swelled after the fall.",
+   "textTr": "Düştükten sonra ayak bileği şişti."
   },
   {
    "id": "irr|swim",
@@ -1244,7 +1917,9 @@
    "pp": [
     "swum"
    ],
-   "tr": "yüzmek"
+   "tr": "yüzmek",
+   "text": "We swam in the lake every morning.",
+   "textTr": "Her sabah gölde yüzdük."
   },
   {
    "id": "irr|swing",
@@ -1255,7 +1930,9 @@
    "pp": [
     "swung"
    ],
-   "tr": "sallanmak"
+   "tr": "sallanmak",
+   "text": "The children swung on the old tyre.",
+   "textTr": "Çocuklar eski lastikte sallandı."
   },
   {
    "id": "irr|take",
@@ -1266,7 +1943,9 @@
    "pp": [
     "taken"
    ],
-   "tr": "almak, götürmek"
+   "tr": "almak, götürmek",
+   "text": "He took the earlier train.",
+   "textTr": "Daha erken treni aldı."
   },
   {
    "id": "irr|teach",
@@ -1277,7 +1956,9 @@
    "pp": [
     "taught"
    ],
-   "tr": "öğretmek"
+   "tr": "öğretmek",
+   "text": "My aunt taught me how to cook.",
+   "textTr": "Teyzem bana yemek yapmayı öğretti."
   },
   {
    "id": "irr|tear",
@@ -1288,7 +1969,9 @@
    "pp": [
     "torn"
    ],
-   "tr": "yırtmak"
+   "tr": "yırtmak",
+   "text": "She tore the letter into small pieces.",
+   "textTr": "Mektubu küçük parçalara yırttı."
   },
   {
    "id": "irr|tell",
@@ -1299,7 +1982,9 @@
    "pp": [
     "told"
    ],
-   "tr": "söylemek, anlatmak"
+   "tr": "söylemek, anlatmak",
+   "text": "He told us a funny story.",
+   "textTr": "Bize komik bir hikâye anlattı."
   },
   {
    "id": "irr|think",
@@ -1310,7 +1995,9 @@
    "pp": [
     "thought"
    ],
-   "tr": "düşünmek"
+   "tr": "düşünmek",
+   "text": "I thought about it all night.",
+   "textTr": "Bunu bütün gece düşündüm."
   },
   {
    "id": "irr|throw",
@@ -1321,7 +2008,48 @@
    "pp": [
     "thrown"
    ],
-   "tr": "atmak"
+   "tr": "atmak",
+   "text": "The boy threw a stone into the river.",
+   "textTr": "Çocuk nehre bir taş attı."
+  },
+  {
+   "id": "irr|thrust",
+   "base": "thrust",
+   "past": [
+    "thrust"
+   ],
+   "pp": [
+    "thrust"
+   ],
+   "tr": "itmek, sokmak",
+   "text": "He thrust the letter into my hand.",
+   "textTr": "Mektubu elime tutuşturdu."
+  },
+  {
+   "id": "irr|tread",
+   "base": "tread",
+   "past": [
+    "trod"
+   ],
+   "pp": [
+    "trodden"
+   ],
+   "tr": "basmak",
+   "text": "She trod on a snail.",
+   "textTr": "Bir salyangoza bastı."
+  },
+  {
+   "id": "irr|undergo",
+   "base": "undergo",
+   "past": [
+    "underwent"
+   ],
+   "pp": [
+    "undergone"
+   ],
+   "tr": "geçirmek (ameliyat vb.)",
+   "text": "He underwent surgery last week.",
+   "textTr": "Geçen hafta ameliyat oldu."
   },
   {
    "id": "irr|understand",
@@ -1332,7 +2060,22 @@
    "pp": [
     "understood"
    ],
-   "tr": "anlamak"
+   "tr": "anlamak",
+   "text": "She understood the question at once.",
+   "textTr": "Soruyu hemen anladı."
+  },
+  {
+   "id": "irr|undertake",
+   "base": "undertake",
+   "past": [
+    "undertook"
+   ],
+   "pp": [
+    "undertaken"
+   ],
+   "tr": "üstlenmek",
+   "text": "She undertook the research alone.",
+   "textTr": "Araştırmayı tek başına üstlendi."
   },
   {
    "id": "irr|undo",
@@ -1343,7 +2086,35 @@
    "pp": [
     "undone"
    ],
-   "tr": "geri almak, çözmek"
+   "tr": "geri almak, çözmek",
+   "text": "He undid the knot with his teeth.",
+   "textTr": "Düğümü dişleriyle çözdü."
+  },
+  {
+   "id": "irr|uphold",
+   "base": "uphold",
+   "past": [
+    "upheld"
+   ],
+   "pp": [
+    "upheld"
+   ],
+   "tr": "desteklemek, onaylamak",
+   "text": "The court upheld the decision.",
+   "textTr": "Mahkeme kararı onayladı."
+  },
+  {
+   "id": "irr|upset",
+   "base": "upset",
+   "past": [
+    "upset"
+   ],
+   "pp": [
+    "upset"
+   ],
+   "tr": "üzmek, altüst etmek",
+   "text": "The news upset everyone.",
+   "textTr": "Haber herkesi üzdü."
   },
   {
    "id": "irr|wake",
@@ -1354,7 +2125,9 @@
    "pp": [
     "woken"
    ],
-   "tr": "uyanmak, uyandırmak"
+   "tr": "uyanmak, uyandırmak",
+   "text": "I woke up at five this morning.",
+   "textTr": "Bu sabah beşte uyandım."
   },
   {
    "id": "irr|wear",
@@ -1365,7 +2138,22 @@
    "pp": [
     "worn"
    ],
-   "tr": "giymek"
+   "tr": "giymek",
+   "text": "She wore a red scarf yesterday.",
+   "textTr": "Dün kırmızı bir atkı taktı."
+  },
+  {
+   "id": "irr|weave",
+   "base": "weave",
+   "past": [
+    "wove"
+   ],
+   "pp": [
+    "woven"
+   ],
+   "tr": "dokumak",
+   "text": "They wove baskets from reeds.",
+   "textTr": "Kamıştan sepetler ördüler."
   },
   {
    "id": "irr|weep",
@@ -1376,7 +2164,9 @@
    "pp": [
     "wept"
    ],
-   "tr": "ağlamak"
+   "tr": "ağlamak",
+   "text": "The child wept quietly in the corner.",
+   "textTr": "Çocuk köşede sessizce ağladı."
   },
   {
    "id": "irr|win",
@@ -1387,7 +2177,9 @@
    "pp": [
     "won"
    ],
-   "tr": "kazanmak"
+   "tr": "kazanmak",
+   "text": "Our team won the final.",
+   "textTr": "Takımımız finali kazandı."
   },
   {
    "id": "irr|wind",
@@ -1398,7 +2190,9 @@
    "pp": [
     "wound"
    ],
-   "tr": "sarmak"
+   "tr": "sarmak",
+   "text": "He wound the wool into a ball.",
+   "textTr": "Yünü yumak yaptı."
   },
   {
    "id": "irr|withdraw",
@@ -1409,7 +2203,48 @@
    "pp": [
     "withdrawn"
    ],
-   "tr": "geri çekmek"
+   "tr": "geri çekmek",
+   "text": "She withdrew some money from the bank.",
+   "textTr": "Bankadan biraz para çekti."
+  },
+  {
+   "id": "irr|withhold",
+   "base": "withhold",
+   "past": [
+    "withheld"
+   ],
+   "pp": [
+    "withheld"
+   ],
+   "tr": "esirgemek, vermemek",
+   "text": "The company withheld his salary.",
+   "textTr": "Şirket maaşını vermedi."
+  },
+  {
+   "id": "irr|withstand",
+   "base": "withstand",
+   "past": [
+    "withstood"
+   ],
+   "pp": [
+    "withstood"
+   ],
+   "tr": "dayanmak",
+   "text": "The old house withstood the storm.",
+   "textTr": "Eski ev fırtınaya dayandı."
+  },
+  {
+   "id": "irr|wring",
+   "base": "wring",
+   "past": [
+    "wrung"
+   ],
+   "pp": [
+    "wrung"
+   ],
+   "tr": "sıkmak (ıslak bez)",
+   "text": "She wrung the wet towel.",
+   "textTr": "Islak havluyu sıktı."
   },
   {
    "id": "irr|write",
@@ -1420,7 +2255,9 @@
    "pp": [
     "written"
    ],
-   "tr": "yazmak"
+   "tr": "yazmak",
+   "text": "He wrote a long letter to his friend.",
+   "textTr": "Arkadaşına uzun bir mektup yazdı."
   }
  ]
 }

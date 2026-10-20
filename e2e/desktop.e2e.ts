@@ -340,8 +340,10 @@ test('English verb lab: irregular verbs and phrasal verbs, a list to look throug
   await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
   // The list: searched by form or meaning.
   await page.getByLabel('Düzensiz fiillerde ara').fill('went')
-  await expect(page.locator('.enverb-table tbody tr')).toHaveCount(1)
-  await expect(page.locator('.enverb-table tbody tr')).toContainText('gone')
+  // "went" is in go and in underwent (undergo).
+  await expect(page.locator('.enverb-table tbody tr')).toHaveCount(2)
+  await expect(page.locator('.enverb-table tbody tr').first()).toContainText('gone')
+  await expect(page.locator('.enverb-table tbody tr').first()).toContainText('We went to the cinema last night.')
   // A round: wrong answers show the right forms; ten questions end in a result.
   await page.getByRole('button', { name: 'Alıştır', exact: true }).click()
   await page.getByRole('button', { name: /soruluk tura başla/ }).click()

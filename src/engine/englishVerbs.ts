@@ -12,6 +12,9 @@ export interface IrregularVerb {
   past: string[]
   pp: string[]
   tr: string
+  /** A sentence with the past simple form, and its Turkish. */
+  text: string
+  textTr: string
 }
 
 export interface PhrasalVerb {
