@@ -1,22 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { GameResult } from './GameResult'
 import { recordPractice, type Props } from './shared'
-import { checkSlots, contextBank, contextItems, contextParts, contextRound, CONTEXT_ROUND, type ContextItem, type ContextSource } from '../../engine/contextReview'
+import { checkSlots, contextBank, contextItems, contextParts, contextRound, CONTEXT_ROUND, type ContextItem } from '../../engine/contextReview'
 import { createRng } from '../../engine/rng'
-import { db } from '../../data/instance'
 import { EmptyState } from '../EmptyState'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
-
-/** The sentences the learner has met: texts read, sentences translated, their words' examples. */
-async function loadSources(language: Props['language'], vocabulary: Props['vocabulary']): Promise<ContextSource[]> {
-  const [texts, memory] = await Promise.all([db.getLibrary(language), db.getTranslations()])
-  return [
-    ...memory.filter((m) => m.from === language && m.to === 'tr').map((m) => ({ text: m.text, translation: m.translation, from: 'Çevirdiklerin' })),
-    ...vocabulary.filter((v) => v.language === language).flatMap((v) => v.senses.flatMap((s) => s.examples.map((x) => ({ text: x.text, translation: x.translation || undefined, from: 'Örnek cümle' })))),
-    ...texts.map((t) => ({ text: t.text, from: t.title })),
-  ]
-}
+import { loadSources } from './sentenceSources'
 
 /**
  * Review in context: a sentence met before, with two or more of the learner's own words blanked;

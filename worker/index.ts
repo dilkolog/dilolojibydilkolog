@@ -16,6 +16,7 @@ import * as share from '../api/share.js'
 import * as sync from '../api/sync.js'
 import * as translate from '../api/translate.js'
 import * as youtube from '../api/youtube.js'
+import { noteError, sendErrorDigest } from '../api/_errorDigest.js'
 import { fromApp } from '../api/_origin.js'
 import { overLimit, tooMany } from '../api/_rate.js'
 import { cleanRoomCode } from '../src/engine/liveDuel.js'
@@ -74,6 +75,7 @@ export default {
       return hardened(res, head)
     } catch (e) {
       console.error('[worker-error]', pathname, e)
+      await noteError('worker', { name: e instanceof Error ? e.name : 'Error', message: e instanceof Error ? e.message : String(e), where: pathname })
       return new Response('server error', { status: 500 })
     }
   },
@@ -83,6 +85,9 @@ export default {
     bindBucket(env.BLOBS)
     const hour = new Date(controller.scheduledTime).getUTCHours()
     const request = new Request(`https://cron.invalid/api/cron-reminder?h=${hour}`, { headers: { authorization: `Bearer ${env.CRON_SECRET ?? ''}` } })
+    // Monday, from 07:00 UTC: last week's most frequent errors to the owner (once; see api/_errorDigest.ts).
+    const when = new Date(controller.scheduledTime)
+    if (when.getUTCDay() === 1 && hour >= 7) ctx.waitUntil(sendErrorDigest(controller.scheduledTime).then((r) => console.log('[error-digest]', r)).catch((e) => console.error('[error-digest-failed]', e)))
     ctx.waitUntil(
       cron.GET(request).then(async (res) => {
         const text = await res.text()

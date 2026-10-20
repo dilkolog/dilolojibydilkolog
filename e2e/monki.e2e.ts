@@ -6,7 +6,7 @@ test('Monki: the button opens a chat that explains the key when there is none', 
   await page.getByRole('button', { name: 'Monki ile konuş' }).click()
   const panel = page.getByRole('dialog', { name: 'Monki' })
   await expect(panel).toBeVisible()
-  await expect(panel).toContainText('YZ anahtarı')
+  await expect(panel).toContainText('Anthropic anahtarını')
   expect(await overflow(page)).toEqual([])
   await page.keyboard.press('Escape')
   await expect(panel).toBeHidden()

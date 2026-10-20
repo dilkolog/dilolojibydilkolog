@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Rating } from 'ts-fsrs'
 import { db, scheduler } from '../data/instance'
 import { createRng } from '../engine/rng'
+import { forecastTotals, sentenceForecast } from '../engine/sentenceForecast'
 import { dueSentences, gradeSentence, sentenceExercise, type SentenceCard, type SentenceExercise, type SentenceVerdict } from '../engine/sentences'
 import type { TargetLanguage } from '../engine/types'
 import { wordDiff } from '../engine/wordDiff'
@@ -48,6 +49,7 @@ export function SentencesGame({ language, onExit }: { language: TargetLanguage; 
         </button>
         {!due.length && mine.length > 0 && <Sticker name="sleep" size={40} />}
       </div>
+      {mine.length > 0 && <SentenceWeek cards={all} language={language} />}
       <AddSentence language={language} onAdded={reload} />
       {mine.length > 0 && (
         <section className="section stack">
@@ -73,6 +75,38 @@ export function SentencesGame({ language, onExit }: { language: TargetLanguage; 
         </EmptyState>
       )}
     </div>
+  )
+}
+
+/** The coming week of sentence reviews, a bar a day: how many fall due each day (today's includes what is late). */
+function SentenceWeek({ cards, language }: { cards: readonly SentenceCard[]; language: TargetLanguage }) {
+  const days = sentenceForecast(cards, language, new Date())
+  const { total, peak } = forecastTotals(days)
+  const summary = days.map((d, i) => `${i === 0 ? 'bugün' : new Date(`${d.day}T12:00:00`).toLocaleDateString('tr-TR', { weekday: 'long' })} ${d.count}`).join(', ')
+  return (
+    <section className="section stack sentence-week" aria-labelledby="sentence-week-title">
+      <h2 id="sentence-week-title" className="section-title">
+        Bu hafta
+      </h2>
+      <p className="small muted">{total ? `Önümüzdeki 7 günde ${total} cümlenin vadesi geliyor.` : 'Önümüzdeki 7 günde vadesi gelen cümle yok.'}</p>
+      {total > 0 && (
+        <div className="time-days" role="img" aria-label={summary}>
+          {days.map((d, i) => (
+            <span key={d.day} className="time-day">
+              <span className="small" aria-hidden>
+                {d.count}
+              </span>
+              <span className="time-bar" aria-hidden>
+                <span className="time-read" style={{ height: `${peak ? ((d.count / peak) * 100).toFixed(1) : 0}%` }} />
+              </span>
+              <span className="small muted" aria-hidden>
+                {i === 0 ? 'Bugün' : new Date(`${d.day}T12:00:00`).toLocaleDateString('tr-TR', { weekday: 'narrow' })}
+              </span>
+            </span>
+          ))}
+        </div>
+      )}
+    </section>
   )
 }
 

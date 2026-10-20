@@ -1,8 +1,9 @@
+import { noteError } from './_errorDigest.js'
 import { overLimit, tooMany } from './_rate.js'
 /**
  * Client error reports (src/data/errorReport.ts): one line each in the Vercel logs, searchable as
  * `[client-error]`. The device already scrubbed them; here they are only checked for shape and size.
- * Nothing is stored, and the request's address and browser aren't written.
+ * Only a count per kind of error is kept for the owner's weekly digest (api/_errorDigest.ts); the request's address and browser aren't written.
  *
  * POST /api/log  { name, message, stack: string[], where }
  * POST /api/log?csp=1  a browser's Content-Security-Policy violation report ({ "csp-report": … }):
@@ -45,5 +46,6 @@ export async function POST(request: Request): Promise<Response> {
   }
   if (!report.name && !report.message) return new Response(null, { status: 400 })
   console.error('[client-error]', JSON.stringify(report))
+  await noteError('client', report)
   return new Response(null, { status: 204 })
 }

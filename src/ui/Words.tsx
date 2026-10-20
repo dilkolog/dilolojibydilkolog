@@ -12,6 +12,7 @@ import { ListHealthCard } from './ListHealth'
 import { FillMissingBar } from './FillMissing'
 import { SuggestWords } from './SuggestWords'
 import { PhotoWords } from './PhotoWords'
+import { VoiceWord } from './VoiceWord'
 import { TranslateImport } from './TranslateImport'
 import { MissingWords } from './MissingWords'
 import { KindleImport } from './KindleImport'
@@ -354,6 +355,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           <CommunitySets language={language} onAdded={onChanged} />
           <MissingWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
           <PhotoWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
+          <VoiceWord db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
           <SuggestWords db={db} language={language} vocabulary={vocabulary} settings={undefined} onAdded={onChanged} />
         </section>
         </section>

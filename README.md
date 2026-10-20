@@ -47,6 +47,7 @@ Hepsi isteğe bağlıdır; eksik olan yalnızca ilgili özelliği kapatır. Anah
 | `VAPID_PRIVATE_KEY` | Web push gönderimi (genel anahtar kodda) | Cron yalnızca mail gönderir (o da yoksa 503) |
 | `RESEND_API_KEY` | Hatırlatma mailleri (Resend) | Ayarlar'da e-posta hatırlatması görünmez |
 | `RESEND_FROM` | Mailin göndereni, doğrulanmış alan adıyla: `Diloloji <hatirlatma@alanadin>` | Resend'in deneme göndereni (yalnızca Resend hesabının kendi adresine teslim eder) |
+| `ERROR_DIGEST_TO` | Sahibin adresi: Pazartesi sabahı geçen haftanın en sık 5 hatası mail gelir (`api/_errorDigest.ts`; Resend anahtarı da gerekir) | Hatalar sayılır ama özet gitmez |
 | `RESEND_REPLY_TO` | İsteğe bağlı: yanıtların gideceği adres (yoksa yanıt gönderene gider) | Yok |
 | `VITE_SUPABASE_URL` | Supabase ile giriş (e-posta, bağlantı, Google; `docs/SUPABASE.md`), derlemede okunur | Eski kullanıcı adı/şifre girişi |
 | `VITE_SUPABASE_PUBLISHABLE_KEY` | Supabase'in herkese açık anahtarı (`sb_publishable_…`) | Eski giriş |
