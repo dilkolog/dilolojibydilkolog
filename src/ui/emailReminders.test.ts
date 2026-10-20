@@ -1,10 +1,10 @@
 import 'fake-indexeddb/auto'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../data/instance'
-import { disableMail, enableMail, getMail, mailAvailable, refreshMail, reportMailState } from './emailReminders'
+import { disableMail, enableMail, getMail, mailAvailable, refreshMail, reportMailState, setMailWeekly } from './emailReminders'
 import type { PushState } from './pushReminders'
 
-const state: PushState = { studiedToday: true, streak: 4, plan: 'DELF', restWeekdays: [0], vacation: null, due: 7, week: 'secret week', hour: 20 }
+const state: PushState = { studiedToday: true, streak: 4, plan: 'DELF', restWeekdays: [0], vacation: null, due: 7, week: '5 gün · 312 cevap (%86 doğru)', hour: 20 }
 let calls: { url: string; body: Record<string, unknown> }[] = []
 let reply: (body: Record<string, unknown>) => Response = () => Response.json({ state: 'pending' })
 
@@ -29,12 +29,22 @@ describe('mail reminders on the device', () => {
     expect(await mailAvailable()).toBe(false)
   })
 
-  it('registers an address with the day, without the plan or the week text, and remembers it as pending', async () => {
+  it('registers an address with the day and the week figures (the server checks their shape), without the plan, and remembers it as pending', async () => {
     expect(await enableMail(' ali@example.com ', state)).toBe('pending')
-    expect(calls[0].body).toMatchObject({ action: 'email', email: 'ali@example.com', streak: 4, due: 7, hour: 20, resend: false })
+    expect(calls[0].body).toMatchObject({ action: 'email', email: 'ali@example.com', streak: 4, due: 7, hour: 20, resend: false, week: '5 gün · 312 cevap (%86 doğru)', weeklyMail: true })
     expect(JSON.stringify(calls[0].body)).not.toContain('DELF')
-    expect(JSON.stringify(calls[0].body)).not.toContain('secret week')
     expect(await getMail()).toEqual({ email: 'ali@example.com', state: 'pending' })
+  })
+
+  it('the weekly summary can be turned off, and every later report keeps it off', async () => {
+    await enableMail('ali@example.com', state)
+    await setMailWeekly(false, state)
+    expect(calls.at(-1)!.body).toMatchObject({ update: true, weeklyMail: false })
+    expect((await getMail())?.weekly).toBe(false)
+    await reportMailState(state)
+    expect(calls.at(-1)!.body).toMatchObject({ update: true, weeklyMail: false })
+    await setMailWeekly(true, state)
+    expect(calls.at(-1)!.body).toMatchObject({ weeklyMail: true })
   })
 
   it('says why in words: approval, taken address, bad address', async () => {
