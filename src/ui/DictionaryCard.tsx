@@ -90,7 +90,7 @@ export function WordCard({
 
   return (
     <>
-      <section className="section word-hero" aria-label={`${word} sözlükte`}>
+      <section className="section word-hero dict-hero" aria-label={`${word} sözlükte`}>
         <div className="word-hero-main">
           <ul className="chip-list" aria-label="Kelime bilgisi">
             {form && (
@@ -263,16 +263,19 @@ export function WordCard({
         )}
       </section>
 
-      <DictionaryExamples
-        language={language}
-        word={word}
-        bundled={rec.c}
-        meaning={meanings.join(', ')}
-        onPick={onPick}
-      />
+      <div className="dict-below">
+      <div className="dict-below-main">
+        <DictionaryExamples
+          language={language}
+          word={word}
+          bundled={rec.c}
+          meaning={meanings.join(', ')}
+          onPick={onPick}
+        />
+      </div>
 
       {(etymology || rec.s?.length || rec.n?.length) && (
-        <section className="section stack">
+        <section className="section stack dict-below-side">
           {etymology && (
             <div className="stack gap-2">
               <h3 className="section-title">Kökeni</h3>
@@ -289,6 +292,7 @@ export function WordCard({
           </p>
         </section>
       )}
+      </div>
     </>
   )
 }
