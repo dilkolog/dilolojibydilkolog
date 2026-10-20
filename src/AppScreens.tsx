@@ -24,6 +24,7 @@ import { MindSeed } from './ui/MindSeed'
 import { MonkiNudge } from './ui/monki/MonkiNudge'
 import { GuideReviewNudge } from './ui/GuideReviewNudge'
 import { GuideLessonNudge } from './ui/GuideLessonNudge'
+import { WeeklyCare } from './ui/WeeklyCare'
 import { GuidePlacementNudge } from './ui/GuidePlacementNudge'
 import { TodayTime } from './ui/TodayTime'
 import { SuggestWords } from './ui/SuggestWords'
@@ -437,6 +438,18 @@ export function AppScreens(props: AppScreensProps) {
             <>
             {/* A lesson's review first: it shows only to someone using the guide, on the day it is due. */}
             <GuideReviewNudge language={data.language} onOpen={(topic) => setScreen({ name: 'guide', lesson: topic, review: true })} />
+            <WeeklyCare
+              language={data.language}
+              misses={weekMissed.length}
+              events={data.recentEvents}
+              now={new Date()}
+              onWords={() => {
+                const deck = weekMissed.flatMap((id) => byId.get(id) ?? [])
+                startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), limit: WEEK_MISSES_ROUND, options }), 'normal', undefined, deck)
+              }}
+              onGrammar={() => setScreen({ name: 'games', game: 'grammar' })}
+              onRepair={(target) => (target === 'verbs' ? setScreen({ name: 'verbs' }) : setScreen({ name: 'games', game: target }))}
+            />
             <HabitCards
               settings={settings}
               onSettings={updateSettings}

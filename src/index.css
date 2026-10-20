@@ -6014,3 +6014,6 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 .friends-found-text { display: grid; flex: 1; min-width: 0; line-height: 1.25; }
 .friends-found-text strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .friends-find-mine { padding-top: 0.5rem; border-top: 1px solid var(--rule); }
+.weekly-care .care-steps { display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; margin-top: 0.25rem; }
+.weekly-care .care-step { display: inline-flex; align-items: center; gap: 0.2rem; }
+.weekly-care .care-step.done { color: var(--ok-deep, var(--ink-soft)); text-decoration: line-through; }

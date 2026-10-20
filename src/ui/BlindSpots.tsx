@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react'
-import { blindSpots, type BlindSpot, type RepairTarget } from '../engine/blindSpots'
-import { stillMissed } from '../engine/earMisses'
+import type { BlindSpot, RepairTarget } from '../engine/blindSpots'
 import type { ErrorType, TargetLanguage } from '../engine/types'
-import { db } from '../data/instance'
-import { grammarExercises } from '../data/grammar'
-import { trapWords } from '../data/traps'
 import { lessonFor } from '../data/guide/lessonOf'
 import { TENSE_LESSON } from '../data/tenseLesson'
 import type { Tense } from '../engine/tenses'
-import { writingRows } from '../engine/writingErrors'
+import { loadBlindSpots } from './loadBlindSpots'
 import { PlayIcon, TargetIcon } from './icons'
 
 const hasLesson = (language: TargetLanguage, l: { topic?: string; tense?: string }) => (l.topic ? !!lessonFor(language, l.topic) : language !== 'en' && !!l.tense && !!TENSE_LESSON[l.tense as Tense])
@@ -33,20 +29,7 @@ export function BlindSpotsCard({
   const [spots, setSpots] = useState<BlindSpot[] | null>(null)
   useEffect(() => {
     let live = true
-    void (async () => {
-      const [lab, grammar, pairs, traps, reflex, register, ear, writing] = await Promise.all([
-        language === 'en' ? Promise.resolve(undefined) : db.getLab(language),
-        db.getGrammarLog(),
-        db.getPairLog(),
-        db.getTrapLog(),
-        db.getReflexLog(),
-        db.getRegisterLog(),
-        db.getEarLog(),
-        db.getWritingLog(),
-      ])
-      const earMissed = Object.values(ear[language] ?? {}).filter(stillMissed).length
-      return blindSpots({ language, errors, lab, grammar, grammarExercises: grammarExercises(language), pairs, traps, trapWords, reflex, register, earMissed, writing: writingRows(writing, language) })
-    })()
+    void loadBlindSpots(language, errors)
       .then((s) => live && setSpots(s))
       .catch(() => live && setSpots([]))
     return () => {
