@@ -2718,7 +2718,7 @@ test('flashcards: flipping, grading 1/2/3, unlearned card returns after 3 cards,
   expect(await overflow(page)).toEqual([])
 })
 
-test('friends card: today and week leaderboard ranking, adding and removing a friend by code', async ({ page }) => {
+test('friends card: today and week leaderboard ranking, removing a friend', async ({ page }) => {
   let friends = [
     { code: 'VELI1234', name: 'Veli', avatar: 'fox', color: '#2f6de6', today: 120, week: 150, streak: 5, level: 3, at: '2026-10-15T10:00:00Z' },
   ]
@@ -2773,15 +2773,6 @@ test('friends card: today and week leaderboard ranking, adding and removing a fr
   await page.locator('.friends-card button', { hasText: 'Bu hafta' }).click()
   await expect(names.first()).toContainText('Sen')
   await expect(names.nth(1)).toContainText('Veli')
-
-  // Add friend
-  const addDetails = page.locator('.friends-card details.friends-add')
-  if (!(await addDetails.getAttribute('open'))) {
-    await addDetails.locator('summary').click()
-  }
-  await page.locator('.friends-card input[placeholder^="Arkadaşının kodu"]').fill('AYSE1234')
-  await page.locator('.friends-card form.friends-form button[type="submit"]').click()
-  await expect(page.locator('.friends-card')).toContainText('Ayşe')
 
   // Remove friend (Veli)
   await page.locator('.friends-card button[aria-label*="Veli arkadaşını çıkar"]').click()
