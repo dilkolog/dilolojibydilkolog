@@ -35,6 +35,10 @@ async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 
     const body = init?.body ? JSON.parse(String(init.body)) : undefined
     calls.push({ url, body })
     if (String(url).includes('inbox=1')) return Response.json({ items: inbox })
+    if (String(url).includes('friend-handle=1')) return Response.json({ handle: '', findable: false })
+    if (String(url).includes('friend-find=')) return String(url).includes('=ayse_fr') ? Response.json({ found: { handle: 'ayse_fr', name: 'Ayşe', avatar: 'fox', color: '#2f6de6', level: 3 } }) : Response.json({ error: 'unknown' }, { status: 404 })
+    if (body?.action === 'friends-request' || body?.action === 'friends-handle') return Response.json(body.action === 'friends-handle' ? { handle: body.handle, findable: body.findable } : { ok: true })
+    if (body?.action === 'friends-add' && body.code === 'CCCCCCCC') return Response.json({ ok: true })
     if (body?.action === 'friends-send' || body?.action === 'friends-inbox-clear') return Response.json({ ok: true })
     if (body?.action === 'friends-add') return Response.json({ error: 'unknown' }, { status: 400 })
     if (body?.action === 'friends-publish') return Response.json({ me: card('AAAAAAAA', 'Ali', 40, 300) })
@@ -203,5 +207,32 @@ describe('FriendsCard', () => {
     await act(() => new Promise((r) => setTimeout(r, 30)))
     expect(host.querySelectorAll('.friends-inbox li')).toHaveLength(1)
     save.mockRestore()
+  })
+
+  it('a friend request in the inbox is accepted by adding the sender\'s code, or turned away', async () => {
+    const request = { id: 'r1', kind: 'request', from: { code: 'CCCCCCCC', name: 'Can' }, at: '2026-10-15T09:00:00Z' }
+    const { host, calls } = await mount(true, undefined, [request])
+    expect(host.querySelector('.friends-inbox')!.textContent).toContain('Can arkadaşlık isteği gönderdi')
+    await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Kabul et')!.click())
+    await act(() => new Promise((r) => setTimeout(r, 30)))
+    expect(calls.some((c) => (c.body as { action?: string; code?: string } | undefined)?.action === 'friends-add' && (c.body as { code: string }).code === 'CCCCCCCC')).toBe(true)
+    expect(calls.some((c) => (c.body as { action?: string } | undefined)?.action === 'friends-inbox-clear')).toBe(true)
+  })
+
+  it('finds a friend by name and sends a request', async () => {
+    const { host, calls } = await mount(true)
+    await until(() => !!host.querySelector('.friends-find-input'))
+    const input = host.querySelector<HTMLInputElement>('input[aria-label="Arkadaşının kullanıcı adı"]')!
+    const set = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!
+    await act(async () => {
+      set.call(input, '@Ayse_FR')
+      input.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Ara')!.click())
+    await until(() => !!host.querySelector('.friends-found'))
+    expect(host.querySelector('.friends-found')!.textContent).toContain('Ayşe')
+    await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'İstek gönder')!.click())
+    await act(() => new Promise((r) => setTimeout(r, 30)))
+    expect(calls.some((c) => (c.body as { action?: string; handle?: string } | undefined)?.action === 'friends-request' && (c.body as { handle: string }).handle === 'ayse_fr')).toBe(true)
   })
 })

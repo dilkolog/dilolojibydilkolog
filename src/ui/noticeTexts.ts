@@ -15,6 +15,8 @@ export function friendNotice(item: InboxItem, who: string): Draft {
           ? `${who} sana bir kelime gönderdi: ${item.gift.lemma} = ${item.gift.meaning}`
           : item.kind === 'text' && item.text
             ? `${who} bir metin gönderdi: “${item.text.title}”`
+            : item.kind === 'request'
+              ? `${who} sana arkadaşlık isteği gönderdi`
             : item.kind === 'joined'
               ? `${who} davetinle katıldı: +${INVITE_XP} XP`
               : `${who} sana bir ileti gönderdi`

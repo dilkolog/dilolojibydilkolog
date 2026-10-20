@@ -6014,3 +6014,9 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 .game-search { position: relative; display: flex; align-items: center; }
 .game-search svg { position: absolute; left: 0.875rem; color: var(--ink-soft); pointer-events: none; }
 .game-search .input { width: 100%; padding-left: 2.5rem; }
+.friends-find-form { display: flex; gap: 0.5rem; }
+.friends-find-form .input { flex: 1; min-width: 0; }
+.friends-found { display: flex; align-items: center; gap: 0.625rem; padding: 0.5rem 0.625rem; border: 1px solid var(--rule); border-radius: var(--r-md, 0.75rem); background: var(--surface); }
+.friends-found-text { display: grid; flex: 1; min-width: 0; line-height: 1.25; }
+.friends-found-text strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.friends-find-mine { padding-top: 0.5rem; border-top: 1px solid var(--rule); }
