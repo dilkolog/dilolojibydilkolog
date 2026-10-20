@@ -1,4 +1,4 @@
-import { currentIdentity, signInWithGoogle, signOutSupabase, supabaseConfigured, type Identity } from '../data/supabase'
+import { currentIdentity, signInWithGoogle, supabaseConfigured, type Identity } from '../data/supabase'
 import { AccountManage, AccountDelete } from './AccountManage'
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
@@ -8,7 +8,7 @@ import { BackupVersionError } from '../data/db'
 import { SyncAuthError, SyncConflictError, SyncMovedError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
 import { relativeTime } from './format'
 import type { AuthMode } from './AuthScreen'
-import { CONFLICT, MOVED, getAccount, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setAccount } from './syncRunner'
+import { CONFLICT, MOVED, getAccount, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync } from './syncRunner'
 import { RestorePoints } from './RestorePoints'
 import { ACCOUNT_ART } from './drawnArt'
 import { StatusPicture } from './StatusArt'
@@ -60,21 +60,6 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
   const signOut = async () => {
     await signOutThisDevice(identity)
     void refresh()
-  }
-
-  /** A shared device: sync first (nothing is lost), then sign out and clear what this device holds. */
-  const signOutAndWipe = async () => {
-    try {
-      await runSync(true)
-    } catch {
-      showToast('Önce hesabınla eşitlenemedi; verilerin silinmesin diye bir şey yapılmadı. İnternetini kontrol edip tekrar dene.', undefined, 7000, 'info')
-      return
-    }
-    await import('./pushReminders').then((m) => m.forgetPushRecord())
-    await setAccount(null)
-    await signOutSupabase()
-    await (await import('../data/deviceWipe')).wipeDevice()
-    location.reload()
   }
 
   const google = async () => {
@@ -166,13 +151,13 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
 
       <div className="account-sync">
         <div className="account-row-text">
-          <strong>Bulut Eşitleme</strong>
+          <strong>Verilerin hesabında</strong>
           <span className="small muted">
-            {at ? `Otomatik eşitleme aktif · Son: ${relativeTime(at)}` : 'Otomatik eşitleme aktif · Henüz eşitlenmedi'}
+            {busy ? 'Eşitleniyor…' : at ? `Değişiklikler kendiliğinden gider · son eşitleme ${relativeTime(at)}` : 'Değişiklikler kendiliğinden gider · henüz eşitlenmedi'}
           </span>
         </div>
-        <button className="btn btn-sm" onClick={syncNowClick} disabled={busy}>
-          {busy ? 'Eşitleniyor…' : 'Şimdi eşitle'}
+        <button className="link small" onClick={syncNowClick} disabled={busy}>
+          Şimdi eşitle
         </button>
       </div>
       {message?.conflict && <StatusPicture kind="conflict" />}
@@ -182,7 +167,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
         </p>
       )}
 
-      <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} onSignOutAndWipe={signOutAndWipe} />
+      <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} />
       <RestorePoints />
       <AccountDelete account={account} identity={identity} onGone={() => void refresh()} />
     </section>

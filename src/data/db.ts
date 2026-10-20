@@ -392,6 +392,7 @@ export class KelimeDB extends Dexie {
     // Counts the writes to what a backup carries (a sync reads, merges and writes back, and must notice an answer saved in between).
     const bump = () => {
       this.writes++
+      for (const fn of this.writeListeners) fn()
     }
     for (const table of [this.vocabulary, this.wordStates, this.events, this.mistakes, this.texts]) {
       table.hook('creating', bump)
@@ -400,7 +401,7 @@ export class KelimeDB extends Dexie {
     }
     const bumpMeta = (key: unknown) => {
       // The sync's own bookkeeping does not count.
-      if (!(typeof key === 'string' && (key.startsWith('sync') || key === 'safetyBackup' || key === 'notices' || key === 'noticesGone'))) this.writes++
+      if (!(typeof key === 'string' && (key.startsWith('sync') || key === 'safetyBackup' || key === 'notices' || key === 'noticesGone'))) bump()
     }
     this.meta.hook('creating', bumpMeta)
     this.meta.hook('updating', (_mods, key) => bumpMeta(key))
@@ -424,6 +425,15 @@ export class KelimeDB extends Dexie {
 
   /** How many writes this database has taken since it was opened (see `bump`). */
   writes = 0
+
+  /** Heard on every counted write (live sync schedules itself on it): it must only note the write, never touch the database. */
+  private writeListeners = new Set<() => void>()
+  onWrite(fn: () => void): () => void {
+    this.writeListeners.add(fn)
+    return () => {
+      this.writeListeners.delete(fn)
+    }
+  }
 
   /** Writes to the answers since the database was opened, and the answers added (committed) since the last read. */
   eventWrites = 0
