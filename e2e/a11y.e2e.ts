@@ -1461,3 +1461,42 @@ test('journal: the exam-style task card passes accessibility checks in light, da
   }
   expect(problems).toEqual([])
 })
+
+test('English verb lab: lists, quiz question and feedback pass accessibility checks in light, dark and calm themes', async ({ page }) => {
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^İngilizce/ }).click()
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Fiil laboratuvarı' }).click()
+  const problems: string[] = []
+  const scanThemes = async (where: string) => {
+    for (const theme of ['light', 'dark', 'calm'] as const) {
+      await page.evaluate((t) => {
+        const root = document.documentElement
+        root.dataset.theme = t === 'dark' ? 'dark' : 'light'
+        if (t === 'calm') root.dataset.calm = 'true'
+        else delete root.dataset.calm
+      }, theme)
+      problems.push(...(await scan(page, `${where}-${theme}`)))
+    }
+  }
+  await expect(page.locator('.enverb-table')).toBeVisible()
+  await scanThemes('irregular-list')
+  await page.getByRole('tab', { name: 'Phrasal verbs' }).click()
+  await expect(page.locator('.enverb-phrasal').first()).toBeVisible()
+  await scanThemes('phrasal-list')
+  await page.getByRole('button', { name: 'Alıştır', exact: true }).click()
+  await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+  await expect(page.locator('.options .option')).toHaveCount(4)
+  await scanThemes('phrasal-question')
+  await page.locator('.options .option').first().click()
+  await expect(page.getByRole('status')).toBeVisible()
+  await scanThemes('phrasal-feedback')
+  await page.getByRole('tab', { name: 'Düzensiz fiiller' }).click()
+  await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+  await page.getByLabel('Past simple').fill('zzz')
+  await page.getByLabel('Past participle').fill('zzz')
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(page.getByRole('status')).toContainText('Doğrusu')
+  await scanThemes('irregular-feedback')
+  expect(problems).toEqual([])
+})

@@ -1,7 +1,6 @@
 import '../../lazy.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { PageHeader } from '../PageHeader'
-import { EmptyState } from '../EmptyState'
 import { useTenses } from '../tenseGroups'
 import { recordPractice } from '../games/shared'
 import { conjugateTense, labTensesOf, tensesOf, tenseVerbs, type Tense } from '../../engine/tenses'
@@ -10,6 +9,7 @@ import { localDate } from '../../engine/progress'
 import { diagnose } from '../../engine/formDiagnosis'
 import type { Scheduler } from '../../engine/scheduler'
 import type { UserWordState, VocabularyEntry } from '../../engine/types'
+import { EnglishVerbs } from './EnglishVerbs'
 import { LearnTab } from './LearnTab'
 import { MasteryTab } from './MasteryTab'
 import { PracticeTab } from './PracticeTab'
@@ -75,15 +75,7 @@ export function VerbLab({
   /** A verb was added to the word list from the lab. */
   onAdded?: () => void
 }) {
-  if (language === 'en')
-    return (
-      <div className="stack">
-        <PageHeader art="write" title="Fiil laboratuvarı" />
-        <EmptyState art="library" title="Fiil laboratuvarı Fransızca ve İspanyolca için">
-          İngilizce fiillerin çekimi basit olduğu için burada tablo yok. Üstteki dil düğmesinden Fransızca ya da İspanyolca’ya geçebilirsin.
-        </EmptyState>
-      </div>
-    )
+  if (language === 'en') return <EnglishVerbs />
   return <Lab language={language} vocabulary={vocabulary} states={states} scheduler={scheduler} initialVerb={initialVerb} initialTense={initialTense} initialTab={initialTab} onAdded={onAdded} />
 }
 

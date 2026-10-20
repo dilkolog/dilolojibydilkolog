@@ -303,6 +303,39 @@ test('verb lab: forms put in the review queue come back on Today and in the revi
   await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
 })
 
+test('English verb lab: irregular verbs and phrasal verbs, a list to look through and a round to practise', async ({ page }) => {
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^İngilizce/ }).click()
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Fiil laboratuvarı' }).click()
+  await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
+  // The list: searched by form or meaning.
+  await page.getByLabel('Düzensiz fiillerde ara').fill('went')
+  await expect(page.locator('.enverb-table tbody tr')).toHaveCount(1)
+  await expect(page.locator('.enverb-table tbody tr')).toContainText('gone')
+  // A round: wrong answers show the right forms; ten questions end in a result.
+  await page.getByRole('button', { name: 'Alıştır', exact: true }).click()
+  await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+  for (let i = 0; i < 10; i++) {
+    await page.getByLabel('Past simple').fill('zzz')
+    await page.getByLabel('Past participle').fill('zzz')
+    await page.getByRole('button', { name: 'Kontrol et' }).click()
+    await expect(page.getByRole('status')).toContainText('Doğrusu')
+    await page.getByRole('button', { name: i < 9 ? 'Devam' : 'Devam' }).click()
+  }
+  await expect(page.getByText('0 / 10 doğru')).toBeVisible()
+  // Phrasal verbs: look through, then a round of meanings and particles.
+  await page.getByRole('button', { name: /← Oyunlar|Liste/ }).first().click()
+  await page.getByRole('tab', { name: 'Phrasal verbs' }).click()
+  await page.getByLabel("Phrasal verb'lerde ara").fill('give up')
+  await expect(page.locator('.enverb-phrasal')).toContainText('vazgeçmek')
+  await page.getByRole('button', { name: 'Alıştır', exact: true }).click()
+  await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+  await expect(page.locator('.options .option')).toHaveCount(4)
+  await page.locator('.options .option').first().click()
+  await expect(page.getByRole('status')).toContainText('=')
+})
+
 test('verb lab: the Turkish bridge, the verb families and the find-the-tense quiz', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'parler')

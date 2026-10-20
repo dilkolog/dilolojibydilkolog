@@ -1,0 +1,167 @@
+[
+  {
+    "id": "en-can",
+    "language": "en",
+    "lemma": "can",
+    "looks": "can",
+    "trap": "can, ruh",
+    "meaning": "teneke kutu",
+    "text": "She put a can of tomatoes on the shelf.",
+    "tr": "Rafa bir kutu domates koydu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-son",
+    "language": "en",
+    "lemma": "son",
+    "looks": "son",
+    "trap": "en sonuncu, bitiş",
+    "meaning": "oğul",
+    "text": "Their son is eight years old.",
+    "tr": "Oğulları sekiz yaşında.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-ham",
+    "language": "en",
+    "lemma": "ham",
+    "looks": "ham",
+    "trap": "işlenmemiş, çiğ",
+    "meaning": "jambon",
+    "text": "I made a ham sandwich for lunch.",
+    "tr": "Öğle yemeği için jambonlu sandviç yaptım.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-bay",
+    "language": "en",
+    "lemma": "bay",
+    "looks": "bay",
+    "trap": "Bay (erkeklere hitap)",
+    "meaning": "koy, körfez",
+    "text": "We walked along the bay at sunset.",
+    "tr": "Gün batımında koy boyunca yürüdük.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-pet",
+    "language": "en",
+    "lemma": "pet",
+    "looks": "pet",
+    "trap": "plastik şişe",
+    "meaning": "evcil hayvan",
+    "text": "They have a pet rabbit called Snow.",
+    "tr": "Kar adında evcil bir tavşanları var.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-bin",
+    "language": "en",
+    "lemma": "bin",
+    "looks": "bin",
+    "trap": "1000 sayısı",
+    "meaning": "çöp kutusu",
+    "text": "Please throw the paper in the bin.",
+    "tr": "Lütfen kâğıdı çöp kutusuna at.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-ten",
+    "language": "en",
+    "lemma": "ten",
+    "looks": "ten",
+    "trap": "insan derisi",
+    "meaning": "on (sayı)",
+    "text": "I have ten minutes before the meeting.",
+    "tr": "Toplantıdan önce on dakikam var.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-kale",
+    "language": "en",
+    "lemma": "kale",
+    "looks": "kale",
+    "trap": "hisar, kale",
+    "meaning": "kara lahana",
+    "text": "Kale soup is cheap and very healthy.",
+    "tr": "Kara lahana çorbası ucuz ve çok sağlıklı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-ad",
+    "language": "en",
+    "lemma": "ad",
+    "looks": "ad",
+    "trap": "isim, ad",
+    "meaning": "reklam",
+    "text": "I saw an ad for the new phone on TV.",
+    "tr": "Yeni telefonun reklamını televizyonda gördüm.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-ant",
+    "language": "en",
+    "lemma": "ant",
+    "looks": "ant",
+    "trap": "yemin",
+    "meaning": "karınca",
+    "text": "An ant was carrying a crumb across the floor.",
+    "tr": "Bir karınca yerde bir kırıntı taşıyordu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-hat",
+    "language": "en",
+    "lemma": "hat",
+    "looks": "hat",
+    "trap": "çizgi, telefon hattı",
+    "meaning": "şapka",
+    "text": "He wore a red hat to the match.",
+    "tr": "Maça kırmızı bir şapkayla gitti.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-dip",
+    "language": "en",
+    "lemma": "dip",
+    "looks": "dip",
+    "trap": "alt kısım, dip",
+    "meaning": "daldırmak; meze sosu",
+    "text": "Dip the bread in the soup.",
+    "tr": "Ekmeği çorbaya batır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-stage",
+    "language": "en",
+    "lemma": "stage",
+    "looks": "stage",
+    "trap": "staj",
+    "meaning": "sahne; aşama",
+    "text": "The band came on stage at nine o'clock.",
+    "tr": "Grup dokuzda sahneye çıktı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gel",
+    "language": "en",
+    "lemma": "gel",
+    "looks": "gel",
+    "trap": "gelmek (emir)",
+    "meaning": "jel",
+    "text": "Put some gel on your hair before you go out.",
+    "tr": "Çıkmadan önce saçına biraz jel sür.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-dam",
+    "language": "en",
+    "lemma": "dam",
+    "looks": "dam",
+    "trap": "çatı, ahır",
+    "meaning": "baraj",
+    "text": "The dam holds back the river.",
+    "tr": "Baraj nehri tutuyor.",
+    "source": "Diloloji (özgün)"
+  }
+]

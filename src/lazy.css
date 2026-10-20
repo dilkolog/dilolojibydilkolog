@@ -3583,3 +3583,13 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .exam-phrases { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .exam-phrases li { background: var(--surface-2); border-radius: var(--r-md); padding: 0.25rem 0.625rem; font-style: italic; }
 .exam-count-ok { color: var(--ok-text); font-weight: 600; }
+
+/* English verb lab (ui/verbs/EnglishVerbs) */
+.enverb-table-wrap { overflow-x: auto; }
+.enverb-table { width: 100%; border-collapse: collapse; font-size: var(--t-sm); }
+.enverb-table th, .enverb-table td { text-align: left; padding: 0.5rem 0.625rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.enverb-table thead th { font-weight: 700; color: var(--ink-soft); white-space: nowrap; }
+.enverb-table tbody th { font-weight: 600; white-space: nowrap; }
+.enverb-phrasals { gap: 0.75rem; }
+.enverb-phrasal { padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule); }
+.enverb-quiz .field { display: grid; gap: 0.25rem; max-width: 22rem; }

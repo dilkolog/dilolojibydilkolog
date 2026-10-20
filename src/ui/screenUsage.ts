@@ -121,6 +121,10 @@ const LAB_PART: Record<string, string> = {
   review: 'İlerleme · Tekrar sırası',
   patterns: 'Öğren · Kalıplar',
   mastery: 'İlerleme',
+  'en:irregular:list': 'İngilizce · Düzensiz fiiller · Liste',
+  'en:irregular:quiz': 'İngilizce · Düzensiz fiiller · Alıştır',
+  'en:phrasal:list': 'İngilizce · Phrasal verbs · Liste',
+  'en:phrasal:quiz': 'İngilizce · Phrasal verbs · Alıştır',
 }
 
 /** A counted name as the learner knows it: a screen, a part of the verb lab, or a game. */

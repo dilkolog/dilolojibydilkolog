@@ -1,0 +1,817 @@
+{
+ "source": "Diloloji (özgün)",
+ "verbs": [
+  {
+   "id": "phr|give up",
+   "phrasal": "give up",
+   "tr": "vazgeçmek, bırakmak",
+   "text": "He never gives up, even when it is hard.",
+   "textTr": "Zor olsa bile asla vazgeçmez."
+  },
+  {
+   "id": "phr|look up",
+   "phrasal": "look up",
+   "tr": "(sözlükte, internette) aramak",
+   "text": "I looked the word up in a dictionary.",
+   "textTr": "Kelimeyi sözlükte aradım."
+  },
+  {
+   "id": "phr|look after",
+   "phrasal": "look after",
+   "tr": "bakmak, ilgilenmek",
+   "text": "She looks after her little brother after school.",
+   "textTr": "Okuldan sonra küçük kardeşine bakıyor."
+  },
+  {
+   "id": "phr|look for",
+   "phrasal": "look for",
+   "tr": "aramak",
+   "text": "I am looking for my keys.",
+   "textTr": "Anahtarlarımı arıyorum."
+  },
+  {
+   "id": "phr|look forward to",
+   "phrasal": "look forward to",
+   "tr": "sabırsızlıkla beklemek",
+   "text": "We look forward to seeing you again.",
+   "textTr": "Sizi tekrar görmeyi sabırsızlıkla bekliyoruz."
+  },
+  {
+   "id": "phr|turn on",
+   "phrasal": "turn on",
+   "tr": "açmak (cihaz, ışık)",
+   "text": "Could you turn on the light, please?",
+   "textTr": "Işığı açar mısın lütfen?"
+  },
+  {
+   "id": "phr|turn off",
+   "phrasal": "turn off",
+   "tr": "kapatmak (cihaz, ışık)",
+   "text": "Don't forget to turn off the TV.",
+   "textTr": "Televizyonu kapatmayı unutma."
+  },
+  {
+   "id": "phr|turn up",
+   "phrasal": "turn up",
+   "tr": "sesi açmak; çıkagelmek",
+   "text": "He turned up an hour late.",
+   "textTr": "Bir saat geç çıkageldi."
+  },
+  {
+   "id": "phr|turn down",
+   "phrasal": "turn down",
+   "tr": "reddetmek; sesi kısmak",
+   "text": "She turned down the job offer.",
+   "textTr": "İş teklifini reddetti."
+  },
+  {
+   "id": "phr|put on",
+   "phrasal": "put on",
+   "tr": "giymek; takmak",
+   "text": "Put on your coat, it is cold.",
+   "textTr": "Montunu giy, hava soğuk."
+  },
+  {
+   "id": "phr|put off",
+   "phrasal": "put off",
+   "tr": "ertelemek",
+   "text": "They put off the meeting until Monday.",
+   "textTr": "Toplantıyı pazartesiye ertelediler."
+  },
+  {
+   "id": "phr|put away",
+   "phrasal": "put away",
+   "tr": "kaldırmak, yerine koymak",
+   "text": "Please put away your toys.",
+   "textTr": "Lütfen oyuncaklarını topla."
+  },
+  {
+   "id": "phr|put out",
+   "phrasal": "put out",
+   "tr": "söndürmek",
+   "text": "The firefighters put out the fire quickly.",
+   "textTr": "İtfaiyeciler yangını çabucak söndürdü."
+  },
+  {
+   "id": "phr|put up with",
+   "phrasal": "put up with",
+   "tr": "katlanmak, tahammül etmek",
+   "text": "I can't put up with this noise any longer.",
+   "textTr": "Bu gürültüye daha fazla katlanamıyorum."
+  },
+  {
+   "id": "phr|take off",
+   "phrasal": "take off",
+   "tr": "(uçak) havalanmak; çıkarmak",
+   "text": "The plane takes off at six.",
+   "textTr": "Uçak altıda havalanıyor."
+  },
+  {
+   "id": "phr|take up",
+   "phrasal": "take up",
+   "tr": "(hobi, iş) edinmek, başlamak",
+   "text": "She took up painting last year.",
+   "textTr": "Geçen yıl resim yapmaya başladı."
+  },
+  {
+   "id": "phr|take over",
+   "phrasal": "take over",
+   "tr": "devralmak",
+   "text": "A young manager took over the company.",
+   "textTr": "Genç bir yönetici şirketi devraldı."
+  },
+  {
+   "id": "phr|get up",
+   "phrasal": "get up",
+   "tr": "kalkmak (yataktan)",
+   "text": "I get up at seven every morning.",
+   "textTr": "Her sabah yedide kalkarım."
+  },
+  {
+   "id": "phr|get on",
+   "phrasal": "get on",
+   "tr": "binmek; iyi anlaşmak",
+   "text": "We get on very well with our neighbours.",
+   "textTr": "Komşularımızla çok iyi anlaşıyoruz."
+  },
+  {
+   "id": "phr|get along",
+   "phrasal": "get along",
+   "tr": "iyi geçinmek",
+   "text": "Do you get along with your colleagues?",
+   "textTr": "İş arkadaşlarınla iyi geçiniyor musun?"
+  },
+  {
+   "id": "phr|get over",
+   "phrasal": "get over",
+   "tr": "(hastalık, üzüntü) atlatmak",
+   "text": "It took her weeks to get over the flu.",
+   "textTr": "Gribi atlatması haftalar aldı."
+  },
+  {
+   "id": "phr|get away",
+   "phrasal": "get away",
+   "tr": "kaçmak; uzaklaşmak",
+   "text": "The thief got away before the police arrived.",
+   "textTr": "Hırsız polis gelmeden kaçtı."
+  },
+  {
+   "id": "phr|get back",
+   "phrasal": "get back",
+   "tr": "geri dönmek",
+   "text": "When did you get back from your trip?",
+   "textTr": "Yolculuktan ne zaman döndün?"
+  },
+  {
+   "id": "phr|find out",
+   "phrasal": "find out",
+   "tr": "öğrenmek, keşfetmek",
+   "text": "I found out the truth yesterday.",
+   "textTr": "Gerçeği dün öğrendim."
+  },
+  {
+   "id": "phr|carry on",
+   "phrasal": "carry on",
+   "tr": "devam etmek",
+   "text": "Please carry on with your work.",
+   "textTr": "Lütfen işinize devam edin."
+  },
+  {
+   "id": "phr|go on",
+   "phrasal": "go on",
+   "tr": "devam etmek; olmak",
+   "text": "What is going on here?",
+   "textTr": "Burada neler oluyor?"
+  },
+  {
+   "id": "phr|go out",
+   "phrasal": "go out",
+   "tr": "dışarı çıkmak",
+   "text": "Let's go out for dinner tonight.",
+   "textTr": "Bu akşam yemeğe dışarı çıkalım."
+  },
+  {
+   "id": "phr|go over",
+   "phrasal": "go over",
+   "tr": "gözden geçirmek",
+   "text": "Let's go over the plan once more.",
+   "textTr": "Planı bir kez daha gözden geçirelim."
+  },
+  {
+   "id": "phr|come back",
+   "phrasal": "come back",
+   "tr": "geri gelmek",
+   "text": "She will come back next week.",
+   "textTr": "Gelecek hafta geri gelecek."
+  },
+  {
+   "id": "phr|come across",
+   "phrasal": "come across",
+   "tr": "rastlamak",
+   "text": "I came across an old photo in a drawer.",
+   "textTr": "Çekmecede eski bir fotoğrafa rastladım."
+  },
+  {
+   "id": "phr|come up with",
+   "phrasal": "come up with",
+   "tr": "(fikir) bulmak, üretmek",
+   "text": "He came up with a brilliant idea.",
+   "textTr": "Harika bir fikir buldu."
+  },
+  {
+   "id": "phr|set up",
+   "phrasal": "set up",
+   "tr": "kurmak, düzenlemek",
+   "text": "They set up a small business last year.",
+   "textTr": "Geçen yıl küçük bir iş kurdular."
+  },
+  {
+   "id": "phr|bring up",
+   "phrasal": "bring up",
+   "tr": "büyütmek (çocuk); gündeme getirmek",
+   "text": "She brought up three children on her own.",
+   "textTr": "Üç çocuğu tek başına büyüttü."
+  },
+  {
+   "id": "phr|break down",
+   "phrasal": "break down",
+   "tr": "(araç) bozulmak; yıkılmak",
+   "text": "Our car broke down on the highway.",
+   "textTr": "Arabamız otoyolda bozuldu."
+  },
+  {
+   "id": "phr|break up",
+   "phrasal": "break up",
+   "tr": "ayrılmak (ilişki)",
+   "text": "They broke up after two years.",
+   "textTr": "İki yıl sonra ayrıldılar."
+  },
+  {
+   "id": "phr|break in",
+   "phrasal": "break in",
+   "tr": "zorla girmek",
+   "text": "Someone broke in and stole the laptop.",
+   "textTr": "Biri zorla girip laptopu çaldı."
+  },
+  {
+   "id": "phr|call off",
+   "phrasal": "call off",
+   "tr": "iptal etmek",
+   "text": "The match was called off because of rain.",
+   "textTr": "Maç yağmur yüzünden iptal edildi."
+  },
+  {
+   "id": "phr|call back",
+   "phrasal": "call back",
+   "tr": "geri aramak",
+   "text": "I'll call you back in ten minutes.",
+   "textTr": "Seni on dakika sonra geri arayacağım."
+  },
+  {
+   "id": "phr|check in",
+   "phrasal": "check in",
+   "tr": "(otel, havaalanı) giriş yapmak",
+   "text": "We checked in at the hotel at noon.",
+   "textTr": "Otele öğlen giriş yaptık."
+  },
+  {
+   "id": "phr|check out",
+   "phrasal": "check out",
+   "tr": "(otelden) çıkış yapmak; incelemek",
+   "text": "You must check out before eleven.",
+   "textTr": "Saat on birden önce çıkış yapmalısın."
+  },
+  {
+   "id": "phr|cheer up",
+   "phrasal": "cheer up",
+   "tr": "neşelenmek, neşelendirmek",
+   "text": "Cheer up, things will get better!",
+   "textTr": "Neşelen, işler düzelecek!"
+  },
+  {
+   "id": "phr|calm down",
+   "phrasal": "calm down",
+   "tr": "sakinleşmek",
+   "text": "Calm down and tell me what happened.",
+   "textTr": "Sakin ol ve ne olduğunu anlat."
+  },
+  {
+   "id": "phr|cut down",
+   "phrasal": "cut down",
+   "tr": "azaltmak",
+   "text": "He is trying to cut down on sugar.",
+   "textTr": "Şekeri azaltmaya çalışıyor."
+  },
+  {
+   "id": "phr|fill in",
+   "phrasal": "fill in",
+   "tr": "(boşluk, form) doldurmak",
+   "text": "Please fill in this form.",
+   "textTr": "Lütfen bu formu doldurun."
+  },
+  {
+   "id": "phr|fill out",
+   "phrasal": "fill out",
+   "tr": "(form) doldurmak",
+   "text": "Fill out the application online.",
+   "textTr": "Başvuruyu çevrimiçi doldurun."
+  },
+  {
+   "id": "phr|hold on",
+   "phrasal": "hold on",
+   "tr": "beklemek; sıkı tutunmak",
+   "text": "Hold on, I'll be right back.",
+   "textTr": "Bir dakika bekle, hemen dönerim."
+  },
+  {
+   "id": "phr|hold back",
+   "phrasal": "hold back",
+   "tr": "geri tutmak, engellemek",
+   "text": "She held back her tears.",
+   "textTr": "Gözyaşlarını tuttu."
+  },
+  {
+   "id": "phr|keep up",
+   "phrasal": "keep up",
+   "tr": "sürdürmek; ayak uydurmak",
+   "text": "Keep up the good work!",
+   "textTr": "Bu güzel çalışmaya devam!"
+  },
+  {
+   "id": "phr|keep on",
+   "phrasal": "keep on",
+   "tr": "ısrarla sürdürmek",
+   "text": "He kept on talking despite the noise.",
+   "textTr": "Gürültüye rağmen konuşmaya devam etti."
+  },
+  {
+   "id": "phr|let down",
+   "phrasal": "let down",
+   "tr": "hayal kırıklığına uğratmak",
+   "text": "Don't let me down this time.",
+   "textTr": "Bu sefer beni hayal kırıklığına uğratma."
+  },
+  {
+   "id": "phr|make up",
+   "phrasal": "make up",
+   "tr": "uydurmak; barışmak",
+   "text": "He made up an excuse to leave early.",
+   "textTr": "Erken ayrılmak için bir bahane uydurdu."
+  },
+  {
+   "id": "phr|pick up",
+   "phrasal": "pick up",
+   "tr": "almak, toplamak; (birini) almak",
+   "text": "I'll pick you up at the station.",
+   "textTr": "Seni istasyondan alırım."
+  },
+  {
+   "id": "phr|point out",
+   "phrasal": "point out",
+   "tr": "işaret etmek, belirtmek",
+   "text": "She pointed out a mistake in the report.",
+   "textTr": "Raporda bir hataya işaret etti."
+  },
+  {
+   "id": "phr|run out",
+   "phrasal": "run out",
+   "tr": "bitmek, tükenmek",
+   "text": "We have run out of milk.",
+   "textTr": "Sütümüz bitti."
+  },
+  {
+   "id": "phr|run into",
+   "phrasal": "run into",
+   "tr": "tesadüfen karşılaşmak",
+   "text": "I ran into an old friend at the market.",
+   "textTr": "Pazarda eski bir arkadaşla karşılaştım."
+  },
+  {
+   "id": "phr|run away",
+   "phrasal": "run away",
+   "tr": "kaçmak",
+   "text": "The boy ran away from home.",
+   "textTr": "Çocuk evden kaçtı."
+  },
+  {
+   "id": "phr|show up",
+   "phrasal": "show up",
+   "tr": "ortaya çıkmak, gelmek",
+   "text": "He never showed up at the party.",
+   "textTr": "Partiye hiç gelmedi."
+  },
+  {
+   "id": "phr|sort out",
+   "phrasal": "sort out",
+   "tr": "çözmek, düzene sokmak",
+   "text": "We need to sort out this problem today.",
+   "textTr": "Bu sorunu bugün çözmemiz gerek."
+  },
+  {
+   "id": "phr|work out",
+   "phrasal": "work out",
+   "tr": "egzersiz yapmak; çözmek",
+   "text": "I work out three times a week.",
+   "textTr": "Haftada üç kez spor yapıyorum."
+  },
+  {
+   "id": "phr|wake up",
+   "phrasal": "wake up",
+   "tr": "uyanmak",
+   "text": "I woke up at six this morning.",
+   "textTr": "Bu sabah altıda uyandım."
+  },
+  {
+   "id": "phr|throw away",
+   "phrasal": "throw away",
+   "tr": "atmak, çöpe atmak",
+   "text": "Don't throw away those old books.",
+   "textTr": "O eski kitapları atma."
+  },
+  {
+   "id": "phr|try on",
+   "phrasal": "try on",
+   "tr": "(giysi) denemek",
+   "text": "Can I try on this jacket?",
+   "textTr": "Bu ceketi deneyebilir miyim?"
+  },
+  {
+   "id": "phr|use up",
+   "phrasal": "use up",
+   "tr": "tüketmek, bitirmek",
+   "text": "They used up all the hot water.",
+   "textTr": "Bütün sıcak suyu bitirdiler."
+  },
+  {
+   "id": "phr|hand in",
+   "phrasal": "hand in",
+   "tr": "teslim etmek",
+   "text": "Please hand in your homework tomorrow.",
+   "textTr": "Lütfen ödevlerinizi yarın teslim edin."
+  },
+  {
+   "id": "phr|give back",
+   "phrasal": "give back",
+   "tr": "geri vermek",
+   "text": "Give me back my pen!",
+   "textTr": "Kalemimi bana geri ver!"
+  },
+  {
+   "id": "phr|give away",
+   "phrasal": "give away",
+   "tr": "bedava vermek; ele vermek",
+   "text": "They gave away free tickets.",
+   "textTr": "Bedava bilet dağıttılar."
+  },
+  {
+   "id": "phr|grow up",
+   "phrasal": "grow up",
+   "tr": "büyümek, yetişkin olmak",
+   "text": "I grew up in a small village.",
+   "textTr": "Küçük bir köyde büyüdüm."
+  },
+  {
+   "id": "phr|hang out",
+   "phrasal": "hang out",
+   "tr": "vakit geçirmek (arkadaşlarla)",
+   "text": "We often hang out at the café.",
+   "textTr": "Sık sık kafede vakit geçiriyoruz."
+  },
+  {
+   "id": "phr|hang up",
+   "phrasal": "hang up",
+   "tr": "telefonu kapatmak",
+   "text": "She hung up without saying goodbye.",
+   "textTr": "Hoşça kal demeden telefonu kapattı."
+  },
+  {
+   "id": "phr|log in",
+   "phrasal": "log in",
+   "tr": "(hesaba) giriş yapmak",
+   "text": "Log in with your password.",
+   "textTr": "Şifrenle giriş yap."
+  },
+  {
+   "id": "phr|deal with",
+   "phrasal": "deal with",
+   "tr": "ilgilenmek, başa çıkmak",
+   "text": "How do you deal with stress?",
+   "textTr": "Stresle nasıl başa çıkıyorsun?"
+  },
+  {
+   "id": "phr|drop off",
+   "phrasal": "drop off",
+   "tr": "bırakmak (birini, bir şeyi)",
+   "text": "Can you drop me off at the airport?",
+   "textTr": "Beni havaalanına bırakabilir misin?"
+  },
+  {
+   "id": "phr|fall apart",
+   "phrasal": "fall apart",
+   "tr": "dağılmak, parçalanmak",
+   "text": "The old chair fell apart.",
+   "textTr": "Eski sandalye parçalandı."
+  },
+  {
+   "id": "phr|figure out",
+   "phrasal": "figure out",
+   "tr": "anlamak, çözmek",
+   "text": "I can't figure out this puzzle.",
+   "textTr": "Bu bulmacayı çözemiyorum."
+  },
+  {
+   "id": "phr|end up",
+   "phrasal": "end up",
+   "tr": "sonunda ... olmak",
+   "text": "We ended up staying home.",
+   "textTr": "Sonunda evde kaldık."
+  },
+  {
+   "id": "phr|join in",
+   "phrasal": "join in",
+   "tr": "katılmak (bir etkinliğe)",
+   "text": "Come and join in the game!",
+   "textTr": "Gel, oyuna katıl!"
+  },
+  {
+   "id": "phr|leave out",
+   "phrasal": "leave out",
+   "tr": "dışarıda bırakmak, atlamak",
+   "text": "Don't leave out any details.",
+   "textTr": "Hiçbir ayrıntıyı atlama."
+  },
+  {
+   "id": "phr|move on",
+   "phrasal": "move on",
+   "tr": "ilerlemek, geçmişi geride bırakmak",
+   "text": "It is time to move on.",
+   "textTr": "Devam etme zamanı."
+  },
+  {
+   "id": "phr|pass out",
+   "phrasal": "pass out",
+   "tr": "bayılmak",
+   "text": "He passed out from the heat.",
+   "textTr": "Sıcaktan bayıldı."
+  },
+  {
+   "id": "phr|pay back",
+   "phrasal": "pay back",
+   "tr": "(borç) geri ödemek",
+   "text": "I will pay you back on Friday.",
+   "textTr": "Sana cuma günü geri ödeyeceğim."
+  },
+  {
+   "id": "phr|pull over",
+   "phrasal": "pull over",
+   "tr": "(araç) kenara çekmek",
+   "text": "The police told him to pull over.",
+   "textTr": "Polis ona kenara çekmesini söyledi."
+  },
+  {
+   "id": "phr|settle down",
+   "phrasal": "settle down",
+   "tr": "yerleşmek; yatışmak",
+   "text": "They settled down in a small town.",
+   "textTr": "Küçük bir kasabaya yerleştiler."
+  },
+  {
+   "id": "phr|slow down",
+   "phrasal": "slow down",
+   "tr": "yavaşlamak",
+   "text": "Please slow down, you are driving too fast.",
+   "textTr": "Lütfen yavaşla, çok hızlı gidiyorsun."
+  },
+  {
+   "id": "phr|stand up",
+   "phrasal": "stand up",
+   "tr": "ayağa kalkmak",
+   "text": "Everyone stood up when she came in.",
+   "textTr": "O içeri girince herkes ayağa kalktı."
+  },
+  {
+   "id": "phr|step in",
+   "phrasal": "step in",
+   "tr": "araya girmek, müdahale etmek",
+   "text": "The teacher stepped in to stop the fight.",
+   "textTr": "Öğretmen kavgayı durdurmak için araya girdi."
+  },
+  {
+   "id": "phr|tell off",
+   "phrasal": "tell off",
+   "tr": "azarlamak",
+   "text": "The teacher told him off for being late.",
+   "textTr": "Öğretmen geç kaldığı için onu azarladı."
+  },
+  {
+   "id": "phr|turn into",
+   "phrasal": "turn into",
+   "tr": "dönüşmek",
+   "text": "The caterpillar turned into a butterfly.",
+   "textTr": "Tırtıl kelebeğe dönüştü."
+  },
+  {
+   "id": "phr|watch out",
+   "phrasal": "watch out",
+   "tr": "dikkat etmek",
+   "text": "Watch out! There is a car coming.",
+   "textTr": "Dikkat! Bir araba geliyor."
+  },
+  {
+   "id": "phr|back up",
+   "phrasal": "back up",
+   "tr": "yedeklemek; desteklemek",
+   "text": "Always back up your files.",
+   "textTr": "Dosyalarını her zaman yedekle."
+  },
+  {
+   "id": "phr|blow up",
+   "phrasal": "blow up",
+   "tr": "patlamak, patlatmak",
+   "text": "The bomb blew up the old bridge.",
+   "textTr": "Bomba eski köprüyü havaya uçurdu."
+  },
+  {
+   "id": "phr|clean up",
+   "phrasal": "clean up",
+   "tr": "temizlemek",
+   "text": "Let's clean up the kitchen together.",
+   "textTr": "Mutfağı birlikte temizleyelim."
+  },
+  {
+   "id": "phr|cross out",
+   "phrasal": "cross out",
+   "tr": "çizmek (silmek için)",
+   "text": "He crossed out the wrong answer.",
+   "textTr": "Yanlış cevabı çizdi."
+  },
+  {
+   "id": "phr|dress up",
+   "phrasal": "dress up",
+   "tr": "şık giyinmek; kostüm giymek",
+   "text": "The children dressed up as animals.",
+   "textTr": "Çocuklar hayvan kılığına girdi."
+  },
+  {
+   "id": "phr|eat out",
+   "phrasal": "eat out",
+   "tr": "dışarıda yemek yemek",
+   "text": "We eat out every Friday.",
+   "textTr": "Her cuma dışarıda yemek yeriz."
+  },
+  {
+   "id": "phr|lock up",
+   "phrasal": "lock up",
+   "tr": "kilitlemek",
+   "text": "Don't forget to lock up when you leave.",
+   "textTr": "Çıkarken kilitlemeyi unutma."
+  },
+  {
+   "id": "phr|mix up",
+   "phrasal": "mix up",
+   "tr": "karıştırmak",
+   "text": "I always mix up their names.",
+   "textTr": "Onların isimlerini hep karıştırırım."
+  },
+  {
+   "id": "phr|open up",
+   "phrasal": "open up",
+   "tr": "açılmak; açmak",
+   "text": "He finally opened up about his problems.",
+   "textTr": "Sonunda sorunları hakkında açıldı."
+  },
+  {
+   "id": "phr|pull out",
+   "phrasal": "pull out",
+   "tr": "çıkarmak, geri çekilmek",
+   "text": "The company pulled out of the deal.",
+   "textTr": "Şirket anlaşmadan çekildi."
+  },
+  {
+   "id": "phr|rule out",
+   "phrasal": "rule out",
+   "tr": "elemek, olasılığı dışlamak",
+   "text": "The doctors ruled out a serious illness.",
+   "textTr": "Doktorlar ciddi bir hastalığı elediler."
+  },
+  {
+   "id": "phr|save up",
+   "phrasal": "save up",
+   "tr": "biriktirmek",
+   "text": "She is saving up for a new bike.",
+   "textTr": "Yeni bir bisiklet için para biriktiriyor."
+  },
+  {
+   "id": "phr|see off",
+   "phrasal": "see off",
+   "tr": "yolcu etmek",
+   "text": "We saw him off at the station.",
+   "textTr": "Onu istasyonda yolcu ettik."
+  },
+  {
+   "id": "phr|send back",
+   "phrasal": "send back",
+   "tr": "geri göndermek",
+   "text": "I sent the package back.",
+   "textTr": "Paketi geri gönderdim."
+  },
+  {
+   "id": "phr|shut down",
+   "phrasal": "shut down",
+   "tr": "kapanmak, kapatmak",
+   "text": "The factory shut down last year.",
+   "textTr": "Fabrika geçen yıl kapandı."
+  },
+  {
+   "id": "phr|sign up",
+   "phrasal": "sign up",
+   "tr": "kaydolmak",
+   "text": "Sign up for the course online.",
+   "textTr": "Kursa çevrimiçi kaydol."
+  },
+  {
+   "id": "phr|stay up",
+   "phrasal": "stay up",
+   "tr": "geç saate kadar uyumamak",
+   "text": "We stayed up all night talking.",
+   "textTr": "Bütün gece konuşarak uyumadık."
+  },
+  {
+   "id": "phr|think over",
+   "phrasal": "think over",
+   "tr": "iyice düşünmek",
+   "text": "Let me think it over.",
+   "textTr": "İyice bir düşüneyim."
+  },
+  {
+   "id": "phr|tidy up",
+   "phrasal": "tidy up",
+   "tr": "toparlamak, düzeltmek",
+   "text": "Tidy up your room, please.",
+   "textTr": "Lütfen odanı topla."
+  },
+  {
+   "id": "phr|write down",
+   "phrasal": "write down",
+   "tr": "not etmek, yazıp kaydetmek",
+   "text": "Write down the address before you forget.",
+   "textTr": "Unutmadan adresi yaz."
+  },
+  {
+   "id": "phr|get in",
+   "phrasal": "get in",
+   "tr": "(araca) binmek; içeri girmek",
+   "text": "Get in, I'll give you a lift.",
+   "textTr": "Bin, seni götüreyim."
+  },
+  {
+   "id": "phr|get out",
+   "phrasal": "get out",
+   "tr": "(araçtan) inmek; çıkmak",
+   "text": "We got out of the taxi at the corner.",
+   "textTr": "Taksiden köşede indik."
+  },
+  {
+   "id": "phr|look out",
+   "phrasal": "look out",
+   "tr": "dikkat etmek",
+   "text": "Look out for the broken glass!",
+   "textTr": "Kırık cama dikkat et!"
+  },
+  {
+   "id": "phr|look into",
+   "phrasal": "look into",
+   "tr": "araştırmak, incelemek",
+   "text": "The police are looking into the case.",
+   "textTr": "Polis olayı inceliyor."
+  },
+  {
+   "id": "phr|make out",
+   "phrasal": "make out",
+   "tr": "seçmek, anlamak",
+   "text": "I can't make out what he is saying.",
+   "textTr": "Ne dediğini anlayamıyorum."
+  },
+  {
+   "id": "phr|bring back",
+   "phrasal": "bring back",
+   "tr": "geri getirmek",
+   "text": "Bring back the book tomorrow.",
+   "textTr": "Kitabı yarın geri getir."
+  },
+  {
+   "id": "phr|take back",
+   "phrasal": "take back",
+   "tr": "geri almak, geri götürmek",
+   "text": "I took the shirt back to the shop.",
+   "textTr": "Gömleği mağazaya geri götürdüm."
+  },
+  {
+   "id": "phr|speak up",
+   "phrasal": "speak up",
+   "tr": "yüksek sesle konuşmak",
+   "text": "Could you speak up, please? I can't hear you.",
+   "textTr": "Biraz yüksek sesle konuşur musun? Seni duyamıyorum."
+  }
+ ]
+}
