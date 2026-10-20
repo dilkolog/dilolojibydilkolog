@@ -498,7 +498,7 @@ test('bulk import: each row says why it cannot be added, a sentence without the 
   // A sentence the word isn't in is still added, with a note; a row without a meaning is not.
   await expect(rows.nth(1)).toContainText('eklenecek')
   await expect(rows.nth(1)).toContainText('"topo" cümlede geçmiyor')
-  await expect(rows.nth(2)).toContainText('anlam yok')
+  await expect(rows.nth(2)).toContainText('Türkçe anlamı yaz')
   await expect(page.getByRole('button', { name: '2 kelimeyi ekle' })).toBeVisible()
   await expect(page.getByText('1 satır eklenemiyor')).toBeVisible()
 })

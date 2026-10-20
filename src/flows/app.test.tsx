@@ -76,7 +76,6 @@ describe('a learner’s day', () => {
     await click(button(/^Başlayalım$/))
     await click([...el.querySelectorAll<HTMLButtonElement>('.lang-card')].find((b) => b.textContent?.includes('Fransızca')))
     await click(button(/^Devam$/)) // language → goal
-    await click(button(/^Devam$/)) // goal → ready
     await click(button(/Fransızca ile başlayalım/))
     await until(() => button(/örnek kelime yükle/), 'sample words offer', 200)
     await click(button(/örnek kelime yükle/))

@@ -9,7 +9,6 @@ export async function startWithSamples(page: Page) {
   await page.getByRole('button', { name: 'Başlayalım', exact: true }).click()
   await page.locator('.lang-card', { hasText: 'Fransızca' }).click()
   await page.getByRole('button', { name: 'Devam', exact: true }).click()
-  await page.getByRole('button', { name: 'Devam', exact: true }).click()
   await page.getByRole('button', { name: /Fransızca ile başlayalım/ }).click()
   await page.getByRole('button', { name: /örnek kelime yükle/ }).click()
   await page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first().click()

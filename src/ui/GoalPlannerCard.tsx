@@ -220,6 +220,7 @@ export function GoalPlannerCard({
           <span className="small muted">Veya özel tarih:</span>
           <input
             type="date"
+            aria-label="Özel hedef tarihi"
             className="input input-sm"
             min={todayIso()}
             value={customDate}

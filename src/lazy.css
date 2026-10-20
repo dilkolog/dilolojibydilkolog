@@ -3528,7 +3528,7 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .lp-foot a { color: var(--lang-text); text-underline-offset: 0.2em; font-weight: 600; min-block-size: 2rem; display: inline-flex; align-items: center; }
 .lp-foot p { margin: 0; }
 @media (min-width: 46rem) {
-  .lp-hero { grid-template-columns: 1.25fr 1fr; padding-block: 3.5rem 4rem; }
+  .lp-hero { grid-template-columns: 1.25fr 1fr; padding-block: 2.5rem 3rem; }
   .lp-shot { width: min(18rem, 100%); }
   .lp-steps, .lp-trust-list { grid-template-columns: repeat(3, 1fr); }
   .lp-tiles { grid-template-columns: repeat(2, 1fr); }

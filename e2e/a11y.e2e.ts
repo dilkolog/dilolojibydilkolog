@@ -61,12 +61,6 @@ test('onboarding passes the automated accessibility check at every step', async 
   await expect(page.getByPlaceholder('Adın')).toBeVisible()
   problems.push(...(await scan(page, 'onboarding-step-3-goal')))
 
-  // Step 4: Ready recap
-  await page.getByPlaceholder('Adın').fill('Ayşe')
-  await page.getByRole('button', { name: 'Devam', exact: true }).click()
-  await expect(page.getByRole('heading', { name: 'Hazırsın, Ayşe!' })).toBeVisible()
-  problems.push(...(await scan(page, 'onboarding-step-4-ready')))
-
   expect(problems).toEqual([])
 })
 
@@ -1326,12 +1320,6 @@ test('auth screen and onboarding pass color contrast checks across light, dark, 
   await page.getByRole('button', { name: 'Devam', exact: true }).click()
   await expect(page.getByPlaceholder('Adın')).toBeVisible()
   await checkContrast('onboarding-step-3-goal')
-
-  // Step 4: Ready recap
-  await page.getByPlaceholder('Adın').fill('Ayşe')
-  await page.getByRole('button', { name: 'Devam', exact: true }).click()
-  await expect(page.getByRole('heading', { name: 'Hazırsın, Ayşe!' })).toBeVisible()
-  await checkContrast('onboarding-step-4-ready')
 
   // Finish onboarding into main app
   await page.getByRole('button', { name: /İspanyolca ile başlayalım/ }).click()

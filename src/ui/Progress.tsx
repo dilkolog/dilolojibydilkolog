@@ -26,7 +26,7 @@ import { SKILL_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { ShareProgress } from './ShareProgress'
 import { buildProgressReport } from './progressReport'
-import { StreakFlame } from './StreakFlame'
+import { StreakPicture } from './StreakFlame'
 import { CalendarIcon, CheckIcon, PulseIcon, StarIcon, TargetIcon } from './icons'
 import { ActivityChart, ForecastChart } from './ProgressCharts'
 import { WeekHero } from './WeekHero'
@@ -143,7 +143,7 @@ export function ProgressScreen({
         events={events}
         now={now}
         weeks={weeks}
-        streak={<><StreakFlame streak={game?.streak ?? 0} frozen={game?.frozenYesterday} size={18} /> {game?.streak ?? 0}</>}
+        streak={<><StreakPicture streak={game?.streak ?? 0} size={26} /> {game?.streak ?? 0}</>}
         active={stats.activeVocabulary}
         focus={weakestSkill(skillProfile(states, scheduler, now))}
       />
