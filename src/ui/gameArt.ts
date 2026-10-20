@@ -16,6 +16,7 @@ import cards from '../assets/art/game-cards.webp'
 import chat from '../assets/art/game-chat.webp'
 import headphones from '../assets/art/game-headphones.webp'
 import headBack from '../assets/art/head-back.webp'
+import headExam from '../assets/art/head-exam.webp'
 import gSwipe from '../assets/art/game-swipe.webp'
 import gTruefalse from '../assets/art/game-truefalse.webp'
 import gStrip from '../assets/art/game-strip.webp'
@@ -58,7 +59,7 @@ export const GAME_ART: Partial<Record<GameId, string>> = {
   test: target,
   accent: tiles,
   notes: book,
-  'exam-tasks': book,
+  'exam-tasks': headExam,
   swipe: gSwipe,
   truefalse: gTruefalse,
   sentences: gStrip,
