@@ -38,9 +38,12 @@ export interface DuelFilter {
   level?: GrammarExercise['level']
 }
 
+/** The A1–A2 basics are for the lesson's own practice: a duel with no level chosen is made of B1 and up. */
+const BASIC_LEVELS = new Set<GrammarExercise['level']>(['A1', 'A2'])
+
 /** The questions a duel can be made from. */
 export const duelPool = (pool: readonly GrammarExercise[], filter: DuelFilter = {}) =>
-  pool.filter((e) => e.type === 'choice' && (e.options?.length ?? 0) >= 3 && (!filter.topic || e.topic === filter.topic) && (!filter.level || e.level === filter.level))
+  pool.filter((e) => e.type === 'choice' && (e.options?.length ?? 0) >= 3 && (!filter.topic || e.topic === filter.topic) && (filter.level ? e.level === filter.level : !BASIC_LEVELS.has(e.level)))
 
 /** Ten different questions: choice questions only, one per topic first so a duel is not ten of the same rule. */
 export function pickDuelIds(pool: readonly GrammarExercise[], rng: Rng, count = DUEL_ROUNDS, filter: DuelFilter = {}): string[] {

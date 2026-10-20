@@ -1,0 +1,1362 @@
+[
+ {
+  "id": "es-a1-articulos-1",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_articulos",
+  "type": "choice",
+  "prompt": "___ libro está en la mesa.",
+  "answer": "El",
+  "options": [
+   "Los",
+   "El",
+   "La"
+  ],
+  "hint": "libro eril → el",
+  "explanation": "İspanyolcada isimler eril ya da dişildir: el/un (eril), la/una (dişil), los/las, unos/unas (çoğul). a + el = al, de + el = del. Vurgulu a- ile başlayan dişil isimlerde tekilde el kullanılır (el agua).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-articulos-2",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_articulos",
+  "type": "choice",
+  "prompt": "Tengo ___ hermana mayor.",
+  "answer": "una",
+  "options": [
+   "un",
+   "unos",
+   "una"
+  ],
+  "hint": "hermana dişil → una",
+  "explanation": "İspanyolcada isimler eril ya da dişildir: el/un (eril), la/una (dişil), los/las, unos/unas (çoğul). a + el = al, de + el = del. Vurgulu a- ile başlayan dişil isimlerde tekilde el kullanılır (el agua).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-articulos-3",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_articulos",
+  "type": "choice",
+  "prompt": "___ casas son grandes.",
+  "answer": "Las",
+  "options": [
+   "Las",
+   "Los",
+   "La"
+  ],
+  "hint": "casas dişil çoğul → las",
+  "explanation": "İspanyolcada isimler eril ya da dişildir: el/un (eril), la/una (dişil), los/las, unos/unas (çoğul). a + el = al, de + el = del. Vurgulu a- ile başlayan dişil isimlerde tekilde el kullanılır (el agua).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-articulos-4",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_articulos",
+  "type": "choice",
+  "prompt": "Voy ___ mercado.",
+  "answer": "al",
+  "options": [
+   "a la",
+   "al",
+   "a el"
+  ],
+  "hint": "a + el = al",
+  "explanation": "İspanyolcada isimler eril ya da dişildir: el/un (eril), la/una (dişil), los/las, unos/unas (çoğul). a + el = al, de + el = del. Vurgulu a- ile başlayan dişil isimlerde tekilde el kullanılır (el agua).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-articulos-5",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_articulos",
+  "type": "choice",
+  "prompt": "Vengo ___ colegio.",
+  "answer": "del",
+  "options": [
+   "de el",
+   "de la",
+   "del"
+  ],
+  "hint": "de + el = del",
+  "explanation": "İspanyolcada isimler eril ya da dişildir: el/un (eril), la/una (dişil), los/las, unos/unas (çoğul). a + el = al, de + el = del. Vurgulu a- ile başlayan dişil isimlerde tekilde el kullanılır (el agua).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-articulos-6",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_articulos",
+  "type": "choice",
+  "prompt": "___ agua está fría.",
+  "answer": "El",
+  "options": [
+   "El",
+   "La",
+   "Las"
+  ],
+  "hint": "vurgulu a- ile başlayan dişil isim → el agua",
+  "explanation": "İspanyolcada isimler eril ya da dişildir: el/un (eril), la/una (dişil), los/las, unos/unas (çoğul). a + el = al, de + el = del. Vurgulu a- ile başlayan dişil isimlerde tekilde el kullanılır (el agua).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-articulos-7",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_articulos",
+  "type": "choice",
+  "prompt": "Necesito ___ lápiz.",
+  "answer": "un",
+  "options": [
+   "unas",
+   "un",
+   "una"
+  ],
+  "hint": "lápiz eril → un",
+  "explanation": "İspanyolcada isimler eril ya da dişildir: el/un (eril), la/una (dişil), los/las, unos/unas (çoğul). a + el = al, de + el = del. Vurgulu a- ile başlayan dişil isimlerde tekilde el kullanılır (el agua).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-articulos-8",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_articulos",
+  "type": "choice",
+  "prompt": "Hay ___ problemas.",
+  "answer": "unos",
+  "options": [
+   "una",
+   "un",
+   "unos"
+  ],
+  "hint": "çoğul belirsiz → unos",
+  "explanation": "İspanyolcada isimler eril ya da dişildir: el/un (eril), la/una (dişil), los/las, unos/unas (çoğul). a + el = al, de + el = del. Vurgulu a- ile başlayan dişil isimlerde tekilde el kullanılır (el agua).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-presente-1",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_presente",
+  "type": "choice",
+  "prompt": "Yo ___ en Madrid.",
+  "answer": "vivo",
+  "options": [
+   "vive",
+   "vivo",
+   "vives"
+  ],
+  "hint": "yo → -o",
+  "explanation": "Presente: -ar fiillerinde -o, -as, -a, -amos, -áis, -an; -er/-ir fiillerinde -o, -es, -e, -emos/-imos, -éis/-ís, -en. Düzensizler: ir (voy, vas, va, vamos, vais, van), saber (sé).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-presente-2",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_presente",
+  "type": "choice",
+  "prompt": "Nosotros ___ español.",
+  "answer": "hablamos",
+  "options": [
+   "habláis",
+   "hablan",
+   "hablamos"
+  ],
+  "hint": "nosotros → -amos",
+  "explanation": "Presente: -ar fiillerinde -o, -as, -a, -amos, -áis, -an; -er/-ir fiillerinde -o, -es, -e, -emos/-imos, -éis/-ís, -en. Düzensizler: ir (voy, vas, va, vamos, vais, van), saber (sé).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-presente-3",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_presente",
+  "type": "choice",
+  "prompt": "Ella ___ pan.",
+  "answer": "come",
+  "options": [
+   "come",
+   "como",
+   "comes"
+  ],
+  "hint": "ella → -e",
+  "explanation": "Presente: -ar fiillerinde -o, -as, -a, -amos, -áis, -an; -er/-ir fiillerinde -o, -es, -e, -emos/-imos, -éis/-ís, -en. Düzensizler: ir (voy, vas, va, vamos, vais, van), saber (sé).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-presente-4",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_presente",
+  "type": "choice",
+  "prompt": "Tú ___ a las ocho.",
+  "answer": "sales",
+  "options": [
+   "sale",
+   "sales",
+   "salgo"
+  ],
+  "hint": "tú → -es",
+  "explanation": "Presente: -ar fiillerinde -o, -as, -a, -amos, -áis, -an; -er/-ir fiillerinde -o, -es, -e, -emos/-imos, -éis/-ís, -en. Düzensizler: ir (voy, vas, va, vamos, vais, van), saber (sé).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-presente-5",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_presente",
+  "type": "choice",
+  "prompt": "Ellos ___ al cine.",
+  "answer": "van",
+  "options": [
+   "vamos",
+   "vas",
+   "van"
+  ],
+  "hint": "ir, ellos → van",
+  "explanation": "Presente: -ar fiillerinde -o, -as, -a, -amos, -áis, -an; -er/-ir fiillerinde -o, -es, -e, -emos/-imos, -éis/-ís, -en. Düzensizler: ir (voy, vas, va, vamos, vais, van), saber (sé).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-presente-6",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_presente",
+  "type": "choice",
+  "prompt": "Yo ___ la verdad.",
+  "answer": "sé",
+  "options": [
+   "sé",
+   "sabes",
+   "sabe"
+  ],
+  "hint": "saber, yo → sé",
+  "explanation": "Presente: -ar fiillerinde -o, -as, -a, -amos, -áis, -an; -er/-ir fiillerinde -o, -es, -e, -emos/-imos, -éis/-ís, -en. Düzensizler: ir (voy, vas, va, vamos, vais, van), saber (sé).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-presente-7",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_presente",
+  "type": "choice",
+  "prompt": "¿Vosotros ___ café?",
+  "answer": "queréis",
+  "options": [
+   "quiere",
+   "queréis",
+   "quiero"
+  ],
+  "hint": "vosotros → -éis",
+  "explanation": "Presente: -ar fiillerinde -o, -as, -a, -amos, -áis, -an; -er/-ir fiillerinde -o, -es, -e, -emos/-imos, -éis/-ís, -en. Düzensizler: ir (voy, vas, va, vamos, vais, van), saber (sé).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-presente-8",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_presente",
+  "type": "choice",
+  "prompt": "Mi madre ___ en una oficina.",
+  "answer": "trabaja",
+  "options": [
+   "trabajo",
+   "trabajas",
+   "trabaja"
+  ],
+  "hint": "ella → -a",
+  "explanation": "Presente: -ar fiillerinde -o, -as, -a, -amos, -áis, -an; -er/-ir fiillerinde -o, -es, -e, -emos/-imos, -éis/-ís, -en. Düzensizler: ir (voy, vas, va, vamos, vais, van), saber (sé).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-gustar-1",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_gustar",
+  "type": "choice",
+  "prompt": "Me ___ el café.",
+  "answer": "gusta",
+  "options": [
+   "gusto",
+   "gusta",
+   "gustan"
+  ],
+  "hint": "tekil şey → gusta",
+  "explanation": "Gustar, sevilen şeyle uyum kurar: tekil şey ya da fiil için gusta, çoğul şey için gustan. Kişi me/te/le/nos/os/les ile belirtilir: me gusta el café, me gustan los gatos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-gustar-2",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_gustar",
+  "type": "choice",
+  "prompt": "Me ___ los gatos.",
+  "answer": "gustan",
+  "options": [
+   "gusta",
+   "gustas",
+   "gustan"
+  ],
+  "hint": "çoğul şey → gustan",
+  "explanation": "Gustar, sevilen şeyle uyum kurar: tekil şey ya da fiil için gusta, çoğul şey için gustan. Kişi me/te/le/nos/os/les ile belirtilir: me gusta el café, me gustan los gatos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-gustar-3",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_gustar",
+  "type": "choice",
+  "prompt": "A ella ___ gusta bailar.",
+  "answer": "le",
+  "options": [
+   "le",
+   "la",
+   "les"
+  ],
+  "hint": "ella → le",
+  "explanation": "Gustar, sevilen şeyle uyum kurar: tekil şey ya da fiil için gusta, çoğul şey için gustan. Kişi me/te/le/nos/os/les ile belirtilir: me gusta el café, me gustan los gatos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-gustar-4",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_gustar",
+  "type": "choice",
+  "prompt": "A nosotros ___ encantan las películas.",
+  "answer": "nos",
+  "options": [
+   "me",
+   "nos",
+   "les"
+  ],
+  "hint": "nosotros → nos",
+  "explanation": "Gustar, sevilen şeyle uyum kurar: tekil şey ya da fiil için gusta, çoğul şey için gustan. Kişi me/te/le/nos/os/les ile belirtilir: me gusta el café, me gustan los gatos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-gustar-5",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_gustar",
+  "type": "choice",
+  "prompt": "¿Te ___ la música?",
+  "answer": "gusta",
+  "options": [
+   "gustan",
+   "gustas",
+   "gusta"
+  ],
+  "hint": "tekil şey → gusta",
+  "explanation": "Gustar, sevilen şeyle uyum kurar: tekil şey ya da fiil için gusta, çoğul şey için gustan. Kişi me/te/le/nos/os/les ile belirtilir: me gusta el café, me gustan los gatos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-gustar-6",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_gustar",
+  "type": "choice",
+  "prompt": "A mis padres ___ gusta viajar.",
+  "answer": "les",
+  "options": [
+   "les",
+   "le",
+   "los"
+  ],
+  "hint": "çoğul kişi → les",
+  "explanation": "Gustar, sevilen şeyle uyum kurar: tekil şey ya da fiil için gusta, çoğul şey için gustan. Kişi me/te/le/nos/os/les ile belirtilir: me gusta el café, me gustan los gatos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-gustar-7",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_gustar",
+  "type": "choice",
+  "prompt": "No me ___ nada las espinacas.",
+  "answer": "gustan",
+  "options": [
+   "gusto",
+   "gustan",
+   "gusta"
+  ],
+  "hint": "çoğul şey → gustan",
+  "explanation": "Gustar, sevilen şeyle uyum kurar: tekil şey ya da fiil için gusta, çoğul şey için gustan. Kişi me/te/le/nos/os/les ile belirtilir: me gusta el café, me gustan los gatos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-gustar-8",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_gustar",
+  "type": "choice",
+  "prompt": "A mí ___ me gusta el té.",
+  "answer": "no",
+  "options": [
+   "ningún",
+   "nadie",
+   "no"
+  ],
+  "hint": "olumsuz → no",
+  "explanation": "Gustar, sevilen şeyle uyum kurar: tekil şey ya da fiil için gusta, çoğul şey için gustan. Kişi me/te/le/nos/os/les ile belirtilir: me gusta el café, me gustan los gatos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-negacion-1",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_negacion",
+  "type": "choice",
+  "prompt": "Yo ___ hablo francés.",
+  "answer": "no",
+  "options": [
+   "ningún",
+   "no",
+   "nadie"
+  ],
+  "hint": "fiilin önünde no",
+  "explanation": "Olumsuzluk: fiilin önüne no konur (no hablo). Fiilden sonra nadie, nada, ninguno kullanılırsa fiilin önünde de no olur (no veo a nadie); fiilden önce gelirse no gerekmez (nadie viene, nunca llego).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-negacion-2",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_negacion",
+  "type": "choice",
+  "prompt": "___ tengo tiempo.",
+  "answer": "No",
+  "options": [
+   "Nada",
+   "Nadie",
+   "No"
+  ],
+  "hint": "tengo → no tengo",
+  "explanation": "Olumsuzluk: fiilin önüne no konur (no hablo). Fiilden sonra nadie, nada, ninguno kullanılırsa fiilin önünde de no olur (no veo a nadie); fiilden önce gelirse no gerekmez (nadie viene, nunca llego).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-negacion-3",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_negacion",
+  "type": "choice",
+  "prompt": "No veo a ___ en la calle.",
+  "answer": "nadie",
+  "options": [
+   "nadie",
+   "nada",
+   "ningún"
+  ],
+  "hint": "kişi için a + nadie",
+  "explanation": "Olumsuzluk: fiilin önüne no konur (no hablo). Fiilden sonra nadie, nada, ninguno kullanılırsa fiilin önünde de no olur (no veo a nadie); fiilden önce gelirse no gerekmez (nadie viene, nunca llego).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-negacion-4",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_negacion",
+  "type": "choice",
+  "prompt": "¿Quieres algo? — No, ___.",
+  "answer": "nada",
+  "options": [
+   "ningún",
+   "nada",
+   "nadie"
+  ],
+  "hint": "algo → nada",
+  "explanation": "Olumsuzluk: fiilin önüne no konur (no hablo). Fiilden sonra nadie, nada, ninguno kullanılırsa fiilin önünde de no olur (no veo a nadie); fiilden önce gelirse no gerekmez (nadie viene, nunca llego).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-negacion-5",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_negacion",
+  "type": "choice",
+  "prompt": "No hay ___ en casa.",
+  "answer": "nadie",
+  "options": [
+   "nunca",
+   "ningún",
+   "nadie"
+  ],
+  "hint": "kişi yok → nadie",
+  "explanation": "Olumsuzluk: fiilin önüne no konur (no hablo). Fiilden sonra nadie, nada, ninguno kullanılırsa fiilin önünde de no olur (no veo a nadie); fiilden önce gelirse no gerekmez (nadie viene, nunca llego).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-negacion-6",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_negacion",
+  "type": "choice",
+  "prompt": "Yo nunca ___ tarde.",
+  "answer": "llego",
+  "options": [
+   "llego",
+   "no llego",
+   "llegamos"
+  ],
+  "hint": "nunca fiilden önce gelirse no yok",
+  "explanation": "Olumsuzluk: fiilin önüne no konur (no hablo). Fiilden sonra nadie, nada, ninguno kullanılırsa fiilin önünde de no olur (no veo a nadie); fiilden önce gelirse no gerekmez (nadie viene, nunca llego).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-negacion-7",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_negacion",
+  "type": "choice",
+  "prompt": "No tengo ___ libro.",
+  "answer": "ningún",
+  "options": [
+   "nada",
+   "ningún",
+   "ninguno"
+  ],
+  "hint": "ismin önünde ningún",
+  "explanation": "Olumsuzluk: fiilin önüne no konur (no hablo). Fiilden sonra nadie, nada, ninguno kullanılırsa fiilin önünde de no olur (no veo a nadie); fiilden önce gelirse no gerekmez (nadie viene, nunca llego).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-negacion-8",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_negacion",
+  "type": "choice",
+  "prompt": "¿Tienes hermanos? — No, no ___.",
+  "answer": "tengo",
+  "options": [
+   "tienes",
+   "tiene",
+   "tengo"
+  ],
+  "hint": "yo → tengo",
+  "explanation": "Olumsuzluk: fiilin önüne no konur (no hablo). Fiilden sonra nadie, nada, ninguno kullanılırsa fiilin önünde de no olur (no veo a nadie); fiilden önce gelirse no gerekmez (nadie viene, nunca llego).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-posesivos-1",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_posesivos",
+  "type": "choice",
+  "prompt": "Esta es ___ casa.",
+  "answer": "mi",
+  "options": [
+   "yo",
+   "mi",
+   "mis"
+  ],
+  "hint": "tekil isim → mi",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına göre değil, sadece sayısına uyar: mi/mis, tu/tus, su/sus, nuestro/nuestra/nuestros/nuestras. İşaret sıfatları: este/esta (yakın), ese/esa (orta), aquel/aquella (uzak).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-posesivos-2",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_posesivos",
+  "type": "choice",
+  "prompt": "Estos son ___ amigos.",
+  "answer": "mis",
+  "options": [
+   "mi",
+   "míos",
+   "mis"
+  ],
+  "hint": "çoğul isim → mis",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına göre değil, sadece sayısına uyar: mi/mis, tu/tus, su/sus, nuestro/nuestra/nuestros/nuestras. İşaret sıfatları: este/esta (yakın), ese/esa (orta), aquel/aquella (uzak).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-posesivos-3",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_posesivos",
+  "type": "choice",
+  "prompt": "¿Dónde está ___ madre?",
+  "answer": "tu",
+  "options": [
+   "tu",
+   "tus",
+   "ti"
+  ],
+  "hint": "tekil isim → tu",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına göre değil, sadece sayısına uyar: mi/mis, tu/tus, su/sus, nuestro/nuestra/nuestros/nuestras. İşaret sıfatları: este/esta (yakın), ese/esa (orta), aquel/aquella (uzak).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-posesivos-4",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_posesivos",
+  "type": "choice",
+  "prompt": "Es ___ hija.",
+  "answer": "nuestra",
+  "options": [
+   "nuestras",
+   "nuestra",
+   "nuestro"
+  ],
+  "hint": "hija dişil tekil → nuestra",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına göre değil, sadece sayısına uyar: mi/mis, tu/tus, su/sus, nuestro/nuestra/nuestros/nuestras. İşaret sıfatları: este/esta (yakın), ese/esa (orta), aquel/aquella (uzak).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-posesivos-5",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_posesivos",
+  "type": "choice",
+  "prompt": "Ella lee ___ libros.",
+  "answer": "sus",
+  "options": [
+   "su",
+   "suyos",
+   "sus"
+  ],
+  "hint": "çoğul → sus",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına göre değil, sadece sayısına uyar: mi/mis, tu/tus, su/sus, nuestro/nuestra/nuestros/nuestras. İşaret sıfatları: este/esta (yakın), ese/esa (orta), aquel/aquella (uzak).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-posesivos-6",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_posesivos",
+  "type": "choice",
+  "prompt": "___ libro es interesante. (bu)",
+  "answer": "Este",
+  "options": [
+   "Este",
+   "Esta",
+   "Estos"
+  ],
+  "hint": "libro eril → este",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına göre değil, sadece sayısına uyar: mi/mis, tu/tus, su/sus, nuestro/nuestra/nuestros/nuestras. İşaret sıfatları: este/esta (yakın), ese/esa (orta), aquel/aquella (uzak).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-posesivos-7",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_posesivos",
+  "type": "choice",
+  "prompt": "___ casas son bonitas. (şu)",
+  "answer": "Esas",
+  "options": [
+   "Esa",
+   "Esas",
+   "Ese"
+  ],
+  "hint": "casas dişil çoğul → esas",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına göre değil, sadece sayısına uyar: mi/mis, tu/tus, su/sus, nuestro/nuestra/nuestros/nuestras. İşaret sıfatları: este/esta (yakın), ese/esa (orta), aquel/aquella (uzak).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-posesivos-8",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_posesivos",
+  "type": "choice",
+  "prompt": "___ chica es mi prima. (şu)",
+  "answer": "Esa",
+  "options": [
+   "Ese",
+   "Esos",
+   "Esa"
+  ],
+  "hint": "chica dişil → esa",
+  "explanation": "İyelik sıfatları ismin cinsiyetine ve sayısına göre değil, sadece sayısına uyar: mi/mis, tu/tus, su/sus, nuestro/nuestra/nuestros/nuestras. İşaret sıfatları: este/esta (yakın), ese/esa (orta), aquel/aquella (uzak).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-preguntas-1",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_preguntas",
+  "type": "choice",
+  "prompt": "¿___ vives? — En Sevilla.",
+  "answer": "Dónde",
+  "options": [
+   "Quién",
+   "Dónde",
+   "Cuándo"
+  ],
+  "hint": "yer sorusu → dónde",
+  "explanation": "Soru sözcükleri: dónde (nerede), cuándo (ne zaman), cómo (nasıl), cuánto (ne kadar), quién (kim), qué (ne), cuál (hangisi), por qué (neden). Soru sözcükleri her zaman vurgu işareti alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-preguntas-2",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_preguntas",
+  "type": "choice",
+  "prompt": "¿___ te llamas? — Lucía.",
+  "answer": "Cómo",
+  "options": [
+   "Cuánto",
+   "Dónde",
+   "Cómo"
+  ],
+  "hint": "ad sorusu → cómo",
+  "explanation": "Soru sözcükleri: dónde (nerede), cuándo (ne zaman), cómo (nasıl), cuánto (ne kadar), quién (kim), qué (ne), cuál (hangisi), por qué (neden). Soru sözcükleri her zaman vurgu işareti alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-preguntas-3",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_preguntas",
+  "type": "choice",
+  "prompt": "¿___ cuesta? — Diez euros.",
+  "answer": "Cuánto",
+  "options": [
+   "Cuánto",
+   "Quién",
+   "Cuándo"
+  ],
+  "hint": "fiyat → cuánto",
+  "explanation": "Soru sözcükleri: dónde (nerede), cuándo (ne zaman), cómo (nasıl), cuánto (ne kadar), quién (kim), qué (ne), cuál (hangisi), por qué (neden). Soru sözcükleri her zaman vurgu işareti alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-preguntas-4",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_preguntas",
+  "type": "choice",
+  "prompt": "¿___ es tu cumpleaños? — En mayo.",
+  "answer": "Cuándo",
+  "options": [
+   "Quién",
+   "Cuándo",
+   "Dónde"
+  ],
+  "hint": "zaman → cuándo",
+  "explanation": "Soru sözcükleri: dónde (nerede), cuándo (ne zaman), cómo (nasıl), cuánto (ne kadar), quién (kim), qué (ne), cuál (hangisi), por qué (neden). Soru sözcükleri her zaman vurgu işareti alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-preguntas-5",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_preguntas",
+  "type": "choice",
+  "prompt": "¿___ es ese hombre? — Mi tío.",
+  "answer": "Quién",
+  "options": [
+   "Qué",
+   "Cuál",
+   "Quién"
+  ],
+  "hint": "kişi → quién",
+  "explanation": "Soru sözcükleri: dónde (nerede), cuándo (ne zaman), cómo (nasıl), cuánto (ne kadar), quién (kim), qué (ne), cuál (hangisi), por qué (neden). Soru sözcükleri her zaman vurgu işareti alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-preguntas-6",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_preguntas",
+  "type": "choice",
+  "prompt": "¿___ hora es?",
+  "answer": "Qué",
+  "options": [
+   "Qué",
+   "Cuál",
+   "Quién"
+  ],
+  "hint": "saat sorusu → qué hora",
+  "explanation": "Soru sözcükleri: dónde (nerede), cuándo (ne zaman), cómo (nasıl), cuánto (ne kadar), quién (kim), qué (ne), cuál (hangisi), por qué (neden). Soru sözcükleri her zaman vurgu işareti alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-preguntas-7",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_preguntas",
+  "type": "choice",
+  "prompt": "¿___ es tu número de teléfono?",
+  "answer": "Cuál",
+  "options": [
+   "Quién",
+   "Cuál",
+   "Qué"
+  ],
+  "hint": "seçenekler arasından belirleme → cuál",
+  "explanation": "Soru sözcükleri: dónde (nerede), cuándo (ne zaman), cómo (nasıl), cuánto (ne kadar), quién (kim), qué (ne), cuál (hangisi), por qué (neden). Soru sözcükleri her zaman vurgu işareti alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-preguntas-8",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_preguntas",
+  "type": "choice",
+  "prompt": "¿___ no vienes? — Porque estoy cansado.",
+  "answer": "Por qué",
+  "options": [
+   "Porque",
+   "Porqué",
+   "Por qué"
+  ],
+  "hint": "soru → por qué (ayrı yazılır)",
+  "explanation": "Soru sözcükleri: dónde (nerede), cuándo (ne zaman), cómo (nasıl), cuánto (ne kadar), quién (kim), qué (ne), cuál (hangisi), por qué (neden). Soru sözcükleri her zaman vurgu işareti alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-hay_estar-1",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_hay_estar",
+  "type": "choice",
+  "prompt": "___ un libro sobre la mesa.",
+  "answer": "Hay",
+  "options": [
+   "Es",
+   "Hay",
+   "Está"
+  ],
+  "hint": "varlık → hay",
+  "explanation": "Hay, bir şeyin var olduğunu söyler (hay un banco, hay dos museos); estar, bilinen bir şeyin yerini söyler (el banco está aquí). Hay belirsiz bir şeyle, estar belirli bir şeyle (el, mi, este…) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-hay_estar-2",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_hay_estar",
+  "type": "choice",
+  "prompt": "El libro ___ sobre la mesa.",
+  "answer": "está",
+  "options": [
+   "hay",
+   "es",
+   "está"
+  ],
+  "hint": "belirli şeyin yeri → está",
+  "explanation": "Hay, bir şeyin var olduğunu söyler (hay un banco, hay dos museos); estar, bilinen bir şeyin yerini söyler (el banco está aquí). Hay belirsiz bir şeyle, estar belirli bir şeyle (el, mi, este…) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-hay_estar-3",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_hay_estar",
+  "type": "choice",
+  "prompt": "En mi ciudad ___ dos museos.",
+  "answer": "hay",
+  "options": [
+   "hay",
+   "están",
+   "son"
+  ],
+  "hint": "varlık → hay",
+  "explanation": "Hay, bir şeyin var olduğunu söyler (hay un banco, hay dos museos); estar, bilinen bir şeyin yerini söyler (el banco está aquí). Hay belirsiz bir şeyle, estar belirli bir şeyle (el, mi, este…) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-hay_estar-4",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_hay_estar",
+  "type": "choice",
+  "prompt": "¿Dónde ___ los baños?",
+  "answer": "están",
+  "options": [
+   "son",
+   "están",
+   "hay"
+  ],
+  "hint": "belirli şeylerin yeri → están",
+  "explanation": "Hay, bir şeyin var olduğunu söyler (hay un banco, hay dos museos); estar, bilinen bir şeyin yerini söyler (el banco está aquí). Hay belirsiz bir şeyle, estar belirli bir şeyle (el, mi, este…) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-hay_estar-5",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_hay_estar",
+  "type": "choice",
+  "prompt": "No ___ nadie en casa.",
+  "answer": "hay",
+  "options": [
+   "está",
+   "es",
+   "hay"
+  ],
+  "hint": "varlık → hay",
+  "explanation": "Hay, bir şeyin var olduğunu söyler (hay un banco, hay dos museos); estar, bilinen bir şeyin yerini söyler (el banco está aquí). Hay belirsiz bir şeyle, estar belirli bir şeyle (el, mi, este…) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-hay_estar-6",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_hay_estar",
+  "type": "choice",
+  "prompt": "María ___ en la cocina.",
+  "answer": "está",
+  "options": [
+   "está",
+   "hay",
+   "es"
+  ],
+  "hint": "kişinin yeri → está",
+  "explanation": "Hay, bir şeyin var olduğunu söyler (hay un banco, hay dos museos); estar, bilinen bir şeyin yerini söyler (el banco está aquí). Hay belirsiz bir şeyle, estar belirli bir şeyle (el, mi, este…) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-hay_estar-7",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_hay_estar",
+  "type": "choice",
+  "prompt": "¿___ un banco cerca?",
+  "answer": "Hay",
+  "options": [
+   "Son",
+   "Hay",
+   "Está"
+  ],
+  "hint": "belirsiz şey → hay",
+  "explanation": "Hay, bir şeyin var olduğunu söyler (hay un banco, hay dos museos); estar, bilinen bir şeyin yerini söyler (el banco está aquí). Hay belirsiz bir şeyle, estar belirli bir şeyle (el, mi, este…) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-hay_estar-8",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_hay_estar",
+  "type": "choice",
+  "prompt": "Los niños ___ en el parque.",
+  "answer": "están",
+  "options": [
+   "hay",
+   "es",
+   "están"
+  ],
+  "hint": "belirli kişilerin yeri → están",
+  "explanation": "Hay, bir şeyin var olduğunu söyler (hay un banco, hay dos museos); estar, bilinen bir şeyin yerini söyler (el banco está aquí). Hay belirsiz bir şeyle, estar belirli bir şeyle (el, mi, este…) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-reflexivos-1",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_reflexivos",
+  "type": "choice",
+  "prompt": "Yo ___ levanto a las siete.",
+  "answer": "me",
+  "options": [
+   "se",
+   "me",
+   "te"
+  ],
+  "hint": "yo → me",
+  "explanation": "Dönüşlü fiillerde eylem özneye döner ve zamir fiille birlikte çekilir: me, te, se, nos, os, se. Zamir çekimli fiilin önüne gelir: me levanto, se ducha, nos acostamos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-reflexivos-2",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_reflexivos",
+  "type": "choice",
+  "prompt": "Ella ___ ducha por la mañana.",
+  "answer": "se",
+  "options": [
+   "me",
+   "te",
+   "se"
+  ],
+  "hint": "ella → se",
+  "explanation": "Dönüşlü fiillerde eylem özneye döner ve zamir fiille birlikte çekilir: me, te, se, nos, os, se. Zamir çekimli fiilin önüne gelir: me levanto, se ducha, nos acostamos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-reflexivos-3",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_reflexivos",
+  "type": "choice",
+  "prompt": "Nosotros ___ acostamos tarde.",
+  "answer": "nos",
+  "options": [
+   "nos",
+   "os",
+   "se"
+  ],
+  "hint": "nosotros → nos",
+  "explanation": "Dönüşlü fiillerde eylem özneye döner ve zamir fiille birlikte çekilir: me, te, se, nos, os, se. Zamir çekimli fiilin önüne gelir: me levanto, se ducha, nos acostamos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-reflexivos-4",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_reflexivos",
+  "type": "choice",
+  "prompt": "¿A qué hora ___ despiertas?",
+  "answer": "te",
+  "options": [
+   "se",
+   "te",
+   "me"
+  ],
+  "hint": "tú → te",
+  "explanation": "Dönüşlü fiillerde eylem özneye döner ve zamir fiille birlikte çekilir: me, te, se, nos, os, se. Zamir çekimli fiilin önüne gelir: me levanto, se ducha, nos acostamos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-reflexivos-5",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_reflexivos",
+  "type": "choice",
+  "prompt": "Mis hermanos ___ visten rápido.",
+  "answer": "se",
+  "options": [
+   "nos",
+   "me",
+   "se"
+  ],
+  "hint": "ellos → se",
+  "explanation": "Dönüşlü fiillerde eylem özneye döner ve zamir fiille birlikte çekilir: me, te, se, nos, os, se. Zamir çekimli fiilin önüne gelir: me levanto, se ducha, nos acostamos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-reflexivos-6",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_reflexivos",
+  "type": "choice",
+  "prompt": "Vosotros ___ laváis las manos.",
+  "answer": "os",
+  "options": [
+   "os",
+   "nos",
+   "se"
+  ],
+  "hint": "vosotros → os",
+  "explanation": "Dönüşlü fiillerde eylem özneye döner ve zamir fiille birlikte çekilir: me, te, se, nos, os, se. Zamir çekimli fiilin önüne gelir: me levanto, se ducha, nos acostamos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-reflexivos-7",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_reflexivos",
+  "type": "choice",
+  "prompt": "Yo ___ llamo Carlos.",
+  "answer": "me",
+  "options": [
+   "te",
+   "me",
+   "se"
+  ],
+  "hint": "yo → me llamo",
+  "explanation": "Dönüşlü fiillerde eylem özneye döner ve zamir fiille birlikte çekilir: me, te, se, nos, os, se. Zamir çekimli fiilin önüne gelir: me levanto, se ducha, nos acostamos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a1-reflexivos-8",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_reflexivos",
+  "type": "choice",
+  "prompt": "Ella ___ peina antes de salir.",
+  "answer": "se",
+  "options": [
+   "le",
+   "la",
+   "se"
+  ],
+  "hint": "ella → se",
+  "explanation": "Dönüşlü fiillerde eylem özneye döner ve zamir fiille birlikte çekilir: me, te, se, nos, os, se. Zamir çekimli fiilin önüne gelir: me levanto, se ducha, nos acostamos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-adjetivos-1",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_adjetivos",
+  "type": "choice",
+  "prompt": "Una casa ___.",
+  "answer": "grande",
+  "options": [
+   "gran",
+   "grande",
+   "grandes"
+  ],
+  "hint": "isimden sonra → grande",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar (alto, alta, altos, altas); -e ya da ünsüzle bitenler cinsiyette değişmez (grande, fácil). Çoğu sıfat isimden sonra gelir; bueno ve grande isimden önce kısalır: buen día, gran ciudad.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-adjetivos-2",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_adjetivos",
+  "type": "choice",
+  "prompt": "Unos libros ___.",
+  "answer": "interesantes",
+  "options": [
+   "interesante",
+   "interesanta",
+   "interesantes"
+  ],
+  "hint": "çoğul → -s",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar (alto, alta, altos, altas); -e ya da ünsüzle bitenler cinsiyette değişmez (grande, fácil). Çoğu sıfat isimden sonra gelir; bueno ve grande isimden önce kısalır: buen día, gran ciudad.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-adjetivos-3",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_adjetivos",
+  "type": "choice",
+  "prompt": "Mi hermana es muy ___.",
+  "answer": "alta",
+  "options": [
+   "alta",
+   "alto",
+   "altos"
+  ],
+  "hint": "dişil → alta",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar (alto, alta, altos, altas); -e ya da ünsüzle bitenler cinsiyette değişmez (grande, fácil). Çoğu sıfat isimden sonra gelir; bueno ve grande isimden önce kısalır: buen día, gran ciudad.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-adjetivos-4",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_adjetivos",
+  "type": "choice",
+  "prompt": "Es un ___ día.",
+  "answer": "buen",
+  "options": [
+   "buena",
+   "buen",
+   "bueno"
+  ],
+  "hint": "bueno eril isimden önce → buen",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar (alto, alta, altos, altas); -e ya da ünsüzle bitenler cinsiyette değişmez (grande, fácil). Çoğu sıfat isimden sonra gelir; bueno ve grande isimden önce kısalır: buen día, gran ciudad.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-adjetivos-5",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_adjetivos",
+  "type": "choice",
+  "prompt": "Tengo ___ amigos.",
+  "answer": "muchos",
+  "options": [
+   "mucho",
+   "muchas",
+   "muchos"
+  ],
+  "hint": "amigos eril çoğul → muchos",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar (alto, alta, altos, altas); -e ya da ünsüzle bitenler cinsiyette değişmez (grande, fácil). Çoğu sıfat isimden sonra gelir; bueno ve grande isimden önce kısalır: buen día, gran ciudad.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-adjetivos-6",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_adjetivos",
+  "type": "choice",
+  "prompt": "Una ___ ciudad.",
+  "answer": "gran",
+  "options": [
+   "gran",
+   "grande",
+   "grandes"
+  ],
+  "hint": "grande isimden önce → gran",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar (alto, alta, altos, altas); -e ya da ünsüzle bitenler cinsiyette değişmez (grande, fácil). Çoğu sıfat isimden sonra gelir; bueno ve grande isimden önce kısalır: buen día, gran ciudad.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-adjetivos-7",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_adjetivos",
+  "type": "choice",
+  "prompt": "Ellos son ___.",
+  "answer": "simpáticos",
+  "options": [
+   "simpáticas",
+   "simpáticos",
+   "simpático"
+  ],
+  "hint": "eril çoğul",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar (alto, alta, altos, altas); -e ya da ünsüzle bitenler cinsiyette değişmez (grande, fácil). Çoğu sıfat isimden sonra gelir; bueno ve grande isimden önce kısalır: buen día, gran ciudad.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-adjetivos-8",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_adjetivos",
+  "type": "choice",
+  "prompt": "Las chicas están ___.",
+  "answer": "cansadas",
+  "options": [
+   "cansados",
+   "cansada",
+   "cansadas"
+  ],
+  "hint": "dişil çoğul → cansadas",
+  "explanation": "Sıfat, ismin cinsiyetine ve sayısına uyar (alto, alta, altos, altas); -e ya da ünsüzle bitenler cinsiyette değişmez (grande, fácil). Çoğu sıfat isimden sonra gelir; bueno ve grande isimden önce kısalır: buen día, gran ciudad.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-preterito-1",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_preterito",
+  "type": "choice",
+  "prompt": "Ayer ___ al cine.",
+  "answer": "fui",
+  "options": [
+   "voy",
+   "fui",
+   "he ido"
+  ],
+  "hint": "ayer → indefinido, ir → fui",
+  "explanation": "Pretérito indefinido, bitmiş geçmiş eylemi söyler (ayer, anoche, el año pasado, en 2019): -ar fiillerinde -é, -aste, -ó, -amos, -aron; -er/-ir fiillerinde -í, -iste, -ió, -imos, -ieron. İr ve ser: fui, fuiste, fue…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-preterito-2",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_preterito",
+  "type": "choice",
+  "prompt": "Anoche nosotros ___ una película.",
+  "answer": "vimos",
+  "options": [
+   "vemos",
+   "veíamos",
+   "vimos"
+  ],
+  "hint": "anoche → indefinido",
+  "explanation": "Pretérito indefinido, bitmiş geçmiş eylemi söyler (ayer, anoche, el año pasado, en 2019): -ar fiillerinde -é, -aste, -ó, -amos, -aron; -er/-ir fiillerinde -í, -iste, -ió, -imos, -ieron. İr ve ser: fui, fuiste, fue…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-preterito-3",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_preterito",
+  "type": "choice",
+  "prompt": "El año pasado ella ___ en Lima.",
+  "answer": "vivió",
+  "options": [
+   "vivió",
+   "vive",
+   "vivía"
+  ],
+  "hint": "el año pasado → vivió",
+  "explanation": "Pretérito indefinido, bitmiş geçmiş eylemi söyler (ayer, anoche, el año pasado, en 2019): -ar fiillerinde -é, -aste, -ó, -amos, -aron; -er/-ir fiillerinde -í, -iste, -ió, -imos, -ieron. İr ve ser: fui, fuiste, fue…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-preterito-4",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_preterito",
+  "type": "choice",
+  "prompt": "Ayer yo ___ mucho.",
+  "answer": "comí",
+  "options": [
+   "como",
+   "comí",
+   "comió"
+  ],
+  "hint": "yo → -í",
+  "explanation": "Pretérito indefinido, bitmiş geçmiş eylemi söyler (ayer, anoche, el año pasado, en 2019): -ar fiillerinde -é, -aste, -ó, -amos, -aron; -er/-ir fiillerinde -í, -iste, -ió, -imos, -ieron. İr ve ser: fui, fuiste, fue…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-preterito-5",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_preterito",
+  "type": "choice",
+  "prompt": "¿Qué ___ tú ayer?",
+  "answer": "hiciste",
+  "options": [
+   "hice",
+   "hizo",
+   "hiciste"
+  ],
+  "hint": "tú → hiciste",
+  "explanation": "Pretérito indefinido, bitmiş geçmiş eylemi söyler (ayer, anoche, el año pasado, en 2019): -ar fiillerinde -é, -aste, -ó, -amos, -aron; -er/-ir fiillerinde -í, -iste, -ió, -imos, -ieron. İr ve ser: fui, fuiste, fue…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-preterito-6",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_preterito",
+  "type": "choice",
+  "prompt": "Ellos ___ la puerta anoche.",
+  "answer": "cerraron",
+  "options": [
+   "cerraron",
+   "cerró",
+   "cerramos"
+  ],
+  "hint": "ellos → -aron",
+  "explanation": "Pretérito indefinido, bitmiş geçmiş eylemi söyler (ayer, anoche, el año pasado, en 2019): -ar fiillerinde -é, -aste, -ó, -amos, -aron; -er/-ir fiillerinde -í, -iste, -ió, -imos, -ieron. İr ve ser: fui, fuiste, fue…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-preterito-7",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_preterito",
+  "type": "choice",
+  "prompt": "En 2019 mis padres ___ a Italia.",
+  "answer": "viajaron",
+  "options": [
+   "viajamos",
+   "viajaron",
+   "viajó"
+  ],
+  "hint": "ellos → -aron",
+  "explanation": "Pretérito indefinido, bitmiş geçmiş eylemi söyler (ayer, anoche, el año pasado, en 2019): -ar fiillerinde -é, -aste, -ó, -amos, -aron; -er/-ir fiillerinde -í, -iste, -ió, -imos, -ieron. İr ve ser: fui, fuiste, fue…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-a2-preterito-8",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_preterito",
+  "type": "choice",
+  "prompt": "Ayer yo ___ ocho horas.",
+  "answer": "dormí",
+  "options": [
+   "duermo",
+   "dormió",
+   "dormí"
+  ],
+  "hint": "yo → dormí",
+  "explanation": "Pretérito indefinido, bitmiş geçmiş eylemi söyler (ayer, anoche, el año pasado, en 2019): -ar fiillerinde -é, -aste, -ó, -amos, -aron; -er/-ir fiillerinde -í, -iste, -ió, -imos, -ieron. İr ve ser: fui, fuiste, fue…",
+  "source": "Diloloji (özgün)"
+ }
+]

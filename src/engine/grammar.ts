@@ -2,12 +2,12 @@ import { normalize, stripDiacritics } from './answerCheck'
 import { timeOf, type TargetLanguage } from './types'
 
 /**
- * Grammar questions on the hard points of B1–C1: a gap to fill, a choice, or an error to find.
+ * Grammar questions: the basics of A1–A2 (the topics of the guide's basic lessons) and the hard points of B1–C1: a gap to fill, a choice, or an error to find.
  * Each carries its rule in Turkish, shown after the answer. Questions come from `src/data/grammar`
  * (own, and later imported open-licence sets); how the learner does is kept per question.
  */
 export type GrammarType = 'cloze' | 'choice' | 'error'
-export type GrammarLevel = 'B1' | 'B2' | 'C1'
+export type GrammarLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1'
 
 export interface GrammarExercise {
   id: string
@@ -78,6 +78,35 @@ export const TOPIC_NAME: Record<string, string> = {
   imperativo_es: 'Emir kipi ve zamirler',
   passive_en: 'Edilgen yapı (passive)',
   relatives_en: 'İlgi cümleleri (who / which / whose / where)',
+  basics_fr_articles: 'Artikeller ve cinsiyet (le / la / un / une)',
+  basics_fr_etre_avoir: 'Être ve avoir',
+  basics_fr_present: 'Şimdiki zaman (présent)',
+  basics_fr_negation: 'Olumsuz cümle (ne … pas)',
+  basics_fr_possessifs: 'İyelik ve işaret sıfatları',
+  basics_fr_questions: 'Soru sözcükleri ve soru kurma',
+  basics_fr_passe_compose: 'Passé composé',
+  basics_fr_adjectifs: 'Sıfatlar: uyum ve yer',
+  basics_fr_lieux: 'Yer edatları',
+  basics_fr_depuis: 'Süre: depuis / il y a / pendant / dans',
+  basics_es_articulos: 'Artikeller ve cinsiyet (el / la / un / una)',
+  basics_es_presente: 'Şimdiki zaman (presente)',
+  basics_es_gustar: 'Gustar ve benzeri fiiller',
+  basics_es_negacion: 'Olumsuzluk (no / nada / nadie)',
+  basics_es_posesivos: 'İyelik ve işaret sıfatları',
+  basics_es_preguntas: 'Soru sözcükleri',
+  basics_es_hay_estar: 'Hay mı, está mı?',
+  basics_es_reflexivos: 'Dönüşlü fiiller',
+  basics_es_adjetivos: 'Sıfatlar: uyum ve yer',
+  basics_es_preterito: 'Pretérito indefinido',
+  basics_en_to_be: 'To be (am / is / are)',
+  basics_en_present_simple: 'Present simple',
+  basics_en_pronouns: 'Zamirler ve iyelik',
+  basics_en_there_is: 'There is / there are',
+  basics_en_demonstratives: 'This / that / these / those',
+  basics_en_questions: 'Soru sözcükleri',
+  basics_en_time_prepositions: 'Zaman edatları (in / on / at)',
+  basics_en_past_simple: 'Past simple',
+  basics_en_comparatives: 'Karşılaştırma (-er / more / the -est)',
   rewrite_fr: 'Cümle dönüşümü',
   rewrite_es: 'Cümle dönüşümü',
   rewrite_en: 'Cümle dönüşümü',
