@@ -38,6 +38,8 @@ const GROUP_LIST: Group[] = [
   { id: 's-data', name: 'Veriler', sub: 'Yedek, dışa aktarma ve sıfırlama', icon: <DataIcon size={18} /> },
   { id: 's-help', name: 'Yardım', sub: 'Bize ulaş, sık sorulanlar ve gizlilik', icon: <HelpIcon size={18} /> },
 ]
+/** Help is not one of the eight groups of the menu (they sit in an even grid); it is a button beside the search. */
+const HELP_GROUP: GroupId = 's-help'
 const GROUP_BY_ID = Object.fromEntries(GROUP_LIST.map((g) => [g.id, g])) as Record<GroupId, Group>
 
 function Pane({ group, active, children }: { group: Group; active: boolean; children: ReactNode }) {
@@ -131,16 +133,32 @@ export function SettingsScreen({
         art="settings"
         title="Ayarlar"
         action={
-          <label className="settings-search">
-            <SearchIcon size={18} />
-            <input className="input" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Ayar ara" aria-label="Ayar ara" />
-          </label>
+          <div className="settings-head-actions">
+            <label className="settings-search">
+              <SearchIcon size={18} />
+              <input className="input" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Ayar ara" aria-label="Ayar ara" />
+            </label>
+            <button
+              type="button"
+              className="btn btn-quiet settings-help-btn"
+              aria-label="Yardım"
+              title="Yardım"
+              aria-pressed={!searching && active === HELP_GROUP}
+              onClick={() => {
+                setQuery('')
+                choose(HELP_GROUP)
+              }}
+            >
+              <HelpIcon size={18} />
+              <span className="settings-help-label">Yardım</span>
+            </button>
+          </div>
         }
       />
       <div className="settings-layout">
         <aside className="settings-side">
           <nav className="settings-menu" aria-label="Ayar grupları">
-            {GROUP_LIST.map((g) => (
+            {GROUP_LIST.filter((g) => g.id !== HELP_GROUP).map((g) => (
               <button
                 key={g.id}
                 type="button"

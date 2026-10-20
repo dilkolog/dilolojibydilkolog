@@ -37,11 +37,11 @@ test('settings on a wide screen: title row, group strip and cards end on one lin
   await page.locator('.sidebar-settings').click()
   await expect(page.locator('.settings-menu-item').first()).toBeVisible()
   const right = (sel: string) => page.locator(sel).first().evaluate((e) => Math.round(e.getBoundingClientRect().right))
-  const edges = [await right('.page-header .settings-search'), await right('.settings-menu'), await right('.settings-pane:not([hidden]) .card')]
+  const edges = [await right('.page-header .settings-help-btn'), await right('.settings-menu'), await right('.settings-pane:not([hidden]) .card')]
   expect(Math.max(...edges) - Math.min(...edges)).toBeLessThanOrEqual(2)
   const strip = await page.locator('.settings-menu').boundingBox()
   const tabs = await page.locator('.settings-menu-item').evaluateAll((els) => els.map((e) => e.getBoundingClientRect()))
-  expect(tabs).toHaveLength(9)
+  expect(tabs).toHaveLength(8)
   for (const t of tabs) {
     expect(t.left).toBeGreaterThanOrEqual(strip!.x - 1)
     expect(t.right).toBeLessThanOrEqual(strip!.x + strip!.width + 1)

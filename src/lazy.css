@@ -1654,7 +1654,7 @@ details[open] > .account-accordion-summary .account-accordion-arrow { transform:
   .account-perks { padding: 0.875rem; }
 }
 @container main (min-width: 40rem) {
-  .account-perks { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .account-perks { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1.25rem; }
   .account-perks li { flex-direction: column; gap: 0.5rem; }
   .account-card .account-lead { max-width: none; }
 }
@@ -3559,3 +3559,19 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   .activity-mini .activity-grid { grid-auto-columns: minmax(0, 2.25rem); gap: 4px; }
   .activity-mini .activity-cell { border-radius: 4px; }
 }
+/* Settings: the search and the help button side by side (help is no ninth group in the menu). */
+.settings-head-actions { display: flex; align-items: center; gap: 0.5rem; }
+.settings-head-actions .settings-search { flex: 1 1 auto; min-width: 0; }
+.settings-help-btn { order: 3; flex: none; min-height: 2.5rem; min-width: 2.5rem; padding-inline: 0.625rem; }
+.settings-help-label { display: none; }
+/* On a phone there is room for the word. */
+@container main (max-width: 39.99rem) { .settings-help-label { display: inline; } }
+.settings-help-btn[aria-pressed='true'] { background: var(--lang-soft); color: var(--lang-text); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--lang) 22%, transparent); }
+@container main (min-width: 52rem) {
+  /* Eight groups: one even row of eight on a wide screen. */
+  .settings-menu { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+}
+
+/* Signed-out account card: the way in as one even row of buttons, the perks in equal columns. */
+.account-cta { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.625rem; }
+.account-cta .btn { min-width: 0; width: 100%; justify-content: center; }

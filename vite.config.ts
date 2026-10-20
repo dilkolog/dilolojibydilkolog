@@ -13,6 +13,26 @@ function buildId(): string {
   }
 }
 
+/**
+ * Everyone has an account: a production build without the Supabase sign-in settings would open the app to people with none
+ * (the gate is built in only when they are there). So such a build fails, instead of being deployed by mistake. The builds the
+ * tests use (no sign-in on purpose) say so with VITE_ALLOW_GUEST=1.
+ */
+function requireSignIn(): import('vite').Plugin {
+  return {
+    name: 'require-sign-in',
+    apply: 'build',
+    configResolved(config) {
+      if (config.mode !== 'production' || process.env.VITE_ALLOW_GUEST === '1') return
+      const url = String(config.env.VITE_SUPABASE_URL ?? '').trim()
+      const key = String(config.env.VITE_SUPABASE_PUBLISHABLE_KEY || config.env.VITE_SUPABASE_ANON_KEY || '').trim()
+      if (!/^https:\/\//.test(url) || !key) {
+        throw new Error('Giriş ayarı yok: derleme için VITE_SUPABASE_URL ve VITE_SUPABASE_PUBLISHABLE_KEY gerekli (herkesin hesabı olmak zorunda). Hesapsız test derlemesi: VITE_ALLOW_GUEST=1.')
+      }
+    },
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   define: { __BUILD_ID__: JSON.stringify(buildId()) },
@@ -24,6 +44,7 @@ export default defineConfig({
   // Server functions (api/) run on Vercel; in local development they are reached on the live site.
   server: { proxy: { '/api': { target: 'https://diloloji.com', changeOrigin: true } } },
   plugins: [
+    requireSignIn(),
     react(),
     // Precaches the built app (JS, CSS, fonts, icons) so it opens and works without internet.
     // All data already lives in IndexedDB on the device.
