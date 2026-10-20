@@ -1,0 +1,208 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "tasks": [
+    {
+      "id": "en-exam-weekend",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "A2",
+      "kind": "Arkadaşa mesaj",
+      "title": "A weekend in the countryside",
+      "instruction": "You spent a weekend in the countryside. Write a message to a friend and tell them what you did and what you enjoyed.",
+      "tr": "Hafta sonunu kırda geçirdin. Bir arkadaşına ne yaptığını ve nelerden hoşlandığını anlatan bir mesaj yaz.",
+      "min": 60,
+      "max": 80,
+      "checklist": [
+        "Selamlama ve kapanış koy.",
+        "Geçmişi past simple ile anlat (we walked, I ate).",
+        "İki etkinlik ve bir beğendiğin şey yaz.",
+        "Bir sonraki buluşmayı öner."
+      ],
+      "phrases": [
+        "Hi Sam,",
+        "We had a great weekend",
+        "First… then… finally…",
+        "I really enjoyed",
+        "See you soon!"
+      ]
+    },
+    {
+      "id": "en-exam-invite",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "A2",
+      "kind": "Davet",
+      "title": "A birthday party",
+      "instruction": "You are having a birthday party. Write a message to invite your friends. Say when and where it is and what they can bring.",
+      "tr": "Doğum günü partisi veriyorsun. Arkadaşlarını davet eden bir mesaj yaz: ne zaman, nerede ve ne getirebileceklerini söyle.",
+      "min": 60,
+      "max": 80,
+      "checklist": [
+        "Tarih, saat ve yeri net yaz.",
+        "Rica için Can you…? Would you like…? kalıplarını kullan.",
+        "Gelecek için going to / will kullan.",
+        "Cevap istediğin günü belirt."
+      ],
+      "phrases": [
+        "I'd like to invite you to my birthday party",
+        "It's on Saturday at 7 p.m.",
+        "Could you bring… ?",
+        "Let me know by Thursday",
+        "I hope you can come!"
+      ]
+    },
+    {
+      "id": "en-exam-school",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "A2",
+      "kind": "Bilgi isteme e-postası",
+      "title": "A language school",
+      "instruction": "You want to join an English course abroad. Write an email to the school and ask about prices, dates and accommodation.",
+      "tr": "Yurtdışında bir İngilizce kursuna katılmak istiyorsun. Okula fiyat, tarih ve konaklama hakkında soru soran bir e-posta yaz.",
+      "min": 60,
+      "max": 80,
+      "checklist": [
+        "Resmî selamlama kullan (Dear Sir or Madam).",
+        "Kendini ve nedenini kısaca söyle.",
+        "En az üç soru sor.",
+        "Teşekkür et ve nazikçe bitir."
+      ],
+      "phrases": [
+        "Dear Sir or Madam,",
+        "I am writing to ask about…",
+        "Could you tell me… ?",
+        "How much does it cost… ?",
+        "I look forward to hearing from you."
+      ]
+    },
+    {
+      "id": "en-exam-uniform",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B1",
+      "kind": "Fikir yazısı",
+      "title": "School uniforms",
+      "instruction": "Some people say that students should wear a uniform at school. What do you think? Give your opinion with two reasons and an example.",
+      "tr": "Bazıları öğrencilerin okulda üniforma giymesi gerektiğini söylüyor. Sen ne düşünüyorsun? İki gerekçe ve bir örnekle görüşünü yaz.",
+      "min": 150,
+      "max": 180,
+      "checklist": [
+        "Görüşünü ilk cümlelerde söyle.",
+        "İki gerekçe, her birine örnek.",
+        "Karşı görüşü kısaca kabul et (it is true that… but).",
+        "Bağlaçlar: firstly, in addition, finally.",
+        "Kısa bir sonuçla bitir."
+      ],
+      "phrases": [
+        "In my opinion,",
+        "I strongly agree / disagree that…",
+        "Firstly… secondly…",
+        "It is true that… but…",
+        "To sum up,"
+      ]
+    },
+    {
+      "id": "en-exam-complaint",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B1",
+      "kind": "Resmî şikâyet mektubu",
+      "title": "A late delivery",
+      "instruction": "You ordered a product online but it arrived late and damaged. Write a letter to the company to explain the problem and ask for a solution.",
+      "tr": "İnternetten bir ürün sipariş ettin ama geç ve hasarlı geldi. Şirkete sorunu anlatan ve çözüm isteyen bir mektup yaz.",
+      "min": 150,
+      "max": 180,
+      "checklist": [
+        "Sipariş tarihini ve numarasını belirt.",
+        "Sorunu somut anlat (the box was torn).",
+        "Ne istediğini net söyle: değişim ya da iade.",
+        "Resmî ve kibar dil: I would like to…",
+        "Yours faithfully ile kapat."
+      ],
+      "phrases": [
+        "I am writing to complain about…",
+        "I ordered it on 3 May but…",
+        "I would be grateful if you could…",
+        "I look forward to your reply.",
+        "Yours faithfully,"
+      ]
+    },
+    {
+      "id": "en-exam-story",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B1",
+      "kind": "Anlatı",
+      "title": "The best day of my life",
+      "instruction": "Write a story that begins: “It was the best day of my life, until…”",
+      "tr": "“Hayatımın en güzel günüydü, ta ki…” cümlesiyle başlayan bir hikâye yaz.",
+      "min": 150,
+      "max": 180,
+      "checklist": [
+        "Olayları sırayla anlat.",
+        "Past simple ve past continuous'u birlikte kullan.",
+        "Duygularını ve tepkini yaz.",
+        "Sonda bir sürpriz ya da ders ver."
+      ],
+      "phrases": [
+        "It was the best day of my life, until…",
+        "While I was… , suddenly",
+        "Luckily,",
+        "I couldn't believe it",
+        "In the end,"
+      ]
+    },
+    {
+      "id": "en-exam-social",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B2",
+      "kind": "Savunma yazısı",
+      "title": "Social media: benefits or risks?",
+      "instruction": "Do the benefits of social media outweigh the risks? Write an essay: discuss both sides and give your own opinion.",
+      "tr": "Sosyal medyanın yararları riskleri aşıyor mu? İki tarafı tartışan ve kendi görüşünü veren bir deneme yaz.",
+      "min": 250,
+      "max": 280,
+      "checklist": [
+        "Girişte soruyu kendi sözlerinle tanıt.",
+        "Her paragrafta bir fikir ve örnek.",
+        "Bağlaçlar: however, as a result, although, whereas.",
+        "Sonuçta görüşünü net söyle."
+      ],
+      "phrases": [
+        "It is often argued that…",
+        "On the one hand… on the other hand…",
+        "Nevertheless,",
+        "Although social media can be…",
+        "All things considered,"
+      ]
+    },
+    {
+      "id": "en-exam-volunteer",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B2",
+      "kind": "Motivasyon mektubu",
+      "title": "Volunteering at a shelter",
+      "instruction": "You are applying for a volunteer position at an animal shelter. Write a cover letter: your experience, your qualities and what you hope to learn.",
+      "tr": "Bir hayvan barınağında gönüllülük için başvuruyorsun. Deneyimini, niteliklerini ve ne öğrenmeyi umduğunu anlatan bir mektup yaz.",
+      "min": 250,
+      "max": 280,
+      "checklist": [
+        "İlanı ve ilgi nedenini belirt.",
+        "Deneyimini somut örneklerle anlat.",
+        "Nitelikleri olaylarla göster.",
+        "Görüşme isteğiyle ve resmî kapanışla bitir."
+      ],
+      "phrases": [
+        "I am writing in response to your advertisement",
+        "My experience of… has taught me…",
+        "I am a reliable and patient person",
+        "I would welcome the opportunity to discuss…",
+        "Yours sincerely,"
+      ]
+    }
+  ]
+}

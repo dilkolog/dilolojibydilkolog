@@ -3575,3 +3575,11 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 /* Signed-out account card: the way in as one even row of buttons, the perks in equal columns. */
 .account-cta { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.625rem; }
 .account-cta .btn { min-width: 0; width: 100%; justify-content: center; }
+
+/* Exam-style writing task (Yaz & konuş → Günlük) */
+.exam-pick { max-width: 28rem; }
+.exam-instruction { line-height: 1.5; }
+.exam-checklist { margin: 0; padding-left: 1.25rem; display: grid; gap: 0.25rem; }
+.exam-phrases { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.exam-phrases li { background: var(--surface-2); border-radius: var(--r-md); padding: 0.25rem 0.625rem; font-style: italic; }
+.exam-count-ok { color: var(--ok-text); font-weight: 600; }

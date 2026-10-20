@@ -28,6 +28,9 @@ import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
 import { useTabIndicator } from './useTabIndicator'
 import { correctionDiff } from '../engine/correctionDiff'
+import { countWords, lengthState, type ExamTask } from '../engine/examTasks'
+import { loadExamTasks } from '../data/examTasks'
+import { Select } from './Select'
 
 interface Props {
   db: KelimeDB
@@ -90,6 +93,29 @@ export function ProduceScreen(p: Props) {
 // Journal
 // ---------------------------------------------------------------------------
 
+/** One exam-style task: what the exam asks, what the text should do and phrases that fit. */
+function ExamTaskCard({ task, language }: { task: ExamTask; language: TargetLanguage }) {
+  return (
+    <div className="exam-task stack">
+      <p lang={language} className="exam-instruction">
+        <strong>{task.title}.</strong> {task.instruction}
+      </p>
+      <p className="small muted">{task.tr}</p>
+      <ul className="exam-checklist small">
+        {task.checklist.map((c) => (
+          <li key={c}>{c}</li>
+        ))}
+      </ul>
+      <ul className="exam-phrases small" lang={language} aria-label="İşine yarayacak kalıplar">
+        {task.phrases.map((p) => (
+          <li key={p}>{p}</li>
+        ))}
+      </ul>
+      <p className="small muted">{task.exam} tarzında özgün bir görev; resmî sınav sorusu değildir. Hedef: {task.min}–{task.max} kelime.</p>
+    </div>
+  )
+}
+
 function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }: Props) {
   const { apiKey } = useAi()
   const words = usePracticeWords(vocabulary, states, 3)
@@ -102,11 +128,20 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
   const [added, setAdded] = useState(0)
   const [credited, setCredited] = useState(0)
   const [confirmDelete, setConfirmDelete] = useState<JournalEntry | null>(null)
+  const [examTasks, setExamTasks] = useState<ExamTask[]>([])
+  const [taskId, setTaskId] = useState('')
+  const task = examTasks.find((t) => t.id === taskId)
   const area = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
     db.getJournal(language).then(setEntries)
   }, [db, language])
+
+  useEffect(() => {
+    setTaskId('')
+    setExamTasks([])
+    void loadExamTasks(language).then(setExamTasks)
+  }, [language])
 
   const handleDelete = async (entryToDelete: JournalEntry) => {
     setConfirmDelete(null)
@@ -154,14 +189,30 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
   const iso = (at: unknown) => (typeof at === 'string' ? at : new Date(timeOf(at)).toISOString())
   const thisMonth = entries.filter((e) => iso(e.at).slice(0, 7) === new Date().toISOString().slice(0, 7))
   const days = new Set(thisMonth.map((e) => iso(e.at).slice(0, 10))).size
-  const wordsCount = text.trim() ? text.trim().split(/\s+/).length : 0
+  const wordsCount = countWords(text)
+  const length = task ? lengthState(wordsCount, task.min, task.max) : null
 
   return (
     <div className="stack">
       <section className="card stack">
-        <p>
-          <strong>Bugünün konusu:</strong> {prompt}
-        </p>
+        {examTasks.length > 0 && (
+          <div className="exam-pick">
+            <Select
+              label="Konu"
+              value={taskId || 'free'}
+              onChange={(v) => setTaskId(v === 'free' ? '' : v)}
+              options={[
+                { value: 'free', label: 'Bugünün konusu', hint: 'Serbest yazı' },
+                ...examTasks.map((t) => ({ value: t.id, label: `${t.exam} ${t.level} · ${t.kind}`, hint: t.title })),
+              ]}
+            />
+          </div>
+        )}
+        {task ? <ExamTaskCard task={task} language={language} /> : (
+          <p>
+            <strong>Bugünün konusu:</strong> {prompt}
+          </p>
+        )}
         {words.length > 0 && (
           <p className="small">
             Kullanmayı dene:{' '}
@@ -191,7 +242,9 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
           <button className="btn" onClick={save} disabled={busy || wordsCount < 3}>
             {busy ? 'Düzeltiliyor…' : apiKey ? 'Kaydet ve düzelt' : 'Kaydet'}
           </button>
-          <span className="small muted">{wordsCount} kelime</span>
+          <span className={`small ${length === 'in' ? 'exam-count-ok' : 'muted'}`} aria-live="polite">
+            {task ? `${wordsCount} kelime · hedef ${task.min}–${task.max}${length === 'short' ? ' (biraz daha yaz)' : length === 'long' ? ' (biraz kısalt)' : ''}` : `${wordsCount} kelime`}
+          </span>
           {!apiKey && (
             <button className="link small" onClick={onOpenSettings}>
               Düzeltme için YZ'yi aç
