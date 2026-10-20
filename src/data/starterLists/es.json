@@ -1,0 +1,1162 @@
+{
+ "language": "es",
+ "source": "Diloloji (özgün)",
+ "lists": [
+  {
+   "id": "greetings",
+   "title": "Selamlaşma ve tanışma",
+   "level": "A1",
+   "items": [
+    {
+     "w": "hola",
+     "t": "merhaba",
+     "s": "Hola, ¿cómo estás?",
+     "tr": "Merhaba, nasılsın?",
+     "p": "phrase"
+    },
+    {
+     "w": "buenos días",
+     "t": "günaydın",
+     "s": "Buenos días, señora.",
+     "tr": "Günaydın hanımefendi.",
+     "p": "phrase"
+    },
+    {
+     "w": "buenas tardes",
+     "t": "iyi öğleden sonralar",
+     "s": "Buenas tardes, ¿en qué puedo ayudarle?",
+     "tr": "İyi günler, size nasıl yardımcı olabilirim?",
+     "p": "phrase"
+    },
+    {
+     "w": "buenas noches",
+     "t": "iyi geceler, iyi akşamlar",
+     "s": "Buenas noches, hasta mañana.",
+     "tr": "İyi geceler, yarına kadar.",
+     "p": "phrase"
+    },
+    {
+     "w": "adiós",
+     "t": "hoşça kal",
+     "s": "Adiós, hasta luego.",
+     "tr": "Hoşça kal, sonra görüşürüz.",
+     "p": "phrase"
+    },
+    {
+     "w": "hasta luego",
+     "t": "sonra görüşürüz",
+     "s": "Hasta luego, amigos.",
+     "tr": "Sonra görüşürüz arkadaşlar.",
+     "p": "phrase"
+    },
+    {
+     "w": "gracias",
+     "t": "teşekkürler",
+     "s": "Muchas gracias por todo.",
+     "tr": "Her şey için çok teşekkürler.",
+     "p": "phrase"
+    },
+    {
+     "w": "por favor",
+     "t": "lütfen",
+     "s": "Un café, por favor.",
+     "tr": "Bir kahve lütfen.",
+     "p": "phrase"
+    },
+    {
+     "w": "perdón",
+     "t": "pardon, affedersiniz",
+     "s": "Perdón, ¿dónde está la estación?",
+     "tr": "Affedersiniz, istasyon nerede?",
+     "p": "phrase"
+    },
+    {
+     "w": "lo siento",
+     "t": "üzgünüm, özür dilerim",
+     "s": "Lo siento, llego tarde.",
+     "tr": "Üzgünüm, geç kaldım.",
+     "p": "phrase"
+    },
+    {
+     "w": "mucho gusto",
+     "t": "memnun oldum",
+     "s": "Me llamo Ana, mucho gusto.",
+     "tr": "Adım Ana, memnun oldum.",
+     "p": "phrase"
+    },
+    {
+     "w": "llamarse",
+     "t": "adı … olmak",
+     "s": "Me llamo Pedro, ¿y tú cómo te llamas?",
+     "tr": "Benim adım Pedro, senin adın ne?",
+     "p": "verb"
+    },
+    {
+     "w": "sí",
+     "t": "evet",
+     "s": "Sí, entiendo.",
+     "tr": "Evet, anlıyorum.",
+     "p": "other"
+    },
+    {
+     "w": "no",
+     "t": "hayır",
+     "s": "No, gracias.",
+     "tr": "Hayır, teşekkürler.",
+     "p": "other"
+    },
+    {
+     "w": "de nada",
+     "t": "bir şey değil",
+     "s": "Gracias. — De nada.",
+     "tr": "Teşekkürler. — Bir şey değil.",
+     "p": "phrase"
+    },
+    {
+     "w": "bienvenido",
+     "t": "hoş geldin",
+     "s": "¡Bienvenido a nuestra casa!",
+     "tr": "Evimize hoş geldin!",
+     "p": "adjective"
+    }
+   ]
+  },
+  {
+   "id": "family",
+   "title": "Aile ve insanlar",
+   "level": "A1",
+   "items": [
+    {
+     "w": "la familia",
+     "t": "aile",
+     "s": "Mi familia vive en Sevilla.",
+     "tr": "Ailem Sevilla'da yaşıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el padre",
+     "t": "baba",
+     "s": "Mi padre trabaja en un banco.",
+     "tr": "Babam bir bankada çalışıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la madre",
+     "t": "anne",
+     "s": "Mi madre cocina muy bien.",
+     "tr": "Annem çok güzel yemek yapar.",
+     "p": "noun"
+    },
+    {
+     "w": "el hermano",
+     "t": "erkek kardeş",
+     "s": "Tengo un hermano menor.",
+     "tr": "Küçük bir erkek kardeşim var.",
+     "p": "noun"
+    },
+    {
+     "w": "la hermana",
+     "t": "kız kardeş",
+     "s": "Mi hermana estudia en Madrid.",
+     "tr": "Kız kardeşim Madrid'de okuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el hijo",
+     "t": "oğul",
+     "s": "Su hijo tiene cinco años.",
+     "tr": "Oğlu beş yaşında.",
+     "p": "noun"
+    },
+    {
+     "w": "la hija",
+     "t": "kız çocuk",
+     "s": "Su hija es muy simpática.",
+     "tr": "Kızı çok sempatik.",
+     "p": "noun"
+    },
+    {
+     "w": "el abuelo",
+     "t": "büyükbaba",
+     "s": "Mi abuelo vive en el campo.",
+     "tr": "Büyükbabam kırsalda yaşıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la abuela",
+     "t": "büyükanne",
+     "s": "Mi abuela hace pasteles deliciosos.",
+     "tr": "Büyükannem lezzetli pastalar yapar.",
+     "p": "noun"
+    },
+    {
+     "w": "el tío",
+     "t": "amca, dayı",
+     "s": "Mi tío viene el domingo.",
+     "tr": "Amcam pazar günü geliyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la tía",
+     "t": "teyze, hala",
+     "s": "Mi tía es médica.",
+     "tr": "Teyzem doktor.",
+     "p": "noun"
+    },
+    {
+     "w": "el amigo",
+     "t": "arkadaş",
+     "s": "Mi amigo Carlos es muy gracioso.",
+     "tr": "Arkadaşım Carlos çok komik.",
+     "p": "noun"
+    },
+    {
+     "w": "el niño",
+     "t": "çocuk (erkek)",
+     "s": "El niño juega en el jardín.",
+     "tr": "Çocuk bahçede oynuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el marido",
+     "t": "koca",
+     "s": "Su marido es profesor.",
+     "tr": "Kocası öğretmen.",
+     "p": "noun"
+    },
+    {
+     "w": "la mujer",
+     "t": "kadın, eş",
+     "s": "Esa mujer es mi vecina.",
+     "tr": "O kadın benim komşum.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "food",
+   "title": "Yiyecek ve içecek",
+   "level": "A1",
+   "items": [
+    {
+     "w": "el pan",
+     "t": "ekmek",
+     "s": "Como pan con queso.",
+     "tr": "Peynirle ekmek yerim.",
+     "p": "noun"
+    },
+    {
+     "w": "el agua",
+     "t": "su",
+     "s": "Quiero un vaso de agua.",
+     "tr": "Bir bardak su istiyorum.",
+     "p": "noun",
+     "g": "f"
+    },
+    {
+     "w": "la leche",
+     "t": "süt",
+     "s": "Bebo leche por la mañana.",
+     "tr": "Sabahları süt içerim.",
+     "p": "noun"
+    },
+    {
+     "w": "el café",
+     "t": "kahve",
+     "s": "Un café solo, por favor.",
+     "tr": "Bir sade kahve lütfen.",
+     "p": "noun"
+    },
+    {
+     "w": "el queso",
+     "t": "peynir",
+     "s": "Este queso está delicioso.",
+     "tr": "Bu peynir lezzetli.",
+     "p": "noun"
+    },
+    {
+     "w": "la carne",
+     "t": "et",
+     "s": "Ella no come carne.",
+     "tr": "O et yemiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el pescado",
+     "t": "balık",
+     "s": "Comemos pescado los viernes.",
+     "tr": "Cuma günleri balık yeriz.",
+     "p": "noun"
+    },
+    {
+     "w": "la fruta",
+     "t": "meyve",
+     "s": "Como fruta todas las mañanas.",
+     "tr": "Her sabah meyve yerim.",
+     "p": "noun"
+    },
+    {
+     "w": "la manzana",
+     "t": "elma",
+     "s": "Esta manzana está muy roja.",
+     "tr": "Bu elma çok kırmızı.",
+     "p": "noun"
+    },
+    {
+     "w": "la verdura",
+     "t": "sebze",
+     "s": "Hay que comer verduras.",
+     "tr": "Sebze yemek gerekir.",
+     "p": "noun"
+    },
+    {
+     "w": "el huevo",
+     "t": "yumurta",
+     "s": "Tomo un huevo en el desayuno.",
+     "tr": "Kahvaltıda bir yumurta yerim.",
+     "p": "noun"
+    },
+    {
+     "w": "el arroz",
+     "t": "pirinç, pilav",
+     "s": "El arroz está listo.",
+     "tr": "Pilav hazır.",
+     "p": "noun"
+    },
+    {
+     "w": "el desayuno",
+     "t": "kahvaltı",
+     "s": "El desayuno es a las ocho.",
+     "tr": "Kahvaltı saat sekizde.",
+     "p": "noun"
+    },
+    {
+     "w": "el almuerzo",
+     "t": "öğle yemeği",
+     "s": "Almorzamos a las dos.",
+     "tr": "Öğle yemeğini ikide yeriz.",
+     "p": "noun"
+    },
+    {
+     "w": "la cena",
+     "t": "akşam yemeği",
+     "s": "La cena está lista.",
+     "tr": "Akşam yemeği hazır.",
+     "p": "noun"
+    },
+    {
+     "w": "comer",
+     "t": "yemek",
+     "s": "¿Qué quieres comer?",
+     "tr": "Ne yemek istiyorsun?",
+     "p": "verb"
+    },
+    {
+     "w": "beber",
+     "t": "içmek",
+     "s": "Nunca bebo café por la noche.",
+     "tr": "Geceleri asla kahve içmem.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "home",
+   "title": "Ev ve günlük eşyalar",
+   "level": "A1",
+   "items": [
+    {
+     "w": "la casa",
+     "t": "ev",
+     "s": "Nuestra casa está cerca del mar.",
+     "tr": "Evimiz denize yakın.",
+     "p": "noun"
+    },
+    {
+     "w": "el piso",
+     "t": "apartman dairesi",
+     "s": "Vivo en un piso pequeño.",
+     "tr": "Küçük bir dairede oturuyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "el dormitorio",
+     "t": "yatak odası",
+     "s": "Mi dormitorio está en el primer piso.",
+     "tr": "Yatak odam birinci katta.",
+     "p": "noun"
+    },
+    {
+     "w": "la cocina",
+     "t": "mutfak",
+     "s": "Mamá está en la cocina.",
+     "tr": "Annem mutfakta.",
+     "p": "noun"
+    },
+    {
+     "w": "el baño",
+     "t": "banyo",
+     "s": "El baño está a la derecha.",
+     "tr": "Banyo sağda.",
+     "p": "noun"
+    },
+    {
+     "w": "el salón",
+     "t": "oturma odası",
+     "s": "Vemos la tele en el salón.",
+     "tr": "Oturma odasında televizyon izliyoruz.",
+     "p": "noun"
+    },
+    {
+     "w": "la puerta",
+     "t": "kapı",
+     "s": "Cierra la puerta, por favor.",
+     "tr": "Kapıyı kapat lütfen.",
+     "p": "noun"
+    },
+    {
+     "w": "la ventana",
+     "t": "pencere",
+     "s": "Abre la ventana, hace calor.",
+     "tr": "Pencereyi aç, hava sıcak.",
+     "p": "noun"
+    },
+    {
+     "w": "la mesa",
+     "t": "masa",
+     "s": "El libro está sobre la mesa.",
+     "tr": "Kitap masanın üstünde.",
+     "p": "noun"
+    },
+    {
+     "w": "la silla",
+     "t": "sandalye",
+     "s": "Hay cuatro sillas alrededor de la mesa.",
+     "tr": "Masanın etrafında dört sandalye var.",
+     "p": "noun"
+    },
+    {
+     "w": "la cama",
+     "t": "yatak",
+     "s": "Leo en mi cama.",
+     "tr": "Yatağımda kitap okurum.",
+     "p": "noun"
+    },
+    {
+     "w": "la llave",
+     "t": "anahtar",
+     "s": "He perdido mis llaves.",
+     "tr": "Anahtarlarımı kaybettim.",
+     "p": "noun"
+    },
+    {
+     "w": "el teléfono",
+     "t": "telefon",
+     "s": "Mi teléfono está en el sofá.",
+     "tr": "Telefonum kanepenin üstünde.",
+     "p": "noun"
+    },
+    {
+     "w": "el ordenador",
+     "t": "bilgisayar",
+     "s": "Trabaja con su ordenador.",
+     "tr": "Bilgisayarıyla çalışıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el jardín",
+     "t": "bahçe",
+     "s": "Los niños juegan en el jardín.",
+     "tr": "Çocuklar bahçede oynuyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "city",
+   "title": "Şehir ve ulaşım",
+   "level": "A1",
+   "items": [
+    {
+     "w": "la ciudad",
+     "t": "şehir",
+     "s": "Madrid es una ciudad grande.",
+     "tr": "Madrid büyük bir şehir.",
+     "p": "noun"
+    },
+    {
+     "w": "la calle",
+     "t": "sokak, cadde",
+     "s": "Ella vive en esta calle.",
+     "tr": "O bu sokakta oturuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la estación",
+     "t": "istasyon",
+     "s": "La estación está al lado de correos.",
+     "tr": "İstasyon postanenin yanında.",
+     "p": "noun"
+    },
+    {
+     "w": "el tren",
+     "t": "tren",
+     "s": "El tren sale a las nueve.",
+     "tr": "Tren dokuzda kalkıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el autobús",
+     "t": "otobüs",
+     "s": "Cojo el autobús todos los días.",
+     "tr": "Her gün otobüse binerim.",
+     "p": "noun"
+    },
+    {
+     "w": "el metro",
+     "t": "metro",
+     "s": "El metro es rápido.",
+     "tr": "Metro hızlı.",
+     "p": "noun"
+    },
+    {
+     "w": "el coche",
+     "t": "araba",
+     "s": "Nuestro coche está averiado.",
+     "tr": "Arabamız bozuldu.",
+     "p": "noun"
+    },
+    {
+     "w": "la bicicleta",
+     "t": "bisiklet",
+     "s": "Va al trabajo en bicicleta.",
+     "tr": "İşe bisikletle gidiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el aeropuerto",
+     "t": "havalimanı",
+     "s": "El aeropuerto está lejos del centro.",
+     "tr": "Havalimanı merkeze uzak.",
+     "p": "noun"
+    },
+    {
+     "w": "el banco",
+     "t": "banka",
+     "s": "El banco cierra a las cinco.",
+     "tr": "Banka beşte kapanıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "correos",
+     "t": "postane",
+     "s": "¿Dónde está correos, por favor?",
+     "tr": "Postane nerede lütfen?",
+     "p": "noun"
+    },
+    {
+     "w": "el hospital",
+     "t": "hastane",
+     "s": "El hospital está cerca del parque.",
+     "tr": "Hastane parkın yakınında.",
+     "p": "noun"
+    },
+    {
+     "w": "la tienda",
+     "t": "mağaza, dükkân",
+     "s": "Esta tienda abre a las diez.",
+     "tr": "Bu mağaza ona açılıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "a la derecha",
+     "t": "sağda, sağa",
+     "s": "Gire a la derecha en el semáforo.",
+     "tr": "Işıkta sağa dönün.",
+     "p": "phrase"
+    },
+    {
+     "w": "a la izquierda",
+     "t": "solda, sola",
+     "s": "La farmacia está a la izquierda.",
+     "tr": "Eczane solda.",
+     "p": "phrase"
+    },
+    {
+     "w": "todo recto",
+     "t": "dümdüz",
+     "s": "Siga todo recto y luego gire.",
+     "tr": "Dümdüz gidin, sonra dönün.",
+     "p": "phrase"
+    }
+   ]
+  },
+  {
+   "id": "travel",
+   "title": "Seyahat ve otel",
+   "level": "A2",
+   "items": [
+    {
+     "w": "el viaje",
+     "t": "yolculuk",
+     "s": "Hacemos un viaje a Italia.",
+     "tr": "İtalya'ya bir yolculuk yapıyoruz.",
+     "p": "noun"
+    },
+    {
+     "w": "la maleta",
+     "t": "bavul",
+     "s": "Mi maleta es muy pesada.",
+     "tr": "Bavulum çok ağır.",
+     "p": "noun"
+    },
+    {
+     "w": "el billete",
+     "t": "bilet",
+     "s": "He comprado dos billetes de tren.",
+     "tr": "İki tren bileti aldım.",
+     "p": "noun"
+    },
+    {
+     "w": "el pasaporte",
+     "t": "pasaport",
+     "s": "No olvides tu pasaporte.",
+     "tr": "Pasaportunu unutma.",
+     "p": "noun"
+    },
+    {
+     "w": "el hotel",
+     "t": "otel",
+     "s": "Nuestro hotel está cerca de la playa.",
+     "tr": "Otelimiz plaja yakın.",
+     "p": "noun"
+    },
+    {
+     "w": "la reserva",
+     "t": "rezervasyon",
+     "s": "Tengo una reserva a nombre de Martín.",
+     "tr": "Martín adına bir rezervasyonum var.",
+     "p": "noun"
+    },
+    {
+     "w": "la habitación doble",
+     "t": "iki kişilik oda",
+     "s": "Quisiera una habitación doble.",
+     "tr": "İki kişilik bir oda istiyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "la playa",
+     "t": "plaj",
+     "s": "La playa es preciosa en verano.",
+     "tr": "Plaj yazın harika.",
+     "p": "noun"
+    },
+    {
+     "w": "el mapa",
+     "t": "harita",
+     "s": "¿Tiene un mapa de la ciudad?",
+     "tr": "Şehrin bir haritası var mı?",
+     "p": "noun"
+    },
+    {
+     "w": "salir",
+     "t": "çıkmak, yola çıkmak",
+     "s": "Salimos mañana por la mañana.",
+     "tr": "Yarın sabah yola çıkıyoruz.",
+     "p": "verb"
+    },
+    {
+     "w": "llegar",
+     "t": "varmak",
+     "s": "El tren llega a mediodía.",
+     "tr": "Tren öğlen varıyor.",
+     "p": "verb"
+    },
+    {
+     "w": "reservar",
+     "t": "rezerve etmek",
+     "s": "Quiero reservar una mesa.",
+     "tr": "Bir masa ayırtmak istiyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "visitar",
+     "t": "gezmek, ziyaret etmek",
+     "s": "Mañana visitamos el museo.",
+     "tr": "Yarın müzeyi geziyoruz.",
+     "p": "verb"
+    },
+    {
+     "w": "el retraso",
+     "t": "gecikme",
+     "s": "El vuelo lleva dos horas de retraso.",
+     "tr": "Uçuş iki saat gecikmeli.",
+     "p": "noun"
+    },
+    {
+     "w": "la salida",
+     "t": "çıkış",
+     "s": "La salida está al final del pasillo.",
+     "tr": "Çıkış koridorun sonunda.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "time",
+   "title": "Zaman: günler ve aylar",
+   "level": "A1",
+   "items": [
+    {
+     "w": "el lunes",
+     "t": "pazartesi",
+     "s": "El lunes empiezo a las ocho.",
+     "tr": "Pazartesi sekizde başlıyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "el martes",
+     "t": "salı",
+     "s": "El martes tenemos clase de español.",
+     "tr": "Salı günü İspanyolca dersimiz var.",
+     "p": "noun"
+    },
+    {
+     "w": "el miércoles",
+     "t": "çarşamba",
+     "s": "El miércoles voy al gimnasio.",
+     "tr": "Çarşamba spor salonuna gidiyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "el jueves",
+     "t": "perşembe",
+     "s": "El jueves voy al cine.",
+     "tr": "Perşembe sinemaya gidiyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "el viernes",
+     "t": "cuma",
+     "s": "El viernes por la noche salimos.",
+     "tr": "Cuma akşamı dışarı çıkıyoruz.",
+     "p": "noun"
+    },
+    {
+     "w": "el sábado",
+     "t": "cumartesi",
+     "s": "El sábado duermo hasta tarde.",
+     "tr": "Cumartesi geç yatarım.",
+     "p": "noun"
+    },
+    {
+     "w": "el domingo",
+     "t": "pazar",
+     "s": "El domingo comemos en familia.",
+     "tr": "Pazar günü ailece yemek yeriz.",
+     "p": "noun"
+    },
+    {
+     "w": "hoy",
+     "t": "bugün",
+     "s": "Hoy hace buen tiempo.",
+     "tr": "Bugün hava güzel.",
+     "p": "other"
+    },
+    {
+     "w": "mañana",
+     "t": "yarın",
+     "s": "Mañana salimos de viaje.",
+     "tr": "Yarın yolculuğa çıkıyoruz.",
+     "p": "other"
+    },
+    {
+     "w": "ayer",
+     "t": "dün",
+     "s": "Ayer trabajé todo el día.",
+     "tr": "Dün bütün gün çalıştım.",
+     "p": "other"
+    },
+    {
+     "w": "la tarde",
+     "t": "öğleden sonra, akşamüstü",
+     "s": "Por la tarde estudio español.",
+     "tr": "Öğleden sonraları İspanyolca çalışırım.",
+     "p": "noun"
+    },
+    {
+     "w": "la noche",
+     "t": "gece, akşam",
+     "s": "Por la noche cenamos a las nueve.",
+     "tr": "Akşamları dokuzda yemek yeriz.",
+     "p": "noun"
+    },
+    {
+     "w": "la semana",
+     "t": "hafta",
+     "s": "Esta semana estoy muy ocupado.",
+     "tr": "Bu hafta çok meşgulüm.",
+     "p": "noun"
+    },
+    {
+     "w": "el mes",
+     "t": "ay",
+     "s": "El mes que viene me voy de vacaciones.",
+     "tr": "Gelecek ay tatile çıkıyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "el año",
+     "t": "yıl",
+     "s": "Este año aprendo francés.",
+     "tr": "Bu yıl Fransızca öğreniyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "la hora",
+     "t": "saat, zaman",
+     "s": "¿Qué hora es?",
+     "tr": "Saat kaç?",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "health",
+   "title": "Vücut ve sağlık",
+   "level": "A2",
+   "items": [
+    {
+     "w": "la cabeza",
+     "t": "baş",
+     "s": "Me duele la cabeza.",
+     "tr": "Başım ağrıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el brazo",
+     "t": "kol",
+     "s": "Se ha roto el brazo.",
+     "tr": "Kolunu kırdı.",
+     "p": "noun"
+    },
+    {
+     "w": "la mano",
+     "t": "el",
+     "s": "Lávate las manos antes de comer.",
+     "tr": "Yemekten önce ellerini yıka.",
+     "p": "noun"
+    },
+    {
+     "w": "la pierna",
+     "t": "bacak",
+     "s": "Me duele la pierna.",
+     "tr": "Bacağım ağrıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el pie",
+     "t": "ayak",
+     "s": "Me duele el pie.",
+     "tr": "Ayağım ağrıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el estómago",
+     "t": "mide, karın",
+     "s": "Le duele el estómago.",
+     "tr": "Midesi ağrıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la espalda",
+     "t": "sırt",
+     "s": "Me duele la espalda desde ayer.",
+     "tr": "Dünden beri sırtım ağrıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la garganta",
+     "t": "boğaz",
+     "s": "Me duele la garganta.",
+     "tr": "Boğazım ağrıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el médico",
+     "t": "doktor",
+     "s": "Tengo que ir al médico mañana.",
+     "tr": "Yarın doktora gitmem gerek.",
+     "p": "noun"
+    },
+    {
+     "w": "la farmacia",
+     "t": "eczane",
+     "s": "La farmacia está abierta hasta las ocho.",
+     "tr": "Eczane sekize kadar açık.",
+     "p": "noun"
+    },
+    {
+     "w": "la medicina",
+     "t": "ilaç",
+     "s": "Tome esta medicina dos veces al día.",
+     "tr": "Bu ilacı günde iki kez alın.",
+     "p": "noun"
+    },
+    {
+     "w": "la fiebre",
+     "t": "ateş",
+     "s": "El niño tiene fiebre.",
+     "tr": "Çocuğun ateşi var.",
+     "p": "noun"
+    },
+    {
+     "w": "enfermo",
+     "t": "hasta",
+     "s": "Estoy enfermo, me quedo en la cama.",
+     "tr": "Hastayım, yatakta kalıyorum.",
+     "p": "adjective"
+    },
+    {
+     "w": "cansado",
+     "t": "yorgun",
+     "s": "Estoy muy cansado esta noche.",
+     "tr": "Bu akşam çok yorgunum.",
+     "p": "adjective"
+    },
+    {
+     "w": "doler",
+     "t": "ağrımak, acımak",
+     "s": "¿Dónde le duele?",
+     "tr": "Neresi ağrıyor?",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "work",
+   "title": "İş ve okul",
+   "level": "A2",
+   "items": [
+    {
+     "w": "el trabajo",
+     "t": "iş, çalışma",
+     "s": "Mi trabajo empieza a las nueve.",
+     "tr": "İşim dokuzda başlıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la oficina",
+     "t": "ofis",
+     "s": "Está en la oficina hasta las seis.",
+     "tr": "Altıya kadar ofiste.",
+     "p": "noun"
+    },
+    {
+     "w": "el compañero",
+     "t": "iş/sınıf arkadaşı",
+     "s": "Mi compañero es muy amable.",
+     "tr": "İş arkadaşım çok kibar.",
+     "p": "noun"
+    },
+    {
+     "w": "el jefe",
+     "t": "patron, şef",
+     "s": "El jefe está en una reunión.",
+     "tr": "Patron toplantıda.",
+     "p": "noun"
+    },
+    {
+     "w": "la reunión",
+     "t": "toplantı",
+     "s": "La reunión dura una hora.",
+     "tr": "Toplantı bir saat sürüyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el colegio",
+     "t": "okul",
+     "s": "Los niños van al colegio andando.",
+     "tr": "Çocuklar okula yürüyerek gidiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la universidad",
+     "t": "üniversite",
+     "s": "Ella estudia en la universidad de Salamanca.",
+     "tr": "Salamanca Üniversitesi'nde okuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el estudiante",
+     "t": "öğrenci",
+     "s": "Mi hermano es estudiante de medicina.",
+     "tr": "Erkek kardeşim tıp öğrencisi.",
+     "p": "noun"
+    },
+    {
+     "w": "el profesor",
+     "t": "öğretmen, profesör",
+     "s": "El profesor explica la lección.",
+     "tr": "Öğretmen dersi anlatıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la clase",
+     "t": "ders, sınıf",
+     "s": "La clase de español es a las diez.",
+     "tr": "İspanyolca dersi ondadır.",
+     "p": "noun"
+    },
+    {
+     "w": "el examen",
+     "t": "sınav",
+     "s": "Tengo un examen el lunes.",
+     "tr": "Pazartesi sınavım var.",
+     "p": "noun"
+    },
+    {
+     "w": "los deberes",
+     "t": "ödev",
+     "s": "Hago los deberes después del colegio.",
+     "tr": "Ödevlerimi okuldan sonra yaparım.",
+     "p": "noun"
+    },
+    {
+     "w": "trabajar",
+     "t": "çalışmak",
+     "s": "Trabajamos de lunes a viernes.",
+     "tr": "Pazartesiden cumaya çalışıyoruz.",
+     "p": "verb"
+    },
+    {
+     "w": "aprender",
+     "t": "öğrenmek",
+     "s": "Aprendo español desde hace un año.",
+     "tr": "Bir yıldır İspanyolca öğreniyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "estudiar",
+     "t": "okumak, ders çalışmak",
+     "s": "Ella estudia historia.",
+     "tr": "Tarih okuyor.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "shopping",
+   "title": "Alışveriş ve giyim",
+   "level": "A2",
+   "items": [
+    {
+     "w": "el precio",
+     "t": "fiyat",
+     "s": "¿Cuál es el precio de este libro?",
+     "tr": "Bu kitabın fiyatı nedir?",
+     "p": "noun"
+    },
+    {
+     "w": "caro",
+     "t": "pahalı",
+     "s": "Este abrigo es demasiado caro.",
+     "tr": "Bu palto çok pahalı.",
+     "p": "adjective"
+    },
+    {
+     "w": "barato",
+     "t": "ucuz",
+     "s": "Estos zapatos son baratos.",
+     "tr": "Bu ayakkabılar ucuz.",
+     "p": "adjective"
+    },
+    {
+     "w": "comprar",
+     "t": "satın almak",
+     "s": "Quiero comprar un regalo.",
+     "tr": "Bir hediye almak istiyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "pagar",
+     "t": "ödemek",
+     "s": "¿Puedo pagar con tarjeta?",
+     "tr": "Kartla ödeyebilir miyim?",
+     "p": "verb"
+    },
+    {
+     "w": "costar",
+     "t": "maliyeti olmak",
+     "s": "¿Cuánto cuesta este bolso?",
+     "tr": "Bu çanta kaç para?",
+     "p": "verb"
+    },
+    {
+     "w": "el supermercado",
+     "t": "süpermarket",
+     "s": "Hago la compra en el supermercado.",
+     "tr": "Alışverişi süpermarkette yaparım.",
+     "p": "noun"
+    },
+    {
+     "w": "el mercado",
+     "t": "pazar",
+     "s": "El mercado es los sábados.",
+     "tr": "Pazar cumartesi kurulur.",
+     "p": "noun"
+    },
+    {
+     "w": "la panadería",
+     "t": "fırın",
+     "s": "La panadería abre a las siete.",
+     "tr": "Fırın yedide açılıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la ropa",
+     "t": "giysiler",
+     "s": "Compra ropa nueva.",
+     "tr": "Yeni giysiler alıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la camisa",
+     "t": "gömlek",
+     "s": "Lleva una camisa blanca.",
+     "tr": "Beyaz bir gömlek giyiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "los pantalones",
+     "t": "pantolon",
+     "s": "Estos pantalones son muy largos.",
+     "tr": "Bu pantolon çok uzun.",
+     "p": "noun"
+    },
+    {
+     "w": "los zapatos",
+     "t": "ayakkabılar",
+     "s": "Busco unos zapatos negros.",
+     "tr": "Siyah ayakkabı arıyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "la talla",
+     "t": "beden",
+     "s": "¿Qué talla usa?",
+     "tr": "Kaç beden giyiyorsunuz?",
+     "p": "noun"
+    },
+    {
+     "w": "el dinero",
+     "t": "para",
+     "s": "No tengo suficiente dinero.",
+     "tr": "Yeterli param yok.",
+     "p": "noun"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1154 @@
+{
+ "language": "en",
+ "source": "Diloloji (özgün)",
+ "lists": [
+  {
+   "id": "greetings",
+   "title": "Selamlaşma ve tanışma",
+   "level": "A1",
+   "items": [
+    {
+     "w": "hello",
+     "t": "merhaba",
+     "s": "Hello, how are you today?",
+     "tr": "Merhaba, bugün nasılsın?",
+     "p": "phrase"
+    },
+    {
+     "w": "good morning",
+     "t": "günaydın",
+     "s": "Good morning, Mrs Brown.",
+     "tr": "Günaydın Bayan Brown.",
+     "p": "phrase"
+    },
+    {
+     "w": "good evening",
+     "t": "iyi akşamlar",
+     "s": "Good evening, welcome to our restaurant.",
+     "tr": "İyi akşamlar, restoranımıza hoş geldiniz.",
+     "p": "phrase"
+    },
+    {
+     "w": "goodbye",
+     "t": "hoşça kal",
+     "s": "Goodbye, see you tomorrow.",
+     "tr": "Hoşça kal, yarın görüşürüz.",
+     "p": "phrase"
+    },
+    {
+     "w": "thank you",
+     "t": "teşekkür ederim",
+     "s": "Thank you very much for your help.",
+     "tr": "Yardımınız için çok teşekkür ederim.",
+     "p": "phrase"
+    },
+    {
+     "w": "please",
+     "t": "lütfen",
+     "s": "A coffee, please.",
+     "tr": "Bir kahve lütfen.",
+     "p": "phrase"
+    },
+    {
+     "w": "excuse me",
+     "t": "affedersiniz",
+     "s": "Excuse me, where is the station?",
+     "tr": "Affedersiniz, istasyon nerede?",
+     "p": "phrase"
+    },
+    {
+     "w": "sorry",
+     "t": "özür dilerim, üzgünüm",
+     "s": "Sorry, I'm late.",
+     "tr": "Özür dilerim, geç kaldım.",
+     "p": "phrase"
+    },
+    {
+     "w": "nice to meet you",
+     "t": "tanıştığımıza memnun oldum",
+     "s": "Hi, I'm Sam. Nice to meet you.",
+     "tr": "Merhaba, ben Sam. Tanıştığımıza memnun oldum.",
+     "p": "phrase"
+    },
+    {
+     "w": "my name is",
+     "t": "benim adım",
+     "s": "My name is Paul. What's your name?",
+     "tr": "Benim adım Paul. Senin adın ne?",
+     "p": "phrase"
+    },
+    {
+     "w": "yes",
+     "t": "evet",
+     "s": "Yes, I understand.",
+     "tr": "Evet, anlıyorum.",
+     "p": "other"
+    },
+    {
+     "w": "no",
+     "t": "hayır",
+     "s": "No, thank you.",
+     "tr": "Hayır, teşekkürler.",
+     "p": "other"
+    },
+    {
+     "w": "you're welcome",
+     "t": "rica ederim",
+     "s": "Thanks! — You're welcome.",
+     "tr": "Teşekkürler! — Rica ederim.",
+     "p": "phrase"
+    },
+    {
+     "w": "see you later",
+     "t": "sonra görüşürüz",
+     "s": "See you later, have a nice day!",
+     "tr": "Sonra görüşürüz, iyi günler!",
+     "p": "phrase"
+    },
+    {
+     "w": "welcome",
+     "t": "hoş geldiniz",
+     "s": "Welcome to our home!",
+     "tr": "Evimize hoş geldiniz!",
+     "p": "phrase"
+    }
+   ]
+  },
+  {
+   "id": "family",
+   "title": "Aile ve insanlar",
+   "level": "A1",
+   "items": [
+    {
+     "w": "family",
+     "t": "aile",
+     "s": "My family lives in London.",
+     "tr": "Ailem Londra'da yaşıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "father",
+     "t": "baba",
+     "s": "My father works in a bank.",
+     "tr": "Babam bir bankada çalışıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "mother",
+     "t": "anne",
+     "s": "My mother cooks very well.",
+     "tr": "Annem çok güzel yemek yapar.",
+     "p": "noun"
+    },
+    {
+     "w": "brother",
+     "t": "erkek kardeş",
+     "s": "I have a younger brother.",
+     "tr": "Küçük bir erkek kardeşim var.",
+     "p": "noun"
+    },
+    {
+     "w": "sister",
+     "t": "kız kardeş",
+     "s": "My sister studies in Manchester.",
+     "tr": "Kız kardeşim Manchester'da okuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "son",
+     "t": "oğul",
+     "s": "Their son is five years old.",
+     "tr": "Oğulları beş yaşında.",
+     "p": "noun"
+    },
+    {
+     "w": "daughter",
+     "t": "kız çocuk",
+     "s": "Her daughter loves music.",
+     "tr": "Kızı müziği sever.",
+     "p": "noun"
+    },
+    {
+     "w": "grandfather",
+     "t": "büyükbaba",
+     "s": "My grandfather lives in the countryside.",
+     "tr": "Büyükbabam kırsalda yaşıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "grandmother",
+     "t": "büyükanne",
+     "s": "My grandmother makes delicious cakes.",
+     "tr": "Büyükannem lezzetli pastalar yapar.",
+     "p": "noun"
+    },
+    {
+     "w": "uncle",
+     "t": "amca, dayı",
+     "s": "My uncle is coming on Sunday.",
+     "tr": "Amcam pazar günü geliyor.",
+     "p": "noun"
+    },
+    {
+     "w": "aunt",
+     "t": "teyze, hala",
+     "s": "My aunt is a doctor.",
+     "tr": "Teyzem doktor.",
+     "p": "noun"
+    },
+    {
+     "w": "friend",
+     "t": "arkadaş",
+     "s": "My friend Ali is very funny.",
+     "tr": "Arkadaşım Ali çok komik.",
+     "p": "noun"
+    },
+    {
+     "w": "child",
+     "t": "çocuk",
+     "s": "The child is playing in the garden.",
+     "tr": "Çocuk bahçede oynuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "husband",
+     "t": "koca",
+     "s": "Her husband is a teacher.",
+     "tr": "Kocası öğretmen.",
+     "p": "noun"
+    },
+    {
+     "w": "wife",
+     "t": "eş (kadın)",
+     "s": "His wife works at a hospital.",
+     "tr": "Karısı bir hastanede çalışıyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "food",
+   "title": "Yiyecek ve içecek",
+   "level": "A1",
+   "items": [
+    {
+     "w": "bread",
+     "t": "ekmek",
+     "s": "I eat bread with cheese.",
+     "tr": "Peynirle ekmek yerim.",
+     "p": "noun"
+    },
+    {
+     "w": "water",
+     "t": "su",
+     "s": "I would like a glass of water.",
+     "tr": "Bir bardak su istiyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "milk",
+     "t": "süt",
+     "s": "I drink milk in the morning.",
+     "tr": "Sabahları süt içerim.",
+     "p": "noun"
+    },
+    {
+     "w": "coffee",
+     "t": "kahve",
+     "s": "A black coffee, please.",
+     "tr": "Bir sade kahve lütfen.",
+     "p": "noun"
+    },
+    {
+     "w": "cheese",
+     "t": "peynir",
+     "s": "This cheese is delicious.",
+     "tr": "Bu peynir lezzetli.",
+     "p": "noun"
+    },
+    {
+     "w": "meat",
+     "t": "et",
+     "s": "She doesn't eat meat.",
+     "tr": "O et yemiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "fish",
+     "t": "balık",
+     "s": "We eat fish on Fridays.",
+     "tr": "Cuma günleri balık yeriz.",
+     "p": "noun"
+    },
+    {
+     "w": "fruit",
+     "t": "meyve",
+     "s": "I eat fruit every morning.",
+     "tr": "Her sabah meyve yerim.",
+     "p": "noun"
+    },
+    {
+     "w": "apple",
+     "t": "elma",
+     "s": "This apple is very red.",
+     "tr": "Bu elma çok kırmızı.",
+     "p": "noun"
+    },
+    {
+     "w": "vegetable",
+     "t": "sebze",
+     "s": "You should eat more vegetables.",
+     "tr": "Daha çok sebze yemelisin.",
+     "p": "noun"
+    },
+    {
+     "w": "egg",
+     "t": "yumurta",
+     "s": "I have an egg for breakfast.",
+     "tr": "Kahvaltıda bir yumurta yerim.",
+     "p": "noun"
+    },
+    {
+     "w": "rice",
+     "t": "pirinç, pilav",
+     "s": "The rice is ready.",
+     "tr": "Pilav hazır.",
+     "p": "noun"
+    },
+    {
+     "w": "breakfast",
+     "t": "kahvaltı",
+     "s": "Breakfast is at eight.",
+     "tr": "Kahvaltı saat sekizde.",
+     "p": "noun"
+    },
+    {
+     "w": "lunch",
+     "t": "öğle yemeği",
+     "s": "We have lunch at noon.",
+     "tr": "Öğle yemeğini öğlen yeriz.",
+     "p": "noun"
+    },
+    {
+     "w": "dinner",
+     "t": "akşam yemeği",
+     "s": "Dinner is ready, come to the table!",
+     "tr": "Akşam yemeği hazır, sofraya gelin!",
+     "p": "noun"
+    },
+    {
+     "w": "eat",
+     "t": "yemek",
+     "s": "What do you want to eat?",
+     "tr": "Ne yemek istiyorsun?",
+     "p": "verb"
+    },
+    {
+     "w": "drink",
+     "t": "içmek",
+     "s": "I never drink coffee at night.",
+     "tr": "Geceleri asla kahve içmem.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "home",
+   "title": "Ev ve günlük eşyalar",
+   "level": "A1",
+   "items": [
+    {
+     "w": "house",
+     "t": "ev",
+     "s": "Our house is near the sea.",
+     "tr": "Evimiz denize yakın.",
+     "p": "noun"
+    },
+    {
+     "w": "flat",
+     "t": "apartman dairesi",
+     "s": "I live in a small flat.",
+     "tr": "Küçük bir dairede oturuyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "bedroom",
+     "t": "yatak odası",
+     "s": "My bedroom is on the first floor.",
+     "tr": "Yatak odam birinci katta.",
+     "p": "noun"
+    },
+    {
+     "w": "kitchen",
+     "t": "mutfak",
+     "s": "Mum is in the kitchen.",
+     "tr": "Annem mutfakta.",
+     "p": "noun"
+    },
+    {
+     "w": "bathroom",
+     "t": "banyo",
+     "s": "The bathroom is on the right.",
+     "tr": "Banyo sağda.",
+     "p": "noun"
+    },
+    {
+     "w": "living room",
+     "t": "oturma odası",
+     "s": "We watch TV in the living room.",
+     "tr": "Oturma odasında televizyon izliyoruz.",
+     "p": "noun"
+    },
+    {
+     "w": "door",
+     "t": "kapı",
+     "s": "Please close the door.",
+     "tr": "Lütfen kapıyı kapat.",
+     "p": "noun"
+    },
+    {
+     "w": "window",
+     "t": "pencere",
+     "s": "Open the window, it's hot.",
+     "tr": "Pencereyi aç, hava sıcak.",
+     "p": "noun"
+    },
+    {
+     "w": "table",
+     "t": "masa",
+     "s": "The book is on the table.",
+     "tr": "Kitap masanın üstünde.",
+     "p": "noun"
+    },
+    {
+     "w": "chair",
+     "t": "sandalye",
+     "s": "There are four chairs around the table.",
+     "tr": "Masanın etrafında dört sandalye var.",
+     "p": "noun"
+    },
+    {
+     "w": "bed",
+     "t": "yatak",
+     "s": "I read in my bed.",
+     "tr": "Yatağımda kitap okurum.",
+     "p": "noun"
+    },
+    {
+     "w": "key",
+     "t": "anahtar",
+     "s": "I've lost my keys.",
+     "tr": "Anahtarlarımı kaybettim.",
+     "p": "noun"
+    },
+    {
+     "w": "phone",
+     "t": "telefon",
+     "s": "My phone is on the sofa.",
+     "tr": "Telefonum kanepenin üstünde.",
+     "p": "noun"
+    },
+    {
+     "w": "computer",
+     "t": "bilgisayar",
+     "s": "He works on his computer.",
+     "tr": "Bilgisayarında çalışıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "garden",
+     "t": "bahçe",
+     "s": "The children are playing in the garden.",
+     "tr": "Çocuklar bahçede oynuyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "city",
+   "title": "Şehir ve ulaşım",
+   "level": "A1",
+   "items": [
+    {
+     "w": "city",
+     "t": "şehir",
+     "s": "London is a big city.",
+     "tr": "Londra büyük bir şehir.",
+     "p": "noun"
+    },
+    {
+     "w": "street",
+     "t": "sokak, cadde",
+     "s": "She lives on this street.",
+     "tr": "O bu sokakta oturuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "station",
+     "t": "istasyon",
+     "s": "The station is next to the post office.",
+     "tr": "İstasyon postanenin yanında.",
+     "p": "noun"
+    },
+    {
+     "w": "train",
+     "t": "tren",
+     "s": "The train leaves at nine.",
+     "tr": "Tren dokuzda kalkıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "bus",
+     "t": "otobüs",
+     "s": "I take the bus every day.",
+     "tr": "Her gün otobüse binerim.",
+     "p": "noun"
+    },
+    {
+     "w": "underground",
+     "t": "metro",
+     "s": "The underground is fast.",
+     "tr": "Metro hızlı.",
+     "p": "noun"
+    },
+    {
+     "w": "car",
+     "t": "araba",
+     "s": "Our car has broken down.",
+     "tr": "Arabamız bozuldu.",
+     "p": "noun"
+    },
+    {
+     "w": "bicycle",
+     "t": "bisiklet",
+     "s": "He goes to work by bicycle.",
+     "tr": "İşe bisikletle gidiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "airport",
+     "t": "havalimanı",
+     "s": "The airport is far from the centre.",
+     "tr": "Havalimanı merkeze uzak.",
+     "p": "noun"
+    },
+    {
+     "w": "bank",
+     "t": "banka",
+     "s": "The bank closes at five.",
+     "tr": "Banka beşte kapanıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "post office",
+     "t": "postane",
+     "s": "Where is the post office, please?",
+     "tr": "Postane nerede lütfen?",
+     "p": "noun"
+    },
+    {
+     "w": "hospital",
+     "t": "hastane",
+     "s": "The hospital is near the park.",
+     "tr": "Hastane parkın yakınında.",
+     "p": "noun"
+    },
+    {
+     "w": "shop",
+     "t": "mağaza, dükkân",
+     "s": "This shop opens at ten.",
+     "tr": "Bu mağaza ona açılıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "turn right",
+     "t": "sağa dönmek",
+     "s": "Turn right at the traffic lights.",
+     "tr": "Trafik ışıklarında sağa dönün.",
+     "p": "phrase"
+    },
+    {
+     "w": "turn left",
+     "t": "sola dönmek",
+     "s": "The chemist's is on the left, turn left here.",
+     "tr": "Eczane solda, burada sola dönün.",
+     "p": "phrase"
+    },
+    {
+     "w": "straight on",
+     "t": "dümdüz",
+     "s": "Go straight on, then turn.",
+     "tr": "Dümdüz gidin, sonra dönün.",
+     "p": "phrase"
+    }
+   ]
+  },
+  {
+   "id": "travel",
+   "title": "Seyahat ve otel",
+   "level": "A2",
+   "items": [
+    {
+     "w": "journey",
+     "t": "yolculuk",
+     "s": "It was a long journey.",
+     "tr": "Uzun bir yolculuktu.",
+     "p": "noun"
+    },
+    {
+     "w": "suitcase",
+     "t": "bavul",
+     "s": "My suitcase is very heavy.",
+     "tr": "Bavulum çok ağır.",
+     "p": "noun"
+    },
+    {
+     "w": "ticket",
+     "t": "bilet",
+     "s": "I bought two train tickets.",
+     "tr": "İki tren bileti aldım.",
+     "p": "noun"
+    },
+    {
+     "w": "passport",
+     "t": "pasaport",
+     "s": "Don't forget your passport.",
+     "tr": "Pasaportunu unutma.",
+     "p": "noun"
+    },
+    {
+     "w": "hotel",
+     "t": "otel",
+     "s": "Our hotel is near the beach.",
+     "tr": "Otelimiz plaja yakın.",
+     "p": "noun"
+    },
+    {
+     "w": "booking",
+     "t": "rezervasyon",
+     "s": "I have a booking in the name of Smith.",
+     "tr": "Smith adına bir rezervasyonum var.",
+     "p": "noun"
+    },
+    {
+     "w": "double room",
+     "t": "iki kişilik oda",
+     "s": "I'd like a double room, please.",
+     "tr": "İki kişilik bir oda istiyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "beach",
+     "t": "plaj",
+     "s": "The beach is beautiful in summer.",
+     "tr": "Plaj yazın harika.",
+     "p": "noun"
+    },
+    {
+     "w": "map",
+     "t": "harita",
+     "s": "Do you have a map of the city?",
+     "tr": "Şehrin bir haritası var mı?",
+     "p": "noun"
+    },
+    {
+     "w": "leave",
+     "t": "ayrılmak, yola çıkmak",
+     "s": "We leave tomorrow morning.",
+     "tr": "Yarın sabah yola çıkıyoruz.",
+     "p": "verb"
+    },
+    {
+     "w": "arrive",
+     "t": "varmak",
+     "s": "The train arrives at noon.",
+     "tr": "Tren öğlen varıyor.",
+     "p": "verb"
+    },
+    {
+     "w": "book",
+     "t": "rezerve etmek",
+     "s": "I'd like to book a table.",
+     "tr": "Bir masa ayırtmak istiyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "visit",
+     "t": "gezmek, ziyaret etmek",
+     "s": "We visit the museum tomorrow.",
+     "tr": "Yarın müzeyi geziyoruz.",
+     "p": "verb"
+    },
+    {
+     "w": "delay",
+     "t": "gecikme",
+     "s": "The flight has a two-hour delay.",
+     "tr": "Uçuş iki saat gecikmeli.",
+     "p": "noun"
+    },
+    {
+     "w": "exit",
+     "t": "çıkış",
+     "s": "The exit is at the end of the corridor.",
+     "tr": "Çıkış koridorun sonunda.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "time",
+   "title": "Zaman: günler ve aylar",
+   "level": "A1",
+   "items": [
+    {
+     "w": "Monday",
+     "t": "pazartesi",
+     "s": "On Monday I start at eight.",
+     "tr": "Pazartesi sekizde başlıyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "Tuesday",
+     "t": "salı",
+     "s": "We have an English class on Tuesday.",
+     "tr": "Salı günü İngilizce dersimiz var.",
+     "p": "noun"
+    },
+    {
+     "w": "Wednesday",
+     "t": "çarşamba",
+     "s": "On Wednesday I go to the gym.",
+     "tr": "Çarşamba spor salonuna gidiyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "Thursday",
+     "t": "perşembe",
+     "s": "On Thursday I go to the cinema.",
+     "tr": "Perşembe sinemaya gidiyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "Friday",
+     "t": "cuma",
+     "s": "On Friday night we go out.",
+     "tr": "Cuma akşamı dışarı çıkıyoruz.",
+     "p": "noun"
+    },
+    {
+     "w": "Saturday",
+     "t": "cumartesi",
+     "s": "On Saturday I sleep late.",
+     "tr": "Cumartesi geç yatarım.",
+     "p": "noun"
+    },
+    {
+     "w": "Sunday",
+     "t": "pazar",
+     "s": "On Sunday we have lunch together.",
+     "tr": "Pazar günü birlikte öğle yemeği yeriz.",
+     "p": "noun"
+    },
+    {
+     "w": "today",
+     "t": "bugün",
+     "s": "The weather is nice today.",
+     "tr": "Bugün hava güzel.",
+     "p": "other"
+    },
+    {
+     "w": "tomorrow",
+     "t": "yarın",
+     "s": "We are going on a trip tomorrow.",
+     "tr": "Yarın bir geziye çıkıyoruz.",
+     "p": "other"
+    },
+    {
+     "w": "yesterday",
+     "t": "dün",
+     "s": "I worked all day yesterday.",
+     "tr": "Dün bütün gün çalıştım.",
+     "p": "other"
+    },
+    {
+     "w": "morning",
+     "t": "sabah",
+     "s": "I drink coffee in the morning.",
+     "tr": "Sabahları kahve içerim.",
+     "p": "noun"
+    },
+    {
+     "w": "evening",
+     "t": "akşam",
+     "s": "We eat at eight in the evening.",
+     "tr": "Akşamları sekizde yemek yeriz.",
+     "p": "noun"
+    },
+    {
+     "w": "week",
+     "t": "hafta",
+     "s": "I'm very busy this week.",
+     "tr": "Bu hafta çok meşgulüm.",
+     "p": "noun"
+    },
+    {
+     "w": "month",
+     "t": "ay",
+     "s": "Next month I'm going on holiday.",
+     "tr": "Gelecek ay tatile çıkıyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "year",
+     "t": "yıl",
+     "s": "This year I'm learning French.",
+     "tr": "Bu yıl Fransızca öğreniyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "hour",
+     "t": "saat (süre)",
+     "s": "The meeting lasts an hour.",
+     "tr": "Toplantı bir saat sürüyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "health",
+   "title": "Vücut ve sağlık",
+   "level": "A2",
+   "items": [
+    {
+     "w": "head",
+     "t": "baş",
+     "s": "I have a pain in my head.",
+     "tr": "Başım ağrıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "arm",
+     "t": "kol",
+     "s": "He broke his arm.",
+     "tr": "Kolunu kırdı.",
+     "p": "noun"
+    },
+    {
+     "w": "hand",
+     "t": "el",
+     "s": "Wash your hands before eating.",
+     "tr": "Yemekten önce ellerini yıka.",
+     "p": "noun"
+    },
+    {
+     "w": "leg",
+     "t": "bacak",
+     "s": "My leg hurts.",
+     "tr": "Bacağım ağrıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "foot",
+     "t": "ayak",
+     "s": "My foot hurts.",
+     "tr": "Ayağım ağrıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "stomach",
+     "t": "mide, karın",
+     "s": "She has a stomach ache.",
+     "tr": "Midesi ağrıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "back",
+     "t": "sırt",
+     "s": "My back has hurt since yesterday.",
+     "tr": "Dünden beri sırtım ağrıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "throat",
+     "t": "boğaz",
+     "s": "I have a sore throat.",
+     "tr": "Boğazım ağrıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "doctor",
+     "t": "doktor",
+     "s": "I have to see the doctor tomorrow.",
+     "tr": "Yarın doktora görünmem gerek.",
+     "p": "noun"
+    },
+    {
+     "w": "chemist's",
+     "t": "eczane",
+     "s": "The chemist's is open until eight.",
+     "tr": "Eczane sekize kadar açık.",
+     "p": "noun"
+    },
+    {
+     "w": "medicine",
+     "t": "ilaç",
+     "s": "Take this medicine twice a day.",
+     "tr": "Bu ilacı günde iki kez alın.",
+     "p": "noun"
+    },
+    {
+     "w": "fever",
+     "t": "ateş",
+     "s": "The child has a fever.",
+     "tr": "Çocuğun ateşi var.",
+     "p": "noun"
+    },
+    {
+     "w": "ill",
+     "t": "hasta",
+     "s": "I'm ill, so I'm staying in bed.",
+     "tr": "Hastayım, bu yüzden yatakta kalıyorum.",
+     "p": "adjective"
+    },
+    {
+     "w": "tired",
+     "t": "yorgun",
+     "s": "I'm very tired tonight.",
+     "tr": "Bu akşam çok yorgunum.",
+     "p": "adjective"
+    },
+    {
+     "w": "hurt",
+     "t": "ağrımak, acımak",
+     "s": "Where does it hurt?",
+     "tr": "Neresi ağrıyor?",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "work",
+   "title": "İş ve okul",
+   "level": "A2",
+   "items": [
+    {
+     "w": "job",
+     "t": "iş, meslek",
+     "s": "I like my job very much.",
+     "tr": "İşimi çok seviyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "office",
+     "t": "ofis",
+     "s": "He is at the office until six.",
+     "tr": "Altıya kadar ofiste.",
+     "p": "noun"
+    },
+    {
+     "w": "colleague",
+     "t": "iş arkadaşı",
+     "s": "My colleague is very kind.",
+     "tr": "İş arkadaşım çok kibar.",
+     "p": "noun"
+    },
+    {
+     "w": "boss",
+     "t": "patron",
+     "s": "The boss is in a meeting.",
+     "tr": "Patron toplantıda.",
+     "p": "noun"
+    },
+    {
+     "w": "meeting",
+     "t": "toplantı",
+     "s": "The meeting lasts an hour.",
+     "tr": "Toplantı bir saat sürüyor.",
+     "p": "noun"
+    },
+    {
+     "w": "school",
+     "t": "okul",
+     "s": "The children walk to school.",
+     "tr": "Çocuklar okula yürüyerek gidiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "university",
+     "t": "üniversite",
+     "s": "She studies at the University of Leeds.",
+     "tr": "Leeds Üniversitesi'nde okuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "student",
+     "t": "öğrenci",
+     "s": "My brother is a medical student.",
+     "tr": "Erkek kardeşim tıp öğrencisi.",
+     "p": "noun"
+    },
+    {
+     "w": "teacher",
+     "t": "öğretmen",
+     "s": "The teacher explains the lesson.",
+     "tr": "Öğretmen dersi anlatıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "lesson",
+     "t": "ders",
+     "s": "The English lesson is at ten.",
+     "tr": "İngilizce dersi ondadır.",
+     "p": "noun"
+    },
+    {
+     "w": "exam",
+     "t": "sınav",
+     "s": "I have an exam next Monday.",
+     "tr": "Gelecek pazartesi sınavım var.",
+     "p": "noun"
+    },
+    {
+     "w": "homework",
+     "t": "ödev",
+     "s": "I do my homework after school.",
+     "tr": "Ödevlerimi okuldan sonra yaparım.",
+     "p": "noun"
+    },
+    {
+     "w": "work",
+     "t": "çalışmak",
+     "s": "We work from Monday to Friday.",
+     "tr": "Pazartesiden cumaya çalışıyoruz.",
+     "p": "verb"
+    },
+    {
+     "w": "learn",
+     "t": "öğrenmek",
+     "s": "I've been learning English for a year.",
+     "tr": "Bir yıldır İngilizce öğreniyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "study",
+     "t": "okumak, ders çalışmak",
+     "s": "She studies history.",
+     "tr": "Tarih okuyor.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "shopping",
+   "title": "Alışveriş ve giyim",
+   "level": "A2",
+   "items": [
+    {
+     "w": "price",
+     "t": "fiyat",
+     "s": "What is the price of this book?",
+     "tr": "Bu kitabın fiyatı nedir?",
+     "p": "noun"
+    },
+    {
+     "w": "expensive",
+     "t": "pahalı",
+     "s": "This coat is too expensive.",
+     "tr": "Bu palto çok pahalı.",
+     "p": "adjective"
+    },
+    {
+     "w": "cheap",
+     "t": "ucuz",
+     "s": "These shoes are cheap.",
+     "tr": "Bu ayakkabılar ucuz.",
+     "p": "adjective"
+    },
+    {
+     "w": "buy",
+     "t": "satın almak",
+     "s": "I want to buy a present.",
+     "tr": "Bir hediye almak istiyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "pay",
+     "t": "ödemek",
+     "s": "Can I pay by card?",
+     "tr": "Kartla ödeyebilir miyim?",
+     "p": "verb"
+    },
+    {
+     "w": "cost",
+     "t": "maliyeti olmak",
+     "s": "How much does this bag cost?",
+     "tr": "Bu çanta kaç para?",
+     "p": "verb"
+    },
+    {
+     "w": "supermarket",
+     "t": "süpermarket",
+     "s": "I do the shopping at the supermarket.",
+     "tr": "Alışverişi süpermarkette yaparım.",
+     "p": "noun"
+    },
+    {
+     "w": "market",
+     "t": "pazar",
+     "s": "The market is on Saturdays.",
+     "tr": "Pazar cumartesi kurulur.",
+     "p": "noun"
+    },
+    {
+     "w": "bakery",
+     "t": "fırın",
+     "s": "The bakery opens at seven.",
+     "tr": "Fırın yedide açılıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "clothes",
+     "t": "giysiler",
+     "s": "She buys new clothes.",
+     "tr": "Yeni giysiler alıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "shirt",
+     "t": "gömlek",
+     "s": "He is wearing a white shirt.",
+     "tr": "Beyaz bir gömlek giyiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "trousers",
+     "t": "pantolon",
+     "s": "These trousers are too long.",
+     "tr": "Bu pantolon çok uzun.",
+     "p": "noun"
+    },
+    {
+     "w": "shoes",
+     "t": "ayakkabılar",
+     "s": "I'm looking for black shoes.",
+     "tr": "Siyah ayakkabı arıyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "size",
+     "t": "beden",
+     "s": "What size do you wear?",
+     "tr": "Kaç beden giyiyorsun?",
+     "p": "noun"
+    },
+    {
+     "w": "money",
+     "t": "para",
+     "s": "I don't have enough money.",
+     "tr": "Yeterli param yok.",
+     "p": "noun"
+    }
+   ]
+  }
+ ]
+}
