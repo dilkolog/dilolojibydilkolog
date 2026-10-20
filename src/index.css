@@ -6004,8 +6004,13 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
   font-size: var(--t-xs);
 }
 
-
-
-
-
-
+/* Games: up to three suggestions side by side on a wide screen, and the search box above the groups. */
+.game-suggest-list { display: grid; gap: 0.75rem; }
+@media (min-width: 46rem) {
+  .game-suggest-list { grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+  .game-suggest-list .game-suggest { flex-wrap: wrap; }
+  .game-suggest-list .game-suggest .btn { margin-left: auto; }
+}
+.game-search { position: relative; display: flex; align-items: center; }
+.game-search svg { position: absolute; left: 0.875rem; color: var(--ink-soft); pointer-events: none; }
+.game-search .input { width: 100%; padding-left: 2.5rem; }

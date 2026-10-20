@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { openMistakes } from '../engine/mistakes'
 import { BOSS_XP, findBosses, type BossWin } from '../engine/bosses'
 import { GameIcon } from './GameIcon'
-import { PlayIcon, TrophyIcon } from './icons'
+import { PlayIcon, SearchIcon, TrophyIcon } from './icons'
 import { FLUENCY_MIN_WORDS, pickFluencyWords } from '../engine/practice'
 import { createRng } from '../engine/rng'
 import { db } from '../data/instance'
@@ -42,6 +42,8 @@ import { CONFUSABLE_RULES } from '../data/confusableRules'
 import { ConfusablesGame } from './games/ConfusablesGame'
 import { grammarExercises } from '../data/grammar'
 import { dueSentences } from '../engine/sentences'
+import { dueGrammar } from '../engine/grammar'
+import { cardMatches, suggestGames } from '../engine/gameSuggest'
 import { useOnline } from './useOnline'
 import { canSpeak } from './speech'
 import { type Props, FLUENCY_ROUND, fmt } from './games/shared'
@@ -112,6 +114,12 @@ export function GamesScreen(
   useEffect(() => {
     void db.getSentences().then((all) => setDueSentenceCount(dueSentences(all, p.language, new Date()).length))
   }, [p.language, game])
+  // Grammar questions whose turn to come back has come.
+  const [dueGrammarCount, setDueGrammarCount] = useState(0)
+  useEffect(() => {
+    void db.getGrammarLog().then((log) => setDueGrammarCount(dueGrammar(grammarExercises(p.language), log, new Date()).length))
+  }, [p.language, game])
+  const [query, setQuery] = useState('')
   // Sentences translated and not yet written back (back-translation).
   const [backCount, setBackCount] = useState(0)
   const [backRested, setBackRested] = useState(0)
@@ -288,14 +296,25 @@ export function GamesScreen(
   const openOf = (types: string[]) => new Set(open.filter((m) => types.includes(m.errorType)).map((m) => m.entryId)).size
   const allCards = groups.flatMap((g) => g.cards.map((c) => ({ ...c, tone: g.tone })))
   const pickCard = (id: string) => allCards.find((c) => c.id === id && !c.disabled)
-  const suggestion =
-    (openOf(['accent']) >= 2 && pickCard('accent') && { card: pickCard('accent')!, why: `${openOf(['accent'])} kelimede aksan hatan var: aksanlarını yerleştirerek düzelt.` }) ||
-    (openOf(['gender', 'article']) >= 2 && pickCard('article') && { card: pickCard('article')!, why: `${openOf(['gender', 'article'])} kelimede artikel hatan var: kısa bir artikel turu iyi gelir.` }) ||
-    (dueSentenceCount > 0 && pickCard('sentences') && { card: pickCard('sentences')!, why: `${dueSentenceCount} cümle kartının tekrar zamanı geldi.` }) ||
-    (open.length >= 3 && pickCard('boss') && { card: pickCard('boss')!, why: 'Bir türlü oturmayan kelimelerin var: farklı sorularla yenme zamanı.' }) ||
-    (fluencyWords >= FLUENCY_MIN_WORDS && pickCard('fluency') && { card: pickCard('fluency')!, why: 'İyi bildiğin kelimeler hız kazanınca konuşurken akıcı gelir.' }) ||
-    (pickCard('match') && { card: pickCard('match')!, why: 'Kısa ve eğlenceli bir ısınma: 6 kelimeyi anlamlarıyla eşleştir.' }) ||
-    null
+  const suggestions = suggestGames(
+    {
+      accent: openOf(['accent']),
+      article: openOf(['gender', 'article']),
+      openMistakes: open.length,
+      dueSentences: dueSentenceCount,
+      dueGrammar: dueGrammarCount,
+      earMisses: earCount,
+      backSentences: backCount,
+      weakPron: pronCount,
+      fluencyWords,
+      fluencyNeeds: FLUENCY_MIN_WORDS,
+    },
+    (id) => !!pickCard(id),
+  ).flatMap((g) => {
+    const card = pickCard(g.id)
+    return card ? [{ card, why: g.why }] : []
+  })
+  const shownGroups = groups.map((g) => ({ ...g, cards: g.cards.filter((c) => cardMatches(c, query)) })).filter((g) => g.cards.length)
 
   return (
     <div className="stack">
@@ -318,22 +337,35 @@ export function GamesScreen(
           </button>
         </div>
       )}
-      {suggestion && (
-        <section className={`game-suggest tone-${suggestion.card.tone}`}>
-          <span className="game-suggest-icon" aria-hidden>
-            <GameIcon id={suggestion.card.id === 'verbs' ? 'conjugation' : suggestion.card.id} emoji={suggestion.card.emoji} size={30} />
-          </span>
-          <div className="game-suggest-body">
-            <span className="small game-suggest-kicker">Bugün için önerilen</span>
-            <h2 className="game-suggest-title">{suggestion.card.name}</h2>
-            <p className="small muted">{suggestion.why}</p>
-          </div>
-          <button className="btn" onClick={() => (suggestion.card.open ? suggestion.card.open() : setGame(suggestion.card.id as Game))}>
-            <PlayIcon size={16} /> Oyna
-          </button>
-        </section>
+      {suggestions.length > 0 && !query && (
+        <div className="game-suggest-list" role="list" aria-label="Bugün için önerilen oyunlar">
+          {suggestions.map(({ card, why }, i) => (
+            <section key={card.id} role="listitem" className={`game-suggest tone-${card.tone}`}>
+              <span className="game-suggest-icon" aria-hidden>
+                <GameIcon id={card.id === 'verbs' ? 'conjugation' : card.id} emoji={card.emoji} size={30} />
+              </span>
+              <div className="game-suggest-body">
+                <span className="small game-suggest-kicker">{i === 0 ? 'Bugün için önerilen' : 'Bunlar da iyi gelir'}</span>
+                <h2 className="game-suggest-title">{card.name}</h2>
+                <p className="small muted">{why}</p>
+              </div>
+              <button className="btn" onClick={() => (card.open ? card.open() : setGame(card.id as Game))}>
+                <PlayIcon size={16} /> Oyna
+              </button>
+            </section>
+          ))}
+        </div>
       )}
-      {groups.map((g) => (
+      <div className="game-search">
+        <SearchIcon size={18} />
+        <input type="search" className="input" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Oyun ara: dikte, artikel, hız…" aria-label="Oyun ara" autoComplete="off" autoCapitalize="off" spellCheck={false} />
+      </div>
+      {query && shownGroups.length === 0 && (
+        <p className="muted" role="status">
+          “{query}” ile eşleşen oyun yok.
+        </p>
+      )}
+      {shownGroups.map((g) => (
         <section className={`stack game-group tone-${g.tone}`} key={g.title}>
           <h2 className="section-title game-group-title">{g.title}</h2>
           <div className="game-cards">

@@ -770,6 +770,25 @@ test('games started are counted in Settings → Kullanım, by name', async ({ pa
   await expect(card).toContainText('Refleks turu')
 })
 
+test('Games: the search box narrows the cards by name or description, accents and Turkish i aside, and says when nothing matches', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  const cards = page.locator('.game-card')
+  const all = await cards.count()
+  expect(all).toBeGreaterThan(10)
+  const box = page.getByRole('searchbox', { name: 'Oyun ara' })
+  await box.fill('REFLEKS')
+  await expect(cards).toHaveCount(1)
+  await expect(cards.first()).toContainText('Refleks turu')
+  // The suggestions step aside while searching.
+  await expect(page.getByRole('list', { name: 'Bugün için önerilen oyunlar' })).toHaveCount(0)
+  await box.fill('zzzzqq')
+  await expect(cards).toHaveCount(0)
+  await expect(page.getByRole('status').filter({ hasText: 'eşleşen oyun yok' })).toBeVisible()
+  await box.fill('')
+  await expect(cards).toHaveCount(all)
+})
+
 test('verb lab: Ustalık shows the share of right answers week by week', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'parler')
