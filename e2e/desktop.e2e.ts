@@ -1,3 +1,4 @@
+import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
 import { unzipSync } from 'fflate'
@@ -2856,6 +2857,39 @@ test('duel: a link opens the challenge, the same questions are played, both resu
   expect(await overflow(page)).toEqual([])
 })
 
+test('live duel: a room link opens the room, the friend is there, the same questions are played and both results show', async ({ page }) => {
+  // The room is played by the real rules (src/engine/liveDuel.ts); the friend joins when the player does, and answers when the game starts.
+  let room = emptyRoom()
+  await page.routeWebSocket(/\/api\/room\?code=/, (ws) => {
+    let slot: number | undefined
+    ws.onMessage((raw) => {
+      const message = JSON.parse(String(raw)) as { t: string }
+      if (message.t === 'ping') return
+      const result = liveHandle(room, slot, message)
+      if (result.error) return ws.send(JSON.stringify({ t: 'error', reason: result.error }))
+      room = result.state
+      slot = result.slot ?? slot
+      if (message.t === 'join') room = liveJoin(room, 'Veli').state
+      if (message.t === 'start') for (let i = 0; i < room.ids.length; i++) room = liveAnswer(room, 1, i, i === 0, 500).state
+      ws.send(JSON.stringify({ t: 'state', room: viewFor(room, slot ?? 0) }))
+    })
+  })
+  await startWithSamples(page)
+  await page.goto('/?oda=k7m-p9r')
+  await expect(page.getByText('K7M-P9R')).toBeVisible()
+  expect(page.url()).not.toContain('oda=')
+  await expect(page.getByText('● bağlı')).toHaveCount(2)
+  await page.getByRole('button', { name: /düellosunu başlat/ }).click()
+  await expect(page.locator('.live-progress')).toContainText('Veli: 10/10 soruda')
+  for (let i = 0; i < 10; i++) {
+    await page.locator('.options .option').first().click()
+    await page.getByRole('button', { name: /^(Devam|Bitir)$/ }).click()
+  }
+  await expect(page.locator('.duel-side')).toHaveCount(2)
+  await expect(page.locator('h1')).toContainText(/kazandı|Kazandın|Berabere/)
+  expect(await overflow(page)).toEqual([])
+})
+
 test('song game: a video link brings its captions as lines with gaps; a page is checked and a wrong line can become a sentence card', async ({ page }) => {
   await startWithSamples(page)
   await approveAccount(page)
@@ -2981,6 +3015,7 @@ test('reading screen displays daily micro news with offline capability and bulle
 
 test('invite link: opening /?davet=code adds the inviter as a friend, says who, and takes the link off the address', async ({ page }) => {
   const added: string[] = []
+  const sent: string[] = []
   const me = { code: 'ALIK2345', name: 'Sen', avatar: 'monki', color: '#c6317c', today: 0, week: 0, streak: 0, level: 1, at: '2026-10-15T10:00:00Z' }
   const ayse = { code: 'ABCD2345', name: 'Ayşe', avatar: 'owl', color: '#10b981', today: 20, week: 80, streak: 2, level: 2, at: '2026-10-15T10:00:00Z' }
   await startWithSamples(page)
@@ -2990,6 +3025,7 @@ test('invite link: opening /?davet=code adds the inviter as a friend, says who, 
     if (route.request().method() === 'POST') {
       const data = route.request().postDataJSON() as { action?: string; code?: string }
       if (data?.action === 'friends-add') added.push(data.code ?? '')
+      if (data?.action === 'friends-send') sent.push(`${data.code}:${(data as { kind?: string }).kind}`)
       return route.fulfill({ json: data?.action === 'friends-publish' ? { me } : { ok: true } })
     }
     if (url.searchParams.get('friends') === '1') return route.fulfill({ json: { me, friends: added.length ? [ayse] : [] } })
@@ -2998,8 +3034,10 @@ test('invite link: opening /?davet=code adds the inviter as a friend, says who, 
   })
   // A code as it may be typed (lower case, a dash): the link is read forgivingly.
   await page.goto('/?davet=abcd-2345')
-  await expect(page.getByText('Ayşe ile arkadaş oldun.')).toBeVisible()
+  await expect(page.getByText('Ayşe ile arkadaş oldun. Davet bonusu: +20 XP.')).toBeVisible()
   expect(added).toEqual(['ABCD2345'])
+  // The one who invited is told.
+  await expect.poll(() => sent).toEqual(['ABCD2345:joined'])
   expect(new URL(page.url()).search).toBe('')
   expect(await page.evaluate(() => localStorage.getItem('diloloji:invite-in'))).toBeNull()
 })

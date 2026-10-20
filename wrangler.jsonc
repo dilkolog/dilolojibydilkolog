@@ -15,6 +15,23 @@
 			"/api/*"
 		]
 	},
+	// Live duel rooms (worker/duelRoom.ts): one Durable Object per room code, in memory only (SQLite-backed class, which the free plan allows).
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "DUEL",
+				"class_name": "DuelRoom"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": [
+				"DuelRoom"
+			]
+		}
+	],
 	"r2_buckets": [
 		{
 			"binding": "BLOBS",

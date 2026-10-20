@@ -12,6 +12,7 @@ import { showToast } from './toastFeed'
 import { NEW_ART } from './drawnArt'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { FriendLeague } from './FriendLeague'
+import { rewardInviter } from './inviteReward'
 import { notify } from './noticeCenter'
 import { friendNotice } from './noticeTexts'
 import { inviteLink } from './invite'
@@ -67,6 +68,8 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
       setInbox(waiting)
       // Each message is also a notice (the bell), once.
       for (const m of waiting) void notify(friendNotice(m, storedNicknames()[m.from.code] || m.from.name))
+      // A friend who came in by your invite earns points, once each (and for the first few only).
+      void rewardInviter(waiting.filter((m) => m.kind === 'joined').map((m) => m.from.code)).catch(() => undefined)
     } catch {
       setFailed(true)
     }
@@ -332,6 +335,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
                 <span>
                   {m.kind === 'cheer' && `👏 ${who} seni tebrik etti`}
                   {m.kind === 'nudge' && `👋 ${who} seni dürttü: bugün biraz çalışmaya ne dersin?`}
+                  {m.kind === 'joined' && `🎉 ${who} davetinle katıldı`}
                   {m.kind === 'gift' && m.gift && (
                     <>
                       🎁 {who} sana bir kelime gönderdi: <strong lang={m.gift.language}>{m.gift.lemma}</strong> = {m.gift.meaning}

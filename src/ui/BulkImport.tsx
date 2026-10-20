@@ -5,7 +5,7 @@ import type { TargetLanguage } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { AnkiFileError } from '../data/ankiImport'
 import { listFileText } from '../data/officeImport'
-import { createEntry, DEFAULT_FORMAT, importWords, parseWordList, type ListFormat, type RowSeparator, type TermSeparator } from '../data/wordInput'
+import { createEntry, DEFAULT_FORMAT, importWords, isHeaderRow, parseWordList, type ListFormat, type RowSeparator, type TermSeparator } from '../data/wordInput'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
 import { ImportPlacement } from './ImportPlacement'
@@ -103,7 +103,7 @@ export function BulkImport({
 
   const statusOf = (cells: string[], row: number) => {
     const word = cells[0]?.trim()
-    if (!word || (row === 0 && ['kelime', 'word', 'term', 'anlam', 'meaning'].includes(word.toLocaleLowerCase('tr')))) return null
+    if (!word || (row === 0 && isHeaderRow(cells))) return null
     // Errors are numbered by row, the same rows the preview shows.
     const error = result?.errors.find((e) => e.line === row + 1)
     if (error) {

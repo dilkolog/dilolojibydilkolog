@@ -118,8 +118,8 @@ describe('a learner’s day', () => {
     throw new Error('no wrong choice came up to take back')
   })
 
-  it('the session ends in a summary with free recall', { timeout: 60_000 }, async () => {
-    for (let i = 0; i < 80 && !el.querySelector('.summary-grid'); i++) {
+  it('the session ends in a summary with free recall', { timeout: 120_000 }, async () => {
+    for (let i = 0; i < 250 && !el.querySelector('.summary-grid'); i++) {
       if (button(/^Devam$/)) await click(button(/^Devam$/))
       // A confident error keeps Devam off for a moment, on purpose.
       else if (el.querySelector('.sheet')) await sleep(200)

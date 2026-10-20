@@ -1,4 +1,5 @@
 // @vitest-environment happy-dom
+import 'fake-indexeddb/auto'
 import { act } from 'react'
 import { createRoot, type Root } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -7,10 +8,12 @@ import { InviteAccept } from './InviteAccept'
 import { pendingInvite } from './invite'
 
 const addFriend = vi.fn()
+const sendToFriend = vi.fn()
 const loadFriends = vi.fn()
 const toasts: string[] = []
 vi.mock('../data/friends', () => ({
   addFriend: (...a: unknown[]) => addFriend(...a),
+  sendToFriend: (...a: unknown[]) => sendToFriend(...a),
   loadFriends: (...a: unknown[]) => loadFriends(...a),
   FriendsError: class FriendsError extends Error {
     reason: string
@@ -35,13 +38,15 @@ const mount = async (approved: boolean, onDone?: () => void) => {
     )
   })
   await act(async () => {
-    await new Promise((r) => setTimeout(r, 10))
+    await new Promise((r) => setTimeout(r, 120))
   })
 }
 const keep = () => localStorage.setItem('diloloji:invite-in', JSON.stringify({ code: 'ABCD2345', at: Date.now() }))
 
 beforeEach(() => {
   addFriend.mockReset()
+  sendToFriend.mockReset()
+  sendToFriend.mockResolvedValue(undefined)
   loadFriends.mockReset()
   toasts.length = 0
   localStorage.clear()
@@ -63,7 +68,9 @@ describe('InviteAccept', () => {
     const done = vi.fn()
     await mount(true, done)
     expect(addFriend).toHaveBeenCalledWith('ABCD2345')
-    expect(toasts).toEqual(['Ayşe ile arkadaş oldun.'])
+    // The inviter is told, and the one who came gets the small bonus, once ever.
+    expect(sendToFriend).toHaveBeenCalledWith('ABCD2345', 'joined')
+    expect(toasts).toEqual(['Ayşe ile arkadaş oldun. Davet bonusu: +20 XP.'])
     expect(pendingInvite()).toBeNull()
     expect(done).toHaveBeenCalled()
   })
