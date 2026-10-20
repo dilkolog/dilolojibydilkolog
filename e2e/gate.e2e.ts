@@ -146,6 +146,73 @@ test('a signed-in device gets past the gate while the servers answer errors', as
   await expect(page.getByRole('button', { name: 'Başlayalım', exact: true })).toBeVisible()
 })
 
+/** How many words the device's own database holds (0 when it has none yet). */
+const wordCount = (page: Page) =>
+  page.evaluate(
+    () =>
+      new Promise<number>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onerror = () => resolve(0)
+        open.onsuccess = () => {
+          try {
+            const req = open.result.transaction('vocabulary').objectStore('vocabulary').count()
+            req.onsuccess = () => resolve(req.result)
+            req.onerror = () => resolve(0)
+          } catch {
+            resolve(0)
+          }
+          open.result.close()
+        }
+      }),
+  )
+
+/** A device signed in with an account (the servers answer errors), past the first-run steps, on Today with the sample words. */
+async function signedInWithWords(page: Page) {
+  await stubNetwork(page)
+  await page.goto('/')
+  await expect(landing(page)).toBeVisible()
+  await page.evaluate(() => localStorage.setItem('diloloji-auth', JSON.stringify({ access_token: 'stub', refresh_token: 'stub', expires_at: 4102444800, user: { id: 'u1', email: 'biri@example.com' } })))
+  await seed(page, [{ table: 'meta', value: { key: 'syncAccount', value: { kind: 'account', username: 'biri', id: 'a'.repeat(32), enc: 'b'.repeat(64), auth: 'c'.repeat(64) } } }])
+  await page.getByRole('button', { name: 'Başlayalım', exact: true }).click()
+  await page.locator('.lang-card', { hasText: 'Fransızca' }).click()
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  await page.getByRole('button', { name: /Fransızca ile başlayalım/ }).click()
+  await page.getByRole('button', { name: /örnek kelime yükle/ }).click()
+  await expect(appChrome(page).first()).toBeVisible()
+  expect(await wordCount(page)).toBeGreaterThan(0)
+}
+
+/** Signing out from the account menu in the side bar. */
+async function signOutFromMenu(page: Page) {
+  await page.locator('.sidebar-foot-btn:visible').click()
+  await page.getByRole('menuitem', { name: 'Çıkış yap' }).click()
+}
+
+test('signing out while the last changes cannot go up keeps the device as it is, and says why', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'the account menu of the side bar is a wide-screen way out')
+  await signedInWithWords(page)
+  const before = await wordCount(page)
+  await signOutFromMenu(page)
+  // The sync that must come first fails (the servers answer errors here): nothing is signed out or deleted.
+  await expect(page.getByText(/Çıkış yapılmadı/)).toBeVisible({ timeout: 20_000 })
+  await expect(page.getByRole('button', { name: 'Yine de çık' })).toBeVisible()
+  await expect(signInPage(page)).toHaveCount(0)
+  await expect(landing(page)).toHaveCount(0)
+  expect(await wordCount(page)).toBe(before)
+  expect(await page.evaluate(() => localStorage.getItem('diloloji-auth') !== null)).toBe(true)
+})
+
+test('leaving anyway signs out and empties the device: the landing page, no words, no session', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'the account menu of the side bar is a wide-screen way out')
+  await signedInWithWords(page)
+  await signOutFromMenu(page)
+  await page.getByRole('button', { name: 'Yine de çık' }).click()
+  await expect(landing(page)).toBeVisible()
+  await expect(appChrome(page)).toHaveCount(0)
+  expect(await wordCount(page)).toBe(0)
+  expect(await page.evaluate(() => localStorage.getItem('diloloji-auth'))).toBeNull()
+})
+
 test('the landing page fits the screen and passes the accessibility check in light and dark', async ({ page }) => {
   await stubNetwork(page)
   for (const scheme of ['light', 'dark'] as const) {
