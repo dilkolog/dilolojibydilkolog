@@ -12,7 +12,7 @@ Son güncelleme: 2026-10-17 (15. tur eklendi: Rehber).
 - **Ayrı git worktree'de çalış** (`~/Downloads/kelime-koc-antigravity` gibi), `E2E_PORT=4181` kullan. Claude Code `~/Downloads/kelime-koc-claude` ve port 4180'i kullanıyor.
 - **Her PR tek konu.** Başlık ve açıklama Türkçe, kod/yorum/commit İngilizce. Açıklamada neyin neden yapıldığını yaz.
 - **Push etmeden önce yerelde tam doğrula:** `npm run typecheck`, `npx oxlint src api e2e` (0 uyarı), `npx vitest run`, `npx vite build && npx playwright test e2e/phone.e2e.ts e2e/desktop.e2e.ts e2e/a11y.e2e.ts --workers=4`.
-- **Gereksiz push yapma:** (2026-10-21: depo public, Actions dakikası serbest; CI artık PR'larda çalışır.) Vercel Hobby'de günde 100 dağıtım vardı. Bir PR'a art arda küçük commit atma; hepsini yerelde bitirip tek seferde push'la.
+- **Gereksiz push yapma:** Actions dakikaları dolu, Vercel Hobby'de günde 100 dağıtım var. Bir PR'a art arda küçük commit atma; hepsini yerelde bitirip tek seferde push'la.
 - **Arayüzde sitenin kendi sınıflarını ve bileşenlerini kullan** (`card`, `section-title`, `chip`, `btn`, `Popover`, `Toggle`, `GroupToggle`…). Yeni görsel dil uydurma. Ekran değişen her PR'a **telefon (375 px)** ekran görüntüsü ekle; koyu temada da bak.
 - Yeni metinler Türkçe, sade ve mevcut üsluba uygun (`docs/METIN-DENETIMI.md`).
 - Görsel test referansı (`*-linux.png`) elle değiştirme; kota dönünce `snapshots.yml` ile yenilenir. `*-darwin.png` asla commit edilmez.
@@ -203,7 +203,7 @@ Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Son turla
 `docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md`: #168–#201 arası yapılanlar (çekim listesi, çeviri ekranı, unuttum, fiil turu kaydırma, Diloloji adı/logo, medya sınırı + güvenlik kopyası, kompakt cümleler) işlendi. `AGENTS.md`'ye dokunulmadı (Claude Code günceller).
 
 ### 7.4 Görsel referansları yenileme (hâlâ açık, 6.2)
-GitHub Actions artık serbest (depo public, 2026-10-21): `gh workflow run snapshots.yml --ref <dal>`.
+GitHub Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Kotanın doluluğu devam ettiği için beklemede.
 
 **Tur sonu ölçütü:** 7.1'de hiçbir mevcut test silinmemiş; 7.2'de her PR için önce/sonra boyut tablosu ve değişmeyen davranış testi; PR'lar tek konulu.
 

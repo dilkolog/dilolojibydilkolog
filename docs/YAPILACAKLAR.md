@@ -747,7 +747,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - YouGlish altyazı arama ve YouTube oEmbed (5 gerçek video ID ile test: ~97 ms yanıt süresi) mimarisinin kotasız ve anahtarsız canlı performansı kanıtlandı.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
-- **13.9 Görsel Referansları Yenileme:** GitHub Actions artık serbest (depo public, 2026-10-21): `gh workflow run snapshots.yml --ref <dal>` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
+- **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
 - **Yeni Özelliklerin Etkisi:** Kullanıcı düzenli çalıştıkça Kartlar, Rehber mini sınavları ve seri kurtarma mekanizmasının tutundurma (retention) verileri izlenecek.
 - **Kullanıcıya önerilen:**
   - İsterse yedek dosyasını veya Supabase senkronizasyonunu kullanarak birden çok cihazda çalışmaya başlaması.
