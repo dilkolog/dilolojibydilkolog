@@ -7,6 +7,8 @@ import { VaultError } from '../data/vault'
 import { clearReturn, currentSession, isRecoveryReturn, returnError, resendConfirmation, sendMagicLink, sendPasswordReset, setNewPassword, signIn, signInWithGoogle, signUp, supabase, authErrorText } from '../data/supabase'
 import { ChevronLeftIcon, LockIcon } from './icons'
 import { PasswordInput } from './PasswordInput'
+import { cleanHandle, HANDLE_RULE } from '../data/friends'
+import { setPendingHandle } from './pendingHandle'
 import { completeSignIn, vaultErrorText, type SignInOutcome } from './signInFlow'
 import { showToast } from './toastFeed'
 
@@ -140,9 +142,10 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
       if (password.length < 8) throw new Error('Şifre en az 8 karakter olmalı.')
       if (step === 'create') {
         if (password !== repeat) throw new Error('Şifreler aynı değil.')
-        const name = username.trim()
-        if (name && !/^[\p{L}\p{N}._-]{3,32}$/u.test(name)) throw new Error('Ad 3–32 karakter olmalı (harf, rakam, nokta, tire).')
-        const ready = await signUp(mail, password, { username: name || undefined, note: note.trim() || undefined })
+        const name = cleanHandle(username)
+        if (!HANDLE_RULE.test(name)) throw new Error('Kullanıcı adı 3–20 karakter olmalı: küçük harf, rakam ve alt çizgi.')
+        setPendingHandle(name)
+        const ready = await signUp(mail, password, { username: name, note: note.trim() || undefined })
         if (!ready) {
           setSentWhat('Hesabın oluşturuldu. E-postana gelen onay bağlantısına dokun; uygulama girişi tamamlar.')
           return setStep('sent')
@@ -235,8 +238,9 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
                   <PasswordInput value={repeat} onChange={setRepeat} autoComplete="new-password" shown={showPassword} onShownChange={setShowPassword} />
                 </label>
                 <label className="field">
-                  <span className="field-label">Adın (isteğe bağlı)</span>
-                  <input className="input" value={username} onChange={(e) => setUsername(e.target.value)} autoComplete="nickname" maxLength={32} />
+                  <span className="field-label">Kullanıcı adın</span>
+                  <input className="input" value={username} onChange={(e) => setUsername(e.target.value)} autoComplete="username" autoCapitalize="none" autoCorrect="off" spellCheck={false} maxLength={21} required />
+                  <span className="help">Arkadaşların seni bu adla bulur (küçük harf, rakam, alt çizgi; 3–20 karakter). Ayarlardan kapatabilirsin.</span>
                 </label>
                 {approvalOn && (
                   <label className="field">

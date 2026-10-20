@@ -63,7 +63,8 @@ describe('FriendsCard', () => {
     expect(host.querySelectorAll('.friends-xp-fill')).toHaveLength(2)
     await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Bu hafta')!.click())
     expect(names()).toEqual(['Sen', 'Veli'])
-    expect(host.querySelector('.friends-code code')!.textContent).toBe('AAAA-AAAA')
+    expect(host.querySelector('.friends-add .friends-invite-row button')?.textContent).toBe('Davet et')
+    expect(host.querySelector('.friends-add input[aria-label="Arkadaşının kodu"]')).toBeNull()
   })
 
   it('an unchanged card is not sent again', async () => {
