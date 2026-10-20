@@ -3593,3 +3593,13 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .enverb-phrasals { gap: 0.75rem; }
 .enverb-phrasal { padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule); }
 .enverb-quiz .field { display: grid; gap: 0.25rem; max-width: 22rem; }
+
+/* Exam-style reading and listening tasks (ui/games/ExamTasks) */
+.examtask-list { gap: 0.625rem; }
+.examtask-item { display: flex; gap: 0.875rem; align-items: center; width: 100%; text-align: left; cursor: pointer; }
+.examtask-item:hover { border-color: var(--lang); }
+.examtask-level { flex: none; min-width: 2.5rem; text-align: center; font-weight: 700; color: var(--lang-text); background: var(--lang-soft); border-radius: var(--r-md); padding: 0.375rem 0.5rem; }
+.examtask-title { display: grid; gap: 0.125rem; }
+.examtask-text { line-height: 1.65; font-size: 1.0625rem; }
+.examtask-result { display: flex; gap: 1rem; align-items: center; }
+.examtask .option[aria-pressed='true']:not(.is-correct):not(.is-wrong) { border-color: var(--lang); background: var(--lang-soft); }

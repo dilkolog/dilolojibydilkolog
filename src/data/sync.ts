@@ -327,6 +327,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     flow: mergeGrammarLogs(older.flow, newer.flow),
     affixes: mergeGrammarLogs(older.affixes, newer.affixes),
     enVerbs: mergeGrammarLogs(older.enVerbs, newer.enVerbs),
+    examTasks: mergeGrammarLogs(older.examTasks, newer.examTasks),
     media: [],
   }
 }

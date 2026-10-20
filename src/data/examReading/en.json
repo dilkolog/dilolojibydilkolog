@@ -1,0 +1,270 @@
+{
+ "language": "en",
+ "source": "Diloloji (özgün)",
+ "passages": [
+  {
+   "id": "en-read-edinburgh",
+   "exam": "Cambridge",
+   "level": "A2",
+   "title": "A message from Tom",
+   "text": "Hi Sue, I arrived in Edinburgh last night. The train journey took five hours and I slept most of the way. This morning I visited the castle with my cousin, and we had lunch in a small café near the station. Tomorrow we are going hiking in the hills if the weather is good, and in the evening we will go to a concert. I'm coming back on Sunday. See you soon! Tom",
+   "tr": "Selam Sue, dün gece Edinburgh'a vardım. Tren yolculuğu beş saat sürdü ve yolun çoğunda uyudum. Bu sabah kuzenimle şatoyu gezdim ve istasyonun yakınındaki küçük bir kafede öğle yemeği yedik. Hava güzel olursa yarın tepelerde yürüyüşe çıkacağız, akşam da bir konsere gideceğiz. Pazar günü dönüyorum. Yakında görüşürüz! Tom",
+   "questions": [
+    {
+     "prompt": "What did Tom do on the train?",
+     "options": [
+      "He read a book",
+      "He slept",
+      "He talked to his cousin",
+      "He worked"
+     ],
+     "answer": 1,
+     "why": "“I slept most of the way”: yolun çoğunda uyudu."
+    },
+    {
+     "prompt": "Where did Tom and his cousin have lunch?",
+     "options": [
+      "At the castle",
+      "At home",
+      "In a café near the station",
+      "In a restaurant in the hills"
+     ],
+     "answer": 2,
+     "why": "“In a small café near the station”."
+    },
+    {
+     "prompt": "What will they do tomorrow if the weather is good?",
+     "options": [
+      "Go hiking",
+      "Visit the castle",
+      "Take the train home",
+      "Stay in the café"
+     ],
+     "answer": 0,
+     "why": "“Going hiking in the hills if the weather is good”: hava güzel olursa yürüyüşe çıkacaklar."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-station",
+   "exam": "Cambridge",
+   "level": "A2",
+   "title": "Station announcement",
+   "text": "Attention, please. The train to Manchester, which was due to leave at half past two, has been delayed by twenty minutes because of a signal problem. It will now leave from platform 6, not platform 4. Passengers for Leeds should take the three o'clock train from platform 2. We apologise for the delay.",
+   "tr": "Dikkat lütfen. Saat iki buçukta kalkması gereken Manchester treni sinyal sorunu nedeniyle yirmi dakika gecikmiştir. Tren artık 4. peron yerine 6. peronlardan kalkacaktır. Leeds yolcuları saat üç trenine 2. peronlardan binmelidir. Gecikme için özür dileriz.",
+   "questions": [
+    {
+     "prompt": "What time will the Manchester train leave?",
+     "options": [
+      "2.30",
+      "2.50",
+      "3.00",
+      "3.20"
+     ],
+     "answer": 1,
+     "why": "2.30 + 20 dakika = 2.50."
+    },
+    {
+     "prompt": "Why is the train late?",
+     "options": [
+      "Bad weather",
+      "A strike",
+      "A signal problem",
+      "Too many passengers"
+     ],
+     "answer": 2,
+     "why": "“Because of a signal problem”."
+    },
+    {
+     "prompt": "Which train should passengers for Leeds take?",
+     "options": [
+      "The 2.30 from platform 4",
+      "The 2.50 from platform 6",
+      "The 3.00 from platform 6",
+      "The 3.00 from platform 2"
+     ],
+     "answer": 3,
+     "why": "Leeds yolcuları saat üç trenine 2. peronlardan binecek."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-cycling",
+   "exam": "Cambridge",
+   "level": "B1",
+   "title": "Cycling in the city",
+   "text": "For five years, the city of Bristol has encouraged people to cycle. It has built new bike lanes and offers cheap bike rental. As a result, one in seven residents now cycles to work. However, not everybody is happy. Some shop owners complain that parking spaces outside their shops have disappeared and fear losing customers. The council says that cyclists spend as much as drivers, because they stop more often, and it plans to build more bike parking near the stations.",
+   "tr": "Beş yıldır Bristol şehri insanları bisiklete binmeye teşvik ediyor. Yeni bisiklet yolları yaptı ve ucuz bisiklet kiralama sunuyor. Sonuç olarak artık her yedi sakinden biri işe bisikletle gidiyor. Ancak herkes memnun değil. Bazı dükkân sahipleri dükkânlarının önündeki park yerlerinin kaybolduğundan yakınıyor ve müşteri kaybetmekten korkuyor. Belediye, bisikletlilerin daha sık durdukları için sürücüler kadar harcadığını söylüyor ve istasyonların yakınında daha fazla bisiklet park yeri yapmayı planlıyor.",
+   "questions": [
+    {
+     "prompt": "How many residents cycle to work?",
+     "options": [
+      "One in three",
+      "One in five",
+      "One in seven",
+      "One in ten"
+     ],
+     "answer": 2,
+     "why": "“One in seven residents”: yedi kişiden biri."
+    },
+    {
+     "prompt": "What do some shop owners complain about?",
+     "options": [
+      "The price of bike rental",
+      "Parking spaces have disappeared",
+      "Cyclists are rude",
+      "The new bike lanes are dangerous"
+     ],
+     "answer": 1,
+     "why": "Dükkânların önündeki park yerleri kayboldu."
+    },
+    {
+     "prompt": "What does the council say about cyclists?",
+     "options": [
+      "They spend less than drivers",
+      "They damage the shops",
+      "They spend as much as drivers",
+      "They never stop"
+     ],
+     "answer": 2,
+     "why": "“Cyclists spend as much as drivers”."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-baker",
+   "exam": "Cambridge",
+   "level": "B1",
+   "title": "A baker's story",
+   "text": "My name is Nadia and I have been a baker for twelve years. I get up at three in the morning to make the bread. Many people think the job is boring, but I love seeing customers smile when they smell warm bread. The hardest part is the weekends, because I work on Saturdays and Sundays and rarely see my family. Even so, I wouldn't change my job for anything. In five years' time, I hope to open my own shop.",
+   "tr": "Adım Nadia ve on iki yıldır fırıncıyım. Ekmek yapmak için sabah üçte kalkıyorum. Birçok kişi işin sıkıcı olduğunu düşünüyor ama müşterilerin sıcak ekmeğin kokusunu alınca gülümsediğini görmeyi seviyorum. En zor kısım hafta sonları, çünkü cumartesi ve pazar çalışıyorum ve ailemi nadiren görüyorum. Yine de işimi hiçbir şey için değiştirmem. Beş yıl içinde kendi dükkânımı açmayı umuyorum.",
+   "questions": [
+    {
+     "prompt": "When does Nadia get up?",
+     "options": [
+      "At three in the morning",
+      "At five in the morning",
+      "At seven",
+      "At noon"
+     ],
+     "answer": 0,
+     "why": "“I get up at three in the morning”."
+    },
+    {
+     "prompt": "What does she find hardest?",
+     "options": [
+      "Making the bread",
+      "Customers who complain",
+      "Getting up early",
+      "Working at weekends"
+     ],
+     "answer": 3,
+     "why": "Hafta sonları çalışmak, çünkü ailesini nadiren görüyor."
+    },
+    {
+     "prompt": "What does she hope to do in five years?",
+     "options": [
+      "Change her job",
+      "Open her own shop",
+      "Move abroad",
+      "Retire"
+     ],
+     "answer": 1,
+     "why": "“I hope to open my own shop”."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-screens",
+   "exam": "Cambridge",
+   "level": "B2",
+   "title": "Children and screens",
+   "text": "According to a recent study, children under ten spend an average of three hours a day in front of a screen. The researchers do not blame technology itself, however: they stress that the effect depends mainly on how it is used. Watching a cartoon with the family and talking about it does not have the same results as spending hours alone on a video game. On the other hand, they have found that children who use a screen just before bed fall asleep later and sleep less well. They therefore recommend setting clear times, switching devices off an hour before bedtime and, above all, setting an example, because children copy their parents' behaviour.",
+   "tr": "Yakın tarihli bir araştırmaya göre on yaşın altındaki çocuklar günde ortalama üç saat ekran karşısında geçiriyor. Ancak araştırmacılar teknolojinin kendisini suçlamıyor: etkinin esas olarak nasıl kullanıldığına bağlı olduğunu vurguluyorlar. Ailece çizgi film izleyip bunu konuşmak, saatlerce tek başına video oyunu oynamakla aynı sonuçları vermez. Öte yandan, yatmadan hemen önce ekran kullanan çocukların daha geç uyuduğunu ve daha kötü uyuduğunu saptamışlar. Bu nedenle net saatler belirlemeyi, cihazları yatmadan bir saat önce kapatmayı ve her şeyden önce örnek olmayı öneriyorlar, çünkü çocuklar anne babalarının davranışını taklit eder.",
+   "questions": [
+    {
+     "prompt": "According to the researchers, what does the effect of screens mainly depend on?",
+     "options": [
+      "How big the screen is",
+      "How the screen is used",
+      "How old the parents are",
+      "How much the device costs"
+     ],
+     "answer": 1,
+     "why": "“Depends mainly on how it is used”."
+    },
+    {
+     "prompt": "What happens to children who use screens just before bed?",
+     "options": [
+      "They wake up earlier",
+      "They learn faster",
+      "They fall asleep later and sleep less well",
+      "They play less the next day"
+     ],
+     "answer": 2,
+     "why": "Daha geç uyuyor ve daha kötü uyuyorlar."
+    },
+    {
+     "prompt": "What do the researchers recommend?",
+     "options": [
+      "Banning all devices",
+      "Letting children choose",
+      "Buying smaller screens",
+      "Setting clear times, switching devices off an hour before bed and setting an example"
+     ],
+     "answer": 3,
+     "why": "Net saatler, yatmadan bir saat önce kapatma ve örnek olma."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-village",
+   "exam": "Cambridge",
+   "level": "B2",
+   "title": "A village comes back to life",
+   "text": "Twenty years ago, the village of Glenmore had barely two hundred inhabitants and its only school was about to close. Then a retired teacher had an idea: to offer houses for a symbolic pound to anyone who promised to restore them and to live in them for at least five years. At first nobody believed it would work, but the first families arrived, followed by craftspeople, a baker and a community café. Today the village has six hundred inhabitants and the school has had to be extended. The mayor admits, however, that success has a downside: house prices have risen and some of the village's young people can no longer afford to live there.",
+   "tr": "Yirmi yıl önce Glenmore köyünün ancak iki yüz sakini vardı ve tek okulu kapanmak üzereydi. Sonra emekli bir öğretmenin bir fikri oldu: evleri onarmayı ve içlerinde en az beş yıl yaşamayı vaat eden herkese sembolik bir sterline ev vermek. Başta kimse işe yarayacağına inanmadı ama ilk aileler geldi, ardından zanaatkârlar, bir fırıncı ve bir topluluk kafesi. Bugün köyün altı yüz sakini var ve okulun genişletilmesi gerekti. Belediye başkanı ise başarının bir olumsuz yanı olduğunu kabul ediyor: ev fiyatları arttı ve köyün bazı gençleri artık orada yaşamayı karşılayamıyor.",
+   "questions": [
+    {
+     "prompt": "What was the village's problem twenty years ago?",
+     "options": [
+      "It had too many visitors",
+      "It had few inhabitants and its school was about to close",
+      "It had no road",
+      "It was too noisy"
+     ],
+     "answer": 1,
+     "why": "Köyde ancak 200 kişi vardı ve okul kapanmak üzereydi."
+    },
+    {
+     "prompt": "What was the retired teacher's idea?",
+     "options": [
+      "To sell land cheaply",
+      "To build a hotel",
+      "To open a factory",
+      "To offer houses for a pound in return for restoring them and staying five years"
+     ],
+     "answer": 3,
+     "why": "Evler onarma ve en az beş yıl orada yaşama karşılığında bir sterline sunuluyordu."
+    },
+    {
+     "prompt": "What downside does the mayor admit?",
+     "options": [
+      "The school is too small",
+      "There is no baker",
+      "House prices have risen and some young people can no longer afford to live there",
+      "Few families came"
+     ],
+     "answer": 2,
+     "why": "Ev fiyatları arttı, bazı gençler artık orada yaşayamıyor."
+    }
+   ],
+   "language": "en"
+  }
+ ]
+}
