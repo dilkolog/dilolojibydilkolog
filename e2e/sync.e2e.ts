@@ -160,7 +160,10 @@ async function setupTwoSyncedDevices(browser: Browser) {
   return { contextA, contextB, pageA, pageB }
 }
 
-test.describe.serial('Two devices encrypted sync', () => {
+// Skipped: this drives the "Hesapsız: eşitleme koduyla eşitle" panel (SyncSettings), which left Settings when sign-in became
+// required (f9d393a); nothing renders it any more. The two-device merge itself is covered by src/data/supabaseStore.test.ts and
+// syncConflict.test.ts. A replacement would sign two contexts in with a mocked Supabase (see gate.e2e.ts for the mocking).
+test.describe.skip('Two devices encrypted sync', () => {
   test.beforeEach(() => {
     blobs.clear()
     version = 0
