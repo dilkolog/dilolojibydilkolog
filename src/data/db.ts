@@ -938,6 +938,15 @@ export class KelimeDB extends Dexie {
     return this.saveLog('enverbs', log)
   }
 
+  /** How the exam-style reading and listening questions went, per passage and question (same shape as the grammar log). */
+  getExamLog(): Promise<GrammarLog> {
+    return this.getLog('examtasks')
+  }
+
+  saveExamLog(log: GrammarLog) {
+    return this.saveLog('examtasks', log)
+  }
+
   /** Labelled pictures (see engine/diagram); the pictures themselves are in the media store. */
   async getDiagrams(language?: TargetLanguage): Promise<Diagram[]> {
     const all = ((await this.meta.get('diagrams'))?.value as Diagram[]) ?? []
@@ -1365,7 +1374,7 @@ export class KelimeDB extends Dexie {
  * merge without it and upload a core file that wipes the new field from every other device. An older app then meets
  * a newer backup and is told to update (BackupVersionError) instead.
  */
-export const BACKUP_VERSION = 11
+export const BACKUP_VERSION = 12
 
 export interface Backup {
   app: 'kelime-koc'
@@ -1428,6 +1437,8 @@ export interface Backup {
   affixes?: GrammarLog
   /** How the English irregular and phrasal verb questions went. */
   enVerbs?: GrammarLog
+  /** How the exam-style reading and listening questions went. */
+  examTasks?: GrammarLog
   /** Dictionary corrections and look-ups, per language. */
   dictionary?: Partial<Record<TargetLanguage, DictionaryNotes>>
 }
@@ -1493,6 +1504,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     flow: await db.getFlowLog(),
     affixes: await db.getAffixLog(),
     enVerbs: await db.getEnVerbLog(),
+    examTasks: await db.getExamLog(),
     dictionary: { en: await db.getDictionaryNotes('en'), fr: await db.getDictionaryNotes('fr'), es: await db.getDictionaryNotes('es') },
     media: await Promise.all(
       // Cached audio (natural voices "tts:", native recordings "aud:") can be fetched again, so it stays out of backups.
@@ -1608,5 +1620,6 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.flow) await db.meta.put({ key: 'flow', value: backup.flow })
     if (backup.affixes) await db.meta.put({ key: 'affixes', value: backup.affixes })
     if (backup.enVerbs) await db.meta.put({ key: 'enverbs', value: backup.enVerbs })
+    if (backup.examTasks) await db.meta.put({ key: 'examtasks', value: backup.examTasks })
   })
 }

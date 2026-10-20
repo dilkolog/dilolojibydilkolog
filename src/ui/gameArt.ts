@@ -58,6 +58,7 @@ export const GAME_ART: Partial<Record<GameId, string>> = {
   test: target,
   accent: tiles,
   notes: book,
+  'exam-tasks': book,
   swipe: gSwipe,
   truefalse: gTruefalse,
   sentences: gStrip,

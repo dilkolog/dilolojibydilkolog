@@ -1469,3 +1469,36 @@ test('English verb lab: lists, quiz question and feedback pass accessibility che
   await scanThemes('irregular-feedback')
   expect(problems).toEqual([])
 })
+
+test('exam-style tasks: the list, a reading task, a listening task and the result pass accessibility checks in light, dark and calm themes', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Sınav tarzı görevler' }).click()
+  const problems: string[] = []
+  const scanThemes = async (where: string) => {
+    for (const theme of ['light', 'dark', 'calm'] as const) {
+      await page.evaluate((t) => {
+        const root = document.documentElement
+        root.dataset.theme = t === 'dark' ? 'dark' : 'light'
+        if (t === 'calm') root.dataset.calm = 'true'
+        else delete root.dataset.calm
+      }, theme)
+      problems.push(...(await scan(page, `${where}-${theme}`)))
+    }
+  }
+  await expect(page.locator('.examtask-item').first()).toBeVisible()
+  await scanThemes('exam-list')
+  await page.locator('.examtask-item').first().click()
+  await expect(page.locator('.examtask-text')).toBeVisible()
+  await scanThemes('exam-read')
+  for (const n of [1, 2, 3]) await page.getByRole('region', { name: `Soru ${n}` }).locator('.option').first().click()
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(page.getByRole('region', { name: 'Sonuç' })).toBeVisible()
+  await scanThemes('exam-result')
+  await page.getByRole('button', { name: 'Görevlere dön' }).click()
+  await page.getByRole('button', { name: 'Dinleme', exact: true }).click()
+  await page.locator('.examtask-item').first().click()
+  await expect(page.getByText('2 dinleme hakkın kaldı')).toBeVisible()
+  await scanThemes('exam-listen')
+  expect(problems).toEqual([])
+})
