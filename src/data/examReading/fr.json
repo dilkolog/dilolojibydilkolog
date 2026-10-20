@@ -265,6 +265,138 @@
     }
    ],
    "language": "fr"
+  },
+  {
+   "id": "fr-read-colocation",
+   "exam": "DELF",
+   "level": "B2",
+   "title": "La colocation, pour qui ?",
+   "text": "Autrefois réservée aux étudiants, la colocation séduit désormais des personnes de tous âges. Le premier motif est financier : avec des loyers qui ne cessent d'augmenter, partager un grand appartement permet de vivre dans un quartier central sans se ruiner. Mais l'argument n'est pas seulement économique. Beaucoup de jeunes actifs, installés dans une ville inconnue, y trouvent un moyen de se faire des amis rapidement. Les difficultés existent pourtant. Il faut s'accorder sur le ménage, sur les invités et sur le bruit, et les désaccords sur ces points sont la première cause de départ. Pour les éviter, certains colocataires rédigent une sorte de charte dès l'arrivée de chacun. Cela peut sembler excessif, mais ceux qui l'ont essayée affirment que les conflits ont nettement diminué.",
+   "tr": "Eskiden öğrencilere özgü olan ev paylaşımı artık her yaştan insanı cezbediyor. İlk neden parasal: kiralar durmadan artarken büyük bir daireyi bölüşmek, iflas etmeden merkezî bir semtte yaşamayı mümkün kılıyor. Ama gerekçe yalnızca ekonomik değil. Yabancı bir şehre yerleşen birçok genç çalışan, bunda hızla arkadaş edinmenin bir yolunu buluyor. Yine de zorluklar var. Temizlik, misafirler ve gürültü konusunda anlaşmak gerekiyor; bu konulardaki anlaşmazlıklar birinin evden ayrılmasının başlıca sebebi. Bunlardan kaçınmak için bazı ev arkadaşları, her yeni gelen olduğunda bir tür tüzük yazıyor. Aşırı görünebilir ama denemiş olanlar çatışmaların belirgin biçimde azaldığını söylüyor.",
+   "questions": [
+    {
+     "prompt": "Quel est le premier motif de la colocation selon le texte ?",
+     "options": [
+      "Le motif financier",
+      "Le désir d'être étudiant",
+      "La taille des appartements",
+      "Le bruit des quartiers"
+     ],
+     "answer": 0,
+     "why": "“Le premier motif est financier”: kiralar arttığı için maliyet."
+    },
+    {
+     "prompt": "Que trouvent beaucoup de jeunes actifs dans la colocation ?",
+     "options": [
+      "Un loyer gratuit",
+      "Un moyen de se faire des amis",
+      "Un travail dans le quartier",
+      "Plus de calme"
+     ],
+     "answer": 1,
+     "why": "“Un moyen de se faire des amis rapidement”: hızla arkadaş edinmenin yolu."
+    },
+    {
+     "prompt": "À quoi sert la charte ?",
+     "options": [
+      "À choisir les invités",
+      "À fixer le prix du loyer",
+      "À éviter les conflits sur le ménage, les invités et le bruit",
+      "À remplacer le contrat de location"
+     ],
+     "answer": 2,
+     "why": "Tüzük, temizlik/misafir/gürültü anlaşmazlıklarını önlemek için yazılıyor."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-silence",
+   "exam": "DALF",
+   "level": "C1",
+   "title": "Le silence, un luxe urbain",
+   "text": "Dans les grandes villes, le silence est devenu un bien rare, presque un produit de luxe. Les promoteurs immobiliers le savent : un appartement donnant sur une cour intérieure se vend nettement plus cher qu'un logement identique situé sur un boulevard. Pourtant, les études menées ces dernières années montrent que le bruit n'est pas qu'une simple gêne. Exposés en permanence à la circulation ou aux chantiers, les habitants dorment moins bien, ont plus de mal à se concentrer et finissent par éprouver une fatigue que le repos du week-end ne suffit pas à dissiper. Certaines municipalités ont réagi en créant des « zones calmes », où les voitures sont limitées et où la musique amplifiée est interdite. Les premiers résultats sont encourageants, mais les commerçants s'inquiètent : selon eux, trop de tranquillité éloignerait les clients. Reste à savoir si l'on peut concilier une ville vivante et une ville apaisée, ou s'il faudra, un jour, choisir l'une au détriment de l'autre.",
+   "tr": "Büyük şehirlerde sessizlik kıt bir değer, neredeyse bir lüks ürün hâline geldi. Emlakçılar bunu biliyor: iç avluya bakan bir daire, ana caddedeki aynı daireden belirgin biçimde daha pahalıya satılıyor. Oysa son yıllarda yapılan araştırmalar gürültünün basit bir rahatsızlıktan çok daha fazlası olduğunu gösteriyor. Sürekli trafiğe ya da inşaata maruz kalanlar daha kötü uyuyor, zor odaklanıyor ve hafta sonu dinlenmesinin bile geçiremediği bir yorgunluğa kapılıyor. Bazı belediyeler arabaların sınırlandığı ve yüksek sesli müziğin yasaklandığı «sakin bölgeler» oluşturarak karşılık verdi. İlk sonuçlar cesaret verici ama esnaf endişeli: onlara göre fazla huzur müşterileri uzaklaştırır. Canlı bir şehirle dingin bir şehrin bağdaştırılıp bağdaştırılamayacağı, yoksa bir gün birini diğerinin pahasına seçmek zorunda kalıp kalmayacağımız henüz belli değil.",
+   "questions": [
+    {
+     "prompt": "Pourquoi les promoteurs savent-ils que le silence a de la valeur ?",
+     "options": [
+      "Les boulevards sont fermés la nuit",
+      "Les acheteurs refusent les quartiers animés",
+      "Les logements calmes se vendent nettement plus cher",
+      "Les cours intérieures sont interdites aux voitures"
+     ],
+     "answer": 2,
+     "why": "Avluya bakan (sessiz) daire aynısından belirgin biçimde pahalıya satılıyor."
+    },
+    {
+     "prompt": "Que montrent les études récentes sur le bruit ?",
+     "options": [
+      "Il n'a aucun effet sur la santé",
+      "Il perturbe le sommeil et la concentration, et la fatigue persiste",
+      "Le repos du week-end suffit à tout compenser",
+      "Les habitants finissent par s'y habituer entièrement"
+     ],
+     "answer": 1,
+     "why": "Uyku ve odaklanma bozuluyor; hafta sonu dinlenmesi yorgunluğu geçirmiyor."
+    },
+    {
+     "prompt": "Pourquoi les commerçants s'inquiètent-ils des zones calmes ?",
+     "options": [
+      "Ils craignent qu'elles fassent fuir les clients",
+      "Ils doivent payer une taxe supplémentaire",
+      "Ils ne peuvent plus livrer leurs marchandises",
+      "Ils veulent plus de bruit pour leurs concerts"
+     ],
+     "answer": 0,
+     "why": "“Trop de tranquillité éloignerait les clients”: fazla sessizlik müşteriyi uzaklaştırır."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-ia",
+   "exam": "DALF",
+   "level": "C1",
+   "title": "Écrire avec une machine ?",
+   "text": "Depuis que les logiciels de rédaction automatique se sont répandus, une question divise les enseignants : faut-il les interdire en classe ou apprendre aux élèves à s'en servir ? Les partisans de l'interdiction soutiennent qu'un texte produit en quelques secondes ne laisse aucune place à l'effort, et que l'effort est précisément ce qui fait progresser. Leurs adversaires répondent que la calculatrice n'a pas supprimé les mathématiques, et que le véritable enjeu est de former des esprits capables de vérifier, de corriger et de nuancer ce qu'une machine propose. Entre ces deux positions, plusieurs établissements testent une voie intermédiaire : les brouillons sont rédigés à la main, en classe, puis comparés avec une version corrigée par le logiciel. L'élève doit alors expliquer chaque différence. Cette méthode demande du temps, reconnaissent les professeurs, mais elle a un mérite : elle transforme l'outil en objet de réflexion plutôt qu'en raccourci.",
+   "tr": "Otomatik yazım yazılımları yaygınlaştığından beri öğretmenleri bir soru ayırıyor: bunları sınıfta yasaklamalı mı, yoksa öğrencilere nasıl kullanılacağını mı öğretmeli? Yasaktan yana olanlar, birkaç saniyede üretilen bir metnin çabaya yer bırakmadığını, ilerlemeyi sağlayanın ise tam da çaba olduğunu savunuyor. Karşı çıkanlar ise hesap makinesinin matematiği ortadan kaldırmadığını, asıl meselenin bir makinenin önerdiğini denetleyebilen, düzeltebilen ve inceltebilen zihinler yetiştirmek olduğunu söylüyor. Bu iki görüşün arasında birkaç okul orta bir yol deniyor: taslaklar sınıfta elle yazılıyor, sonra yazılımın düzelttiği sürümle karşılaştırılıyor. Öğrenci her farkı açıklamak zorunda. Öğretmenler bu yöntemin zaman aldığını kabul ediyor ama bir erdemi var: aracı bir kısayol olmaktan çıkarıp üzerinde düşünülen bir nesneye dönüştürüyor.",
+   "questions": [
+    {
+     "prompt": "Quel argument avancent les partisans de l'interdiction ?",
+     "options": [
+      "Les logiciels coûtent trop cher",
+      "Sans effort, on ne progresse pas",
+      "Les élèves écrivent trop lentement",
+      "Les professeurs manquent de temps"
+     ],
+     "answer": 1,
+     "why": "“L'effort est précisément ce qui fait progresser”: çaba ilerlemeyi sağlar."
+    },
+    {
+     "prompt": "Que répondent leurs adversaires ?",
+     "options": [
+      "Qu'un outil nouveau n'a pas détruit les disciplines, il faut apprendre à le contrôler",
+      "Que les machines écrivent mieux que les élèves",
+      "Que la calculatrice doit être interdite aussi",
+      "Que les professeurs devraient utiliser le logiciel seuls"
+     ],
+     "answer": 0,
+     "why": "Hesap makinesi örneği: asıl mesele makinenin önerdiğini denetlemeyi öğrenmek."
+    },
+    {
+     "prompt": "Dans la méthode intermédiaire, que doit faire l'élève ?",
+     "options": [
+      "Recopier la version du logiciel",
+      "Écrire sans brouillon",
+      "Corriger le travail d'un camarade",
+      "Expliquer chaque différence entre son brouillon et la version corrigée"
+     ],
+     "answer": 3,
+     "why": "“L'élève doit alors expliquer chaque différence”: her farkı açıklamalı."
+    }
+   ],
+   "language": "fr"
   }
  ]
 }

@@ -18,9 +18,9 @@ export interface ExamQuestion {
 export interface ExamPassage {
   id: string
   language: TargetLanguage
-  /** The family it imitates: DELF, DELE or Cambridge. */
+  /** The family it imitates: DELF/DALF, DELE, Cambridge or IELTS. */
   exam: string
-  level: 'A2' | 'B1' | 'B2'
+  level: 'A2' | 'B1' | 'B2' | 'C1'
   title: string
   text: string
   /** The text in Turkish, shown once the questions are answered. */

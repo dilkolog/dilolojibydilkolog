@@ -265,6 +265,138 @@
     }
    ],
    "language": "en"
+  },
+  {
+   "id": "en-read-flatshare",
+   "exam": "IELTS",
+   "level": "B2",
+   "title": "Sharing a flat",
+   "text": "Once the preserve of students, house-sharing now appeals to people of all ages. The first reason is financial: with rents rising relentlessly, splitting a large flat makes it possible to live in a central area without going broke. But the argument is not purely economic. Many young professionals who have moved to an unfamiliar city find that it is a quick way to make friends. Difficulties do arise, however. Housemates have to agree on cleaning, visitors and noise, and disagreements over these matters are the main reason people move out. To avoid them, some households draw up a sort of charter whenever a new person arrives. It may sound excessive, but those who have tried it say conflicts have fallen considerably.",
+   "tr": "Eskiden öğrencilere özgü olan ev paylaşımı artık her yaştan insanı cezbediyor. İlk neden parasal: kiralar durmadan artarken büyük bir daireyi bölüşmek, iflas etmeden merkezî bir semtte yaşamayı mümkün kılıyor. Ama gerekçe yalnızca ekonomik değil. Yabancı bir şehre yerleşen birçok genç çalışan, bunda hızla arkadaş edinmenin bir yolunu buluyor. Yine de zorluklar var. Temizlik, misafirler ve gürültü konusunda anlaşmak gerekiyor; bu konulardaki anlaşmazlıklar birinin evden ayrılmasının başlıca sebebi. Bunlardan kaçınmak için bazı ev arkadaşları, her yeni gelen olduğunda bir tür tüzük yazıyor. Aşırı görünebilir ama denemiş olanlar çatışmaların belirgin biçimde azaldığını söylüyor.",
+   "questions": [
+    {
+     "prompt": "According to the text, what is the first reason for house-sharing?",
+     "options": [
+      "The wish to be a student again",
+      "The size of the flats",
+      "The noise in the neighbourhood",
+      "The cost"
+     ],
+     "answer": 3,
+     "why": "“The first reason is financial”: kiralar arttığı için maliyet."
+    },
+    {
+     "prompt": "What do many young professionals find in house-sharing?",
+     "options": [
+      "Free rent",
+      "A quick way to make friends",
+      "A job nearby",
+      "More peace and quiet"
+     ],
+     "answer": 1,
+     "why": "“A quick way to make friends”: hızla arkadaş edinmenin yolu."
+    },
+    {
+     "prompt": "What is the charter for?",
+     "options": [
+      "Choosing visitors",
+      "Setting the rent",
+      "Avoiding conflicts about cleaning, visitors and noise",
+      "Replacing the tenancy agreement"
+     ],
+     "answer": 2,
+     "why": "Tüzük, temizlik/ziyaretçi/gürültü anlaşmazlıklarını önlemek için."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-silence",
+   "exam": "Cambridge",
+   "level": "C1",
+   "title": "Silence, an urban luxury",
+   "text": "In big cities, silence has become a scarce commodity, almost a luxury item. Estate agents know it: a flat overlooking a courtyard sells for noticeably more than an identical one on a main road. Yet research carried out in recent years shows that noise is far more than a mere nuisance. People who live with constant traffic or building work sleep less well, find it harder to concentrate and end up with a kind of tiredness that a weekend's rest cannot shift. Some councils have responded by creating \"quiet zones\", where cars are restricted and amplified music is banned. Early results are encouraging, but shopkeepers are worried: in their view, too much calm would drive customers away. It remains to be seen whether a lively city and a peaceful one can be reconciled, or whether we shall one day have to choose the one at the expense of the other.",
+   "tr": "Büyük şehirlerde sessizlik kıt bir değer, neredeyse bir lüks ürün hâline geldi. Emlakçılar bunu biliyor: iç avluya bakan bir daire, ana caddedeki aynı daireden belirgin biçimde daha pahalıya satılıyor. Oysa son yıllarda yapılan araştırmalar gürültünün basit bir rahatsızlıktan çok daha fazlası olduğunu gösteriyor. Sürekli trafiğe ya da inşaata maruz kalanlar daha kötü uyuyor, zor odaklanıyor ve hafta sonu dinlenmesinin bile geçiremediği bir yorgunluğa kapılıyor. Bazı belediyeler arabaların sınırlandığı ve yüksek sesli müziğin yasaklandığı «sakin bölgeler» oluşturarak karşılık verdi. İlk sonuçlar cesaret verici ama esnaf endişeli: onlara göre fazla huzur müşterileri uzaklaştırır. Canlı bir şehirle dingin bir şehrin bağdaştırılıp bağdaştırılamayacağı, yoksa bir gün birini diğerinin pahasına seçmek zorunda kalıp kalmayacağımız henüz belli değil.",
+   "questions": [
+    {
+     "prompt": "Why do estate agents know that silence is valuable?",
+     "options": [
+      "Main roads are closed at night",
+      "Buyers refuse lively areas",
+      "Quiet flats sell for noticeably more",
+      "Courtyards are closed to cars"
+     ],
+     "answer": 2,
+     "why": "Avluya bakan (sessiz) daire aynısından belirgin biçimde pahalıya satılıyor."
+    },
+    {
+     "prompt": "What does recent research show about noise?",
+     "options": [
+      "It has no effect on health",
+      "It disturbs sleep and concentration, and the tiredness lingers",
+      "A weekend's rest makes up for everything",
+      "People get completely used to it"
+     ],
+     "answer": 1,
+     "why": "Uyku ve odaklanma bozuluyor; hafta sonu dinlenmesi yorgunluğu geçirmiyor."
+    },
+    {
+     "prompt": "Why are shopkeepers worried about quiet zones?",
+     "options": [
+      "They fear they may drive customers away",
+      "They must pay an extra tax",
+      "They cannot deliver their goods",
+      "They want more noise for their concerts"
+     ],
+     "answer": 0,
+     "why": "“Too much calm would drive customers away”: fazla sessizlik müşteriyi kaçırır."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-ai",
+   "exam": "Cambridge",
+   "level": "C1",
+   "title": "Writing with a machine?",
+   "text": "Since automatic writing software became widespread, one question has divided teachers: should it be banned in the classroom, or should pupils be taught to use it? Supporters of a ban argue that a text produced in a few seconds leaves no room for effort, and effort is precisely what makes people improve. Their opponents reply that the calculator did not do away with mathematics, and that the real challenge is to train minds able to check, correct and qualify whatever a machine suggests. Between these two positions, several schools are trying a middle course: drafts are written by hand, in class, then compared with a version corrected by the software. The pupil must then explain every difference. This method takes time, teachers admit, but it has one merit: it turns the tool into an object of reflection rather than a shortcut.",
+   "tr": "Otomatik yazım yazılımları yaygınlaştığından beri öğretmenleri bir soru ayırıyor: bunları sınıfta yasaklamalı mı, yoksa öğrencilere nasıl kullanılacağını mı öğretmeli? Yasaktan yana olanlar, birkaç saniyede üretilen bir metnin çabaya yer bırakmadığını, ilerlemeyi sağlayanın ise tam da çaba olduğunu savunuyor. Karşı çıkanlar ise hesap makinesinin matematiği ortadan kaldırmadığını, asıl meselenin bir makinenin önerdiğini denetleyebilen, düzeltebilen ve inceltebilen zihinler yetiştirmek olduğunu söylüyor. Bu iki görüşün arasında birkaç okul orta bir yol deniyor: taslaklar sınıfta elle yazılıyor, sonra yazılımın düzelttiği sürümle karşılaştırılıyor. Öğrenci her farkı açıklamak zorunda. Öğretmenler bu yöntemin zaman aldığını kabul ediyor ama bir erdemi var: aracı bir kısayol olmaktan çıkarıp üzerinde düşünülen bir nesneye dönüştürüyor.",
+   "questions": [
+    {
+     "prompt": "What argument do supporters of a ban put forward?",
+     "options": [
+      "The software is too expensive",
+      "Without effort, people do not improve",
+      "Pupils write too slowly",
+      "Teachers lack the time"
+     ],
+     "answer": 1,
+     "why": "“Effort is precisely what makes people improve”: çaba ilerlemeyi sağlar."
+    },
+    {
+     "prompt": "What do their opponents reply?",
+     "options": [
+      "A new tool has not destroyed the subjects; pupils must learn to control it",
+      "Machines write better than pupils",
+      "Calculators should be banned too",
+      "Teachers should use the software alone"
+     ],
+     "answer": 0,
+     "why": "Hesap makinesi örneği: asıl mesele makinenin önerdiğini denetlemeyi öğrenmek."
+    },
+    {
+     "prompt": "In the middle course, what must the pupil do?",
+     "options": [
+      "Copy the software's version",
+      "Write without a draft",
+      "Correct a classmate's work",
+      "Explain every difference between the draft and the corrected version"
+     ],
+     "answer": 3,
+     "why": "“The pupil must then explain every difference”: her farkı açıklamalı."
+    }
+   ],
+   "language": "en"
   }
  ]
 }

@@ -15,7 +15,7 @@ import { canSpeak, speakAsync, stopSpeaking } from '../speech'
 
 const note = noteIn(() => db.getExamLog(), (log) => db.saveExamLog(log))
 const MODE_KEY = 'diloloji:exam-mode'
-const LEVELS = ['A2', 'B1', 'B2'] as const
+const LEVELS = ['A2', 'B1', 'B2', 'C1'] as const
 
 const readMode = (): ExamMode => {
   try {

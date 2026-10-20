@@ -203,6 +203,58 @@
         "Estaría encantado/a de reunirme con ustedes",
         "Quedo a su disposición"
       ]
+    },
+    {
+      "id": "es-exam-universidad-en-linea",
+      "language": "es",
+      "exam": "DELE",
+      "level": "C1",
+      "kind": "Görüş yazısı",
+      "title": "Universidad en línea",
+      "instruction": "Un periódico publica el debate «¿Deben las universidades ofrecer más estudios en línea?». Escriba un artículo de opinión (250 a 300 palabras): presente ventajas e inconvenientes y defienda su postura.",
+      "tr": "Bir gazete «Üniversiteler daha fazla çevrim içi eğitim sunmalı mı?» tartışmasını yayımlıyor. Bir görüş yazısı (250–300 kelime) yaz: avantaj ve dezavantajları sun, görüşünü savun.",
+      "min": 250,
+      "max": 300,
+      "checklist": [
+        "Konuyu ilgi çekici bir girişle aç.",
+        "Avantajları ve dezavantajları dengeli sun.",
+        "Görüşünü örneklerle destekle.",
+        "Karşı görüşü kabul edip yanıtla.",
+        "Sonuçta net bir öneriyle bitir."
+      ],
+      "phrases": [
+        "En los últimos años se ha debatido mucho sobre…",
+        "Por un lado… por otro…",
+        "No cabe duda de que…",
+        "Cabe señalar que…",
+        "En definitiva, considero que…"
+      ]
+    },
+    {
+      "id": "es-exam-carta-director-librerias",
+      "language": "es",
+      "exam": "DELE",
+      "level": "C1",
+      "kind": "Okur mektubu",
+      "title": "Las librerías de barrio",
+      "instruction": "Ha leído que cierran cada año más librerías de barrio. Escriba una carta al director del periódico (200 a 250 palabras) para expresar su preocupación y proponer medidas.",
+      "tr": "Her yıl daha fazla mahalle kitapçısının kapandığını okudunuz. Endişenizi dile getiren ve önlemler öneren, gazetenin yazı işleri müdürüne bir mektup (200–250 kelime) yazın.",
+      "min": 200,
+      "max": 250,
+      "checklist": [
+        "Hangi haberden yola çıktığını belirt.",
+        "Kitapçıların kültürel değerini anlat.",
+        "Kapanmanın sonuçlarını açıkla.",
+        "En az iki somut önlem öner.",
+        "Saygılı bir kapanış yap."
+      ],
+      "phrases": [
+        "Muy señor mío:",
+        "Me dirijo a usted para expresar mi preocupación por…",
+        "Resulta lamentable que…",
+        "Sería deseable que las autoridades…",
+        "Le saluda atentamente,"
+      ]
     }
   ]
 }

@@ -8,9 +8,9 @@ import type { TargetLanguage } from './types'
 export interface ExamTask {
   id: string
   language: TargetLanguage
-  /** The family it imitates: DELF, DELE or Cambridge. */
+  /** The family it imitates: DELF/DALF, DELE, Cambridge or IELTS. */
   exam: string
-  level: 'A2' | 'B1' | 'B2'
+  level: 'A2' | 'B1' | 'B2' | 'C1'
   /** What kind of text it is, in Turkish ("Resmî şikâyet mektubu"). */
   kind: string
   /** A short title in the target language. */
