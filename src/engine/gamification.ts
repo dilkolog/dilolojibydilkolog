@@ -503,19 +503,24 @@ export function mergeBadgeLogs(a: BadgeLog = {}, b: BadgeLog = {}): BadgeLog {
   return out
 }
 
-/** Longest run of consecutive study days (real answers only). */
-export function longestStreak(events: readonly Pick<ReviewEvent, 'timestamp' | 'mode'>[]): number {
-  const days = [...new Set(events.filter((e) => e.mode === 'normal').map((e) => localDate(e.timestamp)))].sort()
+/** Longest run of consecutive study days from sorted unique study day strings. */
+export function longestStreakFromDays(sortedDays: readonly string[]): number {
   let best = 0
   let run = 0
   let prev: Date | null = null
-  for (const d of days) {
+  for (const d of sortedDays) {
     const date = new Date(`${d}T12:00:00`)
     run = prev && Math.round((date.getTime() - prev.getTime()) / 86_400_000) === 1 ? run + 1 : 1
     best = Math.max(best, run)
     prev = date
   }
   return best
+}
+
+/** Longest run of consecutive study days (real answers only). */
+export function longestStreak(events: readonly Pick<ReviewEvent, 'timestamp' | 'mode'>[]): number {
+  const days = [...new Set(events.filter((e) => e.mode === 'normal').map((e) => localDate(e.timestamp)))].sort()
+  return longestStreakFromDays(days)
 }
 
 export function perfectDays(events: readonly ReviewEvent[]): number {
