@@ -38,6 +38,7 @@ import { ContextReview } from './games/ContextReview'
 import { AffixHunt } from './games/AffixHunt'
 import { flowItems } from '../data/flow'
 import { trapWords } from '../data/traps'
+import { irregularVerbs, phrasalVerbs } from '../data/englishVerbs'
 import { CONFUSABLE_RULES } from '../data/confusableRules'
 import { ConfusablesGame } from './games/ConfusablesGame'
 import { grammarExercises } from '../data/grammar'
@@ -261,7 +262,8 @@ export function GamesScreen(
   const flowCard: GameCard = { id: 'flow', emoji: '🧱', name: 'Metin akışı', text: 'Paragrafta eksik bağlaçları yerleştir: zıtlık, neden, taviz.', status: record(`flow:${p.language}`, (v) => `%${v}`) ?? `${flowItems.filter((r) => r.language === p.language).length} paragraf · B1–C1` }
   const duelCard: GameCard = { id: 'duel', emoji: '🥊', name: 'Arkadaşla düello', text: 'Aynı 10 soruyu ikiniz de çözün: kendi zamanınızda bir bağlantıyla ya da canlı odada aynı anda. Hesap gerekmez.', status: 'Bağlantıyla ya da canlı oda' }
   const affixCard: GameCard = { id: 'affix', emoji: '🌱', name: 'Ek avı', text: 'Bir kelime ve türevi: hangi ek ya da ön ek getirir? Kelimeyi sen kur.', status: 'Kendi kelimelerinden' }
-  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, spotErrorCard, rewriteCard, collocationsCard, duelCard, trapCard, confusablesCard, registerCard, flowCard, affixCard] })
+  const enVerbsCard: GameCard = { id: 'verbs', emoji: '🕰️', name: 'Fiil laboratuvarı', text: 'Düzensiz fiiller ve phrasal verb’ler: listeye bak, sonra alıştır.', status: `${irregularVerbs.length} düzensiz fiil · ${phrasalVerbs.length} phrasal verb`, open: p.onOpenVerbs }
+  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, spotErrorCard, rewriteCard, collocationsCard, duelCard, trapCard, confusablesCard, registerCard, flowCard, affixCard, enVerbsCard] })
   else
     groups.push({
       title: 'Dilbilgisi',

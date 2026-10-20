@@ -1,0 +1,1426 @@
+{
+ "source": "Diloloji (özgün)",
+ "verbs": [
+  {
+   "id": "irr|be",
+   "base": "be",
+   "past": [
+    "was",
+    "were"
+   ],
+   "pp": [
+    "been"
+   ],
+   "tr": "olmak"
+  },
+  {
+   "id": "irr|become",
+   "base": "become",
+   "past": [
+    "became"
+   ],
+   "pp": [
+    "become"
+   ],
+   "tr": "olmak, haline gelmek"
+  },
+  {
+   "id": "irr|begin",
+   "base": "begin",
+   "past": [
+    "began"
+   ],
+   "pp": [
+    "begun"
+   ],
+   "tr": "başlamak"
+  },
+  {
+   "id": "irr|bend",
+   "base": "bend",
+   "past": [
+    "bent"
+   ],
+   "pp": [
+    "bent"
+   ],
+   "tr": "bükmek, eğmek"
+  },
+  {
+   "id": "irr|bet",
+   "base": "bet",
+   "past": [
+    "bet"
+   ],
+   "pp": [
+    "bet"
+   ],
+   "tr": "bahse girmek"
+  },
+  {
+   "id": "irr|bite",
+   "base": "bite",
+   "past": [
+    "bit"
+   ],
+   "pp": [
+    "bitten"
+   ],
+   "tr": "ısırmak"
+  },
+  {
+   "id": "irr|bleed",
+   "base": "bleed",
+   "past": [
+    "bled"
+   ],
+   "pp": [
+    "bled"
+   ],
+   "tr": "kanamak"
+  },
+  {
+   "id": "irr|blow",
+   "base": "blow",
+   "past": [
+    "blew"
+   ],
+   "pp": [
+    "blown"
+   ],
+   "tr": "üflemek, esmek"
+  },
+  {
+   "id": "irr|break",
+   "base": "break",
+   "past": [
+    "broke"
+   ],
+   "pp": [
+    "broken"
+   ],
+   "tr": "kırmak"
+  },
+  {
+   "id": "irr|bring",
+   "base": "bring",
+   "past": [
+    "brought"
+   ],
+   "pp": [
+    "brought"
+   ],
+   "tr": "getirmek"
+  },
+  {
+   "id": "irr|broadcast",
+   "base": "broadcast",
+   "past": [
+    "broadcast"
+   ],
+   "pp": [
+    "broadcast"
+   ],
+   "tr": "yayın yapmak"
+  },
+  {
+   "id": "irr|build",
+   "base": "build",
+   "past": [
+    "built"
+   ],
+   "pp": [
+    "built"
+   ],
+   "tr": "inşa etmek"
+  },
+  {
+   "id": "irr|burn",
+   "base": "burn",
+   "past": [
+    "burnt",
+    "burned"
+   ],
+   "pp": [
+    "burnt",
+    "burned"
+   ],
+   "tr": "yanmak, yakmak"
+  },
+  {
+   "id": "irr|burst",
+   "base": "burst",
+   "past": [
+    "burst"
+   ],
+   "pp": [
+    "burst"
+   ],
+   "tr": "patlamak"
+  },
+  {
+   "id": "irr|buy",
+   "base": "buy",
+   "past": [
+    "bought"
+   ],
+   "pp": [
+    "bought"
+   ],
+   "tr": "satın almak"
+  },
+  {
+   "id": "irr|catch",
+   "base": "catch",
+   "past": [
+    "caught"
+   ],
+   "pp": [
+    "caught"
+   ],
+   "tr": "yakalamak"
+  },
+  {
+   "id": "irr|choose",
+   "base": "choose",
+   "past": [
+    "chose"
+   ],
+   "pp": [
+    "chosen"
+   ],
+   "tr": "seçmek"
+  },
+  {
+   "id": "irr|cling",
+   "base": "cling",
+   "past": [
+    "clung"
+   ],
+   "pp": [
+    "clung"
+   ],
+   "tr": "sıkıca tutunmak"
+  },
+  {
+   "id": "irr|come",
+   "base": "come",
+   "past": [
+    "came"
+   ],
+   "pp": [
+    "come"
+   ],
+   "tr": "gelmek"
+  },
+  {
+   "id": "irr|cost",
+   "base": "cost",
+   "past": [
+    "cost"
+   ],
+   "pp": [
+    "cost"
+   ],
+   "tr": "(para) tutmak, mal olmak"
+  },
+  {
+   "id": "irr|creep",
+   "base": "creep",
+   "past": [
+    "crept"
+   ],
+   "pp": [
+    "crept"
+   ],
+   "tr": "sürünmek, sinsice yaklaşmak"
+  },
+  {
+   "id": "irr|cut",
+   "base": "cut",
+   "past": [
+    "cut"
+   ],
+   "pp": [
+    "cut"
+   ],
+   "tr": "kesmek"
+  },
+  {
+   "id": "irr|deal",
+   "base": "deal",
+   "past": [
+    "dealt"
+   ],
+   "pp": [
+    "dealt"
+   ],
+   "tr": "ilgilenmek, dağıtmak"
+  },
+  {
+   "id": "irr|dig",
+   "base": "dig",
+   "past": [
+    "dug"
+   ],
+   "pp": [
+    "dug"
+   ],
+   "tr": "kazmak"
+  },
+  {
+   "id": "irr|do",
+   "base": "do",
+   "past": [
+    "did"
+   ],
+   "pp": [
+    "done"
+   ],
+   "tr": "yapmak"
+  },
+  {
+   "id": "irr|draw",
+   "base": "draw",
+   "past": [
+    "drew"
+   ],
+   "pp": [
+    "drawn"
+   ],
+   "tr": "çizmek, çekmek"
+  },
+  {
+   "id": "irr|dream",
+   "base": "dream",
+   "past": [
+    "dreamt",
+    "dreamed"
+   ],
+   "pp": [
+    "dreamt",
+    "dreamed"
+   ],
+   "tr": "rüya görmek"
+  },
+  {
+   "id": "irr|drink",
+   "base": "drink",
+   "past": [
+    "drank"
+   ],
+   "pp": [
+    "drunk"
+   ],
+   "tr": "içmek"
+  },
+  {
+   "id": "irr|drive",
+   "base": "drive",
+   "past": [
+    "drove"
+   ],
+   "pp": [
+    "driven"
+   ],
+   "tr": "sürmek (araç)"
+  },
+  {
+   "id": "irr|eat",
+   "base": "eat",
+   "past": [
+    "ate"
+   ],
+   "pp": [
+    "eaten"
+   ],
+   "tr": "yemek"
+  },
+  {
+   "id": "irr|fall",
+   "base": "fall",
+   "past": [
+    "fell"
+   ],
+   "pp": [
+    "fallen"
+   ],
+   "tr": "düşmek"
+  },
+  {
+   "id": "irr|feed",
+   "base": "feed",
+   "past": [
+    "fed"
+   ],
+   "pp": [
+    "fed"
+   ],
+   "tr": "beslemek"
+  },
+  {
+   "id": "irr|feel",
+   "base": "feel",
+   "past": [
+    "felt"
+   ],
+   "pp": [
+    "felt"
+   ],
+   "tr": "hissetmek"
+  },
+  {
+   "id": "irr|fight",
+   "base": "fight",
+   "past": [
+    "fought"
+   ],
+   "pp": [
+    "fought"
+   ],
+   "tr": "savaşmak, dövüşmek"
+  },
+  {
+   "id": "irr|find",
+   "base": "find",
+   "past": [
+    "found"
+   ],
+   "pp": [
+    "found"
+   ],
+   "tr": "bulmak"
+  },
+  {
+   "id": "irr|fling",
+   "base": "fling",
+   "past": [
+    "flung"
+   ],
+   "pp": [
+    "flung"
+   ],
+   "tr": "fırlatmak"
+  },
+  {
+   "id": "irr|fly",
+   "base": "fly",
+   "past": [
+    "flew"
+   ],
+   "pp": [
+    "flown"
+   ],
+   "tr": "uçmak"
+  },
+  {
+   "id": "irr|forbid",
+   "base": "forbid",
+   "past": [
+    "forbade",
+    "forbad"
+   ],
+   "pp": [
+    "forbidden"
+   ],
+   "tr": "yasaklamak"
+  },
+  {
+   "id": "irr|forget",
+   "base": "forget",
+   "past": [
+    "forgot"
+   ],
+   "pp": [
+    "forgotten"
+   ],
+   "tr": "unutmak"
+  },
+  {
+   "id": "irr|forgive",
+   "base": "forgive",
+   "past": [
+    "forgave"
+   ],
+   "pp": [
+    "forgiven"
+   ],
+   "tr": "affetmek"
+  },
+  {
+   "id": "irr|freeze",
+   "base": "freeze",
+   "past": [
+    "froze"
+   ],
+   "pp": [
+    "frozen"
+   ],
+   "tr": "donmak"
+  },
+  {
+   "id": "irr|get",
+   "base": "get",
+   "past": [
+    "got"
+   ],
+   "pp": [
+    "got",
+    "gotten"
+   ],
+   "tr": "almak, olmak"
+  },
+  {
+   "id": "irr|give",
+   "base": "give",
+   "past": [
+    "gave"
+   ],
+   "pp": [
+    "given"
+   ],
+   "tr": "vermek"
+  },
+  {
+   "id": "irr|go",
+   "base": "go",
+   "past": [
+    "went"
+   ],
+   "pp": [
+    "gone"
+   ],
+   "tr": "gitmek"
+  },
+  {
+   "id": "irr|grind",
+   "base": "grind",
+   "past": [
+    "ground"
+   ],
+   "pp": [
+    "ground"
+   ],
+   "tr": "öğütmek"
+  },
+  {
+   "id": "irr|grow",
+   "base": "grow",
+   "past": [
+    "grew"
+   ],
+   "pp": [
+    "grown"
+   ],
+   "tr": "büyümek, yetiştirmek"
+  },
+  {
+   "id": "irr|hang",
+   "base": "hang",
+   "past": [
+    "hung"
+   ],
+   "pp": [
+    "hung"
+   ],
+   "tr": "asmak, asılı durmak"
+  },
+  {
+   "id": "irr|have",
+   "base": "have",
+   "past": [
+    "had"
+   ],
+   "pp": [
+    "had"
+   ],
+   "tr": "sahip olmak"
+  },
+  {
+   "id": "irr|hear",
+   "base": "hear",
+   "past": [
+    "heard"
+   ],
+   "pp": [
+    "heard"
+   ],
+   "tr": "duymak"
+  },
+  {
+   "id": "irr|hide",
+   "base": "hide",
+   "past": [
+    "hid"
+   ],
+   "pp": [
+    "hidden"
+   ],
+   "tr": "saklamak, saklanmak"
+  },
+  {
+   "id": "irr|hit",
+   "base": "hit",
+   "past": [
+    "hit"
+   ],
+   "pp": [
+    "hit"
+   ],
+   "tr": "vurmak"
+  },
+  {
+   "id": "irr|hold",
+   "base": "hold",
+   "past": [
+    "held"
+   ],
+   "pp": [
+    "held"
+   ],
+   "tr": "tutmak"
+  },
+  {
+   "id": "irr|hurt",
+   "base": "hurt",
+   "past": [
+    "hurt"
+   ],
+   "pp": [
+    "hurt"
+   ],
+   "tr": "acıtmak, incitmek"
+  },
+  {
+   "id": "irr|keep",
+   "base": "keep",
+   "past": [
+    "kept"
+   ],
+   "pp": [
+    "kept"
+   ],
+   "tr": "tutmak, saklamak"
+  },
+  {
+   "id": "irr|know",
+   "base": "know",
+   "past": [
+    "knew"
+   ],
+   "pp": [
+    "known"
+   ],
+   "tr": "bilmek"
+  },
+  {
+   "id": "irr|lay",
+   "base": "lay",
+   "past": [
+    "laid"
+   ],
+   "pp": [
+    "laid"
+   ],
+   "tr": "koymak, sermek"
+  },
+  {
+   "id": "irr|lead",
+   "base": "lead",
+   "past": [
+    "led"
+   ],
+   "pp": [
+    "led"
+   ],
+   "tr": "yönetmek, götürmek"
+  },
+  {
+   "id": "irr|learn",
+   "base": "learn",
+   "past": [
+    "learnt",
+    "learned"
+   ],
+   "pp": [
+    "learnt",
+    "learned"
+   ],
+   "tr": "öğrenmek"
+  },
+  {
+   "id": "irr|leave",
+   "base": "leave",
+   "past": [
+    "left"
+   ],
+   "pp": [
+    "left"
+   ],
+   "tr": "ayrılmak, bırakmak"
+  },
+  {
+   "id": "irr|lend",
+   "base": "lend",
+   "past": [
+    "lent"
+   ],
+   "pp": [
+    "lent"
+   ],
+   "tr": "ödünç vermek"
+  },
+  {
+   "id": "irr|let",
+   "base": "let",
+   "past": [
+    "let"
+   ],
+   "pp": [
+    "let"
+   ],
+   "tr": "izin vermek"
+  },
+  {
+   "id": "irr|lie",
+   "base": "lie",
+   "past": [
+    "lay"
+   ],
+   "pp": [
+    "lain"
+   ],
+   "tr": "uzanmak, yatmak"
+  },
+  {
+   "id": "irr|light",
+   "base": "light",
+   "past": [
+    "lit"
+   ],
+   "pp": [
+    "lit"
+   ],
+   "tr": "yakmak, aydınlatmak"
+  },
+  {
+   "id": "irr|lose",
+   "base": "lose",
+   "past": [
+    "lost"
+   ],
+   "pp": [
+    "lost"
+   ],
+   "tr": "kaybetmek"
+  },
+  {
+   "id": "irr|make",
+   "base": "make",
+   "past": [
+    "made"
+   ],
+   "pp": [
+    "made"
+   ],
+   "tr": "yapmak, üretmek"
+  },
+  {
+   "id": "irr|mean",
+   "base": "mean",
+   "past": [
+    "meant"
+   ],
+   "pp": [
+    "meant"
+   ],
+   "tr": "anlamına gelmek"
+  },
+  {
+   "id": "irr|meet",
+   "base": "meet",
+   "past": [
+    "met"
+   ],
+   "pp": [
+    "met"
+   ],
+   "tr": "buluşmak, tanışmak"
+  },
+  {
+   "id": "irr|mistake",
+   "base": "mistake",
+   "past": [
+    "mistook"
+   ],
+   "pp": [
+    "mistaken"
+   ],
+   "tr": "yanlış anlamak"
+  },
+  {
+   "id": "irr|overcome",
+   "base": "overcome",
+   "past": [
+    "overcame"
+   ],
+   "pp": [
+    "overcome"
+   ],
+   "tr": "üstesinden gelmek"
+  },
+  {
+   "id": "irr|pay",
+   "base": "pay",
+   "past": [
+    "paid"
+   ],
+   "pp": [
+    "paid"
+   ],
+   "tr": "ödemek"
+  },
+  {
+   "id": "irr|put",
+   "base": "put",
+   "past": [
+    "put"
+   ],
+   "pp": [
+    "put"
+   ],
+   "tr": "koymak"
+  },
+  {
+   "id": "irr|quit",
+   "base": "quit",
+   "past": [
+    "quit"
+   ],
+   "pp": [
+    "quit"
+   ],
+   "tr": "bırakmak, vazgeçmek"
+  },
+  {
+   "id": "irr|read",
+   "base": "read",
+   "past": [
+    "read"
+   ],
+   "pp": [
+    "read"
+   ],
+   "tr": "okumak"
+  },
+  {
+   "id": "irr|ride",
+   "base": "ride",
+   "past": [
+    "rode"
+   ],
+   "pp": [
+    "ridden"
+   ],
+   "tr": "binmek (at, bisiklet)"
+  },
+  {
+   "id": "irr|ring",
+   "base": "ring",
+   "past": [
+    "rang"
+   ],
+   "pp": [
+    "rung"
+   ],
+   "tr": "çalmak (zil)"
+  },
+  {
+   "id": "irr|rise",
+   "base": "rise",
+   "past": [
+    "rose"
+   ],
+   "pp": [
+    "risen"
+   ],
+   "tr": "yükselmek"
+  },
+  {
+   "id": "irr|run",
+   "base": "run",
+   "past": [
+    "ran"
+   ],
+   "pp": [
+    "run"
+   ],
+   "tr": "koşmak"
+  },
+  {
+   "id": "irr|say",
+   "base": "say",
+   "past": [
+    "said"
+   ],
+   "pp": [
+    "said"
+   ],
+   "tr": "söylemek"
+  },
+  {
+   "id": "irr|see",
+   "base": "see",
+   "past": [
+    "saw"
+   ],
+   "pp": [
+    "seen"
+   ],
+   "tr": "görmek"
+  },
+  {
+   "id": "irr|seek",
+   "base": "seek",
+   "past": [
+    "sought"
+   ],
+   "pp": [
+    "sought"
+   ],
+   "tr": "aramak, peşinde olmak"
+  },
+  {
+   "id": "irr|sell",
+   "base": "sell",
+   "past": [
+    "sold"
+   ],
+   "pp": [
+    "sold"
+   ],
+   "tr": "satmak"
+  },
+  {
+   "id": "irr|send",
+   "base": "send",
+   "past": [
+    "sent"
+   ],
+   "pp": [
+    "sent"
+   ],
+   "tr": "göndermek"
+  },
+  {
+   "id": "irr|set",
+   "base": "set",
+   "past": [
+    "set"
+   ],
+   "pp": [
+    "set"
+   ],
+   "tr": "ayarlamak, kurmak"
+  },
+  {
+   "id": "irr|sew",
+   "base": "sew",
+   "past": [
+    "sewed"
+   ],
+   "pp": [
+    "sewn",
+    "sewed"
+   ],
+   "tr": "dikmek"
+  },
+  {
+   "id": "irr|shake",
+   "base": "shake",
+   "past": [
+    "shook"
+   ],
+   "pp": [
+    "shaken"
+   ],
+   "tr": "sallamak, titremek"
+  },
+  {
+   "id": "irr|shed",
+   "base": "shed",
+   "past": [
+    "shed"
+   ],
+   "pp": [
+    "shed"
+   ],
+   "tr": "dökmek"
+  },
+  {
+   "id": "irr|shine",
+   "base": "shine",
+   "past": [
+    "shone"
+   ],
+   "pp": [
+    "shone"
+   ],
+   "tr": "parlamak"
+  },
+  {
+   "id": "irr|shoot",
+   "base": "shoot",
+   "past": [
+    "shot"
+   ],
+   "pp": [
+    "shot"
+   ],
+   "tr": "ateş etmek, vurmak"
+  },
+  {
+   "id": "irr|show",
+   "base": "show",
+   "past": [
+    "showed"
+   ],
+   "pp": [
+    "shown",
+    "showed"
+   ],
+   "tr": "göstermek"
+  },
+  {
+   "id": "irr|shrink",
+   "base": "shrink",
+   "past": [
+    "shrank"
+   ],
+   "pp": [
+    "shrunk"
+   ],
+   "tr": "küçülmek"
+  },
+  {
+   "id": "irr|shut",
+   "base": "shut",
+   "past": [
+    "shut"
+   ],
+   "pp": [
+    "shut"
+   ],
+   "tr": "kapatmak"
+  },
+  {
+   "id": "irr|sing",
+   "base": "sing",
+   "past": [
+    "sang"
+   ],
+   "pp": [
+    "sung"
+   ],
+   "tr": "şarkı söylemek"
+  },
+  {
+   "id": "irr|sink",
+   "base": "sink",
+   "past": [
+    "sank"
+   ],
+   "pp": [
+    "sunk"
+   ],
+   "tr": "batmak"
+  },
+  {
+   "id": "irr|sit",
+   "base": "sit",
+   "past": [
+    "sat"
+   ],
+   "pp": [
+    "sat"
+   ],
+   "tr": "oturmak"
+  },
+  {
+   "id": "irr|sleep",
+   "base": "sleep",
+   "past": [
+    "slept"
+   ],
+   "pp": [
+    "slept"
+   ],
+   "tr": "uyumak"
+  },
+  {
+   "id": "irr|slide",
+   "base": "slide",
+   "past": [
+    "slid"
+   ],
+   "pp": [
+    "slid"
+   ],
+   "tr": "kaymak"
+  },
+  {
+   "id": "irr|speak",
+   "base": "speak",
+   "past": [
+    "spoke"
+   ],
+   "pp": [
+    "spoken"
+   ],
+   "tr": "konuşmak"
+  },
+  {
+   "id": "irr|spell",
+   "base": "spell",
+   "past": [
+    "spelt",
+    "spelled"
+   ],
+   "pp": [
+    "spelt",
+    "spelled"
+   ],
+   "tr": "hecelemek"
+  },
+  {
+   "id": "irr|spend",
+   "base": "spend",
+   "past": [
+    "spent"
+   ],
+   "pp": [
+    "spent"
+   ],
+   "tr": "harcamak, geçirmek"
+  },
+  {
+   "id": "irr|spin",
+   "base": "spin",
+   "past": [
+    "spun"
+   ],
+   "pp": [
+    "spun"
+   ],
+   "tr": "döndürmek, eğirmek"
+  },
+  {
+   "id": "irr|spit",
+   "base": "spit",
+   "past": [
+    "spat"
+   ],
+   "pp": [
+    "spat"
+   ],
+   "tr": "tükürmek"
+  },
+  {
+   "id": "irr|split",
+   "base": "split",
+   "past": [
+    "split"
+   ],
+   "pp": [
+    "split"
+   ],
+   "tr": "bölmek, yarmak"
+  },
+  {
+   "id": "irr|spread",
+   "base": "spread",
+   "past": [
+    "spread"
+   ],
+   "pp": [
+    "spread"
+   ],
+   "tr": "yaymak"
+  },
+  {
+   "id": "irr|stand",
+   "base": "stand",
+   "past": [
+    "stood"
+   ],
+   "pp": [
+    "stood"
+   ],
+   "tr": "ayakta durmak"
+  },
+  {
+   "id": "irr|steal",
+   "base": "steal",
+   "past": [
+    "stole"
+   ],
+   "pp": [
+    "stolen"
+   ],
+   "tr": "çalmak (hırsızlık)"
+  },
+  {
+   "id": "irr|stick",
+   "base": "stick",
+   "past": [
+    "stuck"
+   ],
+   "pp": [
+    "stuck"
+   ],
+   "tr": "yapıştırmak, saplamak"
+  },
+  {
+   "id": "irr|sting",
+   "base": "sting",
+   "past": [
+    "stung"
+   ],
+   "pp": [
+    "stung"
+   ],
+   "tr": "sokmak"
+  },
+  {
+   "id": "irr|stink",
+   "base": "stink",
+   "past": [
+    "stank"
+   ],
+   "pp": [
+    "stunk"
+   ],
+   "tr": "kötü kokmak"
+  },
+  {
+   "id": "irr|strike",
+   "base": "strike",
+   "past": [
+    "struck"
+   ],
+   "pp": [
+    "struck"
+   ],
+   "tr": "vurmak, çarpmak"
+  },
+  {
+   "id": "irr|swear",
+   "base": "swear",
+   "past": [
+    "swore"
+   ],
+   "pp": [
+    "sworn"
+   ],
+   "tr": "yemin etmek, küfretmek"
+  },
+  {
+   "id": "irr|sweep",
+   "base": "sweep",
+   "past": [
+    "swept"
+   ],
+   "pp": [
+    "swept"
+   ],
+   "tr": "süpürmek"
+  },
+  {
+   "id": "irr|swim",
+   "base": "swim",
+   "past": [
+    "swam"
+   ],
+   "pp": [
+    "swum"
+   ],
+   "tr": "yüzmek"
+  },
+  {
+   "id": "irr|swing",
+   "base": "swing",
+   "past": [
+    "swung"
+   ],
+   "pp": [
+    "swung"
+   ],
+   "tr": "sallanmak"
+  },
+  {
+   "id": "irr|take",
+   "base": "take",
+   "past": [
+    "took"
+   ],
+   "pp": [
+    "taken"
+   ],
+   "tr": "almak, götürmek"
+  },
+  {
+   "id": "irr|teach",
+   "base": "teach",
+   "past": [
+    "taught"
+   ],
+   "pp": [
+    "taught"
+   ],
+   "tr": "öğretmek"
+  },
+  {
+   "id": "irr|tear",
+   "base": "tear",
+   "past": [
+    "tore"
+   ],
+   "pp": [
+    "torn"
+   ],
+   "tr": "yırtmak"
+  },
+  {
+   "id": "irr|tell",
+   "base": "tell",
+   "past": [
+    "told"
+   ],
+   "pp": [
+    "told"
+   ],
+   "tr": "söylemek, anlatmak"
+  },
+  {
+   "id": "irr|think",
+   "base": "think",
+   "past": [
+    "thought"
+   ],
+   "pp": [
+    "thought"
+   ],
+   "tr": "düşünmek"
+  },
+  {
+   "id": "irr|throw",
+   "base": "throw",
+   "past": [
+    "threw"
+   ],
+   "pp": [
+    "thrown"
+   ],
+   "tr": "atmak"
+  },
+  {
+   "id": "irr|understand",
+   "base": "understand",
+   "past": [
+    "understood"
+   ],
+   "pp": [
+    "understood"
+   ],
+   "tr": "anlamak"
+  },
+  {
+   "id": "irr|undo",
+   "base": "undo",
+   "past": [
+    "undid"
+   ],
+   "pp": [
+    "undone"
+   ],
+   "tr": "geri almak, çözmek"
+  },
+  {
+   "id": "irr|wake",
+   "base": "wake",
+   "past": [
+    "woke"
+   ],
+   "pp": [
+    "woken"
+   ],
+   "tr": "uyanmak, uyandırmak"
+  },
+  {
+   "id": "irr|wear",
+   "base": "wear",
+   "past": [
+    "wore"
+   ],
+   "pp": [
+    "worn"
+   ],
+   "tr": "giymek"
+  },
+  {
+   "id": "irr|weep",
+   "base": "weep",
+   "past": [
+    "wept"
+   ],
+   "pp": [
+    "wept"
+   ],
+   "tr": "ağlamak"
+  },
+  {
+   "id": "irr|win",
+   "base": "win",
+   "past": [
+    "won"
+   ],
+   "pp": [
+    "won"
+   ],
+   "tr": "kazanmak"
+  },
+  {
+   "id": "irr|wind",
+   "base": "wind",
+   "past": [
+    "wound"
+   ],
+   "pp": [
+    "wound"
+   ],
+   "tr": "sarmak"
+  },
+  {
+   "id": "irr|withdraw",
+   "base": "withdraw",
+   "past": [
+    "withdrew"
+   ],
+   "pp": [
+    "withdrawn"
+   ],
+   "tr": "geri çekmek"
+  },
+  {
+   "id": "irr|write",
+   "base": "write",
+   "past": [
+    "wrote"
+   ],
+   "pp": [
+    "written"
+   ],
+   "tr": "yazmak"
+  }
+ ]
+}

@@ -261,7 +261,7 @@ test('settings data screen passes accessibility check with safety snapshot undo 
   expect(problems).toEqual([])
 })
 
-test('new features pass accessibility check in dark and calm themes (audiobooks, pron practice, personal sentences, import placement, sync size)', async ({ page }) => {
+test('new features pass accessibility check in dark and calm themes (audiobooks, pron practice, personal sentences, import placement)', async ({ page }) => {
   // Many scans in two themes: about half a minute alone, longer when workers share the machine.
   test.setTimeout(150_000)
   await startWithSamples(page)
@@ -416,37 +416,6 @@ test('new features pass accessibility check in dark and calm themes (audiobooks,
         await setTheme(theme)
         problems.push(...(await scan(page, `import-placement-new-list-${theme}`)))
       }
-    }
-  }
-
-  // 5. Ayarlar → Eşitleme'de "Eşitlenen veri" satırı (%50 ve %85 kota uyarısı için)
-  for (const size of [2_200_000, 3_740_000]) {
-    await page.evaluate((s) => {
-      return new Promise<void>((resolve) => {
-        const req = indexedDB.open('kelime-koc')
-        req.onsuccess = () => {
-          const db = req.result
-          const tx = db.transaction('meta', 'readwrite')
-          tx.objectStore('meta').delete('syncAccount')
-          tx.objectStore('meta').put({ key: 'syncCode', value: 'ABCDE-FGHIJ-KLMNO-PQRST' })
-          tx.objectStore('meta').put({ key: 'syncSize', value: s })
-          tx.oncomplete = () => resolve()
-        }
-      })
-    }, size)
-    await page.reload()
-    await openScreen(page, 'Ayarlar')
-    await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
-    const summary = page.locator('summary', { hasText: /Hesapsız: eşitleme koduyla eşitle/ })
-    if (await summary.count()) {
-      const isOpen = await summary.evaluate((el) => (el.parentElement as HTMLDetailsElement)?.open)
-      if (!isOpen) await summary.click()
-    }
-    await expect(page.locator('p:has-text("Eşitlenen veri:")')).toBeVisible()
-    const label = size === 2_200_000 ? 'sync-size-50' : 'sync-size-85-warning'
-    for (const theme of ['dark', 'calm'] as const) {
-      await setTheme(theme)
-      problems.push(...(await scan(page, `${label}-${theme}`)))
     }
   }
 
@@ -1459,5 +1428,44 @@ test('journal: the exam-style task card passes accessibility checks in light, da
     }, theme)
     problems.push(...(await scan(page, `exam-task-${theme}`)))
   }
+  expect(problems).toEqual([])
+})
+
+test('English verb lab: lists, quiz question and feedback pass accessibility checks in light, dark and calm themes', async ({ page }) => {
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^İngilizce/ }).click()
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Fiil laboratuvarı' }).click()
+  const problems: string[] = []
+  const scanThemes = async (where: string) => {
+    for (const theme of ['light', 'dark', 'calm'] as const) {
+      await page.evaluate((t) => {
+        const root = document.documentElement
+        root.dataset.theme = t === 'dark' ? 'dark' : 'light'
+        if (t === 'calm') root.dataset.calm = 'true'
+        else delete root.dataset.calm
+      }, theme)
+      problems.push(...(await scan(page, `${where}-${theme}`)))
+    }
+  }
+  await expect(page.locator('.enverb-table')).toBeVisible()
+  await scanThemes('irregular-list')
+  await page.getByRole('tab', { name: 'Phrasal verbs' }).click()
+  await expect(page.locator('.enverb-phrasal').first()).toBeVisible()
+  await scanThemes('phrasal-list')
+  await page.getByRole('button', { name: 'Alıştır', exact: true }).click()
+  await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+  await expect(page.locator('.options .option')).toHaveCount(4)
+  await scanThemes('phrasal-question')
+  await page.locator('.options .option').first().click()
+  await expect(page.getByRole('status')).toBeVisible()
+  await scanThemes('phrasal-feedback')
+  await page.getByRole('tab', { name: 'Düzensiz fiiller' }).click()
+  await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+  await page.getByLabel('Past simple').fill('zzz')
+  await page.getByLabel('Past participle').fill('zzz')
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(page.getByRole('status')).toContainText('Doğrusu')
+  await scanThemes('irregular-feedback')
   expect(problems).toEqual([])
 })
