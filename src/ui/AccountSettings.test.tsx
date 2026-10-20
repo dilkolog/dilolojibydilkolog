@@ -62,6 +62,12 @@ describe('AccountSettings sync', () => {
     expect(host.textContent).toContain('sınırına yaklaşıyor')
   })
 
+  it('keeps saying what the last sync left behind, even when it ran in the background', async () => {
+    state.meta.set('syncSkipped', 3)
+    await mount()
+    expect(host.textContent).toContain('3 görsel/ses kaydı eşitlenemedi')
+  })
+
   it('names the pictures and recordings a sync could not take along', async () => {
     state.runSync.mockResolvedValueOnce({ skipped: 2 })
     await mount()

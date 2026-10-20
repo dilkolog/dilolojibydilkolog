@@ -39,7 +39,7 @@ Claude Code ve Antigravity aynı listeden çalışır; çakışmamak için:
 
 ## Yeni (2026-10-21)
 27. **Eşitleme için gerçek iki cihazlı E2E.** Atlanan `sync.e2e.ts`'in yerine: iki tarayıcı bağlamı, sahte Supabase (`gate.e2e.ts` `stubNetwork` deseni), A'da kelime ekle → B'de görünsün. Birim düzeyinde `supabaseStore.test.ts` kapsıyor; tarayıcı düzeyi eksik.
-28. **Atlanan medya uyarısı arka plan eşitlemesinde de.** Şimdi yalnızca elle "Şimdi eşitle"de söyleniyor (`SyncResult.skipped`); sessiz eşitlemelerde kullanıcı görmez.
+28. ~~**Atlanan medya uyarısı arka plan eşitlemesinde de.**~~ (Tamamlandı: `meta 'syncSkipped'`, Ayarlar → Hesap'ta kalıcı not)
 29. **Cihaz tercihlerinde silme yayılımı.** `devicePrefs` yalnızca değer yazar; bir cihazda silinen anahtar (ör. `diloloji:podcast:fr`) diğerinde kalır.
 
 ## Sahibinin kararına bağlı
