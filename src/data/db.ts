@@ -130,6 +130,8 @@ export interface Profile {
 
 export interface Settings {
   activeLanguage: TargetLanguage
+  /** Target CEFR level and deadline date per language (engine/goalPlanner). */
+  cefrGoals?: Partial<Record<TargetLanguage, { level: CefrLevel; targetDate: string; createdAt: string }>>
   /** @deprecated No longer used (level system removed); kept so old backups still load. */
   levels?: Partial<Record<TargetLanguage, CefrLevel>>
   dailyMinutes: number
@@ -269,6 +271,7 @@ export const DEFAULT_SETTINGS: Settings = {
   vacation: null,
   profile: { name: '', emoji: 'monki', color: '#2563eb', motto: '' },
   story: { interests: [], custom: '' },
+  cefrGoals: {},
 }
 
 export interface WordSnapshot {
