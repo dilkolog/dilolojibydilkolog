@@ -239,6 +239,7 @@ export function AppScreens(props: AppScreensProps) {
           weeklyGoal={settings.weeklyTimeGoal}
           onWeeklyGoal={(minutes) => void updateSettings({ ...settings, weeklyTimeGoal: minutes })}
           learnerName={settings.profile.name}
+          onSettingsChange={updateSettings}
         />
       ) : screen.name === 'produce' ? (
         <ProduceScreen

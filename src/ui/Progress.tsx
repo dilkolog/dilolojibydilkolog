@@ -7,7 +7,7 @@ import { SKILLS, type ErrorType, type ReviewEvent, type TargetLanguage, type Use
 import { skillProfile } from '../engine/mastery'
 import { calibration, errorBreakdown, hardWords, recallCalibration, reviewForecast, weakestSkill, weekReport } from '../engine/insights'
 import { useGame } from './game'
-import type { KelimeDB, VocabTestRecord } from '../data/db'
+import type { KelimeDB, Settings, VocabTestRecord } from '../data/db'
 import type { ExamResult } from '../engine/exam'
 import { KnownWordsCard } from './KnownWords'
 import { ErrorReportCard } from './ErrorReport'
@@ -60,6 +60,7 @@ export function ProgressScreen({
   weeklyGoal,
   onWeeklyGoal,
   learnerName,
+  onSettingsChange,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -79,6 +80,8 @@ export function ProgressScreen({
   /** Weekly reading and listening goal in minutes, and how it is changed. */
   weeklyGoal?: number
   onWeeklyGoal?: (minutes: number | undefined) => void
+  /** Saves settings changed on this screen (the level goal) through the app. */
+  onSettingsChange?: (settings: Settings) => Promise<void> | void
   /** The learner's name, printed on the report. */
   learnerName?: string
 }) {
@@ -154,7 +157,7 @@ export function ProgressScreen({
           {onRepair && <BlindSpotsCard language={language} errors={errorsByType} onRepair={onRepair} onLesson={onLesson} />}
           {onRepair && <WritingNotebook language={language} onRepair={onRepair} onLesson={onLesson} />}
           <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
-          <FrequencyCoverageCard db={db} language={language} vocabulary={vocabulary} states={states} />
+          <FrequencyCoverageCard db={db} language={language} vocabulary={vocabulary} states={states} onSettingsChange={onSettingsChange} />
           <div className="hero-stat card">
             <span className="hero-number">{stats.activeVocabulary}</span>
             <span>

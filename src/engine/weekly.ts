@@ -9,6 +9,8 @@ export interface WeekSummary {
   right: number
   /** Words added to the list. */
   newWords: number
+  /** Words met for the first time in study (what the daily new-word quota counts); absent when the states were not given. */
+  introduced?: number
   /** Readings finished. */
   texts: number
   /** Answers of the week before, to show the change. */
@@ -32,6 +34,8 @@ export function weekSummary(input: {
   events: readonly { timestamp: Date; correct: boolean; language: TargetLanguage; entryId?: string; mode?: string; errorType?: string }[]
   vocabulary: readonly { addedAt?: Date; source: string; language: TargetLanguage }[]
   texts: readonly { history: { at: string }[] }[]
+  /** The learner's word states, to count the words introduced this week. */
+  states?: readonly { language: TargetLanguage; introducedAt: Date | string }[]
 }): WeekSummary {
   const since = input.now.getTime() - WEEK
   const inWeek = (t: Date | string | undefined) => !!t && new Date(t).getTime() > since && new Date(t).getTime() <= input.now.getTime()
@@ -54,6 +58,7 @@ export function weekSummary(input: {
     right: answers.length ? answers.filter((e) => e.correct).length / answers.length : 0,
     newWords: input.vocabulary.filter((v) => v.language === input.language && v.source !== 'sample' && inWeek(v.addedAt)).length,
     texts: input.texts.filter((t) => t.history.some((h) => inWeek(h.at))).length,
+    ...(input.states ? { introduced: input.states.filter((st) => st.language === input.language && inWeek(st.introducedAt)).length } : {}),
     lastAnswers,
     ...(missed.length ? { missed } : {}),
     ...(Object.keys(errors).length ? { errors } : {}),
@@ -87,14 +92,13 @@ export function weekDigest(s: WeekSummary, lemmaOf: (entryId: string) => string 
 
 /** One line for the week: "5 gün · 312 cevap (%86 doğru) · 18 yeni kelime · 2 metin · bu hafta 17 kelime daha". Empty for a week with nothing. */
 export function weekLine(s: WeekSummary, goalWords?: number): string {
-  if (!s.answers && !s.newWords && !s.texts && !goalWords) return ''
+  // The goal alone is not news: an empty week has no line (no card on Today, no weekly push or mail).
+  if (!s.answers && !s.newWords && !s.texts) return ''
   let goalClause = ''
   if (goalWords && goalWords > 0) {
-    if (s.newWords >= goalWords) {
-      goalClause = 'haftalık hedefe ulaşıldı'
-    } else {
-      goalClause = `bu hafta ${goalWords - s.newWords} kelime daha`
-    }
+    // The goal is the daily new-word quota: it counts words met in study, not words added to the list.
+    const met = s.introduced ?? s.newWords
+    goalClause = met >= goalWords ? 'haftalık hedefe ulaşıldı' : `bu hafta ${goalWords - met} kelime daha`
   }
   return [
     s.answers ? `${s.days} gün · ${s.answers} cevap (%${Math.round(s.right * 100)} doğru)` : '',

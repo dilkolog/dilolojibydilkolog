@@ -353,7 +353,7 @@ export default function App() {
     let live = true
     void (async () => {
       const texts = await db.getLibrary(data.language)
-      const summary = weekSummary({ language: data.language, now: new Date(), events: data.recentEvents, vocabulary: data.vocabulary, texts })
+      const summary = weekSummary({ language: data.language, now: new Date(), events: data.recentEvents, vocabulary: data.vocabulary, texts, states: data.states })
       if (!live) return
       const target = settings?.newWordsPerDay ? Math.round(settings.newWordsPerDay * 7) : undefined
       setWeekText(weekLine(summary, target))

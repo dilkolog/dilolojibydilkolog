@@ -74,7 +74,8 @@ export function phrasalQuestion(verb: PhrasalVerb, all: readonly PhrasalVerb[], 
     ).slice(0, 3)
     if (wrong.length === 3) return { id: verb.id, verb, kind: 'particle', options: shuffle([particle, ...wrong], rng), answer: particle }
   }
-  const wrong = shuffle(all.filter((v) => v.id !== verb.id && v.tr !== verb.tr), rng).slice(0, 3).map((v) => v.tr)
+  // Synonyms share their meaning text (watch out, look out): the same meaning is offered once, never as a second right answer.
+  const wrong = [...new Set(shuffle(all.filter((v) => v.id !== verb.id && v.tr !== verb.tr), rng).map((v) => v.tr))].slice(0, 3)
   return { id: verb.id, verb, kind: 'meaning', options: shuffle([verb.tr, ...wrong], rng), answer: verb.tr }
 }
 

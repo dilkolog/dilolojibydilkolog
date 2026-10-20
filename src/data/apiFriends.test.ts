@@ -371,4 +371,42 @@ describe('/api/access: finding a friend by a chosen name', () => {
     await forgetFriends(ALI)
     expect((await setName(as(VELI, VELI_TOKEN), 'ali_fr', true)).status).toBe(200)
   })
+
+  it('a stranger cannot ring someone again and again: a repeat request, even after it was turned away, sends nothing', async () => {
+    vi.stubEnv('VAPID_PRIVATE_KEY', 'test-private-key')
+    await post(as(ALI, ALI_TOKEN), { action: 'friends-publish', ...card })
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-publish', ...card, name: 'Veli' })
+    await setName(as(ALI, ALI_TOKEN), 'ali_fr', true)
+    set(`push/${'1'.repeat(40)}.json`, JSON.stringify({ subscription: { endpoint: 'https://fcm.googleapis.com/fcm/send/ali', keys: { p256dh: 'p', auth: 'a' } }, owner: ALI, friends: true, tz: 0, studiedDay: null, streak: 0, plan: '', group: null }))
+    expect((await post(as(VELI, VELI_TOKEN), { action: 'friends-request', handle: 'ali_fr' })).status).toBe(200)
+    expect((await post(as(VELI, VELI_TOKEN), { action: 'friends-request', handle: 'ali_fr' })).status).toBe(200)
+    expect(pushed).toHaveLength(1)
+    // Turned away; asked again at once: still nothing.
+    const waiting = await inbox(as(ALI, ALI_TOKEN))
+    await post(as(ALI, ALI_TOKEN), { action: 'friends-inbox-clear', ids: waiting.map((i) => i.id) })
+    expect((await post(as(VELI, VELI_TOKEN), { action: 'friends-request', handle: 'ali_fr' })).status).toBe(200)
+    expect(await inbox(as(ALI, ALI_TOKEN))).toEqual([])
+    expect(pushed).toHaveLength(1)
+  })
+
+  it('of two accounts claiming one free name at the same moment, only the first holds it', async () => {
+    await post(as(ALI, ALI_TOKEN), { action: 'friends-publish', ...card })
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-publish', ...card })
+    // Veli's claim lands between Ali's check and Ali's write.
+    betweenReadAndWrite = () => set('friends/handle/ali_fr.json', JSON.stringify({ id: VELI }))
+    expect((await setName(as(ALI, ALI_TOKEN), 'ali_fr', true)).status).toBe(409)
+    expect(JSON.parse(new TextDecoder().decode(blobs.get('friends/handle/ali_fr.json')))).toEqual({ id: VELI })
+  })
+
+  it('giving up a name another account has since taken leaves it with that account', async () => {
+    await post(as(ALI, ALI_TOKEN), { action: 'friends-publish', ...card })
+    await setName(as(ALI, ALI_TOKEN), 'ali_fr', true)
+    // However it came about, the name file now points to Veli while Ali's own record still says ali_fr.
+    set('friends/handle/ali_fr.json', JSON.stringify({ id: VELI }))
+    expect((await setName(as(ALI, ALI_TOKEN), 'ali_es', true)).status).toBe(200)
+    expect(blobs.has('friends/handle/ali_fr.json')).toBe(true)
+    const { forgetFriends } = await import('../../api/_friends')
+    await forgetFriends(ALI)
+    expect(JSON.parse(new TextDecoder().decode(blobs.get('friends/handle/ali_fr.json')))).toEqual({ id: VELI })
+  })
 })

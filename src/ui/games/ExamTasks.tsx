@@ -19,7 +19,8 @@ const LEVELS = ['A2', 'B1', 'B2', 'C1'] as const
 
 const readMode = (): ExamMode => {
   try {
-    return localStorage.getItem(MODE_KEY) === 'listen' ? 'listen' : 'read'
+    // Listening needs a voice: on a device without one the saved choice falls back to reading.
+    return localStorage.getItem(MODE_KEY) === 'listen' && canSpeak() ? 'listen' : 'read'
   } catch {
     return 'read'
   }

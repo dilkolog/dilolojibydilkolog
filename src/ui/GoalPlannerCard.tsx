@@ -6,6 +6,9 @@ import { calculateGoalProgress, type CefrGoal } from '../engine/goalPlanner'
 import { AlertIcon, CalendarIcon, CheckCircleIcon, SparkleIcon, TargetIcon } from './icons'
 import { showToast } from './toastFeed'
 
+/** The levels a goal can be set for. */
+const GOAL_LEVELS: readonly CefrLevel[] = CEFR_LEVELS.filter((l) => ['A1', 'A2', 'B1', 'B2'].includes(l))
+
 const TIMEFRAMES = [
   { days: 30, label: '1 ay (30 gün)' },
   { days: 60, label: '2 ay (60 gün)' },
@@ -27,12 +30,13 @@ export function GoalPlannerCard({
   db,
   language,
   levels,
-  onGoalChange,
+  onSettingsChange,
 }: {
   db: KelimeDB
   language: TargetLanguage
   levels: LevelCoverage[]
-  onGoalChange?: () => void
+  /** Saves the settings through the app (so its own copy and the daily plan follow); without it the card saves directly. */
+  onSettingsChange?: (settings: Settings) => Promise<void> | void
 }) {
   const [settings, setSettings] = useState<Settings | null>(null)
   const [isEditing, setIsEditing] = useState(false)
@@ -48,8 +52,8 @@ export function GoalPlannerCard({
       if (existing) {
         setSelectedLevel(existing.level)
       } else {
-        // Pick first incomplete level as default
-        const next = levels.find((l) => l.known / Math.max(1, l.total) < 0.85)
+        // Pick the first incomplete level the form offers as default
+        const next = levels.find((l) => GOAL_LEVELS.includes(l.level) && l.known / Math.max(1, l.total) < 0.85)
         if (next) setSelectedLevel(next.level)
       }
     })
@@ -59,43 +63,38 @@ export function GoalPlannerCard({
 
   const activeGoal = settings.cefrGoals?.[language]
 
+  // Every change starts from the stored settings, not this card's copy: a sync or another screen may have changed them since.
+  const change = async (edit: (s: Settings) => Settings) => {
+    const updated = edit((await db.getSettings()) ?? settings)
+    if (onSettingsChange) await onSettingsChange(updated)
+    else await db.saveSettings(updated)
+    setSettings(updated)
+  }
+
   const saveGoal = async (level: CefrLevel, targetDate: string) => {
     const newGoal: CefrGoal = {
       level,
       targetDate,
       createdAt: activeGoal?.createdAt ?? todayIso(),
     }
-    const updated: Settings = {
-      ...settings,
-      cefrGoals: {
-        ...settings.cefrGoals,
-        [language]: newGoal,
-      },
-    }
-    await db.saveSettings(updated)
-    setSettings(updated)
+    await change((s) => ({ ...s, cefrGoals: { ...s.cefrGoals, [language]: newGoal } }))
     setIsEditing(false)
     showToast(`${level} hedefi kaydedildi.`)
-    onGoalChange?.()
   }
 
   const removeGoal = async () => {
-    const goals = { ...settings.cefrGoals }
-    delete goals[language]
-    const updated: Settings = { ...settings, cefrGoals: goals }
-    await db.saveSettings(updated)
-    setSettings(updated)
+    await change((s) => {
+      const goals = { ...s.cefrGoals }
+      delete goals[language]
+      return { ...s, cefrGoals: goals }
+    })
     setIsEditing(false)
     showToast('Hedef kaldırıldı.')
-    onGoalChange?.()
   }
 
   const applySuggestedQuota = async (quota: number) => {
-    const updated: Settings = { ...settings, newWordsPerDay: quota }
-    await db.saveSettings(updated)
-    setSettings(updated)
+    await change((s) => ({ ...s, newWordsPerDay: quota }))
     showToast(`Günlük yeni kelime ${quota} olarak güncellendi.`)
-    onGoalChange?.()
   }
 
   if (activeGoal && !isEditing) {
@@ -141,7 +140,13 @@ export function GoalPlannerCard({
           </div>
         </div>
 
-        {!progress.isCompleted && settings.newWordsPerDay !== progress.suggestedDailyNew && progress.suggestedDailyNew > 0 && (
+        {progress.unrealistic && !progress.isOverdue && (
+          <p className="small muted m-0">
+            Bu tarihe yetişmek için günde {progress.neededDailyNew} yeni kelime gerekiyor; bu çok fazla. Tarihi ileri almayı düşün.
+          </p>
+        )}
+        {progress.isOverdue && <p className="small muted m-0">Hedef tarih geçti. Yeni bir tarih seçmek için hedefi düzenle.</p>}
+        {!progress.isCompleted && !progress.isOverdue && settings.newWordsPerDay !== progress.suggestedDailyNew && progress.suggestedDailyNew > 0 && (
           <button
             type="button"
             className="btn btn-sm btn-quiet align-self-start"
@@ -184,7 +189,7 @@ export function GoalPlannerCard({
       <div className="stack gap-1">
         <label className="small font-bold" htmlFor="goal-level-select">Hedef Seviye</label>
         <div className="segmented" role="group" aria-label="Hedef Seviye">
-          {CEFR_LEVELS.filter((l) => ['A1', 'A2', 'B1', 'B2'].includes(l)).map((lvl) => (
+          {GOAL_LEVELS.map((lvl) => (
             <button
               key={lvl}
               type="button"
@@ -232,7 +237,8 @@ export function GoalPlannerCard({
       <div className="note goal-preview-note">
         <span className="small">
           🎯 <strong>{selectedLevel}</strong> için ~<strong>{previewProgress.wordsRemaining}</strong> yeni kelime gerekiyor.
-          Hedef tarihe ({effectiveTargetDate}) kadar günde <strong>{previewProgress.suggestedDailyNew}</strong> yeni kelime önerilir.
+          Hedef tarihe ({effectiveTargetDate}) kadar günde <strong>{previewProgress.neededDailyNew}</strong> yeni kelime gerekir
+          {previewProgress.unrealistic ? '; bu çok fazla, daha uzak bir tarih seç.' : '.'}
         </span>
       </div>
 

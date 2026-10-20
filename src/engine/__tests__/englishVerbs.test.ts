@@ -64,4 +64,18 @@ describe('English verbs: rounds', () => {
     const v = phrasalVerbs.find((p) => p.phrasal === 'put up with')!
     for (let seed = 1; seed <= 20; seed++) expect(phrasalQuestion(v, phrasalVerbs, createRng(seed)).kind).toBe('meaning')
   })
+
+  it('never offers the same meaning twice, even when two wrong verbs are synonyms', () => {
+    // watch out and look out share "dikkat etmek": both could be drawn as wrong choices for another verb.
+    const giveUp = phrasalVerbs.find((p) => p.phrasal === 'give up')!
+    const known = phrasalQuestion(giveUp, phrasalVerbs, createRng(14985)).options
+    expect(new Set(known).size).toBe(known.length)
+    for (const v of phrasalVerbs) {
+      for (let seed = 1; seed <= 40; seed++) {
+        const q = phrasalQuestion(v, phrasalVerbs, createRng(seed * 7919 + v.id.length))
+        expect(new Set(q.options).size, `${v.phrasal} #${seed}`).toBe(q.options.length)
+        expect(q.options.filter((o) => o === q.answer)).toHaveLength(1)
+      }
+    }
+  })
 })

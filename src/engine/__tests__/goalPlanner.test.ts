@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { calculateGoalProgress, type CefrGoal } from '../goalPlanner'
+import { calculateGoalProgress, MAX_DAILY_NEW, type CefrGoal } from '../goalPlanner'
 import type { LevelCoverage } from '../cefrLevels'
 
 const NOW = new Date('2026-10-20T12:00:00Z')
@@ -71,5 +71,20 @@ describe('calculateGoalProgress', () => {
     expect(progress.percent).toBe(100)
     expect(progress.suggestedDailyNew).toBe(0)
     expect(progress.pace).toBe('ahead')
+  })
+
+  it('caps the suggested quota at what the settings offer and says when the date is too close', () => {
+    // 310 words in about 3 days needs over 100 a day.
+    const progress = calculateGoalProgress({ level: 'A2', targetDate: '2026-10-22', createdAt: '2026-10-01' }, MOCK_COVERAGE, 5, NOW)
+    expect(progress.neededDailyNew).toBeGreaterThan(MAX_DAILY_NEW)
+    expect(progress.suggestedDailyNew).toBe(MAX_DAILY_NEW)
+    expect(progress.unrealistic).toBe(true)
+    expect(progress.pace).toBe('behind')
+  })
+
+  it('does not turn a passed date into a quota of every remaining word', () => {
+    const progress = calculateGoalProgress({ level: 'A2', targetDate: '2026-10-01', createdAt: '2026-09-01' }, MOCK_COVERAGE, 5, NOW)
+    expect(progress.isOverdue).toBe(true)
+    expect(progress.suggestedDailyNew).toBeLessThanOrEqual(MAX_DAILY_NEW)
   })
 })

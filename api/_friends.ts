@@ -1,4 +1,4 @@
-import { get, put } from '@vercel/blob'
+import { del, get, put } from '@vercel/blob'
 import { readText, removeBlob, StorageError, writeJson } from './_account.js'
 import { eq, inboxTableOn, rows, tablesOn, upsert, write } from './_tables.js'
 
@@ -198,8 +198,9 @@ export async function friendsOf(id: string, today: string): Promise<{ me: Friend
 export async function forgetFriends(id: string): Promise<void> {
   // Both places: an account deleted soon after the move must leave nothing behind in either.
   const handle = await handleOf(id).catch(() => null)
-  await Promise.all([handle ? removeBlob(handlePath(handle.handle)) : Promise.resolve(), removeBlob(handleOfPath(id))])
-  if (await inboxTableOn().catch(() => false)) await write(`friend_inbox?sync_id=${eq(id)}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } }).catch(() => undefined)
+  await Promise.all([handle ? releaseHandle(handle.handle, id) : Promise.resolve(), removeBlob(handleOfPath(id)), removeBlob(requestsPath(id))])
+  // Not swallowed: a deletion that left the messages behind must fail (and can be tried again).
+  if (await inboxTableOn()) await write(`friend_inbox?sync_id=${eq(id)}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } })
   await Promise.all([blobFriends.forget(id), removeBlob(inboxPath(id)), (await tablesOn()) ? tableFriends.forget(id) : Promise.resolve()])
 }
 
@@ -305,14 +306,27 @@ export async function setHandle(id: string, rawHandle: unknown, findable: unknow
   const held = await readJson<{ id?: string }>(handlePath(handle))
   if (held?.id && held.id !== id) return 'taken'
   const previous = await handleOf(id)
-  if (!held?.id) {
-    await writeJson(handlePath(handle), { id })
-    // Two accounts claiming one free name at the same moment: the file shows who stays.
-    if ((await readJson<{ id?: string }>(handlePath(handle)))?.id !== id) return 'taken'
-  }
+  // Two accounts claiming one free name at the same moment: only the first write creates the file, the other is told it is taken.
+  if (!held?.id && !(await createJson(handlePath(handle), { id })) && (await readJson<{ id?: string }>(handlePath(handle)))?.id !== id) return 'taken'
   await writeJson(handleOfPath(id), { handle, findable: findable === true })
-  if (previous && previous.handle !== handle) await removeBlob(handlePath(previous.handle))
+  if (previous && previous.handle !== handle) await releaseHandle(previous.handle, id)
   return 'ok'
+}
+
+/** Writes a file only if there is none yet; false when one was already there. */
+async function createJson(path: string, value: unknown): Promise<boolean> {
+  try {
+    await put(path, JSON.stringify(value), { access: 'private', addRandomSuffix: false, allowOverwrite: false, contentType: 'application/json' })
+    return true
+  } catch (e) {
+    if (await readText(path)) return false
+    throw e
+  }
+}
+
+/** Frees a name, but only while this account holds it: a name another account has since taken stays theirs. */
+async function releaseHandle(handle: string, id: string): Promise<void> {
+  if ((await readJson<{ id?: string }>(handlePath(handle)))?.id === id) await removeBlob(handlePath(handle))
 }
 
 /** What a search shows of a person: only what their card shows a friend, never an id or a code. */
@@ -355,11 +369,24 @@ export async function requestFriend(id: string, rawHandle: unknown, onDelivered?
   const [mine, theirFollows] = await Promise.all([store.follows(id), store.follows(found.owner)])
   if (mine.includes(theirs.code) || theirFollows.includes(me.code)) return 'already'
   const now = new Date()
+  // Asking again (while the first request waits, or soon after it was turned away) sends nothing and rings nothing:
+  // a stranger must not be able to fill someone's inbox and phone with requests. The answer is the same 'ok'.
+  const asked = await readJson<Record<string, string>>(requestsPath(found.owner)).catch(() => null)
+  const last = asked?.[me.code] ? new Date(asked[me.code]!).getTime() : NaN
+  if (now.getTime() - last < REQUEST_AGAIN_MS) return 'ok'
+  if ((await readInbox(found.owner)).some((i) => i.kind === 'request' && i.from.code === me.code)) return 'ok'
   let delivered = null as InboxItem | null
   await withInbox(found.owner, () => deliver(found.owner, me, 'request', null, null, now, now.toISOString().slice(0, 10), (item) => (delivered = item)))
+  const recent = Object.fromEntries(Object.entries(asked ?? {}).filter(([, at]) => now.getTime() - new Date(at).getTime() < REQUEST_AGAIN_MS))
+  await writeJson(requestsPath(found.owner), { ...recent, [me.code]: now.toISOString() }).catch(() => undefined)
   if (delivered && onDelivered) await onDelivered(found.owner, delivered).catch(() => {})
   return 'ok'
 }
+
+/** How long after a request the same sender's next one to the same person is let through. */
+export const REQUEST_AGAIN_MS = 24 * 3600_000
+/** When each sender last asked this person: sender code → time (only the last day's kept). */
+const requestsPath = (id: string) => `friends/requested/${id}.json`
 
 const inboxPath = (id: string) => `friends/inbox/${id}.json`
 
@@ -449,7 +476,10 @@ async function legacyInbox(id: string): Promise<InboxItem[]> {
 async function readInboxTable(id: string): Promise<InboxItem[]> {
   const [current, legacy] = await Promise.all([rows<InboxRow>(`friend_inbox?sync_id=${eq(id)}&at=gt.${encodeURIComponent(cutoff())}&select=${INBOX_COLUMNS}&order=at.desc&limit=${MAX_INBOX * 2}`), legacyInbox(id)])
   const have = new Set(current.map((r) => r.id))
+  // Two server instances delivering at once can each leave a row the other did not count: the limit holds on reading too.
   return keepable([...current.map(itemOfRow), ...legacy.filter((i) => !have.has(i.id))])
+    .sort((a, b) => b.at.localeCompare(a.at))
+    .slice(0, MAX_INBOX)
 }
 
 async function changeInboxTable(id: string, change: (items: InboxItem[]) => InboxItem[] | null): Promise<void> {
@@ -467,8 +497,12 @@ async function changeInboxTable(id: string, change: (items: InboxItem[]) => Inbo
   void write(`friend_inbox?sync_id=${eq(id)}&at=lt.${encodeURIComponent(cutoff())}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } }).catch(() => undefined)
   // What was waiting in the Blob inbox is in the table now: the file goes.
   if (legacy.length) {
-    await removeBlob(inboxPath(id)).catch(() => undefined)
-    noBlobInbox.set(id, Date.now() + BLOB_CHECK_MS)
+    // Only once the file is really gone: a failed removal leaves it to be carried over (and its dismissed messages dropped) next time.
+    const removed = await del(inboxPath(id)).then(
+      () => true,
+      () => false,
+    )
+    if (removed) noBlobInbox.set(id, Date.now() + BLOB_CHECK_MS)
   }
 }
 
