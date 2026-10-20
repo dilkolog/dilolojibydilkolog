@@ -5,7 +5,7 @@ import { showToast } from './toastFeed'
 import { ChartIcon, LockIcon } from './icons'
 import { db } from '../data/instance'
 import { BackupVersionError } from '../data/db'
-import { SyncAuthError, SyncConflictError, SyncMovedError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
+import { SyncAuthError, SyncConflictError, SyncMovedError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, syncUsage, type Account } from '../data/sync'
 import { relativeTime } from './format'
 import type { AuthMode } from './AuthScreen'
 import { CONFLICT, MOVED, getAccount, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync } from './syncRunner'
@@ -28,6 +28,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState<{ ok: boolean; text: string; conflict?: boolean } | null>(null)
   const [at, setAt] = useState<Date | null>(null)
+  const [size, setSize] = useState<number | null>(null)
   const [identity, setIdentity] = useState<Identity | null>(null)
   const { status: access } = useAccess()
   const modern = supabaseConfigured()
@@ -38,6 +39,8 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
     setIdentity(acc ? await currentIdentity().catch(() => null) : null)
     const v = (await db.meta.get('syncAt'))?.value as string | undefined
     setAt(v ? new Date(v) : null)
+    const bytes = (await db.meta.get('syncSize'))?.value
+    setSize(typeof bytes === 'number' ? bytes : null)
   }
   useEffect(() => {
     void refresh()
@@ -47,8 +50,9 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
     setBusy(true)
     setMessage(null)
     try {
-      await runSync(true)
+      const r = await runSync(true)
       showToast('Eşitlendi.')
+      if (r?.skipped) setMessage({ ok: false, text: `${r.skipped} görsel/ses kaydı eşitlenemedi (çok büyük ya da yüklenemedi). Kelimelerin ve ilerlemen eşitlendi; o dosyalar bu cihazda duruyor.` })
     } catch (e) {
       setMessage({ ok: false, conflict: e instanceof SyncConflictError, text: e instanceof SyncMovedError ? MOVED : e instanceof SyncConflictError ? CONFLICT : e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : e instanceof SyncAuthError ? 'Oturumun bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
     } finally {
@@ -160,6 +164,14 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
           Şimdi eşitle
         </button>
       </div>
+      {size !== null && syncUsage(size).warn && (
+        <div className="status-note">
+          <StatusPicture kind="full" small />
+          <p className="note">
+            Eşitlenen veri: {syncUsage(size).label} (%{syncUsage(size).percent}). En büyük eşitleme dosyası sunucunun sınırına yaklaşıyor; kullanmadığın okuma metinlerini ya da eski çeviri belleğini azaltmak yer açar.
+          </p>
+        </div>
+      )}
       {message?.conflict && <StatusPicture kind="conflict" />}
       {message && (
         <p className={message.ok ? 'notice' : 'error'} role="status">
