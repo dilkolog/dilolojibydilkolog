@@ -132,6 +132,27 @@ describe('stored tables', () => {
   })
 })
 
+describe('Spanish verbs from the coverage report', () => {
+  it('spelling changes, stem changes and irregular verbs come out right in every tense', () => {
+    expect(verb('es', 'paralizar', 'preterito')?.[0]).toBe('paralicé')
+    expect(verb('es', 'paralizar', 'subjuntivo')?.[0]).toBe('paralice')
+    expect(verb('es', 'atascar', 'preterito')?.[0]).toBe('atasqué')
+    expect(verb('es', 'otorgar', 'subjuntivo')?.[1]).toBe('otorgues')
+    expect(verb('es', 'referir', 'presente')).toEqual(['refiero', 'refieres', 'refiere', 'referimos', 'referís', 'refieren'])
+    expect(verb('es', 'referir', 'preterito')?.[2]).toBe('refirió')
+    expect(verb('es', 'referir', 'subjuntivo')?.[3]).toBe('refiramos')
+    expect(verb('es', 'moler', 'presente')?.[0]).toBe('muelo')
+    expect(verb('es', 'colar', 'subjuntivo')?.[0]).toBe('cuele')
+    expect(verb('es', 'apetecer', 'presente')?.[0]).toBe('apetezco')
+    expect(verb('es', 'apetecer', 'subjuntivo')?.[0]).toBe('apetezca')
+    expect(verb('es', 'provenir', 'preterito')?.[0]).toBe('provine')
+    expect(verb('es', 'provenir', 'futuro')?.[0]).toBe('provendré')
+    expect(verb('es', 'equivaler', 'futuro')?.[0]).toBe('equivaldré')
+    expect(verb('es', 'inscribir', 'perfecto')?.[0]).toBe('he inscrito')
+    expect(verb('es', 'estrellar', 'imperfecto')?.[3]).toBe('estrellábamos')
+  })
+})
+
 describe('Spanish example sentences', () => {
   it('every stored form is the verb in that tense', () => {
     let n = 0

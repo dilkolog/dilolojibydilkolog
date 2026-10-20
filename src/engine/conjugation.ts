@@ -170,14 +170,21 @@ const ES_TABLE: Record<string, string[]> = {
   maldecir: t('maldigo maldices maldice maldecimos maldecís maldicen'),
   avergonzar: t('avergüenzo avergüenzas avergüenza avergonzamos avergonzáis avergüenzan'),
   interactuar: t('interactúo interactúas interactúa interactuamos interactuáis interactúan'),
+  apetecer: t('apetezco apeteces apetece apetecemos apetecéis apetecen'),
+  fallecer: t('fallezco falleces fallece fallecemos fallecéis fallecen'),
+  favorecer: t('favorezco favoreces favorece favorecemos favorecéis favorecen'),
+  desconocer: t('desconozco desconoces desconoce desconocemos desconocéis desconocen'),
+  acoger: t('acojo acoges acoge acogemos acogéis acogen'),
+  provenir: t('provengo provienes proviene provenimos provenís provienen'),
+  equivaler: t('equivalgo equivales equivale equivalemos equivaléis equivalen'),
 }
 
 /** Spanish stem-changing verbs: the last stem vowel changes in the singular and 3rd plural. */
 const ES_STEM: Record<string, 'ie' | 'ue' | 'i'> = Object.fromEntries([
-  ...'pensar empezar comenzar cerrar despertar sentar recomendar calentar atravesar confesar gobernar negar nevar enterrar desenterrar sembrar acertar enmendar digerir revertir entender perder encender defender atender extender preferir sentir mentir divertir convertir advertir consentir'
+  ...'pensar empezar comenzar cerrar despertar sentar recomendar calentar atravesar confesar gobernar negar nevar mentar referir enterrar desenterrar sembrar acertar enmendar digerir revertir entender perder encender defender atender extender preferir sentir mentir divertir convertir advertir consentir'
     .split(' ')
     .map((v) => [v, 'ie' as const]),
-  ...'volver devolver dormir morir encontrar contar recordar mostrar probar costar soñar volar acostar almorzar mover resolver colgar aprobar llover doler'
+  ...'volver devolver dormir morir encontrar contar recordar mostrar probar costar soñar volar acostar almorzar mover resolver colgar aprobar llover doler colar moler'
     .split(' ')
     .map((v) => [v, 'ue' as const]),
   ...'pedir servir repetir vestir medir competir impedir despedir'.split(' ').map((v) => [v, 'i' as const]),
@@ -185,7 +192,7 @@ const ES_STEM: Record<string, 'ie' | 'ue' | 'i'> = Object.fromEntries([
 
 /** Common Spanish -er/-ir verbs known to be regular in the present. */
 const ES_REGULAR_ER_IR = new Set(
-  'comer beber vivir escribir abrir aprender leer creer correr vender deber comprender subir decidir recibir partir permitir existir ocurrir responder romper meter prometer temer coser barrer cubrir describir descubrir discutir sufrir unir asistir insistir depender sorprender cumplir compartir aburrir añadir atrever lamer tejer someter emprender irrumpir persuadir percibir dimitir evadir eludir pulir suprimir resumir desistir parir reabrir'.split(' '),
+  'comer beber vivir escribir abrir aprender leer creer correr vender deber comprender subir decidir recibir partir permitir existir ocurrir responder romper meter prometer temer coser barrer cubrir describir descubrir discutir sufrir unir asistir insistir depender sorprender cumplir compartir aburrir añadir atrever lamer tejer someter emprender irrumpir persuadir percibir dimitir evadir eludir pulir suprimir resumir desistir parir reabrir transcurrir inscribir'.split(' '),
 )
 
 const FR_ENDINGS_ER = t('e es e ons ez ent')
