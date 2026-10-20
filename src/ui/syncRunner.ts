@@ -95,8 +95,14 @@ export function worthReporting(e: unknown, online: boolean): boolean {
   return true
 }
 
-/** Syncs if signed in (or a code is set); failures (offline etc.) are silent unless `throwErrors`. */
-export function runSync(throwErrors = false): Promise<SyncResult | null> {
+/** Whether a sync is running (live sync ignores the writes a sync makes itself). */
+export const isSyncing = () => running !== null
+
+/**
+ * Syncs if signed in (or a code is set); failures (offline etc.) are silent unless `throwErrors`.
+ * `quiet`: the screens are told only if the merge changed something here (a background pull that found nothing new leaves them be).
+ */
+export function runSync(throwErrors = false, quiet = false): Promise<SyncResult | null> {
   if (running) return running
   running = (async () => {
     try {
@@ -105,7 +111,7 @@ export function runSync(throwErrors = false): Promise<SyncResult | null> {
       if (typeof cred !== 'string' && (await signOutOldAccount())) return null
       const target = await (await import('./syncTarget')).syncTarget(cred)
       const result = await (await syncCode()).syncNow(db, target)
-      for (const fn of listeners) fn()
+      if (!quiet || result.changed !== false) for (const fn of listeners) fn()
       return result
     } catch (e) {
       // Silent in the background, so a real failure would otherwise never be seen: it goes to the logs ([client-error] … where=sync).

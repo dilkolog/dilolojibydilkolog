@@ -450,6 +450,20 @@ async function splitShards(b: Backup): Promise<Map<string, Shard>> {
 }
 
 /** The core file's own content: everything but what travels in parts. */
+/** A canonical text of some data: the keys of objects and the items of arrays in order, so two copies of the same data read equal however they were put together (a merge lists words in another order). */
+function stableJson(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(stableJson).sort().join(',')}]`
+  if (value && typeof value === 'object' && !(value instanceof Date)) {
+    const o = value as Record<string, unknown>
+    return `{${Object.keys(o)
+      .filter((k) => o[k] !== undefined)
+      .sort()
+      .map((k) => `${JSON.stringify(k)}:${stableJson(o[k])}`)
+      .join(',')}}`
+  }
+  return JSON.stringify(value) ?? 'null'
+}
+
 function withoutShards(b: Backup): Backup {
   return { ...b, events: [], reading: b.reading && { ...b.reading, library: [] } }
 }
@@ -536,6 +550,8 @@ export interface SyncResult {
   incoming: { words: number; removed: number; texts: number; settings: number }
   /** Names of words another device had edited later than this one: its copy replaced this device's (kept apart, see `restoreReplaced`). */
   replaced?: string[]
+  /** Whether the merge changed anything on this device (a background sync reloads the screens only then). */
+  changed?: boolean
 }
 
 /** The copies this device had of words another device edited later: what a sync replaced. */
@@ -743,5 +759,8 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
   const coreBytes = await store.put('core', new TextEncoder().encode(JSON.stringify({ ...withoutShards(merged), shards: listed, mediaIds })), { ifMatch: fetched?.etag })
   await db.meta.put({ key: 'syncSize', value: Math.max(coreBytes, biggest) })
   await db.meta.put({ key: 'syncAt', value: new Date().toISOString() })
-  return { received, sent, skipped, incoming, ...(replaced.length ? { replaced: replaced.map((v) => v.lemma) } : {}) }
+  // Did the other devices' data change this one? The core compared without what is bound to differ (the export time, the part list).
+  const coreOf = (b: Backup) => stableJson({ ...withoutShards(b), exportedAt: '', shards: undefined, mediaIds: undefined })
+  const changed = received > 0 || replaced.length > 0 || (!!remote && (coreOf(local) !== coreOf(merged) || [...shards].some(([name, shard]) => shard.fp !== localShards.get(name)?.fp)))
+  return { received, sent, skipped, incoming, changed, ...(replaced.length ? { replaced: replaced.map((v) => v.lemma) } : {}) }
 }
