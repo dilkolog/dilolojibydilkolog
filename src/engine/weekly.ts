@@ -85,13 +85,22 @@ export function weekDigest(s: WeekSummary, lemmaOf: (entryId: string) => string 
   ]
 }
 
-/** One line for the week: "5 gün · 312 cevap (%86 doğru) · 18 yeni kelime · 2 metin · en çok: être". Empty for a week with nothing. */
-export function weekLine(s: WeekSummary): string {
-  if (!s.answers && !s.newWords && !s.texts) return ''
+/** One line for the week: "5 gün · 312 cevap (%86 doğru) · 18 yeni kelime · 2 metin · bu hafta 17 kelime daha". Empty for a week with nothing. */
+export function weekLine(s: WeekSummary, goalWords?: number): string {
+  if (!s.answers && !s.newWords && !s.texts && !goalWords) return ''
+  let goalClause = ''
+  if (goalWords && goalWords > 0) {
+    if (s.newWords >= goalWords) {
+      goalClause = 'haftalık hedefe ulaşıldı'
+    } else {
+      goalClause = `bu hafta ${goalWords - s.newWords} kelime daha`
+    }
+  }
   return [
     s.answers ? `${s.days} gün · ${s.answers} cevap (%${Math.round(s.right * 100)} doğru)` : '',
     s.newWords ? `${s.newWords} yeni kelime` : '',
     s.texts ? `${s.texts} metin` : '',
+    goalClause,
   ]
     .filter(Boolean)
     .join(' · ')

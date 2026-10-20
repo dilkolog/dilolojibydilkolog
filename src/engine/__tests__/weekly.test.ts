@@ -28,6 +28,8 @@ describe('the week in one line', () => {
     })
     expect(s).toEqual({ days: 3, answers: 4, right: 0.75, newWords: 1, texts: 1, lastAnswers: 1 })
     expect(weekLine(s)).toBe('3 gün · 4 cevap (%75 doğru) · 1 yeni kelime · 1 metin')
+    expect(weekLine(s, 5)).toBe('3 gün · 4 cevap (%75 doğru) · 1 yeni kelime · 1 metin · bu hafta 4 kelime daha')
+    expect(weekLine(s, 1)).toBe('3 gün · 4 cevap (%75 doğru) · 1 yeni kelime · 1 metin · haftalık hedefe ulaşıldı')
   })
 
   it('never counts more than seven days, although 168 hours can touch eight calendar days', () => {

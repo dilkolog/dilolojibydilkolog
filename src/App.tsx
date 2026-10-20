@@ -355,13 +355,14 @@ export default function App() {
       const texts = await db.getLibrary(data.language)
       const summary = weekSummary({ language: data.language, now: new Date(), events: data.recentEvents, vocabulary: data.vocabulary, texts })
       if (!live) return
-      setWeekText(weekLine(summary))
+      const target = settings?.newWordsPerDay ? Math.round(settings.newWordsPerDay * 7) : undefined
+      setWeekText(weekLine(summary, target))
       setWeekData(summary)
     })()
     return () => {
       live = false
     }
-  }, [data])
+  }, [data, settings?.newWordsPerDay])
   // The word missed most this week: the push reminder asks the learner to recall it.
   const recallWord = useMemo(() => {
     if (!data) return ''
