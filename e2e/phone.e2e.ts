@@ -15,7 +15,7 @@ function hayEstarQuestions(): CheckItem[] {
 }
 
 
-test('first run: four steps, each fits the screen, and the choices are kept', async ({ page }) => {
+test('first run: three steps, each fits the screen, and the choices are kept', async ({ page }) => {
   await page.goto('/')
   const inView = async (name: string | RegExp) => {
     const box = await page.getByRole('button', { name }).first().boundingBox()
@@ -42,19 +42,12 @@ test('first run: four steps, each fits the screen, and the choices are kept', as
   await page.getByPlaceholder('Adın').fill('Ayşe')
   await page.getByRole('radio', { name: '20 dk' }).click()
   await page.getByRole('radio', { name: '8', exact: true }).click()
-  await inView('Devam')
-  await sound('goal')
-  await page.getByRole('button', { name: 'Devam', exact: true }).click()
-  // 4. Ready: a recap of the choices, and the way back
-  await expect(page.getByRole('heading', { name: 'Hazırsın, Ayşe!' })).toBeVisible()
-  await expect(page.locator('.ob-recap')).toContainText('İspanyolca')
-  await expect(page.locator('.ob-recap')).toContainText('20 dk')
-  await expect(page.locator('.ob-recap')).toContainText('günde 8')
   await inView(/ile başlayalım/)
-  await sound('ready')
+  await sound('goal')
+  // The goal step is the last: the way back keeps the choices.
   await page.getByRole('button', { name: 'Geri' }).click()
-  await expect(page.getByRole('radio', { name: '20 dk' })).toHaveAttribute('aria-checked', 'true')
   await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  await expect(page.getByRole('radio', { name: '20 dk' })).toHaveAttribute('aria-checked', 'true')
   await page.getByRole('button', { name: /İspanyolca ile başlayalım/ }).click()
   await expect(page.getByRole('button', { name: /örnek kelime yükle/ })).toBeVisible()
 })

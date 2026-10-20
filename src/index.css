@@ -1869,21 +1869,8 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .is-step-0 .ob-step { animation: none; }
 @keyframes ob-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
 .onboarding .seg-group { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
-.ob-ready .ob-heading { font-size: var(--t-2xl); }
 .ob-actions { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; }
 .ob-actions .btn-lg { flex: 1 1 auto; }
-.ob-ready { text-align: center; justify-items: center; }
-.ob-ready-art { display: flex; align-items: flex-end; justify-content: center; gap: 0.5rem; }
-.ob-recap { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; width: 100%; text-align: left; }
-.ob-recap li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.625rem 0.875rem; border-radius: var(--r-md); background: var(--lang-soft); }
-/* Wide: the three choices sit side by side as centred tiles, so the card is symmetrical. */
-@media (min-width: 40rem) {
-  .ob-recap { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; text-align: center; }
-  .ob-recap li { flex-direction: column; justify-content: center; align-items: center; gap: 0.125rem; padding: 0.875rem 1rem; }
-  .ob-recap strong { font-size: var(--t-lg); }
-  .ob-ready .ob-actions { justify-content: center; width: 100%; }
-  .ob-ready .ob-actions .btn-lg { flex: 0 1 22rem; }
-}
 .onboarding-form.stack > * { margin-top: 0; }
 .onboarding-row { align-items: flex-start; }
 .onboarding-row .field { gap: 0.5rem; }

@@ -54,7 +54,6 @@ async function startDevice(page: Page) {
   await page.getByRole('button', { name: 'Başlayalım', exact: true }).click()
   await page.locator('.lang-card', { hasText: 'Fransızca' }).click()
   await page.getByRole('button', { name: 'Devam', exact: true }).click()
-  await page.getByRole('button', { name: 'Devam', exact: true }).click()
   await page.getByRole('button', { name: /Fransızca ile başlayalım/ }).click()
   await expect(page.getByRole('button', { name: 'Ayarlar', exact: true })).toBeVisible({ timeout: 10_000 })
 }

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import onbGoal from '../assets/art/onb-goal.webp'
 import onbMap from '../assets/art/onb-map.webp'
-import onbPlant from '../assets/art/onb-plant.webp'
 import onbFlags from '../assets/art/onb-flags.webp'
 import langEn from '../assets/art/lang-en.webp'
 import langEs from '../assets/art/lang-es.webp'
@@ -51,10 +50,10 @@ function Chips<T extends string | number>({
 const FINE_POINTER = typeof matchMedia === 'function' && matchMedia('(pointer: fine)').matches
 
 const NEW_WORD_OPTIONS = [3, 5, 8, 12]
-const STEP_TITLES = ['Hoş geldin', 'Dil', 'Hedef', 'Hazır'] as const
+const STEP_TITLES = ['Hoş geldin', 'Dil', 'Hedef'] as const
 const LAST_STEP = STEP_TITLES.length - 1
 
-/** First run, one question at a time: welcome, language, goal, then ready. The hero keeps the chosen language's colour throughout. */
+/** First run, one question at a time: welcome, language, then the goal (which starts the app: a recap step only repeated the choices just made). The hero keeps the chosen language's colour throughout. */
 export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
   const [step, setStep] = useState(0)
   const [language, setLanguage] = useState<TargetLanguage>('en')
@@ -76,7 +75,6 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
   const back = () => setStep((n) => Math.max(0, n - 1))
   const finish = () =>
     onDone({ ...DEFAULT_SETTINGS, activeLanguage: language, dailyMinutes: minutes, newWordsPerDay: perDay, profile: { ...DEFAULT_SETTINGS.profile, name: name.trim() } })
-  const who = name.trim()
   return (
     <div className={`onboarding stack is-step-${step}`} data-lang={language}>
       {/* The chosen language colours the welcome, and says hello in its own words. */}
@@ -195,30 +193,6 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
               <Chips label="Günlük yeni kelime" options={NEW_WORD_OPTIONS} value={perDay} onChange={setPerDay} />
               <p className="small muted">Yenilerin yanında, unutmak üzere olduğun kelimelerin tekrarı da gelir. İkisini de sonra Ayarlar’dan değiştirebilirsin.</p>
             </div>
-          </div>
-        )}
-
-        {step === 3 && (
-          <div className="stack gap-3 ob-ready">
-            <img className="ob-art" src={onbPlant} alt="" draggable={false} />
-            <h2 className="section-title ob-heading" ref={heading} tabIndex={-1}>
-              {who ? `Hazırsın, ${who}!` : 'Hazırsın!'}
-            </h2>
-            <ul className="ob-recap">
-              <li>
-                <span className="muted">Dil</span>
-                <strong>{LANGUAGE_NAME[language]}</strong>
-              </li>
-              <li>
-                <span className="muted">Günlük süre</span>
-                <strong>{minutes} dk</strong>
-              </li>
-              <li>
-                <span className="muted">Yeni kelime</span>
-                <strong>günde {perDay}</strong>
-              </li>
-            </ul>
-            <p className="small muted">Sıradaki ekranda kelimelerini ekleyebilir ya da denemek için hazır örnek kelimeleri yükleyebilirsin.</p>
           </div>
         )}
 
