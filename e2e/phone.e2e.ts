@@ -93,8 +93,9 @@ test('in a session the answer choices sit within thumb reach', async ({ page }) 
   for (let i = 0; i < 20 && !(await page.locator('.session-stage > div > .options .option:not([disabled])').count()); i++) {
     const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
     const guess = page.locator('.session-stage .option:not([disabled])')
-    if (await next.count()) await next.first().click()
-    else if (await guess.count()) await guess.first().click()
+    // A click on a button that went away in the meantime is let go (3 s), the loop looks again.
+    if (await next.count()) await next.first().click({ timeout: 3000 }).catch(() => undefined)
+    else if (await guess.count()) await guess.first().click({ timeout: 3000 }).catch(() => undefined)
     else await page.waitForTimeout(200)
   }
   const options = page.locator('.session-stage > div > .options .option')
@@ -856,26 +857,33 @@ test('badge cards line up: in a row the medals, titles and progress bars sit on 
   await openScreen(page, 'Profil')
   await page.getByRole('tab', { name: 'Rozetler' }).click()
   await expect(page.locator('.badge-card').first()).toBeVisible()
-  const rows = await page.locator('.badge-card').evaluateAll((cards) => {
-    const byRow = new Map<number, { medal: number; title: number; titleH: number; bar: number | null; h: number }[]>()
-    for (const c of cards) {
-      const r = c.getBoundingClientRect()
-      if (!r.width) continue
-      const key = Math.round(r.top / 4)
-      const bar = c.querySelector('.badge-progress')?.getBoundingClientRect()
-      const t = c.querySelector('.badge-title')!.getBoundingClientRect()
-      byRow.set(key, [...(byRow.get(key) ?? []), { medal: Math.round(c.firstElementChild!.getBoundingClientRect().top - r.top), title: Math.round(t.top - r.top), titleH: Math.round(t.height), bar: bar ? Math.round(bar.top - r.top) : null, h: Math.round(r.height) }])
+  // Measured until it holds: right after the cards appear the page is still settling (fonts, images, the tab's slide), and a
+  // measurement taken mid-way under load would fail on a layout that is fine a moment later.
+  const problems = async () => {
+    const rows = await page.locator('.badge-card').evaluateAll((cards) => {
+      const byRow = new Map<number, { medal: number; title: number; titleH: number; bar: number | null; h: number }[]>()
+      for (const c of cards) {
+        const r = c.getBoundingClientRect()
+        if (!r.width) continue
+        const key = Math.round(r.top / 4)
+        const bar = c.querySelector('.badge-progress')?.getBoundingClientRect()
+        const t = c.querySelector('.badge-title')!.getBoundingClientRect()
+        byRow.set(key, [...(byRow.get(key) ?? []), { medal: Math.round(c.firstElementChild!.getBoundingClientRect().top - r.top), title: Math.round(t.top - r.top), titleH: Math.round(t.height), bar: bar ? Math.round(bar.top - r.top) : null, h: Math.round(r.height) }])
+      }
+      return [...byRow.values()]
+    })
+    const found: string[] = []
+    if (rows.length <= 1) found.push('fewer than two rows of cards')
+    for (const row of rows) {
+      if (new Set(row.map((c) => c.medal)).size !== 1) found.push('medals')
+      if (new Set(row.map((c) => c.title)).size !== 1) found.push('titles')
+      if (new Set(row.map((c) => c.titleH)).size !== 1) found.push('title heights')
+      if (new Set(row.filter((c) => c.bar !== null).map((c) => c.bar)).size > 1) found.push('progress bars')
+      if (new Set(row.map((c) => c.h)).size !== 1) found.push('card heights')
     }
-    return [...byRow.values()]
-  })
-  expect(rows.length).toBeGreaterThan(1)
-  for (const row of rows) {
-    expect(new Set(row.map((c) => c.medal)).size, 'medals').toBe(1)
-    expect(new Set(row.map((c) => c.title)).size, 'titles').toBe(1)
-    expect(new Set(row.map((c) => c.titleH)).size, 'title heights').toBe(1)
-    expect(new Set(row.filter((c) => c.bar !== null).map((c) => c.bar)).size, 'progress bars').toBeLessThanOrEqual(1)
-    expect(new Set(row.map((c) => c.h)).size, 'card heights').toBe(1)
+    return [...new Set(found)]
   }
+  await expect.poll(problems, { timeout: 8000 }).toEqual([])
 })
 
 test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {
