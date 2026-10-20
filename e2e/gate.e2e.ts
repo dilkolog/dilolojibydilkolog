@@ -186,3 +186,12 @@ test('an invite link is kept off the address, named on the landing page, and kep
   await page.reload()
   await expect(page.getByRole('status').filter({ hasText: 'Bir arkadaşın seni davet etti' })).toHaveCount(0)
 })
+
+test('an invite link with name mentions the inviter on the landing page', async ({ page }) => {
+  await stubNetwork(page)
+  await page.goto('/?davet=abcd-2345&kimden=Zeynep')
+  await expect(landing(page)).toBeVisible()
+  await expect(page.getByRole('status').filter({ hasText: 'Zeynep seni davet etti' })).toBeVisible()
+  expect(new URL(page.url()).search).toBe('')
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('diloloji:invite-in') ?? 'null')?.name)).toBe('Zeynep')
+})

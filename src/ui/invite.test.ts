@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 import { beforeEach, describe, expect, it } from 'vitest'
-import { captureInvite, cleanCode, clearInvite, inviteLink, pendingInvite } from './invite'
+import { captureInvite, cleanCode, cleanName, clearInvite, inviteLink, pendingInvite, pendingInviteInfo } from './invite'
 
 beforeEach(() => {
   localStorage.clear()
@@ -20,17 +20,32 @@ describe('cleanCode', () => {
   })
 })
 
+describe('cleanName', () => {
+  it('trims and removes dangerous characters', () => {
+    expect(cleanName('  Ali Aydın  ')).toBe('Ali Aydın')
+    expect(cleanName('<script>Ayşe</script>')).toBe('scriptAyşe/script')
+    expect(cleanName('“Can”')).toBe('Can')
+    expect(cleanName(null)).toBeNull()
+    expect(cleanName('')).toBeNull()
+  })
+})
+
 describe('invite link', () => {
   it('is the site with the code', () => {
     expect(inviteLink('ABCD2345', 'https://diloloji.com')).toBe('https://diloloji.com/?davet=ABCD2345')
   })
 
+  it('includes the inviter name when supplied', () => {
+    expect(inviteLink('ABCD2345', 'https://diloloji.com', 'Ali Aydın')).toBe('https://diloloji.com/?davet=ABCD2345&kimden=Ali%20Ayd%C4%B1n')
+  })
+
   it('is taken off the address and kept, the rest of the address staying', () => {
-    history.replaceState(null, '', '/?davet=abcd-2345&go=quick#x')
+    history.replaceState(null, '', '/?davet=abcd-2345&kimden=Ali&go=quick#x')
     expect(captureInvite()).toBe('ABCD2345')
     expect(location.search).toBe('?go=quick')
     expect(location.hash).toBe('#x')
     expect(pendingInvite()).toBe('ABCD2345')
+    expect(pendingInviteInfo()).toEqual({ code: 'ABCD2345', name: 'Ali' })
   })
 
   it('is taken off the address even when the code is no good, and keeps nothing', () => {

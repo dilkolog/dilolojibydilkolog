@@ -56,7 +56,7 @@ import type { Command } from './ui/CommandPalette'
 import { recordVisit } from './ui/screenUsage'
 import { clipboardSuggestion } from './ui/clipboardSuggest'
 import { readIncoming, type IncomingWord } from './ui/incoming'
-import { captureInvite, pendingInvite } from './ui/invite'
+import { captureInvite, pendingInviteInfo } from './ui/invite'
 import { InviteAccept } from './ui/InviteAccept'
 import { GAME_LIST } from './ui/gameList'
 import { ScreenBoundary } from './ui/ScreenBoundary'
@@ -124,7 +124,7 @@ export default function App() {
   // Signed out: the landing page first; null until a way in is chosen on it (a return from a mail or Google link goes straight in).
   const [entered, setEntered] = useState<LandingStart | null>(null)
   // An invite link (?davet=…) is kept until there is an account to use it with; the landing page says so.
-  const [invited] = useState(() => (captureInvite(), pendingInvite() !== null))
+  const [inviteInfo] = useState(() => (captureInvite(), pendingInviteInfo()))
   const language = settings?.activeLanguage
   const speechOn = settings ? settings.speechExercises && canListen() : false
   const flags = useMemo(() => engineFlags(settings?.exercisePrefs, settings?.typedBlanks), [settings?.exercisePrefs, settings?.typedBlanks])
@@ -469,7 +469,7 @@ export default function App() {
     if (entered === null && screen.name !== 'account') {
       return (
         <Suspense fallback={null}>
-          <Landing onStart={setEntered} invited={invited} />
+          <Landing onStart={setEntered} invited={!!inviteInfo} inviterName={inviteInfo?.name} />
         </Suspense>
       )
     }
