@@ -34,7 +34,12 @@ const FAQ: { q: string; a: ReactNode }[] = [
 function Shot({ src, alt }: { src: string; alt: string }) {
   return (
     <figure className="lp-shot">
-      <img src={src} alt={alt} width={560} height={1213} loading="lazy" decoding="async" />
+      <div className="device-mockup">
+        <div className="device-island" aria-hidden />
+        <div className="device-screen">
+          <img src={src} alt={alt} width={560} height={1213} loading="lazy" decoding="async" />
+        </div>
+      </div>
     </figure>
   )
 }
@@ -51,9 +56,14 @@ export function Landing({ onStart, invited = false }: { onStart: (mode: LandingS
           <BrandLogo />
           <span>Diloloji</span>
         </a>
-        <button type="button" className="btn btn-quiet btn-sm" onClick={() => onStart('login')}>
-          Giriş yap
-        </button>
+        <div className="lp-top-actions">
+          <button type="button" className="btn btn-quiet btn-sm" onClick={() => onStart('login')}>
+            Giriş yap
+          </button>
+          <button type="button" className="btn btn-sm" onClick={() => onStart('create')}>
+            Hesap aç
+          </button>
+        </div>
       </header>
 
       <main>
@@ -65,10 +75,13 @@ export function Landing({ onStart, invited = false }: { onStart: (mode: LandingS
                 <span>Bir arkadaşın seni davet etti. Hesap açınca otomatik arkadaş olursunuz; birbirinizin günlük çalışmasını görürsünüz.</span>
               </p>
             )}
-            <p className="eyebrow">İngilizce · Fransızca · İspanyolca</p>
+            <div className="lp-pill">
+              <span className="lp-pill-dot" aria-hidden />
+              <span>İngilizce · Fransızca · İspanyolca</span>
+            </div>
             <h1 id="lp-h1">Kelimeleri unutmadan önce tekrar et.</h1>
             <p className="lp-lead">
-              Diloloji, Türkçe konuşanlar için kelime öğrenme uygulaması: aralıklı tekrar, okuma, dinleme ve fiil çalışması tek yerde. Günde birkaç dakika yeter.
+              Diloloji, Türkçe konuşanlar için kişiselleştirilmiş kelime öğrenme uygulaması: bilimsel aralıklı tekrar, gerçek metinlerle okuma, dinleme ve kapsamlı fiil laboratuvarı tek yerde. Günde birkaç dakika yeter.
             </p>
             <div className="lp-cta">
               <button type="button" className="btn btn-lg" onClick={() => onStart('create')}>
@@ -78,7 +91,12 @@ export function Landing({ onStart, invited = false }: { onStart: (mode: LandingS
                 Giriş yap
               </button>
             </div>
-            <p className="small muted lp-note">Reklam ve izleme yok. E-posta ya da Google ile giriş.</p>
+            <div className="lp-trust-chips">
+              <span className="lp-chip"><SparkleIcon size={14} /> FSRS Hafıza Modeli</span>
+              <span className="lp-chip"><ReadIcon size={14} /> 100+ Seviyeli Metin</span>
+              <span className="lp-chip"><ConjugationsIcon size={14} /> Fiil Laboratuvarı</span>
+              <span className="lp-chip"><LockIcon size={14} /> Reklamsız & Gizli</span>
+            </div>
           </div>
           <Shot src={todayShot} alt="Diloloji’nin Bugün ekranı: günün görevi, yeni kelime sayısı ve Başla düğmesi." />
         </section>
@@ -106,6 +124,7 @@ export function Landing({ onStart, invited = false }: { onStart: (mode: LandingS
               <span className="lp-icon" aria-hidden>
                 <ReadIcon size={22} />
               </span>
+              <span className="lp-kicker">Kapsamlı Okuma & Dinleme</span>
               <h2 className="lp-h2">Oku, dinle, dokun, ekle</h2>
               <p>
                 Hikâyeler, haberler ve kendi metinlerin. Bilmediğin kelimeye dokununca anlamını görür, tek dokunuşla çalışma listene eklersin; metindeki bildiğin kelime oranı da baştan görünür.
@@ -124,6 +143,7 @@ export function Landing({ onStart, invited = false }: { onStart: (mode: LandingS
               <span className="lp-icon" aria-hidden>
                 <ConjugationsIcon size={22} />
               </span>
+              <span className="lp-kicker">Fiil Laboratuvarı</span>
               <h2 className="lp-h2">Fiil laboratuvarı</h2>
               <p>
                 Fransızca ve İspanyolca fiilleri zamanlara göre öğren. Her yanlışta neyi karıştırdığını görürsün; hataların kayıt altında kalır ve onlara dönüp çalışabilirsin.
@@ -142,6 +162,7 @@ export function Landing({ onStart, invited = false }: { onStart: (mode: LandingS
               <span className="lp-icon" aria-hidden>
                 <SchoolIcon size={22} />
               </span>
+              <span className="lp-kicker">Dilbilgisi Rehberi</span>
               <h2 className="lp-h2">Dilbilgisini de öğren</h2>
               <p>
                 Rehber, her konuyu kısa kurallar ve örneklerle anlatır. Dersi okuyup mini sınavı geçince konu öğrenildi sayılır; unutmaman için tekrarı da planlanır.
