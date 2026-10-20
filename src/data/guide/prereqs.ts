@@ -4,6 +4,10 @@
  * (the guide is not locked: the hint only says "this comes first"); each is of the same language and not of a higher level.
  */
 export const PREREQS: Record<string, string[]> = {
+  // Pronunciation: the second sound lessons build on the first
+  basics_fr_pron_liaison: ['basics_fr_pron_nasales'],
+  basics_es_pron_acento: ['basics_es_pron_vocales_bv'],
+  basics_en_pron_ed_s_stress: ['basics_en_pron_th_w_v'],
   // French
   basics_fr_present: ['basics_fr_etre_avoir'],
   basics_fr_negation: ['basics_fr_present'],

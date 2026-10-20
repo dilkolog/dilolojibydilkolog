@@ -4,16 +4,16 @@ Her ders için: `topic` (soru dosyalarında kullanılacak anahtar), seviye, baş
 
 Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideManifest.test.ts`.
 
-## Fransızca (fr) — 65 ders
+## Fransızca (fr) — 68 ders
 
 | topic | seviye | başlık | havuz | soru bankası |
 |---|---|---|---|---|
-| `basics_fr_articles` | A1 | Artikeller ve cinsiyet | 10 | 0 |
-| `basics_fr_etre_avoir` | A1 | Être ve avoir | 10 | 0 |
-| `basics_fr_present` | A1 | Şimdiki zaman (présent) | 10 | 0 |
-| `basics_fr_negation` | A1 | Olumsuz ve soru cümlesi | 10 | 0 |
-| `basics_fr_adjectifs` | A2 | Sıfatlar: uyum ve yer | 10 | 0 |
-| `basics_fr_passe_compose` | A2 | Passé composé (bitmiş geçmiş) | 10 | 0 |
+| `basics_fr_articles` | A1 | Artikeller ve cinsiyet | 10 | 8 |
+| `basics_fr_etre_avoir` | A1 | Être ve avoir | 10 | 8 |
+| `basics_fr_present` | A1 | Şimdiki zaman (présent) | 10 | 8 |
+| `basics_fr_negation` | A1 | Olumsuz ve soru cümlesi | 10 | 8 |
+| `basics_fr_adjectifs` | A2 | Sıfatlar: uyum ve yer | 10 | 8 |
+| `basics_fr_passe_compose` | A2 | Passé composé (bitmiş geçmiş) | 10 | 8 |
 | `articles_quantite` | A2 | Partitif ve miktar ifadeleri | 10 | 15 |
 | `passe_imparfait` | A2 | Passé composé ve imparfait | 10 | 15 |
 | `negation_fr` | A2 | Olumsuzluk (ne … plus / jamais / rien) | 10 | 15 |
@@ -28,14 +28,14 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `discours_indirect_fr` | B2 | Dolaylı anlatım ve zaman uyumu | 10 | 17 |
 | `pronoms_relatifs` | B2 | Birleşik ilgi zamirleri | 10 | 21 |
 | `basics_fr_pronoms` | A1 | Kişi zamirleri ve vurgulu zamirler | 10 | 0 |
-| `basics_fr_possessifs` | A1 | İyelik ve işaret sıfatları | 10 | 0 |
+| `basics_fr_possessifs` | A1 | İyelik ve işaret sıfatları | 10 | 8 |
 | `basics_fr_nombres` | A1 | Sayılar, saat ve tarih | 10 | 0 |
-| `basics_fr_questions` | A1 | Soru sözcükleri ve soru kurma | 10 | 0 |
-| `basics_fr_lieux` | A2 | Yer edatları (dans, sur, chez, à côté de…) | 10 | 0 |
+| `basics_fr_questions` | A1 | Soru sözcükleri ve soru kurma | 10 | 8 |
+| `basics_fr_lieux` | A2 | Yer edatları (dans, sur, chez, à côté de…) | 10 | 8 |
 | `basics_fr_pronominaux` | A2 | Dönüşlü fiiller (se lever) | 10 | 0 |
 | `basics_fr_comparaison` | A2 | Karşılaştırma ve en üstünlük | 10 | 0 |
 | `basics_fr_imperatif` | A2 | Emir kipi | 10 | 0 |
-| `basics_fr_depuis` | A2 | Zaman ifadeleri: depuis, il y a, pendant, dans | 10 | 0 |
+| `basics_fr_depuis` | A2 | Zaman ifadeleri: depuis, il y a, pendant, dans | 10 | 8 |
 | `basics_fr_plus_que_parfait` | B1 | Plus-que-parfait (geçmişin geçmişi) | 10 | 0 |
 | `basics_fr_gerondif` | B1 | Gérondif ve participe présent | 10 | 0 |
 | `basics_fr_ordre_pronoms` | B1 | İki zamir bir arada (me le, le lui) | 10 | 0 |
@@ -73,17 +73,20 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_fr_accord_adjectifs_particuliers` | B2 | Renk sıfatları ve bileşik sıfatlarda uyum istisnaları | 10 | 0 |
 | `basics_fr_infinitif_passe` | B2 | Geçmiş mastar (Infinitif passé): après avoir fait, après être parti | 10 | 0 |
 | `basics_fr_connecteurs_argumentation` | C1 | DELF B2 / DALF C1 tartışma ve kompozisyon bağlaçları | 10 | 11 |
+| `basics_fr_pron_nasales` | A1 | Burun ünlüleri: an, on, in (vin, vent, vont) | 10 | 0 |
+| `basics_fr_pron_u_ou_r` | A1 | u / ou / eu ve Fransızca r | 10 | 0 |
+| `basics_fr_pron_liaison` | A2 | Okunmayan harfler ve liaison (les amis, ils ont) | 10 | 0 |
 
-## İspanyolca (es) — 67 ders
+## İspanyolca (es) — 70 ders
 
 | topic | seviye | başlık | havuz | soru bankası |
 |---|---|---|---|---|
-| `basics_es_articulos` | A1 | Artikeller ve cinsiyet (el / la / un / una) | 10 | 0 |
-| `basics_es_presente` | A1 | Şimdiki zaman (presente) | 10 | 0 |
-| `basics_es_gustar` | A1 | Gustar ve benzeri fiiller | 10 | 0 |
-| `basics_es_negacion` | A1 | Olumsuzluk ve soru cümleleri | 10 | 0 |
-| `basics_es_adjetivos` | A2 | Sıfatlar: uyum ve yer | 10 | 0 |
-| `basics_es_preterito` | A2 | Geçmiş zaman: he comido mu, comí mi? | 10 | 0 |
+| `basics_es_articulos` | A1 | Artikeller ve cinsiyet (el / la / un / una) | 10 | 8 |
+| `basics_es_presente` | A1 | Şimdiki zaman (presente) | 10 | 8 |
+| `basics_es_gustar` | A1 | Gustar ve benzeri fiiller | 10 | 8 |
+| `basics_es_negacion` | A1 | Olumsuzluk ve soru cümleleri | 10 | 8 |
+| `basics_es_adjetivos` | A2 | Sıfatlar: uyum ve yer | 10 | 8 |
+| `basics_es_preterito` | A2 | Geçmiş zaman: he comido mu, comí mi? | 10 | 8 |
 | `ser_estar` | A2 | Ser ve estar | 10 | 18 |
 | `preterito_imperfecto` | A2 | Pretérito ve imperfecto | 10 | 15 |
 | `comparativos_es` | A2 | Karşılaştırma ve üstünlük | 10 | 15 |
@@ -100,11 +103,11 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `se_pasivo` | B2 | Se pasivo ve impersonal | 10 | 18 |
 | `estilo_indirecto` | B2 | Dolaylı anlatım (estilo indirecto) | 10 | 15 |
 | `basics_es_pronombres` | A1 | Kişi zamirleri (yo, mí, conmigo) | 10 | 0 |
-| `basics_es_posesivos` | A1 | İyelik ve işaret sözcükleri (mi, este, ese, aquel) | 10 | 0 |
+| `basics_es_posesivos` | A1 | İyelik ve işaret sözcükleri (mi, este, ese, aquel) | 10 | 8 |
 | `basics_es_numeros_hora` | A1 | Sayılar, saat ve tarih | 10 | 0 |
-| `basics_es_preguntas` | A1 | Soru sözcükleri (qué, cuál, quién, dónde…) | 10 | 0 |
-| `basics_es_hay_estar` | A1 | Hay mı, está mı? | 10 | 0 |
-| `basics_es_reflexivos` | A1 | Dönüşlü fiiller (levantarse) | 10 | 0 |
+| `basics_es_preguntas` | A1 | Soru sözcükleri (qué, cuál, quién, dónde…) | 10 | 8 |
+| `basics_es_hay_estar` | A1 | Hay mı, está mı? | 10 | 8 |
+| `basics_es_reflexivos` | A1 | Dönüşlü fiiller (levantarse) | 10 | 8 |
 | `basics_es_perfecto_indefinido` | A2 | He hecho mu, hice mi? Zaman işaretleri | 10 | 0 |
 | `basics_es_futuro` | A2 | Gelecek: ir a, futuro simple ve tahmin | 10 | 0 |
 | `basics_es_hace_desde` | A2 | Süre: hace, desde, desde hace, llevar | 10 | 0 |
@@ -145,18 +148,21 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_es_como_si_ojala` | B2 | Ojalá ve como si yapıları: gerçek ve gerçek dışı dilekler | 10 | 20 |
 | `basics_es_participio_gerundio_compuesto` | C1 | Bileşik mastar/ulaç ve mutlak yapılar (al haber dicho, dicho esto) | 10 | 0 |
 | `basics_es_conectores_dele` | C1 | DELE B2/C1 makale ve tartışma bağlaçları (asimismo, de ahí que...) | 10 | 11 |
+| `basics_es_pron_vocales_bv` | A1 | Ünlüler, h, b/v ve qu/gu | 10 | 0 |
+| `basics_es_pron_j_c_ll_rr` | A1 | j, g, c, z, ll ve r/rr | 10 | 0 |
+| `basics_es_pron_acento` | A2 | Hece vurgusu ve tilde (´) | 10 | 0 |
 
-## İngilizce (en) — 70 ders
+## İngilizce (en) — 73 ders
 
 | topic | seviye | başlık | havuz | soru bankası |
 |---|---|---|---|---|
-| `basics_en_to_be` | A1 | To be (am / is / are) | 10 | 0 |
-| `basics_en_present_simple` | A1 | Geniş zaman ve şimdiki zaman | 10 | 0 |
-| `basics_en_past_simple` | A2 | Geçmiş zaman (past simple) | 10 | 0 |
+| `basics_en_to_be` | A1 | To be (am / is / are) | 10 | 8 |
+| `basics_en_present_simple` | A1 | Geniş zaman ve şimdiki zaman | 10 | 8 |
+| `basics_en_past_simple` | A2 | Geçmiş zaman (past simple) | 10 | 8 |
 | `basics_en_plurals_quantifiers` | A2 | Çoğullar ve miktar sözcükleri | 10 | 0 |
 | `basics_en_future` | A2 | Gelecek zaman (will / going to) | 10 | 0 |
-| `basics_en_comparatives` | A2 | Karşılaştırma (-er / more, the -est / most) | 10 | 0 |
-| `articles_en` | A1 | Artikeller (a / an / the) | 10 | 15 |
+| `basics_en_comparatives` | A2 | Karşılaştırma (-er / more, the -est / most) | 10 | 8 |
+| `articles_en` | A1 | Artikeller (a / an / the) | 10 | 23 |
 | `present_perfect` | A2 | Present perfect ve past simple | 10 | 15 |
 | `gerund_infinitive` | B1 | Gerund ve infinitive | 10 | 18 |
 | `conn_en` | B1 | Bağlaçlar (fikrin yönü) | 10 | 12 |
@@ -169,11 +175,11 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `mixed_conditionals` | B2 | Karma şart cümleleri | 10 | 19 |
 | `participle_clauses` | B2 | Participle clauses | 10 | 19 |
 | `inversion` | C1 | Devrik yapı (inversion) | 10 | 20 |
-| `basics_en_pronouns` | A1 | Zamirler ve iyelik (I / me / my / mine) | 10 | 0 |
-| `basics_en_there_is` | A1 | There is / there are (var, yok) | 10 | 0 |
-| `basics_en_demonstratives` | A1 | This / that / these / those | 10 | 0 |
-| `basics_en_questions` | A1 | Soru sözcükleri ve soru düzeni | 10 | 0 |
-| `basics_en_time_prepositions` | A1 | Zaman edatları (in / on / at) | 10 | 0 |
+| `basics_en_pronouns` | A1 | Zamirler ve iyelik (I / me / my / mine) | 10 | 8 |
+| `basics_en_there_is` | A1 | There is / there are (var, yok) | 10 | 8 |
+| `basics_en_demonstratives` | A1 | This / that / these / those | 10 | 8 |
+| `basics_en_questions` | A1 | Soru sözcükleri ve soru düzeni | 10 | 8 |
+| `basics_en_time_prepositions` | A1 | Zaman edatları (in / on / at) | 10 | 8 |
 | `basics_en_past_continuous` | A2 | Past continuous ve past simple (when / while) | 10 | 0 |
 | `basics_en_ability` | A2 | Yetenek: can / could / be able to | 10 | 0 |
 | `basics_en_obligation` | A2 | Zorunluluk: have to ve must | 10 | 0 |
@@ -201,7 +207,7 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_en_register` | C1 | Resmî ve gündelik dil (register) | 10 | 0 |
 | `basics_en_discourse_markers` | C1 | Konuşmada söylem belirleyicileri (actually, anyway, mind you) | 10 | 0 |
 | `basics_en_stative_dynamic` | A2 | Durum ve eylem fiilleri (stative vs dynamic) | 10 | 0 |
-| `basics_en_articles_institutions` | B1 | Kurumlarda artikel: school, hospital, prison, bed | 10 | 15 |
+| `basics_en_articles_institutions` | B1 | Kurumlarda artikel: school, hospital, prison, bed | 10 | 23 |
 | `basics_en_causatives_advanced` | B1 | Ettirgen çatı incelikleri: have, get, make, let | 10 | 15 |
 | `basics_en_cleft_variations` | C1 | Vurgu cümleleri: it-clefts ve wh-clefts | 14 | 20 |
 | `basics_en_double_comparatives` | B2 | Paralel karşılaştırma: the more ... the better | 10 | 0 |
@@ -220,3 +226,6 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_en_modals_past_deduction` | B2 | Geçmişe yönelik çıkarım ve pişmanlık modalları (modal + have + V3) | 10 | 15 |
 | `basics_en_correlative_conjunctions` | C1 | Çiftli bağlaçlar ve zaman devrikliği (No sooner ... than, Hardly ... when) | 10 | 20 |
 | `basics_en_subjunctive_formulaic_clauses` | C1 | İleri düzey şart ve taviz kalıpları (Be that as it may, Try as he might...) | 10 | 19 |
+| `basics_en_pron_th_w_v` | A1 | th, w ve v: Türkçede olmayan sesler | 10 | 0 |
+| `basics_en_pron_vowels` | A1 | Kısa ve uzun ünlüler (ship / sheep) ve schwa | 10 | 0 |
+| `basics_en_pron_ed_s_stress` | A2 | -ed ve -s sonları, kelime vurgusu | 10 | 0 |

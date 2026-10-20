@@ -1,0 +1,230 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "lessons": {
+    "basics_es_pron_vocales_bv": [
+      {
+        "prompt": "“guerra” sözcüğündeki u okunur mu?",
+        "options": [
+          "Hayır, gerra",
+          "Evet, gverra",
+          "Evet, gu-erra"
+        ],
+        "answer": 0,
+        "why": "gue ve gui'de u okunmaz: guerra /ˈɡera/."
+      },
+      {
+        "prompt": "“pingüino” sözcüğündeki ü işaretinin görevi nedir?",
+        "options": [
+          "u'nun okunmasını sağlar",
+          "Vurguyu gösterir",
+          "Hiçbir görevi yoktur"
+        ],
+        "answer": 0,
+        "why": "gü, u'nun okunması gerektiğini gösterir: pingüino /pinˈɡwino/."
+      },
+      {
+        "prompt": "“chico” sözcüğündeki ch hangi sesi verir?",
+        "options": [
+          "ç",
+          "ş",
+          "k",
+          "h"
+        ],
+        "answer": 0,
+        "why": "ch Türkçe ç gibidir: chico /ˈtʃiko/."
+      },
+      {
+        "prompt": "“año” sözcüğündeki ñ hangi sese yakındır?",
+        "options": [
+          "ny",
+          "n",
+          "nh",
+          "ng"
+        ],
+        "answer": 0,
+        "why": "ñ, Türkçe “ny” gibidir: año /ˈaɲo/."
+      },
+      {
+        "prompt": "Hangi sözcük çifti aynı okunur?",
+        "options": [
+          "tubo – tuvo",
+          "perro – pero",
+          "casa – cosa",
+          "queso – quiso"
+        ],
+        "answer": 0,
+        "why": "b ve v aynı sesi verir: tubo ve tuvo aynıdır; öbür çiftlerin ünlüsü ya da ünsüzü farklıdır."
+      },
+      {
+        "prompt": "“hotel” sözcüğü hangi sesle başlar?",
+        "options": [
+          "o (h okunmaz)",
+          "h",
+          "k",
+          "ç"
+        ],
+        "answer": 0,
+        "why": "h sessizdir: hotel /oˈtel/."
+      },
+      {
+        "prompt": "İspanyolcada vurgusuz hecedeki ünlüler için hangisi doğrudur?",
+        "options": [
+          "Net kalır, zayıflamaz",
+          "Schwa'ya dönüşür",
+          "Okunmaz"
+        ],
+        "answer": 0,
+        "why": "İspanyolca ünlüler vurgusuz hecede de net okunur: to-ma-te."
+      }
+    ],
+    "basics_es_pron_j_c_ll_rr": [
+      {
+        "prompt": "“gente” sözcüğünün ilk sesi hangisine yakındır?",
+        "options": [
+          "Türkçe g",
+          "Gırtlaktan h",
+          "Türkçe c",
+          "Türkçe ç"
+        ],
+        "answer": 1,
+        "why": "ge/gi, j gibi gırtlaktan sert h sesidir: gente /ˈxente/."
+      },
+      {
+        "prompt": "“gato” sözcüğündeki g hangi sestir?",
+        "options": [
+          "Türkçe g",
+          "Gırtlaktan h",
+          "Türkçe c"
+        ],
+        "answer": 0,
+        "why": "ga/go/gu'da g Türkçe g gibidir: gato."
+      },
+      {
+        "prompt": "Latin Amerika'da “zapato” sözcüğü nasıl başlar?",
+        "options": [
+          "s",
+          "z (Türkçe)",
+          "ç",
+          "ş"
+        ],
+        "answer": 0,
+        "why": "Latin Amerika'da z ve ce/ci, s sesi verir: zapato → sapato."
+      },
+      {
+        "prompt": "“cena” sözcüğünde ce Latin Amerika'da nasıl okunur?",
+        "options": [
+          "se",
+          "ke",
+          "çe",
+          "ge"
+        ],
+        "answer": 0,
+        "why": "ce/ci, s gibidir (ya da İspanya'da th): cena → sena."
+      },
+      {
+        "prompt": "Kelime başındaki r nasıl okunur?",
+        "options": [
+          "Titrek (rr gibi)",
+          "Tek vuruşlu",
+          "Okunmaz"
+        ],
+        "answer": 0,
+        "why": "Kelime başındaki r, rr gibi titrek okunur: rojo."
+      },
+      {
+        "prompt": "“caro” (pahalı) sözcüğündeki r nasıl okunur?",
+        "options": [
+          "Tek vuruşla",
+          "Titrek, rr gibi",
+          "Okunmaz"
+        ],
+        "answer": 0,
+        "why": "İki ünlü arasındaki tek r tek vuruşludur: caro. Titrek olan carro (araba)'dır."
+      },
+      {
+        "prompt": "“yo” sözcüğündeki y hangi sestir?",
+        "options": [
+          "Türkçe y",
+          "Türkçe c",
+          "Türkçe ş",
+          "Okunmaz"
+        ],
+        "answer": 0,
+        "why": "y çoğu bölgede Türkçe y gibidir: yo /ʝo/."
+      }
+    ],
+    "basics_es_pron_acento": [
+      {
+        "prompt": "“lunes” sözcüğünde vurgu hangi hecededir?",
+        "options": [
+          "İlk hece (LU-nes)",
+          "Son hece (lu-NES)",
+          "İki hece eşit"
+        ],
+        "answer": 0,
+        "why": "s ile biten sözcükte vurgu sondan bir öncedir: LU-nes."
+      },
+      {
+        "prompt": "“ciudad” sözcüğünde vurgu hangi hecededir?",
+        "options": [
+          "İlk hece (CIU-dad)",
+          "Son hece (ciu-DAD)",
+          "İki hece eşit"
+        ],
+        "answer": 1,
+        "why": "d (n/s dışı ünsüz) ile biten sözcükte vurgu sonda: ciu-DAD."
+      },
+      {
+        "prompt": "“café” sözcüğünde tilde neden vardır?",
+        "options": [
+          "Ünlüyle biten sözcükte vurgu sonda olduğu için",
+          "Sözcük yabancı olduğu için",
+          "Sözcük kısa olduğu için"
+        ],
+        "answer": 0,
+        "why": "Ünlüyle biten sözcüğün kuralı sondan bir önceyi verir; vurgu sonda olduğu için tilde gerekir: ca-FÉ."
+      },
+      {
+        "prompt": "“árbol” sözcüğünde tilde neden vardır?",
+        "options": [
+          "l ile biten sözcüğün kuralı son hecedir; vurgu sondan bir önce olduğu için tilde gerekir",
+          "Çünkü sözcük iki heceli",
+          "Çünkü sözcük ünlüyle biter"
+        ],
+        "answer": 0,
+        "why": "l ile biten sözcükte normalde son hece vurgulanır; ÁR-bol bu kurala uymadığı için tilde alır."
+      },
+      {
+        "prompt": "“él” ve “el” arasındaki fark nedir?",
+        "options": [
+          "él = o (zamir), el = artikel",
+          "İkisi de aynı anlamdadır",
+          "él = ve, el = ama"
+        ],
+        "answer": 0,
+        "why": "Tilde anlam ayırır: él (o), el (belirli artikel)."
+      },
+      {
+        "prompt": "“sí” ve “si” arasındaki fark nedir?",
+        "options": [
+          "sí = evet, si = eğer",
+          "Aynı anlam",
+          "sí = hayır, si = evet"
+        ],
+        "answer": 0,
+        "why": "Tilde ile sí (evet), tildesiz si (eğer, -se)."
+      },
+      {
+        "prompt": "Doğru yazılmış olan hangisidir? (“İngilizce”)",
+        "options": [
+          "inglés",
+          "ingles",
+          "ínglés"
+        ],
+        "answer": 0,
+        "why": "s ile biten sözcükte kural sondan bir önce; vurgu sonda olduğu için tilde gerekir: inglés."
+      }
+    ]
+  }
+}
