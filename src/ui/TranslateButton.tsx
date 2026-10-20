@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { translate, TranslateError, type TranslateLang } from '../data/translate'
-import { GlobeIcon } from './icons'
+import { GlobeIcon, SpeakerIcon } from './icons'
+import { speakAsync, speakTurkishAsync } from './speech'
 import { useTranslationReady } from './useTranslationReady'
 
 /**
@@ -44,14 +45,42 @@ export function TranslateButton({ text, from, onTranslated, label = 'Çevir' }: 
 /**
  * A sentence's Turkish on request, right under it (reading: the sentence of the word looked up).
  * One tap; the answer comes from the translation memory when the sentence was translated before.
+ * Once there, it can be heard: the Turkish alone, or the sentence and then its Turkish.
  */
 export function SentenceTranslation({ sentence, from }: { sentence: string; from: TranslateLang }) {
   const [shown, setShown] = useState('')
+  const [playing, setPlaying] = useState(false)
+  const play = async (both: boolean) => {
+    setPlaying(true)
+    try {
+      if (both && from !== 'tr') await speakAsync(sentence, from)
+      await speakTurkishAsync(shown)
+    } catch {
+      // No voice for it on this device: the text is still there.
+    } finally {
+      setPlaying(false)
+    }
+  }
   if (shown)
     return (
-      <p className="small muted sentence-tr" lang="tr">
-        {shown}
-      </p>
+      <>
+        <p className="small muted sentence-tr" lang="tr">
+          {shown}
+        </p>
+        <p className="small sentence-tr-listen">
+          <button type="button" className="link small" disabled={playing} onClick={() => void play(false)}>
+            <SpeakerIcon size={14} className="inline-icon" /> Türkçesini dinle
+          </button>
+          {from !== 'tr' && (
+            <>
+              {' '}
+              <button type="button" className="link small" disabled={playing} onClick={() => void play(true)}>
+                Cümle, sonra Türkçesi
+              </button>
+            </>
+          )}
+        </p>
+      </>
     )
   return <TranslateButton text={sentence} from={from} onTranslated={setShown} label="Cümlenin Türkçesi" />
 }
