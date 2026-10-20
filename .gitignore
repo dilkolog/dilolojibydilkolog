@@ -48,6 +48,7 @@ pw.tmp.config.ts
 .dev.vars
 .wrangler
 dist-gate
+scratch/
 playwright-report-gate
 pw.gate.tmp.config.ts
 
