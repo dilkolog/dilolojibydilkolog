@@ -1,6 +1,6 @@
 import { get, put } from '@vercel/blob'
 import { readText, removeBlob, StorageError, writeJson } from './_account.js'
-import { eq, rows, tablesOn, upsert, write } from './_tables.js'
+import { eq, inboxTableOn, rows, tablesOn, upsert, write } from './_tables.js'
 
 /**
  * Friends: an account shares a small card of how it is doing (a name it chose, its avatar, the XP of its
@@ -199,6 +199,7 @@ export async function forgetFriends(id: string): Promise<void> {
   // Both places: an account deleted soon after the move must leave nothing behind in either.
   const handle = await handleOf(id).catch(() => null)
   await Promise.all([handle ? removeBlob(handlePath(handle.handle)) : Promise.resolve(), removeBlob(handleOfPath(id))])
+  if (await inboxTableOn().catch(() => false)) await write(`friend_inbox?sync_id=${eq(id)}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } }).catch(() => undefined)
   await Promise.all([blobFriends.forget(id), removeBlob(inboxPath(id)), (await tablesOn()) ? tableFriends.forget(id) : Promise.resolve()])
 }
 
@@ -362,8 +363,14 @@ export async function requestFriend(id: string, rawHandle: unknown, onDelivered?
 
 const inboxPath = (id: string) => `friends/inbox/${id}.json`
 
+/** The messages worth keeping from what was stored: well formed, not older than KEEP_DAYS. */
+function keepable(items: unknown): InboxItem[] {
+  const oldest = Date.now() - KEEP_DAYS * 86_400_000
+  return Array.isArray(items) ? (items as InboxItem[]).filter((i) => i && typeof i.id === 'string' && INBOX_KINDS.includes(i.kind) && new Date(i.at).getTime() > oldest && (i.kind !== 'gift' || cleanGift(i.gift)) && (i.kind !== 'text' || cleanText(i.text))) : []
+}
+
 /** The inbox as stored, with the tag of the version read (null when there is no file yet). */
-async function readInboxFile(id: string): Promise<{ items: InboxItem[]; etag: string | null }> {
+async function readInboxBlob(id: string): Promise<{ items: InboxItem[]; etag: string | null }> {
   let blob
   try {
     blob = await get(inboxPath(id), { access: 'private', useCache: false })
@@ -377,12 +384,9 @@ async function readInboxFile(id: string): Promise<{ items: InboxItem[]; etag: st
   } catch {
     items = []
   }
-  const oldest = Date.now() - KEEP_DAYS * 86_400_000
-  const kept = Array.isArray(items) ? (items as InboxItem[]).filter((i) => i && typeof i.id === 'string' && INBOX_KINDS.includes(i.kind) && new Date(i.at).getTime() > oldest && (i.kind !== 'gift' || cleanGift(i.gift)) && (i.kind !== 'text' || cleanText(i.text))) : []
-  return { items: kept, etag: blob.blob?.etag ?? null }
+  return { items: keepable(items), etag: blob.blob?.etag ?? null }
 }
 
-const readInbox = async (id: string): Promise<InboxItem[]> => (await readInboxFile(id)).items
 
 /** Someone else wrote the file (or made it) since it was read. */
 const wroteMeanwhile = (e: unknown) => /precondition|exist/i.test(`${(e as { name?: string })?.name ?? ''} ${(e as Error)?.message ?? ''}`)
@@ -396,9 +400,9 @@ const INBOX_TRIES = 6
  * with `withInbox` (same instance) this keeps two sends from two instances from undoing each other.
  * `change` returns the new list, or null for "nothing to write".
  */
-async function changeInbox(id: string, change: (items: InboxItem[]) => InboxItem[] | null): Promise<void> {
+async function changeInboxBlob(id: string, change: (items: InboxItem[]) => InboxItem[] | null): Promise<void> {
   for (let attempt = 0; attempt < INBOX_TRIES; attempt++) {
-    const { items, etag } = await readInboxFile(id)
+    const { items, etag } = await readInboxBlob(id)
     const next = change(items)
     if (!next) return
     try {
@@ -410,6 +414,66 @@ async function changeInbox(id: string, change: (items: InboxItem[]) => InboxItem
   }
   throw new StorageError('inbox busy')
 }
+
+
+// The same inbox in a table (supabase/migrations/0004_friend_inbox.sql), once that migration was run: one row per
+// message, so two writers cannot undo each other (a change only adds the rows it made and drops the rows it took).
+interface InboxRow {
+  id: string
+  sync_id: string
+  kind: InboxKind
+  from_code: string
+  from_name: string
+  gift: GiftWord | null
+  sent_text: SentText | null
+  at: string
+}
+const INBOX_COLUMNS = 'id,sync_id,kind,from_code,from_name,gift,sent_text,at'
+const rowOfItem = (recipient: string, i: InboxItem): InboxRow => ({ id: i.id, sync_id: recipient, kind: i.kind, from_code: i.from.code, from_name: i.from.name, gift: i.gift ?? null, sent_text: i.text ?? null, at: i.at })
+const itemOfRow = (r: InboxRow): InboxItem => ({ id: r.id, kind: r.kind, from: { code: r.from_code, name: r.from_name }, at: new Date(r.at).toISOString(), ...(r.gift ? { gift: r.gift } : {}), ...(r.sent_text ? { text: r.sent_text } : {}) })
+const cutoff = () => new Date(Date.now() - KEEP_DAYS * 86_400_000).toISOString()
+
+/** Whom a server instance has found to have no Blob inbox (left from before the move): not asked again for a while. */
+const noBlobInbox = new Map<string, number>()
+const BLOB_CHECK_MS = 10 * 60_000
+export const forgetLegacyChecks = () => noBlobInbox.clear()
+
+/** What a person's Blob inbox still holds (before the move to the table it was the only place); none once it was carried over. */
+async function legacyInbox(id: string): Promise<InboxItem[]> {
+  if ((noBlobInbox.get(id) ?? 0) > Date.now()) return []
+  const { items } = await readInboxBlob(id)
+  if (!items.length) noBlobInbox.set(id, Date.now() + BLOB_CHECK_MS)
+  return items
+}
+
+async function readInboxTable(id: string): Promise<InboxItem[]> {
+  const [current, legacy] = await Promise.all([rows<InboxRow>(`friend_inbox?sync_id=${eq(id)}&at=gt.${encodeURIComponent(cutoff())}&select=${INBOX_COLUMNS}&order=at.desc&limit=${MAX_INBOX * 2}`), legacyInbox(id)])
+  const have = new Set(current.map((r) => r.id))
+  return keepable([...current.map(itemOfRow), ...legacy.filter((i) => !have.has(i.id))])
+}
+
+async function changeInboxTable(id: string, change: (items: InboxItem[]) => InboxItem[] | null): Promise<void> {
+  const [stored, legacy] = await Promise.all([rows<InboxRow>(`friend_inbox?sync_id=${eq(id)}&at=gt.${encodeURIComponent(cutoff())}&select=${INBOX_COLUMNS}&order=at.desc&limit=${MAX_INBOX * 2}`), legacyInbox(id)])
+  const inTable = new Set(stored.map((r) => r.id))
+  const current = keepable([...stored.map(itemOfRow), ...legacy.filter((i) => !inTable.has(i.id))])
+  const next = change(current)
+  if (!next) return
+  const keep = new Set(next.map((i) => i.id))
+  const add = next.filter((i) => !inTable.has(i.id))
+  const drop = stored.filter((r) => !keep.has(r.id)).map((r) => r.id)
+  if (add.length) await upsert('friend_inbox', 'id', add.map((i) => rowOfItem(id, i)), true)
+  if (drop.length) await write(`friend_inbox?sync_id=${eq(id)}&id=in.(${drop.map(encodeURIComponent).join(',')})`, { method: 'DELETE', headers: { prefer: 'return=minimal' } })
+  // Past its days: swept along (best effort).
+  void write(`friend_inbox?sync_id=${eq(id)}&at=lt.${encodeURIComponent(cutoff())}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } }).catch(() => undefined)
+  // What was waiting in the Blob inbox is in the table now: the file goes.
+  if (legacy.length) {
+    await removeBlob(inboxPath(id)).catch(() => undefined)
+    noBlobInbox.set(id, Date.now() + BLOB_CHECK_MS)
+  }
+}
+
+const readInbox = async (id: string): Promise<InboxItem[]> => ((await inboxTableOn()) ? readInboxTable(id) : (await readInboxBlob(id)).items)
+const changeInbox = async (id: string, change: (items: InboxItem[]) => InboxItem[] | null): Promise<void> => ((await inboxTableOn()) ? changeInboxTable(id, change) : changeInboxBlob(id, change))
 
 /** What waits for the account, newest first. */
 export async function inboxOf(id: string): Promise<InboxItem[]> {

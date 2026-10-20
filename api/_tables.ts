@@ -31,6 +31,26 @@ export async function tablesOn(): Promise<boolean> {
   return on
 }
 
+/** The friends' inbox has its own switch: migration 0004 creates its table and writes the 'inbox' flag. */
+let inboxFlag: { on: boolean; until: number } | null = null
+
+export const forgetInboxFlag = () => void (inboxFlag = null)
+
+/** Whether the friends' inbox lives in the table (0004 was run); a missing table or flag reads as no, like for 'tables'. */
+export async function inboxTableOn(): Promise<boolean> {
+  if (!supabaseOn()) return false
+  if (inboxFlag && inboxFlag.until > Date.now()) return inboxFlag.on
+  let on = false
+  try {
+    const res = await rest('server_flags?name=eq.inbox&select=name')
+    on = res.ok && ((await res.json()) as unknown[]).length > 0
+  } catch {
+    on = inboxFlag?.on ?? false
+  }
+  inboxFlag = { on, until: Date.now() + FLAG_MS }
+  return on
+}
+
 /** Sets the flag (the move is under way or done): from now on this instance uses the tables. */
 export async function setTablesFlag(): Promise<void> {
   const res = await rest('server_flags?on_conflict=name', { method: 'POST', headers: { prefer: 'resolution=merge-duplicates,return=minimal' }, body: JSON.stringify({ name: 'tables', value: true }) })
