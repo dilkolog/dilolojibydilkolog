@@ -38,7 +38,7 @@ Claude Code ve Antigravity aynı listeden çalışır; çakışmamak için:
 22. ~~**Kararsız E2E'leri kökten çözmek.**~~ (Tamamlandı: `expect` süresi 10 sn, `actionTimeout` 15 sn, bir yeniden deneme [geçen yeniden deneme "flaky" diye raporlanır]; "count() sonra tıkla" yarışları düzeltildi: rehber dilbilgisi testi soruyu bekler, rozet hizası `expect.poll` ile oturana dek ölçülür, başparmak testi tıklamayı bırakıp yeniden bakar. Daha önce düşen 5 test 4 işçiyle 4'er kez yeniden denemesiz koşuldu: 20/20.)
 
 ## Yeni (2026-10-21)
-27. **Eşitleme için gerçek iki cihazlı E2E.** Atlanan `sync.e2e.ts`'in yerine: iki tarayıcı bağlamı, sahte Supabase (`gate.e2e.ts` `stubNetwork` deseni), A'da kelime ekle → B'de görünsün. Birim düzeyinde `supabaseStore.test.ts` kapsıyor; tarayıcı düzeyi eksik.
+27. ~~**Eşitleme için gerçek iki cihazlı E2E.**~~ (Tamamlandı: `gate.e2e.ts` "two devices of one account": sahte Supabase satırları (`FakeParts`), A'da kelime eklenir, B'de görünür, B'den çıkış yalnızca B'yi boşaltır; ~40 sn)
 28. ~~**Atlanan medya uyarısı arka plan eşitlemesinde de.**~~ (Tamamlandı: `meta 'syncSkipped'`, Ayarlar → Hesap'ta kalıcı not)
 29. **Cihaz tercihlerinde silme yayılımı.** `devicePrefs` yalnızca değer yazar; bir cihazda silinen anahtar (ör. `diloloji:podcast:fr`) diğerinde kalır.
 
