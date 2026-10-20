@@ -1,6 +1,6 @@
 import webpush from 'web-push'
 import type { PushRecord } from './push.js'
-import { APP_URL, mailConfigured, reminderMail, sendMail, siteFrom, type Mail } from './_mail.js'
+import { APP_URL, mailConfigured, reminderMail, sendMail, siteFrom, weeklyMail, type Mail } from './_mail.js'
 import { VAPID_PUBLIC_KEY } from './_notify.js'
 import { dueNow, localHour } from './_due.js'
 import { reminderStore } from './_reminders.js'
@@ -72,15 +72,16 @@ export async function GET(request: Request): Promise<Response> {
   let mailed = 0
   const mails: Mail[] = []
   const due = records.filter(({ record: r }) => dueNow(r, utcHour)).flatMap(({ key, record: r }) => {
-    // Sunday evening: the week in one line, studied today or not (not on a holiday). Mail has no week line:
-    // it carries only what the server can build from numbers.
-    const week = r.email ? undefined : weeklyText(r, now)
+    // Sunday evening: the week in one line, studied today or not (not on a holiday). A mail carries it only when the
+    // learner left the weekly mail on, and only the figures the server checked (see cleanWeek in push.ts).
+    const week = r.email && r.weeklyMail === false ? undefined : weeklyText(r, now)
     if (!week && (r.studiedDay === localDay(r.tz, now) || (r.group && studiedGroups.has(r.group)) || resting(r, now))) return []
     if (r.email) {
       // An address nobody has confirmed gets nothing.
       if (mailOn && r.confirmed && r.token) {
         const site = siteFrom(r.site) ?? APP_URL
-        mails.push(reminderMail(r.email, reminderText({ ...r, plan: '', word: '' }, now), `${site}/api/push?u=${key.replace(/^mail-/, '')}.${r.token}`, site))
+        const stop = `${site}/api/push?u=${key.replace(/^mail-/, '')}.${r.token}`
+        mails.push(week ? weeklyMail(r.email, week, stop, site) : reminderMail(r.email, reminderText({ ...r, plan: '', word: '' }, now), stop, site))
       }
       return []
     }

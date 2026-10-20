@@ -83,6 +83,24 @@ export function reminderMail(to: string, line: string, unsubscribeUrl: string, s
   }
 }
 
+/** Sunday evening: the week in one line (figures the server checked), and a link to the progress page. */
+export function weeklyMail(to: string, line: string, unsubscribeUrl: string, site = APP_URL): Mail {
+  return {
+    to,
+    subject: 'Diloloji: haftanın özeti',
+    html: mailLayout({
+      preheader: line,
+      title: 'Haftanın özeti',
+      mascot: 'cheer',
+      body: `${paragraph(escapeHtml(line))}${paragraph('Ayrıntılar, en çok kaçırdığın kelimeler ve gelecek haftanın küçük planı İlerleme sayfasında.')}${button(`${site}/?go=progress`, 'İlerlemeni aç')}`,
+      footer: `Bu mailleri sen istedin (Ayarlar → Hatırlatıcı). <a class="m-link" href="${escapeHtml(unsubscribeUrl)}" style="color:#57677e;text-decoration:underline">Mailleri kapat</a>.`,
+      site,
+    }),
+    text: `Haftanın özeti\n\n${line}\n\nİlerlemeni aç: ${site}/?go=progress\n\nBu mailleri sen istedin (Ayarlar → Hatırlatıcı). Kapatmak için: ${unsubscribeUrl}\n\nDiloloji · kelime öğrenme uygulaması`,
+    unsubscribe: unsubscribeUrl,
+  }
+}
+
 const BATCH = 50
 
 /** Sends the mails (Resend's batch endpoint, up to 50 a request); how many went and how many did not. */

@@ -3,7 +3,7 @@ import type { Settings } from '../data/db'
 import { db } from '../data/instance'
 import { reminderTime } from '../engine/hours'
 import { badgeSupported } from './appBadge'
-import { disableMail, enableMail, getMail, mailStatus, refreshMail, type MailReminder } from './emailReminders'
+import { disableMail, enableMail, getMail, mailStatus, refreshMail, setMailWeekly, type MailReminder } from './emailReminders'
 import { ReminderSuggestion } from './BestHours'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { calendarFile, notificationsSupported, requestNotifications, showReminder } from './reminders'
@@ -104,6 +104,14 @@ function MailReminder({ state }: { state: PushState }) {
           <p className="small">
             <strong>{mail.email}</strong> — {mail.state === 'on' ? 'açık' : 'onay bekliyor (mailindeki bağlantıya dokun)'}
           </p>
+          {mail.state === 'on' && (
+            <Toggle
+              label="Pazar akşamı haftanın özetini de gönder"
+              help="Gün, cevap, doğru oranı ve yeni kelime sayıların tek mailde. Yalnızca bu sayılar gider; yazdığın hiçbir şey maile girmez."
+              checked={mail.weekly !== false}
+              onChange={(v) => run(async () => void (await setMailWeekly(v, state), setMail(await getMail())))}
+            />
+          )}
           <div className="row">
             {mail.state === 'pending' && (
               <button

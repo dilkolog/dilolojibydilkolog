@@ -50,12 +50,27 @@ export interface PushRecord {
   reportedDay?: string | null
   /** The learner's week in one line (written on the device), for Sunday evening. */
   week?: string
+  /** A mail record: whether the week's summary mail may go out on Sunday evening (default yes). */
+  weeklyMail?: boolean
   /** Local hour (0–23) to remind at: the chosen time or the usual study hour; 20 when missing. */
   hour?: number
   /** A push record saved by a signed-in device: the account, and whether it wants a notification for a friend's message. */
   friends?: boolean
   /** A word the learner missed lately, for the push reminder to ask about ("“maison” ne demekti?"). Never in a mail. */
   word?: string
+}
+
+/**
+ * The week line a mail may carry: only the shapes the app writes ("5 gün · 312 cevap (%86 doğru) · 18 yeni kelime · 2 metin"),
+ * every number bounded. Anything else is dropped, so no text a device typed can end up in a mail.
+ */
+const WEEK_ANSWERS = '[1-7] gün · \\d{1,5} cevap \\(%\\d{1,3} doğru\\)'
+const WEEK_WORDS = '\\d{1,5} yeni kelime'
+const WEEK_TEXTS = '\\d{1,5} metin'
+// Every way the app can write it: the answers, the new words and the texts, in that order, any of them left out (not all).
+const WEEK_LINE = new RegExp(`^(?:${[[WEEK_ANSWERS, WEEK_WORDS, WEEK_TEXTS], [WEEK_ANSWERS, WEEK_WORDS], [WEEK_ANSWERS, WEEK_TEXTS], [WEEK_ANSWERS], [WEEK_WORDS, WEEK_TEXTS], [WEEK_WORDS], [WEEK_TEXTS]].map((p) => p.join(' · ')).join('|')})$`)
+export function cleanWeek(v: unknown): string {
+  return typeof v === 'string' && v.length <= 120 && WEEK_LINE.test(v) ? v : ''
 }
 
 /** A word to recall, as the device sent it: one short line of letters, nothing that could be markup. */
@@ -180,6 +195,8 @@ async function handleMail(request: Request, body: Record<string, unknown>): Prom
     ...stateFields(body),
     site,
     plan: '',
+    week: cleanWeek(body.week),
+    weeklyMail: body.weeklyMail !== false,
     email,
     owner,
     token,

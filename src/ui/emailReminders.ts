@@ -13,6 +13,8 @@ export type MailState = 'pending' | 'on'
 export interface MailReminder {
   email: string
   state: MailState
+  /** Whether Sunday evening's summary of the week may come by mail too (default yes). */
+  weekly?: boolean
 }
 
 /** Whether the server can send mail at all (the owner has set the Resend key), and whether it still uses Resend's test sender. */
@@ -47,10 +49,11 @@ async function failure(res: Response): Promise<Error> {
 /** Registers the address (the server mails the confirmation). Throws a readable message when it can't. */
 export async function enableMail(email: string, state: PushState, resend = false): Promise<MailState> {
   const address = email.trim()
-  const res = await post({ action: 'email', email: address, ...dayFields(state), resend })
+  const weekly = (await getMail())?.weekly !== false
+  const res = await post({ action: 'email', email: address, ...dayFields(state), week: state.week, weeklyMail: weekly, resend })
   if (!res.ok) throw await failure(res)
   const { state: now } = (await res.json()) as { state: MailState }
-  await db.meta.put({ key: META, value: { email: address, state: now } satisfies MailReminder })
+  await db.meta.put({ key: META, value: { email: address, state: now, ...(weekly ? {} : { weekly: false }) } satisfies MailReminder })
   return now
 }
 
@@ -88,8 +91,17 @@ export async function refreshMail(): Promise<MailReminder | null> {
 export async function reportMailState(state: PushState): Promise<void> {
   try {
     const mail = await getMail()
-    if (mail) await post({ action: 'email', email: mail.email, ...dayFields(state), update: true })
+    if (mail) await post({ action: 'email', email: mail.email, ...dayFields(state), week: state.week, weeklyMail: mail.weekly !== false, update: true })
   } catch {
     // Offline: the next report catches up.
   }
+}
+
+/** Turns Sunday's weekly summary mail on or off; the server hears of it with the next report (at once here). */
+export async function setMailWeekly(weekly: boolean, state: PushState): Promise<void> {
+  const mail = await getMail()
+  if (!mail) return
+  await db.meta.put({ key: META, value: { ...mail, weekly } satisfies MailReminder })
+  const res = await post({ action: 'email', email: mail.email, ...dayFields(state), week: state.week, weeklyMail: weekly, update: true })
+  if (!res.ok) throw await failure(res)
 }

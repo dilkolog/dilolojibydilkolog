@@ -14,7 +14,7 @@ vi.mock('@vercel/blob', () => ({
 }))
 vi.mock('web-push', () => ({ default: { setVapidDetails: () => {}, sendNotification: async () => {} } }))
 
-const { POST, GET, mailKey, mailPath } = await import('../../api/push')
+const { POST, GET, mailKey, mailPath, cleanWeek } = await import('../../api/push')
 const { GET: CRON } = await import('../../api/cron-reminder')
 const { clearAccessCache } = await import('../../api/_account')
 
@@ -255,6 +255,57 @@ describe('the daily mail', () => {
     expect((await run()).status).toBe(503)
     vi.stubEnv('VAPID_PRIVATE_KEY', 'k')
     expect((await run()).status).toBe(200)
+  })
+})
+
+describe('the weekly mail', () => {
+  // 2026-10-11 17:00 UTC = Sunday 20:00 in Turkey.
+  const LINE = '5 gün · 312 cevap (%86 doğru) · 18 yeni kelime · 2 metin'
+  beforeEach(() => {
+    vi.stubEnv('CRON_SECRET', 's3cret')
+    vi.stubEnv('VAPID_PRIVATE_KEY', '')
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(Date.UTC(2026, 9, 11, 17))
+  })
+  const run = () => CRON(new Request('https://app.test/api/cron-reminder', { headers: { authorization: 'Bearer s3cret' } }))
+  const register = async (over: Record<string, unknown> = {}) => {
+    mails.length = 0
+    await post({ action: 'email', email: EMAIL, ...state, reportedDay: '2026-10-11', week: LINE, ...over })
+    await confirmWith(linkOf(mails[0].text, 'c'))
+    mails.length = 0
+  }
+
+  it('keeps only the lines the app writes, with bounded numbers', () => {
+    expect(cleanWeek(LINE)).toBe(LINE)
+    expect(cleanWeek('18 yeni kelime')).toBe('18 yeni kelime')
+    expect(cleanWeek('5 gün · 312 cevap (%86 doğru)')).toBe('5 gün · 312 cevap (%86 doğru)')
+    expect(cleanWeek('Click here: http://evil.example')).toBe('')
+    expect(cleanWeek(`${LINE} · hello`)).toBe('')
+    expect(cleanWeek('9 gün · 312 cevap (%86 doğru)')).toBe('')
+    expect(cleanWeek(5)).toBe('')
+  })
+
+  it('goes on Sunday evening instead of the daily reminder, even after a day of study, with the figures and a link', async () => {
+    await register({ studiedDay: '2026-10-11' })
+    expect(await (await run()).json()).toMatchObject({ mailed: 1 })
+    expect(mails[0]).toMatchObject({ to: [EMAIL], subject: 'Diloloji: haftanın özeti' })
+    expect(mails[0].text).toContain(LINE)
+    expect(mails[0].text).toContain('/?go=progress')
+    expect(mails[0].headers?.['List-Unsubscribe']).toContain('/api/push?u=')
+  })
+
+  it('is left out when the learner turned it off (the daily rules apply again), or when the week line is not the app\'s', async () => {
+    await register({ studiedDay: '2026-10-11', weeklyMail: false })
+    expect(await (await run()).json()).toMatchObject({ mailed: 0 })
+    blobs.clear()
+    await register({ studiedDay: '2026-10-11', week: 'free text <b>' })
+    expect(await (await run()).json()).toMatchObject({ mailed: 0 })
+  })
+
+  it('never on another day of the week', async () => {
+    vi.setSystemTime(Date.UTC(2026, 9, 10, 17))
+    await register({ reportedDay: '2026-10-10', studiedDay: '2026-10-10' })
+    expect(await (await run()).json()).toMatchObject({ mailed: 0 })
   })
 })
 
