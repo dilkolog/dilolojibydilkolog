@@ -2454,7 +2454,8 @@ test('the guide: grammar mistake leads to "Konunun dersi" link to guide lesson, 
   await expect(page.locator('.game-stage')).toBeVisible()
   await page.getByRole('button', { name: /soruluk tura başla/ }).click()
 
-  // Make a deliberate mistake
+  // Make a deliberate mistake (the question is up before it is looked at: counting an element that is not there yet would skip the answer)
+  await page.locator('.game-stage input.answer-input, .game-stage .options .option').first().waitFor()
   if (await page.locator('.game-stage input.answer-input').count() > 0) {
     await page.locator('.game-stage input.answer-input').fill('kesinlikle_yanlis')
     await page.keyboard.press('Enter')
@@ -2466,6 +2467,7 @@ test('the guide: grammar mistake leads to "Konunun dersi" link to guide lesson, 
   await expect(page.locator('.lesson-link, button:has-text("Devam")').first()).toBeVisible()
   if ((await page.locator('.lesson-link', { hasText: 'Konunun dersi' }).count()) === 0) {
     await page.getByRole('button', { name: 'Devam' }).click()
+    await page.locator('.game-stage input.answer-input, .game-stage .options .option').first().waitFor()
     if (await page.locator('.game-stage input.answer-input').count() > 0) {
       await page.locator('.game-stage input.answer-input').fill('kesinlikle_yanlis')
       await page.keyboard.press('Enter')
