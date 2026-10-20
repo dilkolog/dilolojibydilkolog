@@ -92,13 +92,34 @@ test('tablet width: Today in two columns, the mission beside the numbers', async
   expect(boxes.side.right).toBeLessThanOrEqual(820)
 })
 
+test('the avatar card in the side menu opens an account menu: profile, settings, and the keyboard closes it', async ({ page }) => {
+  await startWithSamples(page)
+  const card = page.locator('.sidebar-foot-btn:visible')
+  await card.click()
+  const menu = page.getByRole('menu', { name: 'Hesap menüsü' })
+  await expect(menu).toBeVisible()
+  await expect(menu.getByRole('menuitem')).toHaveCount(2)
+  // The menu opens upward from the bottom corner and stays inside the screen.
+  const box = (await menu.boundingBox())!
+  const viewport = page.viewportSize()!
+  expect(box.y).toBeGreaterThanOrEqual(0)
+  expect(box.y + box.height).toBeLessThanOrEqual(viewport.height)
+  await page.keyboard.press('Escape')
+  await expect(menu).toBeHidden()
+  await expect(card).toBeFocused()
+  await card.click()
+  await menu.getByRole('menuitem', { name: /^Ayarlar/ }).click()
+  await expect(page.locator('.settings-menu-item').first()).toBeVisible()
+})
+
 test('Settings has no second way to the profile: the side menu already has it', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Ayarlar')
   await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
   await expect(page.locator('.settings-profile')).toHaveCount(0)
   await expect(page.locator('.sidebar-foot:visible')).toHaveCount(1)
-  await page.locator('.sidebar-foot:visible').click()
+  await page.locator('.sidebar-foot-btn:visible').click()
+  await page.getByRole('menuitem', { name: /^Profil/ }).click()
   // The profile opens, and on a wide screen it has no settings button of its own (the side menu has it).
   await expect(page.getByLabel('Adın')).toBeVisible()
   await expect(page.locator('.profile-settings')).toBeHidden()

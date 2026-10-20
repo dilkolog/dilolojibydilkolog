@@ -73,11 +73,14 @@ const ROUTE: Record<string, [string, string?]> = {
 /** Opens a screen the way a user would: the menu (side menu or tab bar), then its tab; Profile and Settings via the avatar or the side menu. */
 export async function openScreen(page: Page, name: string) {
   if (name === 'Profil' || name === 'Ayarlar') {
-    const side = page.locator(name === 'Profil' ? '.sidebar-foot:visible' : '.sidebar-settings:visible')
+    const side = page.locator(name === 'Profil' ? '.sidebar-foot-btn:visible' : '.sidebar-settings:visible')
     // Right after a reload neither exists yet: wait for the menu before choosing the way.
-    await page.locator(':is(.sidebar-foot, .sidebar-settings, .top-profile):visible').first().waitFor()
-    if (await side.count()) await side.click()
-    else {
+    await page.locator(':is(.sidebar-foot-btn, .sidebar-settings, .top-profile):visible').first().waitFor()
+    if (await side.count()) {
+      await side.click()
+      // On a wide screen the profile is the first item of the account menu the avatar card opens.
+      if (name === 'Profil') await page.getByRole('menuitem', { name: /^Profil/ }).click()
+    } else {
       await page.locator('.top-profile:visible').click()
       if (name === 'Ayarlar') {
         const btn = page.locator(':is(.profile-settings, button[aria-label="Ayarlar"]):visible').first()
