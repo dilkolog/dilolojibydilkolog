@@ -263,11 +263,17 @@ describe('AppSidebar and TabBar', () => {
       })
       expect(goProfile).not.toHaveBeenCalled()
 
-      // Clicking the profile card triggers goProfile
+      // The card opens the account menu; its Profil item goes to the profile.
       act(() => {
-        footCard?.click()
+        footCard?.querySelector<HTMLButtonElement>('.sidebar-foot-btn')?.click()
+      })
+      const items = [...rootEl.querySelectorAll<HTMLElement>('[role=menuitem]')]
+      expect(items.map((i) => i.querySelector('strong')?.textContent)).toEqual(['Profil', 'Ayarlar'])
+      act(() => {
+        items[0].click()
       })
       expect(goProfile).toHaveBeenCalled()
+      expect(rootEl.querySelector('[role=menu]')).toBeNull()
     })
   })
 

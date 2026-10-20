@@ -5352,7 +5352,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* ---------- The bell (notice center) ---------- */
 .notice-bell { position: relative; }
 /* Only while the bell's list is open the menu rides above the page beside it and above the Monki button (so a card or the button does not cut the list). Always on, it would also sit above a dialog's backdrop. */
-.sidebar:has(.notice-bell[aria-expanded='true']) { z-index: 30; }
+.sidebar:has(.notice-bell[aria-expanded='true'], .sidebar-foot-btn[aria-expanded='true']) { z-index: 30; }
 /* The phone's top bar is full: a smaller bell, closer to the name, so the language switch keeps its room. */
 @media (max-width: 30rem) { .brand-row .notice-bell { width: 2rem; height: 2rem; margin-left: -0.25rem; } .brand-row { gap: 0.25rem; } }
 .notice-count { position: absolute; top: -0.125rem; right: -0.125rem; min-width: 1rem; padding: 0 0.25rem; border-radius: var(--r-full); background: var(--bad-deep); color: #fff; font-size: 0.625rem; font-weight: 700; line-height: 1rem; text-align: center; box-shadow: 0 0 0 2px var(--bg); font-variant-numeric: tabular-nums; }
@@ -5405,6 +5405,12 @@ button.notice-row:hover { background: var(--surface-2); }
   color: inherit;
   font: inherit;
 }
+.sidebar-foot .popover { flex: 1; min-width: 0; }
+.sidebar-foot .popover > .sidebar-foot-btn { width: 100%; }
+.sidebar-foot-btn[aria-expanded='true'] { color: var(--ink); }
+.sidebar-foot .popover-panel.is-menu { left: -0.875rem; width: calc(100% + 1.75rem); min-width: 14rem; }
+.shell.is-rail .sidebar-foot .popover-panel.is-menu { left: 0; width: 15rem; }
+.menu-sep { height: 1px; margin: 0.25rem 0.5rem; background: var(--rule); }
 .sidebar-foot-btn:focus-visible {
   outline: 2px solid var(--lang);
   outline-offset: 2px;

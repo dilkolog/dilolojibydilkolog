@@ -4,7 +4,10 @@ import { TARGET_LANGUAGES, type TargetLanguage } from '../engine/types'
 import { NAV, type NavScreen, type Screen } from '../appNav'
 import { Avatar } from './Avatar'
 import type { GameState } from './game'
-import { ChevronLeftIcon, ChevronRightIcon, GearIcon, SearchIcon } from './icons'
+import { ChevronLeftIcon, ChevronRightIcon, GearIcon, LogoutIcon, SearchIcon, UserIcon } from './icons'
+import { MenuItem, Popover } from './Popover'
+import { signOutThisDevice } from './signOut'
+import { useHasAccount } from './useHasAccount'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './labels'
 import { AccessBadge } from './AccessBadge'
 import { NoticeBell } from './NoticeBell'
@@ -53,6 +56,7 @@ export function Sidebar({
   inSettings: boolean
   onProfilePage: boolean
 }) {
+  const hasAccount = useHasAccount()
   return (
     <aside className="sidebar">
       <div className="brand-row">
@@ -123,37 +127,69 @@ export function Sidebar({
         <GearIcon size={20} />
         <span className="nav-label">Ayarlar</span>
       </button>
-      <div
-        className="sidebar-foot"
-        aria-current={onProfilePage ? 'page' : undefined}
-        onClick={(e) => {
-          if ((e.target as HTMLElement).closest('.sidebar-foot-bell')) return
-          go({ name: 'profile' })()
-        }}
-      >
-        <button
-          type="button"
-          className="sidebar-foot-btn"
-          onClick={go({ name: 'profile' })}
-          aria-label="Profil ve ayarlar"
-          title="Profil ve ayarlar"
+      <div className="sidebar-foot" aria-current={onProfilePage ? 'page' : undefined}>
+        {/* The account menu: you, settings, sign out (the same avatar opens the profile on a phone). */}
+        <Popover
+          kind="menu"
+          label="Hesap menüsü"
+          buttonClassName="sidebar-foot-btn"
+          buttonProps={{ 'aria-label': 'Hesap menüsü', title: 'Hesap menüsü' }}
+          button={
+            <>
+              <Avatar profile={settings.profile} size={40} />
+              <span className="sidebar-who">
+                <strong>{settings.profile.name || 'Profilin'}</strong>
+                {game && (
+                  <span className="small muted">
+                    Seviye {game.level.level} · <StreakFlame streak={game.streak} frozen={game.frozenYesterday} size={13} /> {game.streak}
+                    {(game.freezes ?? 0) > 0 ? ` · 🛡️${game.freezes}` : ''}
+                  </span>
+                )}
+                {game && (
+                  <span className="sidebar-level" aria-hidden>
+                    <span style={{ width: `${game.level.progress * 100}%` }} />
+                  </span>
+                )}
+              </span>
+            </>
+          }
         >
-          <Avatar profile={settings.profile} size={40} />
-          <span className="sidebar-who">
-            <strong>{settings.profile.name || 'Profilin'}</strong>
-            {game && (
-              <span className="small muted">
-                Seviye {game.level.level} · <StreakFlame streak={game.streak} frozen={game.frozenYesterday} size={13} /> {game.streak}
-                {(game.freezes ?? 0) > 0 ? ` · 🛡️${game.freezes}` : ''}
-              </span>
-            )}
-            {game && (
-              <span className="sidebar-level" aria-hidden>
-                <span style={{ width: `${game.level.progress * 100}%` }} />
-              </span>
-            )}
-          </span>
-        </button>
+          {(close) => (
+            <>
+              <MenuItem
+                icon={<UserIcon size={18} />}
+                title="Profil"
+                hint="Seviye ve rozetlerin"
+                onSelect={() => {
+                  close()
+                  go({ name: 'profile' })()
+                }}
+              />
+              <MenuItem
+                icon={<GearIcon size={18} />}
+                title="Ayarlar"
+                onSelect={() => {
+                  close()
+                  go({ name: 'settings' })()
+                }}
+              />
+              {hasAccount && (
+                <>
+                  <div className="menu-sep" role="separator" />
+                  <MenuItem
+                    icon={<LogoutIcon size={18} />}
+                    title="Çıkış yap"
+                    hint="Kelimelerin bu cihazda kalır"
+                    onSelect={() => {
+                      close()
+                      void signOutThisDevice()
+                    }}
+                  />
+                </>
+              )}
+            </>
+          )}
+        </Popover>
         <div
           className="sidebar-foot-bell"
           onClick={(e) => e.stopPropagation()}

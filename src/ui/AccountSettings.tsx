@@ -14,8 +14,8 @@ import { ACCOUNT_ART } from './drawnArt'
 import { StatusPicture } from './StatusArt'
 import { SyncSettings } from './SyncSettings'
 import { useAccess } from './accessContext'
-import { undoable } from './toastFeed'
 import { GoogleMark } from './GoogleMark'
+import { signOutThisDevice } from './signOut'
 
 const STATUS_TEXT = { approved: 'Onaylı', rejected: 'Onaylanmadı', pending: 'Onay bekliyor' } as const
 
@@ -61,19 +61,8 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
   }
 
   const signOut = async () => {
-    const previous = await getAccount()
-    // This device's push reminders belong to the account that leaves: its record goes, the device stays subscribed.
-    void import('./pushReminders').then((m) => m.forgetPushRecord())
-    await setAccount(null)
+    await signOutThisDevice(identity)
     void refresh()
-    if (identity) {
-      await signOutSupabase()
-      showToast('Bu cihazda çıkış yapıldı; kelimelerin ve ilerlemen cihazda duruyor.')
-    } else
-      undoable('Bu cihazda çıkış yapıldı; verilerin cihazda duruyor', async () => {
-        await setAccount(previous)
-        void refresh()
-      })
   }
 
   /** A shared device: sync first (nothing is lost), then sign out and clear what this device holds. */
