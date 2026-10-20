@@ -13,6 +13,7 @@ import { FR_LESSONS_2 } from './lessons-fr-2'
 import { FR_LESSONS_3 } from './lessons-fr-3'
 import { FR_LESSONS_4 } from './lessons-fr-4'
 import { FR_LESSONS_5 } from './lessons-fr-5'
+import { PRON_LESSONS } from './lessons-pron'
 import type { TopicLesson } from './lessonTypes'
 
 export type { GuideLevel, LessonCheck, LessonTable, TopicLesson } from './lessonTypes'
@@ -34,4 +35,5 @@ export const TOPIC_LESSONS: TopicLesson[] = [
   ...EN_LESSONS_3,
   ...EN_LESSONS_4,
   ...EN_LESSONS_5,
+  ...PRON_LESSONS,
 ]

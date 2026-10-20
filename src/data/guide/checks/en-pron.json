@@ -1,0 +1,223 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "lessons": {
+    "basics_en_pron_th_w_v": [
+      {
+        "prompt": "“sing” sözcüğünün sonu nasıl okunur?",
+        "options": [
+          "Tek burun sesi /ŋ/, g ayrı okunmaz",
+          "n + g iki ayrı ses",
+          "Yalnızca n"
+        ],
+        "answer": 0,
+        "why": "ng tek bir burun sesidir: sing /sɪŋ/."
+      },
+      {
+        "prompt": "“the” sözcüğündeki th nasıl bir sestir?",
+        "options": [
+          "Sesli (titreşimli) /ð/",
+          "Sessiz /θ/",
+          "t gibi"
+        ],
+        "answer": 0,
+        "why": "the, this, mother gibi sözcüklerde th sesli /ð/'dir."
+      },
+      {
+        "prompt": "“three” sözcüğündeki th nasıl bir sestir?",
+        "options": [
+          "Sessiz /θ/ (titreşim yok)",
+          "Sesli /ð/",
+          "s gibi"
+        ],
+        "answer": 0,
+        "why": "three, think, thank'te th sessiz /θ/'dir: dil dişler arasında, titreşim yok."
+      },
+      {
+        "prompt": "“hour” sözcüğünde h okunur mu?",
+        "options": [
+          "Hayır, okunmaz (our gibi)",
+          "Evet, Türkçe h gibi",
+          "Evet, ama hafifçe"
+        ],
+        "answer": 0,
+        "why": "hour ve honest'te h sessizdir: hour /aʊə/."
+      },
+      {
+        "prompt": "“write” sözcüğünde baştaki w okunur mu?",
+        "options": [
+          "Hayır",
+          "Evet",
+          "Yalnızca vurguluysa"
+        ],
+        "answer": 0,
+        "why": "wr- ile başlayan sözcüklerde w okunmaz: write /raɪt/."
+      },
+      {
+        "prompt": "“very” sözcüğü hangi ses ile başlar?",
+        "options": [
+          "Üst diş alt dudağa değerek v",
+          "Dudaklar yuvarlak w",
+          "b"
+        ],
+        "answer": 0,
+        "why": "v, üst dişlerin alt dudağa değmesiyle çıkar: very /ˈveri/."
+      },
+      {
+        "prompt": "“thank” yerine “sank” ya da “tank” demek hangi hatadır?",
+        "options": [
+          "th yerine s ya da t söylemek",
+          "w yerine v söylemek",
+          "Vurguyu kaydırmak"
+        ],
+        "answer": 0,
+        "why": "th Türkçede olmayan bir ses olduğundan s ya da t ile değiştirmek en sık hatadır; sözcük başka bir anlama gelir."
+      }
+    ],
+    "basics_en_pron_vowels": [
+      {
+        "prompt": "“bad” ile “bed” sözcüklerinin ünlüsü neyle ayrılır?",
+        "options": [
+          "bad'de /æ/ (ağız geniş), bed'de /e/",
+          "Aynı okunurlar",
+          "bed'de uzun ünlü"
+        ],
+        "answer": 0,
+        "why": "bad /æ/ ağız daha geniş açılarak söylenir; bed /e/ Türkçe e gibidir."
+      },
+      {
+        "prompt": "“full” ve “fool” sözcüklerinden hangisinin ünlüsü uzundur?",
+        "options": [
+          "fool",
+          "full",
+          "ikisi de"
+        ],
+        "answer": 0,
+        "why": "fool /uː/ uzun, full /ʊ/ kısadır."
+      },
+      {
+        "prompt": "“seat” sözcüğündeki ea nasıl okunur?",
+        "options": [
+          "Uzun /iː/",
+          "Kısa /ɪ/",
+          "e ile a arası"
+        ],
+        "answer": 0,
+        "why": "seat /siːt/: uzun i."
+      },
+      {
+        "prompt": "İngilizcede en sık duyulan ünlü hangisidir?",
+        "options": [
+          "Schwa /ə/",
+          "a",
+          "o",
+          "u"
+        ],
+        "answer": 0,
+        "why": "Schwa, vurgusuz hecelerde duyulan kısa belirsiz ünlüdür ve İngilizcenin en sık sesidir."
+      },
+      {
+        "prompt": "“teacher” sözcüğünün son hecesi (-er) nasıl okunur?",
+        "options": [
+          "Schwa /ə/",
+          "Tam ve net e",
+          "Tam ve net a"
+        ],
+        "answer": 0,
+        "why": "Vurgusuz -er schwa'ya zayıflar: teacher /ˈtiːtʃə/."
+      },
+      {
+        "prompt": "“cup” sözcüğündeki u hangi sese yakındır?",
+        "options": [
+          "Kısa bir a",
+          "Uzun ü",
+          "Türkçe u"
+        ],
+        "answer": 0,
+        "why": "/ʌ/ kısa bir a gibidir: cup /kʌp/."
+      },
+      {
+        "prompt": "“car” sözcüğündeki ar nasıl okunur?",
+        "options": [
+          "Uzun /ɑː/",
+          "Kısa /ʌ/",
+          "Kısa /æ/"
+        ],
+        "answer": 0,
+        "why": "car /kɑː/: uzun, açık bir a."
+      }
+    ],
+    "basics_en_pron_ed_s_stress": [
+      {
+        "prompt": "“played” sözcüğündeki -ed nasıl okunur?",
+        "options": [
+          "/d/ (tek hece)",
+          "/t/",
+          "/ɪd/ (ek hece)"
+        ],
+        "answer": 0,
+        "why": "y (ünlü benzeri ses) sonrası -ed /d/ olur: played /pleɪd/, tek hece."
+      },
+      {
+        "prompt": "“dogs” sözcüğündeki -s nasıl okunur?",
+        "options": [
+          "/z/",
+          "/s/",
+          "/ɪz/"
+        ],
+        "answer": 0,
+        "why": "g sesli bir ünsüzdür; ondan sonra -s /z/ olur: dogs."
+      },
+      {
+        "prompt": "“cats” sözcüğündeki -s nasıl okunur?",
+        "options": [
+          "/s/",
+          "/z/",
+          "/ɪz/"
+        ],
+        "answer": 0,
+        "why": "t sessiz bir ünsüzdür; ondan sonra -s /s/ olur: cats."
+      },
+      {
+        "prompt": "“watches” sözcüğündeki -es nasıl okunur?",
+        "options": [
+          "Ek hece /ɪz/",
+          "/s/",
+          "/z/"
+        ],
+        "answer": 0,
+        "why": "ch sesinden sonra -es ek hece olur: watches /ˈwɒtʃɪz/."
+      },
+      {
+        "prompt": "İsim olarak “record” sözcüğünde vurgu nerededir?",
+        "options": [
+          "İlk hecede",
+          "İkinci hecede",
+          "İki hece eşit"
+        ],
+        "answer": 0,
+        "why": "İki heceli isim/fiil çiftlerinde isimde vurgu ilk hecededir: REcord (isim), reCORD (fiil)."
+      },
+      {
+        "prompt": "Fiil olarak “record” (kaydetmek) sözcüğünde vurgu nerededir?",
+        "options": [
+          "İkinci hecede",
+          "İlk hecede",
+          "İki hece eşit"
+        ],
+        "answer": 0,
+        "why": "Fiilde vurgu ikinci hecededir: reCORD."
+      },
+      {
+        "prompt": "“-tion” ile biten sözcüklerde vurgu nerededir?",
+        "options": [
+          "Ekten hemen önceki hecede",
+          "-tion hecesinde",
+          "İlk hecede"
+        ],
+        "answer": 0,
+        "why": "-tion'dan hemen önceki hece vurgu alır: eduCAtion, inforMAtion."
+      }
+    ]
+  }
+}

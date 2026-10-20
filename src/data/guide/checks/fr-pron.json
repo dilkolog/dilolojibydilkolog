@@ -1,0 +1,233 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "lessons": {
+    "basics_fr_pron_nasales": [
+      {
+        "prompt": "“bon” sözcüğünün sonunda n sesi duyulur mu?",
+        "options": [
+          "Hayır, ünlü genizden okunur",
+          "Evet, açıkça /n/ okunur",
+          "Evet, ama m olarak"
+        ],
+        "answer": 0,
+        "why": "bon /bɔ̃/: ünlüden sonra n ardından ünlü gelmediği için genizsel ünlü olur, n ayrıca duyulmaz."
+      },
+      {
+        "prompt": "Hangi sözcük burun ünlüsü İÇERMEZ?",
+        "options": [
+          "enfant",
+          "pain",
+          "fine",
+          "mon"
+        ],
+        "answer": 2,
+        "why": "fine'de n'nin ardından ünlü (e) vardır: n açıkça okunur, ünlü genizsel değildir."
+      },
+      {
+        "prompt": "“vent” (rüzgâr) sözcüğündeki burun ünlüsü hangisidir?",
+        "options": [
+          "/ɑ̃/ (an sesi)",
+          "/ɔ̃/ (on sesi)",
+          "/ɛ̃/ (in sesi)"
+        ],
+        "answer": 0,
+        "why": "en burada an sesi verir: vent /vɑ̃/. vin /vɛ̃/, vont /vɔ̃/."
+      },
+      {
+        "prompt": "“pain” (ekmek) sözcüğündeki ain hangi sesi verir?",
+        "options": [
+          "/ɑ̃/",
+          "/ɔ̃/",
+          "/ɛ̃/"
+        ],
+        "answer": 2,
+        "why": "ain, in ile aynı burun ünlüsünü verir: pain /pɛ̃/, vin /vɛ̃/."
+      },
+      {
+        "prompt": "“mon” (benim) sözcüğünü söylerken dil ucu nasıl davranır?",
+        "options": [
+          "Damağa değip n sesi üretir",
+          "Hiçbir yere değmez; ses burundan da çıkar",
+          "Dişlere vurur"
+        ],
+        "answer": 1,
+        "why": "Genizsel ünlüde dil ucu sakin kalır; n harfi ayrı bir ses vermez."
+      },
+      {
+        "prompt": "“enfant” sözcüğünde kaç burun ünlüsü vardır?",
+        "options": [
+          "Bir",
+          "İki",
+          "Hiç"
+        ],
+        "answer": 1,
+        "why": "en ve an ikisi de /ɑ̃/ ünlüsüdür: enfant /ɑ̃fɑ̃/, iki burun ünlüsü."
+      },
+      {
+        "prompt": "“bonne” (kadın) ile “bon” (erkek) arasındaki fark nedir?",
+        "options": [
+          "Bonne'da n açıkça okunur, bon'da okunmaz",
+          "İkisi de aynı okunur",
+          "Bon'da n açıkça okunur"
+        ],
+        "answer": 0,
+        "why": "Dişil biçimde n'nin ardından ünlü gelir: bonne /bɔn/; bon /bɔ̃/ genizsel ünlüdür."
+      }
+    ],
+    "basics_fr_pron_u_ou_r": [
+      {
+        "prompt": "“rue” (sokak) sözcüğündeki u hangi sesi verir?",
+        "options": [
+          "Türkçe ü",
+          "Türkçe u",
+          "Türkçe o"
+        ],
+        "answer": 0,
+        "why": "u = ü: rue /ʁy/."
+      },
+      {
+        "prompt": "Hangi sözcükte Türkçe ö'ye yakın bir ses vardır?",
+        "options": [
+          "doux",
+          "deux",
+          "dos",
+          "du"
+        ],
+        "answer": 1,
+        "why": "eu = ö: deux /dø/. doux /du/ ise ou ile u sesi verir."
+      },
+      {
+        "prompt": "“dessus” (üstünde) sözcüğündeki u hangi Türkçe sese yakındır?",
+        "options": [
+          "ü",
+          "u",
+          "ö"
+        ],
+        "answer": 0,
+        "why": "u = ü: dessus /dəsy/; dessous (altında) ise u ile okunur."
+      },
+      {
+        "prompt": "“moi” (ben) nasıl okunur?",
+        "options": [
+          "mua",
+          "moy",
+          "möi",
+          "mi"
+        ],
+        "answer": 0,
+        "why": "oi, /wa/ sesi verir: moi /mwa/."
+      },
+      {
+        "prompt": "“eau” (su) sözcüğü hangi sesle okunur?",
+        "options": [
+          "Kapalı o",
+          "ö",
+          "u",
+          "e-a-u üç ayrı ses"
+        ],
+        "answer": 0,
+        "why": "eau tek bir kapalı o sesidir: /o/."
+      },
+      {
+        "prompt": "“je” (ben) sözcüğündeki j hangi Türkçe sese yakındır?",
+        "options": [
+          "c (cam)",
+          "j (Jale)",
+          "ş (şu)",
+          "y"
+        ],
+        "answer": 1,
+        "why": "Fransızca j, Türkçe “Jale” sözcüğündeki j'dir; Türkçe c değildir."
+      },
+      {
+        "prompt": "“chat” (kedi) sözcüğünün ilk sesi hangisidir?",
+        "options": [
+          "ç",
+          "ş",
+          "k",
+          "h"
+        ],
+        "answer": 1,
+        "why": "ch = ş: chat /ʃa/."
+      }
+    ],
+    "basics_fr_pron_liaison": [
+      {
+        "prompt": "“grand homme” ifadesinde liaison'da d hangi sese dönüşür?",
+        "options": [
+          "t",
+          "z",
+          "n",
+          "okunmaz"
+        ],
+        "answer": 0,
+        "why": "d, liaison'da t gibi okunur: grand homme /ɡʁɑ̃tɔm/."
+      },
+      {
+        "prompt": "“homme” sözcüğünde h nasıl okunur?",
+        "options": [
+          "Türkçe h gibi",
+          "Okunmaz",
+          "k gibi",
+          "ş gibi"
+        ],
+        "answer": 1,
+        "why": "h Fransızcada sessizdir: homme /ɔm/."
+      },
+      {
+        "prompt": "“parler” fiilinin sonu (-er) nasıl okunur?",
+        "options": [
+          "e (r okunmaz)",
+          "er",
+          "ör",
+          "ar"
+        ],
+        "answer": 0,
+        "why": "-er ile biten fiillerde r okunmaz: parler /paʁle/."
+      },
+      {
+        "prompt": "Hangi sözcüğün son ünsüzü (CaReFuL kuralı) genellikle OKUNUR?",
+        "options": [
+          "petit",
+          "avec",
+          "trop",
+          "vous"
+        ],
+        "answer": 1,
+        "why": "Sonda c, r, f, l çoğunlukla okunur: avec /avɛk/."
+      },
+      {
+        "prompt": "“ils ont” ifadesinde s hangi sese dönüşür?",
+        "options": [
+          "z",
+          "k",
+          "okunmaz",
+          "t"
+        ],
+        "answer": 0,
+        "why": "Liaison'da s, z olur: ils ont /ilzɔ̃/."
+      },
+      {
+        "prompt": "“un ami” nasıl bağlanır?",
+        "options": [
+          "n sesi sonraki sözcüğe geçer: ö-nami",
+          "Araya duraklama girer",
+          "n sesi z'ye dönüşür"
+        ],
+        "answer": 0,
+        "why": "Liaison ve enchaînement: un ami /œ̃nami/, n ikinci sözcüğün ilk hecesini kurar."
+      },
+      {
+        "prompt": "Enchaînement nedir?",
+        "options": [
+          "Okunan son ünsüzün sonraki ünlüyle hece kurması (il a → i-la)",
+          "Okunmayan bir harfin okunması",
+          "İki sözcük arasında duraklamak"
+        ],
+        "answer": 0,
+        "why": "Enchaînement: sözcük sonundaki okunan ünsüz, sonraki sözcüğün ünlüsüyle birlikte bir hece oluşturur."
+      }
+    ]
+  }
+}
