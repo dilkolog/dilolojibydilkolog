@@ -35,7 +35,7 @@ Claude Code ve Antigravity aynı listeden çalışır; çakışmamak için:
 18. ~~**Dağıtım sonrası duman testi canlı hesapla.**~~ (Tamamlandı: `verify-deploy.mjs` ve `smoke-live.mjs` birleştirildi; başlıklar, bundle anahtarları, açık API uçları ve gerçek canlı hesap eşitleme döngüsü, #570)
 19. ~~**Blob → Supabase (arkadaş gelen kutusu).**~~ (Tamamlandı: `friend_inbox` tablosu, `0004_friend_inbox.sql` çalıştırılınca açılır, Blob'dan lazy taşıma, geri düşüş; sahibi SQL'i çalıştırmalı, `docs/SUPABASE.md`)
 20. ~~**loadGame günlük özeti.**~~ (Tamamlandı: 8+ filtre/harita geçişi tek $O(N)$ döngüye indirgendi, `longestStreakFromDays`, 30 bin olayda ~16 ms ve denklik testi, #571)
-22. **Kararsız E2E'leri kökten çözmek.** Yük altında düşen testler (bahçe kartı, oturum akışı birim testi) için süre ve bekleme stratejisini ortak yardımcıya taşı.
+22. ~~**Kararsız E2E'leri kökten çözmek.**~~ (Tamamlandı: `expect` süresi 10 sn, `actionTimeout` 15 sn, bir yeniden deneme [geçen yeniden deneme "flaky" diye raporlanır]; "count() sonra tıkla" yarışları düzeltildi: rehber dilbilgisi testi soruyu bekler, rozet hizası `expect.poll` ile oturana dek ölçülür, başparmak testi tıklamayı bırakıp yeniden bakar. Daha önce düşen 5 test 4 işçiyle 4'er kez yeniden denemesiz koşuldu: 20/20.)
 
 ## Sahibinin kararına bağlı
 23. ~~**Tanıtım sayfası metni ve mobil ergonomi.**~~ (Tamamlandı: hero buton aralıkları, davet karşılama kartı, değer önerisi çipleri ve ferahlatılmış bölüm ritmi, #566)
