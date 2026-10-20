@@ -8,7 +8,8 @@ Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13; **2026-10-19 gü
 - **Hız freni Worker'da zayıf:** `api/_rate.ts` sayacı Worker örneğinin belleğindedir; Cloudflare çok sayıda kısa ömürlü örnek çalıştırır, yani fiilen kesin sınır yoktur. Sert sınır için Cloudflare WAF **Rate Limiting** kuralı (ücretsiz planda 1 kural; öncelik `/api/translate`, `/api/push`, `/api/sync`) ya da Workers Rate Limiting bağlaması gerekir. "Vercel Firewall" önerisi artık geçersiz.
 - **Başlıklar:** statik dosyalara `dist/_headers` (HSTS dahil, `scripts/cf-headers.mjs`), `/api/*` yanıtlarına Worker `x-content-type-options: nosniff` ekler (`worker/index.ts`).
 - **Mail onayı** bağlantıda GET ile değil, sayfadaki düğmeyle POST ile yapılır; onay bekleyen adres bir saat silinemez (mail bombası freni).
-- **Açık kalanlar:** CSP hâlâ yalnızca rapor modunda (`connect-src https:`), Supabase'te kişi başı kota/medya sınırı yok, tek yönlü takiple arkadaşlara hediye/metin gönderilebiliyor (engelleme yok).
+- **CSP zorunlu (2026-10-20):** başlık artık `Content-Security-Policy` (engeller); ayrıntı aşağıda ve `docs/veri/csp-gecis.md`.
+- **Açık kalanlar:** CSP'de `connect-src` hâlâ geniş (`https: wss:`, nedeni aşağıda), Supabase'te kişi başı kota/medya sınırı yok, tek yönlü takiple arkadaşlara hediye/metin gönderilebiliyor (engelleme yok).
 
 ## Var olanlar
 - **Eşitleme uçtan uca şifreli:** veri cihazda şifrelenir; sunucu (`api/sync.ts`, özel Vercel Blob) yalnızca opak bayt saklar. Hesaplı girişte erişim belirteci denetlenir; günlük geri yükleme noktaları.
@@ -27,12 +28,13 @@ Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13; **2026-10-19 gü
 | `X-Content-Type-Options: nosniff` | Tarayıcı dosya türünü tahmin etmez. |
 | `Referrer-Policy: strict-origin-when-cross-origin` | Dış sitelere yalnızca alan adı gider, sayfa yolu gitmez. |
 | `Permissions-Policy` | Mikrofon yalnızca kendi sitemizde; kamera, konum, ödeme kapalı. |
-| `Content-Security-Policy-Report-Only` | **Yalnızca raporlar, engellemez.** Betikler yalnızca kendi sitemizden ve `index.html`'deki iki satır içi betiğin hash'iyle; resim/ses/bağlantı `https:`; çerçeve yalnızca YouTube. İhlaller `/api/log?csp=1` → Vercel günlüğünde `[csp-report]`. |
+| `Content-Security-Policy` | **Zorunlu (2026-10-20'den beri engeller).** Betikler yalnızca kendi sitemizden ve `index.html`'deki satır içi betiklerin hash'iyle (`unsafe-inline`/`unsafe-eval` yok); `object-src 'none'`; resim/ses/bağlantı `https:` (+ düello odaları için `wss:`); çerçeve yalnızca YouTube. İhlaller yine `/api/log?csp=1` → Workers Logs'ta `[csp-report]`. |
 
-### CSP'yi zorunlu yapmak (bir hafta sonra)
-1. `vercel logs --environment production --since 7d --expand | grep csp-report` ile raporlara bak. Uygulamanın kendi işini engelleyecek bir ihlal varsa (ör. yeni bir kaynak) politikaya ekle.
-2. Temizse `vercel.json`'da başlığın adını `Content-Security-Policy-Report-Only` → `Content-Security-Policy` yap.
-3. **`index.html`'deki satır içi betikler değişirse hash'leri değişir:** `npx vite build` sonra `dist/index.html`'deki her satır içi `<script>` içeriğinin SHA-256'sını (base64) `script-src`'ye yaz. Yoksa zorunlu modda tema/saat betikleri çalışmaz.
+### CSP nasıl korunur
+1. **Hash'ler derlemede otomatik:** `npm run build:cf` → `scripts/cf-headers.mjs`, `dist/index.html`'deki satır içi betiklerin SHA-256'sını (`scripts/cspHashes.mjs`) `dist/_headers`'a yazar. `index.html`'deki bir betik değişirse `vercel.json`'daki hash'leri de güncelle: `src/csp.test.ts` farkı yakalar (birim testi düşer), derleme de uyarı basar.
+2. **`connect-src` neden geniş:** çevrimdışı ses indirme (`audioCache`), seçilen resimler (`imageSearch`), `PitchCompare` ve sözlük paketleri önceden bilinemeyen adreslere bağlanır; ayrıca YZ (`api.anthropic.com`) ve Tatoeba doğrudan tarayıcıdan çağrılır. Daraltmak bu özellikleri bozar.
+3. **Yeni bir dış kaynak** (betik, çerçeve) eklenirse politikaya yaz; yoksa zorunlu modda engellenir. Önce yerelde `npx vite preview` ile konsolda "Refused to …" iletisine bak.
+4. **Geri alma:** bir şey kırılırsa `vercel.json`'da başlığın adını `Content-Security-Policy-Report-Only` yap ve yeniden yayınla.
 
 ## Kullanıcının yapacakları
 1. **`SYNC_ALLOWED`:** Vercel → proje → Settings → Environment Variables → `SYNC_ALLOWED` = kullanıcı adın (ya da eşitleme kodunun 64 haneli kimliği), Production; sonra yeniden yayınla. Yoksa herkes Blob deposuna yazabilir (verini okuyamaz ama depoyu doldurabilir).

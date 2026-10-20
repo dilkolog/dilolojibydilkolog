@@ -1,5 +1,13 @@
 # Content Security Policy (CSP) Zorunlu Moda Geçiş Raporu ve Eylem Planı (B10)
 
+> **Uygulandı (2026-10-20, Claude Code):**
+> - **Politika zorunlu:** `vercel.json` anahtarı `Content-Security-Policy`; `report-uri` duruyor.
+> - **Hash'ler derlemede:** `scripts/cf-headers.mjs`, `dist/index.html`deki satır içi betiklerin hash'lerini her derlemede yeniden hesaplar (`scripts/cspHashes.mjs`). `src/csp.test.ts`, `vercel.json`daki hash'lerin `index.html` ile uyuştuğunu denetler.
+> - **`connect-src` açık listeye indirilmedi:** `'self' https: wss:` olarak kaldı (`wss:` düello odası içindir). Nedeni, §4'teki listenin eksik olması: `api.anthropic.com` (YZ), `api.tatoeba.org`, `audio.tatoeba.org` ve Vikidia listede yok. Ayrıca çevrimdışı ses indirme (`audioCache`), görsel seçme (`imageSearch`) ve ses karşılaştırma (`PitchCompare`) önceden bilinemeyen adreslerden `fetch` yapıyor; açık liste bunları bozar.
+> - **XSS koruması:** asıl koruma `script-src`te (satır içi betik yalnızca hash'le, `unsafe-inline`/`unsafe-eval` yok).
+> - **Doğrulama:** zorunlu politikayla bütün ekranlar telefon ve masaüstünde gezildi, ihlal çıkmadı. Kontrol olarak bilerek bozulan bir hash yakalandı.
+> - **Geri alma:** anahtarı yeniden `Content-Security-Policy-Report-Only` yapmak.
+
 Bu rapor, `diloloji.com` etki alanında şu anda `Content-Security-Policy-Report-Only` olarak çalışan güvenlik ilkesinin, sitenin işlevselliğini bozmadan ve sıfır kesintiyle **zorunlu (enforce / bloklayıcı) moda** geçirilmesi için gereken teknik gereksinimleri, derleme zamanı hash üretimini, izinli ağ bağlantılarını (`connect-src`) ve adım adım geçiş planını belgeler.
 
 ---

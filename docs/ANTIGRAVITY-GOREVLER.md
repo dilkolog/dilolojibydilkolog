@@ -2,7 +2,7 @@
 
 Bu dosya Antigravity'ye verilecek işleri, sırasını ve çalışma kurallarını toplar. Yük yavaş yavaş artırılır: önce küçük ve izole işler, sorunsuz giderse orta, en sonda büyük. Her tur bitince kullanıcı bir sonrakine geçilip geçilmeyeceğine karar verir.
 
-Son güncelleme: 2026-10-17 (15. tur eklendi: Rehber).
+Son güncelleme: 2026-10-20 (17. tur eklendi: açık lisanslı içerik).
 
 ## Önce oku
 - `AGENTS.md` (çalışma kuralları, tuzaklar, komutlar) ve `DESIGN.md` (renk/yazı/hareket tokenları, bileşenler, Yap/Yapma).
@@ -644,6 +644,50 @@ Dosyalar: yeni `src/ui/settings/HelpSettings.tsx`, `src/ui/SettingsScreen.tsx` (
 Çıktı: `docs/veri/csp-gecis.md` (kod değiştirme). `vercel.json` ve `scripts/cf-headers.mjs` başlıklarını oku; `script-src` hash'lerinin derlemede nasıl üretilebileceğini, `connect-src`'nin açık listesini (kodda kullanılan her dış adres) ve report-only'den zorunluya adım adım planı yaz.
 
 **Tur sonu ölçütü:** 16.1–16.3 ve 16.5–16.6 birleşmiş; 16.4 ve 16.7 raporları yazılmış; hepsinde yerel doğrulama yeşil.
+
+---
+
+## 17. tur: açık lisanslı içerik (2026-10-20, kullanıcı istedi; ağ gerektirir)
+
+**Neden sende:** Claude Code'un ortamı LibriVox, Gutenberg, archive.org ve COERLL'e bağlanamıyor (vekil sunucu reddediyor). Bu turun hepsi ağ ister. **Veri kuralı aynı:** yalnızca CC BY, CC0 ya da kamu malı içerik koda ve veriye girer. NC/SA lisanslılar girmez, yalnızca "Dış kaynaklar"a bağlantı olarak eklenebilir. Her dosyada `source` ya da künye satırı bulunur.
+
+### 17.1 Sesli kitaplar: yeni bölümler (veri + script)
+- **Şimdiki durum:** `src/data/audiobooks/{fr,es}.json` içinde 13 FR ve 10 ES bölüm var (`docs/kaynaklar/audiobooks-chapters.md`, `scripts/build-audiobook-chapters.ts`).
+- **Hedef:** dil başına en az 15 yeni bölüm ve **İngilizce için ilk 15 bölüm** (`src/data/audiobooks/en.json`; `src/data/audiobooks.ts` yeni dili de yükleyecek şekilde, yalnızca gereken satırlar).
+- **Bölüm kuralları:**
+  - B1–B2;
+  - LibriVox kaydı (kamu malı) ile Gutenberg ya da Wikisource metni (kamu malı) aynı baskı olmalı;
+  - bölüm metni ile ses aynı yerden başlayıp aynı yerde bitmeli;
+  - bölüm başına en çok yaklaşık 2.500 kelime.
+- Elenenleri ve nedenlerini (eksik bölüm, farklı baskı, kötü kayıt) rapora ekle.
+- `chapter.id` kalıcı olmalı: yeniden açılan bölüm aynı kopyayı bulur.
+- **Doğrulama:** `npx vitest run src/data` yeşil; ses adresleri HTTP 200 ve `audio/*` döndürüyor.
+
+### 17.2 Français interactif → dilbilgisi soruları (veri)
+- **Kaynak:** *Français interactif* (UT Austin / COERLL), lisansı **CC BY 4.0** (`docs/kaynaklar/coerll.md` §2).
+- **Hedef:** A1–B1 alıştırmalarından en az 60 soru, yeni dosyalarda (`src/data/grammar/fr-fi-1.json`, `fr-fi-2.json`). Şema `GrammarExercise`; `import.meta.glob` sayesinde yeni dosya kendiliğinden yeni içerik olur.
+- **Soru kuralları:**
+  - yalnızca `TOPIC_NAME`de var olan konular (yeni konu açma);
+  - her sorunun `source` satırı: `Français interactif, COERLL / UT Austin, CC BY 4.0 (uyarlandı)`;
+  - `explanation` Türkçe ve senin yazdığın;
+  - tek doğru cevap; `choice` sorularında 3–4 seçenek;
+  - kimlik `fr-fi-<konu>-NN`.
+- Bu sorular Rehber'deki derslerin mini sınavında da çıkar (`checkFor` konunun `choice` sorularını kullanır); seçenekler bu yüzden tartışmasız olmalı.
+- **Doğrulama:** `npx vitest run src/data/grammar.test.ts src/data/guide` yeşil.
+
+### 17.3 İspanyolca ve İngilizce için CC BY dilbilgisi kaynağı (araştırma raporu)
+- **Durum:** *Spanish Grammar in Context* ve COERLL'in diğer İspanyolca kaynakları NC/SA lisanslı; veri olarak kullanılamaz.
+- **Görev:** CC BY ya da CC0 olan İspanyolca ve İngilizce dilbilgisi alıştırma kaynakları bul (açık ders kitapları, OER Commons, LibreTexts, Pressbooks).
+- **Rapor:** `docs/kaynaklar/acik-dilbilgisi.md`. Her kaynak için lisans (sayfadaki tam ifade ve bağlantısı), kapsam, seviye ve biçim. Uygun olan varsa 17.2 düzeninde 40'ar soruluk bir örnek dosya ekle.
+
+### 17.4 Belge güncellemesi
+`docs/kaynaklar/audiobooks-chapters.md` ve `docs/kaynaklar/README.md`: yeni bölümler ve kaynaklar. `AGENTS.md`'ye dokunma.
+
+**Tur sonu ölçütü:**
+- yeni veri dosyaları `npx vitest run src/data` ile yeşil;
+- her öğenin lisansı ve kaynağı yazılmış;
+- doğrulanamayanlar raporda ayrı listede;
+- PR'lar tek konulu.
 
 ---
 
