@@ -40,5 +40,5 @@ Claude Code ve Antigravity aynı listeden çalışır; çakışmamak için:
 ## Sahibinin kararına bağlı
 23. ~~**Tanıtım sayfası metni ve mobil ergonomi.**~~ (Tamamlandı: hero buton aralıkları, davet karşılama kartı, değer önerisi çipleri ve ferahlatılmış bölüm ritmi, #566)
 24. **Marka.** Logo/favicon (yaprak-balon vs. yeni konsept); paylaşım kartı seri/seviye/haftalık özet için de.
-25. **Görsel test referansları.** Depo public, Actions serbest: `gh workflow run snapshots.yml --ref <dal>` (Bugün hero düğmeleri değişti).
+25. **Görsel test referansları.** Actions kotası dönünce `gh workflow run snapshots.yml --ref main`.
 26. **Yeni görsel setleri.** Sayfa başlığı pozları, boş durum sahneleri, oturum içi doğru/yanlış yüzleri, bitki büyüme aşamaları.
