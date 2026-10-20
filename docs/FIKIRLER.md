@@ -1,6 +1,15 @@
 # Fikir defteri
 
-Yapılabilecek ama henüz yapılmamış işler. Her maddede kısa gerekçe ve ilk adım var. Yapılanlar `AGENTS.md`'de; burada yalnızca bekleyenler durur. Son güncelleme: 2026-10-20.
+Yapılabilecek ama henüz yapılmamış işler. Her maddede kısa gerekçe ve ilk adım var. Yapılanlar `AGENTS.md`'de; burada yalnızca bekleyenler durur. Son güncelleme: 2026-10-20 (öğleden sonra).
+
+## Kim ne yapıyor (iki ajan aynı depoda)
+Claude Code ve Antigravity aynı listeden çalışır; çakışmamak için:
+- **Bir maddeye başlamadan önce** `git fetch` + `git branch -r --no-merged origin/main` (açık dallara bak) ve bu listede o maddenin yanında "üstlenildi" notu var mı kontrol et.
+- **Başlarken** maddenin sonuna `(üstlenildi: Claude Code | Antigravity, 2026-10-20, dal adı)` yaz ve bu dosyayı küçük bir PR ile birleştir; bitince maddeyi üstü çizili "(Tamamlandı: … #PR)" yap.
+- Antigravity'nin tur görevleri `docs/ANTIGRAVITY-GOREVLER.md`'de (16. tur bitti: 16.1–16.7; 17. tur henüz yazılmadı). Bu liste serbest fikirler içindir.
+- Aynı dosyaya dokunuyorsan (ör. `Landing.tsx`, `lazy.css` `lp-*`, `AppSidebar.tsx`) PR açıklamasında belirt; önce main'i çek.
+
+**Bugün (2026-10-20) bitenler:** Claude Code: yedi iş turu (#557), tanıtım düzeltmeleri ve dil seçici (#558–#560), hesap menüsü (#562–#563). Antigravity: tanıtım sayfası yeniden tasarımı (#556), Quizlet/Memrise sihirbazı (#561).
 
 ## Öğrenmeyi doğrudan güçlendirenler
 1. **Hedef planlayıcı.** "Şu tarihte B1 olmak istiyorum" de; günlük yeni kelime ve çalışma süresi buna göre ayarlansın, haftalık "yoldasın / gerideysin" göstersin. İlk adım: CEFR kapsam yüzdesinden (İlerleme) hedef seviyeye kalan kelime sayısını çıkar, günlük kota öner.
@@ -29,7 +38,7 @@ Yapılabilecek ama henüz yapılmamış işler. Her maddede kısa gerekçe ve il
 22. **Kararsız E2E'leri kökten çözmek.** Yük altında düşen testler (bahçe kartı, oturum akışı birim testi) için süre ve bekleme stratejisini ortak yardımcıya taşı.
 
 ## Sahibinin kararına bağlı
-23. **Tanıtım sayfası metni.** "Ücretsiz" yazılsın mı, İngilizce ekran görüntüleri eklensin mi.
+23. **Tanıtım sayfası metni.** "Ücretsiz" yazılsın mı? (Fransızca/İspanyolca/İngilizce ekran görüntüleri ve dil seçici yapıldı, #560.)
 24. **Marka.** Logo/favicon (yaprak-balon vs. yeni konsept); paylaşım kartı seri/seviye/haftalık özet için de.
 25. **Görsel test referansları.** Actions kotası dönünce `gh workflow run snapshots.yml --ref main`.
 26. **Yeni görsel setleri.** Sayfa başlığı pozları, boş durum sahneleri, oturum içi doğru/yanlış yüzleri, bitki büyüme aşamaları.
