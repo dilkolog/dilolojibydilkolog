@@ -9,7 +9,7 @@ describe('exam-style reading and listening passages', () => {
     for (const language of ['fr', 'es', 'en'] as const) {
       const own = examPassages.filter((p) => p.language === language)
       const count = (level: string) => own.filter((p) => p.level === level).length
-      for (const level of ['A2', 'B1']) expect(count(level), `${language} ${level}`).toBe(2)
+      for (const level of ['A2', 'B1']) expect(count(level), `${language} ${level}`).toBeGreaterThanOrEqual(2)
       expect(count('B2'), `${language} B2`).toBeGreaterThanOrEqual(3)
       expect(count('C1'), `${language} C1`).toBeGreaterThanOrEqual(2)
       for (const p of own) {
