@@ -303,6 +303,35 @@ test('verb lab: forms put in the review queue come back on Today and in the revi
   await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
 })
 
+test('exam-style tasks: a text and three questions to read, a listening mode that hides the text until the answers', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Sınav tarzı görevler' }).click()
+  await expect(page.getByRole('heading', { name: 'Sınav tarzı görevler' })).toBeVisible()
+  // Reading: the text is in front of the learner; answering all three enables the check.
+  await page.getByRole('button', { name: 'A2', exact: true }).click()
+  await page.locator('.examtask-item').first().click()
+  await expect(page.locator('.examtask-text')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Kontrol et' })).toBeDisabled()
+  for (const n of [1, 2, 3]) await page.getByRole('region', { name: `Soru ${n}` }).locator('.option').first().click()
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(page.getByRole('region', { name: 'Sonuç' })).toContainText('/ 3 doğru')
+  await expect(page.locator('.examtask .option.is-correct')).toHaveCount(3)
+  // Back to the list: the passage shows its last result; listening hides the text.
+  await page.getByRole('button', { name: 'Görevlere dön' }).click()
+  await expect(page.locator('.examtask-item').first()).toContainText('son sonuç')
+  await page.getByRole('button', { name: 'Dinleme', exact: true }).click()
+  await page.locator('.examtask-item').nth(1).click()
+  await expect(page.locator('.examtask-text')).toHaveCount(0)
+  await expect(page.getByText('2 dinleme hakkın kaldı')).toBeVisible()
+  for (const n of [1, 2, 3]) await page.getByRole('region', { name: `Soru ${n}` }).locator('.option').nth(1).click()
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  // After the answers the text and its Turkish are there.
+  await expect(page.locator('.examtask-text')).toBeVisible()
+  await page.getByRole('button', { name: 'Türkçesini göster' }).click()
+  await expect(page.locator('.examtask [lang="tr"]').first()).toBeVisible()
+})
+
 test('English verb lab: irregular verbs and phrasal verbs, a list to look through and a round to practise', async ({ page }) => {
   await startWithSamples(page)
   await page.getByRole('button', { name: /^İngilizce/ }).click()
