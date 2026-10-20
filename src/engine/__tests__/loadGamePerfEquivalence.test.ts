@@ -51,7 +51,7 @@ function legacyActivityStats(events: readonly ReviewEvent[]): ActivityStats {
 }
 
 function makeSyntheticEvents(count: number): ReviewEvent[] {
-  const types: ExerciseType[] = ['choice_meaning', 'typed_translation', 'cloze_typed', 'word_form', 'listen_choose', 'listen_type', 'dictation', 'speak_word', 'article_choice', 'conjugation', 'free_sentence']
+  const types: ExerciseType[] = ['mc_meaning', 'typed_translation', 'cloze_typed', 'word_form', 'listen_choose', 'listen_type', 'dictation', 'speak_word', 'article_choice', 'conjugation', 'free_sentence']
   const langs: TargetLanguage[] = ['fr', 'es', 'en']
   const baseDate = new Date('2026-01-01T08:00:00Z').getTime()
   const events: ReviewEvent[] = []
