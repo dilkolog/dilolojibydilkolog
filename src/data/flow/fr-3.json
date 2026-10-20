@@ -1,0 +1,392 @@
+[
+  {
+    "id": "fr-languages",
+    "language": "fr",
+    "text": "Apprendre une langue étrangère demande du temps. {1}, il suffit souvent de quinze minutes par jour pour progresser. Beaucoup d'adultes abandonnent au bout d'un mois ; {2}, ils attendent des résultats trop rapides. {3} nous ayons peu de temps, mieux vaut étudier un peu chaque jour qu'une fois par semaine.",
+    "tr": "Yabancı dil öğrenmek zaman ister. Yine de ilerlemek için çoğu zaman günde on beş dakika yeter. Birçok yetişkin bir ay sonra bırakıyor; gerçekten de çok hızlı sonuç bekliyorlar. Az vaktimiz olsa da haftada bir kez çalışmaktansa her gün biraz çalışmak daha iyidir.",
+    "gaps": [
+      {
+        "answer": "Pourtant",
+        "options": [
+          "Pourtant",
+          "Donc",
+          "Parce que"
+        ],
+        "kind": "Zıtlık",
+        "why": "Zaman istemesine rağmen az sürenin yetmesi: “yine de”. Donc sonuç, parce que neden verir."
+      },
+      {
+        "answer": "en effet",
+        "options": [
+          "en effet",
+          "pourtant",
+          "afin que"
+        ],
+        "kind": "Açıklama",
+        "why": "Bırakma nedeni açıklanıyor: “gerçekten de, çünkü”. Afin que amaç yan cümlesi açar."
+      },
+      {
+        "answer": "Bien que",
+        "options": [
+          "Bien que",
+          "Parce que",
+          "Afin que"
+        ],
+        "kind": "Taviz",
+        "why": "“Az vaktimiz olsa da”: taviz. Bien que subjonctif ister (ayons); parce que ve afin que burada anlamsız kalır."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-food",
+    "language": "fr",
+    "text": "Manger sainement n'est pas toujours simple. {1}, les plats préparés contiennent souvent beaucoup de sel et de sucre. Cuisiner soi-même demande du temps ; {2}, c'est le meilleur moyen de savoir ce que l'on mange. {3} on débute, quelques légumes de saison suffisent déjà à améliorer un repas.",
+    "tr": "Sağlıklı beslenmek her zaman kolay değildir. Gerçekten de hazır yemekler çoğu zaman çok tuz ve şeker içerir. Kendi yemeğini pişirmek zaman ister; yine de ne yediğini bilmenin en iyi yoludur. Yeni başlıyor olsan da birkaç mevsim sebzesi bir yemeği iyileştirmeye şimdiden yeter.",
+    "gaps": [
+      {
+        "answer": "En effet",
+        "options": [
+          "En effet",
+          "Pourtant",
+          "À moins que"
+        ],
+        "kind": "Açıklama",
+        "why": "Birinci cümlenin nedenini açıklıyor: “çünkü / gerçekten de”."
+      },
+      {
+        "answer": "pourtant",
+        "options": [
+          "pourtant",
+          "donc",
+          "car"
+        ],
+        "kind": "Zıtlık",
+        "why": "Zaman istemesine karşın en iyi yol olması: “yine de”."
+      },
+      {
+        "answer": "Même si",
+        "options": [
+          "Même si",
+          "Parce que",
+          "À moins que"
+        ],
+        "kind": "Taviz",
+        "why": "“Yeni başlıyor olsan da”: taviz. Même si göstergeyle (débute) kullanılır."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-museum",
+    "language": "fr",
+    "text": "Les musées gratuits attirent beaucoup de visiteurs. {1}, certains directeurs craignent que la foule abîme les œuvres. {2} on réserve un créneau horaire, on évite les files d'attente. {3} de nombreux musées proposent désormais des visites en ligne.",
+    "tr": "Ücretsiz müzeler çok sayıda ziyaretçi çekiyor. Ancak bazı müdürler kalabalığın eserlere zarar vermesinden korkuyor. Saat dilimi ayırtırsak kuyruklardan kaçınırız. Bu yüzden birçok müze artık çevrimiçi turlar sunuyor.",
+    "gaps": [
+      {
+        "answer": "Cependant",
+        "options": [
+          "Cependant",
+          "C'est pourquoi",
+          "Puisque"
+        ],
+        "kind": "Zıtlık",
+        "why": "Ziyaretçi çekmenin olumlu yanına karşı bir endişe: “ancak”."
+      },
+      {
+        "answer": "Si",
+        "options": [
+          "Si",
+          "Bien que",
+          "Afin que"
+        ],
+        "kind": "Koşul",
+        "why": "“Saat ayırtırsak kuyruktan kaçınırız”: koşul. Bien que gösterge ile kullanılmaz."
+      },
+      {
+        "answer": "C'est pourquoi",
+        "options": [
+          "C'est pourquoi",
+          "Bien que",
+          "Puisque"
+        ],
+        "kind": "Sonuç",
+        "why": "Kalabalık sorununun sonucu: “bu yüzden”. Bien que ve puisque tek başına cümle başlatmaz."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-electric",
+    "language": "fr",
+    "text": "Les voitures électriques se vendent de mieux en mieux. {1}, leur prix reste élevé pour beaucoup de familles. Les bornes de recharge se multiplient ; {2}, les longs trajets deviennent moins compliqués. {3} la batterie soit chère à fabriquer, ces voitures polluent moins en ville.",
+    "tr": "Elektrikli arabalar giderek daha çok satılıyor. Ancak fiyatları birçok aile için hâlâ yüksek. Şarj istasyonları çoğalıyor; bu nedenle uzun yolculuklar daha az zahmetli hale geliyor. Batarya üretimi pahalı olsa da bu arabalar şehirde daha az kirletiyor.",
+    "gaps": [
+      {
+        "answer": "Cependant",
+        "options": [
+          "Cependant",
+          "Ainsi",
+          "Puisque"
+        ],
+        "kind": "Zıtlık",
+        "why": "Satışların artışına karşı bir engel: “ancak”."
+      },
+      {
+        "answer": "par conséquent",
+        "options": [
+          "par conséquent",
+          "pourtant",
+          "bien que"
+        ],
+        "kind": "Sonuç",
+        "why": "İstasyonların çoğalmasının sonucu: “bu nedenle”."
+      },
+      {
+        "answer": "Bien que",
+        "options": [
+          "Bien que",
+          "Parce que",
+          "Pour que"
+        ],
+        "kind": "Taviz",
+        "why": "“Batarya pahalı olsa da”: taviz. Fiil subjonctif (soit), parce que bunu kabul etmez."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-homework",
+    "language": "fr",
+    "text": "Certains enseignants pensent que les devoirs à la maison sont inutiles. {1}, d'autres affirment qu'ils aident les élèves à réviser. Les familles n'ont pas toutes le même temps à y consacrer ; {2}, les écarts entre les élèves peuvent s'agrandir. {3} les devoirs soient courts, ils restent utiles.",
+    "tr": "Bazı öğretmenler ev ödevlerinin işe yaramadığını düşünüyor. Buna karşılık diğerleri bunların öğrencilerin tekrar yapmasına yardım ettiğini söylüyor. Ailelerin hepsinin buna ayıracak aynı zamanı yok; bu yüzden öğrenciler arasındaki farklar büyüyebilir. Ödevler kısa olduğu sürece faydalı kalırlar.",
+    "gaps": [
+      {
+        "answer": "En revanche",
+        "options": [
+          "En revanche",
+          "Par conséquent",
+          "Même si"
+        ],
+        "kind": "Karşıtlık",
+        "why": "İki karşıt görüşü karşılaştırıyor: “buna karşılık”."
+      },
+      {
+        "answer": "c'est pourquoi",
+        "options": [
+          "c'est pourquoi",
+          "pourtant",
+          "parce que"
+        ],
+        "kind": "Sonuç",
+        "why": "Zaman eşitsizliğinin sonucu: “bu yüzden”."
+      },
+      {
+        "answer": "Pourvu que",
+        "options": [
+          "Pourvu que",
+          "Parce que",
+          "Alors que"
+        ],
+        "kind": "Koşul",
+        "why": "“Kısa olduğu sürece”: koşul. Pourvu que subjonctif ister (soient)."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-streaming",
+    "language": "fr",
+    "text": "Les plateformes de streaming ont changé nos habitudes. {1}, on regarde un film quand on veut, sans attendre la télévision. {2} cette liberté est agréable, elle pousse parfois à regarder trop d'épisodes d'affilée. {3}, certains spectateurs se fixent une limite avant de commencer.",
+    "tr": "Dijital yayın platformları alışkanlıklarımızı değiştirdi. Artık televizyonu beklemeden istediğimiz zaman film izliyoruz. Bu özgürlük hoş olsa da bazen art arda çok fazla bölüm izletiyor. Bu nedenle bazı izleyiciler başlamadan önce kendilerine bir sınır koyuyor.",
+    "gaps": [
+      {
+        "answer": "Désormais",
+        "options": [
+          "Désormais",
+          "Pourtant",
+          "Sinon"
+        ],
+        "kind": "Zaman",
+        "why": "Değişimin yeni durumu: “artık”."
+      },
+      {
+        "answer": "Même si",
+        "options": [
+          "Même si",
+          "Pour que",
+          "À moins que"
+        ],
+        "kind": "Taviz",
+        "why": "“Hoş olsa da”: taviz. Même si göstergeyle kullanılır (est)."
+      },
+      {
+        "answer": "Pour cette raison",
+        "options": [
+          "Pour cette raison",
+          "En revanche",
+          "Même si"
+        ],
+        "kind": "Sonuç",
+        "why": "Fazla izleme riskinin sonucu: “bu nedenle”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-neighbours",
+    "language": "fr",
+    "text": "Le bruit est l'une des principales sources de conflits entre voisins. {1}, une simple conversation suffit souvent à régler le problème. {2} le conflit dure, la situation empire. {3} le voisin refuse de discuter, on peut toujours contacter le propriétaire.",
+    "tr": "Gürültü komşular arasındaki çatışmaların başlıca kaynaklarından biri. Yine de basit bir konuşma çoğu zaman sorunu çözmeye yeter. Çatışma uzadıkça durum kötüleşir. Komşu konuşmayı reddederse ev sahibiyle her zaman iletişime geçilebilir.",
+    "gaps": [
+      {
+        "answer": "Pourtant",
+        "options": [
+          "Pourtant",
+          "Ainsi",
+          "Puisque"
+        ],
+        "kind": "Zıtlık",
+        "why": "Büyük soruna karşın çözümün basit olması: “yine de”."
+      },
+      {
+        "answer": "À mesure que",
+        "options": [
+          "À mesure que",
+          "Bien que",
+          "Afin que"
+        ],
+        "kind": "Zaman",
+        "why": "“Uzadıkça kötüleşir”: eş zamanlı artış, à mesure que."
+      },
+      {
+        "answer": "Si",
+        "options": [
+          "Si",
+          "Pour que",
+          "Avant que"
+        ],
+        "kind": "Koşul",
+        "why": "“Komşu reddederse”: koşul. Pour que amaç, avant que zaman bildirir."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-greenery",
+    "language": "fr",
+    "text": "Les villes plantent de plus en plus d'arbres. {1}, ils fournissent de l'ombre pendant les étés très chauds. {2}, les espaces verts améliorent la qualité de l'air. {3} les travaux coûtent cher, beaucoup de communes jugent l'investissement rentable.",
+    "tr": "Şehirler giderek daha çok ağaç dikiyor. Öncelikle çok sıcak yazlarda gölge sağlıyorlar. Ayrıca yeşil alanlar hava kalitesini iyileştiriyor. Çalışmalar pahalı olsa da birçok belediye yatırımı kârlı buluyor.",
+    "gaps": [
+      {
+        "answer": "Tout d'abord",
+        "options": [
+          "Tout d'abord",
+          "Pourtant",
+          "Donc"
+        ],
+        "kind": "Sıralama",
+        "why": "Sayılan nedenlerden ilki: “öncelikle”."
+      },
+      {
+        "answer": "En outre",
+        "options": [
+          "En outre",
+          "Cependant",
+          "Parce que"
+        ],
+        "kind": "Ekleme",
+        "why": "İkinci bir yarar ekleniyor: “ayrıca”."
+      },
+      {
+        "answer": "Bien que",
+        "options": [
+          "Bien que",
+          "Parce que",
+          "Pour que"
+        ],
+        "kind": "Taviz",
+        "why": "“Pahalı olsa da”: taviz. Bien que cümleyi bağlar; parce que anlamı bozar."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-train",
+    "language": "fr",
+    "text": "Pour un trajet de moins de cinq heures, le train est souvent plus avantageux. {1}, il émet beaucoup moins de CO2 que l'avion. {2}, les gares sont généralement situées au centre-ville. {3} le billet de train soit parfois plus cher, beaucoup de voyageurs le préfèrent.",
+    "tr": "Beş saatten kısa yolculuklarda tren çoğu zaman daha avantajlıdır. Gerçekten de uçaktan çok daha az CO2 salar. Ayrıca garlar genellikle şehir merkezindedir. Tren bileti bazen daha pahalı olsa da birçok yolcu treni tercih ediyor.",
+    "gaps": [
+      {
+        "answer": "En effet",
+        "options": [
+          "En effet",
+          "Cependant",
+          "À moins que"
+        ],
+        "kind": "Açıklama",
+        "why": "Trenin neden avantajlı olduğunu açıklıyor: “gerçekten de”."
+      },
+      {
+        "answer": "De plus",
+        "options": [
+          "De plus",
+          "Sinon",
+          "Bien que"
+        ],
+        "kind": "Ekleme",
+        "why": "İkinci bir avantaj: “ayrıca”."
+      },
+      {
+        "answer": "Bien que",
+        "options": [
+          "Bien que",
+          "Parce que",
+          "Dès que"
+        ],
+        "kind": "Taviz",
+        "why": "“Pahalı olsa da”: taviz, subjonctif (soit) ister."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-internship",
+    "language": "fr",
+    "text": "Un premier stage est souvent une étape importante. {1}, il permet de découvrir le monde du travail. Les places sont limitées ; {2}, il vaut mieux postuler plusieurs mois à l'avance. {3} on se montre curieux et sérieux, on peut même y trouver un emploi.",
+    "tr": "İlk staj çoğu zaman önemli bir adımdır. Birincisi iş dünyasını keşfetmeye olanak tanır. Kontenjanlar sınırlı; bu yüzden aylar öncesinden başvurmak daha iyidir. Meraklı ve ciddi davranırsan orada iş bile bulabilirsin.",
+    "gaps": [
+      {
+        "answer": "Premièrement",
+        "options": [
+          "Premièrement",
+          "Pourtant",
+          "Sinon"
+        ],
+        "kind": "Sıralama",
+        "why": "Önemli olmasının ilk nedeni: “birincisi”."
+      },
+      {
+        "answer": "c'est pourquoi",
+        "options": [
+          "c'est pourquoi",
+          "bien que",
+          "pourtant"
+        ],
+        "kind": "Sonuç",
+        "why": "Kontenjanın sınırlı olmasının sonucu: “bu yüzden”."
+      },
+      {
+        "answer": "Si",
+        "options": [
+          "Si",
+          "Bien que",
+          "Sans que"
+        ],
+        "kind": "Koşul",
+        "why": "“Meraklı davranırsan”: koşul. Sans que subjonctif ister, bien que taviz bildirir."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  }
+]

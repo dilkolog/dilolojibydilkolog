@@ -1,0 +1,392 @@
+[
+  {
+    "id": "es-languages",
+    "language": "es",
+    "text": "Aprender un idioma requiere tiempo. {1}, con quince minutos al día se puede avanzar mucho. Muchos adultos lo dejan al mes {2} esperan resultados demasiado rápidos. {3} tengamos poco tiempo, es mejor estudiar un poco cada día que una vez por semana.",
+    "tr": "Yabancı dil öğrenmek zaman ister. Yine de günde on beş dakikayla çok ilerlenebilir. Birçok yetişkin bir ay sonra bırakıyor, çünkü çok hızlı sonuç bekliyorlar. Az vaktimiz olsa da haftada bir kez çalışmaktansa her gün biraz çalışmak daha iyidir.",
+    "gaps": [
+      {
+        "answer": "Sin embargo",
+        "options": [
+          "Sin embargo",
+          "Por lo tanto",
+          "Porque"
+        ],
+        "kind": "Zıtlık",
+        "why": "Zaman istemesine karşın az sürenin yetmesi: “yine de”. Por lo tanto sonuç bildirir."
+      },
+      {
+        "answer": "porque",
+        "options": [
+          "porque",
+          "para que",
+          "a menos que"
+        ],
+        "kind": "Neden",
+        "why": "Bırakmanın nedeni: “çünkü”. Para que ve a menos que subjuntivo ister, burada anlam da uymaz."
+      },
+      {
+        "answer": "Aunque",
+        "options": [
+          "Aunque",
+          "Porque",
+          "Para que"
+        ],
+        "kind": "Taviz",
+        "why": "“Vaktimiz az olsa da”: taviz. Aunque subjuntivo alabilir (tengamos); porque bu kipi kabul etmez."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-food",
+    "language": "es",
+    "text": "Comer de forma saludable no siempre es fácil. {1}, los platos preparados suelen llevar mucha sal y azúcar. Cocinar en casa lleva tiempo; {2}, es la mejor manera de saber lo que se come. {3} sea solo con unas pocas verduras de temporada, cualquier comida mejora.",
+    "tr": "Sağlıklı beslenmek her zaman kolay değildir. Gerçekten de hazır yemekler çoğu zaman çok tuz ve şeker içerir. Evde pişirmek zaman alır; yine de ne yediğini bilmenin en iyi yoludur. Yalnızca birkaç mevsim sebzesiyle bile olsa her yemek iyileşir.",
+    "gaps": [
+      {
+        "answer": "En efecto",
+        "options": [
+          "En efecto",
+          "Sin embargo",
+          "A menos que"
+        ],
+        "kind": "Açıklama",
+        "why": "Birinci cümlenin nedenini açıklıyor: “gerçekten de”."
+      },
+      {
+        "answer": "sin embargo",
+        "options": [
+          "sin embargo",
+          "por lo tanto",
+          "porque"
+        ],
+        "kind": "Zıtlık",
+        "why": "Zaman almasına karşın en iyi yol olması: “yine de”."
+      },
+      {
+        "answer": "Aunque",
+        "options": [
+          "Aunque",
+          "Porque",
+          "Para que"
+        ],
+        "kind": "Taviz",
+        "why": "“Yalnızca birkaç sebzeyle bile olsa”: taviz. Aunque + subjuntivo (sea)."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-museum",
+    "language": "es",
+    "text": "Los museos gratuitos atraen a muchos visitantes. {1}, algunos directores temen que la multitud dañe las obras. {2} reservas una franja horaria, evitas las colas. {3} muchos museos ofrecen ahora visitas en línea.",
+    "tr": "Ücretsiz müzeler çok sayıda ziyaretçi çekiyor. Ancak bazı müdürler kalabalığın eserlere zarar vermesinden korkuyor. Saat dilimi ayırtırsan kuyruklardan kaçınırsın. Bu yüzden birçok müze artık çevrimiçi turlar sunuyor.",
+    "gaps": [
+      {
+        "answer": "Sin embargo",
+        "options": [
+          "Sin embargo",
+          "Es decir",
+          "Para que"
+        ],
+        "kind": "Zıtlık",
+        "why": "Ziyaretçi çekmenin olumlu yanına karşı bir endişe: “ancak”."
+      },
+      {
+        "answer": "Si",
+        "options": [
+          "Si",
+          "Aunque",
+          "Para que"
+        ],
+        "kind": "Koşul",
+        "why": "“Saat ayırtırsan kuyruktan kaçınırsın”: koşul (si + presente)."
+      },
+      {
+        "answer": "Por eso",
+        "options": [
+          "Por eso",
+          "Aunque",
+          "Puesto que"
+        ],
+        "kind": "Sonuç",
+        "why": "Kalabalık sorununun sonucu: “bu yüzden”. Aunque ve puesto que cümleyi tek başına başlatmaz."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-electric",
+    "language": "es",
+    "text": "Los coches eléctricos se venden cada vez más. {1}, su precio sigue siendo alto para muchas familias. Los puntos de recarga se multiplican; {2}, los viajes largos son cada vez menos complicados. {3} la batería sea cara de fabricar, estos coches contaminan menos en la ciudad.",
+    "tr": "Elektrikli arabalar giderek daha çok satılıyor. Ancak fiyatları birçok aile için hâlâ yüksek. Şarj noktaları çoğalıyor; bu nedenle uzun yolculuklar daha az zahmetli hale geliyor. Batarya üretimi pahalı olsa da bu arabalar şehirde daha az kirletiyor.",
+    "gaps": [
+      {
+        "answer": "Sin embargo",
+        "options": [
+          "Sin embargo",
+          "Por eso",
+          "Puesto que"
+        ],
+        "kind": "Zıtlık",
+        "why": "Satışların artışına karşı bir engel: “ancak”."
+      },
+      {
+        "answer": "por lo tanto",
+        "options": [
+          "por lo tanto",
+          "sin embargo",
+          "aunque"
+        ],
+        "kind": "Sonuç",
+        "why": "Şarj noktalarının çoğalmasının sonucu: “bu nedenle”."
+      },
+      {
+        "answer": "Aunque",
+        "options": [
+          "Aunque",
+          "Porque",
+          "Para que"
+        ],
+        "kind": "Taviz",
+        "why": "“Batarya pahalı olsa da”: taviz. Aunque + subjuntivo (sea)."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-homework",
+    "language": "es",
+    "text": "Algunos profesores piensan que los deberes son inútiles. {1}, otros afirman que ayudan a repasar. No todas las familias tienen el mismo tiempo; {2}, las diferencias entre alumnos pueden aumentar. {3} los deberes sean cortos, siguen siendo útiles.",
+    "tr": "Bazı öğretmenler ev ödevlerinin işe yaramadığını düşünüyor. Buna karşılık diğerleri bunların tekrar yapmaya yardım ettiğini söylüyor. Her ailenin aynı zamanı yok; bu yüzden öğrenciler arasındaki farklar büyüyebilir. Ödevler kısa olduğu sürece faydalı kalırlar.",
+    "gaps": [
+      {
+        "answer": "En cambio",
+        "options": [
+          "En cambio",
+          "Por lo tanto",
+          "Aunque"
+        ],
+        "kind": "Karşıtlık",
+        "why": "İki karşıt görüşü karşılaştırıyor: “buna karşılık”."
+      },
+      {
+        "answer": "por eso",
+        "options": [
+          "por eso",
+          "sin embargo",
+          "porque"
+        ],
+        "kind": "Sonuç",
+        "why": "Zaman eşitsizliğinin sonucu: “bu yüzden”."
+      },
+      {
+        "answer": "Siempre que",
+        "options": [
+          "Siempre que",
+          "Porque",
+          "Aunque"
+        ],
+        "kind": "Koşul",
+        "why": "“Kısa olduğu sürece”: koşul. Siempre que + subjuntivo (sean)."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-streaming",
+    "language": "es",
+    "text": "Las plataformas de streaming han cambiado nuestros hábitos. {1}, vemos una película cuando queremos, sin esperar a la televisión. {2} esa libertad es agradable, a veces nos lleva a ver demasiados capítulos seguidos. {3}, algunos espectadores se ponen un límite antes de empezar.",
+    "tr": "Dijital yayın platformları alışkanlıklarımızı değiştirdi. Artık televizyonu beklemeden istediğimiz zaman film izliyoruz. Bu özgürlük hoş olsa da bazen art arda çok fazla bölüm izletiyor. Bu nedenle bazı izleyiciler başlamadan önce kendilerine bir sınır koyuyor.",
+    "gaps": [
+      {
+        "answer": "Hoy en día",
+        "options": [
+          "Hoy en día",
+          "Sin embargo",
+          "De lo contrario"
+        ],
+        "kind": "Zaman",
+        "why": "Değişimin yeni durumu: “bugün, artık”."
+      },
+      {
+        "answer": "Aunque",
+        "options": [
+          "Aunque",
+          "Para que",
+          "A menos que"
+        ],
+        "kind": "Taviz",
+        "why": "“Hoş olsa da”: taviz. Aunque göstergeyle de kullanılır (es)."
+      },
+      {
+        "answer": "Por eso",
+        "options": [
+          "Por eso",
+          "En cambio",
+          "Aunque"
+        ],
+        "kind": "Sonuç",
+        "why": "Fazla izleme riskinin sonucu: “bu yüzden”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-neighbours",
+    "language": "es",
+    "text": "El ruido es una de las principales causas de conflicto entre vecinos. {1}, una simple conversación suele bastar para resolver el problema. {2} el conflicto se alarga, la situación empeora. {3} el vecino se niega a hablar, siempre se puede contactar con el propietario.",
+    "tr": "Gürültü komşular arasındaki çatışmaların başlıca nedenlerinden biri. Yine de basit bir konuşma çoğu zaman sorunu çözmeye yeter. Çatışma uzadıkça durum kötüleşir. Komşu konuşmayı reddederse ev sahibiyle her zaman iletişime geçilebilir.",
+    "gaps": [
+      {
+        "answer": "Sin embargo",
+        "options": [
+          "Sin embargo",
+          "Por lo tanto",
+          "Puesto que"
+        ],
+        "kind": "Zıtlık",
+        "why": "Büyük soruna karşın çözümün basit olması: “yine de”."
+      },
+      {
+        "answer": "A medida que",
+        "options": [
+          "A medida que",
+          "Aunque",
+          "Para que"
+        ],
+        "kind": "Zaman",
+        "why": "“Uzadıkça kötüleşir”: eş zamanlı artış, a medida que."
+      },
+      {
+        "answer": "Si",
+        "options": [
+          "Si",
+          "Para que",
+          "Antes de que"
+        ],
+        "kind": "Koşul",
+        "why": "“Komşu reddederse”: koşul. Para que amaç, antes de que zaman bildirir."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-greenery",
+    "language": "es",
+    "text": "Las ciudades plantan cada vez más árboles. {1}, dan sombra durante los veranos muy calurosos. {2}, los espacios verdes mejoran la calidad del aire. {3} las obras son caras, muchos ayuntamientos consideran rentable la inversión.",
+    "tr": "Şehirler giderek daha çok ağaç dikiyor. Öncelikle çok sıcak yazlarda gölge veriyorlar. Ayrıca yeşil alanlar hava kalitesini iyileştiriyor. Çalışmalar pahalı olsa da birçok belediye yatırımı kârlı buluyor.",
+    "gaps": [
+      {
+        "answer": "En primer lugar",
+        "options": [
+          "En primer lugar",
+          "Sin embargo",
+          "Por lo tanto"
+        ],
+        "kind": "Sıralama",
+        "why": "Sayılan nedenlerden ilki: “öncelikle”."
+      },
+      {
+        "answer": "Además",
+        "options": [
+          "Además",
+          "En cambio",
+          "Porque"
+        ],
+        "kind": "Ekleme",
+        "why": "İkinci bir yarar ekleniyor: “ayrıca”."
+      },
+      {
+        "answer": "Aunque",
+        "options": [
+          "Aunque",
+          "Porque",
+          "Para que"
+        ],
+        "kind": "Taviz",
+        "why": "“Pahalı olsa da”: taviz (aunque + gösterge: son)."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-train",
+    "language": "es",
+    "text": "Para un viaje de menos de cinco horas, el tren suele ser más ventajoso. {1}, emite mucho menos CO2 que el avión. {2}, las estaciones suelen estar en el centro de la ciudad. {3} el billete de tren sea a veces más caro, muchos viajeros lo prefieren.",
+    "tr": "Beş saatten kısa yolculuklarda tren çoğu zaman daha avantajlıdır. Gerçekten de uçaktan çok daha az CO2 salar. Ayrıca garlar genellikle şehir merkezindedir. Tren bileti bazen daha pahalı olsa da birçok yolcu treni tercih ediyor.",
+    "gaps": [
+      {
+        "answer": "En efecto",
+        "options": [
+          "En efecto",
+          "Sin embargo",
+          "A menos que"
+        ],
+        "kind": "Açıklama",
+        "why": "Trenin neden avantajlı olduğunu açıklıyor: “gerçekten de”."
+      },
+      {
+        "answer": "Además",
+        "options": [
+          "Además",
+          "De lo contrario",
+          "Aunque"
+        ],
+        "kind": "Ekleme",
+        "why": "İkinci bir avantaj: “ayrıca”."
+      },
+      {
+        "answer": "Aunque",
+        "options": [
+          "Aunque",
+          "Porque",
+          "Tan pronto como"
+        ],
+        "kind": "Taviz",
+        "why": "“Pahalı olsa da”: taviz. Aunque + subjuntivo (sea)."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-internship",
+    "language": "es",
+    "text": "Unas prácticas son a menudo un paso importante. {1}, permiten conocer el mundo laboral. Las plazas son limitadas; {2}, conviene solicitar con varios meses de antelación. {3} te muestras curioso y serio, incluso puedes conseguir un empleo.",
+    "tr": "Staj çoğu zaman önemli bir adımdır. Birincisi iş dünyasını tanımaya olanak verir. Kontenjanlar sınırlı; bu yüzden aylar öncesinden başvurmak uygundur. Meraklı ve ciddi davranırsan orada iş bile bulabilirsin.",
+    "gaps": [
+      {
+        "answer": "En primer lugar",
+        "options": [
+          "En primer lugar",
+          "Sin embargo",
+          "De lo contrario"
+        ],
+        "kind": "Sıralama",
+        "why": "Önemli olmasının ilk nedeni: “birincisi”."
+      },
+      {
+        "answer": "por eso",
+        "options": [
+          "por eso",
+          "sin embargo",
+          "aunque"
+        ],
+        "kind": "Sonuç",
+        "why": "Kontenjanın sınırlı olmasının sonucu: “bu yüzden”."
+      },
+      {
+        "answer": "Si",
+        "options": [
+          "Si",
+          "Aunque",
+          "Sin que"
+        ],
+        "kind": "Koşul",
+        "why": "“Meraklı davranırsan”: koşul (si + presente)."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  }
+]
