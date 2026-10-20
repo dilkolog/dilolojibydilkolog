@@ -24,6 +24,6 @@ definition-like glosses left out);
 translations of senses tagged vulgar/offensive/derogatory left out; part of speech and gender from
 the word's main (first) entry.
 
-Built by `scripts/build-wordpack.ts` (version `2026-10-08.2`):
+Built by `scripts/build-wordpack.ts` (version `2026-10-08.2`; 2026-10-20 yamaları elle uygulandı, sürüm `2026-10-20.1`: cinsiyet, Türkçe anlam, bozuk ses, bkz. docs/veri/README.md):
 en 27 189 words (Turkish 50 %, recordings 81 %); fr 16 220 (Turkish 68 %, gender 57 %, recordings 95 %);
 es 14 443 (Turkish 71 %, gender 59 %, recordings 55 %).
