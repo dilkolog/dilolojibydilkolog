@@ -15,7 +15,7 @@ Son güncelleme: 2026-10-17 (15. tur eklendi: Rehber).
 - **Gereksiz push yapma:** (2026-10-21: depo public, Actions dakikası serbest; CI artık PR'larda çalışır.) Vercel Hobby'de günde 100 dağıtım vardı. Bir PR'a art arda küçük commit atma; hepsini yerelde bitirip tek seferde push'la.
 - **Arayüzde sitenin kendi sınıflarını ve bileşenlerini kullan** (`card`, `section-title`, `chip`, `btn`, `Popover`, `Toggle`, `GroupToggle`…). Yeni görsel dil uydurma. Ekran değişen her PR'a **telefon (375 px)** ekran görüntüsü ekle; koyu temada da bak.
 - Yeni metinler Türkçe, sade ve mevcut üsluba uygun (`docs/METIN-DENETIMI.md`).
-- Görsel test referansı (`*-linux.png`) elle değiştirme; kota dönünce `snapshots.yml` ile yenilenir. `*-darwin.png` asla commit edilmez.
+- Görsel test referansı (`*-linux.png`) elle değiştirme; `snapshots.yml` ile yenilenir (depo public, Actions serbest). `*-darwin.png` asla commit edilmez.
 - Kalıcı veride tarih alanlarını string varsayma (`addedTime()`, `timeOf()`).
 
 ## Dosya sahipliği (çakışmayı önlemek için)
@@ -62,7 +62,7 @@ Son güncelleme: 2026-10-17 (15. tur eklendi: Rehber).
 `docs/KULLANILABILIRLIK.md` bölüm 5'teki maddelerden küçük olanları seç; her birini ayrı PR yap.
 
 ### 2.4 Görsel referansları yenileme
-Actions kotası dönünce `gh workflow run snapshots.yml --ref main`; oluşan farkları tek tek gözle onayla (`AGENTS.md`'deki liste), beklenmeyen fark varsa nedenini bul.
+Actions artık serbest (depo public): `gh workflow run snapshots.yml --ref <dal>`; oluşan farkları tek tek gözle onayla (`AGENTS.md`'deki liste), beklenmeyen fark varsa nedenini bul.
 
 **Tur sonu ölçütü:** her PR'da telefon ekran görüntüsü, hiçbir mevcut testin silinmemesi.
 
@@ -162,7 +162,7 @@ Sorun: `docs/kaynaklar/audiobooks-{fr,es}.json`'daki her ses tek bir kitaba (ör
 
 
 ### 6.2 Görsel referansları yenileme (hâlâ açık)
-Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Son turlarda değişenler: logo (sol üst), yan menü adı, Çeviri ekranı, Oyunlar listesi ve ikonları, okuma araç satırı (Çekimler/Dikte/Gölgele ikonları), ses paneli, fiil turu kartı, oturum özeti kademeli girişi. Beklenmeyen fark çıkarsa nedenini bul ve yaz.
+Actions artık serbest (depo public): `gh workflow run snapshots.yml --ref <dal>`. Son turlarda değişenler: logo (sol üst), yan menü adı, Çeviri ekranı, Oyunlar listesi ve ikonları, okuma araç satırı (Çekimler/Dikte/Gölgele ikonları), ses paneli, fiil turu kartı, oturum özeti kademeli girişi. Beklenmeyen fark çıkarsa nedenini bul ve yaz.
 
 ### 6.3 Yeni özelliklere birim testleri (TAMAMLANDI — `useSwipeAway.test.tsx`, `LabTourCard.test.tsx`, `TranslateScreen.test.tsx`, `SessionForgot.test.tsx`, `listenFollow.test.ts`)
 - `src/ui/useSwipeAway.ts` (sola kaydırma eşiği, kısa kaydırmada geri yaylanma, fare yok sayılır, dikey hareket kaydırma sayılmaz).
@@ -491,7 +491,7 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 
 
 ### 13.9 Görsel referansları yenileme (KOTA)
-Actions kotası dönünce `gh workflow run snapshots.yml --ref main`. Beklenen farklar: Bugün (tekrar kartı, liste seçici), Rehber, Ayarlar → Hesap, Kartlar.
+Actions artık serbest (depo public): `gh workflow run snapshots.yml --ref <dal>`. Beklenen farklar: Bugün (tekrar kartı, liste seçici), Rehber, Ayarlar → Hesap, Kartlar.
 
 **Tur sonu ölçütü:**
 - raporlar tarih ve komut çıktısıyla yazılmış, doğrulanamayanlar ayrı listede;
@@ -528,7 +528,7 @@ Actions kotası dönünce `gh workflow run snapshots.yml --ref main`. Beklenen f
 - Çıktı: `docs/kaynaklar/resim-arama.md`.
 
 ### 14.6 Görsel referansları (KOTA)
-Actions kotası dönünce `gh workflow run snapshots.yml --ref main`.
+Actions artık serbest (depo public): `gh workflow run snapshots.yml --ref <dal>`.
 
 **Tur sonu ölçütü:** raporlar tarih ve komut çıktısıyla; doğrulanamayanlar ayrı listede; E2E ve vitest yeşil, mevcut testler silinmemiş; PR'lar tek konulu.
 
@@ -593,7 +593,7 @@ Tüm 204 dersin soru havuzu ≥ 10 oldu, `docs/veri/rehber-ders-listesi.md` gün
 Seviye belirleme testi (`PlacementView`), Bugün ekranındaki "Bugünün dersi" (`GuideLessonNudge`) ve "Seviyeni bul" (`GuidePlacementNudge`) kartları, yapışık adımlar (`LessonSteps`: Öğren/Gör/Dene/Sına) ve terim kartı (`LessonTerms`) için masaüstü, telefon (375 px) ve üç temada (açık/koyu/sakin) axe WCAG taramaları eklendi ve tüm testler yeşil geçti.
 
 ### 15.6 Görsel referansları (KOTA)
-Actions kotası dönünce `gh workflow run snapshots.yml --ref main`.
+Actions artık serbest (depo public): `gh workflow run snapshots.yml --ref <dal>`.
 
 **Tur sonu ölçütü:** 15.1'in dokuz PR'ı birleşmiş ve havuz ≥ 10; 15.2 raporu yazılmış; 15.3 ve 15.4 verileri testleriyle yeşil; E2E Claude Code'un ekranları geldikçe eklenecek.
 
