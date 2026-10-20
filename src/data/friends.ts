@@ -53,8 +53,8 @@ export async function loadFriends(today: string): Promise<{ me: FriendView; frie
   return { me: data.me, friends: data.friends ?? [] }
 }
 
-/** What a friend can send: a cheer, a nudge, a word or a text; and "joined", which the app itself sends the one whose invite was used. */
-export type InboxKind = 'cheer' | 'nudge' | 'gift' | 'text' | 'joined'
+/** What a friend can send: a cheer, a nudge, a word or a text; "joined", which the app itself sends the one whose invite was used; and "request", a friend request found by a name (accepted or turned away in the inbox). */
+export type InboxKind = 'cheer' | 'nudge' | 'gift' | 'text' | 'joined' | 'request'
 
 /** A word given to a friend. */
 export interface GiftWord {
@@ -95,6 +95,48 @@ export const clearInbox = async (ids: string[]) => void (await post({ action: 'f
 export const publishFriendCard = async (card: FriendCardInput, today: string): Promise<FriendView | undefined> => (await post({ action: 'friends-publish', ...card, today })).me
 export const addFriend = async (code: string) => void (await post({ action: 'friends-add', code }))
 export const removeFriend = async (code: string) => void (await post({ action: 'friends-remove', code }))
+
+/** The own findable @name, if one was picked. */
+export interface HandleInfo {
+  handle: string
+  findable: boolean
+}
+
+/** What a search shows of a person (never an id or a code). */
+export interface FoundFriend {
+  handle: string
+  name: string
+  avatar: string
+  color: string
+  level: number
+}
+
+export const HANDLE_RULE = /^[a-z0-9_]{3,20}$/
+/** A name as typed: an @ in front or capitals are the same name. */
+export const cleanHandle = (raw: string) => raw.trim().replace(/^@/, '').toLowerCase()
+
+export async function loadHandle(): Promise<HandleInfo> {
+  const res = await accessFetch('/api/access?friend-handle=1')
+  const data = (await res.json().catch(() => ({}))) as Partial<HandleInfo> & { error?: string }
+  if (!res.ok) throw new FriendsError(data.error ?? `http ${res.status}`)
+  return { handle: data.handle ?? '', findable: data.findable === true }
+}
+
+export async function saveHandle(handle: string, findable: boolean): Promise<HandleInfo> {
+  const data = (await post({ action: 'friends-handle', handle, findable })) as Partial<HandleInfo>
+  return { handle: data.handle ?? handle, findable: data.findable === true }
+}
+
+/** The person holding a findable name; null when no one does (or it is not switched on, or it is one's own). */
+export async function findFriend(handle: string): Promise<FoundFriend | null> {
+  const res = await accessFetch(`/api/access?friend-find=${encodeURIComponent(cleanHandle(handle))}`)
+  if (res.status === 404) return null
+  const data = (await res.json().catch(() => ({}))) as { found?: FoundFriend; error?: string }
+  if (!res.ok || !data.found) throw new FriendsError(data.error ?? `http ${res.status}`)
+  return data.found
+}
+
+export const requestFriend = async (handle: string) => void (await post({ action: 'friends-request', handle: cleanHandle(handle) }))
 
 /** A code as it is shown and read aloud: ABCD-EFGH. */
 export const showCode = (code: string) => (code.length === 8 ? `${code.slice(0, 4)}-${code.slice(4)}` : code)

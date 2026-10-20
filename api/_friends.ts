@@ -197,6 +197,8 @@ export async function friendsOf(id: string, today: string): Promise<{ me: Friend
 /** Takes the account's card, its code and whom it follows off the store (the account is being deleted). */
 export async function forgetFriends(id: string): Promise<void> {
   // Both places: an account deleted soon after the move must leave nothing behind in either.
+  const handle = await handleOf(id).catch(() => null)
+  await Promise.all([handle ? removeBlob(handlePath(handle.handle)) : Promise.resolve(), removeBlob(handleOfPath(id))])
   await Promise.all([blobFriends.forget(id), removeBlob(inboxPath(id)), (await tablesOn()) ? tableFriends.forget(id) : Promise.resolve()])
 }
 
@@ -205,8 +207,8 @@ export async function forgetFriends(id: string): Promise<void> {
 // Kept in Blob files in both modes (a few hundred bytes per person, so no table needed).
 // ---------------------------------------------------------------------------
 
-export type InboxKind = 'cheer' | 'nudge' | 'gift' | 'text' | 'joined'
-export const INBOX_KINDS: readonly InboxKind[] = ['cheer', 'nudge', 'gift', 'text', 'joined']
+export type InboxKind = 'cheer' | 'nudge' | 'gift' | 'text' | 'joined' | 'request'
+export const INBOX_KINDS: readonly InboxKind[] = ['cheer', 'nudge', 'gift', 'text', 'joined', 'request']
 const MAX_INBOX = 30
 const KEEP_DAYS = 30
 /** A friend can have this many gifts (and as many texts) waiting from the same sender: more would be spam. */
@@ -263,6 +265,99 @@ export function cleanText(raw: unknown): SentText | null {
   const body = typeof t.body === 'string' ? [...t.body].filter((c) => c === '\n' || (c.charCodeAt(0) >= 32 && c.charCodeAt(0) !== 127)).join('').replace(/[<>]/g, '').trim().slice(0, MAX_BODY) : ''
   if (!language || !title || body.length < MIN_BODY) return null
   return { language, title, body }
+}
+
+// ---------------------------------------------------------------------------
+// Finding a friend by a chosen @name instead of a code. Only a name the person picked and switched on can be
+// found (an exact match: no listing, no e-mail, no real name), and a find only lets one send a *request*: the
+// other side sees it in their inbox and becomes a friend only by accepting (a code or an invite link, which
+// the owner handed out on purpose, still adds at once).
+// Kept in Blob files in both modes (a few hundred bytes each, no table or migration needed):
+//   friends/handle/<name>.json   → { id }  (who holds the name)
+//   friends/handle-of/<id>.json  → { handle, findable }
+// ---------------------------------------------------------------------------
+
+export const HANDLE = /^[a-z0-9_]{3,20}$/
+const RESERVED = new Set(['admin', 'diloloji', 'destek', 'support', 'help', 'root', 'monki', 'moderator'])
+const handlePath = (handle: string) => `friends/handle/${handle}.json`
+const handleOfPath = (id: string) => `friends/handle-of/${id}.json`
+
+/** A name typed with an @, capitals or spaces around it is the same name. */
+export const normalizeHandle = (raw: unknown): string => (typeof raw === 'string' ? raw.trim().replace(/^@/, '').toLowerCase() : '')
+
+export interface HandleInfo {
+  handle: string
+  findable: boolean
+}
+
+export async function handleOf(id: string): Promise<HandleInfo | null> {
+  const mine = await readJson<{ handle?: string; findable?: boolean }>(handleOfPath(id))
+  return mine?.handle && HANDLE.test(mine.handle) ? { handle: mine.handle, findable: mine.findable === true } : null
+}
+
+export type HandleResult = 'ok' | 'bad_handle' | 'taken'
+
+/** Picks (or changes) the account's name and whether it can be found. A name held by another account is 'taken'. */
+export async function setHandle(id: string, rawHandle: unknown, findable: unknown): Promise<HandleResult> {
+  const handle = normalizeHandle(rawHandle)
+  if (!HANDLE.test(handle) || RESERVED.has(handle)) return 'bad_handle'
+  const held = await readJson<{ id?: string }>(handlePath(handle))
+  if (held?.id && held.id !== id) return 'taken'
+  const previous = await handleOf(id)
+  if (!held?.id) {
+    await writeJson(handlePath(handle), { id })
+    // Two accounts claiming one free name at the same moment: the file shows who stays.
+    if ((await readJson<{ id?: string }>(handlePath(handle)))?.id !== id) return 'taken'
+  }
+  await writeJson(handleOfPath(id), { handle, findable: findable === true })
+  if (previous && previous.handle !== handle) await removeBlob(handlePath(previous.handle))
+  return 'ok'
+}
+
+/** What a search shows of a person: only what their card shows a friend, never an id or a code. */
+export interface FoundFriend {
+  handle: string
+  name: string
+  avatar: string
+  color: string
+  level: number
+}
+
+/** The account behind a name, if it is switched on for finding. */
+async function findableOwner(rawHandle: unknown): Promise<{ owner: string; handle: string } | null> {
+  const handle = normalizeHandle(rawHandle)
+  if (!HANDLE.test(handle)) return null
+  const owner = (await readJson<{ id?: string }>(handlePath(handle)))?.id
+  if (!owner) return null
+  const info = await handleOf(owner)
+  return info && info.handle === handle && info.findable ? { owner, handle } : null
+}
+
+export async function findFriend(id: string, rawHandle: unknown): Promise<FoundFriend | null> {
+  const found = await findableOwner(rawHandle)
+  if (!found || found.owner === id) return null
+  const card = await (await friendStore()).card(found.owner)
+  if (!card?.code) return null
+  return { handle: found.handle, name: card.name, avatar: card.avatar, color: card.color, level: card.level }
+}
+
+export type RequestResult = 'ok' | 'unknown' | 'self' | 'already'
+
+/** A friend request to the holder of a findable name: a message in their inbox, nothing more until they accept. */
+export async function requestFriend(id: string, rawHandle: unknown, onDelivered?: (recipient: string, item: InboxItem) => Promise<unknown>): Promise<RequestResult> {
+  const found = await findableOwner(rawHandle)
+  if (!found) return 'unknown'
+  if (found.owner === id) return 'self'
+  const store = await friendStore()
+  const [me, theirs] = await Promise.all([ownCard(id), store.card(found.owner)])
+  if (!theirs?.code) return 'unknown'
+  const [mine, theirFollows] = await Promise.all([store.follows(id), store.follows(found.owner)])
+  if (mine.includes(theirs.code) || theirFollows.includes(me.code)) return 'already'
+  const now = new Date()
+  let delivered = null as InboxItem | null
+  await withInbox(found.owner, () => deliver(found.owner, me, 'request', null, null, now, now.toISOString().slice(0, 10), (item) => (delivered = item)))
+  if (delivered && onDelivered) await onDelivered(found.owner, delivered).catch(() => {})
+  return 'ok'
 }
 
 const inboxPath = (id: string) => `friends/inbox/${id}.json`
@@ -348,7 +443,7 @@ export async function sendToFriend(
   /** Called once the message is in the recipient's inbox (outside its lock): where a push notification is sent. Its failure changes nothing. */
   onDelivered?: (recipient: string, item: InboxItem) => Promise<unknown>,
 ): Promise<SendResult> {
-  if (typeof kind !== 'string' || !INBOX_KINDS.includes(kind as InboxKind)) return 'bad_kind'
+  if (typeof kind !== 'string' || !INBOX_KINDS.includes(kind as InboxKind) || kind === 'request') return 'bad_kind'
   const gift = kind === 'gift' ? cleanGift(payload) : null
   const text = kind === 'text' ? cleanText(payload) : null
   if ((kind === 'gift' && !gift) || (kind === 'text' && !text)) return 'bad_payload'
@@ -379,7 +474,7 @@ async function deliver(recipient: string, me: FriendCard, kind: InboxKind, gift:
     // A cheer or a nudge replaces the sender's one of the day, "joined" (a friend came in by your invite) the sender's one at all; gifts and texts pile up to a few.
     const sameKind = waiting.filter((i) => i.from.code === me.code && i.kind === kind)
     const dropped = new Set(
-      kind === 'joined'
+      kind === 'joined' || kind === 'request'
         ? sameKind.map((i) => i.id)
         : kind === 'cheer' || kind === 'nudge'
         ? sameKind.filter((i) => i.at.slice(0, 10) === today).map((i) => i.id)

@@ -17,6 +17,7 @@ import { notify } from './noticeCenter'
 import { friendNotice } from './noticeTexts'
 import { inviteLink } from './invite'
 // A friend's page (the chart, the gifts) is only needed when a name is tapped.
+const FriendFind = lazy(() => import('./FriendFind').then((m) => ({ default: m.FriendFind })))
 const FriendSheet = lazy(() => import('./FriendSheet').then((m) => ({ default: m.FriendSheet })))
 
 /** The last card published from this device, so an unchanged one is not written again. */
@@ -190,6 +191,18 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
     onChanged?.()
     await dismiss([m.id])
   }
+  /** A request taken: the sender's code is added (friendship goes both ways), then the message goes. */
+  const accept = async (m: InboxItem) => {
+    try {
+      await addFriend(m.from.code)
+    } catch (e) {
+      showToast(e instanceof FriendsError && e.reason === 'full' ? REASONS.full : 'İstek kabul edilemedi, biraz sonra yine dene.', undefined, 5000, 'info')
+      return
+    }
+    showToast(`${nicknames[m.from.code] || m.from.name} artık arkadaşın.`)
+    await dismiss([m.id])
+    await refresh()
+  }
   const remove = async (f: FriendView) => {
     const displayName = nicknames[f.code] || f.name
     await removeFriend(f.code).catch(() => undefined)
@@ -336,6 +349,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
                   {m.kind === 'cheer' && `👏 ${who} seni tebrik etti`}
                   {m.kind === 'nudge' && `👋 ${who} seni dürttü: bugün biraz çalışmaya ne dersin?`}
                   {m.kind === 'joined' && `🎉 ${who} davetinle katıldı`}
+                  {m.kind === 'request' && `🤝 ${who} arkadaşlık isteği gönderdi`}
                   {m.kind === 'gift' && m.gift && (
                     <>
                       🎁 {who} sana bir kelime gönderdi: <strong lang={m.gift.language}>{m.gift.lemma}</strong> = {m.gift.meaning}
@@ -343,6 +357,11 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
                   )}
                   {m.kind === 'text' && m.text && `📖 ${who} bir metin gönderdi: “${m.text.title}”`}
                 </span>
+                {m.kind === 'request' && (
+                  <button type="button" className="btn btn-sm" onClick={() => void accept(m)}>
+                    Kabul et
+                  </button>
+                )}
                 {m.kind === 'gift' && m.gift && (
                   <button type="button" className="btn btn-sm" onClick={() => void take(m)}>
                     Ekle
@@ -353,7 +372,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
                     Kütüphaneme ekle
                   </button>
                 )}
-                <button type="button" className="icon-btn icon-btn-sm" aria-label={m.kind === 'gift' || m.kind === 'text' ? 'Geç' : 'Tamam'} title={m.kind === 'gift' || m.kind === 'text' ? 'Geç' : 'Tamam'} onClick={() => void dismiss([m.id])}>
+                <button type="button" className="icon-btn icon-btn-sm" aria-label={m.kind === 'request' ? 'Reddet' : m.kind === 'gift' || m.kind === 'text' ? 'Geç' : 'Tamam'} title={m.kind === 'request' ? 'Reddet' : m.kind === 'gift' || m.kind === 'text' ? 'Geç' : 'Tamam'} onClick={() => void dismiss([m.id])}>
                   <CloseIcon size={14} />
                 </button>
               </li>
@@ -416,6 +435,9 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
                 </button>
               </div>
             </div>
+            <Suspense fallback={null}>
+              <FriendFind />
+            </Suspense>
             <form
               className="friends-form"
               onSubmit={(e) => {
