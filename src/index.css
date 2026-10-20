@@ -4777,7 +4777,14 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .game-suggest-icon .game-art { width: 2.25rem; height: 2.25rem; }
 .page-header.has-art { align-items: center; }
 .page-header-art { flex: none; height: 5.25rem; width: auto; margin-right: -0.25rem; user-select: none; -webkit-user-drag: none; }
-@media (max-width: 40rem) { .page-header-art { display: none; } }
+@media (max-width: 40rem) {
+  /* On a phone Monki stays, smaller, beside the title; the action goes below as before. */
+  .page-header.has-art { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: 0.75rem; }
+  .page-header-art { height: 3.25rem; margin-right: 0; }
+  .page-header.has-art .page-header-action { grid-column: 1 / -1; }
+  .page-header.has-art.is-inline { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .page-header.has-art.is-inline .page-header-action { grid-column: auto; }
+}
 .ob-art { display: block; height: 8.5rem; width: auto; max-width: 100%; margin: 0 auto 0.5rem; object-fit: contain; user-select: none; -webkit-user-drag: none; }
 .lang-card-art { display: block; height: 4.75rem; width: auto; margin: 0 0 0.5rem; object-fit: contain; user-select: none; -webkit-user-drag: none; }
 @media (max-width: 40rem) {
