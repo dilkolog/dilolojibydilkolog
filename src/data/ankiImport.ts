@@ -1,4 +1,5 @@
 import { strFromU8, unzipSync } from 'fflate'
+import { decompress } from 'fzstd'
 import { plainField } from './plainField'
 
 export { plainField }
@@ -7,8 +8,8 @@ export { plainField }
  * Words from an Anki deck package (.apkg), as the tab-separated text the list importer already reads.
  * A package is a zip with the collection as a SQLite file; only its `notes` table is needed, so this
  * reads just enough of the SQLite format (table b-trees, overflow pages, records) instead of shipping
- * a database engine. Newer Anki versions pack the collection with zstd by default: that form is
- * recognised and explained, not read.
+ * a database engine. Newer Anki versions pack the collection with zstd (`collection.anki21b`): it is
+ * unpacked first, then read the same way.
  */
 
 export class AnkiFileError extends Error {
@@ -139,6 +140,20 @@ class Sqlite {
   }
 }
 
+/** The collection database of a package: the zstd form of newer Anki when there is one, else the older plain files. */
+function unpackCollection(files: Record<string, Uint8Array>): Uint8Array | undefined {
+  const modern = files['collection.anki21b']
+  if (modern) {
+    try {
+      return decompress(modern)
+    } catch {
+      // A newer package we cannot unpack: fall back to what the package also carries, if anything.
+      if (!files['collection.anki21']) throw new AnkiFileError('Anki paketi açılamadı (yeni sıkıştırma biçimi bozuk görünüyor). Anki’de “Eski Anki sürümlerini destekle” kutusunu işaretleyerek ya da “Düz metin olarak notlar (.txt)” seçerek dışa aktar.')
+    }
+  }
+  return files['collection.anki21'] ?? files['collection.anki2']
+}
+
 const UPDATE_NOTE = /please update to the latest anki/i
 
 /** The front and back of every note in an .apkg, one tab-separated line each. */
@@ -149,10 +164,7 @@ export function apkgToText(bytes: Uint8Array): string {
   } catch {
     throw new AnkiFileError('Anki dosyası okunamadı: paket bozuk görünüyor.')
   }
-  const db = files['collection.anki21'] ?? files['collection.anki2']
-  if (files['collection.anki21b'] && !files['collection.anki21']) {
-    throw new AnkiFileError('Bu Anki paketi yeni (sıkıştırılmış) biçimde. Anki’de dışa aktarırken “Eski Anki sürümlerini destekle” kutusunu işaretle ya da “Düz metin olarak notlar (.txt)” seç; sonra yine buradan yükle.')
-  }
+  const db = unpackCollection(files)
   if (!db) throw new AnkiFileError('Anki paketinde koleksiyon bulunamadı.')
   const sqlite = new Sqlite(db)
   const root = sqlite.rootOf('notes')

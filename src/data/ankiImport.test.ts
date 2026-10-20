@@ -29,7 +29,11 @@ describe('apkgToText', () => {
     expect(big).toBe(`grande\t${'lorem ipsum '.repeat(600).trim()}`)
   })
 
-  it('explains the newer compressed package instead of failing blindly', () => {
+  it('reads the same notes from a package packed with zstd (newer Anki)', () => {
+    expect(apkgToText(fixture('zstd.apkg')).split('\n')).toEqual(lines)
+  })
+
+  it('explains a compressed package it cannot unpack instead of failing blindly', () => {
     expect(() => apkgToText(fixture('modern.apkg'))).toThrow(/Eski Anki sürümlerini destekle/)
   })
 

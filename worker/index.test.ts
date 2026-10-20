@@ -87,7 +87,7 @@ describe('Worker scheduled cron job (16.3 F5)', () => {
       return new Response('ok', { status: 200 })
     })
 
-    const scheduledTime = Date.UTC(2026, 9, 19, 15, 30, 0) // 15:30 UTC -> hour 15
+    const scheduledTime = Date.UTC(2026, 9, 20, 15, 30, 0) // Tuesday 15:30 UTC -> hour 15
     const controller: ScheduledController = {
       scheduledTime,
       cron: '0 * * * *',
@@ -115,6 +115,23 @@ describe('Worker scheduled cron job (16.3 F5)', () => {
     // Wait for the background task to complete successfully
     await Promise.all(waitUntilPromises)
     cronGetSpy.mockRestore()
+  })
+
+  it('also sends last week\'s error digest on Monday morning, but not before 07:00 UTC', async () => {
+    const cronGetSpy = vi.spyOn(cron, 'GET').mockImplementation(async () => new Response('ok', { status: 200 }))
+    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
+    const run = async (scheduledTime: number) => {
+      const promises: Promise<unknown>[] = []
+      const ctx = { waitUntil: vi.fn((p: Promise<unknown>) => promises.push(p)), passThroughOnException: vi.fn(), props: {} } as unknown as ExecutionContext
+      await worker.scheduled({ scheduledTime, cron: '0 * * * *', noRetry: vi.fn() }, env, ctx)
+      await Promise.all(promises)
+      return (ctx.waitUntil as ReturnType<typeof vi.fn>).mock.calls.length
+    }
+    expect(await run(Date.UTC(2026, 9, 19, 8))).toBe(2)
+    expect(await run(Date.UTC(2026, 9, 19, 5))).toBe(1)
+    expect(await run(Date.UTC(2026, 9, 21, 8))).toBe(1)
+    cronGetSpy.mockRestore()
+    logSpy.mockRestore()
   })
 
   it('documents cron behavior on non-ok (401 / 500) responses: scheduled itself completes, but waitUntil promise rejects', async () => {

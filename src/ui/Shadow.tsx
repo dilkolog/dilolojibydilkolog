@@ -22,7 +22,7 @@ export function ShadowButton({ text, language }: { text: string; language: Targe
  * The shadowing steps for any voice: `hear` plays the model (the device reading a sentence, or a
  * stretch of a recording) and resolves when it ends; then `ms` of recording, then both in turn.
  */
-export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { hear: () => Promise<void>; ms: number; startLabel?: string }) {
+export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele', onRecorded }: { hear: () => Promise<void>; ms: number; startLabel?: string; /** Gets the recording once it is made (null when a new try begins). */ onRecorded?: (recording: Blob | null) => void }) {
   const [phase, setPhase] = useState<'idle' | 'hear' | 'speak' | 'done'>('idle')
   const [error, setError] = useState('')
   const [micBlocked, setMicBlocked] = useState(false)
@@ -73,6 +73,7 @@ export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { 
   const start = async () => {
     setError('')
     setMicBlocked(false)
+    onRecorded?.(null)
     let stream: MediaStream
     try {
       stream = await navigator.mediaDevices.getUserMedia({ audio: true })
@@ -109,8 +110,10 @@ export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { 
         analyserRef.current = null
       }
       if (!live.current) return
-      setUrl(URL.createObjectURL(new Blob(chunks, { type: rec.mimeType })))
+      const recording = new Blob(chunks, { type: rec.mimeType })
+      setUrl(URL.createObjectURL(recording))
       setPhase('done')
+      onRecorded?.(recording)
     }
     const ms = answer
     setUntil(performance.now() + ms)

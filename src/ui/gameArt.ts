@@ -27,6 +27,7 @@ import gBolt from '../assets/art/game-bolt.webp'
 import gShoe from '../assets/art/game-shoe.webp'
 import gTags from '../assets/art/game-tags.webp'
 import gGear from '../assets/art/game-gear.webp'
+import gLadder from '../assets/art/game-ladder.webp'
 import gGifts from '../assets/art/game-gifts.webp'
 import gGaps from '../assets/art/game-gaps.webp'
 import gDuel from '../assets/art/game-duel.webp'
@@ -63,6 +64,7 @@ export const GAME_ART: Partial<Record<GameId, string>> = {
   boss: gMonster,
   audio: gMusic,
   ear: gEar,
+  ladder: gLadder,
   pairs: gWaves,
   blitz: gBolt,
   fluency: gShoe,
