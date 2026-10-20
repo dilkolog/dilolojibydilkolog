@@ -1,0 +1,208 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "tasks": [
+    {
+      "id": "fr-exam-weekend",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "A2",
+      "kind": "Arkadaşa mesaj",
+      "title": "Un week-end à la campagne",
+      "instruction": "Vous avez passé un week-end à la campagne. Écrivez un message à un ami pour raconter ce que vous avez fait et ce que vous avez aimé.",
+      "tr": "Hafta sonunu kırda geçirdin. Bir arkadaşına ne yaptığını ve nelerden hoşlandığını anlatan bir mesaj yaz.",
+      "min": 60,
+      "max": 80,
+      "checklist": [
+        "Selamlama ile başla, kapanışla bitir.",
+        "Geçmişi passé composé ile anlat (j'ai marché, nous avons mangé).",
+        "En az iki etkinlik ve bir beğendiğin şey yaz.",
+        "Bir sonraki buluşmayı öner."
+      ],
+      "phrases": [
+        "Salut Marie,",
+        "Nous avons passé un week-end formidable",
+        "D'abord… ensuite… enfin…",
+        "J'ai adoré",
+        "À bientôt !"
+      ]
+    },
+    {
+      "id": "fr-exam-invitation",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "A2",
+      "kind": "Davet",
+      "title": "Une invitation d'anniversaire",
+      "instruction": "Vous organisez une fête pour votre anniversaire. Écrivez un message pour inviter vos amis : dites quand et où, et ce que chacun peut apporter.",
+      "tr": "Doğum günü partisi düzenliyorsun. Arkadaşlarını davet eden bir mesaj yaz: ne zaman, nerede olacağını ve herkesin ne getirebileceğini söyle.",
+      "min": 60,
+      "max": 80,
+      "checklist": [
+        "Tarihi, saati ve yeri açıkça yaz.",
+        "Rica için je voudrais / pourriez-vous gibi kalıplar kullan.",
+        "Gelecek zaman ya da futur proche ekle (on va danser).",
+        "Cevap istediğin tarihi belirt."
+      ],
+      "phrases": [
+        "Je t'invite à ma fête d'anniversaire",
+        "Ça aura lieu le samedi 12 à 20 heures",
+        "Peux-tu apporter… ?",
+        "Réponds-moi avant jeudi",
+        "J'espère que tu pourras venir !"
+      ]
+    },
+    {
+      "id": "fr-exam-course",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "A2",
+      "kind": "Bilgi isteme e-postası",
+      "title": "Un cours de cuisine",
+      "instruction": "Vous voulez vous inscrire à un cours de cuisine. Écrivez un courriel à l'école pour demander des informations (prix, horaires, matériel).",
+      "tr": "Bir yemek kursuna yazılmak istiyorsun. Okula fiyat, saatler ve gerekli malzeme hakkında bilgi isteyen bir e-posta yaz.",
+      "min": 60,
+      "max": 80,
+      "checklist": [
+        "Resmî selamlama kullan (Madame, Monsieur).",
+        "Kendini ve nedenini kısaca tanıt.",
+        "En az üç soru sor.",
+        "Teşekkür et ve nazik biçimde bitir."
+      ],
+      "phrases": [
+        "Madame, Monsieur,",
+        "Je voudrais m'inscrire à votre cours",
+        "Pourriez-vous m'indiquer… ?",
+        "Quel est le prix… ?",
+        "Je vous remercie d'avance."
+      ]
+    },
+    {
+      "id": "fr-exam-phones",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B1",
+      "kind": "Fikir yazısı",
+      "title": "Les portables à l'école",
+      "instruction": "Sur un forum, on discute : « Faut-il interdire les téléphones portables à l'école ? » Donnez votre opinion avec deux arguments et un exemple personnel.",
+      "tr": "Bir forumda “Okulda cep telefonları yasaklanmalı mı?” tartışılıyor. İki gerekçe ve kişisel bir örnekle görüşünü yaz.",
+      "min": 160,
+      "max": 180,
+      "checklist": [
+        "Görüşünü ilk cümlelerde açıkça söyle.",
+        "İki ayrı gerekçe, her biri için bir örnek ver.",
+        "Karşı görüşü bir cümleyle kabul et (certes… mais).",
+        "Bağlaçlarla düzenle: d'abord, de plus, enfin.",
+        "Kısa bir sonuç cümlesiyle bitir."
+      ],
+      "phrases": [
+        "À mon avis,",
+        "Je suis (tout à fait) pour / contre",
+        "Premièrement… deuxièmement…",
+        "Certes… mais…",
+        "En conclusion,"
+      ]
+    },
+    {
+      "id": "fr-exam-complaint",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B1",
+      "kind": "Resmî şikâyet mektubu",
+      "title": "Un appareil en panne",
+      "instruction": "Vous avez acheté un appareil qui ne fonctionne pas. Écrivez une lettre au magasin pour expliquer le problème et demander une solution.",
+      "tr": "Aldığın bir cihaz çalışmıyor. Mağazaya sorunu anlatan ve bir çözüm isteyen bir mektup yaz.",
+      "min": 160,
+      "max": 180,
+      "checklist": [
+        "Satın alma tarihini ve ürünü belirt.",
+        "Sorunu somut anlat (il ne s'allume plus).",
+        "Ne istediğini net söyle: değişim, onarım ya da iade.",
+        "Resmî dil: vous, conditionnel nazik (je souhaiterais).",
+        "Resmî kapanış formülü kullan."
+      ],
+      "phrases": [
+        "Je vous écris au sujet de…",
+        "J'ai acheté le 3 mars… mais",
+        "Je vous demande de bien vouloir…",
+        "Dans l'attente de votre réponse,",
+        "Veuillez agréer, Madame, Monsieur, mes salutations distinguées."
+      ]
+    },
+    {
+      "id": "fr-exam-story",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B1",
+      "kind": "Anlatı",
+      "title": "Une sortie qui tourne mal",
+      "instruction": "Racontez une sortie ou un voyage qui s'est mal passé : ce qui est arrivé, comment vous avez réagi et ce que vous en avez retenu.",
+      "tr": "Kötü giden bir gezi ya da yolculuğu anlat: ne oldu, nasıl tepki verdin ve ne öğrendin.",
+      "min": 160,
+      "max": 180,
+      "checklist": [
+        "Olayı kronolojik sırayla anlat.",
+        "Arka planı imparfait, olayları passé composé ile ver.",
+        "Duygularını ve tepkini yaz.",
+        "Sonda dersini ya da espriyi ekle."
+      ],
+      "phrases": [
+        "Il était… quand soudain…",
+        "Heureusement,",
+        "À ce moment-là",
+        "J'ai eu très peur",
+        "Cette expérience m'a appris que…"
+      ]
+    },
+    {
+      "id": "fr-exam-telework",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B2",
+      "kind": "Savunma yazısı",
+      "title": "Le télétravail pour tous ?",
+      "instruction": "Le télétravail est-il une bonne solution pour tous ? Rédigez un texte argumenté : avantages, inconvénients, puis votre conclusion.",
+      "tr": "Uzaktan çalışma herkes için iyi bir çözüm mü? Yararlar, sakıncalar ve sonuçtan oluşan savunma metni yaz.",
+      "min": 250,
+      "max": 280,
+      "checklist": [
+        "Giriş: konuyu ve soruyu tanıt.",
+        "Her paragrafta bir fikir ve bir örnek.",
+        "Bağlaçlar: en revanche, néanmoins, par conséquent, bien que + subjonctif.",
+        "Sonuç: kendi görüşünü net söyle."
+      ],
+      "phrases": [
+        "Il est de plus en plus fréquent de…",
+        "D'un côté… de l'autre…",
+        "Il faut toutefois nuancer",
+        "Bien que ce mode de travail soit…",
+        "En définitive,"
+      ]
+    },
+    {
+      "id": "fr-exam-motivation",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B2",
+      "kind": "Motivasyon mektubu",
+      "title": "Un stage dans une association",
+      "instruction": "Vous répondez à une annonce pour un stage dans une association d'aide aux enfants. Écrivez une lettre de motivation : votre parcours, vos qualités, ce que vous espérez apprendre.",
+      "tr": "Çocuklara yardım eden bir dernekte staj ilanına başvuruyorsun. Geçmişini, niteliklerini ve ne öğrenmeyi umduğunu anlatan bir motivasyon mektubu yaz.",
+      "min": 250,
+      "max": 280,
+      "checklist": [
+        "İlanı ve neden ilgilendiğini belirt.",
+        "Deneyimlerini somut örneklerle anlat.",
+        "Niteliklerini sıfatlarla değil olaylarla göster.",
+        "Görüşme isteğiyle bitir, resmî kapanış kullan."
+      ],
+      "phrases": [
+        "En réponse à votre annonce,",
+        "Je me permets de vous proposer ma candidature",
+        "Mon expérience de… m'a permis de…",
+        "Je serais ravi(e) de vous rencontrer",
+        "Je reste à votre disposition"
+      ]
+    }
+  ]
+}

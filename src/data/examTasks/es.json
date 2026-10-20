@@ -1,0 +1,208 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "tasks": [
+    {
+      "id": "es-exam-postal",
+      "language": "es",
+      "exam": "DELE",
+      "level": "A2",
+      "kind": "Arkadaşa mesaj",
+      "title": "Un fin de semana en la sierra",
+      "instruction": "Has pasado un fin de semana en la sierra. Escribe un mensaje a un amigo para contarle qué hiciste y qué te gustó.",
+      "tr": "Hafta sonunu dağlarda geçirdin. Bir arkadaşına ne yaptığını ve nelerden hoşlandığını anlatan bir mesaj yaz.",
+      "min": 60,
+      "max": 80,
+      "checklist": [
+        "Selamlama ve kapanış koy.",
+        "Geçmişi pretérito indefinido ile anlat (caminé, comimos).",
+        "İki etkinlik ve bir beğendiğin şey yaz.",
+        "Bir sonraki buluşmayı öner."
+      ],
+      "phrases": [
+        "Hola Ana,",
+        "Hemos pasado un fin de semana estupendo",
+        "Primero… después… por último…",
+        "Me encantó",
+        "¡Hasta pronto!"
+      ]
+    },
+    {
+      "id": "es-exam-invite",
+      "language": "es",
+      "exam": "DELE",
+      "level": "A2",
+      "kind": "Davet",
+      "title": "Una cena en casa",
+      "instruction": "Quieres invitar a unos amigos a cenar en tu casa. Escribe un mensaje con el día, la hora y el lugar, y pregunta si tienen alguna comida que no pueden comer.",
+      "tr": "Birkaç arkadaşını evinde yemeğe davet etmek istiyorsun. Gün, saat ve yeri yaz; yemeyen bir şey olup olmadığını sor.",
+      "min": 60,
+      "max": 80,
+      "checklist": [
+        "Gün, saat ve adresi net yaz.",
+        "Kibar sorular için ¿puedes…? ¿te gustaría…?",
+        "Gelecek için ir a + infinitivo kullan.",
+        "Cevap istediğin günü belirt."
+      ],
+      "phrases": [
+        "Te invito a cenar en mi casa",
+        "Será el viernes a las ocho",
+        "¿Hay algo que no puedas comer?",
+        "Confírmame antes del miércoles",
+        "¡Espero que puedas venir!"
+      ]
+    },
+    {
+      "id": "es-exam-course",
+      "language": "es",
+      "exam": "DELE",
+      "level": "A2",
+      "kind": "Bilgi isteme e-postası",
+      "title": "Un curso de fotografía",
+      "instruction": "Quieres apuntarte a un curso de fotografía. Escribe un correo a la escuela para pedir información sobre el precio, el horario y el material.",
+      "tr": "Bir fotoğraf kursuna yazılmak istiyorsun. Okula fiyat, saat ve malzeme hakkında bilgi isteyen bir e-posta yaz.",
+      "min": 60,
+      "max": 80,
+      "checklist": [
+        "Resmî selamlama kullan (Estimados señores).",
+        "Kendini ve nedenini kısaca söyle.",
+        "En az üç soru sor.",
+        "Teşekkür et ve nazikçe bitir."
+      ],
+      "phrases": [
+        "Estimados señores:",
+        "Me gustaría apuntarme al curso de…",
+        "¿Podrían decirme… ?",
+        "¿Cuánto cuesta… ?",
+        "Les agradezco de antemano su respuesta."
+      ]
+    },
+    {
+      "id": "es-exam-redes",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B1",
+      "kind": "Fikir yazısı",
+      "title": "Redes sociales y jóvenes",
+      "instruction": "En un foro se debate: «¿Deberían los menores de 14 años usar redes sociales?» Da tu opinión con dos argumentos y un ejemplo personal.",
+      "tr": "Bir forumda “14 yaş altı çocuklar sosyal medya kullanmalı mı?” tartışılıyor. İki gerekçe ve kişisel bir örnekle görüşünü yaz.",
+      "min": 150,
+      "max": 180,
+      "checklist": [
+        "Görüşünü ilk cümlelerde söyle.",
+        "İki gerekçe, her birine örnek.",
+        "Karşı görüşü kısaca kabul et (es cierto que… pero).",
+        "Bağlaçlar: en primer lugar, además, por último.",
+        "Kısa bir sonuçla bitir."
+      ],
+      "phrases": [
+        "En mi opinión,",
+        "Estoy totalmente a favor / en contra",
+        "En primer lugar… en segundo lugar…",
+        "Es cierto que… pero…",
+        "En conclusión,"
+      ]
+    },
+    {
+      "id": "es-exam-queja",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B1",
+      "kind": "Resmî şikâyet mektubu",
+      "title": "Una queja al hotel",
+      "instruction": "Pasaste unas vacaciones en un hotel y hubo varios problemas. Escribe una carta a la dirección para explicarlos y pedir una compensación.",
+      "tr": "Bir otelde tatil yaptın ve birkaç sorun yaşadın. Yönetime sorunları anlatan ve tazminat isteyen bir mektup yaz.",
+      "min": 150,
+      "max": 180,
+      "checklist": [
+        "Konaklama tarihlerini belirt.",
+        "Sorunları somut anlat (el aire acondicionado no funcionaba).",
+        "Ne istediğini net söyle: indirim, geri ödeme.",
+        "Resmî dil: usted, condicional nazik (querría).",
+        "Resmî kapanış kullan."
+      ],
+      "phrases": [
+        "Me dirijo a ustedes para quejarme de…",
+        "Durante mi estancia del 3 al 10 de julio",
+        "Por todo ello, les solicito que…",
+        "A la espera de su respuesta,",
+        "Atentamente,"
+      ]
+    },
+    {
+      "id": "es-exam-dia",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B1",
+      "kind": "Anlatı",
+      "title": "Un día inolvidable",
+      "instruction": "Cuenta un día inolvidable de tu vida: qué pasó, con quién estabas y por qué lo recuerdas todavía.",
+      "tr": "Hayatından unutulmaz bir günü anlat: ne oldu, kiminleydin ve neden hâlâ hatırlıyorsun.",
+      "min": 150,
+      "max": 180,
+      "checklist": [
+        "Olayları sırayla anlat.",
+        "Arka planı imperfecto, olayları indefinido ile ver.",
+        "Duygularını yaz.",
+        "Sonda neden unutulmaz olduğunu söyle."
+      ],
+      "phrases": [
+        "Era un día de verano cuando…",
+        "De repente",
+        "Me sentí muy feliz",
+        "Nunca olvidaré…",
+        "Todavía lo recuerdo porque…"
+      ]
+    },
+    {
+      "id": "es-exam-turismo",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B2",
+      "kind": "Savunma yazısı",
+      "title": "¿Limitar el turismo?",
+      "instruction": "¿Deberían las ciudades limitar el número de turistas? Escribe un texto argumentativo: ventajas, inconvenientes y tu conclusión.",
+      "tr": "Şehirler turist sayısını sınırlamalı mı? Yararlar, sakıncalar ve sonuçtan oluşan savunma metni yaz.",
+      "min": 250,
+      "max": 280,
+      "checklist": [
+        "Girişte konuyu ve soruyu tanıt.",
+        "Her paragrafta bir fikir ve örnek.",
+        "Bağlaçlar: sin embargo, por consiguiente, aunque + subjuntivo.",
+        "Sonuçta görüşünü net söyle."
+      ],
+      "phrases": [
+        "Cada vez es más frecuente que…",
+        "Por un lado… por otro…",
+        "No obstante,",
+        "Aunque el turismo sea…",
+        "En definitiva,"
+      ]
+    },
+    {
+      "id": "es-exam-voluntariado",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B2",
+      "kind": "Motivasyon mektubu",
+      "title": "Voluntariado en un refugio",
+      "instruction": "Respondes a un anuncio de voluntariado en un refugio de animales. Escribe una carta de presentación: tu experiencia, tus cualidades y lo que esperas aprender.",
+      "tr": "Bir hayvan barınağında gönüllülük ilanına başvuruyorsun. Deneyimini, niteliklerini ve ne öğrenmeyi umduğunu anlatan bir mektup yaz.",
+      "min": 250,
+      "max": 280,
+      "checklist": [
+        "İlanı ve ilgi nedenini belirt.",
+        "Deneyimini somut örneklerle anlat.",
+        "Nitelikleri olaylarla göster.",
+        "Görüşme isteğiyle ve resmî kapanışla bitir."
+      ],
+      "phrases": [
+        "En respuesta a su anuncio,",
+        "Me pongo en contacto con ustedes para…",
+        "Mi experiencia en… me ha permitido…",
+        "Estaría encantado/a de reunirme con ustedes",
+        "Quedo a su disposición"
+      ]
+    }
+  ]
+}

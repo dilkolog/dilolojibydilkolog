@@ -1687,6 +1687,24 @@ test('grammar check: the journal text flagged by LanguageTool, a suggestion appl
   await expect(check).toHaveCount(0)
 })
 
+test('journal: an exam-style task shows its instruction, checklist and the length asked', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Yaz & konuş')
+  await page.getByRole('button', { name: /^Konu: / }).click()
+  await page.getByRole('option', { name: /DELF A2 · Arkadaşa mesaj/ }).click()
+  await expect(page.getByText(/Vous avez passé un week-end à la campagne/)).toBeVisible()
+  await expect(page.getByText('resmî sınav sorusu değildir')).toBeVisible()
+  const editor = page.getByLabel('Günlük')
+  await editor.fill('Salut Marie, ça va ? Nous avons passé un week-end formidable.')
+  await expect(page.getByText(/10 kelime · hedef 60–80 \(biraz daha yaz\)/)).toBeVisible()
+  await editor.fill(Array.from({ length: 65 }, (_, i) => `mot${i}`).join(' '))
+  await expect(page.getByText('65 kelime · hedef 60–80')).toBeVisible()
+  // Back to the free topic of the day.
+  await page.getByRole('button', { name: /^Konu: / }).click()
+  await page.getByRole('option', { name: /Bugünün konusu/ }).click()
+  await expect(page.getByText('Bugünün konusu:', { exact: false }).first()).toBeVisible()
+})
+
 test('easy stories: an illustrated story read aloud, with its credits, pictures and its own Turkish', async ({ page }) => {
   await startWithSamples(page)
   // The pictures and the recording stay on the story's servers: answered here.

@@ -1442,3 +1442,22 @@ test('live duel: the room, a question and the result pass accessibility checks i
   await both('waiting')
   expect(problems).toEqual([])
 })
+
+test('journal: the exam-style task card passes accessibility checks in light, dark and calm themes', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Yaz & konuş')
+  await page.getByRole('button', { name: /^Konu: / }).click()
+  await page.getByRole('option', { name: /DELF B1 · Resmî şikâyet mektubu/ }).click()
+  await expect(page.getByText(/Vous avez acheté un appareil/)).toBeVisible()
+  const problems: string[] = []
+  for (const theme of ['light', 'dark', 'calm'] as const) {
+    await page.evaluate((t) => {
+      const root = document.documentElement
+      root.dataset.theme = t === 'dark' ? 'dark' : 'light'
+      if (t === 'calm') root.dataset.calm = 'true'
+      else delete root.dataset.calm
+    }, theme)
+    problems.push(...(await scan(page, `exam-task-${theme}`)))
+  }
+  expect(problems).toEqual([])
+})
