@@ -221,9 +221,12 @@ export function BulkImport({
     const error = result?.errors.find((e) => e.line === row + 1)
     if (error) {
       return (
-        <span className="pill" style={{ background: 'var(--bad-soft)', color: 'var(--bad-text)' }} title={error.message}>
-          hata
-        </span>
+        <>
+          <span className="pill" style={{ background: 'var(--bad-soft)', color: 'var(--bad-text)' }} title={error.message}>
+            hata
+          </span>{' '}
+          <span className="small muted">{error.message}</span>
+        </>
       )
     }
     const cells = rawRows[row]
