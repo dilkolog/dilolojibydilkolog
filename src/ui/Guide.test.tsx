@@ -110,7 +110,8 @@ describe('GuideScreen', () => {
       await act(async () => options[at]!.click())
       await act(async () => button(host, i < 2 ? 'Sonraki' : 'Bitir')!.click())
     }
-    await act(() => new Promise((r) => setTimeout(r, 30)))
+    // The award is written asynchronously: wait for the note instead of a fixed pause (a slow CI runner outlasted 30 ms).
+    for (let i = 0; i < 100 && !host.querySelector('.lesson-check-xp'); i++) await act(() => new Promise((r) => setTimeout(r, 30)))
     expect(host.querySelector('.lesson-check-xp')?.textContent).toContain('+10 XP')
     expect(await db.getXpLedger()).toMatchObject({ [`review|${lesson.topic}|1`]: { xp: 10 } })
   })
