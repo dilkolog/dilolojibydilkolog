@@ -58,7 +58,7 @@ function Shot({ src, alt }: { src: string; alt: string }) {
  * What a visitor sees before signing in: what Diloloji is, how it works, with the app's own screens, and the
  * two ways in. It stands where the sign-in page used to be the whole site; the sign-in page is one step on.
  */
-export function Landing({ onStart, invited = false }: { onStart: (mode: LandingStart) => void; invited?: boolean }) {
+export function Landing({ onStart, invited = false, inviterName }: { onStart: (mode: LandingStart) => void; invited?: boolean; inviterName?: string }) {
   const [shotLang, setShotLang] = useState<ShotLanguage>('fr')
   const langName = SHOT_LANGUAGES.find((l) => l.id === shotLang)!.name
   return (
@@ -84,7 +84,15 @@ export function Landing({ onStart, invited = false }: { onStart: (mode: LandingS
             {invited && (
               <p className="note lp-invite" role="status">
                 <HeartIcon size={16} />
-                <span>Bir arkadaşın seni davet etti. Hesap açınca otomatik arkadaş olursunuz; birbirinizin günlük çalışmasını görürsünüz.</span>
+                <span>
+                  {inviterName ? (
+                    <>
+                      <strong>{inviterName}</strong> seni davet etti. Hesap açınca otomatik arkadaş olursunuz; birbirinizin günlük çalışmasını görürsünüz.
+                    </>
+                  ) : (
+                    'Bir arkadaşın seni davet etti. Hesap açınca otomatik arkadaş olursunuz; birbirinizin günlük çalışmasını görürsünüz.'
+                  )}
+                </span>
               </p>
             )}
             <div className="lp-pill">

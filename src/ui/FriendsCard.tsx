@@ -199,7 +199,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
   /** The invite link (/?davet=code): a friend with no account opens it, signs up and is added; one with an account is added at once. */
   const copy = async () => {
     if (!data) return
-    const link = inviteLink(data.me.code)
+    const link = inviteLink(data.me.code, location.origin, data.me.name)
     try {
       if (navigator.share) await navigator.share({ title: 'Diloloji', text: "Diloloji'de kelime öğreniyorum. Katıl, birlikte çalışalım:", url: link })
       else {
