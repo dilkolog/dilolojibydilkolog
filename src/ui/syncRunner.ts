@@ -29,7 +29,9 @@ export const CONFLICT = 'İki cihaz aynı anda kaydetti ve eşitleme üst üste 
 export const TOO_LARGE = 'Eşitlenecek veri sunucunun sınırını aştı. Kullanmadığın okuma metinlerini ya da eski çeviri belleğini azaltıp tekrar dene (Ayarlar → Cihazlar arası eşitleme boyutu gösterir).'
 
 /** One sync at a time; listeners hear when data may have changed. */
-let running: Promise<SyncResult | null> | null = null
+/** What one sync came to: its result, or that it failed (and why, for a caller that asks for errors). */
+type Outcome = { result: SyncResult | null; failed: boolean; error?: unknown }
+let running: Promise<Outcome> | null = null
 let movedSaid = false
 const listeners = new Set<() => void>()
 
@@ -101,33 +103,35 @@ export const isSyncing = () => running !== null
 /**
  * Syncs if signed in (or a code is set); failures (offline etc.) are silent unless `throwErrors`.
  * `quiet`: the screens are told only if the merge changed something here (a background pull that found nothing new leaves them be).
+ * One sync runs at a time and whoever asks meanwhile shares it, with its failure too: a caller that wants errors
+ * (signing out, which empties the device) must not take a background sync's silent failure for a success.
  */
-export function runSync(throwErrors = false, quiet = false): Promise<SyncResult | null> {
-  if (running) return running
-  running = (async () => {
+export async function runSync(throwErrors = false, quiet = false): Promise<SyncResult | null> {
+  running ??= (async (): Promise<Outcome> => {
     try {
       const cred = await getCredential()
-      if (!cred) return null
-      if (typeof cred !== 'string' && (await signOutOldAccount())) return null
+      if (!cred) return { result: null, failed: false }
+      if (typeof cred !== 'string' && (await signOutOldAccount())) return { result: null, failed: false }
       const target = await (await import('./syncTarget')).syncTarget(cred)
       const result = await (await syncCode()).syncNow(db, target)
       if (!quiet || result.changed !== false) for (const fn of listeners) fn()
-      return result
+      return { result, failed: false }
     } catch (e) {
       // Silent in the background, so a real failure would otherwise never be seen: it goes to the logs ([client-error] … where=sync).
       if (worthReporting(e, typeof navigator === 'undefined' || navigator.onLine !== false)) reportError(e, 'sync')
-      if (throwErrors) throw e
       // Said once a visit: syncing here stopped because the data moved to the new sign-in.
-      if (e instanceof Error && e.name === 'SyncMovedError' && !movedSaid) {
+      if (e instanceof Error && e.name === 'SyncMovedError' && !movedSaid && !throwErrors) {
         movedSaid = true
         showToast(MOVED, undefined, 10_000, 'info')
       }
-      return null
+      return { result: null, failed: true, error: e }
     } finally {
       running = null
     }
   })()
-  return running
+  const outcome = await running
+  if (outcome.failed && throwErrors) throw outcome.error
+  return outcome.result
 }
 
 /** "Diğer cihazlarından: 3 yeni kelime, 1 silinen kelime", or '' when nothing came in. */
