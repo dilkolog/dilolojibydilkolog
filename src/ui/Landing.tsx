@@ -1,14 +1,25 @@
 import '../lazy.css'
-import type { ReactNode } from 'react'
-import todayShot from '../assets/landing/today.webp'
-import readingShot from '../assets/landing/reading.webp'
-import verbsShot from '../assets/landing/verbs.webp'
-import guideShot from '../assets/landing/guide.webp'
+import { useState, type ReactNode } from 'react'
 import { BrandLogo } from './BrandLogo'
 import { BookIcon, CheckIcon, ChevronDownIcon, CloudOffIcon, ConjugationsIcon, DataIcon, GameIcon, HeartIcon, LockIcon, MessageIcon, ReadIcon, SchoolIcon, SparkleIcon } from './icons'
 import { Sticker } from './Sticker'
 
 export type LandingStart = 'create' | 'login'
+
+type ShotLanguage = 'fr' | 'es' | 'en'
+const SHOT_LANGUAGES: { id: ShotLanguage; name: string }[] = [
+  { id: 'fr', name: 'Fransızca' },
+  { id: 'es', name: 'İspanyolca' },
+  { id: 'en', name: 'İngilizce' },
+]
+
+// The app's screens as photographed for each language (scripts/capture-landing-shots.ts): only the picture chosen is fetched.
+const SHOTS = import.meta.glob('../assets/landing/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>
+const shotOf = (screen: 'today' | 'reading' | 'verbs' | 'guide', language: ShotLanguage) => {
+  // English has no verb lab: that row keeps showing French.
+  const lang = screen === 'verbs' && language === 'en' ? 'fr' : language
+  return SHOTS[`../assets/landing/${screen}-${lang}.webp`]
+}
 
 const STEPS = [
   { title: 'Kelimeni ekle', text: 'Kendi listeni kur, bir metinden ya da Kindle’dan aktar. Türkçe anlam, örnek cümle ve telaffuz hazır gelir.' },
@@ -48,6 +59,8 @@ function Shot({ src, alt }: { src: string; alt: string }) {
  * two ways in. It stands where the sign-in page used to be the whole site; the sign-in page is one step on.
  */
 export function Landing({ onStart, invited = false }: { onStart: (mode: LandingStart) => void; invited?: boolean }) {
+  const [shotLang, setShotLang] = useState<ShotLanguage>('fr')
+  const langName = SHOT_LANGUAGES.find((l) => l.id === shotLang)!.name
   return (
     <div className="lp">
       <header className="lp-top">
@@ -97,7 +110,17 @@ export function Landing({ onStart, invited = false }: { onStart: (mode: LandingS
               <span className="lp-chip"><LockIcon size={14} /> Reklamsız & Gizli</span>
             </div>
           </div>
-          <Shot src={todayShot} alt="Diloloji’nin Bugün ekranı: günün görevi, yeni kelime sayısı ve Başla düğmesi." />
+          <div className="lp-hero-visual">
+            <Shot src={shotOf('today', shotLang)} alt="Diloloji’nin Bugün ekranı: günün görevi, yeni kelime sayısı ve Başla düğmesi." />
+            <span className="small muted">Örnek ekranların dili</span>
+            <div className="segmented lp-lang" role="group" aria-label="Örnek ekranların dili">
+              {SHOT_LANGUAGES.map((l) => (
+                <button key={l.id} type="button" className="segmented-btn" aria-pressed={shotLang === l.id} onClick={() => setShotLang(l.id)}>
+                  {l.name}
+                </button>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section className="lp-section" aria-labelledby="lp-how">
@@ -134,7 +157,7 @@ export function Landing({ onStart, invited = false }: { onStart: (mode: LandingS
                 <li><CheckIcon size={16} />Kindle ve dosyalardan kelime aktarma</li>
               </ul>
             </div>
-            <Shot src={readingShot} alt="Okuma ekranı: Fransızca bir metinde dokunulan kelimenin Türkçe anlamı ve kökeni." />
+            <Shot src={shotOf('reading', shotLang)} alt={`Okuma ekranı: ${langName} bir metinde dokunulan kelimenin Türkçe anlamı ve metindeki bildiğin kelime oranı.`} />
           </article>
 
           <article className="lp-row lp-row-flip">
@@ -153,7 +176,7 @@ export function Landing({ onStart, invited = false }: { onStart: (mode: LandingS
                 <li><CheckIcon size={16} />Metinde geçen fiil çekimleri otomatik bulunur</li>
               </ul>
             </div>
-            <Shot src={verbsShot} alt="Fiil laboratuvarı: Fransızca attendre fiilinin şimdiki zaman çekimi ve Türkçe karşılıkları." />
+            <Shot src={shotOf('verbs', shotLang)} alt={`Fiil laboratuvarı: ${shotLang === 'es' ? 'İspanyolca hablar' : 'Fransızca attendre'} fiilinin şimdiki zaman çekimi ve Türkçe karşılıkları.`} />
           </article>
 
           <article className="lp-row">
@@ -172,7 +195,7 @@ export function Landing({ onStart, invited = false }: { onStart: (mode: LandingS
                 <li><CheckIcon size={16} />Hata yaptığın konuya tek dokunuşla ders</li>
               </ul>
             </div>
-            <Shot src={guideShot} alt="Rehber dersi: Fransızca artikeller ve cinsiyet, kurallar ve örnekler." />
+            <Shot src={shotOf('guide', shotLang)} alt={`Rehber dersi: ${langName} artikeller, kurallar ve örnekler.`} />
           </article>
         </section>
 

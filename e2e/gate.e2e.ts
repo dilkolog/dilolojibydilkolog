@@ -70,6 +70,22 @@ test('a signed-out visit opens the landing page, and the sign-in page is one ste
   await expect(landing(page)).toBeVisible()
 })
 
+test('the landing page shows the app in the language chosen, and keeps French verbs for English', async ({ page }) => {
+  await page.goto('/')
+  await expect(landing(page)).toBeVisible()
+  const shot = (n: number) => page.locator('.lp-shot img').nth(n)
+  await expect(shot(0)).toHaveAttribute('src', /today-fr/)
+  await page.getByRole('button', { name: 'İspanyolca', exact: true }).click()
+  await expect(shot(0)).toHaveAttribute('src', /today-es/)
+  await expect(shot(2)).toHaveAttribute('src', /verbs-es/)
+  await page.getByRole('button', { name: 'İngilizce', exact: true }).click()
+  await expect(shot(0)).toHaveAttribute('src', /today-en/)
+  await expect(shot(1)).toHaveAttribute('src', /reading-en/)
+  // There is no verb lab for English: that picture stays French.
+  await expect(shot(2)).toHaveAttribute('src', /verbs-fr/)
+  await expect(shot(3)).toHaveAttribute('src', /guide-en/)
+})
+
 test('"Hesap aç ve başla" opens the sign-up form', async ({ page }) => {
   await stubNetwork(page)
   await page.goto('/')
