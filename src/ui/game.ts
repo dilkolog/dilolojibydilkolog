@@ -4,6 +4,7 @@ import {
   computeXp,
   levelFromXp,
   longestStreak,
+  longestStreakFromDays,
   perfectDays,
   type AchievementState,
   type GameStats,
@@ -119,7 +120,28 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
     if (monday === localDate(now)) xp.today += done * CHALLENGE_XP
   }
   const level = levelFromXp(xp.total)
-  const real = events.filter((e) => e.mode === 'normal')
+  const today = localDate(now)
+
+  let realCount = 0
+  let freeSentencesCorrect = 0
+  const languagesStudied = new Set<string>()
+  const studyDaysSet = new Set<string>()
+  const todayEvents: typeof events[number][] = []
+
+  for (const e of events) {
+    const isNormal = e.mode === 'normal'
+    const day = localDate(e.timestamp)
+    if (isNormal) {
+      realCount++
+      languagesStudied.add(e.language)
+      studyDaysSet.add(day)
+      if (e.exerciseType === 'free_sentence' && e.verdict === 'correct') freeSentencesCorrect++
+    }
+    if (day === today) todayEvents.push(e)
+  }
+  const studyDays = [...studyDaysSet].sort()
+  const todayIntroductions = states.filter((s) => localDate(s.introducedAt) === today).length
+
   // "Sağlam" and beyond: the word has stood on its own for a while.
   const strongIds = new Set(states.filter((s) => MASTERY_STAGES.indexOf(masteryStage(s)) >= 3).map((s) => s.entryId))
   const hard = difficultWords(vocabulary)
@@ -146,14 +168,14 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
     totalXp: xp.total,
     wordsIntroduced: states.length,
     mastered: states.filter((s) => masteryStage(s) === 'mastered').length,
-    totalAnswers: real.length,
-    longestStreak: longestStreak(events),
+    totalAnswers: realCount,
+    longestStreak: longestStreakFromDays(studyDays),
     perfectDays: perfectDays(events),
     maxCombo: xp.maxCombo,
-    languagesStudied: new Set(real.map((e) => e.language)).size,
+    languagesStudied: languagesStudied.size,
     wordsWithPicture: vocabulary.filter((v) => v.imageId).length,
     wordsWithRecording: vocabulary.filter((v) => v.audioId).length,
-    freeSentencesCorrect: real.filter((e) => e.exerciseType === 'free_sentence' && e.verdict === 'correct').length,
+    freeSentencesCorrect,
     level: level.level,
     bossesDefeated: wins.length,
     challengesDone: [...weeks.values()].reduce((a, b) => a + b, 0),
@@ -162,18 +184,10 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
     guideCertsEarned,
     guidePlacementDone,
   }
-  const studyDays = [...new Set(real.map((e) => localDate(e.timestamp)))]
   const isRest = (day: string) => !!settings && isRestDay(new Date(`${day}T12:00:00`), settings)
   const repaired = new Set(settings?.repairedDays ?? [])
   const streak = streakWithFreezes(studyDays, now, (day) => isRest(day) || repaired.has(day))
-  const today = localDate(now)
-  const quests = questStatus(
-    today,
-    dayMetrics(
-      events.filter((e) => localDate(e.timestamp) === today),
-      states.filter((s) => localDate(s.introducedAt) === today).length,
-    ),
-  )
+  const quests = questStatus(today, dayMetrics(todayEvents, todayIntroductions))
   // Longest streak counts freeze-covered days too, so a frozen day never lowers the record.
   stats.longestStreak = Math.max(stats.longestStreak, streak.streak)
   return { xp, level, streak: streak.streak, freezes: streak.freezes, frozenYesterday: streak.frozenDays.includes(localDate(new Date(now.getTime() - 86_400_000))), quests, weekly: challengeStatus(activity, now), stats, achievements: achievements(stats, badgeLog), repair: repairOffer(studyDays, now, isRest, settings?.repairedDays) }
