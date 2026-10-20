@@ -33,6 +33,7 @@ import { weekLine, weekMisses, weekSummary, type WeekSummary } from './engine/we
 import { LookupNudge } from './ui/LookupNudge'
 
 import { announceIncoming, onSynced, runSync } from './ui/syncRunner'
+import { useLiveSync } from './ui/useLiveSync'
 import { connectExtension } from './ui/extensionBridge'
 
 import { gardenSummary } from './engine/growth'
@@ -160,6 +161,8 @@ export default function App() {
   }, [inSessionNow])
 
   const { data, game, reload } = useLanguageData(language)
+  // The account holds the data: changes go up a moment after they are made, other devices' come down when the app is looked at again.
+  useLiveSync(inSessionNow)
 
   // The other screens' code, once the first screen is up.
   useEffect(() => {

@@ -54,15 +54,15 @@ export function RestorePoints() {
     <details className="account-advanced" onToggle={(e) => e.currentTarget.open && void load()}>
       <summary className="account-accordion-summary small">
         <span className="account-accordion-title">
-          <span>🕒 Geri dönüş noktaları</span>
+          <span>Geçmiş: önceki bir güne dön</span>
           <span className="small muted font-normal">(Son 7 gün)</span>
         </span>
         <ChevronDownIcon size={16} className="account-accordion-arrow" />
       </summary>
       <div className="stack account-accordion-body">
         <p className="small muted">
-          Sunucu, eşitlenen verilerinin son 7 günlük hâlini şifreli saklar. Bir güne dönünce o gün olan kelimeler (yanlışlıkla silinenler dahil) geri gelir; sonradan
-          eklediklerin ve ilerlemen kalır.
+          Hesabın, verilerinin son 7 günlük hâlini saklar. Bir güne dönünce o gün olan kelimeler, listeler ve ayarlar (yanlışlıkla silinenler dahil) geri gelir;
+          sonradan eklediklerin kalır. Cevap geçmişin ve okuma metinlerin bu özellikle geri getirilmez, hiç silinmez.
         </p>
         {days === 'loading' && <p className="small muted">Yükleniyor…</p>}
         {Array.isArray(days) && !days.length && (
