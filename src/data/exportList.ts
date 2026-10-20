@@ -169,3 +169,39 @@ export function flashcardsHtml(entries: readonly VocabularyEntry[], language: Ta
     @media print { .note { display: none; } }
   </style></head><body><p class="note">${esc(title)} · ${entries.length} kart · çift taraflı yazdırırken “uzun kenardan çevir” seç; her arka yüz kendi ön yüzünün arkasına düşer.</p>${sheets}</body></html>`
 }
+
+/**
+ * Quizlet-ready text export: term <TAB> definition [<TAB> example].
+ * Ready to paste into Quizlet's "Create / Import" text area or save as .txt.
+ */
+export function toQuizletText(entries: readonly VocabularyEntry[], options: { includeExample?: boolean } = {}): string {
+  return entries
+    .map((e) => {
+      const sense = senseOf(e)
+      const gloss = [sense.gloss, ...(sense.altGlosses ?? [])].join(', ')
+      const term = displayForm(e)
+      const ex = sense.examples[0]?.text?.replace(/\*/g, '').trim()
+      if (options.includeExample && ex) {
+        return `${term}\t${gloss}\t${ex}`
+      }
+      return `${term}\t${gloss}`
+    })
+    .join('\n')
+}
+
+/**
+ * Memrise-ready TSV export: Word <TAB> Meaning <TAB> Part of Speech <TAB> Example.
+ */
+export function toMemriseTsv(entries: readonly VocabularyEntry[]): string {
+  const header = 'Word\tMeaning\tPart of Speech\tExample'
+  const rows = entries.map((e) => {
+    const sense = senseOf(e)
+    const gloss = [sense.gloss, ...(sense.altGlosses ?? [])].join(', ')
+    const term = displayForm(e)
+    const pos = e.partOfSpeech === 'other' ? '' : e.partOfSpeech
+    const ex = sense.examples[0]?.text?.replace(/\*/g, '').trim() ?? ''
+    return `${term}\t${gloss}\t${pos}\t${ex}`
+  })
+  return [header, ...rows].join('\n')
+}
+

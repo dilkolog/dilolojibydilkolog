@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { strFromU8, unzipSync } from 'fflate'
-import { CARDS_PER_SHEET, dictionaryHtml, flashcardsHtml, toCsv, toXlsx } from './exportList'
+import { CARDS_PER_SHEET, dictionaryHtml, flashcardsHtml, toCsv, toMemriseTsv, toQuizletText, toXlsx } from './exportList'
 import { createEntry } from './wordInput'
 import { newWordState } from '../engine/review'
 
@@ -103,5 +103,27 @@ describe('printable flashcards', () => {
     expect(html).toContain('&lt;ici&gt;')
     expect(html).not.toContain('<ici>')
     expect(sheets[2].match(/class="c blank"/g)).toHaveLength(CARDS_PER_SHEET - 2)
+  })
+})
+
+describe('Quizlet & Memrise exports', () => {
+  const maison = createEntry({ word: 'la maison', meaning: 'ev, yuva', example: 'Ma *maison* est "grande"; belle.', exampleTranslation: 'Evim büyük.' }, 'fr', NOW)
+  const arbre = createEntry({ word: "l'arbre", meaning: 'ağaç' }, 'fr', NOW)
+
+  it('exports words in Quizlet format with tabs and optional examples', () => {
+    const q1 = toQuizletText([maison, arbre])
+    expect(q1).toBe('la maison\tev, yuva\nl\'arbre\tağaç')
+
+    const q2 = toQuizletText([maison, arbre], { includeExample: true })
+    expect(q2).toContain('la maison\tev, yuva\tMa maison est "grande"; belle.')
+    expect(q2).toContain("l'arbre\tağaç")
+  })
+
+  it('exports words in Memrise TSV format with header', () => {
+    const mem = toMemriseTsv([maison, arbre])
+    const lines = mem.split('\n')
+    expect(lines[0]).toBe('Word\tMeaning\tPart of Speech\tExample')
+    expect(lines[1]).toBe('la maison\tev, yuva\tnoun\tMa maison est "grande"; belle.')
+    expect(lines[2]).toBe("l'arbre\tağaç\tnoun\t")
   })
 })
