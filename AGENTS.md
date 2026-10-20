@@ -46,6 +46,24 @@ Son güncelleme: 2026-10-13.
 - **Ortam değişkenleri ve Node:** README'deki tabloya bak; Node `>=22.12` (`engines`, `.nvmrc` 24). `pw.tmp.config.ts` makineye özeldir ve izlenmez (`.gitignore`).
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
+## Durum (2026-10-20)
+Birleşti: #37–#572.
+- **Antigravity (2026-10-20):**
+  - #556: Tanıtım sayfası yeniden tasarımı (`Landing.tsx`, `lazy.css` `lp-*`).
+  - #561: Quizlet / Memrise aktarma sihirbazı (`QuizletWizard.tsx`, sütun eşleştirme, takas, export).
+  - #565: Davet edenin adını karşılama (`&kimden=Ad`, `Landing.tsx` kişisel karşılama kartı).
+  - #566: Tanıtım sayfası mobil ergonomisi (hero buton aralıkları, davet karşılama kartı, değer önerisi çipleri).
+  - #569: Haftalık özet mailinde kişisel hedef (`weekLine`, sunucu `cleanWeek` regex doğrulaması).
+  - #570: Birleşik dağıtım ve canlı duman testi (`verify-deploy.mjs`, `smoke-live.mjs`).
+  - #571: `loadGame` tek geçişli optimizasyon (8+ dizi filtresi tek bir O(N) geçişe indirgendi, `longestStreakFromDays`, 30 bin olayda ~16 ms ve denklik testi).
+  - #572: CEFR seviye hedef planlayıcı (`goalPlanner.ts`, `GoalPlannerCard.tsx`, İlerleme'de seviye hedefi, kalan kelime, gün, günlük kota önerisi ve pace rozetleri).
+- Claude Code (2026-10-20):
+  - #557: Yedi iş turu (Anki zstd apkg, sesli tekrar, oturum unuttum kartları, offline sw testi vb.).
+  - #558–#560: Tanıtım düzeltmeleri ve dil seçici.
+  - #562–#563: Hesap menüsü geliştirmeleri.
+  - #567: Okuma araç çubuğu ve disleksi dostu yazı tipi (Açık/Disleksi/Serif, punto/genişlik).
+  - #568: Oyun önerileri ve arama.
+
 ## Durum (2026-10-12)
 Birleşti: #37–#285 (aşağıdaki liste kronolojik değil, konuya göre birikmiş).
 - Antigravity 1–5. tur ve araştırmalar (#153, #155, #156, #158, #159, #160, #161, #165, #166, #170, #172, #173, #175, #177, #179, #181, #183):

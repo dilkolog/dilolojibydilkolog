@@ -9,10 +9,10 @@ Claude Code ve Antigravity aynı listeden çalışır; çakışmamak için:
 - Antigravity'nin tur görevleri `docs/ANTIGRAVITY-GOREVLER.md`'de (16. tur bitti: 16.1–16.7; 17. tur henüz yazılmadı). Bu liste serbest fikirler içindir.
 - Aynı dosyaya dokunuyorsan (ör. `Landing.tsx`, `lazy.css` `lp-*`, `AppSidebar.tsx`) PR açıklamasında belirt; önce main'i çek.
 
-**Bugün (2026-10-20) bitenler:** Claude Code: yedi iş turu (#557), tanıtım düzeltmeleri ve dil seçici (#558–#560), hesap menüsü (#562–#563), okuma araç çubuğu & disleksi dostu yazı tipi (#567), oyun önerileri ve arama (#568). Antigravity: tanıtım sayfası yeniden tasarımı ve mobil ergonomi (#556, #566), Quizlet/Memrise sihirbazı (#561), davet edenin adını karşılama (#565), haftalık özet mailine kişisel hedef (#569), birleşik dağıtım ve canlı duman testi (#570), loadGame tek geçişli optimizasyon (#571).
+**Bugün (2026-10-20) bitenler:** Claude Code: yedi iş turu (#557), tanıtım düzeltmeleri ve dil seçici (#558–#560), hesap menüsü (#562–#563), okuma araç çubuğu & disleksi dostu yazı tipi (#567), oyun önerileri ve arama (#568). Antigravity: tanıtım sayfası yeniden tasarımı ve mobil ergonomi (#556, #566), Quizlet/Memrise sihirbazı (#561), davet edenin adını karşılama (#565), haftalık özet mailine kişisel hedef (#569), birleşik dağıtım ve canlı duman testi (#570), loadGame tek geçişli optimizasyon (#571), CEFR seviye hedef planlayıcı ve günlük tempo hesaplama (#572).
 
 ## Öğrenmeyi doğrudan güçlendirenler
-1. **Hedef planlayıcı.** "Şu tarihte B1 olmak istiyorum" de; günlük yeni kelime ve çalışma süresi buna göre ayarlansın, haftalık "yoldasın / gerideysin" göstersin. İlk adım: CEFR kapsam yüzdesinden (İlerleme) hedef seviyeye kalan kelime sayısını çıkar, günlük kota öner.
+1. ~~**Hedef planlayıcı.**~~ (Tamamlandı: CEFR seviye hedef planlayıcı motoru, hedef tarihi ve kalan kelimeye göre günlük kota önerisi, tempo rozetleri [ahead/on_track/behind], `GoalPlannerCard` bileşeni ve testleri, #572)
 2. **Konuşma karşılaştırma ve telaffuz geri bildirimi.** Aynı cümlenin bir hafta sonraki puanı yapıldı (Azure anahtarıyla). Kalan: Azure'suz kullanıcı için ses eğrisi karşılaştırmasını zamanla çizgi yap.
 3. **Kişisel "zayıf nokta" haftalık mini turu.** Kör nokta röntgeni + yazı hata defteri + dilbilgisi tekrarı ortak bir 10 dakikalık "haftalık bakım" turunda birleşsin (tek düğme).
 6. **Okurken sesli çeviri.** Cümleye dokun, Türkçesi ve hedef dilde okunuşu birlikte çalsın (şu an ayrı iki dokunuş).
