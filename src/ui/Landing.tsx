@@ -35,7 +35,6 @@ function Shot({ src, alt }: { src: string; alt: string }) {
   return (
     <figure className="lp-shot">
       <div className="device-mockup">
-        <div className="device-island" aria-hidden />
         <div className="device-screen">
           <img src={src} alt={alt} width={560} height={1213} loading="lazy" decoding="async" />
         </div>
@@ -92,8 +91,8 @@ export function Landing({ onStart, invited = false }: { onStart: (mode: LandingS
               </button>
             </div>
             <div className="lp-trust-chips">
-              <span className="lp-chip"><SparkleIcon size={14} /> FSRS Hafıza Modeli</span>
-              <span className="lp-chip"><ReadIcon size={14} /> 100+ Seviyeli Metin</span>
+              <span className="lp-chip"><SparkleIcon size={14} /> Bilimsel aralıklı tekrar</span>
+              <span className="lp-chip"><ReadIcon size={14} /> Gerçek metinlerle okuma</span>
               <span className="lp-chip"><ConjugationsIcon size={14} /> Fiil Laboratuvarı</span>
               <span className="lp-chip"><LockIcon size={14} /> Reklamsız & Gizli</span>
             </div>
