@@ -67,10 +67,25 @@ export interface PushRecord {
 const WEEK_ANSWERS = '[1-7] gün · \\d{1,5} cevap \\(%\\d{1,3} doğru\\)'
 const WEEK_WORDS = '\\d{1,5} yeni kelime'
 const WEEK_TEXTS = '\\d{1,5} metin'
-// Every way the app can write it: the answers, the new words and the texts, in that order, any of them left out (not all).
-const WEEK_LINE = new RegExp(`^(?:${[[WEEK_ANSWERS, WEEK_WORDS, WEEK_TEXTS], [WEEK_ANSWERS, WEEK_WORDS], [WEEK_ANSWERS, WEEK_TEXTS], [WEEK_ANSWERS], [WEEK_WORDS, WEEK_TEXTS], [WEEK_WORDS], [WEEK_TEXTS]].map((p) => p.join(' · ')).join('|')})$`)
+const WEEK_GOAL = '(?:bu hafta \\d{1,5} kelime daha|haftalık hedefe ulaşıldı|hedefe \\d{1,5} kelime kaldı)'
+// Every way the app can write it: the answers, the new words, the texts, and optional personal goal.
+const BASE_COMBOS = [
+  [WEEK_ANSWERS, WEEK_WORDS, WEEK_TEXTS],
+  [WEEK_ANSWERS, WEEK_WORDS],
+  [WEEK_ANSWERS, WEEK_TEXTS],
+  [WEEK_ANSWERS],
+  [WEEK_WORDS, WEEK_TEXTS],
+  [WEEK_WORDS],
+  [WEEK_TEXTS],
+]
+const ALL_COMBOS = [
+  ...BASE_COMBOS,
+  ...BASE_COMBOS.map((parts) => [...parts, WEEK_GOAL]),
+  [WEEK_GOAL],
+]
+const WEEK_LINE = new RegExp(`^(?:${ALL_COMBOS.map((p) => p.join(' · ')).join('|')})$`)
 export function cleanWeek(v: unknown): string {
-  return typeof v === 'string' && v.length <= 120 && WEEK_LINE.test(v) ? v : ''
+  return typeof v === 'string' && v.length <= 160 && WEEK_LINE.test(v) ? v : ''
 }
 
 /** A word to recall, as the device sent it: one short line of letters, nothing that could be markup. */

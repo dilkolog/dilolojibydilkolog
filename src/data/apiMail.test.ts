@@ -277,6 +277,9 @@ describe('the weekly mail', () => {
 
   it('keeps only the lines the app writes, with bounded numbers', () => {
     expect(cleanWeek(LINE)).toBe(LINE)
+    expect(cleanWeek(`${LINE} · bu hafta 12 kelime daha`)).toBe(`${LINE} · bu hafta 12 kelime daha`)
+    expect(cleanWeek(`${LINE} · haftalık hedefe ulaşıldı`)).toBe(`${LINE} · haftalık hedefe ulaşıldı`)
+    expect(cleanWeek('5 gün · 312 cevap (%86 doğru) · bu hafta 5 kelime daha')).toBe('5 gün · 312 cevap (%86 doğru) · bu hafta 5 kelime daha')
     expect(cleanWeek('18 yeni kelime')).toBe('18 yeni kelime')
     expect(cleanWeek('5 gün · 312 cevap (%86 doğru)')).toBe('5 gün · 312 cevap (%86 doğru)')
     expect(cleanWeek('Click here: http://evil.example')).toBe('')
