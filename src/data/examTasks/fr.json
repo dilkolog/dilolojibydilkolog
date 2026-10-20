@@ -203,6 +203,58 @@
         "Je serais ravi(e) de vous rencontrer",
         "Je reste à votre disposition"
       ]
+    },
+    {
+      "id": "fr-exam-centre-ville",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "kind": "Essai argumenté",
+      "title": "Voitures et centre-ville",
+      "instruction": "Certaines villes envisagent d'interdire totalement les voitures dans leur centre. Rédigez un essai argumenté (250 à 300 mots) : présentez les arguments des deux camps, puis défendez votre position.",
+      "tr": "Bazı şehirler merkezlerinde arabaları tamamen yasaklamayı düşünüyor. Bir tartışma yazısı (250–300 kelime) yaz: iki tarafın argümanlarını sun, sonra kendi görüşünü savun.",
+      "min": 250,
+      "max": 300,
+      "checklist": [
+        "Konuyu ve soruyu giriş paragrafında kur.",
+        "İki tarafın en güçlü argümanını adil biçimde sun.",
+        "Kendi görüşünü örnek ve verilerle destekle.",
+        "Karşı argümana kısa bir yanıt ver.",
+        "Sonuçta görüşünü yeniden ve inceltilmiş biçimde söyle."
+      ],
+      "phrases": [
+        "Il convient d'abord de s'interroger sur…",
+        "D'un côté… de l'autre…",
+        "Certes… mais…",
+        "Force est de constater que…",
+        "En définitive, il me semble que…"
+      ]
+    },
+    {
+      "id": "fr-exam-lettre-ouverte",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "kind": "Açık mektup",
+      "title": "Sauvons la bibliothèque",
+      "instruction": "Vous apprenez que la bibliothèque de votre quartier doit fermer. Rédigez une lettre ouverte au maire (200 à 250 mots) pour défendre son maintien et proposer des solutions.",
+      "tr": "Mahalle kütüphanenizin kapanacağını öğreniyorsunuz. Belediye başkanına, kütüphanenin kalmasını savunan ve çözümler öneren bir açık mektup (200–250 kelime) yaz.",
+      "min": 200,
+      "max": 250,
+      "checklist": [
+        "Resmî hitapla başla ve yazma nedenini belirt.",
+        "Kütüphanenin mahalle için değerini somut örneklerle anlat.",
+        "Kapanmanın sonuçlarını belirt.",
+        "En az iki somut çözüm öner.",
+        "Nazik ama kararlı bir kapanış yap."
+      ],
+      "phrases": [
+        "Monsieur le Maire,",
+        "J'ai appris avec consternation que…",
+        "Cette fermeture priverait… de…",
+        "Je vous invite à envisager…",
+        "Dans l'attente d'une réponse favorable, je vous prie d'agréer…"
+      ]
     }
   ]
 }

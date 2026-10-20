@@ -265,6 +265,138 @@
     }
    ],
    "language": "es"
+  },
+  {
+   "id": "es-read-compartir",
+   "exam": "DELE",
+   "level": "B2",
+   "title": "Compartir piso, ¿para quién?",
+   "text": "Antes reservado a los estudiantes, compartir piso atrae hoy a personas de todas las edades. El primer motivo es económico: con unos alquileres que no dejan de subir, dividir un piso grande permite vivir en un barrio céntrico sin arruinarse. Pero el argumento no es solo económico. Muchos jóvenes profesionales, instalados en una ciudad desconocida, encuentran en ello una forma rápida de hacer amigos. Las dificultades existen, sin embargo. Hay que ponerse de acuerdo sobre la limpieza, las visitas y el ruido, y los desacuerdos en estos asuntos son la primera causa de que alguien se marche. Para evitarlos, algunos compañeros redactan una especie de reglamento cuando llega cada nuevo inquilino. Puede parecer exagerado, pero quienes lo han probado aseguran que los conflictos han disminuido de forma notable.",
+   "tr": "Eskiden öğrencilere özgü olan ev paylaşımı artık her yaştan insanı cezbediyor. İlk neden parasal: kiralar durmadan artarken büyük bir daireyi bölüşmek, iflas etmeden merkezî bir semtte yaşamayı mümkün kılıyor. Ama gerekçe yalnızca ekonomik değil. Yabancı bir şehre yerleşen birçok genç çalışan, bunda hızla arkadaş edinmenin bir yolunu buluyor. Yine de zorluklar var. Temizlik, misafirler ve gürültü konusunda anlaşmak gerekiyor; bu konulardaki anlaşmazlıklar birinin evden ayrılmasının başlıca sebebi. Bunlardan kaçınmak için bazı ev arkadaşları, her yeni gelen olduğunda bir tür tüzük yazıyor. Aşırı görünebilir ama denemiş olanlar çatışmaların belirgin biçimde azaldığını söylüyor.",
+   "questions": [
+    {
+     "prompt": "¿Cuál es el primer motivo para compartir piso según el texto?",
+     "options": [
+      "El deseo de volver a ser estudiante",
+      "El tamaño de los pisos",
+      "El ruido de los barrios",
+      "El económico"
+     ],
+     "answer": 3,
+     "why": "“El primer motivo es económico”: kiralar yükseldiği için maliyet."
+    },
+    {
+     "prompt": "¿Qué encuentran muchos jóvenes profesionales al compartir piso?",
+     "options": [
+      "Un alquiler gratuito",
+      "Una forma rápida de hacer amigos",
+      "Un trabajo en el barrio",
+      "Más tranquilidad"
+     ],
+     "answer": 1,
+     "why": "“Una forma rápida de hacer amigos”: hızla arkadaş edinmenin yolu."
+    },
+    {
+     "prompt": "¿Para qué sirve el reglamento?",
+     "options": [
+      "Para elegir a las visitas",
+      "Para fijar el precio del alquiler",
+      "Para evitar conflictos sobre limpieza, visitas y ruido",
+      "Para sustituir el contrato de alquiler"
+     ],
+     "answer": 2,
+     "why": "Tüzük, temizlik/ziyaretçi/gürültü anlaşmazlıklarını önlemek için."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-silencio",
+   "exam": "DELE",
+   "level": "C1",
+   "title": "El silencio, un lujo urbano",
+   "text": "En las grandes ciudades, el silencio se ha convertido en un bien escaso, casi en un artículo de lujo. Las inmobiliarias lo saben: un piso con vistas a un patio interior se vende bastante más caro que otro idéntico situado en una avenida. Sin embargo, los estudios de los últimos años demuestran que el ruido no es una simple molestia. Quienes viven expuestos al tráfico o a las obras duermen peor, se concentran con más dificultad y acaban sufriendo un cansancio que ni siquiera el descanso del fin de semana consigue aliviar. Algunos ayuntamientos han respondido creando «zonas tranquilas», donde se limita el paso de coches y se prohíbe la música amplificada. Los primeros resultados son alentadores, pero los comerciantes se muestran preocupados: según ellos, demasiada calma ahuyentaría a los clientes. Queda por ver si es posible conciliar una ciudad animada con una ciudad sosegada, o si algún día habrá que elegir una a costa de la otra.",
+   "tr": "Büyük şehirlerde sessizlik kıt bir değer, neredeyse bir lüks ürün hâline geldi. Emlakçılar bunu biliyor: iç avluya bakan bir daire, ana caddedeki aynı daireden belirgin biçimde daha pahalıya satılıyor. Oysa son yıllarda yapılan araştırmalar gürültünün basit bir rahatsızlıktan çok daha fazlası olduğunu gösteriyor. Sürekli trafiğe ya da inşaata maruz kalanlar daha kötü uyuyor, zor odaklanıyor ve hafta sonu dinlenmesinin bile geçiremediği bir yorgunluğa kapılıyor. Bazı belediyeler arabaların sınırlandığı ve yüksek sesli müziğin yasaklandığı «sakin bölgeler» oluşturarak karşılık verdi. İlk sonuçlar cesaret verici ama esnaf endişeli: onlara göre fazla huzur müşterileri uzaklaştırır. Canlı bir şehirle dingin bir şehrin bağdaştırılıp bağdaştırılamayacağı, yoksa bir gün birini diğerinin pahasına seçmek zorunda kalıp kalmayacağımız henüz belli değil.",
+   "questions": [
+    {
+     "prompt": "¿Por qué saben las inmobiliarias que el silencio tiene valor?",
+     "options": [
+      "Los pisos tranquilos se venden bastante más caros",
+      "Las avenidas se cierran de noche",
+      "Los compradores rechazan los barrios animados",
+      "Los patios interiores están prohibidos a los coches"
+     ],
+     "answer": 0,
+     "why": "Avluya bakan (sessiz) daire aynısından belirgin biçimde pahalıya satılıyor."
+    },
+    {
+     "prompt": "¿Qué demuestran los estudios recientes sobre el ruido?",
+     "options": [
+      "Que no afecta a la salud",
+      "Que el descanso del fin de semana lo compensa todo",
+      "Que altera el sueño y la concentración, y el cansancio persiste",
+      "Que la gente acaba acostumbrándose del todo"
+     ],
+     "answer": 2,
+     "why": "Uyku ve odaklanma bozuluyor; hafta sonu dinlenmesi yorgunluğu geçirmiyor."
+    },
+    {
+     "prompt": "¿Por qué se preocupan los comerciantes por las zonas tranquilas?",
+     "options": [
+      "Tienen que pagar un impuesto extra",
+      "Temen que ahuyenten a los clientes",
+      "No pueden repartir sus mercancías",
+      "Quieren más ruido para sus conciertos"
+     ],
+     "answer": 1,
+     "why": "“Demasiada calma ahuyentaría a los clientes”: fazla sessizlik müşteriyi kaçırır."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-ia",
+   "exam": "DELE",
+   "level": "C1",
+   "title": "¿Escribir con una máquina?",
+   "text": "Desde que se han extendido los programas de redacción automática, una pregunta divide a los profesores: ¿hay que prohibirlos en clase o enseñar a los alumnos a utilizarlos? Los partidarios de la prohibición sostienen que un texto producido en unos segundos no deja lugar al esfuerzo, y que el esfuerzo es precisamente lo que hace progresar. Sus detractores replican que la calculadora no acabó con las matemáticas y que el verdadero reto consiste en formar mentes capaces de comprobar, corregir y matizar lo que propone una máquina. Entre ambas posturas, varios centros ensayan una vía intermedia: los borradores se escriben a mano, en clase, y después se comparan con una versión corregida por el programa. El alumno debe entonces explicar cada diferencia. Este método exige tiempo, admiten los profesores, pero tiene un mérito: convierte la herramienta en objeto de reflexión en lugar de en un atajo.",
+   "tr": "Otomatik yazım yazılımları yaygınlaştığından beri öğretmenleri bir soru ayırıyor: bunları sınıfta yasaklamalı mı, yoksa öğrencilere nasıl kullanılacağını mı öğretmeli? Yasaktan yana olanlar, birkaç saniyede üretilen bir metnin çabaya yer bırakmadığını, ilerlemeyi sağlayanın ise tam da çaba olduğunu savunuyor. Karşı çıkanlar ise hesap makinesinin matematiği ortadan kaldırmadığını, asıl meselenin bir makinenin önerdiğini denetleyebilen, düzeltebilen ve inceltebilen zihinler yetiştirmek olduğunu söylüyor. Bu iki görüşün arasında birkaç okul orta bir yol deniyor: taslaklar sınıfta elle yazılıyor, sonra yazılımın düzelttiği sürümle karşılaştırılıyor. Öğrenci her farkı açıklamak zorunda. Öğretmenler bu yöntemin zaman aldığını kabul ediyor ama bir erdemi var: aracı bir kısayol olmaktan çıkarıp üzerinde düşünülen bir nesneye dönüştürüyor.",
+   "questions": [
+    {
+     "prompt": "¿Qué argumento defienden los partidarios de la prohibición?",
+     "options": [
+      "Los programas son demasiado caros",
+      "Los alumnos escriben muy despacio",
+      "A los profesores les falta tiempo",
+      "Sin esfuerzo no se progresa"
+     ],
+     "answer": 3,
+     "why": "“El esfuerzo es precisamente lo que hace progresar”: çaba ilerlemeyi sağlar."
+    },
+    {
+     "prompt": "¿Qué replican sus detractores?",
+     "options": [
+      "Que una herramienta nueva no destruyó las disciplinas: hay que aprender a controlarla",
+      "Que las máquinas escriben mejor que los alumnos",
+      "Que también hay que prohibir la calculadora",
+      "Que los profesores deberían usar el programa solos"
+     ],
+     "answer": 0,
+     "why": "Hesap makinesi örneği: asıl mesele makinenin önerdiğini denetlemeyi öğrenmek."
+    },
+    {
+     "prompt": "En el método intermedio, ¿qué debe hacer el alumno?",
+     "options": [
+      "Copiar la versión del programa",
+      "Escribir sin borrador",
+      "Explicar cada diferencia entre su borrador y la versión corregida",
+      "Corregir el trabajo de un compañero"
+     ],
+     "answer": 2,
+     "why": "“El alumno debe entonces explicar cada diferencia”: her farkı açıklamalı."
+    }
+   ],
+   "language": "es"
   }
  ]
 }

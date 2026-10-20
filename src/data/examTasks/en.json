@@ -203,6 +203,58 @@
         "I would welcome the opportunity to discuss…",
         "Yours sincerely,"
       ]
+    },
+    {
+      "id": "en-exam-proposal-youth",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "C1",
+      "kind": "Öneri raporu",
+      "title": "Spaces for young people",
+      "instruction": "Your town council wants to improve public spaces for young people. Write a proposal (220–260 words) for the council: describe the current situation, suggest two or three improvements and explain their benefits.",
+      "tr": "Belediyeniz gençlere yönelik kamusal alanları iyileştirmek istiyor. Meclise bir öneri raporu (220–260 kelime) yaz: mevcut durumu anlat, iki üç iyileştirme öner ve yararlarını açıkla.",
+      "min": 220,
+      "max": 260,
+      "checklist": [
+        "Raporun amacını başta belirt.",
+        "Mevcut durumu kısaca ve nesnel anlat.",
+        "Her öneriyi ayrı bir başlık ya da paragrafta ver.",
+        "Her önerinin yararını açıkla.",
+        "Kısa bir sonuç ve öneriyle bitir."
+      ],
+      "phrases": [
+        "The aim of this proposal is to…",
+        "At present, there is a lack of…",
+        "I would recommend that…",
+        "This would not only… but also…",
+        "In conclusion, I am convinced that…"
+      ]
+    },
+    {
+      "id": "en-exam-ielts-language",
+      "language": "en",
+      "exam": "IELTS",
+      "level": "C1",
+      "kind": "Görüş yazısı (IELTS tarzı)",
+      "title": "Foreign languages at school",
+      "instruction": "Some people believe that children should start learning a foreign language at primary school. Others think it is better to wait until secondary school. Discuss both views and give your own opinion (250–300 words).",
+      "tr": "Bazılarına göre çocuklar yabancı dil öğrenmeye ilkokulda başlamalı. Bazıları ortaokula kadar beklemenin daha iyi olduğunu düşünüyor. İki görüşü tartış ve kendi görüşünü belirt (250–300 kelime).",
+      "min": 250,
+      "max": 300,
+      "checklist": [
+        "Girişte konuyu başka sözcüklerle anlat ve görüşünü belirt.",
+        "İlk görüşü gerekçeleriyle anlat.",
+        "İkinci görüşü gerekçeleriyle anlat.",
+        "Kendi görüşünü örnekle destekle.",
+        "Kısa bir sonuç yaz; yeni argüman ekleme."
+      ],
+      "phrases": [
+        "It is often argued that…",
+        "Proponents of this view claim that…",
+        "On the other hand, critics point out that…",
+        "In my opinion, the benefits outweigh…",
+        "To sum up,"
+      ]
     }
   ]
 }

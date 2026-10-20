@@ -253,6 +253,8 @@ Birleşti: #37–#285 (aşağıdaki liste kronolojik değil, konuya göre birikm
 
 - **İspanyolca yeni 61 fiilin örnek cümleleri (2026-10-21):** `docs/veri/ornek-cumle-partileri/es-34…es-38.tsv` (fiil başına 7 zaman, `es-sentences.json`'a işlendi; araç hepsini kabul etti). `suicidar` bilerek yazılmadı (hassas konu, tabloda var). Artık verb-coverage raporundaki yeni İspanyolca fiillerin hepsinin cümlesi var; `placer` kusurlu fiil olduğu için tablosu yok.
 
+- **Sınav görevleri genişledi (2026-10-21):** `ExamPassage`/`ExamTask` artık `C1` seviyesi de taşır (UI'da C1 çipi). Okuma/dinleme: dil başına +3 metin (1 ek B2 "ev paylaşımı", 2 C1 "sessizlik, bir şehir lüksü" ve "makineyle yazmak"; aile adları DALF, DELE, Cambridge; İngilizce B2'de **IELTS** tarzı). Yazma görevleri: dil başına +2 C1 (DALF: tartışma yazısı + açık mektup; DELE: görüş yazısı + okur mektubu; İngilizce: Cambridge öneri raporu + IELTS tarzı görüş yazısı). Aynı üç metnin Türkçesi üç dilde ortak (`tr`). Testler: B2 ≥3, C1 ≥2 metin, uzunluk aralıkları B2 [95,200], C1 [140,280]. Yeni sınav ailesi eklemek için `exam` alanına ad yazmak yeter.
+
 ## Bekleyenler (2026-10-12)
 - **Kullanıcı:** yeni yedek dosyası → kişisel öğrenme analizi (dikte/geri çeviri kullanımı, cümle kartı tutma oranı, CEFR kapsamı); Ayarlar → Kullanım'daki oyun/fiil sayıları birkaç hafta birikince sadeleştirme.
 - Görsel test referansları: Actions kotası dönünce (`gh workflow run snapshots.yml --ref main`).

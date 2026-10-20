@@ -3,12 +3,12 @@ import { countWords, lengthState } from '../engine/examTasks'
 import { loadExamTasks } from './examTasks'
 
 describe('exam-style writing tasks', () => {
-  it('each language has tasks at A2, B1 and B2 with sound lengths and a checklist', async () => {
+  it('each language has tasks at A2, B1, B2 and C1 with sound lengths and a checklist', async () => {
     for (const language of ['fr', 'es', 'en'] as const) {
       const tasks = await loadExamTasks(language)
       expect(tasks.length, language).toBeGreaterThanOrEqual(8)
       expect(new Set(tasks.map((t) => t.id)).size).toBe(tasks.length)
-      expect(new Set(tasks.map((t) => t.level))).toEqual(new Set(['A2', 'B1', 'B2']))
+      expect(new Set(tasks.map((t) => t.level))).toEqual(new Set(['A2', 'B1', 'B2', 'C1']))
       for (const t of tasks) {
         expect(t.id.startsWith(`${language}-`), t.id).toBe(true)
         expect(t.language, t.id).toBe(language)

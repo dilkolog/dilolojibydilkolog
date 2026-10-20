@@ -4,11 +4,14 @@ import { examQuestionId, passageOrder, passageShare, shuffledQuestion, wordCount
 import { createRng } from '../rng'
 
 describe('exam-style reading and listening passages', () => {
-  it('each language has two passages at A2, B1 and B2, with unique ids and sound questions', () => {
+  it('each language has passages at A2, B1, B2 and C1, with unique ids and sound questions', () => {
     expect(new Set(examPassages.map((p) => p.id)).size).toBe(examPassages.length)
     for (const language of ['fr', 'es', 'en'] as const) {
       const own = examPassages.filter((p) => p.language === language)
-      for (const level of ['A2', 'B1', 'B2']) expect(own.filter((p) => p.level === level).length, `${language} ${level}`).toBe(2)
+      const count = (level: string) => own.filter((p) => p.level === level).length
+      for (const level of ['A2', 'B1']) expect(count(level), `${language} ${level}`).toBe(2)
+      expect(count('B2'), `${language} B2`).toBeGreaterThanOrEqual(3)
+      expect(count('C1'), `${language} C1`).toBeGreaterThanOrEqual(2)
       for (const p of own) {
         expect(p.id.startsWith(`${language}-`), p.id).toBe(true)
         for (const k of ['exam', 'title', 'text', 'tr'] as const) expect(p[k].trim(), `${p.id}.${k}`).not.toBe('')
@@ -28,7 +31,7 @@ describe('exam-style reading and listening passages', () => {
   })
 
   it('a text is about as long as its level asks', () => {
-    const range = { A2: [40, 95], B1: [70, 150], B2: [95, 200] } as const
+    const range = { A2: [40, 95], B1: [70, 150], B2: [95, 200], C1: [140, 280] } as const
     for (const p of examPassages) {
       const n = wordCount(p.text)
       expect(n, `${p.id} (${n} words)`).toBeGreaterThanOrEqual(range[p.level][0])
