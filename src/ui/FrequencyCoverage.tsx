@@ -4,6 +4,7 @@ import { frequencyWords } from '../data/frequency'
 import { frequencyCoverage } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { levelCoverage } from '../engine/cefrLevels'
+import { GoalPlannerCard } from './GoalPlannerCard'
 import { useCefr } from './useCefr'
 
 /**
@@ -45,6 +46,9 @@ export function FrequencyCoverageCard({ db, language, vocabulary, states }: { db
             Sıklığa göre
           </button>
         </div>
+      )}
+      {byLevel && levels && levels.length > 0 && (
+        <GoalPlannerCard db={db} language={language} levels={levels} />
       )}
       <p className="small muted">
         {byLevel ? (
