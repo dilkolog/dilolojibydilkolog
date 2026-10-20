@@ -15,7 +15,7 @@ Claude Code ve Antigravity aynı listeden çalışır; çakışmamak için:
 1. ~~**Hedef planlayıcı.**~~ (Tamamlandı: CEFR seviye hedef planlayıcı motoru, hedef tarihi ve kalan kelimeye göre günlük kota önerisi, tempo rozetleri [ahead/on_track/behind], `GoalPlannerCard` bileşeni ve testleri, #572)
 2. **Konuşma karşılaştırma ve telaffuz geri bildirimi.** Aynı cümlenin bir hafta sonraki puanı yapıldı (Azure anahtarıyla). Kalan: Azure'suz kullanıcı için ses eğrisi karşılaştırmasını zamanla çizgi yap.
 3. **Kişisel "zayıf nokta" haftalık mini turu.** Kör nokta röntgeni + yazı hata defteri + dilbilgisi tekrarı ortak bir 10 dakikalık "haftalık bakım" turunda birleşsin (tek düğme).
-6. **Okurken sesli çeviri.** Cümleye dokun, Türkçesi ve hedef dilde okunuşu birlikte çalsın (şu an ayrı iki dokunuş).
+6. ~~**Okurken sesli çeviri.**~~ (Tamamlandı: kelime kartında cümlenin Türkçesinin altında "Türkçesini dinle" ve "Cümle, sonra Türkçesi", `TranslateButton.tsx`, #604)
 
 ## Sosyal ve bağlılık
 8. **Canlı düello sonrası "rövanş serisi".** İki kişi arka arkaya üç düello oynayınca toplam skor tablosu; oda aynı kalsın.
@@ -31,11 +31,16 @@ Claude Code ve Antigravity aynı listeden çalışır; çakışmamak için:
 16. ~~**Haftalık özet mailine kişisel hedef.**~~ (Tamamlandı: `weekLine` kişisel haftalık kota hesaplama, sunucu `cleanWeek` regex doğrulaması ve testler, #569)
 
 ## Teknik ve dayanıklılık
-17. **Workers Builds ile otomatik dağıtım.** `docs/CLOUDFLARE.md`'de adımlar var; sahibinin Cloudflare panelinde bağlaması gerekiyor.
+17. ~~**Workers Builds ile otomatik dağıtım.**~~ (Tamamlandı 2026-10-21: sahibi Settings → Builds'te build command ve build variables'ı girdi; her `main` birleştirmesi canlıya gider, `npm run verify:deploy` ile doğrula)
 18. ~~**Dağıtım sonrası duman testi canlı hesapla.**~~ (Tamamlandı: `verify-deploy.mjs` ve `smoke-live.mjs` birleştirildi; başlıklar, bundle anahtarları, açık API uçları ve gerçek canlı hesap eşitleme döngüsü, #570)
 19. ~~**Blob → Supabase (arkadaş gelen kutusu).**~~ (Tamamlandı: `friend_inbox` tablosu, `0004_friend_inbox.sql` çalıştırılınca açılır, Blob'dan lazy taşıma, geri düşüş; sahibi SQL'i çalıştırmalı, `docs/SUPABASE.md`)
 20. ~~**loadGame günlük özeti.**~~ (Tamamlandı: 8+ filtre/harita geçişi tek $O(N)$ döngüye indirgendi, `longestStreakFromDays`, 30 bin olayda ~16 ms ve denklik testi, #571)
 22. ~~**Kararsız E2E'leri kökten çözmek.**~~ (Tamamlandı: `expect` süresi 10 sn, `actionTimeout` 15 sn, bir yeniden deneme [geçen yeniden deneme "flaky" diye raporlanır]; "count() sonra tıkla" yarışları düzeltildi: rehber dilbilgisi testi soruyu bekler, rozet hizası `expect.poll` ile oturana dek ölçülür, başparmak testi tıklamayı bırakıp yeniden bakar. Daha önce düşen 5 test 4 işçiyle 4'er kez yeniden denemesiz koşuldu: 20/20.)
+
+## Yeni (2026-10-21)
+27. **Eşitleme için gerçek iki cihazlı E2E.** Atlanan `sync.e2e.ts`'in yerine: iki tarayıcı bağlamı, sahte Supabase (`gate.e2e.ts` `stubNetwork` deseni), A'da kelime ekle → B'de görünsün. Birim düzeyinde `supabaseStore.test.ts` kapsıyor; tarayıcı düzeyi eksik.
+28. ~~**Atlanan medya uyarısı arka plan eşitlemesinde de.**~~ (Tamamlandı: `meta 'syncSkipped'`, Ayarlar → Hesap'ta kalıcı not)
+29. **Cihaz tercihlerinde silme yayılımı.** `devicePrefs` yalnızca değer yazar; bir cihazda silinen anahtar (ör. `diloloji:podcast:fr`) diğerinde kalır.
 
 ## Sahibinin kararına bağlı
 23. ~~**Tanıtım sayfası metni ve mobil ergonomi.**~~ (Tamamlandı: hero buton aralıkları, davet karşılama kartı, değer önerisi çipleri ve ferahlatılmış bölüm ritmi, #566)

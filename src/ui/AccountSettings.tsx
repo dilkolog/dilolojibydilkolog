@@ -29,6 +29,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
   const [message, setMessage] = useState<{ ok: boolean; text: string; conflict?: boolean } | null>(null)
   const [at, setAt] = useState<Date | null>(null)
   const [size, setSize] = useState<number | null>(null)
+  const [skipped, setSkipped] = useState(0)
   const [identity, setIdentity] = useState<Identity | null>(null)
   const { status: access } = useAccess()
   const modern = supabaseConfigured()
@@ -41,6 +42,8 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
     setAt(v ? new Date(v) : null)
     const bytes = (await db.meta.get('syncSize'))?.value
     setSize(typeof bytes === 'number' ? bytes : null)
+    const left = (await db.meta.get('syncSkipped'))?.value
+    setSkipped(typeof left === 'number' ? left : 0)
   }
   useEffect(() => {
     void refresh()
@@ -164,6 +167,11 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
           Şimdi eşitle
         </button>
       </div>
+      {skipped > 0 && !message && (
+        <p className="note" role="status">
+          {skipped} görsel/ses kaydı eşitlenemedi (çok büyük ya da yüklenemedi). Kelimelerin ve ilerlemen eşitlendi; o dosyalar bu cihazda duruyor.
+        </p>
+      )}
       {size !== null && syncUsage(size).warn && (
         <div className="status-note">
           <StatusPicture kind="full" small />

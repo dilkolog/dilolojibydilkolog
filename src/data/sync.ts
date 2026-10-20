@@ -760,6 +760,8 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
   const listed = Object.fromEntries([...shards].map(([name, shard]) => [name, shard.fp]))
   const coreBytes = await store.put('core', new TextEncoder().encode(JSON.stringify({ ...withoutShards(merged), shards: listed, mediaIds })), { ifMatch: fetched?.etag })
   await db.meta.put({ key: 'syncSize', value: Math.max(coreBytes, biggest) })
+  // What this sync left behind (a picture too big, a recording that would not go up): Settings → Account says so even after a background sync.
+  await db.meta.put({ key: 'syncSkipped', value: skipped })
   await db.meta.put({ key: 'syncAt', value: new Date().toISOString() })
   // Did the other devices' data change this one? The core compared without what is bound to differ (the export time, the part list).
   const coreOf = (b: Backup) => stableJson({ ...withoutShards(b), exportedAt: '', shards: undefined, mediaIds: undefined })
