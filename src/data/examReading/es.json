@@ -1,0 +1,270 @@
+{
+ "language": "es",
+ "source": "Diloloji (özgün)",
+ "passages": [
+  {
+   "id": "es-read-sevilla",
+   "exam": "DELE",
+   "level": "A2",
+   "title": "Un mensaje de Ana",
+   "text": "Hola Luis, ya estoy en Sevilla. Llegué ayer por la tarde y el viaje en autobús duró cinco horas. Hoy he visitado la catedral con mi prima y después hemos comido en un bar muy bonito del barrio de Triana. Mañana por la mañana vamos a la playa en coche y por la noche iremos a un concierto de flamenco. Vuelvo el domingo. ¡Te echo de menos! Ana",
+   "tr": "Selam Luis, artık Sevilla'dayım. Dün öğleden sonra geldim ve otobüs yolculuğu beş saat sürdü. Bugün kuzenimle katedrali gezdim, sonra Triana mahallesinde çok güzel bir barda yemek yedik. Yarın sabah arabayla plaja gidiyoruz, akşam da bir flamenko konserine gideceğiz. Pazar günü dönüyorum. Seni özledim! Ana",
+   "questions": [
+    {
+     "prompt": "¿Cómo viajó Ana a Sevilla?",
+     "options": [
+      "En tren",
+      "En autobús",
+      "En coche",
+      "En avión"
+     ],
+     "answer": 1,
+     "why": "“El viaje en autobús duró cinco horas”."
+    },
+    {
+     "prompt": "¿Dónde comió Ana hoy?",
+     "options": [
+      "En casa de su prima",
+      "En la playa",
+      "En un bar del barrio de Triana",
+      "En un restaurante de la catedral"
+     ],
+     "answer": 2,
+     "why": "Bugün “en un bar muy bonito del barrio de Triana” yemek yediler."
+    },
+    {
+     "prompt": "¿Qué hará Ana mañana por la noche?",
+     "options": [
+      "Irá a la playa",
+      "Visitará la catedral",
+      "Volverá a casa",
+      "Irá a un concierto de flamenco"
+     ],
+     "answer": 3,
+     "why": "Yarın sabah plaj, akşam flamenko konseri. Katedrali bugün gezdi."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-aeropuerto",
+   "exam": "DELE",
+   "level": "A2",
+   "title": "Aviso en el aeropuerto",
+   "text": "Atención, pasajeros del vuelo a Lima. La salida prevista a las dieciséis horas se retrasa una hora por la niebla. La puerta de embarque cambia: ahora es la puerta 12 y no la 8. Les rogamos que lleven su tarjeta de embarque y su pasaporte. Los pasajeros del vuelo a Bogotá deben ir a la puerta 5; su vuelo sale a la hora prevista.",
+   "tr": "Dikkat, Lima uçuşu yolcularına duyurulur. Saat on altıda planlanan kalkış sis nedeniyle bir saat gecikmektedir. Biniş kapısı değişti: artık 8 değil, 12 numaralı kapı. Biniş kartınızı ve pasaportunuzu yanınızda bulundurmanızı rica ederiz. Bogotá uçuşu yolcuları 5 numaralı kapıya gitmelidir; uçuşları zamanında kalkıyor.",
+   "questions": [
+    {
+     "prompt": "¿A qué hora saldrá el vuelo a Lima?",
+     "options": [
+      "A las 15:00",
+      "A las 16:00",
+      "A las 17:00",
+      "A las 18:00"
+     ],
+     "answer": 2,
+     "why": "16.00 + 1 saat gecikme = 17.00."
+    },
+    {
+     "prompt": "¿Por qué se retrasa el vuelo a Lima?",
+     "options": [
+      "Por una huelga",
+      "Por la niebla",
+      "Por un problema técnico",
+      "Por falta de pasajeros"
+     ],
+     "answer": 1,
+     "why": "“Se retrasa una hora por la niebla”: sis yüzünden."
+    },
+    {
+     "prompt": "¿A qué puerta deben ir los pasajeros a Bogotá?",
+     "options": [
+      "A la 5",
+      "A la 8",
+      "A la 12",
+      "A la 1"
+     ],
+     "answer": 0,
+     "why": "“Los pasajeros del vuelo a Bogotá deben ir a la puerta 5”."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-bici",
+   "exam": "DELE",
+   "level": "B1",
+   "title": "Bicicletas en la ciudad",
+   "text": "Desde hace cuatro años, Valencia anima a sus vecinos a moverse en bicicleta. La ciudad ha construido muchos carriles bici y ofrece un servicio de alquiler muy barato. Como resultado, uno de cada cinco vecinos usa la bici para ir al trabajo. Sin embargo, no todo el mundo está contento. Algunos comerciantes lamentan que hayan desaparecido plazas de aparcamiento y temen perder clientes. El ayuntamiento responde que los ciclistas compran tanto como los conductores porque paran con más frecuencia, y anuncia que construirá más aparcamientos para bicis cerca de las estaciones.",
+   "tr": "Dört yıldır Valencia sakinlerini bisikletle ulaşıma teşvik ediyor. Şehir çok sayıda bisiklet yolu yaptı ve çok ucuz bir kiralama hizmeti sunuyor. Sonuç olarak her beş sakinden biri işe bisikletle gidiyor. Ancak herkes memnun değil. Bazı esnaf park yerlerinin kaybolmasından yakınıyor ve müşteri kaybetmekten korkuyor. Belediye, bisikletlilerin daha sık durdukları için sürücüler kadar alışveriş yaptığını söylüyor ve istasyonların yakınına daha fazla bisiklet park yeri yapacağını duyuruyor.",
+   "questions": [
+    {
+     "prompt": "¿Qué proporción de vecinos usa la bici para ir al trabajo?",
+     "options": [
+      "Uno de cada tres",
+      "Uno de cada cinco",
+      "Uno de cada diez",
+      "La mitad"
+     ],
+     "answer": 1,
+     "why": "“Uno de cada cinco vecinos”: her beş kişiden biri."
+    },
+    {
+     "prompt": "¿Qué lamentan algunos comerciantes?",
+     "options": [
+      "Que haya demasiados ciclistas",
+      "Que el alquiler sea caro",
+      "Que hayan desaparecido plazas de aparcamiento",
+      "Que cierren las tiendas"
+     ],
+     "answer": 2,
+     "why": "Park yerlerinin kaybolmasından yakınıyorlar."
+    },
+    {
+     "prompt": "¿Qué anuncia el ayuntamiento?",
+     "options": [
+      "Que eliminará los carriles bici",
+      "Que subirá el precio del alquiler",
+      "Que prohibirá los coches",
+      "Que construirá más aparcamientos para bicis"
+     ],
+     "answer": 3,
+     "why": "Belediye istasyonlar yakınında daha fazla bisiklet park yeri yapacağını açıklıyor."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-panadera",
+   "exam": "DELE",
+   "level": "B1",
+   "title": "Una panadera cuenta su vida",
+   "text": "Me llamo Carmen y soy panadera desde hace doce años. Me levanto a las tres de la madrugada para preparar el pan. Mucha gente cree que mi trabajo es aburrido, pero a mí me encanta ver cómo sonríen los clientes cuando huelen el pan caliente. Lo más duro son los fines de semana, porque trabajo los sábados y los domingos y veo poco a mi familia. Aun así, no cambiaría mi profesión por nada del mundo. Dentro de cinco años espero abrir mi propia tienda.",
+   "tr": "Adım Carmen, on iki yıldır fırıncıyım. Ekmeği hazırlamak için gece üçte kalkıyorum. Birçok kişi işimin sıkıcı olduğunu sanıyor ama ben müşterilerin sıcak ekmeğin kokusunu alınca gülümsemesine bayılıyorum. En zoru hafta sonları, çünkü cumartesi ve pazar çalışıyorum ve ailemi az görüyorum. Yine de mesleğimi dünyada hiçbir şeye değişmem. Beş yıl içinde kendi dükkânımı açmayı umuyorum.",
+   "questions": [
+    {
+     "prompt": "¿A qué hora se levanta Carmen?",
+     "options": [
+      "A las tres",
+      "A las cinco",
+      "A las siete",
+      "A las nueve"
+     ],
+     "answer": 0,
+     "why": "“Me levanto a las tres de la madrugada”."
+    },
+    {
+     "prompt": "¿Qué es lo más duro para ella?",
+     "options": [
+      "Preparar el pan",
+      "Trabajar los fines de semana",
+      "Tratar con los clientes",
+      "Pagar el alquiler"
+     ],
+     "answer": 1,
+     "why": "Hafta sonu çalıştığı için ailesini az görüyor: en zor olan bu."
+    },
+    {
+     "prompt": "¿Qué espera hacer dentro de cinco años?",
+     "options": [
+      "Cambiar de profesión",
+      "Jubilarse",
+      "Abrir su propia tienda",
+      "Mudarse de ciudad"
+     ],
+     "answer": 2,
+     "why": "“Espero abrir mi propia tienda”."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-pantallas",
+   "exam": "DELE",
+   "level": "B2",
+   "title": "Pantallas y niños",
+   "text": "Según un estudio reciente, los niños menores de diez años pasan una media de tres horas diarias frente a una pantalla. Los investigadores, sin embargo, no condenan la tecnología: subrayan que el efecto depende sobre todo del uso. Ver una película en familia y comentarla no tiene los mismos resultados que pasar solo horas con un videojuego. En cambio, observan que los niños que usan una pantalla justo antes de dormir se duermen más tarde y descansan peor. Por eso recomiendan fijar horarios claros, apagar los aparatos una hora antes de acostarse y, sobre todo, dar ejemplo, porque los niños imitan a sus padres.",
+   "tr": "Yakın tarihli bir araştırmaya göre on yaşın altındaki çocuklar günde ortalama üç saati bir ekranın karşısında geçiriyor. Ancak araştırmacılar teknolojiyi suçlamıyor: etkinin her şeyden önce kullanıma bağlı olduğunun altını çiziyorlar. Ailece film izleyip tartışmak, saatlerce tek başına video oyunu oynamakla aynı sonuçları vermez. Buna karşılık, uyumadan hemen önce ekran kullanan çocukların daha geç uyuduğunu ve daha kötü dinlendiğini gözlemliyorlar. Bu yüzden net saatler belirlemeyi, cihazları yatmadan bir saat önce kapatmayı ve her şeyden önce örnek olmayı öneriyorlar, çünkü çocuklar anne babalarını taklit eder.",
+   "questions": [
+    {
+     "prompt": "Según los investigadores, ¿de qué depende sobre todo el efecto de las pantallas?",
+     "options": [
+      "Del tamaño de la pantalla",
+      "Del uso que se hace de ellas",
+      "De la edad de los padres",
+      "Del precio del aparato"
+     ],
+     "answer": 1,
+     "why": "“El efecto depende sobre todo del uso”."
+    },
+    {
+     "prompt": "¿Qué observan en los niños que usan pantallas antes de dormir?",
+     "options": [
+      "Se despiertan antes",
+      "Aprenden más",
+      "Se duermen más tarde y descansan peor",
+      "Juegan menos al día siguiente"
+     ],
+     "answer": 2,
+     "why": "Daha geç uyuyor ve daha kötü dinleniyorlar."
+    },
+    {
+     "prompt": "¿Qué recomiendan?",
+     "options": [
+      "Prohibir todos los aparatos",
+      "Dejar que los niños decidan",
+      "Comprar pantallas más pequeñas",
+      "Fijar horarios, apagar los aparatos una hora antes de acostarse y dar ejemplo"
+     ],
+     "answer": 3,
+     "why": "Net saatler, yatmadan bir saat önce kapatma ve örnek olma öneriliyor."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-pueblo",
+   "exam": "DELE",
+   "level": "B2",
+   "title": "Un pueblo que renace",
+   "text": "Hace veinte años, el pueblo de San Millán apenas tenía doscientos habitantes y su única escuela estaba a punto de cerrar. Entonces un maestro jubilado tuvo una idea: ofrecer casas por un euro simbólico a quienes se comprometieran a restaurarlas y a vivir en ellas al menos cinco años. Al principio nadie lo creyó, pero llegaron las primeras familias, seguidas de artesanos, una panadera y un café asociativo. Hoy el pueblo tiene seiscientos habitantes y la escuela ha tenido que ampliarse. El alcalde admite, no obstante, que el éxito tiene su lado negativo: los precios de la vivienda han subido y algunos jóvenes del pueblo ya no pueden permitírselo.",
+   "tr": "Yirmi yıl önce San Millán köyünün ancak iki yüz sakini vardı ve tek okulu kapanmak üzereydi. Sonra emekli bir öğretmenin aklına bir fikir geldi: evleri onarmayı ve orada en az beş yıl yaşamayı taahhüt edenlere sembolik bir avroya ev sunmak. Başta kimse inanmadı, ama ilk aileler geldi, ardından zanaatkârlar, bir fırıncı kadın ve bir dernek kafesi. Bugün köyün altı yüz sakini var ve okulun büyütülmesi gerekti. Belediye başkanı ise başarının olumsuz bir yanı olduğunu kabul ediyor: konut fiyatları arttı ve köyün bazı gençleri artık buna güç yetiremiyor.",
+   "questions": [
+    {
+     "prompt": "¿Qué problema tenía el pueblo hace veinte años?",
+     "options": [
+      "Tenía demasiados habitantes",
+      "Tenía pocos habitantes y su escuela estaba a punto de cerrar",
+      "No tenía carretera",
+      "Había una epidemia"
+     ],
+     "answer": 1,
+     "why": "Köyde ancak 200 kişi vardı ve okul kapanmak üzereydi."
+    },
+    {
+     "prompt": "¿En qué consistía la idea del maestro jubilado?",
+     "options": [
+      "En vender terrenos baratos",
+      "En construir un hotel",
+      "En abrir una fábrica",
+      "En ofrecer casas por un euro a cambio de restaurarlas y vivir en ellas cinco años"
+     ],
+     "answer": 3,
+     "why": "Evler onarılma ve en az beş yıl orada yaşama karşılığında bir avroya sunuluyordu."
+    },
+    {
+     "prompt": "¿Qué aspecto negativo reconoce el alcalde?",
+     "options": [
+      "Que la escuela es pequeña",
+      "Que no hay panadería",
+      "Que los precios de la vivienda han subido y algunos jóvenes no pueden pagarla",
+      "Que llegaron pocas familias"
+     ],
+     "answer": 2,
+     "why": "Konut fiyatları arttı, bazı gençler artık oturamıyor."
+    }
+   ],
+   "language": "es"
+  }
+ ]
+}

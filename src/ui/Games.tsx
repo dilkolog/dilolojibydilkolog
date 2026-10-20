@@ -39,6 +39,8 @@ import { AffixHunt } from './games/AffixHunt'
 import { flowItems } from '../data/flow'
 import { trapWords } from '../data/traps'
 import { irregularVerbs, phrasalVerbs } from '../data/englishVerbs'
+import { examPassages } from '../data/examReading'
+import { ExamTasks } from './games/ExamTasks'
 import { CONFUSABLE_RULES } from '../data/confusableRules'
 import { ConfusablesGame } from './games/ConfusablesGame'
 import { grammarExercises } from '../data/grammar'
@@ -174,6 +176,7 @@ export function GamesScreen(
     if (game === 'register') return <RegisterRound language={p.language} onLesson={p.onOpenLesson} onExit={() => setGame(null)} />
     if (game === 'affix') return <AffixHunt language={p.language} onExit={() => setGame(null)} />
     if (game === 'flow') return <FlowRound language={p.language} onLesson={p.onOpenLesson} onExit={() => setGame(null)} />
+    if (game === 'exam-tasks') return <ExamTasks language={p.language} onExit={() => setGame(null)} />
     if (game === 'traps') return <TrapRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'confusables') return <ConfusablesGame language={p.language} best={records[`confusables:${p.language}`]} recordKey={`confusables:${p.language}`} onExit={() => setGame(null)} />
     if (game === 'reflex') return <ReflexRound language={p.language} onExit={() => setGame(null)} />
@@ -260,10 +263,11 @@ export function GamesScreen(
   const confusablesCard: GameCard = { id: 'confusables', emoji: '👯', name: 'İkizler Arenası', text: 'Birbirine benzeyen veya karıştırılan ikiz kelimeleri ayırt et: aradaki farkı kuralıyla öğren.', status: record(`confusables:${p.language}`, (v) => `%${v}`) ?? `${CONFUSABLE_RULES.filter((r) => r.language === p.language).length} kural çifti` }
   const registerCard: GameCard = { id: 'register', emoji: '🎭', name: 'Kayıt farkı', text: 'Sokakta, standart ve resmî: durumu oku, ortama uyan söyleyişi seç.', status: record(`register:${p.language}`, (v) => `%${v}`) ?? `${registerItems.filter((r) => r.language === p.language).length} düşünce · B1–C1` }
   const flowCard: GameCard = { id: 'flow', emoji: '🧱', name: 'Metin akışı', text: 'Paragrafta eksik bağlaçları yerleştir: zıtlık, neden, taviz.', status: record(`flow:${p.language}`, (v) => `%${v}`) ?? `${flowItems.filter((r) => r.language === p.language).length} paragraf · B1–C1` }
+  const examCard: GameCard = { id: 'exam-tasks', emoji: '📝', name: 'Sınav tarzı görevler', text: 'DELF, DELE, Cambridge tarzı kısa metinler: oku ya da yalnızca dinle, üç soruyu cevapla.', status: record(`exam-tasks:${p.language}`, (v) => `%${v}`) ?? `${examPassages.filter((e) => e.language === p.language).length} metin · A2–B2` }
   const duelCard: GameCard = { id: 'duel', emoji: '🥊', name: 'Arkadaşla düello', text: 'Aynı 10 soruyu ikiniz de çözün: kendi zamanınızda bir bağlantıyla ya da canlı odada aynı anda. Hesap gerekmez.', status: 'Bağlantıyla ya da canlı oda' }
   const affixCard: GameCard = { id: 'affix', emoji: '🌱', name: 'Ek avı', text: 'Bir kelime ve türevi: hangi ek ya da ön ek getirir? Kelimeyi sen kur.', status: 'Kendi kelimelerinden' }
   const enVerbsCard: GameCard = { id: 'verbs', emoji: '🕰️', name: 'Fiil laboratuvarı', text: 'Düzensiz fiiller ve phrasal verb’ler: listeye bak, sonra alıştır.', status: `${irregularVerbs.length} düzensiz fiil · ${phrasalVerbs.length} phrasal verb`, open: p.onOpenVerbs }
-  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, spotErrorCard, rewriteCard, collocationsCard, duelCard, trapCard, confusablesCard, registerCard, flowCard, affixCard, enVerbsCard] })
+  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, spotErrorCard, rewriteCard, collocationsCard, duelCard, trapCard, confusablesCard, registerCard, flowCard, affixCard, examCard, enVerbsCard] })
   else
     groups.push({
       title: 'Dilbilgisi',
@@ -278,6 +282,7 @@ export function GamesScreen(
         confusablesCard,
         registerCard,
         flowCard,
+        examCard,
         affixCard,
         { id: 'article', emoji: '🏷️', name: 'Artikel antrenmanı', text: `Kendi isimlerinle ${p.language === 'fr' ? 'le/la' : 'el/la'}, en çok karıştırdıkların önce.`, status: 'Hızlı, sırayla', scheduled: true },
         {

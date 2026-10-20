@@ -1,0 +1,270 @@
+{
+ "language": "fr",
+ "source": "Diloloji (özgün)",
+ "passages": [
+  {
+   "id": "fr-read-lyon",
+   "exam": "DELF",
+   "level": "A2",
+   "title": "Un message de Paul",
+   "text": "Salut Marie, je suis arrivé à Lyon hier soir. Le voyage en train a duré quatre heures, mais je n'ai pas dormi parce que mon voisin parlait très fort. Aujourd'hui, je visite la vieille ville avec une amie. Demain, nous allons au musée des Confluences, puis nous mangeons dans un restaurant près de la rivière. Je rentre dimanche. Tu me manques ! Paul",
+   "tr": "Selam Marie, dün akşam Lyon'a vardım. Tren yolculuğu dört saat sürdü ama yanımdaki yolcu çok yüksek sesle konuştuğu için uyuyamadım. Bugün bir arkadaşımla eski şehri geziyorum. Yarın Confluences müzesine gideceğiz, sonra nehrin yakınında bir restoranda yemek yiyeceğiz. Pazar günü dönüyorum. Seni özledim! Paul",
+   "questions": [
+    {
+     "prompt": "Quand Paul est-il arrivé à Lyon ?",
+     "options": [
+      "Hier soir",
+      "Ce matin",
+      "Dimanche",
+      "Demain"
+     ],
+     "answer": 0,
+     "why": "Metinde “je suis arrivé à Lyon hier soir” deniyor: dün akşam."
+    },
+    {
+     "prompt": "Pourquoi Paul n'a-t-il pas dormi dans le train ?",
+     "options": [
+      "Il avait faim",
+      "Son voisin parlait très fort",
+      "Le train était en retard",
+      "Il lisait un livre"
+     ],
+     "answer": 1,
+     "why": "“Mon voisin parlait très fort”: yanındaki yolcu yüksek sesle konuşuyordu."
+    },
+    {
+     "prompt": "Que fait Paul demain ?",
+     "options": [
+      "Il rentre chez lui",
+      "Il visite la vieille ville",
+      "Il va au musée, puis au restaurant",
+      "Il prend le train pour Paris"
+     ],
+     "answer": 2,
+     "why": "Yarın müzeye gidecek, sonra restoranda yemek yiyecek. Eski şehri bugün geziyor, eve pazar günü dönüyor."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-gare",
+   "exam": "DELF",
+   "level": "A2",
+   "title": "Annonce à la gare",
+   "text": "Mesdames et messieurs, le train pour Marseille, départ prévu à quatorze heures trente, a vingt minutes de retard. Il partira de la voie 5 et non de la voie 3. Nous vous prions de nous excuser. Les voyageurs pour Nice doivent prendre le train de quinze heures, voie 2. Merci de votre attention.",
+   "tr": "Bayanlar baylar, kalkışı on dört otuzda olan Marsilya treni yirmi dakika gecikmelidir. Tren 3. perondan değil 5. perondan kalkacaktır. Özür dileriz. Nice yolcuları saat on beş trenine, 2. peronda binmelidir. İlginiz için teşekkürler.",
+   "questions": [
+    {
+     "prompt": "À quelle heure le train pour Marseille partira-t-il ?",
+     "options": [
+      "14 h 30",
+      "14 h 50",
+      "15 h 00",
+      "14 h 10"
+     ],
+     "answer": 1,
+     "why": "14.30 + 20 dakika gecikme = 14.50."
+    },
+    {
+     "prompt": "De quelle voie partira-t-il ?",
+     "options": [
+      "Voie 3",
+      "Voie 5",
+      "Voie 2",
+      "Voie 4"
+     ],
+     "answer": 1,
+     "why": "“Il partira de la voie 5 et non de la voie 3”: 3. peron değil, 5. peron."
+    },
+    {
+     "prompt": "Que doivent faire les voyageurs pour Nice ?",
+     "options": [
+      "Attendre le train de Marseille",
+      "Aller à la voie 3",
+      "Prendre le train de 15 heures, voie 2",
+      "Retourner à la maison"
+     ],
+     "answer": 2,
+     "why": "Nice yolcuları saat 15.00 trenine, 2. peronda binecek."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-velo",
+   "exam": "DELF",
+   "level": "B1",
+   "title": "Le vélo en ville",
+   "text": "Depuis cinq ans, la ville de Strasbourg encourage ses habitants à se déplacer à vélo. Elle a construit plus de six cents kilomètres de pistes cyclables et propose des vélos en location à un prix modique. Résultat : un habitant sur six utilise désormais son vélo chaque jour pour aller travailler. Pourtant, tout le monde n'est pas satisfait. Certains commerçants regrettent la suppression de places de parking devant leurs boutiques et craignent de perdre des clients. La mairie répond que les cyclistes dépensent autant, voire plus, que les automobilistes, car ils s'arrêtent plus souvent. Elle prévoit de nouveaux garages à vélos près des gares.",
+   "tr": "Beş yıldır Strazburg şehri sakinlerini bisikletle ulaşıma teşvik ediyor. Altı yüz kilometreden fazla bisiklet yolu yaptı ve düşük fiyata kiralık bisiklet sunuyor. Sonuç: artık her altı kişiden biri her gün işe bisikletle gidiyor. Yine de herkes memnun değil. Bazı esnaf, dükkânlarının önündeki park yerlerinin kaldırılmasından yakınıyor ve müşteri kaybetmekten korkuyor. Belediye, bisikletlilerin daha sık durdukları için sürücüler kadar, hatta daha fazla harcadığını söylüyor. Garların yakınına yeni bisiklet garajları yapmayı planlıyor.",
+   "questions": [
+    {
+     "prompt": "Quelle part des habitants va au travail à vélo chaque jour ?",
+     "options": [
+      "Un sur trois",
+      "Un sur six",
+      "Un sur dix",
+      "Tous"
+     ],
+     "answer": 1,
+     "why": "“Un habitant sur six”: her altı kişiden biri."
+    },
+    {
+     "prompt": "Que reprochent certains commerçants à la ville ?",
+     "options": [
+      "Les loyers sont trop chers",
+      "Il y a trop de cyclistes dans les magasins",
+      "Des places de parking ont disparu",
+      "Les vélos sont trop chers"
+     ],
+     "answer": 2,
+     "why": "Esnaf, dükkânların önündeki park yerlerinin kaldırılmasından yakınıyor."
+    },
+    {
+     "prompt": "Que répond la mairie ?",
+     "options": [
+      "Les cyclistes dépensent autant ou plus que les automobilistes",
+      "Les commerçants ont raison",
+      "Elle supprimera les pistes cyclables",
+      "Les cyclistes ne dépensent rien"
+     ],
+     "answer": 0,
+     "why": "Belediye “bisikletliler sürücüler kadar, hatta daha fazla harcıyor” diyor."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-boulangere",
+   "exam": "DELF",
+   "level": "B1",
+   "title": "Une boulangère raconte",
+   "text": "Je m'appelle Nadia et je suis boulangère depuis douze ans. Je me lève à trois heures du matin pour préparer le pain. Beaucoup de gens pensent que ce métier est monotone, mais moi, j'adore voir les clients sourire quand ils sentent l'odeur du pain chaud. Le plus difficile, ce sont les week-ends : je travaille le samedi et le dimanche, alors je vois peu ma famille. Pourtant, je ne changerais de métier pour rien au monde. Dans cinq ans, j'espère ouvrir ma propre boutique.",
+   "tr": "Adım Nadia, on iki yıldır fırıncıyım. Ekmek hazırlamak için sabah üçte kalkıyorum. Birçok kişi bu mesleğin monoton olduğunu düşünüyor ama ben müşterilerin sıcak ekmek kokusunu alınca gülümsediğini görmeye bayılıyorum. En zoru hafta sonları: cumartesi ve pazar çalışıyorum, bu yüzden ailemi az görüyorum. Yine de dünyada hiçbir şey için mesleğimi değiştirmem. Beş yıl sonra kendi dükkânımı açmayı umuyorum.",
+   "questions": [
+    {
+     "prompt": "À quelle heure Nadia se lève-t-elle ?",
+     "options": [
+      "À trois heures",
+      "À cinq heures",
+      "À sept heures",
+      "À midi"
+     ],
+     "answer": 0,
+     "why": "“Je me lève à trois heures du matin”."
+    },
+    {
+     "prompt": "Qu'est-ce qui est le plus difficile pour elle ?",
+     "options": [
+      "Préparer le pain",
+      "Les clients désagréables",
+      "Travailler le week-end",
+      "Se lever tôt"
+     ],
+     "answer": 2,
+     "why": "“Le plus difficile, ce sont les week-ends”: hafta sonları çalışmak, çünkü ailesini az görüyor."
+    },
+    {
+     "prompt": "Que veut-elle faire dans cinq ans ?",
+     "options": [
+      "Changer de métier",
+      "Ouvrir sa propre boutique",
+      "Prendre sa retraite",
+      "Voyager"
+     ],
+     "answer": 1,
+     "why": "“J'espère ouvrir ma propre boutique”: kendi dükkânını açmak."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-ecrans",
+   "exam": "DELF",
+   "level": "B2",
+   "title": "Les écrans et les enfants",
+   "text": "Selon une récente étude, les enfants de moins de dix ans passent en moyenne trois heures par jour devant un écran. Les chercheurs ne condamnent pas pour autant la technologie : ils soulignent que l'effet dépend surtout de l'usage. Regarder un dessin animé en famille et en discuter ne produit pas les mêmes résultats que passer seul des heures sur un jeu vidéo. En revanche, ils observent que les enfants qui utilisent un écran juste avant de dormir s'endorment plus tard et dorment moins bien. Ils recommandent donc de fixer des horaires clairs, d'éteindre les appareils une heure avant le coucher et, surtout, de montrer l'exemple, car les enfants imitent le comportement de leurs parents.",
+   "tr": "Yakın tarihli bir araştırmaya göre on yaşından küçük çocuklar günde ortalama üç saatini ekran karşısında geçiriyor. Araştırmacılar bu nedenle teknolojiyi suçlamıyor: etkinin asıl kullanıma bağlı olduğunu vurguluyorlar. Ailece çizgi film izleyip bunu konuşmak, saatlerce tek başına video oyunu oynamakla aynı sonuçları vermez. Buna karşılık, uyumadan hemen önce ekran kullanan çocukların daha geç uyuduğunu ve daha kötü uyuduğunu gözlemliyorlar. Bu yüzden net saatler belirlemeyi, cihazları yatmadan bir saat önce kapatmayı ve her şeyden önce örnek olmayı öneriyorlar, çünkü çocuklar anne babalarının davranışını taklit eder.",
+   "questions": [
+    {
+     "prompt": "Selon les chercheurs, qu'est-ce qui compte le plus ?",
+     "options": [
+      "Le temps total passé devant l'écran",
+      "La façon dont on utilise l'écran",
+      "L'âge de l'enfant",
+      "Le prix de l'appareil"
+     ],
+     "answer": 1,
+     "why": "“L'effet dépend surtout de l'usage”: etki en çok kullanım biçimine bağlı."
+    },
+    {
+     "prompt": "Quelle conséquence observent-ils pour les écrans avant le coucher ?",
+     "options": [
+      "Les enfants se réveillent plus tôt",
+      "Les enfants mangent moins",
+      "Les enfants s'endorment plus tard et dorment moins bien",
+      "Les enfants jouent moins"
+     ],
+     "answer": 2,
+     "why": "“S'endorment plus tard et dorment moins bien”."
+    },
+    {
+     "prompt": "Que recommandent-ils aux parents ?",
+     "options": [
+      "D'interdire tous les écrans",
+      "De fixer des horaires, d'éteindre les appareils une heure avant le coucher et de montrer l'exemple",
+      "D'acheter des écrans plus petits",
+      "De laisser les enfants décider seuls"
+     ],
+     "answer": 1,
+     "why": "Net saatler, yatmadan bir saat önce kapatma ve örnek olma öneriliyor. Tüm ekranları yasaklamak önerilmiyor."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-village",
+   "exam": "DELF",
+   "level": "B2",
+   "title": "Un village qui renaît",
+   "text": "Il y a vingt ans, le village de Saint-Aubin comptait à peine deux cents habitants et sa seule école était sur le point de fermer. Puis un ancien instituteur a eu une idée : proposer des maisons à un euro symbolique à ceux qui s'engageaient à les restaurer et à y vivre au moins cinq ans. Au début, personne n'y croyait. Mais les premières familles sont arrivées, suivies d'artisans, d'une boulangère et d'un café associatif. Aujourd'hui, le village compte six cents habitants et l'école a dû agrandir ses locaux. Le maire reconnaît cependant que ce succès a un revers : les prix de l'immobilier ont augmenté et certains jeunes du village ne peuvent plus s'y loger.",
+   "tr": "Yirmi yıl önce Saint-Aubin köyünün ancak iki yüz sakini vardı ve tek okulu kapanmak üzereydi. Sonra emekli bir öğretmenin bir fikri oldu: evleri onarmayı ve orada en az beş yıl yaşamayı taahhüt edenlere sembolik bir avroya ev vermek. Başta kimse inanmadı. Ama ilk aileler geldi, ardından zanaatkârlar, bir fırıncı ve bir dernek kafesi. Bugün köyün altı yüz sakini var ve okul binasını büyütmek zorunda kaldı. Belediye başkanı ise bu başarının bir bedeli olduğunu kabul ediyor: konut fiyatları arttı ve köyün bazı gençleri artık orada oturamıyor.",
+   "questions": [
+    {
+     "prompt": "Quel problème le village avait-il il y a vingt ans ?",
+     "options": [
+      "Il avait trop d'habitants",
+      "Il perdait ses habitants et son école risquait de fermer",
+      "Il n'avait pas d'eau",
+      "Il était trop touristique"
+     ],
+     "answer": 1,
+     "why": "Köyde ancak 200 kişi vardı ve tek okul kapanmak üzereydi."
+    },
+    {
+     "prompt": "En quoi consistait l'idée de l'ancien instituteur ?",
+     "options": [
+      "Vendre des terrains à bas prix",
+      "Construire une usine",
+      "Donner des maisons à un euro contre leur restauration et cinq ans de présence",
+      "Ouvrir un hôtel"
+     ],
+     "answer": 2,
+     "why": "Evler, onarılması ve en az beş yıl orada yaşanması karşılığında bir avroya veriliyordu."
+    },
+    {
+     "prompt": "Quel inconvénient le maire reconnaît-il ?",
+     "options": [
+      "L'école est trop petite",
+      "Les artisans sont partis",
+      "Les prix des logements ont augmenté, et des jeunes du village ne peuvent plus y vivre",
+      "Il n'y a plus de café"
+     ],
+     "answer": 2,
+     "why": "Konut fiyatları arttı, köyün bazı gençleri artık orada oturamıyor. Okul büyüdü, kafe var."
+    }
+   ],
+   "language": "fr"
+  }
+ ]
+}
