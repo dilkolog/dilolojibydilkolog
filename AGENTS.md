@@ -251,6 +251,8 @@ Birleşti: #37–#285 (aşağıdaki liste kronolojik değil, konuya göre birikm
 
 - **Reading.tsx bölündü (2026-10-21, davranış aynı):** 789 → ~680 satır. `ui/ReaderTools.tsx` (metin üstündeki mod çipleri satırı), `ui/ReaderAside.tsx` (`MultiBar` çoklu seçim çubuğu, `AddingCard` “Kelimelerime ekle”), `ui/readerForms.ts` (`formsOfSelection`, `ownVerb`: dokunulan sözcüğün çekim okumaları, bileşik zaman önce), `ui/ReadingHome.tsx` (metin açık değilken kütüphane ana ekranı). Kalan büyük parça okuyucunun durumu ve işleyicileri (zaten `useReaderMarks`, `useFinishReading`, `useMultiSelect`, `useListenFollow` ayrı); bundan sonrası için bileşen durumunu bir bağlam/kancaya taşımak gerekir. **Oyun resimleri:** her oyun kimliğinin `GAME_ART`ta *ayrı* resmi olmalı (`gameArt.test.ts`: aynı resim iki oyunda kullanılamaz; `paletteArt.test.tsx` her oyunun resmini ister): yeni oyunda yeni resim iste ya da kullanılmayan bir `head-*` resmini ver (Sınav tarzı görevler `head-exam`).
 
+- **İspanyolca yeni 61 fiilin örnek cümleleri (2026-10-21):** `docs/veri/ornek-cumle-partileri/es-34…es-38.tsv` (fiil başına 7 zaman, `es-sentences.json`'a işlendi; araç hepsini kabul etti). `suicidar` bilerek yazılmadı (hassas konu, tabloda var). Artık verb-coverage raporundaki yeni İspanyolca fiillerin hepsinin cümlesi var; `placer` kusurlu fiil olduğu için tablosu yok.
+
 ## Bekleyenler (2026-10-12)
 - **Kullanıcı:** yeni yedek dosyası → kişisel öğrenme analizi (dikte/geri çeviri kullanımı, cümle kartı tutma oranı, CEFR kapsamı); Ayarlar → Kullanım'daki oyun/fiil sayıları birkaç hafta birikince sadeleştirme.
 - Görsel test referansları: Actions kotası dönünce (`gh workflow run snapshots.yml --ref main`).
