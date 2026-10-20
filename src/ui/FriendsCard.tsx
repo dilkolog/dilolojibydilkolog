@@ -1,7 +1,7 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import { DEFAULT_SETTINGS, type Profile } from '../data/db'
 import { db } from '../data/instance'
-import { addFriend, clearInbox, FriendsError, loadFriends, loadInbox, publishFriendCard, recentDays, removeFriend, showCode, type FriendView, type InboxItem } from '../data/friends'
+import { addFriend, clearInbox, FriendsError, loadFriends, loadInbox, publishFriendCard, recentDays, removeFriend, type FriendView, type InboxItem } from '../data/friends'
 import { localDate } from '../engine/progress'
 import { useAccess } from './accessContext'
 import { Avatar } from './Avatar'
@@ -50,8 +50,6 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
   const [range, setRange] = useState<'today' | 'week'>('today')
   const [data, setData] = useState<{ me: FriendView; friends: FriendView[] } | null>(null)
   const [failed, setFailed] = useState(false)
-  const [code, setCode] = useState('')
-  const [adding, setAdding] = useState(false)
   const [copied, setCopied] = useState(false)
   const [nicknames, setNicknames] = useState<Record<string, string>>(storedNicknames)
   const [inbox, setInbox] = useState<InboxItem[]>([])
@@ -133,21 +131,6 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
       </section>
     )
 
-  const add = async () => {
-    const c = code.trim()
-    if (!c) return
-    setAdding(true)
-    try {
-      await addFriend(c)
-      setCode('')
-      showToast('Arkadaşın eklendi.')
-      await refresh()
-    } catch (e) {
-      showToast(e instanceof FriendsError ? (REASONS[e.reason] ?? 'Eklenemedi, biraz sonra yine dene.') : 'Eklenemedi, biraz sonra yine dene.', undefined, 5000, 'info')
-    } finally {
-      setAdding(false)
-    }
-  }
   const saveNickname = (code: string) => {
     const trimmed = editName.trim().slice(0, 24)
     setNicknames((prev) => {
@@ -400,7 +383,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
       {data && data.friends.length === 0 && (
         <p className="small muted friends-empty">
           <img className="friends-art" src={NEW_ART.friendsCode} alt="" height={56} draggable={false} />
-          <span>Arkadaşının kodunu ekle; birbirinizin günlük XP'sini görüp yarışın.</span>
+          <span>Arkadaşını kullanıcı adıyla bul; birbirinizin günlük XP'sini görüp yarışın.</span>
         </p>
       )}
       {data && (
@@ -408,58 +391,26 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
           <summary className="friends-accordion-summary small">
             <span className="friends-accordion-title">
               <PlusIcon size={14} className="friends-accordion-icon" />
-              <span>Arkadaş ekle ve kodunu paylaş</span>
+              <span>Arkadaş ekle</span>
             </span>
             <ChevronDownIcon size={16} className="friends-accordion-arrow" />
           </summary>
           <div className="stack gap-2 friends-add-body">
-            <div className="friends-code-card">
-              <div className="friends-code-meta">
-                <span className="friends-code-eyebrow">Senin davet kodun</span>
-                <span className="small muted">Bağlantıyı gönder: hesabı olmayan arkadaşın da katılıp seni ekler</span>
-              </div>
-              <div className="friends-code-row">
-                <div className="friends-code small">
-                  <span className="friends-code-label">
-                    <code>{showCode(data.me.code)}</code>
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  className={`btn btn-sm ${copied ? 'btn-ok friends-copy-ok' : ''}`}
-                  onClick={() => void copy()}
-                  title="Davet bağlantısını paylaş"
-                >
-                  <CopyIcon size={14} className="inline-icon" />
-                  <span>{copied ? 'Hazır!' : 'Davet et'}</span>
-                </button>
-              </div>
+            <div className="friends-invite-row">
+              <span className="small muted">Hesabı olmayan arkadaşın bağlantıyla katılıp seni ekler.</span>
+              <button
+                type="button"
+                className={`btn btn-sm ${copied ? 'btn-ok friends-copy-ok' : ''}`}
+                onClick={() => void copy()}
+                title="Davet bağlantısını paylaş"
+              >
+                <CopyIcon size={14} className="inline-icon" />
+                <span>{copied ? 'Hazır!' : 'Davet et'}</span>
+              </button>
             </div>
             <Suspense fallback={null}>
               <FriendFind />
             </Suspense>
-            <form
-              className="friends-form"
-              onSubmit={(e) => {
-                e.preventDefault()
-                void add()
-              }}
-            >
-              <input
-                className="input friends-input"
-                value={code}
-                onChange={(e) => setCode(e.target.value)}
-                placeholder="Arkadaşının kodu (örn: ABCD-1234)"
-                aria-label="Arkadaşının kodu"
-                autoCapitalize="characters"
-                autoComplete="off"
-                spellCheck={false}
-                maxLength={12}
-              />
-              <button type="submit" className="btn btn-sm friends-submit-btn" disabled={adding || !code.trim()}>
-                {adding ? 'Ekleniyor…' : 'Ekle'}
-              </button>
-            </form>
           </div>
         </details>
       )}
