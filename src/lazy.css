@@ -1611,7 +1611,7 @@ button.badge-card:active { transform: none; }
 .title-tag { padding: 0.0625rem 0.5rem; border-radius: var(--r-full); background: var(--lang); color: var(--on-lang); font-size: var(--t-xs); font-weight: 700; }
 .progress-card-wait { display: grid; place-items: center; aspect-ratio: 1080 / 1350; background: var(--surface-2); color: var(--ink-soft); }
 @container main (min-width: 52rem) {
-  .settings-page { max-width: 50rem; }
+  .settings-page { max-width: 50rem; width: 100%; margin-inline: auto; }
   .settings-side { position: sticky; top: 0.5rem; z-index: 6; margin: 0; padding: 0; background: none; }
   .settings-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr)); overflow: visible; gap: 0.125rem; padding: 0.25rem; background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); }
   .settings-menu-item { flex-direction: column; justify-content: flex-start; gap: 0.25rem; padding: 0.5rem 0.125rem; border-radius: var(--r-md); text-align: center; font-size: var(--t-xs); white-space: normal; }

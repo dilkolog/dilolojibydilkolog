@@ -302,7 +302,8 @@ button, input, textarea, select { font: inherit; color: inherit; }
     gap: 3.5rem;
     padding: 2rem 2rem 5rem;
   }
-  .main { max-width: 52rem; width: 100%; }
+  /* A narrow screen sits in the middle of the column, not against the menu with empty space on the right. */
+  .main { max-width: 52rem; width: 100%; justify-self: center; }
   /* Overview screens use the width; reading, forms and the session keep a reading measure. */
   .main.main-wide { max-width: 76rem; }
   .sidebar {
