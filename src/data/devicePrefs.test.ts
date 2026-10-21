@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 import 'fake-indexeddb/auto'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { applyPrefs, cleanPrefs, collectPrefs, isPrefKey, mergePrefs } from './devicePrefs'
 import { exportBackup, KelimeDB, parseBackup, restoreBackup } from './db'
 
@@ -66,5 +66,51 @@ describe('device prefs', () => {
     await restoreBackup(fresh, parseBackup(json), { keepMedia: true })
     expect(localStorage.getItem('kelime-koc:badges-seen')).toBe('["streak-7"]')
     expect((await fresh.meta.get('writingErrors'))?.value).toEqual({ agreement: 3 })
+  })
+
+  it('a key removed on one device is removed on the others, and the removal is forgotten after 90 days', async () => {
+    localStorage.setItem('diloloji:podcast:fr', '{"lines":[]}')
+    await db.meta.put({ key: 'writingErrors', value: { a: 1 } })
+    await collectPrefs(db, new Date('2026-10-21T10:00:00Z'))
+    localStorage.removeItem('diloloji:podcast:fr')
+    await db.meta.delete('writingErrors')
+    const after = await collectPrefs(db, new Date('2026-10-21T11:00:00Z'))
+    expect(after['diloloji:podcast:fr']).toEqual({ v: '', at: '2026-10-21T11:00:00.000Z' })
+    expect(after['meta:writingErrors']).toEqual({ v: '', at: '2026-10-21T11:00:00.000Z' })
+
+    // The other device still has both, set earlier: the removal is later, so it wins and removes them there.
+    const other = new KelimeDB(`t-prefs-other-${n}`)
+    await other.meta.put({ key: 'writingErrors', value: { a: 1 } })
+    const merged = mergePrefs({ 'diloloji:podcast:fr': { v: '{"lines":[]}', at: '2026-10-21T10:00:00.000Z' } }, after)
+    localStorage.setItem('diloloji:podcast:fr', '{"lines":[]}')
+    await applyPrefs(other, merged)
+    expect(localStorage.getItem('diloloji:podcast:fr')).toBeNull()
+    expect(await other.meta.get('writingErrors')).toBeUndefined()
+
+    // A value set again later wins over the removal.
+    expect(mergePrefs(after, { 'diloloji:podcast:fr': { v: 'new', at: '2026-10-22T09:00:00.000Z' } })['diloloji:podcast:fr']!.v).toBe('new')
+
+    const later = await collectPrefs(db, new Date('2027-02-01T10:00:00Z'))
+    expect(later['diloloji:podcast:fr']).toBeUndefined()
+  })
+
+  it('a value this device could not take is not later sent out as a removal', async () => {
+    const items = new Map<string, string>()
+    const full = {
+      getItem: (k: string) => items.get(k) ?? null,
+      setItem: () => {
+        throw new Error('QuotaExceededError')
+      },
+      removeItem: (k: string) => void items.delete(k),
+    }
+    vi.stubGlobal('localStorage', new Proxy(full, { ownKeys: () => [...items.keys()], getOwnPropertyDescriptor: () => undefined }))
+    try {
+      await applyPrefs(db, { 'kelime-koc:theme': { v: 'dark', at: '2026-10-21T10:00:00.000Z' } })
+      expect(items.has('kelime-koc:theme')).toBe(false)
+      const next = await collectPrefs(db, new Date('2026-10-21T11:00:00Z'))
+      expect(next['kelime-koc:theme']).toBeUndefined()
+    } finally {
+      vi.unstubAllGlobals()
+    }
   })
 })

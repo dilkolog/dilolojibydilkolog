@@ -7,6 +7,7 @@ import type { KelimeDB } from './db'
  * left things. Each key carries the moment its value was last seen to change; on a sync the later one wins.
  */
 export interface PrefEntry {
+  /** The value; an empty text means the key was removed (so a removal reaches the other devices too). */
   v: string
   at: string
 }
@@ -74,6 +75,9 @@ const MAX_VALUE = 120_000
 /** Where the last read of this device's values is kept, with the moment each changed (the `sync` prefix: not counted as a write). */
 const SNAPSHOT = 'syncPrefs'
 
+/** A removal is remembered this long, then forgotten (by then every device has had a sync). */
+const GONE_DAYS = 90
+
 const ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$/
 
 export const isPrefKey = (key: string): boolean => (key.startsWith('meta:') ? META_KEYS.includes(key.slice(5)) : LOCAL_PREFIXES.some((p) => key.startsWith(p)))
@@ -86,18 +90,23 @@ const storage = (): Storage | null => {
   }
 }
 
-/** The values as they stand on this device now, each with the moment it was noticed to change. */
+/**
+ * The values as they stand on this device now, each with the moment it was noticed to change. A key that was here at the last
+ * read and is gone now becomes a removal (`v: ''`), so it is removed on the other devices too, unless storage could not be read.
+ */
 export async function collectPrefs(db: KelimeDB, now = new Date()): Promise<Prefs> {
   const before = ((await db.meta.get(SNAPSHOT))?.value as Prefs | undefined) ?? {}
   const seen = new Map<string, string>()
+  let storageRead = false
   const ls = storage()
   if (ls) {
     try {
       for (const key of Object.keys(ls)) {
         if (!isPrefKey(key)) continue
         const v = ls.getItem(key)
-        if (v !== null && v.length <= MAX_VALUE) seen.set(key, v)
+        if (v && v.length <= MAX_VALUE) seen.set(key, v)
       }
+      storageRead = true
     } catch {
       // Storage blocked: only what is in the database travels.
     }
@@ -106,10 +115,18 @@ export async function collectPrefs(db: KelimeDB, now = new Date()): Promise<Pref
     const row = await db.meta.get(key)
     if (row === undefined) continue
     const v = JSON.stringify(row.value)
-    if (v.length <= MAX_VALUE) seen.set(`meta:${key}`, v)
+    if (v && v.length <= MAX_VALUE) seen.set(`meta:${key}`, v)
   }
   const out: Prefs = {}
   for (const [key, v] of seen) out[key] = before[key]?.v === v ? before[key]! : { v, at: now.toISOString() }
+  const forget = new Date(now.getTime() - GONE_DAYS * 86_400_000).toISOString()
+  for (const [key, e] of Object.entries(before)) {
+    if (seen.has(key) || !isPrefKey(key)) continue
+    if (e.v === '') {
+      if (e.at >= forget) out[key] = e
+    } else if (key.startsWith('meta:') || storageRead) out[key] = { v: '', at: now.toISOString() }
+    // A local key whose storage could not be read is left out: it is neither kept nor removed elsewhere.
+  }
   if (JSON.stringify(out) !== JSON.stringify(before)) await db.meta.put({ key: SNAPSHOT, value: out })
   return out
 }
@@ -132,21 +149,33 @@ export function mergePrefs(older: Prefs | undefined, newer: Prefs | undefined): 
   return out
 }
 
-/** Puts a backup's values on this device (inside a restore: the rows go through the open transaction). */
+/**
+ * Puts a backup's values on this device (inside a restore: the rows go through the open transaction), and removes the keys it
+ * says were removed. Only what this device really holds afterwards is remembered as its last read: a value that could not be
+ * written must not look like a removal at the next read.
+ */
 export async function applyPrefs(db: KelimeDB, prefs: Prefs | undefined): Promise<void> {
   const clean = cleanPrefs(prefs)
   if (!clean) return
   const ls = storage()
+  const held: Prefs = {}
   for (const [key, e] of Object.entries(clean)) {
     try {
       if (key.startsWith('meta:')) {
         const name = key.slice(5)
-        const now = JSON.stringify((await db.meta.get(name))?.value)
-        if (now !== e.v) await db.meta.put({ key: name, value: JSON.parse(e.v) })
-      } else if (ls && ls.getItem(key) !== e.v) ls.setItem(key, e.v)
+        const row = await db.meta.get(name)
+        if (e.v === '') {
+          if (row !== undefined) await db.meta.delete(name)
+        } else if (JSON.stringify(row?.value) !== e.v) await db.meta.put({ key: name, value: JSON.parse(e.v) })
+      } else {
+        if (!ls) continue
+        if (e.v === '') ls.removeItem(key)
+        else if (ls.getItem(key) !== e.v) ls.setItem(key, e.v)
+      }
+      held[key] = e
     } catch {
       // A value that cannot be written (storage full or blocked, a damaged row) is skipped; the rest goes on.
     }
   }
-  await db.meta.put({ key: SNAPSHOT, value: clean })
+  await db.meta.put({ key: SNAPSHOT, value: held })
 }
