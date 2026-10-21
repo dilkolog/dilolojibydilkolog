@@ -25,7 +25,7 @@ describe('error reports carry nothing personal', () => {
 })
 
 describe('/api/log', () => {
-  const post = (body: string) => POST(new Request('https://app.test/api/log', { method: 'POST', body }))
+  const post = (body: string, headers: Record<string, string> = { 'sec-fetch-site': 'same-origin' }) => POST(new Request('https://app.test/api/log', { method: 'POST', headers, body }))
 
   it('writes one checked line to the logs', async () => {
     const log = vi.spyOn(console, 'error').mockImplementation(() => {})
@@ -39,5 +39,13 @@ describe('/api/log', () => {
     expect((await post('not json')).status).toBe(400)
     expect((await post('{}')).status).toBe(400)
     expect((await post('x'.repeat(5000))).status).toBe(413)
+  })
+
+  it('takes error reports only from the app\'s own pages (they count toward the weekly digest)', async () => {
+    const log = vi.spyOn(console, 'error').mockImplementation(() => {})
+    const res = await post(JSON.stringify({ name: 'Fake', message: 'made up' }), { origin: 'https://evil.example' })
+    expect(res.status).toBe(403)
+    expect(log).not.toHaveBeenCalled()
+    log.mockRestore()
   })
 })
