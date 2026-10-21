@@ -100,7 +100,7 @@ export function AccountDeleteDialog({ onDelete, onClose }: { onDelete: () => Pro
                 </ul>
               </div>
               <button type="button" className="btn btn-sm btn-quiet delete-backup" onClick={() => void backup()}>
-                <DownloadIcon size={16} />
+                {saved ? <CheckIcon size={16} /> : <DownloadIcon size={16} />}
                 {saved ? 'Yedek indirildi' : 'Önce yedeğimi indir'}
               </button>
               {error && (

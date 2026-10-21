@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildIndex, fold, search, turkishBases, wiktionaryUrl, wordOfTheDay } from './dictionary'
+import { buildIndex, endingGuesses, fold, search, turkishBases, wiktionaryUrl, wordOfTheDay } from './dictionary'
 import type { Pack } from './wordpackBuild'
 import { createEntry } from './wordInput'
 
@@ -196,5 +196,62 @@ describe('the day\'s word', () => {
     const plain = wordOfTheDay(buildIndex(pack, 'fr'), 7)!
     const own = createEntry({ word: plain.word, meaning: 'x' }, 'fr', new Date())
     expect(wordOfTheDay(buildIndex(pack, 'fr', [own]), 7)?.word).not.toBe(plain.word)
+  })
+})
+
+describe('a form without a Turkish meaning of its own', () => {
+  // As in the real packs: the forms are keys of their own with no `t`, and `f` maps them to their word.
+  const ES: Pack = {
+    v: 't',
+    w: {
+      poder: { t: ['yapabilmek', '-ebilmek'], p: 'v' },
+      puede: {},
+      mujer: { t: ['kadın'], p: 'n' },
+      mujeres: {},
+      pequeño: { t: ['küçük'], p: 'a' },
+      pequeña: {},
+      canción: { t: ['şarkı'], p: 'n' },
+      canciones: {},
+      haber: { p: 'v' },
+      había: { p: 'v' },
+      chocar: { p: 'v' },
+    },
+    f: { puede: 'poder', mujeres: 'mujer', había: 'haber' },
+  }
+  const es = buildIndex(ES, 'es')
+  const EN: Pack = { v: 't', w: { woman: { t: ['kadın'] }, women: {}, year: { t: ['yıl'] }, years: { p: 'n' }, city: { t: ['şehir'] }, cities: {} }, f: { women: 'woman' } }
+  const en = buildIndex(EN, 'en')
+
+  it('gives the word it belongs to, from the pack’s form table', () => {
+    expect(search(es, 'puede').baseOf).toEqual({ word: 'poder', t: ['yapabilmek', '-ebilmek'] })
+    expect(search(es, 'mujeres').baseOf).toEqual({ word: 'mujer', t: ['kadın'] })
+    expect(search(en, 'women').baseOf).toEqual({ word: 'woman', t: ['kadın'] })
+  })
+
+  it('from the verb tables, with the form', () => {
+    const verbs = (w: string) => (w === 'puede' ? [{ lemma: 'poder', note: 'presente, él' }] : [])
+    const noTable = buildIndex({ ...ES, f: {} }, 'es')
+    expect(search(noTable, 'puede', verbs).baseOf).toEqual({ word: 'poder', t: ['yapabilmek', '-ebilmek'], note: 'presente, él' })
+  })
+
+  it('from plural and feminine endings, only when the guess has a meaning', () => {
+    expect(search(es, 'pequeña').baseOf?.word).toBe('pequeño')
+    expect(search(es, 'canciones').baseOf?.word).toBe('canción')
+    expect(search(en, 'years').baseOf?.word).toBe('year')
+    expect(search(en, 'cities').baseOf?.word).toBe('city')
+    // haber has no meaning either: nothing to show, and no guess made up.
+    expect(search(es, 'había').baseOf).toBeUndefined()
+    expect(search(es, 'chocar').baseOf).toBeUndefined()
+    // A word with its own meaning needs none.
+    expect(search(es, 'mujer').baseOf).toBeUndefined()
+  })
+
+  it('guesses endings per language', () => {
+    expect(endingGuesses('mujeres', 'es')).toContain('mujer')
+    expect(endingGuesses('pequeña', 'es')).toContain('pequeño')
+    expect(endingGuesses('femmes', 'fr')).toContain('femme')
+    expect(endingGuesses('chevaux', 'fr')).toContain('cheval')
+    expect(endingGuesses('cities', 'en')).toContain('city')
+    expect(endingGuesses('a', 'es')).toEqual([])
   })
 })

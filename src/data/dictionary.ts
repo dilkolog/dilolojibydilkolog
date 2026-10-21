@@ -46,6 +46,11 @@ export interface DictResult {
   fromTurkish: DictHit[]
   /** The Turkish word they were found through, when it took away a suffix ("gittim" → gitmek). */
   turkishAs?: string
+  /**
+   * `exact` has no Turkish meaning of its own but is a form of a word that has one (puede → poder,
+   * mujeres → mujer, women → woman): that word and its meanings, with which form it is when the verb tables said.
+   */
+  baseOf?: { word: string; t: string[]; note?: string }
 }
 
 const LIMIT = 8
@@ -241,7 +246,60 @@ export function search(index: DictIndex, query: string, verbForm?: VerbFormLooku
   }
 
   const also = exact && !form ? index.pack.f?.[exact.word] : undefined
-  return { exact, ...(form ? { form } : {}), ...(formNote ? { formNote } : {}), ...(also && also !== exact?.word && (index.pack.w[also] || index.extra?.has(also)) ? { alsoFormOf: also } : {}), similar, fromTurkish, ...(turkishAs ? { turkishAs } : {}) }
+  const baseOf = exact && !exact.rec.t?.some((m) => m.trim()) ? meaningfulBase(index, exact.word, verbForm) : undefined
+  return { exact, ...(form ? { form } : {}), ...(formNote ? { formNote } : {}), ...(also && also !== exact?.word && (index.pack.w[also] || index.extra?.has(also)) ? { alsoFormOf: also } : {}), similar, fromTurkish, ...(turkishAs ? { turkishAs } : {}), ...(baseOf ? { baseOf } : {}) }
+}
+
+/**
+ * Plural and feminine endings taken off, as guesses of the word a form belongs to (mujeres → mujer,
+ * pequeña → pequeño, femmes → femme, years → year, cities → city). Used only when the guess is a
+ * word with a Turkish meaning, so a wrong guess shows nothing.
+ */
+export function endingGuesses(word: string, language: TargetLanguage): string[] {
+  const out: string[] = []
+  const cut = (end: string, put = '') => {
+    if (word.length > end.length + 1 && word.endsWith(end)) out.push(word.slice(0, -end.length) + put)
+  }
+  if (language === 'en') {
+    cut('ies', 'y')
+    cut('es')
+    cut('s')
+  } else if (language === 'es') {
+    cut('ones', 'ón')
+    cut('as', 'o')
+    cut('es')
+    cut('s')
+    cut('a', 'o')
+  } else {
+    cut('aux', 'al')
+    cut('ées', 'é')
+    cut('ée', 'é')
+    cut('es')
+    cut('s')
+    cut('x')
+    cut('e')
+  }
+  return [...new Set(out)]
+}
+
+/** The word a form without a Turkish meaning belongs to, when that word has one: the pack's form table, the verb tables, then ending guesses. */
+function meaningfulBase(index: DictIndex, word: string, verbForm?: VerbFormLookup): DictResult['baseOf'] {
+  const meanings = (key: string) => {
+    const rec = index.extra?.get(key) ?? (Object.hasOwn(index.pack.w, key) ? index.pack.w[key] : undefined)
+    const t = rec?.t?.filter((m) => m.trim())
+    return t?.length ? t : undefined
+  }
+  const tried: { word: string; note?: string }[] = [
+    ...(index.pack.f?.[word] ? [{ word: index.pack.f[word] }] : []),
+    ...(verbForm ? verbForm(word).map((v) => ({ word: v.lemma, note: v.note })) : []),
+    ...endingGuesses(word, index.language).map((w) => ({ word: w })),
+  ]
+  for (const c of tried) {
+    if (c.word === word) continue
+    const t = meanings(c.word)
+    if (t) return { word: c.word, t, ...(c.note ? { note: c.note } : {}) }
+  }
+  return undefined
 }
 
 /**
