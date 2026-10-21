@@ -255,9 +255,9 @@ export function GamesScreen(
       ],
     },
   ]
-  const grammarCard: GameCard = { id: 'grammar', emoji: '📐', name: 'Dilbilgisi soruları', text: 'Boşluk doldur, seçeneği seç, hatalı kelimeyi bul; her cevapta kuralı Türkçe gör.', status: `${grammarExercises(p.language).length} soru · B1–C1` }
+  const grammarCard: GameCard = { id: 'grammar', emoji: '📐', name: 'Dilbilgisi soruları', text: 'Boşluk doldur, seçeneği seç, hatalı kelimeyi bul; her cevapta kuralı Türkçe gör.', status: `${grammarExercises(p.language).length} soru · A1–C1` }
   const spotErrorCard: GameCard = { id: 'spot-error', emoji: '🎯', name: 'Hata avcısı', text: 'Cümledeki tek bir gramer/uyum tuzağını bul ve doğrusunu seç.', status: `${SPOT_ERRORS.filter((s) => s.language === p.language).length} soru · B1–C1` }
-  const rewriteCard: GameCard = { id: 'rewrite', emoji: '🔄', name: 'Cümle dönüşümü', text: 'Verilen anahtar kelimeyle cümleyi anlamını koruyarak yeniden kur (C1 seviye).', status: `${SENTENCE_REWRITES.filter((s) => s.language === p.language).length} kalıp · B2–C1` }
+  const rewriteCard: GameCard = { id: 'rewrite', emoji: '🔄', name: 'Cümle dönüşümü', text: 'Verilen anahtar kelimeyle cümleyi anlamını koruyarak yeniden kur.', status: `${SENTENCE_REWRITES.filter((s) => s.language === p.language).length} kalıp · B2–C1` }
   const collocationsCard: GameCard = { id: 'collocations', emoji: '🔗', name: 'Edat ve kalıplar', text: 'Fiillerin aldığı edatlar ve doğal eşdizimler: boşluğu doğru kelimeyle tamamla.', status: `${COLLOCATION_DRILLS.filter((c) => c.language === p.language).length} kalıp · B1–C1` }
   const trapCard: GameCard = { id: 'traps', emoji: '⚠️', name: 'Tuzak kelimeler', text: 'Başka bir kelimeye benzeyip başka şey diyenler: gerçek anlamı seç.', status: `${trapWords.filter((t) => t.language === p.language).length} kelime` }
   const confusablesCard: GameCard = { id: 'confusables', emoji: '👯', name: 'İkizler Arenası', text: 'Birbirine benzeyen veya karıştırılan ikiz kelimeleri ayırt et: aradaki farkı kuralıyla öğren.', status: record(`confusables:${p.language}`, (v) => `%${v}`) ?? `${CONFUSABLE_RULES.filter((r) => r.language === p.language).length} kural çifti` }
@@ -293,7 +293,7 @@ export function GamesScreen(
           status: 'Pratik → Fiiller',
           open: p.onOpenVerbs,
         },
-        { id: 'gender', emoji: '⚖️', name: 'Cinsiyet kuralları', text: 'Kelimenin sonu artikelini söyler (-tion → la, -age → le).', status: record(`gender:${p.language}`, (v) => `%${v}`) },
+        { id: 'gender', emoji: '⚖️', name: 'Cinsiyet kuralları', text: 'Kelimenin sonu artikelini söyler (‑tion → la, ‑age → le).', status: record(`gender:${p.language}`, (v) => `%${v}`) },
         { id: 'accent', emoji: '✍️', name: 'Aksan antrenmanı', text: 'Sadece aksanlı kelimelerin: harfleri görürsün, aksanlarıyla yazarsın.', status: accentCount < ACCENT_MIN_WORDS ? `En az ${ACCENT_MIN_WORDS} aksanlı kelime gerekiyor (${accentCount})` : record(`accent:${p.language}`, (v) => `%${v}`), disabled: accentCount < ACCENT_MIN_WORDS },
       ],
     })

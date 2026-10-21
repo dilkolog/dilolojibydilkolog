@@ -3,17 +3,17 @@ import type { KelimeDB, Settings } from '../data/db'
 import type { TargetLanguage, CefrLevel } from '../engine/types'
 import { CEFR_LEVELS, type LevelCoverage } from '../engine/cefrLevels'
 import { calculateGoalProgress, type CefrGoal } from '../engine/goalPlanner'
-import { AlertIcon, CalendarIcon, CheckCircleIcon, SparkleIcon, TargetIcon } from './icons'
+import { CalendarIcon, TargetIcon } from './icons'
 import { showToast } from './toastFeed'
 
 /** The levels a goal can be set for. */
 const GOAL_LEVELS: readonly CefrLevel[] = CEFR_LEVELS.filter((l) => ['A1', 'A2', 'B1', 'B2'].includes(l))
 
 const TIMEFRAMES = [
-  { days: 30, label: '1 ay (30 gün)' },
-  { days: 60, label: '2 ay (60 gün)' },
-  { days: 90, label: '3 ay (90 gün)' },
-  { days: 180, label: '6 ay (180 gün)' },
+  { days: 30, label: '1 ay' },
+  { days: 60, label: '2 ay' },
+  { days: 90, label: '3 ay' },
+  { days: 180, label: '6 ay' },
 ]
 
 function dateAfterDays(days: number): string {
@@ -99,68 +99,63 @@ export function GoalPlannerCard({
 
   if (activeGoal && !isEditing) {
     const progress = calculateGoalProgress(activeGoal, levels, settings.newWordsPerDay)
+    const [badge, badgeClass] = progress.isCompleted
+      ? ['Hedefe ulaştın', 'is-ok']
+      : progress.isOverdue
+        ? ['Tarih geçti', 'is-behind']
+        : progress.pace === 'ahead'
+          ? ['Önündesin', 'is-ok']
+          : progress.pace === 'on_track'
+            ? ['Tempodasın', '']
+            : ['Geridesin', 'is-behind']
     return (
-      <section className="card stack gap-2 goal-card" aria-label="Seviye Hedefi">
-        <div className="cluster justify-between align-center">
-          <div className="cluster gap-2 align-center">
-            <TargetIcon size={20} className="goal-icon" />
-            <h3 className="section-title m-0">{progress.level} Seviye Hedefi</h3>
-          </div>
-          {progress.isCompleted ? (
-            <span className="chip chip-ok"><CheckCircleIcon size={14} /> Hedefe Ulaşıldı!</span>
-          ) : progress.pace === 'ahead' ? (
-            <span className="chip chip-ok"><SparkleIcon size={14} /> Hedefin Önündesin</span>
-          ) : progress.pace === 'on_track' ? (
-            <span className="chip"><TargetIcon size={14} /> Tam Tempodasın</span>
-          ) : (
-            <span className="chip chip-warn"><AlertIcon size={14} /> Geridesin</span>
-          )}
+      <section className="goal-panel stack" aria-label="Seviye hedefi">
+        <div className="goal-panel-head">
+          <TargetIcon size={20} className="goal-icon" />
+          <h3 className="goal-panel-title">{progress.level} seviye hedefi</h3>
+          <span className={`pill goal-pace ${badgeClass}`}>{badge}</span>
         </div>
 
-        <div className="goal-progress-wrap stack gap-1">
-          <div className="cluster justify-between small muted">
-            <span>İlerleme: %{progress.percent}</span>
-            <span>{progress.wordsRemaining} kelime kaldı</span>
+        <div className="stack goal-progress">
+          <div className="goal-progress-line small muted">
+            <span>%{progress.percent}</span>
+            <span>{progress.wordsRemaining.toLocaleString('tr')} kelime kaldı</span>
           </div>
-          <div className="band-bar" role="progressbar" aria-valuenow={progress.percent} aria-valuemin={0} aria-valuemax={100}>
+          <div className="band-bar" role="progressbar" aria-label="Hedefe ilerleme" aria-valuenow={progress.percent} aria-valuemin={0} aria-valuemax={100}>
             <span className="bb-known" style={{ width: `${progress.percent}%` }} />
           </div>
         </div>
 
         <div className="goal-stats-grid">
           <div className="goal-stat">
-            <span className="small muted">Hedef Tarih</span>
-            <strong>{progress.targetDate}</strong>
-            <span className="tiny muted">{progress.daysRemaining} gün kaldı</span>
+            <span className="small muted">Hedef tarih</span>
+            <strong>{dateText(progress.targetDate)}</strong>
+            <span className="small muted">{progress.isOverdue ? 'geçti' : `${progress.daysRemaining} gün kaldı`}</span>
           </div>
           <div className="goal-stat">
-            <span className="small muted">Önerilen Kota</span>
+            <span className="small muted">Önerilen</span>
             <strong>Günde {progress.suggestedDailyNew} kelime</strong>
-            <span className="tiny muted">Şu anki: {settings.newWordsPerDay}</span>
+            <span className="small muted">Şu an: {settings.newWordsPerDay}</span>
           </div>
         </div>
 
         {progress.unrealistic && !progress.isOverdue && (
-          <p className="small muted m-0">
+          <p className="small muted">
             Bu tarihe yetişmek için günde {progress.neededDailyNew} yeni kelime gerekiyor; bu çok fazla. Tarihi ileri almayı düşün.
           </p>
         )}
-        {progress.isOverdue && <p className="small muted m-0">Hedef tarih geçti. Yeni bir tarih seçmek için hedefi düzenle.</p>}
-        {!progress.isCompleted && !progress.isOverdue && settings.newWordsPerDay !== progress.suggestedDailyNew && progress.suggestedDailyNew > 0 && (
-          <button
-            type="button"
-            className="btn btn-sm btn-quiet align-self-start"
-            onClick={() => applySuggestedQuota(progress.suggestedDailyNew)}
-          >
-            Günlük kotayı {progress.suggestedDailyNew} yap
-          </button>
-        )}
+        {progress.isOverdue && <p className="small muted">Hedef tarih geçti. Yeni bir tarih seçmek için hedefi düzenle.</p>}
 
-        <div className="cluster gap-3 pt-1">
+        <div className="row goal-actions">
+          {!progress.isCompleted && !progress.isOverdue && settings.newWordsPerDay !== progress.suggestedDailyNew && progress.suggestedDailyNew > 0 && (
+            <button type="button" className="btn btn-sm" onClick={() => applySuggestedQuota(progress.suggestedDailyNew)}>
+              Günlük kotayı {progress.suggestedDailyNew} yap
+            </button>
+          )}
           <button type="button" className="link small" onClick={() => setIsEditing(true)}>
             Hedefi düzenle
           </button>
-          <button type="button" className="link small text-warn" onClick={removeGoal}>
+          <button type="button" className="link small" onClick={removeGoal}>
             Hedefi kaldır
           </button>
         </div>
@@ -177,89 +172,75 @@ export function GoalPlannerCard({
   )
 
   return (
-    <section className="card stack gap-2 goal-card-form" aria-label="Seviye Hedefi Planla">
-      <div className="cluster gap-2 align-center">
+    <section className="goal-panel stack" aria-label="Seviye hedefi planla">
+      <div className="goal-panel-head">
         <TargetIcon size={20} className="goal-icon" />
-        <h3 className="section-title m-0">Seviye Hedefi Belirle</h3>
+        <h3 className="goal-panel-title">Seviye hedefi belirle</h3>
       </div>
-      <p className="small muted m-0">
-        Ulaşmak istediğin CEFR seviyesini ve hedef tarihini seç; kalan kelimelerine göre günlük çalışma kotan otomatik hesaplansın.
+      <p className="small muted">
+        Ulaşmak istediğin seviyeyi ve tarihi seç; kalan kelimelere göre günde kaç yeni kelime gerektiğini hesaplayalım.
       </p>
 
-      <div className="stack gap-1">
-        <label className="small font-bold" htmlFor="goal-level-select">Hedef Seviye</label>
-        <div className="segmented" role="group" aria-label="Hedef Seviye">
+      <div className="stack goal-field">
+        <strong className="small">Seviye</strong>
+        <div className="segmented" role="group" aria-label="Hedef seviye">
           {GOAL_LEVELS.map((lvl) => (
-            <button
-              key={lvl}
-              type="button"
-              className="segmented-btn"
-              aria-pressed={selectedLevel === lvl}
-              onClick={() => setSelectedLevel(lvl)}
-            >
+            <button key={lvl} type="button" className="segmented-btn" aria-pressed={selectedLevel === lvl} onClick={() => setSelectedLevel(lvl)}>
               {lvl}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="stack gap-1">
-        <span className="small font-bold">Hedef Süre</span>
-        <div className="cluster gap-1">
+      <div className="stack goal-field">
+        <strong className="small">Süre</strong>
+        <div className="choice-row" role="group" aria-label="Hedef süre">
           {TIMEFRAMES.map((tf) => (
             <button
               key={tf.days}
               type="button"
-              className={`chip ${selectedDays === tf.days && !customDate ? 'chip-active' : ''}`}
+              className="chip chip-sm"
+              aria-pressed={selectedDays === tf.days && !customDate}
+              title={`${tf.days} gün`}
               onClick={() => {
                 setSelectedDays(tf.days)
                 setCustomDate('')
               }}
             >
-              <CalendarIcon size={14} />
-              <span>{tf.label}</span>
+              {tf.label}
             </button>
           ))}
         </div>
-        <div className="cluster align-center gap-2 pt-1">
-          <span className="small muted">Veya özel tarih:</span>
-          <input
-            type="date"
-            aria-label="Özel hedef tarihi"
-            className="input input-sm"
-            min={todayIso()}
-            value={customDate}
-            onChange={(e) => setCustomDate(e.target.value)}
-          />
-        </div>
+        <label className="goal-date small muted">
+          <CalendarIcon size={16} />
+          <span>ya da tarih seç</span>
+          <input type="date" aria-label="Özel hedef tarihi" className="input" min={todayIso()} value={customDate} onChange={(e) => setCustomDate(e.target.value)} />
+        </label>
       </div>
 
-      <div className="note goal-preview-note">
-        <span className="small">
-          🎯 <strong>{selectedLevel}</strong> için ~<strong>{previewProgress.wordsRemaining}</strong> yeni kelime gerekiyor.
-          Hedef tarihe ({effectiveTargetDate}) kadar günde <strong>{previewProgress.neededDailyNew}</strong> yeni kelime gerekir
-          {previewProgress.unrealistic ? '; bu çok fazla, daha uzak bir tarih seç.' : '.'}
-        </span>
-      </div>
+      <p className="note small goal-preview-note">
+        <strong>{selectedLevel}</strong> için yaklaşık <strong>{previewProgress.wordsRemaining.toLocaleString('tr')}</strong> kelime daha gerekiyor.{' '}
+        {dateText(effectiveTargetDate)} tarihine kadar günde <strong>{previewProgress.neededDailyNew}</strong> yeni kelime
+        {previewProgress.unrealistic ? '; bu çok fazla, daha uzak bir tarih seç.' : '.'}
+      </p>
 
-      <div className="cluster gap-2 pt-1">
-        <button
-          type="button"
-          className="btn btn-sm"
-          onClick={() => saveGoal(selectedLevel, effectiveTargetDate)}
-        >
-          Hedefi Kaydet
+      <div className="row">
+        <button type="button" className="btn btn-sm" onClick={() => saveGoal(selectedLevel, effectiveTargetDate)}>
+          Hedefi kaydet
         </button>
         {activeGoal && (
-          <button
-            type="button"
-            className="btn btn-sm btn-quiet"
-            onClick={() => setIsEditing(false)}
-          >
+          <button type="button" className="btn btn-sm btn-quiet" onClick={() => setIsEditing(false)}>
             Vazgeç
           </button>
         )}
       </div>
     </section>
   )
+}
+
+/** "19 Ocak 2027" for a stored yyyy-mm-dd day; anything else as it is. */
+function dateText(day: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(day)
+  if (!m) return day
+  return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3])).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })
 }

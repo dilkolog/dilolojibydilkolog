@@ -58,8 +58,9 @@ export function AudiobooksPicker({
       </div>
       {books.map(([id, book]) => (
         <div key={id} className="stack">
-          <h3 className="subhead">
-            <span lang={language}>{book.title}</span> <span className="small muted">· {book.author}</span>
+          <h3 className="subhead audiobook-title">
+            <span lang={language}>{book.title}</span>
+            <span className="small muted">{book.author}</span>
           </h3>
           <ul className="library">
             {book.chapters.map(({ c, cov }) => (

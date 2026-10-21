@@ -103,7 +103,7 @@ export function AddTextCard({
       <div className="add-sources">
         <label className="btn btn-quiet file-btn">
           <img className="chip-art" src={ADD_ART.notes} alt="" width={20} height={20} draggable={false} />
-          Alt yazı ya da metin dosyası
+          <span>Alt yazı / metin dosyası</span>
           <input type="file" accept=".srt,.vtt,.txt,text/plain" onChange={(e) => e.target.files?.[0] && onFile(e.target.files[0])} />
         </label>
         <label className="btn btn-quiet file-btn">

@@ -102,7 +102,7 @@ export function ClassicsPicker({
             >
               <div className="row justify-between items-baseline gap-2">
                 <strong>{c.title}</strong>
-                <span className="badge badge-sm">{c.level}</span>
+                <span className="badge badge-sm">{c.level.replace("-", "–")}</span>
               </div>
               <span className="small muted">{c.summary}</span>
               <span className="small muted">

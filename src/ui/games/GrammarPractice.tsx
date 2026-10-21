@@ -17,7 +17,7 @@ const TYPE_LABEL = { cloze: 'Boşluğu doldur', choice: 'Doğru seçeneği seç'
 const note = noteIn(() => db.getGrammarLog(), (log) => db.saveGrammarLog(log))
 
 /**
- * Grammar questions on the hard points of B1–C1: fill a gap, pick the right option, or find the
+ * Grammar questions from the basics (A1–A2) to the hard points of B1–C1: fill a gap, pick the right option, or find the
  * wrong word. Every answer shows the rule in Turkish. Questions never tried, or more often wrong
  * than right, come first; a topic can be picked.
  */
@@ -111,7 +111,7 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
         <div className="stack">
           <h1 className="greeting">Dilbilgisi soruları</h1>
           <p className="muted">
-            {LANGUAGE_NAME[language]} için B1–C1 zor noktalar: boşluk doldur, seçeneği seç ya da hatalı kelimeyi bul. Her cevaptan sonra kuralı Türkçe görürsün. Henüz sormadıkların ve yanlış yaptıkların önce gelir.
+            {LANGUAGE_NAME[language]} dilbilgisi, temel konulardan (A1) zor noktalara (C1): boşluk doldur, seçeneği seç ya da hatalı kelimeyi bul. Her cevaptan sonra kuralı Türkçe görürsün. Henüz sormadıkların ve yanlış yaptıkların önce gelir.
           </p>
           <div className="choice-row" role="group" aria-label="Konu">
             <button type="button" className="chip" aria-pressed={!topic} onClick={() => setTopic(undefined)}>
