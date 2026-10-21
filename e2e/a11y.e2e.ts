@@ -1432,6 +1432,8 @@ test('journal: the exam-style task card passes accessibility checks in light, da
 })
 
 test('English verb lab: lists, quiz question and feedback pass accessibility checks in light, dark and calm themes', async ({ page }) => {
+  // Nine full scans (three views in three themes) of lists with a few hundred rows: about 25 s alone, more under a full run.
+  test.setTimeout(150_000)
   await startWithSamples(page)
   await page.getByRole('button', { name: /^İngilizce/ }).click()
   await openScreen(page, 'Oyunlar')
