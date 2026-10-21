@@ -24,6 +24,7 @@ const LOCAL_PREFIXES = [
   'diloloji:league-wins',
   'diloloji:friend-nicknames',
   'diloloji:friend-goal',
+  'diloloji:team-push',
   'diloloji:duel-history',
   'diloloji:duel-name',
   'diloloji:monki:',

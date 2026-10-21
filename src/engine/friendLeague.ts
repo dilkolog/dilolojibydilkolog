@@ -81,3 +81,14 @@ export function teamWeek(entries: readonly LeagueEntry[], today: string, goal: n
 
 /** Goals to choose from, in XP for the whole group in a week. */
 export const TEAM_GOALS = [500, 1000, 2500, 5000] as const
+
+/** From this share of the shared goal on (and until it is reached), the group can be given a last push. */
+export const TEAM_PUSH_PERCENT = 80
+/** At most this many friends are nudged at once (the server allows 20 messages a minute). */
+export const TEAM_PUSH_MAX = 10
+
+/** Whether the "last push" is on offer: the goal is close but not reached, and it was not sent this week already. */
+export const teamPushDue = (team: TeamWeek, today: string, sentWeek: string | null): boolean => team.goal > 0 && !team.done && team.percent >= TEAM_PUSH_PERCENT && sentWeek !== weekStartOf(today)
+
+/** The friends a last push goes to: those who have not studied today (a nudge is only for them). */
+export const teamPushTargets = <T extends { code: string; days?: Record<string, number> }>(friends: readonly T[], today: string): T[] => friends.filter((f) => !(f.days?.[today] ?? 0)).slice(0, TEAM_PUSH_MAX)

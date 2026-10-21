@@ -2,16 +2,26 @@
 ;(globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true
 import { act } from 'react'
 import { createRoot } from 'react-dom/client'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { FriendView } from '../data/friends'
 import { FriendLeague } from './FriendLeague'
+
+const sent = vi.hoisted(() => [] as { code: string; kind: string }[])
+vi.mock('../data/friends', () => ({
+  sendToFriend: async (code: string, kind: string) => {
+    sent.push({ code, kind })
+  },
+}))
 
 // Wednesday the 14th: this week began on the 12th, last week ran from the 5th to the 11th.
 const TODAY = '2026-10-14'
 const view = (code: string, name: string, days: Record<string, number>): FriendView => ({ code, name, avatar: 'fox', color: '#2f6de6', today: 0, week: 0, streak: 0, level: 1, days, at: '2026-10-14T10:00:00Z' })
 
 let root: ReturnType<typeof createRoot> | undefined
-beforeEach(() => localStorage.clear())
+beforeEach(() => {
+  localStorage.clear()
+  sent.length = 0
+})
 afterEach(() => {
   act(() => root?.unmount())
   document.body.innerHTML = ''
@@ -55,5 +65,29 @@ describe('FriendLeague', () => {
     act(() => root?.unmount())
     const quiet = await mount(view('AAAAAAAA', 'Ali', {}), [view('BBBBBBBB', 'Veli', { '2026-10-13': 300 })])
     expect(quiet.textContent).toContain('Geçen hafta için sıralama yok')
+  })
+
+  it('near the shared goal, nudges the friends who have not studied today, once a week', async () => {
+    const me = view('AAAAAAAA', 'Ali', { '2026-10-12': 500, '2026-10-14': 50 })
+    const veli = view('BBBBBBBB', 'Veli', { '2026-10-13': 300 })
+    const ayse = view('CCCCCCCC', 'Ayşe', { '2026-10-14': 20 })
+    const host = await mount(me, [veli, ayse])
+    // 870 of 1,000: close, not reached; Ayşe studied today, Veli did not.
+    expect(host.textContent).toContain('Hedefe 130 XP kaldı')
+    await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Dürt')!.click())
+    expect(sent).toEqual([{ code: 'BBBBBBBB', kind: 'nudge' }])
+    expect(host.querySelector('.friends-team-push')).toBeNull()
+    expect(localStorage.getItem('diloloji:team-push')).toBe('"2026-10-12"')
+    act(() => root?.unmount())
+    const again = await mount(me, [veli, ayse])
+    expect(again.querySelector('.friends-team-push')).toBeNull()
+  })
+
+  it('offers no push far from the goal or once it is reached', async () => {
+    const far = await mount(view('AAAAAAAA', 'Ali', { '2026-10-12': 100 }), [view('BBBBBBBB', 'Veli', {})])
+    expect(far.querySelector('.friends-team-push')).toBeNull()
+    act(() => root?.unmount())
+    const done = await mount(view('AAAAAAAA', 'Ali', { '2026-10-12': 1200 }), [view('BBBBBBBB', 'Veli', {})])
+    expect(done.querySelector('.friends-team-push')).toBeNull()
   })
 })
