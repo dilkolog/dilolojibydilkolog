@@ -1,0 +1,408 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün) — Rehber: yeni temel derslerin soru havuzu (2026-10-21)",
+  "lessons": {
+    "basics_en_possessive_s": [
+      {
+        "prompt": "Annemin arabası → my ___ car",
+        "options": [
+          "mothers",
+          "mother's",
+          "mothers'",
+          "mother"
+        ],
+        "answer": 1,
+        "why": "Tekil sahibe 's eklenir: my mother's car."
+      },
+      {
+        "prompt": "Kızlarımın odası (iki kız) → my ___ room",
+        "options": [
+          "daughter's",
+          "daughters'",
+          "daughters's",
+          "daughters"
+        ],
+        "answer": 1,
+        "why": "-s ile biten düzenli çoğul sahibe yalnızca ' eklenir: my daughters' room."
+      },
+      {
+        "prompt": "The ___ shoes are on the left (erkekler bölümü).",
+        "options": [
+          "mens'",
+          "men's",
+          "mans'",
+          "mens"
+        ],
+        "answer": 1,
+        "why": "Men düzensiz çoğuldur, -s ile bitmez: men's."
+      },
+      {
+        "prompt": "Hangisi doğru? (its / it's)",
+        "options": [
+          "The cat is eating it's food.",
+          "The cat is eating its food.",
+          "The cat is eating its' food.",
+          "The cat is eating it food."
+        ],
+        "answer": 1,
+        "why": "Its iyelik bildirir ve kesme işareti almaz; it's = it is."
+      },
+      {
+        "prompt": "Bugünün haberi → ___ news",
+        "options": [
+          "todays",
+          "today's",
+          "todays'",
+          "the today news"
+        ],
+        "answer": 1,
+        "why": "Zaman ifadeleri de 's alır: today's news."
+      },
+      {
+        "prompt": "Kitabın başlığı → ___",
+        "options": [
+          "the book's title of",
+          "the title of the book",
+          "the title's book",
+          "the of book title"
+        ],
+        "answer": 1,
+        "why": "Eşyalarda ve soyut şeylerde genellikle of kullanılır: the title of the book."
+      },
+      {
+        "prompt": "Ali ile Ece'nin (ortak) evi → ___ house",
+        "options": [
+          "Ali and Ece's",
+          "Ali's and Ece",
+          "Ali's and Ece's's",
+          "Ali and Eces'"
+        ],
+        "answer": 0,
+        "why": "Ortak sahiplikte 's yalnızca sonuncuya eklenir."
+      },
+      {
+        "prompt": "I bought these apples at the ___ .",
+        "options": [
+          "greengrocer's",
+          "greengrocers' shop's",
+          "greengrocer's's",
+          "greengrocers's"
+        ],
+        "answer": 0,
+        "why": "'s dükkân anlamı verir: at the greengrocer's (manavda)."
+      },
+      {
+        "prompt": "My ___ names are Ada and Eren. (iki çocuk)",
+        "options": [
+          "child's",
+          "children's",
+          "childrens'",
+          "childs'"
+        ],
+        "answer": 1,
+        "why": "Children düzensiz çoğuldur: children's."
+      },
+      {
+        "prompt": "I have three ___ in my bag.",
+        "options": [
+          "apple's",
+          "apples",
+          "apples'",
+          "apple"
+        ],
+        "answer": 1,
+        "why": "Düz çoğul kesme işareti almaz: three apples."
+      },
+      {
+        "prompt": "Buradan arabayla iki saat → It's two ___ drive from here.",
+        "options": [
+          "hours'",
+          "hour's",
+          "hours's",
+          "hour"
+        ],
+        "answer": 0,
+        "why": "Süre bildiren zaman ifadesinde -s ile biten çoğul yalnızca ' alır: two hours' drive."
+      },
+      {
+        "prompt": "Where is ___ ? (Mark'ın telefonu)",
+        "options": [
+          "the phone of Mark",
+          "Mark's phone",
+          "Marks phone",
+          "phone Mark's"
+        ],
+        "answer": 1,
+        "why": "Kişilerde 's doğaldır: Mark's phone."
+      }
+    ],
+    "basics_en_reflexive_pronouns": [
+      {
+        "prompt": "We painted the house ___ ; we didn't pay anyone.",
+        "options": [
+          "us",
+          "ourselves",
+          "ourself",
+          "each other"
+        ],
+        "answer": 1,
+        "why": "Vurgu ve “kendimiz” anlamında ourselves."
+      },
+      {
+        "prompt": "He lives by ___ in a small flat.",
+        "options": [
+          "him",
+          "himself",
+          "hisself",
+          "his"
+        ],
+        "answer": 1,
+        "why": "By himself = tek başına."
+      },
+      {
+        "prompt": "Help ___ to some cake, children!",
+        "options": [
+          "yourself",
+          "yourselves",
+          "you",
+          "yourselfs"
+        ],
+        "answer": 1,
+        "why": "Çocuklara (çoğul) seslenildiği için yourselves."
+      },
+      {
+        "prompt": "The two friends hugged ___ at the airport. (birbirlerine)",
+        "options": [
+          "themselves",
+          "each other",
+          "theirselves",
+          "them"
+        ],
+        "answer": 1,
+        "why": "Karşılıklı eylem: each other (birbirlerine sarıldılar)."
+      },
+      {
+        "prompt": "The heater turns ___ off automatically. (kendini kapatır)",
+        "options": [
+          "it",
+          "itself",
+          "its",
+          "it's"
+        ],
+        "answer": 1,
+        "why": "Özne (the machine) ile nesne aynı: itself."
+      },
+      {
+        "prompt": "I usually ___ before breakfast.",
+        "options": [
+          "shave me",
+          "shave",
+          "shave myself always",
+          "shaves"
+        ],
+        "answer": 1,
+        "why": "Gündelik rutin fiili shave genellikle dönüşlü zamir almaz: I usually shave."
+      },
+      {
+        "prompt": "Did you have a good time? — Yes, we really enjoyed ___ .",
+        "options": [
+          "us",
+          "ourselves",
+          "ourself",
+          "it us"
+        ],
+        "answer": 1,
+        "why": "Enjoy bir nesne ister; eğlenmek = enjoy oneself: we enjoyed ourselves."
+      },
+      {
+        "prompt": "She looked at ___ in the mirror and smiled. (kendine)",
+        "options": [
+          "her",
+          "herself",
+          "hers",
+          "she"
+        ],
+        "answer": 1,
+        "why": "Özne ile nesne aynı kişi: herself."
+      },
+      {
+        "prompt": "They blamed ___ for the accident. (Her biri kendini suçladı.)",
+        "options": [
+          "each other",
+          "themselves",
+          "theirself",
+          "them"
+        ],
+        "answer": 1,
+        "why": "Her biri kendini suçladıysa themselves; each other birbirini suçlamak olurdu."
+      },
+      {
+        "prompt": "Hangisi yanlış?",
+        "options": [
+          "She cut herself.",
+          "He hurt hisself.",
+          "We enjoyed ourselves.",
+          "They did it themselves."
+        ],
+        "answer": 1,
+        "why": "Hisself diye bir zamir yoktur: himself."
+      },
+      {
+        "prompt": "Please make ___ at home.",
+        "options": [
+          "you",
+          "yourself",
+          "your",
+          "you're"
+        ],
+        "answer": 1,
+        "why": "Kalıp: make yourself at home (kendini evinde hisset)."
+      },
+      {
+        "prompt": "Hangisi doğru? (“Bu gürültüde odaklanamıyorum.”)",
+        "options": [
+          "I can't concentrate myself with this noise.",
+          "I can't concentrate with this noise.",
+          "I can't concentrate me with this noise.",
+          "I can't concentrate mine with this noise."
+        ],
+        "answer": 1,
+        "why": "Concentrate İngilizcede dönüşlü zamir almaz."
+      }
+    ],
+    "basics_en_adverbs": [
+      {
+        "prompt": "He answered the question ___ .",
+        "options": [
+          "correct",
+          "correctly",
+          "correctful",
+          "corrects"
+        ],
+        "answer": 1,
+        "why": "Fiili (answered) nitelediği için zarf gerekir: correctly."
+      },
+      {
+        "prompt": "She is a ___ driver.",
+        "options": [
+          "carefully",
+          "careful",
+          "carefuly",
+          "care"
+        ],
+        "answer": 1,
+        "why": "İsmi (driver) niteleyen kelime sıfattır: a careful driver."
+      },
+      {
+        "prompt": "Hangisi doğru yazılmış?",
+        "options": [
+          "happily",
+          "happyly",
+          "happely",
+          "happilly"
+        ],
+        "answer": 0,
+        "why": "-y ile biten sıfat -ily olur: happily."
+      },
+      {
+        "prompt": "Don't drive so ___ !",
+        "options": [
+          "fastly",
+          "fast",
+          "fastful",
+          "fasty"
+        ],
+        "answer": 1,
+        "why": "Fast hem sıfat hem zarftır; fastly diye bir kelime yoktur."
+      },
+      {
+        "prompt": "I ___ go to the cinema.",
+        "options": [
+          "go never",
+          "never",
+          "nevers",
+          "am never go"
+        ],
+        "answer": 1,
+        "why": "Sıklık zarfı ana fiilden önce: I never go."
+      },
+      {
+        "prompt": "She ___ late for work.",
+        "options": [
+          "always is",
+          "is always",
+          "always are",
+          "is always being"
+        ],
+        "answer": 1,
+        "why": "Be fiilinden sonra gelir: She is always late."
+      },
+      {
+        "prompt": "We have ___ been to Paris.",
+        "options": [
+          "never",
+          "ever not",
+          "not never",
+          "nevertheless"
+        ],
+        "answer": 0,
+        "why": "Yardımcı fiil (have) ile ana fiil arasına girer: we have never been."
+      },
+      {
+        "prompt": "She speaks ___ .",
+        "options": [
+          "fluently English",
+          "English fluently",
+          "English fluent",
+          "fluent English well"
+        ],
+        "answer": 1,
+        "why": "Tarz zarfı fiil + nesneden sonra gelir: speaks English fluently."
+      },
+      {
+        "prompt": "“Lately” ne demektir?",
+        "options": [
+          "geç",
+          "son zamanlarda",
+          "yavaşça",
+          "nadiren"
+        ],
+        "answer": 1,
+        "why": "Late = geç; lately = son zamanlarda."
+      },
+      {
+        "prompt": "The music sounds ___ .",
+        "options": [
+          "beautiful",
+          "beautifully",
+          "beautifuly",
+          "beauty"
+        ],
+        "answer": 0,
+        "why": "Sound, look, feel gibi fiillerden sonra sıfat gelir: sounds beautiful."
+      },
+      {
+        "prompt": "He smiled at me ___ .",
+        "options": [
+          "friendly",
+          "in a friendly way",
+          "friendlily",
+          "friend"
+        ],
+        "answer": 1,
+        "why": "Friendly -ly ile biten bir sıfattır; zarf yerine in a friendly way."
+      },
+      {
+        "prompt": "She ___ visits her parents.",
+        "options": [
+          "rarely is",
+          "rarely",
+          "rare",
+          "rarelly"
+        ],
+        "answer": 1,
+        "why": "Sıklık zarfı ana fiilden önce: she rarely visits."
+      }
+    ]
+  }
+}

@@ -1,0 +1,408 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün) — Rehber: yeni temel derslerin soru havuzu (2026-10-21)",
+  "lessons": {
+    "basics_es_muy_mucho": [
+      {
+        "prompt": "En esta ciudad hay ___ turistas en verano.",
+        "options": [
+          "muy",
+          "mucho",
+          "muchos",
+          "mucha"
+        ],
+        "answer": 2,
+        "why": "Turistas çoğul bir isimdir (karışık grup: los turistas); isimle uyumlu muchos gelir."
+      },
+      {
+        "prompt": "Este libro es ___ interesante.",
+        "options": [
+          "muy",
+          "mucho",
+          "mucha",
+          "muchos"
+        ],
+        "answer": 0,
+        "why": "Interesante bir sıfattır; önüne değişmeyen muy gelir."
+      },
+      {
+        "prompt": "¿Te gusta el chocolate? — Sí, ___ .",
+        "options": [
+          "muy",
+          "mucho",
+          "mucha",
+          "muy mucho"
+        ],
+        "answer": 1,
+        "why": "Tek başına cevapta muy kullanılmaz: Sí, mucho."
+      },
+      {
+        "prompt": "Tengo ___ hambre, ¿comemos ya?",
+        "options": [
+          "muy",
+          "mucha",
+          "mucho",
+          "muchas"
+        ],
+        "answer": 1,
+        "why": "Tener hambre bir isimle kurulur; hambre dişildir: mucha hambre."
+      },
+      {
+        "prompt": "Mi padre trabaja ___ .",
+        "options": [
+          "muy",
+          "mucho",
+          "mucha",
+          "muchos"
+        ],
+        "answer": 1,
+        "why": "Fiilden sonra zarf olan mucho değişmez: trabaja mucho."
+      },
+      {
+        "prompt": "Estoy ___ contenta con el resultado.",
+        "options": [
+          "mucho",
+          "mucha",
+          "muy",
+          "muchas"
+        ],
+        "answer": 2,
+        "why": "Estar + sıfat: muy contenta."
+      },
+      {
+        "prompt": "Esta película es ___ peor que la primera.",
+        "options": [
+          "muy",
+          "mucho",
+          "mucha",
+          "muchas"
+        ],
+        "answer": 1,
+        "why": "Peor önünde mucho gelir: mucho peor."
+      },
+      {
+        "prompt": "Hay ___ ruido en la calle; no puedo dormir.",
+        "options": [
+          "muy",
+          "demasiado",
+          "demasiada",
+          "demasiados"
+        ],
+        "answer": 1,
+        "why": "Ruido eril tekil isim: demasiado ruido."
+      },
+      {
+        "prompt": "Hangisi doğrudur? (hace … frío)",
+        "options": [
+          "Hace mucho frío.",
+          "Hace muy frío.",
+          "Hace mucha frío.",
+          "Hace muy mucho frío."
+        ],
+        "answer": 0,
+        "why": "Hace frío'da frío isimdir; eril tekil: mucho frío."
+      },
+      {
+        "prompt": "Ese restaurante es ___ caro para nosotros.",
+        "options": [
+          "muchos",
+          "demasiado",
+          "demasiada",
+          "demasiados"
+        ],
+        "answer": 1,
+        "why": "Caro sıfattır; sıfatın önünde demasiado değişmez."
+      },
+      {
+        "prompt": "Había ___ personas en la reunión.",
+        "options": [
+          "bastante",
+          "bastantes",
+          "bastantos",
+          "muy"
+        ],
+        "answer": 1,
+        "why": "Personas çoğul isimdir; bastante çoğulda bastantes olur."
+      },
+      {
+        "prompt": "Hangisi yanlıştır?",
+        "options": [
+          "Es carísimo.",
+          "Es muy carísimo.",
+          "Es muy caro.",
+          "Es bastante caro."
+        ],
+        "answer": 1,
+        "why": "-ísimo zaten “çok” demektir; muy ile birlikte kullanılmaz."
+      }
+    ],
+    "basics_es_tratamiento": [
+      {
+        "prompt": "Perdone, ¿___ es el señor Ruiz?",
+        "options": [
+          "tú",
+          "usted",
+          "vosotros",
+          "os"
+        ],
+        "answer": 1,
+        "why": "Perdone (usted emri) ve es fiili saygılı hitabı gösterir: ¿usted es…?"
+      },
+      {
+        "prompt": "Señor López, ¿cuántos años ___ usted?",
+        "options": [
+          "tiene",
+          "tienes",
+          "tenéis",
+          "tengo"
+        ],
+        "answer": 0,
+        "why": "Usted ile fiil üçüncü tekil kişide çekilir: usted tiene."
+      },
+      {
+        "prompt": "Señora, ¿cómo se ___ usted?",
+        "options": [
+          "llama",
+          "llamas",
+          "llamáis",
+          "llamo"
+        ],
+        "answer": 0,
+        "why": "Usted ile fiil ve dönüşlü zamir üçüncü kişidedir: ¿cómo se llama usted?"
+      },
+      {
+        "prompt": "Latin Amerika'da bir grup arkadaşa: “¿___ vienen a la playa?”",
+        "options": [
+          "Vosotros",
+          "Ustedes",
+          "Usted",
+          "Tú"
+        ],
+        "answer": 1,
+        "why": "Latin Amerika'da çoğulda tek biçim ustedes'tir; fiil vienen ile uyuşur."
+      },
+      {
+        "prompt": "¡Hola, Pablo! ¿Cómo ___ (tú)?",
+        "options": [
+          "estás",
+          "está",
+          "estáis",
+          "están"
+        ],
+        "answer": 0,
+        "why": "Tú ile fiil ikinci tekil kişide: ¿cómo estás?"
+      },
+      {
+        "prompt": "Señores, ¿___ algo de beber?",
+        "options": [
+          "quieres",
+          "quiere",
+          "queréis",
+          "quieren"
+        ],
+        "answer": 3,
+        "why": "Ustedes ile fiil üçüncü çoğul kişide: quieren."
+      },
+      {
+        "prompt": "Hangisi saygılı bir rica cümlesidir?",
+        "options": [
+          "¿Me pasas la sal?",
+          "¿Me pasa la sal, por favor?",
+          "¿Pásame la sal?",
+          "¿Me pasáis la sal tú?"
+        ],
+        "answer": 1,
+        "why": "Usted ile fiil üçüncü tekil: ¿Me pasa…?"
+      },
+      {
+        "prompt": "Disculpe, ¿es este ___ asiento?",
+        "options": [
+          "tu",
+          "su",
+          "vuestro",
+          "tuyo"
+        ],
+        "answer": 1,
+        "why": "Disculpe usted hitabıdır; usted ile iyelik su'dur."
+      },
+      {
+        "prompt": "Chicas, ¿___ estáis listas?",
+        "options": [
+          "ustedes",
+          "vosotras",
+          "usted",
+          "tú"
+        ],
+        "answer": 1,
+        "why": "Estáis fiili vosotros/vosotras çekimidir; kızlara samimi hitap vosotras."
+      },
+      {
+        "prompt": "“Ud.” kısaltması nasıl okunur?",
+        "options": [
+          "ude",
+          "usted",
+          "uno",
+          "uds"
+        ],
+        "answer": 1,
+        "why": "Ud. yalnızca yazım kısaltmasıdır; usted diye okunur."
+      },
+      {
+        "prompt": "Arjantin'de “vos tenés” ne demektir?",
+        "options": [
+          "sizin var (resmî)",
+          "senin var (samimi)",
+          "onların var",
+          "bizim var"
+        ],
+        "answer": 1,
+        "why": "Vos bazı ülkelerde tú yerine kullanılan samimi tekil hitaptır."
+      },
+      {
+        "prompt": "Señor, siéntese aquí, por favor. Hangi hitap?",
+        "options": [
+          "tú",
+          "usted",
+          "vosotros",
+          "vos"
+        ],
+        "answer": 1,
+        "why": "Siéntese, usted ile kurulan emirdir (se üçüncü kişidir)."
+      }
+    ],
+    "basics_es_condicional_cortesia": [
+      {
+        "prompt": "Si tuviera un coche, ___ a la playa todos los fines de semana.",
+        "options": [
+          "iré",
+          "iría",
+          "iba",
+          "vaya"
+        ],
+        "answer": 1,
+        "why": "Si + imperfecto de subjuntivo varsayımında ana cümle condicional olur: iría."
+      },
+      {
+        "prompt": "¿___ abrir la ventana, por favor? Hace calor.",
+        "options": [
+          "Podría usted",
+          "Podrá usted de",
+          "Pudiera de",
+          "Puede de"
+        ],
+        "answer": 0,
+        "why": "Kibar rica: ¿Podría usted abrir…? Diğerleri hatalı kurulmuş."
+      },
+      {
+        "prompt": "Yo que tú, no ___ nada a nadie.",
+        "options": [
+          "diría",
+          "decería",
+          "dirá",
+          "decía de"
+        ],
+        "answer": 0,
+        "why": "Öğüt (yo que tú) condicional ister; decir'in gövdesi dir-: diría."
+      },
+      {
+        "prompt": "Nosotros ___ encantados de ayudarte.",
+        "options": [
+          "estaríamos",
+          "estaremos de",
+          "estábamos de",
+          "estaríais"
+        ],
+        "answer": 0,
+        "why": "Kibar teklif: estar condicional'de, nosotros ile estaríamos."
+      },
+      {
+        "prompt": "¿Te ___ cerrar la puerta? Hay corriente.",
+        "options": [
+          "importaría",
+          "importará de",
+          "importabas",
+          "importarías"
+        ],
+        "answer": 0,
+        "why": "Kibar rica kalıbı: ¿Te importaría + mastar?"
+      },
+      {
+        "prompt": "Con más tiempo, ___ más libros.",
+        "options": [
+          "leería",
+          "leíría",
+          "leyería",
+          "leyera"
+        ],
+        "answer": 0,
+        "why": "Condicional: mastar + -ía; leer → leería."
+      },
+      {
+        "prompt": "Hangisi doğru?",
+        "options": [
+          "Si pudiera, te ayudaría.",
+          "Si podría, te ayudaría.",
+          "Si pudiera, te ayudaré.",
+          "Si podría, te ayudaré."
+        ],
+        "answer": 0,
+        "why": "Si ile condicional kullanılmaz: si + pudiera, ana cümlede ayudaría."
+      },
+      {
+        "prompt": "Ellos ___ venir, pero tienen que trabajar.",
+        "options": [
+          "querrían",
+          "querían de",
+          "querrán de",
+          "quererían"
+        ],
+        "answer": 0,
+        "why": "Gerçekleşmeyen istek: querer'in gövdesi querr-: querrían."
+      },
+      {
+        "prompt": "¿A qué hora llegasteis? — No sé, ___ las diez.",
+        "options": [
+          "serían",
+          "sería de",
+          "seremos",
+          "serán de"
+        ],
+        "answer": 0,
+        "why": "Geçmişte tahmin condicional ile: serían las diez (= saat on civarı olmalıydı)."
+      },
+      {
+        "prompt": "Disculpe, ___ una habitación doble para esta noche.",
+        "options": [
+          "quisiera",
+          "quisiste",
+          "quise",
+          "querré de"
+        ],
+        "answer": 0,
+        "why": "Quisiera (imperfecto de subjuntivo) çok kibar bir istek kalıbıdır."
+      },
+      {
+        "prompt": "Tú ___ hablar con tu jefe sobre el problema.",
+        "options": [
+          "deberías",
+          "deberíais",
+          "debería de mí",
+          "debieses de"
+        ],
+        "answer": 0,
+        "why": "Öğüt: deber condicional'de, tú ile deberías."
+      },
+      {
+        "prompt": "Con este calor, ___ bien una limonada.",
+        "options": [
+          "vendría",
+          "vendría de",
+          "venería",
+          "venirá"
+        ],
+        "answer": 0,
+        "why": "Venir'in condicional gövdesi vendr-: “vendría bien” = iyi gelirdi."
+      }
+    ]
+  }
+}

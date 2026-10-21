@@ -85,6 +85,13 @@ const SAMPLES: Record<string, { lang: 'fr' | 'es' | 'en'; yes: string; marks: st
   basics_en_inversion_conditionals: { lang: 'en', yes: 'Had I known the truth, I would have said so.', marks: 'Had I known', no: 'Should I go now or wait for the others here?' },
   basics_en_prepositional_verbs: { lang: 'en', yes: 'I look forward to meeting you next week at the office.', marks: 'look forward to meeting', no: 'I look at the pictures in the big book every week.' },
   basics_en_double_comparatives: { lang: 'en', yes: 'The more you read, the better you write in the end.', marks: 'The more you read, the better', no: 'You read a lot and you write well in the end.' },
+  basics_fr_conditionnel_present: { lang: 'fr', yes: "Je voudrais deux croissants et un café, s'il vous plaît.", marks: 'Je voudrais', no: 'Je veux deux croissants et un café ce matin.' },
+  basics_fr_obligation: { lang: 'fr', yes: 'Il faut réserver une table avant samedi soir.', marks: 'Il faut', no: 'Nous avons réservé une table pour samedi soir.' },
+  basics_fr_pronoms_possessifs: { lang: 'fr', yes: 'Ta voiture est rouge, mais la mienne est bleue.', marks: 'la mienne', no: 'Ta voiture est rouge, mais ma voiture est bleue.' },
+  basics_es_condicional_cortesia: { lang: 'es', yes: 'Me gustaría reservar una mesa para dos personas.', marks: 'Me gustaría', no: 'Quiero reservar una mesa para dos personas.' },
+  basics_es_muy_mucho: { lang: 'es', yes: 'Hoy hay mucha gente en el mercado del barrio.', marks: 'mucha', no: 'Hoy hay gente en el mercado del barrio.' },
+  basics_es_tratamiento: { lang: 'es', yes: 'Perdone, ¿usted sabe dónde está la estación?', marks: 'usted', no: 'Perdona, ¿sabes dónde está la estación de tren?' },
+  basics_en_reflexive_pronouns: { lang: 'en', yes: 'We really enjoyed ourselves at the party last night.', marks: 'ourselves', no: 'We really enjoyed the party with our friends last night.' },
 }
 
 describe('the patterns of topics beyond the first ones', () => {

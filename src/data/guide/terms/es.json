@@ -501,6 +501,69 @@
         "text": "Trabajo para vivir, no vivo por trabajar.",
         "tr": "Yaşamak için çalışıyorum."
       }
+    },
+    {
+      "term": "tilde",
+      "aliases": [
+        "acento gráfico"
+      ],
+      "tr": "vurgu işareti",
+      "explanation": "Vurgulu ünlünün üstüne konan işaret (á, é, í, ó, ú); vurguyu gösterir ve él / el, sí / si gibi sözcükleri ayırır.",
+      "example": {
+        "text": "¿Dónde está el café?",
+        "tr": "Kahve nerede?"
+      }
+    },
+    {
+      "term": "voseo",
+      "aliases": [
+        "vos"
+      ],
+      "tr": "vos ile hitap",
+      "explanation": "Arjantin, Uruguay ve Orta Amerika’nın bir kısmında samimi “sen” için tú yerine vos kullanılması; fiil de değişir: vos tenés, vos hablás.",
+      "example": {
+        "text": "¿Vos sabés dónde queda la plaza?",
+        "tr": "Meydanın nerede olduğunu biliyor musun?"
+      }
+    },
+    {
+      "term": "usted",
+      "aliases": [
+        "ustedes"
+      ],
+      "tr": "saygılı siz",
+      "explanation": "Saygılı hitap zamiri; anlamca “siz” olsa da fiil, zamir ve iyelik üçüncü kişidedir: usted tiene, su casa.",
+      "example": {
+        "text": "¿Usted habla inglés?",
+        "tr": "İngilizce konuşuyor musunuz?"
+      }
+    },
+    {
+      "term": "presente de subjuntivo",
+      "tr": "dilek kipi şimdiki zamanı",
+      "explanation": "Dilek, duygu, şüphe ve amaç bildiren yan cümlelerde kullanılan kip; -ar fiilleri -e, -er/-ir fiilleri -a ünlüsü alır: hable, coma.",
+      "example": {
+        "text": "Quiero que me escuches.",
+        "tr": "Beni dinlemeni istiyorum."
+      }
+    },
+    {
+      "term": "participio absoluto",
+      "tr": "mutlak ortaç yapısı",
+      "explanation": "Cümle başında, kendi öznesiyle kurulan ortaç yapısı (Terminada la clase, …); ortaç bu isme cinsiyet ve sayıca uyar.",
+      "example": {
+        "text": "Dicho esto, se fue.",
+        "tr": "Bunu söyledikten sonra gitti."
+      }
+    },
+    {
+      "term": "gerundio compuesto",
+      "tr": "bileşik ulaç",
+      "explanation": "habiendo + participio; ana eylemden önce tamamlanmış eylemi anlatır.",
+      "example": {
+        "text": "Habiendo terminado el trabajo, salimos a cenar.",
+        "tr": "İşi bitirmiş olarak akşam yemeğine çıktık."
+      }
     }
   ]
 }

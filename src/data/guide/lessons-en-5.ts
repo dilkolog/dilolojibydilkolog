@@ -39,6 +39,7 @@ export const EN_LESSONS_5: TopicLesson[] = [
     watch: [
       'Türkçede "hata yapmak", "gürültü yapmak" ve "ilerleme kaydetmek" ifadelerinde « do a mistake », « do noise », « do progress » deme; doğruları make a mistake, make noise, make progress’tir.',
       'Fotoğraf çekmek için « make a photo » değil, « take a photo » kullanılır.',
+      'Yemeklerde have kullanılır: « take breakfast » yerine « have breakfast »; duş için have a shower (BrE) ve take a shower (AmE) ikisi de doğrudur.',
     ],
     tip: 'Ev işi ve ödev = DO (do homework, do housework); karar, hata, konuşma ve yemek hazırlama = MAKE; sınav, fotoğraf ve mola = TAKE.',
     check: [
@@ -104,6 +105,7 @@ export const EN_LESSONS_5: TopicLesson[] = [
     watch: [
       'En sık yapılan iki hata « He said me » ve « He told to me » kalıplarıdır! Say kişiden önce to ister (said to me), tell ise to kabul etmez (told me).',
       'Dil adlarıyla talk kullanma: « She talks English » değil, « She speaks English ».',
+      'Tell bazı sabit kalıplarda kişisiz de kullanılır: tell the truth, tell a lie, tell a story, tell the time.',
     ],
     tip: 'Boşluktan hemen sonra me / you / him / her / us / them gibi bir kişi zamiri varsa TELL seç; "that", tırnak içi söz veya "to me" varsa SAY seç. Dil adı varsa SPEAK seç.',
     check: [
@@ -170,6 +172,7 @@ export const EN_LESSONS_5: TopicLesson[] = [
     watch: [
       'İki seçenek varken none kullanmak (« I have two brothers and none of them lives here ») veya üç seçenek varken neither/both kullanmak sınavlarda en sık ölçülen tuzaktır: 2 = both / either / neither; 3+ = all / any / none.',
       'Nobody / nothing / neither bulunan cümlede fiili olumsuz yapma: « Nobody didn’t come » değil, « Nobody came ».',
+      'Everyone, everybody, everything tekil fiil alır: « Everyone are here » değil, « Everyone is here ».',
     ],
     tip: 'Neither ve nobody/nothing kelimelerinin içinde zaten "N" (No) harfi vardır; bu yüzden cümleye bir daha "not / don’t / didn’t" ekleme!',
     check: [
@@ -236,6 +239,7 @@ export const EN_LESSONS_5: TopicLesson[] = [
     watch: [
       'Sayılamayan isimlerle a/an kullanma: « such a good weather » veya « such a good news » değil, « such good weather / such good news ».',
       'Sıfattan önce enough getirme: « enough big » değil, « big enough ».',
+      'Too olumsuz bir sonuç ima eder; olumlu “çok” için very kullan: « The weather is too nice today » değil, « The weather is very nice today ».',
     ],
     tip: 'Sadece sıfat varsa SO (so cold), sonunda isim varsa SUCH (such a cold day). Sıfat + ENOUGH (tall enough), ama ENOUGH + İsim (enough money)!',
     check: [
@@ -303,6 +307,7 @@ export const EN_LESSONS_5: TopicLesson[] = [
     watch: [
       '« Could you tell me where is the bathroom? » konuşma dilinde en sık yapılan hatadır! İlk kısım zaten soru yapısındadır; ikinci kısımda soru devrikliği yapılmaz: « Could you tell me where the bathroom is? » denmelidir.',
       'Dolaylı soruda does veya did bırakma: « Do you know where does he work? » değil, « Do you know where he works? ».',
+      'Evet/hayır soruları dolaylı soruda if ya da whether ile bağlanır: « Do you know is he coming? » değil, « Do you know if he is coming? ».',
     ],
     tip: 'Soru kalıbını ("Could you tell me") bir kez kullandın mı, soru hakkın bitti! Geri kalan kısmı normal bir düz cümle gibi "Özne + Fiil" sırasıyla kur.',
     check: [
@@ -374,6 +379,7 @@ export const EN_LESSONS_5: TopicLesson[] = [
     watch: [
       '« I am boring » derseniz "Canım sıkılıyor" demiş olmazsınız, "Ben sıkıcı bir insanım!" demiş olursunuz! Kendi hissettiğiniz duyguyu söylerken daima -ed (« I am bored / I am interested in... ») kullanın.',
       'Malzeme sıfatını (wooden, leather) renk veya boyuttan önce getirme: « a leather black bag » değil, « a black leather bag ».',
+      'Fikir bildiren sıfat (beautiful, nice, ugly) en başa gelir: a beautiful old house (« an old beautiful house » değil).',
     ],
     tip: 'Kısa formül: Önce FİKİR (güzel/çirkin), sonra BOYUT ve YAŞ (büyük/eski), sonra RENK, en sonda KÖKEN ve MALZEME (Turkish cotton, Italian leather) + İSİM.',
     check: [
@@ -450,6 +456,7 @@ export const EN_LESSONS_5: TopicLesson[] = [
     watch: [
       'Sınavlarda en çok sorulan tuzak suggest ve recommend fiilleridir: « He suggested me to go » ve « He suggested to go » ikisi de yanlıştır! Doğrusu: « He suggested going » veya « He suggested (that) we (should) go » şeklindedir.',
       'Promise ve offer fiillerinden sonra kişi + to V getirme: « He offered me to help » değil, « He offered to help me ».',
+      'Accuse of, blame for ve apologise for kalıplarında edattan sonra -ing gelir: She accused him of lying.',
     ],
     tip: 'Edat eşleşmelerini çift olarak ezberle: accuse OF, apologize FOR, blame FOR, insist ON, congratulate ON + V-ing!',
     check: [
@@ -522,6 +529,7 @@ export const EN_LESSONS_5: TopicLesson[] = [
     watch: [
       'Geçmişte "yapmış olamaz!" demek için asla « mustn’t have V3 » kullanılmaz! Must have V3 yapısının olumsuz çıkarım karşılığı her zaman « can’t have V3 / couldn’t have V3 »tür.',
       'Modal + have yapısından sonra fiilin 2. hâlini değil, daima 3. hâlini (V3) kullan: « must have went » değil, « must have gone ».',
+      'Should have + V3 pişmanlık ya da eleştiri, could have + V3 kaçırılmış olanak bildirir: You should have called me ≠ You could have called me.',
     ],
     tip: 'Kanıt var ve eminim (+) = must have V3; Kanıt var ve imkânsız (-) = can’t have V3; Emin değilim (?) = might/may have V3; Keşke yapsaydım = should have V3.',
     check: [
@@ -599,6 +607,7 @@ export const EN_LESSONS_5: TopicLesson[] = [
     watch: [
       '« No sooner had I arrived when... » yanlıştır! No sooner when değil than alır (çünkü sooner karşılaştırma ekidir: -er ... than).',
       '« Only when did he arrive I saw him » yanlıştır! Only when / Not until yapılarında devriklik ilk kısımda değil, ikinci kısımdaki ana cümlede yapılır: « Only when he arrived did I see him ».',
+      'Not only cümle başına gelince devrik yapı ister: « Not only she sings » değil, « Not only does she sing, but she also dances ».',
     ],
     tip: 'Sooner (-er) → THAN! Hardly / Scarcely / Barely → WHEN! Cümle bunlarla başlıyorsa hemen arkasına "had + özne + V3" koy.',
     check: [
@@ -671,6 +680,7 @@ export const EN_LESSONS_5: TopicLesson[] = [
     watch: [
       'Sıfatın başa çekildiği « Tired as he was » yapısında cümlenin başına hem Although koyup hem de as kullanmak (« Although tired as he was ») yanlıştır; baştaki sıfat + as/though zaten tek başına although görevini görür.',
       'Fiil başa çekildiğinde « Tried as he might » deme; yalın fiil kullanılır: « Try as he might ».',
+      '« Come what may » ve « Be that as it may » kalıptır, fiil çekilmez: « Comes what may » yanlıştır.',
     ],
     tip: 'Yazılı sınavlarda "Although it is difficult" yerine "Difficult as it may be" veya "However" yerine "Be that as it may" kullanmak C1 dil hakimiyetini doğrudan gösterir.',
     check: [

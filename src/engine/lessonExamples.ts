@@ -68,6 +68,9 @@ const PATTERNS: Record<string, RegExp> = {
   basics_fr_savoir_connaitre: words('sais|sait|savons|savez|savent|connais|connaît|connaissons|connaissez|connaissent'),
   basics_fr_infinitif_passe: words("après\\s+(?:avoir|être|s'être)\\s+\\p{L}+"),
   basics_fr_connecteurs_argumentation: words("en effet|en revanche|d'ailleurs|en outre|de surcroît|certes|dès lors|en définitive|par conséquent"),
+  basics_fr_conditionnel_present: words("je voudrais|j['’]aimerais|tu devrais|vous devriez|pourriez-vous|pourrais-tu|tu pourrais|vous pourriez|il faudrait|ce serait|ça serait|à ta place|à votre place"),
+  basics_fr_obligation: words("il faut|il faudra|il fallait|il faudrait|(?:je|tu)\\s+dois|(?:il|elle|on)\\s+doit|nous\\s+devons|vous\\s+devez|(?:ils|elles)\\s+doivent|besoin\\s+d(?:e|['’])|obligée?s?\\s+d(?:e|['’])"),
+  basics_fr_pronoms_possessifs: words("(?:le|la|au|du)\\s+(?:mien|mienne|sien|sienne|nôtre|vôtre)|(?:les|aux|des)\\s+(?:miens|miennes|siens|siennes|nôtres|vôtres)"),
   // Spanish
   por_para: words('por|para'),
   ser_estar: words('es|son|era|eran|fue|fueron|soy|eres|somos|está|están|estaba|estaban|estoy|estás|estamos|estuvo'),
@@ -111,6 +114,9 @@ const PATTERNS: Record<string, RegExp> = {
   basics_es_se_accidental: words('se\\s+(?:me|te|le|nos|os|les)\\s+(?:cayó|cayeron|olvidó|olvidaron|rompió|rompieron|perdió|perdieron|acabó|acabaron)'),
   basics_es_como_si_ojala: words('ojalá|como si'),
   basics_es_conectores_dele: words('asimismo|en cambio|de ahí que|por consiguiente|si bien|siempre y cuando'),
+  basics_es_condicional_cortesia: words("me gustaría|te gustaría|le gustaría|nos gustaría|me encantaría|podría|podrías|podríais|podrían|deberías|debería|deberíais|yo que tú|yo en tu lugar|te importaría|le importaría"),
+  basics_es_muy_mucho: words("muy|mucho|mucha|muchos|muchas|demasiado|demasiada|demasiados|demasiadas|bastante|bastantes"),
+  basics_es_tratamiento: words("usted|ustedes|vosotros|vosotras"),
   // English
   present_perfect: words("(?:have|has|'ve)\\s+(?:never\\s+|already\\s+|just\\s+|ever\\s+|not\\s+)?(?:\\p{L}+ed|been|done|gone|seen|made|taken|had|got|come|become|known|written|read|met|said|told|found|lost|won|begun|left|kept|felt|heard|thought)"),
   basics_en_present_perfect_continuous: words("(?:have|has|'ve)\\s+been\\s+\\p{L}+ing"),
@@ -167,6 +173,7 @@ const PATTERNS: Record<string, RegExp> = {
   basics_en_so_such_too_enough: words('(?:so|such)\\s+(?:a\\s+|an\\s+)?\\p{L}+\\s+that|too\\s+\\p{L}+\\s+to\\s+\\p{L}+|\\p{L}+\\s+enough\\s+to'),
   basics_en_modals_past_deduction: words("(?:must|can't|couldn't|might|may|should|shouldn't|needn't)\\s+have\\s+\\p{L}+"),
   basics_en_correlative_conjunctions: words('no sooner|hardly\\s+had|scarcely\\s+had|not only'),
+  basics_en_reflexive_pronouns: words('myself|yourself|himself|herself|itself|ourselves|yourselves|themselves|each other|one another'),
 }
 
 /** Topics that have a pattern (the others have no "your own sentences" section unless they teach a tense). */

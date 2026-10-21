@@ -1,0 +1,192 @@
+import type { TopicLesson } from './lessonTypes'
+
+export const ES_LESSONS_6: TopicLesson[] = [
+  {
+    topic: 'basics_es_muy_mucho',
+    language: 'es',
+    level: 'A1',
+    title: 'Muy mi, mucho mu? (ve demasiado, bastante)',
+    summary:
+      'Türkçede ikisi de “çok” olan muy ve mucho farklı kelimelerin yanında durur: muy sıfat ve zarfla, mucho isim ve fiille.',
+    rules: [
+      'Muy sıfatın ya da zarfın önüne gelir ve hiç değişmez: muy alto, muy alta, muy bien, muy tarde.',
+      'Mucho ismin önünde sıfattır ve isimle uyum yapar: mucho trabajo, mucha agua, muchos libros, muchas personas.',
+      'Fiilden sonra mucho zarftır ve değişmez: Trabajo mucho. Me gusta mucho.',
+      'Tek başına cevapta muy kullanılmaz: ¿Estás cansado? — Sí, mucho. (« Sí, muy » yanlış).',
+      'Karşılaştırma sözcüklerinin önünde mucho gelir: mucho mejor, mucho peor, mucho más, mucho menos, mucho mayor (« muy mejor » yanlış).',
+      'Bastante (yeterince, epey) ve demasiado (fazla) da aynı mantıkla çalışır: sıfatın önünde değişmez (bastante caro, demasiado caro), ismin önünde uyum yapar (bastantes amigos, demasiada gente).',
+      'Muy sıfatın üstünlük ekiyle (-ísimo) birlikte kullanılmaz: muy caro ya da carísimo, ama « muy carísimo » değil.',
+    ],
+    table: {
+      caption: 'Hangi kelimenin yanında?',
+      head: ['Yanındaki', 'Kullan', 'Örnek'],
+      rows: [
+        ['sıfat', 'muy', 'Es muy simpática.'],
+        ['zarf', 'muy', 'Hablas muy rápido.'],
+        ['isim', 'mucho / mucha / muchos / muchas', 'Hay mucha gente.'],
+        ['fiil (sonrasında)', 'mucho', 'Llueve mucho.'],
+        ['mejor / peor / más / menos', 'mucho', 'Es mucho mejor.'],
+        ['tek başına cevap', 'mucho', '¿Te gusta? — Sí, mucho.'],
+      ],
+    },
+    examples: [
+      { text: 'Hoy hace mucho calor y estoy muy cansado.', tr: 'Bugün hava çok sıcak ve çok yorgunum.' },
+      { text: 'Tengo muchas preguntas sobre el examen.', tr: 'Sınav hakkında çok sorum var.' },
+      { text: 'Mi hermana lee mucho, sobre todo novelas.', tr: 'Kız kardeşim çok okur, özellikle roman.' },
+      { text: 'Este hotel es mucho mejor que el otro.', tr: 'Bu otel öbüründen çok daha iyi.' },
+      { text: 'Hay demasiada gente en la playa.', tr: 'Plajda fazla kalabalık var.' },
+      { text: 'El examen fue bastante difícil.', tr: 'Sınav epey zordu.' },
+    ],
+    watch: [
+      '“Hace calor” bir isimle (calor) kurulur: « hace muy calor » değil, « hace mucho calor ». Aynısı mucho frío, mucha hambre, mucha sed, mucho miedo için de geçerli.',
+      'Ama estar + sıfatta muy gelir: estoy muy cansado, está muy contenta.',
+      'Mucho ismin cinsiyetine uyar: « mucho gente » değil « mucha gente » (gente dişil ve tekildir).',
+    ],
+    tip: 'Sağındaki kelimeye bak: “nasıl?” sorusunun cevabıysa (sıfat, zarf) muy; “ne kadar?” sorusunun cevabıysa (isim, fiil) mucho.',
+    check: [
+      {
+        prompt: 'Mi abuela es ___ simpática.',
+        options: ['muy', 'mucha', 'mucho', 'muchas'],
+        answer: 0,
+        why: 'Simpática bir sıfattır; sıfatın önünde değişmeyen muy kullanılır.',
+      },
+      {
+        prompt: 'En invierno hace ___ frío en Burgos.',
+        options: ['mucho', 'muy', 'mucha', 'muchos'],
+        answer: 0,
+        why: 'Frío burada bir isimdir (hace frío); ismin önünde mucho gelir ve frío eril tekil olduğu için mucho.',
+      },
+      {
+        prompt: 'Hangisi doğrudur?',
+        options: ['Este café es mucho mejor.', 'Este café es muy mejor.', 'Este café es mucha mejor.', 'Este café es muy más rico.'],
+        answer: 0,
+        why: 'Mejor, peor, más, menos önünde mucho kullanılır: mucho mejor.',
+      },
+    ],
+  },
+  {
+    topic: 'basics_es_tratamiento',
+    language: 'es',
+    level: 'A1',
+    title: 'Tú mu, usted mi? (Sen ve siz)',
+    summary:
+      'Samimi tú, saygılı usted; çoğulda İspanya’da vosotros, Latin Amerika’da ustedes. Usted fiili üçüncü tekil kişiyle çeker.',
+    rules: [
+      'Tú: arkadaş, aile, çocuk, yaşıt ve gündelik ortam. Fiil ikinci tekil kişiyle çekilir: ¿Tú hablas inglés?',
+      'Usted: tanımadığın yetişkin, yaşlı, müşteri, resmî ortam. Usted anlam olarak “siz” olsa da fiil üçüncü tekil kişiyle çekilir: ¿Usted habla inglés?',
+      'Usted ile kullanılan zamir ve iyelikler de üçüncü kişidir: le, lo / la, se, su: ¿Le ayudo? ¿Es su maleta?',
+      'Çoğulda İspanya’da samimi vosotros (habláis), saygılı ustedes (hablan) kullanılır.',
+      'Latin Amerika’da çoğulda tek biçim vardır: ustedes, hem arkadaşlara hem resmî olarak (¿Ustedes vienen?).',
+      'Arjantin, Uruguay ve Orta Amerika’nın bazı yerlerinde tú yerine vos kullanılır (vos hablás, vos tenés); öğrenirken tanımak yeter.',
+      'Usted ve ustedes yazıda Ud. ve Uds. diye kısaltılabilir; okunuşu yine usted, ustedes.',
+    ],
+    table: {
+      caption: 'Hitap ve fiil (hablar)',
+      head: ['Hitap', 'Kime', 'Fiil'],
+      rows: [
+        ['tú', 'bir kişi, samimi', 'hablas'],
+        ['usted', 'bir kişi, saygılı', 'habla'],
+        ['vosotros / vosotras', 'birden çok kişi, samimi (İspanya)', 'habláis'],
+        ['ustedes', 'birden çok kişi (Latin Amerika’da hep, İspanya’da saygılı)', 'hablan'],
+        ['vos', 'bir kişi, samimi (Arjantin, Uruguay…)', 'hablás'],
+      ],
+    },
+    examples: [
+      { text: '¿Cómo te llamas? — Me llamo Lucía, ¿y tú?', tr: 'Adın ne? — Adım Lucía, ya senin?' },
+      { text: 'Perdone, ¿usted sabe dónde está la estación?', tr: 'Affedersiniz, istasyonun nerede olduğunu biliyor musunuz?' },
+      { text: '¿Desea usted algo más, señora?', tr: 'Başka bir şey ister misiniz hanımefendi?' },
+      { text: 'Chicos, ¿vosotros venís a la fiesta?', tr: 'Çocuklar, siz partiye geliyor musunuz?' },
+      { text: 'Señores, ¿ustedes tienen reserva?', tr: 'Beyler, rezervasyonunuz var mı?' },
+      { text: '¿Me da su pasaporte, por favor?', tr: 'Pasaportunuzu verir misiniz, lütfen?' },
+    ],
+    watch: [
+      'Usted ile fiili ikinci kişiyle çekme: « ¿Usted tienes…? » değil, « ¿Usted tiene…? ».',
+      'Usted ile iyelik su’dur, tu değil: « ¿Es tu coche, señor? » değil, « ¿Es su coche, señor? ».',
+      'Özne zamiri çoğu zaman düşer; usted ise belirsizlik olmasın ya da kibarlık vurgulansın diye sıkça söylenir.',
+    ],
+    tip: 'Usted’i “o” gibi düşün: Türkçede “Hocam ne düşünüyor?” der gibi, fiil ve iyelik hep üçüncü kişide kalır.',
+    check: [
+      {
+        prompt: 'Señor García, ¿usted ___ café o té?',
+        options: ['quiere', 'quieres', 'queréis', 'quieren'],
+        answer: 0,
+        why: 'Usted anlamca “siz” olsa da fiil üçüncü tekil kişiyle çekilir: usted quiere.',
+      },
+      {
+        prompt: 'İspanya’da iki arkadaşına soruyorsun: “¿Vosotros ___ al cine esta noche?”',
+        options: ['vais', 'vas', 'van', 'vamos'],
+        answer: 0,
+        why: 'İspanya’da birden çok kişiye samimi hitap vosotros’tur: vosotros vais.',
+      },
+      {
+        prompt: 'Otelde resepsiyon görevlisi: “¿Me deja ___ pasaporte, por favor?”',
+        options: ['su', 'tu', 'vuestro', 'sus'],
+        answer: 0,
+        why: 'Usted ile iyelik üçüncü kişidir: su pasaporte.',
+      },
+    ],
+  },
+  {
+    topic: 'basics_es_condicional_cortesia',
+    language: 'es',
+    level: 'A2',
+    title: 'Condicional: kibar istek, öneri, hayal',
+    summary:
+      '“Me gustaría…”, “¿Podrías…?”, “Deberías…”: condicional simple ile kibarca istemek, öğüt vermek ve hayal kurmak.',
+    rules: [
+      'Kuruluş: mastar + -ía, -ías, -ía, -íamos, -íais, -ían (hablaría, comería, viviría); üç fiil grubunda ekler aynıdır.',
+      'Düzensiz gövdeler gelecek zamanınkiyle aynıdır: tener → tendr-, poder → podr-, hacer → har-, decir → dir-, querer → querr-, saber → sabr-, salir → saldr-, venir → vendr-, poner → pondr-, haber → habr-.',
+      'Kibar istek: Me gustaría reservar una mesa. ¿Podría hablar con el director? ¿Te importaría cerrar la ventana?',
+      'Öğüt: Deberías descansar más. Yo que tú, iría al médico. Yo en tu lugar, no diría nada.',
+      'Hayal ve varsayım: si + imperfecto de subjuntivo, ana cümlede condicional: Si tuviera tiempo, viajaría más.',
+      'Geçmişte tahmin: Serían las diez cuando llegó. (= saat on civarı olmalıydı).',
+      'Querer ile kibar istekte condicional yerine imperfecto de subjuntivo da çok yaygındır: Quisiera una habitación doble.',
+    ],
+    table: {
+      caption: 'Condicional simple çekimi',
+      head: ['Kişi', 'hablar', 'poder', 'hacer'],
+      rows: [
+        ['yo', 'hablaría', 'podría', 'haría'],
+        ['tú', 'hablarías', 'podrías', 'harías'],
+        ['él / ella / usted', 'hablaría', 'podría', 'haría'],
+        ['nosotros', 'hablaríamos', 'podríamos', 'haríamos'],
+        ['vosotros', 'hablaríais', 'podríais', 'haríais'],
+        ['ellos / ustedes', 'hablarían', 'podrían', 'harían'],
+      ],
+    },
+    examples: [
+      { text: 'Me gustaría reservar una mesa para dos personas.', tr: 'İki kişilik bir masa ayırtmak istiyorum.' },
+      { text: '¿Podrías ayudarme con la maleta?', tr: 'Bavulda bana yardım edebilir misin?' },
+      { text: 'Deberías dormir más, tienes mala cara.', tr: 'Daha çok uyumalısın, yüzün solgun.' },
+      { text: 'Yo que tú, no compraría ese coche.', tr: 'Senin yerinde olsam o arabayı almazdım.' },
+      { text: '¿Le importaría hablar un poco más despacio?', tr: 'Biraz daha yavaş konuşur musunuz?' },
+      { text: 'Si tuviera más dinero, viviría cerca del mar.', tr: 'Daha çok param olsa deniz kenarında yaşardım.' },
+    ],
+    watch: [
+      'Si’nin yanına condicional gelmez: « Si tendría tiempo » değil, « Si tuviera tiempo ».',
+      'Vurgu işareti her kişide vardır: hablaría, hablaríamos; işaretsiz « hablaria » yanlış yazımdır.',
+      'Düzensiz gövdede ünlü düşer: « podería », « hacería », « tenería » değil; podría, haría, tendría.',
+    ],
+    tip: 'Kafede ya da dükkânda “quiero” yerine “me gustaría” ya da “quisiera” de: aynı istek, çok daha kibar.',
+    check: [
+      {
+        prompt: 'En el restaurante: «Me ___ ver la carta, por favor.»',
+        options: ['gustaría', 'gustaba', 'gustará', 'gusto'],
+        answer: 0,
+        why: 'Kibar istek condicional ile kurulur: me gustaría.',
+      },
+      {
+        prompt: 'Estás muy cansado. Tú ___ acostarte temprano esta noche.',
+        options: ['deberías', 'deberíais', 'debes de', 'deber'],
+        answer: 0,
+        why: 'Öğüt vermek için deber condicional’de kullanılır: deberías.',
+      },
+      {
+        prompt: 'Si fueras yo, ¿qué ___ ?',
+        options: ['harías', 'hacerías', 'harás', 'hagas'],
+        answer: 0,
+        why: '“Ben olsaydın” varsayımı condicional ister; hacer’in gövdesi düzensizdir: harías.',
+      },
+    ],
+  },
+]

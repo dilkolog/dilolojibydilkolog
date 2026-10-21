@@ -138,6 +138,7 @@ export const ES_LESSONS_4: TopicLesson[] = [
       'Meşhur "se lo" kuralı: Üçüncü şahıslarda le veya les zamirinden sonra lo, la, los, las geldiğinde ses çatışmasını önlemek için le/les otomatik olarak "se" olur: ¿Le das el libro a Carlos? — Sí, se lo doy (*le lo doy denmez).',
       'Çekimli fiillerde ve olumsuz emirlerde çift zamir fiilin ÖNÜNDE ayrı yazılır: Se lo digo mañana. No me lo digas.',
       'Mastar (infinitivo), ulaç (gerundio) ve olumlu emirde (imperativo) çift zamir fiilin ARKASINA BİTİŞİK yazılır ve kelimenin vurgusunu korumak için tilde (vurgu işareti) eklenir: Voy a decírselo, Estoy diciéndoselo, ¡Dímelo!',
+      'Le/les “se”ye dönüşünce kimin kastedildiği belirsizleşebilir; açıklamak için cümleye a + kişi eklenir: Se lo di a ella. Se lo explico a ustedes.',
     ],
     table: {
       caption: 'İspanyolca çift zamir dönüşümü ve yerleşimi',
@@ -198,6 +199,7 @@ export const ES_LESSONS_4: TopicLesson[] = [
       'İki özne aynı kişiyse "que" kullanılmaz, doğrudan MASTAR (infinitivo) gelir: Quiero ir a la fiesta (*Quiero que yo vaya denmez).',
       'Duygu ve değerlendirme ifadeleri (me alegra que, siento que, me da miedo que, es bueno/importante/lógico que) farklı özneyle daima subjuntivo tetikler: Me alegra que estés aquí.',
       'Düşünce ve kanaat fiilleri (creer, pensar, parecer, estar seguro de) OLUMLU olduğunda indicativo, OLUMSUZ olduğunda ise şüphe bildirdiği için subjuntivo alır: Creo que viene (indicativo) vs No creo que venga (subjuntivo).',
+      'Ana cümle geçmişteyse que’den sonra imperfecto de subjuntivo gelir: Quería que vinieras. Me alegró que estuvieras allí.',
     ],
     table: {
       caption: 'Subjuntivo, Mastar ve Indicativo seçim tablosu',
@@ -257,6 +259,7 @@ export const ES_LESSONS_4: TopicLesson[] = [
       'Özneler FARKLI ise "para que + subjuntivo" (veya resmî dilde "a fin de que + subjuntivo") kullanılır: Te lo explico despacio para que me entiendas (Açıklayan ben, anlayacak olan sen).',
       'Ana cümle şimdiki, gelecek veya yakın geçmiş zamandaysa para que sonrasında presente de subjuntivo gelir: Hablo alto para que todos oigan.',
       'Ana cümle geçmiş zamandaysa (indefinido, imperfecto, pluscuamperfecto) para que sonrasında imperfecto de subjuntivo (-ra / -se) gelir: Te llamé para que supieras la noticia.',
+      'Amaç ¿Para qué…? ile sorulur ve cevap para / para que ile verilir: ¿Para qué me llamas? — Para que me ayudes. (¿Por qué? sebebi sorar.)',
     ],
     table: {
       caption: 'Amaç cümlelerinde para ve para que uyumu',
@@ -314,6 +317,7 @@ export const ES_LESSONS_4: TopicLesson[] = [
       'Eylemi bırakma ve az önce bitirme: "dejar de + mastar" bir alışkanlığı veya eylemi kesmeyi (Dejé de fumar), "acabar de + mastar" ise eylemi az önce yapmış olmayı (Acabo de llegar = Az önce geldim) ifade eder.',
       'Eylemi tekrarlama: "volver a + mastar" bir işi yeniden yapmayı anlatır ("tekrar / yine" zarfı yerine kullanılır): Volví a llamarlo (Onu tekrar aradım).',
       'Eylemin sürmesi ve birikimi: "seguir / continuar + gerundio" hâlâ yapmaya devam etmeyi (Sigo viviendo aquí), "llevar + süre + gerundio" ise ne zamandır yapıldığını (Llevo dos horas esperando) gösterir; olumsuzunda "llevar + süre + sin + mastar" kullanılır.',
+      'Estar a punto de + mastar bir eylemin hemen olmak üzere olduğunu (Estoy a punto de salir), terminar de + mastar bir işi bitirmeyi anlatır (Termino de trabajar a las seis).',
     ],
     table: {
       caption: 'En sık kullanılan İspanyolca perífrasis verbales tablosu',
@@ -376,6 +380,7 @@ export const ES_LESSONS_4: TopicLesson[] = [
       'Aunque + SUBJUNTIVO (-se bile / olsa da): Durum henüz gerçekleşmemiştir (gelecek/varsayım) ya da konuşan için sonucu değiştirmeyecek kadar önemsizdir: Aunque llueva mañana, iremos (Yarın yağmur yağsa bile gideceğiz).',
       'Karşı tarafın az önce söylediği gerçek bir olguyu "öyle olsa bile umurumda değil" diye geri çevirirken de subjuntivo kullanılır: —¡Pero es muy caro! —Aunque sea caro, lo compraré.',
       'Geçmişteki hayali veya imkânsız varsayımlarda "aunque + imperfecto de subjuntivo" kullanılır: Aunque tuviera un millón de euros, no viviría allí.',
+      'Por más que / por mucho que (“ne kadar … olsa da”) aynı kip ayrımını izler; henüz olmamış durumda subjuntivo gelir: Por mucho que insistas, no voy a ir.',
     ],
     table: {
       caption: 'Aunque + Indicativo ve Aunque + Subjuntivo karşılaştırması',
@@ -552,6 +557,7 @@ export const ES_LESSONS_4: TopicLesson[] = [
       'Futuro compuesto (habrá + participio) YAKIN GEÇMİŞTE tamamlanmış bir olaya dair tahmin yürütür ("herhalde ...-mıştır"): ¿Por qué no está Ana? — Habrá perdido el tren (Herhalde treni kaçırmıştır).',
       'Condicional simple (sería, estaría, tendría) GEÇMİŞTEKİ bir duruma dair tahmin yürütür ("o zamanlar herhalde ...-di"): Ayer no vino; estaría enfermo (Dün gelmedi; herhalde hastaydı).',
       'Condicional compuesto (habría + participio) geçmişteki bir andan daha önce olmuş bir olaya dair tahmin yürütür: Habrían sido las diez cuando llamó.',
+      'Futuro taviz de bildirebilir (“… olabilir ama”): Será muy listo, pero no sabe trabajar en equipo.',
     ],
     table: {
       caption: 'Zamanlara göre olasılık ve tahmin (probabilidad) tablosu',

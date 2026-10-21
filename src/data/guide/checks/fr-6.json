@@ -1,0 +1,542 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün) — Rehber: yeni temel derslerin soru havuzu (2026-10-21)",
+  "lessons": {
+    "basics_fr_pluriel": [
+      {
+        "prompt": "Un journal, des ___ .",
+        "options": [
+          "journals",
+          "journaux",
+          "journeaux",
+          "journal"
+        ],
+        "answer": 1,
+        "why": "-al ile biten isimlerin çoğu çoğulda -aux olur: des journaux."
+      },
+      {
+        "prompt": "Un œil, deux ___ .",
+        "options": [
+          "œils",
+          "yeux",
+          "œux",
+          "yeuxs"
+        ],
+        "answer": 1,
+        "why": "Œil çoğulda tamamen değişir: des yeux."
+      },
+      {
+        "prompt": "Un prix, des ___ .",
+        "options": [
+          "prixs",
+          "prix",
+          "prixes",
+          "prieux"
+        ],
+        "answer": 1,
+        "why": "-x ile biten isim çoğulda değişmez: des prix."
+      },
+      {
+        "prompt": "Un jeu, des ___ .",
+        "options": [
+          "jeus",
+          "jeux",
+          "jeuxs",
+          "jeuz"
+        ],
+        "answer": 1,
+        "why": "-eu ile biten isimler -x alır: des jeux (istisnalar pneus, bleus)."
+      },
+      {
+        "prompt": "Un festival, des ___ .",
+        "options": [
+          "festivaux",
+          "festivals",
+          "festivales",
+          "festivaus"
+        ],
+        "answer": 1,
+        "why": "Festival, -al kuralının istisnasıdır: des festivals."
+      },
+      {
+        "prompt": "Un travail, des ___ .",
+        "options": [
+          "travails",
+          "travaux",
+          "travailles",
+          "travaillx"
+        ],
+        "answer": 1,
+        "why": "Travail çoğulda travaux olur (inşaat/çalışmalar anlamında da)."
+      },
+      {
+        "prompt": "Un pneu, des ___ .",
+        "options": [
+          "pneux",
+          "pneus",
+          "pneues",
+          "pneuxs"
+        ],
+        "answer": 1,
+        "why": "-eu ile bitse de pneu istisnadır ve -s alır: des pneus."
+      },
+      {
+        "prompt": "Un nez, des ___ .",
+        "options": [
+          "nezs",
+          "nez",
+          "nezes",
+          "neux"
+        ],
+        "answer": 1,
+        "why": "-z ile biten isim çoğulda değişmez: des nez."
+      },
+      {
+        "prompt": "Hangi çoğul yanlış?",
+        "options": [
+          "des chevaux",
+          "des hôpitaux",
+          "des animals",
+          "des bals"
+        ],
+        "answer": 2,
+        "why": "Animal düzenli -al ismidir: des animaux. Bals ise istisnadır ve doğrudur."
+      },
+      {
+        "prompt": "Un hibou, des ___ .",
+        "options": [
+          "hibous",
+          "hiboux",
+          "hibeaux",
+          "hiboues"
+        ],
+        "answer": 1,
+        "why": "Hibou, -x alan yedi -ou isminden biridir: des hiboux."
+      },
+      {
+        "prompt": "Dinlerken çoğulu en iyi ne gösterir? « Le livre / Les livres »",
+        "options": [
+          "ismin sonundaki -s'nin okunuşu",
+          "artikelin söylenişi (le / les)",
+          "ismin vurgusu",
+          "cümlenin tonlaması"
+        ],
+        "answer": 1,
+        "why": "Çoğul -s okunmaz; çoğulu artikel (le / les) duyurur."
+      },
+      {
+        "prompt": "Un cadeau, des ___ .",
+        "options": [
+          "cadeaus",
+          "cadeaux",
+          "cadeauxs",
+          "cadaux"
+        ],
+        "answer": 1,
+        "why": "-eau ile biten isimler -x alır: des cadeaux."
+      }
+    ],
+    "basics_fr_conditionnel_present": [
+      {
+        "prompt": "Si j'avais le temps, je ___ plus souvent ma grand-mère.",
+        "options": [
+          "verrais",
+          "voyais",
+          "verrai",
+          "voirais"
+        ],
+        "answer": 0,
+        "why": "Si + imparfait varsayımında ana cümle conditionnel olur; voir'ın gövdesi verr-: je verrais."
+      },
+      {
+        "prompt": "___-vous me passer le sel, s'il vous plaît ?",
+        "options": [
+          "Pourriez",
+          "Pourrais",
+          "Pouviez",
+          "Pourrions"
+        ],
+        "answer": 0,
+        "why": "Kibar rica conditionnel ile kurulur ve vous ile pourriez çekilir: pourriez-vous ?"
+      },
+      {
+        "prompt": "À ta place, je ___ ce travail.",
+        "options": [
+          "prendrais",
+          "prenais",
+          "prendrai",
+          "prenderais"
+        ],
+        "answer": 0,
+        "why": "“Senin yerinde olsam” varsayımı conditionnel ister; -re fiilinde e düşer: je prendrais."
+      },
+      {
+        "prompt": "Nous ___ heureux de vous accueillir chez nous.",
+        "options": [
+          "serions",
+          "serait",
+          "serrions",
+          "soyons"
+        ],
+        "answer": 0,
+        "why": "Kibar teklif: être'nin conditionnel'i nous serions (serrions yanlış yazım)."
+      },
+      {
+        "prompt": "Ils ___ venir, mais ils n'ont pas de voiture.",
+        "options": [
+          "aimeraient",
+          "aimeront",
+          "aimerions",
+          "aimerait"
+        ],
+        "answer": 0,
+        "why": "Gerçekleşmeyen istek: aimer conditionnel'de ve ils ile aimeraient."
+      },
+      {
+        "prompt": "Selon la radio, le ministre ___ démissionner demain.",
+        "options": [
+          "devrait",
+          "doit de",
+          "devrais",
+          "devrions"
+        ],
+        "answer": 0,
+        "why": "Haberde doğrulanmamış bilgi/tahmin conditionnel ile: il devrait."
+      },
+      {
+        "prompt": "Hangisi doğru?",
+        "options": [
+          "Si tu venais, je serais content.",
+          "Si tu viendrais, je serais content.",
+          "Si tu venais, je serai content.",
+          "Si tu viendrais, je suis content."
+        ],
+        "answer": 0,
+        "why": "Si'nin yanına conditionnel gelmez: si + imparfait, ana cümlede conditionnel."
+      },
+      {
+        "prompt": "Il ___ mieux partir avant la pluie.",
+        "options": [
+          "vaudrait",
+          "valait de",
+          "vaudra de",
+          "valerait"
+        ],
+        "answer": 0,
+        "why": "Valoir'ın conditionnel'i il vaudrait: “gitmek daha iyi olurdu” (kibar öneri)."
+      },
+      {
+        "prompt": "Tu ___ m'aider à porter cette valise ?",
+        "options": [
+          "pourrais",
+          "pourras-tu",
+          "pouvais-tu",
+          "peux-tu de"
+        ],
+        "answer": 0,
+        "why": "Kibar rica: tu pourrais m'aider ? Diğer biçimler bu cümlede yanlış kurulmuş."
+      },
+      {
+        "prompt": "Vous ___ faire attention : la route est glissante.",
+        "options": [
+          "devriez",
+          "devrez de",
+          "deviez de",
+          "devriiez"
+        ],
+        "answer": 0,
+        "why": "Öğüt: devoir conditionnel'de, vous devriez."
+      },
+      {
+        "prompt": "« J'aimerais » ile « j'aimerai » arasındaki fark nedir?",
+        "options": [
+          "Fark yok, ikisi aynı anlamda",
+          "Biri kibar istek/hayal (conditionnel), diğeri gelecek zaman",
+          "Biri olumsuz, diğeri olumlu",
+          "Biri çoğul, diğeri tekil"
+        ],
+        "answer": 1,
+        "why": "-ais conditionnel'dir (isterdim), -ai futur'dür (seveceğim)."
+      },
+      {
+        "prompt": "Si elle parlait anglais, elle ___ ce poste.",
+        "options": [
+          "obtiendrait",
+          "obtiendra",
+          "obtiendrais",
+          "obtenirait"
+        ],
+        "answer": 0,
+        "why": "Varsayımda ana cümle conditionnel: obtenir'in gövdesi obtiendr- → elle obtiendrait."
+      }
+    ],
+    "basics_fr_obligation": [
+      {
+        "prompt": "Pour entrer dans ce pays, il ___ un passeport valide.",
+        "options": [
+          "faut",
+          "doit",
+          "faux",
+          "fallu"
+        ],
+        "answer": 0,
+        "why": "Kişisiz gereklilik: il faut + isim (pasaport gerekir)."
+      },
+      {
+        "prompt": "Vous ___ remplir ce formulaire avant midi.",
+        "options": [
+          "devez",
+          "devons",
+          "doivez",
+          "faut"
+        ],
+        "answer": 0,
+        "why": "Vous öznesiyle devoir'ın çekimi devez'dir."
+      },
+      {
+        "prompt": "Il faut que nous ___ à l'heure.",
+        "options": [
+          "soyons",
+          "sommes",
+          "serons",
+          "être"
+        ],
+        "answer": 0,
+        "why": "Il faut que'den sonra subjonctif: que nous soyons."
+      },
+      {
+        "prompt": "J'ai ___ un peu de repos.",
+        "options": [
+          "besoin d'",
+          "besoin de",
+          "besoin à",
+          "besoin pour"
+        ],
+        "answer": 0,
+        "why": "Avoir besoin de; un'den önce de → d': j'ai besoin d'un peu de repos."
+      },
+      {
+        "prompt": "Il ne faut pas ___ dans la piscine après manger.",
+        "options": [
+          "nager",
+          "nage",
+          "nagé",
+          "nagez"
+        ],
+        "answer": 0,
+        "why": "Il (ne) faut (pas)'tan sonra mastar gelir: nager."
+      },
+      {
+        "prompt": "« Il ne faut pas parler » ne demektir?",
+        "options": [
+          "Konuşmaya gerek yok.",
+          "Konuşmamak gerekir / konuşmak yasak.",
+          "Konuşmak gerekebilir.",
+          "Konuşmak zorundaydım."
+        ],
+        "answer": 1,
+        "why": "Il ne faut pas bir yasak bildirir; “gerek yok” için ne pas avoir besoin de kullanılır."
+      },
+      {
+        "prompt": "Elle ne répond pas au téléphone : elle ___ être en réunion.",
+        "options": [
+          "doit",
+          "faut",
+          "fait",
+          "devoir"
+        ],
+        "answer": 0,
+        "why": "Devoir tahmin de bildirir: elle doit être en réunion (= toplantıda olmalı)."
+      },
+      {
+        "prompt": "Tu n'es pas ___ de venir si tu es fatigué.",
+        "options": [
+          "obligé",
+          "besoin",
+          "dû",
+          "faut"
+        ],
+        "answer": 0,
+        "why": "Ne pas être obligé de = zorunda değilsin, gerek yok."
+      },
+      {
+        "prompt": "Hangisi doğru?",
+        "options": [
+          "Il faut que je parte.",
+          "Je faut partir.",
+          "Il faut que je pars.",
+          "Il me faut que partir."
+        ],
+        "answer": 0,
+        "why": "Il faut kişiyle çekilmez; il faut que + subjonctif: que je parte."
+      },
+      {
+        "prompt": "Hier, nous ___ attendre deux heures à la gare.",
+        "options": [
+          "avons dû",
+          "avons devé",
+          "devons",
+          "sommes dû"
+        ],
+        "answer": 0,
+        "why": "Devoir'ın passé composé'si avoir + dû: nous avons dû."
+      },
+      {
+        "prompt": "Il ___ beaucoup de patience pour apprendre une langue.",
+        "options": [
+          "faut",
+          "doit",
+          "besoin",
+          "fait"
+        ],
+        "answer": 0,
+        "why": "İsimle gereklilik: il faut beaucoup de patience."
+      },
+      {
+        "prompt": "Ils ___ partir tôt demain matin.",
+        "options": [
+          "doivent",
+          "devent",
+          "doit",
+          "devons"
+        ],
+        "answer": 0,
+        "why": "Ils öznesiyle devoir'ın çekimi doivent'dir."
+      }
+    ],
+    "basics_fr_pronoms_possessifs": [
+      {
+        "prompt": "Mes parents habitent à Lyon. Où habitent ___ ?",
+        "options": [
+          "les tiens",
+          "les tiennes",
+          "tes",
+          "le tien"
+        ],
+        "answer": 0,
+        "why": "Parents eril çoğul, sahip “sen”: les tiens."
+      },
+      {
+        "prompt": "J'ai oublié mon stylo. Tu peux me prêter ___ ?",
+        "options": [
+          "le tien",
+          "la tienne",
+          "ton",
+          "tien"
+        ],
+        "answer": 0,
+        "why": "Stylo eril tekil: le tien."
+      },
+      {
+        "prompt": "Nos enfants vont à la même école que ___ .",
+        "options": [
+          "les vôtres",
+          "les votres",
+          "vos",
+          "la vôtre"
+        ],
+        "answer": 0,
+        "why": "Enfants çoğul, sahip “siz”: les vôtres (zamir şapkalı)."
+      },
+      {
+        "prompt": "Ce sont les clés de Marc ? — Oui, ce sont ___ .",
+        "options": [
+          "les siennes",
+          "les siens",
+          "ses",
+          "la sienne"
+        ],
+        "answer": 0,
+        "why": "Clés dişil çoğul, sahip tek kişi: les siennes."
+      },
+      {
+        "prompt": "Leur maison est vieille, ___ est neuve.",
+        "options": [
+          "la nôtre",
+          "le nôtre",
+          "notre",
+          "la notre"
+        ],
+        "answer": 0,
+        "why": "Maison dişil tekil, sahip “biz”: la nôtre (şapkalı)."
+      },
+      {
+        "prompt": "Elle parle souvent de sa famille, et moi je parle ___ .",
+        "options": [
+          "de la mienne",
+          "du mienne",
+          "de ma",
+          "de mienne"
+        ],
+        "answer": 0,
+        "why": "Parler de + la mienne: de la mienne (de + la birleşmez)."
+      },
+      {
+        "prompt": "Je pense à mon examen ; tu penses ___ ?",
+        "options": [
+          "au tien",
+          "à le tien",
+          "à ton",
+          "au tienne"
+        ],
+        "answer": 0,
+        "why": "À + le tien birleşir: au tien."
+      },
+      {
+        "prompt": "C'est à qui, ce manteau ? — C'est ___ .",
+        "options": [
+          "à moi",
+          "mien",
+          "le moi",
+          "à mien"
+        ],
+        "answer": 0,
+        "why": "Sahiplik sorusuna en doğal cevap être à + vurgulu zamir: c'est à moi."
+      },
+      {
+        "prompt": "Ton ordinateur est plus rapide que ___ (benimki).",
+        "options": [
+          "le mien",
+          "la mienne",
+          "mon",
+          "mien"
+        ],
+        "answer": 0,
+        "why": "Ordinateur eril tekil: le mien."
+      },
+      {
+        "prompt": "Ils ont vendu leur voiture et nous avons vendu ___ .",
+        "options": [
+          "la nôtre",
+          "le nôtre",
+          "notre",
+          "la notre"
+        ],
+        "answer": 0,
+        "why": "Voiture dişil tekil, sahip “biz”: la nôtre."
+      },
+      {
+        "prompt": "Les amis de Julie et ___ (benimkiler) partent ensemble.",
+        "options": [
+          "les miens",
+          "mes",
+          "les miennes",
+          "le mien"
+        ],
+        "answer": 0,
+        "why": "Amis eril çoğul: les miens."
+      },
+      {
+        "prompt": "Hangi cümle yanlış?",
+        "options": [
+          "Ce livre est le mien.",
+          "Ce livre est mien à moi.",
+          "Ce livre est à moi.",
+          "C'est mon livre."
+        ],
+        "answer": 1,
+        "why": "Zamir artikelsiz ve çifte sahiplikle kullanılmaz; diğerleri doğrudur."
+      }
+    ]
+  }
+}

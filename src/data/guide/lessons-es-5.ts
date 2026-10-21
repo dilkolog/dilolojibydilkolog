@@ -39,6 +39,7 @@ export const ES_LESSONS_5: TopicLesson[] = [
     watch: [
       '« Conozco nadar » veya « Conozco dónde está » demek tamamen yanlıştır; mastar ve soru kelimeleriyle yalnızca saber kullanılır.',
       'Bir insandan bahsederken kişisel a edatını unutma: « Conozco tu padre » değil, « Conozco a tu padre ».',
+      'Bir yeri saber ile “bilmek” olmaz: « Sé Madrid » değil « Conozco Madrid »; ama bilgi saber ister: « Sé dónde está Madrid ».',
     ],
     tip: 'Yo çekimlerini karıştırma: Yo sé (vurgu işaretli, çünkü vurgu işaretsiz "se" dönüşlü zamirdir) ve Yo conozco (-cer → -zco).',
     check: [
@@ -104,6 +105,7 @@ export const ES_LESSONS_5: TopicLesson[] = [
     watch: [
       'İngilizcedeki "ask for" ve "ask" tek kelime olduğu için "hesap istemek" veya "yardım istemek" derken yanlışlıkla preguntar kullanma: pedir la cuenta, pedir ayuda.',
       'Pedir fiilinde e → i ses değişimini unutma: yo pido, él pide, él pidió.',
+      'Preguntar por + kişi “birini sormak, hatırını sormak” demektir: Tu madre preguntó por ti.',
     ],
     tip: 'Cevap olarak sana "Evet / Hayır / Saat 5 / Sağdan dön" gibi bir SÖZ verilecekse preguntar; sana "Kahve / Hesap / Yardım / İzin" gibi bir EYLEM veya NESNE verilecekse pedir!',
     check: [
@@ -173,6 +175,7 @@ export const ES_LESSONS_5: TopicLesson[] = [
     watch: [
       'Arkadaşının partisine giderken ona "Şarap getireyim mi?" demek için « ¿Traigo vino? » deme (sen henüz orada değilsin!); arkadaşının evine götüreceğin için « ¿Llevo vino a tu fiesta? » demelisin.',
       'Biri seni çağırdığında "Geliyorum!" demek için « ¡Ya vengo! » değil, « ¡Ya voy! » kullanılır.',
+      'Llevar giysi taşımak ve süre bildirmek için de kullanılır: Lleva una chaqueta roja. Llevo dos años en Sevilla.',
     ],
     tip: 'Aquí (burası) = Venir & Traer. Allí (orası, senin yanın dahil!) = Ir & Llevar. Kapı çaldığında içerideki kişiye seslenirken "¡Ya voy!" (Hemen geliyorum/kapıya gidiyorum) denir.',
     check: [
@@ -247,6 +250,7 @@ export const ES_LESSONS_5: TopicLesson[] = [
     watch: [
       'Dişil isimlerin önünde « cualquiera hora » veya « algún pregunta » demek sık yapılan iki hatadır: cualquier dişil önünde de kısalır (cualquier hora), ama alguna/ninguna dişil önünde kısalmaz (alguna pregunta).',
       'Eril tekil isim önünde « alguno libro » veya « ninguno problema » yazma; mutlaka « algún libro », « ningún problema » olur.',
+      'Ningún / nadie / nada fiilden sonra gelirse fiilin önünde no gerekir (No tengo ningún problema); başa gelirse no kullanılmaz (Nadie vino).',
     ],
     tip: 'Eril isim önünde -o düşer ve şapka gelir: algunO → algúN, ningunO → ningúN (tıpkı unO → uN, buenO → bueN, primerO → primeR gibi).',
     check: [
@@ -319,6 +323,7 @@ export const ES_LESSONS_5: TopicLesson[] = [
     watch: [
       'İngilizce "on Monday" etkisiyle « en lunes » veya « en el lunes » demek çok yaygın bir hatadır; İspanyolcada haftanın günleri edat almaz, doğrudan « el lunes » (pazartesi günü) veya « los lunes » (pazartesileri) denir.',
       'Evde veya işte bulunurken « Estoy a casa » deme; bulunma için daima « Estoy en casa » kullanılır.',
+      'Bir yere gitmek a ile kurulur: « Voy en Madrid » değil « Voy a Madrid ». Taşıtlarda ise en: voy en tren.',
     ],
     tip: 'Duruyorsan EN (Estoy en casa), hareket ediyorsan A (Voy a casa, Llego a casa). Taşıtın içine biniyorsan EN (en tren), kendi ayaklarınla yürüyorsan A (a pie).',
     check: [
@@ -385,6 +390,7 @@ export const ES_LESSONS_5: TopicLesson[] = [
     watch: [
       'Dişil bir ismin önünde « una grande mujer » veya « una grande fiesta » yazılmaz! Grande kelimesi dişil tekil isimlerin önünde de kısalır ve « una gran mujer / una gran fiesta » olur.',
       '"Yıllardır tanıdığım eski dostum" derken « un amigo viejo » dersen arkadaşının yaşlı olduğu anlaşılır; « un viejo amigo » de.',
+      'Pobre ismin önünde “zavallı”, arkasında “yoksul” demektir: un pobre hombre ≠ un hombre pobre.',
     ],
     tip: 'Genel kural: Sıfat İSMİN ÖNÜNDEYSE duygusal/mecazi/sayısal ("zavallı, saygın, eski dost, bazı"), İSMİN ARKASINDAYSA sözlükteki gerçek fiziksel anlamındadır ("parasız, iri, yaşlı, sıfır, doğru").',
     check: [
@@ -457,6 +463,7 @@ export const ES_LESSONS_5: TopicLesson[] = [
     watch: [
       'Sıra asla « Me se olvidó » olmaz! Zamir diziliminde se her zaman en başta durur: se me, se te, se le, se nos.',
       'Nesne çoğulsa fiili çoğul yapmayı unutma: « Se me olvidó las gafas » değil, « Se me olvidaron las gafas ».',
+      'Kişiyi a + isimle belirtince zamiri de bırakma: « A Juan se rompió el vaso » değil, « A Juan se le rompió el vaso ».',
     ],
     tip: 'Gustar mantığının "kaza" versiyonu gibi düşün: Me gusta el libro / Me gustan los libros → Se me perdió el libro / Se me perdieron los libros.',
     check: [
@@ -529,6 +536,7 @@ export const ES_LESSONS_5: TopicLesson[] = [
     watch: [
       '« Como si » kalıbından sonra asla bildirme kipi (indicativo) veya geniş dilek kipi (presente de subjuntivo) gelmez! « Habla como si sabe » ve « Habla como si sepa » ikisi de yanlıştır; doğrusu daima « Habla como si supiera » olur.',
       'Ojalá’dan sonra hiç düşünmeden subjuntivo kullan; bildirme kipi (« Ojalá viene ») asla gelmez.',
+      'Ojalá’dan sonra que isteğe bağlıdır (Ojalá que venga / Ojalá venga); « ojalá si » diye bir kalıp yoktur.',
     ],
     tip: 'Ojalá = "Umarım" diyorsan Presente (llueva), "Keşke" diyorsan Imperfecto/Pluscuamperfecto (lloviera / hubiera llovido). Como si = her zaman geçmiş subjuntivo (-ra/-se)!',
     check: [
@@ -600,6 +608,7 @@ export const ES_LESSONS_5: TopicLesson[] = [
     watch: [
       'Mutlak ortaç yapılarında (participio absoluto) ortaç değişmez kalmaz; yanındaki isimle mutlaka cinsiyet ve sayı uyumu alır: « Terminado la clase » yanlıştır, « Terminada la clase » denmelidir.',
       'Bileşik mastarda nesne zamirleri haber mastarına bitişik yazılır: « De haberlo sabido », « haber sabido lo » değil.',
+      'Habiendo + participio ana eylemden önce bitmiş eylemi, yalın gerundio aynı anda süren eylemi anlatır: Habiendo terminado, salió ≠ Paseando, pensaba en ella.',
     ],
     tip: '"De haber + participio" kalıbını DELE B2/C1 yazılı ve sözlü sınavlarında "Si hubiera..." yerine kullanmak dil puanını doğrudan yükseltir.',
     check: [
@@ -667,6 +676,7 @@ export const ES_LESSONS_5: TopicLesson[] = [
     watch: [
       '« De ahí que » bağlacı bir sonuç bildirdiği için öğrenciler genellikle arkasından bildirme kipi getirir (« de ahí que está cansado »); oysa de ahí que her zaman subjuntivo (« de ahí que esté cansado ») gerektirir!',
       '« Siempre cuando » deme; şart bağlacı ortadaki y ile « siempre y cuando » şeklinde kurulur.',
+      'Sin embargo ve no obstante iki cümleyi virgülle bağlamaz; öncesinde nokta ya da noktalı virgül, sonrasında virgül gelir: Era caro; sin embargo, lo compré.',
     ],
     tip: '"Por consiguiente + indicativo" ama "De ahí que + subjuntivo"! İkisi de "bu yüzden / dolayısıyla" demektir ama "de ahí que" subjuntivo kullandığı için sınavlarda ekstra puan kazandırır.',
     check: [
