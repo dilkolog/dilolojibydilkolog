@@ -6,6 +6,15 @@
  * them out); a sentence that fails is listed and not added. A verb's tense that has a sentence
  * already is left alone unless --replace is given.
  *
+ * Every tense the verb lab shows is accepted (LAB_TENSES: the passé simple, the compound tenses,
+ * the imperative…), except the French présent. A core tense is checked against the other core
+ * tenses, as the build scripts do; a lab-only tense against all the lab's tenses. Two forms are
+ * shared by nature and let through only when the sentence itself settles the tense:
+ * - a subjunctive that is also the present, imparfait or imperative (que tu parles, que nous
+ *   parlions, que usted hable) needs "que" (Spanish also "ojalá") before it;
+ * - an imperative that is also the present, the subjunctive or the passé simple (Parle !, Finis !,
+ *   Habla, Hablemos) must open the sentence or a clause, with no subject before it.
+ *
  * Input: a TSV, one sentence per line: verb <TAB> tense <TAB> sentence <TAB> Turkish
  *
  * Usage: npx rolldown scripts/add-tense-sentences.ts -o /tmp/a.mjs -p node && node /tmp/a.mjs <fr|es> <file.tsv> [--replace] [--dry]
@@ -14,7 +23,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import es from '../src/data/tenses/es.json'
 import fr from '../src/data/tenses/fr.json'
 import { addConjugations } from '../src/engine/conjugation'
-import { addTenses, conjugateTense, TENSES, type Tense } from '../src/engine/tenses'
+import { addTenses, conjugateTense, isImperative, isSubjunctive, LAB_TENSES, TENSES, type Tense } from '../src/engine/tenses'
 
 const [lang, file, ...flags] = process.argv.slice(2)
 if ((lang !== 'fr' && lang !== 'es') || !file) throw new Error('usage: <fr|es> <file.tsv> [--replace] [--dry]')
@@ -43,7 +52,7 @@ for (const [n, line] of readFileSync(file, 'utf8').split('\n').entries()) {
     continue
   }
   // French sentences are never the present (the stored ones are checked for that in tenses.test.ts).
-  if (!(TENSES[lang] as string[]).includes(tense) || (lang === 'fr' && tense === 'present')) {
+  if (!(LAB_TENSES[lang] as string[]).includes(tense) || (lang === 'fr' && tense === 'present')) {
     problems.push(`${where}: unknown tense`)
     continue
   }
@@ -53,9 +62,10 @@ for (const [n, line] of readFileSync(file, 'utf8').split('\n').entries()) {
   }
   const entry = { language: lang as 'fr' | 'es', lemma: verb, partOfSpeech: 'verb' as const }
   const all = new Map<Tense, string[]>()
-  for (const t of TENSES[lang] as Tense[]) {
-    const f = conjugateTense(entry, t)
-    if (f) all.set(t, f)
+  for (const t of LAB_TENSES[lang] as Tense[]) {
+    // The imperative leaves the persons it lacks empty ("", "parle", "", …).
+    const f = conjugateTense(entry, t)?.filter(Boolean)
+    if (f?.length) all.set(t, f)
   }
   const forms = all.get(tense as Tense)
   if (!forms) {
@@ -69,16 +79,25 @@ for (const [n, line] of readFileSync(file, 'utf8').split('\n').entries()) {
   }
   // Longer forms win over their parts: "me levanto" over "levanto"; "ai mangé" over "mangé".
   const top = hits.filter((h) => !hits.some((o) => o !== h && o.length > h.length && o.index <= h.index && o.index + o.length >= h.index + h.length))
-  const others = [...all].filter(([t]) => t !== tense).flatMap(([, f]) => f)
   if (top.length !== 1) {
     problems.push(`${where}: ${top.length} forms found [${top.map((h) => text.slice(h.index, h.index + h.length)).join(', ')}] in "${text}"`)
     continue
   }
-  if (others.some((o) => o.toLowerCase() === top[0].form.toLowerCase())) {
-    problems.push(`${where}: "${top[0].form}" is a form of another tense too`)
+  const h = top[0]
+  const core = (TENSES[lang] as Tense[]).includes(tense as Tense)
+  const before = text.slice(0, h.index)
+  const sharedWith = [...all].filter(([t, f]) => t !== tense && (!core || (TENSES[lang] as Tense[]).includes(t)) && f.some((o) => o.toLowerCase() === h.form.toLowerCase())).map(([t]) => t)
+  const excused = (t: Tense) => {
+    if (isSubjunctive(tense as Tense) && (t === 'present' || t === 'presente' || t === 'imparfait' || isImperative(t)))
+      return lang === 'fr' ? /(^|[^\p{L}])qu(e[^\p{L}]|')/iu.test(before) : /(^|[^\p{L}])(que|ojalá)[^\p{L}]/iu.test(before)
+    if (isImperative(tense as Tense) && (t === 'present' || t === 'presente' || t === 'passe-simple' || isSubjunctive(t))) return /(^|[,;:.!?¡¿—–-])\s*$/u.test(before)
+    return false
+  }
+  const clash = sharedWith.filter((t) => !excused(t))
+  if (clash.length) {
+    problems.push(`${where}: "${h.form}" is a form of ${clash.join(', ')} too`)
     continue
   }
-  const h = top[0]
   const marked = `${text.slice(0, h.index)}[${text.slice(h.index, h.index + h.length)}]${text.slice(h.index + h.length)}`
   ;(store[verb] ??= {})[tense] = `${marked}\t${end(turkish)}`
   added++

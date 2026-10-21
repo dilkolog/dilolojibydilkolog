@@ -1,62 +1,72 @@
-# Fiil laboratuvarında örnek cümlesi olmayan fiiller
+# Fiil laboratuvarında örnek cümle kapsamı
 
-Oluşturma: 2026-10-13 (`src/data/tenses/{fr,es}.json` çekim tabloları ile `{fr,es}-sentences.json` örnek cümleleri karşılaştırıldı; sıra `src/data/frequency` sıklık listesine göre, en sık olan önde). Tam listeler: `fiil-ornek-yok-fr.txt`, `fiil-ornek-yok-es.txt` (her satır: sıklık sırası, fiil).
+Güncelleme: 2026-10-21 (önceki sürüm 2026-10-13'tendi ve bayattı). Sayılar `src/data/tenses/{fr,es}.json` çekim tabloları ile `{fr,es}-sentences.json` örnek cümleleri karşılaştırılarak çıkarıldı. Fiil laboratuvarı fiilleri sıklık sırasına göre seviyelere böler (`engine/verbLab.ts` `verbLevels`: ilk 40 fiil A1, 40–120 A2, 120–300 B1, 300–600 B2, gerisi C1); öğrencinin en çok gördüğü fiiller bunlar. Hiç cümlesi olmayan fiillerin listesi: `fiil-ornek-yok-fr.txt`, `fiil-ornek-yok-es.txt` (yeniden üretildi; her satır: sıklık sırası ya da `-`, fiil; dönüşlü lemmayla cümlesi olanlar kapsanmış sayılır).
 
-**Önemli not:** örnek cümleler yalnızca bazı zamanlar için üretilmiş (Fransızca: imparfait, passé composé, futur, conditionnel, subjonctif; İspanyolca: presente, pretérito, perfecto, futuro, condicional, subjuntivo). Tabloda 0 görünen zamanlar (présent, passé simple, plus-que-parfait, futur antérieur, conditionnel passé, subjonctif passé, impératif ve İspanyolcadaki karşılıkları) için hiçbir fiilde cümle verisi yoktur; bu bir eksik fiil değil, eksik zaman verisidir. Hiç cümlesi olmayan fiillerin çoğu özel isim kökenli (officier, manager, harper…) ya da çok nadir; asıl değerli olanlar İspanyolca listenin başındakilerdir (haber, matar, oír, salvar, traer, luchar, coger…).
+## Laboratuvarın gösterdiği zamanlar
 
-## Fransızca
+Fransızca 12 zaman (présent … impératif), İspanyolca 14 zaman (presente … imperativo) gösterilir (`LAB_TENSES`). Soruların ve kelime sayfasının kullandığı "çekirdek" zamanlar FR'de 6, ES'de 7'dir (`TENSES`). Eskiden cümle yalnızca çekirdek zamanlarda vardı; 2026-10-21'den beri araç (`scripts/add-tense-sentences.ts`) laboratuvarın bütün zamanlarını kabul eder (aşağıdaki kurallar).
 
-- Tablodaki fiil: **4103**
-- En az bir zamanda örnek cümlesi olan: **2486**
-- Hiç örnek cümlesi olmayan: **1617** (bunların 192 tanesi sıklık listesinde, 1425 tanesi listede yok = çok nadir)
+**Çekim tablosu eksikleri:** ilk 600 fiilde neredeyse hiç yok (FR 1 fiilin passé simple'ı, ES 1 fiilin üç zamanı: kusurlu/kişisiz fiiller). Düzeltilenler: `résoudre` ortacı `résous` → `résolu` (laboratuvar "j'ai résous" gösteriyordu); `pouvoir`un uydurma emir kipi ("peux, pouvons, pouvez") kaldırıldı (`tenses.ts` `FR_NO_IMPERATIVE`: laboratuvar bu zamanı artık göstermez).
 
-**Sıklık listesinde en önde olup hiç örneği olmayan 60 fiil:**
+## Çekirdek zamanlar (ilk 600 fiil)
 
-officier (1332), manager (4062), harper (4787), palmer (5335), botter (5387), piper (5584), rocher (6165), plancher (6790), lester (6850), revivre (7296), river (7404), évader (8072), rassurer (8436), évanouir (9494), inculper (9669), marrer (10325), fouiner (11265), gerber (12785), réconcilier (12980), interférer (13140), sécuriser (13623), repenser (13877), stabiliser (13913), rivaliser (13981), recréer (14111), pleurnicher (14348), renaître (14786), chialer (14958), contrer (14992), râler (15072), gueuler (15351), draper (15401), héberger (16437), lister (16746), tatouer (16869), peloter (17013), remarier (17272), retracer (17361), boulanger (17461), sous-estimer (17470), trinquer (17529), ressaisir (17626), cerner (17710), papoter (18106), réfugier (18302), défouler (18354), purifier (18363), décoder (18593), éclipser (18634), recoller (18720), reconquérir (18834), interner (19038), apitoyer (19313), allier (19392), désarmer (19493), armer (19784), épiler (19799), dépanner (19839), subvenir (20082), fiancer (20101)
-
-**Zaman başına kapsama** (örnek cümlesi olan fiil sayısı / 4103):
-
-| Zaman | Fiil sayısı | Pay |
+| Seviye | FR eksik / toplam yuva | ES eksik / toplam yuva |
 |---|---:|---:|
-| present | 0 | %0 |
-| imparfait | 1503 | %37 |
-| passe-compose | 2044 | %50 |
-| passe-simple | 0 | %0 |
-| plus-que-parfait | 0 | %0 |
-| futur | 997 | %24 |
-| futur-anterieur | 0 | %0 |
-| conditionnel | 435 | %11 |
-| conditionnel-passe | 0 | %0 |
-| subjonctif | 186 | %5 |
-| subjonctif-passe | 0 | %0 |
-| imperatif | 0 | %0 |
+| A1 (ilk 40) | 0 / 200 | 7 / 280 |
+| A2 (40–120) | 8 / 400 | 21 / 560 |
+| B1 (120–300) | 14 / 900 | 21 / 1260 |
+| B2 (300–600) | 85 / 1500 | 70 / 2098 |
 
-## İspanyolca
+(FR présent hariç: kayıtlı cümleler şimdiki zaman olmaz, aşağıya bak.) Kalan eksiklerin **hepsi bilerek yazılmayan fiillerdir**: ES `haber` (yardımcı fiil), kaba/argo (`joder`, `coger`, `follar`, `mear`, `cagar`, `orinar`, `pillar`), hassas (`violar`), sıfat/isim anlamı baskın (`militar`, `nuclear`, `solar`, `escolar`, `titular`, `pilar`, `auxiliar`, `reportar`); FR kaba/argo (`foutre`, `baiser`, `chier`, `pisser`, `bouffer`, `déconner`, `foirer`, `choper`, `mater`, `tanner`, `flipper`, `défoncer`, `draguer`, `buter`, `péter`, `sucer`), hassas (`violer`, `torturer`, `assassiner`, `suicider`), isim/özel ad (`officier`, `manager`, `harper`, `palmer`, `botter`, `piper`, `rocher`, `plancher`, `lester`, `river`), yalnızca dönüşlü kullanılan ve tablodaki yalın biçimi anlamsız olanlar (`souvenir`, `asseoir`, `fier`, `enfuir`, `moquer`, `soucier`) ve `ressortir`ın imparfait/subjonctif'i (tablo "ressortissait" veriyor: hukuki "ressortir" anlamı).
 
-- Tablodaki fiil: **1293**
-- En az bir zamanda örnek cümlesi olan: **883**
-- Hiç örnek cümlesi olmayan: **410** (bunların 319 tanesi sıklık listesinde, 91 tanesi listede yok = çok nadir)
+## Laboratuvarın öteki zamanları
 
-**Sıklık listesinde en önde olup hiç örneği olmayan 60 fiil:**
+İlk 120 fiil (A1 + A2) için bütün laboratuvar zamanlarının cümlesi var: FR passé simple, plus-que-parfait, futur antérieur, conditionnel passé, subjonctif passé, impératif; ES pluscuamperfecto, futuro perfecto, condicional perfecto, subjuntivo imperfecto/perfecto/pluscuamperfecto, imperativo. Bilerek boş bırakılan emir kipleri: FR `tuer`, `mourir`, `devoir`, `voler`, `marier`; ES `poder`, `morir`, `parecer`, `caer`, `escapar`, `necesitar`, `robar`, `deber` (doğal bir emir cümlesi kurulmuyor). 120. fiilden sonrasında bu zamanların cümlesi yok (B1–C1: sıradaki iş).
 
-haber (209), matar (535), oír (1074), salvar (1088), joder (1091), traer (1292), luchar (1520), coger (1559), militar (1913), detener (2029), olvidar (2064), sobrevivir (2127), respirar (2357), soportar (2508), meter (2527), fumar (2532), suceder (2634), saltar (2642), permanecer (2753), presentar (2933), admitir (3135), renunciar (3227), amanecer (3239), adivinar (3343), comprobar (3513), sonar (3631), nuclear (3803), arruinar (3836), ocultar (3989), superar (4093), hallar (4125), lidiar (4127), votar (4220), solar (4275), realizar (4324), molestar (4386), participar (4423), llenar (4655), reconocer (4688), vomitar (4691), asesinar (4867), enfrentar (4970), juzgar (4983), pasear (5007), escolar (5062), vencer (5079), rezar (5080), reunir (5272), temer (5406), oler (5552), durar (5585), rastrear (5715), resistir (5738), ofender (5923), añadir (6049), acceder (6070), solucionar (6147), retirar (6524), criar (6597), respetar (6662)
+## Zaman başına kapsam (tablodaki bütün fiiller)
 
-**Zaman başına kapsama** (örnek cümlesi olan fiil sayısı / 1293):
+Fransızca (4103 fiil, en az bir cümlesi olan 2816; toplam 8359 cümle):
 
-| Zaman | Fiil sayısı | Pay |
-|---|---:|---:|
-| presente | 697 | %54 |
-| imperfecto | 870 | %67 |
-| preterito | 842 | %65 |
-| perfecto | 872 | %67 |
-| pluscuamperfecto | 0 | %0 |
-| futuro | 871 | %67 |
-| futuro-perfecto | 0 | %0 |
-| condicional | 461 | %36 |
-| condicional-perfecto | 0 | %0 |
-| subjuntivo | 494 | %38 |
-| subjuntivo-imperfecto | 0 | %0 |
-| subjuntivo-perfecto | 0 | %0 |
-| subjuntivo-pluscuamperfecto | 0 | %0 |
-| imperativo | 0 | %0 |
+| Zaman | Fiil sayısı |
+|---|---:|
+| présent | 0 (bilerek) |
+| imparfait | 1903 |
+| passé composé | 2385 |
+| passé simple | 115 |
+| plus-que-parfait | 115 |
+| futur | 1402 |
+| futur antérieur | 115 |
+| conditionnel | 1029 |
+| conditionnel passé | 115 |
+| subjonctif | 642 |
+| subjonctif passé | 115 |
+| impératif | 109 |
 
+İspanyolca (1456 fiil, en az bir cümlesi olan 1389; toplam 10140 cümle):
+
+| Zaman | Fiil sayısı |
+|---|---:|
+| presente | 1280 |
+| imperfecto | 1382 |
+| pretérito | 1368 |
+| perfecto | 1379 |
+| pluscuamperfecto | 115 |
+| futuro | 1380 |
+| futuro perfecto | 115 |
+| condicional | 1064 |
+| condicional perfecto | 115 |
+| subjuntivo | 1070 |
+| subjuntivo imperfecto | 115 |
+| subjuntivo perfecto | 115 |
+| subjuntivo pluscuamperfecto | 115 |
+| imperativo | 108 |
+
+## Aracın kuralları (2026-10-21)
+
+- Cümlede o zamanın tablodaki biçimlerinden tam biri tek kez geçmeli; bileşik zamanda yardımcı fiil ile ortaç bitişik olmalı (araya `pas`, `jamais`, `déjà`, `bien` girerse bulunmaz); tablo dişil/çoğul uyumu bilmez (eril tekil özne, önde nesne zamiri olmasın: "les a mariés" bulunmaz).
+- Biçim fiilin başka bir zamanına da aitse reddedilir. İki istisna, cümle zamanı kendisi belli ettiğinde: **subjonctif/subjuntivo** biçimi şimdiki zaman, imparfait ya da emir kipiyle aynıysa önünde `que`/`qu'` (İspanyolcada `que`/`ojalá`) olmalı; böylece Fransızca `-er` fiillerinin subjonctif'i artık yazılabiliyor ("Il faut que tu parles"). **Emir kipi** şimdiki zaman/subjonctif/passé simple ile aynıysa cümleyi ya da yan cümleyi başlatmalı ("Parle plus fort", "Pasa, estás en tu casa").
+- Fransızca **présent** cümlesi hâlâ kaydedilmez (`tenses.test.ts` denetler): laboratuvarın présent sekmesinde cümle yok. Elle yazılan cümlelerde Tatoeba'daki "isimle karışan biçim" sorunu olmadığı için bu kural gevşetilebilir; karar sahibinin.
+
+## Partiler
+
+`ornek-cumle-partileri/` altında: es-39/es-40 (ilk 600 fiilin eksik çekirdek zamanları), es-41/42/43/44 (ilk 120 fiilin öteki zamanları), es-45 (cümlesiz kalan iki fiil); fr-19/20/22/23 (ilk 600 fiilin eksik çekirdek zamanları, çoğu `-er` subjonctif'i), fr-21/24/25 (ilk 120 fiilin öteki zamanları).
