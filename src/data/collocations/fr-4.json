@@ -1,0 +1,325 @@
+[
+ {
+  "id": "fr-colloc4-01",
+  "language": "fr",
+  "lemmas": [
+   "déjeuner"
+  ],
+  "pattern": "prendre le petit déjeuner",
+  "example": "Je prends le petit déjeuner à sept heures.",
+  "tr": "Kahvaltıyı saat yedide yaparım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-02",
+  "language": "fr",
+  "lemmas": [
+   "verre"
+  ],
+  "pattern": "prendre un verre",
+  "example": "Tu veux prendre un verre après le travail ?",
+  "tr": "İşten sonra bir şeyler içmek ister misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-03",
+  "language": "fr",
+  "lemmas": [
+   "train"
+  ],
+  "pattern": "prendre le train",
+  "example": "Nous prenons le train de huit heures.",
+  "tr": "Sekiz treniyle gidiyoruz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-04",
+  "language": "fr",
+  "lemmas": [
+   "sport"
+  ],
+  "pattern": "faire du sport",
+  "example": "Il fait du sport trois fois par semaine.",
+  "tr": "Haftada üç kez spor yapıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-05",
+  "language": "fr",
+  "lemmas": [
+   "promenade"
+  ],
+  "pattern": "faire une promenade",
+  "example": "Après le dîner, nous faisons une promenade.",
+  "tr": "Akşam yemeğinden sonra yürüyüşe çıkıyoruz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-06",
+  "language": "fr",
+  "lemmas": [
+   "queue"
+  ],
+  "pattern": "faire la queue",
+  "example": "Il faut faire la queue pour entrer.",
+  "tr": "İçeri girmek için sıra beklemek gerekiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-07",
+  "language": "fr",
+  "lemmas": [
+   "gâteau"
+  ],
+  "pattern": "faire un gâteau",
+  "example": "Ma sœur fait un gâteau pour mon anniversaire.",
+  "tr": "Ablam doğum günüm için bir pasta yapıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-08",
+  "language": "fr",
+  "lemmas": [
+   "chance"
+  ],
+  "pattern": "avoir de la chance",
+  "example": "Tu as de la chance, il reste une place.",
+  "tr": "Şanslısın, bir yer kalmış.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-09",
+  "language": "fr",
+  "lemmas": [
+   "temps"
+  ],
+  "pattern": "avoir le temps de + infinitif",
+  "example": "Je n'ai pas le temps de manger.",
+  "tr": "Yemek yemeye vaktim yok.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-10",
+  "language": "fr",
+  "lemmas": [
+   "lieu"
+  ],
+  "pattern": "avoir lieu",
+  "example": "Le concert a lieu samedi soir.",
+  "tr": "Konser cumartesi akşamı yapılıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-11",
+  "language": "fr",
+  "lemmas": [
+   "table"
+  ],
+  "pattern": "mettre la table",
+  "example": "Peux-tu mettre la table, s'il te plaît ?",
+  "tr": "Sofrayı kurar mısın, lütfen?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-12",
+  "language": "fr",
+  "lemmas": [
+   "rendez-vous"
+  ],
+  "pattern": "donner rendez-vous à qqn",
+  "example": "Il m'a donné rendez-vous devant la gare.",
+  "tr": "Bana istasyonun önünde buluşmayı söyledi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-13",
+  "language": "fr",
+  "lemmas": [
+   "candidature"
+  ],
+  "pattern": "poser sa candidature",
+  "example": "Elle pose sa candidature pour ce poste.",
+  "tr": "Bu pozisyon için başvuruyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-14",
+  "language": "fr",
+  "lemmas": [
+   "examen"
+  ],
+  "pattern": "passer un examen",
+  "example": "Je passe mon examen lundi.",
+  "tr": "Sınavıma pazartesi giriyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-15",
+  "language": "fr",
+  "lemmas": [
+   "examen",
+   "réussir"
+  ],
+  "pattern": "réussir un examen",
+  "example": "Il a réussi son examen de conduite.",
+  "tr": "Direksiyon sınavını geçti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-16",
+  "language": "fr",
+  "lemmas": [
+   "train",
+   "rater"
+  ],
+  "pattern": "rater le train",
+  "example": "J'ai raté le dernier train.",
+  "tr": "Son treni kaçırdım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-17",
+  "language": "fr",
+  "lemmas": [
+   "message"
+  ],
+  "pattern": "laisser un message",
+  "example": "Vous pouvez laisser un message après le bip.",
+  "tr": "Bip sesinden sonra mesaj bırakabilirsiniz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-18",
+  "language": "fr",
+  "lemmas": [
+   "service",
+   "rendre"
+  ],
+  "pattern": "rendre service à qqn",
+  "example": "Tu peux me rendre service ?",
+  "tr": "Bana bir iyilik yapabilir misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-19",
+  "language": "fr",
+  "lemmas": [
+   "colère"
+  ],
+  "pattern": "se mettre en colère",
+  "example": "Il se met en colère pour rien.",
+  "tr": "Hiç yoktan öfkeleniyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-20",
+  "language": "fr",
+  "lemmas": [
+   "soin"
+  ],
+  "pattern": "prendre soin de",
+  "example": "Elle prend soin de ses grands-parents.",
+  "tr": "Büyükanne ve büyükbabasına bakıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-21",
+  "language": "fr",
+  "lemmas": [
+   "temps"
+  ],
+  "pattern": "mettre du temps à + infinitif",
+  "example": "Il met du temps à répondre.",
+  "tr": "Cevap vermesi uzun sürüyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-22",
+  "language": "fr",
+  "lemmas": [
+   "retard"
+  ],
+  "pattern": "être en retard",
+  "example": "Excuse-moi, je suis en retard.",
+  "tr": "Kusura bakma, geciktim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-23",
+  "language": "fr",
+  "lemmas": [
+   "forme"
+  ],
+  "pattern": "être en forme",
+  "example": "Aujourd'hui, je suis en pleine forme.",
+  "tr": "Bugün formumun doruğundayım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-24",
+  "language": "fr",
+  "lemmas": [
+   "mal"
+  ],
+  "pattern": "avoir mal à",
+  "example": "J'ai mal à la tête depuis ce matin.",
+  "tr": "Sabahtan beri başım ağrıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-25",
+  "language": "fr",
+  "lemmas": [
+   "avis",
+   "changer"
+  ],
+  "pattern": "changer d'avis",
+  "example": "Il a changé d'avis au dernier moment.",
+  "tr": "Son anda fikrini değiştirdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-26",
+  "language": "fr",
+  "lemmas": [
+   "heure"
+  ],
+  "pattern": "être à l'heure",
+  "example": "Le train est à l'heure.",
+  "tr": "Tren zamanında.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-27",
+  "language": "fr",
+  "lemmas": [
+   "partie"
+  ],
+  "pattern": "faire partie de",
+  "example": "Il fait partie de l'équipe.",
+  "tr": "Takımın bir parçası.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-28",
+  "language": "fr",
+  "lemmas": [
+   "air"
+  ],
+  "pattern": "avoir l'air + adjectif",
+  "example": "Tu as l'air fatigué.",
+  "tr": "Yorgun görünüyorsun.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc4-29",
+  "language": "fr",
+  "lemmas": [
+   "envie"
+  ],
+  "pattern": "donner envie de + infinitif",
+  "example": "Ce film me donne envie de voyager.",
+  "tr": "Bu film bana seyahat etme isteği veriyor.",
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -36,12 +36,14 @@ vi.mock('./syncRunner', () => ({
 }))
 
 const { SupabaseAuth } = await import('./SupabaseAuth')
+const { clearPendingHandle, pendingHandle } = await import('./pendingHandle')
 
 let root: ReturnType<typeof createRoot> | undefined
 let posts: Record<string, unknown>[] = []
 let stored: unknown = null
 
 beforeEach(() => {
+  clearPendingHandle()
   posts = []
   stored = null
   runner.account = null
@@ -134,9 +136,25 @@ describe('SupabaseAuth', () => {
     await type(host.querySelector<HTMLInputElement>('input[type=email]')!, 'veli@example.com')
     await type(pw!, 'gizli-sifre-2')
     await type(again!, 'gizli-sifre-2')
+    await type(host.querySelector<HTMLInputElement>('input[autocomplete=username]')!, '@Veli_1')
     await act(async () => host.querySelector('form')!.requestSubmit())
     await settle()
-    expect(sb.signUp).toHaveBeenCalledWith('veli@example.com', 'gizli-sifre-2', { username: undefined, note: undefined })
+    expect(sb.signUp).toHaveBeenCalledWith('veli@example.com', 'gizli-sifre-2', { username: 'veli_1', note: undefined })
+    expect(pendingHandle()).toBe('veli_1')
     expect(host.textContent).toContain('onay bağlantısına dokun')
+  })
+
+  it('a sign-up asks for a valid @name and does not go on without one', async () => {
+    const { host } = await mount()
+    await act(async () => button(host, 'Hesap oluştur').click())
+    const [pw, again] = host.querySelectorAll<HTMLInputElement>('input[type=password]')
+    await type(host.querySelector<HTMLInputElement>('input[type=email]')!, 'veli@example.com')
+    await type(pw!, 'gizli-sifre-2')
+    await type(again!, 'gizli-sifre-2')
+    await type(host.querySelector<HTMLInputElement>('input[autocomplete=username]')!, 'a b')
+    await act(async () => host.querySelector('form')!.requestSubmit())
+    await settle()
+    expect(host.querySelector('[role=alert]')?.textContent).toContain('Kullanıcı adı 3–20 karakter')
+    expect(sb.signUp).not.toHaveBeenCalled()
   })
 })

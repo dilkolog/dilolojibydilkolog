@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { currentSession, setNewPassword, signOutSupabase, authErrorText, providersText, supabaseConfigured, type Identity } from '../data/supabase'
 import type { Account } from '../data/sync'
 import { deleteAccount } from '../data/vault'
-import { ConfirmDialog } from './Dialog'
 import { AccountDeleteDialog } from './AccountDeleteDialog'
 import { PasswordInput } from './PasswordInput'
 import { setAccount } from './syncRunner'
@@ -15,16 +14,12 @@ import { showToast } from './toastFeed'
 export function AccountManage({
   identity,
   onSignOut,
-  onSignOutAndWipe,
 }: {
   account?: Account
   identity: Identity | null
   onSignOut: () => void
-  /** Syncs, signs out and clears this device's data (a shared device). */
-  onSignOutAndWipe?: () => Promise<void>
   onGone?: () => void
 }) {
-  const [wiping, setWiping] = useState(false)
   const [changing, setChanging] = useState(false)
   const [password, setPassword] = useState('')
   const [repeat, setRepeat] = useState('')
@@ -115,38 +110,13 @@ export function AccountManage({
         <div className="account-row">
           <div className="account-row-text">
             <strong>Mevcut Oturum</strong>
-            <span className="small muted">Bu cihazdaki oturumu kapatır; yerel kelimelerin korunur.</span>
+            <span className="small muted">{identity ? 'Son değişiklikleri hesabına gönderir, çıkar ve bu cihazdaki kopyayı siler. Her şey hesabında durur; tekrar girince geri gelir.' : 'Bu cihazdaki oturumu kapatır; yerel kelimelerin korunur.'}</span>
           </div>
           <button type="button" className="btn btn-sm btn-quiet" disabled={busy} onClick={onSignOut}>
             Çıkış yap
           </button>
         </div>
-        {onSignOutAndWipe && (
-          <div className="account-row">
-            <div className="account-row-text">
-              <strong>Ortak cihaz</strong>
-              <span className="small muted">Çıkış yapar ve bu cihazdaki kelime ve ilerleme kopyasını siler. Hepsi hesabında durur.</span>
-            </div>
-            <button type="button" className="btn btn-sm btn-quiet" disabled={busy} onClick={() => setWiping(true)}>
-              Çıkış yap ve sil
-            </button>
-          </div>
-        )}
       </div>
-      {wiping && onSignOutAndWipe && (
-        <ConfirmDialog
-          title="Çıkış yapılıp bu cihaz temizlensin mi?"
-          confirmLabel="Çıkış yap ve sil"
-          danger
-          onConfirm={() => {
-            setWiping(false)
-            void onSignOutAndWipe()
-          }}
-          onCancel={() => setWiping(false)}
-        >
-          Önce hesabınla eşitlenir; eşitlenemezse hiçbir şey silinmez. Sonra bu cihazdaki kelimelerin, cevapların, metinlerin ve ayarların silinir. Hesabına tekrar girince hepsi geri gelir. Yalnızca başkasıyla ortak kullandığın bir cihazdaysan seç.
-        </ConfirmDialog>
-      )}
     </>
   )
 }

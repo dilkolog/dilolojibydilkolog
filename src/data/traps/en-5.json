@@ -1,0 +1,112 @@
+[
+ {
+  "id": "en-at",
+  "language": "en",
+  "lemma": "at",
+  "looks": "at",
+  "trap": "at (binek hayvanı)",
+  "meaning": "-de, -da, -e (yer ve zaman bildirir)",
+  "text": "I am at home.",
+  "tr": "Evdeyim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-an",
+  "language": "en",
+  "lemma": "an",
+  "looks": "an",
+  "trap": "an (zaman, anlık)",
+  "meaning": "bir (ünlüyle başlayan sözcüklerden önce)",
+  "text": "She eats an apple every day.",
+  "tr": "Her gün bir elma yer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-on",
+  "language": "en",
+  "lemma": "on",
+  "looks": "on",
+  "trap": "on (10)",
+  "meaning": "üzerinde",
+  "text": "The book is on the table.",
+  "tr": "Kitap masanın üzerinde.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-is",
+  "language": "en",
+  "lemma": "is",
+  "looks": "is",
+  "trap": "is (kurum, is)",
+  "meaning": "-dir, -dır (olmak)",
+  "text": "My brother is a doctor.",
+  "tr": "Kardeşim doktor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-us",
+  "language": "en",
+  "lemma": "us",
+  "looks": "us",
+  "trap": "us (akıl, us)",
+  "meaning": "bizi, bize",
+  "text": "Please call us tomorrow.",
+  "tr": "Lütfen yarın bizi arayın.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-bit",
+  "language": "en",
+  "lemma": "bit",
+  "looks": "bit",
+  "trap": "bit (böcek)",
+  "meaning": "biraz; parça",
+  "text": "Wait a bit.",
+  "tr": "Biraz bekle.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-pot",
+  "language": "en",
+  "lemma": "pot",
+  "looks": "pot",
+  "trap": "pot (gaf, pot kırmak)",
+  "meaning": "tencere, kap",
+  "text": "She puts the soup in a big pot.",
+  "tr": "Çorbayı büyük bir tencereye koyuyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-tar",
+  "language": "en",
+  "lemma": "tar",
+  "looks": "tar",
+  "trap": "tar (telli çalgı)",
+  "meaning": "katran",
+  "text": "The road is covered with tar.",
+  "tr": "Yol katranla kaplı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-den",
+  "language": "en",
+  "lemma": "den",
+  "looks": "den",
+  "trap": "den (-den eki)",
+  "meaning": "in, inzivaya çekilme odası",
+  "text": "The lion sleeps in its den.",
+  "tr": "Aslan inde uyuyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-set",
+  "language": "en",
+  "lemma": "set",
+  "looks": "set",
+  "trap": "set (baraj, set çekmek)",
+  "meaning": "takım; kurmak, ayarlamak",
+  "text": "Please set the table.",
+  "tr": "Lütfen masayı kur.",
+  "source": "Diloloji (özgün)"
+ }
+]

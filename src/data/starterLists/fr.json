@@ -1149,6 +1149,688 @@
      "p": "noun"
     }
    ]
+  },
+  {
+   "id": "nature",
+   "title": "Hava ve doğa",
+   "level": "A1",
+   "items": [
+    {
+     "w": "le soleil",
+     "t": "güneş",
+     "s": "Le soleil brille ce matin.",
+     "tr": "Bu sabah güneş parlıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la pluie",
+     "t": "yağmur",
+     "s": "La pluie tombe depuis hier.",
+     "tr": "Dünden beri yağmur yağıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "le vent",
+     "t": "rüzgâr",
+     "s": "Il y a beaucoup de vent aujourd'hui.",
+     "tr": "Bugün çok rüzgâr var.",
+     "p": "noun"
+    },
+    {
+     "w": "la neige",
+     "t": "kar",
+     "s": "Les enfants jouent dans la neige.",
+     "tr": "Çocuklar karda oynuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "le nuage",
+     "t": "bulut",
+     "s": "Il y a un gros nuage noir.",
+     "tr": "Büyük, kara bir bulut var.",
+     "p": "noun"
+    },
+    {
+     "w": "l'arbre",
+     "t": "ağaç",
+     "s": "Le chat monte dans l'arbre.",
+     "tr": "Kedi ağaca tırmanıyor.",
+     "p": "noun",
+     "g": "m"
+    },
+    {
+     "w": "la fleur",
+     "t": "çiçek",
+     "s": "Elle offre une fleur à sa mère.",
+     "tr": "Annesine bir çiçek veriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la montagne",
+     "t": "dağ",
+     "s": "Nous allons à la montagne en hiver.",
+     "tr": "Kışın dağa gidiyoruz.",
+     "p": "noun"
+    },
+    {
+     "w": "la mer",
+     "t": "deniz",
+     "s": "J'aime nager dans la mer.",
+     "tr": "Denizde yüzmeyi severim.",
+     "p": "noun"
+    },
+    {
+     "w": "la forêt",
+     "t": "orman",
+     "s": "Nous marchons dans la forêt.",
+     "tr": "Ormanda yürüyoruz.",
+     "p": "noun"
+    },
+    {
+     "w": "la rivière",
+     "t": "nehir, ırmak",
+     "s": "La rivière traverse le village.",
+     "tr": "Nehir köyün içinden geçiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "le ciel",
+     "t": "gökyüzü, gök",
+     "s": "Le ciel est bleu aujourd'hui.",
+     "tr": "Bugün gökyüzü mavi.",
+     "p": "noun"
+    },
+    {
+     "w": "chaud",
+     "t": "sıcak",
+     "s": "Il fait chaud en été.",
+     "tr": "Yazın hava sıcak olur.",
+     "p": "adjective"
+    },
+    {
+     "w": "froid",
+     "t": "soğuk",
+     "s": "Il fait froid ce soir.",
+     "tr": "Bu akşam hava soğuk.",
+     "p": "adjective"
+    }
+   ]
+  },
+  {
+   "id": "hobbies",
+   "title": "Boş zaman ve spor",
+   "level": "A1",
+   "items": [
+    {
+     "w": "le sport",
+     "t": "spor",
+     "s": "Je fais du sport le samedi.",
+     "tr": "Cumartesi günleri spor yaparım.",
+     "p": "noun"
+    },
+    {
+     "w": "le football",
+     "t": "futbol",
+     "s": "Mon frère joue au football.",
+     "tr": "Kardeşim futbol oynuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la musique",
+     "t": "müzik",
+     "s": "J'écoute de la musique dans le bus.",
+     "tr": "Otobüste müzik dinlerim.",
+     "p": "noun"
+    },
+    {
+     "w": "le film",
+     "t": "film",
+     "s": "Nous regardons un film ce soir.",
+     "tr": "Bu akşam bir film izliyoruz.",
+     "p": "noun"
+    },
+    {
+     "w": "le jeu",
+     "t": "oyun",
+     "s": "Ce jeu est facile à apprendre.",
+     "tr": "Bu oyunu öğrenmek kolay.",
+     "p": "noun"
+    },
+    {
+     "w": "la photo",
+     "t": "fotoğraf",
+     "s": "Il prend une photo de la mer.",
+     "tr": "Denizin fotoğrafını çekiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la danse",
+     "t": "dans",
+     "s": "Elle fait de la danse depuis cinq ans.",
+     "tr": "Beş yıldır dans yapıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "nager",
+     "t": "yüzmek",
+     "s": "Je sais nager.",
+     "tr": "Yüzmeyi biliyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "courir",
+     "t": "koşmak",
+     "s": "Il aime courir le matin.",
+     "tr": "Sabahları koşmayı sever.",
+     "p": "verb"
+    },
+    {
+     "w": "jouer",
+     "t": "oynamak, çalmak",
+     "s": "Les enfants veulent jouer dehors.",
+     "tr": "Çocuklar dışarıda oynamak istiyor.",
+     "p": "verb"
+    },
+    {
+     "w": "chanter",
+     "t": "şarkı söylemek",
+     "s": "Elle aime chanter sous la douche.",
+     "tr": "Duşta şarkı söylemeyi sever.",
+     "p": "verb"
+    },
+    {
+     "w": "marcher",
+     "t": "yürümek",
+     "s": "J'aime marcher dans la forêt.",
+     "tr": "Ormanda yürümeyi severim.",
+     "p": "verb"
+    },
+    {
+     "w": "se reposer",
+     "t": "dinlenmek",
+     "s": "Je veux me reposer ce week-end.",
+     "tr": "Bu hafta sonu dinlenmek istiyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "le match",
+     "t": "maç",
+     "s": "Le match commence à huit heures.",
+     "tr": "Maç saat sekizde başlıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la randonnée",
+     "t": "doğa yürüyüşü",
+     "s": "La randonnée est très longue.",
+     "tr": "Doğa yürüyüşü çok uzun.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "feelings",
+   "title": "Duygular ve kişilik",
+   "level": "A2",
+   "items": [
+    {
+     "w": "content",
+     "t": "memnun, mutlu",
+     "s": "Je suis content de te voir.",
+     "tr": "Seni gördüğüme memnunum.",
+     "p": "adjective"
+    },
+    {
+     "w": "triste",
+     "t": "üzgün",
+     "s": "Elle est triste aujourd'hui.",
+     "tr": "Bugün üzgün.",
+     "p": "adjective"
+    },
+    {
+     "w": "fâché",
+     "t": "kızgın, kırgın",
+     "s": "Il est fâché contre moi.",
+     "tr": "Bana kızgın.",
+     "p": "adjective"
+    },
+    {
+     "w": "inquiet",
+     "t": "endişeli",
+     "s": "Je suis inquiet pour l'examen.",
+     "tr": "Sınav için endişeliyim.",
+     "p": "adjective"
+    },
+    {
+     "w": "surpris",
+     "t": "şaşırmış",
+     "s": "Nous sommes surpris par la nouvelle.",
+     "tr": "Habere şaşırdık.",
+     "p": "adjective"
+    },
+    {
+     "w": "fier",
+     "t": "gururlu",
+     "s": "Il est fier de son fils.",
+     "tr": "Oğluyla gurur duyuyor.",
+     "p": "adjective"
+    },
+    {
+     "w": "timide",
+     "t": "çekingen, utangaç",
+     "s": "Mon frère est très timide.",
+     "tr": "Kardeşim çok çekingen.",
+     "p": "adjective"
+    },
+    {
+     "w": "gentil",
+     "t": "nazik, tatlı",
+     "s": "Le voisin est très gentil.",
+     "tr": "Komşu çok nazik.",
+     "p": "adjective"
+    },
+    {
+     "w": "drôle",
+     "t": "komik, eğlenceli",
+     "s": "Ce film est vraiment drôle.",
+     "tr": "Bu film gerçekten komik.",
+     "p": "adjective"
+    },
+    {
+     "w": "courageux",
+     "t": "cesur",
+     "s": "Les pompiers sont courageux.",
+     "tr": "İtfaiyeciler cesur.",
+     "p": "adjective"
+    },
+    {
+     "w": "avoir peur",
+     "t": "korkmak",
+     "s": "Je ne veux pas avoir peur.",
+     "tr": "Korkmak istemiyorum.",
+     "p": "phrase"
+    },
+    {
+     "w": "la joie",
+     "t": "sevinç",
+     "s": "Les enfants crient de joie.",
+     "tr": "Çocuklar sevinçten bağırıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la colère",
+     "t": "öfke",
+     "s": "Il parle avec colère.",
+     "tr": "Öfkeyle konuşuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la surprise",
+     "t": "sürpriz, şaşkınlık",
+     "s": "Quelle surprise de te voir ici !",
+     "tr": "Seni burada görmek ne sürpriz!",
+     "p": "noun"
+    },
+    {
+     "w": "paresseux",
+     "t": "tembel",
+     "s": "Mon chat est très paresseux.",
+     "tr": "Kedim çok tembel.",
+     "p": "adjective"
+    }
+   ]
+  },
+  {
+   "id": "tech",
+   "title": "Teknoloji ve iletişim",
+   "level": "A2",
+   "items": [
+    {
+     "w": "le site",
+     "t": "web sitesi",
+     "s": "Ce site est très utile.",
+     "tr": "Bu site çok faydalı.",
+     "p": "noun"
+    },
+    {
+     "w": "le message",
+     "t": "mesaj",
+     "s": "Je t'envoie un message.",
+     "tr": "Sana bir mesaj gönderiyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "le mail",
+     "t": "e-posta",
+     "s": "J'ai reçu un mail de mon chef.",
+     "tr": "Müdürümden bir e-posta aldım.",
+     "p": "noun"
+    },
+    {
+     "w": "le mot de passe",
+     "t": "şifre",
+     "s": "Je ne me souviens plus de mon mot de passe.",
+     "tr": "Şifremi artık hatırlamıyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "l'écran",
+     "t": "ekran",
+     "s": "L'écran de mon téléphone est cassé.",
+     "tr": "Telefonumun ekranı kırık.",
+     "p": "noun",
+     "g": "m"
+    },
+    {
+     "w": "le clavier",
+     "t": "klavye",
+     "s": "Ce clavier est très bruyant.",
+     "tr": "Bu klavye çok gürültülü.",
+     "p": "noun"
+    },
+    {
+     "w": "le réseau",
+     "t": "ağ, şebeke",
+     "s": "Il n'y a pas de réseau ici.",
+     "tr": "Burada şebeke yok.",
+     "p": "noun"
+    },
+    {
+     "w": "l'appli",
+     "t": "uygulama",
+     "s": "Cette appli est gratuite.",
+     "tr": "Bu uygulama ücretsiz.",
+     "p": "noun",
+     "g": "f"
+    },
+    {
+     "w": "la batterie",
+     "t": "pil, batarya",
+     "s": "La batterie est presque vide.",
+     "tr": "Pil neredeyse bitti.",
+     "p": "noun"
+    },
+    {
+     "w": "envoyer",
+     "t": "göndermek",
+     "s": "Je veux envoyer un message.",
+     "tr": "Bir mesaj göndermek istiyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "appeler",
+     "t": "aramak, çağırmak",
+     "s": "Je dois appeler ma mère.",
+     "tr": "Annemi aramam lazım.",
+     "p": "verb"
+    },
+    {
+     "w": "télécharger",
+     "t": "indirmek",
+     "s": "Je veux télécharger cette application.",
+     "tr": "Bu uygulamayı indirmek istiyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "cliquer",
+     "t": "tıklamak",
+     "s": "Il faut cliquer ici.",
+     "tr": "Buraya tıklamak gerekiyor.",
+     "p": "verb"
+    },
+    {
+     "w": "le wifi",
+     "t": "wifi",
+     "s": "Le wifi marche bien ici.",
+     "tr": "Burada wifi iyi çalışıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "le portable",
+     "t": "cep telefonu",
+     "s": "Mon portable est à la maison.",
+     "tr": "Cep telefonum evde.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "verbs",
+   "title": "Sık kullanılan fiiller",
+   "level": "A1",
+   "items": [
+    {
+     "w": "être",
+     "t": "olmak",
+     "s": "Il faut être patient.",
+     "tr": "Sabırlı olmak gerekir.",
+     "p": "verb"
+    },
+    {
+     "w": "avoir",
+     "t": "sahip olmak, -i olmak",
+     "s": "Je voudrais avoir un chien.",
+     "tr": "Bir köpeğim olsun isterdim.",
+     "p": "verb"
+    },
+    {
+     "w": "aller",
+     "t": "gitmek",
+     "s": "Je veux aller au cinéma.",
+     "tr": "Sinemaya gitmek istiyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "faire",
+     "t": "yapmak, etmek",
+     "s": "Que veux-tu faire ce week-end ?",
+     "tr": "Bu hafta sonu ne yapmak istiyorsun?",
+     "p": "verb"
+    },
+    {
+     "w": "dire",
+     "t": "söylemek",
+     "s": "Je dois te dire quelque chose.",
+     "tr": "Sana bir şey söylemem lazım.",
+     "p": "verb"
+    },
+    {
+     "w": "voir",
+     "t": "görmek",
+     "s": "Je voudrais voir ce film.",
+     "tr": "Bu filmi görmek isterdim.",
+     "p": "verb"
+    },
+    {
+     "w": "savoir",
+     "t": "bilmek",
+     "s": "Je veux savoir la vérité.",
+     "tr": "Gerçeği bilmek istiyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "venir",
+     "t": "gelmek",
+     "s": "Tu peux venir demain ?",
+     "tr": "Yarın gelebilir misin?",
+     "p": "verb"
+    },
+    {
+     "w": "prendre",
+     "t": "almak, tutmak",
+     "s": "Je vais prendre le bus.",
+     "tr": "Otobüse bineceğim.",
+     "p": "verb"
+    },
+    {
+     "w": "donner",
+     "t": "vermek",
+     "s": "Je peux te donner mon numéro.",
+     "tr": "Sana numaramı verebilirim.",
+     "p": "verb"
+    },
+    {
+     "w": "parler",
+     "t": "konuşmak",
+     "s": "Je voudrais parler au directeur.",
+     "tr": "Müdürle konuşmak isterdim.",
+     "p": "verb"
+    },
+    {
+     "w": "attendre",
+     "t": "beklemek",
+     "s": "Je dois attendre le bus.",
+     "tr": "Otobüsü beklemem lazım.",
+     "p": "verb"
+    },
+    {
+     "w": "comprendre",
+     "t": "anlamak",
+     "s": "Je ne peux pas comprendre ce mot.",
+     "tr": "Bu kelimeyi anlayamıyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "penser",
+     "t": "düşünmek",
+     "s": "Je dois penser à mon avenir.",
+     "tr": "Geleceğimi düşünmem lazım.",
+     "p": "verb"
+    },
+    {
+     "w": "trouver",
+     "t": "bulmak",
+     "s": "Je veux trouver un appartement.",
+     "tr": "Bir daire bulmak istiyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "demander",
+     "t": "sormak, istemek",
+     "s": "Je vais demander à mon voisin.",
+     "tr": "Komşuma soracağım.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "adjectives",
+   "title": "Sık kullanılan sıfatlar",
+   "level": "A1",
+   "items": [
+    {
+     "w": "grand",
+     "t": "büyük, uzun",
+     "s": "Mon frère est très grand.",
+     "tr": "Kardeşim çok uzun.",
+     "p": "adjective"
+    },
+    {
+     "w": "petit",
+     "t": "küçük, kısa",
+     "s": "Nous avons un petit jardin.",
+     "tr": "Küçük bir bahçemiz var.",
+     "p": "adjective"
+    },
+    {
+     "w": "bon",
+     "t": "iyi, lezzetli",
+     "s": "Ce gâteau est très bon.",
+     "tr": "Bu pasta çok güzel.",
+     "p": "adjective"
+    },
+    {
+     "w": "mauvais",
+     "t": "kötü",
+     "s": "Ce café est mauvais.",
+     "tr": "Bu kahve kötü.",
+     "p": "adjective"
+    },
+    {
+     "w": "nouveau",
+     "t": "yeni",
+     "s": "Il a un nouveau téléphone.",
+     "tr": "Yeni bir telefonu var.",
+     "p": "adjective"
+    },
+    {
+     "w": "vieux",
+     "t": "yaşlı, eski",
+     "s": "Mon grand-père est vieux.",
+     "tr": "Dedem yaşlı.",
+     "p": "adjective"
+    },
+    {
+     "w": "jeune",
+     "t": "genç",
+     "s": "Ma sœur est encore jeune.",
+     "tr": "Ablam hâlâ genç.",
+     "p": "adjective"
+    },
+    {
+     "w": "beau",
+     "t": "güzel, yakışıklı",
+     "s": "Le temps est beau aujourd'hui.",
+     "tr": "Bugün hava güzel.",
+     "p": "adjective"
+    },
+    {
+     "w": "facile",
+     "t": "kolay",
+     "s": "Cet exercice est facile.",
+     "tr": "Bu alıştırma kolay.",
+     "p": "adjective"
+    },
+    {
+     "w": "difficile",
+     "t": "zor",
+     "s": "Le test est difficile.",
+     "tr": "Sınav zor.",
+     "p": "adjective"
+    },
+    {
+     "w": "rapide",
+     "t": "hızlı",
+     "s": "Ce train est très rapide.",
+     "tr": "Bu tren çok hızlı.",
+     "p": "adjective"
+    },
+    {
+     "w": "lent",
+     "t": "yavaş",
+     "s": "Le service est lent.",
+     "tr": "Servis yavaş.",
+     "p": "adjective"
+    },
+    {
+     "w": "important",
+     "t": "önemli",
+     "s": "Ce rendez-vous est important.",
+     "tr": "Bu randevu önemli.",
+     "p": "adjective"
+    },
+    {
+     "w": "propre",
+     "t": "temiz",
+     "s": "La cuisine est propre.",
+     "tr": "Mutfak temiz.",
+     "p": "adjective"
+    },
+    {
+     "w": "plein",
+     "t": "dolu",
+     "s": "Le bus est plein.",
+     "tr": "Otobüs dolu.",
+     "p": "adjective"
+    },
+    {
+     "w": "occupé",
+     "t": "meşgul",
+     "s": "Je suis très occupé aujourd'hui.",
+     "tr": "Bugün çok meşgulüm.",
+     "p": "adjective"
+    }
+   ]
   }
  ]
 }

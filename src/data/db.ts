@@ -17,6 +17,7 @@ import { localDate } from '../engine/progress'
 import { cleanMarks, mergeMarks, type GuideMarks } from '../engine/guideReview'
 import { addTime, cleanTimeLog, daySeconds, pruneTimeLog, type TimeKind, type TimeLog } from '../engine/studyTime'
 import { cleanGone, cleanNotices, rememberGone, removeNotices, type Notice, type NoticeKind } from '../engine/notices'
+import type { Prefs } from './devicePrefs'
 import { award, cleanLedger, timeAwardKey, timeXp, type XpLedger } from '../engine/xpLedger'
 import { emptyNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import type { ReviewResult } from '../engine/review'
@@ -391,6 +392,7 @@ export class KelimeDB extends Dexie {
     // Counts the writes to what a backup carries (a sync reads, merges and writes back, and must notice an answer saved in between).
     const bump = () => {
       this.writes++
+      for (const fn of this.writeListeners) fn()
     }
     for (const table of [this.vocabulary, this.wordStates, this.events, this.mistakes, this.texts]) {
       table.hook('creating', bump)
@@ -399,7 +401,7 @@ export class KelimeDB extends Dexie {
     }
     const bumpMeta = (key: unknown) => {
       // The sync's own bookkeeping does not count.
-      if (!(typeof key === 'string' && (key.startsWith('sync') || key === 'safetyBackup' || key === 'notices' || key === 'noticesGone'))) this.writes++
+      if (!(typeof key === 'string' && (key.startsWith('sync') || key === 'safetyBackup' || key === 'notices' || key === 'noticesGone'))) bump()
     }
     this.meta.hook('creating', bumpMeta)
     this.meta.hook('updating', (_mods, key) => bumpMeta(key))
@@ -423,6 +425,15 @@ export class KelimeDB extends Dexie {
 
   /** How many writes this database has taken since it was opened (see `bump`). */
   writes = 0
+
+  /** Heard on every counted write (live sync schedules itself on it): it must only note the write, never touch the database. */
+  private writeListeners = new Set<() => void>()
+  onWrite(fn: () => void): () => void {
+    this.writeListeners.add(fn)
+    return () => {
+      this.writeListeners.delete(fn)
+    }
+  }
 
   /** Writes to the answers since the database was opened, and the answers added (committed) since the last read. */
   eventWrites = 0
@@ -1374,7 +1385,7 @@ export class KelimeDB extends Dexie {
  * merge without it and upload a core file that wipes the new field from every other device. An older app then meets
  * a newer backup and is told to update (BackupVersionError) instead.
  */
-export const BACKUP_VERSION = 12
+export const BACKUP_VERSION = 13
 
 export interface Backup {
   app: 'kelime-koc'
@@ -1441,6 +1452,8 @@ export interface Backup {
   examTasks?: GrammarLog
   /** Dictionary corrections and look-ups, per language. */
   dictionary?: Partial<Record<TargetLanguage, DictionaryNotes>>
+  /** Choices and seen-markers kept beside the database (see devicePrefs.ts; backup version 13+). */
+  prefs?: Prefs
 }
 
 async function blobToDataUrl(blob: Blob): Promise<string> {
@@ -1506,6 +1519,8 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     enVerbs: await db.getEnVerbLog(),
     examTasks: await db.getExamLog(),
     dictionary: { en: await db.getDictionaryNotes('en'), fr: await db.getDictionaryNotes('fr'), es: await db.getDictionaryNotes('es') },
+    // Loaded here, not with the first screen: it only matters to a backup and a sync.
+    prefs: await (await import('./devicePrefs')).collectPrefs(db, now),
     media: await Promise.all(
       // Cached audio (natural voices "tts:", native recordings "aud:") can be fetched again, so it stays out of backups.
       (withMedia ? await db.media.toArray() : []).filter((m) => !m.id.startsWith('tts:') && !m.id.startsWith('aud:')).map(async (m) => ({
@@ -1560,6 +1575,8 @@ export function parseBackup(json: string): Backup {
     d.createdAt = iso(d.createdAt)
     d.updatedAt = iso(d.updatedAt)
   }
+  // The entries are checked where they are used (devicePrefs.cleanPrefs); here only the shape.
+  if (data.prefs !== undefined && (!data.prefs || typeof data.prefs !== 'object' || Array.isArray(data.prefs))) delete data.prefs
   return data as Backup
 }
 
@@ -1622,4 +1639,6 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.enVerbs) await db.meta.put({ key: 'enverbs', value: backup.enVerbs })
     if (backup.examTasks) await db.meta.put({ key: 'examtasks', value: backup.examTasks })
   })
+  // Outside the transaction: the module loads on demand, and a transaction closes on an unrelated await.
+  if (backup.prefs) await (await import('./devicePrefs')).applyPrefs(db, backup.prefs)
 }

@@ -132,6 +132,25 @@ describe('syncing through Supabase', () => {
     expect(await probeStore(sb.client, USER)).toBe('ready')
   }, 60_000)
 
+  it('says whether a sync changed this device: a quiet pull finds nothing new, another device\'s word counts', async () => {
+    const sb = fakeSupabase()
+    const store = supabaseStore(sb.client, USER)
+    const phone = new KelimeDB('t-sb-changed-phone')
+    const laptop = new KelimeDB('t-sb-changed-laptop')
+    await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
+    await syncNow(phone, store)
+    await syncNow(laptop, store)
+    // The devices settle after meeting (the laptop's first copy reaches the phone); then nothing is news.
+    await syncNow(phone, store)
+    expect((await syncNow(phone, store)).changed).toBe(false)
+    expect((await syncNow(laptop, store)).changed).toBe(false)
+    // The laptop adds a word: it goes up, the phone's next sync changes the phone.
+    await laptop.vocabulary.put(createEntry({ word: 'chat', meaning: 'kedi' }, 'fr', new Date()))
+    expect((await syncNow(laptop, store)).changed).toBe(false)
+    expect((await syncNow(phone, store)).changed).toBe(true)
+    expect((await syncNow(phone, store)).changed).toBe(false)
+  }, 60_000)
+
   it('the one that loses the race on the core merges again', async () => {
     const sb = fakeSupabase()
     const store = supabaseStore(sb.client, USER)

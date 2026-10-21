@@ -397,6 +397,94 @@
     }
    ],
    "language": "en"
+  },
+  {
+   "id": "en-read-market",
+   "exam": "Cambridge",
+   "level": "B1",
+   "title": "The Thursday market",
+   "text": "For twenty years, the Thursday market has filled the square in my neighbourhood. People come to buy fruit and cheese, or just to chat with the sellers. However, the council wants to move the market to a nearby street because the square will be renovated for six months. Many traders are worried: they fear losing some of their customers, especially the elderly people who live close by. A public meeting will take place on Tuesday evening at the town hall. Everyone will be able to ask questions and suggest solutions.",
+   "tr": "Yirmi yıldır perşembe pazarı mahallemin meydanını canlandırıyor. Sakinler buraya meyve, peynir almaya ya da sadece satıcılarla sohbet etmeye geliyor. Ancak belediye, meydan altı ay boyunca yenileneceği için pazarı yakındaki bir sokağa taşımak istiyor. Birçok esnaf endişeli: müşterilerinin bir kısmını, özellikle çok yakında yaşayan yaşlıları kaybetmekten korkuyorlar. Salı akşamı belediyede halka açık bir toplantı olacak. Herkes soru sorabilecek ve çözüm önerebilecek.",
+   "questions": [
+    {
+     "prompt": "Why does the council want to move the market?",
+     "options": [
+      "The traders have asked for it",
+      "The square will be renovated",
+      "There are too many customers",
+      "The market is too noisy"
+     ],
+     "answer": 1,
+     "why": "“The square will be renovated for six months”: meydan yenilenecek."
+    },
+    {
+     "prompt": "What are the traders afraid of?",
+     "options": [
+      "Having to pay more",
+      "Running out of goods",
+      "Losing some of their customers",
+      "Changing their jobs"
+     ],
+     "answer": 2,
+     "why": "“They fear losing some of their customers”: müşteri kaybetmekten korkuyorlar."
+    },
+    {
+     "prompt": "What will happen on Tuesday evening?",
+     "options": [
+      "The market will close",
+      "A public meeting",
+      "The work will begin",
+      "A neighbourhood party"
+     ],
+     "answer": 1,
+     "why": "“A public meeting will take place on Tuesday evening”: salı akşamı halka açık toplantı var."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-museums",
+   "exam": "IELTS",
+   "level": "B2",
+   "title": "Free museums?",
+   "text": "Several cities are considering making museum entry free on the first Sunday of each month. Supporters of the measure claim that it attracts a new audience, particularly families who do not dare to step into a museum for fear of the price. Opponents, on the other hand, point out that free entry does not solve everything: someone who is not interested in art will not visit a museum more often just because it costs nothing. They would rather see the money spent on school trips and activities. However, a study carried out in three cities shows that attendance doubles on free days, without annual income falling much.",
+   "tr": "Birçok şehir, müzeleri her ayın ilk pazar günü ücretsiz yapmayı düşünüyor. Bu önlemin savunucuları, ücretsiz giriş sayesinde yeni bir kitlenin, özellikle fiyattan çekindiği için müzeye adım atmaya cesaret edemeyen ailelerin geleceğini söylüyor. Karşı çıkanlar ise ücretsizliğin her sorunu çözmediğini hatırlatıyor: sanata ilgi duymayan biri, giriş ücretsiz diye müzeye daha çok gitmeyecek. Bu paranın okul gezilerini ve etkinlikleri finanse etmesini tercih ediyorlar. Üç şehirde yapılan bir araştırma ise ücretsiz günlerde ziyaretçi sayısının iki katına çıktığını, buna rağmen yıllık gelirlerin pek düşmediğini gösteriyor.",
+   "questions": [
+    {
+     "prompt": "According to supporters, what does free entry achieve?",
+     "options": [
+      "It attracts a new audience",
+      "It closes some museums",
+      "It raises ticket prices",
+      "It reduces the number of visitors"
+     ],
+     "answer": 0,
+     "why": "“It attracts a new audience”: yeni bir kitleyi çekiyor."
+    },
+    {
+     "prompt": "What is the opponents' main argument?",
+     "options": [
+      "Museums are already too crowded",
+      "Free entry alone does not create an interest in art",
+      "Families prefer the cinema",
+      "Museums lack space"
+     ],
+     "answer": 1,
+     "why": "Karşı çıkanlar: sanata ilgi duymayan biri ücretsiz diye gitmez."
+    },
+    {
+     "prompt": "What does the study show?",
+     "options": [
+      "Income collapses",
+      "Visitors are older",
+      "Attendance doubles on free days",
+      "Schools refuse visits"
+     ],
+     "answer": 2,
+     "why": "“Attendance doubles on free days”: ücretsiz günlerde ziyaret iki katına çıkıyor."
+    }
+   ],
+   "language": "en"
   }
  ]
 }

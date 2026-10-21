@@ -1,0 +1,156 @@
+[
+ {
+  "id": "es-casa",
+  "language": "es",
+  "lemma": "casa",
+  "looks": "kasa",
+  "trap": "kasa, kasiyer",
+  "meaning": "ev",
+  "text": "Mi casa está cerca de la playa.",
+  "tr": "Evim plajın yakınında.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-sol",
+  "language": "es",
+  "lemma": "sol",
+  "looks": "sol",
+  "trap": "sol (yön)",
+  "meaning": "güneş",
+  "text": "Hoy hay mucho sol.",
+  "tr": "Bugün çok güneş var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-dar",
+  "language": "es",
+  "lemma": "dar",
+  "looks": "dar",
+  "trap": "dar, sıkışık",
+  "meaning": "vermek",
+  "text": "¿Me puedes dar tu número?",
+  "tr": "Numaranı verir misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ver",
+  "language": "es",
+  "lemma": "ver",
+  "looks": "ver",
+  "trap": "ver (vermek)",
+  "meaning": "görmek",
+  "text": "Quiero ver esta película.",
+  "tr": "Bu filmi görmek istiyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-para",
+  "language": "es",
+  "lemma": "para",
+  "looks": "para",
+  "trap": "para, akçe",
+  "meaning": "için",
+  "text": "Este regalo es para ti.",
+  "tr": "Bu hediye senin için.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-tan",
+  "language": "es",
+  "lemma": "tan",
+  "looks": "tan",
+  "trap": "tan (şafak vakti)",
+  "meaning": "o kadar, öyle",
+  "text": "No es tan difícil.",
+  "tr": "O kadar zor değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ya",
+  "language": "es",
+  "lemma": "ya",
+  "looks": "ya",
+  "trap": "ya, ya da",
+  "meaning": "artık, zaten",
+  "text": "Ya terminé el trabajo.",
+  "tr": "İşi zaten bitirdim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-o",
+  "language": "es",
+  "lemma": "o",
+  "looks": "o",
+  "trap": "o (şu, ona işaret eden)",
+  "meaning": "veya",
+  "text": "¿Quieres té o café?",
+  "tr": "Çay mı kahve mi istersin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ay",
+  "language": "es",
+  "lemma": "ay",
+  "looks": "ay",
+  "trap": "ay (gökteki ay, takvim ayı)",
+  "meaning": "ah, of (ünlem)",
+  "text": "¡Ay, me he hecho daño!",
+  "tr": "Ah, canım yandı!",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ala",
+  "language": "es",
+  "lemma": "ala",
+  "looks": "ala",
+  "trap": "ala (alaca)",
+  "meaning": "kanat",
+  "text": "El pájaro abre el ala.",
+  "tr": "Kuş kanadını açıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-hora",
+  "language": "es",
+  "lemma": "hora",
+  "looks": "hora",
+  "trap": "hora (halk oyunu)",
+  "meaning": "saat",
+  "text": "¿Qué hora es?",
+  "tr": "Saat kaç?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-salsa",
+  "language": "es",
+  "lemma": "salsa",
+  "looks": "salsa",
+  "trap": "salsa (dans)",
+  "meaning": "sos",
+  "text": "Me gusta la pasta con salsa de tomate.",
+  "tr": "Makarnayı domates sosuyla severim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-sal",
+  "language": "es",
+  "lemma": "sal",
+  "looks": "sal",
+  "trap": "sal (sal, bırak)",
+  "meaning": "tuz",
+  "text": "Falta un poco de sal.",
+  "tr": "Biraz tuz eksik.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pera",
+  "language": "es",
+  "lemma": "pera",
+  "looks": "pera",
+  "trap": "Pera (İstanbul semti)",
+  "meaning": "armut",
+  "text": "Quiero una pera, por favor.",
+  "tr": "Bir armut istiyorum, lütfen.",
+  "source": "Diloloji (özgün)"
+ }
+]

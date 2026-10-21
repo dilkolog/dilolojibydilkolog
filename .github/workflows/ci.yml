@@ -1,9 +1,9 @@
 name: CI
 
-# Kept small on purpose: one machine for everything (no second npm ci, browser install and build
-# per shard), only for pull requests (a merge to main was tested in its PR), and none for
-# documentation-only changes. (The repository is public, so Actions minutes are free; the job is
-# still kept lean to be quick.) Run it by hand from the Actions tab when needed.
+# Kept small on purpose: a private repository has a monthly allowance of Actions minutes, and each
+# job is billed rounded up to the minute. So: one machine for everything (no second npm ci, browser
+# install and build per shard), only for pull requests (a merge to main was tested in its PR), and
+# none for documentation-only changes. Run it by hand from the Actions tab when needed.
 on:
   pull_request:
     paths-ignore:

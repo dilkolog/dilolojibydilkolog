@@ -24,7 +24,7 @@ const QUESTIONS: { q: string; a: string }[] = [
   },
   {
     q: 'Ortak bir cihazda kullanıyorum',
-    a: 'Bitirince Ayarlar → Hesap → “Ortak cihaz: Çıkış yap ve sil”e dokun: önce eşitler, sonra bu cihazdaki kelimeleri ve anahtarları siler.',
+    a: 'Bitirince Ayarlar → Hesap → “Çıkış yap”a dokun: önce son değişiklikleri hesabına gönderir, sonra bu cihazdaki kelimeleri ve anahtarları siler. Hepsi hesabında durur.',
   },
   {
     q: 'Hatırlatma bildirimi gelmiyor',
@@ -32,7 +32,7 @@ const QUESTIONS: { q: string; a: string }[] = [
   },
   {
     q: 'Hesabımı silmek istiyorum',
-    a: 'Ayarlar → Veriler’in altındaki “Hesabı sil”. Hesap ve sunucudaki verilerin silinir; bu cihazdaki kopya için ayrıca “Çıkış yap ve sil”i kullanabilirsin.',
+    a: 'Ayarlar → Veriler’in altındaki “Hesabı sil”. Hesap ve sunucudaki verilerin silinir; bu cihazdaki kopya için ayrıca “Çıkış yap”ı kullanabilirsin.',
   },
 ]
 

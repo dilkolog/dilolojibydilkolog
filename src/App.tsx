@@ -33,6 +33,7 @@ import { weekLine, weekMisses, weekSummary, type WeekSummary } from './engine/we
 import { LookupNudge } from './ui/LookupNudge'
 
 import { announceIncoming, onSynced, runSync } from './ui/syncRunner'
+import { useLiveSync } from './ui/useLiveSync'
 import { connectExtension } from './ui/extensionBridge'
 
 import { gardenSummary } from './engine/growth'
@@ -57,6 +58,7 @@ import { recordVisit } from './ui/screenUsage'
 import { clipboardSuggestion } from './ui/clipboardSuggest'
 import { readIncoming, type IncomingWord } from './ui/incoming'
 import { captureInvite, pendingInviteInfo } from './ui/invite'
+import { HandleClaim } from './ui/HandleClaim'
 import { InviteAccept } from './ui/InviteAccept'
 import { GAME_LIST } from './ui/gameList'
 import { ScreenBoundary } from './ui/ScreenBoundary'
@@ -159,6 +161,8 @@ export default function App() {
   }, [inSessionNow])
 
   const { data, game, reload } = useLanguageData(language)
+  // The account holds the data: changes go up a moment after they are made, other devices' come down when the app is looked at again.
+  useLiveSync(inSessionNow)
 
   // The other screens' code, once the first screen is up.
   useEffect(() => {
@@ -635,6 +639,7 @@ export default function App() {
         </div>
       <BadgeWatcher game={game} paused={screen.name === 'session' || screen.name === 'summary'} onProfile={go({ name: 'profile' })} onLogged={reload} />
       <InviteAccept onDone={reload} />
+      <HandleClaim />
       <LevelWatcher game={game} paused={screen.name === 'session' || screen.name === 'summary'} />
       </GameContext.Provider>
     </AiContext.Provider>

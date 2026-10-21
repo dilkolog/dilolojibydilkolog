@@ -1,0 +1,137 @@
+[
+ {
+  "id": "en-r4-window",
+  "language": "en",
+  "tr": "pencereyi açabilir miyim?",
+  "informal": "Mind if I open the window?",
+  "standard": "Do you mind if I open the window?",
+  "formal": "Would you mind if I opened the window?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-number",
+  "language": "en",
+  "tr": "numaranı verir misin?",
+  "informal": "What's your number?",
+  "standard": "Could I have your phone number?",
+  "formal": "Would you be so kind as to give me your telephone number?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-wrong",
+  "language": "en",
+  "tr": "yanlış numara, pardon",
+  "informal": "Oops, wrong number!",
+  "standard": "Sorry, I've dialled the wrong number.",
+  "formal": "I do apologise, I appear to have dialled the wrong number.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-appt",
+  "language": "en",
+  "tr": "randevu almak istiyorum",
+  "informal": "Can I book a slot?",
+  "standard": "I'd like to make an appointment, please.",
+  "formal": "I would like to request an appointment, if you have availability.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-complaint",
+  "language": "en",
+  "tr": "bir sorunum var (şikâyet)",
+  "informal": "There's a problem here.",
+  "standard": "I have a problem with my order.",
+  "formal": "I wish to draw your attention to a problem with my order.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-disturb",
+  "language": "en",
+  "tr": "rahatsız ediyorum, pardon",
+  "informal": "Sorry to bug you.",
+  "standard": "Sorry to disturb you.",
+  "formal": "Please excuse the interruption.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-welcome",
+  "language": "en",
+  "tr": "bir şey değil, rica ederim",
+  "informal": "No worries!",
+  "standard": "You're welcome.",
+  "formal": "It was my pleasure; there is no need to thank me.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-getwell",
+  "language": "en",
+  "tr": "geçmiş olsun",
+  "informal": "Get well soon!",
+  "standard": "I hope you feel better soon.",
+  "formal": "I wish you a speedy recovery.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-come-in",
+  "language": "en",
+  "tr": "hoş geldin",
+  "informal": "Come on in!",
+  "standard": "Welcome to our home!",
+  "formal": "You are most welcome.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-night",
+  "language": "en",
+  "tr": "iyi geceler",
+  "informal": "Night! See you tomorrow.",
+  "standard": "Good night.",
+  "formal": "I wish you a restful night.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-name",
+  "language": "en",
+  "tr": "adın ne?",
+  "informal": "What's your name?",
+  "standard": "What is your name, please?",
+  "formal": "May I ask your name?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-origin",
+  "language": "en",
+  "tr": "nerelisin?",
+  "informal": "Where are you from?",
+  "standard": "Where do you come from?",
+  "formal": "May I ask which country you are from?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-check",
+  "language": "en",
+  "tr": "bakıp haber veririm",
+  "informal": "I'll look and let you know.",
+  "standard": "I'll check and get back to you.",
+  "formal": "I shall verify this and revert to you as soon as possible.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-wait",
+  "language": "en",
+  "tr": "bekletiyorum, özür dilerim",
+  "informal": "Sorry to keep you waiting.",
+  "standard": "Apologies for the wait.",
+  "formal": "Thank you for your patience, and my apologies for the delay.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r4-thanks",
+  "language": "en",
+  "tr": "yardımın için teşekkürler",
+  "informal": "Thanks for the help!",
+  "standard": "Thank you for your help.",
+  "formal": "I am most grateful for your valuable assistance.",
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -397,6 +397,94 @@
     }
    ],
    "language": "es"
+  },
+  {
+   "id": "es-read-mercado",
+   "exam": "DELE",
+   "level": "B1",
+   "title": "El mercado de los jueves",
+   "text": "Desde hace veinte años, el mercado de los jueves llena la plaza de mi barrio. Los vecinos vienen a comprar fruta, queso o simplemente a charlar con los vendedores. Sin embargo, el ayuntamiento quiere trasladar el mercado a una calle cercana porque la plaza se renovará durante seis meses. Muchos comerciantes están preocupados: temen perder a parte de sus clientes, sobre todo a las personas mayores que viven muy cerca. El martes por la tarde habrá una reunión pública en el ayuntamiento. Todos podrán hacer preguntas y proponer soluciones.",
+   "tr": "Yirmi yıldır perşembe pazarı mahallemin meydanını canlandırıyor. Sakinler buraya meyve, peynir almaya ya da sadece satıcılarla sohbet etmeye geliyor. Ancak belediye, meydan altı ay boyunca yenileneceği için pazarı yakındaki bir sokağa taşımak istiyor. Birçok esnaf endişeli: müşterilerinin bir kısmını, özellikle çok yakında yaşayan yaşlıları kaybetmekten korkuyorlar. Salı akşamı belediyede halka açık bir toplantı olacak. Herkes soru sorabilecek ve çözüm önerebilecek.",
+   "questions": [
+    {
+     "prompt": "¿Por qué quiere el ayuntamiento trasladar el mercado?",
+     "options": [
+      "Porque los vendedores lo piden",
+      "Porque la plaza se va a renovar",
+      "Porque hay demasiados clientes",
+      "Porque el mercado hace mucho ruido"
+     ],
+     "answer": 1,
+     "why": "“La plaza se renovará durante seis meses”: meydan yenilenecek."
+    },
+    {
+     "prompt": "¿Qué temen los comerciantes?",
+     "options": [
+      "Tener que pagar más",
+      "Quedarse sin productos",
+      "Perder a parte de sus clientes",
+      "Cambiar de oficio"
+     ],
+     "answer": 2,
+     "why": "“Temen perder a parte de sus clientes”: müşteri kaybetmekten korkuyorlar."
+    },
+    {
+     "prompt": "¿Qué pasará el martes por la tarde?",
+     "options": [
+      "Cerrarán el mercado",
+      "Habrá una reunión pública",
+      "Empezarán las obras",
+      "Habrá una fiesta del barrio"
+     ],
+     "answer": 1,
+     "why": "“Habrá una reunión pública”: salı öğleden sonra halka açık toplantı var."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-museos",
+   "exam": "DELE",
+   "level": "B2",
+   "title": "¿Museos gratuitos?",
+   "text": "Varias ciudades estudian hacer gratuita la entrada a los museos el primer domingo de cada mes. Quienes defienden la medida afirman que atrae a un público nuevo, sobre todo a familias que no se atreven a entrar en un museo por miedo al precio. Los detractores, en cambio, recuerdan que la gratuidad no lo resuelve todo: quien no se interesa por el arte no irá más al museo solo porque la entrada no cueste nada. Preferirían que ese dinero sirviera para financiar visitas escolares y actividades. Sin embargo, un estudio realizado en tres ciudades muestra que la afluencia se duplica en los días gratuitos, sin que los ingresos anuales bajen mucho.",
+   "tr": "Birçok şehir, müzeleri her ayın ilk pazar günü ücretsiz yapmayı düşünüyor. Bu önlemin savunucuları, ücretsiz giriş sayesinde yeni bir kitlenin, özellikle fiyattan çekindiği için müzeye adım atmaya cesaret edemeyen ailelerin geleceğini söylüyor. Karşı çıkanlar ise ücretsizliğin her sorunu çözmediğini hatırlatıyor: sanata ilgi duymayan biri, giriş ücretsiz diye müzeye daha çok gitmeyecek. Bu paranın okul gezilerini ve etkinlikleri finanse etmesini tercih ediyorlar. Üç şehirde yapılan bir araştırma ise ücretsiz günlerde ziyaretçi sayısının iki katına çıktığını, buna rağmen yıllık gelirlerin pek düşmediğini gösteriyor.",
+   "questions": [
+    {
+     "prompt": "Según quienes defienden la medida, ¿qué permite la gratuidad?",
+     "options": [
+      "Atraer a un público nuevo",
+      "Cerrar algunos museos",
+      "Subir el precio de las entradas",
+      "Reducir el número de visitantes"
+     ],
+     "answer": 0,
+     "why": "“Atrae a un público nuevo”: yeni bir kitleyi çekiyor."
+    },
+    {
+     "prompt": "¿Cuál es el argumento principal de los detractores?",
+     "options": [
+      "Los museos ya tienen demasiados visitantes",
+      "La gratuidad por sí sola no crea interés por el arte",
+      "Las familias prefieren el cine",
+      "Los museos no tienen espacio"
+     ],
+     "answer": 1,
+     "why": "Karşı çıkanlar: sanata ilgi duymayan biri ücretsiz diye gitmez."
+    },
+    {
+     "prompt": "¿Qué muestra el estudio citado?",
+     "options": [
+      "Los ingresos se hunden",
+      "Los visitantes son de más edad",
+      "Las escuelas rechazan las visitas",
+      "La afluencia se duplica los días gratuitos"
+     ],
+     "answer": 3,
+     "why": "“La afluencia se duplica en los días gratuitos”: ücretsiz günlerde ziyaret iki katına çıkıyor."
+    }
+   ],
+   "language": "es"
   }
  ]
 }

@@ -1,14 +1,14 @@
-import { currentIdentity, signInWithGoogle, signOutSupabase, supabaseConfigured, type Identity } from '../data/supabase'
+import { currentIdentity, signInWithGoogle, supabaseConfigured, type Identity } from '../data/supabase'
 import { AccountManage, AccountDelete } from './AccountManage'
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
 import { ChartIcon, LockIcon } from './icons'
 import { db } from '../data/instance'
 import { BackupVersionError } from '../data/db'
-import { SyncAuthError, SyncConflictError, SyncMovedError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
+import { SyncAuthError, SyncConflictError, SyncMovedError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, syncUsage, type Account } from '../data/sync'
 import { relativeTime } from './format'
 import type { AuthMode } from './AuthScreen'
-import { CONFLICT, MOVED, getAccount, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setAccount } from './syncRunner'
+import { CONFLICT, MOVED, getAccount, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync } from './syncRunner'
 import { RestorePoints } from './RestorePoints'
 import { ACCOUNT_ART } from './drawnArt'
 import { StatusPicture } from './StatusArt'
@@ -28,6 +28,8 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState<{ ok: boolean; text: string; conflict?: boolean } | null>(null)
   const [at, setAt] = useState<Date | null>(null)
+  const [size, setSize] = useState<number | null>(null)
+  const [skipped, setSkipped] = useState(0)
   const [identity, setIdentity] = useState<Identity | null>(null)
   const { status: access } = useAccess()
   const modern = supabaseConfigured()
@@ -38,6 +40,10 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
     setIdentity(acc ? await currentIdentity().catch(() => null) : null)
     const v = (await db.meta.get('syncAt'))?.value as string | undefined
     setAt(v ? new Date(v) : null)
+    const bytes = (await db.meta.get('syncSize'))?.value
+    setSize(typeof bytes === 'number' ? bytes : null)
+    const left = (await db.meta.get('syncSkipped'))?.value
+    setSkipped(typeof left === 'number' ? left : 0)
   }
   useEffect(() => {
     void refresh()
@@ -47,8 +53,9 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
     setBusy(true)
     setMessage(null)
     try {
-      await runSync(true)
+      const r = await runSync(true)
       showToast('Eşitlendi.')
+      if (r?.skipped) setMessage({ ok: false, text: `${r.skipped} görsel/ses kaydı eşitlenemedi (çok büyük ya da yüklenemedi). Kelimelerin ve ilerlemen eşitlendi; o dosyalar bu cihazda duruyor.` })
     } catch (e) {
       setMessage({ ok: false, conflict: e instanceof SyncConflictError, text: e instanceof SyncMovedError ? MOVED : e instanceof SyncConflictError ? CONFLICT : e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : e instanceof SyncAuthError ? 'Oturumun bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
     } finally {
@@ -60,21 +67,6 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
   const signOut = async () => {
     await signOutThisDevice(identity)
     void refresh()
-  }
-
-  /** A shared device: sync first (nothing is lost), then sign out and clear what this device holds. */
-  const signOutAndWipe = async () => {
-    try {
-      await runSync(true)
-    } catch {
-      showToast('Önce hesabınla eşitlenemedi; verilerin silinmesin diye bir şey yapılmadı. İnternetini kontrol edip tekrar dene.', undefined, 7000, 'info')
-      return
-    }
-    await import('./pushReminders').then((m) => m.forgetPushRecord())
-    await setAccount(null)
-    await signOutSupabase()
-    await (await import('../data/deviceWipe')).wipeDevice()
-    location.reload()
   }
 
   const google = async () => {
@@ -166,15 +158,28 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
 
       <div className="account-sync">
         <div className="account-row-text">
-          <strong>Bulut Eşitleme</strong>
+          <strong>Verilerin hesabında</strong>
           <span className="small muted">
-            {at ? `Otomatik eşitleme aktif · Son: ${relativeTime(at)}` : 'Otomatik eşitleme aktif · Henüz eşitlenmedi'}
+            {busy ? 'Eşitleniyor…' : at ? `Değişiklikler kendiliğinden gider · son eşitleme ${relativeTime(at)}` : 'Değişiklikler kendiliğinden gider · henüz eşitlenmedi'}
           </span>
         </div>
-        <button className="btn btn-sm" onClick={syncNowClick} disabled={busy}>
-          {busy ? 'Eşitleniyor…' : 'Şimdi eşitle'}
+        <button className="link small" onClick={syncNowClick} disabled={busy}>
+          Şimdi eşitle
         </button>
       </div>
+      {skipped > 0 && !message && (
+        <p className="note" role="status">
+          {skipped} görsel/ses kaydı eşitlenemedi (çok büyük ya da yüklenemedi). Kelimelerin ve ilerlemen eşitlendi; o dosyalar bu cihazda duruyor.
+        </p>
+      )}
+      {size !== null && syncUsage(size).warn && (
+        <div className="status-note">
+          <StatusPicture kind="full" small />
+          <p className="note">
+            Eşitlenen veri: {syncUsage(size).label} (%{syncUsage(size).percent}). En büyük eşitleme dosyası sunucunun sınırına yaklaşıyor; kullanmadığın okuma metinlerini ya da eski çeviri belleğini azaltmak yer açar.
+          </p>
+        </div>
+      )}
       {message?.conflict && <StatusPicture kind="conflict" />}
       {message && (
         <p className={message.ok ? 'notice' : 'error'} role="status">
@@ -182,7 +187,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
         </p>
       )}
 
-      <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} onSignOutAndWipe={signOutAndWipe} />
+      <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} />
       <RestorePoints />
       <AccountDelete account={account} identity={identity} onGone={() => void refresh()} />
     </section>
