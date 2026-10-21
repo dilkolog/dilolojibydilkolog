@@ -1,6 +1,6 @@
 import { normalize } from './answerCheck'
 import { acceptedForms, conjugate, PRONOUNS, type Person } from './conjugation'
-import type { VocabularyEntry } from './types'
+import type { TargetLanguage, VocabularyEntry } from './types'
 
 /**
  * Past, future, conditional and subjunctive for French and Spanish verbs, on top of the present
@@ -145,6 +145,21 @@ function subjunctiveImperfect(pre: readonly string[]): string[] | undefined {
   return [`${stem}ra`, `${stem}ras`, `${stem}ra`, `${accented}ramos`, `${stem}rais`, `${stem}ran`]
 }
 const REFL = { fr: ['me', 'te', 'se', 'nous', 'vous', 'se'], es: ['me', 'te', 'se', 'nos', 'os', 'se'] }
+
+/**
+ * Verbs used only (or all but only) as reflexives: the bare form means nothing to a learner ("j'ai souvenu"),
+ * so the verb lab shows and asks them as reflexives (verbLab.ts `labForms`). The tables and the stored
+ * sentences keep the bare key. Verbs with a live transitive use (dépêcher, endormir, apoderar) are not here.
+ */
+const ONLY_REFLEXIVE: Record<'fr' | 'es', ReadonlySet<string>> = {
+  fr: new Set(['souvenir', 'asseoir', 'fier', 'enfuir', 'moquer', 'soucier', 'évanouir', 'repentir', 'abstenir', 'efforcer', 'emparer', 'écrier', 'envoler', 'méfier', 'évader', 'exclamer', 'insurger', 'raviser', 'suicider', 'agenouiller', 'accroupir', 'blottir', 'démener', 'ébattre', 'empresser', 'enquérir', 'évertuer', 'extasier', 'ingénier', 'prélasser', 'rebeller', 'réfugier']),
+  es: new Set(['arrepentir', 'quejar', 'atrever', 'suicidar', 'desmayar', 'esforzar', 'enterar']),
+}
+
+/** Whether a verb (dictionary key) is only used as a reflexive, so the lab shows it as one. */
+export function onlyReflexive(language: TargetLanguage, key: string): boolean {
+  return language !== 'en' && ONLY_REFLEXIVE[language].has(normalize(key).toLocaleLowerCase(language))
+}
 
 /** The verb's dictionary key and whether it is reflexive: "se lever" → lever, "levantarse" → levantar. */
 function keyOf(entry: Pick<VocabularyEntry, 'language' | 'lemma'>): { key: string; reflexive: boolean } {

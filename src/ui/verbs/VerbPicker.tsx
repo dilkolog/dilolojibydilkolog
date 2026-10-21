@@ -6,7 +6,7 @@ import type { LabData } from '../../engine/labProgress'
 import { irregularForms, tenseVerbs, type Tense } from '../../engine/tenses'
 import { LEVELS, suggestVerbs, type Level } from '../../engine/verbLab'
 import { verbFormsOf, type VerbFormHit } from '../../engine/verbLookup'
-import { tenseName, verbEntry, type LabLanguage } from './labShared'
+import { tenseName, verbEntry, verbTitle, type LabLanguage } from './labShared'
 import { Sticker } from '../Sticker'
 
 const MORE = 36
@@ -18,7 +18,7 @@ function VerbChips({ verbs, language, onVerb, current }: { verbs: readonly strin
     <div className="lab-chips" lang={language}>
       {verbs.slice(0, shown).map((v) => (
         <button key={v} type="button" className="chip chip-sm" aria-pressed={v === current} onClick={() => onVerb(v)}>
-          {v}
+          {verbTitle(language, v)}
         </button>
       ))}
       {verbs.length > shown && (
@@ -169,7 +169,7 @@ export function PickerTop({
                     const i = forms.length + n
                     return (
                       <li key={s} id={`${listId}-opt-${i}`} role="option" aria-selected={i === active} className={i === active ? 'is-active' : undefined} onMouseDown={(e) => e.preventDefault()} onClick={() => pick(s)}>
-                        {s}
+                        {verbTitle(language, s)}
                       </li>
                     )
                   })}

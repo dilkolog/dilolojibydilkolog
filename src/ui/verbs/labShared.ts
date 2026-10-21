@@ -4,7 +4,7 @@ import { loadFrequency } from '../../data/frequency'
 import { adoptCards, dueItems, emptyLab, recordCheck, recordForm, verbMastery, weakestCell, type LabData, type LabItem } from '../../engine/labProgress'
 import type { Scheduler } from '../../engine/scheduler'
 import { TENSE_BRIEF } from '../../engine/tenseBrief'
-import { answersFor, conjugateTense, LAB_TENSES, labTensesOf, personsOf, subjectLabel, tenseVerbs, type Tense } from '../../engine/tenses'
+import { answersFor, conjugateTense, LAB_TENSES, labTensesOf, onlyReflexive, personsOf, reflexiveLemma, subjectLabel, tenseVerbs, type Tense } from '../../engine/tenses'
 import { loadTenses } from '../../data/tenseData'
 import { prefs } from '../prefs'
 import { checkTyped } from '../../engine/answerCheck'
@@ -49,7 +49,11 @@ export const tenseName = (t: Tense) => upper(TENSE_BRIEF[t].name)
 /** The dictionary key of a verb as written in a word list: no reflexive pronoun, lower case. */
 export const verbKey = (language: LabLanguage, lemma: string) => lemma.trim().toLocaleLowerCase(language).replace(language === 'fr' ? /^(se |s['’])/ : /se$/, '')
 
-export const verbEntry = (language: LabLanguage, verb: string) => ({ language, lemma: verb, partOfSpeech: 'verb' as const })
+/** The lab's entry for a verb key; a verb used only reflexively (souvenir) is conjugated as one (se souvenir). */
+export const verbEntry = (language: LabLanguage, verb: string) => ({ language, lemma: onlyReflexive(language, verb) ? reflexiveLemma(language, verb) : verb, partOfSpeech: 'verb' as const })
+
+/** How the lab names a verb: its reflexive form when it is only used as one ("se souvenir"). */
+export const verbTitle = (language: LabLanguage, verb: string) => (onlyReflexive(language, verb) ? reflexiveLemma(language, verb) : verb)
 
 /** The learner's own verb entry, by its infinitive without a reflexive pronoun. */
 export function ownEntry(vocabulary: readonly VocabularyEntry[], language: LabLanguage, verb: string): VocabularyEntry | undefined {

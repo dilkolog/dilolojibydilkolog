@@ -46,3 +46,22 @@ describe('MOODS', () => {
     for (const language of ['fr', 'es'] as const) expect(MOODS[language].flatMap((m) => m.tenses)).toEqual(LAB_TENSES[language])
   })
 })
+
+describe('verbs used only reflexively', () => {
+  it('are named and conjugated as reflexives in the lab, never as a meaningless bare verb', async () => {
+    const { addTenses, conjugateTense } = await import('../../engine/tenses')
+    await import('../../engine/conjugationData')
+    const { verbEntry, verbTitle } = await import('./labShared')
+    addTenses('fr', (await import('../../data/tenses/fr.json')).default as Record<string, unknown>)
+    addTenses('es', (await import('../../data/tenses/es.json')).default as Record<string, unknown>)
+    expect(verbTitle('fr', 'souvenir')).toBe('se souvenir')
+    expect(verbTitle('fr', 'enfuir')).toBe("s'enfuir")
+    expect(verbTitle('es', 'quejar')).toBe('quejarse')
+    // A verb with a live plain use keeps its plain name.
+    expect(verbTitle('fr', 'dépêcher')).toBe('dépêcher')
+    const pc = conjugateTense(verbEntry('fr', 'souvenir'), 'passe-compose')!
+    expect(pc[0]).toBe('me suis souvenu')
+    expect(pc.some((f) => /^(ai|as|a) souvenu/.test(f))).toBe(false)
+    expect(conjugateTense(verbEntry('es', 'quejar'), 'preterito')![0]).toBe('me quejé')
+  })
+})
