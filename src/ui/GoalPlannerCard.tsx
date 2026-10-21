@@ -100,14 +100,14 @@ export function GoalPlannerCard({
   if (activeGoal && !isEditing) {
     const progress = calculateGoalProgress(activeGoal, levels, settings.newWordsPerDay)
     const [badge, badgeClass] = progress.isCompleted
-      ? ['Hedefe ulaştın', 'is-ok']
+      ? ['Hedefe ulaştın', 'goal-ahead']
       : progress.isOverdue
-        ? ['Tarih geçti', 'is-behind']
+        ? ['Tarih geçti', 'goal-behind']
         : progress.pace === 'ahead'
-          ? ['Önündesin', 'is-ok']
+          ? ['Önündesin', 'goal-ahead']
           : progress.pace === 'on_track'
             ? ['Tempodasın', '']
-            : ['Geridesin', 'is-behind']
+            : ['Geridesin', 'goal-behind']
     return (
       <section className="goal-panel stack" aria-label="Seviye hedefi">
         <div className="goal-panel-head">

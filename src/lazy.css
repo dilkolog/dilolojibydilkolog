@@ -688,8 +688,8 @@
 .goal-panel-head { display: flex; align-items: center; gap: 0.5rem; }
 .goal-panel-title { margin: 0; font-size: var(--t-lg); flex: 1 1 auto; min-width: 0; }
 .goal-pace { flex: none; background: var(--surface); color: var(--lang-text); }
-.goal-pace.is-ok { background: var(--ok-soft); color: var(--ok-text); }
-.goal-pace.is-behind { background: var(--near-soft); color: var(--near-text); }
+.goal-pace.goal-ahead { background: var(--ok-soft); color: var(--ok-text); }
+.goal-pace.goal-behind { background: var(--near-soft); color: var(--near-text); }
 .goal-progress.stack > :not(:first-child) { margin-top: 0.25rem; }
 .goal-progress-line { display: flex; justify-content: space-between; gap: 1rem; font-variant-numeric: tabular-nums; }
 .goal-field { display: grid; gap: 0.375rem; justify-items: start; }
