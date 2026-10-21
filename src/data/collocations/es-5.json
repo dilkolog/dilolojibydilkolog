@@ -1,0 +1,389 @@
+[
+ {
+  "id": "es-colloc5-01",
+  "language": "es",
+  "lemmas": [
+   "ducha"
+  ],
+  "pattern": "darse una ducha",
+  "example": "Me doy una ducha antes de cenar.",
+  "tr": "Akşam yemeğinden önce duş alırım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-02",
+  "language": "es",
+  "lemmas": [
+   "multa"
+  ],
+  "pattern": "poner una multa",
+  "example": "El policía le puso una multa por aparcar mal.",
+  "tr": "Polis yanlış park ettiği için ona ceza kesti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-03",
+  "language": "es",
+  "lemmas": [
+   "siesta"
+  ],
+  "pattern": "echar la siesta",
+  "example": "Después de comer, mi abuelo echa la siesta.",
+  "tr": "Yemekten sonra dedem şekerleme yapar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-04",
+  "language": "es",
+  "lemmas": [
+   "deberes"
+  ],
+  "pattern": "hacer los deberes",
+  "example": "Primero hago los deberes y luego salgo.",
+  "tr": "Önce ödevlerimi yaparım, sonra çıkarım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-05",
+  "language": "es",
+  "lemmas": [
+   "grito"
+  ],
+  "pattern": "dar un grito",
+  "example": "Dio un grito al ver la araña.",
+  "tr": "Örümceği görünce bir çığlık attı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-06",
+  "language": "es",
+  "lemmas": [
+   "abrazo"
+  ],
+  "pattern": "dar un abrazo",
+  "example": "Te doy un abrazo muy fuerte.",
+  "tr": "Sana çok sıkı sarılıyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-07",
+  "language": "es",
+  "lemmas": [
+   "calor"
+  ],
+  "pattern": "hacer calor",
+  "example": "En verano hace mucho calor en Sevilla.",
+  "tr": "Yazın Sevilla'da hava çok sıcak olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-08",
+  "language": "es",
+  "lemmas": [
+   "cita"
+  ],
+  "pattern": "pedir cita",
+  "example": "Quiero pedir cita con el médico.",
+  "tr": "Doktordan randevu almak istiyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-09",
+  "language": "es",
+  "lemmas": [
+   "entrada"
+  ],
+  "pattern": "sacar entradas",
+  "example": "Hemos sacado entradas para el concierto.",
+  "tr": "Konser için bilet aldık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-10",
+  "language": "es",
+  "lemmas": [
+   "efectivo"
+  ],
+  "pattern": "pagar en efectivo",
+  "example": "¿Puedo pagar en efectivo?",
+  "tr": "Nakit ödeyebilir miyim?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-11",
+  "language": "es",
+  "lemmas": [
+   "tarjeta"
+  ],
+  "pattern": "pagar con tarjeta",
+  "example": "Prefiero pagar con tarjeta.",
+  "tr": "Kartla ödemeyi tercih ederim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-12",
+  "language": "es",
+  "lemmas": [
+   "llamada"
+  ],
+  "pattern": "hacer una llamada",
+  "example": "Tengo que hacer una llamada importante.",
+  "tr": "Önemli bir telefon görüşmesi yapmam lazım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-13",
+  "language": "es",
+  "lemmas": [
+   "cuidado"
+  ],
+  "pattern": "tener cuidado",
+  "example": "Ten cuidado con los escalones.",
+  "tr": "Basamaklara dikkat et.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-14",
+  "language": "es",
+  "lemmas": [
+   "pata"
+  ],
+  "pattern": "meter la pata",
+  "example": "Creo que he metido la pata con mi jefe.",
+  "tr": "Sanırım patronuma karşı gaf yaptım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-15",
+  "language": "es",
+  "lemmas": [
+   "igual"
+  ],
+  "pattern": "dar igual",
+  "example": "Me da igual qué película veamos.",
+  "tr": "Hangi filmi izlediğimiz umurumda değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-16",
+  "language": "es",
+  "lemmas": [
+   "culpa"
+  ],
+  "pattern": "echar la culpa a",
+  "example": "No me eches la culpa a mí.",
+  "tr": "Suçu bana atma.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-17",
+  "language": "es",
+  "lemmas": [
+   "notas"
+  ],
+  "pattern": "sacar buenas notas",
+  "example": "Mi hermana saca buenas notas en el colegio.",
+  "tr": "Kız kardeşim okulda iyi notlar alıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-18",
+  "language": "es",
+  "lemmas": [
+   "lista"
+  ],
+  "pattern": "pasar lista",
+  "example": "La profesora pasa lista cada mañana.",
+  "tr": "Öğretmen her sabah yoklama alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-19",
+  "language": "es",
+  "lemmas": [
+   "clase",
+   "saltarse"
+  ],
+  "pattern": "saltarse una clase",
+  "example": "Nunca me salto una clase.",
+  "tr": "Asla bir dersi asmam.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-20",
+  "language": "es",
+  "lemmas": [
+   "amigo"
+  ],
+  "pattern": "hacer amigos",
+  "example": "Es fácil hacer amigos en este curso.",
+  "tr": "Bu kursta arkadaş edinmek kolay.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-21",
+  "language": "es",
+  "lemmas": [
+   "llevarse"
+  ],
+  "pattern": "llevarse bien con",
+  "example": "Me llevo muy bien con mis compañeros.",
+  "tr": "İş arkadaşlarımla çok iyi anlaşıyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-22",
+  "language": "es",
+  "lemmas": [
+   "quedar"
+  ],
+  "pattern": "quedar con alguien",
+  "example": "He quedado con una amiga a las cinco.",
+  "tr": "Saat beşte bir arkadaşımla buluşacağım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-23",
+  "language": "es",
+  "lemmas": [
+   "pasarlo"
+  ],
+  "pattern": "pasarlo bien",
+  "example": "Lo pasamos muy bien en la playa.",
+  "tr": "Plajda çok güzel vakit geçirdik.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-24",
+  "language": "es",
+  "lemmas": [
+   "daño"
+  ],
+  "pattern": "hacer daño",
+  "example": "Esa herida me hace daño al andar.",
+  "tr": "Yürürken o yara canımı yakıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-25",
+  "language": "es",
+  "lemmas": [
+   "nota"
+  ],
+  "pattern": "tomar nota",
+  "example": "Toma nota de la dirección, por favor.",
+  "tr": "Lütfen adresi not al.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-26",
+  "language": "es",
+  "lemmas": [
+   "humor"
+  ],
+  "pattern": "estar de buen humor",
+  "example": "Hoy el jefe está de buen humor.",
+  "tr": "Bugün patron keyifli.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-27",
+  "language": "es",
+  "lemmas": [
+   "miedo"
+  ],
+  "pattern": "dar miedo",
+  "example": "Las tormentas me dan miedo.",
+  "tr": "Fırtınalar beni korkutur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-28",
+  "language": "es",
+  "lemmas": [
+   "fiesta"
+  ],
+  "pattern": "dar una fiesta",
+  "example": "Mis padres dan una fiesta el sábado.",
+  "tr": "Annemle babam cumartesi parti veriyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-29",
+  "language": "es",
+  "lemmas": [
+   "turismo"
+  ],
+  "pattern": "hacer turismo",
+  "example": "Pasamos el fin de semana haciendo turismo.",
+  "tr": "Hafta sonunu gezerek geçirdik.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-30",
+  "language": "es",
+  "lemmas": [
+   "vida",
+   "ganarse"
+  ],
+  "pattern": "ganarse la vida",
+  "example": "Se gana la vida dando clases.",
+  "tr": "Ders vererek geçimini sağlıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-31",
+  "language": "es",
+  "lemmas": [
+   "paciencia"
+  ],
+  "pattern": "perder la paciencia",
+  "example": "El profesor perdió la paciencia.",
+  "tr": "Öğretmen sabrını yitirdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-32",
+  "language": "es",
+  "lemmas": [
+   "plan"
+  ],
+  "pattern": "hacer planes",
+  "example": "¿Haces planes para el verano?",
+  "tr": "Yaz için plan yapıyor musun?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-33",
+  "language": "es",
+  "lemmas": [
+   "vistazo"
+  ],
+  "pattern": "echar un vistazo",
+  "example": "Voy a echar un vistazo al menú.",
+  "tr": "Menüye göz atacağım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-34",
+  "language": "es",
+  "lemmas": [
+   "consejo"
+  ],
+  "pattern": "dar un consejo",
+  "example": "¿Me puedes dar un consejo?",
+  "tr": "Bana bir tavsiye verebilir misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc5-35",
+  "language": "es",
+  "lemmas": [
+   "luz"
+  ],
+  "pattern": "dar a luz",
+  "example": "Mi hermana dio a luz ayer.",
+  "tr": "Kız kardeşim dün doğum yaptı.",
+  "source": "Diloloji (özgün)"
+ }
+]

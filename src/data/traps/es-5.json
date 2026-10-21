@@ -1,0 +1,167 @@
+[
+ {
+  "id": "es-ten",
+  "language": "es",
+  "lemma": "ten",
+  "looks": "ten",
+  "trap": "ten (cilt)",
+  "meaning": "sahip ol, tut (tener emri)",
+  "text": "Ten cuidado con el escalón.",
+  "tr": "Basamağa dikkat et.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-da",
+  "language": "es",
+  "lemma": "da",
+  "looks": "da",
+  "trap": "da (de/da eki)",
+  "meaning": "verir (dar fiili)",
+  "text": "Mi madre me da un consejo.",
+  "tr": "Annem bana bir öğüt veriyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-mal",
+  "language": "es",
+  "lemma": "mal",
+  "looks": "mal",
+  "trap": "mal (eşya, ürün)",
+  "meaning": "kötü; kötü bir şey",
+  "text": "Duermo mal cuando hace calor.",
+  "tr": "Hava sıcakken kötü uyuyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-mes",
+  "language": "es",
+  "lemma": "mes",
+  "looks": "mes",
+  "trap": "mes (ince deri çorap)",
+  "meaning": "ay (takvim)",
+  "text": "El próximo mes viajaré a Madrid.",
+  "tr": "Gelecek ay Madrid'e seyahat edeceğim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pasa",
+  "language": "es",
+  "lemma": "pasa",
+  "looks": "paşa",
+  "trap": "paşa (general, yüksek rütbe)",
+  "meaning": "kuru üzüm",
+  "text": "Compré una bolsa de pasas y nueces.",
+  "tr": "Bir paket kuru üzüm ve ceviz aldım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ola",
+  "language": "es",
+  "lemma": "ola",
+  "looks": "ola",
+  "trap": "ola (olabilir)",
+  "meaning": "dalga",
+  "text": "Una ola enorme llegó a la playa.",
+  "tr": "Kıyıya kocaman bir dalga geldi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-bota",
+  "language": "es",
+  "lemma": "bota",
+  "looks": "bot",
+  "trap": "bot (küçük tekne)",
+  "meaning": "çizme, bot",
+  "text": "Le duele el pie dentro de la bota.",
+  "tr": "Çizmenin içinde ayağı ağrıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pena",
+  "language": "es",
+  "lemma": "pena",
+  "looks": "pena",
+  "trap": "pena (gitar penası)",
+  "meaning": "üzüntü, acıma",
+  "text": "Me da pena verte tan triste.",
+  "tr": "Seni bu kadar üzgün görmek beni üzüyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-sana",
+  "language": "es",
+  "lemma": "sana",
+  "looks": "sana",
+  "trap": "sana (sen + yönelme eki)",
+  "meaning": "iyileşir (sanar fiili)",
+  "text": "La herida sana muy despacio.",
+  "tr": "Yara çok yavaş iyileşiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ata",
+  "language": "es",
+  "lemma": "ata",
+  "looks": "ata",
+  "trap": "ata (soy, cet)",
+  "meaning": "bağlar (atar fiili)",
+  "text": "Ella ata los zapatos del niño.",
+  "tr": "Çocuğun ayakkabılarını bağlıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-alma",
+  "language": "es",
+  "lemma": "alma",
+  "looks": "alma",
+  "trap": "alma (almak, olumsuz emir)",
+  "meaning": "ruh, can",
+  "text": "Ella tiene un alma generosa.",
+  "tr": "Cömert bir ruhu var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-masa",
+  "language": "es",
+  "lemma": "masa",
+  "looks": "masa",
+  "trap": "masa (mobilya)",
+  "meaning": "hamur; kütle",
+  "text": "Mezcla la masa con las manos.",
+  "tr": "Hamuru elinle yoğur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-seda",
+  "language": "es",
+  "lemma": "seda",
+  "looks": "seda",
+  "trap": "seda (ses, yankı)",
+  "meaning": "ipek",
+  "text": "Lleva una camisa de seda.",
+  "tr": "İpek bir gömlek giyiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ama",
+  "language": "es",
+  "lemma": "ama",
+  "looks": "ama",
+  "trap": "ama (fakat)",
+  "meaning": "sever (amar fiili)",
+  "text": "Ella ama a su familia.",
+  "tr": "Ailesini seviyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-oda",
+  "language": "es",
+  "lemma": "oda",
+  "looks": "oda",
+  "trap": "oda (içinde yaşanan mekân)",
+  "meaning": "ode, övgü şiiri",
+  "text": "Escribió una oda a su ciudad.",
+  "tr": "Şehrine bir ode yazdı.",
+  "source": "Diloloji (özgün)"
+ }
+]

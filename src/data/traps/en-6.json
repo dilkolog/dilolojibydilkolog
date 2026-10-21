@@ -1,0 +1,167 @@
+[
+ {
+  "id": "en-has",
+  "language": "en",
+  "lemma": "has",
+  "looks": "has",
+  "trap": "has (saf, öz)",
+  "meaning": "sahiptir (have fiili)",
+  "text": "She has two brothers.",
+  "tr": "İki erkek kardeşi var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-pay",
+  "language": "en",
+  "lemma": "pay",
+  "looks": "pay",
+  "trap": "pay (hisse, bölüm)",
+  "meaning": "ödemek",
+  "text": "I will pay for the tickets.",
+  "tr": "Biletlerin parasını ben ödeyeceğim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-do",
+  "language": "en",
+  "lemma": "do",
+  "looks": "do",
+  "trap": "do (müzik notası)",
+  "meaning": "yapmak",
+  "text": "What do you do on Sundays?",
+  "tr": "Pazar günleri ne yaparsın?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-of",
+  "language": "en",
+  "lemma": "of",
+  "looks": "of",
+  "trap": "of (iç çekme, sızlanma ünlemi)",
+  "meaning": "-in, -den (aitlik bildirir)",
+  "text": "This is a picture of my family.",
+  "tr": "Bu, ailemin bir fotoğrafı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-no",
+  "language": "en",
+  "lemma": "no",
+  "looks": "no",
+  "trap": "no (numara)",
+  "meaning": "hayır; hiç",
+  "text": "No, thank you, I am full.",
+  "tr": "Hayır, teşekkürler, doydum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-mat",
+  "language": "en",
+  "lemma": "mat",
+  "looks": "mat",
+  "trap": "mat (donuk, parlak olmayan)",
+  "meaning": "paspas, hasır minder",
+  "text": "Wipe your feet on the mat.",
+  "tr": "Ayaklarını paspasa sil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-sir",
+  "language": "en",
+  "lemma": "sir",
+  "looks": "sır",
+  "trap": "sır (gizli şey)",
+  "meaning": "efendim (hitap sözü)",
+  "text": "Can I help you, sir?",
+  "tr": "Size yardımcı olabilir miyim, efendim?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-tip",
+  "language": "en",
+  "lemma": "tip",
+  "looks": "tip",
+  "trap": "tip (çeşit, kişilik tipi)",
+  "meaning": "bahşiş; ipucu",
+  "text": "We left a tip for the waiter.",
+  "tr": "Garsona bahşiş bıraktık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-ray",
+  "language": "en",
+  "lemma": "ray",
+  "looks": "ray",
+  "trap": "ray (demiryolu rayı)",
+  "meaning": "ışın",
+  "text": "A ray of sunlight came through the window.",
+  "tr": "Pencereden bir güneş ışını girdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-rest",
+  "language": "en",
+  "lemma": "rest",
+  "looks": "rest",
+  "trap": "rest (rest çekmek)",
+  "meaning": "dinlenme; geri kalan",
+  "text": "You should rest after the long trip.",
+  "tr": "Uzun yolculuktan sonra dinlenmelisin.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-mine",
+  "language": "en",
+  "lemma": "mine",
+  "looks": "mine",
+  "trap": "mine (diş minesi, emaye)",
+  "meaning": "benimki",
+  "text": "That book is mine.",
+  "tr": "O kitap benim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-top",
+  "language": "en",
+  "lemma": "top",
+  "looks": "top",
+  "trap": "top (oyun topu)",
+  "meaning": "tepe, üst",
+  "text": "The book is on the top shelf.",
+  "tr": "Kitap en üst rafta.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-car",
+  "language": "en",
+  "lemma": "car",
+  "looks": "kar",
+  "trap": "kar (yağış; kazanç)",
+  "meaning": "araba",
+  "text": "We bought a new car last month.",
+  "tr": "Geçen ay yeni bir araba aldık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-tan",
+  "language": "en",
+  "lemma": "tan",
+  "looks": "tan",
+  "trap": "tan (şafak, gün ağarması)",
+  "meaning": "bronzlaşma, bronz ten",
+  "text": "She has a nice tan after the holiday.",
+  "tr": "Tatilden sonra güzel bir bronzluğu var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-far",
+  "language": "en",
+  "lemma": "far",
+  "looks": "far",
+  "trap": "far (araba farı)",
+  "meaning": "uzak",
+  "text": "The station is not far from here.",
+  "tr": "İstasyon buradan uzak değil.",
+  "source": "Diloloji (özgün)"
+ }
+]

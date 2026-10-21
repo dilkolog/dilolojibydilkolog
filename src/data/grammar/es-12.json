@@ -1,0 +1,1326 @@
+[
+ {
+  "id": "es-b12-pronombres-1",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_pronombres",
+  "type": "choice",
+  "prompt": "—¿Para quién es este pastel? —Es para ___, ¡hoy es mi cumpleaños!",
+  "answer": "mí",
+  "options": [
+   "mí",
+   "yo",
+   "me"
+  ],
+  "hint": "para + edat sonrası biçim",
+  "explanation": "Edattan sonra (para, sin, de, a…) yo yerine mí, tú yerine ti kullanılır; con ile birleşince conmigo, contigo olur. entre ve según'den sonra özne zamiri kalır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pronombres-2",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_pronombres",
+  "type": "choice",
+  "prompt": "¿Puedo sentarme ___ en el autobús?",
+  "answer": "contigo",
+  "options": [
+   "contigo",
+   "con ti",
+   "con tú"
+  ],
+  "explanation": "con + ti birleşerek contigo olur ('con ti' ve 'con tú' denmez); con + mí de conmigo olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pronombres-3",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_pronombres",
+  "type": "choice",
+  "prompt": "Entre ___ y yo, la película no fue muy buena.",
+  "answer": "tú",
+  "options": [
+   "tú",
+   "ti",
+   "te"
+  ],
+  "explanation": "entre ve según'den sonra edat sonrası biçim (mí, ti) değil, özne zamiri (tú, yo) kullanılır: entre tú y yo, según tú.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pronombres-4",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_pronombres",
+  "type": "choice",
+  "prompt": "Perdone, señor Ruiz, ¿cuántos años ___ usted?",
+  "answer": "tiene",
+  "options": [
+   "tiene",
+   "tienes",
+   "tengo"
+  ],
+  "explanation": "usted (resmî 'siz') fiilin 3. tekil kişi biçimini alır: usted tiene. 2. tekil çekim (tienes) tú ile kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pronombres-5",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_pronombres",
+  "type": "cloze",
+  "prompt": "No puedo vivir sin ___ (sensiz).",
+  "answer": "ti",
+  "explanation": "sin edatından sonra tú yerine ti gelir; ti hiç vurgu işareti almaz: sin ti, para ti, de ti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pronombres-6",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_pronombres",
+  "type": "cloze",
+  "prompt": "¿Quieres ir ___ al mercado? (benimle)",
+  "answer": "conmigo",
+  "explanation": "con + mí birleşerek conmigo olur; 'con mí' ya da 'con yo' denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pronombres-7",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_pronombres",
+  "type": "error",
+  "prompt": "Esta carta es para yo, no para Marta.",
+  "answer": "yo",
+  "fix": "mí",
+  "explanation": "Edattan sonra özne zamiri yo değil mí gelir: para mí. Vurgu işareti mí'yi iyelik sıfatı mi'den ayırır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-hora-1",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_numeros_hora",
+  "type": "choice",
+  "prompt": "—¿Qué hora es? —___ la una y cuarto.",
+  "answer": "Es",
+  "options": [
+   "Es",
+   "Son",
+   "Están"
+  ],
+  "explanation": "Saat bir için tekil es la una kullanılır; diğer saatlerde çoğul son las dos, son las tres.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-hora-2",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_numeros_hora",
+  "type": "choice",
+  "prompt": "Mi tío tiene ___ años. (21)",
+  "answer": "veintiún",
+  "options": [
+   "veintiún",
+   "veintiuno",
+   "veintiuna"
+  ],
+  "explanation": "uno eril isimden önce kısalır: un, veintiún años. Dişil isimde una olur: veintiuna personas.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-hora-3",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_numeros_hora",
+  "type": "choice",
+  "prompt": "La tienda abre a ___ nueve de la mañana.",
+  "answer": "las",
+  "options": [
+   "las",
+   "la",
+   "los"
+  ],
+  "explanation": "Saat 'horas' sözcüğüne uyar: a las nueve. Yalnızca saat birde a la una denir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-hora-4",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_numeros_hora",
+  "type": "choice",
+  "prompt": "Son las nueve ___ diez. (saat 8:50)",
+  "answer": "menos",
+  "options": [
+   "menos",
+   "y",
+   "de"
+  ],
+  "explanation": "Bir sonraki saate kalan dakika menos ile söylenir: las nueve menos diez = dokuza on var. Geçen dakika y ile gelir (las nueve y diez = 9:10).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-hora-5",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_numeros_hora",
+  "type": "cloze",
+  "prompt": "Mi padre cumple ___ años mañana. (45)",
+  "answer": "cuarenta y cinco",
+  "explanation": "31'den sonra onlar ile birler y ile bağlanır: cuarenta y cinco. Üç sözcükle yazılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-hora-6",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_numeros_hora",
+  "type": "cloze",
+  "prompt": "Compré ___ flores para la fiesta. (200)",
+  "answer": "doscientas",
+  "explanation": "Yüzler tek sözcüktür ve dişil isme uyar: doscientas flores. Eril isimde doscientos olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-hora-7",
+  "language": "es",
+  "level": "A1",
+  "topic": "basics_es_numeros_hora",
+  "type": "error",
+  "prompt": "Me voy ya, porque es las siete y media.",
+  "answer": "es",
+  "fix": "son",
+  "explanation": "Birden çok saat için çoğul fiil kullanılır: son las siete y media. Tekil es yalnızca es la una için.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-perfecto-1",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_perfecto_indefinido",
+  "type": "choice",
+  "prompt": "Mi madre y yo ___ al cine anoche.",
+  "answer": "fuimos",
+  "options": [
+   "fuimos",
+   "hemos ido",
+   "vamos"
+  ],
+  "hint": "anoche = kapanmış zaman",
+  "explanation": "anoche kapanmış bir zaman ifadesidir; her bölgede indefinido ister: fuimos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-perfecto-2",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_perfecto_indefinido",
+  "type": "choice",
+  "prompt": "El año pasado ___ a Roma con toda la familia.",
+  "answer": "viajamos",
+  "options": [
+   "viajamos",
+   "hemos viajado",
+   "viajaremos"
+  ],
+  "hint": "el año pasado = kapanmış zaman",
+  "explanation": "el año pasado kapanmış bir dilimdir ve indefinido ister: viajamos. Perfecto kapanmış zaman ifadesiyle kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-perfecto-3",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_perfecto_indefinido",
+  "type": "choice",
+  "prompt": "Todavía no ___ los deberes; los haré después de cenar.",
+  "answer": "he hecho",
+  "options": [
+   "he hecho",
+   "hacía",
+   "haré"
+  ],
+  "hint": "todavía no → perfecto",
+  "explanation": "todavía no, şimdiye kadar henüz yapılmamış işi anlatır ve perfecto alır: todavía no he hecho. Türkçedeki 'henüz yapmadım'dır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-perfecto-4",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_perfecto_indefinido",
+  "type": "choice",
+  "prompt": "Hace tres semanas ___ mi bicicleta.",
+  "answer": "vendí",
+  "options": [
+   "vendí",
+   "he vendido",
+   "vendo"
+  ],
+  "hint": "hace + süre → indefinido",
+  "explanation": "hace + süre geçmişte kapanmış bir anı gösterir ve indefinido ister: vendí. 'hace tres semanas he vendido' denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-perfecto-5",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_perfecto_indefinido",
+  "type": "cloze",
+  "prompt": "Anoche ___ (dormir, yo) muy mal.",
+  "answer": "dormí",
+  "explanation": "anoche indefinido gerektirir: dormí (o → u değişimi yalnızca 3. kişide: durmió). Perfecto olan he dormido burada uygun değildir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-perfecto-6",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_perfecto_indefinido",
+  "type": "cloze",
+  "prompt": "Nunca ___ (montar, yo) a caballo, pero este verano quiero probarlo.",
+  "answer": "he montado",
+  "hint": "nunca + şimdiye dek deneyim",
+  "explanation": "nunca, zamanı söylenmeyen ve bugüne uzanan bir deneyimi anlatır; İspanya kullanımında perfecto alır: nunca he montado.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-perfecto-7",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_perfecto_indefinido",
+  "type": "error",
+  "prompt": "Hasta ahora nunca viajé en avión.",
+  "answer": "viajé",
+  "fix": "he viajado",
+  "explanation": "hasta ahora, kapanmamış bir dilimdir ve deneyim şimdiye uzanır; perfecto gerekir: nunca he viajado.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-futuro-1",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_futuro",
+  "type": "choice",
+  "prompt": "En el año 2050, la mayoría de los coches ___ eléctricos.",
+  "answer": "serán",
+  "options": [
+   "serán",
+   "son",
+   "sean"
+  ],
+  "explanation": "Uzak gelecek hakkındaki tahmin futuro simple ile söylenir: serán (ser → ser- + -án).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-futuro-2",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_futuro",
+  "type": "choice",
+  "prompt": "Si no estudias más, no ___ el examen.",
+  "answer": "aprobarás",
+  "options": [
+   "aprobarás",
+   "aprobarías",
+   "aprobaste"
+  ],
+  "explanation": "Gelecekteki sonuç futuro simple ile anlatılır: aprobarás. Düzenli fiillerde mastara -é, -ás, -á, -emos, -éis, -án eklenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-futuro-3",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_futuro",
+  "type": "choice",
+  "prompt": "El mes próximo mis padres no ___ venir a la boda.",
+  "answer": "podrán",
+  "options": [
+   "podrán",
+   "poderán",
+   "podrá"
+  ],
+  "hint": "poder → podr-",
+  "explanation": "poder futuroda düzensiz gövde alır: podr- (poderán değil). Özne çoğul olduğu için sonuç podrán.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-futuro-4",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_futuro",
+  "type": "choice",
+  "prompt": "Son las tres y Marta no contesta el teléfono. ___ dormida.",
+  "answer": "Estará",
+  "options": [
+   "Estará",
+   "Esté",
+   "Estaba"
+  ],
+  "explanation": "Şu an hakkındaki tahmin futuro ile söylenir (futuro de probabilidad): Estará dormida = Uyuyordur herhalde.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-futuro-5",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_futuro",
+  "type": "cloze",
+  "prompt": "El sábado ___ (salir, yo) temprano para evitar el tráfico.",
+  "answer": "saldré",
+  "explanation": "salir futuroda düzensiz gövde alır: saldr- + -é = saldré ('saliré' değil).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-futuro-6",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_futuro",
+  "type": "cloze",
+  "prompt": "Dentro de diez años ___ (haber) más energía solar.",
+  "answer": "habrá",
+  "explanation": "haber futuroda habr- gövdesini alır: habrá. Kişisiz haber (hay) için de aynı: habrá = olacak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-futuro-7",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_futuro",
+  "type": "error",
+  "prompt": "Mañana haceré las compras antes de volver a casa.",
+  "answer": "haceré",
+  "fix": "haré",
+  "explanation": "hacer futuroda düzensizdir: har- + -é = haré. 'haceré' gibi mastardan türetilen biçim yanlıştır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-desde-1",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_hace_desde",
+  "type": "choice",
+  "prompt": "Conocí a mi mejor amigo ___ diez años.",
+  "answer": "hace",
+  "options": [
+   "hace",
+   "desde",
+   "desde hace",
+   "durante"
+  ],
+  "explanation": "Geçmişteki bir anı 'önce' ile söylemek için hace + süre ve geçmiş zaman fiili kullanılır: Conocí… hace diez años.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-desde-2",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_hace_desde",
+  "type": "choice",
+  "prompt": "Trabajo aquí ___ marzo.",
+  "answer": "desde",
+  "options": [
+   "desde",
+   "hace",
+   "desde hace",
+   "por"
+  ],
+  "explanation": "Başlangıç noktası (ay, yıl, saat) desde ile söylenir: desde marzo. Süre miktarı olsaydı desde hace derdik.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-desde-3",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_hace_desde",
+  "type": "choice",
+  "prompt": "¿___ cuándo estudias francés?",
+  "answer": "Desde",
+  "options": [
+   "Desde",
+   "Hace",
+   "Durante",
+   "Por"
+  ],
+  "explanation": "'Ne zamandan beri?' sorusu ¿Desde cuándo…? ile kurulur ve fiil presente'de kalır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-desde-4",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_hace_desde",
+  "type": "choice",
+  "prompt": "Llevamos una hora ___ a Carlos, pero no contesta.",
+  "answer": "llamando",
+  "options": [
+   "llamando",
+   "llamar",
+   "llamado",
+   "llamamos"
+  ],
+  "explanation": "llevar + süre kalıbından sonra gerundio gelir: llevamos una hora llamando.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-desde-5",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_hace_desde",
+  "type": "cloze",
+  "prompt": "Llevo tres días ___ (dormir) muy mal.",
+  "answer": "durmiendo",
+  "explanation": "llevar + süre + gerundio: dormir gerundio olurken o → u değişimi yapar: durmiendo.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-desde-6",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_hace_desde",
+  "type": "cloze",
+  "prompt": "Estudio japonés desde ___ tres meses.",
+  "answer": "hace",
+  "explanation": "Hâlâ süren bir durumun süresi desde hace + süre ile söylenir: desde hace tres meses.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-desde-7",
+  "language": "es",
+  "level": "A2",
+  "topic": "basics_es_hace_desde",
+  "type": "error",
+  "prompt": "Llevo dos meses aprender guitarra.",
+  "answer": "aprender",
+  "fix": "aprendiendo",
+  "explanation": "llevar + süre sonrasında fiil gerundio olur: llevo dos meses aprendiendo. Mastar kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pluscuam-1",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_pluscuamperfecto",
+  "type": "choice",
+  "prompt": "Cuando llamaste, ya ___ la cena.",
+  "answer": "había preparado",
+  "options": [
+   "había preparado",
+   "he preparado",
+   "habría preparado"
+  ],
+  "explanation": "Geçmişteki bir andan (llamaste) önce tamamlanan iş pluscuamperfecto ile anlatılır: había preparado.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pluscuam-2",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_pluscuamperfecto",
+  "type": "choice",
+  "prompt": "Ayer Ana me dijo que ya ___ el informe.",
+  "answer": "había terminado",
+  "options": [
+   "había terminado",
+   "ha terminado",
+   "habrá terminado"
+  ],
+  "explanation": "Dolaylı anlatımda geçmiş bir kademe geriye kayar: 'He terminado' → dijo que había terminado.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pluscuam-3",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_pluscuamperfecto",
+  "type": "choice",
+  "prompt": "Los niños ya ___ cuando sus padres volvieron.",
+  "answer": "se habían dormido",
+  "options": [
+   "se habían dormido",
+   "se había dormido",
+   "se habían dormidos"
+  ],
+  "explanation": "haber özneye uyar (los niños → habían), ortaç ise değişmez: dormido. Dönüşlü zamir se, había'dan önce gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pluscuam-4",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_pluscuamperfecto",
+  "type": "choice",
+  "prompt": "Hasta ese día, nunca ___ una ballena.",
+  "answer": "había visto",
+  "options": [
+   "había visto",
+   "he visto",
+   "habré visto"
+  ],
+  "explanation": "Geçmişteki bir ana (hasta ese día) kadarki deneyim nunca + pluscuamperfecto ile söylenir: nunca había visto.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pluscuam-5",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_pluscuamperfecto",
+  "type": "cloze",
+  "prompt": "No encontré mi paraguas porque lo ___ (dejar) en el tren.",
+  "answer": "había dejado",
+  "explanation": "Paraguas'ı aramadan önce olan eylem pluscuamperfecto alır: había dejado (haber imperfecto + ortaç).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pluscuam-6",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_pluscuamperfecto",
+  "type": "cloze",
+  "prompt": "Cuando llegó el técnico, yo ya ___ (resolver) el problema.",
+  "answer": "había resuelto",
+  "explanation": "Teknisyenin gelişinden önce biten iş pluscuamperfecto'dur. resolver düzensiz ortaç alır: resuelto.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-pluscuam-7",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_pluscuamperfecto",
+  "type": "error",
+  "prompt": "Cuando nos conocimos, él ya había viviendo en tres países.",
+  "answer": "viviendo",
+  "fix": "vivido",
+  "explanation": "Bileşik zamanlarda yardımcı fiilden sonra ortaç gelir (vivido), gerundio (viviendo) gelmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-gerundio-1",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_gerundio",
+  "type": "choice",
+  "prompt": "Ahora mismo mis vecinos ___ una fiesta.",
+  "answer": "están haciendo",
+  "options": [
+   "están haciendo",
+   "están hacendo",
+   "hacer"
+  ],
+  "explanation": "Tam o an süren eylem estar + gerundio ile söylenir. hacer → haciendo (-er fiillerinde -iendo).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-gerundio-2",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_gerundio",
+  "type": "choice",
+  "prompt": "Me gusta mucho ___ por la playa.",
+  "answer": "pasear",
+  "options": [
+   "pasear",
+   "paseando",
+   "paseado"
+  ],
+  "explanation": "gustar'dan sonra eylem adı Türkçedeki '-mak' gibi mastar olur: me gusta pasear. Gerundio kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-gerundio-3",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_gerundio",
+  "type": "choice",
+  "prompt": "El camarero está ___ las bebidas a la mesa.",
+  "answer": "trayendo",
+  "options": [
+   "trayendo",
+   "traiendo",
+   "trayando",
+   "trajendo"
+  ],
+  "explanation": "Gövdesi ünlüyle biten fiillerde gerundio -yendo olur: traer → trayendo (leer → leyendo, oír → oyendo).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-gerundio-4",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_gerundio",
+  "type": "choice",
+  "prompt": "El bebé está ___ en su cuna.",
+  "answer": "durmiendo",
+  "options": [
+   "durmiendo",
+   "dormiendo",
+   "dormido"
+  ],
+  "explanation": "-ir fiillerinde gerundio'da o → u değişimi olur: dormir → durmiendo (morir → muriendo).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-gerundio-5",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_gerundio",
+  "type": "cloze",
+  "prompt": "Mejoré mi pronunciación ___ (escuchar) pódcasts.",
+  "answer": "escuchando",
+  "explanation": "Gerundio 'yaparak' anlamında yol ya da tarz bildirir: escuchando pódcasts = podcast dinleyerek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-gerundio-6",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_gerundio",
+  "type": "cloze",
+  "prompt": "Después de ___ (hablar) con ella, me sentí mejor.",
+  "answer": "hablar",
+  "explanation": "Edatlardan (después de, antes de, sin, para) sonra fiil mastar olur: después de hablar. Gerundio gelmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-gerundio-7",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_gerundio",
+  "type": "error",
+  "prompt": "Hablando con la boca llena es de mala educación.",
+  "answer": "Hablando",
+  "fix": "Hablar",
+  "explanation": "Özne olarak kullanılan eylem (Türkçe '-mek/-mak') mastarla söylenir: Hablar es… Gerundio özne olamaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-orden-1",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_orden_pronombres",
+  "type": "choice",
+  "prompt": "—¿Me prestas tu bolígrafo? —Claro, ___ presto ahora mismo.",
+  "answer": "te lo",
+  "options": [
+   "te lo",
+   "lo te",
+   "se lo",
+   "te le"
+  ],
+  "explanation": "Zamir sırası: önce kişi zamiri (te), sonra nesne zamiri (lo). bolígrafo eril olduğu için lo.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-orden-2",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_orden_pronombres",
+  "type": "choice",
+  "prompt": "Mi hermana pidió el libro y yo ___ di ayer.",
+  "answer": "se lo",
+  "options": [
+   "se lo",
+   "le lo",
+   "se la",
+   "lo le"
+  ],
+  "explanation": "İki 3. kişi zamiri yan yana gelince dolaylı nesne le/les, se'ye dönüşür: le lo di → se lo di.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-orden-3",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_orden_pronombres",
+  "type": "choice",
+  "prompt": "A mí ___ cayó el teléfono al suelo.",
+  "answer": "se me",
+  "options": [
+   "se me",
+   "me se",
+   "me",
+   "se lo"
+  ],
+  "explanation": "Kazara se yapısında sıra her zaman se + kişi zamiri'dir: se me cayó. Düşen şey (el teléfono) fiilin öznesidir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-orden-4",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_orden_pronombres",
+  "type": "choice",
+  "prompt": "Ayer ___ regalé unas flores a mi profesora.",
+  "answer": "le",
+  "options": [
+   "le",
+   "la",
+   "lo",
+   "las"
+  ],
+  "explanation": "Dolaylı nesne (profesora'ya) le ile gösterilir. 'la regalé' laísmo'dur ve yanlıştır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-orden-5",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_orden_pronombres",
+  "type": "cloze",
+  "prompt": "Tengo tu cartera; voy a ___ mañana. (devolver + te + la)",
+  "answer": "devolvértela",
+  "explanation": "Zamirler mastara bitişik yazılır ve sıra korunur: devolver + te + la = devolvértela (vurgu işareti gerekir).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-orden-6",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_orden_pronombres",
+  "type": "cloze",
+  "prompt": "—¿Quién te regaló ese reloj? —___ regaló mi abuelo.",
+  "answer": "Me lo",
+  "explanation": "Önce kişi zamiri (me), sonra nesne zamiri (lo) gelir; ikisi çekimli fiilden önce yazılır: Me lo regaló.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-orden-7",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_orden_pronombres",
+  "type": "error",
+  "prompt": "Les lo expliqué a mis compañeros ayer.",
+  "answer": "Les",
+  "fix": "Se",
+  "explanation": "le/les, lo/la/los/las'tan önce gelince se olur: Se lo expliqué (les lo değil). Kuralın tek istisnası bu dönüşümdür.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-mente-1",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_adverbios_mente",
+  "type": "choice",
+  "prompt": "Mi vecina saluda ___ a todo el mundo. (alegre)",
+  "answer": "alegremente",
+  "options": [
+   "alegremente",
+   "alegramente",
+   "alegremento"
+  ],
+  "explanation": "Cinsiyetsiz sıfatlara doğrudan -mente eklenir: alegre → alegremente. Dişil -a yapılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-mente-2",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_adverbios_mente",
+  "type": "choice",
+  "prompt": "Los obreros trabajaron muy ___ y tuvieron que repetirlo todo.",
+  "answer": "mal",
+  "options": [
+   "mal",
+   "malo",
+   "malmente"
+  ],
+  "explanation": "bueno ve malo'nun zarfları bien ve mal'dır; -mente almazlar: trabajaron muy mal.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-mente-3",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_adverbios_mente",
+  "type": "choice",
+  "prompt": "___, nadie resultó herido en el accidente. (neyse ki)",
+  "answer": "Afortunadamente",
+  "options": [
+   "Afortunadamente",
+   "Afortunado",
+   "Afortunada",
+   "Afortunadamento"
+  ],
+  "explanation": "Cümle zarfı olarak afortunada sıfatına -mente eklenir ve virgülle ayrılır: Afortunadamente, …",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-mente-4",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_adverbios_mente",
+  "type": "choice",
+  "prompt": "Mi abuelo habla muy ___ porque no oye bien. (yüksek sesle)",
+  "answer": "alto",
+  "options": [
+   "alto",
+   "alta",
+   "altos",
+   "altamente"
+  ],
+  "explanation": "Bazı sıfatlar değişmeden zarf olarak kullanılır: hablar alto. altamente 'son derece' anlamındadır, 'yüksek sesle' değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-mente-5",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_adverbios_mente",
+  "type": "cloze",
+  "prompt": "Lo explicó clara y ___ (lento).",
+  "answer": "lentamente",
+  "explanation": "İki zarf art arda gelince yalnızca sonuncusu -mente alır; öncekiler dişil sıfat biçiminde kalır: clara y lentamente.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-mente-6",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_adverbios_mente",
+  "type": "cloze",
+  "prompt": "Resolvió el examen ___ (rápido).",
+  "answer": "rápidamente",
+  "explanation": "-o ile biten sıfatın dişil biçimine -mente eklenir ve sıfatın vurgu işareti korunur: rápido → rápida → rápidamente.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-mente-7",
+  "language": "es",
+  "level": "B1",
+  "topic": "basics_es_adverbios_mente",
+  "type": "error",
+  "prompt": "Los estudiantes escucharon atentomente la explicación.",
+  "answer": "atentomente",
+  "fix": "atentamente",
+  "explanation": "-mente, sıfatın eril değil dişil biçimine eklenir: atento → atenta → atentamente.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-impsubj-1",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_imperfecto_subjuntivo",
+  "type": "choice",
+  "prompt": "Mi jefe quería que yo ___ el informe antes del viernes.",
+  "answer": "terminara",
+  "options": [
+   "terminara",
+   "termine",
+   "terminaría",
+   "terminé"
+  ],
+  "explanation": "Ana fiil geçmişte (quería) olduğu için que'li yan cümle imperfecto de subjuntivo alır: terminara.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-impsubj-2",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_imperfecto_subjuntivo",
+  "type": "choice",
+  "prompt": "Si ___ más tiempo libre, aprendería a tocar el piano.",
+  "answer": "tuviera",
+  "options": [
+   "tuviera",
+   "tendría",
+   "tengo",
+   "tuve"
+  ],
+  "explanation": "Varsayımsal si cümlesinde imperfecto de subjuntivo kullanılır, ana cümlede condicional gelir: Si tuviera…, aprendería…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-impsubj-3",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_imperfecto_subjuntivo",
+  "type": "choice",
+  "prompt": "Vivo muy lejos de mi familia. Ojalá ___ más cerca.",
+  "answer": "viviera",
+  "options": [
+   "viviera",
+   "viva",
+   "vivo",
+   "viviría"
+  ],
+  "explanation": "Şimdiye ait, gerçekleşmesi zor dilek ojalá + imperfecto de subjuntivo ile söylenir: Ojalá viviera más cerca.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-impsubj-4",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_imperfecto_subjuntivo",
+  "type": "choice",
+  "prompt": "Me pidieron que ___ a la reunión de las cinco.",
+  "answer": "fuera",
+  "options": [
+   "fuera",
+   "iera",
+   "vaya",
+   "iría"
+  ],
+  "explanation": "ir ve ser'in imperfecto de subjuntivo gövdesi indefinido'daki fueron'dan gelir: fuera. 'iera' diye bir biçim yoktur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-impsubj-5",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_imperfecto_subjuntivo",
+  "type": "cloze",
+  "prompt": "El médico me recomendó que ___ (dormir) ocho horas.",
+  "answer": "durmiera",
+  "alternatives": [
+   "durmiese"
+  ],
+  "explanation": "Gövde indefinido'nun ellos biçiminden gelir: durmieron → durmiera / durmiese (o → u).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-impsubj-6",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_imperfecto_subjuntivo",
+  "type": "cloze",
+  "prompt": "Me miró como si no me ___ (conocer).",
+  "answer": "conociera",
+  "alternatives": [
+   "conociese"
+  ],
+  "explanation": "como si 'sanki' anlamında her zaman imperfecto (ya da pluscuamperfecto) de subjuntivo alır: conociera / conociese.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-impsubj-7",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_imperfecto_subjuntivo",
+  "type": "error",
+  "prompt": "Si yo sería millonario, compraría una isla en el Caribe.",
+  "answer": "sería",
+  "fix": "fuera",
+  "explanation": "si'den sonra condicional gelmez; varsayımda imperfecto de subjuntivo kullanılır: Si yo fuera millonario, compraría…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-finales-1",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_finales_concesivas",
+  "type": "choice",
+  "prompt": "Te presto mi coche para que ___ al aeropuerto sin problemas.",
+  "answer": "llegues",
+  "options": [
+   "llegues",
+   "llegas",
+   "llegar",
+   "llegarías"
+  ],
+  "explanation": "Özneler farklıyken (ben prestar / sen llegar) para que her zaman subjuntivo ister: llegues.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-finales-2",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_finales_concesivas",
+  "type": "choice",
+  "prompt": "Trabajo duro para ___ una casa algún día.",
+  "answer": "comprar",
+  "options": [
+   "comprar",
+   "que compre",
+   "que compro",
+   "que compraré"
+  ],
+  "explanation": "Özneler aynıysa para + mastar kullanılır: trabajo para comprar. para que gerekmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-finales-3",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_finales_concesivas",
+  "type": "choice",
+  "prompt": "Aunque ___ mucho en este momento, los niños siguen jugando fuera.",
+  "answer": "llueve",
+  "options": [
+   "llueve",
+   "llueva",
+   "lloviera",
+   "llovería"
+  ],
+  "explanation": "Şu anda görülen gerçek bir engel için aunque indicativo alır: Aunque llueve mucho… (yağmur yağıyor, bilinen gerçek).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-finales-4",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_finales_concesivas",
+  "type": "choice",
+  "prompt": "Mi madre me dio dinero para que ___ un taxi.",
+  "answer": "tomara",
+  "options": [
+   "tomara",
+   "tome",
+   "tomaba",
+   "tomaría"
+  ],
+  "explanation": "Ana fiil geçmişteyse (dio) amaç cümlesi imperfecto de subjuntivo alır: para que tomara.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-finales-5",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_finales_concesivas",
+  "type": "cloze",
+  "prompt": "Aunque me ___ (costar) mucho, voy a terminar la carrera.",
+  "answer": "cueste",
+  "hint": "olasılık → subjuntivo",
+  "explanation": "Henüz bilinmeyen ya da önemsenmeyen bir güçlük için aunque + subjuntivo kullanılır: aunque me cueste mucho.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-finales-6",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_finales_concesivas",
+  "type": "cloze",
+  "prompt": "Te llamé ayer para que ___ (venir, tú) a la cena.",
+  "answer": "vinieras",
+  "alternatives": [
+   "vinieses"
+  ],
+  "explanation": "Ana fiil geçmişte (llamé) olduğundan para que'den sonra imperfecto de subjuntivo gelir: vinieras / vinieses.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-finales-7",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_finales_concesivas",
+  "type": "error",
+  "prompt": "Te escribo para que me ayudas con la tarea.",
+  "answer": "ayudas",
+  "fix": "ayudes",
+  "explanation": "para que her zaman subjuntivo ister: para que me ayudes. İndicativo (ayudas) kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-subjcomp-1",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_subjuntivo_compuesto",
+  "type": "choice",
+  "prompt": "Dudo que Marta ___ el mensaje todavía.",
+  "answer": "haya leído",
+  "options": [
+   "haya leído",
+   "ha leído",
+   "había leído",
+   "hubiera leído"
+  ],
+  "explanation": "Ana fiil şimdi (dudo) iken önceden bitmiş iş haya + ortaç ile söylenir. ha leído indicativo'dur; dudo que subjuntivo ister.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-subjcomp-2",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_subjuntivo_compuesto",
+  "type": "choice",
+  "prompt": "Me molestó mucho que no ___ a mi cumpleaños.",
+  "answer": "hubieran venido",
+  "options": [
+   "hubieran venido",
+   "hayan venido",
+   "habían venido",
+   "han venido"
+  ],
+  "explanation": "Ana fiil geçmişte (molestó) ve olay ondan önce olmuşsa hubiera + ortaç kullanılır: hubieran venido.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-subjcomp-3",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_subjuntivo_compuesto",
+  "type": "choice",
+  "prompt": "Si ella me ___ la verdad, no me habría enfadado tanto.",
+  "answer": "hubiera dicho",
+  "options": [
+   "hubiera dicho",
+   "habría dicho",
+   "había dicho",
+   "haya dicho"
+  ],
+  "explanation": "Geçmişe dönük gerçekdışı şartta si'den sonra hubiera + ortaç gelir; habría ana cümleye ayrılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-subjcomp-4",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_subjuntivo_compuesto",
+  "type": "choice",
+  "prompt": "Perdí el tren por dormirme. ¡Ojalá no me ___ dormido!",
+  "answer": "hubiera",
+  "options": [
+   "hubiera",
+   "haya",
+   "había",
+   "habría"
+  ],
+  "explanation": "Olmuş bitmiş ve değiştirilemeyen geçmiş için pişmanlık ojalá + hubiera + ortaç ile söylenir: Ojalá no me hubiera dormido.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-subjcomp-5",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_subjuntivo_compuesto",
+  "type": "cloze",
+  "prompt": "Te devolveré el libro en cuanto lo ___ (leer, yo).",
+  "answer": "haya leído",
+  "explanation": "Gelecekte bitmiş olacak iş, zaman bağlacından (en cuanto) sonra haya + ortaç alır: en cuanto lo haya leído.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-subjcomp-6",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_subjuntivo_compuesto",
+  "type": "cloze",
+  "prompt": "Habla de esa ciudad como si la ___ (vivir) en persona.",
+  "answer": "hubiera vivido",
+  "alternatives": [
+   "hubiese vivido"
+  ],
+  "explanation": "como si ile gerçek olmayan geçmiş durum hubiera + ortaç ile anlatılır: como si la hubiera vivido.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-subjcomp-7",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_subjuntivo_compuesto",
+  "type": "error",
+  "prompt": "Si me habías avisado, te habría ayudado con la mudanza.",
+  "answer": "habías",
+  "fix": "hubieras",
+  "explanation": "Gerçekdışı geçmiş şartta si'den sonra pluscuamperfecto de subjuntivo gerekir: Si me hubieras avisado… indicativo habías kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-marcadores-1",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_marcadores",
+  "type": "choice",
+  "prompt": "Las ventas bajaron este año; ___, la empresa sigue siendo rentable.",
+  "answer": "no obstante",
+  "options": [
+   "no obstante",
+   "por consiguiente",
+   "es decir",
+   "asimismo"
+  ],
+  "explanation": "no obstante bir beklentiyi kırar ('yine de'): satışlar düştü, yine de şirket kârlı. por consiguiente sonuç, asimismo ekleme bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-marcadores-2",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_marcadores",
+  "type": "choice",
+  "prompt": "Los salarios no han subido; ___, muchas familias llegan con dificultad a fin de mes.",
+  "answer": "por consiguiente",
+  "options": [
+   "por consiguiente",
+   "no obstante",
+   "en cambio",
+   "asimismo"
+  ],
+  "explanation": "por consiguiente (dolayısıyla) sonuç bildirir: maaşlar artmadı, sonuçta aileler zorlanıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-marcadores-3",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_marcadores",
+  "type": "choice",
+  "prompt": "Mi hermano es muy ordenado; yo, ___, soy bastante desordenado.",
+  "answer": "en cambio",
+  "options": [
+   "en cambio",
+   "por consiguiente",
+   "es decir",
+   "en resumen"
+  ],
+  "explanation": "en cambio iki kişiyi ya da durumu karşılaştırır ('buna karşılık'): kardeşim düzenli, ben ise dağınık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-marcadores-4",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_marcadores",
+  "type": "choice",
+  "prompt": "___, podemos afirmar que el proyecto ha sido un éxito.",
+  "answer": "En conclusión",
+  "options": [
+   "En conclusión",
+   "Sin embargo",
+   "Asimismo",
+   "Por el contrario"
+  ],
+  "explanation": "Sonucu özetlemek için en conclusión, en resumen, en definitiva kullanılır. sin embargo ve por el contrario karşıtlık bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-marcadores-5",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_marcadores",
+  "type": "cloze",
+  "prompt": "___ bien el informe es breve, contiene datos muy valiosos.",
+  "answer": "Si",
+  "explanation": "si bien 'her ne kadar' anlamında taviz bildirir ve indicativo alır: Si bien el informe es breve, contiene…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-marcadores-6",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_marcadores",
+  "type": "cloze",
+  "prompt": "La inflación fue alta; de ahí que muchas familias ___ (reducir) sus gastos.",
+  "answer": "redujeran",
+  "alternatives": [
+   "redujesen"
+  ],
+  "explanation": "de ahí que her zaman subjuntivo ister; geçmiş bağlamda imperfecto de subjuntivo: redujeran / redujesen (reducir → redujeron).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b12-marcadores-7",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_marcadores",
+  "type": "error",
+  "prompt": "Hubo poca inversión; de ahí que el crecimiento fue lento.",
+  "answer": "fue",
+  "fix": "fuera",
+  "explanation": "de ahí que (bu yüzden) subjuntivo gerektirir; geçmiş bağlamda imperfecto de subjuntivo kullanılır: de ahí que el crecimiento fuera lento.",
+  "source": "Diloloji (özgün)"
+ }
+]

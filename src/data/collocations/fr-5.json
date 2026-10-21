@@ -1,0 +1,390 @@
+[
+ {
+  "id": "fr-colloc5-01",
+  "language": "fr",
+  "lemmas": [
+   "douche"
+  ],
+  "pattern": "prendre une douche",
+  "example": "Je prends une douche avant le dîner.",
+  "tr": "Akşam yemeğinden önce duş alırım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-02",
+  "language": "fr",
+  "lemmas": [
+   "vaisselle"
+  ],
+  "pattern": "faire la vaisselle",
+  "example": "Ce soir, c'est moi qui fais la vaisselle.",
+  "tr": "Bu akşam bulaşıkları ben yıkıyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-03",
+  "language": "fr",
+  "lemmas": [
+   "matinée"
+  ],
+  "pattern": "faire la grasse matinée",
+  "example": "Le dimanche, nous faisons la grasse matinée.",
+  "tr": "Pazarları geç saate kadar yatarız.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-04",
+  "language": "fr",
+  "lemmas": [
+   "avion"
+  ],
+  "pattern": "prendre l'avion",
+  "example": "Je préfère prendre l'avion pour aller à Lyon.",
+  "tr": "Lyon'a gitmek için uçağa binmeyi tercih ederim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-05",
+  "language": "fr",
+  "lemmas": [
+   "bain"
+  ],
+  "pattern": "prendre un bain",
+  "example": "Elle prend un bain chaud pour se détendre.",
+  "tr": "Rahatlamak için sıcak bir banyo yapıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-06",
+  "language": "fr",
+  "lemmas": [
+   "tour"
+  ],
+  "pattern": "faire un tour",
+  "example": "Allons faire un tour au bord de la mer.",
+  "tr": "Hadi deniz kenarında bir tur atalım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-07",
+  "language": "fr",
+  "lemmas": [
+   "main"
+  ],
+  "pattern": "donner un coup de main",
+  "example": "Peux-tu me donner un coup de main pour déménager ?",
+  "tr": "Taşınırken bana yardım eder misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-08",
+  "language": "fr",
+  "lemmas": [
+   "lapin"
+  ],
+  "pattern": "poser un lapin à qqn",
+  "example": "Il m'a posé un lapin, je l'ai attendu une heure.",
+  "tr": "Randevu verip gelmedi, onu bir saat bekledim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-09",
+  "language": "fr",
+  "lemmas": [
+   "courant"
+  ],
+  "pattern": "tenir au courant",
+  "example": "Tiens-moi au courant de tes projets.",
+  "tr": "Planların hakkında beni haberdar et.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-10",
+  "language": "fr",
+  "lemmas": [
+   "froid"
+  ],
+  "pattern": "prendre froid",
+  "example": "Mets une écharpe, tu vas prendre froid.",
+  "tr": "Atkı tak, üşüteceksin.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-11",
+  "language": "fr",
+  "lemmas": [
+   "chaud"
+  ],
+  "pattern": "avoir chaud",
+  "example": "J'ai chaud, tu peux ouvrir la fenêtre ?",
+  "tr": "Sıcaklıyorum, pencereyi açar mısın?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-12",
+  "language": "fr",
+  "lemmas": [
+   "cours"
+  ],
+  "pattern": "sécher un cours",
+  "example": "Il a séché un cours de maths hier.",
+  "tr": "Dün bir matematik dersini astı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-13",
+  "language": "fr",
+  "lemmas": [
+   "fil"
+  ],
+  "pattern": "donner un coup de fil",
+  "example": "Je te donne un coup de fil ce soir.",
+  "tr": "Bu akşam seni arayacağım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-14",
+  "language": "fr",
+  "lemmas": [
+   "bise"
+  ],
+  "pattern": "faire la bise",
+  "example": "En France, on fait la bise pour se dire bonjour.",
+  "tr": "Fransa'da selamlaşırken yanaktan öpüşülür.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-15",
+  "language": "fr",
+  "lemmas": [
+   "formulaire"
+  ],
+  "pattern": "remplir un formulaire",
+  "example": "Vous devez remplir ce formulaire en ligne.",
+  "tr": "Bu formu çevrimiçi doldurmalısınız.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-16",
+  "language": "fr",
+  "lemmas": [
+   "retraite"
+  ],
+  "pattern": "prendre sa retraite",
+  "example": "Mon père prend sa retraite l'année prochaine.",
+  "tr": "Babam seneye emekli oluyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-17",
+  "language": "fr",
+  "lemmas": [
+   "régime"
+  ],
+  "pattern": "faire un régime",
+  "example": "Elle fait un régime depuis un mois.",
+  "tr": "Bir aydır diyet yapıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-18",
+  "language": "fr",
+  "lemmas": [
+   "délai"
+  ],
+  "pattern": "respecter un délai",
+  "example": "Il faut respecter le délai de livraison.",
+  "tr": "Teslimat süresine uymak gerekir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-19",
+  "language": "fr",
+  "lemmas": [
+   "bruit"
+  ],
+  "pattern": "faire du bruit",
+  "example": "Les voisins font du bruit toute la nuit.",
+  "tr": "Komşular bütün gece gürültü yapıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-20",
+  "language": "fr",
+  "lemmas": [
+   "pause"
+  ],
+  "pattern": "faire une pause",
+  "example": "On fait une pause de dix minutes ?",
+  "tr": "On dakika mola verelim mi?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-21",
+  "language": "fr",
+  "lemmas": [
+   "grève"
+  ],
+  "pattern": "faire grève",
+  "example": "Les contrôleurs aériens font grève demain.",
+  "tr": "Hava trafik kontrolörleri yarın greve gidiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-22",
+  "language": "fr",
+  "lemmas": [
+   "parole"
+  ],
+  "pattern": "prendre la parole",
+  "example": "Il a pris la parole à la fin de la réunion.",
+  "tr": "Toplantının sonunda söz aldı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-23",
+  "language": "fr",
+  "lemmas": [
+   "foudre"
+  ],
+  "pattern": "avoir un coup de foudre",
+  "example": "J'ai eu un coup de foudre pour cette ville.",
+  "tr": "Bu şehre ilk görüşte âşık oldum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-24",
+  "language": "fr",
+  "lemmas": [
+   "soirée"
+  ],
+  "pattern": "passer une bonne soirée",
+  "example": "Nous avons passé une bonne soirée chez eux.",
+  "tr": "Onların evinde güzel bir akşam geçirdik.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-25",
+  "language": "fr",
+  "lemmas": [
+   "cadeau"
+  ],
+  "pattern": "faire un cadeau",
+  "example": "Je lui ai fait un cadeau pour son anniversaire.",
+  "tr": "Doğum günü için ona bir hediye aldım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-26",
+  "language": "fr",
+  "lemmas": [
+   "malade",
+   "tomber"
+  ],
+  "pattern": "tomber malade",
+  "example": "Elle est tombée malade avant l'examen.",
+  "tr": "Sınavdan önce hastalandı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-27",
+  "language": "fr",
+  "lemmas": [
+   "amoureux"
+  ],
+  "pattern": "tomber amoureux de",
+  "example": "Il est tombé amoureux de sa voisine.",
+  "tr": "Komşusuna âşık oldu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-28",
+  "language": "fr",
+  "lemmas": [
+   "réveil"
+  ],
+  "pattern": "régler le réveil",
+  "example": "N'oublie pas de régler le réveil pour demain.",
+  "tr": "Yarın için çalar saati kurmayı unutma.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-29",
+  "language": "fr",
+  "lemmas": [
+   "route"
+  ],
+  "pattern": "prendre la route",
+  "example": "Nous prenons la route à six heures du matin.",
+  "tr": "Sabah altıda yola çıkıyoruz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-30",
+  "language": "fr",
+  "lemmas": [
+   "carte"
+  ],
+  "pattern": "payer par carte",
+  "example": "Je peux payer par carte ?",
+  "tr": "Kartla ödeyebilir miyim?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-31",
+  "language": "fr",
+  "lemmas": [
+   "couper",
+   "parole"
+  ],
+  "pattern": "couper la parole à qqn",
+  "example": "Ne me coupe pas la parole, laisse-moi finir.",
+  "tr": "Sözümü kesme, bitirmeme izin ver.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-32",
+  "language": "fr",
+  "lemmas": [
+   "nouvelles"
+  ],
+  "pattern": "prendre des nouvelles de qqn",
+  "example": "J'appelle ma grand-mère pour prendre des nouvelles.",
+  "tr": "Hal hatır sormak için büyükannemi arıyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-33",
+  "language": "fr",
+  "lemmas": [
+   "valise"
+  ],
+  "pattern": "faire sa valise",
+  "example": "Je dois encore faire ma valise.",
+  "tr": "Daha valizimi hazırlamam lazım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-34",
+  "language": "fr",
+  "lemmas": [
+   "pays"
+  ],
+  "pattern": "avoir le mal du pays",
+  "example": "Après trois mois, il a le mal du pays.",
+  "tr": "Üç ay sonra memleket özlemi çekiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc5-35",
+  "language": "fr",
+  "lemmas": [
+   "laisser",
+   "tomber"
+  ],
+  "pattern": "laisser tomber",
+  "example": "Laisse tomber, ce n'est pas important.",
+  "tr": "Boş ver, önemli değil.",
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -1,0 +1,1415 @@
+[
+ {
+  "id": "en-b12-pastcont-1",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_continuous",
+  "type": "choice",
+  "prompt": "At nine o'clock last night, I ___ my homework, so I didn't hear the phone.",
+  "answer": "was doing",
+  "options": [
+   "were doing",
+   "am doing",
+   "was doing"
+  ],
+  "hint": "I → was",
+  "explanation": "Past continuous, geçmişte belli bir anda süren işi anlatır: was/were + -ing. I ile was kullanılır: I was doing.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastcont-2",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_continuous",
+  "type": "choice",
+  "prompt": "What ___ you doing when the lights went out?",
+  "answer": "were",
+  "options": [
+   "did",
+   "were",
+   "was"
+  ],
+  "hint": "you → were",
+  "explanation": "Süren işi sorarken past continuous kullanılır: What were you doing? You, we, they ile were gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastcont-3",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_continuous",
+  "type": "choice",
+  "prompt": "I ___ the answer, so I raised my hand.",
+  "answer": "knew",
+  "options": [
+   "knew",
+   "was knowing",
+   "am knowing"
+  ],
+  "hint": "know = durum fiili",
+  "explanation": "Know, want, like gibi durum fiilleri continuous yapılmaz; past simple kullanılır: I knew the answer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastcont-4",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_continuous",
+  "type": "choice",
+  "prompt": "The children ___ in the garden when it started to rain.",
+  "answer": "were playing",
+  "options": [
+   "was playing",
+   "are playing",
+   "were playing"
+  ],
+  "hint": "children → çoğul",
+  "explanation": "Yağmur başlamadan önce süren iş past continuous ile söylenir; özne çoğul olduğu için were playing gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastcont-5",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_continuous",
+  "type": "cloze",
+  "prompt": "While Ahmet ___ (cook) dinner, his sister was setting the table.",
+  "answer": "was cooking",
+  "hint": "past continuous",
+  "explanation": "While ile aynı anda süren iki iş anlatılır; iki iş de past continuous olur: was cooking.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastcont-6",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_continuous",
+  "type": "cloze",
+  "prompt": "At seven yesterday morning, they ___ (wait) at the bus stop. The bus was late.",
+  "answer": "were waiting",
+  "hint": "past continuous",
+  "explanation": "Geçmişte belli bir anda (at seven) devam eden iş past continuous ile söylenir: were waiting.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastcont-7",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_past_continuous",
+  "type": "error",
+  "prompt": "Yesterday at noon we was having lunch in the park.",
+  "answer": "was",
+  "fix": "were",
+  "hint": "we → were",
+  "explanation": "Past continuous'ta we, you, they ile was değil were kullanılır: we were having.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-ability-1",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_ability",
+  "type": "choice",
+  "prompt": "My grandfather ___ play the violin when he was young, but now his hands shake.",
+  "answer": "could",
+  "options": [
+   "can",
+   "will can",
+   "could"
+  ],
+  "hint": "geçmiş yetenek",
+  "explanation": "Geçmişteki genel yetenek could ile söylenir. Can şimdiki zamandır, will can ise yoktur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-ability-2",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_ability",
+  "type": "choice",
+  "prompt": "She ___ speak four languages.",
+  "answer": "can",
+  "options": [
+   "is can",
+   "can",
+   "cans"
+  ],
+  "hint": "she → can",
+  "explanation": "Can bütün kişilerde aynıdır; üçüncü tekil şahısta -s almaz (cans olmaz).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-ability-3",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_ability",
+  "type": "choice",
+  "prompt": "Next year, I ___ drive, because I'm starting lessons next week.",
+  "answer": "will be able to",
+  "options": [
+   "will be able to",
+   "will can",
+   "would can"
+  ],
+  "hint": "gelecek",
+  "explanation": "Can'in gelecek biçimi yoktur; gelecekte will be able to kullanılır. Will can denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-ability-4",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_ability",
+  "type": "choice",
+  "prompt": "After a long search, the rescuers ___ find the missing hikers.",
+  "answer": "were able to",
+  "options": [
+   "could",
+   "can",
+   "were able to"
+  ],
+  "hint": "tek seferlik başarı",
+  "explanation": "Geçmişte tek bir durumda başarılan iş için could değil was/were able to (ya da managed to) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-ability-5",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_ability",
+  "type": "cloze",
+  "prompt": "I'm sorry, I ___ come to your party last Saturday; I was ill.",
+  "answer": "couldn't",
+  "alternatives": [
+   "could not",
+   "wasn't able to",
+   "was not able to"
+  ],
+  "hint": "can, olumsuz geçmiş",
+  "explanation": "Olumsuzda geçmişteki bir olay için de couldn't kullanılabilir: I couldn't come.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-ability-6",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_ability",
+  "type": "cloze",
+  "prompt": "I haven't ___ able to sleep well this week.",
+  "answer": "been",
+  "hint": "have + ___ + able to",
+  "explanation": "Can'in present perfect biçimi yoktur; have been able to kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-ability-7",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_ability",
+  "type": "error",
+  "prompt": "She cans swim very fast.",
+  "answer": "cans",
+  "fix": "can",
+  "hint": "can -s almaz",
+  "explanation": "Can bir modal fiildir ve üçüncü tekil şahısta -s almaz: she can swim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-oblig-1",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_obligation",
+  "type": "choice",
+  "prompt": "You ___ park here. It's against the rules.",
+  "answer": "mustn't",
+  "options": [
+   "don't have to",
+   "must",
+   "mustn't"
+  ],
+  "hint": "yasak",
+  "explanation": "Mustn't yasak anlamı verir. Don't have to ise gerek yok demektir; kural yasaksa mustn't gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-oblig-2",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_obligation",
+  "type": "choice",
+  "prompt": "Last year I ___ wear a uniform at school, but this year I can wear anything.",
+  "answer": "had to",
+  "options": [
+   "have to",
+   "had to",
+   "must"
+  ],
+  "hint": "geçmiş",
+  "explanation": "Must'ın geçmişi yoktur; geçmişteki zorunluluk had to ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-oblig-3",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_obligation",
+  "type": "choice",
+  "prompt": "Tomorrow is a holiday, so we ___ go to work.",
+  "answer": "don't have to",
+  "options": [
+   "don't have to",
+   "mustn't",
+   "must"
+  ],
+  "hint": "gerek yok",
+  "explanation": "Gerek olmadığını don't have to söyler; mustn't ise yasak anlamına gelirdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-oblig-4",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_obligation",
+  "type": "choice",
+  "prompt": "She ___ get up at five every day because her shop opens at six.",
+  "answer": "has to",
+  "options": [
+   "have to",
+   "musts",
+   "has to"
+  ],
+  "hint": "she → has",
+  "explanation": "Have to çekimlenir: üçüncü tekil şahısta has to olur. Must hiç çekimlenmez ve -s almaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-oblig-5",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_obligation",
+  "type": "cloze",
+  "prompt": "Did you ___ to wait long at the clinic?",
+  "answer": "have",
+  "hint": "did + yalın fiil",
+  "explanation": "Have to'nun sorusu did ile kurulur; did'den sonra yalın fiil gelir: Did you have to wait?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-oblig-6",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_obligation",
+  "type": "cloze",
+  "prompt": "You ___ have to pay today; you can pay next week.",
+  "answer": "don't",
+  "alternatives": [
+   "do not"
+  ],
+  "hint": "gerek yok",
+  "explanation": "Gerek olmadığını anlatan kalıp don't have to'dur: you don't have to pay.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-oblig-7",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_obligation",
+  "type": "error",
+  "prompt": "Yesterday I must finish the report before dinner.",
+  "answer": "must",
+  "fix": "had to",
+  "hint": "geçmiş",
+  "explanation": "Must'ın geçmiş biçimi yoktur; geçmişte had to kullanılır: I had to finish.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-placeprep-1",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_place_prepositions",
+  "type": "choice",
+  "prompt": "We live ___ the second floor.",
+  "answer": "on",
+  "options": [
+   "in",
+   "at",
+   "on"
+  ],
+  "hint": "kat",
+  "explanation": "Katlar için on kullanılır: on the second floor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-placeprep-2",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_place_prepositions",
+  "type": "choice",
+  "prompt": "We had a great time ___ Irem's party.",
+  "answer": "at",
+  "options": [
+   "on",
+   "at",
+   "in"
+  ],
+  "hint": "etkinlik",
+  "explanation": "Parti, toplantı gibi etkinlik yerleri at ile söylenir: at a party.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-placeprep-3",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_place_prepositions",
+  "type": "choice",
+  "prompt": "The tourists walked ___ the tunnel and came out on the other side.",
+  "answer": "through",
+  "options": [
+   "through",
+   "across",
+   "along"
+  ],
+  "hint": "içinden geçip öbür yana",
+  "explanation": "Through, kapalı bir alanın içinden geçip öbür yana çıkmayı anlatır. Across yüzeyin bir yanından öbürüne geçer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-placeprep-4",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_place_prepositions",
+  "type": "choice",
+  "prompt": "There is a lovely picture ___ the wall.",
+  "answer": "on",
+  "options": [
+   "in",
+   "at",
+   "on"
+  ],
+  "hint": "duvar",
+  "explanation": "Duvar gibi yüzeylerde on kullanılır: on the wall.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-placeprep-5",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_place_prepositions",
+  "type": "cloze",
+  "prompt": "The bank is ___ the post office and the chemist's.",
+  "answer": "between",
+  "hint": "iki şeyin arası",
+  "explanation": "Between iki şeyin arasındaki konumu anlatır: between the post office and the chemist's.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-placeprep-6",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_place_prepositions",
+  "type": "cloze",
+  "prompt": "I'll be ___ home all day, so call me.",
+  "answer": "at",
+  "hint": "be ___ home",
+  "explanation": "Be ile home birlikte kullanılırken at gelir: be at home. Go home ve get home'da ise edat olmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-placeprep-7",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_place_prepositions",
+  "type": "error",
+  "prompt": "She lives at Istanbul with her grandparents.",
+  "answer": "at",
+  "fix": "in",
+  "hint": "şehir",
+  "explanation": "Şehir ve ülke gibi büyük yerlerde in kullanılır: in Istanbul. At belli bir noktayı gösterir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-cond-1",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_conditionals",
+  "type": "choice",
+  "prompt": "If I ___ you, I would talk to the manager.",
+  "answer": "were",
+  "options": [
+   "am",
+   "will be",
+   "were"
+  ],
+  "hint": "tavsiye",
+  "explanation": "İkinci koşulda tavsiye verirken if I were you kalıbı kullanılır; be için bütün kişilerde were gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-cond-2",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_conditionals",
+  "type": "choice",
+  "prompt": "We ___ the match if the weather is bad tomorrow.",
+  "answer": "will cancel",
+  "options": [
+   "cancelled",
+   "will cancel",
+   "would cancel"
+  ],
+  "hint": "birinci koşul",
+  "explanation": "Gerçekçi bir olasılıkta birinci koşul kullanılır: If + present simple, will + yalın fiil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-cond-3",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_conditionals",
+  "type": "choice",
+  "prompt": "If she ___ more free time, she would join a gym.",
+  "answer": "had",
+  "options": [
+   "had",
+   "has",
+   "will have"
+  ],
+  "hint": "ikinci koşul",
+  "explanation": "İkinci koşulda if'li bölüm past simple olur; ana cümlede would gelir: If she had, she would join.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-cond-4",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_conditionals",
+  "type": "choice",
+  "prompt": "___ you study harder, you won't pass the exam.",
+  "answer": "Unless",
+  "options": [
+   "If",
+   "Although",
+   "Unless"
+  ],
+  "hint": "if ... not",
+  "explanation": "Unless, if ... not demektir: daha çok çalışmazsan sınavı geçemezsin. Unless'ten sonra olumlu fiil gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-cond-5",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_conditionals",
+  "type": "cloze",
+  "prompt": "If I won the lottery, I ___ (buy) a farm.",
+  "answer": "would buy",
+  "alternatives": [
+   "'d buy",
+   "would purchase"
+  ],
+  "hint": "ikinci koşul",
+  "explanation": "İkinci koşul: If + past simple, would + yalın fiil. Gerçek olmayan bir durum anlatılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-cond-6",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_conditionals",
+  "type": "cloze",
+  "prompt": "If it keeps raining, the river ___ (flood) by tonight.",
+  "answer": "will flood",
+  "alternatives": [
+   "'ll flood",
+   "is going to flood"
+  ],
+  "hint": "birinci koşul",
+  "explanation": "Gerçekçi bir olasılık anlatılır: If + present simple, will + yalın fiil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-cond-7",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_conditionals",
+  "type": "error",
+  "prompt": "If it will be sunny on Sunday, we'll go to the beach.",
+  "answer": "will",
+  "fix": "is",
+  "hint": "if'li bölüm",
+  "explanation": "If'li bölümde will kullanılmaz; gelecek için present simple gelir: If it is sunny.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-usedto-1",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_used_to",
+  "type": "choice",
+  "prompt": "When I was a child, I ___ in a small village, but now I live in a city.",
+  "answer": "used to live",
+  "options": [
+   "would live",
+   "was used to live",
+   "used to live"
+  ],
+  "hint": "geçmiş durum",
+  "explanation": "Geçmişteki bir durum için used to kullanılır; would yalnızca tekrarlanan eylemler içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-usedto-2",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_used_to",
+  "type": "choice",
+  "prompt": "I've just moved here, so I'm still not used to ___ on the left.",
+  "answer": "driving",
+  "options": [
+   "drove",
+   "driving",
+   "drive"
+  ],
+  "hint": "be used to + -ing",
+  "explanation": "Be used to'daki to bir edattır; arkasından -ing ya da isim gelir: used to driving.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-usedto-3",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_used_to",
+  "type": "choice",
+  "prompt": "Every Sunday my grandmother ___ bake bread for the whole family.",
+  "answer": "would",
+  "options": [
+   "would",
+   "was used to",
+   "got used to"
+  ],
+  "hint": "tekrarlanan eylem",
+  "explanation": "Geçmişte tekrarlanan bir eylemi would + yalın fiil de anlatabilir: every Sunday ... would bake.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-usedto-4",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_used_to",
+  "type": "choice",
+  "prompt": "Did you ___ play the piano when you were a child?",
+  "answer": "use to",
+  "options": [
+   "used to",
+   "using to",
+   "use to"
+  ],
+  "hint": "did + use to",
+  "explanation": "Did'li soruda -d düşer: Did you use to ...? Olumsuz da didn't use to olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-usedto-5",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_used_to",
+  "type": "cloze",
+  "prompt": "It took me a few weeks to get used ___ the noise in the city.",
+  "answer": "to",
+  "hint": "get used ___",
+  "explanation": "Get used to bir şeye alışmak demektir; to bir edattır ve arkasından isim ya da -ing gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-usedto-6",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_used_to",
+  "type": "cloze",
+  "prompt": "She didn't ___ to like spicy food, but now she loves it.",
+  "answer": "use",
+  "hint": "didn't + ___ to",
+  "explanation": "Didn't'tan sonra used değil use gelir: didn't use to like.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-usedto-7",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_used_to",
+  "type": "error",
+  "prompt": "I'm not used to get up early.",
+  "answer": "get",
+  "fix": "getting",
+  "hint": "be used to + -ing",
+  "explanation": "Be used to'dan sonra fiil -ing alır: I'm not used to getting up early.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastperf-1",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_past_perfect",
+  "type": "choice",
+  "prompt": "When we arrived at the station, the train ___ already left.",
+  "answer": "had",
+  "options": [
+   "has",
+   "have",
+   "had"
+  ],
+  "hint": "önce olan iş",
+  "explanation": "Geçmişteki bir andan önce olan iş past perfect ile söylenir: had + V3.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastperf-2",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_past_perfect",
+  "type": "choice",
+  "prompt": "She was upset because she ___ her keys.",
+  "answer": "had lost",
+  "options": [
+   "have lost",
+   "had lost",
+   "has lost"
+  ],
+  "hint": "önce olan neden",
+  "explanation": "Üzülmeden önce olan olay (anahtarları kaybetmek) had + V3 ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastperf-3",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_past_perfect",
+  "type": "choice",
+  "prompt": "I ___ never seen snow before I went to Canada.",
+  "answer": "had",
+  "options": [
+   "had",
+   "have",
+   "was"
+  ],
+  "hint": "had + V3",
+  "explanation": "Never ile past perfect sık gelir: I had never seen. Had bütün kişilerde aynıdır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastperf-4",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_past_perfect",
+  "type": "choice",
+  "prompt": "___ the film already started when you got to the cinema?",
+  "answer": "Had",
+  "options": [
+   "Has",
+   "Did",
+   "Had"
+  ],
+  "hint": "past perfect sorusu",
+  "explanation": "Past perfect sorusunda had özneden önce gelir: Had the film started?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastperf-5",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_past_perfect",
+  "type": "cloze",
+  "prompt": "He felt better after he ___ (sleep) for ten hours.",
+  "answer": "had slept",
+  "alternatives": [
+   "'d slept"
+  ],
+  "hint": "past perfect",
+  "explanation": "Önce biten iş past perfect ile söylenir: had + V3 (slept).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastperf-6",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_past_perfect",
+  "type": "cloze",
+  "prompt": "By the time we arrived, the shop ___ (close).",
+  "answer": "had closed",
+  "alternatives": [
+   "'d closed"
+  ],
+  "hint": "past perfect",
+  "explanation": "By the time ile geçmişteki bir andan önce bitmiş iş anlatılır: had closed.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-pastperf-7",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_past_perfect",
+  "type": "error",
+  "prompt": "He said he has lost his key.",
+  "answer": "has",
+  "fix": "had",
+  "hint": "dolaylı anlatım",
+  "explanation": "Dolaylı anlatımda present perfect, past perfect olur: He said he had lost his key.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-tags-1",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_question_tags",
+  "type": "choice",
+  "prompt": "Your brother lives in London, ___?",
+  "answer": "doesn't he",
+  "options": [
+   "isn't he",
+   "does he",
+   "doesn't he"
+  ],
+  "hint": "olumluya olumsuz",
+  "explanation": "Olumlu cümleye olumsuz tag gelir. Yardımcı fiil yoksa do/does kullanılır; özne he olduğu için doesn't he.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-tags-2",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_question_tags",
+  "type": "choice",
+  "prompt": "You haven't seen my glasses, ___?",
+  "answer": "have you",
+  "options": [
+   "did you",
+   "have you",
+   "haven't you"
+  ],
+  "hint": "olumsuza olumlu",
+  "explanation": "Olumsuz cümleye olumlu tag gelir ve aynı yardımcı fiil tekrar edilir: have you?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-tags-3",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_question_tags",
+  "type": "choice",
+  "prompt": "Let's have lunch together, ___?",
+  "answer": "shall we",
+  "options": [
+   "shall we",
+   "will we",
+   "don't we"
+  ],
+  "hint": "let's",
+  "explanation": "Let's ile başlayan cümlelerin tag'i shall we?'dir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-tags-4",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_question_tags",
+  "type": "choice",
+  "prompt": "She never complains, ___?",
+  "answer": "does she",
+  "options": [
+   "doesn't she",
+   "isn't she",
+   "does she"
+  ],
+  "hint": "never → olumlu tag",
+  "explanation": "Never gibi olumsuz anlamlı sözcükler cümleyi olumsuz yapar; tag olumlu olur: does she?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-tags-5",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_question_tags",
+  "type": "cloze",
+  "prompt": "They were late again, ___ they?",
+  "answer": "weren't",
+  "alternatives": [
+   "were not"
+  ],
+  "hint": "olumlu cümle",
+  "explanation": "Olumlu cümleye olumsuz tag gelir ve aynı yardımcı fiil kullanılır: were ... weren't they?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-tags-6",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_question_tags",
+  "type": "cloze",
+  "prompt": "Open the door, ___ you?",
+  "answer": "will",
+  "alternatives": [
+   "would",
+   "can",
+   "could"
+  ],
+  "hint": "emir cümlesi",
+  "explanation": "Emir cümlelerinin tag'i genellikle will you? olur; would, can, could da kibar seçeneklerdir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-tags-7",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_question_tags",
+  "type": "error",
+  "prompt": "Let's go for a walk, will we?",
+  "answer": "will",
+  "fix": "shall",
+  "hint": "let's",
+  "explanation": "Let's ile başlayan cümlede tag shall we? olur; will we denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-third-1",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_third_conditional",
+  "type": "choice",
+  "prompt": "If we ___ earlier, we wouldn't have missed the flight.",
+  "answer": "had left",
+  "options": [
+   "left",
+   "would have left",
+   "had left"
+  ],
+  "hint": "üçüncü koşul",
+  "explanation": "Üçüncü koşulda if'li bölüm past perfect olur: If + had + V3, would have + V3.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-third-2",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_third_conditional",
+  "type": "choice",
+  "prompt": "He would have won the race if he ___ so tired.",
+  "answer": "hadn't been",
+  "options": [
+   "wouldn't have been",
+   "hadn't been",
+   "wasn't"
+  ],
+  "hint": "geçmişe dair varsayım",
+  "explanation": "Geçmişte olmayan bir durumu varsayarken if'li bölüm past perfect olur: hadn't been.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-third-3",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_third_conditional",
+  "type": "choice",
+  "prompt": "I wish I ___ a bigger flat; this one is so small.",
+  "answer": "had",
+  "options": [
+   "had",
+   "have",
+   "would have"
+  ],
+  "hint": "şimdiki durum",
+  "explanation": "Şimdiki durumdan yakınırken wish + past simple kullanılır: I wish I had.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-third-4",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_third_conditional",
+  "type": "choice",
+  "prompt": "I failed the exam last week. I wish I ___ harder.",
+  "answer": "had studied",
+  "options": [
+   "studied",
+   "would study",
+   "had studied"
+  ],
+  "hint": "geçmiş pişmanlık",
+  "explanation": "Geçmişteki pişmanlık wish + past perfect ile söylenir: I wish I had studied.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-third-5",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_third_conditional",
+  "type": "cloze",
+  "prompt": "If the taxi hadn't been late, I ___ (not / miss) the meeting.",
+  "answer": "wouldn't have missed",
+  "alternatives": [
+   "would not have missed"
+  ],
+  "hint": "would have + V3",
+  "explanation": "Üçüncü koşulun ana cümlesi would have + V3 olur; olumsuzu wouldn't have missed.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-third-6",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_third_conditional",
+  "type": "cloze",
+  "prompt": "I wish you ___ stop shouting at me every morning.",
+  "answer": "would",
+  "alternatives": [
+   "could"
+  ],
+  "hint": "yakınma",
+  "explanation": "Başkasının can sıkıcı davranışından yakınırken wish + would kullanılır: I wish you would stop.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-third-7",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_third_conditional",
+  "type": "error",
+  "prompt": "If she hadn't forgotten her passport, she would had caught the flight.",
+  "answer": "had",
+  "fix": "have",
+  "hint": "would have",
+  "explanation": "Üçüncü koşulun ana cümlesi would have + V3 ile kurulur: would have caught, would had değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-futperf-1",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_perfect",
+  "type": "choice",
+  "prompt": "This time next week, I ___ on a beach in Bodrum.",
+  "answer": "will be lying",
+  "options": [
+   "will have lain",
+   "am lie",
+   "will be lying"
+  ],
+  "hint": "gelecekte belli an",
+  "explanation": "Gelecekte belli bir anda süren iş future continuous ile söylenir: will be + -ing.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-futperf-2",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_perfect",
+  "type": "choice",
+  "prompt": "By the end of this year, she ___ here for ten years.",
+  "answer": "will have worked",
+  "options": [
+   "works",
+   "will have worked",
+   "will be work"
+  ],
+  "hint": "by + gelecek",
+  "explanation": "By ile gelecekteki bir ana kadar tamamlanmış süre future perfect ile söylenir: will have + V3.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-futperf-3",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_perfect",
+  "type": "choice",
+  "prompt": "I can't talk at six tomorrow; I ___ my daughter from school.",
+  "answer": "will be picking up",
+  "options": [
+   "will be picking up",
+   "had picked up",
+   "am pick up"
+  ],
+  "hint": "belli anda süren iş",
+  "explanation": "Gelecekte belli bir saatte süren iş will be + -ing ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-futperf-4",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_perfect",
+  "type": "choice",
+  "prompt": "By the time you read this email, I ___ the country.",
+  "answer": "will have left",
+  "options": [
+   "have left",
+   "left",
+   "will have left"
+  ],
+  "hint": "by the time",
+  "explanation": "By the time ile gelecekteki bir andan önce bitmiş olacak iş future perfect olur: will have left.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-futperf-5",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_perfect",
+  "type": "cloze",
+  "prompt": "By 2030, scientists ___ (find) a cure for many diseases.",
+  "answer": "will have found",
+  "alternatives": [
+   "'ll have found"
+  ],
+  "hint": "future perfect",
+  "explanation": "Gelecekteki bir tarihe kadar bitmiş olacak iş will have + V3 ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-futperf-6",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_perfect",
+  "type": "cloze",
+  "prompt": "Don't call me at eight tonight. I ___ (watch) the match.",
+  "answer": "will be watching",
+  "alternatives": [
+   "'ll be watching"
+  ],
+  "hint": "future continuous",
+  "explanation": "Gelecekte belli bir anda süren iş will be + -ing ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-futperf-7",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_perfect",
+  "type": "error",
+  "prompt": "By Friday we will have finish the project.",
+  "answer": "finish",
+  "fix": "finished",
+  "hint": "will have + V3",
+  "explanation": "Future perfect will have + V3 ile kurulur: will have finished.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-caus-1",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_causative",
+  "type": "choice",
+  "prompt": "I need to get my passport ___ before the trip.",
+  "answer": "renewed",
+  "options": [
+   "renew",
+   "renewing",
+   "renewed"
+  ],
+  "hint": "get + nesne + V3",
+  "explanation": "Ettirgen yapı get/have + nesne + V3 ile kurulur: get my passport renewed.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-caus-2",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_causative",
+  "type": "choice",
+  "prompt": "We are having a new kitchen ___ at the moment.",
+  "answer": "installed",
+  "options": [
+   "to install",
+   "installed",
+   "install"
+  ],
+  "hint": "have + nesne + V3",
+  "explanation": "İşi başkası yapıyorsa nesneden sonra V3 gelir: having a new kitchen installed.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-caus-3",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_causative",
+  "type": "choice",
+  "prompt": "She had her bag ___ on the train yesterday.",
+  "answer": "stolen",
+  "options": [
+   "stolen",
+   "stole",
+   "steal"
+  ],
+  "hint": "istenmeyen olay",
+  "explanation": "Have + nesne + V3, başa gelen kötü olaylar için de kullanılır: had her bag stolen.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-caus-4",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_causative",
+  "type": "choice",
+  "prompt": "I got my cousin ___ my laptop.",
+  "answer": "to fix",
+  "options": [
+   "fix",
+   "fixed",
+   "to fix"
+  ],
+  "hint": "get someone to do",
+  "explanation": "Kişi belirtilirse get someone to do kalıbı kullanılır; fiil to ile gelir: got my cousin to fix.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-caus-5",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_causative",
+  "type": "cloze",
+  "prompt": "He had the documents ___ (translate) by a professional.",
+  "answer": "translated",
+  "hint": "V3",
+  "explanation": "Ettirgen yapıda nesneden sonra V3 gelir; işi yapan kişi by ile belirtilebilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-caus-6",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_causative",
+  "type": "cloze",
+  "prompt": "We ___ our house painted last summer.",
+  "answer": "had",
+  "alternatives": [
+   "got"
+  ],
+  "hint": "have / get",
+  "explanation": "İşi başkasına yaptırmak had/got + nesne + V3 ile söylenir; geçmişte had ya da got olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-caus-7",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_causative",
+  "type": "error",
+  "prompt": "We had the walls paint last week.",
+  "answer": "paint",
+  "fix": "painted",
+  "hint": "V3",
+  "explanation": "Ettirgen yapıda nesneden sonra V3 gelir: had the walls painted.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-plural-1",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_plurals_quantifiers",
+  "type": "choice",
+  "prompt": "There are many ___ in the park today.",
+  "answer": "people",
+  "options": [
+   "peoples",
+   "person",
+   "people"
+  ],
+  "hint": "düzensiz çoğul",
+  "explanation": "Person'ın çoğulu genellikle people olur. Many çoğul isimle gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-plural-2",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_plurals_quantifiers",
+  "type": "choice",
+  "prompt": "We don't have ___ information about the flight.",
+  "answer": "much",
+  "options": [
+   "a few",
+   "much",
+   "many"
+  ],
+  "hint": "sayılamaz isim",
+  "explanation": "Information sayılamaz; olumsuz cümlede much kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-plural-3",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_plurals_quantifiers",
+  "type": "choice",
+  "prompt": "I have ___ friends in this city, so I feel lonely.",
+  "answer": "few",
+  "options": [
+   "few",
+   "a few",
+   "little"
+  ],
+  "hint": "olumsuz ton",
+  "explanation": "Few sayılabilir isimle gelir ve neredeyse hiç olmadığını anlatır; a few olumlu tondur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-plural-4",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_plurals_quantifiers",
+  "type": "choice",
+  "prompt": "I didn't buy ___ bread today.",
+  "answer": "any",
+  "options": [
+   "some",
+   "a",
+   "any"
+  ],
+  "hint": "olumsuz cümle",
+  "explanation": "Olumsuz cümlede any kullanılır. Bread sayılamaz olduğu için a almaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-plural-5",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_plurals_quantifiers",
+  "type": "cloze",
+  "prompt": "She bought two ___ (box) of chocolates.",
+  "answer": "boxes",
+  "hint": "-x → -es",
+  "explanation": "-s, -sh, -ch, -x ile biten isimler -es alır: box → boxes.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-plural-6",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_plurals_quantifiers",
+  "type": "cloze",
+  "prompt": "Could I have ___ little sugar in my coffee, please?",
+  "answer": "a",
+  "hint": "a little",
+  "explanation": "Sayılamayan isimlerle a little (biraz) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-plural-7",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_plurals_quantifiers",
+  "type": "error",
+  "prompt": "I need some advices about my project.",
+  "answer": "advices",
+  "fix": "advice",
+  "hint": "sayılamaz",
+  "explanation": "Advice sayılamaz isimdir; çoğul olmaz: some advice.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-future-1",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_future",
+  "type": "choice",
+  "prompt": "Look at that boy on the bike. He ___ fall!",
+  "answer": "is going to",
+  "options": [
+   "will to",
+   "goes to",
+   "is going to"
+  ],
+  "hint": "kanıta dayalı tahmin",
+  "explanation": "Şimdiki kanıta dayalı tahmin be going to ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-future-2",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_future",
+  "type": "choice",
+  "prompt": "The phone is ringing. I ___ it.",
+  "answer": "will answer",
+  "options": [
+   "have answered",
+   "will answer",
+   "answer"
+  ],
+  "hint": "anlık karar",
+  "explanation": "Konuşma anında verilen karar will ile söylenir: I'll answer it.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-future-3",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_future",
+  "type": "choice",
+  "prompt": "When Ali ___ here, we'll start the meeting.",
+  "answer": "arrives",
+  "options": [
+   "arrives",
+   "will arrive",
+   "is going to arrive"
+  ],
+  "hint": "when sonrası",
+  "explanation": "When gibi zaman bağlaçlarından sonra will gelmez; gelecek için present simple kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-future-4",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_future",
+  "type": "choice",
+  "prompt": "I've arranged it already: I ___ my cousin at the airport at six.",
+  "answer": "am meeting",
+  "options": [
+   "will meeting",
+   "meeting",
+   "am meeting"
+  ],
+  "hint": "önceden ayarlanmış iş",
+  "explanation": "Saati ve yeri belli ayarlanmış iş present continuous ile söylenir: I'm meeting.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-future-5",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_future",
+  "type": "cloze",
+  "prompt": "I promise I ___ tell anyone your secret.",
+  "answer": "won't",
+  "alternatives": [
+   "will not"
+  ],
+  "hint": "söz",
+  "explanation": "Söz verirken will kullanılır; olumsuzu won't (will not) olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-future-6",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_future",
+  "type": "cloze",
+  "prompt": "Call me as soon as you ___ (arrive) at the hotel.",
+  "answer": "arrive",
+  "hint": "as soon as",
+  "explanation": "As soon as gibi zaman bağlaçlarından sonra gelecek için present simple kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b12-future-7",
+  "language": "en",
+  "level": "A2",
+  "topic": "basics_en_future",
+  "type": "error",
+  "prompt": "When I will get home, I'll call you.",
+  "answer": "will",
+  "fix": "get",
+  "hint": "zaman bağlacı",
+  "explanation": "When'den sonra will kullanılmaz; present simple gelir: When I get home.",
+  "source": "Diloloji (özgün)"
+ }
+]

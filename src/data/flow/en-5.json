@@ -1,0 +1,392 @@
+[
+ {
+  "id": "en-bikes",
+  "language": "en",
+  "text": "Many cities now offer shared bikes. {1} short rides cost very little, many people use them to get to work. {2} the system is very popular, the stations are often empty in the morning. The city will add more bikes next year {3} nobody has to wait at an empty station.",
+  "tr": "Birçok şehir artık paylaşımlı bisiklet sunuyor. Kısa yolculuklar çok az tuttuğu için birçok kişi bunları işe gitmek için kullanıyor. Sistem çok popüler olsa da istasyonlar sabahları sık sık boş oluyor. Şehir, kimsenin boş bir istasyonda beklememesi için gelecek yıl daha fazla bisiklet ekleyecek.",
+  "gaps": [
+   {
+    "answer": "Because",
+    "options": [
+     "Because",
+     "Unless",
+     "Until"
+    ],
+    "kind": "Neden",
+    "why": "Kısa yolculukların ucuz olması kullanımın nedenidir: Because. Unless “-mezse”, Until “-ene kadar” anlamı verir."
+   },
+   {
+    "answer": "Although",
+    "options": [
+     "Although",
+     "Unless",
+     "So that"
+    ],
+    "kind": "Taviz",
+    "why": "“Çok popüler olsa da” boş istasyonlar: Although. Unless koşul, So that amaç bildirir."
+   },
+   {
+    "answer": "so that",
+    "options": [
+     "so that",
+     "even though",
+     "unless"
+    ],
+    "kind": "Amaç",
+    "why": "“Kimse beklemesin diye” bisiklet eklenir: so that. Even though ve unless bu amacı anlatmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-restaurant",
+  "language": "en",
+  "text": "I tried the new restaurant last week. The food was excellent. {1}, the service was very slow. {2}, dinner took almost two hours. {3} I ever go back, I will book a table in advance.",
+  "tr": "Geçen hafta yeni restoranı denedim. Yemekler mükemmeldi. Ancak servis çok yavaştı. Bu yüzden akşam yemeği neredeyse iki saat sürdü. Bir gün oraya tekrar gidersem önceden masa ayırtacağım.",
+  "gaps": [
+   {
+    "answer": "However",
+    "options": [
+     "However",
+     "Therefore",
+     "For example"
+    ],
+    "kind": "Zıtlık",
+    "why": "Yemek iyi, servis kötü: karşıtlık, However. Therefore sonuç, For example örnek verir."
+   },
+   {
+    "answer": "As a result",
+    "options": [
+     "As a result",
+     "On the other hand",
+     "For instance"
+    ],
+    "kind": "Sonuç",
+    "why": "Yavaş servisin sonucu uzun yemek süresi: As a result. On the other hand karşıtlık, For instance örnek bildirir."
+   },
+   {
+    "answer": "If",
+    "options": [
+     "If",
+     "Unless",
+     "Although"
+    ],
+    "kind": "Koşul",
+    "why": "“Bir gün gidersem” bir koşuldur: If. Unless ve Although bu cümlede anlam vermez."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-interview",
+  "language": "en",
+  "text": "Preparing for a job interview takes time. {1}, find out about the company. {2}, practise the likely questions out loud. Leave early {3} you are not late.",
+  "tr": "Bir iş görüşmesine hazırlanmak zaman alır. İlk olarak şirket hakkında bilgi edinin. Ayrıca olası soruları yüksek sesle çalışın. Geç kalmamanız için erken yola çıkın.",
+  "gaps": [
+   {
+    "answer": "First of all",
+    "options": [
+     "First of all",
+     "On the contrary",
+     "As a result"
+    ],
+    "kind": "Sıralama",
+    "why": "Listenin ilk adımı: First of all. On the contrary karşıtlık, As a result sonuç bildirir."
+   },
+   {
+    "answer": "In addition",
+    "options": [
+     "In addition",
+     "However",
+     "Therefore"
+    ],
+    "kind": "Ekleme",
+    "why": "İkinci bir öneri eklenir: In addition. However karşıtlık, Therefore sonuç bildirir."
+   },
+   {
+    "answer": "so that",
+    "options": [
+     "so that",
+     "until",
+     "because"
+    ],
+    "kind": "Amaç",
+    "why": "“Geç kalmayasınız diye” erken çıkılır: so that. Until ve because bu amacı anlatmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-concert",
+  "language": "en",
+  "text": "Last Saturday we went to an open-air concert. {1} it rained all afternoon, almost nobody left. The ground was very muddy. {2}, we could hardly walk to the exit. {3}, we took a taxi home because the last train had gone.",
+  "tr": "Geçen cumartesi açık hava konserine gittik. Öğleden sonra boyunca yağmur yağmasına rağmen neredeyse hiç kimse ayrılmadı. Zemin çok çamurluydu. Bu yüzden çıkışa yürümekte zorlandık. Sonunda son tren gittiği için eve taksiyle döndük.",
+  "gaps": [
+   {
+    "answer": "Although",
+    "options": [
+     "Although",
+     "Unless",
+     "So that"
+    ],
+    "kind": "Taviz",
+    "why": "Yağmura rağmen kimse ayrılmadı: Although. Unless koşul, So that amaç bildirir."
+   },
+   {
+    "answer": "As a result",
+    "options": [
+     "As a result",
+     "In contrast",
+     "For instance"
+    ],
+    "kind": "Sonuç",
+    "why": "Çamurlu zeminin sonucu yürüme zorluğu: As a result. In contrast karşıtlık, For instance örnek verir."
+   },
+   {
+    "answer": "In the end",
+    "options": [
+     "In the end",
+     "On the contrary",
+     "Meanwhile"
+    ],
+    "kind": "Sıralama",
+    "why": "Olayların sonunda eve dönüş: In the end. On the contrary karşıtlık, Meanwhile “bu arada” demektir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-doctor",
+  "language": "en",
+  "text": "I had a headache for a week. {1}, I made an appointment. I was worried. {2}, the doctor said it was nothing serious. I will keep resting {3} the pain disappears completely.",
+  "tr": "Bir haftadır başım ağrıyordu. Sonunda randevu aldım. Endişeliydim. Ancak doktor ciddi bir şey olmadığını söyledi. Ağrı tamamen geçene kadar dinlenmeye devam edeceğim.",
+  "gaps": [
+   {
+    "answer": "Eventually",
+    "options": [
+     "Eventually",
+     "For instance",
+     "Likewise"
+    ],
+    "kind": "Sıralama",
+    "why": "Bir hafta beklendikten sonra randevu: Eventually (“sonunda”). For instance örnek, Likewise “aynı şekilde” demektir."
+   },
+   {
+    "answer": "However",
+    "options": [
+     "However",
+     "Therefore",
+     "Moreover"
+    ],
+    "kind": "Zıtlık",
+    "why": "Endişeye karşın iyi haber: However. Therefore sonuç, Moreover ekleme bildirir."
+   },
+   {
+    "answer": "until",
+    "options": [
+     "until",
+     "although",
+     "because"
+    ],
+    "kind": "Zaman",
+    "why": "“Ağrı geçene kadar”: until. Although ve because bu süreyi anlatmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-flat",
+  "language": "en",
+  "text": "Finding a flat in a big city is not easy. {1}, you should start looking early. {2} the flat I saw was small, it was close to the university. {3} I sign the contract, I will read it carefully.",
+  "tr": "Büyük bir şehirde ev bulmak kolay değil. Bu yüzden erken aramaya başlamalısınız. Gördüğüm daire küçük olsa da üniversiteye yakındı. Sözleşmeyi imzalamadan önce dikkatle okuyacağım.",
+  "gaps": [
+   {
+    "answer": "Therefore",
+    "options": [
+     "Therefore",
+     "However",
+     "In contrast"
+    ],
+    "kind": "Sonuç",
+    "why": "Zorluğun sonucu erken başlamak: Therefore. However ve In contrast karşıtlık bildirir."
+   },
+   {
+    "answer": "Although",
+    "options": [
+     "Although",
+     "Because",
+     "Unless"
+    ],
+    "kind": "Taviz",
+    "why": "“Küçük olsa da yakındı”: Although. Because ve Unless bu karşıtlığı anlatmaz."
+   },
+   {
+    "answer": "Before",
+    "options": [
+     "Before",
+     "Although",
+     "Because"
+    ],
+    "kind": "Zaman",
+    "why": "Okuma, imzadan önce yapılır: Before. Although ve Because zaman bildirmez."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-hike",
+  "language": "en",
+  "text": "We are planning a hike in the mountains tomorrow. {1} the rain stops us, we will go. We will leave at six in the morning {2} the climb takes four hours. {3} we reach the top, we will have a picnic.",
+  "tr": "Yarın dağlarda yürüyüşe çıkmayı planlıyoruz. Yağmur bizi durdurmazsa gideceğiz. Sabah altıda çıkacağız, çünkü zirveye çıkış dört saat sürüyor. Zirveye vardığımızda piknik yapacağız.",
+  "gaps": [
+   {
+    "answer": "Unless",
+    "options": [
+     "Unless",
+     "Because",
+     "So that"
+    ],
+    "kind": "Koşul",
+    "why": "“Yağmur durdurmazsa” gideriz: Unless. Because ve So that bu koşulu anlatmaz."
+   },
+   {
+    "answer": "because",
+    "options": [
+     "because",
+     "unless",
+     "so that"
+    ],
+    "kind": "Neden",
+    "why": "Erken çıkmanın nedeni yolun uzunluğu: because. Unless ve so that nedeni anlatmaz."
+   },
+   {
+    "answer": "Once",
+    "options": [
+     "Once",
+     "Unless",
+     "Although"
+    ],
+    "kind": "Zaman",
+    "why": "“Zirveye vardığımızda”: Once. Unless ve Although bu zamanı anlatmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-shopping",
+  "language": "en",
+  "text": "I ordered a jacket online, and it arrived in two days. {1} it was too small. I sent it back the same day {2} the shop offers free returns. {3}, I now have a jacket that fits.",
+  "tr": "İnternetten bir ceket sipariş ettim ve iki günde geldi. Ama bana küçük geldi. Aynı gün geri gönderdim, çünkü mağaza ücretsiz iade sunuyor. Sonunda bana tam olan bir ceketim oldu.",
+  "gaps": [
+   {
+    "answer": "But",
+    "options": [
+     "But",
+     "So",
+     "Or"
+    ],
+    "kind": "Zıtlık",
+    "why": "Hızlı gelmesine karşın küçük çıktı: But. So sonuç, Or seçenek bildirir."
+   },
+   {
+    "answer": "because",
+    "options": [
+     "because",
+     "although",
+     "unless"
+    ],
+    "kind": "Neden",
+    "why": "Geri göndermenin nedeni ücretsiz iade: because. Although ve unless nedeni anlatmaz."
+   },
+   {
+    "answer": "In the end",
+    "options": [
+     "In the end",
+     "On the contrary",
+     "For example"
+    ],
+    "kind": "Sıralama",
+    "why": "Sürecin sonundaki durum: In the end. On the contrary karşıtlık, For example örnek verir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-exchange",
+  "language": "en",
+  "text": "My cousin is spending a year abroad as an exchange student. At first her English was weak. {1}, she now speaks it fluently. {2}, she has made friends from many countries. She says she would recommend the experience {3} you are ready to miss home sometimes.",
+  "tr": "Kuzenim değişim öğrencisi olarak bir yılını yurtdışında geçiriyor. Başta İngilizcesi zayıftı. Yine de şimdi akıcı konuşuyor. Ayrıca birçok ülkeden arkadaş edindi. Ara sıra evi özlemeye hazırsanız bu deneyimi öneriyor.",
+  "gaps": [
+   {
+    "answer": "Nevertheless",
+    "options": [
+     "Nevertheless",
+     "Otherwise",
+     "For example"
+    ],
+    "kind": "Zıtlık",
+    "why": "Başta zayıftı, yine de şimdi akıcı: Nevertheless. Otherwise “yoksa”, For example örnek bildirir."
+   },
+   {
+    "answer": "In addition",
+    "options": [
+     "In addition",
+     "However",
+     "Otherwise"
+    ],
+    "kind": "Ekleme",
+    "why": "Ek bir kazanım sayılıyor: In addition. However karşıtlık, Otherwise “yoksa” demektir."
+   },
+   {
+    "answer": "provided that",
+    "options": [
+     "provided that",
+     "although",
+     "because"
+    ],
+    "kind": "Koşul",
+    "why": "“Özlemeye hazırsanız” bir koşuldur: provided that. Although ve because bu koşulu anlatmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-airport",
+  "language": "en",
+  "text": "Our flight to Madrid was delayed by three hours. {1} we were tired, we stayed calm. {2} the plane finally took off, everyone clapped. {3} the delay, we missed the last bus home.",
+  "tr": "Madrid uçuşumuz üç saat rötar yaptı. Yorgun olsak da sakin kaldık. Uçak sonunda havalandığında herkes alkışladı. Rötar yüzünden eve giden son otobüsü kaçırdık.",
+  "gaps": [
+   {
+    "answer": "Although",
+    "options": [
+     "Although",
+     "Unless",
+     "So that"
+    ],
+    "kind": "Taviz",
+    "why": "Yorgunluğa rağmen sakin kalındı: Although. Unless koşul, So that amaç bildirir."
+   },
+   {
+    "answer": "When",
+    "options": [
+     "When",
+     "Unless",
+     "So that"
+    ],
+    "kind": "Zaman",
+    "why": "“Uçak havalandığında”: When. Unless ve So that zaman bildirmez."
+   },
+   {
+    "answer": "Because of",
+    "options": [
+     "Because of",
+     "In spite of",
+     "Instead of"
+    ],
+    "kind": "Neden",
+    "why": "Otobüsün kaçmasının nedeni rötar: Because of + isim. In spite of ve Instead of nedeni anlatmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]
