@@ -424,12 +424,15 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
               form={result.form}
               formNote={result.formNote}
               alsoFormOf={result.alsoFormOf}
+              baseOf={result.baseOf}
               language={language}
               word={result.exact.word}
               rec={result.exact.rec}
               rank={result.exact.rank}
               own={own}
+              listOnly={!!index.extra?.has(result.exact.word)}
               fix={notes.fixes[result.exact.word]?.t}
+              deeplOn={deeplOn}
               targetListName={targetListName}
               onFix={(meanings) => updateNotes((n) => setFix(n, result.exact!.word, meanings, new Date().toISOString()))}
               onOpenWord={onOpenWord}

@@ -1,5 +1,5 @@
 import { useEffect, useState, type CSSProperties } from 'react'
-import { search, wiktionaryUrl } from '../data/dictionary'
+import { fold, search, wiktionaryUrl } from '../data/dictionary'
 import { loadLexicon, lookUpLexicon, type LexiconEntry } from '../data/lexicon'
 import { loadTenses } from '../data/tenseData'
 import { cleanEtymology, genderOfCode, POS_CODE } from '../data/wordpackBuild'
@@ -16,17 +16,22 @@ import { DictionaryExamples } from './DictionaryExamples'
 import { sentencesNow } from './dictSentences'
 import { PosTag } from './PosTag'
 import { speak, unlockedAudio } from './speech'
+import { MeaningLookupButtons } from './MeaningLookupButtons'
+import { useMeaningLookup } from './useMeaningLookup'
 
 export function WordCard({
   language,
   form,
   formNote,
   alsoFormOf,
+  baseOf,
   word,
   rec,
   rank,
   own,
+  listOnly,
   fix,
+  deeplOn = false,
   targetListName,
   onFix,
   onOpenWord,
@@ -40,8 +45,12 @@ export function WordCard({
   rec: NonNullable<ReturnType<typeof search>['exact']>['rec']
   rank: number
   own?: VocabularyEntry
+  /** The word is not in the pack: `rec` is made from the learner's own word (`own`), so its meaning is the word list's. */
+  listOnly?: boolean
   /** The learner's own meanings of the word, shown in place of the pack's. */
   fix?: string[]
+  /** Whether the server can translate: a word without a Turkish meaning offers DeepL then. */
+  deeplOn?: boolean
   /** Name of the list the word will go to when added. */
   targetListName?: string
   /** Saves the learner's meanings; none goes back to the pack's. */
@@ -53,6 +62,8 @@ export function WordCard({
   formNote?: string
   /** The word this one is also a form of (allons: aller). */
   alsoFormOf?: string
+  /** The word a form without a Turkish meaning belongs to, with that word's meanings (puede: poder). */
+  baseOf?: { word: string; t: string[]; note?: string }
   /** `written`: the word as the add form wants it (a French noun with its article when the gender is known); with what the card knows of it. */
   onAdd: (written: string, meaning: string, extra: { pos?: PartOfSpeech; gender?: Gender; examples?: Example[] }) => void
   onOpenLab?: (verb: string) => void
@@ -70,10 +81,44 @@ export function WordCard({
     }
   }, [word, language, onOpenLab])
 
-  const packMeanings = rec.t ?? []
+  // `rec.t`: the pack's meanings, or the word list's for a word the pack lacks (`listOnly`).
+  const packMeanings = (rec.t ?? []).filter((m) => m.trim())
   const meanings = fix ?? packMeanings
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState('')
+  // A meaning DeepL or the AI found: put in the field for the learner to check, never saved by itself.
+  const [suggested, setSuggested] = useState<'deepl' | 'ai' | null>(null)
+  const lookup = useMeaningLookup(language, word)
+  const edit = (text: string, from: 'deepl' | 'ai' | null = null) => {
+    setDraft(text)
+    setSuggested(from)
+    setEditing(true)
+  }
+  const stopEditing = () => {
+    setEditing(false)
+    setSuggested(null)
+  }
+  const askDeepl = async () => {
+    const out = await lookup.askDeepl()
+    if (out) edit(out, 'deepl')
+  }
+  const askAi = async () => {
+    const found = await lookup.askAi()
+    if (found) edit(found.meanings.join(', '), 'ai')
+  }
+  // DeepL and the AI are offered for a pack word with no Turkish meaning (a word list word is fixed on its own page).
+  const canLookUp = !listOnly && !packMeanings.length && (deeplOn || !!lookup.apiKey)
+  const lookupButtons = canLookUp && <MeaningLookupButtons deeplOn={deeplOn} aiOn={!!lookup.apiKey} busy={lookup.busy} onDeepl={() => void askDeepl()} onAi={() => void askAi()} />
+  // Taking the learner's meaning back: to the pack's, to the word list's, or to none.
+  const resetLabel = !packMeanings.length ? 'Anlamımı kaldır' : listOnly ? 'Kelimelerindeki anlama dön' : 'Paketteki anlama dön'
+  const reset = () => {
+    onFix([])
+    stopEditing()
+  }
+  // The meaning the learner's study card has, when none of it is what the dictionary shows (the card is edited on the word page).
+  const ownMeanings = own ? own.senses.flatMap((x) => [x.gloss, ...(x.altGlosses ?? [])]).map((m) => m.trim()).filter(Boolean) : []
+  const shown = new Set(meanings.map(fold))
+  const ownDiffers = !listOnly && ownMeanings.length > 0 && !ownMeanings.some((m) => shown.has(fold(m)))
   // The pack's part of speech and gender (any language), Lexique's for French words the pack lacks them for.
   const pos = (rec.p && POS_CODE[rec.p]) || lexicon?.pos[0]
   const gender = pos === 'noun' ? (genderOfCode(rec.g) ?? lexicon?.gender) : undefined
@@ -123,13 +168,22 @@ export function WordCard({
               onSubmit={(e) => {
                 e.preventDefault()
                 onFix(parseMeanings(draft))
-                setEditing(false)
+                stopEditing()
               }}
             >
               <label className="small" htmlFor="dict-fix">
                 <strong>Kendi Türkçe anlamın veya hafıza notun</strong>
-                <span className="muted block">Birden çok anlamı virgülle ayırabilirsin. Sözlükte ve kartlarda bu anlam kullanılır.</span>
+                <span className="muted block">
+                  Birden çok anlamı virgülle ayırabilirsin. Sözlükte bu anlam görünür; kelimeyi buradan eklersen kartı da bu anlamla kurulur.
+                  {own && ' Kelimelerindeki kartın anlamını kelime sayfasında düzeltirsin.'}
+                  {fix && ' Kutuyu boşaltıp kaydetmek de anlamını kaldırır.'}
+                </span>
               </label>
+              {suggested && (
+                <p className="small muted">
+                  {suggested === 'deepl' ? 'DeepL' : 'YZ'} önerisi: tek kelimede yanılabilir, kontrol edip kaydet.
+                </p>
+              )}
               <input
                 id="dict-fix"
                 className="input"
@@ -143,55 +197,85 @@ export function WordCard({
                 <button type="submit" className="btn btn-sm">
                   Kaydet
                 </button>
-                <button type="button" className="btn btn-sm btn-quiet" onClick={() => setEditing(false)}>
+                <button type="button" className="btn btn-sm btn-quiet" onClick={stopEditing}>
                   Vazgeç
                 </button>
+                {lookupButtons}
                 {fix && (
-                  <button
-                    type="button"
-                    className="link small"
-                    onClick={() => {
-                      onFix([])
-                      setEditing(false)
-                    }}
-                  >
-                    Paketteki anlama dön
+                  <button type="button" className="link small" onClick={reset}>
+                    {resetLabel}
                   </button>
                 )}
               </div>
+              {lookup.error && <p className="error small">{lookup.error}</p>}
             </form>
           ) : (
             <div className="dict-meaning-box">
               <div className="dict-meaning-head">
-                {meanings.length > 0 ? <p className="gloss">{meanings.join(', ')}</p> : <p className="gloss muted">Türkçe karşılığı pakette yok.</p>}
-                <button
-                  type="button"
-                  className="chip chip-sm dict-fix-btn"
-                  onClick={() => {
-                    setDraft(meanings.join(', '))
-                    setEditing(true)
-                  }}
-                  aria-label={fix ? 'Kendi anlamını düzenle' : 'Kendi anlamını veya notunu ekle'}
-                  title="Bu kelimeye kendi Türkçe karşılığını veya hafıza notunu belirle"
-                >
-                  <PenIcon size={13} className="inline-icon" /> {meanings.length ? 'Anlamı düzelt' : 'Kendi anlamını ekle'}
-                </button>
+                {meanings.length > 0 ? (
+                  <p className="gloss">{meanings.join(', ')}</p>
+                ) : baseOf ? (
+                  <p className="gloss dict-base-of">
+                    <span className="muted" aria-hidden="true">
+                      ←{' '}
+                    </span>
+                    <button type="button" className="link" lang={language} onClick={() => onPick(baseOf.word)} title={`${baseOf.word} kelimesini aç`}>
+                      {baseOf.word}
+                    </button>
+                    : {baseOf.t.slice(0, 4).join(', ')}
+                  </p>
+                ) : (
+                  <p className="gloss muted">{listOnly ? 'Kelimelerinde Türkçe anlamı yok.' : 'Türkçe karşılığı pakette yok.'}</p>
+                )}
+                {listOnly && own && !fix ? (
+                  <button
+                    type="button"
+                    className="chip chip-sm dict-fix-btn"
+                    onClick={() => onOpenWord(own.id)}
+                    title="Bu kelimenin anlamı kelimelerindeki kartından geliyor: kelime sayfasında düzelt"
+                  >
+                    <PenIcon size={13} className="inline-icon" /> Kelime sayfasında düzelt
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="chip chip-sm dict-fix-btn"
+                    onClick={() => edit(meanings.join(', '))}
+                    aria-label={fix ? 'Kendi anlamını düzenle' : 'Kendi anlamını veya notunu ekle'}
+                    title="Bu kelimeye kendi Türkçe karşılığını veya hafıza notunu belirle"
+                  >
+                    <PenIcon size={13} className="inline-icon" /> {meanings.length ? 'Anlamı düzelt' : 'Kendi anlamını ekle'}
+                  </button>
+                )}
               </div>
+              {!meanings.length && baseOf && (
+                <p className="small muted">
+                  “<span lang={language}>{word}</span>”, <span lang={language}>{baseOf.word}</span> kelimesinin bir biçimi{baseOf.note ? ` (${baseOf.note})` : ''}; kendi Türkçe karşılığı pakette yok.
+                </p>
+              )}
+              {!meanings.length && !baseOf && lookupButtons && <div className="row wrap gap-2">{lookupButtons}</div>}
+              {lookup.error && <p className="error small">{lookup.error}</p>}
               {fix && (
                 <div className="dict-fix-meta small">
                   <span className="chip chip-sm dict-custom-badge">✏️ Senin anlamın</span>
-                  {packMeanings.length > 0 && <span className="muted">Pakette: {packMeanings.join(', ')}</span>}
-                  <button
-                    type="button"
-                    className="link small"
-                    onClick={() => {
-                      onFix([])
-                      setEditing(false)
-                    }}
-                  >
-                    Paketteki anlama dön
+                  {packMeanings.length > 0 && (
+                    <span className="muted">
+                      {listOnly ? 'Kelimelerinde' : 'Pakette'}: {packMeanings.join(', ')}
+                    </span>
+                  )}
+                  <button type="button" className="link small" onClick={reset}>
+                    {resetLabel}
                   </button>
                 </div>
+              )}
+              {listOnly && own && !fix && <p className="small muted">Bu kelime sözlük paketinde yok; anlamı kelimelerindeki kartından geliyor.</p>}
+              {ownDiffers && own && (
+                <p className="small">
+                  <span className="muted">Kelimelerindeki kartta:</span> {ownMeanings.join(', ')} ·{' '}
+                  <button type="button" className="link small" onClick={() => onOpenWord(own.id)}>
+                    Kelime sayfasında düzelt
+                  </button>
+                </p>
               )}
               {own?.notes && (
                 <div className="dict-own-note note note-soft small">
@@ -200,7 +284,7 @@ export function WordCard({
               )}
             </div>
           )}
-          {alsoFormOf && (
+          {alsoFormOf && alsoFormOf !== baseOf?.word && (
             <p className="small">
               Aynı zamanda{' '}
               <button type="button" className="link small" lang={language} onClick={() => onPick(alsoFormOf)}>

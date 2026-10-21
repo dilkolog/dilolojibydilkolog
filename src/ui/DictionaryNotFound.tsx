@@ -1,13 +1,11 @@
 import { useState } from 'react'
-import { AiError, enrichWords } from '../ai'
 import { wiktionaryUrl } from '../data/dictionary'
-import { translate } from '../data/translate'
 import { parseMeanings } from '../engine/dictionaryNotes'
-import { normalize } from '../engine/answerCheck'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
-import { useAi } from './aiContext'
-import { BookIcon, CheckIcon, PlusIcon, TagIcon, WandIcon } from './icons'
+import { BookIcon, CheckIcon, PlusIcon, TagIcon } from './icons'
 import { OtherLanguageVerb } from './DictionaryCard'
+import { MeaningLookupButtons } from './MeaningLookupButtons'
+import { useMeaningLookup } from './useMeaningLookup'
 
 export function NotFound({
   language,
@@ -37,11 +35,9 @@ export function NotFound({
   /** Pack words that start like the query: listed below, but the word itself is still missing (it can be saved). */
   hasSimilar?: boolean
 }) {
-  const { apiKey } = useAi()
+  const { apiKey, busy, error, askDeepl: lookUpDeepl, askAi: lookUpAi } = useMeaningLookup(language, word)
   const [ai, setAi] = useState<{ lemma: string; meanings: string[] } | null>(null)
   const [customMeaning, setCustomMeaning] = useState('')
-  const [busy, setBusy] = useState(false)
-  const [error, setError] = useState('')
   // DeepL (through the app's server): offered when it is there; its answer is a guess for one word, so it is shown as such.
   const [deepl, setDeepl] = useState<string | null>(null)
 
@@ -64,33 +60,13 @@ export function NotFound({
   if (hasOthers && !ai && deepl === null) return null
 
   const askDeepl = async () => {
-    setBusy(true)
-    setError('')
-    try {
-      const out = (await translate(word, language, 'tr')).trim()
-      if (!out || normalize(out) === normalize(word)) setError('DeepL bu kelime için bir karşılık bulamadı.')
-      else setDeepl(out)
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Çeviri şu an alınamadı.')
-    } finally {
-      setBusy(false)
-    }
+    const out = await lookUpDeepl()
+    if (out) setDeepl(out)
   }
 
   const askAi = async () => {
-    if (!apiKey) return
-    setBusy(true)
-    setError('')
-    try {
-      const found = await enrichWords(apiKey, language, [{ word }])
-      const info = found.get(word.toLocaleLowerCase()) ?? [...found.values()][0]
-      if (info) setAi({ lemma: info.lemma, meanings: info.meanings })
-      else setError('YZ bu kelimeyi tanımadı.')
-    } catch (e) {
-      setError(e instanceof AiError ? e.message : 'YZ şu an cevap vermedi.')
-    } finally {
-      setBusy(false)
-    }
+    const found = await lookUpAi()
+    if (found) setAi(found)
   }
 
   return (
@@ -185,16 +161,7 @@ export function NotFound({
             </button>
           </form>
           <div className="row gap-xs">
-            {deeplOn && (
-              <button type="button" className="btn btn-sm btn-quiet" onClick={askDeepl} disabled={busy}>
-                <WandIcon size={15} /> {busy ? 'Soruluyor…' : 'DeepL ile çevir'}
-              </button>
-            )}
-            {apiKey && (
-              <button type="button" className="btn btn-sm btn-quiet" onClick={askAi} disabled={busy}>
-                <WandIcon size={15} /> {busy ? 'Soruluyor…' : 'YZ ile anlamını bul'}
-              </button>
-            )}
+            <MeaningLookupButtons deeplOn={deeplOn} aiOn={!!apiKey} busy={busy} onDeepl={() => void askDeepl()} onAi={() => void askAi()} />
             <a className="btn btn-sm btn-quiet" href={wiktionaryUrl(word, language)} target="_blank" rel="noreferrer">
               <BookIcon size={15} /> Vikisözlük'te ara
             </a>
