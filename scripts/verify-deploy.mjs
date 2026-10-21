@@ -57,7 +57,7 @@ const mailStatus = await fetch(`${BASE}/api/push?mail=status`)
 const mailBody = await json(mailStatus)
 check('mail reminders: Resend is configured on the server', mailStatus.ok && mailBody.available === true, mailBody.available ? '' : 'RESEND_API_KEY missing')
 
-const logRes = await fetch(`${BASE}/api/log`, { method: 'POST', body: JSON.stringify({ name: 'smoke-test', message: 'live deploy verification' }) })
+const logRes = await fetch(`${BASE}/api/log`, { method: 'POST', headers: { origin: BASE }, body: JSON.stringify({ name: 'smoke-test', message: 'live deploy verification' }) })
 check('/api/log takes a report', logRes.status === 204, String(logRes.status))
 
 for (const p of ['/hakkinda', '/gizlilik', '/kosullar']) check(`${p} answers 200`, (await fetch(`${BASE}${p}`)).status === 200)
