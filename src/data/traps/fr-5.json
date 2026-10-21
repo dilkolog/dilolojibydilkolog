@@ -1,0 +1,167 @@
+[
+ {
+  "id": "fr-sur",
+  "language": "fr",
+  "lemma": "sur",
+  "looks": "sur",
+  "trap": "sur (şehir surları)",
+  "meaning": "üzerinde",
+  "text": "Le livre est sur la table.",
+  "tr": "Kitap masanın üzerinde.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-bol",
+  "language": "fr",
+  "lemma": "bol",
+  "looks": "bol",
+  "trap": "bol (çok miktarda)",
+  "meaning": "kase",
+  "text": "Il boit son café dans un grand bol.",
+  "tr": "Kahvesini büyük bir kaseden içiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-ton",
+  "language": "fr",
+  "lemma": "ton",
+  "looks": "ton",
+  "trap": "ton (ağırlık birimi; ton balığı)",
+  "meaning": "senin (eril nesne için)",
+  "text": "Où est ton téléphone ?",
+  "tr": "Telefonun nerede?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-tas",
+  "language": "fr",
+  "lemma": "tas",
+  "looks": "tas",
+  "trap": "tas (kâse)",
+  "meaning": "yığın",
+  "text": "Il y a un tas de linge sur le lit.",
+  "tr": "Yatağın üstünde bir yığın çamaşır var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-bu",
+  "language": "fr",
+  "lemma": "bu",
+  "looks": "bu",
+  "trap": "bu (işaret sözcüğü)",
+  "meaning": "içti (boire fiilinin ortacı)",
+  "text": "Il a bu un grand verre d'eau.",
+  "tr": "Büyük bir bardak su içti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-col",
+  "language": "fr",
+  "lemma": "col",
+  "looks": "kol",
+  "trap": "kol (omuz ile el arası)",
+  "meaning": "yaka",
+  "text": "Le col de sa chemise est sale.",
+  "tr": "Gömleğinin yakası kirli.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-dur",
+  "language": "fr",
+  "lemma": "dur",
+  "looks": "dur",
+  "trap": "dur (durmak, emir)",
+  "meaning": "sert, katı",
+  "text": "Ce pain est trop dur.",
+  "tr": "Bu ekmek çok sert.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-bal",
+  "language": "fr",
+  "lemma": "bal",
+  "looks": "bal",
+  "trap": "bal (arı balı)",
+  "meaning": "balo, dans gecesi",
+  "text": "Ils dansent au bal du village.",
+  "tr": "Köyün balosunda dans ediyorlar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-sel",
+  "language": "fr",
+  "lemma": "sel",
+  "looks": "sel",
+  "trap": "sel (taşkın)",
+  "meaning": "tuz",
+  "text": "Passe-moi le sel, s'il te plaît.",
+  "tr": "Tuzu uzat, lütfen.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-sol",
+  "language": "fr",
+  "lemma": "sol",
+  "looks": "sol",
+  "trap": "sol (sağın tersi)",
+  "meaning": "zemin, yer",
+  "text": "Le sol de la cuisine est mouillé.",
+  "tr": "Mutfağın zemini ıslak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-ver",
+  "language": "fr",
+  "lemma": "ver",
+  "looks": "ver",
+  "trap": "ver (vermek, emir)",
+  "meaning": "solucan, kurt",
+  "text": "Il y a un ver dans la pomme.",
+  "tr": "Elmanın içinde bir solucan var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-et",
+  "language": "fr",
+  "lemma": "et",
+  "looks": "et",
+  "trap": "et (kırmızı et)",
+  "meaning": "ve",
+  "text": "Elle aime le thé et le café.",
+  "tr": "Çayı ve kahveyi seviyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-ne",
+  "language": "fr",
+  "lemma": "ne",
+  "looks": "ne",
+  "trap": "ne (soru sözcüğü)",
+  "meaning": "olumsuzluk sözcüğü (ne … pas)",
+  "text": "Je ne parle pas turc.",
+  "tr": "Türkçe konuşmuyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pis",
+  "language": "fr",
+  "lemma": "pis",
+  "looks": "pis",
+  "trap": "pis (kirli)",
+  "meaning": "yazık, boş ver (tant pis)",
+  "text": "Tant pis, on essaiera demain.",
+  "tr": "Boş ver, yarın deneriz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-bel",
+  "language": "fr",
+  "lemma": "bel",
+  "looks": "bel",
+  "trap": "bel (belin orta kısmı)",
+  "meaning": "güzel (sesli harfle başlayan eril sözcük önünde)",
+  "text": "C'est un bel homme.",
+  "tr": "Yakışıklı bir adam.",
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -1,0 +1,1142 @@
+[
+ {
+  "id": "fr-b13-relief-1",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_mise_en_relief",
+  "type": "choice",
+  "prompt": "C'est toi qui ___ gagné le premier prix.",
+  "answer": "as",
+  "options": [
+   "a",
+   "as",
+   "avez",
+   "ont"
+  ],
+  "hint": "toi → as",
+  "explanation": "c'est … qui yapısında fiil vurgulanan zamire uyar: toi ile 2. tekil kişi gelir (tu as). Türkçedeki « kazanan sensin » vurgusu böyle kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-relief-2",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_mise_en_relief",
+  "type": "choice",
+  "prompt": "C'est à la gare ___ nous nous sommes rencontrés.",
+  "answer": "que",
+  "options": [
+   "que",
+   "qui",
+   "dont",
+   "quoi"
+  ],
+  "hint": "yer tümleci → que",
+  "explanation": "Özne dışındaki bir öğe (burada yer: à la gare) vurgulanırken que kullanılır; qui yalnızca özneyi vurgularken gelir. Edat c'est'nin yanında kalır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-relief-3",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_mise_en_relief",
+  "type": "choice",
+  "prompt": "___ me manque le plus, c'est le bruit de la mer.",
+  "answer": "Ce qui",
+  "options": [
+   "Ce qui",
+   "Ce que",
+   "Ce dont",
+   "Celui qui"
+  ],
+  "hint": "manquer fiilinin öznesi",
+  "explanation": "Boşluktaki öğe manquer fiilinin öznesi olduğu için ce qui gelir; asıl bilgi c'est ile sona bırakılır (« en çok özlediğim şey … »).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-relief-4",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_mise_en_relief",
+  "type": "choice",
+  "prompt": "___ j'ai besoin, c'est d'un peu de calme.",
+  "answer": "Ce dont",
+  "options": [
+   "Ce dont",
+   "Ce que",
+   "Ce qui",
+   "Ce à quoi"
+  ],
+  "hint": "avoir besoin de",
+  "explanation": "avoir besoin de fiili de ile kurulduğu için ce dont gelir; c'est'ten sonra da de yinelenir: Ce dont j'ai besoin, c'est de calme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-relief-5",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_mise_en_relief",
+  "type": "choice",
+  "prompt": "C'est vous qui ___ responsables de ce retard.",
+  "answer": "êtes",
+  "options": [
+   "êtes",
+   "est",
+   "sont",
+   "sommes"
+  ],
+  "hint": "vous → êtes",
+  "explanation": "c'est … qui yapısında fiil vurgulanan zamire uyar: vous olduğu için êtes. Fiili c'est'nin 3. tekiline göre çekme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-relief-6",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_mise_en_relief",
+  "type": "cloze",
+  "prompt": "Ce ___ je cherche, c'est un appartement près du centre.",
+  "answer": "que",
+  "hint": "chercher'nin nesnesi",
+  "explanation": "Boşluktaki öğe cherche fiilinin nesnesidir, bu yüzden ce que gelir ve asıl bilgi c'est ile sona saklanır (« aradığım şey … »).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-relief-7",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_mise_en_relief",
+  "type": "cloze",
+  "prompt": "Ce n'est pas lui ___ a cassé la fenêtre, c'est son frère.",
+  "answer": "qui",
+  "hint": "özneyi vurgula",
+  "explanation": "Vurgulanan öğe fiilin öznesidir; özne c'est … qui ile vurgulanır. Olumsuzda da yapı aynı kalır: Ce n'est pas lui qui …",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-relief-8",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_mise_en_relief",
+  "type": "error",
+  "prompt": "C'est de ce problème qui nous devons parler ce soir.",
+  "answer": "qui",
+  "fix": "que",
+  "explanation": "Özne dışındaki öğe (burada de ce problème) c'est … que ile vurgulanır; qui yalnızca özneyi vurgularken gelir. Doğrusu: C'est de ce problème que nous devons parler.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-cause-1",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_cause_consequence",
+  "type": "choice",
+  "prompt": "___ place, nous avons dû refuser plusieurs candidats.",
+  "answer": "Faute de",
+  "options": [
+   "Faute de",
+   "Parce que",
+   "Si bien que",
+   "Grâce à"
+  ],
+  "hint": "eksiklikten doğan neden",
+  "explanation": "faute de + artikelsiz isim, bir eksikliği neden olarak gösterir (faute de place, faute de temps). parce que ve si bien que'den sonra fiilli cümle gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-cause-2",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_cause_consequence",
+  "type": "choice",
+  "prompt": "Il a neigé toute la nuit, ___ les routes sont fermées ce matin.",
+  "answer": "si bien que",
+  "options": [
+   "si bien que",
+   "bien que",
+   "parce que",
+   "faute de"
+  ],
+  "hint": "gerçekleşen sonuç",
+  "explanation": "si bien que + indicatif gerçekleşmiş bir sonucu bildirir (« bu yüzden »). bien que ise taviz bildirir ve subjonctif ister: tek sözcük anlamı tersine çevirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-cause-3",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_cause_consequence",
+  "type": "choice",
+  "prompt": "Elle a ___ travaillé qu'elle est tombée malade.",
+  "answer": "tant",
+  "options": [
+   "tant",
+   "si",
+   "tant de",
+   "trop"
+  ],
+  "hint": "fiille yoğunluk",
+  "explanation": "Fiilin yoğunluğundan doğan sonuçta tant (ya da tellement) + que kullanılır; si sıfat ve zarfla, tant de isimle gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-cause-4",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_cause_consequence",
+  "type": "choice",
+  "prompt": "___ répéter la même histoire, il a fini par la croire vraie.",
+  "answer": "À force de",
+  "options": [
+   "À force de",
+   "Faute de",
+   "Puisque",
+   "Si bien que"
+  ],
+  "hint": "tekrarlanan çaba",
+  "explanation": "à force de + mastar, tekrarlanan bir eylemin sonucunu anlatır (« ede ede »). puisque ve si bien que mastarla kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-cause-5",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_cause_consequence",
+  "type": "choice",
+  "prompt": "— Pourquoi n'es-tu pas venu ? — ___ j'étais malade.",
+  "answer": "Parce que",
+  "options": [
+   "Parce que",
+   "Comme",
+   "Puisque",
+   "Faute de"
+  ],
+  "hint": "« Pourquoi ? » cevabı",
+  "explanation": "« Pourquoi ? » sorusuna yeni bir neden bildiren cevap parce que ile başlar; puisque dinleyenin zaten bildiği nedeni hatırlatır, comme ise cümle başında nedeni verir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-cause-6",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_cause_consequence",
+  "type": "cloze",
+  "prompt": "Il est ___ fatigué qu'il n'arrive plus à se concentrer.",
+  "answer": "si",
+  "alternatives": [
+   "tellement"
+  ],
+  "hint": "sıfatla",
+  "explanation": "Sıfatın yoğunluğundan doğan sonuç si (ya da tellement) + sıfat + que ile kurulur: si fatigué que (« o kadar yorgun ki »).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-cause-7",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_cause_consequence",
+  "type": "cloze",
+  "prompt": "Faute ___ moyens, l'association a dû fermer.",
+  "answer": "de",
+  "hint": "faute + ?",
+  "explanation": "faute de'den sonra artikel gelmez: faute de moyens, faute de temps. « faute des moyens » yanlıştır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-cause-8",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_cause_consequence",
+  "type": "error",
+  "prompt": "Il a si travaillé qu'il a fini par réussir son examen.",
+  "answer": "si",
+  "fix": "tant",
+  "explanation": "Fiilin yoğunluğu için si değil tant (ya da tellement) kullanılır: Il a tant travaillé que … ; si yalnızca sıfat ve zarfla gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-demonstratif-1",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_demonstratifs",
+  "type": "choice",
+  "prompt": "Ma maison est plus grande que ___ de mes parents.",
+  "answer": "celle",
+  "options": [
+   "celle",
+   "celui",
+   "ceux",
+   "cela"
+  ],
+  "hint": "maison dişil",
+  "explanation": "celui de + isim « -ninki » demektir ve yerini tuttuğu isme uyar: maison dişil tekil olduğu için celle de mes parents.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-demonstratif-2",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_demonstratifs",
+  "type": "choice",
+  "prompt": "Les enfants ___ ont fini peuvent sortir.",
+  "answer": "ceux",
+  "options": [
+   "ceux",
+   "celui",
+   "celles",
+   "cela"
+  ],
+  "hint": "eril çoğul + qui",
+  "explanation": "celui qui / ceux qui « … olan » demektir. enfants karma ya da eril çoğul sayıldığı için ceux qui gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-demonstratif-3",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_demonstratifs",
+  "type": "choice",
+  "prompt": "Voici les photos : ___ que j'ai prises à Rome sont les meilleures.",
+  "answer": "celles",
+  "options": [
+   "celles",
+   "ceux",
+   "celle",
+   "cela"
+  ],
+  "hint": "photos dişil çoğul",
+  "explanation": "photos dişil çoğul olduğu için zamir celles olur: celles que j'ai prises. İşaret zamiri tek başına durmaz, qui / que / de ya da -ci / -là ister.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-demonstratif-4",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_demonstratifs",
+  "type": "choice",
+  "prompt": "Elle a refusé mon aide ; ___ m'a vexé.",
+  "answer": "cela",
+  "options": [
+   "cela",
+   "celle",
+   "celui",
+   "ceux"
+  ],
+  "hint": "durumu gösteriyor",
+  "explanation": "Belirli bir isim değil, önceki cümlenin tamamı (bir durum) gösterildiği için değişmeyen cela (konuşmada ça) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-demonstratif-5",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_demonstratifs",
+  "type": "choice",
+  "prompt": "Marie a écrit à sa sœur et à sa mère ; ___-ci lui a répondu aussitôt.",
+  "answer": "celle",
+  "options": [
+   "celle",
+   "celui",
+   "cela",
+   "ceux"
+  ],
+  "hint": "-ci = sonuncusu",
+  "explanation": "-ci en son anılan ismi (sa mère) gösterir; celle-là ise öncekini (sa sœur). Dişil tekil olduğu için celle-ci.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-demonstratif-6",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_demonstratifs",
+  "type": "cloze",
+  "prompt": "Je ne veux pas ce livre, je préfère ___ de Paul.",
+  "answer": "celui",
+  "hint": "livre eril",
+  "explanation": "livre eril tekil olduğu için onun yerini celui tutar: celui de Paul = Paul'ünki. « le de Paul » denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-demonstratif-7",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_demonstratifs",
+  "type": "cloze",
+  "prompt": "Parmi ces robes, ___-ci est trop courte mais celle-là me va bien.",
+  "answer": "celle",
+  "hint": "robe dişil",
+  "explanation": "robe dişil tekil olduğu için celle-ci / celle-là kullanılır; -ci yakındakini, -là uzaktakini gösterir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-demonstratif-8",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_demonstratifs",
+  "type": "error",
+  "prompt": "Cette voiture n'est pas à moi, c'est celui de mon frère.",
+  "answer": "celui",
+  "fix": "celle",
+  "explanation": "İşaret zamiri yerini tuttuğu isme uyar: voiture dişil olduğu için celui değil celle de mon frère olmalıdır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-causatif-1",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_faire_causatif",
+  "type": "choice",
+  "prompt": "Mon frère a ___ construire cette maison par un architecte.",
+  "answer": "fait",
+  "options": [
+   "fait",
+   "fais",
+   "faite",
+   "faire"
+  ],
+  "hint": "fait + mastar",
+  "explanation": "faire + mastar yapısında birleşik zamanda fait hiç uyum yapmaz ve yardımcı fiil avoir'dan sonra ortaç fait gelir: a fait construire.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-causatif-2",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_faire_causatif",
+  "type": "choice",
+  "prompt": "Cette musique me fait ___.",
+  "answer": "pleurer",
+  "options": [
+   "pleurer",
+   "pleuré",
+   "pleure",
+   "pleurant"
+  ],
+  "hint": "faire + mastar",
+  "explanation": "faire'den sonra fiil mastar halinde gelir (ettirgen): me fait pleurer = beni ağlatıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-causatif-3",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_faire_causatif",
+  "type": "choice",
+  "prompt": "Les rideaux sont sales ; je vais ___ nettoyer.",
+  "answer": "les faire",
+  "options": [
+   "les faire",
+   "faire les",
+   "leur faire",
+   "lui faire"
+  ],
+  "hint": "zamir faire'in önünde",
+  "explanation": "Zamir mastarın değil faire'in önüne gelir; rideaux çoğul doğrudan nesne olduğu için les faire nettoyer. Dolaylı nesne (leur) burada yanlıştır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-causatif-4",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_faire_causatif",
+  "type": "choice",
+  "prompt": "Le professeur fait lire ce texte ___ élèves.",
+  "answer": "aux",
+  "options": [
+   "aux",
+   "les",
+   "des",
+   "du"
+  ],
+  "hint": "mastarın nesnesi var",
+  "explanation": "Mastarın kendi nesnesi (ce texte) varsa işi yapan kişi à ile gelir: fait lire ce texte aux élèves → leur fait lire ce texte.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-causatif-5",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_faire_causatif",
+  "type": "choice",
+  "prompt": "Elle s'est fait ___ les cheveux hier.",
+  "answer": "couper",
+  "options": [
+   "couper",
+   "coupé",
+   "coupés",
+   "coupant"
+  ],
+  "hint": "se faire + mastar",
+  "explanation": "se faire + mastar, kişinin kendine yaptırdığı şeyi anlatır; faire'den sonra fiil mastardır: elle s'est fait couper les cheveux (saçını kestirdi).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-causatif-6",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_faire_causatif",
+  "type": "cloze",
+  "prompt": "Ses parents lui ont donné la permission : ils l'ont ___ partir seule en vacances.",
+  "answer": "laissé",
+  "alternatives": [
+   "laissée"
+  ],
+  "hint": "izin vermek",
+  "explanation": "laisser + mastar « izin vermek, engel olmamak » demektir. Bağlamda izin verildiği için faire değil laisser kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-causatif-7",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_faire_causatif",
+  "type": "cloze",
+  "prompt": "Chaque année, nous ___ ramoner la cheminée par un professionnel.",
+  "answer": "faisons",
+  "hint": "yaptırmak, nous",
+  "explanation": "Temizliği başkasına yaptırmak faire + mastarla anlatılır: nous faisons ramoner = temizlettiriyoruz. İşi yapan kişi par ile de verilebilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-causatif-8",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_faire_causatif",
+  "type": "error",
+  "prompt": "La maison que nous avons faite construire il y a dix ans est magnifique.",
+  "answer": "faite",
+  "fix": "fait",
+  "explanation": "faire + mastar yapısında fait hiçbir zaman uyum yapmaz: la maison que nous avons fait construire (« faite » yanlıştır).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-registre-1",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_registres",
+  "type": "choice",
+  "prompt": "Dans un e-mail à un client, on écrit : « ___ de votre confiance. »",
+  "answer": "Nous vous remercions",
+  "options": [
+   "Nous vous remercions",
+   "On te remercie",
+   "Merci à toi",
+   "Je te dis merci"
+  ],
+  "hint": "resmî düzey",
+  "explanation": "Müşteriye yazılan resmî e-postada nous / vous ve tam cümle tercih edilir; on ve tu gündelik (familier) dile aittir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-registre-2",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_registres",
+  "type": "choice",
+  "prompt": "Au lieu de « Quand est-ce que vous partez ? », le registre soutenu dit : « Quand ___ ? »",
+  "answer": "partez-vous",
+  "options": [
+   "partez-vous",
+   "vous partez",
+   "vous partez-vous",
+   "est-ce partez"
+  ],
+  "hint": "özne-fiil ters",
+  "explanation": "Resmî soruda özne ile fiil yer değiştirir (inversion): Quand partez-vous ? Gündelik dilde ise Tu pars quand ? denir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-registre-3",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_registres",
+  "type": "choice",
+  "prompt": "Le mot familier pour « une voiture » est « une ___ ».",
+  "answer": "bagnole",
+  "options": [
+   "bagnole",
+   "voiture",
+   "automobile",
+   "véhicule"
+  ],
+  "hint": "argo",
+  "explanation": "bagnole konuşma dilinde « araba » demektir; voiture standart, automobile ve véhicule ise daha resmî düzeydedir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-registre-4",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_registres",
+  "type": "choice",
+  "prompt": "Entre amis, pour faire une proposition, on dit : « ___ y va ? »",
+  "answer": "On",
+  "options": [
+   "On",
+   "Nous",
+   "Vous",
+   "Je"
+  ],
+  "hint": "gündelik « biz »",
+  "explanation": "Konuşmada « biz » yerine on kullanılır (On y va ?); resmî yazıda aynı anlam nous ile verilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-registre-5",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_registres",
+  "type": "choice",
+  "prompt": "Pour finir un courrier officiel : « Je vous prie d'___, Madame, l'expression de mes salutations distinguées. »",
+  "answer": "agréer",
+  "options": [
+   "agréer",
+   "accepter",
+   "prendre",
+   "donner"
+  ],
+  "hint": "sabit kalıp",
+  "explanation": "Resmî mektubun kapanış kalıbı sabittir: Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-registre-6",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_registres",
+  "type": "cloze",
+  "prompt": "À l'écrit soutenu, on remplace « ça » par « ___ ».",
+  "answer": "cela",
+  "hint": "ça'nın yazı biçimi",
+  "explanation": "Konuşmada ça, yazıda ve resmî dilde cela kullanılır: Cela ne m'étonne pas.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-registre-7",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_registres",
+  "type": "cloze",
+  "prompt": "Avec un inconnu plus âgé ou en entretien, on emploie « ___ » plutôt que « tu ».",
+  "answer": "vous",
+  "hint": "saygı biçimi",
+  "explanation": "Tanımadığın yetişkine, iş ortamında ve yaşça büyüklere vous denir; karşı taraf önermeden tu'ya geçilmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-registre-8",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_registres",
+  "type": "error",
+  "prompt": "Madame la Directrice, je vous remercie pour votre bouquin et vous prie d'agréer mes salutations distinguées.",
+  "answer": "bouquin",
+  "fix": "livre",
+  "explanation": "bouquin gündelik (familier) bir sözcüktür; resmî mektupta livre ya da ouvrage kullanılır. Düzey tutarlı olmalıdır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-ne-expletif-1",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_ne_expletif",
+  "type": "choice",
+  "prompt": "Rentrons avant qu'il ___ pleuve.",
+  "answer": "ne",
+  "options": [
+   "ne",
+   "pas",
+   "plus",
+   "jamais"
+  ],
+  "hint": "olumsuz değil",
+  "explanation": "avant que'den sonra özenli dilde pas'sız bir ne (ne explétif) gelebilir; cümleyi olumsuz yapmaz. pas / plus / jamais anlamı değiştirirdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-ne-expletif-2",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_ne_expletif",
+  "type": "choice",
+  "prompt": "Elle a peur qu'il ___.",
+  "answer": "vienne",
+  "options": [
+   "vienne",
+   "vienne pas",
+   "ne vienne pas",
+   "vient pas"
+  ],
+  "hint": "ne'siz = korkulan şey olması",
+  "explanation": "Elle a peur qu'il ne vienne = « gelmesinden korkuyor »: ne explétif olumsuzluk katmaz, bu yüzden ne'yi atınca da anlam aynı kalır (qu'il vienne). Gelmemesinden korkmak için ne … pas gerekir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-ne-expletif-3",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_ne_expletif",
+  "type": "choice",
+  "prompt": "Je pars sans qu'il le ___.",
+  "answer": "sache",
+  "options": [
+   "sache",
+   "sait",
+   "saurait",
+   "saura"
+  ],
+  "hint": "sans que → subjonctif",
+  "explanation": "sans que subjonctif ister ve ne explétif almaz; boşluk için subjonctif présent biçimi sache doğrudur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-ne-expletif-4",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_ne_expletif",
+  "type": "choice",
+  "prompt": "Nous partirons demain, à moins qu'il ne ___ mauvais.",
+  "answer": "fasse",
+  "options": [
+   "fasse",
+   "fait",
+   "ferait",
+   "fera"
+  ],
+  "hint": "à moins que + subjonctif",
+  "explanation": "à moins que subjonctif ister (« -medikçe ») ve ardından ne explétif gelebilir: à moins qu'il ne fasse mauvais.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-ne-expletif-5",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_ne_expletif",
+  "type": "choice",
+  "prompt": "Je crains qu'il ne ___ déjà trop tard.",
+  "answer": "soit",
+  "options": [
+   "soit",
+   "est",
+   "serait",
+   "sera"
+  ],
+  "hint": "craindre que + subjonctif",
+  "explanation": "craindre que subjonctif ister ve ne explétif taşıyabilir: Je crains qu'il ne soit trop tard (« korkarım çok geç »).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-ne-expletif-6",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_ne_expletif",
+  "type": "cloze",
+  "prompt": "Cette solution est plus simple qu'on ___ l'imagine.",
+  "answer": "ne",
+  "hint": "eşitsizlik karşılaştırması",
+  "explanation": "plus … que karşılaştırmasında que'den sonra özenli dilde pas'sız ne gelebilir: plus simple qu'on ne l'imagine.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-ne-expletif-7",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_ne_expletif",
+  "type": "cloze",
+  "prompt": "Partons avant que la nuit ne ___.",
+  "answer": "tombe",
+  "hint": "la nuit ne … ",
+  "explanation": "avant que + subjonctif; ne explétif olumsuzluk bildirmez. « Gece olmadan yola çıkalım » anlamındaki yapı la nuit tombe ile kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-ne-expletif-8",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_ne_expletif",
+  "type": "error",
+  "prompt": "Nous partirons avant qu'il ne pleut.",
+  "answer": "pleut",
+  "fix": "pleuve",
+  "explanation": "avant que her zaman subjonctif ister; ne explétif bulunsa bile fiil subjonctif olmalıdır: avant qu'il ne pleuve.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-nominalisation-1",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_nominalisation",
+  "type": "choice",
+  "prompt": "Le verbe « décider » donne le nom « la ___ ».",
+  "answer": "décision",
+  "options": [
+   "décision",
+   "décidement",
+   "décidage",
+   "décidée"
+  ],
+  "hint": "-sion",
+  "explanation": "decider'den -sion ekiyle la décision türer; -tion / -sion ile biten isimler dişildir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-nominalisation-2",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_nominalisation",
+  "type": "choice",
+  "prompt": "Le verbe « ouvrir » donne le nom « l'___ ».",
+  "answer": "ouverture",
+  "options": [
+   "ouverture",
+   "ouvrement",
+   "ouvrage",
+   "ouvrition"
+  ],
+  "hint": "-ure",
+  "explanation": "-ure ekiyle ouvrir → l'ouverture türer (dişil). Biçimler çoğunlukla ezberlenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-nominalisation-3",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_nominalisation",
+  "type": "choice",
+  "prompt": "Les prix ont fortement augmenté. → La forte ___ des prix.",
+  "answer": "augmentation",
+  "options": [
+   "augmentation",
+   "augmenter",
+   "augmenté",
+   "augmentement"
+  ],
+  "hint": "-tion",
+  "explanation": "Adlaştırmada fiil isme döner (augmenter → l'augmentation) ve özne de ile arkadan bağlanır: l'augmentation des prix.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-nominalisation-4",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_nominalisation",
+  "type": "choice",
+  "prompt": "L'équipe a découvert ce vaccin. → La découverte de ce vaccin ___ l'équipe.",
+  "answer": "par",
+  "options": [
+   "par",
+   "de",
+   "à",
+   "pour"
+  ],
+  "hint": "yapan = par",
+  "explanation": "Hem nesne hem yapan varsa nesne de ile, işi yapan par ile bağlanır: la découverte du vaccin par l'équipe.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-nominalisation-5",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_nominalisation",
+  "type": "choice",
+  "prompt": "Cet athlète est faible. → On remarque la ___ de cet athlète.",
+  "answer": "faiblesse",
+  "options": [
+   "faiblesse",
+   "faibleté",
+   "faiblité",
+   "faiblance"
+  ],
+  "hint": "sıfat → isim",
+  "explanation": "Sıfattan isim türetiminde faible → la faiblesse (-esse, dişil) gibi ekler ezberlenir; rapide → la rapidité, long → la longueur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-nominalisation-6",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_nominalisation",
+  "type": "cloze",
+  "prompt": "Le train part à huit heures. → Le ___ du train est prévu à huit heures.",
+  "answer": "départ",
+  "hint": "partir → ?",
+  "explanation": "partir fiilinin ismi düzensizdir ve ezberlenir: le départ (eril).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-nominalisation-7",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_nominalisation",
+  "type": "cloze",
+  "prompt": "Il a choisi très vite. → Son ___ a été très rapide.",
+  "answer": "choix",
+  "hint": "choisir → ?",
+  "explanation": "choisir fiilinin ismi düzensizdir: le choix. Adlaştırmada düzensiz isimler ezberlenmelidir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-nominalisation-8",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_nominalisation",
+  "type": "error",
+  "prompt": "La réaction rapidement du gouvernement a surpris tout le monde.",
+  "answer": "rapidement",
+  "fix": "rapide",
+  "explanation": "Adlaştırmada fiili niteleyen zarf, ismi niteleyen sıfata döner: la réaction rapide (« la réaction rapidement » yanlıştır).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-hypothese-1",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_hypothese",
+  "type": "choice",
+  "prompt": "Prends un parapluie au cas où il ___ cet après-midi.",
+  "answer": "pleuvrait",
+  "options": [
+   "pleuvrait",
+   "pleut",
+   "pleuve",
+   "pleuvra"
+  ],
+  "hint": "au cas où + conditionnel",
+  "explanation": "au cas où (« olur da … diye ») conditionnel ister. présent, futur ve subjonctif burada yanlıştır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-hypothese-2",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_hypothese",
+  "type": "choice",
+  "prompt": "À supposer que nous ___ le temps, irions-nous voir cette exposition ?",
+  "answer": "ayons",
+  "options": [
+   "ayons",
+   "avons",
+   "aurions",
+   "aurons"
+  ],
+  "hint": "à supposer que + subjonctif",
+  "explanation": "à supposer que tartışmak için kabul edilen bir varsayım sunar ve subjonctif ister: que nous ayons.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-hypothese-3",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_hypothese",
+  "type": "choice",
+  "prompt": "Quand bien même elle me le ___, je ne le croirais pas.",
+  "answer": "jurerait",
+  "options": [
+   "jurerait",
+   "jure",
+   "jurera",
+   "jurât"
+  ],
+  "hint": "quand bien même + conditionnel",
+  "explanation": "quand bien même (« -se bile ») conditionnel ister, subjonctif almaz; ana cümlede de conditionnel vardır: je ne le croirais pas.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-hypothese-4",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_hypothese",
+  "type": "choice",
+  "prompt": "Pour peu qu'on lui ___ confiance, il se dépasse.",
+  "answer": "fasse",
+  "options": [
+   "fasse",
+   "fait",
+   "fera",
+   "ferait"
+  ],
+  "hint": "pour peu que + subjonctif",
+  "explanation": "pour peu que (« birazcık … -sa ») subjonctif ister: qu'on lui fasse confiance.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-hypothese-5",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_hypothese",
+  "type": "choice",
+  "prompt": "Tu réussiras à condition ___ travailler régulièrement.",
+  "answer": "de",
+  "options": [
+   "de",
+   "que",
+   "à",
+   "pour"
+  ],
+  "hint": "özne aynı → de + mastar",
+  "explanation": "Özne aynıysa à condition de + mastar kullanılır; özne farklıysa à condition que + subjonctif gerekir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-hypothese-6",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_hypothese",
+  "type": "cloze",
+  "prompt": "Tu m'___ prévenu, je serais venu te chercher à la gare.",
+  "answer": "aurais",
+  "hint": "si'siz koşul",
+  "explanation": "Yan yana iki conditionnel si'siz varsayım kurar: Tu m'aurais prévenu, je serais venu (= Si tu m'avais prévenu …).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-hypothese-7",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_hypothese",
+  "type": "cloze",
+  "prompt": "En ___ d'urgence, appelez le 15.",
+  "answer": "cas",
+  "hint": "en cas de",
+  "explanation": "en cas de + artikelsiz isim « … hâlinde » demektir: en cas d'urgence, en cas d'incendie.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-hypothese-8",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_hypothese",
+  "type": "error",
+  "prompt": "Quand bien même il vienne, je ne lui parlerais pas.",
+  "answer": "vienne",
+  "fix": "viendrait",
+  "explanation": "quand bien même subjonctif değil conditionnel ister: quand bien même il viendrait.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-imparfait-1",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_subjonctif_imparfait",
+  "type": "choice",
+  "prompt": "Elle exigeait qu'il lui ___ la vérité. (klasik edebî dil)",
+  "answer": "dît",
+  "options": [
+   "dît",
+   "dira",
+   "dirait",
+   "a dit"
+  ],
+  "hint": "dire, subjonctif imparfait",
+  "explanation": "Ana fiil geçmişteyken klasik dil yan cümlede subjonctif imparfait ister: dire için qu'il dît (şapkalı 3. tekil). Bugünkü dilde qu'il dise denir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-imparfait-2",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_subjonctif_imparfait",
+  "type": "choice",
+  "prompt": "« Qu'elle eût compris » : bu biçim bir ___ örneğidir.",
+  "answer": "subjonctif plus-que-parfait",
+  "options": [
+   "subjonctif plus-que-parfait",
+   "subjonctif imparfait",
+   "subjonctif présent",
+   "conditionnel passé"
+  ],
+  "hint": "eût + ortaç",
+  "explanation": "Yardımcı fiilin subjonctif imparfait biçimi (eût) + ortaç (compris) subjonctif plus-que-parfait'i verir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-imparfait-3",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_subjonctif_imparfait",
+  "type": "choice",
+  "prompt": "Elle regrettait qu'il ne ___ pas venu la veille. (klasik edebî dil)",
+  "answer": "fût",
+  "options": [
+   "fût",
+   "est",
+   "serait",
+   "sera"
+  ],
+  "hint": "être, subjonctif imparfait",
+  "explanation": "Klasik dilde geçmişte olmuş eylem subjonctif plus-que-parfait ile verilir: qu'il ne fût pas venu. Bugün qu'il ne soit pas venu denir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-imparfait-4",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_subjonctif_imparfait",
+  "type": "choice",
+  "prompt": "Je ne veux aucun cadeau, ___ un simple bouquet.",
+  "answer": "fût-ce",
+  "options": [
+   "fût-ce",
+   "étant-ce",
+   "fait-ce",
+   "est-ce"
+  ],
+  "hint": "« … bile olsa »",
+  "explanation": "fût-ce « … bile olsa » anlamında bugün de yaşayan donmuş bir kalıptır (fût-ce un simple bouquet).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-imparfait-5",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_subjonctif_imparfait",
+  "type": "choice",
+  "prompt": "Klasik « qu'il fît » biçiminin bugünkü karşılığı hangisidir? Il fallait qu'il le ___.",
+  "answer": "fasse",
+  "options": [
+   "fasse",
+   "fait",
+   "ferait",
+   "fera"
+  ],
+  "hint": "faire, subjonctif présent",
+  "explanation": "Subjonctif imparfait (qu'il fît) bugün subjonctif présent ile yer değiştirir: Il fallait qu'il le fasse.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-imparfait-6",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_subjonctif_imparfait",
+  "type": "cloze",
+  "prompt": "Je doutais qu'il ___ compris ma question. (avoir, subjonctif imparfait)",
+  "answer": "eût",
+  "hint": "şapkalı biçim",
+  "explanation": "Klasik dilde subjonctif plus-que-parfait, avoir'ın subjonctif imparfait'i (qu'il eût) + ortaçla kurulur: qu'il eût compris.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-imparfait-7",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_subjonctif_imparfait",
+  "type": "cloze",
+  "prompt": "Bien qu'elle ___ épuisée, elle continuait à marcher. (être, subjonctif imparfait)",
+  "answer": "fût",
+  "hint": "şapkalı biçim",
+  "explanation": "bien que subjonctif ister; geçmiş anlatıda klasik dil être için qu'elle fût der. Şapka (fût) passé simple fut'ten ayırır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b13-imparfait-8",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_subjonctif_imparfait",
+  "type": "error",
+  "prompt": "Il fallait qu'elle partait avant l'aube.",
+  "answer": "partait",
+  "fix": "partît",
+  "explanation": "il fallait que subjonctif ister; indicatif imparfait (partait) yanlıştır. Klasik dilde doğrusu qu'elle partît, bugünkü dilde qu'elle parte.",
+  "source": "Diloloji (özgün)"
+ }
+]

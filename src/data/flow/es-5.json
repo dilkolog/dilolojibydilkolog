@@ -1,0 +1,392 @@
+[
+ {
+  "id": "es-bikes",
+  "language": "es",
+  "text": "Muchas ciudades ofrecen ahora bicicletas compartidas. {1} los trayectos cortos cuestan muy poco, mucha gente las usa para ir al trabajo. {2} el sistema es muy popular, las estaciones suelen estar vacías por la mañana. La ciudad añadirá más bicicletas el año próximo {3} nadie tenga que esperar en una estación vacía.",
+  "tr": "Birçok şehir artık paylaşımlı bisiklet sunuyor. Kısa yolculuklar çok az tuttuğu için birçok kişi bunları işe gitmek için kullanıyor. Sistem çok popüler olsa da istasyonlar sabahları sık sık boş oluyor. Şehir, kimsenin boş bir istasyonda beklememesi için gelecek yıl daha fazla bisiklet ekleyecek.",
+  "gaps": [
+   {
+    "answer": "Como",
+    "options": [
+     "Como",
+     "A menos que",
+     "Para que"
+    ],
+    "kind": "Neden",
+    "why": "Ucuz olması nedendir: Como (“madem ki”) + gösterge kipi. A menos que ve Para que subjuntivo ister."
+   },
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Para que",
+     "A menos que"
+    ],
+    "kind": "Taviz",
+    "why": "“Çok popüler olsa da”: Aunque + gösterge kipi (gerçek bir durum). Para que amaç, A menos que koşul bildirir."
+   },
+   {
+    "answer": "para que",
+    "options": [
+     "para que",
+     "porque",
+     "como"
+    ],
+    "kind": "Amaç",
+    "why": "“Kimse beklemesin diye” + subjuntivo: para que. Porque subjuntivo almaz, como burada anlam vermez."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-restaurant",
+  "language": "es",
+  "text": "Probé el restaurante nuevo la semana pasada. La comida estaba excelente. {1}, el servicio fue muy lento. {2}, la cena duró casi dos horas. {3} algún día vuelvo, reservaré mesa con antelación.",
+  "tr": "Geçen hafta yeni restoranı denedim. Yemekler mükemmeldi. Ancak servis çok yavaştı. Bu yüzden akşam yemeği neredeyse iki saat sürdü. Bir gün oraya tekrar gidersem önceden masa ayırtacağım.",
+  "gaps": [
+   {
+    "answer": "Sin embargo",
+    "options": [
+     "Sin embargo",
+     "Por eso",
+     "Por ejemplo"
+    ],
+    "kind": "Zıtlık",
+    "why": "Yemek iyi, servis kötü: karşıtlık, Sin embargo. Por eso sonuç, Por ejemplo örnek bildirir."
+   },
+   {
+    "answer": "Por lo tanto",
+    "options": [
+     "Por lo tanto",
+     "En cambio",
+     "Por ejemplo"
+    ],
+    "kind": "Sonuç",
+    "why": "Yavaş servisin sonucu: Por lo tanto. En cambio karşıtlık, Por ejemplo örnek verir."
+   },
+   {
+    "answer": "Si",
+    "options": [
+     "Si",
+     "Porque",
+     "Aunque"
+    ],
+    "kind": "Koşul",
+    "why": "“Bir gün dönersem” + gösterge kipi: Si vuelvo. Porque ve Aunque burada anlam vermez."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-interview",
+  "language": "es",
+  "text": "Prepararse para una entrevista de trabajo lleva tiempo. {1}, infórmate sobre la empresa. {2}, practica en voz alta las preguntas más probables. Sal temprano {3} no llegues tarde.",
+  "tr": "Bir iş görüşmesine hazırlanmak zaman alır. İlk olarak şirket hakkında bilgi edinin. Ayrıca olası soruları yüksek sesle çalışın. Geç kalmamanız için erken yola çıkın.",
+  "gaps": [
+   {
+    "answer": "En primer lugar",
+    "options": [
+     "En primer lugar",
+     "Al contrario",
+     "Por consiguiente"
+    ],
+    "kind": "Sıralama",
+    "why": "Listenin ilk adımı: En primer lugar. Al contrario karşıtlık, Por consiguiente sonuç bildirir."
+   },
+   {
+    "answer": "Además",
+    "options": [
+     "Además",
+     "Sin embargo",
+     "De lo contrario"
+    ],
+    "kind": "Ekleme",
+    "why": "İkinci bir öneri eklenir: Además. Sin embargo karşıtlık, De lo contrario “yoksa” demektir."
+   },
+   {
+    "answer": "para que",
+    "options": [
+     "para que",
+     "hasta que",
+     "porque"
+    ],
+    "kind": "Amaç",
+    "why": "“Geç kalmayasın diye” + subjuntivo: para que. Hasta que anlamı bozar, porque subjuntivo almaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-concert",
+  "language": "es",
+  "text": "El sábado pasado fuimos a un concierto al aire libre. {1} llovió toda la tarde, casi nadie se fue. El suelo estaba muy embarrado. {2}, apenas podíamos caminar hacia la salida. {3}, volvimos a casa en taxi porque el último tren ya había salido.",
+  "tr": "Geçen cumartesi açık hava konserine gittik. Öğleden sonra boyunca yağmur yağmasına rağmen neredeyse hiç kimse ayrılmadı. Zemin çok çamurluydu. Bu yüzden çıkışa yürümekte zorlandık. Sonunda son tren gittiği için eve taksiyle döndük.",
+  "gaps": [
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Para que",
+     "A menos que"
+    ],
+    "kind": "Taviz",
+    "why": "Yağmura rağmen kimse ayrılmadı: Aunque + gösterge kipi. Para que amaç, A menos que koşul bildirir."
+   },
+   {
+    "answer": "Por eso",
+    "options": [
+     "Por eso",
+     "En cambio",
+     "Por ejemplo"
+    ],
+    "kind": "Sonuç",
+    "why": "Çamurlu zeminin sonucu: Por eso. En cambio karşıtlık, Por ejemplo örnek verir."
+   },
+   {
+    "answer": "Al final",
+    "options": [
+     "Al final",
+     "Al contrario",
+     "Mientras tanto"
+    ],
+    "kind": "Sıralama",
+    "why": "Olayların sonunda eve dönüş: Al final. Al contrario karşıtlık, Mientras tanto “bu arada” demektir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-doctor",
+  "language": "es",
+  "text": "Tenía dolor de cabeza desde hacía una semana. {1}, pedí cita. Estaba preocupado. {2}, el médico dijo que no era nada grave. Seguiré descansando {3} el dolor desaparezca por completo.",
+  "tr": "Bir haftadır başım ağrıyordu. Sonunda randevu aldım. Endişeliydim. Ancak doktor ciddi bir şey olmadığını söyledi. Ağrı tamamen geçene kadar dinlenmeye devam edeceğim.",
+  "gaps": [
+   {
+    "answer": "Al final",
+    "options": [
+     "Al final",
+     "Por ejemplo",
+     "Del mismo modo"
+    ],
+    "kind": "Sıralama",
+    "why": "Bir hafta beklendikten sonra randevu: Al final. Por ejemplo örnek, Del mismo modo “aynı şekilde” demektir."
+   },
+   {
+    "answer": "Sin embargo",
+    "options": [
+     "Sin embargo",
+     "Por eso",
+     "Además"
+    ],
+    "kind": "Zıtlık",
+    "why": "Endişeye karşın iyi haber: Sin embargo. Por eso sonuç, Además ekleme bildirir."
+   },
+   {
+    "answer": "hasta que",
+    "options": [
+     "hasta que",
+     "porque",
+     "mientras que"
+    ],
+    "kind": "Zaman",
+    "why": "“Ağrı geçene kadar” + subjuntivo: hasta que. Porque subjuntivo almaz, mientras que karşıtlık bildirir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-flat",
+  "language": "es",
+  "text": "Encontrar piso en una gran ciudad no es fácil. {1}, conviene empezar a buscar pronto. {2} el piso que vi era pequeño, estaba cerca de la universidad. {3} firme el contrato, lo leeré con atención.",
+  "tr": "Büyük bir şehirde ev bulmak kolay değil. Bu yüzden erken aramaya başlamalısınız. Gördüğüm daire küçük olsa da üniversiteye yakındı. Sözleşmeyi imzalamadan önce dikkatle okuyacağım.",
+  "gaps": [
+   {
+    "answer": "Por eso",
+    "options": [
+     "Por eso",
+     "En cambio",
+     "Al contrario"
+    ],
+    "kind": "Sonuç",
+    "why": "Zorluğun sonucu erken başlamak: Por eso. En cambio ve Al contrario karşıtlık bildirir."
+   },
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Porque",
+     "Para que"
+    ],
+    "kind": "Taviz",
+    "why": "“Küçük olsa da yakındı”: Aunque + gösterge kipi. Porque ve Para que bu karşıtlığı anlatmaz."
+   },
+   {
+    "answer": "Antes de que",
+    "options": [
+     "Antes de que",
+     "Porque",
+     "Ya que"
+    ],
+    "kind": "Zaman",
+    "why": "Okuma, imzadan önce yapılır + subjuntivo: Antes de que. Porque ve Ya que neden bildirir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-hike",
+  "language": "es",
+  "text": "Planeamos una excursión a la montaña mañana. {1} la lluvia nos detenga, iremos. Saldremos a las seis de la mañana {2} la subida dura cuatro horas. {3} lleguemos a la cima, haremos un pícnic.",
+  "tr": "Yarın dağlarda yürüyüşe çıkmayı planlıyoruz. Yağmur bizi durdurmazsa gideceğiz. Sabah altıda çıkacağız, çünkü zirveye çıkış dört saat sürüyor. Zirveye vardığımızda piknik yapacağız.",
+  "gaps": [
+   {
+    "answer": "A menos que",
+    "options": [
+     "A menos que",
+     "Porque",
+     "Para que"
+    ],
+    "kind": "Koşul",
+    "why": "“Yağmur durdurmazsa” + subjuntivo: A menos que. Porque ve Para que bu koşulu anlatmaz."
+   },
+   {
+    "answer": "porque",
+    "options": [
+     "porque",
+     "a menos que",
+     "para que"
+    ],
+    "kind": "Neden",
+    "why": "Erken çıkmanın nedeni yolun uzunluğu: porque + gösterge kipi. A menos que ve para que subjuntivo ister."
+   },
+   {
+    "answer": "Cuando",
+    "options": [
+     "Cuando",
+     "A menos que",
+     "Porque"
+    ],
+    "kind": "Zaman",
+    "why": "“Zirveye vardığımızda” + subjuntivo: Cuando lleguemos. A menos que ve Porque bu zamanı anlatmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-shopping",
+  "language": "es",
+  "text": "Pedí una chaqueta por internet y llegó en dos días. {1} era demasiado pequeña. La devolví el mismo día {2} la tienda ofrece devoluciones gratuitas. {3}, ahora tengo una chaqueta que me queda bien.",
+  "tr": "İnternetten bir ceket sipariş ettim ve iki günde geldi. Ama bana küçük geldi. Aynı gün geri gönderdim, çünkü mağaza ücretsiz iade sunuyor. Sonunda bana tam olan bir ceketim oldu.",
+  "gaps": [
+   {
+    "answer": "Pero",
+    "options": [
+     "Pero",
+     "Así que",
+     "Porque"
+    ],
+    "kind": "Zıtlık",
+    "why": "Hızlı gelmesine karşın küçük çıktı: Pero. Así que sonuç, Porque neden bildirir."
+   },
+   {
+    "answer": "porque",
+    "options": [
+     "porque",
+     "aunque",
+     "a menos que"
+    ],
+    "kind": "Neden",
+    "why": "Geri göndermenin nedeni ücretsiz iade: porque. Aunque ve a menos que nedeni anlatmaz."
+   },
+   {
+    "answer": "Al final",
+    "options": [
+     "Al final",
+     "Al contrario",
+     "Por ejemplo"
+    ],
+    "kind": "Sıralama",
+    "why": "Sürecin sonundaki durum: Al final. Al contrario karşıtlık, Por ejemplo örnek verir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-exchange",
+  "language": "es",
+  "text": "Mi prima pasa un año en el extranjero como estudiante de intercambio. Al principio su inglés era flojo. {1}, ahora lo habla con fluidez. {2}, ha hecho amigos de muchos países. Dice que recomendaría la experiencia {3} estés dispuesto a echar de menos tu casa a veces.",
+  "tr": "Kuzenim değişim öğrencisi olarak bir yılını yurtdışında geçiriyor. Başta İngilizcesi zayıftı. Yine de şimdi akıcı konuşuyor. Ayrıca birçok ülkeden arkadaş edindi. Ara sıra evi özlemeye hazırsanız bu deneyimi öneriyor.",
+  "gaps": [
+   {
+    "answer": "Sin embargo",
+    "options": [
+     "Sin embargo",
+     "De lo contrario",
+     "Por ejemplo"
+    ],
+    "kind": "Zıtlık",
+    "why": "Başta zayıftı, yine de şimdi akıcı: Sin embargo. De lo contrario “yoksa”, Por ejemplo örnek bildirir."
+   },
+   {
+    "answer": "Además",
+    "options": [
+     "Además",
+     "Sin embargo",
+     "De lo contrario"
+    ],
+    "kind": "Ekleme",
+    "why": "Ek bir kazanım sayılıyor: Además. Sin embargo karşıtlık, De lo contrario “yoksa” demektir."
+   },
+   {
+    "answer": "siempre que",
+    "options": [
+     "siempre que",
+     "aunque",
+     "porque"
+    ],
+    "kind": "Koşul",
+    "why": "“Hazırsan” bir koşuldur + subjuntivo: siempre que. Aunque ve porque bu koşulu anlatmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-airport",
+  "language": "es",
+  "text": "Nuestro vuelo a Madrid se retrasó tres horas. {1} estábamos cansados, mantuvimos la calma. {2} el avión por fin despegó, todos aplaudieron. {3} el retraso, perdimos el último autobús a casa.",
+  "tr": "Madrid uçuşumuz üç saat rötar yaptı. Yorgun olsak da sakin kaldık. Uçak sonunda havalandığında herkes alkışladı. Rötar yüzünden eve giden son otobüsü kaçırdık.",
+  "gaps": [
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Para que",
+     "A menos que"
+    ],
+    "kind": "Taviz",
+    "why": "Yorgunluğa rağmen sakin kalındı: Aunque + gösterge kipi. Para que amaç, A menos que koşul bildirir."
+   },
+   {
+    "answer": "Cuando",
+    "options": [
+     "Cuando",
+     "A menos que",
+     "Para que"
+    ],
+    "kind": "Zaman",
+    "why": "“Uçak havalandığında”: Cuando + gösterge kipi. A menos que ve Para que zaman bildirmez."
+   },
+   {
+    "answer": "Debido al",
+    "options": [
+     "Debido al",
+     "Gracias al",
+     "En lugar del"
+    ],
+    "kind": "Neden",
+    "why": "Otobüsün kaçmasının olumsuz nedeni rötar: Debido al. Gracias al olumlu neden, En lugar del “yerine” demektir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]

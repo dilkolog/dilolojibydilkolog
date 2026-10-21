@@ -1,0 +1,392 @@
+[
+ {
+  "id": "fr-bikes",
+  "language": "fr",
+  "text": "Beaucoup de villes proposent désormais des vélos en libre-service. {1} les trajets courts coûtent très peu, beaucoup de gens les utilisent pour aller travailler. {2} le système soit très populaire, les stations sont souvent vides le matin. La ville ajoutera des vélos l'an prochain {3} personne n'ait à attendre devant une station vide.",
+  "tr": "Birçok şehir artık paylaşımlı bisiklet sunuyor. Kısa yolculuklar çok az tuttuğu için birçok kişi bunları işe gitmek için kullanıyor. Sistem çok popüler olsa da istasyonlar sabahları sık sık boş oluyor. Şehir, kimsenin boş bir istasyonda beklememesi için gelecek yıl daha fazla bisiklet ekleyecek.",
+  "gaps": [
+   {
+    "answer": "Comme",
+    "options": [
+     "Comme",
+     "Sauf si",
+     "Si bien que"
+    ],
+    "kind": "Neden",
+    "why": "Ucuz olması kullanımın nedenidir: Comme (“madem ki”). Sauf si “değilse”, Si bien que sonuç bildirir ve başa gelmez."
+   },
+   {
+    "answer": "Bien que",
+    "options": [
+     "Bien que",
+     "Parce que",
+     "Pour que"
+    ],
+    "kind": "Taviz",
+    "why": "“Popüler olsa da” + subjonctif: Bien que. Parce que subjonctif almaz, Pour que amaç bildirir."
+   },
+   {
+    "answer": "pour que",
+    "options": [
+     "pour que",
+     "bien que",
+     "parce que"
+    ],
+    "kind": "Amaç",
+    "why": "“Kimse beklemesin diye” + subjonctif: pour que. Bien que anlamı bozar, parce que subjonctif almaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-restaurant",
+  "language": "fr",
+  "text": "J'ai essayé le nouveau restaurant la semaine dernière. Les plats étaient excellents. {1}, le service était très lent. {2}, le dîner a duré presque deux heures. {3} un jour j'y retourne, je réserverai une table à l'avance.",
+  "tr": "Geçen hafta yeni restoranı denedim. Yemekler mükemmeldi. Ancak servis çok yavaştı. Bu yüzden akşam yemeği neredeyse iki saat sürdü. Bir gün oraya tekrar gidersem önceden masa ayırtacağım.",
+  "gaps": [
+   {
+    "answer": "Pourtant",
+    "options": [
+     "Pourtant",
+     "Par conséquent",
+     "Par exemple"
+    ],
+    "kind": "Zıtlık",
+    "why": "Yemek iyi, servis kötü: karşıtlık, Pourtant. Par conséquent sonuç, Par exemple örnek bildirir."
+   },
+   {
+    "answer": "Par conséquent",
+    "options": [
+     "Par conséquent",
+     "En revanche",
+     "Par exemple"
+    ],
+    "kind": "Sonuç",
+    "why": "Yavaş servisin sonucu: Par conséquent. En revanche karşıtlık, Par exemple örnek verir."
+   },
+   {
+    "answer": "Si",
+    "options": [
+     "Si",
+     "Parce que",
+     "Bien que"
+    ],
+    "kind": "Koşul",
+    "why": "“Bir gün dönersem” + gelecek zaman: Si + présent. Parce que ve Bien que bu anlamı vermez."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-interview",
+  "language": "fr",
+  "text": "Se préparer à un entretien d'embauche demande du temps. {1}, renseignez-vous sur l'entreprise. {2}, entraînez-vous à répondre aux questions à voix haute. Partez tôt {3} vous ne soyez pas en retard.",
+  "tr": "Bir iş görüşmesine hazırlanmak zaman alır. İlk olarak şirket hakkında bilgi edinin. Ayrıca olası soruları yüksek sesle çalışın. Geç kalmamanız için erken yola çıkın.",
+  "gaps": [
+   {
+    "answer": "D'abord",
+    "options": [
+     "D'abord",
+     "Au contraire",
+     "Par conséquent"
+    ],
+    "kind": "Sıralama",
+    "why": "Listenin ilk adımı: D'abord. Au contraire karşıtlık, Par conséquent sonuç bildirir."
+   },
+   {
+    "answer": "De plus",
+    "options": [
+     "De plus",
+     "Pourtant",
+     "Sinon"
+    ],
+    "kind": "Ekleme",
+    "why": "İkinci bir öneri eklenir: De plus. Pourtant karşıtlık, Sinon “yoksa” demektir."
+   },
+   {
+    "answer": "afin que",
+    "options": [
+     "afin que",
+     "parce que",
+     "jusqu'à ce que"
+    ],
+    "kind": "Amaç",
+    "why": "“Geç kalmayasınız diye” + subjonctif: afin que. Parce que subjonctif almaz, jusqu'à ce que anlamı bozar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-concert",
+  "language": "fr",
+  "text": "Samedi dernier, nous sommes allés à un concert en plein air. {1} la pluie soit tombée tout l'après-midi, presque personne n'est parti. Le sol était très boueux. {2}, nous avons eu du mal à rejoindre la sortie. {3}, nous sommes rentrés en taxi parce que le dernier train était parti.",
+  "tr": "Geçen cumartesi açık hava konserine gittik. Öğleden sonra boyunca yağmur yağmasına rağmen neredeyse hiç kimse ayrılmadı. Zemin çok çamurluydu. Bu yüzden çıkışa yürümekte zorlandık. Sonunda son tren gittiği için eve taksiyle döndük.",
+  "gaps": [
+   {
+    "answer": "Bien que",
+    "options": [
+     "Bien que",
+     "Parce que",
+     "Pour que"
+    ],
+    "kind": "Taviz",
+    "why": "Yağmura rağmen kimse ayrılmadı + subjonctif: Bien que. Parce que subjonctif almaz, Pour que amaç bildirir."
+   },
+   {
+    "answer": "Du coup",
+    "options": [
+     "Du coup",
+     "Au contraire",
+     "Par exemple"
+    ],
+    "kind": "Sonuç",
+    "why": "Çamurlu zeminin sonucu: Du coup (“bu yüzden”). Au contraire karşıtlık, Par exemple örnek verir."
+   },
+   {
+    "answer": "Finalement",
+    "options": [
+     "Finalement",
+     "Au contraire",
+     "Pendant ce temps"
+    ],
+    "kind": "Sıralama",
+    "why": "Olayların sonunda eve dönüş: Finalement. Au contraire karşıtlık, Pendant ce temps “bu arada” demektir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-doctor",
+  "language": "fr",
+  "text": "J'avais mal à la tête depuis une semaine. {1}, j'ai pris rendez-vous. J'étais inquiet. {2}, le médecin a dit que ce n'était pas grave. Je continuerai à me reposer {3} la douleur disparaisse complètement.",
+  "tr": "Bir haftadır başım ağrıyordu. Sonunda randevu aldım. Endişeliydim. Ancak doktor ciddi bir şey olmadığını söyledi. Ağrı tamamen geçene kadar dinlenmeye devam edeceğim.",
+  "gaps": [
+   {
+    "answer": "Finalement",
+    "options": [
+     "Finalement",
+     "Par exemple",
+     "De même"
+    ],
+    "kind": "Sıralama",
+    "why": "Bir hafta beklendikten sonra randevu: Finalement. Par exemple örnek, De même “aynı şekilde” demektir."
+   },
+   {
+    "answer": "Pourtant",
+    "options": [
+     "Pourtant",
+     "Par conséquent",
+     "De plus"
+    ],
+    "kind": "Zıtlık",
+    "why": "Endişeye karşın iyi haber: Pourtant. Par conséquent sonuç, De plus ekleme bildirir."
+   },
+   {
+    "answer": "jusqu'à ce que",
+    "options": [
+     "jusqu'à ce que",
+     "bien que",
+     "parce que"
+    ],
+    "kind": "Zaman",
+    "why": "“Ağrı geçene kadar” + subjonctif: jusqu'à ce que. Bien que ve parce que bu süreyi anlatmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-flat",
+  "language": "fr",
+  "text": "Trouver un appartement dans une grande ville n'est pas facile. {1}, il faut commencer à chercher tôt. {2} l'appartement que j'ai visité soit petit, il était proche de l'université. {3} je signe le contrat, je le lirai attentivement.",
+  "tr": "Büyük bir şehirde ev bulmak kolay değil. Bu yüzden erken aramaya başlamalısınız. Gördüğüm daire küçük olsa da üniversiteye yakındı. Sözleşmeyi imzalamadan önce dikkatle okuyacağım.",
+  "gaps": [
+   {
+    "answer": "Par conséquent",
+    "options": [
+     "Par conséquent",
+     "En revanche",
+     "Au contraire"
+    ],
+    "kind": "Sonuç",
+    "why": "Zorluğun sonucu erken başlamak: Par conséquent. En revanche ve Au contraire karşıtlık bildirir."
+   },
+   {
+    "answer": "Bien que",
+    "options": [
+     "Bien que",
+     "Parce que",
+     "Pour que"
+    ],
+    "kind": "Taviz",
+    "why": "“Küçük olsa da yakındı” + subjonctif: Bien que. Parce que ve Pour que bu karşıtlığı anlatmaz."
+   },
+   {
+    "answer": "Avant que",
+    "options": [
+     "Avant que",
+     "Bien que",
+     "Parce que"
+    ],
+    "kind": "Zaman",
+    "why": "Okuma, imzadan önce yapılır + subjonctif: Avant que. Bien que ve Parce que zaman bildirmez."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-hike",
+  "language": "fr",
+  "text": "Nous prévoyons une randonnée en montagne demain. {1} la pluie ne nous arrête, nous irons. Nous partirons à six heures du matin {2} la montée prend quatre heures. {3} nous serons au sommet, nous ferons un pique-nique.",
+  "tr": "Yarın dağlarda yürüyüşe çıkmayı planlıyoruz. Yağmur bizi durdurmazsa gideceğiz. Sabah altıda çıkacağız, çünkü zirveye çıkış dört saat sürüyor. Zirveye vardığımızda piknik yapacağız.",
+  "gaps": [
+   {
+    "answer": "À moins que",
+    "options": [
+     "À moins que",
+     "Parce que",
+     "Pour que"
+    ],
+    "kind": "Koşul",
+    "why": "“Yağmur durdurmazsa” + subjonctif: À moins que. Parce que ve Pour que bu koşulu anlatmaz."
+   },
+   {
+    "answer": "parce que",
+    "options": [
+     "parce que",
+     "à moins que",
+     "pour que"
+    ],
+    "kind": "Neden",
+    "why": "Erken çıkmanın nedeni yolun uzunluğu: parce que + indicatif. À moins que ve pour que subjonctif ister, anlam da uymaz."
+   },
+   {
+    "answer": "Dès que",
+    "options": [
+     "Dès que",
+     "À moins que",
+     "Bien que"
+    ],
+    "kind": "Zaman",
+    "why": "“Zirveye varır varmaz” + futur: Dès que. À moins que ve Bien que bu zamanı anlatmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-shopping",
+  "language": "fr",
+  "text": "J'ai commandé une veste en ligne, et elle est arrivée en deux jours. {1} elle était trop petite. Je l'ai renvoyée le jour même {2} le magasin propose des retours gratuits. {3}, j'ai maintenant une veste à ma taille.",
+  "tr": "İnternetten bir ceket sipariş ettim ve iki günde geldi. Ama bana küçük geldi. Aynı gün geri gönderdim, çünkü mağaza ücretsiz iade sunuyor. Sonunda bana tam olan bir ceketim oldu.",
+  "gaps": [
+   {
+    "answer": "Mais",
+    "options": [
+     "Mais",
+     "Donc",
+     "Car"
+    ],
+    "kind": "Zıtlık",
+    "why": "Hızlı gelmesine karşın küçük çıktı: Mais. Donc sonuç, Car neden bildirir."
+   },
+   {
+    "answer": "parce que",
+    "options": [
+     "parce que",
+     "bien que",
+     "à moins que"
+    ],
+    "kind": "Neden",
+    "why": "Geri göndermenin nedeni ücretsiz iade: parce que. Bien que ve à moins que nedeni anlatmaz."
+   },
+   {
+    "answer": "Finalement",
+    "options": [
+     "Finalement",
+     "Au contraire",
+     "Par exemple"
+    ],
+    "kind": "Sıralama",
+    "why": "Sürecin sonundaki durum: Finalement. Au contraire karşıtlık, Par exemple örnek verir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-exchange",
+  "language": "fr",
+  "text": "Ma cousine passe un an à l'étranger comme étudiante d'échange. Au début, son anglais était faible. {1}, elle le parle maintenant couramment. {2}, elle s'est fait des amis de nombreux pays. Elle dit qu'elle recommanderait cette expérience {3} vous soyez prêt à avoir parfois le mal du pays.",
+  "tr": "Kuzenim değişim öğrencisi olarak bir yılını yurtdışında geçiriyor. Başta İngilizcesi zayıftı. Yine de şimdi akıcı konuşuyor. Ayrıca birçok ülkeden arkadaş edindi. Ara sıra evi özlemeye hazırsanız bu deneyimi öneriyor.",
+  "gaps": [
+   {
+    "answer": "Pourtant",
+    "options": [
+     "Pourtant",
+     "Sinon",
+     "Par exemple"
+    ],
+    "kind": "Zıtlık",
+    "why": "Başta zayıftı, yine de şimdi akıcı: Pourtant. Sinon “yoksa”, Par exemple örnek bildirir."
+   },
+   {
+    "answer": "De plus",
+    "options": [
+     "De plus",
+     "Pourtant",
+     "Sinon"
+    ],
+    "kind": "Ekleme",
+    "why": "Ek bir kazanım sayılıyor: De plus. Pourtant karşıtlık, Sinon “yoksa” demektir."
+   },
+   {
+    "answer": "à condition que",
+    "options": [
+     "à condition que",
+     "bien que",
+     "parce que"
+    ],
+    "kind": "Koşul",
+    "why": "“Hazırsanız” bir koşuldur + subjonctif: à condition que. Bien que ve parce que bu koşulu anlatmaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-airport",
+  "language": "fr",
+  "text": "Notre vol pour Madrid a eu trois heures de retard. {1} nous soyons fatigués, nous sommes restés calmes. {2} l'avion a enfin décollé, tout le monde a applaudi. {3} retard, nous avons raté le dernier bus pour rentrer.",
+  "tr": "Madrid uçuşumuz üç saat rötar yaptı. Yorgun olsak da sakin kaldık. Uçak sonunda havalandığında herkes alkışladı. Rötar yüzünden eve giden son otobüsü kaçırdık.",
+  "gaps": [
+   {
+    "answer": "Bien que",
+    "options": [
+     "Bien que",
+     "Parce que",
+     "Pour que"
+    ],
+    "kind": "Taviz",
+    "why": "Yorgunluğa rağmen sakin kalındı + subjonctif: Bien que. Parce que subjonctif almaz, Pour que amaç bildirir."
+   },
+   {
+    "answer": "Quand",
+    "options": [
+     "Quand",
+     "À moins que",
+     "Pour que"
+    ],
+    "kind": "Zaman",
+    "why": "“Uçak havalandığında”: Quand + passé composé. À moins que ve Pour que subjonctif ister, zaman bildirmez."
+   },
+   {
+    "answer": "À cause du",
+    "options": [
+     "À cause du",
+     "Grâce au",
+     "Au lieu du"
+    ],
+    "kind": "Neden",
+    "why": "Otobüsün kaçmasının olumsuz nedeni rötar: À cause du. Grâce au olumlu neden, Au lieu du “yerine” demektir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]

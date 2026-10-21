@@ -1,0 +1,387 @@
+[
+ {
+  "id": "en-colloc5-01",
+  "language": "en",
+  "lemmas": [
+   "shower"
+  ],
+  "pattern": "take a shower",
+  "example": "I take a shower every morning.",
+  "tr": "Her sabah duş alırım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-02",
+  "language": "en",
+  "lemmas": [
+   "bath"
+  ],
+  "pattern": "take a bath",
+  "example": "She likes to take a bath after work.",
+  "tr": "İşten sonra banyo yapmayı sever.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-03",
+  "language": "en",
+  "lemmas": [
+   "laundry"
+  ],
+  "pattern": "do the laundry",
+  "example": "I do the laundry on Sundays.",
+  "tr": "Çamaşırları pazarları yıkarım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-04",
+  "language": "en",
+  "lemmas": [
+   "seat"
+  ],
+  "pattern": "take a seat",
+  "example": "Please take a seat, the doctor will see you soon.",
+  "tr": "Lütfen oturun, doktor birazdan sizi kabul edecek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-05",
+  "language": "en",
+  "lemmas": [
+   "visit"
+  ],
+  "pattern": "pay a visit",
+  "example": "We paid a visit to our old teacher.",
+  "tr": "Eski öğretmenimizi ziyaret ettik.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-06",
+  "language": "en",
+  "lemmas": [
+   "exception"
+  ],
+  "pattern": "make an exception",
+  "example": "The manager made an exception for us.",
+  "tr": "Müdür bizim için bir istisna yaptı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-07",
+  "language": "en",
+  "lemmas": [
+   "living"
+  ],
+  "pattern": "make a living",
+  "example": "He makes a living as a taxi driver.",
+  "tr": "Taksi şoförlüğü yaparak geçimini sağlıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-08",
+  "language": "en",
+  "lemmas": [
+   "traffic"
+  ],
+  "pattern": "heavy traffic",
+  "example": "I was late because of the heavy traffic.",
+  "tr": "Yoğun trafik yüzünden geç kaldım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-09",
+  "language": "en",
+  "lemmas": [
+   "wish"
+  ],
+  "pattern": "make a wish",
+  "example": "Close your eyes and make a wish.",
+  "tr": "Gözlerini kapat ve bir dilek tut.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-10",
+  "language": "en",
+  "lemmas": [
+   "chance"
+  ],
+  "pattern": "take a chance",
+  "example": "Sometimes you have to take a chance.",
+  "tr": "Bazen risk almak gerekir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-11",
+  "language": "en",
+  "lemmas": [
+   "question"
+  ],
+  "pattern": "ask a question",
+  "example": "Can I ask a question?",
+  "tr": "Bir soru sorabilir miyim?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-12",
+  "language": "en",
+  "lemmas": [
+   "advice"
+  ],
+  "pattern": "give advice",
+  "example": "My grandfather always gives good advice.",
+  "tr": "Dedem hep iyi tavsiyeler verir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-13",
+  "language": "en",
+  "lemmas": [
+   "notes"
+  ],
+  "pattern": "take notes",
+  "example": "Students take notes during the lecture.",
+  "tr": "Öğrenciler ders sırasında not alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-14",
+  "language": "en",
+  "lemmas": [
+   "business"
+  ],
+  "pattern": "do business",
+  "example": "They do business with many countries.",
+  "tr": "Birçok ülkeyle ticaret yapıyorlar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-15",
+  "language": "en",
+  "lemmas": [
+   "money"
+  ],
+  "pattern": "make money",
+  "example": "She makes money by selling handmade bags.",
+  "tr": "El yapımı çanta satarak para kazanıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-16",
+  "language": "en",
+  "lemmas": [
+   "fine"
+  ],
+  "pattern": "pay a fine",
+  "example": "He had to pay a fine for parking there.",
+  "tr": "Orada park ettiği için ceza ödemek zorunda kaldı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-17",
+  "language": "en",
+  "lemmas": [
+   "speech"
+  ],
+  "pattern": "give a speech",
+  "example": "The mayor gave a speech at the opening.",
+  "tr": "Belediye başkanı açılışta bir konuşma yaptı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-18",
+  "language": "en",
+  "lemmas": [
+   "nap"
+  ],
+  "pattern": "take a nap",
+  "example": "I usually take a nap after lunch.",
+  "tr": "Genelde öğle yemeğinden sonra şekerleme yaparım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-19",
+  "language": "en",
+  "lemmas": [
+   "research"
+  ],
+  "pattern": "do research",
+  "example": "We did research on the local market.",
+  "tr": "Yerel pazar üzerine araştırma yaptık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-20",
+  "language": "en",
+  "lemmas": [
+   "complaint"
+  ],
+  "pattern": "make a complaint",
+  "example": "I'd like to make a complaint about the service.",
+  "tr": "Hizmet hakkında şikâyette bulunmak istiyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-21",
+  "language": "en",
+  "lemmas": [
+   "chat"
+  ],
+  "pattern": "have a chat",
+  "example": "Let's have a chat over coffee.",
+  "tr": "Kahve eşliğinde sohbet edelim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-22",
+  "language": "en",
+  "lemmas": [
+   "asleep"
+  ],
+  "pattern": "fall asleep",
+  "example": "I fell asleep on the sofa.",
+  "tr": "Kanepede uyuyakaldım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-23",
+  "language": "en",
+  "lemmas": [
+   "love"
+  ],
+  "pattern": "fall in love",
+  "example": "They fell in love in Paris.",
+  "tr": "Paris'te âşık oldular.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-24",
+  "language": "en",
+  "lemmas": [
+   "ready"
+  ],
+  "pattern": "get ready",
+  "example": "Get ready, we leave in ten minutes.",
+  "tr": "Hazırlan, on dakikaya çıkıyoruz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-25",
+  "language": "en",
+  "lemmas": [
+   "truth"
+  ],
+  "pattern": "tell the truth",
+  "example": "Please tell me the truth.",
+  "tr": "Lütfen bana doğruyu söyle.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-26",
+  "language": "en",
+  "lemmas": [
+   "lie"
+  ],
+  "pattern": "tell a lie",
+  "example": "He told a lie about his age.",
+  "tr": "Yaşı hakkında yalan söyledi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-27",
+  "language": "en",
+  "lemmas": [
+   "role"
+  ],
+  "pattern": "play a role",
+  "example": "Sleep plays an important role in learning.",
+  "tr": "Uyku öğrenmede önemli bir rol oynar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-28",
+  "language": "en",
+  "lemmas": [
+   "agreement"
+  ],
+  "pattern": "reach an agreement",
+  "example": "After long talks, they reached an agreement.",
+  "tr": "Uzun görüşmelerden sonra anlaşmaya vardılar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-29",
+  "language": "en",
+  "lemmas": [
+   "place"
+  ],
+  "pattern": "take place",
+  "example": "The concert takes place on Friday.",
+  "tr": "Konser cuma günü yapılacak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-30",
+  "language": "en",
+  "lemmas": [
+   "harm"
+  ],
+  "pattern": "do harm",
+  "example": "Too much sugar can do harm.",
+  "tr": "Çok fazla şeker zarar verebilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-31",
+  "language": "en",
+  "lemmas": [
+   "voice"
+  ],
+  "pattern": "raise your voice",
+  "example": "There is no need to raise your voice.",
+  "tr": "Sesini yükseltmene gerek yok.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-32",
+  "language": "en",
+  "lemmas": [
+   "compliment"
+  ],
+  "pattern": "pay a compliment",
+  "example": "He paid me a compliment on my English.",
+  "tr": "İngilizcem hakkında bana iltifat etti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-33",
+  "language": "en",
+  "lemmas": [
+   "alarm"
+  ],
+  "pattern": "set an alarm",
+  "example": "I set an alarm for six o'clock.",
+  "tr": "Alarmı altıya kurdum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-34",
+  "language": "en",
+  "lemmas": [
+   "secret"
+  ],
+  "pattern": "keep a secret",
+  "example": "Can you keep a secret?",
+  "tr": "Sır tutabilir misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc5-35",
+  "language": "en",
+  "lemmas": [
+   "dressed"
+  ],
+  "pattern": "get dressed",
+  "example": "Hurry up and get dressed!",
+  "tr": "Acele et ve giyin!",
+  "source": "Diloloji (özgün)"
+ }
+]

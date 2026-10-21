@@ -1,0 +1,1419 @@
+[
+ {
+  "id": "fr-b12-pronoms-1",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_pronoms",
+  "type": "choice",
+  "prompt": "Ce cadeau est pour Lucie ? Oui, c'est pour ___.",
+  "answer": "elle",
+  "options": [
+   "elle",
+   "il",
+   "la",
+   "eux"
+  ],
+  "hint": "edattan sonra vurgulu zamir",
+  "explanation": "Edattan sonra özne zamiri değil vurgulu zamir gelir: pour elle (Lucie dişil). Özne zamirleri (il, je) edattan sonra kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronoms-2",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_pronoms",
+  "type": "choice",
+  "prompt": "— Qui a préparé ce gâteau ? — C'est ___, j'ai passé l'après-midi à le faire.",
+  "answer": "moi",
+  "options": [
+   "moi",
+   "je",
+   "me",
+   "mon"
+  ],
+  "hint": "c'est + vurgulu zamir",
+  "explanation": "« Kim?» sorusuna tek başına verilen cevapta ve c'est'ten sonra vurgulu zamir gelir: C'est moi. Türkçedeki « Benim » gibi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronoms-3",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_pronoms",
+  "type": "choice",
+  "prompt": "Mes parents habitent loin et je ne vis pas chez ___.",
+  "answer": "eux",
+  "options": [
+   "eux",
+   "ils",
+   "leur",
+   "les"
+  ],
+  "hint": "chez + vurgulu zamir",
+  "explanation": "chez, edat olduğu için ardından vurgulu zamir gelir. Ebeveynler (çoğul, eril) için vurgulu zamir eux'dür: chez eux.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronoms-4",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_pronoms",
+  "type": "choice",
+  "prompt": "Paul et Marie sont fatigués : ___ veulent dormir.",
+  "answer": "Ils",
+  "options": [
+   "Ils",
+   "Elles",
+   "Eux",
+   "Il"
+  ],
+  "hint": "karma grup → ils",
+  "explanation": "Fiilin öznesi olan zamir özne zamiridir. Erkek ve kadından oluşan karma grup için ils kullanılır; elles yalnızca hepsi dişil olan grup içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronoms-5",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_pronoms",
+  "type": "cloze",
+  "prompt": "Ton frère n'est pas là ? Je cherche des nouvelles de ___.",
+  "answer": "lui",
+  "hint": "edat de + vurgulu zamir",
+  "explanation": "de edatından sonra vurgulu zamir gelir. Erkek kardeş için vurgulu zamir lui'dür: de lui.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronoms-6",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_pronoms",
+  "type": "cloze",
+  "prompt": "Mes amis ne viennent pas ; je dois partir sans ___.",
+  "answer": "eux",
+  "hint": "sans + vurgulu zamir",
+  "explanation": "Edattan sonra (sans) vurgulu zamir gelir. Eril çoğul « onlar » için eux: sans eux.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronoms-7",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_pronoms",
+  "type": "error",
+  "prompt": "Ma sœur est plus grande que je.",
+  "answer": "je",
+  "fix": "moi",
+  "hint": "que'den sonra ne gelir?",
+  "explanation": "Karşılaştırmada que'den sonra özne zamiri değil vurgulu zamir gelir: plus grande que moi. Je yalnızca fiilin öznesi olarak kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-nombres-1",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_nombres",
+  "type": "choice",
+  "prompt": "(80) Cette salle de cinéma a ___ places.",
+  "answer": "quatre-vingts",
+  "options": [
+   "quatre-vingts",
+   "quatre-vingt",
+   "soixante-vingt",
+   "quatre-vingt-dix"
+  ],
+  "hint": "4 × 20",
+  "explanation": "80 = quatre-vingts (4 × 20). Arkasından başka sayı gelmediği için vingt çoğul -s alır; 81'den sonra s düşer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-nombres-2",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_nombres",
+  "type": "choice",
+  "prompt": "(71) Mon grand-père a ___ ans.",
+  "answer": "soixante et onze",
+  "options": [
+   "soixante et onze",
+   "soixante-onze",
+   "soixante-dix-un",
+   "quatre-vingt-onze"
+  ],
+  "hint": "60 + 11",
+  "explanation": "71 = 60 + 11: soixante et onze. 70'ten 79'a kadar sayılar soixante üzerine kurulur; 71'de de 21, 31'deki gibi et girer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-nombres-3",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_nombres",
+  "type": "choice",
+  "prompt": "Le train part à 8 h 15 : il part à huit heures ___.",
+  "answer": "et quart",
+  "options": [
+   "et quart",
+   "moins le quart",
+   "et demie",
+   "moins dix"
+  ],
+  "hint": "çeyrek geçe",
+  "explanation": "Saatin üzerine çeyrek eklenince et quart denir: huit heures et quart (8:15). moins le quart çeyrek kalayı gösterir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-nombres-4",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_nombres",
+  "type": "choice",
+  "prompt": "Il est 6 h 50, c'est-à-dire sept heures ___.",
+  "answer": "moins dix",
+  "options": [
+   "moins dix",
+   "et dix",
+   "moins le quart",
+   "et demie"
+  ],
+  "hint": "on kala",
+  "explanation": "Saate on dakika kala, bir sonraki saatten moins dix ile söylenir: sept heures moins dix. Türkçedeki « yediye on var »a denk gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-nombres-5",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_nombres",
+  "type": "cloze",
+  "prompt": "Le jour de l'an, c'est le ___ janvier. (1)",
+  "answer": "premier",
+  "hint": "ayın ilk günü",
+  "explanation": "Ayın ilk günü için sıra sayısı kullanılır: le premier janvier. Diğer günlerde düz sayı gelir: le deux janvier.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-nombres-6",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_nombres",
+  "type": "cloze",
+  "prompt": "Le livre coûte 95 euros : quatre-vingt-___ euros.",
+  "answer": "quinze",
+  "hint": "80 + 15",
+  "explanation": "95 = 4 × 20 + 15: quatre-vingt-quinze. 90'lı sayılar quatre-vingt-dix ile başlar, 95'te 15 eklenir (cinq değil quinze).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-nombres-7",
+  "language": "fr",
+  "level": "A1",
+  "topic": "basics_fr_nombres",
+  "type": "error",
+  "prompt": "Ma grand-mère a quatre-vingts-un ans.",
+  "answer": "vingts",
+  "fix": "vingt",
+  "hint": "81 için s düşer",
+  "explanation": "81'de vingt, arkasından sayı geldiği için -s almaz: quatre-vingt-un. -s yalnızca 80'de (quatre-vingts) ve sayı gelmediğinde yazılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronominaux-1",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_pronominaux",
+  "type": "choice",
+  "prompt": "Demain, je vais ___ réveiller à six heures.",
+  "answer": "me",
+  "options": [
+   "me",
+   "se",
+   "te",
+   "nous"
+  ],
+  "hint": "je → me",
+  "explanation": "Dönüşlü fiil mastarda da özneye uyar: je vais me réveiller. se yalnızca il, elle, on, ils, elles için gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronominaux-2",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_pronominaux",
+  "type": "choice",
+  "prompt": "Hier, elle ___ promenée au bord de la mer.",
+  "answer": "s'est",
+  "options": [
+   "s'est",
+   "a",
+   "est",
+   "s'a"
+  ],
+  "hint": "être ile",
+  "explanation": "Dönüşlü fiiller passé composé'de her zaman être alır ve zamiri korur: elle s'est promenée. avoir kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronominaux-3",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_pronominaux",
+  "type": "choice",
+  "prompt": "Les enfants, ___ ! Le bus arrive. (se dépêcher, vous)",
+  "answer": "Dépêchez-vous",
+  "options": [
+   "Dépêchez-vous",
+   "Vous dépêchez",
+   "Dépêchez-nous",
+   "Dépêchez-te"
+  ],
+  "hint": "olumlu emir: zamir arkaya",
+  "explanation": "Olumlu emirde dönüşlü zamir fiilin arkasına kısa çizgiyle gelir ve vous kişisinde vous olarak kalır: Dépêchez-vous !",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronominaux-4",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_pronominaux",
+  "type": "choice",
+  "prompt": "Ne ___ pas, tout va bien ! (s'inquiéter, tu)",
+  "answer": "t'inquiète",
+  "options": [
+   "t'inquiète",
+   "te inquiète",
+   "inquiète-toi",
+   "t'inquiètes"
+  ],
+  "hint": "olumsuz emir",
+  "explanation": "Olumsuz emirde zamir fiilin önünde kalır ve me/te/se sesli harften önce elide olur. -er fiillerinde tu emrinin -s'si düşer: ne t'inquiète pas.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronominaux-5",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_pronominaux",
+  "type": "cloze",
+  "prompt": "Le dimanche, vous ___ (se promener) dans le parc.",
+  "answer": "vous promenez",
+  "hint": "dönüşlü zamiri unutma",
+  "explanation": "Dönüşlü fiil çekilirken zamir de çekime dahildir: vous vous promenez. Zamir özneye uyar (vous → vous).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronominaux-6",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_pronominaux",
+  "type": "cloze",
+  "prompt": "Ce matin, elle s'est ___ (se lever) à neuf heures.",
+  "answer": "levée",
+  "hint": "être + dişil özne",
+  "explanation": "Passé composé'de dönüşlü zamir doğrudan nesne olduğunda ortaç özneye uyar: elle s'est levée (dişil).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pronominaux-7",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_pronominaux",
+  "type": "error",
+  "prompt": "Je suis fatigué, alors je vais te coucher tôt ce soir.",
+  "answer": "te",
+  "fix": "me",
+  "hint": "mastarda özne: je",
+  "explanation": "Mastarda da dönüşlü zamir özneye uyar: je vais me coucher. te yalnızca tu özneyle kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-comparaison-1",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_comparaison",
+  "type": "choice",
+  "prompt": "Paris compte deux millions d'habitants, Lyon cinq cent mille : Paris est beaucoup ___ peuplé que Lyon.",
+  "answer": "plus",
+  "options": [
+   "plus",
+   "aussi",
+   "le plus",
+   "très"
+  ],
+  "hint": "daha fazla",
+  "explanation": "Üstünlük karşılaştırması plus + sıfat + que ile kurulur: plus peuplé que Lyon. aussi eşitlik, le plus ise en üstünlüktür.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-comparaison-2",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_comparaison",
+  "type": "choice",
+  "prompt": "Ce restaurant est bon, mais l'autre est encore ___.",
+  "answer": "meilleur",
+  "options": [
+   "meilleur",
+   "mieux",
+   "plus bon",
+   "meilleure"
+  ],
+  "hint": "bon → meilleur",
+  "explanation": "bon sıfatının karşılaştırması düzensizdir: meilleur. plus bon denmez; restaurant eril olduğu için meilleur (meilleure değil).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-comparaison-3",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_comparaison",
+  "type": "choice",
+  "prompt": "Léa danse beaucoup ___ que sa sœur ; elle a gagné le concours.",
+  "answer": "mieux",
+  "options": [
+   "mieux",
+   "meilleur",
+   "plus bon",
+   "meilleure"
+  ],
+  "hint": "fiil → zarf: mieux",
+  "explanation": "Fiili niteleyen bien zarfının karşılaştırması mieux'dür. meilleur yalnızca bon sıfatının karşılaştırmasıdır ve isimle kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-comparaison-4",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_comparaison",
+  "type": "choice",
+  "prompt": "C'est le restaurant ___ cher de la ville.",
+  "answer": "le plus",
+  "options": [
+   "le plus",
+   "plus",
+   "la plus",
+   "les plus"
+  ],
+  "hint": "en üstünlük: artikel",
+  "explanation": "En üstünlükte artikel isme uyar ve sıfatın önünde tekrar edilir: le restaurant le plus cher. Artikelsiz plus cher yalnızca karşılaştırmadır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-comparaison-5",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_comparaison",
+  "type": "cloze",
+  "prompt": "Cette semaine, j'ai autant ___ travail que toi.",
+  "answer": "de",
+  "hint": "autant de + isim",
+  "explanation": "İsimlerde eşitlik autant de + isim + que ile kurulur: autant de travail que toi. Burada isimden önce de gelir, du değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-comparaison-6",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_comparaison",
+  "type": "cloze",
+  "prompt": "Tu cours plus vite que ___ : je ne peux pas te suivre. (je)",
+  "answer": "moi",
+  "hint": "que + vurgulu zamir",
+  "explanation": "Karşılaştırmada que'den sonra vurgulu zamir gelir: plus vite que moi. je yalnızca fiilin öznesi olarak kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-comparaison-7",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_comparaison",
+  "type": "error",
+  "prompt": "Le train est plus rapide de la voiture.",
+  "answer": "de",
+  "fix": "que",
+  "hint": "karşılaştırma bağlacı",
+  "explanation": "Karşılaştırılan şey que ile bağlanır: plus rapide que la voiture. Türkçedeki « -den » bu yüzden de değil que olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-imperatif-1",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_imperatif",
+  "type": "choice",
+  "prompt": "Il fait froid : ___ ton manteau ! (mettre, tu)",
+  "answer": "Mets",
+  "options": [
+   "Mets",
+   "Mette",
+   "Mettes",
+   "Mettez"
+  ],
+  "hint": "-re fiilinde s kalır",
+  "explanation": "Emir kipi tu için présent biçiminden özne atılarak kurulur. Yalnızca -er fiillerinde -s düşer; mettre -re fiili olduğu için Mets kalır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-imperatif-2",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_imperatif",
+  "type": "choice",
+  "prompt": "On a faim ? ___ au restaurant ! (aller, nous)",
+  "answer": "Allons",
+  "options": [
+   "Allons",
+   "Allez",
+   "Va",
+   "Allons-nous"
+  ],
+  "hint": "nous emri: -elim",
+  "explanation": "nous emri « -elim » demektir ve özne zamiri söylenmez: Allons au restaurant ! Allez vous için, Va ise tu için olurdu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-imperatif-3",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_imperatif",
+  "type": "choice",
+  "prompt": "Des pommes ? ___-en, elles sont délicieuses ! (manger, tu)",
+  "answer": "Manges",
+  "options": [
+   "Manges",
+   "Mange",
+   "Mangez",
+   "Mangeons"
+  ],
+  "hint": "y/en önünde s geri gelir",
+  "explanation": "-er fiillerinde tu emrinin -s'si düşer ama y ve en'den önce konuşma kolaylığı için geri gelir: Manges-en !",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-imperatif-4",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_imperatif",
+  "type": "choice",
+  "prompt": "Tu as ma clé ? ___ , je suis pressé !",
+  "answer": "Rends-la-moi",
+  "options": [
+   "Rends-la-moi",
+   "Rends-moi-la",
+   "Me la rends",
+   "Rends-la-me"
+  ],
+  "hint": "doğrudan + dolaylı",
+  "explanation": "Olumlu emirde zamirler fiilden sonra kısa çizgiyle gelir: önce doğrudan nesne (la), sonra moi. Rends-la-moi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-imperatif-5",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_imperatif",
+  "type": "cloze",
+  "prompt": "___ gentil avec ta sœur ! (être, tu)",
+  "answer": "Sois",
+  "hint": "düzensiz emir",
+  "explanation": "être'nin emri düzensizdir: tu için sois, nous için soyons, vous için soyez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-imperatif-6",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_imperatif",
+  "type": "cloze",
+  "prompt": "Ne me ___ pas comme ça ! (regarder, tu)",
+  "answer": "regarde",
+  "hint": "-er fiili: s düşer",
+  "explanation": "Olumsuz emirde ne fiili sarar; -er fiilinin tu emrinde -s düşer: Ne me regarde pas ! Zamir fiilin önünde kalır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-imperatif-7",
+  "language": "fr",
+  "level": "A2",
+  "topic": "basics_fr_imperatif",
+  "type": "error",
+  "prompt": "Mange tes légumes et ne manges pas trop de bonbons !",
+  "answer": "manges",
+  "fix": "mange",
+  "hint": "-er fiili: s yok",
+  "explanation": "-er fiillerinde tu emri -s almaz; bu olumsuzda da böyledir: ne mange pas. -s yalnızca y ve en'den önce geri gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pqp-1",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_plus_que_parfait",
+  "type": "choice",
+  "prompt": "Nous ne savions pas qu'il ___ déménagé.",
+  "answer": "avait",
+  "options": [
+   "avait",
+   "était",
+   "aurait",
+   "sera"
+  ],
+  "hint": "avoir imparfait",
+  "explanation": "Geçmişte bilinen andan önce olmuş eylem plus-que-parfait ile verilir. déménager avoir alır: il avait déménagé.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pqp-2",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_plus_que_parfait",
+  "type": "choice",
+  "prompt": "Hier, j'ai appris que mes amis s'___ mariés en secret deux ans plus tôt.",
+  "answer": "étaient",
+  "options": [
+   "étaient",
+   "avaient",
+   "seront",
+   "seraient"
+  ],
+  "hint": "dönüşlü → être",
+  "explanation": "Dönüşlü fiiller être alır; plus-que-parfait'de être'nin imparfait'i gelir: ils s'étaient mariés. « Deux ans plus tôt » önceliği gösterir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pqp-3",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_plus_que_parfait",
+  "type": "choice",
+  "prompt": "Si tu m'___ prévenu, je serais venu te chercher.",
+  "answer": "avais",
+  "options": [
+   "avais",
+   "aurais",
+   "as",
+   "avait"
+  ],
+  "hint": "si + plus-que-parfait",
+  "explanation": "Gerçekleşmemiş geçmiş şartta si'den sonra plus-que-parfait gelir, conditionnel ana cümlede kalır: si tu m'avais prévenu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pqp-4",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_plus_que_parfait",
+  "type": "choice",
+  "prompt": "Avant ce voyage, je n'___ jamais pris l'avion.",
+  "answer": "avais",
+  "options": [
+   "avais",
+   "aurai",
+   "étais",
+   "serais"
+  ],
+  "hint": "jamais + plus-que-parfait",
+  "explanation": "Geçmişteki bir andan (yolculuk) önce hiç olmamış eylem plus-que-parfait ile söylenir: je n'avais jamais pris. prendre avoir alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pqp-5",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_plus_que_parfait",
+  "type": "cloze",
+  "prompt": "Elle était triste parce qu'elle ___ (perdre) son téléphone.",
+  "answer": "avait perdu",
+  "hint": "avoir imparfait + ortaç",
+  "explanation": "Üzüntüden önce olmuş neden plus-que-parfait ile verilir: elle avait perdu. perdre avoir alır, ortaç uyum yapmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pqp-6",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_plus_que_parfait",
+  "type": "cloze",
+  "prompt": "Quand j'ai téléphoné à Marc et Paul, ils ___ (sortir) déjà.",
+  "answer": "étaient sortis",
+  "hint": "être imparfait + ortaç",
+  "explanation": "sortir hareket fiilidir ve être alır; ortaç özneye uyar: ils étaient sortis (eril çoğul).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-pqp-7",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_plus_que_parfait",
+  "type": "error",
+  "prompt": "Quand il est arrivé, nous avions déjà partis.",
+  "answer": "avions",
+  "fix": "étions",
+  "hint": "partir → être",
+  "explanation": "partir, passé composé gibi plus-que-parfait'te de être alır: nous étions déjà partis. avoir yardımcısı hatalıdır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-gerondif-1",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_gerondif",
+  "type": "choice",
+  "prompt": "Il s'est blessé en ___ au football.",
+  "answer": "jouant",
+  "options": [
+   "jouant",
+   "jouer",
+   "joué",
+   "joue"
+  ],
+  "hint": "en + -ant",
+  "explanation": "Gérondif en + -ant ile kurulur ve « -arken » anlamı verir: en jouant. en'den sonra mastar ya da ortaç gelmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-gerondif-2",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_gerondif",
+  "type": "choice",
+  "prompt": "En ___ un peu de patience, vous réussirez.",
+  "answer": "ayant",
+  "options": [
+   "ayant",
+   "ayez",
+   "avoir",
+   "aillant"
+  ],
+  "hint": "avoir → ayant",
+  "explanation": "avoir'ın gérondif'i düzensizdir: en ayant. Burada gérondif koşul bildirir (« sabrederseniz »).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-gerondif-3",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_gerondif",
+  "type": "choice",
+  "prompt": "C'est ___ pratiquant qu'on progresse.",
+  "answer": "en",
+  "options": [
+   "en",
+   "par",
+   "à",
+   "dans"
+  ],
+  "hint": "yol/araç: en + -ant",
+  "explanation": "Yöntemi vurgulayan « c'est … que » kalıbında gérondif en ile gelir: c'est en pratiquant qu'on progresse.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-gerondif-4",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_gerondif",
+  "type": "choice",
+  "prompt": "Il téléphonait ___ je préparais le dîner.",
+  "answer": "pendant que",
+  "options": [
+   "pendant que",
+   "en",
+   "tout en",
+   "pendant"
+  ],
+  "hint": "özneler farklı",
+  "explanation": "İki eylemin öznesi farklıysa gérondif kullanılamaz; pendant que + fiil gerekir. Gérondif'te özne ana cümleyle aynı olmalıdır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-gerondif-5",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_gerondif",
+  "type": "cloze",
+  "prompt": "Il lit le journal en ___ (prendre) son café.",
+  "answer": "prenant",
+  "hint": "nous prenons → prenant",
+  "explanation": "Gérondif, présent'ın nous biçiminin gövdesine -ant eklenerek kurulur: nous prenons → en prenant.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-gerondif-6",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_gerondif",
+  "type": "cloze",
+  "prompt": "Nous cherchons des étudiants ___ (parler) allemand.",
+  "answer": "parlant",
+  "hint": "participe présent",
+  "explanation": "en olmadan -ant biçimi (participe présent) « qui + fiil » yerine geçer ve değişmez: des étudiants parlant allemand.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-gerondif-7",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_gerondif",
+  "type": "error",
+  "prompt": "Il fait ses devoirs en écoute la radio.",
+  "answer": "écoute",
+  "fix": "écoutant",
+  "hint": "en + -ant",
+  "explanation": "Gérondif en + -ant ile kurulur; en'den sonra çekimli fiil gelmez: en écoutant la radio.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-ordre-1",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_ordre_pronoms",
+  "type": "choice",
+  "prompt": "Mes clés ? Je ___ ai données à Paul.",
+  "answer": "les lui",
+  "options": [
+   "les lui",
+   "lui les",
+   "leur les",
+   "les leur"
+  ],
+  "hint": "le/la/les önce",
+  "explanation": "Doğrudan nesne (les) dolaylı nesneden (lui) önce gelir: je les lui ai données. Paul tek kişi olduğu için lui, leur değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-ordre-2",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_ordre_pronoms",
+  "type": "choice",
+  "prompt": "Cette histoire ? Il ___ a racontée hier. (à nous)",
+  "answer": "nous l'",
+  "options": [
+   "nous l'",
+   "l'nous",
+   "lui l'",
+   "la nous"
+  ],
+  "hint": "me/te/nous/vous önce",
+  "explanation": "me, te, nous, vous zamirleri le/la/les'den önce gelir: il nous l'a racontée. lui, « ona » anlamıyla burada uymaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-ordre-3",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_ordre_pronoms",
+  "type": "choice",
+  "prompt": "Tes photos ? ___ , j'aimerais les voir. (Montre)",
+  "answer": "Montre-les-moi",
+  "options": [
+   "Montre-les-moi",
+   "Montre-moi-les",
+   "Montre-me-les",
+   "Les moi montre"
+  ],
+  "hint": "olumlu emir sırası",
+  "explanation": "Olumlu emirde zamirler fiilden sonra gelir: önce doğrudan nesne (les), sonra moi. Montre-les-moi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-ordre-4",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_ordre_pronoms",
+  "type": "choice",
+  "prompt": "Des erreurs ? Il ___ a beaucoup dans ce texte.",
+  "answer": "y en",
+  "options": [
+   "y en",
+   "en y",
+   "les y",
+   "y les"
+  ],
+  "hint": "y en",
+  "explanation": "Zamir sırasında y, en'den önce gelir ve il y a kalıbı bu sırayı korur: il y en a beaucoup.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-ordre-5",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_ordre_pronoms",
+  "type": "cloze",
+  "prompt": "Ma voiture ? Je ne ___ ai pas prêtée à mon frère.",
+  "answer": "la lui",
+  "hint": "la + lui",
+  "explanation": "Olumsuzda ne zamirlerin önüne gelir. Doğrudan nesne la (voiture), dolaylı nesne lui (erkek kardeş): je ne la lui ai pas prêtée.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-ordre-6",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_ordre_pronoms",
+  "type": "cloze",
+  "prompt": "Des idées ? Elle ___ donne toujours aux élèves.",
+  "answer": "leur en",
+  "hint": "leur + en",
+  "explanation": "Dolaylı nesne leur, miktar zamiri en'den önce gelir ve en en sona yerleşir: elle leur en donne.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-ordre-7",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_ordre_pronoms",
+  "type": "error",
+  "prompt": "Ses photos ? Je ne la lui ai pas montrées.",
+  "answer": "la",
+  "fix": "les",
+  "hint": "photos çoğul",
+  "explanation": "Doğrudan nesne zamiri ismin sayısına uyar: photos çoğul olduğu için les. Ortaç da bu zamire uyar (montrées).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-adverbes-1",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_adverbes",
+  "type": "choice",
+  "prompt": "Il conduit très ___ : il n'a jamais d'accident. (prudent)",
+  "answer": "prudemment",
+  "options": [
+   "prudemment",
+   "prudentement",
+   "prudamment",
+   "prudent"
+  ],
+  "hint": "-ent → -emment",
+  "explanation": "-ent ile biten sıfatlardan zarf -emment ile yapılır: prudent → prudemment (çift m, « aman » okunur).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-adverbes-2",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_adverbes",
+  "type": "choice",
+  "prompt": "Elle a ___ répondu à toutes mes questions. (poli)",
+  "answer": "poliment",
+  "options": [
+   "poliment",
+   "politement",
+   "polimment",
+   "polie"
+  ],
+  "hint": "sesli → eril + -ment",
+  "explanation": "Sıfat sesli harfle bitiyorsa -ment eril biçime eklenir: poli → poliment. Dişil poli(e) eklenmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-adverbes-3",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_adverbes",
+  "type": "choice",
+  "prompt": "Le bébé a ___ dormi, il est fatigué.",
+  "answer": "mal",
+  "options": [
+   "mal",
+   "mauvais",
+   "mauvaise",
+   "pire"
+  ],
+  "hint": "mauvais → mal",
+  "explanation": "Fiili niteleyen sözcük zarf olmalı: mauvais sıfatının zarfı mal'dir. Zarf birleşik zamanda yardımcı ile ortaç arasına girer: a mal dormi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-adverbes-4",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_adverbes",
+  "type": "choice",
+  "prompt": "Elle nous a parlé très ___ . (gentil)",
+  "answer": "gentiment",
+  "options": [
+   "gentiment",
+   "gentilment",
+   "gentiemment",
+   "gentille"
+  ],
+  "hint": "düzensiz: gentil",
+  "explanation": "gentil düzensiz bir zarf yapar: gentiment (gentilment değil). Bazı sıfatlar kural dışıdır: gentil → gentiment, bref → brièvement.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-adverbes-5",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_adverbes",
+  "type": "cloze",
+  "prompt": "Ce médecin parle ___ (courant) quatre langues.",
+  "answer": "couramment",
+  "hint": "-ant → -amment",
+  "explanation": "-ant ile biten sıfatlardan zarf -amment ile yapılır: courant → couramment. Çift m'ye dikkat.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-adverbes-6",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_adverbes",
+  "type": "cloze",
+  "prompt": "___ (malheureux), nous avons raté le dernier train.",
+  "answer": "Malheureusement",
+  "hint": "-eux → dişil -euse",
+  "explanation": "Sıfatın dişili üzerine -ment eklenir: malheureux → malheureuse → malheureusement. Tüm cümleyi niteleyen zarf başa gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-adverbes-7",
+  "language": "fr",
+  "level": "B1",
+  "topic": "basics_fr_adverbes",
+  "type": "error",
+  "prompt": "Il a répondu calme à toutes les questions.",
+  "answer": "calme",
+  "fix": "calmement",
+  "hint": "zarf gerekir",
+  "explanation": "Fiili niteleyen sözcük sıfat değil zarf olmalıdır: calme → calmement. Uzun -ment zarfı ortaçtan sonra gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-subjpasse-1",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_subjonctif_passe",
+  "type": "choice",
+  "prompt": "Je suis désolé que vous ___ attendu si longtemps.",
+  "answer": "ayez",
+  "options": [
+   "ayez",
+   "avez",
+   "aviez",
+   "aurez"
+  ],
+  "hint": "subjonctif passé",
+  "explanation": "Duygu bildiren ifadelerden sonra subjonctif gelir; olmuş eylem için subjonctif passé kurulur: que vous ayez attendu (avoir'ın subjonctif'i + ortaç).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-subjpasse-2",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_subjonctif_passe",
+  "type": "choice",
+  "prompt": "Elle est contente que nous ___ arrivés à l'heure.",
+  "answer": "soyons",
+  "options": [
+   "soyons",
+   "sommes",
+   "serons",
+   "ayons"
+  ],
+  "hint": "arriver → être",
+  "explanation": "arriver être alır. Subjonctif passé'de être'nin subjonctif'i gelir: que nous soyons arrivés. Duygu bildiren ana fiil subjonctif ister.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-subjpasse-3",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_subjonctif_passe",
+  "type": "choice",
+  "prompt": "Je suis fier ___ réussi mon permis du premier coup.",
+  "answer": "d'avoir",
+  "options": [
+   "d'avoir",
+   "que j'aie",
+   "que j'ai",
+   "avoir"
+  ],
+  "hint": "özne aynı → mastar",
+  "explanation": "Ana ve yan cümlenin öznesi aynıysa que + subjonctif yerine geçmiş mastar kullanılır: je suis fier d'avoir réussi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-subjpasse-4",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_subjonctif_passe",
+  "type": "choice",
+  "prompt": "Elle est partie ___ nous dire au revoir.",
+  "answer": "sans",
+  "options": [
+   "sans",
+   "sans que",
+   "avant que",
+   "afin que"
+  ],
+  "hint": "aynı özne → sans",
+  "explanation": "Özne aynıysa sans que yerine sans + mastar gelir. Burada « dire » mastar olduğu için que'li bağlaçlar uymaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-subjpasse-5",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_subjonctif_passe",
+  "type": "cloze",
+  "prompt": "Je regrette qu'il ne ___ pas venu à la fête.",
+  "answer": "soit",
+  "hint": "venir → être",
+  "explanation": "venir être alır. Pişmanlık ifadesinden sonra subjonctif gelir ve eylem daha önce olduğu için passé: qu'il ne soit pas venu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-subjpasse-6",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_subjonctif_passe",
+  "type": "cloze",
+  "prompt": "Elle regrette de ne pas ___ appelé sa mère.",
+  "answer": "avoir",
+  "hint": "geçmiş mastar",
+  "explanation": "Özne aynı olduğundan geçmiş mastar kullanılır; olumsuzda ne pas önde durur: de ne pas avoir appelé.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-subjpasse-7",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_subjonctif_passe",
+  "type": "error",
+  "prompt": "Elle est surprise que tu as oublié notre rendez-vous.",
+  "answer": "as",
+  "fix": "aies",
+  "hint": "şaşkınlık → subjonctif",
+  "explanation": "Şaşkınlık bildiren ifadeden sonra subjonctif gelir. Daha önce olmuş eylem için subjonctif passé: que tu aies oublié.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passif-1",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_passif",
+  "type": "choice",
+  "prompt": "Ces lettres ont été ___ hier matin. (envoyer)",
+  "answer": "envoyées",
+  "options": [
+   "envoyées",
+   "envoyés",
+   "envoyée",
+   "envoyer"
+  ],
+  "hint": "ortaç özneye uyar",
+  "explanation": "Edilgende ortaç özneye uyar: lettres dişil çoğul olduğu için envoyées. été ise hiç uyum yapmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passif-2",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_passif",
+  "type": "choice",
+  "prompt": "La maison est entourée ___ grands arbres.",
+  "answer": "de",
+  "options": [
+   "de",
+   "par",
+   "à",
+   "avec"
+  ],
+  "hint": "durum fiili → de",
+  "explanation": "Durum bildiren fiillerde (entourer, aimer) eylemi yapan çoğunlukla de ile gelir: entourée de grands arbres.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passif-3",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_passif",
+  "type": "choice",
+  "prompt": "Ce vin ___ boit très frais.",
+  "answer": "se",
+  "options": [
+   "se",
+   "on",
+   "il",
+   "est"
+  ],
+  "hint": "genel kural: se + fiil",
+  "explanation": "Genel kural ve alışkanlık bildirirken se + fiil kullanılır: ce vin se boit frais. Edilgen yapı kuralı gibi çalışır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passif-4",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_passif",
+  "type": "choice",
+  "prompt": "Demain, les résultats ___ publiés sur le site.",
+  "answer": "seront",
+  "options": [
+   "seront",
+   "ont été",
+   "étaient",
+   "avaient"
+  ],
+  "hint": "zaman être'de",
+  "explanation": "Edilgende zamanı être taşır: gelecek zaman için seront publiés. « Demain » geleceği gösterir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passif-5",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_passif",
+  "type": "cloze",
+  "prompt": "Le concert ___ (annuler) à cause de la pluie hier.",
+  "answer": "a été annulé",
+  "hint": "passé composé edilgen",
+  "explanation": "Edilgenin passé composé'si a été + ortaç ile kurulur; ortaç özneye uyar: le concert a été annulé (eril tekil).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passif-6",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_passif",
+  "type": "cloze",
+  "prompt": "Les fenêtres ont été ___ (ouvrir) par le vent.",
+  "answer": "ouvertes",
+  "hint": "ortaç dişil çoğul",
+  "explanation": "Edilgende ortaç özneye uyar: fenêtres dişil çoğuldur, ouvrir'in ortacı ouvert olduğundan ouvertes.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passif-7",
+  "language": "fr",
+  "level": "B2",
+  "topic": "basics_fr_passif",
+  "type": "error",
+  "prompt": "Tous les billets ont été vendu en une heure.",
+  "answer": "vendu",
+  "fix": "vendus",
+  "hint": "ortaç uyumu",
+  "explanation": "Edilgende ortaç özneye uyar: billets eril çoğul olduğundan vendus. Yardımcı ve été uyum yapmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passesimple-1",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_passe_simple",
+  "type": "choice",
+  "prompt": "Soudain, la porte s'___ et un homme entra.",
+  "answer": "ouvrit",
+  "options": [
+   "ouvrit",
+   "ouvre",
+   "ouvrirent",
+   "ouvrira"
+  ],
+  "hint": "3. tekil passé simple",
+  "explanation": "Anlatıdaki ani olay passé simple ile verilir: la porte s'ouvrit. porte tekil olduğu için -it, çoğul olsaydı -irent.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passesimple-2",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_passe_simple",
+  "type": "choice",
+  "prompt": "Les soldats ___ au village à l'aube, puis ils incendièrent les maisons.",
+  "answer": "arrivèrent",
+  "options": [
+   "arrivèrent",
+   "arrivent",
+   "arriveront",
+   "arrivâmes"
+  ],
+  "hint": "-er fiili: -èrent",
+  "explanation": "-er fiillerinin 3. çoğul passé simple'ı -èrent ile biter: ils arrivèrent. İkinci cümlede incendièrent aynı zamanı doğrular.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passesimple-3",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_passe_simple",
+  "type": "choice",
+  "prompt": "Elle ___ son manteau et sortit sans un mot. (mettre)",
+  "answer": "mit",
+  "options": [
+   "mit",
+   "mis",
+   "mettit",
+   "mettra"
+  ],
+  "hint": "mettre → mit",
+  "explanation": "mettre düzensiz bir passé simple yapar: il / elle mit, ils mirent. Sonraki fiil sortit de aynı zamandadır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passesimple-4",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_passe_simple",
+  "type": "choice",
+  "prompt": "Napoléon ___ en Corse en 1769.",
+  "answer": "naquit",
+  "options": [
+   "naquit",
+   "né",
+   "naissa",
+   "naîtra"
+  ],
+  "hint": "naître → naquit",
+  "explanation": "naître'nin passé simple'ı düzensizdir: il naquit (= il est né). Tarihsel anlatıda sık görülür.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passesimple-5",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_passe_simple",
+  "type": "cloze",
+  "prompt": "Quand elle ___ (finir) sa lettre, elle la plia et la posta.",
+  "answer": "finit",
+  "hint": "-ir: -it",
+  "explanation": "-ir fiillerinin 3. tekil passé simple'ı -it ile biter: elle finit. Yan cümledeki finit, ana cümledeki plia ile aynı zamandadır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passesimple-6",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_passe_simple",
+  "type": "cloze",
+  "prompt": "Des centaines de gens ___ (venir) de loin pour voir le roi.",
+  "answer": "vinrent",
+  "hint": "venir ailesi",
+  "explanation": "venir ve tenir aileleri passé simple'da -in- gövdesi alır: ils vinrent (3. çoğul), il vint (3. tekil).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-passesimple-7",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_passe_simple",
+  "type": "error",
+  "prompt": "Louis XIV mourra en 1715 après soixante-douze ans de règne.",
+  "answer": "mourra",
+  "fix": "mourut",
+  "hint": "mourir → mourut",
+  "explanation": "Geçmişte tek seferlik olay passé simple ile verilir: il mourut. mourra gelecek zamandır ve cümlede tarih geçmişi gösterir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-concession-1",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_concession",
+  "type": "choice",
+  "prompt": "Bien qu'elle ___ très fatiguée, elle a terminé le travail.",
+  "answer": "soit",
+  "options": [
+   "soit",
+   "est",
+   "serait",
+   "était"
+  ],
+  "hint": "bien que + subjonctif",
+  "explanation": "bien que her zaman subjonctif ister: bien qu'elle soit fatiguée. indicatif (est) ya da conditionnel (serait) kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-concession-2",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_concession",
+  "type": "choice",
+  "prompt": "___ que soit le prix, je l'achèterai.",
+  "answer": "Quel",
+  "options": [
+   "Quel",
+   "Quelle",
+   "Quels",
+   "Quelque"
+  ],
+  "hint": "quel que + être",
+  "explanation": "quel que + être'nin subjonctif'i « ne olursa olsun » anlamı verir; quel özneye uyar: prix eril tekil olduğundan quel que soit le prix.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-concession-3",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_concession",
+  "type": "choice",
+  "prompt": "Même si le prix ___ élevé, nous le prendrons.",
+  "answer": "est",
+  "options": [
+   "est",
+   "soit",
+   "serait",
+   "sera"
+  ],
+  "hint": "même si + indicatif",
+  "explanation": "même si subjonctif ya da conditionnel istemez; si'den sonra gelecek de kullanılmaz. Şimdiki zaman indicatif gelir: même si le prix est élevé.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-concession-4",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_concession",
+  "type": "choice",
+  "prompt": "Cette méthode est ancienne ; elle n'en reste ___ efficace.",
+  "answer": "pas moins",
+  "options": [
+   "pas moins",
+   "pas plus",
+   "pas non plus",
+   "plus pas"
+  ],
+  "hint": "n'en … pas moins",
+  "explanation": "n'en … pas moins « yine de, buna rağmen » demektir ve taviz bildirir: elle n'en reste pas moins efficace.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-concession-5",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_concession",
+  "type": "cloze",
+  "prompt": "Si compliqué que ce ___ , nous y arriverons. (être)",
+  "answer": "soit",
+  "hint": "si … que + subjonctif",
+  "explanation": "si + sıfat + que yapısından sonra subjonctif gelir: si compliqué que ce soit (« ne kadar karışık olsa da »).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-concession-6",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_concession",
+  "type": "cloze",
+  "prompt": "Quoi que vous ___ (dire), il ne changera pas d'avis.",
+  "answer": "disiez",
+  "hint": "quoi que + subjonctif",
+  "explanation": "Ayrı yazılan quoi que « ne … -rsa » anlamındadır ve subjonctif ister: quoi que vous disiez (dire → vous disiez).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b12-concession-7",
+  "language": "fr",
+  "level": "C1",
+  "topic": "basics_fr_concession",
+  "type": "error",
+  "prompt": "Bien qu'elle est très jeune, elle dirige déjà une équipe.",
+  "answer": "est",
+  "fix": "soit",
+  "hint": "bien que + subjonctif",
+  "explanation": "bien que subjonctif ister: bien qu'elle soit très jeune. indicatif est tavizli bağlaçta kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ }
+]

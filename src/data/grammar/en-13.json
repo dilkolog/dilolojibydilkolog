@@ -1,0 +1,1243 @@
+[
+ {
+  "id": "en-b13-presentcont-1",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_continuous",
+  "type": "choice",
+  "prompt": "Right now, the children ___ in the garden.",
+  "answer": "are playing",
+  "options": [
+   "play",
+   "are playing",
+   "plays"
+  ],
+  "hint": "right now → şu an",
+  "explanation": "Right now (şu anda) süren iş am/is/are + fiil-ing ile söylenir: are playing. Türkçedeki -iyor burada da -ing'e karşılık gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-presentcont-2",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_continuous",
+  "type": "choice",
+  "prompt": "Water ___ at 100 degrees Celsius.",
+  "answer": "boils",
+  "options": [
+   "is boiling",
+   "boils",
+   "are boiling"
+  ],
+  "hint": "genel gerçek",
+  "explanation": "Genel bilimsel gerçekler present simple ile söylenir: water boils. Present continuous yalnızca şu an süren ya da geçici işler içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-presentcont-3",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_continuous",
+  "type": "choice",
+  "prompt": "I ___ your sister, but I have never met your brother.",
+  "answer": "know",
+  "options": [
+   "am knowing",
+   "know",
+   "knowing"
+  ],
+  "hint": "durum fiili",
+  "explanation": "Know bir durum fiilidir ve genellikle -ing almaz: I know. Türkçede 'tanıyorum' dediğimiz için 'am knowing' denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-presentcont-4",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_continuous",
+  "type": "choice",
+  "prompt": "___ you listening to me?",
+  "answer": "Are",
+  "options": [
+   "Do",
+   "Are",
+   "Is"
+  ],
+  "explanation": "Present continuous sorusunda am/is/are özneden önce gelir: Are you listening? Do + listening birlikte kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-presentcont-5",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_continuous",
+  "type": "cloze",
+  "prompt": "Look at Tom! He is ___ (run) in the park right now.",
+  "answer": "running",
+  "explanation": "Tek heceli, ünsüz-ünlü-ünsüz biten fiilde -ing öncesi son ünsüz ikilenir: run → running.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-presentcont-6",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_continuous",
+  "type": "cloze",
+  "prompt": "My parents ___ (stay) with us this week.",
+  "answer": "are staying",
+  "alternatives": [
+   "'re staying",
+   "’re staying"
+  ],
+  "explanation": "Bu hafta gibi geçici bir durum present continuous ile söylenir: are staying (am/is/are + fiil-ing).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-presentcont-7",
+  "language": "en",
+  "level": "A1",
+  "topic": "basics_en_present_continuous",
+  "type": "error",
+  "prompt": "Look! Tom is makeing a cake in the kitchen.",
+  "answer": "makeing",
+  "fix": "making",
+  "explanation": "Sondaki sessiz e -ing gelmeden önce düşer: make → making, 'makeing' değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurecont-1",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_future_continuous",
+  "type": "choice",
+  "prompt": "This time tomorrow, I ___ on a plane to Berlin.",
+  "answer": "will be sitting",
+  "options": [
+   "will be sitting",
+   "will sitting",
+   "would sit"
+  ],
+  "hint": "this time tomorrow",
+  "explanation": "Gelecekte belli bir anda süren iş will be + fiil-ing ile söylenir: this time tomorrow = yarın bu saatte.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurecont-2",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_future_continuous",
+  "type": "choice",
+  "prompt": "___ you be using the laptop this evening? I need to send an email.",
+  "answer": "Will",
+  "options": [
+   "Do",
+   "Will",
+   "Are"
+  ],
+  "explanation": "Karşıdakinin planını kibarca sormak için Will you be + -ing? kalıbı kullanılır; Do ya da Are ile 'be using' kurulmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurecont-3",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_future_continuous",
+  "type": "choice",
+  "prompt": "While you ___ round the exhibition, I'll be working in the office.",
+  "answer": "are walking",
+  "options": [
+   "will be walking",
+   "are walking",
+   "will walk"
+  ],
+  "explanation": "While gibi zaman bağlaçlarından sonra will gelmez; gelecek anlamı present ile verilir: While you are walking...",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurecont-4",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_future_continuous",
+  "type": "choice",
+  "prompt": "By tomorrow evening, I ___ the exam results.",
+  "answer": "will know",
+  "options": [
+   "will know",
+   "will be knowing",
+   "will knowing"
+  ],
+  "hint": "durum fiili",
+  "explanation": "Know bir durum fiilidir; future continuous olmaz, yalın will kullanılır: I'll know.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurecont-5",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_future_continuous",
+  "type": "cloze",
+  "prompt": "At nine o'clock tonight, we ___ (watch) the final.",
+  "answer": "will be watching",
+  "alternatives": [
+   "'ll be watching",
+   "’ll be watching"
+  ],
+  "explanation": "Gelecekteki belli bir anda süren iş will be + -ing ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurecont-6",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_future_continuous",
+  "type": "cloze",
+  "prompt": "Next week at this time, they ___ (travel) through Italy.",
+  "answer": "will be travelling",
+  "alternatives": [
+   "will be traveling",
+   "'ll be travelling",
+   "'ll be traveling",
+   "’ll be travelling",
+   "’ll be traveling"
+  ],
+  "explanation": "Next week at this time gibi bir ifade gelecekteki anın fotoğrafını verir; fotoğrafta iş sürüyorsa will be + -ing.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurecont-7",
+  "language": "en",
+  "level": "B1",
+  "topic": "basics_en_future_continuous",
+  "type": "error",
+  "prompt": "At noon tomorrow, she will be teach a class at the university.",
+  "answer": "teach",
+  "fix": "teaching",
+  "explanation": "Future continuous will be + fiil-ing ile kurulur: will be teaching. 'will be teach' eksiktir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-pastperfcont-1",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_past_perfect_continuous",
+  "type": "choice",
+  "prompt": "By the time the bus came, we ___ for forty minutes.",
+  "answer": "had been waiting",
+  "options": [
+   "have been waiting",
+   "had been waiting",
+   "are waiting"
+  ],
+  "hint": "by the time + geçmiş",
+  "explanation": "Geçmişteki bir ana kadar süren iş ve süresi had been + -ing ile söylenir; have been şimdiye, geçmişteki ana değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-pastperfcont-2",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_past_perfect_continuous",
+  "type": "choice",
+  "prompt": "Her eyes were red because she ___.",
+  "answer": "had been crying",
+  "options": [
+   "is crying",
+   "has been crying",
+   "had been crying"
+  ],
+  "explanation": "Geçmişte görülen bir sonucun (kırmızı gözler) nedeni, ondan önce süren iş olarak had been + -ing ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-pastperfcont-3",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_past_perfect_continuous",
+  "type": "choice",
+  "prompt": "I ___ him for years before I found out his real name.",
+  "answer": "had known",
+  "options": [
+   "had been knowing",
+   "had known",
+   "have known"
+  ],
+  "hint": "durum fiili",
+  "explanation": "Know durum fiilidir; continuous olmaz. Geçmişteki bir andan önceki süre past perfect simple ile verilir: had known.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-pastperfcont-4",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_past_perfect_continuous",
+  "type": "choice",
+  "prompt": "How long ___ working there before you got promoted?",
+  "answer": "had you been",
+  "options": [
+   "have you been",
+   "had you been",
+   "were you been"
+  ],
+  "explanation": "Geçmişteki terfiye kadar geçen süre sorusu How long had you been + -ing? ile kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-pastperfcont-5",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_past_perfect_continuous",
+  "type": "cloze",
+  "prompt": "The kitchen smelled of onions because Dad ___ (cook) since noon.",
+  "answer": "had been cooking",
+  "alternatives": [
+   "'d been cooking",
+   "’d been cooking"
+  ],
+  "explanation": "Geçmişteki bir andaki izin nedeni, ondan önce süren iş: had been + -ing (since ile başlangıç noktası).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-pastperfcont-6",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_past_perfect_continuous",
+  "type": "cloze",
+  "prompt": "When the manager came in, we ___ (argue) for twenty minutes.",
+  "answer": "had been arguing",
+  "alternatives": [
+   "'d been arguing",
+   "’d been arguing"
+  ],
+  "explanation": "Geçmişteki bir ana kadar süren iş for ile süre vurgulanarak had been + -ing ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-pastperfcont-7",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_past_perfect_continuous",
+  "type": "error",
+  "prompt": "She was tired because she has been studying since six that morning.",
+  "answer": "has",
+  "fix": "had",
+  "explanation": "Anlatılan an geçmiştir (was tired), bu yüzden o ana kadar süren iş had been + -ing olmalıdır; has been şimdiye aittir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-prefer-1",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_preferences",
+  "type": "choice",
+  "prompt": "I'd rather ___ the stairs than wait for the lift.",
+  "answer": "take",
+  "options": [
+   "to take",
+   "take",
+   "taking"
+  ],
+  "explanation": "Would rather'dan sonra to'suz yalın fiil gelir; than'den sonra da yalın fiil sürer: I'd rather take ... than wait.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-prefer-2",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_preferences",
+  "type": "choice",
+  "prompt": "The roads are icy. You'd better not ___ tonight.",
+  "answer": "drive",
+  "options": [
+   "driving",
+   "drove",
+   "drive",
+   "to drive"
+  ],
+  "explanation": "Had better (not) + yalın fiil: You'd better not drive. Arkadan to, -ing ya da past gelmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-prefer-3",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_preferences",
+  "type": "choice",
+  "prompt": "I'd rather you ___ my diary without asking.",
+  "answer": "didn't read",
+  "options": [
+   "don't read",
+   "didn't read",
+   "won't read",
+   "not read"
+  ],
+  "explanation": "Başkasının yapmasını tercih ederken would rather + özne + past simple kullanılır; anlam şimdi ya da gelecektir: I'd rather you didn't read.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-prefer-4",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_preferences",
+  "type": "choice",
+  "prompt": "Most people prefer cycling ___ driving in the city centre.",
+  "answer": "to",
+  "options": [
+   "than",
+   "to",
+   "from"
+  ],
+  "explanation": "Prefer A to B kalıbında karşılaştırma to ile yapılır. Türkçedeki 'ya göre' yüzünden than denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-prefer-5",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_preferences",
+  "type": "cloze",
+  "prompt": "She would rather her son ___ (study) medicine.",
+  "answer": "studied",
+  "explanation": "Would rather + farklı özne + past simple: başkasının yapmasına dair tercih. Anlam şimdi/gelecektir, geçmiş değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-prefer-6",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_preferences",
+  "type": "cloze",
+  "prompt": "You had better not ___ (forget) your passport.",
+  "answer": "forget",
+  "explanation": "Had better not + yalın fiil: 'unutmasan iyi olur'. Had'den sonra çekimli fiil ya da to gelmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-prefer-7",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_preferences",
+  "type": "error",
+  "prompt": "You'd better took an umbrella with you today.",
+  "answer": "took",
+  "fix": "take",
+  "explanation": "Had better'dan sonra yalın fiil gelir (You'd better take), past simple değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-emphasis-1",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_emphasis",
+  "type": "choice",
+  "prompt": "\"You never listen to me.\" \"That's not true! I ___ listen to you yesterday.\"",
+  "answer": "did",
+  "options": [
+   "do",
+   "did",
+   "was",
+   "am"
+  ],
+  "explanation": "Bir itirazı düzeltmek için olumlu cümleye vurgulu yardımcı fiil eklenir; zaman geçmiş (yesterday) olduğundan did + yalın fiil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-emphasis-2",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_emphasis",
+  "type": "choice",
+  "prompt": "She is ___ talented that every studio wants to hire her.",
+  "answer": "so",
+  "options": [
+   "such",
+   "so",
+   "such a"
+  ],
+  "explanation": "Arkasında isim olmayan sıfatla so kullanılır: so talented that... Such ancak isim öbeğiyle gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-emphasis-3",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_emphasis",
+  "type": "choice",
+  "prompt": "They are ___ friendly people that everyone loves them.",
+  "answer": "such",
+  "options": [
+   "so",
+   "such",
+   "so a"
+  ],
+  "explanation": "Sıfat + çoğul isim öbeğinin önünde such gelir: such friendly people. So yalnızca sıfatın ya da zarfın önüne girer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-emphasis-4",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_emphasis",
+  "type": "choice",
+  "prompt": "She ___ look like her mother, doesn't she?",
+  "answer": "does",
+  "options": [
+   "do",
+   "does",
+   "is"
+  ],
+  "explanation": "Üçüncü tekil kişide vurgulu present simple does + yalın fiil ile kurulur: She does look like her mother.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-emphasis-5",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_emphasis",
+  "type": "cloze",
+  "prompt": "There was ___ much traffic that we missed the flight.",
+  "answer": "so",
+  "explanation": "Much gibi bir miktar sözcüğünden önce such değil so gelir: so much traffic that...",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-emphasis-6",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_emphasis",
+  "type": "cloze",
+  "prompt": "\"You didn't tell me about the meeting.\" \"I ___ tell you! I sent you an email on Monday.\"",
+  "answer": "did",
+  "explanation": "İtirazı düzelten vurgulu did + yalın fiil: I did tell you. Konuşmada did vurgulu söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-emphasis-7",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_emphasis",
+  "type": "error",
+  "prompt": "It was so a beautiful day that we decided to have a picnic.",
+  "answer": "so",
+  "fix": "such",
+  "explanation": "A + sıfat + isim öbeğinden önce such gelir: such a beautiful day. So a beautiful yanlıştır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-ellipsis-1",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_ellipsis",
+  "type": "choice",
+  "prompt": "\"I've never been to Japan.\" \"___ have I.\"",
+  "answer": "Neither",
+  "options": [
+   "So",
+   "Neither",
+   "Either"
+  ],
+  "explanation": "Olumsuz cümleye katılırken Neither + yardımcı fiil + özne kullanılır. Have yardımcı fiili aynen tekrarlanır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-ellipsis-2",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_ellipsis",
+  "type": "choice",
+  "prompt": "\"My sister speaks three languages.\" \"So ___ my cousin.\"",
+  "answer": "does",
+  "options": [
+   "speaks",
+   "is",
+   "does",
+   "has"
+  ],
+  "explanation": "Present simple olumlu cümleye So + does/do + özne ile katılınır; asıl fiil tekrar edilmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-ellipsis-3",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_ellipsis",
+  "type": "choice",
+  "prompt": "\"Will it rain tomorrow? I don't want the picnic to be ruined.\" \"I hope ___.\"",
+  "answer": "not",
+  "options": [
+   "so",
+   "not",
+   "it"
+  ],
+  "explanation": "Hope ile olumsuz cevap I hope not'tur ('umarım yağmaz'). I hope so, yağmasını umut ederdi; bağlam tersini söylüyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-ellipsis-4",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_ellipsis",
+  "type": "choice",
+  "prompt": "I like the green jacket, but I prefer the blue ___.",
+  "answer": "one",
+  "options": [
+   "ones",
+   "one",
+   "it"
+  ],
+  "explanation": "Tekrarlanan sayılabilir tekil isim yerine one geçer: the blue one. Çoğulda ones olurdu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-ellipsis-5",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_ellipsis",
+  "type": "cloze",
+  "prompt": "\"I didn't enjoy the film.\" \"Neither ___ I.\"",
+  "answer": "did",
+  "explanation": "Past simple olumsuz cümleye Neither + did + özne ile katılınır; did yardımcı fiili tekrarlanır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-ellipsis-6",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_ellipsis",
+  "type": "cloze",
+  "prompt": "\"Are you coming to the party?\" \"I'd love ___, but I have to work.\"",
+  "answer": "to",
+  "explanation": "Fiil öbeği to'da kesilebilir: I'd love to (come). Aynı fiili tekrar etmeye gerek yoktur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-ellipsis-7",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_ellipsis",
+  "type": "error",
+  "prompt": "\"I don't eat meat.\" \"So do I.\"",
+  "answer": "So",
+  "fix": "Neither",
+  "explanation": "Olumsuz cümleye So ile değil Neither ile katılınır: Neither do I. So do I olumlu cümleler içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-phrasal-1",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_phrasal_verbs",
+  "type": "choice",
+  "prompt": "The lights are still on. Could you turn ___ before you leave?",
+  "answer": "them off",
+  "options": [
+   "off them",
+   "them off",
+   "them of"
+  ],
+  "explanation": "Nesne zamirse (them) ayrılabilen phrasal verb'ün ortasına girer: turn them off. 'turn off them' yanlıştır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-phrasal-2",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_phrasal_verbs",
+  "type": "choice",
+  "prompt": "Because of the fog, our plane ___ two hours late.",
+  "answer": "took off",
+  "options": [
+   "took off",
+   "took out",
+   "took in",
+   "took up"
+  ],
+  "hint": "uçak havalanmak",
+  "explanation": "Take off uçağın havalanması demektir. Diğer parçacıklar farklı anlam verir (out: çıkarmak, in: kandırmak/almak, up: başlamak).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-phrasal-3",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_phrasal_verbs",
+  "type": "choice",
+  "prompt": "Nobody could ___ a good solution to the problem.",
+  "answer": "come up with",
+  "options": [
+   "come up",
+   "come up with",
+   "come up to"
+  ],
+  "explanation": "Come up with üç parçalı phrasal verb'dür: 'bir fikir/çözüm bulmak'. Bölünmez ve with olmadan nesne alamaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-phrasal-4",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_phrasal_verbs",
+  "type": "choice",
+  "prompt": "I can't ___ the noise from the street any longer; I'm moving out.",
+  "answer": "put up with",
+  "options": [
+   "put off",
+   "put up with",
+   "put on",
+   "put out"
+  ],
+  "hint": "katlanmak",
+  "explanation": "Put up with 'katlanmak' demektir. Put off ertelemek, put on giymek, put out söndürmek anlamına gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-phrasal-5",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_phrasal_verbs",
+  "type": "cloze",
+  "prompt": "The toys are all over the floor. Please pick them ___.",
+  "answer": "up",
+  "explanation": "Pick up 'yerden almak, toplamak' demektir; nesne zamirse ortaya girer: pick them up.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-phrasal-6",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_phrasal_verbs",
+  "type": "cloze",
+  "prompt": "I'm really looking forward ___ meeting you next week.",
+  "answer": "to",
+  "explanation": "Look forward to üç parçalı phrasal verb'dür ve arkasından isim ya da -ing gelir; buradaki to bir edattır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-phrasal-7",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_phrasal_verbs",
+  "type": "error",
+  "prompt": "We have run out from sugar, so I'm going to the shop.",
+  "answer": "from",
+  "fix": "of",
+  "explanation": "Run out of üç parçalı phrasal verb'dür: 'bitmek, tükenmek'. Edatı of'tur, from değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurepast-1",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_in_past",
+  "type": "choice",
+  "prompt": "We ___ visit the castle, but it was closed.",
+  "answer": "were going to",
+  "options": [
+   "will",
+   "are going to",
+   "were going to"
+  ],
+  "explanation": "Geçmişteki gerçekleşmemiş plan was/were going to ile söylenir; ardından çoğunlukla but gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurepast-2",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_in_past",
+  "type": "choice",
+  "prompt": "She didn't realise it then, but that decision ___ change her life forever.",
+  "answer": "would",
+  "options": [
+   "will",
+   "would",
+   "has"
+  ],
+  "explanation": "Geçmişteki bir andan bakınca gelecekte olacak şey would + yalın fiil ile söylenir; anlatı geçmişte olduğundan will kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurepast-3",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_in_past",
+  "type": "choice",
+  "prompt": "She was about ___ the door when the phone rang.",
+  "answer": "to open",
+  "options": [
+   "opening",
+   "to open",
+   "open"
+  ],
+  "explanation": "Was/were about to + yalın fiil: tam bir şeyi yapmak üzereyken. About'tan sonra -ing gelmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurepast-4",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_in_past",
+  "type": "choice",
+  "prompt": "The train ___ to arrive at nine, but it was delayed.",
+  "answer": "was supposed",
+  "options": [
+   "supposed",
+   "was supposed",
+   "is suppose",
+   "was suppose"
+  ],
+  "explanation": "Was/were supposed to: ayarlanmış ama çoğu zaman bozulmuş plan. Supposed'ın -d'si düşmez ve be fiili gerekir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurepast-5",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_in_past",
+  "type": "cloze",
+  "prompt": "He said he ___ (help) us move, but he never came.",
+  "answer": "would help",
+  "alternatives": [
+   "'d help",
+   "’d help"
+  ],
+  "explanation": "Geçmişte söylenen sözdeki gelecek would + yalın fiil ile aktarılır: He said he would help.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurepast-6",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_in_past",
+  "type": "cloze",
+  "prompt": "When I left school, I didn't know that I ___ (become) a pilot one day.",
+  "answer": "would become",
+  "alternatives": [
+   "'d become",
+   "’d become"
+  ],
+  "explanation": "Geçmişteki bir andan bakıldığında sonradan gerçekleşen şey would + yalın fiil ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futurepast-7",
+  "language": "en",
+  "level": "B2",
+  "topic": "basics_en_future_in_past",
+  "type": "error",
+  "prompt": "Yesterday, Ayşe told me that she will call me back after the meeting.",
+  "answer": "will",
+  "fix": "would",
+  "explanation": "Dolaylı anlatımda geçmişteki söz aktarılırken will would'a kayar: she would call me back.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futureperfcont-1",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_future_perfect_continuous",
+  "type": "choice",
+  "prompt": "By the end of this year, I ___ at this hospital for exactly ten years.",
+  "answer": "will have been working",
+  "options": [
+   "will have been working",
+   "will be worked",
+   "have been working"
+  ],
+  "explanation": "Gelecekteki bir ana kadar süren işin süresi will have been + -ing ile verilir; by the end of this year gelecekteki noktadır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futureperfcont-2",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_future_perfect_continuous",
+  "type": "choice",
+  "prompt": "By the time the film ends, we ___ for nearly four hours.",
+  "answer": "will have been sitting",
+  "options": [
+   "would have been sitting",
+   "will have been sitting",
+   "will sit"
+  ],
+  "explanation": "Gelecekteki bir ana kadar geçen süre (nearly four hours) will have been + -ing ile söylenir. Would geçmiş içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futureperfcont-3",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_future_perfect_continuous",
+  "type": "choice",
+  "prompt": "By the time the guests arrive, she ___ the cake for two hours.",
+  "answer": "will have been baking",
+  "options": [
+   "has been baking",
+   "will bake",
+   "will have been baking"
+  ],
+  "explanation": "Gelecekteki bir anda (misafirler geldiğinde) iki saattir süren iş: will have been + -ing. Has been şimdiye bağlıdır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futureperfcont-4",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_future_perfect_continuous",
+  "type": "choice",
+  "prompt": "By June, I ___ all twelve chapters.",
+  "answer": "will have written",
+  "options": [
+   "will have written",
+   "will have been writing",
+   "will be writing"
+  ],
+  "explanation": "Tamamlanmış iş ya da miktar (twelve chapters) future perfect simple ile söylenir: will have written. Continuous süreci vurgular.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futureperfcont-5",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_future_perfect_continuous",
+  "type": "cloze",
+  "prompt": "By the time the ferry ___ (reach) the island, we'll have been sailing for nine hours.",
+  "answer": "reaches",
+  "explanation": "By the time'dan sonra gelecek anlamı olsa da present simple kullanılır: By the time the ferry reaches...",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futureperfcont-6",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_future_perfect_continuous",
+  "type": "cloze",
+  "prompt": "Next month, Mr Kaya ___ (teach) at this school for thirty years.",
+  "answer": "will have been teaching",
+  "alternatives": [
+   "will have taught",
+   "'ll have been teaching",
+   "’ll have been teaching",
+   "'ll have taught",
+   "’ll have taught"
+  ],
+  "explanation": "Süre vurgusu ve gelecekteki bir nokta (next month): will have been + -ing.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-futureperfcont-7",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_future_perfect_continuous",
+  "type": "error",
+  "prompt": "By May, she will have been work at this clinic for ten years.",
+  "answer": "work",
+  "fix": "working",
+  "explanation": "Future perfect continuous will have been + fiil-ing ile kurulur: will have been working.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-unrealpast-1",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_unreal_past",
+  "type": "choice",
+  "prompt": "It's high time the government ___ something about housing prices.",
+  "answer": "did",
+  "options": [
+   "does",
+   "will do",
+   "did",
+   "do"
+  ],
+  "explanation": "It's (high) time + özne + past simple: yapılması çoktan gereken iş. Past simple burada geçmişi değil, geciken bir şimdiyi anlatır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-unrealpast-2",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_unreal_past",
+  "type": "choice",
+  "prompt": "He is a poor student, but he spends money as if he ___ a millionaire.",
+  "answer": "were",
+  "options": [
+   "were",
+   "is",
+   "will be"
+  ],
+  "explanation": "Gerçek olmayan bir durum as if + past simple ile söylenir; be fiili resmî dilde tüm kişilerle were olur: as if he were a millionaire.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-unrealpast-3",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_unreal_past",
+  "type": "choice",
+  "prompt": "Suppose you ___ a million pounds tomorrow, what would you buy?",
+  "answer": "found",
+  "options": [
+   "found",
+   "finding",
+   "to find"
+  ],
+  "explanation": "Suppose/supposing + past simple hayalî bir durumu kurar; ardından would ile sonuç sorulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-unrealpast-4",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_unreal_past",
+  "type": "choice",
+  "prompt": "It's time ___ for school; you'll be late.",
+  "answer": "you left",
+  "options": [
+   "for you leave",
+   "you to leave",
+   "you left",
+   "you leaving"
+  ],
+  "explanation": "It's time + özne + past simple (It's time you left) ya da It's time for you to leave. Diğer biçimler yanlıştır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-unrealpast-5",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_unreal_past",
+  "type": "cloze",
+  "prompt": "It's about time you ___ (stop) making excuses.",
+  "answer": "stopped",
+  "explanation": "It's about time + özne + past simple: 'artık ... vakti geldi'. Past simple geçmişi değil gecikmiş bir şimdiyi gösterir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-unrealpast-6",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_unreal_past",
+  "type": "cloze",
+  "prompt": "She walked into the room as though she ___ (own) the place.",
+  "answer": "owned",
+  "explanation": "As though/as if + past simple: gerçek dışı ya da şüpheli bir şimdiki durum; aslında sahibi değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-unrealpast-7",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_unreal_past",
+  "type": "error",
+  "prompt": "It's high time we leave; the film starts in ten minutes.",
+  "answer": "leave",
+  "fix": "left",
+  "explanation": "It's high time + özne kalıbından sonra past simple gelir: It's high time we left. Alternatif: It's time to leave.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-nounphr-1",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_noun_phrases",
+  "type": "choice",
+  "prompt": "Most of the houses ___ in the flood have now been rebuilt.",
+  "answer": "damaged",
+  "options": [
+   "damage",
+   "damaging",
+   "damaged",
+   "which damaged"
+  ],
+  "explanation": "Edilgen anlamlı kısaltılmış ilgi cümlesi V3 ile kurulur: the houses (which were) damaged in the flood.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-nounphr-2",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_noun_phrases",
+  "type": "choice",
+  "prompt": "Residents ___ near the airport have complained about the noise.",
+  "answer": "living",
+  "options": [
+   "lived",
+   "to live",
+   "living"
+  ],
+  "explanation": "Etken anlamlı kısaltılmış ilgi cümlesi -ing ile kurulur: residents (who are) living near the airport.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-nounphr-3",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_noun_phrases",
+  "type": "choice",
+  "prompt": "There has been a dramatic fall ___ unemployment since January.",
+  "answer": "in",
+  "options": [
+   "of",
+   "in",
+   "for"
+  ],
+  "explanation": "Fall ve rise gibi sözcüklerde değişimin neyde olduğu in ile söylenir: a fall in unemployment. Of miktar içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-nounphr-4",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_noun_phrases",
+  "type": "choice",
+  "prompt": "The company's ___ to close the factory shocked the workers.",
+  "answer": "decision",
+  "options": [
+   "decide",
+   "decided",
+   "decision",
+   "decisive"
+  ],
+  "explanation": "İsimleştirmede fiil isme döner (decide → decision); öznesi 's ile, ardındaki fiil to ile gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-nounphr-5",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_noun_phrases",
+  "type": "cloze",
+  "prompt": "The rapid ___ (grow) of the city has put pressure on public transport.",
+  "answer": "growth",
+  "explanation": "Resmî yazıda fiil isme çevrilir: grow → growth. Sıfat (rapid) ismin önünde kalır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-nounphr-6",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_noun_phrases",
+  "type": "cloze",
+  "prompt": "The people ___ for the accident have not yet been identified.",
+  "answer": "responsible",
+  "alternatives": [
+   "accountable"
+  ],
+  "explanation": "Bazı sıfatlar ismin arkasına gelir: the people responsible for... (who are responsible kısaltılmıştır).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-nounphr-7",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_noun_phrases",
+  "type": "error",
+  "prompt": "There was a sharp rise of unemployment last year.",
+  "answer": "of",
+  "fix": "in",
+  "explanation": "Artışın neyde olduğu in ile söylenir: a rise in unemployment. Of ancak miktarla gelir: a rise of 5%.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-register-1",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_register",
+  "type": "choice",
+  "prompt": "(Formal email to a professor) Dear Professor Kaya, I ___ to request an extension for my essay.",
+  "answer": "am writing",
+  "options": [
+   "am writing",
+   "gonna write",
+   "wanna ask",
+   "just texting"
+  ],
+  "explanation": "Resmî e-postada I am writing to... açılışı kullanılır; gonna ya da wanna gibi kısaltmalar gündelik konuşmaya aittir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-register-2",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_register",
+  "type": "choice",
+  "prompt": "(Text to a friend) Sorry, we had to ___ the party. Too many people are ill.",
+  "answer": "put off",
+  "options": [
+   "adjourn",
+   "put off",
+   "discontinue"
+  ],
+  "explanation": "Arkadaşa yazılan mesajda gündelik phrasal verb (put off) doğaldır; adjourn ve discontinue resmî, bu bağlamda ağır kalır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-register-3",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_register",
+  "type": "choice",
+  "prompt": "(Official report) The allegations ___ by an independent panel.",
+  "answer": "will be investigated",
+  "options": [
+   "are gonna be checked out",
+   "will get looked at",
+   "will be investigated"
+  ],
+  "explanation": "Resmî raporda edilgen yapı ve tek sözcüklü fiil (investigate) yeğlenir; gonna ve phrasal verb'ler gündeliktir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-register-4",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_register",
+  "type": "choice",
+  "prompt": "(Formal report) The project was expensive. ___, it was completed on time.",
+  "answer": "However",
+  "options": [
+   "Mind you",
+   "Anyhow",
+   "However"
+  ],
+  "explanation": "Resmî yazıda zıtlık bağlacı however'dir. Mind you ve anyhow konuşma dilinde söylem belirleyicileridir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-register-5",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_register",
+  "type": "cloze",
+  "prompt": "(Formal email) I am writing to ___ about the availability of rooms in July.",
+  "answer": "enquire",
+  "alternatives": [
+   "inquire"
+  ],
+  "explanation": "Resmî dilde 'sormak' için enquire/inquire kullanılır; gündelik karşılığı ask'tir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-register-6",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_register",
+  "type": "cloze",
+  "prompt": "(Informal chat) I can't put up ___ his rudeness any more.",
+  "answer": "with",
+  "explanation": "Put up with gündelik bir phrasal verb'dür ('katlanmak'); resmî karşılığı tolerate'tir. Üç parçalıdır, with gerekir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b13-register-7",
+  "language": "en",
+  "level": "C1",
+  "topic": "basics_en_register",
+  "type": "error",
+  "prompt": "Dear Sir, I am writing cos I would like to reserve a table for six.",
+  "answer": "cos",
+  "fix": "because",
+  "explanation": "Resmî mektupta cos gibi konuşma kısaltmaları kullanılmaz; tam bağlaç because gerekir.",
+  "source": "Diloloji (özgün)"
+ }
+]
