@@ -115,16 +115,17 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
           {unlockables && (
             <button
               type="button"
-              className="btn btn-sm btn-quiet profile-customize-btn"
+              className="icon-btn profile-tool profile-customize-btn"
+              aria-label="Özelleştir"
+              title={customizing ? 'Özelleştirmeyi kapat' : 'Özelleştir: kapak, çerçeve, unvan'}
               aria-expanded={customizing}
               onClick={() => setCustomizing((c) => !c)}
             >
-              <PaletteIcon size={15} className="inline-icon" />
-              <span>{customizing ? 'Kapat' : 'Özelleştir'}</span>
+              <PaletteIcon size={18} />
             </button>
           )}
           {onOpenSettings && (
-            <button className="icon-btn profile-settings" onClick={onOpenSettings} aria-label="Ayarlar" title="Ayarlar">
+            <button className="icon-btn profile-tool profile-settings" onClick={onOpenSettings} aria-label="Ayarlar" title="Ayarlar">
               <GearIcon size={18} />
             </button>
           )}

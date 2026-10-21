@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { db } from '../data/instance'
 import type { RepairTarget } from '../engine/blindSpots'
 import { errorBreakdown } from '../engine/insights'
-import { careDay, careMinutes, careOf, careSteps, cleanCare, markDone, nextStep, type CareItem, type CareState, type CareStep } from '../engine/weeklyCare'
+import { careDay, careMinutes, careOf, careSteps, cleanCare, markDone, MIN_MISSES, nextStep, type CareItem, type CareState, type CareStep } from '../engine/weeklyCare'
 import type { ReviewEvent, TargetLanguage } from '../engine/types'
 import { CheckIcon, CloseIcon } from './icons'
 import { TILE_ART } from './drawnArt'
@@ -71,7 +71,7 @@ export function WeeklyCare({
     }
     // The round is worked out once per language and day, not on every answer.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language, open, misses > 0, now.toDateString()])
+  }, [language, open, misses >= MIN_MISSES, now.toDateString()])
 
   const next = nextStep(items, state)
   if (!open || state.dismissed || !items.length || !next) return null

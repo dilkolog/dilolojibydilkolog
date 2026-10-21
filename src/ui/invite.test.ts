@@ -25,6 +25,8 @@ describe('cleanName', () => {
     expect(cleanName('  Ali Aydın  ')).toBe('Ali Aydın')
     expect(cleanName('<script>Ayşe</script>')).toBe('scriptAyşe/script')
     expect(cleanName('“Can”')).toBe('Can')
+    // A right-to-left override would show the name turned around.
+    expect(cleanName('Ay\u202Eşe')).toBe('Ayşe')
     expect(cleanName(null)).toBeNull()
     expect(cleanName('')).toBeNull()
   })

@@ -1520,7 +1520,9 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .toast {
   position: fixed; left: 50%; bottom: calc(1.5rem + var(--tabbar-h, 0px)); transform: translateX(-50%); z-index: 60;
   margin: 0; padding: 0.75rem 1.125rem; border-radius: var(--r-md); background: var(--ink); color: var(--bg);
-  font-weight: 600; font-size: var(--t-sm); box-shadow: var(--shadow-lg); animation: toast-in var(--dur) var(--ease-spring); max-width: min(32rem, calc(100% - 2rem));
+  font-weight: 600; font-size: var(--t-sm); box-shadow: var(--shadow-lg); animation: toast-in var(--dur) var(--ease-spring);
+  /* Sized by its message, not by the space right of the screen's middle (where `left: 50%` puts its box): otherwise a phone wraps it a word a line. */
+  width: max-content; max-width: min(32rem, calc(100vw - 2rem));
 }
 @keyframes toast-in { from { opacity: 0; transform: translate(-50%, 0.75rem); } to { opacity: 1; transform: translate(-50%, 0); } }
 
@@ -1936,6 +1938,11 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .dialog-head .section-title { margin-top: 0.25rem; }
 .dialog-badge.is-danger { background: var(--bad-soft); color: var(--bad-text); }
 .dialog-actions { margin-top: 0.25rem; }
+/* The text under a dialog's title lines up with the title, past the badge (first bundle: the invite question uses it). */
+.dialog-body { padding-left: 3.25rem; }
+@media (max-width: 30rem) {
+  .dialog-body { padding-left: 0; }
+}
 @media (max-width: 30rem) {
   /* Phones: dialogs rise from the bottom like the menu sheet, buttons full width. */
   .dialog-backdrop { place-items: end stretch; padding: 0; }
@@ -4316,6 +4323,14 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-kbd { margin-left: 0.125rem; font-size: 0.75em; }
 @media (hover: none) { .lab-kbd { display: none; } }
 .lab-tense-more { display: inline-flex; align-items: center; gap: 0.25rem; }
+/* Phone: one tense between two arrows, its name the button that lists them all. */
+.lab-tense-bar.is-compact { flex-wrap: nowrap; justify-content: center; gap: 0.25rem; }
+.lab-tense-bar.is-compact .popover { min-width: 0; flex: 0 1 auto; }
+.lab-tense-current { display: inline-flex; align-items: center; justify-content: center; gap: 0.25rem; max-width: 100%; min-width: 11rem; background: var(--lang-soft); color: var(--lang-text); box-shadow: inset 0 0 0 1.5px var(--lang); }
+.lab-tense-current > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lab-tense-step:disabled { opacity: 0.35; cursor: default; }
+.lab-tense-bar.is-compact .lab-tense-verb { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lab-tense-bar.is-compact .lab-tense-verb ~ .popover .lab-tense-current { min-width: 0; }
 .lab-table-head { margin: 0 0 -0.5rem; }
 .lab-progress-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; padding: 0.75rem 1rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); }
 .lab-progress-line .lab-bar { flex: 1 1 6rem; min-width: 6rem; }
@@ -5921,3 +5936,7 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 .weekly-care .care-steps { display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; margin-top: 0.25rem; }
 .weekly-care .care-step { display: inline-flex; align-items: center; gap: 0.2rem; }
 .weekly-care .care-step.done { color: var(--ok-deep, var(--ink-soft)); text-decoration: line-through; }
+
+/* Invite: who the link is from, before it is accepted (InviteAccept, in the first bundle). */
+.invite-ask { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; color: var(--ink); }
+.invite-ask > div { display: grid; gap: 0.125rem; }

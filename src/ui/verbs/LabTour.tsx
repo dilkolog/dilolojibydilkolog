@@ -55,7 +55,7 @@ export function TourCard({ language, items, onStart }: { language: LabLanguage; 
   }
   const away = () => {
     hide(true)
-    undoable('Bugünün fiil turu gizlendi; yarın yine çıkar.', () => hide(false))
+    undoable('Bugünün fiil turu gizlendi.', () => hide(false))
   }
   const swipe = useSwipeAway(away)
   if (!items.length || hidden) return null

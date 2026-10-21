@@ -140,6 +140,22 @@ describe('registering an address', () => {
     expect(blobs.size).toBe(0)
   })
 
+  it('an account may have only two addresses waiting for their confirmation at once (no mailing strangers address after address)', async () => {
+    const id = 'a'.repeat(64)
+    const token = '1'.repeat(64)
+    const hash = [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(token)))].map((b) => b.toString(16).padStart(2, '0')).join('')
+    blobs.set(`sync/${id}/auth.txt`, hash)
+    const as = { 'x-sync-id': id, 'x-sync-auth': token }
+    expect((await post({ action: 'email', email: 'one@example.com', ...state }, as)).status).toBe(200)
+    expect((await post({ action: 'email', email: 'two@example.com', ...state }, as)).status).toBe(200)
+    const third = await post({ action: 'email', email: 'three@example.com', ...state }, as)
+    expect(third.status).toBe(429)
+    expect(await third.json()).toEqual({ error: 'too_many_pending' })
+    expect(mails).toHaveLength(2)
+    // Asking about an address it already has still works.
+    expect((await post({ action: 'email-status', email: 'one@example.com' }, as)).status).toBe(200)
+  })
+
   it('an address registered by another account is not touched (409)', async () => {
     await post({ action: 'email', email: EMAIL, ...state })
     const key = mailPath(await mailKey(EMAIL))

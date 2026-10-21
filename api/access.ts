@@ -1,5 +1,5 @@
 import { accessStatus, accountOf, approvalOn, claimAccount, clearAccessCache, ID, requestPath, requireApproved, StorageError, storedAuth, tokenMatches, TOKEN, writeJson, type AccessStatus } from './_account.js'
-import { addFriend, clearInbox, findFriend, friendsOf, handleOf, inboxOf, normalizeCode, publishCard, removeFriend, requestFriend, sendToFriend, setHandle } from './_friends.js'
+import { addFriend, clearInbox, findFriend, friendsOf, handleOf, inboxOf, inviterCard, normalizeCode, publishCard, removeFriend, requestFriend, sendToFriend, setHandle } from './_friends.js'
 import { friendMessage, pushToOwner } from './_notify.js'
 import { fromApp } from './_origin.js'
 import { deleteAccountData, timed } from './_deleteAccount.js'
@@ -26,6 +26,7 @@ import { overLimit, tooMany } from './_rate.js'
  * GET  /api/access?inbox=1                        → { items }: what friends sent (a cheer, a nudge, a word, a text)
  * GET  /api/access?friend-handle=1                → { handle, findable } (the own findable @name, if one was picked)
  * GET  /api/access?friend-find=<name>             → { found } or 404 { error: 'unknown' }: an exact, switched-on name only
+ * GET  /api/access?friend-invite=<CODE>           → { inviter } (name, avatar, colour, level) or 404/400: who an invite is from, before it is accepted
  * POST /api/access  { action: 'friends-handle', handle, findable } → { handle, findable } or { error: 'taken' | 'bad_handle' }
  * POST /api/access  { action: 'friends-request', handle } → { ok } or { error: 'unknown' | 'self' | 'already' } (a request the other side accepts)
  * POST /api/access  { action: 'friends-send', code, kind, payload? } → { ok } or { error } (kind: cheer, nudge, gift (a word), text); { action: 'friends-inbox-clear', ids } → { ok }
@@ -60,6 +61,12 @@ async function friendsGet(request: Request): Promise<Response> {
     const query = new URL(request.url).searchParams
     if (query.has('inbox')) return json({ items: await inboxOf(id) })
     if (query.has('friend-handle')) return json((await handleOf(id)) ?? { handle: '', findable: false })
+    if (query.has('friend-invite')) {
+      if (overLimit(request, 'friends-find', 30)) return tooMany()
+      const inviter = await inviterCard(id, query.get('friend-invite') ?? '')
+      if (inviter === 'self') return json({ error: 'self' }, 400)
+      return inviter ? json({ inviter }) : json({ error: 'unknown' }, 404)
+    }
     if (query.has('friend-find')) {
       if (overLimit(request, 'friends-find', 30)) return tooMany()
       const found = await findFriend(id, query.get('friend-find'))
@@ -190,7 +197,7 @@ async function accountDelete(request: Request): Promise<Response> {
 export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
   const q = new URL(request.url).searchParams
-  if (q.has('friends') || q.has('inbox') || q.has('friend-handle') || q.has('friend-find')) return friendsGet(request)
+  if (q.has('friends') || q.has('inbox') || q.has('friend-handle') || q.has('friend-find') || q.has('friend-invite')) return friendsGet(request)
   if (new URL(request.url).searchParams.has('vault')) return vaultGet(request)
   if (overLimit(request, 'access-read', 120)) return tooMany()
   const id = request.headers.get('x-sync-id') ?? ''

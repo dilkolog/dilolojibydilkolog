@@ -1,4 +1,5 @@
 import { noteError } from './_errorDigest.js'
+import { fromApp } from './_origin.js'
 import { overLimit, tooMany } from './_rate.js'
 /**
  * Client error reports (src/data/errorReport.ts): one line each in the Vercel logs, searchable as
@@ -38,6 +39,9 @@ export async function POST(request: Request): Promise<Response> {
     console.warn('[csp-report]', JSON.stringify({ directive: str(r['effective-directive'] ?? r['violated-directive'], 60), blocked: origin(r['blocked-uri']), page: str(r['document-uri'], 300).replace(/[?#].*$/, '').replace(/^https?:\/\/[^/]+/, '') }))
     return new Response(null, { status: 204 })
   }
+  // An error report counts toward the owner's weekly digest: only the app's own pages may file one (a stranger's
+  // script must not fill the week's places with made-up errors). Browsers send CSP reports above without asking us.
+  if (!fromApp(request)) return new Response(null, { status: 403 })
   const report = {
     name: str(body.name, 40),
     message: str(body.message, 200),

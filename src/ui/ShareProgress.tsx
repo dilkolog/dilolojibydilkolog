@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { UserWordState, VocabularyEntry } from '../engine/types'
-import { ChartIcon, DownloadIcon, LinkIcon, SparkleIcon } from './icons'
+import { ChartIcon, DownloadIcon, ShareIcon, SparkleIcon } from './icons'
 import { MenuItem, Popover } from './Popover'
 import { openPrint } from './printWindow'
 import { progressHtml, progressXlsx, type ProgressReport } from './progressReport'
@@ -46,7 +46,19 @@ export function ShareProgress({
 
   return (
     <>
-      <Popover kind="menu" align="end" label="İlerlemeyi paylaş" buttonClassName="btn btn-quiet" button={<><LinkIcon size={16} className="inline-icon" /> Paylaş</>}>
+      <Popover
+        kind="menu"
+        align="end"
+        label="İlerlemeyi paylaş"
+        buttonClassName="btn btn-sm btn-quiet share-progress-btn"
+        buttonProps={{ 'aria-label': 'Paylaş', title: 'İlerlemeni paylaş: hikâye kartı, PDF ya da Excel' }}
+        button={
+          <>
+            <ShareIcon size={17} />
+            <span className="share-progress-label">Paylaş</span>
+          </>
+        }
+      >
         {(close) => (
           <>
             <MenuItem

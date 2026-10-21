@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { KelimeDB } from '../data/db'
+import type { KelimeDB, Settings } from '../data/db'
 import { frequencyWords } from '../data/frequency'
 import { frequencyCoverage } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
@@ -11,7 +11,19 @@ import { useCefr } from './useCefr'
  * Coverage of the language's most frequent words, band by band. The first thousands carry most
  * of every text, so this says more about real-world understanding than a raw word count.
  */
-export function FrequencyCoverageCard({ db, language, vocabulary, states }: { db: KelimeDB; language: TargetLanguage; vocabulary: VocabularyEntry[]; states: UserWordState[] }) {
+export function FrequencyCoverageCard({
+  db,
+  language,
+  vocabulary,
+  states,
+  onSettingsChange,
+}: {
+  db: KelimeDB
+  language: TargetLanguage
+  vocabulary: VocabularyEntry[]
+  states: UserWordState[]
+  onSettingsChange?: (settings: Settings) => Promise<void> | void
+}) {
   const [list, setList] = useState<string[] | null>(null)
   const [known, setKnown] = useState<Set<string> | null>(null)
   useEffect(() => {
@@ -48,7 +60,7 @@ export function FrequencyCoverageCard({ db, language, vocabulary, states }: { db
         </div>
       )}
       {byLevel && levels && levels.length > 0 && (
-        <GoalPlannerCard db={db} language={language} levels={levels} />
+        <GoalPlannerCard db={db} language={language} levels={levels} onSettingsChange={onSettingsChange} />
       )}
       <p className="small muted">
         {byLevel ? (

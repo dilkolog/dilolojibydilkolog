@@ -2,8 +2,10 @@ import { allowedIds } from './_allow.js'
 import { accountOf, requireApproved, sha256, StorageError } from './_account.js'
 import { landingPage } from './_mailLayout.js'
 import { confirmMail, EMAIL, mailConfigured, sendMail, siteFrom, usingSandboxSender, APP_URL } from './_mail.js'
+import { fromApp } from './_origin.js'
 import { overLimit, tooMany } from './_rate.js'
 import { blobPath, reminderStore } from './_reminders.js'
+import { supabaseOn } from './_supabase.js'
 
 /**
  * Push reminder subscriptions. The app registers its browser push subscription here and reports
@@ -177,6 +179,15 @@ async function handleGet(request: Request): Promise<Response> {
   return page('Hatırlatmalar kapatıldı', 'Bu adrese artık mail göndermeyeceğiz ve adresin silindi.', 200, here)
 }
 
+/** Unconfirmed addresses an account may have waiting at once. */
+export const MAX_PENDING_MAILS = 2
+/** How many of the account's addresses still wait for their confirmation (within the hour their mail is good for). */
+async function pendingMails(store: Awaited<ReturnType<typeof reminderStore>>, owner: string, at: number): Promise<number> {
+  const keys = await store.mailsOf(owner)
+  const records = await Promise.all(keys.map((k) => store.get(k)))
+  return records.filter((r) => r && !r.confirmed && at - (r.confirmSentAt ?? 0) < 3_600_000).length
+}
+
 /** The mail reminders: registering an address, its status, taking it out. */
 async function handleMail(request: Request, body: Record<string, unknown>): Promise<Response> {
   if (!mailConfigured()) return Response.json({ error: 'not configured' }, { status: 503 })
@@ -199,6 +210,9 @@ async function handleMail(request: Request, body: Record<string, unknown>): Prom
     return new Response(null, { status: 204 })
   }
   if (!existing && body.update) return Response.json({ state: 'none' })
+  // A new address sends a confirmation mail from the site's own domain: an account may have only a couple waiting at a
+  // time (each waits an hour), so nobody can spend the sending quota or mail strangers by adding address after address.
+  if (!existing && owner && (await pendingMails(store, owner, Date.now())) >= MAX_PENDING_MAILS) return Response.json({ error: 'too_many_pending' }, { status: 429 })
   const created = !existing
   const token = existing?.token ?? [...crypto.getRandomValues(new Uint8Array(12))].map((b) => b.toString(16).padStart(2, '0')).join('')
   const now = Date.now()
@@ -265,9 +279,13 @@ async function handlePost(request: Request): Promise<Response> {
   if (body.action !== 'save' || !sub || typeof sub.endpoint !== 'string' || !isPushService(sub.endpoint) || !sub.keys?.p256dh || !sub.keys?.auth) {
     return new Response('bad request', { status: 400 })
   }
+  // Only the app's pages, and (with accounts on) only a device signed in to one: the hourly run and friends' pushes
+  // read these records, so a stranger must not fill the store with made-up subscriptions.
+  if (!fromApp(request)) return new Response('forbidden', { status: 403 })
   const allowed = await allowedIds()
   if (allowed && !(typeof body.group === 'string' && allowed.has(body.group))) return new Response('not allowed', { status: 403 })
   const owner = await accountOf(request)
+  if (!owner && supabaseOn()) return Response.json({ error: 'account_required' }, { status: 403 })
   const record: PushRecord = {
     subscription: { endpoint: sub.endpoint, keys: { p256dh: String(sub.keys.p256dh), auth: String(sub.keys.auth) } },
     ...stateFields(body),

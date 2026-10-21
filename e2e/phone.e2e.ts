@@ -1098,18 +1098,30 @@ test('verb lab: a sideways swipe over the table steps the tense; a scroll does n
       },
       [dx, dy],
     )
+  // On a phone the bar shows one tense between two arrows; its name opens the whole list.
   const bar = main.getByRole('group', { name: 'Zaman' })
-  await expect(bar.getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'true')
+  const current = bar.locator('.lab-tense-current')
+  await expect(current).toHaveText('Présent')
+  await expect(bar.locator('.chip[aria-pressed]')).toHaveCount(0)
+  expect(await overflow(page), 'tense bar overflow').toEqual([])
   // Mostly downwards: a scroll, nothing changes.
   await swipe(-60, 120)
-  await expect(bar.getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'true')
+  await expect(current).toHaveText('Présent')
   // Leftwards: the next tense, and the hint has done its job.
   await swipe(-120, 10)
-  await expect(bar.getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'false')
+  await expect(current).not.toHaveText('Présent')
   await expect(hint).toHaveCount(0)
-  // Rightwards: back again.
+  // Rightwards: back again; the arrows step the same way.
   await swipe(120, 5)
-  await expect(bar.getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'true')
+  await expect(current).toHaveText('Présent')
+  await bar.getByRole('button', { name: /^Sonraki zaman/ }).click()
+  await expect(current).not.toHaveText('Présent')
+  await bar.getByRole('button', { name: /^Önceki zaman/ }).click()
+  await expect(current).toHaveText('Présent')
+  // The name lists every tense.
+  await current.click()
+  await page.getByRole('menuitem', { name: /Imparfait/ }).click()
+  await expect(current).toHaveText('Imparfait')
 })
 
 test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, the word stays in view, a pull on it closes it', async ({ page }) => {

@@ -40,6 +40,23 @@ describe('the week in one line', () => {
 
   it('says nothing for an empty week', () => {
     expect(weekLine({ days: 0, answers: 0, right: 0, newWords: 0, texts: 0, lastAnswers: 0 })).toBe('')
+    // A goal alone does not make a week worth a card, a push or a mail.
+    expect(weekLine({ days: 0, answers: 0, right: 0, newWords: 0, texts: 0, lastAnswers: 0 }, 35)).toBe('')
+  })
+
+  it('measures the goal by the words met in study, not the words added', () => {
+    const now = new Date(2026, 9, 11, 10)
+    const events = [{ timestamp: new Date(2026, 9, 10), correct: true, language: 'fr' as const }]
+    // 200 words imported this week, 3 of them met in study, plus one met long ago.
+    const vocabulary = Array.from({ length: 200 }, () => ({ addedAt: new Date(2026, 9, 9), source: 'manual', language: 'fr' as const }))
+    const states = [
+      ...Array.from({ length: 3 }, () => ({ language: 'fr' as const, introducedAt: new Date(2026, 9, 10) })),
+      { language: 'fr' as const, introducedAt: new Date(2026, 5, 1) },
+      { language: 'es' as const, introducedAt: new Date(2026, 9, 10) },
+    ]
+    const s = weekSummary({ language: 'fr', now, events, vocabulary, texts: [], states })
+    expect(s.introduced).toBe(3)
+    expect(weekLine(s, 35)).toContain('bu hafta 32 kelime daha')
   })
 })
 

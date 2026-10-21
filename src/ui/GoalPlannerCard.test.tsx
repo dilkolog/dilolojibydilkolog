@@ -137,4 +137,27 @@ describe('GoalPlannerCard', () => {
     const saved = (db.saveSettings as unknown as ReturnType<typeof vi.fn>).mock.calls[0][0] as Settings
     expect(saved.cefrGoals?.fr).toBeUndefined()
   })
+
+  it('saves through the app from the stored settings, not the copy it read on opening', async () => {
+    const db = makeMockDb()
+    const onSettingsChange = vi.fn()
+    await act(async () => {
+      root.render(<GoalPlannerCard db={db} language="fr" levels={mockLevels} onSettingsChange={onSettingsChange} />)
+    })
+    // Another screen (or a sync) changes a setting while the card is open.
+    const stored = await db.getSettings()
+    await db.saveSettings({ ...stored!, newWordsPerDay: 3 })
+    ;(db.saveSettings as unknown as ReturnType<typeof vi.fn>).mockClear()
+
+    const saveBtn = Array.from(rootEl.querySelectorAll('button')).find((b) => b.textContent?.includes('Hedefi Kaydet'))
+    await act(async () => {
+      saveBtn!.click()
+    })
+
+    expect(db.saveSettings).not.toHaveBeenCalled()
+    expect(onSettingsChange).toHaveBeenCalledTimes(1)
+    const saved = onSettingsChange.mock.calls[0][0] as Settings
+    expect(saved.newWordsPerDay).toBe(3)
+    expect(saved.cefrGoals?.fr?.level).toBe('A2')
+  })
 })

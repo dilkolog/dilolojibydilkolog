@@ -11,6 +11,19 @@ Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13; **2026-10-19 gü
 - **CSP zorunlu (2026-10-20):** başlık artık `Content-Security-Policy` (engeller); ayrıntı aşağıda ve `docs/veri/csp-gecis.md`.
 - **Açık kalanlar:** CSP'de `connect-src` hâlâ geniş (`https: wss:`, nedeni aşağıda), Supabase'te kişi başı kota/medya sınırı yok, tek yönlü takiple arkadaşlara hediye/metin gönderilebiliyor (engelleme yok).
 
+## 2026-10-21 güvenlik incelemesi
+Yapılanlar:
+- **Mail onayı:** bir hesap aynı anda en çok 2 onay bekleyen adres tutabilir (`MAX_PENDING_MAILS`, `api/push.ts`); yoksa adres adres yabancılara onay maili atılıp Resend kotası bitirilebiliyordu.
+- **Push kaydı:** `save` yalnızca uygulamanın sayfalarından (`fromApp`) ve Supabase açıkken girişli bir cihazdan kabul edilir; saatlik görev ve arkadaş bildirimleri bu kayıtları okuduğu için sahte kayıtla doldurulamaz.
+- **Arkadaş çıkarma kalıcı:** çıkaran kişi çıkarılanın kodunu `friends/blocked/<hesap>.json`a yazar; çıkarılan kişi kodla yeniden ekleyemez, @ad isteği sessizce düşer, çıkaran kişi onu kendisi yeniden eklerse engel kalkar.
+- **Hata özeti:** `/api/log` istemci raporlarını yalnızca uygulamanın sayfalarından kabul eder (CSP raporları açık kalır).
+- **Köken:** `diloloji-*.vercel.app` önizleme adresleri artık güvenilmez (bu adla herkes proje açabilir); bir önizleme gerekiyorsa `APP_HOSTS`a yazılır.
+
+Açık kalanlar (kalıcı sayaç ya da şema gerekir):
+- **Hesap başına kota yok:** `/api/translate` (DeepL aylık karakteri), `clips/news/listen/youtube` dış istekleri ve eşitleme depolaması (`sync` parçaları, Supabase `media`) yalnızca adres başına ve örnek belleğindeki hız freniyle sınırlı. Ücretsiz kayıt açık olduğu için bir hesap DeepL kotasını ya da depolamayı bitirebilir. Öneri: hesap başına günlük karakter tavanı (tablo ya da Blob sayacı) ve hesap başına toplam bayt sınırı (`put_sync_part` içinde `sum(bytes)`).
+- **Cloudflare WAF Rate Limiting kuralı** (ücretsiz planda 1 kural): önce `/api/translate`.
+- Canlı düello puanı istemcinin kendi beyanı (arkadaş oyunu; bilerek).
+
 ## Var olanlar
 - **Eşitleme uçtan uca şifreli:** veri cihazda şifrelenir; sunucu (`api/sync.ts`, özel Vercel Blob) yalnızca opak bayt saklar. Hesaplı girişte erişim belirteci denetlenir; günlük geri yükleme noktaları.
 - **Sunucu fonksiyonları keyfi adres almaz:** haber/dinleme kaynakları kimlikle seçilir (izin listesi), SSRF yok.

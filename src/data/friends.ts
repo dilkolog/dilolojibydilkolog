@@ -136,6 +136,22 @@ export async function findFriend(handle: string): Promise<FoundFriend | null> {
   return data.found
 }
 
+/** Who an invite code belongs to, as their card shows them (name, avatar, colour, level): asked before the invite is accepted. Null for a code no one holds. */
+export interface InviterCard {
+  name: string
+  avatar: string
+  color: string
+  level: number
+}
+
+export async function inviterOf(code: string): Promise<InviterCard | null> {
+  const res = await accessFetch(`/api/access?friend-invite=${encodeURIComponent(code)}`)
+  if (res.status === 404) return null
+  const data = (await res.json().catch(() => ({}))) as { inviter?: InviterCard; error?: string }
+  if (!res.ok || !data.inviter) throw new FriendsError(data.error ?? `http ${res.status}`)
+  return data.inviter
+}
+
 export const requestFriend = async (handle: string) => void (await post({ action: 'friends-request', handle: cleanHandle(handle) }))
 
 /** A code as it is shown and read aloud: ABCD-EFGH. */

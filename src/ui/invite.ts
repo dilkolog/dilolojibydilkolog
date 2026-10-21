@@ -20,7 +20,8 @@ export function cleanCode(raw: string | null | undefined): string | null {
 /** The inviter's display name, safely stripped of control chars, quotes and tags, max 40 chars. */
 export function cleanName(raw: string | null | undefined): string | null {
   if (typeof raw !== 'string') return null
-  const cleaned = raw.replace(/[\p{Cc}<>"“”]/gu, '').trim().slice(0, 40)
+  // Control and format characters out (a right-to-left override would turn the name around).
+  const cleaned = raw.replace(/[\p{Cc}\p{Cf}<>"“”]/gu, '').trim().slice(0, 40)
   return cleaned || null
 }
 
