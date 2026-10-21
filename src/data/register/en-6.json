@@ -1,0 +1,272 @@
+[
+ {
+  "id": "en-r6-card",
+  "language": "en",
+  "tr": "kartım bloke oldu",
+  "informal": "My card's blocked, what's going on?",
+  "standard": "My card has been blocked. Can you help me?",
+  "formal": "I have noticed that my bank card has been blocked and would be grateful if you could investigate.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-doctor",
+  "language": "en",
+  "tr": "başım ve boğazım ağrıyor",
+  "informal": "My head and throat are killing me.",
+  "standard": "I've had a headache and a sore throat since yesterday.",
+  "formal": "I have been suffering from a headache and a sore throat since yesterday, doctor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-heating",
+  "language": "en",
+  "tr": "kalorifer çalışmıyor",
+  "informal": "The heating's gone off again, can you come look?",
+  "standard": "The heating isn't working in the flat.",
+  "formal": "I am writing to inform you that the heating in the flat is broken and would appreciate a prompt repair.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-neighbor",
+  "language": "en",
+  "tr": "müziği biraz kısar mısınız?",
+  "informal": "Mind turning the music down a bit?",
+  "standard": "Could you turn the music down a little? It's late.",
+  "formal": "I would be grateful if you could lower the volume of the music at this late hour.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-luggage",
+  "language": "en",
+  "tr": "bavulum gelmedi",
+  "informal": "My bag never showed up, what a pain!",
+  "standard": "My suitcase hasn't arrived. What should I do?",
+  "formal": "My luggage has not been delivered, and I wish to file a lost baggage report.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-coldfood",
+  "language": "en",
+  "tr": "yemek soğuk geldi",
+  "informal": "My food's stone cold, mate.",
+  "standard": "Excuse me, my meal is cold. Could you heat it up?",
+  "formal": "I regret to inform you that my meal arrived cold; would you kindly replace it?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-decline",
+  "language": "en",
+  "tr": "davetine gelemeyeceğim",
+  "informal": "Can't make it tonight, sorry!",
+  "standard": "Thanks for the invitation, but I won't be able to come.",
+  "formal": "Thank you for your kind invitation; unfortunately, I am unable to accept.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-feedback",
+  "language": "en",
+  "tr": "bu konuda geri bildirimin var mı?",
+  "informal": "What do you reckon? Any thoughts?",
+  "standard": "Do you have any feedback on my work?",
+  "formal": "I would greatly appreciate your feedback on this document.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-deadline",
+  "language": "en",
+  "tr": "teslim tarihini uzatabilir miyiz?",
+  "informal": "Can we push the deadline back?",
+  "standard": "Would it be possible to extend the deadline?",
+  "formal": "Would it be feasible to extend the deadline by a few days?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-directions",
+  "language": "en",
+  "tr": "belediyeye nasıl giderim?",
+  "informal": "Hey, which way's the town hall?",
+  "standard": "Excuse me, how do I get to the town hall?",
+  "formal": "Could you please tell me how to get to the town hall?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-time",
+  "language": "en",
+  "tr": "saat kaç?",
+  "informal": "What time is it?",
+  "standard": "Excuse me, do you have the time?",
+  "formal": "Would you be so kind as to tell me the time?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-meet",
+  "language": "en",
+  "tr": "tanıştığımıza memnun oldum",
+  "informal": "Great to meet you!",
+  "standard": "Nice to meet you.",
+  "formal": "It has been a pleasure to make your acquaintance.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-condolences",
+  "language": "en",
+  "tr": "başın sağ olsun",
+  "informal": "I'm here for you, hang in there.",
+  "standard": "I'm so sorry for your loss.",
+  "formal": "Please accept my deepest condolences.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-refund",
+  "language": "en",
+  "tr": "paramın iade edilmesini istiyorum",
+  "informal": "Can I get my money back? It's broken.",
+  "standard": "I'd like a refund, please.",
+  "formal": "I should be grateful if you would refund my order.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-reschedule",
+  "language": "en",
+  "tr": "randevuyu başka güne alabilir miyiz?",
+  "informal": "Can we meet another day?",
+  "standard": "Could we move the appointment to another day?",
+  "formal": "I would be grateful if we could reschedule our appointment for a later date.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-badnews",
+  "language": "en",
+  "tr": "maalesef başvurunuz kabul edilmedi",
+  "informal": "Bad luck, they didn't pick you.",
+  "standard": "I'm sorry, but you didn't get the job.",
+  "formal": "We regret to inform you that your application has not been successful.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-quiet",
+  "language": "en",
+  "tr": "sessiz olur musun? çalışıyorum",
+  "informal": "Shh, I'm trying to work here!",
+  "standard": "Could you keep it down? I'm working.",
+  "formal": "I would appreciate it if you could be quiet, as I am working.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-intro",
+  "language": "en",
+  "tr": "ekibe yeni katıldım, ben Ayşe",
+  "informal": "Hi, I'm Ayşe, just joined the team.",
+  "standard": "Hello, my name is Ayşe and I've just joined the team.",
+  "formal": "Allow me to introduce myself: I am Ayşe, a recent addition to the team.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-dayoff",
+  "language": "en",
+  "tr": "yarın izin almak istiyorum",
+  "informal": "Can I take tomorrow off?",
+  "standard": "I'd like to take a day off tomorrow.",
+  "formal": "I would like to request a day's leave for tomorrow, if possible.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-slower",
+  "language": "en",
+  "tr": "biraz daha yavaş konuşur musun?",
+  "informal": "Slow down, you're losing me.",
+  "standard": "Could you speak a bit more slowly, please?",
+  "formal": "Would you be so kind as to speak a little more slowly?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-seat",
+  "language": "en",
+  "tr": "bu yer boş mu?",
+  "informal": "Is this taken?",
+  "standard": "Excuse me, is this seat free?",
+  "formal": "May I ask whether this seat is available?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-wifi",
+  "language": "en",
+  "tr": "wifi şifresi nedir?",
+  "informal": "Got the wifi code?",
+  "standard": "Could you tell me the wifi password, please?",
+  "formal": "Might I ask you for the password to the wifi network?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-introfriend",
+  "language": "en",
+  "tr": "sizi tanıştırayım: bu Mehmet",
+  "informal": "This is my mate Mehmet.",
+  "standard": "I'd like you to meet my friend Mehmet.",
+  "formal": "Allow me to introduce my colleague, Mr Mehmet.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-reserve",
+  "language": "en",
+  "tr": "iki kişilik masa ayırtmak istiyorum",
+  "informal": "Table for two tonight, please.",
+  "standard": "I'd like to book a table for two.",
+  "formal": "I would like to reserve a table for two at eight o'clock this evening.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-latereply",
+  "language": "en",
+  "tr": "geç yanıt verdiğim için kusura bakma",
+  "informal": "Sorry for the late reply!",
+  "standard": "Sorry for replying so late.",
+  "formal": "Please accept my apologies for the delay in responding.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-luck",
+  "language": "en",
+  "tr": "başarılar dilerim",
+  "informal": "Good luck, you'll smash it!",
+  "standard": "Good luck for tomorrow!",
+  "formal": "I wish you every success in your endeavours.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-callback",
+  "language": "en",
+  "tr": "beni geri arar mısınız?",
+  "informal": "Call me back when you can.",
+  "standard": "Could you call me back, please?",
+  "formal": "I would appreciate it if you could return my call at your earliest convenience.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-nothanks",
+  "language": "en",
+  "tr": "teşekkürler, gerek yok",
+  "informal": "Nah, I'm good, thanks.",
+  "standard": "No, thank you, I don't need it.",
+  "formal": "Thank you, but that will not be necessary.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-holidays",
+  "language": "en",
+  "tr": "iyi tatiller!",
+  "informal": "Have a great holiday, enjoy!",
+  "standard": "Happy holidays!",
+  "formal": "I wish you a most pleasant holiday.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-r6-cantattend",
+  "language": "en",
+  "tr": "toplantıya katılamayacağım",
+  "informal": "Can't make the meeting, sorry.",
+  "standard": "I won't be able to attend the meeting.",
+  "formal": "Please accept my apologies: I will be unable to attend the meeting.",
+  "source": "Diloloji (özgün)"
+ }
+]
