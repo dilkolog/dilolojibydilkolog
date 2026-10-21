@@ -14,14 +14,14 @@ Claude Code ve Antigravity aynı listeden çalışır; çakışmamak için:
 ## Öğrenmeyi doğrudan güçlendirenler
 1. ~~**Hedef planlayıcı.**~~ (Tamamlandı: CEFR seviye hedef planlayıcı motoru, hedef tarihi ve kalan kelimeye göre günlük kota önerisi, tempo rozetleri [ahead/on_track/behind], `GoalPlannerCard` bileşeni ve testleri, #572)
 2. **Konuşma karşılaştırma ve telaffuz geri bildirimi.** Aynı cümlenin bir hafta sonraki puanı yapıldı (Azure anahtarıyla). Kalan: Azure'suz kullanıcı için ses eğrisi karşılaştırmasını zamanla çizgi yap.
-3. **Kişisel "zayıf nokta" haftalık mini turu.** Kör nokta röntgeni + yazı hata defteri + dilbilgisi tekrarı ortak bir 10 dakikalık "haftalık bakım" turunda birleşsin (tek düğme).
+3. ~~**Kişisel "zayıf nokta" haftalık mini turu.** Kör nokta röntgeni + yazı hata defteri + dilbilgisi tekrarı ortak bir 10 dakikalık "haftalık bakım" turunda birleşsin (tek düğme).~~ (Tamamlandı: Bugün'de Cuma–Pazar "haftalık bakım" kartı, `WeeklyCare.tsx`, `engine/weeklyCare.ts`: haftanın kaçırdıkları, tekrarı gelen dilbilgisi, en güçlü kör nokta; yazı hata defteri ayrıca Kör nokta röntgeninde)
 6. ~~**Okurken sesli çeviri.**~~ (Tamamlandı: kelime kartında cümlenin Türkçesinin altında "Türkçesini dinle" ve "Cümle, sonra Türkçesi", `TranslateButton.tsx`, #604)
 
 ## Sosyal ve bağlılık
-8. **Canlı düello sonrası "rövanş serisi".** İki kişi arka arkaya üç düello oynayınca toplam skor tablosu; oda aynı kalsın.
-9. **Takım hedefi bildirimi.** Ortak haftalık hedefe %80 gelince arkadaşlara "son dürtme" iletisi (gelen kutusu türü `team`).
+8. ~~**Canlı düello sonrası "rövanş serisi".** İki kişi arka arkaya üç düello oynayınca toplam skor tablosu; oda aynı kalsın.~~ (Tamamlandı 2026-10-21: aynı odada 3 düelloluk seri, galibiyet sonra toplam doğru, `liveDuel.ts` `Series`/`SeriesView`, sonuçta `SeriesBoard`)
+9. ~~**Takım hedefi bildirimi.** Ortak haftalık hedefe %80 gelince arkadaşlara "son dürtme" iletisi (gelen kutusu türü `team`).~~ (Tamamlandı 2026-10-21: hedefin %80'inden itibaren, tamamlanana dek Arkadaşlar → Ortak hedef kartında "Hepsini dürt": bugün çalışmamış en çok 10 arkadaşa mevcut `nudge` iletisi, haftada bir; yeni gelen kutusu türü bilerek eklenmedi: `friend_inbox` tablosunun `kind` kısıtı SQL değişikliği isterdi)
 10. ~~**Davet bağlantısına ad ekleme.**~~ (Tamamlandı: bağlantıya `kimden` adı ekleme, `Landing` sayfasında kişiselleştirilmiş karşılama ve testler, #565)
-11. **Okuma kulübü.** Aynı metni iki arkadaş aynı anda açar, işaretledikleri bilinmeyen kelimeleri birbirinde görür (canlı düello odası altyapısı yeniden kullanılabilir).
+11. ~~**Okuma kulübü.** Aynı metni iki arkadaş aynı anda açar, işaretledikleri bilinmeyen kelimeleri birbirinde görür (canlı düello odası altyapısı yeniden kullanılabilir).~~ (Tamamlandı 2026-10-21: Okuma → "Birlikte oku", `engine/readingClub.ts`, aynı Durable Object sınıfı `?kind=club` ve `club:<kod>` adıyla, `/?kulup=KOD`, `useReadingClub.ts`, `ClubBar.tsx`; arkadaşın baktığı kelime metinde noktalı çizgiyle; en çok 4 kişi)
 
 ## Kullanım kolaylığı
 12. ~~**Anki .apkg yeni biçim (zstd).** `collection.anki21b` okunsun; küçük bir zstd çözücü (WASM) gerekir.~~ (Tamamlandı: `fzstd` ile `collection.anki21b` desteği eklendi, #557)
@@ -40,7 +40,7 @@ Claude Code ve Antigravity aynı listeden çalışır; çakışmamak için:
 ## Yeni (2026-10-21)
 27. ~~**Eşitleme için gerçek iki cihazlı E2E.**~~ (Tamamlandı: `gate.e2e.ts` "two devices of one account": sahte Supabase satırları (`FakeParts`), A'da kelime eklenir, B'de görünür, B'den çıkış yalnızca B'yi boşaltır; ~40 sn)
 28. ~~**Atlanan medya uyarısı arka plan eşitlemesinde de.**~~ (Tamamlandı: `meta 'syncSkipped'`, Ayarlar → Hesap'ta kalıcı not)
-29. **Cihaz tercihlerinde silme yayılımı.** `devicePrefs` yalnızca değer yazar; bir cihazda silinen anahtar (ör. `diloloji:podcast:fr`) diğerinde kalır.
+29. ~~**Cihaz tercihlerinde silme yayılımı.** `devicePrefs` yalnızca değer yazar; bir cihazda silinen anahtar (ör. `diloloji:podcast:fr`) diğerinde kalır.~~ (Tamamlandı 2026-10-21: silme boş değerle (`v: ''`) yayılır, 90 gün sonra unutulur; yazılamayan değer silme sayılmaz)
 
 ## Sahibinin kararına bağlı
 23. ~~**Tanıtım sayfası metni ve mobil ergonomi.**~~ (Tamamlandı: hero buton aralıkları, davet karşılama kartı, değer önerisi çipleri ve ferahlatılmış bölüm ritmi, #566)
