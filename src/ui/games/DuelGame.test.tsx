@@ -125,7 +125,8 @@ describe('DuelGame', () => {
     await playAll(host)
     const sent = decodeDuel(host.querySelector('.duel-link')!.textContent!)!
     expect(sent.ids.length).toBeGreaterThanOrEqual(5)
-    expect(sent.ids.every((id) => id.startsWith(`fr-${topic}-`))).toBe(true)
+    const topicOf = new Map(grammarExercises('fr').map((e) => [e.id, e.topic]))
+    expect(sent.ids.every((id) => topicOf.get(id) === topic)).toBe(true)
   })
 
   it('remembers a duel played against a friend, once, and shows the tally in the lobby', async () => {
