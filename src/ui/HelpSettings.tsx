@@ -8,7 +8,7 @@ const QUESTIONS: { q: string; a: string }[] = [
   },
   {
     q: 'İlerlemem başka cihazda görünmüyor',
-    a: 'İki cihazda da aynı hesapla giriş yaptığından emin ol, sonra Ayarlar → Hesap → “Şimdi eşitle”ye dokun. Eşitleme internet ister; ilk seferde birkaç saniye sürebilir.',
+    a: 'İki cihazda da aynı hesapla giriş yaptığından emin ol. Değişiklikler kendiliğinden gider: uygulamayı öbür cihazda açınca ya da ona geri dönünce birkaç saniye içinde gelir. Eşitleme internet ister.',
   },
   {
     q: 'Dil paketi ya da ses ilk açılışta yavaş',

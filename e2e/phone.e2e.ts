@@ -1015,7 +1015,8 @@ test('the account card says where you stand: two reasons and wide buttons signed
   await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
   await expect(card.locator('.status-pill')).toHaveText(/Onay|Onaylı/)
   await expect(card.locator('.account-name')).toHaveText('ali')
-  await expect(card.getByRole('button', { name: 'Şimdi eşitle' })).toBeVisible()
+  // Syncing runs by itself: no button for it, and no history section.
+  await expect(card.getByRole('button', { name: 'Şimdi eşitle' })).toHaveCount(0)
   await expect(card.getByRole('button', { name: 'Çıkış yap', exact: true })).toBeVisible()
   // Deleting the account is a quiet row that opens a dialog; the delete button stays off until the phrase is typed.
   await page.locator('#s-account').getByRole('button', { name: 'Hesabı sil…' }).click()
