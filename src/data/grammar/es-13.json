@@ -1,0 +1,1122 @@
+[
+ {
+  "id": "es-b13-rel-1",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_subjuntivo_relativo",
+  "type": "choice",
+  "prompt": "Todavía no hemos encontrado ningún candidato que ___ experiencia en ventas.",
+  "answer": "tenga",
+  "options": [
+   "tiene",
+   "tenga",
+   "tendrá"
+  ],
+  "hint": "ningún → öncül yok",
+  "explanation": "Olumsuz öncülü (ningún candidato) niteleyen ilgi cümlesi subjuntivo alır: ningún candidato que tenga.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-rel-2",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_subjuntivo_relativo",
+  "type": "choice",
+  "prompt": "Mi hermana trabaja en una empresa que ___ coches eléctricos.",
+  "answer": "fabrica",
+  "options": [
+   "fabrica",
+   "fabrique",
+   "fabricaría"
+  ],
+  "hint": "var olan, bilinen şirket",
+  "explanation": "Şirket var ve bilinen biri; böyle bir varlığı niteleyen ilgi cümlesi indicativo alır: una empresa que fabrica.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-rel-3",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_subjuntivo_relativo",
+  "type": "choice",
+  "prompt": "Buscábamos una casa que ___ cerca del mar, pero no encontramos ninguna.",
+  "answer": "estuviera",
+  "options": [
+   "estuviera",
+   "estaba",
+   "estuvo"
+  ],
+  "hint": "ninguna → varlık belirsizdi",
+  "explanation": "Aranan ve sonunda bulunamayan şeyi niteleyen cümle subjuntivo alır; ana fiil geçmişte (buscábamos) olduğu için imperfecto de subjuntivo gelir: estuviera.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-rel-4",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_subjuntivo_relativo",
+  "type": "choice",
+  "prompt": "No hay nada en esta tienda que me ___.",
+  "answer": "guste",
+  "options": [
+   "gusta",
+   "guste",
+   "gustará"
+  ],
+  "hint": "no hay nada → subjuntivo",
+  "explanation": "No hay nada que… yapısında öncül yok sayıldığından ilgi cümlesi subjuntivo alır: que me guste.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-rel-5",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_subjuntivo_relativo",
+  "type": "choice",
+  "prompt": "No conozco ___ nadie que viva en ese edificio.",
+  "answer": "a",
+  "options": [
+   "a",
+   "de",
+   "por",
+   "en"
+  ],
+  "hint": "nadie = kişi nesnesi",
+  "explanation": "nadie ve alguien kişi nesnesidir ve her zaman a ile gelir: No conozco a nadie. Fiilin kipi de subjuntivo (viva) olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-rel-6",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_subjuntivo_relativo",
+  "type": "cloze",
+  "prompt": "Quiero comprarme un móvil, no sé cuál, pero que ___ (durar) más de dos años.",
+  "answer": "dure",
+  "hint": "aranan, belirsiz nesne → subjuntivo",
+  "explanation": "Henüz belli olmayan, yalnızca özellikleri tarif edilen bir şeyi niteleyen ilgi cümlesi subjuntivo alır: un móvil que dure.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-rel-7",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_subjuntivo_relativo",
+  "type": "cloze",
+  "prompt": "No conozco a nadie que ___ (saber) tocar el arpa.",
+  "answer": "sepa",
+  "hint": "nadie → subjuntivo",
+  "explanation": "Olumsuz öncül (nadie) sonrasında ilgi cümlesi her zaman subjuntivo ister: nadie que sepa. Türkçedeki 'bilen kimse yok' ile karşılaştır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-rel-8",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_subjuntivo_relativo",
+  "type": "error",
+  "prompt": "No hay nadie en la oficina que sabe usar esta máquina.",
+  "answer": "sabe",
+  "fix": "sepa",
+  "hint": "nadie → subjuntivo",
+  "explanation": "'No hay nadie que…' olumsuz öncülüdür; ilgi cümlesi indicativo (sabe) değil subjuntivo (sepa) alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cam-1",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_verbos_cambio",
+  "type": "choice",
+  "prompt": "Mi tío ___ vegetariano hace diez años, por convicción.",
+  "answer": "se hizo",
+  "options": [
+   "se hizo",
+   "se puso",
+   "se quedó"
+  ],
+  "hint": "bilinçli, kendi seçimi",
+  "explanation": "Kendi isteğiyle ve zamanla gelen bir değişim (inanç, görüş) hacerse ile anlatılır: se hizo vegetariano. ponerse geçici ruh hâli içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cam-2",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_verbos_cambio",
+  "type": "choice",
+  "prompt": "Al ver el resultado del examen, Pablo ___ pálido.",
+  "answer": "se puso",
+  "options": [
+   "se puso",
+   "se hizo",
+   "llegó a ser"
+  ],
+  "hint": "ani, geçici renk değişimi",
+  "explanation": "Ani ve geçici değişimler (renk, ruh hâli) ponerse ile söylenir: se puso pálido, rojo, nervioso.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cam-3",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_verbos_cambio",
+  "type": "choice",
+  "prompt": "Con los años, mi abuelo ___ muy testarudo; ya no cambia de opinión nunca.",
+  "answer": "se ha vuelto",
+  "options": [
+   "se ha vuelto",
+   "se ha puesto",
+   "se ha quedado"
+  ],
+  "hint": "kalıcı karakter değişimi",
+  "explanation": "Köklü ve kalıcı karakter değişimi volverse ile anlatılır: se ha vuelto testarudo. ponerse yalnızca anlık durumlar içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cam-4",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_verbos_cambio",
+  "type": "choice",
+  "prompt": "Con el accidente, mi vecino ___ sin trabajo.",
+  "answer": "se quedó",
+  "options": [
+   "se quedó",
+   "se puso",
+   "se hizo",
+   "se volvió"
+  ],
+  "hint": "olay sonucu kayıp",
+  "explanation": "Bir olaydan sonra ortaya çıkan durum, özellikle kayıp, quedarse ile anlatılır: quedarse sin trabajo, ciego, viudo.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cam-5",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_verbos_cambio",
+  "type": "choice",
+  "prompt": "La antigua fábrica ___ en un museo de arte moderno.",
+  "answer": "se convirtió",
+  "options": [
+   "se convirtió",
+   "se puso",
+   "se quedó",
+   "se hizo"
+  ],
+  "hint": "en + isim → tam dönüşüm",
+  "explanation": "'… haline dönüşmek' anlamında convertirse en + isim kullanılır: se convirtió en un museo. Diğer fiiller en ile isim almaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cam-6",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_verbos_cambio",
+  "type": "cloze",
+  "prompt": "Tras muchos años de esfuerzo, Lucía ___ (hacerse) directora del hospital.",
+  "answer": "se hizo",
+  "hint": "emekle kazanılan meslek",
+  "explanation": "Emekle ve zamanla ulaşılan meslek ya da konum hacerse ile söylenir: se hizo directora. Dönüşlü zamir (se) unutulmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cam-7",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_verbos_cambio",
+  "type": "cloze",
+  "prompt": "Cuando le dijeron la noticia, mi madre ___ (ponerse) muy triste.",
+  "answer": "se puso",
+  "hint": "ani duygu değişimi",
+  "explanation": "Bir habere tepki olarak gelen ani ve geçici ruh hâli değişimi ponerse ile anlatılır: se puso triste. Zamir özneye uyar: mi madre → se.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cam-8",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_verbos_cambio",
+  "type": "error",
+  "prompt": "Mi padre se hizo sordo de un oído tras la explosión.",
+  "answer": "hizo",
+  "fix": "quedó",
+  "hint": "patlamadan sonra kalan durum",
+  "explanation": "Bir olay sonucu kalınan kayıp (sağır, kör) quedarse ile söylenir: se quedó sordo. hacerse bilinçli, emekle gelen değişimler içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-tmp-1",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_temporales",
+  "type": "choice",
+  "prompt": "Cuando ___ a Madrid el mes que viene, visitaremos el Prado.",
+  "answer": "lleguemos",
+  "options": [
+   "lleguemos",
+   "llegamos",
+   "llegábamos",
+   "llegaremos"
+  ],
+  "hint": "el mes que viene → gelecek",
+  "explanation": "Geleceğe bakan cuando cümlesi subjuntivo alır; bağlaçtan sonra futuro gelmez: cuando lleguemos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-tmp-2",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_temporales",
+  "type": "choice",
+  "prompt": "Todos los días, en cuanto ___ del trabajo, me voy al gimnasio.",
+  "answer": "salgo",
+  "options": [
+   "salgo",
+   "salga",
+   "saldré"
+  ],
+  "hint": "todos los días → alışkanlık",
+  "explanation": "Alışkanlık anlatan zaman cümlesi indicativo alır: en cuanto salgo. Gelecek anlatsaydı salga gelirdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-tmp-3",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_temporales",
+  "type": "choice",
+  "prompt": "Salimos de la sala antes de que ___ la película.",
+  "answer": "terminara",
+  "options": [
+   "terminara",
+   "terminó",
+   "termina"
+  ],
+  "hint": "antes de que → her zaman subjuntivo",
+  "explanation": "antes de que, olay gerçekleşmiş olsa bile her zaman subjuntivo ister; ana fiil geçmişte olduğundan imperfecto de subjuntivo gelir: terminara.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-tmp-4",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_temporales",
+  "type": "choice",
+  "prompt": "No saldré de casa hasta que ___ la lluvia.",
+  "answer": "pare",
+  "options": [
+   "pare",
+   "para",
+   "parará"
+  ],
+  "hint": "henüz olmamış olay",
+  "explanation": "Geleceğe bakan hasta que cümlesi subjuntivo alır: hasta que pare. Bağlaçtan sonra futuro (parará) gelmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-tmp-5",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_temporales",
+  "type": "choice",
+  "prompt": "Mañana, tan pronto como ___ el informe, te lo envío.",
+  "answer": "termine",
+  "options": [
+   "termine",
+   "termino",
+   "terminaré"
+  ],
+  "hint": "mañana → gelecek, subjuntivo",
+  "explanation": "tan pronto como gelecekteki bir olayı gösterdiğinde subjuntivo alır; ana cümle ise presente ya da futuro olabilir: te lo envío / te lo enviaré.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-tmp-6",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_temporales",
+  "type": "cloze",
+  "prompt": "Cuando ___ (ser) joven, mi abuela vivía en un pueblo de Galicia.",
+  "answer": "era",
+  "hint": "geçmişteki durum",
+  "explanation": "Geçmişteki bir durumu anlatan cuando cümlesi indicativo alır: cuando era joven. Subjuntivo yalnızca henüz olmamış olaylarda kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-tmp-7",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_temporales",
+  "type": "cloze",
+  "prompt": "Llámame en cuanto ___ (llegar, tú) a la estación.",
+  "answer": "llegues",
+  "hint": "gelecek → subjuntivo, tú",
+  "explanation": "en cuanto ile gelecekteki bir olay anlatılırken subjuntivo kullanılır: en cuanto llegues. Türkçede '-ınca' kipi göstermez, İspanyolcada gösterir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-tmp-8",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_temporales",
+  "type": "error",
+  "prompt": "Te llamaré en cuanto llegaré a casa.",
+  "answer": "llegaré",
+  "fix": "llegue",
+  "hint": "bağlaçtan sonra futuro olmaz",
+  "explanation": "Zaman bağlaçlarından (en cuanto, cuando, hasta que) sonra futuro gelmez; gelecek anlamı subjuntivo ile verilir: en cuanto llegue.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-lon-1",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_lo_neutro",
+  "type": "choice",
+  "prompt": "___ mejor de viajar solo es que decides tú el ritmo.",
+  "answer": "Lo",
+  "options": [
+   "Lo",
+   "El",
+   "La",
+   "Los"
+  ],
+  "hint": "soyut nitelik",
+  "explanation": "Bir şeyin soyut yanını anlatmak için nötr lo + sıfat kullanılır: lo mejor de… 'işin en iyi yanı' demektir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-lon-2",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_lo_neutro",
+  "type": "choice",
+  "prompt": "Me sorprende ___ rápido que ha crecido tu hijo.",
+  "answer": "lo",
+  "options": [
+   "lo",
+   "el",
+   "la",
+   "los"
+  ],
+  "hint": "ne kadar … olduğu",
+  "explanation": "'Ne kadar … olduğu' anlamında lo + sıfat/zarf + que kullanılır; lo cinsiyet ve sayı almaz: lo rápido que.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-lon-3",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_lo_neutro",
+  "type": "choice",
+  "prompt": "Perdona por ___ de ayer; no quise ofenderte.",
+  "answer": "lo",
+  "options": [
+   "lo",
+   "el",
+   "la"
+  ],
+  "hint": "şu … meselesi",
+  "explanation": "lo de + isim/zarf, daha önce konuşulmuş bir olayı kısaca anar: lo de ayer 'dünkü olay'. Burada belirli bir isim yoktur, bu yüzden el/la olmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-lon-4",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_lo_neutro",
+  "type": "choice",
+  "prompt": "Llegó tarde otra vez, ___ nos molestó a todos.",
+  "answer": "lo cual",
+  "options": [
+   "lo cual",
+   "el cual",
+   "la cual"
+  ],
+  "hint": "önceki cümlenin tamamına gönderme",
+  "explanation": "lo cual, önceki cümlenin tamamını gösteren nötr ilgi zamiridir. el cual / la cual belirli bir isme (eril/dişil) bağlanır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-lon-5",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_lo_neutro",
+  "type": "choice",
+  "prompt": "Me impresiona lo ___ que explica la profesora.",
+  "answer": "claro",
+  "options": [
+   "claro",
+   "clara",
+   "claros"
+  ],
+  "hint": "explica → zarf",
+  "explanation": "Burada lo + zarf + que vardır ('ne kadar açık anlattığı'); zarf değişmez: lo claro que explica. Sıfat olsaydı özneye uyardı (lo clara que es).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-lon-6",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_lo_neutro",
+  "type": "cloze",
+  "prompt": "No te imaginas ___ difícil que fue encontrar aparcamiento.",
+  "answer": "lo",
+  "hint": "ne kadar … olduğu",
+  "explanation": "'Ne kadar zor olduğu' lo + sıfat + que ile söylenir. lo değişmez, sıfat ise özneye uyar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-lon-7",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_lo_neutro",
+  "type": "cloze",
+  "prompt": "Lo ___ (ocurrir, participio) anoche no volverá a pasar.",
+  "answer": "ocurrido",
+  "hint": "lo + ortaç",
+  "explanation": "lo + ortaç, olup biteni adlandırır: lo ocurrido 'olan şey'. Ortaç nötr olduğu için -o ile biter ve değişmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-lon-8",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_lo_neutro",
+  "type": "error",
+  "prompt": "El importante es que todos se sientan cómodos.",
+  "answer": "El",
+  "fix": "Lo",
+  "hint": "soyut anlam → lo",
+  "explanation": "Soyut bir nitelik ('önemli olan') el ile değil, nötr lo + eril tekil sıfat ile söylenir: Lo importante es…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-pas-1",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_pasiva_ser_estar",
+  "type": "choice",
+  "prompt": "El puente ___ construido por una empresa alemana en 1998.",
+  "answer": "fue",
+  "options": [
+   "fue",
+   "está",
+   "había"
+  ],
+  "hint": "olay + yapan + tarih",
+  "explanation": "Eylemin kendisi, yapanı (por…) ve tarihi söylendiğinde ser + ortaç kullanılır: fue construido. estar sonuç durumunu anlatır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-pas-2",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_pasiva_ser_estar",
+  "type": "choice",
+  "prompt": "Es inútil llamar: la oficina ya ___ cerrada.",
+  "answer": "está",
+  "options": [
+   "está",
+   "es",
+   "fue",
+   "ha"
+  ],
+  "hint": "şimdiki durum",
+  "explanation": "Eylemin sonucu olan şimdiki durum estar + ortaç ile söylenir: está cerrada.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-pas-3",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_pasiva_ser_estar",
+  "type": "choice",
+  "prompt": "Las entradas ya ___ agotadas cuando llegamos.",
+  "answer": "estaban",
+  "options": [
+   "estaban",
+   "fueron",
+   "eran"
+  ],
+  "hint": "geçmişte sonuç durumu",
+  "explanation": "Vardığımızda geriye kalan durum (biletler tükenmişti) estar + ortaç ile anlatılır; geçmişte olduğu için estaban.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-pas-4",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_pasiva_ser_estar",
+  "type": "choice",
+  "prompt": "Los documentos serán ___ por el director mañana.",
+  "answer": "firmados",
+  "options": [
+   "firmados",
+   "firmado",
+   "firmadas",
+   "firmando"
+  ],
+  "hint": "ortaç özneye uyar",
+  "explanation": "ser + ortaçta ortaç özneyle cinsiyet ve sayıca uyar: documentos eril çoğul → firmados.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-pas-5",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_pasiva_ser_estar",
+  "type": "choice",
+  "prompt": "La directora ha ___ la decisión.",
+  "answer": "tomado",
+  "options": [
+   "tomado",
+   "tomada",
+   "tomados"
+  ],
+  "hint": "ha + ortaç değişmez",
+  "explanation": "haber + ortaç bileşik zaman yapar (etken) ve ortaç asla uyum yapmaz: ha tomado. Uyum yalnızca ser/estar + ortaçta olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-pas-6",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_pasiva_ser_estar",
+  "type": "cloze",
+  "prompt": "La noticia fue ___ (publicar) ayer en todos los periódicos.",
+  "answer": "publicada",
+  "hint": "ser + ortaç, noticia dişil",
+  "explanation": "ser + ortaç edilgeninde ortaç özneye uyar: la noticia dişil tekil → publicada.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-pas-7",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_pasiva_ser_estar",
+  "type": "cloze",
+  "prompt": "Tranquila, las maletas ya ___ (estar) preparadas.",
+  "answer": "están",
+  "hint": "sonuç durumu",
+  "explanation": "Bir eylemin bitmiş sonucu estar + ortaç ile söylenir: las maletas ya están preparadas ('hazır').",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-pas-8",
+  "language": "es",
+  "level": "B2",
+  "topic": "basics_es_pasiva_ser_estar",
+  "type": "error",
+  "prompt": "Las cartas fueron escrito por mi abuela hace años.",
+  "answer": "escrito",
+  "fix": "escritas",
+  "hint": "ortaç özneye uyar",
+  "explanation": "ser + ortaç edilgeninde ortaç özneyle uyum yapar: cartas dişil çoğul → escritas.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-prb-1",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_probabilidad",
+  "type": "choice",
+  "prompt": "—¿Dónde está Pablo? —No sé, ___ en su despacho.",
+  "answer": "estará",
+  "options": [
+   "estará",
+   "estaría",
+   "estaba"
+  ],
+  "hint": "şimdiki an tahmini",
+  "explanation": "Şu an hakkındaki tahmin futuro simple ile söylenir: estará 'herhalde oradadır'. condicional geçmiş tahmini içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-prb-2",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_probabilidad",
+  "type": "choice",
+  "prompt": "No contesta al teléfono; ___ salido, supongo.",
+  "answer": "habrá",
+  "options": [
+   "habrá",
+   "habría",
+   "haya"
+  ],
+  "hint": "az önce olmuş şey tahmini",
+  "explanation": "Şimdiye kadar olmuş bir şey hakkındaki tahmin futuro compuesto ile söylenir: habrá salido 'çıkmıştır'.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-prb-3",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_probabilidad",
+  "type": "choice",
+  "prompt": "Cuando la conocí, ___ unos veinte años.",
+  "answer": "tendría",
+  "options": [
+   "tendría",
+   "tendrá",
+   "tuviera",
+   "tenga"
+  ],
+  "hint": "geçmişteki an tahmini",
+  "explanation": "Geçmişteki bir an hakkındaki tahmin condicional ile söylenir: tendría unos veinte años 'yirmi yaşlarındaydı herhalde'.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-prb-4",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_probabilidad",
+  "type": "choice",
+  "prompt": "Tiene muy mala cara hoy; ___ dormido poco.",
+  "answer": "habrá",
+  "options": [
+   "habrá",
+   "habría",
+   "haya"
+  ],
+  "hint": "bugünkü durum → futuro compuesto",
+  "explanation": "Şimdiki durumun nedenini tahmin ederken futuro compuesto kullanılır: habrá dormido poco 'az uyumuştur'. habría geçmişteki bir andan öncesi içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-prb-5",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_probabilidad",
+  "type": "choice",
+  "prompt": "Debes ___ más agua; es importante para la salud.",
+  "answer": "beber",
+  "options": [
+   "beber",
+   "de beber",
+   "bebes",
+   "bebiendo"
+  ],
+  "hint": "zorunluluk",
+  "explanation": "deber + mastar zorunluluk bildirir (içmelisin); tahmin için deber de + mastar kullanılır. Zorunlulukta de eklenmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-prb-6",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_probabilidad",
+  "type": "cloze",
+  "prompt": "—¿Qué hora es? —No tengo reloj, pero ___ (ser) las cinco.",
+  "answer": "serán",
+  "hint": "şimdiki an tahmini",
+  "explanation": "Şimdiki an hakkındaki tahmin futuro simple ile söylenir: serán las cinco 'saat beş civarıdır'. Saat ifadelerinde fiil çoğul olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-prb-7",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_probabilidad",
+  "type": "cloze",
+  "prompt": "No vino a la reunión de ayer; ___ (estar) ocupado.",
+  "answer": "estaría",
+  "hint": "geçmişteki durum tahmini",
+  "explanation": "Dün gibi geçmişteki bir an hakkındaki tahmin condicional ile söylenir: estaría ocupado 'meşguldü herhalde'.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-prb-8",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_probabilidad",
+  "type": "error",
+  "prompt": "Ayer no vino a clase; estará enfermo.",
+  "answer": "estará",
+  "fix": "estaría",
+  "hint": "dün → condicional",
+  "explanation": "Geçmişteki bir durumu tahmin ederken futuro değil condicional kullanılır: ayer … estaría enfermo. Futuro yalnızca şimdiki an için tahmindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-frm-1",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_registro_formal",
+  "type": "choice",
+  "prompt": "Estimada señora Gómez: Le escribo ___ solicitar una cita.",
+  "answer": "para",
+  "options": [
+   "para",
+   "por",
+   "a",
+   "de"
+  ],
+  "hint": "amaç bildirir",
+  "explanation": "Resmî yazışmada amaç 'para + mastar' ile söylenir: Le escribo para solicitar… (… istemek için yazıyorum).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-frm-2",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_registro_formal",
+  "type": "choice",
+  "prompt": "Quedo a la espera de su respuesta. ___, Carmen Ruiz",
+  "answer": "Atentamente",
+  "options": [
+   "Atentamente",
+   "Besos",
+   "Chao",
+   "Hasta luego"
+  ],
+  "hint": "resmî kapanış",
+  "explanation": "Resmî mektup ve e-postanın kapanışı Atentamente ya da Un cordial saludo'dur. Besos ve chao samimi kayıt içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-frm-3",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_registro_formal",
+  "type": "choice",
+  "prompt": "Le agradecería que ___ a mi llamada lo antes posible.",
+  "answer": "respondiera",
+  "options": [
+   "respondiera",
+   "responde",
+   "respondería",
+   "responder"
+  ],
+  "hint": "agradecería que + imperfecto",
+  "explanation": "Nazik rica Le agradecería que + imperfecto de subjuntivo ile kurulur: respondiera. indicativo ya da condicional gelmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-frm-4",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_registro_formal",
+  "type": "choice",
+  "prompt": "Señor director, ___ a usted para informarle de un error en la factura.",
+  "answer": "me dirijo",
+  "options": [
+   "me dirijo",
+   "te dirijo",
+   "le dirijo",
+   "se dirijo"
+  ],
+  "hint": "Me dirijo a usted para…",
+  "explanation": "Konuya giriş kalıbı Me dirijo a usted para + mastar'dır; fiil dönüşlüdür ve yazanın kendisine uyar: me dirijo.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-frm-5",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_registro_formal",
+  "type": "choice",
+  "prompt": "¿___ indicarme el horario de atención al público?",
+  "answer": "Podría",
+  "options": [
+   "Podría",
+   "Puedes",
+   "Podrás",
+   "Pude"
+  ],
+  "hint": "resmî rica",
+  "explanation": "Resmî bir rica condicional ile yumuşatılır: ¿Podría indicarme…? Puedes ise tú kaydındadır, resmîde kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-frm-6",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_registro_formal",
+  "type": "cloze",
+  "prompt": "Le ruego que me ___ (enviar) el formulario cuanto antes.",
+  "answer": "envíe",
+  "hint": "ruego que + presente subjuntivo",
+  "explanation": "Le ruego que + subjuntivo resmî bir ricadır; ana fiil presente olduğundan yan cümle presente de subjuntivo alır: envíe.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-frm-7",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_registro_formal",
+  "type": "cloze",
+  "prompt": "Si tiene alguna duda, no ___ (dudar, usted) en ponerse en contacto conmigo.",
+  "answer": "dude",
+  "hint": "usted emri",
+  "explanation": "Resmî kayıtta emir bile usted biçimindedir ve subjuntivo ile kurulur: no dude en ponerse en contacto. tú biçimi (no dudes) kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-frm-8",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_registro_formal",
+  "type": "error",
+  "prompt": "Estimado señor Pérez, le escribo para preguntarte por el pedido.",
+  "answer": "preguntarte",
+  "fix": "preguntarle",
+  "hint": "usted ↔ tú",
+  "explanation": "Resmî metinde baştan sona usted kullanılır; dolaylı nesne zamiri le'dir: preguntarle. Aynı cümlede tú biçimine (te) kaymak hata olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cnd-1",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_condicion_alternativa",
+  "type": "choice",
+  "prompt": "Te dejo el coche siempre y cuando lo ___ antes de las diez.",
+  "answer": "devuelvas",
+  "options": [
+   "devuelvas",
+   "devuelves",
+   "devolverás"
+  ],
+  "hint": "şart bildirir → subjuntivo",
+  "explanation": "siempre y cuando 'şartıyla' demektir ve subjuntivo ister: lo devuelvas.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cnd-2",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_condicion_alternativa",
+  "type": "choice",
+  "prompt": "Llévate el abrigo, en caso de que ___ frío por la noche.",
+  "answer": "haga",
+  "options": [
+   "haga",
+   "hace",
+   "hará"
+  ],
+  "hint": "en caso de que + subjuntivo",
+  "explanation": "en caso de que her zaman subjuntivo alır: en caso de que haga frío. Futuro ya da indicativo kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cnd-3",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_condicion_alternativa",
+  "type": "choice",
+  "prompt": "Firmaré el contrato a menos que ___ nuevas condiciones.",
+  "answer": "haya",
+  "options": [
+   "haya",
+   "hay",
+   "había"
+  ],
+  "hint": "a menos que + subjuntivo",
+  "explanation": "a menos que ('… olmadıkça') subjuntivo ister: a menos que haya nuevas condiciones.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cnd-4",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_condicion_alternativa",
+  "type": "choice",
+  "prompt": "___ haberlo sabido, habría llegado antes.",
+  "answer": "De",
+  "options": [
+   "De",
+   "Si",
+   "Como",
+   "Con"
+  ],
+  "hint": "de + haber + ortaç",
+  "explanation": "Geçmişe dönük gerçekdışı şart de + haber + ortaç ile kurulur: De haberlo sabido = Si lo hubiera sabido. Si ile haber mastarı birlikte gelmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cnd-5",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_condicion_alternativa",
+  "type": "choice",
+  "prompt": "___ no estudies más, vas a suspender.",
+  "answer": "Como",
+  "options": [
+   "Como",
+   "Porque",
+   "Pues",
+   "Así"
+  ],
+  "hint": "uyarı / tehdit",
+  "explanation": "Cümle başında como + subjuntivo uyarı ya da tehdit bildirir: Como no estudies más… ('daha çok çalışmazsan bak'). Porque ile subjuntivo kurulmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cnd-6",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_condicion_alternativa",
+  "type": "cloze",
+  "prompt": "De ___ (tener) más tiempo, aprendería alemán.",
+  "answer": "tener",
+  "hint": "de + mastar = si",
+  "explanation": "de + mastar si'nin yerini tutar: De tener más tiempo = Si tuviera más tiempo. Burada fiil çekimlenmez, mastar kalır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cnd-7",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_condicion_alternativa",
+  "type": "cloze",
+  "prompt": "Puedes salir con tal de que ___ (volver) antes de medianoche.",
+  "answer": "vuelvas",
+  "hint": "con tal de que + subjuntivo",
+  "explanation": "con tal de que 'yeter ki' demektir ve subjuntivo ister: con tal de que vuelvas. Özne tú olduğundan vuelvas.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-cnd-8",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_condicion_alternativa",
+  "type": "error",
+  "prompt": "En caso de que llegas tarde, avísame.",
+  "answer": "llegas",
+  "fix": "llegues",
+  "hint": "en caso de que → subjuntivo",
+  "explanation": "en caso de que her zaman subjuntivo alır; indicativo (llegas) değil llegues kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-hen-1",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_oraciones_hendidas",
+  "type": "choice",
+  "prompt": "Fue en Valencia ___ conocí a mi marido.",
+  "answer": "donde",
+  "options": [
+   "donde",
+   "quien",
+   "lo que",
+   "cual"
+  ],
+  "hint": "yer vurgusu",
+  "explanation": "Yer vurgulanırken ser + yer + donde kalıbı kullanılır: Fue en Valencia donde… 'Kocamla tanıştığım yer Valencia'ydı.'",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-hen-2",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_oraciones_hendidas",
+  "type": "choice",
+  "prompt": "No fui yo ___ rompió el jarrón; fue el gato.",
+  "answer": "quien",
+  "options": [
+   "quien",
+   "donde",
+   "cuando",
+   "lo que"
+  ],
+  "hint": "kişi vurgusu",
+  "explanation": "Vurgulanan öğe kişi olduğunda ser + kişi + quien (ya da el que) gelir: No fui yo quien lo rompió.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-hen-3",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_oraciones_hendidas",
+  "type": "choice",
+  "prompt": "___ más me gusta de esta ciudad es su ambiente.",
+  "answer": "Lo que",
+  "options": [
+   "Lo que",
+   "Quien",
+   "Donde",
+   "Cuando"
+  ],
+  "hint": "şey vurgusu",
+  "explanation": "Bir şeyi vurgulamak için lo que + fiil + ser + öğe kalıbı kullanılır: Lo que más me gusta es…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-hen-4",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_oraciones_hendidas",
+  "type": "choice",
+  "prompt": "Fue con mi tía ___ viajé a Perú.",
+  "answer": "con quien",
+  "options": [
+   "con quien",
+   "a quien",
+   "en quien",
+   "de quien"
+  ],
+  "hint": "edat tekrarlanır",
+  "explanation": "Vurgulanan öğe edatlıysa edat ilgi zamirinin önünde tekrarlanır: Fue con mi tía con quien viajé. Burada edat con'dur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-hen-5",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_oraciones_hendidas",
+  "type": "choice",
+  "prompt": "Fue entonces ___ comprendí lo que pasaba.",
+  "answer": "cuando",
+  "options": [
+   "cuando",
+   "donde",
+   "como",
+   "quien"
+  ],
+  "hint": "zaman vurgusu",
+  "explanation": "Zaman vurgulanırken ser + zaman + cuando kalıbı gelir: Fue entonces cuando… ('işte o zaman anladım').",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-hen-6",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_oraciones_hendidas",
+  "type": "cloze",
+  "prompt": "Así es ___ se prepara un buen café.",
+  "answer": "como",
+  "hint": "tarz vurgusu",
+  "explanation": "Tarz vurgulanırken ser + tarz + como kullanılır: Así es como se hace. 'İşte böyle yapılır' anlamına gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-hen-7",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_oraciones_hendidas",
+  "type": "cloze",
+  "prompt": "Son mis padres ___ que deciden.",
+  "answer": "los",
+  "hint": "ser + kişi + los que",
+  "explanation": "Çoğul vurgulanan öğeden sonra ilgi öbeği los que olur: Son mis padres los que deciden. ser de çoğula uyar (son).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b13-hen-8",
+  "language": "es",
+  "level": "C1",
+  "topic": "basics_es_oraciones_hendidas",
+  "type": "error",
+  "prompt": "Es mis hermanos los que preparan la cena.",
+  "answer": "Es",
+  "fix": "Son",
+  "hint": "ser sayıca uyar",
+  "explanation": "Vurgulu cümlede ser vurgulanan öğeyle sayıca uyar: mis hermanos çoğul → Son mis hermanos los que…",
+  "source": "Diloloji (özgün)"
+ }
+]
