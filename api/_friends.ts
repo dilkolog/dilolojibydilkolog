@@ -163,6 +163,10 @@ export async function addFriend(id: string, code: string): Promise<'ok' | 'unkno
   if (!owner) return 'unknown'
   if (owner === id) return 'self'
   const [codes, myCard] = await Promise.all([store.follows(id), ownCard(id)])
+  // Someone who took this person off their friends cannot put themselves back with the code they still know.
+  if (myCard?.code && (await blockedBy(owner)).includes(myCard.code)) return 'unknown'
+  // Adding someone back by choice lifts one's own block on them.
+  await unblock(id, code)
   if (codes.includes(code)) return 'ok'
   if (codes.length >= MAX_FRIENDS) return 'full'
   await store.follow(id, code, codes)
@@ -184,6 +188,30 @@ export async function removeFriend(id: string, code: string): Promise<void> {
     const ownerCodes = await store.follows(owner)
     if (ownerCodes.includes(myCard.code)) await store.unfollow(owner, myCard.code, ownerCodes)
   }
+  // Taken off: they may not add this person back with the code (or send a request) until this person adds them again.
+  if (CODE.test(code)) await block(id, code)
+}
+
+/**
+ * Whom an account took off its friends: their codes, so that they cannot follow it again with the code they saw while
+ * friends (adding by code is mutual) or keep sending requests. A small file in Blob in both modes, like the inbox.
+ */
+const blockedPath = (id: string) => `friends/blocked/${id}.json`
+const MAX_BLOCKED = 200
+
+async function blockedBy(id: string): Promise<string[]> {
+  const codes = (await readJson<{ codes?: unknown }>(blockedPath(id)))?.codes
+  return Array.isArray(codes) ? codes.filter((c): c is string => typeof c === 'string' && CODE.test(c)) : []
+}
+
+async function block(id: string, code: string): Promise<void> {
+  const codes = await blockedBy(id)
+  if (!codes.includes(code)) await writeJson(blockedPath(id), { codes: [code, ...codes].slice(0, MAX_BLOCKED) })
+}
+
+async function unblock(id: string, code: string): Promise<void> {
+  const codes = await blockedBy(id)
+  if (codes.includes(code)) await writeJson(blockedPath(id), { codes: codes.filter((c) => c !== code) })
 }
 
 /** A card as a friend sees it, "today" and "this week" by the reader's own date. */
@@ -220,7 +248,7 @@ export async function friendsOf(id: string, today: string): Promise<{ me: Friend
 export async function forgetFriends(id: string): Promise<void> {
   // Both places: an account deleted soon after the move must leave nothing behind in either.
   const handle = await handleOf(id).catch(() => null)
-  await Promise.all([handle ? releaseHandle(handle.handle, id) : Promise.resolve(), removeBlob(handleOfPath(id)), removeBlob(requestsPath(id))])
+  await Promise.all([handle ? releaseHandle(handle.handle, id) : Promise.resolve(), removeBlob(handleOfPath(id)), removeBlob(requestsPath(id)), removeBlob(blockedPath(id))])
   // Not swallowed: a deletion that left the messages behind must fail (and can be tried again).
   if (await inboxTableOn()) await write(`friend_inbox?sync_id=${eq(id)}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } })
   await Promise.all([blobFriends.forget(id), removeBlob(inboxPath(id)), (await tablesOn()) ? tableFriends.forget(id) : Promise.resolve()])
@@ -390,6 +418,8 @@ export async function requestFriend(id: string, rawHandle: unknown, onDelivered?
   if (!theirs?.code) return 'unknown'
   const [mine, theirFollows] = await Promise.all([store.follows(id), store.follows(found.owner)])
   if (mine.includes(theirs.code) || theirFollows.includes(me.code)) return 'already'
+  // Taken off their friends: the request is quietly dropped (the answer does not tell them so).
+  if ((await blockedBy(found.owner)).includes(me.code)) return 'ok'
   const now = new Date()
   // Asking again (while the first request waits, or soon after it was turned away) sends nothing and rings nothing:
   // a stranger must not be able to fill someone's inbox and phone with requests. The answer is the same 'ok'.

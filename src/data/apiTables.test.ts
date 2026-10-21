@@ -150,7 +150,7 @@ describe('server data in Supabase tables', () => {
     expect((await friendsPost(VELI_P, { action: 'friends-add', code: me.code })).status).toBe(200)
     const made = await share.POST(new Request('https://app.test/api/share', { method: 'POST', headers: as(...ALI_P), body: JSON.stringify({ kind: 'set', name: 'Ev', language: 'fr', words, publish: true, by: 'ali' }) }))
     const { id } = (await made.json()) as { id: string }
-    await push.POST(new Request('https://app.test/api/push', { method: 'POST', body: JSON.stringify({ action: 'save', subscription: { endpoint: 'https://fcm.googleapis.com/fcm/send/1', keys: { p256dh: 'p', auth: 'a' } }, tz: 0, hour: 9 }) }))
+    await push.POST(new Request('https://app.test/api/push', { method: 'POST', headers: as(...ALI_P), body: JSON.stringify({ action: 'save', subscription: { endpoint: 'https://fcm.googleapis.com/fcm/send/1', keys: { p256dh: 'p', auth: 'a' } }, tz: 0, hour: 9 }) }))
     setBlob(`push/mail-${'c'.repeat(40)}.json`, { email: 'ali@example.com', owner: ALI, confirmed: true, token: 't', tz: 0, studiedDay: null, streak: 0, plan: '', group: ALI })
     expect(tables.friend_cards).toEqual([])
     expect([...blobs.keys()].filter((k) => k.startsWith('friends/') || k.startsWith('share/') || k.startsWith('push/')).length).toBeGreaterThanOrEqual(7)
@@ -204,7 +204,7 @@ describe('server data in Supabase tables', () => {
     vi.stubEnv('VAPID_PRIVATE_KEY', 'k')
     vi.stubEnv('CRON_SECRET', 's')
     const endpoint = 'https://fcm.googleapis.com/fcm/send/2'
-    await push.POST(new Request('https://app.test/api/push', { method: 'POST', body: JSON.stringify({ action: 'save', subscription: { endpoint, keys: { p256dh: 'p', auth: 'a' } }, tz: 0, hour: 9 }) }))
+    await push.POST(new Request('https://app.test/api/push', { method: 'POST', headers: as(...ALI_P), body: JSON.stringify({ action: 'save', subscription: { endpoint, keys: { p256dh: 'p', auth: 'a' } }, tz: 0, hour: 9 }) }))
     expect(tables.reminders).toEqual([expect.objectContaining({ kind: 'push', key: await push.pushKey(endpoint) })])
     expect([...blobs.keys()].some((k) => k.startsWith('push/'))).toBe(false)
     expect(await (await CRON(new Request('https://app.test/api/cron-reminder?h=9', { headers: { authorization: 'Bearer s' } }))).json()).toMatchObject({ devices: 1, sent: 1 })

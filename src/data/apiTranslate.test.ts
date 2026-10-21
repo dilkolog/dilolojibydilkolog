@@ -35,7 +35,8 @@ describe('/api/translate', () => {
     expect((await GET(app(`?text=${'a'.repeat(601)}&to=tr`))).status).toBe(400)
     expect((await GET(app('?text=Bonjour&to=de'))).status).toBe(400)
     expect(calls).toEqual([])
-    expect(fromApp(new Request('https://x/', { headers: { referer: 'https://diloloji-git-deepl-ali.vercel.app/words' } }))).toBe(true)
+    // A preview-looking Vercel address is anyone's to take: not trusted.
+    expect(fromApp(new Request('https://x/', { headers: { referer: 'https://diloloji-git-deepl-ali.vercel.app/words' } }))).toBe(false)
     expect(fromApp(new Request('https://x/', { headers: { origin: 'http://localhost:5174' } }))).toBe(true)
     expect(fromApp(new Request('https://x/', { headers: { origin: 'https://diloloji.com' } }))).toBe(true)
     expect(fromApp(new Request('https://x/', { headers: { origin: 'https://www.diloloji.com' } }))).toBe(true)

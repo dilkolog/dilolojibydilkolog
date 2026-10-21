@@ -32,7 +32,7 @@ const { POST, recordPath } = await import('../../api/push')
 const { GET: CRON, dueNow, localHour, reminderText, resting, weeklyText } = await import('../../api/cron-reminder')
 
 const sub = (endpoint = 'https://fcm.googleapis.com/fcm/send/1') => ({ endpoint, keys: { p256dh: 'p', auth: 'a' } })
-const post = (body: unknown) => POST(new Request('https://app.test/api/push', { method: 'POST', body: typeof body === 'string' ? body : JSON.stringify(body) }))
+const post = (body: unknown) => POST(new Request('https://app.test/api/push', { method: 'POST', headers: { 'sec-fetch-site': 'same-origin' }, body: typeof body === 'string' ? body : JSON.stringify(body) }))
 const stored = async (endpoint: string) => JSON.parse(blobs.get(await recordPath(endpoint))!) as PushRecord
 
 beforeEach(() => {
@@ -288,11 +288,30 @@ describe('which push addresses are accepted', () => {
 })
 
 
+describe('/api/push: who may save a subscription', () => {
+  const sub = { action: 'save', subscription: { endpoint: 'https://fcm.googleapis.com/fcm/send/stranger', keys: { p256dh: 'p', auth: 'a' } }, tz: 0, hour: 9 }
+  it('not a page of the app: refused, nothing stored', async () => {
+    const res = await POST(new Request('https://app.test/api/push', { method: 'POST', headers: { origin: 'https://evil.example' }, body: JSON.stringify(sub) }))
+    expect(res.status).toBe(403)
+  })
+  it('with accounts on (Supabase), a device signed in to none is refused', async () => {
+    vi.stubEnv('SUPABASE_URL', 'https://proj.supabase.co')
+    vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
+    try {
+      const res = await post(sub)
+      expect(res.status).toBe(403)
+      expect(await res.json()).toEqual({ error: 'account_required' })
+    } finally {
+      vi.unstubAllEnvs()
+    }
+  })
+})
+
 describe('/api/push: a device that proves its account', () => {
   const ID = 'c'.repeat(64)
   const TOKEN = '3'.repeat(64)
   const hex = async (t: string) => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)))].map((b) => b.toString(16).padStart(2, '0')).join('')
-  const withAccount = (body: unknown, headers: Record<string, string> = { 'x-sync-id': ID, 'x-sync-auth': TOKEN }) => POST(new Request('https://app.test/api/push', { method: 'POST', headers, body: JSON.stringify(body) }))
+  const withAccount = (body: unknown, headers: Record<string, string> = { 'x-sync-id': ID, 'x-sync-auth': TOKEN }) => POST(new Request('https://app.test/api/push', { method: 'POST', headers: { 'sec-fetch-site': 'same-origin', ...headers }, body: JSON.stringify(body) }))
 
   it('records its account and whether it wants friends\' messages; a wrong token records neither', async () => {
     blobs.set(`sync/${ID}/auth.txt`, await hex(TOKEN))

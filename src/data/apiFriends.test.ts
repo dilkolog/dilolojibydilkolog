@@ -426,4 +426,23 @@ describe('/api/access: finding a friend by a chosen name', () => {
     expect((await ask(as(VELI, VELI_TOKEN), 'ZZZZ2222')).status).toBe(404)
     expect((await ask(as(ALI, ALI_TOKEN), ali.me.code)).status).toBe(400)
   })
+
+  it('someone taken off one\'s friends cannot come back with the code or a request, until one adds them again', async () => {
+    const ali = (await (await post(as(ALI, ALI_TOKEN), { action: 'friends-publish', ...card })).json()) as { me: { code: string } }
+    const veli = (await (await post(as(VELI, VELI_TOKEN), { action: 'friends-publish', ...card, name: 'Veli' })).json()) as { me: { code: string } }
+    await setName(as(ALI, ALI_TOKEN), 'ali_fr', true)
+    expect((await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: ali.me.code })).status).toBe(200)
+    // Ali takes Veli off.
+    expect((await post(as(ALI, ALI_TOKEN), { action: 'friends-remove', code: veli.me.code })).status).toBe(200)
+    // Veli still knows Ali's code: adding it again does nothing, a request is quietly dropped.
+    expect(await (await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: ali.me.code })).json()).toEqual({ error: 'unknown' })
+    expect((await post(as(VELI, VELI_TOKEN), { action: 'friends-request', handle: 'ali_fr' })).status).toBe(200)
+    expect(await inbox(as(ALI, ALI_TOKEN))).toEqual([])
+    const aliView = (await (await view(as(ALI, ALI_TOKEN))).json()) as { friends: unknown[] }
+    expect(aliView.friends).toEqual([])
+    // Ali changes his mind: adding Veli lifts the block, they are friends again.
+    expect((await post(as(ALI, ALI_TOKEN), { action: 'friends-add', code: veli.me.code })).status).toBe(200)
+    const veliView = (await (await view(as(VELI, VELI_TOKEN))).json()) as { friends: { code: string }[] }
+    expect(veliView.friends.map((f) => f.code)).toEqual([ali.me.code])
+  })
 })
