@@ -1,0 +1,4079 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün) — Rehber soru havuzu, 15 soruya genişletme (2026-10-21)",
+  "lessons": {
+    "basics_en_to_be": [
+      {
+        "prompt": "___ your brother at home now?",
+        "options": [
+          "Are",
+          "Is",
+          "Am",
+          "Be"
+        ],
+        "answer": 1,
+        "why": "Soruda be özneden önce gelir; tekil üçüncü kişi (your brother) için is."
+      },
+      {
+        "prompt": "We ___ in London last week.",
+        "options": [
+          "was",
+          "were",
+          "are",
+          "been"
+        ],
+        "answer": 1,
+        "why": "Geçmişte we / you / they ile were kullanılır."
+      },
+      {
+        "prompt": "— Are you hungry? — Yes, I ___ .",
+        "options": [
+          "is",
+          "am",
+          "are",
+          "do"
+        ],
+        "answer": 1,
+        "why": "Kısa cevapta be tekrar edilir: Yes, I am."
+      },
+      {
+        "prompt": "They ___ very happy with the new house. (olumsuz)",
+        "options": [
+          "isn't",
+          "aren't",
+          "not",
+          "don't"
+        ],
+        "answer": 1,
+        "why": "they ile be'nin olumsuzu are not / aren't'tır."
+      },
+      {
+        "prompt": "Hangisi doğrudur?",
+        "options": [
+          "She happy today.",
+          "She is happy today.",
+          "She are happy today.",
+          "She be happy today."
+        ],
+        "answer": 1,
+        "why": "Başka fiil yoksa be zorunludur; she ile is kullanılır."
+      }
+    ],
+    "basics_en_present_simple": [
+      {
+        "prompt": "He ___ TV every evening.",
+        "options": [
+          "watch",
+          "watches",
+          "watchs",
+          "is watch"
+        ],
+        "answer": 1,
+        "why": "he / she / it ile -ch ile biten fiil -es alır: watches."
+      },
+      {
+        "prompt": "Listen! Someone ___ at the door.",
+        "options": [
+          "knocks",
+          "is knocking",
+          "knock",
+          "knocking"
+        ],
+        "answer": 1,
+        "why": "Tam şu an olan eylem present continuous ile söylenir."
+      },
+      {
+        "prompt": "I ___ the answer to this question.",
+        "options": [
+          "am knowing",
+          "know",
+          "knows",
+          "knowing"
+        ],
+        "answer": 1,
+        "why": "know bir durum fiilidir ve genellikle -ing almaz."
+      },
+      {
+        "prompt": "Hangisinde sıklık zarfı doğru yerdedir?",
+        "options": [
+          "She always is late.",
+          "She is always late.",
+          "Always she late is.",
+          "She late is always."
+        ],
+        "answer": 1,
+        "why": "Sıklık zarfı be'den sonra, asıl fiilden önce gelir."
+      },
+      {
+        "prompt": "My brother ___ coffee; he prefers tea.",
+        "options": [
+          "doesn't drink",
+          "don't drink",
+          "doesn't drinks",
+          "not drink"
+        ],
+        "answer": 0,
+        "why": "Olumsuzda doesn't'tan sonra fiil -s almaz."
+      }
+    ],
+    "basics_en_past_simple": [
+      {
+        "prompt": "She ___ to the radio yesterday evening.",
+        "options": [
+          "listen",
+          "listened",
+          "listens",
+          "was listen"
+        ],
+        "answer": 1,
+        "why": "Düzenli fiil geçmişte -ed alır."
+      },
+      {
+        "prompt": "We ___ at a café on the way. (stop)",
+        "options": [
+          "stoped",
+          "stopped",
+          "stopping",
+          "stopt"
+        ],
+        "answer": 1,
+        "why": "Kısa ünlü + tek ünsüzle biten fiilde son ünsüz ikizlenir: stopped."
+      },
+      {
+        "prompt": "___ you call your mother last night?",
+        "options": [
+          "Do",
+          "Did",
+          "Were",
+          "Have"
+        ],
+        "answer": 1,
+        "why": "Geçmiş zaman sorusu Did + özne + yalın fiil ile kurulur."
+      },
+      {
+        "prompt": "I ___ a strange noise two minutes ago.",
+        "options": [
+          "hear",
+          "heard",
+          "have heard",
+          "hearing"
+        ],
+        "answer": 1,
+        "why": "ago bitmiş bir zamanı gösterir: past simple."
+      },
+      {
+        "prompt": "They ___ the bus this morning, so they walked.",
+        "options": [
+          "didn't took",
+          "didn't take",
+          "don't take",
+          "not took"
+        ],
+        "answer": 1,
+        "why": "didn't'tan sonra fiil yalın hâlde kalır."
+      }
+    ],
+    "basics_en_plurals_quantifiers": [
+      {
+        "prompt": "Hangisi yanlış bir çoğul biçimidir?",
+        "options": [
+          "boxes",
+          "cities",
+          "womans",
+          "feet"
+        ],
+        "answer": 2,
+        "why": "woman düzensizdir: çoğulu women'dır."
+      },
+      {
+        "prompt": "I need some ___ about the train times.",
+        "options": [
+          "informations",
+          "information",
+          "an information",
+          "information's"
+        ],
+        "answer": 1,
+        "why": "information sayılamaz; çoğul eki ve a / an almaz."
+      },
+      {
+        "prompt": "There isn't ___ sugar in my coffee.",
+        "options": [
+          "many",
+          "any",
+          "a few",
+          "some"
+        ],
+        "answer": 1,
+        "why": "Olumsuz cümlede any kullanılır; sugar sayılamaz."
+      },
+      {
+        "prompt": "Very ___ people came to the meeting, so it was cancelled.",
+        "options": [
+          "little",
+          "few",
+          "much",
+          "a little"
+        ],
+        "answer": 1,
+        "why": "Sayılabilir çoğulla few (çok az, olumsuz ton) kullanılır."
+      },
+      {
+        "prompt": "My ___ hurt after the long walk.",
+        "options": [
+          "foots",
+          "feet",
+          "feets",
+          "footes"
+        ],
+        "answer": 1,
+        "why": "foot düzensizdir: çoğulu feet'tir."
+      }
+    ],
+    "basics_en_future": [
+      {
+        "prompt": "— I'm thirsty. — Wait, I ___ get you some water.",
+        "options": [
+          "am going to",
+          "will",
+          "am getting",
+          "get"
+        ],
+        "answer": 1,
+        "why": "Konuşurken o anda verilen karar ve teklif will ile söylenir."
+      },
+      {
+        "prompt": "We ___ a party next Saturday; we've already sent the invitations.",
+        "options": [
+          "will having",
+          "are having",
+          "have had",
+          "having"
+        ],
+        "answer": 1,
+        "why": "Ayarlanmış, planlanmış iş present continuous ile söylenir."
+      },
+      {
+        "prompt": "I'll phone you as soon as I ___ the results.",
+        "options": [
+          "will get",
+          "get",
+          "got",
+          "am getting"
+        ],
+        "answer": 1,
+        "why": "as soon as gibi zaman bağlaçlarından sonra will değil present simple gelir."
+      },
+      {
+        "prompt": "I promise I ___ tell anyone your secret.",
+        "options": [
+          "won't",
+          "am not going",
+          "don't going",
+          "not will"
+        ],
+        "answer": 0,
+        "why": "Söz will / won't ile verilir."
+      },
+      {
+        "prompt": "The sky is completely clear; it ___ be a sunny day.",
+        "options": [
+          "is going to",
+          "was",
+          "were going",
+          "will to"
+        ],
+        "answer": 0,
+        "why": "Şimdiki kanıta dayalı tahmin be going to ile söylenir."
+      }
+    ],
+    "basics_en_comparatives": [
+      {
+        "prompt": "This is the ___ day of my life! (happy)",
+        "options": [
+          "happyest",
+          "happiest",
+          "most happy",
+          "happier"
+        ],
+        "answer": 1,
+        "why": "-y ile biten iki heceli sıfat -iest alır: the happiest."
+      },
+      {
+        "prompt": "Her new flat is much ___ than her old one. (big)",
+        "options": [
+          "biger",
+          "bigger",
+          "more big",
+          "biggest"
+        ],
+        "answer": 1,
+        "why": "Kısa ünlü + tek ünsüzle biten sıfatta ünsüz ikizlenir: bigger."
+      },
+      {
+        "prompt": "Is the bus ___ than the train? (cheap)",
+        "options": [
+          "cheapest",
+          "cheaper",
+          "more cheap",
+          "cheap"
+        ],
+        "answer": 1,
+        "why": "Tek heceli sıfat -er alır; than'dan önce comparative gelir."
+      },
+      {
+        "prompt": "This is the ___ restaurant in town; never go there! (bad)",
+        "options": [
+          "baddest",
+          "worst",
+          "worse",
+          "most bad"
+        ],
+        "answer": 1,
+        "why": "bad düzensizdir: bad → worse → the worst."
+      },
+      {
+        "prompt": "My brother is ___ tall ___ my father.",
+        "options": [
+          "as / as",
+          "so / than",
+          "as / than",
+          "more / as"
+        ],
+        "answer": 0,
+        "why": "Eşitlik as + sıfat + as ile kurulur."
+      }
+    ],
+    "articles_en": [
+      {
+        "prompt": "I saw ___ old man in the park. ___ man was feeding the birds.",
+        "options": [
+          "an / The",
+          "a / The",
+          "an / A",
+          "the / An"
+        ],
+        "answer": 0,
+        "why": "İlk anılan belirsizdir (an, ünlü sesle başladığı için); ikinci anışta the gelir."
+      },
+      {
+        "prompt": "She is ___ honest person.",
+        "options": [
+          "a",
+          "an",
+          "the",
+          "— (artikelsiz)"
+        ],
+        "answer": 1,
+        "why": "honest'ta h okunmaz, ünlü sesle başlar: an honest person."
+      },
+      {
+        "prompt": "We usually have ___ dinner at seven.",
+        "options": [
+          "a",
+          "the",
+          "— (artikelsiz)",
+          "an"
+        ],
+        "answer": 2,
+        "why": "Öğünler artikelsiz kullanılır: have dinner."
+      },
+      {
+        "prompt": "___ Nile is the longest river in Africa.",
+        "options": [
+          "— (artikelsiz)",
+          "The",
+          "A",
+          "An"
+        ],
+        "answer": 1,
+        "why": "Nehir adları the alır: the Nile."
+      },
+      {
+        "prompt": "He wants to be ___ doctor.",
+        "options": [
+          "— (artikelsiz)",
+          "a",
+          "the",
+          "an"
+        ],
+        "answer": 1,
+        "why": "Meslek söylenirken a / an gerekir."
+      }
+    ],
+    "present_perfect": [
+      {
+        "prompt": "This is the first time I ___ snow.",
+        "options": [
+          "see",
+          "have seen",
+          "saw",
+          "am seeing"
+        ],
+        "answer": 1,
+        "why": "This is the first time… kalıbından sonra present perfect gelir."
+      },
+      {
+        "prompt": "When ___ you arrive in London?",
+        "options": [
+          "have",
+          "did",
+          "has",
+          "do"
+        ],
+        "answer": 1,
+        "why": "when belirli zamanı sorar ve past simple ister."
+      },
+      {
+        "prompt": "I ___ him since we were at school.",
+        "options": [
+          "know",
+          "have known",
+          "knew",
+          "am knowing"
+        ],
+        "answer": 1,
+        "why": "Geçmişte başlayıp süren durum since ile present perfect ister."
+      },
+      {
+        "prompt": "We moved to this city ___ 2019.",
+        "options": [
+          "for",
+          "in",
+          "since",
+          "ago"
+        ],
+        "answer": 1,
+        "why": "Bitmiş belirli zaman (yıl) past simple ile ve in ile söylenir."
+      },
+      {
+        "prompt": "He ___ his leg two years ago.",
+        "options": [
+          "has broken",
+          "broke",
+          "has broke",
+          "breaks"
+        ],
+        "answer": 1,
+        "why": "ago bitmiş zaman bildirir: past simple."
+      }
+    ],
+    "gerund_infinitive": [
+      {
+        "prompt": "She promised ___ me with the move.",
+        "options": [
+          "helping",
+          "to help",
+          "help",
+          "helped"
+        ],
+        "answer": 1,
+        "why": "promise'dan sonra to + fiil gelir."
+      },
+      {
+        "prompt": "It's no use ___ about it now.",
+        "options": [
+          "to worry",
+          "worrying",
+          "worry",
+          "worried"
+        ],
+        "answer": 1,
+        "why": "It's no use kalıbından sonra -ing gelir."
+      },
+      {
+        "prompt": "I'm not used to ___ up so early.",
+        "options": [
+          "get",
+          "getting",
+          "got",
+          "to getting"
+        ],
+        "answer": 1,
+        "why": "be used to'daki to edattır; ardından -ing gelir."
+      },
+      {
+        "prompt": "He finally stopped ___ ; he hasn't had a cigarette for months.",
+        "options": [
+          "to smoke",
+          "smoking",
+          "smoke",
+          "smoked"
+        ],
+        "answer": 1,
+        "why": "stop + -ing bir alışkanlığı bırakmaktır."
+      },
+      {
+        "prompt": "I'll never forget ___ the Pyramids for the first time.",
+        "options": [
+          "to see",
+          "seeing",
+          "see",
+          "saw"
+        ],
+        "answer": 1,
+        "why": "Geçmişte yaşanmış bir anıdan söz ederken forget + -ing kullanılır."
+      }
+    ],
+    "conn_en": [
+      {
+        "prompt": "I stayed at home ___ I was ill.",
+        "options": [
+          "because",
+          "because of",
+          "despite",
+          "although"
+        ],
+        "answer": 0,
+        "why": "Neden cümle ile verilince because kullanılır."
+      },
+      {
+        "prompt": "The match was cancelled ___ the snow.",
+        "options": [
+          "because",
+          "because of",
+          "although",
+          "so"
+        ],
+        "answer": 1,
+        "why": "İsimle neden because of ile verilir."
+      },
+      {
+        "prompt": "Hurry up, ___ you'll miss the bus.",
+        "options": [
+          "otherwise",
+          "although",
+          "whereas",
+          "despite"
+        ],
+        "answer": 0,
+        "why": "otherwise « aksi hâlde » demektir."
+      },
+      {
+        "prompt": "___ he is rich, he lives in a small flat.",
+        "options": [
+          "Despite",
+          "Although",
+          "Because",
+          "Therefore"
+        ],
+        "answer": 1,
+        "why": "Cümleyle zıtlık although ile kurulur; despite isim ya da -ing ister."
+      },
+      {
+        "prompt": "The hotel was cheap. ___ , it was very clean.",
+        "options": [
+          "Moreover",
+          "Despite",
+          "Unless",
+          "Whereas"
+        ],
+        "answer": 0,
+        "why": "Aynı yönde ikinci bir artı moreover (üstelik) ile eklenir."
+      }
+    ],
+    "prep_en": [
+      {
+        "prompt": "I'm very proud ___ my daughter.",
+        "options": [
+          "for",
+          "of",
+          "on",
+          "with"
+        ],
+        "answer": 1,
+        "why": "be proud of kalıbıyla kullanılır."
+      },
+      {
+        "prompt": "This bag belongs ___ my sister.",
+        "options": [
+          "at",
+          "to",
+          "for",
+          "of"
+        ],
+        "answer": 1,
+        "why": "belong to « -e ait olmak » demektir."
+      },
+      {
+        "prompt": "He suffers ___ terrible headaches.",
+        "options": [
+          "of",
+          "from",
+          "at",
+          "by"
+        ],
+        "answer": 1,
+        "why": "suffer from « -den muzdarip olmak » demektir."
+      },
+      {
+        "prompt": "Who is responsible ___ this mess?",
+        "options": [
+          "of",
+          "for",
+          "about",
+          "to"
+        ],
+        "answer": 1,
+        "why": "be responsible for kalıbıyla kullanılır."
+      },
+      {
+        "prompt": "She insisted ___ paying for dinner.",
+        "options": [
+          "to",
+          "on",
+          "for",
+          "in"
+        ],
+        "answer": 1,
+        "why": "insist on + -ing kalıbıyla kullanılır."
+      }
+    ],
+    "colloc_en": [
+      {
+        "prompt": "Could you ___ a photo of us, please?",
+        "options": [
+          "make",
+          "take",
+          "do",
+          "have"
+        ],
+        "answer": 1,
+        "why": "« Fotoğraf çekmek » take a photo ile söylenir."
+      },
+      {
+        "prompt": "I always ___ my homework after dinner.",
+        "options": [
+          "make",
+          "do",
+          "take",
+          "have"
+        ],
+        "answer": 1,
+        "why": "Ödev ve görevler do ile söylenir: do homework."
+      },
+      {
+        "prompt": "I ___ a cold last week and stayed in bed.",
+        "options": [
+          "took",
+          "caught",
+          "made",
+          "did"
+        ],
+        "answer": 1,
+        "why": "« Soğuk algınlığına yakalanmak » catch a cold ile söylenir."
+      },
+      {
+        "prompt": "This coffee is too ___ ; I can't sleep after drinking it.",
+        "options": [
+          "heavy",
+          "strong",
+          "hard",
+          "big"
+        ],
+        "answer": 1,
+        "why": "Koyu kahve strong coffee ile söylenir."
+      },
+      {
+        "prompt": "Let's ___ fun at the party tonight!",
+        "options": [
+          "make",
+          "have",
+          "do",
+          "take"
+        ],
+        "answer": 1,
+        "why": "« Eğlenmek » have fun ile söylenir."
+      }
+    ],
+    "reported_speech": [
+      {
+        "prompt": "She ___ that she was tired.",
+        "options": [
+          "told",
+          "said",
+          "told me to",
+          "asked"
+        ],
+        "answer": 1,
+        "why": "say kişi almaz: she said that…; tell kişi ister."
+      },
+      {
+        "prompt": "Direct: «I'm watching TV.» → Reported: He said he ___ TV.",
+        "options": [
+          "is watching",
+          "was watching",
+          "watches",
+          "watched"
+        ],
+        "answer": 1,
+        "why": "Zaman bir adım geri gider: am watching → was watching."
+      },
+      {
+        "prompt": "Direct: «Can you help me?» → Reported: She asked if I ___ help her.",
+        "options": [
+          "can",
+          "could",
+          "will",
+          "am"
+        ],
+        "answer": 1,
+        "why": "can dolaylı anlatımda could olur."
+      },
+      {
+        "prompt": "Direct: «Don't touch it!» → Reported: He told me ___ it.",
+        "options": [
+          "don't touch",
+          "not to touch",
+          "to not touching",
+          "didn't touch"
+        ],
+        "answer": 1,
+        "why": "Olumsuz emir tell + kişi + not to + fiil ile aktarılır."
+      },
+      {
+        "prompt": "Direct: «I'll see you tomorrow.» (bir hafta sonra aktarılıyor) → She said she would see me ___ .",
+        "options": [
+          "tomorrow",
+          "the next day",
+          "yesterday",
+          "the day before"
+        ],
+        "answer": 1,
+        "why": "Başka bir günde aktarılırken tomorrow, the next day olur."
+      }
+    ],
+    "modals_en": [
+      {
+        "prompt": "You ___ wear a uniform at our school; it's a rule.",
+        "options": [
+          "have to",
+          "don't have to",
+          "needn't",
+          "mustn't"
+        ],
+        "answer": 0,
+        "why": "Kurala dayanan zorunluluk have to ile söylenir."
+      },
+      {
+        "prompt": "She ___ speak French when she was six.",
+        "options": [
+          "can",
+          "could",
+          "must",
+          "should"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki genel yetenek could ile söylenir."
+      },
+      {
+        "prompt": "He ___ be at home; I just saw him at the gym.",
+        "options": [
+          "must",
+          "can't",
+          "should",
+          "has to"
+        ],
+        "answer": 1,
+        "why": "Kesin olumsuz çıkarım can't be ile söylenir: evde olamaz."
+      },
+      {
+        "prompt": "I ___ go to the bank yesterday.",
+        "options": [
+          "must",
+          "had to",
+          "must have",
+          "have to"
+        ],
+        "answer": 1,
+        "why": "must'ın geçmişi yoktur; geçmişteki zorunluluk had to ile söylenir."
+      },
+      {
+        "prompt": "She hasn't replied; she ___ the email yet. (belki görmemiştir)",
+        "options": [
+          "mustn't see",
+          "might not have seen",
+          "can't seeing",
+          "shouldn't see"
+        ],
+        "answer": 1,
+        "why": "Geçmişe dair belirsiz olasılık might (not) have + V3 ile söylenir."
+      }
+    ],
+    "passive_en": [
+      {
+        "prompt": "English ___ all over the world.",
+        "options": [
+          "speaks",
+          "is spoken",
+          "is speaking",
+          "spoke"
+        ],
+        "answer": 1,
+        "why": "Edilgen be + V3 ile kurulur: is spoken."
+      },
+      {
+        "prompt": "The letters ___ yesterday.",
+        "options": [
+          "were sent",
+          "was sent",
+          "sent",
+          "have sent"
+        ],
+        "answer": 0,
+        "why": "Geçmiş edilgen; çoğul özne için were + V3."
+      },
+      {
+        "prompt": "A new hospital ___ in our town at the moment.",
+        "options": [
+          "is building",
+          "is being built",
+          "has built",
+          "builds"
+        ],
+        "answer": 1,
+        "why": "Süren edilgen eylem is being + V3 ile söylenir."
+      },
+      {
+        "prompt": "The windows should ___ every week.",
+        "options": [
+          "clean",
+          "be cleaned",
+          "cleaned",
+          "being cleaned"
+        ],
+        "answer": 1,
+        "why": "Modaldan sonra edilgen be + V3 ile kurulur."
+      },
+      {
+        "prompt": "He is said ___ very rich.",
+        "options": [
+          "being",
+          "to be",
+          "be",
+          "that he is"
+        ],
+        "answer": 1,
+        "why": "Söylenti kalıbı: he is said to be…"
+      }
+    ],
+    "relatives_en": [
+      {
+        "prompt": "This is the reason ___ I left my job.",
+        "options": [
+          "which",
+          "why",
+          "where",
+          "whose"
+        ],
+        "answer": 1,
+        "why": "the reason'dan sonra neden bildiren why gelir."
+      },
+      {
+        "prompt": "He failed the exam, ___ surprised everyone.",
+        "options": [
+          "that",
+          "which",
+          "what",
+          "who"
+        ],
+        "answer": 1,
+        "why": "Virgüllü which önceki cümlenin tamamına gönderme yapar; virgülden sonra that gelmez."
+      },
+      {
+        "prompt": "I don't understand ___ you mean.",
+        "options": [
+          "which",
+          "what",
+          "that",
+          "who"
+        ],
+        "answer": 1,
+        "why": "what « … olan şey » demektir ve bir isimden sonra gelmez."
+      },
+      {
+        "prompt": "The man to ___ I spoke was very helpful.",
+        "options": [
+          "who",
+          "whom",
+          "which",
+          "that"
+        ],
+        "answer": 1,
+        "why": "Edattan sonra kişi için whom kullanılır."
+      },
+      {
+        "prompt": "The flat ___ we rented had a great view.",
+        "options": [
+          "where",
+          "that",
+          "who",
+          "whose"
+        ],
+        "answer": 1,
+        "why": "rent doğrudan nesne alır; şey için virgülsüz cümlede that (ya da which)."
+      }
+    ],
+    "mixed_conditionals": [
+      {
+        "prompt": "If I had saved more money, I ___ rich now.",
+        "options": [
+          "would have been",
+          "would be",
+          "was",
+          "am"
+        ],
+        "answer": 1,
+        "why": "Geçmiş koşul → bugünkü sonuç: would + yalın fiil."
+      },
+      {
+        "prompt": "If she spoke Spanish, she ___ the job in Madrid last month.",
+        "options": [
+          "would get",
+          "would have got",
+          "got",
+          "had got"
+        ],
+        "answer": 1,
+        "why": "Bugünkü durum → geçmiş sonuç: would have + V3."
+      },
+      {
+        "prompt": "If you ___ breakfast this morning, you wouldn't be hungry now.",
+        "options": [
+          "ate",
+          "had eaten",
+          "would eat",
+          "have eaten"
+        ],
+        "answer": 1,
+        "why": "Geçmiş koşul past perfect ile kurulur; sonuç bugündür."
+      },
+      {
+        "prompt": "If he ___ so lazy, he would have finished the project yesterday.",
+        "options": [
+          "wasn't",
+          "weren't",
+          "isn't",
+          "wouldn't be"
+        ],
+        "answer": 1,
+        "why": "Kalıcı bir özellik (bugünkü durum) if + past simple ile; be için were tercih edilir."
+      },
+      {
+        "prompt": "If I ___ you, I would have accepted the offer.",
+        "options": [
+          "am",
+          "were",
+          "had",
+          "would be"
+        ],
+        "answer": 1,
+        "why": "Gerçek dışı bugünkü durum: if I were you."
+      }
+    ],
+    "participle_clauses": [
+      {
+        "prompt": "___ the news, she started to cry.",
+        "options": [
+          "Heard",
+          "Hearing",
+          "Having hear",
+          "To hearing"
+        ],
+        "answer": 1,
+        "why": "Aynı anda olan etken eylem -ing ile kısaltılır."
+      },
+      {
+        "prompt": "The car ___ in the accident was a total loss.",
+        "options": [
+          "damaging",
+          "damaged",
+          "damages",
+          "having damaged"
+        ],
+        "answer": 1,
+        "why": "Edilgen anlamlı kısaltılmış ilgi cümlesi V3 ile kurulur."
+      },
+      {
+        "prompt": "___ his homework, he went out to play. (önce bitti)",
+        "options": [
+          "Finished",
+          "Having finished",
+          "Finish",
+          "To finish"
+        ],
+        "answer": 1,
+        "why": "Önce biten etken eylem having + V3 ile söylenir."
+      },
+      {
+        "prompt": "___ in Germany, this car is very reliable.",
+        "options": [
+          "Making",
+          "Made",
+          "Having making",
+          "Make"
+        ],
+        "answer": 1,
+        "why": "Araba yapılan şeydir (edilgen): made."
+      },
+      {
+        "prompt": "___ the answer, I didn't raise my hand.",
+        "options": [
+          "Not knowing",
+          "Knowing not",
+          "Not known",
+          "No knowing"
+        ],
+        "answer": 0,
+        "why": "Olumsuz participle clause not + -ing ile kurulur."
+      }
+    ],
+    "inversion": [
+      {
+        "prompt": "Seldom ___ such a beautiful sunset.",
+        "options": [
+          "I have seen",
+          "have I seen",
+          "I saw",
+          "seen I have"
+        ],
+        "answer": 1,
+        "why": "seldom cümle başına gelince yardımcı fiil özneden önce gelir."
+      },
+      {
+        "prompt": "Not until I got home ___ that I had lost my wallet.",
+        "options": [
+          "I realised",
+          "did I realise",
+          "I did realise",
+          "realised I"
+        ],
+        "answer": 1,
+        "why": "not until ile devriklik ana cümlededir; yardımcı fiil yoksa did eklenir."
+      },
+      {
+        "prompt": "No sooner ___ the door than the phone rang.",
+        "options": [
+          "I had opened",
+          "had I opened",
+          "did I open",
+          "I opened"
+        ],
+        "answer": 1,
+        "why": "no sooner had + özne + V3 … than kalıbıdır."
+      },
+      {
+        "prompt": "On no account ___ the door to strangers.",
+        "options": [
+          "you should open",
+          "should you open",
+          "you open",
+          "open you"
+        ],
+        "answer": 1,
+        "why": "on no account devrik yapı kurar: should you open."
+      },
+      {
+        "prompt": "Not only ___ the exam, but she also got the highest mark.",
+        "options": [
+          "she passed",
+          "did she pass",
+          "passed she",
+          "she did pass"
+        ],
+        "answer": 1,
+        "why": "not only'den sonra devriklik gelir; yardımcı fiil yoksa did eklenir."
+      }
+    ],
+    "basics_en_pronouns": [
+      {
+        "prompt": "Is this ___ bag or mine?",
+        "options": [
+          "you",
+          "your",
+          "yours",
+          "you're"
+        ],
+        "answer": 1,
+        "why": "İsimden önce iyelik sıfatı gelir: your bag."
+      },
+      {
+        "prompt": "The tree lost ___ leaves in autumn.",
+        "options": [
+          "it's",
+          "its",
+          "his",
+          "it"
+        ],
+        "answer": 1,
+        "why": "Eşya, bitki ve hayvanlar için iyelik its'tir; it's « it is »in kısaltmasıdır."
+      },
+      {
+        "prompt": "My friends invited ___ to their wedding.",
+        "options": [
+          "I",
+          "me",
+          "my",
+          "mine"
+        ],
+        "answer": 1,
+        "why": "Fiilden sonra nesne zamiri gelir: me."
+      },
+      {
+        "prompt": "That house is ___ ; we bought it last year.",
+        "options": [
+          "our",
+          "ours",
+          "us",
+          "we"
+        ],
+        "answer": 1,
+        "why": "Arkasından isim gelmeyen iyelik zamiri ours'tur."
+      },
+      {
+        "prompt": "Hangisi doğrudur?",
+        "options": [
+          "Is raining.",
+          "It is raining.",
+          "Is rain.",
+          "It raining is."
+        ],
+        "answer": 1,
+        "why": "İngilizcede özne düşmez; hava durumunda it kullanılır."
+      }
+    ],
+    "basics_en_there_is": [
+      {
+        "prompt": "___ a lot of traffic this morning.",
+        "options": [
+          "There are",
+          "There is",
+          "It is",
+          "They are"
+        ],
+        "answer": 1,
+        "why": "traffic sayılamaz; sayılamayan isimle there is kullanılır."
+      },
+      {
+        "prompt": "___ any good restaurants near your hotel?",
+        "options": [
+          "Is there",
+          "Are there",
+          "There are",
+          "Have there"
+        ],
+        "answer": 1,
+        "why": "Çoğul isimle soru Are there…? ile kurulur."
+      },
+      {
+        "prompt": "— Is there a bank near here? — No, there ___ .",
+        "options": [
+          "aren't",
+          "isn't",
+          "is",
+          "not"
+        ],
+        "answer": 1,
+        "why": "Kısa cevap soruyla uyumlu olur: No, there isn't."
+      },
+      {
+        "prompt": "___ a concert in the park tomorrow evening.",
+        "options": [
+          "There was",
+          "There will be",
+          "There were",
+          "There have"
+        ],
+        "answer": 1,
+        "why": "Gelecekte there will be kullanılır."
+      },
+      {
+        "prompt": "___ many people at the party last night.",
+        "options": [
+          "There was",
+          "There were",
+          "There are",
+          "It was"
+        ],
+        "answer": 1,
+        "why": "Geçmişte çoğulla there were kullanılır."
+      }
+    ],
+    "basics_en_demonstratives": [
+      {
+        "prompt": "___ week has been very busy. (içinde bulunduğumuz hafta)",
+        "options": [
+          "That",
+          "This",
+          "These",
+          "Those"
+        ],
+        "answer": 1,
+        "why": "Şimdiki zaman dilimi this ile söylenir: this week."
+      },
+      {
+        "prompt": "Who are ___ people over there?",
+        "options": [
+          "this",
+          "those",
+          "these",
+          "that"
+        ],
+        "answer": 1,
+        "why": "Uzaktaki (over there) çoğul için those kullanılır."
+      },
+      {
+        "prompt": "— Let's go to the beach! — ___ 's a great idea.",
+        "options": [
+          "That",
+          "Those",
+          "These",
+          "Them"
+        ],
+        "answer": 0,
+        "why": "Söylenen bir şeye geri dönmek için that kullanılır: That's a great idea."
+      },
+      {
+        "prompt": "I still remember ___ day in 2010 when we first met.",
+        "options": [
+          "this",
+          "that",
+          "these",
+          "those"
+        ],
+        "answer": 1,
+        "why": "Geçmişte kalan tekil zaman için that kullanılır."
+      },
+      {
+        "prompt": "Do you like ___ new shoes I'm wearing?",
+        "options": [
+          "that",
+          "these",
+          "this",
+          "those"
+        ],
+        "answer": 1,
+        "why": "Yakındaki (üstündeki) çoğul şeyler için these kullanılır."
+      }
+    ],
+    "basics_en_questions": [
+      {
+        "prompt": "Who ___ the window? (camı kim kırdı?)",
+        "options": [
+          "did break",
+          "broke",
+          "does break",
+          "breaked"
+        ],
+        "answer": 1,
+        "why": "who öznenin kendisini soruyorsa do / did kullanılmaz."
+      },
+      {
+        "prompt": "Where are you ___ ? — I'm from Turkey.",
+        "options": [
+          "come",
+          "from",
+          "to",
+          "live"
+        ],
+        "answer": 1,
+        "why": "Soruda edat sonda kalır: Where are you from?"
+      },
+      {
+        "prompt": "___ she speak Japanese?",
+        "options": [
+          "Do",
+          "Does",
+          "Is",
+          "Has"
+        ],
+        "answer": 1,
+        "why": "he / she / it ile soru does ile kurulur; asıl fiil yalın kalır."
+      },
+      {
+        "prompt": "___ is this umbrella? — It's Tom's.",
+        "options": [
+          "Who",
+          "Whose",
+          "Which",
+          "Who's"
+        ],
+        "answer": 1,
+        "why": "Sahiplik whose ile sorulur."
+      },
+      {
+        "prompt": "How ___ do you go to the gym? — Twice a week.",
+        "options": [
+          "many",
+          "often",
+          "long",
+          "much"
+        ],
+        "answer": 1,
+        "why": "Sıklık how often ile sorulur."
+      }
+    ],
+    "basics_en_time_prepositions": [
+      {
+        "prompt": "I usually read ___ the evening.",
+        "options": [
+          "at",
+          "in",
+          "on",
+          "— (edatsız)"
+        ],
+        "answer": 1,
+        "why": "Günün bölümleri in ile söylenir: in the evening."
+      },
+      {
+        "prompt": "We met ___ Christmas Day.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "— (edatsız)"
+        ],
+        "answer": 1,
+        "why": "Belirli bir gün on ile söylenir: on Christmas Day."
+      },
+      {
+        "prompt": "I'll see you ___ Friday.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "— (edatsız)"
+        ],
+        "answer": 1,
+        "why": "Günler on ile söylenir."
+      },
+      {
+        "prompt": "My grandparents got married ___ 1965.",
+        "options": [
+          "on",
+          "in",
+          "at",
+          "— (edatsız)"
+        ],
+        "answer": 1,
+        "why": "Yıllar in ile söylenir."
+      },
+      {
+        "prompt": "Your bus leaves ___ twenty minutes. (yirmi dakika sonra)",
+        "options": [
+          "on",
+          "in",
+          "at",
+          "after"
+        ],
+        "answer": 1,
+        "why": "Şimdiden itibaren « … sonra » in ile söylenir."
+      }
+    ],
+    "basics_en_past_continuous": [
+      {
+        "prompt": "At ten o'clock last night, I ___ TV.",
+        "options": [
+          "watched",
+          "was watching",
+          "am watching",
+          "watch"
+        ],
+        "answer": 1,
+        "why": "Geçmişte belli bir anda süren iş past continuous ile söylenir."
+      },
+      {
+        "prompt": "While I ___ , someone stole my bike.",
+        "options": [
+          "have shopped",
+          "was shopping",
+          "am shopping",
+          "shop"
+        ],
+        "answer": 1,
+        "why": "while çoğunlukla süren işle (continuous) gelir."
+      },
+      {
+        "prompt": "She ___ her keys while she was running.",
+        "options": [
+          "was dropping",
+          "dropped",
+          "drops",
+          "drop"
+        ],
+        "answer": 1,
+        "why": "Süren işin ortasındaki kısa olay past simple olur."
+      },
+      {
+        "prompt": "He came in, ___ his coat and sat down.",
+        "options": [
+          "was taking off",
+          "took off",
+          "takes off",
+          "taking off"
+        ],
+        "answer": 1,
+        "why": "Art arda olan olaylar past simple ile sıralanır."
+      },
+      {
+        "prompt": "I ___ the answer, but I didn't say anything.",
+        "options": [
+          "was knowing",
+          "knew",
+          "know",
+          "am knowing"
+        ],
+        "answer": 1,
+        "why": "know durum fiilidir; continuous olmaz."
+      }
+    ],
+    "basics_en_ability": [
+      {
+        "prompt": "She ___ play the guitar very well.",
+        "options": [
+          "cans",
+          "can",
+          "can to",
+          "is can"
+        ],
+        "answer": 1,
+        "why": "can bütün kişilerde aynıdır ve ardından yalın fiil gelir."
+      },
+      {
+        "prompt": "I ___ find my glasses this morning.",
+        "options": [
+          "can't",
+          "couldn't",
+          "wasn't able",
+          "can"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki tek durumda olumsuz yetenek couldn't ile söylenir."
+      },
+      {
+        "prompt": "I have never ___ to understand this rule.",
+        "options": [
+          "could",
+          "been able",
+          "can",
+          "be able"
+        ],
+        "answer": 1,
+        "why": "can'in bitişik biçimi yoktur: have been able to."
+      },
+      {
+        "prompt": "After hours of searching, they ___ find the lost dog.",
+        "options": [
+          "could",
+          "were able to",
+          "can",
+          "are able"
+        ],
+        "answer": 1,
+        "why": "Geçmişte tek bir durumda başarılan iş was / were able to ile söylenir."
+      },
+      {
+        "prompt": "___ you pass me the salt, please? (kibar rica)",
+        "options": [
+          "Could",
+          "Must",
+          "Should",
+          "May"
+        ],
+        "answer": 0,
+        "why": "Kibar rica Could you…? ile yapılır."
+      }
+    ],
+    "basics_en_obligation": [
+      {
+        "prompt": "She ___ wear a uniform at work.",
+        "options": [
+          "have to",
+          "has to",
+          "must to",
+          "having to"
+        ],
+        "answer": 1,
+        "why": "have to çekimlenir: she has to."
+      },
+      {
+        "prompt": "___ you have to work last Saturday?",
+        "options": [
+          "Do",
+          "Did",
+          "Had",
+          "Were"
+        ],
+        "answer": 1,
+        "why": "Geçmişte have to sorusu did ile kurulur."
+      },
+      {
+        "prompt": "You ___ bring food; there will be plenty at the party.",
+        "options": [
+          "mustn't",
+          "don't have to",
+          "must",
+          "have to"
+        ],
+        "answer": 1,
+        "why": "« Gerek yok » don't have to ile söylenir; mustn't yasak demektir."
+      },
+      {
+        "prompt": "Next year I ___ take the exam again.",
+        "options": [
+          "must",
+          "will have to",
+          "had to",
+          "have"
+        ],
+        "answer": 1,
+        "why": "must'ın gelecek biçimi yoktur: will have to."
+      },
+      {
+        "prompt": "I've ___ go now; my bus is coming.",
+        "options": [
+          "must",
+          "got to",
+          "have",
+          "had"
+        ],
+        "answer": 1,
+        "why": "Konuşmada have got to da zorunluluk bildirir: I've got to go."
+      }
+    ],
+    "basics_en_place_prepositions": [
+      {
+        "prompt": "The keys are ___ the kitchen table.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "into"
+        ],
+        "answer": 1,
+        "why": "Bir yüzeyin üstü on ile söylenir."
+      },
+      {
+        "prompt": "She lives ___ the third floor.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "to"
+        ],
+        "answer": 1,
+        "why": "Katlar on ile söylenir: on the third floor."
+      },
+      {
+        "prompt": "He jumped ___ the swimming pool.",
+        "options": [
+          "in to",
+          "into",
+          "at",
+          "on"
+        ],
+        "answer": 1,
+        "why": "İçine doğru hareket into ile söylenir."
+      },
+      {
+        "prompt": "We walked ___ the river for an hour. (boyunca)",
+        "options": [
+          "across",
+          "along",
+          "through",
+          "into"
+        ],
+        "answer": 1,
+        "why": "« Boyunca » along ile söylenir."
+      },
+      {
+        "prompt": "I'm ___ home tonight; call me there.",
+        "options": [
+          "in",
+          "at",
+          "on",
+          "to"
+        ],
+        "answer": 1,
+        "why": "« Evde olmak » be at home ile söylenir."
+      }
+    ],
+    "basics_en_conditionals": [
+      {
+        "prompt": "If you ___ hard, you will pass the exam.",
+        "options": [
+          "will study",
+          "study",
+          "studied",
+          "would study"
+        ],
+        "answer": 1,
+        "why": "Birinci koşulda if'li bölüm present simple olur."
+      },
+      {
+        "prompt": "If she ___ his number, she would call him.",
+        "options": [
+          "knows",
+          "knew",
+          "will know",
+          "would know"
+        ],
+        "answer": 1,
+        "why": "İkinci koşul: if + past simple, would + yalın fiil."
+      },
+      {
+        "prompt": "I ___ you if I had a car.",
+        "options": [
+          "will drive",
+          "would drive",
+          "drive",
+          "drove"
+        ],
+        "answer": 1,
+        "why": "İkinci koşulun sonuç bölümü would + yalın fiildir."
+      },
+      {
+        "prompt": "If we left now, we ___ catch the train.",
+        "options": [
+          "will",
+          "might",
+          "are",
+          "did"
+        ],
+        "answer": 1,
+        "why": "İkinci koşulda would yerine might da gelebilir."
+      },
+      {
+        "prompt": "___ you call me, I'll come and pick you up.",
+        "options": [
+          "Unless",
+          "If",
+          "Whether",
+          "When if"
+        ],
+        "answer": 1,
+        "why": "Olumlu koşul if ile kurulur; unless « -medikçe » demektir."
+      }
+    ],
+    "basics_en_used_to": [
+      {
+        "prompt": "We ___ go swimming every summer when we were kids.",
+        "options": [
+          "were used to",
+          "would",
+          "use to",
+          "are used to"
+        ],
+        "answer": 1,
+        "why": "Geçmişte tekrarlanan eylem would + yalın fiil ile de söylenir."
+      },
+      {
+        "prompt": "I ___ have a beard, but I shaved it off.",
+        "options": [
+          "would",
+          "used to",
+          "was used to",
+          "get used to"
+        ],
+        "answer": 1,
+        "why": "have gibi durum fiillerinde would değil used to kullanılır."
+      },
+      {
+        "prompt": "I can't ___ driving on the left.",
+        "options": [
+          "used to",
+          "get used to",
+          "use to",
+          "getting used"
+        ],
+        "answer": 1,
+        "why": "Alışma süreci get used to + -ing ile söylenir."
+      },
+      {
+        "prompt": "He ___ work in a bank, didn't he?",
+        "options": [
+          "used to",
+          "is used to",
+          "would to",
+          "uses to"
+        ],
+        "answer": 0,
+        "why": "Artık olmayan geçmiş durum used to + yalın fiil ile söylenir."
+      },
+      {
+        "prompt": "I ___ walk to work; it only takes ten minutes. (şimdiki alışkanlık)",
+        "options": [
+          "used to",
+          "usually",
+          "am used",
+          "would"
+        ],
+        "answer": 1,
+        "why": "Şimdiki alışkanlık present simple ile söylenir; used to yalnızca geçmiş içindir."
+      }
+    ],
+    "basics_en_past_perfect": [
+      {
+        "prompt": "I ___ the book before I saw the film.",
+        "options": [
+          "have read",
+          "had read",
+          "read had",
+          "was read"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki bir olaydan önce olanı past perfect gösterir."
+      },
+      {
+        "prompt": "She was angry because he ___ her birthday.",
+        "options": [
+          "forgets",
+          "had forgotten",
+          "has forgotten",
+          "will forget"
+        ],
+        "answer": 1,
+        "why": "Kızgınlıktan önce olan iş past perfect ile söylenir."
+      },
+      {
+        "prompt": "___ you ever seen snow before you moved to Canada?",
+        "options": [
+          "Have",
+          "Had",
+          "Did",
+          "Were"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki bir ana kadarki deneyim past perfect ile sorulur."
+      },
+      {
+        "prompt": "By the time we arrived, the guests ___ .",
+        "options": [
+          "left",
+          "had left",
+          "have left",
+          "leave"
+        ],
+        "answer": 1,
+        "why": "by the time ile geçmişteki andan önce biten iş past perfect olur."
+      },
+      {
+        "prompt": "Direct: «I have lost my job.» → He told me he ___ his job.",
+        "options": [
+          "has lost",
+          "had lost",
+          "lost has",
+          "is losing"
+        ],
+        "answer": 1,
+        "why": "Dolaylı anlatımda present perfect geriye kayar: had lost."
+      }
+    ],
+    "basics_en_question_tags": [
+      {
+        "prompt": "It's a lovely day, ___ ?",
+        "options": [
+          "is it",
+          "isn't it",
+          "doesn't it",
+          "wasn't it"
+        ],
+        "answer": 1,
+        "why": "Olumlu cümleye olumsuz tag gelir; yardımcı fiil is tekrarlanır."
+      },
+      {
+        "prompt": "He never helps you, ___ ?",
+        "options": [
+          "doesn't he",
+          "does he",
+          "is he",
+          "did he"
+        ],
+        "answer": 1,
+        "why": "never olumsuz anlamlıdır; olumlu tag alır."
+      },
+      {
+        "prompt": "Your sister can swim, ___ ?",
+        "options": [
+          "can't she",
+          "can she",
+          "doesn't she",
+          "isn't she"
+        ],
+        "answer": 0,
+        "why": "Tag cümledeki yardımcı fiili (can) tekrar eder."
+      },
+      {
+        "prompt": "Close the window, ___ ?",
+        "options": [
+          "do you",
+          "will you",
+          "don't you",
+          "shall we"
+        ],
+        "answer": 1,
+        "why": "Emir cümlesinin tag'i will you'dur."
+      },
+      {
+        "prompt": "They went to Paris last year, ___ ?",
+        "options": [
+          "weren't they",
+          "didn't they",
+          "did they",
+          "don't they"
+        ],
+        "answer": 1,
+        "why": "Yardımcı fiil yoksa past simple'da did kullanılır."
+      }
+    ],
+    "basics_en_third_conditional": [
+      {
+        "prompt": "If we ___ earlier, we might have caught the train.",
+        "options": [
+          "left",
+          "had left",
+          "would leave",
+          "have left"
+        ],
+        "answer": 1,
+        "why": "Üçüncü koşulda if'li bölüm past perfect olur."
+      },
+      {
+        "prompt": "I wish you ___ stop interrupting me!",
+        "options": [
+          "will",
+          "would",
+          "had",
+          "did"
+        ],
+        "answer": 1,
+        "why": "Başkasının davranışından yakınma wish + would ile söylenir."
+      },
+      {
+        "prompt": "If only I ___ taller! (şimdi)",
+        "options": [
+          "am",
+          "were",
+          "had been",
+          "would be"
+        ],
+        "answer": 1,
+        "why": "Şimdiki duruma dair dilek if only + past simple ile söylenir."
+      },
+      {
+        "prompt": "If you'd asked me, I'd ___ you.",
+        "options": [
+          "help",
+          "have helped",
+          "helped",
+          "helping"
+        ],
+        "answer": 1,
+        "why": "Üçüncü koşulun sonucu would have + V3'tür; 'd burada would'dur."
+      },
+      {
+        "prompt": "She ___ the exam if she had studied harder.",
+        "options": [
+          "would pass",
+          "would have passed",
+          "passed",
+          "had passed"
+        ],
+        "answer": 1,
+        "why": "Geçmişe dair gerçek dışı sonuç would have + V3 ile söylenir."
+      }
+    ],
+    "basics_en_future_perfect": [
+      {
+        "prompt": "This time next week, I ___ on a beach in Spain.",
+        "options": [
+          "will lie",
+          "will be lying",
+          "will have lain",
+          "lie"
+        ],
+        "answer": 1,
+        "why": "Gelecekte belli bir anda süren iş future continuous ile söylenir."
+      },
+      {
+        "prompt": "By 2030, she ___ from university.",
+        "options": [
+          "will graduate",
+          "will have graduated",
+          "graduates",
+          "is graduating"
+        ],
+        "answer": 1,
+        "why": "by + gelecek zaman, o ana kadar bitmiş olacak işi gösterir: future perfect."
+      },
+      {
+        "prompt": "___ you be using your laptop tonight? I need to borrow it.",
+        "options": [
+          "Are",
+          "Will",
+          "Do",
+          "Have"
+        ],
+        "answer": 1,
+        "why": "Kibarca plan sormak Will you be + -ing ile yapılır."
+      },
+      {
+        "prompt": "By next month, I ___ here for ten years.",
+        "options": [
+          "will work",
+          "will have been working",
+          "am working",
+          "work"
+        ],
+        "answer": 1,
+        "why": "Süreyi vurgulamak için future perfect continuous kullanılır."
+      },
+      {
+        "prompt": "By the time you ___ , I will have cooked dinner.",
+        "options": [
+          "will get home",
+          "get home",
+          "got home",
+          "will have got home"
+        ],
+        "answer": 1,
+        "why": "by the time'dan sonra will değil present simple gelir."
+      }
+    ],
+    "basics_en_causative": [
+      {
+        "prompt": "We're having our house ___ next week.",
+        "options": [
+          "paint",
+          "painted",
+          "painting",
+          "to paint"
+        ],
+        "answer": 1,
+        "why": "Ettirgen yapı have + nesne + V3 ile kurulur."
+      },
+      {
+        "prompt": "She had her bag ___ on the train.",
+        "options": [
+          "steal",
+          "stolen",
+          "stealing",
+          "stole"
+        ],
+        "answer": 1,
+        "why": "İstemeden başa gelen olay da have + nesne + V3 ile anlatılır."
+      },
+      {
+        "prompt": "I'll get the windows ___ tomorrow.",
+        "options": [
+          "clean",
+          "cleaned",
+          "cleaning",
+          "to clean"
+        ],
+        "answer": 1,
+        "why": "get + nesne + V3, have ile aynı anlamdadır."
+      },
+      {
+        "prompt": "I had the mechanic ___ the brakes.",
+        "options": [
+          "checked",
+          "check",
+          "to check",
+          "checking"
+        ],
+        "answer": 1,
+        "why": "Kişi önemliyse have + kişi + yalın fiil kullanılır."
+      },
+      {
+        "prompt": "He's just had his eyes ___ by a specialist.",
+        "options": [
+          "test",
+          "tested",
+          "testing",
+          "to test"
+        ],
+        "answer": 1,
+        "why": "İşi yapan by ile söylenir; nesneden sonra V3 gelir."
+      }
+    ],
+    "basics_en_hedging": [
+      {
+        "prompt": "Some students prefer online classes, ___ others learn better in a classroom.",
+        "options": [
+          "whereas",
+          "albeit",
+          "nonetheless",
+          "hence"
+        ],
+        "answer": 0,
+        "why": "whereas iki olguyu karşılaştırır."
+      },
+      {
+        "prompt": "The data ___ that the treatment is effective. (temkinli)",
+        "options": [
+          "proves",
+          "indicates",
+          "shows beyond doubt",
+          "confirms absolutely"
+        ],
+        "answer": 1,
+        "why": "Temkinli yazıda prove yerine indicate, suggest gibi fiiller kullanılır."
+      },
+      {
+        "prompt": "Prices rose sharply; ___ , demand fell.",
+        "options": [
+          "albeit",
+          "consequently",
+          "whereas",
+          "to some extent"
+        ],
+        "answer": 1,
+        "why": "Sonuç consequently ile bağlanır."
+      },
+      {
+        "prompt": "It could be ___ that the policy failed.",
+        "options": [
+          "argue",
+          "argued",
+          "arguing",
+          "argument"
+        ],
+        "answer": 1,
+        "why": "Temkinli kalıp: it could be argued that…"
+      },
+      {
+        "prompt": "The project was a success, ___ a limited one.",
+        "options": [
+          "albeit",
+          "whereas",
+          "although it",
+          "despite"
+        ],
+        "answer": 0,
+        "why": "albeit tam cümleyle değil, isim öbeğiyle gelir: albeit a limited one."
+      }
+    ],
+    "basics_en_present_continuous": [
+      {
+        "prompt": "She ___ to music right now.",
+        "options": [
+          "listens",
+          "is listening",
+          "listen",
+          "listening"
+        ],
+        "answer": 1,
+        "why": "Şu an süren iş am / is / are + -ing ile söylenir."
+      },
+      {
+        "prompt": "We ___ for the bus at the moment.",
+        "options": [
+          "wait",
+          "are waiting",
+          "waits",
+          "is waiting"
+        ],
+        "answer": 1,
+        "why": "we ile are + -ing kullanılır."
+      },
+      {
+        "prompt": "-ing yazımı: swim → ___",
+        "options": [
+          "swiming",
+          "swimming",
+          "swimeing",
+          "swimmming"
+        ],
+        "answer": 1,
+        "why": "Kısa ünlü + tek ünsüzle biten tek heceli fiilde son ünsüz ikizlenir."
+      },
+      {
+        "prompt": "I ___ a new car; I'd like a red one.",
+        "options": [
+          "am wanting",
+          "want",
+          "wanting",
+          "wants"
+        ],
+        "answer": 1,
+        "why": "want bir durum fiilidir ve genellikle -ing almaz."
+      },
+      {
+        "prompt": "___ you listening to me?",
+        "options": [
+          "Do",
+          "Are",
+          "Is",
+          "Does"
+        ],
+        "answer": 1,
+        "why": "Present continuous sorusu am / is / are ile kurulur."
+      }
+    ],
+    "basics_en_present_perfect_continuous": [
+      {
+        "prompt": "She ___ since nine o'clock.",
+        "options": [
+          "is studying",
+          "has been studying",
+          "studies",
+          "has studying"
+        ],
+        "answer": 1,
+        "why": "Geçmişte başlayıp hâlâ süren iş since ile have / has been + -ing ister."
+      },
+      {
+        "prompt": "It ___ for three days; the garden is flooded.",
+        "options": [
+          "rains",
+          "has been raining",
+          "is raining",
+          "rained since"
+        ],
+        "answer": 1,
+        "why": "Süresi verilen (for) ve sonucu görülen iş present perfect continuous ile söylenir."
+      },
+      {
+        "prompt": "I ___ three cups of coffee this morning. (miktar)",
+        "options": [
+          "have been drinking",
+          "have drunk",
+          "am drinking",
+          "drink"
+        ],
+        "answer": 1,
+        "why": "Miktar (kaç tane) söylenince present perfect simple kullanılır."
+      },
+      {
+        "prompt": "How long have you ___ Maria?",
+        "options": [
+          "been knowing",
+          "known",
+          "know",
+          "knowing"
+        ],
+        "answer": 1,
+        "why": "know durum fiilidir; süre present perfect simple ile verilir."
+      },
+      {
+        "prompt": "They've been living here ___ 2015.",
+        "options": [
+          "for",
+          "since",
+          "from",
+          "ago"
+        ],
+        "answer": 1,
+        "why": "Başlangıç noktası (yıl) since ile verilir."
+      }
+    ],
+    "basics_en_future_continuous": [
+      {
+        "prompt": "Don't call at nine; I ___ the kids to bed.",
+        "options": [
+          "will put",
+          "will be putting",
+          "put",
+          "am put"
+        ],
+        "answer": 1,
+        "why": "Gelecekte belli bir anda süren iş will be + -ing ile söylenir."
+      },
+      {
+        "prompt": "I ___ Ayşe at work tomorrow anyway, so I can give her the book.",
+        "options": [
+          "will be seeing",
+          "see",
+          "will have seen",
+          "saw"
+        ],
+        "answer": 0,
+        "why": "Olağan akışta zaten olacak iş future continuous ile söylenir."
+      },
+      {
+        "prompt": "Hangisi doğrudur?",
+        "options": [
+          "I'll be owning a house next year.",
+          "I'll own a house next year.",
+          "I'll be own a house next year.",
+          "I'm owning a house next year."
+        ],
+        "answer": 1,
+        "why": "own durum fiilidir; future continuous'a girmez."
+      },
+      {
+        "prompt": "While you ___ , I'll be cleaning the house.",
+        "options": [
+          "will shop",
+          "are shopping",
+          "will be shopping",
+          "shopped"
+        ],
+        "answer": 1,
+        "why": "while gibi zaman bağlaçlarından sonra will gelmez."
+      },
+      {
+        "prompt": "This time next month, they ___ in their new flat.",
+        "options": [
+          "are lived",
+          "will be living",
+          "lived",
+          "have lived"
+        ],
+        "answer": 1,
+        "why": "Gelecekteki bir anda sürecek durum will be + -ing ile söylenir."
+      }
+    ],
+    "basics_en_past_perfect_continuous": [
+      {
+        "prompt": "He was tired because he ___ all night.",
+        "options": [
+          "has been driving",
+          "had been driving",
+          "was drive",
+          "drives"
+        ],
+        "answer": 1,
+        "why": "Geçmişte görülen sonucun nedeni olan süreç had been + -ing ile söylenir."
+      },
+      {
+        "prompt": "She ___ in Paris for two years when she met Pierre.",
+        "options": [
+          "has been living",
+          "had been living",
+          "lives",
+          "is living"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki bir ana kadar süren iş ve süresi past perfect continuous ile söylenir."
+      },
+      {
+        "prompt": "I ___ him for years before we became friends.",
+        "options": [
+          "had been knowing",
+          "had known",
+          "have known",
+          "knew had"
+        ],
+        "answer": 1,
+        "why": "know durum fiilidir; continuous olmaz: had known."
+      },
+      {
+        "prompt": "Direct: «I've been working all day.» → She said she ___ all day.",
+        "options": [
+          "has been working",
+          "had been working",
+          "was work",
+          "works"
+        ],
+        "answer": 1,
+        "why": "Dolaylı anlatımda present perfect continuous geriye kayar."
+      },
+      {
+        "prompt": "How long ___ you been studying before you took the test?",
+        "options": [
+          "have",
+          "had",
+          "did",
+          "were"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki bir ana kadarki süre had been + -ing ile sorulur."
+      }
+    ],
+    "basics_en_preferences": [
+      {
+        "prompt": "I'd rather walk ___ take the bus.",
+        "options": [
+          "to",
+          "than",
+          "that",
+          "then"
+        ],
+        "answer": 1,
+        "why": "İki seçenek would rather A than B ile karşılaştırılır."
+      },
+      {
+        "prompt": "I'd rather you ___ smoke in the house.",
+        "options": [
+          "don't",
+          "didn't",
+          "won't",
+          "not"
+        ],
+        "answer": 1,
+        "why": "Başkasının yapmasını tercih ederken would rather + özne + past simple gelir."
+      },
+      {
+        "prompt": "You'd better ___ late again!",
+        "options": [
+          "not be",
+          "don't be",
+          "not to be",
+          "be not"
+        ],
+        "answer": 0,
+        "why": "had better'ın olumsuzu had better not + yalın fiildir."
+      },
+      {
+        "prompt": "I prefer ___ to driving.",
+        "options": [
+          "walk",
+          "walking",
+          "to walk",
+          "walked"
+        ],
+        "answer": 1,
+        "why": "prefer A to B yapısında iki taraf da -ing olur."
+      },
+      {
+        "prompt": "Tonight I'd prefer ___ at home.",
+        "options": [
+          "stay",
+          "to stay",
+          "staying",
+          "stayed"
+        ],
+        "answer": 1,
+        "why": "Belirli bir durumdaki tercih would prefer + to + fiil ile söylenir."
+      }
+    ],
+    "basics_en_emphasis": [
+      {
+        "prompt": "It was ___ hot that we stayed inside all day.",
+        "options": [
+          "such",
+          "so",
+          "such a",
+          "too"
+        ],
+        "answer": 1,
+        "why": "İsimsiz sıfattan önce so gelir: so hot that…"
+      },
+      {
+        "prompt": "They are ___ nice people!",
+        "options": [
+          "so",
+          "such",
+          "such a",
+          "so a"
+        ],
+        "answer": 1,
+        "why": "Sıfat + çoğul isimden önce such gelir (a olmadan)."
+      },
+      {
+        "prompt": "___ sit down and make yourself at home.",
+        "options": [
+          "Does",
+          "Do",
+          "Did",
+          "Done"
+        ],
+        "answer": 1,
+        "why": "Emirde do sıcak bir ısrar bildirir: Do sit down."
+      },
+      {
+        "prompt": "She ___ call you; I saw her dial your number.",
+        "options": [
+          "do",
+          "did",
+          "does",
+          "done"
+        ],
+        "answer": 1,
+        "why": "Geçmişte itiraz ve düzeltme vurgulu did + yalın fiille yapılır."
+      },
+      {
+        "prompt": "There was ___ little time that we had to skip lunch.",
+        "options": [
+          "such",
+          "so",
+          "such a",
+          "too"
+        ],
+        "answer": 1,
+        "why": "Miktar sözcüklerinden (little, much, many, few) önce so gelir."
+      }
+    ],
+    "basics_en_ellipsis": [
+      {
+        "prompt": "\"I'm tired.\" \"So ___ I.\"",
+        "options": [
+          "do",
+          "am",
+          "have",
+          "is"
+        ],
+        "answer": 1,
+        "why": "Katılırken yardımcı fiil önceki cümleye uyar: be → so am I."
+      },
+      {
+        "prompt": "\"I don't like horror films.\" \"___ do I.\"",
+        "options": [
+          "So",
+          "Neither",
+          "Either",
+          "Too"
+        ],
+        "answer": 1,
+        "why": "Olumsuza katılmak neither + yardımcı fiil + özne ile yapılır."
+      },
+      {
+        "prompt": "\"Will it rain tomorrow?\" \"I'm afraid ___ .\"",
+        "options": [
+          "it",
+          "so",
+          "yes",
+          "that"
+        ],
+        "answer": 1,
+        "why": "be afraid ile so bütün cümlenin yerine geçer: I'm afraid so."
+      },
+      {
+        "prompt": "I don't want the big box; I'll take the small ___ .",
+        "options": [
+          "it",
+          "one",
+          "ones",
+          "that"
+        ],
+        "answer": 1,
+        "why": "Tekrarlanan tekil sayılabilir ismin yerine one gelir."
+      },
+      {
+        "prompt": "\"Are you coming to the party?\" \"I'd love ___ .\"",
+        "options": [
+          "to",
+          "it",
+          "that",
+          "so"
+        ],
+        "answer": 0,
+        "why": "Fiil öbeği to'da kesilir: I'd love to (come)."
+      }
+    ],
+    "basics_en_phrasal_verbs": [
+      {
+        "prompt": "Can you pick ___ at the station? (onu, erkek)",
+        "options": [
+          "up him",
+          "him up",
+          "him on",
+          "on him"
+        ],
+        "answer": 1,
+        "why": "Nesne zamirse mutlaka ortaya girer: pick him up."
+      },
+      {
+        "prompt": "I need to ___ the meeting until Monday. (ertelemek)",
+        "options": [
+          "put off",
+          "put on",
+          "put up",
+          "put out"
+        ],
+        "answer": 0,
+        "why": "« Ertelemek » put off ile söylenir (resmî karşılığı postpone)."
+      },
+      {
+        "prompt": "My car broke ___ on the motorway.",
+        "options": [
+          "up",
+          "down",
+          "out",
+          "off"
+        ],
+        "answer": 1,
+        "why": "« Bozulmak » break down ile söylenir; nesne almaz."
+      },
+      {
+        "prompt": "We need to come ___ a better idea.",
+        "options": [
+          "up with",
+          "with up",
+          "up to",
+          "across with"
+        ],
+        "answer": 0,
+        "why": "come up with « bulmak, ortaya atmak » demektir; üç parçalıdır, bölünmez."
+      },
+      {
+        "prompt": "How do you get ___ with your new colleagues?",
+        "options": [
+          "on",
+          "up",
+          "off",
+          "in"
+        ],
+        "answer": 0,
+        "why": "get on with someone « biriyle iyi geçinmek » demektir."
+      }
+    ],
+    "basics_en_future_in_past": [
+      {
+        "prompt": "The train ___ arrive at six, but it was two hours late.",
+        "options": [
+          "was supposed to",
+          "would",
+          "was about",
+          "is going to"
+        ],
+        "answer": 0,
+        "why": "Bozulmuş beklenti was supposed to ile söylenir."
+      },
+      {
+        "prompt": "I couldn't come to the party because I ___ my aunt that evening.",
+        "options": [
+          "have met",
+          "was meeting",
+          "meet",
+          "am meeting"
+        ],
+        "answer": 1,
+        "why": "Geçmişte ayarlanmış randevu past continuous ile söylenir."
+      },
+      {
+        "prompt": "She was ___ cry when the teacher praised her.",
+        "options": [
+          "about to",
+          "going",
+          "would",
+          "supposed"
+        ],
+        "answer": 0,
+        "why": "« Tam … -mek üzereydi » was about to ile söylenir."
+      },
+      {
+        "prompt": "He said he ___ phone me the next day.",
+        "options": [
+          "will",
+          "would",
+          "is going",
+          "shall"
+        ],
+        "answer": 1,
+        "why": "Geçmişten bakınca gelecek would ile söylenir."
+      },
+      {
+        "prompt": "We were going to buy that house, ___ the price went up.",
+        "options": [
+          "and",
+          "but",
+          "so",
+          "because"
+        ],
+        "answer": 1,
+        "why": "Gerçekleşmemiş niyetin ardından çoğunlukla but gelir."
+      }
+    ],
+    "basics_en_future_perfect_continuous": [
+      {
+        "prompt": "By the time he retires, he ___ for 40 years.",
+        "options": [
+          "will work",
+          "will have been working",
+          "works",
+          "has worked"
+        ],
+        "answer": 1,
+        "why": "Gelecekteki bir noktaya kadar sürecek işin süresi will have been + -ing ile söylenir."
+      },
+      {
+        "prompt": "Don't ask her to cook tonight; she ___ all day. (tahmin)",
+        "options": [
+          "works",
+          "will have been working",
+          "is work",
+          "will working"
+        ],
+        "answer": 1,
+        "why": "Şimdiye dair güçlü tahmin için de future perfect continuous kullanılır."
+      },
+      {
+        "prompt": "By then we ___ each other for twenty years.",
+        "options": [
+          "will have been knowing",
+          "will have known",
+          "will know",
+          "know"
+        ],
+        "answer": 1,
+        "why": "know durum fiilidir; future perfect simple kullanılır."
+      },
+      {
+        "prompt": "By next summer, how long ___ English?",
+        "options": [
+          "will you have been learning",
+          "have you learned",
+          "will you learning",
+          "you will have learned"
+        ],
+        "answer": 0,
+        "why": "Soru will + özne + have been + -ing ile kurulur."
+      },
+      {
+        "prompt": "By June she ___ three chapters. (miktar)",
+        "options": [
+          "will have been writing",
+          "will have written",
+          "writes",
+          "wrote"
+        ],
+        "answer": 1,
+        "why": "Bitmiş iş ve miktar future perfect simple ile söylenir."
+      }
+    ],
+    "basics_en_unreal_past": [
+      {
+        "prompt": "It's about time the government ___ something.",
+        "options": [
+          "does",
+          "did",
+          "will do",
+          "has done"
+        ],
+        "answer": 1,
+        "why": "It's (about) time + özne + past simple, çoktan yapılması gereken işi anlatır."
+      },
+      {
+        "prompt": "He talks as if he ___ the boss. (ama değil)",
+        "options": [
+          "is",
+          "were",
+          "will be",
+          "has been"
+        ],
+        "answer": 1,
+        "why": "Gerçek dışı durum as if + past simple ile; be için were."
+      },
+      {
+        "prompt": "It looks as if it ___ to rain. (gerçek olabilir)",
+        "options": [
+          "was going",
+          "is going",
+          "had gone",
+          "were going"
+        ],
+        "answer": 1,
+        "why": "Gerçek olabilecek izlenim as if + present ile söylenir."
+      },
+      {
+        "prompt": "It's time ___ home.",
+        "options": [
+          "we going",
+          "to go",
+          "going",
+          "go"
+        ],
+        "answer": 1,
+        "why": "Nötr kalıp it's time + to + yalın fiildir."
+      },
+      {
+        "prompt": "What if you ___ the lottery? What would you do?",
+        "options": [
+          "win",
+          "won",
+          "had won",
+          "will win"
+        ],
+        "answer": 1,
+        "why": "Hayalî durum what if + past simple ile kurulur."
+      }
+    ],
+    "basics_en_noun_phrases": [
+      {
+        "prompt": "fail fiilinden türeyen isim hangisidir?",
+        "options": [
+          "failing",
+          "failure",
+          "failment",
+          "failness"
+        ],
+        "answer": 1,
+        "why": "fail → failure (başarısızlık)."
+      },
+      {
+        "prompt": "The people ___ for the delay will be punished.",
+        "options": [
+          "responsible",
+          "responsibly",
+          "who responsible",
+          "responsibility"
+        ],
+        "answer": 0,
+        "why": "Bazı sıfatlar ismin arkasına gelir: the people responsible."
+      },
+      {
+        "prompt": "The man ___ the grey suit is my uncle.",
+        "options": [
+          "with",
+          "in",
+          "on",
+          "at"
+        ],
+        "answer": 1,
+        "why": "Edat öbeği ismi arkadan niteler; giysi için in kullanılır."
+      },
+      {
+        "prompt": "Hangisi birleşik sıfatla doğru kurulmuştur?",
+        "options": [
+          "a five-years plan",
+          "a five-year plan",
+          "a five year's plan",
+          "a plan five-year"
+        ],
+        "answer": 1,
+        "why": "Birleşik sıfatta isim tekil kalır ve tireyle bağlanır."
+      },
+      {
+        "prompt": "Students ___ the exam must arrive early.",
+        "options": [
+          "took",
+          "taking",
+          "taken",
+          "who taking"
+        ],
+        "answer": 1,
+        "why": "Etken anlamlı kısaltılmış ilgi cümlesi -ing ile kurulur."
+      }
+    ],
+    "basics_en_register": [
+      {
+        "prompt": "Hangisi « look into » fiilinin resmî karşılığıdır?",
+        "options": [
+          "investigate",
+          "postpone",
+          "tolerate",
+          "discover"
+        ],
+        "answer": 0,
+        "why": "look into « incelemek, araştırmak » demektir: investigate."
+      },
+      {
+        "prompt": "Resmî yazıda hangisi kullanılır?",
+        "options": [
+          "I don't agree.",
+          "I do not agree.",
+          "I dunno.",
+          "I ain't agree."
+        ],
+        "answer": 1,
+        "why": "Resmî yazıda kısaltma kullanılmaz."
+      },
+      {
+        "prompt": "\"Who did you speak to?\" sorusunun resmî biçimi hangisidir?",
+        "options": [
+          "To whom did you speak?",
+          "Whom you spoke to?",
+          "To who you spoke?",
+          "Who to did you speak?"
+        ],
+        "answer": 0,
+        "why": "Resmî dilde edat başa alınır ve whom kullanılır."
+      },
+      {
+        "prompt": "Resmî bir raporda cümle başındaki « but » yerine hangisi tercih edilir?",
+        "options": [
+          "However",
+          "So",
+          "Also",
+          "About"
+        ],
+        "answer": 0,
+        "why": "Resmî bağlaç however'dır."
+      },
+      {
+        "prompt": "Hangisi gündelik dile aittir ve resmî yazıda yer almaz?",
+        "options": [
+          "kind of",
+          "regarding",
+          "therefore",
+          "in addition"
+        ],
+        "answer": 0,
+        "why": "kind of gibi dolgu sözcükleri resmî yazıda kullanılmaz."
+      }
+    ],
+    "basics_en_discourse_markers": [
+      {
+        "prompt": "It's a long drive. ___ , the scenery is worth it.",
+        "options": [
+          "Still",
+          "By the way",
+          "Therefore",
+          "For example"
+        ],
+        "answer": 0,
+        "why": "still karşıt bir şeye rağmen anlamı verir: « yine de »."
+      },
+      {
+        "prompt": "The film was good. ___ , not brilliant, but good.",
+        "options": [
+          "I mean",
+          "By the way",
+          "Therefore",
+          "Firstly"
+        ],
+        "answer": 0,
+        "why": "I mean söyleneni açıklar ya da düzeltir."
+      },
+      {
+        "prompt": "\"Do you live near here?\" \"___ , I live just around the corner.\"",
+        "options": [
+          "Actually",
+          "Anyway",
+          "Still",
+          "Mind you"
+        ],
+        "answer": 0,
+        "why": "actually beklenmedik ya da dikkat çekici bir bilgi sunar."
+      },
+      {
+        "prompt": "Hangisi « konudan sapınca ana konuya dönmek » için kullanılır?",
+        "options": [
+          "anyway",
+          "mind you",
+          "actually",
+          "I mean"
+        ],
+        "answer": 0,
+        "why": "anyway konuya geri döner ya da konuşmayı kapatır."
+      },
+      {
+        "prompt": "\"___ , did you remember to buy milk?\" (yan bir konu açarken)",
+        "options": [
+          "By the way",
+          "Mind you",
+          "Still",
+          "I mean"
+        ],
+        "answer": 0,
+        "why": "by the way yan bir konuyu açar."
+      }
+    ],
+    "basics_en_stative_dynamic": [
+      {
+        "prompt": "I ___ getting up early.",
+        "options": [
+          "am hating",
+          "hate",
+          "hates",
+          "hating"
+        ],
+        "answer": 1,
+        "why": "hate duygu bildiren durum fiilidir; -ing almaz."
+      },
+      {
+        "prompt": "We ___ dinner right now; can I call you back?",
+        "options": [
+          "have",
+          "are having",
+          "has",
+          "had"
+        ],
+        "answer": 1,
+        "why": "have öğün anlamında eylemdir; şu an olduğu için continuous."
+      },
+      {
+        "prompt": "I ___ my friends at the café tonight. (buluşmak)",
+        "options": [
+          "see",
+          "am seeing",
+          "seeing",
+          "sees"
+        ],
+        "answer": 1,
+        "why": "see « buluşmak, görüşmek » anlamında eylemdir ve -ing alabilir."
+      },
+      {
+        "prompt": "This milk ___ strange.",
+        "options": [
+          "is smelling",
+          "smells",
+          "smell",
+          "smelling"
+        ],
+        "answer": 1,
+        "why": "« … gibi kokmak » anlamında smell durum fiilidir."
+      },
+      {
+        "prompt": "___ you know the answer?",
+        "options": [
+          "Are",
+          "Do",
+          "Is",
+          "Does"
+        ],
+        "answer": 1,
+        "why": "know durum fiilidir; soru do ile kurulur."
+      }
+    ],
+    "basics_en_articles_institutions": [
+      {
+        "prompt": "The builders are repairing the roof of ___ school next to our house.",
+        "options": [
+          "— (artikelsiz)",
+          "the",
+          "an",
+          "any"
+        ],
+        "answer": 1,
+        "why": "Bina olarak anılan okul (onarım) the alır."
+      },
+      {
+        "prompt": "Let's meet at ___ station at ten.",
+        "options": [
+          "— (artikelsiz)",
+          "the",
+          "a",
+          "an"
+        ],
+        "answer": 1,
+        "why": "İstasyon, havalimanı, sinema gibi yerler the alır."
+      },
+      {
+        "prompt": "What time do you finish ___ work today?",
+        "options": [
+          "the",
+          "— (artikelsiz)",
+          "a",
+          "an"
+        ],
+        "answer": 1,
+        "why": "work kendi kalıplarında artikelsiz kullanılır: finish work."
+      },
+      {
+        "prompt": "I'm going ___ now; see you tomorrow.",
+        "options": [
+          "to the home",
+          "home",
+          "to home",
+          "the home"
+        ],
+        "answer": 1,
+        "why": "home'a yönelmede ne to ne de artikel gelir: go home."
+      },
+      {
+        "prompt": "After the trial, he spent five years in ___ .",
+        "options": [
+          "the prison",
+          "prison",
+          "a prison",
+          "prisons"
+        ],
+        "answer": 1,
+        "why": "Mahkûm olarak hapishane artikelsizdir: in prison."
+      }
+    ],
+    "basics_en_causatives_advanced": [
+      {
+        "prompt": "My parents let me ___ the car on weekends.",
+        "options": [
+          "to use",
+          "use",
+          "using",
+          "used"
+        ],
+        "answer": 1,
+        "why": "let + kişi + yalın fiil (to'suz) izin vermektir."
+      },
+      {
+        "prompt": "She finally got her husband ___ the dishes.",
+        "options": [
+          "wash",
+          "to wash",
+          "washed",
+          "washes"
+        ],
+        "answer": 1,
+        "why": "get + kişi + to + fiil, birini ikna edip yaptırmaktır."
+      },
+      {
+        "prompt": "The teacher made us ___ the poem by heart.",
+        "options": [
+          "to learn",
+          "learn",
+          "learning",
+          "learned"
+        ],
+        "answer": 1,
+        "why": "make + kişi + yalın fiil (to'suz) zorlamaktır."
+      },
+      {
+        "prompt": "I'll have the receptionist ___ you a taxi.",
+        "options": [
+          "to call",
+          "call",
+          "called",
+          "calling"
+        ],
+        "answer": 1,
+        "why": "have + kişi + yalın fiil, görev vererek yaptırmaktır."
+      },
+      {
+        "prompt": "We need to get the roof ___ before winter.",
+        "options": [
+          "repair",
+          "repaired",
+          "to repair",
+          "repairing"
+        ],
+        "answer": 1,
+        "why": "İşin yapılması önemliyse get + nesne + V3 kullanılır."
+      }
+    ],
+    "basics_en_cleft_variations": [
+      {
+        "prompt": "What we need ___ more time.",
+        "options": [
+          "are",
+          "is",
+          "be",
+          "been"
+        ],
+        "answer": 1,
+        "why": "Wh-cleft'te what tekil sayılır: what we need is…"
+      }
+    ],
+    "basics_en_double_comparatives": [
+      {
+        "prompt": "The ___ you are, the more you learn.",
+        "options": [
+          "old",
+          "older",
+          "oldest",
+          "more old"
+        ],
+        "answer": 1,
+        "why": "Paralel karşılaştırmada her iki tarafta da the + comparative gelir."
+      },
+      {
+        "prompt": "The more you eat, ___ you get.",
+        "options": [
+          "fatter",
+          "the fatter",
+          "the more fat",
+          "the fattest"
+        ],
+        "answer": 1,
+        "why": "İkinci tarafta da the + comparative gerekir: the fatter."
+      },
+      {
+        "prompt": "The ___ you sleep, the more tired you feel.",
+        "options": [
+          "little",
+          "less",
+          "least",
+          "fewer"
+        ],
+        "answer": 1,
+        "why": "Fiille azlık the less ile söylenir."
+      },
+      {
+        "prompt": "___ sooner, the better.",
+        "options": [
+          "A",
+          "The",
+          "More",
+          "So"
+        ],
+        "answer": 1,
+        "why": "Kısa kalıpta da the kullanılır: the sooner, the better."
+      },
+      {
+        "prompt": "The ___ people come, the less food each person gets.",
+        "options": [
+          "more",
+          "most",
+          "many",
+          "much"
+        ],
+        "answer": 0,
+        "why": "Sayılabilir isimle çokluk the more + isim ile söylenir."
+      }
+    ],
+    "basics_en_prepositional_verbs": [
+      {
+        "prompt": "Teenagers often look up ___ famous athletes.",
+        "options": [
+          "for",
+          "to",
+          "at",
+          "on"
+        ],
+        "answer": 1,
+        "why": "look up to « birine hayranlık duymak » demektir."
+      },
+      {
+        "prompt": "I'm really looking forward ___ the holidays.",
+        "options": [
+          "for",
+          "to",
+          "at",
+          "on"
+        ],
+        "answer": 1,
+        "why": "look forward to kalıbında to bir edattır."
+      },
+      {
+        "prompt": "Don't worry about the kids; I'll look after ___ .",
+        "options": [
+          "them",
+          "to them",
+          "they",
+          "their"
+        ],
+        "answer": 0,
+        "why": "Ayrılmayan fiilde nesne zamir olsa da sonda kalır: look after them."
+      },
+      {
+        "prompt": "He cheated on the test and got away ___ it.",
+        "options": [
+          "from",
+          "with",
+          "of",
+          "for"
+        ],
+        "answer": 1,
+        "why": "get away with « bir şeyi cezasız atlatmak » demektir."
+      },
+      {
+        "prompt": "She can't put up with ___ late every day.",
+        "options": [
+          "him being",
+          "him to be",
+          "he is",
+          "to be him"
+        ],
+        "answer": 0,
+        "why": "Edattan (with) sonra fiil -ing olur: put up with him being late."
+      }
+    ],
+    "basics_en_inversion_conditionals": [
+      {
+        "prompt": "___ I you, I would accept the offer.",
+        "options": [
+          "Had",
+          "Were",
+          "Should",
+          "Did"
+        ],
+        "answer": 1,
+        "why": "Type 2 devrikliği were + özne ile kurulur: Were I you…"
+      },
+      {
+        "prompt": "Had she ___ the instructions, she would have succeeded.",
+        "options": [
+          "follow",
+          "followed",
+          "following",
+          "follows"
+        ],
+        "answer": 1,
+        "why": "Type 3 devrikliği had + özne + V3 ile kurulur."
+      },
+      {
+        "prompt": "___ you not been there, I would have panicked.",
+        "options": [
+          "Were",
+          "Had",
+          "Should",
+          "Did"
+        ],
+        "answer": 1,
+        "why": "Olumsuzda not özneden sonra gelir: Had you not been there…"
+      },
+      {
+        "prompt": "Should you ___ any problems, call this number.",
+        "options": [
+          "experienced",
+          "experience",
+          "experiencing",
+          "to experience"
+        ],
+        "answer": 1,
+        "why": "should + özne + yalın fiil, olası şartı resmî biçimde kurar."
+      },
+      {
+        "prompt": "Had we not ___ , we would have missed the flight.",
+        "options": [
+          "hurry",
+          "hurried",
+          "hurrying",
+          "hurries"
+        ],
+        "answer": 1,
+        "why": "had + özne + not + V3: Had we not hurried…"
+      }
+    ],
+    "basics_en_subjunctive_mandative": [
+      {
+        "prompt": "I propose that the meeting ___ postponed until Friday.",
+        "options": [
+          "is",
+          "be",
+          "was",
+          "will be"
+        ],
+        "answer": 1,
+        "why": "propose that'tan sonra be çekimlenmez, yalın be kalır."
+      }
+    ],
+    "basics_en_participle_advanced": [
+      {
+        "prompt": "___ received a reply, she wrote again.",
+        "options": [
+          "Not having",
+          "Not had",
+          "Having no",
+          "No having"
+        ],
+        "answer": 0,
+        "why": "Olumsuz ortaçta not en başa gelir: Not having received…"
+      },
+      {
+        "prompt": "The meeting ___ , everyone went home.",
+        "options": [
+          "having finished",
+          "finish",
+          "to finish",
+          "finishes"
+        ],
+        "answer": 0,
+        "why": "Özneler farklıysa yan cümle kendi öznesini taşır (nominative absolute): The meeting having finished."
+      },
+      {
+        "prompt": "___ by the news, she sat down in silence.",
+        "options": [
+          "Shocking",
+          "Shocked",
+          "Having shocking",
+          "Shock"
+        ],
+        "answer": 1,
+        "why": "Edilgen durum V3 ile anlatılır: haber onu şaşırttı → shocked."
+      },
+      {
+        "prompt": "Generally ___ , the results were positive.",
+        "options": [
+          "speak",
+          "speaking",
+          "spoken",
+          "spoke"
+        ],
+        "answer": 1,
+        "why": "Kalıplaşmış ortaç ifadesi: generally speaking (genel olarak)."
+      },
+      {
+        "prompt": "___ the risks, he refused the offer.",
+        "options": [
+          "Knowing",
+          "Known",
+          "Knew",
+          "To knowing"
+        ],
+        "answer": 0,
+        "why": "Etken neden V-ing ile anlatılır: knowing the risks."
+      }
+    ],
+    "basics_en_punctuation_flow": [
+      {
+        "prompt": "The plan is cheap; ___ , it is easy to implement.",
+        "options": [
+          "moreover",
+          "nevertheless",
+          "on the contrary",
+          "however"
+        ],
+        "answer": 0,
+        "why": "Aynı yönde ikinci bir artı moreover ile eklenir."
+      },
+      {
+        "prompt": "The report was not short. ___ , it was over 200 pages long.",
+        "options": [
+          "On the other hand",
+          "On the contrary",
+          "Nevertheless",
+          "Therefore"
+        ],
+        "answer": 1,
+        "why": "on the contrary önceki olumsuz ifadeyi düzeltip tersini vurgular."
+      },
+      {
+        "prompt": "Hangisinde noktalama doğrudur?",
+        "options": [
+          "The data was incomplete, however, we continued.",
+          "The data was incomplete; however, we continued.",
+          "The data was incomplete however we continued.",
+          "The data was incomplete; however we, continued."
+        ],
+        "answer": 1,
+        "why": "İki tam cümleyi bağlayan however'dan önce noktalı virgül, sonra virgül gelir."
+      },
+      {
+        "prompt": "City life is exciting. ___ , it can be very stressful.",
+        "options": [
+          "On the contrary",
+          "On the other hand",
+          "Moreover",
+          "Therefore"
+        ],
+        "answer": 1,
+        "why": "Bir konunun öbür yüzü on the other hand ile verilir."
+      },
+      {
+        "prompt": "Sales fell sharply; ___ , the company cut costs.",
+        "options": [
+          "consequently",
+          "nevertheless",
+          "on the contrary",
+          "moreover"
+        ],
+        "answer": 0,
+        "why": "Sonuç consequently ile bağlanır."
+      }
+    ],
+    "basics_en_make_do_have_take": [
+      {
+        "prompt": "Please ___ your bed before you leave.",
+        "options": [
+          "do",
+          "make",
+          "have",
+          "take"
+        ],
+        "answer": 1,
+        "why": "« Yatağı toplamak » make the bed ile söylenir."
+      },
+      {
+        "prompt": "I ___ yoga three times a week.",
+        "options": [
+          "make",
+          "do",
+          "have",
+          "take"
+        ],
+        "answer": 1,
+        "why": "Spor ve egzersiz do ile söylenir: do yoga."
+      },
+      {
+        "prompt": "Let's ___ a chat over coffee.",
+        "options": [
+          "make",
+          "have",
+          "do",
+          "take"
+        ],
+        "answer": 1,
+        "why": "Karşılıklı konuşma have a chat ile söylenir."
+      },
+      {
+        "prompt": "It ___ two hours to get to the airport.",
+        "options": [
+          "makes",
+          "takes",
+          "does",
+          "has"
+        ],
+        "answer": 1,
+        "why": "Süre gerektirmek take ile söylenir: it takes two hours."
+      },
+      {
+        "prompt": "She ___ a lot of money from her online shop.",
+        "options": [
+          "does",
+          "makes",
+          "takes",
+          "has"
+        ],
+        "answer": 1,
+        "why": "« Para kazanmak » make money ile söylenir."
+      }
+    ],
+    "basics_en_say_tell_speak_talk": [
+      {
+        "prompt": "She ___ me a funny story.",
+        "options": [
+          "said",
+          "told",
+          "spoke",
+          "talked"
+        ],
+        "answer": 1,
+        "why": "« Hikâye anlatmak » tell (kişi) a story ile söylenir."
+      },
+      {
+        "prompt": "Do you ___ German?",
+        "options": [
+          "talk",
+          "speak",
+          "tell",
+          "say"
+        ],
+        "answer": 1,
+        "why": "Dil konuşmak speak ile söylenir."
+      },
+      {
+        "prompt": "He ___ that he would be late.",
+        "options": [
+          "told",
+          "said",
+          "spoke",
+          "talked"
+        ],
+        "answer": 1,
+        "why": "Kişi nesnesi yoksa say kullanılır: he said that…"
+      },
+      {
+        "prompt": "The teacher told us ___ quiet.",
+        "options": [
+          "be",
+          "to be",
+          "being",
+          "that be"
+        ],
+        "answer": 1,
+        "why": "Dolaylı emir tell + kişi + to + fiil ile kurulur."
+      },
+      {
+        "prompt": "Can we ___ about this tomorrow?",
+        "options": [
+          "say",
+          "talk",
+          "tell",
+          "speak to"
+        ],
+        "answer": 1,
+        "why": "Karşılıklı sohbet talk about ile söylenir."
+      }
+    ],
+    "basics_en_some_any_no_every": [
+      {
+        "prompt": "Everybody ___ the answer.",
+        "options": [
+          "know",
+          "knows",
+          "are knowing",
+          "have known"
+        ],
+        "answer": 1,
+        "why": "every- ile başlayan zamirler tekil fiil alır."
+      },
+      {
+        "prompt": "I didn't see ___ at the station.",
+        "options": [
+          "nobody",
+          "anybody",
+          "none",
+          "everything"
+        ],
+        "answer": 1,
+        "why": "Olumsuz fiille çift olumsuzluk olmaz: didn't see anybody."
+      },
+      {
+        "prompt": "I have three brothers, and ___ of them live in London.",
+        "options": [
+          "both",
+          "all",
+          "either",
+          "neither"
+        ],
+        "answer": 1,
+        "why": "Üç ve daha çok kişi için both değil all kullanılır."
+      },
+      {
+        "prompt": "You can come on Monday or Tuesday; ___ day is fine.",
+        "options": [
+          "both",
+          "either",
+          "neither",
+          "all"
+        ],
+        "answer": 1,
+        "why": "İki seçenekten herhangi biri either ile söylenir."
+      },
+      {
+        "prompt": "Either my sister or my parents ___ going to pick me up.",
+        "options": [
+          "is",
+          "are",
+          "am",
+          "be"
+        ],
+        "answer": 1,
+        "why": "Eşli bağlaçta fiil en yakın özneye (my parents) uyar."
+      }
+    ],
+    "basics_en_so_such_too_enough": [
+      {
+        "prompt": "The box was ___ heavy for me to lift.",
+        "options": [
+          "so",
+          "too",
+          "such",
+          "enough"
+        ],
+        "answer": 1,
+        "why": "too + sıfat + to « … yapamayacak kadar » demektir."
+      },
+      {
+        "prompt": "She isn't tall ___ to reach the top shelf.",
+        "options": [
+          "too",
+          "enough",
+          "so",
+          "such"
+        ],
+        "answer": 1,
+        "why": "enough sıfattan sonra gelir: tall enough."
+      },
+      {
+        "prompt": "We had ___ much homework that we couldn't go out.",
+        "options": [
+          "such",
+          "so",
+          "too",
+          "enough"
+        ],
+        "answer": 1,
+        "why": "much, many, few, little'dan önce so gelir."
+      },
+      {
+        "prompt": "It was ___ an easy test that everyone passed.",
+        "options": [
+          "so",
+          "such",
+          "too",
+          "enough"
+        ],
+        "answer": 1,
+        "why": "a / an + sıfat + isimden önce such gelir."
+      },
+      {
+        "prompt": "Do we have ___ to make a cake?",
+        "options": [
+          "eggs enough",
+          "enough eggs",
+          "too eggs",
+          "so eggs"
+        ],
+        "answer": 1,
+        "why": "enough isimden önce gelir: enough eggs."
+      }
+    ],
+    "basics_en_indirect_questions": [
+      {
+        "prompt": "Do you know where ___ ?",
+        "options": [
+          "is the bank",
+          "the bank is",
+          "does the bank",
+          "is bank"
+        ],
+        "answer": 1,
+        "why": "Dolaylı soruda düz cümle sırası gelir: where the bank is."
+      },
+      {
+        "prompt": "Could you tell me what time ___ ?",
+        "options": [
+          "did the train leave",
+          "the train left",
+          "left the train",
+          "does the train leave"
+        ],
+        "answer": 1,
+        "why": "did düşer, fiil geçmiş biçimini alır: the train left."
+      },
+      {
+        "prompt": "I wonder ___ he will come to the party.",
+        "options": [
+          "that",
+          "if",
+          "what",
+          "does"
+        ],
+        "answer": 1,
+        "why": "Evet / hayır sorusu if ya da whether ile bağlanır."
+      },
+      {
+        "prompt": "Can you tell me who ___ the window?",
+        "options": [
+          "did break",
+          "broke",
+          "break",
+          "breaking"
+        ],
+        "answer": 1,
+        "why": "Soru sözcüğü özneyse sıra zaten düzdür: who broke."
+      },
+      {
+        "prompt": "Do you know how long they ___ married?",
+        "options": [
+          "have they been",
+          "have been",
+          "been have",
+          "are being"
+        ],
+        "answer": 1,
+        "why": "Yardımcı fiil düşmez, yalnızca sıra düzelir: they have been."
+      }
+    ],
+    "basics_en_adjective_order_ed_ing": [
+      {
+        "prompt": "I'm ___ about the instructions; can you explain again?",
+        "options": [
+          "confusing",
+          "confused",
+          "confuse",
+          "confusion"
+        ],
+        "answer": 1,
+        "why": "Kişinin hissettiği durum -ed ile söylenir: I'm confused."
+      },
+      {
+        "prompt": "The trip was long and ___ .",
+        "options": [
+          "tired",
+          "tiring",
+          "tire",
+          "tires"
+        ],
+        "answer": 1,
+        "why": "Duyguya yol açan şey -ing ile nitelenir: a tiring trip."
+      },
+      {
+        "prompt": "Sıfatların doğru sıralandığı seçenek hangisidir?",
+        "options": [
+          "a red big car",
+          "a big red car",
+          "a car big red",
+          "red a big car"
+        ],
+        "answer": 1,
+        "why": "OSASCOMP: boyut (big) renkten (red) önce gelir."
+      },
+      {
+        "prompt": "She has ___ hair.",
+        "options": [
+          "long beautiful black",
+          "beautiful long black",
+          "black long beautiful",
+          "long black beautiful"
+        ],
+        "answer": 1,
+        "why": "Fikir (beautiful) önce, sonra uzunluk (long), en son renk (black)."
+      },
+      {
+        "prompt": "The results were very ___ ; nobody expected them.",
+        "options": [
+          "surprised",
+          "surprising",
+          "surprise",
+          "surprisingly"
+        ],
+        "answer": 1,
+        "why": "Şaşkınlığa yol açan şey -ing ile nitelenir."
+      }
+    ],
+    "basics_en_reporting_verbs": [
+      {
+        "prompt": "He refused ___ the documents.",
+        "options": [
+          "signing",
+          "to sign",
+          "sign",
+          "that sign"
+        ],
+        "answer": 1,
+        "why": "refuse + to + fiil kalıbıyla kullanılır."
+      },
+      {
+        "prompt": "She reminded me ___ the tickets.",
+        "options": [
+          "buying",
+          "to buy",
+          "buy",
+          "that buy"
+        ],
+        "answer": 1,
+        "why": "remind + kişi + to + fiil kalıbıyla kullanılır."
+      },
+      {
+        "prompt": "He admitted ___ the money.",
+        "options": [
+          "to take",
+          "taking",
+          "take",
+          "that take"
+        ],
+        "answer": 1,
+        "why": "admit + -ing kalıbıyla kullanılır."
+      },
+      {
+        "prompt": "They blamed the driver ___ the accident.",
+        "options": [
+          "of causing",
+          "for causing",
+          "to cause",
+          "causing"
+        ],
+        "answer": 1,
+        "why": "blame + kişi + for + -ing kalıbıyla kullanılır."
+      },
+      {
+        "prompt": "The guide advised us ___ the water.",
+        "options": [
+          "not drinking",
+          "not to drink",
+          "to not drinking",
+          "don't drink"
+        ],
+        "answer": 1,
+        "why": "advise + kişi + (not) to + fiil kalıbıyla kullanılır."
+      }
+    ],
+    "basics_en_modals_past_deduction": [
+      {
+        "prompt": "She's not answering. She ___ asleep. (belki)",
+        "options": [
+          "must have fallen",
+          "might have fallen",
+          "can't have fallen",
+          "should have fallen"
+        ],
+        "answer": 1,
+        "why": "%50 ihtimalli geçmiş tahmini might have + V3 ile söylenir."
+      },
+      {
+        "prompt": "You ___ me! I would have helped you.",
+        "options": [
+          "should have called",
+          "must have called",
+          "can't have called",
+          "needn't have called"
+        ],
+        "answer": 0,
+        "why": "Yapılmayan doğru şey için sitem should have + V3 ile söylenir."
+      },
+      {
+        "prompt": "He ___ the exam; he didn't even study! (imkânsız)",
+        "options": [
+          "must have passed",
+          "can't have passed",
+          "should have passed",
+          "may have passed"
+        ],
+        "answer": 1,
+        "why": "Geçmişe dair imkânsızlık can't have + V3 ile söylenir."
+      },
+      {
+        "prompt": "My friend gave me a lift, so I ___ a taxi. (gerek yoktu, almadım)",
+        "options": [
+          "needn't have taken",
+          "didn't need to take",
+          "mustn't have taken",
+          "couldn't have taken"
+        ],
+        "answer": 1,
+        "why": "Gerekmediği için yapılmayan iş didn't need to + fiil ile söylenir."
+      },
+      {
+        "prompt": "We ___ the earlier train, but we decided to wait.",
+        "options": [
+          "must have caught",
+          "could have caught",
+          "can't have caught",
+          "needn't catch"
+        ],
+        "answer": 1,
+        "why": "İmkân olup yapılmayan iş could have + V3 ile söylenir."
+      }
+    ],
+    "basics_en_correlative_conjunctions": [
+      {
+        "prompt": "She is not only smart ___ very kind.",
+        "options": [
+          "and also",
+          "but also",
+          "or also",
+          "nor also"
+        ],
+        "answer": 1,
+        "why": "not only … but also eşli bağlacıdır."
+      },
+      {
+        "prompt": "Neither my brother ___ my sister likes coffee.",
+        "options": [
+          "or",
+          "nor",
+          "and",
+          "but"
+        ],
+        "answer": 1,
+        "why": "neither her zaman nor ile eşleşir."
+      },
+      {
+        "prompt": "Not until I read the letter ___ the truth.",
+        "options": [
+          "I understood",
+          "did I understand",
+          "I did understand",
+          "understood I"
+        ],
+        "answer": 1,
+        "why": "not until başta olunca devriklik ana cümlede yapılır."
+      },
+      {
+        "prompt": "Scarcely had I arrived ___ the meeting started.",
+        "options": [
+          "than",
+          "when",
+          "then",
+          "that"
+        ],
+        "answer": 1,
+        "why": "scarcely her zaman when (ya da before) ile eşleşir."
+      },
+      {
+        "prompt": "You can either call me ___ send an email.",
+        "options": [
+          "nor",
+          "or",
+          "and",
+          "but"
+        ],
+        "answer": 1,
+        "why": "either her zaman or ile eşleşir."
+      }
+    ],
+    "basics_en_subjunctive_formulaic_clauses": [
+      {
+        "prompt": "___ it a holiday or not, the shop stays open.",
+        "options": [
+          "Be",
+          "Being",
+          "Is",
+          "Were"
+        ],
+        "answer": 0,
+        "why": "Be it A or B « ister A olsun ister B » demektir."
+      },
+      {
+        "prompt": "Far ___ it from me to criticise, but you're wrong.",
+        "options": [
+          "is",
+          "be",
+          "was",
+          "being"
+        ],
+        "answer": 1,
+        "why": "far be it from me to… kalıplaşmış bir yapıdır."
+      },
+      {
+        "prompt": "Much ___ I like him, I can't agree with him.",
+        "options": [
+          "as",
+          "so",
+          "though",
+          "that"
+        ],
+        "answer": 0,
+        "why": "much as + özne + fiil « her ne kadar çok … -sem de » demektir."
+      },
+      {
+        "prompt": "Tired ___ she was, she kept working.",
+        "options": [
+          "as",
+          "so",
+          "that",
+          "if"
+        ],
+        "answer": 0,
+        "why": "Sıfat + as / though + özne + fiil, although'un şık karşılığıdır."
+      },
+      {
+        "prompt": "Come ___ may, I will finish this project.",
+        "options": [
+          "that",
+          "what",
+          "which",
+          "it"
+        ],
+        "answer": 1,
+        "why": "come what may « ne olursa olsun » demektir."
+      }
+    ],
+    "basics_en_pron_th_w_v": [
+      {
+        "prompt": "“mother” sözcüğündeki th nasıl bir sestir?",
+        "options": [
+          "Sesli /ð/",
+          "Sessiz /θ/",
+          "Türkçe t",
+          "Türkçe d gibi patlamalı"
+        ],
+        "answer": 0,
+        "why": "İki ünlü arasındaki th çoğunlukla sesli /ð/'dir."
+      },
+      {
+        "prompt": "“wine” ile “vine” farkı nedir?",
+        "options": [
+          "wine'da dudaklar yuvarlak, vine'da üst diş alt dudağa değer",
+          "Hiçbir fark yok",
+          "wine'da w okunmaz",
+          "vine'da v okunmaz"
+        ],
+        "answer": 0,
+        "why": "w dudakları yuvarlayarak, v dişi dudağa değdirerek çıkar."
+      },
+      {
+        "prompt": "“honest” sözcüğünde h okunur mu?",
+        "options": [
+          "Hayır, okunmaz",
+          "Evet, Türkçe h gibi",
+          "Yalnızca Amerikan İngilizcesinde",
+          "Evet, gırtlaktan"
+        ],
+        "answer": 0,
+        "why": "honest'ta h okunmaz; bu yüzden an honest person denir."
+      },
+      {
+        "prompt": "“long” sözcüğünün sonu nasıl okunur?",
+        "options": [
+          "Tek burun sesi /ŋ/, g ayrıca okunmaz",
+          "n ve g ayrı ayrı",
+          "Yalnızca n",
+          "ng yerine nk"
+        ],
+        "answer": 0,
+        "why": "ng tek bir burun sesidir."
+      },
+      {
+        "prompt": "“knife” sözcüğü nasıl okunur?",
+        "options": [
+          "k okunmaz: /naɪf/",
+          "k okunur: /knaɪf/",
+          "/nif/",
+          "/kenaɪf/"
+        ],
+        "answer": 0,
+        "why": "kn- başındaki k okunmaz."
+      }
+    ],
+    "basics_en_pron_vowels": [
+      {
+        "prompt": "“pool” ile “pull” sözcüklerinden hangisinin ünlüsü uzundur?",
+        "options": [
+          "pool",
+          "pull",
+          "İkisi eşit",
+          "Hiçbiri"
+        ],
+        "answer": 0,
+        "why": "pool'da uzun /uː/, pull'da kısa /ʊ/ vardır."
+      },
+      {
+        "prompt": "“live” (yaşamak) ile “leave” (ayrılmak) farkı nedir?",
+        "options": [
+          "live'da kısa /ɪ/, leave'de uzun /iː/",
+          "İkisi aynı okunur",
+          "live'da uzun /iː/, leave'de kısa /ɪ/",
+          "Fark yalnızca yazımda"
+        ],
+        "answer": 0,
+        "why": "Kısa /ɪ/ ile uzun /iː/ anlam ayırır."
+      },
+      {
+        "prompt": "“cat” sözcüğündeki a nasıl okunur?",
+        "options": [
+          "/æ/: e ile a arası, ağız geniş",
+          "Türkçe a",
+          "Türkçe e",
+          "Uzun /ɑː/"
+        ],
+        "answer": 0,
+        "why": "cat'teki a /æ/ sesidir; ağız geniş açılır."
+      },
+      {
+        "prompt": "“about” sözcüğünün ilk hecesi nasıl okunur?",
+        "options": [
+          "Schwa /ə/",
+          "Açık Türkçe a",
+          "Uzun /ɑː/",
+          "/æ/"
+        ],
+        "answer": 0,
+        "why": "Vurgusuz hecedeki ünlü kısa ve belirsiz schwa olur."
+      },
+      {
+        "prompt": "“but” ile “bat” sözcüklerini ne ayırır?",
+        "options": [
+          "but'ta /ʌ/, bat'ta /æ/",
+          "İkisi aynı okunur",
+          "but'ta u okunur",
+          "bat'ta a uzundur"
+        ],
+        "answer": 0,
+        "why": "/ʌ/ kısa bir a, /æ/ ise e ile a arası geniş bir sestir."
+      }
+    ],
+    "basics_en_pron_ed_s_stress": [
+      {
+        "prompt": "“needed” sözcüğündeki -ed nasıl okunur?",
+        "options": [
+          "Ek hece /ɪd/",
+          "/t/",
+          "/d/",
+          "Okunmaz"
+        ],
+        "answer": 0,
+        "why": "t ve d'den sonra -ed ayrı bir hece olur: /ɪd/."
+      },
+      {
+        "prompt": "“helped” sözcüğündeki -ed nasıl okunur?",
+        "options": [
+          "/t/",
+          "/d/",
+          "/ɪd/",
+          "Okunmaz"
+        ],
+        "answer": 0,
+        "why": "Sessiz ünsüzden (p) sonra -ed /t/ okunur."
+      },
+      {
+        "prompt": "“buses” sözcüğündeki -es nasıl okunur?",
+        "options": [
+          "Ek hece /ɪz/",
+          "/s/",
+          "/z/",
+          "Okunmaz"
+        ],
+        "answer": 0,
+        "why": "s, sh, ch gibi seslerden sonra -es ayrı hece olur: /ɪz/."
+      },
+      {
+        "prompt": "“economic” sözcüğünde vurgu hangi hecededir?",
+        "options": [
+          "3. hece (-no-)",
+          "1. hece (e-)",
+          "2. hece (-co-)",
+          "4. hece (-mic)"
+        ],
+        "answer": 0,
+        "why": "-ic ile biten sözcükte vurgu ekten hemen önceki hecededir: e-co-NO-mic."
+      },
+      {
+        "prompt": "Fiil olarak “present” (sunmak) sözcüğünde vurgu nerededir?",
+        "options": [
+          "İkinci hecede",
+          "İlk hecede",
+          "Vurgusuz",
+          "İki hecede eşit"
+        ],
+        "answer": 0,
+        "why": "İki heceli bazı sözcüklerde fiilde vurgu ikinci hecededir: preSENT."
+      }
+    ]
+  }
+}

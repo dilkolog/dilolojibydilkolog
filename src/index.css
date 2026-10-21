@@ -553,7 +553,7 @@ details[open] > summary { margin-bottom: 1rem; }
 .tile:has(.tile-text):hover::after { opacity: 1; transform: translateX(2px); }
 
 .bars { display: grid; gap: 0.75rem; }
-.bar-row { display: grid; grid-template-columns: 6.5rem 1fr 4.5rem; gap: 0.75rem; align-items: center; }
+.bar-row { display: grid; grid-template-columns: 7.75rem 1fr 4.5rem; gap: 0.75rem; align-items: center; }
 .bar-track { height: 0.75rem; background: var(--track); border-radius: var(--r-full); overflow: hidden; }
 .bar-fill { height: 100%; background: var(--lang); border-radius: var(--r-full); }
 .bar-value { text-align: right; font-variant-numeric: tabular-nums; font-size: var(--t-sm); font-weight: 500; }
@@ -4307,7 +4307,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-uses { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 0; }
 .lab-verb-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
 .lab-verb { margin: 0; font-family: var(--serif); font-size: var(--t-2xl); font-weight: 700; letter-spacing: -0.01em; }
-.lab-gloss { margin-inline: auto; font-style: italic; font-size: var(--t-lg); color: var(--ink-soft); }
+.lab-gloss { margin-right: auto; font-style: italic; font-size: var(--t-lg); color: var(--ink-soft); }
 .lab-detail-toggle { margin-left: auto; }
 .lab-gloss + .lab-detail-toggle { margin-left: 0; }
 .lab-parts { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 1rem; margin: 0; padding-block: 0.5rem; border-block: 1px solid var(--rule); }
@@ -4798,8 +4798,10 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .page-header.has-art { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: 0.75rem; }
   .page-header-art { height: 3.25rem; margin-right: 0; }
   .page-header.has-art .page-header-action { grid-column: 1 / -1; }
-  .page-header.has-art.is-inline { grid-template-columns: auto minmax(0, 1fr) auto; }
-  .page-header.has-art.is-inline .page-header-action { grid-column: auto; }
+  /* Inline: the action stays beside the title while the title keeps room for a few words; a wide action (two buttons on a narrow window) drops below instead of squeezing the title to one word a line. */
+  .page-header.has-art.is-inline { display: flex; flex-wrap: wrap; align-items: center; column-gap: 0.75rem; }
+  .page-header.has-art.is-inline .page-header-text { flex: 1 1 10rem; }
+  .page-header.has-art.is-inline .page-header-action { margin-left: auto; }
 }
 .ob-art { display: block; height: 8.5rem; width: auto; max-width: 100%; margin: 0 auto 0.5rem; object-fit: contain; user-select: none; -webkit-user-drag: none; }
 .lang-card-art { display: block; height: 4.75rem; width: auto; margin: 0 0 0.5rem; object-fit: contain; user-select: none; -webkit-user-drag: none; }

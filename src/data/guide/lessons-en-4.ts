@@ -75,6 +75,7 @@ export const EN_LESSONS_4: TopicLesson[] = [
       'Aynı yerlere sadece fiziksel bir bina veya eşya olarak (veli toplantısı, hasta ziyareti, tamirat, yatağın üstüne oturmak) gidildiğinde "the" KULLANILIR: go to the school, visit someone at the hospital, sit on the bed.',
       'Sinema, tiyatro, istasyon, havalimanı ve müze gibi halka açık kültür/ulaşım mekânları ise her zaman "the" alır: go to the cinema, go to the theatre, at the station.',
       '"Home", "work" ve "town" kelimeleri kendi kalıplarında hem artikelsiz kullanılır hem de "home" yönelmede "to" almaz: go home, arrive home, be at home, go to work, be at work.',
+      'Church ve court da aynı mantıkla çalışır: go to church (ibadet için), go to court (dava için); bina olarak gidilirse the gelir: The tourists visited the church.',
     ],
     table: {
       caption: 'Kurum ve mekânlarda sıfır artikel vs "the"',
@@ -319,6 +320,7 @@ export const EN_LESSONS_4: TopicLesson[] = [
       'Sondaki kelime bir edat (to, with, of, on) olduğu için arkasından bir fiil gelirse mutlaka gerund (-ing) biçiminde olmalıdır: I look forward to seeing you (*to see you denmez).',
       'İnsan ilişkileri ve tutum bildirenler: get on/along with (iyi geçinmek), look up to (hayranlık/saygı duymak), look down on (küçümsemek/hor görmek), put up with (katlanmak/tahammül etmek).',
       'Miktar, fikir ve sonuç bildirenler: run out of (tükenmek/kalmamak), cut down on (azaltmak/kısmak), come up with (fikir/çözüm bulmak), catch up with (yetişmek), get away with (cezasız kurtulmak), make up for (telafi etmek).',
+      'İki parçalı edatlı fiillerde de (look at, listen to, depend on, wait for) nesne her zaman edattan sonra gelir: Look at it (*look it at). Bu yüzden ayrılabilen phrasal verb’lerden (turn it off) farklıdır.',
     ],
     table: {
       caption: "En önemli üç parçalı phrasal verb'ler",
@@ -382,6 +384,7 @@ export const EN_LESSONS_4: TopicLesson[] = [
       'Type 2 (Şimdiki/Gelecek hayali şart) devrikliği: İsim veya sıfat varsa "Were + özne + …" (Were I you, I would accept); eylem fiili varsa "Were + özne + to + V1" kullanılır: Were the talks to fail, the market would crash.',
       'Type 3 (Geçmişte gerçekleşmemiş şart) devrikliği: "If + özne + had + V3" yerine "Had + özne + V3" kullanılır: Had I known the truth, I would have told you.',
       'Olumsuz devrik şart cümlelerinde "not" yardımcı fiile bitişmez, özneden hemen SONRA ayrı yazılır: Had we not left early, we would have missed the flight (*Hadn\'t we left denmez).',
+      'Devrik şart resmîdir; konuşmada if’li yapı doğal kalır. Devrik kısım ana cümleden sonra da gelebilir: I would have told you had I known.',
     ],
     table: {
       caption: 'If cümlelerinin devrik (inverted) dönüşüm tablosu',
@@ -440,6 +443,7 @@ export const EN_LESSONS_4: TopicLesson[] = [
       'Temel kural: "that" yan cümlesindeki fiil özne he/she/it olsa veya ana cümle geçmiş zamanda (recommended, insisted) olsa bile YALIN kök halinde (bare infinitive) kalır: The doctor insisted that he take a few days off (*takes veya *took değil).',
       '"Be" fiili am/is/are/was/were olarak çekimlenmez, doğrudan "be" olarak kalır (edilgen yapıda "be + V3"): It is vital that she be present. They demanded that the report be rewritten.',
       'Olumsuz yapıda do/does/did/don\'t/doesn\'t kullanılmaz; yalın fiilin önüne doğrudan "not" konur: I suggest that he not sign the contract.',
+      'İngiliz İngilizcesinde aynı anlam should + yalın fiille de verilir: They insisted that he should leave. Gündelik dilde present simple de duyulur, ama resmî yazıda ve sınavda yalın fiil (that he leave) güvenli seçimdir.',
     ],
     table: {
       caption: 'Mandative Subjunctive formül ve dönüşüm tablosu',
@@ -563,6 +567,7 @@ export const EN_LESSONS_4: TopicLesson[] = [
       '"On the other hand" ile "On the contrary" farkı: "On the other hand" bir konunun iki farklı yönünü/seçeneğini dengeler (Öte yandan); "On the contrary" ise az önce söylenen olumsuz veya yanlış yargıyı reddedip tam tersini savunur (Tam aksine).',
       'Argüman ekleme zarfları (furthermore, moreover, in addition, what is more) aynı doğrultuda daha güçlü ikinci bir kanıt sunar.',
       'Taviz ve beklenmedik sonuç zarfları (nevertheless, nonetheless, even so) "bütün bunlara rağmen, yine de" anlamıyla önceki engelin sonucu durduramadığını gösterir.',
+      'Bağlaçlar (and, but, so) iki cümleyi virgülle bağlayabilir, geçiş zarfları bağlayamaz: It was late, so we left. / It was late; therefore, we left.',
     ],
     table: {
       caption: 'Akademik geçiş zarfları ve noktalama kuralları',

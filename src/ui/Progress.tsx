@@ -215,7 +215,9 @@ export function ProgressScreen({
           <section className="section stack">
             <p className="eyebrow eyebrow-icon"><StarIcon size={16} /> Beceriler</p>
             <h2 className="section-title">
-              {knownSkills.length >= 2
+              {knownSkills.length >= 2 && profile[knownSkills[0]] === profile[knownSkills.at(-1)!]
+                ? `Çalıştığın becerilerin hepsi %${profile[knownSkills[0]]}`
+                : knownSkills.length >= 2
                 ? `En güçlü ${SKILL_NAME[knownSkills[0]].toLocaleLowerCase('tr-TR')} (%${profile[knownSkills[0]]}), en zayıf ${SKILL_NAME[knownSkills.at(-1)!].toLocaleLowerCase('tr-TR')} (%${profile[knownSkills.at(-1)!]})`
                 : 'Beceriler çalıştıkça burada görünür'}
             </h2>

@@ -495,6 +495,75 @@
         "text": "Do homework (make homework değil).",
         "tr": "Ödev yapmak."
       }
+    },
+    {
+      "term": "possessive 's",
+      "aliases": [
+        "possessive s",
+        "saxon genitive"
+      ],
+      "tr": "iyelik eki",
+      "explanation": "Sahibin sonuna eklenen 's ya da yalnızca ' (Tom's car, my parents' house); Türkçedeki “-nın / -nin” karşılığıdır.",
+      "example": {
+        "text": "This is my sister's room.",
+        "tr": "Bu kız kardeşimin odası."
+      }
+    },
+    {
+      "term": "reflexive pronoun",
+      "aliases": [
+        "reflexive pronouns"
+      ],
+      "tr": "dönüşlü zamir",
+      "explanation": "Özne ile nesne aynı olduğunda kullanılan -self / -selves zamirleri (myself, themselves); vurgu için “bizzat” anlamı da verir.",
+      "example": {
+        "text": "She taught herself Spanish.",
+        "tr": "İspanyolcayı kendi kendine öğrendi."
+      }
+    },
+    {
+      "term": "adverb of frequency",
+      "aliases": [
+        "adverbs of frequency",
+        "frequency adverb"
+      ],
+      "tr": "sıklık zarfı",
+      "explanation": "Bir eylemin ne sıklıkla olduğunu söyleyen zarf (always, usually, often, never); ana fiilden önce, be fiilinden sonra gelir.",
+      "example": {
+        "text": "I usually walk to work, but I am never late.",
+        "tr": "Genellikle işe yürüyerek giderim ama asla geç kalmam."
+      }
+    },
+    {
+      "term": "auxiliary verb",
+      "aliases": [
+        "auxiliary",
+        "auxiliaries"
+      ],
+      "tr": "yardımcı fiil",
+      "explanation": "Soru, olumsuz ve zaman yapan be, do, have fiilleri; soruda özneden önce gelir, olumsuzda not alır.",
+      "example": {
+        "text": "Does she work here? — No, she doesn't.",
+        "tr": "Burada mı çalışıyor? — Hayır."
+      }
+    },
+    {
+      "term": "comma splice",
+      "tr": "virgülle bağlama hatası",
+      "explanation": "İki tam cümleyi bağlaç olmadan yalnızca virgülle birleştirme hatası; nokta, noktalı virgül ya da bir bağlaç gerekir.",
+      "example": {
+        "text": "It was late; however, we stayed.",
+        "tr": "Geç olmuştu; yine de kaldık."
+      }
+    },
+    {
+      "term": "bare infinitive",
+      "tr": "yalın mastar",
+      "explanation": "to almayan mastar (go, be, take); modal fiillerden, make / let’ten ve mandative subjunctive’te kullanılır.",
+      "example": {
+        "text": "They made me wait.",
+        "tr": "Beni beklettiler."
+      }
     }
   ]
 }

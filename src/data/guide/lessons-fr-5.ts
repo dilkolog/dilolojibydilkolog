@@ -39,6 +39,7 @@ export const FR_LESSONS_5: TopicLesson[] = [
     watch: [
       '"Şu şarkıyı biliyor musun?" derken Türkçede "bilmek" kullanıldığı için « Tu sais cette chanson ? » demek çok yaygın bir hatadır; şarkı bir isim olduğu için « Tu connais cette chanson ? » denmelidir.',
       'Connaître fiilinden sonra mastar getirme: « Je connais conduire » değil, « Je sais conduire ».',
+      'Bir kişiyi savoir ile “bilmek” olmaz: « Je sais Marie » yanlış, doğrusu « Je connais Marie ».',
     ],
     tip: 'Boşluktan hemen sonra bir fiil (mastar) veya soru kelimesi/bağlaç (que, où, comment, si) görüyorsan hiç düşünmeden savoir seç; kişi, yer veya eser adı görüyorsan connaître seç.',
     check: [
@@ -102,6 +103,7 @@ export const FR_LESSONS_5: TopicLesson[] = [
     watch: [
       '« J’apporte mon ami » demek "Arkadaşımı kucağımda/sırtımda taşıyarak getiriyorum" anlamına gelir; kişiler için daima amener / emmener kullanın.',
       'Paket servis isterken « à apporter » değil, alıp götürme anlamındaki « à emporter » kullanılır.',
+      'Ramener / rapporter “geri getirmek, geri götürmek” demektir: Je te ramène chez toi. Rapporte-moi mon livre.',
     ],
     tip: 'Porter = taşımak (eşya taşınır), mener = yönlendirmek/yürütmek (insan/hayvan yürütülür). Restoranlarda duyduğun "à emporter" (al-götür) ifadesi em- ve -porter ikilisini unutmamanı sağlar.',
     check: [
@@ -172,6 +174,7 @@ export const FR_LESSONS_5: TopicLesson[] = [
     watch: [
       'Vedalaşırken "İyi günler!" demek için « Bon jour ! » denmez (Bonjour yalnızca karşılaşırken "Merhaba/Günaydın" demektir); ayrılırken süreyi dilediğimiz için « Bonne journée ! » veya « Bonne soirée ! » denir.',
       '"Üç kez" derken « trois temps » değil, « trois fois » kullanılır.',
+      'Sayıyla an kullanılır (trois ans, à vingt ans); sıfat ya da belirteçle çoğunlukla année gelir (cette année, l’année dernière, plusieurs années).',
     ],
     tip: 'Sayı varsa (1, 2, 3...) kısa kelimeyi seç (an, jour); "toute la...", "bonne..." veya bir sıfat varsa uzun kelimeyi (-ée: année, journée, matinée, soirée) seç.',
     check: [
@@ -233,6 +236,7 @@ export const FR_LESSONS_5: TopicLesson[] = [
     watch: [
       '« Quelque chose intéressante » yanlıştır! Quelque chose, quelqu’un, rien ve personne kelimelerinden sonra sıfat gelirse araya mutlaka "de" girer ve sıfat daima eril tekil kalır: quelque chose d’intéressant, rien de grave.',
       'Chaque kelimesini tek başına zamir gibi kullanma: « Chaque coûte dix euros » değil, « Chacun coûte dix euros ».',
+      'Chacun her zaman tekil fiil alır: « Chacun ont son avis » değil, « Chacun a son avis ».',
     ],
     tip: 'Arkasında isim varsa chaque / quelques (sıfat), isim yoksa ve tek başınaysa chacun(e) / quelques-un(e)s (zamir) seçilir. Plusieurs ise iki görevi de aynı yazılışla yapar.',
     check: [
@@ -299,6 +303,7 @@ export const FR_LESSONS_5: TopicLesson[] = [
     watch: [
       'Öznesi isim olan cümlelerde İngilizcedeki gibi ismi doğrudan fiilin arkasına atıp « Parle Marie français ? » denmez; doğrusu « Marie parle-t-elle français ? » şeklindedir.',
       'Fiil zaten -t veya -d ile bitiyorsa (« Il part », « Il comprend ») araya bir -t- daha eklenmez: « Part-il ? », « Comprend-il ? ».',
+      'Tireyi unutma: « Voulez vous » değil « Voulez-vous » ; araya giren -t- de iki tire ile yazılır: « A-t-il fini ? ».',
     ],
     tip: '"Il y a" (var) kalıbının devrik sorusu "Y a-t-il... ?" şeklindedir; DELF mektuplarında ve resmî e-postalarda çok şık durur.',
     check: [
@@ -366,6 +371,7 @@ export const FR_LESSONS_5: TopicLesson[] = [
     watch: [
       'Aktarma fiili şimdiki zamandaysa (Il dit que...) ne fiil zamanı ne de hier/demain gibi zaman zarfları değişir; dönüşüm yalnızca ana fiil geçmişte olduğunda yapılır.',
       'Dolaylı soruda « Il m’a demandé qu’est-ce que je faisais » deme; « ce que je faisais » kullan.',
+      'Aktarma fiili geçmişteyse aujourd’hui → ce jour-là, hier → la veille, demain → le lendemain olur: Il a dit qu’il partirait le lendemain.',
     ],
     tip: 'La veille = arife / önceki gün (Yılbaşı arifesi "la veille du Nouvel An" buradan gelir); le lendemain = ertesi gün.',
     check: [
@@ -433,6 +439,7 @@ export const FR_LESSONS_5: TopicLesson[] = [
     watch: [
       '« Je me doute » ifadesini sakın "Şüphe ediyorum" diye çevirmeyin! "Şüphe ediyorum" demek için yalın « Je doute » kullanılır; « Je m’en doute » ise "Tahmin edebiliyorum / Belli zaten" demektir.',
       '« S’attendre » fiilini edatsız kullanma; daima « s’attendre à quelque chose » ile kurulur.',
+      '« Se rendre compte » (farkına varmak) ile « rendre compte de » (rapor vermek, hesap vermek) farklıdır: Je me rends compte de mon erreur.',
     ],
     tip: 'S’attendre à (à alır), se passer de / s’apercevoir de / se plaindre de / se douter de (de alır) edat eşleşmelerini kalıp olarak ezberle.',
     check: [
@@ -499,6 +506,7 @@ export const FR_LESSONS_5: TopicLesson[] = [
     watch: [
       '« Des voitures oranges » renk olarak yanlıştır; "turuncu arabalar" her zaman -s almadan « des voitures orange » olarak yazılır.',
       'İki kelimeli renklerde birinci kelimeye de -s ekleme: « des yeux bleus clairs » değil, « des yeux bleu clair ».',
+      'İsimden gelse de rose, mauve, fauve, pourpre, écarlate ve incarnat uyum yapar: des robes roses.',
     ],
     tip: 'Renk tek kelimeyse ve meyve/nesne değilse uyum yap (noires, bleues); ama meyve adıysa (orange, marron) veya yanında ikinci bir kelime varsa (bleu clair, vert foncé) olduğu gibi bırak.',
     check: [
@@ -570,6 +578,7 @@ export const FR_LESSONS_5: TopicLesson[] = [
     watch: [
       '« Après manger » veya « Après finir » dil bilgisi açısından yanlıştır; après edatından sonra mutlaka « après avoir mangé / après avoir fini » kullanılır.',
       '« Après de » diye bir kalıp yoktur (avant de vardır, ama après doğrudan yardımcı mastar alır).',
+      'Infinitif passé’nin öznesi ana cümlenin öznesidir: « Après avoir mangé, le train est parti » yanlış (treni yemek yemiş gibi gösterir); « Après avoir mangé, nous sommes partis ».',
     ],
     tip: 'Avant de + FİİL (Avant de partir), Après + AVOIR/ÊTRE + ORTAÇ (Après être parti). "Avant"ta de var, "Après"de de yok ama yardımcı fiil var!',
     check: [
@@ -637,6 +646,7 @@ export const FR_LESSONS_5: TopicLesson[] = [
     watch: [
       '« En effet » ile « En fait » sıkça karıştırılır! En effet bir önceki cümleyi onaylar ve kanıtlar ("nitekim"); en fait ise bir önceki düşünceyi düzeltir veya gerçeğin farklı olduğunu söyler ("aslında, doğrusu").',
       'Olumsuz bir sonuç gelirken « en revanche » yerine « malheureusement / par contre » tercih edilir; en revanche genellikle dengeleyici iyi bir yön sunar.',
+      'Kompozisyonda cümleye « Mais » ile başlamak yerine « Cependant, » ya da « Toutefois, » daha resmî durur.',
     ],
     tip: 'DELF/DALF paragraf şablonu: İddia → En effet (kanıt) → En outre (ek argüman) → Certes... toutefois (karşı görüşü çürütme) → Dès lors / En définitive (sonuç).',
     check: [

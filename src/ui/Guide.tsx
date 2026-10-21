@@ -409,7 +409,7 @@ export function GuideScreen({
           {!q && !level && <GuideReportsCard />}
           {!q && !level && placementFor(language).length > 0 && (doneCount === 0 || placement) && (
             <div className="card guide-placement-card row justify-between items-center gap-2">
-              <div className="stack gap-1">
+              <div className="guide-placement-text">
                 <strong>{placement ? `Seviye testin: ${placement.start}'den başla` : 'Seviyeni bul'}</strong>
                 <span className="small muted">{placement ? 'Bir süre geçtiyse testi yeniden yapabilirsin.' : 'Kısa bir gramer testiyle hangi seviyeden başlaman gerektiğini öğren.'}</span>
               </div>
@@ -508,10 +508,10 @@ export function GuideScreen({
                       <button
                         type="button"
                         className="guide-level-quiz-btn"
-                        title={`${lv} seviyesi karma testi`}
+                        title={`${lv} seviyesi karma testi: 10 soru`}
                         onClick={() => setLevelQuiz(lv)}
                       >
-                        🎯 Seviyeyi sına (10 soru)
+                        🎯 Seviyeyi sına
                       </button>
                     </h2>
                     <ol className="guide-path">
@@ -538,10 +538,10 @@ export function GuideScreen({
                   <button
                     type="button"
                     className="guide-level-quiz-btn"
-                    title={`${lv} seviyesi karma testi`}
+                    title={`${lv} seviyesi karma testi: 10 soru`}
                     onClick={() => setLevelQuiz(lv)}
                   >
-                    🎯 Seviyeyi sına (10 soru)
+                    🎯 Seviyeyi sına
                   </button>
                 </h2>
                 <div className="guide-grid">
@@ -562,8 +562,8 @@ export function GuideScreen({
                               ? `${n} soru · %${Math.round(s.accuracy * 100)} doğru`
                               : `${n} soru`
                             : pn > 0
-                              ? `Temel konu · ${pn} soru`
-                              : 'Temel konu'
+                              ? `${pn} soru`
+                              : 'Konu anlatımı'
                         }
                         flag={flagOf(l.topic)}
                         snippet={hits.get(l.topic)?.snippet}

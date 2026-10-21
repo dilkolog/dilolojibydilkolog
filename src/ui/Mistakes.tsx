@@ -181,8 +181,8 @@ function MistakeList({
               <button className="link" onClick={() => onOpen(entry.id)}>
                 <WordLabel entry={entry} />
               </button>
-              , {entry.senses[0].gloss}
-              {m.resolved ? '. Kapandı' : m.correctSince > 0 ? `. ${m.correctSince}/3 doğru` : ''}
+              {' · '}{entry.senses[0].gloss}
+              {m.resolved ? ' · Kapandı' : m.correctSince > 0 ? ` · ${m.correctSince}/3 doğru` : ''}
             </span>
           </li>
         )

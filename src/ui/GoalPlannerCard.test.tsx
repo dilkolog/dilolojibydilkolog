@@ -54,9 +54,9 @@ describe('GoalPlannerCard', () => {
       root.render(<GoalPlannerCard db={db} language="fr" levels={mockLevels} />)
     })
 
-    expect(rootEl.textContent).toContain('Seviye Hedefi Belirle')
-    expect(rootEl.textContent).toContain('Hedef Seviye')
-    expect(rootEl.textContent).toContain('Hedefi Kaydet')
+    expect(rootEl.textContent).toContain('Seviye hedefi belirle')
+    expect(rootEl.textContent).toContain('Seviye')
+    expect(rootEl.textContent).toContain('Hedefi kaydet')
   })
 
   it('allows selecting level and saving a new goal', async () => {
@@ -65,7 +65,7 @@ describe('GoalPlannerCard', () => {
       root.render(<GoalPlannerCard db={db} language="fr" levels={mockLevels} />)
     })
 
-    const saveBtn = Array.from(rootEl.querySelectorAll('button')).find((b) => b.textContent?.includes('Hedefi Kaydet'))
+    const saveBtn = Array.from(rootEl.querySelectorAll('button')).find((b) => b.textContent?.includes('Hedefi kaydet'))
     expect(saveBtn).toBeDefined()
 
     await act(async () => {
@@ -95,7 +95,7 @@ describe('GoalPlannerCard', () => {
       root.render(<GoalPlannerCard db={db} language="fr" levels={mockLevels} />)
     })
 
-    expect(rootEl.textContent).toContain('A2 Seviye Hedefi')
+    expect(rootEl.textContent).toContain('A2 seviye hedefi')
     expect(rootEl.textContent).toContain('kelime kaldı')
 
     const quotaBtn = Array.from(rootEl.querySelectorAll('button')).find((b) => b.textContent?.includes('Günlük kotayı'))
@@ -149,7 +149,7 @@ describe('GoalPlannerCard', () => {
     await db.saveSettings({ ...stored!, newWordsPerDay: 3 })
     ;(db.saveSettings as unknown as ReturnType<typeof vi.fn>).mockClear()
 
-    const saveBtn = Array.from(rootEl.querySelectorAll('button')).find((b) => b.textContent?.includes('Hedefi Kaydet'))
+    const saveBtn = Array.from(rootEl.querySelectorAll('button')).find((b) => b.textContent?.includes('Hedefi kaydet'))
     await act(async () => {
       saveBtn!.click()
     })

@@ -234,6 +234,8 @@ const FR_IMPERATIVE: Record<string, [string, string, string]> = {
   savoir: ['sache', 'sachons', 'sachez'],
   vouloir: ['veuille', 'veuillons', 'veuillez'],
 }
+/** French verbs with no imperative at all ("peux" is not one): the lab shows no such tense for them. */
+const FR_NO_IMPERATIVE = new Set(['pouvoir'])
 
 /** Spanish "tú" imperatives that are not the present's "él" form; compounds keep the pattern with an accent (obtén, supón). */
 function esTu(key: string, present: string): string {
@@ -256,6 +258,7 @@ function imperative(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfS
   const present = conjugate({ ...entry, lemma: key })?.forms
   if (!present) return undefined
   if (entry.language === 'fr') {
+    if (FR_NO_IMPERATIVE.has(key)) return undefined
     const [tu, nous, vous] = FR_IMPERATIVE[key] ?? [/(es|^vas)$/.test(present[1]) ? present[1].slice(0, -1) : present[1], present[3], present[4]]
     const forms = reflexive ? [`${tu}-toi`, `${nous}-nous`, `${vous}-vous`] : [tu, nous, vous]
     return ['', forms[0], '', forms[1], forms[2], '']

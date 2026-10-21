@@ -504,6 +504,79 @@
         "text": "Je pense, donc je suis.",
         "tr": "Düşünüyorum, öyleyse varım."
       }
+    },
+    {
+      "term": "pronom possessif",
+      "aliases": [
+        "pronoms possessifs"
+      ],
+      "tr": "iyelik zamiri",
+      "explanation": "“Benimki, seninki” anlamında ismin yerini tutan zamir (le mien, la tienne, les nôtres); sahip olunan şeyin cinsiyetine ve sayısına uyar.",
+      "example": {
+        "text": "Ce n’est pas ton sac, c’est le mien.",
+        "tr": "Bu senin çantan değil, benimki."
+      }
+    },
+    {
+      "term": "pluriel",
+      "tr": "çoğul",
+      "explanation": "Birden çok varlığı gösteren isim biçimi; çoğunlukla -s, bazen -x ya da -aux eki alır ve bu ek çoğu zaman okunmaz.",
+      "example": {
+        "text": "un journal → des journaux",
+        "tr": "bir gazete → gazeteler"
+      }
+    },
+    {
+      "term": "infinitif passé",
+      "tr": "geçmiş mastar",
+      "explanation": "avoir / être + participe passé ile kurulan mastar; ana eylemden önce bitmiş eylemi anlatır, en sık après ile kullanılır.",
+      "example": {
+        "text": "Après avoir dîné, nous sommes sortis.",
+        "tr": "Akşam yemeğini yedikten sonra dışarı çıktık."
+      }
+    },
+    {
+      "term": "inversion",
+      "tr": "devrik soru",
+      "explanation": "Özne zamirinin fiilin arkasına tireyle geçtiği resmî soru biçimi; sesli harf çarpışınca araya -t- girer.",
+      "example": {
+        "text": "Parle-t-il français ?",
+        "tr": "Fransızca konuşuyor mu?"
+      }
+    },
+    {
+      "term": "subjonctif imparfait",
+      "tr": "geçmiş dilek kipi",
+      "explanation": "Bugün yalnızca edebî yazıda görülen subjonctif biçimi (qu’il fût, qu’il eût); konuşmada yerine subjonctif présent kullanılır.",
+      "example": {
+        "text": "Il fallait qu’il partît.",
+        "tr": "Gitmesi gerekiyordu (edebî)."
+      }
+    },
+    {
+      "term": "auxiliaire",
+      "aliases": [
+        "verbe auxiliaire",
+        "auxiliaires"
+      ],
+      "tr": "yardımcı fiil",
+      "explanation": "Bileşik zamanları kuran avoir ve être fiilleri; çekimli yardımcı fiil + participe passé birlikte bir zaman oluşturur.",
+      "example": {
+        "text": "Elle est partie, mais j’ai attendu.",
+        "tr": "O gitti ama ben bekledim."
+      }
+    },
+    {
+      "term": "h aspiré",
+      "aliases": [
+        "aspiré h"
+      ],
+      "tr": "engelleyici h",
+      "explanation": "Okunmadığı hâlde önündeki sözcükle bağlantıyı (liaison) ve elision’ı engelleyen h: le héros (l’héros değil), les | haricots.",
+      "example": {
+        "text": "Le hibou est sur la haie.",
+        "tr": "Baykuş çitin üstünde."
+      }
     }
   ]
 }

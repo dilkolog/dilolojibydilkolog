@@ -1,0 +1,3974 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün) — Rehber soru havuzu, 15 soruya genişletme (2026-10-21)",
+  "lessons": {
+    "basics_es_articulos": [
+      {
+        "prompt": "Hangisi dişil bir isimdir?",
+        "options": [
+          "día",
+          "mapa",
+          "canción",
+          "tema"
+        ],
+        "answer": 2,
+        "why": "-ción ile biten isimler dişildir; día, mapa ve tema -a ile bitse de erildir."
+      },
+      {
+        "prompt": "Necesito ___ foto para el pasaporte.",
+        "options": [
+          "un",
+          "una",
+          "el",
+          "unos"
+        ],
+        "answer": 1,
+        "why": "foto (fotografía'nın kısası) -o ile bitse de dişildir: una foto."
+      },
+      {
+        "prompt": "Las ___ de la calle están apagadas. (luz)",
+        "options": [
+          "luzes",
+          "luces",
+          "luz",
+          "luzs"
+        ],
+        "answer": 1,
+        "why": "-z ile biten isimler çoğulda -ces olur: la luz → las luces."
+      },
+      {
+        "prompt": "Vengo ___ mercado con fruta fresca.",
+        "options": [
+          "de el",
+          "del",
+          "al",
+          "de la"
+        ],
+        "answer": 1,
+        "why": "de + el birleşip del olur: vengo del mercado."
+      },
+      {
+        "prompt": "En el jardín hay ___ árboles muy altos.",
+        "options": [
+          "unas",
+          "unos",
+          "un",
+          "una"
+        ],
+        "answer": 1,
+        "why": "árbol eril olduğu için çoğulda unos (birkaç) kullanılır."
+      }
+    ],
+    "basics_es_presente": [
+      {
+        "prompt": "Mi hermana ___ ocho horas cada noche. (dormir)",
+        "options": [
+          "dorme",
+          "duerme",
+          "durme",
+          "dormimos"
+        ],
+        "answer": 1,
+        "why": "dormir o → ue gövde değişimi yapar: ella duerme."
+      },
+      {
+        "prompt": "Nosotros ___ en un restaurante cerca de la oficina todos los días. (comer)",
+        "options": [
+          "comen",
+          "comemos",
+          "coméis",
+          "como"
+        ],
+        "answer": 1,
+        "why": "-er fiilinde nosotros için -emos: comemos."
+      },
+      {
+        "prompt": "Yo ___ a muchos estudiantes de la universidad. (conocer)",
+        "options": [
+          "conoce",
+          "conozco",
+          "conoco",
+          "conozo"
+        ],
+        "answer": 1,
+        "why": "conocer'in yalnızca yo biçimi düzensizdir: conozco."
+      },
+      {
+        "prompt": "¿Tú ___ la televisión por la noche? (ver)",
+        "options": [
+          "ve",
+          "ves",
+          "veo",
+          "ven"
+        ],
+        "answer": 1,
+        "why": "ver'in tú biçimi ves'tir."
+      },
+      {
+        "prompt": "Ellos ___ jugar al tenis los sábados. (preferir)",
+        "options": [
+          "prefieren",
+          "preferen",
+          "preferimos",
+          "prefiere"
+        ],
+        "answer": 0,
+        "why": "preferir e → ie değişimi yapar: ellos prefieren."
+      }
+    ],
+    "basics_es_gustar": [
+      {
+        "prompt": "A mi madre ___ las flores.",
+        "options": [
+          "le gusta",
+          "le gustan",
+          "les gustan",
+          "me gustan"
+        ],
+        "answer": 1,
+        "why": "Sevilen şey çoğul (las flores) olduğu için gustan; tek kişi (mi madre) için le."
+      },
+      {
+        "prompt": "¿A vosotros ___ cocinar?",
+        "options": [
+          "os gustan",
+          "os gusta",
+          "les gusta",
+          "nos gusta"
+        ],
+        "answer": 1,
+        "why": "Mastar tekil sayılır: gusta; vosotros için zamir os."
+      },
+      {
+        "prompt": "Arkadaşına katılıyorsun: —Me encanta el cine. —A mí ___ .",
+        "options": [
+          "tampoco",
+          "también",
+          "sí",
+          "nunca"
+        ],
+        "answer": 1,
+        "why": "Olumlu bir cümleye katılırken a mí también denir; tampoco olumsuz cümle içindir."
+      },
+      {
+        "prompt": "Hangisi doğru bir cümledir?",
+        "options": [
+          "Me encanta mucho bailar.",
+          "Me encanta bailar.",
+          "Yo encanto bailar.",
+          "Me encantan bailar."
+        ],
+        "answer": 1,
+        "why": "encantar zaten « çok » anlamı taşır, mucho almaz; mastar tekil sayılır: me encanta."
+      },
+      {
+        "prompt": "A Luis ___ la cabeza desde esta mañana. (doler)",
+        "options": [
+          "duele le",
+          "le duele",
+          "le duelen",
+          "lo duele"
+        ],
+        "answer": 1,
+        "why": "doler gustar gibi kurulur: zamir önde, ağrıyan şey tekil → le duele."
+      }
+    ],
+    "basics_es_negacion": [
+      {
+        "prompt": "No quiero ___ , gracias.",
+        "options": [
+          "algo",
+          "nada",
+          "nadie",
+          "ningún"
+        ],
+        "answer": 1,
+        "why": "no + fiil + nada çifte olumsuzluğu doğrudur: no quiero nada."
+      },
+      {
+        "prompt": "Hangisi doğru yazılmış bir sorudur?",
+        "options": [
+          "¿Tienes hambre?",
+          "Tienes hambre?",
+          "¿Tienes hambre",
+          "?Tienes hambre¿"
+        ],
+        "answer": 0,
+        "why": "Soru başta ters ¿, sonda ? alır."
+      },
+      {
+        "prompt": "¿___ vives? — En Sevilla.",
+        "options": [
+          "Donde",
+          "Dónde",
+          "Cuándo",
+          "Quién"
+        ],
+        "answer": 1,
+        "why": "Yer soran soru sözcüğü vurgu işareti taşır: ¿dónde?"
+      },
+      {
+        "prompt": "No he visto ___ película este mes.",
+        "options": [
+          "ningún",
+          "ninguna",
+          "nada",
+          "nadie"
+        ],
+        "answer": 1,
+        "why": "ninguno isme uyar; película dişil olduğu için ninguna."
+      },
+      {
+        "prompt": "—Yo no hablo francés. —Yo ___ .",
+        "options": [
+          "también",
+          "tampoco",
+          "nunca",
+          "nada"
+        ],
+        "answer": 1,
+        "why": "Olumsuz bir cümleye katılırken tampoco kullanılır."
+      }
+    ],
+    "basics_es_adjetivos": [
+      {
+        "prompt": "Tengo dos amigas muy ___ . (simpático)",
+        "options": [
+          "simpáticos",
+          "simpáticas",
+          "simpática",
+          "simpático"
+        ],
+        "answer": 1,
+        "why": "Sıfat dişil çoğul isme uyar: amigas simpáticas."
+      },
+      {
+        "prompt": "Mi coche es ___ . (Almanya'da yapılmış)",
+        "options": [
+          "alemana",
+          "alemán",
+          "alemanes",
+          "alemanas"
+        ],
+        "answer": 1,
+        "why": "coche eril tekildir: alemán."
+      },
+      {
+        "prompt": "Mi abuelo es un hombre ___ : tiene noventa años.",
+        "options": [
+          "grande",
+          "viejo",
+          "gran",
+          "antiguo"
+        ],
+        "answer": 1,
+        "why": "Yaşı vurgulamak için isimden sonra viejo kullanılır; grande iri, gran büyük (önemli) demektir."
+      },
+      {
+        "prompt": "Juan y María son muy ___ .",
+        "options": [
+          "alta",
+          "altos",
+          "altas",
+          "alto"
+        ],
+        "answer": 1,
+        "why": "Eril ve dişil isimleri birlikte niteleyen sıfat eril çoğul olur."
+      },
+      {
+        "prompt": "Es el ___ momento para empezar. (iyi)",
+        "options": [
+          "bueno",
+          "buen",
+          "buena",
+          "bien"
+        ],
+        "answer": 1,
+        "why": "bueno eril tekil ismin önünde buen olur."
+      }
+    ],
+    "basics_es_preterito": [
+      {
+        "prompt": "Hangisi escribir fiilinin ortacıdır?",
+        "options": [
+          "escribido",
+          "escrito",
+          "escrivido",
+          "escribito"
+        ],
+        "answer": 1,
+        "why": "escribir düzensiz ortaç alır: escrito."
+      },
+      {
+        "prompt": "Hangisi volver fiilinin ortacıdır?",
+        "options": [
+          "volvido",
+          "vuelto",
+          "volto",
+          "vuelvido"
+        ],
+        "answer": 1,
+        "why": "volver'in ortacı düzensizdir: vuelto."
+      },
+      {
+        "prompt": "En 2015 mis padres ___ a Argentina.",
+        "options": [
+          "han viajado",
+          "viajaron",
+          "viajan",
+          "viajarán"
+        ],
+        "answer": 1,
+        "why": "Kapanmış bir zaman (en 2015) indefinido ile anlatılır."
+      },
+      {
+        "prompt": "Ayer ella ___ un examen muy difícil. (tener)",
+        "options": [
+          "tenió",
+          "tuvo",
+          "tuve",
+          "ha tenido"
+        ],
+        "answer": 1,
+        "why": "tener'in indefinido'su düzensizdir: tuve, tuviste, tuvo."
+      },
+      {
+        "prompt": "Anoche nosotros ___ una película muy buena. (ver)",
+        "options": [
+          "vimos",
+          "veímos",
+          "hemos visto",
+          "vemos"
+        ],
+        "answer": 0,
+        "why": "anoche kapanmış bir zamandır: indefinido vimos (vurgusuz yazılır)."
+      }
+    ],
+    "ser_estar": [
+      {
+        "prompt": "Mis padres ___ de Ecuador.",
+        "options": [
+          "están",
+          "son",
+          "es",
+          "estamos"
+        ],
+        "answer": 1,
+        "why": "Köken ve milliyet ser ile söylenir: son de Ecuador."
+      },
+      {
+        "prompt": "Hoy ___ martes.",
+        "options": [
+          "está",
+          "es",
+          "son",
+          "están"
+        ],
+        "answer": 1,
+        "why": "Gün ve tarih ser ile söylenir: hoy es martes."
+      },
+      {
+        "prompt": "Mi hermana ___ enferma y no puede ir a clase.",
+        "options": [
+          "es",
+          "está",
+          "son",
+          "ser"
+        ],
+        "answer": 1,
+        "why": "Sağlık durumu geçicidir: estar."
+      },
+      {
+        "prompt": "¿___ listos? El taxi ya ha llegado. (vosotros)",
+        "options": [
+          "Sois",
+          "Estáis",
+          "Es",
+          "Ser"
+        ],
+        "answer": 1,
+        "why": "estar listo « hazır olmak », ser listo « zeki olmak » demektir."
+      },
+      {
+        "prompt": "¿Dónde ___ las llaves del coche?",
+        "options": [
+          "son",
+          "están",
+          "es",
+          "hay"
+        ],
+        "answer": 1,
+        "why": "Bir şeyin bulunduğu yer estar ile sorulur."
+      }
+    ],
+    "preterito_imperfecto": [
+      {
+        "prompt": "Ayer ___ a mi abuela en el hospital.",
+        "options": [
+          "visitaba",
+          "visité",
+          "visito",
+          "visitaré"
+        ],
+        "answer": 1,
+        "why": "Belli bir zamanda (ayer) bitmiş tek olay indefinido ile anlatılır."
+      },
+      {
+        "prompt": "Cuando era pequeña, mi hermana ___ miedo a los perros.",
+        "options": [
+          "tuvo",
+          "tenía",
+          "tiene",
+          "tendrá"
+        ],
+        "answer": 1,
+        "why": "Geçmişte süregelen bir durum imperfecto ile anlatılır."
+      },
+      {
+        "prompt": "Llegué a casa, ___ y me acosté.",
+        "options": [
+          "cenaba",
+          "cené",
+          "ceno",
+          "cenaré"
+        ],
+        "answer": 1,
+        "why": "Art arda olaylar indefinido ile sıralanır."
+      },
+      {
+        "prompt": "¿Cuál es la forma del imperfecto del verbo 'ver' para 'yo'?",
+        "options": [
+          "vi",
+          "veía",
+          "veo",
+          "vía"
+        ],
+        "answer": 1,
+        "why": "ver, imperfecto'da düzensiz üç fiilden biridir: veía."
+      },
+      {
+        "prompt": "Ayer ___ que mi prima estaba embarazada. (öğrendim)",
+        "options": [
+          "sabía",
+          "supe",
+          "sé",
+          "sabré"
+        ],
+        "answer": 1,
+        "why": "saber indefinido'da « öğrendim » anlamı verir: supe."
+      }
+    ],
+    "comparativos_es": [
+      {
+        "prompt": "Mi hermana es ___ que yo; tiene veinte años y yo quince.",
+        "options": [
+          "menor",
+          "mayor",
+          "peor",
+          "mejor"
+        ],
+        "answer": 1,
+        "why": "Yaşça büyük için mayor kullanılır."
+      },
+      {
+        "prompt": "Este examen ha sido ___ ; lo he terminado en diez minutos.",
+        "options": [
+          "facilísimo",
+          "facilisísimo",
+          "muy facilísimo",
+          "más fácil de"
+        ],
+        "answer": 0,
+        "why": "Mutlak üstünlük -ísimo ile yapılır ve muy almaz: facilísimo."
+      },
+      {
+        "prompt": "Es la playa ___ bonita ___ la región.",
+        "options": [
+          "más / de",
+          "más / que",
+          "tan / como",
+          "menos / que"
+        ],
+        "answer": 0,
+        "why": "En üstünlükte el / la + más + sıfat + de kullanılır."
+      },
+      {
+        "prompt": "Hoy hace ___ calor como ayer.",
+        "options": [
+          "tan",
+          "tanto",
+          "tanta",
+          "tantos"
+        ],
+        "answer": 1,
+        "why": "İsimle eşitlik tanto + isim + como ile; calor eril tekil → tanto."
+      },
+      {
+        "prompt": "Mi coche es ___ que el tuyo; siempre se estropea.",
+        "options": [
+          "mejor",
+          "peor",
+          "mayor",
+          "menor"
+        ],
+        "answer": 1,
+        "why": "malo sıfatının karşılaştırması peor'dur."
+      }
+    ],
+    "imperativo_es": [
+      {
+        "prompt": "Niños, ___ los deberes ahora. (vosotros - hacer)",
+        "options": [
+          "haz",
+          "haced",
+          "hagáis",
+          "hacéis"
+        ],
+        "answer": 1,
+        "why": "vosotros olumlu emrinde mastarın -r'si -d olur: haced."
+      },
+      {
+        "prompt": "Señora, ___ por aquí, por favor. (usted - pasar)",
+        "options": [
+          "pasa",
+          "pase",
+          "pasad",
+          "pasas"
+        ],
+        "answer": 1,
+        "why": "usted emri subjuntivo presente ile kurulur: pase."
+      },
+      {
+        "prompt": "¡No ___ la televisión tan alta! (tú - poner)",
+        "options": [
+          "pon",
+          "pongas",
+          "pones",
+          "poned"
+        ],
+        "answer": 1,
+        "why": "Olumsuz emir subjuntivo kullanır: no pongas."
+      },
+      {
+        "prompt": "Chicos, ___ ; la película va a empezar. (vosotros - sentarse)",
+        "options": [
+          "sentados",
+          "sentaos",
+          "sentadlos",
+          "os sentad"
+        ],
+        "answer": 1,
+        "why": "vosotros emrine os eklenince son -d düşer: sentaos."
+      },
+      {
+        "prompt": "Ese libro es de tu hermano: ___ hoy. (tú - devolver, a él, el libro)",
+        "options": [
+          "devuélveselo",
+          "devuélvelelo",
+          "devuélvelo le",
+          "se lo devuelve"
+        ],
+        "answer": 0,
+        "why": "le + lo, se lo olur ve olumlu emre bitişir: devuélveselo."
+      }
+    ],
+    "subjuntivo": [
+      {
+        "prompt": "Me alegra que ___ mejor. (tú - estar)",
+        "options": [
+          "estás",
+          "estés",
+          "estarás",
+          "estuviste"
+        ],
+        "answer": 1,
+        "why": "Duygu bildiren me alegra que subjuntivo ister: estés."
+      },
+      {
+        "prompt": "Creo que ___ razón. (tú - tener)",
+        "options": [
+          "tengas",
+          "tienes",
+          "tuvieras",
+          "tengáis"
+        ],
+        "answer": 1,
+        "why": "Olumlu creo que indicativo ister; subjuntivo yalnızca no creo que ile gelir."
+      },
+      {
+        "prompt": "Te llamaré en cuanto ___ a casa. (yo - llegar)",
+        "options": [
+          "llego",
+          "llegue",
+          "llegaré",
+          "llegaría"
+        ],
+        "answer": 1,
+        "why": "Gelecekteki olaya bakan en cuanto subjuntivo ister: en cuanto llegue."
+      },
+      {
+        "prompt": "Mi madre quería que yo ___ medicina. (estudiar)",
+        "options": [
+          "estudie",
+          "estudiara",
+          "estudio",
+          "estudiaré"
+        ],
+        "answer": 1,
+        "why": "Ana fiil geçmişte olunca imperfecto de subjuntivo kullanılır: estudiara."
+      }
+    ],
+    "por_para": [
+      {
+        "prompt": "Voy al gimnasio tres veces ___ semana.",
+        "options": [
+          "para",
+          "por",
+          "en",
+          "de"
+        ],
+        "answer": 1,
+        "why": "Oran ve sıklık por ile söylenir: tres veces por semana."
+      },
+      {
+        "prompt": "Este regalo es ___ ti.",
+        "options": [
+          "por",
+          "para",
+          "a",
+          "con"
+        ],
+        "answer": 1,
+        "why": "Alıcı para ile söylenir: es para ti."
+      },
+      {
+        "prompt": "___ mí, la mejor estación es la primavera.",
+        "options": [
+          "Por",
+          "Para",
+          "A",
+          "De"
+        ],
+        "answer": 1,
+        "why": "Görüş bildirmek para mí (bana göre) ile yapılır."
+      },
+      {
+        "prompt": "Gracias ___ el regalo.",
+        "options": [
+          "para",
+          "por",
+          "de",
+          "a"
+        ],
+        "answer": 1,
+        "why": "Teşekkürün sebebi por ile verilir: gracias por."
+      }
+    ],
+    "condicionales": [
+      {
+        "prompt": "Si ___ tiempo mañana, te ayudo con la mudanza.",
+        "options": [
+          "tendré",
+          "tengo",
+          "tuviera",
+          "tenga"
+        ],
+        "answer": 1,
+        "why": "Olası şartta si + presente gelir; si'den sonra futuro ya da presente de subjuntivo gelmez."
+      },
+      {
+        "prompt": "Si yo ___ tú, aceptaría ese trabajo.",
+        "options": [
+          "soy",
+          "fuera",
+          "sería",
+          "sea"
+        ],
+        "answer": 1,
+        "why": "Şimdiki varsayım: si + imperfecto de subjuntivo → condicional."
+      },
+      {
+        "prompt": "Si me lo hubieras dicho ayer, te ___ ayer mismo.",
+        "options": [
+          "ayudaría",
+          "habría ayudado",
+          "ayudé",
+          "ayudaré"
+        ],
+        "answer": 1,
+        "why": "Geçmişte gerçekleşmemiş şartın sonucu condicional compuesto ile söylenir."
+      },
+      {
+        "prompt": "___ haber sabido la verdad, no habría venido.",
+        "options": [
+          "Por",
+          "De",
+          "Para",
+          "Si"
+        ],
+        "answer": 1,
+        "why": "de + haber + ortaç, « si hubiera … » demektir."
+      },
+      {
+        "prompt": "Si ___ cansados, descansad un rato. (vosotros)",
+        "options": [
+          "estáis",
+          "estéis",
+          "estaríais",
+          "estarías"
+        ],
+        "answer": 0,
+        "why": "Olası şartta si + presente de indicativo; ana cümlede emir gelebilir."
+      }
+    ],
+    "perifrasis": [
+      {
+        "prompt": "Esta tarde ___ a visitar a mis abuelos.",
+        "options": [
+          "voy",
+          "acabo",
+          "tengo",
+          "dejo"
+        ],
+        "answer": 0,
+        "why": "ir a + mastar yakın gelecek ve plan bildirir."
+      },
+      {
+        "prompt": "Para entrar en el museo, ___ que comprar una entrada. (genel kural)",
+        "options": [
+          "hay",
+          "está",
+          "acaba",
+          "vuelve"
+        ],
+        "answer": 0,
+        "why": "Öznesiz, genel zorunluluk hay que + mastar ile söylenir."
+      },
+      {
+        "prompt": "Cuando escuchó el chiste, se ___ a reír.",
+        "options": [
+          "echó",
+          "dejó",
+          "acabó",
+          "llevó"
+        ],
+        "answer": 0,
+        "why": "echarse a + mastar « birden başlamak » demektir: se echó a reír."
+      },
+      {
+        "prompt": "¿Todavía ___ viviendo en el mismo piso?",
+        "options": [
+          "sigues",
+          "llevas",
+          "acabas",
+          "dejas"
+        ],
+        "answer": 0,
+        "why": "seguir + gerundio « hâlâ … -mek » demektir."
+      },
+      {
+        "prompt": "Por fin ___ de llover y podemos salir.",
+        "options": [
+          "ha dejado",
+          "ha vuelto",
+          "ha empezado",
+          "ha llevado"
+        ],
+        "answer": 0,
+        "why": "dejar de + mastar « bırakmak, kesilmek » demektir."
+      }
+    ],
+    "pronombres_atonos": [
+      {
+        "prompt": "¿Has visto a mis hermanas? — Sí, ___ vi ayer.",
+        "options": [
+          "les",
+          "las",
+          "los",
+          "la"
+        ],
+        "answer": 1,
+        "why": "Doğrudan nesne dişil çoğul (mis hermanas): las."
+      },
+      {
+        "prompt": "¿Me prestas tu bolígrafo? — Sí, ahora ___ presto.",
+        "options": [
+          "te lo",
+          "lo te",
+          "se lo",
+          "te le"
+        ],
+        "answer": 0,
+        "why": "İki zamirde önce dolaylı (te), sonra doğrudan (lo) gelir."
+      },
+      {
+        "prompt": "A mis abuelos ___ escribo una carta cada mes.",
+        "options": [
+          "los",
+          "les",
+          "le",
+          "las"
+        ],
+        "answer": 1,
+        "why": "Dolaylı nesne çoğul kişilerdir: les; isimle birlikte de tekrarlanır."
+      },
+      {
+        "prompt": "Quiero comprar esta chaqueta. → ___ quiero comprar.",
+        "options": [
+          "La",
+          "Le",
+          "Lo",
+          "Se"
+        ],
+        "answer": 0,
+        "why": "chaqueta dişil doğrudan nesnedir: la; zamir çekimli fiilin önüne de gelebilir."
+      },
+      {
+        "prompt": "¿Le has contado la noticia a Marta? — Sí, ya ___ he contado.",
+        "options": [
+          "le la",
+          "se la",
+          "se lo",
+          "la le"
+        ],
+        "answer": 1,
+        "why": "le + la, se la olur; noticia dişil olduğu için la."
+      }
+    ],
+    "relativos_es": [
+      {
+        "prompt": "El restaurante ___ cenamos anoche era muy caro.",
+        "options": [
+          "que",
+          "donde",
+          "cuyo",
+          "quien"
+        ],
+        "answer": 1,
+        "why": "Yer bildiren ilgi cümlesi donde ile kurulur (= en el que)."
+      },
+      {
+        "prompt": "Recuerdo el día ___ nos conocimos.",
+        "options": [
+          "donde",
+          "en que",
+          "cuyo",
+          "quien"
+        ],
+        "answer": 1,
+        "why": "Zaman için en que kullanılır: el día en que."
+      },
+      {
+        "prompt": "Es una casa ___ ventanas dan al mar.",
+        "options": [
+          "que",
+          "cuyas",
+          "cuyos",
+          "donde"
+        ],
+        "answer": 1,
+        "why": "cuyo sahip olunan şeye uyar: ventanas dişil çoğul → cuyas."
+      },
+      {
+        "prompt": "No llegó a tiempo, ___ molestó a todos.",
+        "options": [
+          "lo cual",
+          "el cual",
+          "cuyo",
+          "quien"
+        ],
+        "answer": 0,
+        "why": "Önceki cümlenin tamamına gönderme yapan lo cual'dır."
+      },
+      {
+        "prompt": "Esta es la mesa en ___ trabajo cada día.",
+        "options": [
+          "quien",
+          "la que",
+          "el que",
+          "cuya"
+        ],
+        "answer": 1,
+        "why": "Edattan sonra nesne için el que / la que; mesa dişil → la que."
+      }
+    ],
+    "conn_es": [
+      {
+        "prompt": "No vino a la fiesta ___ estaba enfermo.",
+        "options": [
+          "porque",
+          "aunque",
+          "así que",
+          "sin embargo"
+        ],
+        "answer": 0,
+        "why": "İkinci kısım birincinin nedenidir: porque."
+      },
+      {
+        "prompt": "Hace mucho frío, ___ ponte el abrigo.",
+        "options": [
+          "así que",
+          "aunque",
+          "además",
+          "en cambio"
+        ],
+        "answer": 0,
+        "why": "Sonuç bildiren así que (bu yüzden) burada uyar."
+      },
+      {
+        "prompt": "Mi hermano es muy alto, ___ mi hermana es bajita.",
+        "options": [
+          "además",
+          "mientras que",
+          "por eso",
+          "así que"
+        ],
+        "answer": 1,
+        "why": "İki şeyi karşılaştıran mientras que (oysa) kullanılır."
+      },
+      {
+        "prompt": "___ llueva mañana, iremos de excursión. (yağsa bile)",
+        "options": [
+          "Aunque",
+          "Porque",
+          "Como",
+          "Ya que"
+        ],
+        "answer": 0,
+        "why": "Varsayıma dayalı taviz aunque + subjuntivo ile söylenir."
+      },
+      {
+        "prompt": "Llegamos a tiempo ___ tu ayuda.",
+        "options": [
+          "por culpa de",
+          "gracias a",
+          "sin embargo",
+          "aunque"
+        ],
+        "answer": 1,
+        "why": "Olumlu neden gracias a (sayesinde) ile söylenir."
+      }
+    ],
+    "prep_es": [
+      {
+        "prompt": "Mi hermana se casó ___ un chico italiano.",
+        "options": [
+          "a",
+          "con",
+          "de",
+          "en"
+        ],
+        "answer": 1,
+        "why": "casarse con « biriyle evlenmek » demektir."
+      },
+      {
+        "prompt": "Este jabón huele ___ limón.",
+        "options": [
+          "de",
+          "a",
+          "con",
+          "en"
+        ],
+        "answer": 1,
+        "why": "oler a « … gibi kokmak » demektir."
+      },
+      {
+        "prompt": "El tren tardó dos horas ___ llegar.",
+        "options": [
+          "a",
+          "en",
+          "de",
+          "con"
+        ],
+        "answer": 1,
+        "why": "tardar en + mastar « -mesi … sürmek » demektir."
+      },
+      {
+        "prompt": "Tu hijo se parece mucho ___ ti.",
+        "options": [
+          "con",
+          "a",
+          "de",
+          "en"
+        ],
+        "answer": 1,
+        "why": "parecerse a « -e benzemek » demektir."
+      },
+      {
+        "prompt": "No te preocupes, puedes contar ___ mí.",
+        "options": [
+          "en",
+          "con",
+          "de",
+          "a"
+        ],
+        "answer": 1,
+        "why": "contar con « güvenmek, hesaba katmak » demektir."
+      }
+    ],
+    "colloc_es": [
+      {
+        "prompt": "En verano me encanta ___ el sol en la playa.",
+        "options": [
+          "tomar",
+          "hacer",
+          "dar",
+          "tener"
+        ],
+        "answer": 0,
+        "why": "« Güneşlenmek » tomar el sol ile söylenir."
+      },
+      {
+        "prompt": "Hay mucha gente; tenemos que ___ cola.",
+        "options": [
+          "hacer",
+          "tomar",
+          "dar",
+          "poner"
+        ],
+        "answer": 0,
+        "why": "« Sıra beklemek » hacer cola ile söylenir."
+      },
+      {
+        "prompt": "Tienes que ___ atención en clase.",
+        "options": [
+          "prestar",
+          "hacer",
+          "tomar",
+          "dar"
+        ],
+        "answer": 0,
+        "why": "« Dikkat etmek » prestar atención ile söylenir."
+      },
+      {
+        "prompt": "Gracias por ___ en cuenta mi opinión.",
+        "options": [
+          "tener",
+          "hacer",
+          "dar",
+          "echar"
+        ],
+        "answer": 0,
+        "why": "« Hesaba katmak » tener en cuenta ile söylenir."
+      },
+      {
+        "prompt": "¿Me guardas un ___ ? No se lo digas a nadie.",
+        "options": [
+          "secreto",
+          "riesgo",
+          "paseo",
+          "éxito"
+        ],
+        "answer": 0,
+        "why": "« Sır tutmak » guardar un secreto ile söylenir."
+      }
+    ],
+    "se_pasivo": [
+      {
+        "prompt": "Se ___ camareros con experiencia.",
+        "options": [
+          "busca",
+          "buscan",
+          "buscamos",
+          "buscó"
+        ],
+        "answer": 1,
+        "why": "a'sız, belirsiz kişiler pasif sayılır; fiil çoğul isme (camareros) uyar."
+      },
+      {
+        "prompt": "Se ___ fumar en todo el edificio.",
+        "options": [
+          "prohíben",
+          "prohíbe",
+          "prohibimos",
+          "prohibido"
+        ],
+        "answer": 1,
+        "why": "Özne mastar olunca fiil tekil kalır: se prohíbe fumar."
+      },
+      {
+        "prompt": "Se ___ a los ganadores mañana por la tarde.",
+        "options": [
+          "anunciarán",
+          "anunciará",
+          "anunciamos",
+          "anuncian"
+        ],
+        "answer": 1,
+        "why": "Kişi nesnesi a ile gelince yapı kişisizdir ve fiil tekil kalır."
+      },
+      {
+        "prompt": "Desde aquí se ___ las montañas.",
+        "options": [
+          "ve",
+          "ven",
+          "vemos",
+          "veo"
+        ],
+        "answer": 1,
+        "why": "Pasiva refleja'da fiil isme uyar: las montañas çoğul → se ven."
+      },
+      {
+        "prompt": "En esta casa no se ___ con la boca llena.",
+        "options": [
+          "hablan",
+          "habla",
+          "hablamos",
+          "hablar"
+        ],
+        "answer": 1,
+        "why": "Uyulacak bir isim olmayan kişisiz se'de fiil hep tekildir."
+      }
+    ],
+    "estilo_indirecto": [
+      {
+        "prompt": "Directo: «Estoy cansado.» → Indirecto: Ayer Juan dijo que ___ cansado.",
+        "options": [
+          "está",
+          "estaba",
+          "estará",
+          "estuviera"
+        ],
+        "answer": 1,
+        "why": "Ana fiil geçmişte olunca presente imperfecto'ya döner."
+      },
+      {
+        "prompt": "Directo: «Llegué ayer.» → Indirecto: (Bir hafta sonra) Dijo que ___ el día anterior.",
+        "options": [
+          "llegué",
+          "había llegado",
+          "llegaría",
+          "ha llegado"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki olay bir kademe geriye kayar: pluscuamperfecto (aktaran üçüncü kişi olduğu için yo biçimi olmaz)."
+      },
+      {
+        "prompt": "Directo: «Ayúdame, por favor.» → Indirecto: Me pidió que le ___ .",
+        "options": [
+          "ayudo",
+          "ayudara",
+          "ayudaré",
+          "ayudaba"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki ricada pedir que + imperfecto de subjuntivo gelir."
+      },
+      {
+        "prompt": "Directo: «¿Tienes hambre?» → Indirecto: Me preguntó ___ tenía hambre.",
+        "options": [
+          "que",
+          "si",
+          "qué",
+          "cuándo"
+        ],
+        "answer": 1,
+        "why": "Evet / hayır sorusu dolaylı anlatımda si ile bağlanır."
+      },
+      {
+        "prompt": "Directo: «Volveré mañana.» → Indirecto: (Bir hafta sonra) Dijo que volvería ___ .",
+        "options": [
+          "mañana",
+          "al día siguiente",
+          "ayer",
+          "el día anterior"
+        ],
+        "answer": 1,
+        "why": "Başka bir günde aktarılırken mañana, al día siguiente olur."
+      }
+    ],
+    "basics_es_pronombres": [
+      {
+        "prompt": "Señores, ¿___ son de Madrid? (resmî, çoğul)",
+        "options": [
+          "vosotros",
+          "ustedes",
+          "ellos",
+          "usted"
+        ],
+        "answer": 1,
+        "why": "Resmî çoğul « siz » ustedes'tir ve fiilin 3. çoğul biçimini alır."
+      },
+      {
+        "prompt": "Según ___ , el examen fue fácil. (tú)",
+        "options": [
+          "ti",
+          "tú",
+          "te",
+          "contigo"
+        ],
+        "answer": 1,
+        "why": "según'den sonra özne biçimi kalır: según tú."
+      },
+      {
+        "prompt": "Este libro es de ___ . (yo)",
+        "options": [
+          "yo",
+          "mí",
+          "mi",
+          "me"
+        ],
+        "answer": 1,
+        "why": "Edattan sonra yo yerine vurgulu mí gelir; vurgusuz mi « benim » demektir."
+      },
+      {
+        "prompt": "¿Puedo ir ___ al médico? (con + tú)",
+        "options": [
+          "con ti",
+          "contigo",
+          "con tú",
+          "conmigo"
+        ],
+        "answer": 1,
+        "why": "con + ti birleşip contigo olur."
+      },
+      {
+        "prompt": "Sin ___ no puedo vivir. (tú)",
+        "options": [
+          "tú",
+          "ti",
+          "te",
+          "tí"
+        ],
+        "answer": 1,
+        "why": "Edattan sonra tú yerine ti gelir; ti hiç vurgu almaz."
+      }
+    ],
+    "basics_es_posesivos": [
+      {
+        "prompt": "Estos libros son ___ . (yo)",
+        "options": [
+          "mis",
+          "míos",
+          "mías",
+          "mí"
+        ],
+        "answer": 1,
+        "why": "ser'den sonra vurgulu iyelik gelir ve isme uyar: libros eril çoğul → míos."
+      },
+      {
+        "prompt": "Mi coche es blanco; ___ es negro. (tú)",
+        "options": [
+          "tu",
+          "el tuyo",
+          "la tuya",
+          "tuyo"
+        ],
+        "answer": 1,
+        "why": "Zamir olarak iyelik artikelle gelir: el tuyo (seninki)."
+      },
+      {
+        "prompt": "Mira, ¿qué es ___ ? Nunca lo había visto.",
+        "options": [
+          "este",
+          "esto",
+          "esta",
+          "estos"
+        ],
+        "answer": 1,
+        "why": "Adı bilinmeyen bir şey için nötr esto kullanılır."
+      },
+      {
+        "prompt": "Me duelen ___ pies después de caminar.",
+        "options": [
+          "mis",
+          "los",
+          "míos",
+          "sus"
+        ],
+        "answer": 1,
+        "why": "Vücut parçalarında iyelik yerine belirli artikel kullanılır: me duelen los pies."
+      },
+      {
+        "prompt": "___ montañas que se ven al fondo son muy altas. (uzak)",
+        "options": [
+          "Estas",
+          "Aquellas",
+          "Aquellos",
+          "Aquella"
+        ],
+        "answer": 1,
+        "why": "Uzaktaki şeyler aquel ailesiyle gösterilir; montañas dişil çoğul → aquellas."
+      }
+    ],
+    "basics_es_numeros_hora": [
+      {
+        "prompt": "500 sayısının doğru yazılışı hangisidir?",
+        "options": [
+          "cincocientos",
+          "quinientos",
+          "quiñentos",
+          "cientocinco"
+        ],
+        "answer": 1,
+        "why": "500 düzensizdir: quinientos."
+      },
+      {
+        "prompt": "En la clase hay ___ personas. (21)",
+        "options": [
+          "veintiún",
+          "veintiuna",
+          "veintiuno",
+          "veinte y una"
+        ],
+        "answer": 1,
+        "why": "uno dişil isimden önce una olur: veintiuna personas."
+      },
+      {
+        "prompt": "Saat 1:00 nasıl söylenir?",
+        "options": [
+          "Son la una.",
+          "Es la una.",
+          "Es las una.",
+          "Son las una."
+        ],
+        "answer": 1,
+        "why": "Saat bir tekildir: es la una; diğer saatler son las … ile."
+      },
+      {
+        "prompt": "Mi abuelo nació en ___ . (1950)",
+        "options": [
+          "mil novecientos cincuenta",
+          "diecinueve cincuenta",
+          "uno nueve cinco cero",
+          "mil nueve cientos cincuenta"
+        ],
+        "answer": 0,
+        "why": "Yıllar bin olarak okunur: mil novecientos cincuenta."
+      },
+      {
+        "prompt": "El concierto empieza a las nueve ___ . (21:00)",
+        "options": [
+          "de la mañana",
+          "de la noche",
+          "de la tarde",
+          "del mediodía"
+        ],
+        "answer": 1,
+        "why": "Akşam dokuz de la noche ile söylenir."
+      }
+    ],
+    "basics_es_preguntas": [
+      {
+        "prompt": "¿___ eres? — Soy de Turquía.",
+        "options": [
+          "Dónde",
+          "De dónde",
+          "Adónde",
+          "Cuándo"
+        ],
+        "answer": 1,
+        "why": "Köken sorulurken edat başta durur: ¿de dónde eres?"
+      },
+      {
+        "prompt": "¿___ te llamas?",
+        "options": [
+          "Qué",
+          "Cómo",
+          "Cuál",
+          "Quién"
+        ],
+        "answer": 1,
+        "why": "Ad sorusu cómo ile kurulur: ¿cómo te llamas?"
+      },
+      {
+        "prompt": "¿Para ___ sirve este botón?",
+        "options": [
+          "qué",
+          "cuál",
+          "quién",
+          "cómo"
+        ],
+        "answer": 0,
+        "why": "Amaç para qué ile sorulur."
+      },
+      {
+        "prompt": "No sé ___ vive Carlos.",
+        "options": [
+          "donde",
+          "dónde",
+          "adonde",
+          "cuando"
+        ],
+        "answer": 1,
+        "why": "Dolaylı soruda da soru sözcüğü vurgu işareti alır: no sé dónde vive."
+      },
+      {
+        "prompt": "¿___ llega el tren? — A las cinco.",
+        "options": [
+          "Cuándo",
+          "Cuánto",
+          "Dónde",
+          "Cuál"
+        ],
+        "answer": 0,
+        "why": "Zaman cuándo ile sorulur."
+      }
+    ],
+    "basics_es_hay_estar": [
+      {
+        "prompt": "¿___ leche en la nevera?",
+        "options": [
+          "Está",
+          "Hay",
+          "Están",
+          "Es"
+        ],
+        "answer": 1,
+        "why": "Artikelsiz isimle varlık hay ile sorulur."
+      },
+      {
+        "prompt": "La biblioteca ___ al lado del ayuntamiento.",
+        "options": [
+          "hay",
+          "está",
+          "es",
+          "tiene"
+        ],
+        "answer": 1,
+        "why": "Belirli bir yerin konumu estar ile söylenir."
+      },
+      {
+        "prompt": "En la fiesta ___ mucha gente. (geçmiş, betimleme)",
+        "options": [
+          "hubo",
+          "había",
+          "hay",
+          "estaba"
+        ],
+        "answer": 1,
+        "why": "Geçmişte betimleme için haber'in imperfecto'su había kullanılır, tekil kalır."
+      },
+      {
+        "prompt": "Para aprobar, ___ estudiar todos los días.",
+        "options": [
+          "hay que",
+          "está que",
+          "hay de",
+          "es que"
+        ],
+        "answer": 0,
+        "why": "Öznesiz genel zorunluluk hay que + mastar ile söylenir."
+      },
+      {
+        "prompt": "Yo ___ dos hermanos.",
+        "options": [
+          "hay",
+          "tengo",
+          "estoy",
+          "soy"
+        ],
+        "answer": 1,
+        "why": "Sahiplik tener ile söylenir; hay yalnızca varlık bildirir."
+      }
+    ],
+    "basics_es_reflexivos": [
+      {
+        "prompt": "Mi padre ___ cada mañana con agua fría. (ducharse)",
+        "options": [
+          "ducha",
+          "se ducha",
+          "me ducha",
+          "se duchan"
+        ],
+        "answer": 1,
+        "why": "Dönüşlü zamir özneye uyar: él se ducha."
+      },
+      {
+        "prompt": "Nosotros ___ temprano los domingos. (despertarse)",
+        "options": [
+          "nos despertamos",
+          "nos despiertamos",
+          "se despiertan",
+          "despertamos"
+        ],
+        "answer": 0,
+        "why": "despertarse'de e → ie değişimi nosotros'ta olmaz: nos despertamos."
+      },
+      {
+        "prompt": "Ayer ___ en el sofá viendo la tele. (dormirse, yo)",
+        "options": [
+          "me dormí",
+          "me dormé",
+          "me dormió",
+          "se durmió"
+        ],
+        "answer": 0,
+        "why": "dormirse « uyuyakalmak » demektir; yo için me dormí."
+      },
+      {
+        "prompt": "Es tarde, ya ___ . (irse, yo)",
+        "options": [
+          "me voy",
+          "voy",
+          "se va",
+          "me va"
+        ],
+        "answer": 0,
+        "why": "irse « ayrılmak, gitmek »tir; yo için me voy."
+      },
+      {
+        "prompt": "Mis padres ___ en Lima hace treinta años. (conocerse)",
+        "options": [
+          "se conocieron",
+          "conocieron",
+          "nos conocimos",
+          "se conocían"
+        ],
+        "answer": 0,
+        "why": "Çoğulda se « birbirini » anlamı verir; hace … ile indefinido."
+      }
+    ],
+    "basics_es_perfecto_indefinido": [
+      {
+        "prompt": "¿___ estado alguna vez en México? (tú)",
+        "options": [
+          "Has",
+          "Ha",
+          "Has sido",
+          "Estás"
+        ],
+        "answer": 0,
+        "why": "Deneyim alguna vez ile perfecto'da sorulur: ¿has estado?"
+      },
+      {
+        "prompt": "El lunes pasado ___ a mis primos.",
+        "options": [
+          "he visitado",
+          "visité",
+          "visito",
+          "visitaré"
+        ],
+        "answer": 1,
+        "why": "Kapanmış zaman (el lunes pasado) her bölgede indefinido ister."
+      },
+      {
+        "prompt": "İspanya'daki kullanıma göre: Todavía no ___ esa película.",
+        "options": [
+          "vi",
+          "he visto",
+          "veía",
+          "veré"
+        ],
+        "answer": 1,
+        "why": "İspanya'da todavía no ile perfecto kullanılır."
+      },
+      {
+        "prompt": "En 2010 mi hermano ___ en Londres.",
+        "options": [
+          "ha vivido",
+          "vivió",
+          "vive",
+          "vivirá"
+        ],
+        "answer": 1,
+        "why": "Belirli bir geçmiş yıl kapanmış zamandır: indefinido."
+      },
+      {
+        "prompt": "Hangi ifade İspanya'da perfecto (he hecho) ile kullanılır?",
+        "options": [
+          "ayer",
+          "el año pasado",
+          "este año",
+          "en 2019"
+        ],
+        "answer": 2,
+        "why": "Henüz bitmemiş zaman dilimi (este año) İspanya'da perfecto alır."
+      }
+    ],
+    "basics_es_futuro": [
+      {
+        "prompt": "El año que viene ___ en Barcelona. (vivir, nosotros)",
+        "options": [
+          "vivamos",
+          "viviremos",
+          "vivíamos",
+          "viviríamos"
+        ],
+        "answer": 1,
+        "why": "Futuro simple mastar + -emos ile kurulur: viviremos."
+      },
+      {
+        "prompt": "Mañana ___ temprano. (salir, yo)",
+        "options": [
+          "saliré",
+          "saldré",
+          "salía",
+          "salré"
+        ],
+        "answer": 1,
+        "why": "salir futuro'da düzensiz gövde alır: saldré."
+      },
+      {
+        "prompt": "¿Quién llama a estas horas? — ___ tu madre. (tahmin)",
+        "options": [
+          "Será",
+          "Sea",
+          "Fuera",
+          "Sería"
+        ],
+        "answer": 0,
+        "why": "Şu an hakkındaki tahmin futuro ile söylenir: será tu madre."
+      },
+      {
+        "prompt": "Hangisi poner fiilinin yo için futuro simple biçimidir?",
+        "options": [
+          "poneré",
+          "pondré",
+          "ponré",
+          "pongaré"
+        ],
+        "answer": 1,
+        "why": "poner'in futuro gövdesi pondr-'dir."
+      },
+      {
+        "prompt": "Cuando ___ mayor, seré médico.",
+        "options": [
+          "soy",
+          "sea",
+          "seré",
+          "sería"
+        ],
+        "answer": 1,
+        "why": "cuando geleceğe bakınca subjuntivo alır: cuando sea mayor."
+      }
+    ],
+    "basics_es_hace_desde": [
+      {
+        "prompt": "Terminé la carrera ___ cinco años.",
+        "options": [
+          "desde",
+          "hace",
+          "desde hace",
+          "llevo"
+        ],
+        "answer": 1,
+        "why": "hace + süre « … önce » demektir; fiil geçmiştedir."
+      },
+      {
+        "prompt": "Te espero ___ las ocho y todavía no has llegado.",
+        "options": [
+          "hace",
+          "desde",
+          "desde hace",
+          "durante"
+        ],
+        "answer": 1,
+        "why": "Başlangıç noktası (saat) desde ile söylenir."
+      },
+      {
+        "prompt": "Llevo tres días ___ dormir bien.",
+        "options": [
+          "sin",
+          "no",
+          "nunca",
+          "desde"
+        ],
+        "answer": 0,
+        "why": "Olumsuz süreklilik llevar + süre + sin + mastar ile söylenir."
+      },
+      {
+        "prompt": "¿___ cuándo trabajas aquí?",
+        "options": [
+          "Hace",
+          "Desde",
+          "Cuánto",
+          "Llevas"
+        ],
+        "answer": 1,
+        "why": "Başlangıç noktası ¿desde cuándo? ile sorulur."
+      },
+      {
+        "prompt": "___ dos meses que no veo a mi abuela.",
+        "options": [
+          "Desde",
+          "Hace",
+          "Llevo",
+          "Desde hace"
+        ],
+        "answer": 1,
+        "why": "hace + süre + que kalıbı süreyi verir: hace dos meses que…"
+      }
+    ],
+    "basics_es_pluscuamperfecto": [
+      {
+        "prompt": "Cuando llegué a la estación, el tren ya ___ .",
+        "options": [
+          "salió",
+          "había salido",
+          "ha salido",
+          "salía"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki bir andan önce bitmiş olay pluscuamperfecto ile söylenir."
+      },
+      {
+        "prompt": "Me dijo que ___ las llaves. (perder)",
+        "options": [
+          "ha perdido",
+          "había perdido",
+          "perderá",
+          "pierde"
+        ],
+        "answer": 1,
+        "why": "Dolaylı anlatımda geçmiş bir kademe geriye kayar: había perdido."
+      },
+      {
+        "prompt": "Hangisi doğrudur?",
+        "options": [
+          "Se lo había dicho.",
+          "Había se lo dicho.",
+          "Había dicho se lo.",
+          "Se había lo dicho."
+        ],
+        "answer": 0,
+        "why": "Nesne zamirleri había'dan önce gelir ve haber ile ortaç ayrılmaz."
+      },
+      {
+        "prompt": "Estaba cansado porque ___ toda la noche. (trabajar)",
+        "options": [
+          "trabajaré",
+          "había trabajado",
+          "ha trabajado",
+          "trabajará"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki yorgunluktan önce olan eylem: había trabajado."
+      },
+      {
+        "prompt": "Ellos ya ___ cuando llegamos. (irse)",
+        "options": [
+          "se habían ido",
+          "habían ido",
+          "se han ido",
+          "se irán"
+        ],
+        "answer": 0,
+        "why": "Dönüşlü fiilde zamir había'dan önce gelir: se habían ido."
+      }
+    ],
+    "basics_es_gerundio": [
+      {
+        "prompt": "¿Qué estás ___ ? (hacer)",
+        "options": [
+          "haciendo",
+          "haciento",
+          "hacido",
+          "hacer"
+        ],
+        "answer": 0,
+        "why": "-er fiillerinin gerundio'su -iendo ile biter: haciendo."
+      },
+      {
+        "prompt": "Mañana ___ a Roma. (plan)",
+        "options": [
+          "estoy saliendo",
+          "salgo",
+          "saliendo",
+          "estaba saliendo"
+        ],
+        "answer": 1,
+        "why": "Gelecek plan için estar + gerundio değil presente kullanılır."
+      },
+      {
+        "prompt": "Me gusta ___ en el mar.",
+        "options": [
+          "nadando",
+          "nadar",
+          "nado",
+          "nadé"
+        ],
+        "answer": 1,
+        "why": "İngilizce -ing'in isim işlevi İspanyolcada mastardır: me gusta nadar."
+      },
+      {
+        "prompt": "Hangisi pedir fiilinin gerundio biçimidir?",
+        "options": [
+          "pediendo",
+          "pidiendo",
+          "pidendo",
+          "pedindo"
+        ],
+        "answer": 1,
+        "why": "-ir fiillerinde e → i değişimi olur: pidiendo."
+      },
+      {
+        "prompt": "Aprendí a cocinar ___ vídeos en internet.",
+        "options": [
+          "viendo",
+          "ver",
+          "vista",
+          "veo"
+        ],
+        "answer": 0,
+        "why": "Yol ve tarz (« -erek ») gerundio ile söylenir: viendo vídeos."
+      }
+    ],
+    "basics_es_orden_pronombres": [
+      {
+        "prompt": "Se ___ olvidaron los deberes en casa. (a nosotros)",
+        "options": [
+          "nos",
+          "os",
+          "les",
+          "me"
+        ],
+        "answer": 0,
+        "why": "Kazara olan işte se + kişi zamiri: se nos olvidaron."
+      },
+      {
+        "prompt": "¿El coche? Voy a ___ mañana a mi hermano.",
+        "options": [
+          "prestárselo",
+          "prestarlelo",
+          "prestarselo",
+          "prestárlelo"
+        ],
+        "answer": 0,
+        "why": "le + lo, se lo olur; mastara bitişince vurgu işareti gerekir: prestárselo."
+      },
+      {
+        "prompt": "La sopa ___ preparo yo.",
+        "options": [
+          "lo",
+          "la",
+          "le",
+          "se"
+        ],
+        "answer": 1,
+        "why": "Öne alınan nesne zamirle tekrarlanır: la sopa la preparo yo."
+      },
+      {
+        "prompt": "Hangisi doğrudur?",
+        "options": [
+          "La dije la verdad a Ana.",
+          "Le dije la verdad a Ana.",
+          "Lo dije la verdad a Ana.",
+          "Se dije la verdad a Ana."
+        ],
+        "answer": 1,
+        "why": "Dolaylı nesne her zaman le'dir; la kullanmak laísmo hatasıdır."
+      },
+      {
+        "prompt": "Al camarero se le ___ dos platos. (caer)",
+        "options": [
+          "cayó",
+          "cayeron",
+          "cayó a",
+          "cayera"
+        ],
+        "answer": 1,
+        "why": "Kazara se yapısında fiil düşen şeye uyar: dos platos → cayeron."
+      }
+    ],
+    "basics_es_adverbios_mente": [
+      {
+        "prompt": "lento → ___",
+        "options": [
+          "lentomente",
+          "lentamente",
+          "lentemente",
+          "lento mente"
+        ],
+        "answer": 1,
+        "why": "-mente sıfatın dişil biçimine eklenir: lenta → lentamente."
+      },
+      {
+        "prompt": "El jugador lo hizo muy ___ . (malo)",
+        "options": [
+          "malo",
+          "mal",
+          "malmente",
+          "mala"
+        ],
+        "answer": 1,
+        "why": "malo sıfatının zarfı mal'dır."
+      },
+      {
+        "prompt": "___ , nadie resultó herido en el accidente.",
+        "options": [
+          "Afortunado",
+          "Afortunadamente",
+          "Afortunada",
+          "Fortuna"
+        ],
+        "answer": 1,
+        "why": "Cümle zarfı başta ve virgülle gelir: afortunadamente."
+      },
+      {
+        "prompt": "Ella trabaja muy ___ . (sıfat zarf olarak)",
+        "options": [
+          "duro",
+          "dura",
+          "duros",
+          "duras"
+        ],
+        "answer": 0,
+        "why": "Bazı sıfatlar değişmeden zarf olur ve uyum yapmaz: trabaja duro."
+      },
+      {
+        "prompt": "cortés → ___",
+        "options": [
+          "cortesmente",
+          "cortésmente",
+          "cortesamente",
+          "cortésamente"
+        ],
+        "answer": 1,
+        "why": "Sıfatın vurgu işareti -mente'de de kalır: cortésmente."
+      }
+    ],
+    "basics_es_imperfecto_subjuntivo": [
+      {
+        "prompt": "Me gustaría que ___ a cenar el sábado. (tú - venir)",
+        "options": [
+          "vengas",
+          "vinieras",
+          "vendrías",
+          "venías"
+        ],
+        "answer": 1,
+        "why": "Ana fiil condicional olunca yan cümle imperfecto de subjuntivo olur."
+      },
+      {
+        "prompt": "hacer fiilinin ellos için imperfecto de subjuntivo biçimi hangisidir?",
+        "options": [
+          "hacieran",
+          "hicieran",
+          "harían",
+          "hicieron"
+        ],
+        "answer": 1,
+        "why": "indefinido hicieron'dan -ron atılır, -ran eklenir: hicieran."
+      },
+      {
+        "prompt": "Ojalá ___ aquí conmigo ahora. (tú - estar)",
+        "options": [
+          "estás",
+          "estuvieras",
+          "estarías",
+          "estarás"
+        ],
+        "answer": 1,
+        "why": "Şimdiye ait gerçekleşmesi zor dilek ojalá + imperfecto ile söylenir."
+      },
+      {
+        "prompt": "Le pedí que no ___ tan rápido. (conducir)",
+        "options": [
+          "conduzca",
+          "condujera",
+          "conducía",
+          "conduciría"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki rica (pedí que) imperfecto de subjuntivo ister: condujera."
+      },
+      {
+        "prompt": "Si ___ más tiempo, leería más libros. (tener, yo)",
+        "options": [
+          "tengo",
+          "tuviera",
+          "tendría",
+          "tenga"
+        ],
+        "answer": 1,
+        "why": "Şimdiki varsayım: si + imperfecto de subjuntivo."
+      }
+    ],
+    "basics_es_finales_concesivas": [
+      {
+        "prompt": "Trabajo mucho ___ mis hijos tengan un futuro mejor.",
+        "options": [
+          "para",
+          "para que",
+          "aunque",
+          "a pesar de"
+        ],
+        "answer": 1,
+        "why": "Özneler farklı olduğu için para que + subjuntivo kullanılır."
+      },
+      {
+        "prompt": "Aunque ___ cansado, terminé el trabajo. (gerçek, bilinen durum)",
+        "options": [
+          "esté",
+          "estaba",
+          "estaría",
+          "estuviera"
+        ],
+        "answer": 1,
+        "why": "Gerçek ve bilinen engel aunque + indicativo ile söylenir."
+      },
+      {
+        "prompt": "Vengo ___ me devuelvas el libro.",
+        "options": [
+          "a que",
+          "para",
+          "aunque",
+          "a pesar de"
+        ],
+        "answer": 0,
+        "why": "Hareket fiilleriyle amaç a que + subjuntivo ile de söylenir."
+      },
+      {
+        "prompt": "A pesar ___ la lluvia, el partido se jugó.",
+        "options": [
+          "que",
+          "de",
+          "a",
+          "con"
+        ],
+        "answer": 1,
+        "why": "İsimle taviz a pesar de ile kurulur."
+      },
+      {
+        "prompt": "Por mucho que ___ , no lo convencerás. (ısrar etsen de)",
+        "options": [
+          "insistes",
+          "insistas",
+          "insististe",
+          "insistirás"
+        ],
+        "answer": 1,
+        "why": "Olasılık bildiren por mucho que subjuntivo ister."
+      }
+    ],
+    "basics_es_subjuntivo_compuesto": [
+      {
+        "prompt": "No creo que Pedro ___ ya. (llegar)",
+        "options": [
+          "ha llegado",
+          "haya llegado",
+          "hubiera llegado",
+          "llegará"
+        ],
+        "answer": 1,
+        "why": "Ana fiil şimdiki zamandayken önceden bitmiş iş: haya + ortaç."
+      },
+      {
+        "prompt": "Me alegró mucho que ___ a mi boda. (tú - venir)",
+        "options": [
+          "hayas venido",
+          "hubieras venido",
+          "has venido",
+          "vendrías"
+        ],
+        "answer": 1,
+        "why": "Ana fiil geçmişteyken ondan önce olan iş pluscuamperfecto de subjuntivo ile söylenir."
+      },
+      {
+        "prompt": "Si hubiera estudiado medicina, ahora ___ médico.",
+        "options": [
+          "habría sido",
+          "sería",
+          "sea",
+          "hubiera"
+        ],
+        "answer": 1,
+        "why": "Karma şart: geçmiş neden (hubiera estudiado), bugünkü sonuç (ahora sería)."
+      },
+      {
+        "prompt": "Ojalá no ___ dicho aquellas palabras ayer; ahora me arrepiento. (yo)",
+        "options": [
+          "haya",
+          "hubiera",
+          "había",
+          "habría"
+        ],
+        "answer": 1,
+        "why": "Geçmişe dönük pişmanlık ojalá + hubiera + ortaç ile söylenir."
+      },
+      {
+        "prompt": "Cuando ___ terminado, avísame. (tú)",
+        "options": [
+          "has",
+          "hayas",
+          "hubieras",
+          "habrás"
+        ],
+        "answer": 1,
+        "why": "Geleceğe bakan cuando'dan sonra bitmiş olacak iş: haya + ortaç."
+      }
+    ],
+    "basics_es_marcadores": [
+      {
+        "prompt": "___ , analizaremos los datos; en segundo lugar, las propuestas.",
+        "options": [
+          "En primer lugar",
+          "Por último",
+          "En cambio",
+          "Sin embargo"
+        ],
+        "answer": 0,
+        "why": "Sıralama en primer lugar … en segundo lugar ile kurulur."
+      },
+      {
+        "prompt": "El producto es caro; ___ , su calidad justifica el precio.",
+        "options": [
+          "no obstante",
+          "por consiguiente",
+          "es decir",
+          "en primer lugar"
+        ],
+        "answer": 0,
+        "why": "Beklentiyi kıran karşıtlık no obstante (yine de) ile verilir."
+      },
+      {
+        "prompt": "___ el plan es ambicioso, carece de financiación.",
+        "options": [
+          "Si bien",
+          "Por lo tanto",
+          "Es decir",
+          "Asimismo"
+        ],
+        "answer": 0,
+        "why": "si bien « her ne kadar » anlamında taviz bildirir."
+      },
+      {
+        "prompt": "Hubo muchos errores; ___ , el proyecto fracasó.",
+        "options": [
+          "en consecuencia",
+          "no obstante",
+          "es más",
+          "por un lado"
+        ],
+        "answer": 0,
+        "why": "Sonucu en consecuencia (bunun sonucunda) bağlar."
+      },
+      {
+        "prompt": "Konuşma dilinde kullanılıp resmî yazıda kaçınılan « yani » hangisidir?",
+        "options": [
+          "o sea",
+          "es decir",
+          "dicho de otro modo",
+          "esto es"
+        ],
+        "answer": 0,
+        "why": "o sea konuşma dilidir; resmî yazıda es decir tercih edilir."
+      }
+    ],
+    "basics_es_subjuntivo_relativo": [
+      {
+        "prompt": "Tengo un amigo que ___ japonés.",
+        "options": [
+          "hable",
+          "habla",
+          "hablara",
+          "hablará"
+        ],
+        "answer": 1,
+        "why": "Var olduğu bilinen birini niteleyen cümle indicativo alır."
+      },
+      {
+        "prompt": "¿Conoces algún hotel que no ___ caro?",
+        "options": [
+          "es",
+          "sea",
+          "fue",
+          "será"
+        ],
+        "answer": 1,
+        "why": "Varlığı sorgulanan şeyi niteleyen cümle subjuntivo alır."
+      },
+      {
+        "prompt": "Necesitamos un coche que ___ poco. (gastar)",
+        "options": [
+          "gasta",
+          "gaste",
+          "gastó",
+          "gastaba"
+        ],
+        "answer": 1,
+        "why": "Aranan, henüz belli olmayan bir şeyi niteleyen cümle subjuntivo alır."
+      },
+      {
+        "prompt": "Buscábamos una casa que ___ jardín.",
+        "options": [
+          "tiene",
+          "tuviera",
+          "tenga",
+          "tendrá"
+        ],
+        "answer": 1,
+        "why": "Ana fiil geçmişte olunca imperfecto de subjuntivo gelir."
+      },
+      {
+        "prompt": "No hay nadie en mi clase que ___ ruso.",
+        "options": [
+          "habla",
+          "hable",
+          "hablaba",
+          "hablará"
+        ],
+        "answer": 1,
+        "why": "Olumsuz ya da yok sayılan öncülden sonra her zaman subjuntivo gelir."
+      }
+    ],
+    "basics_es_verbos_cambio": [
+      {
+        "prompt": "Antes del examen siempre me ___ nervioso.",
+        "options": [
+          "pongo",
+          "hago",
+          "vuelvo",
+          "convierto"
+        ],
+        "answer": 0,
+        "why": "Ani ve geçici ruh hâli değişimi ponerse ile söylenir."
+      },
+      {
+        "prompt": "La oruga se ___ en mariposa.",
+        "options": [
+          "puso",
+          "convirtió",
+          "hizo",
+          "volvió"
+        ],
+        "answer": 1,
+        "why": "Tam dönüşüm isimle convertirse en ile söylenir."
+      },
+      {
+        "prompt": "Después de años de trabajo, se ___ rico con su empresa.",
+        "options": [
+          "puso",
+          "hizo",
+          "quedó",
+          "convirtió"
+        ],
+        "answer": 1,
+        "why": "Emekle ve zamanla gelen değişim hacerse ile söylenir."
+      },
+      {
+        "prompt": "Con los años se ha ___ muy desconfiado.",
+        "options": [
+          "puesto",
+          "vuelto",
+          "quedado",
+          "convertido"
+        ],
+        "answer": 1,
+        "why": "Köklü karakter değişimi volverse ile söylenir."
+      },
+      {
+        "prompt": "Se ___ sin dinero a mitad del viaje.",
+        "options": [
+          "puso",
+          "quedó",
+          "hizo",
+          "volvió"
+        ],
+        "answer": 1,
+        "why": "Bir olaydan sonra kalınan durum (kayıp) quedarse ile söylenir."
+      }
+    ],
+    "basics_es_temporales": [
+      {
+        "prompt": "Cuando ___ a casa, siempre me ducho. (alışkanlık)",
+        "options": [
+          "llegue",
+          "llego",
+          "llegaré",
+          "llegara"
+        ],
+        "answer": 1,
+        "why": "Alışkanlıkta zaman bağlacı indicativo alır."
+      },
+      {
+        "prompt": "Avísame en cuanto ___ los resultados.",
+        "options": [
+          "sabes",
+          "sepas",
+          "sabrás",
+          "supieras"
+        ],
+        "answer": 1,
+        "why": "Geleceğe bakan en cuanto subjuntivo ister."
+      },
+      {
+        "prompt": "Esperaremos aquí hasta que ___ el autobús.",
+        "options": [
+          "viene",
+          "venga",
+          "vendrá",
+          "vino"
+        ],
+        "answer": 1,
+        "why": "Gelecekteki olay için hasta que + subjuntivo kullanılır."
+      },
+      {
+        "prompt": "¿Cuándo ___ tus padres de su viaje?",
+        "options": [
+          "vuelvan",
+          "volverán",
+          "volvieran",
+          "volviesen"
+        ],
+        "answer": 1,
+        "why": "Soru sözcüğü ¿cuándo? bağlaç kuralına girmez: indicativo ya da futuro alır."
+      },
+      {
+        "prompt": "Mientras ___ en esta casa, harás tu cama cada día. (şart)",
+        "options": [
+          "vives",
+          "vivas",
+          "vivirás",
+          "viviste"
+        ],
+        "answer": 1,
+        "why": "mientras + subjuntivo « -dığı sürece » anlamında bir şart bildirir."
+      }
+    ],
+    "basics_es_lo_neutro": [
+      {
+        "prompt": "___ difícil es empezar.",
+        "options": [
+          "El",
+          "Lo",
+          "La",
+          "Los"
+        ],
+        "answer": 1,
+        "why": "lo + eril tekil sıfat, bir şeyin niteliğini anlatır: lo difícil (zor olan)."
+      },
+      {
+        "prompt": "___ de ayer fue un malentendido.",
+        "options": [
+          "El",
+          "Lo",
+          "La",
+          "Que"
+        ],
+        "answer": 1,
+        "why": "lo de + isim / zaman « şu … meselesi » demektir."
+      },
+      {
+        "prompt": "No sabes ___ rápido que corre.",
+        "options": [
+          "lo",
+          "el",
+          "tan",
+          "qué"
+        ],
+        "answer": 0,
+        "why": "lo + sıfat / zarf + que « ne kadar … olduğu » demektir."
+      },
+      {
+        "prompt": "___ ocurrido ayer nos sorprendió a todos.",
+        "options": [
+          "El",
+          "Lo",
+          "La",
+          "Que"
+        ],
+        "answer": 1,
+        "why": "lo + ortaç olup biteni anlatır: lo ocurrido."
+      },
+      {
+        "prompt": "Me encanta ___ que cocina tu madre.",
+        "options": [
+          "lo",
+          "la",
+          "el",
+          "que"
+        ],
+        "answer": 0,
+        "why": "lo que + fiil « -dığı şey » demektir."
+      }
+    ],
+    "basics_es_pasiva_ser_estar": [
+      {
+        "prompt": "Los ladrones ___ detenidos por la policía anoche.",
+        "options": [
+          "estuvieron",
+          "fueron",
+          "están",
+          "son"
+        ],
+        "answer": 1,
+        "why": "Eylemin kendisi (ve yapan, por la policía) ser'li edilgenle söylenir."
+      },
+      {
+        "prompt": "La ventana ___ rota desde ayer.",
+        "options": [
+          "fue",
+          "está",
+          "es",
+          "era"
+        ],
+        "answer": 1,
+        "why": "Eylemin sonucu olan durum estar + ortaç ile söylenir."
+      },
+      {
+        "prompt": "El problema ya ___ resuelto; no te preocupes.",
+        "options": [
+          "es",
+          "está",
+          "era",
+          "será"
+        ],
+        "answer": 1,
+        "why": "Şimdiki sonuç durumu estar + ortaç: ya está resuelto."
+      },
+      {
+        "prompt": "Las entradas ya ___ vendidas; no quedan.",
+        "options": [
+          "estuvieron",
+          "están",
+          "son",
+          "serán"
+        ],
+        "answer": 1,
+        "why": "Sonuç durumu (tükenmiş) estar ile söylenir."
+      },
+      {
+        "prompt": "El puente ___ construido por los romanos.",
+        "options": [
+          "está",
+          "fue",
+          "estuvo",
+          "es"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki tek bir olay ve yapanı ser'in indefinido'su ile söylenir."
+      }
+    ],
+    "basics_es_probabilidad": [
+      {
+        "prompt": "« Kapıdaki kim acaba? » hangisi?",
+        "options": [
+          "¿Quién será?",
+          "¿Quién fue?",
+          "¿Quién sería?",
+          "¿Quién sea?"
+        ],
+        "answer": 0,
+        "why": "Şu an hakkında merak ve tahmin futuro ile söylenir."
+      },
+      {
+        "prompt": "No contesta al teléfono; ___ el móvil en casa. (tahmin)",
+        "options": [
+          "habrá olvidado",
+          "olvidará",
+          "habría olvidado",
+          "olvidaría"
+        ],
+        "answer": 0,
+        "why": "Az önce olmuş olabilecek şey hakkında tahmin futuro compuesto ile söylenir."
+      },
+      {
+        "prompt": "Cuando la conocí, ___ unos veinte años. (tahmin)",
+        "options": [
+          "tendrá",
+          "tendría",
+          "tiene",
+          "tenga"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki bir an hakkında tahmin condicional ile söylenir."
+      },
+      {
+        "prompt": "Hay luz en su casa; ___ estar en casa. (tahmin)",
+        "options": [
+          "debe de",
+          "debe que",
+          "tiene de",
+          "ha de que"
+        ],
+        "answer": 0,
+        "why": "Tahmin deber de + mastar ile söylenir."
+      },
+      {
+        "prompt": "Cuando llegué, ellos ya ___ cenado, porque la mesa estaba limpia. (tahmin)",
+        "options": [
+          "habrían",
+          "habrán",
+          "han",
+          "hubieran"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki bir andan önce olmuş şey hakkında tahmin condicional compuesto ile söylenir."
+      }
+    ],
+    "basics_es_registro_formal": [
+      {
+        "prompt": "Hangisi resmî bir e-postanın kapanışıdır?",
+        "options": [
+          "Un abrazo,",
+          "Atentamente,",
+          "Besos,",
+          "Chao,"
+        ],
+        "answer": 1,
+        "why": "Resmî yazışma Atentamente, ile kapanır."
+      },
+      {
+        "prompt": "(Ben) Le ___ el documento solicitado.",
+        "options": [
+          "adjunto",
+          "adjunta",
+          "adjuntas",
+          "adjunten"
+        ],
+        "answer": 0,
+        "why": "« Ekte gönderiyorum » le adjunto ile söylenir."
+      },
+      {
+        "prompt": "No dude en ___ en contacto conmigo.",
+        "options": [
+          "ponerse",
+          "ponerte",
+          "poner",
+          "pone"
+        ],
+        "answer": 0,
+        "why": "usted'e yazılırken dönüşlü zamir de 3. kişidir: ponerse."
+      },
+      {
+        "prompt": "usted sözcüğünün kısaltması hangisidir?",
+        "options": [
+          "Ud.",
+          "Us.",
+          "Ust.",
+          "U.D."
+        ],
+        "answer": 0,
+        "why": "usted Ud., ustedes Uds. diye kısaltılır."
+      },
+      {
+        "prompt": "Me dirijo a ___ para solicitar información. (resmî)",
+        "options": [
+          "ti",
+          "usted",
+          "vos",
+          "tú"
+        ],
+        "answer": 1,
+        "why": "Resmî yazışmada baştan sona usted kullanılır."
+      }
+    ],
+    "basics_es_condicion_alternativa": [
+      {
+        "prompt": "No iremos al campo a no ser que ___ el sol.",
+        "options": [
+          "sale",
+          "salga",
+          "saldrá",
+          "saliera"
+        ],
+        "answer": 1,
+        "why": "a no ser que (« -medikçe ») subjuntivo ister."
+      },
+      {
+        "prompt": "___ ahora, llegaremos a tiempo. (si salimos ahora)",
+        "options": [
+          "Saliendo",
+          "Salido",
+          "Salir",
+          "Salimos"
+        ],
+        "answer": 0,
+        "why": "Gerundio da şart bildirebilir: saliendo ahora = si salimos ahora."
+      },
+      {
+        "prompt": "Te presto el libro con tal de que me lo ___ pronto.",
+        "options": [
+          "devuelves",
+          "devuelvas",
+          "devolverás",
+          "devolvías"
+        ],
+        "answer": 1,
+        "why": "con tal de que (« -mek şartıyla ») subjuntivo ister."
+      },
+      {
+        "prompt": "En caso ___ incendio, no use el ascensor.",
+        "options": [
+          "que",
+          "de",
+          "con",
+          "a"
+        ],
+        "answer": 1,
+        "why": "Kısa biçim: en caso de + isim."
+      },
+      {
+        "prompt": "Te ayudaría siempre y cuando me lo ___ . (pedir)",
+        "options": [
+          "pides",
+          "pidieras",
+          "pidas",
+          "pedirás"
+        ],
+        "answer": 1,
+        "why": "Ana cümle condicional'de olunca imperfecto de subjuntivo gelir."
+      }
+    ],
+    "basics_es_oraciones_hendidas": [
+      {
+        "prompt": "Fue en Granada ___ nos conocimos.",
+        "options": [
+          "donde",
+          "cuando",
+          "quien",
+          "como"
+        ],
+        "answer": 0,
+        "why": "Yer vurgulanınca ser + yer + donde kullanılır."
+      },
+      {
+        "prompt": "Fue entonces ___ comprendí la verdad.",
+        "options": [
+          "donde",
+          "cuando",
+          "quien",
+          "como"
+        ],
+        "answer": 1,
+        "why": "Zaman vurgulanınca ser + zaman + cuando kullanılır."
+      },
+      {
+        "prompt": "Es a ti ___ quiero ver.",
+        "options": [
+          "que",
+          "a quien",
+          "quien",
+          "el que"
+        ],
+        "answer": 1,
+        "why": "Vurgulanan öğe edatlıysa edat ilgi zamirinin önünde de tekrarlanır: a ti a quien."
+      },
+      {
+        "prompt": "___ que más me gusta es pasear por la playa.",
+        "options": [
+          "Lo",
+          "El",
+          "La",
+          "Los"
+        ],
+        "answer": 0,
+        "why": "Bir eylemi vurgulamak için lo que + fiil + ser kullanılır."
+      },
+      {
+        "prompt": "No fui yo ___ rompió el jarrón.",
+        "options": [
+          "que",
+          "quien",
+          "cuyo",
+          "donde"
+        ],
+        "answer": 1,
+        "why": "Kişiyi vurgulamak için ser + kişi + quien kullanılır."
+      }
+    ],
+    "basics_es_a_personal": [
+      {
+        "prompt": "Tengo ___ tres primos en Argentina.",
+        "options": [
+          "a",
+          "(hiçbir şey gelmez)",
+          "de",
+          "con"
+        ],
+        "answer": 1,
+        "why": "tener'den sonra insan gelse de a kullanılmaz."
+      },
+      {
+        "prompt": "Visitamos ___ el museo del Prado.",
+        "options": [
+          "a",
+          "(hiçbir şey gelmez)",
+          "al",
+          "de"
+        ],
+        "answer": 1,
+        "why": "Nesne bir yer olduğunda a kullanılmaz."
+      },
+      {
+        "prompt": "¿___ quién buscas?",
+        "options": [
+          "A",
+          "De",
+          "Con",
+          "En"
+        ],
+        "answer": 0,
+        "why": "Kişi soran quién nesne olunca a alır: ¿a quién buscas?"
+      },
+      {
+        "prompt": "Espero ___ mi novia en la estación.",
+        "options": [
+          "a",
+          "(hiçbir şey gelmez)",
+          "de",
+          "por"
+        ],
+        "answer": 0,
+        "why": "Belirli bir insan doğrudan nesne olunca a zorunludur."
+      },
+      {
+        "prompt": "No veo ___ nadie en la calle.",
+        "options": [
+          "a",
+          "(hiçbir şey gelmez)",
+          "de",
+          "en"
+        ],
+        "answer": 0,
+        "why": "İnsan kasteden nadie nesne olunca a alır."
+      }
+    ],
+    "basics_es_gustar_familia": [
+      {
+        "prompt": "A mi abuelo le ___ las rodillas cuando llueve. (doler)",
+        "options": [
+          "duele",
+          "duelen",
+          "dolen",
+          "duelo"
+        ],
+        "answer": 1,
+        "why": "Ağrıyan şey çoğul (las rodillas) olduğu için duelen."
+      },
+      {
+        "prompt": "A Ana le ___ mucho hablar en público. (costar)",
+        "options": [
+          "cuesta",
+          "cuestan",
+          "costa",
+          "cuestas"
+        ],
+        "answer": 0,
+        "why": "costar « zor gelmek » demektir; mastar tekil sayılır: cuesta."
+      },
+      {
+        "prompt": "¿Os ___ bien si quedamos a las ocho? (parecer)",
+        "options": [
+          "parece",
+          "parecen",
+          "parecéis",
+          "parecemos"
+        ],
+        "answer": 0,
+        "why": "parecer gustar gibi kurulur; özne (si quedamos…) tekildir: os parece."
+      },
+      {
+        "prompt": "No me ___ esperar; tengo tiempo. (importar)",
+        "options": [
+          "importo",
+          "importa",
+          "importan",
+          "importas"
+        ],
+        "answer": 1,
+        "why": "importar gustar gibi kurulur; mastar tekil sayılır: no me importa."
+      },
+      {
+        "prompt": "A los niños les ___ los dibujos animados. (encantar)",
+        "options": [
+          "encanta",
+          "encantan",
+          "encantamos",
+          "encantas"
+        ],
+        "answer": 1,
+        "why": "Sevilen şey çoğul olduğu için encantan."
+      }
+    ],
+    "basics_es_pronombres_dobles_se_lo": [
+      {
+        "prompt": "¿Les has dado los regalos a los niños? — Sí, ya ___ he dado.",
+        "options": [
+          "les los",
+          "se los",
+          "se las",
+          "los les"
+        ],
+        "answer": 1,
+        "why": "les + los yan yana gelince se los olur; regalos eril çoğul."
+      },
+      {
+        "prompt": "La carta es para mi madre; voy a ___ mañana. (enviar)",
+        "options": [
+          "enviársela",
+          "enviarlela",
+          "enviarsela",
+          "enviárlela"
+        ],
+        "answer": 0,
+        "why": "le + la, se la olur ve mastara bitişir; vurgu işareti gerekir."
+      },
+      {
+        "prompt": "¡No ___ digas a tu hermano!",
+        "options": [
+          "le lo",
+          "se lo",
+          "lo le",
+          "se le"
+        ],
+        "answer": 1,
+        "why": "Olumsuz emirde zamirler önde ve ayrı yazılır; le lo yerine se lo."
+      },
+      {
+        "prompt": "¿Me compras un helado? — Sí, ahora ___ compro.",
+        "options": [
+          "se lo",
+          "te lo",
+          "me lo",
+          "lo te"
+        ],
+        "answer": 1,
+        "why": "Sana (te) + onu (lo): önce dolaylı, sonra doğrudan."
+      },
+      {
+        "prompt": "___ estoy explicando ahora mismo. (a ellos, la lección)",
+        "options": [
+          "Se la",
+          "Les la",
+          "La se",
+          "Se las"
+        ],
+        "answer": 0,
+        "why": "les + la, se la olur; lección dişil tekil."
+      }
+    ],
+    "basics_es_subjuntivo_deseo_sentimiento": [
+      {
+        "prompt": "Siento que no ___ venir a la fiesta. (tú - poder)",
+        "options": [
+          "puedes",
+          "puedas",
+          "podrás",
+          "podías"
+        ],
+        "answer": 1,
+        "why": "Duygu bildiren siento que subjuntivo ister."
+      },
+      {
+        "prompt": "Pienso que el examen ___ fácil.",
+        "options": [
+          "sea",
+          "será",
+          "fuera",
+          "sean"
+        ],
+        "answer": 1,
+        "why": "Olumlu düşünce fiili (pienso que) indicativo ister."
+      },
+      {
+        "prompt": "Es importante que ___ agua todos los días. (tú - beber)",
+        "options": [
+          "bebes",
+          "bebas",
+          "beber",
+          "beberás"
+        ],
+        "answer": 1,
+        "why": "Değerlendirme bildiren es importante que subjuntivo ister."
+      },
+      {
+        "prompt": "Prefiero ___ en casa esta noche. (yo - quedarse)",
+        "options": [
+          "que me quede",
+          "quedarme",
+          "me quedo",
+          "quedándome"
+        ],
+        "answer": 1,
+        "why": "Özne aynı olunca que yerine mastar gelir."
+      },
+      {
+        "prompt": "No estoy seguro de que ___ verdad.",
+        "options": [
+          "es",
+          "sea",
+          "será",
+          "era"
+        ],
+        "answer": 1,
+        "why": "Olumsuz kanaat (no estoy seguro de que) subjuntivo ister."
+      }
+    ],
+    "basics_es_para_que_subjuntivo": [
+      {
+        "prompt": "Abro la ventana para que ___ aire fresco.",
+        "options": [
+          "entra",
+          "entre",
+          "entrar",
+          "entrará"
+        ],
+        "answer": 1,
+        "why": "Özneler farklı olduğu için para que + subjuntivo."
+      },
+      {
+        "prompt": "Ahorro dinero para ___ de vacaciones. (yo)",
+        "options": [
+          "que vaya",
+          "ir",
+          "voy",
+          "vaya"
+        ],
+        "answer": 1,
+        "why": "Özneler aynı olduğu için para + mastar."
+      },
+      {
+        "prompt": "Les compro libros para que ___ más.",
+        "options": [
+          "leen",
+          "lean",
+          "leyeran",
+          "leer"
+        ],
+        "answer": 1,
+        "why": "Ana fiil presente olduğu için presente de subjuntivo gelir."
+      },
+      {
+        "prompt": "Te escribo para ___ las gracias.",
+        "options": [
+          "que te dé",
+          "darte",
+          "dar a ti",
+          "das"
+        ],
+        "answer": 1,
+        "why": "Özneler aynı (ben); zamir mastara bitişir: darte."
+      },
+      {
+        "prompt": "El guía habló alto para que todos lo ___ . (oír)",
+        "options": [
+          "oyen",
+          "oyeran",
+          "oirán",
+          "oían"
+        ],
+        "answer": 1,
+        "why": "Ana fiil geçmişte (habló) olduğu için imperfecto de subjuntivo."
+      }
+    ],
+    "basics_es_perifrasis_inicio_fin": [
+      {
+        "prompt": "Después del almuerzo, me ___ a estudiar.",
+        "options": [
+          "puse",
+          "dejé",
+          "acabé",
+          "seguí"
+        ],
+        "answer": 0,
+        "why": "ponerse a + mastar kararlı bir başlangıcı anlatır."
+      },
+      {
+        "prompt": "Mi abuela ___ de comer azúcar por su salud.",
+        "options": [
+          "dejó",
+          "siguió",
+          "volvió",
+          "se puso"
+        ],
+        "answer": 0,
+        "why": "dejar de + mastar bir alışkanlığı bırakmaktır."
+      },
+      {
+        "prompt": "No me gustó el libro, pero lo ___ a leer y ahora me encanta.",
+        "options": [
+          "dejé",
+          "volví",
+          "acabé",
+          "puse"
+        ],
+        "answer": 1,
+        "why": "volver a + mastar « yeniden yapmak » demektir."
+      },
+      {
+        "prompt": "Los niños ___ jugando en el parque, aunque ya es de noche.",
+        "options": [
+          "siguen",
+          "dejan",
+          "acaban",
+          "vuelven"
+        ],
+        "answer": 0,
+        "why": "seguir + gerundio « hâlâ … -mek » demektir."
+      },
+      {
+        "prompt": "La película ___ de empezar; aún no te has perdido nada.",
+        "options": [
+          "acaba",
+          "deja",
+          "sigue",
+          "vuelve"
+        ],
+        "answer": 0,
+        "why": "acabar de + mastar « az önce » demektir."
+      }
+    ],
+    "basics_es_aunque_indicativo_subjuntivo": [
+      {
+        "prompt": "Aunque ___ mucho dinero, vive en un piso pequeño. (bu bilgiyi karşındakine yeni veriyorsun)",
+        "options": [
+          "tenga",
+          "tiene",
+          "tuviera",
+          "tendrá"
+        ],
+        "answer": 1,
+        "why": "Gerçek ve yeni bilgi olarak verilen engel aunque + indicativo ile söylenir."
+      },
+      {
+        "prompt": "Aunque ___ el premio gordo, no dejaría mi trabajo. (hayalî)",
+        "options": [
+          "gano",
+          "ganara",
+          "gane",
+          "ganaré"
+        ],
+        "answer": 1,
+        "why": "Gerçek dışı varsayım aunque + imperfecto de subjuntivo ile söylenir."
+      },
+      {
+        "prompt": "Aunque mañana ___ , iremos al partido. (yağabilir)",
+        "options": [
+          "llueve",
+          "llueva",
+          "llovió",
+          "llovería"
+        ],
+        "answer": 1,
+        "why": "Henüz gerçekleşmemiş olasılık aunque + subjuntivo ile söylenir."
+      },
+      {
+        "prompt": "—Es muy caro. —Aunque ___ caro, lo compraré.",
+        "options": [
+          "es",
+          "sea",
+          "fue",
+          "será"
+        ],
+        "answer": 1,
+        "why": "Karşıdakinin söylediği gerçeği önemsemediğini söylerken subjuntivo kullanılır."
+      },
+      {
+        "prompt": "Aunque ___ la verdad, nadie le creyó. (doğruyu söyledi; gerçek olgu)",
+        "options": [
+          "diga",
+          "dijo",
+          "dijera",
+          "dirá"
+        ],
+        "answer": 1,
+        "why": "Gerçekleşmiş olgu aunque + indicativo ile söylenir."
+      }
+    ],
+    "basics_es_si_condicionales_subjuntivo": [
+      {
+        "prompt": "Si ___ dinero mañana, te lo prestaré.",
+        "options": [
+          "tenga",
+          "tengo",
+          "tendría",
+          "tendré"
+        ],
+        "answer": 1,
+        "why": "Gerçek / olası şart: si + presente de indicativo → futuro."
+      },
+      {
+        "prompt": "Si ___ alas, volaría. (tener, yo)",
+        "options": [
+          "tengo",
+          "tuviera",
+          "tendría",
+          "tenga"
+        ],
+        "answer": 1,
+        "why": "Şimdiki zamanda hayali şart: si + imperfecto de subjuntivo → condicional."
+      },
+      {
+        "prompt": "Si hubiera salido antes, ___ el tren.",
+        "options": [
+          "cogería",
+          "habría cogido",
+          "cogí",
+          "cogeré"
+        ],
+        "answer": 1,
+        "why": "Geçmişte kaçırılmış fırsat: si + hubiera + ortaç → condicional compuesto."
+      },
+      {
+        "prompt": "Hangisi doğrudur?",
+        "options": [
+          "Si tendría tiempo, iría.",
+          "Si tuviera tiempo, iría.",
+          "Si tenga tiempo, iría.",
+          "Si tuviera tiempo, iré."
+        ],
+        "answer": 1,
+        "why": "si'den sonra condicional ve presente de subjuntivo gelmez; tuviera ile ana cümle condicional olur."
+      },
+      {
+        "prompt": "Si me ___ antes, ahora no estaríamos perdidos. (tú - escuchar)",
+        "options": [
+          "escucharas",
+          "hubieras escuchado",
+          "habrías escuchado",
+          "escuchaste"
+        ],
+        "answer": 1,
+        "why": "Karma şart: geçmiş neden (hubieras escuchado), şimdiki sonuç (estaríamos)."
+      }
+    ],
+    "basics_es_que_quien_el_que": [
+      {
+        "prompt": "Mi hermana, ___ vive en Roma, viene mañana.",
+        "options": [
+          "que",
+          "cuya",
+          "lo que",
+          "donde"
+        ],
+        "answer": 0,
+        "why": "Edatsız ilgi cümlesinde en yaygın zamir que'dur."
+      },
+      {
+        "prompt": "Los amigos para ___ cociné estaban encantados.",
+        "options": [
+          "que",
+          "quienes",
+          "cuyos",
+          "lo que"
+        ],
+        "answer": 1,
+        "why": "Edattan sonra insanlar için quien / quienes kullanılır."
+      },
+      {
+        "prompt": "Llegó tarde, ___ me enfadó mucho.",
+        "options": [
+          "lo que",
+          "el que",
+          "quien",
+          "cuyo"
+        ],
+        "answer": 0,
+        "why": "Önceki cümlenin tamamına gönderme yapan lo que'dur."
+      },
+      {
+        "prompt": "La ciudad ___ calles son estrechas es muy antigua.",
+        "options": [
+          "cuyas",
+          "cuyos",
+          "que",
+          "donde"
+        ],
+        "answer": 0,
+        "why": "cuyo arkasındaki isme uyar: calles dişil çoğul → cuyas."
+      },
+      {
+        "prompt": "El bolígrafo con ___ escribo es de mi padre.",
+        "options": [
+          "quien",
+          "el que",
+          "la que",
+          "lo que"
+        ],
+        "answer": 1,
+        "why": "Edattan sonra nesne için el que; bolígrafo eril tekil."
+      }
+    ],
+    "basics_es_futuro_probabilidad": [
+      {
+        "prompt": "—¿Dónde está Luis? —___ en casa. (herhalde)",
+        "options": [
+          "Está",
+          "Estará",
+          "Estaría",
+          "Estuvo"
+        ],
+        "answer": 1,
+        "why": "Şimdiki zamana dair tahmin futuro simple ile söylenir."
+      },
+      {
+        "prompt": "La casa está oscura; los vecinos se ___ ido de vacaciones. (herhalde)",
+        "options": [
+          "habrán",
+          "habrían",
+          "han",
+          "habían"
+        ],
+        "answer": 0,
+        "why": "Yakın geçmişte olmuş olabilecek şeye dair tahmin futuro compuesto ile söylenir."
+      },
+      {
+        "prompt": "Cuando vivía en Madrid, ___ unos veinte años. (o zamanlar herhalde)",
+        "options": [
+          "tendrá",
+          "tendría",
+          "tenía",
+          "tuvo"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki bir duruma dair tahmin condicional ile söylenir."
+      },
+      {
+        "prompt": "« ¿Qué hora será? » sorusunun anlamı nedir?",
+        "options": [
+          "Saat kaç acaba?",
+          "Saat kaçtı?",
+          "Saat kaç olurdu?",
+          "Saat kaçta buluşalım?"
+        ],
+        "answer": 0,
+        "why": "Soruda futuro şimdiki zaman hakkında merak bildirir: « acaba »."
+      },
+      {
+        "prompt": "Cuando llegué a la fiesta, María ya se ___ marchado. (tahmin)",
+        "options": [
+          "habrá",
+          "habría",
+          "había",
+          "ha"
+        ],
+        "answer": 1,
+        "why": "Geçmişteki bir andan önce olmuş şeye dair tahmin condicional compuesto ile söylenir."
+      }
+    ],
+    "basics_es_saber_conocer": [
+      {
+        "prompt": "Mis padres ___ a mi novio desde hace un año.",
+        "options": [
+          "saben",
+          "conocen",
+          "conocemos",
+          "sabemos"
+        ],
+        "answer": 1,
+        "why": "Bir insanı tanımak conocer a ile söylenir."
+      },
+      {
+        "prompt": "¿___ si hay clase mañana?",
+        "options": [
+          "Conoces",
+          "Sabes",
+          "Conoce",
+          "Conozco"
+        ],
+        "answer": 1,
+        "why": "Ardından si ile yan cümle geldiği için saber kullanılır."
+      },
+      {
+        "prompt": "Ayer ___ la noticia por la radio. (öğrendim)",
+        "options": [
+          "conocí",
+          "supe",
+          "sabía",
+          "conocía"
+        ],
+        "answer": 1,
+        "why": "saber indefinido'da « öğrendim, haber aldım » anlamı verir."
+      },
+      {
+        "prompt": "Yo no ___ nadar muy bien.",
+        "options": [
+          "conozco",
+          "sé",
+          "sabo",
+          "conozo"
+        ],
+        "answer": 1,
+        "why": "Bir beceriyi bilmek saber + mastar ile söylenir; yo biçimi sé'dir."
+      },
+      {
+        "prompt": "¿___ a la madre de Laura?",
+        "options": [
+          "Sabes",
+          "Conoces",
+          "Sabe",
+          "Sé"
+        ],
+        "answer": 1,
+        "why": "Kişiyi tanımak conocer a ile söylenir."
+      }
+    ],
+    "basics_es_pedir_preguntar": [
+      {
+        "prompt": "Voy a ___ una pizza para cenar.",
+        "options": [
+          "preguntar",
+          "pedir",
+          "preguntar por",
+          "pido"
+        ],
+        "answer": 1,
+        "why": "Sipariş vermek pedir ile söylenir."
+      },
+      {
+        "prompt": "Le ___ la hora a un señor en la calle. (yo, geçmiş)",
+        "options": [
+          "pedí",
+          "pregunté",
+          "pido",
+          "pidió"
+        ],
+        "answer": 1,
+        "why": "Bilgi almak için soru sormak preguntar'dır."
+      },
+      {
+        "prompt": "Mis hijos siempre me ___ dinero los fines de semana.",
+        "options": [
+          "preguntan",
+          "piden",
+          "pide",
+          "pregunta"
+        ],
+        "answer": 1,
+        "why": "Bir şey istemek pedir ile söylenir; e → i: piden."
+      },
+      {
+        "prompt": "El médico ___ por tu salud.",
+        "options": [
+          "pidió",
+          "preguntó",
+          "pide",
+          "pidiendo"
+        ],
+        "answer": 1,
+        "why": "Birinin hâlini sormak preguntar por ile söylenir."
+      },
+      {
+        "prompt": "Te quiero ___ un favor.",
+        "options": [
+          "preguntar",
+          "pedir",
+          "preguntarte",
+          "pidiendo"
+        ],
+        "answer": 1,
+        "why": "« Rica etmek, iyilik istemek » pedir un favor ile söylenir."
+      }
+    ],
+    "basics_es_llevar_traer_ir_venir": [
+      {
+        "prompt": "Estoy en casa. ¿___ a cenar esta noche? (buraya)",
+        "options": [
+          "Vas",
+          "Vienes",
+          "Voy",
+          "Llevas"
+        ],
+        "answer": 1,
+        "why": "Konuşanın bulunduğu yere hareket venir ile söylenir."
+      },
+      {
+        "prompt": "Cuando vengas a mi casa, ___ tu guitarra.",
+        "options": [
+          "lleva",
+          "trae",
+          "ve",
+          "llevas"
+        ],
+        "answer": 1,
+        "why": "Konuşanın yanına bir şey getirmek traer'dir."
+      },
+      {
+        "prompt": "Voy a la oficina; ¿quieres que ___ estos papeles?",
+        "options": [
+          "traiga",
+          "lleve",
+          "venga",
+          "vaya"
+        ],
+        "answer": 1,
+        "why": "Konuşanın bulunduğu yerden başka yere götürmek llevar'dır."
+      },
+      {
+        "prompt": "—¡Ana, la cena está lista! —¡Ya ___ !",
+        "options": [
+          "vengo",
+          "voy",
+          "traigo",
+          "llevo"
+        ],
+        "answer": 1,
+        "why": "Karşıdakinin yanına gidiyorsun; yön konuşana göredir: ya voy."
+      },
+      {
+        "prompt": "Mañana mi hermano me ___ al aeropuerto en coche.",
+        "options": [
+          "trae",
+          "lleva",
+          "viene",
+          "va"
+        ],
+        "answer": 1,
+        "why": "Konuşanı başka bir yere götürmek llevar ile söylenir."
+      }
+    ],
+    "basics_es_indefinidos_algun_ningun": [
+      {
+        "prompt": "No tengo ___ libro de historia.",
+        "options": [
+          "algún",
+          "ningún",
+          "ninguno",
+          "alguno"
+        ],
+        "answer": 1,
+        "why": "Eril tekil ismin önünde ninguno kısalır: ningún libro."
+      },
+      {
+        "prompt": "¿Tienes alguna pregunta? — No, no tengo ___ .",
+        "options": [
+          "ningún",
+          "ninguna",
+          "ninguno",
+          "alguna"
+        ],
+        "answer": 1,
+        "why": "Zamir olarak tam biçim gelir ve dişil isme (pregunta) uyar: ninguna."
+      },
+      {
+        "prompt": "___ persona puede hacerlo, es muy fácil.",
+        "options": [
+          "Cualquiera",
+          "Cualquier",
+          "Cuales",
+          "Algún"
+        ],
+        "answer": 1,
+        "why": "Tekil ismin önünde cualquiera kısalır: cualquier persona."
+      },
+      {
+        "prompt": "___ amigo mío vive en Lima.",
+        "options": [
+          "Alguno",
+          "Algún",
+          "Alguna",
+          "Algunos"
+        ],
+        "answer": 1,
+        "why": "Eril tekil ismin önünde alguno kısalır: algún amigo."
+      },
+      {
+        "prompt": "Nunca ___ nadie a esta hora.",
+        "options": [
+          "viene",
+          "no viene",
+          "vienen",
+          "no vienen"
+        ],
+        "answer": 0,
+        "why": "Olumsuz sözcük fiilden önce gelince no kullanılmaz; nadie ile fiil tekildir."
+      }
+    ],
+    "basics_es_preposiciones_tiempo_lugar": [
+      {
+        "prompt": "Vamos al trabajo ___ pie.",
+        "options": [
+          "en",
+          "a",
+          "de",
+          "por"
+        ],
+        "answer": 1,
+        "why": "Taşıtlar en alır, yaya ise a pie ile söylenir."
+      },
+      {
+        "prompt": "Nací ___ 1995.",
+        "options": [
+          "a",
+          "en",
+          "de",
+          "desde"
+        ],
+        "answer": 1,
+        "why": "Yıllar en ile söylenir: en 1995."
+      },
+      {
+        "prompt": "La tienda abre ___ las nueve ___ las ocho.",
+        "options": [
+          "de / a",
+          "a / en",
+          "en / a",
+          "desde / a"
+        ],
+        "answer": 0,
+        "why": "Aralık de … a … ya da desde … hasta … ile söylenir; ikisi karıştırılmaz."
+      },
+      {
+        "prompt": "Llegaremos ___ las seis, más o menos.",
+        "options": [
+          "hacia",
+          "hasta",
+          "entre",
+          "desde"
+        ],
+        "answer": 0,
+        "why": "Yaklaşık zaman hacia ile söylenir."
+      },
+      {
+        "prompt": "Estoy ___ casa de mi abuela.",
+        "options": [
+          "a",
+          "en",
+          "de",
+          "hacia"
+        ],
+        "answer": 1,
+        "why": "Bulunulan yer en ile söylenir."
+      }
+    ],
+    "basics_es_adjetivos_cambio_sentido": [
+      {
+        "prompt": "Me he comprado un ___ coche, aunque es de segunda mano.",
+        "options": [
+          "nuevo",
+          "viejo",
+          "grande",
+          "pobre"
+        ],
+        "answer": 0,
+        "why": "İsmin önündeki nuevo « yeni edinilmiş » demektir; fabrikadan yeni değildir."
+      },
+      {
+        "prompt": "¡___ chico! Ha perdido su perro. (zavallı)",
+        "options": [
+          "Pobre",
+          "Pobres",
+          "Grande",
+          "Gran"
+        ],
+        "answer": 0,
+        "why": "İsmin önündeki pobre « zavallı » anlamı verir."
+      },
+      {
+        "prompt": "Es una oportunidad ___ ; no volverá a repetirse. (benzersiz)",
+        "options": [
+          "única",
+          "únicas",
+          "solo",
+          "cierta"
+        ],
+        "answer": 0,
+        "why": "İsmin arkasındaki único « eşsiz, benzersiz » demektir."
+      },
+      {
+        "prompt": "Ella es una ___ mujer, admirada por todos.",
+        "options": [
+          "grande",
+          "gran",
+          "grandes",
+          "granda"
+        ],
+        "answer": 1,
+        "why": "Tekil ismin önünde grande, gran olur ve « büyük, önemli » anlamı verir."
+      },
+      {
+        "prompt": "Necesito ___ información antes de decidir. (bazı)",
+        "options": [
+          "cierta",
+          "cierto",
+          "ciertas",
+          "ciertos"
+        ],
+        "answer": 0,
+        "why": "İsmin önündeki cierto « bazı, belli bir » demektir; información dişil tekil."
+      }
+    ],
+    "basics_es_se_accidental": [
+      {
+        "prompt": "Se me ___ el teléfono al suelo. (caer)",
+        "options": [
+          "cayó",
+          "cayeron",
+          "caí",
+          "cayé"
+        ],
+        "answer": 0,
+        "why": "Fiil düşen şeye uyar: el teléfono tekil → cayó."
+      },
+      {
+        "prompt": "¿Se te ___ las gafas otra vez? (olvidar)",
+        "options": [
+          "olvidó",
+          "olvidaron",
+          "olvidaste",
+          "olvidé"
+        ],
+        "answer": 1,
+        "why": "Fiil unutulan şeye uyar: las gafas çoğul → olvidaron."
+      },
+      {
+        "prompt": "A los niños se ___ rompió la ventana jugando.",
+        "options": [
+          "le",
+          "les",
+          "los",
+          "se"
+        ],
+        "answer": 1,
+        "why": "Kişi zamiri olayı yaşayanlara uyar: a los niños → se les."
+      },
+      {
+        "prompt": "« Se me olvidó tu cumpleaños. » ne demek?",
+        "options": [
+          "Doğum gününü (istemeden) unuttum.",
+          "Doğum gününü bilerek unuttum.",
+          "Doğum günün beni unuttu.",
+          "Doğum gününü hatırladım."
+        ],
+        "answer": 0,
+        "why": "se accidental eylemin istemeden olduğunu anlatır."
+      },
+      {
+        "prompt": "Se nos ___ la gasolina en medio de la carretera. (acabar)",
+        "options": [
+          "acabó",
+          "acabaron",
+          "acabamos",
+          "acabé"
+        ],
+        "answer": 0,
+        "why": "Fiil biten şeye uyar: la gasolina tekil → acabó."
+      }
+    ],
+    "basics_es_como_si_ojala": [
+      {
+        "prompt": "¡Ojalá ___ buen tiempo mañana!",
+        "options": [
+          "hace",
+          "haga",
+          "hará",
+          "hacía"
+        ],
+        "answer": 1,
+        "why": "Mümkün bir dilek ojalá + presente de subjuntivo ile söylenir."
+      },
+      {
+        "prompt": "¡Ojalá ___ aquí ahora! (sen; şu an imkânsız)",
+        "options": [
+          "estás",
+          "estuvieras",
+          "estés",
+          "estarás"
+        ],
+        "answer": 1,
+        "why": "Şu anda gerçekleşmesi imkânsız dilek ojalá + imperfecto de subjuntivo ile söylenir."
+      },
+      {
+        "prompt": "Habla como si lo ___ todo.",
+        "options": [
+          "sabe",
+          "supiera",
+          "sepa",
+          "sabrá"
+        ],
+        "answer": 1,
+        "why": "como si her zaman geçmiş subjuntivo alır: como si lo supiera."
+      },
+      {
+        "prompt": "Ojalá ___ aprobado el examen; todavía no sé la nota.",
+        "options": [
+          "haya",
+          "hubiera",
+          "ha",
+          "había"
+        ],
+        "answer": 0,
+        "why": "Sonucu henüz bilinmeyen yakın geçmiş için ojalá + haya + ortaç."
+      },
+      {
+        "prompt": "Me miró como si ___ un fantasma. (ver)",
+        "options": [
+          "ve",
+          "hubiera visto",
+          "vea",
+          "verá"
+        ],
+        "answer": 1,
+        "why": "como si'den sonra pluscuamperfecto de subjuntivo da gelebilir."
+      }
+    ],
+    "basics_es_participio_gerundio_compuesto": [
+      {
+        "prompt": "Después de ___ la cena, salimos a pasear.",
+        "options": [
+          "haber terminado",
+          "terminada",
+          "habiendo terminando",
+          "terminado"
+        ],
+        "answer": 0,
+        "why": "Edattan sonra bileşik mastar gelir: después de haber terminado."
+      },
+      {
+        "prompt": "Una vez ___ la carta, la envió por correo. (escribir)",
+        "options": [
+          "escrito",
+          "escrita",
+          "escribiendo",
+          "escritas"
+        ],
+        "answer": 1,
+        "why": "Mutlak ortaç nitelediği isme uyar: la carta → escrita."
+      },
+      {
+        "prompt": "Habiendo ___ todo, se fue a dormir. (hacer)",
+        "options": [
+          "hacido",
+          "hecho",
+          "haciendo",
+          "hecha"
+        ],
+        "answer": 1,
+        "why": "hacer'in ortacı düzensizdir: hecho; habiendo ile ortaç değişmez."
+      },
+      {
+        "prompt": "Te agradezco el haberme ___ . (ayudar)",
+        "options": [
+          "ayudado",
+          "ayudada",
+          "ayudando",
+          "ayudar"
+        ],
+        "answer": 0,
+        "why": "haber + ortaç yapısında ortaç değişmez: haberme ayudado."
+      },
+      {
+        "prompt": "___ las votaciones, se anunció el resultado. (bitince)",
+        "options": [
+          "Terminadas",
+          "Terminados",
+          "Terminada",
+          "Terminando"
+        ],
+        "answer": 0,
+        "why": "Mutlak ortaç isimle uyum yapar: las votaciones dişil çoğul → terminadas."
+      }
+    ],
+    "basics_es_conectores_dele": [
+      {
+        "prompt": "___ el tema es complejo, intentaré explicarlo con claridad.",
+        "options": [
+          "Si bien",
+          "Por consiguiente",
+          "Asimismo",
+          "En cambio"
+        ],
+        "answer": 0,
+        "why": "si bien « her ne kadar … olsa da » anlamında taviz bildirir."
+      },
+      {
+        "prompt": "El gobierno subió los impuestos; ___ , el consumo cayó.",
+        "options": [
+          "por consiguiente",
+          "si bien",
+          "a no ser que",
+          "asimismo"
+        ],
+        "answer": 0,
+        "why": "Sonuç por consiguiente (dolayısıyla) ile bağlanır."
+      },
+      {
+        "prompt": "___ los datos son claros, no hace falta más investigación.",
+        "options": [
+          "Dado que",
+          "Si bien",
+          "No obstante",
+          "En cambio"
+        ],
+        "answer": 0,
+        "why": "Bilinen nedeni cümle başında dado que sunar."
+      },
+      {
+        "prompt": "Podremos firmar el acuerdo siempre y cuando ambas partes lo ___ .",
+        "options": [
+          "aceptan",
+          "acepten",
+          "aceptarán",
+          "aceptaron"
+        ],
+        "answer": 1,
+        "why": "siempre y cuando daima subjuntivo ister."
+      },
+      {
+        "prompt": "Las ciudades crecen; el campo, ___ , se despuebla.",
+        "options": [
+          "por el contrario",
+          "asimismo",
+          "por consiguiente",
+          "dado que"
+        ],
+        "answer": 0,
+        "why": "İki zıt durumu por el contrario (aksine) karşılaştırır."
+      }
+    ],
+    "basics_es_pron_vocales_bv": [
+      {
+        "prompt": "“noche” sözcüğü nasıl okunur?",
+        "options": [
+          "noçe",
+          "noşe",
+          "nohe",
+          "noke"
+        ],
+        "answer": 0,
+        "why": "ch Türkçe ç gibi okunur."
+      },
+      {
+        "prompt": "“hijo” sözcüğü hangi sesle başlar?",
+        "options": [
+          "i (h okunmaz)",
+          "h",
+          "y",
+          "j"
+        ],
+        "answer": 0,
+        "why": "h her zaman sessizdir."
+      },
+      {
+        "prompt": "“quiero” (istiyorum) nasıl okunur?",
+        "options": [
+          "kiero",
+          "kuiero",
+          "çiero",
+          "kvero"
+        ],
+        "answer": 0,
+        "why": "qu + i → k; u okunmaz."
+      },
+      {
+        "prompt": "“vino” (şarap) sözcüğündeki v nasıl söylenir?",
+        "options": [
+          "İki dudakla, b gibi",
+          "Alt dudak ve üst dişle",
+          "Hiç okunmaz",
+          "f gibi"
+        ],
+        "answer": 0,
+        "why": "İspanyolcada b ile v aynı sestir, iki dudakla çıkar."
+      },
+      {
+        "prompt": "“guitarra” sözcüğündeki u okunur mu?",
+        "options": [
+          "Hayır: gitarra",
+          "Evet: guitarra",
+          "Yalnızca İspanya'da",
+          "Evet: güitarra"
+        ],
+        "answer": 0,
+        "why": "gu + i'de u okunmaz; okunması gerekseydi ü yazılırdı."
+      }
+    ],
+    "basics_es_pron_j_c_ll_rr": [
+      {
+        "prompt": "“cuando” sözcüğü hangi sesle başlar?",
+        "options": [
+          "k",
+          "s",
+          "ç",
+          "h"
+        ],
+        "answer": 0,
+        "why": "ca / co / cu, k sesiyle okunur."
+      },
+      {
+        "prompt": "“carro” (araba) ile “caro” (pahalı) farkı nedir?",
+        "options": [
+          "carro'da titrek rr, caro'da tek vuruşlu r",
+          "Hiçbir fark yok",
+          "caro'da r okunmaz",
+          "carro'da r okunmaz"
+        ],
+        "answer": 0,
+        "why": "Tek r ile rr anlam ayırır."
+      },
+      {
+        "prompt": "“joven” sözcüğündeki j hangi sese yakındır?",
+        "options": [
+          "Gırtlaktan h",
+          "Türkçe j",
+          "Türkçe c",
+          "y"
+        ],
+        "answer": 0,
+        "why": "j, Türkçe h'nin sert, gırtlaktan çıkan hâlidir."
+      },
+      {
+        "prompt": "Kuzey ve Orta İspanya'da “cielo” sözcüğündeki c nasıl okunur?",
+        "options": [
+          "Dil ucu dişler arasında (th gibi)",
+          "k",
+          "ç",
+          "ş"
+        ],
+        "answer": 0,
+        "why": "ce / ci Kuzey ve Orta İspanya'da th sesidir; Latin Amerika'da s okunur."
+      },
+      {
+        "prompt": "“honra” sözcüğündeki r nasıl okunur?",
+        "options": [
+          "Titrek (rr gibi)",
+          "Tek vuruşla",
+          "Okunmaz",
+          "Türkçe ğ gibi"
+        ],
+        "answer": 0,
+        "why": "n'den sonra gelen r titrek okunur."
+      }
+    ],
+    "basics_es_pron_acento": [
+      {
+        "prompt": "“reloj” sözcüğünde vurgu hangi hecededir?",
+        "options": [
+          "Son hece (re-LOJ)",
+          "İlk hece (RE-loj)",
+          "Vurgusuz",
+          "İki hece eşit"
+        ],
+        "answer": 0,
+        "why": "n ve s dışındaki ünsüzle biten sözcükte vurgu son hecededir."
+      },
+      {
+        "prompt": "“examen” sözcüğünde vurgu hangi hecededir?",
+        "options": [
+          "Sondan bir önceki (e-XA-men)",
+          "Son hece (e-xa-MEN)",
+          "İlk hece (E-xa-men)",
+          "Vurgusuz"
+        ],
+        "answer": 0,
+        "why": "n ile biten sözcükte vurgu sondan bir önceki hecededir; tilde gerekmez."
+      },
+      {
+        "prompt": "“kurşun kalem” (LÁ-piz) sözcüğünün doğru yazılışı hangisidir?",
+        "options": [
+          "lápiz",
+          "lapiz",
+          "lapíz",
+          "lápíz"
+        ],
+        "answer": 0,
+        "why": "z ile biten sözcükte vurgu normalde son hecede olurdu; ilk hecede olduğu için tilde gerekir."
+      },
+      {
+        "prompt": "“tú” ile “tu” arasındaki fark nedir?",
+        "options": [
+          "tú = sen, tu = senin",
+          "tú = senin, tu = sen",
+          "Hiçbir fark yok",
+          "tú vurgulu okunur, tu okunmaz"
+        ],
+        "answer": 0,
+        "why": "Tilde burada anlam ayırır: tú zamir, tu iyeliktir."
+      },
+      {
+        "prompt": "“canción” sözcüğünde tilde neden vardır?",
+        "options": [
+          "n ile biten sözcükte vurgu son hecede olduğu için",
+          "Sözcük dişil olduğu için",
+          "Soru bildirdiği için",
+          "Vurgu ilk hecede olduğu için"
+        ],
+        "answer": 0,
+        "why": "n ile biten sözcükte vurgu normalde sondan bir öncekidir; son hecede olunca tilde konur."
+      }
+    ]
+  }
+}

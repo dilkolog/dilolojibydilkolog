@@ -316,6 +316,7 @@ export const FR_LESSONS_4: TopicLesson[] = [
       'Olumlu emirde sonda kalan me ve te zamirleri vurgulu biçime geçerek moi ve toi olur: Prête-le-moi (Prête-me-le değil).',
       'Ancak arkadan "en" veya "y" gelirse moi ve toi sesli harf önünde daralarak m\' ve t\' olur: Donne-m\'en deux ! Va-t\'en !',
       'Olumsuz emirde (impératif négatif) tireler kalkar, zamirler fiilin ÖNÜNE döner ve normal cümle sırası geçerli olur: Ne me le donne pas ! Ne le lui dis pas ! Ne leur en parle pas !',
+      'y ve en her zaman en sonda gelir: Parle-lui-en ! Olumlu emirde -er fiillerinin tu biçimi y / en önünde ses uyumu için -s alır: Vas-y ! Penses-y ! Manges-en !',
     ],
     table: {
       caption: 'Olumlu ve olumsuz emirde çift zamir düzeni',
@@ -374,6 +375,7 @@ export const FR_LESSONS_4: TopicLesson[] = [
       'Zamir olarak (tek başına grubu temsil ederken): Eril çoğul "tous" tek başına zamir olduğunda sondaki -s MUTLAKA okunur (/tus/): Ils sont tous là. Je les connais tous. Nötr tekil zamir "tout" ise "her şey" demektir: Tout va bien.',
       'Zarf olarak (sıfatın önünde "tamamen / büsbütün" anlamında): Normalde değişmez (Ils sont tout contents, Elle est tout émue).',
       'Zarfın tek istisnası: Sessiz harfle veya aspiré h ile başlayan dişil bir sıfattan önce geldiğinde ses uyumu için toute / toutes yazılır: Elle est toute seule, Elles sont toutes petites, Elle est toute honteuse.',
+      'Tout le / toute la “bütün, tamamı”, tous les / toutes les “her” (tekrar) demektir: toute la journée (bütün gün) ≠ tous les jours (her gün).',
     ],
     table: {
       caption: 'Tout biçimleri ve telaffuz kuralı',
@@ -554,6 +556,7 @@ export const FR_LESSONS_4: TopicLesson[] = [
       "Fiil veya yapı 'à' edatı istiyorsa (penser à, participer à, faire face à, s'intéresser à), à ile lequel birleşerek auquel, à laquelle, auxquels, auxquelles olur: Le projet auquel je participe.",
       "Bileşik bir edat 'de' ile bitiyorsa (près de, à côté de, à cause de, au milieu de, en face de), de ile lequel birleşerek duquel, de laquelle, desquels, desquelles olur: Le parc près duquel j'habite. (Yalın 'de' için ise dont kullanılır).",
       "İnsanlar söz konusu olduğunda edattan sonra hem lequel ailesi hem de 'qui' kullanılabilir: L'amie avec qui / avec laquelle je voyage. Cansız nesnelerde ise 'qui' yasaktır, mutlaka lequel ailesi gelir.",
+      'Lequel ailesi soru zamiri olarak da kullanılır ve seçim sorar: Laquelle de ces robes préfères-tu ? Lesquels veux-tu ?',
     ],
     table: {
       caption: 'Bileşik ilgi zamirleri çekim tablosu',

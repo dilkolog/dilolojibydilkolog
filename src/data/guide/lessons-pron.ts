@@ -40,6 +40,7 @@ export const PRON_LESSONS: TopicLesson[] = [
     watch: [
       "“bon”u “bon-n” gibi sonunda n sesiyle okumak çok yaygındır; n yoktur, ünlü genizdendir. Ama “bonne”da n gerçekten okunur.",
       "“an” ile “on”u karıştırmak anlam değiştirir: blanc (beyaz) / blond (sarışın), vent (rüzgâr) / vont (giderler).",
+      "Burun ünlüsünden sonra sesli harf ya da ikinci bir n/m gelirse genizlik kaybolur ve n okunur: an ama année, fin ama fine.",
     ],
     tip: "Önce “a”yı söyle, burnunu kapatır gibi hissedince ses burundan da çıkıyorsa doğru yoldasın; sonra dilinin ucunu hiçbir yere değdirmeden bitir.",
     check: [
@@ -358,6 +359,7 @@ export const PRON_LESSONS: TopicLesson[] = [
     watch: [
       "Türkçede vurgu çoğunlukla son hecededir; bu yüzden “casa”yı ca-SA, “hablan”ı ha-BLAN demek çok yaygındır. Doğrusu CA-sa, HA-blan.",
       "Tilde'yi ihmal ederek yazmak vurguyu ve bazen anlamı kaybettirir: él / el, sí / si.",
+      "Soru ve ünlem sözcükleri vurgu işareti alır (¿Dónde vives? ¡Qué bonito!); bağlaç ya da ilgi zamiri olarak işaretsizdir: Sé que vienes.",
     ],
     tip: "Yeni bir sözcüğü ilk duyduğunda vurgulu heceyi ayrıca öğren. Yazıda tilde yoksa iki kuraldan biri zaten sana yeri söyler.",
     check: [

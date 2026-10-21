@@ -37,16 +37,19 @@ describe('StorybooksPicker', () => {
       )
     })
 
-    // Storybook verilerinin asenkron yüklenmesini bekle
-    await act(async () => {
-      await new Promise((r) => setTimeout(r, 50))
-    })
+    // The storybook data loads lazily: wait for the list rather than a fixed pause.
+    await vi.waitFor(
+      async () => {
+        await act(async () => {})
+        expect(rootEl.querySelector('ul.library li button')).not.toBeNull()
+      },
+      { timeout: 5000 },
+    )
 
     const title = rootEl.querySelector('.section-title, [class*="source-title"]')
     expect(title?.textContent).toContain('Kolay resimli hikâyeler')
 
     const firstItem = rootEl.querySelector('ul.library li button') as HTMLButtonElement | null
-    expect(firstItem).not.toBeNull()
 
     await act(async () => {
       firstItem?.click()
