@@ -80,10 +80,11 @@ describe('InviteAccept', () => {
     expect(addFriend).not.toHaveBeenCalled()
     expect(document.querySelector('[role=alertdialog]')?.textContent).toContain('Ayşe')
     await press('Arkadaş ekle')
+    // The bonus is written to the (fake) database before the toast: wait for the toast, not a fixed time.
+    await act(() => vi.waitFor(() => expect(toasts).toEqual(['Ayşe ile arkadaş oldun. Davet bonusu: +20 XP.']), { timeout: 3000 }))
     expect(addFriend).toHaveBeenCalledWith('ABCD2345')
     // The inviter is told, and the one who came gets the small bonus, once ever.
     expect(sendToFriend).toHaveBeenCalledWith('ABCD2345', 'joined')
-    expect(toasts).toEqual(['Ayşe ile arkadaş oldun. Davet bonusu: +20 XP.'])
     expect(pendingInvite()).toBeNull()
     expect(done).toHaveBeenCalled()
     expect(document.querySelector('[role=alertdialog]')).toBeNull()
