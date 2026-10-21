@@ -40,6 +40,7 @@ describe('ReaderParagraph', () => {
       heard: null,
       flash: null,
       multi: empty,
+      looks: new Map(),
       multiMode: false,
       skipped: empty,
       masks: empty,
@@ -85,6 +86,14 @@ describe('ReaderParagraph', () => {
     expect(props.onPick).toHaveBeenCalledWith(sentences[1].tokens[2], 'Il rêve.', '2.1', true)
     render({ ...props, masks: new Set([posKey(2, 1, 2)]), revealed: new Set(['rêve']) })
     expect(word('rêve').textContent).toBe('rêve')
+  })
+
+  it('marks the words a friend in the reading club looked up, with who', () => {
+    render({ ...props, looks: new Map([['chat', ['Veli', 'Ayşe']]]) })
+    const chat = rootEl.querySelector('[data-key="chat"]')!
+    expect(chat.classList.contains('rw-friend')).toBe(true)
+    expect(chat.getAttribute('title')).toBe('Veli, Ayşe bu kelimeye baktı')
+    expect(rootEl.querySelector('[data-key="rêve"]')!.classList.contains('rw-friend')).toBe(false)
   })
 
   it('does not render again when its props stay equal', () => {

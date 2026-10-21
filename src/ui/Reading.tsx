@@ -49,12 +49,16 @@ import { useStudyClock } from './useStudyClock'
 import { readerStyle, useReaderPrefs } from './readerSettings'
 import { Sticker } from './Sticker'
 import { ReaderTools } from './ReaderTools'
+import { ClubBar } from './ClubBar'
+import { useReadingClub } from './useReadingClub'
 import { ReadingHome } from './ReadingHome'
 import { AddingCard, MultiBar } from './ReaderAside'
 import { formsOfSelection, ownVerb } from './readerForms'
 
 /** No word of the paragraph is in the multi-selection: one stable empty set, so its paragraph keeps equal props. */
 const NO_KEYS: ReadonlySet<string> = new Set()
+/** No word of the paragraph was looked up by a friend in the reading club. */
+const NO_LOOKS: ReadonlyMap<string, string[]> = new Map()
 
 /**
  * Reading mode: paste a text, see how much of it you know, mark or add the words you don't,
@@ -161,6 +165,17 @@ export function ReadingScreen({
       setListenFirst(!!item?.audio && !item.readAt)
     },
   })
+  // Reading together: a club on the open text, or one joined from a link (its text opened here).
+  const club = useReadingClub({
+    db,
+    language,
+    current,
+    lookedUp: selected?.token.key,
+    onText: (item) => {
+      setLibrary((lib) => (lib?.some((t) => t.id === item.id) ? lib : [item, ...(lib ?? [])]))
+      void open(item)
+    },
+  })
   const text = current?.text ?? ''
   const analysis = useMemo(() => (text ? analyzeText(text, language, vocabulary, states, known, ignored) : null), [text, language, vocabulary, states, known, ignored])
   // Reading and listening time (a weekly goal and the Progress card): counted only while a text is open and touched.
@@ -243,6 +258,8 @@ export function ReadingScreen({
 
   if (!text || !analysis) {
     return (
+      <>
+      <ClubBar club={club} />
       <ReadingHome
         db={db}
         language={language}
@@ -270,6 +287,7 @@ export function ReadingScreen({
         ytBusy={ytBusy}
         bookError={bookError}
       />
+      </>
     )
   }
 
@@ -362,7 +380,9 @@ export function ReadingScreen({
         onFinish={() => setConfirmFinish(true)}
         multiMode={multiMode}
         onMulti={() => setMultiMode((m) => !m)}
+        onClub={club.code ? undefined : club.start}
       />
+      <ClubBar club={club} />
       {showForms && language !== 'en' && <TextForms groups={formGroups} language={language} onOpenLab={onOpenLab} onLesson={onLesson} onReview={reviewForms} onShow={showSentence} onClose={() => setShowForms(false)} />}
       {dictating !== null && (
         <TextDictation key={`dict-${current?.id}-${dictating}`} sentences={sentencesFlat} language={language} start={dictating} voice={recorded ? 'recording' : 'device'} play={playSentence} onClose={() => setDictating(null)} />
@@ -403,6 +423,7 @@ export function ReadingScreen({
               flash={inside(flash)}
               selectedKey={selectedKey}
               multi={multi.size && keys && [...multi].some((k) => keys.has(k)) ? multi : NO_KEYS}
+              looks={club.looks.size && keys && [...keys].some((k) => club.looks.has(k)) ? club.looks : NO_LOOKS}
               multiMode={multiMode}
               skipped={skipped}
               masks={masks}

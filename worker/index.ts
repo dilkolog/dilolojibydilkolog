@@ -60,7 +60,9 @@ export default {
       if (!fromApp(request)) return new Response('forbidden', { status: 403 })
       if (overLimit(request, 'room', 30)) return tooMany()
       if (!env.DUEL) return new Response('rooms are not set up', { status: 503 })
-      return env.DUEL.get(env.DUEL.idFromName(code)).fetch(request as never) as unknown as Promise<Response>
+      // A reading club's room has its own name, so a duel and a club with the same code never meet.
+      const roomName = searchParams.get('kind') === 'club' ? `club:${code}` : code
+      return env.DUEL.get(env.DUEL.idFromName(roomName)).fetch(request as never) as unknown as Promise<Response>
     }
     const name = /^\/api\/([a-z-]+)\/?$/.exec(pathname)?.[1]
     const route = name ? ROUTES[name] : undefined

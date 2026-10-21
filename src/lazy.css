@@ -465,6 +465,11 @@
 .rw-learning, .rw-new { background: var(--near-soft); color: var(--near-text); }
 .kbd-key { margin-left: 0.375rem; font-size: var(--t-xs); opacity: 0.7; }
 .rw-skipped { text-decoration: underline wavy var(--lang); text-underline-offset: 4px; }
+/* Reading club: a word a friend looked up has a dotted line under it (a skipped one keeps its wavy line). */
+.rw-friend:not(.rw-skipped) { text-decoration: underline dotted var(--ink); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.club-bar { gap: 0.5rem; }
+.club-bar-head { align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.club-readers { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin: 0; padding: 0; list-style: none; font-size: var(--t-sm); }
 .word-pop { position: sticky; bottom: 1rem; z-index: 5; box-shadow: var(--shadow-lg); }
 .guess-rating { padding: 0.5rem 0.75rem; border-radius: var(--r-md); background: var(--surface-2, var(--surface)); border: 1px solid var(--rule); }
 .word-pop-word { font-family: var(--serif); font-size: var(--t-xl); color: var(--lang-text); font-weight: 400; }
