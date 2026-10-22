@@ -1586,3 +1586,25 @@ test('twins: the start and an answered sentence pass accessibility and contrast 
   await scanThemes('twins-answer')
   expect(problems).toEqual([])
 })
+
+test('spelling aloud: the start and an answered word pass accessibility and contrast checks in light and dark', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Harf harf' }).click()
+  const problems: string[] = []
+  const scanThemes = async (where: string) => {
+    for (const theme of ['light', 'dark'] as const) {
+      await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+      problems.push(...(await scan(page, `${where}-${theme}`)), ...(await contrastProblems(page)).map((p) => `${where}-${theme}: ${p}`))
+    }
+  }
+  await expect(page.getByRole('heading', { name: 'Harf harf' })).toBeVisible()
+  await scanThemes('spelling-start')
+  await page.getByRole('button', { name: /tura başla/ }).click()
+  await scanThemes('spelling-question')
+  await page.getByLabel('Kelime', { exact: true }).fill('zzz')
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.numbers-answer')).toBeVisible()
+  await scanThemes('spelling-wrong')
+  expect(problems).toEqual([])
+})

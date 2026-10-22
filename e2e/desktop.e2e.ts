@@ -1,5 +1,6 @@
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { numberWords } from '../src/engine/numbers'
+import { spellOut } from '../src/engine/spelling'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
 import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
@@ -324,6 +325,20 @@ test('numbers and times: see the digits, write the words; a wrong answer shows h
   await page.getByLabel('Kelimeyle cevap').fill('zzz')
   await page.keyboard.press('Enter')
   await expect(page.locator('.numbers-answer')).toContainText(`${second} = ${numberWords('fr', second)}`)
+  expect(await overflow(page)).toEqual([])
+})
+
+test('spelling aloud: a word is spelled letter by letter; the answer shows the word and its spelling', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Harf harf' }).click()
+  await page.getByRole('button', { name: /tura başla/ }).click()
+  await page.getByLabel('Kelime', { exact: true }).fill('zzz')
+  await page.keyboard.press('Enter')
+  const word = (await page.locator('.numbers-answer strong').textContent())!
+  await expect(page.locator('.numbers-answer')).toContainText(spellOut('fr', word))
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.game-timer')).toContainText('2 / 10')
   expect(await overflow(page)).toEqual([])
 })
 
