@@ -1,4 +1,5 @@
 import '../lazy.css'
+import { shadowKey } from '../engine/shadowScores'
 import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import { tensesOf } from '../engine/tenses'
 import { ConjugationTable } from './ConjugationTable'
@@ -443,6 +444,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
               </p>
               <PitchCompare
                 key={entry.id}
+                scoreKey={shadowKey(entry.language, entry.lemma)}
                 label={entry.audioUrl ? 'Ana dili konuşan bir kişinin kaydı' : 'Doğal ses'}
                 reference={async () => (entry.audioUrl ? ((await cachedAudio(entry.audioUrl)) ?? entry.audioUrl) : naturalUrl(displayForm(entry), entry.language, 1))}
               />

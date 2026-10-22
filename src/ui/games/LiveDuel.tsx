@@ -3,7 +3,7 @@ import { grammarExercises } from '../../data/grammar'
 import { db } from '../../data/instance'
 import { DUEL_ROUNDS, duelOptions, duelQuestions, pickDuelIds, type DuelFilter } from '../../engine/duel'
 import { checkGrammar, filled, topicName } from '../../engine/grammar'
-import { roomLink, type RoomView } from '../../engine/liveDuel'
+import { roomLink, type RoomView, type SeriesView } from '../../engine/liveDuel'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
 import { LANGUAGE_NAME } from '../labels'
@@ -263,14 +263,57 @@ function LiveResult({ room, total, onAgain, onExit }: { room: RoomView; total: n
         <DuelSide result={result(mine)} of={total} you winner={room.winner === 'you'} />
         <DuelSide result={result(1 - mine)} of={total} winner={room.winner === 'them'} />
       </div>
+      {room.series && <SeriesBoard series={room.series} them={room.players[1 - mine]?.name ?? 'Arkadaşın'} />}
       <div className="row">
         <button className="btn btn-sm" onClick={onAgain}>
-          Tekrar oyna
+          {room.series && room.series.games < room.series.of ? 'Rövanş' : room.series ? 'Yeni seri' : 'Tekrar oyna'}
         </button>
         <button className="btn btn-sm btn-quiet" onClick={onExit}>
           Çık
         </button>
       </div>
     </div>
+  )
+}
+
+/** The rematch series: games won on each side, ties, and right answers over the series; its winner once it is played out. */
+function SeriesBoard({ series, them }: { series: SeriesView; them: string }) {
+  const done = series.games >= series.of
+  const head = !done
+    ? `Rövanş serisi: ${series.games}/${series.of}. düello`
+    : series.winner === 'you'
+      ? 'Seriyi sen kazandın!'
+      : series.winner === 'them'
+        ? `Seriyi ${them} kazandı`
+        : 'Seri berabere bitti'
+  return (
+    <section className="card duel-series" aria-label="Rövanş serisi">
+      <p className="section-title">{head}</p>
+      <table className="duel-series-table">
+        <thead>
+          <tr>
+            <th scope="col">
+              <span className="sr-only">Oyuncu</span>
+            </th>
+            <th scope="col">Galibiyet</th>
+            <th scope="col">Doğru</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className={series.winner === 'you' ? 'duel-series-lead' : undefined}>
+            <th scope="row">Sen</th>
+            <td>{series.you}</td>
+            <td>{series.right.you}</td>
+          </tr>
+          <tr className={series.winner === 'them' ? 'duel-series-lead' : undefined}>
+            <th scope="row">{them}</th>
+            <td>{series.them}</td>
+            <td>{series.right.them}</td>
+          </tr>
+        </tbody>
+      </table>
+      {series.ties > 0 && <p className="small muted">{series.ties} düello berabere.</p>}
+      {done && <p className="small muted">Galibiyet eşitse toplam doğru sayısı karar verir.</p>}
+    </section>
   )
 }

@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { contour, melodySimilarity, pitchTrack, resample } from '../engine/pitch'
+import { trendLine, type ShadowTry } from '../engine/shadowScores'
 import { canRecord, recordingType } from './audioRecord'
 import { MicIcon, PlayIcon, StopIcon } from './icons'
+import { loadPitchLog, savePitchScore } from './pitchStore'
 import { StatusPicture } from './StatusArt'
 
 const W = 560
@@ -23,7 +25,19 @@ async function decode(source: ArrayBuffer): Promise<(number | null)[]> {
  * a similarity score. Stress and intonation become visible, which listening alone rarely shows.
  * `reference` must be readable by the page (a Wiktionary recording, a natural-voice clip).
  */
-export function PitchCompare({ reference, label, maxSeconds = 4 }: { reference: () => Promise<string | undefined>; label: string; maxSeconds?: number }) {
+export function PitchCompare({
+  reference,
+  label,
+  maxSeconds = 4,
+  scoreKey,
+}: {
+  reference: () => Promise<string | undefined>
+  label: string
+  maxSeconds?: number
+  /** Where each try's score is kept (a word), so its line over time can be shown; none keeps nothing. */
+  scoreKey?: string
+}) {
+  const [tries, setTries] = useState<ShadowTry[]>(() => (scoreKey ? (loadPitchLog()[scoreKey] ?? []) : []))
   const [native, setNative] = useState<(number | null)[] | null>(null)
   const [nativeUrl, setNativeUrl] = useState<string>()
   const [mine, setMine] = useState<(number | null)[] | null>(null)
@@ -83,9 +97,11 @@ export function PitchCompare({ reference, label, maxSeconds = 4 }: { reference: 
       try {
         const blob = new Blob(chunks, { type: rec.mimeType })
         setMineUrl(URL.createObjectURL(blob))
-        const [c] = await Promise.all([decode(await blob.arrayBuffer()), loadNative()])
+        const [c, ref] = await Promise.all([decode(await blob.arrayBuffer()), loadNative()])
         setMine(c)
         if (!c.length) setError('Sesin algılanamadı; mikrofona biraz daha yakın ve net söyle.')
+        const s = c.length ? melodySimilarity(ref, c) : null
+        if (s !== null && scoreKey) setTries(savePitchScore(scoreKey, s))
       } catch {
         setError('Kayıt çözümlenemedi.')
       } finally {
@@ -151,8 +167,24 @@ export function PitchCompare({ reference, label, maxSeconds = 4 }: { reference: 
           )}
         </p>
       )}
+      {tries.length >= 2 && <PitchTrend tries={tries} />}
       {micBlocked && <StatusPicture kind="nomic" small />}
       {error && <p className="error small">{error}</p>}
     </div>
+  )
+}
+
+/** A word's melody scores over its tries: a small line from the first to the latest, and the change in words. */
+function PitchTrend({ tries }: { tries: readonly ShadowTry[] }) {
+  const w = 120
+  const h = 28
+  const points = tries.map((t, i) => `${(4 + (i / Math.max(1, tries.length - 1)) * (w - 8)).toFixed(1)},${(h - 4 - (t.score / 100) * (h - 8)).toFixed(1)}`).join(' ')
+  return (
+    <p className="small muted row gap-2 pitch-trend">
+      <svg viewBox={`0 0 ${w} ${h}`} width={w} height={h} aria-hidden="true">
+        <polyline points={points} />
+      </svg>
+      <span>{trendLine(tries)}</span>
+    </p>
   )
 }

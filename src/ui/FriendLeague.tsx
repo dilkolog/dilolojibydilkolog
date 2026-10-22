@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { FriendView } from '../data/friends'
-import { addLeagueWin, lastWeekLeague, teamWeek, TEAM_GOALS, type LeagueEntry } from '../engine/friendLeague'
+import { sendToFriend, type FriendView } from '../data/friends'
+import { addLeagueWin, lastWeekLeague, teamPushDue, teamPushTargets, teamWeek, TEAM_GOALS, weekStartOf, type LeagueEntry } from '../engine/friendLeague'
 import { ChevronDownIcon } from './icons'
+import { showToast } from './toastFeed'
 
 const GOAL_KEY = 'diloloji:friend-goal'
 const WINS_KEY = 'diloloji:league-wins'
+/** The week (its Monday) the group was last given a push from this account. */
+const PUSH_KEY = 'diloloji:team-push'
 
 const read = <T,>(key: string, fallback: T): T => {
   try {
@@ -39,6 +42,33 @@ export function FriendLeague({ me, friends, nicknames, today }: { me: FriendView
   const league = useMemo(() => lastWeekLeague(entries, today), [entries, today])
   const team = useMemo(() => teamWeek(entries, today, goal), [entries, today, goal])
   const iWon = !!league && league.winners.includes(me.code)
+  const [pushedWeek, setPushedWeek] = useState<string | null>(() => read<string | null>(PUSH_KEY, null))
+  const [pushing, setPushing] = useState(false)
+  const targets = useMemo(() => teamPushTargets(friends, today), [friends, today])
+  const canPush = teamPushDue(team, today, pushedWeek) && targets.length > 0
+
+  // The last push: one nudge to each friend who has not studied today, once a week.
+  const push = async () => {
+    setPushing(true)
+    let sent = 0
+    for (const f of targets) {
+      try {
+        await sendToFriend(f.code, 'nudge', undefined, today)
+        sent++
+      } catch {
+        // Studied meanwhile, or the server said no: the others still get theirs.
+      }
+    }
+    setPushing(false)
+    if (sent === 0) {
+      showToast('Dürtme gönderilemedi, biraz sonra yine dene.')
+      return
+    }
+    const week = weekStartOf(today)
+    setPushedWeek(week)
+    write(PUSH_KEY, week)
+    showToast(sent === 1 ? `${nicknames[targets[0]!.code] || targets[0]!.name} dürtüldü.` : `${sent} arkadaşın dürtüldü.`)
+  }
 
   // A week won is written down once.
   useEffect(() => {
@@ -84,6 +114,16 @@ export function FriendLeague({ me, friends, nicknames, today }: { me: FriendView
             ))}
           </div>
           <p className="small muted">{team.parts.filter((p) => p.xp > 0).map((p) => `${p.name} ${p.xp.toLocaleString('tr-TR')}`).join(' · ') || 'Henüz kimse çalışmadı.'}</p>
+          {canPush && (
+            <div className="note friends-team-push">
+              <p className="small">
+                Hedefe {(team.goal - team.xp).toLocaleString('tr-TR')} XP kaldı. Bugün çalışmamış {targets.length === 1 ? 'arkadaşını' : `${targets.length} arkadaşını`} dürtüp son bir itiş yapın.
+              </p>
+              <button type="button" className="btn btn-sm" disabled={pushing} onClick={() => void push()}>
+                {pushing ? 'Gönderiliyor…' : targets.length === 1 ? 'Dürt' : 'Hepsini dürt'}
+              </button>
+            </div>
+          )}
         </div>
         <div className="stack gap-2">
           <p className="small">

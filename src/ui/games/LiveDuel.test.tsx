@@ -152,6 +152,18 @@ describe('the live duel screen', () => {
     expect(ws().sent.at(-1)).toEqual({ t: 'again' })
   })
 
+  it('shows the rematch series: a rematch while it runs, its winner and a new series at the end', async () => {
+    await mount()
+    const players = [{ name: 'Ali', connected: true, answered: 3, score: 3, ms: 4000 }, { name: 'Veli', connected: true, answered: 3, score: 1, ms: 6000 }]
+    await state(view({ phase: 'over', language: 'fr', ids: ['a', 'b', 'c'], winner: 'you', players, series: { games: 2, of: 3, you: 1, them: 1, ties: 0, right: { you: 5, them: 4 } } }))
+    expect(text()).toContain('Rövanş serisi: 2/3')
+    expect(button(/^Rövanş$/)).toBeTruthy()
+    await state(view({ phase: 'over', language: 'fr', ids: ['a', 'b', 'c'], winner: 'you', players, series: { games: 3, of: 3, you: 2, them: 1, ties: 0, right: { you: 8, them: 5 }, winner: 'you' } }))
+    expect(text()).toContain('Seriyi sen kazandın!')
+    await act(async () => button(/^Yeni seri$/)!.click())
+    expect(ws().sent.at(-1)).toEqual({ t: 'again' })
+  })
+
   it('says so when the room is full, and does not keep trying', async () => {
     await mount()
     await act(async () => ws().push({ t: 'error', reason: 'full' }))

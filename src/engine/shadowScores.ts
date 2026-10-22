@@ -83,3 +83,29 @@ export function progressLine(tries: readonly ShadowTry[] | undefined): string {
   const trend = delta > 0 ? `${delta} puan yükseldin` : delta < 0 ? `${-delta} puan düştün` : 'aynı kaldın'
   return `Aynı cümle ${when(days)}: %${before.score}. Şimdi %${latest.score}: ${trend}.`
 }
+
+/** Every try so far, first to latest: how a word's melody score moved (the pitch comparison, which needs no key). */
+export interface Trend {
+  first: ShadowTry
+  latest: ShadowTry
+  tries: number
+  days: number
+  delta: number
+}
+
+export function trendOf(tries: readonly ShadowTry[] | undefined): Trend | null {
+  if (!tries || tries.length < 2) return null
+  const sorted = [...tries].sort((a, b) => Date.parse(a.at) - Date.parse(b.at))
+  const first = sorted[0]
+  const latest = sorted[sorted.length - 1]
+  return { first, latest, tries: sorted.length, days: Math.round((Date.parse(latest.at) - Date.parse(first.at)) / DAY), delta: latest.score - first.score }
+}
+
+/** The line under a word's melody chart once it was tried more than once. */
+export function trendLine(tries: readonly ShadowTry[] | undefined): string {
+  const t = trendOf(tries)
+  if (!t) return ''
+  const since = t.days >= 1 ? ` (${t.days} gün içinde)` : ''
+  const move = t.delta > 0 ? `${t.delta} puan yükseldi` : t.delta < 0 ? `${-t.delta} puan düştü` : 'aynı kaldı'
+  return `${t.tries} denemede ezgi benzerliğin %${t.first.score} → %${t.latest.score}: ${move}${since}.`
+}

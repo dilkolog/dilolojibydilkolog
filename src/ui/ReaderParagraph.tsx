@@ -19,6 +19,8 @@ export interface ReaderParagraphProps {
   /** The key of the open word: every occurrence is marked. */
   selectedKey?: string
   multi: ReadonlySet<string>
+  /** Words friends in the reading club looked up, with their names (an empty map when none is in this paragraph). */
+  looks: ReadonlyMap<string, string[]>
   multiMode: boolean
   skipped: ReadonlySet<string>
   masks: ReadonlySet<string>
@@ -40,7 +42,7 @@ export interface ReaderParagraphProps {
  * equal props.
  */
 export const ReaderParagraph = memo(function ReaderParagraph(props: ReaderParagraphProps) {
-  const { index: i, sentences, start, image, litAt, litText, heard, flash, selectedKey, multi, multiMode, skipped, masks, revealed, shade, turkish, given, language, onPick, onToggleMulti } = props
+  const { index: i, sentences, start, image, litAt, litText, heard, flash, selectedKey, multi, looks, multiMode, skipped, masks, revealed, shade, turkish, given, language, onPick, onToggleMulti } = props
   const texts = useMemo(() => sentences.map((s) => s.text), [sentences])
   return (
     <>
@@ -63,6 +65,7 @@ export const ReaderParagraph = memo(function ReaderParagraph(props: ReaderParagr
             {s.tokens.map((t, k) => {
               const hidden = !!t.key && masks.has(posKey(i, j, k)) && !revealed.has(t.key)
               const pick = () => onPick(t, s.text, `${i}.${j}`, hidden)
+              const lookedBy = t.key ? looks.get(t.key) : undefined
               return t.key ? (
                 <span
                   key={k}
@@ -70,7 +73,8 @@ export const ReaderParagraph = memo(function ReaderParagraph(props: ReaderParagr
                   tabIndex={t.status === 'known' || t.status === 'name' ? -1 : 0}
                   data-key={t.key}
                   aria-label={hidden ? 'Gizli kelime: anlamını cümleden tahmin et, sonra aç' : undefined}
-                  className={`rw rw-${t.status}${hidden ? ' rw-masked' : ''}${t.status === 'learning' || t.status === 'new' ? ` ${shade(t.entryId)}` : ''}${t.status === 'unseen' && skipped.has(t.key) ? ' rw-skipped' : ''}${selectedKey === t.key ? ' is-selected' : ''}${multi.has(t.key) ? ' is-multi' : ''}`}
+                  className={`rw rw-${t.status}${hidden ? ' rw-masked' : ''}${t.status === 'learning' || t.status === 'new' ? ` ${shade(t.entryId)}` : ''}${t.status === 'unseen' && skipped.has(t.key) ? ' rw-skipped' : ''}${selectedKey === t.key ? ' is-selected' : ''}${multi.has(t.key) ? ' is-multi' : ''}${lookedBy ? ' rw-friend' : ''}`}
+                  title={lookedBy ? `${lookedBy.join(', ')} bu kelimeye baktı` : undefined}
                   onClick={(e: MouseEvent) => {
                     // ⌘/Ctrl+click (or multi-select mode) collects words to mark together.
                     if ((e.metaKey || e.ctrlKey || multiMode) && !t.entryId) {

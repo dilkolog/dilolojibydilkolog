@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { answer, cleanRoomCode, emptyRoom, handle, join, leave, newRoomCode, ROOM_CODE, start, viewFor, type RoomState } from '../liveDuel'
+import { again, answer, cleanRoomCode, emptyRoom, handle, join, leave, newRoomCode, ROOM_CODE, SERIES_LENGTH, start, viewFor, type RoomState } from '../liveDuel'
 
 const IDS = ['q1', 'q2', 'q3']
 const twoPlayers = (): RoomState => {
@@ -130,6 +130,59 @@ describe('playing', () => {
     const next = handle(s, 1, { t: 'again' }).state
     expect(next).toMatchObject({ phase: 'lobby', ids: [] })
     expect(next.players.map((p) => p.answered)).toEqual([0, 0])
+  })
+})
+
+describe('rematch series', () => {
+  /** One game: each slot's right answers out of 3, each answer taking `ms`. */
+  const game = (s: RoomState, rights: [number, number], ms: [number, number] = [1000, 1000]): RoomState => {
+    let r = start(s.phase === 'over' ? again(s) : s, 0, 'fr', IDS).state
+    for (let i = 0; i < 3; i++) for (const slot of [0, 1]) r = answer(r, slot, i, i < rights[slot]!, ms[slot]!).state
+    return r
+  }
+
+  it('adds up games won and right answers, from each side, and the best of three wins', () => {
+    let s = game(twoPlayers(), [3, 1])
+    expect(viewFor(s, 0).series).toMatchObject({ games: 1, of: SERIES_LENGTH, you: 1, them: 0, right: { you: 3, them: 1 } })
+    expect(viewFor(s, 0).series?.winner).toBeUndefined()
+    s = game(s, [1, 2])
+    expect(viewFor(s, 1).series).toMatchObject({ games: 2, you: 1, them: 1, right: { you: 3, them: 4 } })
+    s = game(s, [3, 2])
+    expect(viewFor(s, 0).series).toMatchObject({ games: 3, you: 2, them: 1, winner: 'you' })
+    expect(viewFor(s, 1).series?.winner).toBe('them')
+  })
+
+  it('equal wins go to the most right answers over the series; a tie stays a tie', () => {
+    let s = game(twoPlayers(), [3, 0])
+    s = game(s, [0, 2])
+    s = game(s, [2, 2], [1000, 1000])
+    expect(viewFor(s, 0).series).toMatchObject({ you: 1, them: 1, ties: 1, right: { you: 5, them: 4 }, winner: 'you' })
+    let t = game(twoPlayers(), [3, 0])
+    t = game(t, [0, 3])
+    t = game(t, [1, 1])
+    expect(viewFor(t, 1).series?.winner).toBe('tie')
+  })
+
+  it('the game after a whole series opens a new one, and a new guest starts afresh', () => {
+    let s = twoPlayers()
+    for (let k = 0; k < SERIES_LENGTH; k++) s = game(s, [2, 1])
+    s = game(s, [0, 3])
+    expect(viewFor(s, 0).series).toMatchObject({ games: 1, you: 0, them: 1 })
+    const lobby = leave(again(s), 1)
+    const fresh = join(lobby, 'Ayşe').state
+    expect(fresh.series.games).toBe(0)
+    expect(viewFor(game(fresh, [1, 1]), 0).series?.games).toBe(1)
+  })
+
+  it('the same guest dropping out of the lobby and coming back keeps the series', () => {
+    let s = game(twoPlayers(), [3, 1])
+    s = leave(again(s), 1)
+    s = join(s, 'Veli').state
+    expect(viewFor(game(s, [1, 2]), 0).series).toMatchObject({ games: 2, you: 1, them: 1 })
+  })
+
+  it('is shown only once a game is over', () => {
+    expect(viewFor(playing(), 0).series).toBeUndefined()
   })
 })
 

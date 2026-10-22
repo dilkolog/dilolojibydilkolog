@@ -1,5 +1,5 @@
 import type { TargetLanguage } from '../engine/types'
-import { BrainIcon, ConjugationsIcon, DictationIcon, GlobeIcon, ShadowingIcon } from './icons'
+import { BrainIcon, ConjugationsIcon, DictationIcon, GlobeIcon, ShadowingIcon, UserIcon } from './icons'
 import { ReaderViewMenu } from './readerPrefs'
 import type { ReaderPrefs } from './readerSettings'
 
@@ -29,6 +29,7 @@ export function ReaderTools({
   onFinish,
   multiMode,
   onMulti,
+  onClub,
 }: {
   language: TargetLanguage
   reader: ReaderPrefs
@@ -52,6 +53,8 @@ export function ReaderTools({
   onFinish: () => void
   multiMode: boolean
   onMulti: () => void
+  /** Opens a reading club on this text (none while one is open). */
+  onClub?: () => void
 }) {
   return (
     <div className="row reader-tools">
@@ -92,6 +95,11 @@ export function ReaderTools({
         <button className={`chip chip-sm${multiMode ? ' is-on' : ''}`} aria-pressed={multiMode} onClick={onMulti} title="ya da ⌘/Ctrl ile kelimelere tıkla">
           Çoklu seç
         </button>
+        {onClub && (
+          <button type="button" className="chip chip-sm" onClick={onClub} title="Bir arkadaşınla aynı metni oku: birbirinizin baktığı kelimeleri görün">
+            <UserIcon size={14} /> Birlikte oku
+          </button>
+        )}
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from 'react'
 import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { FAMILIES, type FamilyId } from '../../engine/verbFamilies'
-import { irregularForms, personsOf, reflexiveLemma, tenseSentence, verbParts, withSubject, type Tense } from '../../engine/tenses'
+import { irregularForms, onlyReflexive, personsOf, reflexiveLemma, tenseSentence, verbParts, withSubject, type Tense } from '../../engine/tenses'
 import { labForms } from '../../engine/verbLab'
 import { turkishForms, turkishTenseOf } from '../../engine/turkishVerb'
 import { masteryLevel, labKey, verbMastery, weakPersons, type LabData } from '../../engine/labProgress'
@@ -18,7 +18,7 @@ import { CompareTab } from './CompareTab'
 import { FormTable } from './FormTable'
 import { TwinTense } from './TwinTense'
 import { recordVisit } from '../screenUsage'
-import { CORE_TENSES, MOODS, stepTense, tenseName, verbEntry, type LabLanguage } from './labShared'
+import { CORE_TENSES, MOODS, stepTense, tenseName, verbEntry, verbTitle, type LabLanguage } from './labShared'
 import { placeNew } from '../listMemory'
 
 /** A menu of tenses by mood (the tense picker of the lab, also used on the learn tab). */
@@ -193,7 +193,7 @@ export function LearnTab({
   onMemorised?: (tense: Tense, results: { person: number; ok: boolean }[]) => void
 }) {
   const [view, setView] = useState<'simple' | 'detail' | 'compare'>('simple')
-  const [reflexive, setReflexive] = useState(false)
+  const [reflexiveOn, setReflexive] = useState(false)
   const [negative, setNegative] = useState(false)
   const [memorise, setMemorise] = useState(false)
   // A memorise round marked through: its score, and a new round (all covered again) on request.
@@ -204,6 +204,11 @@ export function LearnTab({
   const packGloss = usePackGloss(language, verb, !gloss)
   const meaning = gloss ?? packGloss
   const entry = verbEntry(language, verb)
+  // Used only reflexively (souvenir): named, conjugated and added as the reflexive (se souvenir).
+  const only = onlyReflexive(language, verb)
+  // The reflexive switch has no meaning for such a verb (it is hidden): one left on from the verb before does not apply.
+  const reflexive = reflexiveOn && !only
+  const title = verbTitle(language, verb)
   // E: memorise mode; A: on to practice. Not while typing, nor with a modifier.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -217,17 +222,19 @@ export function LearnTab({
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [onPractice])
+  // A reflexive-only verb's sentences may sit under either lemma ("se souvenir" or the bare key).
+  const sentenceOf = (t: Tense) => tenseSentence(entry, t) ?? (only ? tenseSentence({ language, lemma: verb }, t) : undefined)
   const addToList = async () => {
     if (!meaning) return
     try {
       // The sentence on the page goes with the verb (any tense's, when this one has none): the form marked, with its Turkish.
       // The plain verb's sentence: the reflexive one would not fit the word added.
-      const shown = tenseSentence(entry, tense) ?? available.map((t) => tenseSentence(entry, t)).find((x) => !!x)
+      const shown = sentenceOf(tense) ?? available.map((t) => sentenceOf(t)).find((x) => !!x)
       const example = shown ? shown.text.replace('___', `*${shown.form}*`) : undefined
-      const placed = await placeNew(db, language, [createEntry({ word: verb, meaning, partOfSpeech: 'verb', example, exampleTranslation: shown?.translation }, language, new Date())])
+      const placed = await placeNew(db, language, [createEntry({ word: title, meaning, partOfSpeech: 'verb', example, exampleTranslation: shown?.translation }, language, new Date())])
       await db.vocabulary.bulkPut(placed.entries)
       setAdded(true)
-      showToast(placed.listName ? `${verb} “${placed.listName}” listesine eklendi.` : `${verb} kelimelerine eklendi.`)
+      showToast(placed.listName ? `${title} “${placed.listName}” listesine eklendi.` : `${title} kelimelerine eklendi.`)
       onAdded?.()
     } catch {
       showToast('Eklenemedi.', undefined, 4000, 'info')
@@ -241,7 +248,7 @@ export function LearnTab({
   const turkish = meaning && trTense && !reflexive && !negative ? turkishForms(meaning, trTense) : undefined
   const odd = !reflexive && !negative ? irregularForms(entry, tense) : []
   // Reflexive forms on: the reflexive verb's own sentence (stored as "se lever", "s'évader").
-  const sentence = tenseSentence(reflexive ? { language, lemma: reflexiveLemma(language, verb) } : entry, tense)
+  const sentence = reflexive && !only ? tenseSentence({ language, lemma: reflexiveLemma(language, verb) }, tense) : sentenceOf(tense)
   // Mastery counts the four tenses learned first; a percentage over all fourteen would stay near zero for months.
   const core = CORE_TENSES[language].filter((t) => available.includes(t))
   const advanced = available.filter((t) => !core.includes(t))
@@ -258,7 +265,7 @@ export function LearnTab({
     <div className="stack lab-learn">
       <div className="lab-verb-head">
         <h2 className="lab-verb" lang={language}>
-          {verb[0].toLocaleUpperCase(language) + verb.slice(1)}
+          {title[0].toLocaleUpperCase(language) + title.slice(1)}
         </h2>
         <button type="button" className="icon-btn" aria-pressed={favorite} aria-label={favorite ? 'Favorilerden çıkar' : 'Favorilere ekle'} onClick={onFavorite}>
           <StarIcon size={20} className={favorite ? 'lab-star is-on' : 'lab-star'} />
@@ -311,7 +318,7 @@ export function LearnTab({
                   }}
                 />
               ))}
-              <MenuItem icon={reflexive ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />} title="Dönüşlü" hint="se laver / lavarse" onSelect={() => (setReflexive((r) => !r), close())} />
+              {!only && <MenuItem icon={reflexive ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />} title="Dönüşlü" hint="se laver / lavarse" onSelect={() => (setReflexive((r) => !r), close())} />}
               <MenuItem icon={negative ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />} title="Olumsuz" hint="ne… pas / no…" onSelect={() => (setNegative((n) => !n), close())} />
               <MenuItem
                 icon={<span className="lab-tick-gap" />}

@@ -21,28 +21,32 @@ Fransızca 12 zaman (présent … impératif), İspanyolca 14 zaman (presente �
 
 ## Laboratuvarın öteki zamanları
 
-İlk 120 fiil (A1 + A2) için bütün laboratuvar zamanlarının cümlesi var: FR passé simple, plus-que-parfait, futur antérieur, conditionnel passé, subjonctif passé, impératif; ES pluscuamperfecto, futuro perfecto, condicional perfecto, subjuntivo imperfecto/perfecto/pluscuamperfecto, imperativo. Bilerek boş bırakılan emir kipleri: FR `tuer`, `mourir`, `devoir`, `voler`, `marier`; ES `poder`, `morir`, `parecer`, `caer`, `escapar`, `necesitar`, `robar`, `deber` (doğal bir emir cümlesi kurulmuyor). 120. fiilden sonrasında bu zamanların cümlesi yok (B1–C1: sıradaki iş).
+İlk 120 fiil (A1 + A2) için bütün laboratuvar zamanlarının cümlesi var: FR passé simple, plus-que-parfait, futur antérieur, conditionnel passé, subjonctif passé, impératif; ES pluscuamperfecto, futuro perfecto, condicional perfecto, subjuntivo imperfecto/perfecto/pluscuamperfecto, imperativo. Bilerek boş bırakılan emir kipleri: FR `tuer`, `mourir`, `devoir`, `voler`, `marier`; ES `poder`, `morir`, `parecer`, `caer`, `escapar`, `necesitar`, `robar`, `deber` (doğal bir emir cümlesi kurulmuyor). 120–600. fiiller (B1–B2) aşağıda; 600. fiilden sonrasında (C1) bu zamanların cümlesi yok.
+
+**Fransızca, 120–600. fiiller (B1–B2, 2026-10-21, partiler fr-26…fr-34):** passé simple, plus-que-parfait, futur antérieur, conditionnel passé ve subjonctif passé her fiilde var (yalnızca `distraire`ın passé simple'ı yok: tabloda bu zaman yok). Boş kalanlar bilerek yazılmayan fiiller: `officier`, `chier`, `enfuir`, `pisser`, `manager`, `harper`, `bouffer`, `suicider`, `buter`, `péter`, `palmer`, `botter`, `piper`, `moquer`, `violer`, `flipper`, `soucier`, `rocher`, `assassiner`, `déconner`, `sucer`, `torturer`, `choper`, `draguer`, `plancher`, `lester`, `foirer`, `river`, `tanner`, `défoncer`, `mater` (yukarıdaki listeyle aynı gerekçe) ve `débrouiller` (yalın biçimi neredeyse yalnızca dönüşlü kullanılır). Emir kipi yalnızca doğal bir emir cümlesi kurulabilen fiillerde yazıldı (120–600 arasındaki 480 fiilin 301'inde); `sembler`, `exister`, `naître`, `coûter`, `durer`, `regretter`, `mentir` gibi fiillerde emir kipi bilerek boş. Birleşik zamanlarda yardımcı fiil ile ortaç bitişik, özne eril ve önde dişil/çoğul nesne zamiri yok (tablo uyum bilmez).
+
+**İspanyolca, 120–600. fiiller (B1–B2, 2026-10-21, partiler es-46…es-57):** pluscuamperfecto, futuro perfecto, condicional perfecto, subjuntivo imperfecto/perfecto/pluscuamperfecto her fiilde var (467 fiil × 6 zaman). Boş kalanlar yalnızca bilerek yazılmayan 13 fiil: `nuclear`, `solar`, `escolar`, `titular`, `pilar`, `auxiliar`, `reportar` (sıfat/isim anlamı baskın), `orinar`, `mear`, `follar`, `cagar`, `pillar` (kaba/argo), `violar` (hassas). Emir kipi yalnızca doğal bir emir cümlesi kurulabilen fiillerde yazıldı (467 fiilin 295'inde); `gustar`, `ocurrir`, `doler`, `llover`, `nacer`, `existir`, `costar`, `valer`, `amanecer`, `anochecer`, `atardecer`, `mentir`, `temer` gibi fiillerde ya da yalnızca olumsuz/dönüşlü emri doğal olanlarda (`preocupar`, `enfadar`, `afeitar`, `mudar`, `enterar`) emir kipi bilerek boş. `atardecer`ın presente ve subjuntivo tablosu yok (kişisiz fiil), cümlesi de yok.
 
 ## Zaman başına kapsam (tablodaki bütün fiiller)
 
-Fransızca (4103 fiil, en az bir cümlesi olan 2816; toplam 8359 cümle):
+Fransızca (4103 fiil, en az bir cümlesi olan 2816; toplam 10585 cümle):
 
 | Zaman | Fiil sayısı |
 |---|---:|
 | présent | 0 (bilerek) |
 | imparfait | 1903 |
 | passé composé | 2385 |
-| passé simple | 115 |
-| plus-que-parfait | 115 |
+| passé simple | 562 |
+| plus-que-parfait | 563 |
 | futur | 1402 |
-| futur antérieur | 115 |
+| futur antérieur | 563 |
 | conditionnel | 1029 |
-| conditionnel passé | 115 |
+| conditionnel passé | 563 |
 | subjonctif | 642 |
-| subjonctif passé | 115 |
-| impératif | 109 |
+| subjonctif passé | 563 |
+| impératif | 410 |
 
-İspanyolca (1456 fiil, en az bir cümlesi olan 1389; toplam 10140 cümle):
+İspanyolca (1456 fiil, en az bir cümlesi olan 1389; toplam 13237 cümle):
 
 | Zaman | Fiil sayısı |
 |---|---:|
@@ -50,16 +54,16 @@ Fransızca (4103 fiil, en az bir cümlesi olan 2816; toplam 8359 cümle):
 | imperfecto | 1382 |
 | pretérito | 1368 |
 | perfecto | 1379 |
-| pluscuamperfecto | 115 |
+| pluscuamperfecto | 582 |
 | futuro | 1380 |
-| futuro perfecto | 115 |
+| futuro perfecto | 582 |
 | condicional | 1064 |
-| condicional perfecto | 115 |
+| condicional perfecto | 582 |
 | subjuntivo | 1070 |
-| subjuntivo imperfecto | 115 |
-| subjuntivo perfecto | 115 |
-| subjuntivo pluscuamperfecto | 115 |
-| imperativo | 108 |
+| subjuntivo imperfecto | 582 |
+| subjuntivo perfecto | 582 |
+| subjuntivo pluscuamperfecto | 582 |
+| imperativo | 403 |
 
 ## Aracın kuralları (2026-10-21)
 
@@ -69,4 +73,4 @@ Fransızca (4103 fiil, en az bir cümlesi olan 2816; toplam 8359 cümle):
 
 ## Partiler
 
-`ornek-cumle-partileri/` altında: es-39/es-40 (ilk 600 fiilin eksik çekirdek zamanları), es-41/42/43/44 (ilk 120 fiilin öteki zamanları), es-45 (cümlesiz kalan iki fiil); fr-19/20/22/23 (ilk 600 fiilin eksik çekirdek zamanları, çoğu `-er` subjonctif'i), fr-21/24/25 (ilk 120 fiilin öteki zamanları).
+`ornek-cumle-partileri/` altında: es-39/es-40 (ilk 600 fiilin eksik çekirdek zamanları), es-41/42/43/44 (ilk 120 fiilin öteki zamanları), es-45 (cümlesiz kalan iki fiil); fr-19/20/22/23 (ilk 600 fiilin eksik çekirdek zamanları, çoğu `-er` subjonctif'i), fr-21/24/25 (ilk 120 fiilin öteki zamanları), fr-26…fr-33 (120–600. fiillerin öteki zamanları, sıklık sırasıyla 60'ar fiil), fr-34 (aynı aralıkta ek emir kipi cümleleri); es-46…es-56 (120–600. fiillerin öteki zamanları, sıklık sırasıyla 30–60'ar fiil), es-57 (aynı aralıkta ek emir kipi cümleleri).

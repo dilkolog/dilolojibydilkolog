@@ -4,7 +4,7 @@ import { loadFrequency } from '../../data/frequency'
 import { adoptCards, dueItems, emptyLab, recordCheck, recordForm, verbMastery, weakestCell, type LabData, type LabItem } from '../../engine/labProgress'
 import type { Scheduler } from '../../engine/scheduler'
 import { TENSE_BRIEF } from '../../engine/tenseBrief'
-import { answersFor, conjugateTense, LAB_TENSES, labTensesOf, personsOf, subjectLabel, tenseVerbs, type Tense } from '../../engine/tenses'
+import { answersFor, conjugateTense, LAB_TENSES, labTensesOf, onlyReflexive, personsOf, reflexiveLemma, subjectLabel, tenseVerbs, type Tense } from '../../engine/tenses'
 import { loadTenses } from '../../data/tenseData'
 import { prefs } from '../prefs'
 import { checkTyped } from '../../engine/answerCheck'
@@ -49,7 +49,11 @@ export const tenseName = (t: Tense) => upper(TENSE_BRIEF[t].name)
 /** The dictionary key of a verb as written in a word list: no reflexive pronoun, lower case. */
 export const verbKey = (language: LabLanguage, lemma: string) => lemma.trim().toLocaleLowerCase(language).replace(language === 'fr' ? /^(se |s['’])/ : /se$/, '')
 
-export const verbEntry = (language: LabLanguage, verb: string) => ({ language, lemma: verb, partOfSpeech: 'verb' as const })
+/** The lab's entry for a verb key; a verb used only reflexively (souvenir) is conjugated as one (se souvenir). */
+export const verbEntry = (language: LabLanguage, verb: string) => ({ language, lemma: onlyReflexive(language, verb) ? reflexiveLemma(language, verb) : verb, partOfSpeech: 'verb' as const })
+
+/** How the lab names a verb: its reflexive form when it is only used as one ("se souvenir"). */
+export const verbTitle = (language: LabLanguage, verb: string) => (onlyReflexive(language, verb) ? reflexiveLemma(language, verb) : verb)
 
 /** The learner's own verb entry, by its infinitive without a reflexive pronoun. */
 export function ownEntry(vocabulary: readonly VocabularyEntry[], language: LabLanguage, verb: string): VocabularyEntry | undefined {
@@ -247,8 +251,8 @@ function dayPerson(language: LabLanguage, item: LabItem, day: number): number {
 export const dayNumber = (now: Date) => now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
 
 /** Today's verb for the Today screen, with its meaning: one of the learner's own still being learnt. */
-export function useVerbOfDay(language: TargetLanguage, vocabulary: readonly VocabularyEntry[], key: unknown): { verb: string; gloss?: string } | null {
-  const [pick, setPick] = useState<{ verb: string; gloss?: string } | null>(null)
+export function useVerbOfDay(language: TargetLanguage, vocabulary: readonly VocabularyEntry[], key: unknown): { verb: string; title: string; gloss?: string } | null {
+  const [pick, setPick] = useState<{ verb: string; title: string; gloss?: string } | null>(null)
   useEffect(() => {
     if (language === 'en') {
       setPick(null)
@@ -262,7 +266,7 @@ export function useVerbOfDay(language: TargetLanguage, vocabulary: readonly Voca
         const own = [...new Set(vocabulary.filter((v) => v.partOfSpeech === 'verb').map((v) => verbKey(language, v.lemma)))].filter((v) => known.has(v))
         const verb = verbOfTheDay(own, COMMON[language].map(([v]) => v), (v) => verbMastery(lab, v, CORE_TENSES[language]), dayNumber(new Date()))
         const gloss = verb && (ownEntry(vocabulary, language, verb)?.senses[0]?.gloss ?? COMMON[language].find(([v]) => v === verb)?.[1])
-        if (live) setPick(verb ? { verb, gloss } : null)
+        if (live) setPick(verb ? { verb, title: verbTitle(language, verb), gloss } : null)
       })
       .catch(() => live && setPick(null))
     return () => {

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { DuelRoom, JOIN_WITHIN_MS, type Socket } from './duelRoom'
+import { DuelRoom, JOIN_WITHIN_MS, roomKind, type Socket } from './duelRoom'
 import worker from './index'
 
 /** A stand-in for a connection: what the room sends is kept, and the test plays the browser's part. */
@@ -123,6 +123,45 @@ describe('a live duel room', () => {
   })
 })
 
+describe('a reading club room', () => {
+  const clubSeat = (room: DuelRoom, name: string) => {
+    const s = new FakeSocket()
+    room.attach(s, 'club')
+    s.say({ t: 'join', name })
+    return s
+  }
+  const BODY = 'Le petit prince habitait une planète à peine plus grande que lui.'
+  type ClubLast = { room?: { you: number; text?: { title: string; body: string }; readers: { name: string; looks: string[] }[] } }
+
+  it('takes a long text in one message, gives it to whoever joins, and shares the words each looked up', () => {
+    const room = new DuelRoom()
+    const ali = clubSeat(room, 'Ali')
+    ali.say({ t: 'share', text: { language: 'fr', title: 'Le Petit Prince', body: BODY.repeat(200) } })
+    const veli = clubSeat(room, 'Veli')
+    const seen = (veli.last as ClubLast).room!
+    expect(seen.you).toBe(1)
+    expect(seen.text?.title).toBe('Le Petit Prince')
+    veli.say({ t: 'look', key: 'planèt' })
+    expect((ali.last as ClubLast).room!.readers[1]!.looks).toEqual(['planèt'])
+    // Four readers fit; a fifth is turned away.
+    clubSeat(room, 'Ayşe')
+    clubSeat(room, 'Can')
+    expect(clubSeat(room, 'Ece').last).toEqual({ t: 'error', reason: 'full' })
+  })
+
+  it('a room keeps the kind of its first connection; the kind comes from the address', () => {
+    expect(roomKind('https://diloloji.com/api/room?code=ABC234&kind=club')).toBe('club')
+    expect(roomKind('https://diloloji.com/api/room?code=ABC234')).toBe('duel')
+    const room = new DuelRoom()
+    const ali = clubSeat(room, 'Ali')
+    const late = new FakeSocket()
+    room.attach(late, 'duel')
+    late.say({ t: 'join', name: 'Veli' })
+    expect((late.last as ClubLast).room!.readers).toHaveLength(2)
+    expect(ali.sent.length).toBeGreaterThan(0)
+  })
+})
+
 describe('the Worker route for rooms', () => {
   const room = vi.fn(async (_req: Request) => new Response('room', { status: 200 }))
   const env = {
@@ -136,6 +175,14 @@ describe('the Worker route for rooms', () => {
     const res = await worker.fetch(ws('abc-234'), env)
     expect(res.status).toBe(200)
     expect(room).toHaveBeenCalled()
+  })
+
+  it('a club with the same code is another room', async () => {
+    const names: string[] = []
+    const named = { ...env, DUEL: { idFromName: (n: string) => (names.push(n), n), get: () => ({ fetch: room }) } as never }
+    await worker.fetch(ws('ABC234'), named)
+    await worker.fetch(new Request('https://diloloji.com/api/room?code=ABC234&kind=club', { headers: { upgrade: 'websocket', origin: 'https://diloloji.com' } }), named)
+    expect(names).toEqual(['ABC234', 'club:ABC234'])
   })
 
   it('turns away a bad code, a plain request, a stranger\'s page and a Worker with no rooms', async () => {

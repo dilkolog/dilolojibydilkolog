@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addShadowTry, cleanShadowLog, compareWeek, KEEP_SENTENCES, KEEP_TRIES, lastTry, progressLine, shadowKey } from '../shadowScores'
+import { addShadowTry, cleanShadowLog, compareWeek, KEEP_SENTENCES, KEEP_TRIES, lastTry, progressLine, shadowKey, trendLine, trendOf } from '../shadowScores'
 
 const at = (d: number) => new Date(Date.UTC(2026, 9, d, 12))
 
@@ -55,5 +55,15 @@ describe('shadow scores', () => {
   it('drops damaged entries', () => {
     expect(cleanShadowLog({ a: [{ at: '2026-10-01T00:00:00Z', score: 80 }, { at: 'x', score: 5 }, { at: '2026-10-02T00:00:00Z', score: 300 }], b: 'no' })).toEqual({ a: [{ at: '2026-10-01T00:00:00Z', score: 80 }] })
     expect(cleanShadowLog(null)).toEqual({})
+  })
+})
+
+describe('melody trend over tries', () => {
+  const t = (day: string, score: number) => ({ at: `2026-10-${day}T10:00:00.000Z`, score })
+  it('says nothing with one try, then first to latest with the change', () => {
+    expect(trendLine([t('01', 40)])).toBe('')
+    expect(trendOf([t('05', 60), t('01', 40), t('03', 52)])).toMatchObject({ tries: 3, days: 4, delta: 20 })
+    expect(trendLine([t('01', 40), t('03', 52), t('05', 60)])).toBe('3 denemede ezgi benzerliğin %40 → %60: 20 puan yükseldi (4 gün içinde).')
+    expect(trendLine([t('01', 60), t('01', 50)])).toBe('2 denemede ezgi benzerliğin %60 → %50: 10 puan düştü.')
   })
 })

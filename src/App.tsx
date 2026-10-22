@@ -42,6 +42,7 @@ import { Sidebar, TabBar, type NavMark } from './ui/AppSidebar'
 import { AppScreens, type AppScreensProps } from './AppScreens'
 import { DUEL_INBOX } from './engine/duel'
 import { cleanRoomCode, ROOM_INBOX } from './engine/liveDuel'
+import { CLUB_INBOX } from './engine/readingClub'
 import { CommandPalette, IncomingSet, Monki, prefetchScreens } from './lazyScreens'
 import { useScreenHistory } from './ui/useScreenHistory'
 import { useLanguageData } from './ui/useLanguageData'
@@ -231,6 +232,23 @@ export default function App() {
       // No session storage: the code can be typed into the game.
     }
     setScreen({ name: 'games', game: 'duel' })
+  }, [])
+
+  // A reading club somebody called to (?kulup=…): its code waits for the reader, which opens and joins.
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    if (!params.has('kulup')) return
+    const code = cleanRoomCode(params.get('kulup'))
+    params.delete('kulup')
+    const rest = params.toString()
+    history.replaceState(null, '', `${location.pathname}${rest ? `?${rest}` : ''}${location.hash}`)
+    if (!code) return
+    try {
+      sessionStorage.setItem(CLUB_INBOX, code)
+    } catch {
+      return
+    }
+    setScreen({ name: 'reading' })
   }, [])
 
   // A list somebody shared (?set=…): shown, and added only when confirmed.

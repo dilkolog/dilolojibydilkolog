@@ -48,15 +48,32 @@ export interface LivePlayer {
   ms: number
 }
 
+/** A rematch series is this many games in a row in the same room; then the next game starts a new series. */
+export const SERIES_LENGTH = 3
+
+/** The games the two players in the room have finished in this series, by slot. */
+export interface Series {
+  /** Whom the room's host is playing the series against (the guest's name, lower case). */
+  with?: string
+  games: number
+  wins: [number, number]
+  ties: number
+  /** Right answers over the series. */
+  right: [number, number]
+}
+
+const noSeries = (): Series => ({ games: 0, wins: [0, 0], ties: 0, right: [0, 0] })
+
 export interface RoomState {
   phase: LivePhase
   language?: TargetLanguage
   ids: string[]
   /** Slot 0 is the one who made the room (and starts the game). */
   players: LivePlayer[]
+  series: Series
 }
 
-export const emptyRoom = (): RoomState => ({ phase: 'lobby', ids: [], players: [] })
+export const emptyRoom = (): RoomState => ({ phase: 'lobby', ids: [], players: [], series: noSeries() })
 
 /** What a player sends. */
 export type ClientMessage =
@@ -73,6 +90,19 @@ export interface RoomView {
   you: number
   players: { name: string; connected: boolean; answered: number; score?: number; ms?: number }[]
   /** Once it is over: who won, by slot (or a tie). */
+  winner?: 'you' | 'them' | 'tie'
+  /** The rematch series so far, from this player's side (once a game of it is over). */
+  series?: SeriesView
+}
+
+export interface SeriesView {
+  games: number
+  of: number
+  you: number
+  them: number
+  ties: number
+  right: { you: number; them: number }
+  /** Once the series' last game is over: who won the series. */
   winner?: 'you' | 'them' | 'tie'
 }
 
@@ -91,7 +121,10 @@ export function join(state: RoomState, rawName: unknown): Result {
   const same = state.players.findIndex((p) => p.name.toLocaleLowerCase('tr') === name.toLocaleLowerCase('tr') && !p.connected)
   if (same >= 0) return { state: { ...state, players: state.players.map((p, i) => (i === same ? { ...p, connected: true } : p)) }, slot: same }
   if (state.players.length >= 2) return { state, error: 'full' }
-  return { state: { ...state, players: [...state.players, { name, connected: true, answered: 0, score: 0, ms: 0 }] }, slot: state.players.length }
+  // Someone new across the table: a new series. The same guest coming back (a dropped connection in the lobby) keeps it.
+  const guest = name.toLocaleLowerCase('tr')
+  const series = state.players.length === 1 && state.series.with !== guest ? { ...noSeries(), with: guest } : state.series
+  return { state: { ...state, series, players: [...state.players, { name, connected: true, answered: 0, score: 0, ms: 0 }] }, slot: state.players.length }
 }
 
 /** A connection dropped. The seat is kept (for the same name to take again) once the game has begun. */
@@ -110,7 +143,14 @@ export function start(state: RoomState, slot: number, language: unknown, ids: un
   if (typeof language !== 'string' || !LANGUAGES.includes(language)) return { state, error: 'bad_message' }
   if (!Array.isArray(ids) || ids.length < MIN_QUESTIONS || ids.length > MAX_QUESTIONS || !ids.every((id) => typeof id === 'string' && QUESTION_ID.test(id)) || new Set(ids).size !== ids.length) return { state, error: 'bad_questions' }
   return {
-    state: { phase: 'playing', language: language as TargetLanguage, ids: ids as string[], players: state.players.map((p) => ({ ...p, answered: 0, score: 0, ms: 0 })) },
+    state: {
+      phase: 'playing',
+      language: language as TargetLanguage,
+      ids: ids as string[],
+      players: state.players.map((p) => ({ ...p, answered: 0, score: 0, ms: 0 })),
+      // After a whole series, the next game opens a new one.
+      series: state.series.games >= SERIES_LENGTH ? { ...noSeries(), with: state.series.with } : state.series,
+    },
   }
 }
 
@@ -122,7 +162,31 @@ export function answer(state: RoomState, slot: number, i: unknown, ok: unknown, 
   if (i !== me.answered || typeof ok !== 'boolean' || typeof ms !== 'number' || !Number.isFinite(ms)) return { state, error: 'bad_answer' }
   const players = state.players.map((p, k) => (k === slot ? { ...p, answered: p.answered + 1, score: p.score + (ok ? 1 : 0), ms: p.ms + Math.min(MAX_ANSWER_MS, Math.max(0, Math.round(ms))) } : p))
   const over = players.length === 2 && players.every((p) => p.answered >= state.ids.length)
-  return { state: { ...state, players, phase: over ? 'over' : 'playing' } }
+  return { state: { ...state, players, phase: over ? 'over' : 'playing', series: over ? addGame(state.series, players) : state.series } }
+}
+
+const winnerOf = (a: { score: number; ms: number }, b: { score: number; ms: number }): DuelWinner => duelWinner({ name: '', ...a }, { name: '', ...b })
+
+function addGame(series: Series, players: LivePlayer[]): Series {
+  const w = winnerOf(players[0], players[1])
+  return {
+    ...series,
+    games: series.games + 1,
+    wins: [series.wins[0] + (w === 'from' ? 1 : 0), series.wins[1] + (w === 'reply' ? 1 : 0)],
+    ties: series.ties + (w === 'tie' ? 1 : 0),
+    right: [series.right[0] + players[0].score, series.right[1] + players[1].score],
+  }
+}
+
+/** The series from the side of `slot`: games won, then right answers over the series decide it. */
+function seriesView(series: Series, slot: number): SeriesView {
+  const other = 1 - slot
+  const you = series.wins[slot]
+  const them = series.wins[other]
+  const right = { you: series.right[slot], them: series.right[other] }
+  let winner: SeriesView['winner']
+  if (series.games >= SERIES_LENGTH) winner = you !== them ? (you > them ? 'you' : 'them') : right.you !== right.them ? (right.you > right.them ? 'you' : 'them') : 'tie'
+  return { games: series.games, of: SERIES_LENGTH, you, them, ties: series.ties, right, ...(winner ? { winner } : {}) }
 }
 
 /** After a game, both go back to the lobby for another (the host picks new questions). */
@@ -142,10 +206,11 @@ export function viewFor(state: RoomState, slot: number): RoomView {
   }))
   let winner: RoomView['winner']
   if (over && state.players.length === 2) {
-    const w: DuelWinner = duelWinner({ name: '', score: state.players[0].score, ms: state.players[0].ms }, { name: '', score: state.players[1].score, ms: state.players[1].ms })
+    const w = winnerOf(state.players[0], state.players[1])
     winner = w === 'tie' ? 'tie' : (w === 'from') === (slot === 0) ? 'you' : 'them'
   }
-  return { phase: state.phase, language: state.language, ids: state.ids, you: slot, players, ...(winner ? { winner } : {}) }
+  const series = over && state.players.length === 2 && state.series.games > 0 ? seriesView(state.series, slot) : undefined
+  return { phase: state.phase, language: state.language, ids: state.ids, you: slot, players, ...(winner ? { winner } : {}), ...(series ? { series } : {}) }
 }
 
 /** One message from a player, applied to the room. The result says what to send back (an error) and the new state. */

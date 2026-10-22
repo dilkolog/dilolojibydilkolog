@@ -1,4 +1,5 @@
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
+import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
 import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
 import { unzipSync } from 'fflate'
@@ -3003,6 +3004,74 @@ test('live duel: a room link opens the room, the friend is there, the same quest
   await expect(page.locator('.duel-side')).toHaveCount(2)
   await expect(page.locator('h1')).toContainText(/kazandı|Kazandın|Berabere/)
   expect(await overflow(page)).toEqual([])
+})
+
+test('reading club: a club link opens the friend\'s text, their looked-up words are marked, and the reader\'s own go back', async ({ page }) => {
+  // The club is run by the real rules (src/engine/readingClub.ts); Veli opened it with a French text.
+  const BODY = 'Le petit prince habitait une planète à peine plus grande que lui. Il avait besoin d\'un ami.'
+  let room: ClubState = clubShare(joinClub(emptyClub(), 'Veli').state, 0, { language: 'fr', title: 'Le Petit Prince', body: BODY }).state
+  let slot: number | undefined
+  let socket: { send: (m: string) => void } | null = null
+  await page.routeWebSocket(/\/api\/room\?code=ABC234&kind=club/, (ws) => {
+    socket = ws
+    ws.onMessage((raw) => {
+      const message = JSON.parse(String(raw)) as { t: string }
+      if (message.t === 'ping') return
+      const result = handleClub(room, slot, message)
+      if (result.error) return ws.send(JSON.stringify({ t: 'error', reason: result.error }))
+      room = result.state
+      slot = result.slot ?? slot
+      ws.send(JSON.stringify({ t: 'state', room: clubViewFor(room, slot ?? 1) }))
+    })
+  })
+  await startWithSamples(page)
+  await page.goto('/?kulup=abc-234')
+  const bar = page.getByRole('region', { name: 'Okuma kulübü' })
+  await expect(bar).toContainText('ABC-234')
+  expect(page.url()).not.toContain('kulup=')
+  await expect(page.locator('.reader')).toContainText('planète')
+  await expect(bar.getByRole('list', { name: 'Kulüptekiler' })).toContainText('Veli')
+  // Veli looks a word up: it is marked in the reader's text.
+  const planet = page.locator('.reader .rw', { hasText: 'planète' })
+  const key = (await planet.getAttribute('data-key'))!
+  room = clubLook(room, 0, key).state
+  socket!.send(JSON.stringify({ t: 'state', room: clubViewFor(room, 1) }))
+  await expect(planet).toHaveClass(/rw-friend/)
+  await expect(planet).toHaveAttribute('title', 'Veli bu kelimeye baktı')
+  // The reader looks one up: it goes to the club.
+  const ami = page.locator('.reader .rw', { hasText: 'ami' }).last()
+  await ami.click()
+  await expect.poll(() => room.readers[1]?.looks ?? []).toContain(await ami.getAttribute('data-key'))
+  expect(await overflow(page)).toEqual([])
+})
+
+test('reading club: a text is brought into a new club, ready to share', async ({ page }) => {
+  let shared: { title?: string; body?: string } | null = null
+  await page.routeWebSocket(/\/api\/room\?code=[A-Z0-9]{6}&kind=club/, (ws) => {
+    let room: ClubState = emptyClub()
+    let slot: number | undefined
+    ws.onMessage((raw) => {
+      const message = JSON.parse(String(raw)) as { t: string; text?: { title: string; body: string } }
+      if (message.t === 'ping') return
+      if (message.t === 'share') shared = message.text ?? null
+      const result = handleClub(room, slot, message)
+      room = result.state
+      slot = result.slot ?? slot
+      ws.send(JSON.stringify({ t: 'state', room: clubViewFor(room, slot ?? 0) }))
+    })
+  })
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('Hier soir, nous avons mangé des champignons délicieux avec nos voisins.')
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await page.getByRole('button', { name: 'Birlikte oku' }).click()
+  const bar = page.getByRole('region', { name: 'Okuma kulübü' })
+  await expect(bar.getByRole('button', { name: 'Arkadaşını çağır' })).toBeVisible()
+  await expect.poll(() => shared?.body ?? '').toContain('champignons')
+  await expect(bar).toContainText('Bağlantıyı bir arkadaşına gönder')
+  await expect(page.getByRole('button', { name: 'Birlikte oku' })).toHaveCount(0)
+  await bar.getByRole('button', { name: 'Ayrıl' }).click()
+  await expect(bar).toHaveCount(0)
 })
 
 test('song game: a video link brings its captions as lines with gaps; a page is checked and a wrong line can become a sentence card', async ({ page }) => {

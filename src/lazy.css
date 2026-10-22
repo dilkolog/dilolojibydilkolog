@@ -465,6 +465,11 @@
 .rw-learning, .rw-new { background: var(--near-soft); color: var(--near-text); }
 .kbd-key { margin-left: 0.375rem; font-size: var(--t-xs); opacity: 0.7; }
 .rw-skipped { text-decoration: underline wavy var(--lang); text-underline-offset: 4px; }
+/* Reading club: a word a friend looked up has a dotted line under it (a skipped one keeps its wavy line). */
+.rw-friend:not(.rw-skipped) { text-decoration: underline dotted var(--ink); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.club-bar { gap: 0.5rem; }
+.club-bar-head { align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.club-readers { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin: 0; padding: 0; list-style: none; font-size: var(--t-sm); }
 .word-pop { position: sticky; bottom: 1rem; z-index: 5; box-shadow: var(--shadow-lg); }
 .guess-rating { padding: 0.5rem 0.75rem; border-radius: var(--r-md); background: var(--surface-2, var(--surface)); border: 1px solid var(--rule); }
 .word-pop-word { font-family: var(--serif); font-size: var(--t-xl); color: var(--lang-text); font-weight: 400; }
@@ -719,6 +724,9 @@
 .article-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 .pitch-chart { width: 100%; height: auto; background: var(--surface); border-radius: var(--r-md); box-shadow: var(--shadow); }
 .pitch-native { fill: none; stroke: var(--lang); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.pitch-trend { align-items: center; flex-wrap: wrap; margin: 0; }
+.pitch-trend svg { flex: none; }
+.pitch-trend polyline { fill: none; stroke: var(--near); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .pitch-mine { fill: none; stroke: var(--near); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1 0; }
 .pitch-key-native { background: var(--lang); } .pitch-key-mine { background: var(--near); }
 .settings-nav {
@@ -1611,7 +1619,7 @@ button.badge-card:active { transform: none; }
 .title-tag { padding: 0.0625rem 0.5rem; border-radius: var(--r-full); background: var(--lang); color: var(--on-lang); font-size: var(--t-xs); font-weight: 700; }
 .progress-card-wait { display: grid; place-items: center; aspect-ratio: 1080 / 1350; background: var(--surface-2); color: var(--ink-soft); }
 @container main (min-width: 52rem) {
-  .settings-page { max-width: 50rem; }
+  .settings-page { max-width: 50rem; width: 100%; margin-inline: auto; }
   .settings-side { position: sticky; top: 0.5rem; z-index: 6; margin: 0; padding: 0; background: none; }
   .settings-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr)); overflow: visible; gap: 0.125rem; padding: 0.25rem; background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); }
   .settings-menu-item { flex-direction: column; justify-content: flex-start; gap: 0.25rem; padding: 0.5rem 0.125rem; border-radius: var(--r-md); text-align: center; font-size: var(--t-xs); white-space: normal; }
@@ -3173,6 +3181,14 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .duel-side { flex: 1 1 10rem; display: grid; gap: 0.25rem; justify-items: center; text-align: center; padding: 1rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); border: 2px solid transparent; }
 .duel-side.duel-won { border-color: var(--lang); background: var(--lang-soft); }
 .duel-score { font-family: var(--serif); font-size: var(--t-2xl); line-height: 1.1; }
+.duel-series { display: grid; gap: 0.5rem; }
+.duel-series .section-title { margin: 0; }
+.duel-series-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.duel-series-table :is(th, td) { padding: 0.375rem 0.5rem; text-align: right; border-bottom: 1px solid var(--rule); }
+.duel-series-table :is(th:first-child) { text-align: left; font-weight: 600; }
+.duel-series-table thead th { font-size: var(--t-xs); font-weight: 600; color: var(--ink-soft); }
+.duel-series-table tbody tr:last-child :is(th, td) { border-bottom: 0; }
+.duel-series-lead :is(th, td) { color: var(--lang-text); font-weight: 700; }
 .duel-link { overflow-wrap: anywhere; word-break: break-all; max-height: 4.5rem; overflow: hidden; }
 
 /* Mini podcast: the lines of the talk, the one being read lit. */

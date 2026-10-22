@@ -1,4 +1,5 @@
-import { emptyRoom, handle, leave, viewFor, type RoomState, type ServerMessage } from '../src/engine/liveDuel.js'
+import { emptyRoom, handle, leave, viewFor } from '../src/engine/liveDuel.js'
+import { clubViewFor, emptyClub, handleClub, leaveClub, MAX_READERS } from '../src/engine/readingClub.js'
 
 /**
  * One live duel room (src/engine/liveDuel.ts holds every rule): a Durable Object named by the room's code, so both
@@ -14,15 +15,33 @@ export interface Socket {
   addEventListener(type: 'close' | 'error', listener: () => void): void
 }
 
-/** A message longer than this is not one of ours. */
-const MAX_MESSAGE = 2000
-/** Connections at once: two players, and a few that are still joining or reconnecting. */
-const MAX_SOCKETS = 4
+/** The rules a room plays by: a live duel or a reading club (each in src/engine). */
+interface RoomRules {
+  empty(): unknown
+  handle(state: unknown, slot: number | undefined, raw: unknown): { state: unknown; slot?: number; error?: string }
+  leave(state: unknown, slot: number): unknown
+  view(state: unknown, slot: number): unknown
+  /** A message longer than this is not one of ours. */
+  maxMessage: number
+  /** Connections at once: the seats, and a few that are still joining or reconnecting. */
+  maxSockets: number
+}
+
+const RULES: Record<'duel' | 'club', RoomRules> = {
+  duel: { empty: emptyRoom, handle: handle as RoomRules['handle'], leave: leave as RoomRules['leave'], view: viewFor as RoomRules['view'], maxMessage: 2000, maxSockets: 4 },
+  // A club's text comes in one message (escaped, up to twice its length).
+  club: { empty: emptyClub, handle: handleClub as RoomRules['handle'], leave: leaveClub as RoomRules['leave'], view: clubViewFor as RoomRules['view'], maxMessage: 64_000, maxSockets: MAX_READERS + 2 },
+}
+
+/** Which rules a room was asked for (`?kind=club`); a duel when nothing is said. */
+export const roomKind = (url: string): 'duel' | 'club' => (new URL(url).searchParams.get('kind') === 'club' ? 'club' : 'duel')
 /** A connection that has not taken a seat by then is closed. */
 export const JOIN_WITHIN_MS = 10_000
 
 export class DuelRoom {
-  private room: RoomState = emptyRoom()
+  /** Set by the first connection: a room keeps its kind (its name in the Worker carries the kind too). */
+  private rules: RoomRules | null = null
+  private room: unknown = null
   /** Each connection and its seat (undefined until it has joined). */
   private seats = new Map<Socket, number | undefined>()
 
@@ -32,12 +51,16 @@ export class DuelRoom {
     const pair = new WebSocketPair()
     const server = pair[1] as unknown as Socket & { accept(): void }
     server.accept()
-    this.attach(server)
+    this.attach(server, roomKind(request.url))
     return new Response(null, { status: 101, webSocket: pair[0] })
   }
 
-  attach(socket: Socket): void {
-    if (this.seats.size >= MAX_SOCKETS) {
+  attach(socket: Socket, kind: 'duel' | 'club' = 'duel'): void {
+    if (!this.rules) {
+      this.rules = RULES[kind]
+      this.room = this.rules.empty()
+    }
+    if (this.seats.size >= this.rules.maxSockets) {
       this.send(socket, { t: 'error', reason: 'full' })
       socket.close(1013, 'room full')
       return
@@ -57,7 +80,8 @@ export class DuelRoom {
 
   private onMessage(socket: Socket, data: unknown): void {
     if (!this.seats.has(socket)) return
-    if (typeof data !== 'string' || data.length > MAX_MESSAGE) return this.send(socket, { t: 'error', reason: 'bad_message' })
+    const rules = this.rules!
+    if (typeof data !== 'string' || data.length > rules.maxMessage) return this.send(socket, { t: 'error', reason: 'bad_message' })
     let parsed: unknown
     try {
       parsed = JSON.parse(data)
@@ -66,7 +90,7 @@ export class DuelRoom {
     }
     // Keep-alive pings are not game messages.
     if (parsed && typeof parsed === 'object' && (parsed as { t?: unknown }).t === 'ping') return
-    const result = handle(this.room, this.seats.get(socket), parsed)
+    const result = rules.handle(this.room, this.seats.get(socket), parsed)
     if (result.error) return this.send(socket, { t: 'error', reason: result.error })
     this.room = result.state
     if (result.slot !== undefined && this.seats.get(socket) === undefined) {
@@ -82,11 +106,11 @@ export class DuelRoom {
     this.seats.delete(socket)
     if (close) socket.close(1000, 'replaced')
     if (slot === undefined || [...this.seats.values()].includes(slot)) return
-    this.room = leave(this.room, slot)
+    this.room = this.rules!.leave(this.room, slot)
     this.broadcast()
   }
 
-  private send(socket: Socket, message: ServerMessage): void {
+  private send(socket: Socket, message: { t: 'state'; room: unknown } | { t: 'error'; reason: string }): void {
     try {
       socket.send(JSON.stringify(message))
     } catch {
@@ -95,6 +119,6 @@ export class DuelRoom {
   }
 
   private broadcast(): void {
-    for (const [socket, slot] of this.seats) if (slot !== undefined) this.send(socket, { t: 'state', room: viewFor(this.room, slot) })
+    for (const [socket, slot] of this.seats) if (slot !== undefined) this.send(socket, { t: 'state', room: this.rules!.view(this.room, slot) })
   }
 }

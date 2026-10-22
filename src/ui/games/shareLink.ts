@@ -1,10 +1,10 @@
 import { showToast } from '../toastFeed'
 
 /** Hands the link to the share sheet where there is one, otherwise to the clipboard. */
-export async function share(text: string, url: string) {
+export async function share(text: string, url: string, title = 'Diloloji düellosu') {
   try {
     if (typeof navigator.share === 'function') {
-      await navigator.share({ title: 'Diloloji düellosu', text, url })
+      await navigator.share({ title, text, url })
       return
     }
     await navigator.clipboard.writeText(`${text} ${url}`)
