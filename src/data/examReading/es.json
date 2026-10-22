@@ -485,6 +485,270 @@
     }
    ],
    "language": "es"
+  },
+  {
+   "id": "es-read-cocina",
+   "exam": "DELE",
+   "level": "A2",
+   "title": "Un curso de cocina",
+   "text": "El centro cultural La Alameda ofrece un nuevo curso de cocina para principiantes. Las clases son los martes por la tarde, de seis a ocho, a partir del 3 de marzo. Cada clase cuesta doce euros, pero los estudiantes pagan solo ocho euros. Vas a aprender a preparar platos sencillos y baratos. Trae un delantal y un táper para llevarte a casa lo que cocines. Solo hay diez plazas: inscríbete en la recepción antes del 28 de febrero.",
+   "tr": "La Alameda kültür merkezi yeni başlayanlar için yeni bir yemek kursu açıyor. Dersler 3 Mart'tan itibaren salı akşamüstleri, altıdan sekize kadar. Her ders on iki avro, ama öğrenciler yalnızca sekiz avro ödüyor. Basit ve ucuz yemekler hazırlamayı öğreneceksin. Bir önlük ve pişirdiklerini eve götürmek için bir saklama kabı getir. Yalnızca on kişilik yer var: 28 Şubat'tan önce danışmada kaydol.",
+   "questions": [
+    {
+     "prompt": "¿Cuándo son las clases?",
+     "options": [
+      "Los martes por la tarde",
+      "Los martes por la mañana",
+      "Los sábados por la mañana",
+      "Todos los días"
+     ],
+     "answer": 0,
+     "why": "“Las clases son los martes por la tarde, de seis a ocho”: salı akşamüstleri."
+    },
+    {
+     "prompt": "¿Cuánto paga un estudiante por cada clase?",
+     "options": [
+      "Doce euros",
+      "Ocho euros",
+      "Diez euros",
+      "Veinte euros"
+     ],
+     "answer": 1,
+     "why": "“Los estudiantes pagan solo ocho euros”: öğrenciler sekiz avro öder; on iki avro normal fiyattır."
+    },
+    {
+     "prompt": "¿Qué hay que llevar a la clase?",
+     "options": [
+      "Los ingredientes",
+      "Un libro de recetas",
+      "Un delantal y un táper",
+      "Un cuchillo y un plato"
+     ],
+     "answer": 2,
+     "why": "“Trae un delantal y un táper para llevarte a casa lo que cocines”: önlük ve saklama kabı."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-vecina",
+   "exam": "DELE",
+   "level": "A2",
+   "title": "Una nota de la vecina",
+   "text": "Hola, señora Ruiz, soy Lucía, su vecina del tercero. El sábado por la mañana me voy de vacaciones a casa de mi hermana y vuelvo el viernes siguiente. ¿Podría regar mis plantas dos veces durante la semana, por ejemplo el martes y el jueves? El viernes por la noche voy a dejar mi llave en su buzón. No se preocupe por el gato: mi hijo va a venir todos los días a darle de comer. ¡Muchas gracias! Le traeré mermelada. Lucía",
+   "tr": "Merhaba Ruiz Hanım, ben üçüncü kattaki komşunuz Lucía. Cumartesi sabahı ablamın evine tatile gidiyorum, ertesi cuma dönüyorum. Hafta içinde iki kez, örneğin salı ve perşembe, çiçeklerimi sulayabilir misiniz? Cuma gecesi anahtarımı sizin posta kutunuza bırakacağım. Kedi için endişelenmeyin: oğlum her gün gelip onu besleyecek. Çok teşekkürler! Size reçel getireceğim. Lucía",
+   "questions": [
+    {
+     "prompt": "¿Para qué escribe Lucía esta nota?",
+     "options": [
+      "Para invitar a su vecina de vacaciones",
+      "Para pedirle un favor mientras está fuera",
+      "Para quejarse del ruido",
+      "Para vender sus plantas"
+     ],
+     "answer": 1,
+     "why": "Tatile gidiyor ve komşusundan çiçeklerini sulamasını rica ediyor: yokken bir iyilik istiyor."
+    },
+    {
+     "prompt": "¿Qué tiene que hacer la señora Ruiz?",
+     "options": [
+      "Dar de comer al gato todos los días",
+      "Regar las plantas todos los días",
+      "Regar las plantas el martes y el jueves",
+      "Ir a buscar la llave a casa del hijo de Lucía"
+     ],
+     "answer": 2,
+     "why": "“Regar mis plantas dos veces… el martes y el jueves”. Kediyi Lucía'nın oğlu besleyecek."
+    },
+    {
+     "prompt": "¿Dónde va a encontrar la llave la señora Ruiz?",
+     "options": [
+      "En su propio buzón",
+      "En casa de la hermana de Lucía",
+      "Debajo del felpudo",
+      "En casa del hijo de Lucía"
+     ],
+     "answer": 0,
+     "why": "“Voy a dejar mi llave en su buzón”: Ruiz Hanım'ın kendi posta kutusunda."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-teletrabajo",
+   "exam": "DELE",
+   "level": "B1",
+   "title": "Trabajar desde casa",
+   "text": "Desde hace un año, Javier, diseñador gráfico de treinta y cuatro años, trabaja tres días a la semana en su piso de Valencia y dos días en la oficina. «Al principio estaba encantado: ya no había atascos por la mañana y ganaba casi dos horas al día. Pero a los pocos meses empecé a sentirme solo. No hablaba con nadie hasta la noche». Para evitarlo, ha adoptado nuevas costumbres. Empieza el día con un paseo de veinte minutos, como si fuera a trabajar, y una vez a la semana come con un antiguo compañero. Además, ha puesto su escritorio en una habitación pequeña cuya puerta cierra a las seis de la tarde. «Lo que más echo de menos no son las reuniones, sino las charlas junto a la máquina de café», confiesa entre risas.",
+   "tr": "Otuz dört yaşındaki grafik tasarımcı Javier bir yıldır haftada üç gün Valencia'daki dairesinde, iki gün de ofiste çalışıyor. «Başta çok memnundum: sabah trafiği yoktu, günde neredeyse iki saat kazanıyordum. Ama birkaç ay sonra kendimi yalnız hissetmeye başladım. Akşama kadar kimseyle konuşmuyordum.» Bunun önüne geçmek için yeni alışkanlıklar edindi. Güne, işe gidiyormuş gibi yirmi dakikalık bir yürüyüşle başlıyor ve haftada bir eski bir iş arkadaşıyla öğle yemeği yiyor. Ayrıca masasını küçük bir odaya kurdu ve akşam altıda o odanın kapısını kapatıyor. «En çok özlediğim şey toplantılar değil, kahve makinesinin yanındaki sohbetler» diye itiraf ediyor gülerek.",
+   "questions": [
+    {
+     "prompt": "¿Cuántos días a la semana trabaja Javier en casa?",
+     "options": [
+      "Dos días",
+      "Tres días",
+      "Cinco días",
+      "Un día"
+     ],
+     "answer": 1,
+     "why": "“Trabaja tres días a la semana en su piso… y dos días en la oficina”: evde üç gün."
+    },
+    {
+     "prompt": "¿Qué problema tuvo a los pocos meses?",
+     "options": [
+      "Perdía tiempo en los atascos",
+      "Tenía demasiadas reuniones",
+      "Se sentía solo",
+      "Su piso era demasiado pequeño"
+     ],
+     "answer": 2,
+     "why": "“A los pocos meses empecé a sentirme solo”: birkaç ay sonra kendini yalnız hissetti."
+    },
+    {
+     "prompt": "¿Qué es lo que más echa de menos?",
+     "options": [
+      "Las conversaciones informales con sus compañeros",
+      "Las reuniones",
+      "Los trayectos de la mañana",
+      "Las comidas en restaurantes"
+     ],
+     "answer": 0,
+     "why": "“No son las reuniones, sino las charlas junto a la máquina de café”: kahve makinesinin yanındaki sohbetler."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-huerto",
+   "exam": "DELE",
+   "level": "B1",
+   "title": "Un huerto entre edificios",
+   "text": "Hace solo dos años, el espacio que hay entre los edificios de la calle de las Lilas era un solar vacío donde nadie se detenía. Hoy hay unos treinta pequeños huertos. La idea fue de Carmen, una jubilada que convenció al ayuntamiento para que prestara el terreno gratis. Cada familia inscrita recibe una parcela y se compromete a cuidarla al menos una vez por semana. Las herramientas se guardan en una caseta común y el agua de lluvia se recoge en grandes bidones. «Los niños descubren de dónde vienen las verduras, y vecinos que ni siquiera se saludaban ahora toman café juntos», cuenta Carmen. La lista de espera ya es larga: cuarenta familias esperan conseguir una parcela el año que viene.",
+   "tr": "Daha iki yıl önce Lilas sokağındaki binaların arasındaki alan, kimsenin uğramadığı boş bir arsaydı. Bugün orada otuz kadar küçük sebze bahçesi var. Fikir, belediyeyi araziyi ücretsiz vermeye ikna eden emekli Carmen'den çıktı. Kaydolan her aile bir parsel alıyor ve ona en az haftada bir kez bakmaya söz veriyor. Aletler ortak bir kulübede duruyor, yağmur suyu da büyük bidonlarda toplanıyor. «Çocuklar sebzelerin nereden geldiğini öğreniyor; birbirine selam bile vermeyen komşular artık birlikte kahve içiyor» diyor Carmen. Bekleme listesi şimdiden uzun: kırk aile gelecek yıl bir parsel almayı umuyor.",
+   "questions": [
+    {
+     "prompt": "¿Qué había antes del huerto?",
+     "options": [
+      "Un aparcamiento",
+      "Un solar vacío",
+      "Un pequeño mercado",
+      "Un colegio"
+     ],
+     "answer": 1,
+     "why": "“Era un solar vacío donde nadie se detenía”: boş bir arsa."
+    },
+    {
+     "prompt": "¿A qué se comprometen las familias inscritas?",
+     "options": [
+      "A pagar un alquiler al ayuntamiento",
+      "A comprar sus propias herramientas",
+      "A vender sus verduras a los vecinos",
+      "A cuidar su parcela al menos una vez por semana"
+     ],
+     "answer": 3,
+     "why": "“Se compromete a cuidarla al menos una vez por semana”. Arazi ücretsiz, aletler ortak."
+    },
+    {
+     "prompt": "Según Carmen, ¿qué ha cambiado el huerto en el barrio?",
+     "options": [
+      "Los vecinos se relacionan más",
+      "Las familias gastan menos en comida",
+      "El barrio atrae a nuevos vecinos",
+      "Los niños sacan mejores notas"
+     ],
+     "answer": 0,
+     "why": "Selamlaşmayan komşular “ahora toman café juntos”: artık birlikte kahve içiyorlar."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-semana",
+   "exam": "DELE",
+   "level": "C1",
+   "title": "La semana de cuatro días",
+   "text": "Desde hace unos años, varias empresas europeas experimentan con la semana laboral de cuatro días sin reducir el sueldo. Los resultados que difunden sus defensores parecen elocuentes: los empleados afirman estar menos estresados, las bajas por enfermedad disminuyen y la productividad, lejos de desplomarse, se mantiene e incluso mejora ligeramente. ¿Significa esto que estamos ante una solución milagrosa? Los escépticos piden prudencia. En primer lugar, las empresas que se ofrecen voluntarias para estas pruebas suelen ser pequeñas compañías del sector servicios, ya convencidas de las ventajas del modelo; sería arriesgado extrapolar sus conclusiones a un hospital o a una fábrica, donde la presencia física no se puede comprimir. En segundo lugar, condensar cuarenta horas en cuatro días puede dar lugar a jornadas tan intensas que el descanso ganado el viernes se paga de lunes a jueves. Por último, algunos trabajadores reconocen que el día libre acaba devorado por los trámites o las tareas domésticas. En el fondo, el debate gira menos en torno al número de días que a la organización del trabajo: allí donde se aprovechó la reforma para suprimir reuniones inútiles, los beneficios parecen duraderos; donde solo se acortó la semana, se desvanecen al cabo de unos meses.",
+   "tr": "Birkaç yıldır bazı Avrupa şirketleri maaşı düşürmeden dört günlük çalışma haftasını deniyor. Savunucularının yaydığı sonuçlar çok şey söylüyor gibi: çalışanlar daha az stresli olduklarını söylüyor, hastalık izinleri azalıyor ve verimlilik çökmek bir yana aynı kalıyor, hatta biraz artıyor. Bu, mucize bir çözümle karşı karşıya olduğumuz anlamına mı geliyor? Kuşkucular dikkat istiyor. Önce, bu denemelere gönüllü olan şirketler genellikle hizmet sektöründen, modelin yararlarına zaten inanmış küçük şirketler; sonuçlarını fiziksel varlığın sıkıştırılamadığı bir hastaneye ya da fabrikaya genellemek riskli olur. İkincisi, kırk saati dört güne sığdırmak öyle yoğun iş günleri doğurabilir ki cuma kazanılan dinlenmenin bedeli pazartesiden perşembeye ödenir. Son olarak bazı çalışanlar boş günün resmî işler ya da ev işleri tarafından yutulduğunu kabul ediyor. Aslında tartışma gün sayısından çok işin düzeni etrafında dönüyor: reformun gereksiz toplantıları kaldırmak için kullanıldığı yerlerde yararlar kalıcı görünüyor; yalnızca haftanın kısaltıldığı yerlerde birkaç ay sonra kayboluyor.",
+   "questions": [
+    {
+     "prompt": "Según sus defensores, ¿qué efecto tiene la semana de cuatro días en la productividad?",
+     "options": [
+      "Se desploma rápidamente",
+      "Baja un poco, pero el estrés disminuye",
+      "Se mantiene e incluso mejora ligeramente",
+      "Se duplica en las empresas pequeñas"
+     ],
+     "answer": 2,
+     "why": "“La productividad, lejos de desplomarse, se mantiene e incluso mejora ligeramente”: aynı kalıyor, hatta biraz artıyor."
+    },
+    {
+     "prompt": "¿Por qué desconfían los escépticos de los resultados de las pruebas?",
+     "options": [
+      "Los empleados exageraron su cansancio",
+      "Las empresas participantes no representan a toda la economía",
+      "Los resultados nunca se publicaron",
+      "Los sueldos bajaron durante el experimento"
+     ],
+     "answer": 1,
+     "why": "Gönüllü şirketler çoğunlukla hizmet sektöründen küçük şirketler; hastane ya da fabrikaya genellemek “arriesgado” (riskli)."
+    },
+    {
+     "prompt": "Según el autor, ¿de qué depende sobre todo el éxito de la reforma?",
+     "options": [
+      "De cómo se reorganiza el trabajo",
+      "Del número exacto de horas trabajadas",
+      "Del día de la semana que se libra",
+      "Únicamente del tamaño de la empresa"
+     ],
+     "answer": 0,
+     "why": "“El debate gira menos en torno al número de días que a la organización del trabajo”: gereksiz toplantıların kaldırıldığı yerlerde yararlar kalıcı."
+    }
+   ],
+   "language": "es"
+  },
+  {
+   "id": "es-read-reparar",
+   "exam": "DELE",
+   "level": "C1",
+   "title": "Reparar en lugar de tirar",
+   "text": "Un sábado al mes, en un local cedido por el ayuntamiento, una decena de voluntarios recibe a vecinos que llegan con una tostadora muda, una lámpara que parpadea o unos pantalones rotos. Este «café de reparación» no tiene nada de servicio técnico gratuito: el dueño del objeto participa él mismo en la reparación, guiado por un voluntario. «No queremos que la gente se vaya solo con un aparato que funciona, sino con la idea de que es capaz de arreglarlo», explica Enrique, ingeniero jubilado. El éxito de estas iniciativas revela un malestar más profundo. Muchos consumidores sospechan que los fabricantes diseñan productos deliberadamente frágiles o hacen que los recambios sean imposibles de encontrar y carísimos. El legislador ha empezado a reaccionar: algunos aparatos deben llevar ya un índice de reparabilidad, y los vendedores están obligados a indicar durante cuántos años habrá piezas disponibles. Aun así, los voluntarios no se hacen ilusiones. Un tercio de los objetos que les llevan no tienen arreglo, a menudo porque fueron diseñados para no abrirse nunca. Para Enrique, la verdadera victoria sería que algún día los cafés de reparación dejaran de ser necesarios.",
+   "tr": "Ayda bir cumartesi, belediyenin verdiği bir mekânda on kadar gönüllü, sesi çıkmayan bir ekmek kızartma makinesi, yanıp sönen bir lamba ya da yırtık bir pantolonla gelen mahalleliyi karşılıyor. Bu «tamir kafesi» ücretsiz bir teknik servis değil: eşyanın sahibi bir gönüllünün rehberliğinde onarıma kendisi katılıyor. «İnsanların yalnızca çalışan bir aletle değil, onu tamir edebilecekleri düşüncesiyle gitmelerini istiyoruz» diyor emekli mühendis Enrique. Bu girişimlerin başarısı daha derin bir rahatsızlığı gösteriyor. Pek çok tüketici, üreticilerin ürünleri bile bile dayanıksız tasarladığından ya da yedek parçaları bulunmaz ve çok pahalı hâle getirdiğinden kuşkulanıyor. Yasa koyucu tepki vermeye başladı: bazı aletlerde artık bir onarılabilirlik puanı bulunmalı, satıcılar da parçaların kaç yıl bulunacağını belirtmek zorunda. Yine de gönüllüler hayale kapılmıyor. Getirilen eşyaların üçte biri onarılamıyor, çoğu zaman da hiç açılmamak üzere tasarlandıkları için. Enrique'ye göre asıl zafer, tamir kafelerine bir gün gerek kalmaması olurdu.",
+   "questions": [
+    {
+     "prompt": "¿Cuál es la idea del café de reparación?",
+     "options": [
+      "Los voluntarios arreglan gratis los objetos mientras uno espera",
+      "El dueño repara él mismo su objeto, guiado por un voluntario",
+      "Se cambia un objeto roto por otro que funciona",
+      "Unos artesanos venden recambios baratos"
+     ],
+     "answer": 1,
+     "why": "“No tiene nada de servicio técnico gratuito: el dueño del objeto participa él mismo en la reparación, guiado por un voluntario”."
+    },
+    {
+     "prompt": "¿Qué reprochan muchos consumidores a los fabricantes?",
+     "options": [
+      "Que venden sus productos demasiado caros en las tiendas",
+      "Que muestran un índice de reparabilidad engañoso",
+      "Que diseñan objetos frágiles y hacen difícil conseguir recambios",
+      "Que se niegan a reparar los aparatos en garantía"
+     ],
+     "answer": 2,
+     "why": "Ürünleri “deliberadamente frágiles” tasarladıklarından, yedek parçaları da “imposibles de encontrar y carísimos” yaptıklarından kuşkulanıyorlar."
+    },
+    {
+     "prompt": "¿Cuál sería, para Enrique, el verdadero éxito?",
+     "options": [
+      "Que estos cafés ya no hicieran falta",
+      "Abrir un café de reparación cada semana",
+      "Arreglar todos los objetos que les llevan",
+      "Que la ley prohibiera los objetos que no se pueden abrir"
+     ],
+     "answer": 0,
+     "why": "“La verdadera victoria sería que algún día los cafés de reparación dejaran de ser necesarios”: bu kafelere gerek kalmaması."
+    }
+   ],
+   "language": "es"
   }
  ]
 }
