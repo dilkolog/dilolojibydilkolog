@@ -3675,3 +3675,8 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   .share-progress-btn { width: 2.5rem; height: 2.5rem; padding: 0; border-radius: var(--r-full); justify-content: center; }
   .share-progress-label { display: none; }
 }
+
+/* Numbers game: the digits to write out, and the answer under the box. */
+.numbers-digits { font-size: var(--t-2xl); font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; margin: 0; }
+.numbers-answer { display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; margin: 0; }
+.numbers-answer strong { font-variant-numeric: tabular-nums; }
