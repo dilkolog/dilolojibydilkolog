@@ -1566,3 +1566,23 @@ test('numbers and times: the start, a listening question, and a wrong written an
   await scanThemes('numbers-wrong')
   expect(problems).toEqual([])
 })
+
+test('twins: the start and an answered sentence pass accessibility and contrast checks in light and dark', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'İkizler Arenası' }).click()
+  const problems: string[] = []
+  const scanThemes = async (where: string) => {
+    for (const theme of ['light', 'dark'] as const) {
+      await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+      problems.push(...(await scan(page, `${where}-${theme}`)), ...(await contrastProblems(page)).map((p) => `${where}-${theme}: ${p}`))
+    }
+  }
+  await expect(page.getByRole('heading', { name: 'İkizler Arenası' })).toBeVisible()
+  await scanThemes('twins-start')
+  await page.getByRole('button', { name: /tura başla/ }).click()
+  await page.locator('.options .option').first().click()
+  await expect(page.getByRole('status')).toBeVisible()
+  await scanThemes('twins-answer')
+  expect(problems).toEqual([])
+})
