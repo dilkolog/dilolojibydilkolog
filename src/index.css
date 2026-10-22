@@ -2721,6 +2721,7 @@ button.access-badge:hover { border-color: var(--ink-soft); }
 .auth-tabs { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
 .auth-tabs .segmented-btn { justify-content: center; }
 .auth-form { display: grid; gap: 0.875rem; }
+.auth-captcha { display: grid; gap: 0.25rem; min-height: 4.1rem; }
 .auth-form .field { display: grid; gap: 0.375rem; }
 .field-label { font-size: var(--t-sm); font-weight: 600; }
 .auth-form .error { margin: 0; }

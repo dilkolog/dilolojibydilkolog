@@ -11,9 +11,13 @@ const sb = vi.hoisted(() => ({
   signUp: vi.fn(async () => false),
   sendMagicLink: vi.fn(async () => {}),
   currentSession: vi.fn(async (): Promise<unknown> => null),
+  siteKey: '',
 }))
 vi.mock('../data/supabase', () => ({
   supabaseConfigured: () => true,
+  get TURNSTILE_SITE_KEY() {
+    return sb.siteKey
+  },
   supabase: async () => ({}),
   authReturnPending: () => false,
   isRecoveryReturn: () => false,
@@ -96,7 +100,7 @@ describe('SupabaseAuth', () => {
     await type(host.querySelector<HTMLInputElement>('input[type=password]')!, 'gizli-sifre-1')
     await act(async () => host.querySelector('form')!.requestSubmit())
     await until(() => onDone.mock.calls.length > 0)
-    expect(sb.signIn).toHaveBeenCalledWith('ali@example.com', 'gizli-sifre-1')
+    expect(sb.signIn).toHaveBeenCalledWith('ali@example.com', 'gizli-sifre-1', undefined)
     expect(posts).toHaveLength(1)
     expect(posts[0]).toMatchObject({ action: 'vault-link', username: 'Ali Aydın' })
     expect(posts[0]!.id).toMatch(/^[0-9a-f]{64}$/)
@@ -119,13 +123,39 @@ describe('SupabaseAuth', () => {
     expect(onDone).toHaveBeenCalled()
   })
 
+  it('with Turnstile on, the form waits for the check and sends its token; a spent token is not sent twice', async () => {
+    sb.siteKey = '0x4AAA'
+    let callback: ((t: string) => void) | undefined
+    const reset = vi.fn()
+    window.turnstile = { render: (_el: HTMLElement, o: Record<string, unknown>) => ((callback = o.callback as (t: string) => void), 'w1'), reset, remove: () => {} }
+    sb.signIn.mockRejectedValueOnce(new Error('E-posta ya da şifre yanlış.'))
+    try {
+      const { host } = await mount()
+      await type(host.querySelector<HTMLInputElement>('input[type=email]')!, 'ali@example.com')
+      await type(host.querySelector<HTMLInputElement>('input[type=password]')!, 'gizli-sifre-1')
+      const submit = () => host.querySelector<HTMLButtonElement>('.auth-submit')!
+      expect(submit().disabled).toBe(true)
+      act(() => callback!('tok-1'))
+      expect(submit().disabled).toBe(false)
+      await act(async () => host.querySelector('form')!.requestSubmit())
+      await until(() => reset.mock.calls.length > 0)
+      expect(sb.signIn).toHaveBeenCalledWith('ali@example.com', 'gizli-sifre-1', 'tok-1')
+      // The try spent the token: a new check before the next one.
+      expect(reset).toHaveBeenCalledWith('w1')
+      expect(submit().disabled).toBe(true)
+    } finally {
+      sb.siteKey = ''
+      delete window.turnstile
+    }
+  })
+
   it('the passwordless way sends a link and says so', async () => {
     const { host } = await mount()
     await act(async () => button(host, 'Şifresiz giriş: bağlantı gönder').click())
     await type(host.querySelector<HTMLInputElement>('input[type=email]')!, 'ali@example.com')
     await act(async () => host.querySelector('form')!.requestSubmit())
     await settle()
-    expect(sb.sendMagicLink).toHaveBeenCalledWith('ali@example.com')
+    expect(sb.sendMagicLink).toHaveBeenCalledWith('ali@example.com', undefined)
     expect(host.textContent).toContain('Giriş bağlantısını gönderdik')
   })
 
@@ -139,7 +169,7 @@ describe('SupabaseAuth', () => {
     await type(host.querySelector<HTMLInputElement>('input[autocomplete=username]')!, '@Veli_1')
     await act(async () => host.querySelector('form')!.requestSubmit())
     await settle()
-    expect(sb.signUp).toHaveBeenCalledWith('veli@example.com', 'gizli-sifre-2', { username: 'veli_1', note: undefined })
+    expect(sb.signUp).toHaveBeenCalledWith('veli@example.com', 'gizli-sifre-2', { username: 'veli_1', note: undefined }, undefined)
     expect(pendingHandle()).toBe('veli_1')
     expect(host.textContent).toContain('onay bağlantısına dokun')
   })

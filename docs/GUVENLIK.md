@@ -19,6 +19,8 @@ Yapılanlar:
 - `/api/access` Supabase açıkken yanlış belirteçle bir kullanıcı adının var olduğunu söylemez (`exists`).
 - HSTS `includeSubDomains` aldı (`scripts/cf-headers.mjs`).
 
+- **Kayıt koruması:** tek kullanımlık e-posta alan adlarıyla kayıt Supabase "Before User Created" kancasıyla reddedilir (`0006_disposable_emails.sql`); giriş formunda isteğe bağlı Cloudflare Turnstile (`VITE_TURNSTILE_SITE_KEY`). Kurulum sırası `docs/SUPABASE.md`.
+
 Sahibinin yapacakları: Cloudflare WAF Rate Limiting kuralı (`/api/translate`), Supabase Auth: e-posta onayı zorunlu, en az 8 karakter şifre, sızdırılmış şifre koruması, kayıtta CAPTCHA (Turnstile).
 
 ## 2026-10-21 güvenlik incelemesi

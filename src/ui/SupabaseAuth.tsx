@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { approvalEnabled } from '../data/access'
 import { reportError } from '../data/errorReport'
 import { VaultError } from '../data/vault'
-import { clearReturn, currentSession, isRecoveryReturn, returnError, resendConfirmation, sendMagicLink, sendPasswordReset, setNewPassword, signIn, signInWithGoogle, signUp, supabase, authErrorText } from '../data/supabase'
+import { clearReturn, currentSession, isRecoveryReturn, returnError, resendConfirmation, sendMagicLink, sendPasswordReset, setNewPassword, signIn, signInWithGoogle, signUp, supabase, authErrorText, TURNSTILE_SITE_KEY } from '../data/supabase'
+import { Turnstile } from './Turnstile'
 import { ChevronLeftIcon, LockIcon } from './icons'
 import { PasswordInput } from './PasswordInput'
 import { cleanHandle, HANDLE_RULE } from '../data/friends'
@@ -62,6 +63,10 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
   // Whether the owner approves accounts at all: the sign-up text about it is only true then (until known, it is left out).
   const [approvalOn, setApprovalOn] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  // Turnstile (when the build has a site key): the token of the current check, spent by one call; `captchaRound` asks for a new one.
+  const [captcha, setCaptcha] = useState<string | null>(null)
+  const [captchaRound, setCaptchaRound] = useState(0)
+  const captchaMissing = !!TURNSTILE_SITE_KEY && !captcha
   const session = useRef<Session | null>(null)
 
   useEffect(() => {
@@ -77,7 +82,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
     onDone()
   }
 
-  const attempt = async (work: () => Promise<void>) => {
+  const attempt = async (work: () => Promise<void>, spendsCaptcha = false) => {
     setError('')
     setBusy(true)
     try {
@@ -88,6 +93,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
       if (e instanceof VaultError ? e.reason === 'unavailable' : !(e instanceof Error) || e.name !== 'Error') reportError(e, 'supabase-sign-in')
     } finally {
       setBusy(false)
+      if (spendsCaptcha && TURNSTILE_SITE_KEY) setCaptchaRound((r) => r + 1)
     }
   }
 
@@ -129,13 +135,15 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
     attempt(async () => {
       const mail = email.trim()
       if (!EMAIL.test(mail)) throw new Error('Geçerli bir e-posta adresi yaz.')
+      if (captchaMissing) throw new Error('Önce robot kontrolünün tamamlanmasını bekle.')
+      const token = captcha ?? undefined
       if (step === 'magic') {
-        await sendMagicLink(mail)
+        await sendMagicLink(mail, token)
         setSentWhat('Giriş bağlantısını gönderdik. E-postandaki bağlantıya dokun; uygulama girişi tamamlar.')
         return setStep('sent')
       }
       if (step === 'reset') {
-        await sendPasswordReset(mail)
+        await sendPasswordReset(mail, token)
         setSentWhat('Şifre yenileme bağlantısını gönderdik. E-postandaki bağlantıya dokun, yeni şifreni yaz.')
         return setStep('sent')
       }
@@ -145,27 +153,28 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
         const name = cleanHandle(username)
         if (!HANDLE_RULE.test(name)) throw new Error('Kullanıcı adı 3–20 karakter olmalı: küçük harf, rakam ve alt çizgi.')
         setPendingHandle(name)
-        const ready = await signUp(mail, password, { username: name, note: note.trim() || undefined })
+        const ready = await signUp(mail, password, { username: name, note: note.trim() || undefined }, token)
         if (!ready) {
           setSentWhat('Hesabın oluşturuldu. E-postana gelen onay bağlantısına dokun; uygulama girişi tamamlar.')
           return setStep('sent')
         }
-      } else await signIn(mail, password)
+      } else await signIn(mail, password, token)
       const s = await currentSession()
       if (!s) throw new Error('Giriş tamamlanamadı; tekrar dene.')
       session.current = s
       finish(await completeSignIn(s))
-    })
+    }, true)
 
   const resend = () =>
     attempt(async () => {
       const mail = email.trim()
       if (!EMAIL.test(mail)) throw new Error('Önce yukarıya e-posta adresini yaz.')
-      await resendConfirmation(mail)
+      if (captchaMissing) throw new Error('Önce robot kontrolünün tamamlanmasını bekle.')
+      await resendConfirmation(mail, captcha ?? undefined)
       setLinkFailed(false)
       setSentWhat('Onay mailini yeniden gönderdik. En son gelen maildeki bağlantıya dokun; eski mailler çalışmaz.')
       setStep('sent')
-    })
+    }, true)
 
   const title: Record<Step, string> = {
     login: 'Hesabına giriş yap',
@@ -253,6 +262,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
             )}
             {step === 'magic' && <p className="small muted">Şifre gerekmez: e-postana bir giriş bağlantısı göndeririz. Hesabın yoksa o bağlantı hesabını da açar.</p>}
             {step === 'reset' && <p className="small muted">E-postana bir bağlantı göndeririz; ona dokunup yeni şifreni yazarsın. Verilerin olduğu gibi kalır.</p>}
+            {TURNSTILE_SITE_KEY && <Turnstile siteKey={TURNSTILE_SITE_KEY} round={captchaRound} onToken={setCaptcha} />}
             {error && (
               <p className="error" role="alert">
                 {error}
@@ -263,7 +273,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
                 Onay mailini yeniden gönder
               </button>
             )}
-            <button className="btn auth-submit" type="submit" disabled={busy || !email.trim() || ((step === 'login' || step === 'create') && !password)}>
+            <button className="btn auth-submit" type="submit" disabled={busy || captchaMissing || !email.trim() || ((step === 'login' || step === 'create') && !password)}>
               {busy ? 'Bekle…' : step === 'create' ? 'Hesap oluştur' : step === 'login' ? 'Giriş yap' : 'Bağlantı gönder'}
             </button>
             {step === 'login' && (
