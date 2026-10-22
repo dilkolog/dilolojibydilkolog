@@ -217,6 +217,28 @@ export function ReadingScreen({
   })
   const onToggleMulti = useCallback((key: string) => toggleMultiRef.current(key), [])
   const openTokens = useMemo(() => openTokensOf(analysis), [analysis])
+  // Reading club: the words friends looked up, in the order they come in the text, each with its first place.
+  const lookedWords = useMemo(() => {
+    const out: { key: string; text: string; who: string[]; token: ReadToken; sentence: string; at: string }[] = []
+    if (!analysis || !club.looks.size) return out
+    const seen = new Set<string>()
+    analysis.paragraphs.forEach((p, i) =>
+      p.forEach((sentence, j) =>
+        sentence.tokens.forEach((t) => {
+          if (!t.key || seen.has(t.key) || !club.looks.has(t.key)) return
+          seen.add(t.key)
+          out.push({ key: t.key, text: t.text, who: club.looks.get(t.key)!, token: t, sentence: sentence.text, at: `${i}.${j}` })
+        }),
+      ),
+    )
+    return out
+  }, [analysis, club.looks])
+  const showLooked = (key: string) => {
+    const w = lookedWords.find((x) => x.key === key)
+    if (!w) return
+    pickToken(w.token, w.sentence, w.at, false)
+    document.querySelector(`.reader [data-key="${CSS.escape(key)}"]`)?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+  }
   const existing = useMemo(() => wordKeys(vocabulary), [vocabulary])
   const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
 
@@ -382,7 +404,7 @@ export function ReadingScreen({
         onMulti={() => setMultiMode((m) => !m)}
         onClub={club.code || !club.canStart ? undefined : club.start}
       />
-      <ClubBar club={club} />
+      <ClubBar club={club} words={lookedWords} onWord={showLooked} />
       {showForms && language !== 'en' && <TextForms groups={formGroups} language={language} onOpenLab={onOpenLab} onLesson={onLesson} onReview={reviewForms} onShow={showSentence} onClose={() => setShowForms(false)} />}
       {dictating !== null && (
         <TextDictation key={`dict-${current?.id}-${dictating}`} sentences={sentencesFlat} language={language} start={dictating} voice={recorded ? 'recording' : 'device'} play={playSentence} onClose={() => setDictating(null)} />

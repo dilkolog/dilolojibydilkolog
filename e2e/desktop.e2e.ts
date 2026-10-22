@@ -3038,6 +3038,9 @@ test('reading club: a club link opens the friend\'s text, their looked-up words 
   socket!.send(JSON.stringify({ t: 'state', room: clubViewFor(room, 1) }))
   await expect(planet).toHaveClass(/rw-friend/)
   await expect(planet).toHaveAttribute('title', 'Veli bu kelimeye baktı')
+  // Their words are listed on the club card too: one tap opens the word in the text.
+  await bar.getByRole('button', { name: 'planète' }).click()
+  await expect(planet).toHaveClass(/is-selected/)
   // The reader looks one up: it goes to the club.
   const ami = page.locator('.reader .rw', { hasText: 'ami' }).last()
   await ami.click()
