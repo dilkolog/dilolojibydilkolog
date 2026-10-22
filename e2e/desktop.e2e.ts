@@ -311,6 +311,8 @@ test('exam-style tasks: a text and three questions to read, a listening mode tha
   await expect(page.getByRole('heading', { name: 'Sınav tarzı görevler' })).toBeVisible()
   // Reading: the text is in front of the learner; answering all three enables the check.
   await page.getByRole('button', { name: 'A2', exact: true }).click()
+  // The list reorders after an answer (missed and untried passages first): find the passage by its title.
+  const firstTitle = (await page.locator('.examtask-item strong').first().textContent())!.trim()
   await page.locator('.examtask-item').first().click()
   await expect(page.locator('.examtask-text')).toBeVisible()
   await expect(page.getByRole('button', { name: 'Kontrol et' })).toBeDisabled()
@@ -320,9 +322,9 @@ test('exam-style tasks: a text and three questions to read, a listening mode tha
   await expect(page.locator('.examtask .option.is-correct')).toHaveCount(3)
   // Back to the list: the passage shows its last result; listening hides the text.
   await page.getByRole('button', { name: 'Görevlere dön' }).click()
-  await expect(page.locator('.examtask-item').first()).toContainText('son sonuç')
+  await expect(page.locator('.examtask-item', { hasText: firstTitle })).toContainText('son sonuç')
   await page.getByRole('button', { name: 'Dinleme', exact: true }).click()
-  await page.locator('.examtask-item').nth(1).click()
+  await page.locator('.examtask-item').filter({ hasNotText: firstTitle }).first().click()
   await expect(page.locator('.examtask-text')).toHaveCount(0)
   await expect(page.getByText('2 dinleme hakkın kaldı')).toBeVisible()
   for (const n of [1, 2, 3]) await page.getByRole('region', { name: `Soru ${n}` }).locator('.option').nth(1).click()
