@@ -1,0 +1,256 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "rules": [
+    {
+      "id": "en:affect-effect",
+      "drills": [
+        { "text": "Lack of sleep can ___ your memory.", "right": "affect", "wrong": "effect", "tr": "Uykusuzluk hafızanı etkileyebilir." },
+        { "text": "The new law had a big ___ on small shops.", "right": "effect", "wrong": "affect", "tr": "Yeni yasanın küçük dükkânlar üzerinde büyük bir etkisi oldu." },
+        { "text": "Did the noise ___ your concentration?", "right": "affect", "wrong": "effect", "tr": "Gürültü konsantrasyonunu etkiledi mi?" },
+        { "text": "Music has a calming ___ on babies.", "right": "effect", "wrong": "affect", "tr": "Müziğin bebekler üzerinde sakinleştirici bir etkisi vardır." },
+        { "text": "The strike will ___ thousands of passengers.", "right": "affect", "wrong": "effect", "tr": "Grev binlerce yolcuyu etkileyecek." }
+      ]
+    },
+    {
+      "id": "en:borrow-lend",
+      "drills": [
+        { "text": "Could you ___ me your umbrella? It's raining.", "right": "lend", "wrong": "borrow", "tr": "Bana şemsiyeni ödünç verebilir misin? Yağmur yağıyor." },
+        { "text": "I ___ a book from the library every week.", "right": "borrow", "wrong": "lend", "tr": "Her hafta kütüphaneden bir kitap ödünç alırım." },
+        { "text": "My brother never gives back the money he ___ from me.", "right": "borrows", "wrong": "lends", "tr": "Erkek kardeşim benden ödünç aldığı parayı hiç geri vermez." },
+        { "text": "Banks ___ money to people who want to buy a house.", "right": "lend", "wrong": "borrow", "tr": "Bankalar ev almak isteyen insanlara borç para verir." },
+        { "text": "Can I ___ your phone for a minute?", "right": "borrow", "wrong": "lend", "tr": "Telefonunu bir dakikalığına ödünç alabilir miyim?" }
+      ]
+    },
+    {
+      "id": "en:make-do",
+      "drills": [
+        { "text": "I need to ___ the dishes before my parents get home.", "right": "do", "wrong": "make", "tr": "Annemle babam eve gelmeden önce bulaşıkları yıkamam lazım." },
+        { "text": "Don't ___ so much noise, the baby is sleeping.", "right": "make", "wrong": "do", "tr": "Bu kadar gürültü yapma, bebek uyuyor." },
+        { "text": "She ___ her best in the exam.", "right": "did", "wrong": "made", "tr": "Sınavda elinden gelenin en iyisini yaptı." },
+        { "text": "We have to ___ a decision by Friday.", "right": "make", "wrong": "do", "tr": "Cuma gününe kadar bir karar vermemiz gerekiyor." },
+        { "text": "I usually ___ my homework after dinner.", "right": "do", "wrong": "make", "tr": "Ödevimi genelde akşam yemeğinden sonra yaparım." }
+      ]
+    },
+    {
+      "id": "en:remember-remind",
+      "drills": [
+        { "text": "Can you ___ me to buy milk on the way home?", "right": "remind", "wrong": "remember", "tr": "Eve dönerken süt almamı bana hatırlatır mısın?" },
+        { "text": "I don't ___ where I parked the car.", "right": "remember", "wrong": "remind", "tr": "Arabayı nereye park ettiğimi hatırlamıyorum." },
+        { "text": "This song always ___ me of my grandmother.", "right": "reminds", "wrong": "remembers", "tr": "Bu şarkı bana hep büyükannemi hatırlatır." },
+        { "text": "Do you ___ the name of our first teacher?", "right": "remember", "wrong": "remind", "tr": "İlk öğretmenimizin adını hatırlıyor musun?" },
+        { "text": "Please ___ him that the meeting starts at nine.", "right": "remind", "wrong": "remember", "tr": "Lütfen ona toplantının dokuzda başladığını hatırlat." }
+      ]
+    },
+    {
+      "id": "en:say-tell",
+      "drills": [
+        { "text": "Can you ___ me the way to the station?", "right": "tell", "wrong": "say", "tr": "Bana istasyonun yolunu tarif edebilir misin?" },
+        { "text": "What did she ___ about the new job?", "right": "say", "wrong": "tell", "tr": "Yeni iş hakkında ne dedi?" },
+        { "text": "My grandfather loves to ___ stories about his childhood.", "right": "tell", "wrong": "say", "tr": "Dedem çocukluğuyla ilgili hikâyeler anlatmayı çok sever." },
+        { "text": "He ___ goodbye and left the room.", "right": "said", "wrong": "told", "tr": "Hoşça kal dedi ve odadan çıktı." },
+        { "text": "She ___ me she was moving to Canada.", "right": "told", "wrong": "said", "tr": "Bana Kanada'ya taşınacağını söyledi." }
+      ]
+    },
+    {
+      "id": "en:hear-listen",
+      "drills": [
+        { "text": "I ___ to podcasts on my way to work.", "right": "listen", "wrong": "hear", "tr": "İşe giderken podcast dinlerim." },
+        { "text": "Speak louder, please. I can't ___ you.", "right": "hear", "wrong": "listen", "tr": "Daha yüksek sesle konuş lütfen. Seni duyamıyorum." },
+        { "text": "Did you ___ the thunder last night?", "right": "hear", "wrong": "listen", "tr": "Dün gece gök gürültüsünü duydun mu?" },
+        { "text": "You never ___ to me when I'm talking!", "right": "listen", "wrong": "hear", "tr": "Ben konuşurken beni hiç dinlemiyorsun!" },
+        { "text": "We ___ a strange noise in the kitchen and went to check.", "right": "heard", "wrong": "listened", "tr": "Mutfakta garip bir ses duyduk ve bakmaya gittik." }
+      ]
+    },
+    {
+      "id": "en:lose-loose",
+      "drills": [
+        { "text": "If we ___ this match, we're out of the tournament.", "right": "lose", "wrong": "loose", "tr": "Bu maçı kaybedersek turnuvadan eleniriz." },
+        { "text": "This screw is ___; can you tighten it?", "right": "loose", "wrong": "lose", "tr": "Bu vida gevşek; sıkabilir misin?" },
+        { "text": "I always ___ my keys when I'm in a hurry.", "right": "lose", "wrong": "loose", "tr": "Acelem olduğunda anahtarlarımı hep kaybederim." },
+        { "text": "These jeans are too ___ around the waist.", "right": "loose", "wrong": "lose", "tr": "Bu kot pantolon belden çok bol." },
+        { "text": "My tooth is ___ and it hurts when I eat.", "right": "loose", "wrong": "lose", "tr": "Dişim sallanıyor ve yemek yerken acıyor." }
+      ]
+    },
+    {
+      "id": "en:rob-steal",
+      "language": "en",
+      "words": ["rob", "steal"],
+      "meanings": ["soymak (kişiyi, yeri)", "çalmak (eşyayı)"],
+      "distinction": "Rob soyulan kişi ya da yerle kullanılır (rob a bank, rob someone); steal ise çalınan eşyayla kullanılır (steal a car, steal money).",
+      "example": ["They planned to rob a bank.", "Don't leave your bag here; someone might steal it."],
+      "drills": [
+        { "text": "Someone ___ my bike last night.", "right": "stole", "wrong": "robbed", "tr": "Dün gece biri bisikletimi çaldı." },
+        { "text": "Two men ___ a bank in our town yesterday.", "right": "robbed", "wrong": "stole", "tr": "Dün iki adam kasabamızdaki bir bankayı soydu." },
+        { "text": "Thieves ___ the old lady on her way home.", "right": "robbed", "wrong": "stole", "tr": "Hırsızlar yaşlı kadını eve dönerken soydu." },
+        { "text": "Somebody has ___ my wallet!", "right": "stolen", "wrong": "robbed", "tr": "Biri cüzdanımı çalmış!" },
+        { "text": "They ___ the corner shop and ran away.", "right": "robbed", "wrong": "stole", "tr": "Köşedeki dükkânı soyup kaçtılar." }
+      ]
+    },
+    {
+      "id": "en:win-earn",
+      "language": "en",
+      "words": ["win", "earn"],
+      "meanings": ["kazanmak (yarışma, maç, ödül)", "kazanmak (çalışarak, para)"],
+      "distinction": "Win bir yarışmayı, maçı ya da ödülü kazanmaktır; earn ise çalışarak para ya da emekle bir şey kazanmaktır.",
+      "example": ["We hope to win the final.", "She wants to earn more money."],
+      "drills": [
+        { "text": "Who ___ the race yesterday?", "right": "won", "wrong": "earned", "tr": "Dünkü yarışı kim kazandı?" },
+        { "text": "How much money do you ___ a month?", "right": "earn", "wrong": "win", "tr": "Ayda ne kadar para kazanıyorsun?" },
+        { "text": "Our team ___ the match on Saturday.", "right": "won", "wrong": "earned", "tr": "Takımımız cumartesi günü maçı kazandı." },
+        { "text": "He ___ his living as a taxi driver.", "right": "earns", "wrong": "wins", "tr": "Geçimini taksi şoförü olarak kazanıyor." },
+        { "text": "I hope I ___ the lottery one day.", "right": "win", "wrong": "earn", "tr": "Umarım bir gün piyangoyu kazanırım." }
+      ]
+    },
+    {
+      "id": "en:look-see",
+      "language": "en",
+      "words": ["look", "see"],
+      "meanings": ["bakmak (bilerek)", "görmek (algılamak)"],
+      "distinction": "Look bilerek bir yöne bakmaktır ve bir şeye bakarken at ister (look at); see ise gözün bir şeyi kendiliğinden algılamasıdır ve doğrudan nesne alır.",
+      "example": ["Look at the sky!", "I can see the sea from my room."],
+      "drills": [
+        { "text": "___ at this photo of my grandparents!", "right": "Look", "wrong": "See", "tr": "Büyükannemle büyükbabamın şu fotoğrafına bak!" },
+        { "text": "I can't ___ anything without my glasses.", "right": "see", "wrong": "look", "tr": "Gözlüğüm olmadan hiçbir şey göremiyorum." },
+        { "text": "She ___ out of the window and smiled.", "right": "looked", "wrong": "saw", "tr": "Pencereden dışarı baktı ve gülümsedi." },
+        { "text": "We ___ a fox in the garden this morning.", "right": "saw", "wrong": "looked", "tr": "Bu sabah bahçede bir tilki gördük." },
+        { "text": "Please ___ at me when I'm talking to you.", "right": "look", "wrong": "see", "tr": "Lütfen seninle konuşurken bana bak." }
+      ]
+    },
+    {
+      "id": "en:fun-funny",
+      "language": "en",
+      "words": ["fun", "funny"],
+      "meanings": ["eğlence, eğlenceli", "komik, güldüren"],
+      "distinction": "Fun eğlence ya da eğlenceli demektir (have fun, a lot of fun); funny ise insanı güldüren, komik demektir (a funny joke).",
+      "example": ["We had fun at the party.", "That was a funny story."],
+      "drills": [
+        { "text": "The party was a lot of ___.", "right": "fun", "wrong": "funny", "tr": "Parti çok eğlenceliydi." },
+        { "text": "Why are you laughing? What's so ___?", "right": "funny", "wrong": "fun", "tr": "Neden gülüyorsun? Bu kadar komik olan ne?" },
+        { "text": "Have ___ at the concert tonight!", "right": "fun", "wrong": "funny", "tr": "Bu akşam konserde iyi eğlenceler!" },
+        { "text": "The cat looked so ___ in that little hat that we all laughed.", "right": "funny", "wrong": "fun", "tr": "Kedi o küçük şapkayla o kadar komik görünüyordu ki hepimiz güldük." },
+        { "text": "This comedy is really ___; I laughed all the way through.", "right": "funny", "wrong": "fun", "tr": "Bu komedi gerçekten komik; baştan sona güldüm." }
+      ]
+    },
+    {
+      "id": "en:bored-boring",
+      "language": "en",
+      "words": ["bored", "boring"],
+      "meanings": ["sıkılmış (kişinin hissi)", "sıkıcı (sıkan şey)"],
+      "distinction": "-ed sıfatı kişinin hissettiğini anlatır (I'm bored: sıkıldım); -ing sıfatı o hissi yaratan şeyi anlatır (a boring film: sıkıcı bir film).",
+      "example": ["I'm bored at home.", "This film is boring."],
+      "drills": [
+        { "text": "I'm ___. There's nothing to do here.", "right": "bored", "wrong": "boring", "tr": "Sıkıldım. Burada yapacak hiçbir şey yok." },
+        { "text": "The lesson was so ___ that I almost fell asleep.", "right": "boring", "wrong": "bored", "tr": "Ders o kadar sıkıcıydı ki neredeyse uyuyakalıyordum." },
+        { "text": "The children get ___ on long car journeys.", "right": "bored", "wrong": "boring", "tr": "Çocuklar uzun araba yolculuklarında sıkılır." },
+        { "text": "This book is really ___; nothing happens in it.", "right": "boring", "wrong": "bored", "tr": "Bu kitap gerçekten sıkıcı; içinde hiçbir şey olmuyor." },
+        { "text": "He looked ___ during the whole meeting and kept checking his phone.", "right": "bored", "wrong": "boring", "tr": "Bütün toplantı boyunca sıkılmış görünüyordu ve sürekli telefonuna bakıyordu." }
+      ]
+    },
+    {
+      "id": "en:its-itis",
+      "language": "en",
+      "words": ["its", "it's"],
+      "meanings": ["onun (iyelik, kesme işaretsiz)", "it is / it has kısaltması"],
+      "distinction": "Its kesme işaretsiz iyelik sözcüğüdür (its name: onun adı); it's ise it is ya da it has kısaltmasıdır (it's late: geç oldu).",
+      "example": ["The dog wagged its tail.", "It's raining again."],
+      "drills": [
+        { "text": "___ cold outside, so take a jacket.", "right": "It's", "wrong": "Its", "tr": "Dışarısı soğuk, o yüzden bir ceket al." },
+        { "text": "The company changed ___ name last year.", "right": "its", "wrong": "it's", "tr": "Şirket geçen yıl adını değiştirdi." },
+        { "text": "I think ___ going to rain this afternoon.", "right": "it's", "wrong": "its", "tr": "Bence bu öğleden sonra yağmur yağacak." },
+        { "text": "The bird hurt ___ wing and couldn't fly.", "right": "its", "wrong": "it's", "tr": "Kuş kanadını yaraladı ve uçamadı." },
+        { "text": "Every country has ___ own traditions.", "right": "its", "wrong": "it's", "tr": "Her ülkenin kendi gelenekleri vardır." }
+      ]
+    },
+    {
+      "id": "en:then-than",
+      "language": "en",
+      "words": ["then", "than"],
+      "meanings": ["sonra, o zaman", "-den/-dan (karşılaştırma)"],
+      "distinction": "Then zaman sırası ya da sonuç bildirir (sonra, o zaman); than karşılaştırmada kullanılır (bigger than: -den daha büyük).",
+      "example": ["We ate, then we left.", "She is older than me."],
+      "drills": [
+        { "text": "My sister is taller ___ me.", "right": "than", "wrong": "then", "tr": "Kız kardeşim benden daha uzun." },
+        { "text": "First we had dinner, and ___ we went for a walk.", "right": "then", "wrong": "than", "tr": "Önce akşam yemeği yedik, sonra yürüyüşe çıktık." },
+        { "text": "This phone is cheaper ___ the old one.", "right": "than", "wrong": "then", "tr": "Bu telefon eskisinden daha ucuz." },
+        { "text": "Finish your homework, ___ you can watch TV.", "right": "then", "wrong": "than", "tr": "Ödevini bitir, sonra televizyon izleyebilirsin." },
+        { "text": "I'd rather walk ___ wait for the bus.", "right": "than", "wrong": "then", "tr": "Otobüsü beklemektense yürümeyi tercih ederim." }
+      ]
+    },
+    {
+      "id": "en:learn-teach",
+      "language": "en",
+      "words": ["learn", "teach"],
+      "meanings": ["öğrenmek", "öğretmek"],
+      "distinction": "Learn bir bilgiyi ya da beceriyi kendin öğrenmektir; teach ise başkasına öğretmektir (teach someone something). Learn me denmez.",
+      "example": ["I want to learn French.", "Can you teach me to swim?"],
+      "drills": [
+        { "text": "My mother ___ me how to cook when I was ten.", "right": "taught", "wrong": "learned", "tr": "Annem on yaşımdayken bana yemek yapmayı öğretti." },
+        { "text": "She ___ to drive when she was eighteen.", "right": "learned", "wrong": "taught", "tr": "On sekiz yaşındayken araba kullanmayı öğrendi." },
+        { "text": "My uncle is a teacher; he ___ history at a high school.", "right": "teaches", "wrong": "learns", "tr": "Amcam öğretmen; bir lisede tarih öğretiyor." },
+        { "text": "Can you ___ me some useful phrases in Italian?", "right": "teach", "wrong": "learn", "tr": "Bana İtalyanca birkaç işe yarar kalıp öğretebilir misin?" },
+        { "text": "We ___ a lot from our mistakes.", "right": "learn", "wrong": "teach", "tr": "Hatalarımızdan çok şey öğreniriz." }
+      ]
+    },
+    {
+      "id": "en:for-since",
+      "language": "en",
+      "words": ["for", "since"],
+      "meanings": ["süre boyunca (iki saattir)", "başlangıçtan beri (2015'ten beri)"],
+      "distinction": "For süreyi verir (for two years: iki yıldır); since ise başlangıç anını verir (since 2015: 2015'ten beri). Türkçedeki -dir / -den beri ayrımına benzer.",
+      "example": ["I've lived here for ten years.", "I've lived here since 2015."],
+      "drills": [
+        { "text": "I've lived in this city ___ 2015.", "right": "since", "wrong": "for", "tr": "2015'ten beri bu şehirde yaşıyorum." },
+        { "text": "We've been waiting here ___ two hours.", "right": "for", "wrong": "since", "tr": "İki saattir burada bekliyoruz." },
+        { "text": "She has known him ___ they were children.", "right": "since", "wrong": "for", "tr": "Onu çocukluklarından beri tanıyor." },
+        { "text": "I haven't seen my cousin ___ ages.", "right": "for", "wrong": "since", "tr": "Kuzenimi uzun zamandır görmedim." },
+        { "text": "He has worked at the hospital ___ last summer.", "right": "since", "wrong": "for", "tr": "Geçen yazdan beri hastanede çalışıyor." }
+      ]
+    },
+    {
+      "id": "en:job-work",
+      "language": "en",
+      "words": ["job", "work"],
+      "meanings": ["iş, meslek (sayılabilir)", "iş, çalışma (sayılamaz)"],
+      "distinction": "Job sayılabilir isimdir (a job, two jobs: bir iş, meslek); work ise sayılamaz isimdir (a lot of work) ve önüne a gelmez; ayrıca işyeri anlamında go to work, at work denir.",
+      "example": ["She has a new job.", "I have too much work."],
+      "drills": [
+        { "text": "I'm looking for a new ___.", "right": "job", "wrong": "work", "tr": "Yeni bir iş arıyorum." },
+        { "text": "I have a lot of ___ to do today.", "right": "work", "wrong": "job", "tr": "Bugün yapacak çok işim var." },
+        { "text": "He got a ___ at a bank after university.", "right": "job", "wrong": "work", "tr": "Üniversiteden sonra bir bankada iş buldu." },
+        { "text": "What time do you usually go to ___?", "right": "work", "wrong": "job", "tr": "Genelde saat kaçta işe gidersin?" },
+        { "text": "She's at ___ now; call her in the evening.", "right": "work", "wrong": "job", "tr": "Şu an işte; onu akşam ara." }
+      ]
+    },
+    {
+      "id": "en:advice-advise",
+      "language": "en",
+      "words": ["advice", "advise"],
+      "meanings": ["tavsiye, öğüt (isim)", "tavsiye etmek (fiil)"],
+      "distinction": "Advice isimdir ve sayılamaz (some advice, a piece of advice; advices denmez); advise ise fiildir (I advise you to wait). Yazılışları c / s harfiyle ayrılır.",
+      "example": ["Thanks for your advice.", "I advise you to wait."],
+      "drills": [
+        { "text": "Can you give me some ___ about buying a car?", "right": "advice", "wrong": "advise", "tr": "Araba alma konusunda bana biraz tavsiye verebilir misin?" },
+        { "text": "I'd ___ you to book your tickets early.", "right": "advise", "wrong": "advice", "tr": "Biletlerini erken almanı tavsiye ederim." },
+        { "text": "That's a really good piece of ___.", "right": "advice", "wrong": "advise", "tr": "Bu gerçekten iyi bir tavsiye." },
+        { "text": "Doctors ___ people to drink more water.", "right": "advise", "wrong": "advice", "tr": "Doktorlar insanlara daha çok su içmelerini tavsiye ediyor." },
+        { "text": "Thanks for the ___; it really helped me.", "right": "advice", "wrong": "advise", "tr": "Tavsiyen için teşekkürler; gerçekten işime yaradı." }
+      ]
+    },
+    {
+      "id": "en:already-yet",
+      "language": "en",
+      "words": ["already", "yet"],
+      "meanings": ["zaten, çoktan (olumlu cümle)", "henüz, daha (olumsuz cümle ve soru)"],
+      "distinction": "Already olumlu cümlede bir şeyin olduğunu ya da beklenenden önce olduğunu söyler (I've already eaten); yet olumsuz cümlede ve soruda kullanılır ve çoğu zaman cümlenin sonuna gelir (I haven't eaten yet).",
+      "example": ["I've already seen this film.", "I haven't seen it yet."],
+      "drills": [
+        { "text": "I haven't finished my homework ___.", "right": "yet", "wrong": "already", "tr": "Ödevimi henüz bitirmedim." },
+        { "text": "We've ___ booked the hotel, so don't worry.", "right": "already", "wrong": "yet", "tr": "Oteli zaten ayırttık, merak etme." },
+        { "text": "The film has ___ started; hurry up!", "right": "already", "wrong": "yet", "tr": "Film çoktan başladı; acele et!" },
+        { "text": "The bus hasn't arrived ___.", "right": "yet", "wrong": "already", "tr": "Otobüs henüz gelmedi." },
+        { "text": "She has ___ left; you just missed her.", "right": "already", "wrong": "yet", "tr": "O çoktan çıktı; onu az farkla kaçırdın." }
+      ]
+    }
+  ]
+}

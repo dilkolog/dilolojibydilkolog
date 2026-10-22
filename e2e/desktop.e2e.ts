@@ -327,6 +327,21 @@ test('numbers and times: see the digits, write the words; a wrong answer shows h
   expect(await overflow(page)).toEqual([])
 })
 
+test('twins: a sentence only one of the pair fits; the answer gives the rule and the Turkish; one pair alone', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'İkizler Arenası' }).click()
+  await page.getByRole('button', { name: 'savoir / connaître' }).click()
+  await page.getByRole('button', { name: /tura başla/ }).click()
+  await expect(page.locator('.prompt-label')).toContainText('savoir / connaître')
+  await expect(page.locator('.grammar-sentence')).toContainText('___')
+  await page.keyboard.press('1')
+  await expect(page.getByRole('status')).toContainText(/Savoir/)
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.game-timer')).toContainText('2 /')
+  expect(await overflow(page)).toEqual([])
+})
+
 test('exam-style tasks: a text and three questions to read, a listening mode that hides the text until the answers', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { checkWords, dateWords, digitsRight, phoneDigits, phoneWords, groupDigits, NUMBER_KINDS, numberQuestion, numberRound, numberWords, priceDigits, priceWords, readDigits, timeWords, yearWords } from '../numbers'
+import { checkWords, dateWords, digitsRight, phoneDigits, phoneWords, groupDigits, NUMBER_KINDS, numberQuestion, numberRound, numberWords, priceDigits, priceWords, readDigits, tallyAnswer, timeWords, weakestKind, yearWords } from '../numbers'
 import { createRng } from '../rng'
 
 describe('numbers in words', () => {
@@ -176,5 +176,17 @@ describe('the numbers game', () => {
   it('leans to the language\'s hard numbers', () => {
     const fr = numberRound('fr', ['small'], createRng(7), 40)
     expect(fr.filter((q) => q.value >= 60 && q.value <= 99).length).toBeGreaterThan(15)
+  })
+})
+
+describe('where the learner stands', () => {
+  it('the kind answered worst, once there are enough answers', () => {
+    let t = {}
+    for (let i = 0; i < 4; i++) t = tallyAnswer(t, 'time', false)
+    expect(weakestKind(t, NUMBER_KINDS)).toBeNull()
+    t = tallyAnswer(t, 'time', true)
+    for (let i = 0; i < 5; i++) t = tallyAnswer(t, 'price', i > 0)
+    expect(weakestKind(t, NUMBER_KINDS)).toBe('time')
+    expect(weakestKind(t, ['small', 'price'])).toBeNull()
   })
 })

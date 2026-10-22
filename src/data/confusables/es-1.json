@@ -1,0 +1,241 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "rules": [
+    {
+      "id": "es:ser-estar",
+      "drills": [
+        { "text": "Mi hermana ___ enfermera en un hospital.", "right": "es", "wrong": "está", "tr": "Kız kardeşim bir hastanede hemşire." },
+        { "text": "Nosotros ___ de Turquía, pero vivimos en Madrid.", "right": "somos", "wrong": "estamos", "tr": "Biz Türkiyeliyiz ama Madrid'de yaşıyoruz." },
+        { "text": "Hoy ___ en casa porque tengo fiebre.", "right": "estoy", "wrong": "soy", "tr": "Bugün ateşim olduğu için evdeyim." },
+        { "text": "La sopa ___ fría; ¿puedes calentarla?", "right": "está", "wrong": "es", "tr": "Çorba soğumuş; ısıtabilir misin?" },
+        { "text": "¿Dónde ___ las llaves del coche?", "right": "están", "wrong": "son", "tr": "Arabanın anahtarları nerede?" }
+      ]
+    },
+    {
+      "id": "es:por-para",
+      "drills": [
+        { "text": "Tengo que terminar el informe ___ el viernes.", "right": "para", "wrong": "por", "tr": "Raporu cumaya kadar bitirmem gerekiyor." },
+        { "text": "Estudio mucho ___ aprobar el examen.", "right": "para", "wrong": "por", "tr": "Sınavı geçmek için çok çalışıyorum." },
+        { "text": "Gracias ___ tu ayuda.", "right": "por", "wrong": "para", "tr": "Yardımın için teşekkürler." },
+        { "text": "Te llamo ___ teléfono esta noche.", "right": "por", "wrong": "para", "tr": "Bu akşam seni telefonla ararım." },
+        { "text": "Caminamos ___ el parque toda la tarde.", "right": "por", "wrong": "para", "tr": "Bütün öğleden sonra parkta yürüdük." }
+      ]
+    },
+    {
+      "id": "es:saber-conocer",
+      "drills": [
+        { "text": "Mi hermano ___ nadar muy bien.", "right": "sabe", "wrong": "conoce", "tr": "Erkek kardeşim çok iyi yüzmeyi biliyor." },
+        { "text": "Todavía no ___ a la nueva profesora.", "right": "conozco", "wrong": "sé", "tr": "Yeni öğretmeni henüz tanımıyorum." },
+        { "text": "No ___ dónde está la estación.", "right": "sé", "wrong": "conozco", "tr": "İstasyonun nerede olduğunu bilmiyorum." },
+        { "text": "Mis padres ___ muy bien esta ciudad.", "right": "conocen", "wrong": "saben", "tr": "Annemle babam bu şehri çok iyi tanıyor." },
+        { "text": "¿Tú ___ cocinar paella?", "right": "sabes", "wrong": "conoces", "tr": "Sen paella yapmayı biliyor musun?" }
+      ]
+    },
+    {
+      "id": "es:pedir-preguntar",
+      "drills": [
+        { "text": "Voy a ___ la cuenta al camarero.", "right": "pedir", "wrong": "preguntar", "tr": "Garsondan hesabı isteyeceğim." },
+        { "text": "Si no entiendes algo, puedes ___ al profesor.", "right": "preguntar", "wrong": "pedir", "tr": "Bir şeyi anlamazsan öğretmene sorabilirsin." },
+        { "text": "Le voy a ___ dinero a mi padre para el viaje.", "right": "pedir", "wrong": "preguntar", "tr": "Yolculuk için babamdan para isteyeceğim." },
+        { "text": "El turista me ___ cómo llegar al museo.", "right": "preguntó", "wrong": "pidió", "tr": "Turist bana müzeye nasıl gidileceğini sordu." },
+        { "text": "En el restaurante siempre ___ pescado.", "right": "pido", "wrong": "pregunto", "tr": "Restoranda hep balık sipariş ederim." }
+      ]
+    },
+    {
+      "id": "es:llevar-traer",
+      "drills": [
+        { "text": "Cuando vengas a mi casa, ___ tu guitarra, por favor.", "right": "trae", "wrong": "lleva", "tr": "Bana geldiğinde lütfen gitarını getir." },
+        { "text": "Mañana voy a ___ estos libros a la biblioteca.", "right": "llevar", "wrong": "traer", "tr": "Yarın bu kitapları kütüphaneye götüreceğim." },
+        { "text": "Camarero, ¿nos ___ la carta, por favor?", "right": "trae", "wrong": "lleva", "tr": "Garson, bize menüyü getirir misiniz lütfen?" },
+        { "text": "¿Puedes ___ a los niños al colegio esta mañana?", "right": "llevar", "wrong": "traer", "tr": "Bu sabah çocukları okula götürebilir misin?" },
+        { "text": "Mi amiga me ___ un regalo de su viaje a México.", "right": "trajo", "wrong": "llevó", "tr": "Arkadaşım bana Meksika gezisinden bir hediye getirdi." }
+      ]
+    },
+    {
+      "id": "es:mirar-ver",
+      "drills": [
+        { "text": "Sin gafas no ___ nada.", "right": "veo", "wrong": "miro", "tr": "Gözlüksüz hiçbir şey göremiyorum." },
+        { "text": "Ayer ___ a mi profesor en el supermercado.", "right": "vi", "wrong": "miré", "tr": "Dün öğretmenimi süpermarkette gördüm." },
+        { "text": "¿Has ___ mis llaves? No las encuentro.", "right": "visto", "wrong": "mirado", "tr": "Anahtarlarımı gördün mü? Bulamıyorum." },
+        { "text": "Antes de cruzar la calle, siempre ___ a los dos lados.", "right": "miro", "wrong": "veo", "tr": "Karşıya geçmeden önce her zaman iki yana da bakarım." },
+        { "text": "Cuando se abrió la puerta, todos ___ hacia ella.", "right": "miraron", "wrong": "vieron", "tr": "Kapı açılınca herkes ona doğru baktı." }
+      ]
+    },
+    {
+      "id": "es:bueno-bien",
+      "language": "es",
+      "words": ["bueno", "bien"],
+      "meanings": ["iyi (sıfat, isimle)", "iyi, güzel (zarf, fiille)"],
+      "distinction": "Bueno sıfattır, bir ismi niteler ve ona uyar (buen libro, buena idea); bien zarftır, bir eylemin nasıl yapıldığını ya da estar ile kişinin durumunu anlatır (cocina bien, estoy bien).",
+      "example": ["Este libro es bueno.", "Mi hermano habla muy bien."],
+      "drills": [
+        { "text": "Este restaurante es muy ___.", "right": "bueno", "wrong": "bien", "tr": "Bu restoran çok iyi." },
+        { "text": "Tu hermana es una ___ estudiante.", "right": "buena", "wrong": "bien", "tr": "Kız kardeşin iyi bir öğrenci." },
+        { "text": "Mi abuela cocina muy ___.", "right": "bien", "wrong": "bueno", "tr": "Büyükannem çok güzel yemek yapar." },
+        { "text": "—¿Qué tal estás? —Estoy ___, gracias.", "right": "bien", "wrong": "bueno", "tr": "—Nasılsın? —İyiyim, teşekkürler." },
+        { "text": "Es un ___ libro para aprender español.", "right": "buen", "wrong": "bien", "tr": "İspanyolca öğrenmek için iyi bir kitap." }
+      ]
+    },
+    {
+      "id": "es:muy-mucho",
+      "language": "es",
+      "words": ["muy", "mucho"],
+      "meanings": ["çok (sıfat/zarf önünde)", "çok, fazla (isimle ya da fiilden sonra)"],
+      "distinction": "Muy yalnızca bir sıfatın ya da zarfın önünde gelir ve değişmez (muy alto, muy bien); mucho bir ismin önünde ona uyar (mucha gente, muchos amigos) ya da fiilden sonra gelir (trabajo mucho).",
+      "example": ["Mi casa es muy pequeña.", "Me gusta mucho el café."],
+      "drills": [
+        { "text": "Hoy estoy ___ cansado.", "right": "muy", "wrong": "mucho", "tr": "Bugün çok yorgunum." },
+        { "text": "La película fue ___ interesante.", "right": "muy", "wrong": "mucho", "tr": "Film çok ilginçti." },
+        { "text": "Mi padre trabaja ___ todos los días.", "right": "mucho", "wrong": "muy", "tr": "Babam her gün çok çalışır." },
+        { "text": "Hay ___ gente en la plaza esta noche.", "right": "mucha", "wrong": "muy", "tr": "Bu akşam meydanda çok insan var." },
+        { "text": "Tengo ___ amigos en Madrid.", "right": "muchos", "wrong": "muy", "tr": "Madrid'de çok arkadaşım var." }
+      ]
+    },
+    {
+      "id": "es:hay-esta",
+      "language": "es",
+      "words": ["hay", "está"],
+      "meanings": ["var (belirsiz bir şey)", "bulunuyor (belirli bir şey)"],
+      "distinction": "Hay bir şeyin var olduğunu söyler ve belirsiz isimle gelir (hay un banco, hay dos sillas); estar belirli bir şeyin nerede olduğunu söyler (el banco está aquí, mis padres están en casa).",
+      "drills": [
+        { "text": "En mi calle ___ una farmacia.", "right": "hay", "wrong": "está", "tr": "Benim sokağımda bir eczane var." },
+        { "text": "La farmacia ___ al lado del banco.", "right": "está", "wrong": "hay", "tr": "Eczane bankanın yanında." },
+        { "text": "¿___ un supermercado cerca de aquí?", "right": "Hay", "wrong": "Está", "tr": "Buralarda bir süpermarket var mı?" },
+        { "text": "Mis padres ___ en el jardín.", "right": "están", "wrong": "hay", "tr": "Annemle babam bahçede." },
+        { "text": "En la nevera ___ dos botellas de agua.", "right": "hay", "wrong": "están", "tr": "Buzdolabında iki şişe su var." }
+      ]
+    },
+    {
+      "id": "es:tocar-jugar",
+      "language": "es",
+      "words": ["tocar", "jugar"],
+      "meanings": ["çalmak (çalgı), dokunmak", "oynamak (oyun, spor)"],
+      "distinction": "Tocar bir çalgıyı çalmak ya da bir şeye dokunmaktır (tocar el piano); jugar oyun ya da spor oynamaktır ve spordan önce genellikle a alır (jugar al fútbol).",
+      "example": ["Sé tocar la guitarra.", "Me gusta jugar al tenis."],
+      "drills": [
+        { "text": "Mi hijo ___ el piano desde los seis años.", "right": "toca", "wrong": "juega", "tr": "Oğlum altı yaşından beri piyano çalıyor." },
+        { "text": "¿Sabes ___ la guitarra?", "right": "tocar", "wrong": "jugar", "tr": "Gitar çalmayı biliyor musun?" },
+        { "text": "Por favor, no ___ los cuadros del museo.", "right": "toques", "wrong": "juegues", "tr": "Lütfen müzedeki tablolara dokunma." },
+        { "text": "Los sábados ___ al fútbol con mis amigos.", "right": "juego", "wrong": "toco", "tr": "Cumartesileri arkadaşlarımla futbol oynarım." },
+        { "text": "Los niños están ___ en el parque.", "right": "jugando", "wrong": "tocando", "tr": "Çocuklar parkta oynuyor." }
+      ]
+    },
+    {
+      "id": "es:desde-hace",
+      "language": "es",
+      "words": ["desde", "hace"],
+      "meanings": ["-den beri (başlangıç noktası)", "… önce (geçen süre)"],
+      "distinction": "Desde bir şeyin başladığı anı verir (desde 2019, desde el lunes); hace geçen süreyi verir ve geçmiş zamanla “… önce” demektir (hace tres años).",
+      "example": ["Vivo aquí desde 2020.", "Llegué hace dos años."],
+      "drills": [
+        { "text": "Vivo en Madrid ___ 2019.", "right": "desde", "wrong": "hace", "tr": "2019'dan beri Madrid'de yaşıyorum." },
+        { "text": "La tienda está cerrada ___ el lunes.", "right": "desde", "wrong": "hace", "tr": "Dükkân pazartesiden beri kapalı." },
+        { "text": "Te estoy esperando ___ las cinco.", "right": "desde", "wrong": "hace", "tr": "Saat beşten beri seni bekliyorum." },
+        { "text": "Llegué a España ___ tres años.", "right": "hace", "wrong": "desde", "tr": "İspanya'ya üç yıl önce geldim." },
+        { "text": "Conocí a mi mejor amigo ___ diez años.", "right": "hace", "wrong": "desde", "tr": "En iyi arkadaşımla on yıl önce tanıştım." }
+      ]
+    },
+    {
+      "id": "es:tu-tu-tilde",
+      "language": "es",
+      "words": ["tu", "tú"],
+      "meanings": ["senin (iyelik)", "sen (zamir)"],
+      "distinction": "Vurgusuz tu bir ismin önünde gelir ve “senin” demektir (tu casa); vurgulu tú kişi zamiridir, “sen” demektir (tú hablas).",
+      "drills": [
+        { "text": "¿Dónde está ___ coche?", "right": "tu", "wrong": "tú", "tr": "Senin araban nerede?" },
+        { "text": "Me gusta mucho ___ casa nueva.", "right": "tu", "wrong": "tú", "tr": "Yeni evini çok beğendim." },
+        { "text": "Gracias por ___ ayuda.", "right": "tu", "wrong": "tú", "tr": "Yardımın için teşekkürler." },
+        { "text": "Yo soy de Ankara. Y ___, ¿de dónde eres?", "right": "tú", "wrong": "tu", "tr": "Ben Ankaralıyım. Peki sen nerelisin?" },
+        { "text": "¿Vienes ___ también a la fiesta?", "right": "tú", "wrong": "tu", "tr": "Sen de partiye geliyor musun?" }
+      ]
+    },
+    {
+      "id": "es:el-el-tilde",
+      "language": "es",
+      "words": ["el", "él"],
+      "meanings": ["(belirli artikel)", "o (erkek, zamir)"],
+      "distinction": "Vurgusuz el eril bir ismin önündeki belirli artikeldir (el libro); vurgulu él “o” anlamındaki kişi zamiridir (él trabaja, para él).",
+      "drills": [
+        { "text": "Pásame ___ libro que está en la mesa.", "right": "el", "wrong": "él", "tr": "Masadaki kitabı bana uzat." },
+        { "text": "Vivo muy cerca de ___ parque.", "right": "el", "wrong": "él", "tr": "Parka çok yakın oturuyorum." },
+        { "text": "Este café es para ___, no para mí.", "right": "él", "wrong": "el", "tr": "Bu kahve onun için, benim için değil." },
+        { "text": "Mi hermano y yo vamos juntos: ___ conduce y yo leo.", "right": "él", "wrong": "el", "tr": "Kardeşimle birlikte gidiyoruz: o sürüyor, ben okuyorum." },
+        { "text": "No sé si ___ viene a la cena.", "right": "él", "wrong": "el", "tr": "Onun akşam yemeğine gelip gelmeyeceğini bilmiyorum." }
+      ]
+    },
+    {
+      "id": "es:si-si-tilde",
+      "language": "es",
+      "words": ["si", "sí"],
+      "meanings": ["eğer, -ip -mediğini", "evet"],
+      "distinction": "Vurgusuz si koşul ya da dolaylı soru bağlacıdır (si llueve…, no sé si…); vurgulu sí “evet” demektir (creo que sí).",
+      "drills": [
+        { "text": "No vamos a la playa ___ llueve mañana.", "right": "si", "wrong": "sí", "tr": "Yarın yağmur yağarsa plaja gitmiyoruz." },
+        { "text": "No sé ___ puedo ir contigo.", "right": "si", "wrong": "sí", "tr": "Seninle gelebilir miyim bilmiyorum." },
+        { "text": "Te llamo ___ tengo tiempo.", "right": "si", "wrong": "sí", "tr": "Vaktim olursa seni ararım." },
+        { "text": "—¿Quieres un café? —Pues ___, gracias.", "right": "sí", "wrong": "si", "tr": "—Kahve ister misin? —Evet, teşekkürler." },
+        { "text": "—¿Viene Ana a la fiesta? —Creo que ___.", "right": "sí", "wrong": "si", "tr": "—Ana partiye geliyor mu? —Sanırım evet." }
+      ]
+    },
+    {
+      "id": "es:porque-por-que",
+      "language": "es",
+      "words": ["porque", "por qué"],
+      "meanings": ["çünkü", "neden (soru)"],
+      "distinction": "Porque bitişik ve vurgusuz yazılır, sebep bildirir: “çünkü”; por qué ayrı ve vurgulu yazılır, doğrudan ya da dolaylı soru sorar: “neden”.",
+      "drills": [
+        { "text": "No fui a clase ___ estaba enfermo.", "right": "porque", "wrong": "por qué", "tr": "Hasta olduğum için derse gitmedim." },
+        { "text": "Estudio español ___ quiero vivir en Sevilla.", "right": "porque", "wrong": "por qué", "tr": "İspanyolca öğreniyorum çünkü Sevilla'da yaşamak istiyorum." },
+        { "text": "¿___ no viniste ayer?", "right": "Por qué", "wrong": "Porque", "tr": "Dün neden gelmedin?" },
+        { "text": "No entiendo ___ está tan enfadado.", "right": "por qué", "wrong": "porque", "tr": "Neden bu kadar kızgın olduğunu anlamıyorum." },
+        { "text": "Dime ___ te ríes.", "right": "por qué", "wrong": "porque", "tr": "Bana neden güldüğünü söyle." }
+      ]
+    },
+    {
+      "id": "es:tambien-tampoco",
+      "language": "es",
+      "words": ["también", "tampoco"],
+      "meanings": ["de/da (olumlu)", "de/da (olumsuz)"],
+      "distinction": "También olumlu bir cümleye katılırken (yo también: ben de), tampoco olumsuz bir cümleye katılırken kullanılır (yo tampoco: ben de … değilim / -mem).",
+      "example": ["—Me gusta el té. —A mí también.", "—No me gusta el frío. —A mí tampoco."],
+      "drills": [
+        { "text": "—Me gusta el chocolate. —A mí ___.", "right": "también", "wrong": "tampoco", "tr": "—Çikolatayı severim. —Ben de." },
+        { "text": "Ana viene a la fiesta y Pedro ___.", "right": "también", "wrong": "tampoco", "tr": "Ana partiye geliyor, Pedro da." },
+        { "text": "—No tengo hambre. —Yo ___.", "right": "tampoco", "wrong": "también", "tr": "—Aç değilim. —Ben de değilim." },
+        { "text": "Mi hermano no habla inglés y yo ___.", "right": "tampoco", "wrong": "también", "tr": "Kardeşim İngilizce konuşmuyor, ben de konuşmuyorum." },
+        { "text": "No me gusta el frío, y el calor ___.", "right": "tampoco", "wrong": "también", "tr": "Soğuğu sevmem, sıcağı da sevmem." }
+      ]
+    },
+    {
+      "id": "es:aprender-ensenar",
+      "language": "es",
+      "words": ["aprender", "enseñar"],
+      "meanings": ["öğrenmek", "öğretmek"],
+      "distinction": "Aprender bilgiyi ya da beceriyi kendin edinmektir (aprendo español); enseñar onu başkasına aktarmaktır ve kime öğretildiği zamirle söylenir (me enseña, nos enseña).",
+      "example": ["Quiero aprender alemán.", "Mi madre quiere enseñar matemáticas."],
+      "drills": [
+        { "text": "Mi madre me ___ a cocinar cuando era niño.", "right": "enseñó", "wrong": "aprendió", "tr": "Ben çocukken annem bana yemek yapmayı öğretti." },
+        { "text": "El profesor nos ___ la gramática con ejemplos.", "right": "enseña", "wrong": "aprende", "tr": "Öğretmen bize dilbilgisini örneklerle öğretiyor." },
+        { "text": "¿Me ___ a jugar al ajedrez?", "right": "enseñas", "wrong": "aprendes", "tr": "Bana satranç oynamayı öğretir misin?" },
+        { "text": "Los niños ___ los idiomas muy rápido.", "right": "aprenden", "wrong": "enseñan", "tr": "Çocuklar dilleri çok hızlı öğrenir." },
+        { "text": "¿Dónde ___ a hablar español tan bien?", "right": "aprendiste", "wrong": "enseñaste", "tr": "İspanyolcayı bu kadar iyi konuşmayı nerede öğrendin?" }
+      ]
+    },
+    {
+      "id": "es:volver-devolver",
+      "language": "es",
+      "words": ["volver", "devolver"],
+      "meanings": ["geri dönmek", "geri vermek, iade etmek"],
+      "distinction": "Volver kişinin kendisinin bir yere geri dönmesidir (vuelvo a casa); devolver bir şeyi sahibine ya da yerine geri vermektir ve nesne alır (devuelvo el libro).",
+      "example": ["Quiero volver a casa.", "Tengo que devolver el libro."],
+      "drills": [
+        { "text": "¿A qué hora ___ a casa esta noche?", "right": "vuelves", "wrong": "devuelves", "tr": "Bu akşam eve saat kaçta dönüyorsun?" },
+        { "text": "Después de las vacaciones, ___ al trabajo el lunes.", "right": "vuelvo", "wrong": "devuelvo", "tr": "Tatilden sonra pazartesi işe dönüyorum." },
+        { "text": "Mis abuelos ___ de su viaje mañana.", "right": "vuelven", "wrong": "devuelven", "tr": "Büyükannemle büyükbabam yarın yolculuklarından dönüyor." },
+        { "text": "Tengo que ___ este libro a la biblioteca.", "right": "devolver", "wrong": "volver", "tr": "Bu kitabı kütüphaneye iade etmem gerekiyor." },
+        { "text": "Mi vecino nunca me ___ las cosas que le presto.", "right": "devuelve", "wrong": "vuelve", "tr": "Komşum ödünç verdiğim şeyleri bana hiç geri vermiyor." }
+      ]
+    }
+  ]
+}

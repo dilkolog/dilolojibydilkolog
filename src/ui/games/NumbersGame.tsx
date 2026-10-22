@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { checkWords, digitsRight, NUMBER_KINDS, numberRound, WRITABLE_KINDS, type NumberKind, type NumberQuestion } from '../../engine/numbers'
+import { checkWords, digitsRight, NUMBER_KINDS, numberRound, tallyAnswer, weakestKind, WRITABLE_KINDS, type NumberKind, type NumberQuestion, type NumberTally } from '../../engine/numbers'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
 import { db } from '../../data/instance'
@@ -52,6 +52,24 @@ function savePrefs(prefs: { mode: Mode; kind: Pick }) {
   }
 }
 
+/** How each kind went so far, in this language (on the device; goes with the account as a device preference). */
+const statsKey = (language: TargetLanguage) => `${PREFS_KEY}:stats:${language}`
+function loadTally(language: TargetLanguage): NumberTally {
+  try {
+    const raw = JSON.parse(localStorage.getItem(statsKey(language)) ?? '{}') as NumberTally
+    return raw && typeof raw === 'object' ? raw : {}
+  } catch {
+    return {}
+  }
+}
+function saveTally(language: TargetLanguage, tally: NumberTally) {
+  try {
+    localStorage.setItem(statsKey(language), JSON.stringify(tally))
+  } catch {
+    // Not kept.
+  }
+}
+
 /** The kinds a round asks: one, or every kind the mode can ask. */
 const kindsOf = (mode: Mode, kind: Pick): readonly NumberKind[] => {
   const allowed = mode === 'write' ? WRITABLE_KINDS : NUMBER_KINDS
@@ -77,11 +95,15 @@ export function NumbersGame({ language, best, recordKey, onExit }: { language: T
   const [verdict, setVerdict] = useState<'right' | 'near' | 'wrong' | null>(null)
   const [results, setResults] = useState<{ q: NumberQuestion; ok: boolean }[]>([])
   const [record, setRecord] = useState(false)
+  const [tally, setTally] = useState(() => loadTally(language))
   const input = useRef<HTMLInputElement>(null)
   const q = round[index]
 
   const start = () => {
-    setRound(numberRound(language, kindsOf(mode, prefs.kind), createRng(Date.now())))
+    const kinds = kindsOf(mode, prefs.kind)
+    // In a mixed round the kind answered worst comes twice as often.
+    const weak = kinds.length > 1 ? weakestKind(tally, kinds) : null
+    setRound(numberRound(language, weak ? [...kinds, weak] : kinds, createRng(Date.now())))
     setIndex(0)
     setResults([])
     setText('')
@@ -103,6 +125,9 @@ export function NumbersGame({ language, best, recordKey, onExit }: { language: T
     else sfx.wrong()
     setVerdict(v)
     setResults((r) => [...r, { q, ok }])
+    const nextTally = tallyAnswer(tally, q.kind, ok)
+    setTally(nextTally)
+    saveTally(language, nextTally)
   }
 
   const next = () => {
@@ -166,6 +191,7 @@ export function NumbersGame({ language, best, recordKey, onExit }: { language: T
               </button>
             ))}
           </div>
+          <TallyLine tally={tally} weak={weakestKind(tally, allowed)} />
           {!speaks && <p className="small muted">Bu tarayıcıda sesli okuma yok: yalnızca “Gör ve yaz”.</p>}
           {best !== undefined && <p className="small muted">Rekorun: %{best}</p>}
           <div className="row">
@@ -272,5 +298,20 @@ export function NumbersGame({ language, best, recordKey, onExit }: { language: T
         />
       )}
     </div>
+  )
+}
+
+/** How each kind went so far, and the one that comes more often. */
+function TallyLine({ tally, weak }: { tally: NumberTally; weak: NumberKind | null }) {
+  const parts = NUMBER_KINDS.flatMap((k) => {
+    const t = tally[k]
+    return t && t.ok + t.wrong >= 5 ? [`${KIND_NAME[k]} %${Math.round((t.ok / (t.ok + t.wrong)) * 100)}`] : []
+  })
+  if (!parts.length) return null
+  return (
+    <p className="small muted">
+      Şimdiye dek: {parts.join(' · ')}
+      {weak ? `. ${KIND_NAME[weak]} karışık turda daha sık gelir.` : ''}
+    </p>
   )
 }

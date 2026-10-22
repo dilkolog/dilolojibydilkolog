@@ -417,3 +417,25 @@ export function checkWords(language: TargetLanguage, q: NumberQuestion, typed: s
   const loose = (s: string) => looseFr(bare(s))
   return forms.some((f) => loose(f) === loose(answer)) ? 'near' : 'wrong'
 }
+
+// ---------- Where the learner stands ----------
+
+/** Right and wrong answers by kind, for one language (kept on the device). */
+export type NumberTally = Partial<Record<NumberKind, { ok: number; wrong: number }>>
+
+export function tallyAnswer(tally: NumberTally, kind: NumberKind, ok: boolean): NumberTally {
+  const now = tally[kind] ?? { ok: 0, wrong: 0 }
+  return { ...tally, [kind]: ok ? { ...now, ok: now.ok + 1 } : { ...now, wrong: now.wrong + 1 } }
+}
+
+/** The kind answered worst (at least 5 answers, under 75% right), among the ones a round can ask; it comes twice as often in a mixed round. */
+export function weakestKind(tally: NumberTally, kinds: readonly NumberKind[]): NumberKind | null {
+  let worst: { kind: NumberKind; share: number } | null = null
+  for (const kind of kinds) {
+    const t = tally[kind]
+    if (!t || t.ok + t.wrong < 5) continue
+    const share = t.ok / (t.ok + t.wrong)
+    if (share < 0.75 && (!worst || share < worst.share)) worst = { kind, share }
+  }
+  return worst?.kind ?? null
+}

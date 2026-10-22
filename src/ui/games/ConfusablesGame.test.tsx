@@ -32,27 +32,33 @@ async function mount() {
 }
 
 describe('ConfusablesGame', () => {
-  it('renders intro and starts a 10-question round', async () => {
+  it('renders the intro and starts a 10-question round of sentences', async () => {
     const host = await mount()
     expect(host.textContent).toContain('İkizler Arenası')
     await click(byText(host, 'tura başla'))
     expect(host.textContent).toContain('1 / 10')
-    expect(host.textContent).toContain('İKİZ KELİMELER')
+    expect(host.querySelectorAll('.options .option')).toHaveLength(2)
   })
 
-  it('evaluates answers and displays formative distinction rule', async () => {
+  it('an answer shows the rule, and a sentence its Turkish; Enter goes on', async () => {
     const host = await mount()
     await click(byText(host, 'tura başla'))
+    await click(host.querySelector('.options .option'))
+    const status = host.querySelector('[role="status"]')!
+    expect(status.textContent).toMatch(/Doğru|Doğrusu/)
+    expect(host.querySelector('.option.is-correct')).not.toBeNull()
+    await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' })))
+    expect(host.textContent).toContain('2 / 10')
+  })
 
-    // Find the option buttons
-    const buttons = [...host.querySelectorAll<HTMLButtonElement>('.options button')]
-    expect(buttons).toHaveLength(2)
-
-    // Click first option
-    await click(buttons[0])
-
-    // Should display distinction rule
-    expect(host.textContent).toContain('Ayrım Kuralı')
-    expect(byText(host, 'Devam et')).toBeDefined()
+  it('one pair can be practised alone', async () => {
+    const host = await mount()
+    await click(byText(host, 'say / tell'))
+    await click(byText(host, 'tura başla'))
+    for (let i = 0; i < 3; i++) {
+      expect(host.querySelector('.prompt-label')!.textContent).toContain('say / tell')
+      await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: '1' })))
+      await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' })))
+    }
   })
 })

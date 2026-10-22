@@ -1,5 +1,16 @@
 import { normalize } from '../engine/answerCheck'
+import { shuffle, type Rng } from '../engine/rng'
 import type { TargetLanguage } from '../engine/types'
+
+/** A sentence with a gap that only one of the twins fills, in the form the sentence needs ("Je ___ nager." → sais, not connais). */
+export interface ConfusableDrill {
+  /** The sentence with `___` where the word goes. */
+  text: string
+  right: string
+  wrong: string
+  /** The sentence (with the right word) in Turkish. */
+  tr: string
+}
 
 export interface ConfusableRule {
   id: string
@@ -8,9 +19,18 @@ export interface ConfusableRule {
   meanings: [string, string]
   distinction: string
   example?: [string, string]
+  drills?: ConfusableDrill[]
 }
 
-export const CONFUSABLE_RULES: ConfusableRule[] = [
+/** `confusables/*.json`: more rules, and drills for the rules below (an entry with only an id and drills adds to that rule). */
+interface ConfusableFile {
+  language: TargetLanguage
+  source: string
+  rules: (ConfusableRule | { id: string; drills: ConfusableDrill[] })[]
+}
+const FILES = import.meta.glob<ConfusableFile>('./confusables/*.json', { import: 'default', eager: true })
+
+const BASE_RULES: ConfusableRule[] = [
   // Fransızca
   {
     id: 'fr:jour-journee',
@@ -178,6 +198,20 @@ export const CONFUSABLE_RULES: ConfusableRule[] = [
   },
 ]
 
+/** The rules above with the files' drills put in, then the files' own rules. */
+function withFiles(base: ConfusableRule[]): ConfusableRule[] {
+  const byId = new Map(base.map((r) => [r.id, { ...r, drills: [...(r.drills ?? [])] }]))
+  for (const file of Object.values(FILES))
+    for (const entry of file.rules) {
+      const known = byId.get(entry.id)
+      if (known) known.drills.push(...(entry.drills ?? []))
+      else if ('words' in entry) byId.set(entry.id, { ...entry, drills: [...(entry.drills ?? [])] })
+    }
+  return [...byId.values()]
+}
+
+export const CONFUSABLE_RULES: ConfusableRule[] = withFiles(BASE_RULES)
+
 /** Finds a rule distinguishing two confusable words or for a given lemma. */
 export function confusableRuleFor(word: string, language: TargetLanguage, otherWord?: string): ConfusableRule | undefined {
   const norm = normalize(word).toLocaleLowerCase()
@@ -202,6 +236,8 @@ export interface ConfusableQuestion {
   correct: string
   wrong: string
   distinction: string
+  /** The sentence in Turkish, shown after the answer (drills only). */
+  tr?: string
 }
 
 export function buildConfusableQuestions(language: TargetLanguage): ConfusableQuestion[] {
@@ -209,6 +245,9 @@ export function buildConfusableQuestions(language: TargetLanguage): ConfusableQu
   const list: ConfusableQuestion[] = []
 
   for (const r of rules) {
+    r.drills?.forEach((d, i) =>
+      list.push({ id: `${r.id}:d${i}`, rule: r, prompt: d.text, correct: d.right, wrong: d.wrong, distinction: r.distinction, tr: d.tr }),
+    )
     if (r.example) {
       const ex0 = r.example[0]
       const w0Reg = new RegExp(`\\b${r.words[0]}\\b`, 'i')
@@ -260,3 +299,32 @@ export function buildConfusableQuestions(language: TargetLanguage): ConfusableQu
   return list
 }
 
+export const CONFUSABLE_ROUND = 10
+/** A round asks mostly sentences; a couple of "which one means…" questions keep the meanings in view. */
+const MEANING_QUESTIONS = 2
+
+/** A round: sentence drills spread over as many pairs as there are, then a couple of meaning questions; shuffled. */
+export function confusableRound(pool: ConfusableQuestion[], rng: Rng, size = CONFUSABLE_ROUND): ConfusableQuestion[] {
+  const drills = shuffle(
+    pool.filter((q) => q.tr),
+    rng,
+  )
+  const meanings = shuffle(
+    pool.filter((q) => !q.tr),
+    rng,
+  )
+  // One drill per pair first, then the rest.
+  const firsts: ConfusableQuestion[] = []
+  const rest: ConfusableQuestion[] = []
+  const seen = new Set<string>()
+  for (const q of drills) {
+    if (seen.has(q.rule.id)) rest.push(q)
+    else {
+      seen.add(q.rule.id)
+      firsts.push(q)
+    }
+  }
+  const wantMeanings = drills.length ? Math.min(MEANING_QUESTIONS, meanings.length) : size
+  const picked = [...firsts, ...rest].slice(0, size - wantMeanings)
+  return shuffle([...picked, ...meanings.slice(0, size - picked.length)], rng)
+}
