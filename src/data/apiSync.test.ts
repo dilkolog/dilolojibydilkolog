@@ -202,10 +202,10 @@ describe('/api/sync restore points', () => {
 
 
 describe('/api/sync unexpected failures', () => {
-  it('answers 500 with the error\'s name and reason, not an empty page', async () => {
+  it('answers a bare 500 (the reason stays in the logs, not with whoever asked)', async () => {
     putFails = true
     const res = await read(await PUT(req({ part: 'core', body: new Uint8Array([1, 2, 3]) })))
     expect(res.status).toBe(500)
-    expect(res.text).toBe('server error: BlobError: Vercel Blob: store is suspended')
+    expect(res.text).toBe('server error')
   })
 })

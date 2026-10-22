@@ -7,11 +7,13 @@
  * The key is the owner's, on a public address, so: only the app's own pages may ask (Origin or
  * Referer, or a same-origin fetch), one sentence of at most MAX_CHARS at a time, and an answer is
  * cached by the CDN for a long time, so the same sentence never costs twice. DeepL's free plan
- * (500,000 characters a month) stops when used up and never charges.
+ * (500,000 characters a month) stops when used up and never charges. Each account has a daily allowance
+ * (DAILY_TRANSLATE_CHARS, api/_quota.ts), so one account cannot use up the month for everyone.
  */
 
-import { requireApproved } from './_account.js'
+import { accountOf, requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
+import { DAILY_TRANSLATE_CHARS, quotaLeft, spendQuota } from './_quota.js'
 
 export { fromApp }
 
@@ -49,6 +51,9 @@ export async function GET(request: Request): Promise<Response> {
   const from = params.get('from') as Lang | null
   if (!text || text.length > MAX_CHARS) return json({ error: 'bad text' }, 400)
   if (!to || !(to in LANGS) || (from && !(from in LANGS)) || from === to) return json({ error: 'bad language' }, 400)
+  // The account's daily allowance (none to count without accounts: local development).
+  const account = await accountOf(request).catch(() => null)
+  if (account && !(await quotaLeft('translate', account, text.length, DAILY_TRANSLATE_CHARS))) return json({ error: 'daily_quota' }, 429)
 
   const res = await fetch(`${endpoint(key)}/v2/translate`, {
     method: 'POST',
@@ -64,6 +69,7 @@ export async function GET(request: Request): Promise<Response> {
   const out = (await res.json()) as { translations?: { text: string }[] }
   const translation = out.translations?.[0]?.text?.trim()
   if (!translation) return json({ error: 'unavailable' }, 502)
+  if (account) await spendQuota('translate', account, text.length)
   // The same sentence translates the same way: the browser keeps it (private: a shared cache would hand it to callers who were never approved).
   return json({ translation }, 200, 'private, max-age=31536000')
 }

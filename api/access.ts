@@ -206,9 +206,12 @@ export async function GET(request: Request): Promise<Response> {
   if (!id && !token) return json({ enabled: approvalOn(), status: 'none', exists: false, match: false })
   if (!ID.test(id) || !TOKEN.test(token)) return json({ error: 'bad request' }, 400)
   try {
-    const exists = !!(await storedAuth(id))
-    const match = exists && (await tokenMatches(id, token))
+    const claimed = !!(await storedAuth(id))
+    const match = claimed && (await tokenMatches(id, token))
     const status: AccessStatus = match ? await accessStatus(id) : 'none'
+    // "Is this name taken?" is only for the old username sign-up; with Supabase it would just tell a stranger
+    // which usernames have an account, so a wrong token learns nothing.
+    const exists = supabaseOn() ? match : claimed
     return json({ status, exists, match })
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)

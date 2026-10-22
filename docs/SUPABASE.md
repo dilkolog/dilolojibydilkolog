@@ -178,3 +178,6 @@ Geliştirme ortamında veya internet erişimi kısıtlıyken betiğin söz dizim
 ```bash
 node scripts/smoke-supabase.mjs --mock
 ```
+
+### Depolama sınırları (0005)
+`supabase/migrations/0005_storage_limits.sql` kişi başına sınır koyar: eşitleme verisi 100 MB (geri dönüş noktaları hariç) ve en çok 5000 okuma metni; medya dosyası en çok 6 MB, yalnız JSON, kişi başı 3000 dosya / 200 MB. Kayıt açık ve yeni hesap onaylı sayıldığı için tek bir hesabın veritabanını (ücretsiz planda 500 MB) doldurmasını önler. **Sahibinin yapacağı:** SQL Editor'de bir kez çalıştırmak (0002'den sonra). Sınırı aşan eşitleme uygulamada "veri çok büyük" uyarısıyla durur; sayıları değiştirip dosyayı yeniden çalıştırmak yeterli.

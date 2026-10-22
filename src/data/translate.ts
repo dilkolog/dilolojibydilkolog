@@ -20,6 +20,7 @@ let ready: Promise<boolean> | null = null
 const MESSAGES: Record<string, string> = {
   quota: 'Bu ayın ücretsiz çeviri kotası doldu; gelecek ay yeniden açılır.',
   busy: 'Çeviri şu an yoğun; birazdan yeniden dene.',
+  daily_quota: 'Bugünkü çeviri hakkın doldu; yarın yeniden açılır.',
   'bad text': `Çeviri bir seferde en fazla ${MAX_CHARS} karakter.`,
 }
 

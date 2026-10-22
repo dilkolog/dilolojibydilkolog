@@ -18,6 +18,6 @@ for (const rule of config.headers ?? []) {
   }
 }
 // Cloudflare adds no HSTS by itself (Vercel did): the app is https only, so browsers are told to keep it so.
-lines.push('/*', '  Strict-Transport-Security: max-age=31536000')
+lines.push('/*', '  Strict-Transport-Security: max-age=31536000; includeSubDomains')
 writeFileSync(new URL('../dist/_headers', import.meta.url), `${lines.join('\n')}\n`)
 console.log('dist/_headers written')
