@@ -54,3 +54,12 @@ describe('daily quota', () => {
     await expect(spendQuota('translate', ID, 600, store, NOON)).resolves.toBeUndefined()
   })
 })
+
+describe('daily calls per account', () => {
+  it('without an account (local development) nothing is counted', async () => {
+    const { overDaily } = await import('../../api/_quota')
+    const store = memory()
+    expect(await overDaily(new Request('https://diloloji.com/api/clips'), 'clips', store, NOON)).toBe(false)
+    expect(store.files.size).toBe(0)
+  })
+})

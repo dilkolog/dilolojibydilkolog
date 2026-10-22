@@ -3,6 +3,7 @@ import { accountOf, requireApproved, StorageError } from './_account.js'
 import { eq, rows, tablesOn, write } from './_tables.js'
 import { fromApp } from './_origin.js'
 import { overLimit, tooMany } from './_rate.js'
+import { dailyQuotaReached, overDaily } from './_quota.js'
 
 /**
  * Word lists shared by link. A set is a snapshot of a list's words (no progress): anyone with the link
@@ -61,6 +62,15 @@ export interface LibraryItem {
 const json = (body: unknown, status = 200, headers: Record<string, string> = {}) => Response.json(body, { status, headers: { 'cache-control': 'no-store', ...headers } })
 
 const text = (v: unknown, max: number): string | undefined => (typeof v === 'string' && v.trim() ? v.trim().slice(0, max) : undefined)
+
+/** Names a publisher may not show in the public library: they would pass a stranger's list off as the site's own. */
+const RESERVED_BY = /diloloji|admin|moderat|yönetici|yonetici|resmi|official|destek|support|kelime-?ko[cç]|monki/i
+
+/** The publisher's name as the library shows it: plain text, no control or direction characters, never the site's name. */
+export function cleanBy(v: unknown): string | undefined {
+  const name = text(typeof v === 'string' ? v.replace(/[\p{Cc}\p{Cf}<>"“”]/gu, '') : v, 30)
+  return name && !RESERVED_BY.test(name.normalize('NFKC')) ? name : undefined
+}
 
 /** The words as the server keeps them, or null when the shape is wrong. */
 export function cleanWords(raw: unknown, now: string): SharedWord[] | null {
@@ -283,6 +293,8 @@ async function handlePost(request: Request): Promise<Response> {
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
   const denied = await requireApproved(request)
   if (denied) return denied
+  // A new share is a new stored file: a day's allowance per account, so nobody fills the store or floods the library.
+  if (await overDaily(request, 'share')) return dailyQuotaReached()
   const raw = await request.text()
   if (raw.length > MAX_BODY) return json({ error: 'too large' }, 413)
   let body: Record<string, unknown>
@@ -300,7 +312,7 @@ async function handlePost(request: Request): Promise<Response> {
   const id = newId()
   const doc: SharedDoc = { v: 1, kind, owner, name, language: body.language as string, words, createdAt: now, updatedAt: now }
   // Only snapshots are published: a library entry that others can change would be a different thing on each look.
-  await (await shareStore()).create(id, doc, body.publish === true && kind === 'set' ? { by: text(body.by, 30) } : undefined)
+  await (await shareStore()).create(id, doc, body.publish === true && kind === 'set' ? { by: cleanBy(body.by) } : undefined)
   return json({ id }, 201)
 }
 
@@ -340,6 +352,7 @@ export async function DELETE(request: Request): Promise<Response> {
 }
 
 async function handleDelete(request: Request): Promise<Response> {
+  if (overLimit(request, 'share-write', 30)) return tooMany()
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
   const denied = await requireApproved(request)
   if (denied) return denied

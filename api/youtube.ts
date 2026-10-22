@@ -2,6 +2,8 @@ import { parseTimedCues } from '../src/engine/clips.js'
 import { parseTimedText, youtubeId } from '../src/engine/subtitles.js'
 import { CaptionError, fetchCaptions } from './_captions.js'
 import { requireApproved } from './_account.js'
+import { overLimit, tooMany } from './_rate.js'
+import { dailyQuotaReached, overDaily } from './_quota.js'
 import { fromApp } from './_origin.js'
 
 /**
@@ -13,6 +15,9 @@ export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return Response.json({ error: 'forbidden' }, { status: 403 })
   const denied = await requireApproved(request)
   if (denied) return denied
+  // Each call fetches from other sites: a brake per address, and a daily allowance per account.
+  if (overLimit(request, 'youtube', 10)) return tooMany()
+  if (await overDaily(request, 'youtube')) return dailyQuotaReached()
   const q = new URL(request.url).searchParams
   const id = youtubeId(q.get('v') ?? '')
   const lang = (q.get('lang') ?? '').slice(0, 2)

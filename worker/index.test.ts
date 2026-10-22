@@ -22,6 +22,20 @@ describe('Worker fetch handler and router (16.3 F5)', () => {
     vi.clearAllMocks()
   })
 
+  it('the rate limiter stops an address over its minute on /api/*, keyed by the address; the app\'s files are never limited', async () => {
+    const keys: string[] = []
+    const limited = { ...env, API_LIMITER: { limit: vi.fn(async ({ key }: { key: string }) => (keys.push(key), { success: false })) } }
+    const res = await worker.fetch(new Request('https://diloloji.com/api/translate?usage=1', { headers: { 'cf-connecting-ip': '203.0.113.7' } }), limited)
+    expect(res.status).toBe(429)
+    expect(res.headers.get('x-content-type-options')).toBe('nosniff')
+    expect(keys).toEqual(['203.0.113.7'])
+    expect((await worker.fetch(new Request('https://diloloji.com/hakkinda'), limited)).status).toBe(200)
+    expect(keys).toHaveLength(1)
+    // A limiter that fails lets the call through rather than taking the API down.
+    const broken = { ...env, API_LIMITER: { limit: vi.fn(async () => Promise.reject(new Error('down'))) } }
+    expect((await worker.fetch(new Request('https://diloloji.com/api/nonexistent-endpoint'), broken)).status).toBe(404)
+  })
+
   it('returns 404 for unknown /api/* endpoints', async () => {
     const res = await worker.fetch(new Request('https://diloloji.com/api/nonexistent-endpoint'), env)
     expect(res.status).toBe(404)

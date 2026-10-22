@@ -18,7 +18,7 @@ import * as translate from '../api/translate.js'
 import * as youtube from '../api/youtube.js'
 import { noteError, sendErrorDigest } from '../api/_errorDigest.js'
 import { fromApp } from '../api/_origin.js'
-import { overLimit, tooMany } from '../api/_rate.js'
+import { clientKey, overLimit, tooMany } from '../api/_rate.js'
 import { cleanRoomCode } from '../src/engine/liveDuel.js'
 import { bindBucket } from './blob.js'
 
@@ -30,6 +30,8 @@ interface Env {
   /** Live duel rooms, one Durable Object per room code (worker/duelRoom.ts). */
   DUEL?: DurableObjectNamespace
   CRON_SECRET?: string
+  /** Cloudflare's rate limiter (wrangler.jsonc `ratelimits`): counts per address across every instance. */
+  API_LIMITER?: { limit(options: { key: string }): Promise<{ success: boolean }> }
 }
 
 type Handler = (request: Request) => Response | Promise<Response>
@@ -52,6 +54,11 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     bindBucket(env.BLOBS)
     const { pathname, searchParams } = new URL(request.url)
+    // Every API call counts against the address's minute (the app's files are served without the Worker).
+    if (pathname.startsWith('/api/') && env.API_LIMITER) {
+      const { success } = await env.API_LIMITER.limit({ key: clientKey(request) }).catch(() => ({ success: true }))
+      if (!success) return hardened(tooMany(), false)
+    }
     // A live duel room: a WebSocket to the room's Durable Object (named by its code), only from the app's own pages.
     if (pathname === '/api/room') {
       const code = cleanRoomCode(searchParams.get('code'))

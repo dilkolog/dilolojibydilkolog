@@ -1,4 +1,4 @@
-import { readText, writeJson } from './_account.js'
+import { accountOf, readText, writeJson } from './_account.js'
 
 /**
  * A daily allowance per account for what costs the owner a shared quota (DeepL's monthly characters): sign-up is
@@ -60,3 +60,23 @@ export async function spendQuota(name: string, id: string, amount: number, store
     // Not counted this once: better than failing a translation that already cost.
   }
 }
+
+/** Calls a day per account to the endpoints that fetch from other sites (YouTube, news, programmes): each call costs
+ * several outbound requests, and YouTube's search has a small daily quota shared by everyone. */
+export const DAILY_CALLS = { clips: 60, youtube: 40, news: 150, listen: 150, share: 30 } as const
+
+/**
+ * For an endpoint that costs per call: counts the call against the account's day and says whether it is over
+ * (then it is not counted). No account (local development) is never over.
+ */
+export async function overDaily(request: Request, name: keyof typeof DAILY_CALLS, store = blobStore, now = Date.now()): Promise<boolean> {
+  const id = await accountOf(request).catch(() => null)
+  if (!id) return false
+  if (!(await quotaLeft(name, id, 1, DAILY_CALLS[name], store, now))) return true
+  await spendQuota(name, id, 1, store, now)
+  return false
+}
+
+export const dailyQuotaReached = () =>
+  Response.json({ error: 'daily_quota' }, { status: 429, headers: { 'retry-after': '3600', 'cache-control': 'no-store' } })
+
