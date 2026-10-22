@@ -13,7 +13,7 @@ Claude Code ve Antigravity aynı listeden çalışır; çakışmamak için:
 
 ## Öğrenmeyi doğrudan güçlendirenler
 1. ~~**Hedef planlayıcı.**~~ (Tamamlandı: CEFR seviye hedef planlayıcı motoru, hedef tarihi ve kalan kelimeye göre günlük kota önerisi, tempo rozetleri [ahead/on_track/behind], `GoalPlannerCard` bileşeni ve testleri, #572)
-2. **Konuşma karşılaştırma ve telaffuz geri bildirimi.** Aynı cümlenin bir hafta sonraki puanı yapıldı (Azure anahtarıyla). Kalan: Azure'suz kullanıcı için ses eğrisi karşılaştırmasını zamanla çizgi yap.
+2. ~~**Konuşma karşılaştırma ve telaffuz geri bildirimi.** Aynı cümlenin bir hafta sonraki puanı yapıldı (Azure anahtarıyla). Kalan: Azure'suz kullanıcı için ses eğrisi karşılaştırmasını zamanla çizgi yap.~~ (Tamamlandı 2026-10-21: kelime sayfasındaki ezgi karşılaştırmasının her denemesi `diloloji:pitch-scores`a yazılır, ikinci denemeden sonra küçük çizgi ve "N denemede %a → %b" satırı, `pitchStore.ts`, `shadowScores.ts` `trendLine`)
 3. ~~**Kişisel "zayıf nokta" haftalık mini turu.** Kör nokta röntgeni + yazı hata defteri + dilbilgisi tekrarı ortak bir 10 dakikalık "haftalık bakım" turunda birleşsin (tek düğme).~~ (Tamamlandı: Bugün'de Cuma–Pazar "haftalık bakım" kartı, `WeeklyCare.tsx`, `engine/weeklyCare.ts`: haftanın kaçırdıkları, tekrarı gelen dilbilgisi, en güçlü kör nokta; yazı hata defteri ayrıca Kör nokta röntgeninde)
 6. ~~**Okurken sesli çeviri.**~~ (Tamamlandı: kelime kartında cümlenin Türkçesinin altında "Türkçesini dinle" ve "Cümle, sonra Türkçesi", `TranslateButton.tsx`, #604)
 
