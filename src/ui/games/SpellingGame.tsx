@@ -55,8 +55,9 @@ export function SpellingGame({ language, lemmas, best, recordKey, onExit }: { la
   const check = () => {
     if (!word || verdict || !text.trim()) return
     const v = checkSpelling(word, text)
-    const ok = v !== 'wrong'
-    if (ok) sfx.correct()
+    // A missed accent or ñ/ç is a letter missed: shown as near, not counted right.
+    const ok = v === 'right'
+    if (v !== 'wrong') sfx.correct()
     else sfx.wrong()
     setVerdict(v)
     setResults((r) => [...r, { word, ok }])

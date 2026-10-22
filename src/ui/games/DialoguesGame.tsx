@@ -3,18 +3,21 @@ import { dialogueOrder, recordDialogue, type Dialogue, type DialogueLevel, type 
 import type { TargetLanguage } from '../../engine/types'
 import { dialogues } from '../../data/dialogues'
 import { BulbIcon, SpeakerIcon } from '../icons'
-import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 import { GameResult } from './GameResult'
 
-const LEVELS: DialogueLevel[] = ['A1', 'A2', 'B1']
+const LEVELS: DialogueLevel[] = ['A1', 'A2', 'B1', 'B2']
+/** "in French" with Turkish vowel harmony (İngilizce → İngilizcede). */
+const IN_LANGUAGE: Record<TargetLanguage, string> = { fr: 'Fransızcada', es: 'İspanyolcada', en: 'İngilizcede' }
 const scoresKey = (language: TargetLanguage) => `diloloji:dialogues:${language}`
 
 function loadScores(language: TargetLanguage): DialogueScores {
   try {
     const raw = JSON.parse(localStorage.getItem(scoresKey(language)) ?? '{}') as unknown
-    return raw && typeof raw === 'object' ? (raw as DialogueScores) : {}
+    if (!raw || typeof raw !== 'object') return {}
+    // Only shares 0–1: a bad value (an old or synced copy) would show %NaN and upset the order.
+    return Object.fromEntries(Object.entries(raw).filter((e): e is [string, number] => typeof e[1] === 'number' && e[1] >= 0 && e[1] <= 1))
   } catch {
     return {}
   }
@@ -62,13 +65,13 @@ export function DialoguesGame({ language, onExit }: { language: TargetLanguage; 
       </div>
       <h1 className="greeting">Diyaloglar</h1>
       <p className="muted">
-        {LANGUAGE_NAME[language]}da gündelik konuşmalar: kafede, otelde, doktorda, telefonda. Karşındaki konuşur, sen üç cevaptan uygun olanı seçersin; her cevapta neden o olduğunu ve öbürünün neden olmadığını görürsün. İnternet ve YZ gerekmez.
+        {IN_LANGUAGE[language]} gündelik konuşmalar: kafede, otelde, doktorda, telefonda. Karşındaki konuşur, sen üç cevaptan uygun olanı seçersin; her cevapta neden o olduğunu ve öbürünün neden olmadığını görürsün. İnternet ve YZ gerekmez.
       </p>
       <div className="choice-row" role="group" aria-label="Seviye">
         <button type="button" className="chip" aria-pressed={level === ''} onClick={() => setLevel('')}>
           Hepsi
         </button>
-        {LEVELS.map((l) => (
+        {LEVELS.filter((l) => dialogues.some((d) => d.language === language && d.level === l)).map((l) => (
           <button key={l} type="button" className="chip" aria-pressed={level === l} onClick={() => setLevel(l)}>
             {l}
           </button>

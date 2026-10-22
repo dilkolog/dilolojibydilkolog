@@ -32,7 +32,7 @@ async function type(host: HTMLElement, value: string) {
 const submit = (host: HTMLElement) => act(async () => host.querySelector('form')!.requestSubmit())
 
 describe('SpellingGame', () => {
-  it('spells each word aloud; a missing accent is near; the result lists the missed', async () => {
+  it('spells each word aloud; a missing accent is near but not counted; the result lists the missed', async () => {
     const host = document.createElement('div')
     document.body.append(host)
     root = createRoot(host)
@@ -49,7 +49,9 @@ describe('SpellingGame', () => {
     await submit(host)
     expect(host.querySelector('.answer-input.is-wrong')).not.toBeNull()
     await submit(host)
-    expect(host.textContent).toContain('1 / 2 doğru')
+    // A missed accent is shown as near but not counted right.
+    expect(host.textContent).toContain('0 / 2 doğru')
+    expect(host.textContent).toContain('Hélène')
     expect(host.textContent).toContain('maison')
   })
 })

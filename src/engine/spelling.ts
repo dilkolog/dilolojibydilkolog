@@ -26,9 +26,9 @@ const EN: Record<string, string> = {
   p: 'pee', q: 'cue', r: 'ar', s: 'ess', t: 'tee', u: 'you', v: 'vee', w: 'double you', x: 'ex', y: 'why', z: 'zed', '-': 'hyphen', "'": 'apostrophe',
 }
 const NAMES: Record<TargetLanguage, Record<string, string>> = { fr: FR, es: ES, en: EN }
-/** How a doubled letter is said: "deux elles", "doble ele", "double el". */
+/** How a doubled letter is said: "deux elle", "doble ele", "double el" (letter names take no plural). */
 const DOUBLE: Record<TargetLanguage, (name: string) => string> = {
-  fr: (n) => `deux ${n}${/[sx]$/.test(n) ? '' : 's'}`,
+  fr: (n) => `deux ${n}`,
   es: (n) => `doble ${n}`,
   en: (n) => `double ${n}`,
 }
@@ -66,7 +66,7 @@ export const SPELL_ROUND = 10
  */
 export function spellingRound(language: TargetLanguage, lemmas: readonly string[], rng: Rng, size = SPELL_ROUND): string[] {
   const own = shuffle(
-    [...new Set(lemmas.map((l) => splitArticle(l.trim(), language).rest.trim()))].filter((w) => w.length >= 3 && w.length <= 10 && !/\s/.test(w) && spellable(language, w)),
+    [...new Set(lemmas.map((l) => splitArticle(l.trim().normalize('NFC').replace(/^L'/, "l'"), language).rest.trim()))].filter((w) => w.length >= 3 && w.length <= 10 && !/\s/.test(w) && spellable(language, w)),
     rng,
   )
   const mine = own.slice(0, Math.ceil(size / 2))
@@ -75,11 +75,13 @@ export function spellingRound(language: TargetLanguage, lemmas: readonly string[
 }
 
 const plain = (s: string) => s.normalize('NFD').replace(/\p{M}/gu, '')
+/** Lower case as typed on any keyboard: curly apostrophes (iOS) and the Turkish İ/ı count as ' and i. */
+const fold = (s: string) => s.normalize('NFC').replace(/[’`´]/g, "'").replace(/İ/g, 'I').replace(/ı/g, 'i').toLowerCase()
 
 /** Right (letter for letter; capitals do not count), near (only an accent off), or wrong. */
 export function checkSpelling(word: string, typed: string): 'right' | 'near' | 'wrong' {
-  const a = typed.trim().toLowerCase().normalize('NFC')
-  const b = word.toLowerCase().normalize('NFC')
+  const a = fold(typed.trim())
+  const b = fold(word)
   if (!a) return 'wrong'
   if (a === b) return 'right'
   return plain(a) === plain(b) ? 'near' : 'wrong'

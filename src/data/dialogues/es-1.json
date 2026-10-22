@@ -43,10 +43,10 @@
         {
           "say": "Son tres euros con cincuenta.",
           "tr": "Üç avro elli sent.",
-          "options": ["Aquí tiene. ¿Puedo pagar con tarjeta?", "Gracias, igualmente.", "De nada, adiós."],
+          "options": ["¿Puedo pagar con tarjeta?", "Gracias, igualmente.", "De nada, adiós."],
           "answer": 0,
-          "why": "Parayı verirken 'Aquí tiene' (buyurun) denir. 'Igualmente' 'size de' demektir, bir dilek karşılığında söylenir; 'De nada' ise teşekküre verilen cevaptır.",
-          "replyTr": "Buyurun. Kartla ödeyebilir miyim?"
+          "why": "Fiyatı duyunca nasıl ödeyeceğini sorabilirsin: '¿Puedo pagar con tarjeta?'. 'Igualmente' 'size de' demektir, bir dilek karşılığında söylenir; 'De nada' ise teşekküre verilen cevaptır.",
+          "replyTr": "Kartla ödeyebilir miyim?"
         },
         {
           "say": "Sí, claro. Acerque la tarjeta aquí.",

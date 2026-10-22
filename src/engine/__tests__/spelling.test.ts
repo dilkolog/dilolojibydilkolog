@@ -6,8 +6,9 @@ describe('spelling aloud', () => {
   it('says the letters by their names, accents and doubled letters the language\'s way', () => {
     expect(spellOut('fr', 'Bonjour')).toBe('bé, o, enne, ji, o, u, erre')
     expect(spellOut('fr', 'Hélène')).toBe('ache, e accent aigu, elle, e accent grave, enne, e')
-    expect(spellOut('fr', 'belle')).toBe('bé, e, deux elles, e')
-    expect(spellOut('fr', 'Rousseau')).toBe('erre, o, u, deux esses, e, a, u')
+    expect(spellOut('fr', 'belle')).toBe('bé, e, deux elle, e')
+    expect(spellOut('fr', 'Rousseau')).toBe('erre, o, u, deux esse, e, a, u')
+    expect(spellOut('fr', 'créé')).toBe('cé, erre, deux e accent aigu')
     expect(spellOut('fr', 'François')).toBe('effe, erre, a, enne, cé cédille, o, i, esse')
     expect(spellOut('es', 'Muñoz')).toBe('eme, u, eñe, o, zeta')
     expect(spellOut('es', 'Valladolid')).toBe('uve, a, doble ele, a, de, o, ele, i, de')
@@ -27,14 +28,17 @@ describe('spelling aloud', () => {
     expect(checkSpelling('Hélène', 'Helene')).toBe('near')
     expect(checkSpelling('Hélène', 'Heleine')).toBe('wrong')
     expect(checkSpelling('Smith', '  ')).toBe('wrong')
+    expect(checkSpelling("don't", 'don’t')).toBe('right')
+    expect(checkSpelling('Isaac', 'İSAAC')).toBe('right')
+    expect(checkSpelling('Isaac', 'ısaac')).toBe('right')
   })
 
   it('a round: own words without the article, the rest names; no repeats, all sayable', () => {
-    const lemmas = ['la maison', 'le chat', 'un', 'pomme de terre', 'l\'arbre', 'l\'arbre', 'anticonstitutionnellement']
+    const lemmas = ["L'homme", 'la maison', 'le chat', 'un', 'pomme de terre', 'l\'arbre', 'l\'arbre', 'anticonstitutionnellement']
     const round = spellingRound('fr', lemmas, createRng(1))
     expect(round).toHaveLength(SPELL_ROUND)
     expect(new Set(round.map((w) => w.toLowerCase())).size).toBe(SPELL_ROUND)
-    expect(round).toEqual(expect.arrayContaining(['maison', 'chat', 'arbre']))
+    expect(round).toEqual(expect.arrayContaining(['maison', 'chat', 'arbre', 'homme']))
     expect(round).not.toContain('un')
     expect(round.every((w) => spellable('fr', w))).toBe(true)
     for (const language of ['es', 'en'] as const) expect(spellingRound(language, [], createRng(2)).every((w) => spellable(language, w))).toBe(true)
