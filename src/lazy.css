@@ -3680,3 +3680,11 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .numbers-digits { font-size: var(--t-2xl); font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; margin: 0; }
 .numbers-answer { display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; margin: 0; }
 .numbers-answer strong { font-variant-numeric: tabular-nums; }
+
+/* Dialogues: the other person's lines on the left, the learner's on the right. */
+.dialogue-lines { display: grid; gap: 0.625rem; margin: 0; }
+.dialogue-pair { gap: 0.5rem; }
+.dialogue-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.5rem; max-width: min(34rem, 88%); padding: 0.625rem 0.875rem; border-radius: var(--r-lg); line-height: 1.45; }
+.dialogue-other { justify-self: start; background: var(--surface-2); border: 1px solid var(--rule); border-bottom-left-radius: var(--r-sm); }
+.dialogue-you { justify-self: end; margin-left: auto; background: var(--lang-soft); border-bottom-right-radius: var(--r-sm); }
+.dialogue-tr { flex-basis: 100%; }

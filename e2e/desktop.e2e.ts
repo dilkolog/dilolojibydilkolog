@@ -1,5 +1,6 @@
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { numberWords } from '../src/engine/numbers'
+import { spellOut } from '../src/engine/spelling'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
 import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
@@ -327,6 +328,37 @@ test('numbers and times: see the digits, write the words; a wrong answer shows h
   expect(await overflow(page)).toEqual([])
 })
 
+test('spelling aloud: a word is spelled letter by letter; the answer shows the word and its spelling', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Harf harf' }).click()
+  await page.getByRole('button', { name: /tura başla/ }).click()
+  await page.getByLabel('Kelime', { exact: true }).fill('zzz')
+  await page.keyboard.press('Enter')
+  const word = (await page.locator('.numbers-answer strong').textContent())!
+  await expect(page.locator('.numbers-answer')).toContainText(spellOut('fr', word))
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.game-timer')).toContainText('2 / 10')
+  expect(await overflow(page)).toEqual([])
+})
+
+test('dialogues: the other person speaks, a reply is chosen and explained, the conversation goes on to the result', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Diyaloglar' }).click()
+  await expect(page.getByRole('heading', { name: 'Diyaloglar' })).toBeVisible()
+  await page.locator('.examtask-item').first().click()
+  const turns = Number((await page.locator('.game-timer').textContent())!.split('/')[1])
+  for (let i = 0; i < turns; i++) {
+    await page.keyboard.press('1')
+    await expect(page.getByRole('status')).toContainText(/Uygun cevap|Bu cevap uymaz/)
+    await expect(page.locator('.dialogue-you')).toHaveCount(i + 1)
+    await page.keyboard.press('Enter')
+  }
+  await expect(page.getByText(/uygun cevap$/)).toBeVisible()
+  expect(await overflow(page)).toEqual([])
+})
+
 test('twins: a sentence only one of the pair fits; the answer gives the rule and the Turkish; one pair alone', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
@@ -334,7 +366,8 @@ test('twins: a sentence only one of the pair fits; the answer gives the rule and
   await page.getByRole('button', { name: 'savoir / connaître' }).click()
   await page.getByRole('button', { name: /tura başla/ }).click()
   await expect(page.locator('.prompt-label')).toContainText('savoir / connaître')
-  await expect(page.locator('.grammar-sentence')).toContainText('___')
+  // A sentence with a gap or a "which one means…" question: both are of this pair.
+  await expect(page.locator('.grammar-sentence')).toContainText(/___|Hangisi/)
   await page.keyboard.press('1')
   await expect(page.getByRole('status')).toContainText(/Savoir/)
   await page.keyboard.press('Enter')

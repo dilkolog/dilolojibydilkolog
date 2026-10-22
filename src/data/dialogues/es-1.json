@@ -1,0 +1,558 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "es-cafeteria",
+      "level": "A1",
+      "title": "Kafede sipariş",
+      "scene": "Madrid'de bir kafedesin; garson masana geliyor.",
+      "turns": [
+        {
+          "say": "¡Buenos días! ¿Qué desea tomar?",
+          "tr": "Günaydın! Ne içmek istersiniz?",
+          "options": ["Soy un café con leche.", "Un café con leche, por favor.", "Sí, quiero tomar."],
+          "answer": 1,
+          "why": "Sipariş verirken 'Un …, por favor' kalıbı kullanılır. 'Soy un café con leche' 'Ben bir sütlü kahveyim' demektir; 'Sí, quiero tomar' ise ne istediğini söylemiyor.",
+          "replyTr": "Bir sütlü kahve, lütfen."
+        },
+        {
+          "say": "Muy bien. ¿Algo para comer?",
+          "tr": "Çok güzel. Yiyecek bir şey ister misiniz?",
+          "options": ["Sí, un cruasán, por favor.", "Sí, como cruasanes todos los días.", "Sí, el cruasán está en la mesa."],
+          "answer": 0,
+          "why": "Bir şey isterken yine 'un …, por favor' denir. 'Como cruasanes todos los días' bir alışkanlığı anlatır, sipariş değildir.",
+          "replyTr": "Evet, bir kruvasan, lütfen."
+        },
+        {
+          "say": "¿Para tomar aquí o para llevar?",
+          "tr": "Burada mı yiyeceksiniz, yoksa paket mi olsun?",
+          "options": ["Sí, por favor.", "Me llevo bien con todos.", "Para tomar aquí, por favor."],
+          "answer": 2,
+          "why": "'¿… o …?' sorusuna 'Sí' denmez, seçimini söylemelisin. 'Me llevo bien' ise 'iyi geçinirim' anlamına gelir; 'llevar' burada 'götürmek' demektir.",
+          "replyTr": "Burada, lütfen."
+        },
+        {
+          "say": "Aquí tiene. ¿Quiere algo más?",
+          "tr": "Buyurun. Başka bir şey ister misiniz?",
+          "options": ["Sí, no quiero nada.", "No, nada más, gracias. ¿Cuánto es?", "No, gracias. ¿Cuántos años tiene?"],
+          "answer": 1,
+          "why": "Fiyatı sormak için '¿Cuánto es?' denir. '¿Cuántos años tiene?' 'Kaç yaşındasınız?' demektir; 'Sí, no quiero nada' ise kendisiyle çelişir.",
+          "replyTr": "Hayır, başka bir şey yok, teşekkürler. Ne kadar?"
+        },
+        {
+          "say": "Son tres euros con cincuenta.",
+          "tr": "Üç avro elli sent.",
+          "options": ["¿Puedo pagar con tarjeta?", "Gracias, igualmente.", "De nada, adiós."],
+          "answer": 0,
+          "why": "Fiyatı duyunca nasıl ödeyeceğini sorabilirsin: '¿Puedo pagar con tarjeta?'. 'Igualmente' 'size de' demektir, bir dilek karşılığında söylenir; 'De nada' ise teşekküre verilen cevaptır.",
+          "replyTr": "Kartla ödeyebilir miyim?"
+        },
+        {
+          "say": "Sí, claro. Acerque la tarjeta aquí.",
+          "tr": "Tabii. Kartı buraya yaklaştırın.",
+          "options": ["Vale, me acerco a la tarjeta.", "¡Buen provecho!", "Ya está. ¡Muchas gracias, hasta luego!"],
+          "answer": 2,
+          "why": "Ödeme bitince 'Ya está' (tamam, oldu) deyip teşekkür edilir. 'Me acerco a la tarjeta' 'karta yaklaşıyorum' demektir; '¡Buen provecho!' ise yemek yiyen birine 'Afiyet olsun!' demektir.",
+          "replyTr": "Tamam, oldu. Çok teşekkürler, görüşürüz!"
+        }
+      ]
+    },
+    {
+      "id": "es-direcciones",
+      "level": "A1",
+      "title": "Yol sormak",
+      "scene": "Sevilla'da yolunu kaybettin; sokakta bir kadın sana yardım etmek istiyor.",
+      "turns": [
+        {
+          "say": "Perdone, ¿necesita ayuda?",
+          "tr": "Affedersiniz, yardıma ihtiyacınız var mı?",
+          "options": ["Sí, por favor. ¿Dónde está la catedral?", "Sí, le ayudo con mucho gusto.", "No, necesito ayuda, por favor."],
+          "answer": 0,
+          "why": "Yardım teklifini kabul edip ne aradığını sorman gerekir. 'Le ayudo con mucho gusto' 'Size memnuniyetle yardım ederim' demektir; 'No, necesito ayuda' ise kendisiyle çelişir.",
+          "replyTr": "Evet, lütfen. Katedral nerede?"
+        },
+        {
+          "say": "Siga todo recto por esta calle y gire a la derecha en el segundo semáforo.",
+          "tr": "Bu caddeden dümdüz gidin ve ikinci trafik ışığından sağa dönün.",
+          "options": ["¿A la derecha en el primer semáforo?", "Perdone, ¿en el segundo semáforo a la izquierda?", "Entonces, todo recto y en el segundo semáforo a la derecha, ¿no?"],
+          "answer": 2,
+          "why": "Tarifi doğru tekrar edip teyit etmek iyi bir yoldur. Diğer iki seçenek yanlış duymuş: 'primer' birinci, 'izquierda' sol demektir.",
+          "replyTr": "Yani dümdüz gidip ikinci ışıktan sağa, değil mi?"
+        },
+        {
+          "say": "Exacto. Luego verá una plaza grande con una fuente.",
+          "tr": "Aynen. Sonra fıskiyeli büyük bir meydan göreceksiniz.",
+          "options": ["Vale. ¿Y está largo?", "Vale. ¿Y está lejos? ¿Se puede ir andando?", "Vale. ¿Y hay lejos?"],
+          "answer": 1,
+          "why": "Uzaklık için 'estar lejos' kullanılır. 'Largo' boy olarak 'uzun' demektir; 'hay' ise 'var' anlamına gelir, bir yerin konumu için 'está' gerekir.",
+          "replyTr": "Tamam. Peki uzak mı? Yürüyerek gidilebilir mi?"
+        },
+        {
+          "say": "No, está muy cerca. Unos cinco minutos a pie.",
+          "tr": "Hayır, çok yakın. Yürüyerek beş dakika kadar.",
+          "options": ["De nada, señora.", "¡Qué pena! Está muy lejos.", "¡Qué bien! Muchas gracias por su ayuda."],
+          "answer": 2,
+          "why": "Yardım eden kişiye 'Muchas gracias por su ayuda' denir. 'De nada' teşekküre verilen cevaptır; 'Está muy lejos' ise az önce duyduğunla çelişir: yer çok yakın.",
+          "replyTr": "Ne güzel! Yardımınız için çok teşekkürler."
+        },
+        {
+          "say": "De nada. ¡Que disfrute de Sevilla!",
+          "tr": "Rica ederim. Sevilla'nın tadını çıkarın!",
+          "options": ["Muchas gracias. ¡Adiós!", "¡Bienvenida a Sevilla!", "De nada. ¡Adiós!"],
+          "answer": 0,
+          "why": "İyi dileğe teşekkür edip vedalaşılır. 'Bienvenida a Sevilla' 'Sevilla'ya hoş geldiniz' demektir, bunu şehrin yerlisi misafire söyler; 'De nada' ise teşekküre verilen cevaptır.",
+          "replyTr": "Çok teşekkürler. Hoşça kalın!"
+        }
+      ]
+    },
+    {
+      "id": "es-tienda",
+      "level": "A1",
+      "title": "Mağazada tişört",
+      "scene": "Barselona'da bir giyim mağazasındasın; satıcı yanına geliyor.",
+      "turns": [
+        {
+          "say": "Hola, ¿le puedo ayudar en algo?",
+          "tr": "Merhaba, size bir konuda yardımcı olabilir miyim?",
+          "options": ["Sí, busco una camiseta blanca.", "Sí, le puedo ayudar.", "No, busco una camiseta blanca."],
+          "answer": 0,
+          "why": "Yardımı kabul edip ne aradığını söylersin: 'Busco …' (… arıyorum). 'Le puedo ayudar' 'Size yardım edebilirim' demektir; 'No' deyip sonra bir şey aramak ise çelişkilidir.",
+          "replyTr": "Evet, beyaz bir tişört arıyorum."
+        },
+        {
+          "say": "Muy bien. ¿Qué talla usa?",
+          "tr": "Çok güzel. Hangi bedeni giyiyorsunuz?",
+          "options": ["Tengo treinta años.", "La M, normalmente.", "Uso camisetas todos los días."],
+          "answer": 1,
+          "why": "'Talla' beden demektir; cevap olarak beden söylenir. 'Tengo treinta años' yaşını söyler, 'Uso camisetas todos los días' ise soruyu cevaplamaz.",
+          "replyTr": "Genelde M."
+        },
+        {
+          "say": "Aquí tiene la M. ¿Quiere probársela?",
+          "tr": "Buyurun, M beden. Denemek ister misiniz?",
+          "options": ["Sí, la prueba es fácil.", "No, quiero probármela.", "Sí. ¿Dónde están los probadores?"],
+          "answer": 2,
+          "why": "Denemek istiyorsan deneme kabinlerini ('probadores') sorarsın. 'La prueba es fácil' 'Sınav kolay' demektir; 'No, quiero probármela' ise kendisiyle çelişir.",
+          "replyTr": "Evet. Deneme kabinleri nerede?"
+        },
+        {
+          "say": "Al fondo, a la izquierda. … ¿Qué tal le queda?",
+          "tr": "En arkada, solda. … Nasıl, üstünüze oldu mu?",
+          "options": ["Me queda un poco pequeña. ¿Tiene la L?", "Me quedo aquí un poco.", "Queda en el probador."],
+          "answer": 0,
+          "why": "'¿Qué tal le queda?' giysinin üstüne nasıl olduğunu sorar; 'Me queda pequeña' (küçük geldi) uygun cevaptır. 'Me quedo aquí' 'Burada kalıyorum' demektir.",
+          "replyTr": "Biraz küçük geldi. L bedeniniz var mı?"
+        },
+        {
+          "say": "Sí, aquí tiene la L. Cuesta quince euros.",
+          "tr": "Evet, buyurun L beden. On beş avro.",
+          "options": ["Quince euros es mi talla.", "Perfecto, me la llevo.", "Perfecto, la vendo."],
+          "answer": 1,
+          "why": "Bir şeyi satın alacağını 'Me lo/la llevo' (alıyorum) ile söylersin. 'La vendo' 'Onu satıyorum' demektir; on beş avro da bir beden değil, fiyattır.",
+          "replyTr": "Harika, bunu alıyorum."
+        },
+        {
+          "say": "Muy bien. ¿Va a pagar en efectivo o con tarjeta?",
+          "tr": "Peki. Nakit mi ödeyeceksiniz, kartla mı?",
+          "options": ["Sí, voy a pagar.", "Efectivamente, con tarjeta.", "Con tarjeta, por favor."],
+          "answer": 2,
+          "why": "Seçimli soruya seçimini söyleyerek cevap verirsin. 'Efectivamente' 'gerçekten, aynen' demektir, 'efectivo' (nakit) ile karıştırma; 'Sí, voy a pagar' ise hangisi olduğunu söylemiyor.",
+          "replyTr": "Kartla, lütfen."
+        }
+      ]
+    },
+    {
+      "id": "es-hotel",
+      "level": "A2",
+      "title": "Otele giriş",
+      "scene": "Valensiya'da bir otelin resepsiyonundasın; Demir soyadıyla rezervasyonun var.",
+      "turns": [
+        {
+          "say": "Buenas tardes, bienvenido. ¿En qué puedo ayudarle?",
+          "tr": "İyi günler, hoş geldiniz. Size nasıl yardımcı olabilirim?",
+          "options": ["Buenas tardes. Tengo una reserva a nombre de Demir.", "Buenas tardes. Me llamo reserva Demir.", "Buenas tardes. ¿Tiene usted una reserva?"],
+          "answer": 0,
+          "why": "Rezervasyonu 'Tengo una reserva a nombre de …' (… adına rezervasyonum var) kalıbıyla söylersin. '¿Tiene usted una reserva?' sorusunu resepsiyonist sorar, sen değil.",
+          "replyTr": "İyi günler. Demir adına bir rezervasyonum var."
+        },
+        {
+          "say": "Un momento… ¿Me lo puede deletrear, por favor?",
+          "tr": "Bir dakika… Harf harf söyleyebilir misiniz, lütfen?",
+          "options": ["Sí, se dice Demir.", "Claro: de, e, eme, i, erre.", "Claro, Demir significa 'hierro' en turco."],
+          "answer": 1,
+          "why": "'Deletrear' bir kelimeyi harf harf söylemek demektir; İspanyolca harf adlarıyla hecelersin. Adı tekrar etmek ya da anlamını açıklamak istenen şey değildir.",
+          "replyTr": "Tabii: D, E, M, İ, R."
+        },
+        {
+          "say": "Perfecto. Una habitación doble, del 12 al 15 de mayo, ¿verdad?",
+          "tr": "Mükemmel. 12–15 Mayıs arası çift kişilik bir oda, değil mi?",
+          "options": ["No, es una habitación doble.", "Sí, correcto: cuatro noches.", "Sí, correcto: tres noches."],
+          "answer": 2,
+          "why": "12'sinden 15'ine kadar üç gece kalınır ('tres noches'). 'No' deyip aynı bilgiyi tekrar etmek çelişkilidir; dört gece ise yanlış hesap.",
+          "replyTr": "Evet, doğru: üç gece."
+        },
+        {
+          "say": "Muy bien. ¿Me deja su pasaporte, por favor?",
+          "tr": "Çok güzel. Pasaportunuzu verebilir misiniz, lütfen?",
+          "options": ["Sí, le dejo en paz.", "Claro, aquí tiene.", "Claro, lo dejo en mi habitación."],
+          "answer": 1,
+          "why": "Bir şeyi uzatırken 'Aquí tiene' (buyurun) denir. Burada 'dejar' 'vermek' anlamındadır: 'le dejo en paz' 'sizi rahat bırakıyorum', 'lo dejo en mi habitación' ise 'odamda bırakıyorum' demektir.",
+          "replyTr": "Tabii, buyurun."
+        },
+        {
+          "say": "Gracias. El desayuno es de siete a diez, en la primera planta.",
+          "tr": "Teşekkürler. Kahvaltı yediden ona kadar, birinci katta.",
+          "options": ["¿El desayuno está incluido en el precio?", "¿El desayuno está incluso en el precio?", "¿El desayuno es a las siete y diez?"],
+          "answer": 0,
+          "why": "'Dahil' İspanyolcada 'incluido'dur. 'Incluso' 'hatta, bile' demektir; 'a las siete y diez' ise saati yanlış duymaktır (yediyi on geçe).",
+          "replyTr": "Kahvaltı fiyata dahil mi?"
+        },
+        {
+          "say": "Sí, está incluido. Aquí tiene su llave: habitación 304.",
+          "tr": "Evet, dahil. Buyurun anahtarınız: 304 numaralı oda.",
+          "options": ["De nada. ¿Dónde está el ascensor?", "Gracias. ¿Dónde está la llave?", "Muchas gracias. ¿Dónde está el ascensor?"],
+          "answer": 2,
+          "why": "Anahtarı alınca teşekkür edip asansörü sorabilirsin. 'De nada' teşekküre verilen cevaptır; anahtar da az önce eline verildi.",
+          "replyTr": "Çok teşekkürler. Asansör nerede?"
+        }
+      ]
+    },
+    {
+      "id": "es-farmacia",
+      "level": "A2",
+      "title": "Eczanede",
+      "scene": "Malaga'da bir eczanedesin; dünden beri boğazın ağrıyor.",
+      "turns": [
+        {
+          "say": "Buenos días, ¿qué le pasa?",
+          "tr": "Günaydın, neyiniz var?",
+          "options": ["Me duele la garganta desde ayer.", "Me duelen la garganta desde ayer.", "Yo duelo la garganta desde ayer."],
+          "answer": 0,
+          "why": "'Doler' 'gustar' gibi çekimlenir: ağrıyan şey özne olur. Tek bir boğaz için 'me duele' denir; 'me duelen' çoğul içindir, 'yo duelo' ise yanlış bir yapıdır.",
+          "replyTr": "Dünden beri boğazım ağrıyor."
+        },
+        {
+          "say": "¿Tiene fiebre?",
+          "tr": "Ateşiniz var mı?",
+          "options": ["No, gracias.", "Un poco: esta mañana tenía 37,8.", "Sí, estoy fiebre."],
+          "answer": 1,
+          "why": "Ateş için 'tener fiebre' kullanılır, bu yüzden 'estoy fiebre' yanlıştır. 'No, gracias' ise bir teklifi reddeder gibi durur; soru bir teklif değil.",
+          "replyTr": "Biraz: bu sabah 37,8'di."
+        },
+        {
+          "say": "¿Tiene alergia a algún medicamento?",
+          "tr": "Herhangi bir ilaca alerjiniz var mı?",
+          "options": ["No, a ningún.", "Sí, me gustan todos.", "No, a ninguno."],
+          "answer": 2,
+          "why": "İsimsiz tek başına kullanıldığında 'ninguno' denir; 'ningún' yalnızca erkek bir ismin önünde olur ('ningún medicamento'). 'Me gustan todos' alerji sorusuna cevap değildir.",
+          "replyTr": "Hayır, hiçbirine."
+        },
+        {
+          "say": "Entonces le recomiendo estas pastillas. Tome una cada ocho horas, después de comer.",
+          "tr": "O zaman size bu tabletleri öneririm. Yemekten sonra sekiz saatte bir tane alın.",
+          "options": ["¿Cada ocho horas? ¿Y durante cuántos días?", "¿Ocho pastillas cada hora?", "Vale, tomo ocho después de comer."],
+          "answer": 0,
+          "why": "Doğru duyduğunu teyit edip kaç gün kullanacağını sormak yerinde olur. Diğer iki seçenek talimatı yanlış anlamış: 'cada ocho horas' sekiz saatte bir demektir, sekiz tablet değil.",
+          "replyTr": "Sekiz saatte bir mi? Peki kaç gün boyunca?"
+        },
+        {
+          "say": "Durante cinco días. Si no mejora, vaya al médico.",
+          "tr": "Beş gün boyunca. İyileşmezseniz doktora gidin.",
+          "options": ["De acuerdo. Si no mejoro, fui al médico.", "De acuerdo. Si no mejoro, iré al médico.", "De acuerdo. El médico va a mejorar."],
+          "answer": 1,
+          "why": "'Si + şimdiki zaman' cümlesinin devamında gelecek zaman gelir: 'iré'. 'Fui' geçmiş zamandır; 'El médico va a mejorar' ise 'Doktor iyileşecek' demektir.",
+          "replyTr": "Tamam. İyileşmezsem doktora giderim."
+        },
+        {
+          "say": "Son ocho euros. ¿Necesita algo más?",
+          "tr": "Sekiz avro. Başka bir şeye ihtiyacınız var mı?",
+          "options": ["No, eso es todo. Gracias por su ayuda.", "Sí, eso es todo.", "No, necesito más ocho euros."],
+          "answer": 0,
+          "why": "'Eso es todo' (hepsi bu) başka bir şey istemediğini söyler, bu yüzden 'No' ile başlar. 'Sí, eso es todo' çelişkilidir; 'más ocho euros' ise Türkçeden kelimesi kelimesine çeviridir ve anlamsızdır.",
+          "replyTr": "Hayır, hepsi bu. Yardımınız için teşekkürler."
+        }
+      ]
+    },
+    {
+      "id": "es-estacion",
+      "level": "A2",
+      "title": "Tren bileti",
+      "scene": "Madrid'de tren istasyonundasın; gişeden Sevilla'ya bilet alacaksın.",
+      "turns": [
+        {
+          "say": "Buenos días. ¿Adónde va?",
+          "tr": "Günaydın. Nereye gidiyorsunuz?",
+          "options": ["A Sevilla. Un billete para mañana por la mañana, por favor.", "De Sevilla, por favor.", "Voy bien, gracias."],
+          "answer": 0,
+          "why": "'¿Adónde?' nereye demektir; cevap 'a + yer' ile verilir. 'De Sevilla' 'Sevilla'dan' demektir; 'Voy bien' ise soruyu hâl hatır sorusu sanmaktır.",
+          "replyTr": "Sevilla'ya. Yarın sabah için bir bilet, lütfen."
+        },
+        {
+          "say": "¿Solo de ida o de ida y vuelta?",
+          "tr": "Yalnız gidiş mi, gidiş-dönüş mü?",
+          "options": ["De ida y vuelta, pero no vuelvo.", "De ida y vuelta. Vuelvo el domingo.", "Ida a vuelta, por favor."],
+          "answer": 1,
+          "why": "'Ida y vuelta' gidiş-dönüş demektir; dönüş gününü de söylemek işe yarar. 'Pero no vuelvo' (ama dönmüyorum) çelişkilidir; 'ida a vuelta' ise yanlış bir kalıptır.",
+          "replyTr": "Gidiş-dönüş. Pazar günü dönüyorum."
+        },
+        {
+          "say": "Mañana hay un tren a las 8:30 y otro a las 10:15. ¿Cuál prefiere?",
+          "tr": "Yarın 8.30'da bir tren var, 10.15'te de bir tane. Hangisini tercih edersiniz?",
+          "options": ["Prefiero los dos.", "El de las ocho y cuarto, por favor.", "El de las diez y cuarto, por favor."],
+          "answer": 2,
+          "why": "10.15 'las diez y cuarto' diye söylenir. 8.30 ise 'las ocho y media'dır; 'ocho y cuarto' (8.15) diye bir tren yok. İki trene birden binemezsin.",
+          "replyTr": "Onu çeyrek geçe olanı, lütfen."
+        },
+        {
+          "say": "Muy bien. ¿Ventanilla o pasillo?",
+          "tr": "Peki. Pencere kenarı mı, koridor mu?",
+          "options": ["Ventanilla, si es posible.", "La ventanilla está cerrada.", "Por el pasillo, a la derecha."],
+          "answer": 0,
+          "why": "Soru koltuk tercihini soruyor; birini seçersin. 'La ventanilla está cerrada' 'Pencere kapalı' demektir; 'Por el pasillo, a la derecha' ise yol tarif eder.",
+          "replyTr": "Mümkünse pencere kenarı."
+        },
+        {
+          "say": "Son ochenta y cuatro euros en total.",
+          "tr": "Toplam seksen dört avro.",
+          "options": ["¿Hay descuento para estudiantes? Tengo el carné.", "¿Ochenta y cuatro? Aquí tiene ocho euros con cuatro.", "¿Es usted estudiante?"],
+          "answer": 0,
+          "why": "Ödemeden önce öğrenci indirimi sormak yerindedir. 'Ochenta y cuatro' seksen dörttür, sekiz avro değil; '¿Es usted estudiante?' sorusunu ise gişedeki kişi sorar.",
+          "replyTr": "Öğrenci indirimi var mı? Kartım var."
+        },
+        {
+          "say": "Sí, con el carné tiene un veinte por ciento de descuento. ¿Me lo enseña?",
+          "tr": "Evet, kartla yüzde yirmi indiriminiz var. Gösterebilir misiniz?",
+          "options": ["Sí, le enseño español.", "Claro, aquí lo tiene.", "Claro, aquí la tiene."],
+          "answer": 1,
+          "why": "'Enseñar' burada 'göstermek' demektir. 'Carné' eril bir isim olduğu için 'lo' kullanılır, 'la' değil; 'le enseño español' ise 'size İspanyolca öğretirim' demektir.",
+          "replyTr": "Tabii, buyurun."
+        }
+      ]
+    },
+    {
+      "id": "es-reserva",
+      "level": "A2",
+      "title": "Telefonla masa ayırtmak",
+      "scene": "Meksiko'dasın; cumartesi için bir restorandan telefonla masa ayırtıyorsun.",
+      "turns": [
+        {
+          "say": "Restaurante El Patio, buenas tardes. ¿En qué le puedo servir?",
+          "tr": "El Patio Restoranı, iyi günler. Size nasıl yardımcı olabilirim?",
+          "options": ["Buenas tardes. Quisiera reservar una mesa para el sábado.", "Buenas tardes. Quisiera servir una mesa para el sábado.", "Buenas tardes. ¿Usted reserva una mesa el sábado?"],
+          "answer": 0,
+          "why": "Masa ayırtmak 'reservar una mesa'dır; 'Quisiera' kibar bir istek bildirir. 'Servir una mesa' 'masaya servis yapmak' demektir; üçüncüsü ise rezervasyonu karşı tarafa yaptırmaya çalışıyor.",
+          "replyTr": "İyi günler. Cumartesi için bir masa ayırtmak istiyorum."
+        },
+        {
+          "say": "Claro. ¿Para cuántas personas?",
+          "tr": "Tabii. Kaç kişilik?",
+          "options": ["Para las nueve de la noche.", "Somos cuatro personas.", "Cuatro mesas, por favor."],
+          "answer": 1,
+          "why": "'¿Cuántas personas?' kişi sayısını sorar. 'Para las nueve' saati söyler; 'Cuatro mesas' ise dört ayrı masa demektir, dört kişilik bir masa değil.",
+          "replyTr": "Dört kişiyiz."
+        },
+        {
+          "say": "¿Y a qué hora?",
+          "tr": "Peki saat kaçta?",
+          "options": ["Son las nueve de la noche.", "En las nueve de la noche.", "A las nueve de la noche, si es posible."],
+          "answer": 2,
+          "why": "'¿A qué hora?' sorusuna 'a las …' ile cevap verilir. 'Son las nueve' şu anki saati söyler; 'en las nueve' ise Türkçedeki '-de' ekinin kelimesi kelimesine çevirisidir.",
+          "replyTr": "Mümkünse akşam dokuzda."
+        },
+        {
+          "say": "Lo siento, a las nueve está todo lleno. Tenemos mesa a las ocho o a las diez.",
+          "tr": "Üzgünüm, dokuzda her yer dolu. Sekizde ya da onda masamız var.",
+          "options": ["Entonces a las nueve está bien.", "Entonces a las ocho, por favor.", "Lo siento, está todo lleno."],
+          "answer": 1,
+          "why": "Sunulan iki saatten birini seçersin. Dokuz dolu olduğu için 'a las nueve está bien' olmaz; 'Lo siento, está todo lleno' ise restoranın söyleyeceği cümledir.",
+          "replyTr": "O zaman sekizde, lütfen."
+        },
+        {
+          "say": "Perfecto. ¿A nombre de quién?",
+          "tr": "Harika. Kimin adına?",
+          "options": ["A nombre de Elif Kaya.", "Del sábado a las ocho.", "A mi nombre es Elif Kaya."],
+          "answer": 0,
+          "why": "'¿A nombre de quién?' sorusuna 'A nombre de …' diye cevap verilir. 'A mi nombre es' iki kalıbı karıştırır ('Mi nombre es' ya da 'A mi nombre'); 'Del sábado a las ocho' ise zamanı söyler.",
+          "replyTr": "Elif Kaya adına."
+        },
+        {
+          "say": "Muy bien. Mesa para cuatro, el sábado a las ocho. ¿Me deja un número de teléfono?",
+          "tr": "Çok güzel. Cumartesi saat sekizde dört kişilik masa. Bir telefon numarası bırakır mısınız?",
+          "options": ["Sí, le dejo mi celular en la mesa.", "Claro, es el 55 2384 1790.", "No, gracias, ya tengo teléfono."],
+          "answer": 1,
+          "why": "'¿Me deja un número?' numaranı istiyor; numarayı söylersin. 'Le dejo mi celular en la mesa' 'telefonumu masada bırakırım' demektir; üçüncüsü ise soruyu telefon teklifi sanıyor.",
+          "replyTr": "Tabii, 55 2384 1790."
+        }
+      ]
+    },
+    {
+      "id": "es-entrevista",
+      "level": "B1",
+      "title": "İş görüşmesi",
+      "scene": "Bogota'da bir yazılım şirketinde web tasarımcılığı için iş görüşmesindesin.",
+      "turns": [
+        {
+          "say": "Buenos días. Siéntese, por favor. ¿Encontró la oficina sin problema?",
+          "tr": "Günaydın. Buyurun, oturun. Ofisi sorunsuz buldunuz mu?",
+          "options": ["Sí, sin problema. Muchas gracias por recibirme.", "Sí, la encontraré sin problema.", "Sí, sin problema. ¿Y tú qué tal?"],
+          "answer": 0,
+          "why": "İş görüşmesinde 'usted' ile konuşulur ve görüşme için teşekkür etmek iyi bir başlangıçtır. 'Encontraré' gelecek zamandır, ofisi zaten buldun; 'tú' ise bu ortam için fazla samimidir.",
+          "replyTr": "Evet, sorunsuz. Beni kabul ettiğiniz için çok teşekkürler."
+        },
+        {
+          "say": "Cuénteme un poco sobre su experiencia.",
+          "tr": "Bana biraz deneyiminizden bahsedin.",
+          "options": ["Pues mira, tío, llevo cuatro años haciendo webs.", "Trabajé en diseño web desde hace cuatro años.", "Trabajo en diseño web desde hace cuatro años, sobre todo para tiendas en línea."],
+          "answer": 2,
+          "why": "Hâlâ süren bir iş için 'desde hace' ile şimdiki zaman kullanılır: 'trabajo'. 'Trabajé … desde hace' zamanları karıştırır; 'mira, tío' ise iş görüşmesi için fazla argodur.",
+          "replyTr": "Dört yıldır web tasarımı alanında çalışıyorum, özellikle çevrim içi mağazalar için."
+        },
+        {
+          "say": "Muy interesante. ¿Y por qué quiere trabajar con nosotros?",
+          "tr": "Çok ilginç. Peki neden bizimle çalışmak istiyorsunuz?",
+          "options": ["Porque quiero que crezco en su equipo.", "Porque me interesan mucho sus proyectos y quiero crecer en un equipo internacional.", "Porque me interesa el sueldo y nada más."],
+          "answer": 1,
+          "why": "Şirketin işine ilgini ve gelişme isteğini anlatmak en uygunudur. 'Quiero que crezco' yanlıştır (aynı özneyle 'quiero crecer' denir); yalnızca maaştan söz etmek ise görüşmede kötü bir izlenim bırakır.",
+          "replyTr": "Çünkü projeleriniz ilgimi çok çekiyor ve uluslararası bir ekipte gelişmek istiyorum."
+        },
+        {
+          "say": "¿Cuál diría que es su mayor defecto?",
+          "tr": "En büyük kusurunuzun ne olduğunu söylersiniz?",
+          "options": ["A veces soy demasiado detallista, pero estoy aprendiendo a priorizar.", "No tengo ningún defecto.", "A veces soy demasiado detallista, pero estoy aprendido a priorizar."],
+          "answer": 0,
+          "why": "Bir kusuru kabul edip onun üzerinde çalıştığını söylemek iyi bir cevaptır; süren eylem 'estoy aprendiendo' ile anlatılır, 'estoy aprendido' yanlıştır. 'Hiç kusurum yok' demek ise soruyu geçiştirmektir.",
+          "replyTr": "Bazen fazla detaycı oluyorum ama önceliklendirmeyi öğreniyorum."
+        },
+        {
+          "say": "Entiendo. ¿Tiene alguna pregunta para nosotros?",
+          "tr": "Anlıyorum. Bize sormak istediğiniz bir şey var mı?",
+          "options": ["Sí, tengo muchas respuestas.", "Sí: ¿y tú cuántos años tienes?", "Sí: ¿cómo es un día normal de trabajo en el equipo?"],
+          "answer": 2,
+          "why": "İşle ilgili bir soru sormak ilgini gösterir. 'Tengo muchas respuestas' 'Çok cevabım var' demektir; yaş sormak ve 'tú' demek ise görüşmede uygunsuzdur.",
+          "replyTr": "Evet: ekipte normal bir iş günü nasıl geçiyor?"
+        },
+        {
+          "say": "Buena pregunta: trabajamos en equipos pequeños, por proyectos. Bueno, le llamaremos la próxima semana con una respuesta.",
+          "tr": "Güzel soru: küçük ekipler hâlinde, proje bazlı çalışıyoruz. Neyse, gelecek hafta size bir cevapla döneceğiz.",
+          "options": ["Perfecto, le llamaba la semana pasada.", "Muchas gracias por su tiempo. Quedo a la espera de su llamada.", "Vale, chao, nos vemos."],
+          "answer": 1,
+          "why": "Görüşmeyi kibarca teşekkür ederek ve dönüşlerini beklediğini söyleyerek bitirirsin. 'Le llamaba la semana pasada' geçmişten söz eder; 'chao, nos vemos' ise fazla samimidir.",
+          "replyTr": "Zaman ayırdığınız için çok teşekkürler. Aramanızı bekliyorum."
+        }
+      ]
+    },
+    {
+      "id": "es-queja",
+      "level": "B1",
+      "title": "Otelde şikâyet",
+      "scene": "Granada'da bir oteldesin; odanın kliması çalışmıyor ve resepsiyonu arıyorsun.",
+      "turns": [
+        {
+          "say": "Recepción, buenas noches. ¿En qué puedo ayudarle?",
+          "tr": "Resepsiyon, iyi akşamlar. Size nasıl yardımcı olabilirim?",
+          "options": ["Buenas noches. Le llamo de la habitación 215: el aire acondicionado no funciona.", "Buenas noches. El aire acondicionado no trabaja en mi habitación.", "¡El aire no funciona! ¡Esto es un desastre, arréglenlo ya!"],
+          "answer": 0,
+          "why": "Oda numarasını verip sorunu sakince anlatırsın. Makineler için 'funcionar' denir; 'no trabaja' Türkçedeki 'çalışmıyor'un kelimesi kelimesine çevirisidir. Bağırarak emir vermek ise kaba kaçar.",
+          "replyTr": "İyi akşamlar. 215 numaralı odadan arıyorum: klima çalışmıyor."
+        },
+        {
+          "say": "Vaya, lo siento mucho. ¿Ha probado a usar el mando a distancia?",
+          "tr": "Ah, çok üzgünüm. Uzaktan kumandayı kullanmayı denediniz mi?",
+          "options": ["Sí, lo probaré ayer varias veces.", "Sí, ya lo he probado varias veces, pero no se enciende.", "Sí, y está muy rico."],
+          "answer": 1,
+          "why": "'Ya lo he probado' (zaten denedim) deyip sorunun sürdüğünü söylersin. 'Probaré' gelecek zamandır, 'ayer' (dün) ile olmaz; 'está muy rico' ise 'probar'ı 'tatmak' sanmaktır.",
+          "replyTr": "Evet, birkaç kez denedim ama açılmıyor."
+        },
+        {
+          "say": "Entiendo. Ahora mismo no tenemos técnico; viene mañana a las nueve.",
+          "tr": "Anlıyorum. Şu an teknisyenimiz yok; yarın saat dokuzda geliyor.",
+          "options": ["Es mucho calor aquí. ¿Me cambia la habitación?", "Hace mucho calor. ¿Sería posible que me cambio de habitación?", "Hace mucho calor. ¿Sería posible cambiarme de habitación esta noche?"],
+          "answer": 2,
+          "why": "Hava için 'hace calor' denir ve kibar rica 'sería posible + mastar' ile yapılır. 'Es mucho calor' yanlıştır; 'que' ile kurulan cümlede ise subjuntivo gerekir ('que me cambiara'), 'me cambio' olmaz.",
+          "replyTr": "Çok sıcak. Bu gece odamı değiştirmem mümkün olur mu?"
+        },
+        {
+          "say": "Déjeme ver… Sí, tenemos libre la 302, que es igual pero con vistas a la Alhambra.",
+          "tr": "Bir bakayım… Evet, 302 boş; aynısı ama Elhamra manzaralı.",
+          "options": ["¡Estupendo! ¿Tengo que bajar a recepción a buscar la llave?", "¡Estupendo! ¿Tengo que bajar a recepción a buscar las vistas?", "¡Qué pena! Entonces me quedo sin habitación."],
+          "answer": 0,
+          "why": "Teklifi sevinçle kabul edip anahtarı nasıl alacağını sorarsın. 'Vistas' manzara demektir, alınıp götürülecek bir şey değildir; oda boş olduğuna göre 'odasız kaldım' demek de yanlış anlamaktır.",
+          "replyTr": "Harika! Anahtarı almak için resepsiyona inmem gerekiyor mu?"
+        },
+        {
+          "say": "No hace falta: le subimos la llave ahora mismo y le ayudamos con el equipaje.",
+          "tr": "Gerek yok: anahtarı hemen yukarı getiriyoruz, bavullarınıza da yardım ediyoruz.",
+          "options": ["No falta nada, gracias.", "Muy amable. Y disculpe que le he molestado a estas horas.", "Muy amable. Y disculpe la molestia a estas horas."],
+          "answer": 2,
+          "why": "'Disculpe la molestia' rahatsızlık için kibar bir özür kalıbıdır. 'Disculpe que…' cümlesi subjuntivo ister ('que le haya molestado'), 'he molestado' olmaz; 'No falta nada' ise 'No hace falta'yı yanlış anlamaktır.",
+          "replyTr": "Çok naziksiniz. Bu saatte rahatsız ettiğim için de kusura bakmayın."
+        },
+        {
+          "say": "No se preocupe, para eso estamos. Y como compensación, mañana el desayuno corre de nuestra cuenta.",
+          "tr": "Merak etmeyin, biz bunun için buradayız. Ayrıca telafi olarak yarınki kahvaltı bizden.",
+          "options": ["¿Corre? Yo no corro por la mañana.", "¡Qué detalle! Muchísimas gracias.", "Vale, ¿y cuánto me cuesta el desayuno?"],
+          "answer": 1,
+          "why": "'Correr de nuestra cuenta' 'bizden, ücretini biz öderiz' demektir; bu jest için teşekkür edersin. 'Correr'ı 'koşmak' sanmak ya da fiyat sormak deyimi anlamamaktır.",
+          "replyTr": "Ne incelik! Çok çok teşekkürler."
+        }
+      ]
+    },
+    {
+      "id": "es-piso",
+      "level": "B1",
+      "title": "Daire kiralamak",
+      "scene": "Madrid'de kiralık bir daireye bakıyorsun; ev sahibi sana evi gezdiriyor.",
+      "turns": [
+        {
+          "say": "Pase, pase. Este es el salón; como ve, tiene mucha luz.",
+          "tr": "Buyurun, girin. Burası salon; gördüğünüz gibi çok aydınlık.",
+          "options": ["Sí, es muy luminoso. ¿Las ventanas dan a la calle?", "Sí, pero yo no necesito electricidad.", "Sí, es muy ligero."],
+          "answer": 0,
+          "why": "Burada 'luz' gün ışığı demektir; 'luminoso' (aydınlık) diye karşılık verirsin. 'Electricidad' elektriktir; 'ligero' ise ağırlık bakımından 'hafif' demektir.",
+          "replyTr": "Evet, çok aydınlık. Pencereler sokağa mı bakıyor?"
+        },
+        {
+          "say": "No, dan a un patio interior, así que es muy tranquilo.",
+          "tr": "Hayır, iç avluya bakıyor, o yüzden çok sessiz.",
+          "options": ["Lástima, porque trabajo desde casa y necesito tranquilidad.", "Mejor, porque trabajo desde casa. ¿Cuánto es el alquiler al mes?", "Mejor, porque trabajo desde casa. ¿Cuánto es el alquilar al mes?"],
+          "answer": 1,
+          "why": "Sessizlik evden çalışan biri için iyidir, ardından kirayı sorarsın: 'el alquiler' (kira) bir isimdir. 'Alquilar' fiildir, artikelle kullanılmaz; 'Lástima' ise sessizlik isteyen biri için çelişkilidir.",
+          "replyTr": "Daha iyi, çünkü evden çalışıyorum. Aylık kira ne kadar?"
+        },
+        {
+          "say": "Son novecientos euros al mes, gastos de comunidad incluidos.",
+          "tr": "Aylık dokuz yüz avro, site aidatı dahil.",
+          "options": ["¿Novecientos al año? ¡Qué barato!", "Es carísimo, así que lo alquilo ahora mismo.", "¿Y los gastos de luz y agua también están incluidos?"],
+          "answer": 2,
+          "why": "Aidatın dahil olduğunu duyunca elektrik ve su giderlerini sormak mantıklıdır. 'Al mes' aylık demektir, yıllık değil; 'Çok pahalı, o yüzden hemen tutuyorum' demek ise çelişkilidir.",
+          "replyTr": "Elektrik ve su giderleri de dahil mi?"
+        },
+        {
+          "say": "No, esos los paga el inquilino aparte. Y pido dos meses de fianza.",
+          "tr": "Hayır, onları kiracı ayrıca öder. Bir de iki aylık depozito istiyorum.",
+          "options": ["De acuerdo. ¿Y la fianza me la devuelve al final del contrato?", "De acuerdo. ¿Y la fianza se la devuelvo yo al final?", "De acuerdo. Yo también pido dos meses de fianza."],
+          "answer": 0,
+          "why": "Depozitonun sözleşme sonunda sana geri verilip verilmeyeceğini sorarsın: 'me la devuelve'. 'Se la devuelvo yo' parayı ev sahibine senin geri vereceğini söyler; depozitoyu da kiracı istemez.",
+          "replyTr": "Tamam. Depozitoyu sözleşmenin sonunda bana geri veriyor musunuz?"
+        },
+        {
+          "say": "Sí, si el piso está en buen estado, claro. ¿Cuándo le gustaría entrar a vivir?",
+          "tr": "Evet, daire iyi durumdaysa tabii. Ne zaman taşınmak istersiniz?",
+          "options": ["Ya entré a vivir el mes pasado.", "Me gustaría entrar el uno de noviembre, si le parece bien.", "Me gustaría que entro el uno de noviembre."],
+          "answer": 1,
+          "why": "Aynı özneyle 'me gustaría + mastar' kullanılır: 'me gustaría entrar'. 'Me gustaría que' ardından subjuntivo ister, 'entro' olmaz; 'Ya entré' ise henüz kiralamadığın bir eve taşındığını söyler.",
+          "replyTr": "Sizin için uygunsa 1 Kasım'da taşınmak isterim."
+        },
+        {
+          "say": "Perfecto. Entonces, si está de acuerdo, preparo el contrato y lo firmamos el viernes.",
+          "tr": "Mükemmel. O hâlde, kabul ediyorsanız sözleşmeyi hazırlayayım, cuma günü imzalayalım.",
+          "options": ["Me parece bien. ¿Necesita alguna documentación por mi parte?", "Me parece bien. ¿Necesita que le traigo mi pasaporte?", "Me parece bien. Firmé el contrato el viernes pasado."],
+          "answer": 0,
+          "why": "Kabul edip senden hangi belgelerin istendiğini sormak yerindedir. '¿Necesita que…?' subjuntivo ister ('que le traiga'); sözleşme de henüz imzalanmadı, 'firmé' geçmiş zamandır.",
+          "replyTr": "Bana uyar. Benden herhangi bir belge gerekiyor mu?"
+        }
+      ]
+    }
+  ]
+}

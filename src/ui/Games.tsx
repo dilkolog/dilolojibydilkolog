@@ -13,6 +13,9 @@ import { BackTranslation } from './BackTranslation'
 import { EarMissesGame } from './EarMisses'
 import { SpeedLadder } from './games/SpeedLadder'
 import { NumbersGame } from './games/NumbersGame'
+import { SpellingGame } from './games/SpellingGame'
+import { DialoguesGame } from './games/DialoguesGame'
+import { dialogues } from '../data/dialogues'
 import { PronPractice } from './PronPractice'
 import { azureEnabled } from './pronunciation'
 import { weakPronWords } from '../engine/pronWeak'
@@ -172,12 +175,14 @@ export function GamesScreen(
     if (game === 'context') return <ContextReview {...p} onExit={() => setGame(null)} />
     if (game === 'ladder') return <SpeedLadder language={p.language} vocabulary={p.vocabulary} onExit={() => setGame(null)} />
     if (game === 'numbers') return <NumbersGame language={p.language} best={records[`numbers:${p.language}`]} recordKey={`numbers:${p.language}`} onExit={() => setGame(null)} />
+    if (game === 'spelling') return <SpellingGame language={p.language} lemmas={p.vocabulary.map((v) => v.lemma)} best={records[`spelling:${p.language}`]} recordKey={`spelling:${p.language}`} onExit={() => setGame(null)} />
     if (game === 'ear') return <EarMissesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'pron') return <PronPractice language={p.language} vocabulary={p.vocabulary} onExit={() => setGame(null)} />
     if (game === 'back') return <BackTranslation language={p.language} onExit={() => setGame(null)} />
     if (game === 'register') return <RegisterRound language={p.language} onLesson={p.onOpenLesson} onExit={() => setGame(null)} />
     if (game === 'affix') return <AffixHunt language={p.language} onExit={() => setGame(null)} />
     if (game === 'flow') return <FlowRound language={p.language} onLesson={p.onOpenLesson} onExit={() => setGame(null)} />
+    if (game === 'dialogues') return <DialoguesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'exam-tasks') return <ExamTasks language={p.language} onExit={() => setGame(null)} />
     if (game === 'traps') return <TrapRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'confusables') return <ConfusablesGame language={p.language} best={records[`confusables:${p.language}`]} recordKey={`confusables:${p.language}`} onExit={() => setGame(null)} />
@@ -231,7 +236,9 @@ export function GamesScreen(
         { id: 'song', emoji: '🎵', name: 'Şarkıyla öğren', text: 'Altyazılı bir şarkının satırlarındaki eksik kelimeleri dinleyerek yaz.', status: online ? 'YouTube bağlantısıyla' : 'İnternet gerekir', disabled: !online },
         { id: 'dictation', emoji: '📝', name: 'Gerçek seslerle dikte', text: 'Farklı insanların sesinden gerçek cümleleri dinle ve yaz.', status: online ? 'Her cümle başka bir ses' : 'İnternet gerekir', disabled: !online },
         { id: 'ladder', emoji: '🪜', name: 'Hız merdiveni', text: 'Aynı cümleyi 0,75×, 1× ve 1,25× hızda dinle; her seferinde cümlede hangi kelime vardı? Kulağının bugünkü hızını gör.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : 'Kendi cümlelerinden', disabled: !canSpeak() || p.vocabulary.length === 0 },
+        { id: 'dialogues', emoji: '💬', name: 'Diyaloglar', text: 'Kafede, otelde, doktorda: karşındaki konuşur, sen uygun cevabı seçersin; her cevapta nedenini gör.', status: `${dialogues.filter((d) => d.language === p.language).length} diyalog · A1–B1` },
         { id: 'numbers', emoji: '🔢', name: 'Sayılar ve saatler', text: 'Sayı, saat, fiyat, tarih ve telefon numarasını dinleyip rakamla yaz ya da rakamları kelimeyle yaz.', status: canSpeak() ? record(`numbers:${p.language}`, (v) => `%${v}`) : 'Sesli okuma yok: yalnızca yazarak' },
+        { id: 'spelling', emoji: '🔤', name: 'Harf harf', text: 'Bir kelime ya da ad harf adlarıyla tek tek söylenir (bé, o, enne…); sen yazarsın. Otelde, telefonda adını kodlamak için.', status: canSpeak() ? record(`spelling:${p.language}`, (v) => `%${v}`) : 'Bu tarayıcıda sesli okuma yok', disabled: !canSpeak() },
         { id: 'ear', emoji: '🦻', name: 'Kaçırdıkların', text: 'Dikte ederken duymadığın kelimeler, kendi cümleleriyle: dinle ve yaz.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : earCount ? `${earCount} kelime` : 'Dikte yaptıkça birikir', disabled: !canSpeak() || earCount === 0 },
         ...(azureEnabled()
           ? [{ id: 'pron' as const, emoji: '🗣️', name: 'Telaffuz çalışması', text: 'Puanı düşük kalan kelimeleri söyle ve puanla; iyileşenler listeden çıkar.', status: pronCount ? `${pronCount} kelime zayıf` : 'Kelime sayfasında puanladıkça birikir', disabled: pronCount === 0 }]
