@@ -52,6 +52,8 @@ export function ConfusablesGame({ language, best, recordKey, onExit }: Props) {
   const [selected, setSelected] = useState<string | null>(null)
   const [results, setResults] = useState<{ q: ConfusableQuestion; ok: boolean }[]>([])
   const [record, setRecord] = useState(false)
+  // The best so far, kept here too: `best` is read once when the games screen opens, and a replay must not lower it.
+  const [top, setTop] = useState(best)
   const [missedBefore, setMissedBefore] = useState(() => loadMissed(language))
 
   const start = () => {
@@ -95,8 +97,9 @@ export function ConfusablesGame({ language, best, recordKey, onExit }: Props) {
     }
     const okCount = results.filter((r) => r.ok).length
     const pct = Math.round((okCount / Math.max(1, results.length)) * 100)
-    if (pct > (best ?? 0)) {
-      setRecord(best !== undefined)
+    if (pct > (top ?? 0)) {
+      setRecord(top !== undefined)
+      setTop(pct)
       void db.saveRecord(recordKey, pct)
     }
     setPhase('over')
@@ -104,7 +107,10 @@ export function ConfusablesGame({ language, best, recordKey, onExit }: Props) {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (phase !== 'play' || !q) return
+      if (phase !== 'play' || !q || e.metaKey || e.ctrlKey || e.altKey) return
+      // Typing in a field (Monki's chat can be open over the game) is not an answer.
+      const t = e.target
+      if (t instanceof HTMLElement && (t.closest('input, textarea, select') || t.isContentEditable)) return
       const n = Number(e.key)
       if (selected === null && (n === 1 || n === 2)) choose(options[n - 1]!)
       else if (selected !== null && e.key === 'Enter') {
@@ -117,6 +123,10 @@ export function ConfusablesGame({ language, best, recordKey, onExit }: Props) {
   })
 
   const missed = results.filter((r) => !r.ok)
+  const comingBack = Math.min(
+    pool.filter((x) => missedBefore.has(x.id)).length,
+    Math.floor(ROUND_SIZE / 2),
+  )
 
   return (
     <div className="stack twins-game">
@@ -148,8 +158,8 @@ export function ConfusablesGame({ language, best, recordKey, onExit }: Props) {
               </button>
             ))}
           </div>
-          {missedBefore.size > 0 && <p className="small muted">Geçen sefer karıştırdığın {missedBefore.size} cümle turun başına gelir.</p>}
-          {best !== undefined && <p className="small muted">Rekorun: %{best}</p>}
+          {comingBack > 0 && <p className="small muted">Geçen sefer karıştırdığın {comingBack} cümle turun başına gelir.</p>}
+          {top !== undefined && <p className="small muted">Rekorun: %{top}</p>}
           <div className="row">
             <button className="btn btn-lg" onClick={start} autoFocus disabled={pool.length === 0}>
               {Math.min(ROUND_SIZE, pool.length)} soruluk tura başla

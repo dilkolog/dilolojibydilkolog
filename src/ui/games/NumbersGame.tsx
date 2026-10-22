@@ -95,6 +95,8 @@ export function NumbersGame({ language, best, recordKey, onExit }: { language: T
   const [verdict, setVerdict] = useState<'right' | 'near' | 'wrong' | null>(null)
   const [results, setResults] = useState<{ q: NumberQuestion; ok: boolean }[]>([])
   const [record, setRecord] = useState(false)
+  // The best so far, kept here too: `best` is read once when the games screen opens, and a replay must not lower it.
+  const [top, setTop] = useState(best)
   const [tally, setTally] = useState(() => loadTally(language))
   const input = useRef<HTMLInputElement>(null)
   const q = round[index]
@@ -139,8 +141,9 @@ export function NumbersGame({ language, best, recordKey, onExit }: { language: T
     }
     const right = results.filter((r) => r.ok).length
     const pct = Math.round((right / Math.max(1, results.length)) * 100)
-    if (pct > (best ?? 0)) {
-      setRecord(best !== undefined)
+    if (pct > (top ?? 0)) {
+      setRecord(top !== undefined)
+      setTop(pct)
       void db.saveRecord(recordKey, pct)
     }
     setPhase('over')
@@ -193,7 +196,7 @@ export function NumbersGame({ language, best, recordKey, onExit }: { language: T
           </div>
           <TallyLine tally={tally} weak={weakestKind(tally, allowed)} />
           {!speaks && <p className="small muted">Bu tarayıcıda sesli okuma yok: yalnızca “Gör ve yaz”.</p>}
-          {best !== undefined && <p className="small muted">Rekorun: %{best}</p>}
+          {top !== undefined && <p className="small muted">Rekorun: %{top}</p>}
           <div className="row">
             <button className="btn btn-lg" onClick={start} autoFocus>
               10 soruluk tura başla

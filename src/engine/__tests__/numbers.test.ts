@@ -53,7 +53,7 @@ describe('numbers in words', () => {
     expect(yearWords('en', 1999)[0]).toBe('nineteen ninety-nine')
     expect(yearWords('en', 1905)[0]).toBe('nineteen oh five')
     expect(yearWords('en', 1900)[0]).toBe('nineteen hundred')
-    expect(yearWords('en', 2005)[0]).toBe('two thousand and five')
+    expect(yearWords('en', 2005)).toEqual(['two thousand and five'])
     expect(yearWords('en', 2024)).toEqual(['twenty twenty-four', 'two thousand and twenty-four'])
   })
 
@@ -112,6 +112,7 @@ describe('dates and phone numbers', () => {
     const q = numberQuestion('fr', 'phone', createRng(2))
     expect(digitsRight('fr', q, q.phone!)).toBe(true)
     expect(digitsRight('fr', q, q.phone!.slice(1))).toBe(false)
+    expect(digitsRight('fr', q, q.phone!.replace(/(\d{2})(?=\d)/g, '$1-'))).toBe(true)
   })
 })
 
@@ -131,6 +132,13 @@ describe('the numbers game', () => {
     expect(readDigits('time', '14h30')).toBe(870)
     expect(readDigits('time', '14 h')).toBe(840)
     expect(readDigits('time', '25:00')).toBeNull()
+    expect(readDigits('time', '14 30')).toBe(870)
+    expect(readDigits('time', '1430')).toBe(870)
+    expect(readDigits('time', '2:30 pm')).toBe(870)
+    expect(readDigits('time', '9 a.m.')).toBe(540)
+    expect(readDigits('price', '12€50')).toBe(1250)
+    expect(readDigits('price', '12 € 50')).toBe(1250)
+    expect(readDigits('price', '12 €')).toBe(1200)
   })
 
   it('a time said in 12 hours is right either way', () => {
@@ -153,8 +161,8 @@ describe('the numbers game', () => {
     expect(checkWords('es', q('es', 22), 'veinte y dos')).toBe('wrong')
     expect(checkWords('en', q('en', 105), 'one hundred five')).toBe('right')
     expect(checkWords('en', q('en', 105), '')).toBe('wrong')
-    const year = numberQuestion('en', 'year', createRng(3))
-    expect(checkWords('en', year, year.written[1]!)).toBe('right')
+    const year = { kind: 'year' as const, value: 1999, spoken: '', digits: '1999', written: yearWords('en', 1999) }
+    expect(checkWords('en', year, 'one thousand nine hundred and ninety-nine')).toBe('right')
   })
 
   it('a round: ten questions, no value twice, the digits read back as the value, every kind in a mixed one', () => {

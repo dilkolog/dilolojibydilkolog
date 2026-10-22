@@ -155,7 +155,7 @@ export function yearWords(language: TargetLanguage, year: number): string[] {
   // English splits a year in two: "nineteen ninety-nine", "nineteen oh five", "nineteen hundred", "twenty twenty-four".
   const first = Math.floor(year / 100)
   const r = year % 100
-  if (year >= 2000 && year < 2010) return [year === 2000 ? 'two thousand' : `two thousand and ${EN_UNITS[r]}`, plain]
+  if (year >= 2000 && year < 2010) return [plain]
   const split = r === 0 ? `${enBelow100(first)} hundred` : r < 10 ? `${enBelow100(first)} oh ${EN_UNITS[r]}` : `${enBelow100(first)} ${enBelow100(r)}`
   return [split, plain]
 }
@@ -358,10 +358,13 @@ export function readDigits(kind: NumberKind, raw: string): number | null {
   const text = raw.trim()
   if (!text) return null
   if (kind === 'time') {
-    const m = /^(\d{1,2})\s*(?:[:.h]\s*(\d{1,2})?)?\s*$/i.exec(text)
+    // "14:30", "14h30", "14 30", "1430", "2:30 pm".
+    const plain = text.replace(/\s*[ap]\.?m\.?$/i, '')
+    const pm = /^\s*p/i.test(text.slice(plain.length))
+    const m = /^(\d{1,2})(?:\s*[:.h]\s*(\d{1,2})?|\s+(\d{2})|(\d{2}))?\s*$/i.exec(plain)
     if (!m) return null
-    const hour = Number(m[1])
-    const minute = m[2] ? Number(m[2]) : 0
+    const hour = Number(m[1]) + (pm && Number(m[1]) < 12 ? 12 : 0)
+    const minute = Number(m[2] ?? m[3] ?? m[4] ?? 0)
     return hour < 24 && minute < 60 ? hour * 60 + minute : null
   }
   if (kind === 'date') {
@@ -372,7 +375,8 @@ export function readDigits(kind: NumberKind, raw: string): number | null {
     return month >= 1 && month <= 12 && day >= 1 && day <= DAYS_IN[month - 1]! + (month === 2 ? 1 : 0) ? month * 100 + day : null
   }
   if (kind === 'price') {
-    const clean = text.replace(/[€$\s ]/g, '')
+    // "12€50", "12 € 50": the euros, then the cents after the sign.
+    const clean = text.replace(/(\d)\s*[€$]\s*(\d{1,2})\s*$/, '$1,$2').replace(/[€$\s\u202f]/g, '')
     // The last . or , with one or two digits after it is the decimal point; the others group thousands.
     const m = /^([\d.,]*?)(?:[.,](\d{1,2}))?$/.exec(clean)
     if (!m || !m[1] || /[.,]$/.test(m[1])) return null
@@ -386,9 +390,9 @@ export function readDigits(kind: NumberKind, raw: string): number | null {
 
 /** Is a value typed as digits the question's? A time in 12 hours is right either way (3:15 or 15:15) where the language said it in 12. */
 export function digitsRight(language: TargetLanguage, q: NumberQuestion, raw: string): boolean {
+  if (q.kind === 'phone') return raw.replace(/\D/g, '') === q.phone
   const v = readDigits(q.kind, raw)
   if (v === null) return false
-  if (q.kind === 'phone') return raw.replace(/\D/g, '') === q.phone
   if (q.kind === 'time' && language !== 'fr') return v % 720 === q.value % 720
   return v === q.value
 }
