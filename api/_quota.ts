@@ -40,6 +40,15 @@ async function usedNow(path: string, store: QuotaStore, now: number): Promise<nu
   return used
 }
 
+/** What the account has used of today's allowance (0 when the store cannot be read). */
+export async function quotaUsed(name: string, id: string, store = blobStore, now = Date.now()): Promise<number> {
+  try {
+    return await usedNow(pathOf(name, id, now), store, now)
+  } catch {
+    return 0
+  }
+}
+
 /** Whether `amount` more fits into today's allowance of the account. */
 export async function quotaLeft(name: string, id: string, amount: number, max: number, store = blobStore, now = Date.now()): Promise<boolean> {
   try {
