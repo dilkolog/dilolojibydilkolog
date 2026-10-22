@@ -11,6 +11,18 @@ Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13; **2026-10-19 gü
 - **CSP zorunlu (2026-10-20):** başlık artık `Content-Security-Policy` (engeller); ayrıntı aşağıda ve `docs/veri/csp-gecis.md`.
 - **Açık kalanlar:** CSP'de `connect-src` hâlâ geniş (`https: wss:`, nedeni aşağıda), Supabase'te kişi başı kota/medya sınırı yok, tek yönlü takiple arkadaşlara hediye/metin gönderilebiliyor (engelleme yok).
 
+## 2026-10-22 güvenlik incelemesi
+Yapılanlar:
+- **Hesap başına depolama sınırı** (`supabase/migrations/0005_storage_limits.sql`, sahibi SQL Editor'de çalıştırır): `put_sync_part` kişi başı en çok 100 MB veri (geri dönüş noktaları `h-…` sayılmaz) ve 5000 okuma metni yazar, aşınca `54000` (uygulamada "çok büyük"). `media` kovası: dosya başına 6 MB, yalnız `application/json`, kişi başı 3000 dosya ve 200 MB (`my_media_usage()`, yalnızca kendi klasörü). Sınırları değiştirmek: dosyadaki sayıları değiştirip yeniden çalıştır.
+- **Hesap başına günlük çeviri tavanı** (`api/_quota.ts`, `DAILY_TRANSLATE_CHARS` = 20.000 karakter/gün, UTC): sayaç `quota/translate/<gün>/<hesap>.json` (R2/Blob), örnek başına 1 dk önbellekli, yaklaşık; depo çalışmazsa çeviri engellenmez. Aşınca 429 `daily_quota` ("Bugünkü çeviri hakkın doldu").
+- `/api/sync` beklenmeyen hatada yalnızca `server error` döndürür (ayrıntı günlükte).
+- `/api/access` Supabase açıkken yanlış belirteçle bir kullanıcı adının var olduğunu söylemez (`exists`).
+- HSTS `includeSubDomains` aldı (`scripts/cf-headers.mjs`).
+
+- **Kayıt koruması:** tek kullanımlık e-posta alan adlarıyla kayıt Supabase "Before User Created" kancasıyla reddedilir (`0006_disposable_emails.sql`); giriş formunda isteğe bağlı Cloudflare Turnstile (`VITE_TURNSTILE_SITE_KEY`). Kurulum sırası `docs/SUPABASE.md`.
+
+Sahibinin yapacakları: Cloudflare WAF Rate Limiting kuralı (`/api/translate`), Supabase Auth: e-posta onayı zorunlu, en az 8 karakter şifre, sızdırılmış şifre koruması, kayıtta CAPTCHA (Turnstile).
+
 ## 2026-10-21 güvenlik incelemesi
 Yapılanlar:
 - **Mail onayı:** bir hesap aynı anda en çok 2 onay bekleyen adres tutabilir (`MAX_PENDING_MAILS`, `api/push.ts`); yoksa adres adres yabancılara onay maili atılıp Resend kotası bitirilebiliyordu.

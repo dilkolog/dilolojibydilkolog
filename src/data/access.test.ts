@@ -57,6 +57,10 @@ describe('/api/access: signing up for the owner\'s approval', () => {
     // Someone else with the id but not the token: it exists, it is not theirs, and nothing is said of its approval.
     expect(await json(await get(as(ALI, VELI_TOKEN)))).toMatchObject({ status: 'none', exists: true, match: false })
     expect((await post(as(ALI, VELI_TOKEN), { username: 'ali' })).status).toBe(403)
+    // With Supabase sign-in there is no username sign-up: a wrong token does not learn that the name is taken.
+    vi.stubEnv('SUPABASE_URL', 'https://example.supabase.co')
+    vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
+    expect(await json(await get(as(ALI, VELI_TOKEN)))).toMatchObject({ status: 'none', exists: false, match: false })
   })
 
   it('refuses strangers, malformed requests and bad names', async () => {

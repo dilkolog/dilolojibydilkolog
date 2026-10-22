@@ -15,6 +15,13 @@ const KEY = ((import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.V
 
 export const supabaseConfigured = () => /^https:\/\//.test(URL_) && !!KEY
 
+/**
+ * Cloudflare Turnstile's site key (public), when the build has VITE_TURNSTILE_SITE_KEY: the sign-in forms then show
+ * the check and send its token with every email sign-in, sign-up, link and reset (Supabase verifies it once the owner
+ * turns on CAPTCHA protection with Turnstile's secret). Without it nothing is shown or sent. Google needs no token.
+ */
+export const TURNSTILE_SITE_KEY = ((import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined) ?? '').trim()
+
 let client: Promise<SupabaseClient> | null = null
 
 export function supabase(): Promise<SupabaseClient> {
@@ -58,6 +65,8 @@ export async function currentSession(): Promise<Session | null> {
 export function authErrorText(message: string, unknownAsGeneric = false): string {
   const m = message.toLowerCase()
   if (m.includes('invalid login credentials')) return 'E-posta ya da şifre yanlış.'
+  if (m.includes('disposable_email')) return 'Tek kullanımlık (geçici) e-posta adresleriyle hesap açılamıyor; kalıcı bir adres kullan ya da Google ile devam et.'
+  if (m.includes('captcha')) return 'Robot kontrolü tamamlanamadı; kutucuğun yenilenmesini bekleyip tekrar dene.'
   if (m.includes('email not confirmed')) return 'E-postanı henüz onaylamadın: gelen kutundaki bağlantıya dokun.'
   if (m.includes('user already registered')) return 'Bu e-postayla zaten bir hesap var. "Giriş yap"a geç.'
   if (m.includes('password should be') || m.includes('weak password')) return 'Şifre çok zayıf: en az 8 karakter, harf ve rakam karışık olsun.'
@@ -83,7 +92,7 @@ export class SupabaseAuthError extends Error {
 }
 
 /** Errors a person caused or can fix themselves (a wrong password, a weak one): not worth a report. */
-const EXPECTED = /invalid login credentials|email not confirmed|already registered|password should be|weak password|for security purposes|only request this after|rate limit|too many|invalid (format|email)|unable to validate email|expired|signups? not allowed|not authorized/i
+const EXPECTED = /invalid login credentials|disposable_email|captcha|email not confirmed|already registered|password should be|weak password|for security purposes|only request this after|rate limit|too many|invalid (format|email)|unable to validate email|expired|signups? not allowed|not authorized/i
 
 async function run<T extends { error: { message: string; status?: number; code?: string; name?: string } | null }>(p: Promise<T>): Promise<T> {
   const r = await p
@@ -99,23 +108,23 @@ async function run<T extends { error: { message: string; status?: number; code?:
 }
 
 /** A new account. Returns whether it is ready (false: the email must be confirmed first). */
-export async function signUp(email: string, password: string, meta: { username?: string; note?: string }): Promise<boolean> {
-  const { data } = await run((await supabase()).auth.signUp({ email, password, options: { data: meta, emailRedirectTo: back() } }))
+export async function signUp(email: string, password: string, meta: { username?: string; note?: string }, captchaToken?: string): Promise<boolean> {
+  const { data } = await run((await supabase()).auth.signUp({ email, password, options: { data: meta, emailRedirectTo: back(), captchaToken } }))
   return !!data.session
 }
 
-export async function signIn(email: string, password: string): Promise<void> {
-  await run((await supabase()).auth.signInWithPassword({ email, password }))
+export async function signIn(email: string, password: string, captchaToken?: string): Promise<void> {
+  await run((await supabase()).auth.signInWithPassword({ email, password, options: { captchaToken } }))
 }
 
 /** Sends a link that signs in (and makes the account the first time). */
-export async function sendMagicLink(email: string): Promise<void> {
-  await run((await supabase()).auth.signInWithOtp({ email, options: { emailRedirectTo: back(), shouldCreateUser: true } }))
+export async function sendMagicLink(email: string, captchaToken?: string): Promise<void> {
+  await run((await supabase()).auth.signInWithOtp({ email, options: { emailRedirectTo: back(), shouldCreateUser: true, captchaToken } }))
 }
 
 /** Sends the account's confirmation mail again (the first link was used, expired or lost). */
-export async function resendConfirmation(email: string): Promise<void> {
-  await run((await supabase()).auth.resend({ type: 'signup', email, options: { emailRedirectTo: back() } }))
+export async function resendConfirmation(email: string, captchaToken?: string): Promise<void> {
+  await run((await supabase()).auth.resend({ type: 'signup', email, options: { emailRedirectTo: back(), captchaToken } }))
 }
 
 /** Leaves for Google; the person comes back to the app signed in. */
@@ -123,8 +132,8 @@ export async function signInWithGoogle(): Promise<void> {
   await run((await supabase()).auth.signInWithOAuth({ provider: 'google', options: { redirectTo: back() } }))
 }
 
-export async function sendPasswordReset(email: string): Promise<void> {
-  await run((await supabase()).auth.resetPasswordForEmail(email, { redirectTo: back() }))
+export async function sendPasswordReset(email: string, captchaToken?: string): Promise<void> {
+  await run((await supabase()).auth.resetPasswordForEmail(email, { redirectTo: back(), captchaToken }))
 }
 
 export async function setNewPassword(password: string): Promise<void> {

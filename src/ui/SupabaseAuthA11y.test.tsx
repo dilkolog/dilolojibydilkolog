@@ -31,6 +31,7 @@ const sb = vi.hoisted(() => ({
 
 vi.mock('../data/supabase', () => ({
   supabaseConfigured: () => true,
+  TURNSTILE_SITE_KEY: '',
   supabase: async () => ({}),
   authReturnPending: () => sb.authReturnPending(),
   isRecoveryReturn: () => sb.isRecoveryReturn(),
