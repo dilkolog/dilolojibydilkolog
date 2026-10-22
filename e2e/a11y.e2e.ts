@@ -1608,3 +1608,24 @@ test('spelling aloud: the start and an answered word pass accessibility and cont
   await scanThemes('spelling-wrong')
   expect(problems).toEqual([])
 })
+
+test('dialogues: the list and an answered turn pass accessibility and contrast checks in light and dark', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Diyaloglar' }).click()
+  const problems: string[] = []
+  const scanThemes = async (where: string) => {
+    for (const theme of ['light', 'dark'] as const) {
+      await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+      problems.push(...(await scan(page, `${where}-${theme}`)), ...(await contrastProblems(page)).map((p) => `${where}-${theme}: ${p}`))
+    }
+  }
+  await expect(page.locator('.examtask-item').first()).toBeVisible()
+  await scanThemes('dialogues-list')
+  await page.locator('.examtask-item').first().click()
+  await page.getByRole('button', { name: 'Türkçesini göster' }).click()
+  await page.locator('.options .option').first().click()
+  await expect(page.getByRole('status')).toBeVisible()
+  await scanThemes('dialogues-turn')
+  expect(problems).toEqual([])
+})

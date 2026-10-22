@@ -342,6 +342,23 @@ test('spelling aloud: a word is spelled letter by letter; the answer shows the w
   expect(await overflow(page)).toEqual([])
 })
 
+test('dialogues: the other person speaks, a reply is chosen and explained, the conversation goes on to the result', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Diyaloglar' }).click()
+  await expect(page.getByRole('heading', { name: 'Diyaloglar' })).toBeVisible()
+  await page.locator('.examtask-item').first().click()
+  const turns = Number((await page.locator('.game-timer').textContent())!.split('/')[1])
+  for (let i = 0; i < turns; i++) {
+    await page.keyboard.press('1')
+    await expect(page.getByRole('status')).toContainText(/Uygun cevap|Bu cevap uymaz/)
+    await expect(page.locator('.dialogue-you')).toHaveCount(i + 1)
+    await page.keyboard.press('Enter')
+  }
+  await expect(page.getByText(/uygun cevap$/)).toBeVisible()
+  expect(await overflow(page)).toEqual([])
+})
+
 test('twins: a sentence only one of the pair fits; the answer gives the rule and the Turkish; one pair alone', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')

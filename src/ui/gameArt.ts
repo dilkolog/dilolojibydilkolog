@@ -39,6 +39,7 @@ import gRewrite from '../assets/art/game-rewrite.webp'
 import gCollocations from '../assets/art/game-collocations.webp'
 import gNumbers from '../assets/art/quest-dictation.webp'
 import gSpelling from '../assets/art/quest-typed.webp'
+import gDialogues from '../assets/art/quest-dialogue.webp'
 
 /** The drawn sign of the games that have one; the others keep their emoji glyph. */
 export const GAME_ART: Partial<Record<GameId, string>> = {
@@ -81,6 +82,7 @@ export const GAME_ART: Partial<Record<GameId, string>> = {
   collocations: gCollocations,
   numbers: gNumbers,
   spelling: gSpelling,
+  dialogues: gDialogues,
   // A stopgap: the swap sign mirrored, until the owner draws twins.
   confusables: gTwins,
 }
