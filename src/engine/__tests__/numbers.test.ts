@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { checkWords, digitsRight, groupDigits, NUMBER_KINDS, numberQuestion, numberRound, numberWords, priceDigits, priceWords, readDigits, timeWords, yearWords } from '../numbers'
+import { checkWords, dateWords, digitsRight, phoneDigits, phoneWords, groupDigits, NUMBER_KINDS, numberQuestion, numberRound, numberWords, priceDigits, priceWords, readDigits, timeWords, yearWords } from '../numbers'
 import { createRng } from '../rng'
 
 describe('numbers in words', () => {
@@ -85,6 +85,33 @@ describe('numbers in words', () => {
     expect(groupDigits('es', 1500)).toBe('1500')
     expect(groupDigits('es', 15_000)).toBe('15.000')
     expect(groupDigits('en', 15_000)).toBe('15,000')
+  })
+})
+
+describe('dates and phone numbers', () => {
+  it('dates: le premier mai, el tres de mayo, the twenty-first of March', () => {
+    expect(dateWords('fr', 1, 5)).toBe('le premier mai')
+    expect(dateWords('fr', 14, 7)).toBe('le quatorze juillet')
+    expect(dateWords('es', 3, 5)).toBe('el tres de mayo')
+    expect(dateWords('en', 21, 3)).toBe('the twenty-first of March')
+    expect(dateWords('en', 12, 2)).toBe('the twelfth of February')
+    expect(dateWords('en', 30, 11)).toBe('the thirtieth of November')
+    expect(readDigits('date', '14/07')).toBe(714)
+    expect(readDigits('date', '14.7.')).toBe(714)
+    expect(readDigits('date', '29 2')).toBe(229)
+    expect(readDigits('date', '31/04')).toBeNull()
+    expect(readDigits('date', '7/14')).toBeNull()
+  })
+
+  it('phone numbers: French in pairs, Spanish a hundred then pairs, English digit by digit', () => {
+    expect(phoneWords('fr', '0612345608')).toBe('zéro six, douze, trente-quatre, cinquante-six, zéro huit')
+    expect(phoneDigits('fr', '0612345608')).toBe('06 12 34 56 08')
+    expect(phoneWords('es', '612345600')).toBe('seiscientos doce, treinta y cuatro, cincuenta y seis, cero cero')
+    expect(phoneDigits('es', '612345600')).toBe('612 34 56 00')
+    expect(phoneWords('en', '07700900123')).toBe('oh seven seven oh oh, nine oh oh, one two three')
+    const q = numberQuestion('fr', 'phone', createRng(2))
+    expect(digitsRight('fr', q, q.phone!)).toBe(true)
+    expect(digitsRight('fr', q, q.phone!.slice(1))).toBe(false)
   })
 })
 

@@ -9,18 +9,18 @@ import type { TargetLanguage } from './types'
  * spelling is right, one that misses an accent or a plural s is near.
  */
 
-export type NumberKind = 'small' | 'big' | 'time' | 'price' | 'year'
+export type NumberKind = 'small' | 'big' | 'time' | 'price' | 'year' | 'date' | 'phone'
 
-export const NUMBER_KINDS: readonly NumberKind[] = ['small', 'big', 'time', 'price', 'year']
+export const NUMBER_KINDS: readonly NumberKind[] = ['small', 'big', 'time', 'price', 'year', 'date', 'phone']
 
-/** The kinds that can be written out in words (a time or a price said in words is mostly listened to). */
+/** The kinds that can be written out in words (a time, price, date or phone number said in words is mostly listened to). */
 export const WRITABLE_KINDS: readonly NumberKind[] = ['small', 'big', 'year']
 
 export const NUMBER_ROUND = 10
 
 export interface NumberQuestion {
   kind: NumberKind
-  /** The value: a number, a year, cents for a price, minutes since midnight for a time. */
+  /** The value: a number, a year, cents for a price, minutes since midnight for a time, month × 100 + day for a date; a phone number's digits. */
   value: number
   /** What is said aloud (and shown after the answer). */
   spoken: string
@@ -28,6 +28,8 @@ export interface NumberQuestion {
   digits: string
   /** The words a written answer is checked against (the spoken form first). */
   written: string[]
+  /** A phone number's digits as typed, leading zero and all. */
+  phone?: string
 }
 
 // ---------- French ----------
@@ -204,6 +206,54 @@ export function priceWords(language: TargetLanguage, cents: number): string {
   return part ? `${dollars} and ${enBelow100(part)} ${part === 1 ? 'cent' : 'cents'}` : dollars
 }
 
+// ---------- Dates ----------
+
+const FR_MONTHS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
+const ES_MONTHS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+const EN_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const EN_ORDINAL: Record<string, string> = { one: 'first', two: 'second', three: 'third', five: 'fifth', eight: 'eighth', nine: 'ninth', twelve: 'twelfth' }
+
+/** "twenty-first", "thirtieth", "twelfth". */
+function enOrdinal(n: number): string {
+  const words = enBelow100(n)
+  const last = words.split('-').pop()!
+  const ordinal = EN_ORDINAL[last] ?? (last.endsWith('y') ? `${last.slice(0, -1)}ieth` : `${last}th`)
+  return words.slice(0, words.length - last.length) + ordinal
+}
+
+/** A day of a month as it is said: "le premier mai", "el tres de mayo", "the third of May". */
+export function dateWords(language: TargetLanguage, day: number, month: number): string {
+  if (language === 'fr') return `le ${day === 1 ? 'premier' : frNumber(day)} ${FR_MONTHS[month - 1]}`
+  if (language === 'es') return `el ${esBelow100(day)} de ${ES_MONTHS[month - 1]}`
+  return `the ${enOrdinal(day)} of ${EN_MONTHS[month - 1]}`
+}
+
+const DAYS_IN = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+// ---------- Phone numbers ----------
+
+/**
+ * A phone number the way people read it out: French in pairs ("zéro six, douze, trente-quatre…"), Spanish a hundred and
+ * then pairs ("seiscientos doce, treinta y cuatro…"), English digit by digit with "oh" for 0.
+ */
+export function phoneWords(language: TargetLanguage, digits: string): string {
+  const pair = (p: string, zero: string, words: (n: number) => string) => (p[0] === '0' ? `${zero} ${words(Number(p[1]))}` : words(Number(p)))
+  if (language === 'fr') return (digits.match(/\d{2}/g) ?? []).map((p) => pair(p, 'zéro', frNumber)).join(', ')
+  if (language === 'es') {
+    const pairs = (digits.slice(3).match(/\d{2}/g) ?? []).map((p) => pair(p, 'cero', esNumber))
+    return [esNumber(Number(digits.slice(0, 3))), ...pairs].join(', ')
+  }
+  const say = (group: string) => [...group].map((d) => (d === '0' ? 'oh' : EN_UNITS[Number(d)])).join(' ')
+  return [digits.slice(0, 5), digits.slice(5, 8), digits.slice(8)].map(say).join(', ')
+}
+
+/** The digits grouped as they are written: "06 12 34 56 78", "612 34 56 78", "07700 900 123". */
+export function phoneDigits(language: TargetLanguage, digits: string): string {
+  if (language === 'fr') return digits.replace(/(\d{2})(?=\d)/g, '$1 ')
+  if (language === 'es') return `${digits.slice(0, 3)} ${digits.slice(3).replace(/(\d{2})(?=\d)/g, '$1 ')}`
+  return `${digits.slice(0, 5)} ${digits.slice(5, 8)} ${digits.slice(8)}`
+}
+
 // ---------- Digits ----------
 
 /** Digits grouped the language's way: "1 500" in French, "1.500" in Spanish, "1,500" in English. */
@@ -254,6 +304,18 @@ const MINUTES = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 7, 12, 18, 23, 38
 
 /** One question of a kind. */
 export function numberQuestion(language: TargetLanguage, kind: NumberKind, rng: Rng): NumberQuestion {
+  if (kind === 'date') {
+    const month = between(rng, 1, 12)
+    const day = rng() < 0.15 ? 1 : between(rng, 1, DAYS_IN[month - 1]!)
+    const spoken = dateWords(language, day, month)
+    return { kind, value: month * 100 + day, spoken, digits: `${String(day).padStart(2, '0')}/${String(month).padStart(2, '0')}`, written: [spoken] }
+  }
+  if (kind === 'phone') {
+    const rest = (n: number) => Array.from({ length: n }, () => String(between(rng, 0, 9))).join('')
+    const digits = language === 'fr' ? `0${pick(rng, ['6', '7', '1'])}${rest(8)}` : language === 'es' ? `${pick(rng, ['6', '7', '9'])}${rest(8)}` : `07${rest(9)}`
+    const spoken = phoneWords(language, digits)
+    return { kind, value: Number(digits), spoken, digits: phoneDigits(language, digits), written: [spoken], phone: digits }
+  }
   if (kind === 'time') {
     const hour = language === 'fr' ? between(rng, 0, 23) : between(rng, 1, 12)
     const minute = pick(rng, MINUTES)
@@ -302,6 +364,13 @@ export function readDigits(kind: NumberKind, raw: string): number | null {
     const minute = m[2] ? Number(m[2]) : 0
     return hour < 24 && minute < 60 ? hour * 60 + minute : null
   }
+  if (kind === 'date') {
+    const m = /^(\d{1,2})\s*[./\- ]\s*(\d{1,2})\.?$/.exec(text)
+    if (!m) return null
+    const day = Number(m[1])
+    const month = Number(m[2])
+    return month >= 1 && month <= 12 && day >= 1 && day <= DAYS_IN[month - 1]! + (month === 2 ? 1 : 0) ? month * 100 + day : null
+  }
   if (kind === 'price') {
     const clean = text.replace(/[€$\s ]/g, '')
     // The last . or , with one or two digits after it is the decimal point; the others group thousands.
@@ -319,6 +388,7 @@ export function readDigits(kind: NumberKind, raw: string): number | null {
 export function digitsRight(language: TargetLanguage, q: NumberQuestion, raw: string): boolean {
   const v = readDigits(q.kind, raw)
   if (v === null) return false
+  if (q.kind === 'phone') return raw.replace(/\D/g, '') === q.phone
   if (q.kind === 'time' && language !== 'fr') return v % 720 === q.value % 720
   return v === q.value
 }

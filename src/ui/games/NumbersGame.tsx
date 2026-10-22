@@ -16,14 +16,17 @@ type Pick = NumberKind | 'mixed'
 
 const PREFS_KEY = 'diloloji:numbers'
 
-const KIND_NAME: Record<Pick, string> = { mixed: 'Karışık', small: '0–100', big: 'Büyük sayılar', time: 'Saatler', price: 'Fiyatlar', year: 'Yıllar' }
+const KIND_NAME: Record<Pick, string> = { mixed: 'Karışık', small: '0–100', big: 'Büyük sayılar', time: 'Saatler', price: 'Fiyatlar', year: 'Yıllar', date: 'Tarihler', phone: 'Telefon' }
 const KIND_HINT: Record<NumberKind, string> = {
   small: 'sayıyı rakamla',
   big: 'sayıyı rakamla',
   time: 'saati rakamla (14:30)',
   price: 'fiyatı rakamla (12,50)',
   year: 'yılı rakamla',
+  date: 'tarihi gün/ay olarak (14/07)',
+  phone: 'telefon numarasını rakamla',
 }
+const PLACEHOLDER: Record<NumberKind, string> = { small: '42', big: '1500', time: '14:30', price: '12,50', year: '1999', date: '14/07', phone: '06 12 34 56 78' }
 /** Where the language's numbers trip a Turkish speaker up, said once on the start screen. */
 const LANGUAGE_NOTE: Record<TargetLanguage, string> = {
   fr: 'Fransızcada 70 “altmış on” (soixante-dix), 80 “dört yirmi” (quatre-vingts), 90 “dört yirmi on” (quatre-vingt-dix) diye söylenir; saat 24 saatlik söylenir (quatorze heures).',
@@ -145,7 +148,7 @@ export function NumbersGame({ language, best, recordKey, onExit }: { language: T
         <div className="stack">
           <h1 className="greeting">Sayılar ve saatler</h1>
           <p className="muted">
-            {LANGUAGE_NAME[language]}da sayı, saat, fiyat ve yıllar. <strong>Dinle ve yaz</strong>da duyduğunu rakamla yazarsın; <strong>Gör ve yaz</strong>da rakamları kelimeyle yazarsın.
+            {LANGUAGE_NAME[language]}da sayı, saat, fiyat, yıl, tarih ve telefon numaraları. <strong>Dinle ve yaz</strong>da duyduğunu rakamla yazarsın; <strong>Gör ve yaz</strong>da rakamları kelimeyle yazarsın.
           </p>
           <p className="small muted">{LANGUAGE_NOTE[language]}</p>
           <div className="choice-row" role="group" aria-label="Nasıl">
@@ -207,7 +210,7 @@ export function NumbersGame({ language, best, recordKey, onExit }: { language: T
               ref={input}
               className={`answer-input${verdict === 'right' ? ' is-correct' : verdict === 'near' ? ' is-near' : verdict === 'wrong' ? ' is-wrong' : ''}`}
               lang={mode === 'write' ? language : undefined}
-              inputMode={mode === 'listen' ? (q.kind === 'time' ? 'text' : 'decimal') : 'text'}
+              inputMode={mode === 'write' || q.kind === 'time' || q.kind === 'date' ? 'text' : q.kind === 'phone' ? 'tel' : 'decimal'}
               autoFocus
               autoComplete="off"
               autoCapitalize="off"
@@ -215,7 +218,7 @@ export function NumbersGame({ language, best, recordKey, onExit }: { language: T
               spellCheck={false}
               enterKeyHint="done"
               readOnly={!!verdict}
-              placeholder={mode === 'listen' ? (q.kind === 'time' ? '14:30' : q.kind === 'price' ? '12,50' : '123') : 'Kelimeyle'}
+              placeholder={mode === 'listen' ? PLACEHOLDER[q.kind] : 'Kelimeyle'}
               aria-label={mode === 'listen' ? 'Rakamla cevap' : 'Kelimeyle cevap'}
               value={text}
               onChange={mode === 'write' ? accentChange(language, setText) : (e) => setText(e.target.value)}
