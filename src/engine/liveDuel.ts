@@ -19,8 +19,13 @@ const ALPHABET = '23456789ABCDEFGHJKMNPQRSTUVWXYZ'
 export const roomLink = (code: string, origin: string) => `${origin}/?oda=${code}`
 
 /** A fresh code. `random` gives a number in [0, 1). */
-export function newRoomCode(random: () => number = Math.random): string {
+/** A room's code: whoever knows it can join, so it comes from the browser's cryptographic randomness, not Math.random. */
+export function newRoomCode(random: () => number = cryptoRandom): string {
   return Array.from({ length: 6 }, () => ALPHABET[Math.floor(random() * ALPHABET.length)]).join('')
+}
+
+function cryptoRandom(): number {
+  return crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32
 }
 
 /** A typed or pasted code (lower case, a dash or a space in it) as the code itself, or null. */

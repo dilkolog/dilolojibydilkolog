@@ -2,6 +2,8 @@ import { findClips, parseInnertubeSearch, parseTimedCues, parseYouglishClips, ty
 import type { TargetLanguage } from '../src/engine/types.js'
 import { fetchCaptions } from './_captions.js'
 import { requireApproved } from './_account.js'
+import { overLimit, tooMany } from './_rate.js'
+import { dailyQuotaReached, overDaily } from './_quota.js'
 import { fromApp } from './_origin.js'
 
 /** Videos looked into per search, and clips handed back. */
@@ -93,6 +95,9 @@ export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return Response.json({ error: 'forbidden' }, { status: 403 })
   const denied = await requireApproved(request)
   if (denied) return denied
+  // Each call fetches from other sites: a brake per address, and a daily allowance per account.
+  if (overLimit(request, 'clips', 10)) return tooMany()
+  if (await overDaily(request, 'clips')) return dailyQuotaReached()
   const q = new URL(request.url).searchParams
   const word = (q.get('q') ?? '').trim()
   const lang = (q.get('lang') ?? '').slice(0, 2)

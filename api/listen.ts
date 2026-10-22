@@ -1,4 +1,6 @@
 import { requireApproved } from './_account.js'
+import { overLimit, tooMany } from './_rate.js'
+import { dailyQuotaReached, overDaily } from './_quota.js'
 import { fromApp } from './_origin.js'
 import { allowedArticle } from '../src/engine/news.js'
 import { inlineTranscript, parsePodcastFeed, PODCASTS, rfiTranscript, voaEpisode, type Episode } from '../src/engine/podcasts.js'
@@ -24,6 +26,9 @@ export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return Response.json({ error: 'forbidden' }, { status: 403 })
   const denied = await requireApproved(request)
   if (denied) return denied
+  // Each call fetches from other sites: a brake per address, and a daily allowance per account.
+  if (overLimit(request, 'listen', 20)) return tooMany()
+  if (await overDaily(request, 'listen')) return dailyQuotaReached()
   const id = new URL(request.url).searchParams.get('source')
   const source = PODCASTS.find((p) => p.id === id)
   if (!source) return Response.json({ error: 'unknown source' }, { status: 400 })

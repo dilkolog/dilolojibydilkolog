@@ -21,6 +21,8 @@ Yapılanlar:
 
 - **Kayıt koruması:** tek kullanımlık e-posta alan adlarıyla kayıt Supabase "Before User Created" kancasıyla reddedilir (`0006_disposable_emails.sql`); giriş formunda isteğe bağlı Cloudflare Turnstile (`VITE_TURNSTILE_SITE_KEY`). Kurulum sırası `docs/SUPABASE.md`.
 
+- **İkinci tur (aynı gece):** dış sitelerden çeken uçlarda (clips, youtube, news, listen) adres başına dakikada sınır ve hesap başına günlük tavan (`api/_quota.ts` `DAILY_CALLS`; YouTube aramasının günlük kotası tek hesapla bitirilebiliyordu), yeni paylaşım hesap başına günde 30, kütüphanede yayıncı adı `cleanBy` (sitenin adına bürünülemez), oda kodları kriptografik rastgele, `Cross-Origin-Opener-Policy`, Worker'da Cloudflare'in dağıtık hız sınırı (`API_LIMITER`, adres başına 300/dk, bütün `/api/*`).
+
 Sahibinin yapacakları: Cloudflare WAF Rate Limiting kuralı (`/api/translate`), Supabase Auth: e-posta onayı zorunlu, en az 8 karakter şifre, sızdırılmış şifre koruması, kayıtta CAPTCHA (Turnstile).
 
 ## 2026-10-21 güvenlik incelemesi
