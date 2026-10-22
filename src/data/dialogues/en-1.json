@@ -1,0 +1,566 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "en-cafe",
+      "level": "A1",
+      "title": "Kafede sipariş",
+      "scene": "Küçük bir kafedesin; tezgâhtaki görevli sana dönüyor.",
+      "turns": [
+        {
+          "say": "Hi there! What can I get you?",
+          "tr": "Merhaba! Size ne vereyim?",
+          "options": ["I want a coffee.", "Could I have a latte, please?", "I am a latte, thanks."],
+          "answer": 1,
+          "why": "Sipariş verirken 'Could I have …, please?' kibar bir kalıptır. 'I want a coffee' Türkçedeki 'kahve istiyorum'un düz çevirisidir ve İngilizcede kaba kaçar; 'I am a latte' ise 'Ben bir latteyim' demektir.",
+          "replyTr": "Bir latte alabilir miyim, lütfen?"
+        },
+        {
+          "say": "Sure. What size would you like, small or large?",
+          "tr": "Tabii. Hangi boy olsun, küçük mü büyük mü?",
+          "options": ["Small, please.", "Yes, please.", "I'd like it hot."],
+          "answer": 0,
+          "why": "Soru iki seçenek sunuyor; cevapta boyu söylersin. 'Yes, please' iki seçenekli bir soruya cevap olmaz.",
+          "replyTr": "Küçük, lütfen."
+        },
+        {
+          "say": "Are you having it here, or taking it with you?",
+          "tr": "Burada mı içeceksiniz, yoksa yanınıza mı alacaksınız?",
+          "options": ["Yes, I'm having.", "I take with me it.", "Here, please."],
+          "answer": 2,
+          "why": "'Here, please' ('Burada, lütfen') soruya kısa ve doğru bir cevaptır. 'Yes, I'm having' hem iki seçenekli soruya 'yes' der hem de nesnesi eksiktir; 'I take with me it' sözcük sırası yanlış bir cümledir.",
+          "replyTr": "Burada, lütfen."
+        },
+        {
+          "say": "Anything else? We have fresh muffins today.",
+          "tr": "Başka bir şey? Bugün taze kekimiz var.",
+          "options": ["No, thanks. That's all.", "No, I don't anything.", "Yes, I have muffins."],
+          "answer": 0,
+          "why": "'That's all' 'Bu kadar' demektir. 'I don't anything' fiili eksik, yanlış bir cümledir; doğrusu 'I don't want anything else' olurdu.",
+          "replyTr": "Hayır, teşekkürler. Bu kadar."
+        },
+        {
+          "say": "That's four fifty, please.",
+          "tr": "Dört elli, lütfen.",
+          "options": ["Can I pay by card?", "How much is it?", "Four fifty years, please."],
+          "answer": 0,
+          "why": "Fiyat söylendikten sonra 'Can I pay by card?' ile nasıl ödeyeceğini sorarsın. 'How much is it?' yersizdir, çünkü fiyat zaten söylendi.",
+          "replyTr": "Kartla ödeyebilir miyim?"
+        },
+        {
+          "say": "Of course. Just tap your card here... Thanks! Your latte will be ready in a minute.",
+          "tr": "Tabii. Kartınızı buraya dokundurun... Teşekkürler! Latteniz bir dakikaya hazır.",
+          "options": ["No, thank you.", "Great, thank you!", "Thanks, I'm ready too."],
+          "answer": 1,
+          "why": "Görevli teşekkür edip bilgi veriyor; 'Great, thank you!' doğal bir karşılıktır. 'No, thank you' bir teklifi geri çevirirken söylenir.",
+          "replyTr": "Harika, teşekkür ederim!"
+        }
+      ]
+    },
+    {
+      "id": "en-hotel",
+      "level": "A1",
+      "title": "Otelde giriş",
+      "scene": "Akşam bir otele vardın; resepsiyonda rezervasyonunu söyleyeceksin.",
+      "turns": [
+        {
+          "say": "Good evening, and welcome to the Riverside Hotel. How can I help you?",
+          "tr": "İyi akşamlar, Riverside Otel'e hoş geldiniz. Size nasıl yardımcı olabilirim?",
+          "options": ["Good night. I have a reservation.", "Good evening. I have a reservation.", "Good evening. I am a reservation."],
+          "answer": 1,
+          "why": "Bir yere varınca 'Good evening' denir; 'Good night' yalnızca vedalaşırken ya da yatmadan önce söylenir. 'I am a reservation' 'Ben bir rezervasyonum' demektir.",
+          "replyTr": "İyi akşamlar. Rezervasyonum var."
+        },
+        {
+          "say": "Lovely. Could I have your name, please?",
+          "tr": "Harika. Adınızı alabilir miyim, lütfen?",
+          "options": ["It's Demir. Elif Demir.", "Yes, you can have it.", "My name is have Demir."],
+          "answer": 0,
+          "why": "Ad sorulunca 'It's …' ya da 'My name is …' denir. 'Could I have…?' burada kibar bir istektir; 'Yes, you can have it' onu harfi harfine anlar ve adını söylemez.",
+          "replyTr": "Demir. Elif Demir."
+        },
+        {
+          "say": "Thank you. Could you spell your surname for me?",
+          "tr": "Teşekkürler. Soyadınızı harf harf söyler misiniz?",
+          "options": ["Yes, I could spell.", "My surname is Turkish.", "Sure. D, E, M, I, R."],
+          "answer": 2,
+          "why": "'Could you spell…?' harf harf söylemeni ister; hemen harfleri söylersin. 'Yes, I could spell' isteği yerine getirmez, yalnızca yapabileceğini söyler.",
+          "replyTr": "Tabii. D, E, M, I, R."
+        },
+        {
+          "say": "Thanks. Yes, I've got you here: three nights, from the twelfth to the fifteenth. Is that right?",
+          "tr": "Teşekkürler. Evet, sizi buldum: üç gece, on ikisinden on beşine kadar. Doğru mu?",
+          "options": ["Yes, that's right.", "Yes, it's true night.", "No, I'm three nights."],
+          "answer": 0,
+          "why": "'That's right' bilgiyi onaylamanın doğal yoludur. 'I'm three nights' kişinin kendisini gece olarak tanımlar; 'it's true night' da anlamsızdır.",
+          "replyTr": "Evet, doğru."
+        },
+        {
+          "say": "Perfect. Here's your key card. You're in room 408, on the fourth floor.",
+          "tr": "Mükemmel. İşte anahtar kartınız. Dördüncü kattaki 408 numaralı odadasınız.",
+          "options": ["When I eat breakfast?", "What time is breakfast?", "What time is it breakfast?"],
+          "answer": 1,
+          "why": "Kahvaltı saatini sormanın doğru biçimi 'What time is breakfast?' olur. 'When I eat breakfast?' soruda yardımcı fiil (do) eksik olduğu için yanlıştır; 'What time is it breakfast?' gereksiz bir 'it' taşır.",
+          "replyTr": "Kahvaltı saat kaçta?"
+        },
+        {
+          "say": "Breakfast is from seven to ten, in the restaurant on the ground floor.",
+          "tr": "Kahvaltı yediden ona kadar, zemin kattaki restoranda.",
+          "options": ["Okay. You're welcome.", "Great. I'm thanking you.", "Great, thank you very much."],
+          "answer": 2,
+          "why": "Bilgiyi alınca 'Thank you very much' ile teşekkür edersin. 'You're welcome' teşekküre verilen cevaptır, burada sana teşekkür edilmedi; 'I'm thanking you' da bu anlamda kullanılmaz.",
+          "replyTr": "Harika, çok teşekkür ederim."
+        }
+      ]
+    },
+    {
+      "id": "en-directions",
+      "level": "A1",
+      "title": "Yol sormak",
+      "scene": "Yeni bir şehirde tren istasyonunu arıyorsun; yoldan geçen biri seni fark ediyor.",
+      "turns": [
+        {
+          "say": "Hi, are you okay? You look a bit lost.",
+          "tr": "Merhaba, iyi misiniz? Biraz kaybolmuş gibisiniz.",
+          "options": ["Yes, I'm lost my way.", "Yes, I'm looking for the train station.", "No, I look lost."],
+          "answer": 1,
+          "why": "'I'm looking for …' bir yeri aradığını söylemenin kalıbıdır. 'I'm lost my way' iki yapıyı karıştırır; doğrusu 'I'm lost' ya da 'I've lost my way' olur.",
+          "replyTr": "Evet, tren istasyonunu arıyorum."
+        },
+        {
+          "say": "Oh, it's not far. Are you walking?",
+          "tr": "Ah, uzak değil. Yürüyerek mi gidiyorsunuz?",
+          "options": ["Yes, I'm on foot.", "Yes, I'm walker.", "No, it's not far."],
+          "answer": 0,
+          "why": "'I'm on foot' yürüyerek gittiğini söyler. 'I'm walker' yanlıştır: 'walker' yürüyüşçü demektir ve artikeli de eksiktir.",
+          "replyTr": "Evet, yürüyorum."
+        },
+        {
+          "say": "Okay. Go straight down this street and take the second left.",
+          "tr": "Tamam. Bu sokaktan dümdüz gidin ve ikinci soldan dönün.",
+          "options": ["Yes, I took it left.", "The second right. Okay.", "The second left. And then?"],
+          "answer": 2,
+          "why": "Tarifi tekrarlayıp 'And then?' ('Sonra?') diye sormak doğal ve güvenlidir. 'The second right' tarifi yanlış anladığını gösterir; kişi 'left' (sol) dedi.",
+          "replyTr": "İkinci sol. Sonra?"
+        },
+        {
+          "say": "Then walk past the bank, and the station is on your right. You can't miss it.",
+          "tr": "Sonra bankayı geçin, istasyon sağınızda kalıyor. Gözünüzden kaçmaz.",
+          "options": ["How long does it take?", "How long is it take?", "How many time it takes?"],
+          "answer": 0,
+          "why": "Süre sormak için 'How long does it take?' denir. 'How many time' yanlıştır: süre için 'how long', kaç kez için 'how many times' kullanılır.",
+          "replyTr": "Ne kadar sürer?"
+        },
+        {
+          "say": "About ten minutes, I'd say.",
+          "tr": "Bence on dakika kadar.",
+          "options": ["I'm agree, ten minutes.", "Perfect. Thank you so much!", "Ten minutes ago? Thanks."],
+          "answer": 1,
+          "why": "Yardım için 'Thank you so much!' ile teşekkür edilir. 'I'm agree' Türkçeden düz çeviridir (doğrusu 'I agree') ve burada katılacak bir görüş de yok.",
+          "replyTr": "Harika. Çok teşekkür ederim!"
+        },
+        {
+          "say": "No problem. Have a good trip!",
+          "tr": "Rica ederim. İyi yolculuklar!",
+          "options": ["Thank you. Bye!", "Thanks, me too!", "Yes, I have a trip."],
+          "answer": 0,
+          "why": "'Thank you. Bye!' teşekkür edip vedalaşır. 'Me too' 'ben de' demektir ve iyi bir dileğe karşılık olmaz.",
+          "replyTr": "Teşekkürler. Hoşça kalın!"
+        }
+      ]
+    },
+    {
+      "id": "en-pharmacy",
+      "level": "A2",
+      "title": "Eczanede",
+      "scene": "Boğazın acıyor, başın ağrıyor; bir eczaneye girdin.",
+      "turns": [
+        {
+          "say": "Hello, how can I help you today?",
+          "tr": "Merhaba, bugün size nasıl yardımcı olabilirim?",
+          "options": ["Hi. I've got a sore throat and a headache.", "Hi. My throat is burning me.", "Hi. I have pain my head."],
+          "answer": 0,
+          "why": "Ağrılar 'I've got a sore throat / a headache' kalıbıyla söylenir. 'My throat is burning me' Türkçedeki 'boğazım yakıyor'un düz çevirisidir.",
+          "replyTr": "Merhaba. Boğazım acıyor, başım da ağrıyor."
+        },
+        {
+          "say": "Oh dear. How long have you had it?",
+          "tr": "Geçmiş olsun. Ne zamandır böyle?",
+          "options": ["Since two days.", "For two days.", "Before two days."],
+          "answer": 1,
+          "why": "Süre 'for' ile söylenir: 'for two days'. 'Since' bir başlangıç anı ister (since Monday); 'before two days' ise 'iki gün önce'nin düz çevirisidir, doğrusu 'two days ago'.",
+          "replyTr": "İki gündür."
+        },
+        {
+          "say": "Do you have a temperature?",
+          "tr": "Ateşiniz var mı?",
+          "options": ["I don't know, it's sunny today.", "Yes, a little. I feel hot and cold.", "Yes, I have a fire."],
+          "answer": 1,
+          "why": "'Have a temperature' ateşi olmak demektir; hava durumuyla ilgisi yok. 'I have a fire' Türkçedeki 'ateşim var'ın düz çevirisidir ve 'yangın var' gibi anlaşılır.",
+          "replyTr": "Evet, biraz. Bir üşüyorum bir terliyorum."
+        },
+        {
+          "say": "Are you taking any other medicine at the moment?",
+          "tr": "Şu anda başka bir ilaç kullanıyor musunuz?",
+          "options": ["No, I don't use drugs.", "Yes, I'm drinking the medicine.", "No, nothing at the moment."],
+          "answer": 2,
+          "why": "'Nothing at the moment' kısa ve doğru bir cevaptır. 'I don't use drugs' uyuşturucu kullanmadığını söyler; ilaç için 'medicine' ve 'take' kullanılır, 'drink' değil.",
+          "replyTr": "Hayır, şu an hiçbir şey."
+        },
+        {
+          "say": "Okay. These tablets should help. Take two every four hours, but no more than eight a day.",
+          "tr": "Tamam. Bu tabletler iyi gelir. Dört saatte bir iki tane alın, ama günde sekizden fazla değil.",
+          "options": ["Should I take them with food?", "Must I to take them with food?", "Do I take them with eat?"],
+          "answer": 0,
+          "why": "'Should I…?' tavsiye istemenin doğal yoludur. 'Must I to take' yanlıştır: 'must'tan sonra 'to' gelmez; 'with eat' de yanlıştır, 'with food' denir.",
+          "replyTr": "Yemekle birlikte mi almalıyım?"
+        },
+        {
+          "say": "Yes, it's better with food. And if you don't feel better in three days, see a doctor.",
+          "tr": "Evet, yemekle almak daha iyi. Üç gün içinde iyileşmezseniz bir doktora görünün.",
+          "options": ["Okay. How much they cost?", "Okay, I will. How much are they?", "Okay, I saw a doctor tomorrow."],
+          "answer": 1,
+          "why": "'I will' tavsiyeyi kabul eder, 'How much are they?' fiyatı doğru sorar. 'How much they cost?' soruda 'do' eksik olduğu için yanlıştır; doğrusu 'How much do they cost?'.",
+          "replyTr": "Tamam, görünürüm. Bunlar ne kadar?"
+        }
+      ]
+    },
+    {
+      "id": "en-shop",
+      "level": "A2",
+      "title": "Mağazada ceket",
+      "scene": "Bir giyim mağazasında beğendiğin bir ceket var; satış görevlisi yanına geliyor.",
+      "turns": [
+        {
+          "say": "Hi! Are you finding everything okay?",
+          "tr": "Merhaba! Aradığınızı bulabildiniz mi?",
+          "options": ["Yes, I find.", "Yes, thanks. Do you have this jacket in a medium?", "Yes, everything is finding."],
+          "answer": 1,
+          "why": "'Do you have this … in a medium?' beden sormanın kalıbıdır. 'Yes, I find' eksik ve yanlıştır; 'everything is finding' ise anlamsızdır.",
+          "replyTr": "Evet, teşekkürler. Bu ceketin M bedeni var mı?"
+        },
+        {
+          "say": "Let me check... Yes, here you go. The fitting rooms are just over there.",
+          "tr": "Bir bakayım... Evet, buyurun. Deneme kabinleri hemen şurada.",
+          "options": ["Thanks. I'll try it on.", "Thanks. I'll dress it.", "Thanks. I'll test it."],
+          "answer": 0,
+          "why": "Giysi denemek 'try on' ile söylenir. 'Dress' birini giydirmek demektir, giysiyle nesne olarak kullanılmaz; 'test' de giysi için söylenmez.",
+          "replyTr": "Teşekkürler. Deneyeceğim."
+        },
+        {
+          "say": "How does it fit?",
+          "tr": "Nasıl, oldu mu?",
+          "options": ["It fits to me a bit tight.", "It's very fit. I am large.", "It's a bit tight. Do you have it in a large?"],
+          "answer": 2,
+          "why": "'It's a bit tight' 'biraz dar' demektir; ardından büyük bedeni sorarsın. 'Fits to me' yanlıştır: 'fit' fiili 'to' almaz (It fits me); 'It's very fit' ise 'çok formda' gibi anlaşılır.",
+          "replyTr": "Biraz dar. Büyük bedeni var mı?"
+        },
+        {
+          "say": "Sorry, we're out of large in black, but we have it in navy.",
+          "tr": "Kusura bakmayın, siyahın büyük bedeni kalmadı ama lacivert var.",
+          "options": ["Sorry, I'm out of large too.", "Okay, navy is fine. Can I try that one?", "No problem, I'll take the black large."],
+          "answer": 1,
+          "why": "'Navy is fine' laciverti kabul eder. 'I'll take the black large' olmayan bir ürünü ister; görevli siyahın büyük bedeninin kalmadığını söyledi.",
+          "replyTr": "Tamam, lacivert olur. Onu deneyebilir miyim?"
+        },
+        {
+          "say": "That looks great on you.",
+          "tr": "Üzerinizde çok güzel durdu.",
+          "options": ["Thanks, I like it. How much is it?", "Thanks. You look great on me too.", "Thanks. How much is it cost?"],
+          "answer": 0,
+          "why": "'How much is it?' fiyatı sormanın doğru biçimidir. 'How much is it cost?' iki yapıyı karıştırır; doğrusu 'How much does it cost?'.",
+          "replyTr": "Teşekkürler, beğendim. Ne kadar?"
+        },
+        {
+          "say": "It's eighty-five, but it's twenty percent off today.",
+          "tr": "Seksen beş, ama bugün yüzde yirmi indirimli.",
+          "options": ["Off? Is the shop closing?", "Great, I'm taking it yesterday.", "Great, I'll take it."],
+          "answer": 2,
+          "why": "'I'll take it' 'Alıyorum' demenin kalıbıdır. 'Twenty percent off' yüzde yirmi indirim demektir; mağazanın kapandığı anlamına gelmez.",
+          "replyTr": "Harika, alıyorum."
+        }
+      ]
+    },
+    {
+      "id": "en-train",
+      "level": "A2",
+      "title": "İstasyonda bilet",
+      "scene": "Tren istasyonunun bilet gişesindesin; Oakfield'a gidip aynı gün döneceksin.",
+      "turns": [
+        {
+          "say": "Hi, where are you going today?",
+          "tr": "Merhaba, bugün nereye gidiyorsunuz?",
+          "options": ["I'm going to Oakfield yesterday.", "To Oakfield, please. I'm coming back this evening.", "Oakfield is going, please."],
+          "answer": 1,
+          "why": "'To Oakfield, please' gideceğin yeri söyler, dönüşü eklemek de doğru bileti almanı sağlar. 'I'm going … yesterday' zaman bakımından çelişkilidir.",
+          "replyTr": "Oakfield'a, lütfen. Bu akşam dönüyorum."
+        },
+        {
+          "say": "So you need a ticket there and back. Are you leaving now, or later? It's cheaper after nine thirty.",
+          "tr": "Yani gidiş-dönüş bilet. Şimdi mi gidiyorsunuz, yoksa daha sonra mı? Dokuz buçuktan sonra daha ucuz.",
+          "options": ["Later is fine. When's the first train after nine thirty?", "Yes, I'm leaving.", "I'm leaving before nine thirty because it's cheaper."],
+          "answer": 0,
+          "why": "'Later is fine' ucuz seçeneği alır, sonraki treni sormak da konuşmayı ilerletir. 'Yes, I'm leaving' iki seçenekli soruya cevap vermez; üçüncü seçenek ise yanlış bilgiye dayanır, ucuz olan dokuz buçuktan sonrası.",
+          "replyTr": "Sonra olur. Dokuz buçuktan sonraki ilk tren ne zaman?"
+        },
+        {
+          "say": "There's one at nine forty-five, from platform three.",
+          "tr": "Dokuz kırk beşte üçüncü perondan bir tren var.",
+          "options": ["It goes direct or I change?", "Is it a direct, or do I need to transfer me?", "Is it direct, or do I have to change trains?"],
+          "answer": 2,
+          "why": "'Do I have to change trains?' aktarma olup olmadığını sormanın doğru biçimidir. 'It goes direct or I change?' soru yapısı (do) olmadığı için yanlıştır; 'transfer me' de yanlıştır.",
+          "replyTr": "Direkt mi, yoksa aktarma yapmam gerekiyor mu?"
+        },
+        {
+          "say": "It's direct. It takes about an hour.",
+          "tr": "Direkt. Yaklaşık bir saat sürüyor.",
+          "options": ["Great. How much is the ticket?", "Great. How much money the ticket?", "Great. What price is it costs?"],
+          "answer": 0,
+          "why": "Fiyat 'How much is the ticket?' diye sorulur. 'How much money the ticket?' fiilsizdir; 'What price is it costs?' iki yapıyı karıştırır.",
+          "replyTr": "Harika. Bilet ne kadar?"
+        },
+        {
+          "say": "That's twenty-two forty. Are you a student, by any chance? There's a discount.",
+          "tr": "Yirmi iki kırk. Acaba öğrenci misiniz? İndirim var.",
+          "options": ["No, I'm not student.", "No, I'm not, unfortunately.", "Yes, I'm a discount."],
+          "answer": 1,
+          "why": "'No, I'm not, unfortunately' kısa ve doğru bir cevaptır. 'I'm not student' yanlıştır; birinin ne olduğunu söylerken 'a' gerekir: 'I'm not a student'.",
+          "replyTr": "Hayır, maalesef değilim."
+        },
+        {
+          "say": "No problem. Card or cash?",
+          "tr": "Sorun değil. Kart mı, nakit mi?",
+          "options": ["Yes, card.", "By card, please.", "Card, thank you, cash."],
+          "answer": 1,
+          "why": "Seçenekli soruya seçtiğinle cevap verirsin: 'By card, please'. 'Yes, card' iki seçenekli bir soruya 'yes' ile başlar.",
+          "replyTr": "Kartla, lütfen."
+        }
+      ]
+    },
+    {
+      "id": "en-phone-booking",
+      "level": "A2",
+      "title": "Telefonla masa ayırtmak",
+      "scene": "Bir restoranı arayıp cumartesi akşamı için masa ayırtıyorsun.",
+      "turns": [
+        {
+          "say": "Good afternoon, The Olive Tree. How can I help?",
+          "tr": "İyi günler, The Olive Tree. Nasıl yardımcı olabilirim?",
+          "options": ["Hi, I'd like to book a table for Saturday evening, please.", "Hi, I want to make a table for Saturday.", "Hi, I'm calling a table Saturday."],
+          "answer": 0,
+          "why": "Masa ayırtmak 'book a table' ile söylenir, 'I'd like to' da kibar bir istektir. 'Make a table' masa yapmak (üretmek) gibi anlaşılır.",
+          "replyTr": "Merhaba, cumartesi akşamı için masa ayırtmak istiyorum, lütfen."
+        },
+        {
+          "say": "Of course. For how many people?",
+          "tr": "Tabii. Kaç kişilik?",
+          "options": ["We are four.", "For four, please.", "Four of us are."],
+          "answer": 1,
+          "why": "'For four, please' ya da 'There are four of us' denir. 'We are four' Türkçedeki 'dört kişiyiz'in düz çevirisidir ve İngilizcede doğal değildir.",
+          "replyTr": "Dört kişilik, lütfen."
+        },
+        {
+          "say": "And what time would you like?",
+          "tr": "Saat kaçta istersiniz?",
+          "options": ["At eight hours, if possible.", "Since eight o'clock.", "Around eight, if possible."],
+          "answer": 2,
+          "why": "'Around eight, if possible' saati kibarca söyler. 'At eight hours' yanlıştır: saat söylerken 'hours' değil 'o'clock' kullanılır; 'since' ise geçmişteki bir başlangıç içindir.",
+          "replyTr": "Mümkünse sekiz gibi."
+        },
+        {
+          "say": "I'm sorry, we're fully booked at eight. I can offer you seven thirty or nine fifteen.",
+          "tr": "Üzgünüm, sekizde tamamen doluyuz. Size yedi buçuk ya da dokuz on beşi önerebilirim.",
+          "options": ["Seven thirty is perfect.", "Yes, both.", "Okay, at eight then."],
+          "answer": 0,
+          "why": "Sunulan saatlerden birini seçersin. 'At eight then' dolu olan saati yeniden ister; 'Yes, both' iki seçenekli teklife uymaz.",
+          "replyTr": "Yedi buçuk çok iyi."
+        },
+        {
+          "say": "Lovely. Can I take a name and a phone number?",
+          "tr": "Harika. Bir isim ve telefon numarası alabilir miyim?",
+          "options": ["Yes, you can take.", "Of course. It's Kaya, K-A-Y-A, and my number is 555 0182.", "My name's phone is Kaya."],
+          "answer": 1,
+          "why": "İsim ve numara istenince ikisini de söylersin; adını harf harf söylemek de işe yarar. 'Yes, you can take' isteği yerine getirmez ve nesnesi eksiktir.",
+          "replyTr": "Tabii. Kaya, K-A-Y-A, numaram da 555 0182."
+        },
+        {
+          "say": "Great, so that's a table for four at seven thirty on Saturday. See you then!",
+          "tr": "Harika, cumartesi yedi buçukta dört kişilik bir masa. Görüşmek üzere!",
+          "options": ["See you before.", "Thanks, the same to you!", "Thanks a lot. See you on Saturday!"],
+          "answer": 2,
+          "why": "'See you on Saturday' rezervasyonu onaylayarak vedalaşır. 'See you before' anlamsızdır; 'The same to you' ise bir iyi dileğe verilen cevaptır.",
+          "replyTr": "Çok teşekkürler. Cumartesi görüşürüz!"
+        }
+      ]
+    },
+    {
+      "id": "en-job-interview",
+      "level": "B1",
+      "title": "İş görüşmesi",
+      "scene": "Bir şirketin müşteri hizmetleri pozisyonu için görüntülü iş görüşmesindesin.",
+      "turns": [
+        {
+          "say": "Hello, thanks for joining us. Can you hear me okay?",
+          "tr": "Merhaba, katıldığınız için teşekkürler. Sesim geliyor mu?",
+          "options": ["Yes, I can hear you perfectly, thanks.", "Yes, I'm listening you very well.", "Yes, your voice is coming."],
+          "answer": 0,
+          "why": "'I can hear you' sesin geldiğini söyler. 'Your voice is coming' Türkçedeki 'sesiniz geliyor'un düz çevirisidir; 'listening you' da yanlıştır (listen to you).",
+          "replyTr": "Evet, sizi çok iyi duyuyorum, teşekkürler."
+        },
+        {
+          "say": "Great. So, could you tell me a little about yourself?",
+          "tr": "Harika. Bize biraz kendinizden bahseder misiniz?",
+          "options": ["Yes, I could.", "Sure. I've worked in customer service for three years, mostly in a hotel.", "Sure. I am working in customer service since three years."],
+          "answer": 1,
+          "why": "Geçmişte başlayıp süren iş için present perfect kullanılır: 'I've worked … for three years'. 'I am working … since three years' hem zaman hem 'since/for' bakımından yanlıştır.",
+          "replyTr": "Tabii. Üç yıldır müşteri hizmetlerinde çalışıyorum, çoğunlukla bir otelde."
+        },
+        {
+          "say": "Interesting. And why do you want to leave your current job?",
+          "tr": "İlginç. Peki şu anki işinizden neden ayrılmak istiyorsunuz?",
+          "options": ["I'd like a new challenge, and I'm interested in working for an international company.", "Because my boss is terrible and I hate my colleagues.", "I'm searching new challenges in an international company."],
+          "answer": 0,
+          "why": "Görüşmede olumlu ve kibar bir gerekçe verilir; eski işi kötülemek profesyonel değildir. 'Searching new challenges' da yanlıştır, doğrusu 'looking for'.",
+          "replyTr": "Yeni bir şeyler denemek istiyorum ve uluslararası bir şirkette çalışmak ilgimi çekiyor."
+        },
+        {
+          "say": "Tell me about a time you dealt with a difficult customer.",
+          "tr": "Zor bir müşteriyle uğraştığınız bir anı anlatın.",
+          "options": ["Once a guest was angry because his room isn't ready, so I am offering him a free drink.", "I never have difficult customers, because I'm very good.", "Once a guest was angry because his room wasn't ready, so I offered him a free coffee while he waited."],
+          "answer": 2,
+          "why": "Geçmişteki bir olay past simple ile anlatılır (was, wasn't, offered). İlk seçenek zamanları karıştırır (isn't, am offering); ikincisi soruyu cevaplamaz.",
+          "replyTr": "Bir keresinde bir misafir odası hazır olmadığı için kızmıştı, ben de beklerken ona ücretsiz bir kahve ikram ettim."
+        },
+        {
+          "say": "Good example. When would you be able to start?",
+          "tr": "Güzel bir örnek. Ne zaman başlayabilirsiniz?",
+          "options": ["I would be able to start since next month.", "I'd need to give one month's notice, so from the first of December.", "I can start before one month."],
+          "answer": 1,
+          "why": "'Give notice' işten ayrılmadan önce haber vermektir; başlangıç tarihi 'from' ile verilir. 'Since next month' yanlıştır: 'since' geçmişteki bir başlangıç içindir; 'before one month' da 'bir ay önce'nin düz çevirisidir.",
+          "replyTr": "Bir ay önceden haber vermem gerekiyor, yani 1 Aralık'tan itibaren."
+        },
+        {
+          "say": "That works for us. Do you have any questions for me?",
+          "tr": "Bizim için uygun. Bana sormak istediğiniz bir şey var mı?",
+          "options": ["Yes. Could you tell me what a typical day in this role looks like?", "Yes. How many money I will earn?", "No, I don't have. Bye."],
+          "answer": 0,
+          "why": "Görüşmenin sonunda işle ilgili kibar bir soru sormak iyi izlenim bırakır. 'How many money' yanlıştır: para sayılamaz, 'how much' denir; soruda 'will' de özneden önce gelmeli.",
+          "replyTr": "Evet. Bu görevde sıradan bir günün nasıl geçtiğini anlatabilir misiniz?"
+        }
+      ]
+    },
+    {
+      "id": "en-hotel-complaint",
+      "level": "B1",
+      "title": "Kibarca şikâyet",
+      "scene": "Otel odandaki klima çalışmıyor; resepsiyonu arıyorsun.",
+      "turns": [
+        {
+          "say": "Reception, good evening. How can I help you?",
+          "tr": "Resepsiyon, iyi akşamlar. Size nasıl yardımcı olabilirim?",
+          "options": ["Hi, I'm in room 215. I'm afraid the air conditioning isn't working.", "Hi, room 215. Your air conditioning is broken, fix it now.", "Hi, I'm room 215. The air conditioning doesn't work since yesterday."],
+          "answer": 0,
+          "why": "'I'm afraid…' sorunu kibarca bildirmenin kalıbıdır. 'Fix it now' emirdir ve kaba kaçar; 'doesn't work since yesterday' de yanlıştır (hasn't worked since yesterday).",
+          "replyTr": "Merhaba, 215 numaralı odadayım. Maalesef klima çalışmıyor."
+        },
+        {
+          "say": "Oh, I'm sorry to hear that. Have you tried the remote control on the desk?",
+          "tr": "Ah, bunu duyduğuma üzüldüm. Masadaki kumandayı denediniz mi?",
+          "options": ["Yes, I have tried it yesterday.", "Yes, I've tried it, and I even changed the batteries, but nothing happens.", "Yes, I'm trying it since one hour."],
+          "answer": 1,
+          "why": "'I've tried it' zaman belirtmeden sonucu söyler. 'I have tried it yesterday' yanlıştır: 'yesterday' gibi geçmiş bir zaman varsa past simple gerekir (I tried it yesterday).",
+          "replyTr": "Evet, denedim, hatta pillerini de değiştirdim ama hiçbir şey olmuyor."
+        },
+        {
+          "say": "I see. I can send someone from maintenance, but they're quite busy tonight. It might take about an hour.",
+          "tr": "Anlıyorum. Teknik servisten birini gönderebilirim ama bu akşam epey yoğunlar. Bir saat kadar sürebilir.",
+          "options": ["An hour? Are you kidding me? This is unacceptable!", "That's long time. Is it possible I change the room?", "That's quite a long time. Would it be possible to move to another room instead?"],
+          "answer": 2,
+          "why": "'Would it be possible to…?' kibar ama kararlı bir istektir. İlk seçenek gereksiz sert; ikincisinde 'a' eksik ve yapı yanlış (doğrusu 'Is it possible to change rooms?').",
+          "replyTr": "Bu epey uzun bir süre. Onun yerine başka bir odaya geçmem mümkün olur mu?"
+        },
+        {
+          "say": "Let me have a look... Yes, I have a room on the sixth floor, and it's ready now. Would that suit you?",
+          "tr": "Bir bakayım... Evet, altıncı katta bir odam var, şu an hazır. Size uyar mı?",
+          "options": ["Yes, that would be great. Thank you.", "Yes, it suits to me.", "Yes, I'm suit."],
+          "answer": 0,
+          "why": "'That would be great' teklifi kibarca kabul eder. 'It suits to me' yanlıştır: 'suit' fiili 'to' almaz (It suits me); 'I'm suit' ise anlamsızdır.",
+          "replyTr": "Evet, çok iyi olur. Teşekkür ederim."
+        },
+        {
+          "say": "I'll send someone up with the new key in five minutes. Do you need any help with your luggage?",
+          "tr": "Beş dakika içinde yeni anahtarla birini yukarı gönderiyorum. Bavullarınız için yardım ister misiniz?",
+          "options": ["No, I don't need of help.", "That's kind of you, but I can manage, thanks.", "Yes, my luggages are many."],
+          "answer": 1,
+          "why": "'I can manage' 'hallederim' demektir ve teklifi kibarca geri çevirir. 'Luggages' yanlıştır: 'luggage' sayılamaz, çoğul eki almaz; 'need of help' de yanlıştır.",
+          "replyTr": "Çok naziksiniz ama hallederim, teşekkürler."
+        },
+        {
+          "say": "Of course. Again, I'm very sorry for the trouble.",
+          "tr": "Tabii. Yaşattığımız sorun için tekrar çok özür dilerim.",
+          "options": ["That's okay. Thanks for being so helpful.", "You're welcome. I accept your sorry.", "Never mind. It's not important your problem."],
+          "answer": 0,
+          "why": "Özre 'That's okay' ile karşılık verip yardım için teşekkür edersin. 'You're welcome' teşekküre verilen cevaptır, özre değil; 'your sorry' da yanlıştır.",
+          "replyTr": "Sorun değil. Bu kadar yardımcı olduğunuz için teşekkürler."
+        }
+      ]
+    },
+    {
+      "id": "en-renting",
+      "level": "B1",
+      "title": "Ev kiralamak",
+      "scene": "Kiralık bir daireye bakmak için ev sahibiyle buluştun.",
+      "turns": [
+        {
+          "say": "Hi, you must be here to see the place. Come on in.",
+          "tr": "Merhaba, evi görmeye geldiniz herhalde. Buyurun, girin.",
+          "options": ["Yes, that's right. Thanks for showing me around.", "Yes, I must be.", "Yes, I came for see the house."],
+          "answer": 0,
+          "why": "'Thanks for showing me around' evi gezdirdiği için teşekkür eder. 'Must' burada bir tahmindir, 'Yes, I must be' diye tekrarlanmaz; 'came for see' de yanlıştır (came to see).",
+          "replyTr": "Evet, doğru. Bana evi gezdirdiğiniz için teşekkürler."
+        },
+        {
+          "say": "So, this is the living room. It gets a lot of sun in the afternoon.",
+          "tr": "Evet, burası oturma odası. Öğleden sonra bol güneş alıyor.",
+          "options": ["It's very bright. Is the rent including bills?", "It's lovely and bright. Are bills included in the rent?", "It's very sunny. Are the bills inside the rent?"],
+          "answer": 1,
+          "why": "Faturaların kiraya dahil olup olmadığı 'Are bills included in the rent?' diye sorulur. 'Is the rent including' yanlıştır, 'include' bu anlamda -ing almaz; 'inside the rent' ise 'kiranın içinde'nin düz çevirisidir.",
+          "replyTr": "Çok güzel ve aydınlık. Faturalar kiraya dahil mi?"
+        },
+        {
+          "say": "Water is included, but electricity and internet are extra. That's usually around sixty a month.",
+          "tr": "Su dahil ama elektrik ve internet ayrı. Genelde ayda altmış civarı tutuyor.",
+          "options": ["I see. How many time is the rental period?", "I see. How long the minimum rental is?", "I see. How long is the minimum rental period?"],
+          "answer": 2,
+          "why": "Süre sormak için 'How long is…?' denir. 'How many time' yanlıştır: süre için 'how long' kullanılır; ikinci seçenekte de soru sırası bozuktur.",
+          "replyTr": "Anlıyorum. En kısa kiralama süresi ne kadar?"
+        },
+        {
+          "say": "It's twelve months, and I ask for one month's rent as a deposit.",
+          "tr": "On iki ay, depozito olarak da bir aylık kira istiyorum.",
+          "options": ["That sounds fair. Would you mind if I had a small cat?", "That sounds fair. Do you mind I have a small cat?", "That sounds fair. Are you mind if I keep a small cat?"],
+          "answer": 0,
+          "why": "'Would you mind if I had…?' izin istemenin kibar yoludur. 'Do you mind I have' yapısında 'if' eksik; 'Are you mind' ise yanlıştır, çünkü 'mind' bir fiildir.",
+          "replyTr": "Makul görünüyor. Küçük bir kedim olsa sizin için sorun olur mu?"
+        },
+        {
+          "say": "A cat should be fine, as long as it doesn't damage anything. When are you looking to move in?",
+          "tr": "Hiçbir şeye zarar vermediği sürece kedi sorun olmaz. Ne zaman taşınmayı düşünüyorsunuz?",
+          "options": ["I'm looking to move in it.", "Ideally at the start of next month.", "I moved in at the start of next month."],
+          "answer": 1,
+          "why": "'Ideally at the start of next month' gelecekteki bir tarihi doğal biçimde söyler. 'I moved in' geçmiş zamandır ve 'next month' ile çelişir; ilk seçenek soruyu cevaplamaz.",
+          "replyTr": "Mümkünse önümüzdeki ayın başında."
+        },
+        {
+          "say": "That works. If you're interested, I'll need a reference from your current landlord.",
+          "tr": "Uygun. İlgileniyorsanız şu anki ev sahibinizden bir referans isteyeceğim.",
+          "options": ["I'm very interesting. I'll ask for one.", "Of course. I'll give you my landlord.", "Great, I'm definitely interested. I'll get one this week."],
+          "answer": 2,
+          "why": "'I'm interested' ilgilendiğini söyler. 'I'm very interesting' 'Ben çok ilginç biriyim' demektir: '-ed' sıfat kişinin hissini, '-ing' sıfat bir şeyin özelliğini anlatır.",
+          "replyTr": "Harika, kesinlikle ilgileniyorum. Bu hafta bir referans alırım."
+        }
+      ]
+    }
+  ]
+}
