@@ -1,0 +1,218 @@
+[
+  {
+    "id": "en-b15-numbers-1",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "choice",
+    "prompt": "The film starts at ___ to nine, so we have twenty minutes.",
+    "answer": "twenty",
+    "options": [
+      "twenty",
+      "forty",
+      "ten"
+    ],
+    "hint": "8:40",
+    "explanation": "8:40 dokuza yirmi var demektir: twenty to nine. to = var, past = geçiyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-2",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "choice",
+    "prompt": "Our flight leaves at half ___ seven in the morning.",
+    "answer": "past",
+    "options": [
+      "past",
+      "to",
+      "after"
+    ],
+    "hint": "7:30",
+    "explanation": "Buçuk saat half past + o saat ile söylenir: half past seven (7:30).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-3",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "choice",
+    "prompt": "There were about two ___ people at the wedding.",
+    "answer": "hundred",
+    "options": [
+      "hundred",
+      "hundreds",
+      "hundreds of"
+    ],
+    "hint": "200",
+    "explanation": "Sayıdan sonra hundred çoğul almaz: two hundred people. Hundreds of people ise belirsiz 'yüzlerce kişi' demektir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-4",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "choice",
+    "prompt": "Her birthday is on the ___ of July.",
+    "answer": "first",
+    "options": [
+      "first",
+      "one",
+      "oneth"
+    ],
+    "hint": "1 Temmuz",
+    "explanation": "Tarihte gün sıra sayısıyla söylenir; 1 için first: the first of July.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-5",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "choice",
+    "prompt": "My grandfather was born ___ 1948.",
+    "answer": "in",
+    "options": [
+      "in",
+      "on",
+      "at"
+    ],
+    "hint": "yıl",
+    "explanation": "Yıllardan önce in kullanılır: in 1948. Belirli bir günden önce on, saatten önce at gelir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-6",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "choice",
+    "prompt": "Let's meet ___ Monday at five o'clock.",
+    "answer": "on",
+    "options": [
+      "on",
+      "in",
+      "at"
+    ],
+    "hint": "gün",
+    "explanation": "Günlerden ve tarihlerden önce on kullanılır: on Monday, on the 5th of May.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-7",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "choice",
+    "prompt": "The shop closes ___ 6 pm.",
+    "answer": "at",
+    "options": [
+      "at",
+      "on",
+      "in"
+    ],
+    "hint": "saat",
+    "explanation": "Saatten önce at kullanılır: at 6 pm.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-8",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "choice",
+    "prompt": "It's 4:15. It's quarter ___ four.",
+    "answer": "past",
+    "options": [
+      "past",
+      "to",
+      "half"
+    ],
+    "hint": "15 dakika geçiyor",
+    "explanation": "15. dakikada quarter past + o saat denir: quarter past four. Quarter to four 3:45’tir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-9",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "cloze",
+    "prompt": "Tom is ___ (42) years old.",
+    "answer": "forty-two",
+    "explanation": "Onlar ile birler tireyle yazılır: forty-two (42). Forty’de u yoktur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-10",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "cloze",
+    "prompt": "We're going on holiday on the ___ (12th) of December.",
+    "answer": "twelfth",
+    "explanation": "Twelve’in sıra sayısı twelfth’tir: v yerine f gelir, e düşer.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-11",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "cloze",
+    "prompt": "The ___ (9th) of October is my mother's birthday.",
+    "answer": "ninth",
+    "explanation": "Nine’ın sıra sayısı ninth’tir: sondaki e düşer.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-12",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "cloze",
+    "prompt": "Spring starts on the ___ (20th) of March this year.",
+    "answer": "twentieth",
+    "explanation": "-ty ile biten sayılarda y, ie olur ve -th eklenir: twentieth.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-13",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "error",
+    "prompt": "There are fourty students in my class.",
+    "answer": "fourty",
+    "fix": "forty",
+    "explanation": "Four’daki u, forty’de düşer: forty. Fourteen (14) ise u’yu korur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-14",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "error",
+    "prompt": "The concert is on half past eight tonight.",
+    "answer": "on",
+    "fix": "at",
+    "explanation": "Saatlerden önce at gelir: at half past eight. On günler ve tarihler içindir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b15-numbers-15",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_numbers_time",
+    "type": "error",
+    "prompt": "Five thousands people ran in the marathon.",
+    "answer": "thousands",
+    "fix": "thousand",
+    "explanation": "Sayıdan sonra thousand çoğul almaz: five thousand people. Thousands of people ise 'binlerce kişi'dir.",
+    "source": "Diloloji (özgün)"
+  }
+]

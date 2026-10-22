@@ -5,12 +5,14 @@ import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../../data/instance'
+import { CONFUSABLE_RULES } from '../../data/confusableRules'
 
 vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), near: vi.fn() } }))
 const { ConfusablesGame } = await import('./ConfusablesGame')
 
 let root: ReturnType<typeof createRoot> | undefined
 beforeEach(async () => {
+  localStorage.clear()
   await db.meta.delete('records')
 })
 afterEach(() => {
@@ -32,27 +34,54 @@ async function mount() {
 }
 
 describe('ConfusablesGame', () => {
-  it('renders intro and starts a 10-question round', async () => {
+  it('renders the intro and starts a 10-question round of sentences', async () => {
     const host = await mount()
     expect(host.textContent).toContain('İkizler Arenası')
     await click(byText(host, 'tura başla'))
     expect(host.textContent).toContain('1 / 10')
-    expect(host.textContent).toContain('İKİZ KELİMELER')
+    expect(host.querySelectorAll('.options .option')).toHaveLength(2)
   })
 
-  it('evaluates answers and displays formative distinction rule', async () => {
+  it('an answer shows the rule, and a sentence its Turkish; Enter goes on', async () => {
     const host = await mount()
     await click(byText(host, 'tura başla'))
+    await click(host.querySelector('.options .option'))
+    const status = host.querySelector('[role="status"]')!
+    expect(status.textContent).toMatch(/Doğru|Doğrusu/)
+    expect(host.querySelector('.option.is-correct')).not.toBeNull()
+    await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' })))
+    expect(host.textContent).toContain('2 / 10')
+  })
 
-    // Find the option buttons
-    const buttons = [...host.querySelectorAll<HTMLButtonElement>('.options button')]
-    expect(buttons).toHaveLength(2)
+  it('one pair can be practised alone', async () => {
+    const host = await mount()
+    await click(byText(host, 'say / tell'))
+    await click(byText(host, 'tura başla'))
+    for (let i = 0; i < 3; i++) {
+      expect(host.querySelector('.prompt-label')!.textContent).toContain('say / tell')
+      await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: '1' })))
+      await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' })))
+    }
+  })
 
-    // Click first option
-    await click(buttons[0])
-
-    // Should display distinction rule
-    expect(host.textContent).toContain('Ayrım Kuralı')
-    expect(byText(host, 'Devam et')).toBeDefined()
+  it('a missed sentence is remembered and comes first next time', async () => {
+    const host = await mount()
+    await click(byText(host, 'tura başla'))
+    // Answer the first sentence wrong: its drill tells which option is wrong.
+    for (let i = 0; i < 10; i++) {
+      const text = host.querySelector('.grammar-sentence')!.textContent
+      const drill = CONFUSABLE_RULES.flatMap((r) => r.drills ?? []).find((d) => d.text === text)
+      if (drill) {
+        await click([...host.querySelectorAll('.options .option')].find((b) => b.querySelector('.option-serif')?.textContent === drill.wrong))
+        break
+      }
+      await click(host.querySelector('.options .option'))
+      await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' })))
+    }
+    const missed = JSON.parse(localStorage.getItem('diloloji:twins:en') ?? '[]') as string[]
+    expect(missed).toHaveLength(1)
+    act(() => root?.unmount())
+    const again = await mount()
+    expect(again.textContent).toContain(`karıştırdığın ${missed.length} cümle`)
   })
 })

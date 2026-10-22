@@ -18,7 +18,7 @@ afterEach(async () => {
   await db.texts.clear()
 })
 
-async function mount(language: 'fr' | 'es' | 'en' = 'fr', extra: { initialLesson?: string; initialTense?: string; review?: boolean; placement?: boolean; onChanged?: () => void } = {}) {
+async function mount(language: 'fr' | 'es' | 'en' = 'fr', extra: { initialLesson?: string; initialTense?: string; review?: boolean; placement?: boolean; onChanged?: () => void; onNumbers?: () => void } = {}) {
   const onPractice = vi.fn()
   const onVerbs = vi.fn()
   const host = document.createElement('div')
@@ -40,6 +40,18 @@ describe('GuideScreen', () => {
     expect(host.querySelector('.guide-lesson h1')?.textContent).toBe('Subjonctif')
     await act(async () => button(host, /Bu konuda \d+ soru çöz/)!.click())
     expect(onPractice).toHaveBeenCalledWith('subjonctif')
+  })
+
+  it('a lesson on numbers and times leads to the numbers game; other lessons do not', async () => {
+    const onNumbers = vi.fn()
+    const { host } = await mount('en', { initialLesson: 'basics_en_numbers_time', onNumbers })
+    expect(host.querySelector('.guide-lesson h1')?.textContent).toContain('Sayılar, saat ve tarih')
+    expect(button(host, /Bu konuda \d+ soru çöz/)).toBeTruthy()
+    await act(async () => button(host, 'Sayılar ve saatler oyununda çalış')!.click())
+    expect(onNumbers).toHaveBeenCalled()
+    act(() => root?.unmount())
+    const other = await mount('fr', { initialLesson: 'subjonctif', onNumbers })
+    expect(button(other.host, 'Sayılar ve saatler oyununda çalış')).toBeUndefined()
   })
 
   it('remembers a lesson marked as read and calls onChanged', async () => {

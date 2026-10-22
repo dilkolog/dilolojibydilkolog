@@ -102,6 +102,7 @@ export const TOPIC_NAME: Record<string, string> = {
   basics_en_present_simple: 'Present simple',
   basics_en_pronouns: 'Zamirler ve iyelik',
   basics_en_there_is: 'There is / there are',
+  basics_en_numbers_time: 'Sayılar, saat ve tarih',
   basics_en_demonstratives: 'This / that / these / those',
   basics_en_questions: 'Soru sözcükleri',
   basics_en_time_prepositions: 'Zaman edatları (in / on / at)',

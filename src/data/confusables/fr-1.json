@@ -1,0 +1,256 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "rules": [
+    {
+      "id": "fr:jour-journee",
+      "drills": [
+        { "text": "Il a plu toute la ___ hier.", "right": "journée", "wrong": "jour", "tr": "Dün bütün gün yağmur yağdı." },
+        { "text": "La semaine compte sept ___.", "right": "jours", "wrong": "journées", "tr": "Hafta yedi günden oluşur." },
+        { "text": "Bonne ___ et à demain !", "right": "journée", "wrong": "jour", "tr": "İyi günler, yarın görüşürüz!" },
+        { "text": "Il travaille tous les ___ sauf le dimanche.", "right": "jours", "wrong": "journées", "tr": "Pazar hariç her gün çalışıyor." },
+        { "text": "Quel ___ sommes-nous aujourd'hui ?", "right": "jour", "wrong": "journée", "tr": "Bugün günlerden ne?" }
+      ]
+    },
+    {
+      "id": "fr:an-annee",
+      "drills": [
+        { "text": "Ma fille a dix ___.", "right": "ans", "wrong": "années", "tr": "Kızım on yaşında." },
+        { "text": "Bonne ___ et meilleurs vœux !", "right": "année", "wrong": "an", "tr": "Mutlu yıllar, en iyi dileklerimle!" },
+        { "text": "J'ai passé toute l'___ à étudier.", "right": "année", "wrong": "an", "tr": "Bütün yılı ders çalışarak geçirdim." },
+        { "text": "Le bébé aura un ___ en mai.", "right": "an", "wrong": "année", "tr": "Bebek mayısta bir yaşına girecek." },
+        { "text": "Cette ___, nous partons en vacances en Espagne.", "right": "année", "wrong": "an", "tr": "Bu yıl tatile İspanya'ya gidiyoruz." }
+      ]
+    },
+    {
+      "id": "fr:savoir-connaitre",
+      "drills": [
+        { "text": "Je ___ nager depuis l'âge de cinq ans.", "right": "sais", "wrong": "connais", "tr": "Beş yaşımdan beri yüzmeyi biliyorum." },
+        { "text": "Tu ___ ma sœur ?", "right": "connais", "wrong": "sais", "tr": "Kız kardeşimi tanıyor musun?" },
+        { "text": "Nous ne ___ pas où il habite.", "right": "savons", "wrong": "connaissons", "tr": "Nerede oturduğunu bilmiyoruz." },
+        { "text": "Elle ___ très bien cette ville.", "right": "connaît", "wrong": "sait", "tr": "Bu şehri çok iyi tanıyor." },
+        { "text": "Vous ___ conduire ?", "right": "savez", "wrong": "connaissez", "tr": "Araba kullanmayı biliyor musunuz?" }
+      ]
+    },
+    {
+      "id": "fr:attendre-entendre",
+      "drills": [
+        { "text": "J'___ le bus à l'arrêt depuis vingt minutes.", "right": "attends", "wrong": "entends", "tr": "Yirmi dakikadır durakta otobüsü bekliyorum." },
+        { "text": "Parle plus fort, je ne t'___ pas.", "right": "entends", "wrong": "attends", "tr": "Daha yüksek sesle konuş, seni duymuyorum." },
+        { "text": "Nous ___ la réponse de la banque avec impatience.", "right": "attendons", "wrong": "entendons", "tr": "Bankanın cevabını sabırsızlıkla bekliyoruz." },
+        { "text": "Tu ___ ce bruit dans la cuisine ?", "right": "entends", "wrong": "attends", "tr": "Mutfaktaki bu sesi duyuyor musun?" },
+        { "text": "On ___ les oiseaux chanter le matin.", "right": "entend", "wrong": "attend", "tr": "Sabahları kuşların öttüğünü duyuyoruz." }
+      ]
+    },
+    {
+      "id": "fr:amener-apporter",
+      "drills": [
+        { "text": "Est-ce que je peux ___ mon chien à la fête ?", "right": "amener", "wrong": "apporter", "tr": "Partiye köpeğimi getirebilir miyim?" },
+        { "text": "N'oublie pas d'___ une bouteille d'eau.", "right": "apporter", "wrong": "amener", "tr": "Bir şişe su getirmeyi unutma." },
+        { "text": "Chaque invité doit ___ un plat à partager.", "right": "apporter", "wrong": "amener", "tr": "Her davetli paylaşmak için bir yemek getirmeli." },
+        { "text": "Tu peux ___ ta copine au dîner samedi.", "right": "amener", "wrong": "apporter", "tr": "Cumartesi akşam yemeğine kız arkadaşını getirebilirsin." },
+        { "text": "Il m'a ___ des fleurs pour mon anniversaire.", "right": "apporté", "wrong": "amené", "tr": "Doğum günüm için bana çiçek getirdi." }
+      ]
+    },
+    {
+      "id": "fr:visiter-rendre-visite",
+      "drills": [
+        { "text": "Cet été, nous allons ___ le château de Versailles.", "right": "visiter", "wrong": "rendre visite à", "tr": "Bu yaz Versay Sarayı'nı gezeceğiz." },
+        { "text": "Je vais ___ ma grand-mère dimanche.", "right": "rendre visite à", "wrong": "visiter", "tr": "Pazar günü büyükannemi ziyaret edeceğim." },
+        { "text": "Les touristes ___ la vieille ville à pied.", "right": "visitent", "wrong": "rendent visite à", "tr": "Turistler eski şehri yürüyerek geziyor." },
+        { "text": "Hier, nous avons ___ nos voisins.", "right": "rendu visite à", "wrong": "visité", "tr": "Dün komşularımızı ziyaret ettik." },
+        { "text": "Tu as déjà ___ ce musée ?", "right": "visité", "wrong": "rendu visite à", "tr": "Bu müzeyi hiç gezdin mi?" }
+      ]
+    },
+    {
+      "id": "fr:voir-regarder",
+      "drills": [
+        { "text": "Il ___ la télévision tous les soirs.", "right": "regarde", "wrong": "voit", "tr": "Her akşam televizyon izliyor." },
+        { "text": "Sans mes lunettes, je ne ___ rien.", "right": "vois", "wrong": "regarde", "tr": "Gözlüklerim olmadan hiçbir şey görmüyorum." },
+        { "text": "___ ! Il y a un arc-en-ciel dans le ciel.", "right": "Regarde", "wrong": "Vois", "tr": "Bak! Gökyüzünde bir gökkuşağı var." },
+        { "text": "Il fait si noir qu'on ne ___ pas la route.", "right": "voit", "wrong": "regarde", "tr": "O kadar karanlık ki yolu göremiyoruz." },
+        { "text": "Elle ___ attentivement le tableau pendant une heure.", "right": "regarde", "wrong": "voit", "tr": "Bir saat boyunca tabloya dikkatle bakıyor." }
+      ]
+    },
+    {
+      "id": "fr:c-est-il-est",
+      "language": "fr",
+      "words": ["c'est", "il est"],
+      "meanings": ["bu ... (article'lı isimle, genel yorum)", "o ... (articlesız meslek ya da sıfatla)"],
+      "distinction": "C'est'ten sonra article'lı bir isim gelir (c'est un médecin) ya da genel bir durum yorumlanır (c'est gentil). Il est/elle est belirli bir kişiyi articlesız meslek, uyruk ya da sıfatla anlatır (il est médecin).",
+      "example": ["C'est un bon ami.", "Il est professeur."],
+      "drills": [
+        { "text": "Mon père ? ___ médecin à l'hôpital.", "right": "Il est", "wrong": "C'est", "tr": "Babam mı? Hastanede doktor." },
+        { "text": "___ un très bon restaurant.", "right": "C'est", "wrong": "Il est", "tr": "Bu çok iyi bir restoran." },
+        { "text": "Regarde cet homme là-bas : ___ mon professeur de piano.", "right": "c'est", "wrong": "il est", "tr": "Şuradaki adama bak: o benim piyano öğretmenim." },
+        { "text": "Mon oncle travaille dans une banque ; ___ comptable.", "right": "il est", "wrong": "c'est", "tr": "Amcam bir bankada çalışıyor; muhasebeci." },
+        { "text": "Merci pour les fleurs, ___ très gentil de ta part !", "right": "c'est", "wrong": "il est", "tr": "Çiçekler için teşekkürler, çok naziksin!" }
+      ]
+    },
+    {
+      "id": "fr:depuis-pendant",
+      "language": "fr",
+      "words": ["depuis", "pendant"],
+      "meanings": ["...den beri (hâlâ süren)", "... boyunca (bitmiş süre)"],
+      "distinction": "Depuis hâlâ süren bir durumun ne zamandan beri sürdüğünü anlatır ve genellikle şimdiki zamanla kullanılır (j'habite ici depuis deux ans). Pendant başı ve sonu olan, çoğu zaman bitmiş bir süreyi anlatır (j'ai dormi pendant huit heures).",
+      "example": ["J'apprends le français depuis un an.", "J'ai travaillé pendant tout l'été."],
+      "drills": [
+        { "text": "J'habite à Lyon ___ trois ans.", "right": "depuis", "wrong": "pendant", "tr": "Üç yıldır Lyon'da oturuyorum." },
+        { "text": "Hier, il a couru ___ quarante minutes sans s'arrêter.", "right": "pendant", "wrong": "depuis", "tr": "Dün durmadan kırk dakika boyunca koştu." },
+        { "text": "Il pleut ___ ce matin.", "right": "depuis", "wrong": "pendant", "tr": "Bu sabahtan beri yağmur yağıyor." },
+        { "text": "L'été dernier, nous avons voyagé en Italie ___ deux semaines.", "right": "pendant", "wrong": "depuis", "tr": "Geçen yaz iki hafta boyunca İtalya'da gezdik." },
+        { "text": "Il est malade ___ lundi dernier.", "right": "depuis", "wrong": "pendant", "tr": "Geçen pazartesiden beri hasta." }
+      ]
+    },
+    {
+      "id": "fr:bon-bien",
+      "language": "fr",
+      "words": ["bon", "bien"],
+      "meanings": ["iyi, lezzetli (sıfat)", "iyi bir şekilde (zarf)"],
+      "distinction": "Bon sıfattır, bir ismi niteler ve onunla uyum gösterir (un bon livre, une bonne idée; yemek için 'lezzetli'). Bien zarftır, bir fiilin nasıl yapıldığını anlatır (il chante bien) ve hiç değişmez.",
+      "example": ["C'est un bon livre.", "Tu parles bien français."],
+      "drills": [
+        { "text": "Ce gâteau au chocolat est vraiment ___, j'en reprends un morceau.", "right": "bon", "wrong": "bien", "tr": "Bu çikolatalı kek gerçekten lezzetli, bir dilim daha alıyorum." },
+        { "text": "Tu parles très ___ anglais.", "right": "bien", "wrong": "bon", "tr": "Çok iyi İngilizce konuşuyorsun." },
+        { "text": "C'est un ___ livre, je te le conseille.", "right": "bon", "wrong": "bien", "tr": "Bu iyi bir kitap, sana tavsiye ederim." },
+        { "text": "Nous avons ___ dormi cette nuit.", "right": "bien", "wrong": "bon", "tr": "Bu gece iyi uyuduk." },
+        { "text": "Je me sens ___ aujourd'hui, merci.", "right": "bien", "wrong": "bon", "tr": "Bugün kendimi iyi hissediyorum, teşekkürler." }
+      ]
+    },
+    {
+      "id": "fr:meilleur-mieux",
+      "language": "fr",
+      "words": ["meilleur", "mieux"],
+      "meanings": ["daha iyi (sıfat, bon'un üstü)", "daha iyi (zarf, bien'in üstü)"],
+      "distinction": "Meilleur, bon sıfatının karşılaştırmalı biçimidir; ismi niteler ve uyum gösterir (un meilleur film, la meilleure amie). Mieux, bien zarfının karşılaştırmalı biçimidir; fiili niteler ve değişmez (elle chante mieux).",
+      "example": ["C'est le meilleur film de l'année.", "Il va mieux aujourd'hui."],
+      "drills": [
+        { "text": "C'est le ___ gâteau de la boulangerie.", "right": "meilleur", "wrong": "mieux", "tr": "Bu, fırının en iyi keki." },
+        { "text": "Elle chante ___ que sa sœur.", "right": "mieux", "wrong": "meilleur", "tr": "Kız kardeşinden daha iyi şarkı söylüyor." },
+        { "text": "Je me sens ___ qu'hier.", "right": "mieux", "wrong": "meilleur", "tr": "Kendimi dünden daha iyi hissediyorum." },
+        { "text": "Mon ___ ami habite à Marseille.", "right": "meilleur", "wrong": "mieux", "tr": "En iyi arkadaşım Marsilya'da oturuyor." },
+        { "text": "Les fruits de saison ont un ___ goût.", "right": "meilleur", "wrong": "mieux", "tr": "Mevsim meyvelerinin tadı daha iyidir." }
+      ]
+    },
+    {
+      "id": "fr:partir-quitter",
+      "language": "fr",
+      "words": ["partir", "quitter"],
+      "meanings": ["gitmek, yola çıkmak (nesnesiz)", "bir yeri/kişiyi bırakmak, terk etmek (nesneyle)"],
+      "distinction": "Partir nesne almaz; nereden ya da nereye gidildiği edatla söylenir (je pars de Paris, le train part). Quitter doğrudan nesne ister: bırakılan yer, iş ya da kişi hemen ardından gelir (je quitte la maison).",
+      "example": ["Le train part à midi.", "Je quitte le bureau à six heures."],
+      "drills": [
+        { "text": "Le train ___ à huit heures.", "right": "part", "wrong": "quitte", "tr": "Tren saat sekizde kalkıyor." },
+        { "text": "Elle a ___ son travail l'année dernière.", "right": "quitté", "wrong": "parti", "tr": "Geçen yıl işinden ayrıldı." },
+        { "text": "Nous ___ la maison très tôt le matin.", "right": "quittons", "wrong": "partons", "tr": "Sabah çok erken evden çıkıyoruz." },
+        { "text": "Je dois ___ maintenant, il est tard.", "right": "partir", "wrong": "quitter", "tr": "Şimdi gitmem lazım, geç oldu." },
+        { "text": "Ne ___ pas la table avant la fin du repas.", "right": "quitte", "wrong": "pars", "tr": "Yemek bitmeden masadan kalkma." }
+      ]
+    },
+    {
+      "id": "fr:dire-parler",
+      "language": "fr",
+      "words": ["dire", "parler"],
+      "meanings": ["söylemek (bir şeyi)", "konuşmak (bir dili, bir konuda)"],
+      "distinction": "Dire bir sözü, bilgiyi ya da cümleyi söylemektir ve nesne ister (dire la vérité, dire que…). Parler konuşma eylemidir: bir dili konuşmak (parler anglais) ya da bir konu hakkında konuşmak (parler de…).",
+      "example": ["Il m'a dit bonjour.", "Nous parlons de nos projets."],
+      "drills": [
+        { "text": "Elle ___ trois langues.", "right": "parle", "wrong": "dit", "tr": "Üç dil konuşuyor." },
+        { "text": "Qu'est-ce que tu as ___ ?", "right": "dit", "wrong": "parlé", "tr": "Ne dedin?" },
+        { "text": "Il ne m'a pas ___ la vérité.", "right": "dit", "wrong": "parlé", "tr": "Bana doğruyu söylemedi." },
+        { "text": "Nous avons ___ de nos vacances pendant le dîner.", "right": "parlé", "wrong": "dit", "tr": "Akşam yemeğinde tatilimizden konuştuk." },
+        { "text": "Peux-tu ___ plus lentement, s'il te plaît ?", "right": "parler", "wrong": "dire", "tr": "Lütfen daha yavaş konuşabilir misin?" }
+      ]
+    },
+    {
+      "id": "fr:preter-emprunter",
+      "language": "fr",
+      "words": ["prêter", "emprunter"],
+      "meanings": ["ödünç vermek", "ödünç almak"],
+      "distinction": "Prêter kendi eşyanı geçici olarak birine vermektir (prêter quelque chose à quelqu'un). Emprunter başkasının eşyasını geçici olarak almaktır (emprunter un livre à la bibliothèque).",
+      "example": ["Je te prête mon vélo.", "J'emprunte un livre à la bibliothèque."],
+      "drills": [
+        { "text": "Tu peux me ___ ton stylo ?", "right": "prêter", "wrong": "emprunter", "tr": "Bana kalemini ödünç verebilir misin?" },
+        { "text": "J'ai ___ ce livre à la bibliothèque.", "right": "emprunté", "wrong": "prêté", "tr": "Bu kitabı kütüphaneden ödünç aldım." },
+        { "text": "Mon voisin m'a ___ sa perceuse pour le week-end.", "right": "prêté", "wrong": "emprunté", "tr": "Komşum hafta sonu için matkabını bana ödünç verdi." },
+        { "text": "Je dois rendre les livres que j'ai ___.", "right": "empruntés", "wrong": "prêtés", "tr": "Ödünç aldığım kitapları geri vermem lazım." },
+        { "text": "La banque nous a ___ de l'argent pour acheter la maison.", "right": "prêté", "wrong": "emprunté", "tr": "Banka evi almamız için bize borç para verdi." }
+      ]
+    },
+    {
+      "id": "fr:chez-a",
+      "language": "fr",
+      "words": ["chez", "à"],
+      "meanings": ["birinin evinde/yanında", "bir yerde, bir yere (şehir, mekân)"],
+      "distinction": "Chez bir kişiden ya da kişi zamirinden önce gelir ve 'onun evinde/yanında' demektir (chez moi, chez le dentiste). À şehir ve mekân adlarıyla kullanılır (à Paris, à l'école).",
+      "example": ["Je dîne chez mes amis.", "Je vais à Paris."],
+      "drills": [
+        { "text": "Je dîne ___ mes parents ce soir.", "right": "chez", "wrong": "à", "tr": "Bu akşam annemlerde yemek yiyorum." },
+        { "text": "Nous habitons ___ Marseille depuis longtemps.", "right": "à", "wrong": "chez", "tr": "Uzun zamandır Marsilya'da oturuyoruz." },
+        { "text": "Le soir, je rentre ___ moi à pied.", "right": "chez", "wrong": "à", "tr": "Akşamları eve yürüyerek dönüyorum." },
+        { "text": "Elle est ___ l'école jusqu'à quatre heures.", "right": "à", "wrong": "chez", "tr": "Saat dörde kadar okulda." },
+        { "text": "Je vais ___ le dentiste demain matin.", "right": "chez", "wrong": "à", "tr": "Yarın sabah dişçiye gidiyorum." }
+      ]
+    },
+    {
+      "id": "fr:en-dans",
+      "language": "fr",
+      "words": ["en", "dans"],
+      "meanings": ["(süre) ... içinde, ... sürede", "(gelecek) ... sonra"],
+      "distinction": "Zaman anlatırken en bir işin ne kadar sürede yapıldığını söyler (j'ai lu ce livre en deux jours). Dans şimdiden ne kadar sonra olacağını söyler (le train part dans dix minutes).",
+      "example": ["J'ai fini ce travail en deux heures.", "Le bus arrive dans cinq minutes."],
+      "drills": [
+        { "text": "Le train part ___ dix minutes, dépêche-toi !", "right": "dans", "wrong": "en", "tr": "Tren on dakika sonra kalkıyor, acele et!" },
+        { "text": "J'ai lu ce roman ___ deux jours.", "right": "en", "wrong": "dans", "tr": "Bu romanı iki günde okudum." },
+        { "text": "Le film commence ___ cinq minutes.", "right": "dans", "wrong": "en", "tr": "Film beş dakika sonra başlıyor." },
+        { "text": "Il a construit sa maison ___ six mois.", "right": "en", "wrong": "dans", "tr": "Evini altı ayda yaptı." },
+        { "text": "Elle a appris à nager ___ une semaine.", "right": "en", "wrong": "dans", "tr": "Bir haftada yüzmeyi öğrendi." }
+      ]
+    },
+    {
+      "id": "fr:ou-ou",
+      "language": "fr",
+      "words": ["ou", "où"],
+      "meanings": ["veya, ya da", "nerede, nereye; ...diği yer"],
+      "distinction": "Aksansız ou 'veya' demektir ve yerine ou bien konabilir. Aksanlı où yer ya da zaman sorar (où habites-tu ?) veya '…diği yer' anlamında bir ilgi zamiridir (la ville où je suis né).",
+      "example": ["Tu veux du thé ou du café ?", "Où est la gare ?"],
+      "drills": [
+        { "text": "Tu préfères le thé ___ le café ?", "right": "ou", "wrong": "où", "tr": "Çayı mı yoksa kahveyi mi tercih edersin?" },
+        { "text": "___ habites-tu ?", "right": "Où", "wrong": "Ou", "tr": "Nerede oturuyorsun?" },
+        { "text": "La ville ___ je suis né est petite.", "right": "où", "wrong": "ou", "tr": "Doğduğum şehir küçük." },
+        { "text": "Tu viens ce soir ___ demain ?", "right": "ou", "wrong": "où", "tr": "Bu akşam mı geliyorsun yoksa yarın mı?" },
+        { "text": "Je ne sais pas ___ j'ai mis mes clés.", "right": "où", "wrong": "ou", "tr": "Anahtarlarımı nereye koyduğumu bilmiyorum." }
+      ]
+    },
+    {
+      "id": "fr:a-a",
+      "language": "fr",
+      "words": ["a", "à"],
+      "meanings": ["(avoir) var, sahip; yardımcı fiil", "-e, -de (edat)"],
+      "distinction": "Aksansız a, avoir fiilinin il/elle biçimidir (elle a un chat, il a mangé); yerine avait konabilir. Aksanlı à bir edattır: yön, yer ya da aitlik bildirir (je vais à Paris, c'est à moi).",
+      "example": ["Elle a un chien.", "Je vais à Paris."],
+      "drills": [
+        { "text": "Elle ___ deux chats et un chien.", "right": "a", "wrong": "à", "tr": "İki kedisi ve bir köpeği var." },
+        { "text": "Je vais ___ la plage cet après-midi.", "right": "à", "wrong": "a", "tr": "Bu öğleden sonra plaja gidiyorum." },
+        { "text": "Il ___ oublié son parapluie.", "right": "a", "wrong": "à", "tr": "Şemsiyesini unuttu." },
+        { "text": "Nous habitons ___ Bordeaux.", "right": "à", "wrong": "a", "tr": "Bordeaux'da oturuyoruz." },
+        { "text": "Ce cadeau est ___ toi.", "right": "à", "wrong": "a", "tr": "Bu hediye senin." }
+      ]
+    },
+    {
+      "id": "fr:son-sont",
+      "language": "fr",
+      "words": ["son", "sont"],
+      "meanings": ["onun (iyelik)", "(être) -dırlar"],
+      "distinction": "Son iyelik sıfatıdır ve bir isimden önce gelir (son vélo, son portefeuille). Sont, être fiilinin ils/elles biçimidir (ils sont fatigués); yerine étaient konabilir.",
+      "example": ["Il prend son vélo.", "Ils sont en retard."],
+      "drills": [
+        { "text": "Ils ___ très fatigués ce soir.", "right": "sont", "wrong": "son", "tr": "Bu akşam çok yorgunlar." },
+        { "text": "Elle a perdu ___ portefeuille dans le métro.", "right": "son", "wrong": "sont", "tr": "Cüzdanını metroda kaybetti." },
+        { "text": "Mes amis ___ en vacances en Grèce.", "right": "sont", "wrong": "son", "tr": "Arkadaşlarım Yunanistan'da tatilde." },
+        { "text": "Il prend ___ vélo pour aller au travail.", "right": "son", "wrong": "sont", "tr": "İşe gitmek için bisikletine biniyor." },
+        { "text": "Où ___ les toilettes, s'il vous plaît ?", "right": "sont", "wrong": "son", "tr": "Tuvaletler nerede acaba?" }
+      ]
+    }
+  ]
+}

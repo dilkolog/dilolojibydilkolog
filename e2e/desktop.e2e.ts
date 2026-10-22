@@ -1,4 +1,5 @@
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
+import { numberWords } from '../src/engine/numbers'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
 import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
@@ -302,6 +303,43 @@ test('verb lab: forms put in the review queue come back on Today and in the revi
   await expect(page.locator('.game-card', { hasText: 'Çekim antrenmanı' })).toHaveCount(0)
   await page.locator('.game-card', { hasText: 'Fiil laboratuvarı' }).click()
   await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
+})
+
+test('numbers and times: see the digits, write the words; a wrong answer shows how it is said', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Sayılar ve saatler' }).click()
+  await expect(page.getByRole('heading', { name: 'Sayılar ve saatler' })).toBeVisible()
+  await page.getByRole('button', { name: 'Gör ve yaz' }).click()
+  await page.getByRole('button', { name: '0–100' }).click()
+  await page.getByRole('button', { name: /tura başla/ }).click()
+  // The first: written right. The second: wrong, and the words are shown.
+  const first = Number(await page.locator('.numbers-digits').textContent())
+  await page.getByLabel('Kelimeyle cevap').fill(numberWords('fr', first))
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.answer-input.is-correct')).toBeVisible()
+  await page.keyboard.press('Enter')
+  await expect(page.getByText('2 / 10')).toBeVisible()
+  const second = Number(await page.locator('.numbers-digits').textContent())
+  await page.getByLabel('Kelimeyle cevap').fill('zzz')
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.numbers-answer')).toContainText(`${second} = ${numberWords('fr', second)}`)
+  expect(await overflow(page)).toEqual([])
+})
+
+test('twins: a sentence only one of the pair fits; the answer gives the rule and the Turkish; one pair alone', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'İkizler Arenası' }).click()
+  await page.getByRole('button', { name: 'savoir / connaître' }).click()
+  await page.getByRole('button', { name: /tura başla/ }).click()
+  await expect(page.locator('.prompt-label')).toContainText('savoir / connaître')
+  await expect(page.locator('.grammar-sentence')).toContainText('___')
+  await page.keyboard.press('1')
+  await expect(page.getByRole('status')).toContainText(/Savoir/)
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.game-timer')).toContainText('2 /')
+  expect(await overflow(page)).toEqual([])
 })
 
 test('exam-style tasks: a text and three questions to read, a listening mode that hides the text until the answers', async ({ page }) => {

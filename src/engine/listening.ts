@@ -56,6 +56,10 @@ export const MINIMAL_PAIRS: Record<TargetLanguage, MinimalPair[]> = {
     p('bus', 'otobüs', 'buzz', 'vızıltı', 's / z'),
     p('pack', 'paket', 'back', 'arka', 'p / b'),
     p('coat', 'ceket', 'caught', 'yakaladı', 'əʊ / ɔː'),
+    p('thirteen', 'on üç', 'thirty', 'otuz', '-teen (vurgu sonda) / -ty (vurgu başta)'),
+    p('fourteen', 'on dört', 'forty', 'kırk', '-teen (vurgu sonda) / -ty (vurgu başta)'),
+    p('fifteen', 'on beş', 'fifty', 'elli', '-teen (vurgu sonda) / -ty (vurgu başta)'),
+    p('sixteen', 'on altı', 'sixty', 'altmış', '-teen (vurgu sonda) / -ty (vurgu başta)'),
   ],
   fr: [
     p('dessus', 'üstünde', 'dessous', 'altında', 'u / ou'),

@@ -70,6 +70,9 @@ const savedView = (): View => {
  * places outside the app to practise, listen, read and prepare an exam. A lesson leads to its
  * questions; a tense to the verb lab.
  */
+/** The lessons on numbers, times and dates: they lead to the numbers game. */
+const NUMBER_LESSONS = new Set(['basics_fr_nombres', 'basics_es_numeros_hora', 'basics_en_numbers_time'])
+
 export function GuideScreen({
   language,
   initialLesson,
@@ -80,6 +83,7 @@ export function GuideScreen({
   onGoal,
   onPractice,
   onVerbs,
+  onNumbers,
   onChanged,
 }: {
   language: TargetLanguage
@@ -96,6 +100,8 @@ export function GuideScreen({
   onGoal?: (lessons: number) => void
   onPractice: (topic: string) => void
   onVerbs: (tense?: string) => void
+  /** Opens the numbers game (from a lesson on numbers and times). */
+  onNumbers?: () => void
   onChanged?: () => void
 }) {
   const [tab, setTab] = useState<Tab>(initialTense ? 'tenses' : 'topics')
@@ -340,6 +346,7 @@ export function GuideScreen({
         }}
         onPractice={() => onPractice(practice)}
         onVerbs={() => onVerbs(targetTense)}
+        onNumbers={onNumbers}
       />
     )
   }
@@ -823,6 +830,7 @@ function LessonView({
   earned,
   onPractice,
   onVerbs,
+  onNumbers,
 }: {
   lesson: TopicLesson
   language: TargetLanguage
@@ -847,6 +855,7 @@ function LessonView({
   earned: number
   onPractice: () => void
   onVerbs: () => void
+  onNumbers?: () => void
 }) {
   // Picked once a visit: the questions do not change while the lesson is read.
   const check = useMemo(() => checkFor(lesson, Math.random, undefined, (items) => rankByNeed(items, loadQuestionLog(language), language)), [lesson, language])
@@ -1063,6 +1072,11 @@ function LessonView({
         {questions > 0 && (
           <button type="button" className="btn btn-lg" onClick={onPractice}>
             Bu konuda {questions} soru çöz
+          </button>
+        )}
+        {onNumbers && NUMBER_LESSONS.has(lesson.topic) && (
+          <button type="button" className="btn btn-quiet" onClick={onNumbers}>
+            Sayılar ve saatler oyununda çalış
           </button>
         )}
         {verbTopic && language !== 'en' && (

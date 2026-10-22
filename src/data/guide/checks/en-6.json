@@ -1,0 +1,140 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "lessons": {
+    "basics_en_numbers_time": [
+      {
+        "prompt": "13 sayısı nasıl yazılır?",
+        "options": [
+          "thirteen",
+          "thirty",
+          "threeteen",
+          "thirdteen"
+        ],
+        "answer": 0,
+        "why": "13 = thirteen; thirty 30’dur. 'Three' burada 'thir-' olur."
+      },
+      {
+        "prompt": "Duyduğun sayıda vurgu baştaydı: “FIF-ty”. Hangi sayı?",
+        "options": [
+          "50",
+          "15",
+          "5",
+          "500"
+        ],
+        "answer": 0,
+        "why": "-ty ile biten onlarda vurgu baştadır: FIFty = 50. Fifteen’de vurgu sondadır."
+      },
+      {
+        "prompt": "“Twenty to nine” saat kaç demek?",
+        "options": [
+          "8:40",
+          "9:20",
+          "8:20",
+          "9:40"
+        ],
+        "answer": 0,
+        "why": "to = var: dokuza yirmi var, yani 8:40."
+      },
+      {
+        "prompt": "“Ten past six” saat kaç demek?",
+        "options": [
+          "6:10",
+          "5:50",
+          "6:50",
+          "10:06"
+        ],
+        "answer": 0,
+        "why": "past = geçiyor: altıyı on geçiyor, yani 6:10."
+      },
+      {
+        "prompt": "7:30 nasıl söylenir?",
+        "options": [
+          "half past seven",
+          "half past eight",
+          "half to seven",
+          "seven half"
+        ],
+        "answer": 0,
+        "why": "30. dakikada half past + o saat: half past seven (yedi buçuk)."
+      },
+      {
+        "prompt": "Doğru yazım hangisi? (250)",
+        "options": [
+          "two hundred and fifty",
+          "two hundreds and fifty",
+          "two hundred fifties",
+          "two hundreds fifty"
+        ],
+        "answer": 0,
+        "why": "Hundred sayıdan sonra çoğul almaz: two hundred and fifty."
+      },
+      {
+        "prompt": "“Doğum günüm 3 Mayıs’ta.” → My birthday is on the ___ of May.",
+        "options": [
+          "third",
+          "three",
+          "thirdth",
+          "threeth"
+        ],
+        "answer": 0,
+        "why": "Tarihte gün sıra sayısıyla söylenir: the third of May."
+      },
+      {
+        "prompt": "12. gün: the ___ of June",
+        "options": [
+          "twelfth",
+          "twelveth",
+          "twelvth",
+          "twelve"
+        ],
+        "answer": 0,
+        "why": "Twelve’in sıra sayısı twelfth’tir: v, f olur ve e düşer."
+      },
+      {
+        "prompt": "Hangi edat doğru? I was born ___ 2001.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "of"
+        ],
+        "answer": 0,
+        "why": "Yıllarda ve aylarda in kullanılır: in 2001, in May."
+      },
+      {
+        "prompt": "Hangi edat doğru? The meeting is ___ 10 o'clock.",
+        "options": [
+          "at",
+          "in",
+          "on",
+          "by"
+        ],
+        "answer": 0,
+        "why": "Saatlerde at kullanılır: at 10 o’clock."
+      },
+      {
+        "prompt": "“3.5” İngilizcede nasıl okunur?",
+        "options": [
+          "three point five",
+          "three comma five",
+          "three and five",
+          "three half five"
+        ],
+        "answer": 0,
+        "why": "İngilizcede ondalık ayırıcı noktadır ve point diye okunur: three point five."
+      },
+      {
+        "prompt": "2024 yılı nasıl okunabilir?",
+        "options": [
+          "twenty twenty-four",
+          "twenty hundred twenty-four",
+          "two zero two four",
+          "twenty and twenty-four"
+        ],
+        "answer": 0,
+        "why": "2010’dan sonraki yıllar çoğunlukla ikiye bölünür: twenty twenty-four (ya da two thousand and twenty-four)."
+      }
+    ]
+  }
+}
