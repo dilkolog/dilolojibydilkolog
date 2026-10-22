@@ -1,0 +1,566 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "fr-cafe",
+      "level": "A1",
+      "title": "Kafede sipariş",
+      "scene": "Paris'te bir kafedesin; garson masana geliyor.",
+      "turns": [
+        {
+          "say": "Bonjour ! Qu'est-ce que je vous sers ?",
+          "tr": "Merhaba! Size ne getireyim?",
+          "options": ["Un café crème, s'il vous plaît.", "Je suis un café, merci.", "Oui, je vous sers aussi."],
+          "answer": 0,
+          "why": "Sipariş verirken 'Un …, s'il vous plaît' kalıbı kullanılır. 'Je suis un café' 'Ben bir kahveyim' demektir.",
+          "replyTr": "Bir sütlü kahve, lütfen."
+        },
+        {
+          "say": "Très bien. Et avec ceci ?",
+          "tr": "Çok güzel. Yanında başka bir şey?",
+          "options": ["Oui, avec ceci.", "Un croissant aussi, s'il vous plaît.", "Je suis avec mon ami."],
+          "answer": 1,
+          "why": "'Et avec ceci ?' 'Yanında başka bir şey?' demektir; bir şey daha istemek için '… aussi, s'il vous plaît' denir. 'Oui, avec ceci' yalnızca soruyu tekrarlar, bir şey istemez.",
+          "replyTr": "Bir de kruvasan, lütfen."
+        },
+        {
+          "say": "C'est noté. Vous voulez de l'eau aussi ?",
+          "tr": "Not ettim. Su da ister misiniz?",
+          "options": ["Oui, je suis soif.", "Non, il fait beau aujourd'hui.", "Oui, une carafe d'eau, s'il vous plaît."],
+          "answer": 2,
+          "why": "Kafede ücretsiz musluk suyu 'une carafe d'eau' diye istenir. 'Je suis soif' yanlıştır: Fransızcada susamak 'avoir soif' ile söylenir (j'ai soif).",
+          "replyTr": "Evet, bir sürahi su, lütfen."
+        },
+        {
+          "say": "Je vous apporte ça tout de suite.",
+          "tr": "Hemen getiriyorum.",
+          "options": ["Merci beaucoup !", "De rien, monsieur.", "Bon appétit à vous !"],
+          "answer": 0,
+          "why": "Garson sana hizmet ettiği için 'Merci beaucoup' dersin. 'De rien' 'bir şey değil' demektir ve teşekküre verilen cevaptır; burada kimse sana teşekkür etmedi.",
+          "replyTr": "Çok teşekkürler!"
+        },
+        {
+          "say": "Vous désirez autre chose ?",
+          "tr": "Başka bir şey ister misiniz?",
+          "options": ["Oui, merci, je suis plein.", "Non merci. L'addition, s'il vous plaît.", "Non, je n'ai rien désiré."],
+          "answer": 1,
+          "why": "Hesabı istemek için 'L'addition, s'il vous plaît' denir. 'Je suis plein' Türkçedeki 'doydum' değildir, kulağa tuhaf gelir; doğrusu 'J'ai assez mangé' olurdu.",
+          "replyTr": "Hayır, teşekkürler. Hesap, lütfen."
+        },
+        {
+          "say": "Voilà. Ça fait six euros cinquante.",
+          "tr": "Buyurun. Altı buçuk avro tutuyor.",
+          "options": ["Ça fait combien de temps ?", "Ça coûte combien, s'il vous plaît ?", "Je peux payer par carte ?"],
+          "answer": 2,
+          "why": "Kartla ödemek için 'Je peux payer par carte ?' diye sorulur. 'Ça fait combien de temps ?' 'Ne kadar zaman oldu?' demektir; fiyat zaten söylendi.",
+          "replyTr": "Kartla ödeyebilir miyim?"
+        }
+      ]
+    },
+    {
+      "id": "fr-chemin",
+      "level": "A1",
+      "title": "Yol sormak",
+      "scene": "Lyon'da elinde haritayla duruyorsun; yoldan geçen biri sana yardım etmek istiyor.",
+      "turns": [
+        {
+          "say": "Bonjour ! Vous cherchez quelque chose ?",
+          "tr": "Merhaba! Bir şey mi arıyorsunuz?",
+          "options": ["Oui, je cherche la station de métro, s'il vous plaît.", "Oui, je trouve le métro.", "Non, je cherche."],
+          "answer": 0,
+          "why": "'Je cherche …' 'arıyorum' demektir. 'Je trouve' ise 'buluyorum' anlamına gelir; aradığını söylemiş olmazsın.",
+          "replyTr": "Evet, metro istasyonunu arıyorum."
+        },
+        {
+          "say": "Le métro ? C'est tout près. Vous allez tout droit, puis vous tournez à gauche.",
+          "tr": "Metro mu? Çok yakın. Dümdüz gidiyorsunuz, sonra sola dönüyorsunuz.",
+          "options": ["Je tourne à droite, c'est ça ?", "Tout droit, puis à gauche. D'accord.", "Je vais tout droit à gauche."],
+          "answer": 1,
+          "why": "Tarifi doğru tekrarlamak anladığını gösterir. İlk seçenekteki 'à droite' 'sağa' demektir; sana 'à gauche' (sola) denmişti.",
+          "replyTr": "Dümdüz, sonra sola. Tamam."
+        },
+        {
+          "say": "Voilà. Ensuite, la station est à côté de la pharmacie.",
+          "tr": "İşte. Sonra istasyon eczanenin yanında.",
+          "options": ["La pharmacie est malade ?", "Je n'ai pas besoin de médicaments.", "D'accord. C'est loin à pied ?"],
+          "answer": 2,
+          "why": "Mesafeyi sormak için 'C'est loin à pied ?' (Yürüyerek uzak mı?) denir. Eczane yalnızca yer tarifi için anılıyor; ilaçtan söz etmek konuyu kaçırır.",
+          "replyTr": "Tamam. Yürüyerek uzak mı?"
+        },
+        {
+          "say": "Non, c'est à cinq minutes à pied.",
+          "tr": "Hayır, yürüyerek beş dakika.",
+          "options": ["Vous avez cinq minutes ?", "Parfait ! C'est quelle ligne pour la gare ?", "Alors c'est très loin."],
+          "answer": 1,
+          "why": "Yakın olduğunu öğrenince sonraki bilgiyi (hangi hat) sormak konuşmayı sürdürür. 'Alors c'est très loin' 'O zaman çok uzak' demektir; söylenenle çelişir.",
+          "replyTr": "Harika! Gara hangi hat gidiyor?"
+        },
+        {
+          "say": "Pour la gare Part-Dieu, prenez la ligne B.",
+          "tr": "Part-Dieu garı için B hattına binin.",
+          "options": ["La ligne B. Merci beaucoup, monsieur !", "Je prends le bus B, merci.", "Ligne B ? Non merci, je préfère."],
+          "answer": 0,
+          "why": "Hattı tekrar edip teşekkür etmek doğru kapanıştır. 'Le bus B' yanlıştır: burada 'ligne B' bir metro hattıdır, otobüs değil.",
+          "replyTr": "B hattı. Çok teşekkürler, beyefendi!"
+        },
+        {
+          "say": "Je vous en prie. Bonne journée !",
+          "tr": "Rica ederim. İyi günler!",
+          "options": ["Bonne nuit !", "Merci, vous aussi !", "De rien, bonne journée."],
+          "answer": 1,
+          "why": "'Bonne journée !' dileğine 'Merci, vous aussi !' ile karşılık verilir. 'Bonne nuit' yalnızca yatmadan önce söylenir; gündüz yanlıştır.",
+          "replyTr": "Teşekkürler, size de!"
+        }
+      ]
+    },
+    {
+      "id": "fr-voisin",
+      "level": "A1",
+      "title": "Yeni komşu",
+      "scene": "Yeni taşındığın apartmanın merdiveninde bir komşuyla karşılaşıyorsun.",
+      "turns": [
+        {
+          "say": "Bonjour ! C'est vous qui venez d'arriver au troisième étage ?",
+          "tr": "Merhaba! Üçüncü kata yeni taşınan siz misiniz?",
+          "options": ["Oui, c'est moi. Je m'appelle Deniz.", "Oui, je viens d'arriver à la gare.", "Non, j'ai trois étages."],
+          "answer": 0,
+          "why": "Kendini tanıtmak için 'Je m'appelle …' denir. 'Je viens d'arriver à la gare' 'Gara yeni geldim' demektir; soru apartmanla ilgili.",
+          "replyTr": "Evet, benim. Adım Deniz."
+        },
+        {
+          "say": "Enchantée ! Moi, c'est Claire, j'habite juste en face. Vous venez d'où ?",
+          "tr": "Memnun oldum! Ben Claire, tam karşıda oturuyorum. Nerelisiniz?",
+          "options": ["Je vais en Turquie.", "Je viens de Turquie, d'Istanbul.", "Je viens de la boulangerie."],
+          "answer": 1,
+          "why": "Nereli olduğunu söylemek için 'Je viens de …' kullanılır. 'Je vais en Turquie' 'Türkiye'ye gidiyorum' demektir, nereli olduğunu söylemez.",
+          "replyTr": "Türkiye'den, İstanbul'dan geliyorum."
+        },
+        {
+          "say": "Oh, Istanbul ! C'est une très belle ville. Vous êtes en France pour le travail ?",
+          "tr": "Ah, İstanbul! Çok güzel bir şehir. Fransa'da iş için mi bulunuyorsunuz?",
+          "options": ["Oui, je travaille à la France.", "Non, je suis en France pour le travail.", "Non, pour mes études. J'apprends le français."],
+          "answer": 2,
+          "why": "'Pour mes études' ile neden geldiğini açıkça söylersin. 'Je travaille à la France' yanlıştır: dişil ülke adlarıyla 'en France' denir; ikinci seçenek ise 'hayır' deyip 'evet' anlamına gelen bir şey söylüyor.",
+          "replyTr": "Hayır, okumak için. Fransızca öğreniyorum."
+        },
+        {
+          "say": "Bravo, vous parlez déjà bien ! Si vous avez besoin de quelque chose, n'hésitez pas.",
+          "tr": "Bravo, şimdiden iyi konuşuyorsunuz! Bir şeye ihtiyacınız olursa çekinmeyin.",
+          "options": ["Merci, vous aussi !", "C'est très gentil, merci !", "Bravo à vous aussi !"],
+          "answer": 1,
+          "why": "Bir yardım teklifine 'C'est très gentil' (Çok naziksiniz) diye teşekkür edilir. 'Merci, vous aussi !' bir dileğe (iyi günler gibi) verilen karşılıktır; burada dilek yok.",
+          "replyTr": "Çok naziksiniz, teşekkürler!"
+        },
+        {
+          "say": "Au fait, il y a un marché le samedi matin, sur la place.",
+          "tr": "Bu arada, cumartesi sabahları meydanda bir pazar kuruluyor.",
+          "options": ["Super ! À quelle heure, à peu près ?", "Je n'aime pas le samedi soir.", "Ah, le marché est fermé le samedi."],
+          "answer": 0,
+          "why": "Saati sormak için 'À quelle heure ?' denir. 'Le marché est fermé le samedi' tam tersini, pazarın cumartesi kapalı olduğunu söyler.",
+          "replyTr": "Süper! Aşağı yukarı saat kaçta?"
+        },
+        {
+          "say": "De huit heures à midi. Bon, je vous laisse. Bonne journée !",
+          "tr": "Sekizden öğlene kadar. Neyse, sizi daha fazla tutmayayım. İyi günler!",
+          "options": ["Salut, bonne nuit !", "Bonjour, enchanté !", "Merci, bonne journée ! À bientôt !"],
+          "answer": 2,
+          "why": "Ayrılırken 'Bonne journée ! À bientôt !' denir. 'Bonjour' yalnızca selamlaşırken kullanılır; 'Salut, bonne nuit' ise hem fazla samimi hem de gündüz yanlıştır.",
+          "replyTr": "Teşekkürler, iyi günler! Görüşmek üzere!"
+        }
+      ]
+    },
+    {
+      "id": "fr-hotel",
+      "level": "A2",
+      "title": "Otele giriş",
+      "scene": "Nice'te rezervasyon yaptığın otelin resepsiyonundasın.",
+      "turns": [
+        {
+          "say": "Bonsoir, bienvenue ! Vous avez une réservation ?",
+          "tr": "İyi akşamlar, hoş geldiniz! Rezervasyonunuz var mı?",
+          "options": ["Oui, j'ai réservé une chambre au nom de Yılmaz.", "Oui, je réserve une table pour deux.", "Non, j'ai une réservation."],
+          "answer": 0,
+          "why": "'Au nom de …' 'adına' demektir ve rezervasyonun kimin adına olduğunu söyler. 'Une table' restoran masasıdır, otel odası değil.",
+          "replyTr": "Evet, Yılmaz adına bir oda ayırttım."
+        },
+        {
+          "say": "Yılmaz… Vous pouvez l'épeler, s'il vous plaît ?",
+          "tr": "Yılmaz… Harf harf söyleyebilir misiniz, lütfen?",
+          "options": ["Je l'ai épelé hier.", "Bien sûr : i grec, i, l, m, a, z.", "Oui, Yılmaz, c'est mon prénom."],
+          "answer": 1,
+          "why": "'Épeler' 'harf harf söylemek' demektir; Fransızcada Y harfi 'i grec' diye okunur. 'Je l'ai épelé hier' 'Dün heceledim' demektir, isteği yerine getirmez.",
+          "replyTr": "Tabii: Y, I, L, M, A, Z."
+        },
+        {
+          "say": "Merci. Alors, une chambre double pour trois nuits, du 12 au 15 mai. C'est bien ça ?",
+          "tr": "Teşekkürler. Evet, 12-15 Mayıs arası üç gece için çift kişilik bir oda. Doğru mu?",
+          "options": ["Oui, quatre nuits, c'est parfait.", "Non, je ne suis pas une chambre double.", "Oui, c'est ça. Le petit-déjeuner est compris ?"],
+          "answer": 2,
+          "why": "Bilgiyi onaylayıp kahvaltıyı sormak doğal bir devamdır. 'Quatre nuits' yanlıştır: 12'sinden 15'ine üç gece eder.",
+          "replyTr": "Evet, doğru. Kahvaltı dahil mi?"
+        },
+        {
+          "say": "Oui, il est servi de 7 h à 10 h, au rez-de-chaussée.",
+          "tr": "Evet, sabah 7'den 10'a kadar zemin katta veriliyor.",
+          "options": ["Très bien. Et quel est le code du wifi ?", "Le rez-de-chaussée, c'est au dernier étage ?", "Je préfère dormir au petit-déjeuner."],
+          "answer": 0,
+          "why": "Kahvaltı konusu kapanınca başka bir bilgi (wifi şifresi) sormak doğaldır. 'Rez-de-chaussée' zemin kat demektir, en üst kat değil.",
+          "replyTr": "Çok iyi. Peki wifi şifresi ne?"
+        },
+        {
+          "say": "Il est écrit sur votre carte. Voici votre clé : chambre 204, au deuxième étage.",
+          "tr": "Kartınızın üzerinde yazıyor. Buyurun anahtarınız: 204 numaralı oda, ikinci katta.",
+          "options": ["La chambre 402, au quatrième ?", "Merci. Il y a un ascenseur ?", "Merci, je monte au premier étage."],
+          "answer": 1,
+          "why": "Bavulla ikinci kata çıkmadan önce asansör sormak yerindedir. 'Premier étage' birinci kattır; oda ikinci katta ('deuxième étage').",
+          "replyTr": "Teşekkürler. Asansör var mı?"
+        },
+        {
+          "say": "Oui, juste à droite. Je vous souhaite un bon séjour !",
+          "tr": "Evet, hemen sağda. İyi konaklamalar dilerim!",
+          "options": ["Merci, bonne soirée !", "Je vous souhaite aussi un bon séjour !", "Merci, au séjour !"],
+          "answer": 0,
+          "why": "Dileğe 'Merci, bonne soirée !' diye teşekkür edilir. Resepsiyon görevlisi otelde konaklamadığı için ona 'bon séjour' dilemek yersiz olur.",
+          "replyTr": "Teşekkürler, iyi akşamlar!"
+        }
+      ]
+    },
+    {
+      "id": "fr-pharmacie",
+      "level": "A2",
+      "title": "Eczanede",
+      "scene": "Boğazın ağrıyor; Bordeaux'da bir eczaneye giriyorsun.",
+      "turns": [
+        {
+          "say": "Bonjour, qu'est-ce qui ne va pas ?",
+          "tr": "Merhaba, nedir sorununuz?",
+          "options": ["J'ai mal à la gorge depuis deux jours.", "Je suis mal à la gorge.", "Ça va bien, merci."],
+          "answer": 0,
+          "why": "Ağrıyı anlatmak için 'avoir mal à …' kullanılır: 'J'ai mal à la gorge'. 'Je suis mal' yanlış bir yapıdır; bu kalıp 'avoir' fiiliyle kurulur.",
+          "replyTr": "İki gündür boğazım ağrıyor."
+        },
+        {
+          "say": "Vous avez de la fièvre ?",
+          "tr": "Ateşiniz var mı?",
+          "options": ["Non, depuis demain.", "Non, pas de fièvre. Mais je tousse un peu.", "Oui, je suis chaud."],
+          "answer": 1,
+          "why": "'Pas de fièvre' ateşin olmadığını söyler, 'je tousse' (öksürüyorum) da faydalı bir ek bilgidir. 'Je suis chaud' ateşli olmak demek değildir; konuşma dilinde 'çok hevesliyim' anlamına gelir.",
+          "replyTr": "Hayır, ateşim yok. Ama biraz öksürüyorum."
+        },
+        {
+          "say": "D'accord. Vous prenez déjà des médicaments ? Vous avez des allergies ?",
+          "tr": "Tamam. Şu anda ilaç kullanıyor musunuz? Alerjiniz var mı?",
+          "options": ["Oui, je suis allergique au médecin.", "Je prends des médicaments demain.", "Non, aucun médicament, et je ne suis allergique à rien."],
+          "answer": 2,
+          "why": "İki soruya da tek cümlede cevap verir: 'aucun médicament' ve 'allergique à rien'. 'Je prends des médicaments demain' tutarsızdır; soru şu anda kullandığın ilaçlarla ilgili.",
+          "replyTr": "Hayır, hiç ilaç kullanmıyorum ve hiçbir şeye alerjim yok."
+        },
+        {
+          "say": "Alors je vous conseille ces pastilles. Une pastille toutes les trois heures, maximum six par jour.",
+          "tr": "O zaman size bu pastilleri öneririm. Üç saatte bir pastil, günde en fazla altı tane.",
+          "options": ["Six pastilles toutes les trois heures, d'accord.", "Une toutes les trois heures, six maximum. C'est noté.", "Trois pastilles par heure, très bien."],
+          "answer": 1,
+          "why": "Doğru cevap dozu doğru tekrarlar. İlk seçenek dozu karıştırır: üç saatte bir altı değil, tek pastil; altı, günlük üst sınırdır.",
+          "replyTr": "Üç saatte bir tane, en fazla altı. Not ettim."
+        },
+        {
+          "say": "Et si ça ne va pas mieux dans trois jours, il faut consulter un médecin.",
+          "tr": "Üç gün içinde düzelmezse bir doktora görünmeniz gerekir.",
+          "options": ["Entendu. Je vous dois combien ?", "D'accord, j'ai consulté un médecin dans trois jours.", "Ça va mieux, merci, je ne paie pas."],
+          "answer": 0,
+          "why": "'Entendu' 'anlaşıldı' demektir; ardından fiyatı sormak doğaldır. İkinci seçenekteki geçmiş zaman ('j'ai consulté') gelecekten söz eden 'dans trois jours' ile çelişir.",
+          "replyTr": "Anlaşıldı. Borcum ne kadar?"
+        },
+        {
+          "say": "Ça fait sept euros quarante. Vous voulez un sac ?",
+          "tr": "Yedi avro kırk tutuyor. Poşet ister misiniz?",
+          "options": ["Oui, je veux un sac de sept euros.", "Non merci, je n'ai pas soif.", "Non merci, ça ira. Voilà."],
+          "answer": 2,
+          "why": "'Ça ira' 'gerek yok, böyle olur' demektir; parayı uzatırken 'Voilà' denir. 'Je n'ai pas soif' 'Susamadım' demektir; poşet sorusuyla ilgisi yok.",
+          "replyTr": "Hayır teşekkürler, gerek yok. Buyurun."
+        }
+      ]
+    },
+    {
+      "id": "fr-boutique",
+      "level": "A2",
+      "title": "Mağazada ceket",
+      "scene": "Toulouse'da bir giyim mağazasındasın; vitrindeki bir ceketi beğendin.",
+      "turns": [
+        {
+          "say": "Bonjour ! Je peux vous aider ?",
+          "tr": "Merhaba! Yardımcı olabilir miyim?",
+          "options": ["Oui, je vous aide aussi.", "Non, je cherche quelque chose.", "Oui, je cherche cette veste en taille M."],
+          "answer": 2,
+          "why": "Yardım teklifine ne aradığını söyleyerek cevap verirsin: 'Je cherche … en taille M'. 'Non, je cherche quelque chose' çelişkilidir: yardımı geri çevirip bir şey aradığını söylüyor.",
+          "replyTr": "Evet, bu ceketin M bedenini arıyorum."
+        },
+        {
+          "say": "Voilà, la M. Les cabines d'essayage sont au fond, à gauche.",
+          "tr": "Buyurun, M beden. Deneme kabinleri en arkada, solda.",
+          "options": ["Merci, je vais l'essayer.", "Merci, je vais l'acheter dans la cabine.", "Je vais essayer de la cabine."],
+          "answer": 0,
+          "why": "Bir giysiyi denemek 'essayer' ile söylenir: 'je vais l'essayer'. 'Essayer de …' ise 'bir şey yapmaya çalışmak' demektir; 'essayer de la cabine' anlamsız olur.",
+          "replyTr": "Teşekkürler, deneyeceğim."
+        },
+        {
+          "say": "Alors, elle vous va ?",
+          "tr": "Eee, üzerinize oldu mu?",
+          "options": ["Non, elle va bien, merci.", "Elle est un peu petite. Vous l'avez en L ?", "Oui, elle va à la cabine."],
+          "answer": 1,
+          "why": "'Elle vous va ?' 'Üzerinize oldu mu?' demektir; küçük geldiyse bir büyük bedeni sorarsın. 'Elle va bien' bir kişinin 'iyi olduğunu' söyler, giysinin uyduğunu değil.",
+          "replyTr": "Biraz küçük. L bedeni var mı?"
+        },
+        {
+          "say": "Oui, tenez, la voilà en L. Et celle-ci ?",
+          "tr": "Var, buyurun, işte L bedeni. Bu nasıl?",
+          "options": ["Elle est trop petite, alors je prends la M.", "Je la prends en photo.", "C'est parfait, je la prends. Elle coûte combien ?"],
+          "answer": 2,
+          "why": "Alışverişte 'je la prends' 'alıyorum' demektir; ardından fiyatı sorarsın. İlk seçenek mantıksız: L küçük geliyorsa M daha da küçük olur.",
+          "replyTr": "Mükemmel, alıyorum. Ne kadar?"
+        },
+        {
+          "say": "Elle est à 89 euros, mais aujourd'hui, il y a moins vingt pour cent.",
+          "tr": "89 avro, ama bugün yüzde yirmi indirim var.",
+          "options": ["Super ! Alors elle fait environ 71 euros ?", "Vingt pour cent de plus ? C'est cher !", "Moins vingt degrés ? Il fait froid !"],
+          "answer": 0,
+          "why": "'Moins vingt pour cent' yüzde yirmi indirimdir; 89 avronun yüzde yirmi eksiği yaklaşık 71 avro eder. 'De plus' 'fazlası' demektir, indirim değil.",
+          "replyTr": "Süper! O zaman yaklaşık 71 avro mu oluyor?"
+        },
+        {
+          "say": "Exactement, 71,20 euros. Vous payez comment ?",
+          "tr": "Aynen, 71,20 avro. Nasıl ödeyeceksiniz?",
+          "options": ["Je paie demain.", "Par carte, s'il vous plaît.", "Ça coûte combien, s'il vous plaît ?"],
+          "answer": 1,
+          "why": "Ödeme yöntemi 'par carte' (kartla) ya da 'en espèces' (nakit) diye söylenir. 'Je paie demain' 'Yarın öderim' demektir; mağazada hemen ödeme beklenir.",
+          "replyTr": "Kartla, lütfen."
+        }
+      ]
+    },
+    {
+      "id": "fr-gare",
+      "level": "A2",
+      "title": "Garda tren bileti",
+      "scene": "Paris'te Gare de Lyon'daki bilet gişesindesin; Marsilya'ya gitmek istiyorsun.",
+      "turns": [
+        {
+          "say": "Bonjour, c'est pour quelle destination ?",
+          "tr": "Merhaba, nereye gidiyorsunuz?",
+          "options": ["Un aller simple pour Marseille, s'il vous plaît.", "Je viens de Marseille.", "Pour la destination, merci."],
+          "answer": 0,
+          "why": "'Aller simple' tek yön bilettir; 'pour Marseille' nereye gittiğini söyler. 'Je viens de Marseille' 'Marsilya'dan geliyorum' demektir, gideceğin yeri değil.",
+          "replyTr": "Marsilya'ya tek yön bir bilet, lütfen."
+        },
+        {
+          "say": "Pour quand ?",
+          "tr": "Ne zaman için?",
+          "options": ["Pour deux personnes.", "Pour demain matin, vers neuf heures.", "Depuis hier matin."],
+          "answer": 1,
+          "why": "'Pour quand ?' zamanı sorar; gün ve saatle cevap verilir. 'Pour deux personnes' kaç kişi olduğunuzu söyler, zamanı değil.",
+          "replyTr": "Yarın sabah için, saat dokuz civarı."
+        },
+        {
+          "say": "J'ai un TGV à 9 h 07, arrivée à 12 h 22. Première ou seconde classe ?",
+          "tr": "9.07'de bir TGV var, 12.22'de varıyor. Birinci sınıf mı, ikinci sınıf mı?",
+          "options": ["La classe est à quelle heure ?", "À 12 h 22, s'il vous plaît.", "Seconde classe, c'est moins cher, non ?"],
+          "answer": 2,
+          "why": "Soru sınıf seçimiyle ilgili; 'seconde classe' ikinci sınıftır. '12 h 22' varış saatidir, sınıf sorusunun cevabı değildir.",
+          "replyTr": "İkinci sınıf, daha ucuz, değil mi?"
+        },
+        {
+          "say": "Oui. Ça fait 65 euros. Vous avez une carte de réduction ?",
+          "tr": "Evet. 65 avro tutuyor. İndirim kartınız var mı?",
+          "options": ["Non, je n'en ai pas.", "Oui, j'ai une carte de crédit.", "Non, je n'ai pas de réduction de carte."],
+          "answer": 0,
+          "why": "'Je n'en ai pas' 'yok' demenin doğal yoludur ('en' indirim kartının yerini tutar). 'Carte de crédit' kredi kartıdır, indirim kartı değil.",
+          "replyTr": "Hayır, yok."
+        },
+        {
+          "say": "D'accord. Voici votre billet : voiture 14, place 52. Le quai est affiché vingt minutes avant le départ.",
+          "tr": "Peki. Buyurun biletiniz: 14 numaralı vagon, 52 numaralı koltuk. Peron, kalkıştan yirmi dakika önce ekranda gösteriliyor.",
+          "options": ["Je prends ma voiture, alors ?", "Merci. Il y a une voiture-bar dans le train ?", "Merci. Le quai vingt, c'est où ?"],
+          "answer": 1,
+          "why": "Bileti aldıktan sonra trende kafeterya olup olmadığını sormak doğaldır. Trende 'voiture' vagon demektir; 'je prends ma voiture' ise 'arabamı alayım' gibi anlaşılır.",
+          "replyTr": "Teşekkürler. Trende kafeterya vagonu var mı?"
+        },
+        {
+          "say": "Oui, c'est la voiture 4. Bon voyage !",
+          "tr": "Evet, 4 numaralı vagon. İyi yolculuklar!",
+          "options": ["Merci, de rien !", "Bon voyage à vous aussi !", "Merci, au revoir !"],
+          "answer": 2,
+          "why": "Teşekkür edip 'au revoir' ile vedalaşırsın. Gişe görevlisi yolculuğa çıkmadığı için ona 'bon voyage' dilemek tuhaf olur; 'Merci, de rien' ise kendi içinde çelişir.",
+          "replyTr": "Teşekkürler, hoşça kalın!"
+        }
+      ]
+    },
+    {
+      "id": "fr-entretien",
+      "level": "B1",
+      "title": "İş görüşmesi",
+      "scene": "Lyon'da bir turizm şirketinde resepsiyon görevlisi olmak için iş görüşmesindesin.",
+      "turns": [
+        {
+          "say": "Bonjour, asseyez-vous, je vous en prie. Vous avez trouvé facilement ?",
+          "tr": "Merhaba, buyurun oturun. Kolay buldunuz mu?",
+          "options": ["Oui, sans problème, merci. Le métro s'arrête juste à côté.", "Oui, j'ai trouvé un travail facilement.", "Assieds-toi aussi, merci."],
+          "answer": 0,
+          "why": "Soru, ofisi kolay bulup bulmadığınla ilgili; kısa ve kibar bir cevap yeterli. 'J'ai trouvé un travail' 'İş buldum' demektir, soruyla ilgisi yok.",
+          "replyTr": "Evet, hiç sorun olmadı, teşekkürler. Metro hemen yakında duruyor."
+        },
+        {
+          "say": "Parfait. Alors, parlez-moi un peu de votre parcours.",
+          "tr": "Harika. O zaman biraz geçmişinizden, deneyiminizden bahsedin.",
+          "options": ["Je fais du jogging tous les matins dans le parc.", "J'ai travaillé trois ans à la réception d'un hôtel à Antalya.", "Mon parcours fait dix kilomètres."],
+          "answer": 1,
+          "why": "İş görüşmesinde 'parcours' eğitim ve iş geçmişi demektir. Kelimenin 'güzergâh, parkur' anlamı da vardır ama burada mesafeden ya da koşudan söz edilmiyor.",
+          "replyTr": "Antalya'da bir otelin resepsiyonunda üç yıl çalıştım."
+        },
+        {
+          "say": "Intéressant. Et pourquoi voulez-vous quitter ce poste ?",
+          "tr": "İlginç. Peki neden o işten ayrılmak istiyorsunuz?",
+          "options": ["Parce que mon chef, il est nul.", "Parce que j'aurai déménagé l'année dernière.", "Parce que je souhaite m'installer en France et progresser en français."],
+          "answer": 2,
+          "why": "Olumlu ve kişisel bir neden söylemek görüşmede doğru tavırdır. 'Mon chef, il est nul' hem argodur hem de eski işvereni kötülemek olur; ikinci seçenekte ise gelecek zaman ('j'aurai déménagé') 'geçen yıl' ile çelişir.",
+          "replyTr": "Çünkü Fransa'ya yerleşmek ve Fransızcamı geliştirmek istiyorum."
+        },
+        {
+          "say": "Je comprends. Dans ce poste, vous serez souvent au téléphone avec des clients étrangers. Quelles langues parlez-vous ?",
+          "tr": "Anlıyorum. Bu işte yabancı müşterilerle sık sık telefonda olacaksınız. Hangi dilleri konuşuyorsunuz?",
+          "options": ["Je parle turc, anglais couramment et français à un bon niveau.", "Je parle au téléphone tous les jours avec ma mère.", "Je parlerai mieux français si vous m'embaucherez."],
+          "answer": 0,
+          "why": "Soru dillerle ilgili; 'couramment' (akıcı) gibi sözcüklerle seviyeni belirtirsin. Üçüncü seçenek yanlıştır: 'si'den sonra gelecek zaman kullanılmaz, 'si vous m'embauchez' olmalıydı.",
+          "replyTr": "Türkçe, akıcı İngilizce ve iyi düzeyde Fransızca konuşuyorum."
+        },
+        {
+          "say": "Très bien. Avez-vous des questions sur le poste ?",
+          "tr": "Çok iyi. Pozisyonla ilgili sorularınız var mı?",
+          "options": ["Oui, quel âge avez-vous ?", "Oui : quels seraient les horaires de travail ?", "Non, je n'ai pas de poste."],
+          "answer": 1,
+          "why": "Çalışma saatlerini sormak işle ilgili ve kibar bir sorudur; koşul kipi ('seraient') nezaket katar. Görüşmeyi yapan kişiye yaşını sormak uygunsuzdur.",
+          "replyTr": "Evet: çalışma saatleri nasıl olurdu?"
+        },
+        {
+          "say": "Du lundi au vendredi, de 8 h à 16 h, avec un samedi par mois. Nous vous recontacterons d'ici la fin de la semaine.",
+          "tr": "Pazartesiden cumaya, 8'den 16'ya, ayda bir de cumartesi. Hafta sonuna kadar size dönüş yapacağız.",
+          "options": ["D'accord, je vous rappelle la semaine dernière.", "Salut, à plus !", "Très bien. Merci beaucoup pour votre temps, au revoir."],
+          "answer": 2,
+          "why": "Görüşmenin sonunda zaman ayırdıkları için teşekkür edilir. 'Salut, à plus !' arkadaşlar arasında kullanılan bir vedadır; iş görüşmesinde fazla laubali kaçar.",
+          "replyTr": "Çok iyi. Zaman ayırdığınız için çok teşekkürler, hoşça kalın."
+        }
+      ]
+    },
+    {
+      "id": "fr-reclamation",
+      "level": "B1",
+      "title": "Otelde nazikçe şikâyet",
+      "scene": "Otel odandaki klima çalışmıyor ve duşun suyu soğuk; resepsiyonu arıyorsun.",
+      "turns": [
+        {
+          "say": "Réception, bonsoir. Que puis-je faire pour vous ?",
+          "tr": "Resepsiyon, iyi akşamlar. Sizin için ne yapabilirim?",
+          "options": ["Bonsoir, je vous appelle de la chambre 312. J'ai un problème avec la climatisation.", "Bonsoir, la chambre 312 a appelé un problème.", "Tu peux venir réparer la clim ?"],
+          "answer": 0,
+          "why": "Önce oda numaranı verip sorunu kibarca söylersin. 'Tu peux …' resepsiyon görevlisine fazla samimi kaçar; otel çalışanlarına 'vous' ile hitap edilir.",
+          "replyTr": "İyi akşamlar, 312 numaralı odadan arıyorum. Klimayla ilgili bir sorunum var."
+        },
+        {
+          "say": "Je suis désolé. Qu'est-ce qui se passe exactement ?",
+          "tr": "Çok üzgünüm. Tam olarak sorun ne?",
+          "options": ["Elle marche très bien, merci.", "Elle ne marche pas du tout, et en plus, l'eau de la douche reste froide.", "Je ne passe rien, exactement."],
+          "answer": 1,
+          "why": "Sorunu ayrıntılı anlatırsın; 'en plus' (üstelik) ikinci bir sorunu eklemeye yarar. 'Elle marche très bien' 'çok iyi çalışıyor' demektir ve şikâyetinle çelişir.",
+          "replyTr": "Hiç çalışmıyor, üstelik duşun suyu da soğuk akıyor."
+        },
+        {
+          "say": "Je vois. Notre technicien est déjà parti, il ne revient que demain matin.",
+          "tr": "Anlıyorum. Teknisyenimiz çıktı bile, ancak yarın sabah dönecek.",
+          "options": ["Il ne revient jamais ? C'est grave !", "Votre technicien est parti depuis demain ?", "Je ne peux pas attendre demain. Serait-il possible de changer de chambre ce soir ?"],
+          "answer": 2,
+          "why": "Kibar bir çözüm istemek için koşul kipi kullanılır: 'Serait-il possible de …'. 'Ne … que' 'ancak, yalnızca' demektir, 'hiç' değil; teknisyen yarın dönecek.",
+          "replyTr": "Yarına kadar bekleyemem. Bu akşam oda değiştirmem mümkün olur mu?"
+        },
+        {
+          "say": "Bien sûr. J'ai une chambre libre au cinquième étage, mais elle donne sur la rue.",
+          "tr": "Tabii. Beşinci katta boş bir odam var, ama sokağa bakıyor.",
+          "options": ["Ça ne me dérange pas. Je descends chercher la clé ?", "Elle donne quoi sur la rue ?", "Je ne veux pas donner ma chambre."],
+          "answer": 0,
+          "why": "'Ça ne me dérange pas' 'benim için sorun değil' demektir. 'Donner sur' bir odanın bir yere 'bakması' anlamındadır; 'Elle donne quoi ?' fiili 'vermek' sanıyor.",
+          "replyTr": "Benim için sorun değil. Anahtarı almaya aşağı ineyim mi?"
+        },
+        {
+          "say": "Non, ne vous dérangez pas, quelqu'un vous l'apporte dans cinq minutes. Encore toutes nos excuses.",
+          "tr": "Hayır, zahmet etmeyin, beş dakika içinde biri getirecek. Tekrar özür dileriz.",
+          "options": ["Je vous excuse, mais la prochaine fois, faites attention !", "Merci, c'est très aimable à vous.", "Ne vous dérangez pas, je ne l'apporte pas."],
+          "answer": 1,
+          "why": "Sorun çözüldüğü için teşekkür etmek kibar bir kapanıştır. 'Je vous excuse, mais … faites attention !' azarlar gibi, kaba kaçar; görevli zaten bir çözüm buldu.",
+          "replyTr": "Teşekkürler, çok naziksiniz."
+        },
+        {
+          "say": "Avec plaisir. Et pour la gêne, votre petit-déjeuner de demain vous est offert.",
+          "tr": "Rica ederim. Yaşadığınız rahatsızlık için de yarınki kahvaltınız bizden.",
+          "options": ["Merci beaucoup, c'est une belle attention.", "Je vous offre aussi le petit-déjeuner.", "Le petit-déjeuner est gêné ?"],
+          "answer": 0,
+          "why": "'Vous est offert' 'size ikramımızdır' demektir; teşekkür edersin. 'Je vous offre' 'ben size ısmarlıyorum' anlamına gelir ve durumu tersine çevirir.",
+          "replyTr": "Çok teşekkürler, çok ince bir düşünce."
+        }
+      ]
+    },
+    {
+      "id": "fr-appartement",
+      "level": "B1",
+      "title": "Daire kiralamak",
+      "scene": "İlanını gördüğün bir daire için Marsilya'daki emlak ofisini telefonla arıyorsun.",
+      "turns": [
+        {
+          "say": "Agence du Vieux-Port, bonjour, je vous écoute.",
+          "tr": "Vieux-Port Emlak, merhaba, sizi dinliyorum.",
+          "options": ["Bonjour, je vous appelle pour l'annonce du deux-pièces rue Paradis.", "Bonjour, je vous écoute aussi.", "Bonjour, j'ai annoncé un appartement."],
+          "answer": 0,
+          "why": "Telefonda neden aradığını hemen söylersin: 'je vous appelle pour l'annonce …'. 'J'ai annoncé' 'ilan verdim' demektir; ilanı veren sen değilsin.",
+          "replyTr": "Merhaba, Paradis Caddesi'ndeki 1+1 dairenin ilanı için arıyorum."
+        },
+        {
+          "say": "Ah oui, il est toujours disponible. Vous cherchez pour quand ?",
+          "tr": "Ah evet, hâlâ boş. Ne zaman için arıyorsunuz?",
+          "options": ["Je le cherche depuis le mois dernier.", "Pour le 1er décembre, si possible.", "Je cherche pour deux personnes."],
+          "answer": 1,
+          "why": "'Pour quand ?' taşınma tarihini sorar. 'Depuis le mois dernier' ne zamandır aradığını söyler, ne zaman taşınmak istediğini değil.",
+          "replyTr": "Mümkünse 1 Aralık için."
+        },
+        {
+          "say": "Très bien. Le loyer est de 850 euros, charges comprises. Il faut un garant et vos trois derniers bulletins de salaire.",
+          "tr": "Çok iyi. Kira, aidat dahil 850 avro. Bir kefil ve son üç maaş bordronuz gerekiyor.",
+          "options": ["Les charges ne sont pas comprises, alors ?", "Je n'ai pas de garant de salaire.", "D'accord. Est-ce qu'il faut aussi verser une caution ?"],
+          "answer": 2,
+          "why": "'Caution' depozito demektir; kira konuşmasında sorulması doğaldır. İlk seçenek söylenenle çelişir: 'charges comprises' aidatın dahil olduğunu söyler.",
+          "replyTr": "Tamam. Depozito da yatırmak gerekiyor mu?"
+        },
+        {
+          "say": "Oui, un mois de loyer hors charges. Vous voulez le visiter ?",
+          "tr": "Evet, aidatsız bir aylık kira. Daireyi görmek ister misiniz?",
+          "options": ["Oui, avec plaisir. Quand est-ce que ce serait possible ?", "Oui, je l'ai déjà visité demain.", "Oui, je vais visiter Marseille."],
+          "answer": 0,
+          "why": "Teklifi kabul edip uygun zamanı sorarsın. 'Je l'ai déjà visité demain' olamaz: geçmiş zaman 'demain' (yarın) ile birlikte kullanılmaz.",
+          "replyTr": "Evet, memnuniyetle. Ne zaman mümkün olur?"
+        },
+        {
+          "say": "Je peux vous proposer jeudi à 18 h ou samedi à 10 h.",
+          "tr": "Size perşembe 18.00'i ya da cumartesi 10.00'u önerebilirim.",
+          "options": ["Oui, les deux, c'est parfait.", "Samedi à 10 h, ça m'arrangerait mieux.", "Jeudi ou samedi, c'est quel jour ?"],
+          "answer": 1,
+          "why": "Önerilen iki zamandan birini seçersin; 'ça m'arrangerait' 'işime gelir' demenin kibar yoludur. 'Oui, les deux' seçim yapmaz; aynı daireyi iki kez gezmeyeceksin.",
+          "replyTr": "Cumartesi saat 10 benim için daha uygun olur."
+        },
+        {
+          "say": "C'est noté. Je peux avoir votre nom et un numéro de téléphone ?",
+          "tr": "Not ettim. Adınızı ve bir telefon numarası alabilir miyim?",
+          "options": ["Bien sûr, je vous donne votre numéro.", "Non, vous ne pouvez pas avoir mon nom.", "Bien sûr : Deniz Yılmaz, au 06 12 34 56 78."],
+          "answer": 2,
+          "why": "'Je peux avoir … ?' bir bilgi isteğidir; adını ve numaranı verirsin. 'Je vous donne votre numéro' 'size sizin numaranızı veriyorum' demektir, iyelik yanlış.",
+          "replyTr": "Tabii: Deniz Yılmaz, 06 12 34 56 78."
+        }
+      ]
+    }
+  ]
+}
