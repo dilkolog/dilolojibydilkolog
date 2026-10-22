@@ -174,6 +174,13 @@ describe('rematch series', () => {
     expect(viewFor(game(fresh, [1, 1]), 0).series?.games).toBe(1)
   })
 
+  it('the same guest dropping out of the lobby and coming back keeps the series', () => {
+    let s = game(twoPlayers(), [3, 1])
+    s = leave(again(s), 1)
+    s = join(s, 'Veli').state
+    expect(viewFor(game(s, [1, 2]), 0).series).toMatchObject({ games: 2, you: 1, them: 1 })
+  })
+
   it('is shown only once a game is over', () => {
     expect(viewFor(playing(), 0).series).toBeUndefined()
   })

@@ -251,8 +251,8 @@ function dayPerson(language: LabLanguage, item: LabItem, day: number): number {
 export const dayNumber = (now: Date) => now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
 
 /** Today's verb for the Today screen, with its meaning: one of the learner's own still being learnt. */
-export function useVerbOfDay(language: TargetLanguage, vocabulary: readonly VocabularyEntry[], key: unknown): { verb: string; gloss?: string } | null {
-  const [pick, setPick] = useState<{ verb: string; gloss?: string } | null>(null)
+export function useVerbOfDay(language: TargetLanguage, vocabulary: readonly VocabularyEntry[], key: unknown): { verb: string; title: string; gloss?: string } | null {
+  const [pick, setPick] = useState<{ verb: string; title: string; gloss?: string } | null>(null)
   useEffect(() => {
     if (language === 'en') {
       setPick(null)
@@ -266,7 +266,7 @@ export function useVerbOfDay(language: TargetLanguage, vocabulary: readonly Voca
         const own = [...new Set(vocabulary.filter((v) => v.partOfSpeech === 'verb').map((v) => verbKey(language, v.lemma)))].filter((v) => known.has(v))
         const verb = verbOfTheDay(own, COMMON[language].map(([v]) => v), (v) => verbMastery(lab, v, CORE_TENSES[language]), dayNumber(new Date()))
         const gloss = verb && (ownEntry(vocabulary, language, verb)?.senses[0]?.gloss ?? COMMON[language].find(([v]) => v === verb)?.[1])
-        if (live) setPick(verb ? { verb, gloss } : null)
+        if (live) setPick(verb ? { verb, title: verbTitle(language, verb), gloss } : null)
       })
       .catch(() => live && setPick(null))
     return () => {

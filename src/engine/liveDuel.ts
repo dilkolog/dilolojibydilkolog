@@ -53,6 +53,8 @@ export const SERIES_LENGTH = 3
 
 /** The games the two players in the room have finished in this series, by slot. */
 export interface Series {
+  /** Whom the room's host is playing the series against (the guest's name, lower case). */
+  with?: string
   games: number
   wins: [number, number]
   ties: number
@@ -119,8 +121,9 @@ export function join(state: RoomState, rawName: unknown): Result {
   const same = state.players.findIndex((p) => p.name.toLocaleLowerCase('tr') === name.toLocaleLowerCase('tr') && !p.connected)
   if (same >= 0) return { state: { ...state, players: state.players.map((p, i) => (i === same ? { ...p, connected: true } : p)) }, slot: same }
   if (state.players.length >= 2) return { state, error: 'full' }
-  // Someone new across the table: a new series.
-  const series = state.players.length === 1 ? noSeries() : state.series
+  // Someone new across the table: a new series. The same guest coming back (a dropped connection in the lobby) keeps it.
+  const guest = name.toLocaleLowerCase('tr')
+  const series = state.players.length === 1 && state.series.with !== guest ? { ...noSeries(), with: guest } : state.series
   return { state: { ...state, series, players: [...state.players, { name, connected: true, answered: 0, score: 0, ms: 0 }] }, slot: state.players.length }
 }
 
@@ -146,7 +149,7 @@ export function start(state: RoomState, slot: number, language: unknown, ids: un
       ids: ids as string[],
       players: state.players.map((p) => ({ ...p, answered: 0, score: 0, ms: 0 })),
       // After a whole series, the next game opens a new one.
-      series: state.series.games >= SERIES_LENGTH ? noSeries() : state.series,
+      series: state.series.games >= SERIES_LENGTH ? { ...noSeries(), with: state.series.with } : state.series,
     },
   }
 }
@@ -167,6 +170,7 @@ const winnerOf = (a: { score: number; ms: number }, b: { score: number; ms: numb
 function addGame(series: Series, players: LivePlayer[]): Series {
   const w = winnerOf(players[0], players[1])
   return {
+    ...series,
     games: series.games + 1,
     wins: [series.wins[0] + (w === 'from' ? 1 : 0), series.wins[1] + (w === 'reply' ? 1 : 0)],
     ties: series.ties + (w === 'tie' ? 1 : 0),

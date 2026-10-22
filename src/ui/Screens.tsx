@@ -155,7 +155,7 @@ export function Home({
   warmup?: string | null
   onWarmup?: () => void
   /** One of the learner's verbs still being learnt, a new one each day: its table in the lab. */
-  verbOfDay?: { verb: string; gloss?: string } | null
+  verbOfDay?: { verb: string; title?: string; gloss?: string } | null
   onVerbOfDay?: (verb: string) => void
   /** Reviews due in two or more languages: one interleaved session. */
   onMixed?: () => void
@@ -605,7 +605,7 @@ export function Home({
                   <img className="tile-art" src={TILE_ART.verbs} alt="" draggable={false} />
                   <span className="tile-text">
                     <strong>
-                      Günün fiili: <span lang={language}>{verbOfDay.verb}</span>
+                      Günün fiili: <span lang={language}>{verbOfDay.title ?? verbOfDay.verb}</span>
                     </strong>
                     <span className="small muted">{verbOfDay.gloss ? `${verbOfDay.gloss} · ` : ''}tablo ve kısa bir alıştırma</span>
                   </span>

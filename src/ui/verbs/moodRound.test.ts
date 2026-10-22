@@ -36,6 +36,12 @@ describe('subjunctive or not, être or avoir', () => {
     expect(qs.some((q) => /que je$/.test(q.before))).toBe(false)
   })
 
+  it('a verb used only reflexively is never asked as être-or-avoir (its pronoun would be the "auxiliary")', () => {
+    const aux = Array.from({ length: 12 }, (_, s) => moodRound('fr', ['souvenir', 'méfier', 'enfuir', ...FR], s)).flat().filter((q) => q.kind === 'aux')
+    expect(aux.filter((q) => ['souvenir', 'méfier', 'enfuir'].includes(q.verb))).toEqual([])
+    for (const q of aux) expect(q.options.every((o) => !/['’]/.test(o) && !['nous', 'vous', 'me', 'te', 'se'].includes(o))).toBe(true)
+  })
+
   it('French rounds also ask être or avoir in the passé composé', () => {
     const aux = Array.from({ length: 6 }, (_, s) => moodRound('fr', FR, s)).flat().filter((q) => q.kind === 'aux')
     expect(aux.length).toBeGreaterThan(0)

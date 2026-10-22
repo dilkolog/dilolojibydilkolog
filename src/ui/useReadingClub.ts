@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { KelimeDB, ReadingText } from '../data/db'
 import { newRoomCode, cleanRoomCode } from '../engine/liveDuel'
-import { CLUB_INBOX, othersLooks, type ClubError, type ClubMessage, type ClubText, type ClubView } from '../engine/readingClub'
+import { CLUB_INBOX, cleanClubText, othersLooks, type ClubError, type ClubMessage, type ClubText, type ClubView } from '../engine/readingClub'
 import type { TargetLanguage } from '../engine/types'
 import { useLiveRoom } from './games/useLiveRoom'
 
@@ -80,12 +80,14 @@ export function useReadingClub({
   }, [db])
 
   const { room, status, error, send } = useLiveRoom<ClubView, ClubMessage, ClubError>(code, name, 'club')
+  // The open text as the room keeps it (cleaned the same way), or null when it cannot be brought (too long, too short).
+  const clubText = useMemo(() => (current ? cleanClubText({ language: current.language, title: current.title, body: current.text }) : null), [current])
 
   // The host brings the open text once the room has them in it (again after a reconnect to an emptied room).
   useEffect(() => {
-    if (!host || !room || room.you !== 0 || room.text || !current) return
-    send({ t: 'share', text: { language: current.language, title: current.title, body: current.text } })
-  }, [host, room, current, send])
+    if (!host || !room || room.you !== 0 || room.text || !clubText || error === 'bad_text') return
+    send({ t: 'share', text: clubText })
+  }, [host, room, clubText, error, send])
 
   // A guest gets the club's text: kept in the library (once) and opened.
   const onTextRef = useRef(onText)
@@ -109,7 +111,7 @@ export function useReadingClub({
   }, [host, room?.text, db, language])
 
   // Is the open text the club's? Words looked up in another text are not the club's business.
-  const sameText = !!room?.text && !!current && room.text.body === current.text
+  const sameText = !!code && !!room?.text && !!clubText && room.text.body === clubText.body
   const sent = useRef(new Set<string>())
   useEffect(() => {
     if (!sameText || !lookedUp || sent.current.has(lookedUp)) return
@@ -130,6 +132,8 @@ export function useReadingClub({
     error,
     looks,
     sameText,
+    /** The open text can be brought into a club (not too long or short). */
+    canStart: !!clubText,
     /** The club's text is in another language than the one studied now. */
     otherLanguage: room?.text && room.text.language !== language ? room.text.language : null,
     /** Opens a club on the open text. */

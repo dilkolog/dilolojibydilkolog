@@ -380,7 +380,7 @@ export function ReadingScreen({
         onFinish={() => setConfirmFinish(true)}
         multiMode={multiMode}
         onMulti={() => setMultiMode((m) => !m)}
-        onClub={club.code ? undefined : club.start}
+        onClub={club.code || !club.canStart ? undefined : club.start}
       />
       <ClubBar club={club} />
       {showForms && language !== 'en' && <TextForms groups={formGroups} language={language} onOpenLab={onOpenLab} onLesson={onLesson} onReview={reviewForms} onShow={showSentence} onClose={() => setShowForms(false)} />}

@@ -99,6 +99,8 @@ const storage = (): Storage | null => {
 export async function collectPrefs(db: KelimeDB, now = new Date()): Promise<Prefs> {
   const before = ((await db.meta.get(SNAPSHOT))?.value as Prefs | undefined) ?? {}
   const seen = new Map<string, string>()
+  // Keys that are here but too large to travel: they are left alone, never taken for a removal.
+  const kept = new Set<string>()
   let storageRead = false
   const ls = storage()
   if (ls) {
@@ -107,6 +109,7 @@ export async function collectPrefs(db: KelimeDB, now = new Date()): Promise<Pref
         if (!isPrefKey(key)) continue
         const v = ls.getItem(key)
         if (v && v.length <= MAX_VALUE) seen.set(key, v)
+        else if (v) kept.add(key)
       }
       storageRead = true
     } catch {
@@ -118,20 +121,29 @@ export async function collectPrefs(db: KelimeDB, now = new Date()): Promise<Pref
     if (row === undefined) continue
     const v = JSON.stringify(row.value)
     if (v && v.length <= MAX_VALUE) seen.set(`meta:${key}`, v)
+    else kept.add(`meta:${key}`)
   }
+  // Storage that was emptied behind the app's back (site data cleared, the browser evicting it) is not the person
+  // removing every choice: with none of the earlier local keys left, nothing local is sent as a removal.
+  const localBefore = Object.entries(before).filter(([k, e]) => !k.startsWith('meta:') && e.v !== '').length
+  const localNow = [...seen.keys(), ...kept].filter((k) => !k.startsWith('meta:')).length
+  const localRemovals = storageRead && !(localNow === 0 && localBefore >= 3)
   const out: Prefs = {}
   for (const [key, v] of seen) out[key] = before[key]?.v === v ? before[key]! : { v, at: now.toISOString() }
-  const forget = new Date(now.getTime() - GONE_DAYS * 86_400_000).toISOString()
+  const forget = forgetBefore(now)
   for (const [key, e] of Object.entries(before)) {
-    if (seen.has(key) || !isPrefKey(key)) continue
+    if (seen.has(key) || kept.has(key) || !isPrefKey(key)) continue
     if (e.v === '') {
       if (e.at >= forget) out[key] = e
-    } else if (key.startsWith('meta:') || storageRead) out[key] = { v: '', at: now.toISOString() }
+    } else if (key.startsWith('meta:') || localRemovals) out[key] = { v: '', at: now.toISOString() }
     // A local key whose storage could not be read is left out: it is neither kept nor removed elsewhere.
   }
   if (JSON.stringify(out) !== JSON.stringify(before)) await db.meta.put({ key: SNAPSHOT, value: out })
   return out
 }
+
+/** Removals older than this moment are forgotten, on every device alike (else a sync would keep bringing them back). */
+const forgetBefore = (now: Date) => new Date(now.getTime() - GONE_DAYS * 86_400_000).toISOString()
 
 /** The entries of a backup that can be trusted: known keys, text values, a moment. */
 export function cleanPrefs(raw: unknown): Prefs | undefined {
@@ -145,9 +157,11 @@ export function cleanPrefs(raw: unknown): Prefs | undefined {
 }
 
 /** Two devices' values: for each key, the one that changed later. */
-export function mergePrefs(older: Prefs | undefined, newer: Prefs | undefined): Prefs {
+export function mergePrefs(older: Prefs | undefined, newer: Prefs | undefined, now = new Date()): Prefs {
   const out: Prefs = { ...older }
   for (const [key, e] of Object.entries(newer ?? {})) if (!out[key] || e.at >= out[key]!.at) out[key] = e
+  const forget = forgetBefore(now)
+  for (const [key, e] of Object.entries(out)) if (e.v === '' && e.at < forget) delete out[key]
   return out
 }
 

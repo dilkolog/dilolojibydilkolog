@@ -193,7 +193,7 @@ export function LearnTab({
   onMemorised?: (tense: Tense, results: { person: number; ok: boolean }[]) => void
 }) {
   const [view, setView] = useState<'simple' | 'detail' | 'compare'>('simple')
-  const [reflexive, setReflexive] = useState(false)
+  const [reflexiveOn, setReflexive] = useState(false)
   const [negative, setNegative] = useState(false)
   const [memorise, setMemorise] = useState(false)
   // A memorise round marked through: its score, and a new round (all covered again) on request.
@@ -206,6 +206,8 @@ export function LearnTab({
   const entry = verbEntry(language, verb)
   // Used only reflexively (souvenir): named, conjugated and added as the reflexive (se souvenir).
   const only = onlyReflexive(language, verb)
+  // The reflexive switch has no meaning for such a verb (it is hidden): one left on from the verb before does not apply.
+  const reflexive = reflexiveOn && !only
   const title = verbTitle(language, verb)
   // E: memorise mode; A: on to practice. Not while typing, nor with a modifier.
   useEffect(() => {

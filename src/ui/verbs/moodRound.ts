@@ -1,5 +1,5 @@
 import { createRng, shuffle } from '../../engine/rng'
-import { conjugateTense, subjectLabel, verbParts, type Tense } from '../../engine/tenses'
+import { conjugateTense, onlyReflexive, subjectLabel, verbParts, type Tense } from '../../engine/tenses'
 import { verbEntry, type LabLanguage } from './labShared'
 
 /**
@@ -82,6 +82,8 @@ function moodQuestion(language: LabLanguage, verb: string, trigger: Trigger, per
 }
 
 function auxQuestion(verb: string, person: number): MoodQuestion | undefined {
+  // A verb used only reflexively ("se souvenir") always takes être and carries its pronoun: no choice to ask about.
+  if (onlyReflexive('fr', verb)) return undefined
   const parts = verbParts(verbEntry('fr', verb))
   const pc = conjugateTense(verbEntry('fr', verb), 'passe-compose')?.[person]
   if (!parts?.participle || !pc) return undefined

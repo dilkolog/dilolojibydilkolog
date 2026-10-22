@@ -45,6 +45,10 @@ export function ClubBar({ club }: { club: ReadingClub }) {
         <p className="small muted" role="status">
           Kulübe bağlanılıyor…
         </p>
+      ) : error === 'bad_text' ? (
+        <p className="small notice" role="alert">
+          Bu metin kulübe alınamadı: çok uzun ya da çok kısa (en çok 30.000 karakter). Daha kısa bir bölümle yeniden dene.
+        </p>
       ) : otherLanguage ? (
         <p className="small notice" role="status">
           Kulübün metni {LANGUAGE_NAME[otherLanguage]}. Üstten dili {LANGUAGE_NAME[otherLanguage]} yap: metin kendiliğinden açılır.

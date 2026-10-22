@@ -81,14 +81,16 @@ describe('device prefs', () => {
     // The other device still has both, set earlier: the removal is later, so it wins and removes them there.
     const other = new KelimeDB(`t-prefs-other-${n}`)
     await other.meta.put({ key: 'writingErrors', value: { a: 1 } })
-    const merged = mergePrefs({ 'diloloji:podcast:fr': { v: '{"lines":[]}', at: '2026-10-21T10:00:00.000Z' } }, after)
+    const merged = mergePrefs({ 'diloloji:podcast:fr': { v: '{"lines":[]}', at: '2026-10-21T10:00:00.000Z' } }, after, new Date('2026-10-21T12:00:00Z'))
     localStorage.setItem('diloloji:podcast:fr', '{"lines":[]}')
     await applyPrefs(other, merged)
     expect(localStorage.getItem('diloloji:podcast:fr')).toBeNull()
     expect(await other.meta.get('writingErrors')).toBeUndefined()
 
     // A value set again later wins over the removal.
-    expect(mergePrefs(after, { 'diloloji:podcast:fr': { v: 'new', at: '2026-10-22T09:00:00.000Z' } })['diloloji:podcast:fr']!.v).toBe('new')
+    expect(mergePrefs(after, { 'diloloji:podcast:fr': { v: 'new', at: '2026-10-22T09:00:00.000Z' } }, new Date('2026-10-22T10:00:00Z'))['diloloji:podcast:fr']!.v).toBe('new')
+    // An old removal is forgotten in a merge too, so the two sides agree and a sync has nothing new to say.
+    expect(mergePrefs(after, {}, new Date('2027-02-01T10:00:00Z'))['diloloji:podcast:fr']).toBeUndefined()
 
     const later = await collectPrefs(db, new Date('2027-02-01T10:00:00Z'))
     expect(later['diloloji:podcast:fr']).toBeUndefined()
@@ -112,5 +114,21 @@ describe('device prefs', () => {
     } finally {
       vi.unstubAllGlobals()
     }
+  })
+
+  it('a value grown too large to travel is left alone, never sent as a removal', async () => {
+    localStorage.setItem('diloloji:shadow-scores', '{"a":1}')
+    await collectPrefs(db, new Date('2026-10-21T10:00:00Z'))
+    localStorage.setItem('diloloji:shadow-scores', 'x'.repeat(130_000))
+    const next = await collectPrefs(db, new Date('2026-10-21T11:00:00Z'))
+    expect(next['diloloji:shadow-scores']).toBeUndefined()
+  })
+
+  it('storage emptied behind the app\'s back is not taken for the person removing every choice', async () => {
+    for (const k of ['kelime-koc:theme', 'kelime-koc:density', 'diloloji:flash-mode']) localStorage.setItem(k, 'x')
+    await collectPrefs(db, new Date('2026-10-21T10:00:00Z'))
+    localStorage.clear()
+    const next = await collectPrefs(db, new Date('2026-10-21T11:00:00Z'))
+    expect(Object.values(next).filter((e) => e.v === '')).toEqual([])
   })
 })

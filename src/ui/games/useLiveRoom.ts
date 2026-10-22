@@ -34,6 +34,10 @@ export function useLiveRoom<View = RoomView, Message = ClientMessage, Error exte
   }, [])
 
   useEffect(() => {
+    // A new room (or none): nothing of the last one carries over.
+    setRoom(null)
+    setStatus('connecting')
+    setError(null)
     if (!code) return
     let closed = false
     let tries = 0
