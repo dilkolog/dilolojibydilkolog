@@ -366,7 +366,8 @@ test('twins: a sentence only one of the pair fits; the answer gives the rule and
   await page.getByRole('button', { name: 'savoir / connaître' }).click()
   await page.getByRole('button', { name: /tura başla/ }).click()
   await expect(page.locator('.prompt-label')).toContainText('savoir / connaître')
-  await expect(page.locator('.grammar-sentence')).toContainText('___')
+  // A sentence with a gap or a "which one means…" question: both are of this pair.
+  await expect(page.locator('.grammar-sentence')).toContainText(/___|Hangisi/)
   await page.keyboard.press('1')
   await expect(page.getByRole('status')).toContainText(/Savoir/)
   await page.keyboard.press('Enter')
