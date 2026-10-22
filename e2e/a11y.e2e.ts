@@ -1539,3 +1539,30 @@ test('exam-style tasks: the list, a reading task, a listening task and the resul
   await scanThemes('exam-listen')
   expect(problems).toEqual([])
 })
+
+test('numbers and times: the start, a listening question, and a wrong written answer pass accessibility and contrast checks in light and dark', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Sayılar ve saatler' }).click()
+  const problems: string[] = []
+  const scanThemes = async (where: string) => {
+    for (const theme of ['light', 'dark'] as const) {
+      await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+      problems.push(...(await scan(page, `${where}-${theme}`)), ...(await contrastProblems(page)).map((p) => `${where}-${theme}: ${p}`))
+    }
+  }
+  await expect(page.getByRole('heading', { name: 'Sayılar ve saatler' })).toBeVisible()
+  await scanThemes('numbers-start')
+  await page.getByRole('button', { name: /tura başla/ }).click()
+  await expect(page.getByRole('button', { name: 'Dinle', exact: true })).toBeVisible()
+  await scanThemes('numbers-listen')
+  await page.getByRole('button', { name: '← Oyunlar' }).click()
+  await page.locator('.game-card', { hasText: 'Sayılar ve saatler' }).click()
+  await page.getByRole('button', { name: 'Gör ve yaz' }).click()
+  await page.getByRole('button', { name: /tura başla/ }).click()
+  await page.getByLabel('Kelimeyle cevap').fill('zzz')
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.numbers-answer')).toBeVisible()
+  await scanThemes('numbers-wrong')
+  expect(problems).toEqual([])
+})
