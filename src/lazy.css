@@ -722,7 +722,7 @@
 .article-card { display: grid; justify-items: center; gap: 0.25rem; padding: 2rem 1rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); text-align: center; }
 .article-noun { font-family: var(--serif); font-size: var(--t-2xl); }
 .article-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-.pitch-chart { width: 100%; height: auto; background: var(--surface); border-radius: var(--r-md); box-shadow: var(--shadow); }
+.pitch-chart { width: 100%; max-width: 40rem; height: auto; background: var(--surface); border-radius: var(--r-md); box-shadow: var(--shadow); }
 .pitch-native { fill: none; stroke: var(--lang); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .pitch-trend { align-items: center; flex-wrap: wrap; margin: 0; }
 .pitch-trend svg { flex: none; }
@@ -803,6 +803,9 @@
   .detail-page > * { break-inside: avoid; margin: 0 0 1.5rem !important; min-width: 0; }
   .detail-page > :is(.detail-back, .settings-nav, .settings-group-title, .span-2) { column-span: all; }
   .detail-page > .settings-group-title { margin-bottom: 0.75rem !important; }
+  /* A card alone between two full-width rows (a group with one card, the last card after a wide one) would leave
+     the second column empty: it takes the whole width instead. */
+  .detail-page > :is(.settings-group-title, .span-2) + :not(.settings-group-title, .span-2, .detail-back, .settings-nav):is(:last-child, :has(+ :is(.settings-group-title, .span-2))) { column-span: all; }
 
   .overview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
   .overview-grid > * { margin-top: 0 !important; }

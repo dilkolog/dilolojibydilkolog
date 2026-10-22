@@ -1,6 +1,7 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
+import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
 import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
 
 /**
@@ -1409,6 +1410,40 @@ test('live duel: the room, a question and the result pass accessibility checks i
     await page.getByRole('button', { name: /^(Devam|Bitir)$/ }).click()
   }
   await both('waiting')
+  expect(problems).toEqual([])
+})
+
+test('reading club: the club card and a friend\'s marked word pass accessibility checks in light and dark themes on a phone', async ({ page }) => {
+  const BODY = 'Le petit prince habitait une planète à peine plus grande que lui. Il avait besoin d\'un ami.'
+  let room: ClubState = clubShare(joinClub(emptyClub(), 'Veli').state, 0, { language: 'fr', title: 'Le Petit Prince', body: BODY }).state
+  let socket: { send: (m: string) => void } | null = null
+  let slot: number | undefined
+  await page.routeWebSocket(/\/api\/room\?code=ABC234&kind=club/, (ws) => {
+    socket = ws
+    ws.onMessage((raw) => {
+      const message = JSON.parse(String(raw)) as { t: string }
+      if (message.t === 'ping') return
+      const result = handleClub(room, slot, message)
+      if (result.error) return ws.send(JSON.stringify({ t: 'error', reason: result.error }))
+      room = result.state
+      slot = result.slot ?? slot
+      ws.send(JSON.stringify({ t: 'state', room: clubViewFor(room, slot ?? 1) }))
+    })
+  })
+  await page.setViewportSize({ width: 375, height: 667 })
+  await startWithSamples(page)
+  await page.goto('/?kulup=ABC234')
+  await expect(page.locator('.reader')).toContainText('planète')
+  const planet = page.locator('.reader .rw', { hasText: 'planète' })
+  room = clubLook(room, 0, (await planet.getAttribute('data-key'))!).state
+  socket!.send(JSON.stringify({ t: 'state', room: clubViewFor(room, 1) }))
+  await expect(planet).toHaveClass(/rw-friend/)
+  const problems: string[] = []
+  for (const theme of ['light', 'dark'] as const) {
+    await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+    problems.push(...(await scan(page, `club (${theme})`)))
+    problems.push(...(await contrastProblems(page)).map((p) => `club (${theme}): ${p}`))
+  }
   expect(problems).toEqual([])
 })
 

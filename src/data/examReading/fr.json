@@ -485,6 +485,270 @@
     }
    ],
    "language": "fr"
+  },
+  {
+   "id": "fr-read-cuisine",
+   "exam": "DELF",
+   "level": "A2",
+   "title": "Un cours de cuisine",
+   "text": "Le centre culturel Jean Moulin propose un nouveau cours de cuisine pour débutants. Les cours ont lieu le mardi soir, de dix-huit heures à vingt heures, à partir du 3 mars. Une séance coûte douze euros, mais les étudiants paient seulement huit euros. Vous apprendrez à préparer des plats simples et pas chers. Apportez un tablier et une boîte pour emporter ce que vous avez cuisiné. Il y a seulement dix places : inscrivez-vous à l'accueil avant le 28 février.",
+   "tr": "Jean Moulin kültür merkezi yeni başlayanlar için yeni bir yemek kursu açıyor. Dersler 3 Mart'tan itibaren salı akşamları, saat on sekizden yirmiye kadar yapılıyor. Bir ders on iki avro, ama öğrenciler yalnızca sekiz avro ödüyor. Basit ve ucuz yemekler hazırlamayı öğreneceksiniz. Bir önlük ve pişirdiklerinizi götürmek için bir kap getirin. Yalnızca on kişilik yer var: 28 Şubat'tan önce danışmada kaydolun.",
+   "questions": [
+    {
+     "prompt": "Quand ont lieu les cours ?",
+     "options": [
+      "Le mardi soir",
+      "Le mardi matin",
+      "Le samedi après-midi",
+      "Tous les soirs"
+     ],
+     "answer": 0,
+     "why": "“Les cours ont lieu le mardi soir, de dix-huit heures à vingt heures”: salı akşamları."
+    },
+    {
+     "prompt": "Combien un étudiant paie-t-il pour une séance ?",
+     "options": [
+      "12 euros",
+      "8 euros",
+      "10 euros",
+      "20 euros"
+     ],
+     "answer": 1,
+     "why": "“Les étudiants paient seulement huit euros”: öğrenciler sekiz avro öder; on iki avro normal fiyattır."
+    },
+    {
+     "prompt": "Que faut-il apporter ?",
+     "options": [
+      "Des ingrédients",
+      "Un livre de recettes",
+      "Un tablier et une boîte",
+      "Un couteau et une assiette"
+     ],
+     "answer": 2,
+     "why": "“Apportez un tablier et une boîte pour emporter ce que vous avez cuisiné”: önlük ve kap."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-voisine",
+   "exam": "DELF",
+   "level": "A2",
+   "title": "Un mot de la voisine",
+   "text": "Bonjour Madame Leroy, c'est Claire, votre voisine du troisième étage. Je pars en vacances chez ma sœur samedi matin et je reviens le vendredi suivant. Est-ce que vous pourriez arroser mes plantes deux fois pendant la semaine, par exemple mardi et jeudi ? Je vais laisser ma clé dans votre boîte aux lettres vendredi soir. Pour le chat, ne vous inquiétez pas : mon fils viendra le nourrir tous les jours. Merci beaucoup, je vous rapporterai de la confiture ! Claire",
+   "tr": "Merhaba Leroy Hanım, ben üçüncü kattaki komşunuz Claire. Cumartesi sabahı ablamın yanına tatile gidiyorum, ertesi cuma dönüyorum. Hafta içinde iki kez, örneğin salı ve perşembe, çiçeklerimi sulayabilir misiniz? Cuma akşamı anahtarımı sizin posta kutunuza bırakacağım. Kedi için endişelenmeyin: oğlum her gün gelip onu besleyecek. Çok teşekkürler, size reçel getireceğim! Claire",
+   "questions": [
+    {
+     "prompt": "Pourquoi Claire écrit-elle ce mot ?",
+     "options": [
+      "Pour inviter sa voisine en vacances",
+      "Pour demander un service pendant son absence",
+      "Pour se plaindre du bruit",
+      "Pour vendre ses plantes"
+     ],
+     "answer": 1,
+     "why": "Tatile gidiyor ve komşusundan çiçeklerini sulamasını rica ediyor: yokken bir iyilik istiyor."
+    },
+    {
+     "prompt": "Que doit faire Madame Leroy ?",
+     "options": [
+      "Nourrir le chat tous les jours",
+      "Arroser les plantes tous les jours",
+      "Arroser les plantes mardi et jeudi",
+      "Aller chercher la clé chez le fils de Claire"
+     ],
+     "answer": 2,
+     "why": "“Arroser mes plantes deux fois… mardi et jeudi”. Kediyi Claire'in oğlu besleyecek."
+    },
+    {
+     "prompt": "Où Madame Leroy trouvera-t-elle la clé ?",
+     "options": [
+      "Dans sa propre boîte aux lettres",
+      "Chez la sœur de Claire",
+      "Sous le paillasson",
+      "Chez le fils de Claire"
+     ],
+     "answer": 0,
+     "why": "“Je vais laisser ma clé dans votre boîte aux lettres”: Leroy Hanım'ın kendi posta kutusunda."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-teletravail",
+   "exam": "DELF",
+   "level": "B1",
+   "title": "Travailler depuis chez soi",
+   "text": "Depuis un an, Karim, graphiste de trente-quatre ans, travaille trois jours par semaine dans son appartement de Nantes et deux jours au bureau. « Au début, j'étais ravi : plus de bouchons le matin, et je gagnais presque deux heures par jour. Mais au bout de quelques mois, je me suis senti seul. Je ne parlais à personne avant le soir. » Pour éviter cela, il a pris de nouvelles habitudes. Il commence sa journée par une promenade de vingt minutes, comme s'il partait au travail, et il déjeune une fois par semaine avec un ancien collègue. Il a aussi installé son bureau dans une petite pièce dont il ferme la porte à dix-huit heures. « Ce qui me manque le plus, ce ne sont pas les réunions, ce sont les discussions à la machine à café », avoue-t-il en riant.",
+   "tr": "Otuz dört yaşındaki grafik tasarımcı Karim bir yıldır haftada üç gün Nantes'taki dairesinde, iki gün de ofiste çalışıyor. «Başta çok memnundum: sabah trafiği yoktu, günde neredeyse iki saat kazanıyordum. Ama birkaç ay sonra kendimi yalnız hissettim. Akşama kadar kimseyle konuşmuyordum.» Bunun önüne geçmek için yeni alışkanlıklar edindi. Güne, işe gidiyormuş gibi yirmi dakikalık bir yürüyüşle başlıyor ve haftada bir eski bir iş arkadaşıyla öğle yemeği yiyor. Ayrıca masasını küçük bir odaya kurdu ve saat on sekizde o odanın kapısını kapatıyor. «En çok özlediğim şey toplantılar değil, kahve makinesinin başındaki sohbetler» diyor gülerek.",
+   "questions": [
+    {
+     "prompt": "Combien de jours par semaine Karim travaille-t-il chez lui ?",
+     "options": [
+      "Deux jours",
+      "Trois jours",
+      "Cinq jours",
+      "Un jour"
+     ],
+     "answer": 1,
+     "why": "“Travaille trois jours par semaine dans son appartement… et deux jours au bureau”: evde üç gün."
+    },
+    {
+     "prompt": "Quel problème a-t-il eu après quelques mois ?",
+     "options": [
+      "Il perdait du temps dans les bouchons",
+      "Il avait trop de réunions",
+      "Il se sentait seul",
+      "Son appartement était trop petit"
+     ],
+     "answer": 2,
+     "why": "“Au bout de quelques mois, je me suis senti seul”: birkaç ay sonra kendini yalnız hissetti."
+    },
+    {
+     "prompt": "Qu'est-ce qui lui manque le plus ?",
+     "options": [
+      "Les discussions informelles avec ses collègues",
+      "Les réunions",
+      "Les trajets du matin",
+      "Les déjeuners au restaurant"
+     ],
+     "answer": 0,
+     "why": "“Ce ne sont pas les réunions, ce sont les discussions à la machine à café”: kahve makinesi başındaki sohbetler."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-jardin",
+   "exam": "DELF",
+   "level": "B1",
+   "title": "Un jardin au pied des immeubles",
+   "text": "Il y a encore deux ans, l'espace situé entre les immeubles de la rue des Lilas n'était qu'un terrain vide où personne ne s'arrêtait. Aujourd'hui, on y trouve une trentaine de petits potagers. L'idée vient d'une retraitée, Monique, qui a convaincu la mairie de prêter le terrain gratuitement. Chaque famille inscrite reçoit une parcelle et s'engage à venir l'entretenir au moins une fois par semaine. Les outils sont rangés dans une cabane commune, et l'eau de pluie est récupérée dans de grands bidons. « Les enfants découvrent d'où viennent les légumes, et des voisins qui ne se disaient même pas bonjour prennent maintenant le café ensemble », raconte Monique. La liste d'attente est déjà longue : quarante familles espèrent obtenir une parcelle l'année prochaine.",
+   "tr": "Daha iki yıl önce Lilas sokağındaki apartmanların arasındaki alan, kimsenin uğramadığı boş bir arsadan ibaretti. Bugün orada otuz kadar küçük sebze bahçesi var. Fikir, belediyeyi araziyi ücretsiz vermeye ikna eden emekli Monique'ten çıktı. Kaydolan her aile bir parsel alıyor ve ona en az haftada bir kez bakmaya söz veriyor. Aletler ortak bir kulübede duruyor, yağmur suyu da büyük bidonlarda toplanıyor. «Çocuklar sebzelerin nereden geldiğini öğreniyor; birbirine selam bile vermeyen komşular artık birlikte kahve içiyor» diyor Monique. Bekleme listesi şimdiden uzun: kırk aile gelecek yıl bir parsel almayı umuyor.",
+   "questions": [
+    {
+     "prompt": "Qu'y avait-il avant le jardin ?",
+     "options": [
+      "Un parking",
+      "Un terrain vide",
+      "Un petit marché",
+      "Une école"
+     ],
+     "answer": 1,
+     "why": "“N'était qu'un terrain vide où personne ne s'arrêtait”: boş bir arsa."
+    },
+    {
+     "prompt": "À quoi s'engagent les familles inscrites ?",
+     "options": [
+      "À payer un loyer à la mairie",
+      "À acheter leurs propres outils",
+      "À vendre leurs légumes aux voisins",
+      "À s'occuper de leur parcelle au moins une fois par semaine"
+     ],
+     "answer": 3,
+     "why": "“S'engage à venir l'entretenir au moins une fois par semaine”. Arazi ücretsiz, aletler ortak."
+    },
+    {
+     "prompt": "Selon Monique, qu'a changé le jardin dans le quartier ?",
+     "options": [
+      "Les voisins se parlent davantage",
+      "Les familles dépensent moins pour manger",
+      "Le quartier attire de nouveaux habitants",
+      "Les enfants ont de meilleures notes"
+     ],
+     "answer": 0,
+     "why": "Selam bile vermeyen komşular “prennent maintenant le café ensemble”: artık birlikte kahve içiyorlar."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-semaine",
+   "exam": "DALF",
+   "level": "C1",
+   "title": "La semaine de quatre jours",
+   "text": "Plusieurs entreprises européennes expérimentent depuis quelques années la semaine de quatre jours, sans baisse de salaire. Les résultats publiés par ses partisans semblent éloquents : les salariés se disent moins stressés, les arrêts maladie reculent et la productivité, loin de s'effondrer, se maintient, voire progresse légèrement. Faut-il pour autant y voir une solution miracle ? Les sceptiques invitent à la prudence. D'abord, les entreprises qui se portent volontaires pour ces essais sont souvent de petites structures du secteur des services, déjà convaincues de l'intérêt de la démarche ; il serait hasardeux d'en tirer des conclusions pour un hôpital ou une usine, où la présence physique ne se compresse pas. Ensuite, condenser trente-cinq heures en quatre jours peut produire des journées si denses que le repos gagné le vendredi se paie du lundi au jeudi. Enfin, certains salariés avouent que le jour libéré est vite absorbé par les démarches administratives ou les tâches ménagères. Le débat porte donc moins sur le nombre de jours que sur l'organisation du travail : là où l'on a profité de la réforme pour supprimer les réunions inutiles, les bénéfices semblent durables ; là où l'on s'est contenté de raccourcir la semaine, ils s'estompent au bout de quelques mois.",
+   "tr": "Birkaç Avrupa şirketi birkaç yıldır maaşta kesinti olmadan dört günlük çalışma haftasını deniyor. Taraftarlarının yayımladığı sonuçlar çok şey söylüyor gibi: çalışanlar daha az stresli olduklarını söylüyor, hastalık izinleri azalıyor ve verimlilik çökmek bir yana aynı kalıyor, hatta biraz artıyor. Peki bunu mucize bir çözüm saymalı mı? Kuşkucular dikkatli olmaya çağırıyor. Önce, bu denemelere gönüllü olan şirketler çoğunlukla hizmet sektöründen, yaklaşımın yararına zaten inanmış küçük yapılar; buradan fiziksel varlığın sıkıştırılamadığı bir hastane ya da fabrika için sonuç çıkarmak riskli olur. Sonra, otuz beş saati dört güne sığdırmak öyle yoğun günler doğurabilir ki cuma kazanılan dinlenmenin bedeli pazartesiden perşembeye ödenir. Son olarak bazı çalışanlar boşalan günün resmî işler ya da ev işleriyle hemen dolduğunu itiraf ediyor. Yani tartışma gün sayısından çok işin düzeniyle ilgili: reformu gereksiz toplantıları kaldırmak için fırsat bilen yerlerde yararlar kalıcı görünüyor; yalnızca haftayı kısaltmakla yetinilen yerlerde birkaç ay sonra siliniyor.",
+   "questions": [
+    {
+     "prompt": "D'après ses partisans, quel est l'effet de la semaine de quatre jours sur la productivité ?",
+     "options": [
+      "Elle s'effondre rapidement",
+      "Elle baisse légèrement, mais le stress diminue",
+      "Elle se maintient, voire augmente un peu",
+      "Elle double dans les petites entreprises"
+     ],
+     "answer": 2,
+     "why": "“La productivité, loin de s'effondrer, se maintient, voire progresse légèrement”: aynı kalıyor, hatta biraz artıyor."
+    },
+    {
+     "prompt": "Pourquoi les sceptiques se méfient-ils des résultats des essais ?",
+     "options": [
+      "Les salariés ont exagéré leur fatigue",
+      "Les entreprises participantes ne représentent pas toute l'économie",
+      "Les résultats n'ont jamais été publiés",
+      "Les salaires ont baissé pendant l'expérience"
+     ],
+     "answer": 1,
+     "why": "Gönüllü şirketler çoğunlukla hizmet sektöründen küçük yapılar; hastane ya da fabrika için sonuç çıkarmak “hasardeux” (riskli)."
+    },
+    {
+     "prompt": "Selon l'auteur, de quoi dépend surtout le succès de la réforme ?",
+     "options": [
+      "De la façon dont le travail est réorganisé",
+      "Du nombre exact d'heures travaillées",
+      "Du jour de la semaine qui est libéré",
+      "De la taille de l'entreprise uniquement"
+     ],
+     "answer": 0,
+     "why": "“Le débat porte moins sur le nombre de jours que sur l'organisation du travail”: gereksiz toplantılar kaldırılan yerlerde yararlar kalıcı."
+    }
+   ],
+   "language": "fr"
+  },
+  {
+   "id": "fr-read-reparer",
+   "exam": "DALF",
+   "level": "C1",
+   "title": "Réparer plutôt que jeter",
+   "text": "Un samedi par mois, dans une salle prêtée par la mairie, une dizaine de bénévoles accueillent des habitants venus avec un grille-pain muet, une lampe qui clignote ou un pantalon déchiré. Ce « café de la réparation » n'a rien d'un service de dépannage gratuit : le propriétaire de l'objet participe lui-même à la réparation, guidé par un bénévole. « Nous ne voulons pas que les gens repartent seulement avec un appareil qui marche, mais avec l'idée qu'ils sont capables de le réparer », explique Henri, ingénieur à la retraite. Le succès de ces initiatives révèle un malaise plus profond. Beaucoup de consommateurs soupçonnent les fabricants de concevoir des produits volontairement fragiles, ou de rendre les pièces détachées introuvables et hors de prix. Le législateur a commencé à réagir : un indice de réparabilité doit désormais figurer sur certains appareils, et les vendeurs sont tenus d'indiquer pendant combien d'années les pièces resteront disponibles. Les bénévoles restent pourtant lucides. Un tiers des objets apportés ne peuvent pas être sauvés, souvent parce qu'ils ont été conçus pour ne jamais être ouverts. Pour Henri, la véritable victoire serait que les cafés de la réparation deviennent un jour inutiles.",
+   "tr": "Ayda bir cumartesi, belediyenin verdiği bir salonda on kadar gönüllü, sesi çıkmayan bir ekmek kızartma makinesi, yanıp sönen bir lamba ya da yırtık bir pantolonla gelen mahalleliyi karşılıyor. Bu «tamir kafesi» ücretsiz bir onarım servisi değil: eşyanın sahibi bir gönüllünün rehberliğinde onarıma kendisi katılıyor. «İnsanların yalnızca çalışan bir aletle değil, onu tamir edebilecekleri düşüncesiyle dönmelerini istiyoruz» diyor emekli mühendis Henri. Bu girişimlerin başarısı daha derin bir rahatsızlığı gösteriyor. Pek çok tüketici, üreticilerin ürünleri bile bile dayanıksız tasarladığından ya da yedek parçaları bulunmaz ve çok pahalı hâle getirdiğinden kuşkulanıyor. Yasa koyucu tepki vermeye başladı: bazı aletlerde artık bir onarılabilirlik puanı yer almalı, satıcılar da parçaların kaç yıl bulunabileceğini belirtmek zorunda. Yine de gönüllüler gerçekçi. Getirilen eşyaların üçte biri kurtarılamıyor, çoğu zaman da hiç açılmamak üzere tasarlandıkları için. Henri'ye göre asıl zafer, tamir kafelerinin bir gün gereksiz hâle gelmesi olurdu.",
+   "questions": [
+    {
+     "prompt": "Quel est le principe du café de la réparation ?",
+     "options": [
+      "Des bénévoles réparent gratuitement les objets pendant qu'on attend",
+      "Le propriétaire répare lui-même son objet, guidé par un bénévole",
+      "On échange un objet cassé contre un objet qui marche",
+      "Des artisans y vendent des pièces détachées à bas prix"
+     ],
+     "answer": 1,
+     "why": "“N'a rien d'un service de dépannage gratuit : le propriétaire… participe lui-même à la réparation, guidé par un bénévole”."
+    },
+    {
+     "prompt": "Que reprochent beaucoup de consommateurs aux fabricants ?",
+     "options": [
+      "De vendre leurs produits trop cher en magasin",
+      "D'afficher un indice de réparabilité trompeur",
+      "De concevoir des objets fragiles et de rendre les pièces difficiles à obtenir",
+      "De refuser de réparer les appareils sous garantie"
+     ],
+     "answer": 2,
+     "why": "Ürünleri “volontairement fragiles” tasarladıklarından ve yedek parçaları “introuvables et hors de prix” yaptıklarından kuşkulanıyorlar."
+    },
+    {
+     "prompt": "Quel serait, pour Henri, le vrai succès ?",
+     "options": [
+      "Que ces cafés n'aient plus de raison d'exister",
+      "Ouvrir un café de la réparation chaque semaine",
+      "Réparer tous les objets apportés",
+      "Que la loi interdise les objets impossibles à ouvrir"
+     ],
+     "answer": 0,
+     "why": "“La véritable victoire serait que les cafés de la réparation deviennent un jour inutiles”: bu kafelere gerek kalmaması."
+    }
+   ],
+   "language": "fr"
   }
  ]
 }

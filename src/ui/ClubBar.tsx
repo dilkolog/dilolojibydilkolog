@@ -9,7 +9,16 @@ const showCode = (code: string) => `${code.slice(0, 3)}-${code.slice(3)}`
  * The reading club above the text: its code and link to share, who is reading, and how many words the others
  * looked up (marked in the text with a dotted line). A guest waiting for the text sees only that it is coming.
  */
-export function ClubBar({ club }: { club: ReadingClub }) {
+export function ClubBar({
+  club,
+  words = [],
+  onWord,
+}: {
+  club: ReadingClub
+  /** The words friends looked up in this text, in reading order: tapping one opens it in the text. */
+  words?: readonly { key: string; text: string; who: string[] }[]
+  onWord?: (key: string) => void
+}) {
   const { code, room, status, error, looks, sameText, otherLanguage } = club
   if (!code) return null
   const link = clubLink(code, location.origin)
@@ -70,7 +79,18 @@ export function ClubBar({ club }: { club: ReadingClub }) {
           {others.length === 0 ? (
             <p className="small muted">Bağlantıyı bir arkadaşına gönder: aynı metni açar, birbirinizin baktığı kelimeleri görürsünüz.</p>
           ) : sameText ? (
-            <p className="small muted">{looks.size ? `Arkadaşlarının baktığı ${looks.size} kelime metinde noktalı çizgiyle işaretli.` : 'Arkadaşların bir kelimeye bakınca metinde noktalı çizgiyle işaretlenir.'}</p>
+            <>
+              <p className="small muted">{looks.size ? `Arkadaşlarının baktığı ${looks.size} kelime metinde noktalı çizgiyle işaretli.` : 'Arkadaşların bir kelimeye bakınca metinde noktalı çizgiyle işaretlenir.'}</p>
+              {words.length > 0 && onWord && (
+                <div className="chip-list club-words" aria-label="Arkadaşlarının baktığı kelimeler">
+                  {words.slice(0, 24).map((w) => (
+                    <button key={w.key} type="button" className="chip chip-sm" onClick={() => onWord(w.key)} title={`${w.who.join(', ')} baktı`}>
+                      <span lang={club.room?.text?.language}>{w.text}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
           ) : (
             <p className="small muted">Kulübün metni bu değil: “{room.text.title}”. Kütüphaneden açabilirsin.</p>
           )}

@@ -485,6 +485,270 @@
     }
    ],
    "language": "en"
+  },
+  {
+   "id": "en-read-cooking",
+   "exam": "Cambridge",
+   "level": "A2",
+   "title": "A cooking class",
+   "text": "The Riverside Community Centre is starting a new cooking class for beginners. Classes are on Tuesday evenings, from six to eight o'clock, starting on the third of March. Each class costs twelve pounds, but students pay only eight pounds. You will learn to make simple, cheap meals. Please bring an apron and a box to take home the food you cook. There are only ten places, so sign up at reception before the twenty-eighth of February.",
+   "tr": "Riverside Toplum Merkezi yeni başlayanlar için yeni bir yemek kursu açıyor. Dersler 3 Mart'tan itibaren salı akşamları, saat altıdan sekize kadar. Her ders on iki sterlin, ama öğrenciler yalnızca sekiz sterlin ödüyor. Basit ve ucuz yemekler yapmayı öğreneceksiniz. Lütfen bir önlük ve pişirdiğiniz yemeği eve götürmek için bir kap getirin. Yalnızca on kişilik yer var, bu yüzden 28 Şubat'tan önce danışmada kaydolun.",
+   "questions": [
+    {
+     "prompt": "When are the classes?",
+     "options": [
+      "On Tuesday evenings",
+      "On Tuesday mornings",
+      "On Saturday afternoons",
+      "Every evening"
+     ],
+     "answer": 0,
+     "why": "“Classes are on Tuesday evenings, from six to eight o'clock”: salı akşamları."
+    },
+    {
+     "prompt": "How much does a student pay for one class?",
+     "options": [
+      "£12",
+      "£8",
+      "£10",
+      "£20"
+     ],
+     "answer": 1,
+     "why": "“Students pay only eight pounds”: öğrenciler sekiz sterlin öder; on iki sterlin normal fiyattır."
+    },
+    {
+     "prompt": "What should people bring?",
+     "options": [
+      "The ingredients",
+      "A recipe book",
+      "An apron and a box",
+      "A knife and a plate"
+     ],
+     "answer": 2,
+     "why": "“Please bring an apron and a box to take home the food you cook”: önlük ve kap."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-neighbour",
+   "exam": "Cambridge",
+   "level": "A2",
+   "title": "A note from a neighbour",
+   "text": "Dear Mrs Hall, it's Emma from the flat on the third floor. I'm going to stay with my sister on Saturday morning and I'll be back the following Friday. Could you water my plants twice during the week, for example on Tuesday and Thursday? I'll leave my key in your letterbox on Friday evening. Don't worry about the cat: my son is going to come and feed her every day. Thank you so much! I'll bring you some jam. Emma",
+   "tr": "Sevgili Hall Hanım, ben üçüncü kattaki daireden Emma. Cumartesi sabahı ablamın yanında kalmaya gidiyorum, ertesi cuma döneceğim. Hafta içinde iki kez, örneğin salı ve perşembe, çiçeklerimi sulayabilir misiniz? Cuma akşamı anahtarımı sizin posta kutunuza bırakacağım. Kedi için endişelenmeyin: oğlum her gün gelip onu besleyecek. Çok teşekkür ederim! Size reçel getireceğim. Emma",
+   "questions": [
+    {
+     "prompt": "Why is Emma writing this note?",
+     "options": [
+      "To invite her neighbour on holiday",
+      "To ask for help while she is away",
+      "To complain about noise",
+      "To sell her plants"
+     ],
+     "answer": 1,
+     "why": "Ablasının yanına gidiyor ve komşusundan çiçeklerini sulamasını rica ediyor: yokken yardım istiyor."
+    },
+    {
+     "prompt": "What does Mrs Hall need to do?",
+     "options": [
+      "Feed the cat every day",
+      "Water the plants every day",
+      "Water the plants on Tuesday and Thursday",
+      "Get the key from Emma's son"
+     ],
+     "answer": 2,
+     "why": "“Could you water my plants twice… on Tuesday and Thursday?” Kediyi Emma'nın oğlu besleyecek."
+    },
+    {
+     "prompt": "Where will Mrs Hall find the key?",
+     "options": [
+      "In her own letterbox",
+      "At Emma's sister's house",
+      "Under the doormat",
+      "At Emma's son's flat"
+     ],
+     "answer": 0,
+     "why": "“I'll leave my key in your letterbox”: Hall Hanım'ın kendi posta kutusunda."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-remote",
+   "exam": "Cambridge",
+   "level": "B1",
+   "title": "Working from home",
+   "text": "For the past year, Sam, a thirty-four-year-old graphic designer, has worked three days a week from his flat in Bristol and two days in the office. \"At first I loved it: no more traffic jams in the morning, and I saved almost two hours a day. But after a few months I started to feel lonely. I didn't speak to anyone until the evening.\" To avoid this, he has developed some new habits. He starts each day with a twenty-minute walk, as if he were going to work, and once a week he has lunch with a former colleague. He has also put his desk in a small room and closes the door at six o'clock. \"What I miss most isn't the meetings, it's the chats by the coffee machine,\" he admits with a laugh.",
+   "tr": "Otuz dört yaşındaki grafik tasarımcı Sam bir yıldır haftada üç gün Bristol'daki dairesinden, iki gün de ofiste çalışıyor. «Başta çok sevdim: sabah trafiği yoktu, günde neredeyse iki saat kazanıyordum. Ama birkaç ay sonra kendimi yalnız hissetmeye başladım. Akşama kadar kimseyle konuşmuyordum.» Bunun önüne geçmek için yeni alışkanlıklar edindi. Her güne, işe gidiyormuş gibi yirmi dakikalık bir yürüyüşle başlıyor ve haftada bir eski bir iş arkadaşıyla öğle yemeği yiyor. Ayrıca masasını küçük bir odaya koydu ve saat altıda kapıyı kapatıyor. «En çok özlediğim şey toplantılar değil, kahve makinesinin yanındaki sohbetler» diye itiraf ediyor gülerek.",
+   "questions": [
+    {
+     "prompt": "How many days a week does Sam work at home?",
+     "options": [
+      "Two days",
+      "Three days",
+      "Five days",
+      "One day"
+     ],
+     "answer": 1,
+     "why": "“Has worked three days a week from his flat… and two days in the office”: evde üç gün."
+    },
+    {
+     "prompt": "What problem did he have after a few months?",
+     "options": [
+      "He lost time in traffic jams",
+      "He had too many meetings",
+      "He felt lonely",
+      "His flat was too small"
+     ],
+     "answer": 2,
+     "why": "“After a few months I started to feel lonely”: birkaç ay sonra kendini yalnız hissetti."
+    },
+    {
+     "prompt": "What does he miss most?",
+     "options": [
+      "Informal chats with colleagues",
+      "The meetings",
+      "The journey in the morning",
+      "Eating in restaurants"
+     ],
+     "answer": 0,
+     "why": "“What I miss most isn't the meetings, it's the chats by the coffee machine”: kahve makinesinin yanındaki sohbetler."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-garden",
+   "exam": "Cambridge",
+   "level": "B1",
+   "title": "A garden between the flats",
+   "text": "Just two years ago, the space between the blocks of flats on Lilac Street was an empty piece of land where nobody ever stopped. Today it has about thirty small vegetable gardens. The idea came from Margaret, a retired woman who persuaded the council to lend the land for free. Every family that joins gets a plot and promises to look after it at least once a week. The tools are kept in a shared shed, and rainwater is collected in large barrels. \"Children are finding out where vegetables come from, and neighbours who never even said hello now have coffee together,\" says Margaret. The waiting list is already long: forty families are hoping to get a plot next year.",
+   "tr": "Daha iki yıl önce Lilac sokağındaki apartman blokları arasındaki alan, kimsenin uğramadığı boş bir araziydi. Bugün orada otuz kadar küçük sebze bahçesi var. Fikir, belediyeyi araziyi ücretsiz vermeye ikna eden emekli Margaret'ten çıktı. Katılan her aile bir parsel alıyor ve ona en az haftada bir kez bakmaya söz veriyor. Aletler ortak bir kulübede duruyor, yağmur suyu da büyük fıçılarda toplanıyor. «Çocuklar sebzelerin nereden geldiğini öğreniyor; birbirine merhaba bile demeyen komşular artık birlikte kahve içiyor» diyor Margaret. Bekleme listesi şimdiden uzun: kırk aile gelecek yıl bir parsel almayı umuyor.",
+   "questions": [
+    {
+     "prompt": "What was there before the garden?",
+     "options": [
+      "A car park",
+      "An empty piece of land",
+      "A small market",
+      "A school"
+     ],
+     "answer": 1,
+     "why": "“Was an empty piece of land where nobody ever stopped”: boş bir arazi."
+    },
+    {
+     "prompt": "What do the families promise to do?",
+     "options": [
+      "Pay rent to the council",
+      "Buy their own tools",
+      "Sell their vegetables to neighbours",
+      "Look after their plot at least once a week"
+     ],
+     "answer": 3,
+     "why": "“Promises to look after it at least once a week”. Arazi ücretsiz, aletler ortak."
+    },
+    {
+     "prompt": "According to Margaret, how has the garden changed the area?",
+     "options": [
+      "Neighbours spend more time together",
+      "Families spend less on food",
+      "New people are moving to the area",
+      "Children get better marks at school"
+     ],
+     "answer": 0,
+     "why": "Merhaba bile demeyen komşular “now have coffee together”: artık birlikte kahve içiyorlar."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-fourday",
+   "exam": "IELTS",
+   "level": "C1",
+   "title": "The four-day week",
+   "text": "For several years now, a number of European companies have been experimenting with a four-day working week at no loss of pay. The results published by its supporters look impressive: employees report lower stress, sick leave falls and productivity, far from collapsing, holds steady or even rises slightly. Does this mean we have found a miracle cure? Sceptics urge caution. To begin with, the firms that volunteer for these trials tend to be small service-sector businesses that are already convinced of the idea, so it would be unwise to draw conclusions for a hospital or a factory, where being physically present cannot be squeezed into fewer days. Secondly, packing a full working week into four days can create days so intense that the rest gained on Friday is paid for from Monday to Thursday. Finally, some workers admit that the extra day off is quickly swallowed up by paperwork and housework. At heart, then, the debate is less about the number of days than about how work is organised: where companies used the change to get rid of pointless meetings, the benefits seem to last; where they simply shortened the week, the gains fade within a few months.",
+   "tr": "Birkaç yıldır bazı Avrupa şirketleri maaş kaybı olmadan dört günlük çalışma haftasını deniyor. Destekçilerinin yayımladığı sonuçlar etkileyici görünüyor: çalışanlar daha az stres bildiriyor, hastalık izinleri düşüyor ve verimlilik çökmek bir yana aynı kalıyor, hatta biraz artıyor. Bu, mucize bir çare bulduğumuz anlamına mı geliyor? Kuşkucular dikkatli olmayı öğütlüyor. Önce, bu denemelere gönüllü olan firmalar genellikle fikre zaten inanmış küçük hizmet sektörü işletmeleri; bu yüzden fiziksel olarak orada bulunmanın daha az güne sıkıştırılamadığı bir hastane ya da fabrika için sonuç çıkarmak akıllıca olmaz. İkincisi, tam bir çalışma haftasını dört güne sıkıştırmak öyle yoğun günler doğurabilir ki cuma kazanılan dinlenmenin bedeli pazartesiden perşembeye ödenir. Son olarak bazı çalışanlar fazladan boş günün resmî işler ve ev işleri tarafından hemen yutulduğunu kabul ediyor. Yani özünde tartışma gün sayısından çok işin nasıl düzenlendiğiyle ilgili: şirketlerin bu değişikliği gereksiz toplantılardan kurtulmak için kullandığı yerlerde yararlar kalıcı görünüyor; yalnızca haftayı kısalttıkları yerlerde kazanımlar birkaç ay içinde siliniyor.",
+   "questions": [
+    {
+     "prompt": "According to its supporters, what happens to productivity with a four-day week?",
+     "options": [
+      "It collapses quickly",
+      "It falls a little, but stress goes down",
+      "It stays the same or even rises slightly",
+      "It doubles in small companies"
+     ],
+     "answer": 2,
+     "why": "“Productivity, far from collapsing, holds steady or even rises slightly”: aynı kalıyor, hatta biraz artıyor."
+    },
+    {
+     "prompt": "Why are sceptics wary of the trial results?",
+     "options": [
+      "Employees exaggerated how tired they were",
+      "The companies taking part do not represent the whole economy",
+      "The results were never published",
+      "Salaries were cut during the trials"
+     ],
+     "answer": 1,
+     "why": "Gönüllü firmalar fikre zaten inanmış küçük hizmet işletmeleri; hastane ya da fabrika için sonuç çıkarmak “unwise” (akıllıca değil)."
+    },
+    {
+     "prompt": "According to the writer, what does the success of the change mainly depend on?",
+     "options": [
+      "How work is reorganised",
+      "The exact number of hours worked",
+      "Which day of the week is free",
+      "Only the size of the company"
+     ],
+     "answer": 0,
+     "why": "“The debate is less about the number of days than about how work is organised”: gereksiz toplantıların kaldırıldığı yerlerde yararlar kalıcı."
+    }
+   ],
+   "language": "en"
+  },
+  {
+   "id": "en-read-repair",
+   "exam": "Cambridge",
+   "level": "C1",
+   "title": "Repair, don't replace",
+   "text": "One Saturday a month, in a hall lent by the council, a dozen volunteers welcome local people who turn up with a silent toaster, a flickering lamp or a torn pair of trousers. This repair café is not a free repair service: the owner of each item takes part in the repair themselves, guided by a volunteer. \"We don't want people to leave with nothing more than a working appliance, but with the idea that they are capable of fixing it,\" explains Henry, a retired engineer. The success of such projects points to a deeper unease. Many consumers suspect manufacturers of deliberately designing fragile products, or of making spare parts impossible to find and ridiculously expensive. Lawmakers have begun to respond: some appliances must now display a repairability score, and sellers are required to state how many years spare parts will remain available. The volunteers, however, have no illusions. A third of the items brought in cannot be saved, often because they were designed never to be opened. For Henry, the real victory would be for repair cafés to become unnecessary one day.",
+   "tr": "Ayda bir cumartesi, belediyenin verdiği bir salonda on iki kadar gönüllü, sesi çıkmayan bir ekmek kızartma makinesi, yanıp sönen bir lamba ya da yırtık bir pantolonla gelen mahalleliyi karşılıyor. Bu tamir kafesi ücretsiz bir onarım servisi değil: her eşyanın sahibi bir gönüllünün rehberliğinde onarıma kendisi katılıyor. «İnsanların yalnızca çalışan bir aletle değil, onu tamir edebilecekleri düşüncesiyle ayrılmalarını istiyoruz» diyor emekli mühendis Henry. Bu tür projelerin başarısı daha derin bir huzursuzluğa işaret ediyor. Pek çok tüketici, üreticilerin ürünleri bile bile dayanıksız tasarladığından ya da yedek parçaları bulunmaz ve fahiş pahalı hâle getirdiğinden kuşkulanıyor. Yasa koyucular tepki vermeye başladı: bazı aletler artık bir onarılabilirlik puanı göstermek, satıcılar da yedek parçaların kaç yıl bulunacağını belirtmek zorunda. Yine de gönüllülerin hiçbir hayali yok. Getirilen eşyaların üçte biri kurtarılamıyor, çoğu zaman da hiç açılmamak üzere tasarlandıkları için. Henry'ye göre asıl zafer, tamir kafelerine bir gün gerek kalmaması olurdu.",
+   "questions": [
+    {
+     "prompt": "How does the repair café work?",
+     "options": [
+      "Volunteers fix items for free while people wait",
+      "Owners repair their own items with a volunteer's help",
+      "People swap a broken item for one that works",
+      "Craftspeople sell cheap spare parts"
+     ],
+     "answer": 1,
+     "why": "“Not a free repair service: the owner of each item takes part in the repair themselves, guided by a volunteer”."
+    },
+    {
+     "prompt": "What do many consumers accuse manufacturers of?",
+     "options": [
+      "Charging too much in shops",
+      "Showing a misleading repairability score",
+      "Making fragile products and spare parts that are hard to get",
+      "Refusing to repair appliances under guarantee"
+     ],
+     "answer": 2,
+     "why": "Ürünleri “deliberately… fragile” tasarladıklarından, yedek parçaları da “impossible to find and ridiculously expensive” yaptıklarından kuşkulanıyorlar."
+    },
+    {
+     "prompt": "What would Henry see as real success?",
+     "options": [
+      "Repair cafés no longer being needed",
+      "Opening a repair café every week",
+      "Fixing every item that is brought in",
+      "A law banning products that cannot be opened"
+     ],
+     "answer": 0,
+     "why": "“The real victory would be for repair cafés to become unnecessary one day”: tamir kafelerine gerek kalmaması."
+    }
+   ],
+   "language": "en"
   }
  ]
 }
