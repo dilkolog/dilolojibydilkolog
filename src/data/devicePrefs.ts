@@ -21,6 +21,7 @@ const LOCAL_PREFIXES = [
   'diloloji:guide-lesson-nudge:',
   'diloloji:guide-view',
   'diloloji:shadow-scores',
+  'diloloji:pitch-scores',
   'diloloji:league-wins',
   'diloloji:friend-nicknames',
   'diloloji:friend-goal',

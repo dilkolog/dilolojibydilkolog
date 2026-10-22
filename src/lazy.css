@@ -724,6 +724,9 @@
 .article-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 .pitch-chart { width: 100%; height: auto; background: var(--surface); border-radius: var(--r-md); box-shadow: var(--shadow); }
 .pitch-native { fill: none; stroke: var(--lang); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.pitch-trend { align-items: center; flex-wrap: wrap; margin: 0; }
+.pitch-trend svg { flex: none; }
+.pitch-trend polyline { fill: none; stroke: var(--near); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .pitch-mine { fill: none; stroke: var(--near); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1 0; }
 .pitch-key-native { background: var(--lang); } .pitch-key-mine { background: var(--near); }
 .settings-nav {
