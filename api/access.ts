@@ -5,6 +5,7 @@ import { fromApp } from './_origin.js'
 import { deleteAccountData, timed } from './_deleteAccount.js'
 import { deleteSupabaseMedia, deleteSupabaseUser, ensureProfile, mirrorApproval, saveVault, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
 import { overLimit, tooMany } from './_rate.js'
+import { noticeSignup } from './_signupNotice.js'
 
 /**
  * An account's way to the owner's approval.
@@ -152,6 +153,8 @@ async function vaultLink(request: Request, body: Record<string, unknown>): Promi
     if (!(await claimAccount(id, auth))) return json({ error: 'wrong' }, 403)
     await ensureProfile(user)
     if ((await saveVault(user.id, { id, enc, auth, username })) === 'taken') return json({ error: 'taken' }, 409)
+    // A person's first sign-in (their account was just linked): the owner hears of it.
+    if (!had) await noticeSignup({ email: user.email, name: user.name, username })
     if (!approvalOn()) {
       await mirrorApproval(id, 'approved')
       return json({ status: 'approved' })
