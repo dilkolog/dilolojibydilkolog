@@ -5,12 +5,14 @@ import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../../data/instance'
+import { CONFUSABLE_RULES } from '../../data/confusableRules'
 
 vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), near: vi.fn() } }))
 const { ConfusablesGame } = await import('./ConfusablesGame')
 
 let root: ReturnType<typeof createRoot> | undefined
 beforeEach(async () => {
+  localStorage.clear()
   await db.meta.delete('records')
 })
 afterEach(() => {
@@ -60,5 +62,26 @@ describe('ConfusablesGame', () => {
       await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: '1' })))
       await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' })))
     }
+  })
+
+  it('a missed sentence is remembered and comes first next time', async () => {
+    const host = await mount()
+    await click(byText(host, 'tura başla'))
+    // Answer the first sentence wrong: its drill tells which option is wrong.
+    for (let i = 0; i < 10; i++) {
+      const text = host.querySelector('.grammar-sentence')!.textContent
+      const drill = CONFUSABLE_RULES.flatMap((r) => r.drills ?? []).find((d) => d.text === text)
+      if (drill) {
+        await click([...host.querySelectorAll('.options .option')].find((b) => b.querySelector('.option-serif')?.textContent === drill.wrong))
+        break
+      }
+      await click(host.querySelector('.options .option'))
+      await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' })))
+    }
+    const missed = JSON.parse(localStorage.getItem('diloloji:twins:en') ?? '[]') as string[]
+    expect(missed).toHaveLength(1)
+    act(() => root?.unmount())
+    const again = await mount()
+    expect(again.textContent).toContain(`karıştırdığın ${missed.length} cümle`)
   })
 })

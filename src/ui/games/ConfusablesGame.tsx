@@ -16,6 +16,25 @@ interface Props {
   onExit: () => void
 }
 
+/** The sentences missed and not yet put right, by language (on the device; goes with the account as a device preference). */
+const missedKey = (language: TargetLanguage) => `diloloji:twins:${language}`
+function loadMissed(language: TargetLanguage): Set<string> {
+  try {
+    const raw = JSON.parse(localStorage.getItem(missedKey(language)) ?? '[]') as unknown
+    return new Set(Array.isArray(raw) ? raw.filter((x): x is string => typeof x === 'string') : [])
+  } catch {
+    return new Set()
+  }
+}
+function saveMissed(language: TargetLanguage, missed: Set<string>) {
+  try {
+    if (missed.size) localStorage.setItem(missedKey(language), JSON.stringify([...missed].slice(-60)))
+    else localStorage.removeItem(missedKey(language))
+  } catch {
+    // Not kept.
+  }
+}
+
 /** The gap of a drill as it reads once answered: the right word in place. */
 const filled = (q: ConfusableQuestion) => q.prompt.replace(/_{3,}/, q.correct)
 
@@ -33,9 +52,10 @@ export function ConfusablesGame({ language, best, recordKey, onExit }: Props) {
   const [selected, setSelected] = useState<string | null>(null)
   const [results, setResults] = useState<{ q: ConfusableQuestion; ok: boolean }[]>([])
   const [record, setRecord] = useState(false)
+  const [missedBefore, setMissedBefore] = useState(() => loadMissed(language))
 
   const start = () => {
-    setRound(confusableRound(pool, createRng(Date.now())))
+    setRound(confusableRound(pool, createRng(Date.now()), undefined, missedBefore))
     setIndex(0)
     setSelected(null)
     setResults([])
@@ -58,6 +78,13 @@ export function ConfusablesGame({ language, best, recordKey, onExit }: Props) {
     if (ok) sfx.correct()
     else sfx.wrong()
     setResults((prev) => [...prev, { q, ok }])
+    if (q.tr) {
+      const nextMissed = new Set(missedBefore)
+      if (ok) nextMissed.delete(q.id)
+      else nextMissed.add(q.id)
+      setMissedBefore(nextMissed)
+      saveMissed(language, nextMissed)
+    }
   }
 
   const next = () => {
@@ -121,6 +148,7 @@ export function ConfusablesGame({ language, best, recordKey, onExit }: Props) {
               </button>
             ))}
           </div>
+          {missedBefore.size > 0 && <p className="small muted">Geçen sefer karıştırdığın {missedBefore.size} cümle turun başına gelir.</p>}
           {best !== undefined && <p className="small muted">Rekorun: %{best}</p>}
           <div className="row">
             <button className="btn btn-lg" onClick={start} autoFocus disabled={pool.length === 0}>

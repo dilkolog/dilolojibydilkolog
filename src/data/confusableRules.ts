@@ -303,12 +303,17 @@ export const CONFUSABLE_ROUND = 10
 /** A round asks mostly sentences; a couple of "which one means…" questions keep the meanings in view. */
 const MEANING_QUESTIONS = 2
 
-/** A round: sentence drills spread over as many pairs as there are, then a couple of meaning questions; shuffled. */
-export function confusableRound(pool: ConfusableQuestion[], rng: Rng, size = CONFUSABLE_ROUND): ConfusableQuestion[] {
-  const drills = shuffle(
+/**
+ * A round: the sentences missed last time first (up to half the round), then sentences spread over as many pairs as there
+ * are, then a couple of meaning questions; shuffled.
+ */
+export function confusableRound(pool: ConfusableQuestion[], rng: Rng, size = CONFUSABLE_ROUND, missed: ReadonlySet<string> = new Set()): ConfusableQuestion[] {
+  const all = shuffle(
     pool.filter((q) => q.tr),
     rng,
   )
+  const again = all.filter((q) => missed.has(q.id)).slice(0, Math.floor(size / 2))
+  const drills = [...again, ...all.filter((q) => !again.includes(q))]
   const meanings = shuffle(
     pool.filter((q) => !q.tr),
     rng,
@@ -318,7 +323,8 @@ export function confusableRound(pool: ConfusableQuestion[], rng: Rng, size = CON
   const rest: ConfusableQuestion[] = []
   const seen = new Set<string>()
   for (const q of drills) {
-    if (seen.has(q.rule.id)) rest.push(q)
+    if (again.includes(q)) firsts.push(q)
+    else if (seen.has(q.rule.id)) rest.push(q)
     else {
       seen.add(q.rule.id)
       firsts.push(q)

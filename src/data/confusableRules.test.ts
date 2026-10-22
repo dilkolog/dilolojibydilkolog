@@ -88,4 +88,11 @@ describe('confusableRules', () => {
       expect(new Set(round.map((q) => q.rule.id)).size).toBeGreaterThanOrEqual(Math.min(pairs, 8))
     }
   })
+
+  it('the sentences missed last time come first, up to half the round', () => {
+    const pool = buildConfusableQuestions('en')
+    const missed = new Set(pool.filter((q) => q.tr).slice(0, 7).map((q) => q.id))
+    const round = confusableRound(pool, createRng(9), 10, missed)
+    expect(round.filter((q) => missed.has(q.id))).toHaveLength(5)
+  })
 })
