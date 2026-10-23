@@ -122,11 +122,21 @@ export const overflow = (page: Page) =>
   }, page.viewportSize()!.width)
 
 /**
+ * Ends the colour transitions still running (a theme switch eases colours over 0.15 s): measured halfway, a colour
+ * is neither theme's. Under load WebKit can still be mid-way long after a short wait.
+ */
+export const settleTransitions = (page: Page) =>
+  page.evaluate(() => {
+    for (const a of document.getAnimations()) if (a instanceof CSSTransition) a.finish()
+  })
+
+/**
  * Text below WCAG AA contrast as rendered (colour, opacity and background layers blended).
  * Skips text on gradients/images and text a design hides on purpose (transparent blanks).
  */
 export const contrastProblems = (page: Page) =>
   page.evaluate(() => {
+    for (const a of document.getAnimations()) if (a instanceof CSSTransition) a.finish()
     const parse = (c: string) => {
       const m = c.match(/rgba?\(([^)]+)\)/)
       if (!m) return null

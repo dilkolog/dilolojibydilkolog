@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
-import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
+import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, settleTransitions, startWithSamples } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -368,8 +368,12 @@ test('new features pass accessibility check in dark and calm themes (audiobooks,
   })
   await approveAccount(page)
   await page.route('https://api.anthropic.com/**', (route) => {
+    // A cross-origin answer: WebKit holds a fulfilled response to CORS too (Chromium lets it through without).
+    const cors = { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'access-control-allow-methods': 'POST, OPTIONS' }
+    if (route.request().method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors })
     route.fulfill({
       status: 200,
+      headers: cors,
       json: {
         content: [
           {
@@ -1265,6 +1269,7 @@ test('auth screen and onboarding pass color contrast checks across light, dark, 
     for (const theme of ['light', 'dark', 'calm'] as const) {
       await setTheme(theme)
       await page.waitForTimeout(300)
+      await settleTransitions(page)
       const contrastViolations = await new AxeBuilder({ page }).withRules(['color-contrast']).analyze()
       for (const v of contrastViolations.violations) {
         problems.push(`${where} [${theme}] (axe: ${v.nodes.map((n) => n.target.join(' ')).join(', ')})`)
