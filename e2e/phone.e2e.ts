@@ -943,7 +943,22 @@ test('the page is lit for the hour: greeting, a sun or moon beside it, a faint w
     await page.evaluate(() => (document.documentElement.dataset.theme = 'dark'))
     expect(await wash()).not.toMatch(/rgba\((251|244|99)/)
     await page.evaluate(() => delete document.documentElement.dataset.theme)
-    await page.evaluate(() => indexedDB.databases().then((dbs) => Promise.all(dbs.map((d) => indexedDB.deleteDatabase(d.name!)))))
+    // Leave the app first (its open database would hold the delete back) and wait for each delete to finish:
+    // WebKit otherwise runs it after the next case has opened the old database, past the welcome screen.
+    await page.goto('/hakkinda.html')
+    await page.evaluate(() =>
+      indexedDB.databases().then((dbs) =>
+        Promise.all(
+          dbs.map(
+            (d) =>
+              new Promise<void>((done) => {
+                const r = indexedDB.deleteDatabase(d.name!)
+                r.onsuccess = r.onerror = () => done()
+              }),
+          ),
+        ),
+      ),
+    )
   }
 })
 
@@ -1093,9 +1108,17 @@ test('verb lab: a sideways swipe over the table steps the tense; a scroll does n
         const r = el.getBoundingClientRect()
         const x = r.left + r.width / 2
         const y = r.top + 20
-        const touch = (cx: number, cy: number) => new Touch({ identifier: 1, target: el, clientX: cx, clientY: cy })
-        el.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, touches: [touch(x, y)], changedTouches: [touch(x, y)] }))
-        el.dispatchEvent(new TouchEvent('touchend', { bubbles: true, touches: [], changedTouches: [touch(x + dx, y + dy)] }))
+        // WebKit has no Touch constructor (`new Touch` is an "Illegal constructor"): a plain event carrying the touch
+        // lists reads the same to the app in every engine.
+        const fire = (type: string, cx: number, cy: number) => {
+          const ev = new Event(type, { bubbles: true })
+          const points = [{ identifier: 1, target: el, clientX: cx, clientY: cy }]
+          Object.defineProperty(ev, 'touches', { value: type === 'touchend' ? [] : points })
+          Object.defineProperty(ev, 'changedTouches', { value: points })
+          el.dispatchEvent(ev)
+        }
+        fire('touchstart', x, y)
+        fire('touchend', x + dx, y + dy)
       },
       [dx, dy],
     )
