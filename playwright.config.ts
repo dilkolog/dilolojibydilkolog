@@ -29,6 +29,10 @@ export default defineConfig({
   webServer: { command: `npx vite preview --port ${PORT} --strictPort`, url: `http://localhost:${PORT}`, reuseExistingServer: true },
   projects: [
     { name: 'phone', use: { ...devices['Pixel 7'], viewport: { width: 375, height: 812 } }, testMatch: ['**/phone.e2e.ts', '**/visual.e2e.ts', '**/a11y.e2e.ts', '**/monki.e2e.ts'] },
+    // Safari's engine on a phone: iPhone users meet WebKit only (every iOS browser is WebKit). Same width as 'phone'
+    // so the layout checks mean the same; no visual.e2e.ts (its references are Chromium's). WebKit is about twice as
+    // slow here (axe on a long screen most of all), so its tests get twice the time.
+    { name: 'iPhone (WebKit)', use: { ...devices['iPhone 13'], viewport: { width: 375, height: 812 } }, testMatch: ['**/phone.e2e.ts', '**/a11y.e2e.ts'], timeout: 120_000 },
     { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } }, testMatch: ['**/desktop.e2e.ts', '**/visual.e2e.ts', '**/a11y.e2e.ts', '**/monki.e2e.ts', '**/offline.e2e.ts'] },
   ],
 })
