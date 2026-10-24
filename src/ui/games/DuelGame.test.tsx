@@ -136,6 +136,7 @@ describe('DuelGame', () => {
     const host = await mount()
     await act(async () => button(host, 'Düelloya başla').click())
     await playAll(host)
+    expect(host.querySelector('.monki-verdict')?.textContent).toContain('Monki:')
     const stored = JSON.parse(localStorage.getItem('diloloji:duel-history')!)
     expect(stored).toHaveLength(1)
     expect(stored[0]).toMatchObject({ opponent: 'Şule', theirs: 0 })

@@ -6,6 +6,7 @@ import { openMistakes } from './engine/mistakes'
 import { kindOff } from './engine/notices'
 import { mistakesForMonki, weakWordsOf } from './engine/monkiContext'
 import { dailyTalkWords } from './engine/dailyTalk'
+import { monthKey } from './ai/usage'
 import { weakPronWords } from './engine/pronWeak'
 import { displayForm } from './engine/exercises'
 import { answeredToday } from './engine/progress'
@@ -270,6 +271,11 @@ export default function App() {
     async () => (data ? weakPronWords(await db.getAllPronScores(), data.vocabulary, data.language, 5).map((w) => ({ word: displayForm(w.entry), score: w.recent })) : []),
     [data],
   )
+  // This month's Monki questions and their cost, from the usage record (read when the panel opens).
+  const loadMonkiUsage = useCallback(async () => {
+    const month = (await db.getAiUsage())[monthKey(new Date())]?.features.monki
+    return month ? { requests: month.requests, cost: month.cost } : null
+  }, [])
   const dailyWords = useMemo(() => (data ? dailyTalkWords(data.vocabulary, data.states, data.mistakes, new Date()) : undefined), [data])
   // The collaborative lists this device has joined, kept in step with the others.
   useCollabSync(reload, ready)
@@ -642,6 +648,8 @@ export default function App() {
                 mistakes={monkiMistakes}
                 dailyWords={dailyWords}
                 loadPronWords={loadPronWords}
+                dailyLimit={settings.monkiDailyLimit ?? 0}
+                loadUsage={loadMonkiUsage}
                 showButton={screen.name !== 'summary'}
                 inSession={inSession}
                 onSettings={go({ name: 'settings' })}

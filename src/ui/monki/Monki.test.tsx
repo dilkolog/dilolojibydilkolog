@@ -454,5 +454,53 @@ describe('Monki', () => {
     await flush()
     expect(monkiTurn.mock.calls[0][1].mode).toBe('write')
   })
+
+  describe('the cost and the daily limit', () => {
+    const renderWith = (extra: { dailyLimit?: number; loadUsage?: () => Promise<{ requests: number; cost: number } | null> }) =>
+      act(() =>
+        root.render(
+          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false, setApiKey: async () => {} }}>
+            <Monki language="fr" onSettings={onSettings} {...extra} />
+          </AiContext.Provider>,
+        ),
+      )
+    const say = async (value: string) => {
+      const field = container.querySelector<HTMLTextAreaElement>('textarea')!
+      await act(async () => {
+        Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value')!.set!.call(field, value)
+        field.dispatchEvent(new Event('input', { bubbles: true }))
+      })
+      await act(async () => container.querySelector<HTMLButtonElement>('.monki-send')!.click())
+      await flush()
+    }
+
+    it('shows this month\'s questions and what they cost under the form', async () => {
+      renderWith({ loadUsage: async () => ({ requests: 31, cost: 0.4234 }) })
+      openPanel()
+      await flush()
+      expect(container.querySelector('.monki-cost')?.textContent).toBe('Bu ay Monki: 31 soru · ≈ $0,423')
+    })
+
+    it('stops at the daily limit with a plain note, and sends nothing more', async () => {
+      monkiTurn.mockResolvedValue({ reply: 'Tamam', suggestions: [], remember: [] })
+      renderWith({ dailyLimit: 2 })
+      openPanel()
+      await say('bir')
+      await say('iki')
+      expect(container.querySelector('.monki-cost')?.textContent).toContain('bugün 2/2')
+      await say('üç')
+      expect(monkiTurn).toHaveBeenCalledTimes(2)
+      expect(container.querySelector('.monki-error')?.textContent).toContain('sınırına (2) ulaştın')
+    })
+
+    it('has no limit by default', async () => {
+      monkiTurn.mockResolvedValue({ reply: 'Tamam', suggestions: [], remember: [] })
+      renderWith({})
+      openPanel()
+      for (const t of ['a', 'b', 'c']) await say(t)
+      expect(monkiTurn).toHaveBeenCalledTimes(3)
+      expect(container.querySelector('.monki-cost')).toBeNull()
+    })
+  })
 })
 

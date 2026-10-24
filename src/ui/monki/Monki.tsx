@@ -13,6 +13,7 @@ import { setMonkiListener, type MonkiAsk } from './monkiBus'
 import { EMBLEM, ROLE_ART } from '../drawnArt'
 import { talkProgress, usesWord } from './monkiWords'
 import { markDailyTalkDone } from './dailyTalkStore'
+import { askedToday, countAsk, overLimit } from './dailyLimit'
 import { changedWord, parseCorrection, type Correction } from './corrections'
 import { saveSentence } from '../saveSentence'
 import { addNotes, memoryLines, removeNote, type MemoryNote } from '../../engine/monkiMemory'
@@ -34,6 +35,8 @@ const recent = (msgs: Msg[]): Msg[] => {
   const first = tail.findIndex((m) => m.role === 'user')
   return first < 0 ? [] : tail.slice(first)
 }
+/** Dollars the way the usage screen writes them (a comma, three decimals under one dollar). */
+const usd = (x: number) => `$${x < 1 ? x.toFixed(3) : x.toFixed(2)}`.replace('.', ',')
 const newNoteId = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`)
 const storeKey = (language: TargetLanguage) => `diloloji:monki:${language}`
 
@@ -215,6 +218,8 @@ export default function Monki({
   mistakes,
   dailyWords,
   loadPronWords,
+  dailyLimit = 0,
+  loadUsage,
   showButton = true,
   inSession = false,
   onSettings,
@@ -227,6 +232,10 @@ export default function Monki({
   dailyWords?: string[]
   /** The words whose pronunciation scores are low (read when the panel opens): with any, the panel offers the pronunciation mode. */
   loadPronWords?: () => Promise<{ word: string; score: number }[]>
+  /** The most messages a day (Ayarlar → YZ yardımcısı); 0 = no limit. */
+  dailyLimit?: number
+  /** This month's Monki questions and what they cost (for the line under the form). */
+  loadUsage?: () => Promise<{ requests: number; cost: number } | null>
   /** The floating button is hidden on the summary; in a session it is smaller and steps aside while the feedback sheet is up. */
   showButton?: boolean
   /** In a session the chat pauses the keyboard shortcuts (a number key would answer the question). */
@@ -261,6 +270,7 @@ export default function Monki({
   const [daily, setDaily] = useState(false)
   // Where in the chat the words talk began (the summary counts the learner's messages from there).
   const [talkFrom, setTalkFrom] = useState(0)
+  const [usage, setUsage] = useState<{ requests: number; cost: number } | null>(null)
   const [pronWords, setPronWords] = useState<{ word: string; score: number }[]>([])
   const msgsRef = useRef(msgs)
   msgsRef.current = msgs
@@ -325,6 +335,18 @@ export default function Monki({
     if (open && apiKey) inputRef.current?.focus()
   }, [open, apiKey])
 
+  // What this month's questions have cost: read when the panel opens and after each answer.
+  useEffect(() => {
+    if (!open || !apiKey || !loadUsage || busy) return
+    let live = true
+    loadUsage()
+      .then((u) => live && setUsage(u))
+      .catch(() => live && setUsage(null))
+    return () => {
+      live = false
+    }
+  }, [open, apiKey, loadUsage, busy])
+
   // The weakly pronounced words are read each time the panel opens: the scores change as the learner practises.
   useEffect(() => {
     if (!open || !apiKey || !loadPronWords) return
@@ -346,6 +368,11 @@ export default function Monki({
     async (raw: string, over?: { mode?: MonkiMode; scenario?: string; targets?: string[] }) => {
       const message = raw.trim()
       if (!message || busy || !apiKey) return
+      if (overLimit(dailyLimit)) {
+        setError(`Bugünkü Monki soru sınırına (${dailyLimit}) ulaştın. Sınırı Ayarlar → YZ yardımcısı’ndan değiştirebilirsin; yarın yeniden başlar.`)
+        return
+      }
+      countAsk()
       const asked = language
       const next = [...msgs, { role: 'user' as const, text: message }]
       setMsgs(next)
@@ -387,7 +414,7 @@ export default function Monki({
         if (languageRef.current === asked) setBusy(false)
       }
     },
-    [apiKey, busy, language, msgs, name, weakWords, mode, scenario, mistakes, targets, memory, remembering, pronWords],
+    [apiKey, busy, language, msgs, name, weakWords, mode, scenario, mistakes, targets, memory, remembering, pronWords, dailyLimit],
   )
 
   // A question from elsewhere in the app (a word page, a wrong answer, a sentence being read).
@@ -705,6 +732,13 @@ export default function Monki({
                   <SendIcon size={18} />
                 </button>
               </form>
+              {(usage || dailyLimit > 0) && (
+                <p className="monki-cost small muted">
+                  {usage ? `Bu ay Monki: ${usage.requests} soru · ≈ ${usd(usage.cost)}` : null}
+                  {usage && dailyLimit > 0 ? ' · ' : null}
+                  {dailyLimit > 0 ? `bugün ${Math.min(askedToday(), dailyLimit)}/${dailyLimit}` : null}
+                </p>
+              )}
             </>
           )}
         </section>

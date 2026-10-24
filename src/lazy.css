@@ -2233,6 +2233,9 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .monki-memory-actions { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .monki-summary { align-self: stretch; padding: 0.625rem 0.75rem; border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface-2, var(--surface)); display: grid; gap: 0.25rem; justify-items: start; }
 .monki-summary p { margin: 0; }
+.monki-verdict { display: flex; align-items: center; gap: 0.625rem; margin: 0; padding: 0.5rem 0.75rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); }
+.monki-verdict .monki-face { flex: none; }
+.monki-cost { margin: 0; padding: 0 0.875rem 0.625rem; text-align: center; font-variant-numeric: tabular-nums; }
 .monki-modes { display: flex; gap: 0.375rem; padding: 0.5rem 0.875rem 0; flex-wrap: wrap; }
 .monki-modes .chip { flex: none; }
 /* Words mode: the words to use, ticked off as the learner uses them. */
