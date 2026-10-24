@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { grammarExercises } from '../../data/grammar'
 import { db } from '../../data/instance'
 import { cleanRoomCode, newRoomCode, ROOM_INBOX } from '../../engine/liveDuel'
+import { duelComment } from '../../engine/duelComment'
+import { MonkiVerdict } from '../monki/MonkiVerdict'
 import { DUEL_INBOX, DUEL_ROUNDS, decodeDuel, duelLine, duelOptions, duelPool, duelQuestions, duelWinner, encodeDuel, pickDuelIds, type DuelChallenge, type DuelFilter, type DuelResult } from '../../engine/duel'
 import { addRecord, byOpponent, cleanRecords, recordOf, tally, type DuelRecord } from '../../engine/duelHistory'
 import { checkGrammar, filled, topicName } from '../../engine/grammar'
@@ -377,6 +379,12 @@ export function DuelGame({ language, onExit }: { language: TargetLanguage; onExi
               </>
             )}
           </div>
+          {!mine && (() => {
+            // From the learner's side: the challenger looking at a friend's reply is `from`; a friend who just answered is `final`.
+            const [me, them, won] = challenge.reply ? [challenge.from, challenge.reply, duelWinner(challenge.from, challenge.reply)] : [final, challenge.from, duelWinner(challenge.from, final)]
+            const win = won === 'tie' ? null : challenge.reply ? won === 'from' : won === 'reply'
+            return <MonkiVerdict comment={duelComment(me, them, total, win, them.name)} />
+          })()}
           {outgoing && !challenge.reply && (
             <>
               <p className="muted">

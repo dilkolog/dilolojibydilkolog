@@ -10,6 +10,7 @@ import { WandIcon } from './icons'
 import { Sticker } from './Sticker'
 
 const LIMITS = [0, 2, 5, 10, 20]
+const MONKI_LIMITS = [0, 10, 25, 50, 100]
 const usd = (x: number) => `$${x < 1 ? x.toFixed(3) : x.toFixed(2)}`.replace('.', ',')
 
 /** Turning the AI layer on/off. The key stays in this browser and is excluded from backups. */
@@ -111,6 +112,17 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
           ))}
         </div>
         <span className="help">Sınıra ulaşınca ay sonuna kadar YZ istekleri durur; uygulamanın geri kalanı çalışmaya devam eder.</span>
+      </div>
+      <div className="field">
+        <label>Monki günlük soru sınırı</label>
+        <div className="seg-group" role="radiogroup" aria-label="Monki günlük soru sınırı">
+          {MONKI_LIMITS.map((l) => (
+            <button key={l} type="button" role="radio" className="seg-btn" aria-checked={(settings.monkiDailyLimit ?? 0) === l} onClick={() => onChange({ ...settings, monkiDailyLimit: l })}>
+              {l ? String(l) : 'Sınırsız'}
+            </button>
+          ))}
+        </div>
+        <span className="help">Bu cihazda bir günde Monki’ye en çok kaç mesaj gönderebileceğini sınırlar (her mesaj bir YZ isteğidir). Gece yarısı sıfırlanır.</span>
       </div>
       <div className="stack ai-usage">
         <strong>Bu ayki kullanım</strong>

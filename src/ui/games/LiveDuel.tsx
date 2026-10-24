@@ -8,6 +8,8 @@ import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
+import { duelComment } from '../../engine/duelComment'
+import { MonkiVerdict } from '../monki/MonkiVerdict'
 import { DuelSide } from './duelParts'
 import { noteIn } from './logNote'
 import { share } from './shareLink'
@@ -263,6 +265,7 @@ function LiveResult({ room, total, onAgain, onExit }: { room: RoomView; total: n
         <DuelSide result={result(mine)} of={total} you winner={room.winner === 'you'} />
         <DuelSide result={result(1 - mine)} of={total} winner={room.winner === 'them'} />
       </div>
+      <MonkiVerdict comment={duelComment(result(mine), result(1 - mine), total, room.winner === 'tie' ? null : room.winner === 'you', room.players[1 - mine]?.name ?? 'Arkadaşın')} />
       {room.series && <SeriesBoard series={room.series} them={room.players[1 - mine]?.name ?? 'Arkadaşın'} />}
       <div className="row">
         <button className="btn btn-sm" onClick={onAgain}>

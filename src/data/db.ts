@@ -205,6 +205,8 @@ export interface Settings {
   aiModel: AiModel
   /** Monthly AI spending limit in USD; 0 = no limit. */
   aiMonthlyLimit: number
+  /** How many questions Monki answers in a day on this device; 0 = no limit. */
+  monkiDailyLimit: number
   /** Introduce own words most frequent first. */
   frequencyFirst: boolean
   /** "When and where I'll study" (implementation intention); '' = not set. */
@@ -258,6 +260,7 @@ export const DEFAULT_SETTINGS: Settings = {
   accentShortcuts: true,
   aiModel: 'claude-opus-5-5',
   aiMonthlyLimit: 0,
+  monkiDailyLimit: 0,
   frequencyFirst: false,
   studyPlan: '',
   studyPlanAsked: false,

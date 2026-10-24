@@ -74,10 +74,12 @@ Uygulama: oturumda üst üste 3 yanlışta (`engine/easyRound.ts` `struggling`) 
 Üst üste yanlışta ya da uzun aradan dönünce oturum ortasında "kolay bir tur yapalım mı?".
 - `Session.tsx`: `isLeech` yardımı ve 3 üst üste yanlış zaten var (`engine/leechHelp.ts`). Monki konuşmaz, panel açılmaz: küçük bir kart/toast; kabul ederse `insertLater` ile kolay `mc_meaning` soruları ekle (zamanlamayı etkilemeyen `reason: 'practice'`). Oturumda Monki paneli `aria-modal` olduğundan kısayollar dursun diye açma, sadece kart.
 
-### 12. Arkadaşlarla Monki
+### 12. Arkadaşlarla Monki — YAPILDI (2026-10-24)
+Uygulama: düello sonuç ekranlarında (bağlantılı düello ve canlı düello) `MonkiVerdict`: yüz + hazır satırlar (`engine/duelComment.ts`, istek yok; skor farkına ve süreye göre, kayıpta/beraberlikte rövanş önerir). Haftalık lig kartına eklenmedi.
 Düello/lig sonucunu Monki yorumlasın, rövanş önersin. Düşük öncelik, eğlence. `DuelGame.tsx` sonuç ekranı ve `FriendLeague.tsx`: ek çağrı yapmadan hazır metin şablonları (YZ çağrısı gerekmesin); Monki poz çizimleri mevcut `MonkiMascot` pozlarından.
 
-### 14. Maliyet göstergesi
+### 14. Maliyet göstergesi — YAPILDI (2026-10-24)
+Uygulama: kullanım sayımı ve aylık bütçe zaten vardı (Ayarlar → YZ yardımcısı); eklenenler: Monki panelinde formun altında "Bu ay Monki: N soru · ≈ $x" (`loadUsage`, `db.getAiUsage()` `features.monki`) ve **günlük soru sınırı** (`Settings.monkiDailyLimit`, 0 = sınırsız; seçenekler 10/25/50/100; sayaç cihazda `diloloji:monki-count`, `ui/monki/dailyLimit.ts`); sınıra gelince panel nedenini söyler ve istek atmaz.
 Ayarlar'da "bu ay Monki'ye ne kadar harcadın" ve günlük sınır.
 - Kullanım sayımı zaten var (Ayarlar → Kullanım → YZ, maliyet anahtarları `monki`, `monki_*`). Monki satırlarını ayrı topla, günlük soru sınırı ayarı (`Settings`'e yeni alan; 0 = sınırsız). Sınıra gelince panel nedenini söyler ve Ayarlar'a götürür.
 
@@ -86,7 +88,7 @@ Uygulama: kelime sayfasında Köken satırında "Hikâyesini anlat" (`storyAsk`:
 Kök ve ekler ağacındaki kelimenin köken ve akrabalarını kısa hikâye olarak anlatır.
 - `ui/MorphemeTree.tsx`, `engine/derive.ts` `familyOf`, kelime sayfasındaki köken (`cleanEtymology`). `wordAsk`'a "kelime hikâyesi" modu: köken + aile üyeleri bağlama girer; hikâye 4–5 cümle, Türkçe, örnekler hedef dilde.
 
-### 8. Yeni rol yapma sahneleri — YAPILAMAZ (şimdilik)
+### 8. Yeni rol yapma sahneleri — YAPILAMAZ (şimdilik; çizim ister)
 `Monki.tsx` `SCENES` her sahne için çizim ister (`ROLE_ART`, `MISSION_ART`). Çizimi sahibi üretmeden yeni sahne ekleme. Sahibine hangi sahneleri istediğini (doktor, kiracı, iş mülakatı…) ve çizim ihtiyacını bildir.
 
 ## Her maddede yapılacaklar
