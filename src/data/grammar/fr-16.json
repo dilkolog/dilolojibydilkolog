@@ -1,0 +1,208 @@
+[
+  {
+    "id": "fr-b16-1",
+    "language": "fr",
+    "level": "B1",
+    "topic": "subjonctif",
+    "type": "choice",
+    "prompt": "Il faut que tu ___ ton devoir ce soir.",
+    "answer": "finisses",
+    "options": [
+      "finisses",
+      "finis",
+      "finiras"
+    ],
+    "explanation": "il faut que'den sonra subjonctif gelir: que tu finisses. Şimdiki zaman (finis) ya da gelecek (finiras) kullanılmaz.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-2",
+    "language": "fr",
+    "level": "B1",
+    "topic": "subjonctif",
+    "type": "choice",
+    "prompt": "Je doute qu'il ___ la vérité.",
+    "answer": "dise",
+    "options": [
+      "dise",
+      "dit",
+      "dira"
+    ],
+    "explanation": "douter que (şüphe etmek) subjonctif ister: qu'il dise. dit ya da dira belirtili kip olduğu için yanlıştır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-3",
+    "language": "fr",
+    "level": "B1",
+    "topic": "subjonctif",
+    "type": "cloze",
+    "prompt": "Bien qu'elle ___ fatiguée, elle continue à travailler.",
+    "answer": "soit",
+    "explanation": "bien que (-e rağmen) subjonctif ister. être fiilinin subjonctif'i: qu'elle soit.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-4",
+    "language": "fr",
+    "level": "B1",
+    "topic": "subjonctif",
+    "type": "error",
+    "prompt": "Je veux que tu viens demain.",
+    "answer": "viens",
+    "fix": "viennes",
+    "explanation": "vouloir que'den sonra subjonctif gelir: que tu viennes. viens belirtili kiptir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-5",
+    "language": "fr",
+    "level": "B1",
+    "topic": "participe_passe",
+    "type": "choice",
+    "prompt": "Les fleurs qu'il m'a ___ sont très belles.",
+    "answer": "offertes",
+    "options": [
+      "offertes",
+      "offert",
+      "offerts"
+    ],
+    "explanation": "avoir ile kurulan zamanlarda COD fiilden önce gelirse ortaç onunla uyar: les fleurs (dişil çoğul) → offertes.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-6",
+    "language": "fr",
+    "level": "B2",
+    "topic": "participe_passe",
+    "type": "choice",
+    "prompt": "Elle s'est ___ les mains avant de manger.",
+    "answer": "lavé",
+    "options": [
+      "lavé",
+      "lavée",
+      "lavées"
+    ],
+    "explanation": "Dönüşlü fiilde COD (les mains) fiilden sonra gelirse ortaç uymaz: elle s'est lavé les mains.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-7",
+    "language": "fr",
+    "level": "B1",
+    "topic": "participe_passe",
+    "type": "error",
+    "prompt": "Les lettres que j'ai écrit sont parties hier.",
+    "answer": "écrit",
+    "fix": "écrites",
+    "explanation": "COD (que = les lettres) fiilden önce geldiği için ortaç uyar: les lettres que j'ai écrites.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-8",
+    "language": "fr",
+    "level": "B1",
+    "topic": "pronoms_relatifs",
+    "type": "choice",
+    "prompt": "Voici le livre ___ je t'ai parlé.",
+    "answer": "dont",
+    "options": [
+      "dont",
+      "que",
+      "où"
+    ],
+    "explanation": "parler de fiili de ile kurulur; de'li tümleci dont karşılar: le livre dont je t'ai parlé.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-9",
+    "language": "fr",
+    "level": "A2",
+    "topic": "pronoms_relatifs",
+    "type": "choice",
+    "prompt": "La ville ___ je suis né est très petite.",
+    "answer": "où",
+    "options": [
+      "où",
+      "que",
+      "dont"
+    ],
+    "explanation": "Yer ve zaman belirten ilgi cümlelerinde où kullanılır: la ville où je suis né.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-10",
+    "language": "fr",
+    "level": "B1",
+    "topic": "conditionnel_passe",
+    "type": "choice",
+    "prompt": "Si j'avais su, je ne ___ pas venu.",
+    "answer": "serais",
+    "options": [
+      "serais",
+      "suis",
+      "serai"
+    ],
+    "explanation": "Gerçek dışı geçmiş şart: si + plus-que-parfait, conditionnel passé. venir être alır: je ne serais pas venu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-11",
+    "language": "fr",
+    "level": "B1",
+    "topic": "conditionnel_passe",
+    "type": "cloze",
+    "prompt": "Si tu étais arrivé plus tôt, nous ___ vu le début du film.",
+    "answer": "aurions",
+    "explanation": "si + plus-que-parfait cümlesinin sonucu conditionnel passé olur: nous aurions vu (voir avoir alır).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-12",
+    "language": "fr",
+    "level": "A2",
+    "topic": "negation_fr",
+    "type": "choice",
+    "prompt": "Je ne mange ___ de viande.",
+    "answer": "jamais",
+    "options": [
+      "jamais",
+      "personne",
+      "rien"
+    ],
+    "explanation": "ne … jamais hiçbir zaman demektir ve de ile birlikte kullanılır: je ne mange jamais de viande. personne ve rien de bu yapıda uymaz.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-13",
+    "language": "fr",
+    "level": "A2",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Hier, il ___ quand le téléphone a sonné.",
+    "answer": "dormait",
+    "options": [
+      "dormait",
+      "a dormi",
+      "dormit"
+    ],
+    "explanation": "Süren eylem (arka plan) imparfait ile, araya giren olay passé composé ile söylenir: il dormait quand le téléphone a sonné.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b16-14",
+    "language": "fr",
+    "level": "A2",
+    "topic": "basics_fr_depuis",
+    "type": "choice",
+    "prompt": "J'habite ici ___ trois ans.",
+    "answer": "depuis",
+    "options": [
+      "depuis",
+      "il y a",
+      "pendant"
+    ],
+    "explanation": "Hâlâ süren bir durum için depuis kullanılır ve şimdiki zamanla gelir: j'habite ici depuis trois ans.",
+    "source": "Diloloji (özgün)"
+  }
+]

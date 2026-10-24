@@ -1,0 +1,208 @@
+[
+  {
+    "id": "es-b16-1",
+    "language": "es",
+    "level": "B1",
+    "topic": "subjuntivo",
+    "type": "choice",
+    "prompt": "Quiero que tú ___ conmigo.",
+    "answer": "vengas",
+    "options": [
+      "vengas",
+      "vienes",
+      "vendrás"
+    ],
+    "explanation": "querer que'den sonra subjuntivo gelir: que tú vengas. vienes ve vendrás belirtili kiptir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-2",
+    "language": "es",
+    "level": "B1",
+    "topic": "subjuntivo",
+    "type": "choice",
+    "prompt": "Espero que ella ___ pronto.",
+    "answer": "llegue",
+    "options": [
+      "llegue",
+      "llega",
+      "llegará"
+    ],
+    "explanation": "esperar que dilek bildirir ve subjuntivo ister: que ella llegue.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-3",
+    "language": "es",
+    "level": "B1",
+    "topic": "subjuntivo",
+    "type": "cloze",
+    "prompt": "No creo que él ___ razón.",
+    "answer": "tenga",
+    "explanation": "No creer que (inanmamak) subjuntivo ister. tener fiilinin subjuntivo'su: que él tenga.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-4",
+    "language": "es",
+    "level": "B1",
+    "topic": "subjuntivo",
+    "type": "error",
+    "prompt": "Es posible que llueve mañana.",
+    "answer": "llueve",
+    "fix": "llueva",
+    "explanation": "Es posible que'den sonra subjuntivo gelir: que llueva.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-5",
+    "language": "es",
+    "level": "A2",
+    "topic": "ser_estar",
+    "type": "choice",
+    "prompt": "Prueba la sopa: ___ muy fría ahora.",
+    "answer": "está",
+    "options": [
+      "está",
+      "es",
+      "hay"
+    ],
+    "explanation": "Geçici durum ve şimdiki hâl estar ile söylenir: la sopa está fría (şu an soğuk).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-6",
+    "language": "es",
+    "level": "A1",
+    "topic": "ser_estar",
+    "type": "choice",
+    "prompt": "Mi hermano ___ médico.",
+    "answer": "es",
+    "options": [
+      "es",
+      "está",
+      "hay"
+    ],
+    "explanation": "Meslek ve kimlik ser ile söylenir: mi hermano es médico.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-7",
+    "language": "es",
+    "level": "A2",
+    "topic": "ser_estar",
+    "type": "error",
+    "prompt": "La reunión está en la sala tres a las cinco.",
+    "answer": "está",
+    "fix": "es",
+    "explanation": "Bir olayın (toplantı, parti) yeri ser ile söylenir: la reunión es en la sala tres. estar yalnızca nesne ve kişilerin yerinde kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-8",
+    "language": "es",
+    "level": "A2",
+    "topic": "por_para",
+    "type": "choice",
+    "prompt": "Este regalo es ___ ti.",
+    "answer": "para",
+    "options": [
+      "para",
+      "por",
+      "de"
+    ],
+    "explanation": "Alıcı için para kullanılır: este regalo es para ti.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-9",
+    "language": "es",
+    "level": "A2",
+    "topic": "por_para",
+    "type": "choice",
+    "prompt": "Gracias ___ tu ayuda.",
+    "answer": "por",
+    "options": [
+      "por",
+      "para",
+      "en"
+    ],
+    "explanation": "Teşekkür nedeni por ile söylenir: gracias por tu ayuda.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-10",
+    "language": "es",
+    "level": "A2",
+    "topic": "por_para",
+    "type": "cloze",
+    "prompt": "Estudio español ___ trabajar en España.",
+    "answer": "para",
+    "explanation": "Amaç (-mek için) para ile söylenir: estudio español para trabajar.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-11",
+    "language": "es",
+    "level": "B1",
+    "topic": "se_pasivo",
+    "type": "choice",
+    "prompt": "En esta tienda ___ ropa de segunda mano.",
+    "answer": "se vende",
+    "options": [
+      "se vende",
+      "se venden",
+      "venden"
+    ],
+    "explanation": "Se pasivo'da fiil, tekil nesneyle tekil olur: se vende ropa (ropa tekil).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-12",
+    "language": "es",
+    "level": "B1",
+    "topic": "se_pasivo",
+    "type": "choice",
+    "prompt": "Aquí ___ varios idiomas.",
+    "answer": "se hablan",
+    "options": [
+      "se hablan",
+      "se habla",
+      "hablan"
+    ],
+    "explanation": "Çoğul nesne (varios idiomas) ile fiil çoğul olur: se hablan varios idiomas.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-13",
+    "language": "es",
+    "level": "B1",
+    "topic": "condicionales",
+    "type": "choice",
+    "prompt": "Si tuviera tiempo, ___ a verte.",
+    "answer": "iría",
+    "options": [
+      "iría",
+      "iré",
+      "iba"
+    ],
+    "explanation": "si + imperfecto de subjuntivo cümlesinin sonucu condicional olur: si tuviera tiempo, iría.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b16-14",
+    "language": "es",
+    "level": "A2",
+    "topic": "perifrasis",
+    "type": "choice",
+    "prompt": "Mañana ___ a llamar a mi madre.",
+    "answer": "voy",
+    "options": [
+      "voy",
+      "vengo",
+      "estoy"
+    ],
+    "explanation": "Yakın gelecek ir a + mastar ile kurulur: mañana voy a llamar.",
+    "source": "Diloloji (özgün)"
+  }
+]
