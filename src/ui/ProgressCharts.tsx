@@ -1,6 +1,7 @@
 import { type KeyboardEvent, useState } from 'react'
 import type { DayActivity } from '../engine/progress'
 import { dayLabel } from './progressShared'
+import { Sticker } from './Sticker'
 
 /**
  * A column chart is one stop for the keyboard: arrows move between the days (Home/End to the ends)
@@ -54,6 +55,15 @@ export function ActivityChart({ activity }: { activity: DayActivity[] }) {
   const max = Math.max(1, peak)
   const shown = hover !== null ? activity[hover] : null
 
+  if (peak === 0) {
+    return (
+      <p className="small muted sticker-note">
+        <Sticker name="sleep" size={40} />
+        <span>İlk oturumdan sonra günlük cevapların burada sütun olarak görünür.</span>
+      </p>
+    )
+  }
+
   return (
     <div>
       <p className="chart-readout small" aria-live="polite">
@@ -61,9 +71,7 @@ export function ActivityChart({ activity }: { activity: DayActivity[] }) {
           ? `${dayLabel(shown.date, { day: 'numeric', month: 'long', weekday: 'short' })}: ${shown.answers} cevap${
               shown.answers ? `, ${shown.correct} doğru` : ''
             }`
-          : peak > 0
-            ? `En yoğun gün: ${peak} cevap`
-            : 'Bu dönemde henüz cevap yok'}
+          : `En yoğun gün: ${peak} cevap`}
       </p>
       <div className="columns" role="group" aria-label="Günlük cevaplar; ok tuşlarıyla günler arasında gez" {...columnKeys(activity.length, hover, setHover)}>
         {activity.map((a, i) => (
