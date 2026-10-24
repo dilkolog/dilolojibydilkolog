@@ -12,7 +12,7 @@ import { markKnown, needsIntervention, newWordState, processAttempt, type Attemp
 import { listeningRate } from '../engine/listening'
 import { createRng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
-import { easiestWords, struggling } from '../engine/easyRound'
+import { AWAY_DAYS, daysAway, easiestWords, struggling } from '../engine/easyRound'
 import { adaptExercise, completeItem, currentItem, honorOff, insertLater, isFinished, mixInTyping, retryItem, skipRemaining, startSession, suggestBreak, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
 import { TARGET_LANGUAGES, timeOf, type Confidence, type EngineOptions, type ExerciseType, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry, type Verdict } from '../engine/types'
 import type { KelimeDB, Settings } from '../data/db'
@@ -172,6 +172,8 @@ export function SessionScreen(p: Props) {
   // What the day already holds, for the XP the answers earn: the answers given before this session (a long day pays less) and
   // whether today picks the studying up after a few days away (the fifth real answer then brings the comeback bonus).
   const today = useRef({ answers: 0, normal: 0, comeback: false, paid: false })
+  // Days since the last studied day, when the first session of today opens after a long break (0 = no offer).
+  const [awayFor, setAwayFor] = useState(0)
   useEffect(() => {
     let live = true
     const start = new Date()
@@ -179,6 +181,8 @@ export function SessionScreen(p: Props) {
     void (async () => {
       const [earlier, last] = await Promise.all([p.db.eventsSince(start), p.db.events.where('timestamp').below(start).filter((e) => e.mode === 'normal').last()])
       if (!live) return
+      const away = daysAway(last ? localDate(last.timestamp) : null, localDate(start))
+      if (away !== null && away >= AWAY_DAYS && earlier.length === 0) setAwayFor(away)
       today.current = { ...today.current, answers: earlier.length, normal: earlier.filter((e) => e.mode === 'normal').length, comeback: isComeback(last ? localDate(last.timestamp) : null, localDate(start)) }
     })().catch(() => {})
     return () => {
@@ -209,7 +213,20 @@ export function SessionScreen(p: Props) {
   const showBreak = !breakDismissed && answeredAt !== session.index && suggestBreak(session.log)
   // Three wrong in a row: a few easy questions are offered (once per session), unless the break note is up.
   const [easyDismissed, setEasyDismissed] = useState(false)
-  const showEasy = !easyDismissed && !showBreak && p.mode !== 'practice' && answeredAt !== session.index && struggling(session.log)
+  const afterBreak = awayFor > 0 && session.log.every((l) => !l.verdict) && answeredAt !== session.index
+  const showEasy = !easyDismissed && !showBreak && p.mode !== 'practice' && answeredAt !== session.index && (struggling(session.log) || afterBreak)
+  const addEasy = () => {
+    const current = currentItem(session)
+    const exclude = new Set([...(current ? [current.entryId] : []), ...session.log.slice(-3).map((l) => l.entryId)])
+    const ids = easiestWords(states.current.values(), byId, exclude)
+    setEasyDismissed(true)
+    if (!ids.length) {
+      showToast('Şimdilik kolay soru için yeterince oturmuş kelime yok.')
+      return
+    }
+    // The question on screen has not been answered yet: the easy ones go in front of it (gap -1 puts an item at the current place).
+    setSession((s) => ids.reduce((acc, id, i) => insertLater(acc, { kind: 'exercise', entryId: id, reason: 'practice', skill: 'recognition', exerciseType: 'mc_meaning' }, i - 1), s))
+  }
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       // A dialog that is open (or closing on this same keypress) owns Esc.
@@ -484,25 +501,19 @@ export function SessionScreen(p: Props) {
       {showEasy && (
         <div className="break-note" role="status">
           <p>
-            <strong>Üst üste zorlandın.</strong> Böyle anlar olur. Bildiğin kelimelerden üç kolay soru ekleyelim mi? Bunlar ilerlemeni ve tekrar takvimini etkilemez; yalnızca ritmi toparlar.
+            {afterBreak ? (
+              <>
+                <strong>{awayFor} gün sonra döndün, hoş geldin.</strong> İstersen önce bildiğin kelimelerden üç kolay soruyla ısınalım. Bunlar ilerlemeni ve tekrar takvimini etkilemez.
+              </>
+            ) : (
+              <>
+                <strong>Üst üste zorlandın.</strong> Böyle anlar olur. Bildiğin kelimelerden üç kolay soru ekleyelim mi? Bunlar ilerlemeni ve tekrar takvimini etkilemez; yalnızca ritmi toparlar.
+              </>
+            )}
           </p>
           <div className="break-actions">
-            <button
-              className="btn btn-quiet"
-              onClick={() => {
-                const current = currentItem(session)
-                const exclude = new Set([...(current ? [current.entryId] : []), ...session.log.slice(-3).map((l) => l.entryId)])
-                const ids = easiestWords(states.current.values(), byId, exclude)
-                setEasyDismissed(true)
-                if (!ids.length) {
-                  showToast('Şimdilik kolay soru için yeterince oturmuş kelime yok.')
-                  return
-                }
-                // The question on screen has not been answered yet: the easy ones go in front of it (gap -1 puts an item at the current place).
-                setSession((s) => ids.reduce((acc, id, i) => insertLater(acc, { kind: 'exercise', entryId: id, reason: 'practice', skill: 'recognition', exerciseType: 'mc_meaning' }, i - 1), s))
-              }}
-            >
-              Kolay sorular ekle
+            <button className="btn btn-quiet" onClick={addEasy}>
+              {afterBreak ? 'Isınalım' : 'Kolay sorular ekle'}
             </button>
             <button className="link" onClick={() => setEasyDismissed(true)}>
               Gerek yok

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { easiestWords, EASY_COUNT, struggling } from '../easyRound'
+import { AWAY_DAYS, daysAway, easiestWords, EASY_COUNT, struggling } from '../easyRound'
 import { newWordState } from '../review'
 import type { UserWordState, VocabularyEntry } from '../types'
 import { abandon, affect, decide, decision, effect, improve, leave } from './fixtures'
@@ -41,5 +41,14 @@ describe('easy questions for it', () => {
   it('leaves out words just missed, words still shaky, retired or hardly met ones', () => {
     const states = [known(decision, 90), known(decide, 80, 5, 6), { ...known(affect, 70), retired: true }, known(effect, 60, 2), known(abandon, 50), known(leave, 40)]
     expect(easiestWords(states, vocabulary, new Set([decision.id]))).toEqual([abandon.id, leave.id])
+  })
+})
+
+describe('a long break', () => {
+  it('counts the whole days since the last studied day', () => {
+    expect(daysAway('2026-10-01', '2026-10-08')).toBe(7)
+    expect(daysAway('2026-10-07', '2026-10-08')).toBe(1)
+    expect(daysAway(null, '2026-10-08')).toBeNull()
+    expect(AWAY_DAYS).toBe(7)
   })
 })

@@ -2,6 +2,15 @@ import type { UserWordState, VocabularyEntry } from './types'
 
 /** Three answers wrong in a row is a bad stretch: time to offer a few easy ones. */
 export const EASY_AFTER = 3
+/** Days away from studying after which the first session of the day opens with an offer of a gentle warm-up. */
+export const AWAY_DAYS = 7
+
+/** Whole days between two local dates (`YYYY-MM-DD`); null when there is no earlier day. */
+export function daysAway(previousDay: string | null | undefined, today: string): number | null {
+  if (!previousDay) return null
+  return Math.round((new Date(`${today}T12:00:00`).getTime() - new Date(`${previousDay}T12:00:00`).getTime()) / 86_400_000)
+}
+
 /** How many easy questions the offer adds. */
 export const EASY_COUNT = 3
 
