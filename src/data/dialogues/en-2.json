@@ -3,9 +3,9 @@
   "source": "Diloloji (özgün)",
   "dialogues": [
     {
-      "id": "en-pharmacy",
+      "id": "en-pharmacy-cough",
       "level": "A2",
-      "title": "At the pharmacy",
+      "title": "Eczanede öksürük",
       "scene": "You are in a pharmacy in London; you have a cough.",
       "turns": [
         {
@@ -73,7 +73,7 @@
     {
       "id": "en-taxi",
       "level": "A2",
-      "title": "In a taxi",
+      "title": "Taksiyle otele",
       "scene": "You get into a taxi at the airport.",
       "turns": [
         {
@@ -139,9 +139,9 @@
       ]
     },
     {
-      "id": "en-hotel",
+      "id": "en-hotel-heating",
       "level": "B1",
-      "title": "A problem at the hotel",
+      "title": "Otelde kalorifer bozuk",
       "scene": "The heating in your hotel room does not work; you go to reception.",
       "turns": [
         {

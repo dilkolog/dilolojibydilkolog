@@ -3,9 +3,9 @@
   "source": "Diloloji (özgün)",
   "dialogues": [
     {
-      "id": "fr-pharmacie",
+      "id": "fr-pharmacie-tete",
       "level": "A2",
-      "title": "Eczanede",
+      "title": "Eczanede baş ağrısı",
       "scene": "Paris'te bir eczanedesin; baş ağrın var.",
       "turns": [
         {
@@ -73,7 +73,7 @@
     {
       "id": "fr-taxi",
       "level": "A2",
-      "title": "Taksi",
+      "title": "Taksiyle otele",
       "scene": "Gare de Lyon önünde bir taksiye biniyorsun.",
       "turns": [
         {
@@ -139,9 +139,9 @@
       ]
     },
     {
-      "id": "fr-hotel",
+      "id": "fr-hotel-eau",
       "level": "B1",
-      "title": "Otelde sorun",
+      "title": "Otelde sıcak su yok",
       "scene": "Otel odanda sıcak su yok; resepsiyona gidiyorsun.",
       "turns": [
         {

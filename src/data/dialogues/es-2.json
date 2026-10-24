@@ -3,9 +3,9 @@
   "source": "Diloloji (özgün)",
   "dialogues": [
     {
-      "id": "es-farmacia",
+      "id": "es-farmacia-garganta",
       "level": "A2",
-      "title": "Eczanede",
+      "title": "Eczanede boğaz ağrısı",
       "scene": "Madrid'te bir eczanedesin; boğazın ağrıyor.",
       "turns": [
         {
@@ -73,7 +73,7 @@
     {
       "id": "es-taxi",
       "level": "A2",
-      "title": "Taksi",
+      "title": "Taksiyle otele",
       "scene": "Atocha istasyonunda taksiye biniyorsun.",
       "turns": [
         {
@@ -139,9 +139,9 @@
       ]
     },
     {
-      "id": "es-hotel",
+      "id": "es-hotel-aire",
       "level": "B1",
-      "title": "Otelde sorun",
+      "title": "Otelde klima bozuk",
       "scene": "Odandaki klima çalışmıyor; resepsiyona gidiyorsun.",
       "turns": [
         {
