@@ -169,6 +169,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
       onPlay={onPlay}
       onDelete={(ids) => deleteWordsWithUndo(ids, `${ids.length} kelime silindi`, onChanged)}
       onAdd={goAdd}
+      onStarter={() => setSection('import')}
       lists={lists}
       onSuggestImages={() => setSuggestingImages(true)}
       pictureTick={pictureTick}
