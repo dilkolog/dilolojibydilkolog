@@ -1508,6 +1508,9 @@ test('guide on phone: placement test modal, terms inspection, and sticky steps h
 
 test('top bar on a phone: the bell and the avatar open their panels on screen', async ({ page }) => {
   await startWithSamples(page)
+  // Safari treats the top bar's blur (backdrop-filter) as the containing block of fixed children, which Chromium does not:
+  // a transform makes Chromium do the same, so the sheets are checked the way iPhone lays them out.
+  await page.addStyleTag({ content: '.shell > .sidebar { transform: translateZ(0); }' })
   const size = page.viewportSize()!
   const onScreen = async (selector: string) => {
     const box = await page.locator(selector).boundingBox()
