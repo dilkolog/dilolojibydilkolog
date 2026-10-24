@@ -31,6 +31,7 @@ const LOCAL_PREFIXES = [
   'diloloji:monki:',
   'diloloji:monki-voice',
   'diloloji:monki-nudge',
+  'diloloji:monki-memory',
   'diloloji:podcast:',
   'diloloji:ladder:',
   'diloloji:numbers',

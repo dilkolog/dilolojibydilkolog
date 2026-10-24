@@ -642,6 +642,9 @@ const Monki = z.object({
   say: z.string().describe('Role-play only: the in-character lines the other person says aloud, in the target language and nothing else (no Turkish, no correction line, no stage directions). An empty string in every other mode.'),
   reply: z.string().describe('Your answer, in Turkish with target-language examples. Short: a few lines unless asked for more. Only **bold**, _italic_ and plain lines or "- " lists; no headings, no tables.'),
   suggestions: z.array(z.string()).describe('Two or three short things the learner might tap next, each under 40 characters. Normally Turkish requests or questions to you; in a role-play scene, replies the learner could say next in the target language; in a quiz, the answer options of a multiple-choice question or Turkish taps like "İpucu ver".'),
+  remember: z
+    .array(z.string())
+    .describe('Zero, one or two short Turkish notes (each under 100 characters) about the learner worth remembering for later talks: a recurring mistake, a topic they find hard, a goal or interest they mentioned. Empty on most turns; never repeat what is already remembered; nothing about their private life beyond learning.'),
 })
 
 /** The extra rules of the mode Monki is in (nothing for plain chat). */
@@ -675,6 +678,9 @@ export async function monkiTurn(apiKey: string, req: MonkiRequest): Promise<Monk
     'You help with vocabulary, grammar, pronunciation tips, differences between similar words or tenses, checking and gently correcting sentences the learner wrote (put the correction on its own line as "✏️ Düzeltme: “corrected sentence” — one short reason", the whole sentence in curly quotes, so the app can save it as a card), mnemonics, and small quizzes (one question at a time, wait for the answer).',
     'If the learner writes a sentence in the target language with a real mistake, point it out kindly even when they did not ask. Never invent features of the app. Politely steer off-topic requests back to language learning in one friendly sentence.',
     `Words they currently struggle with (use them for examples and quizzes when it fits): ${req.weakWords?.join(', ') || 'none known'}.`,
+    ...(req.memory?.length
+      ? [`What you remember about this learner from earlier talks (use it lightly and naturally when it helps, for example "geçen hafta … zorlanıyordun"; never recite the list):\n${req.memory.map((n) => `- ${n}`).join('\n')}`]
+      : []),
     'Also return two or three short follow-up taps that would naturally come next.',
     'Put the whole answer in "reply": never stop after an introduction such as "İşte örnekler:" or "Tabii, şunlar:"; the examples or list it announces must follow in the same reply.',
     ...monkiModeRules(req, lang),

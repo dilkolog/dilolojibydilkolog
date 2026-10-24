@@ -14,6 +14,9 @@ import { EMBLEM, ROLE_ART } from '../drawnArt'
 import { usesWord } from './monkiWords'
 import { changedWord, parseCorrection, type Correction } from './corrections'
 import { saveSentence } from '../saveSentence'
+import { addNotes, memoryLines, removeNote, type MemoryNote } from '../../engine/monkiMemory'
+import { localDate } from '../../engine/progress'
+import { loadMemory, memoryOn, saveMemory, setMemoryOn } from './memoryStore'
 
 interface Msg {
   role: 'user' | 'assistant'
@@ -30,6 +33,7 @@ const recent = (msgs: Msg[]): Msg[] => {
   const first = tail.findIndex((m) => m.role === 'user')
   return first < 0 ? [] : tail.slice(first)
 }
+const newNoteId = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`)
 const storeKey = (language: TargetLanguage) => `diloloji:monki:${language}`
 
 function loadChat(language: TargetLanguage): Msg[] {
@@ -205,6 +209,10 @@ export default function Monki({
   voiceRef.current = voice
   // Words mode: the words to use, and which of them the learner has used so far.
   const [targets, setTargets] = useState<string[]>([])
+  // What Monki remembers about the learner (a few short notes), and whether it keeps adding to them.
+  const [memory, setMemory] = useState<MemoryNote[]>(() => loadMemory(language))
+  const [remembering, setRemembering] = useState(memoryOn)
+  const [showMemory, setShowMemory] = useState(false)
   const logRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const fabRef = useRef<HTMLButtonElement>(null)
@@ -241,6 +249,7 @@ export default function Monki({
     stopListen.current?.()
     setListening(false)
     setMsgs(loadChat(language))
+    setMemory(loadMemory(language))
     setSuggestions([])
     setError('')
     setBusy(false)
@@ -288,12 +297,20 @@ export default function Monki({
           scenario: (over?.scenario ?? scenario) || undefined,
           mistakes,
           targets: (over?.mode ?? mode) === 'words' ? (over?.targets ?? targets) : undefined,
+          memory: remembering && memory.length ? memoryLines(memory) : undefined,
         })
         if (languageRef.current !== asked) return
         const done = [...next, { role: 'assistant' as const, text: reply.reply }]
         setMsgs(done)
         saveChat(asked, done)
         setSuggestions(reply.suggestions.slice(0, 3))
+        if (remembering) {
+          const kept = addNotes(memory, reply.remember, localDate(new Date()), newNoteId)
+          if (kept.length !== memory.length) {
+            setMemory(kept)
+            saveMemory(asked, kept)
+          }
+        }
         if (voiceRef.current && (over?.mode ?? mode) === 'roleplay' && reply.say?.trim() && canSpeak()) speak(reply.say, asked)
       } catch (e) {
         if (languageRef.current !== asked) return
@@ -302,7 +319,7 @@ export default function Monki({
         if (languageRef.current === asked) setBusy(false)
       }
     },
-    [apiKey, busy, language, msgs, name, weakWords, mode, scenario, mistakes, targets],
+    [apiKey, busy, language, msgs, name, weakWords, mode, scenario, mistakes, targets, memory, remembering],
   )
 
   // A question from elsewhere in the app (a word page, a wrong answer, a sentence being read).
@@ -370,6 +387,21 @@ export default function Monki({
     } else void send(label)
   }
 
+  const forget = (id: string) => {
+    const left = removeNote(memory, id)
+    setMemory(left)
+    saveMemory(language, left)
+  }
+  const forgetAll = () => {
+    setMemory([])
+    saveMemory(language, [])
+  }
+  const toggleRemembering = () => {
+    const next = !remembering
+    setRemembering(next)
+    setMemoryOn(next)
+  }
+
   const clear = () => {
     setMsgs([])
     saveChat(language, [])
@@ -396,6 +428,11 @@ export default function Monki({
               <strong>Monki</strong>
               <span className="small muted">{LANGUAGE_NAME[language]} çalışma arkadaşın</span>
             </div>
+            {apiKey && (
+              <button type="button" className="btn btn-quiet btn-sm" aria-pressed={showMemory} onClick={() => setShowMemory((v) => !v)} title="Monki'nin senin hakkında hatırladıkları">
+                Hatırladıkları{memory.length ? ` (${memory.length})` : ''}
+              </button>
+            )}
             {apiKey && msgs.length > 0 && (
               <button type="button" className="btn btn-quiet btn-sm" onClick={clear}>
                 Temizle
@@ -423,6 +460,37 @@ export default function Monki({
             </div>
           ) : (
             <>
+              {showMemory && (
+                <section className="monki-memory" aria-label="Monki'nin hatırladıkları">
+                  <p className="small muted">
+                    Monki, sohbetlerden seninle ilgili birkaç kısa not tutar (ör. “sık karıştırdığın bir kalıp”) ve bir sonraki konuşmada bunları kullanır. Notlar bu cihazda durur, hesabınla birlikte taşınır; istediğini silebilirsin.
+                  </p>
+                  {memory.length === 0 ? (
+                    <p className="small">{remembering ? 'Henüz not yok. Konuştukça birkaç not birikecek.' : 'Hatırlama kapalı.'}</p>
+                  ) : (
+                    <ul className="monki-memory-list">
+                      {memory.map((n) => (
+                        <li key={n.id}>
+                          <span>{n.text}</span>
+                          <button type="button" className="icon-btn" onClick={() => forget(n.id)} aria-label={`Notu sil: ${n.text}`}>
+                            <CloseIcon size={14} />
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <div className="monki-memory-actions">
+                    <button type="button" className="chip chip-sm" aria-pressed={remembering} onClick={toggleRemembering}>
+                      {remembering ? 'Hatırlama: açık' : 'Hatırlama: kapalı'}
+                    </button>
+                    {memory.length > 0 && (
+                      <button type="button" className="btn btn-quiet btn-sm" onClick={forgetAll}>
+                        Hepsini sil
+                      </button>
+                    )}
+                  </div>
+                </section>
+              )}
               <div className="monki-modes" role="group" aria-label="Sohbet türü">
                 {MODES.map((m) => (
                   <button key={m.id} type="button" className="chip chip-sm" aria-pressed={mode === m.id} title={m.hint} onClick={() => pickMode(m.id)}>
