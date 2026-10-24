@@ -1,5 +1,6 @@
 import type { VocabularyEntry } from '../../engine/types'
 import { displayForm } from '../../engine/exercises'
+import type { ExamTask } from '../../engine/examTasks'
 import type { MonkiAsk } from './monkiBus'
 
 const clip = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1)}…` : s)
@@ -64,6 +65,30 @@ export function habitAsk(label: string, count: number, samples: readonly { wrong
 export function sentenceAsk(sentence: string, word: string): MonkiAsk {
   return {
     text: clip(`Bu cümleyi açıklar mısın: “${sentence}” Özellikle “${word}” burada ne anlama geliyor ve cümlenin dil bilgisi nasıl işliyor?`, 700),
+    send: true,
+  }
+}
+
+const taskLine = (task: ExamTask) => `Görev (${task.exam} ${task.level}, ${task.kind}, ${task.min}–${task.max} kelime): ${clip(task.instruction, 420)}`
+
+/** While writing in the journal: where the text stands and what the task asks, for ideas on how to go on (the text is not corrected). */
+export function stuckAsk(text: string, task?: ExamTask): MonkiAsk {
+  const so_far = text.trim()
+  return {
+    mode: 'write',
+    text: clip(
+      `Yazarken takıldım, devam etmem için yol göster. ${task ? `${taskLine(task)} ` : ''}${so_far ? `Şimdiye kadar yazdığım: “${clip(so_far, 1500)}”` : 'Henüz hiçbir şey yazmadım.'}`,
+      2200,
+    ),
+    send: true,
+  }
+}
+
+/** A text written for an exam-style task, sent to be rated on the exam's four criteria. */
+export function examAsk(task: ExamTask, text: string): MonkiAsk {
+  return {
+    mode: 'exam',
+    text: clip(`Bu yazıyı sınav ölçütlerine göre değerlendirir misin? ${taskLine(task)} Yazım: “${clip(text.trim(), 1700)}”`, 2400),
     send: true,
   }
 }
