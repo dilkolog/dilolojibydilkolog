@@ -28,7 +28,7 @@ import { noticeSignup } from './_signupNotice.js'
  * GET  /api/access?friend-handle=1                → { handle, findable } (the own findable @name, if one was picked)
  * GET  /api/access?friend-find=<name>             → { found } or 404 { error: 'unknown' }: an exact, switched-on name only
  * GET  /api/access?friend-invite=<CODE>           → { inviter } (name, avatar, colour, level) or 404/400: who an invite is from, before it is accepted
- * POST /api/access  { action: 'friends-handle', handle, findable } → { handle, findable } or { error: 'taken' | 'bad_handle' }
+ * POST /api/access  { action: 'friends-handle', handle, findable } → { handle, findable } or { error: 'taken' | 'bad_handle' | 'locked' }
  * POST /api/access  { action: 'friends-request', handle } → { ok } or { error: 'unknown' | 'self' | 'already' } (a request the other side accepts)
  * POST /api/access  { action: 'friends-send', code, kind, payload? } → { ok } or { error } (kind: cheer, nudge, gift (a word), text); { action: 'friends-inbox-clear', ids } → { ok }
  *
@@ -92,7 +92,7 @@ async function friendsPost(request: Request, body: Record<string, unknown>): Pro
     }
     if (body.action === 'friends-handle') {
       const result = await setHandle(id, body.handle, body.findable)
-      if (result !== 'ok') return json({ error: result }, result === 'taken' ? 409 : 400)
+      if (result !== 'ok') return json({ error: result }, result === 'taken' || result === 'locked' ? 409 : 400)
       return json((await handleOf(id)) ?? { handle: '', findable: false })
     }
     if (body.action === 'friends-request') {

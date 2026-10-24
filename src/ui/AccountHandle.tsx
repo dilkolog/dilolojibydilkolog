@@ -6,36 +6,37 @@ import { showToast } from './toastFeed'
 
 const SAVE_REASONS: Record<string, string> = {
   taken: 'Bu ad başkasında. Başka bir ad dene.',
+  locked: 'Kullanıcı adı bir kez seçilir, değiştirilemez.',
   bad_handle: 'Ad 3–20 karakter olmalı: küçük harf, rakam ve alt çizgi.',
 }
 
 type Handle = ReturnType<typeof useAccountHandle>
 
-/** Beside the name: @name, which opens the form to change it. */
+/** Beside the name: @name, chosen once (at sign-up or here) and fixed afterwards. */
 export function HandleTag({ handle }: { handle: Handle }) {
-  const { info, editing, setEditing } = handle
-  if (!info?.handle || editing) return null
+  const { info } = handle
+  if (!info?.handle) return null
   return (
-    <button type="button" className="account-handle" onClick={() => setEditing(true)} title="Kullanıcı adını değiştir" aria-label={`Kullanıcı adın @${info.handle}. Değiştir`}>
+    <span className="account-handle" title="Kullanıcı adın sonradan değişmez">
       @{info.handle}
-    </button>
+    </span>
   )
 }
 
 /**
- * Below the email, when there is no @name yet (or it is being changed): a one-line form, the name picked at
+ * Below the email, when there is no @name yet (chosen once, never changed): a one-line form, the name picked at
  * sign-up already filled in. A first name is findable at once, as one picked at sign-up is: friends search by it.
  */
 export function HandleForm({ handle }: { handle: Handle }) {
-  const { info, setInfo, editing, setEditing } = handle
+  const { info, setInfo } = handle
   const [draft, setDraft] = useState(() => info?.handle || pendingHandle() || '')
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
   useEffect(() => {
     if (info) setDraft(info.handle || pendingHandle() || '')
-  }, [info, editing])
+  }, [info])
 
-  if (!info || (info.handle && !editing)) return null
+  if (!info || info.handle) return null
   const name = cleanHandle(draft)
   const valid = HANDLE_RULE.test(name)
 
@@ -44,9 +45,8 @@ export function HandleForm({ handle }: { handle: Handle }) {
     setSaving(true)
     setError('')
     try {
-      const saved = await saveHandle(name, info.handle ? info.findable : true)
+      const saved = await saveHandle(name, true)
       setInfo(saved)
-      setEditing(false)
       showToast(`Kullanıcı adın @${saved.handle}.`)
     } catch (e) {
       setError(e instanceof FriendsError ? (SAVE_REASONS[e.reason] ?? 'Kaydedilemedi, biraz sonra yine dene.') : 'Kaydedilemedi, biraz sonra yine dene.')
@@ -83,20 +83,14 @@ export function HandleForm({ handle }: { handle: Handle }) {
             spellCheck={false}
             maxLength={21}
             aria-describedby="account-handle-hint"
-            autoFocus={editing}
           />
         </label>
-        <button type="submit" className="btn btn-sm" disabled={!valid || saving || name === info.handle}>
+        <button type="submit" className="btn btn-sm" disabled={!valid || saving}>
           {saving ? 'Kaydediliyor…' : 'Kaydet'}
         </button>
-        {info.handle && (
-          <button type="button" className="btn btn-sm btn-quiet" onClick={() => setEditing(false)}>
-            Vazgeç
-          </button>
-        )}
       </div>
       <p id="account-handle-hint" className={error ? 'error small' : 'small muted'} role={error ? 'alert' : undefined}>
-        {error || (info.handle ? '3–20 karakter: küçük harf, rakam ve alt çizgi.' : 'Bir kullanıcı adı seç: arkadaşların seni bu adla bulur. 3–20 karakter: küçük harf, rakam ve alt çizgi.')}
+        {error || 'Bir kullanıcı adı seç: arkadaşların seni bu adla bulur. Bir kez seçilir, sonradan değişmez. 3–20 karakter: küçük harf, rakam ve alt çizgi.'}
       </p>
     </form>
   )

@@ -347,19 +347,20 @@ export async function handleOf(id: string): Promise<HandleInfo | null> {
   return mine?.handle && HANDLE.test(mine.handle) ? { handle: mine.handle, findable: mine.findable === true } : null
 }
 
-export type HandleResult = 'ok' | 'bad_handle' | 'taken'
+export type HandleResult = 'ok' | 'bad_handle' | 'taken' | 'locked'
 
-/** Picks (or changes) the account's name and whether it can be found. A name held by another account is 'taken'. */
+/** Picks the account's name (once: a chosen name stays, 'locked') and whether it can be found. A name held by another account is 'taken'. */
 export async function setHandle(id: string, rawHandle: unknown, findable: unknown): Promise<HandleResult> {
   const handle = normalizeHandle(rawHandle)
   if (!HANDLE.test(handle) || RESERVED.has(handle)) return 'bad_handle'
   const held = await readJson<{ id?: string }>(handlePath(handle))
   if (held?.id && held.id !== id) return 'taken'
   const previous = await handleOf(id)
+  // The name is chosen once; only whether it can be found changes afterwards.
+  if (previous && previous.handle !== handle) return 'locked'
   // Two accounts claiming one free name at the same moment: only the first write creates the file, the other is told it is taken.
   if (!held?.id && !(await createJson(handlePath(handle), { id })) && (await readJson<{ id?: string }>(handlePath(handle)))?.id !== id) return 'taken'
   await writeJson(handleOfPath(id), { handle, findable: findable === true })
-  if (previous && previous.handle !== handle) await releaseHandle(previous.handle, id)
   return 'ok'
 }
 

@@ -750,8 +750,8 @@ test('high contrast is a choice in Settings: white page, black text, strong bord
   // Kept before the first paint, and switched off again by another choice.
   await page.reload()
   await expect(root).toHaveAttribute('data-contrast', '')
-  await page.locator('.top-profile:visible').click()
-  await page.locator('.profile-settings').click()
+  await page.locator('.top-profile-btn:visible').click()
+  await page.getByRole('menuitem', { name: /^Ayarlar/ }).click()
   await page.locator('.settings-menu-item', { hasText: 'Görünüm' }).click()
   await page.getByRole('radio', { name: 'Açık', exact: true }).or(page.getByRole('button', { name: 'Açık', exact: true })).first().click()
   await expect(root).not.toHaveAttribute('data-contrast', '')
@@ -1505,3 +1505,31 @@ test('guide on phone: placement test modal, terms inspection, and sticky steps h
   }
 })
 
+
+test('top bar on a phone: the bell and the avatar open their panels on screen', async ({ page }) => {
+  await startWithSamples(page)
+  const size = page.viewportSize()!
+  const onScreen = async (selector: string) => {
+    const box = await page.locator(selector).boundingBox()
+    expect(box, selector).not.toBeNull()
+    expect(box!.y).toBeGreaterThanOrEqual(0)
+    expect(box!.y + box!.height).toBeLessThanOrEqual(size.height)
+    expect(box!.x).toBeGreaterThanOrEqual(0)
+    expect(box!.x + box!.width).toBeLessThanOrEqual(size.width)
+    // Nothing (the tab bar, the top bar) sits over the middle of it.
+    const covered = await page.locator(selector).evaluate((el) => {
+      const r = el.getBoundingClientRect()
+      const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2)
+      return !!top && !el.contains(top)
+    })
+    expect(covered, `${selector} is covered`).toBe(false)
+  }
+  await page.locator('.brand-row .notice-bell').click()
+  await expect(page.getByRole('dialog', { name: 'Bildirimler' })).toBeVisible()
+  await onScreen('.popover-panel')
+  await page.keyboard.press('Escape')
+  await page.locator('.top-profile-btn:visible').click()
+  await expect(page.getByRole('menuitem', { name: /^Profil/ })).toBeVisible()
+  await expect(page.getByRole('menuitem', { name: /^Ayarlar/ })).toBeVisible()
+  await onScreen('.popover-panel')
+})
