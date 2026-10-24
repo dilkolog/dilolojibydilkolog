@@ -88,4 +88,29 @@ describe('Session: three wrong in a row offers a few easy questions', () => {
     await missOnce()
     expect(offer()).toBeUndefined()
   })
+
+  it('opens with a warm-up offer after a long break, but not after a short one', { timeout: 30_000 }, async () => {
+    const stamp = (daysAgo: number) => {
+      const t = new Date(now)
+      t.setDate(t.getDate() - daysAgo)
+      return { id: `old-${daysAgo}`, entryId: hard.id, language: 'fr', skill: 'recognition', exerciseType: 'mc_meaning', direction: 'forward', verdict: 'correct', correct: true, rating: 3, responseMs: 900, hintsUsed: 0, mode: 'normal', timestamp: t } as never
+    }
+    const warm = () => [...container.querySelectorAll('.break-note')].find((n) => n.textContent?.includes('gün sonra döndün'))
+    await db.events.clear()
+    await db.events.add(stamp(2))
+    await mount(friends.map(knownState))
+    await wait(() => container.querySelectorAll('.option').length > 0)
+    expect(warm()).toBeUndefined()
+    act(() => root.unmount())
+    root = createRoot(container)
+    await db.events.clear()
+    await db.events.add(stamp(9))
+    await mount(friends.map(knownState))
+    await wait(() => warm() !== undefined)
+    expect(warm()?.textContent).toContain('9 gün sonra döndün')
+    await act(async () => [...warm()!.querySelectorAll<HTMLButtonElement>('button')].find((b) => b.textContent === 'Isınalım')!.click())
+    expect(warm()).toBeUndefined()
+    expect(friends.some((f) => (container.textContent ?? '').includes(f.lemma))).toBe(true)
+    await db.events.clear()
+  })
 })

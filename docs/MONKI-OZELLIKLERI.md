@@ -70,7 +70,7 @@ Okumada bir paragrafı seçince "bunu sadeleştir / bu cümleyi parçala".
 - `Reading.tsx`/`ReaderAside`: çoklu seçim ya da paragraf menüsüne `AskMonki`. Şu an `sentenceAsk` tek cümle gönderiyor; paragraf için ≤700 karakter kırp. Sürüm: hedef dilde sadeleştirme (A2) + Türkçe açıklama.
 
 ### 11. Zor gün modu — YAPILDI (2026-10-24)
-Uygulama: oturumda üst üste 3 yanlışta (`engine/easyRound.ts` `struggling`) küçük kart "Üst üste zorlandın… üç kolay soru ekleyelim mi?"; kabul edilirse en oturmuş 3 kelimeden (`easiestWords`) `mc_meaning` `practice` soruları ekrandaki sorunun önüne girer (zamanlamayı etkilemez), oturum başına bir kez, ara notu açıkken ya da serbest pratikte çıkmaz. Monki paneli açılmaz. "Uzun aradan dönünce" tetikleyicisi yapılmadı.
+Uygulama: oturumda üst üste 3 yanlışta (`engine/easyRound.ts` `struggling`) küçük kart "Üst üste zorlandın… üç kolay soru ekleyelim mi?"; kabul edilirse en oturmuş 3 kelimeden (`easiestWords`) `mc_meaning` `practice` soruları ekrandaki sorunun önüne girer (zamanlamayı etkilemez), oturum başına bir kez, ara notu açıkken ya da serbest pratikte çıkmaz. Monki paneli açılmaz. **Uzun aradan dönünce** (son çalışılan günden ≥7 gün, `AWAY_DAYS`, bugünün ilk oturumu): ilk sorudan önce aynı kart "N gün sonra döndün… ısınalım mı?" (`daysAway`), "Isınalım" aynı üç kolay soruyu ekler.
 Üst üste yanlışta ya da uzun aradan dönünce oturum ortasında "kolay bir tur yapalım mı?".
 - `Session.tsx`: `isLeech` yardımı ve 3 üst üste yanlış zaten var (`engine/leechHelp.ts`). Monki konuşmaz, panel açılmaz: küçük bir kart/toast; kabul ederse `insertLater` ile kolay `mc_meaning` soruları ekle (zamanlamayı etkilemeyen `reason: 'practice'`). Oturumda Monki paneli `aria-modal` olduğundan kısayollar dursun diye açma, sadece kart.
 
