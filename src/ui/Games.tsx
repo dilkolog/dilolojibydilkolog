@@ -340,7 +340,7 @@ export function GamesScreen(
         title="Oyunlar"
         sub={
           <>
-            Tekrar zamanı gelmiş kelimeler oyunlarda da tekrar sayılır ve önce onlar gelir; diğer cevaplar pratiktir. <span className="game-tag">takvime işler</span> etiketliler her zaman tekrar yerine geçer.
+            Vadesi gelen kelimeler oyunda da tekrar sayılır; diğer cevaplar pratiktir. <span className="game-tag">takvime işler</span> etiketliler her zaman tekrar yerine geçer.
           </>
         }
       />
