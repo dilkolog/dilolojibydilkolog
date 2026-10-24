@@ -44,16 +44,19 @@ Uygulama: `missAsk` kelimenin sayaçlarını (`history`: ≥3 yanlış) soruya e
 Oturum geri bildiriminde `missAsk` zaten var. Eksik olan: aynı hatayı tekrar yaparsan Monki'nin "bunu geçen hafta da karıştırmıştık" demesi.
 - Hata tekrarı `lastAnswers`/`weekMisses` ve kelimenin sayaçlarından; yalnızca kullanıcı Monki'ye sorduğunda bağlama eklenir. Hafıza (13) varsa oradan.
 
-### 5. Telaffuz koçu
+### 5. Telaffuz koçu — YAPILDI (2026-10-24)
+Uygulama: `MonkiMode 'pron'` (kural `claude.ts` `monkiModeRules`), `MonkiRequest.pron` (en zayıf 5 kelime + puan, `weakPronWords`), panelde "Telaffuz" çipi (yalnızca zayıf kelime varsa; `App` `loadPronWords`, panel açılınca okunur), modelin `say` alanı = okunacak kelime (cihaz sesiyle çalınır), kullanıcı mikrofonla söyler; Monki tanıyıcının yazıya çevirdiğine bakar, "duyduğum yazıya göre" der, puan vermez. Gerçek mikrofonla denenmedi.
 Azure puanı düşük kelimeleri alıp "bu sesi şöyle çıkar" der; sesli tekrar ister.
 - `engine/pronWeak.ts` (`meta 'pronScores'`), `PronPractice.tsx`, `ai/claude.ts` `pronTips`. Monki'de yeni mod `pron`: zayıf kelimeler bağlama girer, kullanıcı söyler (`listen`), Monki geri bildirir (Azure yoksa tarayıcı tanıması + yaklaşık, açıkça "kulağıma göre" der).
 - Gerçek mikrofonla denenemez; testte taklit.
 
-### 6. Yazı arkadaşı
+### 6. Yazı arkadaşı — YAPILDI (2026-10-24)
+Uygulama: Günlük'te "Takıldım" (`asks.ts` `stuckAsk`, `MonkiMode 'write'`): metin + görev gider, Monki yazıyı düzeltmez/yazmaz, 2–3 devam yolu ve yönlendirici soru verir.
 Günlük yazarken yanında durur; yalnızca istenince "devam etmek için şu kalıbı dene" önerir.
 - `ui/Produce.tsx` Günlük alanında küçük "Monki'ye takıldım" düğmesi: o ana kadar yazılan metin + hedef (sınav görevi varsa `engine/examTasks.ts`) → 2–3 devam önerisi (cümle başı kalıpları, kelime önerisi). Düzeltme değil, yönlendirme; yazıyı kendisi değiştirmez.
 
-### 7. Sınav provası
+### 7. Sınav provası — YAPILDI (2026-10-24)
+Uygulama: sınav görevi seçiliyken ve ≥20 kelimeyken "Monki puanlasın" (`examAsk`, `MonkiMode 'exam'`): dört ölçüt 0–5 + toplam/20, Türkçe gerekçe, "resmî puan değil" notu, tek en değerli düzeltme.
 DELF/DELE/Cambridge tarzı yazma görevlerinde puan ve gerekçe.
 - `data/examTasks/*.json` görevleri; Günlük'te görev seçiliyken "Monki'den puan iste": ölçüt tablosu (içerik, düzen, dil, kelime hazinesi) 0–5 ve Türkçe gerekçe. "Resmî sınav puanı değildir" notu görünür kalmalı. Maliyet `exam_score`.
 

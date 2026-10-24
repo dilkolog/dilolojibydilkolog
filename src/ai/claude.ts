@@ -639,7 +639,7 @@ export async function chatTurn(apiKey: string, req: ChatRequest): Promise<ChatRe
 // ---------------------------------------------------------------------------
 
 const Monki = z.object({
-  say: z.string().describe('Role-play only: the in-character lines the other person says aloud, in the target language and nothing else (no Turkish, no correction line, no stage directions). An empty string in every other mode.'),
+  say: z.string().describe('Role-play only: the in-character lines the other person says aloud, in the target language and nothing else (no Turkish, no correction line, no stage directions). In pronunciation mode: the single word to be read aloud. An empty string in every other mode.'),
   reply: z.string().describe('Your answer, in Turkish with target-language examples. Short: a few lines unless asked for more. Only **bold**, _italic_ and plain lines or "- " lists; no headings, no tables.'),
   suggestions: z.array(z.string()).describe('Two or three short things the learner might tap next, each under 40 characters. Normally Turkish requests or questions to you; in a role-play scene, replies the learner could say next in the target language; in a quiz, the answer options of a multiple-choice question or Turkish taps like "İpucu ver".'),
   remember: z
@@ -664,6 +664,18 @@ function monkiModeRules(req: MonkiRequest, lang: string): string[] {
   if (req.mode === 'words')
     return [
       `WORDS MODE: the learner wants to practise these words by using them: ${req.targets?.join(', ') || 'their recent words'}. Lead a short, friendly conversation in simple, natural ${lang} (A2-B1) on an everyday theme where these words come up naturally. Ask one question at a time that invites the learner to use one of the words they have not used yet (never write the word for them unless they ask for a hint). When they use one correctly, cheer in a few Turkish words and move on to the next; when they misuse it, add a line in Turkish starting with "✏️ Düzeltme:" followed by the whole corrected sentence in curly quotes “…”, a dash and a few words of reason. Keep each of your turns to one or two short ${lang} sentences plus at most one short Turkish line. When all the words have been used, congratulate them in Turkish and sum up in two lines. Taps: Turkish ones like "İpucu ver" and "Bir sonraki kelime".`,
+    ]
+  if (req.mode === 'pron')
+    return [
+      `PRONUNCIATION MODE: the learner practises saying these ${lang} words, whose pronunciation scores are low (0-100): ${req.pron?.length ? req.pron.map((p) => `${p.word} (${Math.round(p.score)})`).join(', ') : 'none recorded'}. Take one word at a time, the lowest score first. For the word: put it alone in "say" (exactly the word as written, nothing else) so the app reads it aloud, then in Turkish tell a Turkish speaker the one or two sounds that usually go wrong and how to shape them (tongue, lips, nasal or not, stress), compared with the closest Turkish sound, and ask them to say it. The learner's reply is the text a speech recogniser heard, not what they said: if it matches the word, praise in a few Turkish words and move on; if it differs, say which sounds the difference probably comes from and try once more with a smaller step (a syllable, a minimal pair). You cannot hear them, so never claim to; say "duyduğum yazıya göre". Never score; scores come from the app. After about four words sum up in two Turkish lines. Taps: Turkish ones like "Tekrar dinlet" and "Sonraki kelime".`,
+    ]
+  if (req.mode === 'write')
+    return [
+      `WRITING-COMPANION MODE: the learner is writing a ${lang} text and is stuck; their text so far and the task (if any) are in their message. Do not correct or rewrite their text and do not write the next paragraph for them. Offer two or three ways to go on: for each, a sentence opener or a useful phrase in ${lang} with its Turkish meaning in parentheses, fitted to the text so far and the task; at most one word they could use; then one short guiding question in Turkish that helps them decide what to say next. Keep their voice and their level (one step above at most). Taps: Turkish ones like "Başka bir yol" and "Bir kalıp daha".`,
+    ]
+  if (req.mode === 'exam')
+    return [
+      `EXAM-PRACTICE MODE: the learner sends a ${lang} text written for an exam-style task (the task and the exam family are in their message). Rate it the way that family would, on four criteria, each from 0 to 5: task fulfilment and content, organisation and cohesion, grammatical accuracy, range of vocabulary. Write one line per criterion in Turkish: the score and one reason that quotes or points to something in the text. Then the total out of 20 and the single change that would raise the score most. Say once, briefly, that this is an estimate and not an official score. Be fair and specific, not flattering. Do not rewrite the text. Taps: Turkish ones like "Hangi cümleyi düzelteyim?" and "Daha uzun yaz diyorsan örnek ver".`,
     ]
   return []
 }

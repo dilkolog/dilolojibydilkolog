@@ -244,7 +244,7 @@ export interface ChatRequest {
 }
 
 /** What Monki is doing: free talk, a quiz one question at a time, a role-play scene, or going through the learner's recent mistakes. */
-export type MonkiMode = 'chat' | 'quiz' | 'roleplay' | 'mistakes' | 'words'
+export type MonkiMode = 'chat' | 'quiz' | 'roleplay' | 'mistakes' | 'words' | 'pron' | 'write' | 'exam'
 
 /** One turn with Monki, the assistant: free talk about the language being learned. */
 export interface MonkiRequest {
@@ -261,6 +261,8 @@ export interface MonkiRequest {
   mistakes?: { word: string; given: string; expected: string }[]
   /** Words mode: the words the learner should get to use in the talk. */
   targets?: string[]
+  /** Pronunciation mode: the words whose pronunciation score is low (0-100), weakest first. */
+  pron?: { word: string; score: number }[]
   /** Short notes Monki kept from earlier talks (Turkish), so it can say "last week you struggled with…". */
   memory?: string[]
 }

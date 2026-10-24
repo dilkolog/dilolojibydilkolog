@@ -414,5 +414,45 @@ describe('Monki', () => {
       expect(last.history.at(-1).text).toContain('arbre, chat')
     })
   })
+
+  describe('pronunciation', () => {
+    const renderPron = (words: { word: string; score: number }[]) =>
+      act(() =>
+        root.render(
+          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false, setApiKey: async () => {} }}>
+            <Monki language="fr" loadPronWords={async () => words} onSettings={onSettings} />
+          </AiContext.Provider>,
+        ),
+      )
+    const pronChip = () => [...container.querySelectorAll<HTMLButtonElement>('.monki-modes .chip')].find((b) => b.textContent === 'Telaffuz')
+
+    it('is offered only when some words have a low score', async () => {
+      renderPron([])
+      openPanel()
+      await flush()
+      expect(pronChip()).toBeUndefined()
+    })
+
+    it('sends the weakest words, and reads out the word Monki puts in "say"', async () => {
+      speech.canSpeak.mockReturnValue(true)
+      monkiTurn.mockResolvedValue({ reply: 'Burun sesi…', say: 'rue', suggestions: [], remember: [] })
+      renderPron([{ word: 'rue', score: 41 }, { word: 'heureux', score: 58 }])
+      openPanel()
+      await flush()
+      act(() => pronChip()!.click())
+      act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
+      await flush()
+      expect(monkiTurn.mock.calls[0][1]).toMatchObject({ mode: 'pron', pron: [{ word: 'rue', score: 41 }, { word: 'heureux', score: 58 }] })
+      expect(speech.speak).toHaveBeenCalledWith('rue', 'fr')
+    })
+  })
+
+  it('a question sent from the journal opens the chat in the writing mode', async () => {
+    monkiTurn.mockResolvedValue({ reply: 'Şöyle devam et', suggestions: [], remember: [] })
+    render('sk-test')
+    act(() => askMonki({ text: 'Yazarken takıldım', mode: 'write', send: true }))
+    await flush()
+    expect(monkiTurn.mock.calls[0][1].mode).toBe('write')
+  })
 })
 

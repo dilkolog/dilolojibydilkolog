@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { decision } from '../../engine/__tests__/fixtures'
-import { habitAsk, lessonAsk, missAsk, sentenceAsk, wordAsk } from './asks'
+import type { ExamTask } from '../../engine/examTasks'
+import { examAsk, habitAsk, lessonAsk, missAsk, sentenceAsk, stuckAsk, wordAsk } from './asks'
 
 describe('questions for Monki', () => {
   it('a word page asks about the word with its meaning and an example, and is sent at once', () => {
@@ -49,5 +50,36 @@ describe('questions for Monki', () => {
     expect(ask.text).toContain('“Artikel” türünde 6 hata')
     expect(ask.text).toContain('“le maison” → “la maison”')
     expect(ask.text).not.toContain('“x”')
+  })
+
+  const task: ExamTask = {
+    id: 'delf-b1-opinion',
+    language: 'fr',
+    exam: 'DELF',
+    level: 'B1',
+    kind: 'Görüş yazısı',
+    title: 'Le télétravail',
+    instruction: 'Vous écrivez à un journal pour donner votre avis sur le télétravail.',
+    tr: 'Bir gazeteye yazıyorsun.',
+    min: 160,
+    max: 180,
+    checklist: ['Görüşünü belirt'],
+    phrases: ['À mon avis'],
+  }
+
+  it('a writer who is stuck sends the text so far and the task, in the writing mode', () => {
+    const ask = stuckAsk('Je pense que', task)
+    expect(ask).toMatchObject({ mode: 'write', send: true })
+    expect(ask.text).toContain('DELF B1')
+    expect(ask.text).toContain('160–180 kelime')
+    expect(ask.text).toContain('“Je pense que”')
+    expect(stuckAsk('', undefined).text).toContain('Henüz hiçbir şey yazmadım')
+  })
+
+  it('a text for an exam task goes to be rated, cut so the question stays small', () => {
+    const ask = examAsk(task, 'x'.repeat(5000))
+    expect(ask.mode).toBe('exam')
+    expect(ask.text.length).toBeLessThanOrEqual(2400)
+    expect(ask.text).toContain('DELF B1')
   })
 })

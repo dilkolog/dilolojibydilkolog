@@ -30,6 +30,8 @@ import { useTabIndicator } from './useTabIndicator'
 import { correctionDiff } from '../engine/correctionDiff'
 import { countWords, lengthState, type ExamTask } from '../engine/examTasks'
 import { loadExamTasks } from '../data/examTasks'
+import { AskMonki } from './monki/AskMonki'
+import { examAsk, stuckAsk } from './monki/asks'
 import { Select } from './Select'
 
 interface Props {
@@ -245,6 +247,8 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
           <span className={`small ${length === 'in' ? 'exam-count-ok' : 'muted'}`} aria-live="polite">
             {task ? `${wordsCount} kelime · hedef ${task.min}–${task.max}${length === 'short' ? ' (biraz daha yaz)' : length === 'long' ? ' (biraz kısalt)' : ''}` : `${wordsCount} kelime`}
           </span>
+          <AskMonki label="Takıldım" ask={() => stuckAsk(text, task)} />
+          {task && wordsCount >= 20 && <AskMonki label="Monki puanlasın" ask={() => examAsk(task, text)} />}
           {!apiKey && (
             <button className="link small" onClick={onOpenSettings}>
               Düzeltme için YZ'yi aç
