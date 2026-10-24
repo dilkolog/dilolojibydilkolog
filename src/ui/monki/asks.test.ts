@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { decision } from '../../engine/__tests__/fixtures'
 import type { ExamTask } from '../../engine/examTasks'
-import { examAsk, habitAsk, lessonAsk, missAsk, sentenceAsk, stuckAsk, wordAsk } from './asks'
+import { breakdownAsk, examAsk, habitAsk, lessonAsk, missAsk, sentenceAsk, simplifyAsk, storyAsk, stuckAsk, weekPlanAsk, wordAsk } from './asks'
 
 describe('questions for Monki', () => {
   it('a word page asks about the word with its meaning and an example, and is sent at once', () => {
@@ -81,5 +81,26 @@ describe('questions for Monki', () => {
     expect(ask.mode).toBe('exam')
     expect(ask.text.length).toBeLessThanOrEqual(2400)
     expect(ask.text).toContain('DELF B1')
+  })
+
+  it('the week card hands the figures over and asks for a plan, not for a change', () => {
+    const ask = weekPlanAsk(['5/7 gün çalıştın', '%82 doğru'])
+    expect(ask.send).toBe(true)
+    expect(ask.text).toContain('5/7 gün çalıştın')
+    expect(ask.text).toContain('üç maddelik bir plan')
+  })
+
+  it('in the reader a sentence can be taken apart and its paragraph simplified', () => {
+    expect(breakdownAsk('Je ne sais pas.').text).toContain('“Je ne sais pas.”')
+    const ask = simplifyAsk('Un long paragraphe. '.repeat(200), 'Fransızca')
+    expect(ask.text).toContain('Fransızca')
+    expect(ask.text.length).toBeLessThanOrEqual(900)
+  })
+
+  it('a word\'s story names its relatives and carries what the pack knows of its origin', () => {
+    const ask = storyAsk({ ...decision, etymology: 'From Latin decisio.' })
+    expect(ask.text).toContain('hikâyesini')
+    expect(ask.text).toContain('decide')
+    expect(ask.text).toContain('From Latin decisio.')
   })
 })

@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { AiError, weekNote } from '../ai'
 import type { TargetLanguage } from '../engine/types'
 import { weekChange, weekDigest, type WeekSummary } from '../engine/weekly'
+import { AskMonki } from './monki/AskMonki'
+import { weekPlanAsk } from './monki/asks'
 import { useAi } from './aiContext'
 import { ChartIcon, CloseIcon, SparkleIcon } from './icons'
 import { ERROR_NAME } from './labels'
@@ -36,11 +38,15 @@ function WeekNote({ language, summary, lemmaOf, week }: { language: TargetLangua
   const [error, setError] = useState('')
   const lines = weekDigest(summary, lemmaOf, (t) => ERROR_NAME[t as keyof typeof ERROR_NAME] ?? t)
   if (!apiKey || !lines) return null
+  const plan = <AskMonki label="Monki'yle gelecek haftayı planla" ask={() => weekPlanAsk(lines)} />
   if (note)
     return (
-      <p className="small week-note" role="status">
-        <SparkleIcon size={14} className="inline-icon icon-star" /> {note}
-      </p>
+      <>
+        <p className="small week-note" role="status">
+          <SparkleIcon size={14} className="inline-icon icon-star" /> {note}
+        </p>
+        {plan}
+      </>
     )
   const ask = async () => {
     setBusy(true)
@@ -65,6 +71,7 @@ function WeekNote({ language, summary, lemmaOf, week }: { language: TargetLangua
         <SparkleIcon size={16} className="inline-icon icon-star" />
         {busy ? 'Hazırlanıyor…' : 'YZ koçundan yorum'}
       </button>
+      {plan}
       {error && (
         <p className="small muted" role="alert">
           {error}

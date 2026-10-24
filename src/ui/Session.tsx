@@ -12,6 +12,7 @@ import { markKnown, needsIntervention, newWordState, processAttempt, type Attemp
 import { listeningRate } from '../engine/listening'
 import { createRng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
+import { easiestWords, struggling } from '../engine/easyRound'
 import { adaptExercise, completeItem, currentItem, honorOff, insertLater, isFinished, mixInTyping, retryItem, skipRemaining, startSession, suggestBreak, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
 import { TARGET_LANGUAGES, timeOf, type Confidence, type EngineOptions, type ExerciseType, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry, type Verdict } from '../engine/types'
 import type { KelimeDB, Settings } from '../data/db'
@@ -206,6 +207,9 @@ export function SessionScreen(p: Props) {
   // Offered once per session; "Devam edeyim" puts it away for good.
   const [breakDismissed, setBreakDismissed] = useState(false)
   const showBreak = !breakDismissed && answeredAt !== session.index && suggestBreak(session.log)
+  // Three wrong in a row: a few easy questions are offered (once per session), unless the break note is up.
+  const [easyDismissed, setEasyDismissed] = useState(false)
+  const showEasy = !easyDismissed && !showBreak && p.mode !== 'practice' && answeredAt !== session.index && struggling(session.log)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       // A dialog that is open (or closing on this same keypress) owns Esc.
@@ -476,6 +480,35 @@ export function SessionScreen(p: Props) {
             }}
           />
         </Suspense>
+      )}
+      {showEasy && (
+        <div className="break-note" role="status">
+          <p>
+            <strong>Üst üste zorlandın.</strong> Böyle anlar olur. Bildiğin kelimelerden üç kolay soru ekleyelim mi? Bunlar ilerlemeni ve tekrar takvimini etkilemez; yalnızca ritmi toparlar.
+          </p>
+          <div className="break-actions">
+            <button
+              className="btn btn-quiet"
+              onClick={() => {
+                const current = currentItem(session)
+                const exclude = new Set([...(current ? [current.entryId] : []), ...session.log.slice(-3).map((l) => l.entryId)])
+                const ids = easiestWords(states.current.values(), byId, exclude)
+                setEasyDismissed(true)
+                if (!ids.length) {
+                  showToast('Şimdilik kolay soru için yeterince oturmuş kelime yok.')
+                  return
+                }
+                // The question on screen has not been answered yet: the easy ones go in front of it (gap -1 puts an item at the current place).
+                setSession((s) => ids.reduce((acc, id, i) => insertLater(acc, { kind: 'exercise', entryId: id, reason: 'practice', skill: 'recognition', exerciseType: 'mc_meaning' }, i - 1), s))
+              }}
+            >
+              Kolay sorular ekle
+            </button>
+            <button className="link" onClick={() => setEasyDismissed(true)}>
+              Gerek yok
+            </button>
+          </div>
+        </div>
       )}
       {showBreak && (
         <div className="break-note" role="status">

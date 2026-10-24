@@ -477,6 +477,7 @@ export function ReadingScreen({
           sheetBox={sheetBox}
           sheet={sheet}
           deduceMode={deduce}
+          paragraph={selected.at ? analysis?.paragraphs[Number(selected.at.split('.')[0])]?.map((x) => x.text).join(' ') : undefined}
           rating={deduce && guess && selected.token.key === guess ? <GuessRating word={cleanToken(selected.token.text, language)} language={language} onDone={() => setGuess(null)} /> : undefined}
           ignored={ignored}
           skipped={skipped}

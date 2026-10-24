@@ -92,3 +92,37 @@ export function examAsk(task: ExamTask, text: string): MonkiAsk {
     send: true,
   }
 }
+
+/** On the week's card: the week's figures taken to Monki to plan the next one together (a plan stays in the chat; nothing is changed for the learner). */
+export function weekPlanAsk(lines: readonly string[]): MonkiAsk {
+  return {
+    text: clip(
+      `Geçen haftamın özeti:\n${lines.join('\n')}\nGelecek hafta için küçük ve gerçekçi bir plan yapalım. Önce bana bir iki kısa soru sor (günde ne kadar vaktim var, hangi alanı güçlendirmek istiyorum), sonra üç maddelik bir plan öner.`,
+      1200,
+    ),
+    send: true,
+  }
+}
+
+/** In the reader: the sentence taken apart (subject, verb, what each small word does), in Turkish. */
+export function breakdownAsk(sentence: string): MonkiAsk {
+  return { text: clip(`Bu cümleyi parçalara ayırır mısın: “${sentence}” Özne, fiil ve tümleçleri, küçük sözcüklerin ne işe yaradığını Türkçe anlat; sonra cümleyi bir kez daha, akıcı bir Türkçeyle söyle.`, 700), send: true }
+}
+
+/** In the reader: the paragraph the sentence is in, told again in simpler words (the same language, one level easier) with the hard words explained. */
+export function simplifyAsk(paragraph: string, language: string): MonkiAsk {
+  return {
+    text: clip(`Şu paragrafı daha basit bir ${language} ile yeniden yazar mısın (bir seviye daha kolay, kısa cümleler)? Zor sözcükleri Türkçe açıkla. Paragraf: “${paragraph}”`, 900),
+    send: true,
+  }
+}
+
+/** On a word's origin: where it comes from and who its relatives are, told as a short story. */
+export function storyAsk(entry: VocabularyEntry): MonkiAsk {
+  const relatives = [...(entry.wordFamily ?? []).map((f) => f.lemma), ...(entry.synonyms ?? [])].slice(0, 6)
+  const origin = entry.etymology ? ` Köken notu (İngilizce, kısaltılmış): ${clip(entry.etymology, 260)}` : ''
+  return {
+    text: clip(`“${displayForm(entry)}” (${entry.senses[0].gloss}) kelimesinin hikâyesini anlatır mısın? Nereden gelmiş, anlamı nasıl değişmiş, hangi akrabaları var${relatives.length ? ` (${relatives.join(', ')})` : ''}? Türkçe, 4–5 cümlelik küçük bir hikâye olsun; sonunda kelimeyi aklımda tutacak bir bağ kur.${origin}`, 800),
+    send: true,
+  }
+}
