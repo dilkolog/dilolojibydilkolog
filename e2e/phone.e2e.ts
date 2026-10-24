@@ -1530,6 +1530,8 @@ test('top bar on a phone: the bell and the avatar open their panels on screen', 
   await page.locator('.brand-row .notice-bell').click()
   await expect(page.getByRole('dialog', { name: 'Bildirimler' })).toBeVisible()
   await onScreen('.popover-panel')
+  const panelHeight = await page.locator('.popover-panel').evaluate((el) => el.getBoundingClientRect().height)
+  expect(panelHeight, 'the sheet leaves most of the page visible').toBeLessThan(page.viewportSize()!.height * 0.6)
   await page.keyboard.press('Escape')
   await page.locator('.top-profile-btn:visible').click()
   await expect(page.getByRole('menuitem', { name: /^Profil/ })).toBeVisible()
