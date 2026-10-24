@@ -7,6 +7,8 @@ export interface MonkiAsk {
   scenario?: string
   /** Words mode: the words to get the learner to use. */
   targets?: string[]
+  /** Words mode: today's talk (its summary closes it and the Today card steps aside for the day). */
+  daily?: boolean
   send?: boolean
 }
 

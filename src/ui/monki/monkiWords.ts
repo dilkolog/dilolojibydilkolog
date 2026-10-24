@@ -34,3 +34,9 @@ export function talkWords(words: readonly VocabularyEntry[], stateById: Readonly
     .slice(0, count)
     .map((w) => displayForm(w))
 }
+
+/** How a talk on set words went: which of them the learner used in their own messages, which they did not. */
+export function talkProgress(targets: readonly string[], learnerMessages: readonly string[], language: string): { used: string[]; unused: string[] } {
+  const used = targets.filter((w) => learnerMessages.some((m) => usesWord(m, w, language)))
+  return { used, unused: targets.filter((w) => !used.includes(w)) }
+}

@@ -354,5 +354,65 @@ describe('Monki', () => {
       expect(JSON.parse(localStorage.getItem('diloloji:monki-memory:fr')!)).toHaveLength(1)
     })
   })
+
+  describe('the day\'s talk', () => {
+    const renderDaily = (words: string[] = ['maison', 'arbre', 'chat']) =>
+      act(() =>
+        root.render(
+          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false, setApiKey: async () => {} }}>
+            <Monki language="fr" dailyWords={words} onSettings={onSettings} />
+          </AiContext.Provider>,
+        ),
+      )
+    const dailyChip = () => [...container.querySelectorAll<HTMLButtonElement>('.monki-modes .chip')].find((b) => b.textContent === 'Günün sohbeti')
+    const typeAndSend = async (value: string) => {
+      const field = container.querySelector<HTMLTextAreaElement>('textarea')!
+      await act(async () => {
+        Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value')!.set!.call(field, value)
+        field.dispatchEvent(new Event('input', { bubbles: true }))
+      })
+      await act(async () => container.querySelector<HTMLButtonElement>('.monki-send')!.click())
+      await flush()
+    }
+
+    it('is offered as a mode only with enough words', () => {
+      renderDaily(['maison'])
+      openPanel()
+      expect(dailyChip()).toBeUndefined()
+    })
+
+    it('opens the words talk with the day\'s words and ends with a summary that closes the day\'s offer', async () => {
+      monkiTurn.mockResolvedValue({ reply: 'Très bien', suggestions: [], remember: [] })
+      renderDaily()
+      openPanel()
+      act(() => dailyChip()!.click())
+      expect([...container.querySelectorAll('.monki-target')].map((e) => e.textContent?.replace('✓ ', ''))).toEqual(['maison', 'arbre', 'chat'])
+      act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
+      await flush()
+      expect(monkiTurn.mock.calls[0][1]).toMatchObject({ mode: 'words', targets: ['maison', 'arbre', 'chat'] })
+      expect(container.querySelector('.monki-summary')).toBeNull()
+      await typeAndSend('Ma maison est belle et mon chat dort sous un arbre.')
+      expect(container.querySelector('.monki-summary')?.textContent).toContain('3/3')
+      expect(localStorage.getItem('diloloji:monki-daily')).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+    })
+
+    it('names the words not used yet and offers to go on with them', async () => {
+      monkiTurn.mockResolvedValue({ reply: 'Très bien', suggestions: [], remember: [] })
+      renderDaily()
+      openPanel()
+      act(() => dailyChip()!.click())
+      act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
+      await flush()
+      for (const line of ['Ma maison.', 'Oui.', 'Non.', 'Peut-être.', 'Bien sûr.']) await typeAndSend(line)
+      const summary = container.querySelector('.monki-summary')!
+      expect(summary.textContent).toContain('1/3')
+      expect(summary.textContent).toContain('Kullanmadıkların: arbre, chat')
+      await act(async () => summary.querySelector<HTMLButtonElement>('button')!.click())
+      await flush()
+      const last = monkiTurn.mock.calls.at(-1)![1]
+      expect(last.targets).toEqual(['arbre', 'chat'])
+      expect(last.history.at(-1).text).toContain('arbre, chat')
+    })
+  })
 })
 

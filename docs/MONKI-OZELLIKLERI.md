@@ -26,18 +26,21 @@ Monki seni hatırlar: "geçen hafta ser/estar'da zorlanıyordun". Şimdi geçmi�
 - Özet YZ ile üretilirse kullanıcı isteyince/oturum sonunda tek istek, maliyet `monki_memory`.
 - `monkiTurn` istemine yalnızca bu notlar girer (kullanıcının yazdığı uzun metinler değil).
 
-### 1. Günün sohbeti
+### 1. Günün sohbeti — YAPILDI (2026-10-24)
+Uygulama: `engine/dailyTalk.ts` (`dailyTalkWords`: açık hatalar, bugün vadesi gelenler, öğrenilenler; ≥3 kelime yoksa sohbet yok), `ui/monki/dailyTalkStore.ts` (`diloloji:monki-daily`), panelde "Günün sohbeti" çipi (`words` modu, `daily`), sonunda `TalkSummary` (kullanılan/kullanılmayan, "Kullanmadıklarla devam et"; özet gelince gün kapanır), Bugün'de `MonkiNudge` (açık hata yoksa günün sohbetini önerir).
 Bugünkü zayıf kelimelerle 3–5 turluk kısa konuşma; bitince "bugün şunları kullandın" özeti.
 - Yeni mod ya da `words` modunun günlük sürümü: `talkWords` ile kelimeler, hedef sayısı sabit (5 kelime), `usesWord` ile kullanılanlar işaretlenir.
 - Tur sayısı biter bitmez özet kartı: kullanılan/kullanılmayan kelimeler, "kullanmadıklarını kartlarına ekle" yok; sadece listele.
 - Bugün'de `MonkiNudge` bu modu önerebilsin; günde bir kez.
 
-### 2. Gramer koçu
+### 2. Gramer koçu — YAPILDI (2026-10-24)
+Uygulama: `asks.ts` `lessonAsk`/`habitAsk`; Rehber dersinde "Başka anlat", mini sınavda yanlış cevapta "Monki açıklasın" (`LessonCheck` `lesson` prop'u), Yazı hata defterinde her tür için "Monki'ye sor". Kör nokta kartlarına henüz eklenmedi.
 Rehber dersinde takılınca "bunu bana başka anlat"; ders kuralını senin yanlış cümlenle örnekle.
 - `ui/Guide.tsx` `LessonView`: ders sonuna (ve yanlış sınav cevabında) `AskMonki`. Metin: ders kuralının özeti + yanlış cevap/senin cümlen (≤700 karakter, `asks.ts` desenine yeni `lessonAsk`).
 - Yazı hata defterinden (`WritingNotebook`) ve kör nokta bulgularından aynı düğme.
 
-### 3. "Neden yanlış?" ve aynı hatayı hatırlatma
+### 3. "Neden yanlış?" ve aynı hatayı hatırlatma — YAPILDI (2026-10-24)
+Uygulama: `missAsk` kelimenin sayaçlarını (`history`: ≥3 yanlış) soruya ekler (`Feedback` → `ExerciseRunner` `wordState()`), model deseni kalıba bağlar.
 Oturum geri bildiriminde `missAsk` zaten var. Eksik olan: aynı hatayı tekrar yaparsan Monki'nin "bunu geçen hafta da karıştırmıştık" demesi.
 - Hata tekrarı `lastAnswers`/`weekMisses` ve kelimenin sayaçlarından; yalnızca kullanıcı Monki'ye sorduğunda bağlama eklenir. Hafıza (13) varsa oradan.
 

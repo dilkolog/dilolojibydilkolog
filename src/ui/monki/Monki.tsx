@@ -11,7 +11,8 @@ import { RichText } from '../RichText'
 import { MonkiFace, MonkiPose, MonkiStage } from './MonkiMascot'
 import { setMonkiListener, type MonkiAsk } from './monkiBus'
 import { EMBLEM, ROLE_ART } from '../drawnArt'
-import { usesWord } from './monkiWords'
+import { talkProgress, usesWord } from './monkiWords'
+import { markDailyTalkDone } from './dailyTalkStore'
 import { changedWord, parseCorrection, type Correction } from './corrections'
 import { saveSentence } from '../saveSentence'
 import { addNotes, memoryLines, removeNote, type MemoryNote } from '../../engine/monkiMemory'
@@ -58,7 +59,7 @@ function saveChat(language: TargetLanguage, msgs: Msg[]) {
 /** A small drawn emblem on three of the four mode chips. */
 const MODE_EMBLEM: Partial<Record<MonkiMode, string>> = { chat: EMBLEM.chat, quiz: EMBLEM.trophy, roleplay: EMBLEM.mic }
 
-const MODES: { id: MonkiMode; label: string; hint: string }[] = [
+const MODES: { id: Exclude<MonkiMode, 'words'>; label: string; hint: string }[] = [
   { id: 'chat', label: 'Sohbet', hint: 'Her şeyi sor' },
   { id: 'quiz', label: 'Sınav', hint: 'Her seferinde tek soru' },
   { id: 'roleplay', label: 'Rol yap', hint: 'Bir sahneyi konuşarak çalış' },
@@ -165,12 +166,49 @@ function SaveCorrection({ text, original, language }: { text: string; original?:
   )
 }
 
+/** A talk on set words is over once all of them were used or the learner has answered this many times. */
+const TALK_TURNS = 5
+
+/** At the end of a words talk (today's talk included): which words were used, which were not, and a tap to go on with the rest. */
+function TalkSummary({ targets, learnerMessages, language, daily, onGoOn }: { targets: string[]; learnerMessages: string[]; language: TargetLanguage; daily: boolean; onGoOn: (unused: string[]) => void }) {
+  const { used, unused } = talkProgress(targets, learnerMessages, language)
+  const over = learnerMessages.length > 0 && (unused.length === 0 || learnerMessages.length >= TALK_TURNS)
+  useEffect(() => {
+    if (over && daily) markDailyTalkDone()
+  }, [over, daily])
+  if (!over) return null
+  return (
+    <div className="monki-summary" role="status">
+      <strong>{daily ? 'Günün sohbeti bitti' : 'Konuşma özeti'}</strong>
+      <p className="small">
+        {used.length}/{targets.length} kelimeyi kendi cümlenle kullandın.
+      </p>
+      {used.length > 0 && (
+        <p className="small" lang={language}>
+          {used.map((w) => `✓ ${w}`).join(' · ')}
+        </p>
+      )}
+      {unused.length > 0 && (
+        <>
+          <p className="small muted" lang={language}>
+            Kullanmadıkların: {unused.join(', ')}
+          </p>
+          <button type="button" className="btn btn-sm" onClick={() => onGoOn(unused)}>
+            Kullanmadıklarla devam et
+          </button>
+        </>
+      )}
+    </div>
+  )
+}
+
 /** Monki: the assistant. A floating monkey that opens a small chat about the language being learned. */
 export default function Monki({
   language,
   name,
   weakWords,
   mistakes,
+  dailyWords,
   showButton = true,
   inSession = false,
   onSettings,
@@ -179,6 +217,8 @@ export default function Monki({
   name?: string
   weakWords?: string[]
   mistakes?: { word: string; given: string; expected: string }[]
+  /** The words for today's short talk (engine/dailyTalk): with enough of them the panel offers it as a mode. */
+  dailyWords?: string[]
   /** The floating button is hidden on the summary; in a session it is smaller and steps aside while the feedback sheet is up. */
   showButton?: boolean
   /** In a session the chat pauses the keyboard shortcuts (a number key would answer the question). */
@@ -209,6 +249,12 @@ export default function Monki({
   voiceRef.current = voice
   // Words mode: the words to use, and which of them the learner has used so far.
   const [targets, setTargets] = useState<string[]>([])
+  // Today's talk: its words are the day's, and the summary at its end closes the day's offer on Today.
+  const [daily, setDaily] = useState(false)
+  // Where in the chat the words talk began (the summary counts the learner's messages from there).
+  const [talkFrom, setTalkFrom] = useState(0)
+  const msgsRef = useRef(msgs)
+  msgsRef.current = msgs
   // What Monki remembers about the learner (a few short notes), and whether it keeps adding to them.
   const [memory, setMemory] = useState<MemoryNote[]>(() => loadMemory(language))
   const [remembering, setRemembering] = useState(memoryOn)
@@ -365,6 +411,8 @@ export default function Monki({
         setMode(ask.mode)
         setScenario(ask.scenario ?? '')
         setTargets(ask.targets ?? [])
+        setDaily(!!ask.daily)
+        setTalkFrom(msgsRef.current.length)
       }
       setOpen(true)
       if (ask.send) void sendRef.current(ask.text, { mode: ask.mode, scenario: ask.scenario, targets: ask.targets })
@@ -373,8 +421,18 @@ export default function Monki({
     return () => setMonkiListener(null)
   }, [])
 
+  const startDaily = () => {
+    setMode('words')
+    setScenario('')
+    setTargets(dailyWords ?? [])
+    setDaily(true)
+    setTalkFrom(msgs.length)
+    setSuggestions([])
+    setError('')
+  }
   const pickMode = (m: MonkiMode) => {
     setMode(m)
+    setDaily(false)
     setScenario('')
     setSuggestions([])
     setError('')
@@ -498,6 +556,11 @@ export default function Monki({
                     {m.label}
                   </button>
                 ))}
+                {dailyWords && dailyWords.length >= 3 && (
+                  <button type="button" className="chip chip-sm" aria-pressed={mode === 'words' && daily} title="Bugünün zayıf kelimeleriyle kısa bir konuşma" onClick={startDaily}>
+                    Günün sohbeti
+                  </button>
+                )}
               </div>
               {mode === 'roleplay' && canSpeak() && (
                 <div className="monki-voice small">
@@ -538,6 +601,16 @@ export default function Monki({
                   </div>
                 ))}
                 {!busy && <SaveAllCorrections key={msgs.length} msgs={msgs} language={language} />}
+                {!busy && mode === 'words' && targets.length > 0 && (
+                  <TalkSummary
+                    key={`${talkFrom}-${msgs.length}`}
+                    targets={targets}
+                    learnerMessages={msgs.slice(talkFrom).filter((m) => m.role === 'user').map((m) => m.text)}
+                    language={language}
+                    daily={daily}
+                    onGoOn={(unused) => void send(`Kullanmadığım kelimelerle devam edelim: ${unused.join(', ')}`, { mode: 'words', targets: unused })}
+                  />
+                )}
                 {busy && (
                   <div className="monki-msg from-monki monki-typing" role="status" aria-label="Monki yazıyor">
                     <span /> <span /> <span />
