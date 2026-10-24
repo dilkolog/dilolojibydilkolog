@@ -82,6 +82,7 @@ export function WordList({
   onStudy,
   onDelete,
   onAdd,
+  onStarter,
   lists = [],
   onMove,
   onNewList,
@@ -101,6 +102,8 @@ export function WordList({
   onPlay?: (game: GameId) => void
   onDelete: (ids: string[]) => Promise<void>
   onAdd: () => void
+  /** Opens the import section, where the ready-made starter lists are (offered while there are no words). */
+  onStarter?: () => void
   lists?: WordListRow[]
   /** Moves words to a list or one of its levels ("list|level"), or out of any ('__none'). */
   onMove?: (ids: string[], placement: string) => Promise<void>
@@ -344,9 +347,16 @@ export function WordList({
           art="shelf"
           title="Bahçen ekilmeyi bekliyor"
           action={
-            <button className="btn" onClick={onAdd}>
-              <PlusIcon size={18} /> İlk kelimeni ekle
-            </button>
+            <>
+              <button className="btn" onClick={onAdd}>
+                <PlusIcon size={18} /> İlk kelimeni ekle
+              </button>
+              {onStarter && (
+                <button className="btn btn-quiet" onClick={onStarter}>
+                  Hazır listelerden başla
+                </button>
+              )}
+            </>
           }
         >
           Her kelime bir tohum: çalıştıkça büyür, çiçek açar. Tek tek ekleyebilir ya da bir listeyi yapıştırabilirsin.
