@@ -1,0 +1,90 @@
+[
+ {
+  "id": "en-sat",
+  "language": "en",
+  "lemma": "sat",
+  "looks": "sat",
+  "trap": "sat (sat!)",
+  "meaning": "oturdu",
+  "text": "She sat by the window all day.",
+  "tr": "Bütün gün pencerenin yanında oturdu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-but",
+  "language": "en",
+  "lemma": "but",
+  "looks": "but",
+  "trap": "but (uyluk)",
+  "meaning": "ama",
+  "text": "I wanted to go, but it rained.",
+  "tr": "Gitmek istedim ama yağmur yağdı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-ark",
+  "language": "en",
+  "lemma": "ark",
+  "looks": "ark",
+  "trap": "ark (su kanalı)",
+  "meaning": "gemi (Nuh'un gemisi)",
+  "text": "The story tells of Noah and the ark.",
+  "tr": "Hikâye Nuh ve gemisini anlatır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-bat",
+  "language": "en",
+  "lemma": "bat",
+  "looks": "bat",
+  "trap": "bat (batmak)",
+  "meaning": "yarasa; sopa",
+  "text": "A bat flew out of the cave.",
+  "tr": "Mağaradan bir yarasa uçtu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-pat",
+  "language": "en",
+  "lemma": "pat",
+  "looks": "pat",
+  "trap": "pat (patlama sesi)",
+  "meaning": "hafifçe vurmak",
+  "text": "He gave the dog a gentle pat.",
+  "tr": "Köpeğe hafifçe vurdu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-van",
+  "language": "en",
+  "lemma": "van",
+  "looks": "van",
+  "trap": "Van (şehir ve göl)",
+  "meaning": "kamyonet",
+  "text": "They loaded the boxes into the van.",
+  "tr": "Kutuları kamyonete yüklediler.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-pull",
+  "language": "en",
+  "lemma": "pull",
+  "looks": "pull",
+  "trap": "pul (damga)",
+  "meaning": "çekmek",
+  "text": "Pull the door, don't push it.",
+  "tr": "Kapıyı çek, itme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-tire",
+  "language": "en",
+  "lemma": "tire",
+  "looks": "tire",
+  "trap": "tire (kısa çizgi)",
+  "meaning": "lastik; yorulmak",
+  "text": "The front tire is flat.",
+  "tr": "Ön lastik patlak.",
+  "source": "Diloloji (özgün)"
+ }
+]

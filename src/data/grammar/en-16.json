@@ -1,0 +1,229 @@
+[
+  {
+    "id": "en-b16-1",
+    "language": "en",
+    "level": "A2",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "I ___ here since 2019.",
+    "answer": "have lived",
+    "options": [
+      "have lived",
+      "lived",
+      "am living"
+    ],
+    "explanation": "since ile başlayan süre için present perfect kullanılır: I have lived here since 2019.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-2",
+    "language": "en",
+    "level": "A2",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "Have you ever ___ sushi?",
+    "answer": "eaten",
+    "options": [
+      "eaten",
+      "ate",
+      "eat"
+    ],
+    "explanation": "have + past participle: eaten. ate geçmiş zaman biçimidir, participle değildir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-3",
+    "language": "en",
+    "level": "A2",
+    "topic": "present_perfect",
+    "type": "cloze",
+    "prompt": "We haven't seen them ___ last summer.",
+    "answer": "since",
+    "explanation": "Geçmişteki bir başlangıç noktası since ile söylenir: since last summer.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-4",
+    "language": "en",
+    "level": "A2",
+    "topic": "present_perfect",
+    "type": "error",
+    "prompt": "She has went to Paris twice.",
+    "answer": "went",
+    "fix": "gone",
+    "explanation": "has + past participle gerekir: go – went – gone, yani has gone.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-5",
+    "language": "en",
+    "level": "A2",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "You ___ wear a seatbelt; it's the law.",
+    "answer": "must",
+    "options": [
+      "must",
+      "might",
+      "can't"
+    ],
+    "explanation": "Kural ve zorunluluk must ile söylenir: you must wear a seatbelt.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-6",
+    "language": "en",
+    "level": "B1",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "He ___ be at home; his car is outside.",
+    "answer": "must",
+    "options": [
+      "must",
+      "can't",
+      "needn't"
+    ],
+    "explanation": "Güçlü çıkarım must ile söylenir: arabası dışarıda, o hâlde evde olmalı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-7",
+    "language": "en",
+    "level": "B1",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "You ___ come if you don't want to.",
+    "answer": "needn't",
+    "options": [
+      "needn't",
+      "mustn't",
+      "can't"
+    ],
+    "explanation": "needn't gerek yok demektir; mustn't yasak anlamı taşır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-8",
+    "language": "en",
+    "level": "A2",
+    "topic": "passive_en",
+    "type": "choice",
+    "prompt": "The bridge ___ in 1990.",
+    "answer": "was built",
+    "options": [
+      "was built",
+      "built",
+      "is built"
+    ],
+    "explanation": "Geçmişte tamamlanan edilgen eylem: was built (özne köprüdür, yapılandır).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-9",
+    "language": "en",
+    "level": "A2",
+    "topic": "passive_en",
+    "type": "choice",
+    "prompt": "English ___ all over the world.",
+    "answer": "is spoken",
+    "options": [
+      "is spoken",
+      "speaks",
+      "is speaking"
+    ],
+    "explanation": "Genel durum ve edilgen: is spoken.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-10",
+    "language": "en",
+    "level": "A2",
+    "topic": "relatives_en",
+    "type": "choice",
+    "prompt": "The woman ___ lives next door is a nurse.",
+    "answer": "who",
+    "options": [
+      "who",
+      "whom",
+      "which"
+    ],
+    "explanation": "Kişiyi anlatan ve özne olan zamir who'dur: the woman who lives next door.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-11",
+    "language": "en",
+    "level": "A2",
+    "topic": "relatives_en",
+    "type": "choice",
+    "prompt": "This is the house ___ I grew up.",
+    "answer": "where",
+    "options": [
+      "where",
+      "who",
+      "whose"
+    ],
+    "explanation": "Yer anlatan ilgi cümlesi where ile kurulur: the house where I grew up.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-12",
+    "language": "en",
+    "level": "B1",
+    "topic": "relatives_en",
+    "type": "error",
+    "prompt": "The man which called you is my uncle.",
+    "answer": "which",
+    "fix": "who",
+    "explanation": "Kişilerde which değil who (ya da that) kullanılır: the man who called you.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-13",
+    "language": "en",
+    "level": "B2",
+    "topic": "mixed_conditionals",
+    "type": "choice",
+    "prompt": "If I had studied harder, I ___ a better job now.",
+    "answer": "would have",
+    "options": [
+      "would have",
+      "would had",
+      "will have"
+    ],
+    "explanation": "Geçmişteki koşulun şimdiki sonucu: if + past perfect, would + yalın fiil: would have a better job now.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-14",
+    "language": "en",
+    "level": "B2",
+    "topic": "inversion",
+    "type": "choice",
+    "prompt": "Never ___ such a beautiful sunset.",
+    "answer": "have I seen",
+    "options": [
+      "have I seen",
+      "I have seen",
+      "I saw"
+    ],
+    "explanation": "Never ile başlayan cümlede özne ile yardımcı fiil yer değiştirir: never have I seen.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b16-15",
+    "language": "en",
+    "level": "B2",
+    "topic": "cleft",
+    "type": "choice",
+    "prompt": "It was Maria ___ called me last night.",
+    "answer": "who",
+    "options": [
+      "who",
+      "whom",
+      "which"
+    ],
+    "explanation": "Kişi vurgulayan cleft cümlede who (ya da that) gelir: it was Maria who called me.",
+    "source": "Diloloji (özgün)"
+  }
+]

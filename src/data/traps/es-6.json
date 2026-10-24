@@ -1,0 +1,90 @@
+[
+ {
+  "id": "es-dama",
+  "language": "es",
+  "lemma": "dama",
+  "looks": "dama",
+  "trap": "dama (oyun)",
+  "meaning": "hanım",
+  "text": "Una dama muy elegante entró en la sala.",
+  "tr": "Çok şık bir hanım salona girdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-carne",
+  "language": "es",
+  "lemma": "carne",
+  "looks": "carne",
+  "trap": "karne (okul belgesi)",
+  "meaning": "et",
+  "text": "No como carne los lunes.",
+  "tr": "Pazartesileri et yemem.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-sala",
+  "language": "es",
+  "lemma": "sala",
+  "looks": "sala",
+  "trap": "sala (cuma salası)",
+  "meaning": "oturma odası, salon",
+  "text": "Los invitados esperan en la sala.",
+  "tr": "Davetliler salonda bekliyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-cara",
+  "language": "es",
+  "lemma": "cara",
+  "looks": "cara",
+  "trap": "kara (siyah)",
+  "meaning": "yüz",
+  "text": "Tiene la cara cansada.",
+  "tr": "Yüzü yorgun.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-lana",
+  "language": "es",
+  "lemma": "lana",
+  "looks": "lana",
+  "trap": "lan (ünlem)",
+  "meaning": "yün",
+  "text": "Este jersey es de lana.",
+  "tr": "Bu kazak yünden.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-loca",
+  "language": "es",
+  "lemma": "loca",
+  "looks": "loca",
+  "trap": "loca (mason locası)",
+  "meaning": "deli (dişil)",
+  "text": "Mi vecina está un poco loca.",
+  "tr": "Komşum biraz deli.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-capa",
+  "language": "es",
+  "lemma": "capa",
+  "looks": "capa",
+  "trap": "kapa (kapat!)",
+  "meaning": "kat; pelerin",
+  "text": "Ponte una capa más de ropa.",
+  "tr": "Bir kat daha giyin.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-gato",
+  "language": "es",
+  "lemma": "gato",
+  "looks": "gato",
+  "trap": "gato (pasta, kek)",
+  "meaning": "kedi",
+  "text": "Mi gato duerme en el sofá.",
+  "tr": "Kedim koltukta uyuyor.",
+  "source": "Diloloji (özgün)"
+ }
+]

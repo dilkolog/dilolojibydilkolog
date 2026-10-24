@@ -1,0 +1,90 @@
+[
+ {
+  "id": "fr-tire",
+  "language": "fr",
+  "lemma": "tire",
+  "looks": "tire",
+  "trap": "tire (kısa çizgi)",
+  "meaning": "çeker",
+  "text": "Il tire la porte pour la fermer.",
+  "tr": "Kapıyı kapatmak için çekiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-balle",
+  "language": "fr",
+  "lemma": "balle",
+  "looks": "balle",
+  "trap": "bale (dans)",
+  "meaning": "top; kurşun",
+  "text": "L'enfant lance la balle à son chien.",
+  "tr": "Çocuk topu köpeğine atıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-mine",
+  "language": "fr",
+  "lemma": "mine",
+  "looks": "mine",
+  "trap": "mine (diş minesi)",
+  "meaning": "yüz ifadesi, görünüş",
+  "text": "Tu as une bonne mine aujourd'hui.",
+  "tr": "Bugün çok iyi görünüyorsun.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-baba",
+  "language": "fr",
+  "lemma": "baba",
+  "looks": "baba",
+  "trap": "baba (peder)",
+  "meaning": "rom pastası",
+  "text": "Ce soir, nous mangeons un baba au rhum.",
+  "tr": "Bu akşam rom pastası yiyoruz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-bête",
+  "language": "fr",
+  "lemma": "bête",
+  "looks": "bête",
+  "trap": "bet (suratsız yüz)",
+  "meaning": "aptal; hayvan",
+  "text": "Ce n'est pas bête, ton idée.",
+  "tr": "Fikrin aptalca değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-tir",
+  "language": "fr",
+  "lemma": "tir",
+  "looks": "tir",
+  "trap": "tır (büyük kamyon)",
+  "meaning": "atış",
+  "text": "Le tir à l'arc est son sport préféré.",
+  "tr": "Okçuluk onun en sevdiği spor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-gel",
+  "language": "fr",
+  "lemma": "gel",
+  "looks": "gel",
+  "trap": "gel (gel!)",
+  "meaning": "jel; don",
+  "text": "Elle met du gel dans ses cheveux.",
+  "tr": "Saçına jel sürüyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-lire",
+  "language": "fr",
+  "lemma": "lire",
+  "looks": "lire",
+  "trap": "lira (para birimi)",
+  "meaning": "okumak",
+  "text": "J'aime lire avant de dormir.",
+  "tr": "Uyumadan önce okumayı severim.",
+  "source": "Diloloji (özgün)"
+ }
+]
