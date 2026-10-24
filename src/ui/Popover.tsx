@@ -1,4 +1,5 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState, type ButtonHTMLAttributes, type ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 
 /**
  * A button that opens a small panel under it: for the few things a screen keeps one tap away rather than on
@@ -26,7 +27,11 @@ export function Popover({
   const [open, setOpen] = useState(false)
   // Where a long panel fits: under the button when there is room, else above it; never taller than that room.
   const [fit, setFit] = useState<{ above: boolean; maxHeight: number } | null>(null)
+  // On a phone the panel is a sheet fixed to the screen. A sticky top bar with a blur is a containing block for
+  // fixed children, so there the sheet is moved out to the page body, or it would land above the screen.
+  const [sheet, setSheet] = useState(false)
   const root = useRef<HTMLDivElement>(null)
+  const panel = useRef<HTMLDivElement>(null)
   const trigger = useRef<HTMLButtonElement>(null)
   const id = useId()
   const close = () => setOpen(false)
@@ -34,7 +39,8 @@ export function Popover({
   useEffect(() => {
     if (!open) return
     const onPress = (e: PointerEvent) => {
-      if (!root.current?.contains(e.target as Node)) setOpen(false)
+      const at = e.target as Node
+      if (!root.current?.contains(at) && !panel.current?.contains(at)) setOpen(false)
     }
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== 'Escape') return
@@ -51,38 +57,46 @@ export function Popover({
   }, [open])
 
   useLayoutEffect(() => {
-    if (!open || !trigger.current) return void setFit(null)
+    if (!open || !trigger.current) {
+      setSheet(false)
+      return void setFit(null)
+    }
     const r = trigger.current.getBoundingClientRect()
     const below = window.innerHeight - r.bottom - 16
     const above = r.top - 16
     // A phone's panel is a sheet at the bottom of the screen (see CSS): it brings its own height.
-    if (window.matchMedia('(max-width: 30rem)').matches) return void setFit(null)
+    const phone = window.matchMedia('(max-width: 30rem)').matches
+    setSheet(phone)
+    if (phone) return void setFit(null)
     setFit(below >= 260 || below >= above ? { above: false, maxHeight: below } : { above: true, maxHeight: above })
   }, [open])
 
   // A menu starts on its first item so the keyboard can go straight down it.
   useEffect(() => {
-    if (open && kind === 'menu') root.current?.querySelector<HTMLElement>('[role=menuitem]')?.focus()
+    if (open && kind === 'menu') panel.current?.querySelector<HTMLElement>('[role=menuitem]')?.focus()
   }, [open, kind])
 
   const onMenuKey = (e: React.KeyboardEvent) => {
     if (kind !== 'menu' || (e.key !== 'ArrowDown' && e.key !== 'ArrowUp')) return
-    const items = [...(root.current?.querySelectorAll<HTMLElement>('[role=menuitem]:not(:disabled)') ?? [])]
+    const items = [...(panel.current?.querySelectorAll<HTMLElement>('[role=menuitem]:not(:disabled)') ?? [])]
     const at = items.indexOf(document.activeElement as HTMLElement)
     items[(at + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length]?.focus()
     e.preventDefault()
   }
 
   return (
-    <div className="popover" ref={root} onKeyDown={onMenuKey}>
+    <div className="popover" ref={root}>
       <button ref={trigger} type="button" className={buttonClassName} aria-haspopup={kind === 'menu' ? 'menu' : 'dialog'} aria-expanded={open} aria-controls={open ? id : undefined} onClick={() => setOpen((o) => !o)} {...buttonProps}>
         {button}
       </button>
-      {open && (
-        <div id={id} className={`popover-panel is-${align}${kind === 'menu' ? ' is-menu' : ''}${fit?.above ? ' is-above' : ''}`} style={fit ? { maxHeight: fit.maxHeight } : undefined} role={kind === 'menu' ? 'menu' : 'dialog'} aria-label={label}>
-          {children(close)}
-        </div>
-      )}
+      {open && (() => {
+        const content = (
+          <div ref={panel} id={id} className={`popover-panel is-${align}${kind === 'menu' ? ' is-menu' : ''}${fit?.above ? ' is-above' : ''}`} style={fit ? { maxHeight: fit.maxHeight } : undefined} role={kind === 'menu' ? 'menu' : 'dialog'} aria-label={label} onKeyDown={onMenuKey}>
+            {children(close)}
+          </div>
+        )
+        return sheet ? createPortal(content, document.body) : content
+      })()}
     </div>
   )
 }

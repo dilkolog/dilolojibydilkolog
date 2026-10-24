@@ -3,11 +3,10 @@ import { loadHandle, type HandleInfo } from '../data/friends'
 
 /**
  * The person's @name for the account card: null until the server answered (or when it cannot be asked:
- * offline, not approved yet), then what it holds. `editing` is the form being open over a chosen name.
+ * offline, not approved yet), then what it holds.
  */
 export function useAccountHandle(enabled: boolean) {
   const [info, setInfo] = useState<HandleInfo | null>(null)
-  const [editing, setEditing] = useState(false)
   useEffect(() => {
     if (!enabled) return
     let live = true
@@ -18,5 +17,5 @@ export function useAccountHandle(enabled: boolean) {
       live = false
     }
   }, [enabled])
-  return { info, setInfo, editing, setEditing }
+  return { info, setInfo }
 }

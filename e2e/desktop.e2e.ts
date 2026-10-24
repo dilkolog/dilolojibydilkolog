@@ -74,7 +74,8 @@ test('tablet width: one top bar row, the word list in two columns, the profile n
   const lefts = await rows.evaluateAll((els) => els.slice(0, 4).map((e) => Math.round(e.getBoundingClientRect().left)))
   expect(new Set(lefts).size).toBe(2)
   // The profile: four numbers across.
-  await page.locator('.top-profile').click()
+  await page.locator('.top-profile-btn').click()
+  await page.getByRole('menuitem', { name: /^Profil/ }).click()
   await expect(page.locator('.profile-stats .stat').first()).toBeVisible()
   const tops = await page.locator('.profile-stats .stat').evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().top)))
   expect(new Set(tops).size).toBe(1)

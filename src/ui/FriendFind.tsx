@@ -7,6 +7,7 @@ import { showToast } from './toastFeed'
 
 const SAVE_REASONS: Record<string, string> = {
   taken: 'Bu ad başkasında. Başka bir ad dene.',
+  locked: 'Kullanıcı adı bir kez seçilir, değiştirilemez.',
   bad_handle: 'Ad 3–20 karakter olmalı: küçük harf, rakam ve alt çizgi.',
 }
 const REQUEST_REASONS: Record<string, string> = {
@@ -26,8 +27,7 @@ export function FriendFind({ onSent }: { onSent?: () => void }) {
   const [missed, setMissed] = useState(false)
   const [sent, setSent] = useState<string | null>(null)
   const [mine, setMine] = useState<HandleInfo | null>(null)
-  const [draft, setDraft] = useState('')
-  const [saving, setSaving] = useState(false)
+  const [, setSaving] = useState(false)
 
   useEffect(() => {
     let live = true
@@ -35,7 +35,6 @@ export function FriendFind({ onSent }: { onSent?: () => void }) {
       .then((info) => {
         if (!live) return
         setMine(info)
-        setDraft(info.handle)
       })
       .catch(() => undefined)
     return () => {
@@ -79,7 +78,6 @@ export function FriendFind({ onSent }: { onSent?: () => void }) {
     try {
       const info = await saveHandle(handle, findable)
       setMine(info)
-      setDraft(info.handle)
       showToast(findable ? `@${info.handle} adıyla bulunabilirsin.` : 'Artık aramada görünmüyorsun.')
     } catch (e) {
       showToast(e instanceof FriendsError ? (SAVE_REASONS[e.reason] ?? 'Kaydedilemedi, biraz sonra yine dene.') : 'Kaydedilemedi, biraz sonra yine dene.', undefined, 5000, 'info')
@@ -88,7 +86,6 @@ export function FriendFind({ onSent }: { onSent?: () => void }) {
     }
   }
 
-  const draftName = cleanHandle(draft)
   const findable = mine?.findable === true
   return (
     <div className="stack gap-2 friends-find">
@@ -137,39 +134,23 @@ export function FriendFind({ onSent }: { onSent?: () => void }) {
         <Toggle
           checked={findable}
           onChange={(v) => {
-            if (v && !mine?.handle) {
-              // A name is needed first.
-              if (HANDLE_RULE.test(draftName)) void save(draftName, true)
-              else showToast('Önce 3–20 karakterlik bir kullanıcı adı yaz.', undefined, 4000, 'info')
-            } else if (mine?.handle) void save(mine.handle, v)
+            if (!mine?.handle) showToast('Önce Ayarlar → Hesap\'tan bir kullanıcı adı seç.', undefined, 4000, 'info')
+            else void save(mine.handle, v)
           }}
           label="Seni bulabilsinler"
           help="Açıkken, kullanıcı adını tam yazan biri seni bulup arkadaşlık isteği gönderebilir. E-postan ve gerçek adın aramada kullanılmaz; istek, sen kabul edene kadar XP'ni göstermez."
         />
-        <form
-          className="friends-find-form"
-          onSubmit={(e) => {
-            e.preventDefault()
-            if (HANDLE_RULE.test(draftName)) void save(draftName, findable)
-            else showToast(SAVE_REASONS.bad_handle, undefined, 4000, 'info')
-          }}
-        >
-          <input
-            className="input friends-find-input"
-            value={draft}
-            onChange={(e) => setDraft(e.target.value)}
-            placeholder="Senin kullanıcı adın (örn: ayse_fr)"
-            aria-label="Senin kullanıcı adın"
-            autoCapitalize="none"
-            autoComplete="off"
-            autoCorrect="off"
-            spellCheck={false}
-            maxLength={21}
-          />
-          <button type="submit" className="btn btn-sm" disabled={saving || !draftName || draftName === mine?.handle}>
-            Kaydet
-          </button>
-        </form>
+        {mine && (
+          <p className="small muted friends-find-name">
+            {mine.handle ? (
+              <>
+                Kullanıcı adın: <strong>@{mine.handle}</strong>. Hesap açarken seçilir, sonradan değişmez.
+              </>
+            ) : (
+              'Henüz bir kullanıcı adın yok. Ayarlar → Hesap\'tan seç; bir kez seçilir ve sonradan değişmez.'
+            )}
+          </p>
+        )}
       </div>
     </div>
   )

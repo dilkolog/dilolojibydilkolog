@@ -74,18 +74,15 @@ export async function openScreen(page: Page, name: string) {
   if (name === 'Profil' || name === 'Ayarlar') {
     const side = page.locator(name === 'Profil' ? '.sidebar-foot-btn:visible' : '.sidebar-settings:visible')
     // Right after a reload neither exists yet: wait for the menu before choosing the way.
-    await page.locator(':is(.sidebar-foot-btn, .sidebar-settings, .top-profile):visible').first().waitFor()
+    await page.locator(':is(.sidebar-foot-btn, .sidebar-settings, .top-profile-btn):visible').first().waitFor()
     if (await side.count()) {
       await side.click()
       // On a wide screen the profile is the first item of the account menu the avatar card opens.
       if (name === 'Profil') await page.getByRole('menuitem', { name: /^Profil/ }).click()
     } else {
-      await page.locator('.top-profile:visible').click()
-      if (name === 'Ayarlar') {
-        const btn = page.locator(':is(.profile-settings, button[aria-label="Ayarlar"]):visible').first()
-        await btn.waitFor({ state: 'visible', timeout: 5000 })
-        await btn.click()
-      }
+      // On a phone and a tablet the avatar in the top bar opens the same account menu.
+      await page.locator('.top-profile-btn:visible').click()
+      await page.getByRole('menuitem', { name: new RegExp(`^${name}`) }).click()
     }
   } else {
     const [place, tab] = ROUTE[name]

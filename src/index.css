@@ -3658,7 +3658,8 @@ button.hero-list-pick, .hero-list-btn {
   }
 }
 /* Phones and tablets: Profile and Settings open from the avatar in the top bar. */
-.top-profile { display: inline-grid; place-items: center; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; }
+.top-profile { display: inline-grid; place-items: center; }
+.top-profile-btn { display: inline-grid; place-items: center; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; }
 @media (max-width: 63.99rem) { .sidebar > .brand-row { margin-right: auto; } }
 @media (min-width: 64rem) {
   .top-profile { display: none; }

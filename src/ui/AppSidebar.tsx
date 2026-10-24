@@ -94,9 +94,18 @@ export function Sidebar({
         <span className="palette-trigger-label">Ara ya da git…</span>
         <kbd className="palette-trigger-kbd">⌘K</kbd>
       </button>
-      <button className="top-profile" onClick={go({ name: 'profile' })} aria-label="Profil ve ayarlar" title="Profil ve ayarlar">
-        <Avatar profile={settings.profile} size={32} />
-      </button>
+      <div className="top-profile">
+        <Popover
+          kind="menu"
+          align="end"
+          label="Hesap menüsü"
+          buttonClassName="top-profile-btn"
+          buttonProps={{ 'aria-label': 'Hesap menüsü', title: 'Hesap menüsü' }}
+          button={<Avatar profile={settings.profile} size={32} />}
+        >
+          {(close) => <AccountMenuItems close={close} go={go} hasAccount={hasAccount} />}
+        </Popover>
+      </div>
       <nav className={`nav${navMark ? ' has-indicator' : ''}`} ref={navRef}>
         {navMark && (
           <span
@@ -154,41 +163,7 @@ export function Sidebar({
             </>
           }
         >
-          {(close) => (
-            <>
-              <MenuItem
-                icon={<UserIcon size={18} />}
-                title="Profil"
-                hint="Seviye ve rozetlerin"
-                onSelect={() => {
-                  close()
-                  go({ name: 'profile' })()
-                }}
-              />
-              <MenuItem
-                icon={<GearIcon size={18} />}
-                title="Ayarlar"
-                onSelect={() => {
-                  close()
-                  go({ name: 'settings' })()
-                }}
-              />
-              {hasAccount && (
-                <>
-                  <div className="menu-sep" role="separator" />
-                  <MenuItem
-                    icon={<LogoutIcon size={18} />}
-                    title="Çıkış yap"
-                    hint="Kelimelerin bu cihazda kalır"
-                    onSelect={() => {
-                      close()
-                      void signOutThisDevice()
-                    }}
-                  />
-                </>
-              )}
-            </>
-          )}
+          {(close) => <AccountMenuItems close={close} go={go} hasAccount={hasAccount} />}
         </Popover>
         <div
           className="sidebar-foot-bell"
@@ -216,5 +191,44 @@ export function TabBar({ navBadge, badgeLabel, current, goPlace }: NavProps) {
         </button>
       ))}
     </nav>
+  )
+}
+
+/** What the avatar opens (the side menu's foot on a computer, the top bar's avatar on a phone): you, settings, sign out. */
+function AccountMenuItems({ close, go, hasAccount }: { close: () => void; go: (s: Screen) => () => void; hasAccount: boolean }) {
+  return (
+    <>
+      <MenuItem
+        icon={<UserIcon size={18} />}
+        title="Profil"
+        hint="Seviye ve rozetlerin"
+        onSelect={() => {
+          close()
+          go({ name: 'profile' })()
+        }}
+      />
+      <MenuItem
+        icon={<GearIcon size={18} />}
+        title="Ayarlar"
+        onSelect={() => {
+          close()
+          go({ name: 'settings' })()
+        }}
+      />
+      {hasAccount && (
+        <>
+          <div className="menu-sep" role="separator" />
+          <MenuItem
+            icon={<LogoutIcon size={18} />}
+            title="Çıkış yap"
+            hint="Kelimelerin bu cihazda kalır"
+            onSelect={() => {
+              close()
+              void signOutThisDevice()
+            }}
+          />
+        </>
+      )}
+    </>
   )
 }
