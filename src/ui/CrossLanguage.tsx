@@ -13,6 +13,8 @@ import { db } from '../data/instance'
 import { LANGUAGE_SHORT } from './labels'
 import { placeNew } from './listMemory'
 import { cleanEtymology } from '../data/wordpackBuild'
+import { AskMonki } from './monki/AskMonki'
+import { storyAsk } from './monki/asks'
 
 /**
  * False-friend warning and links to the same word in the other languages. `compact` is the
@@ -221,7 +223,7 @@ export function OriginNotes({ entry }: { entry: VocabularyEntry }) {
     <div className="origin-notes">
       {etymology && (
         <p className="small">
-          <strong>Köken:</strong> <span lang="en">{etymology}</span>
+          <strong>Köken:</strong> <span lang="en">{etymology}</span> <AskMonki variant="link" label="Hikâyesini anlat" ask={() => storyAsk(entry)} />
         </p>
       )}
       {entry.synonyms && entry.synonyms.length > 0 && (

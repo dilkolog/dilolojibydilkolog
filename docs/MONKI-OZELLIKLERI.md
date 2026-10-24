@@ -60,14 +60,17 @@ Uygulama: sınav görevi seçiliyken ve ≥20 kelimeyken "Monki puanlasın" (`ex
 DELF/DELE/Cambridge tarzı yazma görevlerinde puan ve gerekçe.
 - `data/examTasks/*.json` görevleri; Günlük'te görev seçiliyken "Monki'den puan iste": ölçüt tablosu (içerik, düzen, dil, kelime hazinesi) 0–5 ve Türkçe gerekçe. "Resmî sınav puanı değildir" notu görünür kalmalı. Maliyet `exam_score`.
 
-### 9. Haftalık koç notu Monki'den
+### 9. Haftalık koç notu Monki'den — YAPILDI (2026-10-24)
+Uygulama: Haftanın özeti kartında "Monki'yle gelecek haftayı planla" (`asks.ts` `weekPlanAsk`: haftanın satırları `weekDigest`ten, Monki önce iki soru sorar sonra 3 maddelik plan önerir). Plan hiçbir yere yazılmaz; ayar önerisi ("N yap") eklenmedi.
 `WeeklyNudge` YZ koçu yorumu (`ai/claude.ts` `weekNote`, `engine/weekly.ts` `weekDigest`) Monki sohbetine açılsın: "Gelecek hafta için plan yapalım mı?" Monki haftanın özetini bağlam alır, 3 maddelik plan önerir. Kullanıcı kabul ederse plan hiçbir yere yazılmaz (yalnızca sohbette); isterse `Settings.weeklyTimeGoal`/günlük yeni kelime ayarını öneri olarak gösterir ("N yap" düğmesi, kullanıcı basarsa).
 
-### 10. Okurken Monki
+### 10. Okurken Monki — YAPILDI (2026-10-24)
+Uygulama: kelime kartında "Cümleyi parçala" ve "Paragrafı sadeleştir" (`breakdownAsk`, `simplifyAsk`; `WordCard` `paragraph` prop'u Reading'den, ≤900 karakter).
 Okumada bir paragrafı seçince "bunu sadeleştir / bu cümleyi parçala".
 - `Reading.tsx`/`ReaderAside`: çoklu seçim ya da paragraf menüsüne `AskMonki`. Şu an `sentenceAsk` tek cümle gönderiyor; paragraf için ≤700 karakter kırp. Sürüm: hedef dilde sadeleştirme (A2) + Türkçe açıklama.
 
-### 11. Zor gün modu
+### 11. Zor gün modu — YAPILDI (2026-10-24)
+Uygulama: oturumda üst üste 3 yanlışta (`engine/easyRound.ts` `struggling`) küçük kart "Üst üste zorlandın… üç kolay soru ekleyelim mi?"; kabul edilirse en oturmuş 3 kelimeden (`easiestWords`) `mc_meaning` `practice` soruları ekrandaki sorunun önüne girer (zamanlamayı etkilemez), oturum başına bir kez, ara notu açıkken ya da serbest pratikte çıkmaz. Monki paneli açılmaz. "Uzun aradan dönünce" tetikleyicisi yapılmadı.
 Üst üste yanlışta ya da uzun aradan dönünce oturum ortasında "kolay bir tur yapalım mı?".
 - `Session.tsx`: `isLeech` yardımı ve 3 üst üste yanlış zaten var (`engine/leechHelp.ts`). Monki konuşmaz, panel açılmaz: küçük bir kart/toast; kabul ederse `insertLater` ile kolay `mc_meaning` soruları ekle (zamanlamayı etkilemeyen `reason: 'practice'`). Oturumda Monki paneli `aria-modal` olduğundan kısayollar dursun diye açma, sadece kart.
 
@@ -78,7 +81,8 @@ Düello/lig sonucunu Monki yorumlasın, rövanş önersin. Düşük öncelik, e�
 Ayarlar'da "bu ay Monki'ye ne kadar harcadın" ve günlük sınır.
 - Kullanım sayımı zaten var (Ayarlar → Kullanım → YZ, maliyet anahtarları `monki`, `monki_*`). Monki satırlarını ayrı topla, günlük soru sınırı ayarı (`Settings`'e yeni alan; 0 = sınırsız). Sınıra gelince panel nedenini söyler ve Ayarlar'a götürür.
 
-### 4. Kelime hikâyesi
+### 4. Kelime hikâyesi — YAPILDI (2026-10-24)
+Uygulama: kelime sayfasında Köken satırında "Hikâyesini anlat" (`storyAsk`: köken notu + kelime ailesi/eş anlamlılar).
 Kök ve ekler ağacındaki kelimenin köken ve akrabalarını kısa hikâye olarak anlatır.
 - `ui/MorphemeTree.tsx`, `engine/derive.ts` `familyOf`, kelime sayfasındaki köken (`cleanEtymology`). `wordAsk`'a "kelime hikâyesi" modu: köken + aile üyeleri bağlama girer; hikâye 4–5 cümle, Türkçe, örnekler hedef dilde.
 

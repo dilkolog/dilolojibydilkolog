@@ -4,7 +4,8 @@ import { WordPopExtras } from './WordPopExtras'
 import { SentenceTranslation } from './TranslateButton'
 import { PlayIcon, CloseIcon, TagIcon } from './icons'
 import { AskMonki } from './monki/AskMonki'
-import { sentenceAsk } from './monki/asks'
+import { breakdownAsk, sentenceAsk, simplifyAsk } from './monki/asks'
+import { LANGUAGE_NAME } from './labels'
 import { cleanToken } from '../engine/extract'
 import type { ReadToken } from '../engine/reading'
 import { topicOfTense } from '../data/guide/tenseTopics'
@@ -47,6 +48,7 @@ export function WordCard({
   canPinHeard,
   rating,
   deduceMode,
+  paragraph,
   onClose,
   onLookUp,
   onOpen,
@@ -79,6 +81,8 @@ export function WordCard({
   rating?: ReactNode
   /** When true, masks the meaning initially to prompt context-based guessing */
   deduceMode?: boolean
+  /** The text of the paragraph the sentence is in (for Monki to simplify). */
+  paragraph?: string
   onClose: () => void
   onLookUp?: (word: string) => void
   onOpen: (entryId: string) => void
@@ -191,7 +195,14 @@ export function WordCard({
         <button className="link small" onClick={() => onKeepSentence(selected.sentence, cleanToken(selected.token.text, language))}>
           Cümleyi kaydet
         </button>{' '}
-        <AskMonki variant="link" label="Monki açıklasın" ask={() => sentenceAsk(selected.sentence, cleanToken(selected.token.text, language))} />
+        <AskMonki variant="link" label="Monki açıklasın" ask={() => sentenceAsk(selected.sentence, cleanToken(selected.token.text, language))} />{' '}
+        <AskMonki variant="link" label="Cümleyi parçala" ask={() => breakdownAsk(selected.sentence)} />
+        {paragraph && paragraph !== selected.sentence && (
+          <>
+            {' '}
+            <AskMonki variant="link" label="Paragrafı sadeleştir" ask={() => simplifyAsk(paragraph, LANGUAGE_NAME[language])} />
+          </>
+        )}
       </p>
       <PhraseBuilder key={`${selected.sentence}|${selected.token.text}`} sentence={selected.sentence} word={cleanToken(selected.token.text, language)} language={language} onAdd={onAdd} />
       {(!deduceMode || revealed) && (
