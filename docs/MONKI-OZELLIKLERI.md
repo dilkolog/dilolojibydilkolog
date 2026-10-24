@@ -17,7 +17,8 @@ Sahibi "hepsini sırayla yap" dedi. Bu dosya, işi devralacak Claude oturumu iç
 
 Önerilen sıra: 13 (hafıza) altyapı olduğu için önce, sonra 1, 2, 3 ... Ama 13 büyük; istersen 1 ve 2'yi 13'ten önce yap ve hafızayı sonra bağla.
 
-### 13. Hafıza (altyapı)
+### 13. Hafıza (altyapı) — YAPILDI (2026-10-24)
+Uygulama: `engine/monkiMemory.ts` (notlar, en çok 12, 110 karakter), `ui/monki/memoryStore.ts` (`localStorage diloloji:monki-memory:<dil>`, kapatma `diloloji:monki-memory-off`; `devicePrefs` ile hesapla taşınır). Model her cevapta `remember` (0–2 not) döndürür, ayrı istek yok; `MonkiRequest.memory` sonraki turda istemine girer. Panelde başlıkta "Hatırladıkları": liste, tek tek sil, hepsini sil, hatırlama aç/kapa. Türetilmiş bilgiler (yazı hata defteri, kör nokta) şimdilik notlara girmiyor: madde 3 onları bağlama ekler.
 Monki seni hatırlar: "geçen hafta ser/estar'da zorlanıyordun". Şimdi geçmiş cihazda 30 mesajla sınırlı.
 - Küçük bir "Monki'nin bildiği" özeti: son oturumların konuları, tekrar eden hata türleri (yazı hata defteri `engine/writingErrors.ts`, kör nokta `engine/blindSpots.ts`), zayıf kelimeler, son sohbetten çıkan 3–5 not. Ham sohbet değil, kısa notlar (en çok ~10 satır).
 - Saklama: `meta 'monkiMemory'` ya da `localStorage 'diloloji:monki-memory:<dil>'` + `devicePrefs` ile hesapla taşı (`BACKUP_VERSION` artırma gerekmez: `Backup.prefs` zaten var).
