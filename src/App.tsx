@@ -5,6 +5,7 @@ import { engineFlags } from './engine/exercisePrefs'
 import { openMistakes } from './engine/mistakes'
 import { kindOff } from './engine/notices'
 import { mistakesForMonki, weakWordsOf } from './engine/monkiContext'
+import { dailyTalkWords } from './engine/dailyTalk'
 import { answeredToday } from './engine/progress'
 
 import type { SessionSummary } from './engine/session'
@@ -262,6 +263,7 @@ export default function App() {
   // What went wrong most lately: Monki builds its examples, small quizzes and mistake talks from it.
   const weakWords = useMemo(() => (data ? weakWordsOf(data.vocabulary, data.mistakes) : undefined), [data])
   const monkiMistakes = useMemo(() => (data ? mistakesForMonki(data.vocabulary, data.mistakes) : undefined), [data])
+  const dailyWords = useMemo(() => (data ? dailyTalkWords(data.vocabulary, data.states, data.mistakes, new Date()) : undefined), [data])
   // The collaborative lists this device has joined, kept in step with the others.
   useCollabSync(reload, ready)
 
@@ -631,6 +633,7 @@ export default function App() {
                 name={settings.profile.name || undefined}
                 weakWords={weakWords}
                 mistakes={monkiMistakes}
+                dailyWords={dailyWords}
                 showButton={screen.name !== 'summary'}
                 inSession={inSession}
                 onSettings={go({ name: 'settings' })}

@@ -49,12 +49,15 @@ export function Feedback({
   forgot,
   typeName,
   onTypePref,
+  history,
 }: {
   /** "Unuttum": the answer is shown as a lesson, not as a mistake (no red, no scolding). */
   forgot?: boolean
   /** The kind of question just answered (when it can be tuned) and what turns its share down or off: offered after a miss, when a kind is a struggle. */
   typeName?: string
   onTypePref?: (level: 'less' | 'off') => void
+  /** How the word has gone so far (this answer included): handed to Monki when it is asked to explain a miss. */
+  history?: { wrong: number; reviews: number }
   xp?: number
   /** Right answers in a row, this one included: 5, 10 and 20 get their own cheer. */
   combo?: number
@@ -278,7 +281,7 @@ export function Feedback({
                 Yanlış dokundum, sayma
               </button>
             )}
-            {askable && <AskMonki variant="link" label={forgot ? 'Monki hatırlatsın' : 'Monki açıklasın'} ask={() => missAsk(entry, ev.given, ev.expected, forgot)} />}
+            {askable && <AskMonki variant="link" label={forgot ? 'Monki hatırlatsın' : 'Monki açıklasın'} ask={() => missAsk(entry, ev.given, ev.expected, forgot, history)} />}
             {onEdit && (
               <button className="link small" onClick={onEdit} title="Kelimeyi düzelt (E)">
                 <PenIcon size={14} className="inline-icon" />

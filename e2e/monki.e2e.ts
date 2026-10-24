@@ -35,7 +35,7 @@ test('Monki: talks with a key, keeps the chat across a reload', async ({ page })
         role: 'assistant',
         model: 'claude-sonnet-5-5',
         stop_reason: 'end_turn',
-        content: [{ type: 'text', text: JSON.stringify({ reply: 'Bien sûr! **la maison** = ev', say: '', suggestions: ['Bir örnek daha', 'Beni sına'] }) }],
+        content: [{ type: 'text', text: JSON.stringify({ reply: 'Bien sûr! **la maison** = ev', say: '', suggestions: ['Bir örnek daha', 'Beni sına'], remember: [] }) }],
         usage: { input_tokens: 50, output_tokens: 80 },
       },
     })

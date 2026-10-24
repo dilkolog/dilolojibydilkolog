@@ -303,5 +303,116 @@ describe('Monki', () => {
     act(() => stage.click())
     expect(bubble.getAttribute('data-bubble')).toBe('On y va !')
   })
+
+  describe('memory', () => {
+    const starter = () => act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
+    const memoryButton = () => [...container.querySelectorAll<HTMLButtonElement>('.monki-head button')].find((b) => b.textContent?.includes('Hatırladıkları'))!
+
+    it('keeps the notes Monki returns and hands them back on the next turn', async () => {
+      monkiTurn.mockResolvedValueOnce({ reply: 'Tamam', suggestions: [], remember: ['passé composé ile imparfait karışıyor'] })
+      monkiTurn.mockResolvedValueOnce({ reply: 'Devam', suggestions: [] })
+      render('sk-test')
+      openPanel()
+      starter()
+      await flush()
+      expect(JSON.parse(localStorage.getItem('diloloji:monki-memory:fr')!)).toMatchObject([{ text: 'passé composé ile imparfait karışıyor' }])
+      expect(monkiTurn.mock.calls[0][1].memory).toBeUndefined()
+      const field = container.querySelector<HTMLTextAreaElement>('textarea')!
+      await act(async () => {
+        Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value')!.set!.call(field, 'devam')
+        field.dispatchEvent(new Event('input', { bubbles: true }))
+      })
+      await act(async () => container.querySelector<HTMLButtonElement>('.monki-send')!.click())
+      await flush()
+      expect(monkiTurn.mock.calls[1][1].memory).toEqual(['passé composé ile imparfait karışıyor'])
+    })
+
+    it('lists the notes, and one can be deleted or all of them', async () => {
+      localStorage.setItem('diloloji:monki-memory:fr', JSON.stringify([{ id: 'a', text: 'bir', at: '2026-10-20' }, { id: 'b', text: 'iki', at: '2026-10-21' }]))
+      render('sk-test')
+      openPanel()
+      expect(memoryButton().textContent).toContain('(2)')
+      act(() => memoryButton().click())
+      expect(container.querySelector('.monki-memory')?.textContent).toContain('bir')
+      act(() => container.querySelector<HTMLButtonElement>('.monki-memory-list .icon-btn')!.click())
+      expect(JSON.parse(localStorage.getItem('diloloji:monki-memory:fr')!)).toEqual([{ id: 'b', text: 'iki', at: '2026-10-21' }])
+      act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-memory-actions button')].find((b) => b.textContent === 'Hepsini sil')!.click())
+      expect(localStorage.getItem('diloloji:monki-memory:fr')).toBeNull()
+    })
+
+    it('with remembering off nothing is handed over or kept', async () => {
+      localStorage.setItem('diloloji:monki-memory:fr', JSON.stringify([{ id: 'a', text: 'bir', at: '2026-10-20' }]))
+      monkiTurn.mockResolvedValue({ reply: 'Tamam', suggestions: [], remember: ['yeni not'] })
+      render('sk-test')
+      openPanel()
+      act(() => memoryButton().click())
+      act(() => container.querySelector<HTMLButtonElement>('.monki-memory-actions .chip')!.click())
+      expect(localStorage.getItem('diloloji:monki-memory-off')).toBe('1')
+      starter()
+      await flush()
+      expect(monkiTurn.mock.calls[0][1].memory).toBeUndefined()
+      expect(JSON.parse(localStorage.getItem('diloloji:monki-memory:fr')!)).toHaveLength(1)
+    })
+  })
+
+  describe('the day\'s talk', () => {
+    const renderDaily = (words: string[] = ['maison', 'arbre', 'chat']) =>
+      act(() =>
+        root.render(
+          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false, setApiKey: async () => {} }}>
+            <Monki language="fr" dailyWords={words} onSettings={onSettings} />
+          </AiContext.Provider>,
+        ),
+      )
+    const dailyChip = () => [...container.querySelectorAll<HTMLButtonElement>('.monki-modes .chip')].find((b) => b.textContent === 'Günün sohbeti')
+    const typeAndSend = async (value: string) => {
+      const field = container.querySelector<HTMLTextAreaElement>('textarea')!
+      await act(async () => {
+        Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value')!.set!.call(field, value)
+        field.dispatchEvent(new Event('input', { bubbles: true }))
+      })
+      await act(async () => container.querySelector<HTMLButtonElement>('.monki-send')!.click())
+      await flush()
+    }
+
+    it('is offered as a mode only with enough words', () => {
+      renderDaily(['maison'])
+      openPanel()
+      expect(dailyChip()).toBeUndefined()
+    })
+
+    it('opens the words talk with the day\'s words and ends with a summary that closes the day\'s offer', async () => {
+      monkiTurn.mockResolvedValue({ reply: 'Très bien', suggestions: [], remember: [] })
+      renderDaily()
+      openPanel()
+      act(() => dailyChip()!.click())
+      expect([...container.querySelectorAll('.monki-target')].map((e) => e.textContent?.replace('✓ ', ''))).toEqual(['maison', 'arbre', 'chat'])
+      act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
+      await flush()
+      expect(monkiTurn.mock.calls[0][1]).toMatchObject({ mode: 'words', targets: ['maison', 'arbre', 'chat'] })
+      expect(container.querySelector('.monki-summary')).toBeNull()
+      await typeAndSend('Ma maison est belle et mon chat dort sous un arbre.')
+      expect(container.querySelector('.monki-summary')?.textContent).toContain('3/3')
+      expect(localStorage.getItem('diloloji:monki-daily')).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+    })
+
+    it('names the words not used yet and offers to go on with them', async () => {
+      monkiTurn.mockResolvedValue({ reply: 'Très bien', suggestions: [], remember: [] })
+      renderDaily()
+      openPanel()
+      act(() => dailyChip()!.click())
+      act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
+      await flush()
+      for (const line of ['Ma maison.', 'Oui.', 'Non.', 'Peut-être.', 'Bien sûr.']) await typeAndSend(line)
+      const summary = container.querySelector('.monki-summary')!
+      expect(summary.textContent).toContain('1/3')
+      expect(summary.textContent).toContain('Kullanmadıkların: arbre, chat')
+      await act(async () => summary.querySelector<HTMLButtonElement>('button')!.click())
+      await flush()
+      const last = monkiTurn.mock.calls.at(-1)![1]
+      expect(last.targets).toEqual(['arbre', 'chat'])
+      expect(last.history.at(-1).text).toContain('arbre, chat')
+    })
+  })
 })
 

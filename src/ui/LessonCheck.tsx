@@ -6,13 +6,15 @@ import { CheckCircleIcon } from './icons'
 import { sfx } from './sounds'
 import { NEW_ART } from './drawnArt'
 import { ReportIssue } from './ReportIssue'
+import { AskMonki } from './monki/AskMonki'
+import { lessonAsk } from './monki/asks'
 
 /**
  * A lesson's short check, one question at a time: the options, then why the right one is right. At
  * the end the score, and `onDone` with how many were right (the guide marks the lesson learned, or
  * brings it back sooner).
  */
-export function LessonCheck({ items, language, topic, review, earned = 0, onDone }: { items: CheckItem[]; language: TargetLanguage; topic?: string; review?: boolean; earned?: number; onDone: (right: number, answers: { prompt: string; right: boolean }[]) => void }) {
+export function LessonCheck({ items, language, topic, lesson, review, earned = 0, onDone }: { items: CheckItem[]; language: TargetLanguage; topic?: string; /** The lesson being checked: with it a wrong answer can be taken to Monki. */ lesson?: { title: string; summary: string; rules: readonly string[] }; review?: boolean; earned?: number; onDone: (right: number, answers: { prompt: string; right: boolean }[]) => void }) {
   const [index, setIndex] = useState(0)
   const [given, setGiven] = useState<number | null>(null)
   const [right, setRight] = useState(0)
@@ -115,6 +117,9 @@ export function LessonCheck({ items, language, topic, review, earned = 0, onDone
             <button type="button" className="btn" onClick={next} autoFocus>
               {index + 1 < items.length ? 'Sonraki' : 'Bitir'}
             </button>
+            {lesson && given !== item.answer && (
+              <AskMonki variant="link" label="Monki açıklasın" ask={() => lessonAsk(lesson.title, lesson.summary, lesson.rules, { prompt: item.prompt, chosen: item.options[given], right: item.options[item.answer] })} />
+            )}
             {topic && <ReportIssue language={language} topic={topic} kind="question" prompt={item.prompt} label="Soruda hata var" />}
           </div>
         </div>

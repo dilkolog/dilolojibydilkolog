@@ -6,6 +6,8 @@ import type { TargetLanguage } from '../engine/types'
 import { repairFor, WRITING_LABEL, writingRows, type WritingRow } from '../engine/writingErrors'
 import { dayAgo } from './format'
 import { PenIcon, PlayIcon } from './icons'
+import { AskMonki } from './monki/AskMonki'
+import { habitAsk } from './monki/asks'
 
 /** At most this many kinds are listed: the few that matter most. */
 const SHOWN = 5
@@ -63,6 +65,7 @@ export function WritingNotebook({
               </div>
               {fix && (
                 <span className="blind-actions">
+                  <AskMonki label="Monki'ye sor" ask={() => habitAsk(WRITING_LABEL[r.kind], r.n, r.samples)} />
                   {onLesson && lesson && (
                     <button type="button" className="btn btn-sm btn-quiet" onClick={() => onLesson({ topic: lesson })}>
                       Dersi oku

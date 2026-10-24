@@ -47,6 +47,8 @@ import { lessonTexts, termsIn, termsOf } from '../data/guide/terms'
 import { LessonSteps, type LessonStep } from './LessonSteps'
 import { LessonWrite } from './LessonWrite'
 import { LessonCheck } from './LessonCheck'
+import { AskMonki } from './monki/AskMonki'
+import { lessonAsk } from './monki/asks'
 import { notify } from './noticeCenter'
 import { certNotice } from './noticeTexts'
 import { checkAwards, loadMarks, markChecked, markFlag, markKnown, markNote, unmarkKnown, markRead as withRead } from './guideProgress'
@@ -1048,7 +1050,7 @@ function LessonView({
       {check.length > 0 && (
         <div id="lesson-check" ref={checkRef}>
           {checking ? (
-            <LessonCheck items={check} language={language} topic={lesson.topic} review={review} earned={earned} onDone={(right, answers) => {
+            <LessonCheck items={check} language={language} topic={lesson.topic} lesson={{ title: titleOf(lesson), summary: lesson.summary, rules: lesson.rules }} review={review} earned={earned} onDone={(right, answers) => {
                 saveQuestionLog(language, recordAnswers(loadQuestionLog(language), answers.map((a) => ({ key: questionKey(language, a.prompt), right: a.right })), localDate(new Date())))
                 onChecked(right, check.length)
               }} />
@@ -1085,6 +1087,7 @@ function LessonView({
           </button>
         )}
         <LessonListen lesson={lesson} title={titleOf(lesson)} />
+        <AskMonki label="Başka anlat" ask={() => lessonAsk(titleOf(lesson), lesson.summary, lesson.rules)} />
         <button type="button" className="btn btn-quiet" aria-pressed={flag === 'star'} onClick={() => onFlag(flag === 'star' ? null : 'star')}>
           {flag === 'star' ? '★ Yer imli' : '☆ Yer imi'}
         </button>

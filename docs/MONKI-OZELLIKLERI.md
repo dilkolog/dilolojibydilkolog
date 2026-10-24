@@ -17,7 +17,8 @@ Sahibi "hepsini sırayla yap" dedi. Bu dosya, işi devralacak Claude oturumu iç
 
 Önerilen sıra: 13 (hafıza) altyapı olduğu için önce, sonra 1, 2, 3 ... Ama 13 büyük; istersen 1 ve 2'yi 13'ten önce yap ve hafızayı sonra bağla.
 
-### 13. Hafıza (altyapı)
+### 13. Hafıza (altyapı) — YAPILDI (2026-10-24)
+Uygulama: `engine/monkiMemory.ts` (notlar, en çok 12, 110 karakter), `ui/monki/memoryStore.ts` (`localStorage diloloji:monki-memory:<dil>`, kapatma `diloloji:monki-memory-off`; `devicePrefs` ile hesapla taşınır). Model her cevapta `remember` (0–2 not) döndürür, ayrı istek yok; `MonkiRequest.memory` sonraki turda istemine girer. Panelde başlıkta "Hatırladıkları": liste, tek tek sil, hepsini sil, hatırlama aç/kapa. Türetilmiş bilgiler (yazı hata defteri, kör nokta) şimdilik notlara girmiyor: madde 3 onları bağlama ekler.
 Monki seni hatırlar: "geçen hafta ser/estar'da zorlanıyordun". Şimdi geçmiş cihazda 30 mesajla sınırlı.
 - Küçük bir "Monki'nin bildiği" özeti: son oturumların konuları, tekrar eden hata türleri (yazı hata defteri `engine/writingErrors.ts`, kör nokta `engine/blindSpots.ts`), zayıf kelimeler, son sohbetten çıkan 3–5 not. Ham sohbet değil, kısa notlar (en çok ~10 satır).
 - Saklama: `meta 'monkiMemory'` ya da `localStorage 'diloloji:monki-memory:<dil>'` + `devicePrefs` ile hesapla taşı (`BACKUP_VERSION` artırma gerekmez: `Backup.prefs` zaten var).
@@ -25,18 +26,21 @@ Monki seni hatırlar: "geçen hafta ser/estar'da zorlanıyordun". Şimdi geçmi�
 - Özet YZ ile üretilirse kullanıcı isteyince/oturum sonunda tek istek, maliyet `monki_memory`.
 - `monkiTurn` istemine yalnızca bu notlar girer (kullanıcının yazdığı uzun metinler değil).
 
-### 1. Günün sohbeti
+### 1. Günün sohbeti — YAPILDI (2026-10-24)
+Uygulama: `engine/dailyTalk.ts` (`dailyTalkWords`: açık hatalar, bugün vadesi gelenler, öğrenilenler; ≥3 kelime yoksa sohbet yok), `ui/monki/dailyTalkStore.ts` (`diloloji:monki-daily`), panelde "Günün sohbeti" çipi (`words` modu, `daily`), sonunda `TalkSummary` (kullanılan/kullanılmayan, "Kullanmadıklarla devam et"; özet gelince gün kapanır), Bugün'de `MonkiNudge` (açık hata yoksa günün sohbetini önerir).
 Bugünkü zayıf kelimelerle 3–5 turluk kısa konuşma; bitince "bugün şunları kullandın" özeti.
 - Yeni mod ya da `words` modunun günlük sürümü: `talkWords` ile kelimeler, hedef sayısı sabit (5 kelime), `usesWord` ile kullanılanlar işaretlenir.
 - Tur sayısı biter bitmez özet kartı: kullanılan/kullanılmayan kelimeler, "kullanmadıklarını kartlarına ekle" yok; sadece listele.
 - Bugün'de `MonkiNudge` bu modu önerebilsin; günde bir kez.
 
-### 2. Gramer koçu
+### 2. Gramer koçu — YAPILDI (2026-10-24)
+Uygulama: `asks.ts` `lessonAsk`/`habitAsk`; Rehber dersinde "Başka anlat", mini sınavda yanlış cevapta "Monki açıklasın" (`LessonCheck` `lesson` prop'u), Yazı hata defterinde her tür için "Monki'ye sor". Kör nokta kartlarına henüz eklenmedi.
 Rehber dersinde takılınca "bunu bana başka anlat"; ders kuralını senin yanlış cümlenle örnekle.
 - `ui/Guide.tsx` `LessonView`: ders sonuna (ve yanlış sınav cevabında) `AskMonki`. Metin: ders kuralının özeti + yanlış cevap/senin cümlen (≤700 karakter, `asks.ts` desenine yeni `lessonAsk`).
 - Yazı hata defterinden (`WritingNotebook`) ve kör nokta bulgularından aynı düğme.
 
-### 3. "Neden yanlış?" ve aynı hatayı hatırlatma
+### 3. "Neden yanlış?" ve aynı hatayı hatırlatma — YAPILDI (2026-10-24)
+Uygulama: `missAsk` kelimenin sayaçlarını (`history`: ≥3 yanlış) soruya ekler (`Feedback` → `ExerciseRunner` `wordState()`), model deseni kalıba bağlar.
 Oturum geri bildiriminde `missAsk` zaten var. Eksik olan: aynı hatayı tekrar yaparsan Monki'nin "bunu geçen hafta da karıştırmıştık" demesi.
 - Hata tekrarı `lastAnswers`/`weekMisses` ve kelimenin sayaçlarından; yalnızca kullanıcı Monki'ye sorduğunda bağlama eklenir. Hafıza (13) varsa oradan.
 

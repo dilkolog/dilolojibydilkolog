@@ -341,6 +341,10 @@ export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride
             xp={result.log.xp}
             combo={combo}
             forgot={result.forgot}
+            history={(() => {
+              const stats = wordState()?.stats
+              return stats ? { wrong: stats.wrong, reviews: stats.reviews } : undefined
+            })()}
             typeName={tunableType?.name}
             onTypePref={tunableType && onTypePref ? (level) => onTypePref(tunableType.type, tunableType.name, level) : undefined}
             entry={entry}

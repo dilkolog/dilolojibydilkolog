@@ -2226,6 +2226,13 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .monki-avatar { width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--surface); display: grid; place-items: center; overflow: hidden; flex: none; }
 .monki-avatar .monki-face { margin-top: 0.3rem; }
 .monki-title { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.25; }
+.monki-memory { margin: 0.5rem 0.875rem 0; padding: 0.625rem 0.75rem; border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface-2, var(--surface)); display: grid; gap: 0.5rem; max-height: 14rem; overflow-y: auto; }
+.monki-memory p { margin: 0; }
+.monki-memory-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
+.monki-memory-list li { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; font-size: var(--t-sm); }
+.monki-memory-actions { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.monki-summary { align-self: stretch; padding: 0.625rem 0.75rem; border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface-2, var(--surface)); display: grid; gap: 0.25rem; justify-items: start; }
+.monki-summary p { margin: 0; }
 .monki-modes { display: flex; gap: 0.375rem; padding: 0.5rem 0.875rem 0; flex-wrap: wrap; }
 .monki-modes .chip { flex: none; }
 /* Words mode: the words to use, ticked off as the learner uses them. */

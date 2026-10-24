@@ -261,6 +261,8 @@ export interface MonkiRequest {
   mistakes?: { word: string; given: string; expected: string }[]
   /** Words mode: the words the learner should get to use in the talk. */
   targets?: string[]
+  /** Short notes Monki kept from earlier talks (Turkish), so it can say "last week you struggled with…". */
+  memory?: string[]
 }
 
 export interface MonkiReply {
@@ -269,6 +271,8 @@ export interface MonkiReply {
   suggestions: string[]
   /** Role-play: exactly what the other person says aloud, in the target language (spoken in voice mode). Empty otherwise. */
   say?: string
+  /** Up to two short Turkish notes about the learner worth keeping for next time (empty most turns). */
+  remember?: string[]
 }
 
 export interface ChatReply {

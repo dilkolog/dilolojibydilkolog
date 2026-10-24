@@ -4,6 +4,7 @@ import { useAi } from '../aiContext'
 import { CloseIcon } from '../icons'
 import { MonkiFace } from './MonkiMascot'
 import { askMonki } from './monkiBus'
+import { dailyTalkDone } from './dailyTalkStore'
 
 const KEY = 'diloloji:monki-nudge'
 
@@ -17,13 +18,14 @@ const dismissedToday = () => {
 
 /**
  * Today: Monki offers one thing, once a day: the open mistakes talked through when there are any,
- * otherwise a small quiz. Only with a YZ key; a tap on the cross puts it away until tomorrow.
+ * otherwise the day's short talk on its weak words (once a day: the talk's summary puts it away), otherwise a small quiz. Only with a YZ key; a tap on the cross puts it away until tomorrow.
  */
-export function MonkiNudge({ openMistakes }: { openMistakes: number }) {
+export function MonkiNudge({ openMistakes, dailyWords = [] }: { openMistakes: number; dailyWords?: string[] }) {
   const { apiKey } = useAi()
   const [gone, setGone] = useState(dismissedToday)
   if (!apiKey || gone) return null
   const mistakes = openMistakes > 0
+  const talk = !mistakes && dailyWords.length >= 3 && !dailyTalkDone()
   const dismiss = () => {
     try {
       localStorage.setItem(KEY, localDate(new Date()))
@@ -33,7 +35,13 @@ export function MonkiNudge({ openMistakes }: { openMistakes: number }) {
     setGone(true)
   }
   const accept = () => {
-    askMonki(mistakes ? { text: 'Hatalarımı sırayla inceleyelim', mode: 'mistakes', send: true } : { text: 'Kelimelerimden sor', mode: 'quiz', send: true })
+    askMonki(
+      mistakes
+        ? { text: 'Hatalarımı sırayla inceleyelim', mode: 'mistakes', send: true }
+        : talk
+          ? { text: 'Başlayalım', mode: 'words', targets: dailyWords, daily: true, send: true }
+          : { text: 'Kelimelerimden sor', mode: 'quiz', send: true },
+    )
     // Taken up: the next nudge in line (the day's mind seed) may have its turn.
     dismiss()
   }
@@ -47,6 +55,10 @@ export function MonkiNudge({ openMistakes }: { openMistakes: number }) {
           <>
             <strong>{openMistakes} açık hatan var.</strong> Birlikte bakalım mı? Her biri için nedenini ve bir hafıza ipucunu konuşuruz.
           </>
+        ) : talk ? (
+          <>
+            <strong>Günün sohbeti hazır.</strong> Monki’yle {dailyWords.length} kelimeyle kısa bir konuşma yap, kullandıkça işaretlenir.
+          </>
         ) : (
           <>
             <strong>Küçük bir sınav ister misin?</strong> Monki kelimelerinden tek tek soru sorsun.
@@ -54,7 +66,7 @@ export function MonkiNudge({ openMistakes }: { openMistakes: number }) {
         )}
       </p>
       <button type="button" className="btn btn-sm" onClick={accept}>
-        {mistakes ? 'Hatalarıma bak' : 'Sına beni'}
+        {mistakes ? 'Hatalarıma bak' : talk ? 'Sohbete başla' : 'Sına beni'}
       </button>
       <button type="button" className="icon-btn" onClick={dismiss} aria-label="Bugünlük kapat" title="Bugünlük kapat">
         <CloseIcon size={16} />
