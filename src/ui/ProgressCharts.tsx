@@ -50,7 +50,8 @@ export function StageBar({
 /** Answers per day as thin columns; hover (or focus) shows the exact numbers. */
 export function ActivityChart({ activity }: { activity: DayActivity[] }) {
   const [hover, setHover] = useState<number | null>(null)
-  const max = Math.max(1, ...activity.map((a) => a.answers))
+  const peak = Math.max(0, ...activity.map((a) => a.answers))
+  const max = Math.max(1, peak)
   const shown = hover !== null ? activity[hover] : null
 
   return (
@@ -60,7 +61,9 @@ export function ActivityChart({ activity }: { activity: DayActivity[] }) {
           ? `${dayLabel(shown.date, { day: 'numeric', month: 'long', weekday: 'short' })}: ${shown.answers} cevap${
               shown.answers ? `, ${shown.correct} doğru` : ''
             }`
-          : `En yoğun gün: ${max} cevap`}
+          : peak > 0
+            ? `En yoğun gün: ${peak} cevap`
+            : 'Bu dönemde henüz cevap yok'}
       </p>
       <div className="columns" role="group" aria-label="Günlük cevaplar; ok tuşlarıyla günler arasında gez" {...columnKeys(activity.length, hover, setHover)}>
         {activity.map((a, i) => (
