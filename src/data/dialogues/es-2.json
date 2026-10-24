@@ -1,0 +1,210 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "es-farmacia",
+      "level": "A2",
+      "title": "Eczanede",
+      "scene": "Madrid'te bir eczanedesin; boğazın ağrıyor.",
+      "turns": [
+        {
+          "say": "Buenos días, ¿en qué puedo ayudarle?",
+          "tr": "Günaydın, size nasıl yardımcı olabilirim?",
+          "options": [
+            "Soy dolor de garganta.",
+            "Tengo doler la garganta.",
+            "Me duele la garganta desde ayer."
+          ],
+          "answer": 2,
+          "why": "Ağrı 'doler' fiiliyle söylenir: me duele la garganta. 'Soy dolor' yanlıştır.",
+          "replyTr": "Dünden beri boğazım ağrıyor."
+        },
+        {
+          "say": "¿Tiene fiebre?",
+          "tr": "Ateşiniz var mı?",
+          "options": [
+            "No, no tengo fiebre.",
+            "No, no soy fiebre.",
+            "Sí, estoy fiebre."
+          ],
+          "answer": 0,
+          "why": "Ateş 'tener fiebre' ile söylenir.",
+          "replyTr": "Hayır, ateşim yok."
+        },
+        {
+          "say": "Tome una pastilla cada ocho horas.",
+          "tr": "Sekiz saatte bir hap alın.",
+          "options": [
+            "Vale, tomo ocho horas.",
+            "Vale, ¿antes o después de comer?",
+            "Vale, ¿antes de ocho comer?"
+          ],
+          "answer": 1,
+          "why": "'¿Antes o después de comer?' yemekten önce mi sonra mı diye sorar.",
+          "replyTr": "Tamam, yemekten önce mi sonra mı?"
+        },
+        {
+          "say": "Después de comer, con agua.",
+          "tr": "Yemekten sonra, suyla.",
+          "options": [
+            "Muy bien, ¿cuánto soy?",
+            "Muy bien, ¿cómo es?",
+            "Muy bien, gracias. ¿Cuánto es?"
+          ],
+          "answer": 2,
+          "why": "Fiyat için '¿Cuánto es?' denir.",
+          "replyTr": "Çok iyi, teşekkürler. Ne kadar?"
+        },
+        {
+          "say": "Son seis euros con cincuenta.",
+          "tr": "Altı euro elli.",
+          "options": [
+            "Aquí tiene. Que tenga un buen día.",
+            "Aquí tengo seis euros.",
+            "Que sea un buen euro."
+          ],
+          "answer": 0,
+          "why": "Parayı verirken 'Aquí tiene' denir; veda için 'Que tenga un buen día'.",
+          "replyTr": "Buyurun. İyi günler dilerim."
+        }
+      ]
+    },
+    {
+      "id": "es-taxi",
+      "level": "A2",
+      "title": "Taksi",
+      "scene": "Atocha istasyonunda taksiye biniyorsun.",
+      "turns": [
+        {
+          "say": "Buenas tardes, ¿adónde va?",
+          "tr": "İyi günler, nereye gidiyorsunuz?",
+          "options": [
+            "Voy el hotel Plaza.",
+            "Al hotel Plaza, por favor.",
+            "El hotel Plaza es donde."
+          ],
+          "answer": 1,
+          "why": "Yön için 'a + yer' kullanılır; 'al hotel' = a + el hotel.",
+          "replyTr": "Plaza oteline, lütfen."
+        },
+        {
+          "say": "¿Está de vacaciones?",
+          "tr": "Tatilde misiniz?",
+          "options": [
+            "Sí, soy de vacaciones.",
+            "Sí, tengo vacaciones aquí semana.",
+            "Sí, estoy aquí una semana."
+          ],
+          "answer": 2,
+          "why": "Geçici durum için 'estar' kullanılır: estoy aquí una semana.",
+          "replyTr": "Evet, bir haftalığına buradayım."
+        },
+        {
+          "say": "Hoy hay mucho tráfico.",
+          "tr": "Bugün trafik çok.",
+          "options": [
+            "No pasa nada, no tengo prisa.",
+            "No pasa nada, no soy prisa.",
+            "No tengo tráfico."
+          ],
+          "answer": 0,
+          "why": "'Tener prisa' acelesi olmak demektir.",
+          "replyTr": "Önemli değil, acelem yok."
+        },
+        {
+          "say": "Llegamos en diez minutos.",
+          "tr": "On dakikaya varıyoruz.",
+          "options": [
+            "Perfecto, llego diez minutos.",
+            "Perfecto, muchas gracias.",
+            "Gracias, diez minutos llegan."
+          ],
+          "answer": 1,
+          "why": "Kısa bir teşekkür uygundur.",
+          "replyTr": "Harika, çok teşekkürler."
+        },
+        {
+          "say": "Ya hemos llegado. Son veinte euros.",
+          "tr": "Geldik. Yirmi euro.",
+          "options": [
+            "Me quedo con el cambio.",
+            "Usted queda mi euro.",
+            "Quédese con el cambio, gracias."
+          ],
+          "answer": 2,
+          "why": "'Quédese con el cambio' üstü kalsın demektir (nazik emir).",
+          "replyTr": "Üstü kalsın, teşekkürler."
+        }
+      ]
+    },
+    {
+      "id": "es-hotel",
+      "level": "B1",
+      "title": "Otelde sorun",
+      "scene": "Odandaki klima çalışmıyor; resepsiyona gidiyorsun.",
+      "turns": [
+        {
+          "say": "Buenas noches, ¿necesita algo?",
+          "tr": "İyi akşamlar, bir şeye ihtiyacınız var mı?",
+          "options": [
+            "Buenas noches, el aire no está funcionar.",
+            "Buenas noches, mi aire no tiene.",
+            "Buenas noches, el aire acondicionado no funciona."
+          ],
+          "answer": 2,
+          "why": "'No funciona' bir şeyin çalışmadığını söyler.",
+          "replyTr": "İyi akşamlar, klima çalışmıyor."
+        },
+        {
+          "say": "Lo siento mucho. ¿Cuál es su número de habitación?",
+          "tr": "Çok üzgünüm. Oda numaranız kaç?",
+          "options": [
+            "Es la habitación doscientos doce.",
+            "Soy la habitación doscientos doce.",
+            "Habitación doscientos doce tiene yo."
+          ],
+          "answer": 0,
+          "why": "Numara 'Es la habitación …' ile verilir.",
+          "replyTr": "212 numaralı oda."
+        },
+        {
+          "say": "Enseguida enviamos a un técnico.",
+          "tr": "Hemen bir teknisyen gönderiyoruz.",
+          "options": [
+            "Gracias, yo envío un técnico.",
+            "Gracias, ¿podría venir dentro de un rato?",
+            "Gracias, un técnico es enviado enseguida."
+          ],
+          "answer": 1,
+          "why": "Nazik rica için '¿podría …?' (koşul kipi) kullanılır.",
+          "replyTr": "Teşekkürler, biraz sonra gelebilir mi?"
+        },
+        {
+          "say": "Claro. ¿Quiere cambiar de habitación mientras tanto?",
+          "tr": "Tabii. Bu arada oda değiştirmek ister misiniz?",
+          "options": [
+            "No, gracias, prefiero cambiar aquí.",
+            "Sí, gracias, estoy mientras tanto.",
+            "No, gracias, prefiero esperar aquí."
+          ],
+          "answer": 2,
+          "why": "'Preferir + mastar' tercih belirtir.",
+          "replyTr": "Hayır, teşekkürler, burada beklemeyi tercih ederim."
+        },
+        {
+          "say": "De acuerdo. Mañana le invitamos al desayuno.",
+          "tr": "Anlaştık. Yarın kahvaltı bizden.",
+          "options": [
+            "Es muy amable, se lo agradezco.",
+            "Es muy amable, yo le invito también.",
+            "Se lo agradezco el desayuno."
+          ],
+          "answer": 0,
+          "why": "Bir ikrama 'Es muy amable, se lo agradezco' denir.",
+          "replyTr": "Çok naziksiniz, teşekkür ederim."
+        }
+      ]
+    }
+  ]
+}

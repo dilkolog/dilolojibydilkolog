@@ -1,0 +1,210 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "fr-pharmacie",
+      "level": "A2",
+      "title": "Eczanede",
+      "scene": "Paris'te bir eczanedesin; baş ağrın var.",
+      "turns": [
+        {
+          "say": "Bonjour, je peux vous aider ?",
+          "tr": "Merhaba, yardımcı olabilir miyim?",
+          "options": [
+            "J'ai mal à la tête depuis hier.",
+            "Je suis mal à la tête.",
+            "Oui, j'ai une tête."
+          ],
+          "answer": 0,
+          "why": "Ağrıyı 'avoir mal à + yer' ile söylersin (j'ai mal à la tête). 'Je suis mal' kalıbı yanlıştır.",
+          "replyTr": "Dünden beri başım ağrıyor."
+        },
+        {
+          "say": "Vous avez de la fièvre ?",
+          "tr": "Ateşiniz var mı?",
+          "options": [
+            "Non, je ne suis pas fièvre.",
+            "Non, je n'ai pas de fièvre.",
+            "Oui, je fais la fièvre."
+          ],
+          "answer": 1,
+          "why": "Ateş 'avoir de la fièvre' ile söylenir; olumsuzda 'pas de fièvre' olur.",
+          "replyTr": "Hayır, ateşim yok."
+        },
+        {
+          "say": "Prenez ces comprimés deux fois par jour.",
+          "tr": "Bu tabletleri günde iki kez alın.",
+          "options": [
+            "D'accord, je prends le repas.",
+            "D'accord, deux fois par repas.",
+            "D'accord, avant ou après le repas ?"
+          ],
+          "answer": 2,
+          "why": "'Avant ou après le repas ?' ilacın yemekten önce mi sonra mı alınacağını sorar. Diğerleri anlamsızdır.",
+          "replyTr": "Tamam, yemekten önce mi sonra mı?"
+        },
+        {
+          "say": "Après le repas, avec un verre d'eau.",
+          "tr": "Yemekten sonra, bir bardak suyla.",
+          "options": [
+            "Très bien, merci. C'est combien ?",
+            "Très bien, c'est un verre.",
+            "Très bien, je suis combien ?"
+          ],
+          "answer": 0,
+          "why": "Fiyat sormak için 'C'est combien ?' denir.",
+          "replyTr": "Çok iyi, teşekkürler. Ne kadar?"
+        },
+        {
+          "say": "Ça fait huit euros cinquante.",
+          "tr": "Sekiz euro elli.",
+          "options": [
+            "Voilà, huit euros de journée.",
+            "Voilà. Bonne journée !",
+            "Bonne journée, je vous paie."
+          ],
+          "answer": 1,
+          "why": "Parayı verirken 'Voilà' denir, sonra 'Bonne journée !' ile vedalaşılır.",
+          "replyTr": "Buyurun. İyi günler!"
+        }
+      ]
+    },
+    {
+      "id": "fr-taxi",
+      "level": "A2",
+      "title": "Taksi",
+      "scene": "Gare de Lyon önünde bir taksiye biniyorsun.",
+      "turns": [
+        {
+          "say": "Bonjour, où allez-vous ?",
+          "tr": "Merhaba, nereye gidiyorsunuz?",
+          "options": [
+            "Je vais l'hôtel Mercure.",
+            "À l'hôtel Mercure, s'il vous plaît.",
+            "L'hôtel Mercure est où vous."
+          ],
+          "answer": 1,
+          "why": "Yer bildirirken 'À + yer, s'il vous plaît' kullanılır.",
+          "replyTr": "Mercure oteline, lütfen."
+        },
+        {
+          "say": "D'accord. Vous êtes en vacances ?",
+          "tr": "Tamam. Tatilde misiniz?",
+          "options": [
+            "Oui, je suis vacances.",
+            "Oui, je vais une semaine.",
+            "Oui, je suis ici pour une semaine."
+          ],
+          "answer": 2,
+          "why": "Süre belirtirken 'pour une semaine' denir. 'Je suis vacances' eksik bir kalıptır (en vacances olmalı).",
+          "replyTr": "Evet, bir haftalığına buradayım."
+        },
+        {
+          "say": "Il y a un peu de circulation aujourd'hui.",
+          "tr": "Bugün biraz trafik var.",
+          "options": [
+            "Ce n'est pas grave, je ne suis pas pressé.",
+            "Ce n'est pas grave, je suis circulation.",
+            "Je suis pressé la circulation."
+          ],
+          "answer": 0,
+          "why": "'Je ne suis pas pressé' acelem yok demektir.",
+          "replyTr": "Sorun değil, acelem yok."
+        },
+        {
+          "say": "Nous arrivons dans dix minutes.",
+          "tr": "On dakikaya varıyoruz.",
+          "options": [
+            "Parfait, je suis dix minutes.",
+            "Parfait, merci beaucoup.",
+            "Merci, dix minutes arrivent."
+          ],
+          "answer": 1,
+          "why": "Kısa bir teşekkür yeterli. Diğer cümleler dilbilgisi olarak bozuktur.",
+          "replyTr": "Mükemmel, çok teşekkürler."
+        },
+        {
+          "say": "Voilà, c'est ici. Ça fait vingt-deux euros.",
+          "tr": "İşte burası. Yirmi iki euro.",
+          "options": [
+            "Je garde la monnaie.",
+            "Vous gardez mon euro.",
+            "Gardez la monnaie, merci !"
+          ],
+          "answer": 2,
+          "why": "'Gardez la monnaie' bozuk parası kalsın demektir; 'Je garde' ise 'ben saklıyorum' olur.",
+          "replyTr": "Üstü kalsın, teşekkürler!"
+        }
+      ]
+    },
+    {
+      "id": "fr-hotel",
+      "level": "B1",
+      "title": "Otelde sorun",
+      "scene": "Otel odanda sıcak su yok; resepsiyona gidiyorsun.",
+      "turns": [
+        {
+          "say": "Bonsoir, comment puis-je vous aider ?",
+          "tr": "İyi akşamlar, size nasıl yardımcı olabilirim?",
+          "options": [
+            "Bonsoir, ma chambre n'a pas chaude.",
+            "Bonsoir, j'ai l'eau froid chambre.",
+            "Bonsoir, il n'y a pas d'eau chaude dans ma chambre."
+          ],
+          "answer": 2,
+          "why": "'Il n'y a pas de …' bir şeyin olmadığını söyler: il n'y a pas d'eau chaude.",
+          "replyTr": "İyi akşamlar, odamda sıcak su yok."
+        },
+        {
+          "say": "Je suis désolé. Quel est votre numéro de chambre ?",
+          "tr": "Üzgünüm. Oda numaranız kaç?",
+          "options": [
+            "C'est la chambre cent quatorze.",
+            "Je suis la chambre cent quatorze.",
+            "Chambre cent quatorze est moi."
+          ],
+          "answer": 0,
+          "why": "Oda numarasını 'C'est la chambre …' ile verirsin.",
+          "replyTr": "114 numaralı oda."
+        },
+        {
+          "say": "Je vais envoyer quelqu'un tout de suite.",
+          "tr": "Hemen birini gönderiyorum.",
+          "options": [
+            "Merci, je vous envoie tout de suite.",
+            "Merci, ce serait possible dans un quart d'heure ?",
+            "Merci, quelqu'un est envoyé de suite."
+          ],
+          "answer": 1,
+          "why": "Nazik bir istek için 'ce serait possible … ?' kalıbı kullanılır.",
+          "replyTr": "Teşekkürler, çeyrek saat sonra mümkün olur mu?"
+        },
+        {
+          "say": "Bien sûr. Voulez-vous changer de chambre en attendant ?",
+          "tr": "Elbette. Bu arada oda değiştirmek ister misiniz?",
+          "options": [
+            "Non merci, je préfère changer ici.",
+            "Oui merci, je suis en attendant.",
+            "Non merci, je préfère attendre ici."
+          ],
+          "answer": 2,
+          "why": "'Je préfère + mastar' tercih belirtir. Diğer seçenekler anlamca ya da dilbilgisince bozuktur.",
+          "replyTr": "Hayır, teşekkürler, burada beklemeyi tercih ederim."
+        },
+        {
+          "say": "Entendu. Nous vous offrons le petit-déjeuner demain matin.",
+          "tr": "Anlaşıldı. Yarın sabah kahvaltıyı ikram ediyoruz.",
+          "options": [
+            "C'est très gentil, je vous remercie.",
+            "C'est très gentil, je vous offre aussi.",
+            "Je vous remercie le petit-déjeuner."
+          ],
+          "answer": 0,
+          "why": "Bir ikrama 'C'est très gentil, je vous remercie' diye karşılık verilir.",
+          "replyTr": "Çok naziksiniz, teşekkür ederim."
+        }
+      ]
+    }
+  ]
+}

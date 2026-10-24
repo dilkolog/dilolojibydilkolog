@@ -1,0 +1,210 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "en-pharmacy",
+      "level": "A2",
+      "title": "At the pharmacy",
+      "scene": "You are in a pharmacy in London; you have a cough.",
+      "turns": [
+        {
+          "say": "Hello, how can I help you?",
+          "tr": "Merhaba, nasıl yardımcı olabilirim?",
+          "options": [
+            "I have a cough since yesterday.",
+            "I am cough from yesterday.",
+            "I've had a cough since yesterday."
+          ],
+          "answer": 2,
+          "why": "'Since' ile present perfect kullanılır: I've had a cough since yesterday.",
+          "replyTr": "Dünden beri öksürüyorum."
+        },
+        {
+          "say": "Do you have a temperature?",
+          "tr": "Ateşiniz var mı?",
+          "options": [
+            "No, I don't think so.",
+            "No, I am not temperature.",
+            "No, I don't have a temperature think."
+          ],
+          "answer": 0,
+          "why": "'I don't think so' sanmıyorum demektir; kısa ve doğal bir yanıttır.",
+          "replyTr": "Hayır, sanmıyorum."
+        },
+        {
+          "say": "Take two of these tablets three times a day.",
+          "tr": "Bu tabletlerden günde üç kez ikişer tane alın.",
+          "options": [
+            "OK, I take three times.",
+            "OK, before or after meals?",
+            "OK, two tablets are day."
+          ],
+          "answer": 1,
+          "why": "'Before or after meals?' ilacın zamanını sorar.",
+          "replyTr": "Tamam, yemekten önce mi sonra mı?"
+        },
+        {
+          "say": "After meals, with plenty of water.",
+          "tr": "Yemeklerden sonra, bol suyla.",
+          "options": [
+            "Great, how much am I?",
+            "Great, what is the price it?",
+            "Great, thanks. How much is it?"
+          ],
+          "answer": 2,
+          "why": "Fiyat için 'How much is it?' denir.",
+          "replyTr": "Harika, teşekkürler. Ne kadar?"
+        },
+        {
+          "say": "That's six pounds fifty, please.",
+          "tr": "Altı pound elli, lütfen.",
+          "options": [
+            "Here you are. Have a nice day!",
+            "Here I am. Nice day!",
+            "Here you are six pounds day."
+          ],
+          "answer": 0,
+          "why": "Parayı verirken 'Here you are' denir.",
+          "replyTr": "Buyurun. İyi günler!"
+        }
+      ]
+    },
+    {
+      "id": "en-taxi",
+      "level": "A2",
+      "title": "In a taxi",
+      "scene": "You get into a taxi at the airport.",
+      "turns": [
+        {
+          "say": "Hi, where to?",
+          "tr": "Merhaba, nereye?",
+          "options": [
+            "I go to Grand Hotel.",
+            "To the Grand Hotel, please.",
+            "Grand Hotel is where."
+          ],
+          "answer": 1,
+          "why": "Yön için 'To the …, please' kullanılır.",
+          "replyTr": "Grand Hotel'e, lütfen."
+        },
+        {
+          "say": "Are you here on holiday?",
+          "tr": "Tatil için mi buradasınız?",
+          "options": [
+            "Yes, I'm here since a week.",
+            "Yes, I am holiday.",
+            "Yes, I'm here for a week."
+          ],
+          "answer": 2,
+          "why": "Süre için 'for a week' denir; 'since' başlangıç noktası ister.",
+          "replyTr": "Evet, bir haftalığına buradayım."
+        },
+        {
+          "say": "There's quite a lot of traffic today.",
+          "tr": "Bugün epey trafik var.",
+          "options": [
+            "That's fine, I'm not in a hurry.",
+            "That's fine, I have no hurry.",
+            "That's fine, I am in hurry."
+          ],
+          "answer": 0,
+          "why": "'I'm not in a hurry' acelem yok demektir.",
+          "replyTr": "Sorun değil, acelem yok."
+        },
+        {
+          "say": "We'll be there in about ten minutes.",
+          "tr": "Yaklaşık on dakikada oradayız.",
+          "options": [
+            "Perfect, I'll be there ten minutes.",
+            "Perfect, thank you very much.",
+            "Thank you, ten minutes are there."
+          ],
+          "answer": 1,
+          "why": "Kısa bir teşekkür yeterlidir.",
+          "replyTr": "Harika, çok teşekkürler."
+        },
+        {
+          "say": "Here we are. That's twenty pounds.",
+          "tr": "İşte geldik. Yirmi pound.",
+          "options": [
+            "Keep my change, thanks!",
+            "Take the change for you!",
+            "Keep the change, thanks!"
+          ],
+          "answer": 2,
+          "why": "'Keep the change' üstü kalsın demektir.",
+          "replyTr": "Üstü kalsın, sağ olun!"
+        }
+      ]
+    },
+    {
+      "id": "en-hotel",
+      "level": "B1",
+      "title": "A problem at the hotel",
+      "scene": "The heating in your hotel room does not work; you go to reception.",
+      "turns": [
+        {
+          "say": "Good evening, can I help you?",
+          "tr": "İyi akşamlar, yardımcı olabilir miyim?",
+          "options": [
+            "Good evening, my room heating doesn't work it.",
+            "Good evening, the heating is not worked.",
+            "Good evening, the heating in my room isn't working."
+          ],
+          "answer": 2,
+          "why": "'Isn't working' bir şeyin çalışmadığını söyler.",
+          "replyTr": "İyi akşamlar, odamdaki kalorifer çalışmıyor."
+        },
+        {
+          "say": "I'm very sorry. What's your room number?",
+          "tr": "Çok üzgünüm. Oda numaranız kaç?",
+          "options": [
+            "It's room three hundred and five.",
+            "I'm room three hundred and five.",
+            "Room is three hundred and five me."
+          ],
+          "answer": 0,
+          "why": "Numara 'It's room …' ile verilir.",
+          "replyTr": "305 numaralı oda."
+        },
+        {
+          "say": "I'll send someone up right away.",
+          "tr": "Hemen birini yukarı gönderiyorum.",
+          "options": [
+            "Thanks, I send someone in a few minutes.",
+            "Thanks, could they come in a few minutes?",
+            "Thanks, someone is sent right away me."
+          ],
+          "answer": 1,
+          "why": "Nazik rica için 'could they …?' kullanılır.",
+          "replyTr": "Teşekkürler, birkaç dakika sonra gelebilirler mi?"
+        },
+        {
+          "say": "Of course. Would you like to move to another room in the meantime?",
+          "tr": "Elbette. Bu arada başka bir odaya geçmek ister misiniz?",
+          "options": [
+            "No, thanks, I'd rather to wait here.",
+            "Yes, thanks, I'm in the meantime.",
+            "No, thanks, I'd rather wait here."
+          ],
+          "answer": 2,
+          "why": "'I'd rather + yalın fiil' (to yok) tercih belirtir.",
+          "replyTr": "Hayır, teşekkürler, burada beklemeyi tercih ederim."
+        },
+        {
+          "say": "Understood. We'll offer you breakfast tomorrow, on the house.",
+          "tr": "Anlaşıldı. Yarın kahvaltı bizden.",
+          "options": [
+            "That's very kind of you, thank you.",
+            "That's very kind for you, thanks you.",
+            "Thank you the breakfast."
+          ],
+          "answer": 0,
+          "why": "'That's very kind of you' bir iyiliğe verilen kalıp yanıttır.",
+          "replyTr": "Çok naziksiniz, teşekkür ederim."
+        }
+      ]
+    }
+  ]
+}
