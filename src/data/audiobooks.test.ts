@@ -34,8 +34,25 @@ describe('audiobooks', () => {
     }
   })
 
-  it('returns empty array for unsupported languages', async () => {
+  it('loads English audiobook chapters with valid fields', async () => {
     const chapters = await loadAudiobookChapters('en')
+    expect(chapters.length).toBeGreaterThanOrEqual(15)
+    for (const c of chapters) {
+      expect(c.id).toBeTruthy()
+      expect(c.language).toBe('en')
+      expect(c.title).toBeTruthy()
+      expect(c.bookTitle).toBeTruthy()
+      expect(c.text.length).toBeGreaterThan(100)
+      expect(c.audioUrl).toMatch(/^https:\/\/archive\.org\/download\/.*\.mp3$/)
+      expect(c.credit).toContain('LibriVox')
+      expect(c.license).toContain('Public Domain')
+      expect(c.chapterIndex).toBeGreaterThanOrEqual(1)
+      expect(c.totalChapters).toBeGreaterThanOrEqual(c.chapterIndex)
+    }
+  })
+
+  it('returns empty array for unsupported languages', async () => {
+    const chapters = await loadAudiobookChapters('de' as any)
     expect(chapters).toEqual([])
   })
 
@@ -72,7 +89,7 @@ describe('cleanChapterText', () => {
   })
 
   it('leaves no markup in any chapter of the data', async () => {
-    for (const language of ['fr', 'es'] as const) {
+    for (const language of ['fr', 'es', 'en'] as const) {
       for (const c of await loadAudiobookChapters(language)) {
         const t = chapterToReadingText(c).text
         expect(t, c.id).not.toMatch(/\[Note|^\s*\*\s+\*/m)
