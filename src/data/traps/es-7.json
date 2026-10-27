@@ -1,0 +1,46 @@
+[
+  {
+    "id": "es-bravo",
+    "language": "es",
+    "lemma": "bravo",
+    "looks": "bravo",
+    "trap": "aferin",
+    "meaning": "kızgın, öfkeli (hayvan için vahşi)",
+    "text": "El toro es muy bravo.",
+    "tr": "Boğa çok öfkeli.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-educado",
+    "language": "es",
+    "lemma": "educado",
+    "looks": "educado",
+    "trap": "eğitimli",
+    "meaning": "nazik, terbiyeli",
+    "text": "El niño es muy educado con todos.",
+    "tr": "Çocuk herkese karşı çok nazik.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-carrera",
+    "language": "es",
+    "lemma": "carrera",
+    "looks": "carrera",
+    "trap": "kariyer",
+    "meaning": "üniversite bölümü; koşu yarışı",
+    "text": "Estudio la carrera de medicina.",
+    "tr": "Tıp bölümünde okuyorum.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-intoxicado",
+    "language": "es",
+    "lemma": "intoxicado",
+    "looks": "intoxicado",
+    "trap": "sarhoş",
+    "meaning": "zehirlenmiş",
+    "text": "El paciente está intoxicado por comida en mal estado.",
+    "tr": "Hasta bozuk yemekten zehirlenmiş.",
+    "source": "Diloloji (özgün)"
+  }
+]

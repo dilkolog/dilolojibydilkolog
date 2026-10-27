@@ -1,0 +1,24 @@
+[
+  {
+    "id": "en-grip",
+    "language": "en",
+    "lemma": "grip",
+    "looks": "grip",
+    "trap": "grip (nezle)",
+    "meaning": "sıkı tutuş",
+    "text": "Hold the rope with a firm grip.",
+    "tr": "İpi sıkı bir tutuşla tut.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cabin",
+    "language": "en",
+    "lemma": "cabin",
+    "looks": "cabin",
+    "trap": "kabin (giyinme)",
+    "meaning": "kulübe; gemi ya da uçak kabini",
+    "text": "We stayed in a small wooden cabin.",
+    "tr": "Küçük bir ahşap kulübede kaldık.",
+    "source": "Diloloji (özgün)"
+  }
+]

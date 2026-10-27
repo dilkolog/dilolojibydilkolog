@@ -1,0 +1,142 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "fr-marche",
+      "level": "A2",
+      "title": "Pazarda meyve almak",
+      "scene": "Pazarda bir manavın önündesin.",
+      "turns": [
+        {
+          "say": "Bonjour ! Vous désirez ?",
+          "tr": "Merhaba! Ne arzu edersiniz?",
+          "options": [
+            "Je suis un kilo de pommes.",
+            "Je voudrais un kilo de pommes, s'il vous plaît.",
+            "Vous désirez un kilo."
+          ],
+          "answer": 1,
+          "why": "Alışverişte 'Je voudrais …, s'il vous plaît' kalıbı kullanılır.",
+          "replyTr": "Bir kilo elma istiyorum, lütfen."
+        },
+        {
+          "say": "Voilà. Et avec ça ?",
+          "tr": "Buyurun. Yanında başka bir şey?",
+          "options": [
+            "Oui, avec ça.",
+            "Je suis avec ça.",
+            "Ce sera tout, merci."
+          ],
+          "answer": 2,
+          "why": "'Ce sera tout' bu kadar demektir.",
+          "replyTr": "Hepsi bu kadar, teşekkürler."
+        },
+        {
+          "say": "Alors, ça fait trois euros quarante.",
+          "tr": "O zaman üç euro kırk.",
+          "options": [
+            "Voilà. Vous avez de la monnaie ?",
+            "Voilà, je suis trois euros.",
+            "Trois euros, c'est moi."
+          ],
+          "answer": 0,
+          "why": "Bozuk para sormak için 'Vous avez de la monnaie ?' denir.",
+          "replyTr": "Buyurun. Bozuğunuz var mı?"
+        },
+        {
+          "say": "Oui, bien sûr. Tenez, votre monnaie.",
+          "tr": "Evet, tabii. Buyurun, para üstünüz.",
+          "options": [
+            "De rien, bonne journée !",
+            "Merci, bonne journée !",
+            "Je vous en prie, merci."
+          ],
+          "answer": 1,
+          "why": "Para üstünü alınca 'Merci' dersin; 'De rien' teşekküre verilen cevaptır.",
+          "replyTr": "Teşekkürler, iyi günler!"
+        },
+        {
+          "say": "Merci à vous, au revoir !",
+          "tr": "Size teşekkürler, hoşça kalın!",
+          "options": [
+            "Bonjour, à bientôt !",
+            "Merci, bonsoir !",
+            "Au revoir, à bientôt !"
+          ],
+          "answer": 2,
+          "why": "Vedalaşırken 'Au revoir' denir; 'Bonjour' selamlaşmadır.",
+          "replyTr": "Hoşça kalın, görüşmek üzere!"
+        }
+      ]
+    },
+    {
+      "id": "fr-medecin",
+      "level": "B1",
+      "title": "Doktorda",
+      "scene": "Doktor muayenehanesindesin; birkaç gündür midenin bulanıyor.",
+      "turns": [
+        {
+          "say": "Bonjour, qu'est-ce qui vous amène ?",
+          "tr": "Merhaba, sizi ne getirdi?",
+          "options": [
+            "Je suis mal au ventre trois jours.",
+            "Mon ventre a mal depuis.",
+            "J'ai mal au ventre depuis trois jours."
+          ],
+          "answer": 2,
+          "why": "Ağrı için 'avoir mal à + vücut parçası', süre için 'depuis' kullanılır.",
+          "replyTr": "Üç gündür karnım ağrıyor."
+        },
+        {
+          "say": "Vous avez de la fièvre ou des nausées ?",
+          "tr": "Ateşiniz ya da mide bulantınız var mı?",
+          "options": [
+            "J'ai des nausées, mais pas de fièvre.",
+            "Je suis nausées, pas fièvre.",
+            "Oui, j'ai fièvre."
+          ],
+          "answer": 0,
+          "why": "'Avoir des nausées' mide bulantısı yaşamaktır; olumsuzda 'pas de fièvre'.",
+          "replyTr": "Mide bulantım var ama ateşim yok."
+        },
+        {
+          "say": "Qu'est-ce que vous avez mangé hier ?",
+          "tr": "Dün ne yediniz?",
+          "options": [
+            "Je mange du poisson hier.",
+            "J'ai mangé du poisson au restaurant.",
+            "Je mangeais du poisson."
+          ],
+          "answer": 1,
+          "why": "Dün bitmiş bir eylem: passé composé (j'ai mangé).",
+          "replyTr": "Dün restoranda balık yedim."
+        },
+        {
+          "say": "Je vais vous prescrire un médicament.",
+          "tr": "Size bir ilaç yazacağım.",
+          "options": [
+            "Est-ce que je prescris de l'eau ?",
+            "Je dois prendre de l'eau avec.",
+            "Est-ce que je dois le prendre avec de l'eau ?"
+          ],
+          "answer": 2,
+          "why": "'Est-ce que je dois … ?' ilaç kullanımını sormanın doğal yoludur.",
+          "replyTr": "İlacı suyla mı almalıyım?"
+        },
+        {
+          "say": "Oui, deux fois par jour, après les repas.",
+          "tr": "Evet, günde iki kez, yemeklerden sonra.",
+          "options": [
+            "D'accord, merci beaucoup, docteur.",
+            "D'accord, deux repas par jour.",
+            "Merci, je suis docteur."
+          ],
+          "answer": 0,
+          "why": "Kısa bir teşekkür ve 'docteur' ile hitap uygundur.",
+          "replyTr": "Tamam, çok teşekkürler doktor."
+        }
+      ]
+    }
+  ]
+}

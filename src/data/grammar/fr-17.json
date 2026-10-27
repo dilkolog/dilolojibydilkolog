@@ -1,0 +1,180 @@
+[
+  {
+    "id": "fr-b17-1",
+    "language": "fr",
+    "level": "B1",
+    "topic": "basics_fr_hypothese",
+    "type": "choice",
+    "prompt": "Si j'avais le temps, je ___ plus souvent.",
+    "answer": "voyagerais",
+    "options": [
+      "voyagerais",
+      "voyagerai",
+      "voyageais"
+    ],
+    "explanation": "Si + imparfait ise koşul cümlesi koşullu kiple (conditionnel présent) biter: je voyagerais.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b17-2",
+    "language": "fr",
+    "level": "B1",
+    "topic": "basics_fr_hypothese",
+    "type": "cloze",
+    "prompt": "Si tu étais là, nous ___ ensemble.",
+    "answer": "mangerions",
+    "explanation": "Si + imparfait → conditionnel: nous mangerions.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b17-3",
+    "language": "fr",
+    "level": "B1",
+    "topic": "basics_fr_hypothese",
+    "type": "error",
+    "prompt": "Si j'avais le temps, je voyagerai plus souvent.",
+    "answer": "voyagerai",
+    "fix": "voyagerais",
+    "explanation": "Si + imparfait ise koşullu kip ister: je voyagerais.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b17-4",
+    "language": "fr",
+    "level": "B1",
+    "topic": "basics_fr_registres",
+    "type": "choice",
+    "prompt": "Resmî mektup sonu: Je vous prie d'___ mes salutations distinguées.",
+    "answer": "agréer",
+    "options": [
+      "agréer",
+      "accepter",
+      "donner"
+    ],
+    "explanation": "Resmî yazıda 'Je vous prie d'agréer mes salutations distinguées' kalıbı kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b17-5",
+    "language": "fr",
+    "level": "A2",
+    "topic": "basics_fr_demonstratifs",
+    "type": "choice",
+    "prompt": "Je prends ___ livre-là, pas celui-ci.",
+    "answer": "ce",
+    "options": [
+      "ce",
+      "cet",
+      "cette"
+    ],
+    "explanation": "livre eril ve ünsüzle başlar: ce livre.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b17-6",
+    "language": "fr",
+    "level": "A2",
+    "topic": "basics_fr_demonstratifs",
+    "type": "choice",
+    "prompt": "Regarde ___ homme, là-bas !",
+    "answer": "cet",
+    "options": [
+      "ce",
+      "cet",
+      "cette"
+    ],
+    "explanation": "Ünlüyle başlayan eril isimden önce cet kullanılır: cet homme.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b17-7",
+    "language": "fr",
+    "level": "B1",
+    "topic": "basics_fr_cause_consequence",
+    "type": "choice",
+    "prompt": "Il a raté son train ___ il s'est levé trop tard.",
+    "answer": "parce qu'",
+    "options": [
+      "parce qu'",
+      "donc",
+      "alors"
+    ],
+    "explanation": "parce que sebep bildirir: çünkü. Sonuç için donc kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b17-8",
+    "language": "fr",
+    "level": "B1",
+    "topic": "basics_fr_cause_consequence",
+    "type": "cloze",
+    "prompt": "Il pleut beaucoup, ___ nous restons à la maison.",
+    "answer": "donc",
+    "explanation": "donc sonuç bildirir: bu yüzden.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b17-9",
+    "language": "fr",
+    "level": "B1",
+    "topic": "basics_fr_faire_causatif",
+    "type": "choice",
+    "prompt": "Je fais ___ ma voiture au garage.",
+    "answer": "réparer",
+    "options": [
+      "réparer",
+      "réparé",
+      "répare"
+    ],
+    "explanation": "faire + mastar: yaptırmak. Je fais réparer ma voiture.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b17-10",
+    "language": "fr",
+    "level": "B1",
+    "topic": "basics_fr_mise_en_relief",
+    "type": "choice",
+    "prompt": "C'est Marie ___ a appelé hier.",
+    "answer": "qui",
+    "options": [
+      "qui",
+      "que",
+      "dont"
+    ],
+    "explanation": "c'est … qui öznenin vurgulanması içindir: c'est Marie qui a appelé.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b17-11",
+    "language": "fr",
+    "level": "B1",
+    "topic": "basics_fr_mise_en_relief",
+    "type": "choice",
+    "prompt": "C'est ce livre ___ je veux.",
+    "answer": "que",
+    "options": [
+      "que",
+      "qui",
+      "où"
+    ],
+    "explanation": "Nesneyi vurgularken c'est … que kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b17-12",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_ne_expletif",
+    "type": "choice",
+    "prompt": "Je crains qu'il ne ___ trop tard.",
+    "answer": "soit",
+    "options": [
+      "soit",
+      "est",
+      "sera"
+    ],
+    "explanation": "craindre que + subjonctif: qu'il ne soit trop tard (ne explétif).",
+    "source": "Diloloji (özgün)"
+  }
+]

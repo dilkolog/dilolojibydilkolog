@@ -1,0 +1,184 @@
+[
+  {
+    "id": "es-b17-1",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_perfecto_indefinido",
+    "type": "choice",
+    "prompt": "Ayer ___ al cine con mis amigos.",
+    "answer": "fui",
+    "options": [
+      "fui",
+      "he ido",
+      "iba"
+    ],
+    "explanation": "Bitmiş bir günü (ayer) belirttiğinde pretérito indefinido: fui.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b17-2",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_perfecto_indefinido",
+    "type": "choice",
+    "prompt": "Esta semana ___ tres libros.",
+    "answer": "he leído",
+    "options": [
+      "he leído",
+      "leí",
+      "leía"
+    ],
+    "explanation": "Bu hafta henüz sürüyor: pretérito perfecto, he leído.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b17-3",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_futuro",
+    "type": "cloze",
+    "prompt": "Mañana ___ (llover) por la tarde.",
+    "answer": "lloverá",
+    "explanation": "Gelecek zaman: llover → lloverá.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b17-4",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_hace_desde",
+    "type": "choice",
+    "prompt": "Vivo en Madrid ___ cinco años.",
+    "answer": "desde hace",
+    "options": [
+      "desde hace",
+      "hace",
+      "desde"
+    ],
+    "explanation": "Süre belirtirken 'desde hace + süre': desde hace cinco años.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b17-5",
+    "language": "es",
+    "level": "B1",
+    "topic": "basics_es_pluscuamperfecto",
+    "type": "choice",
+    "prompt": "Cuando llegué, el tren ya ___.",
+    "answer": "había salido",
+    "options": [
+      "había salido",
+      "salió",
+      "ha salido"
+    ],
+    "explanation": "Başka bir geçmiş eylemden önce biten eylem pluscuamperfecto ister: había salido.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b17-6",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_gerundio",
+    "type": "choice",
+    "prompt": "Estoy ___ la cena ahora.",
+    "answer": "preparando",
+    "options": [
+      "preparando",
+      "preparar",
+      "preparado"
+    ],
+    "explanation": "Şu an sürmekte olan eylem: estar + gerundio.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b17-7",
+    "language": "es",
+    "level": "B1",
+    "topic": "basics_es_orden_pronombres",
+    "type": "choice",
+    "prompt": "¿El libro? Ya ___ lo di a Pedro.",
+    "answer": "se",
+    "options": [
+      "se",
+      "le",
+      "te"
+    ],
+    "explanation": "le/les + lo/la/los/las birleşince le → se olur: se lo di.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b17-8",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_pronombres",
+    "type": "choice",
+    "prompt": "Mi madre ___ llama todos los domingos.",
+    "answer": "me",
+    "options": [
+      "me",
+      "yo",
+      "mi"
+    ],
+    "explanation": "Bana telefon ediyor: me llama.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b17-9",
+    "language": "es",
+    "level": "B1",
+    "topic": "subjuntivo",
+    "type": "choice",
+    "prompt": "Espero que ___ buen tiempo mañana.",
+    "answer": "haga",
+    "options": [
+      "haga",
+      "hace",
+      "hará"
+    ],
+    "explanation": "esperar que + subjuntivo: espero que haga.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b17-10",
+    "language": "es",
+    "level": "B1",
+    "topic": "subjuntivo",
+    "type": "cloze",
+    "prompt": "Es importante que tú ___ (estudiar) cada día.",
+    "answer": "estudies",
+    "explanation": "es importante que + subjuntivo: estudies.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b17-11",
+    "language": "es",
+    "level": "A1",
+    "topic": "basics_es_numeros_hora",
+    "type": "choice",
+    "prompt": "Son las ___ y media.",
+    "answer": "tres",
+    "options": [
+      "tres",
+      "tercero",
+      "tres horas"
+    ],
+    "explanation": "Saat için çoğul 'son las' kullanılır; 3:30 → las tres y media.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b17-12",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_futuro",
+    "type": "choice",
+    "prompt": "El año que viene ___ a México.",
+    "answer": "viajaremos",
+    "options": [
+      "viajaremos",
+      "viajamos",
+      "viajábamos"
+    ],
+    "explanation": "nosotros öznesi gelecek zamanda: viajaremos.",
+    "source": "Diloloji (özgün)"
+  }
+]

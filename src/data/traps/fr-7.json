@@ -1,0 +1,46 @@
+[
+  {
+    "id": "fr-ancien",
+    "language": "fr",
+    "lemma": "ancien",
+    "looks": "ancien",
+    "trap": "antika, eski",
+    "meaning": "eski; önceki",
+    "text": "Mon ancien professeur habite à Lyon.",
+    "tr": "Eski öğretmenim Lyon'da yaşıyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-manifestation",
+    "language": "fr",
+    "lemma": "manifestation",
+    "looks": "manifestation",
+    "trap": "tezahür, belirti",
+    "meaning": "gösteri, yürüyüş",
+    "text": "Une grande manifestation a lieu dimanche.",
+    "tr": "Pazar günü büyük bir yürüyüş var.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-préservatif",
+    "language": "fr",
+    "lemma": "préservatif",
+    "looks": "préservatif",
+    "trap": "koruyucu madde",
+    "meaning": "prezervatif",
+    "text": "On vend des préservatifs à la pharmacie.",
+    "tr": "Eczanede prezervatif satılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-sympathique",
+    "language": "fr",
+    "lemma": "sympathique",
+    "looks": "sympathique",
+    "trap": "sempatik (yalnız görünüşe dair)",
+    "meaning": "sevimli, cana yakın",
+    "text": "Ton voisin est très sympathique.",
+    "tr": "Komşun çok cana yakın.",
+    "source": "Diloloji (özgün)"
+  }
+]
