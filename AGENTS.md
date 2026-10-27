@@ -47,8 +47,10 @@ Son güncelleme: 2026-10-13.
 - **Ortam değişkenleri ve Node:** README'deki tabloya bak; Node `>=22.12` (`engines`, `.nvmrc` 24). `pw.tmp.config.ts` makineye özeldir ve izlenmez (`.gitignore`).
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
-## Durum (2026-10-20)
-Birleşti: #37–#572.
+## Durum (2026-10-27)
+Birleşti: #37–#644.
+- **Antigravity (2026-10-27):**
+  - #644 (17. Tur): Sesli kitap kütüphanesi genişletmesi (FR 13->28, ES 10->25, EN ilk 17 bölüm eklendi; Daudet, Voltaire Candide, Quiroga, Bécquer Leyendas, Wilde The Happy Prince, Carroll Alice in Wonderland; `scripts/build-round17-audiobooks.ts`), Français interactif kaynaklı 60 dilbilgisi sorusu (`fr-fi-1.json`, `fr-fi-2.json`) ve açık lisanslı İspanyolca/İngilizce dilbilgisi kaynakları raporu (`docs/kaynaklar/acik-dilbilgisi.md`).
 - **Antigravity (2026-10-20):**
   - #556: Tanıtım sayfası yeniden tasarımı (`Landing.tsx`, `lazy.css` `lp-*`).
   - #561: Quizlet / Memrise aktarma sihirbazı (`QuizletWizard.tsx`, sütun eşleştirme, takas, export).
