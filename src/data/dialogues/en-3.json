@@ -1,0 +1,142 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "en-market",
+      "level": "A2",
+      "title": "At the market",
+      "scene": "You are at a fruit stall in a market.",
+      "turns": [
+        {
+          "say": "Morning! What can I get you?",
+          "tr": "Günaydın! Ne vereyim?",
+          "options": [
+            "I am a kilo of apples.",
+            "A kilo of apples, please.",
+            "I can get you apples."
+          ],
+          "answer": 1,
+          "why": "Alışverişte 'A kilo of …, please' denir.",
+          "replyTr": "Bir kilo elma, lütfen."
+        },
+        {
+          "say": "Here you go. Anything else?",
+          "tr": "Buyurun. Başka bir şey?",
+          "options": [
+            "Yes, anything else.",
+            "No, I am all.",
+            "No, that's all, thanks."
+          ],
+          "answer": 2,
+          "why": "'That's all' bu kadar demektir.",
+          "replyTr": "Hayır, hepsi bu, teşekkürler."
+        },
+        {
+          "say": "That's three pounds forty.",
+          "tr": "Üç pound kırk.",
+          "options": [
+            "Here you are. Have you got change for a twenty?",
+            "Here I am. Three pounds.",
+            "Here you are three pounds forty me."
+          ],
+          "answer": 0,
+          "why": "Bozuk para sormak için 'Have you got change for …?' kullanılır.",
+          "replyTr": "Buyurun. Yirmilik bozuğunuz var mı?"
+        },
+        {
+          "say": "Sure. Here's your change.",
+          "tr": "Tabii. İşte para üstünüz.",
+          "options": [
+            "You're welcome, nice day!",
+            "Thanks, have a nice day!",
+            "Thanks, nice change!"
+          ],
+          "answer": 1,
+          "why": "Teşekkür ve veda; 'You're welcome' teşekküre verilen cevaptır.",
+          "replyTr": "Teşekkürler, iyi günler!"
+        },
+        {
+          "say": "You too. See you next week!",
+          "tr": "Size de. Haftaya görüşürüz!",
+          "options": [
+            "Hello, see you!",
+            "Thanks, next week is.",
+            "See you, bye!"
+          ],
+          "answer": 2,
+          "why": "Veda: 'See you, bye!'.",
+          "replyTr": "Görüşürüz, hoşça kalın!"
+        }
+      ]
+    },
+    {
+      "id": "en-doctor",
+      "level": "B1",
+      "title": "At the doctor",
+      "scene": "You are at a doctor's surgery; you have felt sick for a few days.",
+      "turns": [
+        {
+          "say": "Good morning. What seems to be the problem?",
+          "tr": "Günaydın. Sorun nedir?",
+          "options": [
+            "I have a stomach ache since three days.",
+            "I've had a stomach ache for three days.",
+            "I am stomach ache for three days."
+          ],
+          "answer": 1,
+          "why": "Süre için present perfect + for: I've had … for three days.",
+          "replyTr": "Üç gündür karnım ağrıyor."
+        },
+        {
+          "say": "Do you have a temperature or feel sick?",
+          "tr": "Ateşiniz var mı ya da bulantı hissediyor musunuz?",
+          "options": [
+            "I am sick, but no temperature have.",
+            "I feel sick but I haven't temperature.",
+            "I feel sick, but I don't have a temperature."
+          ],
+          "answer": 2,
+          "why": "'Feel sick' bulantı hissetmektir; olumsuzda don't have.",
+          "replyTr": "Bulantı hissediyorum ama ateşim yok."
+        },
+        {
+          "say": "What did you eat yesterday?",
+          "tr": "Dün ne yediniz?",
+          "options": [
+            "I ate fish at a restaurant.",
+            "I eat fish at a restaurant yesterday.",
+            "I have eaten fish yesterday."
+          ],
+          "answer": 0,
+          "why": "Dün bitmiş eylem: past simple (ate); 'yesterday' ile present perfect kullanılmaz.",
+          "replyTr": "Dün restoranda balık yedim."
+        },
+        {
+          "say": "I'll prescribe some medicine for you.",
+          "tr": "Size ilaç yazacağım.",
+          "options": [
+            "Should I prescribe water?",
+            "Should I take it with water?",
+            "Do I take the water with?"
+          ],
+          "answer": 1,
+          "why": "'Should I …?' tavsiye isteyen doğal bir sorudur.",
+          "replyTr": "Suyla mı almalıyım?"
+        },
+        {
+          "say": "Yes, twice a day, after meals.",
+          "tr": "Evet, günde iki kez, yemeklerden sonra.",
+          "options": [
+            "All right, two meals a day.",
+            "Thanks, I am a doctor.",
+            "All right, thank you very much, doctor."
+          ],
+          "answer": 2,
+          "why": "Teşekkür ve 'doctor' ile hitap uygundur.",
+          "replyTr": "Tamam, çok teşekkürler doktor."
+        }
+      ]
+    }
+  ]
+}

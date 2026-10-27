@@ -1,0 +1,189 @@
+[
+  {
+    "id": "en-b17-1",
+    "language": "en",
+    "level": "A2",
+    "topic": "basics_en_past_simple",
+    "type": "choice",
+    "prompt": "Yesterday I ___ to the market.",
+    "answer": "went",
+    "options": [
+      "went",
+      "goed",
+      "gone"
+    ],
+    "explanation": "go fiilinin past simple biçimi düzensizdir: went.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b17-2",
+    "language": "en",
+    "level": "A2",
+    "topic": "basics_en_past_simple",
+    "type": "cloze",
+    "prompt": "She ___ (buy) a new bag last week.",
+    "answer": "bought",
+    "explanation": "buy → bought (düzensiz).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b17-3",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_present_simple",
+    "type": "choice",
+    "prompt": "He ___ coffee every morning.",
+    "answer": "drinks",
+    "options": [
+      "drinks",
+      "drink",
+      "drinking"
+    ],
+    "explanation": "he/she/it ile fiile -s eklenir: drinks.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b17-4",
+    "language": "en",
+    "level": "A2",
+    "topic": "basics_en_questions",
+    "type": "choice",
+    "prompt": "___ do you live?",
+    "answer": "Where",
+    "options": [
+      "Where",
+      "When",
+      "Who"
+    ],
+    "explanation": "Yer sormak için where kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b17-5",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_there_is",
+    "type": "choice",
+    "prompt": "There ___ two books on the table.",
+    "answer": "are",
+    "options": [
+      "are",
+      "is",
+      "be"
+    ],
+    "explanation": "Çoğul isimle there are kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b17-6",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_time_prepositions",
+    "type": "choice",
+    "prompt": "My class starts ___ nine o'clock.",
+    "answer": "at",
+    "options": [
+      "at",
+      "on",
+      "in"
+    ],
+    "explanation": "Saatle at kullanılır: at nine o'clock.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b17-7",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_time_prepositions",
+    "type": "choice",
+    "prompt": "We have a meeting ___ Monday.",
+    "answer": "on",
+    "options": [
+      "on",
+      "at",
+      "in"
+    ],
+    "explanation": "Günlerle on kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b17-8",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_pronouns",
+    "type": "choice",
+    "prompt": "Tom is my friend. I like ___.",
+    "answer": "him",
+    "options": [
+      "him",
+      "he",
+      "his"
+    ],
+    "explanation": "Nesne konumunda him kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b17-9",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "I have lived here ___ 2020.",
+    "answer": "since",
+    "options": [
+      "since",
+      "for",
+      "ago"
+    ],
+    "explanation": "Başlangıç noktası için since kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b17-10",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "She has worked here ___ three years.",
+    "answer": "for",
+    "options": [
+      "for",
+      "since",
+      "from"
+    ],
+    "explanation": "Süre için for kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b17-11",
+    "language": "en",
+    "level": "B1",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "You ___ park here; it is forbidden.",
+    "answer": "mustn't",
+    "options": [
+      "mustn't",
+      "needn't",
+      "don't have"
+    ],
+    "explanation": "mustn't yasak bildirir; don't have to yalnızca zorunluluk olmadığını söyler.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b17-12",
+    "language": "en",
+    "level": "A1",
+    "topic": "basics_en_demonstratives",
+    "type": "choice",
+    "prompt": "Look at ___ birds over there!",
+    "answer": "those",
+    "options": [
+      "those",
+      "these",
+      "that"
+    ],
+    "explanation": "Uzaktaki çoğul için those kullanılır.",
+    "source": "Diloloji (özgün)"
+  }
+]

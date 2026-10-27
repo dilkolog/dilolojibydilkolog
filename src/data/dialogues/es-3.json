@@ -1,0 +1,142 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "es-mercado",
+      "level": "A2",
+      "title": "Pazarda meyve almak",
+      "scene": "Pazarda bir manavın önündesin.",
+      "turns": [
+        {
+          "say": "Buenos días, ¿qué le pongo?",
+          "tr": "Günaydın, ne vereyim?",
+          "options": [
+            "Soy un kilo de manzanas.",
+            "Le pongo un kilo.",
+            "Quiero un kilo de manzanas, por favor."
+          ],
+          "answer": 2,
+          "why": "Alışverişte 'Quiero …, por favor' kullanılır.",
+          "replyTr": "Bir kilo elma istiyorum, lütfen."
+        },
+        {
+          "say": "Aquí tiene. ¿Algo más?",
+          "tr": "Buyurun. Başka bir şey?",
+          "options": [
+            "No, nada más, gracias.",
+            "Sí, algo más.",
+            "No, soy nada."
+          ],
+          "answer": 0,
+          "why": "'Nada más' başka bir şey yok demektir.",
+          "replyTr": "Hayır, başka bir şey yok, teşekkürler."
+        },
+        {
+          "say": "Son tres euros con cuarenta.",
+          "tr": "Üç euro kırk.",
+          "options": [
+            "Tome, soy tres euros.",
+            "Tome. ¿Tiene cambio de veinte?",
+            "Tres euros es yo."
+          ],
+          "answer": 1,
+          "why": "Büyük banknot için 'cambio' (bozuk) sorulur.",
+          "replyTr": "Buyurun. Yirmilik bozuğunuz var mı?"
+        },
+        {
+          "say": "Sí, claro. Aquí tiene el cambio.",
+          "tr": "Evet, tabii. Buyurun para üstü.",
+          "options": [
+            "De nada, buen día.",
+            "Gracias, buen cambio.",
+            "Gracias, que tenga un buen día."
+          ],
+          "answer": 2,
+          "why": "Teşekkür ve veda: 'Que tenga un buen día'. 'De nada' teşekküre verilen cevaptır.",
+          "replyTr": "Teşekkürler, iyi günler."
+        },
+        {
+          "say": "A usted, hasta luego.",
+          "tr": "Size, görüşürüz.",
+          "options": [
+            "Hasta luego, adiós.",
+            "Buenos días, adiós.",
+            "Gracias, hasta noche."
+          ],
+          "answer": 0,
+          "why": "'Hasta luego' görüşmek üzere demektir.",
+          "replyTr": "Görüşürüz, hoşça kalın."
+        }
+      ]
+    },
+    {
+      "id": "es-medico",
+      "level": "B1",
+      "title": "Doktorda",
+      "scene": "Doktor muayenehanesindesin; birkaç gündür midenin bulanıyor.",
+      "turns": [
+        {
+          "say": "Buenos días, ¿qué le pasa?",
+          "tr": "Günaydın, neyiniz var?",
+          "options": [
+            "Soy dolor de estómago.",
+            "Me duele el estómago desde hace tres días.",
+            "Tengo doler el estómago."
+          ],
+          "answer": 1,
+          "why": "Ağrı için doler fiili, süre için 'desde hace'.",
+          "replyTr": "Üç gündür midem ağrıyor."
+        },
+        {
+          "say": "¿Tiene fiebre o náuseas?",
+          "tr": "Ateşiniz ya da bulantınız var mı?",
+          "options": [
+            "Soy náuseas, no fiebre.",
+            "Sí, tengo fiebre náuseas.",
+            "Tengo náuseas, pero no tengo fiebre."
+          ],
+          "answer": 2,
+          "why": "Tener náuseas / no tener fiebre.",
+          "replyTr": "Bulantım var ama ateşim yok."
+        },
+        {
+          "say": "¿Qué comió ayer?",
+          "tr": "Dün ne yediniz?",
+          "options": [
+            "Ayer comí pescado en un restaurante.",
+            "Ayer como pescado.",
+            "Ayer comía pescado."
+          ],
+          "answer": 0,
+          "why": "Dün bitmiş bir eylem: pretérito indefinido (comí).",
+          "replyTr": "Dün restoranda balık yedim."
+        },
+        {
+          "say": "Le voy a recetar un medicamento.",
+          "tr": "Size bir ilaç yazacağım.",
+          "options": [
+            "¿Receto agua?",
+            "¿Tengo que tomarlo con agua?",
+            "¿Debo tomar el agua con?"
+          ],
+          "answer": 1,
+          "why": "'¿Tengo que …?' ilaç kullanımını sormak için doğaldır.",
+          "replyTr": "Suyla mı almalıyım?"
+        },
+        {
+          "say": "Sí, dos veces al día, después de comer.",
+          "tr": "Evet, günde iki kez, yemekten sonra.",
+          "options": [
+            "Muy bien, dos comidas al día.",
+            "Gracias, yo soy doctor.",
+            "Muy bien, muchas gracias, doctor."
+          ],
+          "answer": 2,
+          "why": "Teşekkür ve 'doctor' ile hitap uygundur.",
+          "replyTr": "Çok iyi, çok teşekkürler doktor."
+        }
+      ]
+    }
+  ]
+}
