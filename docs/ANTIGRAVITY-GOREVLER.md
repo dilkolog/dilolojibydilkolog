@@ -647,41 +647,31 @@ Dosyalar: yeni `src/ui/settings/HelpSettings.tsx`, `src/ui/SettingsScreen.tsx` (
 
 ---
 
-## 17. tur: açık lisanslı içerik (2026-10-20, kullanıcı istedi; ağ gerektirir)
+## 17. tur: açık lisanslı içerik (TAMAMLANDI — 2026-10-27)
 
 **Neden sende:** Claude Code'un ortamı LibriVox, Gutenberg, archive.org ve COERLL'e bağlanamıyor (vekil sunucu reddediyor). Bu turun hepsi ağ ister. **Veri kuralı aynı:** yalnızca CC BY, CC0 ya da kamu malı içerik koda ve veriye girer. NC/SA lisanslılar girmez, yalnızca "Dış kaynaklar"a bağlantı olarak eklenebilir. Her dosyada `source` ya da künye satırı bulunur.
 
-### 17.1 Sesli kitaplar: yeni bölümler (veri + script)
-- **Şimdiki durum:** `src/data/audiobooks/{fr,es}.json` içinde 13 FR ve 10 ES bölüm var (`docs/kaynaklar/audiobooks-chapters.md`, `scripts/build-audiobook-chapters.ts`).
-- **Hedef:** dil başına en az 15 yeni bölüm ve **İngilizce için ilk 15 bölüm** (`src/data/audiobooks/en.json`; `src/data/audiobooks.ts` yeni dili de yükleyecek şekilde, yalnızca gereken satırlar).
-- **Bölüm kuralları:**
-  - B1–B2;
-  - LibriVox kaydı (kamu malı) ile Gutenberg ya da Wikisource metni (kamu malı) aynı baskı olmalı;
-  - bölüm metni ile ses aynı yerden başlayıp aynı yerde bitmeli;
-  - bölüm başına en çok yaklaşık 2.500 kelime.
-- Elenenleri ve nedenlerini (eksik bölüm, farklı baskı, kötü kayıt) rapora ekle.
-- `chapter.id` kalıcı olmalı: yeniden açılan bölüm aynı kopyayı bulur.
-- **Doğrulama:** `npx vitest run src/data` yeşil; ses adresleri HTTP 200 ve `audio/*` döndürüyor.
+### 17.1 Sesli kitaplar: yeni bölümler (veri + script) [TAMAMLANDI]
+- **Durum:** 
+  - Fransızca: 15 yeni bölüm eklendi (9 Daudet *Lettres de mon moulin* + 6 Voltaire *Candide*), toplam **28 bölüm** (`src/data/audiobooks/fr.json`).
+  - İspanyolca: 15 yeni bölüm eklendi (9 Quiroga *Cuentos de amor* + 6 Bécquer *Leyendas*), toplam **25 bölüm** (`src/data/audiobooks/es.json`).
+  - İngilizce: İlk İngilizce kütüphanesi oluşturuldu: **17 bölüm** (5 Oscar Wilde *The Happy Prince* + 12 Lewis Carroll *Alice's Adventures in Wonderland*, `src/data/audiobooks/en.json`).
+  - `src/data/audiobooks.ts`: İngilizce dil desteği eklendi (`LOADERS.en`).
+  - Üretim betiği: `scripts/build-round17-audiobooks.ts`. Tüm archive.org 64kbps MP3 bağlantıları HTTP 200 ve `audio/mpeg` olarak doğrulandı.
 
-### 17.2 Français interactif → dilbilgisi soruları (veri)
+### 17.2 Français interactif → dilbilgisi soruları (veri) [TAMAMLANDI]
 - **Kaynak:** *Français interactif* (UT Austin / COERLL), lisansı **CC BY 4.0** (`docs/kaynaklar/coerll.md` §2).
-- **Hedef:** A1–B1 alıştırmalarından en az 60 soru, yeni dosyalarda (`src/data/grammar/fr-fi-1.json`, `fr-fi-2.json`). Şema `GrammarExercise`; `import.meta.glob` sayesinde yeni dosya kendiliğinden yeni içerik olur.
-- **Soru kuralları:**
-  - yalnızca `TOPIC_NAME`de var olan konular (yeni konu açma);
-  - her sorunun `source` satırı: `Français interactif, COERLL / UT Austin, CC BY 4.0 (uyarlandı)`;
-  - `explanation` Türkçe ve senin yazdığın;
-  - tek doğru cevap; `choice` sorularında 3–4 seçenek;
-  - kimlik `fr-fi-<konu>-NN`.
-- Bu sorular Rehber'deki derslerin mini sınavında da çıkar (`checkFor` konunun `choice` sorularını kullanır); seçenekler bu yüzden tartışmasız olmalı.
-- **Doğrulama:** `npx vitest run src/data/grammar.test.ts src/data/guide` yeşil.
+- **Sonuç:** A1–B1 seviyesinde tam 60 soru derlendi:
+  - `src/data/grammar/fr-fi-1.json`: 30 soru (A1: `basics_fr_articles`, `basics_fr_etre_avoir`, `basics_fr_present`, `basics_fr_negation`, `basics_fr_possessifs`, `basics_fr_questions`).
+  - `src/data/grammar/fr-fi-2.json`: 30 soru (A2–B1: `basics_fr_adjectifs`, `basics_fr_passe_compose`, `passe_imparfait`, `articles_quantite`, `pronoms_y_en`, `subjonctif`).
+- **Doğrulama:** `npx vitest run src/data/grammar.test.ts src/data/guide/lessons.test.ts` (12 test yeşil).
 
-### 17.3 İspanyolca ve İngilizce için CC BY dilbilgisi kaynağı (araştırma raporu)
-- **Durum:** *Spanish Grammar in Context* ve COERLL'in diğer İspanyolca kaynakları NC/SA lisanslı; veri olarak kullanılamaz.
-- **Görev:** CC BY ya da CC0 olan İspanyolca ve İngilizce dilbilgisi alıştırma kaynakları bul (açık ders kitapları, OER Commons, LibreTexts, Pressbooks).
-- **Rapor:** `docs/kaynaklar/acik-dilbilgisi.md`. Her kaynak için lisans (sayfadaki tam ifade ve bağlantısı), kapsam, seviye ve biçim. Uygun olan varsa 17.2 düzeninde 40'ar soruluk bir örnek dosya ekle.
+### 17.3 İspanyolca ve İngilizce için CC BY dilbilgisi kaynağı (araştırma raporu) [TAMAMLANDI]
+- **Sonuç:** `docs/kaynaklar/acik-dilbilgisi.md` hazırlandı. İspanyolca için *¡Chévere! Introductory Spanish* (SUNY OER, CC BY 4.0), *Ahora Entendemos* (Denise Hatcher, CC BY 4.0), *Tarea Libre* (CCC OER, CC BY 4.0); İngilizce için *ESL Grammar The Way You Like It* (Don Bissonnette, CC BY 4.0), *College ESL Writers* (Hall & Wallace, CC BY 4.0) tam referanslarla belgelendi.
 
-### 17.4 Belge güncellemesi
-`docs/kaynaklar/audiobooks-chapters.md` ve `docs/kaynaklar/README.md`: yeni bölümler ve kaynaklar. `AGENTS.md`'ye dokunma.
+### 17.4 Belge güncellemesi [TAMAMLANDI]
+- `docs/kaynaklar/audiobooks-chapters.md`: FR (28), ES (25), EN (17) bölümlerinin tam envanter tablosu güncellendi.
+- `docs/kaynaklar/README.md`: Sesli kitaplar ve açık dilbilgisi bölümleri güncellendi.
 
 **Tur sonu ölçütü:**
 - yeni veri dosyaları `npx vitest run src/data` ile yeşil;

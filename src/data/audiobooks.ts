@@ -11,7 +11,7 @@ export interface AudiobookChapter {
   chapterIndex: number
   totalChapters: number
   cefr: 'B1' | 'B2'
-  language: 'fr' | 'es'
+  language: 'fr' | 'es' | 'en'
   durationMinutes: number
   audioUrl: string
   text: string
@@ -24,6 +24,7 @@ export interface AudiobookChapter {
 const LOADERS: Partial<Record<TargetLanguage, () => Promise<{ default: unknown }>>> = {
   fr: () => import('./audiobooks/fr.json'),
   es: () => import('./audiobooks/es.json'),
+  en: () => import('./audiobooks/en.json'),
 }
 
 /** Loads verified audiobook chapters for the target language (lazy loaded). */

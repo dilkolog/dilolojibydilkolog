@@ -132,8 +132,11 @@ LibriVox ve Project Gutenberg işbirliğiyle hazırlanan, B1–B2 seviyesindeki 
 
 ## 7. Bölüm Bazlı Metin-Ses Eşleştirilmiş Klasik Ses Kitapları (`audiobooks-chapters.md`)
 
-- **Bölüm Parçalama:** `scripts/build-audiobook-chapters.ts` Gutenberg metinlerini bölüm bölüm ayıklar ve LibriVox doğrudan MP3 bağlantılarıyla (`HEAD` ile doğrulanmış HTTP 200) eşleştirir.
-- **Veri Dosyaları:** `src/data/audiobooks/fr.json` (13 bölüm; Daudet, Maupassant, La Fontaine) ve `src/data/audiobooks/es.json` (10 bölüm; Quiroga, Bécquer).
+- **Bölüm Parçalama:** `scripts/build-round17-audiobooks.ts` Gutenberg metinlerini bölüm bölüm ayıklar ve LibriVox doğrudan MP3 bağlantılarıyla (`HEAD` ile doğrulanmış HTTP 200) eşleştirir.
+- **Veri Dosyaları:** 
+  - `src/data/audiobooks/fr.json` (28 bölüm; Daudet *Lettres de mon moulin*, Voltaire *Candide*, Maupassant, La Fontaine)
+  - `src/data/audiobooks/es.json` (25 bölüm; Quiroga *Cuentos de Amor de Locura y de Muerte*, Bécquer *Leyendas*)
+  - `src/data/audiobooks/en.json` (17 bölüm; Oscar Wilde *The Happy Prince*, Lewis Carroll *Alice's Adventures in Wonderland* — ilk İngilizce kütüphanesi)
 - **Entegrasyon Modülü:** `src/data/audiobooks.ts` (`loadAudiobookChapters`, `chapterToReadingText`).
 
 ---
@@ -170,6 +173,16 @@ LibriVox ve Project Gutenberg işbirliğiyle hazırlanan, B1–B2 seviyesindeki 
 - **Kapsam:** RFI (Journal en français facile), VOA Learning English (As It Is), VOA Noticias en español, RTVE ve DW beslemeleri.
 - **Doğrulanmış Bağlantılar:** RFI güncel podcast RSS (`rfi.fr/fr/podcasts/journal-français-facile/podcast`), Audiomeans CDN doğrudan MP3 ve CORS `*` akışı; VOA Public Domain ses ve tam transkript altyapısı.
 - **Karar:** Fransızca için RFI (1. tercih), İngilizce ve İspanyolca için VOA (kamu malı lisansı ile 1. tercih). RTVE indirme engeli nedeniyle elenmiştir.
+
+---
+
+## 12. Açık Lisanslı Dilbilgisi Kaynakları Raporu (`acik-dilbilgisi.md`)
+
+- **Kapsam:** İspanyolca ve İngilizce için telif sorunu olmayan (CC BY 4.0 veya CC0) açık eğitim kaynakları (OER).
+- **İspanyolca Kaynaklar:** *¡Chévere! Introductory Spanish* (SUNY OER, CC BY 4.0), *Ahora Entendemos* (Denise Hatcher, CC BY 4.0), *Tarea Libre* (CCC OER, CC BY 4.0).
+- **İngilizce Kaynaklar:** *ESL Grammar: The Way You Like It* (Don Bissonnette, CC BY 4.0), *College ESL Writers: Applied Grammar and Composing Strategies* (Hall & Wallace, CC BY 4.0).
+- **Alıştırma Verileri:** UT Austin / COERLL *Français interactif* (CC BY 4.0) kaynaklı 60 yeni Fransızca dilbilgisi sorusu (`src/data/grammar/fr-fi-1.json`, `fr-fi-2.json`).
+
 
 
 
