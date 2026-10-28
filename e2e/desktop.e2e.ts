@@ -2029,16 +2029,23 @@ test('register game: regional usage note shows for entries with notes and is abs
   await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
 
   let seenNote = false
-  for (let i = 0; i < 8; i++) {
-    await page.locator('.option').first().click()
-    const noteLocator = page.locator('.stack[role="status"] p.small.muted')
-    if (await noteLocator.count()) {
-      await expect(noteLocator).toBeVisible()
-      await expect(noteLocator).toContainText(/İspanya|Latin Amerika|Meksika|chamba|curro|papear|cacharro|pasta|guay/i)
-      seenNote = true
-      break
+  for (let round = 0; round < 4 && !seenNote; round++) {
+    for (let i = 0; i < 8; i++) {
+      const opt = page.locator('.option:not([disabled])').first()
+      await expect(opt).toBeVisible()
+      await opt.click()
+      const noteLocator = page.locator('.stack[role="status"] p.small.muted')
+      if (await noteLocator.count()) {
+        await expect(noteLocator).toBeVisible()
+        await expect(noteLocator).toContainText(/İspanya|Latin Amerika|Meksika|chamba|curro|papear|cacharro|pasta|guay/i)
+        seenNote = true
+        break
+      }
+      await page.getByRole('button', { name: 'Devam', exact: true }).click()
     }
-    await page.getByRole('button', { name: 'Devam', exact: true }).click()
+    if (!seenNote && (await page.getByRole('button', { name: /Yeniden oyna/ }).count()) > 0) {
+      await page.getByRole('button', { name: /Yeniden oyna/ }).click()
+    }
   }
   expect(seenNote).toBe(true)
 })
@@ -2612,25 +2619,24 @@ test('the guide: grammar mistake leads to "Konunun dersi" link to guide lesson, 
   await page.getByRole('button', { name: /soruluk tura başla/ }).click()
 
   // Make a deliberate mistake (the question is up before it is looked at: counting an element that is not there yet would skip the answer)
-  await page.locator('.game-stage input.answer-input, .game-stage .options .option').first().waitFor()
-  if (await page.locator('.game-stage input.answer-input').count() > 0) {
-    await page.locator('.game-stage input.answer-input').fill('kesinlikle_yanlis')
-    await page.keyboard.press('Enter')
-  } else if (await page.locator('.game-stage .options .option').count() > 0) {
-    await page.locator('.game-stage .options .option').last().click()
+  const answerWrong = async () => {
+    await page.locator('.game-stage input.answer-input, .game-stage .options .option, .game-stage .grammar-word').first().waitFor()
+    if (await page.locator('.game-stage input.answer-input').count() > 0) {
+      await page.locator('.game-stage input.answer-input').fill('kesinlikle_yanlis')
+      await page.keyboard.press('Enter')
+    } else if (await page.locator('.game-stage .grammar-word').count() > 0) {
+      await page.locator('.game-stage .grammar-word').first().click()
+    } else if (await page.locator('.game-stage .options .option').count() > 0) {
+      await page.locator('.game-stage .options .option').last().click()
+    }
   }
+  await answerWrong()
 
   // If first answer was somehow not wrong, advance and answer next wrong (the feedback is up before the link is looked for)
   await expect(page.locator('.lesson-link, button:has-text("Devam")').first()).toBeVisible()
   if ((await page.locator('.lesson-link', { hasText: 'Konunun dersi' }).count()) === 0) {
     await page.getByRole('button', { name: 'Devam' }).click()
-    await page.locator('.game-stage input.answer-input, .game-stage .options .option').first().waitFor()
-    if (await page.locator('.game-stage input.answer-input').count() > 0) {
-      await page.locator('.game-stage input.answer-input').fill('kesinlikle_yanlis')
-      await page.keyboard.press('Enter')
-    } else {
-      await page.locator('.game-stage .options .option').last().click()
-    }
+    await answerWrong()
   }
 
   // Look for "Konunun dersi" link and click it

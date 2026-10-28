@@ -38,6 +38,7 @@ test('a column chart is one keyboard stop: arrows read the days out', async ({ p
   await startWithSamples(page)
   await openScreen(page, 'İlerleme')
   const chart = page.getByRole('group', { name: /Önümüzdeki günlerin tekrarları/ })
+  await expect(chart).toBeVisible()
   const readout = page.locator('.chart-readout').filter({ hasText: /kelime/ }).first()
   await chart.focus()
   const last = await readout.textContent()
@@ -827,7 +828,9 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
   // The round's items are picked at random: a new round when one ends, until an item with a regional note comes up.
   for (let i = 0; i < 24; i++) {
     if (await page.locator('.game-result').count()) await page.locator('.game-result .btn-lg:not(.btn-quiet)').click()
-    await page.locator('.option').first().click()
+    const option = page.locator('.option:not([disabled])').first()
+    await expect(option).toBeVisible()
+    await option.click()
     await expect(page.locator('.register-ladder')).toBeVisible()
     const noteLoc = page.locator('.stack[role="status"] p.small.muted')
     if (await noteLoc.count()) {
