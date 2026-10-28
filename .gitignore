@@ -56,3 +56,11 @@ pw.gate.tmp.config.ts
 docs/gelen-gorseller/*.jpg
 docs/gelen-gorseller/*.png
 
+
+# Android app (android/README.md): only its settings and notes are kept; Bubblewrap generates the
+# rest, and the signing key never leaves the owner's machine.
+android/*
+!android/twa-manifest.json
+!android/README.md
+*.keystore
+*.jks

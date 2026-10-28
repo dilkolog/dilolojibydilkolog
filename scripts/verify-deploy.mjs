@@ -60,7 +60,11 @@ check('mail reminders: Resend is configured on the server', mailStatus.ok && mai
 const logRes = await fetch(`${BASE}/api/log`, { method: 'POST', headers: { origin: BASE }, body: JSON.stringify({ name: 'smoke-test', message: 'live deploy verification' }) })
 check('/api/log takes a report', logRes.status === 204, String(logRes.status))
 
-for (const p of ['/hakkinda', '/gizlilik', '/kosullar']) check(`${p} answers 200`, (await fetch(`${BASE}${p}`)).status === 200)
+for (const p of ['/hakkinda', '/gizlilik', '/kosullar', '/hesap-silme']) check(`${p} answers 200`, (await fetch(`${BASE}${p}`)).status === 200)
+// The Android app opens full screen only if this file names it (android/README.md).
+const links = await fetch(`${BASE}/.well-known/assetlinks.json`)
+const linksBody = await json(links)
+check('/.well-known/assetlinks.json names the Android app', links.ok && /json/.test(links.headers.get('content-type') ?? '') && Array.isArray(linksBody) && linksBody.some((l) => l?.target?.package_name === 'com.diloloji.app'))
 
 // 4. Live account sync roundtrip (if credentials are provided)
 const user = process.env.SMOKE_USER

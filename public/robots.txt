@@ -1,7 +1,9 @@
-# The app itself is private; only the pages Google's sign-in review must reach are open.
+# The app itself is private; only the pages Google's sign-in review and Google Play must reach are open.
 User-agent: *
 Allow: /$
 Allow: /hakkinda
 Allow: /gizlilik
 Allow: /kosullar
+Allow: /hesap-silme
+Allow: /.well-known/
 Disallow: /
