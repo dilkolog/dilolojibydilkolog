@@ -133,12 +133,12 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
         {/* The name is an input, so the page's heading is for screen readers only. */}
         <h1 className="sr-only">Profil</h1>
         <div className="profile-hero">
-          <button className="avatar-edit" onClick={() => setEditing((e) => !e)} aria-label="Avatarı düzenle" aria-expanded={editing}>
+          <button className="avatar-edit" onClick={() => setEditing((e) => !e)} aria-label="Avatarı düzenle" title="Avatarı düzenle" aria-expanded={editing}>
             <span className="avatar-ring" data-frame={frameOf(profile.frame)} style={{ ['--ring' as string]: `${(game?.level.progress ?? 0) * 100}%` }}>
               <Avatar profile={profile} size={88} />
               {game && <span className="avatar-level" aria-hidden="true">{game.level.level}</span>}
             </span>
-            <span className="avatar-edit-badge" title="Avatarı değiştir"><SmileIcon size={16} /></span>
+            <span className="avatar-edit-badge" aria-hidden="true"><SmileIcon size={16} /></span>
           </button>
           <div className="profile-fields">
             <div className="profile-name-row">
