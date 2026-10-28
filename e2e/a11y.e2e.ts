@@ -12,9 +12,11 @@ import { approveAccount, clippedContent, contrastProblems, openScreen, playSessi
 const scan = async (page: Page, where: string) => {
   await page.waitForTimeout(400) // screens ease in
   const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).disableRules(['color-contrast']).analyze()
-  return violations
+  const issues = violations
     .filter((v) => v.impact === 'serious' || v.impact === 'critical')
     .map((v) => `${where}: ${v.id} (${v.help}) → ${v.nodes.slice(0, 3).map((n) => n.target.join(' ')).join(', ')}`)
+  if (issues.length) console.error('AXE_VIOLATION [' + where + ']:', issues)
+  return issues
 }
 
 test('every main screen passes the automated accessibility check', async ({ page }) => {

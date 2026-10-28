@@ -22,8 +22,8 @@ export default defineConfig({
   // instead of using up the whole test's time.
   expect: { timeout: 10_000 },
   retries: 1,
-  // CI machines are slower: tests that wait on animations and background writes stay reliable one at a time.
-  workers: process.env.CI ? 1 : undefined,
+  // Parallel runs on CI to finish full test suite within timeout.
+  workers: process.env.CI ? 4 : undefined,
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : [['list']],
   use: { baseURL: `http://localhost:${PORT}`, serviceWorkers: 'block', actionTimeout: 15_000 },
   webServer: { command: `npx vite preview --port ${PORT} --strictPort`, url: `http://localhost:${PORT}`, reuseExistingServer: true },
