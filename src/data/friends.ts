@@ -95,6 +95,40 @@ export const clearInbox = async (ids: string[]) => void (await post({ action: 'f
 export const publishFriendCard = async (card: FriendCardInput, today: string): Promise<FriendView | undefined> => (await post({ action: 'friends-publish', ...card, today })).me
 export const addFriend = async (code: string) => void (await post({ action: 'friends-add', code }))
 export const removeFriend = async (code: string) => void (await post({ action: 'friends-remove', code }))
+/** Blocks someone: off the friends both ways, what they sent leaves the inbox, and they cannot find or add the learner again. */
+export const blockFriend = async (code: string) => void (await post({ action: 'friends-block', code }))
+export const unblockFriend = async (code: string) => void (await post({ action: 'friends-unblock', code }))
+
+/** Someone on the block list (their card may be gone: then the name is empty). */
+export interface BlockedPerson {
+  code: string
+  name: string
+  avatar: string
+  color: string
+}
+
+export async function loadBlocked(): Promise<BlockedPerson[]> {
+  const res = await accessFetch('/api/access?blocked=1')
+  const data = (await res.json().catch(() => ({}))) as { people?: BlockedPerson[]; error?: string }
+  if (!res.ok) throw new FriendsError(data.error ?? `http ${res.status}`)
+  return data.people ?? []
+}
+
+/** What can be reported (api/_reports.ts): a person by their code, an inbox message by its id, a library list, a club room. */
+export type ReportKind = 'user' | 'message' | 'set' | 'club'
+export type ReportReason = 'spam' | 'sexual' | 'harassment' | 'violence' | 'personal' | 'copyright' | 'other'
+
+export interface ReportInput {
+  kind: ReportKind
+  target: string
+  reason: ReportReason
+  note?: string
+  /** For a club room, what the screen showed (a room lives only on the server's memory). */
+  shown?: string
+}
+
+/** Sends a report to the site's owner. Errors: not_found (the thing is gone), too_many (the day's reports used up). */
+export const sendReport = async (report: ReportInput) => void (await post({ action: 'report', ...report }))
 
 /** The own findable @name, if one was picked. */
 export interface HandleInfo {

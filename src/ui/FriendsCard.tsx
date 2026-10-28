@@ -5,7 +5,7 @@ import { addFriend, clearInbox, FriendsError, loadFriends, loadInbox, publishFri
 import { localDate } from '../engine/progress'
 import { useAccess } from './accessContext'
 import { Avatar } from './Avatar'
-import { ChevronDownIcon, CloseIcon, CopyIcon, FlameIcon, PlusIcon } from './icons'
+import { ChevronDownIcon, CloseIcon, CopyIcon, FlagIcon, FlameIcon, PlusIcon } from './icons'
 import type { GameState } from './game'
 import { getAccount } from './syncRunner'
 import { showToast } from './toastFeed'
@@ -19,6 +19,8 @@ import { inviteLink } from './invite'
 // A friend's page (the chart, the gifts) is only needed when a name is tapped.
 const FriendFind = lazy(() => import('./FriendFind').then((m) => ({ default: m.FriendFind })))
 const FriendSheet = lazy(() => import('./FriendSheet').then((m) => ({ default: m.FriendSheet })))
+const ReportDialog = lazy(() => import('./ReportDialog'))
+const BlockedPeople = lazy(() => import('./BlockedPeople'))
 
 /** The last card published from this device, so an unchanged one is not written again. */
 const SENT_KEY = 'diloloji:friend-card'
@@ -54,6 +56,8 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
   const [nicknames, setNicknames] = useState<Record<string, string>>(storedNicknames)
   const [inbox, setInbox] = useState<InboxItem[]>([])
   const [open, setOpen] = useState<string | null>(null)
+  /** The inbox message being reported. */
+  const [reporting, setReporting] = useState<InboxItem | null>(null)
   const [editingCode, setEditingCode] = useState<string | null>(null)
   const [editName, setEditName] = useState('')
   const today = localDate(new Date())
@@ -355,6 +359,11 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
                     Kütüphaneme ekle
                   </button>
                 )}
+                {(m.kind === 'text' || m.kind === 'gift' || m.kind === 'request') && (
+                  <button type="button" className="icon-btn icon-btn-sm" aria-label="Şikâyet et" title="Şikâyet et" onClick={() => setReporting(m)}>
+                    <FlagIcon size={14} />
+                  </button>
+                )}
                 <button type="button" className="icon-btn icon-btn-sm" aria-label={m.kind === 'request' ? 'Reddet' : m.kind === 'gift' || m.kind === 'text' ? 'Geç' : 'Tamam'} title={m.kind === 'request' ? 'Reddet' : m.kind === 'gift' || m.kind === 'text' ? 'Geç' : 'Tamam'} onClick={() => void dismiss([m.id])}>
                   <CloseIcon size={14} />
                 </button>
@@ -375,10 +384,26 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
         const f = data.friends.find((x) => x.code === open)
         return f ? (
           <Suspense fallback={null}>
-            <FriendSheet friend={f} name={nicknames[f.code] || f.name} today={today} vocabulary={vocabulary} language={language} onClose={() => setOpen(null)} onDuel={onDuel} />
+            <FriendSheet friend={f} name={nicknames[f.code] || f.name} today={today} vocabulary={vocabulary} language={language} onClose={() => setOpen(null)} onDuel={onDuel} onBlocked={() => void refresh()} />
           </Suspense>
         ) : null
       })()}
+      {reporting && (
+        <Suspense fallback={null}>
+          <ReportDialog
+            title={reporting.kind === 'request' ? 'Bu isteği şikâyet et' : reporting.kind === 'gift' ? 'Bu kelime hediyesini şikâyet et' : 'Bu metni şikâyet et'}
+            report={{ kind: 'message', target: reporting.id }}
+            block={{ code: reporting.from.code, name: nicknames[reporting.from.code] || reporting.from.name }}
+            onClose={() => setReporting(null)}
+            onDone={(blocked) => {
+              // Reported: the message leaves the inbox; blocked: everything else they sent too, and the board is read again.
+              const from = reporting.from.code
+              void dismiss(inbox.filter((x) => x.id === reporting.id || (blocked && x.from.code === from)).map((x) => x.id))
+              if (blocked) void refresh()
+            }}
+          />
+        </Suspense>
+      )}
       {data && data.friends.length > 0 && <FriendLeague me={data.me} friends={data.friends} nicknames={nicknames} today={today} />}
       {data && data.friends.length === 0 && (
         <p className="small muted friends-empty">
@@ -410,6 +435,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
             </div>
             <Suspense fallback={null}>
               <FriendFind />
+              <BlockedPeople onChanged={() => void refresh()} />
             </Suspense>
           </div>
         </details>

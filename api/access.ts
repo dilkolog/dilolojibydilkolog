@@ -1,11 +1,12 @@
 import { accessStatus, accountOf, approvalOn, claimAccount, clearAccessCache, ID, requestPath, requireApproved, StorageError, storedAuth, tokenMatches, TOKEN, writeJson, type AccessStatus } from './_account.js'
-import { addFriend, clearInbox, findFriend, friendsOf, handleOf, inboxOf, inviterCard, normalizeCode, publishCard, removeFriend, requestFriend, sendToFriend, setHandle } from './_friends.js'
+import { addFriend, blockedPeople, blockFriend, clearInbox, findFriend, friendsOf, handleOf, inboxOf, inviterCard, normalizeCode, publishCard, removeFriend, requestFriend, sendToFriend, setHandle, unblockFriend } from './_friends.js'
 import { friendMessage, pushToOwner } from './_notify.js'
 import { fromApp } from './_origin.js'
 import { deleteAccountData, timed } from './_deleteAccount.js'
 import { deleteSupabaseMedia, deleteSupabaseUser, ensureProfile, mirrorApproval, saveVault, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
 import { overLimit, tooMany } from './_rate.js'
 import { noticeSignup } from './_signupNotice.js'
+import { fileReport } from './_reports.js'
 
 /**
  * An account's way to the owner's approval.
@@ -31,6 +32,11 @@ import { noticeSignup } from './_signupNotice.js'
  * POST /api/access  { action: 'friends-handle', handle, findable } → { handle, findable } or { error: 'taken' | 'bad_handle' | 'locked' }
  * POST /api/access  { action: 'friends-request', handle } → { ok } or { error: 'unknown' | 'self' | 'already' } (a request the other side accepts)
  * POST /api/access  { action: 'friends-send', code, kind, payload? } → { ok } or { error } (kind: cheer, nudge, gift (a word), text); { action: 'friends-inbox-clear', ids } → { ok }
+ * GET  /api/access?blocked=1                     → { people }: the block list (code, name, avatar, colour)
+ * POST /api/access  { action: 'friends-block' | 'friends-unblock', code } → { ok }: block (off the friends both ways, their
+ *   waiting messages gone, no way back by code, link or request) or lift a block
+ * POST /api/access  { action: 'report', kind: 'user' | 'message' | 'set' | 'club', target, reason, note?, shown? } → { ok }
+ *   or { error: 'bad_request' | 'not_found' | 'too_many' }: a report to the owner (_reports.ts)
  *
  * Supabase sign-in (see _supabase.ts), with `Authorization: Bearer <Supabase access token>`:
  * GET  /api/access?vault=1 → { account: { id, enc, auth, username } | null }: the person's sync account
@@ -61,6 +67,7 @@ async function friendsGet(request: Request): Promise<Response> {
     if (id instanceof Response) return id
     const query = new URL(request.url).searchParams
     if (query.has('inbox')) return json({ items: await inboxOf(id) })
+    if (query.has('blocked')) return json({ people: await blockedPeople(id) })
     if (query.has('friend-handle')) return json((await handleOf(id)) ?? { handle: '', findable: false })
     if (query.has('friend-invite')) {
       if (overLimit(request, 'friends-find', 30)) return tooMany()
@@ -110,8 +117,27 @@ async function friendsPost(request: Request, body: Record<string, unknown>): Pro
       await removeFriend(id, code)
       return json({ ok: true })
     }
+    if (body.action === 'friends-block' || body.action === 'friends-unblock') {
+      await (body.action === 'friends-block' ? blockFriend : unblockFriend)(id, code)
+      return json({ ok: true })
+    }
     const result = await addFriend(id, code)
     return result === 'ok' ? json({ ok: true }) : json({ error: result }, result === 'full' ? 409 : 400)
+  } catch (e) {
+    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
+    throw e
+  }
+}
+
+/** A report on what someone sent (_reports.ts): an account only, a few a minute. */
+async function report(request: Request, body: Record<string, unknown>): Promise<Response> {
+  if (overLimit(request, 'report', 10)) return tooMany()
+  try {
+    const id = await friendAccount(request)
+    if (id instanceof Response) return id
+    const result = await fileReport(id, body)
+    if (result === 'ok') return json({ ok: true })
+    return json({ error: result }, result === 'not_found' ? 404 : result === 'too_many' ? 429 : 400)
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
     throw e
@@ -200,7 +226,7 @@ async function accountDelete(request: Request): Promise<Response> {
 export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
   const q = new URL(request.url).searchParams
-  if (q.has('friends') || q.has('inbox') || q.has('friend-handle') || q.has('friend-find') || q.has('friend-invite')) return friendsGet(request)
+  if (q.has('friends') || q.has('inbox') || q.has('blocked') || q.has('friend-handle') || q.has('friend-find') || q.has('friend-invite')) return friendsGet(request)
   if (new URL(request.url).searchParams.has('vault')) return vaultGet(request)
   if (overLimit(request, 'access-read', 120)) return tooMany()
   const id = request.headers.get('x-sync-id') ?? ''
@@ -228,6 +254,7 @@ export async function POST(request: Request): Promise<Response> {
   if (typeof body?.action === 'string' && body.action.startsWith('friends-')) return friendsPost(request, body as Record<string, unknown>)
   if (body?.action === 'vault-link') return vaultLink(request, body as Record<string, unknown>)
   if (body?.action === 'account-delete') return accountDelete(request)
+  if (body?.action === 'report') return report(request, body as Record<string, unknown>)
   // The old username sign-up is closed once sign-in moved to Supabase (the app asks there instead).
   if (supabaseOn()) return json({ error: 'sign in with supabase' }, 410)
   // Filing a request writes to the store: a person asks once or twice, a script thousands of times.

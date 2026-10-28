@@ -1,9 +1,18 @@
-import { clubLink } from '../engine/readingClub'
+import { lazy, Suspense, useState } from 'react'
+import { clubLink, type ClubView } from '../engine/readingClub'
+import { FlagIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { share } from './games/shareLink'
 import type { ReadingClub } from './useReadingClub'
 
 const showCode = (code: string) => `${code.slice(0, 3)}-${code.slice(3)}`
+const ReportDialog = lazy(() => import('./ReportDialog'))
+
+/** What the reporter's screen shows of the room: a room lives only in the server's memory, so this is the record. */
+const roomShown = (code: string, room: ClubView | null) =>
+  [`Oda: ${showCode(code)}`, room ? `Okurlar: ${room.readers.map((r, i) => (i === room.you ? `${r.name} (şikâyet eden)` : r.name)).join(', ')}` : '', room?.text ? `Metin: “${room.text.title}”\n\n${room.text.body.slice(0, 1200)}` : '']
+    .filter(Boolean)
+    .join('\n')
 
 /**
  * The reading club above the text: its code and link to share, who is reading, and how many words the others
@@ -20,6 +29,9 @@ export function ClubBar({
   onWord?: (key: string) => void
 }) {
   const { code, room, status, error, looks, sameText, otherLanguage } = club
+  const [reporting, setReporting] = useState(false)
+  // A reported room is left, but once the learner has read that the report went.
+  const [reported, setReported] = useState(false)
   if (!code) return null
   const link = clubLink(code, location.origin)
   if (status === 'lost')
@@ -49,7 +61,17 @@ export function ClubBar({
         <button type="button" className="btn btn-sm btn-quiet" onClick={club.leave}>
           Ayrıl
         </button>
+        {room && room.readers.length > 1 && (
+          <button type="button" className="icon-btn icon-btn-sm" aria-label="Okuma kulübünü şikâyet et" title="Şikâyet et" onClick={() => setReporting(true)}>
+            <FlagIcon size={14} />
+          </button>
+        )}
       </div>
+      {reporting && (
+        <Suspense fallback={null}>
+          <ReportDialog title="Bu okuma kulübünü şikâyet et" report={{ kind: 'club', target: code, shown: roomShown(code, room) }} onClose={() => (reported ? club.leave() : setReporting(false))} onDone={() => setReported(true)} />
+        </Suspense>
+      )}
       {!room ? (
         <p className="small muted" role="status">
           Kulübe bağlanılıyor…

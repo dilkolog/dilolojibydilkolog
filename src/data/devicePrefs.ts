@@ -16,6 +16,7 @@ export type Prefs = Record<string, PrefEntry>
 /** The localStorage keys that travel, by prefix. Not here, on purpose: sign-in tokens, links waiting to be used, caches, audio positions, API keys, the device's voices. */
 const LOCAL_PREFIXES = [
   'diloloji:guide-reports',
+  'diloloji:reported-sets',
   'diloloji:guide-questions:',
   'diloloji:guide-placement',
   'diloloji:guide-lesson-nudge:',

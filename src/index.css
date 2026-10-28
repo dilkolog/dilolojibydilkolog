@@ -5338,6 +5338,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .friend-bar-day { font-size: 7.5px; font-weight: 600; fill: var(--ink-soft); }
 .friend-bar-day.is-today { fill: var(--lang-text); font-weight: 800; }
 .friend-sheet-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+/* Reporting and blocking: quiet links at the foot of the page, out of the way of the friendly actions. */
+.friend-sheet-safety { display: flex; justify-content: flex-end; gap: 1.25rem; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
+.friend-sheet-safety .link { color: var(--ink-soft); min-height: 1.5rem; }
 .friend-sheet-actions > .btn { flex: 1 1 8rem; justify-content: center; }
 .friend-sheet-actions > .friend-duel-btn { flex: 1 1 100%; color: var(--lang-text); border-color: color-mix(in srgb, var(--lang) 35%, var(--rule)); }
 .friends-name-btn { all: unset; cursor: pointer; min-width: 0; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border-radius: var(--r-sm); }
