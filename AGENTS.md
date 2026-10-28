@@ -1,7 +1,7 @@
 # Diloloji — ajanlar için devir notu
 
 Bu dosya, projede çalışacak bir yapay zekâ ajanının (Claude Code'dan devralan) bilmesi gerekenleri toplar.
-Son güncelleme: 2026-10-13.
+Son güncelleme: 2026-10-28.
 
 ## Kullanıcıyla çalışma kuralları
 - **Kullanıcıya her yanıt Türkçe.** Özet, rapor, liste, soru, ara notlar dahil. İngilizce özet verme (kullanıcı birkaç kez itiraz etti).
@@ -11,6 +11,36 @@ Son güncelleme: 2026-10-13.
 - CI'ı sürekli yoklama (polling) yapma; sonuç gerekiyorsa bir kez bak.
 - **Üst üste kurulu PR'larda:** alttakini birleştirmeden ÖNCE üstündekinin tabanını main'e çevir (`gh pr edit <üstteki> --base main`). Yoksa `--delete-branch` taban dalı silince GitHub üstteki PR'ı kapatır (2026-10-08'de #49'da oldu; dal geri oluşturulup PR yeniden açıldı).
 - Commit sonu: `Co-Authored-By: <model adı> <noreply@…>` tarzı bir satır kullanılıyordu; PR açıklaması sonu "🤖 Generated with …" satırı. Kendi aracının kuralına uy.
+
+## Açık işler: Android uygulaması ve telefon testleri (2026-10-28)
+Sahibi Diloloji'yi **kişisel** bir Google Play hesabıyla Android uygulaması (TWA) olarak yayınlamak istiyor; iOS sonraya kaldı. Ayrıntılar: `android/README.md` ve aşağıdaki "Android uygulaması, TWA" ve "Şikâyet ve engelleme" notları. Bir maddeyi bitiren burada üstünü çizsin (`~~…~~`) ve tarih yazsın.
+
+**Bekleyen PR'lar ve dallar (sırayla):**
+1. [#647](https://github.com/dilkolog/dilolojibydilkolog/pull/647) `claude/android-twa` → `main`: `/hesap-silme` sayfası, `assetlinks.json`, `android/twa-manifest.json` + README, gizlilik politikasında Android bölümü. Gizlilik ve hesap silme metinleri canlıya çıkacağı için sahibinin okumasını bekliyor.
+2. [#649](https://github.com/dilkolog/dilolojibydilkolog/pull/649) `claude/report-block` → `claude/android-twa`: şikâyet ve engelleme, kullanım koşullarına §4 topluluk kuralları. **#647'yi birleştirmeden ÖNCE bunun tabanını `main`'e çevir** (`gh pr edit 649 --base main`).
+3. `claude/iphone-webkit-tests` (PR yok, tabanı eski `main`): Playwright'a `iPhone (WebKit)` profili (phone + a11y dosyaları, süre 120 sn), CI'da `webkit` kurulumu, WebKit'e özgü 4 test düzeltmesi ve Bugün görev listesinin taşma düzeltmesi (`.quest-list { grid-template-columns: minmax(0, 1fr) }`). Kalan: `main`'e yeniden kur (rebase), sahibinin istediği **"Telefon testleri" bölümünü bu dosyaya yaz** (kurulum: WebKit revizyonu 2359 `/opt/pw-browsers`'ta hazır, Chromium için `pw.tmp.config.ts` `executablePath: '/opt/pw-browsers/chromium'`; bulunan WebKit tuzakları: `new Touch` yok → düz `Event` + `defineProperty`; `page.route` ile sahte dış yanıtta CORS başlığı şart; `indexedDB.deleteDatabase` önce uygulamasız sayfaya git; tema değişince kontrastı ölçmeden önce `settleTransitions`), PR aç. Son tam WebKit koşusu: 86 testten 83'ü geçti, kalan 3'ün düzeltmesi a11y'de 31/31 doğrulandı.
+
+**Sahibinin yapacakları (ajan yapamaz):**
+- [ ] #647 ve #649'daki metinleri (gizlilik, hesap silme, kullanım koşulları) okuyup onaylamak.
+- [ ] Cloudflare'de `OWNER_EMAIL` Worker gizlisinin tanımlı olduğunu doğrulamak (şikâyet mailleri ve yeni kayıt bildirimi bunu kullanır; yoksa şikâyetler yalnızca R2'de `reports/` altında birikir).
+- [ ] Google Play geliştirici hesabı (25 $, kimlik doğrulaması).
+- [ ] Yükleme anahtarı üretmek ve saklamak (`android/README.md` §2); `.aab` derlemek (§3: Bubblewrap ya da PWABuilder). **Claude ortamında derlenemez:** `dl.google.com` ağ politikasında kapalı, Android SDK inmiyor.
+- [ ] Play App Signing'i açıp SHA-256 parmak izini ajana vermek (Play Console → Uygulama bütünlüğü).
+- [ ] Mağaza formları: veri güvenliği (cevaplar README §7), içerik derecelendirmesi (kullanıcılar arası etkileşim: **var**), hedef kitle 13+, reklam yok, gizlilik adresi `/gizlilik`, hesap silme adresi `/hesap-silme`.
+- [ ] **Kapalı test: en az 12 testçi, 14 gün kesintisiz** (kişisel hesap şartı); sonra üretime erişim başvurusu.
+- [ ] Gelen şikâyetlere zamanında bakmak (Play bekler); kaldırma ve hesap kapatma adımları README §6.
+
+**Ajanın yapacakları:**
+- [ ] Parmak izi gelince: `public/.well-known/assetlinks.json` `sha256_cert_fingerprints` ve `android/twa-manifest.json` `fingerprints` (iki liste aynı olmalı, `src/androidApp.test.ts` denetler; yükleme anahtarınınki de eklenir), birleştir, dağıt, `npm run verify:deploy` (dosyayı canlıda arar). Uygulama üstte adres çubuğuyla açılıyorsa sebep budur.
+- [ ] Mağaza sayfası: kısa açıklama (≤80 karakter), uzun açıklama, en az 2 telefon ekran görüntüsü (`scripts/capture-landing-shots.ts` yöntemiyle, örnek veriyle), 1024×500 tanıtım görseli. Bu ortamda hazırlanabilir; sahibi onaylar.
+- [ ] Kapalı testte gerçek cihaz listesi (README §7.6): giriş (Google/e-posta), eşitleme, Android 13+ bildirim izni ve hatırlatmalar, mikrofon (gölgeleme, sesli cevap), sesli okuma, çevrimdışı açılış, geri tuşu, Paylaş → Diloloji, adres çubuğu görünmemeli. Hatalar web tarafında düzeltilir; kabuk değişmez.
+- [ ] Kabuk değişirse ya da Google'ın yıllık hedef API şartında: `appVersionCode` +1, yeni `.aab` (README §5).
+
+**İsteğe bağlı / bilinen boşluklar:**
+- Canlı düello odalarında oyuncu adı şikâyet edilemiyor (yalnızca ad, içerik yok; kod 6 haneli, oda bellekte). Play itiraz ederse `ReportDialog`'u düello lobisine `kind: 'club'` gibi bir oda şikâyetiyle ekle.
+- Moderasyon elle: şikâyetler mail + R2'de; sahibine bir yönetim ekranı yok. Hesabı kapatmak Supabase'te kişiyi silmek; aynı kişi yeni e-postayla yeniden kaydolabilir (kalıcı yasak listesi yok).
+- iOS (App Store) başlanmadı: Capacitor gerekir; Apple, Google girişi sunan uygulamada "Apple ile giriş" ister (kural 4.8), Mac/Xcode ve Apple Developer hesabı (99 $/yıl) gerekir; web push yerine APNs, konuşma tanıma eklentisi.
+- Uygulama ücretli olur ya da reklam/satış eklenirse: Play faturalandırması şartı ve CEFR verisinin CC BY-NC-SA lisansı (ticari kullanım yok) yeniden konuşulmalı.
 
 ## Proje
 - React 19 + Vite 8 PWA, Dexie/IndexedDB (`src/data/db.ts`), FSRS (`ts-fsrs`) ile aralıklı tekrar. Altyapı Cloudflare Worker (`worker/index.ts`, `wrangler.jsonc`) ve Cloudflare R2 (eşitleme blob deposu `diloloji-blobs`, `@vercel/blob` taklidi). Vercel Hobby kotası dolduğu için Cloudflare'e taşındı (ücretsiz, sınırsız statik varlıklar, tek saatlik cron `0 * * * *`, 100k istek/gün). Canlı alan adı: **`diloloji.com`** (ve `www.diloloji.com`; `nigalingo.online` ve `kelime-koc.vercel.app` geriye dönük uyumlu).
