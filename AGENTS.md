@@ -47,6 +47,10 @@ Son güncelleme: 2026-10-13.
 - **Ortam değişkenleri ve Node:** README'deki tabloya bak; Node `>=22.12` (`engines`, `.nvmrc` 24). `pw.tmp.config.ts` makineye özeldir ve izlenmez (`.gitignore`).
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
+## Durum (2026-10-28)
+- **Antigravity (2026-10-28):**
+  - #645: Uygulama akış testi (`src/flows/app.test.tsx`) asenkron UI beklemeleri `until` döngüsüyle yarış durumuna karşı sağlamlaştırıldı. `fr-fi-2.json` içindeki tekil doğru seçenek uyumu (`sonner`) sağlandı. `snapshots.yml` ile 32 adet Linux ekran görüntüsü referansı güncellendi. WCAG 2.5.3 (Label in Name) standartları kapsamında `AppSidebar`, `StudyCalendar`, `Profile`, `TextForms` ve `Guide` ekranlarındaki görünür metin ile accessible name uyuşmazlıkları giderildi.
+
 ## Durum (2026-10-27)
 Birleşti: #37–#644.
 - **Antigravity (2026-10-27):**

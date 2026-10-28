@@ -12,9 +12,11 @@ import { approveAccount, clippedContent, contrastProblems, openScreen, playSessi
 const scan = async (page: Page, where: string) => {
   await page.waitForTimeout(400) // screens ease in
   const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).disableRules(['color-contrast']).analyze()
-  return violations
+  const issues = violations
     .filter((v) => v.impact === 'serious' || v.impact === 'critical')
     .map((v) => `${where}: ${v.id} (${v.help}) → ${v.nodes.slice(0, 3).map((n) => n.target.join(' ')).join(', ')}`)
+  if (issues.length) console.error('AXE_VIOLATION [' + where + ']:', issues)
+  return issues
 }
 
 test('every main screen passes the automated accessibility check', async ({ page }) => {
@@ -814,7 +816,7 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
 
   // 9. Oyunlar → Kayıt farkı (İspanyolca, bölgesel not görünürken)
   await page.setViewportSize({ width: 900, height: 700 })
-  await page.getByRole('button', { name: /^İspanyolca/ }).click()
+  await page.getByRole('button', { name: /İspanyolca/ }).click()
   await page.setViewportSize({ width: 375, height: 667 })
   await openScreen(page, 'Oyunlar')
   const registerCard = page.locator('.game-card', { hasText: 'Kayıt farkı' })
@@ -1470,7 +1472,7 @@ test('English verb lab: lists, quiz question and feedback pass accessibility che
   // Nine full scans (three views in three themes) of lists with a few hundred rows: about 25 s alone, more under a full run.
   test.setTimeout(150_000)
   await startWithSamples(page)
-  await page.getByRole('button', { name: /^İngilizce/ }).click()
+  await page.getByRole('button', { name: /İngilizce/ }).click()
   await openScreen(page, 'Oyunlar')
   await page.locator('.game-card', { hasText: 'Fiil laboratuvarı' }).click()
   const problems: string[] = []

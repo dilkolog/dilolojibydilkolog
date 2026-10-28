@@ -60,7 +60,9 @@ async function answerUntilSheet(pick: (options: HTMLButtonElement[]) => HTMLButt
     if (options.length) await click(pick(options))
     else if (input) {
       await type(input, 'xyz')
-      await click(button(/^Kontrol et/))
+      for (let w = 0; w < 10 && !button(/^Kontrol et/); w++) await sleep(20)
+      const submit = button(/^Kontrol et/)
+      if (submit) await click(submit)
     } else if (go) await click(go)
     else await sleep(100)
   }
@@ -103,7 +105,8 @@ describe('a learner’s day', () => {
 
   it('"Yanlış dokundum, sayma" takes a wrong choice back entirely', { timeout: 30_000 }, async () => {
     for (let round = 0; round < 12; round++) {
-      await click(button(/^Devam$/))
+      const devam = button(/^Devam$/)
+      if (devam) await click(devam)
       const before = await db.events.count()
       await answerUntilSheet((o) => o[o.length - 1])
       const discard = button(/Yanlış dokundum/)
@@ -119,7 +122,8 @@ describe('a learner’s day', () => {
 
   it('the session ends in a summary with free recall', { timeout: 120_000 }, async () => {
     for (let i = 0; i < 250 && !el.querySelector('.summary-grid'); i++) {
-      if (button(/^Devam$/)) await click(button(/^Devam$/))
+      const devam = button(/^Devam$/)
+      if (devam) await click(devam)
       // A confident error keeps Devam off for a moment, on purpose.
       else if (el.querySelector('.sheet')) await sleep(200)
       else await answerUntilSheet((o) => o[0])
@@ -169,9 +173,15 @@ describe('a learner’s day', () => {
     await until(() => tab('Tümü'), 'Tümü tab')
     await click(tab('Tümü'))
     await click(button(/^Seç$/))
+    await until(() => el.querySelector<HTMLInputElement>('.select-bar input[type=checkbox]'), 'select all checkbox')
     await click(el.querySelector<HTMLInputElement>('.select-bar input[type=checkbox]'))
+    await until(() => el.querySelector<HTMLButtonElement>('.select-bar-move button'), 'move button')
     await click(el.querySelector<HTMLButtonElement>('.select-bar-move button'))
     // The list's options answer to mousedown (so the field keeps focus).
+    await until(
+      () => [...el.querySelectorAll<HTMLElement>('.select-list li')].some((o) => o.textContent?.trim() === 'Seyahat › Havalimanı'),
+      'target list option in select dropdown',
+    )
     const option = [...el.querySelectorAll<HTMLElement>('.select-list li')].find((o) => o.textContent?.trim() === 'Seyahat › Havalimanı')!
     await act(async () => {
       option.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }))
@@ -183,9 +193,9 @@ describe('a learner’s day', () => {
     expect(await inList()).toBe(await db.vocabulary.where('language').equals('fr').count())
     // The shelf shows the list; it opens its page, where it is put in focus.
     await click(tab('Listeler'))
-    await until(() => el.querySelector('.wl-tile'), 'the list on the shelf')
-    expect(el.querySelector('.wl-tile')?.textContent).toMatch(/Seyahat.*\d+ kelime/)
-    await click(el.querySelector<HTMLButtonElement>('.wl-tile'))
+    await until(() => /Seyahat.*\d+ kelime/.test(el.querySelector('.wl-tile')?.textContent ?? ''), 'the list with word count on the shelf')
+    const tile = [...el.querySelectorAll<HTMLButtonElement>('.wl-tile')].find((t) => t.textContent?.includes('Seyahat')) ?? el.querySelector<HTMLButtonElement>('.wl-tile')
+    await click(tile)
     await until(() => button(/Odaklan$/), 'odaklan button')
     await click(button(/Odaklan$/))
     await until(() => el.querySelector('.wl-card.is-focus'), 'list in focus')

@@ -55,7 +55,7 @@ jobs:
       # The sign-in gate needs a build with Supabase set up (a fake address; the tests stub every request).
       - run: npm run test:e2e:gate
       - uses: actions/upload-artifact@v4
-        if: failure()
+        if: failure() || cancelled()
         with:
           name: playwright-report
           path: playwright-report

@@ -989,7 +989,7 @@ function LessonView({
                 type="button"
                 className={`btn-quiet btn-sm guide-ex-save${savedExMap[i] ? ' guide-ex-saved' : ''}`}
                 title={savedExMap[i] ? 'Cümle kartlarına eklendi' : 'Cümle kartı olarak kaydet'}
-                aria-label={savedExMap[i] ? 'Cümle kartlarına eklendi' : 'Cümle kartı olarak kaydet'}
+                aria-label={savedExMap[i] ? '✓ Kart: Cümle kartlarına eklendi' : '+ Kart: Cümle kartı olarak kaydet'}
                 onClick={() => void handleSaveSentence(x, i)}
               >
                 {savedExMap[i] ? '✓ Kart' : '+ Kart'}

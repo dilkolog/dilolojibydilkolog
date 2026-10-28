@@ -133,13 +133,15 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
         {/* The name is an input, so the page's heading is for screen readers only. */}
         <h1 className="sr-only">Profil</h1>
         <div className="profile-hero">
-          <button className="avatar-edit" onClick={() => setEditing((e) => !e)} aria-label="Avatarı düzenle" aria-expanded={editing}>
-            <span className="avatar-ring" data-frame={frameOf(profile.frame)} style={{ ['--ring' as string]: `${(game?.level.progress ?? 0) * 100}%` }}>
-              <Avatar profile={profile} size={88} />
-              {game && <span className="avatar-level">{game.level.level}</span>}
-            </span>
-            <span className="avatar-edit-badge" title="Avatarı değiştir"><SmileIcon size={16} /></span>
-          </button>
+          <div className="avatar-edit-wrap" style={{ position: 'relative', display: 'inline-grid', placeItems: 'center' }}>
+            <button className="avatar-edit" onClick={() => setEditing((e) => !e)} aria-label="Avatarı düzenle" title="Avatarı düzenle" aria-expanded={editing}>
+              <span className="avatar-ring" data-frame={frameOf(profile.frame)} style={{ ['--ring' as string]: `${(game?.level.progress ?? 0) * 100}%` }}>
+                <Avatar profile={profile} size={88} />
+              </span>
+              <span className="avatar-edit-badge" aria-hidden="true"><SmileIcon size={16} /></span>
+            </button>
+            {game && <span className="avatar-level" aria-hidden="true">{game.level.level}</span>}
+          </div>
           <div className="profile-fields">
             <div className="profile-name-row">
               <input
@@ -510,7 +512,6 @@ function Badge({ s, compact = false, onOpen }: { s: BadgeSeries; compact?: boole
       type="button"
       className={`badge-card${s.earned ? ' is-unlocked' : ''}${compact ? ' is-compact' : ''}${near ? ' is-near' : ''}`}
       onClick={() => onOpen(s)}
-      aria-label={`${a.title}: ${s.earned ? `${s.earned}/${s.steps.length} kademe kazanıldı` : `${a.value}/${a.goal}`}. Ayrıntı için dokun.`}
     >
       <BadgeMedal badge={a} unlocked={a.unlocked} progress={a.value / a.goal} size={compact ? 44 : 60} />
       <strong className="badge-title">{a.title}</strong>
@@ -528,6 +529,7 @@ function Badge({ s, compact = false, onOpen }: { s: BadgeSeries; compact?: boole
         </span>
       )}
       {near && <span className="badge-near-pill">Çok yakın</span>}
+      <span className="sr-only"> ({s.earned ? `${s.earned}/${s.steps.length} kademe kazanıldı` : `${a.value}/${a.goal}`}. Ayrıntı için dokun.)</span>
     </button>
   )
 }

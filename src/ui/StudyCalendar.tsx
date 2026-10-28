@@ -46,7 +46,7 @@ export function StudyCalendar({ settings, onChange, id }: { settings: Settings; 
         {WEEK.map(({ day, label }) => {
           const w = String(weights[day] ?? 1)
           return (
-            <button key={day} type="button" className={`week-day w-${w.replace('.', '')}`} onClick={() => setDay(day)} aria-label={`${label}: ${STATE_NAME[w]}`}>
+            <button key={day} type="button" className={`week-day w-${w.replace('.', '')}`} onClick={() => setDay(day)}>
               <strong>{label}</strong>
               <span>{STATE_NAME[w]}</span>
             </button>
