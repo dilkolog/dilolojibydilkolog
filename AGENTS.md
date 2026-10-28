@@ -49,6 +49,11 @@ Son güncelleme: 2026-10-13.
 
 ## Durum (2026-10-29)
 - **Antigravity (2026-10-29):**
+  - **#650: Logo/Simge ve Sayfa Başı Pozları / İllüstrasyonlar:**
+    - Logo ve Amblem (`BrandMark`): `favicon.svg` ile tam uyumlu 3 kademeli SVG gradientleri eklendi (zümrüt yeşili yaprak tabanı, açık nane üst fasetler, altın taç kıvılcımı).
+    - Dokunsal Geri Bildirim: `.brand-mark` için yaylı (spring) üzerine gelme ve tıklama mikro-etkileşimi tanımlandı (`translateY(-1px) scale(1.05)` ve yumuşak gölge).
+    - Sayfa Başı Pozları (`PageHeader`): `hello` (`react-hello.webp`) ve `edit` (`head-edit.webp`) pozları eklendi. `.page-header-art` için hover anında hafif canlı perk-up animasyonu eklendi (reduced-motion uyumlu). `VerbLab` yükleme durumuna `art="write"` eklenerek başlık atlaması (layout shift) giderildi.
+    - Tüm kontroller ve CI (typecheck, lint, birim testleri, Playwright E2E) yeşil geçti ve PR #650 birleştirildi.
   - **B2–C1 İleri Seviye Dilbilgisi Soruları (90 adet):** Açık lisanslı (CC BY 4.0) akademik kaynaklardan Fransızca (30: `basics_fr_subjonctif_passe`, `basics_fr_mise_en_relief`, `conditionnel_passe`), İspanyolca (30: `basics_es_subjuntivo_compuesto`, `condicionales`, `basics_es_oraciones_hendidas`) ve İngilizce (30: `inversion`, `cleft`, `mixed_conditionals`) ileri düzey karmaşık yapı soruları eklendi (`fr-b2c1-1.json`, `es-b2c1-1.json`, `en-b2c1-1.json`). Tekil doğru seçenekler, ipuçları ve detaylı Türkçe açıklamalar doğrulandı.
   - **Yapay Zekâ Özelliklerinin Uçtan Uca Doğrulanması:**
     - Serbest geri anlatım (`evaluateRetelling`): Hikâye özetleme, hedef kelime kullanımı, Türkçe geri bildirim, eksik/hatalı kullanım ve SDK hata haritalama senaryoları birim düzeyinde (`src/ai/productionModules.test.ts`) ve Hikâye ekranı UI entegrasyonunda (`src/ui/StoryRetell.test.tsx`) doğrulandı.
