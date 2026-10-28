@@ -92,7 +92,7 @@ export function Sidebar({
       <button className="palette-trigger" onClick={onOpenPalette} aria-label="Ara ya da git (⌘K)" title="Ara ya da git (⌘K)">
         <SearchIcon size={18} />
         <span className="palette-trigger-label">Ara ya da git</span>
-        <kbd className="palette-trigger-kbd">⌘K</kbd>
+        <kbd className="palette-trigger-kbd">(⌘K)</kbd>
       </button>
       <div className="top-profile">
         <Popover
@@ -142,10 +142,6 @@ export function Sidebar({
           kind="menu"
           label="Hesap menüsü"
           buttonClassName="sidebar-foot-btn"
-          buttonProps={{
-            'aria-label': `${settings.profile.name || 'Profilin'}: Hesap menüsü`,
-            title: `${settings.profile.name || 'Profilin'}: Hesap menüsü`,
-          }}
           button={
             <>
               <Avatar profile={settings.profile} size={40} />
