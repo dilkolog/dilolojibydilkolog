@@ -136,7 +136,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
           <button className="avatar-edit" onClick={() => setEditing((e) => !e)} aria-label="Avatarı düzenle" aria-expanded={editing}>
             <span className="avatar-ring" data-frame={frameOf(profile.frame)} style={{ ['--ring' as string]: `${(game?.level.progress ?? 0) * 100}%` }}>
               <Avatar profile={profile} size={88} />
-              {game && <span className="avatar-level">{game.level.level}</span>}
+              {game && <span className="avatar-level" aria-hidden="true">{game.level.level}</span>}
             </span>
             <span className="avatar-edit-badge" title="Avatarı değiştir"><SmileIcon size={16} /></span>
           </button>
@@ -510,7 +510,6 @@ function Badge({ s, compact = false, onOpen }: { s: BadgeSeries; compact?: boole
       type="button"
       className={`badge-card${s.earned ? ' is-unlocked' : ''}${compact ? ' is-compact' : ''}${near ? ' is-near' : ''}`}
       onClick={() => onOpen(s)}
-      aria-label={`${a.title}: ${s.earned ? `${s.earned}/${s.steps.length} kademe kazanıldı` : `${a.value}/${a.goal}`}. Ayrıntı için dokun.`}
     >
       <BadgeMedal badge={a} unlocked={a.unlocked} progress={a.value / a.goal} size={compact ? 44 : 60} />
       <strong className="badge-title">{a.title}</strong>
@@ -528,6 +527,7 @@ function Badge({ s, compact = false, onOpen }: { s: BadgeSeries; compact?: boole
         </span>
       )}
       {near && <span className="badge-near-pill">Çok yakın</span>}
+      <span className="sr-only"> ({s.earned ? `${s.earned}/${s.steps.length} kademe kazanıldı` : `${a.value}/${a.goal}`}. Ayrıntı için dokun.)</span>
     </button>
   )
 }

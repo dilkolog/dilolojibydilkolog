@@ -45,8 +45,9 @@ export function TextForms({ groups, language, onOpenLab, onLesson, onReview, onS
                 {g.forms.slice(0, SHOWN * 2).map((f) => (
                   <li key={`${f.lemma}|${f.form}`} className="text-forms-item">
                     {onOpenLab && !isPersonless(g.tense) ? (
-                      <button type="button" className="word-row" onClick={() => onOpenLab(f.lemma, g.tense)} aria-label={`${f.form}, ${f.lemma} fiili, ${TENSE_GUIDE[g.tense].tr}: fiil laboratuvarında aç`}>
+                      <button type="button" className="word-row" onClick={() => onOpenLab(f.lemma, g.tense)}>
                         <Row form={f.form} lemma={f.lemma} count={f.count} language={language} />
+                        <span className="sr-only"> ({TENSE_GUIDE[g.tense].tr}, fiil laboratuvarında aç)</span>
                       </button>
                     ) : (
                       <div className="word-row">
