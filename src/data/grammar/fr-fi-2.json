@@ -150,7 +150,7 @@
     "type": "choice",
     "prompt": "Pendant qu'il lisait, le téléphone a ___ .",
     "answer": "sonné",
-    "options": ["sonné", "sonnait", "sonne"],
+    "options": ["sonné", "sonnait", "sonner"],
     "hint": "süregelen bir eylemi aniden bölen olay için passé composé",
     "explanation": "Süregelen bir arka plan eylemi (imparfait) esnasında aniden gerçekleşen net ve tamamlanmış eylemler için passé composé kullanılır: « a sonné ».",
     "source": "Français interactif, COERLL / UT Austin, CC BY 4.0 (uyarlandı)"
