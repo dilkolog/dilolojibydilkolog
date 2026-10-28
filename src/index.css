@@ -1898,7 +1898,20 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 @keyframes glint-again { from { transform: skewX(-20deg) translateX(0); } to { transform: skewX(-20deg) translateX(140px); } }
 
 /* The mark sits on the app's own indigo in every language, like the home-screen icon. */
-.brand-mark { background: linear-gradient(140deg, #6366f1, #312e81); border-radius: 0.5625rem; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22), 0 2px 8px rgb(49 46 129 / 0.35); }
+.brand-mark {
+  background: linear-gradient(140deg, #6366f1, #312e81);
+  border-radius: 0.5625rem;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22), 0 2px 8px rgb(49 46 129 / 0.35);
+  transition: transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) var(--ease-out);
+}
+.brand:hover .brand-mark,
+.brand:focus-visible .brand-mark {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3), 0 4px 14px rgb(49 46 129 / 0.45);
+}
+.brand:active .brand-mark {
+  transform: translateY(1px) scale(0.96);
+}
 
 /* ---------- Page header: name, one line, the main action ---------- */
 .page-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 0.75rem 1.5rem; flex-wrap: wrap; }
@@ -4797,7 +4810,23 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .game-watermark .game-art { width: 6rem; height: 6rem; filter: grayscale(0.2); }
 .game-suggest-icon .game-art { width: 2.25rem; height: 2.25rem; }
 .page-header.has-art { align-items: center; }
-.page-header-art { flex: none; height: 5.25rem; width: auto; margin-right: -0.25rem; user-select: none; -webkit-user-drag: none; }
+.page-header-art {
+  flex: none;
+  height: 5.25rem;
+  width: auto;
+  margin-right: -0.25rem;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform var(--dur-fast) var(--ease-spring);
+  transform-origin: center bottom;
+}
+.page-header-art:hover {
+  transform: translateY(-2px) scale(1.05) rotate(-1.5deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-header-art { transition: none; }
+  .page-header-art:hover { transform: none; }
+}
 @media (max-width: 40rem) {
   /* On a phone Monki stays, smaller, beside the title; the action goes below as before. */
   .page-header.has-art { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: 0.75rem; }

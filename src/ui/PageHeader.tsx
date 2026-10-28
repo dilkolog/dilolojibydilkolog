@@ -18,6 +18,8 @@ import headEarmiss from '../assets/art/head-earmiss.webp'
 import headBack from '../assets/art/head-back.webp'
 import headExam from '../assets/art/head-exam.webp'
 import headVocabtest from '../assets/art/head-vocabtest.webp'
+import headEdit from '../assets/art/head-edit.webp'
+import reactHello from '../assets/art/react-hello.webp'
 import guideTeach from '../assets/art/guide-teach.webp'
 
 /** Monki doing what the screen is for, beside its title (wide screens only). */
@@ -41,6 +43,8 @@ const ART = {
   back: headBack,
   exam: headExam,
   vocabtest: headVocabtest,
+  edit: headEdit,
+  hello: reactHello,
   guide: guideTeach,
 }
 export type HeaderArt = keyof typeof ART

@@ -128,7 +128,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
   if (!ready || !labReady || !verb)
     return (
       <div className="stack">
-        <PageHeader title="Fiil laboratuvarı" sub="Çekim tabloları yükleniyor…" />
+        <PageHeader art="write" title="Fiil laboratuvarı" sub="Çekim tabloları yükleniyor…" />
       </div>
     )
 
