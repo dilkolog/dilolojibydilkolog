@@ -409,7 +409,7 @@ test('exam-style tasks: a text and three questions to read, a listening mode tha
 
 test('English verb lab: irregular verbs and phrasal verbs, a list to look through and a round to practise', async ({ page }) => {
   await startWithSamples(page)
-  await page.getByRole('button', { name: /^İngilizce/ }).click()
+  await page.getByRole('button', { name: /İngilizce/ }).click()
   await openScreen(page, 'Oyunlar')
   await page.locator('.game-card', { hasText: 'Fiil laboratuvarı' }).click()
   await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
@@ -1980,7 +1980,7 @@ test('compound tenses: adding typed compound offers infinitive without false pos
   await expect(page.locator('.form-help button.link', { hasText: 'ekle' })).toHaveCount(0)
 
   // 4. Spanish compound: switch language to Spanish via sidebar
-  await page.getByRole('button', { name: /^İspanyolca/ }).click()
+  await page.getByRole('button', { name: /İspanyolca/ }).click()
   await openScreen(page, 'Kelimeler')
   if (await page.getByRole('button', { name: /Ekle/ }).count()) {
     await page.getByRole('button', { name: /Ekle/ }).first().click()
@@ -2022,7 +2022,7 @@ test('compound tenses: reading card reveals full compound form and infinitive on
 test('register game: regional usage note shows for entries with notes and is absent otherwise', async ({ page }) => {
   await startWithSamples(page)
   // Switch to Spanish where es-job, es-eat, es-car etc. have regional notes
-  await page.getByRole('button', { name: /^İspanyolca/ }).click()
+  await page.getByRole('button', { name: /İspanyolca/ }).click()
   await openScreen(page, 'Oyunlar')
 
   await page.locator('.game-card', { hasText: 'Kayıt farkı' }).click()
@@ -2318,7 +2318,7 @@ test('collocation chips: chips on word page with sr-only example text across Fre
   await page.getByRole('button', { name: '← Kelimelere dön' }).click()
 
   // 2. Spanish: switch language to Spanish (empty -> add form opens by default)
-  await page.getByRole('button', { name: /^İspanyolca/ }).click()
+  await page.getByRole('button', { name: /İspanyolca/ }).click()
   await openScreen(page, 'Kelimeler')
   await expect(page.getByLabel('Kelime', { exact: true })).toBeVisible()
   await page.getByLabel('Kelime', { exact: true }).fill('soñar')
@@ -2332,7 +2332,7 @@ test('collocation chips: chips on word page with sr-only example text across Fre
   await page.getByRole('button', { name: '← Kelimelere dön' }).click()
 
   // 3. English: switch language to English (empty -> add form opens by default)
-  await page.getByRole('button', { name: /^İngilizce/ }).click()
+  await page.getByRole('button', { name: /İngilizce/ }).click()
   await openScreen(page, 'Kelimeler')
   await expect(page.getByLabel('Kelime', { exact: true })).toBeVisible()
   await page.getByLabel('Kelime', { exact: true }).fill('depend')
@@ -2649,7 +2649,7 @@ test('the guide: grammar mistake leads to "Konunun dersi" link to guide lesson, 
 
 test('the guide: English tenses tab lists tenses in order with Present simple first', async ({ page }) => {
   await startWithSamples(page)
-  await page.getByRole('button', { name: /^İngilizce/ }).click()
+  await page.getByRole('button', { name: /İngilizce/ }).click()
   await openScreen(page, 'Rehber')
   await expect(page.getByRole('heading', { name: 'Rehber' })).toBeVisible()
 

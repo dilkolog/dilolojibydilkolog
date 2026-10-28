@@ -1355,7 +1355,7 @@ test('lists: a new list opens on its own page, takes the words added there, and 
 test('guide on phone: open basic lesson, pass quiz for learned tag, Today review card starts quiz or dismisses', async ({ page }) => {
   await startWithSamples(page)
   // Switch to Spanish and load sample words so Today screen is fully active
-  await page.getByRole('button', { name: /^İspanyolca/ }).click()
+  await page.getByRole('button', { name: /İspanyolca/ }).click()
   await page.getByRole('button', { name: 'Örnek kelimelerle dene' }).click()
   await expect(page.getByRole('button', { name: /^(Başla|Devam et)$/ })).toBeVisible()
   await openScreen(page, 'Rehber')
