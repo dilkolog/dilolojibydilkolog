@@ -1,30 +1,78 @@
 [
   {
+    "id": "gsb-en-0302",
+    "language": "en",
+    "title": "Fire",
+    "level": 1,
+    "words": 21,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0302/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0302/en-0302_fire.mp3",
+    "credit": {
+      "writer": "Deborah Namugosa, Beatrice Nabune, Alison Tukei, Rose Sabano",
+      "illustrator": "Rob Owen",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "Look, fire!",
+      "Fire burns.",
+      "Fire cooks.",
+      "Fire gives warmth.",
+      "Fire gives light.",
+      "Look, fire!",
+      "Fire is wonderful.",
+      "And it is powerful."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0302/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0302/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0302/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0302/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0302/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0302/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0302/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0302/09.jpg"
+    ],
+    "turkish": [
+      "Bak, ateş!",
+      "Ateş yakar.",
+      "Ateş pişirir.",
+      "Ateş sıcaklık verir.",
+      "Ateş ışık verir.",
+      "Bak, ateş!",
+      "Ateş harika bir şeydir.",
+      "Ve ateş güçlüdür."
+    ]
+  },
+  {
     "id": "gsb-en-0008",
     "language": "en",
-    "title": "What did you do?",
+    "title": "What are you doing?",
     "level": 1,
-    "words": 27,
+    "words": 25,
     "url": "https://global-asp.github.io/storybooks-english/stories/en/0008/",
     "audio": "https://globalstorybooks.net/media/audio/en/0008/en-0008_what.mp3",
     "credit": {
       "writer": "Nina Orange",
       "illustrator": "Wiehan de Jager",
-      "reader": "Darcy Bradley"
+      "reader": "Darshan Soni"
     },
     "license": {
-      "name": "Creative Commons Attribution 3.0",
+      "name": "Creative Commons Attribution 3.0 International License",
       "url": "https://creativecommons.org/licenses/by/3.0/"
     },
     "pages": [
-      "I sing.",
-      "She waves.",
-      "I clap.",
-      "She stretches.",
-      "He calls.",
-      "I answer.",
-      "She listens.",
-      "What did you do?"
+      "I am singing.",
+      "She is waving.",
+      "I am clapping.",
+      "She is stretching.",
+      "He is calling.",
+      "I am answering.",
+      "She is listening.",
+      "What are you doing?"
     ],
     "images": [
       "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0008/02.jpg",
@@ -50,26 +98,26 @@
   {
     "id": "gsb-en-0156",
     "language": "en",
-    "title": "The very hungry crocodile",
+    "title": "The hungry crocodile",
     "level": 1,
-    "words": 34,
+    "words": 36,
     "url": "https://global-asp.github.io/storybooks-english/stories/en/0156/",
     "audio": "https://globalstorybooks.net/media/audio/en/0156/en-0156_hungry.mp3",
     "credit": {
       "writer": "Christian G.",
       "illustrator": "Wiehan de Jager",
-      "reader": "Darcy Bradley"
+      "reader": "Darshan Soni"
     },
     "license": {
-      "name": "Creative Commons Attribution 3.0",
+      "name": "Creative Commons Attribution 3.0 International License",
       "url": "https://creativecommons.org/licenses/by/3.0/"
     },
     "pages": [
-      "Once upon a time, there was a very hungry crocodile.",
-      "He searched for food quietly and slowly. And then suddenly...",
-      "SNAP! The crocodile attacked!",
-      "After that, his hunger was gone, and he was happy.",
-      "Until he was hungry again."
+      "Once there was a very hungry crocodile.",
+      "He searched for food slowly and quietly. And then…",
+      "POW!!! The crocodile strikes!",
+      "After that he is no longer hungry, and he is happy.",
+      "Until he gets hungry again."
     ],
     "images": [
       "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0156/02.jpg",
@@ -91,16 +139,16 @@
     "language": "en",
     "title": "I like to read!",
     "level": 1,
-    "words": 42,
+    "words": 45,
     "url": "https://global-asp.github.io/storybooks-english/stories/en/0087/",
     "audio": "https://globalstorybooks.net/media/audio/en/0087/en-0087_read.mp3",
     "credit": {
       "writer": "Letta Machoga",
       "illustrator": "Wiehan de Jager",
-      "reader": "Darcy Bradley"
+      "reader": "Darshan Soni"
     },
     "license": {
-      "name": "Creative Commons Attribution 3.0",
+      "name": "Creative Commons Attribution 3.0 International License",
       "url": "https://creativecommons.org/licenses/by/3.0/"
     },
     "pages": [
@@ -135,33 +183,81 @@
     ]
   },
   {
+    "id": "gsb-en-0327",
+    "language": "en",
+    "title": "Counting animals",
+    "level": 1,
+    "words": 74,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0327/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0327/en-0327_counting.mp3",
+    "credit": {
+      "writer": "Zanele Buthelezi, Thembani Dladla, Clare Verbeek",
+      "illustrator": "Rob Owen",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "One elephant is going to drink water.",
+      "Two giraffes are going to drink water.",
+      "Three buffaloes and four birds are also going to drink water.",
+      "Five impalas and six warthogs are walking to the water.",
+      "Seven zebras are running to the water.",
+      "Eight frogs and nine fish are swimming in the water.",
+      "One lion roars. He also wants to drink. Who is afraid of the lion?",
+      "One elephant is drinking water with the lion."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0327/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0327/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0327/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0327/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0327/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0327/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0327/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0327/09.jpg"
+    ],
+    "turkish": [
+      "Bir fil su içecek.",
+      "İki zürafa su içecek.",
+      "Üç bizon ve dört kuş da su içecek.",
+      "Beş impala ve altı yaban domuzu da suya doğru yürüyorlar.",
+      "Yedi zebra suya doğru koşuyor.",
+      "Sekiz kurbağa ve dokuz balık suda yüzüyorlar.",
+      "Bir aslan kükrüyor. O da su içmek istiyor. Kim korkuyor aslandan?",
+      "Bir fil, aslanla beraber su içiyor."
+    ]
+  },
+  {
     "id": "gsb-en-0001",
     "language": "en",
     "title": "A very tall man",
     "level": 2,
-    "words": 70,
+    "words": 79,
     "url": "https://global-asp.github.io/storybooks-english/stories/en/0001/",
     "audio": "https://globalstorybooks.net/media/audio/en/0001/en-0001_tall.mp3",
     "credit": {
       "writer": "Cornelius Gulere",
       "illustrator": "Catherine Groenewald",
-      "reader": "Darcy Bradley"
+      "reader": "Darshan Soni"
     },
     "license": {
-      "name": "Creative Commons Attribution 3.0",
+      "name": "Creative Commons Attribution 3.0 International License",
       "url": "https://creativecommons.org/licenses/by/3.0/"
     },
     "pages": [
       "His hoe was too short.",
       "His doorway was too low.",
       "His bed was too short.",
-      "His bicycle was too small.",
+      "His bicycle was too short.",
       "This man was too tall!",
       "He made a very long hoe handle.",
       "He made very high door frames.",
       "He made a very long bed.",
       "He bought a very high bicycle.",
-      "He sat on a high chair. He ate with a very long fork.",
+      "He sat on a very high chair. He ate with a very long fork.",
       "He left his house and lived in a big forest. He lived for many years."
     ],
     "images": [
@@ -189,6 +285,63 @@
       "Çok yüksek bir bisiklet aldı.",
       "Çok yüksek bir sandalyede oturdu. Çok uzun bir çatalla yemek yedi.",
       "Evini terk etti, ve büyük bir ormanda yaşadı. Çok uzun yıllar yaşadı."
+    ]
+  },
+  {
+    "id": "gsb-en-0210",
+    "language": "en",
+    "title": "Tingi and the cows",
+    "level": 2,
+    "words": 79,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0210/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0210/en-0210_tingi.mp3",
+    "credit": {
+      "writer": "Ingrid Schechter",
+      "illustrator": "Ingrid Schechter",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "Tingi lived with his grandmother.",
+      "He used to look after the cows with her.",
+      "One day the soldiers came.",
+      "They took the cows away.",
+      "Tingi and his grandmother ran away and hid.",
+      "They hid in the bush until night.",
+      "Then the soldiers came back.",
+      "Grandmother hid Tingi under the leaves.",
+      "One of the soldiers put his foot right on him, but he kept quiet.",
+      "When it was safe, Tingi and his grandmother came out.",
+      "They crept home very quietly."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0210/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0210/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0210/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0210/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0210/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0210/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0210/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0210/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0210/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0210/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0210/12.jpg"
+    ],
+    "turkish": [
+      "Tingi büyükannesiyle yaşıyormuş.",
+      "Onunla beraber ineklere bakıyor, onlara göz kulak oluyormuş.",
+      "Bir gün askerler gelmiş.",
+      "İnekleri alıp götürmüşler.",
+      "Tingi ve büyükannesi kaçıp saklanmışlar.",
+      "Geceye kadar ormanda saklanmışlar.",
+      "Sonra askerler geri gelmiş.",
+      "Büyükannesi Tingi’yi yaprakların altına saklamış.",
+      "Askerlerden biri ayağını tam onun üstüne basmış, ama o hiç kımıldamamış.",
+      "Tehlike geçtiğinde, Tingi ve büyükannesi tekrar ortaya çıkmışlar.",
+      "Yavaşça, dikkatle ve sessizce evlerine doğru hareket etmişler."
     ]
   },
   {
@@ -252,31 +405,208 @@
     ]
   },
   {
-    "id": "gsb-en-0004",
+    "id": "gsb-en-0342",
     "language": "en",
-    "title": "Goat, Dog and Cow",
+    "title": "Punishment",
+    "level": 2,
+    "words": 131,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0342/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0342/en-0342_punishment.mp3",
+    "credit": {
+      "writer": "Adelheid Marie Bwire",
+      "illustrator": "Melany Pietersen",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "One day, mama got a lot of fruit.",
+      "“When can we have some fruit?” we ask. “We will have the fruit tonight,” says mama.",
+      "My brother Rahim is greedy. He tastes all the fruit. He eats a lot of it.",
+      "“Look at what Rahim did!” shouts my little brother. “Rahim is naughty and selfish,” I say.",
+      "Mother is angry with Rahim.",
+      "We are also angry with Rahim. But Rahim is not sorry.",
+      "“Aren’t you going to punish Rahim?” asks little brother.",
+      "“Rahim, soon you will be sorry,” warns mama.",
+      "Rahim starts to feel sick.",
+      "“My tummy is so sore,” whispers Rahim.",
+      "Mama knew this would happen. The fruit is punishing Rahim!",
+      "Later, Rahim says sorry to us. “I will never be so greedy again,” he promises. And we all believe him."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0342/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0342/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0342/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0342/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0342/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0342/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0342/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0342/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0342/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0342/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0342/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0342/13.jpg"
+    ],
+    "turkish": [
+      "Bir gün annemiz bir dolu meyveyle geliyor.",
+      "“Ne zaman meyve yiyeceğiz?” diye soruyoruz. “Meyveleri bu gece yiyeceğiz,” diyor annemiz.",
+      "Erkek kardeşim Rahim oldukça aç gözlüdür. Hemen bütün meyvelerin tadına bakıyor. Ve bir çoğunu yiyor.",
+      "“Bak Rahim ne yaptı!” diye bağırıyor küçük erkek kardeşim. “Rahim terbiyesiz ve bencil,” diyorum ben de.",
+      "Annemiz Rahim’e kızıyor.",
+      "Biz de Rahim’e kızıyoruz. Ama Rahim hiç aldırmıyor.",
+      "“Rahim’e ceza verecek misin?” diye soruyor küçük erkek kardeş.",
+      "“Rahim, yakında çok pişman olacaksın,” diye uyarıyor annemiz.",
+      "Rahim hastalanmaya başlıyor.",
+      "“Karnım çok ağrıyor,” diye inlemeye başlıyor.",
+      "Annemiz bunun böyle olacağını biliyordu. Rahim’in cezasını meyveler veriyor.",
+      "Daha sonra, Rahim bizlerden özür diliyor. “Bir daha böyle açgözlülük yapmayacağım,” diye söz veriyor. Ve biz ona inanıyoruz."
+    ]
+  },
+  {
+    "id": "gsb-en-0337",
+    "language": "en",
+    "title": "Children of wax",
+    "level": 2,
+    "words": 135,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0337/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0337/en-0337_wax.mp3",
+    "credit": {
+      "writer": "Southern African Folktale",
+      "illustrator": "Wiehan de Jager",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "Once upon a time, there lived a happy family.",
+      "They never fought with each other. They helped their parents at home and in the fields.",
+      "But they were not allowed to go near a fire.",
+      "They had to do all their work during the night. Because they were made of wax!",
+      "But one of the boys longed to go out in the sunlight.",
+      "One day the longing was too strong. His brothers warned him…",
+      "But it was too late! He melted in the hot sun.",
+      "The wax children were so sad to see their brother melting away.",
+      "But they made a plan. They shaped the lump of melted wax into a bird.",
+      "They took their bird brother up to a high mountain.",
+      "And as the sun rose, he flew away singing into the morning light."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0337/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0337/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0337/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0337/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0337/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0337/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0337/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0337/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0337/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0337/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0337/12.jpg"
+    ],
+    "turkish": [
+      "Bir zamanlar çok mutlu bir aile varmış.",
+      "Çocuklar hiç kavga etmezler anne babalarına evde ve tarlada yardım ederlermiş.",
+      "Ama ateşe yaklaşmaları yasakmış.",
+      "Bütün işleri gece yapmak zorundaymışlar. Çünkü hepsi mumdan yapılmışmış.",
+      "Ancak çocuklardan biri hep güneşe çıkmayı hayal edermiş.",
+      "Nitekim sonunda bir gün dayanamamış. Kardeşleri onu uyarmışlar.",
+      "Ama artık çok geçmiş. Çocuk sıcak güneşin altında eriyivermiş.",
+      "Diğer mum çocuklar kardeşleri eriyip yok olduğu için çok üzülmüşler.",
+      "Ama bir plan yapmışlar. Eriyen mumu bir kuş biçimine sokmuşlar.",
+      "Kuş biçimindeki kardeşlerini alıp yüksek bir dağa çıkarmışlar.",
+      "Ve güneş yükselmeye başladığında kuş sabah ışığında güzel güzel öterek uzaklara doğru uçmuş."
+    ]
+  },
+  {
+    "id": "gsb-en-0296",
+    "language": "en",
+    "title": "Tom the banana seller",
     "level": 2,
     "words": 140,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0296/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0296/en-0296_tom.mp3",
+    "credit": {
+      "writer": "Humphreys Odunga",
+      "illustrator": "Zablon Alex Nguku",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 4.0 International License",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "pages": [
+      "Tom carries a tray of ripe bananas.",
+      "Tom goes to the market to sell bananas.",
+      "People at the market are buying fruit.",
+      "But no one is buying Tom’s bananas. They prefer to buy fruit from women.",
+      "“In our community, only women sell fruit,” people say. “What kind of a man is this?” people ask.",
+      "But Tom does not give up. He calls, “Buy my bananas! Buy my sweet ripe bananas!”",
+      "One woman picks up a bunch of bananas from the tray. She looks at the bananas carefully.",
+      "The woman buys the bananas.",
+      "More people come to the stall. They buy Tom’s bananas and eat them.",
+      "Soon, the tray is empty. Tom counts the money he earned.",
+      "Then Tom buys soap, sugar, and bread. He puts the things in his tray.",
+      "Tom balances the tray on his head and goes home."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0296/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0296/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0296/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0296/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0296/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0296/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0296/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0296/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0296/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0296/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0296/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0296/13.jpg"
+    ],
+    "turkish": [
+      "Tom bir tepsi dolusu olgun muz taşıyor.",
+      "Tom muzları satmak için pazara gidiyor.",
+      "Pazardaki insanlar meyve alıyorlar.",
+      "Ama hiç kimse Tom’un muzlarını almıyor.",
+      "“Bizim mahallede muzu sadece kadınlar satar,” diyor müşteriler. “Bu ne biçim bir adam?” diye soruyorlar.",
+      "Ama Tom yılmıyor ve sesleniyor “Muzlarımdan alın, muzlarım tatlı ve olgun!”",
+      "Bir kadın bir hevenk muz seçiyor tepsiden. Muzlara dikkatlice bakıyor.",
+      "Ve kadın muzları alıyor.",
+      "Başkaları da gelmeye başlıyor. Onlar da Tom’un muzlarını alıp yiyorlar.",
+      "Az sonra tepsi boşalıyor. Tom kazandığı paraları sayıyor.",
+      "Sonra Tom sabun, şeker ve ekmek alıyor. Ve aldıklarını tepsiye koyuyor.",
+      "Tom tepsiyi başının üstünde dengeliyor ve evine gidiyor."
+    ]
+  },
+  {
+    "id": "gsb-en-0004",
+    "language": "en",
+    "title": "Goat, Dog, and Cow",
+    "level": 2,
+    "words": 148,
     "url": "https://global-asp.github.io/storybooks-english/stories/en/0004/",
     "audio": "https://globalstorybooks.net/media/audio/en/0004/en-0004_goat.mp3",
     "credit": {
       "writer": "Fabian Wakholi",
       "illustrator": "Marleen Visser, Ingrid Schechter",
-      "reader": "Darcy Bradley"
+      "reader": "Darshan Soni"
     },
     "license": {
-      "name": "Creative Commons Attribution 3.0",
+      "name": "Creative Commons Attribution 3.0 International License",
       "url": "https://creativecommons.org/licenses/by/3.0/"
     },
     "pages": [
-      "Goat, Dog and Cow were very good friends. One day they took a journey in a taxi.",
+      "Goat, Dog, and Cow were great friends. One day they went on a journey in a taxi.",
       "When they reached the end of their journey, the driver asked them to pay their fares. Cow paid her fare.",
-      "Dog paid a little extra, because he did not have the exact fare.",
+      "Dog paid a bit extra, because he did not have the correct money.",
       "The driver was about to give Dog his change when Goat ran away without paying anything.",
-      "The driver was very upset. He drove away without giving Dog his change.",
-      "That is why, even today, Dog runs after a car to peep inside and see if he can find the driver who owes him his change.",
+      "The driver was very annoyed. He drove away without giving Dog his change.",
+      "That is why, even today, Dog runs towards a car to peep inside and find the driver who owes him his change.",
       "Goat runs away from the sound of a car. She is afraid she will be arrested for not paying her fare.",
-      "And Cow is not bothered when a car comes. Cow takes her time to cross the road because she knows she paid her fare in full."
+      "And Cow is not bothered when a car is coming. Cow takes her time crossing the road because she knows she paid her fare in full."
     ],
     "images": [
       "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0004/02.jpg",
@@ -352,16 +682,16 @@
     "language": "en",
     "title": "Decision",
     "level": 2,
-    "words": 195,
+    "words": 185,
     "url": "https://global-asp.github.io/storybooks-english/stories/en/0027/",
     "audio": "https://globalstorybooks.net/media/audio/en/0027/en-0027_decision.mp3",
     "credit": {
       "writer": "Ursula Nafula",
       "illustrator": "Vusi Malindi",
-      "reader": "Darcy Bradley"
+      "reader": "Darshan Soni"
     },
     "license": {
-      "name": "Creative Commons Attribution 4.0",
+      "name": "Creative Commons Attribution 4.0 International License",
       "url": "https://creativecommons.org/licenses/by/4.0/"
     },
     "pages": [
@@ -370,17 +700,17 @@
       "We locked our houses early because of thieves.",
       "Many children dropped out of school.",
       "Young girls worked as maids in other villages.",
-      "Young boys roamed around the village while others worked on people's farms.",
+      "Young boys roamed around the village while others worked on people’s farms.",
       "When the wind blew, waste paper hung on trees and fences.",
       "People were cut by broken glass that was thrown carelessly.",
       "Then one day, the tap dried up and our containers were empty.",
       "My father walked from house to house asking people to attend a village meeting.",
       "People gathered under a big tree and listened.",
-      "My father stood up and said, \"We need to work together to solve our problems.\"",
-      "Eight-year-old Juma sitting on a tree trunk shouted, \"I can help with cleaning up.\"",
-      "One woman said, \"The women can join me to grow food.\"",
-      "Another man stood up and said, \"The men will dig a well.\"",
-      "We all shouted with one voice, \"We must change our lives.\" From that day we worked together to solve our problems."
+      "My father stood up and said, “We need to work together to solve our problems.”",
+      "Eight-year-old Juma, sitting on a tree trunk shouted, “I can help with cleaning up.”",
+      "One woman said, “The women can join me to grow food.”",
+      "Another man stood up and said, “The men will dig a well.”",
+      "We all shouted with one voice, “We must change our lives.” From that day we worked together to solve our problems."
     ],
     "images": [
       "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/02.jpg",
@@ -530,26 +860,26 @@
   {
     "id": "gsb-en-0006",
     "language": "en",
-    "title": "Anansi and wisdom",
+    "title": "Anansi and Wisdom",
     "level": 3,
-    "words": 280,
+    "words": 285,
     "url": "https://global-asp.github.io/storybooks-english/stories/en/0006/",
     "audio": "https://globalstorybooks.net/media/audio/en/0006/en-0006_anansi.mp3",
     "credit": {
       "writer": "Ghanaian folktale",
       "illustrator": "Wiehan de Jager",
-      "reader": "Darcy Bradley"
+      "reader": "Darshan Soni"
     },
     "license": {
-      "name": "Creative Commons Attribution 3.0",
+      "name": "Creative Commons Attribution 3.0 International License",
       "url": "https://creativecommons.org/licenses/by/3.0/"
     },
     "pages": [
-      "Long, long ago people didn't know anything. They didn't know how to plant crops, or how to weave cloth, or how to make iron tools. The god Nyame up in the sky had all the wisdom of the world. He kept it safe in a clay pot.",
-      "One day, Nyame decided that he would give the pot of wisdom to Anansi. Every time Anansi looked into the clay pot, he learned something new. It was so exciting!",
-      "Greedy Anansi thought, \"I will keep the pot safe at the top of a tall tree. Then I can have it all for myself!\" He spun a long thread, wound it round the clay pot, and tied it to his stomach. He began to climb the tree. But it was hard to climb the tree with the pot bumping against his knees all the time.",
-      "All the time Anansi's young son had been standing at the bottom of the tree watching. \"Wouldn't it be easier to climb if you tied the pot to your back instead?\" he called out. Anansi tried tying the clay pot full of wisdom to his back, and it really was much easier.",
-      "In no time he reached the top of the tree. But then he stopped and thought, \"I am supposed to be the wise one with all the wisdom, and here my son was wiser than me!\" Anansi was so angry about this that he threw the clay pot down out of the tree.",
+      "Long long ago people didn’t know anything. They didn’t know how to plant crops, or how to weave cloth, or how to make iron tools. The god Nyame up in the sky had all the wisdom of the world. He kept it safe in a clay pot.",
+      "One day, Nyame decided that he would give the pot of wisdom to Anansi. Every time Anansi looked in the clay pot, he learned something new. It was so exciting!",
+      "Greedy Anansi thought, “I’ll keep the pot safe at the top of a tall tree. Then I can have it all to myself!” He spun a long thread, wound it round the clay pot, and tied it to his stomach. He began to climb the tree. But it was hard climbing the tree with the pot bumping him in the knees all the time.",
+      "All the time Anansi’s young son had been standing at the bottom of the tree watching. He said, “Wouldn’t it be easier to climb if you tied the pot to your back instead?” Anansi tried tying the clay pot full of wisdom to his back, and it really was a lot easier.",
+      "In no time he reached the top of the tree. But then he stopped and thought, “I’m supposed to be the one with all the wisdom, and here my son was cleverer than me!” Anansi was so angry about this that he threw the clay pot down out of the tree.",
       "It smashed into pieces on the ground. The wisdom was free for everyone to share. And that is how people learned to farm, to weave cloth, to make iron tools, and all the other things that people know how to do."
     ],
     "images": [
@@ -747,6 +1077,441 @@
     ]
   },
   {
+    "id": "gsb-en-0324",
+    "language": "en",
+    "title": "The day I left home for the city",
+    "level": 3,
+    "words": 442,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0324/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0324/en-0324_city.mp3",
+    "credit": {
+      "writer": "Lesley Koyi, Ursula Nafula",
+      "illustrator": "Brian Wambi",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 4.0 International License",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "pages": [
+      "The small bus stop in my village was busy with people and overloaded buses. On the ground were even more things to load. Touts were shouting the names where their buses were going.",
+      "“City! City! Going west!” I heard a tout shouting. That was the bus I needed to catch.",
+      "The city bus was almost full, but more people were still pushing to get on. Some packed their luggage under the bus. Others put theirs on the racks inside.",
+      "New passengers clutched their tickets as they looked for somewhere to sit in the crowded bus. Women with young children made them comfortable for the long journey.",
+      "I squeezed in next to a window. The person sitting next to me was holding tightly to a green plastic bag. He wore old sandals, a worn out coat, and he looked nervous.",
+      "I looked outside the bus and realised that I was leaving my village, the place where I had grown up. I was going to the big city.",
+      "The loading was completed and all passengers were seated. Hawkers still pushed their way into the bus to sell their goods to the passengers. Everyone was shouting the names of what was available for sale. The words sounded funny to me.",
+      "A few passengers bought drinks, others bought small snacks and began to chew. Those who did not have any money, like me, just watched.",
+      "These activities were interrupted by the hooting of the bus, a sign that we were ready to leave. The tout yelled at the hawkers to get out.",
+      "Hawkers pushed each other to make their way out of the bus. Some gave back change to the travellers. Others made last minute attempts to sell more items.",
+      "As the bus left the bus stop, I stared out of the window. I wondered if I would ever go back to my village again.",
+      "As the journey progressed, the inside of the bus got very hot. I closed my eyes hoping to sleep.",
+      "But my mind drifted back home. Will my mother be safe? Will my rabbits fetch any money? Will my brother remember to water my tree seedlings?",
+      "On the way, I memorised the name of the place where my uncle lived in the big city. I was still mumbling it when I fell asleep.",
+      "Nine hours later, I woke up with loud banging and calling for passengers going back to my village. I grabbed my small bag and jumped out of the bus.",
+      "The return bus was filling up quickly. Soon it would make its way back east. The most important thing for me now, was to start looking for my uncle’s house."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/13.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/14.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/15.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/16.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0324/17.jpg"
+    ],
+    "turkish": [
+      "Köyümdeki küçük otobüs durağı insanlar ve tıklım tıklım dolu otobüslerle dolmuştu. Yerlerde hâlâ yüklenecek bir sürü şey vardı. Muavinler bağırarak otobüslerin gidecekleri yerleri söylüyorlardı.",
+      "“Şehre gidiyor! Şehre gidiyor! Batıya gidiyooor!” diye bağırdığını duydum bir muavinin. Binmek istediğim otobüs işte bu otobüstü.",
+      "Şehir otobüsü dolu olduğu halde insanlar hala itiş kakış binmeye çalışıyordu. Bazıları bavullarını otobüsün altına yerleştiriyordu. Bir kısmı da eşyalarını otobüsün içindeki raflara koyuyordu.",
+      "Yeni yolcular biletlerini kestirip kalabalık otobüste oturacak yer arıyordu. Çocuklu anneler onların uzun yolculuk için rahatça oturmasına çalışıyordu.",
+      "Ben pencere kenarında bir yere sıkıştım. Yanımda oturan kişi elindeki yeşil naylon torbayı sımsıkı tutuyordu. Ayaklarında sandalet sırtında eski bir palto vardı ve oldukça sinirli görünüyordu.",
+      "Camdan dışarı baktım ve doğup büyüdüğüm köyümden ayrıldığımın iyice farkına vardım. Büyük şehre gidiyordum.",
+      "Otobüsün yüklenme işi bitmiş bütün yolcular yerlerine oturmuştu. Bazı satıcılar mallarını satmak için otobüse girmişlerdi. Her biri ne satıyorsa bağıra bağıra pazarlıyordu. Ettikleri laflar çok komikti.",
+      "Bir kaç yolcu içecek aldı, diğerleri ufak çerezler alıp yemeğe başladı. Benim gibi parası olmayanlar ise sadece onları izliyordu.",
+      "Bu işlemler otobüs kalkma işareti olarak korna çalınca kesildi. Muavinler bağırarak satıcıların otobüsten inmesini söylediler.",
+      "Satıcılar birbirini ite kaka otobüsten çıktılar. Bir kısmı yolculara para üstü iade etti. Bazıları da son dakikada bir şeyler daha satmaya çalıştılar.",
+      "Otobüs duraktan ayrılığında, ben otobüsten dışarı baktım. Bir daha köyümü görebilecek miyim diye düşündüm.",
+      "Yolculuk ilerledikçe otobüsün içi iyice sıcaklaştı. Ben de gözlerimi kapatıp uyumaya çalıştım.",
+      "Ama aklım hep köyümde idi. Annem güvende olacak mıydı? Tavşanlarım yeterli para getirecek miydi? Kardeşim ektiğim ağaç tohumlarımı sulamayı hatırlayacak mıydı?",
+      "Yol sırasında hep amcamın büyük şehirde oturduğu yerin adını aklımda tutmaya çalıştım. Uykuya dalarken bile onu mırıldanıyordum.",
+      "Dokuz saat sonra, bir vurma gürültüsüyle uyandım. Otobüse vurarak köyüme gitmek isteyen yolcuları çağırıyorlardı. Hemen küçük torbamı alıp otobüsten indim.",
+      "Dönüş yolu için otobüs hızla doluyordu. Az sonra doğuya doğru hareket edecekti. Şimdi benim için en önemli şey amcamın oturduğu yeri aramaya başlamaktı."
+    ]
+  },
+  {
+    "id": "gsb-en-0315",
+    "language": "en",
+    "title": "Sakima’s song",
+    "level": 3,
+    "words": 457,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0315/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0315/en-0315_sakima.mp3",
+    "credit": {
+      "writer": "Ursula Nafula",
+      "illustrator": "Peris Wachuka",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 4.0 International License",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "pages": [
+      "Sakima lived with his parents and his four year old sister. They lived on a rich man’s land. Their grass-thatched hut was at the end of a row of trees.",
+      "When Sakima was three years old, he fell sick and lost his sight. Sakima was a talented boy.",
+      "Sakima did many things that other six year old boys did not do. For example, he could sit with older members of the village and discuss important matters.",
+      "The parents of Sakima worked at the rich man’s house. They left home early in the morning and returned late in the evening. Sakima was left with his little sister.",
+      "Sakima loved to sing songs. One day his mother asked him, “Where do you learn these songs from, Sakima?”",
+      "Sakima answered, “They just come, mother. I hear them in my head and then I sing.”",
+      "Sakima liked to sing for his little sister, especially, if she felt hungry. His sister would listen to him singing his favourite song. She would sway to the soothing tune.",
+      "“Can you sing it again and again, Sakima,” his sister would beg him. Sakima would accept and sing it over and over again.",
+      "One evening when his parents returned home, they were very quiet. Sakima knew that there was something wrong.",
+      "“What is wrong, mother, father?” Sakima asked. Sakima learned that the rich man’s son was missing. The man was very sad and lonely.",
+      "“I can sing for him. He might be happy again,” Sakima told his parents. But his parents dismissed him. “He is very rich. You are only a blind boy. Do you think your song will help him?”",
+      "However, Sakima did not give up. His little sister supported him. She said, “Sakima’s songs soothe me when I am hungry. They will soothe the rich man too.”",
+      "The following day, Sakima asked his little sister to lead him to the rich man’s house.",
+      "He stood below one big window and began to sing his favourite song. Slowly, the head of the rich man began to show through the big window.",
+      "The workers stopped what they were doing. They listened to Sakima’s beautiful song. But one man said, “Nobody has been able to console the boss. Does this blind boy think he will console him?”",
+      "Sakima finished singing his song and turned to leave. But the rich man rushed out and said, “Please sing again.”",
+      "At that very moment, two men came carrying someone on a stretcher. They had found the rich man’s son beaten up and left on the side of the road.",
+      "The rich man was so happy to see his son again. He rewarded Sakima for consoling him. He took his son and Sakima to hospital so Sakima could regain his sight."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/13.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/14.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/15.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/16.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/17.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/18.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0315/19.jpg"
+    ],
+    "turkish": [
+      "Sakima annesi babası ve dört yaşındaki kız kardeşiyle yaşıyordu.",
+      "Sakima üç yaşındayken bir hastalık geçirmişti ve kör olmuştu. Sakima çok yetenekliydi.",
+      "Sakima diğer altı yaşındaki çocukların yapamadığı pek çok şeyi yapabiliyordu. Örneğin köyün büyükleriyle oturup önemli konular tartışabiliyordu.",
+      "Sakima’nın annesiyle babası zengin bir adamın evinde çalışıyorlardı. Evden erken çıkıyor ve eve geç dönüyorlardı. Sakima evde küçük kardeşiyle kalıyordu.",
+      "Sakima şarkı söylemeyi çok seviyordu. Bir gün annesi sordu, “Sakima sen nereden öğreniyorsun bu şarkıları?”",
+      "Sakima şöyle cevap verdi, “Öylece aklıma geliyor anne, şarkıları kafamın içinde duyuyorum, sonra da söylüyorum.”",
+      "Sakima şarkıları özellikle de küçük kız kardeşine söylemeyi seviyordu. Küçük kız onun en çok sevdiği şarkıyı dinliyordu. Şarkıyla beraber sağa sola sallanıyordu.",
+      "“Gene söyle, gene söyle Sakima,” diye yalvarıyordu küçük kız. Sakima da onu kırmıyor şarkısını tekrar tekrar söylüyordu.",
+      "Bir akşamüstü, büyükler eve döndüğünde hiç konuşmuyorlardı. Sakima bir şeylerin ters gittiğini anlamıştı.",
+      "“Anne, baba ne oldu?” diye sordu Sakima. Meğerse zengin adamın oğlu kaybolmuştu. Adam da yapayalnız kalmıştı ve çok üzgündü.",
+      "Sakima anne ve babasına “Ona şarkı söyleyebilirim ve mutlu edebilirim,” dedi. Ama onu dinlemedi büyükler. “O çok zengin bir adam. Sen ise görmeyen bir çocuksun. Onu nasıl mutlu edebilirsin?” dediler.",
+      "Sakima gene de vazgeçmedi. Küçük kardeşi de ona destek verdi. Dedi ki “Sakima nın şarkıları acıktığım zamanlar beni yatıştırıyor. Zengin adamı da rahatlatabilir.”",
+      "Ertesi gün, Sakima kardeşinden onu zengin adamın evine götürmesini istedi.",
+      "Büyük bir pencerenin altında durup en sevdiği şarkıyı söylemeye başladı. Az sonra pencerede zengin adamın kafası görünmeye başladı.",
+      "İşçiler işlerini bıraktılar. Sakima’nın güzel şarkısını dinlemeye başladılar. Ancak bir adam şöyle dedi, “Bizim patronu hiç kimse teselli edemedi, bu kör çocuk nasıl onu teselli edeceğini düşünebiliyor?”",
+      "Sakima şarkısını bitirdi ve tam geri dönmek üzereydi ki adam ona seslendi, “Lütfen şarkını bir kere daha söyle.”",
+      "Tam o esnada iki adam sedye ile birini taşıyarak oraya getirdiler. Zengin adamın dövülüp yol kenarında bırakılan oğlunu bulmuşlardı.",
+      "Zengin adam oğluna kavuştuğu için çok mutlu olmuştu. Sakima’yı onu teselli ettiği için ödüllendirildi. Oğlunu ve Sakima’yı hastaneye götürdü. Böylece Sakima da artık tedavi olabilecek ve gözleri yeniden görebilecekti."
+    ]
+  },
+  {
+    "id": "gsb-en-0201",
+    "language": "en",
+    "title": "Donkey Child",
+    "level": 3,
+    "words": 488,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0201/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0201/en-0201_donkey.mp3",
+    "credit": {
+      "writer": "Lindiwe Matshikiza",
+      "illustrator": "Meghan Judge",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 4.0 International License",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "pages": [
+      "It was a little girl who first saw the mysterious shape in the distance.",
+      "As the shape moved closer, she saw that it was a heavily pregnant woman.",
+      "Shy but brave, the little girl moved nearer to the woman. “We must keep her with us,” the little girl’s people decided. “We’ll keep her and her child safe.”",
+      "The child was soon on its way. “Push!” “Bring blankets!” “Water!” “Puuuuussssshhh!!!”",
+      "But when they saw the baby, everyone jumped back in shock. “A donkey?!”",
+      "Everyone began to argue. “We said we would keep mother and child safe, and that’s what we’ll do,” said some. “But they will bring us bad luck!” said others.",
+      "And so the woman found herself alone again. She wondered what to do with this awkward child. She wondered what to do with herself.",
+      "But finally she had to accept that he was her child and she was his mother.",
+      "Now, if the child had stayed that same, small size, everything might have been different. But the donkey child grew and grew until he could no longer fit on his mother’s back. And no matter how hard he tried, he could not behave like a human being. His mother was often tired and frustrated. Sometimes she made him do work meant for animals.",
+      "Confusion and anger built up inside Donkey. He couldn’t do this and he couldn’t do that. He couldn’t be like this and he couldn’t be like that. He became so angry that, one day, he kicked his mother to the ground.",
+      "Donkey was filled with shame. He started to run away as far and fast as he could.",
+      "By the time he stopped running, it was night, and Donkey was lost. “Hee haw?” he whispered to the darkness. “Hee Haw?” it echoed back. He was alone. Curling himself into a tight ball, he fell into a deep and troubled sleep.",
+      "Donkey woke up to find a strange old man staring down at him. He looked into the old man’s eyes and started to feel a twinkle of hope.",
+      "Donkey went to stay with the old man, who taught him many different ways to survive. Donkey listened and learned, and so did the old man. They helped each other, and they laughed together.",
+      "One morning, the old man asked Donkey to carry him to the top of a mountain.",
+      "High up amongst the clouds they fell asleep. Donkey dreamed that his mother was sick and calling to him. And when he woke up…",
+      "… the clouds had disappeared along with his friend, the old man.",
+      "Donkey finally knew what to do.",
+      "Donkey found his mother, alone and mourning her lost child. They stared at each other for a long time. And then hugged each other very hard.",
+      "The donkey child and his mother have grown together and found many ways of living side by side. Slowly, all around them, other families have started to settle."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/13.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/14.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/15.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/16.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/17.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/18.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/19.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/20.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0201/21.jpg"
+    ],
+    "turkish": [
+      "Küçük bir kız uzakta ilginç bir karaltı görmüş.",
+      "Karaltıya yaklaştığında onun hamile bir kadın olduğunu anlamış.",
+      "Küçük kız utanarak ama cesaretle kadına biraz daha yaklaşmış. Küçük kızın ailesi “Bu kadın bizimle kalmalı,” diye düşünmüşler. “Onu ve çocuğunu korumamız lazım.”",
+      "Küçük çocuk hemen koşuşturmuş. “Haydi bir gayret ıkın!” “Örtü bulun!” “Su getirin!” “Ikıııın!”",
+      "Ancak bebeği gördüklerinde herkes donup kalmış. “Bir eşek?!”",
+      "Herkes tartışmaya başlamış. “Biz anne ve çocuğunu koruyacağız dedik,” demiş bazıları. “Bunlar bize uğursuzluk getirecek,” demiş diğerleri.",
+      "Ve kadın gene yalnız kalmış. Bu garip bebekle ne yapacağını düşünmüş. Kendi başına ne yapacağını bilemiyormuş.",
+      "Sonunda bu bebeğin kendi çocuğu olduğunu ve onun annesi olduğunu kabullenmiş.",
+      "Eğer eşek bebek hiç büyümeyip aynı boyda kalsa işler daha kolay hallolabilirmiş. Ama eşek annesinin sırtında taşınamayacak kadar büyümüş. Ve ne kadar uğraştıysa da bir insan gibi davranamıyormuş. Annesi çok üzülüyor ve yoruluyormuş. Ona saman zaman bir hayvanın yapabileceği işler veriyormuş.",
+      "Yavaş yavaş eşek de şaşırmaya kızmaya başlamış. Onu yapamazsın bunu yapamazsın. Öyle olamazsın böyle olamazsın. O kadar kızmış ki bir gün annesini çifte atarak yere yuvarlamış.",
+      "Sonra çok utanmış. Oradan olabildiğince uzaklara kaçmış.",
+      "Kaçmayı bıraktığında gece olmuşmuş. Nerede olduğunu bilmiyormuş. Eşek kaybolmuş. “Aaaaa iiiii?” diye fısıldamış karanlığa doğru. Sesi eko yapıp geri gelmiş. “Aaaaa iiiii?” Yapayalnızmış. Olduğu yerde kıvrılıp huzursuzca bir uykuya dalmış.",
+      "Eşek uyandığında yaşlı garip bir adamın ona baktığını görmüş. Adamın gözlerine baktığında içinde bir umut belirmiş.",
+      "Eşek adamla birlikte yaşamaya başlamış. Adam ona hayatta kalması için çeşitli yollar öğretmiş. Eşek iyice dinlemiş ve öğrenmeye başlamış. Adam da dikkatle onu izlemiş, dinlemiş. Beraberce birbirlerine yardım etmişler ve gülüp eğlenmişler.",
+      "Bir sabah yaşlı adam ondan kendisini dağın tepesine çıkartmasını istemiş.",
+      "Yukarıda bulutların arasında beraberce uykuya dalmışlar. Eşek rüyasında annesinin hasta olduğunu ve ona seslendiğini görmüş. Ve hemen uyanmış.",
+      "Bulutlar dağıldığında arkadaşı yaşlı adam da kaybolmuş.",
+      "Eşek nihayet ne yapması gerektiğini biliyormuş.",
+      "Eşek, çocuğunu kaybettiği için yas tutan annesini bulmuş. Uzun bir süre bakışmışlar. Sonra birbirlerine koşarak sıkıca sarılmışlar.",
+      "Eşek ve annesi birbirlerine alışıp birlikte yaşayabilecek bir düzen kurmuşlar. Ve onların civarındaki diğer aileler de yavaş yavaş yerleşmeye yaşamlarını düzenlemeye başlamışlar."
+    ]
+  },
+  {
+    "id": "gsb-en-0291",
+    "language": "en",
+    "title": "What Vusi’s sister said",
+    "level": 4,
+    "words": 503,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0291/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0291/en-0291_vusi.mp3",
+    "credit": {
+      "writer": "Nina Orange",
+      "illustrator": "Wiehan de Jager",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "Early one morning Vusi’s granny called him, “Vusi, please take this egg to your parents. They want to make a large cake for your sister’s wedding.”",
+      "On his way to his parents, Vusi met two boys picking fruit. One boy grabbed the egg from Vusi and shot it at a tree. The egg broke.",
+      "“What have you done?” cried Vusi. “That egg was for a cake. The cake was for my sister’s wedding. What will my sister say if there is no wedding cake?”",
+      "The boys were sorry for teasing Vusi. “We can’t help with the cake, but here is a walking stick for your sister,” said one. Vusi continued on his journey.",
+      "Along the way he met two men building a house. “Can we use that strong stick?” asked one. But the stick was not strong enough for building, and it broke.",
+      "“What have you done?” cried Vusi. “That stick was a gift for my sister. The fruit pickers gave me the stick because they broke the egg for the cake. The cake was for my sister’s wedding. Now there is no egg, no cake, and no gift. What will my sister say?”",
+      "The builders were sorry for breaking the stick. “We can’t help with the cake, but here is some thatch for your sister,” said one. And so Vusi continued on his journey.",
+      "Along the way, Vusi met a farmer and a cow. “What delicious thatch, can I have a nibble?” asked the cow. But the thatch was so tasty that the cow ate it all!",
+      "“What have you done?” cried Vusi. “That thatch was a gift for my sister. The builders gave me the thatch because they broke the stick from the fruit pickers. The fruit pickers gave me the stick because they broke the egg for my sister’s cake. The cake was for my sister’s wedding. Now there is no egg, no cake, and no gift. What will my sister say?”",
+      "The cow was sorry she was greedy. The farmer agreed that the cow could go with Vusi as a gift for his sister. And so Vusi carried on.",
+      "But the cow ran back to the farmer at supper time. And Vusi got lost on his journey. He arrived very late for his sister’s wedding. The guests were already eating.",
+      "“What shall I do?” cried Vusi. “The cow that ran away was a gift, in return for the thatch the builders gave me. The builders gave me the thatch because they broke the stick from the fruit pickers. The fruit pickers gave me the stick because they broke the egg for the cake. The cake was for the wedding. Now there is no egg, no cake, and no gift.”",
+      "Vusi’s sister thought for a while, then she said, “Vusi my brother, I don’t really care about gifts. I don’t even care about the cake! We are all here together, I am happy. Now put on your smart clothes and let’s celebrate this day!” And so that’s what Vusi did."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/13.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0291/14.jpg"
+    ],
+    "turkish": [
+      "Bir sabah erkenden Vusi’nin büyük annesi ona seslenmiş, “Vusi, lütfen bu yumurtaları annene ve babana götür. Ablanın düğünü için büyük bir pasta yapacaklar,” demiş.",
+      "Vusi ailesinin yanına giderken, meyve toplayan iki çocuk görmüş. Çocuklardan biri Vusi’nin elindeki yumurtalardan birini alıp ağaca fırlatmış. Yumurta kırılmış.",
+      "“Ne yaptınız?” diye ağlamaya başlamış Vusi. “O yumurta pasta içindi. Ablamın düğün pastası. Pastası olmazsa ne diyecek şimdi?”",
+      "Çocuklar Vusi’ye yaptıkları kötü şaka için çok üzülmüşler. “Pasta için yardımcı olamayız ama bak, sana bu bastonu verelim, ablana onu götür,” demiş içlerinden biri. Vusi yoluna devam etmiş.",
+      "Yolda ev yapan iki adama rastlamış. “Bastonunu bize verir misin? Evi yaparken kullanacağız,” demiş bir tanesi. Fakat baston güçlü değilmiş, kırılıvermiş.",
+      "“Ne yaptınız?” diye ağlamaya başlamış Vusi. “O baston ablamın düğün hediyesiydi. Meyve toplayan çocuklar vermişti bana çünkü, pasta için gereken yumurtayı kırmışlardı. Pasta ablamın düğünü için lazımdı. Şimdi yumurta yok, baston yok. Ablam ne diyecek?”",
+      "Ev yapanlar bastonu kırdıklarına çok üzülmüşler. “Pasta için yardımcı olamayız ama bak sana bu saman demetini verelim, ablana onu götür,” demiş bir tanesi. Ve Vusi yoluna devam etmiş.",
+      "Yolda bir çiftçi ve bir ineğe rastlamış. “Ne güzel saman, bir parça alabilir miyim?” diye sormuş inek. Ama saman öyle lezzetliymiş ki inek bütün demeti yemiş bitirmiş.",
+      "“Ne yaptın?” diye ağlamaya başlamış Vusi. “O saman ablamın düğün hediyesiydi. Bana ev yapan adamlar vermişti, çünkü meyve toplayan çocukların verdiği bastonu kırmışlardı. Meyve toplayan çocuklar ablamın pastası için gereken yumurtayı kırmışlardı. O pasta ablamın düğün pastası olacaktı. Şimdi yumurta yok, pasta yok, hediye yok. Ablam ne diyecek?”",
+      "İnek açgözlülük ettiği için çok üzülmüş. Çiftçi de Vusi’nin ablasına ineği hediye olarak götürmesini kabul etmiş. Ve Vusi yoluna devam etmiş.",
+      "Ancak inek yemek zamanı geldiğinde çiftçiye geri dönmüş. Ve Vusi de yolunu şaşırıp kaybolmuş. Ablasının düğününe çok geç ulaşabilmiş. Gittiğinde konuklar çoktan yemek yemekteymişler.",
+      "“Ben ne yapayım şimdi?” diye ağlamaya başlamış Vusi. “İnek çiftçiye geri döndü, o hediye olacaktı. Çiftçi bana saman karşılığında vermişti. Ev yapanlar da bana samanı kırdıkları baston karşılığında vermişlerdi. Bastonu da meyve toplayanlar vermişti çünkü yumurtayı kırmışlardı. Şimdi yumurta yok, pasta yok, hediye yok.”",
+      "Vusi’nin ablası biraz düşündükten sonra şöyle demiş, “Vusi, sevgili kardeşim, hediye benim için önemli değil. Düğün pastası da olmazsa sorun değil. Burada hep beraberiz ve ben çok mutluyum. Hadi şimdi git güzel giysilerini giy bu günü hep beraber kutlayalım!” Ve böylece Vusi de ablasının dediğini yapmış."
+    ]
+  },
+  {
+    "id": "gsb-en-0294",
+    "language": "en",
+    "title": "Grandma’s bananas",
+    "level": 4,
+    "words": 528,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0294/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0294/en-0294_grandma.mp3",
+    "credit": {
+      "writer": "Ursula Nafula",
+      "illustrator": "Catherine Groenewald",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "Grandma’s garden was wonderful, full of sorghum, millet, and cassava. But best of all were the bananas. Although Grandma had many grandchildren, I secretly knew that I was her favourite. She invited me often to her house. She also told me little secrets. But there was one secret she did not share with me: where she ripened bananas.",
+      "One day I saw a big straw basket placed in the sun outside Grandma’s house. When I asked what it was for, the only answer I got was, “It’s my magic basket.” Next to the basket, there were several banana leaves that Grandma turned from time to time. I was curious. “What are the leaves for, Grandma?” I asked. The only answer I got was, “They are my magic leaves.”",
+      "It was so interesting watching Grandma, the bananas, the banana leaves and the big straw basket. But Grandma sent me off to my mother on an errand. “Grandma, please, let me watch as you prepare…” “Don’t be stubborn, child, do as you are told,” she insisted. I took off running.",
+      "When I returned, Grandma was sitting outside but with neither the basket nor the bananas. “Grandma, where is the basket, where are all the bananas, and where…” But the only answer I got was, “They are in my magic place.” It was so disappointing!",
+      "Two days later, Grandma sent me to fetch her walking stick from her bedroom. As soon as I opened the door, I was welcomed by the strong smell of ripening bananas. In the inner room was grandma’s big magic straw basket. It was well hidden by an old blanket. I lifted it and sniffed that glorious smell.",
+      "Grandma’s voice startled me when she called, “What are you doing? Hurry up and bring me the stick.” I hurried out with her walking stick. “What are you smiling about?” Grandma asked. Her question made me realise that I was still smiling at the discovery of her magic place.",
+      "The following day when grandma came to visit my mother, I rushed to her house to check the bananas once more. There was a bunch of very ripe ones. I picked one and hid it in my dress. After covering the basket again, I went behind the house and quickly ate it. It was the sweetest banana I had ever tasted.",
+      "The following day, when grandma was in the garden picking vegetables, I sneaked in and peered at the bananas. Nearly all were ripe. I couldn’t help taking a bunch of four. As I tiptoed towards the door, I heard grandma coughing outside. I just managed to hide the bananas under my dress and walked past her.",
+      "The following day was market day. Grandma woke up early. She always took ripe bananas and cassava to sell at the market. I did not hurry to visit her that day. But I could not avoid her for long.",
+      "Later that evening I was called by my mother and father, and Grandma. I knew why. That night as I lay down to sleep, I knew I could never steal again, not from grandma, not from my parents, and certainly not from anyone else."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0294/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0294/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0294/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0294/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0294/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0294/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0294/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0294/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0294/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0294/11.jpg"
+    ],
+    "turkish": [
+      "Büyükannemin bahçesinde bütün güzel meyvelerden vardı. Ama en iyileri muzlardı. Büyükannenin bir çok torunu olduğu halde beni özellikle sevdiğini gizliden gizliye biliyordum. Beni sık sık evine davet ederdi. Hatta benimle küçük sırlarını da paylaşırdı. Benimle paylaşmadığı bir sırrı vardı : muzları nerede olgunlaştırdığı.",
+      "Bir gün Büyükannemin evinin dışında samandan yapılmış büyük bir sepet gördüm. Ne olduğunu sorduğumda sadece “Benim sihirli sepetim,” dedi. Sepetin yanında büyükannemin zaman zaman ters yüz ettiği muz yaprakları vardı. Merak etmiştim. “Bu yapraklar ne işe yarıyor büyükanne?” Tek aldığım cevap şuydu, “Onlar benim sihirli yapraklarım.”",
+      "Büyükannemi, muzları, muz yapraklarını, ve büyük saman sepetini izlemek çok ilginçti. Ama beni bir iki iş için anneme yolladı. “Büyükanne lütfen kalıp senin hazırlıklarını izleyeyim…” “İnadı bırak çocuğum, sana ne diyorsam onu yap,” diye ısrar etti. Bende hemen eve koştum.",
+      "Geri döndüğümde büyükannem dışarıda oturuyordu ama görünürde ne sepet ne de muzlar vardı. “Büyükanne, sepet nerede, muzlar nerede....” Ama aldığım tek cevap şuydu, “Benim sihirli yerimdeler.” Çok can sıkıcı bir durumdu.",
+      "İki gün sonra, büyükannem beni yatak odasından bastonunu getirmeye gönderdi. Odanın kapısını açar açmaz olgunlaşmakta olan muzların keskin kokusunu duydum. İçerdeki odada büyükannenin büyük saman sepeti vardı. Eski bir battaniye ile örtülmüştü. Örtüyü kaldırıp o nefis kokuyu içime çektim.",
+      "Büyükannenin sesiyle irkildim. “Haydi, nerede kaldın? Çabuk bastonumu getir bana.” Hemen bastonunu ona yetiştirdim. “Neden gülümsüyorsun sen?” diye sordu büyükannem. O anda fark ettim ki onun sihirli yerinin sırrını keşfettiğim için hâlâ gülümsüyordum.",
+      "Ertesi gün büyükannem annemi ziyarete geldiğinde hemen onun evine koşup muzlara bir kez daha baktım. Bir sürüsü olgunlaşmıştı. Birini alıp elbisemin içine sakladım. Sepeti tekrar örttükten sonra evin arkasına geçip onu çabucak yedim. Şimdiye kadar yediğim en lezzetli muzdu.",
+      "Sonraki gün, büyükannem bahçede sebze toplarken, gene gizlice muzlara bakmaya gittim. Aşağı yukarı hepsi olgunlaşmıştı. Dayanamayıp dört tanesini aldım. Yavaşça kapıya yaklaştığımda, büyükannemin dışarıda öksürdüğünü duydum. Hemen muzları elbisemde saklayıp yanından yürüyüp geçtim.",
+      "Ertesi gün semt pazarı günüydü. Büyükannem hep erkenden uyanıp olgunlaşan muzları ve diğer meyveleri toplar pazara satmaya götürürdü. O gün onu ziyaret etmek için çok acele etmedim. Ama yakında nasılsa görecektim.",
+      "O akşam annem babam ve büyükannem toplanıp beni yanlarına çağırdılar. Ne diyeceklerini biliyordum. O gece yatağıma yattığımda bir daha hiç bir şey çalamayacağımı da biliyordum, ne büyükannemden, ne annemden, ne babamdan, ve tabii ki ne de herhangi bir kimseden."
+    ]
+  },
+  {
+    "id": "gsb-en-0243",
+    "language": "en",
+    "title": "Holidays with grandmother",
+    "level": 4,
+    "words": 564,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0243/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0243/en-0243_holidays.mp3",
+    "credit": {
+      "writer": "Violet Otieno",
+      "illustrator": "Catherine Groenewald",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 4.0 International License",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "pages": [
+      "Odongo and Apiyo lived in the city with their father. They looked forward to the holidays. Not just because school was closed, but because they went to visit their grandmother. She lived in a fishing village near a large lake.",
+      "Odongo and Apiyo were excited because it was time to visit their grandmother again. The night before, they packed their bags and got ready for the long journey to her village. They could not sleep and talked the whole night about the holiday.",
+      "Early the next morning, they left for the village in their father’s car. They drove past mountains, wild animals and tea plantations. They counted cars and sang songs.",
+      "After a while, the children were tired and fell asleep.",
+      "Father woke up Odongo and Apiyo as they arrived in the village. They found Nyar-Kanyada, their grandmother, resting on a mat under a tree. Nyar-Kanyada in Luo, means ‘daughter of the people of Kanyada’. She was a strong and beautiful woman.",
+      "Nyar-Kanyada welcomed them into the house and danced around the room singing with joy. Her grandchildren were excited to give her the presents they brought from the city. “First open my gift,” said Odongo. “No, my gift first!” said Apiyo.",
+      "After she opened the presents, Nyar-Kanyada blessed her grandchildren in a traditional way.",
+      "Then Odongo and Apiyo went outside. They chased butterflies and birds.",
+      "They climbed trees and splashed in the water of the lake.",
+      "When it was dark they returned to the house for dinner. Before they could finish eating, they were falling asleep!",
+      "The next day, the children’s father drove back to the city leaving them with Nyar-Kanyada.",
+      "Odongo and Apiyo helped their grandmother with household chores. They fetched water and firewood. They collected eggs from the chickens and picked greens from the garden.",
+      "Nyar-Kanyada taught her grandchildren to make soft ugali to eat with stew. She showed them how to make coconut rice to eat with roast fish.",
+      "One morning, Odongo took his grandmother’s cows to graze. They ran onto a neighbour’s farm. The farmer was angry with Odongo. He threatened to keep the cows for eating his crops. After that day, the boy made sure that the cows did not get into trouble again.",
+      "On another day, the children went to the marketplace with Nyar-Kanyada. She had a stall selling vegetables, sugar and soap. Apiyo liked to tell customers the price of items. Odongo would pack the items that customers bought.",
+      "At the end of the day they drank chai tea together. They helped grandmother to count the money she earned.",
+      "But too soon the holidays were over and the children had to go back to the city. Nyar-Kanyada gave Odongo a cap and Apiyo a sweater. She packed food for their journey.",
+      "When their father came to fetch them, they did not want to leave. The children begged Nyar-Kanyada to go with them to the city. She smiled and said, “I am too old for the city. I will be waiting for you to come to my village again.”",
+      "Odongo and Apiyo both hugged her tightly and said goodbye.",
+      "When Odongo and Apiyo went back to school they told their friends about life in the village. Some children felt that life in the city was good. Others felt that the village was better. But most of all, everyone agreed that Odongo and Apiyo had a wonderful grandmother!"
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/13.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/14.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/15.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/16.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/17.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/18.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/19.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/20.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0243/21.jpg"
+    ],
+    "turkish": [
+      "Odongo ve Apiyo babalarıyla birlikte şehirde yaşıyorlardı. Onlar,tatili dört gözle bekliyorlardı. Sadece okul kapalı olacağı için değil, büyükannelerini ziyarete gidecekleri için de heyecanlılardı. Büyükanneleri, büyük bir gölün yanındaki bir balıkçı köyünde yaşıyordu.",
+      "Odongo ve Apiyo heyecanlılardı, çünkü yine büyükannelerini ziyaret etme zamanı gelmişti. Bir gece öncesinden tüm eşyalarını paketlediler ve büyükannelerinin köyüne doğru uzun bir yolculuk için hazırlandılar. Tüm gece boyunca da uyuyamayıp, tatil hakkında konuştular.",
+      "Ertesi sabah erkenden, köye gitmek için babalarının arabasıyla ayrıldılar. Dağlardan, vahşi hayvanların ve çay ekim alanlarının yanından geçtiler. Geçen arabaları saydılar ve şarkı söylediler.",
+      "Bir süre sonra çocuklar yoruldular, ve uyuyakaldılar.",
+      "Babaları, Odongo ve Apiyo’yu köye vardıklarında uyandırdı. Büyükanneleri Nyar- Kanyada’yı, ağacın altında bir kilimin üzerinde dinlenirken buldular. Luo’da, Nyar-Kanyada, ‘Kanyada insanlarının kızı’ anlamına gelmektedir. Büyükanneleri güzel ve güçlü bir kadındı.",
+      "Nyar-Kanyada, onları evin içine davet etti, ve neşeyle odanın içinde dönerek dans etti. Torunları, ona şehirden getirdikleri hediyeleri vermek için sabırsızlanıyorlardı. “İlk önce benim hediyemi aç,” dedi Odongo. “Hayır, ilk önce benim hediyem!” dedi Apiyo.",
+      "Hediyelerini açtıktan sonra, Nyar-Kanyada, torunlarına geleneksel bir şekilde teşekkür etti.",
+      "Ardından, Odongo ve Apiyo dışarı çıktılar. Kelebekleri ve kuşları kovaladılar.",
+      "Ağaçlara tırmandılar, ve gölde suyla oynadılar.",
+      "Karanlık olduğunda, akşam yemeği yemek için eve döndüler. Yemeklerini bitiremeden uyuyakaldılar!",
+      "Ertesi gün, babaları, çocukları Nyar-Kanyada ile bırakarak şehre geri döndü.",
+      "Odongo ve Apiyo ev işlerinde büyükannelerine yardım ettiler. Su ve odun taşıdılar. Tavuklardan yumurta, bahçeden yeşillik topladılar.",
+      "Nyar-Kanyada, torunlarına yumuşak Ugali yapmasını ve yahni ile yenmesini öğretti. Onlara, kızarmış balıkla yemek için nasıl hindistan cevizli pilav yapacaklarını gösterdi.",
+      "Bir gün, Odongo, büyükannesinin ineklerini otlatmaya götürdü. İnekler komşu tarlaya girdiler. Çiftçi Odongo’ya kızmıştı. Onu, inekler ekinlerini yediği için onlara el koyacağını söyleyerek tehdit etti. O günden sonra, Odongo ineklerin tekrardan bir belaya bulaşmayacağına söz verdi.",
+      "Başka bir gün, çocuklar Nyar-Kanyada ile birlikte pazara gittiler. Onun, sebze, şeker ve sabun satmak için bir tezgahı vardı. Apiyo, müşterilere eşyaların fiyatlarını söylemekten hoşlanmıştı. Odongo da müşterilerin aldıklarını paketledi.",
+      "Günün sonunda, hep birlikte sütlü çay içtiler. Büyükannelerine kazandığı parayı saymasında yardım ettiler.",
+      "Ama çok kısa bir sürede tatil bitti ve çocuklar şehre geri dönmek zorundaydılar. Nyar Kanyada Odongo’ya bir şapka, Apiyo’ya da bir kazak verdi. Yolculuk için onlara yiyecek paketledi.",
+      "Onları almak için babaları geldiğinde, onlar gitmek istemiyorlardı. Çocuklar Nyar-Kanyada’ya onlarla şehre gelmesi için yalvardılar. O gülümsedi ve dedi ki “Ben şehir hayatı için çok yaşlıyım. Sizin köyüme tekrar gelmenizi bekleyeceğim.”",
+      "Odongo ve Apiyo büyükannelerine sıkıca sarıldılar ve veda ettiler.",
+      "Odongo ve Apiyo okula geri döndüklerinde, arkadaşlarına köy hayatını anlattılar. Bazı çocuklar şehir hayatının iyi olduğunu düşünürlerken, diğerleri de köy hayatının daha iyi olduğunu düşündü. Ama en önemlisi, herkes Odongo ve Apiyo’nun mükemmel bir büyükannesi olduğu konusunda hemfikirdi."
+    ]
+  },
+  {
     "id": "gsb-en-0072",
     "language": "en",
     "title": "The Honeyguide’s revenge",
@@ -801,6 +1566,150 @@
       "Gingile tırmandığında arı sesi duymadığına şaşırmış. “Belki de kovan ağacın içinde çok derin bir yerdedir,” diye düşünmüş kendi kendine. Biraz daha yukarı tırmanıp daha yüksek bir dalda durmuş. Fakat kovan yerine bir Leoparın yüzüyle karşılaşmış. Leopar böyle saygısızca uykusundan uyandırıldığı için son derece kızmış. Gözlerini kısıp ağzını açarak kocaman sivri dişlerini göstermiş.",
       "Leopar onu yakalamadan Gingile olanca hızıyla ağaçtan inmeye başlamış. Fakat telaştan bir dalı atlayınca paldır küldür yere yuvarlanmış ve bileğini incitmiş. Topallaya topallaya oradan hızla uzaklaşmış. Leopar onun peşine düşmek istemeyecek kadar yorgun olduğu için çok şanslıymış. Böylece hem Ngede intikamını hem de Gingile iyi bir ders almış.",
       "Ve o gün bu gündür Ngede’nin hikâyesini dinleyen çocuklar her zaman bu küçük kuşa saygı duymuşlar. Ne zaman bal toplamaya gitseler büyük bir parça bal peteğini ona bırakmayı unutmamışlar."
+    ]
+  },
+  {
+    "id": "gsb-en-0262",
+    "language": "en",
+    "title": "Magozwe",
+    "level": 5,
+    "words": 836,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0262/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0262/en-0262_magozwe.mp3",
+    "credit": {
+      "writer": "Lesley Koyi",
+      "illustrator": "Wiehan de Jager",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 4.0 International License",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "pages": [
+      "In the busy city of Nairobi, far away from a caring life at home, lived a group of homeless boys. They welcomed each day just as it came. On one morning, the boys were packing their mats after sleeping on cold pavements. To chase away the cold they lit a fire with rubbish. Among the group of boys was Magozwe. He was the youngest.",
+      "When Magozwe’s parents died, he was only five years old. He went to live with his uncle. This man did not care about the child. He did not give Magozwe enough food. He made the boy do a lot of hard work.",
+      "If Magozwe complained or questioned, his uncle beat him. When Magozwe asked if he could go to school, his uncle beat him and said, “You’re too stupid to learn anything.” After three years of this treatment Magozwe ran away from his uncle. He started living on the street.",
+      "Street life was difficult and most of the boys struggled daily just to get food. Sometimes they were arrested, sometimes they were beaten. When they were sick, there was no one to help. The group depended on the little money they got from begging, and from selling plastics and other recycling. Life was even more difficult because of fights with rival groups who wanted control of parts of the city.",
+      "One day while Magozwe was looking through the dustbins, he found an old tattered storybook. He cleaned the dirt from it and put it in his sack. Every day after that he would take out the book and look at the pictures. He did not know how to read the words.",
+      "The pictures told the story of a boy who grew up to be a pilot. Magozwe would daydream of being a pilot. Sometimes, he imagined that he was the boy in the story.",
+      "It was cold and Magozwe was standing on the road begging. A man walked up to him. “Hello, I’m Thomas. I work near here, at a place where you can get something to eat,” said the man. He pointed to a yellow house with a blue roof. “I hope you will go there to get some food?” he asked. Magozwe looked at the man, and then at the house. “Maybe,” he said, and walked away.",
+      "Over the months that followed, the homeless boys got used to seeing Thomas around. He liked to talk to people, especially people living on the streets. Thomas listened to the stories of people’s lives. He was serious and patient, never rude or disrespectful. Some of the boys started going to the yellow and blue house to get food at midday.",
+      "Magozwe was sitting on the pavement looking at his picture book when Thomas sat down next to him. “What is the story about?” asked Thomas. “It’s about a boy who becomes a pilot,” replied Magozwe. “What’s the boy’s name?” asked Thomas. “I don’t know, I can’t read,” said Magozwe quietly.",
+      "When they met, Magozwe began to tell his own story to Thomas. It was the story of his uncle and why he ran away. Thomas didn’t talk a lot, and he didn’t tell Magozwe what to do, but he always listened carefully. Sometimes they would talk while they ate at the house with the blue roof.",
+      "Around Magozwe’s tenth birthday, Thomas gave him a new storybook. It was a story about a village boy who grew up to be a famous soccer player. Thomas read that story to Magozwe many times, until one day he said, “I think it’s time you went to school and learned to read. What do you think?” Thomas explained that he knew of a place where children could stay, and go to school.",
+      "Magozwe thought about this new place, and about going to school. What if his uncle was right and he was too stupid to learn anything? What if they beat him at this new place? He was afraid. “Maybe it is better to stay living on the street,” he thought.",
+      "He shared his fears with Thomas. Over time the man reassured the boy that life could be better at the new place.",
+      "And so Magozwe moved into a room in a house with a green roof. He shared the room with two other boys. Altogether there were ten children living at that house. Along with Auntie Cissy and her husband, three dogs, a cat, and an old goat.",
+      "Magozwe started school and it was difficult. He had a lot to catch up. Sometimes he wanted to give up. But he thought about the pilot and the soccer player in the storybooks. Like them, he did not give up.",
+      "Magozwe was sitting in the yard at the house with the green roof, reading a storybook from school. Thomas came up and sat next to him. “What is the story about?” asked Thomas. “It’s about a boy who becomes a teacher,” replied Magozwe. “What’s the boy’s name?” asked Thomas. “His name is Magozwe,” said Magozwe with a smile."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/13.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/14.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/15.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/16.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0262/17.jpg"
+    ],
+    "turkish": [
+      "Kalabalık bir şehir olan Nairobi’de, sıcak bir yuvası olmayan bir grup evsiz çocuk yaşıyormuş. Her gün onlar için yeni ve bilinmeyen bir macera gibiymiş. Bir sabah soğuk kaldırımlarda uyuduktan sonra yere serdikleri hasırları topluyorlarmış. Soğuğa dayanabilmek için çöplerle ateş yakmışlar. Grubun içinde Magozwe diye bir çocuk da varmış. İçlerinde en genci oymuş.",
+      "Magozwe’nin anne ve babası öldüğünde o daha beş yaşında imiş. O da amcasıyla yaşamaya başlamış. Amcası çocukla hiç ilgilenmemiş. Magozwe’ye hiç yeteri kadar yemek vermemiş. Onu hep ağır işlerde çalıştırmış.",
+      "Magozwe soru sorduğunda veya şikayet ettiğinde amcası onu hep dövmüş. Okula gitmek istediğini söyleyen Magozwe’ye, “Sen aptalın tekisin. Hiç bir şey öğrenemezsin,” demiş. Üç yıl boyunca böyle bir eziyetten sonra Magozwe amcasının evinden kaçmış. Sokaklarda yaşamaya başlamış.",
+      "Sokak hayatı çok zormuş. Çocukların çoğu yemek bulmakta zorlanıyormuş. Bazen yakalanıp tutuklanıyor, bazen de dayak yiyorlarmış. Hastalandıklarında yardım edecek kimseleri yokmuş. Gruptaki çocuklar dilenerek yada topladıkları çöpleri satarak biriktirdikleri parayla geçinmek zorundaymış. Şehirde egemenlik kurmak isteyen diğer rakip gruplarla da savaşmaları gerektiğinden hayat daha da zorlaşıyormuş.",
+      "Bir gün Magozwe çöpleri karıştırırken eski bir resimli hikaye kitabi bulmuş. Kitabı temizlemiş ve kesesine koymuş. O günden sonra hep kitabı çıkarıp resimlerine bakmaya başlamış. Okuma bilmediğinden yazıları anlamıyormuş.",
+      "Kitaptaki resimler büyüyüp pilot olan bir çocuğun hikayesini anlatıyormuş. Magozwe de pilot olacağını hayal etmeye başlamış. Bazen o hikayedeki çocuğun kendisi olduğunu hayal ediyormuş.",
+      "Soğuk bir günde Magozwe yol kenarında durup dileniyormuş. Bir adam ona yaklaşıp şöyle demiş, “Merhaba benim adım Thomas. Burada yakında, senin yemek yiyebileceğin bir yerde çalışıyorum.” Eliyle mavi renk çatısı olan sarı bir binayı göstermiş adam. “Umarım oraya gidip yemek yersin ha?” diye sormuş. Magozwe adama ve sonra eve bakmış. “Belki,” demiş ve oradan ayrılmış.",
+      "Ondan sonraki aylarda, evsiz çocuklar Thomas’ı hep görmeye alışmışlar. Oraya gelip sokakta yaşayan insanlarla konuşuyormuş. Onların hikayelerini dinliyormuş. Ciddi ve sabırlı biriymiş, hiç saygısız ve kaba bir davranışı yokmuş. Bazı çocuklar öğlenleri o sarı ve mavi renkli eve gidip yemek almaya başlamışlar.",
+      "Magozwe kaldırıma oturmuş resimli kitabına bakarken Thomas yanına gelmiş ve oturmuş. “Ne kitabı bu?” diye sormuş. “Büyüyüp pilot olan bir çocuğun hikayesi,” diye cevap vermiş Magozwe. “Çocuğun adı ne?” diye sormuş Thomas. Magozwe sessizce “Bilmiyorum, ben okumayı öğrenmedim,” demiş.",
+      "Bir araya geldiklerinde Magozwe Thomas’a kendi hikayesini anlatmış. Amcasının evinden nasıl ve neden kaçtığını. Thomas çok fazla konuşmamış ve Magozwe’ye hiç öğüt de vermemiş, ama her seferinde dikkatle dinlemiş. Bazen beraber yürüyüş yapmışlar ve mavi çatılı evde yemek yemişler.",
+      "Magozwe’nin onuncu yaş gününe yakın bir gün, Thomas ona bir yeni hikaye kitabı vermiş. Fakir bir köy çocuğunun büyüyüp ünlü bir futbolcu olmasının hikayesi imiş. Thomas hikayeyi bir kaç kez okumuş Magozwe’ye ve bir gün ona, “Sanıyorum artık senin okula gidip okuma yazma öğrenmenin zamanı geldi. Ne dersin?” demiş. Thomas çocukların hem ders öğrenip hem kalabileceği bir okuldan bahsetmiş.",
+      "Magozwe bu bahsedilen okulu ve okula gitmeyi düşünmeye başlamış. Ya amcası haklı çıkarsa? Ya gerçekten onun dediği gibi bir şey öğrenemeyecek kadar aptalsa? Ya bu yeni yerde dayak yerse? İçini bir korku sarmış. “Belki de sokakta kalmam daha iyi,” diye düşünmüş.",
+      "Bu düşüncelerini ve korkularını Thomas’la paylaşmış. Zamanla Thomas onu okulda daha iyi bir hayatı olacağına ikna etmiş.",
+      "Böylece Thomas yeşili çatılı yeni bir evdeki bir odaya yerleşmiş. İki de oda arkadaşı varmış. Toplam 10 çocuk kalıyormuş burada. Evde ayrıca Cissy Teyze ve kocası, üç köpek bir kedi bir de keçi yaşıyormuş.",
+      "Magozwe okula başlamış ama tabii çok zormuş. Geri kaldığı bir sürü şeyi öğrenerek sınıfın seviyesine yetişmesi gerekiyormuş. Bazen umudunu yitirip vazgeçmeyi düşündüğü de oluyormuş. Ama sonra pilot ve futbolcu olan çocukların hikayesi geliyormuş aklına. Tıpkı onlar gibi o da pes etmemeliymiş.",
+      "Magozwe yeşil çatılı evin arka bahçesinde oturup, okula ait bir hikaye kitabını okuyormuş. Thomas gelmiş ve yanına oturmuş. “Bu hikaye nedir?” diye sormuş Thomas. “Öğretmen olan bir çocuğun hikayesi,” diye cevap vermiş Magozwe. “Çocuğun adı ne?” diye sormuş Thomas. “Adı Magozwe,” demiş Magozwe gülümseyerek."
+    ]
+  },
+  {
+    "id": "gsb-en-0052",
+    "language": "en",
+    "title": "Simbegwire",
+    "level": 5,
+    "words": 863,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0052/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0052/en-0052_simbegwire.mp3",
+    "credit": {
+      "writer": "Rukia Nantale",
+      "illustrator": "Benjamin Mitchley",
+      "reader": "Darshan Soni"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0 International License",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "When Simbegwire’s mother died, she was very sad. Simbegwire’s father did his best to take care of his daughter. Slowly, they learned to feel happy again, without Simbegwire’s mother. Every morning they sat and talked about the day ahead. Every evening they made dinner together. After they washed the dishes, Simbegwire’s father helped her with homework.",
+      "One day, Simbegwire’s father came home later than usual. “Where are you my child?” he called. Simbegwire ran to her father. She stopped still when she saw that he was holding a woman’s hand. “I want you to meet someone special, my child. This is Anita,” he said smiling.",
+      "“Hello Simbegwire, your father told me a lot about you,” said Anita. But she did not smile or take the girl’s hand. Simbegwire’s father was happy and excited. He talked about the three of them living together, and how good their life would be. “My child, I hope you will accept Anita as your mother,” he said.",
+      "Simbegwire’s life changed. She no longer had time to sit with her father in the mornings. Anita gave her so many household chores that she was too tired to do her school work in the evenings. She went straight to bed after dinner. Her only comfort was the colourful blanket her mother gave her. Simbegwire’s father did not seem to notice that his daughter was unhappy.",
+      "After a few months, Simbegwire’s father told them that he would be away from home for a while. “I have to travel for my job,” he said. “But I know you will look after each other.” Simbegwire’s face fell, but her father did not notice. Anita did not say anything. She was not happy either.",
+      "Things got worse for Simbegwire. If she didn’t finish her chores, or she complained, Anita hit her. And at dinner, the woman ate most of the food, leaving Simbegwire with only a few scraps. Each night Simbegwire cried herself to sleep, hugging her mother’s blanket.",
+      "One morning, Simbegwire was late getting out of bed. “You lazy girl!” Anita shouted. She pulled Simbegwire out of bed. The precious blanket caught on a nail, and tore in two.",
+      "Simbegwire was very upset. She decided to run away from home. She took the pieces of her mother’s blanket, packed some food, and left the house. She followed the road her father had taken.",
+      "When it came to evening, she climbed a tall tree near a stream and made a bed for herself in the branches. As she went to sleep, she sang: “Maama, maama, maama, you left me. You left me and never came back. Father doesn’t love me anymore. Mother, when are you coming back? You left me.”",
+      "The next morning, Simbegwire sang the song again. When the women came to wash their clothes at the stream, they heard the sad song coming from the tall tree. They thought it was only the wind rustling the leaves, and carried on with their work. But one of the women listened very carefully to the song.",
+      "This woman looked up into the tree. When she saw the girl and the pieces of colourful blanket, she cried, “Simbegwire, my brother’s child!” The other women stopped washing and helped Simbegwire to climb down from the tree. Her aunt hugged the little girl and tried to comfort her.",
+      "Simbegwire’s aunt took the child to her own house. She gave Simbegwire warm food, and tucked her in bed with her mother’s blanket. That night, Simbegwire cried as she went to sleep. But they were tears of relief. She knew her aunt would look after her.",
+      "When Simbegwire’s father returned home, he found her room empty. “What happened, Anita?” he asked with a heavy heart. The woman explained that Simbegwire had run away. “I wanted her to respect me,” she said. “But perhaps I was too strict.” Simbegwire’s father left the house and went in the direction of the stream. He continued to his sister’s village to find out if she had seen Simbegwire.",
+      "Simbegwire was playing with her cousins when she saw her father from far away. She was scared he might be angry, so she ran inside the house to hide. But her father went to her and said, “Simbegwire, you have found a perfect mother for yourself. One who loves you and understands you. I am proud of you and I love you.” They agreed that Simbegwire would stay with her aunt as long as she wanted to.",
+      "Her father visited her every day. Eventually, he came with Anita. She reached out for Simbegwire’s hand. “I’m so sorry little one, I was wrong,” she cried. “Will you let me try again?” Simbegwire looked at her father and his worried face. Then she stepped forward slowly and put her arms around Anita.",
+      "The next week, Anita invited Simbegwire, with her cousins and aunt, to the house for a meal. What a feast! Anita prepared all of Simbegwire’s favourite foods, and everyone ate until they were full. Then the children played while the adults talked. Simbegwire felt happy and brave. She decided that soon, very soon, she would return home to live with her father and her stepmother."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/13.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/14.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/15.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/16.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0052/17.jpg"
+    ],
+    "turkish": [
+      "Simbegwire annesi öldüğü zaman çok üzüldü. Simbegwire’ın babası, kızıyla ilgilenmek için elinden gelenin en iyisini yaptı. Zamanla, Simbegwire’ın annesi olmadan da mutlu olmayı öğrendiler. Her sabah oturdular ve önlerindeki gün hakkında konuştular. Her akşam, birlikte aksam yemeği hazırladılar. Bulaşıkları beraberce yıkadıktan sonra, Simbegwire’ın babası ona ev ödevlerinde yardım etti.",
+      "Bir gün, Simbegwire’ın babası normalden geç geldi eve. “Neredesin çocuğum?” diye seslendi. Simbegwire babasına koştu. Babasının bir kadının elini tuttuğunu görünce, olduğu yerde hareketsiz durdu. “Seni özel biriyle tanıştırmak istiyorum, çocuğum. Bu Anita” dedi babası gülümseyerek.",
+      "“Merhaba Simbegwire, baban bana senin hakkında çok şey anlattı,” dedi Anita. Ama gülümsemiyor veya Simbegwire’ın elini tutmuyordu. Simbegwire’ın babası mutlu ve heyecanlıydı. Üçünün birlikte yaşayacağını, ve hayatlarının nasıl güzel olacağını anlatıyordu. “Çocuğum, umarım ki Anita’yı annen olarak kabul edersin,” dedi babası.",
+      "Simbegwire’ın hayatı değişti Artık sabahları babası ile birlikte oturmak için zamanı yoktu. Anita ona o kadar fazla ev işleri veriyordu ki, akşamları ev ödevlerini yapmak için çok yorgun oluyordu. Yemekten sonra direk yatağına gidiyordu. Onun tek rahatı annesinin ona verdiği renkli battaniyesi idi. Simbegwire’ın babası kızının mutsuz olduğunu fark etmiş görünmüyordu.",
+      "Birkaç ay sonra, Simbegwire’ın babası onlara bir süreliğine evden uzaklaşacağını söyledi. “İşimden dolayı seyahat etmem lazım,” dedi babası. “Ama biliyorum ki ikiniz birbirinizle ilgilenirsiniz.” Simbegwire’ın yüzü düştü fakat babası fark etmedi. Anita hiç bir şey söylemedi. O da mutlu değildi.",
+      "Simbegwire için işler daha da kötüye gitti. Ev işlerini bitirmezse, veya şikayet ederse, Anita ona vuruyordu. Ve akşam yemeklerinde, kadın yemeğin çoğunu yerken, Simbegwire’a sadece birkaç lokma bırakıyordu. Her gece, Simbegwire uyumak için annesinin battaniyesine sarılıp kendi kendine ağlıyordu.",
+      "Bir sabah, Simbegwire yataktan kalkmak için geç kaldı. “Seni tembel kız!” diye bağırdı Anita. Simbegwire’ı yatağın dışına çekti. Değerli battaniye bir çiviye takıldı, ve yırtılıp ikiye ayrıldı.",
+      "Simbegwire çok üzgündü. Evden kaçmaya karar verdi. Annesinin battaniyesinin parçalarını aldı, biraz yemek paketledi, ve evden ayrıldı. Babasının ayrıldığı yolu takip etti.",
+      "Akşam olduğu zaman, akarsuyun yanındaki uzun bir ağaca tırmandı, ve kendi için dalların arasında bir yatak yaptı. Uykuya dalarken şarkı söyledi: “Aanne, aanne, aanne, beni bıraktın. Beni bıraktın ve bir daha hiç geri dönmedin. Babam artık beni sevmiyor. Anne, ne zaman geri dönüyorsun? Beni bıraktın.”",
+      "Ertesi sabah, Simbegwire şarkıyı tekrar söyledi. Kadınlar, kıyafetlerini yıkamak için akarsuya geldiklerinde, uzun ağaçtan gelen hüzünlü şarkıyı duydular. Onlar, sadece rüzgarın yaprakları salladığını düşündüler, ve işlerine devam ettiler. Ama kadınlardan biri şarkıyı çok dikkatlice dinledi.",
+      "Bu kadın ağacın içine, yukarı doğru baktı. Kızı ve elindeki renkli battaniyeyi gördüğü zaman, bağırdı, “Simbegwire, erkek kardeşimin çocuğu!” Diğer kadın çamaşır yıkamayı bıraktı ve Simbegwire’a ağaçtan inmesine yardım etti. Halası küçük kızı kucakladı ve onu rahatlatmaya çalıştı.",
+      "Simbegwire’ın halası, çocuğu kendi evine götürdü. Simbegwire’a sıcak yemek verdi, ve onu, annesinin battaniyesiyle birlikte yatağa yatırdı. O gece, Simbegwire uykuya dalarken ağladı. Fakat bunlar rahatlamanın göz yaşlarıydı. O biliyordu ki halası ona bakacaktı.",
+      "Simbegwire’ın babası eve döndüğü zaman, kızının odasını boş buldu. “Ne oldu Anita?” diye buruk bir yürekle sordu. Kadın, Simbegwire’ın kaçtığını açıkladı. “Ben ondan bana saygı duymasını istedim.” dedi “Ama belki çok serttim.” Simbegwire’ın babası evi terk etti ve akarsu yönünde ilerledi. Kız kardeşinin Simbegwire’ı görüp görmediğini öğrenmek için, kız kardeşinin köyüne kadar devam etti.",
+      "Simbegwire babasını çok uzaktan gördüğünde, kuzenleriyle birlikte oynuyordu. Belki babası kızgın olabilir diye korktu, o yüzden saklanmak için evin içine koştu. Ama babası kızının yanına gitti ve dedi ki “Simbegwire, sen kendin için mükemmel bir anne buldun. Seni seven ve anlayan biri. Seninle gurur duyuyor ve seni seviyorum.” Onlar, Simbegwire’ın istediği kadar halasında kalabileceği konusunda anlaştılar.",
+      "Babası onu her gün ziyaret etti. Uzun zaman sonra, babası Anita ile birlikte geldi. Anita, Simbegwire’ın ellerine uzandı. “Çok üzgünüm ufaklık. Ben hatalıydım.” diye ağladı. “Tekrar denememe izin verir misin?” Simbegwire babasına ve endişeli yüzüne baktı. Ardından, yavaşça ileriye doğru adım attı ve kollarını Anita’ya sardı.",
+      "Bir sonraki hafta, Anita, Simbegwire’ı, halası ve kuzenleriyle birlikte eve yemeğe davet etti. Büyük bir ziyafetti! Anita Simbegwire’ın sevdiği tüm yiyecekleri hazırlamıştı, ve herkes doyana kadar yedi. Ardından, yetişkinler konuşurlarken, çocuklar oyun oynadılar. Simbegwire mutlu ve cesur hissetti. Yakın, çok yakın bir zamanda babası ve üvey annesi ile birlikte yaşamak için eve geri dönmeye karar verdi."
     ]
   }
 ]

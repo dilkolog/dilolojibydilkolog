@@ -49,6 +49,8 @@ Son güncelleme: 2026-10-13.
 
 ## Durum (2026-10-28)
 - **Antigravity (2026-10-28):**
+  - İspanyolca ve İngilizce Açık Dilbilgisi Soruları (120 adet): Açık lisanslı (CC BY 4.0) akademik kaynaklardan 60 İspanyolca (`es-chv-1.json`, `es-chv-2.json`: `ser_estar`, `basics_es_presente`, `basics_es_gustar`, `por_para`, `preterito_imperfecto`, `subjuntivo`) ve 60 İngilizce (`en-esl-1.json`, `en-esl-2.json`: `basics_en_present_simple`, `basics_en_past_continuous`, `present_perfect`, `modals_en`, `basics_en_conditionals`, `passive_en`) dilbilgisi sorusu eklendi; tekil doğru cevaplar, ipuçları ve Türkçe açıklamalarla doğrulandı.
+  - İngilizce Kolay Resimli Hikâyeler: `src/data/storybooks/en.json` Global Storybooks English kaynağından 14 yeni hikâye ile 15'ten 29 hikâyeye tamamlandı; ses, illüstrasyon ve Türkçe karşılıkları eşleştirildi (`scripts/build-en-storybooks.ts`, `storybooks.test.ts`).
   - #645: Uygulama akış testi (`src/flows/app.test.tsx`) asenkron UI beklemeleri `until` döngüsüyle yarış durumuna karşı sağlamlaştırıldı. `fr-fi-2.json` içindeki tekil doğru seçenek uyumu (`sonner`) sağlandı. `snapshots.yml` ile 32 adet Linux ekran görüntüsü referansı güncellendi. WCAG 2.5.3 (Label in Name) standartları kapsamında `AppSidebar`, `StudyCalendar`, `Profile`, `TextForms` ve `Guide` ekranlarındaki görünür metin ile accessible name uyuşmazlıkları giderildi.
 
 ## Durum (2026-10-27)
