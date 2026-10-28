@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { FriendsError, sendToFriend, type FriendView, type GiftWord, type InboxKind, type SentText } from '../data/friends'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { blockFriend, FriendsError, sendToFriend, type FriendView, type GiftWord, type InboxKind, type SentText } from '../data/friends'
 import { db } from '../data/instance'
 import { giftMatches, giftOf, sentTextOf } from '../engine/friendGifts'
 import type { ReadingText } from '../data/db'
@@ -9,17 +9,28 @@ import type { Profile } from '../data/db'
 import { Avatar } from './Avatar'
 import { CloseIcon, FlameIcon } from './icons'
 import { showToast } from './toastFeed'
+import { ConfirmDialog } from './Dialog'
+
+const ReportDialog = lazy(() => import('./ReportDialog'))
 
 const SHORT = ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct']
 
-/** The friend's page: how the last two weeks went, and a cheer, nudge, gift, text, or duel invite to send. */
-export function FriendSheet({ friend, name, today, vocabulary = [], language, onClose, onDuel }: { friend: FriendView; name: string; today: string; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; onClose: () => void; onDuel?: () => void }) {
+/**
+ * The friend's page: how the last two weeks went, and a cheer, nudge, gift, text, or duel invite to send; at the
+ * bottom, reporting them to the site's owner and blocking them (`onBlocked`: the friends list is read again).
+ */
+export function FriendSheet({ friend, name, today, vocabulary = [], language, onClose, onDuel, onBlocked }: { friend: FriendView; name: string; today: string; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; onClose: () => void; onDuel?: () => void; onBlocked?: () => void }) {
   const [sent, setSent] = useState<Partial<Record<InboxKind, boolean>>>({})
   const [busy, setBusy] = useState<InboxKind | null>(null)
   const [give, setGive] = useState<'gift' | 'text' | null>(null)
   const [query, setQuery] = useState('')
   const [library, setLibrary] = useState<ReadingText[] | null>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
+  // A report or block dialog on top answers Esc itself: the page stays open under it.
+  const [over, setOver] = useState<'report' | 'block' | null>(null)
+  const [reportBlocked, setReportBlocked] = useState(false)
+  const overRef = useRef(over)
+  overRef.current = over
   const series = lastDays(friend.days ?? {}, today)
   const peak = Math.max(1, ...series.map((d) => d.xp))
   const total = series.reduce((n, d) => n + d.xp, 0)
@@ -29,7 +40,7 @@ export function FriendSheet({ friend, name, today, vocabulary = [], language, on
   useEffect(() => {
     closeRef.current?.focus()
     const onKey = (e: KeyboardEvent) => {
-      if (e.key !== 'Escape') return
+      if (e.key !== 'Escape' || overRef.current) return
       e.stopImmediatePropagation()
       onClose()
     }
@@ -60,131 +71,178 @@ export function FriendSheet({ friend, name, today, vocabulary = [], language, on
     }
   }
 
+  const block = async () => {
+    setOver(null)
+    try {
+      await blockFriend(friend.code)
+    } catch {
+      showToast('Engellenemedi, biraz sonra yine dene.', undefined, 5000, 'info')
+      return
+    }
+    showToast(`${name} engellendi.`)
+    onBlocked?.()
+    onClose()
+  }
+
   return (
-    <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="dialog friend-sheet" role="dialog" aria-modal="true" aria-label={`${name} arkadaş sayfası`} style={{ ['--fcolor' as string]: friend.color }}>
-        <div className="friend-sheet-head">
-          <Avatar profile={{ name, emoji: friend.avatar || '🙂', color: friend.color, motto: '' } as Profile} size={54} />
-          <div className="friend-sheet-meta">
-            <h2 className="section-title">{name}</h2>
-            <p className="small muted friend-sheet-badges">
-              <span className="friends-level">Seviye {friend.level}</span>
-              {friend.streak > 0 && (
-                <span className="friends-streak">
-                  <FlameIcon size={12} solid /> {friend.streak} gün
+    <>
+      <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && !over && onClose()}>
+        <div className="dialog friend-sheet" role="dialog" aria-modal="true" aria-label={`${name} arkadaş sayfası`} style={{ ['--fcolor' as string]: friend.color }}>
+          <div className="friend-sheet-head">
+            <Avatar profile={{ name, emoji: friend.avatar || '🙂', color: friend.color, motto: '' } as Profile} size={54} />
+            <div className="friend-sheet-meta">
+              <h2 className="section-title">{name}</h2>
+              <p className="small muted friend-sheet-badges">
+                <span className="friends-level">Seviye {friend.level}</span>
+                {friend.streak > 0 && (
+                  <span className="friends-streak">
+                    <FlameIcon size={12} solid /> {friend.streak} gün
+                  </span>
+                )}
+                <span className={`friend-status-pill${studiedToday ? ' is-active' : ''}`}>
+                  {studiedToday ? 'Bugün aktif' : 'Dinleniyor'}
                 </span>
-              )}
-              <span className={`friend-status-pill${studiedToday ? ' is-active' : ''}`}>
-                {studiedToday ? 'Bugün aktif' : 'Dinleniyor'}
-              </span>
-            </p>
-          </div>
-          <button ref={closeRef} type="button" className="icon-btn friend-sheet-close" onClick={onClose} aria-label="Kapat">
-            <CloseIcon size={18} />
-          </button>
-        </div>
-        <dl className="friend-sheet-stats">
-          <div>
-            <dt className="small muted">Bugün</dt>
-            <dd>{friend.today.toLocaleString('tr-TR')} XP</dd>
-          </div>
-          <div>
-            <dt className="small muted">Bu hafta</dt>
-            <dd>{friend.week.toLocaleString('tr-TR')} XP</dd>
-          </div>
-          <div>
-            <dt className="small muted">Aktif gün</dt>
-            <dd>{activeDays}/{DAYS}</dd>
-          </div>
-        </dl>
-        <div className="friend-chart-box">
-          <p className="small muted friend-sheet-sub">
-            Son iki haftada <strong>{total.toLocaleString('tr-TR')} XP</strong>
-            {studiedToday ? ' · bugün çalıştı' : ' · bugün henüz çalışmadı'}
-          </p>
-          <svg className="friend-bars" viewBox={`0 0 ${DAYS * 16} 72`} role="img" aria-label={`Son ${DAYS} günün XP'si; en yüksek ${peak} XP`}>
-            {series.map((d, i) => {
-              const h = d.xp ? Math.max(5, Math.round((d.xp / peak) * 48)) : 3
-              const dow = new Date(`${d.day}T12:00:00`).getDay()
-              const isToday = d.day === today
-              return (
-                <g key={d.day}>
-                  <rect className="friend-bar-track" x={i * 16 + 3} y={8} width={10} height={48} rx={4} />
-                  <rect className={isToday ? 'friend-bar friend-bar-today' : 'friend-bar'} x={i * 16 + 3} y={56 - h} width={10} height={h} rx={4}>
-                    <title>{`${d.day}: ${d.xp} XP`}</title>
-                  </rect>
-                  <text className={isToday ? 'friend-bar-day is-today' : 'friend-bar-day'} x={i * 16 + 8} y={68} textAnchor="middle">
-                    {SHORT[dow]}
-                  </text>
-                </g>
-              )
-            })}
-          </svg>
-        </div>
-        <div className="friend-sheet-actions">
-          <button type="button" className="btn" disabled={busy !== null || sent.cheer} onClick={() => void send('cheer')}>
-            {sent.cheer ? 'Tebrik gitti ✓' : 'Tebrik et 👏'}
-          </button>
-          <button type="button" className="btn btn-quiet" disabled={busy !== null || sent.nudge || studiedToday} onClick={() => void send('nudge')} title={studiedToday ? 'Bugün zaten çalıştı' : 'Bugün çalışmasını hatırlat'}>
-            {sent.nudge ? 'Dürtüldü ✓' : studiedToday ? 'Bugün çalıştı' : 'Dürt 👋'}
-          </button>
-          {onDuel && (
-            <button
-              type="button"
-              className="btn btn-quiet friend-duel-btn"
-              onClick={() => {
-                onClose()
-                onDuel()
-              }}
-            >
-              Düelloya davet et 🥊
-            </button>
-          )}
-        </div>
-        {language && (
-          <div className="stack gap-2 friend-give">
-            <div className="friend-sheet-actions">
-              <button type="button" className="btn btn-sm btn-quiet" aria-pressed={give === 'gift'} onClick={() => setGive(give === 'gift' ? null : 'gift')}>
-                Kelime hediye et 🎁
-              </button>
-              <button type="button" className="btn btn-sm btn-quiet" aria-pressed={give === 'text'} onClick={() => setGive(give === 'text' ? null : 'text')}>
-                Metin gönder 📖
-              </button>
+              </p>
             </div>
-            {give === 'gift' && (
-              <div className="stack gap-2">
-                <input className="input" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Kelimelerinden ara" aria-label="Hediye edilecek kelimeyi ara" autoComplete="off" autoFocus />
-                <ul className="plain stack gap-2 friend-picks">
-                  {giftMatches(vocabulary, query).map((e) => (
-                    <li key={e.id}>
-                      <button type="button" className="friend-pick" disabled={busy !== null} onClick={() => void send('gift', giftOf(e))}>
-                        <strong lang={e.language}>{giftOf(e).lemma}</strong> <span className="small muted">{e.senses[0].gloss}</span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-                {query.trim() && giftMatches(vocabulary, query).length === 0 && <p className="small muted">Bu aramayla kelime bulunamadı.</p>}
-              </div>
-            )}
-            {give === 'text' && (
-              <div className="stack gap-2">
-                <p className="small muted">Kütüphanendeki bir metnin ilk sayfası gider (en çok 3.000 karakter). Telifli metinleri göndermemeye özen göster.</p>
-                {library === null && <p className="small muted">Metinler yükleniyor…</p>}
-                {library && library.length === 0 && <p className="small muted">Kütüphanende gönderilecek metin yok.</p>}
-                <ul className="plain stack gap-2 friend-picks">
-                  {(library ?? []).slice(0, 8).map((t) => (
-                    <li key={t.id}>
-                      <button type="button" className="friend-pick" disabled={busy !== null} onClick={() => void send('text', sentTextOf(t))}>
-                        <strong>{t.title}</strong>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <button ref={closeRef} type="button" className="icon-btn friend-sheet-close" onClick={onClose} aria-label="Kapat">
+              <CloseIcon size={18} />
+            </button>
+          </div>
+          <dl className="friend-sheet-stats">
+            <div>
+              <dt className="small muted">Bugün</dt>
+              <dd>{friend.today.toLocaleString('tr-TR')} XP</dd>
+            </div>
+            <div>
+              <dt className="small muted">Bu hafta</dt>
+              <dd>{friend.week.toLocaleString('tr-TR')} XP</dd>
+            </div>
+            <div>
+              <dt className="small muted">Aktif gün</dt>
+              <dd>{activeDays}/{DAYS}</dd>
+            </div>
+          </dl>
+          <div className="friend-chart-box">
+            <p className="small muted friend-sheet-sub">
+              Son iki haftada <strong>{total.toLocaleString('tr-TR')} XP</strong>
+              {studiedToday ? ' · bugün çalıştı' : ' · bugün henüz çalışmadı'}
+            </p>
+            <svg className="friend-bars" viewBox={`0 0 ${DAYS * 16} 72`} role="img" aria-label={`Son ${DAYS} günün XP'si; en yüksek ${peak} XP`}>
+              {series.map((d, i) => {
+                const h = d.xp ? Math.max(5, Math.round((d.xp / peak) * 48)) : 3
+                const dow = new Date(`${d.day}T12:00:00`).getDay()
+                const isToday = d.day === today
+                return (
+                  <g key={d.day}>
+                    <rect className="friend-bar-track" x={i * 16 + 3} y={8} width={10} height={48} rx={4} />
+                    <rect className={isToday ? 'friend-bar friend-bar-today' : 'friend-bar'} x={i * 16 + 3} y={56 - h} width={10} height={h} rx={4}>
+                      <title>{`${d.day}: ${d.xp} XP`}</title>
+                    </rect>
+                    <text className={isToday ? 'friend-bar-day is-today' : 'friend-bar-day'} x={i * 16 + 8} y={68} textAnchor="middle">
+                      {SHORT[dow]}
+                    </text>
+                  </g>
+                )
+              })}
+            </svg>
+          </div>
+          <div className="friend-sheet-actions">
+            <button type="button" className="btn" disabled={busy !== null || sent.cheer} onClick={() => void send('cheer')}>
+              {sent.cheer ? 'Tebrik gitti ✓' : 'Tebrik et 👏'}
+            </button>
+            <button type="button" className="btn btn-quiet" disabled={busy !== null || sent.nudge || studiedToday} onClick={() => void send('nudge')} title={studiedToday ? 'Bugün zaten çalıştı' : 'Bugün çalışmasını hatırlat'}>
+              {sent.nudge ? 'Dürtüldü ✓' : studiedToday ? 'Bugün çalıştı' : 'Dürt 👋'}
+            </button>
+            {onDuel && (
+              <button
+                type="button"
+                className="btn btn-quiet friend-duel-btn"
+                onClick={() => {
+                  onClose()
+                  onDuel()
+                }}
+              >
+                Düelloya davet et 🥊
+              </button>
             )}
           </div>
-        )}
+          {language && (
+            <div className="stack gap-2 friend-give">
+              <div className="friend-sheet-actions">
+                <button type="button" className="btn btn-sm btn-quiet" aria-pressed={give === 'gift'} onClick={() => setGive(give === 'gift' ? null : 'gift')}>
+                  Kelime hediye et 🎁
+                </button>
+                <button type="button" className="btn btn-sm btn-quiet" aria-pressed={give === 'text'} onClick={() => setGive(give === 'text' ? null : 'text')}>
+                  Metin gönder 📖
+                </button>
+              </div>
+              {give === 'gift' && (
+                <div className="stack gap-2">
+                  <input className="input" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Kelimelerinden ara" aria-label="Hediye edilecek kelimeyi ara" autoComplete="off" autoFocus />
+                  <ul className="plain stack gap-2 friend-picks">
+                    {giftMatches(vocabulary, query).map((e) => (
+                      <li key={e.id}>
+                        <button type="button" className="friend-pick" disabled={busy !== null} onClick={() => void send('gift', giftOf(e))}>
+                          <strong lang={e.language}>{giftOf(e).lemma}</strong> <span className="small muted">{e.senses[0].gloss}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                  {query.trim() && giftMatches(vocabulary, query).length === 0 && <p className="small muted">Bu aramayla kelime bulunamadı.</p>}
+                </div>
+              )}
+              {give === 'text' && (
+                <div className="stack gap-2">
+                  <p className="small muted">Kütüphanendeki bir metnin ilk sayfası gider (en çok 3.000 karakter). Telifli metinleri göndermemeye özen göster.</p>
+                  {library === null && <p className="small muted">Metinler yükleniyor…</p>}
+                  {library && library.length === 0 && <p className="small muted">Kütüphanende gönderilecek metin yok.</p>}
+                  <ul className="plain stack gap-2 friend-picks">
+                    {(library ?? []).slice(0, 8).map((t) => (
+                      <li key={t.id}>
+                        <button type="button" className="friend-pick" disabled={busy !== null} onClick={() => void send('text', sentTextOf(t))}>
+                          <strong>{t.title}</strong>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+            </div>
+          )}
+          <div className="friend-sheet-safety">
+            <button type="button" className="link small" onClick={() => setOver('report')}>
+              Şikâyet et
+            </button>
+            <button type="button" className="link small" onClick={() => setOver('block')}>
+              Engelle
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+      {over === 'report' && (
+        <Suspense fallback={null}>
+          <ReportDialog
+            title={`${name} adlı kişiyi şikâyet et`}
+            report={{ kind: 'user', target: friend.code }}
+            block={{ code: friend.code, name }}
+            onClose={() => {
+              setOver(null)
+              // Blocked with the report: the page closes and the board is read again, once the learner read the result.
+              if (reportBlocked) {
+                onBlocked?.()
+                onClose()
+              }
+            }}
+            onDone={setReportBlocked}
+          />
+        </Suspense>
+      )}
+      {over === 'block' && (
+        <ConfirmDialog title={`${name} engellensin mi?`} confirmLabel="Engelle" danger onConfirm={() => void block()} onCancel={() => setOver(null)}>
+          Arkadaşlarından çıkar; seni bulamaz, sana istek ya da ileti gönderemez, bekleyen iletileri silinir. Engeli Arkadaşlar → Engellediklerin bölümünden kaldırabilirsin.
+        </ConfirmDialog>
+      )}
+    </>
   )
 }

@@ -40,6 +40,8 @@ async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 
     if (body?.action === 'friends-request' || body?.action === 'friends-handle') return Response.json(body.action === 'friends-handle' ? { handle: body.handle, findable: body.findable } : { ok: true })
     if (body?.action === 'friends-add' && body.code === 'CCCCCCCC') return Response.json({ ok: true })
     if (body?.action === 'friends-send' || body?.action === 'friends-inbox-clear') return Response.json({ ok: true })
+    if (body?.action === 'report' || body?.action === 'friends-block' || body?.action === 'friends-unblock') return Response.json({ ok: true })
+    if (String(url).includes('blocked=1')) return Response.json({ people: [{ code: 'DDDDDDDD', name: 'Can', avatar: '', color: '' }] })
     if (body?.action === 'friends-add') return Response.json({ error: 'unknown' }, { status: 400 })
     if (body?.action === 'friends-publish') return Response.json({ me: card('AAAAAAAA', 'Ali', 40, 300) })
     return Response.json({ me: card('AAAAAAAA', 'Ali', 40, 300), friends })
@@ -235,5 +237,61 @@ describe('FriendsCard', () => {
     await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'İstek gönder')!.click())
     await act(() => new Promise((r) => setTimeout(r, 30)))
     expect(calls.some((c) => (c.body as { action?: string; handle?: string } | undefined)?.action === 'friends-request' && (c.body as { handle: string }).handle === 'ayse_fr')).toBe(true)
+  })
+
+  it('a text in the inbox is reported with a reason and its sender blocked in the same step; what they sent leaves the inbox', async () => {
+    const text = { language: 'fr', title: 'Spam', body: 'Achetez maintenant, offre spéciale, cliquez ici tout de suite !' }
+    const { host, calls } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)], [
+      { id: 't1', kind: 'text', from: { code: 'BBBBBBBB', name: 'Veli' }, at: '2026-10-15T09:00:00Z', text },
+      { id: 'c1', kind: 'cheer', from: { code: 'BBBBBBBB', name: 'Veli' }, at: '2026-10-15T08:00:00Z' },
+    ])
+    await act(async () => (host.querySelector('.friends-inbox button[aria-label="Şikâyet et"]') as HTMLButtonElement).click())
+    await until(() => !!host.querySelector('.report-dialog'))
+    const dialog = host.querySelector('.report-dialog')!
+    const submit = () => [...dialog.querySelectorAll('button')].find((b) => b.textContent === 'Şikâyet et') as HTMLButtonElement
+    // No reason picked yet: nothing can be sent.
+    expect(submit().disabled).toBe(true)
+    await act(async () => ([...dialog.querySelectorAll('[role="radio"]')].find((b) => b.textContent?.startsWith('Spam')) as HTMLButtonElement).click())
+    expect((dialog.querySelector('.report-block input') as HTMLInputElement).checked).toBe(true)
+    await act(async () => submit().click())
+    await until(() => !!host.querySelector('.report-dialog [role="status"]'))
+    const sent = calls.map((c) => c.body as { action?: string; kind?: string; target?: string; reason?: string; code?: string } | undefined)
+    expect(sent).toContainEqual(expect.objectContaining({ action: 'report', kind: 'message', target: 't1', reason: 'spam' }))
+    expect(sent).toContainEqual(expect.objectContaining({ action: 'friends-block', code: 'BBBBBBBB' }))
+    expect(host.querySelector('.report-dialog')!.textContent).toContain('Veli engellendi')
+    await until(() => host.querySelectorAll('.friends-inbox li').length === 0)
+    await act(async () => ([...host.querySelectorAll('.report-dialog button')].find((b) => b.textContent === 'Tamam') as HTMLButtonElement).click())
+    expect(host.querySelector('.report-dialog')).toBeNull()
+  })
+
+  it('a friend is blocked from their page after a confirmation', async () => {
+    const { host, calls } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)])
+    await act(async () => (host.querySelector('.friends-name-btn') as HTMLButtonElement).click())
+    await until(() => !!host.querySelector('.friend-sheet'))
+    await act(async () => ([...host.querySelectorAll('.friend-sheet-safety button')].find((b) => b.textContent === 'Engelle') as HTMLButtonElement).click())
+    expect(host.textContent).toContain('Veli engellensin mi?')
+    // Esc closes the confirmation only, not the page under it.
+    await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' })))
+    expect(host.textContent).not.toContain('engellensin mi?')
+    expect(host.querySelector('.friend-sheet')).not.toBeNull()
+    await act(async () => ([...host.querySelectorAll('.friend-sheet-safety button')].find((b) => b.textContent === 'Engelle') as HTMLButtonElement).click())
+    await act(async () => ([...host.querySelectorAll('.dialog-actions button')].find((b) => b.textContent === 'Engelle') as HTMLButtonElement).click())
+    await until(() => !host.querySelector('.friend-sheet'))
+    expect(calls.some((c) => (c.body as { action?: string; code?: string } | undefined)?.action === 'friends-block' && (c.body as { code: string }).code === 'BBBBBBBB')).toBe(true)
+  })
+
+  it('the block list is read when opened, and a block can be lifted', async () => {
+    const { host, calls } = await mount(true)
+    await until(() => !!host.querySelector('.blocked-people'))
+    const list = host.querySelector('.blocked-people') as HTMLDetailsElement
+    await act(async () => {
+      list.open = true
+      list.dispatchEvent(new Event('toggle'))
+    })
+    await until(() => !!list.querySelector('.blocked-list li'))
+    expect(list.textContent).toContain('Can')
+    await act(async () => ([...list.querySelectorAll('button')].find((b) => b.textContent === 'Engeli kaldır') as HTMLButtonElement).click())
+    await until(() => !list.querySelector('.blocked-list li'))
+    expect(calls.some((c) => (c.body as { action?: string; code?: string } | undefined)?.action === 'friends-unblock' && (c.body as { code: string }).code === 'DDDDDDDD')).toBe(true)
   })
 })

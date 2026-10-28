@@ -214,6 +214,50 @@ async function unblock(id: string, code: string): Promise<void> {
   if (codes.includes(code)) await writeJson(blockedPath(id), { codes: codes.filter((c) => c !== code) })
 }
 
+/** Someone the account blocked, as its block list shows them (the card may be gone: then only the code). */
+export interface BlockedPerson {
+  code: string
+  name: string
+  avatar: string
+  color: string
+}
+
+/** The block list, newest first: whom the account took off its friends or blocked from a message. */
+export async function blockedPeople(id: string): Promise<BlockedPerson[]> {
+  const codes = await blockedBy(id)
+  if (!codes.length) return []
+  const cards = await (await friendStore()).cardsOf(codes)
+  return codes.map((code) => {
+    const card = cards.find((c) => c?.code === code)
+    return { code, name: card?.name ?? '', avatar: card?.avatar ?? '', color: card?.color ?? '' }
+  })
+}
+
+/**
+ * Blocks someone: off the friends both ways (removeFriend keeps them from coming back by code, invite link or
+ * request), and what they sent that is still waiting leaves the inbox.
+ */
+export async function blockFriend(id: string, code: string): Promise<void> {
+  if (!CODE.test(code)) return
+  await removeFriend(id, code)
+  const theirs = (await inboxOf(id)).filter((m) => m.from.code === code).map((m) => m.id)
+  if (theirs.length) await clearInbox(id, theirs)
+}
+
+/** Lifts a block: they may find and ask the account again (nothing comes back by itself). */
+export const unblockFriend = (id: string, code: string) => (CODE.test(code) ? unblock(id, code) : Promise.resolve())
+
+/** What the account's inbox holds under this id, for a report on it (the server's copy, not the reporter's word). */
+export const inboxItemOf = async (id: string, itemId: string): Promise<InboxItem | null> => (await inboxOf(id)).find((m) => m.id === itemId) ?? null
+
+/** Whose card a code is, for a report: the account and the card's name. */
+export async function cardOwner(code: string): Promise<{ owner: string; name: string } | null> {
+  if (!CODE.test(code)) return null
+  const store = await friendStore()
+  const [owner, cards] = await Promise.all([store.ownerOf(code), store.cardsOf([code])])
+  return owner ? { owner, name: cards[0]?.name ?? '' } : null
+}
+
 /** A card as a friend sees it, "today" and "this week" by the reader's own date. */
 export function viewOf(card: FriendCard, today: string): FriendView {
   const weekStart = new Date(new Date(`${today}T12:00:00Z`).getTime() - 6 * 86_400_000).toISOString().slice(0, 10)

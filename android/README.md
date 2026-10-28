@@ -69,11 +69,21 @@ yayında olduğunu denetler. Parmak izi bir sır değildir, depoya yazılabilir.
 `twa-manifest.json`'da `appVersionCode`'u bir artır (ve `appVersionName`'i değiştir), 3. adımı tekrarla,
 yeni `.aab`'ı Play'e yükle.
 
-## 6. Yayından önce uygulamada kapanması gereken açık
-**Kullanıcı içeriği politikası:** Play, kullanıcıların birbirine içerik gönderebildiği uygulamalarda
-(arkadaşa metin/kelime, topluluk kütüphanesi, okuma kulübü) uygulama içinden **şikâyet etme** ve
-**kullanıcı engelleme** yolu ister. Diloloji'de bu yok (topluluk listelerini şimdilik sahibi elle siler).
-Üretime başvurmadan önce eklenmeli; ya da bu özellikler Android'de kapatılmalı.
+## 6. Kullanıcı içeriği: şikâyet, engelleme, moderasyon
+Play, kullanıcıların birbirine içerik gönderebildiği uygulamalarda uygulama içi şikâyet ve engelleme ister;
+Diloloji'de ikisi de var (kurallar: `https://diloloji.com/kosullar` §4):
+- **Şikâyet** (bayrak simgesi): arkadaşın sayfası, gelen metin/kelime/istek, topluluk listesi, okuma kulübü.
+  Her şikâyet `reports/<gün>/<kimlik>.json` olarak saklanır ve site sahibine maillenir (`OWNER_EMAIL`
+  Worker gizlisi; günde en çok 50 mail, gerisi yalnızca depoda).
+- **Engelleme:** arkadaşın sayfasından ya da şikâyetle birlikte; engellenen kişi arkadaşlardan çıkar, bulamaz,
+  istek ve ileti gönderemez. Liste ve engel kaldırma: Arkadaşlar → Arkadaş ekle → Engellediklerin.
+- **Kendiliğinden:** 3 farklı kişinin şikâyet ettiği topluluk listesi kütüphaneden kalkar (liste silinmez).
+
+Site sahibinin yapacakları (Play, şikâyetlere zamanında bakılmasını bekler):
+- Maili oku; içerik kurallara aykırıysa kaldır: topluluk listesi için Supabase `shared_lists` satırını sil
+  (ya da tablolar kapalıysa R2'de `share/<kimlik>.json` ve `share/library.json` girdisini).
+- Hesabı kapatmak: Supabase → Authentication → Users → kişiyi sil (mailde hesap kimliği yazar).
+- Sık tekrarlanan bir sorunda koşulları ve bu notu güncelle.
 
 ## 7. Google Play Console (kişisel hesap)
 1. Geliştirici hesabı: tek seferlik 25 $, kimlik doğrulaması.

@@ -18,7 +18,8 @@ import { dailyQuotaReached, overDaily } from './_quota.js'
  *
  * Words are kept small and plain: the server checks the shape and the lengths, never trusts them.
  */
-const ID = /^[0-9a-f]{32}$/
+export const SHARE_ID = /^[0-9a-f]{32}$/
+const ID = SHARE_ID
 const LANGUAGES = ['en', 'fr', 'es']
 export const MAX_WORDS = 500
 const MAX_BODY = 400_000
@@ -107,6 +108,8 @@ export interface ShareStore {
   /** 'changed': someone wrote since the version `ifMatch` names. */
   update(id: string, doc: SharedDoc, ifMatch?: string): Promise<'ok' | 'changed'>
   remove(id: string): Promise<void>
+  /** Off the public library, the list itself kept (reported by several people: api/_reports.ts). */
+  unpublish(id: string): Promise<void>
   library(language: string | null): Promise<LibraryItem[]>
 }
 
@@ -159,6 +162,9 @@ export const blobShares: ShareStore = {
   },
   async remove(id) {
     await del(pathOf(id)).catch(() => {})
+    await removeFromLibrary(id)
+  },
+  async unpublish(id) {
     await removeFromLibrary(id)
   },
   async library(language) {
@@ -243,6 +249,9 @@ export const tableShares: ShareStore = {
   },
   async remove(id) {
     await write(`shared_lists?id=${eq(id)}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } })
+  },
+  async unpublish(id) {
+    await write(`shared_lists?id=${eq(id)}`, { method: 'PATCH', headers: { prefer: 'return=minimal' }, body: JSON.stringify({ published: false }) })
   },
   async library(language) {
     const filter = language ? `&language=${eq(language)}` : ''
