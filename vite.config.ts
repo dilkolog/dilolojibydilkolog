@@ -54,8 +54,9 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
-        // The privacy and terms pages are static files, not app screens: never answer them with the app's index.html.
-        navigateFallbackDenylist: [/^\/hakkinda/, /^\/gizlilik/, /^\/kosullar/, /^\/api\//],
+        // The static pages (about, privacy, terms, account deletion) and /.well-known (the Android app's
+        // assetlinks.json) are files, not app screens: never answer them with the app's index.html.
+        navigateFallbackDenylist: [/^\/hakkinda/, /^\/gizlilik/, /^\/kosullar/, /^\/hesap-silme/, /^\/\.well-known\//, /^\/api\//],
         // Only Latin glyphs are needed for TR/EN/FR/ES; the browser never requests the other subsets.
         globIgnores: ['**/*-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*', 'fonts/**', 'mail/**'],
         // The static pages' fonts (public/fonts) and the mails' pictures (public/mail) are served to those who open them, not stored on every device.
@@ -81,6 +82,9 @@ export default defineConfig({
         theme_color: '#f1f5f9',
         orientation: 'portrait',
         id: '/',
+        // The Android app (android/twa-manifest.json) opens this site full screen; what it may show is this scope.
+        scope: '/',
+        categories: ['education'],
         // Home-screen long-press menu.
         shortcuts: [
           { name: 'Hızlı tekrar (3 dakika)', short_name: 'Hızlı', url: '/?go=quick' },

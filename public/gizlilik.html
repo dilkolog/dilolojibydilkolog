@@ -28,9 +28,9 @@
 <header class="top"><a class="brand" href="/"><img src="/favicon.svg" width="34" height="34" alt="">Diloloji</a><a class="open" href="/">Uygulamayı aç</a></header>
 <div class="card"><div class="bar"><i></i><i></i><i></i></div><article>
 <h1>Gizlilik politikası ve Aydınlatma Metni</h1>
-<p class="muted">Son güncelleme: 19 Ekim 2026</p>
+<p class="muted">Son güncelleme: 28 Ekim 2026</p>
 
-<p>Diloloji, yabancı dil öğrenimi için geliştirilmiş kişisel bir web uygulamasıdır. Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") ve ilgili mevzuat uyarınca hangi verilerinizin nerede tutulduğunu, hangi amaçlarla işlendiğini ve kimlerle paylaşıldığını açıklar.</p>
+<p>Diloloji, yabancı dil öğrenimi için geliştirilmiş kişisel bir uygulamadır; web sitesi (diloloji.com) ve Android uygulaması aynı hizmettir. Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") ve ilgili mevzuat uyarınca hangi verilerinizin nerede tutulduğunu, hangi amaçlarla işlendiğini ve kimlerle paylaşıldığını açıklar.</p>
 
 <div class="notice-box">
 <strong>Kısaca ilkelerimiz:</strong> Reklam ağı yoktur, davranışsal takip veya izleme pikseli yoktur, verileriniz üçüncü taraflara satılmaz veya pazarlama amacıyla kullanılmaz.
@@ -41,7 +41,7 @@
 
 <h2>2. Cihazınızda Kalan ve İşlenen Veriler</h2>
 <p>Kelimeleriniz, çalışma geçmişiniz, cevaplarınız, özel listeleriniz, okuma metinleriniz ve tercihleriniz öncelikli olarak kendi cihazınızda (tarayıcınızın yerel IndexedDB ve localStorage veritabanında) saklanır. Uygulamayı kullanmak için bir hesap açtığınızda bu veriler çoklu cihaz eşitlemesi için sunucuya aktarılır.</p>
-<p><strong>Çıkış durumu:</strong> Bir cihazdan çıkış yaptığınızda eşitleme durur; ancak o cihazda daha önce kaydedilmiş olan yerel çalışma verileri cihazda kalmaya devam eder. Paylaşılan ya da ortak kullanılan bir cihazda çalışıyorsanız, çıkış yaptıktan sonra tarayıcınızın site verilerini temizlemenizi öneririz.</p>
+<p><strong>Çıkış durumu:</strong> Bir cihazdan çıkış yaptığınızda son değişiklikleriniz önce hesabınıza eşitlenir, ardından o cihazdaki çalışma verileri silinir. Eşitleme yapılamazsa çıkış durdurulur ve size sorulur; böylece veri kaybolmaz.</p>
 
 <h2>3. Hesabınızla Birlikte Tutulan Veriler</h2>
 <ul>
@@ -65,24 +65,32 @@
 <li><strong>Kendi Anahtarınızla Kullanılan Servisler:</strong> Ayarlar'da kendi Anthropic (Claude), Microsoft Azure Speech veya Google TTS anahtarınızı tanımlarsanız, ilgili yapay zekâ sohbeti, fotoğraf analizi, telaffuz puanlama ve ses sentezi istekleri doğrudan tarayıcınızdan ilgili firmanın API'sine iletilir. API anahtarlarınız yalnızca kendi cihazınızda saklanır, Diloloji sunucularına kaydedilmez.</li>
 </ul>
 
-<h2>5. Yurt Dışına Veri Aktarımı</h2>
+<h2>5. Android Uygulaması</h2>
+<p>Android uygulaması, diloloji.com'u telefonunuzdaki Chrome altyapısıyla tam ekran açar; ayrı bir veri toplamaz ve bu politikadaki kuralların tamamı geçerlidir. Uygulama aşağıdaki izinleri yalnızca ilgili özelliği kullandığınızda ister:</p>
+<ul>
+<li><strong>Mikrofon:</strong> Telaffuz, gölgeleme ve sesli cevap özelliklerinde kullanılır. Sesli cevaplarda konuşma tanımayı tarayıcının kendi hizmeti yapar (Android'de Google); söyledikleriniz bu iş için o hizmete iletilebilir. Telaffuz ve gölgeleme kayıtları cihazınızda kalır, Diloloji sunucularına gönderilmez (kendi Azure anahtarınızla telaffuz puanlamayı açarsanız kayıt yalnızca puanlama için Microsoft'a iletilir). Bir kelimeye kendi ses kaydınızı eklerseniz, o kayıt kelimenin parçası olarak hesabınızla eşitlenir.</li>
+<li><strong>Bildirimler:</strong> Açtığınız günlük hatırlatmalar ve arkadaş iletileri için kullanılır. Bildirimleri dilediğiniz an uygulamadan ya da telefonunuzun ayarlarından kapatabilirsiniz.</li>
+</ul>
+<p>Uygulama reklam kimliği kullanmaz, konum ve rehber gibi verilere erişmez.</p>
+
+<h2>6. Yurt Dışına Veri Aktarımı</h2>
 <p>Diloloji'nin güvenli, hızlı ve kesintisiz çalışabilmesi adına bulut altyapımızda Cloudflare (küresel içerik dağıtım ağı ve sunucusuz mimari), Supabase (Frankfurt / AB veri merkezi) ve Resend (e-posta gönderimi) servis sağlayıcıları kullanılmaktadır. Hizmeti kullanarak teknik zorunluluk kapsamındaki bu güvenli altyapı aktarımını kabul etmiş olursunuz.</p>
 
-<h2>6. Yaş Sınırı</h2>
+<h2>7. Yaş Sınırı</h2>
 <p>Diloloji 13 yaş ve üzeri kullanıcılar için tasarlanmıştır. 13 yaşından küçüklerin uygulamayı yalnızca veli ya da yasal vasilerinin gözetiminde ve izniyle kullanmaları gerekmektedir.</p>
 
-<h2>7. Veri Saklama Süresi ve Haklarınız</h2>
+<h2>8. Veri Saklama Süresi ve Haklarınız</h2>
 <p>Kişisel verileriniz hesabınız aktif olduğu müddetçe saklanır. KVKK'nın 11. maddesi kapsamındaki haklarınız uyarınca:</p>
 <ul>
 <li><strong>Yedekleme:</strong> Tüm çalışma verilerinizi dilediğiniz an <em>Ayarlar → Veriler → Yedeği indir</em> bölümünden JSON formatında cihazınıza indirebilirsiniz.</li>
-<li><strong>Hesap Silme:</strong> Hesabınızı ve sunucudaki tüm eşitleme verilerinizi <em>Ayarlar → Hesap → Hesabı sil</em> adımıyla tek tıkla kalıcı olarak silebilirsiniz. Silinen veriler geri getirilemez.</li>
+<li><strong>Hesap Silme:</strong> Hesabınızı ve sunucudaki tüm eşitleme verilerinizi <em>Ayarlar → Hesap → Hesabı sil</em> adımıyla kalıcı olarak silebilirsiniz; uygulamaya giremiyorsanız e-postayla da isteyebilirsiniz. Ayrıntılar ve neyin silindiği: <a href="/hesap-silme">Hesap silme</a>. Silinen veriler geri getirilemez.</li>
 <li><strong>Düzeltme ve Bilgi Talebi:</strong> Verilerinizle ilgili her türlü bilgi, düzeltme veya erişim talebinizi <a href="mailto:destek@diloloji.com">destek@diloloji.com</a> adresine iletebilirsiniz.</li>
 </ul>
 
-<h2>8. Değişiklikler</h2>
+<h2>9. Değişiklikler</h2>
 <p>Bu politika metninde yapılan güncellemeler bu sayfada yayımlanır ve üst kısımdaki güncelleme tarihi yenilenir.</p>
 </article></div>
-<footer class="foot"><nav><a href="/hakkinda">Hakkında</a><a href="/gizlilik" aria-current="page">Gizlilik politikası</a><a href="/kosullar">Kullanım koşulları</a></nav><p>Diloloji · <a href="https://diloloji.com">diloloji.com</a> · destek@diloloji.com</p></footer>
+<footer class="foot"><nav><a href="/hakkinda">Hakkında</a><a href="/gizlilik" aria-current="page">Gizlilik politikası</a><a href="/kosullar">Kullanım koşulları</a><a href="/hesap-silme">Hesap silme</a></nav><p>Diloloji · <a href="https://diloloji.com">diloloji.com</a> · destek@diloloji.com</p></footer>
 </main>
 </body>
 </html>

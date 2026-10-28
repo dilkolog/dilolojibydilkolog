@@ -1,0 +1,54 @@
+{
+  "packageId": "com.diloloji.app",
+  "host": "diloloji.com",
+  "name": "Diloloji",
+  "launcherName": "Diloloji",
+  "display": "standalone",
+  "orientation": "portrait",
+  "themeColor": "#F1F5F9",
+  "themeColorDark": "#0F172A",
+  "navigationColor": "#F1F5F9",
+  "navigationColorDark": "#0F172A",
+  "navigationDividerColor": "#F1F5F9",
+  "navigationDividerColorDark": "#0F172A",
+  "backgroundColor": "#F1F5F9",
+  "enableNotifications": true,
+  "startUrl": "/",
+  "iconUrl": "https://diloloji.com/pwa-512.png",
+  "maskableIconUrl": "https://diloloji.com/pwa-maskable-512.png",
+  "monochromeIconUrl": "https://diloloji.com/notification-badge.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./diloloji-upload.keystore",
+    "alias": "diloloji-upload"
+  },
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://diloloji.com/manifest.webmanifest",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://diloloji.com/",
+  "minSdkVersion": 21,
+  "shareTarget": {
+    "action": "/",
+    "method": "GET",
+    "params": {
+      "title": "share_title",
+      "text": "share_text",
+      "url": "share_url"
+    }
+  },
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "protocolHandlers": [],
+  "fileHandlers": []
+}
