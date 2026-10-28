@@ -69,6 +69,7 @@ export type ReportResult = 'ok' | 'bad_request' | 'not_found' | 'too_many'
 const plain = (v: unknown, max: number) =>
   typeof v === 'string'
     ? v
+        // eslint-disable-next-line no-control-regex
         .replace(/[\p{Cf}\u0000-\u0009\u000B-\u001F\u007F-\u009F]+/gu, ' ')
         .replace(/[ \t]+/g, ' ')
         .trim()
