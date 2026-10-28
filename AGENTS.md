@@ -47,6 +47,15 @@ Son güncelleme: 2026-10-13.
 - **Ortam değişkenleri ve Node:** README'deki tabloya bak; Node `>=22.12` (`engines`, `.nvmrc` 24). `pw.tmp.config.ts` makineye özeldir ve izlenmez (`.gitignore`).
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
+## Durum (2026-10-29)
+- **Antigravity (2026-10-29):**
+  - **B2–C1 İleri Seviye Dilbilgisi Soruları (90 adet):** Açık lisanslı (CC BY 4.0) akademik kaynaklardan Fransızca (30: `basics_fr_subjonctif_passe`, `basics_fr_mise_en_relief`, `conditionnel_passe`), İspanyolca (30: `basics_es_subjuntivo_compuesto`, `condicionales`, `basics_es_oraciones_hendidas`) ve İngilizce (30: `inversion`, `cleft`, `mixed_conditionals`) ileri düzey karmaşık yapı soruları eklendi (`fr-b2c1-1.json`, `es-b2c1-1.json`, `en-b2c1-1.json`). Tekil doğru seçenekler, ipuçları ve detaylı Türkçe açıklamalar doğrulandı.
+  - **Yapay Zekâ Özelliklerinin Uçtan Uca Doğrulanması:**
+    - Serbest geri anlatım (`evaluateRetelling`): Hikâye özetleme, hedef kelime kullanımı, Türkçe geri bildirim, eksik/hatalı kullanım ve SDK hata haritalama senaryoları birim düzeyinde (`src/ai/productionModules.test.ts`) ve Hikâye ekranı UI entegrasyonunda (`src/ui/StoryRetell.test.tsx`) doğrulandı.
+    - Ters çeviri (`evaluateTranslation`): Referans cümleden bağımsız doğal çeviri takdiri, küçük aksan/uyum kayması ve hatalı anlam senaryoları birim düzeyinde ve oturum çalışma ekranında (`src/ui/session/ExerciseRunnerBackTranslation.test.tsx`) doğrulandı.
+    - Canlı API ortam değişkeni desteği (`process.env.ANTHROPIC_API_KEY`) koşullu entegrasyon testine bağlandı.
+  - **Doğrulama ve Sağlamlık:** `npm run typecheck`, `npx oxlint src api e2e` (0 hata, 0 uyarı), tüm yeni ve ilgili vitest testleri yeşil.
+
 ## Durum (2026-10-28)
 - **Antigravity (2026-10-28):**
   - İspanyolca ve İngilizce Açık Dilbilgisi Soruları (120 adet): Açık lisanslı (CC BY 4.0) akademik kaynaklardan 60 İspanyolca (`es-chv-1.json`, `es-chv-2.json`: `ser_estar`, `basics_es_presente`, `basics_es_gustar`, `por_para`, `preterito_imperfecto`, `subjuntivo`) ve 60 İngilizce (`en-esl-1.json`, `en-esl-2.json`: `basics_en_present_simple`, `basics_en_past_continuous`, `present_perfect`, `modals_en`, `basics_en_conditionals`, `passive_en`) dilbilgisi sorusu eklendi; tekil doğru cevaplar, ipuçları ve Türkçe açıklamalarla doğrulandı.
