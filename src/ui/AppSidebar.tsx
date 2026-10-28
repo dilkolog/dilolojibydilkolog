@@ -80,7 +80,7 @@ export function Sidebar({
             key={l}
             className="lang-btn"
             aria-pressed={l === settings.activeLanguage}
-            aria-label={`${LANGUAGE_SHORT[l]} (${LANGUAGE_NAME[l]})${l !== settings.activeLanguage && dueByLanguage[l] ? `, ${dueByLanguage[l]} tekrar bekliyor` : ''}`}
+            aria-label={`${LANGUAGE_NAME[l]} (${LANGUAGE_SHORT[l]})${l !== settings.activeLanguage && dueByLanguage[l] ? `, ${dueByLanguage[l]} tekrar bekliyor` : ''}`}
             title={l !== settings.activeLanguage && dueByLanguage[l] ? `${dueByLanguage[l]} tekrar bekliyor` : undefined}
             onClick={() => onLanguage(l)}
           >
@@ -91,7 +91,7 @@ export function Sidebar({
       </div>
       <button className="palette-trigger" onClick={onOpenPalette} aria-label="Ara ya da git (⌘K)" title="Ara ya da git (⌘K)">
         <SearchIcon size={18} />
-        <span className="palette-trigger-label">Ara ya da git…</span>
+        <span className="palette-trigger-label">Ara ya da git</span>
         <kbd className="palette-trigger-kbd">⌘K</kbd>
       </button>
       <div className="top-profile">
@@ -142,7 +142,10 @@ export function Sidebar({
           kind="menu"
           label="Hesap menüsü"
           buttonClassName="sidebar-foot-btn"
-          buttonProps={{ 'aria-label': 'Hesap menüsü', title: 'Hesap menüsü' }}
+          buttonProps={{
+            'aria-label': `${settings.profile.name || 'Profilin'}: Hesap menüsü`,
+            title: `${settings.profile.name || 'Profilin'}: Hesap menüsü`,
+          }}
           button={
             <>
               <Avatar profile={settings.profile} size={40} />
