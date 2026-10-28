@@ -80,7 +80,7 @@ export function Sidebar({
             key={l}
             className="lang-btn"
             aria-pressed={l === settings.activeLanguage}
-            aria-label={`${LANGUAGE_NAME[l]}${l !== settings.activeLanguage && dueByLanguage[l] ? `, ${dueByLanguage[l]} tekrar bekliyor` : ''}`}
+            aria-label={`${LANGUAGE_SHORT[l]} (${LANGUAGE_NAME[l]})${l !== settings.activeLanguage && dueByLanguage[l] ? `, ${dueByLanguage[l]} tekrar bekliyor` : ''}`}
             title={l !== settings.activeLanguage && dueByLanguage[l] ? `${dueByLanguage[l]} tekrar bekliyor` : undefined}
             onClick={() => onLanguage(l)}
           >
