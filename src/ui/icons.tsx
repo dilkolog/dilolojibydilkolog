@@ -672,15 +672,29 @@ export const MountainIcon = (p: P) => (
  * The app's mark, as on the app icon (public/favicon.svg): a D-shaped speech bubble with a
  * twin-leaf sprout, open book pages, and a golden spark. Words that grow.
  */
-export const BrandMark = ({ size = 22 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="96 96 340 356" aria-hidden>
+export const BrandMark = ({ size = 22, className = '' }: { size?: number; className?: string }) => (
+  <svg width={size} height={size} viewBox="96 96 340 356" aria-hidden className={className || undefined}>
+    <defs>
+      <linearGradient id="bm-leaf-base" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stopColor="#059669" />
+        <stop offset="1" stopColor="#34d399" />
+      </linearGradient>
+      <linearGradient id="bm-leaf-hi" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stopColor="#34d399" />
+        <stop offset="1" stopColor="#86efac" />
+      </linearGradient>
+      <linearGradient id="bm-spark" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#fde68a" />
+        <stop offset="1" stopColor="#f59e0b" />
+      </linearGradient>
+    </defs>
     <path d="M168 112H256C338 112 400 174 400 256C400 338 338 400 256 400H234C250 386 258 368 260 348C312 346 348 308 348 256C348 204 310 164 256 164H188V348H236C234 368 222 388 202 400H188L148 432C140 438 134 433 134 423V146A34 34 0 0 1 168 112Z" fill="#fff" />
     <path d="M194 214C220 220 242 236 256 262C270 236 292 220 318 214" stroke="#6ee7b7" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" fill="none" />
     <path d="M208 202C228 210 244 224 256 244C268 224 284 210 304 202" stroke="#a7f3d0" strokeWidth="8.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-    <path d="M210 402C236 392 248 364 248 324C204 312 172 278 170 224C210 232 242 252 256 284C270 252 302 232 342 224C340 278 308 312 262 324C262 364 244 394 210 402Z" fill="#10b981" />
-    <path d="M170 224C210 232 242 252 256 284C254 294 251 304 248 312C232 276 204 248 170 224Z" fill="#6ee7b7" />
-    <path d="M342 224C302 232 270 252 256 284C258 294 261 304 264 312C280 276 308 248 342 224Z" fill="#6ee7b7" />
-    <path d="M256 162Q256 184 278 184Q256 184 256 206Q256 184 234 184Q256 184 256 162Z" fill="#fbbf24" />
+    <path d="M210 402C236 392 248 364 248 324C204 312 172 278 170 224C210 232 242 252 256 284C270 252 302 232 342 224C340 278 308 312 262 324C262 364 244 394 210 402Z" fill="url(#bm-leaf-base)" />
+    <path d="M170 224C210 232 242 252 256 284C254 294 251 304 248 312C232 276 204 248 170 224Z" fill="url(#bm-leaf-hi)" />
+    <path d="M342 224C302 232 270 252 256 284C258 294 261 304 264 312C280 276 308 248 342 224Z" fill="url(#bm-leaf-hi)" />
+    <path d="M256 162Q256 184 278 184Q256 184 256 206Q256 184 234 184Q256 184 256 162Z" fill="url(#bm-spark)" />
   </svg>
 )
 export const SlidersIcon = (p: P) => (
