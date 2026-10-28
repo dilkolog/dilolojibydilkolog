@@ -2031,7 +2031,9 @@ test('register game: regional usage note shows for entries with notes and is abs
   let seenNote = false
   for (let round = 0; round < 4 && !seenNote; round++) {
     for (let i = 0; i < 8; i++) {
-      await page.locator('.option').first().click()
+      const opt = page.locator('.option:not([disabled])').first()
+      await expect(opt).toBeVisible()
+      await opt.click()
       const noteLocator = page.locator('.stack[role="status"] p.small.muted')
       if (await noteLocator.count()) {
         await expect(noteLocator).toBeVisible()
