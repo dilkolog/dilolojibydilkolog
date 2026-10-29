@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { lockedText } from './aiLockText'
+import { useAi } from './aiContext'
 import { db } from '../data/instance'
 import { displayForm } from '../engine/exercises'
 import { PRON_GOOD, weakPronWords, type WeakWord } from '../engine/pronWeak'
@@ -13,6 +15,7 @@ import { playWord } from './speech'
  * score. A word that scores well drops off the list.
  */
 export function PronPractice({ language, vocabulary, onExit }: { language: TargetLanguage; vocabulary: VocabularyEntry[]; onExit: () => void }) {
+  const { server } = useAi()
   const [weak, setWeak] = useState<WeakWord[] | null>(null)
   const [at, setAt] = useState(0)
   const [last, setLast] = useState<number | null>(null)
@@ -33,7 +36,7 @@ export function PronPractice({ language, vocabulary, onExit }: { language: Targe
           ← Oyunlar
         </button>
         {header}
-        <p className="note">Telaffuz puanı için Ayarlar → Ses bölümüne Azure anahtarını gir; sonra bir kelimede "Söyle ve puanla"yı kullandıkça düşük kalanlar burada toplanır.</p>
+        <p className="note">{server ? lockedText('speech') : 'Telaffuz puanı için Ayarlar → Ses bölümüne Azure anahtarını gir.'} Açıkken bir kelimede "Söyle ve puanla"yı kullandıkça düşük kalanlar burada toplanır.</p>
       </div>
     )
   if (!weak) return null

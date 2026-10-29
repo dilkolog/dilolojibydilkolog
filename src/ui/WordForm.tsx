@@ -1,4 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react'
+import { lockedText } from './aiLockText'
 import { useTenses } from './tenseGroups'
 import { analyzeForm } from '../engine/tenses'
 import { typedCompound } from '../engine/textForms'
@@ -117,7 +118,7 @@ export function WordForm({
   const [added, setAdded] = useState('')
   const set = (k: keyof WordInput) => (e: { target: { value: string } }) => setForm((f) => ({ ...f, [k]: e.target.value }))
   const needsGender = language === 'fr' && /^l['’]/i.test(form.word.trim())
-  const { apiKey } = useAi()
+  const { apiKey, server } = useAi()
   const [filling, setFilling] = useState(false)
   // A picture chosen before the word is saved (new words only; existing words edit it in detail).
   const [image, setImage] = useState<(PickedImage & { url: string }) | null>(null)
@@ -188,7 +189,7 @@ export function WordForm({
   const suggest = async (at: SuggestField | 'more', fields: SuggestField[]) => {
     setAiError(null)
     if (!apiKey) {
-      setAiError({ at, message: 'YZ önerileri için Ayarlar → YZ yardımcısı bölümünden API anahtarını gir.' })
+      setAiError({ at, message: server ? lockedText() : 'YZ önerileri için Ayarlar → YZ yardımcısı bölümünden API anahtarını gir.' })
       return
     }
     if (!form.word.trim()) {

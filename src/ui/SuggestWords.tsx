@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { lockedText } from './aiLockText'
 import { AiError, suggestNewWords, type WordInfo } from '../ai'
 import type { KelimeDB, Settings } from '../data/db'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
@@ -30,7 +31,7 @@ export function SuggestWords({
   onAdded: () => void
   onlyWhenDue?: boolean
 }) {
-  const { apiKey, needsApproval } = useAi()
+  const { apiKey, needsApproval, server } = useAi()
   // On the Words screen the settings aren't at hand: read them (the daily count and the interests).
   const [loaded, setLoaded] = useState<Settings | undefined>()
   useEffect(() => {
@@ -87,7 +88,7 @@ export function SuggestWords({
           <p className="small muted">
             {mine.length ? `YZ, listene ve ilgi alanlarına bakıp ${count} yeni kelime önerir` : `YZ sana ${count} kelime önerir`}; beğendiklerini sen seçersin.
           </p>
-          {!apiKey && <p className="small muted">{needsApproval ? 'YZ özellikleri hesabının onaylanmasını bekliyor.' : 'Bunun için Ayarlar → YZ yardımcısı bölümünde bir anahtar gerekiyor.'}</p>}
+          {!apiKey && <p className="small muted">{server ? lockedText() : needsApproval ? 'YZ özellikleri hesabının onaylanmasını bekliyor.' : 'Bunun için Ayarlar → YZ yardımcısı bölümünde bir anahtar gerekiyor.'}</p>}
           {error && <p className="error">{error}</p>}
           <div className="row">
             <button type="button" className="btn btn-sm" onClick={ask} disabled={!apiKey || busy}>

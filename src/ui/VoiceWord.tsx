@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { lockedText } from './aiLockText'
 import { AiError, enrichWords, type WordInfo } from '../ai'
 import type { KelimeDB } from '../data/db'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
@@ -16,7 +17,7 @@ const MAX_WORDS = 4
  * added until the learner presses "Ekle".
  */
 export function VoiceWord({ db, language, vocabulary, onAdded }: { db: KelimeDB; language: TargetLanguage; vocabulary: VocabularyEntry[]; onAdded: () => void }) {
-  const { apiKey, needsApproval } = useAi()
+  const { apiKey, needsApproval, server } = useAi()
   const [listening, setListening] = useState(false)
   const [heard, setHeard] = useState('')
   const [guesses, setGuesses] = useState<string[]>([])
@@ -103,7 +104,7 @@ export function VoiceWord({ db, language, vocabulary, onAdded }: { db: KelimeDB;
         <p className="small muted">
           Mikrofona bir {LANGUAGE_NAME[language]} kelimesi söyle; YZ kartını hazırlasın (anlam, örnek cümle). Eklemeden önce sen onaylarsın.
         </p>
-        {!apiKey && <p className="small muted">{needsApproval ? 'YZ özellikleri hesabının onaylanmasını bekliyor.' : 'Bunun için Ayarlar → YZ yardımcısı bölümünde bir anahtar gerekiyor.'}</p>}
+        {!apiKey && <p className="small muted">{server ? lockedText() : needsApproval ? 'YZ özellikleri hesabının onaylanmasını bekliyor.' : 'Bunun için Ayarlar → YZ yardımcısı bölümünde bir anahtar gerekiyor.'}</p>}
         <div className="row">
           <button type="button" className="btn btn-quiet" onClick={say} disabled={!apiKey || busy} aria-pressed={listening}>
             {listening ? 'Dinliyorum… (bitirmek için dokun)' : 'Söyle'}

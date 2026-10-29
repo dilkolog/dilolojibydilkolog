@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { lockedText } from '../aiLockText'
 import { AiError, notesQuiz, type QuizQuestion } from '../../ai'
 import { createRng, shuffle } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
@@ -28,7 +29,7 @@ const shuffled = (q: QuizQuestion, rng: () => number): Shown => {
  * reason. Nothing is kept: it is a way to test a page of notes, not a new set of words.
  */
 export function NotesQuiz({ language, onExit }: { language: TargetLanguage; onExit: () => void }) {
-  const { apiKey } = useAi()
+  const { apiKey, server } = useAi()
   const [notes, setNotes] = useState('')
   const [count, setCount] = useState<number>(10)
   const [busy, setBusy] = useState(false)
@@ -90,7 +91,7 @@ export function NotesQuiz({ language, onExit }: { language: TargetLanguage; onEx
         <button className="link" onClick={onExit}>← Oyunlar</button>
         <h1 className="greeting">Notlarından sınav</h1>
         <p className="greeting-sub">Ders notunu, bir dilbilgisi sayfasını ya da ifade listeni yapıştır; YZ notlarında yazanlardan çoktan seçmeli sorular hazırlasın. Her cevapta nedenini görürsün. Notun yalnızca soruları üretmek için gönderilir.</p>
-        {!apiKey && <p className="notice">Bunun için Ayarlar → YZ yardımcısı bölümünde Anthropic anahtarı gerekir.</p>}
+        {!apiKey && <p className="notice">{server ? lockedText() : 'Bunun için Ayarlar → YZ yardımcısı bölümünde Anthropic anahtarı gerekir.'}</p>}
         <textarea className="textarea bulk-import-textarea" lang={language} aria-label="Notların" placeholder="Notlarını buraya yapıştır (en az birkaç cümle)…" value={notes} maxLength={8000} onChange={(e) => setNotes(e.target.value)} />
         <div className="choice-row" role="group" aria-label="Soru sayısı">
           {COUNTS.map((n) => (

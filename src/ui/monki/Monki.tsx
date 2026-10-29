@@ -242,7 +242,7 @@ export default function Monki({
   inSession?: boolean
   onSettings: () => void
 }) {
-  const { apiKey, needsApproval } = useAi()
+  const { apiKey, needsApproval, server } = useAi()
   const [open, setOpen] = useState(false)
   const [msgs, setMsgs] = useState<Msg[]>(() => loadChat(language))
   const [suggestions, setSuggestions] = useState<string[]>([])
@@ -557,7 +557,9 @@ export default function Monki({
                 <strong>{hello}</strong>
               </p>
               <p className="muted">
-                {needsApproval
+                {server
+                  ? 'Benimle konuşmak için YZ özelliklerinin hesabında açık olması gerekiyor. Site sahibi açınca buradayım; anahtar girmen gerekmez.'
+                  : needsApproval
                   ? 'Benimle konuşmak için hesabının onaylanması ve bir YZ anahtarı gerekiyor. Hesabın onaylanınca Ayarlar → YZ yardımcısı’ndan anahtarını ekleyebilirsin.'
                   : 'Benimle konuşmak için Ayarlar → YZ yardımcısı bölümüne kendi Anthropic anahtarını eklemen yeterli. Anahtar yalnızca bu cihazda durur.'}
               </p>

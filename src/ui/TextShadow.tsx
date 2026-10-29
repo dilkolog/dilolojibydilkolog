@@ -109,7 +109,7 @@ export function TextShadow({
               </button>
             </div>
           )}
-          {scoring === 'error' && <p className="small error">Puanlanamadı; Ayarlar’daki Azure anahtarını ve bağlantını kontrol et.</p>}
+          {scoring === 'error' && <p className="small error">Puanlanamadı; bağlantını kontrol edip yeniden dene.</p>}
           {score !== null && (
             <p role="status" className="small">
               <strong>Puanın: %{score}.</strong> {progressLine(log[key])}

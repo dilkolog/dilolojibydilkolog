@@ -3,17 +3,20 @@ import { db } from '../data/instance'
 import { azure, testAzureKey } from './pronunciation'
 import { Help } from './SettingHelp'
 import { showToast } from './toastFeed'
+import { useAi } from './aiContext'
+import { AiLocked } from './AiLocked'
 
 /** Azure Speech key + region for pronunciation scoring: entry, test, off. */
 export function AzureSpeechSettings() {
+  const { server, speech } = useAi()
   const [cfg, setCfg] = useState<{ key: string; region: string } | null>(azure.key && azure.region ? { key: azure.key, region: azure.region } : null)
   const [key, setKey] = useState('')
   const [region, setRegion] = useState('')
   const [busy, setBusy] = useState(false)
   const [status, setStatus] = useState<{ ok: boolean; text: string } | null>(null)
   useEffect(() => {
-    void db.getSpeechKey().then((c) => c && setCfg(c))
-  }, [])
+    if (!server) void db.getSpeechKey().then((c) => c && setCfg(c))
+  }, [server])
 
   const check = async (k: string, r: string) => {
     setBusy(true)
@@ -48,6 +51,23 @@ export function AzureSpeechSettings() {
     setCfg(null)
     setStatus(null)
   }
+
+  if (server)
+    return (
+      <div className="stack natural-voice">
+        <span className="setting-text">
+          <strong>Telaffuz puanlama</strong>
+        </span>
+        {speech ? (
+          <div className="row">
+            <span className="pill stage-5">Açık</span>
+            <span className="small muted">Site sahibi hesabında açtı; anahtar gerekmez.</span>
+          </div>
+        ) : (
+          <AiLocked helper="speech" />
+        )}
+      </div>
+    )
 
   return (
     <div className="stack natural-voice">

@@ -347,3 +347,28 @@ test('an invite link with name mentions the inviter on the landing page', async 
   expect(new URL(page.url()).search).toBe('')
   expect(await page.evaluate(() => JSON.parse(localStorage.getItem('diloloji:invite-in') ?? 'null')?.name)).toBe('Zeynep')
 })
+
+test('the paid helpers need no key: locked until the owner opens them for the account, then on', async ({ page }) => {
+  await signedInWithWords(page)
+  let open = false
+  await page.route(
+    (u) => u.pathname === '/api/ai',
+    (r) => r.fulfill({ json: open ? { ai: true, speech: true, voice: true, model: 'claude-sonnet-5-5' } : { ai: false, speech: false, voice: false, reason: 'not_allowed' } }),
+  )
+  const toTools = async () => {
+    await openScreen(page, 'Ayarlar')
+    await page.locator('.settings-menu-item', { hasText: 'Araçlar' }).click()
+  }
+  await page.reload()
+  await toTools()
+  await expect(page.locator('.ai-locked', { hasText: 'YZ özellikleri hesabında henüz açık değil' })).toBeVisible()
+  await expect(page.getByLabel('Anthropic API anahtarı')).toHaveCount(0)
+  await expect(page.getByRole('radiogroup', { name: 'Model' })).toHaveCount(0)
+  // The owner switches it on: the next visit has it, still with nothing to type.
+  open = true
+  await page.reload()
+  await toTools()
+  await expect(page.locator('.ai-locked')).toHaveCount(0)
+  await expect(page.locator('section', { hasText: 'YZ yardımcısı' }).getByText(/Site sahibi hesabında açtı; anahtar gerekmez/)).toBeVisible()
+  await expect(page.getByLabel('Anthropic API anahtarı')).toHaveCount(0)
+})

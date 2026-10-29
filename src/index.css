@@ -5978,3 +5978,7 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 /* Invite: who the link is from, before it is accepted (InviteAccept, in the first bundle). */
 .invite-ask { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; color: var(--ink); }
 .invite-ask > div { display: grid; gap: 0.125rem; }
+
+/* A paid helper the owner has not opened for this account yet (AiLocked): a quiet note with a lock. */
+.ai-locked { display: flex; align-items: flex-start; gap: 0.5rem; }
+.ai-locked-icon { flex: none; margin-top: 0.15rem; color: var(--ink-soft); }

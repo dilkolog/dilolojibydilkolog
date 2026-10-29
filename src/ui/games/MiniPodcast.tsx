@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { lockedText } from '../aiLockText'
 import { AiError, miniPodcast, type PodcastScript } from '../../ai'
 import { db, scheduler } from '../../data/instance'
 import { displayForm } from '../../engine/exercises'
@@ -47,7 +48,7 @@ function save(language: TargetLanguage, saved: Saved) {
  * listening again costs nothing. Passive like the audio review: it never touches the schedule.
  */
 export function MiniPodcast({ language, vocabulary, states, onExit }: Props & { onExit: () => void }) {
-  const { apiKey, needsApproval } = useAi()
+  const { apiKey, needsApproval, server } = useAi()
   const [saved, setSaved] = useState<Saved | null>(() => load(language))
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
@@ -171,7 +172,7 @@ export function MiniPodcast({ language, vocabulary, states, onExit }: Props & { 
       <h1 className="greeting">Mini podcast</h1>
       <p className="muted">YZ, en zayıf kelimelerini içeren kısa bir konuşma yazar; sen dinlersin. Yürürken ya da yemek yaparken, ekrana bakmadan.</p>
 
-      {!apiKey && <p className="note">{needsApproval ? 'YZ özellikleri hesabının onaylanmasını bekliyor.' : 'Podcast yazdırmak için Ayarlar → YZ yardımcısı bölümünde bir anahtar gerekiyor.'}</p>}
+      {!apiKey && <p className="note">{server ? lockedText() : needsApproval ? 'YZ özellikleri hesabının onaylanmasını bekliyor.' : 'Podcast yazdırmak için Ayarlar → YZ yardımcısı bölümünde bir anahtar gerekiyor.'}</p>}
 
       {words.length > 0 && (
         <div className="choice-row" aria-label="Konuşmada geçecek kelimeler">

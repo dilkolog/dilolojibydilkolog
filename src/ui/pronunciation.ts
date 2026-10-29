@@ -1,3 +1,4 @@
+import { aiServerFetch, SERVER_KEY } from '../data/aiServer'
 import type { TargetLanguage } from '../engine/types'
 import { prefs } from './prefs'
 
@@ -105,6 +106,14 @@ export function explainAzureError(status: number, body: string): string {
 const base64Json = (o: unknown) => btoa(String.fromCharCode(...new TextEncoder().encode(JSON.stringify(o))))
 
 async function recognize(audio: Blob, locale: string, headers: Record<string, string> = {}, cfg = azure): Promise<Record<string, unknown>> {
+  if (cfg.key === SERVER_KEY) {
+    // The owner's Azure key on the server (api/ai.ts): only the recording and the assessment settings go.
+    const res = await aiServerFetch(`?kind=speech&locale=${locale}`, { method: 'POST', headers: { 'content-type': 'audio/wav', ...headers }, body: audio })
+    if (res.status === 429) throw new Error('Bugünkü telaffuz puanı hakkın doldu; yarın yeniden açılır.')
+    if (res.status === 403) throw new Error('Telaffuz puanı hesabında açık değil. Site sahibi açınca kullanabilirsin.')
+    if (!res.ok) throw new Error(explainAzureError(res.status, await res.text().catch(() => '')))
+    return (await res.json()) as Record<string, unknown>
+  }
   const res = await fetch(`https://${cfg.region}.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=${locale}&format=detailed`, {
     method: 'POST',
     headers: { 'Ocp-Apim-Subscription-Key': cfg.key ?? '', 'Content-Type': 'audio/wav; codecs=audio/pcm; samplerate=16000', Accept: 'application/json', ...headers },

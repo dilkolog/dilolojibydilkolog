@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { lockedText } from './aiLockText'
 import { TARGET_LANGUAGES, type VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { addExample, markWord, MAX_EXAMPLES, removeExample, WordInputError } from '../data/wordInput'
@@ -20,7 +21,7 @@ import { PersonalSentences } from './PersonalSentences'
  */
 export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: VocabularyEntry; onChanged: () => void }) {
   const examples = entry.senses[0].examples
-  const { apiKey } = useAi()
+  const { apiKey, server } = useAi()
   const [adding, setAdding] = useState(false)
   const [text, setText] = useState('')
   const [translation, setTranslation] = useState('')
@@ -50,7 +51,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
   const suggest = async () => {
     setError('')
     if (!apiKey) {
-      setError('YZ önerileri için Ayarlar → YZ yardımcısı bölümünden API anahtarını gir.')
+      setError(server ? lockedText() : 'YZ önerileri için Ayarlar → YZ yardımcısı bölümünden API anahtarını gir.')
       return
     }
     setBusy(true)

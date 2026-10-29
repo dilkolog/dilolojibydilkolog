@@ -37,7 +37,7 @@ const FEATURES = [
 const FAQ: { q: string; a: ReactNode }[] = [
   { q: 'Hangi dilleri öğrenebilirim?', a: 'İngilizce, Fransızca ve İspanyolca. Arayüz ve açıklamalar Türkçe.' },
   { q: 'Telefonda çalışır mı?', a: 'Evet. Tarayıcıdan açıp “Ana ekrana ekle” dersen uygulama gibi kurulur; bilgisayarda da aynı hesapla devam edersin.' },
-  { q: 'Yapay zekâ özellikleri zorunlu mu?', a: 'Hayır. Kelime çalışma, okuma, fiil laboratuvarı, Rehber ve oyunlar yapay zekâsız çalışır. Monki gibi yapay zekâ özellikleri için kendi Anthropic anahtarını Ayarlar’dan eklersin.' },
+  { q: 'Yapay zekâ özellikleri zorunlu mu?', a: 'Hayır. Kelime çalışma, okuma, fiil laboratuvarı, Rehber ve oyunlar yapay zekâsız çalışır. Monki gibi yapay zekâ özelliklerini site sahibi hesap hesap açar; anahtar girmen gerekmez.' },
   { q: 'Verilerime ne oluyor?', a: <>Kelimelerin ve ilerlemen hesabında eşitlenir; reklam ve izleme yoktur. İstediğin zaman yedeğini indirir ya da hesabını silersin. Ayrıntılar için <a href="/gizlilik">gizlilik politikasına</a> bak.</> },
   { q: 'Nasıl giriş yapıyorum?', a: 'E-posta ve şifreyle, e-postana gelen bağlantıyla ya da Google hesabınla.' },
 ]
@@ -242,7 +242,7 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
             <li>
               <SparkleIcon size={20} />
               <span>
-                <strong>Yapay zekâ isteğe bağlı.</strong> Kendi anahtarınla açarsın; açmazsan hiçbir şey gönderilmez.
+                <strong>Yapay zekâ isteğe bağlı.</strong> Site sahibi hesabında açar; kullanmadığın sürece hiçbir şey gönderilmez.
               </span>
             </li>
           </ul>

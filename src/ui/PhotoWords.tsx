@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { lockedText } from './aiLockText'
 import { AiError, wordsFromPhoto, type WordInfo } from '../ai'
 import type { KelimeDB } from '../data/db'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
@@ -27,7 +28,7 @@ const toBase64 = (blob: Blob) =>
  * Nothing is added unasked, and the photo itself is not kept.
  */
 export function PhotoWords({ db, language, vocabulary, onAdded }: { db: KelimeDB; language: TargetLanguage; vocabulary: VocabularyEntry[]; onAdded: () => void }) {
-  const { apiKey, needsApproval } = useAi()
+  const { apiKey, needsApproval, server } = useAi()
   const [rows, setRows] = useState<Row[] | null>(null)
   const [preview, setPreview] = useState('')
   const [busy, setBusy] = useState(false)
@@ -79,7 +80,7 @@ export function PhotoWords({ db, language, vocabulary, onAdded }: { db: KelimeDB
       <summary>Fotoğraftan kelime</summary>
       <div className="stack mt-3">
         <p className="small muted">Menü, tabela, ürün etiketi ya da kitap sayfasının fotoğrafını çek; YZ üzerindeki kelimeleri çıkarsın, beğendiklerini sen seç. Fotoğraf saklanmaz.</p>
-        {!apiKey && <p className="small muted">{needsApproval ? 'YZ özellikleri hesabının onaylanmasını bekliyor.' : 'Bunun için Ayarlar → YZ yardımcısı bölümünde bir anahtar gerekiyor.'}</p>}
+        {!apiKey && <p className="small muted">{server ? lockedText() : needsApproval ? 'YZ özellikleri hesabının onaylanmasını bekliyor.' : 'Bunun için Ayarlar → YZ yardımcısı bölümünde bir anahtar gerekiyor.'}</p>}
         <div className="row">
           <label className={apiKey && !busy ? 'btn btn-quiet file-btn' : 'btn btn-quiet file-btn file-btn-off'}>
             Fotoğraf çek

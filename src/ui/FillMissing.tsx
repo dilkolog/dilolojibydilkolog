@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { lockedText } from './aiLockText'
 import { AiError, enrichWords, wordInfoToInput } from '../ai'
 import { createEntry } from '../data/wordInput'
 import type { KelimeDB } from '../data/db'
@@ -19,7 +20,7 @@ import { dismissFillMissing, isFillMissingDismissed } from './fillMissingDismiss
  * time, and "Geri al" brings every word back as it was.
  */
 export function FillMissingBar({ db, vocabulary, onChanged }: { db: KelimeDB; vocabulary: VocabularyEntry[]; onChanged: () => void }) {
-  const { apiKey, needsApproval } = useAi()
+  const { apiKey, needsApproval, server } = useAi()
   const todo = useMemo(() => needsFill(vocabulary), [vocabulary])
   const [busy, setBusy] = useState('')
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
@@ -90,7 +91,7 @@ export function FillMissingBar({ db, vocabulary, onChanged }: { db: KelimeDB; vo
           <span className="small muted"> örnek cümle, isim cinsiyeti ya da tür</span>
         </span>
         <div className="row items-center gap-2 fill-missing-actions">
-          <button type="button" className="btn btn-sm" onClick={run} disabled={!apiKey || !!busy} title={apiKey ? undefined : needsApproval ? 'YZ özellikleri onay bekliyor' : 'Ayarlar → YZ yardımcısı bölümünden anahtarını gir'}>
+          <button type="button" className="btn btn-sm" onClick={run} disabled={!apiKey || !!busy} title={apiKey ? undefined : server ? lockedText() : needsApproval ? 'YZ özellikleri onay bekliyor' : 'Ayarlar → YZ yardımcısı bölümünden anahtarını gir'}>
             <WandIcon size={14} /> {busy || 'Eksikleri YZ ile tamamla'}
           </button>
           <button
@@ -104,7 +105,7 @@ export function FillMissingBar({ db, vocabulary, onChanged }: { db: KelimeDB; vo
           </button>
         </div>
       </div>
-      {!apiKey && <p className="small muted">{needsApproval ? 'YZ özellikleri hesabının onaylanmasını bekliyor.' : 'Bunun için Ayarlar → YZ yardımcısı bölümünde bir anahtar gerekiyor.'}</p>}
+      {!apiKey && <p className="small muted">{server ? lockedText() : needsApproval ? 'YZ özellikleri hesabının onaylanmasını bekliyor.' : 'Bunun için Ayarlar → YZ yardımcısı bölümünde bir anahtar gerekiyor.'}</p>}
       {message && (
         <p className={message.ok ? 'small' : 'error'} role="status">
           {message.text}

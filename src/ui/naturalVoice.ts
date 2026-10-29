@@ -1,3 +1,4 @@
+import { aiServerFetch, SERVER_KEY } from '../data/aiServer'
 import type { TargetLanguage } from '../engine/types'
 import { mediaBlob } from '../data/db'
 import { db } from '../data/instance'
@@ -30,7 +31,7 @@ const voiceLists = new Map<TargetLanguage, Promise<string[]>>()
 export function naturalVoices(language: TargetLanguage, key = natural.key): Promise<string[]> {
   let p = voiceLists.get(language)
   if (!p) {
-    p = fetch(`${API}/voices?languageCode=${SPEECH_LANG[language]}&key=${encodeURIComponent(key ?? '')}`)
+    p = (key === SERVER_KEY ? aiServerFetch(`?kind=voices&lang=${SPEECH_LANG[language]}`) : fetch(`${API}/voices?languageCode=${SPEECH_LANG[language]}&key=${encodeURIComponent(key ?? '')}`))
       .then((r) => {
         if (!r.ok) throw new Error(String(r.status))
         return r.json() as Promise<{ voices?: { name: string; languageCodes: string[] }[] }>
@@ -126,11 +127,9 @@ export async function naturalUrl(text: string, language: TargetLanguage, rate: n
   let blob: Blob
   if (row) blob = mediaBlob(row)
   else {
-    const res = await fetch(`${API}/text:synthesize?key=${encodeURIComponent(natural.key ?? '')}`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ input: { text }, voice: { languageCode: SPEECH_LANG[language], name: voice }, audioConfig: { audioEncoding: 'MP3', speakingRate } }),
-    })
+    const request = { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ input: { text }, voice: { languageCode: SPEECH_LANG[language], name: voice }, audioConfig: { audioEncoding: 'MP3', speakingRate } }) }
+    // The owner's Google key on the server (api/ai.ts) when the learner has none of their own.
+    const res = natural.key === SERVER_KEY ? await aiServerFetch('?kind=voice', request) : await fetch(`${API}/text:synthesize?key=${encodeURIComponent(natural.key ?? '')}`, request)
     if (!res.ok) throw new Error(String(res.status))
     const { audioContent } = (await res.json()) as { audioContent: string }
     const bytes = Uint8Array.from(atob(audioContent), (c) => c.charCodeAt(0))

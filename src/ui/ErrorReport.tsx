@@ -18,7 +18,7 @@ interface SavedReport {
  * AI, the patterns behind them with drills aimed at each.
  */
 export function ErrorReportCard({ db, language, vocabulary }: { db: KelimeDB; language: TargetLanguage; vocabulary: VocabularyEntry[] }) {
-  const { apiKey } = useAi()
+  const { apiKey, server } = useAi()
   const [events, setEvents] = useState<ReviewEvent[] | null>(null)
   const [saved, setSaved] = useState<SavedReport | null>(null)
   const [busy, setBusy] = useState(false)
@@ -123,7 +123,7 @@ export function ErrorReportCard({ db, language, vocabulary }: { db: KelimeDB; la
           <span className="small muted">Hatalarındaki kalıpları bulur, her biri için alıştırma verir.</span>
         </div>
       ) : (
-        <p className="small muted">YZ anahtarını girersen bu hatalardaki kalıpları ("-age ile biten kelimelerin cinsiyeti" gibi) bulan aylık bir rapor hazırlanır.</p>
+        <p className="small muted">{server ? 'YZ özellikleri hesabında açılınca' : 'YZ anahtarını girersen'} bu hatalardaki kalıpları ("-age ile biten kelimelerin cinsiyeti" gibi) bulan aylık bir rapor hazırlanır.</p>
       )}
       {error && <p className="error small">{error}</p>}
     </section>

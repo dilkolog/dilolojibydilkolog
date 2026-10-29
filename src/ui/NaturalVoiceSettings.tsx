@@ -5,6 +5,8 @@ import { monthKey } from '../ai/usage'
 import { db } from '../data/instance'
 import { natural, testNaturalKey } from './naturalVoice'
 import { speak } from './speech'
+import { useAi } from './aiContext'
+import { AiLocked } from './AiLocked'
 import type { TargetLanguage } from '../engine/types'
 
 /** Free monthly characters for Neural2/WaveNet voices on Google Cloud TTS. */
@@ -12,6 +14,7 @@ const FREE_CHARS = 1_000_000
 
 /** Natural voices (Google Cloud TTS): key entry, test, monthly character use. */
 export function NaturalVoiceSettings({ language }: { language: TargetLanguage }) {
+  const { server, voice } = useAi()
   const [key, setKey] = useState<string | null>(natural.key)
   const [draft, setDraft] = useState('')
   const [busy, setBusy] = useState(false)
@@ -48,6 +51,23 @@ export function NaturalVoiceSettings({ language }: { language: TargetLanguage })
     setKey(null)
     setStatus(null)
   }
+
+  if (server)
+    return (
+      <div className="stack natural-voice">
+        <span className="setting-text">
+          <strong>Doğal sesler</strong>
+        </span>
+        {voice ? (
+          <div className="row">
+            <span className="pill stage-5">Açık</span>
+            <span className="small muted">Site sahibi hesabında açtı; anahtar gerekmez.</span>
+          </div>
+        ) : (
+          <AiLocked helper="voice" />
+        )}
+      </div>
+    )
 
   return (
     <div className="stack natural-voice">

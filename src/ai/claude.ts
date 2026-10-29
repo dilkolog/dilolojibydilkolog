@@ -4,6 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
+import { claudeThroughServer, SERVER_KEY } from '../data/aiServer'
 import { cleanQuestions } from './quizClean'
 import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PronTipsRequest, type PronTip, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PhotoWordsRequest, type PodcastRequest, type PodcastScript, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
@@ -26,7 +27,20 @@ const AI_MESSAGES: Record<AiErrorKind, string> = {
 }
 
 function client(apiKey: string) {
+  // The owner's key on the server (api/ai.ts): the SDK talks to /api/ai, which picks the model and counts the day.
+  if (apiKey === SERVER_KEY) return new Anthropic({ apiKey: SERVER_KEY, dangerouslyAllowBrowser: true, maxRetries: 1, fetch: claudeThroughServer })
   return new Anthropic({ apiKey, dangerouslyAllowBrowser: true, maxRetries: 2 })
+}
+
+/** The server's own refusals (api/ai.ts), in the learner's words. */
+function serverError(e: unknown): AiError | null {
+  if (!(e instanceof Anthropic.APIError)) return null
+  const code = (e.error as { error?: unknown } | undefined)?.error
+  if (code === 'daily_quota') return new AiError('budget', 'Bugünkü YZ hakkın doldu; yarın yeniden açılır.')
+  if (code === 'not_allowed') return new AiError('auth', 'YZ özellikleri hesabında açık değil. Site sahibi açınca kullanabilirsin.')
+  if (code === 'signed_out') return new AiError('auth', 'Oturumun düşmüş; YZ için yeniden giriş yap.')
+  if (code === 'off') return new AiError('other', 'YZ şu an kapalı.')
+  return null
 }
 
 async function structured<S extends z.ZodType>(
@@ -66,6 +80,8 @@ async function structured<S extends z.ZodType>(
     return res.parsed_output as z.infer<S>
   } catch (e) {
     if (e instanceof AiError) throw e
+    const server = apiKey === SERVER_KEY ? serverError(e) : null
+    if (server) throw server
     if (e instanceof Anthropic.AuthenticationError || e instanceof Anthropic.PermissionDeniedError) {
       throw new AiError('auth', AI_MESSAGES.auth)
     }
