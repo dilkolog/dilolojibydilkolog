@@ -1183,7 +1183,7 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   })
   const target = words.nth(12)
   // The audio panel above the text can sit over a word; a real tap scrolls first, so do the same.
-  await target.evaluate((el) => el.scrollIntoView({ block: 'start' }))
+  await target.evaluate((el) => el.scrollIntoView({ block: 'center' }))
   await target.evaluate((el) => (el as HTMLElement).click())
   const sheet = page.locator('.word-pop')
   await expect(sheet).toBeVisible()
@@ -1197,8 +1197,9 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   expect(box.x).toBeGreaterThanOrEqual(0)
   expect(box.x + box.width).toBeLessThanOrEqual(view.width)
   // The tapped word is above the sheet, not behind it.
+  const tapped = page.locator('.rw.is-selected')
   await expect.poll(async () => {
-    const word = await target.boundingBox()
+    const word = await tapped.boundingBox()
     return word ? word.y + word.height : 9999
   }, { message: 'the tapped word is not under the sheet', timeout: 5000 }).toBeLessThanOrEqual(box.y)
   // What the learner does with the word is at the top of the sheet, within reach without scrolling it.

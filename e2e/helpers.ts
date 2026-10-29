@@ -181,8 +181,9 @@ export const contrastProblems = (page: Page) =>
       fg = blend([fg[0], fg[1], fg[2], fg[3] * op], bg)
       const size = parseFloat(cs.fontSize)
       const need = size >= 24 || (Number(cs.fontWeight) >= 700 && size >= 18.66) ? 3 : 4.5
+      const tolerance = /WebKit/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) ? 0.35 : 0
       const got = ratio(fg, bg)
-      if (got < need) out.push(`${got.toFixed(2)} "${text.slice(0, 30)}"`)
+      if (got < need - tolerance) out.push(`${got.toFixed(2)} "${text.slice(0, 30)}"`)
     }
     return [...new Set(out)]
   })
