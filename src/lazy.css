@@ -1652,6 +1652,12 @@ button.badge-card:active { transform: none; }
 .account-avatar { width: 4.25rem; height: 4.25rem; flex: none; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px color-mix(in srgb, var(--lang) 35%, var(--rule)); }
 .account-who { display: grid; gap: 0.25rem; min-width: 0; }
 .account-who-header { display: flex; align-items: center; gap: 0.625rem; flex-wrap: wrap; }
+/* Name and its approved tick read as one: the tick sits right after the name, a touch above the baseline. */
+.account-name-line { display: inline-flex; align-items: center; gap: 0.3rem; min-width: 0; }
+.verified-mark { width: 1.375rem; height: 1.375rem; flex: none; filter: drop-shadow(0 1px 1px color-mix(in srgb, var(--lang-deep) 30%, transparent)); animation: verified-pop var(--dur) var(--ease-spring) both; }
+.verified-mark-petals { fill: var(--lang); }
+.verified-mark-check { stroke: var(--on-lang); }
+@keyframes verified-pop { from { transform: scale(0.4) rotate(-30deg); opacity: 0; } to { transform: none; opacity: 1; } }
 .account-name { margin: 0; font-size: var(--t-xl); font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; overflow-wrap: anywhere; }
 .account-email { margin: 0.125rem 0 0; color: var(--ink-soft); font-size: var(--t-sm); overflow-wrap: anywhere; }
 /* The @name: beside the name once chosen (a quiet button that opens the form), a one-line form until then. */

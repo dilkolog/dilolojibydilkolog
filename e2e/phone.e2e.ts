@@ -989,7 +989,7 @@ test('the account card says where you stand: two reasons and wide buttons signed
     expect(b!.x + b!.width).toBeLessThanOrEqual(box!.x + box!.width)
   }
   expect(await overflow(page)).toEqual([])
-  // Signed in (the account is only a record on this device here): the pill, the name and the actions.
+  // Signed in (the account is only a record on this device here): the tick or pill, the name and the actions.
   await page.evaluate(() =>
     indexedDB.databases().then((dbs) =>
       Promise.all(
@@ -1013,7 +1013,8 @@ test('the account card says where you stand: two reasons and wide buttons signed
   await openScreen(page, 'Profil')
   await page.locator('.profile-settings').click()
   await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
-  await expect(card.locator('.status-pill')).toHaveText(/Onay|Onaylı/)
+  // Approved: a tick beside the name; otherwise a pill says where the account stands.
+  await expect(card.locator('.verified-mark, .status-pill').first()).toBeVisible()
   await expect(card.locator('.account-name')).toHaveText('ali')
   // Syncing runs by itself: no button for it, and no history section.
   await expect(card.getByRole('button', { name: 'Şimdi eşitle' })).toHaveCount(0)

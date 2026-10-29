@@ -8,6 +8,7 @@ import { syncUsage, type Account } from '../data/sync'
 import type { AuthMode } from './AuthScreen'
 import { getAccount } from './syncRunner'
 import { HandleForm, HandleTag } from './AccountHandle'
+import { VerifiedMark } from './VerifiedMark'
 import { useAccountHandle } from './useAccountHandle'
 import { ACCOUNT_ART } from './drawnArt'
 import { StatusPicture } from './StatusArt'
@@ -15,7 +16,7 @@ import { useAccess } from './accessContext'
 import { GoogleMark } from './GoogleMark'
 import { signOutThisDevice } from './signOut'
 
-const STATUS_TEXT = { approved: 'Onaylı', rejected: 'Onaylanmadı', pending: 'Onay bekliyor' } as const
+const STATUS_TEXT = { rejected: 'Onaylanmadı', pending: 'Onay bekliyor' } as const
 
 /**
  * Account in Settings. Signed in: who (name, @name, email, the owner's approval), then the account's own
@@ -119,11 +120,16 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
         )}
         <div className="account-who">
           <div className="account-who-header">
-            <h2 className="account-name">{name}</h2>
-            <HandleTag handle={handle} />
-            <span className={`status-pill ${status === 'approved' ? 'is-on' : 'is-off'}`} role="status">
-              <i aria-hidden /> {STATUS_TEXT[status]}
+            <span className="account-name-line">
+              <h2 className="account-name">{name}</h2>
+              {status === 'approved' && <VerifiedMark />}
             </span>
+            <HandleTag handle={handle} />
+            {status !== 'approved' && (
+              <span className="status-pill is-off" role="status">
+                <i aria-hidden /> {STATUS_TEXT[status]}
+              </span>
+            )}
           </div>
           {identity?.email && <p className="account-email">{identity.email}</p>}
           <HandleForm handle={handle} />
