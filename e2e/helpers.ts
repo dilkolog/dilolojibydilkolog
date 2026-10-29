@@ -71,6 +71,10 @@ const ROUTE: Record<string, [string, string?]> = {
 
 /** Opens a screen the way a user would: the menu (side menu or tab bar), then its tab; Profile and Settings via the avatar or the side menu. */
 export async function openScreen(page: Page, name: string) {
+  if (await page.locator('.milestone-backdrop').count()) {
+    await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').first().click().catch(() => {})
+    await page.waitForTimeout(300)
+  }
   if (name === 'Profil' || name === 'Ayarlar') {
     const side = page.locator(name === 'Profil' ? '.sidebar-foot-btn:visible' : '.sidebar-settings:visible')
     // Right after a reload neither exists yet: wait for the menu before choosing the way.
@@ -237,6 +241,7 @@ export async function finishSession(page: Page) {
   for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').click()
   await page.getByRole('button', { name: /^(Devam|Kapat|Tamam|Bitir|Ana sayfa)/ }).first().click({ timeout: 3000 }).catch(() => {})
   await page.waitForTimeout(600)
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').click()
 }
 
 /** The verb lab favourites saved in the app's database (to wait for a background write). */

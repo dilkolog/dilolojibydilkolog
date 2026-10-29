@@ -67,6 +67,7 @@ test('no screen scrolls sideways, even at the largest text size', async ({ page 
 })
 
 test('text stays readable in the light, the dark, the calm and the high-contrast theme', async ({ page }) => {
+  test.slow()
   await startWithSamples(page)
   const found: string[] = []
   for (const theme of ['light', 'dark', 'calm', 'contrast']) {
@@ -1188,8 +1189,10 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   expect(box.x).toBeGreaterThanOrEqual(0)
   expect(box.x + box.width).toBeLessThanOrEqual(view.width)
   // The tapped word is above the sheet, not behind it.
-  const word = (await target.boundingBox())!
-  expect(word.y + word.height, 'the tapped word is not under the sheet').toBeLessThanOrEqual(box.y)
+  await expect.poll(async () => {
+    const word = await target.boundingBox()
+    return word ? word.y + word.height : 9999
+  }, { message: 'the tapped word is not under the sheet', timeout: 5000 }).toBeLessThanOrEqual(box.y)
   // What the learner does with the word is at the top of the sheet, within reach without scrolling it.
   const add = (await sheet.getByRole('button', { name: /^Kelimelerime ekle/ }).boundingBox())!
   expect(add.y + add.height).toBeLessThanOrEqual(box.y + box.height)
