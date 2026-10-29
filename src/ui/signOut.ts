@@ -1,11 +1,12 @@
 import { currentIdentity, signOutSupabase, type Identity } from '../data/supabase'
+import { forgetPushRecord } from './pushReminders'
 import { getAccount, runSync, setAccount } from './syncRunner'
 import { showToast, undoable } from './toastFeed'
 
 /** Clears this device after the sign-out: the account has everything (a sync just ran, or the person chose to go without). */
 async function leaveAndWipe(): Promise<void> {
   // This device's push reminders belong to the account that leaves: its record goes, the device stays subscribed.
-  await import('./pushReminders').then((m) => m.forgetPushRecord()).catch(() => undefined)
+  await forgetPushRecord().catch(() => undefined)
   await setAccount(null)
   await signOutSupabase()
   await (await import('../data/deviceWipe')).wipeDevice()
@@ -39,7 +40,7 @@ export async function signOutThisDevice(identity?: Identity | null): Promise<boo
     return true
   }
   // This device's push reminders belong to the account that leaves: its record goes, the device stays subscribed.
-  void import('./pushReminders').then((m) => m.forgetPushRecord())
+  void forgetPushRecord()
   await setAccount(null)
   undoable('Bu cihazda çıkış yapıldı; verilerin cihazda duruyor', async () => {
     await setAccount(previous)

@@ -40,7 +40,21 @@ export default defineConfig({
   test: { env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_PUBLISHABLE_KEY: '', VITE_SUPABASE_ANON_KEY: '' } },
   // Drawings are never inlined into the scripts: a small one would otherwise ride in the start-up
   // bundle as base64 (larger, not cacheable on its own) even when its screen is never opened.
-  build: { assetsInlineLimit: (file) => (file.endsWith('.webp') ? false : undefined) },
+  build: {
+    assetsInlineLimit: (file) => (file.endsWith('.webp') ? false : undefined),
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('src/data/guide/lessons-fr')) return 'guide-lessons-fr'
+          if (id.includes('src/data/guide/lessons-es')) return 'guide-lessons-es'
+          if (id.includes('src/data/guide/lessons-en')) return 'guide-lessons-en'
+          if (id.includes('src/data/grammar/fr-') || id.includes('src/data/grammar/basics-fr')) return 'grammar-fr'
+          if (id.includes('src/data/grammar/es-') || id.includes('src/data/grammar/basics-es')) return 'grammar-es'
+          if (id.includes('src/data/grammar/en-') || id.includes('src/data/grammar/basics-en')) return 'grammar-en'
+        },
+      },
+    },
+  },
   // Server functions (api/) run on Vercel; in local development they are reached on the live site.
   server: { proxy: { '/api': { target: 'https://diloloji.com', changeOrigin: true } } },
   plugins: [
