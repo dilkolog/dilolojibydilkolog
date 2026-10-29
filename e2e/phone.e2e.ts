@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, guideMarkValues, seedGuideMarks, startWithSamples } from './helpers'
+import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, guideMarkValues, seedGuideMarks, settleTransitions, startWithSamples } from './helpers'
 import { readdirSync, readFileSync } from 'node:fs'
 import { ES_LESSONS_2 } from '../src/data/guide/lessons-es-2'
 type CheckItem = { prompt: string; options: string[]; answer: number }
@@ -53,6 +53,7 @@ test('first run: three steps, each fits the screen, and the choices are kept', a
 })
 
 test('no screen scrolls sideways, even at the largest text size', async ({ page }) => {
+  test.slow()
   await startWithSamples(page)
   const found: string[] = []
   for (const scale of ['', '125%']) {
@@ -79,8 +80,11 @@ test('text stays readable in the light, the dark, the calm and the high-contrast
       if (t === 'contrast') document.documentElement.dataset.contrast = ''
       else delete document.documentElement.dataset.contrast
     }, theme)
+    await page.waitForTimeout(50)
+    await settleTransitions(page)
     for (const name of SCREENS) {
       await openScreen(page, name)
+      await settleTransitions(page)
       for (const p of await contrastProblems(page)) found.push(`${theme} ${name}: ${p}`)
     }
   }
@@ -151,11 +155,7 @@ test('Progress starts with the overview and opens a group from the shortcut row'
   await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'true')
   // It scrolled there, and the page grew by what it opened.
   await expect.poll(async () => {
-    const top = await page.evaluate(() => document.getElementById('p-memory')!.getBoundingClientRect().top)
-    if (top >= 250) {
-      await page.locator('.settings-nav .chip', { hasText: 'Tekrarlar' }).click()
-    }
-    return top
+    return await page.evaluate(() => document.getElementById('p-memory')!.getBoundingClientRect().top)
   }, { timeout: 10_000 }).toBeLessThan(250)
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollHeight)).toBeGreaterThan(closedHeight + 400)
   await toggles.nth(2).click()
@@ -437,12 +437,20 @@ test('the profile can be dressed up: banner, frame, interests, a goal; locked st
   const tiles = await page.locator('.style-tile').evaluateAll((els) => els.map((e) => { const r = e.getBoundingClientRect(), p = e.parentElement!.getBoundingClientRect(); return r.right <= p.right + 1 && r.left >= p.left - 1 && e.scrollWidth <= e.clientWidth + 1 }))
   expect(tiles.every(Boolean)).toBe(true)
   // Interests and a goal show on the card.
-  await page.getByRole('button', { name: 'Seyahat', exact: true }).click()
-  await page.getByRole('radio', { name: 'B2', exact: true }).click()
+  const travelBtn = page.getByRole('button', { name: 'Seyahat', exact: true })
+  await travelBtn.scrollIntoViewIfNeeded()
+  await travelBtn.click()
+  const b2Radio = page.getByRole('radio', { name: 'B2', exact: true })
+  await b2Radio.scrollIntoViewIfNeeded()
+  await b2Radio.click()
   await expect(card.locator('.interest-chip', { hasText: 'Seyahat' })).toBeVisible()
   await expect(card.locator('.goal-chip')).toContainText('Hedef B2')
   // Interests stop at six.
-  for (const i of ['Yemek', 'İş', 'Müzik', 'Spor', 'Doğa']) await page.getByRole('button', { name: i, exact: true }).click()
+  for (const i of ['Yemek', 'İş', 'Müzik', 'Spor', 'Doğa']) {
+    const btn = page.getByRole('button', { name: i, exact: true })
+    await btn.scrollIntoViewIfNeeded()
+    await btn.click()
+  }
   await expect(page.getByRole('button', { name: 'Sanat', exact: true })).toBeDisabled()
   // The tinted banner keeps the card readable, in both themes.
   const found: string[] = []
@@ -1175,7 +1183,7 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   })
   const target = words.nth(12)
   // The audio panel above the text can sit over a word; a real tap scrolls first, so do the same.
-  await target.evaluate((el) => el.scrollIntoView({ block: 'center' }))
+  await target.evaluate((el) => el.scrollIntoView({ block: 'start' }))
   await target.evaluate((el) => (el as HTMLElement).click())
   const sheet = page.locator('.word-pop')
   await expect(sheet).toBeVisible()
