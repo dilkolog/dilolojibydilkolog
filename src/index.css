@@ -5065,8 +5065,6 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .friends-editing-row { background: var(--surface-2); }
 .friends-edit-inline { flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.25rem; }
 .friends-edit-input { flex: 1; min-width: 0; height: 1.75rem; padding: 0.125rem 0.375rem; font-size: var(--t-sm); }
-.friends-add > summary { cursor: pointer; color: var(--lang-text); font-weight: 600; display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0; }
-.friends-add-body { margin-top: 0.5rem; }
 
 /* Guide: class names that also appear in its storage keys (cssSplit sees them as used in the first bundle). */
 .guide-progress { display: grid; gap: 0.5rem; }
@@ -5524,6 +5522,8 @@ button.notice-row:hover { background: var(--surface-2); }
   font-weight: 600;
   transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
+/* A boxed accordion: the generic open-details spacing (and the coarse-pointer negative margin) would leave a gap under the heading. */
+details > .friends-accordion-summary, details[open] > .friends-accordion-summary { margin: 0; }
 .friends-accordion-summary::-webkit-details-marker {
   display: none;
 }
@@ -5556,6 +5556,7 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 .friends-add-body,
 .friends-league-body {
   padding: 0.875rem 1rem 1rem;
+  margin-top: 0;
   background: var(--surface);
   border-top: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
 }
@@ -5564,19 +5565,11 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 .friends-team-push { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem 0.75rem; flex-wrap: wrap; margin: 0; }
 .friends-team-push p { margin: 0; flex: 1 1 14rem; }
 
-/* Invite link row */
-.friends-invite-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-.friends-copy-ok {
-  background: var(--ok) !important;
-  color: #fff !important;
-  border-color: var(--ok) !important;
-}
+/* Invite: a quiet line under the search, an icon and a word (the search is the main way in). */
+.friends-invite-row { display: flex; align-items: center; gap: 0.25rem; flex-wrap: wrap; }
+.friends-invite-link { display: inline-flex; align-items: center; gap: 0.375rem; min-height: 2rem; padding: 0.25rem 0.5rem; border: 0; border-radius: var(--r-sm); background: none; color: var(--lang-text); font: inherit; font-size: var(--t-sm); font-weight: 600; cursor: pointer; transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
+.friends-invite-link:hover { background: var(--lang-soft); }
+.friends-invite-link.is-done { color: var(--ok-text); }
 
 /* League improvements */
 .friends-league-body progress.friends-progress {
@@ -5977,7 +5970,7 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 .friends-found { display: flex; align-items: center; gap: 0.625rem; padding: 0.5rem 0.625rem; border: 1px solid var(--rule); border-radius: var(--r-md, 0.75rem); background: var(--surface); }
 .friends-found-text { display: grid; flex: 1; min-width: 0; line-height: 1.25; }
 .friends-found-text strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.friends-find-mine { padding-top: 0.5rem; border-top: 1px solid var(--rule); }
+.friends-find-name { margin: 0; }
 .weekly-care .care-steps { display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; margin-top: 0.25rem; }
 .weekly-care .care-step { display: inline-flex; align-items: center; gap: 0.2rem; }
 .weekly-care .care-step.done { color: var(--ok-deep, var(--ink-soft)); text-decoration: line-through; }

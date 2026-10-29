@@ -87,6 +87,21 @@ describe('AccountSettings @name', () => {
     expect(host.querySelector('.account-handle-form')).toBeNull()
   })
 
+  it('sets here whether friends can find the @name, and has no switch before there is a name', async () => {
+    await mount()
+    expect(host.querySelector('[role="switch"]')).toBeNull()
+    act(() => root?.unmount())
+    document.body.innerHTML = ''
+    state.handle = { handle: 'ali_tr', findable: true }
+    await mount()
+    const toggle = host.querySelector('[role="switch"]') as HTMLButtonElement
+    expect(host.textContent).toContain('Seni bulabilsinler')
+    expect(toggle.getAttribute('aria-checked')).toBe('true')
+    await act(async () => toggle.click())
+    expect(state.saveHandle).toHaveBeenCalledWith('ali_tr', false)
+    expect(toggle.getAttribute('aria-checked')).toBe('false')
+  })
+
   it('offers a form when there is no @name yet, and saves a valid one as findable', async () => {
     await mount()
     expect(host.querySelector('.account-handle')).toBeNull()

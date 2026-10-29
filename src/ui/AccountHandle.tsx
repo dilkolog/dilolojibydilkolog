@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { cleanHandle, FriendsError, HANDLE_RULE, saveHandle } from '../data/friends'
 import type { useAccountHandle } from './useAccountHandle'
 import { pendingHandle } from './pendingHandle'
@@ -93,5 +93,48 @@ export function HandleForm({ handle }: { handle: Handle }) {
         {error || 'Bir kullanıcı adı seç: arkadaşların seni bu adla bulur. Bir kez seçilir, sonradan değişmez. 3–20 karakter: küçük harf, rakam ve alt çizgi.'}
       </p>
     </form>
+  )
+}
+
+/**
+ * Whether friends can find this @name (Ayarlar → Hesap → Arkadaşlar). Off: the name is not shown in the search;
+ * friends can still join by an invite link. Only once there is a name.
+ */
+export function HandleFindable({ handle }: { handle: Handle }) {
+  const { info, setInfo } = handle
+  const [saving, setSaving] = useState(false)
+  const id = useId()
+  if (!info?.handle) return null
+  const findable = info.findable === true
+
+  const change = async (next: boolean) => {
+    if (saving) return
+    setSaving(true)
+    try {
+      const saved = await saveHandle(info.handle, next)
+      setInfo(saved)
+      showToast(next ? `@${saved.handle} adıyla bulunabilirsin.` : 'Artık aramada görünmüyorsun.')
+    } catch (e) {
+      showToast(e instanceof FriendsError ? (SAVE_REASONS[e.reason] ?? 'Kaydedilemedi, biraz sonra yine dene.') : 'Kaydedilemedi, biraz sonra yine dene.', undefined, 5000, 'info')
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  return (
+    <div className="account-group">
+      <h3 className="account-group-title">Arkadaşlar</h3>
+      <div className="account-row">
+        <label className="account-row-text" htmlFor={id}>
+          <strong>Seni bulabilsinler</strong>
+          <span className="small muted">
+            Açıkken @{info.handle} adını tam yazan biri seni bulup arkadaşlık isteği gönderebilir. E-postan ve gerçek adın aramada kullanılmaz.
+          </span>
+        </label>
+        <button id={id} type="button" role="switch" aria-checked={findable} className="switch" disabled={saving} onClick={() => void change(!findable)}>
+          <span />
+        </button>
+      </div>
+    </div>
   )
 }

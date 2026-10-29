@@ -7,7 +7,7 @@ import { db } from '../data/instance'
 import { syncUsage, type Account } from '../data/sync'
 import type { AuthMode } from './AuthScreen'
 import { getAccount } from './syncRunner'
-import { HandleForm, HandleTag } from './AccountHandle'
+import { HandleFindable, HandleForm, HandleTag } from './AccountHandle'
 import { VerifiedMark } from './VerifiedMark'
 import { useAccountHandle } from './useAccountHandle'
 import { ACCOUNT_ART } from './drawnArt'
@@ -158,6 +158,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
         </div>
       )}
 
+      <HandleFindable handle={handle} />
       <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} />
       <AccountDelete account={account} identity={identity} onGone={() => void refresh()} />
     </section>

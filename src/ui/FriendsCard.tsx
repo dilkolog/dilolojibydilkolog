@@ -5,7 +5,7 @@ import { addFriend, clearInbox, FriendsError, loadFriends, loadInbox, publishFri
 import { localDate } from '../engine/progress'
 import { useAccess } from './accessContext'
 import { Avatar } from './Avatar'
-import { ChevronDownIcon, CloseIcon, CopyIcon, FlagIcon, FlameIcon, PlusIcon } from './icons'
+import { CheckIcon, ChevronDownIcon, CloseIcon, FlagIcon, FlameIcon, PlusIcon, ShareIcon } from './icons'
 import type { GameState } from './game'
 import { getAccount } from './syncRunner'
 import { showToast } from './toastFeed'
@@ -421,20 +421,17 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
             <ChevronDownIcon size={16} className="friends-accordion-arrow" />
           </summary>
           <div className="stack gap-2 friends-add-body">
+            <Suspense fallback={null}>
+              <FriendFind />
+            </Suspense>
             <div className="friends-invite-row">
-              <span className="small muted">Hesabı olmayan arkadaşın bağlantıyla katılıp seni ekler.</span>
-              <button
-                type="button"
-                className={`btn btn-sm ${copied ? 'btn-ok friends-copy-ok' : ''}`}
-                onClick={() => void copy()}
-                title="Davet bağlantısını paylaş"
-              >
-                <CopyIcon size={14} className="inline-icon" />
+              <span className="small muted">Hesabı yok mu?</span>
+              <button type="button" className={`friends-invite-link${copied ? ' is-done' : ''}`} onClick={() => void copy()} title="Davet bağlantısını paylaş">
+                {copied ? <CheckIcon size={15} /> : <ShareIcon size={15} />}
                 <span>{copied ? 'Hazır!' : 'Davet et'}</span>
               </button>
             </div>
             <Suspense fallback={null}>
-              <FriendFind />
               <BlockedPeople onChanged={() => void refresh()} />
             </Suspense>
           </div>

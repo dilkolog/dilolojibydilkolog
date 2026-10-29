@@ -1,15 +1,9 @@
 import { useEffect, useState } from 'react'
 import type { Profile } from '../data/db'
-import { cleanHandle, findFriend, FriendsError, HANDLE_RULE, loadHandle, requestFriend, saveHandle, type FoundFriend, type HandleInfo } from '../data/friends'
+import { cleanHandle, findFriend, FriendsError, HANDLE_RULE, loadHandle, requestFriend, type FoundFriend, type HandleInfo } from '../data/friends'
 import { Avatar } from './Avatar'
-import { Toggle } from './settingsWidgets'
 import { showToast } from './toastFeed'
 
-const SAVE_REASONS: Record<string, string> = {
-  taken: 'Bu ad başkasında. Başka bir ad dene.',
-  locked: 'Kullanıcı adı bir kez seçilir, değiştirilemez.',
-  bad_handle: 'Ad 3–20 karakter olmalı: küçük harf, rakam ve alt çizgi.',
-}
 const REQUEST_REASONS: Record<string, string> = {
   unknown: 'Bu adla bulunabilir biri yok.',
   self: 'Bu sen oldun.',
@@ -18,7 +12,8 @@ const REQUEST_REASONS: Record<string, string> = {
 
 /**
  * Finding a friend by a chosen @name: the search shows a person only when they picked a name and switched
- * "findable" on, and finding them only sends a request that they accept in their inbox. Below it, the own name.
+ * "findable" on, and finding them only sends a request that they accept in their inbox. Below it, one line on the
+ * own name; whether it is findable is set in Ayarlar → Hesap.
  */
 export function FriendFind({ onSent }: { onSent?: () => void }) {
   const [query, setQuery] = useState('')
@@ -27,7 +22,6 @@ export function FriendFind({ onSent }: { onSent?: () => void }) {
   const [missed, setMissed] = useState(false)
   const [sent, setSent] = useState<string | null>(null)
   const [mine, setMine] = useState<HandleInfo | null>(null)
-  const [, setSaving] = useState(false)
 
   useEffect(() => {
     let live = true
@@ -73,19 +67,6 @@ export function FriendFind({ onSent }: { onSent?: () => void }) {
     }
   }
 
-  const save = async (handle: string, findable: boolean) => {
-    setSaving(true)
-    try {
-      const info = await saveHandle(handle, findable)
-      setMine(info)
-      showToast(findable ? `@${info.handle} adıyla bulunabilirsin.` : 'Artık aramada görünmüyorsun.')
-    } catch (e) {
-      showToast(e instanceof FriendsError ? (SAVE_REASONS[e.reason] ?? 'Kaydedilemedi, biraz sonra yine dene.') : 'Kaydedilemedi, biraz sonra yine dene.', undefined, 5000, 'info')
-    } finally {
-      setSaving(false)
-    }
-  }
-
   const findable = mine?.findable === true
   return (
     <div className="stack gap-2 friends-find">
@@ -115,7 +96,7 @@ export function FriendFind({ onSent }: { onSent?: () => void }) {
           {searching ? 'Aranıyor…' : 'Ara'}
         </button>
       </form>
-      {missed && <p className="small muted">Bu adla bulunabilir biri yok. Arkadaşın önce “Seni bulabilsinler” ayarını açmış olmalı.</p>}
+      {missed && <p className="small muted">Bu adla bulunabilir biri yok. Arkadaşın Ayarlar → Hesap'ta “Seni bulabilsinler”i açmış olmalı.</p>}
       {found && (
         <div className="friends-found">
           <Avatar profile={{ name: found.name, emoji: found.avatar || '🙂', color: found.color, motto: '' } as Profile} size={36} />
@@ -130,28 +111,21 @@ export function FriendFind({ onSent }: { onSent?: () => void }) {
           </button>
         </div>
       )}
-      <div className="friends-find-mine stack gap-2">
-        <Toggle
-          checked={findable}
-          onChange={(v) => {
-            if (!mine?.handle) showToast('Önce Ayarlar → Hesap\'tan bir kullanıcı adı seç.', undefined, 4000, 'info')
-            else void save(mine.handle, v)
-          }}
-          label="Seni bulabilsinler"
-          help="Açıkken, kullanıcı adını tam yazan biri seni bulup arkadaşlık isteği gönderebilir. E-postan ve gerçek adın aramada kullanılmaz; istek, sen kabul edene kadar XP'ni göstermez."
-        />
-        {mine && (
-          <p className="small muted friends-find-name">
-            {mine.handle ? (
-              <>
-                Kullanıcı adın: <strong>@{mine.handle}</strong>. Hesap açarken seçilir, sonradan değişmez.
-              </>
-            ) : (
-              'Henüz bir kullanıcı adın yok. Ayarlar → Hesap\'tan seç; bir kez seçilir ve sonradan değişmez.'
-            )}
-          </p>
-        )}
-      </div>
+      {mine && (
+        <p className="small muted friends-find-name">
+          {!mine.handle ? (
+            'Henüz kullanıcı adın yok: Ayarlar → Hesap\'tan seç.'
+          ) : findable ? (
+            <>
+              Senin adın <strong>@{mine.handle}</strong>
+            </>
+          ) : (
+            <>
+              <strong>@{mine.handle}</strong> aramada görünmüyor; Ayarlar → Hesap'tan açabilirsin.
+            </>
+          )}
+        </p>
+      )}
     </div>
   )
 }
