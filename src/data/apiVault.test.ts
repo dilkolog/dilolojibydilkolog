@@ -30,6 +30,8 @@ let profiles: { user_id: string; approved: boolean; rejected: boolean }[] = []
 let keys: { user_id: string; sync_id: string; enc: string; auth: string; username: string | null }[] = []
 const seen: { url: string; headers: Record<string, string> }[] = []
 const deletedUsers: string[] = []
+/** The "media" bucket: file names under the person's folder; `mediaDown` makes the storage answer 503. */
+const media = { files: new Map<string, string[]>(), down: false }
 
 function fakeSupabase(input: string, init: RequestInit = {}): Response {
   const url = new URL(input)
@@ -41,6 +43,19 @@ function fakeSupabase(input: string, init: RequestInit = {}): Response {
     profiles = profiles.filter((p) => p.user_id !== id)
     keys = keys.filter((k) => k.user_id !== id)
     return new Response(null, { status: 200 })
+  }
+  if (url.pathname === '/storage/v1/object/list/media') {
+    if (media.down) return new Response('unavailable', { status: 503 })
+    const prefix = (JSON.parse(String(init.body)) as { prefix: string }).prefix.replace(/\/$/, '')
+    return media.files.has(prefix) ? Response.json((media.files.get(prefix) ?? []).map((name) => ({ name }))) : new Response('not found', { status: 404 })
+  }
+  if (url.pathname === '/storage/v1/object/media' && init.method === 'DELETE') {
+    if (media.down) return new Response('unavailable', { status: 503 })
+    for (const path of (JSON.parse(String(init.body)) as { prefixes: string[] }).prefixes) {
+      const [folder, name] = path.split('/')
+      media.files.set(folder!, (media.files.get(folder!) ?? []).filter((n) => n !== name))
+    }
+    return Response.json([])
   }
   if (url.pathname === '/auth/v1/user') {
     const user = USERS[(headers.authorization ?? '').replace('Bearer ', '')]
@@ -92,6 +107,8 @@ beforeEach(async () => {
   keys = []
   seen.length = 0
   deletedUsers.length = 0
+  media.files.clear()
+  media.down = false
   vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
   vi.stubEnv('SUPABASE_URL', SB)
   vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
@@ -173,6 +190,23 @@ describe('/api/access: the Supabase vault', () => {
     expect(blobs.has(`push/mail-${'b'.repeat(40)}.json`) && blobs.has(`sync/${NEW.id}/core`)).toBe(true)
     expect(deletedUsers).toEqual([USERS['tok-ali']!.id])
     expect(keys).toEqual([])
+  })
+
+  it('deletes the person\'s media files before the person, and keeps the account when the storage cannot', async () => {
+    await link('tok-ali', OLD)
+    const ali = USERS['tok-ali']!.id
+    const del = () => access.POST(new Request('https://app.test/api/access', { method: 'POST', headers: bearer('tok-ali'), body: JSON.stringify({ action: 'account-delete' }) }))
+    media.files.set(ali, ['a.json', 'b.json'])
+    media.down = true
+    expect((await del()).status).toBe(502)
+    expect(deletedUsers).toEqual([])
+    expect(media.files.get(ali)).toEqual(['a.json', 'b.json'])
+    // The storage is back: the same request deletes the files, then the person.
+    media.down = false
+    resetRate()
+    expect((await del()).status).toBe(200)
+    expect(media.files.get(ali)).toEqual([])
+    expect(deletedUsers).toEqual([ali])
   })
 
   it('an account from before deletes itself with its own token only', async () => {

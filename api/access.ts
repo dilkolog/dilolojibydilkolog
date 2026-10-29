@@ -211,7 +211,8 @@ async function accountDelete(request: Request): Promise<Response> {
     const steps: Record<string, number> = {}
     const [removed] = await Promise.all([
       id ? timed(steps, 'data', () => deleteAccountData(id, steps)) : Promise.resolve(0),
-      user ? timed(steps, 'media', () => deleteSupabaseMedia(user.id).catch(() => undefined)) : Promise.resolve(),
+      // A media failure stops here, before the person goes: deleted then, their files would stay with no sign-in to reach them.
+      user ? timed(steps, 'media', () => deleteSupabaseMedia(user.id)) : Promise.resolve(),
     ])
     if (user) await timed(steps, 'user', () => deleteSupabaseUser(user.id))
     // Where the time went, in the Worker's logs: a slow deletion names its slow step.

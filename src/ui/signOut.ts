@@ -24,11 +24,23 @@ export async function signOutThisDevice(identity?: Identity | null): Promise<boo
   const previous = await getAccount()
   const who = identity === undefined ? (previous ? await currentIdentity().catch(() => null) : null) : identity
   if (who) {
+    let unsent = 0
     try {
-      await runSync(true)
+      // A picture or recording that did not go up (too big, a failed upload) is not an error to the sync, but it
+      // lives only here: emptying the device would lose it.
+      unsent = (await runSync(true))?.skipped ?? 0
     } catch {
       showToast(
         'Çıkış yapılmadı: son değişiklikler hesabına gönderilemedi, silinmesin diye bekledim. İnternetini kontrol edip tekrar dene.',
+        { label: 'Yine de çık', run: () => void leaveAndWipe() },
+        15_000,
+        'info',
+      )
+      return false
+    }
+    if (unsent > 0) {
+      showToast(
+        `Çıkış yapılmadı: ${unsent} görsel/ses kaydı hesabına gönderilemedi (çok büyük ya da yüklenemedi). Çıkarsan bu cihazdan silinir.`,
         { label: 'Yine de çık', run: () => void leaveAndWipe() },
         15_000,
         'info',

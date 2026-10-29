@@ -147,14 +147,21 @@ export async function mirrorApproval(syncId: string, status: 'approved' | 'rejec
   }
 }
 
-/** The person's pictures and recordings in the "media" bucket (the account is being deleted). */
+/**
+ * The person's pictures and recordings in the "media" bucket (the account is being deleted). Throws when the
+ * storage cannot list or delete them (a 503, say): the caller stops before deleting the person, so the deletion
+ * can be tried again instead of leaving files no sign-in can reach. No bucket (404) is nothing to delete.
+ */
 export async function deleteSupabaseMedia(userId: string): Promise<void> {
   if (!UUID.test(userId)) return
   for (let round = 0; round < 50; round++) {
     const res = await fetch(`${base()}/storage/v1/object/list/media`, { method: 'POST', headers: { ...keyHeaders(), 'content-type': 'application/json' }, body: JSON.stringify({ prefix: `${userId}/`, limit: 1000 }) })
-    if (!res.ok) return
+    if (res.status === 404) return
+    if (!res.ok) throw new Error(`supabase media list ${res.status}`)
     const names = ((await res.json()) as { name: string }[]).map((o) => `${userId}/${o.name}`)
     if (!names.length) return
-    await fetch(`${base()}/storage/v1/object/media`, { method: 'DELETE', headers: { ...keyHeaders(), 'content-type': 'application/json' }, body: JSON.stringify({ prefixes: names }) })
+    const del = await fetch(`${base()}/storage/v1/object/media`, { method: 'DELETE', headers: { ...keyHeaders(), 'content-type': 'application/json' }, body: JSON.stringify({ prefixes: names }) })
+    if (!del.ok) throw new Error(`supabase media delete ${del.status}`)
   }
+  throw new Error('supabase media: too many files to delete in one go')
 }

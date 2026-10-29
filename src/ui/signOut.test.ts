@@ -46,4 +46,19 @@ describe('signing out of an account', () => {
     action.run()
     await vi.waitFor(() => expect(state.wipe).toHaveBeenCalled())
   })
+
+  it('keeps the device when a picture or recording did not go up, and says how many', async () => {
+    state.runSync.mockResolvedValueOnce({ skipped: 2 })
+    expect(await signOutThisDevice()).toBe(false)
+    expect(state.setAccount).not.toHaveBeenCalled()
+    expect(state.wipe).not.toHaveBeenCalled()
+    expect(state.toast.mock.calls[0]![0]).toContain('2 görsel/ses kaydı')
+    expect((state.toast.mock.calls[0]![1] as { label: string }).label).toBe('Yine de çık')
+  })
+
+  it('signs out when everything went up', async () => {
+    state.runSync.mockResolvedValueOnce({ skipped: 0 })
+    expect(await signOutThisDevice()).toBe(true)
+    expect(state.wipe).toHaveBeenCalled()
+  })
 })

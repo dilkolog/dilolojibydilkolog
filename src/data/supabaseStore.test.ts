@@ -168,6 +168,21 @@ describe('syncing through Supabase', () => {
     expect(await lemmas(laptop)).toEqual(['chat', 'chien', 'maison'])
   }, 60_000)
 
+  it('two first syncs at once: the second one to write the core merges with the first instead of writing over it', async () => {
+    const sb = fakeSupabase()
+    const store = supabaseStore(sb.client, USER)
+    const phone = new KelimeDB('t-sb-first-phone')
+    const laptop = new KelimeDB('t-sb-first-laptop')
+    await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
+    await laptop.vocabulary.put(createEntry({ word: 'chat', meaning: 'kedi' }, 'fr', new Date()))
+    // The laptop read "no core yet"; the phone makes it before the laptop writes.
+    sb.state.beforeCorePut = async () => void (await syncNow(phone, store))
+    await syncNow(laptop, store)
+    const core = sb.rows.get('core')!.data as { vocabulary: { lemma: string }[] }
+    expect(core.vocabulary.map((v) => v.lemma).sort()).toEqual(['chat', 'maison'])
+    expect(await lemmas(laptop)).toEqual(['chat', 'maison'])
+  }, 60_000)
+
   it('says when the tables are not set up, and refuses writes before approval', async () => {
     expect(await probeStore(fakeSupabase({ tables: false }).client, USER)).toBe('missing')
     const sb = fakeSupabase()
