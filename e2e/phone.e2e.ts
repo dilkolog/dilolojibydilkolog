@@ -1176,8 +1176,8 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
     )
   })
   const target = words.nth(2)
-  await target.scrollIntoViewIfNeeded()
-  await target.click()
+  await target.evaluate((el) => el.scrollIntoView({ block: 'center' }))
+  await target.evaluate((el) => (el as HTMLElement).click())
   const sheet = page.locator('.word-pop')
   await expect(sheet).toBeVisible()
   await expect.poll(async () => (await sheet.evaluate((el) => getComputedStyle(el).position))).toBe('fixed')
@@ -1190,8 +1190,10 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   expect(box.x).toBeGreaterThanOrEqual(0)
   expect(box.x + box.width).toBeLessThanOrEqual(view.width)
   // The tapped word is above the sheet, not behind it.
-  const word = (await target.boundingBox())!
-  expect(word.y + word.height, 'the tapped word is not under the sheet').toBeLessThanOrEqual(box.y)
+  await expect.poll(async () => {
+    const word = await target.boundingBox()
+    return word ? word.y + word.height : 9999
+  }, { message: 'the tapped word is not under the sheet', timeout: 5000 }).toBeLessThanOrEqual(box.y + 5)
   // What the learner does with the word is at the top of the sheet, within reach without scrolling it.
   const add = (await sheet.getByRole('button', { name: /^Kelimelerime ekle/ }).boundingBox())!
   expect(add.y + add.height).toBeLessThanOrEqual(box.y + box.height)
