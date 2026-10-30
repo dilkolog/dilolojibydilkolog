@@ -140,7 +140,7 @@ export function AffixHunt({ language, onExit }: { language: TargetLanguage; onEx
 
       {phase === 'intro' && (
         <div className="stack">
-          <h1 className="greeting">Ek avı</h1>
+          <h1 className="greeting">Kelime türet</h1>
           <p className="muted">
             {LANGUAGE_NAME[language]} kelimelerin çoğu bir kök ve birkaç ekten kurulur: <em>comfort → comfortable → comfortably</em>. Bir kelimeyi ve türevinin Türkçesini görürsün; hangi ekin ya da ön ekin yaptığını seçersin. Kelimeleri tek tek ezberlemek yerine ekleri öğrenirsin.
           </p>

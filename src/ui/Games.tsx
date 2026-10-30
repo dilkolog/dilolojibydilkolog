@@ -127,6 +127,11 @@ export function GamesScreen(
     void db.getGrammarLog().then((log) => setDueGrammarCount(dueGrammar(grammarExercises(p.language), log, new Date()).length))
   }, [p.language, game])
   const [query, setQuery] = useState('')
+  const [purpose, setPurposeState] = useState<Purpose>(readPurpose)
+  const setPurpose = (next: Purpose) => {
+    setPurposeState(next)
+    savePurpose(next)
+  }
   // Sentences translated and not yet written back (back-translation).
   const [backCount, setBackCount] = useState(0)
   const [backRested, setBackRested] = useState(0)
@@ -207,7 +212,7 @@ export function GamesScreen(
   const learnFirst = 'Önce birkaç kelime öğren'
   const accentCount = accentedWords(p.vocabulary).length
   const record = (key: string, show: (v: number) => string) => (records[key] ? `Rekorun: ${show(records[key])}` : 'Henüz rekor yok')
-  const groups: { title: string; tone: 'review' | 'listen' | 'speed' | 'grammar'; cards: GameCard[] }[] = [
+  const sourceGroups: { title: string; tone: Tone; cards: GameCard[] }[] = [
     {
       title: 'Tekrar',
       tone: 'review',
@@ -270,16 +275,16 @@ export function GamesScreen(
   const rewriteCard: GameCard = { id: 'rewrite', emoji: '🔄', name: 'Cümle dönüşümü', text: 'Verilen anahtar kelimeyle cümleyi anlamını koruyarak yeniden kur.', status: `${SENTENCE_REWRITES.filter((s) => s.language === p.language).length} kalıp · B2–C1` }
   const collocationsCard: GameCard = { id: 'collocations', emoji: '🔗', name: 'Edat ve kalıplar', text: 'Fiillerin aldığı edatlar ve doğal eşdizimler: boşluğu doğru kelimeyle tamamla.', status: `${COLLOCATION_DRILLS.filter((c) => c.language === p.language).length} kalıp · B1–C1` }
   const trapCard: GameCard = { id: 'traps', emoji: '⚠️', name: 'Tuzak kelimeler', text: 'Başka bir kelimeye benzeyip başka şey diyenler: gerçek anlamı seç.', status: `${trapWords.filter((t) => t.language === p.language).length} kelime` }
-  const confusablesCard: GameCard = { id: 'confusables', emoji: '👯', name: 'İkizler Arenası', text: 'Birbirine benzeyen veya karıştırılan ikiz kelimeleri ayırt et: aradaki farkı kuralıyla öğren.', status: record(`confusables:${p.language}`, (v) => `%${v}`) ?? `${CONFUSABLE_RULES.filter((r) => r.language === p.language).length} kural çifti` }
-  const registerCard: GameCard = { id: 'register', emoji: '🎭', name: 'Kayıt farkı', text: 'Sokakta, standart ve resmî: durumu oku, ortama uyan söyleyişi seç.', status: record(`register:${p.language}`, (v) => `%${v}`) ?? `${registerItems.filter((r) => r.language === p.language).length} düşünce · B1–C1` }
-  const flowCard: GameCard = { id: 'flow', emoji: '🧱', name: 'Metin akışı', text: 'Paragrafta eksik bağlaçları yerleştir: zıtlık, neden, taviz.', status: record(`flow:${p.language}`, (v) => `%${v}`) ?? `${flowItems.filter((r) => r.language === p.language).length} paragraf · B1–C1` }
+  const confusablesCard: GameCard = { id: 'confusables', emoji: '👯', name: 'Karıştırılan kelimeler', text: 'İkizler Arenası: birbirine benzeyen ya da sık karıştırılan iki kelimeden doğrusunu seç, farkı kuralıyla öğren.', status: record(`confusables:${p.language}`, (v) => `%${v}`) ?? `${CONFUSABLE_RULES.filter((r) => r.language === p.language).length} kural çifti` }
+  const registerCard: GameCard = { id: 'register', emoji: '🎭', name: 'Resmî mi, günlük mü?', text: 'Arkadaşa, yabancıya, resmî bir yere: durumu oku, ortama uyan söyleyişi seç.', status: record(`register:${p.language}`, (v) => `%${v}`) ?? `${registerItems.filter((r) => r.language === p.language).length} düşünce · B1–C1` }
+  const flowCard: GameCard = { id: 'flow', emoji: '🧱', name: 'Bağlaçlarla paragraf', text: 'Paragraftaki eksik bağlaçları yerleştir: zıtlık, neden, taviz, koşul.', status: record(`flow:${p.language}`, (v) => `%${v}`) ?? `${flowItems.filter((r) => r.language === p.language).length} paragraf · B1–C1` }
   const examCard: GameCard = { id: 'exam-tasks', emoji: '📝', name: 'Sınav tarzı görevler', text: 'DELF, DELE, Cambridge tarzı kısa metinler: oku ya da yalnızca dinle, üç soruyu cevapla.', status: record(`exam-tasks:${p.language}`, (v) => `%${v}`) ?? `${examPassages.filter((e) => e.language === p.language).length} metin · A2–C1` }
   const duelCard: GameCard = { id: 'duel', emoji: '🥊', name: 'Arkadaşla düello', text: 'Aynı 10 soruyu ikiniz de çözün: kendi zamanınızda bir bağlantıyla ya da canlı odada aynı anda. Hesap gerekmez.', status: 'Bağlantıyla ya da canlı oda' }
-  const affixCard: GameCard = { id: 'affix', emoji: '🌱', name: 'Ek avı', text: 'Bir kelime ve türevi: hangi ek ya da ön ek getirir? Kelimeyi sen kur.', status: 'Kendi kelimelerinden' }
+  const affixCard: GameCard = { id: 'affix', emoji: '🌱', name: 'Kelime türet', text: 'Ek avı: bir kelimeden türevini hangi ek ya da ön ek kurar? Kelimeyi sen kur.', status: 'Kendi kelimelerinden' }
   const enVerbsCard: GameCard = { id: 'verbs', emoji: '🕰️', name: 'Fiil laboratuvarı', text: 'Düzensiz fiiller ve phrasal verb’ler: listeye bak, sonra alıştır.', status: `${irregularVerbs.length} düzensiz fiil · ${phrasalVerbs.length} phrasal verb`, open: p.onOpenVerbs }
-  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, spotErrorCard, rewriteCard, collocationsCard, duelCard, trapCard, confusablesCard, registerCard, flowCard, affixCard, examCard, enVerbsCard] })
+  if (p.language === 'en') sourceGroups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, spotErrorCard, rewriteCard, collocationsCard, duelCard, trapCard, confusablesCard, registerCard, flowCard, affixCard, examCard, enVerbsCard] })
   else
-    groups.push({
+    sourceGroups.push({
       title: 'Dilbilgisi',
       tone: 'grammar',
       cards: [
@@ -308,6 +313,15 @@ export function GamesScreen(
       ],
     })
 
+  // The cards laid out by what they train (PURPOSE_LAYOUT); a card the layout does not name still shows, under "Diğer".
+  const sourceCards = sourceGroups.flatMap((g) => g.cards)
+  const byId = new Map(sourceCards.map((c) => [c.id, c]))
+  const placed = new Set(PURPOSE_LAYOUT.flatMap((l) => l.ids))
+  const groups = [
+    ...PURPOSE_LAYOUT.map((l) => ({ ...l, cards: l.ids.flatMap((id) => byId.get(id) ?? []) })),
+    { title: 'Diğer', purpose: 'all' as const, tone: 'review' as const, compact: false, ids: [], cards: sourceCards.filter((c) => !placed.has(c.id)) },
+  ].filter((g) => g.cards.length)
+
   // One game suggested for today, from what the learner's mistakes and lists point to.
   const open = openMistakes(p.mistakes ?? [])
   const openOf = (types: string[]) => new Set(open.filter((m) => types.includes(m.errorType)).map((m) => m.entryId)).size
@@ -331,7 +345,10 @@ export function GamesScreen(
     const card = pickCard(g.id)
     return card ? [{ card, why: g.why }] : []
   })
-  const shownGroups = groups.map((g) => ({ ...g, cards: g.cards.filter((c) => cardMatches(c, query)) })).filter((g) => g.cards.length)
+  // A search looks through every game; otherwise the chosen purpose only (all of them under "Tümü").
+  const shownGroups = query
+    ? groups.map((g) => ({ ...g, cards: g.cards.filter((c) => cardMatches(c, query)) })).filter((g) => g.cards.length)
+    : groups.filter((g) => purpose === 'all' || g.purpose === purpose)
 
   return (
     <div className="stack">
@@ -355,14 +372,17 @@ export function GamesScreen(
         </div>
       )}
       {suggestions.length > 0 && !query && (
+        <h2 className="section-title games-today-title">Bugün için önerilen</h2>
+      )}
+      {suggestions.length > 0 && !query && (
         <div className="game-suggest-list" role="list" aria-label="Bugün için önerilen oyunlar">
-          {suggestions.map(({ card, why }, i) => (
+          {suggestions.map(({ card, why }) => (
             <section key={card.id} role="listitem" className={`game-suggest tone-${card.tone}`}>
               <span className="game-suggest-icon" aria-hidden>
                 <GameIcon id={card.id === 'verbs' ? 'conjugation' : card.id} emoji={card.emoji} size={30} />
               </span>
               <div className="game-suggest-body">
-                <span className="small game-suggest-kicker">{i === 0 ? 'Bugün için önerilen' : 'Bunlar da iyi gelir'}</span>
+                <span className="small game-suggest-kicker">{PURPOSE_NAME[purposeOf(card.id)]}</span>
                 <h2 className="game-suggest-title">{card.name}</h2>
                 <p className="small muted">{why}</p>
               </div>
@@ -373,9 +393,19 @@ export function GamesScreen(
           ))}
         </div>
       )}
+      <div className="games-purpose">
+        <h2 className="section-title">Ne çalışmak istiyorsun?</h2>
+        <div className="seg-group games-purpose-pick" role="radiogroup" aria-label="Oyunları amaca göre göster">
+          {PURPOSES.map((x) => (
+            <button key={x.id} type="button" role="radio" className="seg-btn" aria-checked={!query && purpose === x.id} onClick={() => (setQuery(''), setPurpose(x.id))}>
+              {x.name}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="game-search">
         <SearchIcon size={18} />
-        <input type="search" className="input" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Oyun ara: dikte, artikel, hız…" aria-label="Oyun ara" autoComplete="off" autoCapitalize="off" spellCheck={false} />
+        <input type="search" className="input" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Tüm oyunlarda ara…" aria-label="Oyun ara" autoComplete="off" autoCapitalize="off" spellCheck={false} />
       </div>
       {query && shownGroups.length === 0 && (
         <p className="muted" role="status">
@@ -385,7 +415,8 @@ export function GamesScreen(
       {shownGroups.map((g) => (
         <section className={`stack game-group tone-${g.tone}`} key={g.title}>
           <h2 className="section-title game-group-title">{g.title}</h2>
-          <div className="game-cards">
+          {g.compact && !query && <p className="small muted game-group-note">Kendi kelimelerinle kısa ve hızlı: ısınmak ya da birkaç dakikayı değerlendirmek için.</p>}
+          <div className={`game-cards${g.compact && !query ? ' game-cards-compact' : ''}`}>
             {g.cards.map((c) => (
               <button key={c.id} className={`game-card${c.className ? ` ${c.className}` : ''}${c.due ? ' is-due' : ''}`} disabled={c.disabled} onClick={() => (c.open ? c.open() : setGame(c.id as Game))}>
                 <span className="game-emoji" aria-hidden>
@@ -427,4 +458,53 @@ interface GameCard {
   /** Something is waiting here. */
   due?: boolean
   className?: string
+}
+
+type Tone = 'review' | 'listen' | 'speed' | 'grammar' | 'write'
+type Purpose = 'words' | 'listen' | 'write' | 'grammar' | 'all'
+
+const PURPOSES: { id: Purpose; name: string }[] = [
+  { id: 'words', name: 'Kelime' },
+  { id: 'listen', name: 'Dinleme' },
+  { id: 'write', name: 'Cümle ve yazma' },
+  { id: 'grammar', name: 'Dilbilgisi' },
+  { id: 'all', name: 'Tümü' },
+]
+const PURPOSE_NAME: Record<Purpose, string> = Object.fromEntries(PURPOSES.map((x) => [x.id, x.name])) as Record<Purpose, string>
+
+/**
+ * Which games show under which purpose, in the order a learner meets them (most useful first). "Hızlı turlar" are the
+ * near-alike speed games, kept together in small cards instead of each a feature of its own.
+ */
+const PURPOSE_LAYOUT: { title: string; purpose: Exclude<Purpose, 'all'>; tone: Tone; compact: boolean; ids: GameCard['id'][] }[] = [
+  { title: 'Kelime', purpose: 'words', tone: 'review', compact: false, ids: ['swipe', 'truefalse', 'test', 'boss', 'audio', 'podcast', 'notes', 'diagram'] },
+  { title: 'Hızlı turlar', purpose: 'words', tone: 'speed', compact: true, ids: ['match', 'blitz', 'gravity', 'fluency', 'reflex'] },
+  { title: 'Dinleme ve telaffuz', purpose: 'listen', tone: 'listen', compact: false, ids: ['dialogues', 'dictation', 'numbers', 'ear', 'ladder', 'spelling', 'pairs', 'pron', 'song'] },
+  { title: 'Cümle ve yazma', purpose: 'write', tone: 'write', compact: false, ids: ['sentences', 'context', 'back', 'register', 'flow', 'rewrite', 'exam-tasks'] },
+  { title: 'Dilbilgisi', purpose: 'grammar', tone: 'grammar', compact: false, ids: ['grammar', 'verbs', 'article', 'gender', 'accent', 'confusables', 'traps', 'spot-error', 'collocations', 'affix', 'duel'] },
+]
+
+/** The purpose a game sits under (for the label on today's suggestions). */
+function purposeOf(id: string): Purpose {
+  return PURPOSE_LAYOUT.find((l) => (l.ids as string[]).includes(id))?.purpose ?? 'all'
+}
+
+const PURPOSE_KEY = 'diloloji:games-purpose'
+
+function readPurpose(): Purpose {
+  try {
+    const saved = localStorage.getItem(PURPOSE_KEY)
+    if (PURPOSES.some((x) => x.id === saved)) return saved as Purpose
+  } catch {
+    // The first purpose then.
+  }
+  return 'words'
+}
+
+function savePurpose(purpose: Purpose) {
+  try {
+    localStorage.setItem(PURPOSE_KEY, purpose)
+  } catch {
+    // Kept for this visit only.
+  }
 }

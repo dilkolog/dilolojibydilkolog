@@ -41,6 +41,11 @@ export function suggestGames(s: GameSignals, canPlay: (id: string) => boolean): 
     s.backSentences >= 3 && { id: 'back', why: `Çevirdiğin ${s.backSentences} cümleyi Türkçesinden yazmayı dene.` },
     s.fluencyWords >= s.fluencyNeeds && { id: 'fluency', why: 'İyi bildiğin kelimeler hız kazanınca konuşurken akıcı gelir.' },
     { id: 'match', why: 'Kısa ve eğlenceli bir ısınma: 6 kelimeyi anlamlarıyla eşleştir.' },
+    // Nothing of the learner's own points anywhere: everyday work from other purposes, so three are always there.
+    { id: 'dialogues', why: 'Gündelik bir konuşmada uygun cevabı seç: kafede, otelde, doktorda.' },
+    { id: 'grammar', why: 'Birkaç dilbilgisi sorusuyla kuralları taze tut; her cevapta kural Türkçe.' },
+    { id: 'truefalse', why: 'Tek elle hızlı bir tur: anlam doğru mu, tuzak mı?' },
+    { id: 'numbers', why: 'Sayıları, saatleri ve fiyatları duyunca hemen anla.' },
   ]
   const out: GameSuggestion[] = []
   for (const g of all) if (g && canPlay(g.id) && out.length < MAX_SUGGESTIONS) out.push(g)

@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, guideMarkValues, seedGuideMarks, startWithSamples } from './helpers'
+import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, guideMarkValues, seedGuideMarks, startWithSamples, gameCard } from './helpers'
 import { readdirSync, readFileSync } from 'node:fs'
 import { ES_LESSONS_2 } from '../src/data/guide/lessons-es-2'
 type CheckItem = { prompt: string; options: string[]; answer: number }
@@ -1263,11 +1263,11 @@ test('the Back button walks back through the screens, a game is left to its hub,
   await expect(page.getByRole('button', { name: /soru bekliyor|Başla/ }).first()).toBeVisible()
   // A game opened from the hub: Back returns to the hub, not out of the app.
   await openScreen(page, 'Oyunlar')
-  await page.getByRole('button', { name: /Kayıt farkı/ }).first().click()
-  await expect(page.getByRole('heading', { name: 'Kayıt farkı' })).toBeVisible()
+  await (await gameCard(page, 'Resmî mi, günlük mü?')).first().click()
+  await expect(page.getByRole('heading', { name: 'Resmî mi, günlük mü?' })).toBeVisible()
   await page.goBack()
-  await expect(page.getByRole('heading', { name: 'Kayıt farkı' })).toHaveCount(0)
-  await expect(page.getByRole('button', { name: /Kayıt farkı/ }).first()).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Resmî mi, günlük mü?' })).toHaveCount(0)
+  await expect(page.locator('.game-card', { hasText: 'Resmî mi, günlük mü?' }).first()).toBeVisible()
   expect(page.url()).toContain('localhost')
 })
 

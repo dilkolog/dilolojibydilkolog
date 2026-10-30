@@ -36,7 +36,7 @@ async function mount() {
 describe('ConfusablesGame', () => {
   it('renders the intro and starts a 10-question round of sentences', async () => {
     const host = await mount()
-    expect(host.textContent).toContain('İkizler Arenası')
+    expect(host.textContent).toContain('Karıştırılan kelimeler')
     await click(byText(host, 'tura başla'))
     expect(host.textContent).toContain('1 / 10')
     expect(host.querySelectorAll('.options .option')).toHaveLength(2)

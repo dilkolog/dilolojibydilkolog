@@ -132,7 +132,7 @@ export function FlowRound({ language, onExit, onLesson }: { language: TargetLang
 
       {phase === 'intro' && (
         <div className="card flow-card stack gap-2">
-          <h1 className="greeting">Metin akışı</h1>
+          <h1 className="greeting">Bağlaçlarla paragraf</h1>
           <p className="muted">
             Kısa bir {LANGUAGE_NAME[language]} paragrafta düşüncenin yönünü değiştiren bağlaçlar eksik (ama, bu yüzden, -se de). Boşlukları sırayla doldurursun; her cevapta neden o bağlacın uyduğunu Türkçe görürsün. Akıcı yazı ve konuşma cümleleri birbirine bağlamakla başlar.
           </p>

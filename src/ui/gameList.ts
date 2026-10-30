@@ -39,8 +39,8 @@ export const GAME_LIST: { id: GameId; name: string; emoji: string; /** French an
   { id: 'traps', name: 'Tuzak kelimeler', emoji: '⚠️' },
   { id: 'exam-tasks', name: 'Sınav tarzı görevler', emoji: '📝' },
   { id: 'dialogues', name: 'Diyaloglar', emoji: '💬' },
-  { id: 'confusables', name: 'İkizler Arenası', emoji: '👯' },
-  { id: 'register', name: 'Kayıt farkı', emoji: '🎭' },
-  { id: 'flow', name: 'Metin akışı', emoji: '🧱' },
-  { id: 'affix', name: 'Ek avı', emoji: '🌱' },
+  { id: 'confusables', name: 'Karıştırılan kelimeler', emoji: '👯' },
+  { id: 'register', name: 'Resmî mi, günlük mü?', emoji: '🎭' },
+  { id: 'flow', name: 'Bağlaçlarla paragraf', emoji: '🧱' },
+  { id: 'affix', name: 'Kelime türet', emoji: '🌱' },
 ]

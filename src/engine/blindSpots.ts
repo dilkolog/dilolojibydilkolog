@@ -138,7 +138,7 @@ export function blindSpots(input: BlindSpotInput): BlindSpot[] {
   const reg = Object.values(input.register ?? {}).reduce((t, r) => ({ ok: t.ok + r.ok, wrong: t.wrong + r.wrong }), { ok: 0, wrong: 0 })
   const regN = reg.ok + reg.wrong
   if (regN >= 6 && reg.wrong / regN >= 0.4) {
-    out.push({ id: 'register', title: 'Ortama uygun söyleyişi seçmekte zorlanıyorsun', detail: `${regN} cevabın ${pct(reg.wrong / regN)} kadarında sokak, standart ya da resmî söyleyişi karıştırdın.`, target: 'register', action: 'Kayıt farkı', score: (reg.wrong / regN) * weight(regN) })
+    out.push({ id: 'register', title: 'Ortama uygun söyleyişi seçmekte zorlanıyorsun', detail: `${regN} cevabın ${pct(reg.wrong / regN)} kadarında sokak, standart ya da resmî söyleyişi karıştırdın.`, target: 'register', action: 'Resmî mi, günlük mü?', score: (reg.wrong / regN) * weight(regN) })
   }
 
   // The kind of mistake that keeps coming back in the learner's own writing (not spelling and punctuation: those have no practice).

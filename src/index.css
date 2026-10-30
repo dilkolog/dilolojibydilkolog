@@ -1931,6 +1931,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .tone-listen { --tone: var(--cat-blue); }
 .tone-speed { --tone: var(--cat-orange); }
 .tone-grammar { --tone: var(--cat-violet); }
+.tone-write { --tone: var(--cat-teal); }
 .game-group-title { display: flex; align-items: center; gap: 0.5rem; }
 .game-group-title::before { content: ''; width: 0.75rem; height: 0.75rem; border-radius: var(--r-xs); background: var(--tone); }
 .game-group .game-card { position: relative; overflow: hidden; padding-top: 1.75rem; }
@@ -5958,9 +5959,11 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 /* Games: up to three suggestions side by side on a wide screen, and the search box above the groups. */
 .game-suggest-list { display: grid; gap: 0.75rem; }
 @media (min-width: 46rem) {
-  .game-suggest-list { grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
-  .game-suggest-list .game-suggest { flex-wrap: wrap; }
-  .game-suggest-list .game-suggest .btn { margin-left: auto; }
+  .game-suggest-list { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+  /* Three in a row: icon and words on top, the button across the bottom (side by side they squeezed the words). */
+  .game-suggest-list .game-suggest { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: 1fr auto; align-items: start; gap: 0.875rem; padding: 1.125rem; }
+  .game-suggest-list .game-suggest-icon { width: 3rem; height: 3rem; }
+  .game-suggest-list .game-suggest .btn { grid-column: 1 / -1; justify-self: stretch; margin: 0; }
 }
 .game-search { position: relative; display: flex; align-items: center; }
 .game-search svg { position: absolute; left: 0.875rem; color: var(--ink-soft); pointer-events: none; }
@@ -5982,3 +5985,16 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 /* A paid helper the owner has not opened for this account yet (AiLocked): a quiet note with a lock. */
 .ai-locked { display: flex; align-items: flex-start; gap: 0.5rem; }
 .ai-locked-icon { flex: none; margin-top: 0.15rem; color: var(--ink-soft); }
+
+/* Games: today's three on top, then one purpose at a time (Kelime · Dinleme · Cümle ve yazma · Dilbilgisi · Tümü). */
+.games-today-title { margin-bottom: -0.25rem; }
+.games-purpose { display: grid; gap: 0.625rem; margin-top: 0.5rem; }
+.games-purpose .section-title { margin: 0; }
+.games-purpose-pick { justify-self: start; }
+.game-group-note { margin: -0.25rem 0 0; }
+/* The speed games: small cards, name and record only (what each does is in its intro). */
+.game-group .game-cards-compact { grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr)); gap: 0.625rem; }
+.game-group .game-cards-compact .game-card { grid-template-columns: 1fr; row-gap: 0.375rem; }
+.game-group .game-cards-compact .game-card .game-record { grid-column: 1; margin-top: 0; }
+.game-group .game-cards-compact .game-card { padding: 1rem 1rem 0.875rem; }
+.game-cards-compact .game-card > .small.muted, .game-cards-compact .game-watermark { display: none; }
