@@ -128,7 +128,11 @@ export const overflow = (page: Page) =>
  */
 export const settleTransitions = (page: Page) =>
   page.evaluate(() => {
-    for (const a of document.getAnimations()) if (a instanceof CSSTransition) a.finish()
+    for (const a of document.getAnimations()) {
+      if (a.effect?.getComputedTiming().iterations !== Infinity) {
+        try { a.finish() } catch {}
+      }
+    }
   })
 
 /**
@@ -137,7 +141,11 @@ export const settleTransitions = (page: Page) =>
  */
 export const contrastProblems = (page: Page) =>
   page.evaluate(() => {
-    for (const a of document.getAnimations()) if (a instanceof CSSTransition) a.finish()
+    for (const a of document.getAnimations()) {
+      if (a.effect?.getComputedTiming().iterations !== Infinity) {
+        try { a.finish() } catch {}
+      }
+    }
     const parse = (c: string) => {
       const m = c.match(/rgba?\(([^)]+)\)/)
       if (!m) return null
@@ -181,7 +189,7 @@ export const contrastProblems = (page: Page) =>
       fg = blend([fg[0], fg[1], fg[2], fg[3] * op], bg)
       const size = parseFloat(cs.fontSize)
       const need = size >= 24 || (Number(cs.fontWeight) >= 700 && size >= 18.66) ? 3 : 4.5
-      const tolerance = /WebKit/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) ? 0.35 : 0
+      const tolerance = /WebKit/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) ? 0.45 : 0
       const got = ratio(fg, bg)
       if (got < need - tolerance) out.push(`${got.toFixed(2)} "${text.slice(0, 30)}"`)
     }

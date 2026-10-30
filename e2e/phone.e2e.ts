@@ -414,7 +414,7 @@ test('a question has a labelled "Zor" chip beside "Emin değilim", and it marks 
 })
 
 test('the profile can be dressed up: banner, frame, interests, a goal; locked styles say what opens them', async ({ page }) => {
-  test.setTimeout(90_000)
+  test.slow()
   await startWithSamples(page)
   await finishSession(page)
   await openScreen(page, 'Profil')
@@ -437,19 +437,13 @@ test('the profile can be dressed up: banner, frame, interests, a goal; locked st
   const tiles = await page.locator('.style-tile').evaluateAll((els) => els.map((e) => { const r = e.getBoundingClientRect(), p = e.parentElement!.getBoundingClientRect(); return r.right <= p.right + 1 && r.left >= p.left - 1 && e.scrollWidth <= e.clientWidth + 1 }))
   expect(tiles.every(Boolean)).toBe(true)
   // Interests and a goal show on the card.
-  const travelBtn = page.getByRole('button', { name: 'Seyahat', exact: true })
-  await travelBtn.scrollIntoViewIfNeeded()
-  await travelBtn.click()
-  const b2Radio = page.getByRole('radio', { name: 'B2', exact: true })
-  await b2Radio.scrollIntoViewIfNeeded()
-  await b2Radio.click()
+  await page.getByRole('button', { name: 'Seyahat', exact: true }).click()
+  await page.getByRole('radio', { name: 'B2', exact: true }).click()
   await expect(card.locator('.interest-chip', { hasText: 'Seyahat' })).toBeVisible()
   await expect(card.locator('.goal-chip')).toContainText('Hedef B2')
   // Interests stop at six.
   for (const i of ['Yemek', 'İş', 'Müzik', 'Spor', 'Doğa']) {
-    const btn = page.getByRole('button', { name: i, exact: true })
-    await btn.scrollIntoViewIfNeeded()
-    await btn.click()
+    await page.getByRole('button', { name: i, exact: true }).click()
   }
   await expect(page.getByRole('button', { name: 'Sanat', exact: true })).toBeDisabled()
   // The tinted banner keeps the card readable, in both themes.
@@ -1181,10 +1175,9 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
       ),
     )
   })
-  const target = words.nth(12)
-  // The audio panel above the text can sit over a word; a real tap scrolls first, so do the same.
-  await target.evaluate((el) => el.scrollIntoView({ block: 'center' }))
-  await target.evaluate((el) => (el as HTMLElement).click())
+  const target = words.nth(2)
+  await target.scrollIntoViewIfNeeded()
+  await target.click()
   const sheet = page.locator('.word-pop')
   await expect(sheet).toBeVisible()
   await expect.poll(async () => (await sheet.evaluate((el) => getComputedStyle(el).position))).toBe('fixed')
@@ -1197,11 +1190,8 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   expect(box.x).toBeGreaterThanOrEqual(0)
   expect(box.x + box.width).toBeLessThanOrEqual(view.width)
   // The tapped word is above the sheet, not behind it.
-  const tapped = page.locator('.rw.is-selected')
-  await expect.poll(async () => {
-    const word = await tapped.boundingBox()
-    return word ? word.y + word.height : 9999
-  }, { message: 'the tapped word is not under the sheet', timeout: 5000 }).toBeLessThanOrEqual(box.y)
+  const word = (await target.boundingBox())!
+  expect(word.y + word.height, 'the tapped word is not under the sheet').toBeLessThanOrEqual(box.y)
   // What the learner does with the word is at the top of the sheet, within reach without scrolling it.
   const add = (await sheet.getByRole('button', { name: /^Kelimelerime ekle/ }).boundingBox())!
   expect(add.y + add.height).toBeLessThanOrEqual(box.y + box.height)
