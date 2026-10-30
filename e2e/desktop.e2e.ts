@@ -7,7 +7,7 @@ import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { unzipSync } from 'fflate'
-import { aiRoute, approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
+import { aiRoute, approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, seedNotices, startWithSamples, gameCard } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -309,15 +309,15 @@ test('verb lab: forms put in the review queue come back on Today and in the revi
   await expect(main.locator('.lab-garden')).toContainText('parler')
   // The old conjugation game card is gone from Games: one place for verbs.
   await openScreen(page, 'Oyunlar')
-  await expect(page.locator('.game-card', { hasText: 'Çekim antrenmanı' })).toHaveCount(0)
-  await page.locator('.game-card', { hasText: 'Fiil laboratuvarı' }).click()
+  await expect((await gameCard(page, 'Çekim antrenmanı'))).toHaveCount(0)
+  await (await gameCard(page, 'Fiil laboratuvarı')).click()
   await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
 })
 
 test('numbers and times: see the digits, write the words; a wrong answer shows how it is said', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Sayılar ve saatler' }).click()
+  await (await gameCard(page, 'Sayılar ve saatler')).click()
   await expect(page.getByRole('heading', { name: 'Sayılar ve saatler' })).toBeVisible()
   await page.getByRole('button', { name: 'Gör ve yaz' }).click()
   await page.getByRole('button', { name: '0–100' }).click()
@@ -339,7 +339,7 @@ test('numbers and times: see the digits, write the words; a wrong answer shows h
 test('spelling aloud: a word is spelled letter by letter; the answer shows the word and its spelling', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Harf harf' }).click()
+  await (await gameCard(page, 'Harf harf')).click()
   await page.getByRole('button', { name: /tura başla/ }).click()
   await page.getByLabel('Kelime', { exact: true }).fill('zzz')
   await page.keyboard.press('Enter')
@@ -353,7 +353,7 @@ test('spelling aloud: a word is spelled letter by letter; the answer shows the w
 test('dialogues: the other person speaks, a reply is chosen and explained, the conversation goes on to the result', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Diyaloglar' }).click()
+  await (await gameCard(page, 'Diyaloglar')).click()
   await expect(page.getByRole('heading', { name: 'Diyaloglar' })).toBeVisible()
   await page.locator('.examtask-item').first().click()
   const turns = Number((await page.locator('.game-timer').textContent())!.split('/')[1])
@@ -370,7 +370,7 @@ test('dialogues: the other person speaks, a reply is chosen and explained, the c
 test('twins: a sentence only one of the pair fits; the answer gives the rule and the Turkish; one pair alone', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'İkizler Arenası' }).click()
+  await (await gameCard(page, 'Karıştırılan kelimeler')).click()
   await page.getByRole('button', { name: 'savoir / connaître' }).click()
   await page.getByRole('button', { name: /tura başla/ }).click()
   await expect(page.locator('.prompt-label')).toContainText('savoir / connaître')
@@ -386,7 +386,7 @@ test('twins: a sentence only one of the pair fits; the answer gives the rule and
 test('exam-style tasks: a text and three questions to read, a listening mode that hides the text until the answers', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Sınav tarzı görevler' }).click()
+  await (await gameCard(page, 'Sınav tarzı görevler')).click()
   await expect(page.getByRole('heading', { name: 'Sınav tarzı görevler' })).toBeVisible()
   // Reading: the text is in front of the learner; answering all three enables the check.
   await page.getByRole('button', { name: 'A2', exact: true }).click()
@@ -418,7 +418,7 @@ test('English verb lab: irregular verbs and phrasal verbs, a list to look throug
   await startWithSamples(page)
   await page.getByRole('button', { name: /İngilizce/ }).click()
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Fiil laboratuvarı' }).click()
+  await (await gameCard(page, 'Fiil laboratuvarı')).click()
   await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
   // The list: searched by form or meaning.
   await page.getByLabel('Düzensiz fiillerde ara').fill('went')
@@ -851,7 +851,7 @@ test('reading along a video: the sentence heard is lit, a tapped word stops the 
   await page.getByRole('button', { name: 'Cümleyi kaydet' }).click()
   await expect(page.getByText('Cümle kaydedildi').first()).toBeVisible()
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Cümle kartları' }).click()
+  await (await gameCard(page, 'Cümle kartları')).click()
   await page.getByRole('button', { name: /cümle tekrar bekliyor/ }).click()
   const clip = page.locator('.video-clip iframe')
   if (!(await clip.count())) {
@@ -1126,7 +1126,7 @@ test('verb lab: the tabs and modes used are counted in Settings → Kullanım', 
 test('games started are counted in Settings → Kullanım, by name', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Refleks turu' }).click()
+  await (await gameCard(page, 'Refleks turu')).click()
   await expect(page.getByRole('heading', { name: 'Refleks turu' })).toBeVisible()
   await openScreen(page, 'Ayarlar')
   await page.getByRole('searchbox', { name: 'Ayar ara' }).fill('Kullanım')
@@ -1354,7 +1354,7 @@ test('reading: reaching the end saves the meetings with list words on its own; f
 test('Games: against the clock can be played by writing the word from its meaning', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.getByRole('button', { name: /^Zamana karşı 60 saniyede/ }).click()
+  await (await gameCard(page, 'Zamana karşı')).click()
   await page.getByRole('button', { name: 'Kelimeyi yaz' }).click()
   await expect(page.getByRole('button', { name: 'Kelimeyi yaz' })).toHaveAttribute('aria-pressed', 'true')
   await page.getByRole('button', { name: 'Başla', exact: true }).click()
@@ -1677,7 +1677,7 @@ test('dictation of a text: each sentence played from its recording, written, com
   await expect(panel).toHaveCount(0)
   // The word missed (the shown-only sentence aside) waits in Games, heard again in its sentence.
   await openScreen(page, 'Oyunlar')
-  const ear = page.locator('.game-card', { hasText: 'Kaçırdıkların' })
+  const ear = (await gameCard(page, 'Kaçırdıkların'))
   await expect(ear).toContainText('1 kelime')
   await ear.click()
   await expect(page.locator('.dd-missed')).toHaveText(['beau'])
@@ -1700,7 +1700,7 @@ test('back-translation: sentences translated before come back as their Turkish, 
   await page.getByRole('button', { name: 'Çevir', exact: true }).click()
   await expect(page.getByRole('region', { name: 'Çeviri' })).toContainText('Yarın erken yola çıkıyoruz.')
   await openScreen(page, 'Oyunlar')
-  const card = page.locator('.game-card', { hasText: 'Geri çeviri' })
+  const card = (await gameCard(page, 'Geri çeviri'))
   await expect(card).toContainText('2 cümle hazır')
   await card.click()
   // Newest first: the second sentence was translated last.
@@ -1718,14 +1718,14 @@ test('back-translation: sentences translated before come back as their Turkish, 
   await page.getByRole('button', { name: 'Oyunlara dön' }).click()
   // Both are sentence cards now: nothing left to write back.
   await expect(card).toContainText('Okurken “Cümlenin Türkçesi”ne bas')
-  await page.locator('.game-card', { hasText: 'Cümle kartları' }).click()
+  await (await gameCard(page, 'Cümle kartları')).click()
   await expect(page.getByRole('region', { name: /Cümlelerin/ }).or(page.locator('.sentence-list'))).toContainText('Nous partons tôt demain.')
 })
 
 test('grammar questions: a topic round of the three kinds, the rule after each answer, and the topic remembers how it went', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
+  await (await gameCard(page, 'Dilbilgisi soruları')).click()
   await page.getByRole('searchbox', { name: 'Dilbilgisi konusu ara' }).fill('Participe passé uyumu')
   await page.getByRole('button', { name: 'Participe passé uyumu' }).click()
   await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
@@ -1745,7 +1745,7 @@ test('grammar questions: a topic round of the three kinds, the rule after each a
   }
   await expect(page.locator('.game-result')).toContainText('/ 8 doğru')
   await page.getByRole('button', { name: 'Oyunlara dön' }).click()
-  await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
+  await (await gameCard(page, 'Dilbilgisi soruları')).click()
   await page.getByRole('searchbox', { name: 'Dilbilgisi konusu ara' }).fill('Participe passé uyumu')
   await expect(page.locator('.grammar-topic', { hasText: 'Participe passé uyumu' })).toContainText(/%\d+ doğruluk/)
 })
@@ -1753,7 +1753,7 @@ test('grammar questions: a topic round of the three kinds, the rule after each a
 test('reflex round and false friends: a phrase picked from its Turkish, a word’s meaning picked from its sentence, both kept in the log', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Refleks turu' }).click()
+  await (await gameCard(page, 'Refleks turu')).click()
   await page.getByRole('button', { name: /Süre yok/ }).click()
   await page.getByRole('button', { name: /10 soruluk tura başla/ }).click()
   await expect(page.locator('.game-timer')).toHaveText('1 / 10')
@@ -1766,7 +1766,7 @@ test('reflex round and false friends: a phrase picked from its Turkish, a word�
   await expect(page.locator('.game-timer')).toHaveText('2 / 10')
   await page.getByRole('button', { name: '← Oyunlar' }).click()
 
-  await page.locator('.game-card', { hasText: 'Tuzak kelimeler' }).click()
+  await (await gameCard(page, 'Tuzak kelimeler')).click()
   await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
   for (let i = 1; i <= 8; i++) {
     await expect(page.locator('.game-timer')).toHaveText(`${i} / 8`)
@@ -1781,7 +1781,7 @@ test('reflex round and false friends: a phrase picked from its Turkish, a word�
 test('register game: a situation and a thought, the way of saying it that suits is picked, all three ways are shown after', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Kayıt farkı' }).click()
+  await (await gameCard(page, 'Resmî mi, günlük mü?')).click()
   await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
   for (let i = 1; i <= 8; i++) {
     await expect(page.locator('.game-timer')).toHaveText(`${i} / 8`)
@@ -1923,7 +1923,7 @@ test('settings: the fine ones wait behind a switch, the search still finds them,
 test('affix hunt: a word and its relative in Turkish, the ending that makes it is picked and shown put on the word', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Ek avı' }).click()
+  await (await gameCard(page, 'Kelime türet')).click()
   await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
   for (let i = 1; i <= 8; i++) {
     await expect(page.locator('.game-timer')).toHaveText(`${i} / 8`)
@@ -1938,7 +1938,7 @@ test('affix hunt: a word and its relative in Turkish, the ending that makes it i
 test('text flow game: the connectors of a paragraph are filled one by one, each answer explained, the Turkish shown at the end', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Metin akışı' }).click()
+  await (await gameCard(page, 'Bağlaçlarla paragraf')).click()
   await page.getByRole('button', { name: /3 paragraflık tura başla/ }).click()
   for (let i = 1; i <= 3; i++) {
     await expect(page.locator('.game-timer')).toHaveText(`${i} / 3`)
@@ -1980,7 +1980,7 @@ test('review in context: a translated sentence with two of the learner\'s words,
   )
   expect(words).toHaveLength(2)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Cümlede tekrar' }).click()
+  await (await gameCard(page, 'Cümlede tekrar')).click()
   await page.getByRole('button', { name: /cümlelik tura başla/ }).click()
   await expect(page.locator('.flow-gap')).toHaveCount(2)
   for (const w of words) await page.locator('.context-bank button', { hasText: new RegExp(`^${w}$`) }).click()
@@ -2280,7 +2280,7 @@ test('register game: regional usage note shows for entries with notes and is abs
   await page.getByRole('button', { name: /İspanyolca/ }).click()
   await openScreen(page, 'Oyunlar')
 
-  await page.locator('.game-card', { hasText: 'Kayıt farkı' }).click()
+  await (await gameCard(page, 'Resmî mi, günlük mü?')).click()
   await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
 
   let seenNote = false
@@ -2993,7 +2993,7 @@ test('flashcards: flipping, grading 1/2/3, unlearned card returns after 3 cards,
   await expect(page.getByRole('heading', { name: 'Oyunlar' })).toBeVisible()
 
   // Open "Kaydırmalı kartlar"
-  await page.locator('.game-card', { hasText: 'Kaydırmalı kartlar' }).click()
+  await (await gameCard(page, 'Kaydırmalı kartlar')).click()
   await expect(page.getByRole('heading', { name: 'Kaydırmalı kartlar' })).toBeVisible()
 
   // Start round
@@ -3436,7 +3436,7 @@ test('song game: a video link brings its captions as lines with gaps; a page is 
     }),
   )
   await openScreen(page, 'Oyunlar')
-  await page.getByText('Şarkıyla öğren', { exact: true }).click()
+  await (await gameCard(page, 'Şarkıyla öğren')).click()
   await page.getByLabel('YouTube bağlantısı').fill('https://www.youtube.com/watch?v=abc12345678')
   await page.getByRole('button', { name: 'Şarkıyı aç' }).click()
   await expect(page.locator('h1')).toHaveText('Une chanson')
@@ -3782,7 +3782,7 @@ test('content grammar: a topic’s file is fetched when chosen, and a logged que
     if (r.url().includes(`/content/fr/grammar/${topic}/`)) topicCalls++
   })
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
+  await (await gameCard(page, 'Dilbilgisi soruları')).click()
   await page.getByRole('button', { name: /^Tekrar zamanı gelen 1 soru/ }).click()
   await expect(page.locator('.grammar-game')).toContainText(question.prompt.split('___')[0].trim().slice(0, 30))
   expect(topicCalls).toBe(1)
@@ -3902,7 +3902,7 @@ for (const language of ['fr', 'es'] as const) {
     await startWithSamples(page)
     if (language === 'es') await page.getByRole('button', { name: /İspanyolca/ }).click()
     await openScreen(page, 'Oyunlar')
-    await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
+    await (await gameCard(page, 'Dilbilgisi soruları')).click()
     await expect(page.locator('.grammar-category')).toHaveCount(16)
     expect((await new AxeBuilder({ page }).include('.grammar-catalog').withTags(['wcag2a', 'wcag2aa']).analyze()).violations).toEqual([])
     expect(await overflow(page)).toEqual([])

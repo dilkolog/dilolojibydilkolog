@@ -2047,6 +2047,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .tone-listen { --tone: var(--cat-blue); }
 .tone-speed { --tone: var(--cat-orange); }
 .tone-grammar { --tone: var(--cat-violet); }
+.tone-write { --tone: var(--cat-teal); }
 .game-group-title { display: flex; align-items: center; gap: 0.5rem; }
 .game-group-title::before { content: ''; width: 0.75rem; height: 0.75rem; border-radius: var(--r-xs); background: var(--tone); }
 .game-group .game-card { position: relative; overflow: hidden; padding-top: 1.75rem; }
@@ -6289,3 +6290,16 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 .account-menu-who strong { font-size: var(--t-sm); line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .account-menu-who span { font-size: var(--t-xs); color: var(--ink-soft); }
 .account-menu-art { flex: none; height: 1.5rem; width: auto; }
+
+/* Games: today's three on top, then one purpose at a time (Kelime · Dinleme · Cümle ve yazma · Dilbilgisi · Tümü). */
+.games-today-title { margin-bottom: -0.25rem; }
+.games-purpose { display: grid; gap: 0.625rem; margin-top: 0.5rem; }
+.games-purpose .section-title { margin: 0; }
+.games-purpose-pick { justify-self: start; }
+.game-group-note { margin: -0.25rem 0 0; }
+/* The speed games: small cards, name and record only (what each does is in its intro). */
+.game-group .game-cards-compact { grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr)); gap: 0.625rem; }
+.game-group .game-cards-compact .game-card { grid-template-columns: 1fr; row-gap: 0.375rem; }
+.game-group .game-cards-compact .game-card .game-record { grid-column: 1; margin-top: 0; }
+.game-group .game-cards-compact .game-card { padding: 1rem 1rem 0.875rem; }
+.game-cards-compact .game-card > .small.muted, .game-cards-compact .game-watermark { display: none; }

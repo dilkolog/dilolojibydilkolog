@@ -381,3 +381,15 @@ export async function aiRoute(page: Page, answer: (route: Route) => Promise<void
     (r) => (r.request().method() === 'GET' ? r.fulfill({ json: { available: true, level: 'tam', features: ['test', 'word_fill', 'suggest', 'mnemonic', 'family', 'word_suggest', 'personal_sentences', 'prequestions', 'comprehension', 'notes_quiz', 'sentence', 'translation', 'retell', 'story', 'journal', 'report', 'session_note', 'week_note', 'verb_explain', 'pron_tips', 'chat', 'monki', 'photo_words', 'podcast'] } }) : answer(r)),
   )
 }
+
+/**
+ * A game's card on the Games screen. The hub shows one purpose at a time (Kelime first), so for a card under another
+ * purpose it switches to "Tümü", where every game is; the card locator is returned either way.
+ */
+export async function gameCard(page: Page, name: string) {
+  const card = page.locator('.game-card', { hasText: name })
+  const all = page.getByRole('radio', { name: 'Tümü', exact: true })
+  await all.waitFor()
+  if (!(await card.first().isVisible())) await all.click()
+  return card
+}

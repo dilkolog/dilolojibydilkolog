@@ -5,8 +5,12 @@ const NONE: GameSignals = { accent: 0, article: 0, openMistakes: 0, dueSentences
 const any = () => true
 
 describe('suggestGames', () => {
-  it('falls back to a warm-up when nothing in the data points anywhere', () => {
-    expect(suggestGames(NONE, any).map((g) => g.id)).toEqual(['match'])
+  it('falls back to a warm-up and everyday work when nothing in the data points anywhere: always three', () => {
+    expect(suggestGames(NONE, any).map((g) => g.id)).toEqual(['match', 'dialogues', 'grammar'])
+  })
+
+  it('fills from the everyday ones past a game that cannot start', () => {
+    expect(suggestGames(NONE, (id) => id !== 'match' && id !== 'grammar').map((g) => g.id)).toEqual(['dialogues', 'truefalse', 'numbers'])
   })
 
   it('names up to three games, the most pressing first, each with its reason', () => {
@@ -18,11 +22,11 @@ describe('suggestGames', () => {
 
   it('skips a game that cannot be played now and takes the next one', () => {
     const out = suggestGames({ ...NONE, dueSentences: 2, earMisses: 5 }, (id) => id !== 'sentences')
-    expect(out.map((g) => g.id)).toEqual(['ear', 'match'])
+    expect(out.map((g) => g.id)).toEqual(['ear', 'match', 'dialogues'])
   })
 
   it('wants enough evidence: one open accent mistake is not a suggestion', () => {
-    expect(suggestGames({ ...NONE, accent: 1, openMistakes: 2, weakPron: 2 }, any).map((g) => g.id)).toEqual(['match'])
+    expect(suggestGames({ ...NONE, accent: 1, openMistakes: 2, weakPron: 2 }, any).map((g) => g.id)).toEqual(['match', 'dialogues', 'grammar'])
   })
 })
 

@@ -144,7 +144,7 @@ export function ConfusablesGame({ language, best, recordKey, onExit }: Props) {
 
       {phase === 'intro' && (
         <div className="stack">
-          <h1 className="greeting">İkizler Arenası</h1>
+          <h1 className="greeting">Karıştırılan kelimeler</h1>
           <p className="muted">
             {LANGUAGE_NAME[language]}da birbirine benzeyen ya da Türkçede aynı kelimeyle karşılanan ikizler. Her soruda bir cümle var; boşluğa ikisinden yalnızca biri uyar. Cevaptan sonra aradaki farkın kuralını ve cümlenin Türkçesini görürsün.
           </p>
