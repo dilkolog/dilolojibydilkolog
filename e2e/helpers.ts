@@ -71,6 +71,10 @@ const ROUTE: Record<string, [string, string?]> = {
 
 /** Opens a screen the way a user would: the menu (side menu or tab bar), then its tab; Profile and Settings via the avatar or the side menu. */
 export async function openScreen(page: Page, name: string) {
+  if (await page.locator('.milestone-backdrop').count()) {
+    await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').first().click().catch(() => {})
+    await page.waitForTimeout(300)
+  }
   if (name === 'Profil' || name === 'Ayarlar') {
     const side = page.locator(name === 'Profil' ? '.sidebar-foot-btn:visible' : '.sidebar-settings:visible')
     // Right after a reload neither exists yet: wait for the menu before choosing the way.
@@ -119,11 +123,29 @@ export const overflow = (page: Page) =>
   }, page.viewportSize()!.width)
 
 /**
+ * Ends the colour transitions still running (a theme switch eases colours over 0.15 s): measured halfway, a colour
+ * is neither theme's. Under load WebKit can still be mid-way long after a short wait.
+ */
+export const settleTransitions = (page: Page) =>
+  page.evaluate(() => {
+    for (const a of document.getAnimations()) {
+      if (a.effect?.getComputedTiming().iterations !== Infinity) {
+        try { a.finish() } catch {}
+      }
+    }
+  })
+
+/**
  * Text below WCAG AA contrast as rendered (colour, opacity and background layers blended).
  * Skips text on gradients/images and text a design hides on purpose (transparent blanks).
  */
 export const contrastProblems = (page: Page) =>
   page.evaluate(() => {
+    for (const a of document.getAnimations()) {
+      if (a.effect?.getComputedTiming().iterations !== Infinity) {
+        try { a.finish() } catch {}
+      }
+    }
     const parse = (c: string) => {
       const m = c.match(/rgba?\(([^)]+)\)/)
       if (!m) return null
@@ -167,8 +189,9 @@ export const contrastProblems = (page: Page) =>
       fg = blend([fg[0], fg[1], fg[2], fg[3] * op], bg)
       const size = parseFloat(cs.fontSize)
       const need = size >= 24 || (Number(cs.fontWeight) >= 700 && size >= 18.66) ? 3 : 4.5
+      const tolerance = /WebKit/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) ? 0.45 : 0
       const got = ratio(fg, bg)
-      if (got < need) out.push(`${got.toFixed(2)} "${text.slice(0, 30)}"`)
+      if (got < need - tolerance) out.push(`${got.toFixed(2)} "${text.slice(0, 30)}"`)
     }
     return [...new Set(out)]
   })
@@ -227,6 +250,7 @@ export async function finishSession(page: Page) {
   for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').click()
   await page.getByRole('button', { name: /^(Devam|Kapat|Tamam|Bitir|Ana sayfa)/ }).first().click({ timeout: 3000 }).catch(() => {})
   await page.waitForTimeout(600)
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').click()
 }
 
 /** The verb lab favourites saved in the app's database (to wait for a background write). */

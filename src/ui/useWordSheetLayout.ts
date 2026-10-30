@@ -21,9 +21,9 @@ export function useWordSheetLayout(openKey: string | undefined, openAt: string |
     if (!openKey) return
     const frame = requestAnimationFrame(() => {
       const card = document.querySelector<HTMLElement>('.word-pop')
-      // The word in the lit sentence (the same word may stand earlier in the text).
+      // The selected word (or the one in the lit sentence, or first occurrence).
       const key = CSS.escape(openKey)
-      const word = document.querySelector<HTMLElement>(`.rs.is-lit [data-key="${key}"]`) ?? document.querySelector<HTMLElement>(`[data-key="${key}"]`)
+      const word = document.querySelector<HTMLElement>('.rw.is-selected') ?? document.querySelector<HTMLElement>(`.rs.is-lit [data-key="${key}"]`) ?? document.querySelector<HTMLElement>(`[data-key="${key}"]`)
       if (!card || !word || getComputedStyle(card).position !== 'fixed') return
       // Where the sheet will stand (it is still rising into place, so its rectangle is not the answer yet).
       const top = innerHeight - parseFloat(getComputedStyle(card).bottom) - card.offsetHeight

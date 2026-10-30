@@ -20,7 +20,7 @@ jobs:
     # A draft is still being worked on: checked once it is marked ready.
     if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -37,7 +37,7 @@ jobs:
       - run: npx vite build
         env:
           VITE_ALLOW_GUEST: '1'
-      # Flows and screenshots in a real browser (phone and desktop). Screenshot baselines are made
+      # Flows and screenshots in a real browser (phone, iPhone on WebKit, desktop). Screenshot baselines are made
       # on this same runner by snapshots.yml. The browser is cached between runs; its system
       # libraries are installed each time (they are not kept between machines).
       - id: pw
@@ -46,11 +46,11 @@ jobs:
         id: browsers
         with:
           path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ steps.pw.outputs.version }}
+          key: playwright-${{ runner.os }}-${{ steps.pw.outputs.version }}-webkit
       - if: steps.browsers.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium webkit
       - if: steps.browsers.outputs.cache-hit == 'true'
-        run: npx playwright install-deps chromium
+        run: npx playwright install-deps chromium webkit
       - run: npx playwright test
       # The sign-in gate needs a build with Supabase set up (a fake address; the tests stub every request).
       - run: npm run test:e2e:gate

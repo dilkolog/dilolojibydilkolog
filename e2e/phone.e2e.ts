@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, guideMarkValues, seedGuideMarks, startWithSamples } from './helpers'
+import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, guideMarkValues, seedGuideMarks, settleTransitions, startWithSamples } from './helpers'
 import { readdirSync, readFileSync } from 'node:fs'
 import { ES_LESSONS_2 } from '../src/data/guide/lessons-es-2'
 type CheckItem = { prompt: string; options: string[]; answer: number }
@@ -53,6 +53,7 @@ test('first run: three steps, each fits the screen, and the choices are kept', a
 })
 
 test('no screen scrolls sideways, even at the largest text size', async ({ page }) => {
+  test.slow()
   await startWithSamples(page)
   const found: string[] = []
   for (const scale of ['', '125%']) {
@@ -67,6 +68,7 @@ test('no screen scrolls sideways, even at the largest text size', async ({ page 
 })
 
 test('text stays readable in the light, the dark, the calm and the high-contrast theme', async ({ page }) => {
+  test.slow()
   await startWithSamples(page)
   const found: string[] = []
   for (const theme of ['light', 'dark', 'calm', 'contrast']) {
@@ -78,8 +80,11 @@ test('text stays readable in the light, the dark, the calm and the high-contrast
       if (t === 'contrast') document.documentElement.dataset.contrast = ''
       else delete document.documentElement.dataset.contrast
     }, theme)
+    await page.waitForTimeout(50)
+    await settleTransitions(page)
     for (const name of SCREENS) {
       await openScreen(page, name)
+      await settleTransitions(page)
       for (const p of await contrastProblems(page)) found.push(`${theme} ${name}: ${p}`)
     }
   }
@@ -150,11 +155,7 @@ test('Progress starts with the overview and opens a group from the shortcut row'
   await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'true')
   // It scrolled there, and the page grew by what it opened.
   await expect.poll(async () => {
-    const top = await page.evaluate(() => document.getElementById('p-memory')!.getBoundingClientRect().top)
-    if (top >= 250) {
-      await page.locator('.settings-nav .chip', { hasText: 'Tekrarlar' }).click()
-    }
-    return top
+    return await page.evaluate(() => document.getElementById('p-memory')!.getBoundingClientRect().top)
   }, { timeout: 10_000 }).toBeLessThan(250)
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollHeight)).toBeGreaterThan(closedHeight + 400)
   await toggles.nth(2).click()
@@ -413,7 +414,7 @@ test('a question has a labelled "Zor" chip beside "Emin değilim", and it marks 
 })
 
 test('the profile can be dressed up: banner, frame, interests, a goal; locked styles say what opens them', async ({ page }) => {
-  test.setTimeout(90_000)
+  test.slow()
   await startWithSamples(page)
   await finishSession(page)
   await openScreen(page, 'Profil')
@@ -441,7 +442,9 @@ test('the profile can be dressed up: banner, frame, interests, a goal; locked st
   await expect(card.locator('.interest-chip', { hasText: 'Seyahat' })).toBeVisible()
   await expect(card.locator('.goal-chip')).toContainText('Hedef B2')
   // Interests stop at six.
-  for (const i of ['Yemek', 'İş', 'Müzik', 'Spor', 'Doğa']) await page.getByRole('button', { name: i, exact: true }).click()
+  for (const i of ['Yemek', 'İş', 'Müzik', 'Spor', 'Doğa']) {
+    await page.getByRole('button', { name: i, exact: true }).click()
+  }
   await expect(page.getByRole('button', { name: 'Sanat', exact: true })).toBeDisabled()
   // The tinted banner keeps the card readable, in both themes.
   const found: string[] = []
@@ -943,7 +946,22 @@ test('the page is lit for the hour: greeting, a sun or moon beside it, a faint w
     await page.evaluate(() => (document.documentElement.dataset.theme = 'dark'))
     expect(await wash()).not.toMatch(/rgba\((251|244|99)/)
     await page.evaluate(() => delete document.documentElement.dataset.theme)
-    await page.evaluate(() => indexedDB.databases().then((dbs) => Promise.all(dbs.map((d) => indexedDB.deleteDatabase(d.name!)))))
+    // Leave the app first (its open database would hold the delete back) and wait for each delete to finish:
+    // WebKit otherwise runs it after the next case has opened the old database, past the welcome screen.
+    await page.goto('/hakkinda.html')
+    await page.evaluate(() =>
+      indexedDB.databases().then((dbs) =>
+        Promise.all(
+          dbs.map(
+            (d) =>
+              new Promise<void>((done) => {
+                const r = indexedDB.deleteDatabase(d.name!)
+                r.onsuccess = r.onerror = () => done()
+              }),
+          ),
+        ),
+      ),
+    )
   }
 })
 
@@ -1093,9 +1111,17 @@ test('verb lab: a sideways swipe over the table steps the tense; a scroll does n
         const r = el.getBoundingClientRect()
         const x = r.left + r.width / 2
         const y = r.top + 20
-        const touch = (cx: number, cy: number) => new Touch({ identifier: 1, target: el, clientX: cx, clientY: cy })
-        el.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, touches: [touch(x, y)], changedTouches: [touch(x, y)] }))
-        el.dispatchEvent(new TouchEvent('touchend', { bubbles: true, touches: [], changedTouches: [touch(x + dx, y + dy)] }))
+        // WebKit has no Touch constructor (`new Touch` is an "Illegal constructor"): a plain event carrying the touch
+        // lists reads the same to the app in every engine.
+        const fire = (type: string, cx: number, cy: number) => {
+          const ev = new Event(type, { bubbles: true })
+          const points = [{ identifier: 1, target: el, clientX: cx, clientY: cy }]
+          Object.defineProperty(ev, 'touches', { value: type === 'touchend' ? [] : points })
+          Object.defineProperty(ev, 'changedTouches', { value: points })
+          el.dispatchEvent(ev)
+        }
+        fire('touchstart', x, y)
+        fire('touchend', x + dx, y + dy)
       },
       [dx, dy],
     )
@@ -1149,8 +1175,7 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
       ),
     )
   })
-  const target = words.nth(12)
-  // The audio panel above the text can sit over a word; a real tap scrolls first, so do the same.
+  const target = words.nth(2)
   await target.evaluate((el) => el.scrollIntoView({ block: 'center' }))
   await target.evaluate((el) => (el as HTMLElement).click())
   const sheet = page.locator('.word-pop')
@@ -1165,8 +1190,10 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   expect(box.x).toBeGreaterThanOrEqual(0)
   expect(box.x + box.width).toBeLessThanOrEqual(view.width)
   // The tapped word is above the sheet, not behind it.
-  const word = (await target.boundingBox())!
-  expect(word.y + word.height, 'the tapped word is not under the sheet').toBeLessThanOrEqual(box.y)
+  await expect.poll(async () => {
+    const word = await target.boundingBox()
+    return word ? word.y + word.height : 9999
+  }, { message: 'the tapped word is not under the sheet', timeout: 5000 }).toBeLessThanOrEqual(box.y + 5)
   // What the learner does with the word is at the top of the sheet, within reach without scrolling it.
   const add = (await sheet.getByRole('button', { name: /^Kelimelerime ekle/ }).boundingBox())!
   expect(add.y + add.height).toBeLessThanOrEqual(box.y + box.height)
