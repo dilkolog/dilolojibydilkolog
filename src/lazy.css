@@ -3714,3 +3714,9 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .dialogue-other { justify-self: start; background: var(--surface-2); border: 1px solid var(--rule); border-bottom-left-radius: var(--r-sm); }
 .dialogue-you { justify-self: end; margin-left: auto; background: var(--lang-soft); border-bottom-right-radius: var(--r-sm); }
 .dialogue-tr { flex-basis: 100%; }
+
+/* Progress: the week's verdict at the top, the page's main message (ProgressVerdictCard). */
+.progress-verdict { display: grid; gap: 0.625rem; border-left: 4px solid var(--lang); }
+.progress-verdict .eyebrow { margin: 0; color: var(--lang-text); }
+.progress-verdict-text { margin: 0; font-size: var(--t-md); font-weight: 600; line-height: 1.5; max-width: 42rem; }
+.progress-verdict-go { justify-self: start; }

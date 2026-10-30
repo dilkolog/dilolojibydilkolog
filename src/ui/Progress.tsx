@@ -30,6 +30,8 @@ import { StreakPicture } from './StreakFlame'
 import { CalendarIcon, CheckIcon, PulseIcon, StarIcon, TargetIcon } from './icons'
 import { ActivityChart, ForecastChart } from './ProgressCharts'
 import { WeekHero } from './WeekHero'
+import { ProgressVerdictCard } from './ProgressVerdictCard'
+import { progressVerdict, type VerdictGo } from '../engine/progressVerdict'
 import { ExamCard, VocabTestCard } from './ProgressTests'
 import { HardWordsCard, MetacognitionCard, RecallCalibrationCard, StageDistributionCard } from './ProgressMemory'
 import { dayLabel, lastWeeks } from './progressShared'
@@ -57,6 +59,7 @@ export function ProgressScreen({
   onEarPractice,
   onRepair,
   onLesson,
+  onVerdict,
   weeklyGoal,
   onWeeklyGoal,
   learnerName,
@@ -77,6 +80,8 @@ export function ProgressScreen({
   onRepair?: (target: RepairTarget) => void
   /** Opens the guide's lesson on a blind spot. */
   onLesson?: (lesson: { topic?: string; tense?: string }) => void
+  /** Does what this week's verdict suggests (a game, the writing screen, the day's session). */
+  onVerdict?: (go: VerdictGo) => void
   /** Weekly reading and listening goal in minutes, and how it is changed. */
   weeklyGoal?: number
   onWeeklyGoal?: (minutes: number | undefined) => void
@@ -141,6 +146,8 @@ export function ProgressScreen({
           />
         }
       />
+      {/* The page's main message: one finding, tied to one thing to do this week. */}
+      <ProgressVerdictCard verdict={progressVerdict({ profile, daysPractised: stats.daysPractised, answers: events.length })} onGo={onVerdict} />
       {/* The page in four numbers, each with its last six weeks. */}
       <WeekHero
         report={report}
