@@ -392,8 +392,8 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .btn:disabled { opacity: 0.45; cursor: default; }
 .btn-lg { padding: 1rem 2rem; font-size: var(--t-md); }
 .btn-block { width: 100%; }
-.btn-quiet { background: var(--surface); color: var(--ink); border: 2px solid var(--rule); box-shadow: 0 3px 0 var(--rule); }
-.btn-quiet:active:not(:disabled) { box-shadow: 0 1px 0 var(--rule); }
+.btn-quiet { background: var(--surface); color: var(--ink); border: 1px solid var(--rule); box-shadow: none; }
+.btn-quiet:active:not(:disabled) { transform: none; box-shadow: none; }
 
 .link { background: none; border: 0; padding: 0; color: var(--lang-text); font-weight: 500; cursor: pointer; text-decoration: none; }
 button.link {
@@ -436,9 +436,9 @@ button.link {
   padding: 0.5rem 1rem;
   font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 3px 0 var(--rule);
+  box-shadow: none;
 }
-.chip[aria-pressed='true'] { border-color: var(--lang); background: var(--lang-soft); color: var(--lang-text); font-weight: 700; box-shadow: 0 3px 0 var(--lang); }
+.chip[aria-pressed='true'] { border-color: var(--lang); background: var(--lang-soft); color: var(--lang-text); font-weight: 700; box-shadow: none; }
 
 .error { color: var(--bad-text); font-size: var(--t-sm); }
 .notice { color: var(--ok-text); font-size: var(--t-sm); font-weight: 500; }
@@ -802,7 +802,7 @@ kbd {
 .search svg { position: absolute; left: 0.875rem; color: var(--ink-soft); pointer-events: none; }
 .search .input { padding-left: 2.5rem; box-shadow: 0 3px 0 var(--rule); }
 .toolbar-sort { flex: 0 0 12rem; }
-.chip-sm { padding: 0.25rem 0.75rem; font-size: var(--t-sm); box-shadow: 0 2px 0 var(--rule); }
+.chip-sm { padding: 0.25rem 0.75rem; font-size: var(--t-sm); box-shadow: none; }
 .chip-sep { width: 1px; align-self: stretch; background: var(--rule); margin: 0 0.25rem; }
 .word-list .w { font-family: var(--serif); font-size: var(--t-lg); color: var(--lang-text); }
 .word-list .meta { grid-column: 1 / -1; font-size: var(--t-sm); color: var(--ink-soft); }
@@ -1012,7 +1012,7 @@ main:focus { outline: none; }
 /* ---------- Quests ---------- */
 
 .quests { margin-top: 1rem; display: grid; gap: 0.75rem; }
-.quest-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.quest-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
 .quest-list li { display: flex; align-items: center; gap: 0.875rem; background: var(--surface); border-radius: var(--r-md); padding: 0.75rem 1rem; box-shadow: var(--shadow); }
 .quest-list li.is-done { background: var(--ok-soft); }
 .quest-icon { position: relative; flex: none; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; font-size: var(--t-xl); }
@@ -4847,6 +4847,17 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .lang-card > .muted { align-self: start; }
 }
 @media (max-width: 40rem) { .ob-art { height: min(8.5rem, 12vh); } }
+@media (max-width: 40rem) and (max-height: 45rem) {
+  .onboarding { padding-top: 0; }
+  .onboarding.is-step-0 .onboarding-form > .btn { order: -1; }
+  .onboarding:not(.is-step-0) .onboarding-form { padding: 1rem; gap: 1rem; }
+  .onboarding:not(.is-step-0) .ob-art, .onboarding .lang-card-art { height: 3rem; }
+  .onboarding .lang-cards { grid-template-columns: minmax(0, 1fr); }
+  .onboarding .lang-card { padding-block: 0.5rem; }
+  .onboarding .lang-card .hello { font-size: var(--t-xl); }
+  .onboarding .ob-actions .btn-lg { font-size: var(--t-base); padding: 0.75rem; }
+  .onboarding.is-step-2 .onboarding-form > .gap-4 > :not(:first-child) { margin-top: 0.75rem; }
+}
 
 /* First run: Monki's drawn welcome card, its words in the empty cream half (fixed browns: the picture is light in every theme). */
 .welcome-banner { position: relative; width: 100%; max-width: 36rem; margin-inline: auto; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); line-height: 0; }
@@ -5995,3 +6006,34 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 /* Invite: who the link is from, before it is accepted (InviteAccept, in the first bundle). */
 .invite-ask { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; color: var(--ink); }
 .invite-ask > div { display: grid; gap: 0.125rem; }
+
+/* Compact learning surfaces: primary actions keep the tactile edge. */
+.sidebar-monki { display: none; }
+@media (min-width: 64rem) { .sidebar-monki { display: flex; } }
+.hero-today .btn-ghost-on-hero { box-shadow: none; }
+.hero-today .btn-ghost-on-hero:active:not(:disabled) { transform: none; box-shadow: none; }
+.quests > .section-title { font-size: var(--t-md); }
+.quests > .small { margin: 0; }
+@media (max-width: 40rem) {
+  .hero-today { padding: 1.25rem; text-align: left; display: block; }
+  .hero-today > .ring { position: absolute; top: 1rem; right: 1rem; width: 3.5rem !important; height: 3.5rem !important; }
+  .hero-today > .ring > svg { width: 100%; height: 100%; }
+  .hero-today .day-plant { width: 2.25rem; height: 2.25rem; }
+  .hero-today .day-pot { height: 1.75rem; max-width: 2rem; margin-bottom: 0.125rem; }
+  .hero-today .hero-title { font-size: var(--t-lg); padding-right: 3.5rem; }
+  .hero-today .hero-sub { padding-right: 3.5rem; margin-bottom: 0.75rem; }
+  .hero-today .mission { justify-content: flex-start; margin-bottom: 0.875rem; }
+  .hero-today .hero-actions { gap: 0.5rem; justify-content: flex-start; }
+  .hero-today .hero-actions > .btn-lg { width: 100%; padding: 0.75rem 1rem; }
+  .hero-today .hero-actions > .btn-ghost-on-hero { width: auto; min-height: 44px; padding: 0.5rem 0; font-size: var(--t-sm); border: 0; }
+  .hero-today .hero-note { margin-top: 0.5rem; }
+  .words-page > .section { margin-top: 1rem; gap: 0.75rem; }
+  .words-page .page-header.has-art.is-inline { flex-wrap: nowrap; }
+  .words-page .page-header-art { display: none; }
+  .words-page .page-header .greeting { font-size: var(--t-lg); }
+  .words-page .page-header .greeting-sub { font-size: var(--t-xs); margin-top: 0.25rem; }
+  .words-page .page-header-action .btn { padding: 0.625rem 0.875rem; }
+  .words-page .section .section { margin-top: 0.75rem; }
+  .words-page .words-bar > .word-select-toggle.btn-quiet { display: none; }
+  .words-page .words-bar > .word-select-toggle:not(.btn-quiet) { display: inline-flex; }
+}

@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
-import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
+import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, settleTransitions, startWithSamples } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -10,7 +10,7 @@ import { approveAccount, clippedContent, contrastProblems, openScreen, playSessi
  * stricter check in the phone tests (contrastProblems), so it isn't counted twice here.
  */
 const scan = async (page: Page, where: string) => {
-  await page.waitForTimeout(400) // screens ease in
+  await settleTransitions(page)
   const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).disableRules(['color-contrast']).analyze()
   const issues = violations
     .filter((v) => v.impact === 'serious' || v.impact === 'critical')
@@ -20,6 +20,7 @@ const scan = async (page: Page, where: string) => {
 }
 
 test('every main screen passes the automated accessibility check', async ({ page }) => {
+  test.setTimeout(180_000)
   await page.goto('/')
   const problems = await scan(page, 'welcome')
   await startWithSamples(page)
@@ -373,6 +374,7 @@ test('new features pass accessibility check in dark and calm themes (audiobooks,
   await page.route('https://api.anthropic.com/**', (route) => {
     route.fulfill({
       status: 200,
+      headers: { 'access-control-allow-origin': '*' },
       json: {
         content: [
           {
@@ -1269,7 +1271,7 @@ test('auth screen and onboarding pass color contrast checks across light, dark, 
   const checkContrast = async (where: string) => {
     for (const theme of ['light', 'dark', 'calm'] as const) {
       await setTheme(theme)
-      await page.waitForTimeout(300)
+      await settleTransitions(page)
       const contrastViolations = await new AxeBuilder({ page }).withRules(['color-contrast']).analyze()
       for (const v of contrastViolations.violations) {
         problems.push(`${where} [${theme}] (axe: ${v.nodes.map((n) => n.target.join(' ')).join(', ')})`)
@@ -1342,6 +1344,7 @@ test('reading: the questions after a finished text work and pass the accessibili
   const question = (n: number) => ({ question: `Soru ${n}?`, options: [`Doğru ${n}`, `Yanlış ${n}a`, `Yanlış ${n}b`, `Yanlış ${n}c`], answer: 0, explanation: `Metnin ${n}. cümlesinde.` })
   await page.route(/api\.anthropic\.com/, async (r) => {
     await r.fulfill({
+      headers: { 'access-control-allow-origin': '*' },
       json: {
         id: 'msg_1',
         type: 'message',

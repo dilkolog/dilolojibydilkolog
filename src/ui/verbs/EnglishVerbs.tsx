@@ -24,8 +24,8 @@ type Mode = 'list' | 'quiz'
  * speaker most: the irregular forms (go – went – gone) and phrasal verbs (give up). Each has a list to look
  * through and a short round to practise; what was missed comes back sooner.
  */
-export function EnglishVerbs() {
-  const [part, setPart] = useState<Part>('irregular')
+export function EnglishVerbs({ initialVerb }: { initialVerb?: string } = {}) {
+  const [part, setPart] = useState<Part>(initialVerb?.includes(' ') ? 'phrasal' : 'irregular')
   const [mode, setMode] = useState<Mode>('list')
   const tabsRef = useTabIndicator(part)
   useEffect(() => recordVisit(`verbs:en:${part}:${mode}`), [part, mode])
@@ -48,7 +48,7 @@ export function EnglishVerbs() {
           Alıştır
         </button>
       </div>
-      {mode === 'list' ? part === 'irregular' ? <IrregularList /> : <PhrasalList /> : part === 'irregular' ? <IrregularQuiz onExit={() => setMode('list')} /> : <PhrasalQuiz onExit={() => setMode('list')} />}
+      {mode === 'list' ? part === 'irregular' ? <IrregularList initialQuery={initialVerb} /> : <PhrasalList initialQuery={initialVerb} /> : part === 'irregular' ? <IrregularQuiz onExit={() => setMode('list')} /> : <PhrasalQuiz onExit={() => setMode('list')} />}
     </div>
   )
 }
@@ -62,8 +62,8 @@ const Say = ({ text }: { text: string }) =>
 
 const includes = (text: string, q: string) => text.toLowerCase().includes(q.trim().toLowerCase())
 
-function IrregularList() {
-  const [q, setQ] = useState('')
+function IrregularList({ initialQuery = '' }: { initialQuery?: string }) {
+  const [q, setQ] = useState(initialQuery)
   const rows = useMemo(() => irregularVerbs.filter((v) => !q.trim() || includes(v.base, q) || includes(v.tr, q) || v.past.some((p) => includes(p, q)) || v.pp.some((p) => includes(p, q))), [q])
   return (
     <section className="card stack">
@@ -106,8 +106,8 @@ function IrregularList() {
   )
 }
 
-function PhrasalList() {
-  const [q, setQ] = useState('')
+function PhrasalList({ initialQuery = '' }: { initialQuery?: string }) {
+  const [q, setQ] = useState(initialQuery)
   const rows = useMemo(() => phrasalVerbs.filter((v) => !q.trim() || includes(v.phrasal, q) || includes(v.tr, q)), [q])
   return (
     <section className="card stack">

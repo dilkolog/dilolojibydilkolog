@@ -409,6 +409,10 @@
   background: var(--surface); box-shadow: var(--shadow), inset 0 0 0 2px var(--lang);
 }
 .select-bar input[type='checkbox'] { width: 1.125rem; height: 1.125rem; accent-color: var(--lang); }
+/* A tall bulk toolbar must leave the word rows reachable on short phones. */
+@media (max-width: 40rem) and (max-height: 45rem) {
+  .select-bar { position: static; }
+}
 .row-check {
   flex: none; display: grid; place-items: center;
   width: 1.375rem; height: 1.375rem; border-radius: var(--r-xs);
@@ -738,7 +742,7 @@
 .settings-group-title {
   display: flex; align-items: center; gap: 0.5rem;
   margin-top: 1.25rem; font-size: var(--t-sm); font-weight: 700; letter-spacing: 0.04em; color: var(--ink-soft);
-  scroll-margin-top: 4.5rem;
+  scroll-margin-top: calc(var(--topbar-h, 0px) + 4.5rem);
 }
 .group-icon { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: var(--r-sm); background: var(--lang-soft); color: var(--lang-text); }
 .settings-search { position: relative; display: block; max-width: 32rem; }
@@ -3709,6 +3713,27 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .dialogue-other { justify-self: start; background: var(--surface-2); border: 1px solid var(--rule); border-bottom-left-radius: var(--r-sm); }
 .dialogue-you { justify-self: end; margin-left: auto; background: var(--lang-soft); border-bottom-right-radius: var(--r-sm); }
 .dialogue-tr { flex-basis: 100%; }
+
+/* The word and its context come before editing and enrichment tools. */
+.word-hero-example { margin: 0.5rem 0; padding: 0.625rem 0.875rem; border-left: 3px solid var(--lang); background: var(--surface); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+.word-hero-example p { margin: 0; }
+.word-hero-example p[lang] { font-family: var(--serif); font-size: var(--t-md); }
+.word-hero-example p + p { margin-top: 0.25rem; }
+.word-hero-main .chip-list:empty { display: none; }
+.word-enrichment { padding: 0.875rem 1rem; border: 1px solid var(--rule); border-radius: var(--r-md); }
+.word-enrichment > summary { cursor: pointer; font-weight: 600; min-height: 1.5rem; }
+
+/* Dictionary: turn a lookup into a small, explicit learning action. */
+.dict-learning-status { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-bottom: 0.5rem; font-size: var(--t-sm); }
+.dict-personal-sentence { padding: 1rem; background: var(--surface-2); border: 1px solid var(--rule); border-radius: var(--r-md); }
+.dict-personal-sentence .input { min-width: 0; flex: 1; }
+.dict-personal-sentence p { margin: 0; }
+.dict-family-chain { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.dict-spelling { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.dict-form-analysis { padding: 1rem; border-left: 3px solid var(--lang); background: var(--surface-2); border-radius: var(--r-md); }
+.dict-form-analysis li { display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; }
+.dict-form-analysis li > p { flex-basis: 100%; margin: 0; }
+@media (max-width: 30rem) { .dict-personal-sentence > .row { flex-wrap: wrap; } .dict-personal-sentence .input { flex-basis: 100%; } }
 
 /* ---------- Community ---------- */
 

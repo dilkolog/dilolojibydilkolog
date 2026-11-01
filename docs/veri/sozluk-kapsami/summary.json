@@ -1,0 +1,116 @@
+{
+  "en": {
+    "version": "2026-11-01.1",
+    "total": 27203,
+    "withTurkish": 15473,
+    "missing": 11730,
+    "categories": {
+      "form_resolved": 3355,
+      "form_needs_base": 254,
+      "manual_review": 3428,
+      "translation_candidate": 4693
+    },
+    "frequency": {
+      "1000": {
+        "frequencyEntries": 1000,
+        "direct": 867,
+        "withBase": 981,
+        "absentFromPack": 10
+      },
+      "5000": {
+        "frequencyEntries": 5000,
+        "direct": 3595,
+        "withBase": 4645,
+        "absentFromPack": 28
+      },
+      "10000": {
+        "frequencyEntries": 10000,
+        "direct": 6418,
+        "withBase": 8867,
+        "absentFromPack": 121
+      },
+      "20000": {
+        "frequencyEntries": 20000,
+        "direct": 11417,
+        "withBase": 16685,
+        "absentFromPack": 666
+      }
+    }
+  },
+  "fr": {
+    "version": "2026-11-01.1",
+    "total": 16235,
+    "withTurkish": 12376,
+    "missing": 3859,
+    "categories": {
+      "form_resolved": 885,
+      "form_needs_base": 49,
+      "manual_review": 994,
+      "translation_candidate": 1931
+    },
+    "frequency": {
+      "1000": {
+        "frequencyEntries": 1000,
+        "direct": 737,
+        "withBase": 962,
+        "absentFromPack": 29
+      },
+      "5000": {
+        "frequencyEntries": 5000,
+        "direct": 3013,
+        "withBase": 4448,
+        "absentFromPack": 404
+      },
+      "10000": {
+        "frequencyEntries": 10000,
+        "direct": 5279,
+        "withBase": 8487,
+        "absentFromPack": 1194
+      },
+      "20000": {
+        "frequencyEntries": 20000,
+        "direct": 8941,
+        "withBase": 15842,
+        "absentFromPack": 3502
+      }
+    }
+  },
+  "es": {
+    "version": "2026-11-01.1",
+    "total": 14458,
+    "withTurkish": 11229,
+    "missing": 3229,
+    "categories": {
+      "form_resolved": 1061,
+      "form_needs_base": 60,
+      "manual_review": 634,
+      "translation_candidate": 1474
+    },
+    "frequency": {
+      "1000": {
+        "frequencyEntries": 1000,
+        "direct": 691,
+        "withBase": 983,
+        "absentFromPack": 16
+      },
+      "5000": {
+        "frequencyEntries": 5000,
+        "direct": 2701,
+        "withBase": 4604,
+        "absentFromPack": 328
+      },
+      "10000": {
+        "frequencyEntries": 10000,
+        "direct": 4619,
+        "withBase": 8842,
+        "absentFromPack": 975
+      },
+      "20000": {
+        "frequencyEntries": 20000,
+        "direct": 7856,
+        "withBase": 16909,
+        "absentFromPack": 2663
+      }
+    }
+  }
+}

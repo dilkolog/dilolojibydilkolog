@@ -27,3 +27,22 @@ the word's main (first) entry.
 Built by `scripts/build-wordpack.ts` (version `2026-10-08.2`; 2026-10-20 yamaları elle uygulandı, sürüm `2026-10-20.1`, 2026-10-21'de Türkçe anlam ikinci turuyla `2026-10-21.1`: cinsiyet, Türkçe anlam, bozuk ses, bkz. docs/veri/README.md):
 en 27 189 words (Turkish 50 %, recordings 81 %); fr 16 220 (Turkish 68 %, gender 57 %, recordings 95 %);
 es 14 443 (Turkish 71 %, gender 59 %, recordings 55 %).
+
+## 2026-10-30 editorial enrichment (version 2026-10-30.1)
+
+145 missing Turkish meanings filled; 44 translated phrase headwords added. Turkish-bearing
+records: EN 15,473 / 27,203; FR 12,376 / 16,235; ES 11,229 / 14,458.
+Source: original Diloloji editorial translations generated and linguistically reviewed by Codex;
+individual provenance is recorded in `../wordpack-supplements/2026-10-30.json`. This is not a new
+Wiktionary snapshot or a claim of human review. The Kaikki refresh attempt was blocked by the
+execution environment's network policy (CONNECT 403); the original dump dates above still apply.
+Workflow, coverage and remaining source/API prerequisites: `docs/veri/sozluk-kapsami/README.md`.
+
+## 2026-11-01 second editorial review (version 2026-11-01.1)
+
+All 189 supplemental entries were checked again for meaning, POS and idiomatic Turkish.
+19 glosses were corrected or narrowed, with original editorial example sentences. Entry counts
+and source-dump dates are unchanged. Guarded `replaces` records make the corrections reproducible
+without overwriting a different manual translation. This remains a Codex editorial review,
+not independent human or fresh external-source validation.
+Full checklist: `docs/veri/sozluk-kapsami/ikinci-denetim-2026-11-01.md`.

@@ -75,7 +75,7 @@ export function VerbLab({
   /** A verb was added to the word list from the lab. */
   onAdded?: () => void
 }) {
-  if (language === 'en') return <EnglishVerbs />
+  if (language === 'en') return <EnglishVerbs initialVerb={initialVerb} />
   return <Lab language={language} vocabulary={vocabulary} states={states} scheduler={scheduler} initialVerb={initialVerb} initialTense={initialTense} initialTab={initialTab} onAdded={onAdded} />
 }
 

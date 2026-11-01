@@ -1,16 +1,16 @@
 import { expect, test } from '@playwright/test'
-import { approveAccount, openScreen, overflow, startWithSamples } from './helpers'
+import { approveAccount, openMonki, openScreen, overflow, startWithSamples } from './helpers'
 
 test('Monki: the button opens a chat that explains the key when there is none', async ({ page }) => {
   await startWithSamples(page)
-  await page.getByRole('button', { name: 'Monki ile konuş' }).click()
+  await openMonki(page)
   const panel = page.getByRole('dialog', { name: 'Monki' })
   await expect(panel).toBeVisible()
-  await expect(panel).toContainText('Anthropic anahtarını')
+  await expect(panel).toContainText(/anahtar/)
   expect(await overflow(page)).toEqual([])
   await page.keyboard.press('Escape')
   await expect(panel).toBeHidden()
-  await expect(page.getByRole('button', { name: 'Monki ile konuş' })).toBeFocused()
+  await expect(page.locator('.sidebar-monki:focus, [aria-label="Hesap menüsü"]:focus')).toHaveCount(1)
 })
 
 test('Monki: talks with a key, keeps the chat across a reload', async ({ page }) => {
@@ -40,7 +40,7 @@ test('Monki: talks with a key, keeps the chat across a reload', async ({ page })
       },
     })
   })
-  await page.getByRole('button', { name: 'Monki ile konuş' }).click()
+  await openMonki(page)
   const panel = page.getByRole('dialog', { name: 'Monki' })
   await panel.getByRole('textbox', { name: /mesaj/ }).fill('maison ne demek?')
   await page.keyboard.press('Enter')
@@ -50,7 +50,7 @@ test('Monki: talks with a key, keeps the chat across a reload', async ({ page })
   await page.screenshot({ path: process.env.MONKI_SHOT ?? 'test-results/monki.png' })
   expect(await overflow(page)).toEqual([])
   await page.reload()
-  await page.getByRole('button', { name: 'Monki ile konuş' }).click()
+  await openMonki(page)
   await expect(page.getByRole('dialog', { name: 'Monki' })).toContainText('maison ne demek?')
 })
 

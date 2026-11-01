@@ -87,6 +87,26 @@ describe('two devices syncing at once', () => {
   }, 60_000)
 })
 
+it('merges both first syncs when the second device creates the core before the first writes', async () => {
+  const acc = await deriveAccount('first-race', 'correct horse')
+  approve(acc.id)
+  const phone = new KelimeDB('t-first-race-phone')
+  const laptop = new KelimeDB('t-first-race-laptop')
+  try {
+    await phone.vocabulary.put(createEntry({ word: 'chat', meaning: 'kedi' }, 'fr', new Date()))
+    await laptop.vocabulary.put(createEntry({ word: 'chien', meaning: 'köpek' }, 'fr', new Date()))
+    beforeCorePut = async () => void (await syncNow(phone, acc))
+    await syncNow(laptop, acc)
+    expect(corePuts).toBe(3)
+    expect((await laptop.vocabulary.toArray()).map(v => v.lemma).sort()).toEqual(['chat', 'chien'])
+    const fresh = new KelimeDB('t-first-race-fresh')
+    try {
+      await syncNow(fresh, acc)
+      expect((await fresh.vocabulary.toArray()).map(v => v.lemma).sort()).toEqual(['chat', 'chien'])
+    } finally { await fresh.delete() }
+  } finally { await phone.delete(); await laptop.delete() }
+}, 60000)
+
 describe('size of the synced data', () => {
   it('is remembered after a sync, and shown as a share of the limit with a warning from 80%', async () => {
     const acc = await deriveAccount('ali', 'correct horse')

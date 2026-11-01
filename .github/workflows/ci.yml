@@ -1,9 +1,7 @@
 name: CI
 
-# Kept small on purpose: a private repository has a monthly allowance of Actions minutes, and each
-# job is billed rounded up to the minute. So: one machine for everything (no second npm ci, browser
-# install and build per shard), only for pull requests (a merge to main was tested in its PR), and
-# none for documentation-only changes. Run it by hand from the Actions tab when needed.
+# Run WebKit separately so its slower mobile checks fit within the job timeout.
+# Keep checks together on the Chromium runner; skip documentation-only changes and main pushes.
 on:
   pull_request:
     paths-ignore:
@@ -51,12 +49,53 @@ jobs:
         run: npx playwright install --with-deps chromium
       - if: steps.browsers.outputs.cache-hit == 'true'
         run: npx playwright install-deps chromium
-      - run: npx playwright test
+      - run: npx playwright test --project=phone --project=desktop
       # The sign-in gate needs a build with Supabase set up (a fake address; the tests stub every request).
       - run: npm run test:e2e:gate
       - uses: actions/upload-artifact@v4
         if: failure() || cancelled()
         with:
           name: playwright-report
-          path: playwright-report
+          path: |
+            playwright-report
+            test-results
+          retention-days: 7
+
+  webkit:
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      WEBKIT_SMOKE: 'a tapped word opens a bottom sheet'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx vite build
+        env:
+          VITE_ALLOW_GUEST: '1'
+      - id: pw
+        run: echo "version=$(npx playwright --version | cut -d' ' -f2)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        id: browsers
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.pw.outputs.version }}-webkit
+      - if: steps.browsers.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps webkit
+      - if: steps.browsers.outputs.cache-hit == 'true'
+        run: npx playwright install-deps webkit
+      # Check the reader's sheet placement first, then run every remaining mobile check once.
+      - run: npx playwright test --project='iPhone (WebKit)' --workers=2 --grep "$WEBKIT_SMOKE" --max-failures=1
+      - run: npx playwright test --project='iPhone (WebKit)' --workers=2 --grep-invert "$WEBKIT_SMOKE"
+      - uses: actions/upload-artifact@v4
+        if: failure() || cancelled()
+        with:
+          name: playwright-webkit-report
+          path: |
+            playwright-report
+            test-results
           retention-days: 7

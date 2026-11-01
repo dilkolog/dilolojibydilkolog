@@ -1,5 +1,6 @@
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { numberWords } from '../src/engine/numbers'
+import type { FriendView } from '../src/data/friends'
 import { spellOut } from '../src/engine/spelling'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
 import fs from 'node:fs'
@@ -96,13 +97,14 @@ test('tablet width: Today in two columns, the mission beside the numbers', async
   expect(boxes.side.right).toBeLessThanOrEqual(820)
 })
 
-test('the avatar card in the side menu opens an account menu: profile, settings, and the keyboard closes it', async ({ page }) => {
+test('the avatar card opens Monki, profile and settings, and the keyboard closes the menu', async ({ page }) => {
   await startWithSamples(page)
   const card = page.locator('.sidebar-foot-btn:visible')
   await card.click()
   const menu = page.getByRole('menu', { name: 'Hesap menüsü' })
   await expect(menu).toBeVisible()
-  await expect(menu.getByRole('menuitem')).toHaveCount(2)
+  await expect(menu.getByRole('menuitem')).toHaveCount(3)
+  await expect(menu.getByRole('menuitem', { name: /^Monki ile konuş/ })).toBeVisible()
   // The menu opens upward from the bottom corner and stays inside the screen.
   const box = (await menu.boundingBox())!
   const viewport = page.viewportSize()!
@@ -2800,10 +2802,11 @@ test('flashcards: flipping, grading 1/2/3, unlearned card returns after 3 cards,
 })
 
 test('friends card: today and week leaderboard ranking, removing a friend', async ({ page }) => {
-  let friends = [
-    { code: 'VELI1234', name: 'Veli', avatar: 'fox', color: '#2f6de6', today: 120, week: 150, streak: 5, level: 3, at: '2026-10-15T10:00:00Z' },
+  await page.clock.setFixedTime(new Date('2026-10-15T12:00:00Z'))
+  let friends: FriendView[] = [
+    { code: 'VELI1234', name: 'Veli', avatar: 'fox', color: '#2f6de6', today: 120, week: 150, days: { '2026-10-15': 120, '2026-10-14': 30 }, streak: 5, level: 3, at: '2026-10-15T10:00:00Z' },
   ]
-  const me = { code: 'ALI12345', name: 'Sen', avatar: 'monki', color: '#c6317c', today: 50, week: 300, streak: 3, level: 4, at: '2026-10-15T10:00:00Z' }
+  const me: FriendView = { code: 'ALI12345', name: 'Sen', avatar: 'monki', color: '#c6317c', today: 50, week: 300, days: { '2026-10-15': 50, '2026-10-14': 250 }, streak: 3, level: 4, at: '2026-10-15T10:00:00Z' }
 
   await startWithSamples(page)
   await approveAccount(page)
@@ -2823,6 +2826,7 @@ test('friends card: today and week leaderboard ranking, removing a friend', asyn
           color: '#10b981',
           today: 200,
           week: 250,
+          days: { '2026-10-15': 200, '2026-10-14': 50 },
           streak: 2,
           level: 2,
           at: '2026-10-15T10:00:00Z',

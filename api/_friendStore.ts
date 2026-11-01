@@ -88,8 +88,10 @@ export const blobFriends: FriendStore = {
     }
   },
   async forget(id) {
-    const card = await readJson<FriendCard>(cardPath(id)).catch(() => null)
-    await Promise.all([removeBlob(cardPath(id)), removeBlob(followPath(id)), card?.code ? removeBlob(codePath(card.code)) : Promise.resolve()])
+    const card = await readJson<FriendCard>(cardPath(id))
+    // Keep the card until its secondary code index has been removed, so failures can be retried.
+    if (card?.code) await removeBlob(codePath(card.code), true)
+    await Promise.all([removeBlob(cardPath(id), true), removeBlob(followPath(id), true)])
   },
 }
 

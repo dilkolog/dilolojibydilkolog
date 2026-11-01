@@ -61,8 +61,8 @@ async function createJson(path: string, value: unknown): Promise<boolean> {
 }
 
 /** Frees a name, but only while this account holds it: a name another account has since taken stays theirs. */
-export async function releaseHandle(handle: string, id: string): Promise<void> {
-  if ((await readJson<{ id?: string }>(handlePath(handle)))?.id === id) await removeBlob(handlePath(handle))
+export async function releaseHandle(handle: string, id: string, strict = false): Promise<void> {
+  if ((await readJson<{ id?: string }>(handlePath(handle)))?.id === id) await removeBlob(handlePath(handle), strict)
 }
 
 /** What a search shows of a person: only what their card shows a friend, never an id or a code. */

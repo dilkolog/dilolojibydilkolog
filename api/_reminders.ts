@@ -11,15 +11,15 @@ import { dueHours, dueNow } from './_due.js'
 export interface ReminderStore {
   get(key: string): Promise<PushRecord | null>
   put(key: string, record: PushRecord): Promise<void>
-  remove(key: string): Promise<void>
+  remove(key: string, strict?: boolean): Promise<void>
   /** Every record. */
-  all(): Promise<{ key: string; record: PushRecord }[]>
+  all(strict?: boolean): Promise<{ key: string; record: PushRecord }[]>
   /** The records the hourly cron looks at in UTC hour `utcHour` (at least those due then). */
   due(utcHour: number): Promise<{ key: string; record: PushRecord }[]>
   /** The mail records an account registered (it is being deleted). */
-  mailsOf(owner: string): Promise<string[]>
+  mailsOf(owner: string, complete?: boolean): Promise<string[]>
   /** The push records saved by an account's devices (a signed-in device records its account). */
-  byOwner(owner: string): Promise<{ key: string; record: PushRecord }[]>
+  byOwner(owner: string, fresh?: boolean): Promise<{ key: string; record: PushRecord }[]>
 }
 
 export const KEY = /^(mail-)?[0-9a-f]{40}$/
@@ -32,12 +32,13 @@ const BATCH = 10
 /** Mail records looked at for an account's own (a flood must not make a deletion run for ever). */
 const MAIL_SCAN_CAP = 3000
 
-async function readBlob(path: string): Promise<PushRecord | null> {
-  const blob = await get(path, { access: 'private', useCache: false }).catch(() => null)
+async function readBlob(path: string, strict = false): Promise<PushRecord | null> {
+  const blob = await get(path, { access: 'private', useCache: false }).catch((error: unknown) => { if (strict) throw error; return null })
   if (!blob || blob.statusCode !== 200 || !blob.stream) return null
   try {
     return JSON.parse(await new Response(blob.stream).text()) as PushRecord
-  } catch {
+  } catch (error) {
+    if (strict) throw error
     return null // A broken record is skipped.
   }
 }
@@ -99,9 +100,9 @@ export const blobReminders: ReminderStore = {
     remembered = null
     await indexKey(key, record)
   },
-  remove: async (key) => {
+  remove: async (key, strict = false) => {
     remembered = null
-    await del(blobPath(key)).catch(() => {})
+    await del(blobPath(key)).catch((error: unknown) => { if (strict) throw error })
   },
   async due(utcHour) {
     let index = await readIndex(utcHour)
@@ -123,7 +124,7 @@ export const blobReminders: ReminderStore = {
     if (stale.length) await changeIndex(utcHour, (ks) => ks.filter((k) => !stale.includes(k))).catch(() => {})
     return out
   },
-  async all() {
+  async all(strict = false) {
     const out: { key: string; record: PushRecord }[] = []
     let cursor: string | undefined
     do {
@@ -133,7 +134,7 @@ export const blobReminders: ReminderStore = {
         const read = await Promise.all(
           page.blobs.slice(i, i + BATCH).map(async (b) => {
             const key = keyOfPath(b.pathname)
-            const record = key ? await readBlob(b.pathname) : null
+            const record = key ? await readBlob(b.pathname, strict) : null
             return key && record ? { key, record } : null
           }),
         )
@@ -143,7 +144,7 @@ export const blobReminders: ReminderStore = {
     } while (cursor)
     return out
   },
-  async mailsOf(owner) {
+  async mailsOf(owner, complete = false) {
     const keys: string[] = []
     let seen = 0
     let cursor: string | undefined
@@ -152,14 +153,14 @@ export const blobReminders: ReminderStore = {
       for (const b of page.blobs) {
         seen++
         const key = keyOfPath(b.pathname)
-        if (key && (await readBlob(b.pathname))?.owner === owner) keys.push(key)
+        if (key && (await readBlob(b.pathname, complete))?.owner === owner) keys.push(key)
       }
-      cursor = page.hasMore && seen < MAIL_SCAN_CAP ? page.cursor : undefined
+      cursor = page.hasMore && (complete || seen < MAIL_SCAN_CAP) ? page.cursor : undefined
     } while (cursor)
     return keys
   },
   // Blob has no index by owner: the records are read and the account's picked out (a friend's message is rare and rate limited).
-  byOwner: async (owner) => (await allRemembered()).filter(({ key, record }) => !key.startsWith('mail-') && record.owner === owner),
+  byOwner: async (owner, fresh = false) => (await (fresh ? blobReminders.all(true) : allRemembered())).filter(({ key, record }) => !key.startsWith('mail-') && record.owner === owner),
 }
 
 /** Every record, remembered a few minutes by this instance: each friend's message looks for its recipient's devices, and a full read costs one Blob read per record. */

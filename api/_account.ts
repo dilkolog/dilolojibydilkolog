@@ -49,8 +49,8 @@ export async function writeJson(path: string, value: unknown) {
   await put(path, JSON.stringify(value), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json' })
 }
 
-export async function removeBlob(path: string) {
-  await del(path).catch(() => {})
+export async function removeBlob(path: string, strict = false) {
+  await del(path).catch((error: unknown) => { if (strict) throw error })
 }
 
 const remembered = new Map<string, { value: unknown; until: number }>()

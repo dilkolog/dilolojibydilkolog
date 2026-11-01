@@ -1,10 +1,11 @@
+import { askMonki } from './monki/monkiBus'
 import type { RefObject } from 'react'
 import type { Settings } from '../data/db'
 import { TARGET_LANGUAGES, type TargetLanguage } from '../engine/types'
 import { NAV, type NavScreen, type Screen } from '../appNav'
 import { Avatar } from './Avatar'
 import type { GameState } from './game'
-import { ChevronLeftIcon, ChevronRightIcon, GearIcon, LogoutIcon, SearchIcon, UserIcon } from './icons'
+import { ChevronLeftIcon, ChevronRightIcon, GearIcon, LogoutIcon, SearchIcon, SparkleIcon, UserIcon } from './icons'
 import { MenuItem, Popover } from './Popover'
 import { signOutThisDevice } from './signOut'
 import { useHasAccount } from './useHasAccount'
@@ -132,6 +133,9 @@ export function Sidebar({
           </button>
         ))}
       </nav>
+      <button className="nav-btn sidebar-monki" onClick={() => askMonki({ text: '' })} title="Monki ile konuş">
+        <SparkleIcon size={20} /><span className="nav-label">Monki ile konuş</span>
+      </button>
       <button className="nav-btn sidebar-settings" aria-current={inSettings ? 'page' : undefined} onClick={go({ name: 'settings' })} title={rail ? 'Ayarlar' : undefined}>
         <GearIcon size={20} />
         <span className="nav-label">Ayarlar</span>
@@ -197,6 +201,19 @@ export function TabBar({ navBadge, badgeLabel, current, goPlace }: NavProps) {
 function AccountMenuItems({ close, go, hasAccount }: { close: () => void; go: (s: Screen) => () => void; hasAccount: boolean }) {
   return (
     <>
+      <MenuItem
+        icon={<SparkleIcon size={18} />}
+        title="Monki ile konuş"
+        hint="Sor, açıklama veya ipucu al"
+        onSelect={() => {
+          close()
+          requestAnimationFrame(() => {
+            const trigger = [...document.querySelectorAll<HTMLButtonElement>('[aria-label="Hesap menüsü"]')].find((el) => el.getClientRects().length > 0)
+            trigger?.focus()
+            askMonki({ text: '' })
+          })
+        }}
+      />
       <MenuItem
         icon={<UserIcon size={18} />}
         title="Profil"

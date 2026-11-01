@@ -18,7 +18,7 @@ Sahibi Diloloji'yi **kişisel** bir Google Play hesabıyla Android uygulaması (
 **Bekleyen PR'lar ve dallar (sırayla):**
 1. ~~[#647](https://github.com/dilkolog/dilolojibydilkolog/pull/647) `claude/android-twa` → `main`: `/hesap-silme` sayfası, `assetlinks.json`, `android/twa-manifest.json` + README, gizlilik politikasında Android bölümü.~~ (birleşti — 2026-10-29)
 2. ~~[#649](https://github.com/dilkolog/dilolojibydilkolog/pull/649) `claude/report-block` → `claude/android-twa`: şikâyet ve engelleme, kullanım koşullarına §4 topluluk kuralları.~~ (birleşti — 2026-10-29)
-3. `claude/iphone-webkit-tests` (PR yok, tabanı eski `main`): Playwright'a `iPhone (WebKit)` profili (phone + a11y dosyaları, süre 120 sn), CI'da `webkit` kurulumu, WebKit'e özgü 4 test düzeltmesi ve Bugün görev listesinin taşma düzeltmesi (`.quest-list { grid-template-columns: minmax(0, 1fr) }`). Kalan: `main`'e yeniden kur (rebase), sahibinin istediği **"Telefon testleri" bölümünü bu dosyaya yaz** (kurulum: WebKit revizyonu 2359 `/opt/pw-browsers`'ta hazır, Chromium için `pw.tmp.config.ts` `executablePath: '/opt/pw-browsers/chromium'`; bulunan WebKit tuzakları: `new Touch` yok → düz `Event` + `defineProperty`; `page.route` ile sahte dış yanıtta CORS başlığı şart; `indexedDB.deleteDatabase` önce uygulamasız sayfaya git; tema değişince kontrastı ölçmeden önce `settleTransitions`), PR aç. Son tam WebKit koşusu: 86 testten 83'ü geçti, kalan 3'ün düzeltmesi a11y'de 31/31 doğrulandı.
+3. ~~`claude/iphone-webkit-tests`: iPhone profili, CI kurulumu, WebKit düzeltmeleri, güncel main'e taşıma, Telefon testleri belgesi ve PR.~~ ([#655](https://github.com/dilkolog/dilolojibydilkolog/pull/655) ile tamamlandı — 2026-11-01; WebKit **92/92**. Eski dalı ayrıca birleştirmeden önce #655 ile karşılaştır.)
 
 **Sahibinin yapacakları (ajan yapamaz):**
 - [ ] #647 ve #649'daki metinleri (gizlilik, hesap silme, kullanım koşulları) okuyup onaylamak.
@@ -43,6 +43,12 @@ Sahibi Diloloji'yi **kişisel** bir Google Play hesabıyla Android uygulaması (
 - Uygulama ücretli olur ya da reklam/satış eklenirse: Play faturalandırması şartı ve CEFR verisinin CC BY-NC-SA lisansı (ticari kullanım yok) yeniden konuşulmalı.
 
 ## Proje
+### Telefon testleri (2026-11-01)
+
+`playwright.config.ts` artık `iPhone (WebKit)` profili içerir (iPhone 13, 120 sn; phone/a11y/dictionary-active). CI Chromium ve WebKit kurar. Kurulum: `npx playwright install --with-deps chromium webkit`; çalıştırma: `npm run test:e2e`, yalnız iPhone: `npx playwright test --project='iPhone (WebKit)'` (test derlemesinden sonra). Eski `claude/iphone-webkit-tests` dalını ayrıca birleştirmeden önce bu değişikliklerle karşılaştır.
+
+Yerel WebKit indirmesi ağ politikası nedeniyle 403 veriyor; GitHub CI'da tam paket **92/92 geçti** (2026-11-01). Testler `Touch` kurucusuna bağlı değil; DB temizliği aynı kökende uygulamasız sayfadan yapılır; kontrast taraması sonlu geçişlerden sonra çalışır. Okuma testinde gizli transkript önce arayüzden açılır, ardından gerçek tıklama kullanılır. Fiziksel cihaz/canlı test hesapları, yayın ve kaynak erişimi için [doğrulama kaydı](docs/yayin-dogrulama-2026-11-01.md).
+
 - React 19 + Vite 8 PWA, Dexie/IndexedDB (`src/data/db.ts`), FSRS (`ts-fsrs`) ile aralıklı tekrar. Altyapı Cloudflare Worker (`worker/index.ts`, `wrangler.jsonc`) ve Cloudflare R2 (eşitleme blob deposu `diloloji-blobs`, `@vercel/blob` taklidi). Vercel Hobby kotası dolduğu için Cloudflare'e taşındı (ücretsiz, sınırsız statik varlıklar, tek saatlik cron `0 * * * *`, 100k istek/gün). Canlı alan adı: **`diloloji.com`** (ve `www.diloloji.com`; `nigalingo.online` ve `kelime-koc.vercel.app` geriye dönük uyumlu).
 - Diller: EN/FR/ES öğreniliyor, arayüz Türkçe.
 - Komutlar:
@@ -53,7 +59,7 @@ Sahibi Diloloji'yi **kişisel** bir Google Play hesabıyla Android uygulaması (
   - `npx vite build && npx playwright test e2e/phone.e2e.ts e2e/desktop.e2e.ts e2e/a11y.e2e.ts --workers=4` (E2E, ~3 dk; `E2E_PORT` için aşağıya bak)
   - Görsel testler: `e2e/visual.e2e.ts` — referanslar **yalnızca Linux** (`*-linux.png`). macOS'ta `--ignore-snapshots` ile çalıştır. **`*-darwin.png` dosyalarını asla commit etme.**
 - Referans görüntüleri yenilemek: `gh workflow run snapshots.yml --ref <dal>` (CI'da Linux'ta çeker, iki kez doğrular, dala commit eder).
-- CI: `.github/workflows/ci.yml` — tek iş (kontrol + birim + E2E), yalnızca PR'larda; main'e push'ta ve yalnızca `.md`/`docs/` değişince çalışmaz, taslak PR'da çalışmaz. Elle: Actions → CI → Run workflow.
+- CI: `.github/workflows/ci.yml` — kontrol/birim/Chromium ve ayrı WebKit işi; WebKit'in yavaş telefon kontrolleri ana işin süre sınırını tüketmez. Yalnızca PR'larda; main'e push'ta ve yalnızca `.md`/`docs/` değişince çalışmaz, taslak PR'da çalışmaz. Elle: Actions → CI → Run workflow.
 - **Actions dakikaları sınırlı** (özel depo, ücretsiz plan: ayda 2.000 dk; 2026-10-08'de doldu, işler "payments failed / spending limit" hatasıyla başlamadı). Gereksiz push yapma; bir PR'a art arda küçük commit'ler atmak yerine yerelde tam doğrulayıp tek seferde push'la. Ekran görüntüsü yenilemeyi (snapshots.yml) yalnızca görünüm gerçekten değiştiğinde çalıştır.
 
 ## Bilinen tuzaklar

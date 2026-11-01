@@ -650,7 +650,7 @@ export default function App() {
                 loadPronWords={loadPronWords}
                 dailyLimit={settings.monkiDailyLimit ?? 0}
                 loadUsage={loadMonkiUsage}
-                showButton={screen.name !== 'summary'}
+                showButton={inSession}
                 inSession={inSession}
                 onSettings={go({ name: 'settings' })}
               />
