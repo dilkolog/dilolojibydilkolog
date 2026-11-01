@@ -339,6 +339,11 @@ export interface InboxItem {
 const MAX_BODY = 3000
 const MIN_BODY = 30
 
+/** A web address in what was sent. A word, its meaning and a title have none; a text may quote a link or two, not advertise. */
+const LINK = /(?:https?:\/\/|www\.|[a-z0-9-]+\.(?:com|net|org|ru|xyz|ly|me|io|co|tk|top|cc)\b\/)/gi
+const MAX_TEXT_LINKS = 2
+const hasLink = (s: string) => new RegExp(LINK.source, 'i').test(s)
+
 /** The gift as sent, checked and trimmed; null when it is not a word with a meaning. */
 export function cleanGift(raw: unknown): GiftWord | null {
   if (!raw || typeof raw !== 'object') return null
@@ -348,6 +353,7 @@ export function cleanGift(raw: unknown): GiftWord | null {
   const meaning = plain(g.meaning, 120)
   if (!language || !lemma || !meaning) return null
   const example = plain(g.example, 200)
+  if ([lemma, meaning, example, plain(g.exampleTranslation, 200)].some(hasLink)) return null
   const exampleTranslation = plain(g.exampleTranslation, 200)
   return { language, lemma, meaning, ...(example ? { example } : {}), ...(example && exampleTranslation ? { exampleTranslation } : {}) }
 }
@@ -360,6 +366,8 @@ export function cleanText(raw: unknown): SentText | null {
   const title = plain(t.title, 80)
   const body = typeof t.body === 'string' ? [...t.body].filter((c) => c === '\n' || (c.charCodeAt(0) >= 32 && c.charCodeAt(0) !== 127)).join('').replace(/[<>]/g, '').trim().slice(0, MAX_BODY) : ''
   if (!language || !title || body.length < MIN_BODY) return null
+  // No advertising by text: a title with a link, or a body with more than a couple, is not delivered.
+  if (hasLink(title) || (body.match(LINK) ?? []).length > MAX_TEXT_LINKS) return null
   return { language, title, body }
 }
 
