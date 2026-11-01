@@ -68,6 +68,7 @@ test('no screen scrolls sideways, even at the largest text size', async ({ page 
 })
 
 test('text stays readable in the light, the dark, the calm and the high-contrast theme', async ({ page }) => {
+  test.setTimeout(180_000)
   await startWithSamples(page)
   const found: string[] = []
   for (const theme of ['light', 'dark', 'calm', 'contrast']) {

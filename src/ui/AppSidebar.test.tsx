@@ -268,9 +268,9 @@ describe('AppSidebar and TabBar', () => {
         footCard?.querySelector<HTMLButtonElement>('.sidebar-foot-btn')?.click()
       })
       const items = [...rootEl.querySelectorAll<HTMLElement>('[role=menuitem]')]
-      expect(items.map((i) => i.querySelector('strong')?.textContent)).toEqual(['Profil', 'Ayarlar'])
+      expect(items.map((i) => i.querySelector('strong')?.textContent)).toEqual(['Monki ile konuş', 'Profil', 'Ayarlar'])
       act(() => {
-        items[0].click()
+        items.find((item) => item.querySelector('strong')?.textContent === 'Profil')!.click()
       })
       expect(goProfile).toHaveBeenCalled()
       expect(rootEl.querySelector('[role=menu]')).toBeNull()

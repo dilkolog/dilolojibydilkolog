@@ -10,7 +10,7 @@ Dokunma testlerinde `Touch` kurucusu yerine olay özellikleri kullanılır; Inde
 
 ## Gerçek hesaplarla iki cihaz
 
-Durum: **yapılmadı**. Bu ortamda ayrılmış test hesapları veya canlı servis ayarları yok.
+Durum: **kullanıcının isteğiyle şimdilik ertelendi**. Bu ortamda ayrılmış test hesapları veya canlı servis ayarları yok.
 
 1. Yalnızca silinmesi için ayrılmış bir test hesabıyla iki bağımsız tarayıcı/cihazda giriş yap.
 2. A'da benzersiz kelime ve kişisel cümle, B'de farklı kelime oluştur; iki tarafta eşitle, her iki kaydın iki cihazda da olduğunu doğrula.
