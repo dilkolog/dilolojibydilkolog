@@ -282,6 +282,30 @@ export type ReviewMode = 'normal' | 'practice'
 /** How sure the learner said they were before answering; absent when not asked. */
 export type Confidence = 'sure' | 'unsure'
 
+/**
+ * What the model and the plan knew when an answer was given: enough to ask, afterwards, "how well did the
+ * forecast hold, and would another way of choosing have done better?" (docs/KISISEL-ALGORITMA.md).
+ */
+export interface ReviewContext {
+  /** Days since the card was last reviewed (0 for a new card). */
+  elapsedDays: number
+  /** The card's FSRS stability and difficulty just before the answer. */
+  stabilityBefore: number
+  difficultyBefore: number
+  /** Who chose the question: 'heuristic-v1' is the plan's own rules (no choice probabilities are kept for it). */
+  policy: string
+  /** Why the plan asked it (due, weak, mistake…). */
+  reason?: string
+  /** Its place in the session (0 = first). */
+  slot?: number
+  /**
+   * Set when the question was a measurement probe: a card picked at random among those not yet due, asked in
+   * practice mode (the schedule is untouched). The value is the chance the card had of being picked that day
+   * (picked / eligible), so the answers can be weighed back to all eligible cards.
+   */
+  probe?: number
+}
+
 /** One row per answer. The scheduler can be re-evaluated offline from these. */
 export interface ReviewEvent {
   id: string
@@ -304,6 +328,8 @@ export interface ReviewEvent {
   scheduledDays: number
   mode: ReviewMode
   timestamp: Date
+  /** Absent on answers given before this was kept. */
+  ctx?: ReviewContext
 }
 
 export interface Mistake {

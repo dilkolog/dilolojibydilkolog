@@ -8,6 +8,7 @@ import type {
   ErrorType,
   ExerciseType,
   Mistake,
+  ReviewContext,
   ReviewEvent,
   ReviewMode,
   UserWordState,
@@ -40,7 +41,11 @@ export interface AttemptInput {
   /** 'practice' = low-stakes: logged, but affects neither the schedule nor the Mistake Bank. */
   mode?: ReviewMode
   confidence?: Confidence
+  /** What the plan says about this question (why, where, whether it is a probe); the rest of the context is read off the card. */
+  plan?: { reason?: string; slot?: number; probe?: number }
 }
+
+export const POLICY = 'heuristic-v1'
 
 export interface ReviewResult {
   state: UserWordState
@@ -74,6 +79,15 @@ export function processAttempt(
   const now = input.at
   const card = state.skills[meta.skill] ?? scheduler.newCard(now)
   const retrievabilityBefore = scheduler.retrievability(card, now)
+  const ctx: ReviewContext = {
+    elapsedDays: card.last_review ? Math.max(0, (now.getTime() - new Date(card.last_review).getTime()) / DAY_MS) : 0,
+    stabilityBefore: card.stability,
+    difficultyBefore: card.difficulty,
+    policy: POLICY,
+    ...(input.plan?.reason ? { reason: input.plan.reason } : {}),
+    ...(input.plan?.slot !== undefined ? { slot: input.plan.slot } : {}),
+    ...(input.plan?.probe !== undefined ? { probe: input.plan.probe } : {}),
+  }
   const rating = gradeAttempt(input)
   const correct = input.verdict !== 'wrong'
 
@@ -139,6 +153,7 @@ export function processAttempt(
     scheduledDays: after.scheduled_days,
     mode,
     timestamp: now,
+    ctx,
   }
   return { state: nextState, event, mistakes: nextMistakes }
 }

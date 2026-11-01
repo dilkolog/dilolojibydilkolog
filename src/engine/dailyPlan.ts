@@ -26,6 +26,8 @@ export interface PlanItem {
   exerciseType?: ExerciseType
   /** The blank shows the answer's first letter (a choice turned into typing, see typeStrongCloze). */
   firstLetter?: boolean
+  /** A measurement probe (engine/probes.ts): the chance this card had of being picked; asked in practice mode. */
+  probe?: number
   /**
    * A conjugated form from the verb lab's review queue, mixed into the day (entryId is then
    * `form:<verb>|<tense>`): the person's form of the verb in the tense, typed.

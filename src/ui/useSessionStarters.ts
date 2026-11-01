@@ -2,6 +2,7 @@ import { useEffect, useState, type Dispatch, type SetStateAction } from 'react'
 import { buildDailyPlan, buildExtraNewPlan, mixForms, roundForMinutes, shortRound, type DailyPlan, type PlanInput, type PlanItem, type PlanReason } from '../engine/dailyPlan'
 import { difficultWords } from '../engine/difficult'
 import { openMistakes } from '../engine/mistakes'
+import { probeCards, probesLeft, sampleProbes, withProbes } from '../engine/probes'
 import { buildDeckPlan, buildEarlyReviewPlan, buildMistakePlan, buildPracticePlan } from '../engine/practice'
 import { buildQuestPlan } from '../engine/questPlan'
 import type { QuestMetric } from '../engine/quests'
@@ -46,7 +47,23 @@ export function useSessionStarters({ settings, data, game, plan, planInput, opti
     const items = mixForms(plan.items, dayForms)
     const split = !settings?.sessionMax && (settings?.splitLongDays ?? true) && plan.estimatedMinutes > SPLIT_ABOVE_MINUTES
     const end = split ? firstSittingEnd(items) : items.length
-    startSession(items.slice(0, end), 'normal', daySeed(new Date()), undefined, undefined, split && end < items.length)
+    startSession(withDayProbes(items.slice(0, end)), 'normal', daySeed(new Date()), undefined, undefined, split && end < items.length)
+  }
+  /**
+   * Two measurement probes among the day's questions (engine/probes.ts): cards picked at random among those not due,
+   * asked in practice mode, so the forecasts get tested away from the 90 % spot the schedule always asks at.
+   * Off in Settings, and a day that has had its probes (the session opened again) gets no more.
+   */
+  const withDayProbes = (items: PlanItem[]): PlanItem[] => {
+    if (!data || settings?.probes === false) return items
+    const now = new Date()
+    const quota = probesLeft(data.recentEvents, now)
+    if (!quota) return items
+    const catalog = new Map(data.vocabulary.map((v) => [v.id, v]))
+    const states = new Map(data.states.map((st) => [st.entryId, st]))
+    const rng = createRng(daySeed(now) + 17)
+    const cards = probeCards(data.states, catalog, now, new Set(items.map((it) => it.entryId)), options)
+    return withProbes(items, sampleProbes(cards, quota, rng), catalog, states, rng, options)
   }
   /** Only one kind of the day's questions (the wrong, the weak, the reviews, the new words), in the plan's order; "Devam et" stays the whole mix. */
   const startFocus = (reason: PlanReason) => {
