@@ -100,6 +100,12 @@ import coverShopping from '../assets/art/cover-shopping.webp'
 import coverWeather from '../assets/art/cover-weather.webp'
 import coverFeelings from '../assets/art/cover-feelings.webp'
 import coverCity from '../assets/art/cover-city.webp'
+import coverTech from '../assets/art/cover-tech.webp'
+import coverArt from '../assets/art/cover-art.webp'
+import coverSports from '../assets/art/cover-sports.webp'
+import coverLiterature from '../assets/art/cover-literature.webp'
+import coverLaw from '../assets/art/cover-law.webp'
+import coverHistory from '../assets/art/cover-history.webp'
 import questNewword from '../assets/art/quest-newword.webp'
 import questAnswers from '../assets/art/quest-answers.webp'
 import questCorrect from '../assets/art/quest-correct.webp'
@@ -130,6 +136,12 @@ import stickerMusic from '../assets/art/sticker-music.webp'
 import stickerCoffee from '../assets/art/sticker-coffee.webp'
 import stickerFacepalm from '../assets/art/sticker-facepalm.webp'
 import stickerHeart from '../assets/art/sticker-heart.webp'
+import stickerIdea from '../assets/art/sticker-idea.webp'
+import stickerStar from '../assets/art/sticker-star.webp'
+import stickerSpeed from '../assets/art/sticker-speed.webp'
+import stickerDetective from '../assets/art/sticker-detective.webp'
+import stickerMagic from '../assets/art/sticker-magic.webp'
+import stickerShy from '../assets/art/sticker-shy.webp'
 import posNoun from '../assets/art/pos-noun.webp'
 import posVerb from '../assets/art/pos-verb.webp'
 import posAdjective from '../assets/art/pos-adjective.webp'
@@ -154,6 +166,8 @@ import tileStrip from '../assets/art/game-strip.webp'
 import tileSwap from '../assets/art/game-swap.webp'
 import tileGear from '../assets/art/game-gear.webp'
 import tileFlags from '../assets/art/onb-flags.webp'
+import tileDuel from '../assets/art/tile-duel.webp'
+import tileShadowing from '../assets/art/tile-shadowing.webp'
 import bossBlob from '../assets/art/boss-blob.webp'
 import bossDragon from '../assets/art/boss-dragon.webp'
 import bossSlime from '../assets/art/boss-slime.webp'
@@ -162,6 +176,14 @@ import bossDino from '../assets/art/boss-dino.webp'
 import bossGhost from '../assets/art/boss-ghost.webp'
 import bossOctopus from '../assets/art/boss-octopus.webp'
 import bossGolem from '../assets/art/boss-golem.webp'
+import bossThunder from '../assets/art/boss-thunder.webp'
+import bossBookwyrm from '../assets/art/boss-bookwyrm.webp'
+import langMonkiEn from '../assets/art/lang-monki-en.webp'
+import langMonkiFr from '../assets/art/lang-monki-fr.webp'
+import langMonkiEs from '../assets/art/lang-monki-es.webp'
+import cefrMonkiA1 from '../assets/art/cefr-monki-a1.webp'
+import cefrMonkiB1 from '../assets/art/cefr-monki-b1.webp'
+import cefrMonkiC1 from '../assets/art/cefr-monki-c1.webp'
 import missionRent from '../assets/art/mission-rent.webp'
 import missionRestaurant from '../assets/art/mission-restaurant.webp'
 import missionLuggage from '../assets/art/mission-luggage.webp'
@@ -173,7 +195,7 @@ import roleDirections from '../assets/art/role-directions.webp'
 import roleDoctor from '../assets/art/role-doctor.webp'
 import roleInterview from '../assets/art/role-interview.webp'
 import roleShopping from '../assets/art/role-shopping.webp'
-import type { PartOfSpeech } from '../engine/types'
+import type { PartOfSpeech, TargetLanguage } from '../engine/types'
 import type { BadgeCategory } from '../engine/gamification'
 import guideTeach from '../assets/art/guide-teach.webp'
 import guideLearned from '../assets/art/guide-passed.webp'
@@ -267,7 +289,20 @@ export const EMBLEM = { chat: emChat, mic: emMic, trophy: emTrophy }
 export const ROLE_ART = { cafe: roleCafe, hotel: roleHotel, directions: roleDirections, doctor: roleDoctor, interview: roleInterview, shopping: roleShopping }
 
 /** The bosses of the boss arena: a word is always the same one of them. */
-export const BOSS_ART = [bossBlob, bossDragon, bossSlime, bossYeti, bossDino, bossGhost, bossOctopus, bossGolem]
+export const BOSS_ART = [bossBlob, bossDragon, bossSlime, bossYeti, bossDino, bossGhost, bossOctopus, bossGolem, bossThunder, bossBookwyrm]
+
+/** Monki in authentic cultural dress for each language (English Detective, French Artist, Spanish Guitarist). */
+export const LANG_MONKI: Record<TargetLanguage, string> = { en: langMonkiEn, fr: langMonkiFr, es: langMonkiEs }
+
+/** Milestone mascot art for CEFR target levels (A1 Sprout, B1 Speaker, C1 Sage). */
+export const CEFR_MONKI: Record<string, string> = {
+  A1: cefrMonkiA1,
+  A2: cefrMonkiA1,
+  B1: cefrMonkiB1,
+  B2: cefrMonkiB1,
+  C1: cefrMonkiC1,
+  C2: cefrMonkiC1,
+}
 
 /** The scene of each speaking mission (Yaz & konuş), by mission id; the doctor and the interview share Monki's role-play scenes. */
 export const MISSION_ART: Record<string, string> = {
@@ -361,6 +396,8 @@ export const TILE_ART = {
   free: stickerThumbs,
   early: tileCards,
   news: srcNews,
+  duel: tileDuel,
+  shadowing: tileShadowing,
 }
 
 /** Covers for word lists; a list gets the one its name suggests (Turkish, English, French or Spanish). */
@@ -377,6 +414,12 @@ const COVERS: [RegExp, string][] = [
   [/hava|mevsim|weather|season|météo|temps|tiempo|clima/i, coverWeather],
   [/duygu|his|hisler|feeling|emotion|sentiment|émotion|sentimiento|emoción/i, coverFeelings],
   [/şehir|kent|ulaşım|trafik|city|town|transport|ville|ciudad|transporte/i, coverCity],
+  [/teknoloji|yazılım|bilgisayar|kod|tech|software|code|program|informatique|tecnología/i, coverTech],
+  [/sanat|müzik|resim|art|music|peinture|musique|arte|música/i, coverArt],
+  [/spor|egzersiz|fitness|sport|exercice|deporte|ejercicio/i, coverSports],
+  [/edebiyat|felsefe|şiir|roman|literature|philosophy|poetry|littérature|philosophie|poésie|literatura|filosofía|poesía/i, coverLiterature],
+  [/hukuk|yasa|adalet|law|justice|droit|loi|derecho|ley/i, coverLaw],
+  [/tarih|coğrafya|arkeoloji|history|geography|histoire|géographie|historia|geografía/i, coverHistory],
 ]
 export const listCover = (name: string): string | undefined => COVERS.find(([re]) => re.test(name))?.[1]
 
@@ -394,6 +437,12 @@ export const STICKER = {
   coffee: stickerCoffee,
   facepalm: stickerFacepalm,
   heart: stickerHeart,
+  idea: stickerIdea,
+  star: stickerStar,
+  speed: stickerSpeed,
+  detective: stickerDetective,
+  magic: stickerMagic,
+  shy: stickerShy,
 }
 
 /** Monki answering an answer in a session: cheering, a kind "oops", thinking back; and a hello, a new card, a streak of right answers. */

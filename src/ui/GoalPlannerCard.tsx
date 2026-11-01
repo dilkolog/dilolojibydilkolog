@@ -5,6 +5,7 @@ import { CEFR_LEVELS, type LevelCoverage } from '../engine/cefrLevels'
 import { calculateGoalProgress, type CefrGoal } from '../engine/goalPlanner'
 import { CalendarIcon, TargetIcon } from './icons'
 import { showToast } from './toastFeed'
+import { CEFR_MONKI } from './drawnArt'
 
 /** The levels a goal can be set for. */
 const GOAL_LEVELS: readonly CefrLevel[] = CEFR_LEVELS.filter((l) => ['A1', 'A2', 'B1', 'B2'].includes(l))
@@ -111,7 +112,11 @@ export function GoalPlannerCard({
     return (
       <section className="goal-panel stack" aria-label="Seviye hedefi">
         <div className="goal-panel-head">
-          <TargetIcon size={20} className="goal-icon" />
+          {CEFR_MONKI[progress.level] ? (
+            <img className="goal-monki-art" src={CEFR_MONKI[progress.level]} alt="" width={32} height={32} draggable={false} />
+          ) : (
+            <TargetIcon size={20} className="goal-icon" />
+          )}
           <h3 className="goal-panel-title">{progress.level} seviye hedefi</h3>
           <span className={`pill goal-pace ${badgeClass}`}>{badge}</span>
         </div>

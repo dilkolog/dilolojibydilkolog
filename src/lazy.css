@@ -691,6 +691,7 @@
 .goal-panel.stack > :not(:first-child) { margin-top: 0.75rem; }
 .goal-panel p { margin-bottom: 0; }
 .goal-panel-head { display: flex; align-items: center; gap: 0.5rem; }
+.goal-monki-art { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
 .goal-panel-title { margin: 0; font-size: var(--t-lg); flex: 1 1 auto; min-width: 0; }
 .goal-pace { flex: none; background: var(--surface); color: var(--lang-text); }
 .goal-pace.goal-ahead { background: var(--ok-soft); color: var(--ok-text); }
