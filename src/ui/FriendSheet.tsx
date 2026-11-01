@@ -7,7 +7,8 @@ import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { FRIEND_DAYS as DAYS, lastDays } from '../engine/friendDays'
 import type { Profile } from '../data/db'
 import { Avatar } from './Avatar'
-import { CloseIcon, FlameIcon } from './icons'
+import { CloseIcon } from './icons'
+import { StreakFlame } from './StreakFlame'
 import { showToast } from './toastFeed'
 import { ConfirmDialog } from './Dialog'
 
@@ -96,7 +97,7 @@ export function FriendSheet({ friend, name, today, vocabulary = [], language, on
                 <span className="friends-level">Seviye {friend.level}</span>
                 {friend.streak > 0 && (
                   <span className="friends-streak">
-                    <FlameIcon size={12} solid /> {friend.streak} gün
+                    <StreakFlame streak={friend.streak} size={14} /> {friend.streak} gün
                   </span>
                 )}
                 <span className={`friend-status-pill${studiedToday ? ' is-active' : ''}`}>

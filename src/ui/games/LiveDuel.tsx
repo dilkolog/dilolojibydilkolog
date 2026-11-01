@@ -14,6 +14,7 @@ import { DuelSide } from './duelParts'
 import { noteIn } from './logNote'
 import { share } from './shareLink'
 import { useLiveRoom } from './useLiveRoom'
+import { NEW_ART } from '../drawnArt'
 
 const LEVELS = ['B1', 'B2', 'C1'] as const
 const note = noteIn(() => db.getGrammarLog(), (log) => db.saveGrammarLog(log))
@@ -137,10 +138,15 @@ export function LiveDuel({ language, name, code, onExit }: { language: TargetLan
         <div className="stack">
           <h1 className="greeting">Canlı düello odası</h1>
           <div className="card stack live-room-card">
-            <span className="small muted">Oda kodu</span>
-            <strong className="live-room-code" lang="en">
-              {showRoom(code)}
-            </strong>
+            <div className="row justify-between align-center">
+              <div>
+                <span className="small muted">Oda kodu</span>
+                <strong className="live-room-code" lang="en">
+                  {showRoom(code)}
+                </strong>
+              </div>
+              <img src={NEW_ART.friendsCode} alt="" height={44} draggable={false} />
+            </div>
             <p className="small muted duel-link" lang="en">
               {roomLink(code, location.origin)}
             </p>
@@ -152,13 +158,17 @@ export function LiveDuel({ language, name, code, onExit }: { language: TargetLan
           </div>
           <ul className="plain stack gap-2" aria-label="Odadakiler">
             {room.players.map((p, i) => (
-              <li key={i} className="row gap-2">
+              <li key={i} className="row gap-2 align-center">
                 <strong>{i === room.you ? `${p.name} (sen)` : p.name}</strong>
                 <span className="small muted">{i === 0 ? 'oda sahibi' : ''}</span>
                 <span className={`small ${p.connected ? '' : 'muted'}`}>{p.connected ? '● bağlı' : '○ ayrıldı'}</span>
               </li>
             ))}
-            {room.players.length < 2 && <li className="small muted">Arkadaşın bekleniyor…</li>}
+            {room.players.length < 2 && (
+              <li className="row gap-2 align-center duel-wait-friend">
+                <span className="small muted">Arkadaşın bekleniyor: bağlantıyı paylaşarak çağırabilirsin.</span>
+              </li>
+            )}
           </ul>
           {room.you === 0 ? (
             <div className="stack">

@@ -556,7 +556,7 @@ export function SessionScreen(p: Props) {
         </ConfirmDialog>
       )}
       <div className="session-stage">
-      {session.index === 0 && session.log.length === 0 && answeredAt === null && session.items.length > 1 && (
+      {session.index === 0 && session.log.length === 0 && answeredAt === null && session.items.length >= 1 && (
         <p className="session-hello">
           <img src={REACT.hello} alt="" width={44} height={44} draggable={false} />
           <span>

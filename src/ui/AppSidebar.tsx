@@ -14,6 +14,7 @@ import { NoticeBell } from './NoticeBell'
 import { OfflineBadge } from './OfflineBadge'
 import { StreakFlame } from './StreakFlame'
 import { BrandLogo } from './BrandLogo'
+import { ACCOUNT_ART } from './drawnArt'
 
 export type NavMark = { top: number; left: number; width: number; height: number; ready: boolean }
 
@@ -103,7 +104,7 @@ export function Sidebar({
           buttonProps={{ 'aria-label': 'Hesap menüsü', title: 'Hesap menüsü' }}
           button={<Avatar profile={settings.profile} size={32} />}
         >
-          {(close) => <AccountMenuItems close={close} go={go} hasAccount={hasAccount} />}
+          {(close) => <AccountMenuItems close={close} go={go} hasAccount={hasAccount} profile={settings.profile} />}
         </Popover>
       </div>
       <nav className={`nav${navMark ? ' has-indicator' : ''}`} ref={navRef}>
@@ -162,7 +163,7 @@ export function Sidebar({
             </>
           }
         >
-          {(close) => <AccountMenuItems close={close} go={go} hasAccount={hasAccount} />}
+          {(close) => <AccountMenuItems close={close} go={go} hasAccount={hasAccount} profile={settings.profile} />}
         </Popover>
         <div
           className="sidebar-foot-bell"
@@ -194,9 +195,18 @@ export function TabBar({ navBadge, badgeLabel, current, goPlace }: NavProps) {
 }
 
 /** What the avatar opens (the side menu's foot on a computer, the top bar's avatar on a phone): you, settings, sign out. */
-function AccountMenuItems({ close, go, hasAccount }: { close: () => void; go: (s: Screen) => () => void; hasAccount: boolean }) {
+function AccountMenuItems({ close, go, hasAccount, profile }: { close: () => void; go: (s: Screen) => () => void; hasAccount: boolean; profile?: Settings['profile'] }) {
   return (
     <>
+      <div className="account-menu-head row gap-2 align-center" style={{ padding: '0.5rem 0.75rem' }}>
+        <Avatar profile={profile ?? { name: 'Profil', emoji: '🙂', color: '#6366f1', motto: '' }} size={34} />
+        <div className="stack gap-0 grow" style={{ minWidth: 0 }}>
+          <strong className="ellipsis" style={{ fontSize: 'var(--t-sm)', lineHeight: 1.2 }}>{profile?.name || 'Profilin'}</strong>
+          <span className="small muted" style={{ fontSize: 'var(--t-xs)' }}>{hasAccount ? 'Hesap bağlı' : 'Bu cihazda kayıtlı'}</span>
+        </div>
+        <img className="account-art" src={hasAccount ? ACCOUNT_ART.approved : ACCOUNT_ART.out} alt="" height={28} draggable={false} />
+      </div>
+      <div className="menu-sep" role="separator" />
       <MenuItem
         icon={<UserIcon size={18} />}
         title="Profil"

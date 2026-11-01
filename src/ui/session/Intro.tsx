@@ -71,6 +71,8 @@ export function Intro({
       <div>
         <p className="prompt-label">
           <span className="badge">Yeni kelime</span> <span className="small muted">Bilmiyorsan da bir tahmin yap</span>
+          {entry.partOfSpeech !== 'other' && <PosTag pos={entry.partOfSpeech} label className="is-chip" />}
+          <img className="pos-art" src={POS_ART[entry.partOfSpeech] ?? REACT.newWord} alt="" draggable={false} />
         </p>
         <div className="row">
           <Word entry={entry} />

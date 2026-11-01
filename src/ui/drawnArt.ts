@@ -87,6 +87,7 @@ import setLook from '../assets/art/set-look.webp'
 import setBell from '../assets/art/set-bell.webp'
 import setTools from '../assets/art/set-tools.webp'
 import setData from '../assets/art/set-data.webp'
+import setHelp from '../assets/art/set-help.webp'
 import coverFood from '../assets/art/cover-food.webp'
 import coverTravel from '../assets/art/cover-travel.webp'
 import coverFamily from '../assets/art/cover-family.webp'
@@ -312,6 +313,7 @@ export const SETTINGS_ART: Record<string, string> = {
   's-remind': setBell,
   's-tools': setTools,
   's-data': setData,
+  's-help': setHelp,
 }
 
 /** Daily quests by what they count, and weekly challenges with dedicated drawn art. */

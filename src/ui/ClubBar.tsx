@@ -3,6 +3,7 @@ import { clubLink, type ClubView } from '../engine/readingClub'
 import { FlagIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { share } from './games/shareLink'
+import { NEW_ART } from './drawnArt'
 import type { ReadingClub } from './useReadingClub'
 
 const showCode = (code: string) => `${code.slice(0, 3)}-${code.slice(3)}`
@@ -49,7 +50,8 @@ export function ClubBar({
   const others = room ? room.readers.filter((_, i) => i !== room.you) : []
   return (
     <section className="card stack club-bar" aria-label="Okuma kulübü">
-      <div className="row club-bar-head">
+      <div className="row club-bar-head align-center">
+        <img className="club-bar-art" src={NEW_ART.friendsTogether} alt="" height={32} draggable={false} />
         <strong>Okuma kulübü</strong>
         <span className="small muted" lang="en">
           {showCode(code)}
@@ -99,7 +101,10 @@ export function ClubBar({
             ))}
           </ul>
           {others.length === 0 ? (
-            <p className="small muted">Bağlantıyı bir arkadaşına gönder: aynı metni açar, birbirinizin baktığı kelimeleri görürsünüz.</p>
+            <div className="club-empty-state row gap-2 align-center">
+              <img src={NEW_ART.friendsCode} alt="" height={36} draggable={false} />
+              <p className="small muted">Bağlantıyı bir arkadaşına gönder: aynı metni açar, birbirinizin baktığı kelimeleri görürsünüz.</p>
+            </div>
           ) : sameText ? (
             <>
               <p className="small muted">{looks.size ? `Arkadaşlarının baktığı ${looks.size} kelime metinde noktalı çizgiyle işaretli.` : 'Arkadaşların bir kelimeye bakınca metinde noktalı çizgiyle işaretlenir.'}</p>

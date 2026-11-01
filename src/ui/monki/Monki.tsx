@@ -19,6 +19,7 @@ import { saveSentence } from '../saveSentence'
 import { addNotes, memoryLines, removeNote, type MemoryNote } from '../../engine/monkiMemory'
 import { localDate } from '../../engine/progress'
 import { loadMemory, memoryOn, saveMemory, setMemoryOn } from './memoryStore'
+import { Sticker } from '../Sticker'
 
 interface Msg {
   role: 'user' | 'assistant'
@@ -573,7 +574,10 @@ export default function Monki({
                     Monki, sohbetlerden seninle ilgili birkaç kısa not tutar (ör. “sık karıştırdığın bir kalıp”) ve bir sonraki konuşmada bunları kullanır. Notlar bu cihazda durur, hesabınla birlikte taşınır; istediğini silebilirsin.
                   </p>
                   {memory.length === 0 ? (
-                    <p className="small">{remembering ? 'Henüz not yok. Konuştukça birkaç not birikecek.' : 'Hatırlama kapalı.'}</p>
+                    <div className="row gap-2 align-center monki-memory-empty">
+                      <Sticker name="think" size={36} />
+                      <p className="small muted">{remembering ? 'Henüz not yok. Sohbet ettikçe seninle ilgili kısa notlar burada birikecek.' : 'Hatırlama kapalı.'}</p>
+                    </div>
                   ) : (
                     <ul className="monki-memory-list">
                       {memory.map((n) => (
