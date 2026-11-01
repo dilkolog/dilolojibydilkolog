@@ -5,6 +5,7 @@
 `npx playwright install --with-deps chromium webkit` ardından `npm run test:e2e`.
 Yalnızca iPhone: `npx playwright test --project='iPhone (WebKit)'` (önce misafir test derlemesi gerekir).
 Profil iPhone 13 boyutlarını ve WebKit'i kullanır; fiziksel iPhone testi yerine geçmez.
+Tam WebKit paketi **92/92 geçti**: [CI doğrulaması](https://github.com/dilkolog/dilolojibydilkolog/actions/runs/41292990146/job/124807927319) (1 Kasım 2026; yeniden deneme veya atlanan senaryo yok).
 CI iki tarayıcıyı da kurar. WebKit testlerinin yerel çalışması bu ortamda indirme alan adlarının 403 vermesi nedeniyle engellendi.
 WebKit ayrı CI işinde çalışır; okuma kelime kartının yerleşimi önce, kalan testler sonra çalıştırılır. Her test bir kez koşar. Başarısızlıkta `test-results` ve HTML raporu saklanır.
 390×664 görünümünde ilk kurulumun üç adımı ve tema kontrastı Chromium'da doğrulandı; kısa ekranlarda dil kartları tek sütundur ve ana düğmeler ilk ekrana sığar.
