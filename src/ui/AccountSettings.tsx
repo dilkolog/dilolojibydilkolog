@@ -2,7 +2,7 @@ import { currentIdentity, signInWithGoogle, supabaseConfigured, type Identity } 
 import { AccountManage, AccountDelete } from './AccountManage'
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
-import { ChartIcon, CheckIcon, LockIcon } from './icons'
+import { ChartIcon, LockIcon } from './icons'
 import { db } from '../data/instance'
 import { syncUsage, type Account } from '../data/sync'
 import type { AuthMode } from './AuthScreen'
@@ -14,8 +14,9 @@ import { StatusPicture } from './StatusArt'
 import { useAccess } from './accessContext'
 import { GoogleMark } from './GoogleMark'
 import { signOutThisDevice } from './signOut'
+import { VerifiedBadge } from './VerifiedBadge'
 
-const STATUS_TEXT = { approved: 'Onaylı', rejected: 'Onaylanmadı', pending: 'Onay bekliyor' } as const
+const STATUS_TEXT = { rejected: 'Onaylanmadı', pending: 'Onay bekliyor' } as const
 
 /**
  * Account in Settings. Signed in: who (name, @name, email, the owner's approval), then the account's own
@@ -119,11 +120,16 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
         )}
         <div className="account-who">
           <div className="account-who-header">
-            <h2 className="account-name">{name}</h2>
+            <h2 className="account-name">
+              {name}
+              {status === 'approved' && <VerifiedBadge />}
+            </h2>
             <HandleTag handle={handle} />
-            <span className={`status-pill ${status === 'approved' ? 'is-on' : 'is-off'}`} role="status">
-              {status === 'approved' ? <CheckIcon size={14} /> : <i aria-hidden />} {STATUS_TEXT[status]}
-            </span>
+            {status !== 'approved' && (
+              <span className="status-pill is-off" role="status">
+                <i aria-hidden /> {STATUS_TEXT[status]}
+              </span>
+            )}
           </div>
           {identity?.email && <p className="account-email">{identity.email}</p>}
           <HandleForm handle={handle} />

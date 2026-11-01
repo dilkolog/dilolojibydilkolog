@@ -44,6 +44,7 @@
   --es: #e6a313; --es-deep: #b76c00; --es-soft: #fceed9; --es-text: #844b00;
 
   --ok: #10b981; --ok-deep: #047857; --ok-soft: #d1fae5; --ok-text: #047857;           /* emerald */
+  --verified: #1d78e0;                                                                    /* the approved-account tick */
   --near: #f97316; --near-deep: #c2410c; --near-soft: #ffedd5; --near-text: #c2410c;   /* orange */
   --bad: #f43f5e; --bad-deep: #be123c; --bad-soft: #ffe4e6; --bad-text: #be123c;       /* rose */
   --flame: #f97316;
