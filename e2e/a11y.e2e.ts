@@ -1344,6 +1344,7 @@ test('reading: the questions after a finished text work and pass the accessibili
   const question = (n: number) => ({ question: `Soru ${n}?`, options: [`Doğru ${n}`, `Yanlış ${n}a`, `Yanlış ${n}b`, `Yanlış ${n}c`], answer: 0, explanation: `Metnin ${n}. cümlesinde.` })
   await page.route(/api\.anthropic\.com/, async (r) => {
     await r.fulfill({
+      headers: { 'access-control-allow-origin': '*' },
       json: {
         id: 'msg_1',
         type: 'message',
