@@ -1,3 +1,8 @@
+import { DictionaryQuickReview } from './DictionaryQuickReview'
+import { dictionaryForms } from '../data/dictionaryForms'
+import { saveDictionarySentence } from '../data/dictionarySentence'
+import { POS_CODE, genderOfCode } from '../data/wordpackBuild'
+import type { Tense } from '../engine/tenses'
 import '../lazy.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { buildIndex, fold, search, wordOfTheDay } from '../data/dictionary'
@@ -8,8 +13,7 @@ import type { Pack } from '../data/wordpackBuild'
 import { db } from '../data/instance'
 import { addEntry, emptyNotes, findAdded, noteLookup, removeEntry, setFix, type DictionaryNotes } from '../engine/dictionaryNotes'
 import { normalize, splitArticle } from '../engine/answerCheck'
-import { verbFormsOf } from '../engine/verbLookup'
-import type { Example, Gender, PartOfSpeech, TargetLanguage, VocabularyEntry, WordList } from '../engine/types'
+import type { Example, Gender, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry, WordList } from '../engine/types'
 import { CheckIcon, ChevronDownIcon, MicIcon, SearchIcon, TagIcon, TargetIcon } from './icons'
 import { MenuItem, Popover } from './Popover'
 import { LANGUAGE_NAME } from './labels'
@@ -34,13 +38,14 @@ import { SavedCard, DayWord, SavedList } from './DictionarySaved'
 interface Props {
   language: TargetLanguage
   vocabulary: VocabularyEntry[]
+  states?: UserWordState[]
   lists?: readonly WordList[]
   initialQuery?: string
   onOpenWord: (id: string) => void
   onAdd: (word: string, meaning: string) => void
   /** After a word was added here in one tap (the screen's word list reloads). */
   onAdded?: () => void
-  onOpenLab?: (verb: string) => void
+  onOpenLab?: (verb: string, tense?: Tense) => void
   onSwitchLanguage?: (lang: TargetLanguage, query?: string) => void
   onOpenList?: (listId: string) => void
 }
@@ -73,8 +78,9 @@ const ownEntry = (vocabulary: readonly VocabularyEntry[], word: string, language
   return vocabulary.find((v) => fold(splitArticle(normalize(v.lemma).toLocaleLowerCase(language), language).rest) === key)
 }
 
-export function DictionaryScreen({ language, vocabulary, lists: propLists, initialQuery = '', onOpenWord, onAdd: openForm, onAdded, onOpenLab, onSwitchLanguage, onOpenList }: Props) {
+export function DictionaryScreen({ language, vocabulary, states = [], lists: propLists, initialQuery = '', onOpenWord, onAdd: openForm, onAdded, onOpenLab, onSwitchLanguage, onOpenList }: Props) {
   const [query, setQuery] = useState(initialQuery)
+  const [reviewing, setReviewing] = useState(false)
   // Saying the word instead of typing it: the heard word goes into the search box.
   const [hearing, setHearing] = useState(false)
   const hearer = useRef<Listening | null>(null)
@@ -112,6 +118,7 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
   useEffect(() => {
     let live = true
     setPack(undefined)
+    setReviewing(false)
     setRecent(loadRecent(language))
     void loadPack(language).then((p) => live && setPack(p ?? null))
     void db.getDictionaryNotes(language).then((n) => {
@@ -209,18 +216,27 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
   useEffect(() => {
     let live = true
     setTables(false)
-    if (language !== 'en') void loadTenses(language).then(() => live && setTables(true))
+    if (language === 'en') setTables(true)
+    else void loadTenses(language).then(() => live && setTables(true))
     return () => {
       live = false
     }
   }, [language])
-  const result = useMemo(() => (index ? search(index, query, tables ? (w) => verbFormsOf(language, w) : undefined) : { similar: [], fromTurkish: [] }), [index, query, tables, language])
+  const result = useMemo(() => (index ? search(index, query, tables ? (w) => dictionaryForms(language, w) : undefined) : { similar: [], fromTurkish: [] }), [index, query, tables, language])
   // The day's word stays the same all day; once added it gives way to the next one.
   const today = useMemo(() => (index ? wordOfTheDay(index, daySeed(new Date())) : undefined), [index])
   const typed = query.trim()
   const exactWord = result.exact?.word
   const own = typed ? ownEntry(vocabulary, exactWord ?? typed, language) : undefined
   const saved = useMemo(() => findAdded(notes, typed, language), [notes, typed, language])
+  const analyses = useMemo(() => tables ? dictionaryForms(language, query).filter(f => !index || index.keys.includes(f.lemma)) : [], [tables, language, query, index])
+  const reviewWords = useMemo(() => recent.flatMap(word => {
+    if (!index) return []
+    const hit = search(index, word).exact
+    const mine = ownEntry(vocabulary, hit?.word ?? word, language)
+    const meaning = mine?.senses[0]?.gloss || notes.fixes[word]?.t[0] || hit?.rec.t?.[0] || notes.added?.[word]?.t[0]
+    return meaning ? [{ word: hit?.word ?? word, meaning }] : []
+  }).filter((w, i, all) => all.findIndex(x => x.word === w.word) === i).slice(0, RECENT_MAX), [recent, index, vocabulary, language, notes])
   const targetListName = currentPlacementInfo.listId ? currentPlacementInfo.label : 'Listesiz'
   const savedExact = result.exact ? undefined : saved.find((e) => e.exact)
   const savedOthers = saved.filter((e) => e !== savedExact)
@@ -243,20 +259,23 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
   // A word whose card stays up a moment was really looked up (not just passed while typing): once a visit.
   const counted = useRef(new Set<string>())
   useEffect(() => {
-    if (!exactWord || counted.current.has(exactWord)) return
+    if (!exactWord || counted.current.has(`${language}:${exactWord}`)) return
     const t = setTimeout(() => {
-      counted.current.add(exactWord)
+      counted.current.add(`${language}:${exactWord}`)
+      setRecent(saveRecent(language, exactWord))
       updateNotes((n) => noteLookup(n, exactWord, new Date().toISOString()))
     }, 1500)
     return () => clearTimeout(t)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [exactWord])
+  }, [exactWord, language])
 
   /** Look a word up, as if typed, and remember it. */
   const pick = (word: string) => {
     setQuery(word)
     setRecent(saveRecent(language, word))
   }
+
+  if (reviewing) return <DictionaryQuickReview key={language} words={reviewWords} language={language} onDone={() => setReviewing(false)} />
 
   return (
     <div>
@@ -399,6 +418,8 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
       {!typed && recent.length > 0 && (
         <section className="section stack">
           <h2 className="section-title">Son baktıkların</h2>
+          {new Set(reviewWords.map(w => w.meaning)).size >= 2 && <button type="button" className="btn" onClick={() => setReviewing(true)}>Son aradığın {reviewWords.length} kelimeyi test et</button>}
+          <p className="small muted">Anlamı bulunan son kelimelerle serbest pratik; tekrar takvimini değiştirmez.</p>
           <div className="choice-row" role="group" aria-label="Son baktıkların">
             {recent.map((w) => (
               <button key={w} type="button" className="chip chip-sm" lang={language} onClick={() => pick(w)}>
@@ -418,6 +439,19 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
 
       {typed && index && (
         <>
+          {(result.correction || result.suggestions?.length) && <section className="note dict-spelling" aria-label="Yazım önerileri">
+            <strong>Bunu mu demek istedin?</strong>{' '}
+            {(result.suggestions ?? (result.exact ? [result.exact] : [])).map(h => <button key={h.word} type="button" className="chip chip-sm" lang={language} onClick={() => pick(h.word)}>{h.word}</button>)}
+          </section>}
+          {analyses.length > 0 && <section className="section stack dict-form-analysis" aria-label="Çekimli biçim çözümlemesi">
+            <h2 className="section-title">Bu biçim ne anlatıyor?</h2>
+            <ul className="plain stack gap-2">{analyses.slice(0, 8).map((a, i) => <li key={`${a.lemma}:${a.note}:${i}`}>
+              <button type="button" className="link" lang={language} onClick={() => pick(a.lemma)}>{a.lemma}</button>{' · '}{a.note}
+              {a.pronouns && <p className="small"><span lang={language}>{typed} → {a.stem} + {a.pronouns.join(' + ')}</span> · bitişik zamirler</p>}
+              {onOpenLab && <button type="button" className="chip chip-sm" onClick={() => onOpenLab(a.lemma, a.tense)}>Zaman kartını aç</button>}
+            </li>)}</ul>
+            {analyses.length > 1 && <p className="small muted">Bu yazım birden fazla çekime karşılık geliyor; cümlenin bağlamına göre seç.</p>}
+          </section>}
           {result.exact ? (
             <WordCard
               key={result.exact.word}
@@ -430,6 +464,20 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
               rec={result.exact.rec}
               rank={result.exact.rank}
               own={own}
+              state={own ? states.find(st => st.entryId === own.id) : undefined}
+              onSaveSentence={async text => {
+                const hit = result.exact!
+                const meaning = notes.fixes[hit.word]?.t[0] || hit.rec.t?.[0]
+                if (!own && !meaning) throw new Error('Önce kelimenin Türkçe anlamını eklemelisin.')
+                const candidate = own ?? createEntry({ word: hit.word, meaning: meaning!, partOfSpeech: hit.rec.p ? POS_CODE[hit.rec.p] : undefined, gender: genderOfCode(hit.rec.g) }, language, new Date())
+                if (!own) {
+                  const placement = parsePlacement(targetPlacement)
+                  if (lists.some(l => l.id === placement.listId)) { candidate.listId = placement.listId ?? undefined; candidate.levelId = placement.levelId ?? undefined }
+                }
+                await saveDictionarySentence(db, candidate, text)
+                setRecent(saveRecent(language, hit.word))
+                onAdded?.()
+              }}
               listOnly={!!index.extra?.has(result.exact.word)}
               fix={notes.fixes[result.exact.word]?.t}
               deeplOn={deeplOn}

@@ -43,6 +43,12 @@ Sahibi Diloloji'yi **kişisel** bir Google Play hesabıyla Android uygulaması (
 - Uygulama ücretli olur ya da reklam/satış eklenirse: Play faturalandırması şartı ve CEFR verisinin CC BY-NC-SA lisansı (ticari kullanım yok) yeniden konuşulmalı.
 
 ## Proje
+### Telefon testleri (2026-11-01)
+
+`playwright.config.ts` artık `iPhone (WebKit)` profili içerir (iPhone 13, 120 sn; phone/a11y/dictionary-active). CI Chromium ve WebKit kurar. Kurulum: `npx playwright install --with-deps chromium webkit`; çalıştırma: `npm run test:e2e`, yalnız iPhone: `npx playwright test --project='iPhone (WebKit)'` (test derlemesinden sonra). Eski `claude/iphone-webkit-tests` dalını ayrıca birleştirmeden önce bu değişikliklerle karşılaştır.
+
+Bu ortamda WebKit indirmesi ağ politikası nedeniyle 403: **yeni tam WebKit koşusu henüz doğrulanmadı**. Testler `Touch` kurucusuna bağlı değil; DB temizliği uygulamadan ayrıldıktan sonra; kontrast taraması sonlu geçişlerden sonra çalışır. Fiziksel cihaz/canlı test hesapları, yayın ve kaynak erişimi için [doğrulama kaydı](docs/yayin-dogrulama-2026-11-01.md).
+
 - React 19 + Vite 8 PWA, Dexie/IndexedDB (`src/data/db.ts`), FSRS (`ts-fsrs`) ile aralıklı tekrar. Altyapı Cloudflare Worker (`worker/index.ts`, `wrangler.jsonc`) ve Cloudflare R2 (eşitleme blob deposu `diloloji-blobs`, `@vercel/blob` taklidi). Vercel Hobby kotası dolduğu için Cloudflare'e taşındı (ücretsiz, sınırsız statik varlıklar, tek saatlik cron `0 * * * *`, 100k istek/gün). Canlı alan adı: **`diloloji.com`** (ve `www.diloloji.com`; `nigalingo.online` ve `kelime-koc.vercel.app` geriye dönük uyumlu).
 - Diller: EN/FR/ES öğreniliyor, arayüz Türkçe.
 - Komutlar:

@@ -58,8 +58,8 @@ describe('the account menu in the side bar', () => {
     expect(trigger.getAttribute('aria-expanded')).toBe('false')
     open(host)
     expect(trigger.getAttribute('aria-expanded')).toBe('true')
-    expect(titles(host)).toEqual(['Profil', 'Ayarlar', 'Çıkış yap'])
-    act(() => host.querySelectorAll<HTMLElement>('[role=menuitem]')[1].click())
+    expect(titles(host)).toEqual(['Monki ile konuş', 'Profil', 'Ayarlar', 'Çıkış yap'])
+    act(() => host.querySelectorAll<HTMLElement>('[role=menuitem]')[2].click())
     expect(goSettings).toHaveBeenCalled()
     expect(host.querySelector('[role=menu]')).toBeNull()
   })
@@ -67,7 +67,7 @@ describe('the account menu in the side bar', () => {
   it('signs out from the menu and closes it', () => {
     const host = mount()
     open(host)
-    act(() => host.querySelectorAll<HTMLElement>('[role=menuitem]')[2].click())
+    act(() => host.querySelectorAll<HTMLElement>('[role=menuitem]')[3].click())
     expect(signOut).toHaveBeenCalledTimes(1)
     expect(host.querySelector('[role=menu]')).toBeNull()
   })
@@ -76,7 +76,7 @@ describe('the account menu in the side bar', () => {
     hasAccount = false
     const host = mount()
     open(host)
-    expect(titles(host)).toEqual(['Profil', 'Ayarlar'])
+    expect(titles(host)).toEqual(['Monki ile konuş', 'Profil', 'Ayarlar'])
     act(() => void document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })))
     expect(host.querySelector('[role=menu]')).toBeNull()
     hasAccount = true

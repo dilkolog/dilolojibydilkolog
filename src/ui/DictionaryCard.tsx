@@ -1,3 +1,4 @@
+import { DictionaryStatus, DictionaryPatterns, DictionarySentence, DictionaryFamily, DictionaryRoots } from './DictionaryLearning'
 import { useEffect, useState, type CSSProperties } from 'react'
 import { fold, search, wiktionaryUrl } from '../data/dictionary'
 import { loadLexicon, lookUpLexicon, type LexiconEntry } from '../data/lexicon'
@@ -9,7 +10,7 @@ import { verbFormsOf } from '../engine/verbLookup'
 import { LevelChip } from './LevelChip'
 import { TrapChip } from './TrapChip'
 import { CollocationChip } from './CollocationChip'
-import { TARGET_LANGUAGES, type Example, type Gender, type PartOfSpeech, type TargetLanguage, type VocabularyEntry } from '../engine/types'
+import { TARGET_LANGUAGES, type Example, type Gender, type PartOfSpeech, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { BookIcon, CheckIcon, ConjugationsIcon, PenIcon, PlusIcon, SpeakerIcon, TagIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { DictionaryExamples } from './DictionaryExamples'
@@ -39,12 +40,16 @@ export function WordCard({
   onOpenLab,
   onPick,
   onSwitchLanguage,
+  state,
+  onSaveSentence,
 }: {
   language: TargetLanguage
   word: string
   rec: NonNullable<ReturnType<typeof search>['exact']>['rec']
   rank: number
   own?: VocabularyEntry
+  state?: UserWordState
+  onSaveSentence?: (text: string) => Promise<void>
   /** The word is not in the pack: `rec` is made from the learner's own word (`own`), so its meaning is the word list's. */
   listOnly?: boolean
   /** The learner's own meanings of the word, shown in place of the pack's. */
@@ -71,7 +76,7 @@ export function WordCard({
   onSwitchLanguage?: (lang: TargetLanguage, query?: string) => void
 }) {
   const [lexicon, setLexicon] = useState<LexiconEntry | undefined>()
-  const [isVerb, setIsVerb] = useState(false)
+  const [isVerb, setIsVerb] = useState(rec.p === 'v' || own?.partOfSpeech === 'verb')
   useEffect(() => {
     let live = true
     if (language === 'fr') void loadLexicon('fr').then((lx) => live && setLexicon(lookUpLexicon(lx, word, 'fr')))
@@ -137,6 +142,7 @@ export function WordCard({
     <>
       <section className="section word-hero dict-hero" aria-label={`${word} sözlükte`}>
         <div className="word-hero-main">
+          {own && <DictionaryStatus own={own} state={state} />}
           <ul className="chip-list" aria-label="Kelime bilgisi">
             {form && (
               <li>
@@ -241,7 +247,7 @@ export function WordCard({
                     type="button"
                     className="chip chip-sm dict-fix-btn"
                     onClick={() => edit(meanings.join(', '))}
-                    aria-label={fix ? 'Kendi anlamını düzenle' : 'Kendi anlamını veya notunu ekle'}
+                    aria-label={meanings.length ? 'Anlamı düzelt: kendi anlamını veya notunu ekle' : 'Kendi anlamını ekle'}
                     title="Bu kelimeye kendi Türkçe karşılığını veya hafıza notunu belirle"
                   >
                     <PenIcon size={13} className="inline-icon" /> {meanings.length ? 'Anlamı düzelt' : 'Kendi anlamını ekle'}
@@ -322,7 +328,7 @@ export function WordCard({
           )}
         </div>
         {others.length > 0 && (
-          <dl className="word-hero-status">
+          <dl className="word-hero-status" aria-label="Diller arası köprü · çeviri karşılıkları">
             {others.map((l) => (
               <div key={l}>
                 <dt>{LANGUAGE_NAME[l]}</dt>
@@ -349,6 +355,11 @@ export function WordCard({
 
       <div className="dict-below">
       <div className="dict-below-main">
+        {onSaveSentence && <DictionarySentence onSave={onSaveSentence} />}
+        <DictionaryPatterns language={language} word={word} />
+        <DictionaryFamily own={own} language={language} word={word} onPick={onPick} />
+        <DictionaryRoots language={language} word={word} />
+
         <DictionaryExamples
           language={language}
           word={word}

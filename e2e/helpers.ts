@@ -123,8 +123,18 @@ export const overflow = (page: Page) =>
  * Text below WCAG AA contrast as rendered (colour, opacity and background layers blended).
  * Skips text on gradients/images and text a design hides on purpose (transparent blanks).
  */
-export const contrastProblems = (page: Page) =>
-  page.evaluate(() => {
+export const settleTransitions = (page: Page) => page.evaluate(async () => {
+  await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())))
+  const finite = document.getAnimations().filter((animation) => animation.effect?.getComputedTiming().iterations !== Infinity)
+  await Promise.race([
+    Promise.allSettled(finite.map((animation) => animation.finished)),
+    new Promise((resolve) => setTimeout(resolve, 1000)),
+  ])
+})
+
+export const contrastProblems = async (page: Page) => {
+  await settleTransitions(page)
+  return page.evaluate(() => {
     const parse = (c: string) => {
       const m = c.match(/rgba?\(([^)]+)\)/)
       if (!m) return null
@@ -173,6 +183,7 @@ export const contrastProblems = (page: Page) =>
     }
     return [...new Set(out)]
   })
+}
 
 /**
  * Real content a box hides instead of showing: text or a control, in the flow of the page, that
@@ -333,4 +344,20 @@ export async function seedNotices(page: Page, notices: { id: string; kind: strin
     notices,
   )
   await page.reload()
+}
+
+/** Monki lives in the sidebar on desktop and the account menu on phones. */
+export async function openMonki(page: Page) {
+  const launcher = page.getByRole('button', { name: 'Monki ile konuş', exact: true })
+  if (await launcher.isVisible()) return launcher.click()
+  await page.getByRole('button', { name: 'Hesap menüsü', exact: true }).click()
+  await page.getByRole('menuitem', { name: /Monki ile konuş/ }).click()
+}
+
+/** Mobile selection lives with the other list tools to leave room for search. */
+export async function selectWords(page: Page) {
+  const select = page.getByRole('button', { name: 'Seç', exact: true })
+  if (await select.isVisible()) return select.click()
+  await page.getByRole('button', { name: /Filtrele ve görünüm/ }).click()
+  await page.getByRole('button', { name: 'Kelimeleri seç', exact: true }).click()
 }

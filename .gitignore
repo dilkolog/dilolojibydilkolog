@@ -66,3 +66,8 @@ android/*
 !android/store/**
 *.keystore
 *.jks
+
+# Downloaded Wiktionary snapshots (large, reproducible).
+.wordpack-cache/
+# Full missing-word queues are generated locally; summary and bounded translation queue are tracked.
+docs/veri/sozluk-kapsami/*-missing.jsonl

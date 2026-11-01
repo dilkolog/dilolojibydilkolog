@@ -228,3 +228,21 @@ describe('moving from the old store', () => {
     await expect(syncNow(phone, acc)).resolves.toBeTruthy()
   }, 60_000)
 })
+
+
+it('uses create-only for the first Supabase core and retries with both devices’ words', async () => {
+  const sb = fakeSupabase()
+  const store = supabaseStore(sb.client, USER)
+  const phone = new KelimeDB('t-sb-first-phone')
+  const laptop = new KelimeDB('t-sb-first-laptop')
+  const fresh = new KelimeDB('t-sb-first-fresh')
+  try {
+    await phone.vocabulary.put(createEntry({ word: 'chat', meaning: 'kedi' }, 'fr', new Date()))
+    await laptop.vocabulary.put(createEntry({ word: 'chien', meaning: 'köpek' }, 'fr', new Date()))
+    sb.state.beforeCorePut = async () => void (await syncNow(phone, store))
+    await syncNow(laptop, store)
+    expect(sb.state.corePuts).toBe(3)
+    await syncNow(fresh, store)
+    expect(await lemmas(fresh)).toEqual(['chat', 'chien'])
+  } finally { await phone.delete(); await laptop.delete(); await fresh.delete() }
+})

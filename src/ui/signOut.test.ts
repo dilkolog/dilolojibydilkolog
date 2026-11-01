@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const state = vi.hoisted(() => ({
   account: { id: 'a' } as unknown,
-  runSync: vi.fn(async () => null as unknown),
+  runSync: vi.fn(async () => ({ skipped: 0 }) as unknown),
   setAccount: vi.fn(async () => undefined),
   signOutSupabase: vi.fn(async () => undefined),
   wipe: vi.fn(async () => undefined),
@@ -27,7 +27,7 @@ beforeEach(() => {
 describe('signing out of an account', () => {
   it('sends the last changes first, then signs out and empties the device', async () => {
     const order: string[] = []
-    state.runSync.mockImplementationOnce(async () => (order.push('sync'), null))
+    state.runSync.mockImplementationOnce(async () => (order.push('sync'), { skipped: 0 }))
     state.setAccount.mockImplementationOnce(async () => void order.push('account'))
     state.signOutSupabase.mockImplementationOnce(async () => void order.push('supabase'))
     state.wipe.mockImplementationOnce(async () => void order.push('wipe'))
@@ -46,4 +46,22 @@ describe('signing out of an account', () => {
     action.run()
     await vi.waitFor(() => expect(state.wipe).toHaveBeenCalled())
   })
+})
+
+
+it('keeps the account and local files when media could not be uploaded', async () => {
+  state.runSync.mockResolvedValueOnce({ skipped: 2 })
+  expect(await signOutThisDevice()).toBe(false)
+  expect(state.wipe).not.toHaveBeenCalled()
+  expect(state.setAccount).not.toHaveBeenCalled()
+  expect(state.signOutSupabase).not.toHaveBeenCalled()
+  expect(state.toast.mock.calls[0]?.[0]).toContain('2 görsel/ses')
+  expect(state.toast.mock.calls[0]?.[1]).toBeUndefined()
+})
+
+it('does not wipe on a no-op sync with no confirmed result', async () => {
+  state.runSync.mockResolvedValueOnce(null)
+  expect(await signOutThisDevice()).toBe(false)
+  expect(state.wipe).not.toHaveBeenCalled()
+  expect(state.signOutSupabase).not.toHaveBeenCalled()
 })

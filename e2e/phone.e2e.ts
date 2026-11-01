@@ -1,3 +1,4 @@
+import { selectWords } from './helpers'
 import { expect, test } from '@playwright/test'
 import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, guideMarkValues, seedGuideMarks, startWithSamples } from './helpers'
 import { readdirSync, readFileSync } from 'node:fs'
@@ -507,7 +508,7 @@ test('a badge earned in a session gets its moment once, and so does one earned o
   await expect(moment).toHaveCount(0)
   // Outside a session: marking hard words earns "Zorluk avcısı", and the moment says so.
   await openScreen(page, 'Kelimeler')
-  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await selectWords(page)
   await page.getByRole('checkbox').first().check()
   await page.getByRole('button', { name: 'Zor işaretle' }).click()
   await expect(moment.locator('h2')).toHaveText('Zorluk avcısı')
@@ -520,7 +521,7 @@ test('hard words glow in the garden, and the Zor filter shows just those', async
   test.setTimeout(90_000)
   await startWithSamples(page)
   await openScreen(page, 'Kelimeler')
-  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await selectWords(page)
   await page.locator('.word-row').first().click()
   await page.getByRole('button', { name: 'Zor işaretle' }).click()
   // A new badge may open its moment; close it if so.
@@ -552,7 +553,7 @@ test('the garden card on Today counts the hard words and starts their practice i
   await expect(page.locator('.garden-hard-line')).toHaveCount(0)
   // Mark two words hard.
   await openScreen(page, 'Kelimeler')
-  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await selectWords(page)
   await page.locator('.word-row').nth(0).click()
   await page.locator('.word-row').nth(1).click()
   await page.getByRole('button', { name: 'Zor işaretle' }).click()
@@ -652,6 +653,7 @@ test('a word card shows how full it is, and a missing part takes you to where it
   await startWithSamples(page)
   await openScreen(page, 'Kelimeler')
   await page.locator('.word-row').first().click()
+  await page.getByText('Kartı zenginleştir', { exact: true }).click()
   const fill = page.locator('.card-fill')
   await expect(fill).toBeVisible()
   const before = Number((await fill.getByRole('progressbar').getAttribute('aria-valuenow')))
@@ -943,6 +945,7 @@ test('the page is lit for the hour: greeting, a sun or moon beside it, a faint w
     await page.evaluate(() => (document.documentElement.dataset.theme = 'dark'))
     expect(await wash()).not.toMatch(/rgba\((251|244|99)/)
     await page.evaluate(() => delete document.documentElement.dataset.theme)
+    await page.goto('about:blank')
     await page.evaluate(() => indexedDB.databases().then((dbs) => Promise.all(dbs.map((d) => indexedDB.deleteDatabase(d.name!)))))
   }
 })
@@ -1093,9 +1096,14 @@ test('verb lab: a sideways swipe over the table steps the tense; a scroll does n
         const r = el.getBoundingClientRect()
         const x = r.left + r.width / 2
         const y = r.top + 20
-        const touch = (cx: number, cy: number) => new Touch({ identifier: 1, target: el, clientX: cx, clientY: cy })
-        el.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, touches: [touch(x, y)], changedTouches: [touch(x, y)] }))
-        el.dispatchEvent(new TouchEvent('touchend', { bubbles: true, touches: [], changedTouches: [touch(x + dx, y + dy)] }))
+        const touch = (cx: number, cy: number) => ({ identifier: 1, target: el, clientX: cx, clientY: cy })
+        const dispatch = (type: string, touches: unknown[], changedTouches: unknown[]) => {
+          const event = new Event(type, { bubbles: true })
+          Object.defineProperties(event, { touches: { value: touches }, changedTouches: { value: changedTouches } })
+          el.dispatchEvent(event)
+        }
+        dispatch('touchstart', [touch(x, y)], [touch(x, y)])
+        dispatch('touchend', [], [touch(x + dx, y + dy)])
       },
       [dx, dy],
     )

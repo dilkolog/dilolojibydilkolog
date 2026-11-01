@@ -16,12 +16,17 @@
  * Usage: npx rolldown scripts/build-wordpack.ts -o /tmp/w.mjs -p node && node /tmp/w.mjs <version> <jsonl> [<jsonl> ...]
  * Prints, per language, how many words and how much of each field is covered. Check it before shipping.
  */
-import { createReadStream, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { createReadStream, mkdirSync, readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { createInterface } from 'node:readline'
-import { PackBuilder, packStats, type WtEntry } from '../src/data/wordpackBuild'
+import { enrichPack, type MeaningSupplement } from '../src/data/wordpackEnrichment'
+import { PackBuilder, packStats, type WtEntry, type Pack } from '../src/data/wordpackBuild'
 
 /** Words per language, most frequent first (LIMIT=… to change). */
-const LIMIT = Number(process.env.LIMIT ?? 35000)
+const LIMIT = Number(process.env.LIMIT ?? 50000)
+if (!Number.isInteger(LIMIT) || LIMIT < 1) throw new Error('LIMIT must be a positive integer')
+const OUTPUT = process.env.WORDPACK_OUTPUT ?? 'src/data/wordpack'
+const supplementalPath = process.env.WORDPACK_SUPPLEMENTS
+const supplements: MeaningSupplement[] = supplementalPath ? JSON.parse(readFileSync(supplementalPath, 'utf8')) as MeaningSupplement[] : readdirSync('src/data/wordpack-supplements').filter(f => f.endsWith('.json')).sort().flatMap(f => JSON.parse(readFileSync(`src/data/wordpack-supplements/${f}`, 'utf8')) as MeaningSupplement[])
 const [version, ...files] = process.argv.slice(2)
 if (!version || !files.length) {
   console.error('Usage: node w.mjs <version> <wiktextract.jsonl> [...]')
@@ -40,24 +45,29 @@ for (const file of files) {
   // The Turkish Wiktionary's dump (kaikki.org/trwiktionary) is read for Turkish meanings only.
   const turkish = /trwiktionary/.test(file)
   let n = 0
+  let invalid = 0
   for await (const line of createInterface({ input: createReadStream(file, 'utf8'), crlfDelay: Infinity })) {
     if (!line) continue
     try {
       if (turkish) builder.addTurkish(JSON.parse(line) as WtEntry)
       else builder.add(JSON.parse(line) as WtEntry)
     } catch {
+      invalid++
       continue // a broken line is not worth stopping for
     }
-    if (++n % 200_000 === 0) console.error(`${file}: ${n} lines`)
+    if (++n % 200_000 === 0) console.error(`${file}: ${n} lines, ${invalid} invalid`)
   }
-  console.error(`${file}: ${n} lines`)
+  console.error(`${file}: ${n} lines, ${invalid} invalid`)
 }
 
-mkdirSync('src/data/wordpack', { recursive: true })
+mkdirSync(OUTPUT, { recursive: true })
 for (const language of ['en', 'fr', 'es'] as const) {
   const wanted = readFileSync(`src/data/frequency/${language}.txt`, 'utf8').split('\n').filter(Boolean)
-  const pack = builder.finish(language, wanted, version, LIMIT)
-  writeFileSync(`src/data/wordpack/${language}.json`, JSON.stringify(pack))
+  const fresh = builder.finish(language, wanted, version, LIMIT, true)
+  const current = `src/data/wordpack/${language}.json`
+  const base: Pack = existsSync(current) ? JSON.parse(readFileSync(current, 'utf8')) as Pack : { v: version, w: {} }
+  const { pack } = enrichPack(base, fresh, supplements.filter(s => s.language === language), version)
+  writeFileSync(`${OUTPUT}/${language}.json`, JSON.stringify(pack))
   const s = packStats(pack)
   console.log(language, `${s.words} words, ${(s.bytes / 1024).toFixed(0)} KB`, Object.entries(s.coverage).map(([k, v]) => `${k} ${(v * 100).toFixed(0)}%`).join(' '))
 }

@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
-import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
+import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, settleTransitions, startWithSamples } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -10,7 +10,7 @@ import { approveAccount, clippedContent, contrastProblems, openScreen, playSessi
  * stricter check in the phone tests (contrastProblems), so it isn't counted twice here.
  */
 const scan = async (page: Page, where: string) => {
-  await page.waitForTimeout(400) // screens ease in
+  await settleTransitions(page)
   const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).disableRules(['color-contrast']).analyze()
   const issues = violations
     .filter((v) => v.impact === 'serious' || v.impact === 'critical')
@@ -373,6 +373,7 @@ test('new features pass accessibility check in dark and calm themes (audiobooks,
   await page.route('https://api.anthropic.com/**', (route) => {
     route.fulfill({
       status: 200,
+      headers: { 'access-control-allow-origin': '*' },
       json: {
         content: [
           {

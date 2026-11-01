@@ -149,12 +149,14 @@ export async function mirrorApproval(syncId: string, status: 'approved' | 'rejec
 
 /** The person's pictures and recordings in the "media" bucket (the account is being deleted). */
 export async function deleteSupabaseMedia(userId: string): Promise<void> {
-  if (!UUID.test(userId)) return
+  if (!UUID.test(userId)) throw new Error('bad user id')
   for (let round = 0; round < 50; round++) {
     const res = await fetch(`${base()}/storage/v1/object/list/media`, { method: 'POST', headers: { ...keyHeaders(), 'content-type': 'application/json' }, body: JSON.stringify({ prefix: `${userId}/`, limit: 1000 }) })
-    if (!res.ok) return
+    if (!res.ok) throw new Error(`media list ${res.status}`)
     const names = ((await res.json()) as { name: string }[]).map((o) => `${userId}/${o.name}`)
     if (!names.length) return
-    await fetch(`${base()}/storage/v1/object/media`, { method: 'DELETE', headers: { ...keyHeaders(), 'content-type': 'application/json' }, body: JSON.stringify({ prefixes: names }) })
+    const deleted = await fetch(`${base()}/storage/v1/object/media`, { method: 'DELETE', headers: { ...keyHeaders(), 'content-type': 'application/json' }, body: JSON.stringify({ prefixes: names }) })
+    if (!deleted.ok) throw new Error(`media delete ${deleted.status}`)
   }
+  throw new Error('media deletion incomplete; retry required')
 }

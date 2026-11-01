@@ -25,10 +25,15 @@ export async function signOutThisDevice(identity?: Identity | null): Promise<boo
   const who = identity === undefined ? (previous ? await currentIdentity().catch(() => null) : null) : identity
   if (who) {
     try {
-      await runSync(true)
+      const result = await runSync(true)
+      if (!result) throw new Error('Sync did not complete')
+      if (result.skipped > 0) {
+        showToast(`Çıkış yapılmadı: ${result.skipped} görsel/ses kaydı eşitlenemedi. Bu cihazdaki verilerin korunuyor; eşitleme tamamlanınca tekrar çıkış yapabilirsin.`, undefined, 15_000, 'info')
+        return false
+      }
     } catch {
       showToast(
-        'Çıkış yapılmadı: son değişiklikler hesabına gönderilemedi, silinmesin diye bekledim. İnternetini kontrol edip tekrar dene.',
+        'Çıkış yapılmadı: son değişiklikler hesabına gönderilemedi, silinmesin diye bekledim. İnternetini kontrol edip tekrar dene. Yine de çıkarsan eşitlenmeyen yerel veriler silinir.',
         { label: 'Yine de çık', run: () => void leaveAndWipe() },
         15_000,
         'info',

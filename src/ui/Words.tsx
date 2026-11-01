@@ -200,7 +200,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
   )
 
   return (
-    <div>
+    <div className="words-page">
       {suggestingImages && (
         <ImageQueue
           db={db}
