@@ -3,7 +3,7 @@ import { engineFlags } from '../engine/exercisePrefs'
 import type { TypingShare } from '../engine/session'
 import type { ExerciseType } from '../engine/types'
 import { configureScheduler } from '../data/instance'
-import { aiConfig } from '../ai/usage'
+import { aiConfig, SITE_MODEL } from '../ai/usage'
 import { speechPrefs } from './speech'
 
 /** Runtime preferences read by session components; updated whenever settings change. */
@@ -43,7 +43,8 @@ export function applySettings(s: Settings) {
   prefs.refreshCard = s.refreshCard !== false
   prefs.confidence = s.confidence
   prefs.accentShortcuts = s.accentShortcuts
-  aiConfig.model = s.aiModel
+  // One model for everyone, chosen by the site (the owner pays); a model saved in older settings is ignored.
+  aiConfig.model = SITE_MODEL
   speechPrefs.varyVoices = s.varyVoices
   configureScheduler(s.retention, s.fsrsWeights, { dayWeights: s.dayWeights, vacation: s.vacation })
   speechPrefs.rate = s.speechRate

@@ -20,6 +20,9 @@ export const AI_MODELS: ModelInfo[] = [
   { id: 'claude-haiku-4-5', label: 'Claude Haiku 4.5', input: 1, output: 5, note: 'En ucuz; Türkçe geri bildirim kalitesi düşebilir.' },
 ]
 
+/** The model every account uses (the site pays; people do not choose). */
+export const SITE_MODEL: AiModel = 'claude-sonnet-5-5'
+
 export const modelInfo = (id: AiModel) => AI_MODELS.find((m) => m.id === id) ?? AI_MODELS[0]
 
 export type AiFeature = 'test' | 'word_fill' | 'suggest' | 'sentence' | 'translation' | 'retell' | 'story' | 'mnemonic' | 'journal' | 'chat' | 'report' | 'prequestions' | 'family' | 'session_note' | 'personal_sentences' | 'word_suggest' | 'notes_quiz' | 'monki' | 'verb_explain' | 'week_note' | 'pron_tips' | 'photo_words' | 'podcast' | 'comprehension'
