@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { accessFetch } from '../data/access'
-import { aiConfig, costOf, type AiFeature } from './usage'
+import { aiConfig, CHEAP_FEATURES, costOf, type AiFeature, type AiModel } from './usage'
 import { cleanQuestions } from './quizClean'
 import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PronTipsRequest, type PronTip, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PhotoWordsRequest, type PodcastRequest, type PodcastScript, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
@@ -57,7 +57,7 @@ async function structured<S extends z.ZodType>(
   feature: AiFeature,
 ): Promise<z.infer<S>> {
   await aiConfig.beforeRequest()
-  const model = aiConfig.model
+  const model: AiModel = CHEAP_FEATURES.has(feature) ? 'claude-haiku-4-5' : aiConfig.model
   // Haiku 4.5 takes neither the effort setting nor the refusal fallback; the 5.5 models get both.
   const modern = model !== 'claude-haiku-4-5'
   try {

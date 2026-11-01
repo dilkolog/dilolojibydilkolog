@@ -23,6 +23,9 @@ export const AI_MODELS: ModelInfo[] = [
 /** The model every account uses (the site pays; people do not choose). */
 export const SITE_MODEL: AiModel = 'claude-sonnet-5-5'
 
+/** The mechanical, short-answer jobs run on the cheapest model (word cards, ideas, quiz questions); what the learner reads as feedback or talks about runs on the site model. */
+export const CHEAP_FEATURES: ReadonlySet<AiFeature> = new Set<AiFeature>(['test', 'word_fill', 'suggest', 'mnemonic', 'family', 'word_suggest', 'personal_sentences', 'prequestions', 'notes_quiz'])
+
 export const modelInfo = (id: AiModel) => AI_MODELS.find((m) => m.id === id) ?? AI_MODELS[0]
 
 export type AiFeature = 'test' | 'word_fill' | 'suggest' | 'sentence' | 'translation' | 'retell' | 'story' | 'mnemonic' | 'journal' | 'chat' | 'report' | 'prequestions' | 'family' | 'session_note' | 'personal_sentences' | 'word_suggest' | 'notes_quiz' | 'monki' | 'verb_explain' | 'week_note' | 'pron_tips' | 'photo_words' | 'podcast' | 'comprehension'
