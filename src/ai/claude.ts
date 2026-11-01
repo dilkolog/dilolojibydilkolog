@@ -3,6 +3,7 @@ import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod'
 import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
+import { accessFetch } from '../data/access'
 import { aiConfig, costOf, type AiFeature } from './usage'
 import { cleanQuestions } from './quizClean'
 import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PronTipsRequest, type PronTip, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PhotoWordsRequest, type PodcastRequest, type PodcastScript, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
@@ -12,25 +13,30 @@ import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type 
  * it returns is shown to the user to confirm (word data) or recorded as an ordinary review event
  * (sentence grading). The app works fully without it.
  *
- * Single-user app, so the browser calls the API directly with the user's own key, which never
- * leaves this device except to api.anthropic.com.
+ * The calls go to the site's own /api/ai, which checks that the account is approved and adds the owner's key
+ * on the server: no key is typed in, kept, or sent from this device. `apiKey` is only a marker that the
+ * features are on (the app passes 'account'); it is never sent anywhere.
  */
 
 const AI_MESSAGES: Record<AiErrorKind, string> = {
-  auth: 'API anahtarı geçersiz. Ayarlar ekranından kontrol et.',
+  auth: 'YZ özellikleri, site sahibinin onayladığı hesaplara açık. Ayarlar → Hesap bölümünden durumuna bak.',
   rate: 'Çok sık istek gönderildi. Biraz bekleyip tekrar dene.',
   refusal: 'Model bu isteği yanıtlamadı.',
-  network: 'İnternet bağlantısı yok ya da Anthropic API\'ye ulaşılamadı.',
+  network: 'İnternet bağlantısı yok ya da YZ sunucusuna ulaşılamadı.',
   budget: 'Bu ayki YZ bütçen doldu. Ayarlar → YZ yardımcısı bölümünden sınırı değiştirebilirsin.',
   other: 'YZ isteği başarısız oldu.',
 }
 
-function client(apiKey: string) {
-  return new Anthropic({ apiKey, dangerouslyAllowBrowser: true, maxRetries: 2 })
+/** The SDK, pointed at the site's proxy: whatever address it builds, the request goes to /api/ai with the account's identity. */
+export function client() {
+  const origin = globalThis.location?.origin ?? 'http://localhost'
+  return new Anthropic({ apiKey: 'account', baseURL: `${origin}/api/ai`, dangerouslyAllowBrowser: true, maxRetries: 2, fetch: (_url, init) => accessFetch('/api/ai', init as RequestInit) })
 }
 
+const DAILY_MESSAGE = 'Bugünkü YZ hakkın doldu; yarın yenilenir.'
+
 async function structured<S extends z.ZodType>(
-  apiKey: string,
+  _apiKey: string,
   schema: S,
   system: string,
   /** One user message, or a whole conversation (chat). */
@@ -43,7 +49,7 @@ async function structured<S extends z.ZodType>(
   // Haiku 4.5 takes neither the effort setting nor the refusal fallback; the 5.5 models get both.
   const modern = model !== 'claude-haiku-4-5'
   try {
-    const res = await client(apiKey).beta.messages.parse({
+    const res = await client().beta.messages.parse({
       model,
       max_tokens: 16000,
       // If a safety classifier declines, the API retries on a suitable fallback model in the same call.
@@ -69,16 +75,11 @@ async function structured<S extends z.ZodType>(
     if (e instanceof Anthropic.AuthenticationError || e instanceof Anthropic.PermissionDeniedError) {
       throw new AiError('auth', AI_MESSAGES.auth)
     }
-    if (e instanceof Anthropic.RateLimitError) throw new AiError('rate', AI_MESSAGES.rate)
+    if (e instanceof Anthropic.RateLimitError) throw new AiError('rate', JSON.stringify(e.error ?? '').includes('daily_quota') ? DAILY_MESSAGE : AI_MESSAGES.rate)
     if (e instanceof Anthropic.APIConnectionError) throw new AiError('network', AI_MESSAGES.network)
     if (e instanceof Anthropic.APIError) throw new AiError('other', `${AI_MESSAGES.other} (${e.status})`)
     throw new AiError('other', AI_MESSAGES.other)
   }
-}
-
-/** Cheapest possible call, used by the "test key" button. */
-export async function testKey(apiKey: string): Promise<void> {
-  await structured(apiKey, z.object({ ok: z.boolean() }), 'Return ok: true.', 'ping', 'low', 'test')
 }
 
 // ---------------------------------------------------------------------------

@@ -188,7 +188,7 @@ export function WordForm({
   const suggest = async (at: SuggestField | 'more', fields: SuggestField[]) => {
     setAiError(null)
     if (!apiKey) {
-      setAiError({ at, message: 'YZ önerileri için Ayarlar → YZ yardımcısı bölümünden API anahtarını gir.' })
+      setAiError({ at, message: 'YZ önerileri şu an kullanılamıyor: hesabın onaylı olmalı ve internete bağlı olmalısın.' })
       return
     }
     if (!form.word.trim()) {

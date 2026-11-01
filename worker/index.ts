@@ -5,6 +5,7 @@
  */
 import type { DurableObjectNamespace, ExecutionContext, Fetcher, R2Bucket, ScheduledController } from '@cloudflare/workers-types'
 import * as access from '../api/access.js'
+import * as ai from '../api/ai.js'
 import * as admin from '../api/admin.js'
 import * as clips from '../api/clips.js'
 import * as cron from '../api/cron-reminder.js'
@@ -48,7 +49,7 @@ function hardened(res: Response, bodyless: boolean): Response {
   return new Response(bodyless ? null : res.body, { status: res.status, statusText: res.statusText, headers })
 }
 
-const ROUTES: Record<string, Module> = { access, admin, clips, 'cron-reminder': cron, listen, log, news, push, share, sync, translate, youtube }
+const ROUTES: Record<string, Module> = { access, admin, ai, clips, 'cron-reminder': cron, listen, log, news, push, share, sync, translate, youtube }
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {

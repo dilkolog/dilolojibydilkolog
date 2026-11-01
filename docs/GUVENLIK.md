@@ -66,7 +66,7 @@ Açık kalanlar (kalıcı sayaç ya da şema gerekir):
 ## Kullanıcının yapacakları
 1. **`SYNC_ALLOWED`:** Vercel → proje → Settings → Environment Variables → `SYNC_ALLOWED` = kullanıcı adın (ya da eşitleme kodunun 64 haneli kimliği), Production; sonra yeniden yayınla. Yoksa herkes Blob deposuna yazabilir (verini okuyamaz ama depoyu doldurabilir).
 2. **Hız sınırı:** Vercel → proje → Firewall → Custom Rules → "Rate limit": `/api/translate` ve `/api/log` için IP başına dakikada ~30 istek, aşınca 429. (DeepL kotasının betikle tüketilmesine ve günlük çöpüne karşı.)
-3. **AI sağlayıcısında aylık harcama sınırı:** AI anahtarın tarayıcıda saklanır ve doğrudan sağlayıcıya gider; sağlayıcının panelinden aylık sınır koy.
+3. **Anthropic hesabında aylık harcama sınırı:** YZ çağrıları sitenin kendi `/api/ai` ucundan geçer ve sahibin `ANTHROPIC_API_KEY` gizlisiyle gider (2026-11-02); Anthropic Console'dan aylık harcama sınırı koy. Hesap başına günlük çağrı sınırı `AI_DAILY_CALLS` (varsayılan 150).
 4. **Yedek dosyaları** (`diloloji-yedek-*.json`) kişisel veri içerir; `.gitignore`'da, yine de depoya koyma, işin bitince sil.
 5. **Adresler ve depolama:** Ana adres `diloloji.com` (ve `www.diloloji.com`). Her adres tarayıcıda ayrı depo kullanır: adres değişirse yeni adres boş başlar; eşitleme (hesapla giriş) yoksa eski adreste yedek alıp yenisine yükle.
 
@@ -78,7 +78,7 @@ Hangi anahtar nerede, ne zaman ve nasıl yenilenir. **Hepsi için ortak kural:**
 | `BLOB_READ_WRITE_TOKEN` | 2026-10-13'te yenilendi (Vercel Blob → Rotate Credentials, eski jeton 2 saat daha geçerli, hemen Redeploy). Yılda bir ya da şüphede. | Env Variables'ta `BLOB_READ_WRITE_TOKEN` uyarısına tıkla → "Rotate Blob Credentials" → depo adını yaz → Rotate → 2 saat içinde Redeploy. Veri silinmez. Değişkeni "Sensitive" işaretle. |
 | `ADMIN_TOKEN` | 6 ayda bir; yönetici anahtarını bir yere yapıştırdıysan hemen. | **Sıfır kesintili:** `ADMIN_TOKEN` birden çok anahtar taşıyabilir (boşluk ya da virgülle). 1) Yeni uzun rastgele anahtar üret (`openssl rand -hex 32`). 2) Değeri `eski yeni` yap, Redeploy. 3) Ayarlar → Hesap → Yönetici'ye yeni anahtarı gir, listenin açıldığını gör. 4) Değeri yalnızca `yeni` yap, Redeploy. |
 | `DEEPL_AUTH_KEY`, `RESEND_API_KEY`, `YOUTUBE_API_KEY`, `VAPID_PRIVATE_KEY`, `CRON_SECRET` | Yılda bir ya da sızıntıdan şüphede. | Sağlayıcının panelinde yeni anahtar üret → Vercel'de değiştir → Redeploy → eskisini sağlayıcıda sil. `VAPID_PRIVATE_KEY` değişirse mevcut bildirim abonelikleri geçersiz olur (herkes bildirimi yeniden açar): ancak şart olunca. |
-| AI anahtarı (kullanıcı) | Kullanıcıya ait; tarayıcıda saklanır. | Sağlayıcı panelinden yenile, Ayarlar → YZ'ye yapıştır; aylık harcama sınırını koy. |
+| `ANTHROPIC_API_KEY` | Yılda bir ya da sızıntıdan şüphede. | Anthropic Console'da yeni anahtar üret → Cloudflare Worker gizlisini (Secret) değiştir → çalıştığını gör → eskisini sil. Kullanıcıdan anahtar alınmaz. |
 
 **Sızıntıdan şüphe edersen sıra:** önce sağlayıcıda anahtarı iptal et/yenile, sonra Vercel'de değiştir ve Redeploy yap; geçmişte iz aramak için `npm run scan:secrets` ve `git log --all -G'<anahtarın başı>'`.
 

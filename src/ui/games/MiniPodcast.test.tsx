@@ -60,7 +60,7 @@ async function mount(apiKey: string | null) {
   root = createRoot(host)
   await act(async () =>
     root!.render(
-      <AiContext.Provider value={{ apiKey, setApiKey: async () => {} }}>
+      <AiContext.Provider value={{ apiKey }}>
         <MiniPodcast language="fr" vocabulary={WORDS.map((w) => w.entry)} states={WORDS.map((w) => w.state)} onChanged={() => {}} onExit={() => {}} />
       </AiContext.Provider>,
     ),

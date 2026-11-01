@@ -28,7 +28,7 @@ const mount = async (apiKey: string | null, db: KelimeDB, entry: ReturnType<type
   document.body.append(host)
   root = createRoot(host)
   const changed = vi.fn()
-  await act(async () => root!.render(<AiContext.Provider value={{ apiKey, setApiKey: async () => {} }}><PersonalSentences db={db} entry={entry} onChanged={changed} /></AiContext.Provider>))
+  await act(async () => root!.render(<AiContext.Provider value={{ apiKey }}><PersonalSentences db={db} entry={entry} onChanged={changed} /></AiContext.Provider>))
   return { host, changed }
 }
 // IndexedDB answers on later ticks: give them time before looking.

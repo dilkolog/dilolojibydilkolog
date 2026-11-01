@@ -29,7 +29,7 @@ describe('pronunciation tips', () => {
   const show = (apiKey: string | null, r: PronResult) =>
     act(() =>
       root.render(
-        <AiContext.Provider value={{ apiKey, setApiKey: async () => {} }}>
+        <AiContext.Provider value={{ apiKey }}>
           <PronTips text="la rue" language="fr" result={r} />
         </AiContext.Provider>,
       ),

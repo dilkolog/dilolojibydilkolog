@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test'
+import { expect, type Page, type Route } from '@playwright/test'
 
 /** First run in a fresh browser: French, the sample words, then Today. */
 export async function startWithSamples(page: Page) {
@@ -271,6 +271,8 @@ export function labFavorites(page: Page, language: string): Promise<string[]> {
  */
 export async function approveAccount(page: Page) {
   await page.route((u) => u.pathname === '/api/access', (r) => r.fulfill({ json: { status: 'approved', exists: true, match: true, enabled: true } }))
+  // The server has the owner's AI key (a test that wants answers adds its own with aiRoute).
+  await aiRoute(page, (r) => r.fulfill({ status: 503, json: { error: 'not configured' } }))
   await page.evaluate(
     () =>
       new Promise<void>((resolve) => {
@@ -367,4 +369,15 @@ export async function selectWords(page: Page) {
   if (await select.isVisible()) return select.click()
   await page.getByRole('button', { name: /Filtrele ve görünüm/ }).click()
   await page.getByRole('button', { name: 'Kelimeleri seç', exact: true }).click()
+}
+
+/**
+ * The site's AI proxy (/api/ai): the app asks it whether the AI is on (GET, answered "available" once
+ * the account is approved) and sends each request to it (POST, answered by `answer`, in the shape of the Messages API).
+ */
+export async function aiRoute(page: Page, answer: (route: Route) => Promise<void> | void) {
+  await page.route(
+    (u) => u.pathname === '/api/ai',
+    (r) => (r.request().method() === 'GET' ? r.fulfill({ json: { available: true } }) : answer(r)),
+  )
 }

@@ -10,7 +10,7 @@ import type { VocabularyEntry } from '../../engine/types'
 import { ExerciseRunner } from './ExerciseRunner'
 
 vi.mock('../aiContext', () => ({
-  useAi: () => ({ apiKey: 'sk-test-key', setApiKey: async () => {}, needsApproval: false }),
+  useAi: () => ({ apiKey: 'sk-test-key', needsApproval: false }),
 }))
 
 const mockEvaluateTranslation = vi.fn()

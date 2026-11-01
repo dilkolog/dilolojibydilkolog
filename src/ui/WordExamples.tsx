@@ -50,7 +50,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
   const suggest = async () => {
     setError('')
     if (!apiKey) {
-      setError('YZ önerileri için Ayarlar → YZ yardımcısı bölümünden API anahtarını gir.')
+      setError('YZ önerileri şu an kullanılamıyor: hesabın onaylı olmalı ve internete bağlı olmalısın.')
       return
     }
     setBusy(true)

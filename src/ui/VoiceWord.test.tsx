@@ -64,7 +64,7 @@ async function mount(apiKey: string | null, vocabulary = own()) {
   let added = 0
   await act(async () =>
     root!.render(
-      <AiContext.Provider value={{ apiKey, setApiKey: async () => {} }}>
+      <AiContext.Provider value={{ apiKey }}>
         <VoiceWord db={db} language="fr" vocabulary={vocabulary} onAdded={() => added++} />
       </AiContext.Provider>,
     ),

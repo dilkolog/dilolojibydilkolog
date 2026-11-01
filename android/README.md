@@ -115,6 +115,9 @@ Site sahibinin yapacakları (Play, şikâyetlere zamanında bakılmasını bekle
      | Konum, rehber, reklam kimliği | Hayır | | |
 
    Altyapı sağlayıcılarına (Cloudflare, Supabase, Resend) aktarım Play'in tanımında "paylaşma" sayılmaz.
+   Yapay zekâ özellikleri (onaylı hesaplar) kullanıldığında yazılan metin ve fotoğraftan kelime için seçilen
+   fotoğraf, sitenin sunucusu üzerinden Anthropic'e (hizmet sağlayıcı) gider ve saklanmaz; formda "Kullanıcının
+   oluşturduğu içerik" satırının amacına "Uygulama işlevi" yeter, ayrıca bir veri türü eklemek gerekmez.
 6. Testte bakılacaklar: Google ve e-postayla giriş, eşitleme, bildirim izni ve hatırlatmalar, mikrofon
    (gölgeleme, sesli cevap), sesli okuma, çevrimdışı açılış, geri tuşu, Paylaş → Diloloji,
    **üstte adres çubuğu görünmemeli** (görünüyorsa 4. adım).

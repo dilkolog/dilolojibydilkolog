@@ -88,7 +88,7 @@ describe('DictionaryExamples', () => {
 
     await act(async () => {
       root.render(
-        <AiContext.Provider value={{ apiKey: null, setApiKey: async () => {} }}>
+        <AiContext.Provider value={{ apiKey: null }}>
           <DictionaryExamples
             language="fr"
             word="pomme"
@@ -111,7 +111,7 @@ describe('DictionaryExamples', () => {
   it('renders empty state when there are no sentences and no patterns', async () => {
     await act(async () => {
       root.render(
-        <AiContext.Provider value={{ apiKey: null, setApiKey: async () => {} }}>
+        <AiContext.Provider value={{ apiKey: null }}>
           <DictionaryExamples language="fr" word="introuvable" bundled={[]} />
         </AiContext.Provider>,
       )
@@ -125,7 +125,7 @@ describe('DictionaryExamples', () => {
   it('shows YZ button when apiKey is provided', async () => {
     await act(async () => {
       root.render(
-        <AiContext.Provider value={{ apiKey: 'test-key', setApiKey: async () => {} }}>
+        <AiContext.Provider value={{ apiKey: 'test-key' }}>
           <DictionaryExamples language="fr" word="pomme" bundled={[]} />
         </AiContext.Provider>,
       )
