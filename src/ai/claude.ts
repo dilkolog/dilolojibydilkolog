@@ -28,11 +28,23 @@ const AI_MESSAGES: Record<AiErrorKind, string> = {
 }
 
 /** The SDK, pointed at the site's proxy: whatever address it builds, the request goes to /api/ai with the account's identity. */
-export function client() {
+export function client(feature: AiFeature = 'test') {
   const origin = globalThis.location?.origin ?? 'http://localhost'
-  return new Anthropic({ apiKey: 'account', baseURL: `${origin}/api/ai`, dangerouslyAllowBrowser: true, maxRetries: 2, fetch: (_url, init) => accessFetch('/api/ai', init as RequestInit) })
+  return new Anthropic({
+    apiKey: 'account',
+    baseURL: `${origin}/api/ai`,
+    dangerouslyAllowBrowser: true,
+    maxRetries: 2,
+    // The server asks which feature a request is for: what the account may do is the owner's call (profiles.ai_level).
+    fetch: (_url, init) => {
+      const headers = new Headers((init as RequestInit | undefined)?.headers)
+      headers.set('x-ai-feature', feature)
+      return accessFetch('/api/ai', { ...(init as RequestInit), headers })
+    },
+  })
 }
 
+const LEVEL_MESSAGE = 'Bu YZ özelliği hesabına henüz açılmadı. Site sahibi izin verince kendiliğinden açılır.'
 const DAILY_MESSAGE = 'Bugünkü YZ hakkın doldu; yarın yenilenir.'
 
 async function structured<S extends z.ZodType>(
@@ -49,7 +61,7 @@ async function structured<S extends z.ZodType>(
   // Haiku 4.5 takes neither the effort setting nor the refusal fallback; the 5.5 models get both.
   const modern = model !== 'claude-haiku-4-5'
   try {
-    const res = await client().beta.messages.parse({
+    const res = await client(feature).beta.messages.parse({
       model,
       max_tokens: 16000,
       // If a safety classifier declines, the API retries on a suitable fallback model in the same call.
@@ -73,6 +85,8 @@ async function structured<S extends z.ZodType>(
   } catch (e) {
     if (e instanceof AiError) throw e
     if (e instanceof Anthropic.AuthenticationError || e instanceof Anthropic.PermissionDeniedError) {
+      // Approved, but this feature is not among what the owner opened for the account.
+      if (JSON.stringify(e.error ?? '').includes('ai_level')) throw new AiError('auth', LEVEL_MESSAGE)
       throw new AiError('auth', AI_MESSAGES.auth)
     }
     if (e instanceof Anthropic.RateLimitError) throw new AiError('rate', JSON.stringify(e.error ?? '').includes('daily_quota') ? DAILY_MESSAGE : AI_MESSAGES.rate)

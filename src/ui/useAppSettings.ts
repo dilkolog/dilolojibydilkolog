@@ -3,11 +3,12 @@ import { db } from '../data/instance'
 import type { Settings } from '../data/db'
 import { aiConfig, monthKey } from '../ai/usage'
 import { AiError } from '../ai/types'
+import type { AiFeature } from '../ai/usage'
 import { applySettings } from './prefs'
 import { natural } from './naturalVoice'
 import { azure } from './pronunciation'
 import { useAccessStatus } from './useAccessStatus'
-import { AI_ACCOUNT, aiAvailable } from '../data/aiAccess'
+import { AI_ACCOUNT, aiAvailable, type AiStatus } from '../data/aiAccess'
 
 /**
  * The saved settings and the keys kept next to them (AI, natural voice, Azure speech): read once on start,
@@ -18,8 +19,8 @@ export function useAppSettings() {
   const [settings, setSettings] = useState<Settings | null | undefined>(undefined)
   // The AI features, like sync and the quota features, open once the owner has approved the account, and when the server has the owner's key.
   const access = useAccessStatus()
-  const [aiReady, setAiReady] = useState(false)
-  const apiKey = access.approved && aiReady ? AI_ACCOUNT : null
+  const [aiStatus, setAiStatus] = useState<AiStatus | null>(null)
+  const apiKey = access.approved && aiStatus?.available ? AI_ACCOUNT : null
 
   useEffect(() => {
     db.getSettings().then((s) => setSettings(s ?? null))
@@ -35,9 +36,9 @@ export function useAppSettings() {
   }, [])
 
   useEffect(() => {
-    if (!access.approved) return setAiReady(false)
+    if (!access.approved) return setAiStatus(null)
     let live = true
-    aiAvailable().then((ok) => live && setAiReady(ok))
+    aiAvailable().then((status) => live && setAiStatus(status))
     return () => {
       live = false
     }
@@ -59,8 +60,10 @@ export function useAppSettings() {
     () => ({
       apiKey,
       needsApproval: !access.approved,
+      level: aiStatus?.level,
+      allows: (feature: AiFeature) => !!aiStatus?.features.includes(feature),
     }),
-    [apiKey, access.approved],
+    [apiKey, access.approved, aiStatus],
   )
 
   const updateSettings = async (s: Settings) => {
