@@ -32,7 +32,7 @@ Sahibi Diloloji'yi **kişisel** bir Google Play hesabıyla Android uygulaması (
 
 **Ajanın yapacakları:**
 - [ ] Parmak izi gelince: `public/.well-known/assetlinks.json` `sha256_cert_fingerprints` ve `android/twa-manifest.json` `fingerprints` (iki liste aynı olmalı, `src/androidApp.test.ts` denetler; yükleme anahtarınınki de eklenir), birleştir, dağıt, `npm run verify:deploy` (dosyayı canlıda arar). Uygulama üstte adres çubuğuyla açılıyorsa sebep budur.
-- [ ] Mağaza sayfası: kısa açıklama (≤80 karakter), uzun açıklama, en az 2 telefon ekran görüntüsü (`scripts/capture-landing-shots.ts` yöntemiyle, örnek veriyle), 1024×500 tanıtım görseli. Bu ortamda hazırlanabilir; sahibi onaylar.
+- [x] ~~Mağaza sayfası: kısa açıklama (≤80 karakter), uzun açıklama, en az 2 telefon ekran görüntüsü (`android/store/`), 1024×500 tanıtım görseli (`android/store/feature-graphic.png`).~~ (hazırlandı — 2026-11-01)
 - [ ] Kapalı testte gerçek cihaz listesi (README §7.6): giriş (Google/e-posta), eşitleme, Android 13+ bildirim izni ve hatırlatmalar, mikrofon (gölgeleme, sesli cevap), sesli okuma, çevrimdışı açılış, geri tuşu, Paylaş → Diloloji, adres çubuğu görünmemeli. Hatalar web tarafında düzeltilir; kabuk değişmez.
 - [ ] Kabuk değişirse ya da Google'ın yıllık hedef API şartında: `appVersionCode` +1, yeni `.aab` (README §5).
 

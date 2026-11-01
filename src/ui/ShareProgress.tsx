@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import type { UserWordState, VocabularyEntry } from '../engine/types'
-import { ChartIcon, DownloadIcon, ShareIcon, SparkleIcon } from './icons'
+import { ChartIcon, DownloadIcon, ShareIcon, SparkleIcon, StarIcon } from './icons'
 import { MenuItem, Popover } from './Popover'
 import { openPrint } from './printWindow'
 import { progressHtml, progressXlsx, type ProgressReport } from './progressReport'
 import { showToast } from './toastFeed'
 import { StoryCardModal } from './StoryCardModal'
+import { shareCard } from './shareCard'
 
 /**
  * "Paylaş" on the progress page: printed/PDF report, Excel workbook, or 9:16 Instagram/WhatsApp Story Card.
@@ -68,6 +69,21 @@ export function ShareProgress({
               onSelect={() => {
                 close()
                 setStoryOpen(true)
+              }}
+            />
+            <MenuItem
+              icon={<StarIcon size={18} />}
+              title="Haftalık Başarı Kartı (Yatay)"
+              hint="Monki çizimli haftalık karne görseli"
+              onSelect={async () => {
+                close()
+                const rep = build()
+                const kicker = `${rep.date} Özeti`
+                const title = `${rep.language.toUpperCase()} İlerlemen`
+                const streakLine = streak > 0 ? `${streak} gün seri` : ''
+                const wordsLine = `${activeWords} aktif kelime`
+                const text = [streakLine, wordsLine].filter(Boolean).join(' · ')
+                await shareCard({ kicker, title, text, art: 'week' }, `Diloloji ${rep.language.toUpperCase()} haftalık ilerlemem: ${text}`)
               }}
             />
             <MenuItem

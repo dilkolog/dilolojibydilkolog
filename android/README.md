@@ -91,8 +91,9 @@ Site sahibinin yapacakları (Play, şikâyetlere zamanında bakılmasını bekle
 3. **Kapalı test zorunlu:** kişisel hesaplarda üretime geçmeden önce **en az 12 test kullanıcısı
    14 gün kesintisiz** kapalı testte olmalı. Testçilerin Gmail adreslerini bir listeye ekle, katılım
    bağlantısını gönder; 14 gün dolunca "Üretime erişim başvurusu" açılır.
-4. Mağaza sayfası: kısa açıklama (≤80 karakter), uzun açıklama, 512 px simge (`public/pwa-512.png`),
-   1024×500 tanıtım görseli, en az 2 telefon ekran görüntüsü; kategori *Eğitim*.
+4. Mağaza sayfası: tüm metinler ve görseller hazırlandı (`android/store/listing.md`). Kısa açıklama (≤80 karakter),
+   uzun açıklama, 512 px simge (`public/pwa-512.png`), 1024×500 tanıtım görseli (`android/store/feature-graphic.png`),
+   4 adet telefon ekran görüntüsü (`android/store/screenshot-*.png`); kategori *Eğitim*.
 5. Formlar (*Uygulama içeriği*):
    - **Gizlilik politikası:** `https://diloloji.com/gizlilik`
    - **Hesap silme:** uygulama içi yol (*Ayarlar → Hesap → Hesabı sil*) ve web adresi

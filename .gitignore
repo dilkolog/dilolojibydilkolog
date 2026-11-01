@@ -62,5 +62,7 @@ docs/gelen-gorseller/*.png
 android/*
 !android/twa-manifest.json
 !android/README.md
+!android/store/
+!android/store/**
 *.keystore
 *.jks

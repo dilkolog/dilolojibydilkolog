@@ -120,12 +120,26 @@ export async function shareCard(card: CardText, fallbackText: string): Promise<v
     const blob = await renderShareCard(card).catch(() => null)
     if (blob) {
       const file = new File([blob], 'diloloji.png', { type: 'image/png' })
-      if (navigator.canShare?.({ files: [file] })) {
+      if (typeof navigator !== 'undefined' && navigator.canShare?.({ files: [file] })) {
         await navigator.share({ files: [file], title: 'Diloloji', text: fallbackText })
         return
       }
+      if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
+        await navigator.share({ title: 'Diloloji', text: fallbackText })
+        return
+      }
+      // Desktop fallback: download the card directly
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `diloloji-${card.art ?? 'kart'}.png`
+      a.click()
+      setTimeout(() => URL.revokeObjectURL(url), 1000)
+      return
     }
-    await navigator.share({ title: 'Diloloji', text: fallbackText })
+    if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
+      await navigator.share({ title: 'Diloloji', text: fallbackText })
+    }
   } catch {
     // Share sheet closed; nothing to do.
   }

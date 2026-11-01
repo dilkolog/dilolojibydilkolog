@@ -1,0 +1,148 @@
+
+  <svg width="1024" height="500" viewBox="0 0 1024 500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Deep indigo to night slate background -->
+      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0f172a"/>
+        <stop offset="45%" stop-color="#1e1b4b"/>
+        <stop offset="100%" stop-color="#090d16"/>
+      </linearGradient>
+
+      <!-- Ambient glow circles -->
+      <radialGradient id="glow-indigo" cx="20%" cy="40%" r="50%">
+        <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#4f46e5" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="glow-emerald" cx="80%" cy="30%" r="45%">
+        <stop offset="0%" stop-color="#059669" stop-opacity="0.28"/>
+        <stop offset="100%" stop-color="#059669" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="glow-gold" cx="50%" cy="90%" r="40%">
+        <stop offset="0%" stop-color="#d97706" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#d97706" stop-opacity="0"/>
+      </radialGradient>
+
+      <!-- Logo Gradients -->
+      <linearGradient id="logo-bg" x1="1" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#6366f1"/>
+        <stop offset="0.55" stop-color="#4338ca"/>
+        <stop offset="1" stop-color="#272466"/>
+      </linearGradient>
+      <linearGradient id="leaf-base" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#059669"/>
+        <stop offset="1" stop-color="#34d399"/>
+      </linearGradient>
+      <linearGradient id="leaf-hi" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#34d399"/>
+        <stop offset="1" stop-color="#86efac"/>
+      </linearGradient>
+      <linearGradient id="spark" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fde68a"/>
+        <stop offset="1" stop-color="#f59e0b"/>
+      </linearGradient>
+
+      <!-- Card shadow -->
+      <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity="0.4"/>
+      </filter>
+    </defs>
+
+    <!-- Background -->
+    <rect width="1024" height="500" fill="url(#bg)"/>
+    <rect width="1024" height="500" fill="url(#glow-indigo)"/>
+    <rect width="1024" height="500" fill="url(#glow-emerald)"/>
+    <rect width="1024" height="500" fill="url(#glow-gold)"/>
+
+    <!-- Subtle grid lines pattern for precision tech & educational feel -->
+    <g stroke="rgba(255, 255, 255, 0.03)" stroke-width="1">
+      <line x1="0" y1="100" x2="1024" y2="100" />
+      <line x1="0" y1="200" x2="1024" y2="200" />
+      <line x1="0" y1="300" x2="1024" y2="300" />
+      <line x1="0" y1="400" x2="1024" y2="400" />
+      <line x1="200" y1="0" x2="200" y2="500" />
+      <line x1="400" y1="0" x2="400" y2="500" />
+      <line x1="600" y1="0" x2="600" y2="500" />
+      <line x1="800" y1="0" x2="800" y2="500" />
+    </g>
+
+    <!-- Left: App Icon & Brand Lockup -->
+    <g transform="translate(70, 75)">
+      <!-- Icon Container with soft border -->
+      <rect width="108" height="108" rx="26" fill="url(#logo-bg)" filter="url(#shadow)"/>
+      <rect width="108" height="108" rx="26" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1.5"/>
+      <g transform="translate(54, 54) scale(0.2) translate(-262, -268)">
+        <path d="M168 112H256C338 112 400 174 400 256C400 338 338 400 256 400H234C250 386 258 368 260 348C312 346 348 308 348 256C348 204 310 164 256 164H188V348H236C234 368 222 388 202 400H188L148 432C140 438 134 433 134 423V146A34 34 0 0 1 168 112Z" fill="#fff"/>
+        <path d="M194 214C220 220 242 236 256 262C270 236 292 220 318 214" stroke="#6ee7b7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M208 202C228 210 244 224 256 244C268 224 284 210 304 202" stroke="#a7f3d0" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M210 402C236 392 248 364 248 324C204 312 172 278 170 224C210 232 242 252 256 284C270 252 302 232 342 224C340 278 308 312 262 324C262 364 244 394 210 402Z" fill="url(#leaf-base)"/>
+        <path d="M170 224C210 232 242 252 256 284C254 294 251 304 248 312C232 276 204 248 170 224Z" fill="url(#leaf-hi)"/>
+        <path d="M342 224C302 232 270 252 256 284C258 294 261 304 264 312C280 276 308 248 342 224Z" fill="url(#leaf-hi)"/>
+        <path d="M256 162Q256 184 278 184Q256 184 256 206Q256 184 234 184Q256 184 256 162Z" fill="url(#spark)"/>
+      </g>
+
+      <!-- Title & Wordmark -->
+      <text x="130" y="58" font-family="'Lexend', system-ui, sans-serif" font-weight="700" font-size="52" fill="#ffffff" letter-spacing="-1">Diloloji</text>
+      <text x="132" y="92" font-family="'Lexend', system-ui, sans-serif" font-weight="600" font-size="20" fill="#fbbf24" letter-spacing="0.5">Cesaret Veren Kelime Koçu</text>
+
+      <!-- Mission Statement -->
+      <text x="0" y="160" font-family="'Lexend', system-ui, sans-serif" font-weight="400" font-size="22" fill="#e2e8f0">
+        FSRS Akıllı Tekrar · Cümle İçi Okuma · Fiil Laboratuvarı
+      </text>
+
+      <!-- Language Badges -->
+      <g transform="translate(0, 195)">
+        <!-- English -->
+        <g transform="translate(0, 0)">
+          <rect width="145" height="42" rx="21" fill="rgba(56, 189, 248, 0.14)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.2"/>
+          <text x="20" y="27" font-size="18">🇬🇧</text>
+          <text x="52" y="27" font-family="'Lexend', system-ui, sans-serif" font-weight="600" font-size="15" fill="#7dd3fc">İngilizce</text>
+        </g>
+        <!-- French -->
+        <g transform="translate(160, 0)">
+          <rect width="145" height="42" rx="21" fill="rgba(244, 63, 94, 0.14)" stroke="rgba(244, 63, 94, 0.4)" stroke-width="1.2"/>
+          <text x="20" y="27" font-size="18">🇫🇷</text>
+          <text x="52" y="27" font-family="'Lexend', system-ui, sans-serif" font-weight="600" font-size="15" fill="#fda4af">Fransızca</text>
+        </g>
+        <!-- Spanish -->
+        <g transform="translate(320, 0)">
+          <rect width="155" height="42" rx="21" fill="rgba(245, 158, 11, 0.14)" stroke="rgba(245, 158, 11, 0.4)" stroke-width="1.2"/>
+          <text x="20" y="27" font-size="18">🇪🇸</text>
+          <text x="52" y="27" font-family="'Lexend', system-ui, sans-serif" font-weight="600" font-size="15" fill="#fde68a">İspanyolca</text>
+        </g>
+      </g>
+
+      <!-- Trust Badges (Features) -->
+      <g transform="translate(0, 275)">
+        <g transform="translate(0, 0)">
+          <circle cx="10" cy="10" r="10" fill="#10b981" fill-opacity="0.2"/>
+          <text x="10" y="14" font-size="12" text-anchor="middle" fill="#34d399">✓</text>
+          <text x="30" y="15" font-family="'Lexend', system-ui, sans-serif" font-weight="500" font-size="15" fill="#cbd5e1">Reklamsız ve Sakin Tasarım</text>
+        </g>
+        <g transform="translate(240, 0)">
+          <circle cx="10" cy="10" r="10" fill="#10b981" fill-opacity="0.2"/>
+          <text x="10" y="14" font-size="12" text-anchor="middle" fill="#34d399">✓</text>
+          <text x="30" y="15" font-family="'Lexend', system-ui, sans-serif" font-weight="500" font-size="15" fill="#cbd5e1">Çevrimdışı Çalışma Desteği</text>
+        </g>
+      </g>
+      <g transform="translate(0, 312)">
+        <g transform="translate(0, 0)">
+          <circle cx="10" cy="10" r="10" fill="#10b981" fill-opacity="0.2"/>
+          <text x="10" y="14" font-size="12" text-anchor="middle" fill="#34d399">✓</text>
+          <text x="30" y="15" font-family="'Lexend', system-ui, sans-serif" font-weight="500" font-size="15" fill="#cbd5e1">57.000+ Kelime &amp; CEFR Seviyeleri</text>
+        </g>
+        <g transform="translate(240, 0)">
+          <circle cx="10" cy="10" r="10" fill="#10b981" fill-opacity="0.2"/>
+          <text x="10" y="14" font-size="12" text-anchor="middle" fill="#34d399">✓</text>
+          <text x="30" y="15" font-family="'Lexend', system-ui, sans-serif" font-weight="500" font-size="15" fill="#cbd5e1">Sesli Okuma &amp; Dikte Çalışmaları</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Right: Mascot & Visual Element Showcase -->
+    <g transform="translate(670, 70)">
+      <!-- Backdrop Card for mascot -->
+      <rect width="280" height="360" rx="32" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" filter="url(#shadow)"/>
+      <circle cx="140" cy="140" r="100" fill="url(#glow-gold)" opacity="0.6"/>
+    </g>
+  </svg>
+  
