@@ -5,6 +5,7 @@ import { progressStats, type ProgressStats } from '../engine/progress'
 import type { Scheduler } from '../engine/scheduler'
 import { SKILLS, type ErrorType, type ReviewEvent, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { skillProfile } from '../engine/mastery'
+import { forecastReport } from '../engine/forecastQuality'
 import { calibration, errorBreakdown, hardWords, recallCalibration, reviewForecast, weakestSkill, weekReport } from '../engine/insights'
 import { useGame } from './game'
 import type { KelimeDB, Settings, VocabTestRecord } from '../data/db'
@@ -114,6 +115,7 @@ export function ProgressScreen({
   const hard = hardWords(events, 8)
   const errors = Object.entries(errorsByType) as [ErrorType, number][]
   const recallBins = recallCalibration(events)
+  const quality = forecastReport(events)
   const calib = calibration(events.filter((e) => now.getTime() - e.timestamp.getTime() < 30 * 86_400_000))
   const byId = new Map(vocabulary.map((v) => [v.id, v]))
   const profile = skillProfile(states, scheduler, new Date())
@@ -189,7 +191,7 @@ export function ProgressScreen({
             <p className="small muted">Her gün kaç kelimenin tekrar zamanının geleceği. Bugünkü sütun, gecikmiş olanları da içerir.</p>
             <ForecastChart forecast={forecast} />
           </section>
-          <RecallCalibrationCard recallBins={recallBins} />
+          <RecallCalibrationCard recallBins={recallBins} quality={quality} />
           <MetacognitionCard calib={calib} />
           <HardWordsCard hard={hard} byId={byId} errors={errors} onOpen={onOpen} />
           <StageDistributionCard stageCounts={stats.stageCounts} notStarted={stats.notStarted} maxStage={maxStage} topStage={topStage} />

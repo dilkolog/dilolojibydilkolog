@@ -2,12 +2,13 @@ import { MASTERY_STAGES, type MasteryStage } from '../engine/mastery'
 import type { ErrorType, VocabularyEntry } from '../engine/types'
 import { displayForm } from '../engine/exercises'
 import type { calibration, hardWords, recallCalibration } from '../engine/insights'
+import { skillWord, type ForecastReport } from '../engine/forecastQuality'
 import { BrainIcon, LeafIcon, TargetIcon } from './icons'
 import { ERROR_NAME, STAGE_NAME } from './labels'
 import { StageBar } from './ProgressCharts'
 import { Sticker } from './Sticker'
 
-export function RecallCalibrationCard({ recallBins }: { recallBins: ReturnType<typeof recallCalibration> }) {
+export function RecallCalibrationCard({ recallBins, quality }: { recallBins: ReturnType<typeof recallCalibration>; quality?: ForecastReport }) {
   const total = recallBins.reduce((n, b) => n + b.answers, 0)
   if (total < 30) return null
 
@@ -43,6 +44,14 @@ export function RecallCalibrationCard({ recallBins }: { recallBins: ReturnType<t
           </div>
         ))}
       </div>
+      {quality?.scheduled && (
+        <p className="small muted">
+          Tahmin kalitesi ({quality.scheduled.n} tekrar): ortalama tahmin %{Math.round(quality.scheduled.meanPredicted * 100)}, gerçek %
+          {Math.round(quality.scheduled.meanActual * 100)}; model, herkese aynı ortalamayı söylemekten {skillWord(quality.scheduled.skill)}
+          {quality.scheduled.auc !== null && ` (doğru ile yanlışı ayırma: %${Math.round(quality.scheduled.auc * 100)}, %50 yazı-tura demek)`}.
+          {quality.probes && ` Ölçüm sorularında (rastgele seçilmiş ${quality.probes.n} kart) tahmin %${Math.round(quality.probes.meanPredicted * 100)}, gerçek %${Math.round(quality.probes.meanActual * 100)}.`}
+        </p>
+      )}
     </section>
   )
 }

@@ -143,6 +143,8 @@ export interface Settings {
   sessionMax: number
   /** A day estimated above 15 minutes is done in two sittings (with no session cap); default on. */
   splitLongDays?: boolean
+  /** Two measurement questions a day (engine/probes.ts); on unless false. */
+  probes?: boolean
   /** 'calm': the dark theme with its colours turned down, for working at night. 'contrast': the light theme at its most legible. */
   theme: 'system' | 'light' | 'dark' | 'calm' | 'contrast'
   /** Set once the light default replaced an inherited 'system' (2026-10-06). */
