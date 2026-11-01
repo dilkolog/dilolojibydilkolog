@@ -26,10 +26,12 @@ const CONFETTI_COLORS = [
 export function Confetti({
   active = true,
   duration = 3500,
+  count = 35,
   onComplete,
 }: {
   active?: boolean
   duration?: number
+  count?: number
   onComplete?: () => void
 }) {
   const [visible, setVisible] = useState(active)
@@ -48,7 +50,7 @@ export function Confetti({
   }, [active, duration, onComplete])
 
   const pieces = useMemo<ConfettiPiece[]>(() => {
-    return Array.from({ length: 48 }, (_, i) => ({
+    return Array.from({ length: count }, (_, i) => ({
       id: i,
       x: 10 + (i * 1.7) % 80,
       y: -10 - (i % 5) * 6,
@@ -59,7 +61,7 @@ export function Confetti({
       duration: 1800 + ((i * 73) % 1200),
       shape: i % 3 === 0 ? 'circle' : i % 3 === 1 ? 'ribbon' : 'square',
     }))
-  }, [])
+  }, [count])
 
   if (!visible) return null
 
