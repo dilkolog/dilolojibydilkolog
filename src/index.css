@@ -2399,8 +2399,6 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
   color: var(--ink); margin: 0.25rem 0 0;
 }
 .milestone-level { position: relative; z-index: 1; display: grid; place-items: center; }
-.milestone-custom-wrap { position: relative; z-index: 1; display: grid; place-items: center; width: 8.5rem; height: 8.5rem; animation: pop 500ms var(--ease-spring); }
-.milestone-custom-art { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 8px 20px color-mix(in srgb, var(--gold) 35%, transparent)); }
 .milestone-rank-card {
   display: inline-flex; align-items: center; gap: 0.5rem;
   background: color-mix(in srgb, var(--gold) 14%, var(--surface-2));

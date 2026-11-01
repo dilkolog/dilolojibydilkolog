@@ -9,8 +9,6 @@ import {
   AMBIENT_SKY,
   GARDEN_POTS,
   ANIMATED_MONKI,
-  MILESTONE_ART,
-  EMPTY_SCENE,
 } from './drawnArt'
 import { readerStyle } from './readerSettings'
 
@@ -76,16 +74,9 @@ describe('New Visual Art Assets', () => {
     expect(zen.className).toContain('reader-zen')
   })
 
-  it('registers all 5 animated Monki WebP mascots', () => {
+  it('registers all 3 animated Monki WebP mascots', () => {
     expect(ANIMATED_MONKI.wave).toBeTruthy()
     expect(ANIMATED_MONKI.celebrate).toBeTruthy()
     expect(ANIMATED_MONKI.wink).toBeTruthy()
-    expect(ANIMATED_MONKI.think).toBeTruthy()
-    expect(ANIMATED_MONKI.read).toBeTruthy()
-  })
-
-  it('registers newly generated milestone and empty state scenes', () => {
-    expect(MILESTONE_ART.sprout).toBeTruthy()
-    expect(EMPTY_SCENE.garden).toBeTruthy()
   })
 })

@@ -6,7 +6,6 @@ import { Glyph } from './Glyph'
 import { shareCard } from './shareCard'
 import { sfx } from './sounds'
 import { CloseIcon } from './icons'
-import { MILESTONE_ART } from './drawnArt'
 import trophyUrl from '../assets/art/milestone-trophy.webp'
 
 /** The new level: the badge shows the old number, charges with anticipation, and bursts to the new one with rings and sparkles. */
@@ -86,10 +85,6 @@ export function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; 
             <span className="milestone-level" aria-hidden>
               <LevelUpBadge from={milestone.level.from} to={milestone.level.to} size="xl" />
             </span>
-          ) : milestone.id.startsWith('words-') && MILESTONE_ART.sprout ? (
-            <div className="milestone-custom-wrap" aria-hidden>
-              <img src={MILESTONE_ART.sprout} alt="" className="milestone-custom-art" draggable={false} />
-            </div>
           ) : (
             <div className="milestone-trophy-wrap" aria-hidden>
               <img src={trophyUrl} alt="" className="milestone-trophy-img" draggable={false} />

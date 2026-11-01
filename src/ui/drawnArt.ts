@@ -163,10 +163,6 @@ import reactHello from '../assets/art/react-hello.webp'
 import animWave from '../assets/art/monki-animated-wave.webp'
 import animCelebrate from '../assets/art/monki-animated-celebrate.webp'
 import animWink from '../assets/art/monki-animated-wink.webp'
-import animThink from '../assets/art/monki-animated-think.webp'
-import animRead from '../assets/art/monki-animated-read.webp'
-import milestoneSprout from '../assets/art/milestone-sprout.webp'
-import emptyGarden from '../assets/art/empty-garden.webp'
 import reactNewword from '../assets/art/react-newword.webp'
 import reactOops from '../assets/art/react-oops.webp'
 import roleCafe from '../assets/art/role-cafe.webp'
@@ -476,16 +472,4 @@ export const ANIMATED_MONKI = {
   wave: animWave,
   celebrate: animCelebrate,
   wink: animWink,
-  think: animThink,
-  read: animRead,
-}
-
-/** The milestone moments: word seedling, settled blossom, level crown. */
-export const MILESTONE_ART = {
-  sprout: milestoneSprout,
-}
-
-/** Full-scene empty state illustrations. */
-export const EMPTY_SCENE = {
-  garden: emptyGarden,
 }
