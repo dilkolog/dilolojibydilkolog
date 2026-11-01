@@ -1,7 +1,6 @@
 import { Help } from './SettingHelp'
-import { showToast } from './toastFeed'
-import { useEffect, useState, type FormEvent } from 'react'
-import { AI_MODELS, AiError, FEATURE_NAME, modelInfo, monthKey, testKey, type AiFeature, type MonthUsage } from '../ai'
+import { useEffect, useState } from 'react'
+import { AI_MODELS, FEATURE_NAME, modelInfo, monthKey, type AiFeature, type MonthUsage } from '../ai'
 import type { Settings } from '../data/db'
 import { db } from '../data/instance'
 import { useAccess } from './accessContext'
@@ -13,7 +12,7 @@ const LIMITS = [0, 2, 5, 10, 20]
 const MONKI_LIMITS = [0, 10, 25, 50, 100]
 const usd = (x: number) => `$${x < 1 ? x.toFixed(3) : x.toFixed(2)}`.replace('.', ',')
 
-/** Turning the AI layer on/off. The key stays in this browser and is excluded from backups. */
+/** The AI layer: on by itself for an approved account (the calls go through the site's own /api/ai, no key to type), plus the model, the limits and the use. */
 export function AiSettings({ settings, onChange }: { settings: Settings; onChange: (s: Settings) => void }) {
   const [usage, setUsage] = useState<Record<string, MonthUsage>>({})
   useEffect(() => {
@@ -21,73 +20,31 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
   }, [settings])
   const thisMonth = usage[monthKey(new Date())]
   const months = Object.keys(usage).sort().reverse()
-  const { apiKey, setApiKey, needsApproval } = useAi()
+  const { apiKey, needsApproval } = useAi()
   const { status: access } = useAccess()
-  const [draft, setDraft] = useState('')
-  const [status, setStatus] = useState<{ ok: boolean; text: string } | null>(null)
-  const [busy, setBusy] = useState(false)
-
-  const save = async (e: FormEvent) => {
-    e.preventDefault()
-    const key = draft.trim()
-    if (!key) return
-    setBusy(true)
-    setStatus(null)
-    try {
-      await testKey(key)
-      await setApiKey(key)
-      setDraft('')
-      showToast('Anahtar çalışıyor, YZ özellikleri açıldı.')
-    } catch (err) {
-      setStatus({ ok: false, text: err instanceof AiError ? err.message : 'Anahtar doğrulanamadı.' })
-    } finally {
-      setBusy(false)
-    }
-  }
-
   return (
     <section className="section card stack">
       <h2 className="section-title row gap-2">
         <WandIcon size={20} className="icon-star" /> YZ yardımcısı
       </h2>
-      <Help text={'Kelime eklerken anlamı, örnek cümleyi ve kalıpları doldurur, cümlelerini değerlendirir. Açıkken ayrıca metinden çıkardığın kelimeler toplu doldurulur ve "kendi cümleni kur" alıştırması açılır. Kapalıyken uygulamanın geri kalanı aynen çalışır.'} />
+      <Help text={'Kelime eklerken anlamı, örnek cümleyi ve kalıpları doldurur, cümlelerini değerlendirir. Açıkken ayrıca metinden çıkardığın kelimeler toplu doldurulur ve "kendi cümleni kur" alıştırması açılır. Kapalıyken uygulamanın geri kalanı aynen çalışır. Onaylı hesaplarda kendiliğinden açıktır; anahtar girmen gerekmez.'} />
       {needsApproval ? (
         <p className="note" role="status">
           {access === 'signedOut'
             ? 'YZ özellikleri, site sahibinin onayladığı hesaplara açık. Ayarlar → Hesap bölümünden hesap oluşturursan başvurun ona gider.'
             : access === 'rejected'
               ? 'Hesabın YZ özellikleri için onaylanmadı.'
-              : 'YZ özellikleri, site sahibinin onayladığı hesaplara açık. Hesabın onay bekliyor; onaylanınca burada anahtarını girebilirsin.'}
+              : 'YZ özellikleri, site sahibinin onayladığı hesaplara açık. Hesabın onay bekliyor; onaylanınca kendiliğinden açılır, bir anahtar girmen gerekmez.'}
         </p>
       ) : apiKey ? (
         <div className="row">
           <span className="pill stage-5">Açık</span>
-          <span className="small muted">Anahtar ••••{apiKey.slice(-4)}</span>
-          <button className="btn btn-quiet" onClick={() => setApiKey(null)}>
-            Kapat ve anahtarı sil
-          </button>
+          <span className="small muted">Hesabınla birlikte hazır, anahtar girmen gerekmez.</span>
         </div>
       ) : (
-        <form className="stack" onSubmit={save}>
-          <div className="field">
-            <label htmlFor="ai-key">Anthropic API anahtarı</label>
-            <input
-              id="ai-key"
-              className="input"
-              type="password"
-              autoComplete="off"
-              placeholder="sk-ant-…"
-              value={draft}
-              onChange={(e) => setDraft(e.target.value)}
-            />
-            <Help text="console.anthropic.com adresinden alınır. Yalnızca bu tarayıcıda saklanır, yedek dosyasına yazılmaz ve sadece Anthropic'e gönderilir. Kullanım kadar ücretlendirilir; tek kişilik kullanımda genelde ayda birkaç dolar." />
-          </div>
-          <div>
-            <button className="btn" type="submit" disabled={busy || !draft.trim()}>
-              {busy ? 'Kontrol ediliyor…' : 'Kaydet ve dene'}
-            </button>
-          </div>
-        </form>
+        <p className="note" role="status">
+          YZ şu an kullanılamıyor: internet yok ya da sunucuda henüz kurulmamış. Uygulamanın geri kalanı aynen çalışır.
+        </p>
       )}
       <div className="field">
         <label>Model</label>
@@ -163,11 +120,6 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
         )}
         <p className="small muted">Tutarlar, Anthropic'in döndürdüğü token sayılarından hesaplanan tahminlerdir; kesin fatura Anthropic Console'dadır.</p>
       </div>
-      {status && (
-        <p className={status.ok ? 'notice' : 'error'} role="status">
-          {status.text}
-        </p>
-      )}
     </section>
   )
 }

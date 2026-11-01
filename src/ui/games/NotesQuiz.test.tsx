@@ -7,7 +7,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), near: vi.fn() } }))
 const notesQuiz = vi.fn()
 vi.mock('../../ai', async (orig) => ({ ...(await orig<typeof import('../../ai')>()), notesQuiz: (...a: unknown[]) => notesQuiz(...a) }))
-vi.mock('../aiContext', () => ({ useAi: () => ({ apiKey: 'sk-test', setApiKey: async () => {} }) }))
+vi.mock('../aiContext', () => ({ useAi: () => ({ apiKey: 'sk-test' }) }))
 const { NotesQuiz } = await import('./NotesQuiz')
 
 let root: ReturnType<typeof createRoot> | undefined

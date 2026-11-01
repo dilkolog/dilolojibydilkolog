@@ -77,7 +77,7 @@ describe('LessonWrite', () => {
     act(() => root?.unmount())
     document.body.innerHTML = ''
     host = await mount(
-      <AiContext.Provider value={{ apiKey: 'k', setApiKey: async () => {} }}>
+      <AiContext.Provider value={{ apiKey: 'k' }}>
         <LessonWrite title="Subjonctif" language="fr" />
       </AiContext.Provider>,
     )

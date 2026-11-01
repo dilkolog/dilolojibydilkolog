@@ -27,7 +27,7 @@ const render = (apiKey: string | null, typed: string) => {
   root = createRoot(host)
   act(() =>
     root!.render(
-      <AiContext.Provider value={{ apiKey, setApiKey: async () => {} }}>
+      <AiContext.Provider value={{ apiKey }}>
         <ExplainMistake language="es" verb="tener" tense="presente" person={0} typed={typed} />
       </AiContext.Provider>,
     ),

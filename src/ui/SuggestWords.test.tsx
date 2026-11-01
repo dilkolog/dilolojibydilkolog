@@ -55,7 +55,7 @@ async function mount(vocabulary: VocabularyEntry[], over: { apiKey?: string | nu
   let added = 0
   await act(async () =>
     root!.render(
-      <AiContext.Provider value={{ apiKey: over.apiKey === undefined ? 'key' : over.apiKey, setApiKey: async () => {} }}>
+      <AiContext.Provider value={{ apiKey: over.apiKey === undefined ? 'key' : over.apiKey }}>
         <SuggestWords db={db} language="fr" vocabulary={vocabulary} settings={SETTINGS} onAdded={() => added++} onlyWhenDue={over.onlyWhenDue} />
       </AiContext.Provider>,
     ),

@@ -90,7 +90,7 @@ export function NotesQuiz({ language, onExit }: { language: TargetLanguage; onEx
         <button className="link" onClick={onExit}>← Oyunlar</button>
         <h1 className="greeting">Notlarından sınav</h1>
         <p className="greeting-sub">Ders notunu, bir dilbilgisi sayfasını ya da ifade listeni yapıştır; YZ notlarında yazanlardan çoktan seçmeli sorular hazırlasın. Her cevapta nedenini görürsün. Notun yalnızca soruları üretmek için gönderilir.</p>
-        {!apiKey && <p className="notice">Bunun için Ayarlar → YZ yardımcısı bölümünde Anthropic anahtarı gerekir.</p>}
+        {!apiKey && <p className="notice">Bunun için YZ gerekir: hesabın onaylı olmalı (Ayarlar → Hesap).</p>}
         <textarea className="textarea bulk-import-textarea" lang={language} aria-label="Notların" placeholder="Notlarını buraya yapıştır (en az birkaç cümle)…" value={notes} maxLength={8000} onChange={(e) => setNotes(e.target.value)} />
         <div className="choice-row" role="group" aria-label="Soru sayısı">
           {COUNTS.map((n) => (

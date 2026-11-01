@@ -49,7 +49,7 @@ describe('Dictionary: the learner’s own meaning of a word', () => {
   const mount = async (query: string, { vocabulary = [] as VocabularyEntry[], apiKey = null as string | null, onOpenWord = vi.fn() } = {}) => {
     await act(async () =>
       root.render(
-        <AiContext.Provider value={{ apiKey, setApiKey: async () => {} }}>
+        <AiContext.Provider value={{ apiKey }}>
           <DictionaryScreen language="es" vocabulary={vocabulary} initialQuery={query} onOpenWord={onOpenWord} onAdd={() => {}} />
         </AiContext.Provider>,
       ),

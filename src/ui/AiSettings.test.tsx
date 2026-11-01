@@ -22,7 +22,7 @@ async function mount(access: AccessState['status'], key: string | null, needsApp
   await act(async () =>
     root!.render(
       <AccessContext.Provider value={{ status: access, approved: access === 'approved', refresh: async () => {} }}>
-        <AiContext.Provider value={{ apiKey: key, needsApproval, setApiKey: async () => {} }}>
+        <AiContext.Provider value={{ apiKey: key, needsApproval }}>
           <AiSettings settings={DEFAULT_SETTINGS} onChange={() => {}} />
         </AiContext.Provider>
       </AccessContext.Provider>,
@@ -46,9 +46,17 @@ describe('AiSettings and the owner\'s approval', () => {
     expect((await mount('rejected', null, true)).textContent).toContain('onaylanmadı')
   })
 
-  it('an approved account sees the key form as before', async () => {
-    const host = await mount('approved', null, false)
+  it('an approved account has the AI on by itself, with no key to type', async () => {
+    const host = await mount('approved', 'account', false)
     expect(host.textContent).not.toContain('onayladığı hesaplara açık')
-    expect(host.querySelector('input')).not.toBeNull()
+    expect(host.textContent).toContain('anahtar girmen gerekmez')
+    expect(host.querySelector('input[type="password"]')).toBeNull()
+    expect(host.textContent).not.toContain('Anthropic API')
+  })
+
+  it('an approved account on a server without the owner’s key is told the AI is not available', async () => {
+    const host = await mount('approved', null, false)
+    expect(host.textContent).toContain('kullanılamıyor')
+    expect(host.querySelector('input[type="password"]')).toBeNull()
   })
 })

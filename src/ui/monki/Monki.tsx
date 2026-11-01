@@ -558,8 +558,8 @@ export default function Monki({
               </p>
               <p className="muted">
                 {needsApproval
-                  ? 'Benimle konuşmak için hesabının onaylanması ve bir YZ anahtarı gerekiyor. Hesabın onaylanınca Ayarlar → YZ yardımcısı’ndan anahtarını ekleyebilirsin.'
-                  : 'Benimle konuşmak için Ayarlar → YZ yardımcısı bölümüne kendi Anthropic anahtarını eklemen yeterli. Anahtar yalnızca bu cihazda durur.'}
+                  ? 'Benimle konuşmak için hesabının site sahibi tarafından onaylanması gerekiyor. Onaylanınca ben de kendiliğinden açılırım, anahtar girmen gerekmez.'
+                  : 'Şu an sana ulaşamıyorum: internet yok ya da YZ henüz sunucuda kurulmamış. Biraz sonra yeniden dene.'}
               </p>
               <button type="button" className="btn" onClick={() => (setOpen(false), onSettings())}>
                 Ayarlara git

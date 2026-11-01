@@ -12,7 +12,7 @@ describe('asking Monki from a screen', () => {
   let container: HTMLDivElement
   let root: ReturnType<typeof createRoot>
   const heard = vi.fn()
-  const withKey = (apiKey: string | null, ui: React.ReactNode) => act(() => root.render(<AiContext.Provider value={{ apiKey, setApiKey: async () => {} }}>{ui}</AiContext.Provider>))
+  const withKey = (apiKey: string | null, ui: React.ReactNode) => act(() => root.render(<AiContext.Provider value={{ apiKey }}>{ui}</AiContext.Provider>))
 
   beforeEach(() => {
     localStorage.clear()

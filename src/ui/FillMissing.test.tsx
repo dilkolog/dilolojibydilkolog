@@ -55,7 +55,7 @@ async function mount(vocabulary: VocabularyEntry[], apiKey: string | null = 'key
   root = createRoot(host)
   await act(async () =>
     root!.render(
-      <AiContext.Provider value={{ apiKey, setApiKey: async () => {} }}>
+      <AiContext.Provider value={{ apiKey }}>
         <FillMissingBar db={db} vocabulary={vocabulary} onChanged={() => {}} />
       </AiContext.Provider>,
     ),

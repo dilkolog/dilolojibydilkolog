@@ -23,7 +23,7 @@ let host: HTMLDivElement
 const mount = (apiKey: string | null, text = LONG) => {
   act(() => {
     root.render(
-      <AiContext.Provider value={{ apiKey, setApiKey: async () => {} }}>
+      <AiContext.Provider value={{ apiKey }}>
         <ComprehensionCard text={text} language="fr" />
       </AiContext.Provider>,
     )

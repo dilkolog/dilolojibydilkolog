@@ -24,7 +24,7 @@ describe('Monki', () => {
   const render = (apiKey: string | null, needsApproval = false, extra: { inSession?: boolean; showButton?: boolean } = {}) =>
     act(() =>
       root.render(
-        <AiContext.Provider value={{ apiKey, needsApproval, setApiKey: async () => {} }}>
+        <AiContext.Provider value={{ apiKey, needsApproval }}>
           <Monki language="fr" name="Ali" weakWords={['maison']} mistakes={[{ word: 'maison', given: 'maisson', expected: 'maison' }]} onSettings={onSettings} {...extra} />
         </AiContext.Provider>,
       ),
@@ -359,7 +359,7 @@ describe('Monki', () => {
     const renderDaily = (words: string[] = ['maison', 'arbre', 'chat']) =>
       act(() =>
         root.render(
-          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false, setApiKey: async () => {} }}>
+          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false }}>
             <Monki language="fr" dailyWords={words} onSettings={onSettings} />
           </AiContext.Provider>,
         ),
@@ -419,7 +419,7 @@ describe('Monki', () => {
     const renderPron = (words: { word: string; score: number }[]) =>
       act(() =>
         root.render(
-          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false, setApiKey: async () => {} }}>
+          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false }}>
             <Monki language="fr" loadPronWords={async () => words} onSettings={onSettings} />
           </AiContext.Provider>,
         ),
@@ -459,7 +459,7 @@ describe('Monki', () => {
     const renderWith = (extra: { dailyLimit?: number; loadUsage?: () => Promise<{ requests: number; cost: number } | null> }) =>
       act(() =>
         root.render(
-          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false, setApiKey: async () => {} }}>
+          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false }}>
             <Monki language="fr" onSettings={onSettings} {...extra} />
           </AiContext.Provider>,
         ),

@@ -123,7 +123,7 @@ export function ErrorReportCard({ db, language, vocabulary }: { db: KelimeDB; la
           <span className="small muted">Hatalarındaki kalıpları bulur, her biri için alıştırma verir.</span>
         </div>
       ) : (
-        <p className="small muted">YZ anahtarını girersen bu hatalardaki kalıpları ("-age ile biten kelimelerin cinsiyeti" gibi) bulan aylık bir rapor hazırlanır.</p>
+        <p className="small muted">YZ açıkken (onaylı hesapta kendiliğinden açıktır) bu hatalardaki kalıpları ("-age ile biten kelimelerin cinsiyeti" gibi) bulan aylık bir rapor hazırlanır.</p>
       )}
       {error && <p className="error small">{error}</p>}
     </section>

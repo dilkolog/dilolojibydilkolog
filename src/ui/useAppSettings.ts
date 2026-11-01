@@ -7,6 +7,7 @@ import { applySettings } from './prefs'
 import { natural } from './naturalVoice'
 import { azure } from './pronunciation'
 import { useAccessStatus } from './useAccessStatus'
+import { AI_ACCOUNT, aiAvailable } from '../data/aiAccess'
 
 /**
  * The saved settings and the keys kept next to them (AI, natural voice, Azure speech): read once on start,
@@ -15,20 +16,32 @@ import { useAccessStatus } from './useAccessStatus'
  */
 export function useAppSettings() {
   const [settings, setSettings] = useState<Settings | null | undefined>(undefined)
-  const [storedKey, setApiKeyState] = useState<string | null>(null)
-  // The AI screens, like sync and the quota features, open once the owner has approved the account.
+  // The AI features, like sync and the quota features, open once the owner has approved the account, and when the server has the owner's key.
   const access = useAccessStatus()
-  const apiKey = access.approved ? storedKey : null
+  const [aiReady, setAiReady] = useState(false)
+  const apiKey = access.approved && aiReady ? AI_ACCOUNT : null
 
   useEffect(() => {
     db.getSettings().then((s) => setSettings(s ?? null))
-    db.getAiKey().then(setApiKeyState)
+    // An own key typed in before the site provided one is not used any more: forget it.
+    void db.getAiKey().then((k) => {
+      if (k) void db.saveAiKey(null)
+    })
     db.getTtsKey().then((k) => (natural.key = k))
     db.getSpeechKey().then((c) => {
       azure.key = c?.key ?? null
       azure.region = c?.region ?? null
     })
   }, [])
+
+  useEffect(() => {
+    if (!access.approved) return setAiReady(false)
+    let live = true
+    aiAvailable().then((ok) => live && setAiReady(ok))
+    return () => {
+      live = false
+    }
+  }, [access.approved])
 
   useEffect(() => {
     if (settings) applySettings(settings)
@@ -46,10 +59,6 @@ export function useAppSettings() {
     () => ({
       apiKey,
       needsApproval: !access.approved,
-      setApiKey: async (key: string | null) => {
-        await db.saveAiKey(key)
-        setApiKeyState(key)
-      },
     }),
     [apiKey, access.approved],
   )

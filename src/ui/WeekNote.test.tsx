@@ -31,7 +31,7 @@ describe('the AI coach on the week card', () => {
   const show = (apiKey: string | null, summary = week) =>
     act(() =>
       root.render(
-        <AiContext.Provider value={{ apiKey, setApiKey: async () => {} }}>
+        <AiContext.Provider value={{ apiKey }}>
           <WeeklyNudge language="fr" line="x" summary={summary} lemmaOf={() => undefined} now={SUNDAY} onOpen={() => {}} onWord={() => {}} />
         </AiContext.Provider>,
       ),

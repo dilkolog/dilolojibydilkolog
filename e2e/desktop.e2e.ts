@@ -6,7 +6,7 @@ import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share a
 import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
 import { unzipSync } from 'fflate'
-import { approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
+import { aiRoute, approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -2070,7 +2070,6 @@ test('AI fill missing and suggest words: approval gates button, Anthropic route 
     const open = indexedDB.open('kelime-koc')
     open.onsuccess = () => {
       const tx = open.result.transaction('meta', 'readwrite')
-      tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test-key-123' })
       tx.oncomplete = () => window.dispatchEvent(new Event('diloloji:account'))
     }
   })
@@ -2078,7 +2077,7 @@ test('AI fill missing and suggest words: approval gates button, Anthropic route 
   await openScreen(page, 'Kelimeler')
 
   // Mock Anthropic API for enrichWords
-  await page.route(/api\.anthropic\.com/, async (r) => {
+  await aiRoute(page, async (r) => {
     const mockResponse = {
       id: 'msg_123',
       type: 'message',
