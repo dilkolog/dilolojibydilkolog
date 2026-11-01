@@ -1271,7 +1271,7 @@ test('auth screen and onboarding pass color contrast checks across light, dark, 
   const checkContrast = async (where: string) => {
     for (const theme of ['light', 'dark', 'calm'] as const) {
       await setTheme(theme)
-      await page.waitForTimeout(300)
+      await settleTransitions(page)
       const contrastViolations = await new AxeBuilder({ page }).withRules(['color-contrast']).analyze()
       for (const v of contrastViolations.violations) {
         problems.push(`${where} [${theme}] (axe: ${v.nodes.map((n) => n.target.join(' ')).join(', ')})`)
