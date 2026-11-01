@@ -1013,7 +1013,8 @@ test('the account card says where you stand: two reasons and wide buttons signed
   await openScreen(page, 'Profil')
   await page.locator('.profile-settings').click()
   await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
-  await expect(card.locator('.status-pill')).toHaveText(/Onay|Onaylı/)
+  // Approved: a verified mark beside the name; otherwise a pill says where the account stands.
+  await expect(card.locator('.verified-mark, .status-pill').first()).toBeVisible()
   await expect(card.locator('.account-name')).toHaveText('ali')
   // Syncing runs by itself: no button for it, and no history section.
   await expect(card.getByRole('button', { name: 'Şimdi eşitle' })).toHaveCount(0)

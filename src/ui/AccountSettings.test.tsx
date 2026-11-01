@@ -70,6 +70,14 @@ describe('AccountSettings sync', () => {
     expect(host.textContent).toContain('sınırına yaklaşıyor')
   })
 
+  it('shows the verified blossom mark beside the name when approved, without status pill', async () => {
+    await mount()
+    const mark = host.querySelector('.account-name-line .verified-mark')
+    expect(mark).toBeTruthy()
+    expect(mark?.getAttribute('aria-label')).toBe('Onaylı hesap')
+    expect(host.querySelector('.status-pill')).toBeNull()
+  })
+
   it('keeps saying what the last sync left behind, even when it ran in the background', async () => {
     state.meta.set('syncSkipped', 3)
     await mount()
