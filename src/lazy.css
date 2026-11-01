@@ -1639,6 +1639,7 @@ button.badge-card:active { transform: none; }
 .account-mark { display: grid; place-items: center; flex: none; width: 3rem; height: 3rem; border-radius: var(--r-md); background: var(--lang-soft); color: var(--lang-text); }
 .account-title { display: grid; gap: 0.25rem; min-width: 0; }
 .status-pill { display: inline-flex; align-items: center; gap: 0.4rem; justify-self: start; max-width: 100%; padding: 0.125rem 0.625rem 0.125rem 0.5rem; border-radius: var(--r-full); font-size: var(--t-xs); font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.status-pill svg { flex: none; }
 .status-pill i { width: 0.5rem; height: 0.5rem; flex: none; border-radius: 50%; background: currentColor; }
 .account-lead { font-size: var(--t-sm); max-width: 38rem; }
 .account-perks { list-style: none; display: grid; gap: 0.875rem; padding: 1rem; border-radius: var(--r-md); background: var(--surface-2); }

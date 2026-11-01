@@ -2,7 +2,7 @@ import { currentIdentity, signInWithGoogle, supabaseConfigured, type Identity } 
 import { AccountManage, AccountDelete } from './AccountManage'
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
-import { ChartIcon, LockIcon } from './icons'
+import { ChartIcon, CheckIcon, LockIcon } from './icons'
 import { db } from '../data/instance'
 import { syncUsage, type Account } from '../data/sync'
 import type { AuthMode } from './AuthScreen'
@@ -122,7 +122,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
             <h2 className="account-name">{name}</h2>
             <HandleTag handle={handle} />
             <span className={`status-pill ${status === 'approved' ? 'is-on' : 'is-off'}`} role="status">
-              <i aria-hidden /> {STATUS_TEXT[status]}
+              {status === 'approved' ? <CheckIcon size={14} /> : <i aria-hidden />} {STATUS_TEXT[status]}
             </span>
           </div>
           {identity?.email && <p className="account-email">{identity.email}</p>}
