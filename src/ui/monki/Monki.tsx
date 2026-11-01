@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import '../../lazy.css'
 import { AiError, monkiTurn, type MonkiMode } from '../../ai'
 import type { TargetLanguage } from '../../engine/types'
-import { useAi } from '../aiContext'
+import { useAi, useAllows } from '../aiContext'
 import { CloseIcon, MicIcon, SendIcon, StopIcon } from '../icons'
 import { canListen, listen, type Listening } from '../speechInput'
 import { canSpeak, speak, stopSpeaking } from '../speech'
@@ -242,7 +242,11 @@ export default function Monki({
   inSession?: boolean
   onSettings: () => void
 }) {
-  const { apiKey, needsApproval } = useAi()
+  const { apiKey: accountKey, needsApproval } = useAi()
+  // The owner opens the chat for an account (profiles.ai_level 'tam'): approved but not opened, the panel says so.
+  const chatOpen = useAllows()('monki')
+  const apiKey = chatOpen ? accountKey : null
+  const locked = !!accountKey && !chatOpen
   const [open, setOpen] = useState(false)
   const [msgs, setMsgs] = useState<Msg[]>(() => loadChat(language))
   const [suggestions, setSuggestions] = useState<string[]>([])
@@ -557,7 +561,9 @@ export default function Monki({
                 <strong>{hello}</strong>
               </p>
               <p className="muted">
-                {needsApproval
+                {locked
+                  ? 'Benimle sohbet henüz hesabına açılmadı. Site sahibi izin verince kendiliğinden açılırım; o zamana dek diğer YZ özellikleri (cümle değerlendirme, ters çeviri…) çalışır.'
+                  : needsApproval
                   ? 'Benimle konuşmak için hesabının site sahibi tarafından onaylanması gerekiyor. Onaylanınca ben de kendiliğinden açılırım, anahtar girmen gerekmez.'
                   : 'Şu an sana ulaşamıyorum: internet yok ya da YZ henüz sunucuda kurulmamış. Biraz sonra yeniden dene.'}
               </p>

@@ -1,16 +1,18 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 vi.mock('../../api/_account.js', () => ({ requireApproved: vi.fn(async () => null), accountOf: vi.fn(async () => 'acct') }))
+vi.mock('../../api/_supabase.js', () => ({ aiLevelOf: vi.fn(async () => null) }))
 vi.mock('../../api/_quota.js', () => ({ quotaLeft: vi.fn(async () => true), quotaUsed: vi.fn(async () => 0), spendQuota: vi.fn(async () => {}), dailyQuotaReached: () => Response.json({ error: 'daily_quota' }, { status: 429 }) }))
 
 import { POST, GET, refuse, costUnits, MAX_TOKENS } from '../../api/ai'
 import { requireApproved } from '../../api/_account.js'
 import { quotaLeft, quotaUsed, spendQuota } from '../../api/_quota.js'
+import { aiLevelOf } from '../../api/_supabase.js'
 import { resetRate } from '../../api/_rate.js'
 
 const good = { model: 'claude-sonnet-5-5', max_tokens: 1000, messages: [{ role: 'user', content: 'hi' }] }
 const ask = (body: unknown, headers: Record<string, string> = {}) =>
-  new Request('https://diloloji.com/api/ai', { method: 'POST', headers: { origin: 'https://diloloji.com', 'content-type': 'application/json', ...headers }, body: typeof body === 'string' ? body : JSON.stringify(body) })
+  new Request('https://diloloji.com/api/ai', { method: 'POST', headers: { origin: 'https://diloloji.com', 'content-type': 'application/json', 'x-ai-feature': 'sentence', ...headers }, body: typeof body === 'string' ? body : JSON.stringify(body) })
 
 beforeEach(() => {
   resetRate()
@@ -19,6 +21,7 @@ beforeEach(() => {
   vi.mocked(quotaLeft).mockResolvedValue(true)
   vi.mocked(quotaUsed).mockResolvedValue(0)
   vi.mocked(spendQuota).mockClear()
+  vi.mocked(aiLevelOf).mockResolvedValue(null)
   process.env.ANTHROPIC_API_KEY = 'sk-test-key'
 })
 
@@ -92,5 +95,56 @@ describe('what a day may cost', () => {
     expect(spendQuota).toHaveBeenCalledWith('ai-cost', 'acct', expect.any(Number))
     vi.mocked(quotaUsed).mockResolvedValue(10_000_000)
     expect((await POST(ask(good))).status).toBe(429)
+  })
+})
+
+describe('what the owner opened for an account (profiles.ai_level)', () => {
+  const ok = () => vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({ usage: { input_tokens: 1, output_tokens: 1 } }), { status: 200 }))
+
+  it('an account with no level set gets the default: study features yes, the free chat, photo and podcast no', async () => {
+    const upstream = ok()
+    expect((await POST(ask(good, { 'x-ai-feature': 'sentence' }))).status).toBe(200)
+    for (const f of ['monki', 'chat', 'photo_words', 'podcast']) {
+      const res = await POST(ask(good, { 'x-ai-feature': f }))
+      expect(res.status).toBe(403)
+      expect(await res.json()).toMatchObject({ error: 'ai_level', level: 'calisma', needs: 'tam' })
+    }
+    expect(upstream).toHaveBeenCalledTimes(1)
+  })
+
+  it('the owner can open everything, narrow it to words, or close it', async () => {
+    ok()
+    vi.mocked(aiLevelOf).mockResolvedValue('tam')
+    expect((await POST(ask(good, { 'x-ai-feature': 'monki' }))).status).toBe(200)
+    vi.mocked(aiLevelOf).mockResolvedValue('kelime')
+    expect((await POST(ask(good, { 'x-ai-feature': 'word_fill' }))).status).toBe(200)
+    expect((await POST(ask(good, { 'x-ai-feature': 'sentence' }))).status).toBe(403)
+    vi.mocked(aiLevelOf).mockResolvedValue('kapali')
+    expect((await POST(ask(good, { 'x-ai-feature': 'word_fill' }))).status).toBe(403)
+  })
+
+  it('a request that names no feature, or one the app does not have, is refused', async () => {
+    ok()
+    expect((await POST(ask(good, { 'x-ai-feature': 'free_chat' }))).status).toBe(400)
+    expect((await POST(ask(good, { 'x-ai-feature': '' }))).status).toBe(400)
+  })
+
+  it('the day’s money is shared out by level: a smaller level stops sooner', async () => {
+    ok()
+    vi.mocked(aiLevelOf).mockResolvedValue('kelime')
+    vi.mocked(quotaUsed).mockResolvedValue(Math.round(0.75 * 10_000 * 0.2))
+    expect((await POST(ask(good, { 'x-ai-feature': 'word_fill' }))).status).toBe(429)
+    vi.mocked(aiLevelOf).mockResolvedValue('tam')
+    expect((await POST(ask(good, { 'x-ai-feature': 'word_fill' }))).status).toBe(200)
+  })
+
+  it('GET tells the app its level and what it opens, and closed means not available', async () => {
+    const get = () => GET(new Request('https://diloloji.com/api/ai', { headers: { origin: 'https://diloloji.com' } }))
+    const open = await (await get()).json()
+    expect(open).toMatchObject({ available: true, level: 'calisma' })
+    expect(open.features).toContain('sentence')
+    expect(open.features).not.toContain('monki')
+    vi.mocked(aiLevelOf).mockResolvedValue('kapali')
+    expect(await (await get()).json()).toMatchObject({ available: false, level: 'kapali', features: [] })
   })
 })

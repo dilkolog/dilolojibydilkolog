@@ -7,13 +7,18 @@
  * account, a few calls a minute, AI_DAILY_CALLS calls (default 150) and AI_DAILY_BUDGET_USD (default 0.75) a day
  * per account (the money is counted from the usage Anthropic reports, so a few big calls cannot hide behind the
  * call count), a request body of at most MAX_BODY bytes, only the models the app offers, no tools and no streaming
- * (the app uses neither), and max_tokens capped. The answer goes back as Anthropic wrote it (the SDK reads usage and refusals from it).
+ * (the app uses neither), and max_tokens capped. What each account may do is the owner's call: profiles.ai_level
+ * (kapali, kelime, calisma, tam; src/ai/levels.ts) says which features its requests may name (the x-ai-feature header),
+ * and the day's money is shared out by level. A request names its feature honestly or it is not the app's: the
+ * level keeps the app's own screens in line and bulk misuse in bounds, the money limit is the hard stop. The answer goes back as Anthropic wrote it (the SDK reads usage and refusals from it).
  */
 
 import { accountOf, requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
 import { overLimit, tooMany } from './_rate.js'
 import { dailyQuotaReached, quotaLeft, quotaUsed, spendQuota } from './_quota.js'
+import { aiLevelOf } from './_supabase.js'
+import { BUDGET_SHARE, DEFAULT_AI_LEVEL, FEATURE_LEVEL, featuresOf, isAiFeature, isAiLevel, levelAllows, type AiLevel } from '../src/ai/levels.js'
 
 export { fromApp }
 
@@ -32,7 +37,15 @@ const BETA = /^[a-z0-9][a-z0-9.,\- ]{0,200}$/
 
 const json = (body: unknown, status = 200) => Response.json(body, { status, headers: { 'cache-control': 'no-store' } })
 const dailyCalls = () => Math.max(1, Number(process.env.AI_DAILY_CALLS) || DEFAULT_DAILY_CALLS)
-const dailyBudget = () => Math.round((Number(process.env.AI_DAILY_BUDGET_USD) || DEFAULT_DAILY_BUDGET_USD) * UNIT)
+const dailyBudget = (level: AiLevel = 'tam') => Math.round((Number(process.env.AI_DAILY_BUDGET_USD) || DEFAULT_DAILY_BUDGET_USD) * UNIT * BUDGET_SHARE[level])
+
+/** The level the owner gave the request's account: the default one when none is set; without accounts (local development) everything is open. */
+export async function levelOf(request: Request): Promise<AiLevel> {
+  const id = await accountOf(request).catch(() => null)
+  if (!id) return 'tam'
+  const set = await aiLevelOf(id)
+  return isAiLevel(set) ? set : DEFAULT_AI_LEVEL
+}
 
 /** What an answer cost, in budget units, from the usage it reports (0 when it reports none). */
 export function costUnits(model: string, usage: unknown): number {
@@ -48,7 +61,8 @@ export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
   const denied = await requireApproved(request)
   if (denied) return denied
-  return json({ available: !!process.env.ANTHROPIC_API_KEY?.trim() })
+  const level = await levelOf(request)
+  return json({ available: !!process.env.ANTHROPIC_API_KEY?.trim() && level !== 'kapali', level, features: featuresOf(level) })
 }
 
 /** Why a request body may not go on, or null. */
@@ -83,9 +97,14 @@ export async function POST(request: Request): Promise<Response> {
   const bad = refuse(body)
   if (bad) return json({ error: bad }, 400)
 
+  const feature = request.headers.get('x-ai-feature')?.trim()
+  if (!isAiFeature(feature)) return json({ error: 'bad feature' }, 400)
+  const level = await levelOf(request)
+  if (!levelAllows(level, feature)) return json({ error: 'ai_level', level, needs: FEATURE_LEVEL[feature] }, 403)
+
   const account = await accountOf(request).catch(() => null)
   if (account && !(await quotaLeft('ai', account, 1, dailyCalls()))) return dailyQuotaReached()
-  if (account && (await quotaUsed('ai-cost', account)) >= dailyBudget()) return dailyQuotaReached()
+  if (account && (await quotaUsed('ai-cost', account)) >= dailyBudget(level)) return dailyQuotaReached()
 
   const beta = request.headers.get('anthropic-beta')?.trim()
   const res = await fetch('https://api.anthropic.com/v1/messages?beta=true', {

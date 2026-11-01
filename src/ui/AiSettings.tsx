@@ -5,6 +5,7 @@ import type { Settings } from '../data/db'
 import { db } from '../data/instance'
 import { useAccess } from './accessContext'
 import { useAi } from './aiContext'
+import { LEVEL_NAME, LEVEL_NOTE } from '../ai/levels'
 import { WandIcon } from './icons'
 import { Sticker } from './Sticker'
 
@@ -20,7 +21,7 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
   }, [settings])
   const thisMonth = usage[monthKey(new Date())]
   const months = Object.keys(usage).sort().reverse()
-  const { apiKey, needsApproval } = useAi()
+  const { apiKey, needsApproval, level } = useAi()
   const { status: access } = useAccess()
   return (
     <section className="section card stack">
@@ -37,13 +38,22 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
               : 'YZ özellikleri, site sahibinin onayladığı hesaplara açık. Hesabın onay bekliyor; onaylanınca kendiliğinden açılır, bir anahtar girmen gerekmez.'}
         </p>
       ) : apiKey ? (
-        <div className="row">
-          <span className="pill stage-5">Açık</span>
-          <span className="small muted">Hesabınla birlikte hazır, anahtar girmen gerekmez.</span>
-        </div>
+        <>
+          <div className="row">
+            <span className="pill stage-5">Açık</span>
+            <span className="small muted">Hesabınla birlikte hazır, anahtar girmen gerekmez.</span>
+          </div>
+          {level && (
+            <p className="small muted" role="status">
+              <strong>Düzeyin: {LEVEL_NAME[level]}.</strong> {LEVEL_NOTE[level]} Düzeyi site sahibi belirler.
+            </p>
+          )}
+        </>
       ) : (
         <p className="note" role="status">
-          YZ şu an kullanılamıyor: internet yok ya da sunucuda henüz kurulmamış. Uygulamanın geri kalanı aynen çalışır.
+          {level === 'kapali'
+            ? 'YZ özellikleri hesabın için kapalı (düzeyi site sahibi belirler).'
+            : 'YZ şu an kullanılamıyor: internet yok ya da sunucuda henüz kurulmamış. Uygulamanın geri kalanı aynen çalışır.'}
         </p>
       )}
       <div className="field">

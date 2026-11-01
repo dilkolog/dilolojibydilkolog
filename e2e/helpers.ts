@@ -378,6 +378,6 @@ export async function selectWords(page: Page) {
 export async function aiRoute(page: Page, answer: (route: Route) => Promise<void> | void) {
   await page.route(
     (u) => u.pathname === '/api/ai',
-    (r) => (r.request().method() === 'GET' ? r.fulfill({ json: { available: true } }) : answer(r)),
+    (r) => (r.request().method() === 'GET' ? r.fulfill({ json: { available: true, level: 'tam', features: ['test', 'word_fill', 'suggest', 'mnemonic', 'family', 'word_suggest', 'personal_sentences', 'prequestions', 'comprehension', 'notes_quiz', 'sentence', 'translation', 'retell', 'story', 'journal', 'report', 'session_note', 'week_note', 'verb_explain', 'pron_tips', 'chat', 'monki', 'photo_words', 'podcast'] } }) : answer(r)),
   )
 }
