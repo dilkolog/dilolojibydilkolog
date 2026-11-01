@@ -78,12 +78,17 @@ const SCENES: { label: string; art: string }[] = [
 ]
 const SCENARIOS = SCENES.map((s) => s.label)
 
-const STARTERS = (mode: MonkiMode, hasWeak: boolean, hasMistakes: boolean): string[] => {
-  if (mode === 'quiz') return ['Kelimelerimden sor', 'Dilbilgisi sorusu sor', 'Boşluk doldurma sorusu sor', 'Çeviri sorusu sor']
+/** The one thing worth starting with, picked by `seed` (0 to 1) from the few that suit what the learner has, so it changes every time the chat is opened. */
+const STARTERS = (mode: MonkiMode, hasWeak: boolean, hasMistakes: boolean, seed = 0): string[] => {
+  const pick = (list: string[]) => (list.length ? [list[Math.min(list.length - 1, Math.floor(seed * list.length))]] : [])
+  if (mode === 'quiz') return pick(['Kelimelerimden sor', 'Dilbilgisi sorusu sor', 'Boşluk doldurma sorusu sor', 'Çeviri sorusu sor'])
   if (mode === 'roleplay') return SCENARIOS
-  if (mode === 'mistakes') return hasMistakes ? ['Hatalarımı sırayla inceleyelim', 'En çok yaptığım hatadan başla'] : []
+  if (mode === 'mistakes') return hasMistakes ? pick(['Hatalarımı sırayla inceleyelim', 'En çok yaptığım hatadan başla']) : []
   if (mode === 'words' || mode === 'pron') return ['Başlayalım']
-  return ['Bugün işime yarayacak 5 kalıp öğret', 'Yazdığım cümleyi düzeltir misin?', hasWeak ? 'Zorlandığım kelimelerle kısa bir hikâye yaz' : 'Bana kısa, kolay bir hikâye yaz']
+  // What helps most comes first: the words that are hard for them, then what they get wrong; with neither, something general.
+  if (hasWeak) return pick(['Zorlandığım kelimelerle kısa bir hikâye yaz', 'Zorlandığım bir kelimeyi hafızada kalacak şekilde anlat', 'Zorlandığım kelimelerle iki küçük cümle kurdur'])
+  if (hasMistakes) return pick(['En çok yaptığım hatayı kısaca anlat', 'Son hatalarımdan birini açıkla'])
+  return pick(['Bugün işime yarayacak 5 kalıp öğret', 'Yazdığım cümleyi düzeltir misin?', 'Bana kısa, kolay bir hikâye yaz', 'Günlük hayattan kısa bir diyalog yaz'])
 }
 
 const INTRO: Record<MonkiMode, (hello: string, lang: string, hasMistakes: boolean) => string> = {
@@ -245,6 +250,11 @@ export default function Monki({
   const apiKey = chatOpen ? accountKey : null
   const locked = !!accountKey && !chatOpen
   const [open, setOpen] = useState(false)
+  // A new starter suggestion every time the chat is opened.
+  const [seed, setSeed] = useState(() => Math.random())
+  useEffect(() => {
+    if (open) setSeed(Math.random())
+  }, [open])
   const [msgs, setMsgs] = useState<Msg[]>(() => loadChat(language))
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [text, setText] = useState('')
@@ -688,7 +698,7 @@ export default function Monki({
                 </div>
               ) : (
                 <div className={msgs.length === 0 || (mode === 'roleplay' && !scenario) ? 'monki-chips monki-chips-start' : 'monki-chips'}>
-                  {(msgs.length === 0 || (mode === 'roleplay' && !scenario) ? STARTERS(mode, !!weakWords?.length, !!mistakes?.length) : suggestions).map((s) => (
+                  {(msgs.length === 0 || (mode === 'roleplay' && !scenario) ? STARTERS(mode, !!weakWords?.length, !!mistakes?.length, seed) : suggestions).map((s) => (
                     <button key={s} type="button" className="chip" disabled={busy} onClick={() => (msgs.length === 0 || (mode === 'roleplay' && !scenario) ? startWith(s) : void send(s))}>
                       {s}
                     </button>

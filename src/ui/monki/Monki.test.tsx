@@ -67,6 +67,19 @@ describe('Monki', () => {
     expect(container.textContent).toContain('onaylanması')
   })
 
+  it('offers a single starter, one that suits the words that are hard, and changes it from one opening to the next', () => {
+    render('sk-test')
+    const starters = new Set<string>()
+    for (let i = 0; i < 40; i++) {
+      openPanel()
+      const chips = container.querySelectorAll('.monki-chips .chip')
+      expect(chips).toHaveLength(1)
+      starters.add(chips[0].textContent!)
+      act(() => container.querySelector<HTMLButtonElement>('.monki-head [aria-label="Kapat"]')!.click())
+    }
+    expect(starters.size).toBeGreaterThan(1)
+  })
+
   it('greets, sends a message with the weak words and shows the reply and its suggestions', async () => {
     monkiTurn.mockResolvedValue({ reply: 'Bonjour! **la maison** = ev', suggestions: ['Bir örnek daha'] })
     render('sk-test')
