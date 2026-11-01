@@ -10,7 +10,7 @@ export function friendNotice(item: InboxItem, who: string): Draft {
     item.kind === 'cheer'
       ? `${who} seni tebrik etti`
       : item.kind === 'nudge'
-        ? `${who} seni dürttü: bugün biraz çalışmaya ne dersin?`
+        ? `${who} seni özledi: bugün 5 dakika yeter, ne dersin?`
         : item.kind === 'gift' && item.gift
           ? `${who} sana bir kelime gönderdi: ${item.gift.lemma} = ${item.gift.meaning}`
           : item.kind === 'text' && item.text

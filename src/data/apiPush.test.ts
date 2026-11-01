@@ -330,7 +330,7 @@ describe('friendMessage', () => {
   it('says who it is from and what kind, never the content, and keeps the name to one clean line', async () => {
     const { friendMessage } = await import('../../api/_notify')
     const from = { code: 'ABCDEFGH', name: 'Ayşe' }
-    expect(friendMessage({ kind: 'nudge', from }).body).toBe('👋 Ayşe seni dürttü: bugün biraz çalışmaya ne dersin?')
+    expect(friendMessage({ kind: 'nudge', from }).body).toBe('👋 Ayşe seni özledi: bugün 5 dakika yeter, ne dersin?')
     expect(friendMessage({ kind: 'gift', from }).body).toBe('🎁 Ayşe sana bir kelime gönderdi')
     expect(friendMessage({ kind: 'text', from }).body).toBe('📖 Ayşe sana bir metin gönderdi')
     expect(friendMessage({ kind: 'cheer', from: { code: 'X', name: '<b>Ayşe</b>\n' + 'x'.repeat(60) } }).body).toBe(`👏 bAyşe/b${'x'.repeat(23)} seni tebrik etti`)

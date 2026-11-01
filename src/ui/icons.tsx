@@ -101,6 +101,13 @@ export const UserIcon = (p: P) => (
     <S d="M4.5 20.5a7.5 7.5 0 0 1 15 0z" />
   </Icon>
 )
+export const UsersIcon = (p: P) => (
+  <Icon {...p}>
+    <S d="M9 4.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z" />
+    <S d="M2.5 19.5a6.5 6.5 0 0 1 13 0z" />
+    <path d="M16 5.2a3.2 3.2 0 0 1 0 6.1M18 13.5a6.4 6.4 0 0 1 3.5 6" />
+  </Icon>
+)
 export const LogoutIcon = (p: P) => (
   <Icon {...p}>
     <S d="M10 4.5H6.5a1.5 1.5 0 0 0-1.5 1.5v12a1.5 1.5 0 0 0 1.5 1.5H10" />

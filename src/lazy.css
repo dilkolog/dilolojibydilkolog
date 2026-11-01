@@ -3709,3 +3709,10 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .dialogue-other { justify-self: start; background: var(--surface-2); border: 1px solid var(--rule); border-bottom-left-radius: var(--r-sm); }
 .dialogue-you { justify-self: end; margin-left: auto; background: var(--lang-soft); border-bottom-right-radius: var(--r-sm); }
 .dialogue-tr { flex-basis: 100%; }
+
+/* ---------- Community ---------- */
+
+.community-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.75rem; }
+.community-tile { display: grid; gap: 0.25rem; text-align: left; padding: 0.875rem 1rem; border-radius: var(--r-md); background: var(--surface-2); color: var(--ink); border: 1px solid var(--rule); cursor: pointer; transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out); }
+.community-tile:hover { background: var(--lang-soft); }
+.community-tile:active { transform: scale(0.99); }
