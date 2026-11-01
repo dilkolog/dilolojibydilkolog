@@ -173,7 +173,7 @@ describe('Monki', () => {
     render('sk-test')
     openPanel()
     expect(container.textContent).toContain('coucou')
-    const clear = [...container.querySelectorAll<HTMLButtonElement>('.monki-head .btn')].find((b) => b.textContent === 'Temizle')!
+    const clear = container.querySelector<HTMLButtonElement>('.monki-head [aria-label="Sohbeti temizle"]')!
     act(() => clear.click())
     expect(container.textContent).not.toContain('coucou')
     expect(localStorage.getItem('diloloji:monki:fr')).toBeNull()
@@ -183,8 +183,8 @@ describe('Monki', () => {
     localStorage.setItem('diloloji:monki:fr', JSON.stringify([{ role: 'user', text: 'salut' }]))
     render(null)
     openPanel()
-    const clear = [...container.querySelectorAll<HTMLButtonElement>('.monki-head .btn')].find((b) => b.textContent === 'Temizle')
-    expect(clear).toBeUndefined()
+    const clear = container.querySelector<HTMLButtonElement>('.monki-head [aria-label="Sohbeti temizle"]')
+    expect(clear).toBeNull()
   })
 
   it('shows an error without losing the question when the reply fails', async () => {
@@ -306,7 +306,7 @@ describe('Monki', () => {
 
   describe('memory', () => {
     const starter = () => act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
-    const memoryButton = () => [...container.querySelectorAll<HTMLButtonElement>('.monki-head button')].find((b) => b.textContent?.includes('Hatırladıkları'))!
+    const memoryButton = () => container.querySelector<HTMLButtonElement>('.monki-head [aria-label^="Monki\'nin hatırladıkları"]')!
 
     it('keeps the notes Monki returns and hands them back on the next turn', async () => {
       monkiTurn.mockResolvedValueOnce({ reply: 'Tamam', suggestions: [], remember: ['passé composé ile imparfait karışıyor'] })
@@ -331,7 +331,7 @@ describe('Monki', () => {
       localStorage.setItem('diloloji:monki-memory:fr', JSON.stringify([{ id: 'a', text: 'bir', at: '2026-10-20' }, { id: 'b', text: 'iki', at: '2026-10-21' }]))
       render('sk-test')
       openPanel()
-      expect(memoryButton().textContent).toContain('(2)')
+      expect(memoryButton().getAttribute('aria-label')).toContain('(2)')
       act(() => memoryButton().click())
       expect(container.querySelector('.monki-memory')?.textContent).toContain('bir')
       act(() => container.querySelector<HTMLButtonElement>('.monki-memory-list .icon-btn')!.click())

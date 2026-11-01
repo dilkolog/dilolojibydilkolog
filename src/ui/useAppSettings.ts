@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { db } from '../data/instance'
 import type { Settings } from '../data/db'
-import { aiConfig, monthKey } from '../ai/usage'
-import { AiError } from '../ai/types'
+import { aiConfig } from '../ai/usage'
 import type { AiFeature } from '../ai/usage'
 import { applySettings } from './prefs'
 import { natural } from './naturalVoice'
@@ -46,14 +45,9 @@ export function useAppSettings() {
 
   useEffect(() => {
     if (settings) applySettings(settings)
-    // AI usage is recorded per month, and the monthly limit is checked before each request.
-    const limit = settings?.aiMonthlyLimit ?? 0
+    // The usage is still noted on the device; the real limits (calls and money a day) are on the server (api/ai.ts).
     aiConfig.onUsage = (r) => void db.addAiUsage(r)
-    aiConfig.beforeRequest = async () => {
-      if (!limit) return
-      const spent = (await db.getAiUsage())[monthKey(new Date())]?.cost ?? 0
-      if (spent >= limit) throw new AiError('budget', 'Bu ayki YZ bütçen doldu. Ayarlar → YZ yardımcısı bölümünden sınırı değiştirebilirsin.')
-    }
+    aiConfig.beforeRequest = async () => {}
   }, [settings])
 
   const ai = useMemo(

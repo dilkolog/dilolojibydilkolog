@@ -3,14 +3,14 @@ import '../../lazy.css'
 import { AiError, monkiTurn, type MonkiMode } from '../../ai'
 import type { TargetLanguage } from '../../engine/types'
 import { useAi, useAllows } from '../aiContext'
-import { CloseIcon, MicIcon, SendIcon, StopIcon } from '../icons'
+import { BrainIcon, CloseIcon, MicIcon, SendIcon, StopIcon, TrashIcon } from '../icons'
 import { canListen, listen, type Listening } from '../speechInput'
 import { canSpeak, speak, stopSpeaking } from '../speech'
 import { LANGUAGE_NAME } from '../labels'
 import { RichText } from '../RichText'
 import { MonkiFace, MonkiPose, MonkiStage } from './MonkiMascot'
 import { setMonkiListener, type MonkiAsk } from './monkiBus'
-import { EMBLEM, ROLE_ART } from '../drawnArt'
+import { ROLE_ART } from '../drawnArt'
 import { talkProgress, usesWord } from './monkiWords'
 import { markDailyTalkDone } from './dailyTalkStore'
 import { askedToday, countAsk, overLimit } from './dailyLimit'
@@ -58,9 +58,6 @@ function saveChat(language: TargetLanguage, msgs: Msg[]) {
     // Storage full or blocked: the chat just does not survive a reload.
   }
 }
-
-/** A small drawn emblem on three of the four mode chips. */
-const MODE_EMBLEM: Partial<Record<MonkiMode, string>> = { chat: EMBLEM.chat, quiz: EMBLEM.trophy, roleplay: EMBLEM.mic }
 
 type ChipMode = Exclude<MonkiMode, 'words' | 'write' | 'exam'>
 const MODES: { id: ChipMode; label: string; hint: string }[] = [
@@ -537,16 +534,16 @@ export default function Monki({
             </span>
             <div className="monki-title">
               <strong>Monki</strong>
-              <span className="small muted">{LANGUAGE_NAME[language]} çalışma arkadaşın</span>
+              <span className="small muted">{LANGUAGE_NAME[language]} arkadaşın</span>
             </div>
             {apiKey && (
-              <button type="button" className="btn btn-quiet btn-sm" aria-pressed={showMemory} onClick={() => setShowMemory((v) => !v)} title="Monki'nin senin hakkında hatırladıkları">
-                Hatırladıkları{memory.length ? ` (${memory.length})` : ''}
+              <button type="button" className="icon-btn" aria-pressed={showMemory} onClick={() => setShowMemory((v) => !v)} aria-label={`Monki'nin hatırladıkları${memory.length ? ` (${memory.length})` : ''}`} title="Monki'nin senin hakkında hatırladıkları">
+                <BrainIcon size={18} />
               </button>
             )}
             {apiKey && msgs.length > 0 && (
-              <button type="button" className="btn btn-quiet btn-sm" onClick={clear}>
-                Temizle
+              <button type="button" className="icon-btn" onClick={clear} aria-label="Sohbeti temizle" title="Sohbeti temizle">
+                <TrashIcon size={18} />
               </button>
             )}
             <button type="button" className="icon-btn" onClick={() => setOpen(false)} aria-label="Kapat">
@@ -607,7 +604,6 @@ export default function Monki({
               <div className="monki-modes" role="group" aria-label="Sohbet türü">
                 {MODES.filter((m) => m.id !== 'pron' || pronWords.length > 0).map((m) => (
                   <button key={m.id} type="button" className="chip chip-sm" aria-pressed={mode === m.id} title={m.hint} onClick={() => pickMode(m.id)}>
-                    {MODE_EMBLEM[m.id] && <img className="chip-art" src={MODE_EMBLEM[m.id]} alt="" width={18} height={18} draggable={false} />}
                     {m.label}
                   </button>
                 ))}
@@ -691,7 +687,7 @@ export default function Monki({
                   ))}
                 </div>
               ) : (
-                <div className="monki-chips">
+                <div className={msgs.length === 0 || (mode === 'roleplay' && !scenario) ? 'monki-chips monki-chips-start' : 'monki-chips'}>
                   {(msgs.length === 0 || (mode === 'roleplay' && !scenario) ? STARTERS(mode, !!weakWords?.length, !!mistakes?.length) : suggestions).map((s) => (
                     <button key={s} type="button" className="chip" disabled={busy} onClick={() => (msgs.length === 0 || (mode === 'roleplay' && !scenario) ? startWith(s) : void send(s))}>
                       {s}

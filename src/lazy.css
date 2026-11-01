@@ -2228,10 +2228,10 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   display: flex; flex-direction: column; background: var(--surface); border-radius: var(--r-lg);
   box-shadow: var(--shadow-xl); overflow: hidden; animation: rise-in var(--dur) var(--ease-out);
 }
-.monki-head { display: flex; align-items: center; gap: 0.5rem; padding: 0.625rem 0.75rem; border-bottom: 1px solid var(--rule); background: var(--lang-soft); }
+.monki-head { display: flex; align-items: center; gap: 0.25rem; padding: 0.625rem 0.75rem; border-bottom: 1px solid var(--rule); background: var(--lang-soft); }
 .monki-avatar { width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--surface); display: grid; place-items: center; overflow: hidden; flex: none; }
 .monki-avatar .monki-face { margin-top: 0.3rem; }
-.monki-title { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.25; }
+.monki-title { flex: 1 1 0; min-width: 0; margin-left: 0.25rem; display: flex; flex-direction: column; line-height: 1.25; }
 .monki-memory { margin: 0.5rem 0.875rem 0; padding: 0.625rem 0.75rem; border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface-2, var(--surface)); display: grid; gap: 0.5rem; max-height: 14rem; overflow-y: auto; }
 .monki-memory p { margin: 0; }
 .monki-memory-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
@@ -2242,7 +2242,8 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .monki-verdict { display: flex; align-items: center; gap: 0.625rem; margin: 0; padding: 0.5rem 0.75rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); }
 .monki-verdict .monki-face { flex: none; }
 .monki-cost { margin: 0; padding: 0 0.875rem 0.625rem; text-align: center; font-variant-numeric: tabular-nums; }
-.monki-modes { display: flex; gap: 0.375rem; padding: 0.5rem 0.875rem 0; flex-wrap: wrap; }
+.monki-modes { display: flex; gap: 0.375rem; padding: 0.5rem 0.875rem 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.monki-modes::-webkit-scrollbar, .monki-chips::-webkit-scrollbar { display: none; }
 .monki-modes .chip { flex: none; }
 /* Words mode: the words to use, ticked off as the learner uses them. */
 .monki-targets { display: flex; gap: 0.375rem; padding: 0.5rem 0.875rem 0; flex-wrap: wrap; }
@@ -2260,7 +2261,9 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .monki-typing span:nth-child(2) { animation-delay: 0.15s; }
 .monki-typing span:nth-child(3) { animation-delay: 0.3s; }
 .monki-error { color: var(--bad-text); }
-.monki-chips { display: flex; flex-wrap: wrap; gap: 0.375rem; padding: 0 0.875rem 0.5rem; max-height: 8.5rem; overflow-y: auto; }
+.monki-chips { display: flex; flex-wrap: nowrap; gap: 0.375rem; padding: 0 0.875rem 0.5rem; overflow-x: auto; scrollbar-width: none; }
+.monki-chips .chip { flex: none; white-space: nowrap; }
+.monki-chips-start { flex-wrap: wrap; overflow: visible; }
 .monki-chips:empty { display: none; }
 .monki-chips .chip { font-size: var(--t-sm); padding: 0.25rem 0.75rem; text-align: left; }
 /* Role-play: the six scenes as picture cards, three to a row, kept short enough to leave the input in view. */

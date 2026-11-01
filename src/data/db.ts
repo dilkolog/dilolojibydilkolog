@@ -264,7 +264,7 @@ export const DEFAULT_SETTINGS: Settings = {
   pretest: true,
   confidence: true,
   accentShortcuts: true,
-  aiModel: 'claude-opus-5-5',
+  aiModel: 'claude-sonnet-5-5',
   aiMonthlyLimit: 0,
   monkiDailyLimit: 0,
   frequencyFirst: false,
