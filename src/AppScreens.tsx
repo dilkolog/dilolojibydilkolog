@@ -435,7 +435,7 @@ export function AppScreens(props: AppScreensProps) {
           }}
           firstWords={lookupNudge}
           timeCard={<TodayTime db={db} language={data.language} goal={settings.weeklyTimeGoal} onOpen={go({ name: 'progress' })} />}
-          friendsCard={<FriendsCard game={game} profile={settings.profile} vocabulary={data.vocabulary} language={data.language} share={settings.friendShare} onChanged={reload} onDuel={go({ name: 'games', game: 'duel' })} />}
+          friendsCard={<FriendsCard game={game} profile={settings.profile} vocabulary={data.vocabulary} language={data.language} share={settings.friendShare} muted={settings.friendMuted} onPrefs={(patch) => void updateSettings({ ...settings, ...(patch.share ? { friendShare: patch.share } : {}), ...(patch.muted ? { friendMuted: patch.muted } : {}) })} onChanged={reload} onDuel={go({ name: 'games', game: 'duel' })} />}
           extra={
             <>
             {/* A lesson's review first: it shows only to someone using the guide, on the day it is due. */}

@@ -30,7 +30,7 @@ async function until(done: () => boolean, ms = 3000) {
   while (!done() && Date.now() < end) await act(() => new Promise((r) => setTimeout(r, 10)))
 }
 
-async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 120)], inbox: unknown[] = [], extra: { vocabulary?: VocabularyEntry[]; language?: 'fr'; onChanged?: () => void; onDuel?: () => void } = {}) {
+async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 120)], inbox: unknown[] = [], extra: { vocabulary?: VocabularyEntry[]; language?: 'fr'; onChanged?: () => void; onDuel?: () => void; share?: 'xp' | 'days'; muted?: string[]; onPrefs?: (patch: { share?: 'xp' | 'days'; muted?: string[] }) => void } = {}) {
   const calls: { url: string; body?: unknown }[] = []
   vi.stubGlobal('fetch', async (url: string, init?: RequestInit) => {
     const body = init?.body ? JSON.parse(String(init.body)) : undefined
@@ -123,6 +123,31 @@ describe('FriendsCard', () => {
     expect(steady.find((r) => r.includes('Veli'))).toContain('1 gün')
   })
 
+  it('privacy: the learner picks days only, and silences a friend from their page; a silenced friend\'s nudge never shows and leaves the inbox', async () => {
+    const onPrefs = vi.fn()
+    const { host } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)], [], { onPrefs })
+    const privacy = host.querySelector('.friends-privacy')!
+    expect(privacy.textContent).toContain('Arkadaşların neyi görsün?')
+    expect(privacy.textContent).toContain('Seni bulabilsinler')
+    const days = [...privacy.querySelectorAll<HTMLInputElement>('input[type=radio]')][1]
+    await act(async () => days.click())
+    expect(onPrefs).toHaveBeenLastCalledWith({ share: 'days' })
+    await act(async () => (host.querySelector('.friends-name-btn') as HTMLButtonElement).click())
+    await until(() => !!host.querySelector('.friend-sheet'))
+    await act(async () => [...host.querySelectorAll<HTMLButtonElement>('.friend-sheet button')].find((b) => b.textContent === 'Sessize al')!.click())
+    expect(onPrefs).toHaveBeenLastCalledWith({ muted: ['BBBBBBBB'] })
+  })
+
+  it('a silenced friend\'s nudge is not shown and is cleared from the server inbox; a gift from them still is', async () => {
+    const nudge = { id: 'n1', kind: 'nudge', from: { code: 'BBBBBBBB', name: 'Veli' }, at: '2026-10-15T10:00:00Z' }
+    const gift = { id: 'g1', kind: 'gift', from: { code: 'BBBBBBBB', name: 'Veli' }, gift: { language: 'fr', lemma: 'chat', meaning: 'kedi', example: '', exampleTr: '' }, at: '2026-10-15T10:00:00Z' }
+    const { host, calls } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)], [nudge, gift], { muted: ['BBBBBBBB'] })
+    const items = [...host.querySelectorAll('.friends-inbox-item')].map((li) => li.textContent ?? '')
+    expect(items).toHaveLength(1)
+    expect(items[0]).toContain('chat')
+    expect(calls.some((c) => (c.body as { action?: string; ids?: string[] } | undefined)?.action === 'friends-inbox-clear' && (c.body as { ids: string[] }).ids.includes('n1'))).toBe(true)
+  })
+
   it('an unchanged card is not sent again', async () => {
     await mount(true)
     act(() => root?.unmount())
@@ -173,7 +198,7 @@ describe('FriendsCard', () => {
     ])
     const items = [...host.querySelectorAll('.friends-inbox li')].map((li) => li.textContent)
     expect(items[0]).toContain('Veli seni tebrik etti')
-    expect(items[1]).toContain('Ece seni dürttü')
+    expect(items[1]).toContain('Ece seni özledi')
     await act(async () => (host.querySelector('.friends-inbox button[aria-label="Tamam"]') as HTMLButtonElement).click())
     expect(host.querySelectorAll('.friends-inbox li')).toHaveLength(1)
     expect(calls.some((c) => (c.body as { action?: string; ids?: string[] } | undefined)?.action === 'friends-inbox-clear' && (c.body as { ids: string[] }).ids[0] === 'm1')).toBe(true)

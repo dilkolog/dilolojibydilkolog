@@ -26,7 +26,7 @@ export function friendMessage(item: Pick<InboxItem, 'kind' | 'from'>): PushMessa
     item.kind === 'cheer'
       ? `👏 ${who} seni tebrik etti`
       : item.kind === 'nudge'
-        ? `👋 ${who} seni dürttü: bugün biraz çalışmaya ne dersin?`
+        ? `👋 ${who} seni özledi: bugün 5 dakika yeter, ne dersin?`
         : item.kind === 'gift'
           ? `🎁 ${who} sana bir kelime gönderdi`
           : item.kind === 'joined'

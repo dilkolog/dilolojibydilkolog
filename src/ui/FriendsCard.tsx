@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { DEFAULT_SETTINGS, type Profile } from '../data/db'
 import { db } from '../data/instance'
 import { addFriend, clearInbox, FriendsError, loadFriends, loadInbox, publishFriendCard, recentDays, removeFriend, type FriendView, type InboxItem } from '../data/friends'
@@ -14,6 +14,7 @@ import { showToast } from './toastFeed'
 import { NEW_ART } from './drawnArt'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { FriendLeague } from './FriendLeague'
+import { FriendPrivacy, type FriendPrefs } from './FriendPrivacy'
 import { rewardInviter } from './inviteReward'
 import { notify } from './noticeCenter'
 import { friendNotice } from './noticeTexts'
@@ -49,7 +50,7 @@ const REASONS: Record<string, string> = {
  * other's codes, as a small leaderboard. Adding a friend is their code; one's own code is shown to
  * pass on. Only for an approved account (the cards live on the server).
  */
-export function FriendsCard({ game, profile, vocabulary, language, share = 'xp', onChanged, onDuel }: { game: GameState | null; profile: Profile; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; /** What friends see of the XP (Settings.friendShare). */ share?: 'xp' | 'days'; onChanged?: () => void; onDuel?: () => void }) {
+export function FriendsCard({ game, profile, vocabulary, language, share = 'xp', muted = [], onPrefs, onChanged, onDuel }: { game: GameState | null; profile: Profile; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; /** What friends see of the XP (Settings.friendShare). */ share?: 'xp' | 'days'; /** Friend codes whose nudges and cheers are silenced (Settings.friendMuted). */ muted?: string[]; /** The learner changed what is shared or who is silenced. */ onPrefs?: (patch: Partial<FriendPrefs>) => void; onChanged?: () => void; onDuel?: () => void }) {
   const access = useAccess()
   const [range, setRange] = useState<'today' | 'week' | 'steady'>('today')
   const [data, setData] = useState<{ me: FriendView; friends: FriendView[] } | null>(null)
@@ -63,13 +64,21 @@ export function FriendsCard({ game, profile, vocabulary, language, share = 'xp',
   const [editingCode, setEditingCode] = useState<string | null>(null)
   const [editName, setEditName] = useState('')
   const today = localDate(new Date())
+  // The refresh below reads who is silenced when it runs, not when it was made.
+  const mutedRef = useRef(muted)
+  mutedRef.current = muted
 
   const refresh = useCallback(async () => {
     try {
       // The inbox is a small extra: if it cannot be read the board still shows. Both are asked at once.
-      const [board, waiting] = await Promise.all([loadFriends(today), loadInbox().catch(() => [] as InboxItem[])])
+      const [board, loaded] = await Promise.all([loadFriends(today), loadInbox().catch(() => [] as InboxItem[])])
+      let waiting = loaded
       setData(board)
       setFailed(false)
+      // A silenced friend's nudges and cheers are not shown (nor sent to the bell); they leave the inbox without a word.
+      const silenced = waiting.filter((m) => (m.kind === 'nudge' || m.kind === 'cheer') && mutedRef.current.includes(m.from.code))
+      if (silenced.length) void clearInbox(silenced.map((m) => m.id)).catch(() => undefined)
+      waiting = waiting.filter((m) => !silenced.includes(m))
       setInbox(waiting)
       // Each message is also a notice (the bell), once.
       for (const m of waiting) void notify(friendNotice(m, storedNicknames()[m.from.code] || m.from.name))
@@ -356,7 +365,7 @@ export function FriendsCard({ game, profile, vocabulary, language, share = 'xp',
                 {sender && <Avatar profile={{ name: who, emoji: sender.avatar || '🙂', color: sender.color, motto: '' } as Profile} size={26} />}
                 <span>
                   {m.kind === 'cheer' && `👏 ${who} seni tebrik etti`}
-                  {m.kind === 'nudge' && `👋 ${who} seni dürttü: bugün biraz çalışmaya ne dersin?`}
+                  {m.kind === 'nudge' && `👋 ${who} seni özledi: bugün 5 dakika yeter, ne dersin?`}
                   {m.kind === 'joined' && `🎉 ${who} davetinle katıldı`}
                   {m.kind === 'request' && `🤝 ${who} arkadaşlık isteği gönderdi`}
                   {m.kind === 'gift' && m.gift && (
@@ -406,7 +415,7 @@ export function FriendsCard({ game, profile, vocabulary, language, share = 'xp',
         const f = data.friends.find((x) => x.code === open)
         return f ? (
           <Suspense fallback={null}>
-            <FriendSheet friend={f} name={nicknames[f.code] || f.name} today={today} vocabulary={vocabulary} language={language} onClose={() => setOpen(null)} onDuel={onDuel} onBlocked={() => void refresh()} />
+            <FriendSheet friend={f} name={nicknames[f.code] || f.name} today={today} vocabulary={vocabulary} language={language} onClose={() => setOpen(null)} onDuel={onDuel} onBlocked={() => void refresh()} muted={muted.includes(f.code)} onMute={onPrefs ? (on) => { onPrefs({ muted: on ? [...new Set([...muted, f.code])] : muted.filter((c) => c !== f.code) }); showToast(on ? 'Sessize alındı: dürtme ve tebrikleri görünmez.' : 'Sessizden çıkarıldı.') } : undefined} />
           </Suspense>
         ) : null
       })()}
@@ -432,6 +441,9 @@ export function FriendsCard({ game, profile, vocabulary, language, share = 'xp',
           <img className="friends-art" src={NEW_ART.friendsCode} alt="" height={56} draggable={false} />
           <span>Arkadaşın yokken Monki seninle yarışır: hızını senin ritmine göre ayarlar, gün içinde ilerler. Arkadaşını kullanıcı adıyla bulunca yerini o alır.</span>
         </p>
+      )}
+      {data && onPrefs && (
+        <FriendPrivacy prefs={{ share, muted }} names={Object.fromEntries(data.friends.map((f) => [f.code, nicknames[f.code] || f.name]))} onChange={onPrefs} />
       )}
       {data && (
         <details className="friends-add" open={data.friends.length === 0}>
