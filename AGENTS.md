@@ -1,7 +1,7 @@
 # Diloloji — ajanlar için devir notu
 
 Bu dosya, projede çalışacak bir yapay zekâ ajanının (Claude Code'dan devralan) bilmesi gerekenleri toplar.
-Son güncelleme: 2026-10-28.
+Son güncelleme: 2026-11-02.
 
 ## Kullanıcıyla çalışma kuralları
 - **Kullanıcıya her yanıt Türkçe.** Özet, rapor, liste, soru, ara notlar dahil. İngilizce özet verme (kullanıcı birkaç kez itiraz etti).
@@ -76,6 +76,17 @@ Sahibi Diloloji'yi **kişisel** bir Google Play hesabıyla Android uygulaması (
 - Çeviri: sunucu `api/translate.ts` (DeepL, anahtar Vercel ortam değişkeni `DEEPL_AUTH_KEY`; anahtarı asla koda ya da sohbete yazma). Her çeviri cihazdaki **çeviri belleğinde** (`meta 'translations'`, `src/engine/translationMemory.ts`) saklanır, yedeğe ve eşitlemeye girer; aynı cümle bir daha sunucuya gitmez. Kotayı koruyan kod (sırayla çeviri, yalnızca ekrana gelen paragraf) bu deseni bozmasın.
 - **Ortam değişkenleri ve Node:** README'deki tabloya bak; Node `>=22.12` (`engines`, `.nvmrc` 24). `pw.tmp.config.ts` makineye özeldir ve izlenmez (`.gitignore`).
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
+
+## Sosyal tur (2026-11-02, analiz sonrası; PR'lar #657 ve bu tur)
+- **Soğuk başlangıç ve ölçü:** `engine/friendMetrics.ts`: arkadaşı olmayana **Monki hayalet rakip** (`ghostRival`: kullanıcının kendi ortalamasının ~%10 üstü, gün içinde 8:00–22:00 arası büyür, arada dinlenme günü; hiçbir şey saklanmaz/gönderilmez), **Tutarlılık** sıralaması (`weekDays`: bu hafta kaç gün; eşitlikte iki haftadaki gün sayısı). `FriendsCard` aralıkları Bugün / Bu hafta / Tutarlılık.
+- **Gizlilik:** `Settings.friendShare: 'xp' | 'days'`: "yalnızca günler" seçilince kart her çalışılan güne **1** yazar (`presenceDays`), XP hiç sunucuya gitmez (sunucu/SQL değişmedi); alıcı tarafı `hidesXp(days)` (yalnızca 1'lerden oluşan kart) ile tanır, XP sıralamasında "XP gizli" sırasız, Tutarlılık'ta sıralı. Kendi satırın yerel XP'nden hesaplanır. `Settings.friendMuted` (kodlar; hesapla eşitlenir): arkadaş sayfasında "Sessize al"; o arkadaşın dürtme/tebrikleri gösterilmez, çana düşmez, sunucu kutusundan sessizce silinir (`FriendsCard.refresh`). "Seni bulabilsinler" artık `FindableSetting.tsx` (Gizlilik bloğunda, `FriendPrivacy.tsx`, tembel yüklenir: `settingsWidgets` stilleri ilk pakette yok, cssSplit testi).
+- **Nazik hatırlatma:** "Dürt" → "Hatırlat"; metin "X seni özledi: bugün 5 dakika yeter, ne dersin?" (uygulama, çan ve push: `FriendsCard`, `noticeTexts.ts`, `api/_notify.ts`; testler güncellendi).
+- **Topluluk sekmesi:** Pratik altında (`Screen 'community'`, `ui/Community.tsx`: birlikte çalış kısayolları, `FriendsCard`, `CommunitySets`); Bugün kartında "Topluluk ›" bağlantısı; `UsersIcon`; komut paleti ve gizlenebilir sekmelere eklendi. E2E `SCREENS` listesinde.
+- **Sahibin aracı:** `api/_owner.ts` + `GET /api/access?owner=reports&days=N` ve `POST {action:'owner-unpublish', id}`, yalnızca `REPORTS_TOKEN` (Worker gizlisi, ≥24 karakter; `ADMIN_TOKEN` DEĞİL: o onay sistemini açar) ile; yoksa uç 404. Kullanım: `REPORTS_TOKEN=… node scripts/reports.mjs [gün]` (şikâyetler + sosyal sayaçlar) ve `--unpublish <liste kimliği>`. **Sahibi `REPORTS_TOKEN` gizlisini Cloudflare'e girmeli.**
+- **Sosyal sayaçlar:** `api/_usage.ts` `countUse(name)`: tüm site için günlük, kimliksiz sayaçlar (`quota/use-<ad>/<gün>/all.json`: friend-request/add/cheer/nudge/gift/text/joined, report); yaklaşık (iki örnek birini kaçırabilir), hata çağrıyı bozmaz. Okuma: yukarıdaki script.
+- **Metin sertleştirme:** gönderilen metinde en çok 2 bağlantı, başlık/kelime/anlam/örnekte hiç bağlantı yok (`api/_friends*` `hasLink`); aksi `bad_payload`.
+- **`api/_friends.ts` bölündü (davranış aynı):** kartlar/arkadaşlık/engel `_friends.ts`, gelen kutusu ve gönderim `_friendInbox.ts`, @ad ve istek `_friendHandles.ts`, depolama (Blob/tablo) `_friendStore.ts`; `_friends.ts` hepsini yeniden dışa aktarır (eski içe aktarmalar aynen çalışır; dosyalar arası döngü yalnızca işlev düzeyinde). Wrangler `--dry-run` paketlemesi denendi.
+- **Yapılmadı (bilerek):** anonim haftalık lig (sunucu işi + moderasyon + Free plan sınırı), eşleştirme, arkadaşa cümle düzeltme isteği; ayrıntı ve gerekçe sohbetteki analizde. Sosyal özelliklerin tutmayı artırıp artırmadığını sayaçlar birkaç hafta birikince ölç.
 
 ## Durum (2026-10-29)
 - **Antigravity (2026-10-29):**

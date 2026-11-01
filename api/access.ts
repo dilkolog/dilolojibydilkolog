@@ -7,6 +7,8 @@ import { deleteSupabaseMedia, deleteSupabaseUser, ensureProfile, mirrorApproval,
 import { overLimit, tooMany } from './_rate.js'
 import { noticeSignup } from './_signupNotice.js'
 import { fileReport } from './_reports.js'
+import { countUse, USE_NAMES, usageLast, type UseName } from './_usage.js'
+import { listReports, ownerAuthorized, unpublishList } from './_owner.js'
 
 /**
  * An account's way to the owner's approval.
@@ -105,12 +107,15 @@ async function friendsPost(request: Request, body: Record<string, unknown>): Pro
     if (body.action === 'friends-request') {
       if (overLimit(request, 'friends-send', 20)) return tooMany()
       const sent = await requestFriend(id, body.handle, (recipient, item) => pushToOwner(recipient, friendMessage(item)))
+      if (sent === 'ok') void countUse('friend-request')
       return sent === 'ok' ? json({ ok: true }) : json({ error: sent }, sent === 'unknown' ? 404 : 400)
     }
     const code = normalizeCode(body.code)
     if (body.action === 'friends-send') {
       if (overLimit(request, 'friends-send', 20)) return tooMany()
       const sent = await sendToFriend(id, code, body.kind, body.payload, typeof body.today === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(body.today) ? body.today : undefined, (recipient, item) => pushToOwner(recipient, friendMessage(item)))
+      const kindUsed = `friend-${String(body.kind)}`
+      if (sent === 'ok' && (USE_NAMES as readonly string[]).includes(kindUsed)) void countUse(kindUsed as UseName)
       return sent === 'ok' ? json({ ok: true }) : json({ error: sent }, sent === 'not_friends' ? 403 : 400)
     }
     if (body.action === 'friends-remove') {
@@ -122,6 +127,7 @@ async function friendsPost(request: Request, body: Record<string, unknown>): Pro
       return json({ ok: true })
     }
     const result = await addFriend(id, code)
+    if (result === 'ok') void countUse('friend-add')
     return result === 'ok' ? json({ ok: true }) : json({ error: result }, result === 'full' ? 409 : 400)
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
@@ -136,8 +142,26 @@ async function report(request: Request, body: Record<string, unknown>): Promise<
     const id = await friendAccount(request)
     if (id instanceof Response) return id
     const result = await fileReport(id, body)
-    if (result === 'ok') return json({ ok: true })
+    if (result === 'ok') {
+      void countUse('report')
+      return json({ ok: true })
+    }
     return json({ error: result }, result === 'not_found' ? 404 : result === 'too_many' ? 429 : 400)
+  } catch (e) {
+    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
+    throw e
+  }
+}
+
+/** The owner's read-only view (REPORTS_TOKEN): `?owner=reports&days=N` → the last days' reports and the social use counters. */
+async function ownerGet(request: Request, q: URLSearchParams): Promise<Response> {
+  if (overLimit(request, 'owner', 20)) return tooMany()
+  // Not there at all without the secret set, and a wrong one looks the same.
+  if (!(await ownerAuthorized(request))) return json({ error: 'not found' }, 404)
+  const days = Math.min(30, Math.max(1, Math.floor(Number(q.get('days'))) || 7))
+  try {
+    const [reports, usage] = await Promise.all([listReports(days), usageLast(days)])
+    return json({ reports, usage })
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
     throw e
@@ -226,6 +250,7 @@ async function accountDelete(request: Request): Promise<Response> {
 export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
   const q = new URL(request.url).searchParams
+  if (q.has('owner')) return ownerGet(request, q)
   if (q.has('friends') || q.has('inbox') || q.has('blocked') || q.has('friend-handle') || q.has('friend-find') || q.has('friend-invite')) return friendsGet(request)
   if (new URL(request.url).searchParams.has('vault')) return vaultGet(request)
   if (overLimit(request, 'access-read', 120)) return tooMany()
@@ -251,6 +276,11 @@ export async function GET(request: Request): Promise<Response> {
 export async function POST(request: Request): Promise<Response> {
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
   const body = (await request.json().catch(() => null)) as { action?: unknown; username?: unknown; note?: unknown } | null
+  if (body?.action === 'owner-unpublish') {
+    if (overLimit(request, 'owner', 20)) return tooMany()
+    if (!(await ownerAuthorized(request))) return json({ error: 'not found' }, 404)
+    return (await unpublishList(String((body as { id?: unknown }).id ?? '').toLowerCase())) ? json({ ok: true }) : json({ error: 'bad_request' }, 400)
+  }
   if (typeof body?.action === 'string' && body.action.startsWith('friends-')) return friendsPost(request, body as Record<string, unknown>)
   if (body?.action === 'vault-link') return vaultLink(request, body as Record<string, unknown>)
   if (body?.action === 'account-delete') return accountDelete(request)
