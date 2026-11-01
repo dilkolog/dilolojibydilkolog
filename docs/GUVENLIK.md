@@ -66,7 +66,7 @@ Açık kalanlar (kalıcı sayaç ya da şema gerekir):
 ## Kullanıcının yapacakları
 1. **`SYNC_ALLOWED`:** Vercel → proje → Settings → Environment Variables → `SYNC_ALLOWED` = kullanıcı adın (ya da eşitleme kodunun 64 haneli kimliği), Production; sonra yeniden yayınla. Yoksa herkes Blob deposuna yazabilir (verini okuyamaz ama depoyu doldurabilir).
 2. **Hız sınırı:** Vercel → proje → Firewall → Custom Rules → "Rate limit": `/api/translate` ve `/api/log` için IP başına dakikada ~30 istek, aşınca 429. (DeepL kotasının betikle tüketilmesine ve günlük çöpüne karşı.)
-3. **Anthropic hesabında aylık harcama sınırı:** YZ çağrıları sitenin kendi `/api/ai` ucundan geçer ve sahibin `ANTHROPIC_API_KEY` gizlisiyle gider (2026-11-02); Anthropic Console'dan aylık harcama sınırı koy. Hesap başına günlük çağrı sınırı `AI_DAILY_CALLS` (varsayılan 150).
+3. **Anthropic hesabında aylık harcama sınırı:** YZ çağrıları sitenin kendi `/api/ai` ucundan geçer ve sahibin `ANTHROPIC_API_KEY` gizlisiyle gider (2026-11-02); Anthropic Console'dan aylık harcama sınırı koy. Hesap başına günlük çağrı sınırı `AI_DAILY_CALLS` (varsayılan 150) ve günlük para sınırı `AI_DAILY_BUDGET_USD` (0,75 $). YZ yalnızca sahibin onayladığı hesaplara açıktır (Supabase `profiles.approved`; Supabase açıkken onay kendiliğinden açık, `APPROVAL=off` kapatır).
 4. **Yedek dosyaları** (`diloloji-yedek-*.json`) kişisel veri içerir; `.gitignore`'da, yine de depoya koyma, işin bitince sil.
 5. **Adresler ve depolama:** Ana adres `diloloji.com` (ve `www.diloloji.com`). Her adres tarayıcıda ayrı depo kullanır: adres değişirse yeni adres boş başlar; eşitleme (hesapla giriş) yoksa eski adreste yedek alıp yenisine yükle.
 

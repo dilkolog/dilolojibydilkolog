@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-// With Supabase sign-in the server must not be open to people without an account, even while the owner does not approve accounts.
+// With Supabase sign-in the server must not be open to people without an account, even while the owner does not approve accounts
+// (APPROVAL=off), and with approval on (the default with Supabase) only the people the owner approved get in.
 const blobs = new Map<string, Uint8Array>()
 vi.mock('@vercel/blob', () => ({
   put: async (path: string, body: ArrayBuffer | string) => {
@@ -26,6 +27,7 @@ beforeEach(() => {
   blobs.clear()
   clearAccessCache()
   vi.stubEnv('ADMIN_TOKEN', '')
+  vi.stubEnv('APPROVAL', 'off')
 })
 afterEach(() => vi.unstubAllEnvs())
 
@@ -62,5 +64,31 @@ describe('without the owner approving accounts', () => {
   it('Supabase off: the old first write still opens the account', async () => {
     vi.stubEnv('SUPABASE_URL', '')
     expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(204)
+  })
+})
+
+describe('with Supabase on and the owner approving people (the default)', () => {
+  beforeEach(() => {
+    vi.stubEnv('APPROVAL', '')
+    vi.stubEnv('SUPABASE_URL', 'https://x.supabase.co')
+    vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
+    // The panel cannot be reached from the test: only the owner's marks in the store count.
+    vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('offline'))
+  })
+  afterEach(() => vi.restoreAllMocks())
+
+  it('an account that exists but is not approved is refused with approval_required, an approved one passes', async () => {
+    expect(await claimAccount(ID, TOKEN)).toBe(true)
+    const refused = await requireApproved(ask(account))
+    expect(refused?.status).toBe(403)
+    expect(await refused?.json()).toMatchObject({ error: 'approval_required' })
+    blobs.set(`access/approved/${ID}.json`, new TextEncoder().encode('{}'))
+    clearAccessCache()
+    expect(await requireApproved(ask(account))).toBeNull()
+  })
+
+  it('a write is refused for an account the owner has not approved', async () => {
+    expect(await claimAccount(ID, TOKEN)).toBe(true)
+    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(403)
   })
 })
