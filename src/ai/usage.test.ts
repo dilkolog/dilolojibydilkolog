@@ -19,3 +19,11 @@ describe('YZ usage', () => {
     expect(monthKey(at)).toBe('2026-10')
   })
 })
+
+describe('which features run on the cheap model', () => {
+  it('keeps feedback, stories and Monki on the site model and only mechanical jobs on the cheapest', async () => {
+    const { CHEAP_FEATURES } = await import('./usage')
+    for (const f of ['monki', 'chat', 'sentence', 'translation', 'story', 'journal', 'comprehension', 'photo_words', 'podcast'] as const) expect(CHEAP_FEATURES.has(f)).toBe(false)
+    for (const f of ['word_fill', 'mnemonic', 'word_suggest'] as const) expect(CHEAP_FEATURES.has(f)).toBe(true)
+  })
+})
