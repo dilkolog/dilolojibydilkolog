@@ -126,6 +126,7 @@ describe('FriendsCard', () => {
   it('privacy: the learner picks days only, and silences a friend from their page; a silenced friend\'s nudge never shows and leaves the inbox', async () => {
     const onPrefs = vi.fn()
     const { host } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)], [], { onPrefs })
+    await until(() => !!host.querySelector('.friends-privacy'))
     const privacy = host.querySelector('.friends-privacy')!
     expect(privacy.textContent).toContain('Arkadaşların neyi görsün?')
     expect(privacy.textContent).toContain('Seni bulabilsinler')

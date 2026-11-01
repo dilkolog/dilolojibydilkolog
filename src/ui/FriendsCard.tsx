@@ -14,12 +14,14 @@ import { showToast } from './toastFeed'
 import { NEW_ART } from './drawnArt'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { FriendLeague } from './FriendLeague'
-import { FriendPrivacy, type FriendPrefs } from './FriendPrivacy'
+import type { FriendPrefs } from './FriendPrivacy'
 import { rewardInviter } from './inviteReward'
 import { notify } from './noticeCenter'
 import { friendNotice } from './noticeTexts'
 import { inviteLink } from './invite'
 // A friend's page (the chart, the gifts) is only needed when a name is tapped.
+// The privacy block uses the settings switch, whose styles are not in the first stylesheet.
+const FriendPrivacy = lazy(() => import('./FriendPrivacy').then((m) => ({ default: m.FriendPrivacy })))
 const FriendFind = lazy(() => import('./FriendFind').then((m) => ({ default: m.FriendFind })))
 const FriendSheet = lazy(() => import('./FriendSheet').then((m) => ({ default: m.FriendSheet })))
 const ReportDialog = lazy(() => import('./ReportDialog'))
@@ -50,7 +52,7 @@ const REASONS: Record<string, string> = {
  * other's codes, as a small leaderboard. Adding a friend is their code; one's own code is shown to
  * pass on. Only for an approved account (the cards live on the server).
  */
-export function FriendsCard({ game, profile, vocabulary, language, share = 'xp', muted = [], onPrefs, onChanged, onDuel }: { game: GameState | null; profile: Profile; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; /** What friends see of the XP (Settings.friendShare). */ share?: 'xp' | 'days'; /** Friend codes whose nudges and cheers are silenced (Settings.friendMuted). */ muted?: string[]; /** The learner changed what is shared or who is silenced. */ onPrefs?: (patch: Partial<FriendPrefs>) => void; onChanged?: () => void; onDuel?: () => void }) {
+export function FriendsCard({ game, profile, vocabulary, language, share = 'xp', muted = [], onPrefs, onChanged, onDuel, onCommunity }: { game: GameState | null; profile: Profile; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; /** What friends see of the XP (Settings.friendShare). */ share?: 'xp' | 'days'; /** Friend codes whose nudges and cheers are silenced (Settings.friendMuted). */ muted?: string[]; /** The learner changed what is shared or who is silenced. */ onPrefs?: (patch: Partial<FriendPrefs>) => void; onChanged?: () => void; onDuel?: () => void; /** Opens the Topluluk screen (the card on Today is the short version). */ onCommunity?: () => void }) {
   const access = useAccess()
   const [range, setRange] = useState<'today' | 'week' | 'steady'>('today')
   const [data, setData] = useState<{ me: FriendView; friends: FriendView[] } | null>(null)
@@ -442,8 +444,15 @@ export function FriendsCard({ game, profile, vocabulary, language, share = 'xp',
           <span>Arkadaşın yokken Monki seninle yarışır: hızını senin ritmine göre ayarlar, gün içinde ilerler. Arkadaşını kullanıcı adıyla bulunca yerini o alır.</span>
         </p>
       )}
+      {onCommunity && (
+        <button type="button" className="link small friends-community-link" onClick={onCommunity}>
+          Topluluk: düello, birlikte okuma ve paylaşılan listeler ›
+        </button>
+      )}
       {data && onPrefs && (
-        <FriendPrivacy prefs={{ share, muted }} names={Object.fromEntries(data.friends.map((f) => [f.code, nicknames[f.code] || f.name]))} onChange={onPrefs} />
+        <Suspense fallback={null}>
+          <FriendPrivacy prefs={{ share, muted }} names={Object.fromEntries(data.friends.map((f) => [f.code, nicknames[f.code] || f.name]))} onChange={onPrefs} />
+        </Suspense>
       )}
       {data && (
         <details className="friends-add" open={data.friends.length === 0}>

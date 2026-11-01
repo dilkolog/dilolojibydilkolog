@@ -35,6 +35,7 @@ export const SCREEN_PALETTE_ART: Record<string, string> = {
   verbs: gameGear,
   produce: headProduce,
   guide: guideTeach,
+  community: headGames,
   progress: progressReport,
   profile: avatarCat,
   settings: headSettings,
