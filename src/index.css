@@ -5086,8 +5086,6 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .friends-editing-row { background: var(--surface-2); }
 .friends-edit-inline { flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.25rem; }
 .friends-edit-input { flex: 1; min-width: 0; height: 1.75rem; padding: 0.125rem 0.375rem; font-size: var(--t-sm); }
-.friends-add > summary { cursor: pointer; color: var(--lang-text); font-weight: 600; display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0; }
-.friends-add-body { margin-top: 0.5rem; }
 
 /* Guide: class names that also appear in its storage keys (cssSplit sees them as used in the first bundle). */
 .guide-progress { display: grid; gap: 0.5rem; }
@@ -5099,7 +5097,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .streak-repair .link { display: inline-flex; align-items: center; gap: 0.5rem; text-align: left; }
 .friends-title { display: flex; align-items: center; gap: 0.5rem; }
 .friends-art { width: auto; flex: none; }
-.friends-empty { display: flex; align-items: center; gap: 0.75rem; }
+.friends-empty { display: flex; align-items: center; gap: 0.75rem; margin: 0; padding: 0.625rem 0.875rem; border-radius: var(--r-lg); background: color-mix(in srgb, var(--lang-soft) 45%, var(--surface)); border: 1px dashed color-mix(in srgb, var(--lang) 30%, var(--rule)); line-height: 1.45; }
+.friends-empty .friends-art { height: 3rem; }
 
 /* ── Daily News Hero: RFI & VOA learner bulletins ───────────────────────── */
 .daily-news-hero {
@@ -5530,6 +5529,25 @@ button.notice-row:hover { background: var(--surface-2); }
   border-color: color-mix(in srgb, var(--lang) 35%, var(--rule));
   box-shadow: var(--shadow-sm);
 }
+
+.friends-community-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  text-align: left;
+  text-decoration: none;
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+.friends-community-link:hover { border-color: color-mix(in srgb, var(--lang) 35%, var(--rule)); background: color-mix(in srgb, var(--lang-soft) 40%, var(--surface)); color: var(--lang-text); }
+.friends-community-link-arrow { flex: none; color: var(--ink-soft); font-size: 1.25rem; line-height: 1; }
 
 .friends-accordion-summary {
   list-style: none;

@@ -439,14 +439,15 @@ export function FriendsCard({ game, profile, vocabulary, language, share = 'xp',
       )}
       {data && data.friends.length > 0 && <FriendLeague me={data.me} friends={data.friends} nicknames={nicknames} today={today} />}
       {data && data.friends.length === 0 && (
-        <p className="small muted friends-empty">
+        <p className="small friends-empty">
           <img className="friends-art" src={NEW_ART.friendsCode} alt="" height={56} draggable={false} />
-          <span>Arkadaşın yokken Monki seninle yarışır: hızını senin ritmine göre ayarlar, gün içinde ilerler. Arkadaşını kullanıcı adıyla bulunca yerini o alır.</span>
+          <span><strong>Arkadaşın yokken Monki seninle yarışır.</strong> Hızını senin ritmine göre ayarlar. Arkadaşını kullanıcı adıyla bulunca yerini o alır.</span>
         </p>
       )}
       {onCommunity && (
-        <button type="button" className="link small friends-community-link" onClick={onCommunity}>
-          Topluluk: düello, birlikte okuma ve paylaşılan listeler ›
+        <button type="button" className="small friends-community-link" onClick={onCommunity}>
+          <span>Topluluk: düello, birlikte okuma, ortak listeler</span>
+          <span className="friends-community-link-arrow" aria-hidden="true">›</span>
         </button>
       )}
       {data && onPrefs && (
