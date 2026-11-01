@@ -96,13 +96,14 @@ test('tablet width: Today in two columns, the mission beside the numbers', async
   expect(boxes.side.right).toBeLessThanOrEqual(820)
 })
 
-test('the avatar card in the side menu opens an account menu: profile, settings, and the keyboard closes it', async ({ page }) => {
+test('the avatar card opens Monki, profile and settings, and the keyboard closes the menu', async ({ page }) => {
   await startWithSamples(page)
   const card = page.locator('.sidebar-foot-btn:visible')
   await card.click()
   const menu = page.getByRole('menu', { name: 'Hesap menüsü' })
   await expect(menu).toBeVisible()
-  await expect(menu.getByRole('menuitem')).toHaveCount(2)
+  await expect(menu.getByRole('menuitem')).toHaveCount(3)
+  await expect(menu.getByRole('menuitem', { name: /^Monki ile konuş/ })).toBeVisible()
   // The menu opens upward from the bottom corner and stays inside the screen.
   const box = (await menu.boundingBox())!
   const viewport = page.viewportSize()!
