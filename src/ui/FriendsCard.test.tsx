@@ -10,8 +10,9 @@ import type { GameState } from './game'
 import type { Profile } from '../data/db'
 import { db } from '../data/instance'
 import type { VocabularyEntry } from '../engine/types'
+import { localDate } from '../engine/progress'
 
-const card = (code: string, name: string, today: number, week: number) => ({ code, name, avatar: 'fox', color: '#2f6de6', today, week, streak: 3, level: 4, days: { '2026-10-15': today }, at: '2026-10-15T10:00:00Z' })
+const card = (code: string, name: string, today: number, week: number) => ({ code, name, avatar: 'fox', color: '#2f6de6', today, week, streak: 3, level: 4, days: { '2026-10-15': today } as Record<string, number>, at: '2026-10-15T10:00:00Z' })
 const game = { xp: { total: 300, today: 40, maxCombo: 0, byDay: new Map([['2026-10-15', 40]]) }, streak: 3, level: { level: 4 } } as unknown as GameState
 const profile = { name: 'Ali', emoji: 'monki', color: '#c6317c', motto: '' } as Profile
 
@@ -54,6 +55,28 @@ async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 
   return { host, calls }
 }
 
+/** The last fourteen dates up to `day`. */
+function fortnight(day: string): string[] {
+  const end = new Date(`${day}T12:00:00`)
+  return Array.from({ length: 14 }, (_, i) => {
+    const d = new Date(end)
+    d.setDate(end.getDate() - i)
+    return localDate(d)
+  })
+}
+
+/** The dates from this week's Monday to `day`. */
+function weekOf(day: string): string[] {
+  const end = new Date(`${day}T12:00:00`)
+  const out: string[] = []
+  for (let i = (end.getDay() + 6) % 7; i >= 0; i--) {
+    const d = new Date(end)
+    d.setDate(end.getDate() - i)
+    out.push(localDate(d))
+  }
+  return out
+}
+
 describe('FriendsCard', () => {
   it('publishes the own card, then ranks the learner and the friends by today or this week', async () => {
     const { host, calls } = await mount(true)
@@ -67,6 +90,37 @@ describe('FriendsCard', () => {
     expect(names()).toEqual(['Sen', 'Veli'])
     expect(host.querySelector('.friends-add .friends-invite-row button')?.textContent).toBe('Davet et')
     expect(host.querySelector('.friends-add input[aria-label="Arkadaşının kodu"]')).toBeNull()
+  })
+
+  it('with no friends Monki sets a pace to chase, and gives way once a friend is added', async () => {
+    const empty = await mount(true, [])
+    const names = [...empty.host.querySelectorAll('.friends-board .friends-name')].map((n) => n.textContent!.replace(/\d+$/, '').trim())
+    expect(names).toContain('Sen')
+    expect(names).toContain('Monki')
+    expect(empty.host.querySelector('.friends-ghost .friends-remove')).toBeNull()
+    expect(empty.host.querySelector('.friends-ghost .friends-name-btn')).toBeNull()
+    expect(empty.host.textContent).toContain('Monki seninle yarışır')
+    act(() => root?.unmount())
+    const withFriend = await mount(true)
+    expect(withFriend.host.querySelector('.friends-ghost')).toBeNull()
+  })
+
+  it('a steadiness board ranks the days studied this week, not the XP; a friend sharing days only shows no XP', async () => {
+    const day = localDate(new Date())
+    // Veli earns a lot on one day; Ece studies every day of the week so far but shares days only (a 1 on each).
+    const week = weekOf(day)
+    const veli = { ...card('BBBBBBBB', 'Veli', 400, 400), days: { [day]: 400 } }
+    const ece = { ...card('EEEEEEEE', 'Ece', 1, week.length), days: Object.fromEntries(fortnight(day).map((d) => [d, 1])) }
+    const { host } = await mount(true, [veli, ece])
+    const rows = () => [...host.querySelectorAll('.friends-board li')].map((li) => `${li.querySelector('.friends-rank')?.textContent}:${li.querySelector('.friends-name')?.textContent?.replace(/\d+$/, '').trim()}:${li.querySelector('.friends-xp')?.textContent}`)
+    // By XP of the day Ece has no figure to rank: she is listed last and unranked.
+    expect(rows().find((r) => r.includes('Ece'))).toBe('–:Ece:XP gizli')
+    await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Tutarlılık')!.click())
+    // By days she comes first (she studied on every day so far), Veli has one day.
+    const steady = rows()
+    expect(steady[0]).toMatch(/Ece/)
+    expect(steady[0]).toContain(`${week.length} gün`)
+    expect(steady.find((r) => r.includes('Veli'))).toContain('1 gün')
   })
 
   it('an unchanged card is not sent again', async () => {

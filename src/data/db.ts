@@ -157,6 +157,10 @@ export interface Settings {
   keepAwake?: boolean
   /** Kinds of notice (the bell) turned off in Settings; a kind that is off is neither listed nor pushed (engine/notices). */
   noticeOff?: NoticeKind[]
+  /** What friends see of the learner's study: 'xp' (the default) shows the XP by day; 'days' only which days were studied. */
+  friendShare?: 'xp' | 'days'
+  /** Friend codes whose nudges and cheers are not shown (the friend is not told). */
+  friendMuted?: string[]
   /** Weekly goal of reading and listening, in minutes (absent: none). */
   weeklyTimeGoal?: number
   /** Weekly goal of guide lessons read (absent: none; see engine/guideGoal). */

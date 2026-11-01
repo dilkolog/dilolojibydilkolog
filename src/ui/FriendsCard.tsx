@@ -3,6 +3,8 @@ import { DEFAULT_SETTINGS, type Profile } from '../data/db'
 import { db } from '../data/instance'
 import { addFriend, clearInbox, FriendsError, loadFriends, loadInbox, publishFriendCard, recentDays, removeFriend, type FriendView, type InboxItem } from '../data/friends'
 import { localDate } from '../engine/progress'
+import { weekStartOf, xpBetween } from '../engine/friendLeague'
+import { ghostRival, hidesXp, presenceDays, weekDays } from '../engine/friendMetrics'
 import { useAccess } from './accessContext'
 import { Avatar } from './Avatar'
 import { ChevronDownIcon, CloseIcon, CopyIcon, FlagIcon, FlameIcon, PlusIcon } from './icons'
@@ -47,9 +49,9 @@ const REASONS: Record<string, string> = {
  * other's codes, as a small leaderboard. Adding a friend is their code; one's own code is shown to
  * pass on. Only for an approved account (the cards live on the server).
  */
-export function FriendsCard({ game, profile, vocabulary, language, onChanged, onDuel }: { game: GameState | null; profile: Profile; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; onChanged?: () => void; onDuel?: () => void }) {
+export function FriendsCard({ game, profile, vocabulary, language, share = 'xp', onChanged, onDuel }: { game: GameState | null; profile: Profile; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; /** What friends see of the XP (Settings.friendShare). */ share?: 'xp' | 'days'; onChanged?: () => void; onDuel?: () => void }) {
   const access = useAccess()
-  const [range, setRange] = useState<'today' | 'week'>('today')
+  const [range, setRange] = useState<'today' | 'week' | 'steady'>('today')
   const [data, setData] = useState<{ me: FriendView; friends: FriendView[] } | null>(null)
   const [failed, setFailed] = useState(false)
   const [copied, setCopied] = useState(false)
@@ -99,7 +101,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
         }
       }
 
-      const card = { name: effectiveName, avatar: profile.emoji, color: profile.color, days: recentDays(game.xp.byDay, today), streak: game.streak, level: game.level.level }
+      const card = { name: effectiveName, avatar: profile.emoji, color: profile.color, days: share === 'days' ? presenceDays(recentDays(game.xp.byDay, today)) : recentDays(game.xp.byDay, today), streak: game.streak, level: game.level.level }
       const key = JSON.stringify(card)
       let sent: string | null = null
       try {
@@ -120,7 +122,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
     return () => {
       live = false
     }
-  }, [access.approved, game?.xp.total, game?.streak, profile.name, profile.emoji, profile.color, today]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [access.approved, game?.xp.total, game?.streak, profile.name, profile.emoji, profile.color, share, today]) // eslint-disable-line react-hooks/exhaustive-deps
 
   if (access.status === 'unknown') return null
   if (!access.approved)
@@ -213,9 +215,25 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
     }
   }
 
-  const xpOf = (f: FriendView) => (range === 'today' ? f.today : f.week)
-  const board = data ? [{ ...data.me, me: true }, ...data.friends.map((f) => ({ ...f, me: false }))].sort((a, b) => xpOf(b) - xpOf(a) || Number(b.me) - Number(a.me)) : []
-  const maxXp = Math.max(1, ...board.map((f) => xpOf(f)))
+  // When the card shared is days only, the learner's own XP comes from this device instead (the server's copy has none).
+  const mineDays = share === 'days' && game ? recentDays(game.xp.byDay, today) : data?.me.days ?? {}
+  const mine: FriendView | null = data ? (share === 'days' && game ? { ...data.me, days: mineDays, today: mineDays[today] ?? 0, week: xpBetween(mineDays, weekStartOf(today), today) } : data.me) : null
+  // With no friends yet Monki sets a pace to chase (nothing is stored or sent).
+  const ghost = data && data.friends.length === 0 ? ghostRival(mineDays, today, new Date().getHours()) : null
+  type Row = FriendView & { me: boolean; ghost: boolean; hidden: boolean }
+  const rows: Row[] = !data || !mine
+    ? []
+    : [
+        { ...mine, me: true, ghost: false, hidden: false },
+        ...data.friends.map((f) => ({ ...f, me: false, ghost: false, hidden: hidesXp(f.days) })),
+        ...(ghost ? [{ code: 'monki', name: 'Monki', avatar: 'monki', color: '#d97706', today: ghost.today, week: ghost.week, streak: ghost.streak, level: 0, days: ghost.days, at: '', me: false, ghost: true, hidden: false }] : []),
+      ]
+  /** What the board ranks: XP of the day or the week, or the days studied this week. A friend sharing days only has no XP to rank. */
+  const scoreOf = (f: Row) => (range === 'steady' ? weekDays(f.days, today) : f.hidden ? -1 : range === 'today' ? f.today : f.week)
+  /** Days studied over the fortnight a card carries: the tie-break among the same days this week. */
+  const studied = (f: Row) => Object.values(f.days).filter((xp) => xp > 0).length
+  const board = rows.sort((a, b) => scoreOf(b) - scoreOf(a) || Number(b.me) - Number(a.me) || weekDays(b.days, today) - weekDays(a.days, today) || studied(b) - studied(a))
+  const maxScore = Math.max(1, range === 'steady' ? 7 : 0, ...board.map(scoreOf))
   return (
     <section className="card stack gap-2 friends-card" aria-label="Arkadaşlar">
       <div className="friends-head">
@@ -230,6 +248,9 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
           <button type="button" className="chip chip-sm" aria-pressed={range === 'week'} onClick={() => setRange('week')}>
             Bu hafta
           </button>
+          <button type="button" className="chip chip-sm" aria-pressed={range === 'steady'} onClick={() => setRange('steady')} title="Bu hafta kaç gün çalıştın">
+            Tutarlılık
+          </button>
         </div>
       </div>
       {failed && !data && <p className="small muted">Arkadaş listesi şu an alınamadı.</p>}
@@ -239,11 +260,12 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
             const nickname = nicknames[f.code]
             const displayName = f.me ? 'Sen' : (nickname || f.name)
             const isEditing = editingCode === f.code
-            const xp = xpOf(f)
-            const pct = xp > 0 ? Math.max(6, Math.round((xp / maxXp) * 100)) : 0
+            const score = scoreOf(f)
+            const pct = score > 0 ? Math.max(6, Math.round((score / maxScore) * 100)) : 0
+            const unranked = f.hidden && range !== 'steady'
             return (
-              <li key={f.code} className={f.me ? 'friends-me' : isEditing ? 'friends-editing-row' : undefined}>
-                <span className={`friends-rank${i < 3 ? ` is-top-${i + 1}` : ''}`}>{i + 1}</span>
+              <li key={f.code} className={f.me ? 'friends-me' : f.ghost ? 'friends-ghost' : isEditing ? 'friends-editing-row' : undefined}>
+                <span className={`friends-rank${i < 3 && !unranked ? ` is-top-${i + 1}` : ''}`}>{unranked ? '–' : i + 1}</span>
                 <Avatar profile={{ name: displayName, emoji: f.avatar || '🙂', color: f.color, motto: '' } as Profile} size={36} />
                 {isEditing ? (
                   <form
@@ -273,14 +295,14 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
                   <>
                     <div className="friends-user">
                       <div className="friends-user-top">
-                        {f.me ? (
+                        {f.me || f.ghost ? (
                           <span className="friends-name">{displayName}</span>
                         ) : (
                           <button type="button" className="friends-name friends-name-btn" onClick={() => setOpen(f.code)} aria-label={`${displayName} sayfasını aç`}>
                             {displayName}
                           </button>
                         )}
-                        {!f.me && (
+                        {!f.me && !f.ghost && (
                           <button
                             type="button"
                             className={`link small friends-rename-btn ${f.name === 'Arkadaş' && !nickname ? 'friends-rename-highlight' : ''}`}
@@ -294,7 +316,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
                             {f.name === 'Arkadaş' && !nickname ? '✎ İsim ver' : '✎'}
                           </button>
                         )}
-                        <span className="friends-xp">{xp.toLocaleString('tr-TR')} XP</span>
+                        <span className="friends-xp">{range === 'steady' ? `${score} gün` : f.hidden ? 'XP gizli' : `${score.toLocaleString('tr-TR')} XP`}</span>
                       </div>
                       <div className="friends-user-sub">
                         {f.streak > 0 && (
@@ -312,7 +334,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
                         </span>
                       </div>
                     </div>
-                    {!f.me && (
+                    {!f.me && !f.ghost && (
                       <button type="button" className="icon-btn icon-btn-sm friends-remove" onClick={() => void remove(f)} aria-label={`${displayName} arkadaşını çıkar`} title="Çıkar">
                         <CloseIcon size={14} />
                       </button>
@@ -408,7 +430,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
       {data && data.friends.length === 0 && (
         <p className="small muted friends-empty">
           <img className="friends-art" src={NEW_ART.friendsCode} alt="" height={56} draggable={false} />
-          <span>Arkadaşını kullanıcı adıyla bul; birbirinizin günlük XP'sini görüp yarışın.</span>
+          <span>Arkadaşın yokken Monki seninle yarışır: hızını senin ritmine göre ayarlar, gün içinde ilerler. Arkadaşını kullanıcı adıyla bulunca yerini o alır.</span>
         </p>
       )}
       {data && (

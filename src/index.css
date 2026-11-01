@@ -5056,6 +5056,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .friends-xp-fill { display: block; height: 100%; border-radius: inherit; background: var(--lang); transition: width var(--dur) var(--ease-out); }
 .friends-board li:first-child .friends-xp-fill { background: linear-gradient(90deg, var(--lang), #f59e0b); }
 .friends-xp { margin-left: auto; flex: none; font-weight: 700; font-size: var(--t-xs); font-variant-numeric: tabular-nums; padding: 0.125rem 0.4375rem; border-radius: var(--r-full); background: var(--surface-2); }
+.friends-board li.friends-ghost { background: color-mix(in srgb, var(--surface-2) 55%, transparent); }
+.friends-board li.friends-ghost .friends-name { color: var(--ink-soft); }
 .friends-board li.friends-me .friends-xp { background: var(--surface); color: var(--lang-text); }
 .friends-remove { opacity: 0.4; }
 .friends-board li:hover .friends-remove, .friends-remove:focus-visible { opacity: 1; }
