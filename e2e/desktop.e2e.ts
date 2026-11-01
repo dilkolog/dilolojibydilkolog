@@ -2043,8 +2043,8 @@ test('register game: regional usage note shows for entries with notes and is abs
       }
       await page.getByRole('button', { name: 'Devam', exact: true }).click()
     }
-    if (!seenNote && (await page.getByRole('button', { name: /Yeniden oyna/ }).count()) > 0) {
-      await page.getByRole('button', { name: /Yeniden oyna/ }).click()
+    if (!seenNote && (await page.getByRole('button', { name: /Tekrar oyna|Yeniden oyna/ }).count()) > 0) {
+      await page.getByRole('button', { name: /Tekrar oyna|Yeniden oyna/ }).click()
     }
   }
   expect(seenNote).toBe(true)
