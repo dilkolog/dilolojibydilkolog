@@ -1386,7 +1386,8 @@ main:focus { outline: none; }
   border-radius: var(--r-md); background: color-mix(in srgb, var(--plant-soil) 18%, var(--surface));
   box-shadow: inset 0 -0.3rem 0 color-mix(in srgb, var(--plant-soil) 35%, transparent);
 }
-.garden-pot { height: 3rem; width: auto; max-width: 2.5rem; object-fit: contain; transform-origin: 50% 100%; animation: plant-sprout 700ms var(--ease-spring) backwards; animation-delay: calc(var(--i, 0) * 120ms); }
+.garden-pot { height: 3rem; width: auto; max-width: 2.5rem; object-fit: contain; transform-origin: 50% 100%; animation: plant-sprout 700ms var(--ease-spring) backwards; animation-delay: calc(var(--i, 0) * 120ms); transition: transform var(--dur-fast) var(--ease-spring); }
+.garden-pot:hover { transform: scale(1.15) rotate(2deg); cursor: pointer; }
 .garden-pot:nth-child(2) { height: 3.25rem; }
 .garden-pot:nth-child(3) { height: 3.5rem; }
 .garden-pot:nth-child(4) { height: 3.75rem; }
@@ -1700,6 +1701,14 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
   font-family: var(--serif); font-style: italic; font-size: clamp(3rem, 7vw, 4.75rem); line-height: 1; white-space: nowrap;
   color: var(--on-lang); opacity: 0.08; pointer-events: none; user-select: none;
 }
+.hero-sky-art {
+  position: absolute; right: -0.75rem; bottom: -0.5rem;
+  width: min(240px, 42vw); height: auto;
+  opacity: 0.22; pointer-events: none; user-select: none;
+  filter: var(--art-edge);
+  mix-blend-mode: luminosity;
+  transition: opacity var(--dur) var(--ease-out);
+}
 
 /* Stats as one compact strip instead of three cards. */
 .stats { background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); gap: 0; padding: 0.25rem 0; }
@@ -1835,6 +1844,11 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .sk-grid { display: grid; gap: 1rem; margin-top: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); }
 .sk-card { height: 7rem; border-radius: var(--r-lg); }
 .sk-card-tall { height: 11rem; grid-column: 1 / -1; }
+.sk-cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(14rem, 100%), 1fr)); }
+.sk-card-item { display: grid; gap: 0.5rem; padding: 1rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
+.sk-cover { width: 100%; height: 7rem; border-radius: var(--r-md); }
+.sk-title-sm { width: 70%; height: 1.25rem; }
+.sk-line-sm { width: 45%; height: 0.875rem; }
 @keyframes shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
 
 /* ---------- First run ---------- */
@@ -2968,6 +2982,21 @@ p, .help, .small { text-wrap: pretty; }
 .reader p { margin: 0 0 1.15em; }
 .reader p:last-child { margin-bottom: 0; }
 .reader-sepia { padding: 2.5rem 3rem 2.25rem; }
+
+/* Zen focus reading mode: dims surrounding paragraphs to cultivate calm focus */
+.reader.reader-zen p {
+  transition: opacity var(--dur) var(--ease-out), filter var(--dur) var(--ease-out);
+}
+.reader.reader-zen:hover p:not(:hover):not(.is-lit):not(.has-selected) {
+  opacity: 0.38;
+  filter: blur(0.3px);
+}
+.reader.reader-zen p:hover,
+.reader.reader-zen p.is-lit,
+.reader.reader-zen p.has-selected {
+  opacity: 1;
+  filter: none;
+}
 @container main (max-width: 40rem) { .reader, .reader-sepia { padding: 1.5rem 1.25rem; } }
 /* Marked words: a soft highlight with an underline in the same hue; the text stays ink-dark. */
 .rw { padding: 0.04em 0.12em; margin: 0 -0.04em; border-radius: 0.3em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
@@ -5985,3 +6014,55 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 /* Invite: who the link is from, before it is accepted (InviteAccept, in the first bundle). */
 .invite-ask { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; color: var(--ink); }
 .invite-ask > div { display: grid; gap: 0.125rem; }
+
+/* ---------- Celebration Overlay & Confetti ---------- */
+.celebration-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.celebration-mascot {
+  animation: celebration-pop 600ms var(--ease-spring) both, celebration-fade 1000ms ease-in 2.2s forwards;
+}
+.celebration-confetti-art {
+  width: 140px;
+  height: auto;
+  filter: var(--art-edge) drop-shadow(0 12px 32px rgba(0, 0, 0, 0.25));
+}
+.confetti-cannon {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.confetti-particle {
+  position: absolute;
+  top: 0;
+  border-radius: var(--r-xs);
+  opacity: 0;
+  animation: confetti-fall linear forwards;
+}
+.confetti-particle.shape-circle { border-radius: 50%; }
+.confetti-particle.shape-ribbon { border-radius: 1px; }
+
+@keyframes celebration-pop {
+  0% { transform: scale(0.3) translateY(40px); opacity: 0; }
+  60% { transform: scale(1.1) translateY(-6px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+@keyframes celebration-fade {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.9) translateY(-20px); }
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  20% { opacity: 1; }
+  100% { transform: translateY(105vh) rotate(var(--rot, 360deg)); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .celebration-overlay, .confetti-cannon, .celebration-mascot { display: none; }
+}

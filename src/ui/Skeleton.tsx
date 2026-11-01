@@ -103,3 +103,18 @@ export function TilesSkeleton({ count = 4, label = 'Yükleniyor' }: { count?: nu
     </div>
   )
 }
+
+/** Placeholder cards for reading library books or list covers that are loading. */
+export function CardsSkeleton({ count = 3, label = 'Yükleniyor' }: { count?: number; label?: string }) {
+  return (
+    <div className="sk-cards" role="status" aria-label={label}>
+      {Array.from({ length: count }, (_, i) => (
+        <div key={i} className="sk-card-item">
+          <span className="sk sk-cover" />
+          <span className="sk sk-title-sm" />
+          <span className="sk sk-line-sm" />
+        </div>
+      ))}
+    </div>
+  )
+}

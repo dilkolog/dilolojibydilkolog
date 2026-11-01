@@ -9,7 +9,7 @@ import { STAGE_NAME } from './labels'
 import { GardenSky } from './GardenSky'
 import { Plant } from './Plant'
 import { BoltIcon, DropIcon } from './icons'
-import { POTS } from './drawnArt'
+import { POTS, GARDEN_POTS } from './drawnArt'
 
 const BED_PREVIEW = 120
 /** Only the first plants of a bed sway: a few hundred moving icons would cost more than they give. */
@@ -249,7 +249,7 @@ export function GardenCard({
       <span className={`garden-card-pots is-${thirst}`} aria-hidden>
         {/* The garden as it is: up to four of the stages it has, young to old, drawn pots on one shelf; a drop when some are thirsty. */}
         {cardStages.map((stage, i) => (
-          <img key={stage} className="garden-pot" src={POTS[stage]} alt="" draggable={false} style={{ '--i': i } as CSSProperties} />
+          <img key={stage} className="garden-pot" src={GARDEN_POTS[stage] ?? POTS[stage]} alt="" draggable={false} style={{ '--i': i } as CSSProperties} />
         ))}
         {dry > 0 && (
           <span className="garden-drop">

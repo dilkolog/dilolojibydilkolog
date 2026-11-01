@@ -6,7 +6,10 @@ import {
   listCover,
   BOSS_ART,
   TILE_ART,
+  AMBIENT_SKY,
+  GARDEN_POTS,
 } from './drawnArt'
+import { readerStyle } from './readerSettings'
 
 describe('New Visual Art Assets', () => {
   it('registers all cultural language mascots', () => {
@@ -46,5 +49,27 @@ describe('New Visual Art Assets', () => {
   it('registers speed duel and shadowing in tile art', () => {
     expect(TILE_ART.duel).toBeTruthy()
     expect(TILE_ART.shadowing).toBeTruthy()
+  })
+
+  it('registers ambient sky illustrations for all day parts', () => {
+    expect(AMBIENT_SKY.dawn).toBeTruthy()
+    expect(AMBIENT_SKY.day).toBeTruthy()
+    expect(AMBIENT_SKY.dusk).toBeTruthy()
+    expect(AMBIENT_SKY.night).toBeTruthy()
+  })
+
+  it('registers high-res botanical terracotta garden pots for all 6 stages', () => {
+    expect(GARDEN_POTS.length).toBe(6)
+    for (let i = 0; i < 6; i++) {
+      expect(GARDEN_POTS[i]).toBeTruthy()
+    }
+  })
+
+  it('enables reader-zen class in readerStyle when zen is active', () => {
+    const normal = readerStyle({ size: 1, airy: false, sepia: false, sans: false, width: 1, zen: false })
+    expect(normal.className).not.toContain('reader-zen')
+
+    const zen = readerStyle({ size: 1, airy: false, sepia: false, sans: false, width: 1, zen: true })
+    expect(zen.className).toContain('reader-zen')
   })
 })

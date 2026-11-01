@@ -43,6 +43,9 @@ export function ReaderControls({ prefs, onChange }: { prefs: ReaderPrefs; onChan
         <button className="chip chip-sm" aria-pressed={prefs.sepia} onClick={() => onChange((r) => ({ ...r, sepia: !r.sepia }))}>
           Sepya
         </button>
+        <button className="chip chip-sm" aria-pressed={prefs.zen} onClick={() => onChange((r) => ({ ...r, zen: !r.zen }))}>
+          Odak (Zen)
+        </button>
       </div>
     </div>
   )

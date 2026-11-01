@@ -34,6 +34,7 @@ import { FREE_RECALL_MIN, FreeRecall } from './FreeRecall'
 import { SessionNote } from './SessionNote'
 import { RESULT_ART, STAT_ART, resultKind } from './drawnArt'
 import { Sticker } from './Sticker'
+import { Confetti } from './Confetti'
 
 function hardHeadline(accuracy: number): string {
   if (accuracy >= 0.9) return 'Zor kelimelerin yola geliyor!'
@@ -128,6 +129,7 @@ export function Summary({
 
   return (
     <div className="summary-grid">
+      {(accuracy >= 0.95 || !!milestone || !!leveledUp) && <Confetti />}
       {milestone && <MilestoneMoment milestone={milestone} onClose={() => setMilestone(null)} />}
       {!milestone && badgeMoment && (
         <BadgeMoment

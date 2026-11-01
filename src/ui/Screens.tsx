@@ -8,7 +8,7 @@ import type { DailyPlan, NewWordsBlock, PlanReason } from '../engine/dailyPlan'
 import type { QuestMetric } from '../engine/quests'
 import { SKILLS, type Skill, type TargetLanguage } from '../engine/types'
 import { relativeTime } from './format'
-import { greetingFor } from './dayPart'
+import { greetingFor, dayPart } from './dayPart'
 import { pinnedBadges } from '../engine/profileStyle'
 import { BoltIcon, SnowflakeIcon } from './icons'
 import { HELLO, LANGUAGE_NAME, SKILL_NAME } from './labels'
@@ -22,6 +22,7 @@ import { useGame } from './game'
 import { BadgeMedal } from './Medal'
 import { StreakPicture } from './StreakFlame'
 import welcomeBanner from '../assets/art/welcome-banner.webp'
+import { AMBIENT_SKY } from './drawnArt'
 import { REPAIR_MIN_SCORE, repairKey } from '../engine/streakRepair'
 import { repairTried } from './repairTry'
 import { NEW_ART, STAT_ART, TILE_ART } from './drawnArt'
@@ -380,6 +381,7 @@ export function Home({
             <span className="hero-hello" lang={language}>
               {HELLO[language]}
             </span>
+            <img className="hero-sky-art" src={AMBIENT_SKY[dayPart(now)]} alt="" draggable={false} />
           </div>
           {/* The ring is the way through the task; the plant inside grows with it. */}
           {(() => {

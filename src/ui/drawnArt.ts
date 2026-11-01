@@ -63,6 +63,12 @@ import record from '../assets/art/result-record.webp'
 import pot1 from '../assets/art/pot-1.webp'
 import pot3 from '../assets/art/pot-3.webp'
 import pot5 from '../assets/art/pot-5.webp'
+import gardenPot0 from '../assets/art/garden-pot-0.webp'
+import gardenPot1 from '../assets/art/garden-pot-1.webp'
+import gardenPot2 from '../assets/art/garden-pot-2.webp'
+import gardenPot3 from '../assets/art/garden-pot-3.webp'
+import gardenPot4 from '../assets/art/garden-pot-4.webp'
+import gardenPot5 from '../assets/art/garden-pot-5.webp'
 import lvl0 from '../assets/art/monki-lvl-0.webp'
 import lvl1 from '../assets/art/monki-lvl-1.webp'
 import lvl2 from '../assets/art/monki-lvl-2.webp'
@@ -184,6 +190,10 @@ import langMonkiEs from '../assets/art/lang-monki-es.webp'
 import cefrMonkiA1 from '../assets/art/cefr-monki-a1.webp'
 import cefrMonkiB1 from '../assets/art/cefr-monki-b1.webp'
 import cefrMonkiC1 from '../assets/art/cefr-monki-c1.webp'
+import skyDawn from '../assets/art/sky-dawn.webp'
+import skyNoon from '../assets/art/sky-noon.webp'
+import skyDusk from '../assets/art/sky-dusk.webp'
+import skyNight from '../assets/art/sky-night.webp'
 import missionRent from '../assets/art/mission-rent.webp'
 import missionRestaurant from '../assets/art/mission-restaurant.webp'
 import missionLuggage from '../assets/art/mission-luggage.webp'
@@ -263,6 +273,9 @@ export const CATEGORY_EMBLEM: Record<BadgeCategory, string> = { words: emSprout,
 /** The light of the hour: dawn → morning, day → noon, dusk → evening. */
 export const TIME_SCENE: Record<string, string> = { dawn: morning, day: noon, dusk: evening, night }
 
+/** Ambient sky vistas by time of day (dawn, day, dusk, night). */
+export const AMBIENT_SKY: Record<string, string> = { dawn: skyDawn, day: skyNoon, dusk: skyDusk, night: skyNight }
+
 export type ResultKind = 'perfect' | 'great' | 'good' | 'hard' | 'streak' | 'record'
 export const RESULT_ART: Record<ResultKind, string> = { perfect, great, good, hard, streak, record }
 /** How a session went, as Monki's reaction: a level-up is a record, a saved streak a shield, else by accuracy. */
@@ -277,6 +290,9 @@ export function resultKind(accuracy: number, answered: number, opts: { leveledUp
 
 /** A word's whole life in six pots (seed, sprout, young plant, flowers, tree, gold) for the first-run garden. */
 export const POTS = [pot0, pot1, pot2, pot3, pot4, pot5]
+
+/** High-definition botanical garden plants in matching terracotta pots. */
+export const GARDEN_POTS = [gardenPot0, gardenPot1, gardenPot2, gardenPot3, gardenPot4, gardenPot5]
 
 /** Monki grows with the learner: none, scarf, student cap, explorer hat, graduation cap, crown (the titles' ladder 1·3·5·8·15·25). */
 const LEVEL_MONKI = [lvl0, lvl1, lvl2, lvl3, lvl4, lvl5]
