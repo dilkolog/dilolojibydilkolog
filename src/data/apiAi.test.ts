@@ -1,11 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 vi.mock('../../api/_account.js', () => ({ requireApproved: vi.fn(async () => null), accountOf: vi.fn(async () => 'acct') }))
-vi.mock('../../api/_quota.js', () => ({ quotaLeft: vi.fn(async () => true), spendQuota: vi.fn(async () => {}), dailyQuotaReached: () => Response.json({ error: 'daily_quota' }, { status: 429 }) }))
+vi.mock('../../api/_quota.js', () => ({ quotaLeft: vi.fn(async () => true), quotaUsed: vi.fn(async () => 0), spendQuota: vi.fn(async () => {}), dailyQuotaReached: () => Response.json({ error: 'daily_quota' }, { status: 429 }) }))
 
-import { POST, GET, refuse, MAX_TOKENS } from '../../api/ai'
+import { POST, GET, refuse, costUnits, MAX_TOKENS } from '../../api/ai'
 import { requireApproved } from '../../api/_account.js'
-import { quotaLeft } from '../../api/_quota.js'
+import { quotaLeft, quotaUsed, spendQuota } from '../../api/_quota.js'
 import { resetRate } from '../../api/_rate.js'
 
 const good = { model: 'claude-sonnet-5-5', max_tokens: 1000, messages: [{ role: 'user', content: 'hi' }] }
@@ -17,6 +17,8 @@ beforeEach(() => {
   vi.restoreAllMocks()
   vi.mocked(requireApproved).mockResolvedValue(null)
   vi.mocked(quotaLeft).mockResolvedValue(true)
+  vi.mocked(quotaUsed).mockResolvedValue(0)
+  vi.mocked(spendQuota).mockClear()
   process.env.ANTHROPIC_API_KEY = 'sk-test-key'
 })
 
@@ -71,5 +73,24 @@ describe('/api/ai', () => {
     const res = await POST(ask(good))
     expect(res.status).toBe(502)
     expect(await res.text()).not.toContain('x-api-key')
+  })
+})
+
+describe('what a day may cost', () => {
+  it('counts money from the usage the answer reports, by model', () => {
+    expect(costUnits('claude-opus-5-5', { input_tokens: 1_000_000, output_tokens: 0 })).toBe(40_000)
+    expect(costUnits('claude-haiku-4-5', { input_tokens: 0, output_tokens: 1_000_000 })).toBe(50_000)
+    expect(costUnits('claude-sonnet-5-5', { input_tokens: 1000, output_tokens: 1000, cache_read_input_tokens: 1000 })).toBeGreaterThan(0)
+    expect(costUnits('claude-other', { input_tokens: 5 })).toBe(0)
+    expect(costUnits('claude-opus-5-5', null)).toBe(0)
+  })
+
+  it('spends the call and its money after a good answer, and stops once the day’s money is used', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({ usage: { input_tokens: 10_000, output_tokens: 2_000 } }), { status: 200 }))
+    expect((await POST(ask(good))).status).toBe(200)
+    expect(spendQuota).toHaveBeenCalledWith('ai', 'acct', 1)
+    expect(spendQuota).toHaveBeenCalledWith('ai-cost', 'acct', expect.any(Number))
+    vi.mocked(quotaUsed).mockResolvedValue(10_000_000)
+    expect((await POST(ask(good))).status).toBe(429)
   })
 })

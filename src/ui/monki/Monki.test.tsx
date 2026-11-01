@@ -53,7 +53,7 @@ describe('Monki', () => {
   it('without a key it explains what is needed and goes to the settings', () => {
     render(null)
     openPanel()
-    expect(container.textContent).toContain('Anthropic anahtarını')
+    expect(container.textContent).toMatch(/ulaşamıyorum|onaylanması/)
     act(() => container.querySelector<HTMLButtonElement>('.monki-setup .btn')!.click())
     expect(onSettings).toHaveBeenCalled()
     expect(container.querySelector('.monki-panel')).toBeNull()

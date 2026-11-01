@@ -4,28 +4,45 @@
  * GET /api/ai: whether the server has a key (the app shows the AI features only when it does).
  *
  * The key is the owner's money on a public address, so: only the app's own pages may ask, only an approved
- * account, a few calls a minute and AI_DAILY_CALLS a day per account (default 150), a request body of at most
- * MAX_BODY bytes, only the models the app offers, no tools and no streaming (the app uses neither), and
- * max_tokens capped. The answer goes back as Anthropic wrote it (the SDK reads usage and refusals from it).
+ * account, a few calls a minute, AI_DAILY_CALLS calls (default 150) and AI_DAILY_BUDGET_USD (default 0.75) a day
+ * per account (the money is counted from the usage Anthropic reports, so a few big calls cannot hide behind the
+ * call count), a request body of at most MAX_BODY bytes, only the models the app offers, no tools and no streaming
+ * (the app uses neither), and max_tokens capped. The answer goes back as Anthropic wrote it (the SDK reads usage and refusals from it).
  */
 
 import { accountOf, requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
 import { overLimit, tooMany } from './_rate.js'
-import { dailyQuotaReached, quotaLeft, spendQuota } from './_quota.js'
+import { dailyQuotaReached, quotaLeft, quotaUsed, spendQuota } from './_quota.js'
 
 export { fromApp }
 
 /** The photo-to-words feature sends a downscaled picture: base64 of about a megabyte is the biggest body. */
-export const MAX_BODY = 3_000_000
+export const MAX_BODY = 1_200_000
 export const MAX_TOKENS = 16_000
 export const DEFAULT_DAILY_CALLS = 150
 /** The models the app lets people choose (src/ai/usage.ts AI_MODELS) and the one the safety fallback may pick. */
 export const MODELS = ['claude-opus-5-5', 'claude-sonnet-5-5', 'claude-haiku-4-5']
+/** USD per million tokens (input, output), as in src/ai/usage.ts AI_MODELS. */
+const PRICE: Record<string, [number, number]> = { 'claude-opus-5-5': [4, 20], 'claude-sonnet-5-5': [2, 10], 'claude-haiku-4-5': [1, 5] }
+/** The money is counted in ten-thousandths of a dollar, so the day's file holds whole numbers. */
+const UNIT = 10_000
+export const DEFAULT_DAILY_BUDGET_USD = 0.75
 const BETA = /^[a-z0-9][a-z0-9.,\- ]{0,200}$/
 
 const json = (body: unknown, status = 200) => Response.json(body, { status, headers: { 'cache-control': 'no-store' } })
 const dailyCalls = () => Math.max(1, Number(process.env.AI_DAILY_CALLS) || DEFAULT_DAILY_CALLS)
+const dailyBudget = () => Math.round((Number(process.env.AI_DAILY_BUDGET_USD) || DEFAULT_DAILY_BUDGET_USD) * UNIT)
+
+/** What an answer cost, in budget units, from the usage it reports (0 when it reports none). */
+export function costUnits(model: string, usage: unknown): number {
+  const price = PRICE[model]
+  const u = usage as { input_tokens?: unknown; output_tokens?: unknown; cache_read_input_tokens?: unknown; cache_creation_input_tokens?: unknown } | null
+  if (!price || !u) return 0
+  const n = (x: unknown) => (typeof x === 'number' && x > 0 ? x : 0)
+  const usd = (n(u.input_tokens) * price[0] + n(u.output_tokens) * price[1] + n(u.cache_read_input_tokens) * price[0] * 0.1 + n(u.cache_creation_input_tokens) * price[0] * 1.25) / 1_000_000
+  return Math.ceil(usd * UNIT)
+}
 
 export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
@@ -68,6 +85,7 @@ export async function POST(request: Request): Promise<Response> {
 
   const account = await accountOf(request).catch(() => null)
   if (account && !(await quotaLeft('ai', account, 1, dailyCalls()))) return dailyQuotaReached()
+  if (account && (await quotaUsed('ai-cost', account)) >= dailyBudget()) return dailyQuotaReached()
 
   const beta = request.headers.get('anthropic-beta')?.trim()
   const res = await fetch('https://api.anthropic.com/v1/messages?beta=true', {
@@ -82,11 +100,23 @@ export async function POST(request: Request): Promise<Response> {
     signal: AbortSignal.timeout(150_000),
   }).catch(() => null)
   if (!res) return json({ error: 'unavailable' }, 502)
-  if (account && res.ok) await spendQuota('ai', account, 1)
   // The key's own failures (a wrong or empty key, no credit) must not reach the page as the user's: they are the owner's to fix.
   if (res.status === 401 || res.status === 403) {
     console.error(`[ai-proxy] Anthropic answered ${res.status}: check ANTHROPIC_API_KEY and the account's credit`)
     return json({ error: 'unavailable' }, 502)
   }
-  return new Response(res.body, { status: res.status, headers: { 'content-type': res.headers.get('content-type') ?? 'application/json', 'cache-control': 'no-store' } })
+  const answer = await res.text().catch(() => '')
+  // A call counts once it went through, and its money from what Anthropic says it used.
+  if (account && res.ok) {
+    await spendQuota('ai', account, 1)
+    let usage: unknown = null
+    try {
+      usage = (JSON.parse(answer) as { usage?: unknown }).usage
+    } catch {
+      // Not JSON: nothing to count.
+    }
+    const units = costUnits((body as { model: string }).model, usage)
+    if (units) await spendQuota('ai-cost', account, units)
+  }
+  return new Response(answer, { status: res.status, headers: { 'content-type': res.headers.get('content-type') ?? 'application/json', 'cache-control': 'no-store' } })
 }
