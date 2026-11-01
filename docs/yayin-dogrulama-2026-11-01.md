@@ -6,7 +6,7 @@
 Yalnızca iPhone: `npx playwright test --project='iPhone (WebKit)'` (önce misafir test derlemesi gerekir).
 Profil iPhone 13 boyutlarını ve WebKit'i kullanır; fiziksel iPhone testi yerine geçmez.
 CI iki tarayıcıyı da kurar. WebKit testlerinin yerel çalışması bu ortamda indirme alan adlarının 403 vermesi nedeniyle engellendi.
-WebKit ayrı CI işinde çalışır; hassas ilk kurulum ve tema kontrastı akışları önce, kalan testler sonra çalıştırılır. Her test bir kez koşar. Başarısızlıkta `test-results` ve HTML raporu saklanır.
+WebKit ayrı CI işinde çalışır; okuma kelime kartının yerleşimi önce, kalan testler sonra çalıştırılır. Her test bir kez koşar. Başarısızlıkta `test-results` ve HTML raporu saklanır.
 390×664 görünümünde ilk kurulumun üç adımı ve tema kontrastı Chromium'da doğrulandı; kısa ekranlarda dil kartları tek sütundur ve ana düğmeler ilk ekrana sığar.
 Kısa ekranlarda toplu seçim çubuğu kelime satırlarını örtmez. Bölüm kısayolları tek kaydırma başlatır ve başlığı üst çubuğun altına getirir. Kontrast kontrolleri tema başına ayrı senaryodur; WebKit iki işçiyle çalışır.
 Dokunma testlerinde `Touch` kurucusu yerine olay özellikleri kullanılır; IndexedDB temizliği uygulama kapatıldıktan sonra yapılır; kontrast ölçümünden önce sonlu animasyonlar beklenir.
@@ -25,6 +25,7 @@ Durum: **kullanıcının isteğiyle şimdilik ertelendi**. Bu ortamda ayrılmı�
 ## Yayın koşulları
 
 `npm run deploy:cf` gerçek `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` ve yetkili Cloudflare oturumu gerektirir. Ayarlar eksik olduğunda betik yayını durdurur. Test adresleriyle veya misafir derlemesiyle yayın yapılmamalı.
+Depo ayrıca Cloudflare Workers Builds'e bağlıdır: ana dala birleşme otomatik üretim dağıtımı başlatır. Bu yoldaki yayın, birleşme commit'inin `Workers Builds: diloloji` denetiminde başarılı sonuç ve yeni sürüm kimliği görülerek doğrulanır; yerel CLI oturumu gerektirmez.
 
 ## Sözlük üretimi
 

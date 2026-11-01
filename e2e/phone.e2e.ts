@@ -1139,6 +1139,9 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   await startWithSamples(page)
   await openScreen(page, 'Okuma')
   await page.locator('main button', { hasText: 'La décision' }).first().click()
+  // Audio texts start with the transcript hidden; a learner opens it before tapping its words.
+  await page.getByRole('button', { name: 'Turları bırak', exact: true }).click()
+  await expect(page.locator('article.reader')).not.toHaveClass(/is-hidden/)
   const words = page.locator('.rw-unseen')
   await expect(words.first()).toBeVisible()
   // Wait for images to load so they do not cause layout shifts while measuring.
@@ -1161,8 +1164,8 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   })
   const target = words.nth(12)
   // The audio panel above the text can sit over a word; a real tap scrolls first, so do the same.
-  await target.evaluate((el) => el.scrollIntoView({ block: 'center' }))
-  await target.evaluate((el) => (el as HTMLElement).click())
+  await target.evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }))
+  await target.click()
   const sheet = page.locator('.word-pop')
   await expect(sheet).toBeVisible()
   await expect.poll(async () => (await sheet.evaluate((el) => getComputedStyle(el).position))).toBe('fixed')
