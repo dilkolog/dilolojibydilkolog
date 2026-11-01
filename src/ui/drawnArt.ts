@@ -160,6 +160,9 @@ import reactCombo from '../assets/art/react-combo.webp'
 import reactCorrect from '../assets/art/react-correct.webp'
 import reactForgot from '../assets/art/react-forgot.webp'
 import reactHello from '../assets/art/react-hello.webp'
+import animWave from '../assets/art/monki-animated-wave.webp'
+import animCelebrate from '../assets/art/monki-animated-celebrate.webp'
+import animWink from '../assets/art/monki-animated-wink.webp'
 import reactNewword from '../assets/art/react-newword.webp'
 import reactOops from '../assets/art/react-oops.webp'
 import roleCafe from '../assets/art/role-cafe.webp'
@@ -463,3 +466,10 @@ export const STICKER = {
 
 /** Monki answering an answer in a session: cheering, a kind "oops", thinking back; and a hello, a new card, a streak of right answers. */
 export const REACT = { correct: reactCorrect, oops: reactOops, forgot: reactForgot, combo: reactCombo, hello: reactHello, newWord: reactNewword }
+
+/** Real animated WebP mascots: smooth looping character sequences. */
+export const ANIMATED_MONKI = {
+  wave: animWave,
+  celebrate: animCelebrate,
+  wink: animWink,
+}

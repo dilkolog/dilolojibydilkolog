@@ -8,6 +8,7 @@ import {
   TILE_ART,
   AMBIENT_SKY,
   GARDEN_POTS,
+  ANIMATED_MONKI,
 } from './drawnArt'
 import { readerStyle } from './readerSettings'
 
@@ -71,5 +72,11 @@ describe('New Visual Art Assets', () => {
 
     const zen = readerStyle({ size: 1, airy: false, sepia: false, sans: false, width: 1, zen: true })
     expect(zen.className).toContain('reader-zen')
+  })
+
+  it('registers all 3 animated Monki WebP mascots', () => {
+    expect(ANIMATED_MONKI.wave).toBeTruthy()
+    expect(ANIMATED_MONKI.celebrate).toBeTruthy()
+    expect(ANIMATED_MONKI.wink).toBeTruthy()
   })
 })

@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from 'react'
-import celebrationConfetti from '../assets/art/celebration-confetti.webp'
+import animCelebrate from '../assets/art/monki-animated-celebrate.webp'
 
 interface ConfettiPiece {
   id: number
@@ -68,7 +68,7 @@ export function Confetti({
   return (
     <div className="celebration-overlay" aria-hidden>
       <div className="celebration-mascot">
-        <img src={celebrationConfetti} alt="" className="celebration-confetti-art" draggable={false} />
+        <img src={animCelebrate} alt="" className="celebration-confetti-art" draggable={false} />
       </div>
       <div className="confetti-cannon">
         {pieces.map((p) => (

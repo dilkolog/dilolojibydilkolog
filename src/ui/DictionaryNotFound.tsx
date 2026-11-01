@@ -3,7 +3,7 @@ import { wiktionaryUrl } from '../data/dictionary'
 import { parseMeanings } from '../engine/dictionaryNotes'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { BookIcon, CheckIcon, PlusIcon, TagIcon } from './icons'
-import { STICKER } from './drawnArt'
+import { ANIMATED_MONKI } from './drawnArt'
 import { OtherLanguageVerb } from './DictionaryCard'
 import { MeaningLookupButtons } from './MeaningLookupButtons'
 import { useMeaningLookup } from './useMeaningLookup'
@@ -117,7 +117,7 @@ export function NotFound({
       ) : (
         <>
           <div className="row items-center gap-sm notfound-header">
-            <img src={STICKER.detective} alt="" className="notfound-monki" draggable={false} />
+            <img src={ANIMATED_MONKI.wink} alt="" className="notfound-monki" draggable={false} />
             <div className="stack gap-2xs">
               <p className="notfound-title">
                 “<span lang={language}>{word}</span>” sözlük paketinde veya kelimelerinde henüz yok{hasSimilar ? ' (benzerleri aşağıda)' : ''}.

@@ -1,5 +1,5 @@
 import '../lazy.css'
-import { REACT } from './drawnArt'
+import { ANIMATED_MONKI } from './drawnArt'
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import type { IntrusionSources } from '../engine/crossLanguage'
 import type { PlanItem } from '../engine/dailyPlan'
@@ -558,7 +558,7 @@ export function SessionScreen(p: Props) {
       <div className="session-stage">
       {session.index === 0 && session.log.length === 0 && answeredAt === null && session.items.length >= 1 && (
         <p className="session-hello">
-          <img src={REACT.hello} alt="" width={44} height={44} draggable={false} />
+          <img src={ANIMATED_MONKI.wave} alt="" width={44} height={44} draggable={false} />
           <span>
             Merhaba! <strong>{session.items.length}</strong> soruluk bir tur, hadi başlayalım.
           </span>
