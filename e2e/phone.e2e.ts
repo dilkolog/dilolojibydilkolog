@@ -946,8 +946,15 @@ test('the page is lit for the hour: greeting, a sun or moon beside it, a faint w
     await page.evaluate(() => (document.documentElement.dataset.theme = 'dark'))
     expect(await wash()).not.toMatch(/rgba\((251|244|99)/)
     await page.evaluate(() => delete document.documentElement.dataset.theme)
-    await page.goto('about:blank')
-    await page.evaluate(() => indexedDB.databases().then((dbs) => Promise.all(dbs.map((d) => indexedDB.deleteDatabase(d.name!)))))
+    await page.goto('/robots.txt')
+    await page.evaluate(async () => {
+      await Promise.all((await indexedDB.databases()).map(database => new Promise<void>((resolve, reject) => {
+        const request = indexedDB.deleteDatabase(database.name!)
+        request.onsuccess = () => resolve()
+        request.onerror = () => reject(request.error)
+        request.onblocked = () => reject(new Error('Database cleanup is blocked'))
+      })))
+    })
   }
 })
 
