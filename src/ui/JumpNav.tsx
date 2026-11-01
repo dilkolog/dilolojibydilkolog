@@ -47,10 +47,10 @@ export function JumpNav({
             type="button"
             className="chip chip-sm"
             aria-pressed={isSelected}
-            onClick={(e) => {
+            onClick={() => {
               setActive(id)
               onPick?.(id)
-              e.currentTarget.scrollIntoView?.({ behavior: 'smooth', inline: 'nearest', block: 'nearest' })
+              // One document scroll: competing smooth scrolls can cancel each other in WebKit.
               // After the click's render, so a group that just opened is there to scroll to.
               requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView?.({ behavior: 'smooth', block: 'start' }))
             }}

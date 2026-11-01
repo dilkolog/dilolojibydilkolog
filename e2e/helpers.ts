@@ -124,7 +124,10 @@ export const overflow = (page: Page) =>
  * Skips text on gradients/images and text a design hides on purpose (transparent blanks).
  */
 export const settleTransitions = (page: Page) => page.evaluate(async () => {
-  await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())))
+  await Promise.race([
+    new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))),
+    new Promise((resolve) => setTimeout(resolve, 100)),
+  ])
   const finite = document.getAnimations().filter((animation) => animation.effect?.getComputedTiming().iterations !== Infinity)
   await Promise.race([
     Promise.allSettled(finite.map((animation) => animation.finished)),
@@ -239,6 +242,10 @@ export async function finishSession(page: Page) {
   for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').click()
   await page.getByRole('button', { name: /^(Devam|Kapat|Tamam|Bitir|Ana sayfa)/ }).first().click({ timeout: 3000 }).catch(() => {})
   await page.waitForTimeout(600)
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) {
+    await page.locator('.milestone-backdrop .milestone-close').click()
+    await page.waitForTimeout(200)
+  }
 }
 
 /** The verb lab favourites saved in the app's database (to wait for a background write). */

@@ -65,6 +65,8 @@ jobs:
     if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 35
+    env:
+      WEBKIT_SMOKE: 'first run:|auth screen and onboarding|text stays readable|Progress starts|profile can be dressed|hard words glow|garden card on Today|badges on show'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -87,8 +89,8 @@ jobs:
       - if: steps.browsers.outputs.cache-hit == 'true'
         run: npx playwright install-deps webkit
       # Known sensitive flows run first to provide useful failure reports without waiting for the full suite.
-      - run: npx playwright test --project='iPhone (WebKit)' --grep 'first run:|auth screen and onboarding' --max-failures=1
-      - run: npx playwright test --project='iPhone (WebKit)' --grep-invert 'first run:|auth screen and onboarding'
+      - run: npx playwright test --project='iPhone (WebKit)' --workers=2 --grep "$WEBKIT_SMOKE" --max-failures=1
+      - run: npx playwright test --project='iPhone (WebKit)' --workers=2 --grep-invert "$WEBKIT_SMOKE"
       - uses: actions/upload-artifact@v4
         if: failure() || cancelled()
         with:

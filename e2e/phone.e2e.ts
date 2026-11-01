@@ -67,11 +67,11 @@ test('no screen scrolls sideways, even at the largest text size', async ({ page 
   expect(found).toEqual([])
 })
 
-test('text stays readable in the light, the dark, the calm and the high-contrast theme', async ({ page }) => {
-  test.setTimeout(180_000)
-  await startWithSamples(page)
-  const found: string[] = []
-  for (const theme of ['light', 'dark', 'calm', 'contrast']) {
+for (const theme of ['light', 'dark', 'calm', 'contrast'] as const) {
+  test(`text stays readable in the ${theme} theme`, async ({ page }) => {
+    test.setTimeout(120_000)
+    await startWithSamples(page)
+    const found: string[] = []
     // Calm is the dark theme with a flag that turns its colours down; contrast is the light one with a flag that turns them up.
     await page.evaluate((t) => {
       document.documentElement.dataset.theme = t === 'calm' ? 'dark' : t === 'contrast' ? 'light' : t
@@ -84,9 +84,9 @@ test('text stays readable in the light, the dark, the calm and the high-contrast
       await openScreen(page, name)
       for (const p of await contrastProblems(page)) found.push(`${theme} ${name}: ${p}`)
     }
-  }
-  expect(found).toEqual([])
-})
+    expect(found).toEqual([])
+  })
+}
 
 test('in a session the answer choices sit within thumb reach', async ({ page }) => {
   await startWithSamples(page)
@@ -151,13 +151,7 @@ test('Progress starts with the overview and opens a group from the shortcut row'
   await page.locator('.settings-nav .chip', { hasText: 'Tekrarlar' }).click()
   await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'true')
   // It scrolled there, and the page grew by what it opened.
-  await expect.poll(async () => {
-    const top = await page.evaluate(() => document.getElementById('p-memory')!.getBoundingClientRect().top)
-    if (top >= 250) {
-      await page.locator('.settings-nav .chip', { hasText: 'Tekrarlar' }).click()
-    }
-    return top
-  }, { timeout: 10_000 }).toBeLessThan(250)
+  await expect.poll(() => page.evaluate(() => document.getElementById('p-memory')!.getBoundingClientRect().top), { timeout: 10_000 }).toBeLessThan(250)
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollHeight)).toBeGreaterThan(closedHeight + 400)
   await toggles.nth(2).click()
   await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'false')
@@ -973,7 +967,7 @@ test('the badges on show sit beside the greeting on Today and open the profile',
   await expect(badge).toHaveAttribute('aria-label', /İlk adım/)
   // On the greeting's line, not wider than the screen.
   const [g, b] = await Promise.all([page.locator('h1.greeting').boundingBox(), badge.boundingBox()])
-  expect(b!.x + b!.width).toBeLessThanOrEqual(375)
+  expect(b!.x + b!.width).toBeLessThanOrEqual(page.viewportSize()!.width)
   expect(Math.abs(b!.y + b!.height / 2 - (g!.y + g!.height / 2))).toBeLessThan(40)
   expect(await overflow(page)).toEqual([])
   await badge.click()

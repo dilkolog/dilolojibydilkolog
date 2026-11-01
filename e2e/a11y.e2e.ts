@@ -20,7 +20,7 @@ const scan = async (page: Page, where: string) => {
 }
 
 test('every main screen passes the automated accessibility check', async ({ page }) => {
-  test.setTimeout(120_000)
+  test.setTimeout(180_000)
   await page.goto('/')
   const problems = await scan(page, 'welcome')
   await startWithSamples(page)

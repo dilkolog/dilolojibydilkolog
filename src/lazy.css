@@ -409,6 +409,10 @@
   background: var(--surface); box-shadow: var(--shadow), inset 0 0 0 2px var(--lang);
 }
 .select-bar input[type='checkbox'] { width: 1.125rem; height: 1.125rem; accent-color: var(--lang); }
+/* A tall bulk toolbar must leave the word rows reachable on short phones. */
+@media (max-width: 40rem) and (max-height: 45rem) {
+  .select-bar { position: static; }
+}
 .row-check {
   flex: none; display: grid; place-items: center;
   width: 1.375rem; height: 1.375rem; border-radius: var(--r-xs);
@@ -738,7 +742,7 @@
 .settings-group-title {
   display: flex; align-items: center; gap: 0.5rem;
   margin-top: 1.25rem; font-size: var(--t-sm); font-weight: 700; letter-spacing: 0.04em; color: var(--ink-soft);
-  scroll-margin-top: 4.5rem;
+  scroll-margin-top: calc(var(--topbar-h, 0px) + 4.5rem);
 }
 .group-icon { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: var(--r-sm); background: var(--lang-soft); color: var(--lang-text); }
 .settings-search { position: relative; display: block; max-width: 32rem; }

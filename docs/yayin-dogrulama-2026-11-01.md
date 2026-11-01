@@ -8,6 +8,7 @@ Profil iPhone 13 boyutlarını ve WebKit'i kullanır; fiziksel iPhone testi yeri
 CI iki tarayıcıyı da kurar. WebKit testlerinin yerel çalışması bu ortamda indirme alan adlarının 403 vermesi nedeniyle engellendi.
 WebKit ayrı CI işinde çalışır; hassas ilk kurulum ve tema kontrastı akışları önce, kalan testler sonra çalıştırılır. Her test bir kez koşar. Başarısızlıkta `test-results` ve HTML raporu saklanır.
 390×664 görünümünde ilk kurulumun üç adımı ve tema kontrastı Chromium'da doğrulandı; kısa ekranlarda dil kartları tek sütundur ve ana düğmeler ilk ekrana sığar.
+Kısa ekranlarda toplu seçim çubuğu kelime satırlarını örtmez. Bölüm kısayolları tek kaydırma başlatır ve başlığı üst çubuğun altına getirir. Kontrast kontrolleri tema başına ayrı senaryodur; WebKit iki işçiyle çalışır.
 Dokunma testlerinde `Touch` kurucusu yerine olay özellikleri kullanılır; IndexedDB temizliği uygulama kapatıldıktan sonra yapılır; kontrast ölçümünden önce sonlu animasyonlar beklenir.
 
 ## Gerçek hesaplarla iki cihaz
