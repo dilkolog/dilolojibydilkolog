@@ -94,7 +94,7 @@ export function restoreScreen(): Screen {
 }
 
 /** Overview screens that spread out on wide screens; reading, forms and the session keep a measure. */
-export const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'dictionary', 'games', 'verbs', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings', 'guide', 'community'])
+export const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'dictionary', 'translate', 'games', 'verbs', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings', 'guide', 'community'])
 
 /**
  * Five places in the menu (all of them fit the phone's tab bar). Related screens share one place
