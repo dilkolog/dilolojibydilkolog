@@ -114,4 +114,11 @@ describe('saved words (what the pack lacks)', () => {
     const b = addEntry(emptyNotes(), 'deux', ['ikili'], T2, 'deepl', 'fr')
     expect(mergeNotes(a, b)!.added).toEqual({ un: { t: ['bir'], at: T1, from: 'own' }, deux: { t: ['ikili'], at: T2, from: 'deepl' } })
   })
+
+  it('a copy that lacks a part (an older or damaged backup) does not stop the merge', () => {
+    const a = setFix(emptyNotes(), 'maison', ['ev'], T1)
+    const partial = { looked: {} } as unknown as ReturnType<typeof emptyNotes>
+    expect(() => mergeNotes(a, partial)).not.toThrow()
+    expect(mergeNotes(partial, a)!.fixes).toHaveProperty('maison')
+  })
 })

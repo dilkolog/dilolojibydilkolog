@@ -91,14 +91,15 @@ export function lookupSuggestions(notes: DictionaryNotes, inList: (word: string)
 /** Two devices' notes together: the later correction of a word, the larger look-up count, a "no" kept. */
 export function mergeNotes(a: DictionaryNotes | undefined, b: DictionaryNotes | undefined): DictionaryNotes | undefined {
   if (!a || !b) return b ?? a
-  const fixes = { ...a.fixes }
-  for (const [w, f] of Object.entries(b.fixes)) if (!fixes[w] || timeOf(f.at) >= timeOf(fixes[w].at)) fixes[w] = f
-  const looked = { ...a.looked }
-  for (const [w, l] of Object.entries(b.looked)) {
+  // A backup from an older app or a damaged one may lack a part: merging must not throw (it would stop every sync).
+  const fixes = { ...(a.fixes ?? {}) }
+  for (const [w, f] of Object.entries(b.fixes ?? {})) if (!fixes[w] || timeOf(f.at) >= timeOf(fixes[w].at)) fixes[w] = f
+  const looked = { ...(a.looked ?? {}) }
+  for (const [w, l] of Object.entries(b.looked ?? {})) {
     const o = looked[w]
     looked[w] = o ? { n: Math.max(o.n, l.n), at: timeOf(o.at) >= timeOf(l.at) ? o.at : l.at, ...(o.dismissed || l.dismissed ? { dismissed: true } : {}) } : l
   }
-  const added = { ...a.added }
+  const added = { ...(a.added ?? {}) }
   for (const [w, e] of Object.entries(b.added ?? {})) if (!added[w] || timeOf(e.at) >= timeOf(added[w].at)) added[w] = e
   return Object.keys(added).length ? { fixes, looked, added } : { fixes, looked }
 }
