@@ -92,6 +92,15 @@ describe('FriendsCard', () => {
     expect(host.querySelector('.friends-add input[aria-label="Arkadaşının kodu"]')).toBeNull()
   })
 
+  it('a friend card from an older app (no days) does not break the board', async () => {
+    const old = { ...card('BBBBBBBB', 'Veli', 90, 120) } as Partial<ReturnType<typeof card>>
+    delete old.days
+    const { host } = await mount(true, [old as ReturnType<typeof card>])
+    expect(host.querySelector('.friends-board')?.textContent).toContain('Veli')
+    await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Tutarlılık')!.click())
+    expect(host.querySelector('.friends-board')?.textContent).toContain('Veli')
+  })
+
   it('with no friends Monki sets a pace to chase, and gives way once a friend is added', async () => {
     const empty = await mount(true, [])
     const names = [...empty.host.querySelectorAll('.friends-board .friends-name')].map((n) => n.textContent!.replace(/\d+$/, '').trim())

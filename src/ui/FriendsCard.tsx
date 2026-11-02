@@ -237,14 +237,14 @@ export function FriendsCard({ game, profile, vocabulary, language, share = 'xp',
     ? []
     : [
         { ...mine, me: true, ghost: false, hidden: false },
-        ...data.friends.map((f) => ({ ...f, me: false, ghost: false, hidden: hidesXp(f.days) })),
+        ...data.friends.map((f) => ({ ...f, me: false, ghost: false, hidden: hidesXp(f.days ?? {}) })),
         ...(ghost ? [{ code: 'monki', name: 'Monki', avatar: 'monki', color: '#d97706', today: ghost.today, week: ghost.week, streak: ghost.streak, level: 0, days: ghost.days, at: '', me: false, ghost: true, hidden: false }] : []),
       ]
   /** What the board ranks: XP of the day or the week, or the days studied this week. A friend sharing days only has no XP to rank. */
-  const scoreOf = (f: Row) => (range === 'steady' ? weekDays(f.days, today) : f.hidden ? -1 : range === 'today' ? f.today : f.week)
+  const scoreOf = (f: Row) => (range === 'steady' ? weekDays(f.days ?? {}, today) : f.hidden ? -1 : range === 'today' ? f.today : f.week)
   /** Days studied over the fortnight a card carries: the tie-break among the same days this week. */
-  const studied = (f: Row) => Object.values(f.days).filter((xp) => xp > 0).length
-  const board = rows.sort((a, b) => scoreOf(b) - scoreOf(a) || Number(b.me) - Number(a.me) || weekDays(b.days, today) - weekDays(a.days, today) || studied(b) - studied(a))
+  const studied = (f: Row) => Object.values(f.days ?? {}).filter((xp) => xp > 0).length
+  const board = rows.sort((a, b) => scoreOf(b) - scoreOf(a) || Number(b.me) - Number(a.me) || weekDays(b.days ?? {}, today) - weekDays(a.days ?? {}, today) || studied(b) - studied(a))
   const maxScore = Math.max(1, range === 'steady' ? 7 : 0, ...board.map(scoreOf))
   return (
     <section className="card stack gap-2 friends-card" aria-label="Arkadaşlar">
