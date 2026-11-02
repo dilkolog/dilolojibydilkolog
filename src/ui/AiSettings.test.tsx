@@ -48,7 +48,10 @@ describe('AiSettings and the owner\'s approval', () => {
   it('an approved account has the AI on by itself, with no key to type', async () => {
     const host = await mount('approved', 'account', false)
     expect(host.textContent).not.toContain('onayladığı hesaplara açık')
-    expect(host.textContent).toContain('anahtar girmen gerekmez')
+    // Nothing to read when it is on: no status line, no level.
+    expect(host.textContent).not.toContain('Hesabınla birlikte hazır')
+    expect(host.textContent).not.toContain('Düzeyin')
+    expect(host.querySelector('.pill')).toBeNull()
     expect(host.querySelector('input[type="password"]')).toBeNull()
     expect(host.textContent).not.toContain('Anthropic API')
   })

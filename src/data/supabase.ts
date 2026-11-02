@@ -70,7 +70,7 @@ export function authErrorText(message: string, unknownAsGeneric = false): string
   if (m.includes('captcha')) return 'Robot kontrolü tamamlanamadı; kutucuğun yenilenmesini bekleyip tekrar dene.'
   if (m.includes('email not confirmed')) return 'E-postanı henüz onaylamadın: gelen kutundaki bağlantıya dokun.'
   if (m.includes('user already registered')) return 'Bu e-postayla zaten bir hesap var. "Giriş yap"a geç.'
-  if (m.includes('password should be') || m.includes('weak password')) return 'Şifre çok zayıf: en az 8 karakter, harf ve rakam karışık olsun.'
+  if (m.includes('password should be') || m.includes('weak password')) return 'Şifre yeterince güçlü değil: en az 8 karakter; büyük harf, küçük harf, rakam ve sembol olsun.'
   if (m.includes('for security purposes') || m.includes('only request this after')) return 'Bunu kısa sürede ikinci kez istedin; bir dakika bekleyip tekrar dene.'
   if (m.includes('unable to validate email') || m.includes('invalid format') || m.includes('invalid email')) return 'E-posta adresi geçersiz görünüyor; kontrol edip tekrar yaz.'
   if (m.includes('sending') && m.includes('email')) return 'Mail şu an gönderilemedi; biraz sonra tekrar dene ya da Google ile giriş yap.'

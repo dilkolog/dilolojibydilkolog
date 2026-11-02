@@ -687,11 +687,10 @@ test('the YZ screens wait for the owner\'s approval: a visitor is told why, an a
   await expect(card).toContainText('onayladığı hesaplara açık')
   await expect(card.locator('.pill', { hasText: 'Açık' })).toHaveCount(0)
   await expect(card.getByLabel('Anthropic API anahtarı')).toHaveCount(0)
-  // Approved: AI turns on automatically through the site's proxy, showing the account's AI level with no key input.
+  // Approved: AI turns on automatically through the site's proxy, with no key input and no status line to read.
   await approveAccount(page)
-  await expect(card.locator('.pill', { hasText: 'Açık' })).toBeVisible()
-  await expect(card).toContainText('Hesabınla birlikte hazır, anahtar girmen gerekmez.')
-  await expect(card).toContainText('Düzeyin: Tam.')
+  await expect(card).not.toContainText('Hesabınla birlikte hazır')
+  await expect(card.locator('.pill')).toHaveCount(0)
   await expect(card.getByLabel('Anthropic API anahtarı')).toHaveCount(0)
   await expect(card).not.toContainText('onayladığı hesaplara açık')
 })

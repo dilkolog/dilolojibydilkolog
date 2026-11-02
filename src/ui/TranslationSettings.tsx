@@ -4,7 +4,7 @@ import { translationUsage } from '../data/translate'
 import { showToast } from './toastFeed'
 import { Help } from './SettingHelp'
 
-/** Sentence translation (DeepL through the app's server): whether it is on, and this month's use. */
+/** Sentence translation (DeepL through the app's server): the fill-in-missing button, and why it is off when it is. The month's use is the site's quota, not shown to people. */
 export function TranslationSettings({ onFilled }: { onFilled?: () => void }) {
   const [usage, setUsage] = useState<{ count: number; limit: number } | null | undefined>(undefined)
   const [missing, setMissing] = useState(0)
@@ -32,13 +32,6 @@ export function TranslationSettings({ onFilled }: { onFilled?: () => void }) {
       <Help text='Örnek cümlelerin, kaydettiğin cümlelerin ve cümle kartlarının Türkçesini DeepL ile getirir: "Türkçesi" alanlarının yanında "Çevir" düğmesi çıkar, okurken kaydettiğin cümle çevirisiyle gelir. Ayarlaman gereken bir şey yok; aynı cümle bir kez çevrilir.' />
       {usage === undefined ? (
         <p className="small muted">Kontrol ediliyor…</p>
-      ) : usage ? (
-        <div className="row">
-          <span className="pill stage-5">Açık</span>
-          <span className="small muted">
-            Bu ay {usage.count.toLocaleString('tr-TR')} / {usage.limit.toLocaleString('tr-TR')} karakter
-          </span>
-        </div>
       ) : null}
       {usage && missing > 0 && (
         <div className="row">

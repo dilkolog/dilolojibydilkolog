@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { currentSession, setNewPassword, signOutSupabase, authErrorText, providersText, supabaseConfigured, type Identity } from '../data/supabase'
 import type { Account } from '../data/sync'
+import { PASSWORD_HINT, passwordProblem } from '../data/passwordRule'
 import { deleteAccount } from '../data/vault'
 import { AccountDeleteDialog } from './AccountDeleteDialog'
 import { PasswordInput } from './PasswordInput'
@@ -30,7 +31,8 @@ export function AccountManage({
 
   const savePassword = async () => {
     setError('')
-    if (password.length < 8) return setError('Şifre en az 8 karakter olmalı.')
+    const weak = passwordProblem(password)
+    if (weak) return setError(weak)
     if (password !== repeat) return setError('Şifreler aynı değil.')
     setBusy(true)
     try {
@@ -82,6 +84,7 @@ export function AccountManage({
               <label className="field">
                 <span className="field-label">Yeni şifre</span>
                 <PasswordInput value={password} onChange={setPassword} autoComplete="new-password" autoFocus shown={shown} onShownChange={setShown} />
+                <span className="help">{PASSWORD_HINT}</span>
               </label>
               <label className="field">
                 <span className="field-label">Yeni şifre (tekrar)</span>
