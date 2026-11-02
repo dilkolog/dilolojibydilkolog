@@ -1,0 +1,790 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "rules": [
+    {
+      "id": "es:oir-escuchar",
+      "language": "es",
+      "words": [
+        "oír",
+        "escuchar"
+      ],
+      "meanings": [
+        "duymak, işitmek (istemsiz)",
+        "dinlemek (dikkatle)"
+      ],
+      "distinction": "Oír kulağın kendiliğinden bir sesi algılamasıdır (duymak); escuchar ise bilinçli olarak kulak kabartmak ve dinlemektir (müzik veya bir insanı dinlemek).",
+      "example": [
+        "Oigo un ruido en la cocina.",
+        "Me gusta escuchar música clásica."
+      ],
+      "drills": [
+        {
+          "text": "¿Puedes ___ ese ruido extraño afuera?",
+          "right": "oír",
+          "wrong": "escuchar",
+          "tr": "Dışarıdaki o tuhaf sesi duyabiliyor musun?"
+        },
+        {
+          "text": "Siempre ___ la radio mientras preparo el desayuno.",
+          "right": "escucho",
+          "wrong": "oigo",
+          "tr": "Kahvaltı hazırlarken her zaman radyo dinlerim."
+        },
+        {
+          "text": "Habla más alto, por favor, no te ___ bien.",
+          "right": "oigo",
+          "wrong": "escucho",
+          "tr": "Daha yüksek sesle konuş lütfen, seni iyi duyamıyorum."
+        },
+        {
+          "text": "___ atentamente lo que te voy a explicar.",
+          "right": "Escucha",
+          "wrong": "Oye",
+          "tr": "Sana açıklayacağım şeyi dikkatle dinle."
+        },
+        {
+          "text": "Estaba tan oscuro que solo podía ___ el viento.",
+          "right": "oír",
+          "wrong": "escuchar",
+          "tr": "O kadar karanlıktı ki sadece rüzgârı duyabiliyordum."
+        }
+      ]
+    },
+    {
+      "id": "es:quedar-quedarse",
+      "language": "es",
+      "words": [
+        "quedar",
+        "quedarse"
+      ],
+      "meanings": [
+        "buluşmak, randevulaşmak / kalmak (miktar)",
+        "yerinde kalmak, konaklamak"
+      ],
+      "distinction": "Quedar arkadaşla buluşmak (quedar con amigos) veya geriye bir şeyin kalmasıdır (nos quedan dos euros); quedarse ise bir yerde fiziksel olarak konaklamak veya yerinde kalmaktır (quedarse en casa).",
+      "example": [
+        "¿Dónde quedamos esta tarde?",
+        "Me quedo en casa hoy porque llueve."
+      ],
+      "drills": [
+        {
+          "text": "¿A qué hora ___ en la plaza con tus amigos?",
+          "right": "quedas",
+          "wrong": "te quedas",
+          "tr": "Arkadaşlarınla meydanda saat kaçta buluşuyorsun?"
+        },
+        {
+          "text": "Hoy estoy cansado, prefiero ___ en casa descansando.",
+          "right": "quedarme",
+          "wrong": "quedar",
+          "tr": "Bugün yorgunum, evde kalıp dinlenmeyi tercih ederim."
+        },
+        {
+          "text": "Solo nos ___ tres días antes del examen final.",
+          "right": "quedan",
+          "wrong": "se quedan",
+          "tr": "Final sınavından önce geriye sadece üç günümüz kaldı."
+        },
+        {
+          "text": "Ella ___ en un hotel cerca del centro histórico.",
+          "right": "se quedó",
+          "wrong": "quedó",
+          "tr": "Tarihi merkeze yakın bir otelde konakladı (kaldı)."
+        },
+        {
+          "text": "¿Cuántas entradas nos ___ para el concierto?",
+          "right": "quedan",
+          "wrong": "se quedan",
+          "tr": "Konser için kaç biletimiz kaldı?"
+        }
+      ]
+    },
+    {
+      "id": "es:acordarse-recordar",
+      "language": "es",
+      "words": [
+        "acordarse",
+        "recordar"
+      ],
+      "meanings": [
+        "hatırlamak (dönüşlü, \"de\" ile)",
+        "hatırlamak (geçişli, doğrudan nesne)"
+      ],
+      "distinction": "Acordarse dönüşlü bir fiildir ve daima \"de\" edatı ister (me acuerdo de ti); recordar ise doğrudan nesne alır ve \"de\" edatı almaz (recuerdo tu nombre).",
+      "example": [
+        "No me acuerdo de su dirección.",
+        "Recuerdo perfectamente aquel viaje."
+      ],
+      "drills": [
+        {
+          "text": "No me ___ del nombre de la calle.",
+          "right": "acuerdo",
+          "wrong": "recuerdo",
+          "tr": "Sokağın adını hatırlamıyorum."
+        },
+        {
+          "text": "___ perfectamente lo que me dijiste ayer.",
+          "right": "Recuerdo",
+          "wrong": "Me acuerdo",
+          "tr": "Dün bana söylediklerini gayet iyi hatırlıyorum."
+        },
+        {
+          "text": "¿Te ___ de aquel verano en la playa?",
+          "right": "acuerdas",
+          "wrong": "recuerdas",
+          "tr": "Sahildeki o yazı hatırlıyor musun?"
+        },
+        {
+          "text": "Ella siempre ___ los cumpleaños de toda la familia.",
+          "right": "recuerda",
+          "wrong": "se acuerda",
+          "tr": "Tüm ailenin doğum günlerini her zaman hatırlar."
+        },
+        {
+          "text": "No puedo ___ de dónde puse las llaves.",
+          "right": "acordarme",
+          "wrong": "recordarme",
+          "tr": "Anahtarları nereye koyduğumu hatırlayamıyorum."
+        }
+      ]
+    },
+    {
+      "id": "es:ir-irse",
+      "language": "es",
+      "words": [
+        "ir",
+        "irse"
+      ],
+      "meanings": [
+        "gitmek (bir hedefe doğru)",
+        "ayrılmak, kalkıp gitmek"
+      ],
+      "distinction": "Ir bir hedefe doğru yönelmektir (voy al trabajo); irse ise bulunulan ortamdan veya kişilerden ayrılmak, kalkıp gitmektir (ya me voy, se fue de la fiesta).",
+      "example": [
+        "Voy a la biblioteca a estudiar.",
+        "Es tarde, ya me tengo que ir."
+      ],
+      "drills": [
+        {
+          "text": "Mañana ___ al médico por la mañana.",
+          "right": "voy",
+          "wrong": "me voy",
+          "tr": "Yarın sabah doktora gideceğim."
+        },
+        {
+          "text": "La fiesta está aburrida; yo ___ a casa ahora mismo.",
+          "right": "me voy",
+          "wrong": "voy",
+          "tr": "Parti sıkıcı; ben hemen şimdi eve kalkıp gidiyorum."
+        },
+        {
+          "text": "¿Quieres ___ al cine conmigo esta noche?",
+          "right": "ir",
+          "wrong": "irte",
+          "tr": "Bu akşam benimle sinemaya gitmek ister misin?"
+        },
+        {
+          "text": "Se despidió de todos y ___ tranquilamente.",
+          "right": "se fue",
+          "wrong": "fue",
+          "tr": "Herkesle vedalaştı ve sakince ayrılıp gitti."
+        },
+        {
+          "text": "Siempre ___ en bicicleta a la universidad.",
+          "right": "voy",
+          "wrong": "me voy",
+          "tr": "Üniversiteye her zaman bisikletle giderim."
+        }
+      ]
+    },
+    {
+      "id": "es:darse-cuenta-realizar",
+      "language": "es",
+      "words": [
+        "darse cuenta",
+        "realizar"
+      ],
+      "meanings": [
+        "farkına varmak (zihinsel)",
+        "gerçekleştirmek, yapmak (proje, eylem)"
+      ],
+      "distinction": "Darse cuenta bir gerçeği sonradan fark etmektir (darse cuenta de algo); realizar ise İngilizce realize gibi fark etmek değil, bir projeyi veya işi hayata geçirmektir.",
+      "example": [
+        "Me di cuenta de mi error.",
+        "La empresa va a realizar un proyecto."
+      ],
+      "drills": [
+        {
+          "text": "Al salir de casa, me ___ de que no llevaba las llaves.",
+          "right": "di cuenta",
+          "wrong": "realicé",
+          "tr": "Evden çıkarken anahtarları yanıma almadığımın farkına vardım."
+        },
+        {
+          "text": "Los científicos van a ___ nuevos experimentos este mes.",
+          "right": "realizar",
+          "wrong": "darse cuenta",
+          "tr": "Bilim insanları bu ay yeni deneyler gerçekleştirecek."
+        },
+        {
+          "text": "¿No te ___ de que todos te estaban mirando?",
+          "right": "diste cuenta",
+          "wrong": "realizaste",
+          "tr": "Herkesin sana baktığının farkına varmadın mı?"
+        },
+        {
+          "text": "El equipo ___ un trabajo excelente durante el torneo.",
+          "right": "realizó",
+          "wrong": "se dio cuenta",
+          "tr": "Takım turnuva boyunca mükemmel bir iş gerçekleştirdi."
+        },
+        {
+          "text": "Tardó varios días en ___ de lo que había sucedido.",
+          "right": "darse cuenta",
+          "wrong": "realizar",
+          "tr": "Ne olduğunu fark etmesi birkaç gün sürdü."
+        }
+      ]
+    },
+    {
+      "id": "es:sensible-sensato",
+      "language": "es",
+      "words": [
+        "sensible",
+        "sensato"
+      ],
+      "meanings": [
+        "duygusal, hassas",
+        "aklı başında, mantıklı"
+      ],
+      "distinction": "Sensible çabuk duygulanan veya cildi hassas olan demektir (İngilizce sensitive); sensato ise sağduyulu ve mantıklı davranan kişidir (İngilizce sensible).",
+      "example": [
+        "Es una chica muy sensible.",
+        "Fue una decisión muy sensata."
+      ],
+      "drills": [
+        {
+          "text": "Es un hombre muy ___; llora con las películas tristes.",
+          "right": "sensible",
+          "wrong": "sensato",
+          "tr": "Çok duygusal bir adamdır; hüzünlü filmlerde ağlar."
+        },
+        {
+          "text": "Ahorrar para el futuro es una actitud muy ___.",
+          "right": "sensata",
+          "wrong": "sensible",
+          "tr": "Gelecek için para biriktirmek çok sağduyulu (akıllıca) bir tutumdur."
+        },
+        {
+          "text": "Tengo los ojos muy ___ a la luz brillante del sol.",
+          "right": "sensibles",
+          "wrong": "sensatos",
+          "tr": "Gözlerim parlak güneş ışığına karşı çok hassastır."
+        },
+        {
+          "text": "Su abuelo siempre le daba consejos muy ___.",
+          "right": "sensatos",
+          "wrong": "sensibles",
+          "tr": "Büyükbabası ona her zaman çok aklı başında tavsiyeler verirdi."
+        },
+        {
+          "text": "Debes hablar con cuidado; está en un momento muy ___.",
+          "right": "sensible",
+          "wrong": "sensato",
+          "tr": "Dikkatli konuşmalısın; çok hassas bir döneminde."
+        }
+      ]
+    },
+    {
+      "id": "es:subir-bajar",
+      "language": "es",
+      "words": [
+        "subir",
+        "bajar"
+      ],
+      "meanings": [
+        "yukarı çıkmak, binmek",
+        "aşağı inmek, araçtan inmek"
+      ],
+      "distinction": "Subir merdivenden yukarı çıkmak veya araca binmektir (subir al autobús); bajar ise aşağıya inmek veya araçtan inmektir (bajar del tren).",
+      "example": [
+        "Vamos a subir por las escaleras.",
+        "Tenemos que bajar en la próxima parada."
+      ],
+      "drills": [
+        {
+          "text": "Vamos a ___ al autobús en la esquina.",
+          "right": "subir",
+          "wrong": "bajar",
+          "tr": "Köşede otobüse bineceğiz (çıkacağız)."
+        },
+        {
+          "text": "Tenemos que ___ del metro en la siguiente estación.",
+          "right": "bajar",
+          "wrong": "subir",
+          "tr": "Bir sonraki istasyonda metrodan inmemiz gerek."
+        },
+        {
+          "text": "El ascensor no funciona, tendremos que ___ a pie.",
+          "right": "subir",
+          "wrong": "bajar",
+          "tr": "Asansör çalışmıyor, yukarıya yürüyerek çıkmamız gerekecek."
+        },
+        {
+          "text": "Ten cuidado al ___ por esa pendiente resbaladiza.",
+          "right": "bajar",
+          "wrong": "subir",
+          "tr": "O kaygan yokuştan aşağı inerken dikkatli ol."
+        },
+        {
+          "text": "Las temperaturas van a ___ notablemente este fin de semana.",
+          "right": "subir",
+          "wrong": "bajar",
+          "tr": "Bu hafta sonu hava sıcaklıkları belirgin şekilde yükselecek."
+        }
+      ]
+    },
+    {
+      "id": "es:tiempo-vez-hora",
+      "language": "es",
+      "words": [
+        "tiempo",
+        "vez"
+      ],
+      "meanings": [
+        "zaman (süreç, genel) / hava",
+        "kez, defa, sefer (olay sayısı)"
+      ],
+      "distinction": "Tiempo genel zaman veya hava durumudur (no tengo tiempo, hace buen tiempo); vez ise tekrarlanan bir olayın sayısını bildirir (una vez, tres veces, otra vez).",
+      "example": [
+        "No tengo mucho tiempo hoy.",
+        "Es la primera vez que vengo aquí."
+      ],
+      "drills": [
+        {
+          "text": "No tenemos mucho ___ para terminar este informe.",
+          "right": "tiempo",
+          "wrong": "vez",
+          "tr": "Bu raporu bitirmek için çok vaktimiz (zamanımız) yok."
+        },
+        {
+          "text": "Es la primera ___ que pruebo la comida mexicana.",
+          "right": "vez",
+          "wrong": "tiempo",
+          "tr": "Meksika yemeğini ilk kez deniyorum."
+        },
+        {
+          "text": "¿Qué ___ hace en tu ciudad esta mañana?",
+          "right": "tiempo",
+          "wrong": "vez",
+          "tr": "Bu sabah şehrinde hava nasıl?"
+        },
+        {
+          "text": "Te lo he dicho mil ___, no dejes la puerta abierta.",
+          "right": "veces",
+          "wrong": "tiempos",
+          "tr": "Sana bin kez söyledim, kapıyı açık bırakma."
+        },
+        {
+          "text": "Pasamos un ___ fantástico en la montaña juntos.",
+          "right": "tiempo",
+          "wrong": "vez",
+          "tr": "Dağda birlikte harika bir zaman geçirdik."
+        }
+      ]
+    },
+    {
+      "id": "es:gastar-pasar",
+      "language": "es",
+      "words": [
+        "gastar",
+        "pasar"
+      ],
+      "meanings": [
+        "para harcamak, tüketmek",
+        "vakit geçirmek / geçmek"
+      ],
+      "distinction": "Gastar para, enerji veya malzeme tüketmektir (gastar dinero); pasar ise zaman veya tatil geçirmektir (pasar tiempo, pasar las vacaciones).",
+      "example": [
+        "No gastes tanto dinero.",
+        "Me gusta pasar tiempo con mi familia."
+      ],
+      "drills": [
+        {
+          "text": "No deberías ___ tanto dinero en cosas innecesarias.",
+          "right": "gastar",
+          "wrong": "pasar",
+          "tr": "Gereksiz şeylere bu kadar çok para harcamamalısın."
+        },
+        {
+          "text": "Nos encanta ___ las tardes de verano en el parque.",
+          "right": "pasar",
+          "wrong": "gastar",
+          "tr": "Yaz akşamüstlerini parkta geçirmeye bayılırız."
+        },
+        {
+          "text": "El coche viejo suele ___ demasiado combustible.",
+          "right": "gastar",
+          "wrong": "pasar",
+          "tr": "Eski araba genellikle çok fazla yakıt tüketir (harcar)."
+        },
+        {
+          "text": "¿Cómo ___ el fin de semana en las montañas?",
+          "right": "pasaste",
+          "wrong": "gastaste",
+          "tr": "Hafta sonunu dağlarda nasıl geçirdin?"
+        },
+        {
+          "text": "Ellos ___ tres semanas viajando por Andalucía.",
+          "right": "pasaron",
+          "wrong": "gastaron",
+          "tr": "Endülüs'ü gezerek üç hafta geçirdiler."
+        }
+      ]
+    },
+    {
+      "id": "es:solo-solo-tilde",
+      "language": "es",
+      "words": [
+        "solo",
+        "sólo"
+      ],
+      "meanings": [
+        "yalnız, tek başına (sıfat)",
+        "sadece, yalnızca (zarf)"
+      ],
+      "distinction": "Solo refakatsiz, yanında kimse olmayan kişidir (vive solo); sólo (veya sadece zarf olarak solo) \"yalnızca, sırf\" anlamındaki solamentedir (sólo tengo un euro).",
+      "example": [
+        "Prefiero viajar solo.",
+        "Sólo quiero hacerte una pregunta."
+      ],
+      "drills": [
+        {
+          "text": "A Juan le gusta vivir ___, sin compañeros de piso.",
+          "right": "solo",
+          "wrong": "sólo",
+          "tr": "Juan ev arkadaşı olmadan, tek başına yaşamayı sever."
+        },
+        {
+          "text": "___ me quedan diez minutos para llegar a la estación.",
+          "right": "Sólo",
+          "wrong": "Solo",
+          "tr": "İstasyona varmak için yalnızca (sadece) on dakikam kaldı."
+        },
+        {
+          "text": "El niño no quería quedarse ___ en la habitación oscura.",
+          "right": "solo",
+          "wrong": "sólo",
+          "tr": "Çocuk karanlık odada tek başına kalmak istemiyordu."
+        },
+        {
+          "text": "No te enfades, ___ era una pequeña broma amistosa.",
+          "right": "sólo",
+          "wrong": "solo",
+          "tr": "Kızma, sadece küçük ve dostane bir şakaydı."
+        },
+        {
+          "text": "Caminaba ___ por la playa al atardecer.",
+          "right": "solo",
+          "wrong": "sólo",
+          "tr": "Gün batımında kumsalda yapayalnız yürüyordu."
+        }
+      ]
+    },
+    {
+      "id": "es:aun-aun-tilde",
+      "language": "es",
+      "words": [
+        "aún",
+        "aun"
+      ],
+      "meanings": [
+        "hâlâ, henüz (todavía)",
+        "bile, hatta (incluso)"
+      ],
+      "distinction": "Aún (tildeli) \"hâlâ, henüz\" anlamındaki todavíadır (aún no ha llegado); aun (tildesiz) ise \"bile, hatta\" anlamındaki inclusodur (aun así, aun de noche).",
+      "example": [
+        "Aún no he desayunado.",
+        "Aun los expertos pueden equivocarse."
+      ],
+      "drills": [
+        {
+          "text": "¿___ estás trabajando a estas horas de la noche?",
+          "right": "Aún",
+          "wrong": "Aun",
+          "tr": "Gecenin bu saatinde hâlâ çalışıyor musun?"
+        },
+        {
+          "text": "___ con lluvia torrencial, decidieron salir a correr.",
+          "right": "Aun",
+          "wrong": "Aún",
+          "tr": "Şiddetli yağmurda bile dışarıda koşmaya karar verdiler."
+        },
+        {
+          "text": "El paquete que pedí ___ no ha llegado a correos.",
+          "right": "aún",
+          "wrong": "aun",
+          "tr": "Sipariş ettiğim paket postaneye henüz (hâlâ) gelmedi."
+        },
+        {
+          "text": "Era una tarea difícil ___ para los ingenieros veteranos.",
+          "right": "aun",
+          "wrong": "aún",
+          "tr": "Kıdemli mühendisler için bile zor bir görevdi."
+        },
+        {
+          "text": "No sé si vendrá; ___ tengo esperanzas de verlo.",
+          "right": "aún",
+          "wrong": "aun",
+          "tr": "Gelecek mi bilmiyorum; onu görmeye dair hâlâ umudum var."
+        }
+      ]
+    },
+    {
+      "id": "es:cual-cual-tilde",
+      "language": "es",
+      "words": [
+        "cuál",
+        "cual"
+      ],
+      "meanings": [
+        "hangisi (soru zamiri, tildeli)",
+        "gibi, nasıl ki / nitelik bağı"
+      ],
+      "distinction": "Cuál soru veya ünlemde \"hangisi\" anlamındadır (¿cuál prefieres?); cual ise \"gibi, misali\" anlamında karşılaştırma veya ilinti bağıdır (tal cual, cual león).",
+      "example": [
+        "¿Cuál de los dos es tu hermano?",
+        "Luchó con furia, cual guerrero antiguo."
+      ],
+      "drills": [
+        {
+          "text": "¿___ de estas camisas te parece más elegante?",
+          "right": "Cuál",
+          "wrong": "Cual",
+          "tr": "Bu gömleklerden hangisi sana daha şık geliyor?"
+        },
+        {
+          "text": "El atleta corrió veloz, ___ flecha disparada al blanco.",
+          "right": "cual",
+          "wrong": "cuál",
+          "tr": "Atlet hedefe fırlatılmış bir ok gibi hızlı koştu."
+        },
+        {
+          "text": "No sé ___ es el camino más corto al aeropuerto.",
+          "right": "cuál",
+          "wrong": "cual",
+          "tr": "Havalimanına giden en kısa yolun hangisi olduğunu bilmiyorum."
+        },
+        {
+          "text": "Lo dejó todo tal ___ estaba sobre la mesa.",
+          "right": "cual",
+          "wrong": "cuál",
+          "tr": "Her şeyi masanın üzerinde olduğu gibi (aynen) bıraktı."
+        },
+        {
+          "text": "¿___ fue el motivo principal de su renuncia?",
+          "right": "Cuál",
+          "wrong": "Cual",
+          "tr": "İstifasının temel gerekçesi hangisiydi (neydi)?"
+        }
+      ]
+    },
+    {
+      "id": "es:seguro-seguramente",
+      "language": "es",
+      "words": [
+        "seguro",
+        "seguramente"
+      ],
+      "meanings": [
+        "emin, güvenli (sıfat/isim)",
+        "muhtemelen, büyük ihtimalle (zarf)"
+      ],
+      "distinction": "Seguro şüphesiz emin olmak veya tehlikesiz olmak demektir (estoy seguro, lugar seguro); seguramente ise kesinlik değil yüksek ihtimal bildiren \"muhtemelen\" zarfıdır.",
+      "example": [
+        "Estoy seguro de que vendrá.",
+        "Seguramente llegará con retraso por el tráfico."
+      ],
+      "drills": [
+        {
+          "text": "¿Estás completamente ___ de lo que viste anoche?",
+          "right": "seguro",
+          "wrong": "seguramente",
+          "tr": "Dün gece gördüğün şeyden tamamen emin misin?"
+        },
+        {
+          "text": "___ olvidó su teléfono en casa; no responde.",
+          "right": "Seguramente",
+          "wrong": "Seguro",
+          "tr": "Muhtemelen telefonunu evde unuttu; cevap vermiyor."
+        },
+        {
+          "text": "Este parque es un sitio muy ___ para los niños.",
+          "right": "seguro",
+          "wrong": "seguramente",
+          "tr": "Bu park çocuklar için çok güvenli bir yerdir."
+        },
+        {
+          "text": "___ tendremos buenas noticias antes del fin de semana.",
+          "right": "Seguramente",
+          "wrong": "Seguro",
+          "tr": "Büyük ihtimalle hafta sonundan önce güzel haberler alacağız."
+        },
+        {
+          "text": "No te preocupes, el dinero está en un lugar ___.",
+          "right": "seguro",
+          "wrong": "seguramente",
+          "tr": "Endişelenme, para güvenli bir yerde."
+        }
+      ]
+    },
+    {
+      "id": "es:probar-probarse",
+      "language": "es",
+      "words": [
+        "probar",
+        "probarse"
+      ],
+      "meanings": [
+        "tatmak, denemek (yiyecek, cihaz)",
+        "üzerine giyip denemek (kıyafet)"
+      ],
+      "distinction": "Probar bir yemeği tatmak veya bir yöntemi denemektir (probar esta tarta); probarse ise bir giysiyi veya ayakkabıyı kendi bedenine denemektir (probarse los zapatos).",
+      "example": [
+        "Tienes que probar este postre.",
+        "Voy a probarme esta chaqueta."
+      ],
+      "drills": [
+        {
+          "text": "Tienes que ___ este vino tinto; es extraordinario.",
+          "right": "probar",
+          "wrong": "probarte",
+          "tr": "Bu kırmızı şarabı tatmalısın; olağanüstü."
+        },
+        {
+          "text": "Quiero ___ este vestido rojo en el probador.",
+          "right": "probarme",
+          "wrong": "probar",
+          "tr": "Bu kırmızı elbiseyi deneme kabininde üzerime denemek istiyorum."
+        },
+        {
+          "text": "Deberíamos ___ una estrategia diferente esta vez.",
+          "right": "probar",
+          "wrong": "probarnos",
+          "tr": "Bu sefer farklı bir strateji denemeliyiz."
+        },
+        {
+          "text": "Antes de comprar los zapatos, es mejor ___.",
+          "right": "probárselos",
+          "wrong": "probarlos",
+          "tr": "Ayakkabıları satın almadan önce onları üzerine denemek en iyisidir."
+        },
+        {
+          "text": "¿Has ___ alguna vez la paella valenciana tradicional?",
+          "right": "probado",
+          "wrong": "probádote",
+          "tr": "Geleneksel Valencia paellasını hiç tattın mı?"
+        }
+      ]
+    },
+    {
+      "id": "es:encontrar-encontrarse",
+      "language": "es",
+      "words": [
+        "encontrar",
+        "encontrarse"
+      ],
+      "meanings": [
+        "bulmak (kayıp eşyayı, çözümü)",
+        "karşılaşmak, buluşmak / hissetmek"
+      ],
+      "distinction": "Encontrar aranan veya kaybolan bir şeyi bulmaktır (encontrar las llaves); encontrarse ise biriyle tesadüfen karşılaşmak (encontrarse con alguien) ya da kendini hissetmektir (me encuentro mal).",
+      "example": [
+        "No puedo encontrar mis gafas.",
+        "Ayer me encontré con Elena en la calle."
+      ],
+      "drills": [
+        {
+          "text": "Por fin logré ___ mis llaves debajo del sofá.",
+          "right": "encontrar",
+          "wrong": "encontrarme",
+          "tr": "Sonunda anahtarlarımı kanepenin altında bulmayı başardım."
+        },
+        {
+          "text": "Ayer me ___ con un viejo compañero de colegio.",
+          "right": "encontré",
+          "wrong": "encontré de",
+          "tr": "Dün eski bir okul arkadaşıyla karşılaştım."
+        },
+        {
+          "text": "¿Cómo te ___ hoy después de tomar la medicina?",
+          "right": "encuentras",
+          "wrong": "encuentras con",
+          "tr": "İlacı aldıktan sonra bugün kendini nasıl hissediyorsun?"
+        },
+        {
+          "text": "Los detectives intentan ___ una pista sólida.",
+          "right": "encontrar",
+          "wrong": "encontrarse",
+          "tr": "Dedektifler somut bir ipucu bulmaya çalışıyor."
+        },
+        {
+          "text": "Nos ___ mañana a las siete delante del cine.",
+          "right": "encontraremos",
+          "wrong": "encontraremos a",
+          "tr": "Yarın saat yedide sinemanın önünde buluşacağız."
+        }
+      ]
+    },
+    {
+      "id": "es:otro-demas",
+      "language": "es",
+      "words": [
+        "otro",
+        "los demás"
+      ],
+      "meanings": [
+        "başka, bir diğeri (un ile kullanılmaz)",
+        "diğerleri, geri kalanlar (çoğul)"
+      ],
+      "distinction": "Otro \"bir diğeri, başka\" demektir ve önünde asla \"un otro\" almaz (otro día, otra taza); los demás ise bir grubun geri kalan üyelerini anlatır (los demás estudiantes).",
+      "example": [
+        "¿Me traes otra taza de café?",
+        "Tres salieron y los demás se quedaron."
+      ],
+      "drills": [
+        {
+          "text": "Por favor, ¿podrías darme ___ ejemplo más claro?",
+          "right": "otro",
+          "wrong": "el demás",
+          "tr": "Lütfen bana daha net başka bir (bir diğer) örnek verebilir misin?"
+        },
+        {
+          "text": "Dos alumnos hablaron y ___ escucharon en silencio.",
+          "right": "los demás",
+          "wrong": "los otros demás",
+          "tr": "İki öğrenci konuştu, diğerleri (geri kalanlar) sessizce dinledi."
+        },
+        {
+          "text": "No me gusta este jersey; enséñame ___ modelo.",
+          "right": "otro",
+          "wrong": "demás",
+          "tr": "Bu kazağı beğenmedim; bana başka bir model göster."
+        },
+        {
+          "text": "María se marchó pronto pero ___ se quedaron hasta tarde.",
+          "right": "los demás",
+          "wrong": "otros demás",
+          "tr": "María erkenden gitti ama diğerleri geç saate kadar kaldı."
+        },
+        {
+          "text": "Mañana será ___ día y pensaremos con más calma.",
+          "right": "otro",
+          "wrong": "demás",
+          "tr": "Yarın başka bir gün olacak ve daha sakin düşüneceğiz."
+        }
+      ]
+    }
+  ]
+}

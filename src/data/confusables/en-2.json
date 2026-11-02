@@ -1,0 +1,790 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "rules": [
+    {
+      "id": "en:rise-raise",
+      "language": "en",
+      "words": [
+        "rise",
+        "raise"
+      ],
+      "meanings": [
+        "yükselmek, doğmak (geçişsiz)",
+        "kaldırmak, artırmak (geçişli)"
+      ],
+      "distinction": "Rise nesne almaz, kendiliğinden yükselmektir (the sun rises, prices rise); raise ise bir nesneyi yukarı kaldırmak veya artırmaktır (raise your hand, raise prices).",
+      "example": [
+        "The sun rises in the east.",
+        "Please raise your hand if you know."
+      ],
+      "drills": [
+        {
+          "text": "The sun ___ in the east every morning.",
+          "right": "rises",
+          "wrong": "raises",
+          "tr": "Güneş her sabah doğudan doğar."
+        },
+        {
+          "text": "The company decided to ___ salaries this year.",
+          "right": "raise",
+          "wrong": "rise",
+          "tr": "Şirket bu yıl maaşları artırmaya karar verdi."
+        },
+        {
+          "text": "Smoke was ___ from the chimney.",
+          "right": "rising",
+          "wrong": "raising",
+          "tr": "Bacadan duman yükseliyordu."
+        },
+        {
+          "text": "Please ___ your hand if you have a question.",
+          "right": "raise",
+          "wrong": "rise",
+          "tr": "Bir sorunuz varsa lütfen elinizi kaldırın."
+        },
+        {
+          "text": "House prices continue to ___ rapidly in big cities.",
+          "right": "rise",
+          "wrong": "raise",
+          "tr": "Büyük şehirlerde ev fiyatları hızla yükselmeye devam ediyor."
+        }
+      ]
+    },
+    {
+      "id": "en:lie-lay",
+      "language": "en",
+      "words": [
+        "lie",
+        "lay"
+      ],
+      "meanings": [
+        "uzanmak, yatmak (geçişsiz)",
+        "koymak, sermek (geçişli)"
+      ],
+      "distinction": "Lie (uzanmak, yatmak) nesne almaz (lie down on the sofa); lay ise bir nesneyi dikkatle bir yere koymaktır (lay the baby in the crib, lay the table).",
+      "example": [
+        "I just want to lie down.",
+        "Please lay the books on the table."
+      ],
+      "drills": [
+        {
+          "text": "I am so tired, I need to ___ down for a while.",
+          "right": "lie",
+          "wrong": "lay",
+          "tr": "Çok yorgunum, bir süre uzanmam gerek."
+        },
+        {
+          "text": "Please ___ the keys gently on the desk.",
+          "right": "lay",
+          "wrong": "lie",
+          "tr": "Lütfen anahtarları masanın üzerine nazikçe koy."
+        },
+        {
+          "text": "The cat loves to ___ in the sun all afternoon.",
+          "right": "lie",
+          "wrong": "lay",
+          "tr": "Kedi bütün öğleden sonra güneşte yatmaya bayılır."
+        },
+        {
+          "text": "She ___ the blanket over the sleeping child.",
+          "right": "laid",
+          "wrong": "lay",
+          "tr": "Battaniyeyi uyuyan çocuğun üzerine serdi."
+        },
+        {
+          "text": "Don't just ___ in bed all Sunday morning.",
+          "right": "lie",
+          "wrong": "lay",
+          "tr": "Pazar sabahı boyunca öylece yatakta yatma."
+        }
+      ]
+    },
+    {
+      "id": "en:sensible-sensitive",
+      "language": "en",
+      "words": [
+        "sensible",
+        "sensitive"
+      ],
+      "meanings": [
+        "mantıklı, akıllıca",
+        "duyarlı, hassas"
+      ],
+      "distinction": "Sensible akla uygun ve mantıklı kararlar alan demektir (a sensible choice); sensitive ise duygusal olarak çabuk etkilenen veya cildi hassas olan demektir (sensitive skin, sensitive to criticism).",
+      "example": [
+        "It is a sensible decision.",
+        "She is very sensitive to criticism."
+      ],
+      "drills": [
+        {
+          "text": "Wearing warm clothes in winter is a ___ idea.",
+          "right": "sensible",
+          "wrong": "sensitive",
+          "tr": "Kışın sıcak tutan giysiler giymek mantıklı bir fikirdir."
+        },
+        {
+          "text": "Be careful what you say; he is very ___ today.",
+          "right": "sensitive",
+          "wrong": "sensible",
+          "tr": "Ne söylediğine dikkat et; bugün çok hassas."
+        },
+        {
+          "text": "I have very ___ skin, so I use fragrance-free soap.",
+          "right": "sensitive",
+          "wrong": "sensible",
+          "tr": "Çok hassas bir cildim var, bu yüzden kokusuz sabun kullanıyorum."
+        },
+        {
+          "text": "Saving some money every month is very ___.",
+          "right": "sensible",
+          "wrong": "sensitive",
+          "tr": "Her ay biraz para biriktirmek çok akıllıcadır."
+        },
+        {
+          "text": "This microphone is extremely ___ to background noise.",
+          "right": "sensitive",
+          "wrong": "sensible",
+          "tr": "Bu mikrofon arka plan gürültüsüne karşı son derece duyarlıdır."
+        }
+      ]
+    },
+    {
+      "id": "en:beside-besides",
+      "language": "en",
+      "words": [
+        "beside",
+        "besides"
+      ],
+      "meanings": [
+        "yanında (fiziksel konum)",
+        "ayrıca, -den başka"
+      ],
+      "distinction": "Beside bir şeyin hemen bitişiğinde, yanında demektir (sit beside me); besides ise \"bunun yanı sıra, ayrıca, -den başka\" anlamında ekleme bağlacıdır (besides English, who else was there besides John?).",
+      "example": [
+        "Come and sit beside me.",
+        "Besides English, she speaks German."
+      ],
+      "drills": [
+        {
+          "text": "He sat ___ her on the bench in the park.",
+          "right": "beside",
+          "wrong": "besides",
+          "tr": "Parktaki bankta onun yanına oturdu."
+        },
+        {
+          "text": "What languages do you speak ___ Turkish?",
+          "right": "besides",
+          "wrong": "beside",
+          "tr": "Türkçenin yanı sıra hangi dilleri konuşuyorsun?"
+        },
+        {
+          "text": "There was a small table ___ the bed.",
+          "right": "beside",
+          "wrong": "besides",
+          "tr": "Yatağın yanında küçük bir sehpa vardı."
+        },
+        {
+          "text": "I don't want to go out; ___, it is pouring rain.",
+          "right": "besides",
+          "wrong": "beside",
+          "tr": "Dışarı çıkmak istemiyorum; ayrıca sağanak yağmur yağıyor."
+        },
+        {
+          "text": "Who was at the meeting ___ Sarah and David?",
+          "right": "besides",
+          "wrong": "beside",
+          "tr": "Toplantıda Sarah ve David'in haricinde kim vardı?"
+        }
+      ]
+    },
+    {
+      "id": "en:historic-historical",
+      "language": "en",
+      "words": [
+        "historic",
+        "historical"
+      ],
+      "meanings": [
+        "tarihi (önemli, tarihe geçen)",
+        "tarihsel (tarihle ilgili, geçmişe ait)"
+      ],
+      "distinction": "Historic tarihe geçecek kadar büyük ve önemli olaylar için kullanılır (a historic victory); historical ise tarihe veya geçmişe ait araştırmalar, romanlar ve belgeler için kullanılır (historical novel, historical documents).",
+      "example": [
+        "Today is a historic day.",
+        "She enjoys reading historical novels."
+      ],
+      "drills": [
+        {
+          "text": "The peace treaty was a truly ___ moment for the region.",
+          "right": "historic",
+          "wrong": "historical",
+          "tr": "Barış antlaşması bölge için gerçekten tarihi bir andı."
+        },
+        {
+          "text": "He is doing research on ___ records from the 18th century.",
+          "right": "historical",
+          "wrong": "historic",
+          "tr": "18. yüzyıldan kalma tarihsel kayıtlar üzerinde araştırma yapıyor."
+        },
+        {
+          "text": "The Moon landing in 1969 was a ___ event for humanity.",
+          "right": "historic",
+          "wrong": "historical",
+          "tr": "1969'daki Ay'a iniş insanlık için tarihi bir olaydı."
+        },
+        {
+          "text": "This library has an impressive collection of ___ maps.",
+          "right": "historical",
+          "wrong": "historic",
+          "tr": "Bu kütüphanenin etkileyici bir tarihsel harita koleksiyonu var."
+        },
+        {
+          "text": "The two leaders held a ___ summit in Geneva.",
+          "right": "historic",
+          "wrong": "historical",
+          "tr": "İki lider Cenevre'de tarihi bir zirve gerçekleştirdi."
+        }
+      ]
+    },
+    {
+      "id": "en:economic-economical",
+      "language": "en",
+      "words": [
+        "economic",
+        "economical"
+      ],
+      "meanings": [
+        "ekonomik (ülke/genel ekonomiyle ilgili)",
+        "tutumlu, hesaplı, az tüketen"
+      ],
+      "distinction": "Economic ülkenin mali ve iktisadi yapısıyla ilgilidir (economic growth, economic crisis); economical ise az yakan, bütçe dostu, tutumlu demektir (an economical car, economical living).",
+      "example": [
+        "The country faces economic growth.",
+        "This small hybrid car is very economical."
+      ],
+      "drills": [
+        {
+          "text": "The country is undergoing severe ___ reforms.",
+          "right": "economic",
+          "wrong": "economical",
+          "tr": "Ülke ciddi ekonomik reformlardan geçiyor."
+        },
+        {
+          "text": "This small car is very ___ on fuel.",
+          "right": "economical",
+          "wrong": "economic",
+          "tr": "Bu küçük araba yakıt konusunda oldukça hesaplıdır."
+        },
+        {
+          "text": "High inflation is a serious ___ challenge right now.",
+          "right": "economic",
+          "wrong": "economical",
+          "tr": "Yüksek enflasyon şu an ciddi bir ekonomik zorluktur."
+        },
+        {
+          "text": "Cooking at home is much more ___ than dining out.",
+          "right": "economical",
+          "wrong": "economic",
+          "tr": "Evde yemek pişirmek dışarıda yemekten çok daha tasarrufludur."
+        },
+        {
+          "text": "Global trade policy shapes our ___ future.",
+          "right": "economic",
+          "wrong": "economical",
+          "tr": "Küresel ticaret politikası ekonomik geleceğimizi şekillendirir."
+        }
+      ]
+    },
+    {
+      "id": "en:bring-take",
+      "language": "en",
+      "words": [
+        "bring",
+        "take"
+      ],
+      "meanings": [
+        "getirmek (konuşulan yere doğru)",
+        "götürmek (oraya, başka bir yere)"
+      ],
+      "distinction": "Bring eylemin konuşmacının veya dinleyicinin olduğu yere doğru yapılmasıdır (bring me a glass of water); take ise buradan başka bir yere taşınmasıdır (take this letter to the post office).",
+      "example": [
+        "Bring your laptop here.",
+        "Please take your umbrella when you leave."
+      ],
+      "drills": [
+        {
+          "text": "Can you ___ me the newspaper from the kitchen?",
+          "right": "bring",
+          "wrong": "take",
+          "tr": "Mutfaktan bana gazeteyi getirebilir misin?"
+        },
+        {
+          "text": "Don't forget to ___ your passport to the airport.",
+          "right": "take",
+          "wrong": "bring",
+          "tr": "Havalimanına giderken pasaportunu yanına almayı (götürmeyi) unutma."
+        },
+        {
+          "text": "Please ___ your homework to class tomorrow.",
+          "right": "bring",
+          "wrong": "take",
+          "tr": "Lütfen yarın ödevinizi derse getirin."
+        },
+        {
+          "text": "I need to ___ these dirty clothes to the dry cleaner.",
+          "right": "take",
+          "wrong": "bring",
+          "tr": "Bu kirli giysileri kuru temizlemeye götürmem gerekiyor."
+        },
+        {
+          "text": "Guests often ___ flowers or chocolate to a dinner party.",
+          "right": "bring",
+          "wrong": "take",
+          "tr": "Misafirler bir akşam yemeğine sıklıkla çiçek veya çikolata getirir."
+        }
+      ]
+    },
+    {
+      "id": "en:classic-classical",
+      "language": "en",
+      "words": [
+        "classic",
+        "classical"
+      ],
+      "meanings": [
+        "klasik (örnek niteliğinde, zamansız)",
+        "klasik (müzik türü / antik dönem)"
+      ],
+      "distinction": "Classic zamanın sınavından geçmiş, mükemmel örnek sayılan şeylerdir (a classic movie, a classic mistake); classical ise klasik müzik (Mozart, Bach) veya antik Yunan-Roma kültürüyle ilgilidir.",
+      "example": [
+        "Casablanca is a classic movie.",
+        "She plays classical piano."
+      ],
+      "drills": [
+        {
+          "text": "I love listening to ___ music while studying.",
+          "right": "classical",
+          "wrong": "classic",
+          "tr": "Ders çalışırken klasik müzik dinlemeyi çok severim."
+        },
+        {
+          "text": "Pride and Prejudice is a ___ English novel.",
+          "right": "classic",
+          "wrong": "classical",
+          "tr": "Gurur ve Önyargı klasik bir İngiliz romanıdır."
+        },
+        {
+          "text": "He made a ___ rookie mistake on his first day.",
+          "right": "classic",
+          "wrong": "classical",
+          "tr": "İlk gününde tam bir acemi hatası (klasik hata) yaptı."
+        },
+        {
+          "text": "She studied ___ literature at Oxford University.",
+          "right": "classical",
+          "wrong": "classic",
+          "tr": "Oxford Üniversitesi'nde klasik filoloji (antik edebiyat) okudu."
+        },
+        {
+          "text": "A white shirt with dark trousers is a ___ look.",
+          "right": "classic",
+          "wrong": "classical",
+          "tr": "Koyu pantolonla beyaz gömlek zamansız (klasik) bir görünümdür."
+        }
+      ]
+    },
+    {
+      "id": "en:principal-principle",
+      "language": "en",
+      "words": [
+        "principal",
+        "principle"
+      ],
+      "meanings": [
+        "okul müdürü / ana unsur (sıfat/isim)",
+        "ilke, prensip, temel kural"
+      ],
+      "distinction": "Principal bir okulun müdürü veya en önemli, ana faktördür (principal reason, school principal); principle ise ahlaki değer, doğa kanunu veya temel ilkedir (matter of principle, scientific principle).",
+      "example": [
+        "The school principal addressed the students.",
+        "She refused on principle."
+      ],
+      "drills": [
+        {
+          "text": "The ___ spoke to all parents at the beginning of term.",
+          "right": "principal",
+          "wrong": "principle",
+          "tr": "Okul müdürü dönem başında tüm velilerle konuştu."
+        },
+        {
+          "text": "Honesty is the most important ___ in our family.",
+          "right": "principle",
+          "wrong": "principal",
+          "tr": "Dürüstlük ailemizdeki en önemli ilkedir."
+        },
+        {
+          "text": "Tourism is the ___ source of income for this island.",
+          "right": "principal",
+          "wrong": "principle",
+          "tr": "Turizm bu ada için ana (en önemli) gelir kaynağıdır."
+        },
+        {
+          "text": "He resigned from his post as a matter of ___.",
+          "right": "principle",
+          "wrong": "principal",
+          "tr": "Bir prensip meselesi olarak görevinden istifa etti."
+        },
+        {
+          "text": "The ___ aim of this project is to reduce plastic waste.",
+          "right": "principal",
+          "wrong": "principle",
+          "tr": "Bu projenin temel amacı plastik atığı azaltmaktır."
+        }
+      ]
+    },
+    {
+      "id": "en:stationary-stationery",
+      "language": "en",
+      "words": [
+        "stationary",
+        "stationery"
+      ],
+      "meanings": [
+        "hareketsiz, sabit duran (sıfat)",
+        "kırtasiye malzemesi (isim)"
+      ],
+      "distinction": "Stationary (a ile) hareketsiz, kıpırdamayan nesnelerdir (a stationary car, a stationary bicycle); stationery (e ile: envelope gibi) kâğıt, kalem, zarf gibi kırtasiye ürünleridir.",
+      "example": [
+        "The car remained stationary in traffic.",
+        "I bought notebooks from the stationery shop."
+      ],
+      "drills": [
+        {
+          "text": "The traffic was completely ___ for over an hour.",
+          "right": "stationary",
+          "wrong": "stationery",
+          "tr": "Trafik bir saatten fazla süre tamamen hareketsiz kaldı."
+        },
+        {
+          "text": "I need to buy some pens and paper at the ___ shop.",
+          "right": "stationery",
+          "wrong": "stationary",
+          "tr": "Kırtasiyeden birkaç tükenmez kalem ve kâğıt almam gerek."
+        },
+        {
+          "text": "He rides a ___ bike at the gym every evening.",
+          "right": "stationary",
+          "wrong": "stationery",
+          "tr": "Her akşam spor salonunda sabit kondisyon bisikleti sürer."
+        },
+        {
+          "text": "Our office supplies store sells branded business ___.",
+          "right": "stationery",
+          "wrong": "stationary",
+          "tr": "Ofis malzemeleri mağazamız kurumsal kırtasiye ürünleri satıyor."
+        },
+        {
+          "text": "The train remained ___ while engineers inspected the tracks.",
+          "right": "stationary",
+          "wrong": "stationery",
+          "tr": "Mühendisler rayları incelerken tren hareketsiz bekledi."
+        }
+      ]
+    },
+    {
+      "id": "en:complement-compliment",
+      "language": "en",
+      "words": [
+        "complement",
+        "compliment"
+      ],
+      "meanings": [
+        "tamamlamak, uyum sağlamak (fiil/isim)",
+        "iltifat etmek, övgü (fiil/isim)"
+      ],
+      "distinction": "Complement (e ile: complete gibi) birbirini tamamlamak, bütünlemektir (the wine complements the meal); compliment (i ile) birine güzel bir söz söylemek, iltifat etmektir (pay someone a compliment).",
+      "example": [
+        "The red scarf complements her dress.",
+        "He paid her a nice compliment."
+      ],
+      "drills": [
+        {
+          "text": "Her calm attitude perfectly ___ his energetic style.",
+          "right": "complements",
+          "wrong": "compliments",
+          "tr": "Onun sakin tavrı, partnerinin enerjik tarzını mükemmelce tamamlıyor."
+        },
+        {
+          "text": "Thank you for the lovely ___; it made my day.",
+          "right": "compliment",
+          "wrong": "complement",
+          "tr": "Güzel iltifatın için teşekkür ederim; günümü güzelleştirdi."
+        },
+        {
+          "text": "Strawberries and fresh cream ___ each other wonderfully.",
+          "right": "complement",
+          "wrong": "compliment",
+          "tr": "Çilek ile taze krema birbirini harika tamamlar."
+        },
+        {
+          "text": "He ___ her on her excellent presentation.",
+          "right": "complimented",
+          "wrong": "complemented",
+          "tr": "Mükemmel sunumundan dolayı ona iltifatta bulundu."
+        },
+        {
+          "text": "The sauce serves as an ideal ___ to grilled fish.",
+          "right": "complement",
+          "wrong": "compliment",
+          "tr": "Sos, ızgara balık için ideal bir tamamlayıcı rolü görür."
+        }
+      ]
+    },
+    {
+      "id": "en:accept-except",
+      "language": "en",
+      "words": [
+        "accept",
+        "except"
+      ],
+      "meanings": [
+        "kabul etmek (fiil)",
+        "hariç, dışında (edat/bağlaç)"
+      ],
+      "distinction": "Accept bir teklifi, daveti veya gerçeği onaylayıp kabul etmektir (accept an offer); except ise bir grubun dışındaki istisnayı belirtir (everyone except me).",
+      "example": [
+        "I happily accept your invitation.",
+        "Everyone was present except Mark."
+      ],
+      "drills": [
+        {
+          "text": "Did the university ___ your application?",
+          "right": "accept",
+          "wrong": "except",
+          "tr": "Üniversite başvurunu kabul etti mi?"
+        },
+        {
+          "text": "The shop is open every single day ___ Sunday.",
+          "right": "except",
+          "wrong": "accept",
+          "tr": "Dükkân pazar hariç haftanın her günü açıktır."
+        },
+        {
+          "text": "It took him years to ___ the painful truth.",
+          "right": "accept",
+          "wrong": "except",
+          "tr": "Acı gerçeği kabullenmesi yıllarını aldı."
+        },
+        {
+          "text": "All the answers were correct ___ the last one.",
+          "right": "except",
+          "wrong": "accept",
+          "tr": "Sonuncusu dışında bütün cevaplar doğruydu."
+        },
+        {
+          "text": "We do not ___ payments by personal cheque.",
+          "right": "accept",
+          "wrong": "except",
+          "tr": "Kişisel çekle yapılan ödemeleri kabul etmiyoruz."
+        }
+      ]
+    },
+    {
+      "id": "en:quite-quiet",
+      "language": "en",
+      "words": [
+        "quite",
+        "quiet"
+      ],
+      "meanings": [
+        "oldukça, epey (derece zarfı)",
+        "sessiz, sakin (sıfat)"
+      ],
+      "distinction": "Quite (te sonda) \"oldukça, epeyce\" anlamına gelen bir derecelendirme zarfıdır (quite good, quite sure); quiet (et sonda) ise sessiz, gürültüsüz demektir (a quiet room, keep quiet).",
+      "example": [
+        "It is quite cold today.",
+        "Please be quiet in the library."
+      ],
+      "drills": [
+        {
+          "text": "The exam was ___ difficult, but I think I passed.",
+          "right": "quite",
+          "wrong": "quiet",
+          "tr": "Sınav oldukça zordu ama sanırım geçtim."
+        },
+        {
+          "text": "Please keep ___ while the children are asleep.",
+          "right": "quiet",
+          "wrong": "quite",
+          "tr": "Çocuklar uyurken lütfen sessiz olun."
+        },
+        {
+          "text": "We found a small, ___ cafe near the river.",
+          "right": "quiet",
+          "wrong": "quite",
+          "tr": "Nehir kenarında küçük, sakin bir kafe bulduk."
+        },
+        {
+          "text": "I am not ___ ready yet; give me two more minutes.",
+          "right": "quite",
+          "wrong": "quiet",
+          "tr": "Henüz tam olarak (oldukça) hazır değilim; bana iki dakika daha ver."
+        },
+        {
+          "text": "The street is surprisingly ___ during the night.",
+          "right": "quiet",
+          "wrong": "quite",
+          "tr": "Sokak gece vakti şaşırtıcı derecede sessizdir."
+        }
+      ]
+    },
+    {
+      "id": "en:hard-hardly",
+      "language": "en",
+      "words": [
+        "hard",
+        "hardly"
+      ],
+      "meanings": [
+        "sıkı, çok / sert, zor",
+        "neredeyse hiç, güçbela"
+      ],
+      "distinction": "Hard hem sıfat (zor, sert) hem de zarf (sıkı çalışmak: work hard) olarak kullanılır; hardly ise bir olumsuzluk zarfıdır ve \"neredeyse hiç\" demektir (I can hardly breathe, hardly ever).",
+      "example": [
+        "He works hard every day.",
+        "I could hardly hear what she said."
+      ],
+      "drills": [
+        {
+          "text": "She studied very ___ and passed the bar exam.",
+          "right": "hard",
+          "wrong": "hardly",
+          "tr": "Çok sıkı çalıştı ve baro sınavını geçti."
+        },
+        {
+          "text": "It was so noisy that I could ___ hear my own voice.",
+          "right": "hardly",
+          "wrong": "hard",
+          "tr": "O kadar gürültülüydü ki kendi sesimi neredeyse hiç duyamıyordum."
+        },
+        {
+          "text": "He ___ ever watches television nowadays.",
+          "right": "hardly",
+          "wrong": "hard",
+          "tr": "Bugünlerde neredeyse hiç televizyon izlemez."
+        },
+        {
+          "text": "It is raining ___ outside, so bring an umbrella.",
+          "right": "hard",
+          "wrong": "hardly",
+          "tr": "Dışarıda çok sıkı (şiddetli) yağmur yağıyor, bu yüzden şemsiye al."
+        },
+        {
+          "text": "There were ___ any people left at the station at midnight.",
+          "right": "hardly",
+          "wrong": "hard",
+          "tr": "Gece yarısında istasyonda neredeyse hiç insan kalmamıştı."
+        }
+      ]
+    },
+    {
+      "id": "en:desert-dessert",
+      "language": "en",
+      "words": [
+        "desert",
+        "dessert"
+      ],
+      "meanings": [
+        "çöl / terk etmek (tek s)",
+        "tatlı (yemek sonrası, çift s)"
+      ],
+      "distinction": "Desert tek \"s\" ile çöl veya bir yeri terk etmektir (Sahara Desert, desert an island); dessert çift \"s\" ile (daha tatlı, iki kaşık gibi) yemekten sonra yenen tatlıdır (chocolate dessert).",
+      "example": [
+        "Camels can survive in the desert.",
+        "We ordered ice cream for dessert."
+      ],
+      "drills": [
+        {
+          "text": "The Sahara is the largest hot ___ in the world.",
+          "right": "desert",
+          "wrong": "dessert",
+          "tr": "Sahra dünyanın en büyük sıcak çölüdür."
+        },
+        {
+          "text": "Would you like some apple pie for ___?",
+          "right": "dessert",
+          "wrong": "desert",
+          "tr": "Tatlı olarak biraz elmalı turta ister misin?"
+        },
+        {
+          "text": "Water is very scarce across the dry ___.",
+          "right": "desert",
+          "wrong": "dessert",
+          "tr": "Kurak çöl boyunca su çok kıttır."
+        },
+        {
+          "text": "I am too full to eat any ___.",
+          "right": "dessert",
+          "wrong": "desert",
+          "tr": "Herhangi bir tatlı yiyemeyecek kadar tokum."
+        },
+        {
+          "text": "Cactus plants thrive in harsh ___ climates.",
+          "right": "desert",
+          "wrong": "dessert",
+          "tr": "Kaktüs bitkileri zorlu çöl iklimlerinde yetişir."
+        }
+      ]
+    },
+    {
+      "id": "en:alone-lonely",
+      "language": "en",
+      "words": [
+        "alone",
+        "lonely"
+      ],
+      "meanings": [
+        "yalnız, tek başına (fiziksel durum)",
+        "yalnızlık çeken, kimsesiz hisseden (duygu)"
+      ],
+      "distinction": "Alone yanında başka insan bulunmama durumudur ve olumsuz olmak zorunda değildir (I like living alone); lonely ise içsel bir üzüntü ve yalnızlık hissidir (feeling lonely).",
+      "example": [
+        "She traveled alone across Europe.",
+        "He felt very lonely in the new city."
+      ],
+      "drills": [
+        {
+          "text": "He prefers to live ___, without any flatmates.",
+          "right": "alone",
+          "wrong": "lonely",
+          "tr": "Hiçbir ev arkadaşı olmadan, tek başına yaşamayı tercih ediyor."
+        },
+        {
+          "text": "Even in a crowded room, she felt deeply ___.",
+          "right": "lonely",
+          "wrong": "alone",
+          "tr": "Kalabalık bir odada bile kendini derinden yalnız hissetti."
+        },
+        {
+          "text": "Do you feel ___ when your partner travels for work?",
+          "right": "lonely",
+          "wrong": "alone",
+          "tr": "Eşin iş için seyahat ettiğinde kendini yalnız hisseder misin?"
+        },
+        {
+          "text": "She walked home ___ through the park at dusk.",
+          "right": "alone",
+          "wrong": "lonely",
+          "tr": "Alacakaranlıkta parkın içinden eve tek başına yürüdü."
+        },
+        {
+          "text": "Elderly people often suffer from feeling ___ in winter.",
+          "right": "lonely",
+          "wrong": "alone",
+          "tr": "Yaşlı insanlar kışın sıklıkla yalnızlık hissiyle boğuşur."
+        }
+      ]
+    }
+  ]
+}

@@ -255,6 +255,356 @@
         "Sería deseable que las autoridades…",
         "Le saluda atentamente,"
       ]
+    },
+    {
+      "id": "es-exam-cumpleanos-invitacion",
+      "language": "es",
+      "exam": "DELE",
+      "level": "A2",
+      "kind": "Carta de invitación",
+      "title": "Invitación a una fiesta de cumpleaños",
+      "instruction": "Organizas una fiesta de cumpleaños en tu casa. Escribe un correo electrónico a un compañero para invitarlo, indicar la fecha y hora, y explicar qué debe traer.",
+      "tr": "Evinde doğum günü partisi düzenliyorsun. Bir arkadaşını davet eden, tarih ve saati belirten ve ne getirmesi gerektiğini açıklayan bir e-posta yaz.",
+      "min": 60,
+      "max": 85,
+      "checklist": [
+        "Empieza con un saludo amistoso.",
+        "Indica claramente el día, el lugar y la hora del encuentro.",
+        "Pídele que traiga algo sencillo (música, comida o bebida).",
+        "Despídete pidiéndole confirmación de asistencia."
+      ],
+      "phrases": [
+        "¡Hola, Carlos!",
+        "Te escribo para invitarte a…",
+        "La fiesta tendrá lugar el próximo…",
+        "¿Podrías traer algo para picar?",
+        "¡Avísame si puedes venir!"
+      ]
+    },
+    {
+      "id": "es-exam-objeto-perdido",
+      "language": "es",
+      "exam": "DELE",
+      "level": "A2",
+      "kind": "Aviso de objeto perdido",
+      "title": "Mochila olvidada en el autobús",
+      "instruction": "Ayer olvidaste tu mochila en el autobús urbano. Escribe a la oficina de atención al cliente describiendo la mochila, lo que contenía y dónde estabas sentado.",
+      "tr": "Dün şehir içi otobüsünde sırt çantanı unuttun. Müşteri hizmetlerine çantayı, içindekileri ve nerede oturduğunu tarif eden bir bildirim yaz.",
+      "min": 60,
+      "max": 90,
+      "checklist": [
+        "Menciona la línea de autobús y la hora aproximada del trayecto.",
+        "Describe el color, tamaño y marca de la mochila.",
+        "Enumera los objetos importantes que contenía.",
+        "Facilita un número de teléfono de contacto."
+      ],
+      "phrases": [
+        "Estimados señores,",
+        "Les escribo porque ayer extravié…",
+        "Estaba sentado cerca de la puerta trasera…",
+        "En el interior de la mochila llevaba…",
+        "Pueden ponerse en contacto conmigo en…"
+      ]
+    },
+    {
+      "id": "es-exam-blog-viaje",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B1",
+      "kind": "Entrada de blog",
+      "title": "Un fin de semana inolvidable en la naturaleza",
+      "instruction": "Escribe una entrada en tu blog describiendo una escapada reciente a un pueblo de montaña. Explica qué visitaste, qué platos locales probaste y por qué lo recomiendas.",
+      "tr": "Bir dağ köyüne yaptığın geziyi anlatan bir blog yazısı yaz. Neleri ziyaret ettiğini, hangi yerel yemekleri tattığını ve neden tavsiye ettiğini anlat.",
+      "min": 120,
+      "max": 160,
+      "checklist": [
+        "Crea un título llamativo y una introducción motivadora.",
+        "Describe el paisaje, las rutas recorridas y la atmósfera del lugar.",
+        "Menciona una especialidad gastronómica que disfrutaste.",
+        "Concluye con un consejo práctico para futuros viajeros."
+      ],
+      "phrases": [
+        "Si buscas desconectar de la rutina urbana,",
+        "Lo más destacado de la escapada fue…",
+        "Paseamos por callejuelas empedradas y descubrimos…",
+        "Recomiendo fervientemente probar…",
+        "No os olvidéis de llevar calzado adecuado."
+      ]
+    },
+    {
+      "id": "es-exam-centro-deportivo",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B1",
+      "kind": "Carta de sugerencia",
+      "title": "Mejoras en el polideportivo municipal",
+      "instruction": "Escribe una carta al director del polideportivo municipal proponiendo mejoras en las instalaciones, la ampliación del horario de apertura y nuevas actividades para jóvenes.",
+      "tr": "Belediye spor merkezi müdürüne tesislerin iyileştirilmesi, çalışma saatlerinin uzatılması ve gençlere yönelik yeni etkinlikler öneren bir mektup yaz.",
+      "min": 130,
+      "max": 170,
+      "checklist": [
+        "Usa un tono formal y constructivo.",
+        "Señala dos deficiencias concretas del centro deportivo actual.",
+        "Propón soluciones realistas y adaptadas a los usuarios.",
+        "Destaca los beneficios que reportarán estos cambios a la comunidad."
+      ],
+      "phrases": [
+        "Estimado Director,",
+        "Me dirijo a usted con el propósito de sugerir…",
+        "En primer lugar, muchos usuarios consideramos que…",
+        "Sería sumamente enriquecedor que se ofertaran…",
+        "Agradezco de antemano su atención a estas propuestas."
+      ]
+    },
+    {
+      "id": "es-exam-reclamacion-compra",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B1",
+      "kind": "Carta de reclamación",
+      "title": "Dispositivo electrónico defectuoso",
+      "instruction": "Compraste unos auriculares inalámbricos por internet que llegaron con la caja rota y sin cables. Escribe una reclamación exigiendo el reemplazo inmediato o la devolución del dinero.",
+      "tr": "İnternetten aldığın kablosuz kulaklık kutusu yırtık ve kablosuz geldi. Acil değişim veya para iadesi talep eden bir şikâyet mektubu yaz.",
+      "min": 120,
+      "max": 155,
+      "checklist": [
+        "Indica el número de pedido y la fecha de recepción.",
+        "Describe con precisión el estado del producto y los elementos ausentes.",
+        "Expresa con claridad la compensación o solución esperada.",
+        "Advierte que adjuntas fotografías y comprobante de compra."
+      ],
+      "phrases": [
+        "Les escribo para manifestar mi disconformidad con…",
+        "Al abrir el paquete comprobé con sorpresa que…",
+        "El producto dista mucho de corresponder a la descripción web.",
+        "Por consiguiente, solicito el reembolso íntegro o…",
+        "Quedo a la espera de su pronta respuesta."
+      ]
+    },
+    {
+      "id": "es-exam-teletrabajo-ensayo",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B2",
+      "kind": "Artículo de opinión / Ensayo",
+      "title": "El teletrabajo frente al modelo presencial",
+      "instruction": "El trabajo a distancia ha revolucionado las relaciones laborales. Debate las ventajas e inconvenientes tanto para el empleado como para la empresa, y ofrece tu dictamen razonado.",
+      "tr": "Uzaktan çalışma iş ilişkilerini kökten değiştirdi. Hem çalışan hem işveren açısından avantaj ve dezavantajları tartışıp gerekçeli kanaatini sun.",
+      "min": 240,
+      "max": 290,
+      "checklist": [
+        "Presenta el auge de la flexibilidad laboral con una introducción sólida.",
+        "Analiza la conciliación familiar y el ahorro de desplazamientos.",
+        "Examina el riesgo de aislamiento y la difuminación de horarios laborales.",
+        "Concluye defendiendo un modelo híbrido equilibrado."
+      ],
+      "phrases": [
+        "En la última década, la digitalización ha transformado el paradigma laboral.",
+        "Por una parte, la flexibilidad horaria fomenta la conciliación personal.",
+        "Por otra parte, la falta de contacto directo puede menoscabar la cohesión de equipo.",
+        "Un esquema híbrido bien estructurado parece erigirse como la solución idónea.",
+        "En definitiva, conciliar autonomía y cooperación resulta indispensable."
+      ]
+    },
+    {
+      "id": "es-exam-resena-libro",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B2",
+      "kind": "Reseña cultural",
+      "title": "Reseña de una biografía inspiradora",
+      "instruction": "Escribe para una revista cultural una reseña crítica de una biografía o ensayo histórico que haya influido significativamente en tu visión de la sociedad.",
+      "tr": "Kültür dergisi için topluma bakışını etkileyen bir biyografi veya tarihsel denemenin eleştirel incelemesini yaz.",
+      "min": 220,
+      "max": 260,
+      "checklist": [
+        "Identifica la obra, el autor y la tesis central planteada.",
+        "Comenta el rigor documental y el estilo narrativo del texto.",
+        "Analiza el impacto emocional o intelectual que provoca en el lector.",
+        "Recomienda razonadamente el libro a un público específico."
+      ],
+      "phrases": [
+        "Desde sus primeras páginas, la obra cautiva por su lucidez analítica.",
+        "El autor combina con maestría el rigor histórico con un estilo ágil y vibrante.",
+        "Uno de los pasajes más conmovedores del libro ilustra cómo…",
+        "A pesar de cierta extensión excesiva en el nudo narrativo,",
+        "Recomiendo con entusiasmo su lectura a quienes deseen comprender…"
+      ]
+    },
+    {
+      "id": "es-exam-informe-turismo",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B2",
+      "kind": "Informe oficial",
+      "title": "Impacto del turismo masivo en el patrimonio local",
+      "instruction": "Redacta un informe para el ayuntamiento evaluando cómo las temporadas de turismo masivo afectan a la movilidad urbana, la limpieza pública y el bienestar de los vecinos.",
+      "tr": "Belediye için kitle turizminin şehir içi ulaşım, temizlik ve mahalle huzuru üzerindeki etkilerini değerlendiren resmi bir rapor hazırla.",
+      "min": 230,
+      "max": 280,
+      "checklist": [
+        "Organiza el texto con títulos claros (Introducción, Hallazgos, Recomendaciones).",
+        "Expón los problemas observados con datos y tono objetivo.",
+        "Formula medidas de regulación y sostenibilidad turística.",
+        "Establece un orden de prioridad para su puesta en marcha."
+      ],
+      "phrases": [
+        "El presente informe tiene como objetivo evaluar el impacto de…",
+        "Los testimonios recabados entre los vecinos ponen de manifiesto que…",
+        "Una de las problemáticas más acuciantes reside en la sobrecarga del transporte público.",
+        "A la luz de los datos expuestos, se recomienda implementar con urgencia…",
+        "Dichas medidas permitirán salvaguardar la convivencia ciudadana sin perjudicar la economía."
+      ]
+    },
+    {
+      "id": "es-exam-carta-motivacion-ong",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B2",
+      "kind": "Carta formal de motivación",
+      "title": "Candidatura para coordinador de proyectos medioambientales",
+      "instruction": "Escribe una carta formal postulándote como coordinador de programas en una ONG internacional de protección marina, destacando tu capacidad organizativa y liderazgo intercultural.",
+      "tr": "Uluslararası bir deniz koruma vakfındaki proje koordinatörlüğü için organizasyonel becerilerini ve kültürlerarası liderliğini öne çıkaran resmi başvuru mektubu yaz.",
+      "min": 220,
+      "max": 270,
+      "checklist": [
+        "Especifica el puesto al que aspiras y cómo conociste la convocatoria.",
+        "Conecta tu trayectoria académica y laboral con la misión ecológica de la entidad.",
+        "Aporta ejemplos concretos de resolución de conflictos y trabajo en equipo.",
+        "Concluye manifestando total disponibilidad para una entrevista personal."
+      ],
+      "phrases": [
+        "Me dirijo a ustedes con vivo entusiasmo para presentar mi candidatura a…",
+        "Mi trayectoria en gestión comunitaria me ha brindado sólidas competencias en…",
+        "Comparto plenamente el compromiso irrenunciable de su organización con…",
+        "Considero que mi versatilidad y capacidad de interlocución serían un valioso aporte.",
+        "Quedo a su entera disposición para ampliar cualquier información en una entrevista."
+      ]
+    },
+    {
+      "id": "es-exam-propuesta-transporte",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B2",
+      "kind": "Propuesta formal",
+      "title": "Plan de bonos juveniles para el transporte metropolitano",
+      "instruction": "Presenta una propuesta al consorcio de transportes solicitando tarifas reducidas mensuales para estudiantes y aprendices como vía para descongestionar el tráfico rodado.",
+      "tr": "Ulaşım idaresine şehir trafiğini rahatlatmak amacıyla öğrenci ve çıraklara indirimli aylık paso uygulaması öneren bir teklif metni yaz.",
+      "min": 230,
+      "max": 280,
+      "checklist": [
+        "Sintetiza la necesidad de movilidad sostenible entre la población joven.",
+        "Demuestra cómo una tarifa atractiva desincentiva el uso del vehículo privado.",
+        "Propón ventajas añadidas como acceso a servicios nocturnos y bicicletas públicas.",
+        "Finaliza con un cálculo estimado de viabilidad económica y social."
+      ],
+      "phrases": [
+        "El objeto de esta propuesta es articular una estrategia viable para…",
+        "Las elevadas tarifas actuales suponen una barrera económica insalvable para…",
+        "La implantación de un abono bonificado incentivaría de forma inmediata…",
+        "Asimismo, la integración de la red ciclista urbana multiplicaría el impacto positivo.",
+        "Confiamos en que el consejo directivo valore favorablemente esta iniciativa."
+      ]
+    },
+    {
+      "id": "es-exam-ia-etica-c1",
+      "language": "es",
+      "exam": "DELE",
+      "level": "C1",
+      "kind": "Ensayo argumentativo / Síntesis",
+      "title": "Inteligencia artificial y soberanía de la deliberación humana",
+      "instruction": "La gobernanza algorítmica penetra en el ámbito judicial, clínico y laboral. Evalúa sus ramificaciones éticas y defiende la indispensabilidad del criterio humano irrenunciable.",
+      "tr": "Algoritmik yönetim yargı, tıp ve işe alım alanlarına giriyor. Etik yansımalarını değerlendirip vazgeçilmez insan muhakemesinin gerekliliğini savun.",
+      "min": 300,
+      "max": 370,
+      "checklist": [
+        "Plantea la tensión entre la celeridad analítica y los derechos fundamentales.",
+        "Examina la perpetuación de sesgos históricos en los modelos predictivos.",
+        "Reivindica la exigencia de transparencia y rendición de cuentas institucional.",
+        "Propón un marco regulatorio ético que subordine la técnica a la dignidad humana."
+      ],
+      "phrases": [
+        "La progresiva delegación de potestades deliberativas en algoritmos suscita dilemas éticos.",
+        "Si bien los partidarios ensalzan una optimización sin precedentes, los sesgos algorítmicos persisten.",
+        "Supeditar decisiones vitales a cálculos automatizados carentes de empatía resulta inadmisible.",
+        "El discernimiento ético del ser humano constituye un baluarte insustituible frente a…",
+        "En último término, la innovación tecnológica ha de supeditarse a los principios inviolables de…"
+      ]
+    },
+    {
+      "id": "es-exam-gentrificacion-c1",
+      "language": "es",
+      "exam": "DELE",
+      "level": "C1",
+      "kind": "Análisis socioeconómico",
+      "title": "Revitalización urbana y desposesión de las comunidades tradicionales",
+      "instruction": "Examina cómo los procesos de revalorización urbana expulsan a los residentes vulnerables en beneficio de la especulación inmobiliaria. Plantea políticas que salvaguarden el derecho a la vivienda.",
+      "tr": "Kentsel dönüşüm süreçlerinin emlak spekülasyonu lehine kırılgan sakinleri nasıl yerinden ettiğini incele. Konut hakkını koruyan politikalar öner.",
+      "min": 300,
+      "max": 360,
+      "checklist": [
+        "Define con rigor sociológico la gentrificación y sus mecanismos de expulsión.",
+        "Describe la fragmentación comunitaria provocada por la especulación rentista.",
+        "Plantea soluciones como el tope a los alquileres y la vivienda cooperativa.",
+        "Concluye con un alegato por ciudades habitables e integradoras para todos."
+      ],
+      "phrases": [
+        "La regeneración de barrios degradados suele promoverse como motor indiscutible de progreso.",
+        "No obstante, las dinámicas de mercado desenfrenadas conllevan una severa polarización socioespacial.",
+        "Los arrendatarios de rentas modestas son sistemáticamente arrinconados hacia la periferia.",
+        "Resulta perentorio que las administraciones decreten parques públicos de vivienda inaccesibles a la especulación.",
+        "Una urbe justa y viva es aquella que protege con celo la diversidad de su tejido social."
+      ]
+    },
+    {
+      "id": "es-exam-universidad-fp-c1",
+      "language": "es",
+      "exam": "DELE",
+      "level": "C1",
+      "kind": "Ensayo crítico",
+      "title": "Revaluación de los títulos académicos frente a la formación profesional",
+      "instruction": "Ante la veloz automatización del empleo, debate si la educación universitaria tradicional conserva su hegemonía frente a la formación profesional especializada y la capacitación continua.",
+      "tr": "Hızlı iş otomasyonu karşısında geleneksel üniversite diplomasının uzmanlaşmış mesleki eğitim ve sürekli öğrenme karşısında hegemonyasını koruyup korumadığını tartış.",
+      "min": 290,
+      "max": 350,
+      "checklist": [
+        "Contrapone la saturación de titulados superiores con la demanda de competencias prácticas.",
+        "Reconoce el papel insustituible de la universidad en el fomento del pensamiento crítico.",
+        "Resalta la agilidad y empleabilidad directa de la formación técnica dual.",
+        "Propón un itinerario formativo flexible que integre ambos horizontes pedagógicos."
+      ],
+      "phrases": [
+        "El axioma decimonónico que vinculaba indefectiblemente el diploma universitario al éxito social tambalea.",
+        "Ciertamente, la academia brinda una hondura reflexiva e investigadora fundamental para el espíritu civil.",
+        "Empero, los módulos profesionales adaptan con suma rapidez sus destrezas a las exigencias industriales.",
+        "Lejos de alimentar antagonismos anacrónicos entre teoría y técnica,",
+        "Urge diseñar pasarelas bidireccionales que empoderen al estudiante en su itinerario vocacional."
+      ]
+    },
+    {
+      "id": "es-exam-periodismo-investigacion-c1",
+      "language": "es",
+      "exam": "DELE",
+      "level": "C1",
+      "kind": "Manifiesto / Tribuna de opinión",
+      "title": "El blindaje del periodismo de investigación en la era de la infoxicación",
+      "instruction": "Redacta un manifiesto para un simposio internacional de comunicación defendiendo la viabilidad económica e independencia editorial del reporterismo frente a los algoritmos de la desinformación.",
+      "tr": "Uluslararası bir iletişim sempozyumu için dezenformasyon algoritmaları karşısında araştırmacı haberciliğin ekonomik bağımsızlığını ve editoryal özerkliğini savunan bir manifesto yaz.",
+      "min": 300,
+      "max": 360,
+      "checklist": [
+        "Subraya el periodismo de investigación como pilar fiscalizador indispensable del Estado de derecho.",
+        "Advierte sobre el peligro de las burbujas informativas diseñadas para monetizar la polarización.",
+        "Propón fideicomisos sin ánimo de lucro y redes consorciadas transfronterizas.",
+        "Finaliza con un llamamiento solemne a la ciudadanía para proteger la veracidad pública."
+      ],
+      "phrases": [
+        "El periodismo de investigación representa el último contrapoder irrenunciable frente a la impunidad.",
+        "En un ecosistema mediático intoxicado por bulos virales y cámaras de resonancia polarizantes,",
+        "La asfixia presupuestaria de las redacciones independientes amenaza con silenciar la verdad.",
+        "La cooperación transnacional entre reporteros demuestra que el rigor colectivo vence a la censura.",
+        "Reivindicar una información fidedigna es defender el oxígeno primordial de la democracia."
+      ]
     }
   ]
 }

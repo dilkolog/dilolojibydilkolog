@@ -255,6 +255,356 @@
         "Je vous invite à envisager…",
         "Dans l'attente d'une réponse favorable, je vous prie d'agréer…"
       ]
+    },
+    {
+      "id": "fr-exam-invitation-fete",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "A2",
+      "kind": "Courriel d'invitation",
+      "title": "Invitation à une fête d'anniversaire",
+      "instruction": "Vous organisez une fête d'anniversaire chez vous. Écrivez un courriel à un ami pour l'inviter, préciser la date, l'heure et ce qu'il peut apporter.",
+      "tr": "Evinizde bir doğum günü partisi düzenliyorsunuz. Bir arkadaşınızı davet eden, tarih, saat ve getirebileceği şeyleri belirten bir e-posta yazın.",
+      "min": 60,
+      "max": 85,
+      "checklist": [
+        "Commencez par une salutation chaleureuse.",
+        "Précisez clairement le jour, le lieu et l'heure de la fête.",
+        "Demandez-lui d'apporter quelque chose de simple (boisson ou dessert).",
+        "Terminez en demandant une confirmation de présence."
+      ],
+      "phrases": [
+        "Salut Thomas,",
+        "Je t'écris pour t'inviter à…",
+        "La fête aura lieu samedi prochain à…",
+        "Pourrais-tu apporter un petit quelque chose à grignoter ?",
+        "Dis-moi vite si tu pourras venir !"
+      ]
+    },
+    {
+      "id": "fr-exam-objet-perdu",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "A2",
+      "kind": "Déclaration d'objet perdu",
+      "title": "Sac à dos égaré dans le train",
+      "instruction": "Vous avez oublié votre sac à dos dans le train hier soir. Écrivez au service des objets trouvés pour décrire le sac, son contenu et votre place.",
+      "tr": "Dün akşam trende sırt çantanızı unuttunuz. Kayıp eşya bürosuna çantayı, içindekileri ve oturduğunuz yeri tarif eden bir yazı yazın.",
+      "min": 60,
+      "max": 90,
+      "checklist": [
+        "Mentionnez le numéro du train, la gare d'arrivée et l'horaire.",
+        "Décrivez la couleur, la marque et l'apparence du sac.",
+        "Indiquez les objets importants se trouvant à l'intérieur.",
+        "Donnez vos coordonnées téléphoniques pour être recontacté."
+      ],
+      "phrases": [
+        "Madame, Monsieur,",
+        "Je vous écris car j'ai oublié mon sac à dos dans…",
+        "J'étais assis en seconde classe près de la porte…",
+        "À l'intérieur du sac se trouvaient…",
+        "Vous pouvez me joindre à ce numéro…"
+      ]
+    },
+    {
+      "id": "fr-exam-blog-voyage",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B1",
+      "kind": "Article de blog",
+      "title": "Une escapade mémorable en Bretagne",
+      "instruction": "Rédigez un article de blog racontant un week-end passé dans un village côtier. Décrivez les visites, les spécialités culinaires goûtées et donnez vos conseils.",
+      "tr": "Kıyı köyünde geçirdiğiniz bir hafta sonunu anlatan bir blog yazısı yazın. Ziyaretleri, tadılan yerel lezzetleri anlatın ve tavsiyeler verin.",
+      "min": 120,
+      "max": 160,
+      "checklist": [
+        "Trouvez un titre attractif et commencez par une introduction vivante.",
+        "Racontez les balades côtières et l'atmosphère du village.",
+        "Parlez d'un plat ou dessert traditionnel savouré sur place.",
+        "Concluez par une recommandation pratique pour les lecteurs."
+      ],
+      "phrases": [
+        "Si vous cherchez une destination dépaysante pour le week-end,",
+        "Le point fort de ce séjour a sans doute été…",
+        "Nous nous sommes promenés le long des falaises avant de goûter…",
+        "Je vous conseille vivement de visiter…",
+        "N'oubliez surtout pas d'emporter un imperméable !"
+      ]
+    },
+    {
+      "id": "fr-exam-centre-sportif",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B1",
+      "kind": "Courrier de proposition",
+      "title": "Amélioration du complexe sportif municipal",
+      "instruction": "Écrivez au responsable du complexe sportif de votre ville pour suggérer de nouveaux équipements, des horaires plus adaptés et des ateliers pour jeunes.",
+      "tr": "Şehrinizdeki spor tesisi müdürüne yeni ekipmanlar, daha esnek çalışma saatleri ve gençlere yönelik atölyeler öneren bir mektup yazın.",
+      "min": 130,
+      "max": 170,
+      "checklist": [
+        "Adoptez une formule de politesse formelle et respectueuse.",
+        "Exposez deux lacunes constatées par les adhérents actuels.",
+        "Proposez des solutions concrètes et financièrement mesurées.",
+        "Soulignez les retombées positives pour la santé des habitants."
+      ],
+      "phrases": [
+        "Monsieur le Directeur,",
+        "Je me permets de vous adresser quelques suggestions concernant…",
+        "En premier lieu, de nombreux usagers regrettent que les salles soient…",
+        "Il serait très appréciable d'aménager des créneaux pour…",
+        "En vous remerciant par avance pour l'attention portée à ce courrier."
+      ]
+    },
+    {
+      "id": "fr-exam-reclamation-colis",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B1",
+      "kind": "Lettre de réclamation",
+      "title": "Colis endommagé et article défectueux",
+      "instruction": "Vous avez commandé une enceinte connectée sur un site marchand. Le paquet est arrivé écrasé et l'appareil ne s'allume pas. Exigez un échange ou un remboursement.",
+      "tr": "İnternet sitesinden aldığınız akıllı hoparlörün paketi ezik geldi ve cihaz açılmıyor. Değişim veya para iadesi talep eden resmi bir mektup yazın.",
+      "min": 120,
+      "max": 155,
+      "checklist": [
+        "Rappelez la référence de la commande et la date de livraison.",
+        "Décrivez l'état extérieur du colis et le dysfonctionnement technique.",
+        "Formulez sans ambiguïté la solution souhaitée (remboursement intégral).",
+        "Mentionnez les pièces jointes (photos du dommage et facture)."
+      ],
+      "phrases": [
+        "Je vous contacte pour exprimer ma vive déception suite à…",
+        "Dès l'ouverture du paquet, j'ai constaté avec regret que…",
+        "L'appareil ne correspond aucunement à l'état neuf promis.",
+        "Par conséquent, je sollicite un remboursement immédiat de la somme versée.",
+        "Dans l'attente d'une issue rapide et favorable à ce litige."
+      ]
+    },
+    {
+      "id": "fr-exam-teletravail-essai",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B2",
+      "kind": "Essai argumentatif",
+      "title": "Télétravail et équilibre de vie professionnelle",
+      "instruction": "Le travail à distance s'impose durablement dans notre société. Analysez les bienfaits et les dérives de ce modèle pour les salariés et les entreprises, puis donnez votre avis.",
+      "tr": "Uzaktan çalışma kalıcı hale geliyor. Çalışanlar ve şirketler açısından fayda ve sakıncalarını analiz edip görüşünüzü bildiren bir deneme yazın.",
+      "min": 240,
+      "max": 290,
+      "checklist": [
+        "Introduisez le sujet en soulignant l'évolution des modes de travail.",
+        "Développez les gains en autonomie et la réduction du temps de transport.",
+        "Abordez les écueils liés à l'isolement social et à l'hyperconnexion.",
+        "Défendez une formule hybride et concertée en conclusion."
+      ],
+      "phrases": [
+        "Depuis quelques années, le télétravail s'est imposé comme une véritable révolution.",
+        "D'un côté, la flexibilité offerte favorise une conciliation plus harmonieuse.",
+        "D'un autre côté, le risque d'effacement de la frontière entre vie privée et métier est réel.",
+        "Un compromis équilibré entre présentiel et distanciel paraît dès lors salutaire.",
+        "En conclusion, la confiance mutuelle doit demeurer le socle de cette mutation."
+      ]
+    },
+    {
+      "id": "fr-exam-critique-livre",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B2",
+      "kind": "Chronique culturelle",
+      "title": "Critique d'un essai historique marquant",
+      "instruction": "Rédigez pour un magazine littéraire la critique d'un essai ou d'une biographie qui a profondément transformé votre compréhension d'une époque charnière.",
+      "tr": "Edebiyat dergisi için bir döneme bakışınızı kökten değiştiren bir deneme veya biyografinin eleştirel incelemesini yazın.",
+      "min": 220,
+      "max": 260,
+      "checklist": [
+        "Présentez l'auteur, le contexte d'écriture et la problématique centrale.",
+        "Appréciez la rigueur de l'argumentation et la fluidité de la plume.",
+        "Mettez en lumière un chapitre particulièrement éclairant.",
+        "Indiquez avec précision à quel public cet ouvrage est destiné."
+      ],
+      "phrases": [
+        "Dès les premières pages, l'auteur captive son lecteur par une érudition lumineuse.",
+        "Ce qui distingue particulièrement cet ouvrage, c'est sa capacité à démystifier…",
+        "L'un des passages les plus stimulants démontre brillamment comment…",
+        "Malgré quelques longueurs dans la seconde partie, la lecture demeure passionnante.",
+        "Je recommande chaleureusement cet ouvrage à tous les passionnés d'histoire contemporaine."
+      ]
+    },
+    {
+      "id": "fr-exam-rapport-tourisme",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B2",
+      "kind": "Rapport officiel",
+      "title": "Incidence du surtourisme sur le cadre de vie local",
+      "instruction": "Rédigez un rapport destiné aux élus municipaux évaluant les retombées de l'afflux estival sur les transports urbains, la gestion des déchets et la tranquillité publique.",
+      "tr": "Belediye meclisi için yaz turizmi akınının şehir içi ulaşım, atık yönetimi ve kamu huzuru üzerindeki etkilerini değerlendiren resmi bir rapor yazın.",
+      "min": 230,
+      "max": 280,
+      "checklist": [
+        "Structurez le texte avec des intertitres clairs (Contexte, Constats, Recommandations).",
+        "Dressez un diagnostic objectif étayé par des observations de terrain.",
+        "Proposez des leviers de régulation écoresponsables et pérennes.",
+        "Classez les actions à entreprendre par ordre d'urgence."
+      ],
+      "phrases": [
+        "Ce rapport a pour vocation d'analyser les conséquences majeures de…",
+        "Les doléances recueillies auprès des riverains mettent en évidence une saturation…",
+        "Une préoccupation prédominante concerne la dégradation de la propreté urbaine.",
+        "Au vu de ces constats, il convient de préconiser sans délai…",
+        "Ces dispositions permettront de concilier dynamisme économique et bien-être citoyen."
+      ]
+    },
+    {
+      "id": "fr-exam-lettre-motivation-ong",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B2",
+      "kind": "Lettre formelle de motivation",
+      "title": "Candidature au poste de coordinateur de projets écologiques",
+      "instruction": "Candidatez au poste de coordinateur de programmes au sein d'une ONG de préservation de la biodiversité, en mettant en avant votre rigueur et votre sens du collectif.",
+      "tr": "Biyoçeşitliliği koruma derneğindeki proje koordinatörlüğü için titizliğinizi ve takım çalışması becerinizi öne çıkaran resmi başvuru mektubu yazın.",
+      "min": 220,
+      "max": 270,
+      "checklist": [
+        "Rappelez l'intitulé précis du poste et la source de l'offre.",
+        "Faites le lien entre vos diplômes, vos compétences et les valeurs de l'association.",
+        "Citez une réalisation passée démontrant votre sens de l'organisation.",
+        "Réitérez votre disponibilité pour un entretien d'embauche."
+      ],
+      "phrases": [
+        "C'est avec un vif intérêt que je soumets ma candidature au poste de…",
+        "Mon parcours m'a permis d'acquérir une solide expertise dans la gestion de…",
+        "Je partage ardemment les valeurs humanistes et écologiques portées par votre structure.",
+        "Mon sens de l'écoute et ma rigueur méthodologique constituent des atouts majeurs.",
+        "Restant à votre entière disposition pour tout échange approfondi lors d'un entretien."
+      ]
+    },
+    {
+      "id": "fr-exam-proposition-transport",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B2",
+      "kind": "Proposition formelle",
+      "title": "Instauration d'un passe de transport solidaire pour les jeunes",
+      "instruction": "Soumettez une proposition à l'autorité régionale des mobilités plaidant pour une tarification préférentielle destinée aux étudiants et apprentis afin d'apaiser le trafic.",
+      "tr": "Bölge ulaşım kurumuna şehir içi araç trafiğini azaltmak amacıyla öğrencilere ve çıraklara indirimli dayanışma kartı öneren bir teklif sunun.",
+      "min": 230,
+      "max": 280,
+      "checklist": [
+        "Exposez l'enjeu de l'accessibilité des transports pour les jeunes actifs.",
+        "Démontrez comment un tarif attractif favorise l'abandon de la voiture individuelle.",
+        "Suggérez des services complémentaires (libre-service vélo, lignes nocturnes).",
+        "Concluez sur la rentabilité sociétale et environnementale de la mesure."
+      ],
+      "phrases": [
+        "La présente proposition vise à formuler des mesures pragmatiques pour…",
+        "Le coût actuel des abonnements représente un frein budgétaire insupportable pour…",
+        "L'adoption d'un tarif solidaire inciterait massivement les jeunes générations à…",
+        "Il serait judicieux d'y adjoindre un accès facilité au réseau cyclable urbain.",
+        "Nous espérons que le conseil d'administration saura soutenir ce projet d'avenir."
+      ]
+    },
+    {
+      "id": "fr-exam-ia-ethique-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "kind": "Essai critique / Synthèse",
+      "title": "Gouvernance algorithmique et souveraineté du jugement humain",
+      "instruction": "L'automatisation des arbitrages s'étend à la justice, à la médecine et aux recrutements. Évaluez les dérives éthiques et défendez le primat inaliénable de la conscience humaine.",
+      "tr": "Karar alma otomasyonu yargı, tıp ve istihdama yayılıyor. Etik sapmaları değerlendirip insan vicdanının devredilemez üstünlüğünü savunun.",
+      "min": 300,
+      "max": 370,
+      "checklist": [
+        "Posez avec finesse philosophique la dialectique entre efficience technique et dignité humaine.",
+        "Analysez la cristallisation des stéréotypes historiques au cœur des modèles prédictifs.",
+        "Exigez l'obligation d'explicabilité et de recours juridique devant toute décision automatisée.",
+        "Concluez par une charte éthique plaçant la technologie au service exclusif du bien commun."
+      ],
+      "phrases": [
+        "L'immersion croissante des algorithmes prédictifs dans les sphères régaliennes interpelle la conscience citoyenne.",
+        "Bien que les laudateurs vantent une impartialité computationnelle inédite, les biais algorithmiques persistent.",
+        "Subordonner des verdicts judiciaires ou des diagnostics vitaux à des équations opaques est inadmissible.",
+        "Le discernement subjectif et l'empathie humaine demeurent le rempart ultime contre…",
+        "En dernière analyse, l'innovation technique ne saurait s'émanciper des impératifs éthiques universels."
+      ]
+    },
+    {
+      "id": "fr-exam-gentrification-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "kind": "Analyse socio-urbaine",
+      "title": "Métropolisation, régénération urbaine et relégation des classes populaires",
+      "instruction": "Analysez comment les programmes d'embourgeoisement chassent les habitants historiques sous couvert d'attractivité économique. Proposez des politiques assurant le droit effectif à la ville.",
+      "tr": "Kentsel soylulaştırma projelerinin ekonomik çekicilik kisvesi altında köklü sakinleri nasıl dışladığını analiz edin. Şehir hakkını güvenceye alan politikalar önerin.",
+      "min": 300,
+      "max": 360,
+      "checklist": [
+        "Définissez avec rigueur académique les dynamiques de spéculation foncière métropolitaine.",
+        "Décrivez la fragilisation du tissu social et la ségrégation géographique subie.",
+        "Préconisez des outils juridiques coercitifs (encadrement strict des loyers, coopératives d'habitat).",
+        "Terminez sur une vision inclusive de la cité réconciliant mixité et solidarité."
+      ],
+      "phrases": [
+        "La réhabilitation esthétique des quartiers populaires est couramment présentée comme un triomphe urbain.",
+        "Néanmoins, les mécanismes de spéculation locative engendrent une implacable violence socio-spatiale.",
+        "Les populations autochtones se trouvent inexorablement reléguées vers des périphéries enclavées.",
+        "Il est impératif que la puissance publique sanctuarise un parc de logements sociaux inaliénables.",
+        "Une métropole véritablement moderne est celle qui refuse de sacrifier sa diversité populaire sur l'autel du profit."
+      ]
+    },
+    {
+      "id": "fr-exam-universite-apprentissage-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "kind": "Dissertation / Réflexion",
+      "title": "Dévaluation du diplôme académique et essor des filières professionnalisantes",
+      "instruction": "Face aux mutations technologiques vertigineuses, débattez de la pertinence du cursus universitaire généraliste face à l'apprentissage technique et à la reconversion agile.",
+      "tr": "Baş döndürücü teknolojik dönüşüm karşısında genel üniversite eğitiminin geçerliliğini teknik çıraklık ve esnek kariyer dönüşümü ile karşılaştıran bir deneme yazın.",
+      "min": 290,
+      "max": 350,
+      "checklist": [
+        "Confrontez la massification des diplômes universitaires aux besoins réels du monde économique.",
+        "Défendez la mission formatrice fondamentale de l'université dans l'émancipation intellectuelle.",
+        "Valorisez l'insertion professionnelle rapide offerte par l'apprentissage en alternance.",
+        "Proposez une passerelle décloisonnée conjuguant hauteur critique et dextérité opératoire."
+      ],
+      "phrases": [
+        "Le postulat traditionnel garantissant au détenteur d'un diplôme supérieur une ascension sociale automatique s'effrite.",
+        "Certes, l'université perpétue une indispensable tradition de recherche fondamentale et de pensée critique.",
+        "Toutefois, les filières professionnelles en alternance répondent avec une acuité remarquable aux défis industriels.",
+        "Bien loin d'opposer de façon stérile théorie conceptuelle et savoir-faire pratique,",
+        "Il appartient aux décideurs d'édifier des parcours hybrides tout au long de l'existence."
+      ]
+    },
+    {
+      "id": "fr-exam-liberte-presse-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "kind": "Tribune d'opinion / Plaidoyer",
+      "title": "Plaidoyer pour l'indépendance du journalisme d'investigation à l'ère de la post-vérité",
+      "instruction": "Rédigez une tribune pour un forum médiatique international alertant sur la précarisation des rédactions indépendantes face aux algorithmes de polarisation et aux ingérences étatiques.",
+      "tr": "Uluslararası bir medya forumu için bağımsız haber merkezlerinin algoritmik kutuplaşma ve devlet müdahaleleri karşısındaki kırılganlığını haykıran bir düşünce yazısı kaleme alın.",
+      "min": 300,
+      "max": 360,
+      "checklist": [
+        "Réaffirmez le rôle de sentinelle démocratique incarné par l'enquête journalistique intransigeante.",
+        "Dénoncez la prolifération des infox générées pour capturer l'attention marchande.",
+        "Proposez des modèles de fondations d'intérêt public et des consortiums transfrontaliers protégés.",
+        "Appelez à une prise de conscience civique collective pour financer une presse libre."
+      ],
+      "phrases": [
+        "Le journalisme d'investigation demeure l'ultime oxygène des sociétés démocratiques éclairées.",
+        "À une époque minée par la viralité des fausses nouvelles et la prolifération des chambres d'écho,",
+        "La précarisation financière des rédactions libres menace directement le droit des citoyens à une information vérifiée.",
+        "Les consortiums internationaux démontrent que la mise en commun des courages permet de déjouer les censures.",
+        "Soutenir une presse indépendante constitue un devoir civique primordial pour préserver nos libertés fondamentales."
+      ]
     }
   ]
 }

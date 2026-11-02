@@ -1,0 +1,790 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "rules": [
+    {
+      "id": "fr:matin-matinee",
+      "language": "fr",
+      "words": [
+        "matin",
+        "matinée"
+      ],
+      "meanings": [
+        "sabah (saat, zaman noktası)",
+        "sabah boyunca (süre, içerik)"
+      ],
+      "distinction": "Matin günün sabah vaktini sayı veya saatle belirtir (demain matin, à huit heures du matin); matinée ise sabahtan öğleye kadar geçen süreyi ve o sürede yaşananları anlatır (toute la matinée, une belle matinée).",
+      "example": [
+        "Je me lève tôt le matin.",
+        "J'ai passé toute la matinée à ranger."
+      ],
+      "drills": [
+        {
+          "text": "Le train pour Lyon partira à sept heures du ___.",
+          "right": "matin",
+          "wrong": "matinée",
+          "tr": "Lyon treni sabah saat yedide kalkacak."
+        },
+        {
+          "text": "Nous avons passé toute la ___ à visiter le musée.",
+          "right": "matinée",
+          "wrong": "matin",
+          "tr": "Bütün sabahı müzeyi gezerek geçirdik."
+        },
+        {
+          "text": "Je te souhaite une excellente et agréable ___ !",
+          "right": "matinée",
+          "wrong": "matin",
+          "tr": "Sana mükemmel ve keyifli bir sabah (boyunca güzel bir gün) dilerim!"
+        },
+        {
+          "text": "Demain ___, nous irons courir au bord du lac.",
+          "right": "matin",
+          "wrong": "matinée",
+          "tr": "Yarın sabah göl kenarında koşmaya gideceğiz."
+        },
+        {
+          "text": "La pluie n'a pas cessé pendant toute la ___.",
+          "right": "matinée",
+          "wrong": "matin",
+          "tr": "Tüm sabah boyunca yağmur hiç dinmedi."
+        }
+      ]
+    },
+    {
+      "id": "fr:soir-soiree",
+      "language": "fr",
+      "words": [
+        "soir",
+        "soirée"
+      ],
+      "meanings": [
+        "akşam (zaman noktası)",
+        "akşam boyunca, parti, gece süresi"
+      ],
+      "distinction": "Soir günün akşam vaktini tek bir zaman noktası olarak bildirir (ce soir, hier soir); soirée ise akşamdan geceye kadar süren etkinliği veya geçirilen zamanı anlatır (passer une bonne soirée).",
+      "example": [
+        "On se voit ce soir.",
+        "La soirée d'anniversaire était formidable."
+      ],
+      "drills": [
+        {
+          "text": "Tu es libre ce ___ pour dîner avec nous ?",
+          "right": "soir",
+          "wrong": "soirée",
+          "tr": "Bu akşam bizimle akşam yemeği yemek için müsait misin?"
+        },
+        {
+          "text": "Nous avons passé une délicieuse ___ chez nos voisins.",
+          "right": "soirée",
+          "wrong": "soir",
+          "tr": "Komşularımızın evinde enfes bir akşam geçirdik."
+        },
+        {
+          "text": "Il rentre généralement chez lui vers huit heures du ___.",
+          "right": "soir",
+          "wrong": "soirée",
+          "tr": "Genellikle akşam saat sekiz civarında eve döner."
+        },
+        {
+          "text": "La ___ de remise des diplômes commencera à vingt heures.",
+          "right": "soirée",
+          "wrong": "soir",
+          "tr": "Mezuniyet töreni gecesi (gece etkinliği) saat yirmide başlayacak."
+        },
+        {
+          "text": "Hier ___, nous avons regardé un film captivant.",
+          "right": "soir",
+          "wrong": "soirée",
+          "tr": "Dün akşam sürükleyici bir film izledik."
+        }
+      ]
+    },
+    {
+      "id": "fr:emmener-emporter",
+      "language": "fr",
+      "words": [
+        "emmener",
+        "emporter"
+      ],
+      "meanings": [
+        "alıp götürmek (canlı varlık)",
+        "alıp götürmek (taşınabilir eşya)"
+      ],
+      "distinction": "Emmener bir insanı veya hayvanı yanına alıp bir yere götürmektir; emporter ise elde veya çantada taşınabilen bir nesneyi alıp götürmektir (plats à emporter: paket yemek).",
+      "example": [
+        "J'emmène les enfants au parc.",
+        "N'oublie pas d'emporter ton passeport."
+      ],
+      "drills": [
+        {
+          "text": "Peux-tu ___ les enfants à leur cours de natation ?",
+          "right": "emmener",
+          "wrong": "emporter",
+          "tr": "Çocukları yüzme derslerine götürebilir misin?"
+        },
+        {
+          "text": "Il pleut des cordes ; pense à ___ un parapluie solide.",
+          "right": "emporter",
+          "wrong": "emmener",
+          "tr": "Bardaktan boşanırcasına yağıyor; yanına sağlam bir şemsiye almayı unutma."
+        },
+        {
+          "text": "Ce soir, nous allons commander des sushis à ___.",
+          "right": "emporter",
+          "wrong": "emmener",
+          "tr": "Bu akşam paket götürmek üzere suşi siparişi vereceğiz."
+        },
+        {
+          "text": "Demain matin, j'___ mon chat chez le vétérinaire.",
+          "right": "emmène",
+          "wrong": "emporte",
+          "tr": "Yarın sabah kedimi veterinere götüreceğim."
+        },
+        {
+          "text": "Elle a décidé d'___ un pull chaud pour le voyage.",
+          "right": "emporter",
+          "wrong": "emmener",
+          "tr": "Seyahat için yanına sıcak tutan bir kazak almaya karar verdi."
+        }
+      ]
+    },
+    {
+      "id": "fr:ecouter-entendre",
+      "language": "fr",
+      "words": [
+        "écouter",
+        "entendre"
+      ],
+      "meanings": [
+        "dinlemek (dikkatle kulak vermek)",
+        "duymak, işitmek (istemsiz algılama)"
+      ],
+      "distinction": "Écouter dikkatle ve bilinçli olarak dinlemektir (écouter un disque, écouter le professeur); entendre ise kulak duyusuyla bir sesi istemsizce işitmektir.",
+      "example": [
+        "J'écoute souvent la radio.",
+        "As-tu entendu ce grand bruit ?"
+      ],
+      "drills": [
+        {
+          "text": "J'aime ___ de la musique classique en travaillant.",
+          "right": "écouter",
+          "wrong": "entendre",
+          "tr": "Çalışırken klasik müzik dinlemeyi severim."
+        },
+        {
+          "text": "Parlez un peu plus fort, s'il vous plaît ; je ne vous ___ pas.",
+          "right": "entends",
+          "wrong": "écoute",
+          "tr": "Lütfen biraz daha yüksek sesle konuşun; sizi duyamıyorum."
+        },
+        {
+          "text": "___ attentivement les consignes avant de commencer l'épreuve.",
+          "right": "Écoutez",
+          "wrong": "Entendez",
+          "tr": "Sınava başlamadan önce yönergeleri dikkatle dinleyin."
+        },
+        {
+          "text": "As-tu ___ le tonnerre gronder au loin cette nuit ?",
+          "right": "entendu",
+          "wrong": "écouté",
+          "tr": "Bu gece uzakta gürleyen gök gürültüsünü duydun mu?"
+        },
+        {
+          "text": "Il est difficile d'___ ses conseils sans s'énerver.",
+          "right": "écouter",
+          "wrong": "entendre",
+          "tr": "Onun tavsiyelerini sinirlenmeden dinlemek çok zor."
+        }
+      ]
+    },
+    {
+      "id": "fr:se-rappeler-se-souvenir",
+      "language": "fr",
+      "words": [
+        "se rappeler",
+        "se souvenir"
+      ],
+      "meanings": [
+        "hatırlamak (doğrudan nesne, \"de\" almaz)",
+        "hatırlamak (\"de\" edatı ile)"
+      ],
+      "distinction": "Se rappeler doğrudan nesne alır (je me rappelle cette journée, \"de\" almaz); se souvenir ise daima \"de\" edatı ile bağlanır (je me souviens de cette journée).",
+      "example": [
+        "Je me rappelle cette belle chanson.",
+        "Je me souviens de mon premier professeur."
+      ],
+      "drills": [
+        {
+          "text": "Je me ___ très bien de notre premier rendez-vous à Nice.",
+          "right": "souviens",
+          "wrong": "rappelle",
+          "tr": "Nice'teki ilk randevumuzu çok iyi hatırlıyorum."
+        },
+        {
+          "text": "Est-ce que tu te ___ ce beau restaurant près du fleuve ?",
+          "right": "rappelles",
+          "wrong": "souviens",
+          "tr": "Nehrin yanındaki o güzel restoranı hatırlıyor musun?"
+        },
+        {
+          "text": "Elle ne se ___ plus du titre exact de ce roman.",
+          "right": "souvient",
+          "wrong": "rappelle",
+          "tr": "Bu romanın tam başlığını artık hatırlamıyor."
+        },
+        {
+          "text": "Je me ___ parfaitement les paroles de ce vieux poème.",
+          "right": "rappelle",
+          "wrong": "souviens",
+          "tr": "Bu eski şiirin sözlerini mükemmelen hatırlıyorum."
+        },
+        {
+          "text": "Nous nous ___ tous avec émotion de nos années d'école.",
+          "right": "souvenons",
+          "wrong": "rappelons",
+          "tr": "Hepimiz okul yıllarımızı duyguyla hatırlarız."
+        }
+      ]
+    },
+    {
+      "id": "fr:passer-se-passer",
+      "language": "fr",
+      "words": [
+        "passer",
+        "se passer"
+      ],
+      "meanings": [
+        "geçmek, vakit geçirmek / uğramak",
+        "meydana gelmek, cereyan etmek, olmak"
+      ],
+      "distinction": "Passer zaman geçirmek, bir yerden geçmek veya uğramaktır (passer du temps, passer voir un ami); se passer ise olayların vuku bulmasıdır (Qu'est-ce qui se passe ? Tout s'est bien passé).",
+      "example": [
+        "Le temps passe si vite.",
+        "Raconte-moi ce qui s'est passé hier."
+      ],
+      "drills": [
+        {
+          "text": "Nous avons ___ un week-end merveilleux en Normandie.",
+          "right": "passé",
+          "wrong": "se passé",
+          "tr": "Normandiya'da harika bir hafta sonu geçirdik."
+        },
+        {
+          "text": "Ne t'inquiète pas, tout va très bien ___ pendant l'examen.",
+          "right": "se passer",
+          "wrong": "passer",
+          "tr": "Endişelenme, sınav sırasında her şey çok güzel geçecek (olacak)."
+        },
+        {
+          "text": "Je vais ___ chez le boulanger avant de rentrer.",
+          "right": "passer",
+          "wrong": "se passer",
+          "tr": "Eve dönmeden önce fırıncıya uğrayacağım."
+        },
+        {
+          "text": "Qu'est-ce qui ___ dehors ? J'entends des cris.",
+          "right": "se passe",
+          "wrong": "passe",
+          "tr": "Dışarıda ne oluyor? Bağırışlar duyuyorum."
+        },
+        {
+          "text": "Les heures ___ sans que l'on s'en aperçoive.",
+          "right": "passent",
+          "wrong": "se passent",
+          "tr": "Saatler insan farkına bile varmadan geçip gidiyor."
+        }
+      ]
+    },
+    {
+      "id": "fr:sensible-sense",
+      "language": "fr",
+      "words": [
+        "sensible",
+        "sensé"
+      ],
+      "meanings": [
+        "duyarlı, hassas",
+        "mantıklı, aklı başında, sağduyulu"
+      ],
+      "distinction": "Sensible duygusal veya cildi narin olandır (İngilizce sensitive); sensé ise sağduyulu ve akla yatkın olan karardır (İngilizce sensible).",
+      "example": [
+        "C'est un artiste très sensible.",
+        "C'est une décision tout à fait sensée."
+      ],
+      "drills": [
+        {
+          "text": "C'est une personne très ___, touchée par la moindre injustice.",
+          "right": "sensible",
+          "wrong": "sensée",
+          "tr": "Çok hassas bir insandır, en küçük adaletsizlikten bile etkilenir."
+        },
+        {
+          "text": "Accepter cette offre d'emploi me semble un choix très ___.",
+          "right": "sensé",
+          "wrong": "sensible",
+          "tr": "Bu iş teklifini kabul etmek bana çok mantıklı (sağduyulu) bir seçim gibi görünüyor."
+        },
+        {
+          "text": "Ma peau est particulièrement ___ au froid hivernal.",
+          "right": "sensible",
+          "wrong": "sensée",
+          "tr": "Cildim kış soğuğuna karşı özellikle hassastır."
+        },
+        {
+          "text": "Ses arguments étaient clairs, logiques et particulièrement ___.",
+          "right": "sensés",
+          "wrong": "sensibles",
+          "tr": "Argümanları net, mantıklı ve özellikle aklı başındaydı."
+        },
+        {
+          "text": "Cet appareil de mesure est extrêmement ___ aux variations thermiques.",
+          "right": "sensible",
+          "wrong": "sensé",
+          "tr": "Bu ölçüm cihazı sıcaklık dalgalanmalarına karşı son derece duyarlıdır."
+        }
+      ]
+    },
+    {
+      "id": "fr:actuellement-en-fait",
+      "language": "fr",
+      "words": [
+        "actuellement",
+        "en fait"
+      ],
+      "meanings": [
+        "şu anda, günümüzde (zaman)",
+        "aslında, doğrusu (gerçek durum)"
+      ],
+      "distinction": "Actuellement \"şu anda, bugünlerde\" demektir (İngilizce actually değil!); en fait ise bir yanılgıyı düzelten \"aslında, doğrusunu istersen\" bağlacıdır.",
+      "example": [
+        "Actuellement, nous habitons à Lyon.",
+        "En fait, je préfère rester chez moi ce soir."
+      ],
+      "drills": [
+        {
+          "text": "___, je travaille sur un grand projet d'ingénierie.",
+          "right": "Actuellement",
+          "wrong": "En fait",
+          "tr": "Şu anda büyük bir mühendislik projesi üzerinde çalışıyorum."
+        },
+        {
+          "text": "Je pensais qu'il venait de Suisse, mais ___ il est belge.",
+          "right": "en fait",
+          "wrong": "actuellement",
+          "tr": "İsviçre'den geldiğini sanıyordum ama aslında Belçikalıymış."
+        },
+        {
+          "text": "Le directeur est ___ en réunion et ne peut vous recevoir.",
+          "right": "actuellement",
+          "wrong": "en fait",
+          "tr": "Müdür şu anda toplantıda ve sizi kabul edemiyor."
+        },
+        {
+          "text": "Ce livre a l'air court, mais ___ il est très dense à lire.",
+          "right": "en fait",
+          "wrong": "actuellement",
+          "tr": "Bu kitap kısa görünüyor ama aslında okuması çok yoğun."
+        },
+        {
+          "text": "Quel poste occupes-tu ___ dans cette entreprise ?",
+          "right": "actuellement",
+          "wrong": "en fait",
+          "tr": "Bu şirkette şu anda hangi pozisyondasın?"
+        }
+      ]
+    },
+    {
+      "id": "fr:habiter-vivre",
+      "language": "fr",
+      "words": [
+        "habiter",
+        "vivre"
+      ],
+      "meanings": [
+        "ikamet etmek (belirli adres/şehir)",
+        "yaşamak, hayatta olmak, ömür sürmek"
+      ],
+      "distinction": "Habiter belirli bir adreste veya evde oturmaktır (habiter un appartement, habiter à Paris); vivre ise genel anlamda hayat sürmek veya hayatta kalmaktır (vivre cent ans, vivre heureux).",
+      "example": [
+        "J'habite dans le centre historique.",
+        "Elle a vécu une vie longue et paisible."
+      ],
+      "drills": [
+        {
+          "text": "Mes parents ___ dans une maison ancienne avec un grand jardin.",
+          "right": "habitent",
+          "wrong": "vivent",
+          "tr": "Annemle babam büyük bahçeli eski bir evde oturuyor (ikamet ediyor)."
+        },
+        {
+          "text": "Il a ___ une expérience inoubliable lors de son séjour en Asie.",
+          "right": "vécu",
+          "wrong": "habité",
+          "tr": "Asya seyahatinde unutulmaz bir deneyim yaşadı."
+        },
+        {
+          "text": "À quel étage ___ -vous dans cet immeuble ?",
+          "right": "habitez",
+          "wrong": "vivez",
+          "tr": "Bu binada kaçıncı katta oturuyorsunuz?"
+        },
+        {
+          "text": "Les philosophes cherchent à comprendre comment bien ___.",
+          "right": "vivre",
+          "wrong": "habiter",
+          "tr": "Filozoflar nasıl iyi yaşanacağını anlamaya çalışırlar."
+        },
+        {
+          "text": "Nous ___ à Bordeaux depuis plus de dix ans.",
+          "right": "habitons",
+          "wrong": "vivons",
+          "tr": "On yıldan uzun süredir Bordeaux'da oturuyoruz."
+        }
+      ]
+    },
+    {
+      "id": "fr:neuf-nouveau",
+      "language": "fr",
+      "words": [
+        "neuf",
+        "nouveau"
+      ],
+      "meanings": [
+        "sıfır, hiç kullanılmamış (üretimden yeni)",
+        "yeni (kişi için yeni / farklı olan)"
+      ],
+      "distinction": "Neuf fabrikadan yeni çıkmış, sıfır ve eskimemiş nesnelerdir (une voiture neuve); nouveau ise önceden var olsa bile kişi için yeni veya farklı olandır (mon nouveau voisin, un nouveau collègue).",
+      "example": [
+        "J'ai acheté des chaussures neuves.",
+        "Voici mon nouveau camarade de classe."
+      ],
+      "drills": [
+        {
+          "text": "J'ai acheté une bicyclette toute ___ au magasin de sport.",
+          "right": "neuve",
+          "wrong": "nouvelle",
+          "tr": "Spor mağazasından gıcır gıcır (sıfır) bir bisiklet aldım."
+        },
+        {
+          "text": "Avez-vous fait la connaissance de notre ___ collègue ?",
+          "right": "nouveau",
+          "wrong": "neuf",
+          "tr": "Yeni iş arkadaşımızla tanıştınız mı?"
+        },
+        {
+          "text": "Ce bâtiment est entièrement ___, construit cette année.",
+          "right": "neuf",
+          "wrong": "nouveau",
+          "tr": "Bu bina tamamen yenidir (sıfırdır), bu yıl inşa edildi."
+        },
+        {
+          "text": "J'ai emménagé dans un ___ quartier que je ne connais pas encore.",
+          "right": "nouveau",
+          "wrong": "neuf",
+          "tr": "Henüz tanımadığım yeni bir mahalleye taşındım."
+        },
+        {
+          "text": "Ces vêtements sont encore ___, l'étiquette y est toujours.",
+          "right": "neufs",
+          "wrong": "nouveaux",
+          "tr": "Bu kıyafetler hâlâ yepyeni (sıfır), etiketi hâlâ üzerinde."
+        }
+      ]
+    },
+    {
+      "id": "fr:temps-fois-heure",
+      "language": "fr",
+      "words": [
+        "temps",
+        "fois"
+      ],
+      "meanings": [
+        "zaman (süreç, genel) / hava",
+        "kez, defa, sefer (olay sayısı)"
+      ],
+      "distinction": "Temps genel zaman veya hava durumudur (avoir du temps, quel temps fait-il ?); fois ise bir olayın kaçıncı kez tekrarlandığını bildirir (une fois, trois fois).",
+      "example": [
+        "Je n'ai pas le temps de déjeuner.",
+        "C'est la deuxième fois que je viens ici."
+      ],
+      "drills": [
+        {
+          "text": "Combien de ___ par semaine pratiques-tu le piano ?",
+          "right": "fois",
+          "wrong": "temps",
+          "tr": "Haftada kaç kez piyano çalışıyorsun?"
+        },
+        {
+          "text": "Prenez votre ___ pour lire attentivement le contrat.",
+          "right": "temps",
+          "wrong": "fois",
+          "tr": "Sözleşmeyi dikkatle okumak için vaktinizi ayırın (acele etmeyin)."
+        },
+        {
+          "text": "Pour la première ___, elle a osé chanter en public.",
+          "right": "fois",
+          "wrong": "temps",
+          "tr": "İlk defa halk önünde şarkı söylemeye cesaret etti."
+        },
+        {
+          "text": "Le ___ est magnifique ce week-end, le ciel est bleu.",
+          "right": "temps",
+          "wrong": "fois",
+          "tr": "Bu hafta sonu hava muhteşem, gökyüzü masmavi."
+        },
+        {
+          "text": "Nous avons perdu un ___ précieux à cause des embouteillages.",
+          "right": "temps",
+          "wrong": "fois",
+          "tr": "Trafik sıkışıklığı yüzünden değerli bir zaman kaybettik."
+        }
+      ]
+    },
+    {
+      "id": "fr:leur-leurs",
+      "language": "fr",
+      "words": [
+        "leur",
+        "leurs"
+      ],
+      "meanings": [
+        "onlara (dolaylı zamir, asla s almaz)",
+        "onların (çoğul iyelik sıfatı, çoğul isim önünde)"
+      ],
+      "distinction": "Leur kişi zamiri olduğunda \"onlara\" demektir ve fiilin önünde ASLA \"s\" almaz (je leur parle); leurs ise çoğul bir ismin önüne gelen iyelik sıfatıdır (leurs enfants, leurs valises).",
+      "example": [
+        "Je leur ai expliqué la situation.",
+        "Ils ont oublié leurs clés."
+      ],
+      "drills": [
+        {
+          "text": "Je ___ ai envoyé une invitation pour la réunion de lundi.",
+          "right": "leur",
+          "wrong": "leurs",
+          "tr": "Pazartesi günkü toplantı için onlara bir davetiye gönderdim."
+        },
+        {
+          "text": "Les élèves ont soigneusement rangé ___ cahiers dans leurs sacs.",
+          "right": "leurs",
+          "wrong": "leur",
+          "tr": "Öğrenciler defterlerini çantalarına özenle yerleştirdiler."
+        },
+        {
+          "text": "Il faut ___ laisser le temps de réfléchir à cette proposition.",
+          "right": "leur",
+          "wrong": "leurs",
+          "tr": "Onlara bu teklifi düşünecek zamanı tanımak gerek."
+        },
+        {
+          "text": "Les touristes ont laissé ___ valises à la consigne de la gare.",
+          "right": "leurs",
+          "wrong": "leur",
+          "tr": "Turistler valizlerini gardaki emanet bölümüne bıraktılar."
+        },
+        {
+          "text": "Nous ___ souhaitons beaucoup de bonheur dans leur nouvelle maison.",
+          "right": "leur",
+          "wrong": "leurs",
+          "tr": "Yeni evlerinde onlara bol mutluluklar dileriz."
+        }
+      ]
+    },
+    {
+      "id": "fr:ce-se",
+      "language": "fr",
+      "words": [
+        "ce",
+        "se"
+      ],
+      "meanings": [
+        "bu, şu (işaret sıfatı/zamiri)",
+        "kendini, birbirini (3. şahıs dönüşlü zamir)"
+      ],
+      "distinction": "Ce tekil eril ismin önüne gelen işaret sıfatı (ce garçon) veya nötr zamirdir (c'est vrai); se ise üçüncü şahıs dönüşlü fiillerin zamiridir (il se lave, ils se rencontrent).",
+      "example": [
+        "Ce livre est passionnant.",
+        "Il se réveille toujours à l'aube."
+      ],
+      "drills": [
+        {
+          "text": "___ quartier est connu pour ses agréables restaurants.",
+          "right": "Ce",
+          "wrong": "Se",
+          "tr": "Bu mahalle keyifli restoranlarıyla tanınır."
+        },
+        {
+          "text": "Chaque matin, mon frère ___ prépare une grande tasse de café.",
+          "right": "se",
+          "wrong": "ce",
+          "tr": "Her sabah erkek kardeşim kendine büyük bir fincan kahve hazırlar."
+        },
+        {
+          "text": "___ tableau exposé au musée est une œuvre de Monet.",
+          "right": "Ce",
+          "wrong": "Se",
+          "tr": "Müzede sergilenen bu tablo bir Monet eseridir."
+        },
+        {
+          "text": "Les deux amis ___ sont retrouvés sur le quai de la gare.",
+          "right": "se",
+          "wrong": "ce",
+          "tr": "İki arkadaş gardaki peronda buluştular."
+        },
+        {
+          "text": "Prenez ___ chemin pour arriver plus rapidement au village.",
+          "right": "ce",
+          "wrong": "se",
+          "tr": "Köye daha hızlı varmak için bu yolu kullanın."
+        }
+      ]
+    },
+    {
+      "id": "fr:ces-ses",
+      "language": "fr",
+      "words": [
+        "ces",
+        "ses"
+      ],
+      "meanings": [
+        "bu, şu çoğullar (işaret sıfatı)",
+        "kendi, onun çoğul nesneleri (iyelik sıfatı)"
+      ],
+      "distinction": "Ces işaret sıfatıdır ve gösterilen çoğul nesneler içindir (ces maisons-là: bu evler); ses ise üçüncü tekil şahsın sahip olduğu çoğul nesnelerdir (ses affaires: onun eşyaları).",
+      "example": [
+        "Regarde ces jolies fleurs.",
+        "Pierre a perdu ses lunettes."
+      ],
+      "drills": [
+        {
+          "text": "Regarde ___ oiseaux migrateurs qui volent vers le sud.",
+          "right": "ces",
+          "wrong": "ses",
+          "tr": "Güneye doğru uçan şu göçmen kuşlara bak."
+        },
+        {
+          "text": "Antoine a oublié ___ papiers importants sur le bureau.",
+          "right": "ses",
+          "wrong": "ces",
+          "tr": "Antoine önemli evraklarını masanın üzerinde unuttu."
+        },
+        {
+          "text": "___ derniers jours ont été particulièrement fatigants pour l'équipe.",
+          "right": "Ces",
+          "wrong": "Ses",
+          "tr": "Şu son günler ekip için özellikle yorucu geçti."
+        },
+        {
+          "text": "Elle passe presque tous ses week-ends avec ___ cousins.",
+          "right": "ses",
+          "wrong": "ces",
+          "tr": "Hemen hemen bütün hafta sonlarını kuzenleriyle geçirir."
+        },
+        {
+          "text": "Que penses-tu de ___ propositions présentées par le maire ?",
+          "right": "ces",
+          "wrong": "ses",
+          "tr": "Belediye başkanı tarafından sunulan bu teklifler hakkında ne düşünüyorsun?"
+        }
+      ]
+    },
+    {
+      "id": "fr:peux-peut-peu",
+      "language": "fr",
+      "words": [
+        "peut",
+        "peu"
+      ],
+      "meanings": [
+        "-ebilir (pouvoir fiili)",
+        "az, azıcık (miktar zarfı)"
+      ],
+      "distinction": "Peux veya peut pouvoir fiilinin çekimidir (il peut venir: gelebilir); peu ise az miktarı belirten zarftır (un peu de sucre: biraz şeker, très peu: çok az).",
+      "example": [
+        "Il peut arriver à tout moment.",
+        "Il y a un peu de sel sur la table."
+      ],
+      "drills": [
+        {
+          "text": "On ___ entrer dans la salle de spectacle maintenant.",
+          "right": "peut",
+          "wrong": "peu",
+          "tr": "Şimdi gösteri salonuna girebiliriz."
+        },
+        {
+          "text": "Ajoutez seulement un ___ de vinaigre dans la salade.",
+          "right": "peu",
+          "wrong": "peut",
+          "tr": "Salataya yalnızca birazcık (az) sirke ekleyin."
+        },
+        {
+          "text": "Personne ne ___ prédire l'avenir avec certitude.",
+          "right": "peut",
+          "wrong": "peu",
+          "tr": "Hiç kimse geleceği kesinlikle tahmin edemez."
+        },
+        {
+          "text": "Il ne reste que très ___ de temps avant le départ.",
+          "right": "peu",
+          "wrong": "peut",
+          "tr": "Kalkıştan önce geriye yalnızca çok az bir vakit kaldı."
+        },
+        {
+          "text": "Chacun ___ participer à cette action citoyenne.",
+          "right": "peut",
+          "wrong": "peu",
+          "tr": "Herkes bu yurttaşlık hareketine katılabilir."
+        }
+      ]
+    },
+    {
+      "id": "fr:cote-cote-accent",
+      "language": "fr",
+      "words": [
+        "côté",
+        "côte"
+      ],
+      "meanings": [
+        "yan, taraf, kenar (şapkalı ô ve é)",
+        "kıyı, sahil / kaburga (yalnızca ô)"
+      ],
+      "distinction": "Côté (ô ve é ile) yön, yan veya taraf demektir (à côté de: yanında); côte (yalnızca ô ile) ise deniz kıyısı, sahil veya vücuttaki kaburgadır (la côte bretonne, une côte cassée).",
+      "example": [
+        "Viens t'asseoir à mon côté.",
+        "Nous aimons marcher le long de la côte."
+      ],
+      "drills": [
+        {
+          "text": "Viens t'asseoir à ___ de moi sur ce banc.",
+          "right": "côté",
+          "wrong": "côte",
+          "tr": "Gel bu bankta benim yanıma otur."
+        },
+        {
+          "text": "La Bretagne possède une magnifique ___ rocheuse et sauvage.",
+          "right": "côte",
+          "wrong": "côté",
+          "tr": "Bretonya muhteşem, kayalık ve vahşi bir kıyı şeridine sahiptir."
+        },
+        {
+          "text": "De quel ___ de la route se situe la mairie ?",
+          "right": "côté",
+          "wrong": "côte",
+          "tr": "Belediye binası yolun hangi tarafında bulunuyor?"
+        },
+        {
+          "text": "Le cycliste a ressenti une douleur aiguë à la ___ après la chute.",
+          "right": "côte",
+          "wrong": "côté",
+          "tr": "Bisikletçi düşüşün ardından kaburgasında keskin bir acı hissetti."
+        },
+        {
+          "text": "Il a toujours été d'un naturel optimiste, voyant le bon ___ des choses.",
+          "right": "côté",
+          "wrong": "côte",
+          "tr": "Her şeyin iyi yanını görerek daima iyimser bir mizaçta oldu."
+        }
+      ]
+    }
+  ]
+}
