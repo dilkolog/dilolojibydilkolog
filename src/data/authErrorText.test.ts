@@ -10,6 +10,9 @@ describe('authErrorText', () => {
   it('keeps the known answers', () => {
     expect(authErrorText('Invalid login credentials', true)).toBe('E-posta ya da şifre yanlış.')
   })
+  it('explains that another spelling of the address already has an account', () => {
+    expect(authErrorText('alias_email: Bu adresin başka bir yazılışıyla zaten bir hesap var.', true)).toContain('başka bir yazılışıyla')
+  })
   it('turns an unknown technical message into a plain one, or leaves it when asked to', () => {
     expect(authErrorText('Database error querying schema', true)).toContain('Bir sorun oldu')
     expect(authErrorText('Database error querying schema')).toBe('Database error querying schema')

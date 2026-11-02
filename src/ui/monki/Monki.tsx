@@ -260,6 +260,18 @@ export default function Monki({
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [text, setText] = useState('')
   const [busy, setBusy] = useState(false)
+  // The row of chat kinds scrolls sideways: a soft edge says there is more to the right.
+  const modesRef = useRef<HTMLDivElement>(null)
+  const [modesMore, setModesMore] = useState(false)
+  const checkModes = useCallback(() => {
+    const el = modesRef.current
+    setModesMore(!!el && el.scrollWidth - el.clientWidth - el.scrollLeft > 4)
+  }, [])
+  useEffect(() => {
+    checkModes()
+    window.addEventListener('resize', checkModes)
+    return () => window.removeEventListener('resize', checkModes)
+  }, [open, checkModes])
   const [error, setError] = useState('')
   const [mode, setMode] = useState<MonkiMode>('chat')
   const [scenario, setScenario] = useState('')
@@ -615,7 +627,7 @@ export default function Monki({
                   </div>
                 </section>
               )}
-              <div className="monki-modes" role="group" aria-label="Sohbet türü">
+              <div className={modesMore ? 'monki-modes monki-modes-more' : 'monki-modes'} role="group" aria-label="Sohbet türü" ref={modesRef} onScroll={checkModes}>
                 {MODES.filter((m) => m.id !== 'pron' || pronWords.length > 0).map((m) => (
                   <button key={m.id} type="button" className="chip chip-sm" aria-pressed={mode === m.id} title={m.hint} onClick={() => pickMode(m.id)}>
                     {m.label}
@@ -702,7 +714,7 @@ export default function Monki({
                 </div>
               ) : (
                 <div className={msgs.length === 0 || (mode === 'roleplay' && !scenario) ? 'monki-chips monki-chips-start' : 'monki-chips'}>
-                  {(msgs.length === 0 || (mode === 'roleplay' && !scenario) ? STARTERS(mode, !!weakWords?.length, !!mistakes?.length, seed) : suggestions).map((s) => (
+                  {(msgs.length === 0 || (mode === 'roleplay' && !scenario) ? STARTERS(mode, !!weakWords?.length, !!mistakes?.length, seed) : suggestions.slice(0, 2)).map((s) => (
                     <button key={s} type="button" className="chip" disabled={busy} onClick={() => (msgs.length === 0 || (mode === 'roleplay' && !scenario) ? startWith(s) : void send(s))}>
                       {s}
                     </button>

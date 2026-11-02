@@ -14,6 +14,7 @@ import * as log from '../api/log.js'
 import * as news from '../api/news.js'
 import * as push from '../api/push.js'
 import * as share from '../api/share.js'
+import * as speech from '../api/speech.js'
 import * as sync from '../api/sync.js'
 import * as translate from '../api/translate.js'
 import * as youtube from '../api/youtube.js'
@@ -49,7 +50,7 @@ function hardened(res: Response, bodyless: boolean): Response {
   return new Response(bodyless ? null : res.body, { status: res.status, statusText: res.statusText, headers })
 }
 
-const ROUTES: Record<string, Module> = { access, admin, ai, clips, 'cron-reminder': cron, listen, log, news, push, share, sync, translate, youtube }
+const ROUTES: Record<string, Module> = { access, admin, ai, clips, 'cron-reminder': cron, listen, log, news, push, share, speech, sync, translate, youtube }
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {

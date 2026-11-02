@@ -118,6 +118,8 @@ Site sahibinin yapacakları (Play, şikâyetlere zamanında bakılmasını bekle
    Yapay zekâ özellikleri (onaylı hesaplar) kullanıldığında yazılan metin ve fotoğraftan kelime için seçilen
    fotoğraf, sitenin sunucusu üzerinden Anthropic'e (hizmet sağlayıcı) gider ve saklanmaz; formda "Kullanıcının
    oluşturduğu içerik" satırının amacına "Uygulama işlevi" yeter, ayrıca bir veri türü eklemek gerekmez.
+   Aynı şey telaffuz puanı (kısa ses kaydı → Microsoft Azure Speech) ve doğal ses (söylenecek metin → Google
+   Cloud Text-to-Speech) için de geçerli: istekler sitenin sunucusu üzerinden gider, saklanmaz.
 6. Testte bakılacaklar: Google ve e-postayla giriş, eşitleme, bildirim izni ve hatırlatmalar, mikrofon
    (gölgeleme, sesli cevap), sesli okuma, çevrimdışı açılış, geri tuşu, Paylaş → Diloloji,
    **üstte adres çubuğu görünmemeli** (görünüyorsa 4. adım).

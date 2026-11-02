@@ -2254,6 +2254,7 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .monki-modes { display: flex; gap: 0.375rem; padding: 0.5rem 0.875rem 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
 .monki-modes::-webkit-scrollbar, .monki-chips::-webkit-scrollbar { display: none; }
 .monki-modes .chip { flex: none; }
+.monki-modes-more { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 1.75rem), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 1.75rem), transparent); }
 /* Words mode: the words to use, ticked off as the learner uses them. */
 .monki-targets { display: flex; gap: 0.375rem; padding: 0.5rem 0.875rem 0; flex-wrap: wrap; }
 .monki-target { cursor: default; font-family: var(--serif); }
@@ -2270,9 +2271,10 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .monki-typing span:nth-child(2) { animation-delay: 0.15s; }
 .monki-typing span:nth-child(3) { animation-delay: 0.3s; }
 .monki-error { color: var(--bad-text); }
-.monki-chips { display: flex; flex-wrap: nowrap; gap: 0.375rem; padding: 0 0.875rem 0.5rem; overflow-x: auto; scrollbar-width: none; }
-.monki-chips .chip { flex: none; white-space: nowrap; }
+.monki-chips { display: flex; flex-wrap: nowrap; gap: 0.375rem; padding: 0 0.875rem 0.5rem; overflow: hidden; }
+.monki-chips .chip { flex: 0 1 auto; min-width: 0; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .monki-chips-start { flex-wrap: wrap; overflow: visible; }
+.monki-chips-start .chip { flex: none; max-width: none; white-space: normal; overflow: visible; text-overflow: clip; }
 .monki-chips:empty { display: none; }
 .monki-chips .chip { font-size: var(--t-sm); padding: 0.25rem 0.75rem; text-align: left; }
 /* Role-play: the six scenes as picture cards, three to a row, kept short enough to leave the input in view. */
