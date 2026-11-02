@@ -677,7 +677,7 @@ test('bulk import: the words go to a new list named in the form', async ({ page 
   expect(placed).toEqual({ names: ['Ev eşyaları'], inList: 2 })
 })
 
-test('the YZ screens wait for the owner\'s approval: a visitor is told why, an approved account gets the key form', async ({ page }) => {
+test('the YZ screens wait for the owner\'s approval: a visitor is told why, an approved account gets AI turned on with its level and no key form', async ({ page }) => {
   test.setTimeout(60_000)
   await page.route((u) => u.pathname === '/api/access', (r) => r.fulfill({ json: { enabled: true } }))
   await startWithSamples(page)
@@ -685,10 +685,14 @@ test('the YZ screens wait for the owner\'s approval: a visitor is told why, an a
   await page.locator('.settings-menu-item', { hasText: 'Araçlar' }).click()
   const card = page.locator('section', { has: page.getByRole('heading', { name: 'YZ yardımcısı' }) })
   await expect(card).toContainText('onayladığı hesaplara açık')
+  await expect(card.locator('.pill', { hasText: 'Açık' })).toHaveCount(0)
   await expect(card.getByLabel('Anthropic API anahtarı')).toHaveCount(0)
-  // Approved (as the app keeps it once the server says so): the key form is there.
+  // Approved: AI turns on automatically through the site's proxy, showing the account's AI level with no key input.
   await approveAccount(page)
-  await expect(card.getByLabel('Anthropic API anahtarı')).toBeVisible()
+  await expect(card.locator('.pill', { hasText: 'Açık' })).toBeVisible()
+  await expect(card).toContainText('Hesabınla birlikte hazır, anahtar girmen gerekmez.')
+  await expect(card).toContainText('Düzeyin: Tam.')
+  await expect(card.getByLabel('Anthropic API anahtarı')).toHaveCount(0)
   await expect(card).not.toContainText('onayladığı hesaplara açık')
 })
 
