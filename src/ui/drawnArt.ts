@@ -191,8 +191,11 @@ import langMonkiEn from '../assets/art/lang-monki-en.webp'
 import langMonkiFr from '../assets/art/lang-monki-fr.webp'
 import langMonkiEs from '../assets/art/lang-monki-es.webp'
 import cefrMonkiA1 from '../assets/art/cefr-monki-a1.webp'
+import cefrMonkiA2 from '../assets/art/cefr-monki-a2.webp'
 import cefrMonkiB1 from '../assets/art/cefr-monki-b1.webp'
+import cefrMonkiB2 from '../assets/art/cefr-monki-b2.webp'
 import cefrMonkiC1 from '../assets/art/cefr-monki-c1.webp'
+import cefrMonkiC2 from '../assets/art/cefr-monki-c2.webp'
 import skyDawn from '../assets/art/sky-dawn.webp'
 import skyNoon from '../assets/art/sky-noon.webp'
 import skyDusk from '../assets/art/sky-dusk.webp'
@@ -316,11 +319,11 @@ export const LANG_MONKI: Record<TargetLanguage, string> = { en: langMonkiEn, fr:
 /** Milestone mascot art for CEFR target levels (A1 Sprout, B1 Speaker, C1 Sage). */
 export const CEFR_MONKI: Record<string, string> = {
   A1: cefrMonkiA1,
-  A2: cefrMonkiA1,
+  A2: cefrMonkiA2,
   B1: cefrMonkiB1,
-  B2: cefrMonkiB1,
+  B2: cefrMonkiB2,
   C1: cefrMonkiC1,
-  C2: cefrMonkiC1,
+  C2: cefrMonkiC2,
 }
 
 /** The scene of each speaking mission (Yaz & konuş), by mission id; the doctor and the interview share Monki's role-play scenes. */
