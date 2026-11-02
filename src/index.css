@@ -6238,3 +6238,10 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
   .words-page .words-bar > .word-select-toggle.btn-quiet { display: none; }
   .words-page .words-bar > .word-select-toggle:not(.btn-quiet) { display: inline-flex; }
 }
+
+/* The head of the account menu: who is signed in (name above, state below, never on one line) and a small picture at the end. */
+.account-menu-head { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; }
+.account-menu-who { display: flex; flex-direction: column; flex: 1; min-width: 0; gap: 0.125rem; }
+.account-menu-who strong { font-size: var(--t-sm); line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.account-menu-who span { font-size: var(--t-xs); color: var(--ink-soft); }
+.account-menu-art { flex: none; height: 1.5rem; width: auto; }

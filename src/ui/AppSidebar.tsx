@@ -202,13 +202,13 @@ export function TabBar({ navBadge, badgeLabel, current, goPlace }: NavProps) {
 function AccountMenuItems({ close, go, hasAccount, profile }: { close: () => void; go: (s: Screen) => () => void; hasAccount: boolean; profile?: Settings['profile'] }) {
   return (
     <>
-      <div className="account-menu-head row gap-2 align-center" style={{ padding: '0.5rem 0.75rem' }}>
+      <div className="account-menu-head">
         <Avatar profile={profile ?? { name: 'Profil', emoji: '🙂', color: '#6366f1', motto: '' }} size={34} />
-        <div className="stack gap-0 grow" style={{ minWidth: 0 }}>
-          <strong className="ellipsis" style={{ fontSize: 'var(--t-sm)', lineHeight: 1.2 }}>{profile?.name || 'Profilin'}</strong>
-          <span className="small muted" style={{ fontSize: 'var(--t-xs)' }}>{hasAccount ? 'Hesap bağlı' : 'Bu cihazda kayıtlı'}</span>
+        <div className="account-menu-who">
+          <strong>{profile?.name || 'Profilin'}</strong>
+          <span>{hasAccount ? 'Hesap bağlı' : 'Bu cihazda kayıtlı'}</span>
         </div>
-        <img className="account-art" src={hasAccount ? ACCOUNT_ART.approved : ACCOUNT_ART.out} alt="" height={28} draggable={false} />
+        <img className="account-art account-menu-art" src={hasAccount ? ACCOUNT_ART.approved : ACCOUNT_ART.out} alt="" draggable={false} />
       </div>
       <div className="menu-sep" role="separator" />
       <MenuItem
