@@ -9,6 +9,7 @@ import { Turnstile } from './Turnstile'
 import { ChevronLeftIcon, LockIcon } from './icons'
 import { PasswordInput } from './PasswordInput'
 import { cleanHandle, HANDLE_RULE } from '../data/friends'
+import { PASSWORD_HINT, passwordProblem } from '../data/passwordRule'
 import { setPendingHandle } from './pendingHandle'
 import { completeSignIn, vaultErrorText, type SignInOutcome } from './signInFlow'
 import { showToast } from './toastFeed'
@@ -147,7 +148,11 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
         setSentWhat('Şifre yenileme bağlantısını gönderdik. E-postandaki bağlantıya dokun, yeni şifreni yaz.')
         return setStep('sent')
       }
-      if (password.length < 8) throw new Error('Şifre en az 8 karakter olmalı.')
+      // Signing in keeps the plain length check (an older, simpler password must still work); a new one follows the full rule.
+      if (step === 'create') {
+        const weak = passwordProblem(password)
+        if (weak) throw new Error(weak)
+      } else if (password.length < 8) throw new Error('Şifre en az 8 karakter olmalı.')
       if (step === 'create') {
         if (password !== repeat) throw new Error('Şifreler aynı değil.')
         const name = cleanHandle(username)
@@ -237,7 +242,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
               <label className="field">
                 <span className="field-label">Şifre</span>
                 <PasswordInput value={password} onChange={setPassword} autoComplete={step === 'create' ? 'new-password' : 'current-password'} shown={showPassword} onShownChange={setShowPassword} />
-                {step === 'create' && <span className="help">En az 8 karakter</span>}
+                {step === 'create' && <span className="help">{PASSWORD_HINT}</span>}
               </label>
             )}
             {step === 'create' && (
@@ -361,7 +366,8 @@ function Recovery({ onSaved }: { onSaved: () => void }) {
       onSubmit={(e) => {
         e.preventDefault()
         setError('')
-        if (password.length < 8) return setError('Şifre en az 8 karakter olmalı.')
+        const weak = passwordProblem(password)
+        if (weak) return setError(weak)
         if (password !== repeat) return setError('Şifreler aynı değil.')
         setBusy(true)
         setNewPassword(password)
@@ -376,6 +382,7 @@ function Recovery({ onSaved }: { onSaved: () => void }) {
       <label className="field">
         <span className="field-label">Yeni şifre</span>
         <PasswordInput value={password} onChange={setPassword} autoComplete="new-password" autoFocus shown={shown} onShownChange={setShown} />
+        <span className="help">{PASSWORD_HINT}</span>
       </label>
       <label className="field">
         <span className="field-label">Yeni şifre (tekrar)</span>
