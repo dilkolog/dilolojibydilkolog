@@ -1,0 +1,202 @@
+[
+  {
+    "id": "ne_zaman_musait",
+    "group": "sohbet",
+    "tr": "Ne zaman müsaitsin?",
+    "fr": "Quand es-tu disponible ?",
+    "es": "¿Cuándo estás disponible?",
+    "en": "When are you available?"
+  },
+  {
+    "id": "hemen_donerim",
+    "group": "günlük",
+    "tr": "Hemen dönerim",
+    "fr": "Je reviens tout de suite",
+    "es": "Vuelvo enseguida",
+    "en": "I will be right back"
+  },
+  {
+    "id": "nasil_gidiyor",
+    "group": "sohbet",
+    "tr": "Her şey nasıl gidiyor?",
+    "fr": "Comment se passe tout ?",
+    "es": "¿Cómo va todo?",
+    "en": "How is everything going?"
+  },
+  {
+    "id": "emin_degilim_su_an",
+    "group": "görüş",
+    "tr": "Şu an pek emin olamadım",
+    "fr": "Je doute un peu pour l'instant",
+    "es": "Tengo dudas en este momento",
+    "en": "I have some doubts right now"
+  },
+  {
+    "id": "daha_sonra_ara",
+    "group": "telefon",
+    "tr": "Beni daha sonra arayabilir misin?",
+    "fr": "Peux-tu me rappeler plus tard ?",
+    "es": "¿Puedes llamarme más tarde?",
+    "en": "Can you call me later?"
+  },
+  {
+    "id": "yardim_lazim_mi",
+    "group": "sosyal",
+    "tr": "Bir şeye ihtiyacın var mı?",
+    "fr": "As-tu besoin de quelque chose ?",
+    "es": "¿Necesitas alguna cosa?",
+    "en": "Do you need anything?"
+  },
+  {
+    "id": "sabirsizlaniyorum",
+    "group": "duygu",
+    "tr": "Dört gözle bekliyorum",
+    "fr": "J'ai hâte d'y être",
+    "es": "Tengo muchas ganas",
+    "en": "I am looking forward"
+  },
+  {
+    "id": "anlasildi",
+    "group": "günlük",
+    "tr": "Şimdi net anladım",
+    "fr": "Maintenant j'ai bien compris",
+    "es": "Ahora lo entiendo claramente",
+    "en": "Now I understand clearly"
+  },
+  {
+    "id": "vakit_kaybetmeyelim",
+    "group": "iş/ofis",
+    "tr": "Zaman kaybetmeyelim",
+    "fr": "Ne perdons pas de temps",
+    "es": "No perdamos tiempo",
+    "en": "Let us not waste time"
+  },
+  {
+    "id": "kesinlikle_oyle",
+    "group": "görüş",
+    "tr": "Kesinlikle öyle düşünüyorum",
+    "fr": "C'est exactement ce que je pense",
+    "es": "Pienso exactamente lo mismo",
+    "en": "I think exactly the same"
+  },
+  {
+    "id": "odeme_nasil",
+    "group": "alışveriş",
+    "tr": "Nakit mi kart mı?",
+    "fr": "En espèces ou par carte ?",
+    "es": "¿En efectivo o con tarjeta?",
+    "en": "In cash or by card?"
+  },
+  {
+    "id": "bir_dakika_lutfen",
+    "group": "günlük",
+    "tr": "Sadece bir saniye lütfen",
+    "fr": "Juste une seconde s'il vous plaît",
+    "es": "Solo un segundo por favor",
+    "en": "Just a second please"
+  },
+  {
+    "id": "ne_tavsiye_edersiniz",
+    "group": "restoran",
+    "tr": "Bugün ne tavsiye edersiniz?",
+    "fr": "Que conseillez-vous aujourd'hui ?",
+    "es": "¿Qué recomienda para hoy?",
+    "en": "What do you recommend today?"
+  },
+  {
+    "id": "hesabi_alabilir_miyiz",
+    "group": "restoran",
+    "tr": "Hesabı rica edebilir miyiz?",
+    "fr": "L'addition s'il vous plaît",
+    "es": "¿Nos trae la cuenta por favor?",
+    "en": "Can we have the bill please?"
+  },
+  {
+    "id": "farkinda_degildim",
+    "group": "duygu",
+    "tr": "Durumun farkında değildim",
+    "fr": "Je n'étais pas au courant",
+    "es": "No estaba al tanto",
+    "en": "I was not aware"
+  },
+  {
+    "id": "nerede_bulusuyoruz",
+    "group": "plan",
+    "tr": "Saat kaçta nerede buluşuyoruz?",
+    "fr": "Où et à quelle heure nous voyons-nous ?",
+    "es": "¿Dónde y a qué hora quedamos?",
+    "en": "Where and what time do we meet?"
+  },
+  {
+    "id": "sarjim_bitiyor",
+    "group": "telefon",
+    "tr": "Telefonumun şarjı bitiyor",
+    "fr": "Ma batterie est presque vide",
+    "es": "Mi batería se está agotando",
+    "en": "My battery is running low"
+  },
+  {
+    "id": "keyfini_cikar",
+    "group": "sosyal",
+    "tr": "Günün tadını çıkar",
+    "fr": "Profite bien de ta journée",
+    "es": "Disfruta mucho de tu día",
+    "en": "Enjoy your day to the fullest"
+  },
+  {
+    "id": "harika_bir_fikir",
+    "group": "tepki",
+    "tr": "Bu kulağa harika geliyor",
+    "fr": "Cela semble tout à fait formidable",
+    "es": "Eso suena realmente estupendo",
+    "en": "That sounds truly wonderful"
+  },
+  {
+    "id": "bunu_dusunmem_lazim",
+    "group": "görüş",
+    "tr": "Bunu biraz düşünmem gerek",
+    "fr": "Je dois y réfléchir un peu",
+    "es": "Tengo que pensarlo un poco",
+    "en": "I need to think about it"
+  },
+  {
+    "id": "geciktim_ozur",
+    "group": "sosyal",
+    "tr": "Geciktiğim için çok özür dilerim",
+    "fr": "Désolé pour ce léger retard",
+    "es": "Disculpa por llegar tarde",
+    "en": "Sorry for being late today"
+  },
+  {
+    "id": "hic_sorun_degil_rica",
+    "group": "tepki",
+    "tr": "Rica ederim, hiç önemli değil",
+    "fr": "De rien, ce n'est vraiment rien",
+    "es": "De nada, de verdad no importa",
+    "en": "You are welcome, no trouble"
+  },
+  {
+    "id": "cok_yorgunum",
+    "group": "duygu",
+    "tr": "Bugün çok yorgun hissediyorum",
+    "fr": "Je me sens très fatigué aujourd'hui",
+    "es": "Hoy me siento muy agotado",
+    "en": "I feel very tired today"
+  },
+  {
+    "id": "haberlesiriz",
+    "group": "sohbet",
+    "tr": "En kısa zamanda haberleşiriz",
+    "fr": "On se donne des nouvelles bientôt",
+    "es": "Hablamos muy pronto",
+    "en": "We will talk very soon"
+  },
+  {
+    "id": "iyi_yolculuklar_dilerim",
+    "group": "seyahat",
+    "tr": "Sana çok iyi yolculuklar",
+    "fr": "Passe un très bon voyage",
+    "es": "Que tengas un viaje excelente",
+    "en": "Have a really wonderful trip"
+  }
+]

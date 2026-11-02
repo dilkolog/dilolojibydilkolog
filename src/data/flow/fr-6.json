@@ -1,0 +1,197 @@
+[
+  {
+    "id": "fr-ia-travail",
+    "language": "fr",
+    "text": "L'intelligence artificielle a bouleversé l'organisation du travail quotidien. {1}, elle automatise des tâches répétitives et libère un temps précieux. Se reposer entièrement sur des algorithmes, {2}, risque d'émousser l'esprit critique des équipes. {3}, une formation continue demeure indispensable pour préserver notre autonomie.",
+    "tr": "Yapay zekâ günlük çalışma düzenini altüst etti. Dahası, tekrarlayan görevleri otomatikleştirir ve değerli bir zaman kazandırır. Ancak tamamen algoritmalara dayanmak ekiplerin eleştirel düşünme yetisini köreltme riski taşır. Sonuç olarak, özerkliğimizi korumak için sürekli bir eğitim vazgeçilmez olmaya devam etmektedir.",
+    "gaps": [
+      {
+        "answer": "En outre",
+        "options": [
+          "En outre",
+          "Cependant",
+          "Puisque"
+        ],
+        "kind": "Ek bilgi",
+        "why": "Yapay zekânın olumlu verimlilik etkisine ekleme yapıyor: “dahası, ayrıca”."
+      },
+      {
+        "answer": "néanmoins",
+        "options": [
+          "néanmoins",
+          "par conséquent",
+          "parce que"
+        ],
+        "kind": "Zıtlık",
+        "why": "Otomasyonun ardından eleştirel düşünme riskini gösteriyor: “yine de”."
+      },
+      {
+        "answer": "Par conséquent",
+        "options": [
+          "Par conséquent",
+          "Au lieu de",
+          "À moins que"
+        ],
+        "kind": "Sonuç",
+        "why": "İki durumu toparlayıp sonuca bağlıyor: “bu nedenle, sonuç olarak”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-potagers-urbains",
+    "language": "fr",
+    "text": "Les potagers partagés se multiplient sur les toits des grandes métropoles. {1}, ils participent au rafraîchissement des immeubles lors des vagues de chaleur estivales. {2} leur entretien exige un arrosage régulier et un réel investissement, leurs bienfaits écologiques dépassent largement les contraintes. Les municipalités ont {3} choisi d'accorder des aides financières aux copropriétés.",
+    "tr": "Büyük metropollerin çatılarında ortak bostanlar hızla çoğalıyor. Üstelik yaz sıcak hava dalgalarında binaların serinlemesine katkıda bulunuyorlar. Bakımları düzenli sulama ve gerçek bir yatırım gerektirse de ekolojik faydaları zorlukların çok ötesindedir. Belediyeler bu nedenle apartman yönetimlerine mali yardım sağlama yoluna gitmiştir.",
+    "gaps": [
+      {
+        "answer": "De surcroît",
+        "options": [
+          "De surcroît",
+          "Au contraire",
+          "Étant donné que"
+        ],
+        "kind": "Ek bilgi",
+        "why": "Taze sebze üretimine binaları serinletme etkisini ekliyor: “üstelik”."
+      },
+      {
+        "answer": "Bien que",
+        "options": [
+          "Bien que",
+          "Puisque",
+          "Pourvu que"
+        ],
+        "kind": "Taviz",
+        "why": "Düzenli sulama ve bakım zahmetine rağmen faydalarını anlatıyor: “-e rağmen”."
+      },
+      {
+        "answer": "dès lors",
+        "options": [
+          "dès lors",
+          "autrement",
+          "pendant ce temps"
+        ],
+        "kind": "Sonuç",
+        "why": "Faydalar üzerine belediyelerin destek kararını bağlıyor: “bu nedenle, dolayısıyla”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-energie-renouvelable",
+    "language": "fr",
+    "text": "Le déploiement des énergies renouvelables s'accélère partout en Europe. {1}, le rendement des éoliennes modernes dépasse toutes les estimations passées. {2} l'intermittence inévitable du vent et du soleil, les nouveaux parcs de batteries stabilisent les réseaux électriques. {3}, les émissions de carbone liées à la production d'électricité reculent chaque année.",
+    "tr": "Yenilenebilir enerjilerin yaygınlaşması Avrupa'nın her yerinde hızlanıyor. Zaten modern rüzgâr türbinlerinin verimliliği geçmişteki tüm tahminleri aşıyor. Rüzgâr ve güneşin kaçınılmaz kesintilerine rağmen yeni batarya parkları elektrik şebekelerini dengeliyor. Böylece elektrik üretimine bağlı karbon emisyonları her yıl geriliyor.",
+    "gaps": [
+      {
+        "answer": "D'ailleurs",
+        "options": [
+          "D'ailleurs",
+          "Toutefois",
+          "En dépit de"
+        ],
+        "kind": "Ek bilgi",
+        "why": "Güneş enerjisinin yanında rüzgâr türbinlerinin devasa gücünü ekliyor: “zaten, nitekim”."
+      },
+      {
+        "answer": "Malgré",
+        "options": [
+          "Malgré",
+          "À cause de",
+          "Au lieu de"
+        ],
+        "kind": "Taviz/Zıtlık",
+        "why": "Havadaki dalgalanmalara karşın şebeke dengesini anlatıyor: “-e rağmen”."
+      },
+      {
+        "answer": "Ainsi",
+        "options": [
+          "Ainsi",
+          "En revanche",
+          "Au cas où"
+        ],
+        "kind": "Sonuç",
+        "why": "Yatırımların doğal neticesini bildiriyor: “böylece”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-nomades-digitaux",
+    "language": "fr",
+    "text": "{1}, exercer son métier à distance depuis l'étranger permet de s'imprégner de cultures variées. Gérer les contraintes administratives et les visas de séjour, {2}, peut rapidement virer au casse-tête juridique. {3}, l'attrait pour ce mode de vie nomade ne cesse de séduire de jeunes actifs.",
+    "tr": "Bir yandan, mesleğini yurt dışından uzaktan icra etmek çeşitli kültürleri derinden tanımayı sağlar. İdari kısıtlamaları ve oturum vizelerini yönetmek ise diğer yandan hızla hukuki bir baş ağrısına dönüşebilir. Yine de bu göçebe yaşam tarzına duyulan ilgi genç çalışanları cezbetmeye devam ediyor.",
+    "gaps": [
+      {
+        "answer": "D'un côté",
+        "options": [
+          "D'un côté",
+          "Par exemple",
+          "En résumé"
+        ],
+        "kind": "Karşılaştırma",
+        "why": "İki yönlü tablonun ilk kanadını açıyor: “bir yandan”."
+      },
+      {
+        "answer": "d'un autre côté",
+        "options": [
+          "d'un autre côté",
+          "c'est-à-dire",
+          "dès que"
+        ],
+        "kind": "Karşıtlık",
+        "why": "Karşıt zorlukları (vergi ve vize formaliteleri) tanıtıyor: “diğer yandan”."
+      },
+      {
+        "answer": "Pourtant",
+        "options": [
+          "Pourtant",
+          "Puisque",
+          "À condition que"
+        ],
+        "kind": "Taviz/Zıtlık",
+        "why": "Bütün bürokratik engellere karşın ilginin sürdüğünü belirtiyor: “yine de”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-microplastiques",
+    "language": "fr",
+    "text": "La pollution par les microplastiques touche désormais chaque recoin des océans. {1}, le frottement des tissus synthétiques libère des millions de microfibres à chaque lavage. {2} les citoyens évitent de plus en plus les sacs à usage unique, les emballages superflus continuent d'envahir les rayons. {3}, des normes internationales contraignantes doivent être adoptées sans attendre.",
+    "tr": "Mikroplastik kirliliği artık okyanusların her köşesine ulaşıyor. İlk olarak, sentetik kumaşların sürtünmesi her yıkamada milyonlarca mikro lif salıyor. Yurttaşlar tek kullanımlık poşetlerden giderek daha fazla kaçınsa da gereksiz ambalajlar rafları istila etmeyi sürdürüyor. Bu nedenle bağlayıcı uluslararası normlar gecikmeksizin kabul edilmelidir.",
+    "gaps": [
+      {
+        "answer": "Tout d'abord",
+        "options": [
+          "Tout d'abord",
+          "Plus tard",
+          "Au contraire"
+        ],
+        "kind": "Sıralama",
+        "why": "Sorunun birincil kaynağını belirtiyor: “her şeyden önce, ilk olarak”."
+      },
+      {
+        "answer": "Quoique",
+        "options": [
+          "Quoique",
+          "Puisque",
+          "Afin que"
+        ],
+        "kind": "Taviz",
+        "why": "Bireysel çabalara karşın ambalaj fazlalığını anlatıyor: “-se de”."
+      },
+      {
+        "answer": "C'est pourquoi",
+        "options": [
+          "C'est pourquoi",
+          "À moins que",
+          "Tandis que"
+        ],
+        "kind": "Sonuç",
+        "why": "Küresel yasakların aciliyetini bağlıyor: “bu nedenle”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  }
+]

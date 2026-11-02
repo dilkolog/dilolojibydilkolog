@@ -1,0 +1,197 @@
+[
+  {
+    "id": "es-ia-trabajo",
+    "language": "es",
+    "text": "La inteligencia artificial ha revolucionado la gestión del trabajo cotidiano. {1}, automatiza tareas mecánicas y permite ahorrar tiempo valioso. Confiar ciegamente en estos algoritmos, {2}, puede perjudicar el pensamiento crítico de los profesionales. {3}, la formación continua sigue siendo imprescindible para aprovechar su potencial.",
+    "tr": "Yapay zekâ günlük çalışma yönetiminde devrim yarattı. Ayrıca, mekanik görevleri otomatikleştirir ve değerli zamandan tasarruf sağlar. Ancak bu algoritmalara körü körüne güvenmek, uzmanların eleştirel düşünme yeteneğine zarar verebilir. Dolayısıyla, bu potansiyelden yararlanmak için sürekli eğitim vazgeçilmez olmaya devam etmektedir.",
+    "gaps": [
+      {
+        "answer": "Además",
+        "options": [
+          "Además",
+          "Sin embargo",
+          "Porque"
+        ],
+        "kind": "Ek bilgi",
+        "why": "Önceki cümlenin olumlu etkisine katkı sağlıyor: “ayrıca”."
+      },
+      {
+        "answer": "no obstante",
+        "options": [
+          "no obstante",
+          "por lo tanto",
+          "dado que"
+        ],
+        "kind": "Zıtlık",
+        "why": "Yararlardan sonra insan denetimi gerekliliğine geçiyor: “bununla birlikte”."
+      },
+      {
+        "answer": "Por consiguiente",
+        "options": [
+          "Por consiguiente",
+          "En vez de",
+          "A menos que"
+        ],
+        "kind": "Sonuç",
+        "why": "İki durumu toparlayıp sonuca bağlıyor: “dolayısıyla”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-huertos-urbanos",
+    "language": "es",
+    "text": "Los huertos comunitarios proliferan en las azoteas de las grandes urbes. {1}, contribuyen a refrescar los edificios durante las olas de calor estivales. {2} su mantenimiento exige dedicación diaria y recursos hídricos, sus beneficios ecológicos son indiscutibles. Muchos ayuntamientos han decidido {3} subvencionar estas iniciativas verdes.",
+    "tr": "Topluluk bostanları büyük şehirlerin çatılarında hızla yayılıyor. Aynı şekilde, yaz sıcak hava dalgalarında binaların serinlemesine katkıda bulunuyorlar. Bakımları günlük emek ve su kaynakları gerektirse de ekolojik faydaları tartışılmazdır. Birçok belediye bu nedenle bu yeşil girişimleri destekleme kararı aldı.",
+    "gaps": [
+      {
+        "answer": "Asimismo",
+        "options": [
+          "Asimismo",
+          "Al contrario",
+          "Ya que"
+        ],
+        "kind": "Ek bilgi",
+        "why": "Taze ürün yetiştirilmesine binaları serinletme etkisini ekliyor: “aynı şekilde”."
+      },
+      {
+        "answer": "A pesar de que",
+        "options": [
+          "A pesar de que",
+          "Puesto que",
+          "Con tal de que"
+        ],
+        "kind": "Taviz",
+        "why": "Bakımın zahmetli olmasına rağmen faydasını öne çıkarıyor: “-e rağmen”."
+      },
+      {
+        "answer": "por tanto",
+        "options": [
+          "por tanto",
+          "de otro modo",
+          "mientras tanto"
+        ],
+        "kind": "Sonuç",
+        "why": "Belediyelerin destek kararını gerekçelendiriyor: “bu nedenle”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-energia-renovable",
+    "language": "es",
+    "text": "La transición hacia las energías limpias avanza a un ritmo sin precedentes. {1}, la tecnología eólica ha alcanzado niveles de eficiencia impensables hace una década. {2} las fluctuaciones meteorológicas del viento y el sol, las nuevas baterías garantizan el suministro. {3}, la dependencia de los combustibles fósiles disminuye de manera constante.",
+    "tr": "Temiz enerjilere geçiş eşi benzeri görülmemiş bir hızla ilerliyor. Öte yandan rüzgâr teknolojisi on yıl önce düşünülemeyecek verimlilik seviyelerine ulaştı. Rüzgâr ve güneşin meteorolojik dalgalanmalarına karşın yeni bataryalar elektrik arzını güvenceye alıyor. Sonuç olarak fosil yakıtlara olan bağımlılık istikrarlı biçimde azalıyor.",
+    "gaps": [
+      {
+        "answer": "Por otra parte",
+        "options": [
+          "Por otra parte",
+          "Sin embargo",
+          "A pesar de"
+        ],
+        "kind": "Ek bilgi",
+        "why": "Güneş enerjisine rüzgâr enerjisinin büyümesini ekliyor: “öte yandan”."
+      },
+      {
+        "answer": "Pese a",
+        "options": [
+          "Pese a",
+          "A causa de",
+          "En lugar de"
+        ],
+        "kind": "Taviz/Zıtlık",
+        "why": "Hava şartlarının değişkenliğine rağmen depolama çözümünü gösteriyor: “-e karşın”."
+      },
+      {
+        "answer": "En consecuencia",
+        "options": [
+          "En consecuencia",
+          "Por el contrario",
+          "Por si acaso"
+        ],
+        "kind": "Sonuç",
+        "why": "Sonuç olarak fosil yakıt tüketiminin düştüğünü bildiriyor: “sonuç olarak”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-nomadas-digitales",
+    "language": "es",
+    "text": "{1}, trabajar a distancia desde cualquier país ofrece una libertad geográfica extraordinaria. Adaptarse a normativas fiscales complejas y gestionar visados, {2}, puede transformarse en un reto agotador. {3}, cada día más profesionales eligen este estilo de vida itinerante.",
+    "tr": "Bir yandan herhangi bir ülkeden uzaktan çalışmak olağanüstü bir coğrafi özgürlük sunar. Karmaşık vergi mevzuatlarına uyum sağlamak ve vizeleri yönetmek ise diğer yandan yorucu bir mücadeleye dönüşebilir. Yine de her geçen gün daha fazla uzman bu gezgin yaşam tarzını seçiyor.",
+    "gaps": [
+      {
+        "answer": "Por un lado",
+        "options": [
+          "Por un lado",
+          "Por ejemplo",
+          "En resumen"
+        ],
+        "kind": "Karşılaştırma",
+        "why": "İki yönlü tablonun ilk avantajını açıyor: “bir yandan”."
+      },
+      {
+        "answer": "por otro lado",
+        "options": [
+          "por otro lado",
+          "es decir",
+          "en cuanto"
+        ],
+        "kind": "Karşıtlık",
+        "why": "Avantajın karşısına idari ve yasal engelleri koyuyor: “diğer yandan”."
+      },
+      {
+        "answer": "Aun así",
+        "options": [
+          "Aun así",
+          "Ya que",
+          "Siempre que"
+        ],
+        "kind": "Taviz/Zıtlık",
+        "why": "Bütün zorluklara karşın ilginin sürdüğünü vurguluyor: “yine de”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-microplasticos",
+    "language": "es",
+    "text": "La presencia de microplásticos afecta ya a todos los ecosistemas marinos del planeta. {1}, las fibras sintéticas de la ropa se liberan en masa durante cada lavado doméstico. {2} muchos ciudadanos optan por envases reutilizables, la industria continúa abusando del plástico desechable. {3}, se requieren leyes internacionales estrictas para frenar esta degradación.",
+    "tr": "Mikroplastiklerin varlığı artık gezegenin tüm deniz ekosistemlerini etkiliyor. İlk olarak, giysilerin sentetik lifleri evdeki her yıkama sırasında topluca serbest kalıyor. Birçok yurttaş yeniden kullanılabilir ambalajları tercih etse de, sanayi tek kullanımlık plastiği aşırı tüketmeye devam ediyor. Bu nedenle bu bozulmayı durdurmak için katı uluslararası yasalar gerekmektedir.",
+    "gaps": [
+      {
+        "answer": "En primer lugar",
+        "options": [
+          "En primer lugar",
+          "Más tarde",
+          "En cambio"
+        ],
+        "kind": "Sıralama",
+        "why": "Kirliliğin başlangıç kaynağını listeliyor: “ilk olarak”."
+      },
+      {
+        "answer": "Aunque",
+        "options": [
+          "Aunque",
+          "Puesto que",
+          "Para que"
+        ],
+        "kind": "Taviz",
+        "why": "Tüketicilerin iyi niyetine rağmen ambalaj fazlalığını anlatıyor: “-se de”."
+      },
+      {
+        "answer": "Por ello",
+        "options": [
+          "Por ello",
+          "A no ser que",
+          "Mientras"
+        ],
+        "kind": "Sonuç",
+        "why": "Yasal tedbirlerin aciliyetini bağlıyor: “bu nedenle”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  }
+]

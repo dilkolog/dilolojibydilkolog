@@ -1,0 +1,197 @@
+[
+  {
+    "id": "en-ai-tools",
+    "language": "en",
+    "text": "Artificial intelligence has transformed how people organize their daily tasks. {1}, it automates repetitive chores and saves hours of work. Relying too heavily on automated suggestions, {2}, might reduce our own critical thinking skills. {3}, using these tools mindfully remains the key to real productivity.",
+    "tr": "Yapay zekâ insanların günlük işlerini düzenleme biçimini değiştirdi. Dahası, tekrarlayan angaryaları otomatikleştirir ve saatlerce zaman kazandırır. Ancak otomatik önerilere aşırı güvenmek, kendi eleştirel düşünme becerilerimizi zayıflatabilir. Sonuç olarak, bu araçları bilinçli kullanmak gerçek üretkenliğin anahtarıdır.",
+    "gaps": [
+      {
+        "answer": "Moreover",
+        "options": [
+          "Moreover",
+          "However",
+          "Because"
+        ],
+        "kind": "Ek bilgi",
+        "why": "Önceki cümlenin olumlu etkisine ekleme yapıyor: “dahası, zaman kazandırır”."
+      },
+      {
+        "answer": "however",
+        "options": [
+          "however",
+          "therefore",
+          "although"
+        ],
+        "kind": "Zıtlık",
+        "why": "Yararların ardından eleştirel düşünme riskini belirterek yön değiştiriyor: “ancak”."
+      },
+      {
+        "answer": "Consequently",
+        "options": [
+          "Consequently",
+          "Instead",
+          "Unless"
+        ],
+        "kind": "Sonuç",
+        "why": "İki durumu toparlayıp sonuca bağlıyor: “sonuç olarak denge kurulmalı”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-urban-gardens",
+    "language": "en",
+    "text": "Rooftop gardens are springing up across modern metropolitan areas. {1}, they help cool concrete buildings during scorching summer heatwaves. {2} maintaining irrigation systems demands constant care and investment, the ecological benefits far outweigh the costs. City councils are {3} offering tax incentives to encourage green roofs.",
+    "tr": "Modern metropollerde çatı bahçeleri hızla çoğalıyor. Ayrıca, bunaltıcı yaz sıcak hava dalgalarında beton binaların serin kalmasına yardımcı oluyorlar. Sulama sistemlerinin bakımını yapmak sürekli özen ve yatırım gerektirse de, ekolojik faydaları maliyetinden kat kat fazladır. Şehir meclisleri bu nedenle yeşil çatıları teşvik etmek için vergi indirimleri sunuyor.",
+    "gaps": [
+      {
+        "answer": "In addition",
+        "options": [
+          "In addition",
+          "On the contrary",
+          "Since"
+        ],
+        "kind": "Ek bilgi",
+        "why": "Binaların sıcaklığını düşürme yararına taze sebze üretimini ekliyor: “ayrıca”."
+      },
+      {
+        "answer": "Although",
+        "options": [
+          "Although",
+          "Because",
+          "Unless"
+        ],
+        "kind": "Taviz",
+        "why": "Düzenli sulama ve bakım zorluğuna rağmen faydasını anlatıyor: “-e rağmen”."
+      },
+      {
+        "answer": "therefore",
+        "options": [
+          "therefore",
+          "otherwise",
+          "meanwhile"
+        ],
+        "kind": "Sonuç",
+        "why": "Faydalar nedeniyle belediyelerin desteklemesini bağlıyor: “bu nedenle”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-renewable-energy",
+    "language": "en",
+    "text": "The transition toward renewable energy has accelerated remarkably over the past decade. {1}, wind turbines generate far more electricity today than older models ever could. {2} occasional fluctuations in sunshine and wind, modern battery storage keeps electrical grids stable. {3}, many industrial countries are steadily reducing their dependency on fossil fuels.",
+    "tr": "Yenilenebilir enerjiye geçiş son on yılda kayda değer biçimde hızlandı. Üstelik rüzgâr türbinleri bugün eski modellerin üretebildiğinden çok daha fazla elektrik üretiyor. Güneş ve rüzgârdaki dönemsel dalgalanmalara karşın, modern batarya depolama sistemleri elektrik şebekelerini dengede tutuyor. Sonuç olarak birçok sanayi ülkesi fosil yakıtlara olan bağımlılığını istikrarlı bir şekilde azaltıyor.",
+    "gaps": [
+      {
+        "answer": "Furthermore",
+        "options": [
+          "Furthermore",
+          "Nevertheless",
+          "Even if"
+        ],
+        "kind": "Ek bilgi",
+        "why": "Güneş panellerinin ucuzlamasına rüzgâr türbinlerinin verimliliğini ekliyor: “üstelik”."
+      },
+      {
+        "answer": "Despite",
+        "options": [
+          "Despite",
+          "Because of",
+          "Instead of"
+        ],
+        "kind": "Zıtlık/Taviz",
+        "why": "Hava dalgalanmalarına rağmen şebekenin dengelendiğini anlatıyor: “-e karşın”."
+      },
+      {
+        "answer": "As a result",
+        "options": [
+          "As a result",
+          "On the other hand",
+          "In case"
+        ],
+        "kind": "Sonuç",
+        "why": "Yatırımların neticesinde fosil yakıt bağımlılığının azaldığını belirtiyor: “sonuç olarak”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-digital-nomads",
+    "language": "en",
+    "text": "{1}, working remotely from foreign cities allows professionals to experience diverse cultures firsthand. Navigating visa regulations and irregular tax residency, {2}, can quickly become a bureaucratic nightmare. {3}, the number of global digital nomads continues to climb each year.",
+    "tr": "Bir yandan, yabancı şehirlerden uzaktan çalışmak uzmanların farklı kültürleri doğrudan deneyimlemesini sağlar. Öte yandan, vize düzenlemeleri ve düzensiz vergi mükellefiyetiyle uğraşmak hızla bürokratik bir kâbusa dönüşebilir. Yine de dünya çapındaki dijital göçebelerin sayısı her yıl artmaya devam ediyor.",
+    "gaps": [
+      {
+        "answer": "On the one hand",
+        "options": [
+          "On the one hand",
+          "For instance",
+          "In summary"
+        ],
+        "kind": "Karşılaştırma",
+        "why": "İki yönlü durumun ilk açısını açıyor: “bir yandan”."
+      },
+      {
+        "answer": "on the other hand",
+        "options": [
+          "on the other hand",
+          "in other words",
+          "as soon as"
+        ],
+        "kind": "Karşıtlık",
+        "why": "İlk durumla karşıt olan bürokratik ve vize zorluklarını getiriyor: “öte yandan”."
+      },
+      {
+        "answer": "Nevertheless",
+        "options": [
+          "Nevertheless",
+          "Because",
+          "Provided that"
+        ],
+        "kind": "Taviz/Zıtlık",
+        "why": "Bütün bu zorluklara rağmen ilginin arttığını vurguluyor: “yine de”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-microplastics",
+    "language": "en",
+    "text": "Microplastic contamination is now detected in nearly every marine ecosystem on Earth. {1}, synthetic textiles shed millions of tiny microscopic fibers during every wash cycle. {2} conscious consumers purchase reusable items, commercial packaging still floods local markets. {3}, international treaties and industrial bans are urgently required to curb plastic output.",
+    "tr": "Mikroplastik kirliliği artık Dünya'daki neredeyse her deniz ekosisteminde tespit ediliyor. İlk olarak, sentetik tekstil ürünleri her yıkama döngüsünde milyonlarca mikroskobik lif döküyor. Bilinçli tüketiciler yeniden kullanılabilir ürünler satın alsa da, ticari ambalajlar yerel pazarları doldurmaya devam ediyor. Bu yüzden plastik üretimini dizginlemek için uluslararası anlaşmalar ve endüstriyel yasaklar acilen gereklidir.",
+    "gaps": [
+      {
+        "answer": "First of all",
+        "options": [
+          "First of all",
+          "Afterwards",
+          "Instead"
+        ],
+        "kind": "Sıralama",
+        "why": "Sorunun kökenini ve en temel basamağını tanıtıyor: “ilk olarak”."
+      },
+      {
+        "answer": "Even though",
+        "options": [
+          "Even though",
+          "Since",
+          "So that"
+        ],
+        "kind": "Taviz",
+        "why": "Bireysel geri dönüşüm çabalarına rağmen sorunun büyüklüğünü anlatıyor: “-se de”."
+      },
+      {
+        "answer": "Hence",
+        "options": [
+          "Hence",
+          "Unless",
+          "Whereas"
+        ],
+        "kind": "Sonuç",
+        "why": "Büyük çaplı endüstriyel adımların zorunluluğunu bağlıyor: “bu yüzden”."
+      }
+    ],
+    "source": "Diloloji (özgün)"
+  }
+]

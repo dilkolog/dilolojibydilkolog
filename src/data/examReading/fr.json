@@ -1,754 +1,1106 @@
 {
- "language": "fr",
- "source": "Diloloji (özgün)",
- "passages": [
-  {
-   "id": "fr-read-lyon",
-   "exam": "DELF",
-   "level": "A2",
-   "title": "Un message de Paul",
-   "text": "Salut Marie, je suis arrivé à Lyon hier soir. Le voyage en train a duré quatre heures, mais je n'ai pas dormi parce que mon voisin parlait très fort. Aujourd'hui, je visite la vieille ville avec une amie. Demain, nous allons au musée des Confluences, puis nous mangeons dans un restaurant près de la rivière. Je rentre dimanche. Tu me manques ! Paul",
-   "tr": "Selam Marie, dün akşam Lyon'a vardım. Tren yolculuğu dört saat sürdü ama yanımdaki yolcu çok yüksek sesle konuştuğu için uyuyamadım. Bugün bir arkadaşımla eski şehri geziyorum. Yarın Confluences müzesine gideceğiz, sonra nehrin yakınında bir restoranda yemek yiyeceğiz. Pazar günü dönüyorum. Seni özledim! Paul",
-   "questions": [
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "passages": [
     {
-     "prompt": "Quand Paul est-il arrivé à Lyon ?",
-     "options": [
-      "Hier soir",
-      "Ce matin",
-      "Dimanche",
-      "Demain"
-     ],
-     "answer": 0,
-     "why": "Metinde “je suis arrivé à Lyon hier soir” deniyor: dün akşam."
+      "id": "fr-read-lyon",
+      "exam": "DELF",
+      "level": "A2",
+      "title": "Un message de Paul",
+      "text": "Salut Marie, je suis arrivé à Lyon hier soir. Le voyage en train a duré quatre heures, mais je n'ai pas dormi parce que mon voisin parlait très fort. Aujourd'hui, je visite la vieille ville avec une amie. Demain, nous allons au musée des Confluences, puis nous mangeons dans un restaurant près de la rivière. Je rentre dimanche. Tu me manques ! Paul",
+      "tr": "Selam Marie, dün akşam Lyon'a vardım. Tren yolculuğu dört saat sürdü ama yanımdaki yolcu çok yüksek sesle konuştuğu için uyuyamadım. Bugün bir arkadaşımla eski şehri geziyorum. Yarın Confluences müzesine gideceğiz, sonra nehrin yakınında bir restoranda yemek yiyeceğiz. Pazar günü dönüyorum. Seni özledim! Paul",
+      "questions": [
+        {
+          "prompt": "Quand Paul est-il arrivé à Lyon ?",
+          "options": [
+            "Hier soir",
+            "Ce matin",
+            "Dimanche",
+            "Demain"
+          ],
+          "answer": 0,
+          "why": "Metinde “je suis arrivé à Lyon hier soir” deniyor: dün akşam."
+        },
+        {
+          "prompt": "Pourquoi Paul n'a-t-il pas dormi dans le train ?",
+          "options": [
+            "Il avait faim",
+            "Son voisin parlait très fort",
+            "Le train était en retard",
+            "Il lisait un livre"
+          ],
+          "answer": 1,
+          "why": "“Mon voisin parlait très fort”: yanındaki yolcu yüksek sesle konuşuyordu."
+        },
+        {
+          "prompt": "Que fait Paul demain ?",
+          "options": [
+            "Il rentre chez lui",
+            "Il visite la vieille ville",
+            "Il va au musée, puis au restaurant",
+            "Il prend le train pour Paris"
+          ],
+          "answer": 2,
+          "why": "Yarın müzeye gidecek, sonra restoranda yemek yiyecek. Eski şehri bugün geziyor, eve pazar günü dönüyor."
+        }
+      ],
+      "language": "fr"
     },
     {
-     "prompt": "Pourquoi Paul n'a-t-il pas dormi dans le train ?",
-     "options": [
-      "Il avait faim",
-      "Son voisin parlait très fort",
-      "Le train était en retard",
-      "Il lisait un livre"
-     ],
-     "answer": 1,
-     "why": "“Mon voisin parlait très fort”: yanındaki yolcu yüksek sesle konuşuyordu."
+      "id": "fr-read-gare",
+      "exam": "DELF",
+      "level": "A2",
+      "title": "Annonce à la gare",
+      "text": "Mesdames et messieurs, le train pour Marseille, départ prévu à quatorze heures trente, a vingt minutes de retard. Il partira de la voie 5 et non de la voie 3. Nous vous prions de nous excuser. Les voyageurs pour Nice doivent prendre le train de quinze heures, voie 2. Merci de votre attention.",
+      "tr": "Bayanlar baylar, kalkışı on dört otuzda olan Marsilya treni yirmi dakika gecikmelidir. Tren 3. perondan değil 5. perondan kalkacaktır. Özür dileriz. Nice yolcuları saat on beş trenine, 2. peronda binmelidir. İlginiz için teşekkürler.",
+      "questions": [
+        {
+          "prompt": "À quelle heure le train pour Marseille partira-t-il ?",
+          "options": [
+            "14 h 30",
+            "14 h 50",
+            "15 h 00",
+            "14 h 10"
+          ],
+          "answer": 1,
+          "why": "14.30 + 20 dakika gecikme = 14.50."
+        },
+        {
+          "prompt": "De quelle voie partira-t-il ?",
+          "options": [
+            "Voie 3",
+            "Voie 5",
+            "Voie 2",
+            "Voie 4"
+          ],
+          "answer": 1,
+          "why": "“Il partira de la voie 5 et non de la voie 3”: 3. peron değil, 5. peron."
+        },
+        {
+          "prompt": "Que doivent faire les voyageurs pour Nice ?",
+          "options": [
+            "Attendre le train de Marseille",
+            "Aller à la voie 3",
+            "Prendre le train de 15 heures, voie 2",
+            "Retourner à la maison"
+          ],
+          "answer": 2,
+          "why": "Nice yolcuları saat 15.00 trenine, 2. peronda binecek."
+        }
+      ],
+      "language": "fr"
     },
     {
-     "prompt": "Que fait Paul demain ?",
-     "options": [
-      "Il rentre chez lui",
-      "Il visite la vieille ville",
-      "Il va au musée, puis au restaurant",
-      "Il prend le train pour Paris"
-     ],
-     "answer": 2,
-     "why": "Yarın müzeye gidecek, sonra restoranda yemek yiyecek. Eski şehri bugün geziyor, eve pazar günü dönüyor."
+      "id": "fr-read-velo",
+      "exam": "DELF",
+      "level": "B1",
+      "title": "Le vélo en ville",
+      "text": "Depuis cinq ans, la ville de Strasbourg encourage ses habitants à se déplacer à vélo. Elle a construit plus de six cents kilomètres de pistes cyclables et propose des vélos en location à un prix modique. Résultat : un habitant sur six utilise désormais son vélo chaque jour pour aller travailler. Pourtant, tout le monde n'est pas satisfait. Certains commerçants regrettent la suppression de places de parking devant leurs boutiques et craignent de perdre des clients. La mairie répond que les cyclistes dépensent autant, voire plus, que les automobilistes, car ils s'arrêtent plus souvent. Elle prévoit de nouveaux garages à vélos près des gares.",
+      "tr": "Beş yıldır Strazburg şehri sakinlerini bisikletle ulaşıma teşvik ediyor. Altı yüz kilometreden fazla bisiklet yolu yaptı ve düşük fiyata kiralık bisiklet sunuyor. Sonuç: artık her altı kişiden biri her gün işe bisikletle gidiyor. Yine de herkes memnun değil. Bazı esnaf, dükkânlarının önündeki park yerlerinin kaldırılmasından yakınıyor ve müşteri kaybetmekten korkuyor. Belediye, bisikletlilerin daha sık durdukları için sürücüler kadar, hatta daha fazla harcadığını söylüyor. Garların yakınına yeni bisiklet garajları yapmayı planlıyor.",
+      "questions": [
+        {
+          "prompt": "Quelle part des habitants va au travail à vélo chaque jour ?",
+          "options": [
+            "Un sur trois",
+            "Un sur six",
+            "Un sur dix",
+            "Tous"
+          ],
+          "answer": 1,
+          "why": "“Un habitant sur six”: her altı kişiden biri."
+        },
+        {
+          "prompt": "Que reprochent certains commerçants à la ville ?",
+          "options": [
+            "Les loyers sont trop chers",
+            "Il y a trop de cyclistes dans les magasins",
+            "Des places de parking ont disparu",
+            "Les vélos sont trop chers"
+          ],
+          "answer": 2,
+          "why": "Esnaf, dükkânların önündeki park yerlerinin kaldırılmasından yakınıyor."
+        },
+        {
+          "prompt": "Que répond la mairie ?",
+          "options": [
+            "Les cyclistes dépensent autant ou plus que les automobilistes",
+            "Les commerçants ont raison",
+            "Elle supprimera les pistes cyclables",
+            "Les cyclistes ne dépensent rien"
+          ],
+          "answer": 0,
+          "why": "Belediye “bisikletliler sürücüler kadar, hatta daha fazla harcıyor” diyor."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-boulangere",
+      "exam": "DELF",
+      "level": "B1",
+      "title": "Une boulangère raconte",
+      "text": "Je m'appelle Nadia et je suis boulangère depuis douze ans. Je me lève à trois heures du matin pour préparer le pain. Beaucoup de gens pensent que ce métier est monotone, mais moi, j'adore voir les clients sourire quand ils sentent l'odeur du pain chaud. Le plus difficile, ce sont les week-ends : je travaille le samedi et le dimanche, alors je vois peu ma famille. Pourtant, je ne changerais de métier pour rien au monde. Dans cinq ans, j'espère ouvrir ma propre boutique.",
+      "tr": "Adım Nadia, on iki yıldır fırıncıyım. Ekmek hazırlamak için sabah üçte kalkıyorum. Birçok kişi bu mesleğin monoton olduğunu düşünüyor ama ben müşterilerin sıcak ekmek kokusunu alınca gülümsediğini görmeye bayılıyorum. En zoru hafta sonları: cumartesi ve pazar çalışıyorum, bu yüzden ailemi az görüyorum. Yine de dünyada hiçbir şey için mesleğimi değiştirmem. Beş yıl sonra kendi dükkânımı açmayı umuyorum.",
+      "questions": [
+        {
+          "prompt": "À quelle heure Nadia se lève-t-elle ?",
+          "options": [
+            "À trois heures",
+            "À cinq heures",
+            "À sept heures",
+            "À midi"
+          ],
+          "answer": 0,
+          "why": "“Je me lève à trois heures du matin”."
+        },
+        {
+          "prompt": "Qu'est-ce qui est le plus difficile pour elle ?",
+          "options": [
+            "Préparer le pain",
+            "Les clients désagréables",
+            "Travailler le week-end",
+            "Se lever tôt"
+          ],
+          "answer": 2,
+          "why": "“Le plus difficile, ce sont les week-ends”: hafta sonları çalışmak, çünkü ailesini az görüyor."
+        },
+        {
+          "prompt": "Que veut-elle faire dans cinq ans ?",
+          "options": [
+            "Changer de métier",
+            "Ouvrir sa propre boutique",
+            "Prendre sa retraite",
+            "Voyager"
+          ],
+          "answer": 1,
+          "why": "“J'espère ouvrir ma propre boutique”: kendi dükkânını açmak."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-ecrans",
+      "exam": "DELF",
+      "level": "B2",
+      "title": "Les écrans et les enfants",
+      "text": "Selon une récente étude, les enfants de moins de dix ans passent en moyenne trois heures par jour devant un écran. Les chercheurs ne condamnent pas pour autant la technologie : ils soulignent que l'effet dépend surtout de l'usage. Regarder un dessin animé en famille et en discuter ne produit pas les mêmes résultats que passer seul des heures sur un jeu vidéo. En revanche, ils observent que les enfants qui utilisent un écran juste avant de dormir s'endorment plus tard et dorment moins bien. Ils recommandent donc de fixer des horaires clairs, d'éteindre les appareils une heure avant le coucher et, surtout, de montrer l'exemple, car les enfants imitent le comportement de leurs parents.",
+      "tr": "Yakın tarihli bir araştırmaya göre on yaşından küçük çocuklar günde ortalama üç saatini ekran karşısında geçiriyor. Araştırmacılar bu nedenle teknolojiyi suçlamıyor: etkinin asıl kullanıma bağlı olduğunu vurguluyorlar. Ailece çizgi film izleyip bunu konuşmak, saatlerce tek başına video oyunu oynamakla aynı sonuçları vermez. Buna karşılık, uyumadan hemen önce ekran kullanan çocukların daha geç uyuduğunu ve daha kötü uyuduğunu gözlemliyorlar. Bu yüzden net saatler belirlemeyi, cihazları yatmadan bir saat önce kapatmayı ve her şeyden önce örnek olmayı öneriyorlar, çünkü çocuklar anne babalarının davranışını taklit eder.",
+      "questions": [
+        {
+          "prompt": "Selon les chercheurs, qu'est-ce qui compte le plus ?",
+          "options": [
+            "Le temps total passé devant l'écran",
+            "La façon dont on utilise l'écran",
+            "L'âge de l'enfant",
+            "Le prix de l'appareil"
+          ],
+          "answer": 1,
+          "why": "“L'effet dépend surtout de l'usage”: etki en çok kullanım biçimine bağlı."
+        },
+        {
+          "prompt": "Quelle conséquence observent-ils pour les écrans avant le coucher ?",
+          "options": [
+            "Les enfants se réveillent plus tôt",
+            "Les enfants mangent moins",
+            "Les enfants s'endorment plus tard et dorment moins bien",
+            "Les enfants jouent moins"
+          ],
+          "answer": 2,
+          "why": "“S'endorment plus tard et dorment moins bien”."
+        },
+        {
+          "prompt": "Que recommandent-ils aux parents ?",
+          "options": [
+            "D'interdire tous les écrans",
+            "De fixer des horaires, d'éteindre les appareils une heure avant le coucher et de montrer l'exemple",
+            "D'acheter des écrans plus petits",
+            "De laisser les enfants décider seuls"
+          ],
+          "answer": 1,
+          "why": "Net saatler, yatmadan bir saat önce kapatma ve örnek olma öneriliyor. Tüm ekranları yasaklamak önerilmiyor."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-village",
+      "exam": "DELF",
+      "level": "B2",
+      "title": "Un village qui renaît",
+      "text": "Il y a vingt ans, le village de Saint-Aubin comptait à peine deux cents habitants et sa seule école était sur le point de fermer. Puis un ancien instituteur a eu une idée : proposer des maisons à un euro symbolique à ceux qui s'engageaient à les restaurer et à y vivre au moins cinq ans. Au début, personne n'y croyait. Mais les premières familles sont arrivées, suivies d'artisans, d'une boulangère et d'un café associatif. Aujourd'hui, le village compte six cents habitants et l'école a dû agrandir ses locaux. Le maire reconnaît cependant que ce succès a un revers : les prix de l'immobilier ont augmenté et certains jeunes du village ne peuvent plus s'y loger.",
+      "tr": "Yirmi yıl önce Saint-Aubin köyünün ancak iki yüz sakini vardı ve tek okulu kapanmak üzereydi. Sonra emekli bir öğretmenin bir fikri oldu: evleri onarmayı ve orada en az beş yıl yaşamayı taahhüt edenlere sembolik bir avroya ev vermek. Başta kimse inanmadı. Ama ilk aileler geldi, ardından zanaatkârlar, bir fırıncı ve bir dernek kafesi. Bugün köyün altı yüz sakini var ve okul binasını büyütmek zorunda kaldı. Belediye başkanı ise bu başarının bir bedeli olduğunu kabul ediyor: konut fiyatları arttı ve köyün bazı gençleri artık orada oturamıyor.",
+      "questions": [
+        {
+          "prompt": "Quel problème le village avait-il il y a vingt ans ?",
+          "options": [
+            "Il avait trop d'habitants",
+            "Il perdait ses habitants et son école risquait de fermer",
+            "Il n'avait pas d'eau",
+            "Il était trop touristique"
+          ],
+          "answer": 1,
+          "why": "Köyde ancak 200 kişi vardı ve tek okul kapanmak üzereydi."
+        },
+        {
+          "prompt": "En quoi consistait l'idée de l'ancien instituteur ?",
+          "options": [
+            "Vendre des terrains à bas prix",
+            "Construire une usine",
+            "Donner des maisons à un euro contre leur restauration et cinq ans de présence",
+            "Ouvrir un hôtel"
+          ],
+          "answer": 2,
+          "why": "Evler, onarılması ve en az beş yıl orada yaşanması karşılığında bir avroya veriliyordu."
+        },
+        {
+          "prompt": "Quel inconvénient le maire reconnaît-il ?",
+          "options": [
+            "L'école est trop petite",
+            "Les artisans sont partis",
+            "Les prix des logements ont augmenté, et des jeunes du village ne peuvent plus y vivre",
+            "Il n'y a plus de café"
+          ],
+          "answer": 2,
+          "why": "Konut fiyatları arttı, köyün bazı gençleri artık orada oturamıyor. Okul büyüdü, kafe var."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-colocation",
+      "exam": "DELF",
+      "level": "B2",
+      "title": "La colocation, pour qui ?",
+      "text": "Autrefois réservée aux étudiants, la colocation séduit désormais des personnes de tous âges. Le premier motif est financier : avec des loyers qui ne cessent d'augmenter, partager un grand appartement permet de vivre dans un quartier central sans se ruiner. Mais l'argument n'est pas seulement économique. Beaucoup de jeunes actifs, installés dans une ville inconnue, y trouvent un moyen de se faire des amis rapidement. Les difficultés existent pourtant. Il faut s'accorder sur le ménage, sur les invités et sur le bruit, et les désaccords sur ces points sont la première cause de départ. Pour les éviter, certains colocataires rédigent une sorte de charte dès l'arrivée de chacun. Cela peut sembler excessif, mais ceux qui l'ont essayée affirment que les conflits ont nettement diminué.",
+      "tr": "Eskiden öğrencilere özgü olan ev paylaşımı artık her yaştan insanı cezbediyor. İlk neden parasal: kiralar durmadan artarken büyük bir daireyi bölüşmek, iflas etmeden merkezî bir semtte yaşamayı mümkün kılıyor. Ama gerekçe yalnızca ekonomik değil. Yabancı bir şehre yerleşen birçok genç çalışan, bunda hızla arkadaş edinmenin bir yolunu buluyor. Yine de zorluklar var. Temizlik, misafirler ve gürültü konusunda anlaşmak gerekiyor; bu konulardaki anlaşmazlıklar birinin evden ayrılmasının başlıca sebebi. Bunlardan kaçınmak için bazı ev arkadaşları, her yeni gelen olduğunda bir tür tüzük yazıyor. Aşırı görünebilir ama denemiş olanlar çatışmaların belirgin biçimde azaldığını söylüyor.",
+      "questions": [
+        {
+          "prompt": "Quel est le premier motif de la colocation selon le texte ?",
+          "options": [
+            "Le motif financier",
+            "Le désir d'être étudiant",
+            "La taille des appartements",
+            "Le bruit des quartiers"
+          ],
+          "answer": 0,
+          "why": "“Le premier motif est financier”: kiralar arttığı için maliyet."
+        },
+        {
+          "prompt": "Que trouvent beaucoup de jeunes actifs dans la colocation ?",
+          "options": [
+            "Un loyer gratuit",
+            "Un moyen de se faire des amis",
+            "Un travail dans le quartier",
+            "Plus de calme"
+          ],
+          "answer": 1,
+          "why": "“Un moyen de se faire des amis rapidement”: hızla arkadaş edinmenin yolu."
+        },
+        {
+          "prompt": "À quoi sert la charte ?",
+          "options": [
+            "À choisir les invités",
+            "À fixer le prix du loyer",
+            "À éviter les conflits sur le ménage, les invités et le bruit",
+            "À remplacer le contrat de location"
+          ],
+          "answer": 2,
+          "why": "Tüzük, temizlik/misafir/gürültü anlaşmazlıklarını önlemek için yazılıyor."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-silence",
+      "exam": "DALF",
+      "level": "C1",
+      "title": "Le silence, un luxe urbain",
+      "text": "Dans les grandes villes, le silence est devenu un bien rare, presque un produit de luxe. Les promoteurs immobiliers le savent : un appartement donnant sur une cour intérieure se vend nettement plus cher qu'un logement identique situé sur un boulevard. Pourtant, les études menées ces dernières années montrent que le bruit n'est pas qu'une simple gêne. Exposés en permanence à la circulation ou aux chantiers, les habitants dorment moins bien, ont plus de mal à se concentrer et finissent par éprouver une fatigue que le repos du week-end ne suffit pas à dissiper. Certaines municipalités ont réagi en créant des « zones calmes », où les voitures sont limitées et où la musique amplifiée est interdite. Les premiers résultats sont encourageants, mais les commerçants s'inquiètent : selon eux, trop de tranquillité éloignerait les clients. Reste à savoir si l'on peut concilier une ville vivante et une ville apaisée, ou s'il faudra, un jour, choisir l'une au détriment de l'autre.",
+      "tr": "Büyük şehirlerde sessizlik kıt bir değer, neredeyse bir lüks ürün hâline geldi. Emlakçılar bunu biliyor: iç avluya bakan bir daire, ana caddedeki aynı daireden belirgin biçimde daha pahalıya satılıyor. Oysa son yıllarda yapılan araştırmalar gürültünün basit bir rahatsızlıktan çok daha fazlası olduğunu gösteriyor. Sürekli trafiğe ya da inşaata maruz kalanlar daha kötü uyuyor, zor odaklanıyor ve hafta sonu dinlenmesinin bile geçiremediği bir yorgunluğa kapılıyor. Bazı belediyeler arabaların sınırlandığı ve yüksek sesli müziğin yasaklandığı «sakin bölgeler» oluşturarak karşılık verdi. İlk sonuçlar cesaret verici ama esnaf endişeli: onlara göre fazla huzur müşterileri uzaklaştırır. Canlı bir şehirle dingin bir şehrin bağdaştırılıp bağdaştırılamayacağı, yoksa bir gün birini diğerinin pahasına seçmek zorunda kalıp kalmayacağımız henüz belli değil.",
+      "questions": [
+        {
+          "prompt": "Pourquoi les promoteurs savent-ils que le silence a de la valeur ?",
+          "options": [
+            "Les boulevards sont fermés la nuit",
+            "Les acheteurs refusent les quartiers animés",
+            "Les logements calmes se vendent nettement plus cher",
+            "Les cours intérieures sont interdites aux voitures"
+          ],
+          "answer": 2,
+          "why": "Avluya bakan (sessiz) daire aynısından belirgin biçimde pahalıya satılıyor."
+        },
+        {
+          "prompt": "Que montrent les études récentes sur le bruit ?",
+          "options": [
+            "Il n'a aucun effet sur la santé",
+            "Il perturbe le sommeil et la concentration, et la fatigue persiste",
+            "Le repos du week-end suffit à tout compenser",
+            "Les habitants finissent par s'y habituer entièrement"
+          ],
+          "answer": 1,
+          "why": "Uyku ve odaklanma bozuluyor; hafta sonu dinlenmesi yorgunluğu geçirmiyor."
+        },
+        {
+          "prompt": "Pourquoi les commerçants s'inquiètent-ils des zones calmes ?",
+          "options": [
+            "Ils craignent qu'elles fassent fuir les clients",
+            "Ils doivent payer une taxe supplémentaire",
+            "Ils ne peuvent plus livrer leurs marchandises",
+            "Ils veulent plus de bruit pour leurs concerts"
+          ],
+          "answer": 0,
+          "why": "“Trop de tranquillité éloignerait les clients”: fazla sessizlik müşteriyi uzaklaştırır."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-ia",
+      "exam": "DALF",
+      "level": "C1",
+      "title": "Écrire avec une machine ?",
+      "text": "Depuis que les logiciels de rédaction automatique se sont répandus, une question divise les enseignants : faut-il les interdire en classe ou apprendre aux élèves à s'en servir ? Les partisans de l'interdiction soutiennent qu'un texte produit en quelques secondes ne laisse aucune place à l'effort, et que l'effort est précisément ce qui fait progresser. Leurs adversaires répondent que la calculatrice n'a pas supprimé les mathématiques, et que le véritable enjeu est de former des esprits capables de vérifier, de corriger et de nuancer ce qu'une machine propose. Entre ces deux positions, plusieurs établissements testent une voie intermédiaire : les brouillons sont rédigés à la main, en classe, puis comparés avec une version corrigée par le logiciel. L'élève doit alors expliquer chaque différence. Cette méthode demande du temps, reconnaissent les professeurs, mais elle a un mérite : elle transforme l'outil en objet de réflexion plutôt qu'en raccourci.",
+      "tr": "Otomatik yazım yazılımları yaygınlaştığından beri öğretmenleri bir soru ayırıyor: bunları sınıfta yasaklamalı mı, yoksa öğrencilere nasıl kullanılacağını mı öğretmeli? Yasaktan yana olanlar, birkaç saniyede üretilen bir metnin çabaya yer bırakmadığını, ilerlemeyi sağlayanın ise tam da çaba olduğunu savunuyor. Karşı çıkanlar ise hesap makinesinin matematiği ortadan kaldırmadığını, asıl meselenin bir makinenin önerdiğini denetleyebilen, düzeltebilen ve inceltebilen zihinler yetiştirmek olduğunu söylüyor. Bu iki görüşün arasında birkaç okul orta bir yol deniyor: taslaklar sınıfta elle yazılıyor, sonra yazılımın düzelttiği sürümle karşılaştırılıyor. Öğrenci her farkı açıklamak zorunda. Öğretmenler bu yöntemin zaman aldığını kabul ediyor ama bir erdemi var: aracı bir kısayol olmaktan çıkarıp üzerinde düşünülen bir nesneye dönüştürüyor.",
+      "questions": [
+        {
+          "prompt": "Quel argument avancent les partisans de l'interdiction ?",
+          "options": [
+            "Les logiciels coûtent trop cher",
+            "Sans effort, on ne progresse pas",
+            "Les élèves écrivent trop lentement",
+            "Les professeurs manquent de temps"
+          ],
+          "answer": 1,
+          "why": "“L'effort est précisément ce qui fait progresser”: çaba ilerlemeyi sağlar."
+        },
+        {
+          "prompt": "Que répondent leurs adversaires ?",
+          "options": [
+            "Qu'un outil nouveau n'a pas détruit les disciplines, il faut apprendre à le contrôler",
+            "Que les machines écrivent mieux que les élèves",
+            "Que la calculatrice doit être interdite aussi",
+            "Que les professeurs devraient utiliser le logiciel seuls"
+          ],
+          "answer": 0,
+          "why": "Hesap makinesi örneği: asıl mesele makinenin önerdiğini denetlemeyi öğrenmek."
+        },
+        {
+          "prompt": "Dans la méthode intermédiaire, que doit faire l'élève ?",
+          "options": [
+            "Recopier la version du logiciel",
+            "Écrire sans brouillon",
+            "Corriger le travail d'un camarade",
+            "Expliquer chaque différence entre son brouillon et la version corrigée"
+          ],
+          "answer": 3,
+          "why": "“L'élève doit alors expliquer chaque différence”: her farkı açıklamalı."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-marche",
+      "exam": "DELF",
+      "level": "B1",
+      "title": "Le marché du jeudi",
+      "text": "Depuis vingt ans, le marché du jeudi anime la place de mon quartier. Les habitants y viennent pour acheter des fruits, du fromage ou simplement pour discuter avec les marchands. Pourtant, la mairie veut déplacer le marché dans une rue voisine, car la place doit être rénovée pendant six mois. Beaucoup de commerçants sont inquiets : ils craignent de perdre une partie de leurs clients, surtout les personnes âgées qui habitent tout près. Une réunion publique aura lieu mardi soir à la mairie. Chacun pourra poser des questions et proposer des solutions.",
+      "tr": "Yirmi yıldır perşembe pazarı mahallemin meydanını canlandırıyor. Sakinler buraya meyve, peynir almaya ya da sadece satıcılarla sohbet etmeye geliyor. Ancak belediye, meydan altı ay boyunca yenileneceği için pazarı yakındaki bir sokağa taşımak istiyor. Birçok esnaf endişeli: müşterilerinin bir kısmını, özellikle çok yakında yaşayan yaşlıları kaybetmekten korkuyorlar. Salı akşamı belediyede halka açık bir toplantı olacak. Herkes soru sorabilecek ve çözüm önerebilecek.",
+      "questions": [
+        {
+          "prompt": "Pourquoi la mairie veut-elle déplacer le marché ?",
+          "options": [
+            "Les marchands le demandent",
+            "La place doit être rénovée",
+            "Il y a trop de clients",
+            "Le marché est trop bruyant"
+          ],
+          "answer": 1,
+          "why": "“La place doit être rénovée pendant six mois”: meydan yenilenecek."
+        },
+        {
+          "prompt": "De quoi les commerçants ont-ils peur ?",
+          "options": [
+            "De devoir payer plus cher",
+            "De manquer de produits",
+            "De perdre une partie de leurs clients",
+            "De changer de métier"
+          ],
+          "answer": 2,
+          "why": "“Ils craignent de perdre une partie de leurs clients”: müşteri kaybetmekten korkuyorlar."
+        },
+        {
+          "prompt": "Que se passera-t-il mardi soir ?",
+          "options": [
+            "La fermeture du marché",
+            "Une réunion publique",
+            "Le début des travaux",
+            "Une fête de quartier"
+          ],
+          "answer": 1,
+          "why": "“Une réunion publique aura lieu mardi soir”: salı akşamı halka açık toplantı var."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-musees",
+      "exam": "DELF",
+      "level": "B2",
+      "title": "Des musées gratuits ?",
+      "text": "Plusieurs villes envisagent de rendre l'entrée des musées gratuite le premier dimanche de chaque mois. Les partisans de cette mesure affirment qu'elle attire un public nouveau, notamment des familles qui n'osent pas pousser la porte d'un musée par crainte du prix. Les opposants, eux, rappellent que la gratuité ne règle pas tout : un habitant qui ne s'intéresse pas à l'art n'ira pas davantage au musée parce que l'entrée ne coûte rien. Ils préféreraient que cet argent serve à financer des visites scolaires et des animations. Une étude menée dans trois villes montre cependant que la fréquentation double lors des journées gratuites, sans que les recettes annuelles ne diminuent beaucoup.",
+      "tr": "Birçok şehir, müzeleri her ayın ilk pazar günü ücretsiz yapmayı düşünüyor. Bu önlemin savunucuları, ücretsiz giriş sayesinde yeni bir kitlenin, özellikle fiyattan çekindiği için müzeye adım atmaya cesaret edemeyen ailelerin geleceğini söylüyor. Karşı çıkanlar ise ücretsizliğin her sorunu çözmediğini hatırlatıyor: sanata ilgi duymayan biri, giriş ücretsiz diye müzeye daha çok gitmeyecek. Bu paranın okul gezilerini ve etkinlikleri finanse etmesini tercih ediyorlar. Üç şehirde yapılan bir araştırma ise ücretsiz günlerde ziyaretçi sayısının iki katına çıktığını, buna rağmen yıllık gelirlerin pek düşmediğini gösteriyor.",
+      "questions": [
+        {
+          "prompt": "Selon les partisans, que permet la gratuité ?",
+          "options": [
+            "De fermer certains musées",
+            "D'augmenter le prix des billets",
+            "De réduire le nombre de visiteurs",
+            "D'attirer un public nouveau"
+          ],
+          "answer": 3,
+          "why": "“Elle attire un public nouveau”: yeni bir kitleyi çekiyor."
+        },
+        {
+          "prompt": "Quel est l'argument principal des opposants ?",
+          "options": [
+            "Les musées sont déjà trop fréquentés",
+            "La gratuité ne crée pas à elle seule l'intérêt pour l'art",
+            "Les familles préfèrent le cinéma",
+            "Les musées manquent de place"
+          ],
+          "answer": 1,
+          "why": "Karşı çıkanlar: sanata ilgi duymayan biri ücretsiz diye gitmez."
+        },
+        {
+          "prompt": "Que montre l'étude citée ?",
+          "options": [
+            "Les recettes s'effondrent",
+            "Les visiteurs sont plus âgés",
+            "La fréquentation double les jours gratuits",
+            "Les écoles refusent les visites"
+          ],
+          "answer": 2,
+          "why": "“La fréquentation double lors des journées gratuites”: ücretsiz günlerde ziyaret iki katına çıkıyor."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-cuisine",
+      "exam": "DELF",
+      "level": "A2",
+      "title": "Un cours de cuisine",
+      "text": "Le centre culturel Jean Moulin propose un nouveau cours de cuisine pour débutants. Les cours ont lieu le mardi soir, de dix-huit heures à vingt heures, à partir du 3 mars. Une séance coûte douze euros, mais les étudiants paient seulement huit euros. Vous apprendrez à préparer des plats simples et pas chers. Apportez un tablier et une boîte pour emporter ce que vous avez cuisiné. Il y a seulement dix places : inscrivez-vous à l'accueil avant le 28 février.",
+      "tr": "Jean Moulin kültür merkezi yeni başlayanlar için yeni bir yemek kursu açıyor. Dersler 3 Mart'tan itibaren salı akşamları, saat on sekizden yirmiye kadar yapılıyor. Bir ders on iki avro, ama öğrenciler yalnızca sekiz avro ödüyor. Basit ve ucuz yemekler hazırlamayı öğreneceksiniz. Bir önlük ve pişirdiklerinizi götürmek için bir kap getirin. Yalnızca on kişilik yer var: 28 Şubat'tan önce danışmada kaydolun.",
+      "questions": [
+        {
+          "prompt": "Quand ont lieu les cours ?",
+          "options": [
+            "Le mardi soir",
+            "Le mardi matin",
+            "Le samedi après-midi",
+            "Tous les soirs"
+          ],
+          "answer": 0,
+          "why": "“Les cours ont lieu le mardi soir, de dix-huit heures à vingt heures”: salı akşamları."
+        },
+        {
+          "prompt": "Combien un étudiant paie-t-il pour une séance ?",
+          "options": [
+            "12 euros",
+            "8 euros",
+            "10 euros",
+            "20 euros"
+          ],
+          "answer": 1,
+          "why": "“Les étudiants paient seulement huit euros”: öğrenciler sekiz avro öder; on iki avro normal fiyattır."
+        },
+        {
+          "prompt": "Que faut-il apporter ?",
+          "options": [
+            "Des ingrédients",
+            "Un livre de recettes",
+            "Un tablier et une boîte",
+            "Un couteau et une assiette"
+          ],
+          "answer": 2,
+          "why": "“Apportez un tablier et une boîte pour emporter ce que vous avez cuisiné”: önlük ve kap."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-voisine",
+      "exam": "DELF",
+      "level": "A2",
+      "title": "Un mot de la voisine",
+      "text": "Bonjour Madame Leroy, c'est Claire, votre voisine du troisième étage. Je pars en vacances chez ma sœur samedi matin et je reviens le vendredi suivant. Est-ce que vous pourriez arroser mes plantes deux fois pendant la semaine, par exemple mardi et jeudi ? Je vais laisser ma clé dans votre boîte aux lettres vendredi soir. Pour le chat, ne vous inquiétez pas : mon fils viendra le nourrir tous les jours. Merci beaucoup, je vous rapporterai de la confiture ! Claire",
+      "tr": "Merhaba Leroy Hanım, ben üçüncü kattaki komşunuz Claire. Cumartesi sabahı ablamın yanına tatile gidiyorum, ertesi cuma dönüyorum. Hafta içinde iki kez, örneğin salı ve perşembe, çiçeklerimi sulayabilir misiniz? Cuma akşamı anahtarımı sizin posta kutunuza bırakacağım. Kedi için endişelenmeyin: oğlum her gün gelip onu besleyecek. Çok teşekkürler, size reçel getireceğim! Claire",
+      "questions": [
+        {
+          "prompt": "Pourquoi Claire écrit-elle ce mot ?",
+          "options": [
+            "Pour inviter sa voisine en vacances",
+            "Pour demander un service pendant son absence",
+            "Pour se plaindre du bruit",
+            "Pour vendre ses plantes"
+          ],
+          "answer": 1,
+          "why": "Tatile gidiyor ve komşusundan çiçeklerini sulamasını rica ediyor: yokken bir iyilik istiyor."
+        },
+        {
+          "prompt": "Que doit faire Madame Leroy ?",
+          "options": [
+            "Nourrir le chat tous les jours",
+            "Arroser les plantes tous les jours",
+            "Arroser les plantes mardi et jeudi",
+            "Aller chercher la clé chez le fils de Claire"
+          ],
+          "answer": 2,
+          "why": "“Arroser mes plantes deux fois… mardi et jeudi”. Kediyi Claire'in oğlu besleyecek."
+        },
+        {
+          "prompt": "Où Madame Leroy trouvera-t-elle la clé ?",
+          "options": [
+            "Dans sa propre boîte aux lettres",
+            "Chez la sœur de Claire",
+            "Sous le paillasson",
+            "Chez le fils de Claire"
+          ],
+          "answer": 0,
+          "why": "“Je vais laisser ma clé dans votre boîte aux lettres”: Leroy Hanım'ın kendi posta kutusunda."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-teletravail",
+      "exam": "DELF",
+      "level": "B1",
+      "title": "Travailler depuis chez soi",
+      "text": "Depuis un an, Karim, graphiste de trente-quatre ans, travaille trois jours par semaine dans son appartement de Nantes et deux jours au bureau. « Au début, j'étais ravi : plus de bouchons le matin, et je gagnais presque deux heures par jour. Mais au bout de quelques mois, je me suis senti seul. Je ne parlais à personne avant le soir. » Pour éviter cela, il a pris de nouvelles habitudes. Il commence sa journée par une promenade de vingt minutes, comme s'il partait au travail, et il déjeune une fois par semaine avec un ancien collègue. Il a aussi installé son bureau dans une petite pièce dont il ferme la porte à dix-huit heures. « Ce qui me manque le plus, ce ne sont pas les réunions, ce sont les discussions à la machine à café », avoue-t-il en riant.",
+      "tr": "Otuz dört yaşındaki grafik tasarımcı Karim bir yıldır haftada üç gün Nantes'taki dairesinde, iki gün de ofiste çalışıyor. «Başta çok memnundum: sabah trafiği yoktu, günde neredeyse iki saat kazanıyordum. Ama birkaç ay sonra kendimi yalnız hissettim. Akşama kadar kimseyle konuşmuyordum.» Bunun önüne geçmek için yeni alışkanlıklar edindi. Güne, işe gidiyormuş gibi yirmi dakikalık bir yürüyüşle başlıyor ve haftada bir eski bir iş arkadaşıyla öğle yemeği yiyor. Ayrıca masasını küçük bir odaya kurdu ve saat on sekizde o odanın kapısını kapatıyor. «En çok özlediğim şey toplantılar değil, kahve makinesinin başındaki sohbetler» diyor gülerek.",
+      "questions": [
+        {
+          "prompt": "Combien de jours par semaine Karim travaille-t-il chez lui ?",
+          "options": [
+            "Deux jours",
+            "Trois jours",
+            "Cinq jours",
+            "Un jour"
+          ],
+          "answer": 1,
+          "why": "“Travaille trois jours par semaine dans son appartement… et deux jours au bureau”: evde üç gün."
+        },
+        {
+          "prompt": "Quel problème a-t-il eu après quelques mois ?",
+          "options": [
+            "Il perdait du temps dans les bouchons",
+            "Il avait trop de réunions",
+            "Il se sentait seul",
+            "Son appartement était trop petit"
+          ],
+          "answer": 2,
+          "why": "“Au bout de quelques mois, je me suis senti seul”: birkaç ay sonra kendini yalnız hissetti."
+        },
+        {
+          "prompt": "Qu'est-ce qui lui manque le plus ?",
+          "options": [
+            "Les discussions informelles avec ses collègues",
+            "Les réunions",
+            "Les trajets du matin",
+            "Les déjeuners au restaurant"
+          ],
+          "answer": 0,
+          "why": "“Ce ne sont pas les réunions, ce sont les discussions à la machine à café”: kahve makinesi başındaki sohbetler."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-jardin",
+      "exam": "DELF",
+      "level": "B1",
+      "title": "Un jardin au pied des immeubles",
+      "text": "Il y a encore deux ans, l'espace situé entre les immeubles de la rue des Lilas n'était qu'un terrain vide où personne ne s'arrêtait. Aujourd'hui, on y trouve une trentaine de petits potagers. L'idée vient d'une retraitée, Monique, qui a convaincu la mairie de prêter le terrain gratuitement. Chaque famille inscrite reçoit une parcelle et s'engage à venir l'entretenir au moins une fois par semaine. Les outils sont rangés dans une cabane commune, et l'eau de pluie est récupérée dans de grands bidons. « Les enfants découvrent d'où viennent les légumes, et des voisins qui ne se disaient même pas bonjour prennent maintenant le café ensemble », raconte Monique. La liste d'attente est déjà longue : quarante familles espèrent obtenir une parcelle l'année prochaine.",
+      "tr": "Daha iki yıl önce Lilas sokağındaki apartmanların arasındaki alan, kimsenin uğramadığı boş bir arsadan ibaretti. Bugün orada otuz kadar küçük sebze bahçesi var. Fikir, belediyeyi araziyi ücretsiz vermeye ikna eden emekli Monique'ten çıktı. Kaydolan her aile bir parsel alıyor ve ona en az haftada bir kez bakmaya söz veriyor. Aletler ortak bir kulübede duruyor, yağmur suyu da büyük bidonlarda toplanıyor. «Çocuklar sebzelerin nereden geldiğini öğreniyor; birbirine selam bile vermeyen komşular artık birlikte kahve içiyor» diyor Monique. Bekleme listesi şimdiden uzun: kırk aile gelecek yıl bir parsel almayı umuyor.",
+      "questions": [
+        {
+          "prompt": "Qu'y avait-il avant le jardin ?",
+          "options": [
+            "Un parking",
+            "Un terrain vide",
+            "Un petit marché",
+            "Une école"
+          ],
+          "answer": 1,
+          "why": "“N'était qu'un terrain vide où personne ne s'arrêtait”: boş bir arsa."
+        },
+        {
+          "prompt": "À quoi s'engagent les familles inscrites ?",
+          "options": [
+            "À payer un loyer à la mairie",
+            "À acheter leurs propres outils",
+            "À vendre leurs légumes aux voisins",
+            "À s'occuper de leur parcelle au moins une fois par semaine"
+          ],
+          "answer": 3,
+          "why": "“S'engage à venir l'entretenir au moins une fois par semaine”. Arazi ücretsiz, aletler ortak."
+        },
+        {
+          "prompt": "Selon Monique, qu'a changé le jardin dans le quartier ?",
+          "options": [
+            "Les voisins se parlent davantage",
+            "Les familles dépensent moins pour manger",
+            "Le quartier attire de nouveaux habitants",
+            "Les enfants ont de meilleures notes"
+          ],
+          "answer": 0,
+          "why": "Selam bile vermeyen komşular “prennent maintenant le café ensemble”: artık birlikte kahve içiyorlar."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-semaine",
+      "exam": "DALF",
+      "level": "C1",
+      "title": "La semaine de quatre jours",
+      "text": "Plusieurs entreprises européennes expérimentent depuis quelques années la semaine de quatre jours, sans baisse de salaire. Les résultats publiés par ses partisans semblent éloquents : les salariés se disent moins stressés, les arrêts maladie reculent et la productivité, loin de s'effondrer, se maintient, voire progresse légèrement. Faut-il pour autant y voir une solution miracle ? Les sceptiques invitent à la prudence. D'abord, les entreprises qui se portent volontaires pour ces essais sont souvent de petites structures du secteur des services, déjà convaincues de l'intérêt de la démarche ; il serait hasardeux d'en tirer des conclusions pour un hôpital ou une usine, où la présence physique ne se compresse pas. Ensuite, condenser trente-cinq heures en quatre jours peut produire des journées si denses que le repos gagné le vendredi se paie du lundi au jeudi. Enfin, certains salariés avouent que le jour libéré est vite absorbé par les démarches administratives ou les tâches ménagères. Le débat porte donc moins sur le nombre de jours que sur l'organisation du travail : là où l'on a profité de la réforme pour supprimer les réunions inutiles, les bénéfices semblent durables ; là où l'on s'est contenté de raccourcir la semaine, ils s'estompent au bout de quelques mois.",
+      "tr": "Birkaç Avrupa şirketi birkaç yıldır maaşta kesinti olmadan dört günlük çalışma haftasını deniyor. Taraftarlarının yayımladığı sonuçlar çok şey söylüyor gibi: çalışanlar daha az stresli olduklarını söylüyor, hastalık izinleri azalıyor ve verimlilik çökmek bir yana aynı kalıyor, hatta biraz artıyor. Peki bunu mucize bir çözüm saymalı mı? Kuşkucular dikkatli olmaya çağırıyor. Önce, bu denemelere gönüllü olan şirketler çoğunlukla hizmet sektöründen, yaklaşımın yararına zaten inanmış küçük yapılar; buradan fiziksel varlığın sıkıştırılamadığı bir hastane ya da fabrika için sonuç çıkarmak riskli olur. Sonra, otuz beş saati dört güne sığdırmak öyle yoğun günler doğurabilir ki cuma kazanılan dinlenmenin bedeli pazartesiden perşembeye ödenir. Son olarak bazı çalışanlar boşalan günün resmî işler ya da ev işleriyle hemen dolduğunu itiraf ediyor. Yani tartışma gün sayısından çok işin düzeniyle ilgili: reformu gereksiz toplantıları kaldırmak için fırsat bilen yerlerde yararlar kalıcı görünüyor; yalnızca haftayı kısaltmakla yetinilen yerlerde birkaç ay sonra siliniyor.",
+      "questions": [
+        {
+          "prompt": "D'après ses partisans, quel est l'effet de la semaine de quatre jours sur la productivité ?",
+          "options": [
+            "Elle s'effondre rapidement",
+            "Elle baisse légèrement, mais le stress diminue",
+            "Elle se maintient, voire augmente un peu",
+            "Elle double dans les petites entreprises"
+          ],
+          "answer": 2,
+          "why": "“La productivité, loin de s'effondrer, se maintient, voire progresse légèrement”: aynı kalıyor, hatta biraz artıyor."
+        },
+        {
+          "prompt": "Pourquoi les sceptiques se méfient-ils des résultats des essais ?",
+          "options": [
+            "Les salariés ont exagéré leur fatigue",
+            "Les entreprises participantes ne représentent pas toute l'économie",
+            "Les résultats n'ont jamais été publiés",
+            "Les salaires ont baissé pendant l'expérience"
+          ],
+          "answer": 1,
+          "why": "Gönüllü şirketler çoğunlukla hizmet sektöründen küçük yapılar; hastane ya da fabrika için sonuç çıkarmak “hasardeux” (riskli)."
+        },
+        {
+          "prompt": "Selon l'auteur, de quoi dépend surtout le succès de la réforme ?",
+          "options": [
+            "De la façon dont le travail est réorganisé",
+            "Du nombre exact d'heures travaillées",
+            "Du jour de la semaine qui est libéré",
+            "De la taille de l'entreprise uniquement"
+          ],
+          "answer": 0,
+          "why": "“Le débat porte moins sur le nombre de jours que sur l'organisation du travail”: gereksiz toplantılar kaldırılan yerlerde yararlar kalıcı."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-reparer",
+      "exam": "DALF",
+      "level": "C1",
+      "title": "Réparer plutôt que jeter",
+      "text": "Un samedi par mois, dans une salle prêtée par la mairie, une dizaine de bénévoles accueillent des habitants venus avec un grille-pain muet, une lampe qui clignote ou un pantalon déchiré. Ce « café de la réparation » n'a rien d'un service de dépannage gratuit : le propriétaire de l'objet participe lui-même à la réparation, guidé par un bénévole. « Nous ne voulons pas que les gens repartent seulement avec un appareil qui marche, mais avec l'idée qu'ils sont capables de le réparer », explique Henri, ingénieur à la retraite. Le succès de ces initiatives révèle un malaise plus profond. Beaucoup de consommateurs soupçonnent les fabricants de concevoir des produits volontairement fragiles, ou de rendre les pièces détachées introuvables et hors de prix. Le législateur a commencé à réagir : un indice de réparabilité doit désormais figurer sur certains appareils, et les vendeurs sont tenus d'indiquer pendant combien d'années les pièces resteront disponibles. Les bénévoles restent pourtant lucides. Un tiers des objets apportés ne peuvent pas être sauvés, souvent parce qu'ils ont été conçus pour ne jamais être ouverts. Pour Henri, la véritable victoire serait que les cafés de la réparation deviennent un jour inutiles.",
+      "tr": "Ayda bir cumartesi, belediyenin verdiği bir salonda on kadar gönüllü, sesi çıkmayan bir ekmek kızartma makinesi, yanıp sönen bir lamba ya da yırtık bir pantolonla gelen mahalleliyi karşılıyor. Bu «tamir kafesi» ücretsiz bir onarım servisi değil: eşyanın sahibi bir gönüllünün rehberliğinde onarıma kendisi katılıyor. «İnsanların yalnızca çalışan bir aletle değil, onu tamir edebilecekleri düşüncesiyle dönmelerini istiyoruz» diyor emekli mühendis Henri. Bu girişimlerin başarısı daha derin bir rahatsızlığı gösteriyor. Pek çok tüketici, üreticilerin ürünleri bile bile dayanıksız tasarladığından ya da yedek parçaları bulunmaz ve çok pahalı hâle getirdiğinden kuşkulanıyor. Yasa koyucu tepki vermeye başladı: bazı aletlerde artık bir onarılabilirlik puanı yer almalı, satıcılar da parçaların kaç yıl bulunabileceğini belirtmek zorunda. Yine de gönüllüler gerçekçi. Getirilen eşyaların üçte biri kurtarılamıyor, çoğu zaman da hiç açılmamak üzere tasarlandıkları için. Henri'ye göre asıl zafer, tamir kafelerinin bir gün gereksiz hâle gelmesi olurdu.",
+      "questions": [
+        {
+          "prompt": "Quel est le principe du café de la réparation ?",
+          "options": [
+            "Des bénévoles réparent gratuitement les objets pendant qu'on attend",
+            "Le propriétaire répare lui-même son objet, guidé par un bénévole",
+            "On échange un objet cassé contre un objet qui marche",
+            "Des artisans y vendent des pièces détachées à bas prix"
+          ],
+          "answer": 1,
+          "why": "“N'a rien d'un service de dépannage gratuit : le propriétaire… participe lui-même à la réparation, guidé par un bénévole”."
+        },
+        {
+          "prompt": "Que reprochent beaucoup de consommateurs aux fabricants ?",
+          "options": [
+            "De vendre leurs produits trop cher en magasin",
+            "D'afficher un indice de réparabilité trompeur",
+            "De concevoir des objets fragiles et de rendre les pièces difficiles à obtenir",
+            "De refuser de réparer les appareils sous garantie"
+          ],
+          "answer": 2,
+          "why": "Ürünleri “volontairement fragiles” tasarladıklarından ve yedek parçaları “introuvables et hors de prix” yaptıklarından kuşkulanıyorlar."
+        },
+        {
+          "prompt": "Quel serait, pour Henri, le vrai succès ?",
+          "options": [
+            "Que ces cafés n'aient plus de raison d'exister",
+            "Ouvrir un café de la réparation chaque semaine",
+            "Réparer tous les objets apportés",
+            "Que la loi interdise les objets impossibles à ouvrir"
+          ],
+          "answer": 0,
+          "why": "“La véritable victoire serait que les cafés de la réparation deviennent un jour inutiles”: bu kafelere gerek kalmaması."
+        }
+      ],
+      "language": "fr"
+    },
+    {
+      "id": "fr-read-velos-partages",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B1",
+      "title": "Vélos électriques en libre-service",
+      "text": "Il y a six mois, la municipalité a inauguré un nouveau réseau de vélos à assistance électrique afin de désengorger le centre-ville. Plus de deux cents stations de recharge ont été installées à proximité des gares ferroviaires, des campus universitaires et des zones piétonnes très fréquentées. Les usagers déverrouillent un vélo en quelques secondes à l'aide d'une application mobile et peuvent le déposer dans n'importe quel emplacement libre. Une enquête récente de la métropole indique que plus de quarante mille trajets ont déjà été enregistrés, montrant que de nombreux salariés délaissent leur voiture pour les petits trajets quotidiens. La mairie envisage d'agrandir la flotte dès cet été.",
+      "tr": "Altı ay önce belediye, şehir merkezini rahatlatmak amacıyla yeni bir elektrikli bisiklet ağı başlattı. Tren garları, üniversite kampüsleri ve yoğun yaya bölgelerinin yakınına iki yüzden fazla şarj istasyonu kuruldu. Kullanıcılar bir mobil uygulama sayesinde bisikletin kilidini birkaç saniyede açıp herhangi bir boş yuvaya bırakabiliyor. Şehir idaresinin yakın tarihli bir anketi, kırk binden fazla yolculuğun kaydedildiğini ve birçok çalışanın günlük kısa mesafeler için arabasını bıraktığını gösteriyor. Belediye bu yazdan itibaren filoyu büyütmeyi planlıyor.",
+      "questions": [
+        {
+          "prompt": "Pourquoi la ville a-t-elle déployé ce réseau de vélos ?",
+          "options": [
+            "Pour collecter de nouvelles taxes locales",
+            "Pour réduire les encombrements du trafic urbain",
+            "Pour supprimer totalement les lignes de tramway",
+            "Pour préparer une compétition sportive internationale"
+          ],
+          "answer": 1,
+          "why": "Metinde bisiklet ağının şehir merkezindeki trafiği rahatlatmak amacıyla kurulduğu yazılıdır ('désengorger le centre-ville')."
+        },
+        {
+          "prompt": "Comment les usagers débloquent-ils une bicyclette ?",
+          "options": [
+            "En présentant une pièce d'identité à un agent",
+            "En utilisant une application sur leur smartphone",
+            "En insérant une pièce de deux euros dans la borne",
+            "En scannant un ticket de train papier"
+          ],
+          "answer": 1,
+          "why": "Kullanıcılar akıllı telefonlarındaki bir uygulama ile bisiklet kilidini açmaktadır ('à l'aide d'une application mobile')."
+        },
+        {
+          "prompt": "Que projette la municipalité pour les mois à venir ?",
+          "options": [
+            "Augmenter le nombre de vélos disponibles",
+            "Interdire le service aux étudiants le week-end",
+            "Fermer les stations situées près des gares",
+            "Remplacer les vélos par des trottinettes"
+          ],
+          "answer": 0,
+          "why": "Belediye filoyu büyütmeyi (bisiklet sayısını artırmayı) planlamaktadır ('agrandir la flotte dès cet été')."
+        }
+      ]
+    },
+    {
+      "id": "fr-read-marc-de-cafe",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B1",
+      "title": "Valorisation énergétique du marc de café",
+      "text": "Chaque matin, des millions de tasses de café sont bues à travers le monde, engendrant des tonnes de résidus humides qui finissent presque toujours dans les décharges municipales. Une jeune entreprise innovante a imaginé une valorisation écologique particulièrement ingénieuse. Elle collecte quotidiennement le marc usagé auprès de centaines de bistrots indépendants et de restaurants d'entreprise. Après une étape méthodique de séchage naturel et de compactage mécanique, ces déchets organiques sont transformés en granulés de chauffage pour poêles à bois. Ces petits cylindres écologiques dégagent une chaleur plus durable que les bûches traditionnelles tout en diminuant fortement les émissions polluantes.",
+      "tr": "Her sabah dünya çapında milyonlarca fincan kahve içiliyor ve bu da neredeyse her zaman belediye çöplüklerine giden tonlarca nemli atık üretiyor. Yenilikçi genç bir girişim oldukça ustaca bir ekolojik geri dönüşüm geliştirdi. Yüzlerce bağımsız bistro ve şirket restoranından kullanılan kahve telvelerini her gün topluyorlar. Yöntemli bir doğal kurutma ve mekanik sıkıştırma aşamasının ardından bu organik atıklar pelet sobaları için yakıt granüllerine dönüştürülüyor. Bu küçük ekolojik silindirler geleneksel odunlara göre daha kalıcı bir ısı yayarken kirletici emisyonları büyük ölçüde azaltıyor.",
+      "questions": [
+        {
+          "prompt": "Quel est le sort habituel du marc de café selon le texte ?",
+          "options": [
+            "Il est rejeté dans les fleuves et les rivières",
+            "Il est abandonné dans les décharges publiques",
+            "Il est donné aux animaux de basse-cour",
+            "Il est utilisé pour fabriquer du savon liquide"
+          ],
+          "answer": 1,
+          "why": "Kahve telvesi olağan durumda çöplüklere gitmektedir ('finissent presque toujours dans les décharges municipales')."
+        },
+        {
+          "prompt": "Auprès de qui l'entreprise collecte-t-elle sa matière première ?",
+          "options": [
+            "Auprès des petits cafés et restaurants locaux",
+            "Directement auprès des exploitations agricoles en Colombie",
+            "Auprès des fabricants d'appareils électroménagers",
+            "Auprès des clients dans les supermarchés"
+          ],
+          "answer": 0,
+          "why": "Girişim atıkları bağımsız kafelerden ve restoranlardan toplamaktadır ('centaines de bistrots indépendants et de restaurants')."
+        },
+        {
+          "prompt": "Quel avantage présentent ces granulés par rapport au bois classique ?",
+          "options": [
+            "Ils diffusent une chaleur plus régulière et prolongée",
+            "Ils sont entièrement distribués gratuitement par la mairie",
+            "Ils ne produisent absolument aucune cendre blanche",
+            "Ils peuvent s'allumer instantanément sans briquet"
+          ],
+          "answer": 0,
+          "why": "Geleneksel odunlara kıyasla daha dayanıklı ve uzun süreli ısı sağlarlar ('dégagent une chaleur plus durable que les bûches')."
+        }
+      ]
+    },
+    {
+      "id": "fr-read-villes-intelligentes",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B2",
+      "title": "Objets connectés et gouvernance des villes intelligentes",
+      "text": "Les métropoles contemporaines déploient aujourd'hui des réseaux denses de capteurs intelligents afin d'optimiser en direct le fonctionnement des services urbains essentiels. Dans des villes pionnières telles que Lyon ou Nantes, des milliers de modules électroniques discrets mesurent la concentration des polluants atmosphériques, régulent la circulation automobile et surveillent l'éclairage nocturne. Les lampadaires intelligents tamisent automatiquement leur intensité lumineuse dès que les rues se vident, générant de substantielles économies d'énergie, tandis que des sondes hygrométriques enfouies sous les pelouses n'enclenchent l'arrosage automatique que lorsque le sol manque d'eau. Les urbanistes louent ces technologies prédictives qui allègent la dépense publique et rehaussent le confort des habitants. Néanmoins, des collectifs de citoyens s'inquiètent vivement pour la protection de la vie privée, redoutant que la captation continuelle des trajectoires et des données personnelles n'instaure une société de surveillance permanente au cœur même de l'espace civique partagé.",
+      "tr": "Günümüz metropolleri, temel kentsel hizmetlerin işleyişini anlık optimize etmek için yoğun akıllı sensör ağları kuruyor. Lyon veya Nantes gibi öncü şehirlerde binlerce küçük elektronik modül havadaki kirletici yoğunluğunu ölçüyor, araç trafiğini düzenliyor ve gece aydınlatmasını denetliyor. Akıllı sokak lambaları sokaklar boşalır boşalmaz ışık yoğunluğunu otomatik olarak kısarak kayda değer enerji tasarrufu sağlarken, çimlerin altına gömülü nem probları otomatik sulamayı yalnızca toprak susuz kaldığında çalıştırıyor. Şehir plancıları, kamu harcamalarını hafifleten ve sakinlerin konforunu artıran bu tahmine dayalı teknolojileri övüyor. Yine de vatandaş kolektifleri özel hayatın korunması konusunda derin endişe duyarak, güzergâhların ve kişisel verilerin sürekli toplanmasının paylaşılan kamusal alanın merkezinde kalıcı bir gözetim toplumu yaratmasından çekiniyor.",
+      "questions": [
+        {
+          "prompt": "Comment l'éclairage public connecté permet-il de réduire les factures d'électricité ?",
+          "options": [
+            "En s'éteignant entièrement de manière abrupte à minuit",
+            "En réduisant sa luminosité dès qu'il n'y a plus de passants",
+            "En captant l'énergie des phares de voitures qui roulent",
+            "En utilisant des miroirs solaires orientables"
+          ],
+          "answer": 1,
+          "why": "Sokaklar boşaldığında lambalar parlaklığı otomatik olarak kısmaktadır ('tamisent automatiquement leur intensité lumineuse dès que les rues se vident')."
+        },
+        {
+          "prompt": "Quel principal atout les urbanistes attribuent-ils aux capteurs connectés ?",
+          "options": [
+            "La baisse des dépenses publiques et le bien-être accru des citadins",
+            "L'interdiction absolue de toute circulation motorisée",
+            "L'augmentation des recettes fiscales perçues sur le logement",
+            "La suppression définitive de tous les feux de signalisation"
+          ],
+          "answer": 0,
+          "why": "Plancılar kamu harcamalarındaki düşüşü ve yaşam refahını öne çıkarır ('allègent la dépense publique et rehaussent le confort')."
+        },
+        {
+          "prompt": "Quelle inquiétude majeure est formulée par les collectifs citoyens ?",
+          "options": [
+            "Le risque de panne générale en cas de fortes chutes de neige",
+            "La menace d'une surveillance généralisée et la perte de vie privée",
+            "Le manque de techniciens qualifiés pour réparer les bornes",
+            "Le coût exorbitant des ampoules basse consommation"
+          ],
+          "answer": 1,
+          "why": "Vatandaş kolektifleri mahremiyet kaybı ve sürekli gözetim toplumundan çekinmektedir ('société de surveillance permanente au cœur même de l'espace')."
+        }
+      ]
+    },
+    {
+      "id": "fr-read-microbiote-cerveau",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B2",
+      "title": "Le microbiote intestinal et l'équilibre psychique",
+      "text": "Au cours des dernières années, les chercheurs en neurobiologie ont mis au jour une connexion biochimique fascinante reliant l'intestin grêle aux centres de commande cérébraux. Désigné sous le nom d'axe intestin-cerveau, ce réseau de dialogue physiologique bidirectionnel repose fondamentalement sur les milliers de milliards de micro-organismes qui colonisent la paroi digestive. Ces bactéries spécialisées participent activement à la synthèse de neurotransmetteurs essentiels, notamment la sérotonine et l'acide gamma-aminobutyrique, molécules clés de la régulation de l'humeur, du sommeil et de la résistance au stress. Des recherches cliniques récentes indiquent qu'une alimentation diversifiée en fibres végétales et produits fermentés favorise la sérénité émotionnelle en jugulant l'inflammation chronique. En conséquence, le corps médical psychiatrique commence à associer des conseils nutritionnels sur mesure aux séances de psychothérapie classiques, esquissant une approche globale et intégrative des troubles anxieux.",
+      "tr": "Son yıllarda nörobiyoloji araştırmacıları, ince bağırsak ile beyin komuta merkezlerini birbirine bağlayan büyüleyici bir biyokimyasal bağlantı keşfettiler. Bağırsak-beyin ekseni olarak adlandırılan bu iki yönlü fizyolojik diyalog ağı, sindirim çeperini kaplayan trilyonlarca mikroorganizmaya dayanıyor. Bu özelleşmiş bakteriler; duygu durumu, uyku ve stres direncinin temel molekülleri olan serotonin ve gama-aminobütirik asit gibi temel nörotransmitterlerin sentezine aktif olarak katılıyor. Yakın tarihli klinik araştırmalar, bitkisel lifler ve fermente ürünler açısından zengin çeşitli bir beslenmenin kronik iltihabı dizginleyerek duygusal dinginliği desteklediğini göstermektedir. Sonuç olarak psikiyatri dünyası, anksiyete bozukluklarına bütüncül ve kapsayıcı bir yaklaşım çizerek klasik psikoterapi seanslarının yanına kişiye özel beslenme tavsiyelerini eklemeye başlıyor.",
+      "questions": [
+        {
+          "prompt": "En quoi consiste la particularité de l'axe intestin-cerveau ?",
+          "options": [
+            "C'est un circuit de communication physiologique à double sens",
+            "C'est un réflexe moteur qui disparaît à l'âge adulte",
+            "C'est une réaction hormonale déclenchée uniquement pendant la nuit",
+            "C'est un système totalement étanche aux bactéries externes"
+          ],
+          "answer": 0,
+          "why": "Bağırsak-beyin ekseni iki yönlü fizyolojik bir iletişim kanalıdır ('réseau de dialogue physiologique bidirectionnel')."
+        },
+        {
+          "prompt": "Quel est le rôle thérapeutique des bactéries digestives ?",
+          "options": [
+            "Elles éliminent intégralement les toxines du système lymphatique",
+            "Elles synthétisent des neuromédiateurs régulant l'humeur comme la sérotonine",
+            "Elles dispensent le corps humain de toute activité physique",
+            "Elles neutralisent l'effet des vitamines alimentaires"
+          ],
+          "answer": 1,
+          "why": "Bakteriler serotonin gibi duygu durumunu düzenleyen nörotransmitterleri sentezler ('synthèse de neurotransmetteurs essentiels, notamment la sérotonine')."
+        },
+        {
+          "prompt": "Quelle nouvelle démarche médicale émerge dans la prise en charge de l'anxiété ?",
+          "options": [
+            "L'interdiction absolue de consommer des aliments fermentés",
+            "L'association de recommandations alimentaires à la psychothérapie",
+            "Le recours exclusif aux anxiolytiques chimiques de synthèse",
+            "L'abandon complet du dialogue thérapeutique en cabinet"
+          ],
+          "answer": 1,
+          "why": "Psikiyatri alanı artık psikoterapiye kişiye özel beslenme tavsiyelerini eklemektedir ('associer des conseils nutritionnels sur mesure aux séances de psychothérapie')."
+        }
+      ]
+    },
+    {
+      "id": "fr-read-fermes-verticales",
+      "language": "fr",
+      "exam": "DELF",
+      "level": "B2",
+      "title": "L'agriculture verticale face aux aléas climatiques",
+      "text": "Face aux vagues de sécheresse répétées et à la dégradation des sols fertiles, l'agriculture verticale en intérieur s'affirme comme une piste prometteuse pour sécuriser l'approvisionnement des métropoles. Dans d'immenses hangars désaffectés et climatisés, salades, herbes aromatiques et petits fruits sont cultivés sur des rayonnages verticaux grâce à des solutions aqueuses riches en nutriments, sans aucun recours à la terre arable. Des rampes d'éclairage LED délivrent des spectres lumineux modulables qui optimisent la photosynthèse, autorisant des récoltes abondantes tout au long de l'année à l'abri des caprices de la météo. Ce procédé permet d'économiser jusqu'à quatre-vingt-quinze pour cent d'eau douce comparé au plein champ et proscrit tout usage de pesticides chimiques. Toutefois, l'investissement initial colossal en matériel technologique et la lourde facture d'électricité constituent des défis financiers notables que les ingénieurs cherchent à surmonter par le recours aux énergies renouvelables.",
+      "tr": "Tekrarlanan kuraklık dalgaları ve verimli toprakların bozulması karşısında kapalı alan dikey tarımı, metropollerin gıda tedarikini güvenceye almak için umut verici bir yol olarak öne çıkıyor. İklim kontrollü devasa depolarda marul, aromatik otlar ve kırmızı meyveler; ekilebilir toprağa hiç başvurulmadan besin açısından zengin sulu solüsyonlar sayesinde dikey raflarda yetiştiriliyor. LED aydınlatma panelleri fotosentezi optimize eden ayarlanabilir ışık spektrumları yayarak hava koşullarının kaprislerinden uzakta yıl boyu bol hasat sağlıyor. Bu yöntem açık tarlaya kıyasla yüzde doksan beşe kadar tatlı su tasarrufu sağlıyor ve kimyasal pestisit kullanımını tamamen yasaklıyor. Bununla birlikte teknolojik donanıma yapılan devasa ilk yatırım ve yüklü elektrik faturası, mühendislerin yenilenebilir enerji kullanarak aşmaya çalıştığı önemli mali zorluklardır.",
+      "questions": [
+        {
+          "prompt": "Sur quel support nutritif poussent les végétaux dans les fermes verticales ?",
+          "options": [
+            "Sur de la terre végétale enrichie en engrais minéraux",
+            "Dans des bains aqueux enrichis en éléments nutritifs sans sol",
+            "Sur des copeaux d'écorce de bois tropical stérilisés",
+            "Dans des bacs remplis de sable de quartz chauffé"
+          ],
+          "answer": 1,
+          "why": "Bitkiler toprak yerine besin maddeleriyle zenginleştirilmiş su solüsyonlarında yetişmektedir ('solutions aqueuses riches en nutriments, sans aucun recours à la terre')."
+        },
+        {
+          "prompt": "Quel est l'un des bénéfices environnementaux majeurs de cette pratique ?",
+          "options": [
+            "Une réduction drastique de la consommation d'eau et zéro pesticide",
+            "La création spontanée de nouvelles forêts en périphérie des villes",
+            "L'absence totale de tout système d'arrosage mécanique",
+            "La possibilité de cultiver des céréales de plein vent à moindre coût"
+          ],
+          "answer": 0,
+          "why": "%95 su tasarrufu ve kimyasal pestisit kullanılmaması öne çıkan çevresel faydadır ('économiser jusqu'à quatre-vingt-quinze pour cent d'eau... proscrit tout pesticide')."
+        },
+        {
+          "prompt": "Quel obstacle financier freine encore l'expansion de ces installations urbaines ?",
+          "options": [
+            "Le refus absolu des commerces de proximité d'acheter ces légumes",
+            "Le coût élevé du matériel de pointe et la consommation électrique",
+            "L'interdiction gouvernementale d'éclairer les serres pendant la nuit",
+            "L'indisponibilité totale de semences adaptées à la culture sans terre"
+          ],
+          "answer": 1,
+          "why": "Yüksek ilk teknoloji yatırımı ve elektrik tüketimi en büyük mali engeldir ('investissement initial colossal... lourde facture d'électricité')."
+        }
+      ]
+    },
+    {
+      "id": "fr-read-renaturation-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "title": "Réensauvagement écologique et mécanique des cascades trophiques",
+      "text": "La biologie de la conservation opère une remarquable mutation paradigmatique en délaissant la simple sanctuarisation passive d'espaces clos au profit du réensauvagement proactif des écosystèmes dévastés. Alors que l'écologie traditionnelle cantonnait souvent ses efforts à protéger artificiellement des parcelles réduites et à surveiller des effectifs en déclin, le réensauvagement ambitionne de restaurer les processus d'autorégulation de la nature et de réhabiliter les grands prédateurs au sommet de la chaîne alimentaire. La réintroduction du loup dans le parc national de Yellowstone illustre magnifiquement cette dynamique de cascade trophique : en modifiant profondément les comportements de pâturage des cerfs, la prédation a permis la régénération spontanée des peupliers et des saules le long des berges fluviales. Ce renouveau végétal a consolidé les sols contre l'érosion, stabilisé le lit des rivières et favorisé le retour spontané des castors, des passereaux et d'une riche faune aquatique. Pour autant, le monde pastoral exprime de vives inquiétudes quant à la pérennité de l'élevage extensif et au maintien de l'économie montagnarde. Réconcilier la réhabilitation sauvage avec le pastoralisme historique impose dès lors des mécanismes d'indemnisation justes et une médiation institutionnelle transparente.",
+      "tr": "Koruma biyolojisi, kapalı alanların edilgen biçimde korunmasını bir kenara bırakıp tahrip edilmiş ekosistemlerin proaktif biçimde yeniden yabanileştirilmesine yönelerek dikkat çekici bir paradigma dönüşümü gerçekleştiriyor. Geleneksel ekoloji çabalarını genellikle dar parselleri yapay olarak korumak ve azalan popülasyonları izlemekle sınırlandırırken, yeniden yabanileştirme doğanın kendi kendini düzenleme süreçlerini canlandırmayı ve besin zincirinin en tepesindeki büyük yırtıcıları sisteme kazandırmayı amaçlıyor. Kurdun Yellowstone Ulusal Parkı'na geri dönüşü bu trofik çağlayan dinamiğini mükemmel biçimde örneklendirir: geyiklerin otlama davranışlarını derinden değiştiren avcı varlığı, nehir kıyısı boyunca kavak ve söğütlerin kendiliğinden yeşermesine imkan tanıdı. Bu bitkisel yenilenme toprağı erozyona karşı güçlendirdi, nehir yataklarını sabitledi ve kunduzların, ötücü kuşların ve zengin sucul faunanın kendiliğinden dönüşünü sağladı. Yine de hayvancılık sektörü yaylacılığın geleceği ve dağ ekonomisinin sürdürülebilirliği konusunda derin endişeler taşımaktadır. Yabani hayatın canlandırılması ile tarihi otlatma geleneklerini uzlaştırmak, adil tazminat mekanizmaları ve şeffaf kurumsal arabuluculuk gerektirir.",
+      "questions": [
+        {
+          "prompt": "En quoi la démarche du réensauvagement se distingue-t-elle de la conservation classique ?",
+          "options": [
+            "Elle enferme les espèces menacées dans des enclos clos hautement surveillés",
+            "Elle restaure l'autonomie des équilibres naturels en réintroduisant les super-prédateurs",
+            "Elle privilégie exclusivement la flore locale au détriment de la faune sauvage",
+            "Elle supprime définitivement toute régulation étatique des forêts domaniales"
+          ],
+          "answer": 1,
+          "why": "Yeniden yabanileştirme doğal dengenin kendi kendini düzenlemesini ve büyük yırtıcıların dönüşünü hedefler ('restaurer les processus d'autorégulation de la nature et réhabiliter les grands prédateurs')."
+        },
+        {
+          "prompt": "Quel impact positif inattendu a engendré la repousse des arbres le long des rivières à Yellowstone ?",
+          "options": [
+            "La disparition complète de toute trace d'humidité dans les sols forestiers",
+            "La consolidation des berges et le retour d'une grande diversité animale",
+            "L'assèchement prématuré des cours d'eau pendant la saison estivale",
+            "L'invasion incontrôlable des prairies par des rongeurs nuisibles"
+          ],
+          "answer": 1,
+          "why": "Nehir kıyısındaki ağaçların yeniden büyümesi kıyıları sabitlemiş ve zengin bir hayvan çeşitliliğinin geri dönmesini sağlamıştır ('consolidé les sols... stabilisé le lit des rivières et favorisé le retour spontané des castors')."
+        },
+        {
+          "prompt": "Quelle est la principale appréhension formulée par les éleveurs de bétail ?",
+          "options": [
+            "La diminution du prix d'achat du fourrage pour l'hiver",
+            "La menace qui pèse sur l'élevage traditionnel et l'équilibre économique rural",
+            "L'obligation d'acheter des clôtures électrifiées importées",
+            "L'interdiction de participer aux marchés agricoles régionaux"
+          ],
+          "answer": 1,
+          "why": "Hayvancılıkla geçinenler yaylacılık ve kırsal ekonominin dengesinin bozulmasından korkmaktadır ('inquiétudes quant à la pérennité de l'élevage extensif et au maintien de l'économie')."
+        }
+      ]
+    },
+    {
+      "id": "fr-read-epigenetique-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "title": "Plasticité épigénétique et transmission transgénérationnelle",
+      "text": "Durant plus d'un demi-siècle, la doxa dominante de la génétique moléculaire considérait que l'identité morphologique et les prédispositions pathologiques d'un organisme vivant étaient gravées de manière inaltérable dans la séquence des bases azotées de son ADN. L'essor retentissant de l'épigénétique est venu battre en brèche ce déterminisme rigide. Des mécanismes biochimiques précis, tels que la méthylation de l'ADN ou l'acétylation des histones, se comportent comme de subtils commutateurs capables d'activer ou d'éteindre des gènes sans jamais modifier le texte génétique fondamental. Des facteurs environnementaux majeurs, à l'instar des carences alimentaires sévères, de la pollution chimique urbaine ou d'un traumatisme psychologique persistant, peuvent apposer des signatures épigénétiques durables qui modulent le métabolisme cellulaire. Plus stupéfiant encore, certains marquages épigénétiques échappent au nettoyage programmé des cellules germinales et se transmettent à la descendance. Des recherches épidémiologiques menées sur les enfants et petits-enfants de survivants de grandes famines révèlent une incidence anormalement élevée de diabète et d'affections cardiovasculaires, prouvant de façon éclatante que notre héritage biologique compile autant les gènes de nos ancêtres que les épreuves environnementales qu'ils ont endurées.",
+      "tr": "Yarım yüzyıldan uzun bir süre boyunca moleküler genetiğin hakim öğretisi, bir canlının biçimsel kimliğinin ve patolojik yatkınlıklarının DNA'sındaki baz diziliminde değiştirilemez şekilde kazılı olduğunu kabul etti. Epigenetiğin çarpıcı yükselişi bu katı determinizmi yıktı. DNA metilasyonu veya histon asetilasyonu gibi kesin biyokimyasal mekanizmalar, temel genetik metni hiç değiştirmeden genleri açıp kapatabilen ince anahtarlar gibi davranır. Şiddetli besin yetersizliği, kentsel kimyasal kirlilik veya kalıcı psikolojik travma gibi önemli çevresel faktörler, hücresel metabolizmayı düzenleyen kalıcı epigenetik imzalar bırakabilir. Daha da şaşırtıcı olanı, bazı epigenetik işaretlerin üreme hücrelerinin programlanmış temizliğinden kaçarak sonraki nesillere aktarılmasıdır. Büyük kıtlıklardan sağ kurtulanların çocukları ve torunları üzerinde yapılan epidemiyolojik araştırmalar diyabet ve kardiyovasküler hastalıklarda anormal derecede yüksek bir oran ortaya koymakta; bu da biyolojik mirasımızın atalarımızın genleri kadar onların maruz kaldığı çevresel zorlukları da derlediğini gözler önüne sermektedir.",
+      "questions": [
+        {
+          "prompt": "Quelle conception classique de la biologie l'épigénétique a-t-elle remise en question ?",
+          "options": [
+            "L'existence des chromosomes à l'intérieur du noyau des cellules",
+            "Le dogme affirmant que l'ADN détermine de façon rigide et définitive le destin biologique",
+            "Le fait que les plantes synthétisent leur nourriture grâce à la lumière",
+            "L'universalité du code génétique chez l'ensemble des mammifères"
+          ],
+          "answer": 1,
+          "why": "Epigenetik DNA'nın biyolojik kaderi kesin ve değiştirilemez şekilde belirlediği dogmayı sarsmıştır ('battre en brèche ce déterminisme rigide')."
+        },
+        {
+          "prompt": "Comment agissent concrètement les molécules de marquage épigénétique ?",
+          "options": [
+            "En substituant des acides aminés artificiels dans les muscles",
+            "En modulant l'expression des gènes à la manière d'interrupteurs biochimiques",
+            "En accélérant artificiellement la division cellulaire des neurones",
+            "En transformant l'ARN messager en graisse sous-cutanée"
+          ],
+          "answer": 1,
+          "why": "İşaretler gen ifadesini açıp kapayan biyokimyasal anahtarlar gibi çalışır ('se comportent comme de subtils commutateurs capables d'activer ou d'éteindre des gènes')."
+        },
+        {
+          "prompt": "Qu'ont mis en lumière les analyses épidémiologiques sur les lignées de survivants de famines ?",
+          "options": [
+            "Une immunité totale et permanente contre toutes les formes d'infections",
+            "La transmission héréditaire de vulnérabilités physiologiques acquises par les ancêtres",
+            "Une espérance de vie nettement supérieure à celle de la population générale",
+            "La disparition complète de toute trace d'ADN maternel dans les cellules"
+          ],
+          "answer": 1,
+          "why": "Ataların yaşadığı çevresel zorlukların biyolojik etkilerinin nesilden nesile aktarıldığını kanıtlamıştır ('certains marquages épigénétiques... se transmettent à la descendance')."
+        }
+      ]
+    },
+    {
+      "id": "fr-read-science-ouverte-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "title": "Oligopoles éditoriaux académiques et impératif de la science ouverte",
+      "text": "Le monde de la recherche universitaire contemporaine est confronté à une anomalie économique flagrante. Alors que les travaux de pointe sont financés sur fonds publics par les laboratoires nationaux et les universités d'État, les articles scientifiques rédigés par les chercheurs sont cédés à titre gratuit à un cartel restreint d'éditeurs commerciaux privés. Ces multinationales de l'édition érigent par la suite des barrières tarifaires exorbitantes, revendant l'accès aux revues savantes sous forme d'abonnements annuels prohibitifs aux bibliothèques universitaires mêmes dont sont issues ces découvertes. Face à cette confiscation marchande du savoir, le mouvement mondial pour la science ouverte revendique la mise à disposition universelle, immédiate et gratuite des manuscrits scientifiques relus par les pairs. Les promoteurs de l'accès ouvert démontrent qu'en abattant ces péages numériques, on accélère l'innovation collective, on décloisonne les disciplines et on donne une chance équitable aux laboratoires des pays émergents écartés par le coût des revues. Si les conglomérats d'édition invoquent les frais de gestion éditoriale pour légitimer leurs marges confortables, la communauté académique refuse désormais que la connaissance humaine demeure prisonnière d'une rente financière privée.",
+      "tr": "Çağdaş üniversite araştırmaları dünyası bariz bir ekonomik çarpıklıkla karşı karşıyadır. Çığır açan çalışmalar ulusal laboratuvarlar ve devlet üniversiteleri tarafından kamu fonlarıyla finanse edilirken, araştırmacılar tarafından yazılan bilimsel makaleler dar bir özel ticari yayıncı karteline ücretsiz olarak devredilmektedir. Bu çok uluslu yayın şirketleri daha sonra fahiş fiyat bariyerleri inşa ederek, bilimsel dergilere erişimi bu keşiflerin çıktığı üniversite kütüphanelerine yasaklayıcı yıllık abonelikler olarak geri satmaktadır. Bilginin bu ticari gaspı karşısında açık bilim için küresel hareket, hakem denetiminden geçmiş bilimsel makalelerin evrensel, anında ve ücretsiz olarak erişime açılmasını talep etmektedir. Açık erişim destekçileri, bu dijital gişeleri yıkarak kolektif yeniliğin hızlandığını, disiplinler arası engellerin kalktığını ve dergi maliyetleri yüzünden dışlanan gelişmekte olan ülkelerdeki laboratuvarlara adil bir şans verildiğini göstermektedir. Yayın holdingleri yüksek kâr marjlarını meşrulaştırmak için editoryal yönetim giderlerini öne sürse de, akademik topluluk insanlık bilgisinin özel bir finansal rantın tutsağı olarak kalmasını artık reddetmektedir.",
+      "questions": [
+        {
+          "prompt": "Quelle anomalie financière affecte le système de publication scientifique universitaire ?",
+          "options": [
+            "Les étudiants paient des droits d'inscription beaucoup trop élevés",
+            "Les travaux financés par l'argent public sont revendus aux universités à prix d'or",
+            "Les professeurs refusent catégoriquement de publier en format électronique",
+            "Les laboratoires nationaux n'emploient plus aucun chercheur qualifié"
+          ],
+          "answer": 1,
+          "why": "Kamu parasıyla üretilen araştırmaların yine üniversitelere fahiş fiyatlarla satılması anomalidir ('financés sur fonds publics... revendus sous forme d'abonnements prohibitifs')."
+        },
+        {
+          "prompt": "Quel groupe bénéficie particulièrement de la suppression des péages éditoriaux ?",
+          "options": [
+            "Les actionnaires des grands groupes de presse d'information générale",
+            "Les chercheurs des pays en développement tenus à l'écart par les coûts prohibitifs",
+            "Les collectionneurs de manuscrits anciens sur parchemin",
+            "Les imprimeurs industriels de manuels scolaires"
+          ],
+          "answer": 1,
+          "why": "Yüksek dergi ücretleri nedeniyle dışlanan gelişmekte olan ülke araştırmacılarına fayda sağlar ('donne une chance équitable aux laboratoires des pays émergents écartés')."
+        },
+        {
+          "prompt": "Sur quel argumentaire s'appuient les éditeurs privés pour justifier leurs tarifs élevés ?",
+          "options": [
+            "Le financement d'un processus rigoureux de sélection et de relecture critique",
+            "L'achat obligatoire d'ordinateurs portables pour tous les lecteurs",
+            "Le versement de droits d'auteur considérables aux chercheurs rédacteurs",
+            "Le remboursement immédiat de tous les impôts nationaux de la recherche"
+          ],
+          "answer": 0,
+          "why": "Yayıncılar editoryal yönetim ve titiz denetim giderlerini bahane ederler ('invoquent les frais de gestion éditoriale pour légitimer leurs marges')."
+        }
+      ]
     }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-gare",
-   "exam": "DELF",
-   "level": "A2",
-   "title": "Annonce à la gare",
-   "text": "Mesdames et messieurs, le train pour Marseille, départ prévu à quatorze heures trente, a vingt minutes de retard. Il partira de la voie 5 et non de la voie 3. Nous vous prions de nous excuser. Les voyageurs pour Nice doivent prendre le train de quinze heures, voie 2. Merci de votre attention.",
-   "tr": "Bayanlar baylar, kalkışı on dört otuzda olan Marsilya treni yirmi dakika gecikmelidir. Tren 3. perondan değil 5. perondan kalkacaktır. Özür dileriz. Nice yolcuları saat on beş trenine, 2. peronda binmelidir. İlginiz için teşekkürler.",
-   "questions": [
-    {
-     "prompt": "À quelle heure le train pour Marseille partira-t-il ?",
-     "options": [
-      "14 h 30",
-      "14 h 50",
-      "15 h 00",
-      "14 h 10"
-     ],
-     "answer": 1,
-     "why": "14.30 + 20 dakika gecikme = 14.50."
-    },
-    {
-     "prompt": "De quelle voie partira-t-il ?",
-     "options": [
-      "Voie 3",
-      "Voie 5",
-      "Voie 2",
-      "Voie 4"
-     ],
-     "answer": 1,
-     "why": "“Il partira de la voie 5 et non de la voie 3”: 3. peron değil, 5. peron."
-    },
-    {
-     "prompt": "Que doivent faire les voyageurs pour Nice ?",
-     "options": [
-      "Attendre le train de Marseille",
-      "Aller à la voie 3",
-      "Prendre le train de 15 heures, voie 2",
-      "Retourner à la maison"
-     ],
-     "answer": 2,
-     "why": "Nice yolcuları saat 15.00 trenine, 2. peronda binecek."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-velo",
-   "exam": "DELF",
-   "level": "B1",
-   "title": "Le vélo en ville",
-   "text": "Depuis cinq ans, la ville de Strasbourg encourage ses habitants à se déplacer à vélo. Elle a construit plus de six cents kilomètres de pistes cyclables et propose des vélos en location à un prix modique. Résultat : un habitant sur six utilise désormais son vélo chaque jour pour aller travailler. Pourtant, tout le monde n'est pas satisfait. Certains commerçants regrettent la suppression de places de parking devant leurs boutiques et craignent de perdre des clients. La mairie répond que les cyclistes dépensent autant, voire plus, que les automobilistes, car ils s'arrêtent plus souvent. Elle prévoit de nouveaux garages à vélos près des gares.",
-   "tr": "Beş yıldır Strazburg şehri sakinlerini bisikletle ulaşıma teşvik ediyor. Altı yüz kilometreden fazla bisiklet yolu yaptı ve düşük fiyata kiralık bisiklet sunuyor. Sonuç: artık her altı kişiden biri her gün işe bisikletle gidiyor. Yine de herkes memnun değil. Bazı esnaf, dükkânlarının önündeki park yerlerinin kaldırılmasından yakınıyor ve müşteri kaybetmekten korkuyor. Belediye, bisikletlilerin daha sık durdukları için sürücüler kadar, hatta daha fazla harcadığını söylüyor. Garların yakınına yeni bisiklet garajları yapmayı planlıyor.",
-   "questions": [
-    {
-     "prompt": "Quelle part des habitants va au travail à vélo chaque jour ?",
-     "options": [
-      "Un sur trois",
-      "Un sur six",
-      "Un sur dix",
-      "Tous"
-     ],
-     "answer": 1,
-     "why": "“Un habitant sur six”: her altı kişiden biri."
-    },
-    {
-     "prompt": "Que reprochent certains commerçants à la ville ?",
-     "options": [
-      "Les loyers sont trop chers",
-      "Il y a trop de cyclistes dans les magasins",
-      "Des places de parking ont disparu",
-      "Les vélos sont trop chers"
-     ],
-     "answer": 2,
-     "why": "Esnaf, dükkânların önündeki park yerlerinin kaldırılmasından yakınıyor."
-    },
-    {
-     "prompt": "Que répond la mairie ?",
-     "options": [
-      "Les cyclistes dépensent autant ou plus que les automobilistes",
-      "Les commerçants ont raison",
-      "Elle supprimera les pistes cyclables",
-      "Les cyclistes ne dépensent rien"
-     ],
-     "answer": 0,
-     "why": "Belediye “bisikletliler sürücüler kadar, hatta daha fazla harcıyor” diyor."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-boulangere",
-   "exam": "DELF",
-   "level": "B1",
-   "title": "Une boulangère raconte",
-   "text": "Je m'appelle Nadia et je suis boulangère depuis douze ans. Je me lève à trois heures du matin pour préparer le pain. Beaucoup de gens pensent que ce métier est monotone, mais moi, j'adore voir les clients sourire quand ils sentent l'odeur du pain chaud. Le plus difficile, ce sont les week-ends : je travaille le samedi et le dimanche, alors je vois peu ma famille. Pourtant, je ne changerais de métier pour rien au monde. Dans cinq ans, j'espère ouvrir ma propre boutique.",
-   "tr": "Adım Nadia, on iki yıldır fırıncıyım. Ekmek hazırlamak için sabah üçte kalkıyorum. Birçok kişi bu mesleğin monoton olduğunu düşünüyor ama ben müşterilerin sıcak ekmek kokusunu alınca gülümsediğini görmeye bayılıyorum. En zoru hafta sonları: cumartesi ve pazar çalışıyorum, bu yüzden ailemi az görüyorum. Yine de dünyada hiçbir şey için mesleğimi değiştirmem. Beş yıl sonra kendi dükkânımı açmayı umuyorum.",
-   "questions": [
-    {
-     "prompt": "À quelle heure Nadia se lève-t-elle ?",
-     "options": [
-      "À trois heures",
-      "À cinq heures",
-      "À sept heures",
-      "À midi"
-     ],
-     "answer": 0,
-     "why": "“Je me lève à trois heures du matin”."
-    },
-    {
-     "prompt": "Qu'est-ce qui est le plus difficile pour elle ?",
-     "options": [
-      "Préparer le pain",
-      "Les clients désagréables",
-      "Travailler le week-end",
-      "Se lever tôt"
-     ],
-     "answer": 2,
-     "why": "“Le plus difficile, ce sont les week-ends”: hafta sonları çalışmak, çünkü ailesini az görüyor."
-    },
-    {
-     "prompt": "Que veut-elle faire dans cinq ans ?",
-     "options": [
-      "Changer de métier",
-      "Ouvrir sa propre boutique",
-      "Prendre sa retraite",
-      "Voyager"
-     ],
-     "answer": 1,
-     "why": "“J'espère ouvrir ma propre boutique”: kendi dükkânını açmak."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-ecrans",
-   "exam": "DELF",
-   "level": "B2",
-   "title": "Les écrans et les enfants",
-   "text": "Selon une récente étude, les enfants de moins de dix ans passent en moyenne trois heures par jour devant un écran. Les chercheurs ne condamnent pas pour autant la technologie : ils soulignent que l'effet dépend surtout de l'usage. Regarder un dessin animé en famille et en discuter ne produit pas les mêmes résultats que passer seul des heures sur un jeu vidéo. En revanche, ils observent que les enfants qui utilisent un écran juste avant de dormir s'endorment plus tard et dorment moins bien. Ils recommandent donc de fixer des horaires clairs, d'éteindre les appareils une heure avant le coucher et, surtout, de montrer l'exemple, car les enfants imitent le comportement de leurs parents.",
-   "tr": "Yakın tarihli bir araştırmaya göre on yaşından küçük çocuklar günde ortalama üç saatini ekran karşısında geçiriyor. Araştırmacılar bu nedenle teknolojiyi suçlamıyor: etkinin asıl kullanıma bağlı olduğunu vurguluyorlar. Ailece çizgi film izleyip bunu konuşmak, saatlerce tek başına video oyunu oynamakla aynı sonuçları vermez. Buna karşılık, uyumadan hemen önce ekran kullanan çocukların daha geç uyuduğunu ve daha kötü uyuduğunu gözlemliyorlar. Bu yüzden net saatler belirlemeyi, cihazları yatmadan bir saat önce kapatmayı ve her şeyden önce örnek olmayı öneriyorlar, çünkü çocuklar anne babalarının davranışını taklit eder.",
-   "questions": [
-    {
-     "prompt": "Selon les chercheurs, qu'est-ce qui compte le plus ?",
-     "options": [
-      "Le temps total passé devant l'écran",
-      "La façon dont on utilise l'écran",
-      "L'âge de l'enfant",
-      "Le prix de l'appareil"
-     ],
-     "answer": 1,
-     "why": "“L'effet dépend surtout de l'usage”: etki en çok kullanım biçimine bağlı."
-    },
-    {
-     "prompt": "Quelle conséquence observent-ils pour les écrans avant le coucher ?",
-     "options": [
-      "Les enfants se réveillent plus tôt",
-      "Les enfants mangent moins",
-      "Les enfants s'endorment plus tard et dorment moins bien",
-      "Les enfants jouent moins"
-     ],
-     "answer": 2,
-     "why": "“S'endorment plus tard et dorment moins bien”."
-    },
-    {
-     "prompt": "Que recommandent-ils aux parents ?",
-     "options": [
-      "D'interdire tous les écrans",
-      "De fixer des horaires, d'éteindre les appareils une heure avant le coucher et de montrer l'exemple",
-      "D'acheter des écrans plus petits",
-      "De laisser les enfants décider seuls"
-     ],
-     "answer": 1,
-     "why": "Net saatler, yatmadan bir saat önce kapatma ve örnek olma öneriliyor. Tüm ekranları yasaklamak önerilmiyor."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-village",
-   "exam": "DELF",
-   "level": "B2",
-   "title": "Un village qui renaît",
-   "text": "Il y a vingt ans, le village de Saint-Aubin comptait à peine deux cents habitants et sa seule école était sur le point de fermer. Puis un ancien instituteur a eu une idée : proposer des maisons à un euro symbolique à ceux qui s'engageaient à les restaurer et à y vivre au moins cinq ans. Au début, personne n'y croyait. Mais les premières familles sont arrivées, suivies d'artisans, d'une boulangère et d'un café associatif. Aujourd'hui, le village compte six cents habitants et l'école a dû agrandir ses locaux. Le maire reconnaît cependant que ce succès a un revers : les prix de l'immobilier ont augmenté et certains jeunes du village ne peuvent plus s'y loger.",
-   "tr": "Yirmi yıl önce Saint-Aubin köyünün ancak iki yüz sakini vardı ve tek okulu kapanmak üzereydi. Sonra emekli bir öğretmenin bir fikri oldu: evleri onarmayı ve orada en az beş yıl yaşamayı taahhüt edenlere sembolik bir avroya ev vermek. Başta kimse inanmadı. Ama ilk aileler geldi, ardından zanaatkârlar, bir fırıncı ve bir dernek kafesi. Bugün köyün altı yüz sakini var ve okul binasını büyütmek zorunda kaldı. Belediye başkanı ise bu başarının bir bedeli olduğunu kabul ediyor: konut fiyatları arttı ve köyün bazı gençleri artık orada oturamıyor.",
-   "questions": [
-    {
-     "prompt": "Quel problème le village avait-il il y a vingt ans ?",
-     "options": [
-      "Il avait trop d'habitants",
-      "Il perdait ses habitants et son école risquait de fermer",
-      "Il n'avait pas d'eau",
-      "Il était trop touristique"
-     ],
-     "answer": 1,
-     "why": "Köyde ancak 200 kişi vardı ve tek okul kapanmak üzereydi."
-    },
-    {
-     "prompt": "En quoi consistait l'idée de l'ancien instituteur ?",
-     "options": [
-      "Vendre des terrains à bas prix",
-      "Construire une usine",
-      "Donner des maisons à un euro contre leur restauration et cinq ans de présence",
-      "Ouvrir un hôtel"
-     ],
-     "answer": 2,
-     "why": "Evler, onarılması ve en az beş yıl orada yaşanması karşılığında bir avroya veriliyordu."
-    },
-    {
-     "prompt": "Quel inconvénient le maire reconnaît-il ?",
-     "options": [
-      "L'école est trop petite",
-      "Les artisans sont partis",
-      "Les prix des logements ont augmenté, et des jeunes du village ne peuvent plus y vivre",
-      "Il n'y a plus de café"
-     ],
-     "answer": 2,
-     "why": "Konut fiyatları arttı, köyün bazı gençleri artık orada oturamıyor. Okul büyüdü, kafe var."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-colocation",
-   "exam": "DELF",
-   "level": "B2",
-   "title": "La colocation, pour qui ?",
-   "text": "Autrefois réservée aux étudiants, la colocation séduit désormais des personnes de tous âges. Le premier motif est financier : avec des loyers qui ne cessent d'augmenter, partager un grand appartement permet de vivre dans un quartier central sans se ruiner. Mais l'argument n'est pas seulement économique. Beaucoup de jeunes actifs, installés dans une ville inconnue, y trouvent un moyen de se faire des amis rapidement. Les difficultés existent pourtant. Il faut s'accorder sur le ménage, sur les invités et sur le bruit, et les désaccords sur ces points sont la première cause de départ. Pour les éviter, certains colocataires rédigent une sorte de charte dès l'arrivée de chacun. Cela peut sembler excessif, mais ceux qui l'ont essayée affirment que les conflits ont nettement diminué.",
-   "tr": "Eskiden öğrencilere özgü olan ev paylaşımı artık her yaştan insanı cezbediyor. İlk neden parasal: kiralar durmadan artarken büyük bir daireyi bölüşmek, iflas etmeden merkezî bir semtte yaşamayı mümkün kılıyor. Ama gerekçe yalnızca ekonomik değil. Yabancı bir şehre yerleşen birçok genç çalışan, bunda hızla arkadaş edinmenin bir yolunu buluyor. Yine de zorluklar var. Temizlik, misafirler ve gürültü konusunda anlaşmak gerekiyor; bu konulardaki anlaşmazlıklar birinin evden ayrılmasının başlıca sebebi. Bunlardan kaçınmak için bazı ev arkadaşları, her yeni gelen olduğunda bir tür tüzük yazıyor. Aşırı görünebilir ama denemiş olanlar çatışmaların belirgin biçimde azaldığını söylüyor.",
-   "questions": [
-    {
-     "prompt": "Quel est le premier motif de la colocation selon le texte ?",
-     "options": [
-      "Le motif financier",
-      "Le désir d'être étudiant",
-      "La taille des appartements",
-      "Le bruit des quartiers"
-     ],
-     "answer": 0,
-     "why": "“Le premier motif est financier”: kiralar arttığı için maliyet."
-    },
-    {
-     "prompt": "Que trouvent beaucoup de jeunes actifs dans la colocation ?",
-     "options": [
-      "Un loyer gratuit",
-      "Un moyen de se faire des amis",
-      "Un travail dans le quartier",
-      "Plus de calme"
-     ],
-     "answer": 1,
-     "why": "“Un moyen de se faire des amis rapidement”: hızla arkadaş edinmenin yolu."
-    },
-    {
-     "prompt": "À quoi sert la charte ?",
-     "options": [
-      "À choisir les invités",
-      "À fixer le prix du loyer",
-      "À éviter les conflits sur le ménage, les invités et le bruit",
-      "À remplacer le contrat de location"
-     ],
-     "answer": 2,
-     "why": "Tüzük, temizlik/misafir/gürültü anlaşmazlıklarını önlemek için yazılıyor."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-silence",
-   "exam": "DALF",
-   "level": "C1",
-   "title": "Le silence, un luxe urbain",
-   "text": "Dans les grandes villes, le silence est devenu un bien rare, presque un produit de luxe. Les promoteurs immobiliers le savent : un appartement donnant sur une cour intérieure se vend nettement plus cher qu'un logement identique situé sur un boulevard. Pourtant, les études menées ces dernières années montrent que le bruit n'est pas qu'une simple gêne. Exposés en permanence à la circulation ou aux chantiers, les habitants dorment moins bien, ont plus de mal à se concentrer et finissent par éprouver une fatigue que le repos du week-end ne suffit pas à dissiper. Certaines municipalités ont réagi en créant des « zones calmes », où les voitures sont limitées et où la musique amplifiée est interdite. Les premiers résultats sont encourageants, mais les commerçants s'inquiètent : selon eux, trop de tranquillité éloignerait les clients. Reste à savoir si l'on peut concilier une ville vivante et une ville apaisée, ou s'il faudra, un jour, choisir l'une au détriment de l'autre.",
-   "tr": "Büyük şehirlerde sessizlik kıt bir değer, neredeyse bir lüks ürün hâline geldi. Emlakçılar bunu biliyor: iç avluya bakan bir daire, ana caddedeki aynı daireden belirgin biçimde daha pahalıya satılıyor. Oysa son yıllarda yapılan araştırmalar gürültünün basit bir rahatsızlıktan çok daha fazlası olduğunu gösteriyor. Sürekli trafiğe ya da inşaata maruz kalanlar daha kötü uyuyor, zor odaklanıyor ve hafta sonu dinlenmesinin bile geçiremediği bir yorgunluğa kapılıyor. Bazı belediyeler arabaların sınırlandığı ve yüksek sesli müziğin yasaklandığı «sakin bölgeler» oluşturarak karşılık verdi. İlk sonuçlar cesaret verici ama esnaf endişeli: onlara göre fazla huzur müşterileri uzaklaştırır. Canlı bir şehirle dingin bir şehrin bağdaştırılıp bağdaştırılamayacağı, yoksa bir gün birini diğerinin pahasına seçmek zorunda kalıp kalmayacağımız henüz belli değil.",
-   "questions": [
-    {
-     "prompt": "Pourquoi les promoteurs savent-ils que le silence a de la valeur ?",
-     "options": [
-      "Les boulevards sont fermés la nuit",
-      "Les acheteurs refusent les quartiers animés",
-      "Les logements calmes se vendent nettement plus cher",
-      "Les cours intérieures sont interdites aux voitures"
-     ],
-     "answer": 2,
-     "why": "Avluya bakan (sessiz) daire aynısından belirgin biçimde pahalıya satılıyor."
-    },
-    {
-     "prompt": "Que montrent les études récentes sur le bruit ?",
-     "options": [
-      "Il n'a aucun effet sur la santé",
-      "Il perturbe le sommeil et la concentration, et la fatigue persiste",
-      "Le repos du week-end suffit à tout compenser",
-      "Les habitants finissent par s'y habituer entièrement"
-     ],
-     "answer": 1,
-     "why": "Uyku ve odaklanma bozuluyor; hafta sonu dinlenmesi yorgunluğu geçirmiyor."
-    },
-    {
-     "prompt": "Pourquoi les commerçants s'inquiètent-ils des zones calmes ?",
-     "options": [
-      "Ils craignent qu'elles fassent fuir les clients",
-      "Ils doivent payer une taxe supplémentaire",
-      "Ils ne peuvent plus livrer leurs marchandises",
-      "Ils veulent plus de bruit pour leurs concerts"
-     ],
-     "answer": 0,
-     "why": "“Trop de tranquillité éloignerait les clients”: fazla sessizlik müşteriyi uzaklaştırır."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-ia",
-   "exam": "DALF",
-   "level": "C1",
-   "title": "Écrire avec une machine ?",
-   "text": "Depuis que les logiciels de rédaction automatique se sont répandus, une question divise les enseignants : faut-il les interdire en classe ou apprendre aux élèves à s'en servir ? Les partisans de l'interdiction soutiennent qu'un texte produit en quelques secondes ne laisse aucune place à l'effort, et que l'effort est précisément ce qui fait progresser. Leurs adversaires répondent que la calculatrice n'a pas supprimé les mathématiques, et que le véritable enjeu est de former des esprits capables de vérifier, de corriger et de nuancer ce qu'une machine propose. Entre ces deux positions, plusieurs établissements testent une voie intermédiaire : les brouillons sont rédigés à la main, en classe, puis comparés avec une version corrigée par le logiciel. L'élève doit alors expliquer chaque différence. Cette méthode demande du temps, reconnaissent les professeurs, mais elle a un mérite : elle transforme l'outil en objet de réflexion plutôt qu'en raccourci.",
-   "tr": "Otomatik yazım yazılımları yaygınlaştığından beri öğretmenleri bir soru ayırıyor: bunları sınıfta yasaklamalı mı, yoksa öğrencilere nasıl kullanılacağını mı öğretmeli? Yasaktan yana olanlar, birkaç saniyede üretilen bir metnin çabaya yer bırakmadığını, ilerlemeyi sağlayanın ise tam da çaba olduğunu savunuyor. Karşı çıkanlar ise hesap makinesinin matematiği ortadan kaldırmadığını, asıl meselenin bir makinenin önerdiğini denetleyebilen, düzeltebilen ve inceltebilen zihinler yetiştirmek olduğunu söylüyor. Bu iki görüşün arasında birkaç okul orta bir yol deniyor: taslaklar sınıfta elle yazılıyor, sonra yazılımın düzelttiği sürümle karşılaştırılıyor. Öğrenci her farkı açıklamak zorunda. Öğretmenler bu yöntemin zaman aldığını kabul ediyor ama bir erdemi var: aracı bir kısayol olmaktan çıkarıp üzerinde düşünülen bir nesneye dönüştürüyor.",
-   "questions": [
-    {
-     "prompt": "Quel argument avancent les partisans de l'interdiction ?",
-     "options": [
-      "Les logiciels coûtent trop cher",
-      "Sans effort, on ne progresse pas",
-      "Les élèves écrivent trop lentement",
-      "Les professeurs manquent de temps"
-     ],
-     "answer": 1,
-     "why": "“L'effort est précisément ce qui fait progresser”: çaba ilerlemeyi sağlar."
-    },
-    {
-     "prompt": "Que répondent leurs adversaires ?",
-     "options": [
-      "Qu'un outil nouveau n'a pas détruit les disciplines, il faut apprendre à le contrôler",
-      "Que les machines écrivent mieux que les élèves",
-      "Que la calculatrice doit être interdite aussi",
-      "Que les professeurs devraient utiliser le logiciel seuls"
-     ],
-     "answer": 0,
-     "why": "Hesap makinesi örneği: asıl mesele makinenin önerdiğini denetlemeyi öğrenmek."
-    },
-    {
-     "prompt": "Dans la méthode intermédiaire, que doit faire l'élève ?",
-     "options": [
-      "Recopier la version du logiciel",
-      "Écrire sans brouillon",
-      "Corriger le travail d'un camarade",
-      "Expliquer chaque différence entre son brouillon et la version corrigée"
-     ],
-     "answer": 3,
-     "why": "“L'élève doit alors expliquer chaque différence”: her farkı açıklamalı."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-marche",
-   "exam": "DELF",
-   "level": "B1",
-   "title": "Le marché du jeudi",
-   "text": "Depuis vingt ans, le marché du jeudi anime la place de mon quartier. Les habitants y viennent pour acheter des fruits, du fromage ou simplement pour discuter avec les marchands. Pourtant, la mairie veut déplacer le marché dans une rue voisine, car la place doit être rénovée pendant six mois. Beaucoup de commerçants sont inquiets : ils craignent de perdre une partie de leurs clients, surtout les personnes âgées qui habitent tout près. Une réunion publique aura lieu mardi soir à la mairie. Chacun pourra poser des questions et proposer des solutions.",
-   "tr": "Yirmi yıldır perşembe pazarı mahallemin meydanını canlandırıyor. Sakinler buraya meyve, peynir almaya ya da sadece satıcılarla sohbet etmeye geliyor. Ancak belediye, meydan altı ay boyunca yenileneceği için pazarı yakındaki bir sokağa taşımak istiyor. Birçok esnaf endişeli: müşterilerinin bir kısmını, özellikle çok yakında yaşayan yaşlıları kaybetmekten korkuyorlar. Salı akşamı belediyede halka açık bir toplantı olacak. Herkes soru sorabilecek ve çözüm önerebilecek.",
-   "questions": [
-    {
-     "prompt": "Pourquoi la mairie veut-elle déplacer le marché ?",
-     "options": [
-      "Les marchands le demandent",
-      "La place doit être rénovée",
-      "Il y a trop de clients",
-      "Le marché est trop bruyant"
-     ],
-     "answer": 1,
-     "why": "“La place doit être rénovée pendant six mois”: meydan yenilenecek."
-    },
-    {
-     "prompt": "De quoi les commerçants ont-ils peur ?",
-     "options": [
-      "De devoir payer plus cher",
-      "De manquer de produits",
-      "De perdre une partie de leurs clients",
-      "De changer de métier"
-     ],
-     "answer": 2,
-     "why": "“Ils craignent de perdre une partie de leurs clients”: müşteri kaybetmekten korkuyorlar."
-    },
-    {
-     "prompt": "Que se passera-t-il mardi soir ?",
-     "options": [
-      "La fermeture du marché",
-      "Une réunion publique",
-      "Le début des travaux",
-      "Une fête de quartier"
-     ],
-     "answer": 1,
-     "why": "“Une réunion publique aura lieu mardi soir”: salı akşamı halka açık toplantı var."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-musees",
-   "exam": "DELF",
-   "level": "B2",
-   "title": "Des musées gratuits ?",
-   "text": "Plusieurs villes envisagent de rendre l'entrée des musées gratuite le premier dimanche de chaque mois. Les partisans de cette mesure affirment qu'elle attire un public nouveau, notamment des familles qui n'osent pas pousser la porte d'un musée par crainte du prix. Les opposants, eux, rappellent que la gratuité ne règle pas tout : un habitant qui ne s'intéresse pas à l'art n'ira pas davantage au musée parce que l'entrée ne coûte rien. Ils préféreraient que cet argent serve à financer des visites scolaires et des animations. Une étude menée dans trois villes montre cependant que la fréquentation double lors des journées gratuites, sans que les recettes annuelles ne diminuent beaucoup.",
-   "tr": "Birçok şehir, müzeleri her ayın ilk pazar günü ücretsiz yapmayı düşünüyor. Bu önlemin savunucuları, ücretsiz giriş sayesinde yeni bir kitlenin, özellikle fiyattan çekindiği için müzeye adım atmaya cesaret edemeyen ailelerin geleceğini söylüyor. Karşı çıkanlar ise ücretsizliğin her sorunu çözmediğini hatırlatıyor: sanata ilgi duymayan biri, giriş ücretsiz diye müzeye daha çok gitmeyecek. Bu paranın okul gezilerini ve etkinlikleri finanse etmesini tercih ediyorlar. Üç şehirde yapılan bir araştırma ise ücretsiz günlerde ziyaretçi sayısının iki katına çıktığını, buna rağmen yıllık gelirlerin pek düşmediğini gösteriyor.",
-   "questions": [
-    {
-     "prompt": "Selon les partisans, que permet la gratuité ?",
-     "options": [
-      "De fermer certains musées",
-      "D'augmenter le prix des billets",
-      "De réduire le nombre de visiteurs",
-      "D'attirer un public nouveau"
-     ],
-     "answer": 3,
-     "why": "“Elle attire un public nouveau”: yeni bir kitleyi çekiyor."
-    },
-    {
-     "prompt": "Quel est l'argument principal des opposants ?",
-     "options": [
-      "Les musées sont déjà trop fréquentés",
-      "La gratuité ne crée pas à elle seule l'intérêt pour l'art",
-      "Les familles préfèrent le cinéma",
-      "Les musées manquent de place"
-     ],
-     "answer": 1,
-     "why": "Karşı çıkanlar: sanata ilgi duymayan biri ücretsiz diye gitmez."
-    },
-    {
-     "prompt": "Que montre l'étude citée ?",
-     "options": [
-      "Les recettes s'effondrent",
-      "Les visiteurs sont plus âgés",
-      "La fréquentation double les jours gratuits",
-      "Les écoles refusent les visites"
-     ],
-     "answer": 2,
-     "why": "“La fréquentation double lors des journées gratuites”: ücretsiz günlerde ziyaret iki katına çıkıyor."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-cuisine",
-   "exam": "DELF",
-   "level": "A2",
-   "title": "Un cours de cuisine",
-   "text": "Le centre culturel Jean Moulin propose un nouveau cours de cuisine pour débutants. Les cours ont lieu le mardi soir, de dix-huit heures à vingt heures, à partir du 3 mars. Une séance coûte douze euros, mais les étudiants paient seulement huit euros. Vous apprendrez à préparer des plats simples et pas chers. Apportez un tablier et une boîte pour emporter ce que vous avez cuisiné. Il y a seulement dix places : inscrivez-vous à l'accueil avant le 28 février.",
-   "tr": "Jean Moulin kültür merkezi yeni başlayanlar için yeni bir yemek kursu açıyor. Dersler 3 Mart'tan itibaren salı akşamları, saat on sekizden yirmiye kadar yapılıyor. Bir ders on iki avro, ama öğrenciler yalnızca sekiz avro ödüyor. Basit ve ucuz yemekler hazırlamayı öğreneceksiniz. Bir önlük ve pişirdiklerinizi götürmek için bir kap getirin. Yalnızca on kişilik yer var: 28 Şubat'tan önce danışmada kaydolun.",
-   "questions": [
-    {
-     "prompt": "Quand ont lieu les cours ?",
-     "options": [
-      "Le mardi soir",
-      "Le mardi matin",
-      "Le samedi après-midi",
-      "Tous les soirs"
-     ],
-     "answer": 0,
-     "why": "“Les cours ont lieu le mardi soir, de dix-huit heures à vingt heures”: salı akşamları."
-    },
-    {
-     "prompt": "Combien un étudiant paie-t-il pour une séance ?",
-     "options": [
-      "12 euros",
-      "8 euros",
-      "10 euros",
-      "20 euros"
-     ],
-     "answer": 1,
-     "why": "“Les étudiants paient seulement huit euros”: öğrenciler sekiz avro öder; on iki avro normal fiyattır."
-    },
-    {
-     "prompt": "Que faut-il apporter ?",
-     "options": [
-      "Des ingrédients",
-      "Un livre de recettes",
-      "Un tablier et une boîte",
-      "Un couteau et une assiette"
-     ],
-     "answer": 2,
-     "why": "“Apportez un tablier et une boîte pour emporter ce que vous avez cuisiné”: önlük ve kap."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-voisine",
-   "exam": "DELF",
-   "level": "A2",
-   "title": "Un mot de la voisine",
-   "text": "Bonjour Madame Leroy, c'est Claire, votre voisine du troisième étage. Je pars en vacances chez ma sœur samedi matin et je reviens le vendredi suivant. Est-ce que vous pourriez arroser mes plantes deux fois pendant la semaine, par exemple mardi et jeudi ? Je vais laisser ma clé dans votre boîte aux lettres vendredi soir. Pour le chat, ne vous inquiétez pas : mon fils viendra le nourrir tous les jours. Merci beaucoup, je vous rapporterai de la confiture ! Claire",
-   "tr": "Merhaba Leroy Hanım, ben üçüncü kattaki komşunuz Claire. Cumartesi sabahı ablamın yanına tatile gidiyorum, ertesi cuma dönüyorum. Hafta içinde iki kez, örneğin salı ve perşembe, çiçeklerimi sulayabilir misiniz? Cuma akşamı anahtarımı sizin posta kutunuza bırakacağım. Kedi için endişelenmeyin: oğlum her gün gelip onu besleyecek. Çok teşekkürler, size reçel getireceğim! Claire",
-   "questions": [
-    {
-     "prompt": "Pourquoi Claire écrit-elle ce mot ?",
-     "options": [
-      "Pour inviter sa voisine en vacances",
-      "Pour demander un service pendant son absence",
-      "Pour se plaindre du bruit",
-      "Pour vendre ses plantes"
-     ],
-     "answer": 1,
-     "why": "Tatile gidiyor ve komşusundan çiçeklerini sulamasını rica ediyor: yokken bir iyilik istiyor."
-    },
-    {
-     "prompt": "Que doit faire Madame Leroy ?",
-     "options": [
-      "Nourrir le chat tous les jours",
-      "Arroser les plantes tous les jours",
-      "Arroser les plantes mardi et jeudi",
-      "Aller chercher la clé chez le fils de Claire"
-     ],
-     "answer": 2,
-     "why": "“Arroser mes plantes deux fois… mardi et jeudi”. Kediyi Claire'in oğlu besleyecek."
-    },
-    {
-     "prompt": "Où Madame Leroy trouvera-t-elle la clé ?",
-     "options": [
-      "Dans sa propre boîte aux lettres",
-      "Chez la sœur de Claire",
-      "Sous le paillasson",
-      "Chez le fils de Claire"
-     ],
-     "answer": 0,
-     "why": "“Je vais laisser ma clé dans votre boîte aux lettres”: Leroy Hanım'ın kendi posta kutusunda."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-teletravail",
-   "exam": "DELF",
-   "level": "B1",
-   "title": "Travailler depuis chez soi",
-   "text": "Depuis un an, Karim, graphiste de trente-quatre ans, travaille trois jours par semaine dans son appartement de Nantes et deux jours au bureau. « Au début, j'étais ravi : plus de bouchons le matin, et je gagnais presque deux heures par jour. Mais au bout de quelques mois, je me suis senti seul. Je ne parlais à personne avant le soir. » Pour éviter cela, il a pris de nouvelles habitudes. Il commence sa journée par une promenade de vingt minutes, comme s'il partait au travail, et il déjeune une fois par semaine avec un ancien collègue. Il a aussi installé son bureau dans une petite pièce dont il ferme la porte à dix-huit heures. « Ce qui me manque le plus, ce ne sont pas les réunions, ce sont les discussions à la machine à café », avoue-t-il en riant.",
-   "tr": "Otuz dört yaşındaki grafik tasarımcı Karim bir yıldır haftada üç gün Nantes'taki dairesinde, iki gün de ofiste çalışıyor. «Başta çok memnundum: sabah trafiği yoktu, günde neredeyse iki saat kazanıyordum. Ama birkaç ay sonra kendimi yalnız hissettim. Akşama kadar kimseyle konuşmuyordum.» Bunun önüne geçmek için yeni alışkanlıklar edindi. Güne, işe gidiyormuş gibi yirmi dakikalık bir yürüyüşle başlıyor ve haftada bir eski bir iş arkadaşıyla öğle yemeği yiyor. Ayrıca masasını küçük bir odaya kurdu ve saat on sekizde o odanın kapısını kapatıyor. «En çok özlediğim şey toplantılar değil, kahve makinesinin başındaki sohbetler» diyor gülerek.",
-   "questions": [
-    {
-     "prompt": "Combien de jours par semaine Karim travaille-t-il chez lui ?",
-     "options": [
-      "Deux jours",
-      "Trois jours",
-      "Cinq jours",
-      "Un jour"
-     ],
-     "answer": 1,
-     "why": "“Travaille trois jours par semaine dans son appartement… et deux jours au bureau”: evde üç gün."
-    },
-    {
-     "prompt": "Quel problème a-t-il eu après quelques mois ?",
-     "options": [
-      "Il perdait du temps dans les bouchons",
-      "Il avait trop de réunions",
-      "Il se sentait seul",
-      "Son appartement était trop petit"
-     ],
-     "answer": 2,
-     "why": "“Au bout de quelques mois, je me suis senti seul”: birkaç ay sonra kendini yalnız hissetti."
-    },
-    {
-     "prompt": "Qu'est-ce qui lui manque le plus ?",
-     "options": [
-      "Les discussions informelles avec ses collègues",
-      "Les réunions",
-      "Les trajets du matin",
-      "Les déjeuners au restaurant"
-     ],
-     "answer": 0,
-     "why": "“Ce ne sont pas les réunions, ce sont les discussions à la machine à café”: kahve makinesi başındaki sohbetler."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-jardin",
-   "exam": "DELF",
-   "level": "B1",
-   "title": "Un jardin au pied des immeubles",
-   "text": "Il y a encore deux ans, l'espace situé entre les immeubles de la rue des Lilas n'était qu'un terrain vide où personne ne s'arrêtait. Aujourd'hui, on y trouve une trentaine de petits potagers. L'idée vient d'une retraitée, Monique, qui a convaincu la mairie de prêter le terrain gratuitement. Chaque famille inscrite reçoit une parcelle et s'engage à venir l'entretenir au moins une fois par semaine. Les outils sont rangés dans une cabane commune, et l'eau de pluie est récupérée dans de grands bidons. « Les enfants découvrent d'où viennent les légumes, et des voisins qui ne se disaient même pas bonjour prennent maintenant le café ensemble », raconte Monique. La liste d'attente est déjà longue : quarante familles espèrent obtenir une parcelle l'année prochaine.",
-   "tr": "Daha iki yıl önce Lilas sokağındaki apartmanların arasındaki alan, kimsenin uğramadığı boş bir arsadan ibaretti. Bugün orada otuz kadar küçük sebze bahçesi var. Fikir, belediyeyi araziyi ücretsiz vermeye ikna eden emekli Monique'ten çıktı. Kaydolan her aile bir parsel alıyor ve ona en az haftada bir kez bakmaya söz veriyor. Aletler ortak bir kulübede duruyor, yağmur suyu da büyük bidonlarda toplanıyor. «Çocuklar sebzelerin nereden geldiğini öğreniyor; birbirine selam bile vermeyen komşular artık birlikte kahve içiyor» diyor Monique. Bekleme listesi şimdiden uzun: kırk aile gelecek yıl bir parsel almayı umuyor.",
-   "questions": [
-    {
-     "prompt": "Qu'y avait-il avant le jardin ?",
-     "options": [
-      "Un parking",
-      "Un terrain vide",
-      "Un petit marché",
-      "Une école"
-     ],
-     "answer": 1,
-     "why": "“N'était qu'un terrain vide où personne ne s'arrêtait”: boş bir arsa."
-    },
-    {
-     "prompt": "À quoi s'engagent les familles inscrites ?",
-     "options": [
-      "À payer un loyer à la mairie",
-      "À acheter leurs propres outils",
-      "À vendre leurs légumes aux voisins",
-      "À s'occuper de leur parcelle au moins une fois par semaine"
-     ],
-     "answer": 3,
-     "why": "“S'engage à venir l'entretenir au moins une fois par semaine”. Arazi ücretsiz, aletler ortak."
-    },
-    {
-     "prompt": "Selon Monique, qu'a changé le jardin dans le quartier ?",
-     "options": [
-      "Les voisins se parlent davantage",
-      "Les familles dépensent moins pour manger",
-      "Le quartier attire de nouveaux habitants",
-      "Les enfants ont de meilleures notes"
-     ],
-     "answer": 0,
-     "why": "Selam bile vermeyen komşular “prennent maintenant le café ensemble”: artık birlikte kahve içiyorlar."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-semaine",
-   "exam": "DALF",
-   "level": "C1",
-   "title": "La semaine de quatre jours",
-   "text": "Plusieurs entreprises européennes expérimentent depuis quelques années la semaine de quatre jours, sans baisse de salaire. Les résultats publiés par ses partisans semblent éloquents : les salariés se disent moins stressés, les arrêts maladie reculent et la productivité, loin de s'effondrer, se maintient, voire progresse légèrement. Faut-il pour autant y voir une solution miracle ? Les sceptiques invitent à la prudence. D'abord, les entreprises qui se portent volontaires pour ces essais sont souvent de petites structures du secteur des services, déjà convaincues de l'intérêt de la démarche ; il serait hasardeux d'en tirer des conclusions pour un hôpital ou une usine, où la présence physique ne se compresse pas. Ensuite, condenser trente-cinq heures en quatre jours peut produire des journées si denses que le repos gagné le vendredi se paie du lundi au jeudi. Enfin, certains salariés avouent que le jour libéré est vite absorbé par les démarches administratives ou les tâches ménagères. Le débat porte donc moins sur le nombre de jours que sur l'organisation du travail : là où l'on a profité de la réforme pour supprimer les réunions inutiles, les bénéfices semblent durables ; là où l'on s'est contenté de raccourcir la semaine, ils s'estompent au bout de quelques mois.",
-   "tr": "Birkaç Avrupa şirketi birkaç yıldır maaşta kesinti olmadan dört günlük çalışma haftasını deniyor. Taraftarlarının yayımladığı sonuçlar çok şey söylüyor gibi: çalışanlar daha az stresli olduklarını söylüyor, hastalık izinleri azalıyor ve verimlilik çökmek bir yana aynı kalıyor, hatta biraz artıyor. Peki bunu mucize bir çözüm saymalı mı? Kuşkucular dikkatli olmaya çağırıyor. Önce, bu denemelere gönüllü olan şirketler çoğunlukla hizmet sektöründen, yaklaşımın yararına zaten inanmış küçük yapılar; buradan fiziksel varlığın sıkıştırılamadığı bir hastane ya da fabrika için sonuç çıkarmak riskli olur. Sonra, otuz beş saati dört güne sığdırmak öyle yoğun günler doğurabilir ki cuma kazanılan dinlenmenin bedeli pazartesiden perşembeye ödenir. Son olarak bazı çalışanlar boşalan günün resmî işler ya da ev işleriyle hemen dolduğunu itiraf ediyor. Yani tartışma gün sayısından çok işin düzeniyle ilgili: reformu gereksiz toplantıları kaldırmak için fırsat bilen yerlerde yararlar kalıcı görünüyor; yalnızca haftayı kısaltmakla yetinilen yerlerde birkaç ay sonra siliniyor.",
-   "questions": [
-    {
-     "prompt": "D'après ses partisans, quel est l'effet de la semaine de quatre jours sur la productivité ?",
-     "options": [
-      "Elle s'effondre rapidement",
-      "Elle baisse légèrement, mais le stress diminue",
-      "Elle se maintient, voire augmente un peu",
-      "Elle double dans les petites entreprises"
-     ],
-     "answer": 2,
-     "why": "“La productivité, loin de s'effondrer, se maintient, voire progresse légèrement”: aynı kalıyor, hatta biraz artıyor."
-    },
-    {
-     "prompt": "Pourquoi les sceptiques se méfient-ils des résultats des essais ?",
-     "options": [
-      "Les salariés ont exagéré leur fatigue",
-      "Les entreprises participantes ne représentent pas toute l'économie",
-      "Les résultats n'ont jamais été publiés",
-      "Les salaires ont baissé pendant l'expérience"
-     ],
-     "answer": 1,
-     "why": "Gönüllü şirketler çoğunlukla hizmet sektöründen küçük yapılar; hastane ya da fabrika için sonuç çıkarmak “hasardeux” (riskli)."
-    },
-    {
-     "prompt": "Selon l'auteur, de quoi dépend surtout le succès de la réforme ?",
-     "options": [
-      "De la façon dont le travail est réorganisé",
-      "Du nombre exact d'heures travaillées",
-      "Du jour de la semaine qui est libéré",
-      "De la taille de l'entreprise uniquement"
-     ],
-     "answer": 0,
-     "why": "“Le débat porte moins sur le nombre de jours que sur l'organisation du travail”: gereksiz toplantılar kaldırılan yerlerde yararlar kalıcı."
-    }
-   ],
-   "language": "fr"
-  },
-  {
-   "id": "fr-read-reparer",
-   "exam": "DALF",
-   "level": "C1",
-   "title": "Réparer plutôt que jeter",
-   "text": "Un samedi par mois, dans une salle prêtée par la mairie, une dizaine de bénévoles accueillent des habitants venus avec un grille-pain muet, une lampe qui clignote ou un pantalon déchiré. Ce « café de la réparation » n'a rien d'un service de dépannage gratuit : le propriétaire de l'objet participe lui-même à la réparation, guidé par un bénévole. « Nous ne voulons pas que les gens repartent seulement avec un appareil qui marche, mais avec l'idée qu'ils sont capables de le réparer », explique Henri, ingénieur à la retraite. Le succès de ces initiatives révèle un malaise plus profond. Beaucoup de consommateurs soupçonnent les fabricants de concevoir des produits volontairement fragiles, ou de rendre les pièces détachées introuvables et hors de prix. Le législateur a commencé à réagir : un indice de réparabilité doit désormais figurer sur certains appareils, et les vendeurs sont tenus d'indiquer pendant combien d'années les pièces resteront disponibles. Les bénévoles restent pourtant lucides. Un tiers des objets apportés ne peuvent pas être sauvés, souvent parce qu'ils ont été conçus pour ne jamais être ouverts. Pour Henri, la véritable victoire serait que les cafés de la réparation deviennent un jour inutiles.",
-   "tr": "Ayda bir cumartesi, belediyenin verdiği bir salonda on kadar gönüllü, sesi çıkmayan bir ekmek kızartma makinesi, yanıp sönen bir lamba ya da yırtık bir pantolonla gelen mahalleliyi karşılıyor. Bu «tamir kafesi» ücretsiz bir onarım servisi değil: eşyanın sahibi bir gönüllünün rehberliğinde onarıma kendisi katılıyor. «İnsanların yalnızca çalışan bir aletle değil, onu tamir edebilecekleri düşüncesiyle dönmelerini istiyoruz» diyor emekli mühendis Henri. Bu girişimlerin başarısı daha derin bir rahatsızlığı gösteriyor. Pek çok tüketici, üreticilerin ürünleri bile bile dayanıksız tasarladığından ya da yedek parçaları bulunmaz ve çok pahalı hâle getirdiğinden kuşkulanıyor. Yasa koyucu tepki vermeye başladı: bazı aletlerde artık bir onarılabilirlik puanı yer almalı, satıcılar da parçaların kaç yıl bulunabileceğini belirtmek zorunda. Yine de gönüllüler gerçekçi. Getirilen eşyaların üçte biri kurtarılamıyor, çoğu zaman da hiç açılmamak üzere tasarlandıkları için. Henri'ye göre asıl zafer, tamir kafelerinin bir gün gereksiz hâle gelmesi olurdu.",
-   "questions": [
-    {
-     "prompt": "Quel est le principe du café de la réparation ?",
-     "options": [
-      "Des bénévoles réparent gratuitement les objets pendant qu'on attend",
-      "Le propriétaire répare lui-même son objet, guidé par un bénévole",
-      "On échange un objet cassé contre un objet qui marche",
-      "Des artisans y vendent des pièces détachées à bas prix"
-     ],
-     "answer": 1,
-     "why": "“N'a rien d'un service de dépannage gratuit : le propriétaire… participe lui-même à la réparation, guidé par un bénévole”."
-    },
-    {
-     "prompt": "Que reprochent beaucoup de consommateurs aux fabricants ?",
-     "options": [
-      "De vendre leurs produits trop cher en magasin",
-      "D'afficher un indice de réparabilité trompeur",
-      "De concevoir des objets fragiles et de rendre les pièces difficiles à obtenir",
-      "De refuser de réparer les appareils sous garantie"
-     ],
-     "answer": 2,
-     "why": "Ürünleri “volontairement fragiles” tasarladıklarından ve yedek parçaları “introuvables et hors de prix” yaptıklarından kuşkulanıyorlar."
-    },
-    {
-     "prompt": "Quel serait, pour Henri, le vrai succès ?",
-     "options": [
-      "Que ces cafés n'aient plus de raison d'exister",
-      "Ouvrir un café de la réparation chaque semaine",
-      "Réparer tous les objets apportés",
-      "Que la loi interdise les objets impossibles à ouvrir"
-     ],
-     "answer": 0,
-     "why": "“La véritable victoire serait que les cafés de la réparation deviennent un jour inutiles”: bu kafelere gerek kalmaması."
-    }
-   ],
-   "language": "fr"
-  }
- ]
+  ]
 }

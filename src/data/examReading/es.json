@@ -1,754 +1,1106 @@
 {
- "language": "es",
- "source": "Diloloji (özgün)",
- "passages": [
-  {
-   "id": "es-read-sevilla",
-   "exam": "DELE",
-   "level": "A2",
-   "title": "Un mensaje de Ana",
-   "text": "Hola Luis, ya estoy en Sevilla. Llegué ayer por la tarde y el viaje en autobús duró cinco horas. Hoy he visitado la catedral con mi prima y después hemos comido en un bar muy bonito del barrio de Triana. Mañana por la mañana vamos a la playa en coche y por la noche iremos a un concierto de flamenco. Vuelvo el domingo. ¡Te echo de menos! Ana",
-   "tr": "Selam Luis, artık Sevilla'dayım. Dün öğleden sonra geldim ve otobüs yolculuğu beş saat sürdü. Bugün kuzenimle katedrali gezdim, sonra Triana mahallesinde çok güzel bir barda yemek yedik. Yarın sabah arabayla plaja gidiyoruz, akşam da bir flamenko konserine gideceğiz. Pazar günü dönüyorum. Seni özledim! Ana",
-   "questions": [
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "passages": [
     {
-     "prompt": "¿Cómo viajó Ana a Sevilla?",
-     "options": [
-      "En tren",
-      "En autobús",
-      "En coche",
-      "En avión"
-     ],
-     "answer": 1,
-     "why": "“El viaje en autobús duró cinco horas”."
+      "id": "es-read-sevilla",
+      "exam": "DELE",
+      "level": "A2",
+      "title": "Un mensaje de Ana",
+      "text": "Hola Luis, ya estoy en Sevilla. Llegué ayer por la tarde y el viaje en autobús duró cinco horas. Hoy he visitado la catedral con mi prima y después hemos comido en un bar muy bonito del barrio de Triana. Mañana por la mañana vamos a la playa en coche y por la noche iremos a un concierto de flamenco. Vuelvo el domingo. ¡Te echo de menos! Ana",
+      "tr": "Selam Luis, artık Sevilla'dayım. Dün öğleden sonra geldim ve otobüs yolculuğu beş saat sürdü. Bugün kuzenimle katedrali gezdim, sonra Triana mahallesinde çok güzel bir barda yemek yedik. Yarın sabah arabayla plaja gidiyoruz, akşam da bir flamenko konserine gideceğiz. Pazar günü dönüyorum. Seni özledim! Ana",
+      "questions": [
+        {
+          "prompt": "¿Cómo viajó Ana a Sevilla?",
+          "options": [
+            "En tren",
+            "En autobús",
+            "En coche",
+            "En avión"
+          ],
+          "answer": 1,
+          "why": "“El viaje en autobús duró cinco horas”."
+        },
+        {
+          "prompt": "¿Dónde comió Ana hoy?",
+          "options": [
+            "En casa de su prima",
+            "En la playa",
+            "En un bar del barrio de Triana",
+            "En un restaurante de la catedral"
+          ],
+          "answer": 2,
+          "why": "Bugün “en un bar muy bonito del barrio de Triana” yemek yediler."
+        },
+        {
+          "prompt": "¿Qué hará Ana mañana por la noche?",
+          "options": [
+            "Irá a la playa",
+            "Visitará la catedral",
+            "Volverá a casa",
+            "Irá a un concierto de flamenco"
+          ],
+          "answer": 3,
+          "why": "Yarın sabah plaj, akşam flamenko konseri. Katedrali bugün gezdi."
+        }
+      ],
+      "language": "es"
     },
     {
-     "prompt": "¿Dónde comió Ana hoy?",
-     "options": [
-      "En casa de su prima",
-      "En la playa",
-      "En un bar del barrio de Triana",
-      "En un restaurante de la catedral"
-     ],
-     "answer": 2,
-     "why": "Bugün “en un bar muy bonito del barrio de Triana” yemek yediler."
+      "id": "es-read-aeropuerto",
+      "exam": "DELE",
+      "level": "A2",
+      "title": "Aviso en el aeropuerto",
+      "text": "Atención, pasajeros del vuelo a Lima. La salida prevista a las dieciséis horas se retrasa una hora por la niebla. La puerta de embarque cambia: ahora es la puerta 12 y no la 8. Les rogamos que lleven su tarjeta de embarque y su pasaporte. Los pasajeros del vuelo a Bogotá deben ir a la puerta 5; su vuelo sale a la hora prevista.",
+      "tr": "Dikkat, Lima uçuşu yolcularına duyurulur. Saat on altıda planlanan kalkış sis nedeniyle bir saat gecikmektedir. Biniş kapısı değişti: artık 8 değil, 12 numaralı kapı. Biniş kartınızı ve pasaportunuzu yanınızda bulundurmanızı rica ederiz. Bogotá uçuşu yolcuları 5 numaralı kapıya gitmelidir; uçuşları zamanında kalkıyor.",
+      "questions": [
+        {
+          "prompt": "¿A qué hora saldrá el vuelo a Lima?",
+          "options": [
+            "A las 15:00",
+            "A las 16:00",
+            "A las 17:00",
+            "A las 18:00"
+          ],
+          "answer": 2,
+          "why": "16.00 + 1 saat gecikme = 17.00."
+        },
+        {
+          "prompt": "¿Por qué se retrasa el vuelo a Lima?",
+          "options": [
+            "Por una huelga",
+            "Por la niebla",
+            "Por un problema técnico",
+            "Por falta de pasajeros"
+          ],
+          "answer": 1,
+          "why": "“Se retrasa una hora por la niebla”: sis yüzünden."
+        },
+        {
+          "prompt": "¿A qué puerta deben ir los pasajeros a Bogotá?",
+          "options": [
+            "A la 5",
+            "A la 8",
+            "A la 12",
+            "A la 1"
+          ],
+          "answer": 0,
+          "why": "“Los pasajeros del vuelo a Bogotá deben ir a la puerta 5”."
+        }
+      ],
+      "language": "es"
     },
     {
-     "prompt": "¿Qué hará Ana mañana por la noche?",
-     "options": [
-      "Irá a la playa",
-      "Visitará la catedral",
-      "Volverá a casa",
-      "Irá a un concierto de flamenco"
-     ],
-     "answer": 3,
-     "why": "Yarın sabah plaj, akşam flamenko konseri. Katedrali bugün gezdi."
+      "id": "es-read-bici",
+      "exam": "DELE",
+      "level": "B1",
+      "title": "Bicicletas en la ciudad",
+      "text": "Desde hace cuatro años, Valencia anima a sus vecinos a moverse en bicicleta. La ciudad ha construido muchos carriles bici y ofrece un servicio de alquiler muy barato. Como resultado, uno de cada cinco vecinos usa la bici para ir al trabajo. Sin embargo, no todo el mundo está contento. Algunos comerciantes lamentan que hayan desaparecido plazas de aparcamiento y temen perder clientes. El ayuntamiento responde que los ciclistas compran tanto como los conductores porque paran con más frecuencia, y anuncia que construirá más aparcamientos para bicis cerca de las estaciones.",
+      "tr": "Dört yıldır Valencia sakinlerini bisikletle ulaşıma teşvik ediyor. Şehir çok sayıda bisiklet yolu yaptı ve çok ucuz bir kiralama hizmeti sunuyor. Sonuç olarak her beş sakinden biri işe bisikletle gidiyor. Ancak herkes memnun değil. Bazı esnaf park yerlerinin kaybolmasından yakınıyor ve müşteri kaybetmekten korkuyor. Belediye, bisikletlilerin daha sık durdukları için sürücüler kadar alışveriş yaptığını söylüyor ve istasyonların yakınına daha fazla bisiklet park yeri yapacağını duyuruyor.",
+      "questions": [
+        {
+          "prompt": "¿Qué proporción de vecinos usa la bici para ir al trabajo?",
+          "options": [
+            "Uno de cada tres",
+            "Uno de cada cinco",
+            "Uno de cada diez",
+            "La mitad"
+          ],
+          "answer": 1,
+          "why": "“Uno de cada cinco vecinos”: her beş kişiden biri."
+        },
+        {
+          "prompt": "¿Qué lamentan algunos comerciantes?",
+          "options": [
+            "Que haya demasiados ciclistas",
+            "Que el alquiler sea caro",
+            "Que hayan desaparecido plazas de aparcamiento",
+            "Que cierren las tiendas"
+          ],
+          "answer": 2,
+          "why": "Park yerlerinin kaybolmasından yakınıyorlar."
+        },
+        {
+          "prompt": "¿Qué anuncia el ayuntamiento?",
+          "options": [
+            "Que eliminará los carriles bici",
+            "Que subirá el precio del alquiler",
+            "Que prohibirá los coches",
+            "Que construirá más aparcamientos para bicis"
+          ],
+          "answer": 3,
+          "why": "Belediye istasyonlar yakınında daha fazla bisiklet park yeri yapacağını açıklıyor."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-panadera",
+      "exam": "DELE",
+      "level": "B1",
+      "title": "Una panadera cuenta su vida",
+      "text": "Me llamo Carmen y soy panadera desde hace doce años. Me levanto a las tres de la madrugada para preparar el pan. Mucha gente cree que mi trabajo es aburrido, pero a mí me encanta ver cómo sonríen los clientes cuando huelen el pan caliente. Lo más duro son los fines de semana, porque trabajo los sábados y los domingos y veo poco a mi familia. Aun así, no cambiaría mi profesión por nada del mundo. Dentro de cinco años espero abrir mi propia tienda.",
+      "tr": "Adım Carmen, on iki yıldır fırıncıyım. Ekmeği hazırlamak için gece üçte kalkıyorum. Birçok kişi işimin sıkıcı olduğunu sanıyor ama ben müşterilerin sıcak ekmeğin kokusunu alınca gülümsemesine bayılıyorum. En zoru hafta sonları, çünkü cumartesi ve pazar çalışıyorum ve ailemi az görüyorum. Yine de mesleğimi dünyada hiçbir şeye değişmem. Beş yıl içinde kendi dükkânımı açmayı umuyorum.",
+      "questions": [
+        {
+          "prompt": "¿A qué hora se levanta Carmen?",
+          "options": [
+            "A las tres",
+            "A las cinco",
+            "A las siete",
+            "A las nueve"
+          ],
+          "answer": 0,
+          "why": "“Me levanto a las tres de la madrugada”."
+        },
+        {
+          "prompt": "¿Qué es lo más duro para ella?",
+          "options": [
+            "Preparar el pan",
+            "Trabajar los fines de semana",
+            "Tratar con los clientes",
+            "Pagar el alquiler"
+          ],
+          "answer": 1,
+          "why": "Hafta sonu çalıştığı için ailesini az görüyor: en zor olan bu."
+        },
+        {
+          "prompt": "¿Qué espera hacer dentro de cinco años?",
+          "options": [
+            "Cambiar de profesión",
+            "Jubilarse",
+            "Abrir su propia tienda",
+            "Mudarse de ciudad"
+          ],
+          "answer": 2,
+          "why": "“Espero abrir mi propia tienda”."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-pantallas",
+      "exam": "DELE",
+      "level": "B2",
+      "title": "Pantallas y niños",
+      "text": "Según un estudio reciente, los niños menores de diez años pasan una media de tres horas diarias frente a una pantalla. Los investigadores, sin embargo, no condenan la tecnología: subrayan que el efecto depende sobre todo del uso. Ver una película en familia y comentarla no tiene los mismos resultados que pasar solo horas con un videojuego. En cambio, observan que los niños que usan una pantalla justo antes de dormir se duermen más tarde y descansan peor. Por eso recomiendan fijar horarios claros, apagar los aparatos una hora antes de acostarse y, sobre todo, dar ejemplo, porque los niños imitan a sus padres.",
+      "tr": "Yakın tarihli bir araştırmaya göre on yaşın altındaki çocuklar günde ortalama üç saati bir ekranın karşısında geçiriyor. Ancak araştırmacılar teknolojiyi suçlamıyor: etkinin her şeyden önce kullanıma bağlı olduğunun altını çiziyorlar. Ailece film izleyip tartışmak, saatlerce tek başına video oyunu oynamakla aynı sonuçları vermez. Buna karşılık, uyumadan hemen önce ekran kullanan çocukların daha geç uyuduğunu ve daha kötü dinlendiğini gözlemliyorlar. Bu yüzden net saatler belirlemeyi, cihazları yatmadan bir saat önce kapatmayı ve her şeyden önce örnek olmayı öneriyorlar, çünkü çocuklar anne babalarını taklit eder.",
+      "questions": [
+        {
+          "prompt": "Según los investigadores, ¿de qué depende sobre todo el efecto de las pantallas?",
+          "options": [
+            "Del tamaño de la pantalla",
+            "Del uso que se hace de ellas",
+            "De la edad de los padres",
+            "Del precio del aparato"
+          ],
+          "answer": 1,
+          "why": "“El efecto depende sobre todo del uso”."
+        },
+        {
+          "prompt": "¿Qué observan en los niños que usan pantallas antes de dormir?",
+          "options": [
+            "Se despiertan antes",
+            "Aprenden más",
+            "Se duermen más tarde y descansan peor",
+            "Juegan menos al día siguiente"
+          ],
+          "answer": 2,
+          "why": "Daha geç uyuyor ve daha kötü dinleniyorlar."
+        },
+        {
+          "prompt": "¿Qué recomiendan?",
+          "options": [
+            "Prohibir todos los aparatos",
+            "Dejar que los niños decidan",
+            "Comprar pantallas más pequeñas",
+            "Fijar horarios, apagar los aparatos una hora antes de acostarse y dar ejemplo"
+          ],
+          "answer": 3,
+          "why": "Net saatler, yatmadan bir saat önce kapatma ve örnek olma öneriliyor."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-pueblo",
+      "exam": "DELE",
+      "level": "B2",
+      "title": "Un pueblo que renace",
+      "text": "Hace veinte años, el pueblo de San Millán apenas tenía doscientos habitantes y su única escuela estaba a punto de cerrar. Entonces un maestro jubilado tuvo una idea: ofrecer casas por un euro simbólico a quienes se comprometieran a restaurarlas y a vivir en ellas al menos cinco años. Al principio nadie lo creyó, pero llegaron las primeras familias, seguidas de artesanos, una panadera y un café asociativo. Hoy el pueblo tiene seiscientos habitantes y la escuela ha tenido que ampliarse. El alcalde admite, no obstante, que el éxito tiene su lado negativo: los precios de la vivienda han subido y algunos jóvenes del pueblo ya no pueden permitírselo.",
+      "tr": "Yirmi yıl önce San Millán köyünün ancak iki yüz sakini vardı ve tek okulu kapanmak üzereydi. Sonra emekli bir öğretmenin aklına bir fikir geldi: evleri onarmayı ve orada en az beş yıl yaşamayı taahhüt edenlere sembolik bir avroya ev sunmak. Başta kimse inanmadı, ama ilk aileler geldi, ardından zanaatkârlar, bir fırıncı kadın ve bir dernek kafesi. Bugün köyün altı yüz sakini var ve okulun büyütülmesi gerekti. Belediye başkanı ise başarının olumsuz bir yanı olduğunu kabul ediyor: konut fiyatları arttı ve köyün bazı gençleri artık buna güç yetiremiyor.",
+      "questions": [
+        {
+          "prompt": "¿Qué problema tenía el pueblo hace veinte años?",
+          "options": [
+            "Tenía demasiados habitantes",
+            "Tenía pocos habitantes y su escuela estaba a punto de cerrar",
+            "No tenía carretera",
+            "Había una epidemia"
+          ],
+          "answer": 1,
+          "why": "Köyde ancak 200 kişi vardı ve okul kapanmak üzereydi."
+        },
+        {
+          "prompt": "¿En qué consistía la idea del maestro jubilado?",
+          "options": [
+            "En vender terrenos baratos",
+            "En construir un hotel",
+            "En abrir una fábrica",
+            "En ofrecer casas por un euro a cambio de restaurarlas y vivir en ellas cinco años"
+          ],
+          "answer": 3,
+          "why": "Evler onarılma ve en az beş yıl orada yaşama karşılığında bir avroya sunuluyordu."
+        },
+        {
+          "prompt": "¿Qué aspecto negativo reconoce el alcalde?",
+          "options": [
+            "Que la escuela es pequeña",
+            "Que no hay panadería",
+            "Que los precios de la vivienda han subido y algunos jóvenes no pueden pagarla",
+            "Que llegaron pocas familias"
+          ],
+          "answer": 2,
+          "why": "Konut fiyatları arttı, bazı gençler artık oturamıyor."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-compartir",
+      "exam": "DELE",
+      "level": "B2",
+      "title": "Compartir piso, ¿para quién?",
+      "text": "Antes reservado a los estudiantes, compartir piso atrae hoy a personas de todas las edades. El primer motivo es económico: con unos alquileres que no dejan de subir, dividir un piso grande permite vivir en un barrio céntrico sin arruinarse. Pero el argumento no es solo económico. Muchos jóvenes profesionales, instalados en una ciudad desconocida, encuentran en ello una forma rápida de hacer amigos. Las dificultades existen, sin embargo. Hay que ponerse de acuerdo sobre la limpieza, las visitas y el ruido, y los desacuerdos en estos asuntos son la primera causa de que alguien se marche. Para evitarlos, algunos compañeros redactan una especie de reglamento cuando llega cada nuevo inquilino. Puede parecer exagerado, pero quienes lo han probado aseguran que los conflictos han disminuido de forma notable.",
+      "tr": "Eskiden öğrencilere özgü olan ev paylaşımı artık her yaştan insanı cezbediyor. İlk neden parasal: kiralar durmadan artarken büyük bir daireyi bölüşmek, iflas etmeden merkezî bir semtte yaşamayı mümkün kılıyor. Ama gerekçe yalnızca ekonomik değil. Yabancı bir şehre yerleşen birçok genç çalışan, bunda hızla arkadaş edinmenin bir yolunu buluyor. Yine de zorluklar var. Temizlik, misafirler ve gürültü konusunda anlaşmak gerekiyor; bu konulardaki anlaşmazlıklar birinin evden ayrılmasının başlıca sebebi. Bunlardan kaçınmak için bazı ev arkadaşları, her yeni gelen olduğunda bir tür tüzük yazıyor. Aşırı görünebilir ama denemiş olanlar çatışmaların belirgin biçimde azaldığını söylüyor.",
+      "questions": [
+        {
+          "prompt": "¿Cuál es el primer motivo para compartir piso según el texto?",
+          "options": [
+            "El deseo de volver a ser estudiante",
+            "El tamaño de los pisos",
+            "El ruido de los barrios",
+            "El económico"
+          ],
+          "answer": 3,
+          "why": "“El primer motivo es económico”: kiralar yükseldiği için maliyet."
+        },
+        {
+          "prompt": "¿Qué encuentran muchos jóvenes profesionales al compartir piso?",
+          "options": [
+            "Un alquiler gratuito",
+            "Una forma rápida de hacer amigos",
+            "Un trabajo en el barrio",
+            "Más tranquilidad"
+          ],
+          "answer": 1,
+          "why": "“Una forma rápida de hacer amigos”: hızla arkadaş edinmenin yolu."
+        },
+        {
+          "prompt": "¿Para qué sirve el reglamento?",
+          "options": [
+            "Para elegir a las visitas",
+            "Para fijar el precio del alquiler",
+            "Para evitar conflictos sobre limpieza, visitas y ruido",
+            "Para sustituir el contrato de alquiler"
+          ],
+          "answer": 2,
+          "why": "Tüzük, temizlik/ziyaretçi/gürültü anlaşmazlıklarını önlemek için."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-silencio",
+      "exam": "DELE",
+      "level": "C1",
+      "title": "El silencio, un lujo urbano",
+      "text": "En las grandes ciudades, el silencio se ha convertido en un bien escaso, casi en un artículo de lujo. Las inmobiliarias lo saben: un piso con vistas a un patio interior se vende bastante más caro que otro idéntico situado en una avenida. Sin embargo, los estudios de los últimos años demuestran que el ruido no es una simple molestia. Quienes viven expuestos al tráfico o a las obras duermen peor, se concentran con más dificultad y acaban sufriendo un cansancio que ni siquiera el descanso del fin de semana consigue aliviar. Algunos ayuntamientos han respondido creando «zonas tranquilas», donde se limita el paso de coches y se prohíbe la música amplificada. Los primeros resultados son alentadores, pero los comerciantes se muestran preocupados: según ellos, demasiada calma ahuyentaría a los clientes. Queda por ver si es posible conciliar una ciudad animada con una ciudad sosegada, o si algún día habrá que elegir una a costa de la otra.",
+      "tr": "Büyük şehirlerde sessizlik kıt bir değer, neredeyse bir lüks ürün hâline geldi. Emlakçılar bunu biliyor: iç avluya bakan bir daire, ana caddedeki aynı daireden belirgin biçimde daha pahalıya satılıyor. Oysa son yıllarda yapılan araştırmalar gürültünün basit bir rahatsızlıktan çok daha fazlası olduğunu gösteriyor. Sürekli trafiğe ya da inşaata maruz kalanlar daha kötü uyuyor, zor odaklanıyor ve hafta sonu dinlenmesinin bile geçiremediği bir yorgunluğa kapılıyor. Bazı belediyeler arabaların sınırlandığı ve yüksek sesli müziğin yasaklandığı «sakin bölgeler» oluşturarak karşılık verdi. İlk sonuçlar cesaret verici ama esnaf endişeli: onlara göre fazla huzur müşterileri uzaklaştırır. Canlı bir şehirle dingin bir şehrin bağdaştırılıp bağdaştırılamayacağı, yoksa bir gün birini diğerinin pahasına seçmek zorunda kalıp kalmayacağımız henüz belli değil.",
+      "questions": [
+        {
+          "prompt": "¿Por qué saben las inmobiliarias que el silencio tiene valor?",
+          "options": [
+            "Los pisos tranquilos se venden bastante más caros",
+            "Las avenidas se cierran de noche",
+            "Los compradores rechazan los barrios animados",
+            "Los patios interiores están prohibidos a los coches"
+          ],
+          "answer": 0,
+          "why": "Avluya bakan (sessiz) daire aynısından belirgin biçimde pahalıya satılıyor."
+        },
+        {
+          "prompt": "¿Qué demuestran los estudios recientes sobre el ruido?",
+          "options": [
+            "Que no afecta a la salud",
+            "Que el descanso del fin de semana lo compensa todo",
+            "Que altera el sueño y la concentración, y el cansancio persiste",
+            "Que la gente acaba acostumbrándose del todo"
+          ],
+          "answer": 2,
+          "why": "Uyku ve odaklanma bozuluyor; hafta sonu dinlenmesi yorgunluğu geçirmiyor."
+        },
+        {
+          "prompt": "¿Por qué se preocupan los comerciantes por las zonas tranquilas?",
+          "options": [
+            "Tienen que pagar un impuesto extra",
+            "Temen que ahuyenten a los clientes",
+            "No pueden repartir sus mercancías",
+            "Quieren más ruido para sus conciertos"
+          ],
+          "answer": 1,
+          "why": "“Demasiada calma ahuyentaría a los clientes”: fazla sessizlik müşteriyi kaçırır."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-ia",
+      "exam": "DELE",
+      "level": "C1",
+      "title": "¿Escribir con una máquina?",
+      "text": "Desde que se han extendido los programas de redacción automática, una pregunta divide a los profesores: ¿hay que prohibirlos en clase o enseñar a los alumnos a utilizarlos? Los partidarios de la prohibición sostienen que un texto producido en unos segundos no deja lugar al esfuerzo, y que el esfuerzo es precisamente lo que hace progresar. Sus detractores replican que la calculadora no acabó con las matemáticas y que el verdadero reto consiste en formar mentes capaces de comprobar, corregir y matizar lo que propone una máquina. Entre ambas posturas, varios centros ensayan una vía intermedia: los borradores se escriben a mano, en clase, y después se comparan con una versión corregida por el programa. El alumno debe entonces explicar cada diferencia. Este método exige tiempo, admiten los profesores, pero tiene un mérito: convierte la herramienta en objeto de reflexión en lugar de en un atajo.",
+      "tr": "Otomatik yazım yazılımları yaygınlaştığından beri öğretmenleri bir soru ayırıyor: bunları sınıfta yasaklamalı mı, yoksa öğrencilere nasıl kullanılacağını mı öğretmeli? Yasaktan yana olanlar, birkaç saniyede üretilen bir metnin çabaya yer bırakmadığını, ilerlemeyi sağlayanın ise tam da çaba olduğunu savunuyor. Karşı çıkanlar ise hesap makinesinin matematiği ortadan kaldırmadığını, asıl meselenin bir makinenin önerdiğini denetleyebilen, düzeltebilen ve inceltebilen zihinler yetiştirmek olduğunu söylüyor. Bu iki görüşün arasında birkaç okul orta bir yol deniyor: taslaklar sınıfta elle yazılıyor, sonra yazılımın düzelttiği sürümle karşılaştırılıyor. Öğrenci her farkı açıklamak zorunda. Öğretmenler bu yöntemin zaman aldığını kabul ediyor ama bir erdemi var: aracı bir kısayol olmaktan çıkarıp üzerinde düşünülen bir nesneye dönüştürüyor.",
+      "questions": [
+        {
+          "prompt": "¿Qué argumento defienden los partidarios de la prohibición?",
+          "options": [
+            "Los programas son demasiado caros",
+            "Los alumnos escriben muy despacio",
+            "A los profesores les falta tiempo",
+            "Sin esfuerzo no se progresa"
+          ],
+          "answer": 3,
+          "why": "“El esfuerzo es precisamente lo que hace progresar”: çaba ilerlemeyi sağlar."
+        },
+        {
+          "prompt": "¿Qué replican sus detractores?",
+          "options": [
+            "Que una herramienta nueva no destruyó las disciplinas: hay que aprender a controlarla",
+            "Que las máquinas escriben mejor que los alumnos",
+            "Que también hay que prohibir la calculadora",
+            "Que los profesores deberían usar el programa solos"
+          ],
+          "answer": 0,
+          "why": "Hesap makinesi örneği: asıl mesele makinenin önerdiğini denetlemeyi öğrenmek."
+        },
+        {
+          "prompt": "En el método intermedio, ¿qué debe hacer el alumno?",
+          "options": [
+            "Copiar la versión del programa",
+            "Escribir sin borrador",
+            "Explicar cada diferencia entre su borrador y la versión corregida",
+            "Corregir el trabajo de un compañero"
+          ],
+          "answer": 2,
+          "why": "“El alumno debe entonces explicar cada diferencia”: her farkı açıklamalı."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-mercado",
+      "exam": "DELE",
+      "level": "B1",
+      "title": "El mercado de los jueves",
+      "text": "Desde hace veinte años, el mercado de los jueves llena la plaza de mi barrio. Los vecinos vienen a comprar fruta, queso o simplemente a charlar con los vendedores. Sin embargo, el ayuntamiento quiere trasladar el mercado a una calle cercana porque la plaza se renovará durante seis meses. Muchos comerciantes están preocupados: temen perder a parte de sus clientes, sobre todo a las personas mayores que viven muy cerca. El martes por la tarde habrá una reunión pública en el ayuntamiento. Todos podrán hacer preguntas y proponer soluciones.",
+      "tr": "Yirmi yıldır perşembe pazarı mahallemin meydanını canlandırıyor. Sakinler buraya meyve, peynir almaya ya da sadece satıcılarla sohbet etmeye geliyor. Ancak belediye, meydan altı ay boyunca yenileneceği için pazarı yakındaki bir sokağa taşımak istiyor. Birçok esnaf endişeli: müşterilerinin bir kısmını, özellikle çok yakında yaşayan yaşlıları kaybetmekten korkuyorlar. Salı akşamı belediyede halka açık bir toplantı olacak. Herkes soru sorabilecek ve çözüm önerebilecek.",
+      "questions": [
+        {
+          "prompt": "¿Por qué quiere el ayuntamiento trasladar el mercado?",
+          "options": [
+            "Porque los vendedores lo piden",
+            "Porque la plaza se va a renovar",
+            "Porque hay demasiados clientes",
+            "Porque el mercado hace mucho ruido"
+          ],
+          "answer": 1,
+          "why": "“La plaza se renovará durante seis meses”: meydan yenilenecek."
+        },
+        {
+          "prompt": "¿Qué temen los comerciantes?",
+          "options": [
+            "Tener que pagar más",
+            "Quedarse sin productos",
+            "Perder a parte de sus clientes",
+            "Cambiar de oficio"
+          ],
+          "answer": 2,
+          "why": "“Temen perder a parte de sus clientes”: müşteri kaybetmekten korkuyorlar."
+        },
+        {
+          "prompt": "¿Qué pasará el martes por la tarde?",
+          "options": [
+            "Cerrarán el mercado",
+            "Habrá una reunión pública",
+            "Empezarán las obras",
+            "Habrá una fiesta del barrio"
+          ],
+          "answer": 1,
+          "why": "“Habrá una reunión pública”: salı öğleden sonra halka açık toplantı var."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-museos",
+      "exam": "DELE",
+      "level": "B2",
+      "title": "¿Museos gratuitos?",
+      "text": "Varias ciudades estudian hacer gratuita la entrada a los museos el primer domingo de cada mes. Quienes defienden la medida afirman que atrae a un público nuevo, sobre todo a familias que no se atreven a entrar en un museo por miedo al precio. Los detractores, en cambio, recuerdan que la gratuidad no lo resuelve todo: quien no se interesa por el arte no irá más al museo solo porque la entrada no cueste nada. Preferirían que ese dinero sirviera para financiar visitas escolares y actividades. Sin embargo, un estudio realizado en tres ciudades muestra que la afluencia se duplica en los días gratuitos, sin que los ingresos anuales bajen mucho.",
+      "tr": "Birçok şehir, müzeleri her ayın ilk pazar günü ücretsiz yapmayı düşünüyor. Bu önlemin savunucuları, ücretsiz giriş sayesinde yeni bir kitlenin, özellikle fiyattan çekindiği için müzeye adım atmaya cesaret edemeyen ailelerin geleceğini söylüyor. Karşı çıkanlar ise ücretsizliğin her sorunu çözmediğini hatırlatıyor: sanata ilgi duymayan biri, giriş ücretsiz diye müzeye daha çok gitmeyecek. Bu paranın okul gezilerini ve etkinlikleri finanse etmesini tercih ediyorlar. Üç şehirde yapılan bir araştırma ise ücretsiz günlerde ziyaretçi sayısının iki katına çıktığını, buna rağmen yıllık gelirlerin pek düşmediğini gösteriyor.",
+      "questions": [
+        {
+          "prompt": "Según quienes defienden la medida, ¿qué permite la gratuidad?",
+          "options": [
+            "Atraer a un público nuevo",
+            "Cerrar algunos museos",
+            "Subir el precio de las entradas",
+            "Reducir el número de visitantes"
+          ],
+          "answer": 0,
+          "why": "“Atrae a un público nuevo”: yeni bir kitleyi çekiyor."
+        },
+        {
+          "prompt": "¿Cuál es el argumento principal de los detractores?",
+          "options": [
+            "Los museos ya tienen demasiados visitantes",
+            "La gratuidad por sí sola no crea interés por el arte",
+            "Las familias prefieren el cine",
+            "Los museos no tienen espacio"
+          ],
+          "answer": 1,
+          "why": "Karşı çıkanlar: sanata ilgi duymayan biri ücretsiz diye gitmez."
+        },
+        {
+          "prompt": "¿Qué muestra el estudio citado?",
+          "options": [
+            "Los ingresos se hunden",
+            "Los visitantes son de más edad",
+            "Las escuelas rechazan las visitas",
+            "La afluencia se duplica los días gratuitos"
+          ],
+          "answer": 3,
+          "why": "“La afluencia se duplica en los días gratuitos”: ücretsiz günlerde ziyaret iki katına çıkıyor."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-cocina",
+      "exam": "DELE",
+      "level": "A2",
+      "title": "Un curso de cocina",
+      "text": "El centro cultural La Alameda ofrece un nuevo curso de cocina para principiantes. Las clases son los martes por la tarde, de seis a ocho, a partir del 3 de marzo. Cada clase cuesta doce euros, pero los estudiantes pagan solo ocho euros. Vas a aprender a preparar platos sencillos y baratos. Trae un delantal y un táper para llevarte a casa lo que cocines. Solo hay diez plazas: inscríbete en la recepción antes del 28 de febrero.",
+      "tr": "La Alameda kültür merkezi yeni başlayanlar için yeni bir yemek kursu açıyor. Dersler 3 Mart'tan itibaren salı akşamüstleri, altıdan sekize kadar. Her ders on iki avro, ama öğrenciler yalnızca sekiz avro ödüyor. Basit ve ucuz yemekler hazırlamayı öğreneceksin. Bir önlük ve pişirdiklerini eve götürmek için bir saklama kabı getir. Yalnızca on kişilik yer var: 28 Şubat'tan önce danışmada kaydol.",
+      "questions": [
+        {
+          "prompt": "¿Cuándo son las clases?",
+          "options": [
+            "Los martes por la tarde",
+            "Los martes por la mañana",
+            "Los sábados por la mañana",
+            "Todos los días"
+          ],
+          "answer": 0,
+          "why": "“Las clases son los martes por la tarde, de seis a ocho”: salı akşamüstleri."
+        },
+        {
+          "prompt": "¿Cuánto paga un estudiante por cada clase?",
+          "options": [
+            "Doce euros",
+            "Ocho euros",
+            "Diez euros",
+            "Veinte euros"
+          ],
+          "answer": 1,
+          "why": "“Los estudiantes pagan solo ocho euros”: öğrenciler sekiz avro öder; on iki avro normal fiyattır."
+        },
+        {
+          "prompt": "¿Qué hay que llevar a la clase?",
+          "options": [
+            "Los ingredientes",
+            "Un libro de recetas",
+            "Un delantal y un táper",
+            "Un cuchillo y un plato"
+          ],
+          "answer": 2,
+          "why": "“Trae un delantal y un táper para llevarte a casa lo que cocines”: önlük ve saklama kabı."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-vecina",
+      "exam": "DELE",
+      "level": "A2",
+      "title": "Una nota de la vecina",
+      "text": "Hola, señora Ruiz, soy Lucía, su vecina del tercero. El sábado por la mañana me voy de vacaciones a casa de mi hermana y vuelvo el viernes siguiente. ¿Podría regar mis plantas dos veces durante la semana, por ejemplo el martes y el jueves? El viernes por la noche voy a dejar mi llave en su buzón. No se preocupe por el gato: mi hijo va a venir todos los días a darle de comer. ¡Muchas gracias! Le traeré mermelada. Lucía",
+      "tr": "Merhaba Ruiz Hanım, ben üçüncü kattaki komşunuz Lucía. Cumartesi sabahı ablamın evine tatile gidiyorum, ertesi cuma dönüyorum. Hafta içinde iki kez, örneğin salı ve perşembe, çiçeklerimi sulayabilir misiniz? Cuma gecesi anahtarımı sizin posta kutunuza bırakacağım. Kedi için endişelenmeyin: oğlum her gün gelip onu besleyecek. Çok teşekkürler! Size reçel getireceğim. Lucía",
+      "questions": [
+        {
+          "prompt": "¿Para qué escribe Lucía esta nota?",
+          "options": [
+            "Para invitar a su vecina de vacaciones",
+            "Para pedirle un favor mientras está fuera",
+            "Para quejarse del ruido",
+            "Para vender sus plantas"
+          ],
+          "answer": 1,
+          "why": "Tatile gidiyor ve komşusundan çiçeklerini sulamasını rica ediyor: yokken bir iyilik istiyor."
+        },
+        {
+          "prompt": "¿Qué tiene que hacer la señora Ruiz?",
+          "options": [
+            "Dar de comer al gato todos los días",
+            "Regar las plantas todos los días",
+            "Regar las plantas el martes y el jueves",
+            "Ir a buscar la llave a casa del hijo de Lucía"
+          ],
+          "answer": 2,
+          "why": "“Regar mis plantas dos veces… el martes y el jueves”. Kediyi Lucía'nın oğlu besleyecek."
+        },
+        {
+          "prompt": "¿Dónde va a encontrar la llave la señora Ruiz?",
+          "options": [
+            "En su propio buzón",
+            "En casa de la hermana de Lucía",
+            "Debajo del felpudo",
+            "En casa del hijo de Lucía"
+          ],
+          "answer": 0,
+          "why": "“Voy a dejar mi llave en su buzón”: Ruiz Hanım'ın kendi posta kutusunda."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-teletrabajo",
+      "exam": "DELE",
+      "level": "B1",
+      "title": "Trabajar desde casa",
+      "text": "Desde hace un año, Javier, diseñador gráfico de treinta y cuatro años, trabaja tres días a la semana en su piso de Valencia y dos días en la oficina. «Al principio estaba encantado: ya no había atascos por la mañana y ganaba casi dos horas al día. Pero a los pocos meses empecé a sentirme solo. No hablaba con nadie hasta la noche». Para evitarlo, ha adoptado nuevas costumbres. Empieza el día con un paseo de veinte minutos, como si fuera a trabajar, y una vez a la semana come con un antiguo compañero. Además, ha puesto su escritorio en una habitación pequeña cuya puerta cierra a las seis de la tarde. «Lo que más echo de menos no son las reuniones, sino las charlas junto a la máquina de café», confiesa entre risas.",
+      "tr": "Otuz dört yaşındaki grafik tasarımcı Javier bir yıldır haftada üç gün Valencia'daki dairesinde, iki gün de ofiste çalışıyor. «Başta çok memnundum: sabah trafiği yoktu, günde neredeyse iki saat kazanıyordum. Ama birkaç ay sonra kendimi yalnız hissetmeye başladım. Akşama kadar kimseyle konuşmuyordum.» Bunun önüne geçmek için yeni alışkanlıklar edindi. Güne, işe gidiyormuş gibi yirmi dakikalık bir yürüyüşle başlıyor ve haftada bir eski bir iş arkadaşıyla öğle yemeği yiyor. Ayrıca masasını küçük bir odaya kurdu ve akşam altıda o odanın kapısını kapatıyor. «En çok özlediğim şey toplantılar değil, kahve makinesinin yanındaki sohbetler» diye itiraf ediyor gülerek.",
+      "questions": [
+        {
+          "prompt": "¿Cuántos días a la semana trabaja Javier en casa?",
+          "options": [
+            "Dos días",
+            "Tres días",
+            "Cinco días",
+            "Un día"
+          ],
+          "answer": 1,
+          "why": "“Trabaja tres días a la semana en su piso… y dos días en la oficina”: evde üç gün."
+        },
+        {
+          "prompt": "¿Qué problema tuvo a los pocos meses?",
+          "options": [
+            "Perdía tiempo en los atascos",
+            "Tenía demasiadas reuniones",
+            "Se sentía solo",
+            "Su piso era demasiado pequeño"
+          ],
+          "answer": 2,
+          "why": "“A los pocos meses empecé a sentirme solo”: birkaç ay sonra kendini yalnız hissetti."
+        },
+        {
+          "prompt": "¿Qué es lo que más echa de menos?",
+          "options": [
+            "Las conversaciones informales con sus compañeros",
+            "Las reuniones",
+            "Los trayectos de la mañana",
+            "Las comidas en restaurantes"
+          ],
+          "answer": 0,
+          "why": "“No son las reuniones, sino las charlas junto a la máquina de café”: kahve makinesinin yanındaki sohbetler."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-huerto",
+      "exam": "DELE",
+      "level": "B1",
+      "title": "Un huerto entre edificios",
+      "text": "Hace solo dos años, el espacio que hay entre los edificios de la calle de las Lilas era un solar vacío donde nadie se detenía. Hoy hay unos treinta pequeños huertos. La idea fue de Carmen, una jubilada que convenció al ayuntamiento para que prestara el terreno gratis. Cada familia inscrita recibe una parcela y se compromete a cuidarla al menos una vez por semana. Las herramientas se guardan en una caseta común y el agua de lluvia se recoge en grandes bidones. «Los niños descubren de dónde vienen las verduras, y vecinos que ni siquiera se saludaban ahora toman café juntos», cuenta Carmen. La lista de espera ya es larga: cuarenta familias esperan conseguir una parcela el año que viene.",
+      "tr": "Daha iki yıl önce Lilas sokağındaki binaların arasındaki alan, kimsenin uğramadığı boş bir arsaydı. Bugün orada otuz kadar küçük sebze bahçesi var. Fikir, belediyeyi araziyi ücretsiz vermeye ikna eden emekli Carmen'den çıktı. Kaydolan her aile bir parsel alıyor ve ona en az haftada bir kez bakmaya söz veriyor. Aletler ortak bir kulübede duruyor, yağmur suyu da büyük bidonlarda toplanıyor. «Çocuklar sebzelerin nereden geldiğini öğreniyor; birbirine selam bile vermeyen komşular artık birlikte kahve içiyor» diyor Carmen. Bekleme listesi şimdiden uzun: kırk aile gelecek yıl bir parsel almayı umuyor.",
+      "questions": [
+        {
+          "prompt": "¿Qué había antes del huerto?",
+          "options": [
+            "Un aparcamiento",
+            "Un solar vacío",
+            "Un pequeño mercado",
+            "Un colegio"
+          ],
+          "answer": 1,
+          "why": "“Era un solar vacío donde nadie se detenía”: boş bir arsa."
+        },
+        {
+          "prompt": "¿A qué se comprometen las familias inscritas?",
+          "options": [
+            "A pagar un alquiler al ayuntamiento",
+            "A comprar sus propias herramientas",
+            "A vender sus verduras a los vecinos",
+            "A cuidar su parcela al menos una vez por semana"
+          ],
+          "answer": 3,
+          "why": "“Se compromete a cuidarla al menos una vez por semana”. Arazi ücretsiz, aletler ortak."
+        },
+        {
+          "prompt": "Según Carmen, ¿qué ha cambiado el huerto en el barrio?",
+          "options": [
+            "Los vecinos se relacionan más",
+            "Las familias gastan menos en comida",
+            "El barrio atrae a nuevos vecinos",
+            "Los niños sacan mejores notas"
+          ],
+          "answer": 0,
+          "why": "Selamlaşmayan komşular “ahora toman café juntos”: artık birlikte kahve içiyorlar."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-semana",
+      "exam": "DELE",
+      "level": "C1",
+      "title": "La semana de cuatro días",
+      "text": "Desde hace unos años, varias empresas europeas experimentan con la semana laboral de cuatro días sin reducir el sueldo. Los resultados que difunden sus defensores parecen elocuentes: los empleados afirman estar menos estresados, las bajas por enfermedad disminuyen y la productividad, lejos de desplomarse, se mantiene e incluso mejora ligeramente. ¿Significa esto que estamos ante una solución milagrosa? Los escépticos piden prudencia. En primer lugar, las empresas que se ofrecen voluntarias para estas pruebas suelen ser pequeñas compañías del sector servicios, ya convencidas de las ventajas del modelo; sería arriesgado extrapolar sus conclusiones a un hospital o a una fábrica, donde la presencia física no se puede comprimir. En segundo lugar, condensar cuarenta horas en cuatro días puede dar lugar a jornadas tan intensas que el descanso ganado el viernes se paga de lunes a jueves. Por último, algunos trabajadores reconocen que el día libre acaba devorado por los trámites o las tareas domésticas. En el fondo, el debate gira menos en torno al número de días que a la organización del trabajo: allí donde se aprovechó la reforma para suprimir reuniones inútiles, los beneficios parecen duraderos; donde solo se acortó la semana, se desvanecen al cabo de unos meses.",
+      "tr": "Birkaç yıldır bazı Avrupa şirketleri maaşı düşürmeden dört günlük çalışma haftasını deniyor. Savunucularının yaydığı sonuçlar çok şey söylüyor gibi: çalışanlar daha az stresli olduklarını söylüyor, hastalık izinleri azalıyor ve verimlilik çökmek bir yana aynı kalıyor, hatta biraz artıyor. Bu, mucize bir çözümle karşı karşıya olduğumuz anlamına mı geliyor? Kuşkucular dikkat istiyor. Önce, bu denemelere gönüllü olan şirketler genellikle hizmet sektöründen, modelin yararlarına zaten inanmış küçük şirketler; sonuçlarını fiziksel varlığın sıkıştırılamadığı bir hastaneye ya da fabrikaya genellemek riskli olur. İkincisi, kırk saati dört güne sığdırmak öyle yoğun iş günleri doğurabilir ki cuma kazanılan dinlenmenin bedeli pazartesiden perşembeye ödenir. Son olarak bazı çalışanlar boş günün resmî işler ya da ev işleri tarafından yutulduğunu kabul ediyor. Aslında tartışma gün sayısından çok işin düzeni etrafında dönüyor: reformun gereksiz toplantıları kaldırmak için kullanıldığı yerlerde yararlar kalıcı görünüyor; yalnızca haftanın kısaltıldığı yerlerde birkaç ay sonra kayboluyor.",
+      "questions": [
+        {
+          "prompt": "Según sus defensores, ¿qué efecto tiene la semana de cuatro días en la productividad?",
+          "options": [
+            "Se desploma rápidamente",
+            "Baja un poco, pero el estrés disminuye",
+            "Se mantiene e incluso mejora ligeramente",
+            "Se duplica en las empresas pequeñas"
+          ],
+          "answer": 2,
+          "why": "“La productividad, lejos de desplomarse, se mantiene e incluso mejora ligeramente”: aynı kalıyor, hatta biraz artıyor."
+        },
+        {
+          "prompt": "¿Por qué desconfían los escépticos de los resultados de las pruebas?",
+          "options": [
+            "Los empleados exageraron su cansancio",
+            "Las empresas participantes no representan a toda la economía",
+            "Los resultados nunca se publicaron",
+            "Los sueldos bajaron durante el experimento"
+          ],
+          "answer": 1,
+          "why": "Gönüllü şirketler çoğunlukla hizmet sektöründen küçük şirketler; hastane ya da fabrikaya genellemek “arriesgado” (riskli)."
+        },
+        {
+          "prompt": "Según el autor, ¿de qué depende sobre todo el éxito de la reforma?",
+          "options": [
+            "De cómo se reorganiza el trabajo",
+            "Del número exacto de horas trabajadas",
+            "Del día de la semana que se libra",
+            "Únicamente del tamaño de la empresa"
+          ],
+          "answer": 0,
+          "why": "“El debate gira menos en torno al número de días que a la organización del trabajo”: gereksiz toplantıların kaldırıldığı yerlerde yararlar kalıcı."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-reparar",
+      "exam": "DELE",
+      "level": "C1",
+      "title": "Reparar en lugar de tirar",
+      "text": "Un sábado al mes, en un local cedido por el ayuntamiento, una decena de voluntarios recibe a vecinos que llegan con una tostadora muda, una lámpara que parpadea o unos pantalones rotos. Este «café de reparación» no tiene nada de servicio técnico gratuito: el dueño del objeto participa él mismo en la reparación, guiado por un voluntario. «No queremos que la gente se vaya solo con un aparato que funciona, sino con la idea de que es capaz de arreglarlo», explica Enrique, ingeniero jubilado. El éxito de estas iniciativas revela un malestar más profundo. Muchos consumidores sospechan que los fabricantes diseñan productos deliberadamente frágiles o hacen que los recambios sean imposibles de encontrar y carísimos. El legislador ha empezado a reaccionar: algunos aparatos deben llevar ya un índice de reparabilidad, y los vendedores están obligados a indicar durante cuántos años habrá piezas disponibles. Aun así, los voluntarios no se hacen ilusiones. Un tercio de los objetos que les llevan no tienen arreglo, a menudo porque fueron diseñados para no abrirse nunca. Para Enrique, la verdadera victoria sería que algún día los cafés de reparación dejaran de ser necesarios.",
+      "tr": "Ayda bir cumartesi, belediyenin verdiği bir mekânda on kadar gönüllü, sesi çıkmayan bir ekmek kızartma makinesi, yanıp sönen bir lamba ya da yırtık bir pantolonla gelen mahalleliyi karşılıyor. Bu «tamir kafesi» ücretsiz bir teknik servis değil: eşyanın sahibi bir gönüllünün rehberliğinde onarıma kendisi katılıyor. «İnsanların yalnızca çalışan bir aletle değil, onu tamir edebilecekleri düşüncesiyle gitmelerini istiyoruz» diyor emekli mühendis Enrique. Bu girişimlerin başarısı daha derin bir rahatsızlığı gösteriyor. Pek çok tüketici, üreticilerin ürünleri bile bile dayanıksız tasarladığından ya da yedek parçaları bulunmaz ve çok pahalı hâle getirdiğinden kuşkulanıyor. Yasa koyucu tepki vermeye başladı: bazı aletlerde artık bir onarılabilirlik puanı bulunmalı, satıcılar da parçaların kaç yıl bulunacağını belirtmek zorunda. Yine de gönüllüler hayale kapılmıyor. Getirilen eşyaların üçte biri onarılamıyor, çoğu zaman da hiç açılmamak üzere tasarlandıkları için. Enrique'ye göre asıl zafer, tamir kafelerine bir gün gerek kalmaması olurdu.",
+      "questions": [
+        {
+          "prompt": "¿Cuál es la idea del café de reparación?",
+          "options": [
+            "Los voluntarios arreglan gratis los objetos mientras uno espera",
+            "El dueño repara él mismo su objeto, guiado por un voluntario",
+            "Se cambia un objeto roto por otro que funciona",
+            "Unos artesanos venden recambios baratos"
+          ],
+          "answer": 1,
+          "why": "“No tiene nada de servicio técnico gratuito: el dueño del objeto participa él mismo en la reparación, guiado por un voluntario”."
+        },
+        {
+          "prompt": "¿Qué reprochan muchos consumidores a los fabricantes?",
+          "options": [
+            "Que venden sus productos demasiado caros en las tiendas",
+            "Que muestran un índice de reparabilidad engañoso",
+            "Que diseñan objetos frágiles y hacen difícil conseguir recambios",
+            "Que se niegan a reparar los aparatos en garantía"
+          ],
+          "answer": 2,
+          "why": "Ürünleri “deliberadamente frágiles” tasarladıklarından, yedek parçaları da “imposibles de encontrar y carísimos” yaptıklarından kuşkulanıyorlar."
+        },
+        {
+          "prompt": "¿Cuál sería, para Enrique, el verdadero éxito?",
+          "options": [
+            "Que estos cafés ya no hicieran falta",
+            "Abrir un café de reparación cada semana",
+            "Arreglar todos los objetos que les llevan",
+            "Que la ley prohibiera los objetos que no se pueden abrir"
+          ],
+          "answer": 0,
+          "why": "“La verdadera victoria sería que algún día los cafés de reparación dejaran de ser necesarios”: bu kafelere gerek kalmaması."
+        }
+      ],
+      "language": "es"
+    },
+    {
+      "id": "es-read-bicicletas-compartidas",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B1",
+      "title": "Sistema municipal de bicicletas eléctricas",
+      "text": "Hace seis meses, el ayuntamiento de nuestra ciudad inauguró un novedoso servicio de alquiler de bicicletas eléctricas para mitigar los atascos diarios. Se instalaron más de doscientas estaciones de recogida cerca de intercambiadores de transporte, facultades universitarias y avenidas comerciales concurridas. Los usuarios desbloquean los vehículos mediante una sencilla aplicación móvil y pueden devolverlos en cualquier punto libre de la red. Una encuesta reciente del departamento de movilidad reveló que ya se han efectuado más de cuarenta mil desplazamientos, demostrando que muchos ciudadanos optan por pedalear en trayectos cortos. El consistorio prevé ampliar el parque móvil este verano.",
+      "tr": "Altı ay önce şehir belediyemiz, günlük trafik sıkışıklığını hafifletmek için yenilikçi bir elektrikli bisiklet kiralama hizmeti başlattı. Ulaşım aktarma merkezleri, üniversite fakülteleri ve işlek caddelerin yakınına iki yüzden fazla istasyon kuruldu. Kullanıcılar araçların kilidini basit bir mobil uygulamayla açıp ağdaki herhangi bir boş noktaya teslim edebiliyor. Ulaşım dairesinin yakın tarihli bir anketi, kırk binden fazla seyahatin gerçekleştirildiğini ve birçok vatandaşın kısa mesafelerde bisiklet sürmeyi tercih ettiğini gösterdi. Belediye bu yaz araç parkını genişletmeyi planlıyor.",
+      "questions": [
+        {
+          "prompt": "¿Con qué objetivo principal se creó el servicio de bicicletas?",
+          "options": [
+            "Para obtener beneficios comerciales rápidos",
+            "Para reducir la congestión del tráfico urbano",
+            "Para sustituir la red de metro",
+            "Para organizar competiciones ciclistas"
+          ],
+          "answer": 1,
+          "why": "Metinde açıkça şehir içi trafiği azaltmak amacıyla kurulduğu belirtilmektedir ('para mitigar los atascos diarios')."
+        },
+        {
+          "prompt": "¿Cómo se retira una bicicleta de la estación?",
+          "options": [
+            "Mostrando el carné de conducir a un vigilante",
+            "A través de una aplicación para teléfono móvil",
+            "Comprando una ficha metálica en taquilla",
+            "Llamando por teléfono al servicio técnico"
+          ],
+          "answer": 1,
+          "why": "Kullanıcılar telefon uygulaması aracılığıyla bisiklet kilidini açmaktadır ('mediante una sencilla aplicación móvil')."
+        },
+        {
+          "prompt": "¿Qué decisión proyecta adoptar el ayuntamiento en verano?",
+          "options": [
+            "Aumentar el número de bicicletas disponibles",
+            "Cerrar las estaciones de las universidades",
+            "Privatizar la gestión de las aplicaciones",
+            "Prohibir el uso a turistas"
+          ],
+          "answer": 0,
+          "why": "Belediye yazın araç sayısını artırmayı planlamaktadır ('ampliar el parque móvil este verano')."
+        }
+      ]
+    },
+    {
+      "id": "es-read-posos-cafe",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B1",
+      "title": "Biomasa ecológica a partir del café",
+      "text": "A diario se consumen millones de tazas de café en el mundo, generando toneladas de residuos húmedos que terminan irremediablemente en los vertederos. Una empresa emergente de base tecnológica ha concebido una solución circular sumamente provechosa. Recogen diariamente el café molido usado de cientos de cafeterías locales y establecimientos hosteleros. Mediante un riguroso proceso de secado natural y prensado térmico, estos restos se transforman en pellets combustibles para estufas domésticas y calderas ecológicas. Estos cilindros compactos generan un calor superior y más constante que la leña convencional, disminuyendo notablemente las emisiones contaminantes.",
+      "tr": "Dünyada her gün milyonlarca fincan kahve tüketiliyor ve bu da kaçınılmaz olarak çöplüklere giden tonlarca nemli atık üretiyor. Teknoloji tabanlı yeni bir girişim oldukça faydalı döngüsel bir çözüm geliştirdi. Yüzlerce yerel kafe ve restorandan kullanılan öğütülmüş kahveyi her gün topluyorlar. Titiz bir doğal kurutma ve termal presleme süreciyle bu atıklar, ev sobaları ve ekolojik kazanlar için yakıt peletlerine dönüştürülüyor. Bu kompakt silindirler geleneksel ottan ve odundan daha yüksek ve istikrarlı ısı üretirken kirletici emisyonları belirgin biçimde azaltıyor.",
+      "questions": [
+        {
+          "prompt": "¿Cuál es el destino habitual de los restos de café molido?",
+          "options": [
+            "Los vertederos municipales de basura",
+            "La alimentación de ganado lechero",
+            "La industria de la pintura decorativa",
+            "El riego de campos agrícolas"
+          ],
+          "answer": 0,
+          "why": "Metinde kahve atıklarının olağan yerinin belediye çöplükleri olduğu belirtilmektedir ('terminan irremediablemente en los vertederos')."
+        },
+        {
+          "prompt": "¿Dónde adquiere la empresa su materia prima?",
+          "options": [
+            "En plantaciones de café sudamericanas",
+            "En cafeterías y restaurantes del entorno",
+            "En fábricas de envasado al vacío",
+            "En mercados mayoristas de alimentación"
+          ],
+          "answer": 1,
+          "why": "Şirket malzemeyi yerel kafe ve restoranlardan temin etmektedir ('cientos de cafeterías locales y establecimientos hosteleros')."
+        },
+        {
+          "prompt": "¿Qué ventaja ofrece el combustible obtenido del café?",
+          "options": [
+            "Produce un calor superior al de la madera",
+            "Carece por completo de coste económico",
+            "Desprende un agradable aroma cítrico",
+            "Se disuelve instantáneamente en agua caliente"
+          ],
+          "answer": 0,
+          "why": "Geleneksel oduna göre daha yüksek ısı üretmektedir ('generan un calor superior y más constante que la leña')."
+        }
+      ]
+    },
+    {
+      "id": "es-read-ciudades-inteligentes",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B2",
+      "title": "Sensores y gobernanza en las urbes inteligentes",
+      "text": "Las grandes metrópolis contemporáneas integran de forma creciente sensores interconectados para optimizar la gestión de sus servicios esenciales en tiempo real. En capitales como Barcelona y Madrid, miles de pequeños dispositivos telemáticos supervisan la pureza del aire, la fluidez circulatoria y la intensidad del alumbrado viario. Las farolas inteligentes regulan su brillo según el flujo peatonal nocturno, reduciendo el consumo eléctrico, mientras que sensores enterrados en zonas verdes activan el riego por goteo únicamente cuando la humedad del subsuelo desciende de los parámetros idóneos. Los expertos en urbanismo defienden que estos algoritmos ahorran recursos presupuestarios y elevan el bienestar de la ciudadanía. Sin embargo, diversas organizaciones civiles advierten con preocupación sobre la privacidad, señalando que la recopilación masiva de datos biométricos y movimientos puede desembocar en una vigilancia desmedida en el espacio público.",
+      "tr": "Çağdaş büyük metropoller, temel hizmetlerin yönetimini gerçek zamanlı optimize etmek için artan oranda birbirine bağlı sensörleri entegre ediyor. Barselona ve Madrid gibi başkentlerde binlerce küçük telematik cihaz hava temizliğini, trafik akışını ve cadde aydınlatma yoğunluğunu denetliyor. Akıllı sokak lambaları gece yaya akışına göre parlaklığını ayarlayarak elektrik tüketimini düşürürken, yeşil alanlara gömülü sensörler damla sulamayı yalnızca toprak nemi uygun parametrelerin altına düştüğünde devreye sokuyor. Şehircilik uzmanları bu algoritmaların bütçe kaynaklarından tasarruf sağladığını ve vatandaşların refahını yükselttiğini savunuyor. Bununla birlikte çeşitli sivil örgütler gizlilik konusunda endişeyle uyarıda bulunarak, biyometrik verilerin ve hareketlerin kitlesel toplanmasının kamusal alanda ölçüsüz bir gözetimle sonuçlanabileceğine işaret ediyor.",
+      "questions": [
+        {
+          "prompt": "¿De qué modo contribuyen las farolas inteligentes al ahorro de energía?",
+          "options": [
+            "Apagándose al mediodía de forma rigurosa",
+            "Ajustando su intensidad luminosa según haya transeúntes",
+            "Empleando paneles solares exclusivos sin red",
+            "Reflejando la luz de los escaparates vecinos"
+          ],
+          "answer": 1,
+          "why": "Sokak lambaları aydınlık düzeyini yayaların varlığına göre ayarlar ('regulan su brillo según el flujo peatonal nocturno')."
+        },
+        {
+          "prompt": "¿Qué beneficio principal destacan los especialistas en urbanismo?",
+          "options": [
+            "El abaratamiento del coste y el aumento de la calidad de vida",
+            "La desaparición absoluta de los coches de combustión",
+            "El incremento de los ingresos por multas de tráfico",
+            "La sustitución completa de los empleados de limpieza"
+          ],
+          "answer": 0,
+          "why": "Uzmanlar bütçe tasarrufu ve yaşam kalitesinin artışını vurgulamaktadır ('ahorran recursos presupuestarios y elevan el bienestar')."
+        },
+        {
+          "prompt": "¿Cuál es el motivo de inquietud señalado por las asociaciones ciudadanas?",
+          "options": [
+            "La falta de baterías de repuesto para los dispositivos",
+            "El riesgo de vigilancia masiva y menoscabo de la privacidad",
+            "Las interferencias en las señales de radio y televisión",
+            "El precio desorbitado de los postes de luz"
+          ],
+          "answer": 1,
+          "why": "Sivil toplum örgütleri kitlesel gözetim ve mahremiyet kaybından endişe etmektedir ('vigilancia desmedida en el espacio público')."
+        }
+      ]
+    },
+    {
+      "id": "es-read-microbiota-emociones",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B2",
+      "title": "La microbiota intestinal y el equilibrio emocional",
+      "text": "En los últimos años, la comunidad neurocientífica ha desentrañado un sofisticado canal biológico que conecta el aparato digestivo humano con las funciones cerebrales. Denominado eje intestino-cerebro, este circuito de señalización bioquímica bidireccional depende en gran medida de los billones de microorganismos comensales que habitan la mucosa intestinal. Estas bacterias especializadas sintetizan mensajeros químicos decisivos, entre ellos la serotonina y el ácido gamma-aminobutírico, encargados de modular la ansiedad, el descanso nocturno y la respuesta al estrés. Ensayos clínicos recientes señalan que una nutrición rica en alimentos fermentados, prebióticos y fibra soluble consolida el equilibrio anímico al mitigar la inflamación celular sistémica. Por consiguiente, la medicina psiquiátrica moderna empieza a complementar el tratamiento psicoterapéutico con pautas dietéticas individualizadas, inaugurando un abordaje integral de los trastornos del estado de ánimo.",
+      "tr": "Son yıllarda nörobilim camiası, insan sindirim sistemi ile beyin fonksiyonlarını birbirine bağlayan gelişmiş bir biyolojik kanalı aydınlattı. Bağırsak-beyin ekseni olarak adlandırılan bu iki yönlü biyokimyasal sinyal devresi, büyük ölçüde bağırsak mukozasında yaşayan trilyonlarca mikroorganizmaya dayanıyor. Bu özelleşmiş bakteriler; anksiyeteyi, gece uykusunu ve strese verilen tepkiyi düzenleyen serotonin ve gama-aminobütirik asit gibi belirleyici kimyasal habercileri sentezliyor. Yakın tarihli klinik deneyler, fermente gıdalar, prebiyotikler ve çözünür lif açısından zengin beslenmenin hücresel iltihabı hafifleterek duygu durum dengesini pekiştirdiğini göstermektedir. Dolayısıyla modern psikiyatri tıbbı, psikoterapötik tedaviyi kişiye özel beslenme kurallarıyla tamamlamaya başlayarak duygu durum bozukluklarına bütüncül bir yaklaşım getirmektedir.",
+      "questions": [
+        {
+          "prompt": "¿Cómo se define el funcionamiento del eje intestino-cerebro?",
+          "options": [
+            "Como una señal acústica interna involuntaria",
+            "Como un sistema comunicativo bidireccional a nivel bioquímico",
+            "Como un proceso exclusivo de la vejez",
+            "Como una reacción química desvinculada de las bacterias"
+          ],
+          "answer": 1,
+          "why": "Bağırsak-beyin ekseni iki yönlü biyokimyasal bir iletişim devresi olarak tanımlanmıştır ('circuito de señalización bioquímica bidireccional')."
+        },
+        {
+          "prompt": "¿Qué función relevante desempeñan las bacterias intestinales?",
+          "options": [
+            "Absorben todos los minerales tóxicos del organismo",
+            "Generan neurotransmisores fundamentales como la serotonina",
+            "Sustituyen la necesidad de descanso nocturno",
+            "Impiden la digestión de carbohidratos complejos"
+          ],
+          "answer": 1,
+          "why": "Bakteriler serotonin gibi kritik nörotransmitterleri üretir ('sintetizan mensajeros químicos decisivos, entre ellos la serotonina')."
+        },
+        {
+          "prompt": "¿Qué tendencia clínica está adoptando la psiquiatría contemporánea?",
+          "options": [
+            "Eliminar de manera estricta el consumo de legumbres",
+            "Combinar la terapia psicológica con pautas de alimentación",
+            "Prescindir de la psicoterapia en favor de pastillas",
+            "Prohibir los alimentos ricos en fibra a los pacientes"
+          ],
+          "answer": 1,
+          "why": "Psikiyatri psikoterapiyi kişiselleştirilmiş beslenme önerileriyle harmanlamaktadır ('complementar el tratamiento psicoterapéutico con pautas dietéticas')."
+        }
+      ]
+    },
+    {
+      "id": "es-read-agricultura-vertical",
+      "language": "es",
+      "exam": "DELE",
+      "level": "B2",
+      "title": "Granjas verticales e innovación agroalimentaria",
+      "text": "Frente a las sequías recurrentes y la erosión del suelo fértil, la agricultura vertical en recintos cerrados se consolida como una alternativa productiva de enorme potencial. En naves climatizadas, hortalizas de hoja verde y frutos rojos crecen en estanterías superpuestas alimentadas por soluciones nutritivas hidropónicas, prescindiendo del sustrato terroso tradicional. Módulos de iluminación LED proporcionan combinaciones lumínicas ajustadas que maximizan la fotosíntesis, facilitando cosechas ininterrumpidas a lo largo de todo el año con total independencia meteorológica. Esta tecnología ahorra hasta un noventa y cinco por ciento de agua de riego respecto al campo abierto y elimina la aplicación de pesticidas sintéticos. No obstante, la cuantiosa inversión inicial en equipamiento tecnológico y la factura energética derivada del consumo lumínico constante constituyen todavía barreras operativas que los agrónomos persiguen amortiguar mediante fuentes renovables.",
+      "tr": "Tekrarlayan kuraklıklar ve verimli toprakların erozyonu karşısında, kapalı alanlardaki dikey tarım muazzam potansiyele sahip üretken bir alternatif olarak güçleniyor. İklimlendirilmiş binalarda yeşil yapraklı sebzeler ve kırmızı meyveler, geleneksel toprak tabakasından vazgeçilerek hidroponik besin solüsyonlarıyla beslenen üst üste konulmuş raflarda yetişiyor. LED aydınlatma modülleri fotosentezi en üst düzeye çıkaran ayarlanmış ışık kombinasyonları sağlayarak hava durumundan tamamen bağımsız biçimde yıl boyu kesintisiz hasat imkânı sunuyor. Bu teknoloji açık tarlaya kıyasla yüzde doksan beşe kadar sulama suyu tasarrufu sağlıyor ve sentetik pestisit kullanımını ortadan kaldırıyor. Ancak teknolojik donanıma yapılan yüklü ilk yatırım ve sürekli ışık tüketiminden kaynaklanan enerji faturası, tarım uzmanlarının yenilenebilir kaynaklarla hafifletmeye çalıştığı operasyonel engeller olmaya devam ediyor.",
+      "questions": [
+        {
+          "prompt": "¿De qué manera se nutren las plantas en las granjas verticales?",
+          "options": [
+            "Mediante compostaje orgánico de restos forestales",
+            "A través de disoluciones líquidas de nutrientes en agua",
+            "Utilizando tierra importada de regiones volcánicas",
+            "Inyectando gas natural en las raíces secas"
+          ],
+          "answer": 1,
+          "why": "Bitkiler toprak yerine suda çözünmüş besin solüsyonlarıyla beslenir ('soluciones nutritivas hidropónicas, prescindiendo del sustrato')."
+        },
+        {
+          "prompt": "¿Cuál es una de las grandes ventajas ecológicas del modelo vertical?",
+          "options": [
+            "La drástica disminución del gasto hídrico y la ausencia de pesticidas",
+            "La regeneración espontánea de acuíferos subterráneos",
+            "La nula necesidad de supervisión humana o técnica",
+            "La capacidad de cultivar árboles de gran envergadura"
+          ],
+          "answer": 0,
+          "why": "Yüzde 95 su tasarrufu ve pestisit kullanılmaması büyük avantajdır ('ahorra hasta un noventa y cinco por ciento de agua... elimina pesticidas')."
+        },
+        {
+          "prompt": "¿Qué escollo principal frena la rentabilidad actual de estas instalaciones?",
+          "options": [
+            "La falta de variedades vegetales adaptadas al interior",
+            "El elevado desembolso de capital y el consumo eléctrico",
+            "La negativa de los consumidores a consumir vegetales frescos",
+            "Las estrictas leyes sanitarias que impiden su venta"
+          ],
+          "answer": 1,
+          "why": "Yüksek ilk sermaye harcaması ve elektrik tüketimi başlıca engeldir ('cuantiosa inversión inicial... factura energética derivada')."
+        }
+      ]
+    },
+    {
+      "id": "es-read-resilvestracion-c1",
+      "language": "es",
+      "exam": "DELE",
+      "level": "C1",
+      "title": "Resilvestración ecológica y dinámica de las cascadas tróficas",
+      "text": "La biología de la conservación experimenta una profunda transformación conceptual, transitando de la tutela defensiva de reservas cercadas hacia la audaz resilvestración de ecosistemas degradados. Mientras el conservacionismo tradicional solía restringirse a aislar parcelas amenazadas y gestionar artificialmente especies en declive, la resilvestración persigue restituir procesos ecológicos autónomos y reincorporar grandes carnívoros como catalizadores del equilibrio biológico. La reintroducción del lobo en el Parque Nacional de Yellowstone encarna el ejemplo paradigmático de cascada trófica: al modificar la conducta alimentaria y desplazamiento de los ciervos, la presión depredadora propició la regeneración espontánea de los sauces y álamos en las riberas fluviales. Esta reactivación botánica consolidó las márgenes de los ríos, frenó la erosión y precipitó el retorno de castores, aves migratorias y anfibios. Pese a estos logros tangibles, las comunidades ganaderas denuncian con frecuencia que tales iniciativas desoyen la viabilidad del pastoreo tradicional y la economía rural. Conciliar la renaturalización de hábitats salvajes con los derechos agrarios históricos exige articular compensaciones económicas ágiles y un diálogo institucional transparente.",
+      "tr": "Koruma biyolojisi, çitle çevrili alanların savunmacı gözetiminden bozulmuş ekosistemlerin cesur biçimde yeniden yabanileştirilmesine geçerek derin bir kavramsal dönüşüm yaşıyor. Geleneksel korumacılık genellikle tehdit altındaki parselleri izole etmek ve azalan türleri yapay olarak yönetmekle sınırlı kalırken, yeniden yabanileştirme özerk ekolojik süreçleri geri getirmeyi ve biyolojik dengenin katalizörü olarak büyük etoburları yeniden sisteme dahil etmeyi amaçlıyor. Kurdun Yellowstone Ulusal Parkı'na yeniden getirilmesi trofik zincir etkisinin en belirgin örneğidir: geyiklerin beslenme ve hareket davranışlarını değiştiren avcı baskısı, nehir kıyılarındaki söğüt ve kavakların kendiliğinden canlanmasını sağladı. Bu botanik canlanma nehir kıyılarını sağlamlaştırdı, erozyonu durdurdu ve kunduzların, göçmen kuşların ve amfibilerin dönüşünü hızlandırdı. Bu somut başarılara rağmen hayvancılıkla geçinen topluluklar, bu tür girişimlerin geleneksel otlatmanın ve kırsal ekonominin sürdürülebilirliğini görmezden geldiğini sıklıkla dile getirmektedir. Yaban hayatının yeniden canlandırılması ile tarihi tarımsal hakları uzlaştırmak, esnek ekonomik tazminatlar ve şeffaf bir kurumsal diyalog yürütmeyi gerektirir.",
+      "questions": [
+        {
+          "prompt": "¿En qué consiste el cambio de enfoque que plantea la resilvestración?",
+          "options": [
+            "En confinar a las especies en parques zoológicos especializados",
+            "En recuperar la autonomía de los procesos biológicos y depredadores cumbre",
+            "En talar las especies arbóreas invasoras de forma sistemática",
+            "En prohibir permanentemente el acceso del ser humano a la naturaleza"
+          ],
+          "answer": 1,
+          "why": "Doğal süreçlerin ve tepe yırtıcıların bağımsız dengesini geri kazandırmayı amaçlar ('restituir procesos ecológicos autónomos y reincorporar grandes carnívoros')."
+        },
+        {
+          "prompt": "¿Qué efecto directo desencadenó el regreso de la vegetación de ribera en Yellowstone?",
+          "options": [
+            "La erradicación de las poblaciones de insectos acuáticos",
+            "La estabilización de los márgenes y la recolonización por diversas especies",
+            "La disminución drástica del caudal de los arroyos de montaña",
+            "El aumento descontrolado de los rebaños de herbívoros"
+          ],
+          "answer": 1,
+          "why": "Kıyıların sağlamlaşması ve kunduzlar ile kuşların geri dönmesi sağlanmıştır ('consolidó las márgenes de los ríos... retorno de castores, aves')."
+        },
+        {
+          "prompt": "¿Cuál es la principal reticencia manifestada por el sector ganadero?",
+          "options": [
+            "La escasez de agua potable en los bebederos comunales",
+            "La desatención a las actividades pastoriles y al sustento rural",
+            "El rechazo frontal a las subvenciones monetarias estatales",
+            "La proliferación de cazadores deportivos en sus tierras"
+          ],
+          "answer": 1,
+          "why": "Geleneksel otlatma ve kırsal geçim kaynaklarının göz ardı edilmesinden şikâyetçidirler ('desoyen la viabilidad del pastoreo tradicional y la economía rural')."
+        }
+      ]
+    },
+    {
+      "id": "es-read-epigenetica-c1",
+      "language": "es",
+      "exam": "DELE",
+      "level": "C1",
+      "title": "Plasticidad epigenética y transmisión transgeneracional",
+      "text": "Durante décadas, el paradigma hegemónico de la genética molecular sostuvo que la anatomía y predisposiciones fisiológicas de un ser vivo quedaban inexorablemente prescritas en las secuencias de nucleótidos de su ADN. No obstante, el auge de la epigenética ha desmontado este determinismo mecánico. Fenómenos moleculares como la metilación del ADN y las modificaciones en las histonas operan a modo de interruptores bioquímicos que activan o silencian genes sin alterar la estructura básica del código genético. Agentes ambientales como la privación nutricional prolongada, los contaminantes atmosféricos y el estrés psicológico severo inducen marcas epigenéticas perdurables capaces de modular vías metabólicas enteras. Más desconcertante aún resulta constatar que ciertas improntas eluden la reprogramación embrionaria y se transmiten a la descendencia. Estudios demográficos con descendientes de poblaciones azotadas por hambrunas demuestran una propensión anómala a cardiopatías y trastornos endocrinos, evidenciando que nuestra herencia fisiológica no sólo aglutina genes inmutables, sino también el testimonio biológico de las vivencias de nuestros antepasados.",
+      "tr": "On yıllar boyunca moleküler genetiğin egemen paradigması, bir canlının anatomisinin ve fizyolojik yatkınlıklarının DNA'sındaki nükleotid dizilerinde kesin olarak belirlendiğini savundu. Bununla birlikte epigenetiğin yükselişi bu mekanik determinizmi yıktı. DNA metilasyonu ve histon modifikasyonları gibi moleküler olaylar, genetik kodun temel yapısını değiştirmeden genleri etkinleştiren veya susturan biyokimyasal anahtarlar gibi çalışır. Uzun süreli yetersiz beslenme, atmosferik kirleticiler ve şiddetli psikolojik stres gibi çevresel faktörler, tüm metabolik yolları düzenleyebilen kalıcı epigenetik işaretler oluşturur. Daha da şaşırtıcı olanı, bazı işaretlerin embriyonik yeniden programlamadan kaçarak yavru döllere aktarıldığının tespit edilmesidir. Kıtlıktan etkilenen toplumların torunları üzerinde yapılan demografik çalışmalar kalp hastalıklarına ve endokrin bozukluklara karşı anormal bir yatkınlık göstermekte; bu da fizyolojik mirasımızın yalnızca değişmez genleri değil, aynı zamanda atalarımızın yaşadıklarının biyolojik tanıklığını da bir araya getirdiğini kanıtlamaktadır.",
+      "questions": [
+        {
+          "prompt": "¿Qué postulado tradicional de la genética ha quedado desvirtuado por la epigenética?",
+          "options": [
+            "Que las mutaciones ocurren únicamente por exposición a la radiación",
+            "Que la secuencia del ADN determina de forma cerrada e inmutable la biología del organismo",
+            "Que las células eucariotas poseen material hereditario en el núcleo",
+            "Que el ácido ribonucleico interviene en la síntesis de proteínas"
+          ],
+          "answer": 1,
+          "why": "Epigenetik DNA diziliminin her şeyi değişmez şekilde belirlediği determinist kabulü yıkmıştır ('desmontado este determinismo mecánico')."
+        },
+        {
+          "prompt": "¿A través de qué mecanismo inciden las marcas epigenéticas en el organismo?",
+          "options": [
+            "Modificando el orden de las bases nitrogenadas en la doble hélice",
+            "Actuando como reguladores que silencian o expresan determinados genes",
+            "Acelerando la descomposición del tejido muscular estriado",
+            "Eliminando cromosomas defectuosos durante la mitosis"
+          ],
+          "answer": 1,
+          "why": "Genleri sessize alan veya ifade eden anahtarlar gibi etki eder ('interruptores bioquímicos que activan o silencian genes sin alterar el código')."
+        },
+        {
+          "prompt": "¿Qué revelan las investigaciones en descendientes de supervivientes a hambrunas?",
+          "options": [
+            "Que ciertas huellas biológicas de adversidad extrema se heredan entre generaciones",
+            "Que el sistema inmunológico se vuelve completamente inmune a las bacterias",
+            "Que los hijos muestran una longevidad notablemente superior a la media",
+            "Que la epigenética borra por completo los genes de origen paterno"
+          ],
+          "answer": 0,
+          "why": "Zorlukların epigenetik izlerinin nesiller boyunca kalıtılabildiğini ortaya koymaktadır ('ciertas improntas eluden la reprogramación embrionaria y se transmiten')."
+        }
+      ]
+    },
+    {
+      "id": "es-read-acceso-abierto-c1",
+      "language": "es",
+      "exam": "DELE",
+      "level": "C1",
+      "title": "Monopolios editoriales académicos y la exigencia de ciencia abierta",
+      "text": "El circuito de difusión de la producción científica mundial arrastra una paradójica distorsión financiera. Mientras que las universidades públicas y organismos estatales sufragan la investigación básica con caudales colectivos, los manuscritos resultantes son cedidos sin remuneración a un oligopolio de grandes conglomerados editoriales privados. Estos gigantes corporativos imponen después muros de pago inasumibles y suscripciones abusivas a las mismas bibliotecas académicas que crearon el conocimiento, cercenando los presupuestos universitarios. Frente a esta mercantilización del saber, el movimiento internacional por el acceso abierto postula que los descubrimientos financiados con dinero público deben democratizarse en plataformas digitales libres e inmediatas. Sus defensores subrayan que desmantelar estas tarifas acelera la innovación tecnológica, fomenta sinergias transdisciplinares y equipara a investigadores del Sur Global sistemáticamente marginados por los peajes bibliográficos. Aunque las empresas editoriales aducen que sus elevados ingresos sostienen el rigor de la revisión por pares, la comunidad científica clama contra la privatización de un patrimonio intelectual indispensable para el progreso común.",
+      "tr": "Dünya bilimsel üretiminin yayılma döngüsü paradoksal bir mali çarpıklık barındırmaktadır. Kamu üniversiteleri ve devlet kurumları temel araştırmaları kamusal fonlarla finanse ederken, ortaya çıkan makaleler büyük özel yayıncı oligopolüne herhangi bir bedel ödenmeksizin devredilmektedir. Bu kurumsal devler daha sonra bilgiyi bizzat üreten üniversite kütüphanelerine fahiş ödeme duvarları ve orantısız abonelik ücretleri dayatarak üniversite bütçelerini baltalamaktadır. Bilginin bu ticarileşmesi karşısında uluslararası açık erişim hareketi, kamu parasıyla finanse edilen keşiflerin anında ve ücretsiz dijital platformlarda demokratikleşmesi gerektiğini savunmaktadır. Savunucular, bu ücretlerin kaldırılmasının teknolojik yeniliği hızlandırdığını, disiplinler arası sinerjileri geliştirdiğini ve yayın gişeleri yüzünden dışlanan Küresel Güney araştırmacılarını eşit kıldığını vurgulamaktadır. Yayıncı şirketler yüksek gelirlerinin hakem değerlendirmesi titizliğini koruduğunu iddia etse de, bilim dünyası ortak ilerleme için vazgeçilmez bir entelektüel mirasın özelleştirilmesine karşı sesini yükseltmektedir.",
+      "questions": [
+        {
+          "prompt": "¿Por qué se califica de paradójica la comercialización de la investigación universitaria?",
+          "options": [
+            "Porque los científicos rehúsan redactar artículos en sus idiomas nativos",
+            "Porque los fondos públicos pagan los estudios pero deben pagar de nuevo para leerlos",
+            "Porque las revistas carecen de comités evaluadores cualificados",
+            "Porque los estudiantes pagan matrículas más bajas que nunca"
+          ],
+          "answer": 1,
+          "why": "Halkın vergileriyle yapılan araştırmaların yine üniversitelere fahiş fiyatlarla satılması paradoks olarak nitelenmiştir ('organismos sufragan... imponen después muros de pago inasumibles')."
+        },
+        {
+          "prompt": "¿A qué colectivo favorece de forma sobresaliente el modelo de acceso abierto?",
+          "options": [
+            "A las agencias publicitarias de grandes tecnológicas",
+            "A los investigadores de países con menos recursos excluidos por los costes",
+            "A los editores jubilados de publicaciones impresas",
+            "A los inversores privados en fondos de riesgo de capital"
+          ],
+          "answer": 1,
+          "why": "Yüksek maliyetler nedeniyle engellenen yoksul ülke araştırmacılarını güçlendirir ('equipara a investigadores del Sur Global sistemáticamente marginados')."
+        },
+        {
+          "prompt": "¿Qué justificación esgrimen las grandes editoriales para defender sus márgenes de beneficio?",
+          "options": [
+            "Garantizar el soporte y la excelencia del proceso de revisión por expertos",
+            "Repartir premios económicos millonarios a los autores noveles",
+            "Costear la adquisición de satélites para comunicaciones de datos",
+            "Donar la totalidad de sus beneficios a centros escolares de primaria"
+          ],
+          "answer": 0,
+          "why": "Yayıncılar gelirlerin hakem denetim sürecinin titizliğini desteklediğini ileri sürerler ('sus elevados ingresos sostienen el rigor de la revisión por pares')."
+        }
+      ]
     }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-aeropuerto",
-   "exam": "DELE",
-   "level": "A2",
-   "title": "Aviso en el aeropuerto",
-   "text": "Atención, pasajeros del vuelo a Lima. La salida prevista a las dieciséis horas se retrasa una hora por la niebla. La puerta de embarque cambia: ahora es la puerta 12 y no la 8. Les rogamos que lleven su tarjeta de embarque y su pasaporte. Los pasajeros del vuelo a Bogotá deben ir a la puerta 5; su vuelo sale a la hora prevista.",
-   "tr": "Dikkat, Lima uçuşu yolcularına duyurulur. Saat on altıda planlanan kalkış sis nedeniyle bir saat gecikmektedir. Biniş kapısı değişti: artık 8 değil, 12 numaralı kapı. Biniş kartınızı ve pasaportunuzu yanınızda bulundurmanızı rica ederiz. Bogotá uçuşu yolcuları 5 numaralı kapıya gitmelidir; uçuşları zamanında kalkıyor.",
-   "questions": [
-    {
-     "prompt": "¿A qué hora saldrá el vuelo a Lima?",
-     "options": [
-      "A las 15:00",
-      "A las 16:00",
-      "A las 17:00",
-      "A las 18:00"
-     ],
-     "answer": 2,
-     "why": "16.00 + 1 saat gecikme = 17.00."
-    },
-    {
-     "prompt": "¿Por qué se retrasa el vuelo a Lima?",
-     "options": [
-      "Por una huelga",
-      "Por la niebla",
-      "Por un problema técnico",
-      "Por falta de pasajeros"
-     ],
-     "answer": 1,
-     "why": "“Se retrasa una hora por la niebla”: sis yüzünden."
-    },
-    {
-     "prompt": "¿A qué puerta deben ir los pasajeros a Bogotá?",
-     "options": [
-      "A la 5",
-      "A la 8",
-      "A la 12",
-      "A la 1"
-     ],
-     "answer": 0,
-     "why": "“Los pasajeros del vuelo a Bogotá deben ir a la puerta 5”."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-bici",
-   "exam": "DELE",
-   "level": "B1",
-   "title": "Bicicletas en la ciudad",
-   "text": "Desde hace cuatro años, Valencia anima a sus vecinos a moverse en bicicleta. La ciudad ha construido muchos carriles bici y ofrece un servicio de alquiler muy barato. Como resultado, uno de cada cinco vecinos usa la bici para ir al trabajo. Sin embargo, no todo el mundo está contento. Algunos comerciantes lamentan que hayan desaparecido plazas de aparcamiento y temen perder clientes. El ayuntamiento responde que los ciclistas compran tanto como los conductores porque paran con más frecuencia, y anuncia que construirá más aparcamientos para bicis cerca de las estaciones.",
-   "tr": "Dört yıldır Valencia sakinlerini bisikletle ulaşıma teşvik ediyor. Şehir çok sayıda bisiklet yolu yaptı ve çok ucuz bir kiralama hizmeti sunuyor. Sonuç olarak her beş sakinden biri işe bisikletle gidiyor. Ancak herkes memnun değil. Bazı esnaf park yerlerinin kaybolmasından yakınıyor ve müşteri kaybetmekten korkuyor. Belediye, bisikletlilerin daha sık durdukları için sürücüler kadar alışveriş yaptığını söylüyor ve istasyonların yakınına daha fazla bisiklet park yeri yapacağını duyuruyor.",
-   "questions": [
-    {
-     "prompt": "¿Qué proporción de vecinos usa la bici para ir al trabajo?",
-     "options": [
-      "Uno de cada tres",
-      "Uno de cada cinco",
-      "Uno de cada diez",
-      "La mitad"
-     ],
-     "answer": 1,
-     "why": "“Uno de cada cinco vecinos”: her beş kişiden biri."
-    },
-    {
-     "prompt": "¿Qué lamentan algunos comerciantes?",
-     "options": [
-      "Que haya demasiados ciclistas",
-      "Que el alquiler sea caro",
-      "Que hayan desaparecido plazas de aparcamiento",
-      "Que cierren las tiendas"
-     ],
-     "answer": 2,
-     "why": "Park yerlerinin kaybolmasından yakınıyorlar."
-    },
-    {
-     "prompt": "¿Qué anuncia el ayuntamiento?",
-     "options": [
-      "Que eliminará los carriles bici",
-      "Que subirá el precio del alquiler",
-      "Que prohibirá los coches",
-      "Que construirá más aparcamientos para bicis"
-     ],
-     "answer": 3,
-     "why": "Belediye istasyonlar yakınında daha fazla bisiklet park yeri yapacağını açıklıyor."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-panadera",
-   "exam": "DELE",
-   "level": "B1",
-   "title": "Una panadera cuenta su vida",
-   "text": "Me llamo Carmen y soy panadera desde hace doce años. Me levanto a las tres de la madrugada para preparar el pan. Mucha gente cree que mi trabajo es aburrido, pero a mí me encanta ver cómo sonríen los clientes cuando huelen el pan caliente. Lo más duro son los fines de semana, porque trabajo los sábados y los domingos y veo poco a mi familia. Aun así, no cambiaría mi profesión por nada del mundo. Dentro de cinco años espero abrir mi propia tienda.",
-   "tr": "Adım Carmen, on iki yıldır fırıncıyım. Ekmeği hazırlamak için gece üçte kalkıyorum. Birçok kişi işimin sıkıcı olduğunu sanıyor ama ben müşterilerin sıcak ekmeğin kokusunu alınca gülümsemesine bayılıyorum. En zoru hafta sonları, çünkü cumartesi ve pazar çalışıyorum ve ailemi az görüyorum. Yine de mesleğimi dünyada hiçbir şeye değişmem. Beş yıl içinde kendi dükkânımı açmayı umuyorum.",
-   "questions": [
-    {
-     "prompt": "¿A qué hora se levanta Carmen?",
-     "options": [
-      "A las tres",
-      "A las cinco",
-      "A las siete",
-      "A las nueve"
-     ],
-     "answer": 0,
-     "why": "“Me levanto a las tres de la madrugada”."
-    },
-    {
-     "prompt": "¿Qué es lo más duro para ella?",
-     "options": [
-      "Preparar el pan",
-      "Trabajar los fines de semana",
-      "Tratar con los clientes",
-      "Pagar el alquiler"
-     ],
-     "answer": 1,
-     "why": "Hafta sonu çalıştığı için ailesini az görüyor: en zor olan bu."
-    },
-    {
-     "prompt": "¿Qué espera hacer dentro de cinco años?",
-     "options": [
-      "Cambiar de profesión",
-      "Jubilarse",
-      "Abrir su propia tienda",
-      "Mudarse de ciudad"
-     ],
-     "answer": 2,
-     "why": "“Espero abrir mi propia tienda”."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-pantallas",
-   "exam": "DELE",
-   "level": "B2",
-   "title": "Pantallas y niños",
-   "text": "Según un estudio reciente, los niños menores de diez años pasan una media de tres horas diarias frente a una pantalla. Los investigadores, sin embargo, no condenan la tecnología: subrayan que el efecto depende sobre todo del uso. Ver una película en familia y comentarla no tiene los mismos resultados que pasar solo horas con un videojuego. En cambio, observan que los niños que usan una pantalla justo antes de dormir se duermen más tarde y descansan peor. Por eso recomiendan fijar horarios claros, apagar los aparatos una hora antes de acostarse y, sobre todo, dar ejemplo, porque los niños imitan a sus padres.",
-   "tr": "Yakın tarihli bir araştırmaya göre on yaşın altındaki çocuklar günde ortalama üç saati bir ekranın karşısında geçiriyor. Ancak araştırmacılar teknolojiyi suçlamıyor: etkinin her şeyden önce kullanıma bağlı olduğunun altını çiziyorlar. Ailece film izleyip tartışmak, saatlerce tek başına video oyunu oynamakla aynı sonuçları vermez. Buna karşılık, uyumadan hemen önce ekran kullanan çocukların daha geç uyuduğunu ve daha kötü dinlendiğini gözlemliyorlar. Bu yüzden net saatler belirlemeyi, cihazları yatmadan bir saat önce kapatmayı ve her şeyden önce örnek olmayı öneriyorlar, çünkü çocuklar anne babalarını taklit eder.",
-   "questions": [
-    {
-     "prompt": "Según los investigadores, ¿de qué depende sobre todo el efecto de las pantallas?",
-     "options": [
-      "Del tamaño de la pantalla",
-      "Del uso que se hace de ellas",
-      "De la edad de los padres",
-      "Del precio del aparato"
-     ],
-     "answer": 1,
-     "why": "“El efecto depende sobre todo del uso”."
-    },
-    {
-     "prompt": "¿Qué observan en los niños que usan pantallas antes de dormir?",
-     "options": [
-      "Se despiertan antes",
-      "Aprenden más",
-      "Se duermen más tarde y descansan peor",
-      "Juegan menos al día siguiente"
-     ],
-     "answer": 2,
-     "why": "Daha geç uyuyor ve daha kötü dinleniyorlar."
-    },
-    {
-     "prompt": "¿Qué recomiendan?",
-     "options": [
-      "Prohibir todos los aparatos",
-      "Dejar que los niños decidan",
-      "Comprar pantallas más pequeñas",
-      "Fijar horarios, apagar los aparatos una hora antes de acostarse y dar ejemplo"
-     ],
-     "answer": 3,
-     "why": "Net saatler, yatmadan bir saat önce kapatma ve örnek olma öneriliyor."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-pueblo",
-   "exam": "DELE",
-   "level": "B2",
-   "title": "Un pueblo que renace",
-   "text": "Hace veinte años, el pueblo de San Millán apenas tenía doscientos habitantes y su única escuela estaba a punto de cerrar. Entonces un maestro jubilado tuvo una idea: ofrecer casas por un euro simbólico a quienes se comprometieran a restaurarlas y a vivir en ellas al menos cinco años. Al principio nadie lo creyó, pero llegaron las primeras familias, seguidas de artesanos, una panadera y un café asociativo. Hoy el pueblo tiene seiscientos habitantes y la escuela ha tenido que ampliarse. El alcalde admite, no obstante, que el éxito tiene su lado negativo: los precios de la vivienda han subido y algunos jóvenes del pueblo ya no pueden permitírselo.",
-   "tr": "Yirmi yıl önce San Millán köyünün ancak iki yüz sakini vardı ve tek okulu kapanmak üzereydi. Sonra emekli bir öğretmenin aklına bir fikir geldi: evleri onarmayı ve orada en az beş yıl yaşamayı taahhüt edenlere sembolik bir avroya ev sunmak. Başta kimse inanmadı, ama ilk aileler geldi, ardından zanaatkârlar, bir fırıncı kadın ve bir dernek kafesi. Bugün köyün altı yüz sakini var ve okulun büyütülmesi gerekti. Belediye başkanı ise başarının olumsuz bir yanı olduğunu kabul ediyor: konut fiyatları arttı ve köyün bazı gençleri artık buna güç yetiremiyor.",
-   "questions": [
-    {
-     "prompt": "¿Qué problema tenía el pueblo hace veinte años?",
-     "options": [
-      "Tenía demasiados habitantes",
-      "Tenía pocos habitantes y su escuela estaba a punto de cerrar",
-      "No tenía carretera",
-      "Había una epidemia"
-     ],
-     "answer": 1,
-     "why": "Köyde ancak 200 kişi vardı ve okul kapanmak üzereydi."
-    },
-    {
-     "prompt": "¿En qué consistía la idea del maestro jubilado?",
-     "options": [
-      "En vender terrenos baratos",
-      "En construir un hotel",
-      "En abrir una fábrica",
-      "En ofrecer casas por un euro a cambio de restaurarlas y vivir en ellas cinco años"
-     ],
-     "answer": 3,
-     "why": "Evler onarılma ve en az beş yıl orada yaşama karşılığında bir avroya sunuluyordu."
-    },
-    {
-     "prompt": "¿Qué aspecto negativo reconoce el alcalde?",
-     "options": [
-      "Que la escuela es pequeña",
-      "Que no hay panadería",
-      "Que los precios de la vivienda han subido y algunos jóvenes no pueden pagarla",
-      "Que llegaron pocas familias"
-     ],
-     "answer": 2,
-     "why": "Konut fiyatları arttı, bazı gençler artık oturamıyor."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-compartir",
-   "exam": "DELE",
-   "level": "B2",
-   "title": "Compartir piso, ¿para quién?",
-   "text": "Antes reservado a los estudiantes, compartir piso atrae hoy a personas de todas las edades. El primer motivo es económico: con unos alquileres que no dejan de subir, dividir un piso grande permite vivir en un barrio céntrico sin arruinarse. Pero el argumento no es solo económico. Muchos jóvenes profesionales, instalados en una ciudad desconocida, encuentran en ello una forma rápida de hacer amigos. Las dificultades existen, sin embargo. Hay que ponerse de acuerdo sobre la limpieza, las visitas y el ruido, y los desacuerdos en estos asuntos son la primera causa de que alguien se marche. Para evitarlos, algunos compañeros redactan una especie de reglamento cuando llega cada nuevo inquilino. Puede parecer exagerado, pero quienes lo han probado aseguran que los conflictos han disminuido de forma notable.",
-   "tr": "Eskiden öğrencilere özgü olan ev paylaşımı artık her yaştan insanı cezbediyor. İlk neden parasal: kiralar durmadan artarken büyük bir daireyi bölüşmek, iflas etmeden merkezî bir semtte yaşamayı mümkün kılıyor. Ama gerekçe yalnızca ekonomik değil. Yabancı bir şehre yerleşen birçok genç çalışan, bunda hızla arkadaş edinmenin bir yolunu buluyor. Yine de zorluklar var. Temizlik, misafirler ve gürültü konusunda anlaşmak gerekiyor; bu konulardaki anlaşmazlıklar birinin evden ayrılmasının başlıca sebebi. Bunlardan kaçınmak için bazı ev arkadaşları, her yeni gelen olduğunda bir tür tüzük yazıyor. Aşırı görünebilir ama denemiş olanlar çatışmaların belirgin biçimde azaldığını söylüyor.",
-   "questions": [
-    {
-     "prompt": "¿Cuál es el primer motivo para compartir piso según el texto?",
-     "options": [
-      "El deseo de volver a ser estudiante",
-      "El tamaño de los pisos",
-      "El ruido de los barrios",
-      "El económico"
-     ],
-     "answer": 3,
-     "why": "“El primer motivo es económico”: kiralar yükseldiği için maliyet."
-    },
-    {
-     "prompt": "¿Qué encuentran muchos jóvenes profesionales al compartir piso?",
-     "options": [
-      "Un alquiler gratuito",
-      "Una forma rápida de hacer amigos",
-      "Un trabajo en el barrio",
-      "Más tranquilidad"
-     ],
-     "answer": 1,
-     "why": "“Una forma rápida de hacer amigos”: hızla arkadaş edinmenin yolu."
-    },
-    {
-     "prompt": "¿Para qué sirve el reglamento?",
-     "options": [
-      "Para elegir a las visitas",
-      "Para fijar el precio del alquiler",
-      "Para evitar conflictos sobre limpieza, visitas y ruido",
-      "Para sustituir el contrato de alquiler"
-     ],
-     "answer": 2,
-     "why": "Tüzük, temizlik/ziyaretçi/gürültü anlaşmazlıklarını önlemek için."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-silencio",
-   "exam": "DELE",
-   "level": "C1",
-   "title": "El silencio, un lujo urbano",
-   "text": "En las grandes ciudades, el silencio se ha convertido en un bien escaso, casi en un artículo de lujo. Las inmobiliarias lo saben: un piso con vistas a un patio interior se vende bastante más caro que otro idéntico situado en una avenida. Sin embargo, los estudios de los últimos años demuestran que el ruido no es una simple molestia. Quienes viven expuestos al tráfico o a las obras duermen peor, se concentran con más dificultad y acaban sufriendo un cansancio que ni siquiera el descanso del fin de semana consigue aliviar. Algunos ayuntamientos han respondido creando «zonas tranquilas», donde se limita el paso de coches y se prohíbe la música amplificada. Los primeros resultados son alentadores, pero los comerciantes se muestran preocupados: según ellos, demasiada calma ahuyentaría a los clientes. Queda por ver si es posible conciliar una ciudad animada con una ciudad sosegada, o si algún día habrá que elegir una a costa de la otra.",
-   "tr": "Büyük şehirlerde sessizlik kıt bir değer, neredeyse bir lüks ürün hâline geldi. Emlakçılar bunu biliyor: iç avluya bakan bir daire, ana caddedeki aynı daireden belirgin biçimde daha pahalıya satılıyor. Oysa son yıllarda yapılan araştırmalar gürültünün basit bir rahatsızlıktan çok daha fazlası olduğunu gösteriyor. Sürekli trafiğe ya da inşaata maruz kalanlar daha kötü uyuyor, zor odaklanıyor ve hafta sonu dinlenmesinin bile geçiremediği bir yorgunluğa kapılıyor. Bazı belediyeler arabaların sınırlandığı ve yüksek sesli müziğin yasaklandığı «sakin bölgeler» oluşturarak karşılık verdi. İlk sonuçlar cesaret verici ama esnaf endişeli: onlara göre fazla huzur müşterileri uzaklaştırır. Canlı bir şehirle dingin bir şehrin bağdaştırılıp bağdaştırılamayacağı, yoksa bir gün birini diğerinin pahasına seçmek zorunda kalıp kalmayacağımız henüz belli değil.",
-   "questions": [
-    {
-     "prompt": "¿Por qué saben las inmobiliarias que el silencio tiene valor?",
-     "options": [
-      "Los pisos tranquilos se venden bastante más caros",
-      "Las avenidas se cierran de noche",
-      "Los compradores rechazan los barrios animados",
-      "Los patios interiores están prohibidos a los coches"
-     ],
-     "answer": 0,
-     "why": "Avluya bakan (sessiz) daire aynısından belirgin biçimde pahalıya satılıyor."
-    },
-    {
-     "prompt": "¿Qué demuestran los estudios recientes sobre el ruido?",
-     "options": [
-      "Que no afecta a la salud",
-      "Que el descanso del fin de semana lo compensa todo",
-      "Que altera el sueño y la concentración, y el cansancio persiste",
-      "Que la gente acaba acostumbrándose del todo"
-     ],
-     "answer": 2,
-     "why": "Uyku ve odaklanma bozuluyor; hafta sonu dinlenmesi yorgunluğu geçirmiyor."
-    },
-    {
-     "prompt": "¿Por qué se preocupan los comerciantes por las zonas tranquilas?",
-     "options": [
-      "Tienen que pagar un impuesto extra",
-      "Temen que ahuyenten a los clientes",
-      "No pueden repartir sus mercancías",
-      "Quieren más ruido para sus conciertos"
-     ],
-     "answer": 1,
-     "why": "“Demasiada calma ahuyentaría a los clientes”: fazla sessizlik müşteriyi kaçırır."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-ia",
-   "exam": "DELE",
-   "level": "C1",
-   "title": "¿Escribir con una máquina?",
-   "text": "Desde que se han extendido los programas de redacción automática, una pregunta divide a los profesores: ¿hay que prohibirlos en clase o enseñar a los alumnos a utilizarlos? Los partidarios de la prohibición sostienen que un texto producido en unos segundos no deja lugar al esfuerzo, y que el esfuerzo es precisamente lo que hace progresar. Sus detractores replican que la calculadora no acabó con las matemáticas y que el verdadero reto consiste en formar mentes capaces de comprobar, corregir y matizar lo que propone una máquina. Entre ambas posturas, varios centros ensayan una vía intermedia: los borradores se escriben a mano, en clase, y después se comparan con una versión corregida por el programa. El alumno debe entonces explicar cada diferencia. Este método exige tiempo, admiten los profesores, pero tiene un mérito: convierte la herramienta en objeto de reflexión en lugar de en un atajo.",
-   "tr": "Otomatik yazım yazılımları yaygınlaştığından beri öğretmenleri bir soru ayırıyor: bunları sınıfta yasaklamalı mı, yoksa öğrencilere nasıl kullanılacağını mı öğretmeli? Yasaktan yana olanlar, birkaç saniyede üretilen bir metnin çabaya yer bırakmadığını, ilerlemeyi sağlayanın ise tam da çaba olduğunu savunuyor. Karşı çıkanlar ise hesap makinesinin matematiği ortadan kaldırmadığını, asıl meselenin bir makinenin önerdiğini denetleyebilen, düzeltebilen ve inceltebilen zihinler yetiştirmek olduğunu söylüyor. Bu iki görüşün arasında birkaç okul orta bir yol deniyor: taslaklar sınıfta elle yazılıyor, sonra yazılımın düzelttiği sürümle karşılaştırılıyor. Öğrenci her farkı açıklamak zorunda. Öğretmenler bu yöntemin zaman aldığını kabul ediyor ama bir erdemi var: aracı bir kısayol olmaktan çıkarıp üzerinde düşünülen bir nesneye dönüştürüyor.",
-   "questions": [
-    {
-     "prompt": "¿Qué argumento defienden los partidarios de la prohibición?",
-     "options": [
-      "Los programas son demasiado caros",
-      "Los alumnos escriben muy despacio",
-      "A los profesores les falta tiempo",
-      "Sin esfuerzo no se progresa"
-     ],
-     "answer": 3,
-     "why": "“El esfuerzo es precisamente lo que hace progresar”: çaba ilerlemeyi sağlar."
-    },
-    {
-     "prompt": "¿Qué replican sus detractores?",
-     "options": [
-      "Que una herramienta nueva no destruyó las disciplinas: hay que aprender a controlarla",
-      "Que las máquinas escriben mejor que los alumnos",
-      "Que también hay que prohibir la calculadora",
-      "Que los profesores deberían usar el programa solos"
-     ],
-     "answer": 0,
-     "why": "Hesap makinesi örneği: asıl mesele makinenin önerdiğini denetlemeyi öğrenmek."
-    },
-    {
-     "prompt": "En el método intermedio, ¿qué debe hacer el alumno?",
-     "options": [
-      "Copiar la versión del programa",
-      "Escribir sin borrador",
-      "Explicar cada diferencia entre su borrador y la versión corregida",
-      "Corregir el trabajo de un compañero"
-     ],
-     "answer": 2,
-     "why": "“El alumno debe entonces explicar cada diferencia”: her farkı açıklamalı."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-mercado",
-   "exam": "DELE",
-   "level": "B1",
-   "title": "El mercado de los jueves",
-   "text": "Desde hace veinte años, el mercado de los jueves llena la plaza de mi barrio. Los vecinos vienen a comprar fruta, queso o simplemente a charlar con los vendedores. Sin embargo, el ayuntamiento quiere trasladar el mercado a una calle cercana porque la plaza se renovará durante seis meses. Muchos comerciantes están preocupados: temen perder a parte de sus clientes, sobre todo a las personas mayores que viven muy cerca. El martes por la tarde habrá una reunión pública en el ayuntamiento. Todos podrán hacer preguntas y proponer soluciones.",
-   "tr": "Yirmi yıldır perşembe pazarı mahallemin meydanını canlandırıyor. Sakinler buraya meyve, peynir almaya ya da sadece satıcılarla sohbet etmeye geliyor. Ancak belediye, meydan altı ay boyunca yenileneceği için pazarı yakındaki bir sokağa taşımak istiyor. Birçok esnaf endişeli: müşterilerinin bir kısmını, özellikle çok yakında yaşayan yaşlıları kaybetmekten korkuyorlar. Salı akşamı belediyede halka açık bir toplantı olacak. Herkes soru sorabilecek ve çözüm önerebilecek.",
-   "questions": [
-    {
-     "prompt": "¿Por qué quiere el ayuntamiento trasladar el mercado?",
-     "options": [
-      "Porque los vendedores lo piden",
-      "Porque la plaza se va a renovar",
-      "Porque hay demasiados clientes",
-      "Porque el mercado hace mucho ruido"
-     ],
-     "answer": 1,
-     "why": "“La plaza se renovará durante seis meses”: meydan yenilenecek."
-    },
-    {
-     "prompt": "¿Qué temen los comerciantes?",
-     "options": [
-      "Tener que pagar más",
-      "Quedarse sin productos",
-      "Perder a parte de sus clientes",
-      "Cambiar de oficio"
-     ],
-     "answer": 2,
-     "why": "“Temen perder a parte de sus clientes”: müşteri kaybetmekten korkuyorlar."
-    },
-    {
-     "prompt": "¿Qué pasará el martes por la tarde?",
-     "options": [
-      "Cerrarán el mercado",
-      "Habrá una reunión pública",
-      "Empezarán las obras",
-      "Habrá una fiesta del barrio"
-     ],
-     "answer": 1,
-     "why": "“Habrá una reunión pública”: salı öğleden sonra halka açık toplantı var."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-museos",
-   "exam": "DELE",
-   "level": "B2",
-   "title": "¿Museos gratuitos?",
-   "text": "Varias ciudades estudian hacer gratuita la entrada a los museos el primer domingo de cada mes. Quienes defienden la medida afirman que atrae a un público nuevo, sobre todo a familias que no se atreven a entrar en un museo por miedo al precio. Los detractores, en cambio, recuerdan que la gratuidad no lo resuelve todo: quien no se interesa por el arte no irá más al museo solo porque la entrada no cueste nada. Preferirían que ese dinero sirviera para financiar visitas escolares y actividades. Sin embargo, un estudio realizado en tres ciudades muestra que la afluencia se duplica en los días gratuitos, sin que los ingresos anuales bajen mucho.",
-   "tr": "Birçok şehir, müzeleri her ayın ilk pazar günü ücretsiz yapmayı düşünüyor. Bu önlemin savunucuları, ücretsiz giriş sayesinde yeni bir kitlenin, özellikle fiyattan çekindiği için müzeye adım atmaya cesaret edemeyen ailelerin geleceğini söylüyor. Karşı çıkanlar ise ücretsizliğin her sorunu çözmediğini hatırlatıyor: sanata ilgi duymayan biri, giriş ücretsiz diye müzeye daha çok gitmeyecek. Bu paranın okul gezilerini ve etkinlikleri finanse etmesini tercih ediyorlar. Üç şehirde yapılan bir araştırma ise ücretsiz günlerde ziyaretçi sayısının iki katına çıktığını, buna rağmen yıllık gelirlerin pek düşmediğini gösteriyor.",
-   "questions": [
-    {
-     "prompt": "Según quienes defienden la medida, ¿qué permite la gratuidad?",
-     "options": [
-      "Atraer a un público nuevo",
-      "Cerrar algunos museos",
-      "Subir el precio de las entradas",
-      "Reducir el número de visitantes"
-     ],
-     "answer": 0,
-     "why": "“Atrae a un público nuevo”: yeni bir kitleyi çekiyor."
-    },
-    {
-     "prompt": "¿Cuál es el argumento principal de los detractores?",
-     "options": [
-      "Los museos ya tienen demasiados visitantes",
-      "La gratuidad por sí sola no crea interés por el arte",
-      "Las familias prefieren el cine",
-      "Los museos no tienen espacio"
-     ],
-     "answer": 1,
-     "why": "Karşı çıkanlar: sanata ilgi duymayan biri ücretsiz diye gitmez."
-    },
-    {
-     "prompt": "¿Qué muestra el estudio citado?",
-     "options": [
-      "Los ingresos se hunden",
-      "Los visitantes son de más edad",
-      "Las escuelas rechazan las visitas",
-      "La afluencia se duplica los días gratuitos"
-     ],
-     "answer": 3,
-     "why": "“La afluencia se duplica en los días gratuitos”: ücretsiz günlerde ziyaret iki katına çıkıyor."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-cocina",
-   "exam": "DELE",
-   "level": "A2",
-   "title": "Un curso de cocina",
-   "text": "El centro cultural La Alameda ofrece un nuevo curso de cocina para principiantes. Las clases son los martes por la tarde, de seis a ocho, a partir del 3 de marzo. Cada clase cuesta doce euros, pero los estudiantes pagan solo ocho euros. Vas a aprender a preparar platos sencillos y baratos. Trae un delantal y un táper para llevarte a casa lo que cocines. Solo hay diez plazas: inscríbete en la recepción antes del 28 de febrero.",
-   "tr": "La Alameda kültür merkezi yeni başlayanlar için yeni bir yemek kursu açıyor. Dersler 3 Mart'tan itibaren salı akşamüstleri, altıdan sekize kadar. Her ders on iki avro, ama öğrenciler yalnızca sekiz avro ödüyor. Basit ve ucuz yemekler hazırlamayı öğreneceksin. Bir önlük ve pişirdiklerini eve götürmek için bir saklama kabı getir. Yalnızca on kişilik yer var: 28 Şubat'tan önce danışmada kaydol.",
-   "questions": [
-    {
-     "prompt": "¿Cuándo son las clases?",
-     "options": [
-      "Los martes por la tarde",
-      "Los martes por la mañana",
-      "Los sábados por la mañana",
-      "Todos los días"
-     ],
-     "answer": 0,
-     "why": "“Las clases son los martes por la tarde, de seis a ocho”: salı akşamüstleri."
-    },
-    {
-     "prompt": "¿Cuánto paga un estudiante por cada clase?",
-     "options": [
-      "Doce euros",
-      "Ocho euros",
-      "Diez euros",
-      "Veinte euros"
-     ],
-     "answer": 1,
-     "why": "“Los estudiantes pagan solo ocho euros”: öğrenciler sekiz avro öder; on iki avro normal fiyattır."
-    },
-    {
-     "prompt": "¿Qué hay que llevar a la clase?",
-     "options": [
-      "Los ingredientes",
-      "Un libro de recetas",
-      "Un delantal y un táper",
-      "Un cuchillo y un plato"
-     ],
-     "answer": 2,
-     "why": "“Trae un delantal y un táper para llevarte a casa lo que cocines”: önlük ve saklama kabı."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-vecina",
-   "exam": "DELE",
-   "level": "A2",
-   "title": "Una nota de la vecina",
-   "text": "Hola, señora Ruiz, soy Lucía, su vecina del tercero. El sábado por la mañana me voy de vacaciones a casa de mi hermana y vuelvo el viernes siguiente. ¿Podría regar mis plantas dos veces durante la semana, por ejemplo el martes y el jueves? El viernes por la noche voy a dejar mi llave en su buzón. No se preocupe por el gato: mi hijo va a venir todos los días a darle de comer. ¡Muchas gracias! Le traeré mermelada. Lucía",
-   "tr": "Merhaba Ruiz Hanım, ben üçüncü kattaki komşunuz Lucía. Cumartesi sabahı ablamın evine tatile gidiyorum, ertesi cuma dönüyorum. Hafta içinde iki kez, örneğin salı ve perşembe, çiçeklerimi sulayabilir misiniz? Cuma gecesi anahtarımı sizin posta kutunuza bırakacağım. Kedi için endişelenmeyin: oğlum her gün gelip onu besleyecek. Çok teşekkürler! Size reçel getireceğim. Lucía",
-   "questions": [
-    {
-     "prompt": "¿Para qué escribe Lucía esta nota?",
-     "options": [
-      "Para invitar a su vecina de vacaciones",
-      "Para pedirle un favor mientras está fuera",
-      "Para quejarse del ruido",
-      "Para vender sus plantas"
-     ],
-     "answer": 1,
-     "why": "Tatile gidiyor ve komşusundan çiçeklerini sulamasını rica ediyor: yokken bir iyilik istiyor."
-    },
-    {
-     "prompt": "¿Qué tiene que hacer la señora Ruiz?",
-     "options": [
-      "Dar de comer al gato todos los días",
-      "Regar las plantas todos los días",
-      "Regar las plantas el martes y el jueves",
-      "Ir a buscar la llave a casa del hijo de Lucía"
-     ],
-     "answer": 2,
-     "why": "“Regar mis plantas dos veces… el martes y el jueves”. Kediyi Lucía'nın oğlu besleyecek."
-    },
-    {
-     "prompt": "¿Dónde va a encontrar la llave la señora Ruiz?",
-     "options": [
-      "En su propio buzón",
-      "En casa de la hermana de Lucía",
-      "Debajo del felpudo",
-      "En casa del hijo de Lucía"
-     ],
-     "answer": 0,
-     "why": "“Voy a dejar mi llave en su buzón”: Ruiz Hanım'ın kendi posta kutusunda."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-teletrabajo",
-   "exam": "DELE",
-   "level": "B1",
-   "title": "Trabajar desde casa",
-   "text": "Desde hace un año, Javier, diseñador gráfico de treinta y cuatro años, trabaja tres días a la semana en su piso de Valencia y dos días en la oficina. «Al principio estaba encantado: ya no había atascos por la mañana y ganaba casi dos horas al día. Pero a los pocos meses empecé a sentirme solo. No hablaba con nadie hasta la noche». Para evitarlo, ha adoptado nuevas costumbres. Empieza el día con un paseo de veinte minutos, como si fuera a trabajar, y una vez a la semana come con un antiguo compañero. Además, ha puesto su escritorio en una habitación pequeña cuya puerta cierra a las seis de la tarde. «Lo que más echo de menos no son las reuniones, sino las charlas junto a la máquina de café», confiesa entre risas.",
-   "tr": "Otuz dört yaşındaki grafik tasarımcı Javier bir yıldır haftada üç gün Valencia'daki dairesinde, iki gün de ofiste çalışıyor. «Başta çok memnundum: sabah trafiği yoktu, günde neredeyse iki saat kazanıyordum. Ama birkaç ay sonra kendimi yalnız hissetmeye başladım. Akşama kadar kimseyle konuşmuyordum.» Bunun önüne geçmek için yeni alışkanlıklar edindi. Güne, işe gidiyormuş gibi yirmi dakikalık bir yürüyüşle başlıyor ve haftada bir eski bir iş arkadaşıyla öğle yemeği yiyor. Ayrıca masasını küçük bir odaya kurdu ve akşam altıda o odanın kapısını kapatıyor. «En çok özlediğim şey toplantılar değil, kahve makinesinin yanındaki sohbetler» diye itiraf ediyor gülerek.",
-   "questions": [
-    {
-     "prompt": "¿Cuántos días a la semana trabaja Javier en casa?",
-     "options": [
-      "Dos días",
-      "Tres días",
-      "Cinco días",
-      "Un día"
-     ],
-     "answer": 1,
-     "why": "“Trabaja tres días a la semana en su piso… y dos días en la oficina”: evde üç gün."
-    },
-    {
-     "prompt": "¿Qué problema tuvo a los pocos meses?",
-     "options": [
-      "Perdía tiempo en los atascos",
-      "Tenía demasiadas reuniones",
-      "Se sentía solo",
-      "Su piso era demasiado pequeño"
-     ],
-     "answer": 2,
-     "why": "“A los pocos meses empecé a sentirme solo”: birkaç ay sonra kendini yalnız hissetti."
-    },
-    {
-     "prompt": "¿Qué es lo que más echa de menos?",
-     "options": [
-      "Las conversaciones informales con sus compañeros",
-      "Las reuniones",
-      "Los trayectos de la mañana",
-      "Las comidas en restaurantes"
-     ],
-     "answer": 0,
-     "why": "“No son las reuniones, sino las charlas junto a la máquina de café”: kahve makinesinin yanındaki sohbetler."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-huerto",
-   "exam": "DELE",
-   "level": "B1",
-   "title": "Un huerto entre edificios",
-   "text": "Hace solo dos años, el espacio que hay entre los edificios de la calle de las Lilas era un solar vacío donde nadie se detenía. Hoy hay unos treinta pequeños huertos. La idea fue de Carmen, una jubilada que convenció al ayuntamiento para que prestara el terreno gratis. Cada familia inscrita recibe una parcela y se compromete a cuidarla al menos una vez por semana. Las herramientas se guardan en una caseta común y el agua de lluvia se recoge en grandes bidones. «Los niños descubren de dónde vienen las verduras, y vecinos que ni siquiera se saludaban ahora toman café juntos», cuenta Carmen. La lista de espera ya es larga: cuarenta familias esperan conseguir una parcela el año que viene.",
-   "tr": "Daha iki yıl önce Lilas sokağındaki binaların arasındaki alan, kimsenin uğramadığı boş bir arsaydı. Bugün orada otuz kadar küçük sebze bahçesi var. Fikir, belediyeyi araziyi ücretsiz vermeye ikna eden emekli Carmen'den çıktı. Kaydolan her aile bir parsel alıyor ve ona en az haftada bir kez bakmaya söz veriyor. Aletler ortak bir kulübede duruyor, yağmur suyu da büyük bidonlarda toplanıyor. «Çocuklar sebzelerin nereden geldiğini öğreniyor; birbirine selam bile vermeyen komşular artık birlikte kahve içiyor» diyor Carmen. Bekleme listesi şimdiden uzun: kırk aile gelecek yıl bir parsel almayı umuyor.",
-   "questions": [
-    {
-     "prompt": "¿Qué había antes del huerto?",
-     "options": [
-      "Un aparcamiento",
-      "Un solar vacío",
-      "Un pequeño mercado",
-      "Un colegio"
-     ],
-     "answer": 1,
-     "why": "“Era un solar vacío donde nadie se detenía”: boş bir arsa."
-    },
-    {
-     "prompt": "¿A qué se comprometen las familias inscritas?",
-     "options": [
-      "A pagar un alquiler al ayuntamiento",
-      "A comprar sus propias herramientas",
-      "A vender sus verduras a los vecinos",
-      "A cuidar su parcela al menos una vez por semana"
-     ],
-     "answer": 3,
-     "why": "“Se compromete a cuidarla al menos una vez por semana”. Arazi ücretsiz, aletler ortak."
-    },
-    {
-     "prompt": "Según Carmen, ¿qué ha cambiado el huerto en el barrio?",
-     "options": [
-      "Los vecinos se relacionan más",
-      "Las familias gastan menos en comida",
-      "El barrio atrae a nuevos vecinos",
-      "Los niños sacan mejores notas"
-     ],
-     "answer": 0,
-     "why": "Selamlaşmayan komşular “ahora toman café juntos”: artık birlikte kahve içiyorlar."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-semana",
-   "exam": "DELE",
-   "level": "C1",
-   "title": "La semana de cuatro días",
-   "text": "Desde hace unos años, varias empresas europeas experimentan con la semana laboral de cuatro días sin reducir el sueldo. Los resultados que difunden sus defensores parecen elocuentes: los empleados afirman estar menos estresados, las bajas por enfermedad disminuyen y la productividad, lejos de desplomarse, se mantiene e incluso mejora ligeramente. ¿Significa esto que estamos ante una solución milagrosa? Los escépticos piden prudencia. En primer lugar, las empresas que se ofrecen voluntarias para estas pruebas suelen ser pequeñas compañías del sector servicios, ya convencidas de las ventajas del modelo; sería arriesgado extrapolar sus conclusiones a un hospital o a una fábrica, donde la presencia física no se puede comprimir. En segundo lugar, condensar cuarenta horas en cuatro días puede dar lugar a jornadas tan intensas que el descanso ganado el viernes se paga de lunes a jueves. Por último, algunos trabajadores reconocen que el día libre acaba devorado por los trámites o las tareas domésticas. En el fondo, el debate gira menos en torno al número de días que a la organización del trabajo: allí donde se aprovechó la reforma para suprimir reuniones inútiles, los beneficios parecen duraderos; donde solo se acortó la semana, se desvanecen al cabo de unos meses.",
-   "tr": "Birkaç yıldır bazı Avrupa şirketleri maaşı düşürmeden dört günlük çalışma haftasını deniyor. Savunucularının yaydığı sonuçlar çok şey söylüyor gibi: çalışanlar daha az stresli olduklarını söylüyor, hastalık izinleri azalıyor ve verimlilik çökmek bir yana aynı kalıyor, hatta biraz artıyor. Bu, mucize bir çözümle karşı karşıya olduğumuz anlamına mı geliyor? Kuşkucular dikkat istiyor. Önce, bu denemelere gönüllü olan şirketler genellikle hizmet sektöründen, modelin yararlarına zaten inanmış küçük şirketler; sonuçlarını fiziksel varlığın sıkıştırılamadığı bir hastaneye ya da fabrikaya genellemek riskli olur. İkincisi, kırk saati dört güne sığdırmak öyle yoğun iş günleri doğurabilir ki cuma kazanılan dinlenmenin bedeli pazartesiden perşembeye ödenir. Son olarak bazı çalışanlar boş günün resmî işler ya da ev işleri tarafından yutulduğunu kabul ediyor. Aslında tartışma gün sayısından çok işin düzeni etrafında dönüyor: reformun gereksiz toplantıları kaldırmak için kullanıldığı yerlerde yararlar kalıcı görünüyor; yalnızca haftanın kısaltıldığı yerlerde birkaç ay sonra kayboluyor.",
-   "questions": [
-    {
-     "prompt": "Según sus defensores, ¿qué efecto tiene la semana de cuatro días en la productividad?",
-     "options": [
-      "Se desploma rápidamente",
-      "Baja un poco, pero el estrés disminuye",
-      "Se mantiene e incluso mejora ligeramente",
-      "Se duplica en las empresas pequeñas"
-     ],
-     "answer": 2,
-     "why": "“La productividad, lejos de desplomarse, se mantiene e incluso mejora ligeramente”: aynı kalıyor, hatta biraz artıyor."
-    },
-    {
-     "prompt": "¿Por qué desconfían los escépticos de los resultados de las pruebas?",
-     "options": [
-      "Los empleados exageraron su cansancio",
-      "Las empresas participantes no representan a toda la economía",
-      "Los resultados nunca se publicaron",
-      "Los sueldos bajaron durante el experimento"
-     ],
-     "answer": 1,
-     "why": "Gönüllü şirketler çoğunlukla hizmet sektöründen küçük şirketler; hastane ya da fabrikaya genellemek “arriesgado” (riskli)."
-    },
-    {
-     "prompt": "Según el autor, ¿de qué depende sobre todo el éxito de la reforma?",
-     "options": [
-      "De cómo se reorganiza el trabajo",
-      "Del número exacto de horas trabajadas",
-      "Del día de la semana que se libra",
-      "Únicamente del tamaño de la empresa"
-     ],
-     "answer": 0,
-     "why": "“El debate gira menos en torno al número de días que a la organización del trabajo”: gereksiz toplantıların kaldırıldığı yerlerde yararlar kalıcı."
-    }
-   ],
-   "language": "es"
-  },
-  {
-   "id": "es-read-reparar",
-   "exam": "DELE",
-   "level": "C1",
-   "title": "Reparar en lugar de tirar",
-   "text": "Un sábado al mes, en un local cedido por el ayuntamiento, una decena de voluntarios recibe a vecinos que llegan con una tostadora muda, una lámpara que parpadea o unos pantalones rotos. Este «café de reparación» no tiene nada de servicio técnico gratuito: el dueño del objeto participa él mismo en la reparación, guiado por un voluntario. «No queremos que la gente se vaya solo con un aparato que funciona, sino con la idea de que es capaz de arreglarlo», explica Enrique, ingeniero jubilado. El éxito de estas iniciativas revela un malestar más profundo. Muchos consumidores sospechan que los fabricantes diseñan productos deliberadamente frágiles o hacen que los recambios sean imposibles de encontrar y carísimos. El legislador ha empezado a reaccionar: algunos aparatos deben llevar ya un índice de reparabilidad, y los vendedores están obligados a indicar durante cuántos años habrá piezas disponibles. Aun así, los voluntarios no se hacen ilusiones. Un tercio de los objetos que les llevan no tienen arreglo, a menudo porque fueron diseñados para no abrirse nunca. Para Enrique, la verdadera victoria sería que algún día los cafés de reparación dejaran de ser necesarios.",
-   "tr": "Ayda bir cumartesi, belediyenin verdiği bir mekânda on kadar gönüllü, sesi çıkmayan bir ekmek kızartma makinesi, yanıp sönen bir lamba ya da yırtık bir pantolonla gelen mahalleliyi karşılıyor. Bu «tamir kafesi» ücretsiz bir teknik servis değil: eşyanın sahibi bir gönüllünün rehberliğinde onarıma kendisi katılıyor. «İnsanların yalnızca çalışan bir aletle değil, onu tamir edebilecekleri düşüncesiyle gitmelerini istiyoruz» diyor emekli mühendis Enrique. Bu girişimlerin başarısı daha derin bir rahatsızlığı gösteriyor. Pek çok tüketici, üreticilerin ürünleri bile bile dayanıksız tasarladığından ya da yedek parçaları bulunmaz ve çok pahalı hâle getirdiğinden kuşkulanıyor. Yasa koyucu tepki vermeye başladı: bazı aletlerde artık bir onarılabilirlik puanı bulunmalı, satıcılar da parçaların kaç yıl bulunacağını belirtmek zorunda. Yine de gönüllüler hayale kapılmıyor. Getirilen eşyaların üçte biri onarılamıyor, çoğu zaman da hiç açılmamak üzere tasarlandıkları için. Enrique'ye göre asıl zafer, tamir kafelerine bir gün gerek kalmaması olurdu.",
-   "questions": [
-    {
-     "prompt": "¿Cuál es la idea del café de reparación?",
-     "options": [
-      "Los voluntarios arreglan gratis los objetos mientras uno espera",
-      "El dueño repara él mismo su objeto, guiado por un voluntario",
-      "Se cambia un objeto roto por otro que funciona",
-      "Unos artesanos venden recambios baratos"
-     ],
-     "answer": 1,
-     "why": "“No tiene nada de servicio técnico gratuito: el dueño del objeto participa él mismo en la reparación, guiado por un voluntario”."
-    },
-    {
-     "prompt": "¿Qué reprochan muchos consumidores a los fabricantes?",
-     "options": [
-      "Que venden sus productos demasiado caros en las tiendas",
-      "Que muestran un índice de reparabilidad engañoso",
-      "Que diseñan objetos frágiles y hacen difícil conseguir recambios",
-      "Que se niegan a reparar los aparatos en garantía"
-     ],
-     "answer": 2,
-     "why": "Ürünleri “deliberadamente frágiles” tasarladıklarından, yedek parçaları da “imposibles de encontrar y carísimos” yaptıklarından kuşkulanıyorlar."
-    },
-    {
-     "prompt": "¿Cuál sería, para Enrique, el verdadero éxito?",
-     "options": [
-      "Que estos cafés ya no hicieran falta",
-      "Abrir un café de reparación cada semana",
-      "Arreglar todos los objetos que les llevan",
-      "Que la ley prohibiera los objetos que no se pueden abrir"
-     ],
-     "answer": 0,
-     "why": "“La verdadera victoria sería que algún día los cafés de reparación dejaran de ser necesarios”: bu kafelere gerek kalmaması."
-    }
-   ],
-   "language": "es"
-  }
- ]
+  ]
 }

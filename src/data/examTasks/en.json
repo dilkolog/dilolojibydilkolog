@@ -255,6 +255,356 @@
         "In my opinion, the benefits outweigh…",
         "To sum up,"
       ]
+    },
+    {
+      "id": "en-exam-party-invite",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "A2",
+      "kind": "Davet mektubu",
+      "title": "Inviting a friend to a celebration",
+      "instruction": "You are organising a birthday party. Write an email to a classmate to invite them, give the date and time, and explain what to bring.",
+      "tr": "Doğum günü partisi düzenliyorsun. Bir sınıf arkadaşını davet eden, tarih ve saati bildiren ve ne getirmesi gerektiğini açıklayan bir e-posta yaz.",
+      "min": 60,
+      "max": 85,
+      "checklist": [
+        "Arkadaşına sıcak bir selamlama ile başla.",
+        "Partinin gününü, yerini ve başlama saatini belirt.",
+        "Yanında getirmesi gereken bir şeyi (atıştırmalık, müzik listesi) söyle.",
+        "Cevap beklediğini belirten bir kapanış yap."
+      ],
+      "phrases": [
+        "Dear Alex,",
+        "I am writing to invite you to…",
+        "The party will take place on…",
+        "Could you please bring…?",
+        "Let me know if you can make it!"
+      ]
+    },
+    {
+      "id": "en-exam-lost-item",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "A2",
+      "kind": "Kayıp eşya bildirimi",
+      "title": "Lost backpack on a bus",
+      "instruction": "You left your backpack on the municipal bus yesterday. Write an email to the customer service office describing the bag, its contents, and where you sat.",
+      "tr": "Dün belediye otobüsünde sırt çantanı unuttun. Müşteri hizmetlerine çantayı, içindekileri ve nerede oturduğunu tarif eden bir e-posta yaz.",
+      "min": 60,
+      "max": 90,
+      "checklist": [
+        "Hangi hatta ve saat kaçta seyahat ettiğini yaz.",
+        "Çantanın rengini, markasını ve belirgin özelliklerini anlat.",
+        "İçindeki önemli eşyaları sırala.",
+        "Sana nasıl ulaşılabileceğini ekle."
+      ],
+      "phrases": [
+        "Dear Customer Service,",
+        "I am writing regarding a lost…",
+        "I was sitting near the back doors…",
+        "Inside the bag, there was…",
+        "You can reach me at…"
+      ]
+    },
+    {
+      "id": "en-exam-travel-blog",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B1",
+      "kind": "Blog yazısı",
+      "title": "An unforgettable weekend trip",
+      "instruction": "Write a blog post about a memorable town or city you recently visited. Describe what you saw, what you ate, and why other travelers should go there.",
+      "tr": "Yakın zamanda ziyaret ettiğin unutulmaz bir kasaba veya şehir hakkında blog yazısı yaz. Neler gördüğünü, ne yediğini ve diğer gezginlerin neden oraya gitmesi gerektiğini anlat.",
+      "min": 120,
+      "max": 160,
+      "checklist": [
+        "Okuyucunun ilgisini çeken canlı bir başlık ve giriş yaz.",
+        "Şehrin atmosferini ve ziyaret ettiğin önemli yerleri betimle.",
+        "Denediğin yerel bir yiyecekten bahset.",
+        "Gezginlere pratik bir tavsiyeyle bitir."
+      ],
+      "phrases": [
+        "If you are looking for a weekend getaway,",
+        "The highlight of the trip was definitely…",
+        "We wandered through narrow streets and tried…",
+        "I highly recommend visiting during…",
+        "Make sure you don’t miss…"
+      ]
+    },
+    {
+      "id": "en-exam-sport-club",
+      "language": "en",
+      "exam": "IELTS",
+      "level": "B1",
+      "kind": "Öneri mektubu",
+      "title": "Improving university sports facilities",
+      "instruction": "Write a letter to the director of your sports centre suggesting improvements to equipment, opening hours, and new student activities.",
+      "tr": "Spor merkezi müdürüne ekipmanlar, çalışma saatleri ve yeni öğrenci etkinlikleriyle ilgili iyileştirme önerileri içeren bir mektup yaz.",
+      "min": 130,
+      "max": 170,
+      "checklist": [
+        "Resmi ve nazik bir ton kullan.",
+        "Merkezin mevcut durumundaki iki eksikliği açıkla.",
+        "Her eksiklik için somut ve uygulanabilir bir çözüm öner.",
+        "Öğrencilerin bu değişikliklerden nasıl faydalanacağını vurgula."
+      ],
+      "phrases": [
+        "Dear Director,",
+        "I am writing to offer some constructive suggestions…",
+        "Firstly, many students find that the equipment is…",
+        "It would be extremely beneficial if…",
+        "Thank you for considering these proposals."
+      ]
+    },
+    {
+      "id": "en-exam-online-shopping",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B1",
+      "kind": "Şikâyet ve iade talebi",
+      "title": "Faulty electronic gadget",
+      "instruction": "You purchased headphones online that arrived damaged and missing cables. Write a formal complaint requesting a full refund or immediate replacement.",
+      "tr": "İnternetten aldığın kulaklık hasarlı ve eksik kablolarla ulaştı. Tam para iadesi veya acil değişim talep eden resmi bir şikâyet yaz.",
+      "min": 120,
+      "max": 155,
+      "checklist": [
+        "Sipariş numarasını ve satın alma tarihini belirt.",
+        "Kutuyu açtığında karşılaştığın hasarları net açıkla.",
+        "Beklediğin çözümü (iade/değişim) açıkça ifade et.",
+        "Fatura kopyasını ekte sunduğunu belirt."
+      ],
+      "phrases": [
+        "I am writing to express my dissatisfaction with…",
+        "Upon opening the parcel, I discovered that…",
+        "Contrary to the description on your website,",
+        "I would appreciate a prompt refund or…",
+        "I look forward to hearing from you soon."
+      ]
+    },
+    {
+      "id": "en-exam-remote-work",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B2",
+      "kind": "Tartışmacı makale",
+      "title": "Working from home vs office life",
+      "instruction": "Remote working has transformed modern employment. Discuss the advantages and drawbacks for employees and companies, and provide your reasoned verdict.",
+      "tr": "Uzaktan çalışma modern istihdamı dönüştürdü. Çalışanlar ve şirketler açısından avantaj ve dezavantajlarını tartışıp gerekçeli kanaatini bildir.",
+      "min": 240,
+      "max": 290,
+      "checklist": [
+        "Esnek çalışmanın yükselişini tanıtan dengeli bir giriş yap.",
+        "Zaman tasarrufu ve verimlilik gibi avantajları incele.",
+        "Sosyal izolasyon ve mesai sınırı kaybı gibi zorlukları ele al.",
+        "Hibrit modelleri öneren tutarlı bir sonuç paragrafı yaz."
+      ],
+      "phrases": [
+        "In recent years, remote working has gained immense popularity.",
+        "From an employee perspective, the primary benefit is…",
+        "Conversely, critics argue that collaboration suffers when…",
+        "A well-balanced hybrid arrangement may offer…",
+        "Taking all these aspects into account,"
+      ]
+    },
+    {
+      "id": "en-exam-book-review",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B2",
+      "kind": "Kültür eleştirisi / İnceleme",
+      "title": "Review of an inspiring non-fiction book",
+      "instruction": "Write a review for a magazine of a non-fiction book or biography that influenced your perspective on science, history, or society.",
+      "tr": "Bir dergi için bilim, tarih veya topluma bakışını etkileyen kurgu dışı bir kitap veya biyografi incelemesi yaz.",
+      "min": 220,
+      "max": 260,
+      "checklist": [
+        "Kitabın yazarını, temasını ve temel tezini tanıt.",
+        "En etkileyici bulduğun argüman veya bölümü detaylandır.",
+        "Yazarın üslubunu ve anlatım akıcılığını değerlendir.",
+        "Kitabı kimlerin mutlaka okuması gerektiğini belirterek bitir."
+      ],
+      "phrases": [
+        "The book immediately captures the reader’s attention with…",
+        "What sets this work apart from similar publications is…",
+        "The author skillfully demonstrates how…",
+        "Despite a few minor shortcomings,",
+        "I would unreservedly recommend this book to anyone interested in…"
+      ]
+    },
+    {
+      "id": "en-exam-tourism-report",
+      "language": "en",
+      "exam": "IELTS",
+      "level": "B2",
+      "kind": "Resmi rapor",
+      "title": "Impact of mass tourism on local heritage",
+      "instruction": "Write a formal report for your municipal council assessing the impact of peak tourist seasons on local transport, cleanliness, and residential tranquility.",
+      "tr": "Belediye meclisi için yoğun turist sezonunun yerel ulaşım, temizlik ve mahalle huzuru üzerindeki etkilerini değerlendiren resmi bir rapor yaz.",
+      "min": 230,
+      "max": 280,
+      "checklist": [
+        "Açık alt başlıklar (Introduction, Key Findings, Recommendations) kullan.",
+        "Gözlemlenen somut sorunları nesnel verilerle özetle.",
+        "Belediyenin alabileceği sürdürülebilir önlemler sırala.",
+        "Önerilerini öncelik sırasına koy."
+      ],
+      "phrases": [
+        "The purpose of this report is to evaluate…",
+        "Feedback from local residents indicates that…",
+        "A major concern identified during the survey was…",
+        "In order to mitigate these negative effects, it is recommended that…",
+        "Implementing these measures would undoubtedly ensure…"
+      ]
+    },
+    {
+      "id": "en-exam-formal-job-cover",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B2",
+      "kind": "Başvuru ön mektubu",
+      "title": "Application for an international project coordinator",
+      "instruction": "Write a formal cover letter applying for a project coordinator position at an environmental NGO, highlighting your organizational skills and multicultural experience.",
+      "tr": "Çevre odaklı bir sivil toplum kuruluşundaki proje koordinatörü pozisyonuna organizasyon becerilerini ve kültürlerarası deneyimini öne çıkaran resmi bir başvuru mektubu yaz.",
+      "min": 220,
+      "max": 270,
+      "checklist": [
+        "İlana nerede rastladığını ve hangi role başvurduğunu belirt.",
+        "Geçmiş deneyimlerini kurumun misyonu ile ilişkilendir.",
+        "Kriz yönetimi ve takım liderliği vasıflarından örnek ver.",
+        "Mülakata davet için uygun olduğunu belirten profesyonel kapanış yap."
+      ],
+      "phrases": [
+        "I am writing to express my enthusiastic interest in…",
+        "Having completed several initiatives in environmental advocacy,",
+        "My background has equipped me with robust communication skills…",
+        "I am particularly drawn to your organisation’s dedication to…",
+        "I welcome the opportunity to discuss my qualifications further."
+      ]
+    },
+    {
+      "id": "en-exam-public-transport-proposal",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B2",
+      "kind": "Teklif yazısı / Öneri",
+      "title": "Proposal for youth mobility incentives",
+      "instruction": "Write a proposal to your regional transport authority outlining affordable monthly passes for students and apprentices to reduce city traffic.",
+      "tr": "Bölge ulaşım idaresine şehir içi trafiği azaltmak amacıyla öğrenci ve stajyerlere yönelik indirimli aylık kartları öneren bir teklif yazısı yaz.",
+      "min": 230,
+      "max": 280,
+      "checklist": [
+        "Girişte genç nüfusun hareketlilik ihtiyacını özetle.",
+        "Fiyat politikasının özel araç kullanımını nasıl caydıracağını açıkla.",
+        "Dijital biletleme ve gece seferleri gibi ek olanaklar öner.",
+        "Finansal sürdürülebilirlik öngörüsüyle tamamla."
+      ],
+      "phrases": [
+        "This proposal aims to outline practical steps for…",
+        "Current fare structures pose a substantial financial hurdle for…",
+        "By introducing subsidized passes, the city could significantly…",
+        "Furthermore, expanding evening services would encourage…",
+        "I urge the transport committee to approve these recommendations."
+      ]
+    },
+    {
+      "id": "en-exam-ai-ethics-c1",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "C1",
+      "kind": "Akademik deneme / Sentez",
+      "title": "Artificial intelligence and the autonomy of human decision-making",
+      "instruction": "Algorithmic governance is increasingly deployed in recruitment, healthcare, and criminal justice. Evaluate the ethical ramifications and argue where human oversight must remain absolute.",
+      "tr": "Algoritmik yönetim işe alım, sağlık ve yargıda giderek daha fazla kullanılıyor. Etik yansımalarını değerlendirip insan gözetiminin nerede mutlak kalması gerektiğini savun.",
+      "min": 300,
+      "max": 370,
+      "checklist": [
+        "Algoritmik verimlilik ile insan onuru arasındaki gerilimi sofistike biçimde kurgula.",
+        "Önyargıların (bias) makine öğreniminde nasıl kemikleştiğini analiz et.",
+        "Hayati kararlarda şeffaflık ve açıklanabilirlik zorunluluğunu savun.",
+        "Kapsamlı bir etik denetim çerçevesi önererek bitir."
+      ],
+      "phrases": [
+        "The inexorable integration of autonomous algorithms raises profound dilemmas.",
+        "Proponents laud unprecedented analytical speed, yet systemic biases persist.",
+        "To delegate judicial or diagnostic authority without appeal is indefensible.",
+        "Human discernment must serve as an indispensable safeguard against…",
+        "Ultimately, technological advancement must remain subservient to fundamental rights."
+      ]
+    },
+    {
+      "id": "en-exam-urban-gentrification-c1",
+      "language": "en",
+      "exam": "IELTS",
+      "level": "C1",
+      "kind": "Sosyoekonomik analiz",
+      "title": "Urban regeneration versus socio-spatial displacement",
+      "instruction": "Examine how rapid neighborhood redevelopment revitalizes infrastructure while simultaneously displacing longstanding vulnerable communities. Propose policy interventions that reconcile growth with housing equity.",
+      "tr": "Kentsel dönüşümün altyapıyı canlandırırken köklü kırılgan toplulukları nasıl yerinden ettiğini incele. Büyüme ile konut adaletini uzlaştıran politika müdahaleleri öner.",
+      "min": 300,
+      "max": 360,
+      "checklist": [
+        "Girişte soylulaştırma dinamiklerini akademik terminolojiyle tanımla.",
+        "Gayrimenkul spekülasyonu ve kira artışlarının sosyal dokuyu nasıl aşındırdığını açıkla.",
+        "Kira denetimi ve kooperatif konut gibi somut koruma kalkanları geliştir.",
+        "Kapsayıcı şehircilik felsefesini özetleyen vurucu bir sonuçla noktala."
+      ],
+      "phrases": [
+        "Urban renewal is frequently heralded as a catalyst for economic revitalization.",
+        "However, unregulated market forces inevitably precipitate socio-spatial polarization.",
+        "Long-term residents often bear the brunt of skyrocketing living costs.",
+        "Municipalities must mandate quotas for permanently affordable housing.",
+        "A truly progressive metropolis is one that safeguards its most vulnerable citizens."
+      ]
+    },
+    {
+      "id": "en-exam-higher-ed-vocational-c1",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "C1",
+      "kind": "Tartışmacı deneme",
+      "title": "Re-evaluating the university degree in an automated job market",
+      "instruction": "With technological disruption accelerating, debate whether traditional higher education retains its primacy over agile vocational training and specialized apprenticeships.",
+      "tr": "Teknolojik kırılmanın hızlandığı bir çağda geleneksel üniversite diplomasının esnek mesleki eğitime ve uzmanlaşmış çıraklığa karşı önceliğini koruyup korumadığını tartış.",
+      "min": 290,
+      "max": 350,
+      "checklist": [
+        "Lisans diploması enflasyonu ve değişen işgücü piyasası taleplerini karşılaştır.",
+        "Üniversitenin eleştirel düşünme ve entelektüel derinlik kazandırma gücünü teslim et.",
+        "Mesleki eğitimin pratik çeviklik ve istihdam hızındaki avantajını örneklendir.",
+        "İki kulvarı birleştiren esnek yaşam boyu öğrenme vizyonu sun."
+      ],
+      "phrases": [
+        "The conventional presumption that a tertiary degree guarantees prosperity is crumbling.",
+        "While academic institutions foster critical inquiry and foundational knowledge,",
+        "Vocational pathways provide immediate, tailored competencies that industries crave.",
+        "Rather than viewing these paradigms as mutually exclusive,",
+        "Forward-thinking policymakers should pioneer integrated educational models."
+      ]
+    },
+    {
+      "id": "en-exam-press-freedom-c1",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "C1",
+      "kind": "Açık mektup / Düşünce yazısı",
+      "title": "Safeguarding investigative journalism in the era of disinformation",
+      "instruction": "Write an open address for an international media forum exploring how independent investigative reporting can survive financial vulnerability and state-sponsored algorithmic echo chambers.",
+      "tr": "Uluslararası bir medya forumu için bağımsız araştırmacı gazeteciliğin mali kırılganlık ve devlet destekli algoritmik yankı odaları karşısında nasıl ayakta kalabileceğini araştıran bir açık mektup yaz.",
+      "min": 300,
+      "max": 360,
+      "checklist": [
+        "Girişte araştırmacı haberciliğin demokrasinin dördüncü kuvveti vasfını vurgula.",
+        "Dijital reklam gelirlerinin çöküşüyle doğan haber çöllerine dikkat çek.",
+        "Vakıf fonları, sınır ötesi konsorsiyumlar ve kamu yararı modelleri öner.",
+        "Gerçeğe erişim hakkının korunması için uluslararası dayanışma çağrısı yap."
+      ],
+      "phrases": [
+        "Investigative journalism constitutes the indispensable cornerstone of democratic accountability.",
+        "In an era dominated by sensationalism and orchestrated disinformation campaigns,",
+        "The collapse of legacy revenue models has rendered newsrooms alarmingly precarious.",
+        "Collaborative investigative networks demonstrate that cross-border solidarity can prevail.",
+        "We must recognize rigorous, uncompromised reporting as an essential public good."
+      ]
     }
   ]
 }

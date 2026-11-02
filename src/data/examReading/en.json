@@ -1,754 +1,1106 @@
 {
- "language": "en",
- "source": "Diloloji (özgün)",
- "passages": [
-  {
-   "id": "en-read-edinburgh",
-   "exam": "Cambridge",
-   "level": "A2",
-   "title": "A message from Tom",
-   "text": "Hi Sue, I arrived in Edinburgh last night. The train journey took five hours and I slept most of the way. This morning I visited the castle with my cousin, and we had lunch in a small café near the station. Tomorrow we are going hiking in the hills if the weather is good, and in the evening we will go to a concert. I'm coming back on Sunday. See you soon! Tom",
-   "tr": "Selam Sue, dün gece Edinburgh'a vardım. Tren yolculuğu beş saat sürdü ve yolun çoğunda uyudum. Bu sabah kuzenimle şatoyu gezdim ve istasyonun yakınındaki küçük bir kafede öğle yemeği yedik. Hava güzel olursa yarın tepelerde yürüyüşe çıkacağız, akşam da bir konsere gideceğiz. Pazar günü dönüyorum. Yakında görüşürüz! Tom",
-   "questions": [
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "passages": [
     {
-     "prompt": "What did Tom do on the train?",
-     "options": [
-      "He read a book",
-      "He slept",
-      "He talked to his cousin",
-      "He worked"
-     ],
-     "answer": 1,
-     "why": "“I slept most of the way”: yolun çoğunda uyudu."
+      "id": "en-read-edinburgh",
+      "exam": "Cambridge",
+      "level": "A2",
+      "title": "A message from Tom",
+      "text": "Hi Sue, I arrived in Edinburgh last night. The train journey took five hours and I slept most of the way. This morning I visited the castle with my cousin, and we had lunch in a small café near the station. Tomorrow we are going hiking in the hills if the weather is good, and in the evening we will go to a concert. I'm coming back on Sunday. See you soon! Tom",
+      "tr": "Selam Sue, dün gece Edinburgh'a vardım. Tren yolculuğu beş saat sürdü ve yolun çoğunda uyudum. Bu sabah kuzenimle şatoyu gezdim ve istasyonun yakınındaki küçük bir kafede öğle yemeği yedik. Hava güzel olursa yarın tepelerde yürüyüşe çıkacağız, akşam da bir konsere gideceğiz. Pazar günü dönüyorum. Yakında görüşürüz! Tom",
+      "questions": [
+        {
+          "prompt": "What did Tom do on the train?",
+          "options": [
+            "He read a book",
+            "He slept",
+            "He talked to his cousin",
+            "He worked"
+          ],
+          "answer": 1,
+          "why": "“I slept most of the way”: yolun çoğunda uyudu."
+        },
+        {
+          "prompt": "Where did Tom and his cousin have lunch?",
+          "options": [
+            "At the castle",
+            "At home",
+            "In a café near the station",
+            "In a restaurant in the hills"
+          ],
+          "answer": 2,
+          "why": "“In a small café near the station”."
+        },
+        {
+          "prompt": "What will they do tomorrow if the weather is good?",
+          "options": [
+            "Go hiking",
+            "Visit the castle",
+            "Take the train home",
+            "Stay in the café"
+          ],
+          "answer": 0,
+          "why": "“Going hiking in the hills if the weather is good”: hava güzel olursa yürüyüşe çıkacaklar."
+        }
+      ],
+      "language": "en"
     },
     {
-     "prompt": "Where did Tom and his cousin have lunch?",
-     "options": [
-      "At the castle",
-      "At home",
-      "In a café near the station",
-      "In a restaurant in the hills"
-     ],
-     "answer": 2,
-     "why": "“In a small café near the station”."
+      "id": "en-read-station",
+      "exam": "Cambridge",
+      "level": "A2",
+      "title": "Station announcement",
+      "text": "Attention, please. The train to Manchester, which was due to leave at half past two, has been delayed by twenty minutes because of a signal problem. It will now leave from platform 6, not platform 4. Passengers for Leeds should take the three o'clock train from platform 2. We apologise for the delay.",
+      "tr": "Dikkat lütfen. Saat iki buçukta kalkması gereken Manchester treni sinyal sorunu nedeniyle yirmi dakika gecikmiştir. Tren artık 4. peron yerine 6. peronlardan kalkacaktır. Leeds yolcuları saat üç trenine 2. peronlardan binmelidir. Gecikme için özür dileriz.",
+      "questions": [
+        {
+          "prompt": "What time will the Manchester train leave?",
+          "options": [
+            "2.30",
+            "2.50",
+            "3.00",
+            "3.20"
+          ],
+          "answer": 1,
+          "why": "2.30 + 20 dakika = 2.50."
+        },
+        {
+          "prompt": "Why is the train late?",
+          "options": [
+            "Bad weather",
+            "A strike",
+            "A signal problem",
+            "Too many passengers"
+          ],
+          "answer": 2,
+          "why": "“Because of a signal problem”."
+        },
+        {
+          "prompt": "Which train should passengers for Leeds take?",
+          "options": [
+            "The 2.30 from platform 4",
+            "The 2.50 from platform 6",
+            "The 3.00 from platform 6",
+            "The 3.00 from platform 2"
+          ],
+          "answer": 3,
+          "why": "Leeds yolcuları saat üç trenine 2. peronlardan binecek."
+        }
+      ],
+      "language": "en"
     },
     {
-     "prompt": "What will they do tomorrow if the weather is good?",
-     "options": [
-      "Go hiking",
-      "Visit the castle",
-      "Take the train home",
-      "Stay in the café"
-     ],
-     "answer": 0,
-     "why": "“Going hiking in the hills if the weather is good”: hava güzel olursa yürüyüşe çıkacaklar."
+      "id": "en-read-cycling",
+      "exam": "Cambridge",
+      "level": "B1",
+      "title": "Cycling in the city",
+      "text": "For five years, the city of Bristol has encouraged people to cycle. It has built new bike lanes and offers cheap bike rental. As a result, one in seven residents now cycles to work. However, not everybody is happy. Some shop owners complain that parking spaces outside their shops have disappeared and fear losing customers. The council says that cyclists spend as much as drivers, because they stop more often, and it plans to build more bike parking near the stations.",
+      "tr": "Beş yıldır Bristol şehri insanları bisiklete binmeye teşvik ediyor. Yeni bisiklet yolları yaptı ve ucuz bisiklet kiralama sunuyor. Sonuç olarak artık her yedi sakinden biri işe bisikletle gidiyor. Ancak herkes memnun değil. Bazı dükkân sahipleri dükkânlarının önündeki park yerlerinin kaybolduğundan yakınıyor ve müşteri kaybetmekten korkuyor. Belediye, bisikletlilerin daha sık durdukları için sürücüler kadar harcadığını söylüyor ve istasyonların yakınında daha fazla bisiklet park yeri yapmayı planlıyor.",
+      "questions": [
+        {
+          "prompt": "How many residents cycle to work?",
+          "options": [
+            "One in three",
+            "One in five",
+            "One in seven",
+            "One in ten"
+          ],
+          "answer": 2,
+          "why": "“One in seven residents”: yedi kişiden biri."
+        },
+        {
+          "prompt": "What do some shop owners complain about?",
+          "options": [
+            "The price of bike rental",
+            "Parking spaces have disappeared",
+            "Cyclists are rude",
+            "The new bike lanes are dangerous"
+          ],
+          "answer": 1,
+          "why": "Dükkânların önündeki park yerleri kayboldu."
+        },
+        {
+          "prompt": "What does the council say about cyclists?",
+          "options": [
+            "They spend less than drivers",
+            "They damage the shops",
+            "They spend as much as drivers",
+            "They never stop"
+          ],
+          "answer": 2,
+          "why": "“Cyclists spend as much as drivers”."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-baker",
+      "exam": "Cambridge",
+      "level": "B1",
+      "title": "A baker's story",
+      "text": "My name is Nadia and I have been a baker for twelve years. I get up at three in the morning to make the bread. Many people think the job is boring, but I love seeing customers smile when they smell warm bread. The hardest part is the weekends, because I work on Saturdays and Sundays and rarely see my family. Even so, I wouldn't change my job for anything. In five years' time, I hope to open my own shop.",
+      "tr": "Adım Nadia ve on iki yıldır fırıncıyım. Ekmek yapmak için sabah üçte kalkıyorum. Birçok kişi işin sıkıcı olduğunu düşünüyor ama müşterilerin sıcak ekmeğin kokusunu alınca gülümsediğini görmeyi seviyorum. En zor kısım hafta sonları, çünkü cumartesi ve pazar çalışıyorum ve ailemi nadiren görüyorum. Yine de işimi hiçbir şey için değiştirmem. Beş yıl içinde kendi dükkânımı açmayı umuyorum.",
+      "questions": [
+        {
+          "prompt": "When does Nadia get up?",
+          "options": [
+            "At three in the morning",
+            "At five in the morning",
+            "At seven",
+            "At noon"
+          ],
+          "answer": 0,
+          "why": "“I get up at three in the morning”."
+        },
+        {
+          "prompt": "What does she find hardest?",
+          "options": [
+            "Making the bread",
+            "Customers who complain",
+            "Getting up early",
+            "Working at weekends"
+          ],
+          "answer": 3,
+          "why": "Hafta sonları çalışmak, çünkü ailesini nadiren görüyor."
+        },
+        {
+          "prompt": "What does she hope to do in five years?",
+          "options": [
+            "Change her job",
+            "Open her own shop",
+            "Move abroad",
+            "Retire"
+          ],
+          "answer": 1,
+          "why": "“I hope to open my own shop”."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-screens",
+      "exam": "Cambridge",
+      "level": "B2",
+      "title": "Children and screens",
+      "text": "According to a recent study, children under ten spend an average of three hours a day in front of a screen. The researchers do not blame technology itself, however: they stress that the effect depends mainly on how it is used. Watching a cartoon with the family and talking about it does not have the same results as spending hours alone on a video game. On the other hand, they have found that children who use a screen just before bed fall asleep later and sleep less well. They therefore recommend setting clear times, switching devices off an hour before bedtime and, above all, setting an example, because children copy their parents' behaviour.",
+      "tr": "Yakın tarihli bir araştırmaya göre on yaşın altındaki çocuklar günde ortalama üç saat ekran karşısında geçiriyor. Ancak araştırmacılar teknolojinin kendisini suçlamıyor: etkinin esas olarak nasıl kullanıldığına bağlı olduğunu vurguluyorlar. Ailece çizgi film izleyip bunu konuşmak, saatlerce tek başına video oyunu oynamakla aynı sonuçları vermez. Öte yandan, yatmadan hemen önce ekran kullanan çocukların daha geç uyuduğunu ve daha kötü uyuduğunu saptamışlar. Bu nedenle net saatler belirlemeyi, cihazları yatmadan bir saat önce kapatmayı ve her şeyden önce örnek olmayı öneriyorlar, çünkü çocuklar anne babalarının davranışını taklit eder.",
+      "questions": [
+        {
+          "prompt": "According to the researchers, what does the effect of screens mainly depend on?",
+          "options": [
+            "How big the screen is",
+            "How the screen is used",
+            "How old the parents are",
+            "How much the device costs"
+          ],
+          "answer": 1,
+          "why": "“Depends mainly on how it is used”."
+        },
+        {
+          "prompt": "What happens to children who use screens just before bed?",
+          "options": [
+            "They wake up earlier",
+            "They learn faster",
+            "They fall asleep later and sleep less well",
+            "They play less the next day"
+          ],
+          "answer": 2,
+          "why": "Daha geç uyuyor ve daha kötü uyuyorlar."
+        },
+        {
+          "prompt": "What do the researchers recommend?",
+          "options": [
+            "Banning all devices",
+            "Letting children choose",
+            "Buying smaller screens",
+            "Setting clear times, switching devices off an hour before bed and setting an example"
+          ],
+          "answer": 3,
+          "why": "Net saatler, yatmadan bir saat önce kapatma ve örnek olma."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-village",
+      "exam": "Cambridge",
+      "level": "B2",
+      "title": "A village comes back to life",
+      "text": "Twenty years ago, the village of Glenmore had barely two hundred inhabitants and its only school was about to close. Then a retired teacher had an idea: to offer houses for a symbolic pound to anyone who promised to restore them and to live in them for at least five years. At first nobody believed it would work, but the first families arrived, followed by craftspeople, a baker and a community café. Today the village has six hundred inhabitants and the school has had to be extended. The mayor admits, however, that success has a downside: house prices have risen and some of the village's young people can no longer afford to live there.",
+      "tr": "Yirmi yıl önce Glenmore köyünün ancak iki yüz sakini vardı ve tek okulu kapanmak üzereydi. Sonra emekli bir öğretmenin bir fikri oldu: evleri onarmayı ve içlerinde en az beş yıl yaşamayı vaat eden herkese sembolik bir sterline ev vermek. Başta kimse işe yarayacağına inanmadı ama ilk aileler geldi, ardından zanaatkârlar, bir fırıncı ve bir topluluk kafesi. Bugün köyün altı yüz sakini var ve okulun genişletilmesi gerekti. Belediye başkanı ise başarının bir olumsuz yanı olduğunu kabul ediyor: ev fiyatları arttı ve köyün bazı gençleri artık orada yaşamayı karşılayamıyor.",
+      "questions": [
+        {
+          "prompt": "What was the village's problem twenty years ago?",
+          "options": [
+            "It had too many visitors",
+            "It had few inhabitants and its school was about to close",
+            "It had no road",
+            "It was too noisy"
+          ],
+          "answer": 1,
+          "why": "Köyde ancak 200 kişi vardı ve okul kapanmak üzereydi."
+        },
+        {
+          "prompt": "What was the retired teacher's idea?",
+          "options": [
+            "To sell land cheaply",
+            "To build a hotel",
+            "To open a factory",
+            "To offer houses for a pound in return for restoring them and staying five years"
+          ],
+          "answer": 3,
+          "why": "Evler onarma ve en az beş yıl orada yaşama karşılığında bir sterline sunuluyordu."
+        },
+        {
+          "prompt": "What downside does the mayor admit?",
+          "options": [
+            "The school is too small",
+            "There is no baker",
+            "House prices have risen and some young people can no longer afford to live there",
+            "Few families came"
+          ],
+          "answer": 2,
+          "why": "Ev fiyatları arttı, bazı gençler artık orada yaşayamıyor."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-flatshare",
+      "exam": "IELTS",
+      "level": "B2",
+      "title": "Sharing a flat",
+      "text": "Once the preserve of students, house-sharing now appeals to people of all ages. The first reason is financial: with rents rising relentlessly, splitting a large flat makes it possible to live in a central area without going broke. But the argument is not purely economic. Many young professionals who have moved to an unfamiliar city find that it is a quick way to make friends. Difficulties do arise, however. Housemates have to agree on cleaning, visitors and noise, and disagreements over these matters are the main reason people move out. To avoid them, some households draw up a sort of charter whenever a new person arrives. It may sound excessive, but those who have tried it say conflicts have fallen considerably.",
+      "tr": "Eskiden öğrencilere özgü olan ev paylaşımı artık her yaştan insanı cezbediyor. İlk neden parasal: kiralar durmadan artarken büyük bir daireyi bölüşmek, iflas etmeden merkezî bir semtte yaşamayı mümkün kılıyor. Ama gerekçe yalnızca ekonomik değil. Yabancı bir şehre yerleşen birçok genç çalışan, bunda hızla arkadaş edinmenin bir yolunu buluyor. Yine de zorluklar var. Temizlik, misafirler ve gürültü konusunda anlaşmak gerekiyor; bu konulardaki anlaşmazlıklar birinin evden ayrılmasının başlıca sebebi. Bunlardan kaçınmak için bazı ev arkadaşları, her yeni gelen olduğunda bir tür tüzük yazıyor. Aşırı görünebilir ama denemiş olanlar çatışmaların belirgin biçimde azaldığını söylüyor.",
+      "questions": [
+        {
+          "prompt": "According to the text, what is the first reason for house-sharing?",
+          "options": [
+            "The wish to be a student again",
+            "The size of the flats",
+            "The noise in the neighbourhood",
+            "The cost"
+          ],
+          "answer": 3,
+          "why": "“The first reason is financial”: kiralar arttığı için maliyet."
+        },
+        {
+          "prompt": "What do many young professionals find in house-sharing?",
+          "options": [
+            "Free rent",
+            "A quick way to make friends",
+            "A job nearby",
+            "More peace and quiet"
+          ],
+          "answer": 1,
+          "why": "“A quick way to make friends”: hızla arkadaş edinmenin yolu."
+        },
+        {
+          "prompt": "What is the charter for?",
+          "options": [
+            "Choosing visitors",
+            "Setting the rent",
+            "Avoiding conflicts about cleaning, visitors and noise",
+            "Replacing the tenancy agreement"
+          ],
+          "answer": 2,
+          "why": "Tüzük, temizlik/ziyaretçi/gürültü anlaşmazlıklarını önlemek için."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-silence",
+      "exam": "Cambridge",
+      "level": "C1",
+      "title": "Silence, an urban luxury",
+      "text": "In big cities, silence has become a scarce commodity, almost a luxury item. Estate agents know it: a flat overlooking a courtyard sells for noticeably more than an identical one on a main road. Yet research carried out in recent years shows that noise is far more than a mere nuisance. People who live with constant traffic or building work sleep less well, find it harder to concentrate and end up with a kind of tiredness that a weekend's rest cannot shift. Some councils have responded by creating \"quiet zones\", where cars are restricted and amplified music is banned. Early results are encouraging, but shopkeepers are worried: in their view, too much calm would drive customers away. It remains to be seen whether a lively city and a peaceful one can be reconciled, or whether we shall one day have to choose the one at the expense of the other.",
+      "tr": "Büyük şehirlerde sessizlik kıt bir değer, neredeyse bir lüks ürün hâline geldi. Emlakçılar bunu biliyor: iç avluya bakan bir daire, ana caddedeki aynı daireden belirgin biçimde daha pahalıya satılıyor. Oysa son yıllarda yapılan araştırmalar gürültünün basit bir rahatsızlıktan çok daha fazlası olduğunu gösteriyor. Sürekli trafiğe ya da inşaata maruz kalanlar daha kötü uyuyor, zor odaklanıyor ve hafta sonu dinlenmesinin bile geçiremediği bir yorgunluğa kapılıyor. Bazı belediyeler arabaların sınırlandığı ve yüksek sesli müziğin yasaklandığı «sakin bölgeler» oluşturarak karşılık verdi. İlk sonuçlar cesaret verici ama esnaf endişeli: onlara göre fazla huzur müşterileri uzaklaştırır. Canlı bir şehirle dingin bir şehrin bağdaştırılıp bağdaştırılamayacağı, yoksa bir gün birini diğerinin pahasına seçmek zorunda kalıp kalmayacağımız henüz belli değil.",
+      "questions": [
+        {
+          "prompt": "Why do estate agents know that silence is valuable?",
+          "options": [
+            "Main roads are closed at night",
+            "Buyers refuse lively areas",
+            "Quiet flats sell for noticeably more",
+            "Courtyards are closed to cars"
+          ],
+          "answer": 2,
+          "why": "Avluya bakan (sessiz) daire aynısından belirgin biçimde pahalıya satılıyor."
+        },
+        {
+          "prompt": "What does recent research show about noise?",
+          "options": [
+            "It has no effect on health",
+            "It disturbs sleep and concentration, and the tiredness lingers",
+            "A weekend's rest makes up for everything",
+            "People get completely used to it"
+          ],
+          "answer": 1,
+          "why": "Uyku ve odaklanma bozuluyor; hafta sonu dinlenmesi yorgunluğu geçirmiyor."
+        },
+        {
+          "prompt": "Why are shopkeepers worried about quiet zones?",
+          "options": [
+            "They fear they may drive customers away",
+            "They must pay an extra tax",
+            "They cannot deliver their goods",
+            "They want more noise for their concerts"
+          ],
+          "answer": 0,
+          "why": "“Too much calm would drive customers away”: fazla sessizlik müşteriyi kaçırır."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-ai",
+      "exam": "Cambridge",
+      "level": "C1",
+      "title": "Writing with a machine?",
+      "text": "Since automatic writing software became widespread, one question has divided teachers: should it be banned in the classroom, or should pupils be taught to use it? Supporters of a ban argue that a text produced in a few seconds leaves no room for effort, and effort is precisely what makes people improve. Their opponents reply that the calculator did not do away with mathematics, and that the real challenge is to train minds able to check, correct and qualify whatever a machine suggests. Between these two positions, several schools are trying a middle course: drafts are written by hand, in class, then compared with a version corrected by the software. The pupil must then explain every difference. This method takes time, teachers admit, but it has one merit: it turns the tool into an object of reflection rather than a shortcut.",
+      "tr": "Otomatik yazım yazılımları yaygınlaştığından beri öğretmenleri bir soru ayırıyor: bunları sınıfta yasaklamalı mı, yoksa öğrencilere nasıl kullanılacağını mı öğretmeli? Yasaktan yana olanlar, birkaç saniyede üretilen bir metnin çabaya yer bırakmadığını, ilerlemeyi sağlayanın ise tam da çaba olduğunu savunuyor. Karşı çıkanlar ise hesap makinesinin matematiği ortadan kaldırmadığını, asıl meselenin bir makinenin önerdiğini denetleyebilen, düzeltebilen ve inceltebilen zihinler yetiştirmek olduğunu söylüyor. Bu iki görüşün arasında birkaç okul orta bir yol deniyor: taslaklar sınıfta elle yazılıyor, sonra yazılımın düzelttiği sürümle karşılaştırılıyor. Öğrenci her farkı açıklamak zorunda. Öğretmenler bu yöntemin zaman aldığını kabul ediyor ama bir erdemi var: aracı bir kısayol olmaktan çıkarıp üzerinde düşünülen bir nesneye dönüştürüyor.",
+      "questions": [
+        {
+          "prompt": "What argument do supporters of a ban put forward?",
+          "options": [
+            "The software is too expensive",
+            "Without effort, people do not improve",
+            "Pupils write too slowly",
+            "Teachers lack the time"
+          ],
+          "answer": 1,
+          "why": "“Effort is precisely what makes people improve”: çaba ilerlemeyi sağlar."
+        },
+        {
+          "prompt": "What do their opponents reply?",
+          "options": [
+            "A new tool has not destroyed the subjects; pupils must learn to control it",
+            "Machines write better than pupils",
+            "Calculators should be banned too",
+            "Teachers should use the software alone"
+          ],
+          "answer": 0,
+          "why": "Hesap makinesi örneği: asıl mesele makinenin önerdiğini denetlemeyi öğrenmek."
+        },
+        {
+          "prompt": "In the middle course, what must the pupil do?",
+          "options": [
+            "Copy the software's version",
+            "Write without a draft",
+            "Correct a classmate's work",
+            "Explain every difference between the draft and the corrected version"
+          ],
+          "answer": 3,
+          "why": "“The pupil must then explain every difference”: her farkı açıklamalı."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-market",
+      "exam": "Cambridge",
+      "level": "B1",
+      "title": "The Thursday market",
+      "text": "For twenty years, the Thursday market has filled the square in my neighbourhood. People come to buy fruit and cheese, or just to chat with the sellers. However, the council wants to move the market to a nearby street because the square will be renovated for six months. Many traders are worried: they fear losing some of their customers, especially the elderly people who live close by. A public meeting will take place on Tuesday evening at the town hall. Everyone will be able to ask questions and suggest solutions.",
+      "tr": "Yirmi yıldır perşembe pazarı mahallemin meydanını canlandırıyor. Sakinler buraya meyve, peynir almaya ya da sadece satıcılarla sohbet etmeye geliyor. Ancak belediye, meydan altı ay boyunca yenileneceği için pazarı yakındaki bir sokağa taşımak istiyor. Birçok esnaf endişeli: müşterilerinin bir kısmını, özellikle çok yakında yaşayan yaşlıları kaybetmekten korkuyorlar. Salı akşamı belediyede halka açık bir toplantı olacak. Herkes soru sorabilecek ve çözüm önerebilecek.",
+      "questions": [
+        {
+          "prompt": "Why does the council want to move the market?",
+          "options": [
+            "The traders have asked for it",
+            "The square will be renovated",
+            "There are too many customers",
+            "The market is too noisy"
+          ],
+          "answer": 1,
+          "why": "“The square will be renovated for six months”: meydan yenilenecek."
+        },
+        {
+          "prompt": "What are the traders afraid of?",
+          "options": [
+            "Having to pay more",
+            "Running out of goods",
+            "Losing some of their customers",
+            "Changing their jobs"
+          ],
+          "answer": 2,
+          "why": "“They fear losing some of their customers”: müşteri kaybetmekten korkuyorlar."
+        },
+        {
+          "prompt": "What will happen on Tuesday evening?",
+          "options": [
+            "The market will close",
+            "A public meeting",
+            "The work will begin",
+            "A neighbourhood party"
+          ],
+          "answer": 1,
+          "why": "“A public meeting will take place on Tuesday evening”: salı akşamı halka açık toplantı var."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-museums",
+      "exam": "IELTS",
+      "level": "B2",
+      "title": "Free museums?",
+      "text": "Several cities are considering making museum entry free on the first Sunday of each month. Supporters of the measure claim that it attracts a new audience, particularly families who do not dare to step into a museum for fear of the price. Opponents, on the other hand, point out that free entry does not solve everything: someone who is not interested in art will not visit a museum more often just because it costs nothing. They would rather see the money spent on school trips and activities. However, a study carried out in three cities shows that attendance doubles on free days, without annual income falling much.",
+      "tr": "Birçok şehir, müzeleri her ayın ilk pazar günü ücretsiz yapmayı düşünüyor. Bu önlemin savunucuları, ücretsiz giriş sayesinde yeni bir kitlenin, özellikle fiyattan çekindiği için müzeye adım atmaya cesaret edemeyen ailelerin geleceğini söylüyor. Karşı çıkanlar ise ücretsizliğin her sorunu çözmediğini hatırlatıyor: sanata ilgi duymayan biri, giriş ücretsiz diye müzeye daha çok gitmeyecek. Bu paranın okul gezilerini ve etkinlikleri finanse etmesini tercih ediyorlar. Üç şehirde yapılan bir araştırma ise ücretsiz günlerde ziyaretçi sayısının iki katına çıktığını, buna rağmen yıllık gelirlerin pek düşmediğini gösteriyor.",
+      "questions": [
+        {
+          "prompt": "According to supporters, what does free entry achieve?",
+          "options": [
+            "It attracts a new audience",
+            "It closes some museums",
+            "It raises ticket prices",
+            "It reduces the number of visitors"
+          ],
+          "answer": 0,
+          "why": "“It attracts a new audience”: yeni bir kitleyi çekiyor."
+        },
+        {
+          "prompt": "What is the opponents' main argument?",
+          "options": [
+            "Museums are already too crowded",
+            "Free entry alone does not create an interest in art",
+            "Families prefer the cinema",
+            "Museums lack space"
+          ],
+          "answer": 1,
+          "why": "Karşı çıkanlar: sanata ilgi duymayan biri ücretsiz diye gitmez."
+        },
+        {
+          "prompt": "What does the study show?",
+          "options": [
+            "Income collapses",
+            "Visitors are older",
+            "Attendance doubles on free days",
+            "Schools refuse visits"
+          ],
+          "answer": 2,
+          "why": "“Attendance doubles on free days”: ücretsiz günlerde ziyaret iki katına çıkıyor."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-cooking",
+      "exam": "Cambridge",
+      "level": "A2",
+      "title": "A cooking class",
+      "text": "The Riverside Community Centre is starting a new cooking class for beginners. Classes are on Tuesday evenings, from six to eight o'clock, starting on the third of March. Each class costs twelve pounds, but students pay only eight pounds. You will learn to make simple, cheap meals. Please bring an apron and a box to take home the food you cook. There are only ten places, so sign up at reception before the twenty-eighth of February.",
+      "tr": "Riverside Toplum Merkezi yeni başlayanlar için yeni bir yemek kursu açıyor. Dersler 3 Mart'tan itibaren salı akşamları, saat altıdan sekize kadar. Her ders on iki sterlin, ama öğrenciler yalnızca sekiz sterlin ödüyor. Basit ve ucuz yemekler yapmayı öğreneceksiniz. Lütfen bir önlük ve pişirdiğiniz yemeği eve götürmek için bir kap getirin. Yalnızca on kişilik yer var, bu yüzden 28 Şubat'tan önce danışmada kaydolun.",
+      "questions": [
+        {
+          "prompt": "When are the classes?",
+          "options": [
+            "On Tuesday evenings",
+            "On Tuesday mornings",
+            "On Saturday afternoons",
+            "Every evening"
+          ],
+          "answer": 0,
+          "why": "“Classes are on Tuesday evenings, from six to eight o'clock”: salı akşamları."
+        },
+        {
+          "prompt": "How much does a student pay for one class?",
+          "options": [
+            "£12",
+            "£8",
+            "£10",
+            "£20"
+          ],
+          "answer": 1,
+          "why": "“Students pay only eight pounds”: öğrenciler sekiz sterlin öder; on iki sterlin normal fiyattır."
+        },
+        {
+          "prompt": "What should people bring?",
+          "options": [
+            "The ingredients",
+            "A recipe book",
+            "An apron and a box",
+            "A knife and a plate"
+          ],
+          "answer": 2,
+          "why": "“Please bring an apron and a box to take home the food you cook”: önlük ve kap."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-neighbour",
+      "exam": "Cambridge",
+      "level": "A2",
+      "title": "A note from a neighbour",
+      "text": "Dear Mrs Hall, it's Emma from the flat on the third floor. I'm going to stay with my sister on Saturday morning and I'll be back the following Friday. Could you water my plants twice during the week, for example on Tuesday and Thursday? I'll leave my key in your letterbox on Friday evening. Don't worry about the cat: my son is going to come and feed her every day. Thank you so much! I'll bring you some jam. Emma",
+      "tr": "Sevgili Hall Hanım, ben üçüncü kattaki daireden Emma. Cumartesi sabahı ablamın yanında kalmaya gidiyorum, ertesi cuma döneceğim. Hafta içinde iki kez, örneğin salı ve perşembe, çiçeklerimi sulayabilir misiniz? Cuma akşamı anahtarımı sizin posta kutunuza bırakacağım. Kedi için endişelenmeyin: oğlum her gün gelip onu besleyecek. Çok teşekkür ederim! Size reçel getireceğim. Emma",
+      "questions": [
+        {
+          "prompt": "Why is Emma writing this note?",
+          "options": [
+            "To invite her neighbour on holiday",
+            "To ask for help while she is away",
+            "To complain about noise",
+            "To sell her plants"
+          ],
+          "answer": 1,
+          "why": "Ablasının yanına gidiyor ve komşusundan çiçeklerini sulamasını rica ediyor: yokken yardım istiyor."
+        },
+        {
+          "prompt": "What does Mrs Hall need to do?",
+          "options": [
+            "Feed the cat every day",
+            "Water the plants every day",
+            "Water the plants on Tuesday and Thursday",
+            "Get the key from Emma's son"
+          ],
+          "answer": 2,
+          "why": "“Could you water my plants twice… on Tuesday and Thursday?” Kediyi Emma'nın oğlu besleyecek."
+        },
+        {
+          "prompt": "Where will Mrs Hall find the key?",
+          "options": [
+            "In her own letterbox",
+            "At Emma's sister's house",
+            "Under the doormat",
+            "At Emma's son's flat"
+          ],
+          "answer": 0,
+          "why": "“I'll leave my key in your letterbox”: Hall Hanım'ın kendi posta kutusunda."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-remote",
+      "exam": "Cambridge",
+      "level": "B1",
+      "title": "Working from home",
+      "text": "For the past year, Sam, a thirty-four-year-old graphic designer, has worked three days a week from his flat in Bristol and two days in the office. \"At first I loved it: no more traffic jams in the morning, and I saved almost two hours a day. But after a few months I started to feel lonely. I didn't speak to anyone until the evening.\" To avoid this, he has developed some new habits. He starts each day with a twenty-minute walk, as if he were going to work, and once a week he has lunch with a former colleague. He has also put his desk in a small room and closes the door at six o'clock. \"What I miss most isn't the meetings, it's the chats by the coffee machine,\" he admits with a laugh.",
+      "tr": "Otuz dört yaşındaki grafik tasarımcı Sam bir yıldır haftada üç gün Bristol'daki dairesinden, iki gün de ofiste çalışıyor. «Başta çok sevdim: sabah trafiği yoktu, günde neredeyse iki saat kazanıyordum. Ama birkaç ay sonra kendimi yalnız hissetmeye başladım. Akşama kadar kimseyle konuşmuyordum.» Bunun önüne geçmek için yeni alışkanlıklar edindi. Her güne, işe gidiyormuş gibi yirmi dakikalık bir yürüyüşle başlıyor ve haftada bir eski bir iş arkadaşıyla öğle yemeği yiyor. Ayrıca masasını küçük bir odaya koydu ve saat altıda kapıyı kapatıyor. «En çok özlediğim şey toplantılar değil, kahve makinesinin yanındaki sohbetler» diye itiraf ediyor gülerek.",
+      "questions": [
+        {
+          "prompt": "How many days a week does Sam work at home?",
+          "options": [
+            "Two days",
+            "Three days",
+            "Five days",
+            "One day"
+          ],
+          "answer": 1,
+          "why": "“Has worked three days a week from his flat… and two days in the office”: evde üç gün."
+        },
+        {
+          "prompt": "What problem did he have after a few months?",
+          "options": [
+            "He lost time in traffic jams",
+            "He had too many meetings",
+            "He felt lonely",
+            "His flat was too small"
+          ],
+          "answer": 2,
+          "why": "“After a few months I started to feel lonely”: birkaç ay sonra kendini yalnız hissetti."
+        },
+        {
+          "prompt": "What does he miss most?",
+          "options": [
+            "Informal chats with colleagues",
+            "The meetings",
+            "The journey in the morning",
+            "Eating in restaurants"
+          ],
+          "answer": 0,
+          "why": "“What I miss most isn't the meetings, it's the chats by the coffee machine”: kahve makinesinin yanındaki sohbetler."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-garden",
+      "exam": "Cambridge",
+      "level": "B1",
+      "title": "A garden between the flats",
+      "text": "Just two years ago, the space between the blocks of flats on Lilac Street was an empty piece of land where nobody ever stopped. Today it has about thirty small vegetable gardens. The idea came from Margaret, a retired woman who persuaded the council to lend the land for free. Every family that joins gets a plot and promises to look after it at least once a week. The tools are kept in a shared shed, and rainwater is collected in large barrels. \"Children are finding out where vegetables come from, and neighbours who never even said hello now have coffee together,\" says Margaret. The waiting list is already long: forty families are hoping to get a plot next year.",
+      "tr": "Daha iki yıl önce Lilac sokağındaki apartman blokları arasındaki alan, kimsenin uğramadığı boş bir araziydi. Bugün orada otuz kadar küçük sebze bahçesi var. Fikir, belediyeyi araziyi ücretsiz vermeye ikna eden emekli Margaret'ten çıktı. Katılan her aile bir parsel alıyor ve ona en az haftada bir kez bakmaya söz veriyor. Aletler ortak bir kulübede duruyor, yağmur suyu da büyük fıçılarda toplanıyor. «Çocuklar sebzelerin nereden geldiğini öğreniyor; birbirine merhaba bile demeyen komşular artık birlikte kahve içiyor» diyor Margaret. Bekleme listesi şimdiden uzun: kırk aile gelecek yıl bir parsel almayı umuyor.",
+      "questions": [
+        {
+          "prompt": "What was there before the garden?",
+          "options": [
+            "A car park",
+            "An empty piece of land",
+            "A small market",
+            "A school"
+          ],
+          "answer": 1,
+          "why": "“Was an empty piece of land where nobody ever stopped”: boş bir arazi."
+        },
+        {
+          "prompt": "What do the families promise to do?",
+          "options": [
+            "Pay rent to the council",
+            "Buy their own tools",
+            "Sell their vegetables to neighbours",
+            "Look after their plot at least once a week"
+          ],
+          "answer": 3,
+          "why": "“Promises to look after it at least once a week”. Arazi ücretsiz, aletler ortak."
+        },
+        {
+          "prompt": "According to Margaret, how has the garden changed the area?",
+          "options": [
+            "Neighbours spend more time together",
+            "Families spend less on food",
+            "New people are moving to the area",
+            "Children get better marks at school"
+          ],
+          "answer": 0,
+          "why": "Merhaba bile demeyen komşular “now have coffee together”: artık birlikte kahve içiyorlar."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-fourday",
+      "exam": "IELTS",
+      "level": "C1",
+      "title": "The four-day week",
+      "text": "For several years now, a number of European companies have been experimenting with a four-day working week at no loss of pay. The results published by its supporters look impressive: employees report lower stress, sick leave falls and productivity, far from collapsing, holds steady or even rises slightly. Does this mean we have found a miracle cure? Sceptics urge caution. To begin with, the firms that volunteer for these trials tend to be small service-sector businesses that are already convinced of the idea, so it would be unwise to draw conclusions for a hospital or a factory, where being physically present cannot be squeezed into fewer days. Secondly, packing a full working week into four days can create days so intense that the rest gained on Friday is paid for from Monday to Thursday. Finally, some workers admit that the extra day off is quickly swallowed up by paperwork and housework. At heart, then, the debate is less about the number of days than about how work is organised: where companies used the change to get rid of pointless meetings, the benefits seem to last; where they simply shortened the week, the gains fade within a few months.",
+      "tr": "Birkaç yıldır bazı Avrupa şirketleri maaş kaybı olmadan dört günlük çalışma haftasını deniyor. Destekçilerinin yayımladığı sonuçlar etkileyici görünüyor: çalışanlar daha az stres bildiriyor, hastalık izinleri düşüyor ve verimlilik çökmek bir yana aynı kalıyor, hatta biraz artıyor. Bu, mucize bir çare bulduğumuz anlamına mı geliyor? Kuşkucular dikkatli olmayı öğütlüyor. Önce, bu denemelere gönüllü olan firmalar genellikle fikre zaten inanmış küçük hizmet sektörü işletmeleri; bu yüzden fiziksel olarak orada bulunmanın daha az güne sıkıştırılamadığı bir hastane ya da fabrika için sonuç çıkarmak akıllıca olmaz. İkincisi, tam bir çalışma haftasını dört güne sıkıştırmak öyle yoğun günler doğurabilir ki cuma kazanılan dinlenmenin bedeli pazartesiden perşembeye ödenir. Son olarak bazı çalışanlar fazladan boş günün resmî işler ve ev işleri tarafından hemen yutulduğunu kabul ediyor. Yani özünde tartışma gün sayısından çok işin nasıl düzenlendiğiyle ilgili: şirketlerin bu değişikliği gereksiz toplantılardan kurtulmak için kullandığı yerlerde yararlar kalıcı görünüyor; yalnızca haftayı kısalttıkları yerlerde kazanımlar birkaç ay içinde siliniyor.",
+      "questions": [
+        {
+          "prompt": "According to its supporters, what happens to productivity with a four-day week?",
+          "options": [
+            "It collapses quickly",
+            "It falls a little, but stress goes down",
+            "It stays the same or even rises slightly",
+            "It doubles in small companies"
+          ],
+          "answer": 2,
+          "why": "“Productivity, far from collapsing, holds steady or even rises slightly”: aynı kalıyor, hatta biraz artıyor."
+        },
+        {
+          "prompt": "Why are sceptics wary of the trial results?",
+          "options": [
+            "Employees exaggerated how tired they were",
+            "The companies taking part do not represent the whole economy",
+            "The results were never published",
+            "Salaries were cut during the trials"
+          ],
+          "answer": 1,
+          "why": "Gönüllü firmalar fikre zaten inanmış küçük hizmet işletmeleri; hastane ya da fabrika için sonuç çıkarmak “unwise” (akıllıca değil)."
+        },
+        {
+          "prompt": "According to the writer, what does the success of the change mainly depend on?",
+          "options": [
+            "How work is reorganised",
+            "The exact number of hours worked",
+            "Which day of the week is free",
+            "Only the size of the company"
+          ],
+          "answer": 0,
+          "why": "“The debate is less about the number of days than about how work is organised”: gereksiz toplantıların kaldırıldığı yerlerde yararlar kalıcı."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-repair",
+      "exam": "Cambridge",
+      "level": "C1",
+      "title": "Repair, don't replace",
+      "text": "One Saturday a month, in a hall lent by the council, a dozen volunteers welcome local people who turn up with a silent toaster, a flickering lamp or a torn pair of trousers. This repair café is not a free repair service: the owner of each item takes part in the repair themselves, guided by a volunteer. \"We don't want people to leave with nothing more than a working appliance, but with the idea that they are capable of fixing it,\" explains Henry, a retired engineer. The success of such projects points to a deeper unease. Many consumers suspect manufacturers of deliberately designing fragile products, or of making spare parts impossible to find and ridiculously expensive. Lawmakers have begun to respond: some appliances must now display a repairability score, and sellers are required to state how many years spare parts will remain available. The volunteers, however, have no illusions. A third of the items brought in cannot be saved, often because they were designed never to be opened. For Henry, the real victory would be for repair cafés to become unnecessary one day.",
+      "tr": "Ayda bir cumartesi, belediyenin verdiği bir salonda on iki kadar gönüllü, sesi çıkmayan bir ekmek kızartma makinesi, yanıp sönen bir lamba ya da yırtık bir pantolonla gelen mahalleliyi karşılıyor. Bu tamir kafesi ücretsiz bir onarım servisi değil: her eşyanın sahibi bir gönüllünün rehberliğinde onarıma kendisi katılıyor. «İnsanların yalnızca çalışan bir aletle değil, onu tamir edebilecekleri düşüncesiyle ayrılmalarını istiyoruz» diyor emekli mühendis Henry. Bu tür projelerin başarısı daha derin bir huzursuzluğa işaret ediyor. Pek çok tüketici, üreticilerin ürünleri bile bile dayanıksız tasarladığından ya da yedek parçaları bulunmaz ve fahiş pahalı hâle getirdiğinden kuşkulanıyor. Yasa koyucular tepki vermeye başladı: bazı aletler artık bir onarılabilirlik puanı göstermek, satıcılar da yedek parçaların kaç yıl bulunacağını belirtmek zorunda. Yine de gönüllülerin hiçbir hayali yok. Getirilen eşyaların üçte biri kurtarılamıyor, çoğu zaman da hiç açılmamak üzere tasarlandıkları için. Henry'ye göre asıl zafer, tamir kafelerine bir gün gerek kalmaması olurdu.",
+      "questions": [
+        {
+          "prompt": "How does the repair café work?",
+          "options": [
+            "Volunteers fix items for free while people wait",
+            "Owners repair their own items with a volunteer's help",
+            "People swap a broken item for one that works",
+            "Craftspeople sell cheap spare parts"
+          ],
+          "answer": 1,
+          "why": "“Not a free repair service: the owner of each item takes part in the repair themselves, guided by a volunteer”."
+        },
+        {
+          "prompt": "What do many consumers accuse manufacturers of?",
+          "options": [
+            "Charging too much in shops",
+            "Showing a misleading repairability score",
+            "Making fragile products and spare parts that are hard to get",
+            "Refusing to repair appliances under guarantee"
+          ],
+          "answer": 2,
+          "why": "Ürünleri “deliberately… fragile” tasarladıklarından, yedek parçaları da “impossible to find and ridiculously expensive” yaptıklarından kuşkulanıyorlar."
+        },
+        {
+          "prompt": "What would Henry see as real success?",
+          "options": [
+            "Repair cafés no longer being needed",
+            "Opening a repair café every week",
+            "Fixing every item that is brought in",
+            "A law banning products that cannot be opened"
+          ],
+          "answer": 0,
+          "why": "“The real victory would be for repair cafés to become unnecessary one day”: tamir kafelerine gerek kalmaması."
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "id": "en-read-bike-sharing",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B1",
+      "title": "City bike sharing scheme",
+      "text": "Six months ago, our city council introduced a new electric bike rental scheme to reduce traffic congestion. Over two hundred docking stations were installed near train stations, university campuses, and popular shopping centres. Users can unlock a bicycle with a smartphone app for a small fee and return it to any vacant bay across the network. A recent transport survey revealed that more than forty thousand journeys have already been logged, with many commuters choosing cycling over driving for short morning trips. Local authorities are now planning to expand the fleet before summer.",
+      "tr": "Altı ay önce belediyemiz, trafik sıkışıklığını azaltmak amacıyla yeni bir elektrikli bisiklet kiralama sistemi başlattı. Tren istasyonları, üniversite kampüsleri ve popüler alışveriş merkezlerinin yakınına iki yüzden fazla istasyon kuruldu. Kullanıcılar bir akıllı telefon uygulamasıyla küçük bir ücret karşılığında bisiklet kilidini açıp ağdaki herhangi bir boş yuvaya bırakabiliyor. Yakın tarihli bir ulaşım anketi, kırk binden fazla yolculuğun yapıldığını ve birçok çalışanın sabahları kısa mesafelerde araba yerine bisikleti tercih ettiğini ortaya koydu. Yerel yetkililer yazdan önce filoyu genişletmeyi planlıyor.",
+      "questions": [
+        {
+          "prompt": "Why did the local council introduce the bike scheme?",
+          "options": [
+            "To generate profit for local shops",
+            "To ease traffic congestion in the city",
+            "To replace all municipal buses",
+            "To train professional athletes"
+          ],
+          "answer": 1,
+          "why": "Metinde açıkça trafik sıkışıklığını azaltmak için başlatıldığı belirtiliyor ('to reduce traffic congestion')."
+        },
+        {
+          "prompt": "How do riders unlock a bicycle?",
+          "options": [
+            "By showing an identity card to a guard",
+            "By paying in cash at a ticket machine",
+            "By using a mobile application",
+            "By sending a text message"
+          ],
+          "answer": 2,
+          "why": "Metinde kullanıcıların akıllı telefon uygulamasıyla bisiklet kilidini açtığı yazıyor ('unlock a bicycle with a smartphone app')."
+        },
+        {
+          "prompt": "What are authorities planning to do next?",
+          "options": [
+            "Close stations near universities",
+            "Increase the rental price immediately",
+            "Add more bicycles before summer",
+            "Sell the bicycles to private firms"
+          ],
+          "answer": 2,
+          "why": "Yetkililer yazdan önce filoyu genişletmeyi planlamaktadır ('expand the fleet before summer')."
+        }
+      ]
+    },
+    {
+      "id": "en-read-coffee-waste",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B1",
+      "title": "Recycling coffee grounds into energy",
+      "text": "Every morning, millions of cups of coffee are consumed worldwide, generating thousands of tonnes of damp coffee grounds that usually end up in landfill sites. A pioneering bio-energy startup in London has found an ingenious solution. They collect leftover coffee waste from hundreds of independent cafes and large restaurant chains every day. Through an industrial drying and compaction process, the waste is transformed into solid biomass heating pellets for stoves and home heating. These innovative pellets burn hotter and longer than conventional wood pellets while significantly cutting greenhouse gas emissions.",
+      "tr": "Her sabah dünya çapında milyonlarca fincan kahve tüketiliyor ve bu da genellikle çöplüklere giden binlerce ton nemli kahve telvesi üretiyor. Londra'daki öncü bir biyo-enerji girişimi ustaca bir çözüm buldu. Yüzlerce bağımsız kafeden ve büyük restoran zincirinden her gün kahve atıklarını topluyorlar. Endüstriyel bir kurutma ve sıkıştırma süreciyle bu atık, sobalar ve ev ısıtması için katı biyokütle peletlerine dönüştürülüyor. Bu yenilikçi peletler geleneksel odun peletlerinden daha sıcak ve daha uzun süre yanarken sera gazı emisyonlarını belirgin şekilde azaltıyor.",
+      "questions": [
+        {
+          "prompt": "What usually happens to leftover coffee grounds?",
+          "options": [
+            "They are fed to domestic animals",
+            "They are thrown into landfills",
+            "They are used directly as car fuel",
+            "They are exported overseas"
+          ],
+          "answer": 1,
+          "why": "Metinde atıkların genellikle çöplüklere gittiği belirtilmiştir ('usually end up in landfill sites')."
+        },
+        {
+          "prompt": "Where does the startup collect its raw material?",
+          "options": [
+            "Directly from remote tropical farms",
+            "From local cafes and restaurant chains",
+            "From supermarkets and food factories",
+            "From city parks and botanical gardens"
+          ],
+          "answer": 1,
+          "why": "Şirket malzemeyi yerel kafelerden ve restoran zincirlerinden topluyor ('hundreds of independent cafes and large restaurant chains')."
+        },
+        {
+          "prompt": "What is an advantage of coffee pellets over wood pellets?",
+          "options": [
+            "They burn hotter and longer",
+            "They are completely free of charge",
+            "They smell like fresh chocolate",
+            "They can be dissolved in hot water"
+          ],
+          "answer": 0,
+          "why": "Metinde odun peletlerine kıyasla daha sıcak ve uzun süre yandıkları açıklanmıştır ('burn hotter and longer than conventional wood pellets')."
+        }
+      ]
+    },
+    {
+      "id": "en-read-smart-cities",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B2",
+      "title": "Sensors and urban governance in smart cities",
+      "text": "Modern metropolises are increasingly turning to Internet-of-Things sensors to optimize urban infrastructure in real time. Across cities like Barcelona and Singapore, thousands of miniature digital nodes monitor air quality, traffic flow, and street lighting levels. Smart lampposts automatically dim when streets are deserted, conserving municipal electricity, while underground soil moisture monitors trigger irrigation systems in public parks only when necessary. Furthermore, acoustic detectors identify traffic accidents instantly and dispatch emergency responders within seconds. Urban planners argue that predictive algorithms dramatically diminish operational costs and enhance residents' quality of life. Critics, however, voice legitimate apprehensions regarding data privacy, cautioning that continuous behavioral tracking without explicit democratic consent risks creating unprecedented surveillance ecosystems in our shared civic spaces.",
+      "tr": "Modern metropoller, kentsel altyapıyı gerçek zamanlı olarak optimize etmek için giderek daha fazla Nesnelerin İnterneti sensörlerine yöneliyor. Barselona ve Singapur gibi şehirlerde binlerce küçük dijital düğüm hava kalitesini, trafik akışını ve sokak aydınlatma düzeylerini izliyor. Akıllı sokak lambaları sokaklar boş olduğunda otomatik olarak kısılarak belediye elektriğini korurken, yer altı toprak nemi monitörleri parklardaki sulama sistemlerini yalnızca gerektiğinde çalıştırıyor. Şehir plancıları, tahmine dayalı algoritmaların işletme maliyetlerini belirgin şekilde düşürdüğünü ve yaşam kalitesini artırdığını savunuyor. Ancak eleştirmenler veri gizliliğiyle ilgili meşru endişeleri dile getirerek, açık demokratik rıza olmadan sürekli davranış takibinin kamusal alanlarımızda benzeri görülmemiş gözetim ekosistemleri yaratma riski taşıdığı konusunda uyarıyor.",
+      "questions": [
+        {
+          "prompt": "How do smart lampposts help city councils save electricity?",
+          "options": [
+            "They run on wind energy exclusively",
+            "They dim automatically when nobody is around",
+            "They switch off entirely at midnight",
+            "They are painted with reflective glowing paint"
+          ],
+          "answer": 1,
+          "why": "Sokaklar boş olduğunda akıllı lambaların otomatik olarak kısıldığı yazıyor ('automatically dim when streets are deserted')."
+        },
+        {
+          "prompt": "What is the primary benefit emphasized by urban planners?",
+          "options": [
+            "Lower operational expenses and higher quality of life",
+            "Complete elimination of private vehicles",
+            "Higher real estate taxes for investors",
+            "Guaranteed employment for every citizen"
+          ],
+          "answer": 0,
+          "why": "Plancılar düşük işletme maliyeti ve yüksek yaşam kalitesini vurgulamaktadır ('diminish operational costs and enhance residents quality of life')."
+        },
+        {
+          "prompt": "What is the main concern expressed by critics?",
+          "options": [
+            "High installation costs of physical wiring",
+            "Risk of mass digital surveillance and privacy loss",
+            "Frequent electrical blackouts during storms",
+            "Difficulty of training maintenance staff"
+          ],
+          "answer": 1,
+          "why": "Eleştirmenler sürekli takip ve gözetim ekosistemi riskinden endişe duymaktadır ('surveillance ecosystems in our shared civic spaces')."
+        }
+      ]
+    },
+    {
+      "id": "en-read-microbiome",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B2",
+      "title": "The gut microbiome and emotional well-being",
+      "text": "Over the past decade, neuroscientists and gastroenterologists have uncovered a profound biological axis linking the human digestive tract to neurological function. Known as the gut-brain axis, this bidirectional biochemical communication network relies heavily on trillions of symbiotic microorganisms inhabiting the intestinal lining. These gut microbes synthesize vital neurotransmitters, including serotonin and gamma-aminobutyric acid, which regulate anxiety, stress resilience, and sleep patterns. Clinical trials indicate that diets rich in fermentable fibers, polyphenols, and probiotics actively reinforce emotional equilibrium by dampening systemic inflammation. Consequently, psychiatric medicine is undergoing a transformative shift, increasingly integrating targeted dietary interventions alongside conventional psychotherapy to treat mood disorders comprehensively.",
+      "tr": "Geçtiğimiz on yılda nörobilimciler ve gastroenterologlar, insan sindirim sistemi ile nörolojik işlevleri birbirine bağlayan derin bir biyolojik ekseni ortaya çıkardılar. Bağırsak-beyin ekseni olarak bilinen bu iki yönlü biyokimyasal iletişim ağı, bağırsak çeperinde yaşayan trilyonlarca simbiyotik mikroorganizmaya dayanıyor. Bu bağırsak mikropları anksiyete, stres direnci ve uyku düzenini dengeleyen serotonin ve gama-aminobütirik asit gibi hayati nörotransmitterleri sentezliyor. Klinik deneyler; fermente edilebilir lifler, polifenoller ve probiyotikler açısından zengin beslenmenin sistemik iltihabı azaltarak duygusal dengeyi pekiştirdiğini gösteriyor. Sonuç olarak psikiyatri tıbbı köklü bir değişim geçiriyor; duygu durum bozukluklarını kapsamlı biçimde tedavi etmek için geleneksel psikoterapinin yanına hedefe yönelik beslenme müdahalelerini giderek daha fazla entegre ediyor.",
+      "questions": [
+        {
+          "prompt": "What characterizes the gut-brain axis?",
+          "options": [
+            "It is a unidirectional warning signal",
+            "It is a two-way biochemical communication system",
+            "It only functions during early childhood",
+            "It operates independently of gut bacteria"
+          ],
+          "answer": 1,
+          "why": "Metinde bağırsak-beyin ekseni iki yönlü biyokimyasal bir iletişim ağı olarak tanımlanmıştır ('bidirectional biochemical communication network')."
+        },
+        {
+          "prompt": "What role do gut microorganisms play in mood regulation?",
+          "options": [
+            "They eliminate all dietary fats",
+            "They synthesize key neurotransmitters like serotonin",
+            "They replace the need for physical exercise",
+            "They block communication with the nervous system"
+          ],
+          "answer": 1,
+          "why": "Mikroorganizmalar serotonin gibi hayati nörotransmitterleri sentezler ('synthesize vital neurotransmitters, including serotonin')."
+        },
+        {
+          "prompt": "How is psychiatric practice evolving in response to these findings?",
+          "options": [
+            "By banning all traditional pharmaceuticals",
+            "By replacing therapists with robotic interfaces",
+            "By combining targeted nutrition with psychotherapy",
+            "By advising patients to avoid fiber entirely"
+          ],
+          "answer": 2,
+          "why": "Psikiyatri alanı artık beslenme müdahalelerini psikoterapi ile birleştirmektedir ('integrating targeted dietary interventions alongside conventional psychotherapy')."
+        }
+      ]
+    },
+    {
+      "id": "en-read-vertical-farming",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "B2",
+      "title": "Vertical farming and the future of agriculture",
+      "text": "As unpredictable weather patterns disrupt traditional open-field crop cultivation, indoor vertical farming has emerged as a promising agricultural paradigm. Inside climate-controlled warehouses, leafy greens and strawberries are cultivated in vertically stacked trays using hydroponic or aeroponic nutrient solutions rather than organic topsoil. LED lighting systems tailor specific light spectra to optimize photosynthetic efficiency, enabling year-round harvest cycles regardless of external climatic volatility. Remarkably, vertical facilities consume up to ninety-five percent less freshwater than conventional agriculture and completely eliminate the necessity for synthetic pesticides. Nonetheless, astronomical capital expenditure and high electricity consumption remain substantial commercial hurdles that engineers are striving to mitigate through renewable energy partnerships.",
+      "tr": "Öngörülemeyen hava koşulları geleneksel açık tarla tarımını aksatırken, kapalı dikey tarım umut verici bir tarımsal paradigma olarak ortaya çıktı. İklim kontrollü depolarda yeşil yapraklı sebzeler ve çilekler, organik toprak yerine hidroponik veya aeroponik besin solüsyonları kullanılarak dikey olarak istiflenmiş tepsilerde yetiştiriliyor. LED aydınlatma sistemleri, fotosentez verimliliğini optimize etmek için belirli ışık spektrumlarını ayarlayarak dış hava koşullarından bağımsız biçimde yıl boyu hasat döngüleri sağlıyor. Dikkat çekici şekilde, dikey tesisler geleneksel tarıma kıyasla yüzde doksan beşe kadar daha az tatlı su tüketiyor ve sentetik pestisit ihtiyacını tamamen ortadan kaldırıyor. Bununla birlikte fahiş sermaye maliyeti ve yüksek elektrik tüketimi, mühendislerin yenilenebilir enerji ortaklıklarıyla azaltmaya çalıştığı önemli ticari engeller olmaya devam ediyor.",
+      "questions": [
+        {
+          "prompt": "How do crops grow in vertical farms without soil?",
+          "options": [
+            "In mineral-rich water or mist solutions",
+            "Inside artificial synthetic soil bags",
+            "On dried wood chips and sand",
+            "Using crushed limestone gravel"
+          ],
+          "answer": 0,
+          "why": "Bitkiler toprak yerine besin solüsyonlarında (hidroponik/aeroponik) yetiştirilmektedir ('using hydroponic or aeroponic nutrient solutions')."
+        },
+        {
+          "prompt": "What is an environmental advantage of vertical farming mentioned in the text?",
+          "options": [
+            "It requires zero electricity to operate",
+            "It consumes up to 95% less water and avoids pesticides",
+            "It produces organic plastic packaging",
+            "It improves outdoor soil quality naturally"
+          ],
+          "answer": 1,
+          "why": "%95 daha az tatlı su tüketmesi ve pestisitleri ortadan kaldırması vurgulanmıştır ('ninety-five percent less freshwater... eliminate pesticides')."
+        },
+        {
+          "prompt": "What are the primary challenges facing vertical farms today?",
+          "options": [
+            "Lack of suitable crops and seeds",
+            "Strict international export quotas",
+            "Hefty initial costs and heavy energy consumption",
+            "Unwillingness of supermarkets to buy clean produce"
+          ],
+          "answer": 2,
+          "why": "Yüksek başlangıç maliyeti ve yoğun elektrik kullanımı en büyük engeldir ('astronomical capital expenditure and high electricity consumption')."
+        }
+      ]
+    },
+    {
+      "id": "en-read-rewilding-c1",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "C1",
+      "title": "Ecological rewilding and trophic cascades",
+      "text": "Conservation biology has witnessed a monumental philosophical pivot from reactive preservation toward ambitious ecological rewilding. Traditional conservation often concentrated on fencing fragile reserves and micromanaging declining populations within artificially bounded habitats. Rewilding, by contrast, seeks to reinstate natural evolutionary processes and apex predators to catalyze self-sustaining ecological equilibrium. The reintroduction of grey wolves to Yellowstone National Park remains the textbook illustration of a trophic cascade: by altering the browsing behavior of elk herds, wolf predation allowed overgrazed riverbank willows and aspens to regenerate. This botanical revival stabilized riverbanks, prevented soil erosion, and prompted the spontaneous return of beavers, songbirds, and diverse aquatic organisms. Critics, particularly pastoralist communities, contend that rewilding agendas frequently disregard rural economic livelihood and historical grazing rights. Reconciling agrarian viability with wilderness restoration therefore demands transparent stakeholder compensation frameworks and empathetic cross-sectoral governance. Consequently, ecological recovery must be envisioned not merely as an isolated scientific experiment, but as an inclusive social partnership between environmental advocates and indigenous land managers.",
+      "tr": "Koruma biyolojisi, tepkisel muhafazadan iddialı ekolojik yeniden yabanileştirmeye doğru anıtsal bir felsefi eksen kaymasına tanık oldu. Geleneksel koruma anlayışı genellikle kırılgan rezervleri çitle çevirmeye ve yapay sınırlarla belirlenmiş yaşam alanlarında azalan nüfusları mikrodüzeyde yönetmeye odaklanıyordu. Yeniden yabanileştirme ise tam aksine, kendi kendini sürdürebilen ekolojik dengeyi tetiklemek için doğal evrimsel süreçleri ve tepe yırtıcıları yeniden sisteme kazandırmayı hedefler. Gri kurtların Yellowstone Ulusal Parkı'na geri getirilmesi trofik zincir etkisinin ders kitaplarına geçen örneğidir: geyik sürülerinin otlama alışkanlıklarını değiştiren kurt varlığı, aşırı otlatılmış nehir kıyısı söğütlerinin ve kavaklarının yenilenmesine olanak sağladı. Bu botanik canlanma nehir yataklarını sabitledi, toprak erozyonunu önledi ve kunduzların, ötücü kuşların ve çeşitli su canlılarının kendiliğinden geri dönüşünü sağladı. Ancak özellikle hayvancılıkla geçinen kırsal topluluklar, yabanileştirme projelerinin kırsal geçim kaynaklarını ve tarihi otlatma haklarını göz ardı ettiğini savunuyor. Bu nedenle tarımsal sürdürülebilirlik ile yaban hayatı restorasyonunu uzlaştırmak şeffaf tazminat mekanizmaları ve katılımcı bir yönetişim gerektirmektedir.",
+      "questions": [
+        {
+          "prompt": "How does ecological rewilding fundamentally differ from traditional conservation?",
+          "options": [
+            "It relies entirely on captive breeding in urban zoos",
+            "It focuses on restoring natural evolutionary dynamics and keystone predators",
+            "It excludes all botanical species in favor of large carnivores",
+            "It strictly forbids any scientific observation or monitoring"
+          ],
+          "answer": 1,
+          "why": "Yeniden yabanileştirme, doğal evrimsel süreçleri ve kilit yırtıcıları sisteme kazandırmaya odaklanır ('reinstate natural evolutionary processes and apex predators')."
+        },
+        {
+          "prompt": "What unexpected consequence followed the regeneration of riverbank trees in Yellowstone?",
+          "options": [
+            "A severe decline in beaver and bird populations",
+            "Spontaneous resurgence of diverse wildlife and riverbank stabilization",
+            "An immediate drop in regional annual rainfall",
+            "A total collapse of fish species in mountain streams"
+          ],
+          "answer": 1,
+          "why": "Nehir kıyısındaki ağaçların canlanması erozyonu önlemiş ve kunduzlar ile ötücü kuşların geri dönmesini sağlamıştır ('spontaneous return of beavers, songbirds, and diverse aquatic organisms')."
+        },
+        {
+          "prompt": "What is the primary objection raised by agricultural communities?",
+          "options": [
+            "Wolves consume too much clean river water",
+            "Fears of economic hardship and disruption of historical grazing traditions",
+            "Disapproval of tourists visiting national parks",
+            "The high cost of buying binoculars for rangers"
+          ],
+          "answer": 1,
+          "why": "Kırsal kesim ekonomik geçim kaynaklarının ve tarihi otlatma haklarının zedelenmesinden endişe duymaktadır ('disregard rural economic livelihood and historical grazing rights')."
+        }
+      ]
+    },
+    {
+      "id": "en-read-epigenetics-c1",
+      "language": "en",
+      "exam": "IELTS",
+      "level": "C1",
+      "title": "Epigenetic plasticity and transgenerational inheritance",
+      "text": "For over half a century, the central dogma of molecular genetics posited that an organism’s anatomical and behavioral blueprint was immutably encoded within the nucleotide sequences of its DNA. The burgeoning discipline of epigenetics has fundamentally upended this deterministic paradigm. Epigenetic mechanisms, such as DNA methylation and histone acetylation, act as biochemical switches that modulate gene expression without altering the underlying genetic text. Environmental variables, including severe chronic psychological stress, systemic malnutrition, and airborne chemical pollution, can induce enduring epigenetic modifications that suppress or amplify specific metabolic pathways. Most startlingly, laboratory studies and historical epidemiological surveys suggest that certain epigenetic markers can evade germline reprogramming and be transmitted across generations. Offspring of parents subjected to famine or severe trauma frequently exhibit heightened vulnerabilities to metabolic dysfunction and cardiovascular disorders, illustrating that our physiological legacy reflects ancestral environmental exposures alongside inherited chromosomes.",
+      "tr": "Yarım yüzyıldan uzun bir süre boyunca moleküler genetiğin merkezi dogması, bir organizmanın anatomik ve davranışsal planının DNA'sının nükleotid dizilerinde değişmez biçimde kodlandığını varsayıyordu. Gelişen epigenetik disiplini bu determinist paradigmayı kökten yıktı. DNA metilasyonu ve histon asetilasyonu gibi epigenetik mekanizmalar, altta yatan genetik metni değiştirmeden gen ifadesini düzenleyen biyokimyasal anahtarlar gibi hareket eder. Şiddetli kronik psikolojik stres, yetersiz beslenme ve havadaki kimyasal kirlilik gibi çevresel değişkenler belirli metabolik yolları baskılayan veya güçlendiren kalıcı epigenetik değişiklikleri tetikleyebilir. En şaşırtıcı olanı ise laboratuvar çalışmaları ve epidemiyolojik araştırmaların bazı epigenetik işaretlerin üreme hücresi yeniden programlamasından kaçarak nesiller boyunca aktarılabileceğini göstermesidir. Kıtlık veya ağır travmaya maruz kalmış ebeveynlerin çocukları metabolik işlev bozukluklarına ve kardiyovasküler hastalıklara karşı sıklıkla yüksek duyarlılık göstermekte, bu da fizyolojik mirasımızın kromozomların yanı sıra atalarımızın çevresel deneyimlerini de yansıttığını ortaya koymaktadır.",
+      "questions": [
+        {
+          "prompt": "What central assumption of classical genetics has epigenetics overturned?",
+          "options": [
+            "That cells require proteins to survive",
+            "That genetic code strictly and immutably determines all biological expression",
+            "That DNA contains four distinct nucleotide bases",
+            "That mutations cannot occur in nature"
+          ],
+          "answer": 1,
+          "why": "Epigenetik, genetik kodun her şeyi tek başına ve değişmez biçimde belirlediği determinist dogmayı yıkmıştır ('deterministic paradigm... immutably encoded within DNA')."
+        },
+        {
+          "prompt": "How do epigenetic mechanisms alter physiological function?",
+          "options": [
+            "By rewriting the order of DNA base pairs completely",
+            "By acting as molecular switches that regulate whether genes are active",
+            "By replacing human chromosomes with bacterial plasmids",
+            "By halting cellular division permanently"
+          ],
+          "answer": 1,
+          "why": "DNA metilasyonu ve histon modifikasyonları gen ifadesini açıp kapatan anahtarlar gibi çalışır ('switches that modulate gene expression without altering the genetic text')."
+        },
+        {
+          "prompt": "What do epidemiological findings regarding ancestral trauma demonstrate?",
+          "options": [
+            "Epigenetic marks can be passed down to subsequent generations",
+            "Traumatic memories are converted directly into spoken words",
+            "Descendants are completely immune to metabolic disease",
+            "Environmental pollution ceases to affect modern populations"
+          ],
+          "answer": 0,
+          "why": "Bulgular epigenetik değişimlerin nesiller boyu aktarılabildiğini göstermektedir ('epigenetic markers can... be transmitted across generations')."
+        }
+      ]
+    },
+    {
+      "id": "en-read-open-access-c1",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "C1",
+      "title": "Commercial publishing monopolies and the open science imperative",
+      "text": "Academic scholarship currently finds itself ensnared in a paradoxical economic paradox. Publicly funded universities and research councils underwrite groundbreaking scientific investigations, yet the resulting peer-reviewed manuscripts are routinely surrendered to an oligopoly of commercial academic publishers without remuneration. These publishing conglomerates subsequently erect exorbitant paywalls, selling access back to university libraries at exorbitant subscription fees that strain institutional budgets globally. In response, the open access movement advocates for immediate, unfettered digital dissemination of scholarly literature. Proponents emphasize that democratizing research accelerates scientific innovation, fosters cross-disciplinary breakthroughs, and empowers researchers in the Global South who are otherwise disenfranchised by prohibitively expensive paywalls. While legacy publishers contend that high profit margins are necessary to finance rigorous editorial curation, critics argue that the public domain must no longer be privatized behind corporate digital tollbooths. Unless funding agencies mandate open repositories as an absolute prerequisite for grants, the universal dissemination of human insight will remain severely constrained.",
+      "tr": "Akademik dünya şu anda paradoksal bir ekonomik döngünün içine hapsolmuş durumdadır. Kamu tarafından finanse edilen üniversiteler ve araştırma konseyleri çığır açan bilimsel araştırmaları finanse etmekte, ancak ortaya çıkan hakemli makaleler ticari akademik yayıncıların oluşturduğu bir oligopole herhangi bir karşılık alınmaksızın devredilmektedir. Bu dev yayın tekelleri fahiş ödeme duvarları inşa ederek, dünya genelindeki üniversite kütüphanelerine bu araştırmaları bütçeleri sarsan abonelik ücretleriyle geri satmaktadır. Buna karşılık açık erişim hareketi, bilimsel literatürün dijital ortamda derhal ve engelsiz biçimde yayılmasını savunmaktadır. Açık erişim destekçileri, araştırmanın demokratikleşmesinin bilimsel yeniliği hızlandırdığını, disiplinler arası buluşları teşvik ettiğini ve fahiş ücretler nedeniyle araştırmalardan mahrum kalan Küresel Güney'deki bilim insanlarını güçlendirdiğini vurgulamaktadır. Köklü yayıncılar yüksek kâr marjlarının titiz editoryal seçkiyi finanse etmek için şart olduğunu iddia etse de eleştirmenler kamusal bilginin şirketlerin dijital gişeleri ardında özelleştirilmesine son verilmesi gerektiğini savunmaktadır.",
+      "questions": [
+        {
+          "prompt": "Why is the traditional model of academic publishing described as a paradox?",
+          "options": [
+            "Because scientists prefer to publish in newspapers instead of journals",
+            "Because public money funds the research, yet universities must buy it back at huge cost",
+            "Because peer review is carried out exclusively by artificial intelligence",
+            "Because commercial publishers do not use internet technology"
+          ],
+          "answer": 1,
+          "why": "Kamu parasıyla finanse edilen araştırmanın yine kamu kütüphanelerine fahiş fiyatlarla satılması paradoks olarak nitelenmiştir ('Publicly funded... yet sold back at exorbitant fees')."
+        },
+        {
+          "prompt": "Who particularly benefits from the open access movement according to proponents?",
+          "options": [
+            "Corporate executives and advertising agencies",
+            "Scholars in developing regions excluded by steep paywall barriers",
+            "Printed magazine collectors and antique book dealers",
+            "Private equity firms investing in paper mills"
+          ],
+          "answer": 1,
+          "why": "Yüksek ücretler yüzünden bilgiye erişemeyen Küresel Güney araştırmacılarına güç kazandırdığı vurgulanmaktadır ('empowers researchers in the Global South disenfranchised by paywalls')."
+        },
+        {
+          "prompt": "What argument do commercial publishers use to justify their subscription rates?",
+          "options": [
+            "They claim revenue is essential to maintain editorial rigor and curation",
+            "They promise to distribute free laptops to all university students",
+            "They donate half of their annual earnings to marine biology charities",
+            "They state that paywalls prevent research papers from being read too quickly"
+          ],
+          "answer": 0,
+          "why": "Yayıncılar editoryal titizliği finanse etmek için yüksek gelirlerin gerekli olduğunu öne sürmektedir ('high profit margins are necessary to finance rigorous editorial curation')."
+        }
+      ]
     }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-station",
-   "exam": "Cambridge",
-   "level": "A2",
-   "title": "Station announcement",
-   "text": "Attention, please. The train to Manchester, which was due to leave at half past two, has been delayed by twenty minutes because of a signal problem. It will now leave from platform 6, not platform 4. Passengers for Leeds should take the three o'clock train from platform 2. We apologise for the delay.",
-   "tr": "Dikkat lütfen. Saat iki buçukta kalkması gereken Manchester treni sinyal sorunu nedeniyle yirmi dakika gecikmiştir. Tren artık 4. peron yerine 6. peronlardan kalkacaktır. Leeds yolcuları saat üç trenine 2. peronlardan binmelidir. Gecikme için özür dileriz.",
-   "questions": [
-    {
-     "prompt": "What time will the Manchester train leave?",
-     "options": [
-      "2.30",
-      "2.50",
-      "3.00",
-      "3.20"
-     ],
-     "answer": 1,
-     "why": "2.30 + 20 dakika = 2.50."
-    },
-    {
-     "prompt": "Why is the train late?",
-     "options": [
-      "Bad weather",
-      "A strike",
-      "A signal problem",
-      "Too many passengers"
-     ],
-     "answer": 2,
-     "why": "“Because of a signal problem”."
-    },
-    {
-     "prompt": "Which train should passengers for Leeds take?",
-     "options": [
-      "The 2.30 from platform 4",
-      "The 2.50 from platform 6",
-      "The 3.00 from platform 6",
-      "The 3.00 from platform 2"
-     ],
-     "answer": 3,
-     "why": "Leeds yolcuları saat üç trenine 2. peronlardan binecek."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-cycling",
-   "exam": "Cambridge",
-   "level": "B1",
-   "title": "Cycling in the city",
-   "text": "For five years, the city of Bristol has encouraged people to cycle. It has built new bike lanes and offers cheap bike rental. As a result, one in seven residents now cycles to work. However, not everybody is happy. Some shop owners complain that parking spaces outside their shops have disappeared and fear losing customers. The council says that cyclists spend as much as drivers, because they stop more often, and it plans to build more bike parking near the stations.",
-   "tr": "Beş yıldır Bristol şehri insanları bisiklete binmeye teşvik ediyor. Yeni bisiklet yolları yaptı ve ucuz bisiklet kiralama sunuyor. Sonuç olarak artık her yedi sakinden biri işe bisikletle gidiyor. Ancak herkes memnun değil. Bazı dükkân sahipleri dükkânlarının önündeki park yerlerinin kaybolduğundan yakınıyor ve müşteri kaybetmekten korkuyor. Belediye, bisikletlilerin daha sık durdukları için sürücüler kadar harcadığını söylüyor ve istasyonların yakınında daha fazla bisiklet park yeri yapmayı planlıyor.",
-   "questions": [
-    {
-     "prompt": "How many residents cycle to work?",
-     "options": [
-      "One in three",
-      "One in five",
-      "One in seven",
-      "One in ten"
-     ],
-     "answer": 2,
-     "why": "“One in seven residents”: yedi kişiden biri."
-    },
-    {
-     "prompt": "What do some shop owners complain about?",
-     "options": [
-      "The price of bike rental",
-      "Parking spaces have disappeared",
-      "Cyclists are rude",
-      "The new bike lanes are dangerous"
-     ],
-     "answer": 1,
-     "why": "Dükkânların önündeki park yerleri kayboldu."
-    },
-    {
-     "prompt": "What does the council say about cyclists?",
-     "options": [
-      "They spend less than drivers",
-      "They damage the shops",
-      "They spend as much as drivers",
-      "They never stop"
-     ],
-     "answer": 2,
-     "why": "“Cyclists spend as much as drivers”."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-baker",
-   "exam": "Cambridge",
-   "level": "B1",
-   "title": "A baker's story",
-   "text": "My name is Nadia and I have been a baker for twelve years. I get up at three in the morning to make the bread. Many people think the job is boring, but I love seeing customers smile when they smell warm bread. The hardest part is the weekends, because I work on Saturdays and Sundays and rarely see my family. Even so, I wouldn't change my job for anything. In five years' time, I hope to open my own shop.",
-   "tr": "Adım Nadia ve on iki yıldır fırıncıyım. Ekmek yapmak için sabah üçte kalkıyorum. Birçok kişi işin sıkıcı olduğunu düşünüyor ama müşterilerin sıcak ekmeğin kokusunu alınca gülümsediğini görmeyi seviyorum. En zor kısım hafta sonları, çünkü cumartesi ve pazar çalışıyorum ve ailemi nadiren görüyorum. Yine de işimi hiçbir şey için değiştirmem. Beş yıl içinde kendi dükkânımı açmayı umuyorum.",
-   "questions": [
-    {
-     "prompt": "When does Nadia get up?",
-     "options": [
-      "At three in the morning",
-      "At five in the morning",
-      "At seven",
-      "At noon"
-     ],
-     "answer": 0,
-     "why": "“I get up at three in the morning”."
-    },
-    {
-     "prompt": "What does she find hardest?",
-     "options": [
-      "Making the bread",
-      "Customers who complain",
-      "Getting up early",
-      "Working at weekends"
-     ],
-     "answer": 3,
-     "why": "Hafta sonları çalışmak, çünkü ailesini nadiren görüyor."
-    },
-    {
-     "prompt": "What does she hope to do in five years?",
-     "options": [
-      "Change her job",
-      "Open her own shop",
-      "Move abroad",
-      "Retire"
-     ],
-     "answer": 1,
-     "why": "“I hope to open my own shop”."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-screens",
-   "exam": "Cambridge",
-   "level": "B2",
-   "title": "Children and screens",
-   "text": "According to a recent study, children under ten spend an average of three hours a day in front of a screen. The researchers do not blame technology itself, however: they stress that the effect depends mainly on how it is used. Watching a cartoon with the family and talking about it does not have the same results as spending hours alone on a video game. On the other hand, they have found that children who use a screen just before bed fall asleep later and sleep less well. They therefore recommend setting clear times, switching devices off an hour before bedtime and, above all, setting an example, because children copy their parents' behaviour.",
-   "tr": "Yakın tarihli bir araştırmaya göre on yaşın altındaki çocuklar günde ortalama üç saat ekran karşısında geçiriyor. Ancak araştırmacılar teknolojinin kendisini suçlamıyor: etkinin esas olarak nasıl kullanıldığına bağlı olduğunu vurguluyorlar. Ailece çizgi film izleyip bunu konuşmak, saatlerce tek başına video oyunu oynamakla aynı sonuçları vermez. Öte yandan, yatmadan hemen önce ekran kullanan çocukların daha geç uyuduğunu ve daha kötü uyuduğunu saptamışlar. Bu nedenle net saatler belirlemeyi, cihazları yatmadan bir saat önce kapatmayı ve her şeyden önce örnek olmayı öneriyorlar, çünkü çocuklar anne babalarının davranışını taklit eder.",
-   "questions": [
-    {
-     "prompt": "According to the researchers, what does the effect of screens mainly depend on?",
-     "options": [
-      "How big the screen is",
-      "How the screen is used",
-      "How old the parents are",
-      "How much the device costs"
-     ],
-     "answer": 1,
-     "why": "“Depends mainly on how it is used”."
-    },
-    {
-     "prompt": "What happens to children who use screens just before bed?",
-     "options": [
-      "They wake up earlier",
-      "They learn faster",
-      "They fall asleep later and sleep less well",
-      "They play less the next day"
-     ],
-     "answer": 2,
-     "why": "Daha geç uyuyor ve daha kötü uyuyorlar."
-    },
-    {
-     "prompt": "What do the researchers recommend?",
-     "options": [
-      "Banning all devices",
-      "Letting children choose",
-      "Buying smaller screens",
-      "Setting clear times, switching devices off an hour before bed and setting an example"
-     ],
-     "answer": 3,
-     "why": "Net saatler, yatmadan bir saat önce kapatma ve örnek olma."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-village",
-   "exam": "Cambridge",
-   "level": "B2",
-   "title": "A village comes back to life",
-   "text": "Twenty years ago, the village of Glenmore had barely two hundred inhabitants and its only school was about to close. Then a retired teacher had an idea: to offer houses for a symbolic pound to anyone who promised to restore them and to live in them for at least five years. At first nobody believed it would work, but the first families arrived, followed by craftspeople, a baker and a community café. Today the village has six hundred inhabitants and the school has had to be extended. The mayor admits, however, that success has a downside: house prices have risen and some of the village's young people can no longer afford to live there.",
-   "tr": "Yirmi yıl önce Glenmore köyünün ancak iki yüz sakini vardı ve tek okulu kapanmak üzereydi. Sonra emekli bir öğretmenin bir fikri oldu: evleri onarmayı ve içlerinde en az beş yıl yaşamayı vaat eden herkese sembolik bir sterline ev vermek. Başta kimse işe yarayacağına inanmadı ama ilk aileler geldi, ardından zanaatkârlar, bir fırıncı ve bir topluluk kafesi. Bugün köyün altı yüz sakini var ve okulun genişletilmesi gerekti. Belediye başkanı ise başarının bir olumsuz yanı olduğunu kabul ediyor: ev fiyatları arttı ve köyün bazı gençleri artık orada yaşamayı karşılayamıyor.",
-   "questions": [
-    {
-     "prompt": "What was the village's problem twenty years ago?",
-     "options": [
-      "It had too many visitors",
-      "It had few inhabitants and its school was about to close",
-      "It had no road",
-      "It was too noisy"
-     ],
-     "answer": 1,
-     "why": "Köyde ancak 200 kişi vardı ve okul kapanmak üzereydi."
-    },
-    {
-     "prompt": "What was the retired teacher's idea?",
-     "options": [
-      "To sell land cheaply",
-      "To build a hotel",
-      "To open a factory",
-      "To offer houses for a pound in return for restoring them and staying five years"
-     ],
-     "answer": 3,
-     "why": "Evler onarma ve en az beş yıl orada yaşama karşılığında bir sterline sunuluyordu."
-    },
-    {
-     "prompt": "What downside does the mayor admit?",
-     "options": [
-      "The school is too small",
-      "There is no baker",
-      "House prices have risen and some young people can no longer afford to live there",
-      "Few families came"
-     ],
-     "answer": 2,
-     "why": "Ev fiyatları arttı, bazı gençler artık orada yaşayamıyor."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-flatshare",
-   "exam": "IELTS",
-   "level": "B2",
-   "title": "Sharing a flat",
-   "text": "Once the preserve of students, house-sharing now appeals to people of all ages. The first reason is financial: with rents rising relentlessly, splitting a large flat makes it possible to live in a central area without going broke. But the argument is not purely economic. Many young professionals who have moved to an unfamiliar city find that it is a quick way to make friends. Difficulties do arise, however. Housemates have to agree on cleaning, visitors and noise, and disagreements over these matters are the main reason people move out. To avoid them, some households draw up a sort of charter whenever a new person arrives. It may sound excessive, but those who have tried it say conflicts have fallen considerably.",
-   "tr": "Eskiden öğrencilere özgü olan ev paylaşımı artık her yaştan insanı cezbediyor. İlk neden parasal: kiralar durmadan artarken büyük bir daireyi bölüşmek, iflas etmeden merkezî bir semtte yaşamayı mümkün kılıyor. Ama gerekçe yalnızca ekonomik değil. Yabancı bir şehre yerleşen birçok genç çalışan, bunda hızla arkadaş edinmenin bir yolunu buluyor. Yine de zorluklar var. Temizlik, misafirler ve gürültü konusunda anlaşmak gerekiyor; bu konulardaki anlaşmazlıklar birinin evden ayrılmasının başlıca sebebi. Bunlardan kaçınmak için bazı ev arkadaşları, her yeni gelen olduğunda bir tür tüzük yazıyor. Aşırı görünebilir ama denemiş olanlar çatışmaların belirgin biçimde azaldığını söylüyor.",
-   "questions": [
-    {
-     "prompt": "According to the text, what is the first reason for house-sharing?",
-     "options": [
-      "The wish to be a student again",
-      "The size of the flats",
-      "The noise in the neighbourhood",
-      "The cost"
-     ],
-     "answer": 3,
-     "why": "“The first reason is financial”: kiralar arttığı için maliyet."
-    },
-    {
-     "prompt": "What do many young professionals find in house-sharing?",
-     "options": [
-      "Free rent",
-      "A quick way to make friends",
-      "A job nearby",
-      "More peace and quiet"
-     ],
-     "answer": 1,
-     "why": "“A quick way to make friends”: hızla arkadaş edinmenin yolu."
-    },
-    {
-     "prompt": "What is the charter for?",
-     "options": [
-      "Choosing visitors",
-      "Setting the rent",
-      "Avoiding conflicts about cleaning, visitors and noise",
-      "Replacing the tenancy agreement"
-     ],
-     "answer": 2,
-     "why": "Tüzük, temizlik/ziyaretçi/gürültü anlaşmazlıklarını önlemek için."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-silence",
-   "exam": "Cambridge",
-   "level": "C1",
-   "title": "Silence, an urban luxury",
-   "text": "In big cities, silence has become a scarce commodity, almost a luxury item. Estate agents know it: a flat overlooking a courtyard sells for noticeably more than an identical one on a main road. Yet research carried out in recent years shows that noise is far more than a mere nuisance. People who live with constant traffic or building work sleep less well, find it harder to concentrate and end up with a kind of tiredness that a weekend's rest cannot shift. Some councils have responded by creating \"quiet zones\", where cars are restricted and amplified music is banned. Early results are encouraging, but shopkeepers are worried: in their view, too much calm would drive customers away. It remains to be seen whether a lively city and a peaceful one can be reconciled, or whether we shall one day have to choose the one at the expense of the other.",
-   "tr": "Büyük şehirlerde sessizlik kıt bir değer, neredeyse bir lüks ürün hâline geldi. Emlakçılar bunu biliyor: iç avluya bakan bir daire, ana caddedeki aynı daireden belirgin biçimde daha pahalıya satılıyor. Oysa son yıllarda yapılan araştırmalar gürültünün basit bir rahatsızlıktan çok daha fazlası olduğunu gösteriyor. Sürekli trafiğe ya da inşaata maruz kalanlar daha kötü uyuyor, zor odaklanıyor ve hafta sonu dinlenmesinin bile geçiremediği bir yorgunluğa kapılıyor. Bazı belediyeler arabaların sınırlandığı ve yüksek sesli müziğin yasaklandığı «sakin bölgeler» oluşturarak karşılık verdi. İlk sonuçlar cesaret verici ama esnaf endişeli: onlara göre fazla huzur müşterileri uzaklaştırır. Canlı bir şehirle dingin bir şehrin bağdaştırılıp bağdaştırılamayacağı, yoksa bir gün birini diğerinin pahasına seçmek zorunda kalıp kalmayacağımız henüz belli değil.",
-   "questions": [
-    {
-     "prompt": "Why do estate agents know that silence is valuable?",
-     "options": [
-      "Main roads are closed at night",
-      "Buyers refuse lively areas",
-      "Quiet flats sell for noticeably more",
-      "Courtyards are closed to cars"
-     ],
-     "answer": 2,
-     "why": "Avluya bakan (sessiz) daire aynısından belirgin biçimde pahalıya satılıyor."
-    },
-    {
-     "prompt": "What does recent research show about noise?",
-     "options": [
-      "It has no effect on health",
-      "It disturbs sleep and concentration, and the tiredness lingers",
-      "A weekend's rest makes up for everything",
-      "People get completely used to it"
-     ],
-     "answer": 1,
-     "why": "Uyku ve odaklanma bozuluyor; hafta sonu dinlenmesi yorgunluğu geçirmiyor."
-    },
-    {
-     "prompt": "Why are shopkeepers worried about quiet zones?",
-     "options": [
-      "They fear they may drive customers away",
-      "They must pay an extra tax",
-      "They cannot deliver their goods",
-      "They want more noise for their concerts"
-     ],
-     "answer": 0,
-     "why": "“Too much calm would drive customers away”: fazla sessizlik müşteriyi kaçırır."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-ai",
-   "exam": "Cambridge",
-   "level": "C1",
-   "title": "Writing with a machine?",
-   "text": "Since automatic writing software became widespread, one question has divided teachers: should it be banned in the classroom, or should pupils be taught to use it? Supporters of a ban argue that a text produced in a few seconds leaves no room for effort, and effort is precisely what makes people improve. Their opponents reply that the calculator did not do away with mathematics, and that the real challenge is to train minds able to check, correct and qualify whatever a machine suggests. Between these two positions, several schools are trying a middle course: drafts are written by hand, in class, then compared with a version corrected by the software. The pupil must then explain every difference. This method takes time, teachers admit, but it has one merit: it turns the tool into an object of reflection rather than a shortcut.",
-   "tr": "Otomatik yazım yazılımları yaygınlaştığından beri öğretmenleri bir soru ayırıyor: bunları sınıfta yasaklamalı mı, yoksa öğrencilere nasıl kullanılacağını mı öğretmeli? Yasaktan yana olanlar, birkaç saniyede üretilen bir metnin çabaya yer bırakmadığını, ilerlemeyi sağlayanın ise tam da çaba olduğunu savunuyor. Karşı çıkanlar ise hesap makinesinin matematiği ortadan kaldırmadığını, asıl meselenin bir makinenin önerdiğini denetleyebilen, düzeltebilen ve inceltebilen zihinler yetiştirmek olduğunu söylüyor. Bu iki görüşün arasında birkaç okul orta bir yol deniyor: taslaklar sınıfta elle yazılıyor, sonra yazılımın düzelttiği sürümle karşılaştırılıyor. Öğrenci her farkı açıklamak zorunda. Öğretmenler bu yöntemin zaman aldığını kabul ediyor ama bir erdemi var: aracı bir kısayol olmaktan çıkarıp üzerinde düşünülen bir nesneye dönüştürüyor.",
-   "questions": [
-    {
-     "prompt": "What argument do supporters of a ban put forward?",
-     "options": [
-      "The software is too expensive",
-      "Without effort, people do not improve",
-      "Pupils write too slowly",
-      "Teachers lack the time"
-     ],
-     "answer": 1,
-     "why": "“Effort is precisely what makes people improve”: çaba ilerlemeyi sağlar."
-    },
-    {
-     "prompt": "What do their opponents reply?",
-     "options": [
-      "A new tool has not destroyed the subjects; pupils must learn to control it",
-      "Machines write better than pupils",
-      "Calculators should be banned too",
-      "Teachers should use the software alone"
-     ],
-     "answer": 0,
-     "why": "Hesap makinesi örneği: asıl mesele makinenin önerdiğini denetlemeyi öğrenmek."
-    },
-    {
-     "prompt": "In the middle course, what must the pupil do?",
-     "options": [
-      "Copy the software's version",
-      "Write without a draft",
-      "Correct a classmate's work",
-      "Explain every difference between the draft and the corrected version"
-     ],
-     "answer": 3,
-     "why": "“The pupil must then explain every difference”: her farkı açıklamalı."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-market",
-   "exam": "Cambridge",
-   "level": "B1",
-   "title": "The Thursday market",
-   "text": "For twenty years, the Thursday market has filled the square in my neighbourhood. People come to buy fruit and cheese, or just to chat with the sellers. However, the council wants to move the market to a nearby street because the square will be renovated for six months. Many traders are worried: they fear losing some of their customers, especially the elderly people who live close by. A public meeting will take place on Tuesday evening at the town hall. Everyone will be able to ask questions and suggest solutions.",
-   "tr": "Yirmi yıldır perşembe pazarı mahallemin meydanını canlandırıyor. Sakinler buraya meyve, peynir almaya ya da sadece satıcılarla sohbet etmeye geliyor. Ancak belediye, meydan altı ay boyunca yenileneceği için pazarı yakındaki bir sokağa taşımak istiyor. Birçok esnaf endişeli: müşterilerinin bir kısmını, özellikle çok yakında yaşayan yaşlıları kaybetmekten korkuyorlar. Salı akşamı belediyede halka açık bir toplantı olacak. Herkes soru sorabilecek ve çözüm önerebilecek.",
-   "questions": [
-    {
-     "prompt": "Why does the council want to move the market?",
-     "options": [
-      "The traders have asked for it",
-      "The square will be renovated",
-      "There are too many customers",
-      "The market is too noisy"
-     ],
-     "answer": 1,
-     "why": "“The square will be renovated for six months”: meydan yenilenecek."
-    },
-    {
-     "prompt": "What are the traders afraid of?",
-     "options": [
-      "Having to pay more",
-      "Running out of goods",
-      "Losing some of their customers",
-      "Changing their jobs"
-     ],
-     "answer": 2,
-     "why": "“They fear losing some of their customers”: müşteri kaybetmekten korkuyorlar."
-    },
-    {
-     "prompt": "What will happen on Tuesday evening?",
-     "options": [
-      "The market will close",
-      "A public meeting",
-      "The work will begin",
-      "A neighbourhood party"
-     ],
-     "answer": 1,
-     "why": "“A public meeting will take place on Tuesday evening”: salı akşamı halka açık toplantı var."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-museums",
-   "exam": "IELTS",
-   "level": "B2",
-   "title": "Free museums?",
-   "text": "Several cities are considering making museum entry free on the first Sunday of each month. Supporters of the measure claim that it attracts a new audience, particularly families who do not dare to step into a museum for fear of the price. Opponents, on the other hand, point out that free entry does not solve everything: someone who is not interested in art will not visit a museum more often just because it costs nothing. They would rather see the money spent on school trips and activities. However, a study carried out in three cities shows that attendance doubles on free days, without annual income falling much.",
-   "tr": "Birçok şehir, müzeleri her ayın ilk pazar günü ücretsiz yapmayı düşünüyor. Bu önlemin savunucuları, ücretsiz giriş sayesinde yeni bir kitlenin, özellikle fiyattan çekindiği için müzeye adım atmaya cesaret edemeyen ailelerin geleceğini söylüyor. Karşı çıkanlar ise ücretsizliğin her sorunu çözmediğini hatırlatıyor: sanata ilgi duymayan biri, giriş ücretsiz diye müzeye daha çok gitmeyecek. Bu paranın okul gezilerini ve etkinlikleri finanse etmesini tercih ediyorlar. Üç şehirde yapılan bir araştırma ise ücretsiz günlerde ziyaretçi sayısının iki katına çıktığını, buna rağmen yıllık gelirlerin pek düşmediğini gösteriyor.",
-   "questions": [
-    {
-     "prompt": "According to supporters, what does free entry achieve?",
-     "options": [
-      "It attracts a new audience",
-      "It closes some museums",
-      "It raises ticket prices",
-      "It reduces the number of visitors"
-     ],
-     "answer": 0,
-     "why": "“It attracts a new audience”: yeni bir kitleyi çekiyor."
-    },
-    {
-     "prompt": "What is the opponents' main argument?",
-     "options": [
-      "Museums are already too crowded",
-      "Free entry alone does not create an interest in art",
-      "Families prefer the cinema",
-      "Museums lack space"
-     ],
-     "answer": 1,
-     "why": "Karşı çıkanlar: sanata ilgi duymayan biri ücretsiz diye gitmez."
-    },
-    {
-     "prompt": "What does the study show?",
-     "options": [
-      "Income collapses",
-      "Visitors are older",
-      "Attendance doubles on free days",
-      "Schools refuse visits"
-     ],
-     "answer": 2,
-     "why": "“Attendance doubles on free days”: ücretsiz günlerde ziyaret iki katına çıkıyor."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-cooking",
-   "exam": "Cambridge",
-   "level": "A2",
-   "title": "A cooking class",
-   "text": "The Riverside Community Centre is starting a new cooking class for beginners. Classes are on Tuesday evenings, from six to eight o'clock, starting on the third of March. Each class costs twelve pounds, but students pay only eight pounds. You will learn to make simple, cheap meals. Please bring an apron and a box to take home the food you cook. There are only ten places, so sign up at reception before the twenty-eighth of February.",
-   "tr": "Riverside Toplum Merkezi yeni başlayanlar için yeni bir yemek kursu açıyor. Dersler 3 Mart'tan itibaren salı akşamları, saat altıdan sekize kadar. Her ders on iki sterlin, ama öğrenciler yalnızca sekiz sterlin ödüyor. Basit ve ucuz yemekler yapmayı öğreneceksiniz. Lütfen bir önlük ve pişirdiğiniz yemeği eve götürmek için bir kap getirin. Yalnızca on kişilik yer var, bu yüzden 28 Şubat'tan önce danışmada kaydolun.",
-   "questions": [
-    {
-     "prompt": "When are the classes?",
-     "options": [
-      "On Tuesday evenings",
-      "On Tuesday mornings",
-      "On Saturday afternoons",
-      "Every evening"
-     ],
-     "answer": 0,
-     "why": "“Classes are on Tuesday evenings, from six to eight o'clock”: salı akşamları."
-    },
-    {
-     "prompt": "How much does a student pay for one class?",
-     "options": [
-      "£12",
-      "£8",
-      "£10",
-      "£20"
-     ],
-     "answer": 1,
-     "why": "“Students pay only eight pounds”: öğrenciler sekiz sterlin öder; on iki sterlin normal fiyattır."
-    },
-    {
-     "prompt": "What should people bring?",
-     "options": [
-      "The ingredients",
-      "A recipe book",
-      "An apron and a box",
-      "A knife and a plate"
-     ],
-     "answer": 2,
-     "why": "“Please bring an apron and a box to take home the food you cook”: önlük ve kap."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-neighbour",
-   "exam": "Cambridge",
-   "level": "A2",
-   "title": "A note from a neighbour",
-   "text": "Dear Mrs Hall, it's Emma from the flat on the third floor. I'm going to stay with my sister on Saturday morning and I'll be back the following Friday. Could you water my plants twice during the week, for example on Tuesday and Thursday? I'll leave my key in your letterbox on Friday evening. Don't worry about the cat: my son is going to come and feed her every day. Thank you so much! I'll bring you some jam. Emma",
-   "tr": "Sevgili Hall Hanım, ben üçüncü kattaki daireden Emma. Cumartesi sabahı ablamın yanında kalmaya gidiyorum, ertesi cuma döneceğim. Hafta içinde iki kez, örneğin salı ve perşembe, çiçeklerimi sulayabilir misiniz? Cuma akşamı anahtarımı sizin posta kutunuza bırakacağım. Kedi için endişelenmeyin: oğlum her gün gelip onu besleyecek. Çok teşekkür ederim! Size reçel getireceğim. Emma",
-   "questions": [
-    {
-     "prompt": "Why is Emma writing this note?",
-     "options": [
-      "To invite her neighbour on holiday",
-      "To ask for help while she is away",
-      "To complain about noise",
-      "To sell her plants"
-     ],
-     "answer": 1,
-     "why": "Ablasının yanına gidiyor ve komşusundan çiçeklerini sulamasını rica ediyor: yokken yardım istiyor."
-    },
-    {
-     "prompt": "What does Mrs Hall need to do?",
-     "options": [
-      "Feed the cat every day",
-      "Water the plants every day",
-      "Water the plants on Tuesday and Thursday",
-      "Get the key from Emma's son"
-     ],
-     "answer": 2,
-     "why": "“Could you water my plants twice… on Tuesday and Thursday?” Kediyi Emma'nın oğlu besleyecek."
-    },
-    {
-     "prompt": "Where will Mrs Hall find the key?",
-     "options": [
-      "In her own letterbox",
-      "At Emma's sister's house",
-      "Under the doormat",
-      "At Emma's son's flat"
-     ],
-     "answer": 0,
-     "why": "“I'll leave my key in your letterbox”: Hall Hanım'ın kendi posta kutusunda."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-remote",
-   "exam": "Cambridge",
-   "level": "B1",
-   "title": "Working from home",
-   "text": "For the past year, Sam, a thirty-four-year-old graphic designer, has worked three days a week from his flat in Bristol and two days in the office. \"At first I loved it: no more traffic jams in the morning, and I saved almost two hours a day. But after a few months I started to feel lonely. I didn't speak to anyone until the evening.\" To avoid this, he has developed some new habits. He starts each day with a twenty-minute walk, as if he were going to work, and once a week he has lunch with a former colleague. He has also put his desk in a small room and closes the door at six o'clock. \"What I miss most isn't the meetings, it's the chats by the coffee machine,\" he admits with a laugh.",
-   "tr": "Otuz dört yaşındaki grafik tasarımcı Sam bir yıldır haftada üç gün Bristol'daki dairesinden, iki gün de ofiste çalışıyor. «Başta çok sevdim: sabah trafiği yoktu, günde neredeyse iki saat kazanıyordum. Ama birkaç ay sonra kendimi yalnız hissetmeye başladım. Akşama kadar kimseyle konuşmuyordum.» Bunun önüne geçmek için yeni alışkanlıklar edindi. Her güne, işe gidiyormuş gibi yirmi dakikalık bir yürüyüşle başlıyor ve haftada bir eski bir iş arkadaşıyla öğle yemeği yiyor. Ayrıca masasını küçük bir odaya koydu ve saat altıda kapıyı kapatıyor. «En çok özlediğim şey toplantılar değil, kahve makinesinin yanındaki sohbetler» diye itiraf ediyor gülerek.",
-   "questions": [
-    {
-     "prompt": "How many days a week does Sam work at home?",
-     "options": [
-      "Two days",
-      "Three days",
-      "Five days",
-      "One day"
-     ],
-     "answer": 1,
-     "why": "“Has worked three days a week from his flat… and two days in the office”: evde üç gün."
-    },
-    {
-     "prompt": "What problem did he have after a few months?",
-     "options": [
-      "He lost time in traffic jams",
-      "He had too many meetings",
-      "He felt lonely",
-      "His flat was too small"
-     ],
-     "answer": 2,
-     "why": "“After a few months I started to feel lonely”: birkaç ay sonra kendini yalnız hissetti."
-    },
-    {
-     "prompt": "What does he miss most?",
-     "options": [
-      "Informal chats with colleagues",
-      "The meetings",
-      "The journey in the morning",
-      "Eating in restaurants"
-     ],
-     "answer": 0,
-     "why": "“What I miss most isn't the meetings, it's the chats by the coffee machine”: kahve makinesinin yanındaki sohbetler."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-garden",
-   "exam": "Cambridge",
-   "level": "B1",
-   "title": "A garden between the flats",
-   "text": "Just two years ago, the space between the blocks of flats on Lilac Street was an empty piece of land where nobody ever stopped. Today it has about thirty small vegetable gardens. The idea came from Margaret, a retired woman who persuaded the council to lend the land for free. Every family that joins gets a plot and promises to look after it at least once a week. The tools are kept in a shared shed, and rainwater is collected in large barrels. \"Children are finding out where vegetables come from, and neighbours who never even said hello now have coffee together,\" says Margaret. The waiting list is already long: forty families are hoping to get a plot next year.",
-   "tr": "Daha iki yıl önce Lilac sokağındaki apartman blokları arasındaki alan, kimsenin uğramadığı boş bir araziydi. Bugün orada otuz kadar küçük sebze bahçesi var. Fikir, belediyeyi araziyi ücretsiz vermeye ikna eden emekli Margaret'ten çıktı. Katılan her aile bir parsel alıyor ve ona en az haftada bir kez bakmaya söz veriyor. Aletler ortak bir kulübede duruyor, yağmur suyu da büyük fıçılarda toplanıyor. «Çocuklar sebzelerin nereden geldiğini öğreniyor; birbirine merhaba bile demeyen komşular artık birlikte kahve içiyor» diyor Margaret. Bekleme listesi şimdiden uzun: kırk aile gelecek yıl bir parsel almayı umuyor.",
-   "questions": [
-    {
-     "prompt": "What was there before the garden?",
-     "options": [
-      "A car park",
-      "An empty piece of land",
-      "A small market",
-      "A school"
-     ],
-     "answer": 1,
-     "why": "“Was an empty piece of land where nobody ever stopped”: boş bir arazi."
-    },
-    {
-     "prompt": "What do the families promise to do?",
-     "options": [
-      "Pay rent to the council",
-      "Buy their own tools",
-      "Sell their vegetables to neighbours",
-      "Look after their plot at least once a week"
-     ],
-     "answer": 3,
-     "why": "“Promises to look after it at least once a week”. Arazi ücretsiz, aletler ortak."
-    },
-    {
-     "prompt": "According to Margaret, how has the garden changed the area?",
-     "options": [
-      "Neighbours spend more time together",
-      "Families spend less on food",
-      "New people are moving to the area",
-      "Children get better marks at school"
-     ],
-     "answer": 0,
-     "why": "Merhaba bile demeyen komşular “now have coffee together”: artık birlikte kahve içiyorlar."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-fourday",
-   "exam": "IELTS",
-   "level": "C1",
-   "title": "The four-day week",
-   "text": "For several years now, a number of European companies have been experimenting with a four-day working week at no loss of pay. The results published by its supporters look impressive: employees report lower stress, sick leave falls and productivity, far from collapsing, holds steady or even rises slightly. Does this mean we have found a miracle cure? Sceptics urge caution. To begin with, the firms that volunteer for these trials tend to be small service-sector businesses that are already convinced of the idea, so it would be unwise to draw conclusions for a hospital or a factory, where being physically present cannot be squeezed into fewer days. Secondly, packing a full working week into four days can create days so intense that the rest gained on Friday is paid for from Monday to Thursday. Finally, some workers admit that the extra day off is quickly swallowed up by paperwork and housework. At heart, then, the debate is less about the number of days than about how work is organised: where companies used the change to get rid of pointless meetings, the benefits seem to last; where they simply shortened the week, the gains fade within a few months.",
-   "tr": "Birkaç yıldır bazı Avrupa şirketleri maaş kaybı olmadan dört günlük çalışma haftasını deniyor. Destekçilerinin yayımladığı sonuçlar etkileyici görünüyor: çalışanlar daha az stres bildiriyor, hastalık izinleri düşüyor ve verimlilik çökmek bir yana aynı kalıyor, hatta biraz artıyor. Bu, mucize bir çare bulduğumuz anlamına mı geliyor? Kuşkucular dikkatli olmayı öğütlüyor. Önce, bu denemelere gönüllü olan firmalar genellikle fikre zaten inanmış küçük hizmet sektörü işletmeleri; bu yüzden fiziksel olarak orada bulunmanın daha az güne sıkıştırılamadığı bir hastane ya da fabrika için sonuç çıkarmak akıllıca olmaz. İkincisi, tam bir çalışma haftasını dört güne sıkıştırmak öyle yoğun günler doğurabilir ki cuma kazanılan dinlenmenin bedeli pazartesiden perşembeye ödenir. Son olarak bazı çalışanlar fazladan boş günün resmî işler ve ev işleri tarafından hemen yutulduğunu kabul ediyor. Yani özünde tartışma gün sayısından çok işin nasıl düzenlendiğiyle ilgili: şirketlerin bu değişikliği gereksiz toplantılardan kurtulmak için kullandığı yerlerde yararlar kalıcı görünüyor; yalnızca haftayı kısalttıkları yerlerde kazanımlar birkaç ay içinde siliniyor.",
-   "questions": [
-    {
-     "prompt": "According to its supporters, what happens to productivity with a four-day week?",
-     "options": [
-      "It collapses quickly",
-      "It falls a little, but stress goes down",
-      "It stays the same or even rises slightly",
-      "It doubles in small companies"
-     ],
-     "answer": 2,
-     "why": "“Productivity, far from collapsing, holds steady or even rises slightly”: aynı kalıyor, hatta biraz artıyor."
-    },
-    {
-     "prompt": "Why are sceptics wary of the trial results?",
-     "options": [
-      "Employees exaggerated how tired they were",
-      "The companies taking part do not represent the whole economy",
-      "The results were never published",
-      "Salaries were cut during the trials"
-     ],
-     "answer": 1,
-     "why": "Gönüllü firmalar fikre zaten inanmış küçük hizmet işletmeleri; hastane ya da fabrika için sonuç çıkarmak “unwise” (akıllıca değil)."
-    },
-    {
-     "prompt": "According to the writer, what does the success of the change mainly depend on?",
-     "options": [
-      "How work is reorganised",
-      "The exact number of hours worked",
-      "Which day of the week is free",
-      "Only the size of the company"
-     ],
-     "answer": 0,
-     "why": "“The debate is less about the number of days than about how work is organised”: gereksiz toplantıların kaldırıldığı yerlerde yararlar kalıcı."
-    }
-   ],
-   "language": "en"
-  },
-  {
-   "id": "en-read-repair",
-   "exam": "Cambridge",
-   "level": "C1",
-   "title": "Repair, don't replace",
-   "text": "One Saturday a month, in a hall lent by the council, a dozen volunteers welcome local people who turn up with a silent toaster, a flickering lamp or a torn pair of trousers. This repair café is not a free repair service: the owner of each item takes part in the repair themselves, guided by a volunteer. \"We don't want people to leave with nothing more than a working appliance, but with the idea that they are capable of fixing it,\" explains Henry, a retired engineer. The success of such projects points to a deeper unease. Many consumers suspect manufacturers of deliberately designing fragile products, or of making spare parts impossible to find and ridiculously expensive. Lawmakers have begun to respond: some appliances must now display a repairability score, and sellers are required to state how many years spare parts will remain available. The volunteers, however, have no illusions. A third of the items brought in cannot be saved, often because they were designed never to be opened. For Henry, the real victory would be for repair cafés to become unnecessary one day.",
-   "tr": "Ayda bir cumartesi, belediyenin verdiği bir salonda on iki kadar gönüllü, sesi çıkmayan bir ekmek kızartma makinesi, yanıp sönen bir lamba ya da yırtık bir pantolonla gelen mahalleliyi karşılıyor. Bu tamir kafesi ücretsiz bir onarım servisi değil: her eşyanın sahibi bir gönüllünün rehberliğinde onarıma kendisi katılıyor. «İnsanların yalnızca çalışan bir aletle değil, onu tamir edebilecekleri düşüncesiyle ayrılmalarını istiyoruz» diyor emekli mühendis Henry. Bu tür projelerin başarısı daha derin bir huzursuzluğa işaret ediyor. Pek çok tüketici, üreticilerin ürünleri bile bile dayanıksız tasarladığından ya da yedek parçaları bulunmaz ve fahiş pahalı hâle getirdiğinden kuşkulanıyor. Yasa koyucular tepki vermeye başladı: bazı aletler artık bir onarılabilirlik puanı göstermek, satıcılar da yedek parçaların kaç yıl bulunacağını belirtmek zorunda. Yine de gönüllülerin hiçbir hayali yok. Getirilen eşyaların üçte biri kurtarılamıyor, çoğu zaman da hiç açılmamak üzere tasarlandıkları için. Henry'ye göre asıl zafer, tamir kafelerine bir gün gerek kalmaması olurdu.",
-   "questions": [
-    {
-     "prompt": "How does the repair café work?",
-     "options": [
-      "Volunteers fix items for free while people wait",
-      "Owners repair their own items with a volunteer's help",
-      "People swap a broken item for one that works",
-      "Craftspeople sell cheap spare parts"
-     ],
-     "answer": 1,
-     "why": "“Not a free repair service: the owner of each item takes part in the repair themselves, guided by a volunteer”."
-    },
-    {
-     "prompt": "What do many consumers accuse manufacturers of?",
-     "options": [
-      "Charging too much in shops",
-      "Showing a misleading repairability score",
-      "Making fragile products and spare parts that are hard to get",
-      "Refusing to repair appliances under guarantee"
-     ],
-     "answer": 2,
-     "why": "Ürünleri “deliberately… fragile” tasarladıklarından, yedek parçaları da “impossible to find and ridiculously expensive” yaptıklarından kuşkulanıyorlar."
-    },
-    {
-     "prompt": "What would Henry see as real success?",
-     "options": [
-      "Repair cafés no longer being needed",
-      "Opening a repair café every week",
-      "Fixing every item that is brought in",
-      "A law banning products that cannot be opened"
-     ],
-     "answer": 0,
-     "why": "“The real victory would be for repair cafés to become unnecessary one day”: tamir kafelerine gerek kalmaması."
-    }
-   ],
-   "language": "en"
-  }
- ]
+  ]
 }
