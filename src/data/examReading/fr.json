@@ -1101,6 +1101,138 @@
           "why": "Yayıncılar editoryal yönetim ve titiz denetim giderlerini bahane ederler ('invoquent les frais de gestion éditoriale pour légitimer leurs marges')."
         }
       ]
+    },
+    {
+      "id": "fr-read-attention-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "title": "L'économie de l'attention et ses angles morts",
+      "text": "Les plateformes numériques ne vendent pas des contenus : elles vendent notre attention, découpée en minutes et revendue aux annonceurs. Dans cette logique, chaque notification, chaque défilement infini et chaque vidéo lancée automatiquement répond à un objectif mesurable, celui de prolonger la session. Les concepteurs affirment répondre à nos préférences ; or ce que nous cliquons dans l'instant n'est pas toujours ce que nous souhaiterions regarder, si l'on nous laissait le temps d'y réfléchir. Les chercheurs en psychologie cognitive observent que la fragmentation permanente de l'attention appauvrit la lecture longue et fragilise la mémoire de travail, sans qu'on puisse pour autant en faire l'unique cause du malaise. Certains États envisagent d'encadrer les mécanismes de captation, tandis que les entreprises plaident pour l'autorégulation. Reste une question de fond : la responsabilité incombe-t-elle à l'utilisateur, censé maîtriser ses habitudes, ou à ceux qui conçoivent des dispositifs délibérément difficiles à quitter ? Une réponse nuancée suppose de ne pas confondre information et conditionnement.",
+      "tr": "Dijital platformlar içerik satmaz: dakikalara bölünmüş dikkatimizi satar ve reklamverenlere yeniden satar. Bu mantıkta her bildirim, her sonsuz kaydırma ve her otomatik başlayan video ölçülebilir bir hedefe, yani oturumu uzatmaya hizmet eder. Tasarımcılar tercihlerimize cevap verdiklerini söyler; oysa o an tıkladığımız şey, düşünmemize zaman tanınsa izlemek isteyeceğimiz şey olmayabilir. Bilişsel psikoloji araştırmacıları dikkatin sürekli parçalanmasının uzun okumayı zayıflattığını ve çalışma belleğini kırılganlaştırdığını gözlemler; ancak bu, rahatsızlığın tek nedeni sayılamaz. Bazı devletler dikkat yakalama mekanizmalarını düzenlemeyi düşünürken şirketler öz denetimi savunur. Temel soru şu: sorumluluk alışkanlıklarını yönetmesi beklenen kullanıcıda mı, yoksa bırakılması bilerek zor tasarlanmış araçları kuranlarda mı? İnce bir cevap, bilgilendirmeyi koşullandırmayla karıştırmamayı gerektirir.",
+      "questions": [
+        {
+          "prompt": "Selon le texte, que vendent réellement les plateformes numériques ?",
+          "options": [
+            "Des contenus originaux produits par leurs équipes",
+            "L'attention des utilisateurs, revendue aux annonceurs",
+            "Des abonnements à des bibliothèques en ligne",
+            "Des appareils conçus pour la lecture longue"
+          ],
+          "answer": 1,
+          "why": "Metin ilk cümlede platformların içerik değil, dikkati sattığını söyler."
+        },
+        {
+          "prompt": "Que reproche-t-on au raisonnement des concepteurs selon lequel ils répondent à nos préférences ?",
+          "options": [
+            "Il ignore que les utilisateurs refusent toute publicité",
+            "Il confond un clic immédiat avec ce que l'on souhaiterait vraiment après réflexion",
+            "Il prouve que les utilisateurs n'ont aucune préférence",
+            "Il suppose que les États contrôlent déjà les plateformes"
+          ],
+          "answer": 1,
+          "why": "'Ce que nous cliquons dans l'instant n'est pas toujours ce que nous souhaiterions regarder' cümlesi tercih argümanının zayıflığını gösterir."
+        },
+        {
+          "prompt": "Quelle position l'auteur adopte-t-il sur les effets de la fragmentation de l'attention ?",
+          "options": [
+            "Il en fait la cause unique du malaise contemporain",
+            "Il affirme qu'elle n'a aucune conséquence mesurable",
+            "Il reconnaît des effets sur la lecture et la mémoire sans en faire la cause exclusive",
+            "Il estime qu'elle améliore la mémoire de travail"
+          ],
+          "answer": 2,
+          "why": "Metin etkileri kabul eder ama 'unique cause' olarak görmez; temkinli bir tutumdur."
+        }
+      ]
+    },
+    {
+      "id": "fr-read-langues-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "title": "Quand une langue s'éteint : enjeux de la diversité linguistique",
+      "text": "On estime qu'une langue disparaît environ toutes les deux semaines, le plus souvent sans qu'aucun linguiste n'en ait consigné le vocabulaire ni la grammaire. Cette extinction ne résulte presque jamais d'une interdiction brutale : elle procède d'un glissement progressif, lorsque les parents jugent plus utile de transmettre la langue de l'école et du marché du travail. Or chaque langue porte une manière singulière de découper le monde, de nommer les plantes, de raconter la parenté ou le temps. En perdre une, c'est appauvrir un savoir que nul autre idiome ne contient exactement. Des programmes de revitalisation, fondés sur des écoles d'immersion et des enregistrements réalisés avec les derniers locuteurs, ont donné des résultats encourageants au Pays de Galles ou en Nouvelle-Zélande. Les sceptiques objectent qu'on ne sauve pas une langue par décret et que la liberté de choix des familles doit prévaloir. La question demeure ouverte : jusqu'où une société doit-elle investir pour préserver ce qu'une génération entière a cessé de parler ?",
+      "tr": "Yaklaşık iki haftada bir bir dilin yok olduğu tahmin edilir; çoğu zaman da hiçbir dilbilimci kelime hazinesini ya da dilbilgisini kayda geçirmemiştir. Bu yok oluş neredeyse hiç ani bir yasaktan kaynaklanmaz: ebeveynler okulun ve iş piyasasının dilini aktarmayı daha yararlı bulduğunda yavaş bir kayma ile gerçekleşir. Oysa her dil dünyayı bölmenin, bitkileri adlandırmanın, akrabalığı ya da zamanı anlatmanın özgün bir yolunu taşır. Birini yitirmek, başka hiçbir dilin tam olarak içermediği bir bilgiyi yoksullaştırmaktır. Daldırma okullarına ve son konuşurlarla yapılan kayıtlara dayanan canlandırma programları Galler'de ya da Yeni Zelanda'da cesaret verici sonuçlar vermiştir. Kuşkucular bir dilin kararnameyle kurtarılamayacağını ve ailelerin seçme özgürlüğünün öncelikli olması gerektiğini savunur. Soru açık kalıyor: bir toplum, bütün bir neslin konuşmayı bıraktığı şeyi korumak için ne kadar yatırım yapmalı?",
+      "questions": [
+        {
+          "prompt": "D'après le texte, comment une langue s'éteint-elle le plus souvent ?",
+          "options": [
+            "Par une interdiction officielle et soudaine",
+            "Par un glissement progressif quand les parents transmettent une autre langue",
+            "Par l'absence totale de locuteurs âgés",
+            "Par la fusion volontaire de deux langues voisines"
+          ],
+          "answer": 1,
+          "why": "Metin yok oluşun 'glissement progressif' ile, ebeveynlerin başka dili aktarmasıyla olduğunu söyler."
+        },
+        {
+          "prompt": "Pourquoi perdre une langue appauvrit-il selon l'auteur ?",
+          "options": [
+            "Parce que chaque langue contient un savoir que nulle autre ne détient exactement",
+            "Parce que les langues rares sont plus faciles à apprendre",
+            "Parce que les touristes ne peuvent plus voyager",
+            "Parce que les dictionnaires deviennent trop volumineux"
+          ],
+          "answer": 0,
+          "why": "Her dilin dünyayı bölme biçimi özgündür; bu bilgi başka dilde tam olarak bulunmaz."
+        },
+        {
+          "prompt": "Quelle objection les sceptiques formulent-ils ?",
+          "options": [
+            "Les enregistrements coûtent trop cher aux familles",
+            "Les écoles d'immersion sont interdites au Pays de Galles",
+            "Une langue ne se sauve pas par décret et le choix des familles doit prévaloir",
+            "Les linguistes refusent de travailler avec les derniers locuteurs"
+          ],
+          "answer": 2,
+          "why": "Kuşkucular 'on ne sauve pas une langue par décret' diyerek ailelerin özgür seçimini öne çıkarır."
+        }
+      ]
+    },
+    {
+      "id": "fr-read-surtourisme-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "title": "Le surtourisme, entre manne économique et dépossession",
+      "text": "Venise, Barcelone ou Dubrovnik accueillent chaque été des foules qui dépassent largement leur population résidente. Les retombées économiques sont considérables, mais elles se répartissent mal : les loyers flambent, les commerces de proximité cèdent la place aux boutiques de souvenirs et les habitants se sentent peu à peu étrangers dans leur propre quartier. Les municipalités testent des remèdes variés : taxe d'entrée, plafonnement des locations de courte durée, quotas de visiteurs aux sites les plus fragiles. Chacune de ces mesures suscite des critiques. Les professionnels du secteur redoutent un déclin de l'activité, tandis que certains voyageurs dénoncent une logique qui réserverait les lieux d'exception aux plus aisés. Les défenseurs d'un tourisme dit durable invitent plutôt à étaler les flux dans le temps et dans l'espace, en valorisant des destinations moins connues. Il serait toutefois naïf d'y voir une solution miracle : déplacer la pression ne la supprime pas, et les territoires ainsi découverts risquent de subir à leur tour ce qu'ils espéraient éviter.",
+      "tr": "Venedik, Barselona ya da Dubrovnik her yaz nüfuslarını çok aşan kalabalıkları ağırlar. Ekonomik getiri büyüktür ama kötü dağılır: kiralar fırlar, mahalle dükkânlarının yerini hediyelik eşya mağazaları alır ve sakinler kendi mahallelerinde giderek yabancı hissetmeye başlar. Belediyeler çeşitli çareler dener: giriş vergisi, kısa süreli kiralamalara üst sınır, en kırılgan alanlara ziyaretçi kotaları. Bu önlemlerin her biri eleştiri toplar. Sektör profesyonelleri faaliyetin gerilemesinden korkarken bazı gezginler istisnai yerleri yalnızca varlıklılara ayıracak bir mantığı eleştirir. Sürdürülebilir turizm savunucuları ise akışları zamana ve mekâna yaymayı, daha az bilinen destinasyonları öne çıkarmayı önerir. Yine de bunda mucizevi bir çözüm görmek saflık olurdu: baskıyı yer değiştirmek onu ortadan kaldırmaz ve bu şekilde keşfedilen bölgeler kaçınmayı umdukları şeyi kendileri yaşayabilir.",
+      "questions": [
+        {
+          "prompt": "Que reproche-t-on à la répartition des retombées économiques du tourisme de masse ?",
+          "options": [
+            "Elle est inexistante dans les grandes villes",
+            "Elle est inégale : loyers en hausse et commerces de proximité remplacés",
+            "Elle profite uniquement aux habitants des quartiers périphériques",
+            "Elle est interdite par les municipalités"
+          ],
+          "answer": 1,
+          "why": "Gelir kötü dağılır: kiralar artar, mahalle dükkânlarının yerini hediyelik eşya mağazaları alır."
+        },
+        {
+          "prompt": "Quelle critique est adressée aux mesures telles que les quotas de visiteurs ?",
+          "options": [
+            "Elles n'ont jamais été appliquées",
+            "Elles risquent de réserver les lieux d'exception aux plus aisés",
+            "Elles augmentent le nombre de locations de courte durée",
+            "Elles sont approuvées par tous les professionnels du secteur"
+          ],
+          "answer": 1,
+          "why": "Bazı gezginler bu mantığın istisnai yerleri varlıklılara ayıracağını eleştirir."
+        },
+        {
+          "prompt": "Pourquoi l'auteur juge-t-il naïve l'idée d'étaler les flux touristiques comme solution miracle ?",
+          "options": [
+            "Parce que les destinations moins connues refusent les visiteurs",
+            "Parce que déplacer la pression ne la supprime pas",
+            "Parce que le tourisme durable est moins rentable que prévu",
+            "Parce que les habitants préfèrent la foule"
+          ],
+          "answer": 1,
+          "why": "Metin 'déplacer la pression ne la supprime pas' diyerek çözümün sınırını gösterir."
+        }
+      ]
     }
   ]
 }

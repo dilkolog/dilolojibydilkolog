@@ -2402,6 +2402,1350 @@
      "p": "adj"
     }
    ]
+  },
+  {
+   "id": "politics_state",
+   "title": "Siyaset ve devlet",
+   "level": "C1",
+   "items": [
+    {
+     "w": "government",
+     "t": "hükümet",
+     "s": "The government announced a pension reform.",
+     "tr": "Hükümet emeklilik reformunu açıkladı.",
+     "p": "noun"
+    },
+    {
+     "w": "election",
+     "t": "seçim",
+     "s": "The presidential election will take place in spring.",
+     "tr": "Cumhurbaşkanlığı seçimi ilkbaharda yapılacak.",
+     "p": "noun"
+    },
+    {
+     "w": "ballot",
+     "t": "oy pusulası, oylama",
+     "s": "The ballot was held without incident.",
+     "tr": "Oylama olaysız geçti.",
+     "p": "noun"
+    },
+    {
+     "w": "legislation",
+     "t": "mevzuat, yasama",
+     "s": "New legislation on immigration was passed.",
+     "tr": "Göçle ilgili yeni bir mevzuat kabul edildi.",
+     "p": "noun"
+    },
+    {
+     "w": "lawmaker",
+     "t": "milletvekili, yasa koyucu",
+     "s": "The lawmaker defended her bill before parliament.",
+     "tr": "Milletvekili yasa tasarısını meclis önünde savundu.",
+     "p": "noun"
+    },
+    {
+     "w": "majority",
+     "t": "çoğunluk",
+     "s": "A majority of members rejected the text.",
+     "tr": "Üyelerin çoğunluğu metni reddetti.",
+     "p": "noun"
+    },
+    {
+     "w": "opposition",
+     "t": "muhalefet",
+     "s": "The opposition condemned the measure as unfair.",
+     "tr": "Muhalefet önlemi adaletsiz diye kınadı.",
+     "p": "noun"
+    },
+    {
+     "w": "coalition",
+     "t": "koalisyon",
+     "s": "The parties formed a fragile coalition.",
+     "tr": "Partiler kırılgan bir koalisyon kurdu.",
+     "p": "noun"
+    },
+    {
+     "w": "govern",
+     "t": "yönetmek",
+     "s": "It is hard to govern without a clear majority.",
+     "tr": "Net bir çoğunluk olmadan yönetmek zor.",
+     "p": "verb"
+    },
+    {
+     "w": "sovereignty",
+     "t": "egemenlik",
+     "s": "The treaty threatens national sovereignty.",
+     "tr": "Anlaşma ulusal egemenliği tehdit ediyor.",
+     "p": "noun"
+    },
+    {
+     "w": "referendum",
+     "t": "referandum",
+     "s": "The referendum deeply divided the country.",
+     "tr": "Referandum ülkeyi derinden böldü.",
+     "p": "noun"
+    },
+    {
+     "w": "reform",
+     "t": "reform yapmak",
+     "s": "The government wants to reform the education system.",
+     "tr": "Hükümet eğitim sistemini reforme etmek istiyor.",
+     "p": "verb"
+    },
+    {
+     "w": "term of office",
+     "t": "görev süresi",
+     "s": "The president ends his second term of office next year.",
+     "tr": "Cumhurbaşkanı ikinci görev süresini seneye bitiriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "foreign policy",
+     "t": "dış politika",
+     "s": "The country's foreign policy has changed course.",
+     "tr": "Ülkenin dış politikası yön değiştirdi.",
+     "p": "noun"
+    },
+    {
+     "w": "suffrage",
+     "t": "oy hakkı",
+     "s": "Universal suffrage is a democratic achievement.",
+     "tr": "Genel oy hakkı demokratik bir kazanımdır.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "law_justice",
+   "title": "Hukuk ve adalet",
+   "level": "C1",
+   "items": [
+    {
+     "w": "court",
+     "t": "mahkeme",
+     "s": "The court delivered its verdict last night.",
+     "tr": "Mahkeme kararını dün gece açıkladı.",
+     "p": "noun"
+    },
+    {
+     "w": "trial",
+     "t": "dava, yargılama",
+     "s": "The trial will last several weeks.",
+     "tr": "Yargılama birkaç hafta sürecek.",
+     "p": "noun"
+    },
+    {
+     "w": "judge",
+     "t": "hâkim",
+     "s": "The judge ordered a new expert report.",
+     "tr": "Hâkim yeni bir bilirkişi raporu istedi.",
+     "p": "noun"
+    },
+    {
+     "w": "lawyer",
+     "t": "avukat",
+     "s": "Her lawyer pleaded self-defence.",
+     "tr": "Avukatı meşru müdafaayı savundu.",
+     "p": "noun"
+    },
+    {
+     "w": "testimony",
+     "t": "tanıklık",
+     "s": "His testimony changed the course of the case.",
+     "tr": "Tanıklığı davanın seyrini değiştirdi.",
+     "p": "noun"
+    },
+    {
+     "w": "defendant",
+     "t": "sanık",
+     "s": "The defendant denied all the charges.",
+     "tr": "Sanık bütün suçlamaları reddetti.",
+     "p": "noun"
+    },
+    {
+     "w": "evidence",
+     "t": "kanıt",
+     "s": "The investigators have no conclusive evidence.",
+     "tr": "Soruşturmacıların kesin bir kanıtı yok.",
+     "p": "noun"
+    },
+    {
+     "w": "convict",
+     "t": "mahkûm etmek",
+     "s": "He was convicted and sentenced to two years in prison.",
+     "tr": "Mahkûm edilip iki yıl hapse çarptırıldı.",
+     "p": "verb"
+    },
+    {
+     "w": "acquit",
+     "t": "beraat ettirmek",
+     "s": "For lack of evidence, the jury acquitted him.",
+     "tr": "Delil yetersizliğinden jüri onu beraat ettirdi.",
+     "p": "verb"
+    },
+    {
+     "w": "ruling",
+     "t": "karar",
+     "s": "The ruling will be handed down within a month.",
+     "tr": "Karar bir ay içinde açıklanacak.",
+     "p": "noun"
+    },
+    {
+     "w": "sue",
+     "t": "dava açmak",
+     "s": "She sued her former employer for unfair dismissal.",
+     "tr": "Haksız işten çıkarma nedeniyle eski işvereni hakkında dava açtı.",
+     "p": "verb"
+    },
+    {
+     "w": "fine",
+     "t": "para cezası",
+     "s": "He received a hundred-euro fine.",
+     "tr": "Yüz avro para cezası aldı.",
+     "p": "noun"
+    },
+    {
+     "w": "damages",
+     "t": "tazminat",
+     "s": "The victim is seeking damages for the harm suffered.",
+     "tr": "Mağdur uğradığı zarar için tazminat istiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "sentence",
+     "t": "ceza, hüküm",
+     "s": "The sentence for this offence is severe.",
+     "tr": "Bu suç için öngörülen ceza ağır.",
+     "p": "noun"
+    },
+    {
+     "w": "appeal",
+     "t": "temyiz, itiraz",
+     "s": "His lawyer decided to lodge an appeal.",
+     "tr": "Avukatı temyiz başvurusunda bulunmaya karar verdi.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "economy_finance",
+   "title": "Ekonomi ve finans",
+   "level": "B2",
+   "items": [
+    {
+     "w": "inflation",
+     "t": "enflasyon",
+     "s": "Inflation is eroding household purchasing power.",
+     "tr": "Enflasyon hanelerin satın alma gücünü eritiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "unemployment",
+     "t": "işsizlik",
+     "s": "Youth unemployment remains a concern.",
+     "tr": "Gençlerdeki işsizlik endişe konusu olmaya devam ediyor.",
+     "p": "noun"
+    },
+    {
+     "w": "growth",
+     "t": "büyüme",
+     "s": "Growth slowed in the last quarter.",
+     "tr": "Büyüme son çeyrekte yavaşladı.",
+     "p": "noun"
+    },
+    {
+     "w": "investment",
+     "t": "yatırım",
+     "s": "This investment should pay off in the long run.",
+     "tr": "Bu yatırımın uzun vadede karşılığını vermesi bekleniyor.",
+     "p": "noun"
+    },
+    {
+     "w": "debt",
+     "t": "borç",
+     "s": "Public debt has passed one hundred per cent of GDP.",
+     "tr": "Kamu borcu GSYH'nin yüzde yüzünü aştı.",
+     "p": "noun"
+    },
+    {
+     "w": "budget",
+     "t": "bütçe",
+     "s": "The state budget has been in deficit for ten years.",
+     "tr": "Devlet bütçesi on yıldır açık veriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "stock market",
+     "t": "borsa",
+     "s": "The stock market closed lower.",
+     "tr": "Borsa düşüşle kapandı.",
+     "p": "noun"
+    },
+    {
+     "w": "tax",
+     "t": "vergi",
+     "s": "The government promises to cut taxes.",
+     "tr": "Hükümet vergileri düşürmeyi vaat ediyor.",
+     "p": "noun"
+    },
+    {
+     "w": "recession",
+     "t": "durgunluk, resesyon",
+     "s": "Several economists fear a recession.",
+     "tr": "Birçok iktisatçı bir resesyondan korkuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "save up",
+     "t": "biriktirmek",
+     "s": "She is saving up to buy a flat.",
+     "tr": "Ev almak için para biriktiriyor.",
+     "p": "verb"
+    },
+    {
+     "w": "loan",
+     "t": "kredi",
+     "s": "They took out a twenty-year loan.",
+     "tr": "Yirmi yıllık bir kredi çektiler.",
+     "p": "noun"
+    },
+    {
+     "w": "bankruptcy",
+     "t": "iflas",
+     "s": "The company is on the brink of bankruptcy.",
+     "tr": "Şirket iflasın eşiğinde.",
+     "p": "noun"
+    },
+    {
+     "w": "competition",
+     "t": "rekabet",
+     "s": "Foreign competition is pushing prices down.",
+     "tr": "Yabancı rekabet fiyatları aşağı çekiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "purchasing power",
+     "t": "satın alma gücü",
+     "s": "Pensioners have lost purchasing power.",
+     "tr": "Emekliler satın alma gücü kaybetti.",
+     "p": "noun"
+    },
+    {
+     "w": "speculate",
+     "t": "spekülasyon yapmak",
+     "s": "Some investors speculate on the price of oil.",
+     "tr": "Bazı yatırımcılar petrol fiyatı üzerinde spekülasyon yapıyor.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "environment_climate",
+   "title": "Çevre ve iklim",
+   "level": "B2",
+   "items": [
+    {
+     "w": "global warming",
+     "t": "küresel ısınma",
+     "s": "Global warming is accelerating the melting of glaciers.",
+     "tr": "Küresel ısınma buzulların erimesini hızlandırıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "emissions",
+     "t": "emisyonlar, salımlar",
+     "s": "Carbon emissions must fall before 2030.",
+     "tr": "Karbon emisyonları 2030'dan önce azalmalı.",
+     "p": "noun"
+    },
+    {
+     "w": "drought",
+     "t": "kuraklık",
+     "s": "The drought ruined several harvests.",
+     "tr": "Kuraklık birkaç ürünü mahvetti.",
+     "p": "noun"
+    },
+    {
+     "w": "flood",
+     "t": "sel, taşkın",
+     "s": "Floods forced thousands to evacuate.",
+     "tr": "Seller binlerce kişiyi tahliyeye zorladı.",
+     "p": "noun"
+    },
+    {
+     "w": "renewable",
+     "t": "yenilenebilir",
+     "s": "The country is investing in renewable energy.",
+     "tr": "Ülke yenilenebilir enerjiye yatırım yapıyor.",
+     "p": "adjective"
+    },
+    {
+     "w": "biodiversity",
+     "t": "biyoçeşitlilik",
+     "s": "Biodiversity is threatened by deforestation.",
+     "tr": "Biyoçeşitlilik ormansızlaşmadan dolayı tehdit altında.",
+     "p": "noun"
+    },
+    {
+     "w": "waste",
+     "t": "atık, israf",
+     "s": "Every household sorts its waste.",
+     "tr": "Her hane atığını ayırıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "pollute",
+     "t": "kirletmek",
+     "s": "This factory has polluted the river for years.",
+     "tr": "Bu fabrika yıllardır nehri kirletiyor.",
+     "p": "verb"
+    },
+    {
+     "w": "deforestation",
+     "t": "ormansızlaşma",
+     "s": "Deforestation is eating away at the Amazon.",
+     "tr": "Ormansızlaşma Amazon'u kemiriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "sustainable",
+     "t": "sürdürülebilir",
+     "s": "We need a more sustainable model of development.",
+     "tr": "Daha sürdürülebilir bir kalkınma modeline ihtiyacımız var.",
+     "p": "adjective"
+    },
+    {
+     "w": "carbon footprint",
+     "t": "karbon ayak izi",
+     "s": "Travelling by train cuts your carbon footprint.",
+     "tr": "Trenle seyahat etmek karbon ayak izini azaltır.",
+     "p": "noun"
+    },
+    {
+     "w": "endangered species",
+     "t": "nesli tükenmekte olan tür",
+     "s": "The panda is an endangered species.",
+     "tr": "Panda nesli tükenmekte olan bir türdür.",
+     "p": "noun"
+    },
+    {
+     "w": "landfill",
+     "t": "çöp depolama alanı",
+     "s": "Too much plastic ends up in landfill.",
+     "tr": "Çok fazla plastik çöp sahasına gidiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "preserve",
+     "t": "korumak",
+     "s": "We must preserve the wetlands.",
+     "tr": "Sulak alanları korumalıyız.",
+     "p": "verb"
+    },
+    {
+     "w": "ecological transition",
+     "t": "ekolojik dönüşüm",
+     "s": "The ecological transition demands heavy investment.",
+     "tr": "Ekolojik dönüşüm ağır yatırımlar gerektiriyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "science_research",
+   "title": "Bilim ve araştırma",
+   "level": "C1",
+   "items": [
+    {
+     "w": "research",
+     "t": "araştırma",
+     "s": "Basic research is often underfunded.",
+     "tr": "Temel araştırma çoğu zaman yetersiz finanse ediliyor.",
+     "p": "noun"
+    },
+    {
+     "w": "peer review",
+     "t": "hakem değerlendirmesi",
+     "s": "The paper is still under peer review.",
+     "tr": "Makale hâlâ hakem değerlendirmesinde.",
+     "p": "noun"
+    },
+    {
+     "w": "experiment",
+     "t": "deney",
+     "s": "The experiment was repeated three times.",
+     "tr": "Deney üç kez tekrarlandı.",
+     "p": "noun"
+    },
+    {
+     "w": "discovery",
+     "t": "keşif",
+     "s": "This discovery could change medicine.",
+     "tr": "Bu keşif tıbbı değiştirebilir.",
+     "p": "noun"
+    },
+    {
+     "w": "researcher",
+     "t": "araştırmacı",
+     "s": "The researcher published her results in a specialist journal.",
+     "tr": "Araştırmacı sonuçlarını uzman bir dergide yayımladı.",
+     "p": "noun"
+    },
+    {
+     "w": "sample",
+     "t": "örneklem, numune",
+     "s": "The sample included a thousand people.",
+     "tr": "Örneklem bin kişiyi kapsıyordu.",
+     "p": "noun"
+    },
+    {
+     "w": "methodology",
+     "t": "yöntem bilimi",
+     "s": "Experts criticised the methodology of the study.",
+     "tr": "Uzmanlar çalışmanın yöntemini eleştirdi.",
+     "p": "noun"
+    },
+    {
+     "w": "demonstrate",
+     "t": "kanıtlamak, göstermek",
+     "s": "The scientists demonstrated the treatment's effectiveness.",
+     "tr": "Bilim insanları tedavinin etkinliğini kanıtladı.",
+     "p": "verb"
+    },
+    {
+     "w": "theory",
+     "t": "kuram",
+     "s": "This theory has never been verified.",
+     "tr": "Bu kuram hiç doğrulanmadı.",
+     "p": "noun"
+    },
+    {
+     "w": "innovation",
+     "t": "yenilik, inovasyon",
+     "s": "Technological innovation is transforming our habits.",
+     "tr": "Teknolojik yenilik alışkanlıklarımızı dönüştürüyor.",
+     "p": "noun"
+    },
+    {
+     "w": "data",
+     "t": "veri",
+     "s": "The data were analysed with care.",
+     "tr": "Veriler özenle analiz edildi.",
+     "p": "noun"
+    },
+    {
+     "w": "replicate",
+     "t": "tekrarlamak, yeniden elde etmek",
+     "s": "No laboratory has managed to replicate the result.",
+     "tr": "Hiçbir laboratuvar sonucu yeniden elde edemedi.",
+     "p": "verb"
+    },
+    {
+     "w": "laboratory",
+     "t": "laboratuvar",
+     "s": "The laboratory received a European grant.",
+     "tr": "Laboratuvar bir Avrupa hibesi aldı.",
+     "p": "noun"
+    },
+    {
+     "w": "breakthrough",
+     "t": "çığır açan gelişme",
+     "s": "This breakthrough opens up new prospects.",
+     "tr": "Bu çığır açan gelişme yeni ufuklar açıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "verify",
+     "t": "doğrulamak",
+     "s": "Sources must be verified before publication.",
+     "tr": "Yayımlamadan önce kaynaklar doğrulanmalı.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "health_medicine",
+   "title": "Sağlık ve tıp (ileri)",
+   "level": "B2",
+   "items": [
+    {
+     "w": "diagnosis",
+     "t": "teşhis",
+     "s": "The diagnosis was confirmed by a biopsy.",
+     "tr": "Teşhis bir biyopsiyle doğrulandı.",
+     "p": "noun"
+    },
+    {
+     "w": "treatment",
+     "t": "tedavi",
+     "s": "The treatment lasts about six months.",
+     "tr": "Tedavi yaklaşık altı ay sürüyor.",
+     "p": "noun"
+    },
+    {
+     "w": "prescription",
+     "t": "reçete",
+     "s": "This drug is only available on prescription.",
+     "tr": "Bu ilaç yalnızca reçeteyle satılır.",
+     "p": "noun"
+    },
+    {
+     "w": "symptom",
+     "t": "belirti",
+     "s": "The first symptoms appear after three days.",
+     "tr": "İlk belirtiler üç gün sonra ortaya çıkıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "recover",
+     "t": "iyileşmek, toparlanmak",
+     "s": "It took him a long time to recover from the injury.",
+     "tr": "Yaralanmasından toparlanması uzun sürdü.",
+     "p": "verb"
+    },
+    {
+     "w": "vaccination",
+     "t": "aşılama",
+     "s": "Vaccination protects vulnerable people.",
+     "tr": "Aşılama savunmasız kişileri korur.",
+     "p": "noun"
+    },
+    {
+     "w": "surgeon",
+     "t": "cerrah",
+     "s": "The surgeon operated for four hours.",
+     "tr": "Cerrah dört saat ameliyat yaptı.",
+     "p": "noun"
+    },
+    {
+     "w": "recovery",
+     "t": "iyileşme",
+     "s": "A full recovery will take a few weeks.",
+     "tr": "Tam iyileşme birkaç hafta alacak.",
+     "p": "noun"
+    },
+    {
+     "w": "chronic",
+     "t": "kronik",
+     "s": "He suffers from a chronic illness.",
+     "tr": "Kronik bir hastalıktan muzdarip.",
+     "p": "adjective"
+    },
+    {
+     "w": "screening",
+     "t": "tarama",
+     "s": "Early screening saves lives.",
+     "tr": "Erken tarama hayat kurtarır.",
+     "p": "noun"
+    },
+    {
+     "w": "side effect",
+     "t": "yan etki",
+     "s": "This antibiotic has few side effects.",
+     "tr": "Bu antibiyotiğin yan etkisi az.",
+     "p": "noun"
+    },
+    {
+     "w": "rehabilitation",
+     "t": "rehabilitasyon, fizik tedavi",
+     "s": "Rehabilitation after the accident was long.",
+     "tr": "Kazadan sonraki rehabilitasyon uzun sürdü.",
+     "p": "noun"
+    },
+    {
+     "w": "contagious",
+     "t": "bulaşıcı",
+     "s": "Flu is highly contagious in winter.",
+     "tr": "Grip kışın çok bulaşıcıdır.",
+     "p": "adjective"
+    },
+    {
+     "w": "mental health",
+     "t": "ruh sağlığı",
+     "s": "Students' mental health is a priority.",
+     "tr": "Öğrencilerin ruh sağlığı bir öncelik.",
+     "p": "noun"
+    },
+    {
+     "w": "outpatient",
+     "t": "ayakta tedavi gören hasta",
+     "s": "Most operations are now done on an outpatient basis.",
+     "tr": "Artık ameliyatların çoğu ayakta tedavi olarak yapılıyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "education_academia",
+   "title": "Eğitim ve akademi",
+   "level": "B2",
+   "items": [
+    {
+     "w": "tuition",
+     "t": "öğretim ücreti, ders",
+     "s": "Tuition fees have risen sharply.",
+     "tr": "Öğrenim ücretleri sert biçimde arttı.",
+     "p": "noun"
+    },
+    {
+     "w": "degree",
+     "t": "lisans/derece, diploma",
+     "s": "He graduated with a first-class degree.",
+     "tr": "Birinci sınıf dereceyle mezun oldu.",
+     "p": "noun"
+    },
+    {
+     "w": "scholarship",
+     "t": "burs",
+     "s": "She won a scholarship to study abroad.",
+     "tr": "Yurtdışında okumak için bir burs kazandı.",
+     "p": "noun"
+    },
+    {
+     "w": "curriculum",
+     "t": "müfredat",
+     "s": "This curriculum includes a compulsory placement.",
+     "tr": "Bu müfredat zorunlu bir staj içeriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "dissertation",
+     "t": "tez",
+     "s": "He will defend his dissertation in June.",
+     "tr": "Tezini haziranda savunacak.",
+     "p": "noun"
+    },
+    {
+     "w": "lecture",
+     "t": "ders, konferans",
+     "s": "The lecture lasts two hours.",
+     "tr": "Ders iki saat sürüyor.",
+     "p": "noun"
+    },
+    {
+     "w": "assignment",
+     "t": "ödev, görev",
+     "s": "The assignment is due on Friday.",
+     "tr": "Ödevin teslimi cuma günü.",
+     "p": "noun"
+    },
+    {
+     "w": "enrol",
+     "t": "kaydolmak",
+     "s": "She enrolled on a master's programme.",
+     "tr": "Bir yüksek lisans programına kaydoldu.",
+     "p": "verb"
+    },
+    {
+     "w": "faculty",
+     "t": "fakülte, öğretim kadrosu",
+     "s": "The faculty is demanding better working conditions.",
+     "tr": "Öğretim kadrosu daha iyi çalışma koşulları istiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "attainment",
+     "t": "başarı düzeyi",
+     "s": "Educational attainment depends on family background too.",
+     "tr": "Eğitimsel başarı aile geçmişine de bağlıdır.",
+     "p": "noun"
+    },
+    {
+     "w": "dropout",
+     "t": "okulu bırakan",
+     "s": "The dropout rate is highest in poorer areas.",
+     "tr": "Okulu bırakma oranı en çok yoksul bölgelerde.",
+     "p": "noun"
+    },
+    {
+     "w": "assess",
+     "t": "değerlendirmek",
+     "s": "Students are assessed at the end of each term.",
+     "tr": "Öğrenciler her dönemin sonunda değerlendirilir.",
+     "p": "verb"
+    },
+    {
+     "w": "literacy",
+     "t": "okuryazarlık",
+     "s": "Adult literacy has improved over two decades.",
+     "tr": "Yetişkin okuryazarlığı yirmi yılda gelişti.",
+     "p": "noun"
+    },
+    {
+     "w": "tutor",
+     "t": "özel öğretmen, danışman",
+     "s": "Her tutor suggested a different approach.",
+     "tr": "Danışmanı farklı bir yaklaşım önerdi.",
+     "p": "noun"
+    },
+    {
+     "w": "syllabus",
+     "t": "ders programı",
+     "s": "The syllabus is available on the course website.",
+     "tr": "Ders programı ders sitesinde mevcut.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "business_management",
+   "title": "İş dünyası ve yönetim",
+   "level": "B2",
+   "items": [
+    {
+     "w": "company",
+     "t": "şirket",
+     "s": "The company opened an office in Istanbul.",
+     "tr": "Şirket İstanbul'da bir ofis açtı.",
+     "p": "noun"
+    },
+    {
+     "w": "management",
+     "t": "yönetim",
+     "s": "Management announced a restructuring plan.",
+     "tr": "Yönetim bir yeniden yapılanma planı açıkladı.",
+     "p": "noun"
+    },
+    {
+     "w": "turnover",
+     "t": "ciro",
+     "s": "Turnover rose by ten per cent.",
+     "tr": "Ciro yüzde on arttı.",
+     "p": "noun"
+    },
+    {
+     "w": "profit",
+     "t": "kâr",
+     "s": "Profits doubled in a year.",
+     "tr": "Kârlar bir yılda ikiye katlandı.",
+     "p": "noun"
+    },
+    {
+     "w": "redundancy",
+     "t": "işten çıkarma, fazlalık",
+     "s": "The redundancy of a hundred staff sparked a strike.",
+     "tr": "Yüz çalışanın işten çıkarılması bir greve yol açtı.",
+     "p": "noun"
+    },
+    {
+     "w": "negotiate",
+     "t": "pazarlık yapmak, müzakere etmek",
+     "s": "He negotiated a pay rise.",
+     "tr": "Bir maaş artışı için pazarlık yaptı.",
+     "p": "verb"
+    },
+    {
+     "w": "agenda",
+     "t": "gündem",
+     "s": "The first item on the agenda is the budget.",
+     "tr": "Gündemin ilk maddesi bütçe.",
+     "p": "noun"
+    },
+    {
+     "w": "stakeholder",
+     "t": "paydaş",
+     "s": "Every stakeholder was consulted about the plan.",
+     "tr": "Plan konusunda her paydaşa danışıldı.",
+     "p": "noun"
+    },
+    {
+     "w": "strategy",
+     "t": "strateji",
+     "s": "The sales strategy needs rethinking.",
+     "tr": "Satış stratejisi yeniden düşünülmeli.",
+     "p": "noun"
+    },
+    {
+     "w": "customer",
+     "t": "müşteri",
+     "s": "The customer is always right, as they say.",
+     "tr": "Dedikleri gibi müşteri her zaman haklıdır.",
+     "p": "noun"
+    },
+    {
+     "w": "merge",
+     "t": "birleşmek",
+     "s": "The two banks decided to merge.",
+     "tr": "İki banka birleşmeye karar verdi.",
+     "p": "verb"
+    },
+    {
+     "w": "trade union",
+     "t": "sendika",
+     "s": "The trade union is calling a general strike.",
+     "tr": "Sendika genel greve çağırıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "outsourcing",
+     "t": "dış kaynak kullanımı",
+     "s": "Outsourcing has destroyed thousands of jobs.",
+     "tr": "Dış kaynak kullanımı binlerce işi yok etti.",
+     "p": "noun"
+    },
+    {
+     "w": "delegate",
+     "t": "görev devretmek",
+     "s": "A good manager knows how to delegate.",
+     "tr": "İyi bir yönetici görev devretmesini bilir.",
+     "p": "verb"
+    },
+    {
+     "w": "brief",
+     "t": "görev tanımı, talimat",
+     "s": "The designers were given a tight brief.",
+     "tr": "Tasarımcılara kısıtlı bir görev tanımı verildi.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "emotions_nuance",
+   "title": "Duygu ve düşünce incelikleri",
+   "level": "C1",
+   "items": [
+    {
+     "w": "nostalgia",
+     "t": "nostalji",
+     "s": "He speaks of his village with nostalgia.",
+     "tr": "Köyünden nostaljiyle bahsediyor.",
+     "p": "noun"
+    },
+    {
+     "w": "anxiety",
+     "t": "kaygı",
+     "s": "Anxiety about failing keeps him awake.",
+     "tr": "Başarısızlık kaygısı onu uyutmuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "disappointment",
+     "t": "hayal kırıklığı",
+     "s": "His disappointment was visible on his face.",
+     "tr": "Hayal kırıklığı yüzünde belliydi.",
+     "p": "noun"
+    },
+    {
+     "w": "indignation",
+     "t": "öfke, kızgınlık",
+     "s": "The decision caused widespread indignation.",
+     "tr": "Karar yaygın bir öfkeye yol açtı.",
+     "p": "noun"
+    },
+    {
+     "w": "relieved",
+     "t": "rahatlamış",
+     "s": "He felt relieved when he heard the news.",
+     "tr": "Haberi duyunca rahatladı.",
+     "p": "adjective"
+    },
+    {
+     "w": "grudge",
+     "t": "kin",
+     "s": "She holds no grudge against him.",
+     "tr": "Ona karşı hiçbir kin beslemiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "benevolence",
+     "t": "iyi niyet, cömertlik",
+     "s": "He welcomed us with benevolence.",
+     "tr": "Bizi iyi niyetle karşıladı.",
+     "p": "noun"
+    },
+    {
+     "w": "envy",
+     "t": "kıskançlık",
+     "s": "He looks at her success with envy.",
+     "tr": "Onun başarısına kıskançlıkla bakıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "soothe",
+     "t": "yatıştırmak",
+     "s": "A few gentle words soothed the child.",
+     "tr": "Birkaç yumuşak söz çocuğu yatıştırdı.",
+     "p": "verb"
+    },
+    {
+     "w": "shame",
+     "t": "utanç",
+     "s": "She blushed with shame in front of everyone.",
+     "tr": "Herkesin önünde utançtan kızardı.",
+     "p": "noun"
+    },
+    {
+     "w": "distrust",
+     "t": "güvensizlik",
+     "s": "Distrust has crept in between the two neighbours.",
+     "tr": "İki komşu arasına güvensizlik girdi.",
+     "p": "noun"
+    },
+    {
+     "w": "gratitude",
+     "t": "minnet",
+     "s": "He expressed his gratitude to his colleagues.",
+     "tr": "Meslektaşlarına minnetini ifade etti.",
+     "p": "noun"
+    },
+    {
+     "w": "moved",
+     "t": "duygulanmış, etkilenmiş",
+     "s": "She was moved to tears by his speech.",
+     "tr": "Konuşmasından gözyaşlarına boğulacak kadar etkilendi.",
+     "p": "adjective"
+    },
+    {
+     "w": "weariness",
+     "t": "bıkkınlık, yorgunluk",
+     "s": "A deep weariness came over him.",
+     "tr": "Onu derin bir bıkkınlık sardı.",
+     "p": "noun"
+    },
+    {
+     "w": "exasperate",
+     "t": "çileden çıkarmak",
+     "s": "His constant lateness exasperates me.",
+     "tr": "Sürekli geç kalması beni çileden çıkarıyor.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "relations_social",
+   "title": "İnsan ilişkileri ve toplum",
+   "level": "B2",
+   "items": [
+    {
+     "w": "solidarity",
+     "t": "dayanışma",
+     "s": "A great wave of solidarity followed the disaster.",
+     "tr": "Felaketin ardından büyük bir dayanışma dalgası yaşandı.",
+     "p": "noun"
+    },
+    {
+     "w": "neighbourhood",
+     "t": "mahalle",
+     "s": "Relations in the neighbourhood are excellent.",
+     "tr": "Mahalledeki ilişkiler mükemmel.",
+     "p": "noun"
+    },
+    {
+     "w": "trust",
+     "t": "güven",
+     "s": "Trust is built slowly.",
+     "tr": "Güven yavaş yavaş kurulur.",
+     "p": "noun"
+    },
+    {
+     "w": "break-up",
+     "t": "ayrılık",
+     "s": "The break-up was hard on both of them.",
+     "tr": "Ayrılık ikisi için de zor oldu.",
+     "p": "noun"
+    },
+    {
+     "w": "quarrel",
+     "t": "kavga etmek, tartışmak",
+     "s": "The two brothers quarrel over nothing.",
+     "tr": "İki kardeş hiç yoktan kavga ediyor.",
+     "p": "verb"
+    },
+    {
+     "w": "reconciliation",
+     "t": "barışma",
+     "s": "The reconciliation came after ten years of silence.",
+     "tr": "Barışma on yıllık sessizliğin ardından geldi.",
+     "p": "noun"
+    },
+    {
+     "w": "mutual aid",
+     "t": "yardımlaşma",
+     "s": "Mutual aid between residents is precious here.",
+     "tr": "Burada sakinler arası yardımlaşma çok değerli.",
+     "p": "noun"
+    },
+    {
+     "w": "mindset",
+     "t": "zihniyet",
+     "s": "Mindsets change slowly.",
+     "tr": "Zihniyetler yavaş değişir.",
+     "p": "noun"
+    },
+    {
+     "w": "tolerate",
+     "t": "hoş görmek, tahammül etmek",
+     "s": "I will not tolerate this kind of behaviour.",
+     "tr": "Bu tür davranışlara tahammül etmem.",
+     "p": "verb"
+    },
+    {
+     "w": "commitment",
+     "t": "bağlılık, taahhüt",
+     "s": "Her commitment to charity deserves respect.",
+     "tr": "Hayır işlerine bağlılığı saygıyı hak ediyor.",
+     "p": "noun"
+    },
+    {
+     "w": "gap",
+     "t": "uçurum, fark",
+     "s": "A cultural gap separates the two generations.",
+     "tr": "İki kuşağı kültürel bir uçurum ayırıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "etiquette",
+     "t": "görgü kuralları",
+     "s": "He lacks table etiquette.",
+     "tr": "Sofra görgüsünden yoksun.",
+     "p": "noun"
+    },
+    {
+     "w": "cohesion",
+     "t": "uyum, bütünlük",
+     "s": "Social cohesion is threatened by insecurity.",
+     "tr": "Toplumsal bütünlük güvencesizlik yüzünden tehdit altında.",
+     "p": "noun"
+    },
+    {
+     "w": "integration",
+     "t": "uyum, entegrasyon",
+     "s": "The integration of newcomers starts with language.",
+     "tr": "Yeni gelenlerin uyumu dille başlar.",
+     "p": "noun"
+    },
+    {
+     "w": "generation gap",
+     "t": "kuşak çatışması",
+     "s": "The generation gap shows at family dinners.",
+     "tr": "Kuşak çatışması aile yemeklerinde kendini gösteriyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "arts_culture",
+   "title": "Sanat ve kültür",
+   "level": "B2",
+   "items": [
+    {
+     "w": "masterpiece",
+     "t": "başyapıt",
+     "s": "This painting is considered a masterpiece.",
+     "tr": "Bu tablo bir başyapıt sayılıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "novel",
+     "t": "roman",
+     "s": "The novel won a literary prize.",
+     "tr": "Roman bir edebiyat ödülü kazandı.",
+     "p": "noun"
+    },
+    {
+     "w": "exhibition",
+     "t": "sergi",
+     "s": "The exhibition brings together a hundred paintings.",
+     "tr": "Sergi yüz kadar tabloyu bir araya getiriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "portrait",
+     "t": "portre",
+     "s": "He bought a portrait by Rembrandt.",
+     "tr": "Rembrandt'ın bir portresini satın aldı.",
+     "p": "noun"
+    },
+    {
+     "w": "director",
+     "t": "yönetmen",
+     "s": "The director will present her film at Cannes.",
+     "tr": "Yönetmen filmini Cannes'da tanıtacak.",
+     "p": "noun"
+    },
+    {
+     "w": "staging",
+     "t": "sahneleme",
+     "s": "The staging of the play is bold.",
+     "tr": "Oyunun sahnelenişi cesur.",
+     "p": "noun"
+    },
+    {
+     "w": "audience",
+     "t": "izleyici, seyirci",
+     "s": "The audience applauded for a long time.",
+     "tr": "İzleyiciler uzun uzun alkışladı.",
+     "p": "noun"
+    },
+    {
+     "w": "review",
+     "t": "eleştiri",
+     "s": "The critics praised the band's latest album in their review.",
+     "tr": "Eleştirmenler yazılarında grubun son albümünü övdü.",
+     "p": "noun"
+    },
+    {
+     "w": "heritage",
+     "t": "miras",
+     "s": "Cultural heritage must be protected.",
+     "tr": "Kültürel miras korunmalı.",
+     "p": "noun"
+    },
+    {
+     "w": "movement",
+     "t": "akım",
+     "s": "This painter belongs to the impressionist movement.",
+     "tr": "Bu ressam izlenimci akıma ait.",
+     "p": "noun"
+    },
+    {
+     "w": "author",
+     "t": "yazar",
+     "s": "The author will sign copies on Saturday.",
+     "tr": "Yazar cumartesi kitaplarını imzalayacak.",
+     "p": "noun"
+    },
+    {
+     "w": "festival",
+     "t": "festival",
+     "s": "The festival attracts visitors from all over the world.",
+     "tr": "Festival dünyanın dört bir yanından ziyaretçi çekiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "perform",
+     "t": "oynamak, sahnelemek",
+     "s": "She performs the lead role with brilliance.",
+     "tr": "Başrolü ustalıkla oynuyor.",
+     "p": "verb"
+    },
+    {
+     "w": "stage",
+     "t": "sahne",
+     "s": "The singer walked on stage to cheers.",
+     "tr": "Şarkıcı alkışlar eşliğinde sahneye çıktı.",
+     "p": "noun"
+    },
+    {
+     "w": "studio",
+     "t": "stüdyo, atölye",
+     "s": "The sculptor has worked in her studio since dawn.",
+     "tr": "Heykeltıraş şafaktan beri stüdyosunda çalışıyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "nuance_connectors",
+   "title": "Bağlaçlar ve söylem kalıpları",
+   "level": "C1",
+   "items": [
+    {
+     "w": "moreover",
+     "t": "üstelik",
+     "s": "The plan is costly and, moreover, risky.",
+     "tr": "Plan pahalı ve üstelik riskli.",
+     "p": "phrase"
+    },
+    {
+     "w": "nonetheless",
+     "t": "yine de",
+     "s": "Nonetheless, the decision has been made.",
+     "tr": "Yine de karar verildi.",
+     "p": "phrase"
+    },
+    {
+     "w": "whereas",
+     "t": "oysa, -iken",
+     "s": "He loves the city, whereas she prefers the countryside.",
+     "tr": "O şehri seviyor, oysa o kırı tercih ediyor.",
+     "p": "phrase"
+    },
+    {
+     "w": "in any case",
+     "t": "her halükârda",
+     "s": "In any case, I will let you know tomorrow.",
+     "tr": "Her halükârda yarın sana haber veririm.",
+     "p": "phrase"
+    },
+    {
+     "w": "despite",
+     "t": "-e rağmen",
+     "s": "Despite the rain, the party went ahead.",
+     "tr": "Yağmura rağmen kutlama yapıldı.",
+     "p": "phrase"
+    },
+    {
+     "w": "hence",
+     "t": "bu nedenle, dolayısıyla",
+     "s": "The project is risky; hence the delay.",
+     "tr": "Proje riskli; bu yüzden gecikme.",
+     "p": "phrase"
+    },
+    {
+     "w": "as for",
+     "t": "gelince",
+     "s": "As for me, I would rather not comment.",
+     "tr": "Bana gelince, yorum yapmamayı tercih ederim.",
+     "p": "phrase"
+    },
+    {
+     "w": "to be honest",
+     "t": "doğrusunu söylemek gerekirse",
+     "s": "To be honest, I had stopped expecting it.",
+     "tr": "Doğrusunu söylemek gerekirse artık beklemiyordum.",
+     "p": "phrase"
+    },
+    {
+     "w": "on the other hand",
+     "t": "diğer yandan",
+     "s": "On the other hand, the results are encouraging.",
+     "tr": "Diğer yandan sonuçlar cesaret verici.",
+     "p": "phrase"
+    },
+    {
+     "w": "all in all",
+     "t": "sonuç olarak, genel olarak",
+     "s": "All in all, the plan failed.",
+     "tr": "Sonuç olarak plan başarısız oldu.",
+     "p": "phrase"
+    },
+    {
+     "w": "unless",
+     "t": "-medikçe",
+     "s": "We will leave tomorrow unless the weather changes.",
+     "tr": "Hava değişmedikçe yarın yola çıkacağız.",
+     "p": "phrase"
+    },
+    {
+     "w": "even so",
+     "t": "buna rağmen",
+     "s": "Even so, she decided to carry on.",
+     "tr": "Buna rağmen devam etmeye karar verdi.",
+     "p": "phrase"
+    },
+    {
+     "w": "given that",
+     "t": "madem ki, -diği için",
+     "s": "Given that everything is ready, we can begin.",
+     "tr": "Her şey hazır olduğuna göre başlayabiliriz.",
+     "p": "phrase"
+    },
+    {
+     "w": "that said",
+     "t": "bununla birlikte",
+     "s": "That said, it was worth the effort.",
+     "tr": "Bununla birlikte çabaya değdi.",
+     "p": "phrase"
+    },
+    {
+     "w": "as a result",
+     "t": "sonuç olarak",
+     "s": "As a result, sales fell by half.",
+     "tr": "Sonuç olarak satışlar yarı yarıya düştü.",
+     "p": "phrase"
+    }
+   ]
   }
  ]
 }

@@ -605,6 +605,81 @@
         "Collaborative investigative networks demonstrate that cross-border solidarity can prevail.",
         "We must recognize rigorous, uncompromised reporting as an essential public good."
       ]
+    },
+    {
+      "id": "en-exam-summary-attention-c1",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "C1",
+      "kind": "Synthesis summary",
+      "title": "Summary: attention as a scarce resource",
+      "instruction": "Using two short imaginary texts (a cognitive psychology researcher and a platform executive), write a structured summary on the capture of attention, without giving a personal opinion.",
+      "tr": "Hayali iki kısa metne (bilişsel psikoloji araştırmacısı ve bir platform yöneticisi) dayanarak dikkat yakalama üzerine kişisel görüş belirtmeden yapılandırılmış bir özet yaz.",
+      "min": 220,
+      "max": 280,
+      "checklist": [
+        "Önce iki metnin ortak temasını tek cümleyle ver.",
+        "Argümanları metin metin değil, konuya göre grupla.",
+        "Kendi görüşünü katma; bağlaçlarla karşıtlığı göster.",
+        "Kısa bir sonuç cümlesiyle ortak noktaları ve ayrımları özetle."
+      ],
+      "phrases": [
+        "Both texts agree that…",
+        "Whereas the first stresses…, the second emphasises…",
+        "It follows that the question remains open.",
+        "On the one hand…, on the other…",
+        "These positions diverge over who bears responsibility for…"
+      ]
+    },
+    {
+      "id": "en-exam-review-languages-c1",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "C1",
+      "kind": "Critical review",
+      "title": "A critical review of an essay on endangered languages",
+      "instruction": "Write a critical review of an imaginary essay that argues for safeguarding endangered languages: summarise its thesis, assess the strength of its arguments and raise one reasoned reservation.",
+      "tr": "Tehdit altındaki dillerin korunmasını savunan hayali bir denemenin eleştirel incelemesini yaz: tezi özetle, argümanların gücünü değerlendir ve gerekçeli bir çekince belirt.",
+      "min": 240,
+      "max": 300,
+      "checklist": [
+        "Eserin tezini iki cümlede nesnel biçimde özetle.",
+        "En güçlü argümanı seç ve neden ikna edici olduğunu açıkla.",
+        "Gerekçeli tek bir çekince sun (kanıt, kapsam ya da yöntem).",
+        "Okur için yargıyla biten kısa bir değerlendirme ekle."
+      ],
+      "phrases": [
+        "The author's central claim is that…",
+        "The most persuasive argument rests on…",
+        "One might object, however, that…",
+        "What is missing is a discussion of…",
+        "Overall, the essay succeeds in…"
+      ]
+    },
+    {
+      "id": "en-exam-report-overtourism-c1",
+      "language": "en",
+      "exam": "IELTS",
+      "level": "C1",
+      "kind": "Report for a council",
+      "title": "A report on overtourism in a historic centre",
+      "instruction": "Write a report for the council of a heavily visited city: describe the situation, compare two possible measures and recommend one, justifying your choice.",
+      "tr": "Çok ziyaret edilen bir kentin belediye meclisi için rapor yaz: durumu tanımla, iki olası önlemi karşılaştır ve gerekçeyle birini öner.",
+      "min": 260,
+      "max": 320,
+      "checklist": [
+        "Durumu somut verilerle (hayali olabilir) ortaya koy.",
+        "İki önlemi (ör. giriş ücreti, kısa süreli kiralama sınırı) artı ve eksilerle karşılaştır.",
+        "Tek bir öneriyi açık gerekçeyle sun.",
+        "Rapor üslubunu koru: başlıklar, nötr ton, edilgen yapılar."
+      ],
+      "phrases": [
+        "The analysis indicates that…",
+        "The first option has the advantage of…, but…",
+        "We therefore recommend that…",
+        "This measure would help reconcile…",
+        "Its effects on… should be monitored."
+      ]
     }
   ]
 }

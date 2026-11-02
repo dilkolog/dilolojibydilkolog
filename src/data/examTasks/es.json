@@ -605,6 +605,81 @@
         "La cooperación transnacional entre reporteros demuestra que el rigor colectivo vence a la censura.",
         "Reivindicar una información fidedigna es defender el oxígeno primordial de la democracia."
       ]
+    },
+    {
+      "id": "es-exam-sintesis-atencion-c1",
+      "language": "es",
+      "exam": "DELE",
+      "level": "C1",
+      "kind": "Síntesis de documentos",
+      "title": "Síntesis: la atención, un recurso escaso",
+      "instruction": "A partir de dos breves documentos imaginarios (un investigador en psicología cognitiva y un directivo de una plataforma), redacta una síntesis estructurada sobre la captación de la atención, sin expresar opinión personal.",
+      "tr": "Hayali iki kısa belgeye (bilişsel psikoloji araştırmacısı ve bir platform yöneticisi) dayanarak dikkat yakalama üzerine kişisel görüş belirtmeden yapılandırılmış bir sentez yaz.",
+      "min": 220,
+      "max": 280,
+      "checklist": [
+        "Önce iki belgenin ortak temasını tek cümleyle ver.",
+        "İki belgenin argümanlarını konuya göre grupla, belge belge sıralama.",
+        "Kendi görüşünü katma; bağlaçlarla karşıtlığı göster.",
+        "Kısa bir sonuç cümlesiyle ortak noktaları ve ayrımları özetle."
+      ],
+      "phrases": [
+        "Ambos documentos coinciden en que…",
+        "Mientras que el primero insiste en…, el segundo subraya…",
+        "De ello se desprende que la cuestión sigue abierta.",
+        "Por un lado…, por otro…",
+        "Estas posturas divergen en cuanto a la responsabilidad de…"
+      ]
+    },
+    {
+      "id": "es-exam-resena-lenguas-c1",
+      "language": "es",
+      "exam": "DELE",
+      "level": "C1",
+      "kind": "Reseña crítica",
+      "title": "Reseña crítica de un ensayo sobre las lenguas amenazadas",
+      "instruction": "Redacta la reseña crítica de un ensayo (imaginario) que aboga por salvaguardar las lenguas amenazadas: resume la tesis, valora la solidez de los argumentos y formula una objeción razonada.",
+      "tr": "Tehdit altındaki dillerin korunmasını savunan (hayali) bir denemenin eleştirel tanıtımını yaz: tezi özetle, argümanların sağlamlığını değerlendir ve gerekçeli bir çekince belirt.",
+      "min": 240,
+      "max": 300,
+      "checklist": [
+        "Eserin tezini iki cümlede nesnel biçimde özetle.",
+        "En güçlü argümanı seç ve neden ikna edici olduğunu açıkla.",
+        "Gerekçeli tek bir çekince sun (kanıt, kapsam ya da yöntem).",
+        "Okur için yargıyla biten kısa bir değerlendirme ekle."
+      ],
+      "phrases": [
+        "El autor defiende la tesis de que…",
+        "El argumento más convincente radica en…",
+        "Cabría objetar, sin embargo, que…",
+        "Se echa en falta una reflexión sobre…",
+        "En suma, este ensayo tiene el mérito de…"
+      ]
+    },
+    {
+      "id": "es-exam-informe-sobreturismo-c1",
+      "language": "es",
+      "exam": "DELE",
+      "level": "C1",
+      "kind": "Informe para un ayuntamiento",
+      "title": "Informe sobre el sobreturismo en un casco histórico",
+      "instruction": "Redacta un informe dirigido al pleno municipal de una ciudad muy turística: describe la situación, compara dos medidas posibles y recomienda una justificando tu elección.",
+      "tr": "Çok turistik bir kentin belediye meclisi için rapor yaz: durumu tanımla, iki olası önlemi karşılaştır ve gerekçeyle birini öner.",
+      "min": 260,
+      "max": 320,
+      "checklist": [
+        "Durumu somut verilerle (hayali olabilir) ortaya koy.",
+        "İki önlemi (ör. giriş vergisi, kısa süreli kiralama sınırı) artı ve eksilerle karşılaştır.",
+        "Tek bir öneriyi açık gerekçeyle sun.",
+        "Rapor üslubunu koru: başlıklar, nötr ton, edilgen yapılar."
+      ],
+      "phrases": [
+        "Del análisis se desprende que…",
+        "La primera opción presenta la ventaja de…, pero…",
+        "Recomendamos, por consiguiente,…",
+        "Esta medida permitiría conciliar…",
+        "Conviene hacer un seguimiento de sus efectos sobre…"
+      ]
     }
   ]
 }

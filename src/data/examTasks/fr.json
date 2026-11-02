@@ -605,6 +605,81 @@
         "Les consortiums internationaux démontrent que la mise en commun des courages permet de déjouer les censures.",
         "Soutenir une presse indépendante constitue un devoir civique primordial pour préserver nos libertés fondamentales."
       ]
+    },
+    {
+      "id": "fr-exam-synthese-attention-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "kind": "Synthèse de documents",
+      "title": "Synthèse : l'attention, ressource rare",
+      "instruction": "À partir de deux courts documents imaginaires (un chercheur en psychologie cognitive et un responsable de plateforme), rédigez une synthèse structurée sur la captation de l'attention, sans exprimer d'opinion personnelle.",
+      "tr": "Hayali iki kısa belgeye (bilişsel psikoloji araştırmacısı ve bir platform yöneticisi) dayanarak dikkat yakalama üzerine kişisel görüş belirtmeden yapılandırılmış bir sentez yaz.",
+      "min": 220,
+      "max": 280,
+      "checklist": [
+        "Önce iki belgenin ortak temasını tek cümleyle ver.",
+        "İki belgenin argümanlarını konuya göre grupla, belge belge sıralama.",
+        "Kendi görüşünü katma; bağlaçlarla karşıtlığı göster.",
+        "Kısa bir sonuç cümlesiyle ortak noktaları ve ayrımları özetle."
+      ],
+      "phrases": [
+        "Les deux documents s'accordent sur le fait que…",
+        "Alors que le premier insiste sur…, le second souligne…",
+        "Il en ressort que la question reste ouverte.",
+        "D'un côté…, de l'autre…",
+        "Ces positions divergent quant à la responsabilité de…"
+      ]
+    },
+    {
+      "id": "fr-exam-compte-rendu-langues-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "kind": "Compte rendu critique",
+      "title": "Compte rendu critique d'un essai sur les langues menacées",
+      "instruction": "Rédigez le compte rendu critique d'un essai (imaginaire) plaidant pour la sauvegarde des langues menacées : résumez la thèse, appréciez la solidité des arguments et formulez une réserve argumentée.",
+      "tr": "Tehdit altındaki dillerin korunmasını savunan (hayali) bir denemenin eleştirel tanıtımını yaz: tezi özetle, argümanların sağlamlığını değerlendir ve gerekçeli bir çekince belirt.",
+      "min": 240,
+      "max": 300,
+      "checklist": [
+        "Eserin tezini iki cümlede nesnel biçimde özetle.",
+        "En güçlü argümanı seç ve neden ikna edici olduğunu açıkla.",
+        "Gerekçeli tek bir çekince sun (kanıt, kapsam ya da yöntem).",
+        "Okur için yargıyla biten kısa bir değerlendirme ekle."
+      ],
+      "phrases": [
+        "L'auteur défend la thèse selon laquelle…",
+        "L'argument le plus convaincant tient à…",
+        "On pourrait cependant objecter que…",
+        "Il manque toutefois une réflexion sur…",
+        "En somme, cet essai a le mérite de…"
+      ]
+    },
+    {
+      "id": "fr-exam-rapport-surtourisme-c1",
+      "language": "fr",
+      "exam": "DALF",
+      "level": "C1",
+      "kind": "Rapport pour une municipalité",
+      "title": "Rapport sur le surtourisme dans un centre historique",
+      "instruction": "Rédigez un rapport destiné au conseil municipal d'une ville très touristique : décrivez la situation, comparez deux mesures possibles et recommandez-en une en justifiant votre choix.",
+      "tr": "Çok turistik bir kentin belediye meclisi için rapor yaz: durumu tanımla, iki olası önlemi karşılaştır ve gerekçeyle birini öner.",
+      "min": 260,
+      "max": 320,
+      "checklist": [
+        "Durumu somut verilerle (hayali olabilir) ortaya koy.",
+        "İki önlemi (ör. giriş vergisi, kısa süreli kiralama sınırı) artı ve eksilerle karşılaştır.",
+        "Tek bir öneriyi açık gerekçeyle sun.",
+        "Rapor üslubunu koru: başlıklar, nötr ton, edilgen yapılar."
+      ],
+      "phrases": [
+        "Il ressort de l'analyse que…",
+        "La première option présente l'avantage de…, mais…",
+        "Nous recommandons par conséquent…",
+        "Cette mesure permettrait de concilier…",
+        "Il convient de suivre ses effets sur…"
+      ]
     }
   ]
 }
