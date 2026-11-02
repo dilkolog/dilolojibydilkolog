@@ -64,6 +64,8 @@ const seen = new Set<string>()
 /** Sends once per kind of error and at most a few per page load; never throws. */
 export function reportError(error: unknown, where: string) {
   if (import.meta.env.DEV || import.meta.env.MODE === 'test' || sent >= PER_LOAD) return
+  // A browser driven by a test (Playwright, WebDriver) is not a person: its errors (fake accounts hitting the live sync) would bury the real ones in the weekly digest.
+  if (typeof navigator !== 'undefined' && navigator.webdriver) return
   try {
     const report = toReport(error, where)
     const key = `${report.name}:${report.message}:${report.stack[0] ?? ''}`
