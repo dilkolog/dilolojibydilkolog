@@ -2,9 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import onbGoal from '../assets/art/onb-goal.webp'
 import onbMap from '../assets/art/onb-map.webp'
 import onbFlags from '../assets/art/onb-flags.webp'
-import langEn from '../assets/art/lang-en.webp'
-import langEs from '../assets/art/lang-es.webp'
-import langFr from '../assets/art/lang-fr.webp'
 
 import { TARGET_LANGUAGES, type TargetLanguage } from '../engine/types'
 
@@ -12,13 +9,13 @@ import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 
 import { CalendarIcon, CheckIcon, FlowerIcon, PlusIcon } from './icons'
 import { HELLO, LANGUAGE_NAME } from './labels'
-import { POTS } from './drawnArt'
+import { POTS, LANG_MONKI } from './drawnArt'
 import { BrandLogo } from './BrandLogo'
 
 const MINUTE_OPTIONS = [5, 10, 15, 20, 30]
 
 /** Monki dressed for each language's welcome. */
-const LANG_ART: Record<TargetLanguage, string> = { en: langEn, es: langEs, fr: langFr }
+const LANG_ART: Record<TargetLanguage, string> = LANG_MONKI
 
 function Chips<T extends string | number>({
   options,

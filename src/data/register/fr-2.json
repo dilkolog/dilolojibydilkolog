@@ -132,7 +132,8 @@
     "informal": "On se capte à quelle heure ?",
     "standard": "À quelle heure on se retrouve ?",
     "formal": "À quelle heure conviendrait-il de fixer notre entrevue ?",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“on se capte” gençlik argosudur (birbirini yakalamak/buluşmak); telefonlaşmak için de kullanılır."
   },
   {
     "id": "fr-time-late",
@@ -141,7 +142,8 @@
     "informal": "Je suis à la bourre",
     "standard": "Je suis en retard",
     "formal": "Je vous prie de m'excuser, j'ai un contretemps",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“être à la bourre” günlük Fransızcanın en yaygın “geç kaldım” kalıbıdır."
   },
   {
     "id": "fr-thank-much",
@@ -159,7 +161,8 @@
     "informal": "C'est pigé !",
     "standard": "J'ai bien compris",
     "formal": "Le message a été parfaitement assimilé",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“piger” konuşma argosudur (“t’as pigé ?” = çaktın mı / anladın mı?)."
   },
   {
     "id": "fr-wait-moment",

@@ -43,7 +43,7 @@ export function StarterLists({ db, language, vocabulary, onAdded }: { db: Kelime
     <details className="card">
       <summary>Hazır başlangıç listeleri</summary>
       <div className="stack">
-        <p className="small muted">Günlük hayattan sık kullanılan kelimeler: her kelimenin Türkçesi ve bir örnek cümlesi var. Listeyi ekleyince kendi listen olur; kelimelerin tekrarı diğerleri gibi planlanır.</p>
+        <p className="small muted">Temel günlük kelimelerden sokak diline, deyimlere ve ileri düzey söyleme uzanan hazır tema paketleri: her kelimenin Türkçesi ve örnek cümlesi var. Eklediğinde kendi listen olur.</p>
         <ul className="stack gap-2">
           {lists.map((list) => {
             const left = missing(list)

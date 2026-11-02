@@ -1,0 +1,311 @@
+[
+  {
+    "id": "fr-b15-nombres-1",
+    "language": "fr",
+    "level": "A1",
+    "topic": "basics_fr_nombres",
+    "type": "choice",
+    "prompt": "Mon grand-père vient de fêter ses ___ ans.",
+    "answer": "quatre-vingts",
+    "options": [
+      "quatre-vingts",
+      "quatre-vingt",
+      "quatre-vingts-un"
+    ],
+    "hint": "80 (arkasından başka sayı gelmiyor)",
+    "explanation": "80 sayısında 'quatre-vingts' sonuna -s alır; ancak arkasından başka bir sayı gelirse -s düşer: quatre-vingt-un (81).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-nombres-2",
+    "language": "fr",
+    "level": "A1",
+    "topic": "basics_fr_nombres",
+    "type": "choice",
+    "prompt": "Cet immeuble ancien compte ___ appartements.",
+    "answer": "quatre-vingt-douze",
+    "options": [
+      "quatre-vingt-douze",
+      "quatre-vingts-douze",
+      "quatre-vingt-deux"
+    ],
+    "hint": "92 (80 + 12)",
+    "explanation": "92 Fransızcada 80 + 12 olarak kurulur: quatre-vingt-douze. 'vingt'ten sonra sayı geldiği için -s takısı almaz.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-nombres-3",
+    "language": "fr",
+    "level": "A1",
+    "topic": "basics_fr_nombres",
+    "type": "choice",
+    "prompt": "Le festival commence ___ mai chaque année.",
+    "answer": "le premier",
+    "options": [
+      "le premier",
+      "le un",
+      "la première"
+    ],
+    "hint": "1 Mayıs",
+    "explanation": "Ayın 1'i için yalnızca sıra sayısı 'le premier' kullanılır (le premier mai); diğer tüm günlerde sayma sayısı gelir (le deux mai, le quinze mai).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-nombres-4",
+    "language": "fr",
+    "level": "A1",
+    "topic": "basics_fr_nombres",
+    "type": "cloze",
+    "prompt": "Le train part à quatorze heures ___ (14:45, çeyrek var).",
+    "answer": "quarante-cinq",
+    "hint": "45 (resmî 24 saat dilimi)",
+    "explanation": "Resmî 24 saat sisteminde (14h45) 'moins le quart' kullanılmaz; dakika doğrudan okunur: quatorze heures quarante-cinq.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-nombres-5",
+    "language": "fr",
+    "level": "A1",
+    "topic": "basics_fr_nombres",
+    "type": "choice",
+    "prompt": "Il est midi et ___ ; allons déjeuner.",
+    "answer": "demi",
+    "options": [
+      "demi",
+      "demie",
+      "demis"
+    ],
+    "hint": "12:30 (öğle)",
+    "explanation": "'midi' ve 'minuit' eril olduğu için 'demi' sonuna -e almaz: midi et demi. 'heure' dişil olduğundan diğer saatlerde 'trois heures et demie' yazılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-nombres-6",
+    "language": "fr",
+    "level": "A2",
+    "topic": "basics_fr_nombres",
+    "type": "error",
+    "prompt": "Cette bibliothèque possède trois cent livres rares du dix-huitième siècle.",
+    "answer": "cent",
+    "fix": "cents",
+    "hint": "300 (arkasından başka sayı gelmiyor)",
+    "explanation": "'cent' kelimesi birden büyük bir sayıyla çarpıldığında ve hemen arkasından başka bir sayı gelmediğinde çoğul -s alır: trois cents livres (ama trois cent dix livres).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-nombres-7",
+    "language": "fr",
+    "level": "A2",
+    "topic": "basics_fr_nombres",
+    "type": "choice",
+    "prompt": "Le billet aller-retour coûte ___ euros.",
+    "answer": "soixante-quinze",
+    "options": [
+      "soixante-quinze",
+      "septante-cinq-dix",
+      "soixante-cinq"
+    ],
+    "hint": "75 (Fransa standart)",
+    "explanation": "Standart Fransa Fransızcasında 75, 60 + 15 biçiminde söylenir: soixante-quinze (Belçika ve İsviçre'de septante-cinq).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-nombres-8",
+    "language": "fr",
+    "level": "A2",
+    "topic": "basics_fr_nombres",
+    "type": "error",
+    "prompt": "La réparation du toit a coûté trois milles euros au propriétaire.",
+    "answer": "milles",
+    "fix": "mille",
+    "hint": "mille çoğul eki alır mı?",
+    "explanation": "Sayı olan 'mille' (bin) Fransızcada hiçbir zaman çoğul -s eki almaz: trois mille euros ('milles' yalnızca deniz mili demektir).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-prep-1",
+    "language": "fr",
+    "level": "B1",
+    "topic": "prep_fr",
+    "type": "choice",
+    "prompt": "Notre réussite dépend entièrement ___ notre préparation.",
+    "answer": "de",
+    "options": [
+      "de",
+      "à",
+      "sur"
+    ],
+    "hint": "Türkçede \"-e bağlı olmak\" dense de Fransızca edatı farklıdır",
+    "explanation": "Türkçede 'bir şeye bağlı olmak' (-e yönelme) ve İngilizcede 'depend on' kullanılsa da Fransızcada her zaman 'dépendre de' kullanılır!",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-prep-2",
+    "language": "fr",
+    "level": "B1",
+    "topic": "prep_fr",
+    "type": "choice",
+    "prompt": "Qu'est-ce que tu penses ___ ce nouveau roman ?",
+    "answer": "de",
+    "options": [
+      "de",
+      "à",
+      "sur"
+    ],
+    "hint": "Bir şey hakkındaki görüş/fikir soruluyor",
+    "explanation": "'penser de' bir şey hakkındaki fikri sormaktır (ne düşünüyorsun?). 'penser à' ise birini/bir şeyi aklına getirmek, düşünmektir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-prep-3",
+    "language": "fr",
+    "level": "A2",
+    "topic": "prep_fr",
+    "type": "cloze",
+    "prompt": "Depuis son enfance, elle rêve ___ devenir architecte.",
+    "answer": "de",
+    "hint": "rêver + mastar",
+    "explanation": "'rêver de + mastar / isim' bir şeyin hayalini kurmak demektir (elle rêve de voyager).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-prep-4",
+    "language": "fr",
+    "level": "B1",
+    "topic": "prep_fr",
+    "type": "choice",
+    "prompt": "Malgré la pluie, nous avons réussi ___ atteindre le sommet.",
+    "answer": "à",
+    "options": [
+      "à",
+      "de",
+      "pour"
+    ],
+    "hint": "réussir + edat + mastar",
+    "explanation": "Başarmak anlamındaki 'réussir' mastardan önce daima 'à' alır: réussir à faire quelque chose.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-prep-5",
+    "language": "fr",
+    "level": "B1",
+    "topic": "prep_fr",
+    "type": "error",
+    "prompt": "Mon frère s'intéresse beaucoup de l'histoire contemporaine.",
+    "answer": "de",
+    "fix": "à",
+    "hint": "s'intéresser + ?",
+    "explanation": "Türkçede 'bir şeyle ilgilenmek' denir; Fransızcada ise 's'intéresser à quelque chose' kalıbı zorunludur ('de' yanlıştır).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-prep-6",
+    "language": "fr",
+    "level": "B1",
+    "topic": "prep_fr",
+    "type": "choice",
+    "prompt": "Je me souviens très bien ___ notre première rencontre.",
+    "answer": "de",
+    "options": [
+      "de",
+      "à",
+      "sur"
+    ],
+    "hint": "se souvenir vs se rappeler",
+    "explanation": "Türkçede 'bir şeyi hatırlamak' (-i belirtme) denir; Fransızcada 'se souvenir de' kullanılır (oysa 'se rappeler' doğrudan nesne alır: je me rappelle ce jour).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-prep-7",
+    "language": "fr",
+    "level": "B1",
+    "topic": "prep_fr",
+    "type": "cloze",
+    "prompt": "Ils ont finalement décidé ___ reporter la réunion à lundi.",
+    "answer": "de",
+    "hint": "décider + edat + mastar",
+    "explanation": "'décider de + mastar' bir şey yapmaya karar vermek demektir (se décider ise 'à' alır: se décider à partir).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-prep-8",
+    "language": "fr",
+    "level": "B2",
+    "topic": "prep_fr",
+    "type": "choice",
+    "prompt": "Elle a remercié ses collègues ___ l'avoir soutenue.",
+    "answer": "de",
+    "options": [
+      "de",
+      "à",
+      "en"
+    ],
+    "hint": "remercier quelqu’un + edat + infinitif passé",
+    "explanation": "Birine bir şey yaptığı için teşekkür ederken 'remercier quelqu'un de + mastar' (veya 'pour + isim') kullanılır; 'à' gelmez.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-reg-1",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_registres",
+    "type": "choice",
+    "prompt": "Dans une lettre officielle au maire : « Je vous ___ d’agréer, Monsieur le Maire, mes salutations distinguées. »",
+    "answer": "prie",
+    "options": [
+      "prie",
+      "dis",
+      "demande fort"
+    ],
+    "hint": "Resmî mektup kapanış formülü",
+    "explanation": "Resmî yazışmalarda (registre soutenu) standart kapanış kalıbı 'Je vous prie d'agréer…' fiiliyle kurulur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-reg-2",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_registres",
+    "type": "choice",
+    "prompt": "Au registre soutenu, pour dire « Je ne sais pas » : « ___ »",
+    "answer": "Je l'ignore.",
+    "options": [
+      "Je l'ignore.",
+      "J'en sais rien.",
+      "Aucune idée, franchement."
+    ],
+    "hint": "Edebî / kurumsal kayıt",
+    "explanation": "'Je l'ignore' resmî ve özenli dilde (soutenu) 'bilmiyorum' demektir; 'J'en sais rien' ise 'ne' düşmüş günlük konuşma dilidir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-reg-3",
+    "language": "fr",
+    "level": "B1",
+    "topic": "basics_fr_registres",
+    "type": "choice",
+    "prompt": "À un ami proche par SMS : « Désolé, je suis ___ ce matin, commencez sans moi ! »",
+    "answer": "à la bourre",
+    "options": [
+      "à la bourre",
+      "en retardement administratif",
+      "dans un délai ultérieur"
+    ],
+    "hint": "Günlük Fransızcada \"geç kaldım\"",
+    "explanation": "'être à la bourre' arkadaş arasındaki konuşma dilinde (registre familier) 'en retard' yerine en sık kullanılan deyimdir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b15-reg-4",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_registres",
+    "type": "error",
+    "prompt": "Dans un courriel professionnel : « Monsieur le Directeur, filez-moi le rapport avant midi, je vous prie. »",
+    "answer": "filez",
+    "fix": "transmettez",
+    "hint": "Resmî e-postaya sızmış argo fiil",
+    "explanation": "'filer quelque chose à quelqu'un' sokak/arkadaş argosudur; resmî yazışmada 'transmettre', 'envoyer' veya 'faire parvenir' kullanılır.",
+    "source": "Diloloji (özgün)"
+  }
+]

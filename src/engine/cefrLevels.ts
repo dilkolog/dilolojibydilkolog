@@ -21,10 +21,10 @@ export function parseCefrList(text: string): Map<string, CefrLevel> {
   return map
 }
 
-/** A word's level: as written, without a reflexive pronoun, or (Spanish) without its "-se". */
+/** A word's level: as written, without a reflexive pronoun or "to ", or (Spanish) without its "-se". */
 export function cefrOf(entry: Pick<VocabularyEntry, 'language' | 'lemma'>, list: CefrList): CefrLevel | undefined {
   const lemma = entry.lemma.toLocaleLowerCase(entry.language).replace(/’/g, "'").trim()
-  const plain = lemma.replace(/^(se |s')/, '')
+  const plain = lemma.replace(/^(se |s'|to )/, '')
   return list.get(lemma) ?? list.get(plain) ?? (entry.language === 'es' && /[aeií]rse$/.test(lemma) ? list.get(lemma.slice(0, -2)) : undefined)
 }
 

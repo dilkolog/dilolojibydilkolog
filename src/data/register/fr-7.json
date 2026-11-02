@@ -1,0 +1,202 @@
+[
+  {
+    "id": "fr-r7-weird",
+    "language": "fr",
+    "tr": "bu durum çok tuhaf / şüpheli",
+    "informal": "C'est trop chelou, cette histoire.",
+    "standard": "Cette histoire est vraiment bizarre.",
+    "formal": "Cette situation paraît tout à fait étrange.",
+    "note": "“chelou”, “louche” (şüpheli/tuhaf) kelimesinin heceleri ters çevrilerek türetilmiş verlan argosudur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-lazy",
+    "language": "fr",
+    "tr": "hiç halim yok / çok üşeniyorum",
+    "informal": "J'ai une flemme monumentale aujourd'hui.",
+    "standard": "Je n'ai vraiment pas le courage aujourd'hui.",
+    "formal": "Je manque d'entrain pour entreprendre cela aujourd'hui.",
+    "note": "“avoir la flemme” günlük Fransızcada üşenmek için rakipsiz en sık kalıptır (üşengeç = flemmard).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-love",
+    "language": "fr",
+    "tr": "buna bayıldım",
+    "informal": "Je kiffe grave ce truc !",
+    "standard": "J'adore vraiment ça !",
+    "formal": "J'apprécie vivement cela.",
+    "note": "Arapça kökenli “kiffer” (keyif almak/bayılmak) Fransa sokak ve gençlik dilinin temel fiillerindendir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-broke",
+    "language": "fr",
+    "tr": "beş parasızım",
+    "informal": "Je suis complètement à sec ce mois-ci.",
+    "standard": "Je n'ai plus d'argent ce mois-ci.",
+    "formal": "Je me trouve à court de liquidités ce mois-ci.",
+    "note": "“être à sec” veya “être fauché” argoda meteliğe kurşun atmak demektir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-mistake",
+    "language": "fr",
+    "tr": "fena çuvalladım / yanıldım",
+    "informal": "Je me suis complètement planté.",
+    "standard": "Je me suis complètement trompé.",
+    "formal": "J'ai commis une erreur d'appréciation.",
+    "note": "“se planter” hem sınavda/işte çuvallamak hem de yanlış tahmin yapmak anlamında çok yaygındır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-giveup",
+    "language": "fr",
+    "tr": "boş ver, uğraşmaya değmez",
+    "informal": "Laisse béton, c'est mort !",
+    "standard": "Laisse tomber, ça n'en vaut pas la peine.",
+    "formal": "Il est préférable de renoncer à cette démarche.",
+    "note": "“laisse béton”, “laisse tomber” (boş ver) kalıbındaki “tomber”nin verlan (ters hece) oyunudur; “c’est mort” = o iş yattı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-angry",
+    "language": "fr",
+    "tr": "çok sinir oldum / hevesim kursağımda kaldı",
+    "informal": "J'ai trop le seum !",
+    "standard": "Je suis vraiment contrarié.",
+    "formal": "Je suis profondément mécontent de cette issue.",
+    "note": "“avoir le seum” güncel Fransa argosunda hem hayal kırıklığı hem öfke karışımı “içine oturmak” hissini anlatır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-calm",
+    "language": "fr",
+    "tr": "sakin ol, endişelenme",
+    "informal": "T'inquiète, garde la pêche !",
+    "standard": "Ne t'en fais pas, reste calme.",
+    "formal": "Je vous prie de bien vouloir garder votre sang-froid.",
+    "note": "Konuşma dilinde “ne t’inquiète pas” neredeyse her zaman sadece “t’inquiète !” (yazışmada “tkt”) diye kısaltılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-ripoff",
+    "language": "fr",
+    "tr": "bu resmen soygun / çok kazık",
+    "informal": "C'est une pure arnaque !",
+    "standard": "C'est vraiment trop cher pour ce que c'est.",
+    "formal": "Ce tarif me semble manifestement excessif.",
+    "note": "“une arnaque” dolandırıcılık veya fahiş fiyat (kazık) için günlük dilde çok sık kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-exact",
+    "language": "fr",
+    "tr": "tam üstüne bastın, kesinlikle doğru",
+    "informal": "Pile poil, dans le mille !",
+    "standard": "C'est tout à fait exact.",
+    "formal": "Votre analyse est d'une parfaite justesse.",
+    "note": "“pile poil” (tamı tamına, milimi milimine) konuşma Fransızcasında hem saat hem fikir doğruluğu için kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-ghost",
+    "language": "fr",
+    "tr": "mesajımı görüp cevap vermedi",
+    "informal": "Il m'a mis un gros vent !",
+    "standard": "Il a ignoré mon message.",
+    "formal": "Il n'a pas donné suite à mon courrier.",
+    "note": "“mettre un vent à quelqu’un” (birine rüzgâr koymak) selamı veya mesajı havada bırakmak, görmezden gelmektir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-parents",
+    "language": "fr",
+    "tr": "annemler bu akşam geliyor",
+    "informal": "Mes darons débarquent ce soir.",
+    "standard": "Mes parents arrivent ce soir.",
+    "formal": "Mes parents nous rendent visite ce soir.",
+    "note": "“le daron / la daronne” eski argodan Z kuşağına geri dönmüş çok yaygın “baba / anne” sözcüğüdür.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-scared",
+    "language": "fr",
+    "tr": "ödüm koptu",
+    "informal": "J'ai grave flippé !",
+    "standard": "J'ai eu très peur.",
+    "formal": "J'ai éprouvé une vive frayeur.",
+    "note": "İngilizce “flip out”tan geçen “flipper” Fransızca sokak dilinde korkmak/paniklemek anlamında yerleşmiştir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-lie",
+    "language": "fr",
+    "tr": "bu tamamen palavra",
+    "informal": "C'est du pipeau, ses histoires !",
+    "standard": "Ce ne sont pas des choses vraies.",
+    "formal": "Ces allégations sont dénuées de tout fondement.",
+    "note": "“c’est du pipeau” veya “du mytho” sokak dilinde uydurma/palavra demektir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-disappointed",
+    "language": "fr",
+    "tr": "büyük hayal kırıklığına uğradım",
+    "informal": "Je suis trop dégoûté !",
+    "standard": "Je suis vraiment très déçu.",
+    "formal": "Je regrette vivement cette tournure des événements.",
+    "note": "Günlük Fransızcada “dégoûté” (tiksinmiş) kelimesi çoğunlukla “çok bozuldum / hevesim kırıldı” anlamında kullanılır (kısaca “je suis deg”).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-obvious",
+    "language": "fr",
+    "tr": "tartışmaya bile gerek yok, açık ara daha iyi",
+    "informal": "Y'a pas photo, c'est le meilleur !",
+    "standard": "La différence est évidente, c'est le meilleur.",
+    "formal": "La supériorité de cette option est incontestable.",
+    "note": "At yarışlarındaki “foto-finiş”ten gelir: fark o kadar açık ki fotoğrafa bakmaya bile gerek yok!",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-clothes",
+    "language": "fr",
+    "tr": "kıyafetlerin çok şık",
+    "informal": "Elles claquent, tes fringues !",
+    "standard": "J'aime beaucoup tes vêtements.",
+    "formal": "Votre tenue est particulièrement élégante.",
+    "note": "“les fringues” veya “les sape(s)” argoda kıyafet demektir; “ça claque” = ateş ediyor / harika görünüyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-gossip",
+    "language": "fr",
+    "tr": "son dedikoduyu duydun mu?",
+    "informal": "T’as entendu le dernier potin ?",
+    "standard": "Tu es au courant de la dernière nouvelle ?",
+    "formal": "Avez-vous eu connaissance des récents bruits qui courent ?",
+    "note": "“un potin” veya “un ragot” günlük dilde dedikodu / magazin haberi demektir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-ignore",
+    "language": "fr",
+    "tr": "umurumda bile değil",
+    "informal": "Je m'en fiche royalement.",
+    "standard": "Cela m'est complètement égal.",
+    "formal": "Cette question m'importe fort peu.",
+    "note": "“je m’en fiche” günlük ama kibar sınırda kalır; “je m’en fous” ise kaba argodur ve dikkatli kullanılmalıdır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r7-hangout",
+    "language": "fr",
+    "tr": "bu akşam dışarıda takılalım mı?",
+    "informal": "On va se poser en terrasse ce soir ?",
+    "standard": "On sort boire un verre ce soir ?",
+    "formal": "Accepteriez-vous de partager un rafraîchissement ce soir ?",
+    "note": "“se poser” gençlik dilinde bir yerde oturup sakin sakin takılmak, sohbet etmek demektir.",
+    "source": "Diloloji (özgün)"
+  }
+]

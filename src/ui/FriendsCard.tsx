@@ -7,7 +7,8 @@ import { weekStartOf, xpBetween } from '../engine/friendLeague'
 import { ghostRival, hidesXp, presenceDays, weekDays } from '../engine/friendMetrics'
 import { useAccess } from './accessContext'
 import { Avatar } from './Avatar'
-import { ChevronDownIcon, CloseIcon, CopyIcon, FlagIcon, FlameIcon, PlusIcon } from './icons'
+import { ChevronDownIcon, CloseIcon, CopyIcon, FlagIcon, PlusIcon } from './icons'
+import { StreakFlame } from './StreakFlame'
 import type { GameState } from './game'
 import { getAccount } from './syncRunner'
 import { showToast } from './toastFeed'
@@ -332,7 +333,7 @@ export function FriendsCard({ game, profile, vocabulary, language, share = 'xp',
                       <div className="friends-user-sub">
                         {f.streak > 0 && (
                           <span className="friends-streak" title={`${f.streak} günlük seri`}>
-                            <FlameIcon size={11} solid /> {f.streak}
+                            <StreakFlame streak={f.streak} size={13} /> {f.streak}
                           </span>
                         )}
                         {f.level > 0 && (

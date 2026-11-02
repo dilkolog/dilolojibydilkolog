@@ -1836,6 +1836,581 @@
      "p": "adjective"
     }
    ]
+  },
+  {
+   "id": "street_slang",
+   "title": "Günlük sokak dili ve argo",
+   "level": "B1",
+   "items": [
+    {
+     "w": "chévere",
+     "t": "harika, süper (Latin Amerika)",
+     "s": "Pasamos una tarde muy chévere en la costa.",
+     "tr": "Sahilde çok harika bir öğleden sonra geçirdik.",
+     "p": "adj"
+    },
+    {
+     "w": "guay",
+     "t": "havalı, süper (İspanya)",
+     "s": "Tu chaqueta nueva está muy guay.",
+     "tr": "Yeni ceketin çok havalı duruyor.",
+     "p": "adj"
+    },
+    {
+     "w": "chido",
+     "t": "on numara, güzel (Meksika)",
+     "s": "Qué chido verte de nuevo por aquí.",
+     "tr": "Seni buralarda yeniden görmek ne güzel.",
+     "p": "adj"
+    },
+    {
+     "w": "el curro",
+     "t": "iş, mesai (İspanya argosu)",
+     "s": "Salgo del curro a las seis en punto.",
+     "tr": "İşten tam altıda çıkıyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "el laburo",
+     "t": "iş, emek (Arjantin / Uruguay)",
+     "s": "Consiguió un buen laburo en el centro.",
+     "tr": "Merkezde güzel bir iş buldu.",
+     "p": "noun"
+    },
+    {
+     "w": "la plata",
+     "t": "para (Latin Amerika günlük)",
+     "s": "No me alcanza la plata para ese boleto.",
+     "tr": "Param o bilete yetmiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "flipar",
+     "t": "şaşıp kalmak, bayılmak (argo)",
+     "s": "Vas a flipar cuando veas el resultado.",
+     "tr": "Sonucu gördüğünde ağzın açık kalacak.",
+     "p": "verb"
+    },
+    {
+     "w": "molar",
+     "t": "hoşa gitmek, sarmak (İspanya)",
+     "s": "Me mola mucho cómo tocas la guitarra.",
+     "tr": "Gitar çalışın çok hoşuma gidiyor.",
+     "p": "verb"
+    },
+    {
+     "w": "ni modo",
+     "t": "elden bir şey gelmez, sağlık olsun",
+     "s": "Perdimos el autobús; ni modo, caminemos.",
+     "tr": "Otobüsü kaçırdık; sağlık olsun, yürüyelim.",
+     "p": "phrase"
+    },
+    {
+     "w": "qué va",
+     "t": "ne gezer, hiç alakası yok",
+     "s": "¿Estás enfadado? — ¡Qué va, para nada!",
+     "tr": "Kızgın mısın? — Ne gezer, hiç bile!",
+     "p": "phrase"
+    },
+    {
+     "w": "tal cual",
+     "t": "aynen öyle, tıpatıp",
+     "s": "Ocurrió tal cual te lo estoy contando.",
+     "tr": "Tam sana anlattığım gibi, aynen öyle oldu.",
+     "p": "phrase"
+    },
+    {
+     "w": "o sea",
+     "t": "yani, demek istediğim",
+     "s": "Es tarde, o sea que mejor nos vamos ya.",
+     "tr": "Geç oldu, yani artık kalksak iyi olur.",
+     "p": "phrase"
+    },
+    {
+     "w": "un montón",
+     "t": "bir sürü, dünya kadar",
+     "s": "Tengo un montón de cosas pendientes hoy.",
+     "tr": "Bugün bekleyen bir sürü işim var.",
+     "p": "phrase"
+    },
+    {
+     "w": "pillar",
+     "t": "yakalamak, çakmak / anlamak",
+     "s": "No pillo el chiste, ¿me lo explicas?",
+     "tr": "Espriyi çakmadım, bana açıklar mısın?",
+     "p": "verb"
+    },
+    {
+     "w": "el chisme",
+     "t": "dedikodu, kulis haberi",
+     "s": "Cuéntame el chisme completo sin omitir nada.",
+     "tr": "Hiçbir şey atlamadan bütün dedikoduyu anlat bana.",
+     "p": "noun"
+    },
+    {
+     "w": "el rollo",
+     "t": "muhabbet, mevzu; sıkıcı iş",
+     "s": "Esa película larga fue un rollo tremendo.",
+     "tr": "O uzun film korkunç derecede sıkıcıydı.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "idioms_everyday",
+   "title": "Canlı deyimler ve konuşma kalıpları",
+   "level": "B2",
+   "items": [
+    {
+     "w": "meter la pata",
+     "t": "pot kırmak, çam devirmek",
+     "s": "Creo que metí la pata con ese comentario.",
+     "tr": "Sanırım o yorumla pot kırdım.",
+     "p": "phrase"
+    },
+    {
+     "w": "tomar el pelo",
+     "t": "kafa bulmak, işletmek",
+     "s": "¿Hablas en serio o me estás tomando el pelo?",
+     "tr": "Ciddi mi konuşuyorsun yoksa benimle kafa mı buluyorsun?",
+     "p": "phrase"
+    },
+    {
+     "w": "echar una mano",
+     "t": "el atmak, yardım etmek",
+     "s": "¿Me echas una mano con estas cajas?",
+     "tr": "Şu kutulara bir el atar mısın?",
+     "p": "phrase"
+    },
+    {
+     "w": "costar un ojo de la cara",
+     "t": "ateş pahası olmak",
+     "s": "Arreglar el motor costó un ojo de la cara.",
+     "tr": "Motoru tamir ettirmek ateş pahasına patladı.",
+     "p": "phrase"
+    },
+    {
+     "w": "dar en el clavo",
+     "t": "tam üstüne basmak, isabet ettirmek",
+     "s": "Con tu diagnóstico diste en el clavo.",
+     "tr": "Teşhisinle tam üstüne bastın.",
+     "p": "phrase"
+    },
+    {
+     "w": "estar en las nubes",
+     "t": "aklı bir karış havada olmak, dalmak",
+     "s": "Perdona, estaba en las nubes y no te oí.",
+     "tr": "Kusura bakma, dalıp gitmişim, seni duymadım.",
+     "p": "phrase"
+    },
+    {
+     "w": "no pegar ojo",
+     "t": "gözünü kırpmamak, hiç uyuyamamak",
+     "s": "Con tanto ruido anoche no pegué ojo.",
+     "tr": "Dün gece o kadar gürültüde gözümü bile kırpamadım.",
+     "p": "phrase"
+    },
+    {
+     "w": "ir al grano",
+     "t": "sadede gelmek",
+     "s": "Tenemos poco tiempo, así que vayamos al grano.",
+     "tr": "Az vaktimiz var, o yüzden sadede gelelim.",
+     "p": "phrase"
+    },
+    {
+     "w": "ponerse las pilas",
+     "t": "silkinip kendine gelmek, asılmak",
+     "s": "Hay que ponerse las pilas para el examen final.",
+     "tr": "Final sınavı için silkinip işe asılmak lazım.",
+     "p": "phrase"
+    },
+    {
+     "w": "quedarse de piedra",
+     "t": "taş kesilmek, donup kalmak",
+     "s": "Me quedé de piedra al escuchar la noticia.",
+     "tr": "Haberi duyunca taş kesildim.",
+     "p": "phrase"
+    },
+    {
+     "w": "hacer la vista gorda",
+     "t": "göz yummak, görmezden gelmek",
+     "s": "El guardia hizo la vista gorda por esta vez.",
+     "tr": "Görevli bu seferlik göz yumdu.",
+     "p": "phrase"
+    },
+    {
+     "w": "no tener pelos en la lengua",
+     "t": "sözünü sakınmamak, dobra olmak",
+     "s": "Mi abuela no tiene pelos en la lengua.",
+     "tr": "Anneannem lafını hiç esirgemez, çok dobradır.",
+     "p": "phrase"
+    },
+    {
+     "w": "pasar página",
+     "t": "yeni sayfa açmak, geride bırakmak",
+     "s": "Es hora de pasar página y mirar adelante.",
+     "tr": "Artık o defteri kapatıp önümüze bakma zamanı.",
+     "p": "phrase"
+    },
+    {
+     "w": "ser pan comido",
+     "t": "çocuk oyuncağı olmak, çok kolay olmak",
+     "s": "Para ella este trámite es pan comido.",
+     "tr": "Onun için bu işlem çocuk oyuncağı.",
+     "p": "phrase"
+    },
+    {
+     "w": "importar un pimiento",
+     "t": "hiç umurunda olmamak",
+     "s": "Lo que digan los demás me importa un pimiento.",
+     "tr": "Başkalarının ne dediği zerre umurumda değil.",
+     "p": "phrase"
+    },
+    {
+     "w": "llevarse como el perro y el gato",
+     "t": "kedi köpek gibi didişmek",
+     "s": "De niños se llevaban como el perro y el gato.",
+     "tr": "Çocukken kediyle köpek gibi didişirlerdi.",
+     "p": "phrase"
+    }
+   ]
+  },
+  {
+   "id": "work_career",
+   "title": "İş hayatı, mülakat ve kariyer",
+   "level": "B1",
+   "items": [
+    {
+     "w": "la solicitud",
+     "t": "başvuru, dilekçe",
+     "s": "Envié mi solicitud para el puesto ayer por la tarde.",
+     "tr": "Pozisyon için başvurumu dün öğleden sonra gönderdim.",
+     "p": "noun"
+    },
+    {
+     "w": "la entrevista",
+     "t": "iş görüşmesi, mülakat; röportaj",
+     "s": "Mi entrevista laboral duró casi cuarenta minutos.",
+     "tr": "İş görüşmem neredeyse kırk dakika sürdü.",
+     "p": "noun"
+    },
+    {
+     "w": "la habilidad",
+     "t": "beceri, yetenek",
+     "s": "Este cargo requiere una gran habilidad comunicativa.",
+     "tr": "Bu görev yüksek bir iletişim becerisi gerektiriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el plazo",
+     "t": "teslim süresi, vade",
+     "s": "Debemos cumplir el plazo acordado con el cliente.",
+     "tr": "Müşteriyle kararlaştırılan teslim süresine uymalıyız.",
+     "p": "noun"
+    },
+    {
+     "w": "el teletrabajo",
+     "t": "uzaktan çalışma",
+     "s": "Nuestra empresa ofrece teletrabajo tres días por semana.",
+     "tr": "Şirketimiz haftada üç gün uzaktan çalışma sunuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "contratar",
+     "t": "işe almak, sözleşme yapmak",
+     "s": "Planean contratar a diez ingenieros este otoño.",
+     "tr": "Bu sonbahar on mühendis işe almayı planlıyorlar.",
+     "p": "verb"
+    },
+    {
+     "w": "dimitir",
+     "t": "istifa etmek, görevden çekilmek",
+     "s": "Decidió dimitir para fundar su propio estudio.",
+     "tr": "Kendi stüdyosunu kurmak için istifa etmeye karar verdi.",
+     "p": "verb"
+    },
+    {
+     "w": "el ascenso",
+     "t": "terfi, yükselme",
+     "s": "Consiguió un merecido ascenso tras dos años de esfuerzo.",
+     "tr": "İki yıllık emeğin ardından hak edilmiş bir terfi aldı.",
+     "p": "noun"
+    },
+    {
+     "w": "el sueldo",
+     "t": "maaş, aylık",
+     "s": "Negociaron el sueldo antes de firmar el acuerdo.",
+     "tr": "Anlaşmayı imzalamadan önce maaşı görüştüler.",
+     "p": "noun"
+    },
+    {
+     "w": "las prácticas",
+     "t": "staj",
+     "s": "Hace las prácticas universitarias en una editorial.",
+     "tr": "Üniversite stajını bir yayınevinde yapıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "gestionar",
+     "t": "yönetmek, yürütmek",
+     "s": "Sabe gestionar las urgencias con mucha serenidad.",
+     "tr": "Acil durumları büyük bir soğukkanlılıkla yönetmeyi biliyor.",
+     "p": "verb"
+    },
+    {
+     "w": "alcanzar",
+     "t": "ulaşmak, yakalamak (hedef)",
+     "s": "Logramos alcanzar todas las metas del trimestre.",
+     "tr": "Çeyreğin tüm hedeflerine ulaşmayı başardık.",
+     "p": "verb"
+    },
+    {
+     "w": "la carga laboral",
+     "t": "iş yükü",
+     "s": "La carga laboral suele subir a finales de año.",
+     "tr": "İş yükü genelde yıl sonlarında artar.",
+     "p": "noun"
+    },
+    {
+     "w": "polivalente",
+     "t": "çok yönlü",
+     "s": "Buscan un perfil polivalente y resolutivo.",
+     "tr": "Çok yönlü ve çözüm odaklı bir profil arıyorlar.",
+     "p": "adj"
+    },
+    {
+     "w": "el acta",
+     "t": "tutanak, resmî kayıt",
+     "s": "Te mandaré el acta de la sesión esta misma tarde.",
+     "tr": "Oturum tutanağını sana bugün öğleden sonra göndereceğim.",
+     "p": "noun",
+     "g": "f"
+    }
+   ]
+  },
+  {
+   "id": "media_society",
+   "title": "Medya, gündem ve toplum",
+   "level": "B2",
+   "items": [
+    {
+     "w": "la actualidad",
+     "t": "gündem, güncel gelişmeler",
+     "s": "Sigo la actualidad internacional todas las mañanas.",
+     "tr": "Her sabah uluslararası gündemi takip ederim.",
+     "p": "noun"
+    },
+    {
+     "w": "la encuesta",
+     "t": "anket, araştırma",
+     "s": "Según esta encuesta, los hábitos de lectura cambian.",
+     "tr": "Bu ankete göre okuma alışkanlıkları değişiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el testigo",
+     "t": "tanık, görgü şahidi",
+     "s": "Un testigo describió toda la escena ante la prensa.",
+     "tr": "Bir tanık bütün sahneyi basının önünde anlattı.",
+     "p": "noun"
+    },
+    {
+     "w": "el rumor",
+     "t": "söylenti",
+     "s": "Ese rumor circula por las redes desde anoche.",
+     "tr": "O söylenti dün geceden beri sosyal ağlarda dolaşıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "concienciar",
+     "t": "bilinçlendirmek",
+     "s": "La campaña busca concienciar sobre el reciclaje urbano.",
+     "tr": "Kampanya kentsel geri dönüşüm konusunda bilinçlendirmeyi hedefliyor.",
+     "p": "verb"
+    },
+    {
+     "w": "el ciudadano",
+     "t": "vatandaş, yurttaş",
+     "s": "Cualquier ciudadano puede asistir al pleno municipal.",
+     "tr": "Her vatandaş belediye meclisi oturumuna katılabilir.",
+     "p": "noun"
+    },
+    {
+     "w": "la desigualdad",
+     "t": "eşitsizlik",
+     "s": "Reducir la desigualdad educativa sigue siendo prioritario.",
+     "tr": "Eğitim eşitsizliğini azaltmak öncelik olmayı sürdürüyor.",
+     "p": "noun"
+    },
+    {
+     "w": "fiable",
+     "t": "güvenilir",
+     "s": "Comprueba siempre que la fuente sea realmente fiable.",
+     "tr": "Kaynağın gerçekten güvenilir olduğunu her zaman doğrula.",
+     "p": "adj"
+    },
+    {
+     "w": "la censura",
+     "t": "sansür",
+     "s": "El periódico protestó contra cualquier tipo de censura.",
+     "tr": "Gazete her türlü sansüre karşı protestoda bulundu.",
+     "p": "noun"
+    },
+    {
+     "w": "difundir",
+     "t": "yaymak, yayınlamak",
+     "s": "El canal va a difundir el documental este martes.",
+     "tr": "Kanal belgeseli bu salı yayınlayacak.",
+     "p": "verb"
+    },
+    {
+     "w": "el prejuicio",
+     "t": "önyargı",
+     "s": "Viajar ayuda a superar muchos prejuicios culturales.",
+     "tr": "Seyahat etmek pek çok kültürel önyargıyı aşmaya yardım eder.",
+     "p": "noun"
+    },
+    {
+     "w": "la manifestación",
+     "t": "gösteri, yürüyüş",
+     "s": "La manifestación pacífica recorrió la avenida central.",
+     "tr": "Barışçıl gösteri merkez bulvar boyunca ilerledi.",
+     "p": "noun"
+    },
+    {
+     "w": "el reto",
+     "t": "meydan okuma, zorlu hedef",
+     "s": "La transición energética supone un reto global.",
+     "tr": "Enerji dönüşümü küresel bir zorlu hedef oluşturuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "trastocar",
+     "t": "altüst etmek, düzenini değiştirmek",
+     "s": "La imprenta trastocó la transmisión del saber.",
+     "tr": "Matbaa bilginin aktarımını kökten değiştirdi.",
+     "p": "verb"
+    },
+    {
+     "w": "el voluntario",
+     "t": "gönüllü",
+     "s": "Cien voluntarios reparten comida caliente esta noche.",
+     "tr": "Yüz gönüllü bu akşam sıcak yemek dağıtıyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "academic_debate",
+   "title": "Akademik söylem ve argümantasyon",
+   "level": "C1",
+   "items": [
+    {
+     "w": "no obstante",
+     "t": "bununla birlikte, yine de",
+     "s": "El método es lento; no obstante, resulta muy preciso.",
+     "tr": "Yöntem yavaş; bununla birlikte oldukça hassas sonuç veriyor.",
+     "p": "phrase"
+    },
+    {
+     "w": "en cambio",
+     "t": "buna karşılık, oysa",
+     "s": "El primer ensayo falló; en cambio, el segundo triunfó.",
+     "tr": "İlk deneme başarısız oldu; buna karşılık ikincisi başarıya ulaştı.",
+     "p": "phrase"
+    },
+    {
+     "w": "suscitar",
+     "t": "uyandırmak, yol açmak",
+     "s": "Su tesis suscitó un intenso debate entre historiadores.",
+     "tr": "Tezi tarihçiler arasında yoğun bir tartışma uyandırdı.",
+     "p": "verb"
+    },
+    {
+     "w": "matizar",
+     "t": "nüans katmak, ayrıntılandırıp yumuşatmak",
+     "s": "Conviene matizar esa afirmación tan categórica.",
+     "tr": "Bu denli kesin o iddiaya nüans katıp yumuşatmak gerekir.",
+     "p": "verb"
+    },
+    {
+     "w": "la hipótesis",
+     "t": "varsayım, hipotez",
+     "s": "Los datos confirman la hipótesis inicial del equipo.",
+     "tr": "Veriler ekibin başlangıç hipotezini doğruluyor.",
+     "p": "noun"
+    },
+    {
+     "w": "pertinente",
+     "t": "yerinde, konuyla doğrudan ilgili",
+     "s": "Acaba usted de plantear una cuestión muy pertinente.",
+     "tr": "Az önce son derece yerinde bir soru ortaya koydunuz.",
+     "p": "adj"
+    },
+    {
+     "w": "cuestionar",
+     "t": "sorgulamak, tartışmaya açmak",
+     "s": "Este hallazgo cuestiona el modelo teórico clásico.",
+     "tr": "Bu bulgu klasik kuramsal modeli sorgulamaya açıyor.",
+     "p": "verb"
+    },
+    {
+     "w": "la constatación",
+     "t": "tespit, saptama",
+     "s": "El informe parte de una constatación empírica clara.",
+     "tr": "Rapor açık bir deneysel tespitten yola çıkıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "abogar",
+     "t": "savunmak, lehinde görüş bildirmek",
+     "s": "Los autores abogan por una reforma gradual.",
+     "tr": "Yazarlar kademeli bir reform yapılmasını savunuyor.",
+     "p": "verb"
+    },
+    {
+     "w": "la envergadura",
+     "t": "kapsam, çap, büyüklük",
+     "s": "Nadie previó un cambio de semejante envergadura.",
+     "tr": "Kimse böylesi çapta bir değişimi öngörmemişti.",
+     "p": "noun"
+    },
+    {
+     "w": "respaldar",
+     "t": "desteklemek, kanıtla güçlendirmek",
+     "s": "Debes respaldar tu postura con pruebas sólidas.",
+     "tr": "Tutumunu sağlam kanıtlarla desteklemelisin.",
+     "p": "verb"
+    },
+    {
+     "w": "por consiguiente",
+     "t": "dolayısıyla, bu nedenle",
+     "s": "Faltan muestras; por consiguiente, debemos ser cautos.",
+     "tr": "Örneklem eksik; dolayısıyla temkinli olmalıyız.",
+     "p": "phrase"
+    },
+    {
+     "w": "ambiguo",
+     "t": "muğlak, belirsiz",
+     "s": "La redacción de esa cláusula sigue siendo ambigua.",
+     "tr": "O maddenin yazılışı hâlâ muğlaklığını koruyor.",
+     "p": "adj"
+    },
+    {
+     "w": "desembocar",
+     "t": "sonuçlanmak, varmak",
+     "s": "El diálogo desembocó finalmente en un acuerdo firme.",
+     "tr": "Diyalog sonunda sağlam bir anlaşmayla sonuçlandı.",
+     "p": "verb"
+    },
+    {
+     "w": "irrefutable",
+     "t": "çürütülemez, su götürmez",
+     "s": "Aportó una prueba documental irrefutable.",
+     "tr": "Çürütülemez bir yazılı kanıt sundu.",
+     "p": "adj"
+    }
+   ]
   }
  ]
 }

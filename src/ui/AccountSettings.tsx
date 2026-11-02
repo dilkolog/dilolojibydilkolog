@@ -8,6 +8,7 @@ import { syncUsage, type Account } from '../data/sync'
 import type { AuthMode } from './AuthScreen'
 import { getAccount } from './syncRunner'
 import { HandleForm, HandleTag } from './AccountHandle'
+import { VerifiedMark } from './VerifiedMark'
 import { useAccountHandle } from './useAccountHandle'
 import { ACCOUNT_ART } from './drawnArt'
 import { StatusPicture } from './StatusArt'
@@ -15,7 +16,6 @@ import { useAccess } from './accessContext'
 import { GoogleMark } from './GoogleMark'
 import { signOutThisDevice } from './signOut'
 import { approvalEnabled } from '../data/access'
-import { VerifiedBadge } from './VerifiedBadge'
 
 const STATUS_TEXT = { rejected: 'Onaylanmadı', pending: 'Onay bekliyor' } as const
 
@@ -126,10 +126,10 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
         )}
         <div className="account-who">
           <div className="account-who-header">
-            <h2 className="account-name">
-              {name}
-              {status === 'approved' && approvalOn && <VerifiedBadge />}
-            </h2>
+            <span className="account-name-line">
+              <h2 className="account-name">{name}</h2>
+              {status === 'approved' && approvalOn && <VerifiedMark />}
+            </span>
             <HandleTag handle={handle} />
             {status !== 'approved' && (
               <span className="status-pill is-off" role="status">

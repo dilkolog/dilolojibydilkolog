@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import type { Milestone } from '../engine/gamification'
 import { Burst } from './Burst'
+import { Confetti } from './Confetti'
 import { Glyph } from './Glyph'
 import { shareCard } from './shareCard'
 import { sfx } from './sounds'
 import { CloseIcon } from './icons'
+import trophyUrl from '../assets/art/milestone-trophy.webp'
 
 /** The new level: the badge shows the old number, charges with anticipation, and bursts to the new one with rings and sparkles. */
 export function LevelUpBadge({ from, to, size = 'md' }: { from: number; to: number; size?: 'md' | 'xl' }) {
@@ -66,6 +68,7 @@ export function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; 
     <div className="dialog-backdrop milestone-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="milestone-burst-wrap" aria-hidden="true">
         <Burst />
+        <Confetti count={40} />
       </div>
       <div className="dialog milestone" role="dialog" aria-modal="true" aria-labelledby="ms-title">
         <button type="button" className="icon-btn milestone-close" onClick={onClose} aria-label="Kapat">
@@ -83,9 +86,14 @@ export function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; 
               <LevelUpBadge from={milestone.level.from} to={milestone.level.to} size="xl" />
             </span>
           ) : (
-            <span className="milestone-emoji" aria-hidden>
-              <Glyph emoji={milestone.emoji} size={64} />
-            </span>
+            <div className="milestone-trophy-wrap" aria-hidden>
+              <img src={trophyUrl} alt="" className="milestone-trophy-img" draggable={false} />
+              {milestone.emoji && (
+                <span className="milestone-emoji-badge" aria-hidden>
+                  <Glyph emoji={milestone.emoji} size={24} />
+                </span>
+              )}
+            </div>
           )}
         </div>
 

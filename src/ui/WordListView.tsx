@@ -344,7 +344,7 @@ export function WordList({
     <section className="section stack">
       {vocabulary.length === 0 ? (
         <EmptyState
-          art="shelf"
+          sticker="idea"
           title="Bahçen ekilmeyi bekliyor"
           action={
             <>
@@ -701,7 +701,7 @@ export function WordList({
           )}
           {list.length === 0 ? (
             <EmptyState
-              art="nothing-found"
+              sticker="shy"
               title="Bu aramaya uyan kelime yok"
               action={
                 <button

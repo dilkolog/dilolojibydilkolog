@@ -2,17 +2,18 @@ import cardUrl from '../assets/art/share-card.webp'
 import levelUrl from '../assets/art/share-level.webp'
 import streakUrl from '../assets/art/share-streak.webp'
 import weekUrl from '../assets/art/share-week.webp'
+import squareUrl from '../assets/art/share-card-square.webp'
 
 export interface CardText {
   /** A small line above the title ("Yeni rozet"). */
   kicker: string
   title: string
   text?: string
-  /** The picture: Monki with a trophy (badges, milestones), with a flame (a streak), on a podium (a level), with a ticked calendar (a week). */
+  /** The picture: Monki with a trophy (badges, milestones), with a flame (a streak), on a podium (a level), with a ticked calendar (a week), or a square post. */
   art?: CardArt
 }
 
-export type CardArt = 'trophy' | 'streak' | 'level' | 'week'
+export type CardArt = 'trophy' | 'streak' | 'level' | 'week' | 'square'
 
 /** A text cut into lines that fit `maxWidth` (by `measure`), at most `maxLines`; a cut last line ends in "…". */
 export function wrapLines(measure: (s: string) => number, text: string, maxWidth: number, maxLines: number): string[] {
@@ -60,7 +61,8 @@ interface Layout {
 }
 const TROPHY: Layout = { url: cardUrl, width: 1200, height: 576, x: 715, w: 430, kickerY: 190, titleY: 262, titleSize: 54, titleLines: 3, textSize: 28, textLines: 4 }
 const banner = (url: string): Layout => ({ url, width: 1200, height: 300, x: 420, w: 700, kickerY: 92, titleY: 150, titleSize: 46, titleLines: 1, textSize: 25, textLines: 2 })
-const LAYOUT: Record<CardArt, Layout> = { trophy: TROPHY, streak: banner(streakUrl), level: banner(levelUrl), week: banner(weekUrl) }
+const SQUARE: Layout = { url: squareUrl, width: 800, height: 800, x: 70, w: 660, kickerY: 90, titleY: 160, titleSize: 48, titleLines: 2, textSize: 28, textLines: 3 }
+const LAYOUT: Record<CardArt, Layout> = { trophy: TROPHY, streak: banner(streakUrl), level: banner(levelUrl), week: banner(weekUrl), square: SQUARE }
 
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {

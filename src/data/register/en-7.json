@@ -1,0 +1,202 @@
+[
+  {
+    "id": "en-r7-weird",
+    "language": "en",
+    "tr": "bu işte bir bit yeniği / tuhaflık var",
+    "informal": "That whole deal sounds super sketchy.",
+    "standard": "That whole situation seems suspicious.",
+    "formal": "The arrangement appears highly irregular.",
+    "note": "ABD’de “sketchy”, Britanya’da ise “dodgy” (tekinsiz, şüpheli, çürük) günlük dilde çok yaygındır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-lazy",
+    "language": "en",
+    "tr": "hiç uğraşacak halim yok / üşeniyorum",
+    "informal": "I honestly can't be bothered today.",
+    "standard": "I really don't feel like doing it today.",
+    "formal": "I am disinclined to pursue the matter today.",
+    "note": "“can’t be bothered” özellikle Britanya ve Avustralya’da üşenmek için en doğal kalıptır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-love",
+    "language": "en",
+    "tr": "bu şarkıya fena taktım / bayıldım",
+    "informal": "I'm low-key obsessed with this song!",
+    "standard": "I really love this song.",
+    "formal": "I hold this composition in high esteem.",
+    "note": "“low-key” güncel konuşma dilinde “inceden / açıkçası” anlamında vurguyu yumuşatmak için zarf gibi kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-broke",
+    "language": "en",
+    "tr": "beş parasızım",
+    "informal": "I'm flat broke till payday.",
+    "standard": "I have no money left until I get paid.",
+    "formal": "I am temporarily without disposable funds.",
+    "note": "ABD ve genel İngilizcede “broke”, Britanya sokak dilinde ise “skint” çok yaygındır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-mistake",
+    "language": "en",
+    "tr": "her şeyi yüzüme gözüme bulaştırdım",
+    "informal": "I totally messed up the presentation.",
+    "standard": "I made several mistakes in the presentation.",
+    "formal": "I regrettably fell short during the presentation.",
+    "note": "“mess up” (veya biraz daha sert “screw up”) her ortamda anlaşılan samimi “batırmak” deyimidir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-giveup",
+    "language": "en",
+    "tr": "planı son dakikada ekti / iptal etti",
+    "informal": "He bailed on us at the last minute.",
+    "standard": "He cancelled on us right before we met.",
+    "formal": "He withdrew from our engagement without prior notice.",
+    "note": "“bail on someone” arkadaş buluşmasını son anda ekmek veya erken kaçmak anlamında çok işlektir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-angry",
+    "language": "en",
+    "tr": "artık canıma tak etti / bıktım",
+    "informal": "I'm totally fed up with this mess!",
+    "standard": "I am very tired of this problem.",
+    "formal": "My patience regarding this matter is exhausted.",
+    "note": "“fed up with” günlük konuşmada bıkkınlık anlatır; resmî e-postada fazla duygusal kaçar.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-calm",
+    "language": "en",
+    "tr": "sakin ol, büyütülecek şey değil",
+    "informal": "Chill out, it’s no biggie!",
+    "standard": "Calm down, it's not a big problem.",
+    "formal": "Please remain composed; the matter is minor.",
+    "note": "“no biggie” (“no big deal”ın kısaltması) samimi konuşmada “önemli değil / dert etme” demektir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-ripoff",
+    "language": "en",
+    "tr": "bu fiyat tam kazık!",
+    "informal": "Twenty bucks for a coffee? What a rip-off!",
+    "standard": "Twenty dollars for a coffee is way too expensive.",
+    "formal": "Twenty dollars for a beverage is exorbitant.",
+    "note": "“a rip-off” fahiş fiyatlı ürün/hizmet için hem ABD hem Britanya’da en yaygın kelimedir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-exact",
+    "language": "en",
+    "tr": "tam üstüne bastın, yüzde yüz doğru",
+    "informal": "Spot on, you nailed it!",
+    "standard": "That is completely accurate.",
+    "formal": "Your assessment is entirely precise.",
+    "note": "“spot on” özellikle Britanya’da, “nailed it” ise ABD’de “tam isabet” anlamında her gün kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-ghost",
+    "language": "en",
+    "tr": "bir anda sırra kadem bastı, mesajlara dönmüyor",
+    "informal": "She totally ghosted me after the interview!",
+    "standard": "She stopped replying to my messages after the interview.",
+    "formal": "She ceased all communication following the interview.",
+    "note": "Sosyal medyadan iş dünyasına bile sızan “ghosting” konuşma dilinde standartlaşmış modern argodur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-parents",
+    "language": "en",
+    "tr": "annemler hafta sonu uğrayacak",
+    "informal": "My folks are swinging by this weekend.",
+    "standard": "My parents are visiting this weekend.",
+    "formal": "My parents will be paying us a visit this weekend.",
+    "note": "“my folks” özellikle Kuzey Amerika’da samimi ve sıcak “annem-babam / bizimkiler” ifadesidir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-scared",
+    "language": "en",
+    "tr": "ödüm koptu / panikledim",
+    "informal": "That loud bang totally freaked me out!",
+    "standard": "That loud noise scared me a lot.",
+    "formal": "The sudden noise caused me considerable alarm.",
+    "note": "“freak out” hem korkmak hem de sinirden/heyecandan paniklemek için günlük dilin joker fiilidir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-lie",
+    "language": "en",
+    "tr": "uyduruyor / palavra sıkıyor",
+    "informal": "He's making it up, total nonsense!",
+    "standard": "He is not telling the truth.",
+    "formal": "His account of the events is unsubstantiated.",
+    "note": "“make something up” (kafadan uydurmak) konuşma dilinde en doğal fiil öbeğidir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-disappointed",
+    "language": "en",
+    "tr": "çok bozuldum / yıkıldım",
+    "informal": "I'm absolutely gutted we lost!",
+    "standard": "I am really disappointed that we lost.",
+    "formal": "I am deeply dismayed by the unfavourable outcome.",
+    "note": "“gutted” Britanya günlük dilinde, “bummed (out)” ise ABD’de büyük hayal kırıklığı için kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-obvious",
+    "language": "en",
+    "tr": "düşünmeye bile gerek yok, çok net karar",
+    "informal": "Taking that offer is a total no-brainer!",
+    "standard": "Accepting that offer is an easy decision.",
+    "formal": "Accepting the proposal is the most prudent course of action.",
+    "note": "“a no-brainer” kafa yormayı gerektirmeyecek kadar mantıklı ve açık seçim demektir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-clothes",
+    "language": "en",
+    "tr": "üstü başı çok şık",
+    "informal": "Check out his sharp outfit, looking slick!",
+    "standard": "He is wearing very stylish clothes.",
+    "formal": "He is dressed in most distinguished attire.",
+    "note": "Gençlik argosunda “outfit” kısaca “fit” (“nice fit!”) olarak da çok kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-gossip",
+    "language": "en",
+    "tr": "anlat bakalım neler döndü, dedikoduyu dökül",
+    "informal": "Come on, spill the tea! What happened?",
+    "standard": "Tell me the news—what happened?",
+    "formal": "Pray inform me of the recent developments.",
+    "note": "“spill the tea” (veya “spill the beans”) güncel konuşma dilinde “dedikoduyu/sırrı dökül” demektir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-ignore",
+    "language": "en",
+    "tr": "umurumda bile değil, ne hali varsa görsün",
+    "informal": "Honestly, I couldn't care less.",
+    "standard": "It really doesn't matter to me.",
+    "formal": "The matter is of no consequence to me whatsoever.",
+    "note": "ABD konuşma dilinde bazen yanlışlıkla “I could care less” dense de standart ve mantıklı biçimi “couldn’t care less”tir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r7-hangout",
+    "language": "en",
+    "tr": "bu akşam takılalım mı?",
+    "informal": "Wanna hang out at mine tonight?",
+    "standard": "Would you like to spend time at my place tonight?",
+    "formal": "Would you care to join me at my residence this evening?",
+    "note": "“at mine” (benim evde) Britanya konuşma dilinde çok pratiktir; ABD’de “at my place” tercih edilir.",
+    "source": "Diloloji (özgün)"
+  }
+]

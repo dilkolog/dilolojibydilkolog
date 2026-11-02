@@ -9,7 +9,9 @@ const state = vi.hoisted(() => ({
   runSync: vi.fn(async (): Promise<unknown> => ({ skipped: 0 })),
   handle: { handle: '', findable: false },
   saveHandle: vi.fn(async (handle: string, findable: boolean) => ({ handle, findable })),
+  approvalOn: true,
 }))
+vi.mock('../data/access', () => ({ approvalEnabled: async () => state.approvalOn }))
 vi.mock('../data/instance', () => ({ db: { meta: { get: async (key: string) => (state.meta.has(key) ? { value: state.meta.get(key) } : undefined) } } }))
 vi.mock('../data/supabase', () => ({ currentIdentity: async () => null, signInWithGoogle: async () => undefined, supabaseConfigured: () => true }))
 vi.mock('./syncRunner', async () => {
@@ -43,6 +45,7 @@ beforeEach(() => {
   state.runSync.mockClear()
   state.saveHandle.mockClear()
   state.handle = { handle: '', findable: false }
+  state.approvalOn = true
 })
 afterEach(() => {
   act(() => root?.unmount())
@@ -68,6 +71,19 @@ describe('AccountSettings sync', () => {
     state.meta.set('syncSize', 4_000_000)
     await mount()
     expect(host.textContent).toContain('sınırına yaklaşıyor')
+  })
+
+  it('shows the verified blossom mark beside the name when approved and approval is on, and hides it when approval is off', async () => {
+    await mount()
+    const mark = host.querySelector('.account-name-line .verified-mark')
+    expect(mark).toBeTruthy()
+    expect(mark?.getAttribute('aria-label')).toBe('Onaylı hesap')
+    expect(host.querySelector('.status-pill')).toBeNull()
+    act(() => root?.unmount())
+    document.body.innerHTML = ''
+    state.approvalOn = false
+    await mount()
+    expect(host.querySelector('.verified-mark')).toBeNull()
   })
 
   it('keeps saying what the last sync left behind, even when it ran in the background', async () => {

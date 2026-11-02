@@ -1,128 +1,136 @@
 [
- {
-  "id": "fr-eat",
-  "language": "fr",
-  "tr": "yemek yemek",
-  "informal": "bouffer",
-  "standard": "manger",
-  "formal": "se restaurer",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-car",
-  "language": "fr",
-  "tr": "araba",
-  "informal": "la bagnole",
-  "standard": "la voiture",
-  "formal": "le véhicule",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-money",
-  "language": "fr",
-  "tr": "para",
-  "informal": "le fric",
-  "standard": "l'argent",
-  "formal": "les fonds",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-tired",
-  "language": "fr",
-  "tr": "yorgun",
-  "informal": "crevé",
-  "standard": "fatigué",
-  "formal": "exténué",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-great",
-  "language": "fr",
-  "tr": "harika",
-  "informal": "super",
-  "standard": "très bien",
-  "formal": "remarquable",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-job",
-  "language": "fr",
-  "tr": "iş (çalışma)",
-  "informal": "le boulot",
-  "standard": "le travail",
-  "formal": "l'emploi",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-leave",
-  "language": "fr",
-  "tr": "gitmek, ayrılmak",
-  "informal": "se tirer",
-  "standard": "partir",
-  "formal": "se retirer",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-howareyou",
-  "language": "fr",
-  "tr": "nasılsın?",
-  "informal": "Ça roule ?",
-  "standard": "Comment ça va ?",
-  "formal": "Comment allez-vous ?",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-goodbye",
-  "language": "fr",
-  "tr": "hoşça kal",
-  "informal": "À plus !",
-  "standard": "Au revoir",
-  "formal": "Je vous souhaite une bonne journée",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-misunderstood",
-  "language": "fr",
-  "tr": "anlamadım",
-  "informal": "J'ai rien capté",
-  "standard": "Je n'ai pas compris",
-  "formal": "Je n'ai pas saisi",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-alot",
-  "language": "fr",
-  "tr": "çok (sayıda)",
-  "informal": "plein de",
-  "standard": "beaucoup de",
-  "formal": "de nombreux",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-dontknow",
-  "language": "fr",
-  "tr": "bilmiyorum",
-  "informal": "J'en sais rien",
-  "standard": "Je ne sais pas",
-  "formal": "Je l'ignore",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-okay",
-  "language": "fr",
-  "tr": "tamam",
-  "informal": "Ok",
-  "standard": "D'accord",
-  "formal": "Entendu",
-  "source": "Diloloji (özgün)"
- },
- {
-  "id": "fr-house",
-  "language": "fr",
-  "tr": "ev",
-  "informal": "la baraque",
-  "standard": "la maison",
-  "formal": "la demeure",
-  "source": "Diloloji (özgün)"
- }
+  {
+    "id": "fr-eat",
+    "language": "fr",
+    "tr": "yemek yemek",
+    "informal": "bouffer",
+    "standard": "manger",
+    "formal": "se restaurer",
+    "source": "Diloloji (özgün)",
+    "note": "“bouffer” günlük/sokak dilinde çok yaygındır (la bouffe = yemek); ancak tanımadıklarınla ya da iş yemeğinde kaba kaçar."
+  },
+  {
+    "id": "fr-car",
+    "language": "fr",
+    "tr": "araba",
+    "informal": "la bagnole",
+    "standard": "la voiture",
+    "formal": "le véhicule",
+    "source": "Diloloji (özgün)",
+    "note": "“la bagnole” argoda araba demektir; Kanada (Québec) Fransızcasında günlük dilde “le char” denir."
+  },
+  {
+    "id": "fr-money",
+    "language": "fr",
+    "tr": "para",
+    "informal": "le fric",
+    "standard": "l'argent",
+    "formal": "les fonds",
+    "source": "Diloloji (özgün)",
+    "note": "“le fric” yanında “la thune”, “le blé” ve “l’oseille” de sokak dilinde para anlamında sık duyulur."
+  },
+  {
+    "id": "fr-tired",
+    "language": "fr",
+    "tr": "yorgun",
+    "informal": "crevé",
+    "standard": "fatigué",
+    "formal": "exténué",
+    "source": "Diloloji (özgün)",
+    "note": "“crevé” (patlamış/bitmiş) arkadaş arasında çok doğaldır; iş ortamında “fatigué” tercih edilir."
+  },
+  {
+    "id": "fr-great",
+    "language": "fr",
+    "tr": "harika",
+    "informal": "super",
+    "standard": "très bien",
+    "formal": "remarquable",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-job",
+    "language": "fr",
+    "tr": "iş (çalışma)",
+    "informal": "le boulot",
+    "standard": "le travail",
+    "formal": "l'emploi",
+    "source": "Diloloji (özgün)",
+    "note": "“le boulot” ve daha argo olan “le taf” Fransa’da günlük konuşmada “le travail”dan daha sık duyulur."
+  },
+  {
+    "id": "fr-leave",
+    "language": "fr",
+    "tr": "gitmek, ayrılmak",
+    "informal": "se tirer",
+    "standard": "partir",
+    "formal": "se retirer",
+    "source": "Diloloji (özgün)",
+    "note": "“se tirer” ve “se casser” sokak argosudur; resmî ortamda kesinlikle kullanılmaz."
+  },
+  {
+    "id": "fr-howareyou",
+    "language": "fr",
+    "tr": "nasılsın?",
+    "informal": "Ça roule ?",
+    "standard": "Comment ça va ?",
+    "formal": "Comment allez-vous ?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-goodbye",
+    "language": "fr",
+    "tr": "hoşça kal",
+    "informal": "À plus !",
+    "standard": "Au revoir",
+    "formal": "Je vous souhaite une bonne journée",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-misunderstood",
+    "language": "fr",
+    "tr": "anlamadım",
+    "informal": "J'ai rien capté",
+    "standard": "Je n'ai pas compris",
+    "formal": "Je n'ai pas saisi",
+    "source": "Diloloji (özgün)",
+    "note": "“capter” (sinyal yakalamak) ve “piger” gençler arasında “comprendre” yerine çok yaygındır."
+  },
+  {
+    "id": "fr-alot",
+    "language": "fr",
+    "tr": "çok (sayıda)",
+    "informal": "plein de",
+    "standard": "beaucoup de",
+    "formal": "de nombreux",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-dontknow",
+    "language": "fr",
+    "tr": "bilmiyorum",
+    "informal": "J'en sais rien",
+    "standard": "Je ne sais pas",
+    "formal": "Je l'ignore",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-okay",
+    "language": "fr",
+    "tr": "tamam",
+    "informal": "Ok",
+    "standard": "D'accord",
+    "formal": "Entendu",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-house",
+    "language": "fr",
+    "tr": "ev",
+    "informal": "la baraque",
+    "standard": "la maison",
+    "formal": "la demeure",
+    "source": "Diloloji (özgün)",
+    "note": "“la baraque” aslında kulübe demektir, argoda ev için kullanılır; resmî yazıda “le domicile” de görülür."
+  }
 ]

@@ -8,8 +8,9 @@ import { createRng, pick } from '../../engine/rng'
 import type { ExerciseType, TargetLanguage, UserWordState, VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { SAMPLE_WORDS } from '../../data/seed'
-import { BOSS_ART } from '../drawnArt'
-import { HeartIcon, SpeakerIcon, SwordsIcon, TrophyIcon } from '../icons'
+import { BOSS_ART, STICKER } from '../drawnArt'
+import { Confetti } from '../Confetti'
+import { HeartIcon, SpeakerIcon, SwordsIcon } from '../icons'
 import { LANGUAGE_NAME, PROMPT_TEXT } from '../labels'
 import { prefs } from '../prefs'
 import { sfx } from '../sounds'
@@ -128,6 +129,7 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
   const [ex, setEx] = useState<Exercise>(() => next())
   const [hp, setHp] = useState(boss.hp)
   const [hearts, setHearts] = useState(PLAYER_HEARTS)
+  const [hit, setHit] = useState(false)
   const [result, setResult] = useState<{ ok: boolean; expected: string; damage: number } | null>(null)
   const [text, setText] = useState('')
   const [outcome, setOutcome] = useState<'won' | 'lost' | null>(null)
@@ -142,8 +144,11 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
     if (result || outcome) return
     void recordPractice(entry, state, ex.type, ok || near, performance.now() - shownAt.current)
     const damage = ok ? DAMAGE[ex.kind] : near ? 1 : 0
-    if (ok || near) sfx.correct()
-    else sfx.wrong()
+    if (ok || near) {
+      sfx.correct()
+      setHit(true)
+      setTimeout(() => setHit(false), 550)
+    } else sfx.wrong()
     setResult({ ok: ok || near, expected, damage })
     const nextHp = Math.max(0, hp - damage)
     const nextHearts = ok || near ? hearts : hearts - 1
@@ -186,7 +191,7 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
   return (
     <div className="stack battle">
       <div className="battle-top">
-        <img className={`boss-face boss-face-big${outcome === 'won' ? ' boss-beaten' : ''}`} src={face} alt="" draggable={false} />
+        <img className={`boss-face boss-face-big${hit ? ' is-hit' : ''}${outcome === 'won' ? ' boss-beaten' : ''}`} src={face} alt="" draggable={false} />
         <div className="stack gap-xs grow">
           <div className="row justify-between">
             <strong>{outcome === 'won' ? displayForm(entry) : 'Gizemli kelime'}</strong>
@@ -197,7 +202,8 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
             </span>
           </div>
           <div className="boss-hp" role="progressbar" aria-label="Boss canı" aria-valuenow={hp} aria-valuemin={0} aria-valuemax={boss.hp}>
-            <div style={{ width: `${(hp / boss.hp) * 100}%` }} />
+            <div className="boss-hp-trail" style={{ width: `${(hp / boss.hp) * 100}%` }} />
+            <div className="boss-hp-fill" style={{ width: `${(hp / boss.hp) * 100}%` }} />
           </div>
           <span className="small muted">
             {hp} / {boss.hp} can{result?.damage ? ` · -${result.damage}!` : ''}
@@ -207,10 +213,15 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
 
       {outcome ? (
         <div className="game-result">
+          {outcome === 'won' && <Confetti count={40} />}
           <div className="game-result-card">
-            <span className={`game-result-badge${outcome === 'won' ? ' is-record' : ''}`} aria-hidden>
-              {outcome === 'won' ? <TrophyIcon size={34} /> : <SwordsIcon size={32} />}
-            </span>
+            {outcome === 'won' ? (
+              <img src={STICKER.star} alt="" className="game-result-mascot" draggable={false} />
+            ) : (
+              <span className="game-result-badge" aria-hidden>
+                <SwordsIcon size={32} />
+              </span>
+            )}
             <h1 className="game-result-title">{outcome === 'won' ? 'Boss yenildi!' : 'Boss kazandı'}</h1>
             <p className="game-result-headline">{outcome === 'won' ? `+${BOSS_XP} XP` : 'Bir dahaki sefere hazır ol'}</p>
             <p className="boss-answer">

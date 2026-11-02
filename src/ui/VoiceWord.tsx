@@ -106,7 +106,19 @@ export function VoiceWord({ db, language, vocabulary, onAdded }: { db: KelimeDB;
         {!apiKey && <p className="small muted">{needsApproval ? 'YZ özellikleri hesabının onaylanmasını bekliyor.' : 'Bunun için Ayarlar → YZ yardımcısı bölümünde bir anahtar gerekiyor.'}</p>}
         <div className="row">
           <button type="button" className="btn btn-quiet" onClick={say} disabled={!apiKey || busy} aria-pressed={listening}>
-            {listening ? 'Dinliyorum… (bitirmek için dokun)' : 'Söyle'}
+            {listening ? (
+              <>
+                <span className="voice-wave active" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </span>
+                Dinliyorum… (bitirmek için dokun)
+              </>
+            ) : (
+              'Söyle'
+            )}
           </button>
         </div>
         {(heard || guesses.length > 0) && (

@@ -51,7 +51,8 @@
     "informal": "My bad!",
     "standard": "I'm sorry",
     "formal": "Please accept my sincere apologies",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“My bad!” Amerikan sokak/spor dilinden dünyaya yayılmış “benim hatam” ifadesidir; iş yazışmasına girmez."
   },
   {
     "id": "en-object-disagree",
@@ -114,7 +115,8 @@
     "informal": "Check, please!",
     "standard": "Could we have the bill, please?",
     "formal": "May we request the check at your earliest convenience?",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“Check, please!” Amerikan İngilizcesidir; Britanya’da restoranda “Bill, please!” denir."
   },
   {
     "id": "en-dir-station",

@@ -3,6 +3,7 @@ import { wiktionaryUrl } from '../data/dictionary'
 import { parseMeanings } from '../engine/dictionaryNotes'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { BookIcon, CheckIcon, PlusIcon, TagIcon } from './icons'
+import { ANIMATED_MONKI } from './drawnArt'
 import { OtherLanguageVerb } from './DictionaryCard'
 import { MeaningLookupButtons } from './MeaningLookupButtons'
 import { useMeaningLookup } from './useMeaningLookup'
@@ -115,9 +116,17 @@ export function NotFound({
         </>
       ) : (
         <>
-          <p>
-            “<span lang={language}>{word}</span>” sözlük paketinde veya kelimelerinde henüz yok{hasSimilar ? ' (benzerleri aşağıda)' : ''}. Anlamını biliyorsan yazıp kaydedebilirsin:
-          </p>
+          <div className="row items-center gap-sm notfound-header">
+            <img src={ANIMATED_MONKI.wink} alt="" className="notfound-monki" draggable={false} />
+            <div className="stack gap-2xs">
+              <p className="notfound-title">
+                “<span lang={language}>{word}</span>” sözlük paketinde veya kelimelerinde henüz yok{hasSimilar ? ' (benzerleri aşağıda)' : ''}.
+              </p>
+              <p className="small muted">
+                Anlamını biliyorsan hemen yazıp kaydedebilir ya da tek tıkla DeepL / YZ ile getirebilirsin:
+              </p>
+            </div>
+          </div>
           <form
             className="row gap-xs items-center"
             onSubmit={(e) => {

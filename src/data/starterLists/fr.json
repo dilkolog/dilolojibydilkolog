@@ -1831,6 +1831,586 @@
      "p": "adjective"
     }
    ]
+  },
+  {
+   "id": "street_slang",
+   "title": "Günlük sokak dili ve argo",
+   "level": "B1",
+   "items": [
+    {
+     "w": "chelou",
+     "t": "tuhaf, şüpheli (verlan)",
+     "s": "Ce message anonyme est vraiment chelou.",
+     "tr": "Bu isimsiz mesaj gerçekten çok tuhaf.",
+     "p": "adj"
+    },
+    {
+     "w": "relou",
+     "t": "bunaltıcı, gıcık, sıkıcı (verlan)",
+     "s": "Arrête d'insister, tu deviens relou.",
+     "tr": "Israr etmeyi bırak, bunaltıcı olmaya başladın.",
+     "p": "adj"
+    },
+    {
+     "w": "ouf",
+     "t": "çılgın, inanılmaz (verlan)",
+     "s": "On a vu un concert de ouf hier soir.",
+     "tr": "Dün akşam inanılmaz bir konser izledik.",
+     "p": "adj"
+    },
+    {
+     "w": "kiffer",
+     "t": "bayılmak, çok keyif almak",
+     "s": "Je kiffe cette série depuis le premier épisode.",
+     "tr": "İlk bölümden beri bu diziye bayılıyorum.",
+     "p": "verb"
+    },
+    {
+     "w": "le boulot",
+     "t": "iş, çalışma (günlük)",
+     "s": "Je finis le boulot vers dix-huit heures.",
+     "tr": "İşi akşam altı gibi bitiriyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "la flemme",
+     "t": "üşengeçlik, tembellik",
+     "s": "J'ai la flemme de cuisiner ce soir.",
+     "tr": "Bu akşam yemek yapmaya üşeniyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "du coup",
+     "t": "hal böyle olunca, sonuçta, ee",
+     "s": "Il pleuvait, du coup on est restés dedans.",
+     "tr": "Yağmur yağıyordu, hal böyle olunca içeride kaldık.",
+     "p": "phrase"
+    },
+    {
+     "w": "carrément",
+     "t": "kesinlikle, resmen, tamamen",
+     "s": "Tu viens avec nous ? — Carrément !",
+     "tr": "Bizimle geliyor musun? — Kesinlikle!",
+     "p": "adv"
+    },
+    {
+     "w": "la galère",
+     "t": "eziyet, çile, büyük aksilik",
+     "s": "Trouver une place ici, quelle galère !",
+     "tr": "Burada park yeri bulmak ne büyük çile!",
+     "p": "noun"
+    },
+    {
+     "w": "un pote",
+     "t": "kanka, yakın arkadaş",
+     "s": "Je retrouve un pote devant le métro.",
+     "tr": "Metronun önünde bir arkadaşımla buluşuyorum.",
+     "p": "noun"
+    },
+    {
+     "w": "bosser",
+     "t": "çalışmak, ineklemek (günlük)",
+     "s": "Elle bosse dur pour réussir son concours.",
+     "tr": "Sınavını kazanmak için sıkı çalışıyor.",
+     "p": "verb"
+    },
+    {
+     "w": "le fric",
+     "t": "para, mangır (argo)",
+     "s": "Il a claqué tout son fric en deux jours.",
+     "tr": "Bütün parasını iki günde harcayıp bitirdi.",
+     "p": "noun"
+    },
+    {
+     "w": "se planter",
+     "t": "çuvallamak, yanılmak",
+     "s": "Je me suis planté à la dernière question.",
+     "tr": "Son soruda çuvalladım.",
+     "p": "verb"
+    },
+    {
+     "w": "une blinde",
+     "t": "bir servet, çok para (argo)",
+     "s": "Ce manteau coûte une blinde en boutique.",
+     "tr": "Bu palto mağazada bir servet tutuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "à la bourre",
+     "t": "geç kalmış, son dakikada",
+     "s": "Désolé, je suis encore à la bourre ce matin.",
+     "tr": "Kusura bakma, bu sabah yine geç kaldım.",
+     "p": "phrase"
+    },
+    {
+     "w": "laisser tomber",
+     "t": "boş vermek, vazgeçmek",
+     "s": "Laisse tomber, ça n'en vaut pas la peine.",
+     "tr": "Boş ver, buna değmez.",
+     "p": "phrase"
+    }
+   ]
+  },
+  {
+   "id": "idioms_everyday",
+   "title": "Canlı deyimler ve konuşma kalıpları",
+   "level": "B2",
+   "items": [
+    {
+     "w": "poser un lapin",
+     "t": "randevuya gelmemek, ekmek",
+     "s": "Il m'a posé un lapin au restaurant.",
+     "tr": "Restoranda beni ekti, buluşmaya gelmedi.",
+     "p": "phrase"
+    },
+    {
+     "w": "avoir le coup de foudre",
+     "t": "ilk görüşte âşık olmak / vurulmak",
+     "s": "Ils ont eu le coup de foudre à Lyon.",
+     "tr": "Lyon’da birbirlerine ilk görüşte vuruldular.",
+     "p": "phrase"
+    },
+    {
+     "w": "tomber dans les pommes",
+     "t": "bayılmak",
+     "s": "Il faisait si chaud qu’il est tombé dans les pommes.",
+     "tr": "Hava o kadar sıcaktı ki bayıldı.",
+     "p": "phrase"
+    },
+    {
+     "w": "coûter les yeux de la tête",
+     "t": "ateş pahası olmak",
+     "s": "Les loyers ici coûtent les yeux de la tête.",
+     "tr": "Burada kiralar ateş pahası.",
+     "p": "phrase"
+    },
+    {
+     "w": "mettre les pieds dans le plat",
+     "t": "pot kırmak, çam devirmek",
+     "s": "Sans le vouloir, il a mis les pieds dans le plat.",
+     "tr": "İstemeden fena çam devirdi.",
+     "p": "phrase"
+    },
+    {
+     "w": "avoir du pain sur la planche",
+     "t": "yapacak çok işi olmak",
+     "s": "On a du pain sur la planche avant vendredi.",
+     "tr": "Cumaya kadar yapacak dünya kadar işimiz var.",
+     "p": "phrase"
+    },
+    {
+     "w": "donner sa langue au chat",
+     "t": "pes etmek, bilemeyip cevabı sormak",
+     "s": "Je ne devine pas, je donne ma langue au chat.",
+     "tr": "Tahmin edemiyorum, pes ettim söyle bakalım.",
+     "p": "phrase"
+    },
+    {
+     "w": "tourner autour du pot",
+     "t": "lafı dolandırmak",
+     "s": "Ne tourne pas autour du pot, dis la vérité.",
+     "tr": "Lafı dolandırma, gerçeği söyle.",
+     "p": "phrase"
+    },
+    {
+     "w": "couper la poire en deux",
+     "t": "orta yolu bulmak, yarı yarıya anlaşmak",
+     "s": "On a coupé la poire en deux sur le tarif.",
+     "tr": "Fiyat konusunda orta yolu bulduk.",
+     "p": "phrase"
+    },
+    {
+     "w": "en faire tout un fromage",
+     "t": "pireyi deve yapmak, büyütmek",
+     "s": "Ce n'est qu'un détail, n'en fais pas tout un fromage.",
+     "tr": "Altı üstü bir ayrıntı, pireyi deve yapma.",
+     "p": "phrase"
+    },
+    {
+     "w": "se creuser la tête",
+     "t": "kafa patlatmak",
+     "s": "Je me creuse la tête pour trouver une solution.",
+     "tr": "Bir çözüm bulmak için kafa patlatıyorum.",
+     "p": "phrase"
+    },
+    {
+     "w": "prendre ses jambes à son cou",
+     "t": "tabanları yağlamak, hızla kaçmak",
+     "s": "En voyant le chien, il a pris ses jambes à son cou.",
+     "tr": "Köpeği görünce tabanları yağladı.",
+     "p": "phrase"
+    },
+    {
+     "w": "passer une nuit blanche",
+     "t": "gözünü kırpmadan sabahlamak",
+     "s": "J'ai passé une nuit blanche avant l'examen.",
+     "tr": "Sınavdan önce gözümü kırpmadan sabahladım.",
+     "p": "phrase"
+    },
+    {
+     "w": "chercher midi à quatorze heures",
+     "t": "işi yokuşa sürmek, gereksiz zorlaştırmak",
+     "s": "Ne cherche pas midi à quatorze heures, fais simple.",
+     "tr": "İşi boşuna karmaşıklaştırma, basit tut.",
+     "p": "phrase"
+    },
+    {
+     "w": "avoir un chat dans la gorge",
+     "t": "sesi kısılmak, boğazı düğümlenmek",
+     "s": "Pardon, j'ai un chat dans la gorge ce matin.",
+     "tr": "Affedersiniz, bu sabah boğazım biraz kısık.",
+     "p": "phrase"
+    },
+    {
+     "w": "être dans la lune",
+     "t": "dalıp gitmek, aklı bir karış havada olmak",
+     "s": "Tu m’écoutes ou tu es encore dans la lune ?",
+     "tr": "Beni dinliyor musun yoksa yine dalıp gittin mi?",
+     "p": "phrase"
+    }
+   ]
+  },
+  {
+   "id": "work_career",
+   "title": "İş hayatı, mülakat ve kariyer",
+   "level": "B1",
+   "items": [
+    {
+     "w": "la candidature",
+     "t": "başvuru, adaylık",
+     "s": "J'ai envoyé ma candidature pour ce poste hier.",
+     "tr": "Bu pozisyon için başvurumu dün gönderdim.",
+     "p": "noun"
+    },
+    {
+     "w": "l'entretien",
+     "t": "iş görüşmesi, mülakat; bakım",
+     "s": "Mon entretien d'embauche s'est très bien passé.",
+     "tr": "İş görüşmem çok iyi geçti.",
+     "p": "noun",
+     "g": "m"
+    },
+    {
+     "w": "la compétence",
+     "t": "yetkinlik, beceri",
+     "s": "Cette mission exige une solide compétence technique.",
+     "tr": "Bu görev sağlam bir teknik yetkinlik gerektiriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "le délai",
+     "t": "teslim süresi, mühlet",
+     "s": "Nous devons respecter le délai fixé par le client.",
+     "tr": "Müşterinin belirlediği teslim süresine uymalıyız.",
+     "p": "noun"
+    },
+    {
+     "w": "le télétravail",
+     "t": "uzaktan çalışma",
+     "s": "Notre équipe fait du télétravail deux jours par semaine.",
+     "tr": "Ekibimiz haftada iki gün uzaktan çalışıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "embaucher",
+     "t": "işe almak",
+     "s": "L'entreprise compte embaucher dix ingénieurs cet automne.",
+     "tr": "Şirket bu sonbahar on mühendis işe almayı planlıyor.",
+     "p": "verb"
+    },
+    {
+     "w": "démissionner",
+     "t": "istifa etmek",
+     "s": "Il a décidé de démissionner pour lancer son atelier.",
+     "tr": "Kendi atölyesini kurmak için istifa etmeye karar verdi.",
+     "p": "verb"
+    },
+    {
+     "w": "la promotion",
+     "t": "terfi, yükselme",
+     "s": "Elle a obtenu une belle promotion après deux ans.",
+     "tr": "İki yılın ardından güzel bir terfi aldı.",
+     "p": "noun"
+    },
+    {
+     "w": "le salaire",
+     "t": "maaş, ücret",
+     "s": "Ils ont négocié le salaire avant de signer.",
+     "tr": "İmzalamadan önce maaşı müzakere ettiler.",
+     "p": "noun"
+    },
+    {
+     "w": "le stage",
+     "t": "staj, uygulamalı eğitim",
+     "s": "Elle effectue un stage de six mois dans l'édition.",
+     "tr": "Yayıncılık alanında altı aylık bir staj yapıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "gérer",
+     "t": "yönetmek, idare etmek",
+     "s": "Il sait gérer les urgences avec beaucoup de calme.",
+     "tr": "Acil durumları büyük bir sakinlikle yönetmeyi biliyor.",
+     "p": "verb"
+    },
+    {
+     "w": "atteindre",
+     "t": "ulaşmak, erişmek (hedef)",
+     "s": "Nous avons réussi à atteindre tous nos objectifs.",
+     "tr": "Tüm hedeflerimize ulaşmayı başardık.",
+     "p": "verb"
+    },
+    {
+     "w": "la charge de travail",
+     "t": "iş yükü",
+     "s": "La charge de travail augmente toujours en fin d’année.",
+     "tr": "İş yükü yıl sonunda her zaman artar.",
+     "p": "noun"
+    },
+    {
+     "w": "polyvalent",
+     "t": "çok yönlü, çok işlevli",
+     "s": "On recherche un profil polyvalent et autonome.",
+     "tr": "Çok yönlü ve bağımsız çalışabilen bir profil aranıyor.",
+     "p": "adj"
+    },
+    {
+     "w": "le compte rendu",
+     "t": "tutanak, özet rapor",
+     "s": "Je vous enverrai le compte rendu dès cet après-midi.",
+     "tr": "Toplantı tutanağını bu öğleden sonra size göndereceğim.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "media_society",
+   "title": "Medya, gündem ve toplum",
+   "level": "B2",
+   "items": [
+    {
+     "w": "l'actualité",
+     "t": "gündem, güncel olaylar",
+     "s": "Je suis l'actualité internationale chaque matin.",
+     "tr": "Her sabah uluslararası gündemi takip ederim.",
+     "p": "noun",
+     "g": "f"
+    },
+    {
+     "w": "le sondage",
+     "t": "anket, kamuoyu yoklaması",
+     "s": "D'après ce sondage, les habitudes de lecture évoluent.",
+     "tr": "Bu ankete göre okuma alışkanlıkları değişiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "le témoin",
+     "t": "tanık, şahit",
+     "s": "Un témoin a décrit toute la scène aux journalistes.",
+     "tr": "Bir görgü tanığı bütün sahneyi gazetecilere anlattı.",
+     "p": "noun"
+    },
+    {
+     "w": "la rumeur",
+     "t": "söylenti, şayia",
+     "s": "Cette rumeur circule sur les réseaux depuis hier.",
+     "tr": "Bu söylenti dünden beri ağlarda dolaşıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "sensibiliser",
+     "t": "bilinçlendirmek, farkındalık yaratmak",
+     "s": "Cette campagne vise à sensibiliser le public au tri.",
+     "tr": "Bu kampanya halkı geri dönüşüm konusunda bilinçlendirmeyi amaçlıyor.",
+     "p": "verb"
+    },
+    {
+     "w": "le citoyen",
+     "t": "vatandaş, yurttaş",
+     "s": "Chaque citoyen peut participer au débat municipal.",
+     "tr": "Her yurttaş belediye tartışmasına katılabilir.",
+     "p": "noun"
+    },
+    {
+     "w": "l'inégalité",
+     "t": "eşitsizlik",
+     "s": "Réduire l'inégalité scolaire reste un défi majeur.",
+     "tr": "Eğitimdeki eşitsizliği azaltmak büyük bir sınama olmayı sürdürüyor.",
+     "p": "noun",
+     "g": "f"
+    },
+    {
+     "w": "fiable",
+     "t": "güvenilir",
+     "s": "Vérifiez toujours que la source soit vraiment fiable.",
+     "tr": "Kaynağın gerçekten güvenilir olduğunu her zaman doğrulayın.",
+     "p": "adj"
+    },
+    {
+     "w": "la censure",
+     "t": "sansür",
+     "s": "Le journal a protesté contre toute forme de censure.",
+     "tr": "Gazete her türlü sansüre karşı çıktı.",
+     "p": "noun"
+    },
+    {
+     "w": "diffuser",
+     "t": "yayınlamak, yaymak",
+     "s": "La chaîne va diffuser ce documentaire mardi soir.",
+     "tr": "Kanal bu belgeseli salı akşamı yayınlayacak.",
+     "p": "verb"
+    },
+    {
+     "w": "le préjugé",
+     "t": "önyargı",
+     "s": "Voyager aide souvent à dépasser ses propres préjugés.",
+     "tr": "Seyahat etmek çoğu zaman insanın kendi önyargılarını aşmasına yardım eder.",
+     "p": "noun"
+    },
+    {
+     "w": "la manifestation",
+     "t": "gösteri, yürüyüş; etkinlik",
+     "s": "La manifestation pacifique a traversé le boulevard.",
+     "tr": "Barışçıl yürüyüş bulvar boyunca ilerledi.",
+     "p": "noun"
+    },
+    {
+     "w": "l'enjeu",
+     "t": "kritik mesele, kazanılacak/kaybedilecek şey",
+     "s": "La transition énergétique est un enjeu mondial.",
+     "tr": "Enerji dönüşümü küresel çapta kritik bir meseledir.",
+     "p": "noun",
+     "g": "m"
+    },
+    {
+     "w": "bouleverser",
+     "t": "altüst etmek, derinden sarsmak",
+     "s": "L'imprimerie a bouleversé la circulation du savoir.",
+     "tr": "Matbaa bilginin dolaşımını kökten değiştirdi.",
+     "p": "verb"
+    },
+    {
+     "w": "le bénévole",
+     "t": "gönüllü",
+     "s": "Cent bénévoles distribuent des repas chauds ce soir.",
+     "tr": "Yüz gönüllü bu akşam sıcak yemek dağıtıyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "academic_debate",
+   "title": "Akademik söylem ve argümantasyon",
+   "level": "C1",
+   "items": [
+    {
+     "w": "néanmoins",
+     "t": "bununla birlikte, yine de",
+     "s": "La méthode est lente ; néanmoins, elle reste précise.",
+     "tr": "Yöntem yavaş; bununla birlikte hassasiyetini koruyor.",
+     "p": "adv"
+    },
+    {
+     "w": "en revanche",
+     "t": "buna karşılık, öte yandan",
+     "s": "Le premier essai a échoué ; en revanche, le second a réussi.",
+     "tr": "İlk deneme başarısız oldu; buna karşılık ikincisi başarılıydı.",
+     "p": "phrase"
+    },
+    {
+     "w": "susciter",
+     "t": "uyandırmak, yol açmak (merak/tartışma)",
+     "s": "Sa thèse a suscité un vif débat parmi les historiens.",
+     "tr": "Tezi tarihçiler arasında hararetli bir tartışma uyandırdı.",
+     "p": "verb"
+    },
+    {
+     "w": "nuancer",
+     "t": "incelik katmak, mutlaklıktan çıkarıp yumuşatmak",
+     "s": "Il convient de nuancer ce jugement trop rapide.",
+     "tr": "Fazla aceleci bu yargıyı nüanslandırıp yumuşatmak gerekir.",
+     "p": "verb"
+    },
+    {
+     "w": "l'hypothèse",
+     "t": "varsayım, hipotez",
+     "s": "Les mesures confirment l'hypothèse initiale des chercheurs.",
+     "tr": "Ölçümler araştırmacıların başlangıç varsayımını doğruluyor.",
+     "p": "noun",
+     "g": "f"
+    },
+    {
+     "w": "pertinent",
+     "t": "yerinde, konuyla doğrudan ilgili",
+     "s": "Vous venez de soulever une question très pertinente.",
+     "tr": "Az önce son derece yerinde bir soru gündeme getirdiniz.",
+     "p": "adj"
+    },
+    {
+     "w": "remettre en question",
+     "t": "sorgulamak, tartışmaya açmak",
+     "s": "Cette découverte remet en question le modèle classique.",
+     "tr": "Bu keşif klasik modeli yeniden sorgulamaya açıyor.",
+     "p": "phrase"
+    },
+    {
+     "w": "le constat",
+     "t": "tespit, saptama",
+     "s": "Tous les experts partagent le même constat alarmant.",
+     "tr": "Tüm uzmanlar aynı kaygı verici tespiti paylaşıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "préconiser",
+     "t": "salık vermek, öncelikli olarak önermek",
+     "s": "Le rapport préconise une réforme prudente du système.",
+     "tr": "Rapor sistemde temkinli bir reform yapılmasını öneriyor.",
+     "p": "verb"
+    },
+    {
+     "w": "l'ampleur",
+     "t": "boyut, kapsam, büyüklük",
+     "s": "Personne n'avait prévu l'ampleur de ce phénomène.",
+     "tr": "Kimse bu olgunun boyutunu öngörmemişti.",
+     "p": "noun",
+     "g": "f"
+    },
+    {
+     "w": "étayer",
+     "t": "kanıtla desteklemek, temellendirmek",
+     "s": "Vous devez étayer votre argumentation par des chiffres.",
+     "tr": "Argümanınızı rakamlarla desteklemelisiniz.",
+     "p": "verb"
+    },
+    {
+     "w": "par conséquent",
+     "t": "dolayısıyla, sonuç olarak",
+     "s": "Les données manquent ; par conséquent, la prudence s’impose.",
+     "tr": "Veriler eksik; dolayısıyla ihtiyatlı olmak şart.",
+     "p": "phrase"
+    },
+    {
+     "w": "ambigu",
+     "t": "muğlak, iki anlamlı",
+     "s": "La formulation de cet article demeure trop ambiguë.",
+     "tr": "Bu maddenin ifadesi fazla muğlak kalıyor.",
+     "p": "adj"
+    },
+    {
+     "w": "aboutir",
+     "t": "sonuçlanmak, bir noktaya varmak",
+     "s": "Les négociations ont fini par aboutir à un accord.",
+     "tr": "Müzakereler sonunda bir anlaşmayla neticelendi.",
+     "p": "verb"
+    },
+    {
+     "w": "irréfutable",
+     "t": "çürütülemez, su götürmez",
+     "s": "Elle a présenté une preuve scientifique irréfutable.",
+     "tr": "Çürütülemez bir bilimsel kanıt sundu.",
+     "p": "adj"
+    }
+   ]
   }
  ]
 }

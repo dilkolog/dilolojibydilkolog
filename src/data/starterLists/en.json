@@ -1828,6 +1828,580 @@
      "p": "adjective"
     }
    ]
+  },
+  {
+   "id": "street_slang",
+   "title": "Günlük sokak dili ve argo",
+   "level": "B1",
+   "items": [
+    {
+     "w": "spot on",
+     "t": "tam isabet, nokta atışı",
+     "s": "Your guess about the ending was spot on.",
+     "tr": "Sonu hakkındaki tahminin tam isabetti.",
+     "p": "adj"
+    },
+    {
+     "w": "rip-off",
+     "t": "kazık, fahiş fiyatlı şey",
+     "s": "Ten dollars for water is a total rip-off.",
+     "tr": "Suya on dolar vermek tam bir kazık.",
+     "p": "noun"
+    },
+    {
+     "w": "no-brainer",
+     "t": "düşünmeye bile gerek olmayan net karar",
+     "s": "Joining that scholarship program was a no-brainer.",
+     "tr": "O burs programına katılmak hiç düşünmeden verilecek karardı.",
+     "p": "noun"
+    },
+    {
+     "w": "low-key",
+     "t": "inceden, açıkçası; abartısız",
+     "s": "I am low-key excited about moving abroad.",
+     "tr": "Yurt dışına taşınacağım için inceden heyecanlıyım.",
+     "p": "adv"
+    },
+    {
+     "w": "gutted",
+     "t": "yıkılmış, çok bozulmuş (UK günlük)",
+     "s": "He was gutted when they cancelled the match.",
+     "tr": "Maçı iptal ettiklerinde çok bozuldu.",
+     "p": "adj"
+    },
+    {
+     "w": "sketchy",
+     "t": "tekinsiz, şüpheli, güven vermeyen",
+     "s": "That dark alley looks a bit sketchy at night.",
+     "tr": "O karanlık ara sokak geceleri biraz tekinsiz görünüyor.",
+     "p": "adj"
+    },
+    {
+     "w": "bail",
+     "t": "son anda ekmek, erken tüymek",
+     "s": "Sorry to bail early, I have an early flight.",
+     "tr": "Erken kaçtığım için kusura bakmayın, sabah erken uçağım var.",
+     "p": "verb"
+    },
+    {
+     "w": "chill out",
+     "t": "sakinleşmek, kafa dinlemek",
+     "s": "Chill out, everything is under control.",
+     "tr": "Sakin ol, her şey kontrol altında.",
+     "p": "phrase"
+    },
+    {
+     "w": "fair enough",
+     "t": "haklısın, makul, peki öyle olsun",
+     "s": "You're too tired to drive? Fair enough.",
+     "tr": "Araba süremeyecek kadar yorgun musun? Makul, haklısın.",
+     "p": "phrase"
+    },
+    {
+     "w": "messed up",
+     "t": "yüzüne gözüne bulaştırdı; berbat",
+     "s": "I messed up the dates on my ticket.",
+     "tr": "Biletimdeki tarihleri yüzüme gözüme bulaştırdım.",
+     "p": "phrase"
+    },
+    {
+     "w": "broke",
+     "t": "beş parasız, meteliksiz",
+     "s": "Most students feel broke by the end of the month.",
+     "tr": "Çoğu öğrenci ay sonunda kendini beş parasız hisseder.",
+     "p": "adj"
+    },
+    {
+     "w": "freak out",
+     "t": "paniklemek, çıldırmak, ödü kopmak",
+     "s": "Don't freak out, I backed up all your files.",
+     "tr": "Panik yapma, tüm dosyalarını yedekledim.",
+     "p": "phrase"
+    },
+    {
+     "w": "hang out",
+     "t": "takılmak, vakit geçirmek",
+     "s": "Where do locals usually hang out on weekends?",
+     "tr": "Yerliler hafta sonları genelde nerede takılır?",
+     "p": "phrase"
+    },
+    {
+     "w": "knackered",
+     "t": "pestili çıkmış, bitkin (UK argo)",
+     "s": "After painting the flat all day, I was knackered.",
+     "tr": "Bütün gün daireyi boyadıktan sonra pestilim çıktı.",
+     "p": "adj"
+    },
+    {
+     "w": "heads-up",
+     "t": "önceden uyarı, haber verme",
+     "s": "Thanks for the heads-up about the traffic.",
+     "tr": "Trafik konusunda önceden haber verdiğin için sağ ol.",
+     "p": "noun"
+    },
+    {
+     "w": "ghost",
+     "t": "mesajları kesip sırra kadem basmak",
+     "s": "The recruiter ghosted me after the second round.",
+     "tr": "İşe alım uzmanı ikinci turdan sonra bana bir daha dönmedi.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "idioms_everyday",
+   "title": "Canlı deyimler ve konuşma kalıpları",
+   "level": "B2",
+   "items": [
+    {
+     "w": "beat around the bush",
+     "t": "lafı dolandırmak",
+     "s": "Stop beating around the bush and tell me.",
+     "tr": "Lafı dolandırmayı bırak da bana söyle.",
+     "p": "phrase"
+    },
+    {
+     "w": "hit the nail on the head",
+     "t": "tam üstüne basmak",
+     "s": "She hit the nail on the head with her critique.",
+     "tr": "Eleştirisiyle tam üstüne bastı.",
+     "p": "phrase"
+    },
+    {
+     "w": "bite the bullet",
+     "t": "dişini sıkıp zor işe girişmek",
+     "s": "I decided to bite the bullet and call the dentist.",
+     "tr": "Dişimi sıkıp dişçiyi aramaya karar verdim.",
+     "p": "phrase"
+    },
+    {
+     "w": "under the weather",
+     "t": "keyifsiz, biraz kırgın/hasta",
+     "s": "I am feeling a bit under the weather today.",
+     "tr": "Bugün kendimi biraz kırgın hissediyorum.",
+     "p": "phrase"
+    },
+    {
+     "w": "call it a day",
+     "t": "bugünlük paydos etmek, işi bitirmek",
+     "s": "It's almost midnight—let's call it a day.",
+     "tr": "Neredeyse gece yarısı oldu; hadi bugünlük paydos edelim.",
+     "p": "phrase"
+    },
+    {
+     "w": "cut corners",
+     "t": "kolaya/ucuza kaçıp kaliteden ödün vermek",
+     "s": "Never cut corners when it comes to safety.",
+     "tr": "Konu güvenlik olduğunda asla ucuza ve kolaya kaçma.",
+     "p": "phrase"
+    },
+    {
+     "w": "get out of hand",
+     "t": "çığırından çıkmak, kontrolden çıkmak",
+     "s": "The noise at the party quickly got out of hand.",
+     "tr": "Partideki gürültü kısa sürede çığırından çıktı.",
+     "p": "phrase"
+    },
+    {
+     "w": "play it by ear",
+     "t": "duruma göre doğaçlama hareket etmek",
+     "s": "We have no fixed plan; we'll just play it by ear.",
+     "tr": "Sabit bir planımız yok; gidişata göre bakacağız.",
+     "p": "phrase"
+    },
+    {
+     "w": "on the fence",
+     "t": "kararsız, iki arada bir derede",
+     "s": "I am still on the fence about switching jobs.",
+     "tr": "İş değiştirme konusunda hâlâ kararsızım.",
+     "p": "phrase"
+    },
+    {
+     "w": "once in a blue moon",
+     "t": "kırk yılda bir",
+     "s": "He only cooks dinner once in a blue moon.",
+     "tr": "Kırk yılda bir akşam yemeği pişirir.",
+     "p": "phrase"
+    },
+    {
+     "w": "spill the beans",
+     "t": "ağzından baklayı çıkarmak, sırrı açık etmek",
+     "s": "Who spilled the beans about the surprise party?",
+     "tr": "Sürpriz partiyi kim ağzından kaçırdı?",
+     "p": "phrase"
+    },
+    {
+     "w": "pull someone’s leg",
+     "t": "biriyle kafa bulmak, işletmek",
+     "s": "Relax, I'm just pulling your leg!",
+     "tr": "Rahatla, sadece seninle şakalaşıyorum!",
+     "p": "phrase"
+    },
+    {
+     "w": "burn the midnight oil",
+     "t": "gece geç saatlere kadar çalışmak",
+     "s": "She burned the midnight oil to finish her thesis.",
+     "tr": "Tezini bitirmek için gece yarılarına kadar çalıştı.",
+     "p": "phrase"
+    },
+    {
+     "w": "wrap one’s head around",
+     "t": "aklını yatırmak, kavrayabilmek",
+     "s": "I still cannot wrap my head around the new rules.",
+     "tr": "Yeni kuralları hâlâ kafamda oturtamıyorum.",
+     "p": "phrase"
+    },
+    {
+     "w": "see eye to eye",
+     "t": "aynı fikirde olmak, uzlaşmak",
+     "s": "We rarely see eye to eye on politics.",
+     "tr": "Siyaset konusunda nadiren aynı fikirde oluruz.",
+     "p": "phrase"
+    },
+    {
+     "w": "blessing in disguise",
+     "t": "şer gibi görünen hayır",
+     "s": "Losing that client turned out to be a blessing in disguise.",
+     "tr": "O müşteriyi kaybetmek meğer şer görünüşlü bir hayırmış.",
+     "p": "phrase"
+    }
+   ]
+  },
+  {
+   "id": "work_career",
+   "title": "İş hayatı, mülakat ve kariyer",
+   "level": "B1",
+   "items": [
+    {
+     "w": "application",
+     "t": "başvuru; uygulama",
+     "s": "I submitted my application for the role yesterday.",
+     "tr": "Pozisyon için başvurumu dün teslim ettim.",
+     "p": "noun"
+    },
+    {
+     "w": "interview",
+     "t": "mülakat, iş görüşmesi",
+     "s": "My job interview went much better than expected.",
+     "tr": "İş görüşmem beklenenden çok daha iyi geçti.",
+     "p": "noun"
+    },
+    {
+     "w": "skill",
+     "t": "beceri, ustalık",
+     "s": "Problem-solving is a vital skill in engineering.",
+     "tr": "Sorun çözme mühendislikte hayati bir beceridir.",
+     "p": "noun"
+    },
+    {
+     "w": "deadline",
+     "t": "son teslim tarihi",
+     "s": "We must meet the Friday deadline without delay.",
+     "tr": "Cuma günkü son teslim tarihine gecikmeden uymalıyız.",
+     "p": "noun"
+    },
+    {
+     "w": "remote work",
+     "t": "uzaktan çalışma",
+     "s": "Our company allows remote work twice a week.",
+     "tr": "Şirketimiz haftada iki kez uzaktan çalışmaya izin veriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "hire",
+     "t": "işe almak; kiralamak",
+     "s": "They plan to hire ten software developers this autumn.",
+     "tr": "Bu sonbahar on yazılım geliştirici işe almayı planlıyorlar.",
+     "p": "verb"
+    },
+    {
+     "w": "resign",
+     "t": "istifa etmek",
+     "s": "He decided to resign and launch his own studio.",
+     "tr": "İstifa edip kendi stüdyosunu kurmaya karar verdi.",
+     "p": "verb"
+    },
+    {
+     "w": "promotion",
+     "t": "terfi, tanıtım",
+     "s": "She earned a well-deserved promotion after two years.",
+     "tr": "İki yılın ardından hak edilmiş bir terfi kazandı.",
+     "p": "noun"
+    },
+    {
+     "w": "salary",
+     "t": "maaş, aylık ücret",
+     "s": "They negotiated the salary before signing the offer.",
+     "tr": "Teklifi imzalamadan önce maaşı müzakere ettiler.",
+     "p": "noun"
+    },
+    {
+     "w": "internship",
+     "t": "staj",
+     "s": "She completed a summer internship in publishing.",
+     "tr": "Yayıncılık alanında bir yaz stajı tamamladı.",
+     "p": "noun"
+    },
+    {
+     "w": "manage",
+     "t": "yönetmek; başarmak",
+     "s": "He knows how to manage urgent requests calmly.",
+     "tr": "Acil talepleri sakinlikle yönetmeyi biliyor.",
+     "p": "verb"
+    },
+    {
+     "w": "achieve",
+     "t": "başarmak, ulaşmak (hedef)",
+     "s": "We managed to achieve all our quarterly targets.",
+     "tr": "Üç aylık hedeflerimizin tamamına ulaşmayı başardık.",
+     "p": "verb"
+    },
+    {
+     "w": "workload",
+     "t": "iş yükü",
+     "s": "Our workload usually peaks toward December.",
+     "tr": "İş yükümüz genelde aralık ayına doğru zirve yapar.",
+     "p": "noun"
+    },
+    {
+     "w": "versatile",
+     "t": "çok yönlü, uyumlu",
+     "s": "They are looking for a versatile team player.",
+     "tr": "Çok yönlü bir ekip oyuncusu arıyorlar.",
+     "p": "adj"
+    },
+    {
+     "w": "minutes",
+     "t": "toplantı tutanağı; dakikalar",
+     "s": "I will circulate the meeting minutes this afternoon.",
+     "tr": "Toplantı tutanağını bu öğleden sonra paylaşacağım.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "media_society",
+   "title": "Medya, gündem ve toplum",
+   "level": "B2",
+   "items": [
+    {
+     "w": "current affairs",
+     "t": "güncel olaylar, gündem",
+     "s": "She follows international current affairs closely.",
+     "tr": "Uluslararası güncel olayları yakından takip ediyor.",
+     "p": "noun"
+    },
+    {
+     "w": "poll",
+     "t": "anket, kamuoyu yoklaması",
+     "s": "According to the latest poll, reading habits are shifting.",
+     "tr": "Son ankete göre okuma alışkanlıkları değişiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "eyewitness",
+     "t": "görgü tanığı",
+     "s": "An eyewitness described the entire incident to reporters.",
+     "tr": "Bir görgü tanığı tüm olayı muhabirlere anlattı.",
+     "p": "noun"
+    },
+    {
+     "w": "rumor",
+     "t": "söylenti, dedikodu",
+     "s": "That rumor has been spreading online since last night.",
+     "tr": "O söylenti dün geceden beri internette yayılıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "raise awareness",
+     "t": "farkındalık yaratmak, bilinçlendirmek",
+     "s": "The campaign aims to raise awareness of water waste.",
+     "tr": "Kampanya su israfı konusunda farkındalık yaratmayı amaçlıyor.",
+     "p": "phrase"
+    },
+    {
+     "w": "citizen",
+     "t": "vatandaş, yurttaş",
+     "s": "Every citizen has the right to attend council sessions.",
+     "tr": "Her yurttaşın meclis oturumlarına katılma hakkı vardır.",
+     "p": "noun"
+    },
+    {
+     "w": "inequality",
+     "t": "eşitsizlik",
+     "s": "Tackling educational inequality remains a major priority.",
+     "tr": "Eğitim eşitsizliğiyle mücadele etmek büyük bir öncelik olmayı sürdürüyor.",
+     "p": "noun"
+    },
+    {
+     "w": "reliable",
+     "t": "güvenilir",
+     "s": "Always verify that your news source is reliable.",
+     "tr": "Haber kaynağının güvenilir olduğunu her zaman doğrula.",
+     "p": "adj"
+    },
+    {
+     "w": "censorship",
+     "t": "sansür",
+     "s": "Editors spoke out against any form of censorship.",
+     "tr": "Editörler her türlü sansüre karşı ses yükseltti.",
+     "p": "noun"
+    },
+    {
+     "w": "broadcast",
+     "t": "yayınlamak (radyo/TV/canlı)",
+     "s": "The channel will broadcast the documentary tonight.",
+     "tr": "Kanal belgeseli bu akşam yayınlayacak.",
+     "p": "verb"
+    },
+    {
+     "w": "prejudice",
+     "t": "önyargı",
+     "s": "Living abroad helps dismantle cultural prejudice.",
+     "tr": "Yurt dışında yaşamak kültürel önyargıları yıkmaya yardım eder.",
+     "p": "noun"
+    },
+    {
+     "w": "rally",
+     "t": "miting, açık hava toplantısı; toparlanma",
+     "s": "A peaceful rally took place in the main square.",
+     "tr": "Ana meydanda barışçıl bir gösteri düzenlendi.",
+     "p": "noun"
+    },
+    {
+     "w": "stake",
+     "t": "ortadaki risk/kazanç, pay",
+     "s": "Public trust is at stake in this investigation.",
+     "tr": "Bu soruşturmada kamu güveni söz konusu.",
+     "p": "noun"
+    },
+    {
+     "w": "upend",
+     "t": "altüst etmek, tersyüz etmek",
+     "s": "Printing upended how knowledge spread across Europe.",
+     "tr": "Matbaa bilginin Avrupa’da yayılma biçimini tersyüz etti.",
+     "p": "verb"
+    },
+    {
+     "w": "volunteer",
+     "t": "gönüllü; gönüllü olmak",
+     "s": "Local volunteers distribute warm meals every evening.",
+     "tr": "Yerel gönüllüler her akşam sıcak yemek dağıtıyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "academic_debate",
+   "title": "Akademik söylem ve argümantasyon",
+   "level": "C1",
+   "items": [
+    {
+     "w": "nevertheless",
+     "t": "bununla birlikte, yine de",
+     "s": "The method is slow; nevertheless, its accuracy is unmatched.",
+     "tr": "Yöntem yavaş; bununla birlikte doğruluğu rakipsiz.",
+     "p": "adv"
+    },
+    {
+     "w": "conversely",
+     "t": "buna karşılık, tam tersine",
+     "s": "Exports rose sharply; conversely, imports declined.",
+     "tr": "İhracat keskin biçimde arttı; buna karşılık ithalat geriledi.",
+     "p": "adv"
+    },
+    {
+     "w": "spark",
+     "t": "kıvılcımlamak, yol açmak (tartışma)",
+     "s": "Her paper sparked a lively debate among linguists.",
+     "tr": "Makalesi dilbilimciler arasında canlı bir tartışma başlattı.",
+     "p": "verb"
+    },
+    {
+     "w": "qualify",
+     "t": "çekince/nüans koyarak sınırlandırmak; hak kazanmak",
+     "s": "Let me qualify that statement with one key example.",
+     "tr": "O ifadeyi kilit bir örnekle nüanslandırıp netleştireyim.",
+     "p": "verb"
+    },
+    {
+     "w": "hypothesis",
+     "t": "hipotez, varsayım",
+     "s": "Field measurements confirmed our initial hypothesis.",
+     "tr": "Saha ölçümleri başlangıç hipotezimizi doğruladı.",
+     "p": "noun"
+    },
+    {
+     "w": "pertinent",
+     "t": "yerinde, konuyla doğrudan bağlantılı",
+     "s": "You have just raised a highly pertinent question.",
+     "tr": "Az önce son derece yerinde bir soru gündeme getirdiniz.",
+     "p": "adj"
+    },
+    {
+     "w": "call into question",
+     "t": "sorgulamak, şüpheye düşürmek",
+     "s": "New fossils call into question the earlier timeline.",
+     "tr": "Yeni fosiller önceki zaman çizelgesini tartışmaya açıyor.",
+     "p": "phrase"
+    },
+    {
+     "w": "finding",
+     "t": "bulgu, araştırma sonucu",
+     "s": "Each finding was replicated by an independent lab.",
+     "tr": "Her bulgu bağımsız bir laboratuvar tarafından tekrarlandı.",
+     "p": "noun"
+    },
+    {
+     "w": "advocate",
+     "t": "savunmak, desteklemek",
+     "s": "The authors advocate a gradual reform of the curriculum.",
+     "tr": "Yazarlar müfredatta kademeli bir reform yapılmasını savunuyor.",
+     "p": "verb"
+    },
+    {
+     "w": "magnitude",
+     "t": "büyüklük, çap, önem derecesi",
+     "s": "Few foresaw the magnitude of the demographic shift.",
+     "tr": "Demografik dönüşümün boyutunu çok az kişi öngördü.",
+     "p": "noun"
+    },
+    {
+     "w": "substantiate",
+     "t": "somut kanıtla doğrulamak, temellendirmek",
+     "s": "You must substantiate your claim with empirical data.",
+     "tr": "İddianızı deneysel verilerle temellendirmelisiniz.",
+     "p": "verb"
+    },
+    {
+     "w": "consequently",
+     "t": "sonuç olarak, dolayısıyla",
+     "s": "Samples were scarce; consequently, caution is warranted.",
+     "tr": "Örnekler kıttı; dolayısıyla ihtiyatlı olmak gerekir.",
+     "p": "adv"
+    },
+    {
+     "w": "ambiguous",
+     "t": "muğlak, iki anlamlı",
+     "s": "The wording of the final clause remains ambiguous.",
+     "tr": "Son maddenin ifadesi muğlaklığını koruyor.",
+     "p": "adj"
+    },
+    {
+     "w": "culminate",
+     "t": "doruğa ulaşmak, ... ile sonuçlanmak",
+     "s": "Months of talks culminated in a historic treaty.",
+     "tr": "Aylar süren görüşmeler tarihi bir antlaşmayla sonuçlandı.",
+     "p": "verb"
+    },
+    {
+     "w": "irrefutable",
+     "t": "çürütülemez, kesin",
+     "s": "She presented irrefutable archival evidence.",
+     "tr": "Çürütülemez arşiv kanıtları sundu.",
+     "p": "adj"
+    }
+   ]
   }
  ]
 }

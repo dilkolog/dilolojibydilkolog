@@ -12,14 +12,16 @@ export interface ReaderPrefs {
   sans: boolean
   /** Column width: 0 narrow, 1 as it was, 2 wide. */
   width: 0 | 1 | 2
+  /** Focus mode: dims unhovered/inactive paragraphs for calm reading. */
+  zen?: boolean
 }
 
 function load(): ReaderPrefs {
   try {
     const v = JSON.parse(localStorage.getItem(READER_KEY) ?? 'null') as Partial<ReaderPrefs> | null
-    return { size: Math.min(READER_SIZES.length - 1, Math.max(0, v?.size ?? 1)), airy: !!v?.airy, sepia: !!v?.sepia, sans: !!v?.sans, width: v?.width === 0 || v?.width === 2 ? v.width : 1 }
+    return { size: Math.min(READER_SIZES.length - 1, Math.max(0, v?.size ?? 1)), airy: !!v?.airy, sepia: !!v?.sepia, sans: !!v?.sans, width: v?.width === 0 || v?.width === 2 ? v.width : 1, zen: !!v?.zen }
   } catch {
-    return { size: 1, airy: false, sepia: false, sans: false, width: 1 }
+    return { size: 1, airy: false, sepia: false, sans: false, width: 1, zen: false }
   }
 }
 
@@ -38,7 +40,7 @@ export function useReaderPrefs() {
 /** Class names and the size variable for a text that follows the reader's settings. */
 export function readerStyle(p: ReaderPrefs) {
   return {
-    className: `${p.sepia ? ' reader-sepia' : ''}${p.airy ? ' reader-airy' : ''}${p.sans ? ' reader-sans' : ''}${p.width === 0 ? ' reader-narrow' : p.width === 2 ? ' reader-wide' : ''}`,
+    className: `${p.sepia ? ' reader-sepia' : ''}${p.airy ? ' reader-airy' : ''}${p.sans ? ' reader-sans' : ''}${p.width === 0 ? ' reader-narrow' : p.width === 2 ? ' reader-wide' : ''}${p.zen ? ' reader-zen' : ''}`,
     style: { ['--reader-size' as string]: READER_SIZES[p.size] },
   }
 }

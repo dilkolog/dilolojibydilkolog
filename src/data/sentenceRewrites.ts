@@ -1393,6 +1393,441 @@ export const SENTENCE_REWRITES: SentenceRewriteItem[] = [
     explanation:
       "Öncelik ve edilgenlik bildiren bağımsız sıfat-fiil öbeği (nominative absolute) 'having been explained' şeklinde kurulur.",
   },
+  {
+    "id": "fr-rw-36",
+    "language": "fr",
+    "level": "B2",
+    "sourceSentence": "Il a plu toute la matinée, c'est pourquoi le match a été reporté.",
+    "sourceTr": "Bütün sabah yağmur yağdı, bu yüzden maç ertelendi.",
+    "keyword": "SI BIEN",
+    "targetPrefix": "Il a plu toute la matinée,",
+    "targetSuffix": "le match a été reporté.",
+    "acceptedAnswers": [
+      "si bien que"
+    ],
+    "explanation": "Sonuç bildiren 'c'est pourquoi' yerine B2 düzeyinde 'si bien que' (öyle ki / dolayısıyla) bağlacı doğrudan kullanılır."
+  },
+  {
+    "id": "fr-rw-37",
+    "language": "fr",
+    "level": "C1",
+    "sourceSentence": "Comme nous n'avions pas de réservation, nous avons attendu une heure.",
+    "sourceTr": "Rezervasyonumuz olmadığı için bir saat bekledik.",
+    "keyword": "FAUTE",
+    "targetPrefix": "",
+    "targetSuffix": ", nous avons attendu une heure.",
+    "acceptedAnswers": [
+      "faute de réservation"
+    ],
+    "explanation": "'Eksikliği / yokluğu yüzünden' anlamında C1 yazı dilinde artikelsiz 'faute de + isim' kalıbı kullanılır."
+  },
+  {
+    "id": "fr-rw-38",
+    "language": "fr",
+    "level": "B2",
+    "sourceSentence": "Un artisan local a restauré cette horloge ancienne.",
+    "sourceTr": "Yerel bir usta bu antika saati restore etti.",
+    "keyword": "ÉTÉ",
+    "targetPrefix": "Cette horloge ancienne",
+    "targetSuffix": "par un artisan local.",
+    "acceptedAnswers": [
+      "a été restaurée"
+    ],
+    "explanation": "Passé composé edilgen çatıya çevrilirken 'avoir été + participe passé' kullanılır ve ortaç dişil özne 'horloge' ile uyum sağlar (restaurée)."
+  },
+  {
+    "id": "fr-rw-39",
+    "language": "fr",
+    "level": "B2",
+    "sourceSentence": "Je regrette de ne pas avoir appris l'espagnol au lycée.",
+    "sourceTr": "Lisede İspanyolca öğrenmemiş olmayı pişmanlıkla karşılıyorum.",
+    "keyword": "AURAIS",
+    "targetPrefix": "J'",
+    "targetSuffix": "l'espagnol au lycée.",
+    "acceptedAnswers": [
+      "aurais aimé apprendre",
+      "aurais voulu apprendre",
+      "aurais dû apprendre"
+    ],
+    "explanation": "Geçmişe dönük pişmanlık conditionnel passé ('j'aurais aimé / voulu / dû + mastar') ile ifade edilir."
+  },
+  {
+    "id": "fr-rw-40",
+    "language": "fr",
+    "level": "C1",
+    "sourceSentence": "Même si tu insistais toute la soirée, il ne changerait pas d’avis.",
+    "sourceTr": "Bütün akşam ısrar etsen bile fikrini değiştirmezdi.",
+    "keyword": "QUAND BIEN",
+    "targetPrefix": "",
+    "targetSuffix": "toute la soirée, il ne changerait pas d’avis.",
+    "acceptedAnswers": [
+      "quand bien même tu insisterais"
+    ],
+    "explanation": "Edebî ve C1 Fransızcada 'même si + imparfait' yerine 'quand bien même + conditionnel' kalıbı kullanılır."
+  },
+  {
+    "id": "fr-rw-41",
+    "language": "fr",
+    "level": "B1",
+    "sourceSentence": "Elle a commencé à travailler dans ce laboratoire en 2021.",
+    "sourceTr": "Bu laboratuvarda 2021 yılında çalışmaya başladı (ve hâlâ çalışıyor).",
+    "keyword": "DEPUIS",
+    "targetPrefix": "Elle travaille dans ce laboratoire",
+    "targetSuffix": ".",
+    "acceptedAnswers": [
+      "depuis 2021"
+    ],
+    "explanation": "Geçmişte başlayıp hâlâ süren durumlarda şimdiki zaman (présent) + 'depuis + başlangıç yılı' kullanılır."
+  },
+  {
+    "id": "fr-rw-42",
+    "language": "fr",
+    "level": "B2",
+    "sourceSentence": "Le directeur a demandé à son adjoint de rédiger la synthèse.",
+    "sourceTr": "Müdür yardımcısından özeti kaleme almasını istedi (ona yazdırdı).",
+    "keyword": "FAIT",
+    "targetPrefix": "Le directeur a",
+    "targetSuffix": "par son adjoint.",
+    "acceptedAnswers": [
+      "fait rédiger la synthèse"
+    ],
+    "explanation": "Ettirgen çatı (faire causatif) 'faire + mastar' ile kurulur; burada 'fait' ortacı kendisinden sonra mastar geldiği için hiç uyum almaz."
+  },
+  {
+    "id": "fr-rw-43",
+    "language": "fr",
+    "level": "B2",
+    "sourceSentence": "Il se peut qu'elle prenne le train de dix-neuf heures.",
+    "sourceTr": "Saat on dokuz trenine binmesi muhtemel.",
+    "keyword": "RISQUE",
+    "targetPrefix": "Elle",
+    "targetSuffix": "le train de dix-neuf heures.",
+    "acceptedAnswers": [
+      "risque de prendre"
+    ],
+    "explanation": "Günlük ve standart Fransızcada 'risquer de + mastar' olumlu ya da nötr olasılık ('muhtemelen yapacak') anlamında da sıkça kullanılır."
+  },
+  {
+    "id": "fr-rw-44",
+    "language": "fr",
+    "level": "C1",
+    "sourceSentence": "Son discours nous a particulièrement marqués par sa franchise.",
+    "sourceTr": "Konuşması özellikle açık sözlülüğüyle bizde iz bıraktı.",
+    "keyword": "CE QUI",
+    "targetPrefix": "",
+    "targetSuffix": ", c'est la franchise de son discours.",
+    "acceptedAnswers": [
+      "ce qui nous a particulièrement marqués",
+      "ce qui nous a marqués"
+    ],
+    "explanation": "Özne konumundaki unsuru öne çıkarıp vurgulamak için 'Ce qui … , c'est …' parçalama (mise en relief) yapısı kullanılır."
+  },
+  {
+    "id": "fr-rw-45",
+    "language": "fr",
+    "level": "B2",
+    "sourceSentence": "Prends un parapluie parce qu’il pourrait pleuvoir ce soir.",
+    "sourceTr": "Bu akşam yağmur yağabileceği ihtimaline karşı yanına şemsiye al.",
+    "keyword": "CAS",
+    "targetPrefix": "Prends un parapluie",
+    "targetSuffix": "ce soir.",
+    "acceptedAnswers": [
+      "au cas où il pleuvrait"
+    ],
+    "explanation": "'İhtimaline karşı' anlamındaki 'au cas où' kalıbından sonra daima conditionnel ('il pleuvrait') gelir."
+  },
+  {
+    "id": "es-rw-36",
+    "language": "es",
+    "level": "B2",
+    "sourceSentence": "Empezó a estudiar árabe hace cuatro años y sigue estudiándolo.",
+    "sourceTr": "Dört yıl önce Arapça çalışmaya başladı ve hâlâ çalışıyor.",
+    "keyword": "LLEVA",
+    "targetPrefix": "",
+    "targetSuffix": "árabe.",
+    "acceptedAnswers": [
+      "lleva cuatro años estudiando"
+    ],
+    "explanation": "Süregelen eylem süresi İspanyolcada 'llevar + süre + gerundio' kalıbıyla çok doğal ifade edilir."
+  },
+  {
+    "id": "es-rw-37",
+    "language": "es",
+    "level": "C1",
+    "sourceSentence": "Si lo hubiera sabido antes, habría reservado otra habitación.",
+    "sourceTr": "Daha önce bilseydim başka bir oda ayırtırdım.",
+    "keyword": "DE",
+    "targetPrefix": "",
+    "targetSuffix": "antes, habría reservado otra habitación.",
+    "acceptedAnswers": [
+      "de haberlo sabido"
+    ],
+    "explanation": "C1 düzeyinde 'Si + pluscuamperfecto de subjuntivo' geçmiş koşulu, 'De + haber + participio' yapısı ile kısaltılabilir (De haberlo sabido)."
+  },
+  {
+    "id": "es-rw-38",
+    "language": "es",
+    "level": "B2",
+    "sourceSentence": "Aunque tenía mucha fiebre, acudió a la presentación.",
+    "sourceTr": "Yüksek ateşi olmasına rağmen sunuma katıldı.",
+    "keyword": "PESAR",
+    "targetPrefix": "Acudió a la presentación",
+    "targetSuffix": "mucha fiebre.",
+    "acceptedAnswers": [
+      "a pesar de tener",
+      "a pesar de que tenía"
+    ],
+    "explanation": "Aynı özneli taviz cümlelerinde 'aunque + fiil' yerine 'a pesar de + mastar' (a pesar de tener) akıcı bir dönüşüm sağlar."
+  },
+  {
+    "id": "es-rw-39",
+    "language": "es",
+    "level": "B2",
+    "sourceSentence": "Se puso tan nervioso que olvidó la primera frase.",
+    "sourceTr": "O kadar heyecanlandı ki ilk cümleyi unuttu.",
+    "keyword": "TAL",
+    "targetPrefix": "Tal fue",
+    "targetSuffix": "que olvidó la primera frase.",
+    "acceptedAnswers": [
+      "su nerviosismo",
+      "sus nervios"
+    ],
+    "explanation": "Sıfatlı 'tan nervioso que' yapısı, isimleştirilerek 'Tal fue su nerviosismo que…' vurgulu kalıbına dönüştürülür."
+  },
+  {
+    "id": "es-rw-40",
+    "language": "es",
+    "level": "C1",
+    "sourceSentence": "Solo te prestaré el coche si me prometes conducir despacio.",
+    "sourceTr": "Arabayı sana yalnızca yavaş sürmeye söz verirsen ödünç veririm.",
+    "keyword": "SIEMPRE",
+    "targetPrefix": "Te prestaré el coche",
+    "targetSuffix": "conducir despacio.",
+    "acceptedAnswers": [
+      "siempre que me prometas",
+      "siempre y cuando me prometas"
+    ],
+    "explanation": "Koşul sınırlandıran 'siempre que / siempre y cuando' bağlaçları daima subjuntivo ('prometas') gerektirir."
+  },
+  {
+    "id": "es-rw-41",
+    "language": "es",
+    "level": "B1",
+    "sourceSentence": "Dejé de tomar azúcar en el café el mes pasado.",
+    "sourceTr": "Geçen ay kahveye şeker atmayı bıraktım (artık atmıyorum).",
+    "keyword": "YA NO",
+    "targetPrefix": "Desde el mes pasado",
+    "targetSuffix": "azúcar en el café.",
+    "acceptedAnswers": [
+      "ya no tomo",
+      "ya no pongo",
+      "ya no echo"
+    ],
+    "explanation": "'dejar de + mastar' (bırakmak) sonucu şimdiki zamanda 'ya no + presente' (artık yapmıyorum) olarak ifade edilir."
+  },
+  {
+    "id": "es-rw-42",
+    "language": "es",
+    "level": "B2",
+    "sourceSentence": "Seguro que Elena estaba agotada ayer tras el vuelo.",
+    "sourceTr": "Eminim Elena dün uçuşun ardından çok yorgundu.",
+    "keyword": "ESTARÍA",
+    "targetPrefix": "Elena",
+    "targetSuffix": "ayer tras el vuelo.",
+    "acceptedAnswers": [
+      "estaría agotada",
+      "estaría muy agotada"
+    ],
+    "explanation": "Geçmişteki bir duruma dair tahmin/olasılık İspanyolcada condicional simple ('estaría agotada' = yorgun olmalıydı) ile kurulur."
+  },
+  {
+    "id": "es-rw-43",
+    "language": "es",
+    "level": "B2",
+    "sourceSentence": "Se me cayó la taza sin querer y se rompió.",
+    "sourceTr": "Fincan elimden istemeden düştü ve kırıldı (fincanı düşürdüm).",
+    "keyword": "ROMPIÓ",
+    "targetPrefix": "Sin querer,",
+    "targetSuffix": "la taza.",
+    "acceptedAnswers": [
+      "se me rompió"
+    ],
+    "explanation": "Kazara gerçekleşen olaylarda İspanyolcanın meşhur 'se accidental' yapısı kullanılır: se + dolaylı zamir (me) + 3. şahıs fiil (se me rompió)."
+  },
+  {
+    "id": "es-rw-44",
+    "language": "es",
+    "level": "C1",
+    "sourceSentence": "En cuanto terminó la obra, el público se puso en pie.",
+    "sourceTr": "Oyun biter bitmez seyirciler ayağa kalktı.",
+    "keyword": "NADA MÁS",
+    "targetPrefix": "",
+    "targetSuffix": "la obra, el público se puso en pie.",
+    "acceptedAnswers": [
+      "nada más terminar"
+    ],
+    "explanation": "'Biter bitmez / yapar yapmaz' anlamında 'nada más + mastar' İspanyolcanın en kıvrak ve doğal yapı taşlarından biridir."
+  },
+  {
+    "id": "es-rw-45",
+    "language": "es",
+    "level": "C1",
+    "sourceSentence": "Me molesta mucho que la gente hable a gritos en el tren.",
+    "sourceTr": "İnsanların trende bağırarak konuşması beni çok rahatsız ediyor.",
+    "keyword": "LO QUE",
+    "targetPrefix": "",
+    "targetSuffix": "es que la gente hable a gritos en el tren.",
+    "acceptedAnswers": [
+      "lo que más me molesta",
+      "lo que mucho me molesta",
+      "lo que me molesta mucho"
+    ],
+    "explanation": "Vurgulu bölünmüş cümle (oración hendida) nötr 'Lo que (más) me molesta es que…' ile kurulur."
+  },
+  {
+    "id": "en-rw-36",
+    "language": "en",
+    "level": "B2",
+    "sourceSentence": "A technician is repairing our heating system right now.",
+    "sourceTr": "Şu anda bir teknisyen ısıtma sistemimizi onarıyor (onartıyoruz).",
+    "keyword": "HAVING",
+    "targetPrefix": "We are",
+    "targetSuffix": "right now.",
+    "acceptedAnswers": [
+      "having our heating system repaired"
+    ],
+    "explanation": "Profesyonel birine iş yaptırma (causative) yapısı 'have + nesne + V3 (past participle)' ile kurulur: having our heating system repaired."
+  },
+  {
+    "id": "en-rw-37",
+    "language": "en",
+    "level": "C1",
+    "sourceSentence": "We only realized how steep the trail was when we reached the ridge.",
+    "sourceTr": "Patikanın ne kadar dik olduğunu ancak sırta ulaştığımızda fark ettik.",
+    "keyword": "NOT UNTIL",
+    "targetPrefix": "Not until we reached the ridge",
+    "targetSuffix": "how steep the trail was.",
+    "acceptedAnswers": [
+      "did we realize",
+      "did we realise"
+    ],
+    "explanation": "Cümle başındaki 'Not until + yan cümle' yapısında devriklik yan cümlede değil, ana cümlede gerçekleşir: did we realize."
+  },
+  {
+    "id": "en-rw-38",
+    "language": "en",
+    "level": "B2",
+    "sourceSentence": "I regret not backing up my photos before resetting the phone.",
+    "sourceTr": "Telefonu sıfırlamadan önce fotoğraflarımı yedeklemediğime pişmanım.",
+    "keyword": "WISH",
+    "targetPrefix": "I",
+    "targetSuffix": "my photos before resetting the phone.",
+    "acceptedAnswers": [
+      "wish i had backed up",
+      "wish i'd backed up"
+    ],
+    "explanation": "Geçmişteki bir eyleme duyulan pişmanlık 'wish + Past Perfect' (I wish I had backed up) ile anlatılır."
+  },
+  {
+    "id": "en-rw-39",
+    "language": "en",
+    "level": "B2",
+    "sourceSentence": "People believe that the manuscript dates back to the twelfth century.",
+    "sourceTr": "El yazmasının on ikinci yüzyıla dayandığına inanılıyor.",
+    "keyword": "BELIEVED",
+    "targetPrefix": "The manuscript",
+    "targetSuffix": "to the twelfth century.",
+    "acceptedAnswers": [
+      "is believed to date back"
+    ],
+    "explanation": "Kişisiz edilgen aktarma yapısı özneyi başa alarak 'is believed + to-infinitive' (is believed to date back) biçiminde kurulur."
+  },
+  {
+    "id": "en-rw-40",
+    "language": "en",
+    "level": "C1",
+    "sourceSentence": "If it had not been for your timely warning, we would have missed the ferry.",
+    "sourceTr": "Zamanında yaptığın uyarın olmasaydı feribotu kaçırırdık.",
+    "keyword": "BUT",
+    "targetPrefix": "",
+    "targetSuffix": ", we would have missed the ferry.",
+    "acceptedAnswers": [
+      "but for your timely warning"
+    ],
+    "explanation": "C1 düzeyinde 'If it hadn't been for + isim' koşulu kısaca 'But for + isim öbeği' ile ifade edilir."
+  },
+  {
+    "id": "en-rw-41",
+    "language": "en",
+    "level": "B2",
+    "sourceSentence": "Please do not open the kiln door before the clay cools down.",
+    "sourceTr": "Kil soğumadan fırın kapağını lütfen açmayın (açmamayı tercih ederim).",
+    "keyword": "RATHER",
+    "targetPrefix": "I would",
+    "targetSuffix": "the kiln door before the clay cools down.",
+    "acceptedAnswers": [
+      "rather you did not open",
+      "rather you didn't open"
+    ],
+    "explanation": "Başka birinin şimdiki/gelecek eylemine yönelik tercihte 'would rather + özne + Past Simple' kullanılır: I'd rather you didn't open."
+  },
+  {
+    "id": "en-rw-42",
+    "language": "en",
+    "level": "B1",
+    "sourceSentence": "Living in a noisy street was hard at first, but now it feels normal to me.",
+    "sourceTr": "Gürültülü bir sokakta yaşamak başta zordu ama artık bana normal geliyor.",
+    "keyword": "USED",
+    "targetPrefix": "I have",
+    "targetSuffix": "in a noisy street now.",
+    "acceptedAnswers": [
+      "got used to living",
+      "gotten used to living"
+    ],
+    "explanation": "Bir duruma zamanla alışmak 'get used to + -ing' ile kurulur; Present Perfect ile 'have got used to living' olur."
+  },
+  {
+    "id": "en-rw-43",
+    "language": "en",
+    "level": "C1",
+    "sourceSentence": "No matter how carefully you plan, unexpected delays can still happen.",
+    "sourceTr": "Ne kadar dikkatli planlarsan planla, beklenmedik gecikmeler yine de yaşanabilir.",
+    "keyword": "HOWEVER",
+    "targetPrefix": "",
+    "targetSuffix": ", unexpected delays can still happen.",
+    "acceptedAnswers": [
+      "however carefully you plan"
+    ],
+    "explanation": "'No matter how + sıfat/zarf' taviz kalıbı 'However + sıfat/zarf + özne + fiil' ile birebir eş anlamlıdır."
+  },
+  {
+    "id": "en-rw-44",
+    "language": "en",
+    "level": "B2",
+    "sourceSentence": "Perhaps Clara left her umbrella on the commuter train.",
+    "sourceTr": "Belki de Clara şemsiyesini banliyö treninde unutmuştur.",
+    "keyword": "MIGHT",
+    "targetPrefix": "Clara",
+    "targetSuffix": "her umbrella on the commuter train.",
+    "acceptedAnswers": [
+      "might have left"
+    ],
+    "explanation": "Geçmişteki bir olasılık/tahmin 'might / may / could + have + V3' (might have left) modal yapısıyla ifade edilir."
+  },
+  {
+    "id": "en-rw-45",
+    "language": "en",
+    "level": "C1",
+    "sourceSentence": "As soon as the referee blew the whistle, the crowd cheered.",
+    "sourceTr": "Hakem düdüğü çalar çalmaz kalabalık tezahürat yaptı.",
+    "keyword": "SOONER",
+    "targetPrefix": "No",
+    "targetSuffix": "the crowd cheered.",
+    "acceptedAnswers": [
+      "sooner had the referee blown the whistle than"
+    ],
+    "explanation": "'No sooner + had + özne + V3 … than …' C1 düzeyinde anlık ardışıklık bildiren devrik kalıptır."
+  },
 ]
 
 export const REWRITE_ROUND_SIZE = 6

@@ -87,6 +87,21 @@ export function ShareProgress({
               }}
             />
             <MenuItem
+              icon={<SparkleIcon size={18} />}
+              title="Kare Başarı Kartı (1:1)"
+              hint="Monki çizimli kare sosyal medya görseli"
+              onSelect={async () => {
+                close()
+                const rep = build()
+                const kicker = `${rep.date} Özeti`
+                const title = `${rep.language.toUpperCase()} Başarın`
+                const streakLine = streak > 0 ? `${streak} gün seri` : ''
+                const wordsLine = `${activeWords} aktif kelime`
+                const text = [streakLine, wordsLine].filter(Boolean).join(' · ')
+                await shareCard({ kicker, title, text, art: 'square' }, `Diloloji ${rep.language.toUpperCase()} ilerlemem: ${text}`)
+              }}
+            />
+            <MenuItem
               icon={<DownloadIcon size={18} />}
               title="Yazdır ya da PDF"
               hint="Öğretmenine göndermek için tek sayfalık rapor"

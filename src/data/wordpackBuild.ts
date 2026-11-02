@@ -101,6 +101,13 @@ export function glossHeads(glosses: readonly string[]): string[] {
 }
 
 const clean = (s: string | undefined) => (s ?? '').replace(/\s+/g, ' ').trim()
+
+/** Filters out Wiktionary cross-reference notes ("Appendix:...", "Thesaurus:...", prose explanations) from synonym/antonym lists. */
+export function isCleanRelationTerm(term: string): boolean {
+  if (!term || term.length > 42 || term.split(' ').length > 5) return false
+  if (/Appendix:|Thesaurus:|Wikipedia|Category:|See also|\bplus the\b|\bis generally\b|\bmore common\b|\]\]>|^\s*["“]/i.test(term)) return false
+  return true
+}
 const isLanguage = (c: string | undefined): c is TargetLanguage => c === 'en' || c === 'fr' || c === 'es'
 
 function add(list: string[] | undefined, words: readonly string[], max = MAX_LIST): string[] | undefined {
@@ -220,7 +227,7 @@ export class PackBuilder {
       if (pos && !r.p) r.p = pos
       if (!r.d && (!r.p || r.p === pos)) r.d = entry.senses?.find(s => !s.form_of?.length && !s.tags?.some(t => RUDE.has(t)))?.glosses?.[0]?.slice(0, 300)
       if (entry.pos === 'noun' && language !== 'en' && !r.g) r.g = nounGender(entry, language)
-      const names = (xs: { word?: string }[] | undefined) => (xs ?? []).map((x) => clean(x.word)).filter(Boolean)
+      const names = (xs: { word?: string }[] | undefined) => (xs ?? []).map((x) => clean(x.word)).filter(isCleanRelationTerm)
       r.s = add(r.s, [...names(entry.synonyms), ...(entry.senses ?? []).flatMap((s) => names(s.synonyms))], MAX_SYN)
       r.n = add(r.n, [...names(entry.antonyms), ...(entry.senses ?? []).flatMap((s) => names(s.antonyms))], MAX_SYN)
       if (language !== 'en') {

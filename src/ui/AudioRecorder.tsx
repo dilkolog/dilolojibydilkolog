@@ -64,7 +64,13 @@ export function AudioRecorder({ onSave }: { onSave: (blob: Blob) => void }) {
       <div className="row">
         {state === 'recording' ? (
           <button className="btn btn-bad" onClick={stop}>
-            <span className="rec-dot" aria-hidden /> Durdur
+            <span className="voice-wave active" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
+            </span>
+            Durdur
           </button>
         ) : (
           <button className="btn btn-quiet" onClick={start}>
