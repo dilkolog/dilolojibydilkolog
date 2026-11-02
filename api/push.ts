@@ -269,6 +269,8 @@ async function handlePost(request: Request): Promise<Response> {
   } catch {
     return new Response('bad json', { status: 400 })
   }
+  // `null`, a number or an array parses fine and is not a request.
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return new Response('bad json', { status: 400 })
   if (body.action === 'email' || body.action === 'email-status' || body.action === 'email-remove') return handleMail(request, body)
   if (body.action === 'remove') {
     if (typeof body.endpoint !== 'string') return new Response('bad request', { status: 400 })
