@@ -1,16 +1,16 @@
 import { expect, test } from '@playwright/test'
-import { approveAccount, openScreen, overflow, startWithSamples } from './helpers'
+import { aiRoute, approveAccount, openMonki, openScreen, overflow, startWithSamples } from './helpers'
 
 test('Monki: the button opens a chat that explains the key when there is none', async ({ page }) => {
   await startWithSamples(page)
-  await page.getByRole('button', { name: 'Monki ile konuş' }).click()
+  await openMonki(page)
   const panel = page.getByRole('dialog', { name: 'Monki' })
   await expect(panel).toBeVisible()
-  await expect(panel).toContainText('Anthropic anahtarını')
+  await expect(panel).toContainText(/anahtar/)
   expect(await overflow(page)).toEqual([])
   await page.keyboard.press('Escape')
   await expect(panel).toBeHidden()
-  await expect(page.getByRole('button', { name: 'Monki ile konuş' })).toBeFocused()
+  await expect(page.locator('.sidebar-monki:focus, [aria-label="Hesap menüsü"]:focus')).toHaveCount(1)
 })
 
 test('Monki: talks with a key, keeps the chat across a reload', async ({ page }) => {
@@ -20,13 +20,12 @@ test('Monki: talks with a key, keeps the chat across a reload', async ({ page })
     const open = indexedDB.open('kelime-koc')
     open.onsuccess = () => {
       const tx = open.result.transaction('meta', 'readwrite')
-      tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test-key-123' })
       tx.oncomplete = () => window.dispatchEvent(new Event('diloloji:account'))
     }
   })
   await page.reload()
   let asked = ''
-  await page.route(/api\.anthropic\.com/, async (r) => {
+  await aiRoute(page, async (r) => {
     asked = r.request().postData() ?? ''
     await r.fulfill({
       json: {
@@ -40,7 +39,7 @@ test('Monki: talks with a key, keeps the chat across a reload', async ({ page })
       },
     })
   })
-  await page.getByRole('button', { name: 'Monki ile konuş' }).click()
+  await openMonki(page)
   const panel = page.getByRole('dialog', { name: 'Monki' })
   await panel.getByRole('textbox', { name: /mesaj/ }).fill('maison ne demek?')
   await page.keyboard.press('Enter')
@@ -50,7 +49,7 @@ test('Monki: talks with a key, keeps the chat across a reload', async ({ page })
   await page.screenshot({ path: process.env.MONKI_SHOT ?? 'test-results/monki.png' })
   expect(await overflow(page)).toEqual([])
   await page.reload()
-  await page.getByRole('button', { name: 'Monki ile konuş' }).click()
+  await openMonki(page)
   await expect(page.getByRole('dialog', { name: 'Monki' })).toContainText('maison ne demek?')
 })
 
@@ -61,7 +60,6 @@ test('photo words: a photo brings back words to choose from, and the chosen ones
     const open = indexedDB.open('kelime-koc')
     open.onsuccess = () => {
       const tx = open.result.transaction('meta', 'readwrite')
-      tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test-key-123' })
       tx.oncomplete = () => window.dispatchEvent(new Event('diloloji:account'))
     }
   })
@@ -80,7 +78,7 @@ test('photo words: a photo brings back words to choose from, and the chosen ones
     literal: '',
   })
   let sentImage = false
-  await page.route(/api\.anthropic\.com/, async (r) => {
+  await aiRoute(page, async (r) => {
     sentImage = (r.request().postData() ?? '').includes('"type":"image"')
     await r.fulfill({
       json: {
@@ -115,7 +113,6 @@ test('games: with a key the mini podcast card is there (waiting for learned word
     const open = indexedDB.open('kelime-koc')
     open.onsuccess = () => {
       const tx = open.result.transaction('meta', 'readwrite')
-      tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test-key-123' })
       tx.oncomplete = () => window.dispatchEvent(new Event('diloloji:account'))
     }
   })

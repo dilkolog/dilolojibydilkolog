@@ -239,7 +239,7 @@ describe('part of speech and gender', () => {
     b.add({ word: 'house', lang_code: 'en', pos: 'noun', senses: [{ glosses: ['a building'] }], head_templates: [{ name: 'en-noun', args: {} }] })
     expect(b.finish('fr', ['livre', 'maison'], 'v1').w).toMatchObject({ livre: { p: 'n', g: 'm' }, maison: { p: 'a' } })
     expect(b.finish('es', ['casa'], 'v1').w.casa).toMatchObject({ p: 'n', g: 'f' })
-    expect(b.finish('en', ['house'], 'v1').w.house).toEqual({ p: 'n' })
+    expect(b.finish('en', ['house'], 'v1').w.house).toEqual({ p: 'n', d: 'a building' })
   })
 
   it('fills a word saved as "other" and a noun without gender, never over the learner\'s choice', () => {

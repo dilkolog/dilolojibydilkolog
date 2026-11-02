@@ -15,6 +15,7 @@ import { StatusPicture } from './StatusArt'
 import { useAccess } from './accessContext'
 import { GoogleMark } from './GoogleMark'
 import { signOutThisDevice } from './signOut'
+import { approvalEnabled } from '../data/access'
 
 const STATUS_TEXT = { rejected: 'Onaylanmadı', pending: 'Onay bekliyor' } as const
 
@@ -29,6 +30,11 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
   const [skipped, setSkipped] = useState(0)
   const [identity, setIdentity] = useState<Identity | null>(null)
   const { status: access } = useAccess()
+  // The tick means the owner approved this person: with approval switched off everyone passes and it would mean nothing.
+  const [approvalOn, setApprovalOn] = useState(false)
+  useEffect(() => {
+    void approvalEnabled().then((on) => setApprovalOn(on === true))
+  }, [])
   const modern = supabaseConfigured()
   const handle = useAccountHandle(access === 'approved')
 
@@ -122,7 +128,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
           <div className="account-who-header">
             <span className="account-name-line">
               <h2 className="account-name">{name}</h2>
-              {status === 'approved' && <VerifiedMark />}
+              {status === 'approved' && approvalOn && <VerifiedMark />}
             </span>
             <HandleTag handle={handle} />
             {status !== 'approved' && (

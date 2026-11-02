@@ -13,6 +13,8 @@ import type { Gender, PartOfSpeech, TargetLanguage } from '../engine/types'
  */
 
 export interface PackRecord {
+  /** Short source definition (English-edition Wiktionary), for context-aware enrichment. */
+  d?: string
   /** Turkish meanings. */
   t?: string[]
   /** IPA. */
@@ -170,6 +172,7 @@ const isFormOnly = (e: WtEntry) => !!e.senses?.length && e.senses.every((s) => s
 /** One row of an English translation table: words that share one English meaning. */
 interface Row {
   en: string
+  pos?: string
   words: Partial<Record<TargetLanguage | 'tr', string[]>>
 }
 
@@ -222,6 +225,7 @@ export class PackBuilder {
       // The word's first entry is its main one (livre: the masculine "book" before the feminine "pound").
       const pos = POS_LETTER[entry.pos ?? '']
       if (pos && !r.p) r.p = pos
+      if (!r.d && (!r.p || r.p === pos)) r.d = entry.senses?.find(s => !s.form_of?.length && !s.tags?.some(t => RUDE.has(t)))?.glosses?.[0]?.slice(0, 300)
       if (entry.pos === 'noun' && language !== 'en' && !r.g) r.g = nounGender(entry, language)
       const names = (xs: { word?: string }[] | undefined) => (xs ?? []).map((x) => clean(x.word)).filter(isCleanRelationTerm)
       r.s = add(r.s, [...names(entry.synonyms), ...(entry.senses ?? []).flatMap((s) => names(s.synonyms))], MAX_SYN)
@@ -236,8 +240,13 @@ export class PackBuilder {
     // Translation tables sit on the entry in older dumps and on each sense in newer ones; a rude sense's are left out.
     const senses = entry.senses ?? []
     const allRude = senses.length > 0 && senses.every((s) => s.tags?.some((t) => RUDE.has(t)))
-    const translations = [...(allRude ? [] : (entry.translations ?? [])), ...senses.filter((s) => !s.tags?.some((t) => RUDE.has(t))).flatMap((s) => s.translations ?? [])]
-    if (translations.length) this.pivot(word, translations)
+    // New dumps place unlabelled tables inside senses: keep each sense separate.
+    const top = allRude ? [] : entry.translations ?? []
+    if (top.length) this.pivot(word, top, POS_LETTER[entry.pos ?? ''])
+    for (const sense of senses.filter(s => !s.tags?.some(t => RUDE.has(t)))) {
+      const table = sense.translations ?? []
+      if (table.length) this.pivot(word, table.map(t => ({ ...t, sense: t.sense || sense.glosses?.[0] || '' })), POS_LETTER[entry.pos ?? ''])
+    }
   }
 
   /**
@@ -277,13 +286,13 @@ export class PackBuilder {
   }
 
   /** Words in one translation row (same English meaning) are translations of each other, and of the Turkish ones. */
-  private pivot(english: string, translations: readonly WtTranslation[]) {
+  private pivot(english: string, translations: readonly WtTranslation[], pos?: string) {
     const rows = new Map<string, Row>()
     for (const t of translations) {
       const code = t.lang_code ?? t.code
       const w = clean(t.word)
       if (!w || !code || (!isLanguage(code) && code !== 'tr')) continue
-      const row = rows.get(t.sense ?? '') ?? { en: english, words: { en: [english] } }
+      const row = rows.get(t.sense ?? '') ?? { en: english, pos, words: { en: [english] } }
       row.words[code] = add(row.words[code], [w], Infinity)
       rows.set(t.sense ?? '', row)
     }
@@ -316,6 +325,8 @@ export class PackBuilder {
     let t: string[] | undefined = add(undefined, groups.filter(isMain).flatMap((g) => g.t))
     let x: PackRecord['x']
     for (const { row } of rows) {
+      // Cross-language homographs must agree in part of speech; absent POS remains a fallback.
+      if (main && row.pos && row.pos !== main) continue
       t = add(t, row.words.tr ?? [])
       for (const other of LANGS) {
         if (other === language || !row.words[other]?.length) continue
@@ -332,7 +343,7 @@ export class PackBuilder {
   private record(language: TargetLanguage, key: string): PackRecord | undefined {
     const own = this.words[language].get(key)
     if (!own && !this.rows[language].has(key) && !this.trDirect[language].has(key) && !this.trReverse[language].has(key)) return undefined
-    const kept = Object.fromEntries(Object.entries({ ...own, ...this.meanings(language, key) }).filter(([, v]) => v !== undefined)) as PackRecord
+    const kept = Object.fromEntries(Object.entries({ ...own, p: own?.p ?? this.trDirect[language].get(key)?.[0]?.pos, ...this.meanings(language, key) }).filter(([, v]) => v !== undefined)) as PackRecord
     if (!Object.keys(kept).length) return undefined
     // A recording from elsewhere only completes a word the pack has anyway.
     if (!kept.a && this.audio[language].has(key)) kept.a = this.audio[language].get(key)
@@ -344,7 +355,7 @@ export class PackBuilder {
    * `limit`. A frequency list counts forms (subtitles say "allons", not "aller"), so a form brings in
    * the word it belongs to, at the form's rank, and is kept in `f` so a search for it finds the word.
    */
-  finish(language: TargetLanguage, wanted: readonly string[], version: string, limit = Infinity): Pack {
+  finish(language: TargetLanguage, wanted: readonly string[], version: string, limit = Infinity, includeTranslated = false): Pack {
     const w: Record<string, PackRecord> = {}
     const f: Record<string, string> = {}
     let n = 0
@@ -367,6 +378,13 @@ export class PackBuilder {
       if (base && (!own || frequent.has(base)) && take(base)) f[key] = base
       if (n >= limit) break
     }
+    const candidates = new Set([...this.words[language].keys(), ...this.trDirect[language].keys(), ...this.trReverse[language].keys(), ...this.rows[language].keys()])
+    for (const key of includeTranslated ? candidates : []) {
+      if (n >= limit) break
+      const candidate = this.record(language, key)
+      if (w[key] || !candidate?.t?.length || !candidate.p || !POS_CODE[candidate.p]) continue
+      take(key)
+    }
     return { v: version, w, ...(Object.keys(f).length ? { f } : {}) }
   }
 }
@@ -381,7 +399,7 @@ export interface PackStats {
 /** What a pack holds, for the build script to print before anyone ships it. */
 export function packStats(pack: Pack): PackStats {
   const records = Object.values(pack.w)
-  const keys = ['t', 'i', 'a', 'e', 's', 'n', 'x', 'p', 'g', 'c'] as const
+  const keys = ['d', 't', 'i', 'a', 'e', 's', 'n', 'x', 'p', 'g', 'c'] as const
   const countOf = (r: PackRecord, k: (typeof keys)[number]) => {
     if (k === 'x') return Object.keys(r.x ?? {}).length
     if (k === 'c') return r.c ? 1 : 0

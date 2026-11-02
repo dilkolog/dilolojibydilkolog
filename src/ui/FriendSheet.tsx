@@ -20,7 +20,7 @@ const SHORT = ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct']
  * The friend's page: how the last two weeks went, and a cheer, nudge, gift, text, or duel invite to send; at the
  * bottom, reporting them to the site's owner and blocking them (`onBlocked`: the friends list is read again).
  */
-export function FriendSheet({ friend, name, today, vocabulary = [], language, onClose, onDuel, onBlocked }: { friend: FriendView; name: string; today: string; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; onClose: () => void; onDuel?: () => void; onBlocked?: () => void }) {
+export function FriendSheet({ friend, name, today, vocabulary = [], language, onClose, onDuel, onBlocked, muted = false, onMute }: { friend: FriendView; name: string; today: string; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; onClose: () => void; onDuel?: () => void; onBlocked?: () => void; /** Their nudges and cheers are not shown (they are not told). */ muted?: boolean; onMute?: (muted: boolean) => void }) {
   const [sent, setSent] = useState<Partial<Record<InboxKind, boolean>>>({})
   const [busy, setBusy] = useState<InboxKind | null>(null)
   const [give, setGive] = useState<'gift' | 'text' | null>(null)
@@ -60,7 +60,7 @@ export function FriendSheet({ friend, name, today, vocabulary = [], language, on
     try {
       await sendToFriend(friend.code, kind, payload)
       if (kind === 'cheer' || kind === 'nudge') setSent((s) => ({ ...s, [kind]: true }))
-      showToast(kind === 'cheer' ? `${name} tebrik edildi.` : kind === 'nudge' ? `${name} dürtüldü.` : kind === 'gift' ? `Kelime ${name} arkadaşına gitti.` : `Metin ${name} arkadaşına gitti.`)
+      showToast(kind === 'cheer' ? `${name} tebrik edildi.` : kind === 'nudge' ? `${name} adlı arkadaşına nazik bir hatırlatma gitti.` : kind === 'gift' ? `Kelime ${name} arkadaşına gitti.` : `Metin ${name} arkadaşına gitti.`)
       if (kind === 'gift' || kind === 'text') {
         setGive(null)
         setQuery('')
@@ -151,8 +151,8 @@ export function FriendSheet({ friend, name, today, vocabulary = [], language, on
             <button type="button" className="btn" disabled={busy !== null || sent.cheer} onClick={() => void send('cheer')}>
               {sent.cheer ? 'Tebrik gitti ✓' : 'Tebrik et 👏'}
             </button>
-            <button type="button" className="btn btn-quiet" disabled={busy !== null || sent.nudge || studiedToday} onClick={() => void send('nudge')} title={studiedToday ? 'Bugün zaten çalıştı' : 'Bugün çalışmasını hatırlat'}>
-              {sent.nudge ? 'Dürtüldü ✓' : studiedToday ? 'Bugün çalıştı' : 'Dürt 👋'}
+            <button type="button" className="btn btn-quiet" disabled={busy !== null || sent.nudge || studiedToday} onClick={() => void send('nudge')} title={studiedToday ? 'Bugün zaten çalıştı' : 'Nazik bir hatırlatma gönderir: seni özledi, bugün 5 dakika yeter'}>
+              {sent.nudge ? 'Hatırlatıldı ✓' : studiedToday ? 'Bugün çalıştı' : 'Hatırlat 👋'}
             </button>
             {onDuel && (
               <button
@@ -211,7 +211,13 @@ export function FriendSheet({ friend, name, today, vocabulary = [], language, on
 
             </div>
           )}
+          <p className="small muted friend-nudge-note">Hatırlatma nazik bir mesajdır ("seni özledi, bugün 5 dakika yeter") ve günde en çok bir kez, yalnızca o gün çalışmamış arkadaşa gider.</p>
           <div className="friend-sheet-safety">
+            {onMute && (
+              <button type="button" className="link small" onClick={() => onMute(!muted)}>
+                {muted ? 'Sessizden çıkar' : 'Sessize al'}
+              </button>
+            )}
             <button type="button" className="link small" onClick={() => setOver('report')}>
               Şikâyet et
             </button>

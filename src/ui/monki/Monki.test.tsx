@@ -24,7 +24,7 @@ describe('Monki', () => {
   const render = (apiKey: string | null, needsApproval = false, extra: { inSession?: boolean; showButton?: boolean } = {}) =>
     act(() =>
       root.render(
-        <AiContext.Provider value={{ apiKey, needsApproval, setApiKey: async () => {} }}>
+        <AiContext.Provider value={{ apiKey, needsApproval }}>
           <Monki language="fr" name="Ali" weakWords={['maison']} mistakes={[{ word: 'maison', given: 'maisson', expected: 'maison' }]} onSettings={onSettings} {...extra} />
         </AiContext.Provider>,
       ),
@@ -53,7 +53,7 @@ describe('Monki', () => {
   it('without a key it explains what is needed and goes to the settings', () => {
     render(null)
     openPanel()
-    expect(container.textContent).toContain('Anthropic anahtarını')
+    expect(container.textContent).toMatch(/ulaşamıyorum|onaylanması/)
     act(() => container.querySelector<HTMLButtonElement>('.monki-setup .btn')!.click())
     expect(onSettings).toHaveBeenCalled()
     expect(container.querySelector('.monki-panel')).toBeNull()
@@ -65,6 +65,19 @@ describe('Monki', () => {
     render(null, true)
     openPanel()
     expect(container.textContent).toContain('onaylanması')
+  })
+
+  it('offers a single starter, one that suits the words that are hard, and changes it from one opening to the next', () => {
+    render('sk-test')
+    const starters = new Set<string>()
+    for (let i = 0; i < 40; i++) {
+      openPanel()
+      const chips = container.querySelectorAll('.monki-chips .chip')
+      expect(chips).toHaveLength(1)
+      starters.add(chips[0].textContent!)
+      act(() => container.querySelector<HTMLButtonElement>('.monki-head [aria-label="Kapat"]')!.click())
+    }
+    expect(starters.size).toBeGreaterThan(1)
   })
 
   it('greets, sends a message with the weak words and shows the reply and its suggestions', async () => {
@@ -173,7 +186,7 @@ describe('Monki', () => {
     render('sk-test')
     openPanel()
     expect(container.textContent).toContain('coucou')
-    const clear = [...container.querySelectorAll<HTMLButtonElement>('.monki-head .btn')].find((b) => b.textContent === 'Temizle')!
+    const clear = container.querySelector<HTMLButtonElement>('.monki-head [aria-label="Sohbeti temizle"]')!
     act(() => clear.click())
     expect(container.textContent).not.toContain('coucou')
     expect(localStorage.getItem('diloloji:monki:fr')).toBeNull()
@@ -183,8 +196,8 @@ describe('Monki', () => {
     localStorage.setItem('diloloji:monki:fr', JSON.stringify([{ role: 'user', text: 'salut' }]))
     render(null)
     openPanel()
-    const clear = [...container.querySelectorAll<HTMLButtonElement>('.monki-head .btn')].find((b) => b.textContent === 'Temizle')
-    expect(clear).toBeUndefined()
+    const clear = container.querySelector<HTMLButtonElement>('.monki-head [aria-label="Sohbeti temizle"]')
+    expect(clear).toBeNull()
   })
 
   it('shows an error without losing the question when the reply fails', async () => {
@@ -306,7 +319,7 @@ describe('Monki', () => {
 
   describe('memory', () => {
     const starter = () => act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
-    const memoryButton = () => [...container.querySelectorAll<HTMLButtonElement>('.monki-head button')].find((b) => b.textContent?.includes('Hatırladıkları'))!
+    const memoryButton = () => container.querySelector<HTMLButtonElement>('.monki-head [aria-label^="Monki\'nin hatırladıkları"]')!
 
     it('keeps the notes Monki returns and hands them back on the next turn', async () => {
       monkiTurn.mockResolvedValueOnce({ reply: 'Tamam', suggestions: [], remember: ['passé composé ile imparfait karışıyor'] })
@@ -331,7 +344,7 @@ describe('Monki', () => {
       localStorage.setItem('diloloji:monki-memory:fr', JSON.stringify([{ id: 'a', text: 'bir', at: '2026-10-20' }, { id: 'b', text: 'iki', at: '2026-10-21' }]))
       render('sk-test')
       openPanel()
-      expect(memoryButton().textContent).toContain('(2)')
+      expect(memoryButton().getAttribute('aria-label')).toContain('(2)')
       act(() => memoryButton().click())
       expect(container.querySelector('.monki-memory')?.textContent).toContain('bir')
       act(() => container.querySelector<HTMLButtonElement>('.monki-memory-list .icon-btn')!.click())
@@ -359,7 +372,7 @@ describe('Monki', () => {
     const renderDaily = (words: string[] = ['maison', 'arbre', 'chat']) =>
       act(() =>
         root.render(
-          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false, setApiKey: async () => {} }}>
+          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false }}>
             <Monki language="fr" dailyWords={words} onSettings={onSettings} />
           </AiContext.Provider>,
         ),
@@ -419,7 +432,7 @@ describe('Monki', () => {
     const renderPron = (words: { word: string; score: number }[]) =>
       act(() =>
         root.render(
-          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false, setApiKey: async () => {} }}>
+          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false }}>
             <Monki language="fr" loadPronWords={async () => words} onSettings={onSettings} />
           </AiContext.Provider>,
         ),
@@ -459,7 +472,7 @@ describe('Monki', () => {
     const renderWith = (extra: { dailyLimit?: number; loadUsage?: () => Promise<{ requests: number; cost: number } | null> }) =>
       act(() =>
         root.render(
-          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false, setApiKey: async () => {} }}>
+          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false }}>
             <Monki language="fr" onSettings={onSettings} {...extra} />
           </AiContext.Provider>,
         ),

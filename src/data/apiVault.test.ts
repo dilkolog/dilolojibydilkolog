@@ -2,6 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 // An in-memory Blob store and a fake Supabase (auth + the two tables) behind the real /api/access handlers.
 const blobs = new Map<string, Uint8Array>()
+let pushListFailure = false
+let blobDeleteFailurePath: string | null = null
 vi.mock('@vercel/blob', () => ({
   put: async (path: string, body: string, opts: { allowOverwrite?: boolean }) => {
     if (opts.allowOverwrite === false && blobs.has(path)) throw new Error('exists')
@@ -12,8 +14,15 @@ vi.mock('@vercel/blob', () => ({
     const b = blobs.get(path)
     return b ? { statusCode: 200, stream: new Response(b.slice()).body, blob: { etag: 'e' } } : null
   },
-  list: async ({ prefix }: { prefix: string }) => ({ blobs: [...blobs.keys()].filter((k) => k.startsWith(prefix)).map((pathname) => ({ pathname })) }),
-  del: async (path: string | string[]) => void (Array.isArray(path) ? path : [path]).forEach((p) => blobs.delete(p)),
+  list: async ({ prefix }: { prefix: string }) => {
+    if (pushListFailure && prefix === 'push/') throw new Error('push listing unavailable')
+    return { blobs: [...blobs.keys()].filter((k) => k.startsWith(prefix)).map((pathname) => ({ pathname })) }
+  },
+  del: async (path: string | string[]) => {
+    const paths = Array.isArray(path) ? path : [path]
+    if (blobDeleteFailurePath && paths.includes(blobDeleteFailurePath)) throw new Error('delete unavailable')
+    paths.forEach(p => blobs.delete(p))
+  },
 }))
 
 const access = await import('../../api/access')
@@ -30,11 +39,24 @@ let profiles: { user_id: string; approved: boolean; rejected: boolean }[] = []
 let keys: { user_id: string; sync_id: string; enc: string; auth: string; username: string | null }[] = []
 const seen: { url: string; headers: Record<string, string> }[] = []
 const deletedUsers: string[] = []
+const media = new Set<string>()
+let mediaFailure: 'list' | 'delete' | null = null
 
 function fakeSupabase(input: string, init: RequestInit = {}): Response {
   const url = new URL(input)
   const headers = Object.fromEntries(new Headers(init.headers).entries())
   seen.push({ url: input, headers })
+  if (url.pathname === '/storage/v1/object/list/media') {
+    if (mediaFailure === 'list') return new Response('unavailable', { status: 503 })
+    const { prefix } = JSON.parse(String(init.body)) as { prefix: string }
+    return Response.json([...media].filter(name => name.startsWith(prefix)).slice(0, 1000).map(name => ({ name: name.slice(prefix.length) })))
+  }
+  if (url.pathname === '/storage/v1/object/media' && init.method === 'DELETE') {
+    if (mediaFailure === 'delete') return new Response('unavailable', { status: 503 })
+    const { prefixes } = JSON.parse(String(init.body)) as { prefixes: string[] }
+    for (const name of prefixes) media.delete(name)
+    return Response.json([])
+  }
   if (url.pathname.startsWith('/auth/v1/admin/users/') && init.method === 'DELETE') {
     const id = url.pathname.split('/').pop()
     deletedUsers.push(id!)
@@ -86,6 +108,10 @@ const NEW = { id: 'd'.repeat(64), enc: 'e'.repeat(64), auth: 'f'.repeat(64) }
 
 beforeEach(async () => {
   blobs.clear()
+  media.clear()
+  mediaFailure = null
+  pushListFailure = false
+  blobDeleteFailurePath = null
   clearAccessCache()
   resetRate()
   profiles = []
@@ -193,4 +219,65 @@ describe('/api/access: the Supabase vault', () => {
     expect(res.status).toBe(200)
     expect(profiles.find((p) => p.user_id === USERS['tok-veli']!.id)).toMatchObject({ approved: true })
   })
+})
+
+
+it.each(['list', 'delete'] as const)('keeps the Supabase identity after a media %s failure and completes on retry', async failure => {
+  await link('tok-ali', OLD)
+  const ownFile = `${USERS['tok-ali']!.id}/m-test.json`
+  const otherFile = `${USERS['tok-veli']!.id}/m-other.json`
+  media.add(ownFile); media.add(otherFile)
+  mediaFailure = failure
+  const request = () => access.POST(new Request('https://app.test/api/access', { method: 'POST', headers: bearer('tok-ali'), body: JSON.stringify({ action: 'account-delete' }) }))
+  expect((await request()).status).toBe(502)
+  expect(deletedUsers).toEqual([])
+  expect(keys.some(k => k.user_id === USERS['tok-ali']!.id)).toBe(true)
+  expect(media.has(ownFile)).toBe(true)
+  mediaFailure = null
+  expect((await request()).status).toBe(200)
+  expect(deletedUsers).toEqual([USERS['tok-ali']!.id])
+  expect(media.has(ownFile)).toBe(false)
+  expect(media.has(otherFile)).toBe(true)
+})
+
+
+it('does not delete the identity if push records cannot be listed, and retries cleanup', async () => {
+  await link('tok-ali', OLD)
+  const path = `push/${'e'.repeat(40)}.json`
+  blobs.set(path, new TextEncoder().encode(JSON.stringify({ owner: OLD.id, endpoint: 'https://push.example/a' })))
+  const request = () => access.POST(new Request('https://app.test/api/access', { method: 'POST', headers: bearer('tok-ali'), body: JSON.stringify({ action: 'account-delete' }) }))
+  pushListFailure = true
+  expect((await request()).status).toBe(502)
+  expect(deletedUsers).toEqual([])
+  expect(blobs.has(path)).toBe(true)
+  pushListFailure = false
+  expect((await request()).status).toBe(200)
+  expect(blobs.has(path)).toBe(false)
+})
+
+
+it('does not report successful cleanup when deleting a push record fails', async () => {
+  await link('tok-ali', OLD)
+  const path = `push/${'f'.repeat(40)}.json`
+  blobs.set(path, new TextEncoder().encode(JSON.stringify({ owner: OLD.id, endpoint: 'https://push.example/a' })))
+  const request = () => access.POST(new Request('https://app.test/api/access', { method: 'POST', headers: bearer('tok-ali'), body: JSON.stringify({ action: 'account-delete' }) }))
+  blobDeleteFailurePath = path
+  expect((await request()).status).toBe(502)
+  expect(deletedUsers).toEqual([])
+  expect(blobs.has(path)).toBe(true)
+  blobDeleteFailurePath = null
+  expect((await request()).status).toBe(200)
+  expect(blobs.has(path)).toBe(false)
+})
+
+it('keeps the legacy credential until cleanup succeeds so a failed deletion can be retried', async () => {
+  vi.stubEnv('SUPABASE_SECRET_KEY', '')
+  vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY', '')
+  const request = () => access.POST(new Request('https://app.test/api/access', { method: 'POST', headers: { ...APP, 'x-sync-id': OLD.id, 'x-sync-auth': OLD.auth }, body: JSON.stringify({ action: 'account-delete' }) }))
+  pushListFailure = true
+  expect((await request()).status).toBe(502)
+  expect(blobs.has(`sync/${OLD.id}/auth.txt`)).toBe(true)
+  pushListFailure = false
+  expect((await request()).status).toBe(200)
+  expect(blobs.has(`sync/${OLD.id}/auth.txt`)).toBe(false)
 })

@@ -12,7 +12,7 @@ import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/t
 import { StoryScreen } from './Story'
 
 vi.mock('./aiContext', () => ({
-  useAi: () => ({ apiKey: 'sk-test-key', setApiKey: async () => {}, needsApproval: false }),
+  useAi: () => ({ apiKey: 'sk-test-key', needsApproval: false }),
 }))
 
 const mockEvaluateRetelling = vi.fn()

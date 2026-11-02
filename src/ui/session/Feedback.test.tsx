@@ -28,7 +28,7 @@ describe('feedback after an answer', () => {
   it('offers Monki after a miss, with a YZ key only', () => {
     const withKey = (verdict: 'correct' | 'wrong') =>
       renderToStaticMarkup(
-        <AiContext.Provider value={{ apiKey: 'sk', setApiKey: async () => {} }}>
+        <AiContext.Provider value={{ apiKey: 'sk' }}>
           <Feedback ev={{ verdict, correct: verdict === 'correct', expected: 'decision' } as unknown as Graded} entry={decision} continueRef={createRef()} onContinue={() => {}} />
         </AiContext.Provider>,
       )

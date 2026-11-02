@@ -16,10 +16,11 @@ export const ID = /^[0-9a-f]{64}$/
 export const TOKEN = /^[0-9a-f]{64}$/
 
 /**
- * The approval is on once the owner has set ADMIN_TOKEN (the way to approve). Until then nothing
- * is withheld, so deploying this changes nothing for anyone before the owner is ready.
+ * The approval is on when the owner decides who comes in: with Supabase sign-in the owner approves people in the
+ * Supabase panel (profiles.approved), so the approval is on by itself (APPROVAL=off switches it off); without Supabase
+ * (local development) it is on once ADMIN_TOKEN is set, the old way to approve. Otherwise nothing is withheld.
  */
-export const approvalOn = () => !!process.env.ADMIN_TOKEN?.trim()
+export const approvalOn = () => !!process.env.ADMIN_TOKEN?.trim() || (supabaseOn() && process.env.APPROVAL?.trim().toLowerCase() !== 'off')
 
 export type AccessStatus = 'none' | 'pending' | 'approved' | 'rejected'
 
@@ -49,8 +50,8 @@ export async function writeJson(path: string, value: unknown) {
   await put(path, JSON.stringify(value), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json' })
 }
 
-export async function removeBlob(path: string) {
-  await del(path).catch(() => {})
+export async function removeBlob(path: string, strict = false) {
+  await del(path).catch((error: unknown) => { if (strict) throw error })
 }
 
 const remembered = new Map<string, { value: unknown; until: number }>()

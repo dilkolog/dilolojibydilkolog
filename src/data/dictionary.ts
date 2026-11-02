@@ -33,6 +33,8 @@ export interface DictIndex {
 }
 
 export interface DictResult {
+  correction?: string
+  suggestions?: DictHit[]
   exact?: DictHit
   /** What was typed, when it is an inflected form of `exact` (allons for aller). */
   form?: string
@@ -247,7 +249,10 @@ export function search(index: DictIndex, query: string, verbForm?: VerbFormLooku
 
   const also = exact && !form ? index.pack.f?.[exact.word] : undefined
   const baseOf = exact && !exact.rec.t?.some((m) => m.trim()) ? meaningfulBase(index, exact.word, verbForm) : undefined
-  return { exact, ...(form ? { form } : {}), ...(formNote ? { formNote } : {}), ...(also && also !== exact?.word && (index.pack.w[also] || index.extra?.has(also)) ? { alsoFormOf: also } : {}), similar, fromTurkish, ...(turkishAs ? { turkishAs } : {}), ...(baseOf ? { baseOf } : {}) }
+  const correction = exact && !form && normalize(query).toLocaleLowerCase(language) !== exact.word && fold(query) === fold(exact.word) ? exact.word : undefined
+  const suggestions = !exact && !fromTurkish.length && bare.length >= 3 && bare.length <= 40
+    ? index.keys.map((_, i) => ({ i, distance: typoDistance(bare, index.folded[i]) })).filter(x => x.distance <= (bare.length >= 7 ? 2 : 1)).sort((a, b) => a.distance - b.distance || a.i - b.i).slice(0, 4).map(x => hit(index, x.i)) : []
+  return { ...(correction ? { correction } : {}), ...(suggestions.length ? { suggestions } : {}), exact, ...(form ? { form } : {}), ...(formNote ? { formNote } : {}), ...(also && also !== exact?.word && (index.pack.w[also] || index.extra?.has(also)) ? { alsoFormOf: also } : {}), similar, fromTurkish, ...(turkishAs ? { turkishAs } : {}), ...(baseOf ? { baseOf } : {}) }
 }
 
 /**
@@ -375,4 +380,22 @@ export function wordOfTheDay(index: DictIndex, seed: number): DictHit | undefine
     return hit(index, i)
   }
   return undefined
+}
+
+/** Bounded edit distance with adjacent transpositions; no matrix allocation for unrelated lengths. */
+export function typoDistance(a: string, b: string): number {
+  if (Math.abs(a.length - b.length) > 2) return 3
+  let previous = Array.from({ length: b.length + 1 }, (_, i) => i)
+  let before = previous
+  for (let i = 1; i <= a.length; i++) {
+    const row = [i]
+    for (let j = 1; j <= b.length; j++) {
+      row[j] = Math.min(row[j - 1] + 1, previous[j] + 1, previous[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1))
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) row[j] = Math.min(row[j], before[j - 2] + 1)
+    }
+    if (Math.min(...row) > 2) return 3
+    before = previous
+    previous = row
+  }
+  return previous[b.length]
 }

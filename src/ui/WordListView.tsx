@@ -368,7 +368,7 @@ export function WordList({
               <SearchIcon size={18} />
               <input type="search" enterKeyHint="search" autoCapitalize="off" autoCorrect="off" className="input" placeholder="Kelime, anlam ya da not ara" aria-label="Kelime ara" value={query} onChange={(e) => setQuery(e.target.value)} />
             </div>
-            <button className={`btn ${selecting ? '' : 'btn-quiet'}`} onClick={() => (selecting ? exitSelection() : setSelecting(true))}>
+            <button className={`btn word-select-toggle ${selecting ? '' : 'btn-quiet'}`} onClick={() => (selecting ? exitSelection() : setSelecting(true))}>
               {selecting ? 'Bitti' : 'Seç'}
             </button>
             <Popover
@@ -386,6 +386,12 @@ export function WordList({
             >
               {(close) => (
                 <>
+                  <div className="panel-group">
+                    <span className="panel-label">İşlemler</span>
+                    <button type="button" className="btn btn-quiet" onClick={() => { setSelecting(true); close() }}>
+                      Kelimeleri seç
+                    </button>
+                  </div>
                   <div className="panel-group">
                     <span className="panel-label">Görünüm</span>
                     <div className="segmented" role="group" aria-label="Görünüm biçimi">

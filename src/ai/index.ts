@@ -44,8 +44,6 @@ export * from './usage'
  */
 const sdk = () => import('./claude')
 
-export const testKey = async (apiKey: string) => (await sdk()).testKey(apiKey)
-
 export const enrichWords = async (
   apiKey: string,
   language: TargetLanguage,

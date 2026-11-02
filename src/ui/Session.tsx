@@ -306,6 +306,7 @@ export function SessionScreen(p: Props) {
       // Graduated follow-ups of a new word are practice: they help memory, not the schedule.
       mode: item.reason === 'practice' ? 'practice' : p.mode,
       confidence,
+      plan: { reason: item.reason, slot: session.index, ...(item.probe !== undefined ? { probe: item.probe } : {}) },
     }
     const bank = mistakes.current
     const result = processAttempt(before, input, bank, p.scheduler)

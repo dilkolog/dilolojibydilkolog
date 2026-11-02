@@ -60,7 +60,7 @@ async function mount(apiKey: string | null) {
   root = createRoot(host)
   await act(async () =>
     root!.render(
-      <AiContext.Provider value={{ apiKey, setApiKey: async () => {} }}>
+      <AiContext.Provider value={{ apiKey }}>
         <MiniPodcast language="fr" vocabulary={WORDS.map((w) => w.entry)} states={WORDS.map((w) => w.state)} onChanged={() => {}} onExit={() => {}} />
       </AiContext.Provider>,
     ),
@@ -68,7 +68,6 @@ async function mount(apiKey: string | null) {
   return host
 }
 const button = (host: HTMLElement, text: string) => [...host.querySelectorAll('button')].find((b) => b.textContent?.includes(text))!
-const wait = () => act(async () => void (await new Promise((r) => setTimeout(r, 30))))
 
 describe('MiniPodcast', () => {
   it('needs a key to write one', async () => {
@@ -80,7 +79,9 @@ describe('MiniPodcast', () => {
   it('writes a talk around the weak words, keeps it, shows the Turkish and reads it with two voices', async () => {
     const host = await mount('key')
     await act(async () => button(host, 'Podcast yaz').click())
-    await wait()
+    await act(async () => {
+      await vi.waitFor(() => expect(requests).toHaveLength(1))
+    })
     expect(requests[0].language).toBe('fr')
     expect(requests[0].words.map((w) => w.lemma).sort()).toEqual(['marché', 'pomme'])
     expect(host.textContent).toContain('Au marché')

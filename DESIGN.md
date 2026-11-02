@@ -214,7 +214,7 @@ Uygulama **tek vurgu rengiyle** yaşar: öğrenilen dilin rengi. İngilizce mavi
 **Ana özellikler:**
 - Bir ekranda tek vurgu: aktif dilin `--lang` ailesi.
 - Geri bildirim renkleri (yeşil/turuncu/kırmızı) yalnızca cevaplar için.
-- Dokunsal düğmeler: alt kenar gölgesi, basınca aşağı inme.
+- Dokunsal birincil düğmeler: alt kenar gölgesi, basınca aşağı inme. İkincil `.btn-quiet` düğmeler ve filtre çipleri düz görünür; ana eylemle yarışmaz.
 - Hedef dildeki her şey serif (Literata), arayüz sans (Lexend).
 - Açık, koyu ve sakin (data-calm) üç tema; hepsi aynı token adlarıyla.
 

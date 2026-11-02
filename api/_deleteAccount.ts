@@ -4,13 +4,14 @@ import { forgetFriends } from './_friends.js'
 import { blobReminders, tableReminders } from './_reminders.js'
 import { tablesOn } from './_tables.js'
 
-async function deletePrefix(prefix: string): Promise<number> {
+async function deletePrefix(prefix: string, keep?: string): Promise<number> {
   let removed = 0
   let cursor: string | undefined
   do {
     const page = await list({ prefix, cursor })
-    if (page.blobs.length) await del(page.blobs.map((b) => b.pathname))
-    removed += page.blobs.length
+    const paths = page.blobs.map(b => b.pathname).filter(path => path !== keep)
+    if (paths.length) await del(paths)
+    removed += paths.length
     cursor = page.hasMore ? page.cursor : undefined
   } while (cursor)
   return removed
@@ -22,13 +23,13 @@ async function deleteOwnMail(id: string): Promise<number> {
   const stores = (await tablesOn()) ? [blobReminders, tableReminders] : [blobReminders]
   let removed = 0
   for (const store of stores) {
-    const keys = await store.mailsOf(id)
-    for (const key of keys) await store.remove(key)
+    const keys = await store.mailsOf(id, true)
+    for (const key of keys) await store.remove(key, true)
     removed += keys.length
     // The devices that registered for push reminders with this account (their notifications would keep coming).
-    // Best effort: a store that cannot list them must not stop the deletion of everything else.
-    const devices = await store.byOwner(id).catch(() => [])
-    for (const { key } of devices) await store.remove(key)
+    // A failed listing must leave the sign-in available for a complete retry.
+    const devices = await store.byOwner(id, true)
+    for (const { key } of devices) await store.remove(key, true)
     removed += devices.length
   }
   return removed
@@ -52,11 +53,14 @@ export async function timed<T>(steps: Record<string, number> | undefined, name: 
  * and waiting for them one after another made a deletion take many seconds.
  */
 export async function deleteAccountData(id: string, steps?: Record<string, number>): Promise<number> {
+  const authPath = `sync/${id}/auth.txt`
   const [synced, , mails] = await Promise.all([
-    timed(steps, 'synced', () => deletePrefix(`sync/${id}/`)),
-    timed(steps, 'markers+friends', () => Promise.all([removeBlob(requestPath(id)), removeBlob(approvedPath(id)), removeBlob(rejectedPath(id)), forgetFriends(id)])),
+    timed(steps, 'synced', () => deletePrefix(`sync/${id}/`, authPath)),
+    timed(steps, 'markers+friends', () => Promise.all([removeBlob(requestPath(id), true), removeBlob(approvedPath(id), true), removeBlob(rejectedPath(id), true), forgetFriends(id)])),
     timed(steps, 'mail', () => deleteOwnMail(id)),
   ])
+  // The legacy credential survives every preceding cleanup failure, so deletion can be retried.
+  await removeBlob(authPath, true)
   clearAccessCache()
   return synced + mails
 }

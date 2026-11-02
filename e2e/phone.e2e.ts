@@ -1,3 +1,4 @@
+import { selectWords } from './helpers'
 import { expect, test } from '@playwright/test'
 import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, guideMarkValues, seedGuideMarks, startWithSamples } from './helpers'
 import { readdirSync, readFileSync } from 'node:fs'
@@ -66,10 +67,11 @@ test('no screen scrolls sideways, even at the largest text size', async ({ page 
   expect(found).toEqual([])
 })
 
-test('text stays readable in the light, the dark, the calm and the high-contrast theme', async ({ page }) => {
-  await startWithSamples(page)
-  const found: string[] = []
-  for (const theme of ['light', 'dark', 'calm', 'contrast']) {
+for (const theme of ['light', 'dark', 'calm', 'contrast'] as const) {
+  test(`text stays readable in the ${theme} theme`, async ({ page }) => {
+    test.setTimeout(120_000)
+    await startWithSamples(page)
+    const found: string[] = []
     // Calm is the dark theme with a flag that turns its colours down; contrast is the light one with a flag that turns them up.
     await page.evaluate((t) => {
       document.documentElement.dataset.theme = t === 'calm' ? 'dark' : t === 'contrast' ? 'light' : t
@@ -82,9 +84,9 @@ test('text stays readable in the light, the dark, the calm and the high-contrast
       await openScreen(page, name)
       for (const p of await contrastProblems(page)) found.push(`${theme} ${name}: ${p}`)
     }
-  }
-  expect(found).toEqual([])
-})
+    expect(found).toEqual([])
+  })
+}
 
 test('in a session the answer choices sit within thumb reach', async ({ page }) => {
   await startWithSamples(page)
@@ -149,13 +151,7 @@ test('Progress starts with the overview and opens a group from the shortcut row'
   await page.locator('.settings-nav .chip', { hasText: 'Tekrarlar' }).click()
   await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'true')
   // It scrolled there, and the page grew by what it opened.
-  await expect.poll(async () => {
-    const top = await page.evaluate(() => document.getElementById('p-memory')!.getBoundingClientRect().top)
-    if (top >= 250) {
-      await page.locator('.settings-nav .chip', { hasText: 'Tekrarlar' }).click()
-    }
-    return top
-  }, { timeout: 10_000 }).toBeLessThan(250)
+  await expect.poll(() => page.evaluate(() => document.getElementById('p-memory')!.getBoundingClientRect().top), { timeout: 10_000 }).toBeLessThan(250)
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollHeight)).toBeGreaterThan(closedHeight + 400)
   await toggles.nth(2).click()
   await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'false')
@@ -507,7 +503,7 @@ test('a badge earned in a session gets its moment once, and so does one earned o
   await expect(moment).toHaveCount(0)
   // Outside a session: marking hard words earns "Zorluk avcısı", and the moment says so.
   await openScreen(page, 'Kelimeler')
-  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await selectWords(page)
   await page.getByRole('checkbox').first().check()
   await page.getByRole('button', { name: 'Zor işaretle' }).click()
   await expect(moment.locator('h2')).toHaveText('Zorluk avcısı')
@@ -520,7 +516,7 @@ test('hard words glow in the garden, and the Zor filter shows just those', async
   test.setTimeout(90_000)
   await startWithSamples(page)
   await openScreen(page, 'Kelimeler')
-  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await selectWords(page)
   await page.locator('.word-row').first().click()
   await page.getByRole('button', { name: 'Zor işaretle' }).click()
   // A new badge may open its moment; close it if so.
@@ -552,7 +548,7 @@ test('the garden card on Today counts the hard words and starts their practice i
   await expect(page.locator('.garden-hard-line')).toHaveCount(0)
   // Mark two words hard.
   await openScreen(page, 'Kelimeler')
-  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await selectWords(page)
   await page.locator('.word-row').nth(0).click()
   await page.locator('.word-row').nth(1).click()
   await page.getByRole('button', { name: 'Zor işaretle' }).click()
@@ -652,6 +648,7 @@ test('a word card shows how full it is, and a missing part takes you to where it
   await startWithSamples(page)
   await openScreen(page, 'Kelimeler')
   await page.locator('.word-row').first().click()
+  await page.getByText('Kartı zenginleştir', { exact: true }).click()
   const fill = page.locator('.card-fill')
   await expect(fill).toBeVisible()
   const before = Number((await fill.getByRole('progressbar').getAttribute('aria-valuenow')))
@@ -943,7 +940,15 @@ test('the page is lit for the hour: greeting, a sun or moon beside it, a faint w
     await page.evaluate(() => (document.documentElement.dataset.theme = 'dark'))
     expect(await wash()).not.toMatch(/rgba\((251|244|99)/)
     await page.evaluate(() => delete document.documentElement.dataset.theme)
-    await page.evaluate(() => indexedDB.databases().then((dbs) => Promise.all(dbs.map((d) => indexedDB.deleteDatabase(d.name!)))))
+    await page.goto('/robots.txt')
+    await page.evaluate(async () => {
+      await Promise.all((await indexedDB.databases()).map(database => new Promise<void>((resolve, reject) => {
+        const request = indexedDB.deleteDatabase(database.name!)
+        request.onsuccess = () => resolve()
+        request.onerror = () => reject(request.error)
+        request.onblocked = () => reject(new Error('Database cleanup is blocked'))
+      })))
+    })
   }
 })
 
@@ -962,7 +967,7 @@ test('the badges on show sit beside the greeting on Today and open the profile',
   await expect(badge).toHaveAttribute('aria-label', /İlk adım/)
   // On the greeting's line, not wider than the screen.
   const [g, b] = await Promise.all([page.locator('h1.greeting').boundingBox(), badge.boundingBox()])
-  expect(b!.x + b!.width).toBeLessThanOrEqual(375)
+  expect(b!.x + b!.width).toBeLessThanOrEqual(page.viewportSize()!.width)
   expect(Math.abs(b!.y + b!.height / 2 - (g!.y + g!.height / 2))).toBeLessThan(40)
   expect(await overflow(page)).toEqual([])
   await badge.click()
@@ -1094,9 +1099,14 @@ test('verb lab: a sideways swipe over the table steps the tense; a scroll does n
         const r = el.getBoundingClientRect()
         const x = r.left + r.width / 2
         const y = r.top + 20
-        const touch = (cx: number, cy: number) => new Touch({ identifier: 1, target: el, clientX: cx, clientY: cy })
-        el.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, touches: [touch(x, y)], changedTouches: [touch(x, y)] }))
-        el.dispatchEvent(new TouchEvent('touchend', { bubbles: true, touches: [], changedTouches: [touch(x + dx, y + dy)] }))
+        const touch = (cx: number, cy: number) => ({ identifier: 1, target: el, clientX: cx, clientY: cy })
+        const dispatch = (type: string, touches: unknown[], changedTouches: unknown[]) => {
+          const event = new Event(type, { bubbles: true })
+          Object.defineProperties(event, { touches: { value: touches }, changedTouches: { value: changedTouches } })
+          el.dispatchEvent(event)
+        }
+        dispatch('touchstart', [touch(x, y)], [touch(x, y)])
+        dispatch('touchend', [], [touch(x + dx, y + dy)])
       },
       [dx, dy],
     )
@@ -1130,6 +1140,9 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   await startWithSamples(page)
   await openScreen(page, 'Okuma')
   await page.locator('main button', { hasText: 'La décision' }).first().click()
+  // Audio texts start with the transcript hidden; a learner opens it before tapping its words.
+  await page.getByRole('button', { name: 'Turları bırak', exact: true }).click()
+  await expect(page.locator('article.reader')).not.toHaveClass(/is-hidden/)
   const words = page.locator('.rw-unseen')
   await expect(words.first()).toBeVisible()
   // Wait for images to load so they do not cause layout shifts while measuring.
@@ -1152,8 +1165,8 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   })
   const target = words.nth(12)
   // The audio panel above the text can sit over a word; a real tap scrolls first, so do the same.
-  await target.evaluate((el) => el.scrollIntoView({ block: 'center' }))
-  await target.evaluate((el) => (el as HTMLElement).click())
+  await target.evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }))
+  await target.click()
   const sheet = page.locator('.word-pop')
   await expect(sheet).toBeVisible()
   await expect.poll(async () => (await sheet.evaluate((el) => getComputedStyle(el).position))).toBe('fixed')

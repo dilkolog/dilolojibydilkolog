@@ -14,7 +14,7 @@
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-const VERSION = '2026-10-21.2'
+const VERSION = process.env.WORDPACK_VERSION
 const MAX_MEANINGS = 4
 const MAX_ANTONYMS = 4
 const DIR = 'docs/veri/sozluk-ek'
@@ -88,7 +88,7 @@ for (const lang of LANGS) {
     }
   }
 
-  pack.v = VERSION
+  if (VERSION) pack.v = VERSION
   if (!dry) writeFileSync(path, JSON.stringify(pack))
   console.log(`${lang}: ${report.meanings} anlam, ${report.antonyms} zıt anlam bağı${dry ? ' (deneme, yazılmadı)' : ''}`)
   if (report.meaningSkipped.length) console.log(`  atlanan anlamlar (${report.meaningSkipped.length}): ${report.meaningSkipped.slice(0, 30).join('; ')}`)

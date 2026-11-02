@@ -2,15 +2,15 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import '../../lazy.css'
 import { AiError, monkiTurn, type MonkiMode } from '../../ai'
 import type { TargetLanguage } from '../../engine/types'
-import { useAi } from '../aiContext'
-import { CloseIcon, MicIcon, SendIcon, StopIcon } from '../icons'
+import { useAi, useAllows } from '../aiContext'
+import { BrainIcon, CloseIcon, MicIcon, SendIcon, StopIcon, TrashIcon } from '../icons'
 import { canListen, listen, type Listening } from '../speechInput'
 import { canSpeak, speak, stopSpeaking } from '../speech'
 import { LANGUAGE_NAME } from '../labels'
 import { RichText } from '../RichText'
 import { MonkiFace, MonkiPose, MonkiStage } from './MonkiMascot'
 import { setMonkiListener, type MonkiAsk } from './monkiBus'
-import { EMBLEM, ROLE_ART } from '../drawnArt'
+import { ROLE_ART } from '../drawnArt'
 import { talkProgress, usesWord } from './monkiWords'
 import { markDailyTalkDone } from './dailyTalkStore'
 import { askedToday, countAsk, overLimit } from './dailyLimit'
@@ -60,9 +60,6 @@ function saveChat(language: TargetLanguage, msgs: Msg[]) {
   }
 }
 
-/** A small drawn emblem on three of the four mode chips. */
-const MODE_EMBLEM: Partial<Record<MonkiMode, string>> = { chat: EMBLEM.chat, quiz: EMBLEM.trophy, roleplay: EMBLEM.mic }
-
 type ChipMode = Exclude<MonkiMode, 'words' | 'write' | 'exam'>
 const MODES: { id: ChipMode; label: string; hint: string }[] = [
   { id: 'chat', label: 'Sohbet', hint: 'Her şeyi sor' },
@@ -82,12 +79,17 @@ const SCENES: { label: string; art: string }[] = [
 ]
 const SCENARIOS = SCENES.map((s) => s.label)
 
-const STARTERS = (mode: MonkiMode, hasWeak: boolean, hasMistakes: boolean): string[] => {
-  if (mode === 'quiz') return ['Kelimelerimden sor', 'Dilbilgisi sorusu sor', 'Boşluk doldurma sorusu sor', 'Çeviri sorusu sor']
+/** The one thing worth starting with, picked by `seed` (0 to 1) from the few that suit what the learner has, so it changes every time the chat is opened. */
+const STARTERS = (mode: MonkiMode, hasWeak: boolean, hasMistakes: boolean, seed = 0): string[] => {
+  const pick = (list: string[]) => (list.length ? [list[Math.min(list.length - 1, Math.floor(seed * list.length))]] : [])
+  if (mode === 'quiz') return pick(['Kelimelerimden sor', 'Dilbilgisi sorusu sor', 'Boşluk doldurma sorusu sor', 'Çeviri sorusu sor'])
   if (mode === 'roleplay') return SCENARIOS
-  if (mode === 'mistakes') return hasMistakes ? ['Hatalarımı sırayla inceleyelim', 'En çok yaptığım hatadan başla'] : []
+  if (mode === 'mistakes') return hasMistakes ? pick(['Hatalarımı sırayla inceleyelim', 'En çok yaptığım hatadan başla']) : []
   if (mode === 'words' || mode === 'pron') return ['Başlayalım']
-  return ['Bugün işime yarayacak 5 kalıp öğret', 'Yazdığım cümleyi düzeltir misin?', hasWeak ? 'Zorlandığım kelimelerle kısa bir hikâye yaz' : 'Bana kısa, kolay bir hikâye yaz']
+  // What helps most comes first: the words that are hard for them, then what they get wrong; with neither, something general.
+  if (hasWeak) return pick(['Zorlandığım kelimelerle kısa bir hikâye yaz', 'Zorlandığım bir kelimeyi hafızada kalacak şekilde anlat', 'Zorlandığım kelimelerle iki küçük cümle kurdur'])
+  if (hasMistakes) return pick(['En çok yaptığım hatayı kısaca anlat', 'Son hatalarımdan birini açıkla'])
+  return pick(['Bugün işime yarayacak 5 kalıp öğret', 'Yazdığım cümleyi düzeltir misin?', 'Bana kısa, kolay bir hikâye yaz', 'Günlük hayattan kısa bir diyalog yaz'])
 }
 
 const INTRO: Record<MonkiMode, (hello: string, lang: string, hasMistakes: boolean) => string> = {
@@ -243,8 +245,17 @@ export default function Monki({
   inSession?: boolean
   onSettings: () => void
 }) {
-  const { apiKey, needsApproval } = useAi()
+  const { apiKey: accountKey, needsApproval } = useAi()
+  // The owner opens the chat for an account (profiles.ai_level 'tam'): approved but not opened, the panel says so.
+  const chatOpen = useAllows()('monki')
+  const apiKey = chatOpen ? accountKey : null
+  const locked = !!accountKey && !chatOpen
   const [open, setOpen] = useState(false)
+  // A new starter suggestion every time the chat is opened.
+  const [seed, setSeed] = useState(() => Math.random())
+  useEffect(() => {
+    if (open) setSeed(Math.random())
+  }, [open])
   const [msgs, setMsgs] = useState<Msg[]>(() => loadChat(language))
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [text, setText] = useState('')
@@ -534,16 +545,16 @@ export default function Monki({
             </span>
             <div className="monki-title">
               <strong>Monki</strong>
-              <span className="small muted">{LANGUAGE_NAME[language]} çalışma arkadaşın</span>
+              <span className="small muted">{LANGUAGE_NAME[language]} arkadaşın</span>
             </div>
             {apiKey && (
-              <button type="button" className="btn btn-quiet btn-sm" aria-pressed={showMemory} onClick={() => setShowMemory((v) => !v)} title="Monki'nin senin hakkında hatırladıkları">
-                Hatırladıkları{memory.length ? ` (${memory.length})` : ''}
+              <button type="button" className="icon-btn" aria-pressed={showMemory} onClick={() => setShowMemory((v) => !v)} aria-label={`Monki'nin hatırladıkları${memory.length ? ` (${memory.length})` : ''}`} title="Monki'nin senin hakkında hatırladıkları">
+                <BrainIcon size={18} />
               </button>
             )}
             {apiKey && msgs.length > 0 && (
-              <button type="button" className="btn btn-quiet btn-sm" onClick={clear}>
-                Temizle
+              <button type="button" className="icon-btn" onClick={clear} aria-label="Sohbeti temizle" title="Sohbeti temizle">
+                <TrashIcon size={18} />
               </button>
             )}
             <button type="button" className="icon-btn" onClick={() => setOpen(false)} aria-label="Kapat">
@@ -558,9 +569,11 @@ export default function Monki({
                 <strong>{hello}</strong>
               </p>
               <p className="muted">
-                {needsApproval
-                  ? 'Benimle konuşmak için hesabının onaylanması ve bir YZ anahtarı gerekiyor. Hesabın onaylanınca Ayarlar → YZ yardımcısı’ndan anahtarını ekleyebilirsin.'
-                  : 'Benimle konuşmak için Ayarlar → YZ yardımcısı bölümüne kendi Anthropic anahtarını eklemen yeterli. Anahtar yalnızca bu cihazda durur.'}
+                {locked
+                  ? 'Benimle sohbet henüz hesabına açılmadı. Site sahibi izin verince kendiliğinden açılırım; o zamana dek diğer YZ özellikleri (cümle değerlendirme, ters çeviri…) çalışır.'
+                  : needsApproval
+                  ? 'Benimle konuşmak için hesabının site sahibi tarafından onaylanması gerekiyor. Onaylanınca ben de kendiliğinden açılırım, anahtar girmen gerekmez.'
+                  : 'Şu an sana ulaşamıyorum: internet yok ya da YZ henüz sunucuda kurulmamış. Biraz sonra yeniden dene.'}
               </p>
               <button type="button" className="btn" onClick={() => (setOpen(false), onSettings())}>
                 Ayarlara git
@@ -605,7 +618,6 @@ export default function Monki({
               <div className="monki-modes" role="group" aria-label="Sohbet türü">
                 {MODES.filter((m) => m.id !== 'pron' || pronWords.length > 0).map((m) => (
                   <button key={m.id} type="button" className="chip chip-sm" aria-pressed={mode === m.id} title={m.hint} onClick={() => pickMode(m.id)}>
-                    {MODE_EMBLEM[m.id] && <img className="chip-art" src={MODE_EMBLEM[m.id]} alt="" width={18} height={18} draggable={false} />}
                     {m.label}
                   </button>
                 ))}
@@ -689,8 +701,8 @@ export default function Monki({
                   ))}
                 </div>
               ) : (
-                <div className="monki-chips">
-                  {(msgs.length === 0 || (mode === 'roleplay' && !scenario) ? STARTERS(mode, !!weakWords?.length, !!mistakes?.length) : suggestions).map((s) => (
+                <div className={msgs.length === 0 || (mode === 'roleplay' && !scenario) ? 'monki-chips monki-chips-start' : 'monki-chips'}>
+                  {(msgs.length === 0 || (mode === 'roleplay' && !scenario) ? STARTERS(mode, !!weakWords?.length, !!mistakes?.length, seed) : suggestions).map((s) => (
                     <button key={s} type="button" className="chip" disabled={busy} onClick={() => (msgs.length === 0 || (mode === 'roleplay' && !scenario) ? startWith(s) : void send(s))}>
                       {s}
                     </button>

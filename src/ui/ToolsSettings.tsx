@@ -39,7 +39,7 @@ export function ToolsSettings({
 
   return (
     <>
-      <AiSettings settings={settings} onChange={onChange} />
+      <AiSettings />
       <TranslationSettings onFilled={onDataChanged} />
       {clipboardOk && (
         <section className="card stack">

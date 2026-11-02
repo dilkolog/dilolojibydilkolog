@@ -143,6 +143,8 @@ export interface Settings {
   sessionMax: number
   /** A day estimated above 15 minutes is done in two sittings (with no session cap); default on. */
   splitLongDays?: boolean
+  /** Two measurement questions a day (engine/probes.ts); on unless false. */
+  probes?: boolean
   /** 'calm': the dark theme with its colours turned down, for working at night. 'contrast': the light theme at its most legible. */
   theme: 'system' | 'light' | 'dark' | 'calm' | 'contrast'
   /** Set once the light default replaced an inherited 'system' (2026-10-06). */
@@ -157,6 +159,10 @@ export interface Settings {
   keepAwake?: boolean
   /** Kinds of notice (the bell) turned off in Settings; a kind that is off is neither listed nor pushed (engine/notices). */
   noticeOff?: NoticeKind[]
+  /** What friends see of the learner's study: 'xp' (the default) shows the XP by day; 'days' only which days were studied. */
+  friendShare?: 'xp' | 'days'
+  /** Friend codes whose nudges and cheers are not shown (the friend is not told). */
+  friendMuted?: string[]
   /** Weekly goal of reading and listening, in minutes (absent: none). */
   weeklyTimeGoal?: number
   /** Weekly goal of guide lessons read (absent: none; see engine/guideGoal). */
@@ -258,7 +264,7 @@ export const DEFAULT_SETTINGS: Settings = {
   pretest: true,
   confidence: true,
   accentShortcuts: true,
-  aiModel: 'claude-opus-5-5',
+  aiModel: 'claude-sonnet-5-5',
   aiMonthlyLimit: 0,
   monkiDailyLimit: 0,
   frequencyFirst: false,

@@ -227,21 +227,6 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       {/* The word itself up top: what it is, how it sounds, what it means; then where it stands. */}
       <section className={`word-hero span-2${heroImage ? ' has-image' : ''}`}>
         <div className="word-hero-main">
-          {(chips.length > 0 || entry.partOfSpeech !== 'other' || levelFromRank(entry.frequencyRank) || entry.language !== 'en' || trapOf(trapWords, entry.language, entry.lemma)) && (
-            <ul className="chip-list" aria-label="Kelime bilgisi">
-              {entry.partOfSpeech !== 'other' && (
-                <li className="pos-chip">
-                  <PosTag pos={entry.partOfSpeech} label />
-                </li>
-              )}
-              {chips.map((c) => (
-                <li key={c}>{c}</li>
-              ))}
-              <LevelChip language={entry.language} lemma={entry.lemma} rank={entry.frequencyRank} />
-              <TrapChip language={entry.language} lemma={entry.lemma} />
-              <CollocationChip language={entry.language} lemma={entry.lemma} />
-            </ul>
-          )}
           <div className="word-hero-title">
             <h1 className="word" style={{ '--len': displayForm(entry).length } as CSSProperties} lang={entry.language}><WrittenForm entry={entry} /></h1>
             {canSpeak() && (
@@ -264,6 +249,29 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
               {sense.definition}
             </p>
           )}
+          {sense.examples[0] && (
+            <blockquote className="word-hero-example">
+              <p lang={entry.language}>{sense.examples[0].text}</p>
+              {sense.examples[0].translation && <p className="small muted">{sense.examples[0].translation}</p>}
+            </blockquote>
+          )}
+          {(chips.length > 0 || entry.partOfSpeech !== 'other' || levelFromRank(entry.frequencyRank) || entry.language !== 'en' || trapOf(trapWords, entry.language, entry.lemma)) && (
+            <ul className="chip-list" aria-label="Kelime bilgisi">
+              {entry.partOfSpeech !== 'other' && (
+                <li className="pos-chip">
+                  <PosTag pos={entry.partOfSpeech} label />
+                </li>
+              )}
+              {chips.map((c) => (
+                <li key={c}>{c}</li>
+              ))}
+              <LevelChip language={entry.language} lemma={entry.lemma} rank={entry.frequencyRank} />
+            </ul>
+          )}
+          <ul className="chip-list" aria-label="Kullanım uyarıları">
+            <TrapChip language={entry.language} lemma={entry.lemma} />
+            <CollocationChip language={entry.language} lemma={entry.lemma} />
+          </ul>
           {(() => {
             if (!equiv || equiv === 'loading') return null
             const otherForms = equiv.forms.filter((f) => f.language !== entry.language && f.word)
@@ -295,7 +303,6 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             <TrashIcon size={18} />
           </button>
         </div>
-        <CardCompleteness entry={entry} db={db} onChanged={onChanged} />
         <dl className="word-hero-status">
           <div>
             <dt>Aşama</dt>
@@ -406,6 +413,10 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             </section>
           )}
           <PatternsSection db={db} entry={entry} onChanged={onChanged} />
+          <details className="word-enrichment">
+            <summary>Kartı zenginleştir</summary>
+            <CardCompleteness entry={entry} db={db} onChanged={onChanged} />
+          </details>
           <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
           <WordSources entry={entry} onChanged={onChanged} />
           {(entry.alternativeForms?.length ?? 0) > 0 && (

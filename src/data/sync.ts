@@ -758,7 +758,7 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
     biggest = Math.max(biggest, await store.put(name, shardFile(shard), was?.exists ? { ifMatch: was.etag } : { createOnly: true }))
   }
   const listed = Object.fromEntries([...shards].map(([name, shard]) => [name, shard.fp]))
-  const coreBytes = await store.put('core', new TextEncoder().encode(JSON.stringify({ ...withoutShards(merged), shards: listed, mediaIds })), { ifMatch: fetched?.etag })
+  const coreBytes = await store.put('core', new TextEncoder().encode(JSON.stringify({ ...withoutShards(merged), shards: listed, mediaIds })), fetched ? { ifMatch: fetched.etag } : { createOnly: true })
   await db.meta.put({ key: 'syncSize', value: Math.max(coreBytes, biggest) })
   // What this sync left behind (a picture too big, a recording that would not go up): Settings → Account says so even after a background sync.
   await db.meta.put({ key: 'syncSkipped', value: skipped })

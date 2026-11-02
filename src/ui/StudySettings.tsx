@@ -92,6 +92,12 @@ export function StudySettings({
             onChange={(v) => set('splitLongDays', v)}
           />
         )}
+        <Toggle
+          label="Ölçüm soruları"
+          help="Günde en çok 2 ek soru: vadesi gelmemiş kelimelerden rastgele seçilir ve sorulur. Takvimini değiştirmez; hafıza tahmininin ne kadar tuttuğunu ölçmeye yarar (İlerleme → Model tahmini ve gerçek). Kapatırsan bu ölçüm yapılmaz."
+          checked={settings.probes ?? true}
+          onChange={(v) => set('probes', v)}
+        />
         <Row label="Çalışma planın" help="Ne zaman ve nerede çalışacağını önceden belirlemek, alışkanlığa dönüşmesini belirgin şekilde kolaylaştırır. Hatırlatma bildiriminde de görünür.">
           <input className="input" value={settings.studyPlan} onChange={(e) => onChange({ ...settings, studyPlan: e.target.value, studyPlanAsked: true })} placeholder="Sabah kahvemi içerken" />
         </Row>

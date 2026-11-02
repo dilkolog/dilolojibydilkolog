@@ -16,7 +16,7 @@ describe('MonkiNudge', () => {
   const render = (props: { openMistakes: number; dailyWords?: string[] }, apiKey: string | null = 'sk-test') =>
     act(() =>
       root.render(
-        <AiContext.Provider value={{ apiKey, needsApproval: false, setApiKey: async () => {} }}>
+        <AiContext.Provider value={{ apiKey, needsApproval: false }}>
           <MonkiNudge {...props} />
         </AiContext.Provider>,
       ),

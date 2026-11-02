@@ -54,7 +54,7 @@ import { skeletonFor } from './ui/skeletonFor'
 
 import { currentLevel, levelGroups } from './engine/lists'
 
-import { Summary, SessionScreen, GamesScreen, MistakesScreen, TranslateScreen, ProfileScreen, ProgressScreen, ReadingScreen, ProduceScreen, VocabTestScreen, ExamScreen, SettingsScreen, StoryScreen, WordDetail, WordsScreen, VerbLab, DictionaryScreen, AuthScreen, GuideScreen } from './lazyScreens'
+import { Summary, SessionScreen, GamesScreen, MistakesScreen, TranslateScreen, ProfileScreen, ProgressScreen, ReadingScreen, ProduceScreen, VocabTestScreen, ExamScreen, SettingsScreen, StoryScreen, WordDetail, WordsScreen, VerbLab, DictionaryScreen, AuthScreen, GuideScreen, CommunityScreen } from './lazyScreens'
 import { nextReviewAt } from './engine/review'
 import type { UserWordState } from './engine/types'
 import type { PushState } from './ui/pushReminders'
@@ -192,13 +192,14 @@ export function AppScreens(props: AppScreensProps) {
           key={`${data.language}:${screen.query ?? ''}`}
           language={data.language}
           vocabulary={data.vocabulary}
+          states={data.states}
           lists={data.lists}
           initialQuery={screen.query}
           onOpenWord={(entryId) => setScreen({ name: 'word', entryId })}
           // Words are added in one tap there; the form (the incoming-word effect opens Words) only when a card can't be made.
           onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })}
           onAdded={reload}
-          onOpenLab={data.language !== 'en' ? (verb) => setScreen({ name: 'verbs', verb }) : undefined}
+          onOpenLab={(verb, tense) => setScreen({ name: 'verbs', verb, tense })}
           onOpenList={(listId) => setScreen({ name: 'words', list: listId })}
           onSwitchLanguage={(targetLang, query) => {
             if (settings) void updateSettings({ ...settings, activeLanguage: targetLang })
@@ -299,6 +300,19 @@ export function AppScreens(props: AppScreensProps) {
         <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} scheduler={scheduler} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} onAdded={reload} />
       ) : screen.name === 'guide' ? (
         <GuideScreen key={`${data.language}|${screen.lesson ?? ''}|${screen.tense ?? ''}|${screen.review ? 1 : 0}|${screen.placement ? 1 : 0}`} language={data.language} initialLesson={screen.lesson} initialTense={screen.tense} review={screen.review} placement={screen.placement} goal={settings.guideGoal} onGoal={(n) => void updateSettings({ ...settings, guideGoal: n })} onPractice={(topic) => setScreen({ name: 'games', game: 'grammar', topic })} onVerbs={(tense) => setScreen({ name: 'verbs', tense })} onNumbers={() => setScreen({ name: 'games', game: 'numbers' })} onChanged={reload} />
+      ) : screen.name === 'community' ? (
+        <CommunityScreen
+          game={game}
+          profile={settings.profile}
+          vocabulary={data.vocabulary}
+          language={data.language}
+          share={settings.friendShare}
+          muted={settings.friendMuted}
+          onPrefs={(patch) => void updateSettings({ ...settings, ...(patch.share ? { friendShare: patch.share } : {}), ...(patch.muted ? { friendMuted: patch.muted } : {}) })}
+          onChanged={reload}
+          onDuel={go({ name: 'games', game: 'duel' })}
+          onReading={go({ name: 'reading' })}
+        />
       ) : screen.name === 'profile' ? (
         <ProfileScreen settings={settings} onChange={updateSettings} onOpenSettings={() => setScreen({ name: 'settings' })} />
       ) : screen.name === 'account' ? (
@@ -435,7 +449,7 @@ export function AppScreens(props: AppScreensProps) {
           }}
           firstWords={lookupNudge}
           timeCard={<TodayTime db={db} language={data.language} goal={settings.weeklyTimeGoal} onOpen={go({ name: 'progress' })} />}
-          friendsCard={<FriendsCard game={game} profile={settings.profile} vocabulary={data.vocabulary} language={data.language} onChanged={reload} onDuel={go({ name: 'games', game: 'duel' })} />}
+          friendsCard={<FriendsCard game={game} profile={settings.profile} vocabulary={data.vocabulary} language={data.language} share={settings.friendShare} muted={settings.friendMuted} onPrefs={(patch) => void updateSettings({ ...settings, ...(patch.share ? { friendShare: patch.share } : {}), ...(patch.muted ? { friendMuted: patch.muted } : {}) })} onChanged={reload} onDuel={go({ name: 'games', game: 'duel' })} onCommunity={go({ name: 'community' })} />}
           extra={
             <>
             {/* A lesson's review first: it shows only to someone using the guide, on the day it is due. */}

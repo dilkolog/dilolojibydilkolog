@@ -118,6 +118,33 @@ export async function profileStatus(syncId: string): Promise<'approved' | 'rejec
   }
 }
 
+const levelSeen = new Map<string, { level: string | null; until: number }>()
+export const clearLevelCache = () => levelSeen.clear()
+
+/**
+ * What the owner lets the AI do for this sync account (profiles.ai_level), or null when none is set, the person is not
+ * found, Supabase is off or the column does not exist yet (the default level then applies). A separate query from the
+ * approval's, so a missing column never touches who is approved. Remembered for a minute.
+ */
+export async function aiLevelOf(syncId: string): Promise<string | null> {
+  if (!supabaseOn() || !HEX64.test(syncId)) return null
+  const hit = levelSeen.get(syncId)
+  if (hit && hit.until > Date.now()) return hit.level
+  let level: string | null = null
+  try {
+    const res = await rest(`sync_keys?sync_id=eq.${syncId}&select=profiles(ai_level)`)
+    if (res.ok) {
+      const rows = (await res.json()) as { profiles: { ai_level?: unknown } | null }[]
+      const v = rows[0]?.profiles?.ai_level
+      level = typeof v === 'string' ? v : null
+    }
+  } catch {
+    // The default level applies.
+  }
+  levelSeen.set(syncId, { level, until: Date.now() + 60_000 })
+  return level
+}
+
 /** Deletes the person from Supabase (their profile and sync_keys row go with them). */
 export async function deleteSupabaseUser(userId: string): Promise<void> {
   if (!UUID.test(userId)) throw new Error('bad user id')
@@ -149,12 +176,14 @@ export async function mirrorApproval(syncId: string, status: 'approved' | 'rejec
 
 /** The person's pictures and recordings in the "media" bucket (the account is being deleted). */
 export async function deleteSupabaseMedia(userId: string): Promise<void> {
-  if (!UUID.test(userId)) return
+  if (!UUID.test(userId)) throw new Error('bad user id')
   for (let round = 0; round < 50; round++) {
     const res = await fetch(`${base()}/storage/v1/object/list/media`, { method: 'POST', headers: { ...keyHeaders(), 'content-type': 'application/json' }, body: JSON.stringify({ prefix: `${userId}/`, limit: 1000 }) })
-    if (!res.ok) return
+    if (!res.ok) throw new Error(`media list ${res.status}`)
     const names = ((await res.json()) as { name: string }[]).map((o) => `${userId}/${o.name}`)
     if (!names.length) return
-    await fetch(`${base()}/storage/v1/object/media`, { method: 'DELETE', headers: { ...keyHeaders(), 'content-type': 'application/json' }, body: JSON.stringify({ prefixes: names }) })
+    const deleted = await fetch(`${base()}/storage/v1/object/media`, { method: 'DELETE', headers: { ...keyHeaders(), 'content-type': 'application/json' }, body: JSON.stringify({ prefixes: names }) })
+    if (!deleted.ok) throw new Error(`media delete ${deleted.status}`)
   }
+  throw new Error('media deletion incomplete; retry required')
 }

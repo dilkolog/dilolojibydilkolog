@@ -37,7 +37,7 @@ const render = (apiKey: string | null, s: SessionSummary) => {
   const host = document.createElement('div')
   document.body.append(host)
   root = createRoot(host)
-  act(() => root!.render(<AiContext.Provider value={{ apiKey, setApiKey: async () => {} }}><SessionNote summary={s} byId={byId} /></AiContext.Provider>))
+  act(() => root!.render(<AiContext.Provider value={{ apiKey }}><SessionNote summary={s} byId={byId} /></AiContext.Provider>))
   return host
 }
 

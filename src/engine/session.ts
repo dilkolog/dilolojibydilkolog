@@ -121,8 +121,8 @@ export function typeStrongCloze(item: PlanItem, state: UserWordState | undefined
 /** The second in-session comeback of a word is typed: recognised twice, now produced. */
 export function typedFollowUp(item: PlanItem, typedAllowed = true): PlanItem {
   // Typing from the meaning switched off (or a meaning too long to type from): the follow-up is a plain meaning choice instead.
-  if (!typedAllowed) return { ...item, kind: 'exercise', skill: 'recognition', exerciseType: 'mc_meaning' }
-  return { ...item, kind: 'exercise', skill: 'recall', exerciseType: 'typed_translation' }
+  if (!typedAllowed) return { ...item, probe: undefined, kind: 'exercise', skill: 'recognition', exerciseType: 'mc_meaning' }
+  return { ...item, probe: undefined, kind: 'exercise', skill: 'recall', exerciseType: 'typed_translation' }
 }
 
 /**
@@ -154,7 +154,8 @@ export function retryItem(
   rng: Rng,
   opts: EngineOptions = {},
 ): PlanItem {
-  return { ...item, kind: 'exercise', exerciseType: pickExerciseType(item.skill, entry, state, rng, opts) }
+  // A retry is a second try after the correction, not the measurement the probe was for.
+  return { ...item, probe: undefined, kind: 'exercise', exerciseType: pickExerciseType(item.skill, entry, state, rng, opts) }
 }
 
 /**

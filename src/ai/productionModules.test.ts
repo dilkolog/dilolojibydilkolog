@@ -126,7 +126,7 @@ describe('evaluateRetelling (serbest geri anlatım)', () => {
     } catch (e) {
       expect(e).toBeInstanceOf(AiError)
       expect((e as AiError).kind).toBe('auth')
-      expect((e as AiError).message).toContain('anahtarı')
+      expect((e as AiError).message).toContain('onayladığı')
     }
   })
 
@@ -254,13 +254,5 @@ describe('evaluateTranslation (ters çeviri)', () => {
       expect((e as AiError).kind).toBe('refusal')
       expect((e as AiError).message).toContain('yanıtlamadı')
     }
-  })
-})
-
-describe('canlı API koşulu (isteğe bağlı)', () => {
-  const liveKey = process.env.ANTHROPIC_API_KEY
-  it.runIf(Boolean(liveKey))('live key is tested if available in environment', async () => {
-    const { testKey } = await import('./claude')
-    await expect(testKey(liveKey!)).resolves.toBeUndefined()
   })
 })

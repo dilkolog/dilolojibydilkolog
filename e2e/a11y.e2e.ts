@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
-import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
+import { aiRoute, approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, settleTransitions, startWithSamples } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -10,7 +10,7 @@ import { approveAccount, clippedContent, contrastProblems, openScreen, playSessi
  * stricter check in the phone tests (contrastProblems), so it isn't counted twice here.
  */
 const scan = async (page: Page, where: string) => {
-  await page.waitForTimeout(400) // screens ease in
+  await settleTransitions(page)
   const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).disableRules(['color-contrast']).analyze()
   const issues = violations
     .filter((v) => v.impact === 'serious' || v.impact === 'critical')
@@ -20,6 +20,7 @@ const scan = async (page: Page, where: string) => {
 }
 
 test('every main screen passes the automated accessibility check', async ({ page }) => {
+  test.setTimeout(180_000)
   await page.goto('/')
   const problems = await scan(page, 'welcome')
   await startWithSamples(page)
@@ -112,15 +113,7 @@ test('session summary passes the automated accessibility check', async ({ page }
   test.setTimeout(90_000)
   await page.route((u) => u.pathname === '/api/translate', (r) => r.fulfill({ status: 503, json: { error: 'not configured' } }))
   await startWithSamples(page)
-  // Seed AI key so SessionNote appears on mistake digests
-  await page.evaluate(() => {
-    const req = indexedDB.open('kelime-koc')
-    req.onsuccess = () => {
-      const db = req.result
-      const tx = db.transaction('meta', 'readwrite')
-      tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test' })
-    }
-  })
+  // The AI is on for an approved account (approveAccount): SessionNote appears on mistake digests.
   await approveAccount(page)
   await playSession(page)
   // Close any celebration modal or badge moment overlay if present
@@ -358,21 +351,11 @@ test('new features pass accessibility check in dark and calm themes (audiobooks,
   }
 
   // 3. Kelime sayfasında "Bana özel cümleler" (öneri listesi açıkken)
-  await page.evaluate(() => {
-    return new Promise<void>((resolve) => {
-      const req = indexedDB.open('kelime-koc')
-      req.onsuccess = () => {
-        const db = req.result
-        const tx = db.transaction('meta', 'readwrite')
-        tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test' })
-        tx.oncomplete = () => resolve()
-      }
-    })
-  })
   await approveAccount(page)
-  await page.route('https://api.anthropic.com/**', (route) => {
+  await aiRoute(page, (route) => {
     route.fulfill({
       status: 200,
+      headers: { 'access-control-allow-origin': '*' },
       json: {
         content: [
           {
@@ -643,14 +626,13 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
   await startWithSamples(page)
   await approveAccount(page)
 
-  // Seed translations for back-translation loop chips, traps for blind spots card, aiKey, and 5 own words for suggest words
+  // Seed translations for back-translation loop chips, traps for blind spots card, and 5 own words for suggest words
   await page.evaluate(() => {
     return new Promise<void>((resolve) => {
       const open = indexedDB.open('kelime-koc')
       open.onsuccess = () => {
         const tx = open.result.transaction(['meta', 'vocabulary'], 'readwrite')
         const meta = tx.objectStore('meta')
-        meta.put({ key: 'aiKey', value: 'sk-ant-test-key' })
         meta.put({
           key: 'traps',
           value: {
@@ -1269,7 +1251,7 @@ test('auth screen and onboarding pass color contrast checks across light, dark, 
   const checkContrast = async (where: string) => {
     for (const theme of ['light', 'dark', 'calm'] as const) {
       await setTheme(theme)
-      await page.waitForTimeout(300)
+      await settleTransitions(page)
       const contrastViolations = await new AxeBuilder({ page }).withRules(['color-contrast']).analyze()
       for (const v of contrastViolations.violations) {
         problems.push(`${where} [${theme}] (axe: ${v.nodes.map((n) => n.target.join(' ')).join(', ')})`)
@@ -1334,14 +1316,14 @@ test('reading: the questions after a finished text work and pass the accessibili
     const open = indexedDB.open('kelime-koc')
     open.onsuccess = () => {
       const tx = open.result.transaction('meta', 'readwrite')
-      tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test-key-123' })
       tx.oncomplete = () => window.dispatchEvent(new Event('diloloji:account'))
     }
   })
   await page.reload()
   const question = (n: number) => ({ question: `Soru ${n}?`, options: [`Doğru ${n}`, `Yanlış ${n}a`, `Yanlış ${n}b`, `Yanlış ${n}c`], answer: 0, explanation: `Metnin ${n}. cümlesinde.` })
-  await page.route(/api\.anthropic\.com/, async (r) => {
+  await aiRoute(page, async (r) => {
     await r.fulfill({
+      headers: { 'access-control-allow-origin': '*' },
       json: {
         id: 'msg_1',
         type: 'message',

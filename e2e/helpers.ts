@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test'
+import { expect, type Page, type Route } from '@playwright/test'
 
 /** First run in a fresh browser: French, the sample words, then Today. */
 export async function startWithSamples(page: Page) {
@@ -66,6 +66,7 @@ const ROUTE: Record<string, [string, string?]> = {
   Fiiller: ['Pratik', 'Fiiller'],
   'Yaz & konuş': ['Pratik', 'Yaz & konuş'],
   Rehber: ['Pratik', 'Rehber'],
+  Topluluk: ['Pratik', 'Topluluk'],
   İlerleme: ['İlerleme'],
 }
 
@@ -98,7 +99,7 @@ export async function openScreen(page: Page, name: string) {
   for (let n = await page.locator('.group-toggle[aria-expanded=false]').count(); n > 0; n--) await page.locator('.group-toggle[aria-expanded=false]').first().click()
 }
 
-export const SCREENS = ['Bugün', 'Kelimeler', 'Hatalar', 'Çeviri', 'Okuma', 'Hikaye', 'Oyunlar', 'Fiiller', 'Yaz & konuş', 'Rehber', 'İlerleme', 'Profil', 'Ayarlar']
+export const SCREENS = ['Bugün', 'Kelimeler', 'Hatalar', 'Çeviri', 'Okuma', 'Hikaye', 'Oyunlar', 'Fiiller', 'Yaz & konuş', 'Rehber', 'Topluluk', 'İlerleme', 'Profil', 'Ayarlar']
 
 /** Elements wider than the screen that make the page scroll sideways. */
 export const overflow = (page: Page) =>
@@ -122,8 +123,21 @@ export const overflow = (page: Page) =>
  * Text below WCAG AA contrast as rendered (colour, opacity and background layers blended).
  * Skips text on gradients/images and text a design hides on purpose (transparent blanks).
  */
-export const contrastProblems = (page: Page) =>
-  page.evaluate(() => {
+export const settleTransitions = (page: Page) => page.evaluate(async () => {
+  await Promise.race([
+    new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))),
+    new Promise((resolve) => setTimeout(resolve, 100)),
+  ])
+  const finite = document.getAnimations().filter((animation) => animation.effect?.getComputedTiming().iterations !== Infinity)
+  await Promise.race([
+    Promise.allSettled(finite.map((animation) => animation.finished)),
+    new Promise((resolve) => setTimeout(resolve, 1000)),
+  ])
+})
+
+export const contrastProblems = async (page: Page) => {
+  await settleTransitions(page)
+  return page.evaluate(() => {
     const parse = (c: string) => {
       const m = c.match(/rgba?\(([^)]+)\)/)
       if (!m) return null
@@ -172,6 +186,7 @@ export const contrastProblems = (page: Page) =>
     }
     return [...new Set(out)]
   })
+}
 
 /**
  * Real content a box hides instead of showing: text or a control, in the flow of the page, that
@@ -227,6 +242,10 @@ export async function finishSession(page: Page) {
   for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').click()
   await page.getByRole('button', { name: /^(Devam|Kapat|Tamam|Bitir|Ana sayfa)/ }).first().click({ timeout: 3000 }).catch(() => {})
   await page.waitForTimeout(600)
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) {
+    await page.locator('.milestone-backdrop .milestone-close').click()
+    await page.waitForTimeout(200)
+  }
 }
 
 /** The verb lab favourites saved in the app's database (to wait for a background write). */
@@ -252,6 +271,8 @@ export function labFavorites(page: Page, language: string): Promise<string[]> {
  */
 export async function approveAccount(page: Page) {
   await page.route((u) => u.pathname === '/api/access', (r) => r.fulfill({ json: { status: 'approved', exists: true, match: true, enabled: true } }))
+  // The server has the owner's AI key (a test that wants answers adds its own with aiRoute).
+  await aiRoute(page, (r) => r.fulfill({ status: 503, json: { error: 'not configured' } }))
   await page.evaluate(
     () =>
       new Promise<void>((resolve) => {
@@ -332,4 +353,31 @@ export async function seedNotices(page: Page, notices: { id: string; kind: strin
     notices,
   )
   await page.reload()
+}
+
+/** Monki lives in the sidebar on desktop and the account menu on phones. */
+export async function openMonki(page: Page) {
+  const launcher = page.getByRole('button', { name: 'Monki ile konuş', exact: true })
+  if (await launcher.isVisible()) return launcher.click()
+  await page.getByRole('button', { name: 'Hesap menüsü', exact: true }).click()
+  await page.getByRole('menuitem', { name: /Monki ile konuş/ }).click()
+}
+
+/** Mobile selection lives with the other list tools to leave room for search. */
+export async function selectWords(page: Page) {
+  const select = page.getByRole('button', { name: 'Seç', exact: true })
+  if (await select.isVisible()) return select.click()
+  await page.getByRole('button', { name: /Filtrele ve görünüm/ }).click()
+  await page.getByRole('button', { name: 'Kelimeleri seç', exact: true }).click()
+}
+
+/**
+ * The site's AI proxy (/api/ai): the app asks it whether the AI is on (GET, answered "available" once
+ * the account is approved) and sends each request to it (POST, answered by `answer`, in the shape of the Messages API).
+ */
+export async function aiRoute(page: Page, answer: (route: Route) => Promise<void> | void) {
+  await page.route(
+    (u) => u.pathname === '/api/ai',
+    (r) => (r.request().method() === 'GET' ? r.fulfill({ json: { available: true, level: 'tam', features: ['test', 'word_fill', 'suggest', 'mnemonic', 'family', 'word_suggest', 'personal_sentences', 'prequestions', 'comprehension', 'notes_quiz', 'sentence', 'translation', 'retell', 'story', 'journal', 'report', 'session_note', 'week_note', 'verb_explain', 'pron_tips', 'chat', 'monki', 'photo_words', 'podcast'] } }) : answer(r)),
+  )
 }

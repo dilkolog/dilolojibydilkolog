@@ -728,7 +728,8 @@ export function Home({
         <InstallHint />
         {game && (
           <section className="quests">
-            <h2 className="section-title">Günün görevleri</h2>
+            <h2 className="section-title">İsteğe bağlı ek hedefler</h2>
+            <p className="small muted">Günlük çalışman yeterli. İstersen bu hedeflerle devam edebilirsin.</p>
             <ul className="quest-list">
               {game.quests.map((q) => {
                 const row = (
