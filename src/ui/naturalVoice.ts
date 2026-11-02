@@ -1,18 +1,20 @@
 import type { TargetLanguage } from '../engine/types'
+import { accessFetch } from '../data/access'
 import { mediaBlob } from '../data/db'
 import { db } from '../data/instance'
 import { SPEECH_LANG } from './labels'
 
 /**
- * Natural voices through Google Cloud Text-to-Speech, with the learner's own API key. Every
- * synthesized text is cached on the device (media table, ids starting "tts:"), so a word is
- * paid for once; cached audio is left out of backups. Any failure falls back to system voices.
+ * Natural voices through Google Cloud Text-to-Speech. The site provides them (`server`: /api/speech, the owner's
+ * key); a key typed in on this device before that (`key`) still works until the server is known to have one, and is
+ * then forgotten (useAppSettings). Every synthesized text is cached on the device (media table, ids starting
+ * "tts:"), so a word is paid for once; cached audio is left out of backups. Any failure falls back to system voices.
  */
 
 const API = 'https://texttospeech.googleapis.com/v1'
 
-export const natural: { key: string | null } = { key: null }
-export const naturalEnabled = () => !!natural.key
+export const natural: { key: string | null; server: boolean } = { key: null, server: false }
+export const naturalEnabled = () => natural.server || !!natural.key
 
 /** FNV-1a: a short, stable id for a text + voice + rate. */
 function hash(s: string): string {
@@ -30,15 +32,8 @@ const voiceLists = new Map<TargetLanguage, Promise<string[]>>()
 export function naturalVoices(language: TargetLanguage, key = natural.key): Promise<string[]> {
   let p = voiceLists.get(language)
   if (!p) {
-    p = fetch(`${API}/voices?languageCode=${SPEECH_LANG[language]}&key=${encodeURIComponent(key ?? '')}`)
-      .then((r) => {
-        if (!r.ok) throw new Error(String(r.status))
-        return r.json() as Promise<{ voices?: { name: string; languageCodes: string[] }[] }>
-      })
-      .then(({ voices = [] }) => {
-        const own = voices.filter((v) => v.languageCodes.includes(SPEECH_LANG[language])).map((v) => v.name)
-        // Neural2 first; Google is phasing it out on some accounts, so then WaveNet, Chirp 3 HD, Standard.
-        const list = ['Neural2', 'Wavenet', 'Chirp3-HD', 'Standard'].map((kind) => own.filter((n) => n.includes(kind))).find((l) => l.length) ?? []
+    p = (natural.server ? voiceListFromServer(language) : voiceListFromGoogle(language, key))
+      .then((list) => {
         try {
           localStorage.setItem(`kelime-koc:voices:${language}`, JSON.stringify(list))
         } catch {
@@ -62,41 +57,38 @@ export function naturalVoices(language: TargetLanguage, key = natural.key): Prom
   return p
 }
 
-/** What Google's error says, in Turkish, with what to change in the Cloud console. */
-export function explainGoogleError(status: number, body: string): string {
-  const b = body.toLowerCase()
-  if (b.includes('referer') || b.includes('referrer')) return 'Google bu adresten gelen isteği engelledi: anahtarın web sitesi kısıtlamasına bu adresi ekle (ör. https://diloloji.com/*).'
-  if (b.includes('billing')) return 'Bu projede faturalandırma açık değil. Google Cloud → Billing\'den projeye bir faturalandırma hesabı bağla (ücretsiz kota için de gerekiyor).'
-  if (b.includes('service_disabled') || b.includes('has not been used') || b.includes('is disabled')) return 'Cloud Text-to-Speech API bu projede etkin değil: APIs & Services → Library\'den "Cloud Text-to-Speech API"yi etkinleştir (açıldıktan sonra birkaç dakika sürebilir).'
-  if (b.includes('api_key_invalid') || b.includes('api key not valid')) return 'Anahtar geçersiz: kopyalarken eksik ya da fazla karakter kalmış olabilir.'
-  if (b.includes('api_key_service_blocked') || b.includes('are blocked')) return 'Anahtarın API kısıtlaması Text-to-Speech\'e izin vermiyor: kısıtlamalara "Cloud Text-to-Speech API"yi ekle.'
-  if (status === 429) return 'Google\'ın istek sınırına takıldı; biraz sonra yeniden dene.'
-  return `Google bir hata döndürdü (${status}).`
+/** The voices Google lists for a language, through the site (the owner's key stays on the server). */
+async function voiceListFromServer(language: TargetLanguage): Promise<string[]> {
+  const res = await accessFetch(`/api/speech?voices=${language}`)
+  if (!res.ok) throw new Error(String(res.status))
+  return ((await res.json()) as { voices?: string[] }).voices ?? []
 }
 
-async function googleFetch(url: string, init?: RequestInit): Promise<Response> {
-  const res = await fetch(url, init)
-  if (!res.ok) throw new Error(explainGoogleError(res.status, await res.text().catch(() => '')))
-  return res
+/** The same list straight from Google with a key typed in on this device (before the site provided the service). */
+async function voiceListFromGoogle(language: TargetLanguage, key: string | null): Promise<string[]> {
+  const res = await fetch(`${API}/voices?languageCode=${SPEECH_LANG[language]}&key=${encodeURIComponent(key ?? '')}`)
+  if (!res.ok) throw new Error(String(res.status))
+  const { voices = [] } = (await res.json()) as { voices?: { name: string; languageCodes: string[] }[] }
+  const own = voices.filter((v) => v.languageCodes.includes(SPEECH_LANG[language])).map((v) => v.name)
+  // Neural2 first; Google is phasing it out on some accounts, so then WaveNet, Chirp 3 HD, Standard.
+  return ['Neural2', 'Wavenet', 'Chirp3-HD', 'Standard'].map((kind) => own.filter((n) => n.includes(kind))).find((l) => l.length) ?? []
 }
 
-/**
- * Checks a key end to end: lists the voices, then really synthesises a word (a few characters
- * of quota). Listing alone passes without billing, so it would hide why speech falls back to
- * the system voices. Returns the voice used; throws a readable reason otherwise.
- */
-export async function testNaturalKey(key: string, language: TargetLanguage = 'fr'): Promise<string> {
-  const list = (await (await googleFetch(`${API}/voices?languageCode=${SPEECH_LANG[language]}&key=${encodeURIComponent(key)}`)).json()) as { voices?: { name: string; languageCodes: string[] }[] }
-  const own = (list.voices ?? []).filter((v) => v.languageCodes.includes(SPEECH_LANG[language])).map((v) => v.name)
-  const voice = ['Neural2', 'Wavenet', 'Chirp3-HD', 'Standard'].map((kind) => own.find((n) => n.includes(kind))).find(Boolean)
-  if (!voice) throw new Error('Bu anahtarla bu dilde doğal ses bulunamadı.')
-  await googleFetch(`${API}/text:synthesize?key=${encodeURIComponent(key)}`, {
+/** The spoken text as an audio blob (MP3), from the site or, with an old own key, from Google. */
+async function synthesize(text: string, language: TargetLanguage, voice: string, speakingRate: number): Promise<ArrayBuffer> {
+  if (natural.server) {
+    const res = await accessFetch('/api/speech?tts=1', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ text, language, voice, rate: speakingRate }) })
+    if (!res.ok) throw new Error(String(res.status))
+    return res.arrayBuffer()
+  }
+  const res = await fetch(`${API}/text:synthesize?key=${encodeURIComponent(natural.key ?? '')}`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ input: { text: 'Bonjour' }, voice: { languageCode: SPEECH_LANG[language], name: voice }, audioConfig: { audioEncoding: 'MP3' } }),
+    body: JSON.stringify({ input: { text }, voice: { languageCode: SPEECH_LANG[language], name: voice }, audioConfig: { audioEncoding: 'MP3', speakingRate } }),
   })
-  voiceLists.delete(language)
-  return voice
+  if (!res.ok) throw new Error(String(res.status))
+  const { audioContent } = (await res.json()) as { audioContent: string }
+  return Uint8Array.from(atob(audioContent), (c) => c.charCodeAt(0)).buffer
 }
 
 let lastVaried: { text: string; voice: string } | null = null
@@ -126,16 +118,9 @@ export async function naturalUrl(text: string, language: TargetLanguage, rate: n
   let blob: Blob
   if (row) blob = mediaBlob(row)
   else {
-    const res = await fetch(`${API}/text:synthesize?key=${encodeURIComponent(natural.key ?? '')}`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ input: { text }, voice: { languageCode: SPEECH_LANG[language], name: voice }, audioConfig: { audioEncoding: 'MP3', speakingRate } }),
-    })
-    if (!res.ok) throw new Error(String(res.status))
-    const { audioContent } = (await res.json()) as { audioContent: string }
-    const bytes = Uint8Array.from(atob(audioContent), (c) => c.charCodeAt(0))
-    blob = new Blob([bytes], { type: 'audio/mpeg' })
-    await db.media.put({ id, kind: 'audio', data: bytes.buffer, type: 'audio/mpeg', createdAt: new Date() })
+    const data = await synthesize(text, language, voice, speakingRate)
+    blob = new Blob([data], { type: 'audio/mpeg' })
+    await db.media.put({ id, kind: 'audio', data, type: 'audio/mpeg', createdAt: new Date() })
     await db.addTtsChars(text.length)
   }
   const url = URL.createObjectURL(blob)

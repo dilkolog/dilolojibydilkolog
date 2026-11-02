@@ -19,6 +19,9 @@ const blobStore: QuotaStore = { read: readText, write: writeJson }
 /** Characters of translation one account may ask for in a day (UTC). DeepL's free month is 500,000. */
 export const DAILY_TRANSLATE_CHARS = 20_000
 
+/** Characters of natural-voice speech (Google Cloud TTS) one account may ask for in a day: Neural2 and WaveNet have 1,000,000 free characters a month. */
+export const DAILY_TTS_CHARS = 8_000
+
 /** How long a count read from the store is trusted before it is read again (other instances count too). */
 const FRESH_MS = 60_000
 
@@ -72,7 +75,7 @@ export async function spendQuota(name: string, id: string, amount: number, store
 
 /** Calls a day per account to the endpoints that fetch from other sites (YouTube, news, programmes): each call costs
  * several outbound requests, and YouTube's search has a small daily quota shared by everyone. */
-export const DAILY_CALLS = { clips: 60, youtube: 40, news: 150, listen: 150, share: 30 } as const
+export const DAILY_CALLS = { clips: 60, youtube: 40, news: 150, listen: 150, share: 30, assess: 60 } as const
 
 /**
  * For an endpoint that costs per call: counts the call against the account's day and says whether it is over

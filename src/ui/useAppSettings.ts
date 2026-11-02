@@ -8,6 +8,7 @@ import { natural } from './naturalVoice'
 import { azure } from './pronunciation'
 import { useAccessStatus } from './useAccessStatus'
 import { AI_ACCOUNT, aiAvailable, type AiStatus } from '../data/aiAccess'
+import { speechAvailable } from '../data/speechAccess'
 
 /**
  * The saved settings and the keys kept next to them (AI, natural voice, Azure speech): read once on start,
@@ -20,6 +21,8 @@ export function useAppSettings() {
   const access = useAccessStatus()
   const [aiStatus, setAiStatus] = useState<AiStatus | null>(null)
   const apiKey = access.approved && aiStatus?.available ? AI_ACCOUNT : null
+  // Natural voices and pronunciation scoring come from the site's keys too; the state only makes the screens redraw when it is known.
+  const [, setSpeechKnown] = useState(false)
 
   useEffect(() => {
     db.getSettings().then((s) => setSettings(s ?? null))
@@ -33,6 +36,39 @@ export function useAppSettings() {
       azure.region = c?.region ?? null
     })
   }, [])
+
+  useEffect(() => {
+    if (!access.approved) {
+      natural.server = false
+      azure.server = false
+      setSpeechKnown(false)
+      return
+    }
+    let live = true
+    speechAvailable().then((status) => {
+      if (!live) return
+      natural.server = status.tts
+      azure.server = status.assess
+      // An own key typed in before the site provided the service is not used any more: forget it.
+      if (status.tts) {
+        natural.key = null
+        void db.getTtsKey().then((k) => {
+          if (k) void db.saveTtsKey(null)
+        })
+      }
+      if (status.assess) {
+        azure.key = null
+        azure.region = null
+        void db.getSpeechKey().then((c) => {
+          if (c) void db.saveSpeechKey(null)
+        })
+      }
+      setSpeechKnown(true)
+    })
+    return () => {
+      live = false
+    }
+  }, [access.approved])
 
   useEffect(() => {
     if (!access.approved) return setAiStatus(null)

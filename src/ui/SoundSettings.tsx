@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { Settings } from '../data/db'
-import { AzureSpeechSettings } from './AzureSpeechSettings'
 import { LANGUAGE_NAME } from './labels'
-import { NaturalVoiceSettings } from './NaturalVoiceSettings'
 import { Select } from './Select'
 import { canSpeak, speak, voicesFor } from './speech'
 import { canListen } from './speechInput'
@@ -70,9 +68,6 @@ export function SoundSettings({
           </button>
         </div>
       </Row>
-      {/* Cloud voices and scoring need keys and are set once: after the everyday choices, not before. */}
-      <NaturalVoiceSettings language={lang} />
-      <AzureSpeechSettings />
     </section>
   )
 }

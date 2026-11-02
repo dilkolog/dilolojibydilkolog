@@ -1,14 +1,16 @@
 import type { TargetLanguage } from '../engine/types'
+import { accessFetch } from '../data/access'
+import { speechErrorText } from '../data/speechAccess'
 import { prefs } from './prefs'
 
 /**
- * Pronunciation assessment with Azure Speech (the learner's own key, kept on this device).
- * A recording and the text it should say go to the short-audio REST API, which scores the
- * whole utterance (accuracy, fluency, completeness) and each word. Called straight from the
- * browser: Azure allows it (CORS), so no server sits in between.
+ * Pronunciation assessment with Azure Speech. A recording and the text it should say go to the short-audio REST API,
+ * which scores the whole utterance (accuracy, fluency, completeness) and each word. The site provides the service
+ * (`server`: /api/speech, the owner's key); a key typed in on this device before that (`key`, `region`) still works
+ * until the server is known to have one, and is then forgotten (useAppSettings).
  */
-export const azure: { key: string | null; region: string | null } = { key: null, region: null }
-export const azureEnabled = () => !!azure.key && !!azure.region
+export const azure: { key: string | null; region: string | null; server: boolean } = { key: null, region: null, server: false }
+export const azureEnabled = () => azure.server || (!!azure.key && !!azure.region)
 
 /** Spanish follows the learner's variety: without vosotros, Latin American (Mexico). */
 const assessLocale = (language: TargetLanguage) => (language === 'fr' ? 'fr-FR' : language === 'es' ? (prefs.hideVosotros ? 'es-MX' : 'es-ES') : 'en-US')
@@ -143,9 +145,13 @@ export function parseAssessment(json: Record<string, unknown>): PronResult {
   }
 }
 
+/** The sentence a recording is scored against may not be longer than the server takes (api/speech.ts MAX_REF). */
+const MAX_REF = 400
+
 /** Scores a recording of `text` (at most ~30 s). */
 export async function assessPronunciation(recording: Blob, text: string, language: TargetLanguage): Promise<PronResult> {
   const audio = await toWav16k(recording)
+  if (azure.server) return parseAssessment(await recognizeOnServer(audio, text.slice(0, MAX_REF), language))
   const header = base64Json({
     ReferenceText: text,
     GradingSystem: 'HundredMark',
@@ -158,8 +164,14 @@ export async function assessPronunciation(recording: Blob, text: string, languag
   return parseAssessment(await recognize(audio, assessLocale(language), { 'Pronunciation-Assessment': header }))
 }
 
-/** Checks a key and region with half a second of silence (a few milliseconds of quota). */
-export async function testAzureKey(key: string, region: string): Promise<void> {
-  if (!/^[a-z0-9]+$/.test(region)) throw new Error('Bölge adı küçük harf ve boşluksuz olmalı, ör. francecentral.')
-  await recognize(wav(new Float32Array(8000), 16000), 'fr-FR', {}, { key, region })
+/** The same scoring through the site (the owner's key stays on the server, which builds the Azure request itself). */
+async function recognizeOnServer(audio: Blob, text: string, language: TargetLanguage): Promise<Record<string, unknown>> {
+  const variety = language === 'es' && prefs.hideVosotros ? '&v=mx' : ''
+  const res = await accessFetch(`/api/speech?assess=1&l=${language}${variety}`, {
+    method: 'POST',
+    headers: { 'content-type': 'audio/wav', 'x-ref-text': encodeURIComponent(text) },
+    body: audio,
+  })
+  if (!res.ok) throw new Error(speechErrorText(res.status, ((await res.json().catch(() => null)) as { error?: unknown } | null)?.error))
+  return (await res.json()) as Record<string, unknown>
 }
