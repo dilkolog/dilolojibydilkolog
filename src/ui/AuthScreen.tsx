@@ -30,13 +30,13 @@ function failureText(e: unknown): string {
  * password never leaves the device.
  */
 /** `onBack` is left out where an account is required (nothing to go back to). */
-export function AuthScreen(props: { initialMode?: AuthMode; onDone: () => void; onBack?: () => void }) {
+export function AuthScreen(props: { initialMode?: AuthMode; onDone: () => void; onBack?: () => void; backLabel?: string }) {
   // With Supabase set up, people sign in there (email, a link, Google); the username form is the old way.
   if (supabaseConfigured()) return <SupabaseAuth {...props} />
   return <UsernameAuth {...props} initialMode={props.initialMode === 'create' ? 'create' : 'login'} />
 }
 
-function UsernameAuth({ initialMode = 'login', onDone, onBack }: { initialMode?: 'login' | 'create'; onDone: () => void; onBack?: () => void }) {
+function UsernameAuth({ initialMode = 'login', onDone, onBack, backLabel = 'Ayarlar' }: { initialMode?: 'login' | 'create'; onDone: () => void; onBack?: () => void; backLabel?: string }) {
   const [mode, setMode] = useState<'login' | 'create'>(initialMode)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -101,7 +101,7 @@ function UsernameAuth({ initialMode = 'login', onDone, onBack }: { initialMode?:
     <div className="auth-page">
       {onBack && (
         <button className="link auth-back" onClick={onBack}>
-          <ChevronLeftIcon size={16} /> Ayarlar
+          <ChevronLeftIcon size={16} /> {backLabel}
         </button>
       )}
       <div className="auth-card card">

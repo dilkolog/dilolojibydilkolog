@@ -513,6 +513,7 @@ export default function App() {
             initialMode={screen.name === 'account' ? screen.mode : entered === 'create' ? 'create' : 'login'}
             onDone={() => setScreen((now) => (now.name === 'account' ? { name: 'home' } : now))}
             onBack={entered === null ? undefined : () => setEntered(null)}
+            backLabel="Geri"
           />
         </Suspense>
       </div>
