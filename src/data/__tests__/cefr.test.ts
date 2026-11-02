@@ -1,10 +1,16 @@
 import { describe, expect, it } from 'vitest'
+import { cefrOf } from '../../engine/cefrLevels'
 import { loadCefr } from '../cefr'
 
 describe('loadCefr', () => {
-  it('returns null for English as no CEFR list exists yet', async () => {
-    const res = await loadCefr('en')
-    expect(res).toBeNull()
+  it('loads English CEFR word list (CEFR-J + Octanove A1–C2) and maps graded levels', async () => {
+    const en = await loadCefr('en')
+    expect(en).not.toBeNull()
+    expect(en?.size).toBeGreaterThan(8000)
+    expect(en?.get('cat')).toBe('A1')
+    expect(en?.get('toothbrush')).toBe('A2')
+    expect(en?.get('abandon')).toBe('B1')
+    expect(cefrOf({ language: 'en', lemma: 'to abandon' }, en!)).toBe('B1')
   })
 
   it('loads French CEFR word list and provides level map', async () => {

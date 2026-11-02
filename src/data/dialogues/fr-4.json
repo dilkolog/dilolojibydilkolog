@@ -1,0 +1,278 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "fr-b2-potes-soiree",
+      "level": "B2",
+      "title": "Arkadaşlarla son dakika planı (sokak dili)",
+      "scene": "Yakın arkadaşın Léo akşamki plan için seni arıyor; konuşma hızlı ve günlük Fransızca akıyor.",
+      "turns": [
+        {
+          "say": "Salut ! Dis, Maxime vient de nous poser un lapin pour ce soir. T'es toujours chaud pour sortir ?",
+          "tr": "Selam! Ya Maxime bu akşam için bizi az önce ekti. Hâlâ dışarı çıkmaya var mısın?",
+          "options": [
+            "Carrément ! C'est relou de sa part, mais on maintient.",
+            "Je suis très chaud température, merci.",
+            "Veuillez accepter ma confirmation pour ce soir."
+          ],
+          "answer": 0,
+          "why": "'Être chaud pour' günlük dilde 'hevesli olmak / var olmak' demektir; 'Carrément !' ve 'relou' arkadaş tonuna tam uyar. İlk seçenek fiziksel sıcaklık sanır, üçüncüsü ise resmî dilekçe dilidir.",
+          "replyTr": "Kesinlikle! Onun yaptığı gıcıklık ama planı bozmayalım."
+        },
+        {
+          "say": "Grave ! Par contre, le nouveau bar du centre coûte une blinde. On se pose ailleurs ?",
+          "tr": "Kesinlikle! Yalnız merkezdeki yeni bar ateş pahası. Başka yerde mi takılsak?",
+          "options": [
+            "Oui, le bar est aveugle.",
+            "Je décline cette proposition tarifaire.",
+            "Ça marche, allons plutôt dans le petit bistrot du quartier."
+          ],
+          "answer": 2,
+          "why": "'Coûter une blinde' servet tutmak demektir ('blind' İngilizce kör ile karıştırılmamalı). 'Ça marche' doğal onay kalıbıdır.",
+          "replyTr": "Olur, onun yerine mahalledeki küçük bistroya gidelim."
+        },
+        {
+          "say": "Nickel ! J'ai un peu la flemme de prendre le métro, j'y vais à pied. On se capte là-bas à vingt heures ?",
+          "tr": "Süper! Metroya binmeye biraz üşeniyorum, yürüyerek gideceğim. Sekizde orada buluşalım mı?",
+          "options": [
+            "Non, je ne capte pas le réseau.",
+            "Pas de souci, j'y serai pile à l'heure !",
+            "J'ai une maladie de flemme aussi."
+          ],
+          "answer": 1,
+          "why": "'On se capte' gençlik dilinde 'buluşalım/görüşelim' demektir; 'pile à l'heure' tam saatinde anlamında doğal karşılıktır.",
+          "replyTr": "Sorun yok, tam saatinde orada olurum!"
+        },
+        {
+          "say": "Au fait, Chloé hésite encore à venir, elle est crevée après sa semaine de taf.",
+          "tr": "Bu arada Chloé gelmekte hâlâ kararsız, iş haftasından sonra pestili çıkmış.",
+          "options": [
+            "Dis-lui de passer juste une heure, sans prise de tête.",
+            "Pourquoi est-elle morte ?",
+            "Son emploi est effectivement fatigant."
+          ],
+          "answer": 0,
+          "why": "'Crevée' burada mecazi olarak 'çok yorgun' demektir; 'sans prise de tête' (kasmadan / rahatça) B2 günlük Fransızcasının kilit ifadesidir.",
+          "replyTr": "Ona hiç kasmadan sadece bir saatliğine uğramasını söyle."
+        },
+        {
+          "say": "Bonne idée ! Bon, je file me préparer sinon je vais encore être à la bourre.",
+          "tr": "İyi fikir! Neyse ben hazırlanmaya kaçıyorum, yoksa yine geç kalacağım.",
+          "options": [
+            "Prends du beurre au supermarché.",
+            "Je vous prie de vous hâter.",
+            "Vas-y, grouille-toi un peu, à tout à l’heure !"
+          ],
+          "answer": 2,
+          "why": "'Être à la bourre' geç kalmak demektir ('beurre' tereyağı ile sesteş tuzağı!). Samimi tonda 'grouille-toi un peu' (hadi biraz çabuk ol) tam oturur.",
+          "replyTr": "Hadi biraz elini çabuk tut, birazdan görüşürüz!"
+        }
+      ]
+    },
+    {
+      "id": "fr-b2-caution-appart",
+      "level": "B2",
+      "title": "Ev sahibiyle depozito pazarlığı",
+      "scene": "Daireyi boşaltırken ev sahibi eski bir çizik yüzünden depozitodan kesinti yapmak istiyor.",
+      "turns": [
+        {
+          "say": "J'ai remarqué une rayure profonde sur le parquet du salon ; je vais devoir retenir une partie de la caution.",
+          "tr": "Salon parkesinde derin bir çizik fark ettim; depozitonun bir kısmını kesmem gerekecek.",
+          "options": [
+            "Rendez-moi mon fric tout de suite !",
+            "Permettez-moi de vérifier l'état des lieux d'entrée : cette rayure y figurait déjà.",
+            "Oui, j'aime beaucoup le parquet."
+          ],
+          "answer": 1,
+          "why": "Kira hukukunda kilit belge 'l'état des lieux d'entrée' (giriş tutanağı)dır; sakin ve belgeli itiraz B2 düzeyinde en etkili yoldur.",
+          "replyTr": "Giriş tutanağını kontrol etmeme izin verin: bu çizik orada zaten kayıtlıydı."
+        },
+        {
+          "say": "Ah bon ? Vous êtes certain qu'elle était mentionnée sur le document initial ?",
+          "tr": "Öyle mi? İlk belgede belirtildiğinden emin misiniz?",
+          "options": [
+            "Tout à fait, regardez à la page deux, avec la photo jointe.",
+            "Je donne ma langue au chat.",
+            "Peut-être que je mens."
+          ],
+          "answer": 0,
+          "why": "'Tout à fait' kibar ve kendinden emin onaylamadır; somut kanıta ('la photo jointe') işaret eder.",
+          "replyTr": "Kesinlikle, ekteki fotoğrafla birlikte ikinci sayfaya bakın."
+        },
+        {
+          "say": "Effectivement, autant pour moi. En revanche, le joint de la douche a noirci avec le temps.",
+          "tr": "Gerçekten öyleymiş, benim hatam. Öte yandan duşun silikonu zamanla kararmış.",
+          "options": [
+            "La douche est très froide en hiver.",
+            "C'est une pure arnaque, monsieur !",
+            "Il s'agit d'une usure normale liée au temps, et non d'une dégradation."
+          ],
+          "answer": 2,
+          "why": "'L'usure normale' (olağan yıpranma) kiracının sorumlu tutulamayacağı durumları ifade eden standart Fransızca terimdir.",
+          "replyTr": "Bu bir hasar değil, zamana bağlı olağan yıpranmadır."
+        },
+        {
+          "say": "Soit, je veux bien couper la poire en deux : si vous remplacez l’ampoule grillée de l’entrée, on n’en parle plus.",
+          "tr": "Peki, orta yolu bulmaya razıyım: girişteki patlak ampulü değiştirirseniz konuyu kapatırız.",
+          "options": [
+            "Je préfère les pommes aux poires.",
+            "Entendu, j'en ai justement une de rechange dans mon sac.",
+            "Non, je ne coupe rien du tout."
+          ],
+          "answer": 1,
+          "why": "'Couper la poire en deux' deyimi 'orta yolu bulmak' demektir; 'une ampoule de rechange' (yedek ampul) doğal çözümdür.",
+          "replyTr": "Anlaştık, çantamda tam da yedek bir tane var."
+        },
+        {
+          "say": "Parfait. Sous quel délai souhaitez-vous recevoir le virement de votre dépôt de garantie ?",
+          "tr": "Harika. Güvence bedelinizin havalesini ne kadar sürede almak istersiniz?",
+          "options": [
+            "Dès que possible cette semaine, voici mon relevé d'identité bancaire.",
+            "Hier soir, merci.",
+            "Je vous donne ma carte bleue secrète."
+          ],
+          "answer": 0,
+          "why": "Fransa'da IBAN belgesi 'RIB (relevé d'identité bancaire)' olarak adlandırılır; kart şifresi asla verilmez.",
+          "replyTr": "Bu hafta mümkün olan en kısa sürede; işte banka hesap bilgilerim (RIB)."
+        }
+      ]
+    },
+    {
+      "id": "fr-b2-reunion-delai",
+      "level": "B2",
+      "title": "Toplantıda teslim tarihine kibarca itiraz",
+      "scene": "Ekip yöneticin kapsamlı bir raporu yarına kadar bitirmeni istiyor; diplomatikçe sınır çizmelisin.",
+      "turns": [
+        {
+          "say": "Il faudrait boucler l'analyse complète du marché d'ici demain midi. Tu peux t'en charger ?",
+          "tr": "Pazar analizinin tamamını yarın öğlene kadar bitirmemiz gerekiyor. Üstlenebilir misin?",
+          "options": [
+            "Non, débrouille-toi tout seul.",
+            "Oui, demain midi était hier.",
+            "Honnêtement, vu l'ampleur des données, ce délai me paraît difficilement tenable."
+          ],
+          "answer": 2,
+          "why": "'Ce délai me paraît difficilement tenable' kırmadan, profesyonelce 'bu süre gerçekçi değil' demenin en şık B2 kalıbıdır.",
+          "replyTr": "Açıkçası verilerin kapsamı düşünüldüğünde bu teslim tarihi bana pek yetişebilir görünmüyor."
+        },
+        {
+          "say": "Le client met la pression pourtant. Qu'est-ce qui bloque exactement de ton côté ?",
+          "tr": "Ama müşteri baskı yapıyor. Senin tarafında tam olarak ne engel oluşturuyor?",
+          "options": [
+            "J'ai trop la flemme aujourd'hui.",
+            "Il nous manque encore les chiffres du trimestre dernier pour consolider le bilan.",
+            "Le client est très gentil."
+          ],
+          "answer": 1,
+          "why": "İş ortamında kişisel üşengeçlik ('la flemme') yerine nesnel darboğaz ('il nous manque les chiffres') sunulur.",
+          "replyTr": "Bilançoyu birleştirmek için hâlâ geçen çeyreğin rakamları elimizde eksik."
+        },
+        {
+          "say": "Je vois. Si je demande à la comptabilité de te les transmettre avant midi, comment peut-on procéder ?",
+          "tr": "Anlıyorum. Muhasebeden bunları öğleden önce sana iletmelerini istersem nasıl ilerleyebiliriz?",
+          "options": [
+            "Dans ce cas, je peux livrer une synthèse demain et le rapport détaillé jeudi.",
+            "Alors je pars en vacances.",
+            "La comptabilité ne sait pas compter."
+          ],
+          "answer": 0,
+          "why": "Kademeli teslim önerisi ('une synthèse demain et le rapport détaillé jeudi') iş Fransızcasında yapıcı müzakere örneğidir.",
+          "replyTr": "O durumda yarın bir özet teslim edebilir, ayrıntılı raporu da perşembe günü sunabilirim."
+        },
+        {
+          "say": "C'est un bon compromis. Tu penses avoir besoin d'un coup de main sur les graphiques ?",
+          "tr": "Bu iyi bir uzlaşma. Grafiklerde yardıma ihtiyacın olur mu sence?",
+          "options": [
+            "Non, ma main va très bien.",
+            "Les graphiques sont bleus.",
+            "Volontiers, si Clara peut relire les tableaux demain matin, on gagnera un temps précieux."
+          ],
+          "answer": 2,
+          "why": "'Un coup de main' yardım demektir; 'volontiers' (memnuniyetle) ve 'gagner un temps précieux' doğal iş kalıplarıdır.",
+          "replyTr": "Memnuniyetle; Clara yarın sabah tabloları gözden geçirebilirse çok değerli zaman kazanırız."
+        },
+        {
+          "say": "Ça marche, je vois ça avec elle tout de suite. Merci d'avoir été franc dès le départ.",
+          "tr": "Tamamdır, onunla hemen konuşuyorum. Baştan açık sözlü olduğun için teşekkürler.",
+          "options": [
+            "De rien, je m’appelle Franc.",
+            "Je t'en prie, mieux vaut prévenir que livrer un travail bâclé.",
+            "Au revoir, monsieur le client."
+          ],
+          "answer": 1,
+          "why": "'Un travail bâclé' (üstünkörü/baştan savma iş) ve 'mieux vaut prévenir' profesyonel sorumluluk duygusunu tam yansıtır.",
+          "replyTr": "Rica ederim; baştan savma bir iş teslim etmektense önceden uyarmak daha iyidir."
+        }
+      ]
+    },
+    {
+      "id": "fr-b2-abonnement-litige",
+      "level": "B2",
+      "title": "Haksız abonelik çekimine itiraz",
+      "scene": "Ücretsiz deneme süresinde iptal ettiğin bir uygulamadan yıllık ücret çekilmiş; müşteri temsilcisiyle görüşüyorsun.",
+      "turns": [
+        {
+          "say": "Service client bonjour, en quoi puis-je vous aider aujourd’hui ?",
+          "tr": "Müşteri hizmetleri iyi günler, bugün size nasıl yardımcı olabilirim?",
+          "options": [
+            "Bonjour, je vous appelle au sujet d'un prélèvement annuel effectué par erreur sur mon compte.",
+            "Bonjour, donnez-moi un abonnement cher.",
+            "Salut pote, rends la thune !"
+          ],
+          "answer": 0,
+          "why": "Banka/kart otomatik çekimi 'un prélèvement' olarak adlandırılır; 'au sujet de' resmî ve net bir giriş sağlar.",
+          "replyTr": "İyi günler, hesabımdan yanlışlıkla yapılan yıllık bir tahsilat hakkında arıyorum."
+        },
+        {
+          "say": "Je consulte votre dossier. Il semble que la période d'essai ait expiré hier à minuit.",
+          "tr": "Dosyanıza bakıyorum. Görünüşe göre deneme süresi dün gece yarısı dolmuş.",
+          "options": [
+            "Minuit est mon heure préférée.",
+            "Oui, j'ai oublié de résilier.",
+            "Pourtant, j'ai résilié l'offre avant-hier et j'ai bien reçu le courriel de confirmation."
+          ],
+          "answer": 2,
+          "why": "'Résilier un abonnement' abonelik iptal etmenin tam fiilidir; onay e-postasını ('courriel de confirmation') belirtmek elini güçlendirir.",
+          "replyTr": "Oysa teklifi evvelsi gün iptal ettim ve onay e-postasını da aldım."
+        },
+        {
+          "say": "Pouvez-vous me communiquer le numéro de référence figurant dans ce message ?",
+          "tr": "O mesajda yer alan referans numarasını bana iletebilir misiniz?",
+          "options": [
+            "Non, c’est un secret d’État.",
+            "Bien sûr, il commence par FR suivi de quarante-deux quatre-vingt-dix.",
+            "Mon numéro de chaussure est quarante-deux."
+          ],
+          "answer": 1,
+          "why": "Referans kodunu açıkça okumak ('suivi de...') telefon görüşmelerinde standart işlemdir.",
+          "replyTr": "Elbette, FR ile başlıyor ve ardından kırk iki doksan geliyor."
+        },
+        {
+          "say": "Je le vois bien, un bogue technique a empêché la prise en compte de votre annulation. Toutes nos excuses.",
+          "tr": "Şimdi görüyorum, teknik bir hata iptalinizin işlenmesini engellemiş. Çok özür dileriz.",
+          "options": [
+            "Je comprends, mais pouvez-vous procéder au remboursement intégral dès maintenant ?",
+            "Merci pour le bogue gratuit.",
+            "Je voudrais payer une deuxième fois."
+          ],
+          "answer": 0,
+          "why": "'Procéder au remboursement intégral' (tam iade işlemini başlatmak) müşteri hakları dilinde tam karşılıktır.",
+          "replyTr": "Anlıyorum, peki tam ücret iadesi işlemini hemen şimdi başlatabilir misiniz?"
+        },
+        {
+          "say": "C’est fait : la somme sera recréditée sur votre carte sous trois à cinq jours ouvrés.",
+          "tr": "İşlem tamam: tutar üç ila beş iş günü içinde kartınıza geri yatırılacak.",
+          "options": [
+            "Cinq jours ouvrés font cinq ans.",
+            "Bonne soirée à votre carte.",
+            "Parfait, pourriez-vous m’envoyer une trace écrite de ce remboursement par courriel ?"
+          ],
+          "answer": 2,
+          "why": "'Une trace écrite' (yazılı kayıt/kanıt) ve 'jours ouvrés' (iş günleri) gerçek hayatta çok işe yarayan B2 kalıplarıdır.",
+          "replyTr": "Harika, bu iadenin yazılı bir teyidini bana e-postayla gönderebilir misiniz?"
+        }
+      ]
+    }
+  ]
+}

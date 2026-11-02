@@ -15,7 +15,8 @@
     "informal": "Voy de culo con el curro.",
     "standard": "Tengo mucho trabajo estos días.",
     "formal": "Mi disponibilidad laboral se encuentra sumamente limitada.",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“ir de culo” ve “el curro” İspanya argosudur; Meksika’da “ando a tope con la chamba”, Arjantin’de “estoy a mil con el laburo” denir."
   },
   {
     "id": "es-agree",
@@ -24,7 +25,8 @@
     "informal": "¡Totalmente, de una!",
     "standard": "Estoy completamente de acuerdo.",
     "formal": "Comparto plenamente sus apreciaciones.",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“¡de una!” özellikle Kolombiya ve Arjantin’de “hemen / kesinlikle” anlamında çok canlı bir sokak onaylamasıdır."
   },
   {
     "id": "es-cost",
@@ -42,7 +44,8 @@
     "informal": "¡Échame un cable, tío!",
     "standard": "¿Me puedes echar una mano, por favor?",
     "formal": "¿Sería tan amable de prestarme su colaboración?",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“echar un cable” ve “tío” İspanya’ya özgüdür; genel İspanyolcada “echar una mano” her ülkede anlaşılır."
   },
   {
     "id": "es-delay",
@@ -60,7 +63,8 @@
     "informal": "Me aburro como una ostra, es un rollo.",
     "standard": "Esto me resulta bastante aburrido.",
     "formal": "Esta circunstancia me resulta sumamente tediosa.",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“ser un rollo” İspanya’da “çok sıkıcı” demektir; Meksika’da “qué hueva / qué flojera”, Kolombiya’da “qué pereza / qué mamera” denir."
   },
   {
     "id": "es-understand",
@@ -78,7 +82,8 @@
     "informal": "¡Es una pasada brutal!",
     "standard": "Es algo realmente increíble.",
     "formal": "Este acontecimiento resulta verdaderamente excepcional.",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“¡es una pasada!” İspanya’da çok yaygındır; Meksika’da “¡está padrísimo!”, Arjantin’de “¡es una locura / está buenísimo!” denir."
   },
   {
     "id": "es-leave-2",
@@ -87,6 +92,7 @@
     "informal": "¡Bueno, me piro!",
     "standard": "Ya me tengo que ir.",
     "formal": "Debo retirarme con su debido permiso.",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“me piro” İspanya sokak argosudur; Meksika’da “me lanzo / me jalo”, Arjantin’de “me las tomo” denir."
   }
 ]

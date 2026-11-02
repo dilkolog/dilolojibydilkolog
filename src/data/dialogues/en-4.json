@@ -1,0 +1,278 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "en-b2-friends-slang",
+      "level": "B2",
+      "title": "Arkadaşlarla son dakika planı (günlük ve argo)",
+      "scene": "Yakın arkadaşın Sam akşamki buluşma için seni arıyor; konuşma doğal deyimler ve günlük sokak diliyle akıyor.",
+      "turns": [
+        {
+          "say": "Hey! Listen, Ryan just bailed on us at the last minute. Are you still down to grab dinner?",
+          "tr": "Selam! Bak, Ryan son dakikada bizi ekti. Hâlâ akşam yemeğine çıkmaya var mısın?",
+          "options": [
+            "Totally! Classic Ryan, honestly—let's go anyway.",
+            "No, I am standing up, not down.",
+            "I hereby confirm my attendance at the banquet."
+          ],
+          "answer": 0,
+          "why": "'Bail on someone' ekmek, 'be down to' ise bir plana var/istekli olmak demektir. İlk seçenek samimi arkadaş tonunu tam yakalar.",
+          "replyTr": "Kesinlikle! Klasik Ryan işte, biz yine de gidelim."
+        },
+        {
+          "say": "Awesome! Though that new rooftop place downtown is a total rip-off. Fancy trying somewhere else?",
+          "tr": "Harika! Yalnız merkezdeki o yeni teras mekanı tam kazık. Başka bir yer denemeye ne dersin?",
+          "options": [
+            "Yes, please rip the paper off.",
+            "The pricing structure is indeed suboptimal.",
+            "Fair enough, let's stick to that cosy noodle spot round the corner."
+          ],
+          "answer": 2,
+          "why": "'A rip-off' fahiş fiyatlı kazık yer demektir; 'Fair enough' (haklısın/makul) günlük İngilizcenin en doğal geçiş kalıbıdır.",
+          "replyTr": "Haklısın, köşedeki o sıcak erişteciye gidelim biz."
+        },
+        {
+          "say": "Spot on! I honestly can't be bothered to take the bus in this rain—shall we just play it by ear after?",
+          "tr": "Tam isabet! Bu yağmurda otobüse binmeye hiç üşeniyorum açıkçası; yemekten sonrasına da duruma göre bakar mıyız?",
+          "options": [
+            "My ears do not play musical instruments.",
+            "Sounds like a plan! Meet you outside at seven sharp.",
+            "I am disinclined to board public transit."
+          ],
+          "answer": 1,
+          "why": "'Play it by ear' doğaçlama / gidişata göre hareket etmek demektir; 'Sounds like a plan!' çok işlek bir onaydır.",
+          "replyTr": "Süper plan! Tam yedide kapının önünde buluşalım."
+        },
+        {
+          "say": "By the way, Maya's still on the fence about coming—she's knackered after pulling an all-nighter.",
+          "tr": "Bu arada Maya gelip gelmemekte hâlâ kararsız; bütün gece sabahlayıp çalıştığı için pestili çıkmış.",
+          "options": [
+            "Tell her to just swing by for an hour, no pressure at all.",
+            "Why is she sitting on a garden fence?",
+            "Sleep deprivation reduces productivity."
+          ],
+          "answer": 0,
+          "why": "'On the fence' kararsız, 'pull an all-nighter' sabahlamak, 'swing by' ise kısaca uğramak demektir.",
+          "replyTr": "Hiç kasmadan sadece bir saatliğine uğramasını söyle ona."
+        },
+        {
+          "say": "Will do! Alright, gotta dash or I'll mess up the timing again—catch you in a bit!",
+          "tr": "Söylerim! Neyse hemen fırlamam lazım yoksa yine saati batıracağım; birazdan görüşürüz!",
+          "options": [
+            "Please catch the ball carefully.",
+            "Yours faithfully, until seven.",
+            "See ya soon—don’t forget your umbrella!"
+          ],
+          "answer": 2,
+          "why": "'Gotta dash' ve 'catch you in a bit' (birazdan görüşürüz) günlük vedalaşmada çok doğaldır.",
+          "replyTr": "Birazdan görüşürüz, şemsiyeni unutma!"
+        }
+      ]
+    },
+    {
+      "id": "en-b2-deposit-dispute",
+      "level": "B2",
+      "title": "Ev sahibiyle depozito pazarlığı",
+      "scene": "Kiralık daireden taşınırken ev sahibi parke ve duvar izleri için depozitodan kesinti yapmak istiyor.",
+      "turns": [
+        {
+          "say": "I've just inspected the flat, and I'll have to deduct a hundred pounds from your deposit for the scuff marks in the hall.",
+          "tr": "Daireyi az önce inceledim; koridordaki sürtünme izleri için depozitonuzdan yüz sterlin kesmem gerekecek.",
+          "options": [
+            "Give me my dough back right now!",
+            "If we check the move-in inventory, those marks were already documented with photos.",
+            "Yes, the hallway is very long."
+          ],
+          "answer": 1,
+          "why": "'Move-in inventory' (giriş demirbaş/durum tutanağı) ile sakin ve kanıtlı konuşmak B2 müzakere dilinin temelidir.",
+          "replyTr": "Giriş tutanağına bakarsak o izler fotoğraflarla zaten belgelenmişti."
+        },
+        {
+          "say": "Were they? Let me pull up the signed check-in report on my tablet.",
+          "tr": "Öyle miydi? Tabletimden imzalı giriş raporunu açayım.",
+          "options": [
+            "Sure—have a look at page three under hallway condition.",
+            "Your tablet looks expensive.",
+            "I spilled the beans on the floor."
+          ],
+          "answer": 0,
+          "why": "Somut sayfa ve başlığa yönlendirmek ('under hallway condition') profesyonel özgüven gösterir.",
+          "replyTr": "Tabii, üçüncü sayfada koridor durumu başlığı altındaki kısma bakabilirsiniz."
+        },
+        {
+          "say": "Right you are, my mistake. Still, the carpet near the sofa looks slightly faded compared to two years ago.",
+          "tr": "Haklısınız, benim hatam. Yine de koltuğun yanındaki halı iki yıl öncesine göre biraz solmuş görünüyor.",
+          "options": [
+            "Sunlight is a yellow star.",
+            "That is a total rip-off, mate!",
+            "After two years of tenancy, that falls under fair wear and tear rather than damage."
+          ],
+          "answer": 2,
+          "why": "'Fair wear and tear' (olağan kullanım yıpranması) İngilizce kira sözleşmelerinin altın anahtar terimidir.",
+          "replyTr": "İki yıllık kiracılığın ardından bu durum hasar değil, olağan yıpranma kapsamına girer."
+        },
+        {
+          "say": "Fair point. Provided you settle the final week's utility bill, I'm happy to release the full deposit.",
+          "tr": "Haklı bir nokta. Son haftanın fatura borcunu kapattığınız takdirde depozitonun tamamını serbest bırakmaktan memnuniyet duyarım.",
+          "options": [
+            "I never use electricity or water.",
+            "Agreed—I've already taken today's meter readings so we can work out the exact share.",
+            "Let us cut corners on the stairs."
+          ],
+          "answer": 1,
+          "why": "'Meter readings' (sayaç okumaları) ve 'work out the exact share' pratik ve uzlaşmacı çözümdür.",
+          "replyTr": "Anlaştık; tam payı hesaplayabilmemiz için bugünkü sayaç okumalarını şimdiden aldım."
+        },
+        {
+          "say": "Brilliant, thank you for being so thorough. I'll authorise the refund through the deposit scheme today.",
+          "tr": "Harika, bu kadar titiz olduğunuz için teşekkürler. İadeyi bugün depozito koruma sistemi üzerinden onaylayacağım.",
+          "options": [
+            "Much appreciated—could you drop me a quick email once it goes through?",
+            "Schemes are very sketchy.",
+            "Goodbye to your sofa."
+          ],
+          "answer": 0,
+          "why": "'Once it goes through' (işlem onaylanıp geçtiğinde) ve 'drop me a quick email' doğal B2 kapanışıdır.",
+          "replyTr": "Çok teşekkür ederim; işlem gerçekleştiğinde bana kısa bir e-posta atabilir misiniz?"
+        }
+      ]
+    },
+    {
+      "id": "en-b2-work-pushback",
+      "level": "B2",
+      "title": "Toplantıda gerçekçi olmayan süreye itiraz",
+      "scene": "Ekip liderin kapsamlı müşteri analizini yarın sabaha istiyor; kırmadan ama net biçimde sınır çizmelisin.",
+      "turns": [
+        {
+          "say": "We need the full client audit wrapped up by nine tomorrow morning. Can you take the lead on that?",
+          "tr": "Kapsamlı müşteri denetimini yarın sabah dokuza kadar tamamlamamız gerekiyor. Bunu üstlenebilir misin?",
+          "options": [
+            "No way, do it yourself.",
+            "I love wrapping birthday presents.",
+            "Given the scope of the data, turning the whole audit around by nine isn't realistic."
+          ],
+          "answer": 2,
+          "why": "'Wrap up' bitirmek, 'turn something around' ise işi tamamlayıp teslim etmek demektir; 'Given the scope...' diplomatik ve nettir.",
+          "replyTr": "Verilerin kapsamı düşünüldüğünde tüm denetimi dokuza kadar yetiştirmek gerçekçi değil."
+        },
+        {
+          "say": "The board is expecting an update first thing tomorrow, though. Where is the main bottleneck?",
+          "tr": "Ama yönetim kurulu yarın sabah ilk iş bir güncelleme bekliyor. Başlıca darboğaz nerede?",
+          "options": [
+            "The bottle has a very narrow neck.",
+            "We're still waiting on the regional sales figures from finance to cross-check the totals.",
+            "I honestly can't be bothered this week."
+          ],
+          "answer": 1,
+          "why": "'Bottleneck' iş dilinde süreci tıkayan darboğaz demektir; 'cross-check the totals' somut gerekçe sunar.",
+          "replyTr": "Toplamları çapraz doğrulamak için hâlâ finanstan bölgesel satış rakamlarını bekliyoruz."
+        },
+        {
+          "say": "If I chase finance now and get you those numbers before lunch, what could we realistically deliver?",
+          "tr": "Şimdi finansın peşine düşüp öğleden önce o rakamları sana ulaştırırsam gerçekçi olarak ne teslim edebiliriz?",
+          "options": [
+            "I can put together an executive summary for tomorrow and deliver the full breakdown on Thursday.",
+            "Please do not run after the finance team.",
+            "Nothing at all until next month."
+          ],
+          "answer": 0,
+          "why": "'Chase someone' iş İngilizcesinde hatırlatma yapıp işi hızlandırmak demektir; özet + tam döküm önerisi çok yapıcıdır.",
+          "replyTr": "Yarın için bir yönetici özeti hazırlayabilir, tam dökümü ise perşembe günü teslim edebilirim."
+        },
+        {
+          "say": "That works for me. Would it help if Chloe lent you a hand with the charts this afternoon?",
+          "tr": "Bu bana uyar. Chloe bu öğleden sonra grafiklerde sana yardım etse işine yarar mı?",
+          "options": [
+            "My hands are working fine, thanks.",
+            "Chloe is sitting on the fence.",
+            "That would be a huge help—it would save us at least a couple of hours."
+          ],
+          "answer": 2,
+          "why": "'Lend a hand' yardım etmek demektir; 'That would be a huge help' sıcak ve profesyonel kabul kalıbıdır.",
+          "replyTr": "Çok büyük yardımı olur; bize en az birkaç saat kazandırır."
+        },
+        {
+          "say": "Consider it done. Thanks for flagging the risk early rather than cutting corners.",
+          "tr": "Oldu bil. Kolaya kaçıp kaliteden ödün vermek yerine riski erkenden bildirdiğin için teşekkürler.",
+          "options": [
+            "I never use scissors on corners.",
+            "Of course—I'll keep you in the loop as soon as the numbers come in.",
+            "See ya, mate!"
+          ],
+          "answer": 1,
+          "why": "'Flag a risk' (riski önceden haber vermek) ve 'keep someone in the loop' (gelişmelerden haberdar etmek) iş İngilizcesinin temel taşlarıdır.",
+          "replyTr": "Rica ederim; rakamlar gelir gelmez seni gelişmelerden haberdar edeceğim."
+        }
+      ]
+    },
+    {
+      "id": "en-b2-subscription-refund",
+      "level": "B2",
+      "title": "Haksız abonelik çekimine itiraz",
+      "scene": "Deneme süresi dolmadan iptal ettiğin uygulamadan yıllık ücret çekilmiş; müşteri hizmetlerini arıyorsun.",
+      "turns": [
+        {
+          "say": "Good morning, customer support, how can I help you today?",
+          "tr": "Günaydın, müşteri destek hattı, bugün size nasıl yardımcı olabilirim?",
+          "options": [
+            "Hi, I'm calling to dispute an annual subscription charge that went through by mistake.",
+            "Hey buddy, you ripped me off!",
+            "I would like to donate money to your app."
+          ],
+          "answer": 0,
+          "why": "'Dispute a charge' (bir kart çekimine itiraz etmek) bankacılık ve müşteri desteğinde en doğru ifadedir.",
+          "replyTr": "Merhaba, yanlışlıkla çekilen yıllık abonelik ücretine itiraz etmek için arıyorum."
+        },
+        {
+          "say": "Let me bring up your account. According to our records, your free trial ended last night.",
+          "tr": "Hesabınızı açayım. Kayıtlarımıza göre ücretsiz deneme süreniz dün gece sona ermiş.",
+          "options": [
+            "Last night was very cold indeed.",
+            "Oh, I completely forgot to cancel.",
+            "Actually, I cancelled two days ago and still have the confirmation email in my inbox."
+          ],
+          "answer": 2,
+          "why": "'Actually' burada Türkçedeki 'aslında / doğrusunu isterseniz' anlamıyla kibarca düzeltme yapar (sahte dost değil, gerçek anlamı!).",
+          "replyTr": "Aslında iki gün önce iptal ettim ve onay e-postası hâlâ gelen kutumda duruyor."
+        },
+        {
+          "say": "Could you read out the reference code at the bottom of that email for me?",
+          "tr": "O e-postanın alt kısmındaki referans kodunu bana okuyabilir misiniz?",
+          "options": [
+            "I prefer not to read emails.",
+            "Sure, it starts with UK followed by forty-seven nineteen.",
+            "The bottom of my screen is black."
+          ],
+          "answer": 1,
+          "why": "'Read out' yüksek sesle okumak demektir; referans kodunu net paylaşmak sorunu hızla çözer.",
+          "replyTr": "Tabii, UK ile başlıyor, ardından kırk yedi on dokuz geliyor."
+        },
+        {
+          "say": "I see it now—a sync glitch prevented your cancellation from registering. Please accept our apologies.",
+          "tr": "Şimdi görüyorum; bir eşitleme hatası iptalinizin kayda geçmesini engellemiş. Lütfen özrümüzü kabul edin.",
+          "options": [
+            "Thanks for checking—could you issue a full refund back to my card today?",
+            "Thank you for the lovely glitch.",
+            "Please charge me again next week."
+          ],
+          "answer": 0,
+          "why": "'Issue a full refund' (tam para iadesi çıkarmak) müşteri hizmetlerinde net sonuç alma kalıbıdır.",
+          "replyTr": "Kontrol ettiğiniz için teşekkürler; bugün kartıma tam iade çıkarabilir misiniz?"
+        },
+        {
+          "say": "I've just processed that for you; the funds should clear within three to five working days.",
+          "tr": "İşleminizi az önce gerçekleştirdim; tutar üç ila beş iş günü içinde hesabınıza geçecektir.",
+          "options": [
+            "Working days are very tiring.",
+            "Let us call it a century.",
+            "Great, could you also send over written confirmation of the refund by email?"
+          ],
+          "answer": 2,
+          "why": "'Clear' (ödemenin hesaba geçmesi) ve 'written confirmation' (yazılı teyit) gerçek hayatta kritik B2 ifadeleridir.",
+          "replyTr": "Harika, iadenin yazılı teyidini e-postayla da gönderebilir misiniz?"
+        }
+      ]
+    }
+  ]
+}

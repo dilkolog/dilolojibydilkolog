@@ -2,10 +2,11 @@ import { parseCefrList, type CefrList } from '../engine/cefrLevels'
 import type { TargetLanguage } from '../engine/types'
 
 /**
- * The CEFR word levels (see cefr/SOURCE.md), French and Spanish; none for English yet. Each list is
- * its own chunk, loaded only when needed.
+ * The CEFR word levels (see cefr/SOURCE.md) for English, French and Spanish. Each list is its own
+ * chunk, loaded only when needed.
  */
-const LOADERS: Partial<Record<TargetLanguage, () => Promise<{ default: string }>>> = {
+const LOADERS: Record<TargetLanguage, () => Promise<{ default: string }>> = {
+  en: () => import('./cefr/en.txt?raw'),
   fr: () => import('./cefr/fr.txt?raw'),
   es: () => import('./cefr/es.txt?raw'),
 }

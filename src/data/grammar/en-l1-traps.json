@@ -1,0 +1,307 @@
+[
+  {
+    "id": "en-l1-prep-1",
+    "language": "en",
+    "level": "A2",
+    "topic": "prep_en",
+    "type": "choice",
+    "prompt": "Whether we eat outside depends ___ the weather.",
+    "answer": "on",
+    "options": [
+      "on",
+      "to",
+      "from"
+    ],
+    "hint": "Türkçe \"-e bağlı olmak\" tuzağına düşme",
+    "explanation": "Türkçedeki '-e bağlı' yüzünden 'depend to' en sık yapılan hatadır; İngilizcede her zaman 'depend on' (veya 'upon') kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-prep-2",
+    "language": "en",
+    "level": "A2",
+    "topic": "prep_en",
+    "type": "choice",
+    "prompt": "She has always been deeply interested ___ marine biology.",
+    "answer": "in",
+    "options": [
+      "in",
+      "with",
+      "about"
+    ],
+    "hint": "Türkçe \"bir şeyle ilgilenmek\" tuzağı",
+    "explanation": "Türkçede 'ile ilgilenmek' dendiği için 'interested with' çok sık yapılır; doğrusu daima 'interested in'dir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-prep-3",
+    "language": "en",
+    "level": "B1",
+    "topic": "prep_en",
+    "type": "error",
+    "prompt": "Her older brother has been married with a cardiologist for ten years.",
+    "answer": "with",
+    "fix": "to",
+    "hint": "Biriyle evli olmak: married + ?",
+    "explanation": "Türkçede 'biriyle evli' denir ama İngilizcede 'be married to someone' kullanılır ('married with' yalnızca 'married with two children' gibi çocuk sayısında geçer).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-prep-4",
+    "language": "en",
+    "level": "A2",
+    "topic": "prep_en",
+    "type": "choice",
+    "prompt": "My cousin is surprisingly good ___ solving logic puzzles.",
+    "answer": "at",
+    "options": [
+      "at",
+      "in",
+      "on"
+    ],
+    "hint": "Bir işte iyi/kötü olmak: good / bad + ?",
+    "explanation": "Türkçede 'bir konuda iyi olmak' (-de bulunma) denir; İngilizcede becerilerde 'good at / bad at' kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-prep-5",
+    "language": "en",
+    "level": "B1",
+    "topic": "prep_en",
+    "type": "error",
+    "prompt": "Could you please explain me how this espresso machine works?",
+    "answer": "me",
+    "fix": "to me",
+    "hint": "explain fiili dolaylı nesneyi edatsız alır mı?",
+    "explanation": "'explain' ve 'suggest' fiillerinden sonra kişi zamiri doğrudan gelemez ('explain me' YANLIŞ); daima 'explain something to me' veya 'explain to me how…' denir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-prep-6",
+    "language": "en",
+    "level": "A2",
+    "topic": "prep_en",
+    "type": "cloze",
+    "prompt": "I love listening ___ podcasts while walking to work.",
+    "answer": "to",
+    "hint": "listen + ? + nesne",
+    "explanation": "Türkçede 'podcast dinlemek' nesneyi edatsız alır; İngilizcede nesne varsa 'listen to' zorunludur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-prep-7",
+    "language": "en",
+    "level": "B1",
+    "topic": "prep_en",
+    "type": "choice",
+    "prompt": "Who is responsible ___ updating the emergency contact list?",
+    "answer": "for",
+    "options": [
+      "for",
+      "from",
+      "of"
+    ],
+    "hint": "Türkçe \"-den sorumlu olmak\" tuzağı",
+    "explanation": "Türkçede '-den sorumlu' dendiği için 'responsible from' Türk öğrenicilerin klasik hatasıdır; İngilizcede 'responsible for' kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-prep-8",
+    "language": "en",
+    "level": "B1",
+    "topic": "prep_en",
+    "type": "choice",
+    "prompt": "Even as an adult, he is still slightly afraid ___ heights.",
+    "answer": "of",
+    "options": [
+      "of",
+      "from",
+      "at"
+    ],
+    "hint": "Türkçe \"-den korkmak\" tuzağı",
+    "explanation": "Türkçede 'yükseklikten korkmak' (-den çıkma) denir; İngilizcede 'afraid of' veya 'scared of' kullanılır ('from' yanlıştır).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-prep-9",
+    "language": "en",
+    "level": "B1",
+    "topic": "prep_en",
+    "type": "cloze",
+    "prompt": "She insisted ___ paying for everyone’s coffee.",
+    "answer": "on",
+    "hint": "insist + ? + -ing",
+    "explanation": "Bir konuda ısrar etmek 'insist on (doing) something' kalıbıyla kurulur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-prep-10",
+    "language": "en",
+    "level": "B1",
+    "topic": "prep_en",
+    "type": "error",
+    "prompt": "We discussed about the new budget for nearly two hours.",
+    "answer": "about",
+    "fix": "the (discuss edat almaz: discussed the new budget)",
+    "hint": "discuss geçişli fiildir",
+    "explanation": "'talk about' edat alır ama 'discuss' doğrudan nesne alır ('discuss something'); 'discuss about' fazladan edat hatasıdır (aynı kural: enter a room, contact someone).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-aspect-1",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "Oh no, I ___ my wallet! Can you cover my ticket for now?",
+    "answer": "have lost",
+    "options": [
+      "have lost",
+      "lost yesterday",
+      "had lost tomorrow"
+    ],
+    "hint": "Etkisi şu anda devam eden olay (cüzdan şu an yok)",
+    "explanation": "Türkçede ikisi de 'kaybettim' diye çevrilse de şu anki sonucu vurgulayan ('biletimi sen öder misin?') durumlarda Present Perfect (have lost) kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-aspect-2",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "I ___ my wallet on the ferry last Tuesday, but someone handed it in.",
+    "answer": "lost",
+    "options": [
+      "lost",
+      "have lost",
+      "have been losing"
+    ],
+    "hint": "last Tuesday (kapanmış geçmiş zaman noktası)",
+    "explanation": "Geçmişte belirli ve bitmiş bir zaman ('last Tuesday, yesterday, in 2021') söylendiği anda Present Perfect yasaktır; Past Simple (lost) kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-aspect-3",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "error",
+    "prompt": "We live in this neighbourhood since 2019 and we love the park.",
+    "answer": "live",
+    "fix": "have lived",
+    "hint": "since 2019 (geçmişte başlayıp hâlâ süren durum)",
+    "explanation": "Türkçede '2019'dan beri burada yaşıyoruz' şimdiki zamanla söylenir! İngilizcede ise 'since / for' ile geçmişten bugüne uzanan süreçte Present Simple kullanılmaz; 'have lived / have been living' zorunludur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-aspect-4",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "Clara isn’t in the office this week—she ___ to Lisbon for a conference.",
+    "answer": "has gone",
+    "options": [
+      "has gone",
+      "has been",
+      "went tomorrow"
+    ],
+    "hint": "Gitti ve şu an orada (henüz dönmedi)",
+    "explanation": "'has gone to' kişinin gittiğini ve hâlâ orada/yolda olduğunu anlatır; 'has been to' ise gidip döndüğünü (hayat deneyimini) anlatır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-aspect-5",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "I ___ to Lisbon twice, so I can recommend a great bakery there.",
+    "answer": "have been",
+    "options": [
+      "have been",
+      "have gone",
+      "was going tomorrow"
+    ],
+    "hint": "Gidip döndü (iki kez bulunma deneyimi)",
+    "explanation": "Daha önce gidip dönülmüş yer deneyimlerinde 'have been to' kullanılır ('have gone to' deseydin şu an Lizbon'da olurdun).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-aspect-6",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "error",
+    "prompt": "When have you graduated from university?",
+    "answer": "have",
+    "fix": "did (When did you graduate…)",
+    "hint": "When…? sorusu geçmişte nokta sorar",
+    "explanation": "'When…?' ve 'What time…?' soruları geçmişteki kesin anı sorduğu için Present Perfect ile asla kurulmaz: 'When did you graduate?' denir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-aspect-7",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "She ___ three chapters so far this morning, and she’s still writing.",
+    "answer": "has written",
+    "options": [
+      "has written",
+      "wrote yesterday",
+      "writes"
+    ],
+    "hint": "so far this morning (henüz kapanmamış sabah dilimi)",
+    "explanation": "'so far, up to now, this morning (sabah bitmediyse)' gibi ucu açık zaman dilimlerinde tamamlanan miktar Present Perfect ile ifade edilir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-aspect-8",
+    "language": "en",
+    "level": "B2",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "My hands are covered in flour because I ___ bread all afternoon.",
+    "answer": "have been baking",
+    "options": [
+      "have been baking",
+      "baked last year",
+      "bake"
+    ],
+    "hint": "Sürecin görünür izi (eller un içinde)",
+    "explanation": "Yakın geçmişte süregelen eylemin kendisi şu anki fiziksel kanıtı ('hands covered in flour') açıklıyorsa Present Perfect Continuous (have been baking) en doğal seçimdir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-aspect-9",
+    "language": "en",
+    "level": "B2",
+    "topic": "present_perfect",
+    "type": "cloze",
+    "prompt": "This is the first time I ___ ever tasted saffron ice cream (taste).",
+    "answer": "have",
+    "hint": "This is the first/second time + özne + ___ + V3",
+    "explanation": "'This is the first/second/best…' kalıbından sonra İngilizcede şimdiki ya da düz geçmiş zaman değil, Present Perfect kullanılır: This is the first time I have tasted…",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-l1-aspect-10",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "Shakespeare ___ thirty-seven plays during his lifetime.",
+    "answer": "wrote",
+    "options": [
+      "wrote",
+      "has written",
+      "has been writing"
+    ],
+    "hint": "Hayatta olmayan bir yazarın tamamlanmış eseri",
+    "explanation": "Artık hayatta olmayan bir kişinin üretimi kapalı bir dönemdir; yeni oyun ekleyemeyeceği için Past Simple (wrote) zorunludur.",
+    "source": "Diloloji (özgün)"
+  }
+]

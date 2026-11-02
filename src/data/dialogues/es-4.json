@@ -1,0 +1,278 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "es-b2-amigos-plan",
+      "level": "B2",
+      "title": "Arkadaşlarla son dakika planı (günlük ve argo)",
+      "scene": "Yakın arkadaşın Mateo akşamki buluşma için sesli mesaj sonrası arıyor; konuşma canlı ve doğal İspanyolca.",
+      "turns": [
+        {
+          "say": "¡Buenas! Oye, Diego nos dejó plantados a última hora. ¿Sigues con ganas de salir a tomar algo?",
+          "tr": "Selam! Ya Diego son dakikada bizi ekti. Hâlâ dışarı çıkıp bir şeyler içmeye var mısın?",
+          "options": [
+            "¡De una! Qué mal plan lo de Diego, pero salgamos igual.",
+            "Diego es una planta muy verde.",
+            "Le confirmo mi asistencia mediante la presente."
+          ],
+          "answer": 0,
+          "why": "'Dejar plantado' birini buluşmada ekmek demektir ('planta' bitkiyle karıştırılmamalı). '¡De una!' samimi ve enerjik 'hemen / tabii ki' karşılığıdır.",
+          "replyTr": "Kesinlikle! Diego’nun yaptığı olmadı ama biz yine de çıkalım."
+        },
+        {
+          "say": "¡Genial! Eso sí, el bar nuevo de la plaza cuesta un ojo de la cara. ¿Vamos a otro sitio?",
+          "tr": "Süper! Yalnız meydandaki yeni bar ateş pahası. Başka bir yere mi gitsek?",
+          "options": [
+            "Me duele el ojo izquierdo también.",
+            "El presupuesto resulta ciertamente elevado.",
+            "Tal cual, mejor vayamos a la taberna de siempre que está re bien."
+          ],
+          "answer": 2,
+          "why": "'Costar un ojo de la cara' ateş pahası olmak demektir; 'Tal cual' (aynen öyle) konuşmayı çok doğal bağlar.",
+          "replyTr": "Aynen öyle, en iyisi her zamanki mekana gidelim, orası gayet güzel."
+        },
+        {
+          "say": "¡Hecho! A mí me da una pereza horrible coger el metro hoy, voy andando. ¿Nos vemos allí a las nueve?",
+          "tr": "Anlaştık! Bugün metroya binmeye fena üşeniyorum, yürüyerek gideceğim. Dokuzda orada görüşelim mi?",
+          "options": [
+            "No tengo ningún oso perezoso.",
+            "Perfecto, allí estaré puntual, ¡sin falta!",
+            "El transporte subterráneo es eficaz."
+          ],
+          "answer": 1,
+          "why": "'Dar pereza' üşenmek demektir; 'sin falta' (kesinlikle / aksatmadan) günlük sözleşmelerde çok yaygındır.",
+          "replyTr": "Harika, aksatmadan tam vaktinde orada olacağım!"
+        },
+        {
+          "say": "Por cierto, Lucía dice que está hecha polvo por el trabajo y no sabe si sumarse.",
+          "tr": "Bu arada Lucía işten ötürü pestilinin çıktığını söylüyor, katılıp katılmamakta kararsız.",
+          "options": [
+            "Dile que se pase aunque sea un ratito para desconectar.",
+            "Hay que limpiar el polvo con agua.",
+            "Su jornada laboral ha concluido."
+          ],
+          "answer": 0,
+          "why": "'Estar hecho polvo' bitkin olmak, 'desconectar' ise kafa dağıtmak / iş stresinden kopmak anlamında çok doğal B2 kelimesidir.",
+          "replyTr": "Kafa dağıtmak için bir süreliğine de olsa uğramasını söyle ona."
+        },
+        {
+          "say": "¡Buena idea! Bueno, te dejo que voy pillado de tiempo y todavía ni me cambié.",
+          "tr": "İyi fikir! Neyse kapatıyorum, vaktim çok dar ve hâlâ üstümü bile değiştirmedim.",
+          "options": [
+            "Compra pilas nuevas en el quiosco.",
+            "Le deseo una pronta vestimenta.",
+            "¡Dale, ponte las pilas y nos vemos ahora!"
+          ],
+          "answer": 2,
+          "why": "'Ir pillado de tiempo' (zamanı dar olmak) karşısında 'ponerse las pilas' (elini çabuk tutmak / canlanmak) tam yerinde bir deyimdir.",
+          "replyTr": "Hadi canlan bakalım, birazdan görüşürüz!"
+        }
+      ]
+    },
+    {
+      "id": "es-b2-fianza-piso",
+      "level": "B2",
+      "title": "Ev sahibiyle depozito itirazı",
+      "scene": "Kiralık daireden çıkarken ev sahibi duvardaki izleri bahane ederek depozitoyu (la fianza) kesmek istiyor.",
+      "turns": [
+        {
+          "say": "He revisado el salón y hay varias marcas en la pared; tendré que descontarlo de la fianza.",
+          "tr": "Salonu kontrol ettim ve duvarda birkaç iz var; bunu depozitodan düşmem gerekecek.",
+          "options": [
+            "¡Esto es un robo a mano armada!",
+            "Disculpe, pero en el inventario de entrada ya constaban esas marcas con fotografías.",
+            "La pared blanca es mi favorita."
+          ],
+          "answer": 1,
+          "why": "Hak ararken argo ('robo') yerine 'inventario de entrada' ve 'constar' (kayıtlarda yer almak) kullanmak B2 olgunluğunu gösterir.",
+          "replyTr": "Affedersiniz ama giriş envanterinde bu izler fotoğraflarıyla zaten kayıtlıydı."
+        },
+        {
+          "say": "¿De verdad? No recordaba ese detalle en el anexo del contrato.",
+          "tr": "Gerçekten mi? Sözleşme ekinde o ayrıntıyı hatırlamıyordum.",
+          "options": [
+            "Aquí tiene la copia firmada por ambos el día que me entregaron las llaves.",
+            "Yo tampoco recuerdo dónde vivo.",
+            "El contrato es de papel."
+          ],
+          "answer": 0,
+          "why": "'La copia firmada por ambos' (ikimizin imzaladığı nüsha) açık, kibar ve tartışmayı bitiren kanıttır.",
+          "replyTr": "Anahtarların bana teslim edildiği gün ikimizce imzalanan nüsha burada buyurun."
+        },
+        {
+          "say": "Tiene usted razón, disculpe el malentendido. Sin embargo, el grifo de la cocina gotea un poco.",
+          "tr": "Haklısınız, yanlış anlaşılma için kusura bakmayın. Ancak mutfak musluğu biraz damlatıyor.",
+          "options": [
+            "Me gusta mucho escuchar la lluvia.",
+            "No me importa un pimiento su cocina.",
+            "Eso se debe al desgaste natural por el uso cotidiano, no a un mal uso."
+          ],
+          "answer": 2,
+          "why": "'El desgaste natural' (olağan yıpranma) ile 'un mal uso' (kötü kullanım) ayrımı kira görüşmelerinin anahtar ifadesidir.",
+          "replyTr": "Bu durum kötü kullanımdan değil, günlük kullanıma bağlı olağan yıpranmadan kaynaklanıyor."
+        },
+        {
+          "say": "De acuerdo, dejémoslo así entonces. Solo falta liquidar la última factura de luz de estos diez días.",
+          "tr": "Pekâlâ, öyle bırakalım o halde. Sadece bu on günün son elektrik faturasını kapatmak kaldı.",
+          "options": [
+            "Apague la luz para siempre.",
+            "Podemos calcular la parte proporcional según la lectura actual del contador.",
+            "Yo pago todo el edificio encantado."
+          ],
+          "answer": 1,
+          "why": "'La parte proporcional' (kıstelyevm / gün hesabıyla düşen pay) ve 'lectura del contador' (sayaç okuması) tam yerinde terimlerdir.",
+          "replyTr": "Güncel sayaç okumasına göre gün hesabıyla düşen payı hesaplayabiliriz."
+        },
+        {
+          "say": "Me parece muy justo. Le haré la transferencia del depósito íntegro mañana mismo.",
+          "tr": "Bana çok adil görünüyor. Depozitonun tamamının havalesini yarın hemen yapacağım.",
+          "options": [
+            "Perfecto, le agradezco su disposición; quedamos a la espera del comprobante.",
+            "Mañana nunca llega.",
+            "Adiós para nunca jamás."
+          ],
+          "answer": 0,
+          "why": "'El comprobante' (dekont) istemek ve 'agradecer su disposición' ile bitirmek kusursuz bir B2 kapanışıdır.",
+          "replyTr": "Harika, anlayışınız için teşekkür ederim; dekontu bekliyor olacağız."
+        }
+      ]
+    },
+    {
+      "id": "es-b2-reunion-plazo",
+      "level": "B2",
+      "title": "İş yerinde teslim tarihine diplomatik itiraz",
+      "scene": "Yöneticin kapsamlı sunumu yarına yetiştirmeni istiyor; hem yapıcı kalıp hem gerçekçi süre istemelisin.",
+      "turns": [
+        {
+          "say": "Necesitamos tener lista toda la propuesta comercial para mañana a primera hora. ¿Cómo lo ves?",
+          "tr": "Ticari teklifin tamamını yarın sabah ilk iş hazır etmemiz gerekiyor. Nasıl görüyorsun?",
+          "options": [
+            "Ni de broma, hazlo tú.",
+            "Lo veo con mis propios ojos.",
+            "Sinceramente, con el volumen de datos que falta validar, veo muy ajustado ese plazo."
+          ],
+          "answer": 2,
+          "why": "'Veo muy ajustado ese plazo' (bu süreyi çok sıkışık görüyorum) iş İspanyolcasında çatışma yaratmadan sınır koyar.",
+          "replyTr": "Açıkçası doğrulanması gereken veri hacmiyle bu teslim tarihini oldukça sıkışık görüyorum."
+        },
+        {
+          "say": "Entiendo, pero la dirección quiere revisar avances mañana sin falta. ¿Qué propones?",
+          "tr": "Anlıyorum ama yönetim yarın mutlaka ilerlemeyi görmek istiyor. Ne önerirsin?",
+          "options": [
+            "Propongo cancelar la empresa.",
+            "Puedo presentar mañana el esquema financiero y entregar el informe completo el jueves.",
+            "No pegué ojo anoche viendo series."
+          ],
+          "answer": 1,
+          "why": "Sorun bildirmekle kalmayıp iki aşamalı somut çözüm ('el esquema mañana y el informe el jueves') sunmak en güçlü iş refleksidir.",
+          "replyTr": "Yarın mali taslağı sunabilir, kapsamlı raporu da perşembe günü teslim edebilirim."
+        },
+        {
+          "say": "Suena razonable. ¿Con qué obstáculo principal te estás encontrando ahora mismo?",
+          "tr": "Mantıklı geliyor. Şu anda karşılaştığın başlıca engel ne?",
+          "options": [
+            "Todavía estoy esperando que el proveedor nos confirme las tarifas actualizadas.",
+            "Mi silla no es suficientemente blanda.",
+            "Me importa un pimiento el proveedor."
+          ],
+          "answer": 0,
+          "why": "'Confirmar las tarifas actualizadas' (güncel tarifeleri teyit etmek) somut dış bağımlılığı net biçimde açıklar.",
+          "replyTr": "Hâlâ tedarikçinin bize güncel fiyatları teyit etmesini bekliyorum."
+        },
+        {
+          "say": "Yo mismo les escribo ahora para agilizarlo. ¿Necesitas que alguien te eche una mano con las gráficas?",
+          "tr": "Hızlandırmak için onlara hemen bizzat yazıyorum. Grafiklerde birinin sana el atmasına ihtiyacın var mı?",
+          "options": [
+            "No tengo manos libres.",
+            "Las gráficas son redondas.",
+            "Me vendría genial si Carlos pudiera revisar las tablas mañana temprano."
+          ],
+          "answer": 2,
+          "why": "'Me vendría genial si + imperfecto de subjuntivo' hem doğal hem kibar B2 rica/kabul yapısıdır.",
+          "replyTr": "Carlos yarın sabah erkenden tabloları gözden geçirebilirse bana harika yardımı dokunur."
+        },
+        {
+          "say": "Cuenta con ello. Gracias por plantearlo a tiempo en vez de entregar algo a medias.",
+          "tr": "Oldu bil. Yarım yamalak bir şey teslim etmek yerine zamanında dile getirdiğin için teşekkürler.",
+          "options": [
+            "Tengo muchas medias en el cajón.",
+            "Al contrario, gracias por la flexibilidad; te mantendré al tanto de cada avance.",
+            "De nada, hasta el año próximo."
+          ],
+          "answer": 1,
+          "why": "'A medias' yarım yamalak demektir (çorap anlamındaki 'medias' ile karıştırılmamalı); 'mantener al tanto' (haberdar etmek) kilit kalıptır.",
+          "replyTr": "Bilakis esneklik için ben teşekkür ederim; her adımdan seni haberdar edeceğim."
+        }
+      ]
+    },
+    {
+      "id": "es-b2-cargo-indebido",
+      "level": "B2",
+      "title": "Müşteri hizmetlerinde haksız çekime itiraz",
+      "scene": "Deneme süresi bitmeden iptal ettiğin dijital abonelikten yıllık ücret kesilmiş; telefonla iade istiyorsun.",
+      "turns": [
+        {
+          "say": "Atención al cliente, buenos días. ¿En qué puedo ayudarle?",
+          "tr": "Müşteri hizmetleri, günaydın. Size nasıl yardımcı olabilirim?",
+          "options": [
+            "Buenos días, llamo para reclamar un cargo anual que me han cobrado por error.",
+            "Hola tío, devuélveme la pasta ya.",
+            "Quiero regalarles mi tarjeta."
+          ],
+          "answer": 0,
+          "why": "'Reclamar un cargo' (bir kesintiye itiraz etmek) müşteri hizmetlerinde resmiyet ve kararlılığı bir arada verir.",
+          "replyTr": "Günaydın, benden yanlışlıkla tahsil edilen yıllık bir ücrete itiraz etmek için arıyorum."
+        },
+        {
+          "say": "Déjeme comprobar su ficha. Aquí figura que el periodo de prueba venció ayer.",
+          "tr": "Kaydınıza bakayım. Burada deneme süresinin dün dolduğu görünüyor.",
+          "options": [
+            "Ayer hizo muy buen tiempo.",
+            "Sí, se me olvidó por completo.",
+            "Sin embargo, tramité la baja hace dos días y conservo el correo de confirmación."
+          ],
+          "answer": 2,
+          "why": "'Tramitar la baja' (aboneliği iptal ettirmek) İspanyolcada idari ve ticari iptallerin tam terimidir.",
+          "replyTr": "Ancak ben iki gün önce iptal işlemini gerçekleştirdim ve onay e-postasını saklıyorum."
+        },
+        {
+          "say": "¿Podría facilitarme el código de seguimiento que aparece en ese correo, por favor?",
+          "tr": "O e-postada görünen takip kodunu bana iletebilir misiniz lütfen?",
+          "options": [
+            "No sé leer números.",
+            "Por supuesto, empieza por ES seguido de ochenta y cuatro treinta.",
+            "Es un secreto familiar."
+          ],
+          "answer": 1,
+          "why": "'Por supuesto' (elbette) ile kodu net vermek işlemi hızlandırır.",
+          "replyTr": "Elbette, ES ile başlıyor, ardından seksen dört otuz geliyor."
+        },
+        {
+          "say": "Efectivamente, hubo una incidencia en el sistema y no se procesó su baja a tiempo. Le pido disculpas.",
+          "tr": "Gerçekten de sistemde bir arıza olmuş ve iptaliniz zamanında işlenmemiş. Özür dilerim.",
+          "options": [
+            "Lo entiendo, pero solicito el reembolso íntegro del importe en mi tarjeta.",
+            "Qué alegría tener una incidencia.",
+            "Cóbreme el doble entonces."
+          ],
+          "answer": 0,
+          "why": "'Solicitar el reembolso íntegro del importe' (tutarın tam iadesini talep etmek) net ve hak bilen B2 ifadesidir.",
+          "replyTr": "Anlıyorum, ancak tutarın tamamının kartıma iade edilmesini talep ediyorum."
+        },
+        {
+          "say": "Ya he gestionado la devolución; verá el abono reflejado en un plazo de tres a cinco días hábiles.",
+          "tr": "İadeyi işleme aldım; tutarın üç ila beş iş günü içinde hesabınıza yansıdığını göreceksiniz.",
+          "options": [
+            "Prefiero esperar cinco siglos.",
+            "Muchas gracias por el abono para las plantas.",
+            "Muchas gracias; ¿podría enviarme un justificante de la operación por escrito?"
+          ],
+          "answer": 2,
+          "why": "'El abono' bankacılıkta hesaba alacak/iade kaydı demektir (gübre anlamıyla karıştırılmamalı); 'justificante' ise işlem belgesidir.",
+          "replyTr": "Çok teşekkürler; işlemin yazılı bir belgesini bana gönderebilir misiniz?"
+        }
+      ]
+    }
+  ]
+}

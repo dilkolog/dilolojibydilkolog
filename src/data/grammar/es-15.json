@@ -1,0 +1,310 @@
+[
+  {
+    "id": "es-b15-num-1",
+    "language": "es",
+    "level": "A1",
+    "topic": "basics_es_numeros_hora",
+    "type": "choice",
+    "prompt": "Disculpa, ¿tienes hora? — Sí, ___ la una y media.",
+    "answer": "es",
+    "options": [
+      "es",
+      "son",
+      "está"
+    ],
+    "hint": "Saat 1:30 (tekil saat)",
+    "explanation": "İspanyolcada yalnızca saat 1 için tekil 'Es la una…' kullanılır; 2'den 12'ye kadar tüm saatler çoğuldur: Son las dos, Son las diez.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-num-2",
+    "language": "es",
+    "level": "A1",
+    "topic": "basics_es_numeros_hora",
+    "type": "choice",
+    "prompt": "Nuestro vuelo sale ___ las ocho menos cuarto de la mañana.",
+    "answer": "a",
+    "options": [
+      "a",
+      "en",
+      "de"
+    ],
+    "hint": "Saat kaçta? (7:45)",
+    "explanation": "'Saat kaçta?' sorusunun cevabı daima 'a las…' (saat 1 için 'a la una') ile verilir; 'es/son' ise şu an saatin kaç olduğunu söyler.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-num-3",
+    "language": "es",
+    "level": "A1",
+    "topic": "basics_es_numeros_hora",
+    "type": "choice",
+    "prompt": "En esta biblioteca histórica hay más de ___ manuscritos.",
+    "answer": "quinientos",
+    "options": [
+      "quinientos",
+      "cinco cientos",
+      "quince cientos"
+    ],
+    "hint": "500 (düzensiz yüzlük)",
+    "explanation": "500 İspanyolcada düzensizdir: 'quinientos' (dişil isimle quinientas). Benzer şekilde 700 = setecientos, 900 = novecientos.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-num-4",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_numeros_hora",
+    "type": "choice",
+    "prompt": "La conferencia se celebrará en la sala ___ personas no cabrían en la pequeña.",
+    "answer": "doscientas",
+    "options": [
+      "doscientas",
+      "doscientos",
+      "dos cientas"
+    ],
+    "hint": "200 + personas (dişil çoğul)",
+    "explanation": "200–900 arasındaki yüzlükler İspanyolcada niteledikleri ismin cinsiyetine uyar: doscientas personas, trescientas páginas.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-num-5",
+    "language": "es",
+    "level": "A1",
+    "topic": "basics_es_numeros_hora",
+    "type": "cloze",
+    "prompt": "Vivimos en el ___ piso del edificio (3. kat, eril isimden önce).",
+    "answer": "tercer",
+    "hint": "tercero kısalması",
+    "explanation": "'primero' ve 'tercero' eril tekil bir isimden hemen önce geldiğinde sondaki -o düşer: el primer día, el tercer piso.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-num-6",
+    "language": "es",
+    "level": "A1",
+    "topic": "basics_es_numeros_hora",
+    "type": "error",
+    "prompt": "En el concierto de anoche había exactamente ciento personas en la terraza.",
+    "answer": "ciento",
+    "fix": "cien",
+    "hint": "Tam 100 (isimden önce)",
+    "explanation": "Tam 100 sayısında veya bir ismin hemen önünde 'cien' kullanılır (cien personas, cien euros); 101–199 arasında 'ciento' olur (ciento veinte).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-num-7",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_numeros_hora",
+    "type": "choice",
+    "prompt": "Mi abuelo nació ___ doce de octubre de 1945.",
+    "answer": "el",
+    "options": [
+      "el",
+      "en el",
+      "al"
+    ],
+    "hint": "Tarihlerde edat kullanılır mı?",
+    "explanation": "İspanyolcada gün içeren tarihlerden önce 'en' gelmez, doğrudan belirli artikel 'el' kullanılır: el doce de octubre.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-num-8",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_numeros_hora",
+    "type": "cloze",
+    "prompt": "Solo falta ___ página para terminar el capítulo (21 sayfa → tekil dişil uyum: veintiuna).",
+    "answer": "veintiuna",
+    "hint": "21 + página (dişil)",
+    "explanation": "Bir ile biten sayılar dişil bir isimden önce 'una' uyumunu korur: una página, veintiuna páginas, treinta y una personas.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-prep-1",
+    "language": "es",
+    "level": "A2",
+    "topic": "prep_es",
+    "type": "choice",
+    "prompt": "Anoche soñé ___ nuestro viaje por Andalucía.",
+    "answer": "con",
+    "options": [
+      "con",
+      "de",
+      "a"
+    ],
+    "hint": "Rüyasında görmek / hayalini kurmak: soñar + ?",
+    "explanation": "Türkçede 'bir şeyi rüyasında görmek' denir, İngilizcede 'dream of/about' kullanılır; İspanyolcada ise her zaman 'soñar con' kullanılır!",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-prep-2",
+    "language": "es",
+    "level": "A2",
+    "topic": "prep_es",
+    "type": "choice",
+    "prompt": "Perdona, estaba pensando ___ lo que me dijiste ayer.",
+    "answer": "en",
+    "options": [
+      "en",
+      "a",
+      "sobre de"
+    ],
+    "hint": "Bir şeyi/birini düşünmek: pensar + ?",
+    "explanation": "Bir şeyi veya birini düşünmek İspanyolcada 'pensar en' ile kurulur ('pensar de' yalnızca '¿qué piensas de…?' görüş sorusunda kullanılır).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-prep-3",
+    "language": "es",
+    "level": "B1",
+    "topic": "prep_es",
+    "type": "choice",
+    "prompt": "El precio final depende ___ la temporada que elijas.",
+    "answer": "de",
+    "options": [
+      "de",
+      "a",
+      "en"
+    ],
+    "hint": "Türkçe \"-e bağlı olmak\" tuzağı",
+    "explanation": "Türkçedeki '-e bağlı olmak' yüzünden 'a' seçmek çok yaygın bir hatadır; İspanyolcada daima 'depender de' kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-prep-4",
+    "language": "es",
+    "level": "B1",
+    "topic": "prep_es",
+    "type": "error",
+    "prompt": "Durante su estancia en Granada se enamoró a la música flamenca.",
+    "answer": "a",
+    "fix": "de",
+    "hint": "Birine / bir şeye âşık olmak: enamorarse + ?",
+    "explanation": "Türkçede 'bir şeye âşık olmak' (-e yönelme) denir; İspanyolcada ise 'enamorarse de alguien / algo' kalıbı zorunludur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-prep-5",
+    "language": "es",
+    "level": "B1",
+    "topic": "prep_es",
+    "type": "cloze",
+    "prompt": "Tardamos casi dos horas ___ llegar al aeropuerto por el tráfico.",
+    "answer": "en",
+    "hint": "Bir işi yapmak X süre almak: tardar + zaman + ? + mastar",
+    "explanation": "'tardar + süre + en + mastar' bir işi yapmanın ne kadar sürdüğünü anlatan temel İspanyolca kalıptır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-prep-6",
+    "language": "es",
+    "level": "B1",
+    "topic": "prep_es",
+    "type": "choice",
+    "prompt": "El examen oral consiste ___ presentar un tema durante cinco minutos.",
+    "answer": "en",
+    "options": [
+      "en",
+      "de",
+      "con"
+    ],
+    "hint": "-den ibaret olmak / dayanmak: consistir + ?",
+    "explanation": "İngilizcedeki 'consist of' ve Türkçedeki '-den oluşmak' yüzünden 'de' tuzağına düşülür; oysa İspanyolcada daima 'consistir en' kullanılır!",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-prep-7",
+    "language": "es",
+    "level": "A2",
+    "topic": "prep_es",
+    "type": "choice",
+    "prompt": "¿Te acuerdas ___ cómo se llamaba aquel restaurante?",
+    "answer": "de",
+    "options": [
+      "de",
+      "en",
+      "a"
+    ],
+    "hint": "acordarse + ? (recordar ile karıştırma)",
+    "explanation": "Dönüşlü 'acordarse' her zaman 'de' alır (acordarse de algo); dönüşsüz 'recordar' ise edatsız kullanılır (recordar algo).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-prep-8",
+    "language": "es",
+    "level": "B1",
+    "topic": "prep_es",
+    "type": "cloze",
+    "prompt": "Me alegro muchísimo ___ verte tan recuperado.",
+    "answer": "de",
+    "hint": "alegrarse + ? + mastar",
+    "explanation": "Sevinmek anlamındaki 'alegrarse' mastar veya isimden önce 'de' edatı alır: Me alegro de verte.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-perf-1",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_perfecto_indefinido",
+    "type": "choice",
+    "prompt": "Esta mañana ___ dos cafés porque dormí fatal anoche.",
+    "answer": "he tomado",
+    "options": [
+      "he tomado",
+      "tomaba",
+      "tomaré"
+    ],
+    "hint": "Esta mañana (bitmemiş zaman dilimi, İspanya standardı)",
+    "explanation": "'hoy, esta mañana, este mes' gibi henüz içinde bulunduğumuz zaman dilimlerinde pretérito perfecto (he tomado) tercih edilir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-perf-2",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_perfecto_indefinido",
+    "type": "choice",
+    "prompt": "El verano pasado ___ tres semanas recorriendo el norte de Chile.",
+    "answer": "pasamos",
+    "options": [
+      "pasamos",
+      "hemos pasado",
+      "pasábamos siempre"
+    ],
+    "hint": "El verano pasado (tamamen kapanmış geçmiş zaman)",
+    "explanation": "'ayer, anoche, el verano pasado, en 2019' gibi bitmiş zaman zarflarıyla pretérito indefinido (pasamos) kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-perf-3",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_perfecto_indefinido",
+    "type": "choice",
+    "prompt": "¿Alguna vez ___ comida peruana? Te va a encantar.",
+    "answer": "has probado",
+    "options": [
+      "has probado",
+      "probaste ayer",
+      "pruebas mañana"
+    ],
+    "hint": "Hayat tecrübesi (alguna vez / nunca)",
+    "explanation": "Belirli bir tarih vermeden hayat deneyimi sorarken ('alguna vez, nunca, todavía no') pretérito perfecto (has probado) kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b15-perf-4",
+    "language": "es",
+    "level": "A2",
+    "topic": "basics_es_perfecto_indefinido",
+    "type": "error",
+    "prompt": "En el año 2016 mi hermana ha terminado la carrera de arquitectura.",
+    "answer": "ha",
+    "fix": "terminó (2016 bitmiş yıldır: mi hermana terminó)",
+    "hint": "En el año 2016 (kapanmış tarih)",
+    "explanation": "Kesin bir geçmiş yıl ('en 2016') verildiğinde bileşik 'ha terminado' kullanılamaz; 'terminó' (pretérito indefinido) gerekir.",
+    "source": "Diloloji (özgün)"
+  }
+]

@@ -6,7 +6,8 @@
     "informal": "Je suis claqué, au bout de ma vie !",
     "standard": "Je suis complètement épuisé.",
     "formal": "Je ressens une profonde lassitude.",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“au bout de ma vie” (hayatımın sonundayım) Z kuşağı ve sosyal medya Fransızcasında abartılı yorgunluk/bıkkınlık kalıbıdır."
   },
   {
     "id": "fr-busy-2",
@@ -15,7 +16,8 @@
     "informal": "J'ai la tête sous l'eau avec le taf.",
     "standard": "Je suis particulièrement occupé en ce moment.",
     "formal": "Mon emploi du temps est actuellement à pleine charge.",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“le taf” sokak dilinde iş demektir (çalışmak = taffer)."
   },
   {
     "id": "fr-agree",
@@ -24,7 +26,8 @@
     "informal": "Carrément, grave !",
     "standard": "Je suis tout à fait d'accord.",
     "formal": "Je partage pleinement votre analyse.",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“carrément” ve “grave” günlük konuşmada “kesinlikle / dibine kadar” anlamında en sık onay kelimeleridir."
   },
   {
     "id": "fr-cost",
@@ -33,7 +36,8 @@
     "informal": "Ça coûte une blinde !",
     "standard": "C'est extrêmement cher.",
     "formal": "Cela représente un coût particulièrement onéreux.",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“coûter une blinde” (bir servet tutmak) Fransa’da çok yaygın günlük deyimdir."
   },
   {
     "id": "fr-help",
@@ -60,7 +64,8 @@
     "informal": "C'est relou, je m'ennuie à mourir.",
     "standard": "Je trouve cela vraiment ennuyeux.",
     "formal": "Cette activité s'avère particulièrement fastidieuse.",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“relou”, “lourd” (ağır, bunaltıcı) kelimesinin heceleri ters çevrilerek yapılmış verlan argosudur."
   },
   {
     "id": "fr-understand",
@@ -78,7 +83,8 @@
     "informal": "C'est un truc de ouf !",
     "standard": "C'est véritablement incroyable.",
     "formal": "Cela relève de l'extraordinaire.",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“ouf”, “fou” (deli/çılgın) kelimesinin ters çevrilmiş verlan biçimidir; sıfat gibi “de ouf” kalıbıyla kullanılır."
   },
   {
     "id": "fr-leave-2",
@@ -87,6 +93,7 @@
     "informal": "Allez, je me casse !",
     "standard": "Je dois y aller maintenant.",
     "formal": "Je vous prie de bien vouloir excuser mon départ.",
-    "source": "Diloloji (özgün)"
+    "source": "Diloloji (özgün)",
+    "note": "“je me casse” sokak dilinde “ben kaçar / gidiyorum” demektir; resmiyette kaba sayılır."
   }
 ]

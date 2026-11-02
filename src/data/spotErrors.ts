@@ -1393,6 +1393,456 @@ export const SPOT_ERRORS: SpotErrorItem[] = [
     explanation:
       "Arkasında bir isim bulunmayan, yalnızca tek başına sıfat gelen yapılarda 'such' değil 'so' kullanılır: 'It was so cold that...'.",
   },
+  {
+    "id": "fr-spot-36",
+    "language": "fr",
+    "level": "B2",
+    "sentence": "C'est le meilleur documentaire que j'ai vu cette année.",
+    "errorIndex": 5,
+    "faulty": "j'ai",
+    "correct": "j'aie",
+    "distractors": [
+      "je suis",
+      "j'avais"
+    ],
+    "rule": "Subjonctif après un superlatif",
+    "explanation": "Üstünlük derecesinden ('le meilleur … que') sonra öznel değerlendirme vurgulandığında yan cümlede subjonctif kullanılır: que j'aie vu."
+  },
+  {
+    "id": "fr-spot-38",
+    "language": "fr",
+    "level": "B2",
+    "sentence": "Quoique le trajet est long, le paysage vaut le détour.",
+    "errorIndex": 3,
+    "faulty": "est",
+    "correct": "soit",
+    "distractors": [
+      "sera",
+      "était"
+    ],
+    "rule": "Subjonctif après quoique",
+    "explanation": "'-e rağmen' anlamındaki 'quoique' bağlacı tıpkı 'bien que' gibi her zaman subjonctif gerektirir: quoique le trajet soit long."
+  },
+  {
+    "id": "fr-spot-39",
+    "language": "fr",
+    "level": "C1",
+    "sentence": "Ils se sont téléphonés hier soir pour fixer la date.",
+    "errorIndex": 3,
+    "faulty": "téléphonés",
+    "correct": "téléphoné",
+    "distractors": [
+      "téléphoner",
+      "téléphonées"
+    ],
+    "rule": "Accord des verbes pronominaux avec COI",
+    "explanation": "'téléphoner à quelqu'un' dolaylı nesne (COI) aldığı için dönüşlü biçimde participe passé uyum almaz: ils se sont téléphoné."
+  },
+  {
+    "id": "fr-spot-40",
+    "language": "fr",
+    "level": "B1",
+    "sentence": "Elle est partie sans que personne s'en aperçoit dans la salle.",
+    "errorIndex": 7,
+    "faulty": "aperçoit",
+    "correct": "aperçoive",
+    "distractors": [
+      "apercevait",
+      "apercevra"
+    ],
+    "rule": "Subjonctif après sans que",
+    "explanation": "'sans que' bağlacı daima subjonctif kipi ister: sans que personne s'en aperçoive."
+  },
+  {
+    "id": "fr-spot-41",
+    "language": "fr",
+    "level": "B2",
+    "sentence": "Après que le train soit parti, le quai est devenu silencieux.",
+    "errorIndex": 4,
+    "faulty": "soit",
+    "correct": "est",
+    "distractors": [
+      "ait",
+      "serait"
+    ],
+    "rule": "Indicatif après après que",
+    "explanation": "'avant que' subjonctif alır; ancak gerçekleşmiş olgu bildiren 'après que' standart dilbilgisinde indicatif alır: après que le train est parti."
+  },
+  {
+    "id": "fr-spot-42",
+    "language": "fr",
+    "level": "B2",
+    "sentence": "Les deux heures que ce trajet a coûtées étaient épuisantes.",
+    "errorIndex": 7,
+    "faulty": "coûtées",
+    "correct": "coûté",
+    "distractors": [
+      "coûter",
+      "coûtés"
+    ],
+    "rule": "Invariabilité de coûter au sens propre",
+    "explanation": "Süre, ağırlık veya fiyat bildiren 'coûter, peser, durer' gerçek anlamda kullanıldığında COD değil ölçü tümleci alır; ortaç uyum yapmaz (a coûté)."
+  },
+  {
+    "id": "fr-spot-43",
+    "language": "fr",
+    "level": "B1",
+    "sentence": "Pensez de fermer toutes les fenêtres avant de quitter le bureau.",
+    "errorIndex": 1,
+    "faulty": "de",
+    "correct": "à",
+    "distractors": [
+      "pour",
+      "en"
+    ],
+    "rule": "Penser à + infinitif",
+    "explanation": "'Bir şeyi yapmayı unutmamak / akıl etmek' anlamında her zaman 'penser à + mastar' kullanılır (Pensez à fermer)."
+  },
+  {
+    "id": "fr-spot-44",
+    "language": "fr",
+    "level": "C1",
+    "sentence": "À peine était-il entré quand l'orage a éclaté dehors.",
+    "errorIndex": 4,
+    "faulty": "quand",
+    "correct": "que",
+    "distractors": [
+      "comme",
+      "où"
+    ],
+    "rule": "Corrélation à peine … que",
+    "explanation": "Cümle başındaki devrik 'À peine + fiil-özne' yapısı ikinci cümleye 'quand' ile değil 'que' ile bağlanır: À peine était-il entré que l'orage a éclaté."
+  },
+  {
+    "id": "fr-spot-45",
+    "language": "fr",
+    "level": "B2",
+    "sentence": "Nous cherchons un traducteur qui maîtrise parfaitement le turc ancien.",
+    "errorIndex": 5,
+    "faulty": "maîtrise",
+    "correct": "sache",
+    "distractors": [
+      "sait",
+      "saurait"
+    ],
+    "rule": "Subjonctif dans une relative hypothétique",
+    "explanation": "Varlığı henüz kesin olmayan, aranan nitelikteki bir kişiyi anlatan ilgi cümlesinde ('nous cherchons quelqu'un qui…') subjonctif kullanılır: qui sache."
+  },
+  {
+    "id": "es-spot-36",
+    "language": "es",
+    "level": "B2",
+    "sentence": "Te llamaré en cuanto llego al aeropuerto de Barajas.",
+    "errorIndex": 4,
+    "faulty": "llego",
+    "correct": "llegue",
+    "distractors": [
+      "llegaré",
+      "llegaba"
+    ],
+    "rule": "Subjuntivo con futuro en temporales",
+    "explanation": "Geleceğe yönelik zaman yan cümlelerinde ('cuando, en cuanto, tan pronto como') İspanyolcada futuro ya da presente de indicativo değil, presente de subjuntivo kullanılır: en cuanto llegue."
+  },
+  {
+    "id": "es-spot-37",
+    "language": "es",
+    "level": "B2",
+    "sentence": "Si tendría más tiempo libre, aprendería a tocar el violonchelo.",
+    "errorIndex": 1,
+    "faulty": "tendría",
+    "correct": "tuviera",
+    "distractors": [
+      "tendré",
+      "tenía"
+    ],
+    "rule": "Imperfecto de subjuntivo tras si",
+    "explanation": "'si' şart bağlacından sonra gerçek dışı şimdiki/gelecek varsayımlarda condicional ('tendría') asla gelmez; imperfecto de subjuntivo ('tuviera / tuviese') kullanılır."
+  },
+  {
+    "id": "es-spot-38",
+    "language": "es",
+    "level": "B1",
+    "sentence": "El éxito del festival depende a la participación de los vecinos.",
+    "errorIndex": 5,
+    "faulty": "a",
+    "correct": "de",
+    "distractors": [
+      "en",
+      "con"
+    ],
+    "rule": "Régimen preposicional: depender de",
+    "explanation": "Türkçedeki '-e bağlı olmak' yüzünden 'a' yazmak yaygındır; İspanyolcada her zaman 'depender de' kullanılır."
+  },
+  {
+    "id": "es-spot-39",
+    "language": "es",
+    "level": "B2",
+    "sentence": "Buscamos un guía quien conozca bien los senderos de la sierra.",
+    "errorIndex": 3,
+    "faulty": "quien",
+    "correct": "que",
+    "distractors": [
+      "cuyo",
+      "cual"
+    ],
+    "rule": "Relativo especificativo con antecedente indeterminado",
+    "explanation": "Belirsiz öncüllü ('un guía') kısıtlayıcı ilgi cümlelerinde edatsız 'quien' kullanılmaz; doğrudan 'que' gelir: un guía que conozca."
+  },
+  {
+    "id": "es-spot-40",
+    "language": "es",
+    "level": "C1",
+    "sentence": "Le pedí a Marta que me prestaría su diccionario etimológico.",
+    "errorIndex": 6,
+    "faulty": "prestaría",
+    "correct": "prestara",
+    "distractors": [
+      "presta",
+      "prestará"
+    ],
+    "rule": "Correlación de tiempos con pedir que",
+    "explanation": "Geçmiş zamanda ('pedí') kurulan rica/istek cümlelerinin yan cümlesinde condicional değil imperfecto de subjuntivo ('prestara / prestase') zorunludur."
+  },
+  {
+    "id": "es-spot-41",
+    "language": "es",
+    "level": "B1",
+    "sentence": "Habían muchas personas esperando el autobús bajo la lluvia.",
+    "errorIndex": 0,
+    "faulty": "Habían",
+    "correct": "Había",
+    "distractors": [
+      "Hubieron",
+      "Han"
+    ],
+    "rule": "Impersonalidad del verbo haber",
+    "explanation": "Varlık bildiren kişisiz 'haber' fiili tüm zamanlarda yalnızca 3. tekil şahısta çekimlenir; arkasındaki isim çoğul olsa bile 'Había muchas personas' denir."
+  },
+  {
+    "id": "es-spot-42",
+    "language": "es",
+    "level": "B2",
+    "sentence": "El agua de este manantial está demasiado fría para beberlo ahora.",
+    "errorIndex": 9,
+    "faulty": "beberlo",
+    "correct": "beberla",
+    "distractors": [
+      "beberle",
+      "beberlos"
+    ],
+    "rule": "Género femenino de el agua",
+    "explanation": "'el agua' ses uyumu nedeniyle tekilde 'el' artikeli alsa da dişil bir isimdir ('fría'); zamiri eril 'lo' değil dişil 'la' olur (beberla)."
+  },
+  {
+    "id": "es-spot-43",
+    "language": "es",
+    "level": "B2",
+    "sentence": "No creo que este trámite es tan complicado como dicen.",
+    "errorIndex": 5,
+    "faulty": "es",
+    "correct": "sea",
+    "distractors": [
+      "será",
+      "fue"
+    ],
+    "rule": "Subjuntivo tras opinión negada",
+    "explanation": "Olumlu 'creo que' indicativo alır; ancak olumsuz 'no creo que' şüphe/kanı yokluğu bildirdiği için subjuntivo gerektirir: no creo que sea."
+  },
+  {
+    "id": "es-spot-45",
+    "language": "es",
+    "level": "B1",
+    "sentence": "Llevo tres años estudiado español por mi cuenta cada noche.",
+    "errorIndex": 3,
+    "faulty": "estudiado",
+    "correct": "estudiando",
+    "distractors": [
+      "estudiar",
+      "estudio"
+    ],
+    "rule": "Perífrasis llevar + gerundio",
+    "explanation": "Bir eylemi ne kadar süredir yapmakta olduğunu anlatırken 'llevar + süre + gerundio' kullanılır: Llevo tres años estudiando (ortaç 'estudiado' olumsuz 'sin' yoksa gelmez)."
+  },
+  {
+    "id": "es-spot-44",
+    "language": "es",
+    "level": "C1",
+    "sentence": "Hablaba del proyecto como si conoce todos los detalles secretos.",
+    "errorIndex": 5,
+    "faulty": "conoce",
+    "correct": "conociera",
+    "distractors": [
+      "conocerá",
+      "conocía"
+    ],
+    "rule": "Como si + imperfecto de subjuntivo",
+    "explanation": "'como si' kalıbından sonra indicativo ('conoce') kesinlikle gelmez; daima imperfecto veya pluscuamperfecto de subjuntivo ('conociera / conociese') kullanılır."
+  },
+  {
+    "id": "en-spot-37",
+    "language": "en",
+    "level": "B2",
+    "sentence": "I look forward to hear your thoughts on our revised draft.",
+    "errorIndex": 4,
+    "faulty": "hear",
+    "correct": "hearing",
+    "distractors": [
+      "heard",
+      "hears"
+    ],
+    "rule": "Look forward to + gerund (-ing)",
+    "explanation": "'look forward to' kalıbındaki 'to' mastar eki değil edattır (preposition); bu yüzden ardından fiil gelirse daima -ing alır: look forward to hearing."
+  },
+  {
+    "id": "en-spot-38",
+    "language": "en",
+    "level": "B1",
+    "sentence": "Could you give me an advice about choosing a laptop?",
+    "errorIndex": 4,
+    "faulty": "an",
+    "correct": "some",
+    "distractors": [
+      "one",
+      "many"
+    ],
+    "rule": "Uncountable noun: advice",
+    "explanation": "'advice, information, furniture, luggage' İngilizcede sayılamayan (uncountable) isimlerdir; 'an advice' denmez, 'some advice' veya 'a piece of advice' denir."
+  },
+  {
+    "id": "en-spot-41",
+    "language": "en",
+    "level": "C1",
+    "sentence": "It is high time the city council invests in bike lanes.",
+    "errorIndex": 7,
+    "faulty": "invests",
+    "correct": "invested",
+    "distractors": [
+      "invest",
+      "investing"
+    ],
+    "rule": "It is high time + past subjunctive",
+    "explanation": "'It's time / It's high time + özne' yapısından sonra şimdiki/gelecek anlam taşısa bile Past Simple biçimi kullanılır: It is high time the council invested."
+  },
+  {
+    "id": "en-spot-42",
+    "language": "en",
+    "level": "B2",
+    "sentence": "When I lived in Izmir, I used to walking along the seafront.",
+    "errorIndex": 8,
+    "faulty": "walking",
+    "correct": "walk",
+    "distractors": [
+      "walked",
+      "walks"
+    ],
+    "rule": "Used to + bare infinitive vs be used to + -ing",
+    "explanation": "Geçmiş alışkanlık anlatan 'used to'dan sonra yalın mastar gelir ('I used to walk'); '-ing' yalnızca 'be/get used to' (alışkın olmak) yapısında kullanılır."
+  },
+  {
+    "id": "en-spot-43",
+    "language": "en",
+    "level": "B1",
+    "sentence": "Neither of the two proposals are acceptable in their current form.",
+    "errorIndex": 5,
+    "faulty": "are",
+    "correct": "is",
+    "distractors": [
+      "were",
+      "have"
+    ],
+    "rule": "Singular agreement with neither of",
+    "explanation": "Resmî ve standart İngilizcede 'neither of / either of / each of' tekil fiil uyumu ister: Neither of the two proposals is acceptable."
+  },
+  {
+    "id": "fr-spot-37",
+    "language": "fr",
+    "level": "B1",
+    "sentence": "Elle s'est souvenue à cette vieille chanson d'enfance.",
+    "errorIndex": 3,
+    "faulty": "à",
+    "correct": "de",
+    "distractors": [
+      "sur",
+      "par"
+    ],
+    "rule": "Se souvenir de quelque chose",
+    "explanation": "'se souvenir' fiili her zaman 'de' edatıyla kurulur (se souvenir de quelque chose); 'à' alması yanlıştır."
+  },
+  {
+    "id": "en-spot-36",
+    "language": "en",
+    "level": "B2",
+    "sentence": "Although the heavy snow, the morning train arrived on schedule.",
+    "errorIndex": 0,
+    "faulty": "Although",
+    "correct": "Despite",
+    "distractors": [
+      "However",
+      "Whereas"
+    ],
+    "rule": "Despite + noun phrase vs although + clause",
+    "explanation": "Arkasından tam cümle (özne + yüklem) değil, yalnızca isim öbeği ('the heavy snow') geldiğinde 'Although' kullanılamaz; 'Despite' veya 'In spite of' gerekir."
+  },
+  {
+    "id": "en-spot-39",
+    "language": "en",
+    "level": "B2",
+    "sentence": "Had I knew about the roadworks, I would have left earlier.",
+    "errorIndex": 2,
+    "faulty": "knew",
+    "correct": "known",
+    "distractors": [
+      "know",
+      "knowing"
+    ],
+    "rule": "Inverted third conditional participle",
+    "explanation": "Devrik 3. koşul cümlesi 'Had + özne + V3 (past participle)' ile kurulur ('If I had known' → 'Had I known'); V2 'knew' yanlıştır."
+  },
+  {
+    "id": "en-spot-44",
+    "language": "en",
+    "level": "B2",
+    "sentence": "Heavy fog prevented the plane of landing on the island.",
+    "errorIndex": 5,
+    "faulty": "of",
+    "correct": "from",
+    "distractors": [
+      "to",
+      "for"
+    ],
+    "rule": "Prevent + object + from + -ing",
+    "explanation": "Birinin bir şey yapmasını engellemek 'prevent someone/something from doing' kalıbıyla kurulur ('of' veya 'to' almaz)."
+  },
+  {
+    "id": "en-spot-40",
+    "language": "en",
+    "level": "B2",
+    "sentence": "The lawyer advised us signing nothing without reading the fine print.",
+    "errorIndex": 4,
+    "faulty": "signing",
+    "correct": "to sign",
+    "distractors": [
+      "sign",
+      "signed"
+    ],
+    "rule": "Advise + object + to-infinitive",
+    "explanation": "Nesne varken 'advise someone to do something' kullanılır ('advise signing' yalnızca nesne yokken geçerlidir)."
+  },
+  {
+    "id": "en-spot-45",
+    "language": "en",
+    "level": "C1",
+    "sentence": "Hardly had the curtain risen than the audience started applauding.",
+    "errorIndex": 5,
+    "faulty": "than",
+    "correct": "when",
+    "distractors": [
+      "that",
+      "then"
+    ],
+    "rule": "Correlative pair: hardly / scarcely … when",
+    "explanation": "'No sooner … than' ile kurulur; ancak 'Hardly / Scarcely had …' kalıbının ikinci yarısı 'than' değil 'when' (veya 'before') alır!"
+  },
 ]
 
 export const SPOT_ROUND_SIZE = 8

@@ -1,0 +1,202 @@
+[
+  {
+    "id": "es-r7-weird",
+    "language": "es",
+    "tr": "bu işte bir tuhaflık var",
+    "informal": "Este asunto me da muy mala espina.",
+    "standard": "Este asunto me parece muy raro.",
+    "formal": "Esta cuestión suscita serias dudas.",
+    "note": "“dar mala espina” hem İspanya hem Latin Amerika’da “gözüm tutmadı / işkillendim” anlamında ortak deyimdir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-lazy",
+    "language": "es",
+    "tr": "hiç canım istemiyor / üşeniyorum",
+    "informal": "¡Uf, qué pereza más grande tengo hoy!",
+    "standard": "Hoy no tengo nada de ganas.",
+    "formal": "Hoy no me encuentro con ánimo para realizarlo.",
+    "note": "Üşenmek için Meksika’da “¡qué flojera!”, Arjantin ve Uruguay’da ise “¡qué fiaca!” çok yaygındır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-love",
+    "language": "es",
+    "tr": "buna bayılıyorum",
+    "informal": "¡Me flipa muchísimo este grupo!",
+    "standard": "Me encanta este grupo.",
+    "formal": "Admiro profundamente a esta agrupación.",
+    "note": "“me flipa / me mola” İspanya argosudur; Meksika’da “me late muchísimo”, Arjantin’de “me copa” denir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-broke",
+    "language": "es",
+    "tr": "meteliğe kurşun atıyorum / param bitti",
+    "informal": "Estoy sin un duro a fin de mes.",
+    "standard": "Me he quedado sin dinero a fin de mes.",
+    "formal": "Carezco de liquidez al cierre del mes.",
+    "note": "“sin blanca / sin un duro” İspanya’da; Şili/Kolombiya’da “andar pelado”, Arjantin’de “estar seco / sin un mango” denir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-mistake",
+    "language": "es",
+    "tr": "pot kırdım / büyük hata yaptım",
+    "informal": "Metí la pata hasta el fondo.",
+    "standard": "Cometí un error muy tonto.",
+    "formal": "Incurrí en una lamentable indiscreción.",
+    "note": "“meter la pata” (ayağını çukura sokmak = çam devirmek / hata yapmak) tüm İspanyolca dünyasında ortaktır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-giveup",
+    "language": "es",
+    "tr": "elden bir şey gelmez, boş ver",
+    "informal": "Ni modo, ya fue, déjalo así.",
+    "standard": "No hay nada que hacer, mejor olvídalo.",
+    "formal": "No cabe otra alternativa; conviene darlo por concluido.",
+    "note": "“ni modo” Meksika ve Orta Amerika’da, “ya fue” ise Arjantin/Peru/Şili’de her gün duyulan “sağlık olsun / geçti artık” kalıbıdır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-angry",
+    "language": "es",
+    "tr": "çok sinirlendim",
+    "informal": "Estoy cabreadísimo con lo que pasó.",
+    "standard": "Estoy muy enfadado por lo que pasó.",
+    "formal": "Me encuentro sumamente indignado ante lo ocurrido.",
+    "note": "“cabreado” İspanya’da günlük “çok kızgın” demektir; Latin Amerika’da standart kelime “enojado”dur (“enfadado” daha az kullanılır).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-calm",
+    "language": "es",
+    "tr": "sakin ol, sorun yok",
+    "informal": "¡Tranqui, que no pasa nada!",
+    "standard": "Tranquilo, no te preocupes.",
+    "formal": "Le ruego que conserve la calma; no hay motivo de alarma.",
+    "note": "“tranqui” tüm İspanyolca konuşulan ülkelerde gençler arasında “sakin ol / takma” anlamında ortaktır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-ripoff",
+    "language": "es",
+    "tr": "bu resmen kazık!",
+    "informal": "¡Qué timo, nos vieron la cara!",
+    "standard": "Es un precio abusivo, nos cobraron de más.",
+    "formal": "El importe facturado resulta desproporcionado.",
+    "note": "“un timo” İspanya’da, “verle la cara a alguien” (birini enayi yerine koymak) ise Latin Amerika’da çok yaygındır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-exact",
+    "language": "es",
+    "tr": "aynen öyle, tam isabet!",
+    "informal": "¡Tal cual, diste en el clavo!",
+    "standard": "Exacto, tienes toda la razón.",
+    "formal": "Su apreciación es enteramente acertada.",
+    "note": "“tal cual” (aynen öyle) ve “dar en el clavo” (çiviye tam vurmak = tam üstüne basmak) her ülkede doğaldır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-ghost",
+    "language": "es",
+    "tr": "beni görüldüde bıraktı",
+    "informal": "¡Me clavó el visto y ni contestó!",
+    "standard": "Leyó mi mensaje pero no me respondió.",
+    "formal": "Acusó recibo de mi comunicación sin brindar respuesta.",
+    "note": "Mesajlaşma dilinde “dejar en visto” veya Arjantin’de “clavar el visto” (görüldü atmak) çok işlektir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-parents",
+    "language": "es",
+    "tr": "annemler bu akşam geliyor",
+    "informal": "Mis viejos caen a cenar esta noche.",
+    "standard": "Mis padres vienen a cenar esta noche.",
+    "formal": "Mis padres nos honrarán con su presencia en la cena.",
+    "note": "“mis viejos” özellikle Arjantin, Uruguay ve İspanya’da hakaret değil, sevgi dolu “annem-babam / bizimkiler” demektir; Meksika’da “mis jefes” denir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-scared",
+    "language": "es",
+    "tr": "ödüm patladı",
+    "informal": "¡Me pegué un susto de muerte!",
+    "standard": "Me asusté muchísimo.",
+    "formal": "Experimenté un profundo sobresalto.",
+    "note": "“pegarse un susto” (korkuya kapılmak) günlük İspanyolcada sade “asustarse”den çok daha canlıdır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-lie",
+    "language": "es",
+    "tr": "bunlar hep hikâye / palavra",
+    "informal": "¡Eso es puro cuento chino!",
+    "standard": "Eso no es verdad, es una excusa.",
+    "formal": "Dicha versión carece de toda veracidad.",
+    "note": "“puro cuento” veya Arjantin’de “puro chamuyo” (tatlı dilli palavra) sokak dilinde çok yaygındır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-disappointed",
+    "language": "es",
+    "tr": "hevesim kaçtı / moralim bozuldu",
+    "informal": "¡Qué bajón, me quedé planchado!",
+    "standard": "Qué decepción, me quedé muy triste.",
+    "formal": "Lamento profundamente este desenlace tan adverso.",
+    "note": "“¡qué bajón!” hem İspanya hem Güney Amerika’da ani moral bozukluğu için en doğal tepkidir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-obvious",
+    "language": "es",
+    "tr": "su götürmez şekilde açık / belli",
+    "informal": "¡Está más claro que el agua, obvio!",
+    "standard": "Es totalmente evidente.",
+    "formal": "Resulta incuestionable a todas luces.",
+    "note": "Sudan bile berrak (“más claro que el agua”) deyimi Türkçedeki “gün gibi ortada”nın tam karşılığıdır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-clothes",
+    "language": "es",
+    "tr": "üstün başın çok şık olmuş",
+    "informal": "¡Qué buena pinta llevas hoy!",
+    "standard": "Te queda muy bien esa ropa hoy.",
+    "formal": "Luce usted un atuendo sumamente distinguido.",
+    "note": "“pinta” dış görünüş/kıyafet demektir; Kolombiya ve Arjantin’de “¡qué buena pinta!” iltifat olarak çok kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-gossip",
+    "language": "es",
+    "tr": "sana anlatacak dedikodum var",
+    "informal": "¡Tengo un chisme buenísimo, cuenta!",
+    "standard": "Tengo una noticia curiosa que contarte.",
+    "formal": "Deseo ponerle al tanto de cierta novedad reciente.",
+    "note": "Dedikodu için Latin Amerika’da “el chisme” (güncel gençlik dilinde “el chismecito”), İspanya’da ise “el cotilleo” veya “el salseo” denir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-ignore",
+    "language": "es",
+    "tr": "hiç umurumda değil",
+    "informal": "Me da exactamente lo mismo, paso.",
+    "standard": "No me importa en absoluto.",
+    "formal": "El asunto me resulta del todo indiferente.",
+    "note": "İspanya’da “pasar de algo” (bir şeyi takmamak / boş vermek) günlük konuşmada çok sık geçer.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r7-hangout",
+    "language": "es",
+    "tr": "bu akşam takılıp bir şeyler içelim mi?",
+    "informal": "¿Salimos a tomar algo y charlar un rato?",
+    "standard": "¿Te apetece que salgamos esta noche?",
+    "formal": "¿Tendría usted inconveniente en acompañarnos esta velada?",
+    "note": "“tomar algo” İspanyolcada alkollü ya da alkolsüz herhangi bir içecek eşliğinde buluşmak için standart davet kalıbıdır.",
+    "source": "Diloloji (özgün)"
+  }
+]
