@@ -1,0 +1,390 @@
+[
+ {
+  "id": "es-b18-rw-1",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Intenta con todas sus fuerzas, pero no lo consigue.\nAunque ___ mucho, no lo consigue.",
+  "answer": "lo intente",
+  "alternatives": [
+   "lo intenta"
+  ],
+  "hint": "Anahtar kelime: INTENTE (2 kelime)",
+  "explanation": "Bilinmeyen/varsayımsal taviz « aunque + subjuntivo »; gerçek bir durum için indicativo gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-2",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Si hubiera sabido la verdad, habría actuado de otro modo.\nDe ___ sabido la verdad, habría actuado de otro modo.",
+  "answer": "haber",
+  "hint": "Anahtar kelime: HABER (1 kelime)",
+  "explanation": "« De + infinitivo compuesto » koşul bildirir (= si hubiera sabido).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-3",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Fue tan amable que todos lo recordaron.\nSu amabilidad fue ___ que todos la recordaron.",
+  "answer": "tal",
+  "hint": "Anahtar kelime: TAL (1 kelime)",
+  "explanation": "« tal … que » sonuç bildirir: Su amabilidad fue tal que …",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-4",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Llegó y, enseguida, empezó a llover.\nApenas ___, empezó a llover.",
+  "answer": "llegó",
+  "alternatives": [
+   "hubo llegado"
+  ],
+  "hint": "Anahtar kelime: APENAS (1 kelime)",
+  "explanation": "« Apenas + eylem » = « -er -mez »; yan cümlede preterito gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-5",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Me alegra que hayas venido.\nMe alegro ___ que hayas venido.",
+  "answer": "de",
+  "hint": "Anahtar kelime: ALEGRARSE DE (1 kelime)",
+  "explanation": "« alegrarse de que + subjuntivo »: yansımalı fiil de edatıyla kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-6",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Quiero que lo sepas, por eso te lo digo.\nTe lo digo con el fin de que lo ___.",
+  "answer": "sepas",
+  "hint": "Anahtar kelime: SEPAS (1 kelime)",
+  "explanation": "« con el fin de que » amaç bildirir ve subjuntivo ister.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-7",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Se vendieron todas las entradas.\nTodas las entradas ___ vendidas.",
+  "answer": "fueron",
+  "hint": "Anahtar kelime: FUERON (1 kelime)",
+  "explanation": "Edilgen: « ser + participio » (varlık çoğul, fiil çoğul): fueron vendidas.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-8",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Me da igual lo que opine la gente.\nOpine lo que ___ la gente, me da igual.",
+  "answer": "opine",
+  "hint": "Anahtar kelime: OPINE (1 kelime)",
+  "explanation": "« Verbo + lo que + aynı verbo (subjuntivo) » = « ne olursa olsun »: opine lo que opine.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-9",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Nadie me pidió que lo hiciera, pero lo hice.\nLo hice sin que me lo ___.",
+  "answer": "pidieran",
+  "alternatives": [
+   "pidiesen"
+  ],
+  "hint": "Anahtar kelime: PIDIERAN (1 kelime)",
+  "explanation": "« sin que » subjuntivo ister; geçmiş bağlamda imperfecto de subjuntivo.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-10",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Existe la posibilidad de que se retrase.\nPuede que se ___.",
+  "answer": "retrase",
+  "hint": "Anahtar kelime: RETRASE (1 kelime)",
+  "explanation": "« Puede que + subjuntivo » olasılığı bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-11",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Le dimos un regalo antes de su marcha.\nLe dimos un regalo antes de que ___.",
+  "answer": "se fuera",
+  "alternatives": [
+   "se fuese"
+  ],
+  "hint": "Anahtar kelime: FUERA (2 kelime)",
+  "explanation": "« antes de que » her zaman subjuntivo ister; geçmişte imperfecto.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-12",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Han aumentado los precios.\nSe ha producido un ___ de los precios.",
+  "answer": "aumento",
+  "alternatives": [
+   "incremento",
+   "alza"
+  ],
+  "hint": "Anahtar kelime: AUMENTO (1 kelime)",
+  "explanation": "Fiil yerine isim (nominalización): aumentar → un aumento.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-13",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Te llamo tan pronto como termine.\nEn ___ termine, te llamo.",
+  "answer": "cuanto",
+  "hint": "Anahtar kelime: CUANTO (1 kelime)",
+  "explanation": "« en cuanto » = « -er -mez »; gelecek için subjuntivo ister.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-14",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Aunque se esfuerce mucho, nunca lo logrará.\nPor mucho que se ___, nunca lo logrará.",
+  "answer": "esfuerce",
+  "hint": "Anahtar kelime: ESFUERCE (1 kelime)",
+  "explanation": "« Por mucho que + subjuntivo » = « ne kadar … -se de ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-15",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Perdona: no te avisé.\nSiento ___ avisado.",
+  "answer": "no haberte",
+  "hint": "Anahtar kelime: HABERTE (2 kelime)",
+  "explanation": "Özneler aynıysa que + fiil yerine « infinitivo compuesto » kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-16",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Si no fuera por tu ayuda, habría fracasado.\nDe no ___ por tu ayuda, habría fracasado.",
+  "answer": "ser",
+  "hint": "Anahtar kelime: SER (1 kelime)",
+  "explanation": "« De no ser por » = « -in yardımı olmasaydı »; koşul bildiren sabit kalıp.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-17",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Este es el libro. Te hablé de él.\nEste es el libro ___ te hablé.",
+  "answer": "del que",
+  "alternatives": [
+   "del cual"
+  ],
+  "hint": "Anahtar kelime: DEL QUE (2 kelime)",
+  "explanation": "« hablar de » fiilinin ilgi cümlesinde edat öne geçer: del que / del cual.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-18",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "A medida que estudia más, aprende más.\n___ más estudia, más aprende.",
+  "answer": "Cuanto",
+  "hint": "Anahtar kelime: CUANTO (1 kelime)",
+  "explanation": "« Cuanto más …, más … » paralel artışı anlatır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-19",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "La gente dice que el presidente dimitirá.\nSe ___ que el presidente dimitirá.",
+  "answer": "dice",
+  "hint": "Anahtar kelime: DICE (1 kelime)",
+  "explanation": "Belirsiz özne için « se + 3. tekil »: se dice que …",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-20",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "No tengo tiempo, así que no lo hago.\nSi ___ más tiempo, lo haría.",
+  "answer": "tuviera",
+  "alternatives": [
+   "tuviese"
+  ],
+  "hint": "Anahtar kelime: TUVIERA (1 kelime)",
+  "explanation": "Gerçek dışı koşul: « si + imperfecto de subjuntivo, condicional ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-21",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Ella siempre llega tarde, y eso me irrita.\nElla siempre llega tarde, ___ me irrita.",
+  "answer": "lo que",
+  "alternatives": [
+   "lo cual"
+  ],
+  "hint": "Anahtar kelime: LO QUE (2 kelime)",
+  "explanation": "Bir cümlenin tamamına atıf yapan ilgi zamiri: lo que / lo cual.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-22",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Aunque estaba lloviendo, salió.\nAun ___ lloviendo, salió.",
+  "answer": "estando",
+  "hint": "Anahtar kelime: ESTANDO (1 kelime)",
+  "explanation": "« aun + gerundio » taviz bildirir: aun estando lloviendo.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-23",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Salvo que cambies de opinión, nos vamos.\nA no ser que ___ de opinión, nos vamos.",
+  "answer": "cambies",
+  "hint": "Anahtar kelime: CAMBIES (1 kelime)",
+  "explanation": "« A no ser que » subjuntivo ister.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-24",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Nadie sabe por qué dimitió.\nNo se ___ por qué dimitió.",
+  "answer": "sabe",
+  "hint": "Anahtar kelime: SABE (1 kelime)",
+  "explanation": "Edilgen anlamlı « se + 3. tekil »: no se sabe …",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-25",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Encontrarlo me llevó mucho esfuerzo.\nMe ___ mucho encontrarlo.",
+  "answer": "costó",
+  "hint": "Anahtar kelime: COSTÓ (1 kelime)",
+  "explanation": "« costar + infinitivo » = « -mek zor/uzun sürmek ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-26",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Hace mucho tiempo que no lo veo.\nNo lo veo ___ hace mucho tiempo.",
+  "answer": "desde",
+  "hint": "Anahtar kelime: DESDE (1 kelime)",
+  "explanation": "« desde hace + süre » = « … süredir ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-27",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Parece algo increíble, pero es verdad.\nPor ___ que parezca, es verdad.",
+  "answer": "increíble",
+  "hint": "Anahtar kelime: INCREÍBLE (1 kelime)",
+  "explanation": "« Por + sıfat + que + subjuntivo » = « … görünse de ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-28",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Prohibieron la entrada a los menores.\nSe ___ la entrada a los menores.",
+  "answer": "prohibió",
+  "hint": "Anahtar kelime: PROHIBIÓ (1 kelime)",
+  "explanation": "Pasiva refleja: « se + 3. tekil + tekil nesne ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-29",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Tengo la impresión de que se equivoca.\nMe da la ___ de que se equivoca.",
+  "answer": "sensación",
+  "alternatives": [
+   "impresión"
+  ],
+  "hint": "Anahtar kelime: SENSACIÓN (1 kelime)",
+  "explanation": "« dar la sensación / impresión de que » = « -miş gibi görünmek ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-b18-rw-30",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Si no llegamos a tiempo, nos perderemos el comienzo.\nDe no ___ a tiempo, nos perderemos el comienzo.",
+  "answer": "llegar",
+  "hint": "Anahtar kelime: LLEGAR (1 kelime)",
+  "explanation": "« De no + infinitivo » koşulu kısa söyler (= si no llegamos).",
+  "source": "Diloloji (özgün)"
+ }
+]

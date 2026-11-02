@@ -1,0 +1,380 @@
+[
+ {
+  "id": "fr-b18-rw-1",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il a agi sans que nous le sachions.\nIl a agi à notre ___.",
+  "answer": "insu",
+  "hint": "Anahtar kelime: INSU (1 kelime)",
+  "explanation": "« à son insu » = « haberi olmadan »: à notre insu, à leur insu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-2",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Je doute qu'il vienne.\nIl est peu ___ qu'il vienne.",
+  "answer": "probable",
+  "alternatives": [
+   "vraisemblable"
+  ],
+  "hint": "Anahtar kelime: PROBABLE (1 kelime)",
+  "explanation": "« Il est peu probable que + subjonctif »: ihtimalin düşük olduğunu söyler.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-3",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Comme il avait réussi, il était heureux.\n___, il était heureux.",
+  "answer": "Ayant réussi",
+  "alternatives": [
+   "Ayant réussi son examen"
+  ],
+  "hint": "Anahtar kelime: AYANT (2 kelime)",
+  "explanation": "Önceki eylem, participe présent composé ile kısaltılır: Ayant réussi, il était heureux.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-4",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Les prix augmentent beaucoup.\nOn constate une forte ___ des prix.",
+  "answer": "hausse",
+  "alternatives": [
+   "augmentation"
+  ],
+  "hint": "Anahtar kelime: HAUSSE (1 kelime)",
+  "explanation": "Fiil yerine isim kullanmak (nominalisation) resmî yazıda yaygındır: augmenter → une hausse / une augmentation.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-5",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il fait ses devoirs et il écoute de la musique.\nIl fait ses devoirs en ___ de la musique.",
+  "answer": "écoutant",
+  "hint": "Anahtar kelime: ÉCOUTANT (1 kelime)",
+  "explanation": "Eş zamanlı iki eylem gérondif ile bağlanır: en + -ant.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-6",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Son travail lui a permis de réussir.\nC'est son travail ___ lui a permis de réussir.",
+  "answer": "qui",
+  "hint": "Anahtar kelime: QUI (1 kelime)",
+  "explanation": "Özneyi vurgulayan yapı: « C'est … qui + fiil ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-7",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Je parle de ce livre.\nC'est de ce livre ___ je parle.",
+  "answer": "que",
+  "hint": "Anahtar kelime: QUE (1 kelime)",
+  "explanation": "Nesneyi vurgularken « C'est … que »; de edatı vurgulanan öğede kalır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-8",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il a seulement deux amis.\nIl n'a ___ deux amis.",
+  "answer": "que",
+  "hint": "Anahtar kelime: QUE (1 kelime)",
+  "explanation": "« ne … que » = « yalnızca »: kısıtlama bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-9",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Nous partirons sauf s'il pleut.\nNous partirons à moins qu'il ne ___.",
+  "answer": "pleuve",
+  "hint": "Anahtar kelime: PLEUVE (1 kelime)",
+  "explanation": "« À moins que » subjonctif ister (isteğe bağlı ne explétif ile): à moins qu'il ne pleuve.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-10",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il est fatigué, mais il travaille.\nBien qu'il ___ fatigué, il travaille.",
+  "answer": "soit",
+  "hint": "Anahtar kelime: SOIT (1 kelime)",
+  "explanation": "« Bien que » subjonctif ister: être → soit.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-11",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "J'explique cela pour te permettre de comprendre.\nJe t'explique afin que tu ___.",
+  "answer": "comprennes",
+  "hint": "Anahtar kelime: COMPRENNES (1 kelime)",
+  "explanation": "« Afin que » amaç bildirir ve subjonctif ister.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-12",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Tu m'as parlé de cet homme. Je le connais.\nJe connais l'homme ___ tu m'as parlé.",
+  "answer": "dont",
+  "alternatives": [
+   "duquel"
+  ],
+  "hint": "Anahtar kelime: DONT (1 kelime)",
+  "explanation": "« parler de » fiilinin tümleci dont ile bağlanır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-13",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il a dit : « Je viendrai demain. »\nIl a dit qu'il ___ le lendemain.",
+  "answer": "viendrait",
+  "hint": "Anahtar kelime: VIENDRAIT (1 kelime)",
+  "explanation": "Dolaylı anlatımda geçmiş bağlamda gelecek → conditionnel présent; demain → le lendemain.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-14",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "« Elle a menti », pensait-il.\nIl pensait qu'elle ___ menti.",
+  "answer": "avait",
+  "hint": "Anahtar kelime: AVAIT (1 kelime)",
+  "explanation": "Zaman uyumu (concordance des temps): ana fiil geçmişteyse önceki eylem plus-que-parfait ile söylenir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-15",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il a insisté, mais ça n'a servi à rien.\nIl a ___ insister, rien n'y a fait.",
+  "answer": "eu beau",
+  "hint": "Anahtar kelime: BEAU (2 kelime)",
+  "explanation": "« avoir beau + infinitif » = « boşuna … -mek »; sonuç beklenenin tersidir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-16",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il se tait parce qu'il craint de la vexer.\nIl se tait de peur de la ___.",
+  "answer": "vexer",
+  "hint": "Anahtar kelime: VEXER (1 kelime)",
+  "explanation": "« De peur de + infinitif » korkuyla yapılan eylemi bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-17",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Peu importe ton choix, je le respecterai.\nQuel que ___ ton choix, je le respecterai.",
+  "answer": "soit",
+  "hint": "Anahtar kelime: SOIT (1 kelime)",
+  "explanation": "« Quel que soit + isim » = « hangisi olursa olsun »; quel isimle uyum yapar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-18",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Lui aime la mer, elle préfère la montagne.\nIl aime la mer ___ elle préfère la montagne.",
+  "answer": "tandis que",
+  "alternatives": [
+   "alors que"
+  ],
+  "hint": "Anahtar kelime: TANDIS (2 kelime)",
+  "explanation": "« Tandis que / alors que » iki durumun karşıtlığını gösterir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-19",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "À chaque étape, il apprend davantage.\nIl apprend davantage au ___ et à mesure.",
+  "answer": "fur",
+  "hint": "Anahtar kelime: FUR (1 kelime)",
+  "explanation": "« au fur et à mesure » = « ilerledikçe, adım adım ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-20",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Ce livre traite de la guerre.\nDans ce livre, il ___ de la guerre.",
+  "answer": "s'agit",
+  "hint": "Anahtar kelime: S'AGIT (1 kelime)",
+  "explanation": "« il s'agit de + isim » kişisiz yapı: konuyu belirtir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-21",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il a demandé à un électricien de réparer la prise.\nIl a ___ réparer la prise.",
+  "answer": "fait",
+  "hint": "Anahtar kelime: FAIT (1 kelime)",
+  "explanation": "« faire + infinitif » eylemi başkasına yaptırmayı anlatır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-22",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il a très peu d'argent.\nIl n'a ___ d'argent.",
+  "answer": "guère",
+  "hint": "Anahtar kelime: GUÈRE (1 kelime)",
+  "explanation": "« ne … guère » = « pek … değil / çok az ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-23",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il a réussi parce qu'il a beaucoup travaillé.\nÀ ___ de travailler, il a réussi.",
+  "answer": "force",
+  "hint": "Anahtar kelime: FORCE (1 kelime)",
+  "explanation": "« À force de + infinitif » = « sürekli … -erek ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-24",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Dès qu'il est arrivé, il a téléphoné.\nSitôt ___, il a téléphoné.",
+  "answer": "arrivé",
+  "hint": "Anahtar kelime: ARRIVÉ (1 kelime)",
+  "explanation": "« Sitôt + participe passé » = « -ir -mez »; resmî ve kısa bir zaman bağlacıdır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-25",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "C'est le moment de partir.\nIl est temps que nous ___.",
+  "answer": "partions",
+  "hint": "Anahtar kelime: PARTIONS (1 kelime)",
+  "explanation": "« Il est temps que » subjonctif ister: nous partions.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-26",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Je viendrai si tu m'offres un café.\nJe viendrai à condition que tu m'___ un café.",
+  "answer": "offres",
+  "hint": "Anahtar kelime: OFFRES (1 kelime)",
+  "explanation": "« À condition que » subjonctif ister (offrir: tu offres biçimi indicatif ile aynı).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-27",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Au lieu de te plaindre, agis.\nPlutôt ___ te plaindre, agis.",
+  "answer": "que de",
+  "hint": "Anahtar kelime: PLUTÔT (2 kelime)",
+  "explanation": "« Plutôt que de + infinitif » = « … yerine ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-28",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Une fois la réunion terminée, il est parti.\nLa réunion ___, il est parti.",
+  "answer": "terminée",
+  "alternatives": [
+   "finie"
+  ],
+  "hint": "Anahtar kelime: TERMINÉE (1 kelime)",
+  "explanation": "Mutlak yapı (proposition participiale): özne + participe, uyum özneyle yapılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-29",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Le fait qu'il soit parti m'a surpris.\nSon ___ m'a surpris.",
+  "answer": "départ",
+  "hint": "Anahtar kelime: DÉPART (1 kelime)",
+  "explanation": "Yan cümle isme çevrilir (nominalisation): partir → le départ.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-b18-rw-30",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Elle a tellement ri qu'elle en a pleuré.\nElle a ri ___ pleurer.",
+  "answer": "au point de",
+  "hint": "Anahtar kelime: POINT (3 kelime)",
+  "explanation": "« Au point de + infinitif » yoğunluğun sonucunu bildirir.",
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -1,0 +1,236 @@
+[
+ {
+  "id": "fr-teletravail-c1",
+  "language": "fr",
+  "text": "{1} le télétravail réduise les trajets, certains salariés disent se sentir isolés. {2} les entreprises ont adopté ce mode d'organisation très vite, peu d'entre elles ont repensé leurs règles de management. Il faudra donc former les cadres {3} le travail à distance reste efficace.",
+  "tr": "Uzaktan çalışma yolculukları azaltsa da bazı çalışanlar kendilerini yalnız hissettiklerini söylüyor. Şirketler bu düzene çok çabuk geçmiş olsa da azı yönetim kurallarını yeniden düşündü. Bu yüzden uzaktan çalışmanın verimli kalması için yöneticileri eğitmek gerekecek.",
+  "gaps": [
+   {
+    "answer": "Bien que",
+    "options": [
+     "Bien que",
+     "Parce que",
+     "Pour que"
+    ],
+    "kind": "Taviz",
+    "why": "Taviz bağlacı + subjonctif: Bien que le télétravail réduise. Parce que subjonctif almaz, Pour que amaç bildirir."
+   },
+   {
+    "answer": "Même si",
+    "options": [
+     "Même si",
+     "Pourvu que",
+     "De peur que"
+    ],
+    "kind": "Taviz",
+    "why": "Gerçek bir durumdan taviz: Même si + indicatif (ont adopté). Pourvu que ve De peur que subjonctif ister ve anlamı bozar."
+   },
+   {
+    "answer": "pour que",
+    "options": [
+     "pour que",
+     "bien que",
+     "avant que"
+    ],
+    "kind": "Amaç",
+    "why": "“verimli kalması için”: pour que + subjonctif (reste). Bien que ve avant que anlamı bozar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-tourisme-c1",
+  "language": "fr",
+  "text": "Le tourisme de masse enrichit certaines régions. {1}, il fragilise leur environnement : les plages s'érodent et l'eau devient rare. {2} les habitants en tirent un revenu, beaucoup ne supportent plus la foule. Les élus devront donc agir {3} la situation ne devienne irréversible.",
+  "tr": "Kitle turizmi bazı bölgeleri zenginleştiriyor. Yine de çevrelerini kırılganlaştırıyor: plajlar aşınıyor, su azalıyor. Halk ondan gelir elde etse de birçoğu kalabalığa artık katlanamıyor. Bu yüzden seçilmişler durum geri dönülmez olmadan önce harekete geçmeli.",
+  "gaps": [
+   {
+    "answer": "Pourtant",
+    "options": [
+     "Pourtant",
+     "Ainsi",
+     "C'est pourquoi"
+    ],
+    "kind": "Karşıtlık",
+    "why": "Beklenenin tersi: “Yine de”. Ainsi ve C'est pourquoi sonuç bildirir."
+   },
+   {
+    "answer": "Même si",
+    "options": [
+     "Même si",
+     "Pourvu que",
+     "À moins que"
+    ],
+    "kind": "Taviz",
+    "why": "“gelir elde etse de”: Même si + indicatif (tirent). Pourvu que ve À moins que subjonctif ister ve anlamı bozar."
+   },
+   {
+    "answer": "avant que",
+    "options": [
+     "avant que",
+     "parce que",
+     "alors que"
+    ],
+    "kind": "Zaman",
+    "why": "“geri dönülmez olmadan önce”: avant que + subjonctif (ne devienne). Parce que ve alors que subjonctif almaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-ia-c1",
+  "language": "fr",
+  "text": "L'intelligence artificielle s'invite dans les classes. {1} elle peut aider les élèves en difficulté, elle risque aussi de les dispenser d'un effort essentiel. {2}, les enseignants insistent sur la nécessité de l'utiliser avec esprit critique. Ils souhaitent {3} les élèves apprennent d'abord à rédiger seuls.",
+  "tr": "Yapay zekâ sınıflara giriyor. Zorlanan öğrencilere yardım edebilse de onları temel bir çabadan muaf tutma riski de taşıyor. Bu yüzden öğretmenler onu eleştirel bir gözle kullanmanın gerekliliğinde ısrar ediyor. Öğrencilerin önce yalnız başlarına yazmayı öğrenmesini istiyorlar.",
+  "gaps": [
+   {
+    "answer": "Si",
+    "options": [
+     "Si",
+     "Puisque",
+     "Sauf si"
+    ],
+    "kind": "Taviz",
+    "why": "İki karşıt yön: “yardım edebilse de … risk taşıyor”: Si (concessif). Puisque neden, Sauf si “… -medikçe” demektir."
+   },
+   {
+    "answer": "C'est pourquoi",
+    "options": [
+     "C'est pourquoi",
+     "En revanche",
+     "Bien que"
+    ],
+    "kind": "Sonuç",
+    "why": "Öncekinin sonucu: “Bu yüzden”. En revanche karşıtlık, Bien que taviz bildirir ve cümle kurmaz."
+   },
+   {
+    "answer": "que",
+    "options": [
+     "que",
+     "dont",
+     "pour"
+    ],
+    "kind": "Bağlaç",
+    "why": "« souhaiter que + subjonctif »: Ils souhaitent que les élèves apprennent. Dont ve pour bu yapıya uymaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-reseaux-c1",
+  "language": "fr",
+  "text": "Les réseaux sociaux transforment l'accès à l'information. {1} chacun peut publier, les fausses nouvelles circulent à grande vitesse. {2} les plateformes promettent de mieux les contrôler, la vérification reste souvent insuffisante. Le lecteur doit donc recouper les sources {3} se faire une opinion.",
+  "tr": "Sosyal ağlar bilgiye erişimi dönüştürüyor. Herkes yayın yapabildiği için yanlış haberler büyük hızla dolaşıyor. Platformlar onları daha iyi denetlemeyi vaat etse de doğrulama çoğu zaman yetersiz kalıyor. Bu yüzden okur bir görüş edinmeden önce kaynakları çapraz kontrol etmeli.",
+  "gaps": [
+   {
+    "answer": "Comme",
+    "options": [
+     "Comme",
+     "Bien que",
+     "Afin que"
+    ],
+    "kind": "Neden",
+    "why": "“Herkes yayın yapabildiği için”: Comme (neden). Bien que ve Afin que anlamı ve kipi bozar."
+   },
+   {
+    "answer": "Bien que",
+    "options": [
+     "Bien que",
+     "Parce que",
+     "Dès que"
+    ],
+    "kind": "Taviz",
+    "why": "“vaat etse de … yetersiz”: Bien que. Parce que ve Dès que anlamı bozar."
+   },
+   {
+    "answer": "avant de",
+    "options": [
+     "avant de",
+     "après",
+     "sans"
+    ],
+    "kind": "Zaman",
+    "why": "“görüş edinmeden önce”: avant de + infinitif. Après ve sans yapıyı ya da anlamı bozar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-nucleaire-c1",
+  "language": "fr",
+  "text": "Le nucléaire divise les experts. {1} le nucléaire émet peu de CO2, il produit des déchets qu'il faut surveiller pendant des siècles. {2} les centrales actuelles vieillissent, leur remplacement exige des investissements considérables. Certains estiment {3} cette énergie reste indispensable.",
+  "tr": "Nükleer uzmanları bölüyor. Az CO2 salsa da yüzyıllarca izlenmesi gereken atıklar üretiyor. Mevcut santraller yaşlandığı için yerlerine yenisini koymak büyük yatırım gerektiriyor. Bazıları bu enerjinin vazgeçilmez kaldığını düşünüyor.",
+  "gaps": [
+   {
+    "answer": "Si",
+    "options": [
+     "Si",
+     "Parce que",
+     "Pourvu que"
+    ],
+    "kind": "Taviz",
+    "why": "“az salsa da … üretiyor”: Si (concessif). Parce que ve Pourvu que anlamı bozar."
+   },
+   {
+    "answer": "Comme",
+    "options": [
+     "Comme",
+     "Pourvu que",
+     "Quoique"
+    ],
+    "kind": "Neden",
+    "why": "“santraller yaşlandığı için”: Comme. Pourvu que subjonctif ister, Quoique taviz bildirir ve anlamı bozar."
+   },
+   {
+    "answer": "que",
+    "options": [
+     "que",
+     "dont",
+     "si"
+    ],
+    "kind": "Bağlaç",
+    "why": "« estimer que + cümle »: Certains estiment que cette énergie reste indispensable. Dont ve si uymaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-lecture-c1",
+  "language": "fr",
+  "text": "La lecture recule chez les adolescents. {1} les écrans occupent une grande partie de leur temps libre, ils lisent moins de romans. {2}, certaines écoles organisent des moments de lecture quotidiens. L'objectif est {3} chaque élève retrouve le plaisir de lire.",
+  "tr": "Gençlerde okuma geriliyor. Ekranlar boş zamanlarının büyük bölümünü kapladığı için daha az roman okuyorlar. Bu yüzden bazı okullar günlük okuma saatleri düzenliyor. Amaç, her öğrencinin okuma zevkini yeniden bulması.",
+  "gaps": [
+   {
+    "answer": "Comme",
+    "options": [
+     "Comme",
+     "Bien que",
+     "Pourvu que"
+    ],
+    "kind": "Neden",
+    "why": "“ekranlar zamanı kapladığı için”: Comme + indicatif. Bien que ve Pourvu que subjonctif ister."
+   },
+   {
+    "answer": "C'est pourquoi",
+    "options": [
+     "C'est pourquoi",
+     "Pourtant",
+     "En effet"
+    ],
+    "kind": "Sonuç",
+    "why": "Öncekinin sonucu: “Bu yüzden”. Pourtant karşıtlık, En effet açıklama bildirir."
+   },
+   {
+    "answer": "que",
+    "options": [
+     "que",
+     "dont",
+     "pour"
+    ],
+    "kind": "Bağlaç",
+    "why": "« L'objectif est que + subjonctif »: que chaque élève retrouve. Dont ve pour uymaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]

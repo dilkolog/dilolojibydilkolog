@@ -1,0 +1,236 @@
+[
+ {
+  "id": "es-turismo-c1",
+  "language": "es",
+  "text": "El turismo de masas enriquece algunas regiones. {1}, deteriora su entorno: las playas se erosionan y el agua escasea. {2} los vecinos obtienen ingresos, muchos ya no soportan las aglomeraciones. Las autoridades deberán actuar {3} la situación se vuelva irreversible.",
+  "tr": "Kitle turizmi bazı bölgeleri zenginleştiriyor. Yine de çevrelerini bozuyor: plajlar aşınıyor, su azalıyor. Halk gelir elde etse de birçoğu kalabalığa artık katlanamıyor. Yetkililer durum geri dönülmez olmadan önce harekete geçmeli.",
+  "gaps": [
+   {
+    "answer": "Sin embargo",
+    "options": [
+     "Sin embargo",
+     "Por eso",
+     "Además"
+    ],
+    "kind": "Karşıtlık",
+    "why": "Beklenenin tersi: “Yine de”: Sin embargo. Por eso sonuç, Además ekleme bildirir."
+   },
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Para que",
+     "Siempre que"
+    ],
+    "kind": "Taviz",
+    "why": "“gelir elde etse de”: Aunque + indicativo (obtienen). Para que amaç, Siempre que koşul bildirir."
+   },
+   {
+    "answer": "antes de que",
+    "options": [
+     "antes de que",
+     "porque",
+     "mientras"
+    ],
+    "kind": "Zaman",
+    "why": "“geri dönülmez olmadan önce”: antes de que + subjuntivo (se vuelva). Porque ve mientras subjuntivo almaz / anlamı bozar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-teletrabajo-c1",
+  "language": "es",
+  "text": "{1} el teletrabajo reduce los desplazamientos, algunos empleados se sienten aislados. {2} las empresas lo adoptaron muy deprisa, pocas han revisado sus normas de gestión. Habrá que formar a los directivos {3} el trabajo a distancia siga siendo eficaz.",
+  "tr": "Uzaktan çalışma yolculukları azalttığı hâlde bazı çalışanlar kendilerini yalnız hissediyor. Şirketler onu çok hızlı benimsedi ama azı yönetim kurallarını gözden geçirdi. Uzaktan çalışmanın verimli kalması için yöneticileri eğitmek gerekecek.",
+  "gaps": [
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Porque",
+     "Para que"
+    ],
+    "kind": "Taviz",
+    "why": "“azaltsa da … yalnız hissediyor”: Aunque. Porque neden, Para que amaç bildirir."
+   },
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Para que",
+     "Siempre que"
+    ],
+    "kind": "Taviz",
+    "why": "“hızlı benimsedi ama azı gözden geçirdi”: Aunque + indicativo. Para que ve Siempre que anlamı bozar."
+   },
+   {
+    "answer": "para que",
+    "options": [
+     "para que",
+     "aunque",
+     "antes de que"
+    ],
+    "kind": "Amaç",
+    "why": "“verimli kalması için”: para que + subjuntivo (siga). Aunque ve antes de que anlamı bozar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ia-c1",
+  "language": "es",
+  "text": "La inteligencia artificial llega a las aulas. {1} puede ayudar a los alumnos con dificultades, también corre el riesgo de eximirlos de un esfuerzo esencial. {2}, los profesores insisten en usarla con espíritu crítico. Quieren {3} los alumnos aprendan primero a escribir solos.",
+  "tr": "Yapay zekâ sınıflara geliyor. Zorlanan öğrencilere yardım edebilse de onları temel bir çabadan muaf tutma riski de var. Bu yüzden öğretmenler onu eleştirel bir zihinle kullanmakta ısrar ediyor. Öğrencilerin önce yalnız yazmayı öğrenmesini istiyorlar.",
+  "gaps": [
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Porque",
+     "A menos que"
+    ],
+    "kind": "Taviz",
+    "why": "“yardım edebilse de … risk taşıyor”: Aunque. Porque neden, A menos que “-medikçe” demektir."
+   },
+   {
+    "answer": "Por eso",
+    "options": [
+     "Por eso",
+     "Sin embargo",
+     "Aunque"
+    ],
+    "kind": "Sonuç",
+    "why": "Öncekinin sonucu: “Bu yüzden”: Por eso. Sin embargo karşıtlık, Aunque taviz bildirir."
+   },
+   {
+    "answer": "que",
+    "options": [
+     "que",
+     "donde",
+     "para"
+    ],
+    "kind": "Bağlaç",
+    "why": "« querer que + subjuntivo »: Quieren que los alumnos aprendan. Donde ve para uymaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-redes-c1",
+  "language": "es",
+  "text": "Las redes sociales han transformado el acceso a la información. {1} cualquiera puede publicar, las noticias falsas circulan a gran velocidad. {2} las plataformas prometen controlarlas mejor, la verificación sigue siendo insuficiente. El lector debe contrastar varias fuentes {3} formarse una opinión.",
+  "tr": "Sosyal ağlar bilgiye erişimi dönüştürdü. Herkes yayın yapabildiği için yanlış haberler büyük hızla dolaşıyor. Platformlar onları daha iyi denetlemeyi vaat etse de doğrulama yetersiz kalmaya devam ediyor. Okur bir görüş oluşturmadan önce birkaç kaynağı karşılaştırmalı.",
+  "gaps": [
+   {
+    "answer": "Como",
+    "options": [
+     "Como",
+     "Aunque",
+     "Para que"
+    ],
+    "kind": "Neden",
+    "why": "“Herkes yayın yapabildiği için”: Como (neden). Aunque ve Para que anlamı bozar."
+   },
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Porque",
+     "En cuanto"
+    ],
+    "kind": "Taviz",
+    "why": "“vaat etse de … yetersiz”: Aunque. Porque ve En cuanto anlamı bozar."
+   },
+   {
+    "answer": "antes de",
+    "options": [
+     "antes de",
+     "después",
+     "sin"
+    ],
+    "kind": "Zaman",
+    "why": "“görüş oluşturmadan önce”: antes de + infinitivo. Después ve sin yapıyı ya da anlamı bozar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-energia-c1",
+  "language": "es",
+  "text": "La energía nuclear divide a los expertos. {1} emite poco carbono, genera residuos que hay que vigilar durante siglos. {2} las centrales actuales envejecen, sustituirlas exige enormes inversiones. Algunos opinan {3} renunciar a ella sería irresponsable.",
+  "tr": "Nükleer enerji uzmanları bölüyor. Az karbon salsa da yüzyıllarca izlenmesi gereken atıklar üretiyor. Mevcut santraller yaşlandığı için onları değiştirmek büyük yatırım gerektiriyor. Bazıları ondan vazgeçmenin sorumsuzluk olacağını düşünüyor.",
+  "gaps": [
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Porque",
+     "Siempre que"
+    ],
+    "kind": "Taviz",
+    "why": "“az karbon salsa da … atık üretiyor”: Aunque. Porque ve Siempre que anlamı bozar."
+   },
+   {
+    "answer": "Como",
+    "options": [
+     "Como",
+     "Aunque",
+     "Para que"
+    ],
+    "kind": "Neden",
+    "why": "“santraller yaşlandığı için”: Como. Aunque ve Para que anlamı bozar."
+   },
+   {
+    "answer": "que",
+    "options": [
+     "que",
+     "donde",
+     "si"
+    ],
+    "kind": "Bağlaç",
+    "why": "« opinar que + cümle »: Algunos opinan que renunciar a ella sería irresponsable. Donde ve si uymaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-lectura-c1",
+  "language": "es",
+  "text": "La lectura retrocede entre los adolescentes. {1} las pantallas ocupan buena parte de su tiempo libre, leen menos novelas. {2}, algunos colegios dedican un rato diario a la lectura. El objetivo es {3} cada alumno recupere el placer de leer.",
+  "tr": "Gençler arasında okuma geriliyor. Ekranlar boş zamanlarının önemli bölümünü kapladığı için daha az roman okuyorlar. Bu yüzden bazı okullar her gün bir süreyi okumaya ayırıyor. Amaç, her öğrencinin okuma zevkini yeniden bulması.",
+  "gaps": [
+   {
+    "answer": "Como",
+    "options": [
+     "Como",
+     "Aunque",
+     "Para que"
+    ],
+    "kind": "Neden",
+    "why": "“ekranlar zamanı kapladığı için”: Como + indicativo. Aunque ve Para que anlamı bozar."
+   },
+   {
+    "answer": "Por eso",
+    "options": [
+     "Por eso",
+     "Sin embargo",
+     "Aunque"
+    ],
+    "kind": "Sonuç",
+    "why": "Öncekinin sonucu: “Bu yüzden”: Por eso. Sin embargo karşıtlık, Aunque taviz bildirir."
+   },
+   {
+    "answer": "que",
+    "options": [
+     "que",
+     "donde",
+     "para"
+    ],
+    "kind": "Bağlaç",
+    "why": "« El objetivo es que + subjuntivo »: que cada alumno recupere. Donde ve para uymaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]

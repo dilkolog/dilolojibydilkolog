@@ -1,0 +1,389 @@
+[
+ {
+  "id": "en-b18-rw-1",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "I regret not studying harder for the exam.\nI wish I ___ harder for the exam.",
+  "answer": "had studied",
+  "hint": "Anahtar kelime: STUDIED (2 kelime)",
+  "explanation": "Geçmişteki pişmanlık « wish + past perfect » ile söylenir: I wish I had studied harder.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-2",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "The meeting was cancelled because of bad weather.\nThe meeting was cancelled ___ weather conditions.",
+  "answer": "owing to",
+  "alternatives": [
+   "due to",
+   "because of"
+  ],
+  "hint": "Anahtar kelime: OWING (2 kelime)",
+  "explanation": "« because of » yerine daha resmî « owing to / due to » kullanılır; ikisi de isim öbeği alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-3",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "I only realised the problem was serious later.\nIt was not ___ later that I realised how serious the problem was.",
+  "answer": "until",
+  "hint": "Anahtar kelime: UNTIL (1 kelime)",
+  "explanation": "« It was not until + zaman … that » kalıbı « ancak … -dikten sonra » anlamını verir (vurgulu yapı).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-4",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "Someone is repairing my car.\nI am ___ repaired.",
+  "answer": "having my car",
+  "hint": "Anahtar kelime: HAVING (3 kelime)",
+  "explanation": "Başkasına yaptırılan iş « have + nesne + past participle » ile söylenir: I am having my car repaired.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-5",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "I would prefer it if you didn't smoke here.\nI would prefer ___ smoke here.",
+  "answer": "you not to",
+  "hint": "Anahtar kelime: NOT (3 kelime)",
+  "explanation": "« prefer + kişi + (not) to + fiil »: I would prefer you not to smoke here.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-6",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "It's possible that she missed the train.\nShe ___ missed the train.",
+  "answer": "may have",
+  "alternatives": [
+   "might have",
+   "could have"
+  ],
+  "hint": "Anahtar kelime: HAVE (2 kelime)",
+  "explanation": "Geçmişle ilgili olasılık « may/might/could + have + past participle » ile ifade edilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-7",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "They say that the minister has resigned.\nThe minister ___ resigned.",
+  "answer": "is said to have",
+  "hint": "Anahtar kelime: SAID (4 kelime)",
+  "explanation": "« It is said that … » yerine kişisel edilgen yapı: The minister is said to have resigned (tamamlanmış eylem için perfect infinitive).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-8",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "As soon as he arrived, the phone rang.\nNo ___ had he arrived than the phone rang.",
+  "answer": "sooner",
+  "hint": "Anahtar kelime: SOONER (1 kelime)",
+  "explanation": "« No sooner … than » olumsuz zarf başta olduğunda özne-yardımcı fiil yer değiştirir (inversion): No sooner had he arrived than …",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-9",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "Her success was due to hard work.\nShe succeeded ___ hard work.",
+  "answer": "thanks to",
+  "alternatives": [
+   "because of",
+   "owing to"
+  ],
+  "hint": "Anahtar kelime: THANKS (2 kelime)",
+  "explanation": "« thanks to + isim » olumlu bir nedeni belirtir: She succeeded thanks to hard work.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-10",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "Very few people attended the lecture.\nThe lecture was ___ attended.",
+  "answer": "poorly",
+  "hint": "Anahtar kelime: POORLY (1 kelime)",
+  "explanation": "« poorly attended » katılımın düşük olduğunu söyleyen yaygın bir eşdizimdir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-11",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "I'll lend you the money if you promise to pay it back.\nI'll lend you the money ___ you pay it back.",
+  "answer": "as long as",
+  "alternatives": [
+   "so long as",
+   "provided",
+   "providing"
+  ],
+  "hint": "Anahtar kelime: LONG (3 kelime)",
+  "explanation": "« as long as » koşulu vurgular (« şu şartla ki »); bu anlamda « if » yerine geçer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-12",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "'You should apply for the job,' my sister told me.\nMy sister ___ for the job.",
+  "answer": "advised me to apply",
+  "hint": "Anahtar kelime: ADVISED (4 kelime)",
+  "explanation": "Öneri bildirilirken « advise + kişi + to + fiil » kullanılır: advised me to apply.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-13",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "The last time I saw her was in 2019.\nI ___ her since 2019.",
+  "answer": "haven't seen",
+  "alternatives": [
+   "have not seen"
+  ],
+  "hint": "Anahtar kelime: SEEN (2 kelime)",
+  "explanation": "« The last time … was » ile « haven't + past participle + since » aynı şeyi söyler (present perfect).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-14",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "He never thought he would win.\nNever ___ he would win.",
+  "answer": "did he think",
+  "hint": "Anahtar kelime: THINK (3 kelime)",
+  "explanation": "« Never » cümle başındaysa yardımcı fiil öne geçer (inversion): Never did he think …",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-15",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "The company will succeed only if it innovates.\nOnly by ___ will the company succeed.",
+  "answer": "innovating",
+  "hint": "Anahtar kelime: INNOVATING (1 kelime)",
+  "explanation": "« Only by + -ing » başa geldiğinde ana cümlede inversion olur: will the company succeed.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-16",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "I was annoyed by his arrogance, not his rudeness.\nIt was his arrogance ___ annoyed me.",
+  "answer": "that",
+  "alternatives": [
+   "which"
+  ],
+  "hint": "Anahtar kelime: THAT (1 kelime)",
+  "explanation": "Vurgulu yapı (cleft sentence): « It was + vurgulanan öğe + that … ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-17",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "They forced him to sign the contract.\nHe ___ to sign the contract.",
+  "answer": "was made",
+  "hint": "Anahtar kelime: MADE (2 kelime)",
+  "explanation": "« make + kişi + fiil » edilgende « be made to + fiil » olur: He was made to sign.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-18",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "If you hadn't helped me, I would have failed.\nBut ___ your help, I would have failed.",
+  "answer": "for",
+  "hint": "Anahtar kelime: FOR (1 kelime)",
+  "explanation": "« But for + isim » = « -mese / olmasaydı »: But for your help, I would have failed.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-19",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "It is pointless to complain to him.\nThere is ___ complaining to him.",
+  "answer": "no point in",
+  "hint": "Anahtar kelime: POINT (3 kelime)",
+  "explanation": "« There is no point in + -ing » = « -mekte anlam yok ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-20",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "May I introduce myself first?\nAllow ___ introduce myself first.",
+  "answer": "me to",
+  "hint": "Anahtar kelime: ME (2 kelime)",
+  "explanation": "« allow + kişi + to + fiil » nazik rica biçimidir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-21",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "She will certainly win the race.\nShe is ___ to win the race.",
+  "answer": "bound",
+  "alternatives": [
+   "certain",
+   "sure"
+  ],
+  "hint": "Anahtar kelime: BOUND (1 kelime)",
+  "explanation": "« be bound to + fiil » = « kesinlikle … -ecek » (güçlü beklenti).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-22",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "I don't mind working late.\nI have no ___ working late.",
+  "answer": "objection to",
+  "hint": "Anahtar kelime: OBJECTION (2 kelime)",
+  "explanation": "« have no objection to + -ing » = « -mekte sakınca görmemek »; to burada edat olduğu için -ing gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-23",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "People think the fire was started deliberately.\nThe fire is ___ started deliberately.",
+  "answer": "thought to have been",
+  "hint": "Anahtar kelime: THOUGHT (4 kelime)",
+  "explanation": "Geçmişteki bir olay için kişisel edilgen: « is thought to have been + past participle ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-24",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "He spoke so quietly that I couldn't hear him.\nHe spoke ___ quietly for me to hear.",
+  "answer": "too",
+  "hint": "Anahtar kelime: TOO (1 kelime)",
+  "explanation": "« too + sıfat/zarf + (for kişi) + to + fiil » = « -meyecek kadar ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-25",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "Although she was tired, she kept running.\nTired ___ she was, she kept running.",
+  "answer": "as",
+  "hint": "Anahtar kelime: AS (1 kelime)",
+  "explanation": "« Sıfat + as + özne + be » = « … olmasına rağmen » (resmî tavizli yapı).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-26",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "It's a pity you didn't tell me earlier.\nI wish you ___ me earlier.",
+  "answer": "had told",
+  "hint": "Anahtar kelime: TOLD (2 kelime)",
+  "explanation": "Geçmişe dair istek « wish + past perfect » ile kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-27",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "We were just about to leave when she called.\nWe were on the ___ of leaving when she called.",
+  "answer": "point",
+  "hint": "Anahtar kelime: POINT (1 kelime)",
+  "explanation": "« be on the point of + -ing » = « tam -mek üzereydi ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-28",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "If you practise more, you will improve more.\nThe more you practise, ___ you get.",
+  "answer": "the better",
+  "hint": "Anahtar kelime: BETTER (2 kelime)",
+  "explanation": "« The + comparative …, the + comparative … » paralel artışı anlatır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-29",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "We had barely sat down when the lights went out.\nHardly ___ sat down when the lights went out.",
+  "answer": "had we",
+  "hint": "Anahtar kelime: HAD (2 kelime)",
+  "explanation": "« Hardly … when » olumsuz zarf başta olduğu için yardımcı fiil özneden önce gelir: Hardly had we sat down …",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-b18-rw-30",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "She never admitted her mistake.\nAt no time ___ her mistake.",
+  "answer": "did she admit",
+  "hint": "Anahtar kelime: ADMIT (3 kelime)",
+  "explanation": "« At no time » ile başlayan cümlede inversion zorunludur: At no time did she admit …",
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -1,0 +1,236 @@
+[
+ {
+  "id": "en-tourism-c1",
+  "language": "en",
+  "text": "Cities that depend on tourism face a dilemma. {1} visitors bring much-needed income, they also push up rents and crowd out residents. {2} the council has capped short-term rentals, prices in the old town keep rising. Residents will only return {3} the authorities make housing affordable again.",
+  "tr": "Turizme bağımlı şehirler bir ikilemle karşı karşıya. Ziyaretçiler çok ihtiyaç duyulan geliri getirirken kiraları da yükseltiyor ve sakinleri dışarı itiyor. Belediye kısa dönem kiralamalara sınır koymuş olsa da eski şehirdeki fiyatlar artmaya devam ediyor. Sakinler ancak yetkililer konutu yeniden uygun fiyatlı hâle getirirse geri dönecek.",
+  "gaps": [
+   {
+    "answer": "While",
+    "options": [
+     "While",
+     "Since",
+     "Unless"
+    ],
+    "kind": "Taviz",
+    "why": "İki zıt gerçeği birleştirir: “… getirirken de”. Since neden, Unless koşul bildirir."
+   },
+   {
+    "answer": "Even though",
+    "options": [
+     "Even though",
+     "So that",
+     "Provided"
+    ],
+    "kind": "Taviz",
+    "why": "Beklenenin tersi bir durum: “sınır koymuş olsa da”. So that amaç, Provided koşul bildirir ve anlamı bozar."
+   },
+   {
+    "answer": "if",
+    "options": [
+     "if",
+     "although",
+     "whereas"
+    ],
+    "kind": "Koşul",
+    "why": "“ancak … yaparsa” = only if. Although ve whereas karşıtlık bildirir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-remote-c1",
+  "language": "en",
+  "text": "Remote work has changed how companies hire. {1} location no longer limits the pool of candidates, firms compete with employers on the other side of the world. {2}, many managers now judge staff by results rather than hours spent at a desk. This shift will last {3} workers keep demanding flexibility.",
+  "tr": "Uzaktan çalışma şirketlerin işe alım biçimini değiştirdi. Konum artık aday havuzunu sınırlamadığı için firmalar dünyanın öbür ucundaki işverenlerle yarışıyor. Bu nedenle birçok yönetici artık çalışanları masa başında geçirilen saate değil sonuçlara göre değerlendiriyor. Bu kayma, çalışanlar esneklik talep etmeye devam ettikçe sürecek.",
+  "gaps": [
+   {
+    "answer": "Because",
+    "options": [
+     "Because",
+     "Although",
+     "Unless"
+    ],
+    "kind": "Neden",
+    "why": "Konumun sınır olmaması, rekabetin nedenidir: Because. Although ve Unless anlamı bozar."
+   },
+   {
+    "answer": "As a result",
+    "options": [
+     "As a result",
+     "Even so",
+     "Whereas"
+    ],
+    "kind": "Sonuç",
+    "why": "Önceki durumun sonucunu bildirir: “Bu nedenle”. Even so ve Whereas karşıtlık bildirir."
+   },
+   {
+    "answer": "as long as",
+    "options": [
+     "as long as",
+     "in case",
+     "even if"
+    ],
+    "kind": "Koşul",
+    "why": "“… -dıkça, … sürece”: as long as. In case “ihtimale karşı”, even if “olsa bile” demektir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-ai-c1",
+  "language": "en",
+  "text": "Artificial intelligence is entering classrooms. {1} it can support struggling pupils, it also risks excusing them from effort that learning requires. {2}, teachers insist on teaching pupils to use it critically. They want students to write on their own {3} they rely on software for help.",
+  "tr": "Yapay zekâ sınıflara giriyor. Zorlanan öğrencilere destek olabilse de öğrenmenin gerektirdiği çabadan onları muaf tutma riski de taşıyor. Bu yüzden öğretmenler öğrencilere onu eleştirel kullanmayı öğretmekte ısrar ediyor. Öğrencilerin yazılım yardımına başvurmadan önce kendi başlarına yazmasını istiyorlar.",
+  "gaps": [
+   {
+    "answer": "Although",
+    "options": [
+     "Although",
+     "Because",
+     "Unless"
+    ],
+    "kind": "Taviz",
+    "why": "İki karşıt yön: “destek olabilse de … risk taşıyor”. Because neden, Unless koşul bildirir."
+   },
+   {
+    "answer": "For that reason",
+    "options": [
+     "For that reason",
+     "However",
+     "Otherwise"
+    ],
+    "kind": "Sonuç",
+    "why": "Önceki cümlenin sonucu: “Bu yüzden”. However karşıtlık, Otherwise “aksi hâlde” demektir."
+   },
+   {
+    "answer": "before",
+    "options": [
+     "before",
+     "unless",
+     "while"
+    ],
+    "kind": "Zaman",
+    "why": "“yazılıma başvurmadan önce”: before. Unless ve while anlamı bozar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-social-c1",
+  "language": "en",
+  "text": "Social media has transformed access to information. {1} anyone can publish, false stories travel fast. {2} the platforms promise stricter checks, verification often remains weak. Readers should therefore compare several sources {3} forming an opinion.",
+  "tr": "Sosyal medya bilgiye erişimi dönüştürdü. Herkes yayın yapabildiği için yanlış haberler hızla yayılıyor. Platformlar daha sıkı denetim vaat etse de doğrulama çoğu zaman zayıf kalıyor. Bu nedenle okurlar bir görüş oluşturmadan önce birkaç kaynağı karşılaştırmalı.",
+  "gaps": [
+   {
+    "answer": "Since",
+    "options": [
+     "Since",
+     "Although",
+     "Unless"
+    ],
+    "kind": "Neden",
+    "why": "“Herkes yayın yapabildiği için”: Since neden bildirir. Although ve Unless uymaz."
+   },
+   {
+    "answer": "Although",
+    "options": [
+     "Although",
+     "Because",
+     "So that"
+    ],
+    "kind": "Taviz",
+    "why": "“vaat etse de … zayıf kalıyor”: Although. Because ve So that anlamı bozar."
+   },
+   {
+    "answer": "before",
+    "options": [
+     "before",
+     "unless",
+     "because of"
+    ],
+    "kind": "Zaman",
+    "why": "“görüş oluşturmadan önce”: before + -ing. Unless ve because of cümleyi bozar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-nuclear-c1",
+  "language": "en",
+  "text": "Nuclear power divides the experts. {1} it emits little carbon, it creates waste that must be monitored for centuries. {2} existing plants are ageing, replacing them demands huge investment. Some argue that giving it up altogether would be irresponsible {3} no alternative can yet match its output.",
+  "tr": "Nükleer enerji uzmanları bölüyor. Az karbon salsa da yüzyıllarca izlenmesi gereken atık üretiyor. Mevcut santraller yaşlandığı için yerlerine yenisini koymak devasa yatırım gerektiriyor. Bazıları, hiçbir alternatif henüz üretimine denk olamadığı için onu büsbütün bırakmanın sorumsuzluk olacağını savunuyor.",
+  "gaps": [
+   {
+    "answer": "Although",
+    "options": [
+     "Although",
+     "Because",
+     "Provided"
+    ],
+    "kind": "Taviz",
+    "why": "“az karbon salsa da … atık üretiyor”: Although. Because ve Provided anlamı bozar."
+   },
+   {
+    "answer": "Because",
+    "options": [
+     "Because",
+     "Although",
+     "Unless"
+    ],
+    "kind": "Neden",
+    "why": "“santraller yaşlandığı için”: Because. Although ve Unless uymaz."
+   },
+   {
+    "answer": "since",
+    "options": [
+     "since",
+     "unless",
+     "whereas"
+    ],
+    "kind": "Neden",
+    "why": "“hiçbir alternatif denk olamadığı için”: since. Unless ve whereas anlamı bozar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reading-c1",
+  "language": "en",
+  "text": "Reading is declining among teenagers. {1} screens fill much of their free time, they read fewer novels. {2}, some schools now set aside daily reading time. The aim is to help every pupil rediscover the pleasure of books {3} they grow up.",
+  "tr": "Gençler arasında okuma azalıyor. Ekranlar boş zamanlarının büyük kısmını doldurduğu için daha az roman okuyorlar. Bu yüzden bazı okullar artık günlük okuma saati ayırıyor. Amaç, her öğrencinin büyümeden önce kitabın zevkini yeniden keşfetmesine yardım etmek.",
+  "gaps": [
+   {
+    "answer": "Because",
+    "options": [
+     "Because",
+     "Although",
+     "Unless"
+    ],
+    "kind": "Neden",
+    "why": "“ekranlar zamanı doldurduğu için”: Because. Although ve Unless uymaz."
+   },
+   {
+    "answer": "For this reason",
+    "options": [
+     "For this reason",
+     "Nevertheless",
+     "Otherwise"
+    ],
+    "kind": "Sonuç",
+    "why": "Önceki durumun sonucu: “Bu yüzden”. Nevertheless karşıtlık, Otherwise “aksi hâlde” demektir."
+   },
+   {
+    "answer": "before",
+    "options": [
+     "before",
+     "unless",
+     "although"
+    ],
+    "kind": "Zaman",
+    "why": "“büyümeden önce”: before. Unless ve although anlamı bozar."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]

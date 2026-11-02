@@ -1101,6 +1101,138 @@
           "why": "Yayıncılar editoryal titizliği finanse etmek için yüksek gelirlerin gerekli olduğunu öne sürmektedir ('high profit margins are necessary to finance rigorous editorial curation')."
         }
       ]
+    },
+    {
+      "id": "en-read-attention-c1",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "C1",
+      "title": "The attention economy and its blind spots",
+      "text": "Digital platforms do not sell content; they sell our attention, sliced into minutes and resold to advertisers. Within that logic, every notification, every endless scroll and every video that starts by itself serves a measurable goal: to prolong the session. Designers insist that they merely respond to our preferences, yet what we tap in the moment is not necessarily what we would choose to watch if we were given time to reflect. Researchers in cognitive psychology note that the constant fragmentation of attention impoverishes sustained reading and undermines working memory, although it can hardly be held up as the sole cause of contemporary unease. Some governments are considering curbs on the mechanisms that capture attention, while the companies themselves argue for self-regulation. A deeper question remains: does responsibility lie with users, who are expected to master their own habits, or with those who build products that are deliberately hard to put down? Any considered answer must avoid conflating information with conditioning.",
+      "tr": "Dijital platformlar içerik satmaz; dakikalara bölünmüş dikkatimizi satar ve reklamverenlere yeniden satar. Bu mantıkta her bildirim, her sonsuz kaydırma ve kendiliğinden başlayan her video ölçülebilir bir hedefe, yani oturumu uzatmaya hizmet eder. Tasarımcılar yalnızca tercihlerimize karşılık verdiklerinde ısrar eder; oysa o an dokunduğumuz şey, düşünmemize zaman tanınsa izlemeyi seçeceğimiz şey olmayabilir. Bilişsel psikoloji araştırmacıları dikkatin sürekli parçalanmasının uzun okumayı yoksullaştırdığını ve çalışma belleğini zayıflattığını belirtir; ancak bu, çağdaş huzursuzluğun tek nedeni sayılamaz. Bazı hükümetler dikkat yakalama mekanizmalarını sınırlamayı düşünürken şirketler öz denetimi savunur. Daha derin bir soru kalıyor: sorumluluk alışkanlıklarına hâkim olması beklenen kullanıcıda mı, yoksa bırakılması bilerek zor ürünler kuranlarda mı? Ölçülü bir cevap, bilgilendirmeyi koşullandırmayla karıştırmamalıdır.",
+      "questions": [
+        {
+          "prompt": "According to the passage, what do digital platforms actually sell?",
+          "options": [
+            "Original content produced by their own teams",
+            "Users' attention, resold to advertisers",
+            "Subscriptions to online libraries",
+            "Devices designed for sustained reading"
+          ],
+          "answer": 1,
+          "why": "İlk cümle platformların içerik değil, dikkat sattığını söyler."
+        },
+        {
+          "prompt": "What weakness does the writer imply in the designers' claim that they respond to our preferences?",
+          "options": [
+            "It ignores that users reject all advertising",
+            "It confuses an instant tap with what people would choose after reflecting",
+            "It proves that users have no preferences at all",
+            "It assumes that governments already control the platforms"
+          ],
+          "answer": 1,
+          "why": "'What we tap in the moment is not necessarily what we would choose...' argümanın zayıflığını gösterir."
+        },
+        {
+          "prompt": "What is the writer's position on the effects of fragmented attention?",
+          "options": [
+            "It is the only cause of contemporary unease",
+            "It has no measurable consequences",
+            "It affects reading and memory, but is not the sole cause",
+            "It improves working memory"
+          ],
+          "answer": 2,
+          "why": "Metin etkileri kabul eder ama 'sole cause' saymaz."
+        }
+      ]
+    },
+    {
+      "id": "en-read-languages-c1",
+      "language": "en",
+      "exam": "Cambridge",
+      "level": "C1",
+      "title": "When a language falls silent: the stakes of linguistic diversity",
+      "text": "It is estimated that a language disappears roughly every two weeks, usually before any linguist has recorded its vocabulary or grammar. Such extinction seldom results from an outright ban; it follows a gradual slide, as parents come to regard the language of school and the job market as more useful to pass on. Yet every language embodies a distinctive way of carving up the world, of naming plants, of describing kinship or time. To lose one is to impoverish a body of knowledge that no other tongue holds in quite the same form. Revitalisation programmes, built on immersion schools and on recordings made with the last remaining speakers, have produced encouraging results in Wales and New Zealand. Sceptics counter that a language cannot be saved by decree and that families' freedom of choice ought to prevail. The question remains open: how much should a society invest in preserving what an entire generation has stopped speaking?",
+      "tr": "Yaklaşık iki haftada bir bir dilin yok olduğu tahmin edilir; çoğu zaman da hiçbir dilbilimci kelime hazinesini ya da dilbilgisini kayda geçirmeden. Bu yok oluş nadiren açık bir yasaktan kaynaklanır; ebeveynler okulun ve iş piyasasının dilini aktarmayı daha yararlı gördükçe yavaş bir kaymayı izler. Oysa her dil dünyayı bölmenin, bitkileri adlandırmanın, akrabalığı ya da zamanı anlatmanın ayırt edici bir yolunu taşır. Birini yitirmek, başka hiçbir dilin tam aynı biçimde barındırmadığı bir bilgi birikimini yoksullaştırmaktır. Daldırma okullarına ve son konuşurlarla yapılan kayıtlara dayanan canlandırma programları Galler'de ve Yeni Zelanda'da cesaret verici sonuçlar vermiştir. Kuşkucular bir dilin kararnameyle kurtarılamayacağını ve ailelerin seçme özgürlüğünün öncelikli olması gerektiğini savunur. Soru açık: bir toplum, bütün bir neslin konuşmayı bıraktığı şeyi korumak için ne kadar yatırım yapmalı?",
+      "questions": [
+        {
+          "prompt": "According to the passage, how does a language most often die out?",
+          "options": [
+            "Through a sudden official ban",
+            "Through a gradual slide as parents pass on another language",
+            "Through the complete absence of elderly speakers",
+            "Through the voluntary merger of two neighbouring languages"
+          ],
+          "answer": 1,
+          "why": "Metin yok oluşun 'gradual slide' ile olduğunu söyler."
+        },
+        {
+          "prompt": "Why does losing a language impoverish us, according to the writer?",
+          "options": [
+            "Because rare languages are easier to learn",
+            "Because each language holds knowledge that no other holds in quite the same form",
+            "Because tourists can no longer travel",
+            "Because dictionaries become too large"
+          ],
+          "answer": 1,
+          "why": "Her dil özgün bir bilgi biçimi taşır."
+        },
+        {
+          "prompt": "What objection do the sceptics raise?",
+          "options": [
+            "Recordings are too expensive for families",
+            "Immersion schools are banned in Wales",
+            "A language cannot be saved by decree and families' choice should prevail",
+            "Linguists refuse to work with the last speakers"
+          ],
+          "answer": 2,
+          "why": "Kuşkucular 'a language cannot be saved by decree' der."
+        }
+      ]
+    },
+    {
+      "id": "en-read-overtourism-c1",
+      "language": "en",
+      "exam": "IELTS",
+      "level": "C1",
+      "title": "Overtourism: economic windfall or dispossession?",
+      "text": "Venice, Barcelona and Dubrovnik receive crowds each summer that far exceed their resident populations. The economic returns are considerable, but they are poorly distributed: rents soar, neighbourhood shops give way to souvenir outlets, and residents gradually feel like strangers in their own districts. City councils are trying a range of remedies, including entry fees, caps on short-term lets and visitor quotas at the most fragile sites. Each measure attracts criticism. Industry professionals fear a decline in activity, while some travellers object to a logic that would reserve exceptional places for the wealthy. Advocates of so-called sustainable tourism urge instead that flows be spread across time and space, promoting lesser-known destinations. It would be naive, however, to regard this as a miracle cure: displacing pressure does not remove it, and the territories newly discovered risk suffering the very fate they hoped to avoid.",
+      "tr": "Venedik, Barselona ve Dubrovnik her yaz yerleşik nüfuslarını çok aşan kalabalıkları ağırlar. Ekonomik getiri büyüktür ama kötü dağılır: kiralar fırlar, mahalle dükkânları yerini hediyelik eşya satış noktalarına bırakır ve sakinler kendi semtlerinde giderek yabancı hisseder. Belediyeler giriş ücretleri, kısa süreli kiralamalara üst sınır ve en kırılgan alanlarda ziyaretçi kotaları gibi çeşitli çareler dener. Her önlem eleştiri toplar. Sektör profesyonelleri faaliyetin gerilemesinden korkarken bazı gezginler istisnai yerleri varlıklılara ayıracak bir mantığa itiraz eder. Sürdürülebilir turizm savunucuları ise akışların zamana ve mekâna yayılmasını, daha az bilinen destinasyonların öne çıkarılmasını ister. Yine de bunu mucizevi bir çare saymak saflık olurdu: baskıyı yer değiştirmek onu ortadan kaldırmaz ve yeni keşfedilen bölgeler kaçınmayı umdukları akıbete uğrama riski taşır.",
+      "questions": [
+        {
+          "prompt": "What criticism is made of how tourism income is shared?",
+          "options": [
+            "It does not exist in large cities",
+            "It is uneven: rents rise and local shops are replaced",
+            "It benefits only residents of outlying districts",
+            "It is banned by city councils"
+          ],
+          "answer": 1,
+          "why": "Gelir kötü dağılır: kiralar artar, yerel dükkânlar yok olur."
+        },
+        {
+          "prompt": "What objection do some travellers raise to visitor quotas?",
+          "options": [
+            "They have never been applied",
+            "They might reserve exceptional places for the wealthy",
+            "They increase the number of short-term lets",
+            "All industry professionals approve of them"
+          ],
+          "answer": 1,
+          "why": "Bazı gezginler bu mantığın istisnai yerleri varlıklılara ayıracağını söyler."
+        },
+        {
+          "prompt": "Why does the writer call spreading visitor flows a naive miracle cure?",
+          "options": [
+            "Because lesser-known destinations refuse visitors",
+            "Because displacing pressure does not remove it",
+            "Because sustainable tourism is less profitable than expected",
+            "Because residents prefer crowds"
+          ],
+          "answer": 1,
+          "why": "'Displacing pressure does not remove it' cümlesi çözümün sınırını gösterir."
+        }
+      ]
     }
   ]
 }

@@ -2411,6 +2411,1350 @@
      "p": "adj"
     }
    ]
+  },
+  {
+   "id": "politics_state",
+   "title": "Siyaset ve devlet",
+   "level": "C1",
+   "items": [
+    {
+     "w": "el gobierno",
+     "t": "hükümet",
+     "s": "El gobierno anunció una reforma de las pensiones.",
+     "tr": "Hükümet emeklilik reformunu açıkladı.",
+     "p": "noun"
+    },
+    {
+     "w": "la elección",
+     "t": "seçim",
+     "s": "La elección presidencial será en primavera.",
+     "tr": "Cumhurbaşkanlığı seçimi ilkbaharda yapılacak.",
+     "p": "noun"
+    },
+    {
+     "w": "el escrutinio",
+     "t": "oy sayımı, seçim",
+     "s": "El escrutinio se desarrolló con normalidad.",
+     "tr": "Oy sayımı olağan biçimde yürüdü.",
+     "p": "noun"
+    },
+    {
+     "w": "la ley",
+     "t": "yasa",
+     "s": "El parlamento aprobó una nueva ley de inmigración.",
+     "tr": "Meclis göç hakkında yeni bir yasayı kabul etti.",
+     "p": "noun"
+    },
+    {
+     "w": "el diputado",
+     "t": "milletvekili",
+     "s": "El diputado defendió su proyecto ante el Congreso.",
+     "tr": "Milletvekili projesini Kongre'nin önünde savundu.",
+     "p": "noun"
+    },
+    {
+     "w": "la mayoría",
+     "t": "çoğunluk",
+     "s": "La mayoría de los diputados rechazó el texto.",
+     "tr": "Milletvekillerinin çoğunluğu metni reddetti.",
+     "p": "noun"
+    },
+    {
+     "w": "la oposición",
+     "t": "muhalefet",
+     "s": "La oposición denuncia una medida injusta.",
+     "tr": "Muhalefet adaletsiz bir önlemi kınıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la coalición",
+     "t": "koalisyon",
+     "s": "Los partidos formaron una coalición frágil.",
+     "tr": "Partiler kırılgan bir koalisyon kurdu.",
+     "p": "noun"
+    },
+    {
+     "w": "gobernar",
+     "t": "yönetmek",
+     "s": "Es difícil gobernar sin una mayoría clara.",
+     "tr": "Net bir çoğunluk olmadan yönetmek zor.",
+     "p": "verb"
+    },
+    {
+     "w": "la soberanía",
+     "t": "egemenlik",
+     "s": "Este tratado amenaza la soberanía nacional.",
+     "tr": "Bu anlaşma ulusal egemenliği tehdit ediyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el referéndum",
+     "t": "referandum",
+     "s": "El referéndum dividió profundamente al país.",
+     "tr": "Referandum ülkeyi derinden böldü.",
+     "p": "noun"
+    },
+    {
+     "w": "reformar",
+     "t": "reform yapmak",
+     "s": "El gobierno quiere reformar el sistema educativo.",
+     "tr": "Hükümet eğitim sistemini reforme etmek istiyor.",
+     "p": "verb"
+    },
+    {
+     "w": "el mandato",
+     "t": "görev süresi, yetki",
+     "s": "El presidente termina su segundo mandato el año próximo.",
+     "tr": "Cumhurbaşkanı ikinci görev süresini seneye bitiriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la política exterior",
+     "t": "dış politika",
+     "s": "La política exterior del país cambió de rumbo.",
+     "tr": "Ülkenin dış politikası yön değiştirdi.",
+     "p": "noun"
+    },
+    {
+     "w": "el sufragio",
+     "t": "oy, oy hakkı",
+     "s": "El sufragio universal es una conquista democrática.",
+     "tr": "Genel oy hakkı demokratik bir kazanımdır.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "law_justice",
+   "title": "Hukuk ve adalet",
+   "level": "C1",
+   "items": [
+    {
+     "w": "el tribunal",
+     "t": "mahkeme",
+     "s": "El tribunal dictó sentencia anoche.",
+     "tr": "Mahkeme dün akşam kararını açıkladı.",
+     "p": "noun"
+    },
+    {
+     "w": "el juicio",
+     "t": "dava, yargılama",
+     "s": "El juicio durará varias semanas.",
+     "tr": "Yargılama birkaç hafta sürecek.",
+     "p": "noun"
+    },
+    {
+     "w": "el juez",
+     "t": "hâkim",
+     "s": "El juez ordenó un nuevo peritaje.",
+     "tr": "Hâkim yeni bir bilirkişi incelemesi istedi.",
+     "p": "noun"
+    },
+    {
+     "w": "el abogado",
+     "t": "avukat",
+     "s": "Su abogado alegó legítima defensa.",
+     "tr": "Avukatı meşru müdafaayı ileri sürdü.",
+     "p": "noun"
+    },
+    {
+     "w": "el testimonio",
+     "t": "tanıklık",
+     "s": "Su testimonio cambió el rumbo del caso.",
+     "tr": "Tanıklığı davanın yönünü değiştirdi.",
+     "p": "noun"
+    },
+    {
+     "w": "el acusado",
+     "t": "sanık",
+     "s": "El acusado negó todos los cargos.",
+     "tr": "Sanık bütün suçlamaları reddetti.",
+     "p": "noun"
+    },
+    {
+     "w": "la prueba",
+     "t": "kanıt",
+     "s": "Los investigadores no tienen una prueba decisiva.",
+     "tr": "Soruşturmacıların kesin bir kanıtı yok.",
+     "p": "noun"
+    },
+    {
+     "w": "condenar",
+     "t": "mahkûm etmek, kınamak",
+     "s": "Lo condenaron a dos años de prisión.",
+     "tr": "Onu iki yıl hapse mahkûm ettiler.",
+     "p": "verb"
+    },
+    {
+     "w": "absolver",
+     "t": "beraat ettirmek",
+     "s": "Por falta de pruebas, el tribunal lo absolvió.",
+     "tr": "Delil yetersizliğinden mahkeme onu beraat ettirdi.",
+     "p": "verb"
+    },
+    {
+     "w": "la sentencia",
+     "t": "karar, hüküm",
+     "s": "La sentencia se conocerá dentro de un mes.",
+     "tr": "Karar bir ay içinde açıklanacak.",
+     "p": "noun"
+    },
+    {
+     "w": "denunciar",
+     "t": "şikâyet etmek, ihbar etmek",
+     "s": "Ella denunció a su antiguo empleador.",
+     "tr": "Eski işvereni hakkında şikâyette bulundu.",
+     "p": "verb"
+    },
+    {
+     "w": "la multa",
+     "t": "para cezası",
+     "s": "Recibió una multa de cien euros.",
+     "tr": "Yüz avro para cezası aldı.",
+     "p": "noun"
+    },
+    {
+     "w": "el perjuicio",
+     "t": "zarar",
+     "s": "La víctima exige reparación del perjuicio sufrido.",
+     "tr": "Mağdur uğradığı zararın tazminini istiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la pena",
+     "t": "ceza",
+     "s": "La pena prevista para este delito es severa.",
+     "tr": "Bu suç için öngörülen ceza ağır.",
+     "p": "noun"
+    },
+    {
+     "w": "el recurso",
+     "t": "itiraz, başvuru",
+     "s": "Su abogado decidió presentar un recurso.",
+     "tr": "Avukatı itiraz başvurusunda bulunmaya karar verdi.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "economy_finance",
+   "title": "Ekonomi ve finans",
+   "level": "B2",
+   "items": [
+    {
+     "w": "la inflación",
+     "t": "enflasyon",
+     "s": "La inflación erosiona el poder adquisitivo de los hogares.",
+     "tr": "Enflasyon hanelerin satın alma gücünü eritiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el desempleo",
+     "t": "işsizlik",
+     "s": "El desempleo juvenil sigue siendo preocupante.",
+     "tr": "Gençlerdeki işsizlik endişe verici olmaya devam ediyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el crecimiento",
+     "t": "büyüme",
+     "s": "El crecimiento se frenó en el último trimestre.",
+     "tr": "Büyüme son çeyrekte yavaşladı.",
+     "p": "noun"
+    },
+    {
+     "w": "la inversión",
+     "t": "yatırım",
+     "s": "Esta inversión debería dar frutos a largo plazo.",
+     "tr": "Bu yatırımın uzun vadede getiri sağlaması bekleniyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la deuda",
+     "t": "borç",
+     "s": "La deuda pública superó el cien por cien del PIB.",
+     "tr": "Kamu borcu GSYH'nin yüzde yüzünü aştı.",
+     "p": "noun"
+    },
+    {
+     "w": "el presupuesto",
+     "t": "bütçe",
+     "s": "El presupuesto del Estado está en déficit desde hace diez años.",
+     "tr": "Devlet bütçesi on yıldır açık veriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la bolsa",
+     "t": "borsa",
+     "s": "La bolsa de Madrid cerró a la baja.",
+     "tr": "Madrid borsası düşüşle kapandı.",
+     "p": "noun"
+    },
+    {
+     "w": "el impuesto",
+     "t": "vergi",
+     "s": "El gobierno promete bajar los impuestos.",
+     "tr": "Hükümet vergileri düşürmeyi vaat ediyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la recesión",
+     "t": "durgunluk, resesyon",
+     "s": "Varios economistas temen una recesión.",
+     "tr": "Birçok iktisatçı bir durgunluktan korkuyor.",
+     "p": "noun"
+    },
+    {
+     "w": "ahorrar",
+     "t": "tasarruf etmek",
+     "s": "Ella ahorra cada mes para comprar un piso.",
+     "tr": "Ev almak için her ay para biriktiriyor.",
+     "p": "verb"
+    },
+    {
+     "w": "el préstamo",
+     "t": "kredi",
+     "s": "Pidieron un préstamo a veinte años.",
+     "tr": "Yirmi yıllık bir kredi çektiler.",
+     "p": "noun"
+    },
+    {
+     "w": "la quiebra",
+     "t": "iflas",
+     "s": "La empresa está al borde de la quiebra.",
+     "tr": "Şirket iflasın eşiğinde.",
+     "p": "noun"
+    },
+    {
+     "w": "la competencia",
+     "t": "rekabet",
+     "s": "La competencia extranjera hace bajar los precios.",
+     "tr": "Yabancı rekabet fiyatları düşürüyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el poder adquisitivo",
+     "t": "satın alma gücü",
+     "s": "Los jubilados han perdido poder adquisitivo.",
+     "tr": "Emekliler satın alma gücü kaybetti.",
+     "p": "noun"
+    },
+    {
+     "w": "especular",
+     "t": "spekülasyon yapmak",
+     "s": "Algunos inversores especulan con el precio del petróleo.",
+     "tr": "Bazı yatırımcılar petrol fiyatı üzerinde spekülasyon yapıyor.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "environment_climate",
+   "title": "Çevre ve iklim",
+   "level": "B2",
+   "items": [
+    {
+     "w": "el calentamiento global",
+     "t": "küresel ısınma",
+     "s": "El calentamiento global acelera el deshielo de los glaciares.",
+     "tr": "Küresel ısınma buzulların erimesini hızlandırıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "las emisiones",
+     "t": "emisyonlar, salımlar",
+     "s": "Las emisiones de CO2 deben bajar antes de 2030.",
+     "tr": "CO2 emisyonları 2030'dan önce azalmalı.",
+     "p": "noun"
+    },
+    {
+     "w": "la sequía",
+     "t": "kuraklık",
+     "s": "La sequía arruinó varias cosechas.",
+     "tr": "Kuraklık birkaç ürünü mahvetti.",
+     "p": "noun"
+    },
+    {
+     "w": "la inundación",
+     "t": "sel, taşkın",
+     "s": "Las inundaciones obligaron a evacuar a miles de personas.",
+     "tr": "Seller binlerce kişinin tahliyesine yol açtı.",
+     "p": "noun"
+    },
+    {
+     "w": "renovable",
+     "t": "yenilenebilir",
+     "s": "El país invierte en energías renovables.",
+     "tr": "Ülke yenilenebilir enerjilere yatırım yapıyor.",
+     "p": "adjective"
+    },
+    {
+     "w": "la biodiversidad",
+     "t": "biyoçeşitlilik",
+     "s": "La biodiversidad está amenazada por la deforestación.",
+     "tr": "Biyoçeşitlilik ormansızlaşmadan dolayı tehdit altında.",
+     "p": "noun"
+    },
+    {
+     "w": "el residuo",
+     "t": "atık",
+     "s": "Cada familia separa sus residuos domésticos.",
+     "tr": "Her aile evsel atıklarını ayırıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "contaminar",
+     "t": "kirletmek",
+     "s": "Esta fábrica contamina el río desde hace años.",
+     "tr": "Bu fabrika yıllardır nehri kirletiyor.",
+     "p": "verb"
+    },
+    {
+     "w": "la deforestación",
+     "t": "ormansızlaşma",
+     "s": "La deforestación devora la Amazonía.",
+     "tr": "Ormansızlaşma Amazonlar'ı yiyip bitiriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "sostenible",
+     "t": "sürdürülebilir",
+     "s": "Necesitamos un modelo de desarrollo más sostenible.",
+     "tr": "Daha sürdürülebilir bir kalkınma modeline ihtiyacımız var.",
+     "p": "adjective"
+    },
+    {
+     "w": "la huella de carbono",
+     "t": "karbon ayak izi",
+     "s": "Viajar en tren reduce la huella de carbono.",
+     "tr": "Trenle seyahat etmek karbon ayak izini azaltır.",
+     "p": "noun"
+    },
+    {
+     "w": "la especie amenazada",
+     "t": "nesli tükenmekte olan tür",
+     "s": "El lince ibérico es una especie amenazada.",
+     "tr": "İber vaşağı nesli tükenmekte olan bir türdür.",
+     "p": "noun"
+    },
+    {
+     "w": "el derroche",
+     "t": "israf",
+     "s": "El derroche de alimentos es un escándalo.",
+     "tr": "Gıda israfı bir skandal.",
+     "p": "noun"
+    },
+    {
+     "w": "preservar",
+     "t": "korumak",
+     "s": "Hay que preservar los humedales.",
+     "tr": "Sulak alanları korumak gerek.",
+     "p": "verb"
+    },
+    {
+     "w": "la transición ecológica",
+     "t": "ekolojik dönüşüm",
+     "s": "La transición ecológica exige grandes inversiones.",
+     "tr": "Ekolojik dönüşüm büyük yatırımlar gerektiriyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "science_research",
+   "title": "Bilim ve araştırma",
+   "level": "C1",
+   "items": [
+    {
+     "w": "la investigación",
+     "t": "araştırma",
+     "s": "La investigación básica suele estar infrafinanciada.",
+     "tr": "Temel araştırma çoğu zaman yetersiz finanse ediliyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el estudio",
+     "t": "çalışma, inceleme",
+     "s": "Un estudio reciente cuestiona estos resultados.",
+     "tr": "Yeni bir çalışma bu sonuçları sorguluyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el experimento",
+     "t": "deney",
+     "s": "El experimento se repitió tres veces.",
+     "tr": "Deney üç kez tekrarlandı.",
+     "p": "noun"
+    },
+    {
+     "w": "el descubrimiento",
+     "t": "keşif",
+     "s": "Este descubrimiento podría cambiar la medicina.",
+     "tr": "Bu keşif tıbbı değiştirebilir.",
+     "p": "noun"
+    },
+    {
+     "w": "el investigador",
+     "t": "araştırmacı",
+     "s": "El investigador publicó sus resultados en una revista especializada.",
+     "tr": "Araştırmacı sonuçlarını uzman bir dergide yayımladı.",
+     "p": "noun"
+    },
+    {
+     "w": "la muestra",
+     "t": "örneklem, numune",
+     "s": "La muestra incluía a mil personas.",
+     "tr": "Örneklem bin kişiyi kapsıyordu.",
+     "p": "noun"
+    },
+    {
+     "w": "el método",
+     "t": "yöntem",
+     "s": "Los expertos criticaron el método empleado.",
+     "tr": "Uzmanlar kullanılan yöntemi eleştirdi.",
+     "p": "noun"
+    },
+    {
+     "w": "demostrar",
+     "t": "kanıtlamak",
+     "s": "Los científicos demostraron la eficacia del tratamiento.",
+     "tr": "Bilim insanları tedavinin etkinliğini kanıtladı.",
+     "p": "verb"
+    },
+    {
+     "w": "la teoría",
+     "t": "kuram",
+     "s": "Esta teoría nunca pudo verificarse.",
+     "tr": "Bu kuram hiçbir zaman doğrulanamadı.",
+     "p": "noun"
+    },
+    {
+     "w": "la innovación",
+     "t": "yenilik, inovasyon",
+     "s": "La innovación tecnológica transforma nuestros hábitos.",
+     "tr": "Teknolojik yenilik alışkanlıklarımızı dönüştürüyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el dato",
+     "t": "veri",
+     "s": "Los datos se analizaron con cuidado.",
+     "tr": "Veriler özenle analiz edildi.",
+     "p": "noun"
+    },
+    {
+     "w": "reproducir",
+     "t": "yeniden üretmek, tekrarlamak",
+     "s": "Ningún laboratorio logró reproducir este resultado.",
+     "tr": "Hiçbir laboratuvar bu sonucu yeniden elde edemedi.",
+     "p": "verb"
+    },
+    {
+     "w": "el laboratorio",
+     "t": "laboratuvar",
+     "s": "El laboratorio recibió una subvención europea.",
+     "tr": "Laboratuvar bir Avrupa hibesi aldı.",
+     "p": "noun"
+    },
+    {
+     "w": "el avance",
+     "t": "ilerleme, gelişme",
+     "s": "Este avance abre nuevas perspectivas.",
+     "tr": "Bu ilerleme yeni ufuklar açıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "comprobar",
+     "t": "doğrulamak, denetlemek",
+     "s": "Hay que comprobar las fuentes antes de publicar.",
+     "tr": "Yayımlamadan önce kaynakları doğrulamak gerekir.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "health_medicine",
+   "title": "Sağlık ve tıp (ileri)",
+   "level": "B2",
+   "items": [
+    {
+     "w": "el diagnóstico",
+     "t": "teşhis",
+     "s": "El diagnóstico se confirmó con una biopsia.",
+     "tr": "Teşhis bir biyopsiyle doğrulandı.",
+     "p": "noun"
+    },
+    {
+     "w": "el tratamiento",
+     "t": "tedavi",
+     "s": "El tratamiento dura unos seis meses.",
+     "tr": "Tedavi yaklaşık altı ay sürüyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la receta",
+     "t": "reçete",
+     "s": "Este medicamento solo se vende con receta.",
+     "tr": "Bu ilaç yalnızca reçeteyle satılır.",
+     "p": "noun"
+    },
+    {
+     "w": "el síntoma",
+     "t": "belirti",
+     "s": "Los primeros síntomas aparecen a los tres días.",
+     "tr": "İlk belirtiler üç gün sonra ortaya çıkıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "curar",
+     "t": "iyileştirmek, iyileşmek",
+     "s": "Tardó mucho en curarse de la herida.",
+     "tr": "Yarasından iyileşmesi uzun sürdü.",
+     "p": "verb"
+    },
+    {
+     "w": "la vacunación",
+     "t": "aşılama",
+     "s": "La vacunación protege a las personas frágiles.",
+     "tr": "Aşılama kırılgan kişileri korur.",
+     "p": "noun"
+    },
+    {
+     "w": "las urgencias",
+     "t": "acil servis",
+     "s": "Lo llevaron a las urgencias en ambulancia.",
+     "tr": "Onu ambulansla acil servise götürdüler.",
+     "p": "noun"
+    },
+    {
+     "w": "el cirujano",
+     "t": "cerrah",
+     "s": "El cirujano operó durante cuatro horas.",
+     "tr": "Cerrah dört saat ameliyat yaptı.",
+     "p": "noun"
+    },
+    {
+     "w": "la curación",
+     "t": "iyileşme",
+     "s": "La curación completa llevará unas semanas.",
+     "tr": "Tam iyileşme birkaç hafta alacak.",
+     "p": "noun"
+    },
+    {
+     "w": "crónico",
+     "t": "kronik",
+     "s": "Sufre una enfermedad crónica.",
+     "tr": "Kronik bir hastalıktan muzdarip.",
+     "p": "adjective"
+    },
+    {
+     "w": "el cribado",
+     "t": "tarama",
+     "s": "El cribado precoz salva vidas.",
+     "tr": "Erken tarama hayat kurtarır.",
+     "p": "noun"
+    },
+    {
+     "w": "el efecto secundario",
+     "t": "yan etki",
+     "s": "Este antibiótico tiene pocos efectos secundarios.",
+     "tr": "Bu antibiyotiğin yan etkisi az.",
+     "p": "noun"
+    },
+    {
+     "w": "la rehabilitación",
+     "t": "rehabilitasyon, fizik tedavi",
+     "s": "La rehabilitación tras el accidente fue larga.",
+     "tr": "Kazadan sonraki rehabilitasyon uzun sürdü.",
+     "p": "noun"
+    },
+    {
+     "w": "contagioso",
+     "t": "bulaşıcı",
+     "s": "La gripe es muy contagiosa en invierno.",
+     "tr": "Grip kışın çok bulaşıcıdır.",
+     "p": "adjective"
+    },
+    {
+     "w": "la salud mental",
+     "t": "ruh sağlığı",
+     "s": "La salud mental de los estudiantes es una prioridad.",
+     "tr": "Öğrencilerin ruh sağlığı bir öncelik.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "education_academia",
+   "title": "Eğitim ve akademi",
+   "level": "B2",
+   "items": [
+    {
+     "w": "la enseñanza",
+     "t": "öğretim, eğitim",
+     "s": "La enseñanza superior está en plena transformación.",
+     "tr": "Yükseköğretim büyük bir dönüşüm geçiriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el título",
+     "t": "diploma, unvan",
+     "s": "Obtuvo su título con matrícula de honor.",
+     "tr": "Diplomasını üstün başarıyla aldı.",
+     "p": "noun"
+    },
+    {
+     "w": "la beca",
+     "t": "burs",
+     "s": "Consiguió una beca para estudiar en el extranjero.",
+     "tr": "Yurtdışında okumak için bir burs kazandı.",
+     "p": "noun"
+    },
+    {
+     "w": "el plan de estudios",
+     "t": "müfredat",
+     "s": "Este plan de estudios incluye unas prácticas obligatorias.",
+     "tr": "Bu müfredat zorunlu bir staj içeriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la tesis",
+     "t": "tez",
+     "s": "Defenderá su tesis en junio.",
+     "tr": "Tezini haziranda savunacak.",
+     "p": "noun"
+    },
+    {
+     "w": "el trabajo de fin de grado",
+     "t": "bitirme tezi",
+     "s": "Está escribiendo su trabajo de fin de grado.",
+     "tr": "Bitirme tezini yazıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la formación",
+     "t": "eğitim, formasyon",
+     "s": "La formación continua es esencial en esta profesión.",
+     "tr": "Sürekli eğitim bu meslekte şart.",
+     "p": "noun"
+    },
+    {
+     "w": "la prueba de acceso",
+     "t": "giriş sınavı",
+     "s": "Aprobó la prueba de acceso a la universidad.",
+     "tr": "Üniversite giriş sınavını geçti.",
+     "p": "noun"
+    },
+    {
+     "w": "el aprendizaje",
+     "t": "öğrenme",
+     "s": "El aprendizaje de un idioma requiere constancia.",
+     "tr": "Bir dil öğrenmek sebat ister.",
+     "p": "noun"
+    },
+    {
+     "w": "la conferencia",
+     "t": "konferans, ders",
+     "s": "La conferencia dura dos horas.",
+     "tr": "Konferans iki saat sürüyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el centro educativo",
+     "t": "eğitim kurumu",
+     "s": "Este centro educativo acoge a mil alumnos.",
+     "tr": "Bu eğitim kurumu bin öğrenci ağırlıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el profesorado",
+     "t": "öğretmenler, öğretim kadrosu",
+     "s": "El profesorado reclama mejores condiciones laborales.",
+     "tr": "Öğretmenler daha iyi çalışma koşulları talep ediyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el éxito escolar",
+     "t": "okul başarısı",
+     "s": "El éxito escolar depende también del entorno familiar.",
+     "tr": "Okul başarısı aynı zamanda aile ortamına da bağlıdır.",
+     "p": "noun"
+    },
+    {
+     "w": "el abandono escolar",
+     "t": "okulu bırakma",
+     "s": "El abandono escolar afecta sobre todo a los barrios desfavorecidos.",
+     "tr": "Okulu bırakma özellikle yoksun mahalleleri etkiliyor.",
+     "p": "noun"
+    },
+    {
+     "w": "evaluar",
+     "t": "değerlendirmek",
+     "s": "Los alumnos son evaluados al final de cada trimestre.",
+     "tr": "Öğrenciler her dönemin sonunda değerlendirilir.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "business_management",
+   "title": "İş dünyası ve yönetim",
+   "level": "B2",
+   "items": [
+    {
+     "w": "la empresa",
+     "t": "şirket",
+     "s": "La empresa abrió una oficina en Estambul.",
+     "tr": "Şirket İstanbul'da bir ofis açtı.",
+     "p": "noun"
+    },
+    {
+     "w": "la dirección",
+     "t": "yönetim",
+     "s": "La dirección anunció un plan de reestructuración.",
+     "tr": "Yönetim bir yeniden yapılanma planı açıkladı.",
+     "p": "noun"
+    },
+    {
+     "w": "la facturación",
+     "t": "ciro",
+     "s": "La facturación aumentó un diez por ciento.",
+     "tr": "Ciro yüzde on arttı.",
+     "p": "noun"
+    },
+    {
+     "w": "el beneficio",
+     "t": "kâr",
+     "s": "Los beneficios se duplicaron en un año.",
+     "tr": "Kârlar bir yılda ikiye katlandı.",
+     "p": "noun"
+    },
+    {
+     "w": "el despido",
+     "t": "işten çıkarma",
+     "s": "El despido de cien empleados provocó una huelga.",
+     "tr": "Yüz çalışanın işten çıkarılması bir greve yol açtı.",
+     "p": "noun"
+    },
+    {
+     "w": "negociar",
+     "t": "pazarlık yapmak, müzakere etmek",
+     "s": "Negoció un aumento de sueldo.",
+     "tr": "Bir maaş artışı için pazarlık yaptı.",
+     "p": "verb"
+    },
+    {
+     "w": "el orden del día",
+     "t": "gündem",
+     "s": "El primer punto del orden del día es el presupuesto.",
+     "tr": "Gündemin ilk maddesi bütçe.",
+     "p": "noun"
+    },
+    {
+     "w": "el socio",
+     "t": "ortak",
+     "s": "Buscamos un socio fiable para este proyecto.",
+     "tr": "Bu proje için güvenilir bir ortak arıyoruz.",
+     "p": "noun"
+    },
+    {
+     "w": "la estrategia",
+     "t": "strateji",
+     "s": "Hay que revisar la estrategia comercial.",
+     "tr": "Ticari stratejiyi gözden geçirmek gerek.",
+     "p": "noun"
+    },
+    {
+     "w": "el cliente",
+     "t": "müşteri",
+     "s": "El cliente siempre tiene la razón, dicen en el comercio.",
+     "tr": "Ticarette müşteri her zaman haklıdır derler.",
+     "p": "noun"
+    },
+    {
+     "w": "fusionarse",
+     "t": "birleşmek",
+     "s": "Los dos bancos decidieron fusionarse.",
+     "tr": "İki banka birleşmeye karar verdi.",
+     "p": "verb"
+    },
+    {
+     "w": "el sindicato",
+     "t": "sendika",
+     "s": "El sindicato convoca una huelga general.",
+     "tr": "Sendika genel greve çağırıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la deslocalización",
+     "t": "üretimi yurtdışına kaydırma",
+     "s": "La deslocalización destruyó miles de empleos.",
+     "tr": "Üretimin yurtdışına kaydırılması binlerce işi yok etti.",
+     "p": "noun"
+    },
+    {
+     "w": "el pliego de condiciones",
+     "t": "şartname",
+     "s": "El pliego de condiciones fija los plazos de entrega.",
+     "tr": "Şartname teslim sürelerini belirliyor.",
+     "p": "noun"
+    },
+    {
+     "w": "delegar",
+     "t": "görev devretmek",
+     "s": "Un buen jefe sabe delegar.",
+     "tr": "İyi bir yönetici görev devretmesini bilir.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "emotions_nuance",
+   "title": "Duygu ve düşünce incelikleri",
+   "level": "C1",
+   "items": [
+    {
+     "w": "la nostalgia",
+     "t": "nostalji",
+     "s": "Habla de su pueblo con nostalgia.",
+     "tr": "Köyünden nostaljiyle bahsediyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la angustia",
+     "t": "kaygı, sıkıntı",
+     "s": "La angustia por el fracaso no lo deja dormir.",
+     "tr": "Başarısızlık kaygısı uyumasına izin vermiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la decepción",
+     "t": "hayal kırıklığı",
+     "s": "Su decepción se notaba en su cara.",
+     "tr": "Hayal kırıklığı yüzünde belliydi.",
+     "p": "noun"
+    },
+    {
+     "w": "la indignación",
+     "t": "öfke, kızgınlık",
+     "s": "Esta decisión provocó indignación general.",
+     "tr": "Bu karar genel bir öfkeye yol açtı.",
+     "p": "noun"
+    },
+    {
+     "w": "aliviado",
+     "t": "rahatlamış",
+     "s": "Se sintió aliviado al enterarse de la noticia.",
+     "tr": "Haberi öğrenince rahatladı.",
+     "p": "adjective"
+    },
+    {
+     "w": "el rencor",
+     "t": "kin",
+     "s": "Ella no le guarda ningún rencor.",
+     "tr": "Ona karşı hiçbir kin beslemiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la benevolencia",
+     "t": "iyi niyet, hoşgörü",
+     "s": "Nos recibió con benevolencia.",
+     "tr": "Bizi iyi niyetle karşıladı.",
+     "p": "noun"
+    },
+    {
+     "w": "la envidia",
+     "t": "kıskançlık",
+     "s": "Mira su éxito con envidia.",
+     "tr": "Onun başarısına kıskançlıkla bakıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "calmar",
+     "t": "yatıştırmak",
+     "s": "Unas palabras tiernas calmaron al niño.",
+     "tr": "Birkaç tatlı söz çocuğu yatıştırdı.",
+     "p": "verb"
+    },
+    {
+     "w": "la vergüenza",
+     "t": "utanç",
+     "s": "Se puso roja de vergüenza delante de todos.",
+     "tr": "Herkesin önünde utançtan kızardı.",
+     "p": "noun"
+    },
+    {
+     "w": "la desconfianza",
+     "t": "güvensizlik",
+     "s": "La desconfianza se instaló entre los dos vecinos.",
+     "tr": "İki komşu arasına güvensizlik girdi.",
+     "p": "noun"
+    },
+    {
+     "w": "la gratitud",
+     "t": "minnet",
+     "s": "Expresó su gratitud a sus compañeros.",
+     "tr": "İş arkadaşlarına minnetini ifade etti.",
+     "p": "noun"
+    },
+    {
+     "w": "conmovido",
+     "t": "duygulanmış, etkilenmiş",
+     "s": "Estaba conmovida hasta las lágrimas por su discurso.",
+     "tr": "Konuşmasından gözyaşlarına boğulacak kadar etkilendi.",
+     "p": "adjective"
+    },
+    {
+     "w": "el hastío",
+     "t": "bıkkınlık",
+     "s": "Un inmenso hastío se apoderó de él.",
+     "tr": "Onu büyük bir bıkkınlık sardı.",
+     "p": "noun"
+    },
+    {
+     "w": "exasperar",
+     "t": "çileden çıkarmak",
+     "s": "Su constante retraso me exaspera.",
+     "tr": "Sürekli gecikmesi beni çileden çıkarıyor.",
+     "p": "verb"
+    }
+   ]
+  },
+  {
+   "id": "relations_social",
+   "title": "İnsan ilişkileri ve toplum",
+   "level": "B2",
+   "items": [
+    {
+     "w": "la solidaridad",
+     "t": "dayanışma",
+     "s": "Una gran ola de solidaridad siguió a la catástrofe.",
+     "tr": "Felaketin ardından büyük bir dayanışma dalgası yaşandı.",
+     "p": "noun"
+    },
+    {
+     "w": "la vecindad",
+     "t": "komşuluk",
+     "s": "Las relaciones de vecindad son excelentes aquí.",
+     "tr": "Buradaki komşuluk ilişkileri mükemmel.",
+     "p": "noun"
+    },
+    {
+     "w": "la confianza",
+     "t": "güven",
+     "s": "La confianza se construye despacio.",
+     "tr": "Güven yavaş yavaş kurulur.",
+     "p": "noun"
+    },
+    {
+     "w": "la ruptura",
+     "t": "kopuş, ayrılık",
+     "s": "La ruptura fue difícil para los dos.",
+     "tr": "Ayrılık ikisi için de zor oldu.",
+     "p": "noun"
+    },
+    {
+     "w": "discutir",
+     "t": "tartışmak, kavga etmek",
+     "s": "Los dos hermanos discuten por cualquier cosa.",
+     "tr": "İki kardeş her şey için tartışıyor.",
+     "p": "verb"
+    },
+    {
+     "w": "la reconciliación",
+     "t": "barışma",
+     "s": "La reconciliación llegó tras diez años de silencio.",
+     "tr": "Barışma on yıllık sessizliğin ardından geldi.",
+     "p": "noun"
+    },
+    {
+     "w": "la ayuda mutua",
+     "t": "yardımlaşma",
+     "s": "La ayuda mutua entre vecinos es valiosa en este barrio.",
+     "tr": "Bu mahallede komşular arası yardımlaşma çok değerli.",
+     "p": "noun"
+    },
+    {
+     "w": "la mentalidad",
+     "t": "zihniyet",
+     "s": "Las mentalidades cambian despacio.",
+     "tr": "Zihniyetler yavaş değişir.",
+     "p": "noun"
+    },
+    {
+     "w": "tolerar",
+     "t": "hoş görmek, tahammül etmek",
+     "s": "No tolero este tipo de comportamiento.",
+     "tr": "Bu tür davranışlara tahammül etmem.",
+     "p": "verb"
+    },
+    {
+     "w": "la precariedad",
+     "t": "güvencesizlik",
+     "s": "La precariedad afecta sobre todo a los jóvenes.",
+     "tr": "Güvencesizlik en çok gençleri etkiliyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el compromiso",
+     "t": "bağlılık, taahhüt",
+     "s": "Su compromiso con las asociaciones merece respeto.",
+     "tr": "Derneklere bağlılığı saygıyı hak ediyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la brecha",
+     "t": "uçurum, yarık",
+     "s": "Una brecha cultural separa a las dos generaciones.",
+     "tr": "İki kuşağı kültürel bir uçurum ayırıyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la cortesía",
+     "t": "nezaket",
+     "s": "Le falta cortesía en la mesa.",
+     "tr": "Sofrada nezaketten yoksun.",
+     "p": "noun"
+    },
+    {
+     "w": "la cohesión",
+     "t": "uyum, bütünlük",
+     "s": "La cohesión social está amenazada por la precariedad.",
+     "tr": "Toplumsal bütünlük güvencesizlik yüzünden tehdit altında.",
+     "p": "noun"
+    },
+    {
+     "w": "la integración",
+     "t": "uyum, entegrasyon",
+     "s": "La integración de los recién llegados pasa por el idioma.",
+     "tr": "Yeni gelenlerin uyumu dilden geçer.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "arts_culture",
+   "title": "Sanat ve kültür",
+   "level": "B2",
+   "items": [
+    {
+     "w": "la obra",
+     "t": "eser",
+     "s": "Esta obra se expone en el Prado.",
+     "tr": "Bu eser Prado'da sergileniyor.",
+     "p": "noun"
+    },
+    {
+     "w": "la novela",
+     "t": "roman",
+     "s": "Esta novela obtuvo un premio literario.",
+     "tr": "Bu roman bir edebiyat ödülü aldı.",
+     "p": "noun"
+    },
+    {
+     "w": "la exposición",
+     "t": "sergi",
+     "s": "La exposición reúne un centenar de cuadros.",
+     "tr": "Sergi yüz kadar tabloyu bir araya getiriyor.",
+     "p": "noun"
+    },
+    {
+     "w": "el cuadro",
+     "t": "tablo",
+     "s": "Compró un cuadro de Goya.",
+     "tr": "Goya'nın bir tablosunu satın aldı.",
+     "p": "noun"
+    },
+    {
+     "w": "el director",
+     "t": "yönetmen",
+     "s": "El director presentará su película en San Sebastián.",
+     "tr": "Yönetmen filmini San Sebastián'da tanıtacak.",
+     "p": "noun"
+    },
+    {
+     "w": "la puesta en escena",
+     "t": "sahneleme",
+     "s": "La puesta en escena de la obra es audaz.",
+     "tr": "Oyunun sahnelenişi cesur.",
+     "p": "noun"
+    },
+    {
+     "w": "el espectador",
+     "t": "izleyici",
+     "s": "Los espectadores aplaudieron largamente.",
+     "tr": "İzleyiciler uzun uzun alkışladı.",
+     "p": "noun"
+    },
+    {
+     "w": "la crítica",
+     "t": "eleştiri",
+     "s": "La crítica elogió el último álbum del grupo.",
+     "tr": "Eleştirmenler grubun son albümünü övdü.",
+     "p": "noun"
+    },
+    {
+     "w": "el patrimonio",
+     "t": "miras",
+     "s": "El patrimonio cultural debe protegerse.",
+     "tr": "Kültürel miras korunmalı.",
+     "p": "noun"
+    },
+    {
+     "w": "la corriente",
+     "t": "akım",
+     "s": "Este pintor pertenece a la corriente impresionista.",
+     "tr": "Bu ressam izlenimci akıma ait.",
+     "p": "noun"
+    },
+    {
+     "w": "el autor",
+     "t": "yazar",
+     "s": "El autor firmará su libro el sábado.",
+     "tr": "Yazar cumartesi kitabını imzalayacak.",
+     "p": "noun"
+    },
+    {
+     "w": "el festival",
+     "t": "festival",
+     "s": "El festival atrae a visitantes de todo el mundo.",
+     "tr": "Festival dünyanın dört bir yanından ziyaretçi çekiyor.",
+     "p": "noun"
+    },
+    {
+     "w": "interpretar",
+     "t": "yorumlamak, canlandırmak",
+     "s": "Ella interpreta el papel principal con maestría.",
+     "tr": "Başrolü ustalıkla canlandırıyor.",
+     "p": "verb"
+    },
+    {
+     "w": "el escenario",
+     "t": "sahne",
+     "s": "El cantante subió al escenario entre ovaciones.",
+     "tr": "Şarkıcı alkışlar eşliğinde sahneye çıktı.",
+     "p": "noun"
+    },
+    {
+     "w": "el taller",
+     "t": "atölye",
+     "s": "El escultor trabaja en su taller desde el amanecer.",
+     "tr": "Heykeltıraş şafaktan beri atölyesinde çalışıyor.",
+     "p": "noun"
+    }
+   ]
+  },
+  {
+   "id": "nuance_connectors",
+   "title": "Bağlaçlar ve söylem kalıpları",
+   "level": "C1",
+   "items": [
+    {
+     "w": "además",
+     "t": "üstelik, ayrıca",
+     "s": "Es caro y, además, poco práctico.",
+     "tr": "Pahalı ve üstelik pek pratik değil.",
+     "p": "phrase"
+    },
+    {
+     "w": "ahora bien",
+     "t": "şimdi, ama; öte yandan",
+     "s": "Ahora bien, no todo es tan sencillo.",
+     "tr": "Şimdi, her şey o kadar basit değil.",
+     "p": "phrase"
+    },
+    {
+     "w": "sin embargo",
+     "t": "ancak, buna rağmen",
+     "s": "Es joven; sin embargo, tiene mucha experiencia.",
+     "tr": "Genç; buna rağmen çok deneyimli.",
+     "p": "phrase"
+    },
+    {
+     "w": "en cualquier caso",
+     "t": "her halükârda",
+     "s": "En cualquier caso, te avisaré mañana.",
+     "tr": "Her halükârda yarın sana haber veririm.",
+     "p": "phrase"
+    },
+    {
+     "w": "a pesar de",
+     "t": "-e rağmen",
+     "s": "A pesar de la lluvia, la fiesta se celebró.",
+     "tr": "Yağmura rağmen kutlama yapıldı.",
+     "p": "phrase"
+    },
+    {
+     "w": "por lo tanto",
+     "t": "bu nedenle",
+     "s": "Hay riesgo; por lo tanto, conviene esperar.",
+     "tr": "Risk var; bu nedenle beklemek yerinde olur.",
+     "p": "phrase"
+    },
+    {
+     "w": "en cuanto a",
+     "t": "gelince, ... konusunda",
+     "s": "En cuanto a mí, prefiero no opinar.",
+     "tr": "Bana gelince, fikir belirtmemeyi tercih ederim.",
+     "p": "phrase"
+    },
+    {
+     "w": "a decir verdad",
+     "t": "doğrusu, açıkçası",
+     "s": "A decir verdad, ya no lo esperaba.",
+     "tr": "Doğrusu artık beklemiyordum.",
+     "p": "phrase"
+    },
+    {
+     "w": "por otra parte",
+     "t": "diğer yandan",
+     "s": "Por otra parte, los resultados son alentadores.",
+     "tr": "Diğer yandan sonuçlar cesaret verici.",
+     "p": "phrase"
+    },
+    {
+     "w": "en definitiva",
+     "t": "sonuç olarak, kısacası",
+     "s": "En definitiva, el plan fracasó.",
+     "tr": "Sonuç olarak plan başarısız oldu.",
+     "p": "phrase"
+    },
+    {
+     "w": "a menos que",
+     "t": "-medikçe",
+     "s": "Saldremos mañana a menos que cambie el tiempo.",
+     "tr": "Hava değişmedikçe yarın yola çıkacağız.",
+     "p": "phrase"
+    },
+    {
+     "w": "con todo",
+     "t": "yine de, buna rağmen",
+     "s": "Con todo, creo que valió la pena.",
+     "tr": "Yine de değdiğini düşünüyorum.",
+     "p": "phrase"
+    },
+    {
+     "w": "dado que",
+     "t": "-diği için, madem ki",
+     "s": "Dado que todo está listo, podemos empezar.",
+     "tr": "Her şey hazır olduğu için başlayabiliriz.",
+     "p": "phrase"
+    },
+    {
+     "w": "de ahí que",
+     "t": "bu yüzden, dolayısıyla",
+     "s": "De ahí que se retrasara el proyecto.",
+     "tr": "Bu yüzden proje gecikti.",
+     "p": "phrase"
+    },
+    {
+     "w": "aun así",
+     "t": "buna rağmen, yine de",
+     "s": "Aun así, decidió continuar.",
+     "tr": "Buna rağmen devam etmeye karar verdi.",
+     "p": "phrase"
+    }
+   ]
   }
  ]
 }
