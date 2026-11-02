@@ -25,6 +25,8 @@ export async function POST(request: Request): Promise<Response> {
   } catch {
     return new Response(null, { status: 400 })
   }
+  // `null`, a number or an array parses fine and is not a report.
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return new Response(null, { status: 400 })
   const csp = body['csp-report']
   if (csp && typeof csp === 'object') {
     const r = csp as Record<string, unknown>

@@ -312,6 +312,7 @@ async function handlePost(request: Request): Promise<Response> {
   } catch {
     return json({ error: 'bad request' }, 400)
   }
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return json({ error: 'bad request' }, 400)
   const now = new Date().toISOString()
   const name = text(body.name, 60)
   const words = cleanWords(body.words, now)
@@ -344,6 +345,7 @@ async function handlePut(request: Request): Promise<Response> {
   } catch {
     return json({ error: 'bad request' }, 400)
   }
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return json({ error: 'bad request' }, 400)
   const store = await shareStore()
   const found = await store.get(id)
   if (!found) return json({ error: 'not found' }, 404)
