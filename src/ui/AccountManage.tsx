@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { currentSession, setNewPassword, signOutSupabase, authErrorText, providersText, supabaseConfigured, type Identity } from '../data/supabase'
+import { currentSession, setNewPassword, signOutSupabase, authErrorText, providersText, supabaseConfigured, CURRENT_PASSWORD_NEEDED, CURRENT_PASSWORD_WRONG, type Identity } from '../data/supabase'
 import type { Account } from '../data/sync'
 import { PASSWORD_HINT, passwordProblem } from '../data/passwordRule'
 import { deleteAccount } from '../data/vault'
@@ -28,25 +28,34 @@ export function AccountManage({
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
   // A password set just now counts at once; the saved account says so from the next load on (`has_password`).
+  // (also when the server says the account has one already: set on another device, or before the flag existed)
   const [justSet, setJustSet] = useState(false)
-  const hasPassword = !identity || identity.providers.includes('email') || justSet
-  const providers = identity ? (justSet && !identity.providers.includes('email') ? [...identity.providers, 'email'] : identity.providers) : []
+  const [current, setCurrent] = useState('')
+  const [needsCurrent, setNeedsCurrent] = useState(false)
+  const hasPassword = !identity || identity.providers.includes('email') || justSet || needsCurrent
+  const providers = identity ? ((justSet || needsCurrent) && !identity.providers.includes('email') ? [...identity.providers, 'email'] : identity.providers) : []
 
   const savePassword = async () => {
     setError('')
     const weak = passwordProblem(password)
     if (weak) return setError(weak)
     if (password !== repeat) return setError('Şifreler aynı değil.')
+    if (needsCurrent && !current) return setError(CURRENT_PASSWORD_NEEDED)
     setBusy(true)
     try {
-      await setNewPassword(password)
+      await setNewPassword(password, needsCurrent ? current : undefined)
       showToast(hasPassword ? 'Yeni şifren kaydedildi.' : 'Şifren kaydedildi; artık e-posta ve şifreyle de girebilirsin.')
       setJustSet(true)
       setChanging(false)
       setPassword('')
       setRepeat('')
+      setCurrent('')
+      setNeedsCurrent(false)
     } catch (e) {
-      setError(e instanceof Error ? authErrorText(e.message) : String(e))
+      const text = e instanceof Error ? authErrorText(e.message) : String(e)
+      // The account has a password already: ask for it (and the row says so from now on).
+      if (text === CURRENT_PASSWORD_NEEDED || text === CURRENT_PASSWORD_WRONG) setNeedsCurrent(true)
+      setError(text)
     } finally {
       setBusy(false)
     }
@@ -85,9 +94,16 @@ export function AccountManage({
                 void savePassword()
               }}
             >
+              {needsCurrent && (
+                <label className="field">
+                  <span className="field-label">Mevcut şifre</span>
+                  <PasswordInput value={current} onChange={setCurrent} autoComplete="current-password" autoFocus shown={shown} onShownChange={setShown} />
+                  <span className="help">Hatırlamıyorsan çıkış yapıp giriş ekranındaki “Şifremi unuttum” bağlantısını kullan.</span>
+                </label>
+              )}
               <label className="field">
                 <span className="field-label">Yeni şifre</span>
-                <PasswordInput value={password} onChange={setPassword} autoComplete="new-password" autoFocus shown={shown} onShownChange={setShown} />
+                <PasswordInput value={password} onChange={setPassword} autoComplete="new-password" autoFocus={!needsCurrent} shown={shown} onShownChange={setShown} />
                 <span className="help">{PASSWORD_HINT}</span>
               </label>
               <label className="field">
@@ -117,7 +133,7 @@ export function AccountManage({
         <div className="account-row">
           <div className="account-row-text">
             <strong>Mevcut Oturum</strong>
-            <span className="small muted">{identity ? 'Son değişiklikleri hesabına gönderir, çıkar ve bu cihazdaki kopyayı siler. Her şey hesabında durur; tekrar girince geri gelir.' : 'Bu cihazdaki oturumu kapatır; yerel kelimelerin korunur.'}</span>
+            <span className="small muted">{identity ? 'Bu cihazdan çıkar.' : 'Bu cihazdaki oturumu kapatır; yerel kelimelerin korunur.'}</span>
           </div>
           <button type="button" className="btn btn-sm btn-quiet" disabled={busy} onClick={onSignOut}>
             Çıkış yap
