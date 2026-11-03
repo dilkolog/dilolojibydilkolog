@@ -1,5 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { AudiobooksPicker } from './AudiobooksPicker'
+import { AdvancedReadingsPicker } from './AdvancedReadingsPicker'
 import { ClassicsPicker } from './ClassicsPicker'
 import { ListeningPicker } from './Listening'
 import { NewsPicker } from './News'
@@ -247,6 +248,18 @@ export function SourcePickers({
       known={known}
       onRead={async (wikiTitle, wikiText) => {
         const item: ReadingText = { id: crypto.randomUUID(), language, title: wikiTitle, text: wikiText, addedAt: new Date().toISOString(), history: [] }
+        await db.saveText(item)
+        setLibrary((lib) => [item, ...(lib ?? [])])
+        await open(item)
+      }}
+    />
+    <AdvancedReadingsPicker
+      language={language}
+      vocabulary={vocabulary}
+      states={states}
+      known={known}
+      onRead={async (advTitle, advText, source) => {
+        const item: ReadingText = { id: crypto.randomUUID(), language, title: advTitle, text: advText, source, addedAt: new Date().toISOString(), history: [] }
         await db.saveText(item)
         setLibrary((lib) => [item, ...(lib ?? [])])
         await open(item)

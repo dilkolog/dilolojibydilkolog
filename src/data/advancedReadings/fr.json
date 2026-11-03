@@ -1,0 +1,51 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "readings": [
+    {
+      "id": "fr-adv-slow",
+      "language": "fr",
+      "title": "Éloge de la lenteur",
+      "category": "essay",
+      "level": "B2",
+      "summary": "Hızın değerini sorgulayan, yavaş yaşam akımını artıları ve eleştirileriyle tartan kısa bir deneme.",
+      "text": "On nous répète que le temps, c’est de l’argent. Pourtant, ceux qui courent du matin au soir finissent rarement par gagner quoi que ce soit, sinon de la fatigue. Depuis quelques années, un mouvement venu d’Italie invite à ralentir : manger lentement, marcher sans but précis, lire un livre jusqu’au bout sans consulter son téléphone toutes les cinq minutes. Ses partisans ne prétendent pas qu’il faille renoncer à toute efficacité ; ils affirment simplement que certaines choses ne se hâtent pas. Une conversation sincère, par exemple, ne se règle pas en trois messages. Une recette mijote, un apprentissage mûrit, une amitié se construit sur des années. Les critiques répondent que seuls ceux qui en ont les moyens peuvent s’offrir ce luxe. L’objection est sérieuse : prendre son temps suppose parfois un emploi stable et un loyer raisonnable. Il serait toutefois dommage d’en conclure que la lenteur n’est qu’un privilège. Elle commence souvent par de petits gestes, comme éteindre les notifications pendant le dîner ou prendre l’escalier plutôt que l’ascenseur. À force d’accélérer, on finit par ne plus savoir ce que l’on cherchait à atteindre si vite."
+    },
+    {
+      "id": "fr-adv-bees",
+      "language": "fr",
+      "title": "Des ruches sur les toits",
+      "category": "feature",
+      "level": "B2",
+      "summary": "Şehir çatılarındaki arı kovanları: yararları, sınırları ve komşuları bilinçlendiren bir arıcı.",
+      "text": "Sur le toit d’un immeuble du centre de Lyon, trois ruches bourdonnent paisiblement au-dessus du bruit des voitures. Leur propriétaire, une ancienne infirmière devenue apicultrice, vient les surveiller chaque samedi matin. « On croit que la ville est hostile aux abeilles, explique-t-elle, mais elles y trouvent des tilleuls, des balcons fleuris et beaucoup moins de pesticides qu’à la campagne. » En effet, certaines études montrent que les colonies urbaines produisent parfois davantage de miel que celles des zones agricoles intensives. Le phénomène a pourtant ses limites. Quand les ruches se multiplient, les fleurs viennent à manquer et les abeilles sauvages, plus discrètes, doivent se contenter de ce qui reste. Plusieurs chercheurs invitent donc à la prudence : mieux vaut planter des espèces mellifères que multiplier les ruches. L’apicultrice en convient volontiers. Elle distribue désormais des graines aux habitants de l’immeuble et organise des visites pour les écoles du quartier. « Si les enfants comprennent d’où vient le miel, dit-elle, ils comprendront aussi pourquoi il faut protéger ce qui le rend possible. »"
+    },
+    {
+      "id": "fr-adv-train",
+      "language": "fr",
+      "title": "Le dernier train",
+      "category": "story",
+      "level": "B2",
+      "summary": "İptal edilen son trenin ardından gece yarısı tanışan iki yabancının kısa öyküsü.",
+      "text": "Quand Élise arriva sur le quai, le tableau d’affichage clignotait déjà : train supprimé. Il était presque minuit, la pluie tombait en rideau et sa valise pesait une tonne. Elle s’assit sur un banc en soupirant. Un homme âgé, coiffé d’un chapeau gris, lui adressa un sourire fatigué. « Vous aussi, vous attendez un miracle ? » demanda-t-il. Elle rit malgré elle. Ils se mirent à bavarder. Il s’appelait Gaston, il rentrait d’un mariage où il avait dansé plus que de raison, et il connaissait, disait-il, une manière de rejoindre la ville par la route de la côte. À une heure, un car de remplacement apparut enfin, à moitié vide. Gaston s’endormit dès le premier virage, la tête contre la vitre. Élise regarda défiler les lumières mouillées et pensa que cette nuit, qu’elle avait jugée perdue, serait peut-être la plus drôle de son mois. Quand le car s’arrêta devant la gare, elle glissa son numéro de téléphone, écrit sur un ticket, dans la poche du vieux monsieur. Elle ne pensait pas qu’il appellerait ; pourtant, trois jours plus tard, son téléphone sonna."
+    },
+    {
+      "id": "fr-adv-translate",
+      "language": "fr",
+      "title": "Traduire, est-ce trahir ?",
+      "category": "essay",
+      "level": "C1",
+      "summary": "Çevirinin kayıp ve kazançları: kelime kelime karşılık mı, etki yeniden kurmak mı?",
+      "text": "L’adage italien « traduttore, traditore » a la vie dure : on y voit volontiers la preuve qu’aucune traduction ne saurait égaler l’original. Pourtant, sans traducteurs, la plupart d’entre nous n’auraient jamais lu Dostoïevski ni Murakami. La question mérite donc d’être posée autrement : que perd-on, et que gagne-t-on, en passant d’une langue à l’autre ? Un mot comme « saudade » ou « dépaysement » ne se laisse pas réduire à un équivalent unique ; il demande une périphrase, qui l’alourdit forcément. Mais le traducteur ne cherche pas la correspondance terme à terme : il reconstruit un effet. Il doit décider s’il privilégie la fidélité au sens, au rythme ou à l’atmosphère, trois exigences rarement compatibles. Les outils automatiques, de plus en plus performants, résolvent aujourd’hui l’essentiel des cas ordinaires, mais ils peinent encore devant l’ironie, l’allusion, le jeu de mots. C’est précisément là que le métier reste irremplaçable. À l’inverse, les lecteurs qui découvrent un auteur étranger gagnent un regard : la traduction n’est pas seulement un passage, elle est aussi une lecture, et toute lecture est déjà une interprétation."
+    },
+    {
+      "id": "fr-adv-heat",
+      "language": "fr",
+      "title": "Villes en surchauffe",
+      "category": "feature",
+      "level": "C1",
+      "summary": "Kentlerdeki ısı adaları, çözüm önerileri ve serinliğin eşitsiz dağılımı.",
+      "text": "Chaque été, les canicules rappellent aux citadins une vérité inconfortable : le béton retient la chaleur bien après le coucher du soleil. Dans certains quartiers denses, la température nocturne dépasse de plusieurs degrés celle des campagnes voisines, ce qui prive les habitants du répit dont leur organisme aurait besoin. Les urbanistes parlent d’îlots de chaleur et multiplient les remèdes : toitures végétalisées, façades claires, fontaines, plantation d’arbres le long des rues. Ces solutions ne se valent pas. Un arbre mature rafraîchit l’air bien davantage qu’une rangée d’arbustes, mais il lui faut vingt ans pour atteindre sa taille utile, et ses racines se heurtent aux réseaux enterrés. Les revêtements réfléchissants, plus rapides à poser, peuvent en revanche éblouir les passants. Surtout, la fraîcheur n’est pas répartie de façon équitable : les quartiers les plus pauvres comptent souvent le moins d’espaces verts. Plusieurs municipalités ont donc choisi de cartographier ces écarts afin d’orienter leurs investissements. L’enjeu dépasse l’urbanisme : il s’agit de savoir qui, demain, pourra vivre en ville sans souffrir de la chaleur."
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "readings": [
+    {
+      "id": "en-adv-slow",
+      "language": "en",
+      "title": "In praise of slowness",
+      "category": "essay",
+      "level": "B2",
+      "summary": "Hızın değerini sorgulayan, yavaş yaşam akımını artıları ve eleştirileriyle tartan kısa bir deneme.",
+      "text": "We are told that time is money. Yet those who rush from dawn to dusk rarely end up gaining anything except fatigue. In recent years, a movement that began in Italy has urged people to slow down: to eat unhurriedly, to walk without a fixed destination, to finish a book without checking a phone every five minutes. Its supporters do not claim that efficiency should be abandoned altogether; they simply argue that certain things cannot be hurried. A sincere conversation, for instance, cannot be settled in three text messages. A stew simmers, a skill matures, a friendship is built over years. Critics reply that only those who can afford it enjoy this luxury. The objection is a serious one: taking one’s time sometimes presupposes a stable job and a reasonable rent. It would be a pity, however, to conclude that slowness is merely a privilege. It often begins with small gestures, such as silencing notifications during dinner or taking the stairs instead of the lift. By dint of speeding up, we end up forgetting what we were trying to reach in such a hurry."
+    },
+    {
+      "id": "en-adv-bees",
+      "language": "en",
+      "title": "Hives on the rooftops",
+      "category": "feature",
+      "level": "B2",
+      "summary": "Şehir çatılarındaki arı kovanları: yararları, sınırları ve komşuları bilinçlendiren bir arıcı.",
+      "text": "On the roof of an apartment block in central Manchester, three hives hum peacefully above the noise of the traffic. Their owner, a former nurse turned beekeeper, comes to check on them every Saturday morning. ‘People assume the city is hostile to bees,’ she explains, ‘but here they find lime trees, flowering balconies and far fewer pesticides than in the countryside.’ Indeed, some studies suggest that urban colonies sometimes produce more honey than those in intensively farmed areas. The phenomenon has its limits, however. When hives multiply, flowers run short, and wild bees, which are less conspicuous, have to make do with what is left. Several researchers therefore urge caution: it is better to plant nectar-rich species than to increase the number of hives. The beekeeper readily agrees. She now hands out seeds to the building’s residents and organises visits for local schools. ‘If children understand where honey comes from,’ she says, ‘they will also understand why we must protect whatever makes it possible.’"
+    },
+    {
+      "id": "en-adv-train",
+      "language": "en",
+      "title": "The last train",
+      "category": "story",
+      "level": "B2",
+      "summary": "İptal edilen son trenin ardından gece yarısı tanışan iki yabancının kısa öyküsü.",
+      "text": "By the time Eliza reached the platform, the board was already flashing: train cancelled. It was almost midnight, the rain was coming down in sheets, and her suitcase weighed a ton. She sat on a bench with a sigh. An elderly man in a grey hat gave her a tired smile. ‘Are you waiting for a miracle too?’ he asked. She laughed in spite of herself. They began to chat. His name was Gerald, he was returning from a wedding where he had danced more than was wise, and he knew, he said, a way of reaching the city along the coast road. At one o’clock a replacement coach finally appeared, half empty. Gerald fell asleep at the first bend, his head against the window. Eliza watched the wet lights slide past and thought that this night, which she had written off as wasted, might turn out to be the funniest of her month. When the coach stopped outside the station, she slipped a ticket with her phone number on it into the old man’s pocket. She did not expect him to call; yet three days later her phone rang."
+    },
+    {
+      "id": "en-adv-translate",
+      "language": "en",
+      "title": "Is translation betrayal?",
+      "category": "essay",
+      "level": "C1",
+      "summary": "Çevirinin kayıp ve kazançları: kelime kelime karşılık mı, etki yeniden kurmak mı?",
+      "text": "The Italian adage ‘traduttore, traditore’ is remarkably resilient: it is often taken as proof that no translation can ever equal the original. Yet without translators, most of us would never have read Dostoevsky or Murakami. The question deserves to be put differently: what is lost, and what is gained, in passing from one language to another? A word like ‘saudade’ or ‘sobremesa’ cannot be reduced to a single equivalent; it requires a paraphrase, which inevitably weighs it down. But the translator does not look for a word-for-word match; he or she reconstructs an effect. A choice must be made between fidelity to meaning, to rhythm and to atmosphere, three demands that are seldom compatible. Automatic tools, increasingly capable, now handle most ordinary cases, yet they still stumble over irony, allusion and wordplay. That is precisely where the craft remains irreplaceable. Conversely, readers who discover a foreign author gain a new perspective: translation is not merely a crossing but also a reading, and every reading is already an interpretation."
+    },
+    {
+      "id": "en-adv-heat",
+      "language": "en",
+      "title": "Cities under heat",
+      "category": "feature",
+      "level": "C1",
+      "summary": "Kentlerdeki ısı adaları, çözüm önerileri ve serinliğin eşitsiz dağılımı.",
+      "text": "Every summer, heatwaves remind city dwellers of an uncomfortable truth: concrete retains heat long after the sun has set. In some dense neighbourhoods, night-time temperatures exceed those of the surrounding countryside by several degrees, depriving residents of the respite their bodies need. Urban planners speak of heat islands and propose a range of remedies: green roofs, pale façades, fountains and trees planted along the streets. These solutions are not equally effective. A mature tree cools the air far more than a row of shrubs, but it takes twenty years to reach a useful size, and its roots collide with buried utilities. Reflective coatings, quicker to install, may on the other hand dazzle passers-by. Above all, coolness is not shared fairly: the poorest districts often have the fewest green spaces. Several councils have therefore chosen to map these differences in order to direct their investment. The issue goes beyond urban planning: it is a question of who will be able to live in the city tomorrow without suffering from the heat."
+    }
+  ]
+}
