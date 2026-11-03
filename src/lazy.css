@@ -3196,6 +3196,21 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 }
 .guide-actions > .btn-lg, .guide-actions > .guide-read-btn { grid-column: 1 / -1; }
 .guide-actions > .btn { justify-content: center; text-align: center; }
+/* A lesson's actions, in order of weight: the questions (main button), where else to practise (link rows), the lesson's
+   tools (one even row of icon buttons that never wrap their labels), "read" (a toggle across), and the error report (a quiet link). */
+.guide-lesson-actions { display: grid; gap: 0.625rem; margin-top: 0.5rem; }
+.guide-lesson-actions > .btn { width: 100%; justify-content: center; }
+.guide-go { display: flex; align-items: center; gap: 0.75rem; width: 100%; min-height: 3rem; padding: 0.625rem 1rem; border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface); color: var(--ink); font: inherit; font-weight: 600; text-align: left; cursor: pointer; transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out); }
+.guide-go > span { flex: 1; min-width: 0; }
+.guide-go > svg { flex: none; color: var(--lang-text); }
+.guide-go > svg:last-child { color: var(--ink-soft); }
+.guide-go:hover { border-color: color-mix(in srgb, var(--lang) 45%, var(--rule)); background: color-mix(in srgb, var(--lang-soft) 35%, var(--surface)); }
+.guide-go:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; }
+.guide-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.75rem, 1fr)); gap: 0.5rem; }
+.guide-tools > .btn { width: 100%; min-height: 2.75rem; justify-content: center; gap: 0.4rem; padding-inline: 0.75rem; font-size: var(--t-sm); white-space: nowrap; }
+.guide-lesson-actions > .guide-read-btn { min-height: 3rem; }
+.guide-lesson-actions > .guide-read-btn[aria-pressed='true'], .guide-tools > .btn[aria-pressed='true'] { border-color: color-mix(in srgb, var(--lang) 55%, var(--rule)); background: var(--lang-soft); color: var(--lang-text); }
+.guide-report { display: flex; justify-content: center; }
 @media (max-width: 40rem) {
   .guide-tabs {
     display: flex;

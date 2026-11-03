@@ -29,7 +29,7 @@ import { isImperative, isSubjunctive, LAB_TENSES, type Tense } from '../engine/t
 import { TENSE_BRIEF } from '../engine/tenseBrief'
 import type { LabData } from '../engine/labProgress'
 import type { TargetLanguage } from '../engine/types'
-import { CheckCircleIcon, ChevronLeftIcon, ChevronRightIcon, LinkIcon, SearchIcon, SpeakerIcon } from './icons'
+import { CheckCircleIcon, ChevronLeftIcon, ChevronRightIcon, ConjugationsIcon, FlagIcon, LinkIcon, PrintIcon, SearchIcon, SpeakerIcon, StarIcon, TimerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { speak } from './speech'
@@ -1070,43 +1070,54 @@ function LessonView({
           )}
         </div>
       )}
-      <div className="row guide-actions">
+      <div className="guide-lesson-actions">
         {questions > 0 && (
-          <button type="button" className="btn btn-lg" onClick={onPractice}>
+          <button type="button" className="btn btn-lg guide-practice" onClick={onPractice}>
             Bu konuda {questions} soru çöz
           </button>
         )}
         {onNumbers && NUMBER_LESSONS.has(lesson.topic) && (
-          <button type="button" className="btn btn-quiet" onClick={onNumbers}>
-            Sayılar ve saatler oyununda çalış
+          <button type="button" className="guide-go" onClick={onNumbers}>
+            <TimerIcon size={18} />
+            <span>Sayılar ve saatler oyununda çalış</span>
+            <ChevronRightIcon size={18} />
           </button>
         )}
         {verbTopic && language !== 'en' && (
-          <button type="button" className="btn btn-quiet" onClick={onVerbs}>
-            Fiil laboratuvarında çalış
+          <button type="button" className="guide-go" onClick={onVerbs}>
+            <ConjugationsIcon size={18} />
+            <span>Fiil laboratuvarında çalış</span>
+            <ChevronRightIcon size={18} />
           </button>
         )}
-        <LessonListen lesson={lesson} title={titleOf(lesson)} />
-        <AskMonki label="Başka anlat" ask={() => lessonAsk(titleOf(lesson), lesson.summary, lesson.rules)} />
-        <button type="button" className="btn btn-quiet" aria-pressed={flag === 'star'} onClick={() => onFlag(flag === 'star' ? null : 'star')}>
-          {flag === 'star' ? '★ Yer imli' : '☆ Yer imi'}
-        </button>
-        <button type="button" className="btn btn-quiet" aria-pressed={flag === 'hard'} title="Tekrarı daha çabuk gelir" onClick={() => onFlag(flag === 'hard' ? null : 'hard')}>
-          {flag === 'hard' ? 'Zor buldum ✓' : 'Zor buldum'}
-        </button>
-        <button type="button" className="btn btn-quiet" onClick={() => openPrint(lessonSheetHtml(lesson, titleOf(lesson)))}>
-          Yazdır
-        </button>
-        <ReportIssue language={language} topic={lesson.topic} kind="lesson" label="Derste hata var" />
+        <div className="guide-tools" role="group" aria-label="Ders araçları">
+          <LessonListen lesson={lesson} title={titleOf(lesson)} />
+          <AskMonki label="Başka anlat" ask={() => lessonAsk(titleOf(lesson), lesson.summary, lesson.rules)} />
+          <button type="button" className="btn btn-quiet" aria-pressed={flag === 'star'} onClick={() => onFlag(flag === 'star' ? null : 'star')}>
+            <StarIcon size={16} solid={flag === 'star'} className="inline-icon" />
+            {flag === 'star' ? 'Yer imli' : 'Yer imi'}
+          </button>
+          <button type="button" className="btn btn-quiet" aria-pressed={flag === 'hard'} title="Tekrarı daha çabuk gelir" onClick={() => onFlag(flag === 'hard' ? null : 'hard')}>
+            <FlagIcon size={16} solid={flag === 'hard'} className="inline-icon" />
+            Zor buldum
+          </button>
+          <button type="button" className="btn btn-quiet" onClick={() => openPrint(lessonSheetHtml(lesson, titleOf(lesson), new Date(), note))}>
+            <PrintIcon size={16} className="inline-icon" />
+            Yazdır
+          </button>
+        </div>
         <button type="button" className="btn btn-quiet guide-read-btn" aria-pressed={read} onClick={() => onRead(!read)}>
           {read ? (
             <>
-              <CheckCircleIcon size={16} className="inline-icon" /> Okundu
+              <CheckCircleIcon size={18} className="inline-icon" /> Okundu
             </>
           ) : (
             'Okudum olarak işaretle'
           )}
         </button>
+        <div className="guide-report">
+          <ReportIssue language={language} topic={lesson.topic} kind="lesson" label="Derste hata var" />
+        </div>
       </div>
       {followUps.length > 0 && (
         <section className="card stack gap-2 guide-followups" aria-label="Bu konunun devamı">
