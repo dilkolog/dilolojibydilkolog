@@ -9,6 +9,7 @@ import { listRows, LIST_WIDTHS } from '../data/exportList'
 import { workbook, type Cell } from '../data/xlsx'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { NEW_ART } from './drawnArt'
+import { esc, printBase, printFoot, printOrigin, printPage, printTop } from '../data/printSheet'
 
 /**
  * The progress page as a report to keep or share: printed (or saved as a PDF) for a teacher, or as an
@@ -104,57 +105,52 @@ export function buildProgressReport(input: {
   }
 }
 
-const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 const cell = (v: Cell | null) => (v === null ? '–' : esc(String(v)))
 const table = (head: string[], rows: (Cell | null)[][]) =>
   rows.length ? `<table><thead><tr>${head.map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((v) => `<td>${cell(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>` : '<p class="none">Henüz yok.</p>'
 
-/** A one- or two-page A4 report: the numbers, the last 30 days as bars, the stages, skills, hard words and exams. */
-export function progressHtml(r: ProgressReport): string {
+const CSS = `
+    header.head { display: flex; align-items: center; gap: 4mm; }
+    header.head .art { height: 20mm; width: auto; flex: none; }
+    .figures { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2mm; margin-top: 5mm; }
+    .figures div { padding: 2.2mm 3mm; border: 0.25mm solid var(--rule); border-radius: 2.5mm; background: var(--box); break-inside: avoid; }
+    .figures b { display: block; font-size: 15pt; line-height: 1.2; color: var(--text); }
+    .figures span { font-size: 8pt; color: var(--ink-soft); }
+    .chart { display: flex; align-items: flex-end; gap: 0.8mm; height: 30mm; padding: 2.5mm 3mm 5mm; border: 0.25mm solid var(--rule); border-radius: 2.5mm; background: var(--box); }
+    .bar { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; position: relative; }
+    .bar span { display: block; background: var(--lang); border-radius: 0.8mm 0.8mm 0 0; min-height: 0.3mm; }
+    .bar i { position: absolute; bottom: -4mm; left: 0; right: 0; text-align: center; font-style: normal; font-size: 6pt; color: var(--ink-soft); }
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+    .cols section { min-width: 0; }
+    .none { margin: 0; padding: 2.4mm 3mm; border: 0.25mm dashed var(--rule); border-radius: 2.5mm; color: var(--ink-soft); font-size: 9pt; }
+    @media screen and (max-width: 220mm) { .cols { grid-template-columns: 1fr; } .figures { grid-template-columns: 1fr 1fr; } }`
+
+/** A one- or two-page A4 report in the app's look (data/printSheet.ts): the numbers, the last 30 days as bars, the stages, skills, hard words and exams. */
+export function progressHtml(r: ProgressReport, origin = printOrigin()): string {
   const max = Math.max(1, ...r.days.map((d) => d.answers))
   const bars = r.days
     .map((d) => `<div class="bar" title="${d.date}: ${d.answers} cevap"><span style="height:${Math.round((d.answers / max) * 100)}%"></span><i>${Number(d.date.slice(8))}</i></div>`)
     .join('')
   const title = `${LANGUAGE_NAME[r.language]} ilerleme raporu`
   // The print window is a new document: the drawing needs its full address there.
-  const artUrl = typeof location === 'undefined' ? '' : esc(new URL(NEW_ART.progressReport, location.href).href)
-  return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>${esc(title)}${r.name ? ` · ${esc(r.name)}` : ''}</title><style>
-@page { size: A4; margin: 14mm; }
-* { box-sizing: border-box; }
-body { font: 11pt/1.45 system-ui, -apple-system, 'Segoe UI', sans-serif; color: #1f2430; margin: 0; }
-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #1f2430; padding-bottom: 6pt; margin-bottom: 12pt; }
-h1 { font-size: 18pt; margin: 0; } h2 { font-size: 12pt; margin: 16pt 0 6pt; }
-.meta { color: #5b6170; }
-.art { height: 56pt; width: auto; margin-right: 10pt; }
-header .who { display: flex; align-items: center; }
-.figures { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6pt; }
-.figures div { border: 1px solid #d9dce3; border-radius: 6pt; padding: 6pt 8pt; }
-.figures b { display: block; font-size: 15pt; }
-.figures span { color: #5b6170; font-size: 9pt; }
-.chart { display: flex; align-items: flex-end; gap: 2pt; height: 80pt; border-bottom: 1px solid #d9dce3; padding-bottom: 12pt; }
-.bar { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; position: relative; }
-.bar span { display: block; background: #e0a32b; border-radius: 2pt 2pt 0 0; min-height: 1px; }
-.bar i { position: absolute; bottom: -12pt; left: 0; right: 0; text-align: center; font-style: normal; font-size: 6.5pt; color: #8a8f9c; }
-table { width: 100%; border-collapse: collapse; font-size: 10pt; }
-th, td { text-align: left; padding: 3pt 6pt; border-bottom: 1px solid #e6e8ee; }
-th { color: #5b6170; font-weight: 600; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14pt; }
-.none { color: #8a8f9c; }
-footer { margin-top: 16pt; color: #8a8f9c; font-size: 8.5pt; }
-</style></head><body>
-<header><span class="who">${artUrl ? `<img class="art" src="${artUrl}" alt="">` : ''}<h1>${esc(title)}</h1></span><span class="meta">${r.name ? `${esc(r.name)} · ` : ''}${r.date}</span></header>
-<div class="figures">${r.summary
-    .filter(([k]) => k !== 'Dil' && k !== 'Tarih')
-    .map(([k, v]) => `<div><b>${cell(v)}</b><span>${esc(k)}</span></div>`)
-    .join('')}</div>
-<h2>Son 30 gün: günlük cevap</h2><div class="chart">${bars}</div>
-<div class="cols"><section><h2>Kelimelerin aşamaları</h2>${table(['Aşama', 'Kelime'], r.stages)}</section>
-<section><h2>Beceriler (hatırlama olasılığı, %)</h2>${table(['Beceri', '%'], r.skills)}</section></div>
-<div class="cols"><section><h2>En çok zorlanılan kelimeler</h2>${table(['Kelime', 'Anlam', 'Yanlış'], r.hard.map((h) => [h.word, h.meaning, `${h.wrong}/${h.total}`]))}</section>
-<section><h2>Hata türleri</h2>${table(['Tür', 'Sayı'], r.errors)}</section></div>
-<h2>Hatırlama sınavları</h2>${table(['Tarih', 'Sonuç (%)', 'Yazarak', 'Tanıma'], r.exams.map((x) => [x.date, x.score, x.recall, x.recognition]))}
-<footer>Diloloji ile hazırlandı.</footer>
-</body></html>`
+  const artUrl = origin ? esc(new URL(NEW_ART.progressReport, `${origin}/`).href) : ''
+  return printPage(
+    `${title}${r.name ? ` · ${r.name}` : ''}`,
+    printBase(r.language, origin) + CSS,
+    `<main>${printTop(origin, 'Diloloji · İlerleme', r.date)}`
+      + `<header class="head">${artUrl ? `<img class="art" src="${artUrl}" alt="">` : ''}<div><div class="chips"><span class="chip">${esc(LANGUAGE_NAME[r.language])}</span>${r.name ? `<span class="chip">${esc(r.name)}</span>` : ''}</div><h1>${esc(title)}</h1></div></header>`
+      + `<div class="figures">${r.summary
+        .filter(([k]) => k !== 'Dil' && k !== 'Tarih')
+        .map(([k, v]) => `<div><b>${cell(v)}</b><span>${esc(k)}</span></div>`)
+        .join('')}</div>`
+      + `<section><h2>Son 30 gün: günlük cevap</h2><div class="chart">${bars}</div></section>`
+      + `<div class="cols"><section><h2>Kelimelerin aşamaları</h2>${table(['Aşama', 'Kelime'], r.stages)}</section>`
+      + `<section><h2>Beceriler (hatırlama olasılığı, %)</h2>${table(['Beceri', '%'], r.skills)}</section></div>`
+      + `<div class="cols"><section><h2>En çok zorlanılan kelimeler</h2>${table(['Kelime', 'Anlam', 'Yanlış'], r.hard.map((h) => [h.word, h.meaning, `${h.wrong}/${h.total}`]))}</section>`
+      + `<section><h2>Hata türleri</h2>${table(['Tür', 'Sayı'], r.errors)}</section></div>`
+      + `<section><h2>Hatırlama sınavları</h2>${table(['Tarih', 'Sonuç (%)', 'Yazarak', 'Tanıma'], r.exams.map((x) => [x.date, x.score, x.recall, x.recognition]))}</section>`
+      + `${printFoot('Diloloji ile hazırlandı · diloloji.com', r.date)}</main>`,
+  )
 }
 
 /** The same report as a workbook: Özet, Günler, Aşamalar, Beceriler, Zor kelimeler, Hatalar, Sınavlar and the word list itself. */
