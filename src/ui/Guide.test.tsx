@@ -325,7 +325,7 @@ describe('GuideScreen', () => {
   it('flags a lesson as a bookmark or as hard, keeps it, and filters by it', async () => {
     const { host } = await mount('es')
     await act(async () => button(host, 'Ser ve estar')!.click())
-    await act(async () => button(host, '☆ Yer imi')!.click())
+    await act(async () => button(host, 'Yer imi')!.click())
     await act(async () => button(host, 'Zor buldum')!.click())
     await act(() => new Promise((r) => setTimeout(r, 20)))
     // One flag at a time: the hard flag replaced the bookmark.

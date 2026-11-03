@@ -501,6 +501,13 @@ export const SmileIcon = (p: P) => (
     <S d="M9 9.8v.4M15 9.8v.4" />
   </Icon>
 )
+/** Print: a printer with its sheet. */
+export const PrintIcon = (p: P) => (
+  <Icon {...p}>
+    <S d="M5 9h14a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5h-2V14H7v3H5a1.5 1.5 0 0 1-1.5-1.5v-5A1.5 1.5 0 0 1 5 9z" />
+    <path d="M7 9V4.5h10V9M7 14h10v5.5H7z" />
+  </Icon>
+)
 export const StarIcon = (p: P) => (
   <Icon {...p}>
     <S d="m12 3.2 2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.6l-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z" />
