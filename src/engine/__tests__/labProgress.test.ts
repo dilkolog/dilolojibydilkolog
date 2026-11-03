@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { awardLabXp, LAB_XP, addSeenForms, mergeSeen, seenVerbs, errorBreakdown, recordForm, tallyCells, weakestCell, weakPersons, weeklyProgress, addFormsToReview, addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
+import { mergeSlips, openSlips, recordSlip, SLIP_CLEAR, slipNeeds } from '../labProgress'
 import { createScheduler } from '../scheduler'
 
 const DAY = 86_400_000
@@ -269,5 +270,48 @@ describe('lab XP', () => {
     lab = awardLabXp(lab, false, evening)
     lab = awardLabXp(lab, true, next)
     expect(lab.xp).toEqual({ '2026-10-12': LAB_XP + 1, '2026-10-13': LAB_XP })
+  })
+})
+
+describe('the mistakes bank (Hatalarım)', () => {
+  it('a wrong form goes in and a right one on a form that never went wrong changes nothing', () => {
+    expect(recordSlip(emptyLab(), 'tener', 'presente', 0, true)).toEqual(emptyLab())
+    const lab = recordSlip(emptyLab(), 'tener', 'presente', 2, false, 'tene', t0)
+    expect(openSlips(lab)).toEqual([{ verb: 'tener', tense: 'presente', person: 2, wrong: 1, streak: 0, given: 'tene', at: t0.toISOString() }])
+    expect(slipNeeds(openSlips(lab)[0])).toBe(SLIP_CLEAR)
+  })
+
+  it('leaves the bank after right answers in a row, and a wrong one starts the count again', () => {
+    let lab = recordSlip(emptyLab(), 'ir', 'preterito', 0, false, 'iba', t0)
+    lab = recordSlip(lab, 'ir', 'preterito', 0, true, 'fui', later(1))
+    expect(openSlips(lab)[0].streak).toBe(1)
+    lab = recordSlip(lab, 'ir', 'preterito', 0, false, 'ire', later(2))
+    expect(openSlips(lab)[0]).toMatchObject({ wrong: 2, streak: 0, given: 'ire' })
+    for (let i = 0; i < SLIP_CLEAR; i++) lab = recordSlip(lab, 'ir', 'preterito', 0, true, 'fui', later(3 + i))
+    expect(openSlips(lab)).toEqual([])
+    // Cleared: kept as a mark, and more right answers change nothing.
+    expect(lab.slips?.['ir|preterito|0'].done).toBe(true)
+    expect(recordSlip(lab, 'ir', 'preterito', 0, true, 'fui', later(9))).toBe(lab)
+    // A new mistake brings it back.
+    expect(openSlips(recordSlip(lab, 'ir', 'preterito', 0, false, 'iba', later(10)))).toHaveLength(1)
+  })
+
+  it('lists the most missed first and forgets old cleared forms', () => {
+    let lab = recordSlip(emptyLab(), 'a', 'presente', 0, false, '', t0)
+    lab = recordSlip(lab, 'b', 'presente', 0, false, '', later(1))
+    lab = recordSlip(lab, 'b', 'presente', 0, false, '', later(2))
+    expect(openSlips(lab).map((s) => s.verb)).toEqual(['b', 'a'])
+    for (let i = 0; i < SLIP_CLEAR; i++) lab = recordSlip(lab, 'a', 'presente', 0, true, '', later(3 + i))
+    lab = recordSlip(lab, 'c', 'presente', 0, false, '', later(200))
+    expect(Object.keys(lab.slips!).sort()).toEqual(['b|presente|0', 'c|presente|0'])
+  })
+
+  it('merging devices: the later answer wins, a clearing on one device reaches the other', () => {
+    const a = recordSlip(emptyLab(), 'ir', 'preterito', 0, false, 'iba', t0).slips
+    let cleared = recordSlip(emptyLab(), 'ir', 'preterito', 0, false, 'iba', t0)
+    for (let i = 0; i < SLIP_CLEAR; i++) cleared = recordSlip(cleared, 'ir', 'preterito', 0, true, 'fui', later(1 + i))
+    expect(mergeSlips(a, cleared.slips)['ir|preterito|0'].done).toBe(true)
+    expect(mergeSlips(cleared.slips, a)['ir|preterito|0'].done).toBe(true)
+    expect(mergeSlips(a, undefined)).toEqual(a)
   })
 })

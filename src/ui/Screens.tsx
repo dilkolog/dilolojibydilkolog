@@ -71,6 +71,7 @@ export function Home({
   openMistakeWords,
   canPractice,
   onStart,
+  onStartAll,
   onRepairStreak,
   onFocusReason,
   onMinutes,
@@ -130,6 +131,8 @@ export function Home({
   openMistakeWords: number
   canPractice: boolean
   onStart: () => void
+  /** With a list in focus: ask the due words of the other lists too. */
+  onStartAll?: () => void
   /** Opens the recall exam to win a lost streak back (shown while game.repair offers one). */
   onRepairStreak?: () => void
   /** A round of only one kind of the day's questions (the wrong, the weak, the reviews, the new words). */
@@ -463,7 +466,7 @@ export function Home({
                     </p>
                   )
                 )}
-                <FocusLine focus={focus} done={!!plan.focusDone} lists={lists} focusListId={focusListId} onFocusList={onFocusList} onOpenList={onOpenList} onOpenLists={onOpenLists} />
+                <FocusLine focus={focus} done={!!plan.focusDone} otherDue={plan.otherDue} onStartAll={onStartAll} lists={lists} focusListId={focusListId} onFocusList={onFocusList} onOpenList={onOpenList} onOpenLists={onOpenLists} />
               </>
             ) : (
               <>
@@ -489,7 +492,7 @@ export function Home({
                     </button>
                   )}
                 </div>
-                <FocusLine focus={focus} done={!!plan.focusDone} lists={lists} focusListId={focusListId} onFocusList={onFocusList} onOpenList={onOpenList} onOpenLists={onOpenLists} />
+                <FocusLine focus={focus} done={!!plan.focusDone} otherDue={plan.otherDue} onStartAll={onStartAll} lists={lists} focusListId={focusListId} onFocusList={onFocusList} onOpenList={onOpenList} onOpenLists={onOpenLists} />
               </>
             )}
           </div>

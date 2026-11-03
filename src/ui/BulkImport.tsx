@@ -506,13 +506,13 @@ export function BulkImport({
                                 setCustomColumns(next)
                               }}
                             >
-                              <option value="word">🔤 Kelime</option>
-                              <option value="meaning">🇹🇷 Anlam</option>
-                              <option value="example">💬 Örnek</option>
-                              <option value="exampleTranslation">🌐 Çeviri</option>
-                              <option value="notes">📝 Not</option>
-                              <option value="tags">🏷️ Etiket</option>
-                              <option value="ignore">🚫 Yoksay</option>
+                              <option value="word">Kelime</option>
+                              <option value="meaning">Anlam</option>
+                              <option value="example">Örnek</option>
+                              <option value="exampleTranslation">Çeviri</option>
+                              <option value="notes">Not</option>
+                              <option value="tags">Etiket</option>
+                              <option value="ignore">Yoksay</option>
                             </select>
                           </th>
                         ))}

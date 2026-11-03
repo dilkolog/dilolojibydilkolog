@@ -33,6 +33,25 @@ export interface LabData {
   tourDays?: string[]
   /** XP earned by answering in the lab, per local day (never pruned: XP is a lifetime total). */
   xp?: Record<string, number>
+  /** Forms answered wrong, by "verb|tense|person": the mistakes bank (Hatalarım). */
+  slips?: Record<string, LabSlip>
+}
+
+/** One wrong form kept until it is answered right several times in a row. */
+export interface LabSlip {
+  verb: string
+  tense: Tense
+  person: number
+  /** How many times it was answered wrong in all. */
+  wrong: number
+  /** Right answers in a row since the last wrong one. */
+  streak: number
+  /** What was typed or picked the last time it was wrong. */
+  given?: string
+  /** ISO time of the last answer. */
+  at: string
+  /** Out of the bank: right SLIP_CLEAR times in a row. Kept a while so the exit reaches the other devices. */
+  done?: boolean
 }
 
 /** A conjugated form met in a text: which tense it is, how often, and where it was last met. */
@@ -344,4 +363,53 @@ export function recordTourDay(lab: LabData, day: string): LabData {
 export function wholeVerbs(lab: LabData, core: readonly Tense[]): number {
   const verbs = new Set(Object.keys(lab.records).map((k) => k.split('|')[0]))
   return [...verbs].filter((v) => core.every((t) => (lab.records[labKey(v, t)]?.points ?? 0) >= MASTERY_MAX)).length
+}
+
+/** Right answers in a row that take a form out of the mistakes bank. */
+export const SLIP_CLEAR = 2
+/** Cleared forms are forgotten after this many days (until then they carry the exit to other devices). */
+const SLIP_DONE_DAYS = 45
+
+export const slipKey = (verb: string, tense: Tense, person: number) => `${verb}|${tense}|${person}`
+
+/**
+ * One answer to a form: a wrong one puts it in the mistakes bank (or sets its streak back to zero),
+ * a right one on a form in the bank adds to its streak, and SLIP_CLEAR in a row takes it out.
+ * A right answer on a form that never went wrong changes nothing.
+ */
+export function recordSlip(lab: LabData, verb: string, tense: Tense, person: number, ok: boolean, given = '', at = new Date()): LabData {
+  if (isPersonless(tense)) return lab
+  const key = slipKey(verb, tense, person)
+  const before = lab.slips?.[key]
+  let next: LabSlip
+  if (!ok) next = { verb, tense, person, wrong: (before?.wrong ?? 0) + 1, streak: 0, ...(given ? { given } : before?.given ? { given: before.given } : {}), at: at.toISOString() }
+  else if (!before || before.done) return lab
+  else {
+    const streak = before.streak + 1
+    next = { ...before, streak, at: at.toISOString(), ...(streak >= SLIP_CLEAR ? { done: true } : {}) }
+  }
+  const oldest = at.getTime() - SLIP_DONE_DAYS * 86_400_000
+  const slips = Object.fromEntries(Object.entries(lab.slips ?? {}).filter(([k, x]) => k === key || !x.done || new Date(x.at).getTime() >= oldest))
+  slips[key] = next
+  return { ...lab, slips }
+}
+
+/** The forms still in the mistakes bank: the ones missed most first, then the most recent. */
+export function openSlips(lab: LabData): LabSlip[] {
+  return Object.values(lab.slips ?? {})
+    .filter((s) => !s.done && !isPersonless(s.tense))
+    .sort((a, b) => b.wrong - a.wrong || b.at.localeCompare(a.at))
+}
+
+/** Right answers a form in the bank still needs to leave it. */
+export const slipNeeds = (slip: LabSlip) => Math.max(1, SLIP_CLEAR - slip.streak)
+
+/** Two devices' mistakes banks: per form the later answer wins (a cleared form is a later answer too). */
+export function mergeSlips(a: LabData['slips'] = {}, b: LabData['slips'] = {}): NonNullable<LabData['slips']> {
+  const out: NonNullable<LabData['slips']> = { ...a }
+  for (const [key, s] of Object.entries(b)) {
+    const o = out[key]
+    out[key] = !o || s.at > o.at || (s.at === o.at && s.done && !o.done) ? { ...s, wrong: Math.max(s.wrong, o?.wrong ?? 0) } : { ...o, wrong: Math.max(s.wrong, o.wrong) }
+  }
+  return out
 }

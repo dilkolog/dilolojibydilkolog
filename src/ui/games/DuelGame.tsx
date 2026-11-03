@@ -15,6 +15,7 @@ import { DuelSide } from './duelParts'
 import { share } from './shareLink'
 import { LiveDuel } from './LiveDuel'
 import { noteIn } from './logNote'
+import { Select } from '../Select'
 
 const NAME_KEY = 'diloloji:duel-name'
 const HISTORY_KEY = 'diloloji:duel-history'
@@ -231,17 +232,10 @@ export function DuelGame({ language, onExit }: { language: TargetLanguage; onExi
             <input className="input" value={name} maxLength={24} onChange={(e) => remember(e.target.value)} placeholder="Adın" aria-label="Adın" autoComplete="off" />
           </label>
           <div className="stack duel-filter">
-            <label className="stack">
+            <div className="stack">
               <span className="small muted">Konu</span>
-              <select className="input" value={filter.topic ?? ''} onChange={(e) => setFilter((f) => ({ ...f, topic: e.target.value || undefined }))} aria-label="Düello konusu">
-                <option value="">Karışık</option>
-                {topics.map((t) => (
-                  <option key={t} value={t}>
-                    {topicName(t)}
-                  </option>
-                ))}
-              </select>
-            </label>
+              <Select label="Düello konusu" value={filter.topic ?? ''} onChange={(v) => setFilter((f) => ({ ...f, topic: v || undefined }))} options={[{ value: '', label: 'Karışık' }, ...topics.map((t) => ({ value: t, label: topicName(t) }))]} />
+            </div>
             <div className="choice-row" role="group" aria-label="Seviye">
               <button type="button" className="chip chip-sm" aria-pressed={!filter.level} onClick={() => setFilter((f) => ({ ...f, level: undefined }))}>
                 Her seviye

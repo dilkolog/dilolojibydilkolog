@@ -125,6 +125,14 @@ describe('the verb lab across devices', () => {
     expect(m.xp).toEqual({ '2026-10-12': 28, '2026-10-11': 5, '2026-10-13': 8 })
   })
 
+  it('the mistakes banks of two devices are joined', () => {
+    const slip = (verb: string, at: string, done?: boolean) => ({ verb, tense: 'presente' as const, person: 0, wrong: 1, streak: 0, at, ...(done ? { done } : {}) })
+    const m = mergeLab(lab({ slips: { 'a|presente|0': slip('a', '2026-10-01T00:00:00Z') } }), lab({ slips: { 'a|presente|0': slip('a', '2026-10-02T00:00:00Z', true), 'b|presente|0': slip('b', '2026-10-02T00:00:00Z') } }))!
+    expect(m.slips?.['a|presente|0'].done).toBe(true)
+    expect(Object.keys(m.slips!)).toHaveLength(2)
+    expect(mergeLab(lab({}), lab({}))!.slips).toBeUndefined()
+  })
+
   it('joins favourites and recent verbs, newest device first', () => {
     const m = mergeLab(lab({ favorites: ['comer'], recent: ['comer', 'ir'] }), lab({ favorites: ['hablar'], recent: ['hablar', 'comer'] }))!
     expect(m.favorites).toEqual(['hablar', 'comer'])

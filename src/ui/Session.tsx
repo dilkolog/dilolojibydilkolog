@@ -559,7 +559,8 @@ export function SessionScreen(p: Props) {
       <div className="session-stage">
       {session.index === 0 && session.log.length === 0 && answeredAt === null && session.items.length >= 1 && (
         <p className="session-hello">
-          <img src={ANIMATED_MONKI.wave} alt="" width={44} height={44} draggable={false} />
+          {/* A word card brings its own drawing (the part of speech): one monkey in a box, not two. */}
+          {item && !form && item.kind !== 'introduce' && !refreshDue(item, entry) && <img src={ANIMATED_MONKI.wave} alt="" width={44} height={44} draggable={false} />}
           <span>
             Merhaba! <strong>{session.items.length}</strong> soruluk bir tur, hadi başlayalım.
           </span>

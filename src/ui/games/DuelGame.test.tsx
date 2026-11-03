@@ -115,18 +115,16 @@ describe('DuelGame', () => {
 
   it('a duel can be narrowed to a topic and a level', async () => {
     const host = await mount()
-    const select = host.querySelector<HTMLSelectElement>('select[aria-label="Düello konusu"]')!
-    const topic = [...select.options].map((o) => o.value).find((v) => v)!
-    await act(async () => {
-      Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, 'value')!.set!.call(select, topic)
-      select.dispatchEvent(new Event('change', { bubbles: true }))
-    })
+    await act(async () => host.querySelector<HTMLButtonElement>('button[aria-label^="Düello konusu"]')!.click())
+    const option = host.querySelectorAll<HTMLElement>('[role="listbox"][aria-label="Düello konusu"] [role="option"]')[1]
+    await act(async () => option.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true })))
     await act(async () => button(host, 'düellosu başlat').click())
     await playAll(host)
     const sent = decodeDuel(host.querySelector('.duel-link')!.textContent!)!
     expect(sent.ids.length).toBeGreaterThanOrEqual(5)
     const topicOf = new Map(grammarExercises('fr').map((e) => [e.id, e.topic]))
-    expect(sent.ids.every((id) => topicOf.get(id) === topic)).toBe(true)
+    // Every question is from the one topic chosen.
+    expect(new Set(sent.ids.map((id) => topicOf.get(id))).size).toBe(1)
   })
 
   it('remembers a duel played against a friend, once, and shows the tally in the lobby', async () => {

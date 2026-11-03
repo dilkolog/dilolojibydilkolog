@@ -1,4 +1,4 @@
-import { mergeSeen, type LabData } from '../engine/labProgress'
+import { mergeSeen, mergeSlips, type LabData } from '../engine/labProgress'
 import { mergeMarks } from '../engine/guideReview'
 import { mergeLedgers } from '../engine/xpLedger'
 import { mergePrefs } from './devicePrefs'
@@ -196,6 +196,7 @@ export function mergeLab(older: LabData | undefined, newer: LabData | undefined)
     days,
     tourDays: [...new Set([...(older.tourDays ?? []), ...(newer.tourDays ?? [])])].sort(),
     xp: most(older.xp, newer.xp),
+    ...(older.slips || newer.slips ? { slips: mergeSlips(older.slips, newer.slips) } : {}),
   }
 }
 

@@ -3711,6 +3711,8 @@ p, .help, .small { text-wrap: pretty; }
 .hero-focus-label { font-weight: 600; }
 .hero-focus-note { flex-basis: 100%; }
 .hero-focus-meta { opacity: 0.85; }
+.hero-focus-others { flex-basis: 100%; margin: 0; opacity: 0.9; }
+.hero-focus-others .link { font-weight: 700; }
 .hero-focus .hero-focus-open { text-decoration: none; font-weight: 700; }
 .hero-focus .hero-focus-open:hover { text-decoration: underline; }
 /* The list as a pill: a popover menu dressed like a chip in the hero banner. */
@@ -4028,6 +4030,11 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .badge-moment-art.tier-silver { --tier: #94a3b8; }
 .badge-moment-art.tier-gold { --tier: #f59e0b; }
 .badge-moment-art.tier-special { --tier: #8b5cf6; }
+/* Several badges at once: one column each (medal, name, what it was for), side by side, wrapping on a narrow screen. */
+.badge-moment-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem 1rem; margin: 0.5rem 0 0; padding: 0; list-style: none; }
+.badge-moment-item { display: flex; flex: 1 1 8rem; max-width: 11rem; flex-direction: column; align-items: center; gap: 0.25rem; text-align: center; }
+.badge-moment-item .medal { animation: medal-strike 760ms var(--ease-spring) both; }
+.badge-moment-item strong { margin-top: 0.25rem; overflow-wrap: anywhere; }
 .badge-moment-art .medal { position: relative; z-index: 1; animation: medal-strike 760ms var(--ease-spring) both; }
 .badge-moment-ring { position: absolute; inset: 0.5rem; border-radius: 50%; border: 3px solid var(--tier); opacity: 0; animation: plant-burst 1200ms 360ms var(--ease-out) forwards; }
 @keyframes medal-strike { 0% { transform: scale(0.3) rotate(-14deg); opacity: 0; } 60% { transform: scale(1.18) rotate(4deg); opacity: 1; } 100% { transform: none; } }
@@ -4448,6 +4455,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-tabs { display: flex; gap: 0.25rem; margin: -0.25rem -0.25rem 1rem; border-bottom: 1px solid var(--rule); overflow-x: auto; scrollbar-width: none; }
 .lab-tab { flex: 0 0 auto; padding: 0.625rem 0.75rem; border: 0; border-bottom: 3px solid transparent; background: none; color: var(--ink-soft); font: inherit; font-weight: 600; cursor: pointer; white-space: nowrap; }
 .lab-tab[aria-selected='true'] { color: var(--lang-text); border-bottom-color: var(--lang); }
+/* Four tabs (with the counts) have to fit a phone without sideways scrolling. */
+@media (max-width: 30rem) { .lab-tab { flex: 1 1 auto; padding-inline: 0.375rem; font-size: var(--t-sm); text-align: center; } }
 .lab-panel { min-width: 0; }
 .segmented-btn[aria-pressed='true'] { background: var(--surface); color: var(--lang-text); font-weight: 700; box-shadow: var(--shadow); }
 /* Blitz, writing mode: the Turkish meaning is the prompt (interface type, not the target language's serif). */
