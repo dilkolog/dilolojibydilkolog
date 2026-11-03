@@ -1,0 +1,140 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "lessons": {
+    "basics_fr_subordonnees_temporelles": [
+      {
+        "prompt": "Je lis ___ tu prépares le dîner.",
+        "options": [
+          "pendant que",
+          "avant que",
+          "jusqu’à ce que",
+          "après que"
+        ],
+        "answer": 0,
+        "why": "Aynı anda süren iki eylem: pendant que + indicatif."
+      },
+      {
+        "prompt": "Quand il ___, nous dînerons. (gelecek)",
+        "options": [
+          "arrivera",
+          "arrive",
+          "arriverait",
+          "arrivât"
+        ],
+        "answer": 0,
+        "why": "Fransızcada gelecek için quand + futur gerekir: arrivera."
+      },
+      {
+        "prompt": "Avant ___ partir, il a fermé la porte.",
+        "options": [
+          "de",
+          "que",
+          "à",
+          "pour"
+        ],
+        "answer": 0,
+        "why": "Özne aynıysa avant de + mastar kullanılır."
+      },
+      {
+        "prompt": "Tant que tu ___ ici, je reste.",
+        "options": [
+          "es",
+          "sois",
+          "étais",
+          "serais"
+        ],
+        "answer": 0,
+        "why": "Tant que (…sürece) indicatif alır: tu es."
+      },
+      {
+        "prompt": "Chaque ___ qu’il pleut, elle reste chez elle.",
+        "options": [
+          "fois",
+          "temps",
+          "jour",
+          "heure"
+        ],
+        "answer": 0,
+        "why": "« chaque fois que » = her seferinde."
+      },
+      {
+        "prompt": "« À mesure que le temps passait… » ifadesi hangi anlamda?",
+        "options": [
+          "Zaman geçtikçe",
+          "Zaman geçmeden",
+          "Zaman geçse de",
+          "Zaman geçmediği için"
+        ],
+        "answer": 0,
+        "why": "à mesure que = -dıkça, eşzamanlı gelişme."
+      },
+      {
+        "prompt": "« Tandis que » aşağıdakilerden hangisini anlatabilir?",
+        "options": [
+          "Eşzamanlılık ve karşıtlık",
+          "Yalnızca neden",
+          "Yalnızca koşul",
+          "Amaç"
+        ],
+        "answer": 0,
+        "why": "Tandis que hem aynı anda olmayı hem de karşıtlığı anlatır."
+      },
+      {
+        "prompt": "« Maintenant que tu es là… » Türkçesi?",
+        "options": [
+          "Artık sen geldiğine göre",
+          "Sen gelmeden önce",
+          "Sen gelmediği için",
+          "Sen gelirsen"
+        ],
+        "answer": 0,
+        "why": "maintenant que = artık … olduğuna göre."
+      },
+      {
+        "prompt": "Hangi bağlaç subjonctif ister?",
+        "options": [
+          "avant que",
+          "dès que",
+          "quand",
+          "pendant que"
+        ],
+        "answer": 0,
+        "why": "avant que (-meden önce) subjonctif alır."
+      },
+      {
+        "prompt": "Hangi cümle doğru?",
+        "options": [
+          "Après qu’il est venu, nous avons dîné.",
+          "Après qu’il vienne, nous avons dîné.",
+          "Avant qu’il est venu, nous dînons.",
+          "Dès qu’il venait, nous dînerions demain."
+        ],
+        "answer": 0,
+        "why": "après que + indicatif; avant que + subjonctif."
+      },
+      {
+        "prompt": "Hangi bağlaç henüz gerçekleşmemiş bir sınırı gösterir?",
+        "options": [
+          "jusqu’à ce que",
+          "chaque fois que",
+          "tant que",
+          "maintenant que"
+        ],
+        "answer": 0,
+        "why": "jusqu’à ce que + subjonctif: sınır henüz gelmemiştir."
+      },
+      {
+        "prompt": "« Dès que j’___ fini, je t’appellerai. »",
+        "options": [
+          "aurai",
+          "aie",
+          "avais",
+          "aurais"
+        ],
+        "answer": 0,
+        "why": "Gelecekte bitmiş bir olay: futur antérieur (aurai fini)."
+      }
+    ]
+  }
+}

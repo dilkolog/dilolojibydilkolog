@@ -1,0 +1,171 @@
+[
+  {
+    "id": "fr-b19-subordonnees_temporelles-1",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_subordonnees_temporelles",
+    "type": "choice",
+    "prompt": "Je t’appellerai ___ je serai arrivé.",
+    "answer": "dès que",
+    "options": [
+      "dès que",
+      "avant que",
+      "jusqu’à ce que",
+      "bien que"
+    ],
+    "explanation": "serai arrivé (futur antérieur) ile dès que kullanılır; avant que ve jusqu’à ce que subjonctif ister.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b19-subordonnees_temporelles-2",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_subordonnees_temporelles",
+    "type": "choice",
+    "prompt": "Ne partez pas ___ le directeur ne soit revenu.",
+    "answer": "avant que",
+    "options": [
+      "avant que",
+      "dès que",
+      "après que",
+      "pendant que"
+    ],
+    "explanation": "Henüz olmamış olay için avant que + subjonctif (soit); ne explétif isteğe bağlıdır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b19-subordonnees_temporelles-3",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_subordonnees_temporelles",
+    "type": "choice",
+    "prompt": "Après qu’elle ___ la nouvelle, elle a pleuré.",
+    "answer": "a appris",
+    "options": [
+      "a appris",
+      "ait appris",
+      "apprenne",
+      "aurait appris"
+    ],
+    "explanation": "Norm olarak après que + indicatif alır: a appris. Nesne (la nouvelle) fiilden sonra geldiği için ortaç uyum almaz.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b19-subordonnees_temporelles-4",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_subordonnees_temporelles",
+    "type": "choice",
+    "prompt": "Il s’est calmé ___ la discussion avançait.",
+    "answer": "au fur et à mesure que",
+    "options": [
+      "au fur et à mesure que",
+      "avant que",
+      "pour que",
+      "afin que"
+    ],
+    "explanation": "au fur et à mesure que (-dıkça) indicatif alır ve birlikte gelişmeyi anlatır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b19-subordonnees_temporelles-5",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_subordonnees_temporelles",
+    "type": "choice",
+    "prompt": "Elle travaille ___ il regarde la télé.",
+    "answer": "pendant que",
+    "options": [
+      "pendant que",
+      "avant que",
+      "après que",
+      "jusqu’à ce que"
+    ],
+    "explanation": "İki eylem aynı anda sürüyor: pendant que + indicatif.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b19-subordonnees_temporelles-6",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_subordonnees_temporelles",
+    "type": "cloze",
+    "prompt": "Elle sourit chaque ___ qu’elle le voit.",
+    "answer": "fois",
+    "hint": "chaque ___ que = her seferinde",
+    "explanation": "chaque fois que her tekrarı gösterir ve indicatif alır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b19-subordonnees_temporelles-7",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_subordonnees_temporelles",
+    "type": "cloze",
+    "prompt": "Attendons ___ ce que le feu soit vert.",
+    "answer": "jusqu’à",
+    "hint": "jusqu’à ce que + subjonctif",
+    "explanation": "jusqu’à ce que (-ene kadar) subjonctif ister: soit.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b19-subordonnees_temporelles-8",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_subordonnees_temporelles",
+    "type": "cloze",
+    "prompt": "Avant ___ répondre, il a réfléchi.",
+    "answer": "de",
+    "hint": "özne aynı: avant de + mastar",
+    "explanation": "Özne aynıysa avant que yerine avant de + mastar kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b19-subordonnees_temporelles-9",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_subordonnees_temporelles",
+    "type": "cloze",
+    "prompt": "Quand tu ___ (venir) demain, apporte ton ordinateur.",
+    "answer": "viendras",
+    "hint": "gelecek için quand + futur",
+    "explanation": "Fransızcada gelecekteki olay için quand sonrasında futur gerekir: viendras.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b19-subordonnees_temporelles-10",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_subordonnees_temporelles",
+    "type": "cloze",
+    "prompt": "Tant que tu ___ malade, reste au lit.",
+    "answer": "es",
+    "hint": "tant que + indicatif",
+    "explanation": "tant que (-dığı sürece) indicatif alır: es.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b19-subordonnees_temporelles-11",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_subordonnees_temporelles",
+    "type": "error",
+    "prompt": "Après qu’il soit parti, nous avons rangé la salle.",
+    "answer": "soit",
+    "fix": "est",
+    "explanation": "après que norm olarak indicatif alır: est parti. Subjonctif avant que ile kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-b19-subordonnees_temporelles-12",
+    "language": "fr",
+    "level": "B2",
+    "topic": "basics_fr_subordonnees_temporelles",
+    "type": "error",
+    "prompt": "Avant qu’il part, nous allons dîner.",
+    "answer": "part",
+    "fix": "parte",
+    "explanation": "avant que subjonctif ister: partir fiilinde parte.",
+    "source": "Diloloji (özgün)"
+  }
+]

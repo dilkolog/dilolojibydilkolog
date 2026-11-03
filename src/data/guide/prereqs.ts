@@ -9,6 +9,7 @@ export const PREREQS: Record<string, string[]> = {
   basics_es_pron_acento: ['basics_es_pron_vocales_bv'],
   basics_en_pron_ed_s_stress: ['basics_en_pron_th_w_v'],
   // French
+  basics_fr_subordonnees_temporelles: ['subjonctif', 'futur_fr'],
   basics_fr_pluriel: ['basics_fr_articles'],
   basics_fr_conditionnel_present: ['basics_fr_present'],
   basics_fr_obligation: ['basics_fr_present'],
@@ -68,6 +69,7 @@ export const PREREQS: Record<string, string[]> = {
   basics_fr_infinitif_passe: ['basics_fr_passe_compose'],
   basics_fr_connecteurs_argumentation: ['conn_fr'],
   // Spanish
+  basics_es_perifrasis_obligacion_modal: ['basics_es_perifrasis_inicio_fin'],
   basics_es_tratamiento: ['basics_es_pronombres'],
   basics_es_condicional_cortesia: ['basics_es_futuro'],
   basics_es_negacion: ['basics_es_presente'],
@@ -131,6 +133,7 @@ export const PREREQS: Record<string, string[]> = {
   basics_es_participio_gerundio_compuesto: ['basics_es_gerundio', 'basics_es_pluscuamperfecto'],
   basics_es_conectores_dele: ['conn_es'],
   // English
+  basics_en_conditional_alternatives: ['basics_en_conditionals'],
   basics_en_possessive_s: ['basics_en_pronouns'],
   basics_en_reflexive_pronouns: ['basics_en_pronouns'],
   basics_en_adverbs: ['basics_en_present_simple'],
