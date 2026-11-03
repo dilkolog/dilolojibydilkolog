@@ -20,11 +20,12 @@ import { approvalEnabled } from '../data/access'
 const STATUS_TEXT = { rejected: 'Onaylanmadı', pending: 'Onay bekliyor' } as const
 
 /**
- * Account in Settings. Signed in: who (name, @name, email, the owner's approval), then the account's own
- * controls (how they sign in, password, sign out, delete). Syncing runs by itself (useLiveSync) and needs no
+ * Account in Settings. Signed in: who (photo; name, tick and @name on one line; the email with Google's mark when they
+ * sign in with Google; a link to the profile), then one card of the account's own controls (password, sign out) and a
+ * quiet link to delete it. Syncing runs by itself (useLiveSync) and needs no
  * button; only a problem it left behind (files too big to take along, the data nearing the limit) is shown. Signed out: the way in (Google in one tap, or the sign-in page) and what an account gives.
  */
-export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) => void }) {
+export function AccountSettings({ onOpenAuth, onOpenProfile }: { onOpenAuth?: (mode: AuthMode) => void; onOpenProfile?: () => void }) {
   const [account, setAcc] = useState<Account | null | undefined>(undefined)
   const [size, setSize] = useState<number | null>(null)
   const [skipped, setSkipped] = useState(0)
@@ -120,7 +121,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
     <section className="card account-card is-in">
       <header className="account-profile">
         {identity?.avatar ? (
-          <img className="account-avatar" src={identity.avatar} alt="" width={64} height={64} referrerPolicy="no-referrer" />
+          <img className="account-avatar" src={identity.avatar} alt="" width={80} height={80} referrerPolicy="no-referrer" />
         ) : (
           <img className="account-art" src={status === 'approved' ? ACCOUNT_ART.approved : status === 'rejected' ? ACCOUNT_ART.rejected : ACCOUNT_ART.pending} alt="" height={64} />
         )}
@@ -146,6 +147,11 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
                 </span>
               )}
             </p>
+          )}
+          {onOpenProfile && (
+            <button type="button" className="account-profile-link" onClick={onOpenProfile}>
+              Profili düzenle
+            </button>
           )}
           <HandleForm handle={handle} />
         </div>

@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState } from 'react'
+import { useNumberKeys } from '../useNumberKeys'
 import { normalize } from '../../engine/answerCheck'
 import { createRng, pick, shuffle } from '../../engine/rng'
 import { analyzeForm, conjugateTense, isImperative, subjectLabel, LAB_TENSES, type FormAnalysis, type Tense } from '../../engine/tenses'
@@ -50,6 +51,8 @@ export function ReverseQuiz({ language, byFrequency }: { language: LabLanguage; 
   const [tenseOk, setTenseOk] = useState(false)
   const [right, setRight] = useState(0)
   const input = useRef<HTMLInputElement>(null)
+  const optionKeys = useRef<HTMLDivElement>(null)
+  useNumberKeys(optionKeys)
   const q = questions[index]
 
   // The tense is chosen among the readings of the verb the form comes from, plus wrong ones.
@@ -144,7 +147,7 @@ export function ReverseQuiz({ language, byFrequency }: { language: LabLanguage; 
           <p className={verbOk ? 'lab-ok' : 'lab-bad'} role="status">
             {verbOk ? 'Fiil doğru.' : `Fiil: ${lemmas.join(' / ')}.`}
           </p>
-          <div className="lab-options" role="group" aria-label="Zamanlar" lang={language}>
+          <div ref={optionKeys} className="lab-options" role="group" aria-label="Zamanlar" lang={language}>
             {options.map((t) => (
               <button key={t} type="button" className={`lab-option${step === 'done' ? (q.analyses.some((a) => a.tense === t) ? ' is-right' : '') : ''}`} disabled={step === 'done'} onClick={() => chooseTense(t)}>
                 {tenseName(t)}

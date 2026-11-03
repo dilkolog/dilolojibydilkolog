@@ -323,6 +323,7 @@ export function AppScreens(props: AppScreensProps) {
           onChange={updateSettings}
           pushState={pushState}
           onOpenAuth={(mode) => setScreen({ name: 'account', mode })}
+          onOpenProfile={() => setScreen({ name: 'profile' })}
           onDataChanged={async () => {
             const s = await db.getSettings()
             setSettings(s ?? null)

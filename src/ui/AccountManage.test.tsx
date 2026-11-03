@@ -39,7 +39,6 @@ describe('AccountManage password row', () => {
     document.body.append(host)
     root = createRoot(host)
     await act(async () => root!.render(<AccountManage identity={{ email: 'a@b.c', name: 'A', avatar: '', providers: ['google'] }} onSignOut={() => {}} />))
-    expect(host.textContent).toContain('Belirlenmedi')
     const open = [...host.querySelectorAll('button')].find((b) => b.textContent === 'Şifre belirle')!
     await act(async () => open.click())
     const inputs = [...host.querySelectorAll<HTMLInputElement>('input')]
@@ -49,8 +48,6 @@ describe('AccountManage password row', () => {
     })
     await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Kaydet')!.click())
     expect(state.setNewPassword).toHaveBeenCalledWith('Güçlü-Şifre9', undefined)
-    expect(host.textContent).not.toContain('Belirlenmedi')
-    expect(host.textContent).toContain('••••••••••••')
     expect([...host.querySelectorAll('button')].some((b) => b.textContent === 'Şifre değiştir')).toBe(true)
   })
 
@@ -79,7 +76,6 @@ describe('AccountManage password row', () => {
     await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Kaydet')!.click())
     // The row now says there is a password, and the form has the current-password field.
     expect(host.textContent).toContain('Mevcut şifre')
-    expect(host.textContent).not.toContain('Belirlenmedi')
     inputs = [...host.querySelectorAll<HTMLInputElement>('input')]
     expect(inputs).toHaveLength(3)
     await act(async () => {

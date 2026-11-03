@@ -1657,7 +1657,7 @@ button.badge-card:active { transform: none; }
 .account-cta { display: flex; flex-wrap: wrap; gap: 0.625rem; }
 .account-intro, .account-profile { display: flex; align-items: center; gap: 1rem; }
 .account-profile { display: flex; align-items: center; gap: 1.125rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--rule); }
-.account-avatar { width: 4.25rem; height: 4.25rem; flex: none; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px color-mix(in srgb, var(--lang) 35%, var(--rule)); }
+.account-avatar { width: 5rem; height: 5rem; flex: none; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px color-mix(in srgb, var(--lang) 35%, var(--rule)); }
 .account-who { display: grid; gap: 0.25rem; min-width: 0; }
 .account-who-header { display: flex; align-items: center; gap: 0.625rem; flex-wrap: wrap; }
 /* Name and its approved tick read as one: the tick sits right after the name, perfectly balanced with the font cap-height. */
@@ -1686,12 +1686,26 @@ button.badge-card:active { transform: none; }
 .account-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.75rem; margin-top: 0.25rem; }
 .account-wait { margin: 0; }
 .account-group { display: grid; border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface); overflow: hidden; margin-top: 0.5rem; }
-.account-group-title { margin: 0; padding: 0.625rem 1rem; font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); background: var(--surface-2); border-bottom: 1px solid var(--rule); }
 .account-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.875rem 1rem; border-bottom: 1px solid var(--rule); transition: background-color var(--dur-fast) var(--ease-out); }
 .account-group .account-row:last-child { border-bottom: 0; }
 .account-row:hover { background: color-mix(in srgb, var(--surface-2) 40%, var(--surface)); }
-.account-row-text { display: grid; gap: 0.125rem; min-width: 0; }
 .account-row .btn { flex: none; }
+/* The controls are the rows themselves: a whole row is the button (icon, what it does, and an arrow when it opens more). */
+.account-action { width: 100%; justify-content: flex-start; gap: 0.75rem; border: 0; border-bottom: 1px solid var(--rule); background: var(--surface); color: var(--ink); font: inherit; font-weight: 600; text-align: left; cursor: pointer; }
+.account-action > span { flex: 1; min-width: 0; }
+.account-action > svg { flex: none; color: var(--ink-soft); }
+.account-action:disabled { cursor: default; opacity: 0.6; }
+.account-action:focus-visible { outline: 2px solid var(--lang); outline-offset: -2px; }
+.account-actions > .account-password { max-width: none; border-top: 0; border-bottom: 1px solid var(--rule); }
+.account-actions > .account-password > * { max-width: 26rem; }
+.account-actions > :last-child { border-bottom: 0; }
+/* Deleting the account: a quiet red link under the card, not a button that invites a press. */
+.account-delete-link { justify-self: start; align-self: flex-start; min-height: 1.5rem; padding: 0.25rem 0; border: 0; background: none; color: var(--bad-text); font: inherit; font-size: var(--t-sm); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; cursor: pointer; }
+.account-delete-link:hover { text-decoration-thickness: 2px; }
+.account-delete-link:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; border-radius: var(--r-sm); }
+.account-profile-link { justify-self: start; min-height: 1.5rem; margin-top: 0.125rem; padding: 0; border: 0; background: none; color: var(--lang-text); font: inherit; font-size: var(--t-sm); font-weight: 600; cursor: pointer; }
+.account-profile-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.account-profile-link:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; border-radius: var(--r-sm); }
 .account-password { display: grid; gap: 0.75rem; max-width: 26rem; padding: 0.875rem 1rem; border-top: 1px solid var(--rule); background: var(--surface-2); }
 .account-password .field { display: grid; gap: 0.375rem; }
 .account-google { gap: 0.625rem; }
@@ -2348,7 +2362,7 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 
 /* Drawn art in the settings pane headings, the account card and the list titles. */
 .settings-pane-art { height: 3rem; width: auto; flex: none; }
-.account-art { height: 3.5rem; width: auto; flex: none; }
+.account-art { height: 4.25rem; width: auto; flex: none; }
 .account-art.auth-art { height: 5.25rem; margin-bottom: 0.125rem; }
 .wl-cover { width: 2.5rem; height: 2.5rem; border-radius: var(--r-md); flex: none; object-fit: contain; }
 /* The learner's own cover photo: filled to its square, unlike a drawing. */

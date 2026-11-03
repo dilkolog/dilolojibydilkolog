@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
+import { useNumberKeys } from '../useNumberKeys'
 import { sfx } from '../sounds'
 import { moodRound } from './moodRound'
 import type { LabLanguage } from './labShared'
@@ -14,6 +15,8 @@ export function MoodQuiz({ language, verbs }: { language: LabLanguage; verbs: re
   const [index, setIndex] = useState(0)
   const [picked, setPicked] = useState<string | null>(null)
   const [right, setRight] = useState(0)
+  const optionKeys = useRef<HTMLDivElement>(null)
+  useNumberKeys(optionKeys)
   const q = questions[index]
   if (!questions.length) return <p className="muted">Bu fiillerle soru kurulamadı.</p>
   if (!q)
@@ -59,7 +62,7 @@ export function MoodQuiz({ language, verbs }: { language: LabLanguage; verbs: re
         {q.before} <span className="lab-blank">{picked ? q.answer : '_____'}</span>
         {q.after}
       </p>
-      <div className="lab-options" role="group" aria-label="Seçenekler" lang={language}>
+      <div ref={optionKeys} className="lab-options" role="group" aria-label="Seçenekler" lang={language}>
         {q.options.map((o) => (
           <button key={o} type="button" className={`lab-option${picked ? (o === q.answer ? ' is-right' : o === picked ? ' is-wrong' : '') : ''}`} disabled={!!picked} onClick={() => answer(o)}>
             {o}

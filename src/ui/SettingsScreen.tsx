@@ -64,12 +64,14 @@ export function SettingsScreen({
   onDataChanged,
   pushState,
   onOpenAuth,
+  onOpenProfile,
 }: {
   settings: Settings
   onChange: (s: Settings) => void
   onDataChanged: () => void
   pushState: PushState
   onOpenAuth?: (mode: AuthMode) => void
+  onOpenProfile?: () => void
 }) {
   const [active, setActive] = useState<GroupId>(() => {
     try {
@@ -180,7 +182,7 @@ export function SettingsScreen({
           {searching && noMatch && <p className="muted">“{query.trim()}” ile eşleşen bir ayar yok.</p>}
 
           <Pane {...pane('s-account')}>
-            <AccountSettings onOpenAuth={onOpenAuth} />
+            <AccountSettings onOpenAuth={onOpenAuth} onOpenProfile={onOpenProfile} />
           </Pane>
 
           <Pane {...pane('s-study')}>
