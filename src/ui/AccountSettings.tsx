@@ -137,7 +137,16 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
               </span>
             )}
           </div>
-          {identity?.email && <p className="account-email">{identity.email}</p>}
+          {identity?.email && (
+            <p className="account-email">
+              <span>{identity.email}</span>
+              {identity.providers.includes('google') && (
+                <span className="account-provider" role="img" aria-label="Google ile bağlı" title="Google ile bağlı">
+                  <GoogleMark size={14} />
+                </span>
+              )}
+            </p>
+          )}
           <HandleForm handle={handle} />
         </div>
       </header>

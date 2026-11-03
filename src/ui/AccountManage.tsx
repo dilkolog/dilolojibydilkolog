@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { currentSession, setNewPassword, signOutSupabase, authErrorText, providersText, supabaseConfigured, CURRENT_PASSWORD_NEEDED, CURRENT_PASSWORD_WRONG, type Identity } from '../data/supabase'
+import { currentSession, setNewPassword, signOutSupabase, authErrorText, supabaseConfigured, CURRENT_PASSWORD_NEEDED, CURRENT_PASSWORD_WRONG, type Identity } from '../data/supabase'
 import type { Account } from '../data/sync'
 import { PASSWORD_HINT, passwordProblem } from '../data/passwordRule'
 import { deleteAccount } from '../data/vault'
@@ -9,8 +9,8 @@ import { setAccount } from './syncRunner'
 import { showToast } from './toastFeed'
 
 /**
- * The signed-in account's main controls: sign-in provider and password (new or first),
- * and signing out on this device.
+ * The signed-in account's main controls: the password (new or first) and signing out on this device.
+ * (How the person signs in shows as a mark beside the email in the header: AccountSettings.)
  */
 export function AccountManage({
   identity,
@@ -33,7 +33,6 @@ export function AccountManage({
   const [current, setCurrent] = useState('')
   const [needsCurrent, setNeedsCurrent] = useState(false)
   const hasPassword = !identity || identity.providers.includes('email') || justSet || needsCurrent
-  const providers = identity ? ((justSet || needsCurrent) && !identity.providers.includes('email') ? [...identity.providers, 'email'] : identity.providers) : []
 
   const savePassword = async () => {
     setError('')
@@ -65,14 +64,7 @@ export function AccountManage({
     <>
       {identity && (
         <div className="account-group">
-          <h3 className="account-group-title">Giriş ve Güvenlik</h3>
-          <div className="account-row">
-            <div className="account-row-text">
-              <strong>Giriş Yöntemi</strong>
-              <span className="small muted">{providersText(providers)}</span>
-            </div>
-            <span className="account-status-badge">Bağlı</span>
-          </div>
+          <h3 className="account-group-title">Güvenlik</h3>
           <div className="account-row">
             <div className="account-row-text">
               <strong>Şifre</strong>
