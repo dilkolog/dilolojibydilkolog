@@ -550,6 +550,27 @@ test('verb lab: the verb in real sentences, and the same verb in the other langu
   expect(await overflow(page)).toEqual([])
 })
 
+test('verb lab: a worksheet of sentences in one tense, written first and checked together', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'avoir')
+  const main = page.locator('.lab-main')
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Diğer alıştırmalar' }).click()
+  await page.getByRole('menuitem', { name: /^Cümle listesi/ }).click()
+  const sheet = main.locator('.lab-sheet')
+  const inputs = sheet.locator('input.lab-sheet-input')
+  await expect(inputs.first()).toBeVisible()
+  expect(await inputs.count()).toBeGreaterThanOrEqual(5)
+  await expect(sheet.locator('.lab-sheet-verb').first()).toContainText('(')
+  await inputs.first().fill('zzz')
+  await page.getByRole('button', { name: 'Hepsini kontrol et' }).click()
+  await expect(sheet.locator('.lab-sheet-score')).toContainText('doğru')
+  await expect(sheet.locator('.lab-sheet-row.is-bad').first()).toContainText('Doğrusu')
+  expect(await overflow(page)).toEqual([])
+  await page.getByRole('button', { name: 'Yeni cümleler' }).click()
+  await expect(inputs.first()).toHaveValue('')
+})
+
 test('verb lab forms due are mixed into the day\'s session, and the answers go to the lab', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'parler')

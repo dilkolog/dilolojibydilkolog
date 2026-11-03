@@ -3759,3 +3759,18 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .community-tile { display: grid; gap: 0.25rem; text-align: left; padding: 0.875rem 1rem; border-radius: var(--r-md); background: var(--surface-2); color: var(--ink); border: 1px solid var(--rule); cursor: pointer; transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out); }
 .community-tile:hover { background: var(--lang-soft); }
 .community-tile:active { transform: scale(0.99); }
+
+/* Fiil laboratuvarı: cümle listesi (TenseSheet) */
+.lab-sheet-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; counter-reset: sheet; }
+.lab-sheet-row { counter-increment: sheet; display: grid; gap: 0.125rem; padding: 0.5rem 0.625rem 0.5rem 2.25rem; position: relative; border-radius: var(--r-md); }
+.lab-sheet-row::before { content: counter(sheet) '.'; position: absolute; left: 0.625rem; top: 0.5rem; color: var(--ink-soft); font-weight: 600; }
+.lab-sheet-row.is-ok { background: var(--ok-soft); }
+.lab-sheet-row.is-bad { background: var(--bad-soft); }
+.lab-sheet-text { margin: 0; font-family: var(--serif); font-size: var(--t-lg); line-height: 2.4; }
+.lab-sheet-verb { font-family: var(--sans, inherit); font-size: var(--t-sm); font-style: italic; color: var(--ink-soft); white-space: nowrap; }
+.lab-sheet-input { display: inline-block; min-width: 6ch; max-width: 100%; padding: 0.125rem 0.5rem; text-align: center; font-family: var(--serif); font-size: var(--t-base, 1rem); vertical-align: baseline; }
+.lab-sheet-mark { vertical-align: middle; }
+.lab-sheet-mark.ok { color: var(--ok-text); }
+.lab-sheet-mark.bad { color: var(--bad-text); }
+.lab-sheet-note { margin: 0; }
+.lab-sheet-score { margin: 0; font-weight: 600; }
