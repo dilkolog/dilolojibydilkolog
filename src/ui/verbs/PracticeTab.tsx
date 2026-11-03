@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useNumberKeys } from '../useNumberKeys'
 import { prefs } from '../prefs'
 import { createRng, shuffle } from '../../engine/rng'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
@@ -397,6 +398,8 @@ function OneByOne({ kind, language, verb, tense, forms, people, hearts, settle, 
   const [typed, setTyped] = useState('')
   const [shown, setShown] = useState<{ ok: boolean; picked?: string } | null>(null)
   const input = useRef<HTMLInputElement>(null)
+  const optionKeys = useRef<HTMLDivElement>(null)
+  useNumberKeys(optionKeys)
   const person = order[index]
   const entry = verbEntry(language, verb)
   const options = useMemo(() => {
@@ -440,7 +443,7 @@ function OneByOne({ kind, language, verb, tense, forms, people, hearts, settle, 
         </p>
       )}
       {kind === 'choose' ? (
-        <div className="lab-options" role="group" aria-label="Seçenekler" lang={language}>
+        <div ref={optionKeys} className="lab-options" role="group" aria-label="Seçenekler" lang={language}>
           {options.map((o) => (
             <button
               key={o}

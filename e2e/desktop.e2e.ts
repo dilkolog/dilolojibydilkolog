@@ -204,6 +204,10 @@ test('verb lab: pick a verb and a tense, learn, practise, compare, and the pract
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
   await main.getByRole('button', { name: 'Seç', exact: true }).click()
   await expect(main.locator('.lab-option')).toHaveCount(4)
+  // The number keys pick an option, as in the study session.
+  await page.keyboard.press('2')
+  await expect(main.locator('.lab-option').nth(1)).toHaveClass(/is-(right|wrong)/)
+  await expect(main.getByRole('button', { name: /^Devam/ })).toBeVisible()
   await main.getByRole('button', { name: 'Diğer alıştırmalar' }).click()
   await page.getByRole('menuitem', { name: /^Eşleştir/ }).click()
   await expect(main.locator('.lab-match-btn')).toHaveCount(12)

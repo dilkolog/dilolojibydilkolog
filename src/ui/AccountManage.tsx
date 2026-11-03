@@ -7,9 +7,10 @@ import { AccountDeleteDialog } from './AccountDeleteDialog'
 import { PasswordInput } from './PasswordInput'
 import { setAccount } from './syncRunner'
 import { showToast } from './toastFeed'
+import { ChevronRightIcon, LockIcon, LogoutIcon } from './icons'
 
 /**
- * The signed-in account's main controls: the password (new or first) and signing out on this device.
+ * The signed-in account's own controls, one row each: the password (set or change it) and signing out on this device.
  * (How the person signs in shows as a mark beside the email in the header: AccountSettings.)
  */
 export function AccountManage({
@@ -61,83 +62,63 @@ export function AccountManage({
   }
 
   return (
-    <>
-      {identity && (
-        <div className="account-group">
-          <h3 className="account-group-title">Güvenlik</h3>
-          <div className="account-row">
-            <div className="account-row-text">
-              <strong>Şifre</strong>
-              <span className="small muted">
-                {hasPassword ? '••••••••••••' : 'Belirlenmedi'}
-              </span>
-            </div>
-            {!changing && (
-              <button type="button" className="btn btn-sm btn-quiet" onClick={() => setChanging(true)}>
-                {hasPassword ? 'Şifre değiştir' : 'Şifre belirle'}
-              </button>
+    <div className="account-group account-actions">
+      {identity &&
+        (changing ? (
+          <form
+            className="account-password"
+            onSubmit={(e) => {
+              e.preventDefault()
+              void savePassword()
+            }}
+          >
+            {needsCurrent && (
+              <label className="field">
+                <span className="field-label">Mevcut şifre</span>
+                <PasswordInput value={current} onChange={setCurrent} autoComplete="current-password" autoFocus shown={shown} onShownChange={setShown} />
+                <span className="help">Hatırlamıyorsan çıkış yapıp giriş ekranındaki “Şifremi unuttum” bağlantısını kullan.</span>
+              </label>
             )}
-          </div>
-          {changing && (
-            <form
-              className="account-password"
-              onSubmit={(e) => {
-                e.preventDefault()
-                void savePassword()
-              }}
-            >
-              {needsCurrent && (
-                <label className="field">
-                  <span className="field-label">Mevcut şifre</span>
-                  <PasswordInput value={current} onChange={setCurrent} autoComplete="current-password" autoFocus shown={shown} onShownChange={setShown} />
-                  <span className="help">Hatırlamıyorsan çıkış yapıp giriş ekranındaki “Şifremi unuttum” bağlantısını kullan.</span>
-                </label>
-              )}
-              <label className="field">
-                <span className="field-label">Yeni şifre</span>
-                <PasswordInput value={password} onChange={setPassword} autoComplete="new-password" autoFocus={!needsCurrent} shown={shown} onShownChange={setShown} />
-                <span className="help">{PASSWORD_HINT}</span>
-              </label>
-              <label className="field">
-                <span className="field-label">Yeni şifre (tekrar)</span>
-                <PasswordInput value={repeat} onChange={setRepeat} autoComplete="new-password" shown={shown} onShownChange={setShown} />
-              </label>
-              {error && (
-                <p className="error" role="alert">
-                  {error}
-                </p>
-              )}
-              <div className="row">
-                <button className="btn btn-sm" type="submit" disabled={busy || !password}>
-                  {busy ? 'Bekle…' : 'Kaydet'}
-                </button>
-                <button className="btn btn-sm btn-quiet" type="button" onClick={() => setChanging(false)}>
-                  Vazgeç
-                </button>
-              </div>
-            </form>
-          )}
-        </div>
-      )}
-
-      <div className="account-group">
-        <h3 className="account-group-title">Oturum</h3>
-        <div className="account-row">
-          <div className="account-row-text">
-            <strong>Mevcut Oturum</strong>
-            <span className="small muted">{identity ? 'Bu cihazdan çıkar.' : 'Bu cihazdaki oturumu kapatır; yerel kelimelerin korunur.'}</span>
-          </div>
-          <button type="button" className="btn btn-sm btn-quiet" disabled={busy} onClick={onSignOut}>
-            Çıkış yap
+            <label className="field">
+              <span className="field-label">Yeni şifre</span>
+              <PasswordInput value={password} onChange={setPassword} autoComplete="new-password" autoFocus={!needsCurrent} shown={shown} onShownChange={setShown} />
+              <span className="help">{PASSWORD_HINT}</span>
+            </label>
+            <label className="field">
+              <span className="field-label">Yeni şifre (tekrar)</span>
+              <PasswordInput value={repeat} onChange={setRepeat} autoComplete="new-password" shown={shown} onShownChange={setShown} />
+            </label>
+            {error && (
+              <p className="error" role="alert">
+                {error}
+              </p>
+            )}
+            <div className="row">
+              <button className="btn btn-sm" type="submit" disabled={busy || !password}>
+                {busy ? 'Bekle…' : 'Kaydet'}
+              </button>
+              <button className="btn btn-sm btn-quiet" type="button" onClick={() => setChanging(false)}>
+                Vazgeç
+              </button>
+            </div>
+          </form>
+        ) : (
+          <button type="button" className="account-row account-action" onClick={() => setChanging(true)}>
+            <LockIcon size={18} />
+            <span>{hasPassword ? 'Şifre değiştir' : 'Şifre belirle'}</span>
+            <ChevronRightIcon size={18} />
           </button>
-        </div>
-      </div>
-    </>
+        ))}
+      <button type="button" className="account-row account-action" disabled={busy} onClick={onSignOut}>
+        <LogoutIcon size={18} />
+        <span>Çıkış yap</span>
+      </button>
+    </div>
   )
 }
 
 /**
- * Deleting the account: a quiet row in the account's settings. It opens a dialog that walks through what goes and
+ * Deleting the account: a quiet red link under the account's controls (hard to press by mistake). It opens a dialog that walks through what goes and
  * what stays, asks for a typed phrase, then deletes (AccountDeleteDialog); the screen below the dialog stays as it is.
  */
 export function AccountDelete({
@@ -169,17 +150,9 @@ export function AccountDelete({
 
   return (
     <>
-      <div className="account-group">
-        <div className="account-row">
-          <div className="account-row-text">
-            <strong>Hesabı sil</strong>
-            <span className="small muted">Hesabını ve sunucudaki verilerini kalıcı olarak siler.</span>
-          </div>
-          <button type="button" className="btn btn-sm btn-danger" onClick={() => setOpen(true)}>
-            Hesabı sil…
-          </button>
-        </div>
-      </div>
+      <button type="button" className="account-delete-link" onClick={() => setOpen(true)}>
+        Hesabı sil…
+      </button>
       {open && <AccountDeleteDialog onDelete={remove} onClose={() => setOpen(false)} />}
     </>
   )

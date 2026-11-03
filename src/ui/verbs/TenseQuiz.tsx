@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
+import { useNumberKeys } from '../useNumberKeys'
 import { createRng, shuffle } from '../../engine/rng'
 import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { tenseSentence, type Tense } from '../../engine/tenses'
@@ -46,6 +47,8 @@ export function TenseQuiz({ language, verb, available }: { language: LabLanguage
   const [index, setIndex] = useState(0)
   const [picked, setPicked] = useState<Tense | null>(null)
   const [right, setRight] = useState(0)
+  const optionKeys = useRef<HTMLDivElement>(null)
+  useNumberKeys(optionKeys)
   const q = questions[index]
   if (available.length < 2) return <p className="muted">Bu fiil için karşılaştırılacak yeterli zaman yok.</p>
   if (!q)
@@ -85,7 +88,7 @@ export function TenseQuiz({ language, verb, available }: { language: LabLanguage
         {index + 1} / {questions.length} · Türkçe cümleye uyan zamanı seç
       </p>
       <p className="prompt-text">{q.turkish}</p>
-      <div className="lab-options" role="group" aria-label="Zamanlar" lang={language}>
+      <div ref={optionKeys} className="lab-options" role="group" aria-label="Zamanlar" lang={language}>
         {q.options.map((t) => (
           <button key={t} type="button" className={`lab-option${picked ? (t === q.tense ? ' is-right' : t === picked ? ' is-wrong' : '') : ''}`} disabled={!!picked} onClick={() => answer(t)}>
             {tenseName(t)}

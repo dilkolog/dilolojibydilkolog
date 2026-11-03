@@ -133,6 +133,18 @@ describe('AccountSettings header', () => {
     expect(email.querySelector('[role="img"]')?.getAttribute('aria-label')).toBe('Google ile bağlı')
   })
 
+  it('links to the profile when the screen can open it', async () => {
+    state.identity = { email: 'ali@example.com', name: 'Ali', avatar: '', providers: ['email'] }
+    const onOpenProfile = vi.fn()
+    host = document.createElement('div')
+    document.body.append(host)
+    root = createRoot(host)
+    await act(async () => root!.render(<AccountSettings onOpenProfile={onOpenProfile} />))
+    await act(() => new Promise((r) => setTimeout(r, 0)))
+    await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Profili düzenle')!.click())
+    expect(onOpenProfile).toHaveBeenCalled()
+  })
+
   it('an email-and-password account has no mark', async () => {
     state.identity = { email: 'ali@example.com', name: 'Ali', avatar: '', providers: ['email'] }
     await mount()

@@ -4570,6 +4570,12 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-option:hover:not(:disabled) { border-color: var(--lang); }
 .lab-option.is-right { border-color: var(--ok); background: var(--ok-soft); }
 .lab-option.is-wrong { border-color: var(--bad); background: var(--bad-soft); }
+/* With a keyboard, each option shows its number key (1, 2…): the keys pick it (useNumberKeys). */
+@media (hover: hover) and (pointer: fine) {
+  .lab-options { counter-reset: lab-option; }
+  .lab-option { position: relative; }
+  .lab-option::before { counter-increment: lab-option; content: counter(lab-option) / ''; position: absolute; top: 0.375rem; left: 0.5rem; color: var(--ink-soft); font-family: var(--sans); font-size: var(--t-xs); font-weight: 600; line-height: 1; }
+}
 .lab-listen { display: grid; gap: 0.5rem; justify-items: start; }
 .lab-match { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .lab-match-btn { width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--rule); border-radius: var(--r-md); background: var(--surface); box-shadow: 0 3px 0 var(--rule); color: var(--ink); font-family: var(--serif); font-size: var(--t-lg); cursor: pointer; text-align: left; }

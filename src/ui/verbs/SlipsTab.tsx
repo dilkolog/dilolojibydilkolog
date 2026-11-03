@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { useNumberKeys } from '../useNumberKeys'
 import { SLIP_CLEAR, openSlips, slipNeeds, type LabData } from '../../engine/labProgress'
 import { createRng } from '../../engine/rng'
 import { conjugateTense, subjectLabel, withSubject } from '../../engine/tenses'
@@ -65,6 +66,8 @@ function SlipRun({ language, lab, seed, onCheck, onOpen, onClose }: { language: 
   const [right, setRight] = useState(0)
   const [cleared, setCleared] = useState(0)
   const input = useRef<HTMLInputElement>(null)
+  const optionKeys = useRef<HTMLDivElement>(null)
+  useNumberKeys(optionKeys)
   const asked = queue[index]
   const slip = asked?.slip
   const forms = slip ? conjugateTense(verbEntry(language, slip.verb), slip.tense) : undefined
@@ -153,7 +156,7 @@ function SlipRun({ language, lab, seed, onCheck, onOpen, onClose }: { language: 
         {slip.wrong}× yanlış yaptın · hatadan çıkmak için {slipNeeds(slip)} doğru daha
       </p>
       {asked.format === 'choose' ? (
-        <div className="lab-options" role="group" aria-label="Seçenekler" lang={language}>
+        <div ref={optionKeys} className="lab-options" role="group" aria-label="Seçenekler" lang={language}>
           {options.map((o) => (
             <button
               key={o}
