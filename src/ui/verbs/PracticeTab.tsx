@@ -79,6 +79,7 @@ export function PracticeTab({
   sheet,
   initialMode = 'type',
   byFrequency,
+  onNewVerb,
 }: {
   language: LabLanguage
   verb: string
@@ -98,6 +99,8 @@ export function PracticeTab({
   initialMode?: Mode
   /** Verbs of the tables, most common first (for the "which verb?" questions). */
   byFrequency: readonly string[]
+  /** A random other verb that has this tense: offered when a round is done. */
+  onNewVerb?: () => void
 }) {
   const [mode, setMode] = useState<Mode>(initialMode)
   const pickMode = (m: Mode) => {
@@ -265,7 +268,13 @@ export function PracticeTab({
             </ul>
           )}
           <div className="row gap-2">
-            <button type="button" className="btn" onClick={reset} autoFocus>
+            {/* A round with every form right goes on to another verb in the same tense; a bad one is tried again first. */}
+            {onNewVerb && (
+              <button type="button" className={wrong === 0 ? 'btn' : 'btn btn-quiet'} onClick={onNewVerb} autoFocus={wrong === 0}>
+                Yeni fiil
+              </button>
+            )}
+            <button type="button" className={onNewVerb && wrong === 0 ? 'btn btn-quiet' : 'btn'} onClick={reset} autoFocus={!onNewVerb || wrong > 0}>
               Tekrar
             </button>
             {nextTense !== tense && (

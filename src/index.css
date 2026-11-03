@@ -3711,8 +3711,6 @@ p, .help, .small { text-wrap: pretty; }
 .hero-focus-label { font-weight: 600; }
 .hero-focus-note { flex-basis: 100%; }
 .hero-focus-meta { opacity: 0.85; }
-.hero-focus-others { flex-basis: 100%; margin: 0; opacity: 0.9; }
-.hero-focus-others .link { font-weight: 700; }
 .hero-focus .hero-focus-open { text-decoration: none; font-weight: 700; }
 .hero-focus .hero-focus-open:hover { text-decoration: underline; }
 /* The list as a pill: a popover menu dressed like a chip in the hero banner. */

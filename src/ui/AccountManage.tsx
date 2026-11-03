@@ -27,7 +27,10 @@ export function AccountManage({
   const [shown, setShown] = useState(false)
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
-  const hasPassword = !identity || identity.providers.includes('email')
+  // A password set just now counts at once; the saved account says so from the next load on (`has_password`).
+  const [justSet, setJustSet] = useState(false)
+  const hasPassword = !identity || identity.providers.includes('email') || justSet
+  const providers = identity ? (justSet && !identity.providers.includes('email') ? [...identity.providers, 'email'] : identity.providers) : []
 
   const savePassword = async () => {
     setError('')
@@ -38,6 +41,7 @@ export function AccountManage({
     try {
       await setNewPassword(password)
       showToast(hasPassword ? 'Yeni şifren kaydedildi.' : 'Şifren kaydedildi; artık e-posta ve şifreyle de girebilirsin.')
+      setJustSet(true)
       setChanging(false)
       setPassword('')
       setRepeat('')
@@ -56,7 +60,7 @@ export function AccountManage({
           <div className="account-row">
             <div className="account-row-text">
               <strong>Giriş Yöntemi</strong>
-              <span className="small muted">{providersText(identity.providers)}</span>
+              <span className="small muted">{providersText(providers)}</span>
             </div>
             <span className="account-status-badge">Bağlı</span>
           </div>
@@ -69,7 +73,7 @@ export function AccountManage({
             </div>
             {!changing && (
               <button type="button" className="btn btn-sm btn-quiet" onClick={() => setChanging(true)}>
-                {hasPassword ? 'Değiştir' : 'Şifre belirle'}
+                {hasPassword ? 'Şifre değiştir' : 'Şifre belirle'}
               </button>
             )}
           </div>

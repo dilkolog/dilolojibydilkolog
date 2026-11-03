@@ -51,10 +51,6 @@ export function useSessionStarters({ settings, data, game, plan, planInput, opti
   const startDay = () => {
     if (plan) startPlan(plan)
   }
-  /** With a list in focus the day is that list's; this one asks the due words of every list too (new words stay the list's). */
-  const startAll = () => {
-    if (planInput) startPlan(buildDailyPlan({ ...planInput, settings: { ...planInput.settings, allListReviews: true } }))
-  }
   /**
    * Two measurement probes among the day's questions (engine/probes.ts): cards picked at random among those not due,
    * asked in practice mode, so the forecasts get tested away from the 90 % spot the schedule always asks at.
@@ -196,5 +192,5 @@ export function useSessionStarters({ settings, data, game, plan, planInput, opti
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [plan, data])
 
-  return { startSession, startDay, startAll, startFocus, startMinutes, startShortRound, startQuest, practiceDifficult, startPractice, startMistakes, startEarlyReview, startMixed, mixedDue, dueByLanguage }
+  return { startSession, startDay, startFocus, startMinutes, startShortRound, startQuest, practiceDifficult, startPractice, startMistakes, startEarlyReview, startMixed, mixedDue, dueByLanguage }
 }
