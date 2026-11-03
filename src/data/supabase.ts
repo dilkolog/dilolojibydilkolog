@@ -138,7 +138,8 @@ export async function sendPasswordReset(email: string, captchaToken?: string): P
 }
 
 export async function setNewPassword(password: string): Promise<void> {
-  await run((await supabase()).auth.updateUser({ password }))
+  // The flag lets a Google account say it has a password too (Supabase does not list an e-mail sign-in for it).
+  await run((await supabase()).auth.updateUser({ password, data: { has_password: true } }))
 }
 
 export async function signOutSupabase(): Promise<void> {
@@ -178,8 +179,10 @@ export async function currentIdentity(): Promise<Identity | null> {
   const s = await currentSession().catch(() => null)
   if (!s) return null
   const meta = (s.user.app_metadata ?? {}) as { provider?: unknown; providers?: unknown }
-  const providers = Array.isArray(meta.providers) ? meta.providers.filter((p): p is string => typeof p === 'string') : typeof meta.provider === 'string' ? [meta.provider] : []
+  const found = Array.isArray(meta.providers) ? meta.providers.filter((p): p is string => typeof p === 'string') : typeof meta.provider === 'string' ? [meta.provider] : []
   const user = (s.user.user_metadata ?? {}) as Record<string, unknown>
+  // A password set later on a Google account: it signs in with e-mail and password as well.
+  const providers = user.has_password === true && !found.includes('email') ? [...found, 'email'] : found
   const text = (...keys: string[]) => keys.map((k) => user[k]).find((v): v is string => typeof v === 'string' && !!v.trim())?.trim() ?? ''
   const avatar = text('avatar_url', 'picture')
   return { email: s.user.email ?? '', providers, name: text('full_name', 'name', 'username'), avatar: /^https:\/\//.test(avatar) ? avatar : '' }
