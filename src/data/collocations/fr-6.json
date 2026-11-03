@@ -1,0 +1,266 @@
+[
+  {
+    "id": "fr-colloc6-01",
+    "language": "fr",
+    "lemmas": [
+      "conclusion"
+    ],
+    "pattern": "tirer une conclusion",
+    "example": "Il est trop tôt pour tirer des conclusions définitives de ces chiffres.",
+    "tr": "Bu rakamlardan kesin sonuçlar çıkarmak için henüz çok erken.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-02",
+    "language": "fr",
+    "lemmas": [
+      "consensus"
+    ],
+    "pattern": "parvenir à un consensus",
+    "example": "Après de longues discussions, le comité est parvenu à un consensus.",
+    "tr": "Uzun görüşmelerin ardından komite uzlaşmaya vardı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-03",
+    "language": "fr",
+    "lemmas": [
+      "menace"
+    ],
+    "pattern": "représenter une menace pour",
+    "example": "La hausse du niveau de la mer représente une menace pour les villes côtières.",
+    "tr": "Deniz seviyesinin yükselmesi kıyı kentleri için bir tehdit oluşturuyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-04",
+    "language": "fr",
+    "lemmas": [
+      "lumière"
+    ],
+    "pattern": "faire la lumière sur",
+    "example": "Une enquête indépendante doit faire la lumière sur cette affaire.",
+    "tr": "Bağımsız bir soruşturma bu meseleyi aydınlatmalı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-05",
+    "language": "fr",
+    "lemmas": [
+      "distance"
+    ],
+    "pattern": "prendre ses distances avec",
+    "example": "Elle a pris ses distances avec le parti après le scandale.",
+    "tr": "Skandalın ardından partiyle arasına mesafe koydu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-06",
+    "language": "fr",
+    "lemmas": [
+      "nourrir"
+    ],
+    "pattern": "nourrir des doutes",
+    "example": "Plusieurs membres nourrissaient des doutes sur la réforme.",
+    "tr": "Birkaç üye reform hakkında şüphe besliyordu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-07",
+    "language": "fr",
+    "lemmas": [
+      "atteinte"
+    ],
+    "pattern": "porter atteinte à",
+    "example": "Ces mesures portent atteinte aux libertés individuelles.",
+    "tr": "Bu önlemler bireysel özgürlüklere zarar veriyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-08",
+    "language": "fr",
+    "lemmas": [
+      "preuve"
+    ],
+    "pattern": "faire preuve de",
+    "example": "Il a fait preuve d'un grand sang-froid pendant la crise.",
+    "tr": "Kriz boyunca büyük bir soğukkanlılık gösterdi.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-09",
+    "language": "fr",
+    "lemmas": [
+      "péril"
+    ],
+    "pattern": "mettre en péril",
+    "example": "La sécheresse met en péril les récoltes de la région.",
+    "tr": "Kuraklık bölgenin hasadını tehlikeye atıyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-10",
+    "language": "fr",
+    "lemmas": [
+      "défi"
+    ],
+    "pattern": "relever un défi",
+    "example": "L'équipe a relevé le défi malgré des délais très courts.",
+    "tr": "Ekip çok kısa sürelere rağmen meydan okumanın üstesinden geldi.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-11",
+    "language": "fr",
+    "lemmas": [
+      "base"
+    ],
+    "pattern": "jeter les bases de",
+    "example": "Ce traité a jeté les bases de la coopération européenne.",
+    "tr": "Bu antlaşma Avrupa iş birliğinin temellerini attı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-12",
+    "language": "fr",
+    "lemmas": [
+      "tabou"
+    ],
+    "pattern": "lever un tabou",
+    "example": "Le film a le mérite de lever un tabou sur la santé mentale.",
+    "tr": "Film, ruh sağlığı konusundaki bir tabuyu yıkma erdemine sahip.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-13",
+    "language": "fr",
+    "lemmas": [
+      "susciter"
+    ],
+    "pattern": "susciter un débat",
+    "example": "Cette proposition a suscité un vif débat à l'Assemblée.",
+    "tr": "Bu öneri Meclis'te hararetli bir tartışma doğurdu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-14",
+    "language": "fr",
+    "lemmas": [
+      "enjeu"
+    ],
+    "pattern": "un enjeu majeur",
+    "example": "L'accès à l'eau potable est un enjeu majeur du siècle.",
+    "tr": "İçme suyuna erişim yüzyılın en büyük meselelerinden biri.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-15",
+    "language": "fr",
+    "lemmas": [
+      "parti"
+    ],
+    "pattern": "tirer parti de",
+    "example": "Les entreprises doivent tirer parti des nouvelles technologies.",
+    "tr": "Şirketler yeni teknolojilerden yararlanmalı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-16",
+    "language": "fr",
+    "lemmas": [
+      "objet"
+    ],
+    "pattern": "faire l'objet de",
+    "example": "Le projet fait l'objet d'un examen approfondi.",
+    "tr": "Proje ayrıntılı bir incelemeye tabi tutuluyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-17",
+    "language": "fr",
+    "lemmas": [
+      "origine"
+    ],
+    "pattern": "être à l'origine de",
+    "example": "Ce malentendu est à l'origine de la dispute.",
+    "tr": "Bu yanlış anlama kavganın kaynağında yatıyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-18",
+    "language": "fr",
+    "lemmas": [
+      "enquête"
+    ],
+    "pattern": "mener une enquête",
+    "example": "La police mène une enquête sur ces disparitions.",
+    "tr": "Polis bu kayıplar hakkında soruşturma yürütüyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-19",
+    "language": "fr",
+    "lemmas": [
+      "alléger"
+    ],
+    "pattern": "alléger les contraintes",
+    "example": "Le gouvernement veut alléger les contraintes administratives.",
+    "tr": "Hükümet idari yükümlülükleri hafifletmek istiyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-20",
+    "language": "fr",
+    "lemmas": [
+      "grever"
+    ],
+    "pattern": "grever le budget",
+    "example": "Ces dépenses imprévues ont grevé le budget de la commune.",
+    "tr": "Bu öngörülmeyen harcamalar belediyenin bütçesini zora soktu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-21",
+    "language": "fr",
+    "lemmas": [
+      "revers"
+    ],
+    "pattern": "essuyer un revers",
+    "example": "Le candidat a essuyé un revers cinglant aux élections.",
+    "tr": "Aday seçimlerde sert bir yenilgi aldı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-22",
+    "language": "fr",
+    "lemmas": [
+      "pallier"
+    ],
+    "pattern": "pallier un manque",
+    "example": "Il faut pallier le manque de personnel dans les hôpitaux.",
+    "tr": "Hastanelerdeki personel eksikliğini gidermek gerekiyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-23",
+    "language": "fr",
+    "lemmas": [
+      "trancher"
+    ],
+    "pattern": "trancher une question",
+    "example": "Le tribunal devra trancher cette question avant l'été.",
+    "tr": "Mahkeme bu meseleyi yaza kadar karara bağlamak zorunda.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-colloc6-24",
+    "language": "fr",
+    "lemmas": [
+      "cap"
+    ],
+    "pattern": "franchir un cap",
+    "example": "L'entreprise vient de franchir un cap historique avec un milliard de chiffre d'affaires.",
+    "tr": "Şirket bir milyar ciroyla tarihî bir eşiği aştı.",
+    "source": "Diloloji (özgün)"
+  }
+]

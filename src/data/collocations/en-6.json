@@ -1,0 +1,279 @@
+[
+  {
+    "id": "en-colloc6-01",
+    "language": "en",
+    "lemmas": [
+      "concern"
+    ],
+    "pattern": "raise concerns about",
+    "example": "The auditors raised concerns about the project's financing.",
+    "tr": "Denetçiler projenin finansmanıyla ilgili kaygılarını dile getirdi.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-02",
+    "language": "en",
+    "lemmas": [
+      "conclusion"
+    ],
+    "pattern": "draw a conclusion",
+    "example": "It is too early to draw any firm conclusions from the data.",
+    "tr": "Verilerden kesin sonuçlar çıkarmak için henüz çok erken.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-03",
+    "language": "en",
+    "lemmas": [
+      "consensus"
+    ],
+    "pattern": "reach a consensus",
+    "example": "After hours of talks, the board finally reached a consensus.",
+    "tr": "Saatler süren görüşmelerin ardından yönetim kurulu sonunda uzlaşmaya vardı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-04",
+    "language": "en",
+    "lemmas": [
+      "threat"
+    ],
+    "pattern": "pose a threat to",
+    "example": "Rising sea levels pose a serious threat to coastal cities.",
+    "tr": "Yükselen deniz seviyesi kıyı kentleri için ciddi bir tehdit oluşturuyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-05",
+    "language": "en",
+    "lemmas": [
+      "light"
+    ],
+    "pattern": "shed light on",
+    "example": "The new study sheds light on how memory works.",
+    "tr": "Yeni çalışma belleğin nasıl işlediğine ışık tutuyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-06",
+    "language": "en",
+    "lemmas": [
+      "terms"
+    ],
+    "pattern": "come to terms with",
+    "example": "It took her years to come to terms with the loss.",
+    "tr": "Kaybı kabullenmesi yıllarını aldı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-07",
+    "language": "en",
+    "lemmas": [
+      "grudge"
+    ],
+    "pattern": "bear a grudge against",
+    "example": "He bears no grudge against his former rivals.",
+    "tr": "Eski rakiplerine karşı kin beslemiyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-08",
+    "language": "en",
+    "lemmas": [
+      "case"
+    ],
+    "pattern": "make a case for",
+    "example": "She made a compelling case for investing in public transport.",
+    "tr": "Toplu taşımaya yatırım yapılması için ikna edici bir savunma yaptı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-09",
+    "language": "en",
+    "lemmas": [
+      "precedent"
+    ],
+    "pattern": "set a precedent",
+    "example": "The ruling could set a dangerous precedent for future cases.",
+    "tr": "Bu karar gelecekteki davalar için tehlikeli bir emsal oluşturabilir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-10",
+    "language": "en",
+    "lemmas": [
+      "debate"
+    ],
+    "pattern": "spark a debate",
+    "example": "The proposal sparked a heated debate in parliament.",
+    "tr": "Teklif mecliste hararetli bir tartışma başlattı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-11",
+    "language": "en",
+    "lemmas": [
+      "foster"
+    ],
+    "pattern": "foster collaboration",
+    "example": "The programme aims to foster collaboration between universities.",
+    "tr": "Program üniversiteler arasındaki iş birliğini teşvik etmeyi amaçlıyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-12",
+    "language": "en",
+    "lemmas": [
+      "inflation",
+      "curb"
+    ],
+    "pattern": "curb inflation",
+    "example": "The central bank raised rates to curb inflation.",
+    "tr": "Merkez bankası enflasyonu dizginlemek için faizleri artırdı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-13",
+    "language": "en",
+    "lemmas": [
+      "shoulder"
+    ],
+    "pattern": "shoulder the responsibility",
+    "example": "Managers must shoulder the responsibility for these failures.",
+    "tr": "Yöneticiler bu başarısızlıkların sorumluluğunu üstlenmeli.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-14",
+    "language": "en",
+    "lemmas": [
+      "yield"
+    ],
+    "pattern": "yield results",
+    "example": "Years of research finally began to yield results.",
+    "tr": "Yıllarca süren araştırma sonunda sonuç vermeye başladı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-15",
+    "language": "en",
+    "lemmas": [
+      "mitigate"
+    ],
+    "pattern": "mitigate the impact of",
+    "example": "New regulations aim to mitigate the impact of climate change.",
+    "tr": "Yeni düzenlemeler iklim değişikliğinin etkisini hafifletmeyi amaçlıyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-16",
+    "language": "en",
+    "lemmas": [
+      "undergo"
+    ],
+    "pattern": "undergo a transformation",
+    "example": "The city has undergone a remarkable transformation in a decade.",
+    "tr": "Kent on yılda dikkat çekici bir dönüşüm geçirdi.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-17",
+    "language": "en",
+    "lemmas": [
+      "inflict"
+    ],
+    "pattern": "inflict damage on",
+    "example": "The storm inflicted severe damage on the harbour.",
+    "tr": "Fırtına limana ağır hasar verdi.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-18",
+    "language": "en",
+    "lemmas": [
+      "harbour",
+      "doubt"
+    ],
+    "pattern": "harbour doubts",
+    "example": "Several members harboured doubts about the plan.",
+    "tr": "Birkaç üye plan hakkında şüphe taşıyordu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-19",
+    "language": "en",
+    "lemmas": [
+      "wield"
+    ],
+    "pattern": "wield influence",
+    "example": "Lobby groups wield considerable influence over policy.",
+    "tr": "Lobi grupları politika üzerinde hatırı sayılır bir nüfuza sahip.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-20",
+    "language": "en",
+    "lemmas": [
+      "widespread"
+    ],
+    "pattern": "widespread belief",
+    "example": "There is a widespread belief that prices will keep rising.",
+    "tr": "Fiyatların artmaya devam edeceğine dair yaygın bir inanış var.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-21",
+    "language": "en",
+    "lemmas": [
+      "sweeping"
+    ],
+    "pattern": "sweeping reforms",
+    "example": "The government promised sweeping reforms of the tax system.",
+    "tr": "Hükümet vergi sisteminde kapsamlı reformlar vaat etti.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-22",
+    "language": "en",
+    "lemmas": [
+      "vested"
+    ],
+    "pattern": "vested interest in",
+    "example": "Many shareholders have a vested interest in the merger.",
+    "tr": "Birçok hissedarın birleşmede çıkarı var.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-23",
+    "language": "en",
+    "lemmas": [
+      "wake"
+    ],
+    "pattern": "in the wake of",
+    "example": "Security was tightened in the wake of the attacks.",
+    "tr": "Saldırıların ardından güvenlik önlemleri sıkılaştırıldı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-24",
+    "language": "en",
+    "lemmas": [
+      "stake"
+    ],
+    "pattern": "what is at stake",
+    "example": "Voters need to understand what is at stake in this election.",
+    "tr": "Seçmenlerin bu seçimde nelerin tehlikede olduğunu anlaması gerekiyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-colloc6-25",
+    "language": "en",
+    "lemmas": [
+      "lip"
+    ],
+    "pattern": "pay lip service to",
+    "example": "Too many companies pay lip service to sustainability.",
+    "tr": "Pek çok şirket sürdürülebilirliğe sadece lafta önem veriyor.",
+    "source": "Diloloji (özgün)"
+  }
+]

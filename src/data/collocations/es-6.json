@@ -1,0 +1,281 @@
+[
+  {
+    "id": "es-colloc6-01",
+    "language": "es",
+    "lemmas": [
+      "conclusión"
+    ],
+    "pattern": "sacar conclusiones",
+    "example": "Es pronto para sacar conclusiones definitivas de estos datos.",
+    "tr": "Bu verilerden kesin sonuçlar çıkarmak için henüz erken.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-02",
+    "language": "es",
+    "lemmas": [
+      "consenso"
+    ],
+    "pattern": "llegar a un consenso",
+    "example": "Tras horas de debate, el comité llegó a un consenso.",
+    "tr": "Saatler süren tartışmanın ardından komite uzlaşmaya vardı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-03",
+    "language": "es",
+    "lemmas": [
+      "amenaza"
+    ],
+    "pattern": "suponer una amenaza para",
+    "example": "El aumento del nivel del mar supone una amenaza para las ciudades costeras.",
+    "tr": "Deniz seviyesinin yükselmesi kıyı kentleri için bir tehdit oluşturuyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-04",
+    "language": "es",
+    "lemmas": [
+      "arrojar"
+    ],
+    "pattern": "arrojar luz sobre",
+    "example": "Una investigación independiente debe arrojar luz sobre el caso.",
+    "tr": "Bağımsız bir soruşturma davayı aydınlatmalı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-05",
+    "language": "es",
+    "lemmas": [
+      "rencor"
+    ],
+    "pattern": "guardar rencor a",
+    "example": "No le guarda rencor a nadie por lo ocurrido.",
+    "tr": "Olanlardan dolayı kimseye kin beslemiyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-06",
+    "language": "es",
+    "lemmas": [
+      "precedente"
+    ],
+    "pattern": "sentar un precedente",
+    "example": "La sentencia podría sentar un precedente peligroso.",
+    "tr": "Karar tehlikeli bir emsal oluşturabilir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-07",
+    "language": "es",
+    "lemmas": [
+      "suscitar"
+    ],
+    "pattern": "suscitar un debate",
+    "example": "La propuesta suscitó un acalorado debate en el Congreso.",
+    "tr": "Öneri Meclis'te hararetli bir tartışma doğurdu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-08",
+    "language": "es",
+    "lemmas": [
+      "hincapié"
+    ],
+    "pattern": "hacer hincapié en",
+    "example": "El ministro hizo hincapié en la necesidad de reformas.",
+    "tr": "Bakan reform gerekliliğinin altını çizdi.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-09",
+    "language": "es",
+    "lemmas": [
+      "peligro"
+    ],
+    "pattern": "poner en peligro",
+    "example": "La sequía pone en peligro las cosechas de la región.",
+    "tr": "Kuraklık bölgenin hasadını tehlikeye atıyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-10",
+    "language": "es",
+    "lemmas": [
+      "desafío",
+      "afrontar"
+    ],
+    "pattern": "afrontar un desafío",
+    "example": "El equipo afrontó el desafío con plazos muy ajustados.",
+    "tr": "Ekip çok sıkışık sürelerle meydan okumayla yüzleşti.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-11",
+    "language": "es",
+    "lemmas": [
+      "bases"
+    ],
+    "pattern": "sentar las bases de",
+    "example": "Este tratado sentó las bases de la cooperación europea.",
+    "tr": "Bu antlaşma Avrupa iş birliğinin temellerini attı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-12",
+    "language": "es",
+    "lemmas": [
+      "aliviar"
+    ],
+    "pattern": "aliviar la tensión",
+    "example": "El gobierno intentó aliviar la tensión con una disculpa pública.",
+    "tr": "Hükümet kamuoyu önünde özür dileyerek gerginliği azaltmaya çalıştı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-13",
+    "language": "es",
+    "lemmas": [
+      "albergar"
+    ],
+    "pattern": "albergar dudas",
+    "example": "Varios miembros albergaban dudas sobre la reforma.",
+    "tr": "Birkaç üye reform hakkında şüphe taşıyordu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-14",
+    "language": "es",
+    "lemmas": [
+      "ejercer",
+      "influencia"
+    ],
+    "pattern": "ejercer influencia",
+    "example": "Los medios ejercen una gran influencia sobre la opinión pública.",
+    "tr": "Medya kamuoyu üzerinde büyük bir etki yaratıyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-15",
+    "language": "es",
+    "lemmas": [
+      "asumir",
+      "responsabilidad"
+    ],
+    "pattern": "asumir responsabilidades",
+    "example": "Los directivos deben asumir sus responsabilidades.",
+    "tr": "Yöneticiler sorumluluklarını üstlenmeli.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-16",
+    "language": "es",
+    "lemmas": [
+      "medidas"
+    ],
+    "pattern": "tomar medidas",
+    "example": "El ayuntamiento tomó medidas urgentes contra la contaminación.",
+    "tr": "Belediye kirliliğe karşı acil önlemler aldı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-17",
+    "language": "es",
+    "lemmas": [
+      "cobrar"
+    ],
+    "pattern": "cobrar sentido",
+    "example": "Con esa explicación, todo empezó a cobrar sentido.",
+    "tr": "Bu açıklamayla her şey anlam kazanmaya başladı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-18",
+    "language": "es",
+    "lemmas": [
+      "frente"
+    ],
+    "pattern": "hacer frente a",
+    "example": "La empresa tuvo que hacer frente a una crisis inesperada.",
+    "tr": "Şirket beklenmedik bir krizle başa çıkmak zorunda kaldı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-19",
+    "language": "es",
+    "lemmas": [
+      "juego"
+    ],
+    "pattern": "estar en juego",
+    "example": "En estas elecciones está en juego el futuro del país.",
+    "tr": "Bu seçimlerde ülkenin geleceği söz konusu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-20",
+    "language": "es",
+    "lemmas": [
+      "paliar"
+    ],
+    "pattern": "paliar los efectos de",
+    "example": "Las ayudas buscan paliar los efectos de la inflación.",
+    "tr": "Yardımlar enflasyonun etkilerini hafifletmeyi amaçlıyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-21",
+    "language": "es",
+    "lemmas": [
+      "hielo"
+    ],
+    "pattern": "romper el hielo",
+    "example": "Contó un chiste para romper el hielo al comienzo de la reunión.",
+    "tr": "Toplantının başında buzları eritmek için bir fıkra anlattı.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-22",
+    "language": "es",
+    "lemmas": [
+      "cabo"
+    ],
+    "pattern": "llevar a cabo",
+    "example": "El gobierno llevará a cabo una reforma fiscal profunda.",
+    "tr": "Hükümet kapsamlı bir vergi reformu gerçekleştirecek.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-23",
+    "language": "es",
+    "lemmas": [
+      "manifiesto"
+    ],
+    "pattern": "poner de manifiesto",
+    "example": "El informe pone de manifiesto graves deficiencias.",
+    "tr": "Rapor ciddi eksiklikleri ortaya koyuyor.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-24",
+    "language": "es",
+    "lemmas": [
+      "desempeñar",
+      "papel"
+    ],
+    "pattern": "desempeñar un papel",
+    "example": "La educación desempeña un papel fundamental en el desarrollo.",
+    "tr": "Eğitim kalkınmada temel bir rol oynar.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-colloc6-25",
+    "language": "es",
+    "lemmas": [
+      "terreno"
+    ],
+    "pattern": "ganar terreno",
+    "example": "Las energías renovables ganan terreno cada año.",
+    "tr": "Yenilenebilir enerjiler her yıl alan kazanıyor.",
+    "source": "Diloloji (özgün)"
+  }
+]
