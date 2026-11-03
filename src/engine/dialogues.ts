@@ -5,7 +5,7 @@ import type { TargetLanguage } from './types'
  * of three, and learns why the tempting wrong one is wrong. Written content, no AI: it works offline and keyless.
  */
 
-export type DialogueLevel = 'A1' | 'A2' | 'B1' | 'B2'
+export type DialogueLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1'
 
 export interface DialogueTurn {
   /** What the other person says, in the language. */
@@ -33,7 +33,7 @@ export type DialogueScores = Record<string, number>
 
 /** The dialogues to offer, of one level or all: never tried first (easier first), then the ones that went worst. */
 export function dialogueOrder(all: readonly Dialogue[], scores: DialogueScores, language: TargetLanguage, level?: DialogueLevel): Dialogue[] {
-  const order: DialogueLevel[] = ['A1', 'A2', 'B1', 'B2']
+  const order: DialogueLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']
   return all
     .filter((d) => d.language === language && (!level || d.level === level))
     .map((d, i) => ({ d, i }))

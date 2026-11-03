@@ -1,0 +1,210 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "fr-negociation-augmentation",
+      "level": "C1",
+      "title": "Zam görüşmesi",
+      "scene": "Vous demandez un rendez-vous à votre responsable pour discuter de votre rémunération.",
+      "turns": [
+        {
+          "say": "Je vous écoute. De quoi souhaitiez-vous me parler ?",
+          "tr": "Sizi dinliyorum. Benimle ne konuşmak istemiştiniz?",
+          "options": [
+            "Je voudrais qu'on revoie ma rémunération, au vu de mes résultats cette année.",
+            "Je veux plus d'argent, parce que tout le monde en gagne plus que moi.",
+            "Je souhaiterais que vous m'augmentiez, sinon je partirais demain."
+          ],
+          "answer": 0,
+          "why": "Nazik ve gerekçeli talep: 'au vu de' (…ışığında) + 'qu'on revoie' (subjonctif). Diğerleri ya sert ya da tehdit içerir.",
+          "replyTr": "Elde ettiğim sonuçlar ışığında maaşımızı yeniden değerlendirmemizi isterim."
+        },
+        {
+          "say": "Pouvez-vous préciser ce qui justifie, selon vous, cette demande ?",
+          "tr": "Size göre bu talebi neyin haklı kıldığını belirtebilir misiniz?",
+          "options": [
+            "J'ai repris deux dossiers en plus des miens et j'ai dépassé mes objectifs de dix pour cent.",
+            "J'ai travaillé plus que prévu mais personne ne s'en est jamais aperçu.",
+            "Mes collègues ont obtenu une augmentation, donc je pense que c'est normal."
+          ],
+          "answer": 0,
+          "why": "Somut, ölçülebilir gerekçe en ikna edici olandır; başkalarıyla kıyas ya da yakınma değil.",
+          "replyTr": "Kendi dosyalarıma ek olarak iki dosya devraldım ve hedeflerimi yüzde on aştım."
+        },
+        {
+          "say": "Je comprends, mais le budget est très serré cette année.",
+          "tr": "Anlıyorum ama bu yıl bütçe çok kısıtlı.",
+          "options": [
+            "Dans ce cas, je n'ai plus rien à vous demander.",
+            "Je suis conscient de cette contrainte ; serait-il envisageable d'en rediscuter au second semestre ?",
+            "Le budget, ce n'est pas mon problème, c'est le vôtre."
+          ],
+          "answer": 1,
+          "why": "'Serait-il envisageable de…' koşullu kip ile nazik bir alternatif önerir; görüşmeyi kapatmaz.",
+          "replyTr": "Bu kısıtın farkındayım; yılın ikinci yarısında yeniden konuşmak mümkün olur mu?"
+        },
+        {
+          "say": "On pourrait peut-être envisager une prime exceptionnelle en attendant.",
+          "tr": "Belki bu arada istisnai bir prim düşünebiliriz.",
+          "options": [
+            "Une prime, c'est mieux que rien, j'imagine.",
+            "Je vous remercie de cette proposition ; je préférerais toutefois une revalorisation pérenne.",
+            "Non, je ne veux pas de votre prime."
+          ],
+          "answer": 1,
+          "why": "'Toutefois' ile teşekkür edip itirazı yumuşak biçimde belirtmek profesyonel bir yoldur.",
+          "replyTr": "Bu öneriniz için teşekkür ederim; ancak kalıcı bir artışı tercih ederim."
+        },
+        {
+          "say": "Très bien, je vais en parler à la direction et je reviens vers vous.",
+          "tr": "Pekâlâ, yönetimle konuşacağım ve size döneceğim.",
+          "options": [
+            "D'accord, j'attends votre réponse d'ici la fin du mois, si cela vous convient.",
+            "Faites comme vous voulez, de toute façon.",
+            "J'espère que vous allez me répondre vite, parce que j'en ai marre d'attendre."
+          ],
+          "answer": 0,
+          "why": "Net bir tarih önerip 'si cela vous convient' ile nazik kalmak görüşmeyi olumlu bitirir.",
+          "replyTr": "Size uygunsa, yanıtınızı ayın sonuna kadar bekliyorum."
+        }
+      ]
+    },
+    {
+      "id": "fr-entretien-embauche",
+      "level": "C1",
+      "title": "İş görüşmesi",
+      "scene": "Vous passez un entretien pour un poste de chef de projet dans une entreprise française.",
+      "turns": [
+        {
+          "say": "Parlez-moi d'une difficulté que vous avez rencontrée dans un projet et de la façon dont vous l'avez surmontée.",
+          "tr": "Bir projede karşılaştığınız bir zorluğu ve onu nasıl aştığınızı anlatın.",
+          "options": [
+            "Une fois, le client a changé le cahier des charges en cours de route ; j'ai réuni l'équipe pour redéfinir les priorités.",
+            "Ça n'a jamais posé de problème, je suis toujours très organisé.",
+            "J'ai eu des difficultés mais c'était la faute de mon équipe."
+          ],
+          "answer": 0,
+          "why": "Somut bir durum, eylem ve sonuç anlatılır; 'cahier des charges' (şartname) doğru terimdir.",
+          "replyTr": "Müşteri proje ortasında şartnameyi değiştirdi; öncelikleri yeniden belirlemek için ekibi topladım."
+        },
+        {
+          "say": "Qu'est-ce qui vous a poussé à postuler chez nous ?",
+          "tr": "Bizde çalışmak için başvurmaya sizi ne itti?",
+          "options": [
+            "Votre entreprise a été citée comme une référence dans la transition écologique, un domaine qui me tient à cœur.",
+            "J'ai vu l'annonce sur Internet et j'avais besoin d'un travail.",
+            "Votre salaire est plus élevé que chez vos concurrents."
+          ],
+          "answer": 0,
+          "why": "Şirkete özgü bir motivasyon, 'tenir à cœur' (önemsemek) deyimiyle verilir.",
+          "replyTr": "Şirketiniz ekolojik dönüşümde bir referans olarak anılıyor; bu benim için önemli bir alan."
+        },
+        {
+          "say": "Quelle est, selon vous, votre principale faiblesse ?",
+          "tr": "Sizce en büyük zayıflığınız nedir?",
+          "options": [
+            "Je n'en ai pas vraiment, je suis plutôt parfait.",
+            "J'ai tendance à vouloir tout contrôler, mais j'apprends à déléguer davantage.",
+            "Je suis souvent en retard et je n'aime pas les réunions."
+          ],
+          "answer": 1,
+          "why": "Dürüst ama gelişim odaklı bir yanıt: 'avoir tendance à' + 'apprendre à'.",
+          "replyTr": "Her şeyi kontrol etme eğilimim var, ama daha çok görev devretmeyi öğreniyorum."
+        },
+        {
+          "say": "Comment réagissez-vous quand vous n'êtes pas d'accord avec votre hiérarchie ?",
+          "tr": "Hiyerarşinizle aynı fikirde olmadığınızda nasıl tepki verirsiniz?",
+          "options": [
+            "Je fais ce qu'on me dit sans rien ajouter.",
+            "J'expose calmement mes arguments, puis je me range à la décision prise une fois le débat clos.",
+            "J'en parle à mes collègues pour qu'ils me soutiennent contre elle."
+          ],
+          "answer": 1,
+          "why": "Argümanı sakin biçimde sunup karara uymak olgun bir tutumdur; 'se ranger à' (uymak).",
+          "replyTr": "Argümanlarımı sakin biçimde sunarım, tartışma kapandıktan sonra alınan karara uyarım."
+        },
+        {
+          "say": "Avez-vous des questions à nous poser ?",
+          "tr": "Bize sormak istediğiniz sorular var mı?",
+          "options": [
+            "Non, tout est clair, merci.",
+            "Oui : comment l'équipe s'organise-t-elle au quotidien et quelles sont les perspectives d'évolution du poste ?",
+            "Oui, combien de jours de congé aurai-je dès le premier mois ?"
+          ],
+          "answer": 1,
+          "why": "Göreve ve ekibe ilgi gösteren sorular görüşmeyi iyi bitirir.",
+          "replyTr": "Evet: ekip günlük olarak nasıl çalışıyor ve görevin ilerleme perspektifleri neler?"
+        }
+      ]
+    },
+    {
+      "id": "fr-debat-teletravail",
+      "level": "C1",
+      "title": "Radyoda tartışma",
+      "scene": "Vous êtes invité dans une émission de radio pour débattre du télétravail généralisé.",
+      "turns": [
+        {
+          "say": "Bonsoir. Selon vous, le télétravail est-il une avancée ou un piège ?",
+          "tr": "İyi akşamlar. Sizce uzaktan çalışma bir ilerleme mi yoksa bir tuzak mı?",
+          "options": [
+            "C'est à la fois une avancée et un risque : tout dépend de la manière dont il est encadré.",
+            "C'est complètement nul, on ne devrait pas le permettre.",
+            "Franchement, je n'ai pas d'avis sur la question."
+          ],
+          "answer": 0,
+          "why": "Nüanslı, dengeli giriş: 'à la fois… et…', 'tout dépend de…'.",
+          "replyTr": "Hem bir ilerleme hem bir risk: her şey nasıl çerçevelendiğine bağlı."
+        },
+        {
+          "say": "Pourtant, les employés disent gagner un temps précieux sans les trajets.",
+          "tr": "Yine de çalışanlar yol zamanından tasarruf ettiklerini söylüyor.",
+          "options": [
+            "Certes, mais ce gain masque parfois un isolement qui finit par peser sur la motivation.",
+            "Non, c'est faux, personne ne gagne du temps.",
+            "Ils disent n'importe quoi, comme d'habitude."
+          ],
+          "answer": 0,
+          "why": "'Certes, mais…' karşı görüşü kabul edip itiraz etmenin klasik retorik kalıbıdır.",
+          "replyTr": "Doğru, ama bu kazanç bazen motivasyonu zamanla düşüren bir yalnızlığı gizliyor."
+        },
+        {
+          "say": "Avez-vous des données qui étayent cette affirmation ?",
+          "tr": "Bu iddiayı destekleyen verileriniz var mı?",
+          "options": [
+            "Je n'en ai pas sous la main, mais tout le monde le sait.",
+            "Plusieurs enquêtes récentes montrent qu'un salarié sur trois se sent moins intégré à son équipe.",
+            "Les chiffres, ça se manipule, donc je m'en méfie."
+          ],
+          "answer": 1,
+          "why": "Veriye dayanan yanıt, 'étayer' (desteklemek) sorusuna uygundur; 'montrer que' + somut oran.",
+          "replyTr": "Yakın tarihli birkaç araştırma, çalışanların üçte birinin ekibine daha az bağlı hissettiğini gösteriyor."
+        },
+        {
+          "say": "Et que proposez-vous pour concilier flexibilité et cohésion d'équipe ?",
+          "tr": "Peki esneklik ile ekip uyumunu bağdaştırmak için ne öneriyorsunuz?",
+          "options": [
+            "Il suffirait de supprimer le télétravail.",
+            "Je préconise un modèle hybride, avec deux jours de présence communs pour maintenir le lien.",
+            "Chacun fait ce qu'il veut, ça s'arrangera."
+          ],
+          "answer": 1,
+          "why": "'Préconiser' (önermek) ve somut bir model: hibrit çalışma, ortak ofis günleri.",
+          "replyTr": "Bağı korumak için ortak iki ofis günüyle hibrit bir model öneriyorum."
+        },
+        {
+          "say": "Merci pour ces précisions. Un dernier mot ?",
+          "tr": "Bu açıklamalar için teşekkürler. Son bir söz?",
+          "options": [
+            "Non, je n'ai plus rien à dire.",
+            "Je dirais simplement que la confiance reste la clé : sans elle, aucune organisation du travail ne tient.",
+            "Merci, mais j'aurais dû parler plus longtemps."
+          ],
+          "answer": 1,
+          "why": "Kapanışta özlü bir sonuç cümlesi: 'la clé', 'ne tient' (ayakta kalamaz).",
+          "replyTr": "Sadece şunu söylerdim: güven anahtar olmaya devam ediyor; o olmadan hiçbir çalışma düzeni ayakta kalmaz."
+        }
+      ]
+    }
+  ]
+}

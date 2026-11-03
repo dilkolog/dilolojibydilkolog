@@ -1,0 +1,210 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "es-negociacion-aumento",
+      "level": "C1",
+      "title": "Zam görüşmesi",
+      "scene": "Pides una reunión a tu responsable para hablar de tu remuneración.",
+      "turns": [
+        {
+          "say": "Dime, ¿de qué querías hablarme?",
+          "tr": "Söyle, benimle ne konuşmak istiyordun?",
+          "options": [
+            "Quisiera que revisáramos mi remuneración, teniendo en cuenta los resultados de este año.",
+            "Quiero ganar más porque todos ganan más que yo.",
+            "Me gustaría que me subieran el sueldo, o si no me voy mañana."
+          ],
+          "answer": 0,
+          "why": "Nazik ve gerekçeli talep: 'quisiera que revisáramos' (subjuntivo imperfecto) + 'teniendo en cuenta'. Diğerleri sert ya da tehdit içerir.",
+          "replyTr": "Bu yılki sonuçları göz önünde bulundurarak maaşımı gözden geçirmemizi isterim."
+        },
+        {
+          "say": "¿Puedes concretar qué justifica, a tu juicio, esa petición?",
+          "tr": "Sence bu talebi neyin haklı kıldığını somutlaştırabilir misin?",
+          "options": [
+            "He asumido dos expedientes además de los míos y he superado los objetivos en un diez por ciento.",
+            "He trabajado mucho, pero nadie se ha dado cuenta nunca.",
+            "Mis compañeros han recibido una subida, así que me parece lo normal."
+          ],
+          "answer": 0,
+          "why": "Somut, ölçülebilir gerekçe; başkalarıyla kıyas ya da yakınma değil.",
+          "replyTr": "Kendi dosyalarıma ek olarak iki dosya üstlendim ve hedefleri yüzde on aştım."
+        },
+        {
+          "say": "Lo entiendo, pero este año el presupuesto está muy ajustado.",
+          "tr": "Anlıyorum ama bu yıl bütçe çok kısıtlı.",
+          "options": [
+            "Entonces ya no tengo nada más que pedirte.",
+            "Soy consciente de esa limitación; ¿sería posible retomar el tema en el segundo semestre?",
+            "El presupuesto no es mi problema, es el tuyo."
+          ],
+          "answer": 1,
+          "why": "'¿Sería posible…?' koşullu kipiyle nazik bir alternatif önerir ve kapıyı açık tutar.",
+          "replyTr": "Bu kısıtın farkındayım; konuyu yılın ikinci yarısında yeniden ele almak mümkün mü?"
+        },
+        {
+          "say": "Podríamos plantear un bonus extraordinario mientras tanto.",
+          "tr": "Bu arada istisnai bir prim önerebiliriz.",
+          "options": [
+            "Un bonus es mejor que nada, supongo.",
+            "Te lo agradezco; no obstante, preferiría una mejora salarial estable.",
+            "No, no quiero tu bonus."
+          ],
+          "answer": 1,
+          "why": "'No obstante' ile teşekkür edip itirazı yumuşakça belirtmek profesyoneldir.",
+          "replyTr": "Teşekkür ederim; yine de kalıcı bir maaş artışını tercih ederim."
+        },
+        {
+          "say": "Muy bien, lo hablaré con la dirección y te contesto.",
+          "tr": "Pekâlâ, yönetimle konuşacağım ve sana döneceğim.",
+          "options": [
+            "De acuerdo, esperaré tu respuesta antes de que acabe el mes, si te parece bien.",
+            "Haz lo que quieras, de todas formas.",
+            "Espero que contestes rápido, porque estoy harto de esperar."
+          ],
+          "answer": 0,
+          "why": "Net bir tarih önerip 'si te parece bien' ile nazik kalmak görüşmeyi olumlu bitirir.",
+          "replyTr": "Sana uygunsa, yanıtını ay sonundan önce bekleyeceğim."
+        }
+      ]
+    },
+    {
+      "id": "es-entrevista-trabajo",
+      "level": "C1",
+      "title": "İş görüşmesi",
+      "scene": "Estás en una entrevista para un puesto de coordinador de proyectos en una empresa española.",
+      "turns": [
+        {
+          "say": "Cuéntame una dificultad que hayas tenido en un proyecto y cómo la superaste.",
+          "tr": "Bir projede yaşadığın bir zorluğu ve onu nasıl aştığını anlat.",
+          "options": [
+            "En una ocasión el cliente cambió los requisitos a mitad del proyecto; reuní al equipo para redefinir las prioridades.",
+            "Nunca he tenido problemas, soy muy organizado.",
+            "Tuve dificultades, pero fue culpa de mi equipo."
+          ],
+          "answer": 0,
+          "why": "Somut durum, eylem ve sonuç; 'a mitad de' (ortasında) doğru kalıptır.",
+          "replyTr": "Müşteri proje ortasında gereksinimleri değiştirdi; öncelikleri yeniden belirlemek için ekibi topladım."
+        },
+        {
+          "say": "¿Qué te llevó a presentar tu candidatura en nuestra empresa?",
+          "tr": "Şirketimize başvurmanı ne sağladı?",
+          "options": [
+            "Su empresa es un referente en la transición ecológica, un ámbito que me importa mucho.",
+            "Vi el anuncio en Internet y necesitaba trabajo.",
+            "Pagan más que la competencia."
+          ],
+          "answer": 0,
+          "why": "Şirkete özgü, kişisel motivasyon: 'un referente', 'importar mucho'.",
+          "replyTr": "Şirketiniz ekolojik dönüşümde bir referans; bu benim için çok önemli bir alan."
+        },
+        {
+          "say": "¿Cuál dirías que es tu principal punto débil?",
+          "tr": "En büyük zayıf noktan ne olurdu dersin?",
+          "options": [
+            "No tengo ninguno, soy bastante perfecto.",
+            "Tiendo a querer controlarlo todo, pero estoy aprendiendo a delegar más.",
+            "Llego tarde a menudo y no me gustan las reuniones."
+          ],
+          "answer": 1,
+          "why": "Dürüst ama gelişim odaklı: 'tender a' + 'aprender a'.",
+          "replyTr": "Her şeyi kontrol etmeye eğilimliyim, ama daha çok görev devretmeyi öğreniyorum."
+        },
+        {
+          "say": "¿Cómo reaccionas cuando no estás de acuerdo con tu superior?",
+          "tr": "Üstünle aynı fikirde olmadığında nasıl tepki verirsin?",
+          "options": [
+            "Hago lo que me dicen sin añadir nada.",
+            "Expongo mis argumentos con calma y, una vez cerrado el debate, acato la decisión tomada.",
+            "Se lo cuento a mis compañeros para que me apoyen en su contra."
+          ],
+          "answer": 1,
+          "why": "Argümanı sakince sunup karara uymak olgun bir tutumdur; 'acatar' (uymak).",
+          "replyTr": "Argümanlarımı sakince sunarım, tartışma kapandıktan sonra alınan karara uyarım."
+        },
+        {
+          "say": "¿Tienes alguna pregunta para nosotros?",
+          "tr": "Bize sormak istediğin bir şey var mı?",
+          "options": [
+            "No, todo está claro, gracias.",
+            "Sí: ¿cómo se organiza el equipo en el día a día y qué perspectivas de evolución tiene el puesto?",
+            "Sí, ¿cuántos días de vacaciones tendré el primer mes?"
+          ],
+          "answer": 1,
+          "why": "Göreve ve ekibe ilgi gösteren sorular görüşmeyi iyi bitirir.",
+          "replyTr": "Evet: ekip günlük olarak nasıl çalışıyor ve görevin ilerleme perspektifleri neler?"
+        }
+      ]
+    },
+    {
+      "id": "es-debate-teletrabajo",
+      "level": "C1",
+      "title": "Radyoda tartışma",
+      "scene": "Participas en un programa de radio para debatir sobre el teletrabajo generalizado.",
+      "turns": [
+        {
+          "say": "Buenas noches. ¿Es el teletrabajo, a su juicio, un avance o una trampa?",
+          "tr": "İyi akşamlar. Sizce uzaktan çalışma bir ilerleme mi yoksa bir tuzak mı?",
+          "options": [
+            "Es a la vez un avance y un riesgo: todo depende de cómo se regule.",
+            "Es una porquería y no debería permitirse.",
+            "Sinceramente, no tengo opinión al respecto."
+          ],
+          "answer": 0,
+          "why": "Nüanslı giriş: 'a la vez… y…', 'todo depende de cómo…'.",
+          "replyTr": "Hem bir ilerleme hem bir risk: her şey nasıl düzenlendiğine bağlı."
+        },
+        {
+          "say": "Sin embargo, los empleados afirman ahorrar un tiempo valioso sin los desplazamientos.",
+          "tr": "Yine de çalışanlar yol zamanından değerli bir tasarruf yaptıklarını söylüyor.",
+          "options": [
+            "Sin duda, pero esa ganancia a veces oculta un aislamiento que acaba pesando en la motivación.",
+            "No, eso es falso, nadie ahorra tiempo.",
+            "Dicen cualquier cosa, como siempre."
+          ],
+          "answer": 0,
+          "why": "'Sin duda, pero…' karşı görüşü kabul edip itiraz eden retorik kalıptır.",
+          "replyTr": "Kuşkusuz, ama bu kazanç bazen motivasyonu zamanla düşüren bir yalnızlığı gizliyor."
+        },
+        {
+          "say": "¿Dispone de datos que respalden esa afirmación?",
+          "tr": "Bu iddiayı destekleyen verileriniz var mı?",
+          "options": [
+            "No los tengo a mano, pero todo el mundo lo sabe.",
+            "Varias encuestas recientes indican que uno de cada tres trabajadores se siente menos integrado en su equipo.",
+            "Las cifras se manipulan, así que desconfío de ellas."
+          ],
+          "answer": 1,
+          "why": "Veriye dayanan yanıt: 'respaldar' sorusuna 'indicar que' + somut oran uygundur.",
+          "replyTr": "Yakın tarihli birkaç anket, çalışanların üçte birinin ekibine daha az bağlı hissettiğini gösteriyor."
+        },
+        {
+          "say": "¿Y qué propone para conciliar flexibilidad y cohesión del equipo?",
+          "tr": "Peki esneklik ile ekip uyumunu bağdaştırmak için ne öneriyorsunuz?",
+          "options": [
+            "Bastaría con suprimir el teletrabajo.",
+            "Abogo por un modelo híbrido, con dos días de presencia común para mantener el vínculo.",
+            "Que cada uno haga lo que quiera y ya se arreglará."
+          ],
+          "answer": 1,
+          "why": "'Abogar por' (savunmak) ve somut bir model: hibrit çalışma, ortak ofis günleri.",
+          "replyTr": "Bağı korumak için ortak iki ofis günüyle hibrit bir model savunuyorum."
+        },
+        {
+          "say": "Gracias por las precisiones. ¿Unas últimas palabras?",
+          "tr": "Bu açıklamalar için teşekkürler. Son birkaç söz?",
+          "options": [
+            "No, no tengo nada más que decir.",
+            "Diría simplemente que la confianza sigue siendo la clave: sin ella, ninguna organización del trabajo se sostiene.",
+            "Gracias, pero debería haber hablado más tiempo."
+          ],
+          "answer": 1,
+          "why": "Kapanışta özlü sonuç: 'la clave', 'se sostiene' (ayakta durur).",
+          "replyTr": "Sadece şunu söylerdim: güven anahtar olmaya devam ediyor; o olmadan hiçbir çalışma düzeni ayakta kalmaz."
+        }
+      ]
+    }
+  ]
+}

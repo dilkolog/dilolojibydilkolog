@@ -7,7 +7,7 @@ import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 import { GameResult } from './GameResult'
 
-const LEVELS: DialogueLevel[] = ['A1', 'A2', 'B1', 'B2']
+const LEVELS: DialogueLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']
 /** "in French" with Turkish vowel harmony (İngilizce → İngilizcede). */
 const IN_LANGUAGE: Record<TargetLanguage, string> = { fr: 'Fransızcada', es: 'İspanyolcada', en: 'İngilizcede' }
 const scoresKey = (language: TargetLanguage) => `diloloji:dialogues:${language}`
