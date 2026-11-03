@@ -226,12 +226,30 @@ describe('a word list in focus', () => {
     expect(plan.newEntryIds).toEqual(['en:ticket', 'en:airport', 'en:gate'])
   })
 
-  it('still reviews words of other lists', () => {
-    const states = [learned(catalog[1], daysAgo(20))]
+  it('with a list in focus, the reviews are that list’s too; the other lists’ due words wait and are counted', () => {
+    const states = [learned(catalog[1], daysAgo(20)), learned(catalog[0], daysAgo(20))]
     const plan = buildDailyPlan(input({ catalog, states, settings: { ...settings, newWordsPerDay: 1, dailyMinutes: 60, focusListId: 'travel' } }))
+    const reviewed = new Set(plan.items.filter((i) => i.kind === 'exercise').map((i) => i.entryId))
+    expect(reviewed.has('en:salary')).toBe(false)
+    expect(reviewed.has('en:airport')).toBe(true)
+    expect(plan.otherDue).toBeGreaterThan(0)
+    // The new word is still the list's.
+    expect(plan.newEntryIds).toEqual(['en:ticket'])
+  })
+
+  it('asked for all lists, the other lists’ reviews come back too (new words stay the list’s)', () => {
+    const states = [learned(catalog[1], daysAgo(20))]
+    const plan = buildDailyPlan(input({ catalog, states, settings: { ...settings, newWordsPerDay: 1, dailyMinutes: 60, focusListId: 'travel', allListReviews: true } }))
     expect(plan.items.some((i) => i.entryId === 'en:salary' && i.kind === 'exercise')).toBe(true)
     expect(plan.newEntryIds).toEqual(['en:airport'])
-    expect(plan.focusDone).toBeUndefined()
+    expect(plan.otherDue).toBeUndefined()
+  })
+
+  it('without a focus nothing is left out', () => {
+    const states = [learned(catalog[1], daysAgo(20))]
+    const plan = buildDailyPlan(input({ catalog, states, settings: { ...settings, newWordsPerDay: 1, dailyMinutes: 60 } }))
+    expect(plan.items.some((i) => i.entryId === 'en:salary' && i.kind === 'exercise')).toBe(true)
+    expect(plan.otherDue).toBeUndefined()
   })
 })
 

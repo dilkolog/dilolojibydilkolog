@@ -66,10 +66,13 @@ export interface PlanSettings {
   /** Retire words known so well that routine reviews only cost time (see retire.ts). */
   autoRetire?: boolean
   /**
-   * A word list in focus: new words come only from it, in its order, so topics don't mix.
-   * Reviews still come from every list, so nothing already learned is left to fade.
+   * A word list in focus: the day's words come only from it, in its order, so topics don't mix: the new
+   * ones, and the reviews, weak and wrong ones too. What is due in the other lists waits (`otherDue`) and
+   * comes back when the focus is cleared or "all lists" is asked for (`allListReviews`).
    */
   focusListId?: string
+  /** With a list in focus, still ask the reviews of every list (the explicit "Hepsini çalış"). */
+  allListReviews?: boolean
   /** That list's levels in order: its new words come level by level, the ones with no level last. */
   focusLevels?: readonly string[]
 }
@@ -105,6 +108,8 @@ export interface DailyPlan {
   focusDone?: boolean
   /** Every review due, before the day's minutes cut it: how deep the pile is. */
   dueTotal: number
+  /** Questions due in the other lists, left out because a list is in focus. */
+  otherDue?: number
 }
 
 /** From this many reviews due, Today offers a short round instead of the whole pile. */
@@ -163,7 +168,9 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
   const extras: { item: PlanItem; lastAt: number; sure: boolean }[] = []
   const troubled: { item: PlanItem; trouble: Trouble }[] = []
 
-  const states = input.states.filter((s) => s.language === settings.language)
+  const focus = settings.focusListId && !settings.allListReviews ? settings.focusListId : undefined
+  // A list in focus: only its words are reviewed today (the rest of the due ones wait).
+  const states = input.states.filter((s) => s.language === settings.language && (!focus || byId.get(s.entryId)?.listId === focus))
   const auto = settings.autoRetire ?? false
   // Retired words: only a few surprise checks a day, the weakest first.
   let surprises = SURPRISE_PER_DAY - states.filter((s) => isRetired(s, auto) && s.lastReviewAt && s.lastReviewAt >= today).length
@@ -321,6 +328,8 @@ export function buildDailyPlan(input: PlanInput): DailyPlan {
   const reviews: PlanItem[] = []
   let used = 0
   const allReviews = reviewItems(input, byId, rng)
+  // What the focus leaves waiting: asked of the same plan without it (a separate random stream, the day's plan untouched).
+  const otherDue = input.settings.focusListId && !input.settings.allListReviews ? Math.max(0, reviewItems({ ...input, settings: { ...input.settings, allListReviews: true } }, byId, createRng(input.seed)).filter((it) => it.kind === 'exercise').length - allReviews.filter((it) => it.kind === 'exercise').length) : 0
   for (const it of allReviews) {
     if (used + itemCost(it) > budget) break
     reviews.push(it)
@@ -363,7 +372,7 @@ export function buildDailyPlan(input: PlanInput): DailyPlan {
     bySkill[it.skill] = (bySkill[it.skill] ?? 0) + 1
   }
   const focusDone = !!input.settings.focusListId && waitingNew <= 0
-  return { items, newEntryIds, counts, bySkill, estimatedMinutes: Math.ceil(used / 60_000), waitingNew, newBlockedBy, dueTotal: allReviews.length, ...(focusDone ? { focusDone } : {}) }
+  return { items, newEntryIds, counts, bySkill, estimatedMinutes: Math.ceil(used / 60_000), waitingNew, newBlockedBy, dueTotal: allReviews.length, ...(otherDue ? { otherDue } : {}), ...(focusDone ? { focusDone } : {}) }
 }
 
 /** Only the learner's question-type choices count here: a new word's first question is never an AI or speech one. */

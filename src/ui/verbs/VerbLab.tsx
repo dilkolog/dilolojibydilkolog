@@ -4,7 +4,7 @@ import { PageHeader } from '../PageHeader'
 import { useTenses } from '../tenseGroups'
 import { recordPractice } from '../games/shared'
 import { conjugateTense, labTensesOf, tensesOf, tenseVerbs, type Tense } from '../../engine/tenses'
-import { addToReview, awardLabXp, dueItems, labKey, pushRecent, recordCheck, recordForm, recordRound, recordTourDay, toggleFavorite } from '../../engine/labProgress'
+import { addToReview, awardLabXp, dueItems, labKey, pushRecent, recordCheck, recordForm, openSlips, recordRound, recordSlip, recordTourDay, toggleFavorite } from '../../engine/labProgress'
 import { localDate } from '../../engine/progress'
 import { diagnose } from '../../engine/formDiagnosis'
 import type { Scheduler } from '../../engine/scheduler'
@@ -15,6 +15,7 @@ import { MasteryTab } from './MasteryTab'
 import { PracticeTab } from './PracticeTab'
 import { PatternsTab } from './PatternsTab'
 import { ReviewTab } from './ReviewTab'
+import { SlipsTab } from './SlipsTab'
 import { verbFamilies, type FamilyId } from '../../engine/verbFamilies'
 import { SentenceQuiz } from './SentenceQuiz'
 import { TenseSheet } from './TenseSheet'
@@ -34,7 +35,7 @@ import { useTour } from './labTourItems'
  * 'timed' opens practice on its race against the clock (the conjugation games link there);
  * 'warmup' opens Ustalık with a round on the most common kind of slip (Today's verb warm-up).
  */
-export type LabTab = 'learn' | 'practice' | 'review' | 'patterns' | 'mastery' | 'timed' | 'warmup'
+export type LabTab = 'learn' | 'practice' | 'slips' | 'review' | 'patterns' | 'mastery' | 'timed' | 'warmup'
 type ShownTab = Exclude<LabTab, 'timed' | 'warmup'>
 
 /**
@@ -45,10 +46,11 @@ type ShownTab = Exclude<LabTab, 'timed' | 'warmup'>
 const TABS: { id: ShownTab; label: string }[] = [
   { id: 'learn', label: 'Öğren' },
   { id: 'practice', label: 'Alıştırma' },
+  { id: 'slips', label: 'Hatalarım' },
   { id: 'mastery', label: 'İlerleme' },
 ]
 /** The tab a view belongs to: Kalıplar under Öğren, the review queue under İlerleme. */
-const PARENT: Record<ShownTab, ShownTab> = { learn: 'learn', patterns: 'learn', practice: 'practice', review: 'mastery', mastery: 'mastery' }
+const PARENT: Record<ShownTab, ShownTab> = { learn: 'learn', patterns: 'learn', practice: 'practice', slips: 'slips', review: 'mastery', mastery: 'mastery' }
 
 /**
  * The verb lab: pick any French or Spanish verb and a tense, learn its forms (simple or every
@@ -135,6 +137,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
 
   const own = ownEntry(vocabulary, language, verb)
   const dueCount = dueItems(lab, new Date()).length
+  const slipCount = openSlips(lab).length
   /** The forms the questions use: what "add to my review" puts in the queue. */
   const reviewable = tensesOf(verbEntry(language, verb))
   const gloss = own?.senses[0]?.gloss ?? COMMON[language].find(([l]) => l === verb)?.[1]
@@ -171,7 +174,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
     // Where the slips are: counted per tense and person, and a wrong one by what kind it was.
     if (person !== undefined) {
       const kind = ok ? undefined : diagnose(verbEntry(language, v), t, person, given)
-      update((l) => recordForm(l, t, person, ok, kind))
+      update((l) => recordSlip(recordForm(l, t, person, ok, kind), v, t, person, ok, given))
     }
     // A verb that is one of the learner's own words keeps its history (and the weak-tense hints) too.
     const entry = ownEntry(vocabulary, language, v)
@@ -243,6 +246,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
               <button key={t.id} id={`lab-tab-${t.id}`} role="tab" aria-selected={PARENT[tab] === t.id} aria-controls="lab-panel" className="lab-tab" onClick={() => setTab(t.id)}>
                 {t.label}
                 {t.id === 'mastery' && dueCount > 0 && <span className="lab-count">{Math.min(dueCount, 99)}</span>}
+                {t.id === 'slips' && slipCount > 0 && <span className="lab-count">{Math.min(slipCount, 99)}</span>}
               </button>
             ))}
           </div>
@@ -300,6 +304,19 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 sheet={<TenseSheet language={language} verb={verb} tense={current} verbs={[verb, ...ownVerbs, ...lab.recent, ...byFrequency.slice(0, 300)].filter((v, i, all) => all.indexOf(v) === i)} onAnswer={onAnswer} />}
                 timed={<TimedTab language={language} byFrequency={byFrequency} levels={levels} vocabulary={vocabulary} states={states} onAnswer={onAnswer} />}
                 byFrequency={byFrequency}
+              />
+            ) : tab === 'slips' ? (
+              <SlipsTab
+                language={language}
+                lab={lab}
+                onCheck={(v, t, ok, given, expected, person) => {
+                  update((l) => recordCheck(l, scheduler, v, t, ok, new Date()))
+                  onAnswer(v, t, ok, given, expected, person)
+                }}
+                onOpen={(v) => {
+                  choose(v)
+                  setTab('learn')
+                }}
               />
             ) : tab === 'review' ? (
               <ReviewTab

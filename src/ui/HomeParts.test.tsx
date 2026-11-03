@@ -103,6 +103,18 @@ describe('FocusLine', () => {
     expect(onFocusList).toHaveBeenCalledWith(null)
   })
 
+  it('says what the focus leaves waiting and offers all lists', async () => {
+    const onStartAll = vi.fn()
+    await act(async () => {
+      root.render(<FocusLine done={false} lists={lists} focusListId="list-2" otherDue={7} onStartAll={onStartAll} onFocusList={vi.fn()} />)
+    })
+    expect(container.querySelector('.hero-focus-others')?.textContent).toContain('diğer listelerden 7 tekrar bekliyor')
+    await act(async () => {
+      Array.from(container.querySelectorAll<HTMLButtonElement>('.hero-focus-others button')).find((b) => b.textContent?.includes('Hepsini çalış'))!.click()
+    })
+    expect(onStartAll).toHaveBeenCalledTimes(1)
+  })
+
   it('invokes onOpenLists when manage lists option is selected', async () => {
     const onFocusList = vi.fn()
     const onOpenLists = vi.fn()

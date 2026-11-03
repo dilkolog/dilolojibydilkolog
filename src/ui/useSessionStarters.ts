@@ -41,13 +41,19 @@ export function useSessionStarters({ settings, data, game, plan, planInput, opti
     if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra, topic, firstSitting })
   }
   /** The day's plan; a long day (and no session cap set) in two sittings, the first ending about halfway. */
-  const startDay = () => {
-    if (!plan) return
+  const startPlan = (plan: DailyPlan) => {
     // A few of the verb lab's due forms join the words (interleaving), spread through the session.
     const items = mixForms(plan.items, dayForms)
     const split = !settings?.sessionMax && (settings?.splitLongDays ?? true) && plan.estimatedMinutes > SPLIT_ABOVE_MINUTES
     const end = split ? firstSittingEnd(items) : items.length
     startSession(withDayProbes(items.slice(0, end)), 'normal', daySeed(new Date()), undefined, undefined, split && end < items.length)
+  }
+  const startDay = () => {
+    if (plan) startPlan(plan)
+  }
+  /** With a list in focus the day is that list's; this one asks the due words of every list too (new words stay the list's). */
+  const startAll = () => {
+    if (planInput) startPlan(buildDailyPlan({ ...planInput, settings: { ...planInput.settings, allListReviews: true } }))
   }
   /**
    * Two measurement probes among the day's questions (engine/probes.ts): cards picked at random among those not due,
@@ -190,5 +196,5 @@ export function useSessionStarters({ settings, data, game, plan, planInput, opti
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [plan, data])
 
-  return { startSession, startDay, startFocus, startMinutes, startShortRound, startQuest, practiceDifficult, startPractice, startMistakes, startEarlyReview, startMixed, mixedDue, dueByLanguage }
+  return { startSession, startDay, startAll, startFocus, startMinutes, startShortRound, startQuest, practiceDifficult, startPractice, startMistakes, startEarlyReview, startMixed, mixedDue, dueByLanguage }
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { irregularForms, type Tense } from '../../engine/tenses'
 import { labForms } from '../../engine/verbLab'
+import { Select } from '../Select'
 import { FormTable } from './FormTable'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
@@ -21,16 +22,10 @@ export function CompareTab({ language, verb, available }: { language: LabLanguag
     <div className="stack lab-compare">
       <div className="lab-compare-picks">
         {chosen.map((t, i) => (
-          <label key={i} className="field">
+          <div key={i} className="field">
             <span className="small muted">{i + 1}. Zaman</span>
-            <select className="input" value={t} onChange={(e) => set(i, e.target.value as Tense)} lang={language}>
-              {available.map((a) => (
-                <option key={a} value={a}>
-                  {tenseName(a)}
-                </option>
-              ))}
-            </select>
-          </label>
+            <Select label={`${i + 1}. zaman`} value={t} onChange={(v) => set(i, v)} options={available.map((a) => ({ value: a, label: tenseName(a) }))} />
+          </div>
         ))}
       </div>
       <div className="lab-compare-cards">

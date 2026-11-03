@@ -3341,3 +3341,37 @@ test('invite link: opening /?davet=code asks first, then adds the inviter as a f
   expect(new URL(page.url()).search).toBe('')
   expect(await page.evaluate(() => localStorage.getItem('diloloji:invite-in'))).toBeNull()
 })
+
+test('verb lab: a wrong form lands in Hatalarım, is asked mixed and leaves after two right answers in a row', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' }).click()
+  await main.getByRole('button', { name: 'Liste', exact: true }).click()
+  const answers = ['parle', 'parlais', 'parle', 'parlons', 'parlez', 'parlent']
+  for (const [i, a] of answers.entries()) await page.locator(`#lab-in-${i}`).fill(a)
+  await main.getByRole('button', { name: 'Kontrol et' }).click()
+  // The one wrong form is in the bank, with a count on the tab.
+  await expect(main.getByRole('tab', { name: /^Hatalarım/ }).locator('.lab-count')).toHaveText('1')
+  await main.getByRole('tab', { name: /^Hatalarım/ }).click()
+  await expect(main.locator('.lab-slip-row')).toHaveCount(1)
+  await expect(main.locator('.lab-slip-row')).toContainText('parler')
+  // First time: chosen from options (just missed). One right answer is not enough.
+  await main.getByRole('button', { name: /^Karışık sor/ }).click()
+  await main.locator('.lab-option', { hasText: /^parles$/ }).click()
+  await main.getByRole('button', { name: /^Bitir/ }).click()
+  await expect(main.locator('.lab-result')).toContainText('Listede 1 çekim kaldı')
+  await main.getByRole('button', { name: 'Listeye dön' }).click()
+  await expect(main.locator('.lab-slip-row')).toContainText('1 doğru kaldı')
+  // Second time: typed. Right again takes it out.
+  await main.getByRole('button', { name: /^Karışık sor/ }).click()
+  await main.getByRole('textbox', { name: 'Cevap' }).fill('parles')
+  await main.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(main.locator('.lab-feedback')).toContainText('hatalarından çıktı')
+  await main.getByRole('button', { name: /^Bitir/ }).click()
+  await expect(main.locator('.lab-result')).toContainText('1 çekim hatalarından çıktı')
+  await main.getByRole('button', { name: 'Tamam' }).click()
+  await expect(main.getByText('Açık hatan yok')).toBeVisible()
+  await expect(main.getByRole('tab', { name: /^Hatalarım/ }).locator('.lab-count')).toHaveCount(0)
+})

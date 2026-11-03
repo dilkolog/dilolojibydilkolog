@@ -47,7 +47,7 @@ export function BadgeMoment({ badges, onClose, onProfile }: { badges: Achievemen
           </h2>
           <ul className="badge-moment-group">
             {ordered.map((b) => (
-              <li key={b.id} className={`badge-moment-art tier-${medalTier(b)}`}>
+              <li key={b.id} className={`badge-moment-item tier-${medalTier(b)}`}>
                 <BadgeMedal badge={b} unlocked size={72} />
                 <strong>{b.title}</strong>
                 <span className="small muted">{b.description}</span>
