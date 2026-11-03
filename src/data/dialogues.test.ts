@@ -10,7 +10,7 @@ describe('the dialogues', () => {
 
   it('are well formed: 5–6 turns, three different options, one answer, every answer position used, Turkish everywhere', () => {
     for (const d of dialogues) {
-      expect(['A1', 'A2', 'B1', 'B2'], d.id).toContain(d.level)
+      expect(['A1', 'A2', 'B1', 'B2', 'C1'], d.id).toContain(d.level)
       expect(d.title.length && d.scene.length, d.id).toBeTruthy()
       expect(d.turns.length, d.id).toBeGreaterThanOrEqual(5)
       expect(d.turns.length, d.id).toBeLessThanOrEqual(6)

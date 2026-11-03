@@ -1,0 +1,210 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "dialogues": [
+    {
+      "id": "en-negotiating-raise",
+      "level": "C1",
+      "title": "Zam görüşmesi",
+      "scene": "You have asked your manager for a meeting about your salary.",
+      "turns": [
+        {
+          "say": "Come in. What did you want to talk about?",
+          "tr": "Gir. Ne hakkında konuşmak istiyordun?",
+          "options": [
+            "I'd like us to review my salary, given how the past year has gone.",
+            "I want more money because everyone else earns more than me.",
+            "I'd like a raise, otherwise I'll leave tomorrow."
+          ],
+          "answer": 0,
+          "why": "Nazik ve gerekçeli talep: 'I'd like us to review…', 'given…'. Diğerleri sert ya da tehdit içerir.",
+          "replyTr": "Geçen yılın gidişatı göz önüne alınarak maaşımı gözden geçirmemizi isterim."
+        },
+        {
+          "say": "Could you be specific about what justifies the request?",
+          "tr": "Talebi neyin haklı kıldığını somut olarak söyleyebilir misin?",
+          "options": [
+            "I've taken on two accounts on top of my own and exceeded my targets by ten per cent.",
+            "I've worked hard, but no one has ever noticed.",
+            "My colleagues got a raise, so it seems only fair."
+          ],
+          "answer": 0,
+          "why": "Somut, ölçülebilir gerekçe: 'on top of', 'exceed targets'.",
+          "replyTr": "Kendi hesaplarıma ek olarak iki hesap devraldım ve hedefleri yüzde on aştım."
+        },
+        {
+          "say": "I see your point, but the budget is extremely tight this year.",
+          "tr": "Haklısın ama bu yıl bütçe son derece kısıtlı.",
+          "options": [
+            "Then I have nothing more to ask.",
+            "I appreciate the constraint; would it be possible to revisit this in the second half of the year?",
+            "The budget isn't my problem, it's yours."
+          ],
+          "answer": 1,
+          "why": "'Would it be possible to…' nazik bir alternatif önerir ve kapıyı açık tutar.",
+          "replyTr": "Bu kısıtı anlıyorum; konuyu yılın ikinci yarısında yeniden ele almak mümkün olur mu?"
+        },
+        {
+          "say": "We could perhaps consider a one-off bonus in the meantime.",
+          "tr": "Bu arada belki tek seferlik bir prim düşünebiliriz.",
+          "options": [
+            "A bonus is better than nothing, I suppose.",
+            "Thank you for the offer; however, I'd prefer a permanent adjustment.",
+            "No, I don't want your bonus."
+          ],
+          "answer": 1,
+          "why": "'However' ile teşekkür edip itirazı yumuşakça belirtmek profesyonel bir yoldur.",
+          "replyTr": "Teklifiniz için teşekkürler; ancak kalıcı bir ayarlamayı tercih ederim."
+        },
+        {
+          "say": "Right, I'll raise it with senior management and get back to you.",
+          "tr": "Tamam, üst yönetime iletip sana döneceğim.",
+          "options": [
+            "Fine, I'll look forward to hearing from you by the end of the month, if that suits you.",
+            "Do what you like, it makes no difference.",
+            "I hope you'll answer soon, because I'm sick of waiting."
+          ],
+          "answer": 0,
+          "why": "Net bir tarih önerip 'if that suits you' ile nazik kalmak görüşmeyi olumlu bitirir.",
+          "replyTr": "Tamam, uygunsa ay sonuna kadar haber bekliyorum."
+        }
+      ]
+    },
+    {
+      "id": "en-job-interview",
+      "level": "C1",
+      "title": "İş görüşmesi",
+      "scene": "You are interviewing for a project manager position at a London company.",
+      "turns": [
+        {
+          "say": "Tell me about a difficulty you faced in a project and how you overcame it.",
+          "tr": "Bir projede karşılaştığın bir zorluğu ve nasıl aştığını anlat.",
+          "options": [
+            "Midway through, the client changed the brief, so I brought the team together to redefine our priorities.",
+            "I've never had a problem; I'm very organised.",
+            "I had difficulties, but it was my team's fault."
+          ],
+          "answer": 0,
+          "why": "Somut durum, eylem ve sonuç; 'midway through' ve 'brief' (iş tanımı) doğal kullanımlar.",
+          "replyTr": "Projenin ortasında müşteri brief'i değiştirdi; ben de öncelikleri yeniden belirlemek için ekibi topladım."
+        },
+        {
+          "say": "What drew you to apply to us?",
+          "tr": "Bize başvurmanı ne çekti?",
+          "options": [
+            "Your company is regarded as a leader in the green transition, an area I care deeply about.",
+            "I saw the advert online and needed a job.",
+            "You pay more than your competitors."
+          ],
+          "answer": 0,
+          "why": "Şirkete özgü kişisel motivasyon: 'regarded as', 'care deeply about'.",
+          "replyTr": "Şirketiniz yeşil dönüşümde lider olarak görülüyor; bu benim için çok önemli bir alan."
+        },
+        {
+          "say": "What would you say is your greatest weakness?",
+          "tr": "En büyük zayıflığın ne olurdu dersin?",
+          "options": [
+            "I don't really have one; I'm fairly perfect.",
+            "I tend to want to control everything, but I'm learning to delegate more.",
+            "I'm often late and I dislike meetings."
+          ],
+          "answer": 1,
+          "why": "Dürüst ama gelişim odaklı: 'tend to' + 'learning to'.",
+          "replyTr": "Her şeyi kontrol etmeye meyilliyim, ama daha çok görev devretmeyi öğreniyorum."
+        },
+        {
+          "say": "How do you react when you disagree with your line manager?",
+          "tr": "Yöneticinle aynı fikirde olmadığında nasıl tepki verirsin?",
+          "options": [
+            "I do as I'm told without saying anything.",
+            "I set out my arguments calmly and, once the discussion is over, I abide by the decision.",
+            "I talk to colleagues so they'll back me against them."
+          ],
+          "answer": 1,
+          "why": "Argümanı sakince sunup karara uymak olgun bir tutumdur; 'abide by' (uymak).",
+          "replyTr": "Argümanlarımı sakince ortaya koyarım, tartışma bittikten sonra karara uyarım."
+        },
+        {
+          "say": "Do you have any questions for us?",
+          "tr": "Bize sormak istediğin sorular var mı?",
+          "options": [
+            "No, everything is clear, thank you.",
+            "Yes: how does the team work day to day, and what are the prospects for progression in the role?",
+            "Yes, how many days of holiday will I have in my first month?"
+          ],
+          "answer": 1,
+          "why": "Göreve ve ekibe ilgi gösteren sorular görüşmeyi iyi bitirir.",
+          "replyTr": "Evet: ekip günlük olarak nasıl çalışıyor ve görevde ilerleme olanakları neler?"
+        }
+      ]
+    },
+    {
+      "id": "en-radio-debate-remote",
+      "level": "C1",
+      "title": "Radyoda tartışma",
+      "scene": "You are a guest on a radio programme debating widespread remote working.",
+      "turns": [
+        {
+          "say": "Good evening. Is remote working a step forward or a trap?",
+          "tr": "İyi akşamlar. Uzaktan çalışma bir ilerleme mi yoksa bir tuzak mı?",
+          "options": [
+            "It's both an opportunity and a risk; everything depends on how it's regulated.",
+            "It's absolute rubbish and shouldn't be allowed.",
+            "Honestly, I have no view on the matter."
+          ],
+          "answer": 0,
+          "why": "Nüanslı giriş: 'both… and…', 'depends on how…'.",
+          "replyTr": "Hem bir fırsat hem bir risk; her şey nasıl düzenlendiğine bağlı."
+        },
+        {
+          "say": "Yet employees say they save precious time by not commuting.",
+          "tr": "Yine de çalışanlar yolculuk yapmayarak değerli zaman kazandıklarını söylüyor.",
+          "options": [
+            "Admittedly, but that gain can mask an isolation that eventually erodes motivation.",
+            "No, that's false; nobody saves any time.",
+            "They say anything, as usual."
+          ],
+          "answer": 0,
+          "why": "'Admittedly, but…' karşı görüşü kabul edip itiraz eden retorik kalıptır.",
+          "replyTr": "Kabul, ama bu kazanç zamanla motivasyonu aşındıran bir yalnızlığı gizleyebilir."
+        },
+        {
+          "say": "Do you have any evidence to back up that claim?",
+          "tr": "Bu iddiayı destekleyecek kanıtın var mı?",
+          "options": [
+            "I haven't got it to hand, but everybody knows it.",
+            "Several recent surveys suggest that one in three employees feels less connected to their team.",
+            "Figures can be manipulated, so I don't trust them."
+          ],
+          "answer": 1,
+          "why": "Veriye dayanan yanıt: 'back up' sorusuna 'suggest that' + somut oran uygundur.",
+          "replyTr": "Yakın tarihli birkaç araştırma, çalışanların üçte birinin ekibine daha az bağlı hissettiğini gösteriyor."
+        },
+        {
+          "say": "And what would you propose to reconcile flexibility with team cohesion?",
+          "tr": "Peki esneklik ile ekip uyumunu bağdaştırmak için ne önerirsiniz?",
+          "options": [
+            "We should simply scrap remote working.",
+            "I'd advocate a hybrid model, with two shared office days to keep the bond alive.",
+            "Let everyone do as they please and it'll sort itself out."
+          ],
+          "answer": 1,
+          "why": "'Advocate' (savunmak) ve somut bir model: hibrit çalışma.",
+          "replyTr": "Bağı canlı tutmak için ortak iki ofis günüyle hibrit bir model savunurum."
+        },
+        {
+          "say": "Thank you for that. Any final thoughts?",
+          "tr": "Teşekkürler. Son düşünceleriniz?",
+          "options": [
+            "No, I've got nothing more to say.",
+            "I'd simply say that trust remains the key: without it, no way of organising work holds together.",
+            "Thanks, but I should have spoken for longer."
+          ],
+          "answer": 1,
+          "why": "Kapanışta özlü sonuç: 'the key', 'holds together'.",
+          "replyTr": "Sadece şunu söylerdim: güven anahtar olmaya devam ediyor; o olmadan hiçbir çalışma düzeni ayakta kalmaz."
+        }
+      ]
+    }
+  ]
+}
