@@ -62,6 +62,10 @@ export async function currentSession(): Promise<Session | null> {
 }
 
 /** Supabase's English error messages, in Turkish for the ones a person meets. */
+/** Changing a password the account already has asks for the current one (Supabase's "secure password change"). */
+export const CURRENT_PASSWORD_NEEDED = 'Bu hesapta zaten bir şifre var: değiştirmek için mevcut şifreni de yaz.'
+export const CURRENT_PASSWORD_WRONG = 'Mevcut şifre yanlış.'
+
 export function authErrorText(message: string, unknownAsGeneric = false): string {
   const m = message.toLowerCase()
   if (m.includes('invalid login credentials')) return 'E-posta ya da şifre yanlış.'
@@ -70,6 +74,7 @@ export function authErrorText(message: string, unknownAsGeneric = false): string
   if (m.includes('captcha')) return 'Robot kontrolü tamamlanamadı; kutucuğun yenilenmesini bekleyip tekrar dene.'
   if (m.includes('email not confirmed')) return 'E-postanı henüz onaylamadın: gelen kutundaki bağlantıya dokun.'
   if (m.includes('user already registered')) return 'Bu e-postayla zaten bir hesap var. "Giriş yap"a geç.'
+  if (m.includes('current_password') || m.includes('current password')) return m.includes('mismatch') || m.includes('incorrect') || m.includes('wrong') ? CURRENT_PASSWORD_WRONG : CURRENT_PASSWORD_NEEDED
   if (m.includes('password should be') || m.includes('weak password')) return 'Şifre yeterince güçlü değil: en az 8 karakter; büyük harf, küçük harf, rakam ve sembol olsun.'
   if (m.includes('for security purposes') || m.includes('only request this after')) return 'Bunu kısa sürede ikinci kez istedin; bir dakika bekleyip tekrar dene.'
   if (m.includes('unable to validate email') || m.includes('invalid format') || m.includes('invalid email')) return 'E-posta adresi geçersiz görünüyor; kontrol edip tekrar yaz.'
@@ -93,7 +98,7 @@ export class SupabaseAuthError extends Error {
 }
 
 /** Errors a person caused or can fix themselves (a wrong password, a weak one): not worth a report. */
-const EXPECTED = /invalid login credentials|disposable_email|alias_email|captcha|email not confirmed|already registered|password should be|weak password|for security purposes|only request this after|rate limit|too many|invalid (format|email)|unable to validate email|expired|signups? not allowed|not authorized/i
+const EXPECTED = /invalid login credentials|disposable_email|alias_email|captcha|email not confirmed|already registered|password should be|weak password|for security purposes|only request this after|rate limit|too many|invalid (format|email)|unable to validate email|expired|signups? not allowed|not authorized|current[ _]password/i
 
 async function run<T extends { error: { message: string; status?: number; code?: string; name?: string } | null }>(p: Promise<T>): Promise<T> {
   const r = await p
@@ -137,9 +142,9 @@ export async function sendPasswordReset(email: string, captchaToken?: string): P
   await run((await supabase()).auth.resetPasswordForEmail(email, { redirectTo: back(), captchaToken }))
 }
 
-export async function setNewPassword(password: string): Promise<void> {
+export async function setNewPassword(password: string, currentPassword?: string): Promise<void> {
   // The flag lets a Google account say it has a password too (Supabase does not list an e-mail sign-in for it).
-  await run((await supabase()).auth.updateUser({ password, data: { has_password: true } }))
+  await run((await supabase()).auth.updateUser({ password, data: { has_password: true }, ...(currentPassword ? { current_password: currentPassword } : {}) }))
 }
 
 export async function signOutSupabase(): Promise<void> {

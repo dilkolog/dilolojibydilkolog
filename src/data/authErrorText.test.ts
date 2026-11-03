@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { authErrorText } from './supabase'
+import { authErrorText, CURRENT_PASSWORD_NEEDED, CURRENT_PASSWORD_WRONG } from './supabase'
 
 describe('authErrorText', () => {
   it('says a failed connection is one in every browser (Chrome, Safari, Firefox)', () => {
@@ -16,5 +16,9 @@ describe('authErrorText', () => {
   it('turns an unknown technical message into a plain one, or leaves it when asked to', () => {
     expect(authErrorText('Database error querying schema', true)).toContain('Bir sorun oldu')
     expect(authErrorText('Database error querying schema')).toBe('Database error querying schema')
+  })
+  it('says a password already set needs the current one to be changed', () => {
+    expect(authErrorText('Current password required when setting new password.', true)).toBe(CURRENT_PASSWORD_NEEDED)
+    expect(authErrorText('Incorrect current password', true)).toBe(CURRENT_PASSWORD_WRONG)
   })
 })
