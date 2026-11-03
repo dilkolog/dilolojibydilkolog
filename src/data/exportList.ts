@@ -1,4 +1,5 @@
 import { workbook } from './xlsx'
+import { esc, printBase, printFoot, printOrigin, printPage, PRINT_LANGUAGE as LANGUAGE_NAME, printTop } from './printSheet'
 import { richHtml } from '../engine/richText'
 import { displayForm } from '../engine/exercises'
 import { masteryStage } from '../engine/mastery'
@@ -98,7 +99,6 @@ export function toXlsx(entries: readonly VocabularyEntry[], states: readonly Use
 /** Column widths of the word list, in characters. */
 export const LIST_WIDTHS = [11, 18, 8, 10, 24, 22, 40, 16, 40, 32, 30, 18, 24, 12, 14, 12]
 
-const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 /** A two-column, alphabetical dictionary page ready to print. */
 export function dictionaryHtml(entries: readonly VocabularyEntry[], language: TargetLanguage, title: string): string {
@@ -115,18 +115,26 @@ export function dictionaryHtml(entries: readonly VocabularyEntry[], language: Ta
       }${ex ? `<div class="x" lang="${language}">${esc(ex.text.replace(/\*/g, ''))}${ex.translation ? ` <span>— ${esc(ex.translation)}</span>` : ''}</div>` : ''}</div>`
     })
     .join('')
-  return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>${esc(title)}</title><style>
-    @page { margin: 16mm 14mm; }
-    body { font: 10.5pt/1.45 Georgia, 'Times New Roman', serif; color: #111; margin: 0; }
-    header { margin-bottom: 8mm; } header h1 { font-size: 20pt; margin: 0; } header p { margin: 2mm 0 0; color: #555; font: 9pt system-ui, sans-serif; }
-    main { columns: 2; column-gap: 8mm; }
-    h2 { font: 700 13pt system-ui, sans-serif; margin: 4mm 0 1.5mm; border-bottom: 1px solid #999; break-after: avoid; }
-    .e { margin: 0 0 2.2mm; break-inside: avoid; }
-    .ipa { color: #555; font-family: 'Charis SIL', 'Lucida Sans Unicode', serif; }
-    .d { font-style: italic; color: #333; } .x { color: #333; font-size: 9.5pt; } .x span { color: #666; }
-    @media screen { body { max-width: 190mm; margin: 10mm auto; padding: 0 6mm; } }
-  </style></head><body><header><h1>${esc(title)}</h1><p>${sorted.length} kelime · Diloloji · ${new Date().toLocaleDateString('tr-TR')}</p></header><main>${body}</main></body></html>`
+  const origin = printOrigin()
+  const date = new Date().toLocaleDateString('tr-TR')
+  return printPage(
+    title,
+    printBase(language, origin, { margin: '14mm 14mm 15mm' }) + DICTIONARY_CSS,
+    `<main>${printTop(origin, 'Diloloji · Sözlük', date)}<header class="head"><div class="chips"><span class="chip">${esc(LANGUAGE_NAME[language])}</span><span class="chip">${sorted.length} kelime</span></div><h1>${esc(title)}</h1></header>`
+      + `<div class="dict">${body}</div>${printFoot('diloloji.com', `${LANGUAGE_NAME[language]} · ${sorted.length} kelime`)}</main>`,
+  )
 }
+
+const DICTIONARY_CSS = `
+    .dict { columns: 2; column-gap: 8mm; margin-top: 4mm; }
+    .dict h2 { margin: 4mm 0 1.8mm; padding-bottom: 0.8mm; border-bottom: 0.4mm solid var(--lang); font-size: 13pt; letter-spacing: 0; text-transform: none; color: var(--text); break-after: avoid; }
+    .dict h2:first-child { margin-top: 0; }
+    .e { margin: 0 0 2.2mm; break-inside: avoid; font-size: 9.5pt; }
+    .e > b { font: 400 11pt/1.3 var(--serif); color: var(--ink); }
+    .ipa { color: var(--ink-soft); font-family: 'Charis SIL', 'Lucida Sans Unicode', serif; font-size: 9pt; }
+    .d { font-style: italic; color: var(--ink-soft); }
+    .x { font: 400 9.5pt/1.35 var(--serif); color: var(--ink); } .x span { font-family: 'Lexend', system-ui, sans-serif; font-size: 8.5pt; color: var(--ink-soft); }
+    @media screen and (max-width: 220mm) { .dict { columns: 1; } }`
 
 /** Cards per sheet: 2 across, 4 down. */
 export const CARDS_PER_SHEET = 8
@@ -155,20 +163,30 @@ export function flashcardsHtml(entries: readonly VocabularyEntry[], language: Ta
     sheets += `<section class="sheet">${cells.map((e) => (e ? front(e) : empty)).join('')}</section>`
     sheets += `<section class="sheet">${mirrored.map((e) => (e ? back(e) : empty)).join('')}</section>`
   }
-  return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>${esc(title)}</title><style>
-    @page { size: A4; margin: 0; }
-    body { margin: 0; font: 14pt/1.35 Georgia, 'Times New Roman', serif; color: #111; }
-    .sheet { box-sizing: border-box; width: 210mm; height: 297mm; padding: 8mm; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, 1fr); break-after: page; }
-    .c { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3mm; padding: 6mm; border: 0.3mm dashed #999; text-align: center; overflow: hidden; }
-    .c.blank { border-style: dotted; border-color: #ddd; }
-    .c b { font-size: 20pt; font-weight: 600; }
-    .ipa { color: #555; font-size: 11pt; font-family: 'Charis SIL', 'Lucida Sans Unicode', serif; }
-    .x { font-size: 11pt; } .t { font-size: 10pt; color: #555; }
-    .note { font: 9pt system-ui, sans-serif; color: #666; padding: 4mm 8mm 0; }
-    @media screen { body { background: #eee; } .sheet { margin: 6mm auto; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,.2); } }
-    @media print { .note { display: none; } }
-  </style></head><body><p class="note">${esc(title)} · ${entries.length} kart · çift taraflı yazdırırken “uzun kenardan çevir” seç; her arka yüz kendi ön yüzünün arkasına düşer.</p>${sheets}</body></html>`
+  const origin = printOrigin()
+  return printPage(
+    title,
+    printBase(language, origin, { margin: '0', page: false }) + FLASHCARD_CSS,
+    `<div class="note">${printTop(origin, 'Diloloji · Kartlar', `${entries.length} kart`)}<p>${esc(title)} · çift taraflı yazdırırken “uzun kenardan çevir” seç; her arka yüz kendi ön yüzünün arkasına düşer.</p></div>${sheets}`,
+  )
 }
+
+const FLASHCARD_CSS = `
+    .sheet { width: 210mm; height: 296mm; margin: 0; padding: 8mm; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, 1fr); overflow: hidden; }
+    .sheet + .sheet { break-before: page; }
+    .c { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.5mm; padding: 7mm 6mm 6mm; border: 0.3mm dashed #cbd5e1; text-align: center; overflow: hidden; }
+    .c::before { content: ''; position: absolute; top: 3mm; left: 50%; width: 10mm; height: 1mm; margin-left: -5mm; border-radius: 1mm; background: var(--lang); }
+    .c.blank { border-style: dotted; border-color: #e2e8f0; }
+    .c.blank::before { display: none; }
+    .c b { font-size: 15pt; font-weight: 700; color: var(--ink); }
+    .c b[lang] { font: 400 22pt/1.2 var(--serif); color: var(--text); }
+    .ipa { color: var(--ink-soft); font-size: 10.5pt; font-family: 'Charis SIL', 'Lucida Sans Unicode', serif; }
+    .x { font: 400 11pt/1.35 var(--serif); color: var(--ink); } .t { font-size: 9.5pt; color: var(--ink-soft); }
+    .t b { font-size: inherit; color: var(--ink); }
+    .note { width: 210mm; margin: 6mm auto 0; padding: 0 8mm; font-size: 9pt; color: var(--ink-soft); }
+    .note p { margin: 0; }
+    @media screen { body { background: #f1f5f9; } .sheet { margin: 6mm auto; background: #fff; border-radius: 4mm; box-shadow: 0 2px 12px rgba(15, 23, 42, 0.12); } }
+    @media print { .note { display: none; } }`
 
 /**
  * Quizlet-ready text export: term <TAB> definition [<TAB> example].
