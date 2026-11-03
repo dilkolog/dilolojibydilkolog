@@ -1,0 +1,51 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "readings": [
+    {
+      "id": "es-adv-slow",
+      "language": "es",
+      "title": "Elogio de la lentitud",
+      "category": "essay",
+      "level": "B2",
+      "summary": "Hızın değerini sorgulayan, yavaş yaşam akımını artıları ve eleştirileriyle tartan kısa bir deneme.",
+      "text": "Nos repiten que el tiempo es oro. Sin embargo, quienes corren de la mañana a la noche rara vez acaban ganando algo, salvo cansancio. Desde hace unos años, un movimiento nacido en Italia invita a bajar el ritmo: comer despacio, caminar sin rumbo fijo, leer un libro hasta el final sin mirar el móvil cada cinco minutos. Sus defensores no pretenden que haya que renunciar a toda eficacia; afirman, simplemente, que ciertas cosas no se pueden apresurar. Una conversación sincera, por ejemplo, no se resuelve con tres mensajes. Un guiso se cuece a fuego lento, un aprendizaje madura, una amistad se construye a lo largo de los años. Los críticos responden que solo quien puede permitírselo disfruta de ese lujo. La objeción es seria: tomarse el tiempo supone a veces un empleo estable y un alquiler razonable. Sería una lástima, no obstante, concluir que la lentitud es solo un privilegio. Suele empezar con gestos pequeños, como silenciar las notificaciones durante la cena o subir por la escalera en lugar de tomar el ascensor. A fuerza de acelerar, uno acaba por olvidar qué quería alcanzar con tanta prisa."
+    },
+    {
+      "id": "es-adv-bees",
+      "language": "es",
+      "title": "Colmenas en los tejados",
+      "category": "feature",
+      "level": "B2",
+      "summary": "Şehir çatılarındaki arı kovanları: yararları, sınırları ve komşuları bilinçlendiren bir arıcı.",
+      "text": "En la azotea de un edificio del centro de Valencia, tres colmenas zumban con calma por encima del ruido de los coches. Su dueña, una antigua enfermera convertida en apicultora, viene a revisarlas cada sábado por la mañana. «Se cree que la ciudad es hostil a las abejas —explica—, pero aquí encuentran tilos, balcones con flores y muchos menos pesticidas que en el campo». De hecho, algunos estudios indican que las colonias urbanas producen a veces más miel que las de zonas agrícolas intensivas. El fenómeno tiene, sin embargo, sus límites. Cuando las colmenas se multiplican, escasean las flores y las abejas silvestres, más discretas, tienen que conformarse con lo que queda. Varios investigadores invitan por eso a la prudencia: es preferible plantar especies melíferas que aumentar el número de colmenas. La apicultora lo admite de buen grado. Ahora reparte semillas entre los vecinos del edificio y organiza visitas para los colegios del barrio. «Si los niños entienden de dónde viene la miel —dice—, entenderán también por qué hay que proteger lo que la hace posible»."
+    },
+    {
+      "id": "es-adv-train",
+      "language": "es",
+      "title": "El último tren",
+      "category": "story",
+      "level": "B2",
+      "summary": "İptal edilen son trenin ardından gece yarısı tanışan iki yabancının kısa öyküsü.",
+      "text": "Cuando Elisa llegó al andén, el panel luminoso ya parpadeaba: tren suprimido. Era casi medianoche, la lluvia caía a cántaros y la maleta pesaba una tonelada. Se sentó en un banco con un suspiro. Un hombre mayor, con sombrero gris, le dirigió una sonrisa cansada. —¿Usted también espera un milagro? —preguntó. Ella se rio sin querer. Empezaron a charlar. Se llamaba Gaspar, volvía de una boda en la que había bailado más de la cuenta y conocía, según decía, una forma de llegar a la ciudad por la carretera de la costa. A la una apareció por fin un autobús de refuerzo, medio vacío. Gaspar se durmió en la primera curva, con la cabeza apoyada en el cristal. Elisa vio pasar las luces mojadas y pensó que aquella noche, que había dado por perdida, quizá fuera la más divertida del mes. Cuando el autobús se detuvo frente a la estación, deslizó en el bolsillo del anciano un billete con su número de teléfono. No creía que fuera a llamar; sin embargo, tres días después, sonó su teléfono."
+    },
+    {
+      "id": "es-adv-translate",
+      "language": "es",
+      "title": "¿Traducir es traicionar?",
+      "category": "essay",
+      "level": "C1",
+      "summary": "Çevirinin kayıp ve kazançları: kelime kelime karşılık mı, etki yeniden kurmak mı?",
+      "text": "El adagio italiano «traduttore, traditore» goza de buena salud: se suele ver en él la prueba de que ninguna traducción puede igualar el original. Sin embargo, sin traductores, la mayoría de nosotros no habríamos leído jamás a Dostoievski ni a Murakami. Conviene, por tanto, plantear la pregunta de otro modo: ¿qué se pierde y qué se gana al pasar de una lengua a otra? Una palabra como «saudade» o «sobremesa» no se deja reducir a un único equivalente; exige una perífrasis, que forzosamente la vuelve más pesada. Pero el traductor no busca la correspondencia palabra por palabra: reconstruye un efecto. Debe decidir si privilegia la fidelidad al sentido, al ritmo o a la atmósfera, tres exigencias raramente compatibles. Las herramientas automáticas, cada vez más potentes, resuelven hoy la mayoría de los casos corrientes, pero aún tropiezan con la ironía, la alusión y el juego de palabras. Ahí es precisamente donde el oficio sigue siendo insustituible. Por otra parte, quienes descubren a un autor extranjero ganan una mirada: la traducción no es solo un tránsito, es también una lectura, y toda lectura es ya una interpretación."
+    },
+    {
+      "id": "es-adv-heat",
+      "language": "es",
+      "title": "Ciudades en ebullición",
+      "category": "feature",
+      "level": "C1",
+      "summary": "Kentlerdeki ısı adaları, çözüm önerileri ve serinliğin eşitsiz dağılımı.",
+      "text": "Cada verano, las olas de calor recuerdan a los ciudadanos una verdad incómoda: el hormigón retiene el calor mucho después de la puesta de sol. En ciertos barrios densos, la temperatura nocturna supera en varios grados la de los campos vecinos, lo que priva a los habitantes del respiro que su organismo necesitaría. Los urbanistas hablan de islas de calor y multiplican los remedios: cubiertas vegetales, fachadas claras, fuentes, plantación de árboles a lo largo de las calles. Estas soluciones no valen todas lo mismo. Un árbol adulto refresca el aire mucho más que una hilera de arbustos, pero necesita veinte años para alcanzar su tamaño útil y sus raíces chocan con las redes subterráneas. Los revestimientos reflectantes, más rápidos de instalar, pueden en cambio deslumbrar a los peatones. Sobre todo, el frescor no se reparte de forma equitativa: los barrios más pobres suelen tener menos espacios verdes. Varios ayuntamientos han optado, por eso, por cartografiar esas diferencias para orientar sus inversiones. Lo que está en juego va más allá del urbanismo: se trata de saber quién podrá vivir mañana en la ciudad sin sufrir el calor."
+    }
+  ]
+}

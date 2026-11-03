@@ -32,8 +32,12 @@ async function mount() {
   return host
 }
 const options = (host: HTMLElement) => [...host.querySelectorAll<HTMLButtonElement>('.option')]
-/** The paragraph on screen, found by its first words (the open gap is "[ ? ]"). */
-const current = (host: HTMLElement) => flowItems.find((i) => i.language === 'en' && host.querySelector('.flow-text')!.textContent!.startsWith(i.text.split('{')[0]))!
+const escapeRe = (t: string) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+/** The paragraph on screen, found by its text around the gaps (a gap shows "[ ? ]" or its answer; a paragraph may start with a gap). */
+const current = (host: HTMLElement) => {
+  const shown = host.querySelector('.flow-text')!.textContent!
+  return flowItems.find((i) => i.language === 'en' && new RegExp(`^${i.text.split(/\{\d+\}/).map(escapeRe).join('.*?')}$`, 's').test(shown))!
+}
 
 describe('FlowRound', () => {
   it('fills the gaps one after another, logs each and explains it, then gives the Turkish', async () => {

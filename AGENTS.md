@@ -103,6 +103,7 @@ Yerel WebKit indirmesi ağ politikası nedeniyle 403 veriyor; GitHub CI'da tam p
 
 ## B2–C1 içerik turu (2026-11-03)
 - Eklenenler: 12 B2–C1 başlangıç listesi/dil, C1 cümle dönüşümü (`grammar/*-18.json`), metin akışı (`flow/*-7.json`), sınav okuma/yazma, C1 diyaloglar (`dialogues/*-5.json`, `DialogueLevel` artık C1 de), eşdizim (`collocations/*-6.json`), kayıt farkı (`register/*-8.json`) ve üç Rehber dersi (`lessons-{fr,es,en}-7.ts`: `basics_fr_subordonnees_temporelles`, `basics_es_perifrasis_obligacion_modal`, `basics_en_conditional_alternatives`; her biri 15'lik havuz `checks/*`, 12 soru `grammar/*-19.json`).
+- **Özgün B2–C1 okumalar:** `data/advancedReadings/{fr,es,en}.json` (dil başına 5: deneme, haber yazısı, öykü; `AdvancedReading`, yeni `*.json` = yeni metinler), seçici `ui/AdvancedReadingsPicker.tsx` (Okuma kaynakları arasında "İleri düzey okumalar (B2–C1)", seviye süzgeci B2/C1, kelime kapsamı satırı; kaynak etiketi `Özgün metin (B2)`). Sorular yok: okuduğunu sına (YZ) zaten var.
 - **Tuzak:** yeni içerik dosyası ekledikten sonra `rm -rf node_modules/.vitest-cache` ve ancak sonra vitest koş; yoksa `import.meta.glob` eski çıktıyı sunar, kimlik çakışması gibi hatalar görünmez (diyalog `en-job-interview` bir kez böyle birleşti). Yeni ders/konu yazmadan önce `grep -rn "<topic>" src/data/guide` ile var olup olmadığına bak (`basics_en_hedging` zaten vardı).
 - İçerik ana dili konuşan biri tarafından gözden geçirilmedi.
 
