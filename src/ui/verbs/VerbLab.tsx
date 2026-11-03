@@ -162,6 +162,12 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
     if (tab !== 'learn' && tab !== 'practice') setTab('learn')
     showLesson()
   }
+  /** After a finished round: another verb that has the same tense, chosen at random (the learner's own and the most common ones). */
+  const newVerbInTense = () => {
+    const pool = [...new Set([...ownVerbs, ...lab.recent, ...byFrequency.slice(0, 300)])].filter((v) => v !== verb && labTensesOf(verbEntry(language, v)).includes(current))
+    const next = pool[Math.floor(Math.random() * pool.length)]
+    if (next) setPicked(next)
+  }
   const openItem = (v: string, t: Tense) => {
     setPicked(v)
     setTense(t)
@@ -304,6 +310,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 sheet={<TenseSheet language={language} verb={verb} tense={current} verbs={[verb, ...ownVerbs, ...lab.recent, ...byFrequency.slice(0, 300)].filter((v, i, all) => all.indexOf(v) === i)} onAnswer={onAnswer} />}
                 timed={<TimedTab language={language} byFrequency={byFrequency} levels={levels} vocabulary={vocabulary} states={states} onAnswer={onAnswer} />}
                 byFrequency={byFrequency}
+                onNewVerb={newVerbInTense}
               />
             ) : tab === 'slips' ? (
               <SlipsTab

@@ -11,7 +11,7 @@ import type { Home } from './Screens'
  * Where today's new words come from, and the place to change it: "Yeni kelimeler: [Seyahat ▾]".
  * The menu offers every list (and all the words); with a list in focus, its level and how far
  * along it is, and a way to its page. With a list chosen the whole day is that list's (new words, reviews,
- * the weak and the wrong ones); what is due in the other lists waits, said under the line with a way to ask it.
+ * the weak and the wrong ones); what is due in the other lists waits until the focus is cleared.
  */
 export function FocusLine({
   focus,
@@ -21,8 +21,6 @@ export function FocusLine({
   onFocusList,
   onOpenList,
   onOpenLists,
-  otherDue,
-  onStartAll,
 }: {
   focus?: NonNullable<Parameters<typeof Home>[0]['focus']>
   done: boolean
@@ -31,9 +29,6 @@ export function FocusLine({
   onFocusList?: (listId: string | null) => void
   onOpenList?: (listId: string) => void
   onOpenLists?: () => void
-  /** Questions due in the other lists, left out while this list is in focus. */
-  otherDue?: number
-  onStartAll?: () => void
 }) {
   if (!focus && !lists.length) return null
   const activeList = focusListId ? lists.find((l) => l.id === focusListId) : null
@@ -123,19 +118,6 @@ export function FocusLine({
             Listeler ›
           </button>
         )
-      )}
-      {focusListId && !!otherDue && (
-        <p className="small hero-focus-others">
-          Yalnızca bu listeden çalışıyorsun; diğer listelerden {otherDue} tekrar bekliyor.
-          {onStartAll && (
-            <>
-              {' '}
-              <button type="button" className="link" onClick={onStartAll}>
-                Hepsini çalış ›
-              </button>
-            </>
-          )}
-        </p>
       )}
     </div>
   )

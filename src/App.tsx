@@ -481,7 +481,7 @@ export default function App() {
   })
   const formsDue = useFormsDue(settings?.activeLanguage ?? 'en', screen.name)
   const dayForms = useDayForms(settings?.activeLanguage ?? 'en', screen.name, MAX_DAY_FORMS)
-  const { startSession, startDay, startAll, startFocus, startMinutes, startShortRound, startQuest, practiceDifficult, startPractice, startMistakes, startEarlyReview, startMixed, mixedDue, dueByLanguage } = useSessionStarters({
+  const { startSession, startDay, startFocus, startMinutes, startShortRound, startQuest, practiceDifficult, startPractice, startMistakes, startEarlyReview, startMixed, mixedDue, dueByLanguage } = useSessionStarters({
     settings,
     data,
     game,
@@ -569,7 +569,7 @@ export default function App() {
   // A word looked up twice in the dictionary but not in the list, offered on Today (also on an empty list).
   const lookupNudge = data && <LookupNudge language={data.language} vocabulary={data.vocabulary} onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })} />
 
-  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startAll, startFocus, startMinutes, startShortRound, startMixed, mixedDue, practiceDifficult, startEarlyReview, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest }
+  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startFocus, startMinutes, startShortRound, startMixed, mixedDue, practiceDifficult, startEarlyReview, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest }
 
   return (
     <AccessContext.Provider value={access}>
