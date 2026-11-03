@@ -175,7 +175,7 @@ export const TENSE_LESSON: Partial<Record<Tense, TenseLesson>> = {
   }),
   pluscuamperfecto: g({
     summary: 'Geçmişteki başka bir olaydan önce bitmiş iş: “geçmişin geçmişi”.',
-    uses: ['İki geçmiş olaydan önce olan: Cuando llegué, ya se había ido.', 'Sebep/açıklama: Estaba cansado porque no había dormido.', '“si + pluscuamperfecto de subjuntivo” ile karıştırma: şimdi habíamos = gösterme kipi.'],
+    uses: ['İki geçmiş olaydan önce olan: Cuando llegué, ya se había ido.', 'Sebep/açıklama: Estaba cansado porque no había dormido.', 'Koşul için “si + pluscuamperfecto de subjuntivo” (hubiera) gerekir; había + ortaç gösterme kipidir ve koşul kurmaz.'],
     formation: ['haber imperfecto (había, habías, había, habíamos, habíais, habían) + participio.'],
     examples: [ex('Ya había comido cuando llamaste.', 'Sen aradığında yemek yemiştim.'), ex('No habíamos visto esa película.', 'O filmi görmemiştik.')],
     watch: ['había hem “ben” hem “o” içindir; anlam özneden çıkar.'],
@@ -241,7 +241,7 @@ export const TENSE_LESSON: Partial<Record<Tense, TenseLesson>> = {
     uses: ['Bitmiş eylem hakkında duygu/şüphe: Espero que hayas llegado bien.', 'Olumsuz düşünce: No creo que lo haya hecho.', 'Cuando + gelecekte bitmiş: Cuando hayas terminado, avísame.', 'Me alegro de que hayas venido.'],
     formation: ['haber subjuntivo (haya, hayas, haya, hayamos, hayáis, hayan) + participio.'],
     examples: [ex('Dudo que hayan terminado.', 'Bitirdiklerinden şüpheliyim.'), ex('Ojalá haya aprobado.', 'Umarım geçmiştir.')],
-    watch: ['haya (haber) ile vaya (ir) ve haya (haber) karıştırılmasın: haya + ortaç yapıdır.'],
+    watch: ['haya (haber) ile vaya (ir) karıştırılmasın: haya yalnızca ortaçla birlikte gelir (haya llegado).'],
     tip: 'Subjuntivo presente + participio: yardımcı fiil haya olur.',
     turkish: '-miş olsun / -miş olması: bitmiş durum için dilek.',
   }),

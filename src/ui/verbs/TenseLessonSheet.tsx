@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { loadTenses } from '../../data/tenseData'
 import { TENSE_LESSON } from '../../data/tenseLesson'
+import { TENSE_LESSON_MORE } from '../../data/tenseLessonMore'
 import { conjugateTense, personsOf, subjectLabel, tensesLoaded, type Tense } from '../../engine/tenses'
 import { CloseIcon, InfoIcon, SpeakerIcon } from '../icons'
 import { speak } from '../speech'
@@ -9,6 +10,49 @@ import { tenseName, type LabLanguage } from './labShared'
 const SAMPLE_VERBS: Record<LabLanguage, readonly [string, string, string]> = {
   fr: ['parler', 'finir', 'aller'],
   es: ['hablar', 'comer', 'vivir'],
+}
+/** The irregular verbs met most, shown beside the regular models. */
+const IRREGULAR_VERBS: Record<LabLanguage, readonly string[]> = {
+  fr: ['être', 'avoir', 'faire', 'pouvoir', 'venir', 'vouloir'],
+  es: ['ser', 'estar', 'tener', 'hacer', 'poder', 'decir'],
+}
+
+/** A table of one tense for some verbs, one row a person; null when a verb has no such tense. */
+function FormsTable({ language, tense, verbs, label }: { language: LabLanguage; tense: Tense; verbs: readonly string[]; label: string }) {
+  const forms = verbs.map((lemma) => conjugateTense({ language, lemma, partOfSpeech: 'verb' }, tense))
+  const shown = verbs.map((v, i) => ({ v, f: forms[i] })).filter((x) => !!x.f)
+  if (!shown.length) return null
+  const persons = personsOf(language, tense)
+  return (
+    <div className="guide-table-wrap" tabIndex={0} role="region" aria-label={label}>
+      <table className="guide-table tense-sample-table">
+        <thead>
+          <tr>
+            <th scope="col">Kişi</th>
+            {shown.map(({ v }) => (
+              <th key={v} scope="col" lang={language}>
+                {v}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {persons.map((p) => (
+            <tr key={p}>
+              <td className="muted" lang={language}>
+                {subjectLabel(language, tense, p)}
+              </td>
+              {shown.map(({ v, f }) => (
+                <td key={v} lang={language}>
+                  {f?.[p] ?? '—'}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
 }
 
 /**
@@ -31,6 +75,7 @@ export function TenseInfoButton({ language, tense }: { language: LabLanguage; te
 
 export function TenseLessonSheet({ language, tense, onClose, onVerbs }: { language: LabLanguage; tense: Tense; onClose: () => void; onVerbs?: () => void }) {
   const guide = TENSE_LESSON[tense]
+  const more = TENSE_LESSON_MORE[tense]
   const closeRef = useRef<HTMLButtonElement>(null)
   const [ready, setReady] = useState(() => tensesLoaded(language))
   useEffect(() => {
@@ -62,7 +107,6 @@ export function TenseLessonSheet({ language, tense, onClose, onVerbs }: { langua
   if (!guide) return null
   const sampleVerbs = SAMPLE_VERBS[language]
   const sampleForms = ready ? sampleVerbs.map((lemma) => conjugateTense({ language, lemma, partOfSpeech: 'verb' }, tense)) : []
-  const persons = personsOf(language, tense)
   const hasTable = sampleForms.length === sampleVerbs.length && sampleForms.every((f) => !!f)
   return (
     <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
@@ -76,6 +120,21 @@ export function TenseLessonSheet({ language, tense, onClose, onVerbs }: { langua
           </button>
         </div>
         <p className="tg-summary">{guide.summary}</p>
+        {more && (
+          <p className="note tg-formula">
+            <strong>Formül:</strong> <span lang={language}>{more.formula}</span>
+          </p>
+        )}
+        {more && (
+          <section className="tg-section" aria-label="Sinyal sözcükleri">
+            <h3 className="subhead">Hangi sözcükler bu zamanı çağırır?</h3>
+            <ul className="tg-markers" lang={language}>
+              {more.markers.map((m) => (
+                <li key={m}>{m}</li>
+              ))}
+            </ul>
+          </section>
+        )}
         <section className="tg-section">
           <h3 className="subhead">Ne zaman kullanılır?</h3>
           <ul className="tg-list">
@@ -95,40 +154,15 @@ export function TenseLessonSheet({ language, tense, onClose, onVerbs }: { langua
         {hasTable && (
           <section className="tg-section" aria-label="Örnek çekimler">
             <h3 className="subhead">Örnek çekimler</h3>
-            <div className="guide-table-wrap" tabIndex={0} role="region" aria-label="Örnek çekimler tablosu">
-              <table className="guide-table tense-sample-table">
-                <thead>
-                  <tr>
-                    <th scope="col">Kişi</th>
-                    {sampleVerbs.map((v) => (
-                      <th key={v} scope="col" lang={language}>
-                        {v}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {persons.map((p) => (
-                    <tr key={p}>
-                      <td className="muted" lang={language}>
-                        {subjectLabel(language, tense, p)}
-                      </td>
-                      {sampleForms.map((forms, idx) => (
-                        <td key={sampleVerbs[idx]} lang={language}>
-                          {forms?.[p] ?? '—'}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <FormsTable language={language} tense={tense} verbs={sampleVerbs} label="Örnek çekimler tablosu" />
+            <h3 className="subhead">Sık kullanılan düzensiz fiiller</h3>
+            <FormsTable language={language} tense={tense} verbs={IRREGULAR_VERBS[language]} label="Düzensiz fiiller tablosu" />
           </section>
         )}
         <section className="tg-section">
           <h3 className="subhead">Örnekler</h3>
           <ul className="tg-examples">
-            {guide.examples.map((x) => (
+            {[...guide.examples, ...(more?.examples ?? [])].map((x) => (
               <li key={x.text}>
                 <button type="button" className="icon-btn icon-btn-sm" onClick={() => speak(x.text, language)} aria-label={`Dinle: ${x.text}`}>
                   <SpeakerIcon size={16} />
@@ -141,6 +175,36 @@ export function TenseLessonSheet({ language, tense, onClose, onVerbs }: { langua
             ))}
           </ul>
         </section>
+        {more && more.contrast.length > 0 && (
+          <section className="tg-section">
+            <h3 className="subhead">Karıştırılanlardan farkı</h3>
+            <ul className="tg-list">
+              {more.contrast.map((x) => (
+                <li key={x.with}>
+                  <strong>{x.with}:</strong> {x.text}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        {more && more.slips.length > 0 && (
+          <section className="tg-section">
+            <h3 className="subhead">Sık yapılan hatalar</h3>
+            <ul className="tg-slips">
+              {more.slips.map((x) => (
+                <li key={x.wrong}>
+                  <span className="tg-wrong" lang={language}>
+                    {x.wrong}
+                  </span>
+                  <span className="tg-right" lang={language}>
+                    {x.right}
+                  </span>
+                  <span className="small muted">{x.why}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
         <section className="tg-section">
           <h3 className="subhead">Dikkat</h3>
           <ul className="tg-list">
