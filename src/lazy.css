@@ -3564,87 +3564,188 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .comprehension-option.comprehension-right { background: var(--ok-soft); color: var(--ok-text); }
 .comprehension-option.comprehension-wrong { background: var(--bad-soft); color: var(--bad-text); }
 
-/* Landing: what a signed-out visitor sees before the sign-in page. Phone first; two columns from 46rem. */
-.lp { min-height: 100dvh; background: var(--bg); color: var(--ink); padding-bottom: 2rem; }
-.lp-top, .lp main, .lp-foot { max-width: 64rem; margin-inline: auto; padding-inline: 1rem; }
+/* Landing: what a signed-out visitor sees before the sign-in page. Phone first; two columns from 46rem.
+   The language picked in the hero lights the page (data-lang on the root and on .lp), as the app does. */
+.lp { min-height: 100dvh; background: var(--bg); color: var(--ink); padding-bottom: 2rem; overflow-x: clip; }
+.lp-top, .lp main, .lp-foot { max-width: 68rem; margin-inline: auto; padding-inline: 1rem; }
 .lp-top { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.875rem; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: color-mix(in srgb, var(--bg) 85%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--rule) 50%, transparent); }
 .lp-brand { display: inline-flex; align-items: center; gap: 0.625rem; font-size: var(--t-xl); font-weight: 700; color: var(--ink); text-decoration: none; }
 .lp-top-actions { display: flex; align-items: center; gap: 0.5rem; }
-.lp-hero { display: grid; gap: 2rem; align-items: center; padding-block: 2rem 3rem; position: relative; }
-.lp-hero::before { content: ''; position: absolute; inset: -1rem -1rem 0; z-index: -1; background: radial-gradient(ellipse 90% 60% at 50% -10%, var(--lang-soft) 0%, transparent 70%); pointer-events: none; }
+
+/* Hero: what it is, the language to learn, the way in; the app itself on the side. */
+.lp-hero { display: grid; gap: 2.5rem; align-items: center; padding-block: 2rem 1rem; position: relative; }
+.lp-hero::before { content: ''; position: absolute; inset: -1rem -50vw 0; z-index: -1; background: radial-gradient(ellipse 60% 70% at 70% 0%, var(--lang-soft) 0%, transparent 70%); pointer-events: none; transition: background var(--dur) var(--ease-out); }
 .lp-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.375rem 0.875rem; border-radius: var(--r-full); background: var(--surface); color: var(--lang-text); font-size: var(--t-xs); font-weight: 600; margin-bottom: 0.75rem; box-shadow: var(--shadow-sm); border: 1px solid color-mix(in srgb, var(--lang) 20%, var(--rule)); }
 .lp-pill-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--lang); box-shadow: 0 0 6px var(--lang); }
-.lp-hero h1 { margin: 0.25rem 0 0.75rem; font-size: clamp(2rem, 7vw, 3rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.01em; }
-.lp-lead { margin: 0 0 1.5rem; font-size: var(--t-md); color: var(--ink-soft); max-width: 34rem; line-height: 1.5; }
+.lp-hero h1 { margin: 0.25rem 0 1rem; font-size: clamp(2rem, 4.6vw, 3rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.015em; text-wrap: balance; }
+.lp-h1-accent { color: var(--lang-text); }
+.lp-lead { margin: 0 0 1.5rem; font-size: var(--t-md); color: var(--ink-soft); max-width: 36rem; line-height: 1.55; }
+.lp-pick { margin: 0 0 1.5rem; }
+.lp-pick-label { margin: 0 0 0.625rem; font-weight: 600; }
+/* The app's language cards, three in a row and upright here: Monki, the hello, the name. */
+.lp .lp-langs { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.625rem; max-width: 32rem; }
+.lp .lp-langs .lang-card { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; padding: 0.75rem 0.5rem 0.625rem; row-gap: 0.125rem; transition: transform var(--dur-press) var(--ease-out), border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out); }
+.lp .lp-langs .lang-card-art { grid-row: auto; height: 4rem; margin: 0 0 0.25rem; }
+.lp .lp-langs .lang-card .hello { font-size: var(--t-lg); align-self: auto; }
+.lp .lp-langs .lang-card > .muted { font-size: var(--t-sm); align-self: auto; }
+@media (hover: hover) { .lp .lp-langs .lang-card:not([aria-pressed='true']):hover { border-color: color-mix(in srgb, var(--lang) 45%, var(--rule)); } }
 .lp-cta { display: flex; flex-wrap: wrap; gap: 0.875rem; align-items: center; }
 .lp-cta-center { justify-content: center; }
+.lp-facts { list-style: none; margin: 1.25rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; color: var(--ink-soft); }
+.lp-facts li { display: inline-flex; align-items: center; gap: 0.375rem; }
+.lp-facts svg { color: var(--lang-text); flex: none; }
 @media (max-width: 30rem) {
   .lp-hero .lp-cta { gap: 0.75rem; }
   .lp-hero .lp-cta .btn { flex: 1 1 100%; justify-content: center; min-block-size: 3rem; }
+  .lp .lp-langs .lang-card-art { height: 3.25rem; }
+  .lp .lp-langs .lang-card .hello { font-size: var(--t-base); }
 }
-.lp-trust-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
-.lp-chip { display: inline-flex; align-items: center; gap: 0.4375rem; padding: 0.375rem 0.75rem; border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--rule); font-size: var(--t-xs); color: var(--ink-soft); font-weight: 500; box-shadow: var(--shadow-sm); }
-.lp-chip svg { color: var(--lang-text); flex: none; }
 .lp-kicker { display: inline-block; font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--lang-text); margin-bottom: 0.375rem; }
 
-/* Phone device frame mockup for screenshots */
-.lp-hero-visual { display: grid; justify-items: center; gap: 1.25rem; }
-.lp-lang { flex-wrap: wrap; justify-content: center; justify-self: center; max-width: 100%; }
-.lp-shot { margin: 0; justify-self: center; width: min(18rem, 80vw); }
+/* The phone with the app in it, and two small notes floating beside it. */
+.lp-hero-visual { position: relative; display: grid; justify-items: center; padding-inline: 1.5rem; }
+.lp-float { position: absolute; display: flex; align-items: center; gap: 0.5rem; padding: 0.625rem 0.875rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow-lg); border: 1px solid var(--rule); line-height: 1.25; animation: lp-float-in var(--dur) var(--ease-spring) both; }
+.lp-float-hello { top: 12%; left: 0; flex-direction: column; align-items: flex-start; gap: 0.125rem; animation-delay: 200ms; }
+.lp-float-word-added { bottom: 14%; right: 0; animation-delay: 380ms; }
+.lp-float-word-added > svg { flex: none; color: var(--on-lang); background: var(--lang); border-radius: var(--r-full); padding: 0.1875rem; box-sizing: content-box; }
+.lp-float-word { font-family: var(--serif); font-size: var(--t-lg); color: var(--lang-text); font-weight: 600; }
+@keyframes lp-float-in { from { opacity: 0; transform: translateY(10px) scale(0.96); } to { opacity: 1; transform: none; } }
+.lp-shot { margin: 0; justify-self: center; width: min(17rem, 72vw); }
 .device-mockup { position: relative; width: 100%; border-radius: 2.35rem; padding: 0.5rem; background: linear-gradient(150deg, #2d3340 0%, #151820 100%); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 2px rgba(255, 255, 255, 0.25) inset, 0 24px 48px -12px rgb(15 23 42 / 0.28), 0 12px 24px -8px rgb(15 23 42 / 0.16); border: 1px solid rgba(15, 23, 42, 0.4); transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out); }
 .device-mockup:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2) inset, 0 1px 3px rgba(255, 255, 255, 0.3) inset, 0 32px 64px -16px rgb(15 23 42 / 0.35), 0 16px 32px -10px rgb(15 23 42 / 0.2); }
-.device-screen { position: relative; border-radius: 1.95rem; overflow: hidden; background: var(--surface); line-height: 0; }
+.device-screen { position: relative; border-radius: 1.95rem; overflow: hidden; background: var(--surface); line-height: 0; aspect-ratio: 560 / 1213; }
 .device-screen img { display: block; width: 100%; height: auto; border: 0; border-radius: 0; box-shadow: none; }
 
-.lp-section { padding-block: 3.25rem 0; }
-.lp-h2 { margin: 0 0 1rem; font-size: var(--t-2xl); line-height: 1.2; font-weight: 700; }
-.lp-steps, .lp-tiles, .lp-trust-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
-.lp-steps li { display: grid; gap: 0.5rem; align-content: start; padding: 1.5rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); border: 1px solid var(--rule); transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out); }
-.lp-steps li:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-.lp-steps .section-title, .lp-tile .section-title { margin: 0; }
-.lp-steps p, .lp-tile p { margin: 0; }
-.lp-step-n { display: grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border-radius: var(--r-full); background: var(--lang-soft); color: var(--lang-text); font-weight: 700; }
-.lp-icon { display: grid; place-items: center; inline-size: 2.75rem; block-size: 2.75rem; border-radius: var(--r-md); background: var(--lang-soft); color: var(--lang-text); margin-bottom: 0.5rem; }
-.lp-show { display: grid; gap: 3.5rem; }
-.lp-row { display: grid; gap: 1.75rem; align-items: center; }
-.lp-row-text p { margin: 0 0 1rem; color: var(--ink-soft); line-height: 1.5; }
+/* Sections */
+.lp-section { padding-block: 4rem 0; }
+.lp-head { max-width: 42rem; margin: 0 0 1.75rem; }
+.lp-h2 { margin: 0 0 1rem; font-size: var(--t-2xl); line-height: 1.2; font-weight: 700; text-wrap: balance; }
+.lp-head .lp-h2 { margin-bottom: 0.625rem; }
+.lp-sub { margin: 0; color: var(--ink-soft); line-height: 1.55; }
+.lp-art { display: block; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+
+/* Four skills and the two that hold them together: a drawing and a few words each. */
+.lp-skills, .lp-together, .lp-bands, .lp-tiles, .lp-trust-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.lp-skill { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; align-items: center; padding: 1.125rem 1.25rem; transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out); }
+.lp-skill .lp-art { width: 4.5rem; height: 4.5rem; }
+.lp-skill .section-title, .lp-band .section-title, .lp-tile .section-title { margin: 0; }
+.lp-skill p, .lp-band p, .lp-tile p { margin: 0.25rem 0 0; }
+@media (hover: hover) { .lp-skill:hover, .lp-tiles .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); } }
+
+/* The levels: Monki grows up from A1 to C1. */
+.lp-bands { position: relative; counter-reset: band; margin-bottom: 2.5rem; }
+.lp-band { display: grid; justify-items: center; text-align: center; gap: 0.125rem; padding: 1.25rem 1.25rem 1.5rem; }
+.lp-band .lp-art { height: 6.5rem; width: auto; margin-bottom: 0.5rem; }
+.lp-band-levels { display: inline-block; padding: 0.125rem 0.625rem; border-radius: var(--r-full); background: var(--lang-soft); color: var(--lang-text); font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.04em; margin-bottom: 0.25rem; }
+
+/* Rows: words on one side, a picture of the app on the other. */
+.lp-show { display: grid; gap: 4rem; }
+.lp-row { display: grid; gap: 2rem; align-items: center; }
+.lp-row-tight { margin-top: 0.5rem; }
+.lp-row-text p { margin: 0 0 1rem; color: var(--ink-soft); line-height: 1.55; }
 .lp-row-text .lp-h2 { font-size: var(--t-xl); }
+.lp-section > .lp-row > .lp-row-text .lp-h2, .lp-native .lp-h2, .lp-method .lp-h2, .lp-monki .lp-h2 { font-size: var(--t-2xl); }
 .lp-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
-.lp-list li { display: flex; align-items: flex-start; gap: 0.625rem; line-height: 1.4; }
-.lp-list svg { flex: none; margin-top: 0.1875rem; color: var(--ok-text); }
+.lp-list li { display: flex; align-items: flex-start; gap: 0.625rem; line-height: 1.45; }
+.lp-list li > svg { flex: none; margin-top: 0.1875rem; color: var(--ok-text); }
+.lp-list strong { color: var(--ink); }
+.lp-icon { display: grid; place-items: center; inline-size: 2.75rem; block-size: 2.75rem; border-radius: var(--r-md); background: var(--lang-soft); color: var(--lang-text); margin-bottom: 0.75rem; }
+
+/* For a Turkish speaker: three real examples in the language picked. */
+.lp-native-card { margin-top: 1.25rem; padding: 1rem 1.125rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
+.lp-row-text .lp-native-cap { margin: 0 0 0.5rem; font-weight: 600; color: var(--lang-text); }
+.lp-native-card dl { margin: 0; display: grid; }
+.lp-native-row { display: grid; gap: 0.25rem; padding-block: 0.75rem; border-top: 1px solid var(--rule); }
+.lp-native-row:first-child { border-top: 0; padding-top: 0.25rem; }
+.lp-native-row dt { display: inline-flex; align-items: center; gap: 0.375rem; font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-soft); }
+.lp-native-row dt svg { color: var(--lang-text); }
+.lp-native-row dd { margin: 0; }
+.lp-native-row dd p { margin: 0.125rem 0 0; color: var(--ink); }
+.lp-native-row dd p.small { color: var(--ink-soft); }
+.lp-native-word { font-family: var(--serif); font-size: var(--t-md); font-weight: 600; color: var(--lang-text); }
+
+/* Spaced repetition: the forgetting curve with and without reviews. */
+.lp-curve { margin: 0; padding: 1.25rem 1.25rem 1rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
+.lp-curve svg { display: block; width: 100%; height: auto; overflow: visible; }
+.lp-curve-axis { stroke: var(--rule); stroke-width: 1.5; }
+.lp-curve-forget { fill: none; stroke: var(--ink-soft); stroke-width: 2; stroke-dasharray: 5 5; opacity: 0.7; }
+.lp-curve-learn { fill: none; stroke: var(--lang); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 900; stroke-dashoffset: 900; animation: lp-draw 1.6s var(--ease-out) 0.2s forwards; }
+.lp-curve-dot { fill: var(--surface); stroke: var(--lang); stroke-width: 2.5; }
+.lp-curve-label { fill: var(--ink-soft); font-size: 11px; font-family: var(--sans); }
+.lp-curve-key { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 0.5rem; color: var(--ink-soft); }
+.lp-curve-key span { display: inline-flex; align-items: center; gap: 0.5rem; }
+.lp-curve-key i { display: inline-block; width: 1.5rem; border-top: 3px solid var(--lang); }
+.lp-curve-key i.lp-key-forget { border-top: 2px dashed var(--ink-soft); }
+@keyframes lp-draw { to { stroke-dashoffset: 0; } }
+
+/* Monki: a short exchange, the way its corrections read in the app. */
+.lp-chat { margin: 0; display: grid; gap: 0.75rem; padding: 1.25rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
+.lp-chat-head { display: flex; align-items: center; gap: 0.625rem; }
+.lp-chat-face { width: 2.75rem; height: 2.75rem; }
+.lp-bubble { margin: 0; max-width: 88%; padding: 0.75rem 1rem; border-radius: var(--r-lg); line-height: 1.45; }
+.lp-bubble-you { justify-self: end; background: var(--lang-soft); color: var(--ink); font-family: var(--serif); border-bottom-right-radius: var(--r-xs); }
+.lp-bubble-monki { justify-self: start; display: grid; gap: 0.375rem; background: var(--surface-2); box-shadow: var(--inset-ring); border-bottom-left-radius: var(--r-xs); }
+.lp-bubble-fix { display: inline-flex; align-items: center; gap: 0.375rem; font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--lang-text); }
+.lp-bubble-right { font-family: var(--serif); font-size: var(--t-md); font-weight: 600; color: var(--ink); }
+.lp-bubble-monki .small { color: var(--ink-soft); }
+
 .lp-tiles .card { padding: 1.25rem; transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out); }
-.lp-tiles .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
 .lp-trust-list li { display: flex; align-items: flex-start; gap: 0.75rem; padding: 1.25rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
 .lp-trust-list svg { flex: none; margin-top: 0.125rem; color: var(--lang-text); }
-.lp-faq { display: grid; gap: 0.625rem; }
+.lp-faq { display: grid; gap: 0.625rem; max-width: 48rem; }
 .lp-q { border-radius: var(--r-md); background: var(--surface); box-shadow: var(--inset-ring); }
 .lp-q summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.875rem 1rem; font-weight: 600; cursor: pointer; list-style: none; min-block-size: 2.75rem; }
 .lp-q summary::-webkit-details-marker { display: none; }
 .lp-q summary svg { flex: none; color: var(--ink-soft); transition: transform var(--dur-fast) var(--ease-out); }
 .lp-q[open] summary svg { transform: rotate(180deg); }
-.lp-q p { margin: 0; padding: 0 1rem 1rem; color: var(--ink-soft); line-height: 1.5; }
-.lp-final { display: grid; justify-items: center; gap: 0.5rem; text-align: center; margin-top: 3.5rem; padding-block: 2.5rem; border-radius: var(--r-xl); }
+.lp-q p { margin: 0; padding: 0 1rem 1rem; color: var(--ink-soft); line-height: 1.55; }
+.lp-final { position: relative; display: grid; justify-items: center; gap: 0.5rem; text-align: center; margin-top: 4.5rem; padding-block: 2.5rem; border-radius: var(--r-lg); overflow: hidden; }
+.lp-final::before { content: ''; position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 70% 90% at 50% 0%, var(--lang-soft) 0%, transparent 75%); pointer-events: none; }
+.lp-final > * { position: relative; }
+.lp-final-art { height: 6.5rem; width: auto; }
 .lp-final .lp-h2 { margin: 0; }
 .lp-final p { margin: 0 0 0.75rem; }
 .lp-foot { display: grid; gap: 0.5rem; padding-block: 2.5rem 0; text-align: center; }
 .lp-foot nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.25rem 1.25rem; }
 .lp-foot a { color: var(--lang-text); text-underline-offset: 0.2em; font-weight: 600; min-block-size: 2rem; display: inline-flex; align-items: center; }
 .lp-foot p { margin: 0; }
+@media (max-width: 39.99rem) {
+  /* On a phone a level is a row like the skills: Monki beside the words. */
+  .lp-band { grid-template-columns: 4.5rem 1fr; justify-items: start; text-align: left; column-gap: 1rem; padding: 1rem 1.25rem; }
+  .lp-band .lp-art { grid-row: 1 / span 3; height: 4.5rem; width: 4.5rem; margin: 0; align-self: center; }
+  .lp-band-levels { margin: 0; }
+  .lp-skill, .lp-together .lp-skill { padding: 1rem; }
+}
+@media (min-width: 40rem) {
+  .lp-skills, .lp-tiles { grid-template-columns: repeat(2, 1fr); }
+  .lp-bands, .lp-together { grid-template-columns: repeat(3, 1fr); }
+  .lp-together .lp-skill { grid-template-columns: 1fr; justify-items: start; }
+  .lp-together .lp-art { width: auto; height: 5rem; }
+}
 @media (min-width: 46rem) {
-  .lp-hero { grid-template-columns: 1.25fr 1fr; padding-block: 2.5rem 3rem; }
-  .lp-shot { width: min(18rem, 100%); }
-  .lp-steps, .lp-trust-list { grid-template-columns: repeat(3, 1fr); }
-  .lp-tiles { grid-template-columns: repeat(2, 1fr); }
+  .lp-hero { grid-template-columns: 1.2fr 1fr; padding-block: 3rem 1.5rem; }
+  .lp-shot { width: min(17.5rem, 100%); }
+  .lp-trust-list { grid-template-columns: repeat(3, 1fr); }
   .lp-row { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
-  .lp-row-flip .lp-shot { order: -1; }
+  .lp-row-flip > :last-child { order: -1; }
+  .lp-section { padding-block: 5.5rem 0; }
+  .lp-head { margin-bottom: 2.25rem; }
+  .lp-section .lp-h2, .lp-head .lp-h2 { font-size: clamp(var(--t-2xl), 3.2vw, 2.375rem); }
+  .lp-show .lp-row-text .lp-h2 { font-size: var(--t-2xl); }
+  /* A line through the three levels, behind the cards: one path from A1 to C1. */
+  .lp-bands::before { content: ''; position: absolute; left: 10%; right: 10%; top: 4.5rem; border-top: 3px dotted color-mix(in srgb, var(--lang) 45%, var(--rule)); z-index: 0; }
+  .lp-band { position: relative; z-index: 1; }
 }
 @media (min-width: 64rem) {
+  .lp-skills { grid-template-columns: repeat(3, 1fr); }
   .lp-tiles { grid-template-columns: repeat(4, 1fr); }
-  .lp-shot { width: min(19rem, 100%); }
+  .lp-shot { width: min(18.5rem, 100%); }
+  .lp-hero-visual { padding-inline: 3rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lp-q summary svg, .device-mockup, .lp-steps li, .lp-tiles .card { transition: none; }
-  .lp-pill-dot { animation: none; }
+  .lp-q summary svg, .device-mockup, .lp-skill, .lp-tiles .card, .lp .lp-langs .lang-card, .lp-hero::before { transition: none; }
+  .lp-pill-dot, .lp-float { animation: none; }
+  .lp-curve-learn { animation: none; stroke-dashoffset: 0; }
 }
 .lp-invite { display: flex; align-items: flex-start; gap: 0.625rem; margin: 0 0 1.25rem; padding: 0.875rem 1.125rem; border-radius: var(--r-lg); background: color-mix(in srgb, var(--lang-soft) 40%, var(--surface)); border: 1px solid color-mix(in srgb, var(--lang) 28%, var(--rule)); box-shadow: var(--shadow-sm); }
 .lp-invite svg { flex: none; margin-top: 0.1875rem; color: var(--lang-text); }
