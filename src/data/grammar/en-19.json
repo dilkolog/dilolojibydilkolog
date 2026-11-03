@@ -1,0 +1,186 @@
+[
+  {
+    "id": "en-b19-conditional_alternatives-1",
+    "language": "en",
+    "level": "B2",
+    "topic": "basics_en_conditional_alternatives",
+    "type": "choice",
+    "prompt": "___ you finish your homework, you can’t go out.",
+    "answer": "Unless",
+    "options": [
+      "Unless",
+      "Provided",
+      "In case",
+      "Supposing"
+    ],
+    "explanation": "Unless = if … not: ödevi bitirmedikçe çıkamazsın.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b19-conditional_alternatives-2",
+    "language": "en",
+    "level": "B2",
+    "topic": "basics_en_conditional_alternatives",
+    "type": "choice",
+    "prompt": "You can use my phone ___ you don’t call abroad.",
+    "answer": "as long as",
+    "options": [
+      "as long as",
+      "unless",
+      "in case",
+      "otherwise"
+    ],
+    "explanation": "as long as = şartıyla; unless’ten sonra olumsuz fiil kullanılmaz.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b19-conditional_alternatives-3",
+    "language": "en",
+    "level": "B2",
+    "topic": "basics_en_conditional_alternatives",
+    "type": "choice",
+    "prompt": "Take a spare key ___ you lose yours.",
+    "answer": "in case",
+    "options": [
+      "in case",
+      "unless",
+      "provided that",
+      "as long as"
+    ],
+    "explanation": "in case = kaybedebilirsin diye (önlem).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b19-conditional_alternatives-4",
+    "language": "en",
+    "level": "B2",
+    "topic": "basics_en_conditional_alternatives",
+    "type": "choice",
+    "prompt": "Hurry up, ___ you’ll miss the train.",
+    "answer": "otherwise",
+    "options": [
+      "otherwise",
+      "unless",
+      "provided",
+      "in case"
+    ],
+    "explanation": "otherwise = yoksa, aksi halde; iki cümleyi bağlar.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b19-conditional_alternatives-5",
+    "language": "en",
+    "level": "B2",
+    "topic": "basics_en_conditional_alternatives",
+    "type": "choice",
+    "prompt": "Supposing the shop ___ closed, what shall we do?",
+    "answer": "is",
+    "options": [
+      "is",
+      "will be",
+      "would be",
+      "be"
+    ],
+    "explanation": "Supposing + present simple: gerçekçi bir olasılık için.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b19-conditional_alternatives-6",
+    "language": "en",
+    "level": "B2",
+    "topic": "basics_en_conditional_alternatives",
+    "type": "choice",
+    "prompt": "I’ll lend you my bike ___ you look after it.",
+    "answer": "provided that",
+    "options": [
+      "provided that",
+      "unless",
+      "in case",
+      "otherwise"
+    ],
+    "explanation": "Şart bildirir: ona iyi bakman şartıyla.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b19-conditional_alternatives-7",
+    "language": "en",
+    "level": "B2",
+    "topic": "basics_en_conditional_alternatives",
+    "type": "cloze",
+    "prompt": "I’ll help you ___ you promise to listen.",
+    "answer": "as long as",
+    "hint": "şartıyla",
+    "explanation": "as long as ya da provided that şart bildirir.",
+    "alternatives": [
+      "provided that",
+      "providing that",
+      "provided",
+      "providing",
+      "so long as"
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b19-conditional_alternatives-8",
+    "language": "en",
+    "level": "B2",
+    "topic": "basics_en_conditional_alternatives",
+    "type": "cloze",
+    "prompt": "Take a sandwich in ___ you get hungry.",
+    "answer": "case",
+    "hint": "önlem: in case",
+    "explanation": "in case = acıkabilirsin diye.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b19-conditional_alternatives-9",
+    "language": "en",
+    "level": "B2",
+    "topic": "basics_en_conditional_alternatives",
+    "type": "cloze",
+    "prompt": "You may borrow it on ___ that you return it Monday.",
+    "answer": "condition",
+    "hint": "on ___ that",
+    "explanation": "Kalıp: on condition that.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b19-conditional_alternatives-10",
+    "language": "en",
+    "level": "B2",
+    "topic": "basics_en_conditional_alternatives",
+    "type": "cloze",
+    "prompt": "Supposing you ___ rich, what would you do?",
+    "answer": "were",
+    "hint": "gerçek dışı varsayım",
+    "explanation": "Gerçek dışı varsayımda past simple kullanılır: were (was da kabul edilir).",
+    "alternatives": [
+      "was"
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b19-conditional_alternatives-11",
+    "language": "en",
+    "level": "B2",
+    "topic": "basics_en_conditional_alternatives",
+    "type": "cloze",
+    "prompt": "Unless it ___ (rain), we’ll go to the beach.",
+    "answer": "rains",
+    "hint": "unless + present simple",
+    "explanation": "unless’ten sonra present simple gelir: rains.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-b19-conditional_alternatives-12",
+    "language": "en",
+    "level": "B2",
+    "topic": "basics_en_conditional_alternatives",
+    "type": "error",
+    "prompt": "Hurry up, unless we’ll be late.",
+    "answer": "unless",
+    "fix": "otherwise",
+    "explanation": "İki cümleyi bağlayan “yoksa” otherwise’dır; unless bir yan cümle bağlar.",
+    "source": "Diloloji (özgün)"
+  }
+]

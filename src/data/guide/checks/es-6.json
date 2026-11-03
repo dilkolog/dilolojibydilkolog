@@ -1,0 +1,140 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "lessons": {
+    "basics_es_perifrasis_obligacion_modal": [
+      {
+        "prompt": "Para aprobar ___ estudiar mucho.",
+        "options": [
+          "hay que",
+          "debe de",
+          "suele",
+          "viene a"
+        ],
+        "answer": 0,
+        "why": "Genel, kişisiz zorunluluk: hay que + mastar."
+      },
+      {
+        "prompt": "Mi hermana ___ estar durmiendo, porque no contesta.",
+        "options": [
+          "debe de",
+          "hay que",
+          "suele",
+          "viene"
+        ],
+        "answer": 0,
+        "why": "Çıkarım yapıyoruz: debe de + mastar."
+      },
+      {
+        "prompt": "No ___ venir si estás ocupado; no es obligatorio.",
+        "options": [
+          "tienes que",
+          "debes de",
+          "sueles",
+          "vienes a"
+        ],
+        "answer": 0,
+        "why": "« No tienes que » = gerekmez, zorunda değilsin."
+      },
+      {
+        "prompt": "« Suelo madrugar » cümlesinin anlamı nedir?",
+        "options": [
+          "Genellikle erken kalkarım",
+          "Erken kalkmalıyım",
+          "Az önce erken kalktım",
+          "Erken kalkmak üzereyim"
+        ],
+        "answer": 0,
+        "why": "soler + mastar alışkanlık bildirir: genellikle."
+      },
+      {
+        "prompt": "Después de mucho dudar, ___ aceptando la oferta.",
+        "options": [
+          "acabó",
+          "suele",
+          "hay que",
+          "debe de"
+        ],
+        "answer": 0,
+        "why": "acabó + gerundio = sonunda kabul etti."
+      },
+      {
+        "prompt": "Eso ___ a costar unos cincuenta euros.",
+        "options": [
+          "viene",
+          "hay",
+          "suele",
+          "debe de"
+        ],
+        "answer": 0,
+        "why": "venir a + mastar yaklaşıklık bildirir."
+      },
+      {
+        "prompt": "Lo ___ que hacer mañana sin falta.",
+        "options": [
+          "tengo",
+          "suelo",
+          "hay",
+          "vengo"
+        ],
+        "answer": 0,
+        "why": "Zamir çekimli fiilin önünde: lo tengo que hacer."
+      },
+      {
+        "prompt": "« Debe de ser tarde » ile « Debe ser puntual » arasındaki fark nedir?",
+        "options": [
+          "İlki tahmin, ikincisi zorunluluk",
+          "İlki zorunluluk, ikincisi tahmin",
+          "İkisi de tahmin",
+          "İkisi de yasak"
+        ],
+        "answer": 0,
+        "why": "deber de tahmin; deber zorunluluktur."
+      },
+      {
+        "prompt": "Nunca ___ a ser rico, pero vive bien.",
+        "options": [
+          "llegó",
+          "tiene",
+          "suele",
+          "hay"
+        ],
+        "answer": 0,
+        "why": "llegar a + mastar: bir noktaya varmak."
+      },
+      {
+        "prompt": "Vengo ___ desde hace semanas.",
+        "options": [
+          "diciéndolo",
+          "decirlo",
+          "dicho",
+          "dijo"
+        ],
+        "answer": 0,
+        "why": "venir + gerundio, bir süredir süren eylemi anlatır: diciéndolo."
+      },
+      {
+        "prompt": "Hay que ___ más agua en verano.",
+        "options": [
+          "beber",
+          "bebiendo",
+          "bebido",
+          "bebe"
+        ],
+        "answer": 0,
+        "why": "hay que + mastar."
+      },
+      {
+        "prompt": "Los niños ___ obedecer a sus padres (ahlaki zorunluluk).",
+        "options": [
+          "deben",
+          "deben de",
+          "suelen",
+          "vienen a"
+        ],
+        "answer": 0,
+        "why": "deber + mastar zorunluluk bildirir; deber de tahmindir."
+      }
+    ]
+  }
+}

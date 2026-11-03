@@ -1,0 +1,182 @@
+[
+  {
+    "id": "es-b19-perifrasis_obligacion_modal-1",
+    "language": "es",
+    "level": "B2",
+    "topic": "basics_es_perifrasis_obligacion_modal",
+    "type": "choice",
+    "prompt": "Para sacar el carnet de conducir ___ hacer un examen.",
+    "answer": "hay que",
+    "options": [
+      "hay que",
+      "debe de",
+      "suele",
+      "viene a"
+    ],
+    "explanation": "Genel kural için hay que + mastar kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b19-perifrasis_obligacion_modal-2",
+    "language": "es",
+    "level": "B2",
+    "topic": "basics_es_perifrasis_obligacion_modal",
+    "type": "choice",
+    "prompt": "No tienes ___ venir; es opcional.",
+    "answer": "que",
+    "options": [
+      "que",
+      "de",
+      "a",
+      "por"
+    ],
+    "explanation": "tener que + mastar; olumsuzda « no tienes que » zorunlu olmadığını anlatır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b19-perifrasis_obligacion_modal-3",
+    "language": "es",
+    "level": "B2",
+    "topic": "basics_es_perifrasis_obligacion_modal",
+    "type": "choice",
+    "prompt": "Yo nunca ___ a entender por qué se fue.",
+    "answer": "llegué",
+    "options": [
+      "llegué",
+      "debí",
+      "suelo",
+      "hay"
+    ],
+    "explanation": "llegar a + mastar: bir noktaya varmak, “asla anlayamadım”.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b19-perifrasis_obligacion_modal-4",
+    "language": "es",
+    "level": "B2",
+    "topic": "basics_es_perifrasis_obligacion_modal",
+    "type": "choice",
+    "prompt": "Eso ___ a costar unos cincuenta euros.",
+    "answer": "viene",
+    "options": [
+      "viene",
+      "hay",
+      "suele",
+      "debe de"
+    ],
+    "explanation": "venir a + mastar yaklaşıklık bildirir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b19-perifrasis_obligacion_modal-5",
+    "language": "es",
+    "level": "B2",
+    "topic": "basics_es_perifrasis_obligacion_modal",
+    "type": "choice",
+    "prompt": "Los niños ___ obedecer a sus padres.",
+    "answer": "deben",
+    "options": [
+      "deben",
+      "deben de",
+      "suelen",
+      "vienen a"
+    ],
+    "explanation": "deber + mastar zorunluluk, deber de tahmin bildirir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b19-perifrasis_obligacion_modal-6",
+    "language": "es",
+    "level": "B2",
+    "topic": "basics_es_perifrasis_obligacion_modal",
+    "type": "choice",
+    "prompt": "Antes de ir, ___ llamar a María.",
+    "answer": "he de",
+    "options": [
+      "he de",
+      "hay de",
+      "suelo de",
+      "vengo"
+    ],
+    "explanation": "haber de + mastar resmî, ağır zorunluluk anlatır: he de llamar.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b19-perifrasis_obligacion_modal-7",
+    "language": "es",
+    "level": "B2",
+    "topic": "basics_es_perifrasis_obligacion_modal",
+    "type": "cloze",
+    "prompt": "Ana no contesta; ___ estar en la ducha.",
+    "answer": "debe de",
+    "hint": "tahmin: muhtemelen",
+    "explanation": "Çıkarım yaptığımız için deber de + mastar kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b19-perifrasis_obligacion_modal-8",
+    "language": "es",
+    "level": "B2",
+    "topic": "basics_es_perifrasis_obligacion_modal",
+    "type": "cloze",
+    "prompt": "Mis padres ___ cenar a las nueve.",
+    "answer": "suelen",
+    "hint": "alışkanlık: genellikle",
+    "explanation": "soler + mastar alışkanlık anlatır: suelen.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b19-perifrasis_obligacion_modal-9",
+    "language": "es",
+    "level": "B2",
+    "topic": "basics_es_perifrasis_obligacion_modal",
+    "type": "cloze",
+    "prompt": "La inflación ___ bajando desde enero.",
+    "answer": "va",
+    "hint": "giderek azalan süreç",
+    "explanation": "ir ya da venir + gerundio: va bajando.",
+    "alternatives": [
+      "viene"
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b19-perifrasis_obligacion_modal-10",
+    "language": "es",
+    "level": "B2",
+    "topic": "basics_es_perifrasis_obligacion_modal",
+    "type": "cloze",
+    "prompt": "Después de tantos intentos, ___ aprobando el examen.",
+    "answer": "acabó",
+    "hint": "sonunda",
+    "explanation": "acabar + gerundio: sonunda sınavı geçti.",
+    "alternatives": [
+      "terminó"
+    ],
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b19-perifrasis_obligacion_modal-11",
+    "language": "es",
+    "level": "B2",
+    "topic": "basics_es_perifrasis_obligacion_modal",
+    "type": "cloze",
+    "prompt": "Nosotros lo ___ que entregar mañana.",
+    "answer": "tenemos",
+    "hint": "zamir fiilin önünde",
+    "explanation": "Tenemos que entregarlo = lo tenemos que entregar.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-b19-perifrasis_obligacion_modal-12",
+    "language": "es",
+    "level": "B2",
+    "topic": "basics_es_perifrasis_obligacion_modal",
+    "type": "error",
+    "prompt": "Hay que estudias más para aprobar.",
+    "answer": "estudias",
+    "fix": "estudiar",
+    "explanation": "hay que ardından mastar gelir, çekimli fiil gelmez.",
+    "source": "Diloloji (özgün)"
+  }
+]

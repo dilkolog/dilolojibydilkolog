@@ -1,0 +1,140 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "lessons": {
+    "basics_en_conditional_alternatives": [
+      {
+        "prompt": "Hurry up; ___ we’ll be late.",
+        "options": [
+          "otherwise",
+          "unless",
+          "provided",
+          "in case"
+        ],
+        "answer": 0,
+        "why": "otherwise = yoksa, aksi halde."
+      },
+      {
+        "prompt": "“Unless you study, you’ll fail.” cümlesine en yakın anlam?",
+        "options": [
+          "If you don’t study, you’ll fail.",
+          "If you study, you’ll fail.",
+          "In case you study, you’ll fail.",
+          "Provided you don’t study, you’ll fail."
+        ],
+        "answer": 0,
+        "why": "unless = if … not."
+      },
+      {
+        "prompt": "I’ll lend you the book as long as you ___ it back.",
+        "options": [
+          "give",
+          "will give",
+          "gave",
+          "giving"
+        ],
+        "answer": 0,
+        "why": "as long as sonrasında gelecek için present simple kullanılır."
+      },
+      {
+        "prompt": "“Take an umbrella in case it rains.” cümlesinin doğru anlamı hangisi?",
+        "options": [
+          "Yağmur yağabilir diye şemsiye al",
+          "Yağmur yağarsa şemsiye al",
+          "Yağmur yağmadıkça şemsiye al",
+          "Yağmur yağsa bile şemsiye al"
+        ],
+        "answer": 0,
+        "why": "in case önlem anlamı taşır: yağabilir diye."
+      },
+      {
+        "prompt": "She can come ___ she pays for her own ticket.",
+        "options": [
+          "provided that",
+          "unless",
+          "in case",
+          "otherwise"
+        ],
+        "answer": 0,
+        "why": "Şart bildirir: kendi biletini ödemesi şartıyla."
+      },
+      {
+        "prompt": "Hangi cümle doğru?",
+        "options": [
+          "Unless it rains, we’ll have a picnic.",
+          "Unless it doesn’t rain, we’ll have a picnic.",
+          "Unless it will rain, we’ll have a picnic.",
+          "Unless it rained, we’ll have a picnic."
+        ],
+        "answer": 0,
+        "why": "unless’ten sonra olumsuz fiil ve will kullanılmaz."
+      },
+      {
+        "prompt": "Supposing you ___ the lottery, what would you do?",
+        "options": [
+          "won",
+          "win",
+          "will win",
+          "had win"
+        ],
+        "answer": 0,
+        "why": "Gerçek dışı varsayımda supposing + past simple (won) gelir."
+      },
+      {
+        "prompt": "You may enter ___ condition that you show your ID.",
+        "options": [
+          "on",
+          "in",
+          "at",
+          "by"
+        ],
+        "answer": 0,
+        "why": "Kalıp: on condition that."
+      },
+      {
+        "prompt": "Write it down ___ you forget.",
+        "options": [
+          "in case",
+          "unless",
+          "provided that",
+          "as long as"
+        ],
+        "answer": 0,
+        "why": "in case = unutabilirsin diye (önlem)."
+      },
+      {
+        "prompt": "Hangi cümle doğru? (provided that)",
+        "options": [
+          "You can go provided that you finish your homework.",
+          "You can go provided that you will finish your homework.",
+          "You can go unless you don’t finish your homework.",
+          "You can go in case you finish your homework."
+        ],
+        "answer": 0,
+        "why": "provided that’ten sonra present simple gelir."
+      },
+      {
+        "prompt": "Bring cash ___ the card machine isn’t working.",
+        "options": [
+          "in case",
+          "unless",
+          "as long as",
+          "provided"
+        ],
+        "answer": 0,
+        "why": "in case: makine çalışmayabilir diye önlem."
+      },
+      {
+        "prompt": "Hangi bağlaç “if you don’t” anlamına gelir?",
+        "options": [
+          "unless",
+          "provided that",
+          "in case",
+          "as long as"
+        ],
+        "answer": 0,
+        "why": "unless = if … not."
+      }
+    ]
+  }
+}
