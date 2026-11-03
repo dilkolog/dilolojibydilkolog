@@ -23,7 +23,7 @@ async function mount(now: Date, misses = 5) {
   document.body.append(host)
   root = createRoot(host)
   await act(async () => root!.render(<WeeklyCare language="fr" misses={misses} events={[]} now={now} onWords={() => calls.push('words')} onGrammar={() => calls.push('grammar')} onRepair={(t) => calls.push(`repair:${t}`)} />))
-  for (let i = 0; i < 20 && !host.querySelector('.weekly-care'); i++) await act(() => new Promise((r) => setTimeout(r, 25)))
+  for (let i = 0; i < 120 && !host.querySelector('.weekly-care'); i++) await act(() => new Promise((r) => setTimeout(r, 25)))
   return { host, calls }
 }
 

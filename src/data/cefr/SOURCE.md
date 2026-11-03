@@ -23,6 +23,15 @@ License note for `fr.txt` and `es.txt`: Creative Commons Attribution-NonCommerci
 (https://creativecommons.org/licenses/by-nc-sa/4.0/). Non-commercial: this app is personal; if it
 is ever sold, `fr.txt` and `es.txt` must be replaced (`en.txt` carries no non-commercial clause).
 
+**Spanish B2/C1 extension (2026-11-03):** ELELex stops at 305 C1 words and 467 B2 words, too few for a learner
+aiming at B2–C1. `es.txt` therefore carries about 3,000 further headwords (appended within their level) that are
+*estimated*, not measured: single-word nouns, verbs, adjectives and adverbs of the word pack
+(`src/data/wordpack/es.json`) that ELELex lacks, with a Turkish gloss, that are not inflected forms of another
+headword, not English loanwords, names or obscenities (hand-filtered list), ranked by the best frequency rank of the
+word or its forms in `src/data/frequency/es.txt` (a subtitle-based list): rank below 9,000 → B2, 9,000 to 20,000 → C1.
+A few missing basics (numbers, weekdays, months) are placed at A1/A2 by hand. Frequency is a proxy for textbook
+level, so treat these two levels as a direction, not a grade (the app says so on the coverage card).
+
 Changes on FLELex / ELELex (`scripts/build-cefr.ts`): a word's level is the first level with a
 frequency of at least 10 per million (FLELex) or use in three or more documents (ELELex), the
 earliest of its parts of speech; tokenizer spacing undone (`c' est - à - dire` → `c'est-à-dire`,

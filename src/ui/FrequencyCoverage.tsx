@@ -66,6 +66,7 @@ export function FrequencyCoverageCard({
         {byLevel ? (
           <>
             Her seviye, ders kitaplarında ve kolay okuma metinlerinde o seviyede kullanılmaya başlanan kelimeler (FLELex/ELELex).{' '}
+            {language === 'es' && 'İspanyolcada B2 ve C1 kelimelerinin çoğu kullanım sıklığına göre tahmin edilmiştir: kesin bir ölçüt değil, yön gösterir. '}
           </>
         ) : (
           <>Bir dilin en sık birkaç bin kelimesi her metnin büyük kısmını oluşturur; rahat okumak için ilk katmanların %95'ini bilmek gerekir (Nation 2006). </>
