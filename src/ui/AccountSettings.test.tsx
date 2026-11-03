@@ -10,10 +10,11 @@ const state = vi.hoisted(() => ({
   handle: { handle: '', findable: false },
   saveHandle: vi.fn(async (handle: string, findable: boolean) => ({ handle, findable })),
   approvalOn: true,
+  identity: null as null | { email: string; name: string; avatar: string; providers: string[] },
 }))
 vi.mock('../data/access', () => ({ approvalEnabled: async () => state.approvalOn }))
 vi.mock('../data/instance', () => ({ db: { meta: { get: async (key: string) => (state.meta.has(key) ? { value: state.meta.get(key) } : undefined) } } }))
-vi.mock('../data/supabase', () => ({ currentIdentity: async () => null, signInWithGoogle: async () => undefined, supabaseConfigured: () => true }))
+vi.mock('../data/supabase', () => ({ currentIdentity: async () => state.identity, signInWithGoogle: async () => undefined, supabaseConfigured: () => true }))
 vi.mock('./syncRunner', async () => {
   const real = await vi.importActual<typeof import('./syncRunner')>('./syncRunner')
   return { ...real, getAccount: async () => ({ kind: 'account', username: 'ali', id: 'a', enc: 'b', auth: 'c' }), runSync: state.runSync }
@@ -46,6 +47,7 @@ beforeEach(() => {
   state.saveHandle.mockClear()
   state.handle = { handle: '', findable: false }
   state.approvalOn = true
+  state.identity = null
 })
 afterEach(() => {
   act(() => root?.unmount())
@@ -119,5 +121,21 @@ describe('AccountSettings @name', () => {
     expect(state.saveHandle).toHaveBeenCalledWith('ali_tr', true)
     expect(host.querySelector('.account-who-header .account-handle')?.textContent).toBe('@ali_tr')
     expect(host.querySelector('.account-handle-form')).toBeNull()
+  })
+})
+
+describe('AccountSettings header', () => {
+  it('shows how the person signs in only as Google\'s mark beside the email, no words', async () => {
+    state.identity = { email: 'ali@example.com', name: 'Ali', avatar: '', providers: ['google'] }
+    await mount()
+    const email = host.querySelector('.account-email')!
+    expect(email.textContent).toBe('ali@example.com')
+    expect(email.querySelector('[role="img"]')?.getAttribute('aria-label')).toBe('Google ile bağlı')
+  })
+
+  it('an email-and-password account has no mark', async () => {
+    state.identity = { email: 'ali@example.com', name: 'Ali', avatar: '', providers: ['email'] }
+    await mount()
+    expect(host.querySelector('.account-email [role="img"]')).toBeNull()
   })
 })

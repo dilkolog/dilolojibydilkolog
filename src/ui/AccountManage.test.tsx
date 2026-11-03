@@ -11,7 +11,6 @@ vi.mock('../data/supabase', () => ({
   authErrorText: (m: string) => m,
   CURRENT_PASSWORD_NEEDED: 'NEEDED',
   CURRENT_PASSWORD_WRONG: 'WRONG',
-  providersText: (p: string[]) => p.map((x) => (x === 'email' ? 'E-posta ve şifre' : x === 'google' ? 'Google' : x)).join(' · '),
   supabaseConfigured: () => true,
   currentSession: async () => null,
 }))
@@ -52,7 +51,6 @@ describe('AccountManage password row', () => {
     expect(state.setNewPassword).toHaveBeenCalledWith('Güçlü-Şifre9', undefined)
     expect(host.textContent).not.toContain('Belirlenmedi')
     expect(host.textContent).toContain('••••••••••••')
-    expect(host.textContent).toContain('Google · E-posta ve şifre')
     expect([...host.querySelectorAll('button')].some((b) => b.textContent === 'Şifre değiştir')).toBe(true)
   })
 

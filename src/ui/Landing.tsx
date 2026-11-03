@@ -199,7 +199,14 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
   const finalCta = useRef<HTMLElement>(null)
 
   // Here now: the first lines index.html showed in its place go.
-  useEffect(() => dropBootHero(), [])
+  useEffect(() => {
+    dropBootHero()
+    // The in-page links (#lp-skills…) leave their mark in the address: gone with the page, so the app's own
+    // screens do not open on it.
+    return () => {
+      if (location.hash.startsWith('#lp-')) history.replaceState(history.state, '', location.pathname + location.search)
+    }
+  }, [])
 
   // The page takes the chosen language's light, the way the app does once a language is set. It stays on through the
   // sign-in page (one look until the app sets its own language).

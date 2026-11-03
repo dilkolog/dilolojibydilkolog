@@ -192,8 +192,3 @@ export async function currentIdentity(): Promise<Identity | null> {
   const avatar = text('avatar_url', 'picture')
   return { email: s.user.email ?? '', providers, name: text('full_name', 'name', 'username'), avatar: /^https:\/\//.test(avatar) ? avatar : '' }
 }
-
-const PROVIDER_NAME: Record<string, string> = { email: 'E-posta ve şifre', google: 'Google' }
-
-/** How the person signs in, in words: "Google", "E-posta ve şifre · Google". */
-export const providersText = (providers: string[]) => providers.map((p) => PROVIDER_NAME[p] ?? p).join(' · ') || 'E-posta'
