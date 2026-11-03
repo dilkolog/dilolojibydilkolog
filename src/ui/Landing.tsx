@@ -1,43 +1,166 @@
 import '../lazy.css'
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
+import actListen from '../assets/art/act-listen.webp'
+import actRead from '../assets/art/act-read.webp'
+import actSpeak from '../assets/art/act-speak.webp'
+import actWrite from '../assets/art/act-write.webp'
+import cefrA1 from '../assets/art/cefr-monki-a1.webp'
+import cefrB1 from '../assets/art/cefr-monki-b1.webp'
+import cefrC1 from '../assets/art/cefr-monki-c1.webp'
+import friendsTogether from '../assets/art/friends-together.webp'
+import gameDuel from '../assets/art/game-duel.webp'
+import guideTeach from '../assets/art/guide-teach.webp'
+import headWords from '../assets/art/head-words.webp'
+import monkiCheer from '../assets/art/monki-cheer.webp'
+import monkiWave from '../assets/art/monki-wave.webp'
+import sceneTogether from '../assets/art/scene-together.webp'
+import type { TargetLanguage } from '../engine/types'
 import { BrandLogo } from './BrandLogo'
-import { BookIcon, CheckIcon, ChevronDownIcon, CloudOffIcon, ConjugationsIcon, DataIcon, GameIcon, HeartIcon, LockIcon, MessageIcon, ReadIcon, SchoolIcon, SparkleIcon } from './icons'
-import { Sticker } from './Sticker'
+import { BookIcon, CheckIcon, ChevronDownIcon, CloudOffIcon, ConjugationsIcon, DataIcon, EarIcon, GameIcon, GlobeIcon, HeartIcon, LockIcon, MicIcon, SchoolIcon, SparkleIcon, TagIcon } from './icons'
+import { LANG_MONKI } from './drawnArt'
+import { HELLO, LANGUAGE_NAME } from './labels'
+import { rememberStartLanguage, startLanguage } from './startLanguage'
 
 export type LandingStart = 'create' | 'login'
 
-type ShotLanguage = 'fr' | 'es' | 'en'
-const SHOT_LANGUAGES: { id: ShotLanguage; name: string }[] = [
-  { id: 'fr', name: 'Fransızca' },
-  { id: 'es', name: 'İspanyolca' },
-  { id: 'en', name: 'İngilizce' },
-]
-
 // The app's screens as photographed for each language (scripts/capture-landing-shots.ts): only the picture chosen is fetched.
 const SHOTS = import.meta.glob('../assets/landing/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>
-const shotOf = (screen: 'today' | 'reading' | 'verbs' | 'guide', language: ShotLanguage) => {
-  // English has no verb lab: that row keeps showing French.
+type Screen = 'today' | 'reading' | 'verbs' | 'guide' | 'path' | 'dialogue'
+const shotOf = (screen: Screen, language: TargetLanguage) => {
+  // English has no conjugation tables in the lab: that picture keeps showing French.
   const lang = screen === 'verbs' && language === 'en' ? 'fr' : language
   return SHOTS[`../assets/landing/${screen}-${lang}.webp`]
 }
 
-const STEPS = [
-  { title: 'Kelimeni ekle', text: 'Kendi listeni kur, bir metinden ya da Kindle’dan aktar. Türkçe anlam, örnek cümle ve telaffuz hazır gelir.' },
-  { title: 'Günde birkaç dakika çalış', text: 'Kısa oturumlar: seç, yaz, dinle. Her cevaba anında karşılık alırsın; yanlış yapınca nedenini görürsün.' },
-  { title: 'Unutmadan önce tekrar et', text: 'Aralıklı tekrar, her kelimeyi unutmaya yaklaştığı anda karşına çıkarır. Az çalışıp çok akılda tutarsın.' },
+/** The word tapped in the reading picture, shown beside the phone as just added. */
+const SAVED_WORD: Record<TargetLanguage, { word: string; tr: string }> = {
+  fr: { word: 'la maison', tr: 'ev' },
+  es: { word: 'la ciudad', tr: 'şehir' },
+  en: { word: 'journey', tr: 'yolculuk' },
+}
+
+/** The order the cards stand in: French first (the page's own default), then Spanish and English. */
+const PICK_ORDER: TargetLanguage[] = ['fr', 'es', 'en']
+
+const SKILLS = [
+  { art: actRead, title: 'Oku', text: 'Seviyene göre hikâyeler, haberler, sesli kitaplar ve kendi metinlerin. Bilmediğin kelimeye dokun, anlamı ve çekimi açılsın.' },
+  { art: actListen, title: 'Dinle', text: 'Cümle cümle dinle, dikte yaz, hızı ayarla. Haber bültenleri ve sesli metinlerle kulağın dile alışsın.' },
+  { art: actSpeak, title: 'Konuş', text: 'Gölgeleme, telaffuz çalışması ve gündelik diyaloglar: kafede, otelde, doktorda ne diyeceğini bil.' },
+  { art: actWrite, title: 'Yaz', text: 'Günlük tut, sınav tarzı yazma görevlerini dene. Yazım hataların bir defterde toplanır ve sana geri döner.' },
+  { art: headWords, title: 'Kelime', text: 'Her kelime anlamı, örnek cümlesi ve sesiyle gelir; aralıklı tekrar onu unutmadan pekiştirir.' },
+  { art: guideTeach, title: 'Dilbilgisi', text: 'Her dilde 70’ten fazla kısa ders: kural, örnek, alıştırma ve mini sınav. Hepsi Türkçe anlatılır.' },
 ]
 
-const FEATURES = [
-  { icon: <BookIcon size={22} />, title: 'Sözlük ve çeviri', text: 'Çekimli biçimden bile kelimeyi bulan sözlük; cümle çevirisi ve kendi sözlük notların.' },
-  { icon: <GameIcon size={22} />, title: 'Oyunlar', text: 'Dilbilgisi soruları, dikte, eşleştirme, hız oyunları ve arkadaşınla düello.' },
-  { icon: <MessageIcon size={22} />, title: 'Monki', text: 'Konuşma, rol yapma ve hata düzeltme için yapay zekâ yardımcısı. İsteğe bağlı.' },
-  { icon: <CloudOffIcon size={22} />, title: 'Çevrimdışı çalışır', text: 'Telefonuna uygulama gibi kurulur; çalışma ve okuma internetsiz de sürer.' },
+const BANDS = [
+  { art: cefrA1, levels: 'A1 · A2', name: 'Başlangıç', text: 'Kendini tanıtırsın, alışveriş yapar, yol sorar, gününü anlatırsın.' },
+  { art: cefrB1, levels: 'B1 · B2', name: 'Orta', text: 'Seyahatte rahat edersin; deneyimlerini anlatır, haberleri izler, fikrini savunursun.' },
+  { art: cefrC1, levels: 'C1', name: 'İleri', text: 'Uzun ve zor metinleri okur, akıcı yazar, resmî dille gündelik dil arasında rahatça geçersin.' },
+]
+
+/** Where a Turkish speaker trips, one of each kind per language: from the app's own trap words and lessons. */
+interface Native {
+  traps: { word: string; not: string; is: string }[]
+  sound: { words: string; text: string }
+  grammar: { words: string; text: ReactNode }
+}
+const NATIVE: Record<TargetLanguage, Native> = {
+  fr: {
+    traps: [
+      { word: 'magasin', not: 'magazin', is: 'mağaza' },
+      { word: 'carte', not: 'kart', is: 'harita ya da menü' },
+    ],
+    sound: { words: 'vin · vent · vont', text: 'Üç burun ünlüsü, üç ayrı anlam: şarap, rüzgâr, giderler. Türkçede olmayan bu sesleri “n” ekleyerek bozmamayı öğrenirsin.' },
+    grammar: {
+      words: 'en lisant',
+      text: (
+        <>
+          Türkçedeki “-arak, -arken” Fransızcada <span lang="fr">en + -ant</span> olur: <span lang="fr">J’apprends en lisant</span> (okuyarak öğreniyorum).
+        </>
+      ),
+    },
+  },
+  es: {
+    traps: [
+      { word: 'carta', not: 'kart', is: 'mektup' },
+      { word: 'nombre', not: 'numara', is: 'ad, isim' },
+    ],
+    sound: { words: 'pero · perro', text: 'Tek r ile titrek rr anlam ayırır: “ama” ile “köpek”. Türkçede böyle bir ayrım yok; farkı kulağın da dilin de öğrenir.' },
+    grammar: {
+      words: 'hay · está',
+      text: (
+        <>
+          İkisi de Türkçede “var” ya da “-de”: “Masada bir kitap var” <span lang="es">hay</span>, “Kitap masada” <span lang="es">está</span>.
+        </>
+      ),
+    },
+  },
+  en: {
+    traps: [
+      { word: 'magazine', not: 'magazin', is: 'dergi' },
+      { word: 'actually', not: 'aktüel', is: 'aslında' },
+    ],
+    sound: { words: 'think · this', text: 'th’nin iki sesi Türkçede yok: s, z, t ya da d demek yerine dil ucunu dişlerin arasına koymayı öğrenirsin.' },
+    grammar: {
+      words: 'in · on · at',
+      text: (
+        <>
+          Türkçedeki tek “-de” eki İngilizcede üç edata ayrılır: <span lang="en">in June, on Monday, at five</span>.
+        </>
+      ),
+    },
+  },
+}
+
+/** A short exchange with Monki, the way its corrections read in the app (an example, not a live chat). */
+const MONKI_CHAT: Record<TargetLanguage, { said: string; right: string; why: ReactNode }> = {
+  fr: {
+    said: 'Hier, j’ai allé au cinéma avec ma sœur.',
+    right: 'Je suis allé au cinéma.',
+    why: (
+      <>
+        <span lang="fr">aller</span>, passé composé’de <span lang="fr">être</span> ile çekilir; <span lang="fr">venir, partir</span> ve <span lang="fr">arriver</span> da öyle.
+      </>
+    ),
+  },
+  es: {
+    said: 'Hoy soy muy cansado después del trabajo.',
+    right: 'Hoy estoy muy cansado.',
+    why: (
+      <>
+        Yorgunluk geçici bir durum: <span lang="es">ser</span> değil <span lang="es">estar</span>.
+      </>
+    ),
+  },
+  en: {
+    said: 'I live in Izmir since 2018.',
+    right: 'I have lived in Izmir since 2018.',
+    why: (
+      <>
+        <span lang="en">since</span> ile bugüne süren bir durum: present perfect. Türkçedeki şimdiki zamanı aynen aktarma.
+      </>
+    ),
+  },
+}
+
+const TOGETHER = [
+  { art: friendsTogether, title: 'Arkadaşlar', text: 'Kullanıcı adıyla ekle; haftalık lig, ortak hedef, tebrik ve nazik bir hatırlatma.' },
+  { art: gameDuel, title: 'Canlı düello', text: 'Aynı dilbilgisi soruları, aynı anda. Kim daha çok doğru yapacak?' },
+  { art: sceneTogether, title: 'Birlikte oku', text: 'Aynı metni arkadaşlarınla oku; kimin hangi kelimeye baktığını gör.' },
+]
+
+const MORE = [
+  { icon: <BookIcon size={22} />, title: 'Sözlük ve çeviri', text: 'Çekimli biçimden bile kelimeyi bulan sözlük, cümle çevirisi ve kendi sözlük notların.' },
+  { icon: <GameIcon size={22} />, title: '40’tan fazla oyun', text: 'Tuzak kelimeler, dikte, sayılar ve saatler, refleks turu, eşleştirme ve daha fazlası.' },
+  { icon: <CloudOffIcon size={22} />, title: 'İnternetsiz de çalışır', text: 'Telefonuna uygulama gibi kurulur; çalışma ve okuma bağlantı olmadan da sürer.' },
+  { icon: <GlobeIcon size={22} />, title: 'Her cihazda', text: 'Telefonda, tablette, bilgisayarda aynı hesap; ilerlemen kendiliğinden eşitlenir.' },
 ]
 
 const FAQ: { q: string; a: ReactNode }[] = [
-  { q: 'Hangi dilleri öğrenebilirim?', a: 'İngilizce, Fransızca ve İspanyolca. Arayüz ve açıklamalar Türkçe.' },
-  { q: 'Telefonda çalışır mı?', a: 'Evet. Tarayıcıdan açıp “Ana ekrana ekle” dersen uygulama gibi kurulur; bilgisayarda da aynı hesapla devam edersin.' },
-  { q: 'Yapay zekâ özellikleri zorunlu mu?', a: 'Hayır. Kelime çalışma, okuma, fiil laboratuvarı, Rehber ve oyunlar yapay zekâsız çalışır. Monki gibi yapay zekâ özellikleri, hesabın onaylanınca kendiliğinden açılır; anahtar girmen gerekmez.' },
+  { q: 'Hangi dilleri öğrenebilirim?', a: 'İngilizce, Fransızca ve İspanyolca. Arayüz ve bütün açıklamalar Türkçe; istediğin zaman öbür dillere de geçebilirsin.' },
+  { q: 'Hiç bilmiyorum, nereden başlarım?', a: 'Sıfırdan başlayabilirsin: Rehber A1 dersleriyle açılır, ilk kelimeler hazır gelir. Biraz biliyorsan kısa seviye testi bildiğin dersleri işaretler, yol oradan devam eder.' },
+  { q: 'Sınava hazırlanmama yardımcı olur mu?', a: 'DELF, DELE ve Cambridge tarzında okuma, dinleme ve yazma görevleri, B2 ve C1 dersleri ve okumalar var. Bunlar resmî sınav soruları değil, sınava benzeyen alıştırmalardır.' },
+  { q: 'Telefonda çalışır mı?', a: 'Evet. Tarayıcıdan açıp “Ana ekrana ekle” dersen uygulama gibi kurulur; bilgisayarda da aynı hesapla kaldığın yerden devam edersin.' },
+  { q: 'Yapay zekâ özellikleri zorunlu mu?', a: 'Hayır. Kelime çalışma, okuma, dinleme, fiil laboratuvarı, Rehber ve oyunlar yapay zekâsız çalışır. Monki gibi yapay zekâ özellikleri hesabın onaylanınca kendiliğinden açılır; anahtar girmen gerekmez.' },
   { q: 'Verilerime ne oluyor?', a: <>Kelimelerin ve ilerlemen hesabında eşitlenir; reklam ve izleme yoktur. İstediğin zaman yedeğini indirir ya da hesabını silersin. Ayrıntılar için <a href="/gizlilik">gizlilik politikasına</a> bak.</> },
   { q: 'Nasıl giriş yapıyorum?', a: 'E-posta ve şifreyle, e-postana gelen bağlantıyla ya da Google hesabınla.' },
 ]
@@ -54,15 +177,68 @@ function Shot({ src, alt }: { src: string; alt: string }) {
   )
 }
 
+function Art({ src, className = '' }: { src: string; className?: string }) {
+  return <img className={`lp-art ${className}`.trim()} src={src} alt="" loading="lazy" decoding="async" draggable={false} />
+}
+
+/** The forgetting curve without reviews, and with them: each review lifts memory back up and it then fades slower. */
+function MemoryCurve() {
+  return (
+    <figure className="lp-curve">
+      <svg viewBox="0 0 320 172" role="img" aria-label="Tekrar etmeden hatırlama hızla düşer. Diloloji her kelimeyi unutulmaya yaklaştığında sorar; her tekrardan sonra unutma yavaşlar.">
+        <line className="lp-curve-axis" x1="16" y1="140" x2="308" y2="140" />
+        <line className="lp-curve-axis" x1="16" y1="16" x2="16" y2="140" />
+        <path className="lp-curve-forget" d="M16 24 C 40 96, 90 128, 304 136" />
+        <path className="lp-curve-learn" d="M16 24 C 32 62, 46 80, 60 86 L60 24 C 84 50, 104 64, 124 70 L124 24 C 156 42, 182 52, 206 56 L206 24 C 246 34, 280 41, 304 45" />
+        {[60, 124, 206].map((x) => (
+          <circle key={x} className="lp-curve-dot" cx={x} cy={24} r={4.5} />
+        ))}
+        <text className="lp-curve-label" x="60" y="158" textAnchor="middle">1. gün</text>
+        <text className="lp-curve-label" x="124" y="158" textAnchor="middle">4. gün</text>
+        <text className="lp-curve-label" x="206" y="158" textAnchor="middle">2 hafta</text>
+        <text className="lp-curve-label" x="300" y="158" textAnchor="end">2 ay</text>
+      </svg>
+      <figcaption className="lp-curve-key small">
+        <span><i className="lp-key-learn" aria-hidden /> Diloloji ile</span>
+        <span><i className="lp-key-forget" aria-hidden /> Tekrar etmeden</span>
+      </figcaption>
+    </figure>
+  )
+}
+
 /**
- * What a visitor sees before signing in: what Diloloji is, how it works, with the app's own screens, and the
- * two ways in. It stands where the sign-in page used to be the whole site; the sign-in page is one step on.
+ * What a visitor sees before signing in: what Diloloji is, with the app's own screens in the language they pick,
+ * and the two ways in. Picking a language lights the whole page in its colour (as the app does) and carries the
+ * choice to the first-run screen.
  */
 export function Landing({ onStart, invited = false, inviterName }: { onStart: (mode: LandingStart) => void; invited?: boolean; inviterName?: string }) {
-  const [shotLang, setShotLang] = useState<ShotLanguage>('fr')
-  const langName = SHOT_LANGUAGES.find((l) => l.id === shotLang)!.name
+  const [lang, setLang] = useState<TargetLanguage>(() => startLanguage() ?? 'fr')
+  const name = LANGUAGE_NAME[lang]
+  const native = NATIVE[lang]
+  const chat = MONKI_CHAT[lang]
+
+  // The page takes the chosen language's light, the way the app does once a language is set; given back on leaving.
+  useEffect(() => {
+    const root = document.documentElement
+    const before = root.dataset.lang
+    root.dataset.lang = lang
+    return () => {
+      if (before) root.dataset.lang = before
+      else delete root.dataset.lang
+    }
+  }, [lang])
+
+  const pick = (l: TargetLanguage) => {
+    setLang(l)
+    rememberStartLanguage(l)
+  }
+  const create = () => {
+    rememberStartLanguage(lang)
+    onStart('create')
+  }
+
   return (
-    <div className="lp">
+    <div className="lp" data-lang={lang}>
       <header className="lp-top">
         <a className="lp-brand" href="/" aria-label="Diloloji">
           <BrandLogo />
@@ -72,7 +248,7 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
           <button type="button" className="btn btn-quiet btn-sm" onClick={() => onStart('login')}>
             Giriş yap
           </button>
-          <button type="button" className="btn btn-sm" onClick={() => onStart('create')}>
+          <button type="button" className="btn btn-sm" onClick={create}>
             Hesap aç
           </button>
         </div>
@@ -97,75 +273,259 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
             )}
             <div className="lp-pill">
               <span className="lp-pill-dot" aria-hidden />
-              <span>İngilizce · Fransızca · İspanyolca</span>
+              <span>Türkçe konuşanlar için dil okulu</span>
             </div>
-            <h1 id="lp-h1">Kelimeleri unutmadan önce tekrar et.</h1>
+            <h1 id="lp-h1">
+              Fransızca, İspanyolca, İngilizce. <span className="lp-h1-accent">Türkçe anlatımla, A1’den C1’e.</span>
+            </h1>
             <p className="lp-lead">
-              Diloloji, Türkçe konuşanlar için kişiselleştirilmiş kelime öğrenme uygulaması: bilimsel aralıklı tekrar, gerçek metinlerle okuma, dinleme ve kapsamlı fiil laboratuvarı tek yerde. Günde birkaç dakika yeter.
+              Kelime, dilbilgisi, okuma, dinleme ve konuşma tek bir yolda. Her kural Türkçe anlatılır, tekrarlar senin hafızana göre ayarlanır. Günde birkaç dakika yeter.
             </p>
+            <div className="lp-pick">
+              <p className="lp-pick-label" id="lp-pick-label">
+                Hangi dili öğrenmek istiyorsun?
+              </p>
+              <div className="lang-cards lp-langs" role="group" aria-labelledby="lp-pick-label">
+                {PICK_ORDER.map((l) => (
+                  <button key={l} type="button" className="lang-card" aria-pressed={l === lang} data-lang={l} onClick={() => pick(l)}>
+                    <img className="lang-card-art" src={LANG_MONKI[l]} alt="" draggable={false} />
+                    <span className="hello" lang={l}>
+                      {HELLO[l]}
+                    </span>
+                    <span className="muted">{LANGUAGE_NAME[l]}</span>
+                    {l === lang && (
+                      <span className="lang-card-check" aria-hidden>
+                        <CheckIcon size={16} />
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
             <div className="lp-cta">
-              <button type="button" className="btn btn-lg" onClick={() => onStart('create')}>
-                Hesap aç ve başla
+              <button type="button" className="btn btn-lg" onClick={create}>
+                {name} öğrenmeye başla
               </button>
               <button type="button" className="btn btn-quiet btn-lg" onClick={() => onStart('login')}>
                 Giriş yap
               </button>
             </div>
-            <div className="lp-trust-chips">
-              <span className="lp-chip"><SparkleIcon size={14} /> Bilimsel aralıklı tekrar</span>
-              <span className="lp-chip"><ReadIcon size={14} /> Gerçek metinlerle okuma</span>
-              <span className="lp-chip"><ConjugationsIcon size={14} /> Fiil Laboratuvarı</span>
-              <span className="lp-chip"><LockIcon size={14} /> Reklamsız & Gizli</span>
-            </div>
+            <ul className="lp-facts small">
+              <li>
+                <LockIcon size={14} /> Reklam yok
+              </li>
+              <li>
+                <CloudOffIcon size={14} /> İnternetsiz de çalışır
+              </li>
+              <li>
+                <SchoolIcon size={14} /> A1’den C1’e
+              </li>
+            </ul>
           </div>
           <div className="lp-hero-visual">
-            <Shot src={shotOf('today', shotLang)} alt="Diloloji’nin Bugün ekranı: günün görevi, yeni kelime sayısı ve Başla düğmesi." />
-            <span className="small muted">Örnek ekranların dili</span>
-            <div className="segmented lp-lang" role="group" aria-label="Örnek ekranların dili">
-              {SHOT_LANGUAGES.map((l) => (
-                <button key={l.id} type="button" className="segmented-btn" aria-pressed={shotLang === l.id} onClick={() => setShotLang(l.id)}>
-                  {l.name}
-                </button>
-              ))}
+            <Shot src={shotOf('today', lang)} alt={`Diloloji’nin Bugün ekranı (${name}): günün görevi, yeni kelime sayısı ve Başla düğmesi.`} />
+            <div className="lp-float lp-float-hello" aria-hidden>
+              <span className="lp-float-word" lang={lang}>
+                {HELLO[lang]}
+              </span>
+              <span className="small muted">Merhaba!</span>
+            </div>
+            <div className="lp-float lp-float-word-added" aria-hidden>
+              <CheckIcon size={16} />
+              <span>
+                <span className="lp-float-word" lang={lang}>
+                  {SAVED_WORD[lang].word}
+                </span>
+                <span className="small muted"> · {SAVED_WORD[lang].tr}</span>
+              </span>
             </div>
           </div>
         </section>
 
-        <section className="lp-section" aria-labelledby="lp-how">
-          <h2 id="lp-how" className="lp-h2">
-            Nasıl çalışır?
-          </h2>
-          <ol className="lp-steps">
-            {STEPS.map((s, i) => (
-              <li key={s.title} className="card">
-                <span className="lp-step-n" aria-hidden>
-                  {i + 1}
-                </span>
-                <h3 className="section-title">{s.title}</h3>
-                <p className="small muted">{s.text}</p>
+        <section className="lp-section" aria-labelledby="lp-skills">
+          <div className="lp-head">
+            <span className="lp-kicker">Dört beceri, tek yol</span>
+            <h2 id="lp-skills" className="lp-h2">
+              Bir dili bütün yönleriyle öğren
+            </h2>
+            <p className="lp-sub">Diloloji yalnızca kelime ezberletmez: okur, dinler, konuşur ve yazarsın. Dilbilgisi de kelimeler de aynı yolda, birbirine bağlı ilerler.</p>
+          </div>
+          <ul className="lp-skills">
+            {SKILLS.map((s) => (
+              <li key={s.title} className="card lp-skill">
+                <Art src={s.art} />
+                <div>
+                  <h3 className="section-title">{s.title}</h3>
+                  <p className="small muted">{s.text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="lp-section" aria-labelledby="lp-levels">
+          <div className="lp-head">
+            <span className="lp-kicker">A1’den C1’e</span>
+            <h2 id="lp-levels" className="lp-h2">
+              Seviyeni bul, yolunu izle
+            </h2>
+            <p className="lp-sub">Kısa bir seviye testiyle nereden başlayacağını öğren. Rehber dersleri öğrenme sırasına dizer; bir seviyenin bütün derslerini bitirince sertifikanı alırsın.</p>
+          </div>
+          <ol className="lp-bands">
+            {BANDS.map((b) => (
+              <li key={b.levels} className="card lp-band">
+                <Art src={b.art} />
+                <span className="lp-band-levels">{b.levels}</span>
+                <h3 className="section-title">{b.name}</h3>
+                <p className="small muted">{b.text}</p>
               </li>
             ))}
           </ol>
+          <article className="lp-row lp-row-flip lp-row-tight">
+            <div className="lp-row-text">
+              <ul className="lp-list">
+                <li>
+                  <CheckIcon size={16} />
+                  <span>
+                    <strong>Seviye testi.</strong> Kolaydan zora sorular; bildiğin dersler işaretlenir, sen kaldığın yerden başlarsın.
+                  </span>
+                </li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>
+                    <strong>Öğrenme yolu.</strong> Her ders, dayandığı derslerden sonra gelir. Kilit yok: istediğin dersi açarsın.
+                  </span>
+                </li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>
+                    <strong>Seviye sertifikası.</strong> Bir seviyenin bütün derslerini öğrenince sertifikanı paylaşır ya da indirirsin.
+                  </span>
+                </li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>
+                    <strong>Sınav tarzı görevler.</strong> DELF, DELE ve Cambridge tarzında okuma, dinleme ve yazma. Resmî sınav soruları değildir.
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <Shot src={shotOf('path', lang)} alt={`Rehber’in öğrenme yolu (${name}): A1 dersleri, öğrenilenler işaretli, sıradaki ders öne çıkmış.`} />
+          </article>
+        </section>
+
+        <section className="lp-section lp-native" aria-labelledby="lp-native">
+          <article className="lp-row">
+            <div className="lp-row-text">
+              <span className="lp-kicker">Türkçe konuşana özel</span>
+              <h2 id="lp-native" className="lp-h2">
+                Türkçeden gelen tuzakları bilir
+              </h2>
+              <p>Çeviri vermekle kalmaz: Türkçe alışkanlıklarının seni nerede yanıltacağını söyler. Kurallar Türkçeyle karşılaştırılarak anlatılır, yanlışında nedenini Türkçe görürsün.</p>
+              <div className="lp-native-card">
+                <p className="lp-native-cap small">{name} için üç örnek</p>
+                <dl>
+                  <div className="lp-native-row">
+                    <dt>
+                      <TagIcon size={16} /> Tuzak kelime
+                    </dt>
+                    <dd>
+                      {native.traps.map((t) => (
+                        <p key={t.word}>
+                          <span className="lp-native-word" lang={lang}>
+                            {t.word}
+                          </span>{' '}
+                          <span className="muted">
+                            {t.not} değil, <strong>{t.is}</strong>
+                          </span>
+                        </p>
+                      ))}
+                    </dd>
+                  </div>
+                  <div className="lp-native-row">
+                    <dt>
+                      <EarIcon size={16} /> Telaffuz
+                    </dt>
+                    <dd>
+                      <p>
+                        <span className="lp-native-word" lang={lang}>
+                          {native.sound.words}
+                        </span>
+                      </p>
+                      <p className="small muted">{native.sound.text}</p>
+                    </dd>
+                  </div>
+                  <div className="lp-native-row">
+                    <dt>
+                      <SchoolIcon size={16} /> Dilbilgisi
+                    </dt>
+                    <dd>
+                      <p>
+                        <span className="lp-native-word" lang={lang}>
+                          {native.grammar.words}
+                        </span>
+                      </p>
+                      <p className="small muted">{native.grammar.text}</p>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+            <Shot src={shotOf('guide', lang)} alt={`Rehber dersi (${name}): artikeller, Türkçe kurallar ve örnekler.`} />
+          </article>
         </section>
 
         <section className="lp-section lp-show" aria-label="Öne çıkan özellikler">
+          <article className="lp-row lp-row-flip">
+            <div className="lp-row-text">
+              <span className="lp-icon" aria-hidden>
+                <BookIcon size={22} />
+              </span>
+              <span className="lp-kicker">Okuma ve dinleme</span>
+              <h2 className="lp-h2">Gerçek metinlerle oku, dinle</h2>
+              <p>Hikâyeler, haberler, sesli kitaplar ve kendi metinlerin. Bilmediğin kelimeye dokununca anlamını görür, tek dokunuşla çalışma listene eklersin; metnin ne kadarını bildiğin baştan görünür.</p>
+              <ul className="lp-list">
+                <li>
+                  <CheckIcon size={16} />
+                  <span>Cümle cümle Türkçesi, dikte ve gölgeleme</span>
+                </li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>Seviyene göre resimli hikâyeler, B2–C1 okumalar, haber bültenleri</span>
+                </li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>Dinlerken duyulan cümle metinde aydınlanır</span>
+                </li>
+              </ul>
+            </div>
+            <Shot src={shotOf('reading', lang)} alt={`Okuma ekranı: ${name} bir metinde dokunulan kelimenin Türkçe anlamı ve metindeki bildiğin kelime oranı.`} />
+          </article>
+
           <article className="lp-row">
             <div className="lp-row-text">
               <span className="lp-icon" aria-hidden>
-                <ReadIcon size={22} />
+                <MicIcon size={22} />
               </span>
-              <span className="lp-kicker">Kapsamlı Okuma & Dinleme</span>
-              <h2 className="lp-h2">Oku, dinle, dokun, ekle</h2>
-              <p>
-                Hikâyeler, haberler ve kendi metinlerin. Bilmediğin kelimeye dokununca anlamını görür, tek dokunuşla çalışma listene eklersin; metindeki bildiğin kelime oranı da baştan görünür.
-              </p>
+              <span className="lp-kicker">Konuşma</span>
+              <h2 className="lp-h2">Gündelik konuşmalara hazır ol</h2>
+              <p>Kafede sipariş, otelde bir sorun, doktorda randevu: karşındaki konuşur, sen uygun cevabı seçersin ve her cevapta nedenini görürsün. Sonra aynı cümleleri sesli söyleyip kendi telaffuzunu dinlersin.</p>
               <ul className="lp-list">
-                <li><CheckIcon size={16} />Cümle cümle Türkçesi, dikte ve gölgeleme</li>
-                <li><CheckIcon size={16} />Sesli kitaplar, haber bültenleri, şarkılar</li>
-                <li><CheckIcon size={16} />Kindle ve dosyalardan kelime aktarma</li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>A1’den B1’e gündelik diyaloglar, sesli</span>
+                </li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>Gölgeleme: cümleyi dinle, tekrarla, karşılaştır</span>
+                </li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>Sayılar, saatler, harf harf hecelemek</span>
+                </li>
               </ul>
             </div>
-            <Shot src={shotOf('reading', shotLang)} alt={`Okuma ekranı: ${langName} bir metinde dokunulan kelimenin Türkçe anlamı ve metindeki bildiğin kelime oranı.`} />
+            <Shot src={shotOf('dialogue', lang)} alt={`Diyalog (${name}): kafede garsonun sorusu, üç cevap seçeneği ve doğru cevabın açıklaması.`} />
           </article>
 
           <article className="lp-row lp-row-flip">
@@ -173,44 +533,120 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
               <span className="lp-icon" aria-hidden>
                 <ConjugationsIcon size={22} />
               </span>
-              <span className="lp-kicker">Fiil Laboratuvarı</span>
-              <h2 className="lp-h2">Fiil laboratuvarı</h2>
+              <span className="lp-kicker">Fiil laboratuvarı</span>
+              <h2 className="lp-h2">Fiilleri zaman zaman çalış</h2>
               <p>
-                Fransızca ve İspanyolca fiilleri zamanlara göre öğren. Her yanlışta neyi karıştırdığını görürsün; hataların kayıt altında kalır ve onlara dönüp çalışabilirsin.
+                Fransızca ve İspanyolcada bütün zamanlar ve kişiler; İngilizcede düzensiz fiiller ve phrasal verbs. Her yanlışta neyi karıştırdığını görürsün; hataların ayrı bir sekmede toplanır, sana yeniden sorulur.
               </p>
               <ul className="lp-list">
-                <li><CheckIcon size={16} />Tüm zamanlar ve kişiler, örnek cümlelerle</li>
-                <li><CheckIcon size={16} />Yazarak, seçerek ve süreye karşı alıştırma</li>
-                <li><CheckIcon size={16} />Metinde geçen fiil çekimleri otomatik bulunur</li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>Her zamanın Türkçe anlatımı ve örnek cümleleri</span>
+                </li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>Yazarak, seçerek ve süreye karşı alıştırma</span>
+                </li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>Okuduğun metindeki çekimler kendiliğinden bulunur</span>
+                </li>
               </ul>
             </div>
-            <Shot src={shotOf('verbs', shotLang)} alt={`Fiil laboratuvarı: ${shotLang === 'es' ? 'İspanyolca hablar' : 'Fransızca attendre'} fiilinin şimdiki zaman çekimi ve Türkçe karşılıkları.`} />
-          </article>
-
-          <article className="lp-row">
-            <div className="lp-row-text">
-              <span className="lp-icon" aria-hidden>
-                <SchoolIcon size={22} />
-              </span>
-              <span className="lp-kicker">Dilbilgisi Rehberi</span>
-              <h2 className="lp-h2">Dilbilgisini de öğren</h2>
-              <p>
-                Rehber, her konuyu kısa kurallar ve örneklerle anlatır. Dersi okuyup mini sınavı geçince konu öğrenildi sayılır; unutmaman için tekrarı da planlanır.
-              </p>
-              <ul className="lp-list">
-                <li><CheckIcon size={16} />Seviyene göre ders yolu ve seviye belirleme testi</li>
-                <li><CheckIcon size={16} />Kendi metinlerinden örnek cümleler</li>
-                <li><CheckIcon size={16} />Hata yaptığın konuya tek dokunuşla ders</li>
-              </ul>
-            </div>
-            <Shot src={shotOf('guide', shotLang)} alt={`Rehber dersi: ${langName} artikeller, kurallar ve örnekler.`} />
+            <Shot src={shotOf('verbs', lang)} alt={`Fiil laboratuvarı: ${lang === 'es' ? 'İspanyolca hablar' : 'Fransızca attendre'} fiilinin şimdiki zaman çekimi ve Türkçe karşılıkları.`} />
           </article>
         </section>
 
+        <section className="lp-section" aria-labelledby="lp-method">
+          <article className="lp-row lp-method">
+            <div className="lp-row-text">
+              <span className="lp-kicker">Yöntem</span>
+              <h2 id="lp-method" className="lp-h2">
+                Unutmadan hemen önce tekrar
+              </h2>
+              <p>
+                Her cevabın, o kelimeyi ne kadar iyi bildiğini günceller. Diloloji, Anki’nin de kullandığı FSRS algoritmasıyla her kelimenin ne zaman unutulmaya yaklaştığını tahmin eder ve tekrarı tam o güne koyar. Yeterince cevap birikince hafıza modeli sana göre ayarlanır.
+              </p>
+              <ul className="lp-list">
+                <li>
+                  <CheckIcon size={16} />
+                  <span>Günün planı hazır: tekrarlar, zorlandığın kelimeler, yeniler</span>
+                </li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>Beş dakikan mı var? Kısa bir tur yeter</span>
+                </li>
+                <li>
+                  <CheckIcon size={16} />
+                  <span>Kelimelerin tohumdan çiçeğe büyür</span>
+                </li>
+              </ul>
+            </div>
+            <MemoryCurve />
+          </article>
+        </section>
+
+        <section className="lp-section" aria-labelledby="lp-monki">
+          <article className="lp-row lp-row-flip lp-monki">
+            <div className="lp-row-text">
+              <span className="lp-kicker">Monki</span>
+              <h2 id="lp-monki" className="lp-h2">
+                Takıldığında Monki’ye sor
+              </h2>
+              <p>Monki, Diloloji’nin yapay zekâ yardımcısı. Hatanı Türkçe açıklar, kendi kelimelerinle küçük sınavlar hazırlar, kafede ya da otelde seninle rol yapar ve konuştuklarınızı hatırlar.</p>
+              <p className="small muted">Hesabın onaylanınca açılır. Zorunlu değildir: Diloloji onsuz da baştan sona çalışır.</p>
+            </div>
+            <figure className="lp-chat">
+              <figcaption className="lp-chat-head">
+                <Art src={monkiWave} className="lp-chat-face" />
+                <span>
+                  <strong>Monki</strong>
+                  <span className="small muted"> · örnek sohbet</span>
+                </span>
+              </figcaption>
+              <p className="lp-bubble lp-bubble-you" lang={lang}>
+                {chat.said}
+              </p>
+              <p className="lp-bubble lp-bubble-monki">
+                <span className="lp-bubble-fix">
+                  <SparkleIcon size={14} /> Düzeltme
+                </span>
+                <span className="lp-bubble-right" lang={lang}>
+                  {chat.right}
+                </span>
+                <span className="small">{chat.why}</span>
+              </p>
+            </figure>
+          </article>
+        </section>
+
+        <section className="lp-section" aria-labelledby="lp-together">
+          <div className="lp-head">
+            <span className="lp-kicker">Birlikte</span>
+            <h2 id="lp-together" className="lp-h2">
+              Arkadaşlarınla daha kolay
+            </h2>
+            <p className="lp-sub">Birbirinizin günlük çalışmasını görün, haftalık ligde yarışın, canlı düelloya girin. Seni kimin bulabileceğini ve ne paylaşılacağını sen seçersin.</p>
+          </div>
+          <ul className="lp-together">
+            {TOGETHER.map((t) => (
+              <li key={t.title} className="card lp-skill">
+                <Art src={t.art} />
+                <div>
+                  <h3 className="section-title">{t.title}</h3>
+                  <p className="small muted">{t.text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <section className="lp-section" aria-labelledby="lp-more">
-          <h2 id="lp-more" className="lp-h2">Ve daha fazlası</h2>
+          <h2 id="lp-more" className="lp-h2">
+            Ve daha fazlası
+          </h2>
           <ul className="lp-tiles">
-            {FEATURES.map((f) => (
+            {MORE.map((f) => (
               <li key={f.title} className="card lp-tile">
                 <span className="lp-icon" aria-hidden>
                   {f.icon}
@@ -266,13 +702,13 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
         </section>
 
         <section className="lp-final card" aria-labelledby="lp-final">
-          <Sticker name="hello" size={72} />
+          <Art src={monkiCheer} className="lp-final-art" />
           <h2 id="lp-final" className="lp-h2">
-            Bugün ilk kelimeni ekle.
+            İlk dersin birkaç dakika uzakta.
           </h2>
-          <p className="muted">Hesap aç, dilini seç, birkaç dakikada ilk oturumunu bitir.</p>
+          <p className="muted">Hesap aç, dilini seç, bugün ilk adımı at.</p>
           <div className="lp-cta lp-cta-center">
-            <button type="button" className="btn btn-lg" onClick={() => onStart('create')}>
+            <button type="button" className="btn btn-lg" onClick={create}>
               Hesap aç ve başla
             </button>
           </div>
@@ -286,7 +722,7 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
           <a href="/kosullar">Kullanım koşulları</a>
           <a href="mailto:destek@diloloji.com">İletişim</a>
         </nav>
-        <p className="small muted">Diloloji · Türkçe konuşanlar için kelime öğrenme uygulaması</p>
+        <p className="small muted">Diloloji · Türkçe konuşanlar için İngilizce, Fransızca ve İspanyolca</p>
       </footer>
     </div>
   )

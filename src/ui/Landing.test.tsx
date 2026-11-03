@@ -2,7 +2,7 @@
 ;(globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true
 import { act } from 'react'
 import { createRoot } from 'react-dom/client'
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { Landing, type LandingStart } from './Landing'
 
 function mount(props: { onStart?: (m: LandingStart) => void; invited?: boolean; inviterName?: string }) {
@@ -22,10 +22,47 @@ function mount(props: { onStart?: (m: LandingStart) => void; invited?: boolean; 
 }
 
 describe('Landing', () => {
+  afterEach(() => {
+    localStorage.clear()
+    delete document.documentElement.dataset.lang
+  })
+
   it('renders standard hero without invite note by default', () => {
     const { el, done } = mount({})
-    expect(el.querySelector('h1')?.textContent).toBe('Kelimeleri unutmadan önce tekrar et.')
+    expect(el.querySelector('h1')?.textContent).toBe('Fransızca, İspanyolca, İngilizce. Türkçe anlatımla, A1’den C1’e.')
     expect(el.querySelector('.lp-invite')).toBeNull()
+    done()
+  })
+
+  it('lights the page in the language picked, shows its examples and carries it to the first run', () => {
+    const onStart = vi.fn()
+    const { el, done } = mount({ onStart })
+    const card = (name: string) => [...el.querySelectorAll<HTMLButtonElement>('.lp-langs .lang-card')].find((b) => b.textContent?.includes(name))!
+    // French by default, on the page and on the root (the colour of the whole page).
+    expect(card('Fransızca').getAttribute('aria-pressed')).toBe('true')
+    expect(document.documentElement.dataset.lang).toBe('fr')
+    expect(el.textContent).toContain('Fransızca öğrenmeye başla')
+    act(() => card('İspanyolca').click())
+    expect(card('İspanyolca').getAttribute('aria-pressed')).toBe('true')
+    expect(card('Fransızca').getAttribute('aria-pressed')).toBe('false')
+    expect(document.documentElement.dataset.lang).toBe('es')
+    expect(el.querySelector('.lp')?.getAttribute('data-lang')).toBe('es')
+    expect(el.querySelector('.lp-native-card')?.textContent).toContain('pero · perro')
+    expect(el.querySelector('.lp-bubble-you')?.getAttribute('lang')).toBe('es')
+    const start = [...el.querySelectorAll('button')].find((b) => b.textContent === 'İspanyolca öğrenmeye başla')!
+    act(() => start.click())
+    expect(onStart).toHaveBeenCalledWith('create')
+    expect(localStorage.getItem('diloloji:start-lang')).toBe('es')
+    done()
+    // Leaving the page gives the root back its own language (none here).
+    expect(document.documentElement.dataset.lang).toBeUndefined()
+  })
+
+  it('opens on the language picked before', () => {
+    localStorage.setItem('diloloji:start-lang', 'en')
+    const { el, done } = mount({})
+    expect(el.querySelector('.lp-langs [aria-pressed="true"]')?.textContent).toContain('İngilizce')
+    expect(el.querySelector('.lp-native-card')?.textContent).toContain('magazine')
     done()
   })
 

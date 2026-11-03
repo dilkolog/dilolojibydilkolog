@@ -1,16 +1,18 @@
 import { chromium, type Page } from '@playwright/test'
-import { mkdirSync } from 'node:fs'
+import { mkdirSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import sharp from 'sharp'
 import { readingKey } from '../src/engine/reading'
 import type { TargetLanguage } from '../src/engine/types'
 
 /**
- * The landing page's phone screenshots, one set per language: Today, Reading, Verbs (French and Spanish only) and
- * the Guide. Run against a preview of a build WITHOUT Supabase (so the app opens without a sign-in):
- *   env -u VITE_SUPABASE_URL -u VITE_SUPABASE_PUBLISHABLE_KEY npx vite build && npx vite preview --port 4196 --strictPort
+ * The landing page's phone screenshots, one set per language: Today, Reading, Verbs (French and Spanish only), the
+ * Guide (a lesson, and the learning path from A1), and a dialogue with its first turn answered.
+ * Run against a preview of a build WITHOUT Supabase (so the app opens without a sign-in):
+ *   VITE_ALLOW_GUEST=1 env -u VITE_SUPABASE_URL -u VITE_SUPABASE_PUBLISHABLE_KEY npx vite build && npx vite preview --port 4196 --strictPort
  *   npx rolldown scripts/capture-landing-shots.ts -o capture.tmp.mjs -p node --external @playwright/test --external sharp && PORT=4196 node capture.tmp.mjs [fr|es|en …]   (delete capture.tmp.mjs after)
- * Needs a Chromium (CHROMIUM_PATH=… when Playwright's own is not installed). Output: src/assets/landing/<screen>-<lang>.webp.
+ * Needs a Chromium (CHROMIUM_PATH=… when Playwright's own is not installed; in the Claude cloud /opt/pw-browsers/chromium).
+ * Output: src/assets/landing/<screen>-<lang>.webp.
  * Reading shows an easy text (97,5% known: "öğrenmek için ideal"): the sample words are new to a fresh install, so
  * the text avoids them except the one tapped, and every other word of it is marked known first.
  */
@@ -29,6 +31,8 @@ interface Plan {
   verb?: string
   /** The guide lesson to open. */
   lesson: RegExp
+  /** The first lessons of the path, shown as learned (the rest stay ahead). */
+  learned: string[]
 }
 const PLANS: Record<TargetLanguage, Plan> = {
   fr: {
@@ -36,17 +40,20 @@ const PLANS: Record<TargetLanguage, Plan> = {
     tap: 'maison',
     verb: 'attendre',
     lesson: /Artikeller/,
+    learned: ['basics_fr_articles', 'basics_fr_etre_avoir', 'basics_fr_present'],
   },
   es: {
     text: 'Cada mañana, caminamos juntos por la ciudad. Luego volvemos al hogar y preparamos el almuerzo con nuestros vecinos. Por la tarde, mis padres hablan un poco y después leen un periódico mientras yo miro la tele.',
     tap: 'ciudad',
     verb: 'hablar',
     lesson: /Artikeller/,
+    learned: ['basics_es_articulos', 'basics_es_presente', 'basics_es_gustar'],
   },
   en: {
     text: 'Every morning, we walk together near the park. Then we go back home and prepare lunch with our friends. In the evening, my parents talk for a while, and then they read a book while I watch a movie about a long journey.',
     tap: 'journey',
     lesson: /Artikeller/,
+    learned: ['basics_en_to_be', 'basics_en_present_simple', 'articles_en'],
   },
 }
 
@@ -57,24 +64,41 @@ function knownKeys(language: TargetLanguage, plan: Plan): string[] {
   return [...new Set(words.map((w) => readingKey(w, language)).filter((k) => k && k !== tapKey))]
 }
 
-async function seedKnown(page: Page, language: TargetLanguage, keys: string[]) {
+async function seedMeta(page: Page, key: string, value: unknown) {
   await page.evaluate(
-    ([lang, list]) =>
+    ([k, v]) =>
       new Promise<void>((resolve, reject) => {
         const open = indexedDB.open('kelime-koc')
         open.onerror = () => reject(open.error)
         open.onsuccess = () => {
           const db = open.result
           const tx = db.transaction(['meta'], 'readwrite')
-          tx.objectStore('meta').put({ key: `known:${lang}`, value: list })
+          tx.objectStore('meta').put({ key: k, value: v })
           tx.oncomplete = () => {
             db.close()
             resolve()
           }
         }
       }),
-    [language, keys] as const,
+    [key, value] as const,
   )
+}
+
+/** The lessons a learner a few days in would have learned: read and passed some days ago. */
+function guideMarks(topics: string[]) {
+  const day = (back: number) => new Date(Date.now() - back * 86_400_000).toISOString().slice(0, 10)
+  return Object.fromEntries(topics.map((t, i) => [t, { read: day(6 - i), learned: day(6 - i) }]))
+}
+
+/** The right reply of each turn of a dialogue, by its title (the app lists the easiest untried one first). */
+function answersOf(language: TargetLanguage, title: string): number[] {
+  const dir = join(process.cwd(), 'src/data/dialogues')
+  for (const file of readdirSync(dir).filter((f) => f.startsWith(`${language}-`) && f.endsWith('.json'))) {
+    const set = JSON.parse(readFileSync(join(dir, file), 'utf8')) as { dialogues: { title: string; turns: { answer: number }[] }[] }
+    const found = set.dialogues.find((d) => d.title === title)
+    if (found) return found.turns.map((t) => t.answer)
+  }
+  throw new Error(`no dialogue "${title}" in ${language}`)
 }
 
 const tab = (page: Page, name: string) => page.locator(':is(.nav-btn, .tab):visible', { hasText: new RegExp(`^${name}\\d*$`) }).first()
@@ -96,11 +120,11 @@ async function capture(language: TargetLanguage) {
   await page.getByRole('button', { name: 'Başlayalım', exact: true }).click()
   await page.locator('.lang-card', { hasText: CARD[language] }).click()
   await page.getByRole('button', { name: 'Devam', exact: true }).click()
-  await page.getByRole('button', { name: 'Devam', exact: true }).click()
   await page.getByRole('button', { name: START[language] }).click()
   await page.getByRole('button', { name: /örnek kelime yükle/ }).click()
   await page.waitForTimeout(1500)
-  await seedKnown(page, language, knownKeys(language, plan))
+  await seedMeta(page, `known:${language}`, knownKeys(language, plan))
+  await seedMeta(page, 'guideMarks', guideMarks(plan.learned))
   await page.reload()
   await page.waitForTimeout(1500)
 
@@ -204,6 +228,41 @@ async function capture(language: TargetLanguage) {
   })
   await page.waitForTimeout(400)
   await snap('guide')
+
+  // 5. The guide's learning path: a few lessons learned, the next one ahead.
+  await page.evaluate(() => localStorage.setItem('diloloji:guide-view', 'path'))
+  await tab(page, 'Pratik').click()
+  await page.waitForTimeout(300)
+  await page.locator('.hub-tab', { hasText: /^Oyunlar$/ }).click()
+  await page.waitForTimeout(300)
+  await page.locator('.hub-tab', { hasText: /^Rehber$/ }).click()
+  await page.waitForTimeout(700)
+  await page.evaluate(() => {
+    const note = document.querySelector('.guide-path-note') as HTMLElement | null
+    if (note) note.style.visibility = 'hidden'
+    const first = document.querySelector('.guide-path-note + section .guide-level')
+    const top = first ? first.getBoundingClientRect().top + window.scrollY - 60 : 0
+    window.scrollTo(0, top)
+  })
+  await page.waitForTimeout(400)
+  await snap('path')
+
+  // 6. A dialogue: the first turn answered well, with the reason under it.
+  await page.evaluate(() => window.scrollTo(0, 0))
+  await page.locator('.hub-tab', { hasText: /^Oyunlar$/ }).click()
+  await page.waitForTimeout(500)
+  await page.getByRole('button', { name: /Diyaloglar/ }).first().click()
+  await page.waitForTimeout(500)
+  const first = page.locator('.examtask-item').first()
+  const title = (await first.locator('.examtask-title > :first-child').textContent())?.trim() ?? ''
+  const answers = answersOf(language, title)
+  await first.click()
+  await page.waitForTimeout(500)
+  await page.locator('.options .option').nth(answers[0]!).click()
+  await page.waitForTimeout(400)
+  await page.evaluate(() => window.scrollTo(0, 0))
+  await page.waitForTimeout(300)
+  await snap('dialogue')
 
   await browser.close()
   mkdirSync(OUT_DIR, { recursive: true })

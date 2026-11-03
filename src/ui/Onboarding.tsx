@@ -11,6 +11,7 @@ import { CalendarIcon, CheckIcon, FlowerIcon, PlusIcon } from './icons'
 import { HELLO, LANGUAGE_NAME } from './labels'
 import { POTS, LANG_MONKI } from './drawnArt'
 import { BrandLogo } from './BrandLogo'
+import { forgetStartLanguage, startLanguage } from './startLanguage'
 
 const MINUTE_OPTIONS = [5, 10, 15, 20, 30]
 
@@ -53,7 +54,8 @@ const LAST_STEP = STEP_TITLES.length - 1
 /** First run, one question at a time: welcome, language, then the goal (which starts the app: a recap step only repeated the choices just made). The hero keeps the chosen language's colour throughout. */
 export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
   const [step, setStep] = useState(0)
-  const [language, setLanguage] = useState<TargetLanguage>('en')
+  // The language picked on the landing page, if one was: the visitor need not choose it twice.
+  const [language, setLanguage] = useState<TargetLanguage>(() => startLanguage() ?? 'en')
   const [minutes, setMinutes] = useState(DEFAULT_SETTINGS.dailyMinutes)
   const [perDay, setPerDay] = useState(DEFAULT_SETTINGS.newWordsPerDay)
   const [name, setName] = useState('')
@@ -70,8 +72,10 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
   }, [step])
   const next = () => setStep((n) => Math.min(LAST_STEP, n + 1))
   const back = () => setStep((n) => Math.max(0, n - 1))
-  const finish = () =>
+  const finish = () => {
+    forgetStartLanguage()
     onDone({ ...DEFAULT_SETTINGS, activeLanguage: language, dailyMinutes: minutes, newWordsPerDay: perDay, profile: { ...DEFAULT_SETTINGS.profile, name: name.trim() } })
+  }
   return (
     <div className={`onboarding stack is-step-${step}`} data-lang={language}>
       {/* The chosen language colours the welcome, and says hello in its own words. */}

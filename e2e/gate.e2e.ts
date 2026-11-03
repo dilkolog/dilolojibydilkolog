@@ -80,7 +80,7 @@ async function seed(page: Page, rows: { table: 'meta' | 'vocabulary'; value: unk
 }
 
 const signInPage = (page: Page) => page.getByRole('heading', { name: 'Hesabına giriş yap' })
-const landing = (page: Page) => page.getByRole('heading', { level: 1, name: /Kelimeleri unutmadan önce tekrar et/ })
+const landing = (page: Page) => page.getByRole('heading', { level: 1, name: /Türkçe anlatımla, A1’den C1’e/ })
 /** A signed-out visit opens the landing page; this takes the way in it offers. */
 async function pastLanding(page: Page, way: 'Giriş yap' | 'Hesap aç ve başla' = 'Giriş yap') {
   await expect(landing(page)).toBeVisible()
@@ -111,17 +111,28 @@ test('a signed-out visit opens the landing page, and the sign-in page is one ste
 test('the landing page shows the app in the language chosen, and keeps French verbs for English', async ({ page }) => {
   await page.goto('/')
   await expect(landing(page)).toBeVisible()
-  const shot = (n: number) => page.locator('.lp-shot img').nth(n)
-  await expect(shot(0)).toHaveAttribute('src', /today-fr/)
-  await page.getByRole('button', { name: 'İspanyolca', exact: true }).click()
-  await expect(shot(0)).toHaveAttribute('src', /today-es/)
-  await expect(shot(2)).toHaveAttribute('src', /verbs-es/)
-  await page.getByRole('button', { name: 'İngilizce', exact: true }).click()
-  await expect(shot(0)).toHaveAttribute('src', /today-en/)
-  await expect(shot(1)).toHaveAttribute('src', /reading-en/)
-  // There is no verb lab for English: that picture stays French.
-  await expect(shot(2)).toHaveAttribute('src', /verbs-fr/)
-  await expect(shot(3)).toHaveAttribute('src', /guide-en/)
+  const shot = (screen: string) => page.locator(`.lp-shot img[src*="${screen}-"]`)
+  const card = (name: string) => page.locator('.lp-langs .lang-card', { hasText: name })
+  await expect(card('Fransızca')).toHaveAttribute('aria-pressed', 'true')
+  await expect(shot('today')).toHaveAttribute('src', /today-fr/)
+  await card('İspanyolca').click()
+  await expect(card('İspanyolca')).toHaveAttribute('aria-pressed', 'true')
+  // The whole page takes the language's light, as the app does.
+  await expect(page.locator('html')).toHaveAttribute('data-lang', 'es')
+  await expect(shot('today')).toHaveAttribute('src', /today-es/)
+  await expect(shot('verbs')).toHaveAttribute('src', /verbs-es/)
+  await expect(shot('dialogue')).toHaveAttribute('src', /dialogue-es/)
+  await expect(page.getByRole('button', { name: 'İspanyolca öğrenmeye başla' })).toBeVisible()
+  await card('İngilizce').click()
+  await expect(shot('today')).toHaveAttribute('src', /today-en/)
+  await expect(shot('reading')).toHaveAttribute('src', /reading-en/)
+  await expect(shot('path')).toHaveAttribute('src', /path-en/)
+  // There is no conjugation table for English: that picture stays French.
+  await expect(shot('verbs')).toHaveAttribute('src', /verbs-fr/)
+  await expect(shot('guide')).toHaveAttribute('src', /guide-en/)
+  await expect(page.locator('.lp-native-card')).toContainText('magazine')
+  // The language picked is already chosen on the first-run screen.
+  expect(await page.evaluate(() => localStorage.getItem('diloloji:start-lang'))).toBe('en')
 })
 
 test('"Hesap aç ve başla" opens the sign-up form', async ({ page }) => {

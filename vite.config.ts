@@ -74,7 +74,7 @@ export default defineConfig({
       manifest: {
         name: 'Diloloji',
         short_name: 'Diloloji',
-        description: 'Kişisel, adaptif kelime öğrenme',
+        description: 'Türkçe konuşanlar için İngilizce, Fransızca ve İspanyolca dil okulu',
         lang: 'tr',
         start_url: '/',
         display: 'standalone',
