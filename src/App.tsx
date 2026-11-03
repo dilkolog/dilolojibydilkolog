@@ -52,6 +52,7 @@ import { useLanguageData } from './ui/useLanguageData'
 import { useAppSettings } from './ui/useAppSettings'
 import { AuthScreen, Landing } from './lazyScreens'
 import type { LandingStart } from './ui/Landing'
+import { dropBootHero } from './ui/bootHero'
 import { useSignedIn } from './ui/useSignedIn'
 import { ALL_SCREENS, GROUPS, NAV, RESTORABLE, SCREEN_KEY, WIDE_SCREENS, daySeed, placeOf, restoreScreen, type NavScreen, type Screen, type ScreenName } from './appNav'
 import { Onboarding } from './ui/Onboarding'
@@ -494,6 +495,11 @@ export default function App() {
   const warmup = useWarmup(settings?.activeLanguage ?? 'en', screen.name)
   const hubTabsRef = useTabIndicator(screen.name)
   const verbOfDay = useVerbOfDay(settings?.activeLanguage ?? 'en', data?.vocabulary ?? NO_WORDS, screen.name)
+  // The landing page's first lines from index.html stay until the landing page itself shows; any other screen drops them.
+  const onLanding = signedIn === false && entered === null && screen.name !== 'account'
+  useEffect(() => {
+    if (settings !== undefined && signedIn !== undefined && !onLanding) dropBootHero()
+  }, [settings, signedIn, onLanding])
   if (settings === undefined || signedIn === undefined) return null
   // An account is required: until there is one, the app is the sign-in page.
   if (!signedIn) {
@@ -506,17 +512,18 @@ export default function App() {
       )
     }
     return (
-      <div className="app">
-        <Suspense fallback={null}>
-          <AuthScreen
-            key={entered ?? 'return'}
-            initialMode={screen.name === 'account' ? screen.mode : entered === 'create' ? 'create' : 'login'}
-            onDone={() => setScreen((now) => (now.name === 'account' ? { name: 'home' } : now))}
-            onBack={entered === null ? undefined : () => setEntered(null)}
-            backLabel="Geri"
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={null}>
+        <AuthScreen
+          key={entered ?? 'return'}
+          initialMode={screen.name === 'account' ? screen.mode : entered === 'create' ? 'create' : 'login'}
+          onDone={() => setScreen((now) => (now.name === 'account' ? { name: 'home' } : now))}
+          // The site's bar on top: its logo goes back to the landing page (from a mail link too).
+          onHome={() => {
+            setEntered(null)
+            setScreen((now) => (now.name === 'account' ? { name: 'home' } : now))
+          }}
+        />
+      </Suspense>
     )
   }
   if (settings === null) {

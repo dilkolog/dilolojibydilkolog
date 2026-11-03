@@ -9,6 +9,7 @@ import { ChevronLeftIcon, LockIcon } from './icons'
 import { CONFLICT, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, runSync, setAccount, setSyncCode, TOO_LARGE } from './syncRunner'
 import { showToast } from './toastFeed'
 import { ACCOUNT_ART } from './drawnArt'
+import { AuthFrame } from './AuthFrame'
 import { supabaseConfigured } from '../data/supabase'
 import { SupabaseAuth } from './SupabaseAuth'
 
@@ -30,13 +31,13 @@ function failureText(e: unknown): string {
  * password never leaves the device.
  */
 /** `onBack` is left out where an account is required (nothing to go back to). */
-export function AuthScreen(props: { initialMode?: AuthMode; onDone: () => void; onBack?: () => void; backLabel?: string }) {
+export function AuthScreen(props: { initialMode?: AuthMode; onDone: () => void; onBack?: () => void; backLabel?: string; onHome?: () => void }) {
   // With Supabase set up, people sign in there (email, a link, Google); the username form is the old way.
   if (supabaseConfigured()) return <SupabaseAuth {...props} />
   return <UsernameAuth {...props} initialMode={props.initialMode === 'create' ? 'create' : 'login'} />
 }
 
-function UsernameAuth({ initialMode = 'login', onDone, onBack, backLabel = 'Ayarlar' }: { initialMode?: 'login' | 'create'; onDone: () => void; onBack?: () => void; backLabel?: string }) {
+function UsernameAuth({ initialMode = 'login', onDone, onBack, backLabel = 'Ayarlar', onHome }: { initialMode?: 'login' | 'create'; onDone: () => void; onBack?: () => void; backLabel?: string; onHome?: () => void }) {
   const [mode, setMode] = useState<'login' | 'create'>(initialMode)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -98,8 +99,9 @@ function UsernameAuth({ initialMode = 'login', onDone, onBack, backLabel = 'Ayar
   }
 
   return (
+    <AuthFrame onHome={onHome}>
     <div className="auth-page">
-      {onBack && (
+      {onBack && !onHome && (
         <button className="link auth-back" onClick={onBack}>
           <ChevronLeftIcon size={16} /> {backLabel}
         </button>
@@ -168,5 +170,6 @@ function UsernameAuth({ initialMode = 'login', onDone, onBack, backLabel = 'Ayar
         </div>
       </div>
     </div>
+    </AuthFrame>
   )
 }

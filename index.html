@@ -13,17 +13,17 @@
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://diloloji.com/" />
-    <meta property="og:title" content="Diloloji · Kişisel ve Adaptif Dil Öğrenme" />
+    <meta property="og:title" content="Diloloji · Türkçe anlatımla dil okulu" />
     <meta property="og:description" content="Fransızca, İspanyolca, İngilizce: Türkçe anlatımla, A1’den C1’e. Kelime, dilbilgisi, okuma, dinleme ve konuşma tek bir yolda. Reklamsız." />
-    <meta property="og:image" content="https://diloloji.com/pwa-512.png" />
-    <meta property="og:image:width" content="512" />
-    <meta property="og:image:height" content="512" />
+    <meta property="og:image" content="https://diloloji.com/og/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="tr_TR" />
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Diloloji · Kişisel ve Adaptif Dil Öğrenme" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Diloloji · Türkçe anlatımla dil okulu" />
     <meta name="twitter:description" content="Fransızca, İspanyolca, İngilizce: Türkçe anlatımla, A1’den C1’e. Kelime, dilbilgisi, okuma, dinleme ve konuşma tek bir yolda." />
-    <meta name="twitter:image" content="https://diloloji.com/pwa-512.png" />
+    <meta name="twitter:image" content="https://diloloji.com/og/og.jpg" />
     <meta name="theme-color" content="#f1f5f9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
     <script>
@@ -36,6 +36,13 @@
       } catch (e) {
         document.documentElement.dataset.theme = 'light'
       }
+      // Someone not signed in sees the landing page's first lines at once (#boot-hero), in the language its address names.
+      try {
+        if (!localStorage.getItem('diloloji-auth')) {
+          var p = location.pathname.replace(/^\/+|\/+$|\.html$/g, '')
+          document.documentElement.dataset.visitor = p === 'ispanyolca' ? 'es' : p === 'ingilizce' ? 'en' : 'fr'
+        }
+      } catch (e) {}
     </script>
     <script>
       // The light of the hour before the first paint (same hours as the garden sky; the app keeps it current).
@@ -55,9 +62,44 @@
       [data-calm] .boot { background: #15171c; color: #a3a1a8; }
       [data-contrast] .boot { background: #ffffff; color: #000000; }
       @media (prefers-color-scheme: dark) { :root:not([data-theme]) .boot { background: #0f172a; color: #cbd5e1; } }
+      /* The landing page's first lines from the HTML alone, for a visitor (data-visitor): the page itself replaces them (Landing.tsx). */
+      @font-face { font-family: 'Lexend'; font-weight: 400; font-display: swap; src: url(/fonts/lexend-latin-400-normal.woff2) format('woff2'); }
+      @font-face { font-family: 'Lexend'; font-weight: 700; font-display: swap; src: url(/fonts/lexend-latin-700-normal.woff2) format('woff2'); }
+      @font-face { font-family: 'Lexend'; font-weight: 400; font-display: swap; src: url(/fonts/lexend-latin-ext-400-normal.woff2) format('woff2'); unicode-range: U+0100-024F; }
+      @font-face { font-family: 'Lexend'; font-weight: 700; font-display: swap; src: url(/fonts/lexend-latin-ext-700-normal.woff2) format('woff2'); unicode-range: U+0100-024F; }
+      #boot-hero { display: none; }
+      [data-visitor] .boot { display: none; }
+      [data-visitor] #boot-hero { --accent: #9a2f62; --dot: #c6317c; display: block; position: fixed; inset: 0; z-index: 1; overflow: hidden; background: color-mix(in srgb, var(--dot) 3%, #f1f5f9); color: #0f172a; font-family: 'Lexend', system-ui, sans-serif; }
+      [data-visitor='es'] #boot-hero { --accent: #844b00; --dot: #e6a313; }
+      [data-visitor='en'] #boot-hero { --accent: #2b58b1; --dot: #2f6de6; }
+      [data-theme='dark'] #boot-hero { background: #0b1120; color: #f1f5f9; --accent: #fda4af; }
+      [data-theme='dark'][data-visitor='es'] #boot-hero { --accent: #fde68a; }
+      [data-theme='dark'][data-visitor='en'] #boot-hero { --accent: #93c5fd; }
+      #boot-hero .bh-top, #boot-hero .bh-main { max-width: 68rem; margin: 0 auto; padding-inline: 1rem; }
+      #boot-hero .bh-top { display: flex; align-items: center; gap: 0.625rem; padding-block: 0.875rem; font-size: 1.5rem; font-weight: 700; }
+      #boot-hero .bh-top img { width: 2rem; height: 2rem; border-radius: 0.5rem; }
+      #boot-hero .bh-main { display: grid; padding-block: 2rem 1rem; }
+      #boot-hero .bh-pill { justify-self: start; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.375rem 0.875rem; border-radius: 999px; background: #fff; color: var(--accent); font-size: 0.75rem; font-weight: 600; margin-bottom: 0.75rem; }
+      [data-theme='dark'] #boot-hero .bh-pill { background: #1e293b; }
+      #boot-hero .bh-pill::before { content: ''; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--dot); }
+      #boot-hero h1 { margin: 0.25rem 0 1rem; font-size: clamp(2rem, 4.6vw, 3rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.015em; text-wrap: balance; }
+      #boot-hero h1 span { color: var(--accent); }
+      #boot-hero p { margin: 0; max-width: 36rem; font-size: 1.125rem; line-height: 1.55; color: #57677e; }
+      [data-theme='dark'] #boot-hero p { color: #94a3b8; }
+      @media (min-width: 46rem) { #boot-hero .bh-main { grid-template-columns: 1.2fr 1fr; padding-block: 3rem 1.5rem; } }
     </style>
   </head>
   <body>
+    <div id="boot-hero" aria-hidden="true">
+      <div class="bh-top"><img src="/favicon.svg" alt="" width="32" height="32" />Diloloji</div>
+      <div class="bh-main">
+        <div>
+          <span class="bh-pill">Türkçe konuşanlar için dil okulu</span>
+          <h1>Fransızca, İspanyolca, İngilizce. <span>Türkçe anlatımla, A1’den C1’e.</span></h1>
+          <p>Kelime, dilbilgisi, okuma, dinleme ve konuşma tek bir yolda. Her kural Türkçe anlatılır, tekrarlar senin hafızana göre ayarlanır. Günde birkaç dakika yeter.</p>
+        </div>
+      </div>
+    </div>
     <div id="root">
       <div class="boot" aria-hidden="true">
         <svg viewBox="0 0 512 512"><defs><linearGradient id="boot-bg" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6366f1" /><stop offset="0.55" stop-color="#4338ca" /><stop offset="1" stop-color="#272466" /></linearGradient><linearGradient id="boot-leaf-base" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#059669" /><stop offset="1" stop-color="#34d399" /></linearGradient><linearGradient id="boot-leaf-hi" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399" /><stop offset="1" stop-color="#86efac" /></linearGradient><linearGradient id="boot-spark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a" /><stop offset="1" stop-color="#f59e0b" /></linearGradient></defs><rect width="512" height="512" rx="116" fill="url(#boot-bg)" /><g transform="translate(256 256) scale(0.94) translate(-262 -268)"><path d="M168 112H256C338 112 400 174 400 256C400 338 338 400 256 400H234C250 386 258 368 260 348C312 346 348 308 348 256C348 204 310 164 256 164H188V348H236C234 368 222 388 202 400H188L148 432C140 438 134 433 134 423V146A34 34 0 0 1 168 112Z" fill="#fff" /><path d="M194 214C220 220 242 236 256 262C270 236 292 220 318 214" stroke="#6ee7b7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" /><path d="M208 202C228 210 244 224 256 244C268 224 284 210 304 202" stroke="#a7f3d0" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" fill="none" /><path d="M210 402C236 392 248 364 248 324C204 312 172 278 170 224C210 232 242 252 256 284C270 252 302 232 342 224C340 278 308 312 262 324C262 364 244 394 210 402Z" fill="url(#boot-leaf-base)" /><path d="M170 224C210 232 242 252 256 284C254 294 251 304 248 312C232 276 204 248 170 224Z" fill="url(#boot-leaf-hi)" /><path d="M342 224C302 232 270 252 256 284C258 294 261 304 264 312C280 276 308 248 342 224Z" fill="url(#boot-leaf-hi)" /><path d="M256 162Q256 184 278 184Q256 184 256 206Q256 184 234 184Q256 184 256 162Z" fill="url(#boot-spark)" /></g></svg>

@@ -31,3 +31,12 @@ export function forgetStartLanguage() {
     // Nothing to forget.
   }
 }
+
+/** The language pages for sharing (scripts/lang-pages.mjs): /fransizca, /ispanyolca, /ingilizce. */
+export const LANGUAGE_PATHS: Record<TargetLanguage, string> = { fr: 'fransizca', es: 'ispanyolca', en: 'ingilizce' }
+
+/** The language a shared language page stands for, if the page is one. */
+export function languageOfPath(pathname: string): TargetLanguage | null {
+  const slug = pathname.replace(/^\/+|\/+$/g, '').replace(/\.html$/, '').toLowerCase()
+  return (Object.keys(LANGUAGE_PATHS) as TargetLanguage[]).find((l) => LANGUAGE_PATHS[l] === slug) ?? null
+}

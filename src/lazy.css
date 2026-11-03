@@ -3633,9 +3633,24 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 @media (hover: hover) { .lp-skill:hover, .lp-tiles .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); } }
 
 /* The levels: Monki grows up from A1 to C1. */
-.lp-bands { position: relative; counter-reset: band; margin-bottom: 2.5rem; }
-.lp-band { display: grid; justify-items: center; text-align: center; gap: 0.125rem; padding: 1.25rem 1.25rem 1.5rem; }
+.lp-bands { position: relative; margin-bottom: 2.5rem; align-items: start; }
+.lp-bands > li { position: relative; z-index: 1; }
+.lp-band { padding: 0; }
+.lp-band > summary { display: grid; justify-items: center; text-align: center; gap: 0.125rem; padding: 1.25rem 1.25rem 1rem; cursor: pointer; list-style: none; border-radius: var(--r-lg); }
+.lp-band > summary::-webkit-details-marker { display: none; }
+.lp-band > summary:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; }
 .lp-band .lp-art { height: 6.5rem; width: auto; margin-bottom: 0.5rem; }
+.lp-band-name { margin: 0; }
+.lp-band-text { display: block; }
+.lp-band-open { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.5rem; min-block-size: 1.75rem; font-weight: 600; color: var(--lang-text); }
+.lp-band-open svg { transition: transform var(--dur-fast) var(--ease-out); }
+.lp-band[open] .lp-band-open svg { transform: rotate(180deg); }
+.lp-band-more { display: grid; gap: 0.375rem; padding: 0 1.25rem 1.25rem; text-align: left; animation: lp-open var(--dur) var(--ease-out); }
+.lp-band-label { margin: 0.375rem 0 0; font-weight: 600; color: var(--ink-soft); }
+.lp-band-titles { margin: 0; padding-left: 1.125rem; display: grid; gap: 0.25rem; color: var(--ink); }
+.lp-band-example { margin: 0; display: grid; gap: 0.125rem; padding: 0.625rem 0.75rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); }
+.lp-band-example > span:first-child { font-family: var(--serif); color: var(--ink); }
+@keyframes lp-open { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 .lp-band-levels { display: inline-block; padding: 0.125rem 0.625rem; border-radius: var(--r-full); background: var(--lang-soft); color: var(--lang-text); font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.04em; margin-bottom: 0.25rem; }
 
 /* Rows: words on one side, a picture of the app on the other. */
@@ -3666,13 +3681,16 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 
 /* Spaced repetition: the forgetting curve with and without reviews. */
 .lp-curve { margin: 0; padding: 1.25rem 1.25rem 1rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
-.lp-curve svg { display: block; width: 100%; height: auto; overflow: visible; }
+.lp-curve > svg { display: block; width: 100%; height: auto; overflow: visible; }
 .lp-curve-axis { stroke: var(--rule); stroke-width: 1.5; }
 .lp-curve-forget { fill: none; stroke: var(--ink-soft); stroke-width: 2; stroke-dasharray: 5 5; opacity: 0.7; }
-.lp-curve-learn { fill: none; stroke: var(--lang); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 900; stroke-dashoffset: 900; animation: lp-draw 1.6s var(--ease-out) 0.2s forwards; }
+.lp-curve-learn { fill: none; stroke: var(--lang); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 900; stroke-dashoffset: 900; animation: lp-draw 1.1s var(--ease-out) forwards; }
 .lp-curve-dot { fill: var(--surface); stroke: var(--lang); stroke-width: 2.5; }
 .lp-curve-label { fill: var(--ink-soft); font-size: 11px; font-family: var(--sans); }
-.lp-curve-key { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 0.5rem; color: var(--ink-soft); }
+.lp-curve-key { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; color: var(--ink-soft); }
+.lp-curve-foot { display: grid; gap: 0.625rem; margin-top: 0.5rem; }
+.lp-curve-says { margin: 0; min-block-size: 2.9em; color: var(--ink); }
+.lp-curve-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; }
 .lp-curve-key span { display: inline-flex; align-items: center; gap: 0.5rem; }
 .lp-curve-key i { display: inline-block; width: 1.5rem; border-top: 3px solid var(--lang); }
 .lp-curve-key i.lp-key-forget { border-top: 2px dashed var(--ink-soft); }
@@ -3711,8 +3729,9 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .lp-foot p { margin: 0; }
 @media (max-width: 39.99rem) {
   /* On a phone a level is a row like the skills: Monki beside the words. */
-  .lp-band { grid-template-columns: 4.5rem 1fr; justify-items: start; text-align: left; column-gap: 1rem; padding: 1rem 1.25rem; }
-  .lp-band .lp-art { grid-row: 1 / span 3; height: 4.5rem; width: 4.5rem; margin: 0; align-self: center; }
+  .lp-band > summary { grid-template-columns: 4.5rem 1fr; justify-items: start; text-align: left; column-gap: 1rem; padding: 1rem 1.25rem; }
+  .lp-band .lp-art { grid-row: 1 / span 4; height: 4.5rem; width: 4.5rem; margin: 0; align-self: center; }
+  .lp-band-open { margin-top: 0.25rem; }
   .lp-band-levels { margin: 0; }
   .lp-skill, .lp-together .lp-skill { padding: 1rem; }
 }
@@ -3734,7 +3753,6 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   .lp-show .lp-row-text .lp-h2 { font-size: var(--t-2xl); }
   /* A line through the three levels, behind the cards: one path from A1 to C1. */
   .lp-bands::before { content: ''; position: absolute; left: 10%; right: 10%; top: 4.5rem; border-top: 3px dotted color-mix(in srgb, var(--lang) 45%, var(--rule)); z-index: 0; }
-  .lp-band { position: relative; z-index: 1; }
 }
 @media (min-width: 64rem) {
   .lp-skills { grid-template-columns: repeat(3, 1fr); }
@@ -3743,8 +3761,9 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   .lp-hero-visual { padding-inline: 3rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lp-q summary svg, .device-mockup, .lp-skill, .lp-tiles .card, .lp .lp-langs .lang-card, .lp-hero::before { transition: none; }
-  .lp-pill-dot, .lp-float { animation: none; }
+  .lp-q summary svg, .device-mockup, .lp-skill, .lp-tiles .card, .lp .lp-langs .lang-card, .lp-hero::before, .lp-phone .device-screen img, .lp-band-open svg { transition: none; }
+  .lp-pill-dot, .lp-float, .lp-band-more, .lp-sticky { animation: none; }
+  html:has(.lp) { scroll-behavior: auto; }
   .lp-curve-learn { animation: none; stroke-dashoffset: 0; }
 }
 .lp-invite { display: flex; align-items: flex-start; gap: 0.625rem; margin: 0 0 1.25rem; padding: 0.875rem 1.125rem; border-radius: var(--r-lg); background: color-mix(in srgb, var(--lang-soft) 40%, var(--surface)); border: 1px solid color-mix(in srgb, var(--lang) 28%, var(--rule)); box-shadow: var(--shadow-sm); }
@@ -3892,3 +3911,61 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 /* Verb lab → Hatalarım: the forms still in the mistakes bank. */
 .lab-slip-list { display: grid; gap: 0.375rem; margin: 0; padding: 0; list-style: none; }
 .lab-slip-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.25rem 0.75rem; padding: 0.5rem 0.75rem; border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface); }
+
+/* The sign-in page before signing in: a page of the site, under the landing page's bar (logo on the left). */
+.auth-site { min-height: 100dvh; background: var(--bg); }
+.auth-main { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+.auth-site .auth-page { padding-block: 0.5rem 2rem; }
+@media (min-width: 46rem) { .auth-main { padding-top: 3rem; } }
+
+/* Landing: the top bar's section links (wide screens), and the sections they jump to below the sticky bar. */
+.lp-nav { display: none; }
+@media (min-width: 64rem) {
+  .lp-nav { display: flex; align-items: center; gap: 0.25rem; margin-right: 0.75rem; }
+  .lp-nav a { padding: 0.375rem 0.625rem; border-radius: var(--r-sm); color: var(--ink-soft); font-weight: 600; font-size: var(--t-sm); text-decoration: none; min-block-size: 2rem; display: inline-flex; align-items: center; }
+  .lp-nav a:hover { color: var(--lang-text); background: var(--lang-soft); }
+}
+html:has(.lp) { scroll-behavior: smooth; }
+.lp :is(h2, section)[id] { scroll-margin-top: 5.5rem; }
+
+/* Landing: the phone in the hero plays a day; its screens fade one into the next. */
+.lp-phone { position: relative; display: grid; justify-items: center; gap: 0.875rem; width: 100%; }
+.lp-phone .device-screen img { position: absolute; inset: 0; opacity: 0; transition: opacity 600ms var(--ease-out); }
+.lp-phone .device-screen img.lp-frame-on { opacity: 1; }
+.lp-phone-controls { display: flex; align-items: center; justify-content: center; gap: 0.25rem; }
+.lp-phone-caption { min-inline-size: 6.5rem; text-align: right; font-size: var(--t-sm); font-weight: 600; color: var(--lang-text); }
+.lp-steps-dots { display: flex; gap: 0; }
+.lp-dot { display: grid; place-items: center; inline-size: 1.75rem; block-size: 2rem; padding: 0; border: 0; border-radius: var(--r-full); background: transparent; cursor: pointer; }
+.lp-dot-mark { inline-size: 0.5rem; block-size: 0.5rem; border-radius: var(--r-full); background: var(--track); transition: inline-size var(--dur) var(--ease-out), background var(--dur-fast) var(--ease-out); }
+.lp-dot[aria-pressed='true'] .lp-dot-mark { inline-size: 1.25rem; background: var(--lang); }
+.lp-dot:hover .lp-dot-mark { background: color-mix(in srgb, var(--lang) 55%, var(--track)); }
+.lp-dot[aria-pressed='true']:hover .lp-dot-mark { background: var(--lang); }
+.lp-play { flex: none; }
+
+/* Landing: a short text to read and tap, the meaning below it. */
+.lp-live { display: grid; gap: 0.75rem; padding: 1.25rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
+.lp-live-hint { margin: 0; font-weight: 600; color: var(--lang-text); }
+.lp-live-text { margin: 0; font-family: var(--serif); font-size: var(--t-lg); line-height: 2; color: var(--ink); }
+.lp-word { font: inherit; color: inherit; background: transparent; border: 0; padding: 0 0.0625rem; margin: 0; border-bottom: 2px dotted color-mix(in srgb, var(--lang) 45%, transparent); border-radius: 0; cursor: pointer; line-height: 1.5; transition: background var(--dur-fast) var(--ease-out); }
+.lp-word:hover { background: var(--lang-soft); }
+.lp-word[aria-pressed='true'] { background: var(--lang-soft); color: var(--lang-text); border-bottom-color: var(--lang); border-radius: var(--r-xs) var(--r-xs) 0 0; }
+.lp-word:focus-visible { outline: 2px solid var(--lang); outline-offset: 1px; }
+.lp-live-card { display: grid; gap: 0.125rem; align-content: start; min-block-size: 6.5rem; padding: 0.875rem 1rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); }
+.lp-live-word { font-family: var(--serif); font-size: var(--t-lg); color: var(--lang-text); }
+.lp-live-tr { font-size: var(--t-md); font-weight: 600; }
+.lp-live-add { justify-self: start; margin-top: 0.5rem; }
+
+/* Landing: what each language has, counted. */
+.lp-facts-box { display: grid; gap: 1rem; }
+.lp-facts-tabs { justify-self: start; flex-wrap: wrap; max-width: 100%; }
+.lp-facts-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 46rem) { .lp-facts-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.lp-facts-grid li { display: grid; gap: 0.125rem; align-content: start; padding: 1rem 1.125rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
+.lp-facts-grid strong { font-size: var(--t-xl); line-height: 1.2; color: var(--lang-text); font-variant-numeric: tabular-nums; }
+.lp-facts-note { margin: 0; }
+
+/* Landing on a phone: the way in, at the bottom while the hero's button is out of sight. */
+.lp-sticky { position: fixed; inset: auto 0 0; z-index: 40; padding: 0.625rem 1rem calc(0.625rem + env(safe-area-inset-bottom)); background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--rule); animation: lp-sticky-in var(--dur) var(--ease-out); }
+@keyframes lp-sticky-in { from { transform: translateY(100%); } to { transform: none; } }
+@media (min-width: 46rem) { .lp-sticky { display: none; } }
+.lp-share { display: inline-flex; align-items: center; gap: 0.375rem; margin-top: 0.25rem; min-block-size: 2rem; font-weight: 600; }

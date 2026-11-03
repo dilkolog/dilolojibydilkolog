@@ -54,8 +54,8 @@ describe('Landing', () => {
     expect(onStart).toHaveBeenCalledWith('create')
     expect(localStorage.getItem('diloloji:start-lang')).toBe('es')
     done()
-    // Leaving the page gives the root back its own language (none here).
-    expect(document.documentElement.dataset.lang).toBeUndefined()
+    // The language stays on through the sign-in page.
+    expect(document.documentElement.dataset.lang).toBe('es')
   })
 
   it('opens on the language picked before', () => {

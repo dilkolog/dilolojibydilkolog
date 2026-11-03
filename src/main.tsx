@@ -15,11 +15,14 @@ import { applyDensity } from './ui/density'
 import { watchForUpdates } from './ui/update'
 import { installFocusTrap } from './ui/focusTrap'
 import { installErrorReporting } from './data/errorReport'
+import { dropBootHero } from './ui/bootHero'
 
 applyDensity()
 watchForUpdates()
 installFocusTrap()
 installErrorReporting()
+// A safety net: the landing page's first lines from index.html never stay over the app for long.
+setTimeout(dropBootHero, 15_000)
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,5 +1,5 @@
 import '../lazy.css'
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import actListen from '../assets/art/act-listen.webp'
 import actRead from '../assets/art/act-read.webp'
 import actSpeak from '../assets/art/act-speak.webp'
@@ -15,17 +15,19 @@ import monkiCheer from '../assets/art/monki-cheer.webp'
 import monkiWave from '../assets/art/monki-wave.webp'
 import sceneTogether from '../assets/art/scene-together.webp'
 import type { TargetLanguage } from '../engine/types'
-import { BrandLogo } from './BrandLogo'
-import { BookIcon, CheckIcon, ChevronDownIcon, CloudOffIcon, ConjugationsIcon, DataIcon, EarIcon, GameIcon, GlobeIcon, HeartIcon, LockIcon, MicIcon, SchoolIcon, SparkleIcon, TagIcon } from './icons'
+import { SiteTop } from './SiteTop'
+import { dropBootHero } from './bootHero'
+import { BookIcon, CheckIcon, ChevronDownIcon, CloudOffIcon, ConjugationsIcon, DataIcon, EarIcon, GameIcon, GlobeIcon, HeartIcon, LockIcon, MicIcon, SchoolIcon, ShareIcon, SparkleIcon, TagIcon } from './icons'
 import { LANG_MONKI } from './drawnArt'
 import { HELLO, LANGUAGE_NAME } from './labels'
-import { rememberStartLanguage, startLanguage } from './startLanguage'
+import { LANGUAGE_PATHS, languageOfPath, rememberStartLanguage, startLanguage } from './startLanguage'
+import { LanguageFacts, LevelBands, LiveReading, MemoryCurve, PlayingPhone, StickyStart } from './LandingParts'
 
 export type LandingStart = 'create' | 'login'
 
 // The app's screens as photographed for each language (scripts/capture-landing-shots.ts): only the picture chosen is fetched.
 const SHOTS = import.meta.glob('../assets/landing/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>
-type Screen = 'today' | 'reading' | 'verbs' | 'guide' | 'path' | 'dialogue'
+type Screen = 'today' | 'session' | 'correct' | 'summary' | 'verbs' | 'guide' | 'path' | 'dialogue'
 const shotOf = (screen: Screen, language: TargetLanguage) => {
   // English has no conjugation tables in the lab: that picture keeps showing French.
   const lang = screen === 'verbs' && language === 'en' ? 'fr' : language
@@ -51,10 +53,10 @@ const SKILLS = [
   { art: guideTeach, title: 'Dilbilgisi', text: 'Her dilde 70’ten fazla kısa ders: kural, örnek, alıştırma ve mini sınav. Hepsi Türkçe anlatılır.' },
 ]
 
-const BANDS = [
-  { art: cefrA1, levels: 'A1 · A2', name: 'Başlangıç', text: 'Kendini tanıtırsın, alışveriş yapar, yol sorar, gününü anlatırsın.' },
-  { art: cefrB1, levels: 'B1 · B2', name: 'Orta', text: 'Seyahatte rahat edersin; deneyimlerini anlatır, haberleri izler, fikrini savunursun.' },
-  { art: cefrC1, levels: 'C1', name: 'İleri', text: 'Uzun ve zor metinleri okur, akıcı yazar, resmî dille gündelik dil arasında rahatça geçersin.' },
+const BANDS: { id: 'A' | 'B' | 'C'; art: string; levels: string; name: string; text: string }[] = [
+  { id: 'A', art: cefrA1, levels: 'A1 · A2', name: 'Başlangıç', text: 'Kendini tanıtırsın, alışveriş yapar, yol sorar, gününü anlatırsın.' },
+  { id: 'B', art: cefrB1, levels: 'B1 · B2', name: 'Orta', text: 'Seyahatte rahat edersin; deneyimlerini anlatır, haberleri izler, fikrini savunursun.' },
+  { id: 'C', art: cefrC1, levels: 'C1', name: 'İleri', text: 'Uzun ve zor metinleri okur, akıcı yazar, resmî dille gündelik dil arasında rahatça geçersin.' },
 ]
 
 /** Where a Turkish speaker trips, one of each kind per language: from the app's own trap words and lessons. */
@@ -181,56 +183,47 @@ function Art({ src, className = '' }: { src: string; className?: string }) {
   return <img className={`lp-art ${className}`.trim()} src={src} alt="" loading="lazy" decoding="async" draggable={false} />
 }
 
-/** The forgetting curve without reviews, and with them: each review lifts memory back up and it then fades slower. */
-function MemoryCurve() {
-  return (
-    <figure className="lp-curve">
-      <svg viewBox="0 0 320 172" role="img" aria-label="Tekrar etmeden hatırlama hızla düşer. Diloloji her kelimeyi unutulmaya yaklaştığında sorar; her tekrardan sonra unutma yavaşlar.">
-        <line className="lp-curve-axis" x1="16" y1="140" x2="308" y2="140" />
-        <line className="lp-curve-axis" x1="16" y1="16" x2="16" y2="140" />
-        <path className="lp-curve-forget" d="M16 24 C 40 96, 90 128, 304 136" />
-        <path className="lp-curve-learn" d="M16 24 C 32 62, 46 80, 60 86 L60 24 C 84 50, 104 64, 124 70 L124 24 C 156 42, 182 52, 206 56 L206 24 C 246 34, 280 41, 304 45" />
-        {[60, 124, 206].map((x) => (
-          <circle key={x} className="lp-curve-dot" cx={x} cy={24} r={4.5} />
-        ))}
-        <text className="lp-curve-label" x="60" y="158" textAnchor="middle">1. gün</text>
-        <text className="lp-curve-label" x="124" y="158" textAnchor="middle">4. gün</text>
-        <text className="lp-curve-label" x="206" y="158" textAnchor="middle">2 hafta</text>
-        <text className="lp-curve-label" x="300" y="158" textAnchor="end">2 ay</text>
-      </svg>
-      <figcaption className="lp-curve-key small">
-        <span><i className="lp-key-learn" aria-hidden /> Diloloji ile</span>
-        <span><i className="lp-key-forget" aria-hidden /> Tekrar etmeden</span>
-      </figcaption>
-    </figure>
-  )
-}
-
 /**
  * What a visitor sees before signing in: what Diloloji is, with the app's own screens in the language they pick,
  * and the two ways in. Picking a language lights the whole page in its colour (as the app does) and carries the
  * choice to the first-run screen.
  */
 export function Landing({ onStart, invited = false, inviterName }: { onStart: (mode: LandingStart) => void; invited?: boolean; inviterName?: string }) {
-  const [lang, setLang] = useState<TargetLanguage>(() => startLanguage() ?? 'fr')
+  // A shared language page (/fransizca…) opens on its language; otherwise the one picked before, or French.
+  const [lang, setLang] = useState<TargetLanguage>(() => (typeof location === 'undefined' ? null : languageOfPath(location.pathname)) ?? startLanguage() ?? 'fr')
+  const [shared, setShared] = useState(false)
   const name = LANGUAGE_NAME[lang]
   const native = NATIVE[lang]
   const chat = MONKI_CHAT[lang]
+  const heroCta = useRef<HTMLDivElement>(null)
+  const finalCta = useRef<HTMLElement>(null)
 
-  // The page takes the chosen language's light, the way the app does once a language is set; given back on leaving.
+  // Here now: the first lines index.html showed in its place go.
+  useEffect(() => dropBootHero(), [])
+
+  // The page takes the chosen language's light, the way the app does once a language is set. It stays on through the
+  // sign-in page (one look until the app sets its own language).
   useEffect(() => {
-    const root = document.documentElement
-    const before = root.dataset.lang
-    root.dataset.lang = lang
-    return () => {
-      if (before) root.dataset.lang = before
-      else delete root.dataset.lang
-    }
+    document.documentElement.dataset.lang = lang
   }, [lang])
 
   const pick = (l: TargetLanguage) => {
     setLang(l)
     rememberStartLanguage(l)
+  }
+  // The language's own page: its link shows that language's picture where it is shared.
+  const share = async () => {
+    const url = `${location.origin}/${LANGUAGE_PATHS[lang]}`
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: `${name} öğren · Diloloji`, url })
+        return
+      }
+      await navigator.clipboard.writeText(url)
+      setShared(true)
+    } catch {
+      // Closed or not allowed: nothing to say.
+    }
   }
   const create = () => {
     rememberStartLanguage(lang)
@@ -239,20 +232,20 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
 
   return (
     <div className="lp" data-lang={lang}>
-      <header className="lp-top">
-        <a className="lp-brand" href="/" aria-label="Diloloji">
-          <BrandLogo />
-          <span>Diloloji</span>
-        </a>
-        <div className="lp-top-actions">
-          <button type="button" className="btn btn-quiet btn-sm" onClick={() => onStart('login')}>
-            Giriş yap
-          </button>
-          <button type="button" className="btn btn-sm" onClick={create}>
-            Hesap aç
-          </button>
-        </div>
-      </header>
+      <SiteTop onHome={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <nav className="lp-nav" aria-label="Sayfa bölümleri">
+          <a href="#lp-skills">Beceriler</a>
+          <a href="#lp-levels">Seviyeler</a>
+          <a href="#lp-method">Yöntem</a>
+          <a href="#lp-faq">Sık sorulanlar</a>
+        </nav>
+        <button type="button" className="btn btn-quiet btn-sm" onClick={() => onStart('login')}>
+          Giriş yap
+        </button>
+        <button type="button" className="btn btn-sm" onClick={create}>
+          Hesap aç
+        </button>
+      </SiteTop>
 
       <main>
         <section className="lp-hero" aria-labelledby="lp-h1">
@@ -302,7 +295,7 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
                 ))}
               </div>
             </div>
-            <div className="lp-cta">
+            <div className="lp-cta" ref={heroCta}>
               <button type="button" className="btn btn-lg" onClick={create}>
                 {name} öğrenmeye başla
               </button>
@@ -323,22 +316,30 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
             </ul>
           </div>
           <div className="lp-hero-visual">
-            <Shot src={shotOf('today', lang)} alt={`Diloloji’nin Bugün ekranı (${name}): günün görevi, yeni kelime sayısı ve Başla düğmesi.`} />
-            <div className="lp-float lp-float-hello" aria-hidden>
-              <span className="lp-float-word" lang={lang}>
-                {HELLO[lang]}
-              </span>
-              <span className="small muted">Merhaba!</span>
-            </div>
-            <div className="lp-float lp-float-word-added" aria-hidden>
-              <CheckIcon size={16} />
-              <span>
+            <PlayingPhone
+              steps={[
+                { src: shotOf('today', lang), label: 'Bugün', alt: `Diloloji’nin Bugün ekranı (${name}): günün görevi, yeni kelime sayısı ve Başla düğmesi.` },
+                { src: shotOf('session', lang), label: 'Yeni kelime', alt: `Oturumda yeni bir ${name} kelime: anlamını tahmin et, dört seçenek.` },
+                { src: shotOf('correct', lang), label: 'Doğru cevap', alt: 'Doğru tahmin: kelimenin anlamı, sesi ve örnek cümlesi.' },
+                { src: shotOf('summary', lang), label: 'Gün sonu', alt: 'Oturum özeti: çalışılan kelimeler ve büyüyen bahçe.' },
+              ]}
+            >
+              <div className="lp-float lp-float-hello" aria-hidden>
                 <span className="lp-float-word" lang={lang}>
-                  {SAVED_WORD[lang].word}
+                  {HELLO[lang]}
                 </span>
-                <span className="small muted"> · {SAVED_WORD[lang].tr}</span>
-              </span>
-            </div>
+                <span className="small muted">Merhaba!</span>
+              </div>
+              <div className="lp-float lp-float-word-added" aria-hidden>
+                <CheckIcon size={16} />
+                <span>
+                  <span className="lp-float-word" lang={lang}>
+                    {SAVED_WORD[lang].word}
+                  </span>
+                  <span className="small muted"> · {SAVED_WORD[lang].tr}</span>
+                </span>
+              </div>
+            </PlayingPhone>
           </div>
         </section>
 
@@ -371,16 +372,7 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
             </h2>
             <p className="lp-sub">Kısa bir seviye testiyle nereden başlayacağını öğren. Rehber dersleri öğrenme sırasına dizer; bir seviyenin bütün derslerini bitirince sertifikanı alırsın.</p>
           </div>
-          <ol className="lp-bands">
-            {BANDS.map((b) => (
-              <li key={b.levels} className="card lp-band">
-                <Art src={b.art} />
-                <span className="lp-band-levels">{b.levels}</span>
-                <h3 className="section-title">{b.name}</h3>
-                <p className="small muted">{b.text}</p>
-              </li>
-            ))}
-          </ol>
+          <LevelBands language={lang} bands={BANDS} />
           <article className="lp-row lp-row-flip lp-row-tight">
             <div className="lp-row-text">
               <ul className="lp-list">
@@ -499,7 +491,7 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
                 </li>
               </ul>
             </div>
-            <Shot src={shotOf('reading', lang)} alt={`Okuma ekranı: ${name} bir metinde dokunulan kelimenin Türkçe anlamı ve metindeki bildiğin kelime oranı.`} />
+            <LiveReading language={lang} onAdd={create} />
           </article>
 
           <article className="lp-row">
@@ -641,6 +633,16 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
           </ul>
         </section>
 
+        <section className="lp-section" aria-labelledby="lp-facts">
+          <div className="lp-head">
+            <span className="lp-kicker">İçerik</span>
+            <h2 id="lp-facts" className="lp-h2">
+              Her dilde neler var?
+            </h2>
+          </div>
+          <LanguageFacts language={lang} names={LANGUAGE_NAME} onPick={pick} />
+        </section>
+
         <section className="lp-section" aria-labelledby="lp-more">
           <h2 id="lp-more" className="lp-h2">
             Ve daha fazlası
@@ -701,7 +703,7 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
           </div>
         </section>
 
-        <section className="lp-final card" aria-labelledby="lp-final">
+        <section className="lp-final card" aria-labelledby="lp-final" ref={finalCta}>
           <Art src={monkiCheer} className="lp-final-art" />
           <h2 id="lp-final" className="lp-h2">
             İlk dersin birkaç dakika uzakta.
@@ -712,9 +714,13 @@ export function Landing({ onStart, invited = false, inviterName }: { onStart: (m
               Hesap aç ve başla
             </button>
           </div>
+          <button type="button" className="link small lp-share" onClick={() => void share()}>
+            <ShareIcon size={16} /> {shared ? 'Bağlantı kopyalandı' : `${name} sayfasını bir arkadaşına gönder`}
+          </button>
         </section>
       </main>
 
+      <StickyStart label={`${name} öğrenmeye başla`} onStart={create} after={heroCta} before={finalCta} />
       <footer className="lp-foot">
         <nav aria-label="Bağlantılar">
           <a href="/hakkinda">Hakkında</a>

@@ -58,7 +58,7 @@ export default defineConfig({
         // assetlinks.json) are files, not app screens: never answer them with the app's index.html.
         navigateFallbackDenylist: [/^\/hakkinda/, /^\/gizlilik/, /^\/kosullar/, /^\/hesap-silme/, /^\/\.well-known\//, /^\/api\//],
         // Only Latin glyphs are needed for TR/EN/FR/ES; the browser never requests the other subsets.
-        globIgnores: ['**/*-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*', 'fonts/**', 'mail/**'],
+        globIgnores: ['**/*-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*', 'fonts/**', 'mail/**', 'og/**'],
         // The static pages' fonts (public/fonts) and the mails' pictures (public/mail) are served to those who open them, not stored on every device.
         // Server push reminders (public/push-sw.js).
         importScripts: ['push-sw.js'],

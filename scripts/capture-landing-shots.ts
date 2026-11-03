@@ -2,19 +2,17 @@ import { chromium, type Page } from '@playwright/test'
 import { mkdirSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import sharp from 'sharp'
-import { readingKey } from '../src/engine/reading'
 import type { TargetLanguage } from '../src/engine/types'
 
 /**
- * The landing page's phone screenshots, one set per language: Today, Reading, Verbs (French and Spanish only), the
- * Guide (a lesson, and the learning path from A1), and a dialogue with its first turn answered.
+ * The landing page's phone screenshots, one set per language: Today and a session played through (a new word, the
+ * right answer, the summary) for the hero's phone, Verbs (French and Spanish only), the Guide (a lesson, and the
+ * learning path from A1), and a dialogue with its first turn answered.
  * Run against a preview of a build WITHOUT Supabase (so the app opens without a sign-in):
  *   VITE_ALLOW_GUEST=1 env -u VITE_SUPABASE_URL -u VITE_SUPABASE_PUBLISHABLE_KEY npx vite build && npx vite preview --port 4196 --strictPort
  *   npx rolldown scripts/capture-landing-shots.ts -o capture.tmp.mjs -p node --external @playwright/test --external sharp && PORT=4196 node capture.tmp.mjs [fr|es|en …]   (delete capture.tmp.mjs after)
  * Needs a Chromium (CHROMIUM_PATH=… when Playwright's own is not installed; in the Claude cloud /opt/pw-browsers/chromium).
  * Output: src/assets/landing/<screen>-<lang>.webp.
- * Reading shows an easy text (97,5% known: "öğrenmek için ideal"): the sample words are new to a fresh install, so
- * the text avoids them except the one tapped, and every other word of it is marked known first.
  */
 const PORT = process.env.PORT ?? '4179'
 const OUT_DIR = join(process.cwd(), 'src/assets/landing')
@@ -24,9 +22,6 @@ const CARD: Record<TargetLanguage, string> = { fr: 'Fransızca', es: 'İspanyolc
 const START: Record<TargetLanguage, RegExp> = { fr: /Fransızca ile başlayalım/, es: /İspanyolca ile başlayalım/, en: /İngilizce ile başlayalım/ }
 
 interface Plan {
-  /** The reading text: no sample word in it but `tap`. */
-  text: string
-  tap: string
   /** A verb for the lab (none for English). */
   verb?: string
   /** The guide lesson to open. */
@@ -36,32 +31,19 @@ interface Plan {
 }
 const PLANS: Record<TargetLanguage, Plan> = {
   fr: {
-    text: 'Chaque matin, nous marchons ensemble près de la maison. Ensuite, nous retournons chez nous et nous préparons le repas avec nos amis. Le soir, mes parents parlent un peu, puis ils lisent un livre pendant que je regarde la télé.',
-    tap: 'maison',
     verb: 'attendre',
     lesson: /Artikeller/,
     learned: ['basics_fr_articles', 'basics_fr_etre_avoir', 'basics_fr_present'],
   },
   es: {
-    text: 'Cada mañana, caminamos juntos por la ciudad. Luego volvemos al hogar y preparamos el almuerzo con nuestros vecinos. Por la tarde, mis padres hablan un poco y después leen un periódico mientras yo miro la tele.',
-    tap: 'ciudad',
     verb: 'hablar',
     lesson: /Artikeller/,
     learned: ['basics_es_articulos', 'basics_es_presente', 'basics_es_gustar'],
   },
   en: {
-    text: 'Every morning, we walk together near the park. Then we go back home and prepare lunch with our friends. In the evening, my parents talk for a while, and then they read a book while I watch a movie about a long journey.',
-    tap: 'journey',
     lesson: /Artikeller/,
     learned: ['basics_en_to_be', 'basics_en_present_simple', 'articles_en'],
   },
-}
-
-/** Every stem of the text but the tapped word's: those are "known" before the screenshot. */
-function knownKeys(language: TargetLanguage, plan: Plan): string[] {
-  const words = [...new Set(plan.text.match(/[\p{L}'’-]+/gu) ?? [])]
-  const tapKey = readingKey(plan.tap, language)
-  return [...new Set(words.map((w) => readingKey(w, language)).filter((k) => k && k !== tapKey))]
 }
 
 async function seedMeta(page: Page, key: string, value: unknown) {
@@ -101,6 +83,70 @@ function answersOf(language: TargetLanguage, title: string): number[] {
   throw new Error(`no dialogue "${title}" in ${language}`)
 }
 
+/**
+ * Answers the question on the screen right, from the words in the database: a meaning for a word shown, a word for a
+ * meaning shown, a sentence's missing form (its Turkish is shown with it), or the word typed. Says whether it could.
+ */
+async function answerRight(page: Page): Promise<boolean> {
+  const answer = await page.evaluate(
+    () =>
+      new Promise<{ click?: number; type?: string } | null>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onerror = () => resolve(null)
+        open.onsuccess = () => {
+          const get = open.result.transaction('vocabulary').objectStore('vocabulary').getAll()
+          get.onerror = () => resolve(null)
+          get.onsuccess = () => {
+            type Word = { lemma: string; article?: string; senses: { gloss: string; altGlosses?: string[]; examples?: { text: string; form?: string }[] }[] }
+            const words = get.result as Word[]
+            const stage = document.querySelector('.session-stage') as HTMLElement | null
+            const options = [...(stage?.querySelectorAll<HTMLButtonElement>('.option:not([disabled])') ?? [])]
+            const optionText = (o: HTMLElement) => o.innerText.replace(/^\s*\d+\s*/, '').trim().toLowerCase()
+            // The prompt only: the stage's text without the options.
+            const prompt = options.reduce((text, o) => text.replace(o.innerText, '\n'), stage?.innerText ?? '').toLowerCase()
+            const glosses = (w: Word) => w.senses.flatMap((sense) => [sense.gloss, ...(sense.altGlosses ?? [])]).map((g) => g.toLowerCase())
+            const lemmas = (w: Word) => [w.lemma, w.article ? `${w.article}${w.article.endsWith("'") ? '' : ' '}${w.lemma}` : ''].filter(Boolean).map((l) => l.toLowerCase())
+            const has = (text: string) => new RegExp(`(^|[^\\p{L}])${text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^\\p{L}]|$)`, 'u').test(prompt)
+            if (options.length) {
+              const texts = options.map(optionText)
+              for (const w of words) {
+                // A word shown: its meaning.
+                if (lemmas(w).some(has)) {
+                  // "olmak (kalıcı)" is shown as "olmak" with "kalıcı" under it.
+                  const i = texts.findIndex((t) => glosses(w).some((g) => t === g || t.startsWith(`${g}\n`) || t.replace('\n', ' (') + ')' === g))
+                  if (i >= 0) return resolve({ click: i })
+                }
+                // A meaning shown: its word.
+                if (glosses(w).some(has)) {
+                  const i = texts.findIndex((t) => lemmas(w).some((l) => t === l || t.startsWith(`${l}\n`)))
+                  if (i >= 0) return resolve({ click: i })
+                }
+                // A sentence with a gap: the form that fills it.
+                for (const ex of w.senses.flatMap((sense) => sense.examples ?? [])) {
+                  if (ex.form && prompt.includes(ex.text.replace(ex.form, '____').toLowerCase())) {
+                    const i = texts.findIndex((t) => t === ex.form!.toLowerCase())
+                    if (i >= 0) return resolve({ click: i })
+                  }
+                }
+              }
+              return resolve(null)
+            }
+            const word = words.find((w) => glosses(w).some(has))
+            // A noun with its article, as the app asks for it.
+            resolve(word ? { type: lemmas(word).at(-1)! } : null)
+          }
+        }
+      }),
+  )
+  if (!answer) return false
+  if (answer.click !== undefined) await page.locator('.session-stage .option:not([disabled])').nth(answer.click).click({ timeout: 3000 }).catch(() => {})
+  else if (answer.type) {
+    await page.locator('.session-stage input.answer-input:visible').first().fill(answer.type)
+    await page.keyboard.press('Enter')
+  }
+  return true
+}
+
 const tab = (page: Page, name: string) => page.locator(':is(.nav-btn, .tab):visible', { hasText: new RegExp(`^${name}\\d*$`) }).first()
 
 async function capture(language: TargetLanguage) {
@@ -123,7 +169,6 @@ async function capture(language: TargetLanguage) {
   await page.getByRole('button', { name: START[language] }).click()
   await page.getByRole('button', { name: /örnek kelime yükle/ }).click()
   await page.waitForTimeout(1500)
-  await seedMeta(page, `known:${language}`, knownKeys(language, plan))
   await seedMeta(page, 'guideMarks', guideMarks(plan.learned))
   await page.reload()
   await page.waitForTimeout(1500)
@@ -139,43 +184,46 @@ async function capture(language: TargetLanguage) {
   await page.waitForTimeout(300)
   await snap('today')
 
-  // 2. Reading: an easy text, one word tapped, the sheet cut down to what shows the idea.
-  await tab(page, 'Okuma').click()
-  await page.waitForTimeout(500)
-  const texts = page.locator('.hub-tab', { hasText: /^Metinler$/ })
-  if (await texts.count()) await texts.click()
-  await page.evaluate(() => {
-    const d = document.querySelector('details.add-text') as HTMLDetailsElement | null
-    if (d) d.open = true
-  })
-  await page.getByLabel('Metin', { exact: true }).fill(plan.text)
-  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  // 1b. A session, for the landing page's phone that plays through a day: the first new word (a guess),
+  // the guess answered right, then the rest played through to the summary where the words grew.
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).first().click()
   await page.waitForTimeout(900)
-  const hide = page.locator('button, a', { hasText: /^Gizle$/ }).first()
-  if (await hide.count()) {
-    await hide.click()
-    await page.waitForTimeout(400)
+  await snap('session')
+  await answerRight(page)
+  await page.waitForTimeout(900)
+  await snap('correct')
+  for (let i = 0; i < 150 && !(await page.locator('.celebrate-card, .summary-grid').count()); i++) {
+    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim|Hatırlıyorum)/ })
+    const guess = page.locator('.session-stage .option:not([disabled])')
+    const typed = page.locator('.session-stage input.answer-input:visible')
+    // A test browser has no microphone: a question to say aloud is answered by typing; the "easy questions" offer is declined.
+    const instead = page.getByRole('button', { name: /^(Yazarak cevapla|Gerek yok)$/ })
+    const tap = (l: typeof next) => l.first().click({ timeout: 3000 }).catch(() => {})
+    if (await instead.count()) await tap(instead)
+    else if (await next.count()) await tap(next)
+    else if ((await guess.count()) || (await typed.count())) {
+      // Answered right, so the summary shows a good day (a picture for the landing page, not a test).
+      if (!(await answerRight(page))) {
+        if (await guess.count()) await tap(guess)
+        else {
+          await typed.first().fill('x')
+          await page.keyboard.press('Enter')
+        }
+      }
+    } else await page.waitForTimeout(150)
+    await page.waitForTimeout(80)
   }
-  await page.locator('.rw', { hasText: plan.tap }).first().click()
+  await page.waitForTimeout(1500)
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) {
+    await page.locator('.milestone-backdrop .milestone-close, .milestone-backdrop .btn').first().click({ timeout: 2000 }).catch(() => {})
+    await page.waitForTimeout(300)
+  }
+  // The top of the summary: how the day went, the ring, Monki's picture.
+  await page.evaluate(() => window.scrollTo(0, 0))
+  await page.waitForTimeout(1200)
+  await snap('summary')
+  await page.getByRole('button', { name: /^(Devam|Kapat|Tamam|Bitir|Ana sayfa)/ }).first().click({ timeout: 3000 }).catch(() => {})
   await page.waitForTimeout(800)
-  await page.evaluate(() => {
-    for (const label of ['Seyrek satır', 'Dar']) {
-      const b = [...document.querySelectorAll('button')].find((x) => x.textContent?.trim().includes(label))
-      const row = b?.closest('.reader-tools') as HTMLElement | null
-      if (row) row.style.display = 'none'
-    }
-    const legend = document.querySelector('.reader-legend') as HTMLElement | null
-    if (legend) legend.style.display = 'none'
-    const pop = document.querySelector('.word-pop')
-    pop?.querySelectorAll('.word-pop-extras, .origin-notes').forEach((el) => ((el as HTMLElement).style.display = 'none'))
-    pop?.querySelectorAll('p, a, button, li, div, span').forEach((el) => {
-      const t = (el.textContent ?? '').trim()
-      if (/^(Eş anlamlılar|Sözlükte aç|Kelimelerinde, henüz|Kalıp olarak ekle)/.test(t) && el.children.length < 3) (el as HTMLElement).style.display = 'none'
-    })
-    window.scrollTo(0, 0)
-  })
-  await page.waitForTimeout(400)
-  await snap('reading')
 
   // 3. Verbs (French and Spanish)
   if (plan.verb) {
