@@ -536,6 +536,22 @@ export function tenseSentence(entry: Pick<VocabularyEntry, 'language' | 'lemma'>
   return m ? { text: `${m[1]}___${m[3]}`, form: m[2], translation: m[4] || undefined } : undefined
 }
 
+/** A checked sentence of one verb in a tense (see tenseSentencePool). */
+export interface PooledSentence extends TenseSentence {
+  verb: string
+}
+
+/** Every checked sentence in `tense` (one per verb), for worksheets that mix many verbs. Empty for English. */
+export function tenseSentencePool(language: 'fr' | 'es' | 'en', tense: Tense): PooledSentence[] {
+  if (language === 'en') return []
+  const out: PooledSentence[] = []
+  for (const [verb, row] of SENTENCES[language]) {
+    const m = row[tense]?.match(/^(.*)\[([^\]]+)\](.*)\t(.*)$/)
+    if (m) out.push({ verb, text: `${m[1]}___${m[3]}`, form: m[2], translation: m[4] || undefined })
+  }
+  return out
+}
+
 /** Past perfective or imperfective in a sentence whose time words settle it (see build scripts). */
 export interface AspectItem {
   verb: string

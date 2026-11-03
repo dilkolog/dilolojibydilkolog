@@ -17,6 +17,7 @@ import { PatternsTab } from './PatternsTab'
 import { ReviewTab } from './ReviewTab'
 import { verbFamilies, type FamilyId } from '../../engine/verbFamilies'
 import { SentenceQuiz } from './SentenceQuiz'
+import { TenseSheet } from './TenseSheet'
 import { TenseBar } from './TenseBar'
 import { TimedTab } from './TimedTab'
 import { PickerLists, PickerTop } from './VerbPicker'
@@ -296,6 +297,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 onAnswer={onAnswer}
                 initialMode={timedFirst ? 'timed' : undefined}
                 sentences={<SentenceQuiz language={language} verbs={[verb, ...ownVerbs, ...lab.recent, ...byFrequency.slice(0, 300)].filter((v, i, all) => all.indexOf(v) === i)} onAnswer={onAnswer} />}
+                sheet={<TenseSheet language={language} verb={verb} tense={current} verbs={[verb, ...ownVerbs, ...lab.recent, ...byFrequency.slice(0, 300)].filter((v, i, all) => all.indexOf(v) === i)} onAnswer={onAnswer} />}
                 timed={<TimedTab language={language} byFrequency={byFrequency} levels={levels} vocabulary={vocabulary} states={states} onAnswer={onAnswer} />}
                 byFrequency={byFrequency}
               />

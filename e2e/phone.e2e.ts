@@ -1073,7 +1073,7 @@ test('verb lab on a phone: every tab fits, the lesson comes right after the verb
         await main.getByRole('button', { name: mode, exact: true }).click()
         await check(`${tab} ${mode}`)
       }
-      for (const mode of ['Eşleştir', 'Zamanı bul', 'Kip seç', 'Hangi fiil?']) {
+      for (const mode of ['Cümle listesi', 'Eşleştir', 'Zamanı bul', 'Kip seç', 'Hangi fiil?']) {
         await main.getByRole('button', { name: 'Diğer alıştırmalar' }).click()
         await page.getByRole('menuitem', { name: new RegExp(`^${mode.replace('?', '\\?')}`) }).click()
         await check(`${tab} ${mode}`)
