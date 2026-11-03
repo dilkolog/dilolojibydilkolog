@@ -1,0 +1,74 @@
+[
+  {
+    "id": "fr-r8-disagree",
+    "language": "fr",
+    "tr": "katılmıyorum",
+    "informal": "Ah non, là je ne suis pas d'accord.",
+    "standard": "Je ne suis pas d'accord avec ça.",
+    "formal": "Permettez-moi de ne pas partager cette analyse.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r8-refuse-offer",
+    "language": "fr",
+    "tr": "teklifi geri çevirmek",
+    "informal": "Merci, mais sans moi.",
+    "standard": "Merci, mais je préfère ne pas.",
+    "formal": "Je vous remercie de cette proposition, mais je me vois contraint de la décliner.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r8-ask-delay",
+    "language": "fr",
+    "tr": "süre uzatımı istemek",
+    "informal": "Tu peux me laisser quelques jours de plus ?",
+    "standard": "Pourrais-je avoir quelques jours de plus ?",
+    "formal": "Je vous serais reconnaissant de bien vouloir m'accorder un bref délai supplémentaire.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r8-apologise-late",
+    "language": "fr",
+    "tr": "geç kaldığım için özür",
+    "informal": "Désolé du retard, il y avait un monde fou sur la route.",
+    "standard": "Excusez-moi d'être en retard, il y avait beaucoup de circulation.",
+    "formal": "Veuillez excuser ce retard, dû à d'importantes difficultés de circulation.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r8-complain-service",
+    "language": "fr",
+    "tr": "hizmetten şikâyet",
+    "informal": "Franchement, le service ici, c'est n'importe quoi.",
+    "standard": "Je ne suis pas satisfait du service.",
+    "formal": "Je me permets de vous faire part de mon mécontentement quant à la qualité du service.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r8-ask-opinion",
+    "language": "fr",
+    "tr": "görüşünü sormak",
+    "informal": "T'en penses quoi, toi ?",
+    "standard": "Qu'en pensez-vous ?",
+    "formal": "Je serais heureux de connaître votre point de vue sur cette question.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r8-thank-help",
+    "language": "fr",
+    "tr": "yardım için teşekkür",
+    "informal": "Merci mille fois, tu me sauves la vie !",
+    "standard": "Merci beaucoup pour votre aide.",
+    "formal": "Je vous suis profondément reconnaissant de votre précieux concours.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-r8-postpone-meeting",
+    "language": "fr",
+    "tr": "toplantıyı ertelemek",
+    "informal": "On peut décaler la réunion ?",
+    "standard": "Pourrions-nous reporter la réunion à la semaine prochaine ?",
+    "formal": "Je vous propose de bien vouloir reporter la réunion à la semaine prochaine.",
+    "source": "Diloloji (özgün)"
+  }
+]

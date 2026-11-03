@@ -1,0 +1,74 @@
+[
+  {
+    "id": "en-r8-disagree",
+    "language": "en",
+    "tr": "katılmıyorum",
+    "informal": "Nah, I don't buy that.",
+    "standard": "I don't agree with that.",
+    "formal": "I'm afraid I must respectfully disagree with that assessment.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r8-refuse-offer",
+    "language": "en",
+    "tr": "teklifi geri çevirmek",
+    "informal": "Thanks, but I'll pass.",
+    "standard": "Thank you, but I'd rather not.",
+    "formal": "I appreciate the offer, but I regret that I must decline.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r8-ask-delay",
+    "language": "en",
+    "tr": "süre uzatımı istemek",
+    "informal": "Any chance I could have a few more days?",
+    "standard": "Could I have a few more days to finish this?",
+    "formal": "I would be grateful if you could grant me a short extension.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r8-apologise-late",
+    "language": "en",
+    "tr": "geç kaldığım için özür",
+    "informal": "Sorry I'm late, traffic was a nightmare.",
+    "standard": "I'm sorry I'm late; the traffic was terrible.",
+    "formal": "Please accept my apologies for the delay, which was due to severe traffic.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r8-complain-service",
+    "language": "en",
+    "tr": "hizmetten şikâyet",
+    "informal": "The service here is a joke.",
+    "standard": "I'm not satisfied with the service I received.",
+    "formal": "I am writing to express my dissatisfaction with the standard of service provided.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r8-ask-opinion",
+    "language": "en",
+    "tr": "görüşünü sormak",
+    "informal": "What do you reckon?",
+    "standard": "What do you think about this?",
+    "formal": "I would value your opinion on this matter.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r8-thank-help",
+    "language": "en",
+    "tr": "yardım için teşekkür",
+    "informal": "Cheers, you're a lifesaver!",
+    "standard": "Thanks a lot for your help.",
+    "formal": "I am deeply grateful for your assistance throughout this process.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-r8-postpone-meeting",
+    "language": "en",
+    "tr": "toplantıyı ertelemek",
+    "informal": "Can we push the meeting back?",
+    "standard": "Could we postpone the meeting to next week?",
+    "formal": "I should like to propose that we reschedule the meeting for next week.",
+    "source": "Diloloji (özgün)"
+  }
+]

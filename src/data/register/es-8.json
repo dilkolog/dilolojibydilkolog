@@ -1,0 +1,74 @@
+[
+  {
+    "id": "es-r8-disagree",
+    "language": "es",
+    "tr": "katılmıyorum",
+    "informal": "Pues yo no lo veo así.",
+    "standard": "No estoy de acuerdo con eso.",
+    "formal": "Permítame discrepar respetuosamente de esa valoración.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r8-refuse-offer",
+    "language": "es",
+    "tr": "teklifi geri çevirmek",
+    "informal": "Gracias, pero paso.",
+    "standard": "Gracias, pero prefiero no hacerlo.",
+    "formal": "Le agradezco la propuesta, pero lamento tener que rechazarla.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r8-ask-delay",
+    "language": "es",
+    "tr": "süre uzatımı istemek",
+    "informal": "¿Me das unos días más?",
+    "standard": "¿Podría tener unos días más?",
+    "formal": "Le agradecería que me concediera una breve prórroga.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r8-apologise-late",
+    "language": "es",
+    "tr": "geç kaldığım için özür",
+    "informal": "Perdona el retraso, había un tráfico horrible.",
+    "standard": "Disculpe el retraso; había mucho tráfico.",
+    "formal": "Le ruego que disculpe la demora, debida a graves problemas de tráfico.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r8-complain-service",
+    "language": "es",
+    "tr": "hizmetten şikâyet",
+    "informal": "El servicio aquí es una vergüenza.",
+    "standard": "No estoy satisfecho con el servicio recibido.",
+    "formal": "Me dirijo a usted para expresar mi disconformidad con la calidad del servicio.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r8-ask-opinion",
+    "language": "es",
+    "tr": "görüşünü sormak",
+    "informal": "¿Tú qué opinas?",
+    "standard": "¿Qué opina usted de esto?",
+    "formal": "Me gustaría conocer su parecer sobre este asunto.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r8-thank-help",
+    "language": "es",
+    "tr": "yardım için teşekkür",
+    "informal": "¡Mil gracias, me has salvado la vida!",
+    "standard": "Muchas gracias por su ayuda.",
+    "formal": "Le quedo profundamente agradecido por su colaboración.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-r8-postpone-meeting",
+    "language": "es",
+    "tr": "toplantıyı ertelemek",
+    "informal": "¿Podemos mover la reunión?",
+    "standard": "¿Podríamos aplazar la reunión a la semana que viene?",
+    "formal": "Le propongo aplazar la reunión a la semana próxima.",
+    "source": "Diloloji (özgün)"
+  }
+]
