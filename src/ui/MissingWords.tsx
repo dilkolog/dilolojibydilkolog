@@ -17,8 +17,8 @@ import { useCefr } from './useCefr'
 import { TagIcon } from './icons'
 
 const RANGES = [1000, 3000, 10000] as const
-/** Levels offered when the language has graded word levels (C1 and up are thin and specialised). */
-const LEVELS: readonly CefrLevel[] = ['A1', 'A2', 'B1', 'B2']
+/** Levels offered when the language has graded word levels (C2 stays out: thin and specialised). */
+const LEVELS: readonly CefrLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']
 const PAGE = 15
 
 /**

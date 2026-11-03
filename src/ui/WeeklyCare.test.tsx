@@ -17,19 +17,20 @@ afterEach(() => {
   localStorage.clear()
 })
 
-async function mount(now: Date, misses = 5) {
+/** `shown`: the card is expected, so wait for it as long as a loaded machine needs (silent cases wait briefly). */
+async function mount(now: Date, misses = 5, shown = false) {
   const calls: string[] = []
   const host = document.createElement('div')
   document.body.append(host)
   root = createRoot(host)
   await act(async () => root!.render(<WeeklyCare language="fr" misses={misses} events={[]} now={now} onWords={() => calls.push('words')} onGrammar={() => calls.push('grammar')} onRepair={(t) => calls.push(`repair:${t}`)} />))
-  for (let i = 0; i < 20 && !host.querySelector('.weekly-care'); i++) await act(() => new Promise((r) => setTimeout(r, 25)))
+  for (let i = 0; i < (shown ? 120 : 20) && !host.querySelector('.weekly-care'); i++) await act(() => new Promise((r) => setTimeout(r, 25)))
   return { host, calls }
 }
 
 describe('WeeklyCare', () => {
   it('on a Saturday it opens the steps one by one, ticks them and is gone when all are done', async () => {
-    const { host, calls } = await mount(new Date(2026, 9, 17, 10))
+    const { host, calls } = await mount(new Date(2026, 9, 17, 10), 5, true)
     expect(host.querySelector('.weekly-care')!.textContent).toContain('Bu haftaki yanlış kelimeler')
     expect(host.querySelectorAll('.care-step')).toHaveLength(2)
     await act(async () => host.querySelector<HTMLButtonElement>('.habit-nudge-main')!.click())

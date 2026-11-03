@@ -27,6 +27,18 @@ describe('loadCefr', () => {
     expect(es?.has('casa') || es?.has('hombre')).toBe(true)
   })
 
+  it('has enough Spanish B2 and C1 words to aim for those levels, and no word at two levels', async () => {
+    const es = await loadCefr('es')
+    const count = (level: string) => [...es!.values()].filter((l) => l === level).length
+    expect(count('B2')).toBeGreaterThan(1000)
+    expect(count('C1')).toBeGreaterThan(1500)
+    expect(es?.get('traicionar')).toBe('B2')
+    expect(es?.get('casa')).toBe('A1')
+    const text = (await import('../cefr/es.txt?raw')).default
+    const words = text.split('\n').filter(Boolean).map((l) => l.split('\t')[0])
+    expect(new Set(words).size).toBe(words.length)
+  })
+
   it('caches the loaded promise for subsequent calls', () => {
     const p1 = loadCefr('fr')
     const p2 = loadCefr('fr')

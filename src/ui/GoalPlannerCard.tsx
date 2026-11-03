@@ -8,7 +8,7 @@ import { showToast } from './toastFeed'
 import { CEFR_MONKI } from './drawnArt'
 
 /** The levels a goal can be set for. */
-const GOAL_LEVELS: readonly CefrLevel[] = CEFR_LEVELS.filter((l) => ['A1', 'A2', 'B1', 'B2'].includes(l))
+const GOAL_LEVELS: readonly CefrLevel[] = CEFR_LEVELS.filter((l) => ['A1', 'A2', 'B1', 'B2', 'C1'].includes(l))
 
 const TIMEFRAMES = [
   { days: 30, label: '1 ay' },
