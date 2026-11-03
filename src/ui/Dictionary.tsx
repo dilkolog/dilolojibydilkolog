@@ -28,6 +28,7 @@ import { daySeed } from '../appNav'
 import { WordCard } from './DictionaryCard'
 import { NotFound } from './DictionaryNotFound'
 import { SavedCard, DayWord, SavedList } from './DictionarySaved'
+import { sentencesNow } from './dictSentences'
 
 /**
  * Any word, in the list or not: what it means in Turkish, how it sounds, where it comes from and
@@ -237,6 +238,14 @@ export function DictionaryScreen({ language, vocabulary, states = [], lists: pro
     const meaning = mine?.senses[0]?.gloss || notes.fixes[word]?.t[0] || hit?.rec.t?.[0] || notes.added?.[word]?.t[0]
     return meaning ? [{ word: hit?.word ?? word, meaning }] : []
   }).filter((w, i, all) => all.findIndex(x => x.word === w.word) === i).slice(0, RECENT_MAX), [recent, index, vocabulary, language, notes])
+  /** One example sentence for a saved word: the learner's own card first, else the fetched or bundled ones. */
+  const sentenceOf = (word: string): string | undefined => {
+    const mine = ownEntry(vocabulary, word, language)?.senses.flatMap((x) => x.examples).find((x) => x.text.trim())
+    if (mine) return mine.text
+    if (!index) return undefined
+    const hit = search(index, word).exact
+    return sentencesNow(language, hit?.word ?? word, hit?.rec.c)[0]?.text
+  }
   const targetListName = currentPlacementInfo.listId ? currentPlacementInfo.label : 'Listesiz'
   const savedExact = result.exact ? undefined : saved.find((e) => e.exact)
   const savedOthers = saved.filter((e) => e !== savedExact)
@@ -410,6 +419,7 @@ export function DictionaryScreen({ language, vocabulary, states = [], lists: pro
         <SavedList
           language={language}
           list={Object.entries(notes.added ?? {}).map(([word, e]) => ({ word, t: e.t, exact: false }))}
+          sentenceOf={sentenceOf}
           onPick={pick}
           onRemove={(w) => updateNotes((n) => removeEntry(n, w))}
         />
@@ -433,7 +443,7 @@ export function DictionaryScreen({ language, vocabulary, states = [], lists: pro
       {typed && !index && (savedCard || savedOthers.length > 0) && (
         <>
           {savedCard}
-          {savedOthers.length > 0 && <SavedList language={language} list={savedOthers} onPick={pick} onRemove={(w) => updateNotes((n) => removeEntry(n, w))} />}
+          {savedOthers.length > 0 && <SavedList language={language} list={savedOthers} sentenceOf={sentenceOf} onPick={pick} onRemove={(w) => updateNotes((n) => removeEntry(n, w))} />}
         </>
       )}
 
@@ -508,7 +518,7 @@ export function DictionaryScreen({ language, vocabulary, states = [], lists: pro
             />
           )}
 
-          {savedOthers.length > 0 && <SavedList language={language} list={savedOthers} onPick={pick} onRemove={(w) => updateNotes((n) => removeEntry(n, w))} />}
+          {savedOthers.length > 0 && <SavedList language={language} list={savedOthers} sentenceOf={sentenceOf} onPick={pick} onRemove={(w) => updateNotes((n) => removeEntry(n, w))} />}
 
           {result.fromTurkish.length > 0 && (
             <section className="section stack">

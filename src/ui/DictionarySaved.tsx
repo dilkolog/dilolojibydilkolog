@@ -132,7 +132,20 @@ export function DayWord({
 const SAVED_SHOWN = 8
 
 /** The saved words (all of them, or those matching the query) as one compact list: a tap opens the card, × removes. */
-export function SavedList({ language, list, onPick, onRemove }: { language: TargetLanguage; list: { word: string; t: string[] }[]; onPick: (word: string) => void; onRemove: (word: string) => void }) {
+export function SavedList({
+  language,
+  list,
+  sentenceOf,
+  onPick,
+  onRemove,
+}: {
+  language: TargetLanguage
+  list: { word: string; t: string[] }[]
+  /** One example sentence of a saved word, when there is one (shown under its meaning). */
+  sentenceOf?: (word: string) => string | undefined
+  onPick: (word: string) => void
+  onRemove: (word: string) => void
+}) {
   const [all, setAll] = useState(false)
   const shown = all ? list : list.slice(0, SAVED_SHOWN)
   return (
@@ -142,19 +155,29 @@ export function SavedList({ language, list, onPick, onRemove }: { language: Targ
         Kaydettiklerin <span className="dict-saved-count">{list.length}</span>
       </h2>
       <ul className="dict-saved">
-        {shown.map((e) => (
+        {shown.map((e) => {
+          const sentence = sentenceOf?.(e.word)
+          return (
           <li key={e.word} className="dict-saved-row">
             <button type="button" className="dict-saved-pick" onClick={() => onPick(e.word)}>
-              <span className="dict-saved-word" lang={language}>
-                {e.word}
+              <span className="dict-saved-head">
+                <span className="dict-saved-word" lang={language}>
+                  {e.word}
+                </span>
+                <span className="dict-saved-meaning">{e.t.join(', ')}</span>
               </span>
-              <span className="dict-saved-meaning">{e.t.join(', ')}</span>
+              {sentence && (
+                <span className="dict-saved-sentence" lang={language}>
+                  {sentence}
+                </span>
+              )}
             </button>
             <button type="button" className="icon-btn icon-btn-sm dict-saved-remove" aria-label={`${e.word} sözlükten kaldır`} title="Kaldır" onClick={() => onRemove(e.word)}>
               <CloseIcon size={14} />
             </button>
           </li>
-        ))}
+          )
+        })}
       </ul>
       {list.length > SAVED_SHOWN && (
         <button type="button" className="link small" onClick={() => setAll((x) => !x)}>
