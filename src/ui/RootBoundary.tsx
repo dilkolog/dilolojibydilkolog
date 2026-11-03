@@ -4,6 +4,7 @@ import { db } from '../data/instance'
 import { downloadBackup } from './backup'
 import { supportMailto } from './helpInfo'
 import { StatusPicture } from './StatusArt'
+import { dropBootHero } from './bootHero'
 
 /**
  * The last net: a render error outside any screen (the side bar, the top bar, the toasts) used to blank the
@@ -18,6 +19,8 @@ export class RootBoundary extends Component<{ children: ReactNode }, { error: un
   }
 
   componentDidCatch(error: unknown) {
+    // Nothing may cover the error screen, not the landing page's first lines from index.html either.
+    dropBootHero()
     console.error(error)
     reportError(error, 'root')
   }

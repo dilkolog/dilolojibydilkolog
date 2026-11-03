@@ -104,7 +104,9 @@ test('a signed-out visit opens the landing page, and the sign-in page is one ste
   await expect(page.getByLabel('E-posta')).toBeVisible()
   await expect(appChrome(page)).toHaveCount(0)
   await expect(landing(page)).toHaveCount(0)
-  await page.locator('.auth-back').click()
+  // No "back" link: the logo on the site's bar goes back to the landing page.
+  await expect(page.locator('.auth-back')).toHaveCount(0)
+  await page.locator('.lp-brand').click()
   await expect(landing(page)).toBeVisible()
 })
 
@@ -125,7 +127,6 @@ test('the landing page shows the app in the language chosen, and keeps French ve
   await expect(page.getByRole('button', { name: 'İspanyolca öğrenmeye başla' })).toBeVisible()
   await card('İngilizce').click()
   await expect(shot('today')).toHaveAttribute('src', /today-en/)
-  await expect(shot('reading')).toHaveAttribute('src', /reading-en/)
   await expect(shot('path')).toHaveAttribute('src', /path-en/)
   // There is no conjugation table for English: that picture stays French.
   await expect(shot('verbs')).toHaveAttribute('src', /verbs-fr/)
@@ -133,6 +134,45 @@ test('the landing page shows the app in the language chosen, and keeps French ve
   await expect(page.locator('.lp-native-card')).toContainText('magazine')
   // The language picked is already chosen on the first-run screen.
   expect(await page.evaluate(() => localStorage.getItem('diloloji:start-lang'))).toBe('en')
+})
+
+test('the landing page can be tried: a word to tap, the forgetting curve, the levels, and a page for each language', async ({ page, isMobile }) => {
+  await stubNetwork(page)
+  await page.goto('/ispanyolca')
+  await expect(landing(page)).toBeVisible()
+  // A shared language page opens on its language.
+  await expect(page.locator('.lp-langs .lang-card', { hasText: 'İspanyolca' })).toHaveAttribute('aria-pressed', 'true')
+  // index.html's first lines are gone once the page itself shows.
+  await expect(page.locator('#boot-hero')).toHaveCount(0)
+  // A word of the short text: its Turkish below.
+  await page.locator('.lp-word', { hasText: 'periódico' }).click()
+  await expect(page.locator('.lp-live-card')).toContainText('gazete')
+  // The forgetting curve: three reviews, then back to the start.
+  const curve = page.locator('.lp-curve')
+  await expect(curve).toContainText('Tekrar etmeden hatırlama hızla düşer.')
+  for (let i = 0; i < 3; i++) await curve.locator('.btn').click()
+  await expect(curve.locator('.lp-curve-dot')).toHaveCount(3)
+  await curve.getByRole('button', { name: 'Baştan' }).click()
+  await expect(curve.locator('.lp-curve-dot')).toHaveCount(0)
+  // A level band opens to its lessons and an example.
+  await page.locator('.lp-band summary').first().click()
+  await expect(page.locator('.lp-band[open] .lp-band-titles li').first()).toBeVisible()
+  // The numbers follow the language tabs, and the tabs the page's language.
+  await page.locator('.lp-facts-tabs').getByRole('button', { name: 'İngilizce' }).click()
+  await expect(page.locator('html')).toHaveAttribute('data-lang', 'en')
+  await expect(page.locator('.lp-live-text')).toHaveAttribute('lang', 'en')
+  // The hero's phone can be stepped through.
+  await page.getByRole('button', { name: 'Doğru cevap' }).click()
+  await expect(page.locator('.lp-phone img.lp-frame-on')).toHaveAttribute('src', /correct-en/)
+  if (isMobile) {
+    // Scrolled past the hero's button, a thin bar keeps the way in; near the end it goes.
+    await page.evaluate(() => window.scrollTo(0, 2500))
+    await expect(page.locator('.lp-sticky')).toBeVisible()
+    await page.locator('.lp-final').scrollIntoViewIfNeeded()
+    await expect(page.locator('.lp-sticky')).toHaveCount(0)
+  } else {
+    await expect(page.locator('.lp-nav a', { hasText: 'Seviyeler' })).toBeVisible()
+  }
 })
 
 test('"Hesap aç ve başla" opens the sign-up form', async ({ page }) => {

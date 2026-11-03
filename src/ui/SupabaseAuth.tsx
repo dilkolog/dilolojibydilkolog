@@ -6,6 +6,7 @@ import { reportError } from '../data/errorReport'
 import { VaultError } from '../data/vault'
 import { clearReturn, currentSession, isRecoveryReturn, returnError, resendConfirmation, sendMagicLink, sendPasswordReset, setNewPassword, signIn, signInWithGoogle, signUp, supabase, authErrorText, TURNSTILE_SITE_KEY } from '../data/supabase'
 import { Turnstile } from './Turnstile'
+import { AuthFrame } from './AuthFrame'
 import { ChevronLeftIcon, LockIcon } from './icons'
 import { PasswordInput } from './PasswordInput'
 import { cleanHandle, HANDLE_RULE } from '../data/friends'
@@ -49,7 +50,7 @@ function GoogleMark() {
  * reset by email. The first time, the person's progress on this device (or their old username
  * account) is tied to them; after that any device needs only the sign-in.
  */
-export function SupabaseAuth({ initialMode = 'login', onDone, onBack, backLabel = 'Ayarlar' }: { initialMode?: SupabaseMode; onDone: () => void; onBack?: () => void; /** What the way back says: where it goes (Settings, or the landing page for a visitor who is not signed in). */ backLabel?: string }) {
+export function SupabaseAuth({ initialMode = 'login', onDone, onBack, backLabel = 'Ayarlar', onHome }: { initialMode?: SupabaseMode; onDone: () => void; onBack?: () => void; /** What the way back says (Settings). */ backLabel?: string; /** Before signing in: the site's bar on top, its logo leading back to the landing page (no "back" link then). */ onHome?: () => void }) {
   const [step, setStep] = useState<Step>(initialMode === 'return' ? 'working' : initialMode)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -192,8 +193,9 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack, backLabel 
   }
 
   return (
+    <AuthFrame onHome={onHome}>
     <div className="auth-page">
-      {onBack && (
+      {onBack && !onHome && (
         <button className="link auth-back" onClick={onBack}>
           <ChevronLeftIcon size={16} /> {backLabel}
         </button>
@@ -351,6 +353,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack, backLabel 
         </div>
       </div>
     </div>
+    </AuthFrame>
   )
 }
 

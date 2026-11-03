@@ -1,0 +1,176 @@
+{
+  "fr": {
+    "lessons": 73,
+    "levels": {
+      "A1": 12,
+      "A2": 19,
+      "B1": 16,
+      "B2": 19,
+      "C1": 7
+    },
+    "bands": {
+      "A": {
+        "lessons": 31,
+        "titles": [
+          "Artikeller ve cinsiyet",
+          "Être ve avoir",
+          "Şimdiki zaman (présent)",
+          "Olumsuz ve soru cümlesi"
+        ],
+        "example": {
+          "text": "J'ai un frère et une sœur.",
+          "tr": "Bir erkek kardeşim ve bir kız kardeşim var."
+        }
+      },
+      "B": {
+        "lessons": 35,
+        "titles": [
+          "Gelecek zamanlar (futur, futur proche, futur antérieur)",
+          "Zamirler: le / lui / y / en",
+          "Fiil ve edat (de / à)",
+          "Eşdizimler (hangi fiil?)"
+        ],
+        "example": {
+          "text": "Demain, il fera beau.",
+          "tr": "Yarın hava güzel olacak."
+        }
+      },
+      "C": {
+        "lessons": 7,
+        "titles": [
+          "Passé simple (okurken tanımak)",
+          "Taviz ve nüans: quoique, encore que, si … que",
+          "Ne explétif (olumsuz anlam taşımayan ne)",
+          "Adlaştırma (nominalisation)"
+        ],
+        "example": {
+          "text": "Il ouvrit la porte et entra sans un mot.",
+          "tr": "Kapıyı açtı ve tek kelime etmeden içeri girdi."
+        }
+      }
+    },
+    "grammar": 913,
+    "dialogues": 22,
+    "exam": 28,
+    "audiobooks": 28,
+    "storybooks": 29,
+    "traps": 121,
+    "verbs": 4103
+  },
+  "es": {
+    "lessons": 74,
+    "levels": {
+      "A1": 15,
+      "A2": 17,
+      "B1": 18,
+      "B2": 15,
+      "C1": 9
+    },
+    "bands": {
+      "A": {
+        "lessons": 32,
+        "titles": [
+          "Artikeller ve cinsiyet (el / la / un / una)",
+          "Kişi zamirleri (yo, mí, conmigo)",
+          "Şimdiki zaman (presente)",
+          "Gustar ve benzeri fiiller"
+        ],
+        "example": {
+          "text": "El libro está en la mesa.",
+          "tr": "Kitap masanın üzerinde."
+        }
+      },
+      "B": {
+        "lessons": 33,
+        "titles": [
+          "Subjuntivo",
+          "Por ve para",
+          "Şart cümleleri (si)",
+          "Perífrasis verbales"
+        ],
+        "example": {
+          "text": "Quiero que vengas a mi fiesta.",
+          "tr": "Partime gelmeni istiyorum."
+        }
+      },
+      "C": {
+        "lessons": 9,
+        "titles": [
+          "Bileşik subjuntivo: haya hecho, hubiera hecho",
+          "Yazıda söylem belirleyicileri (no obstante, por consiguiente)",
+          "Tahmin: serán las ocho, estaría cansado",
+          "Resmî yazışma: usted ve nezaket kalıpları"
+        ],
+        "example": {
+          "text": "Me alegro de que hayas encontrado trabajo.",
+          "tr": "İş bulmana sevindim."
+        }
+      }
+    },
+    "grammar": 934,
+    "dialogues": 22,
+    "exam": 28,
+    "audiobooks": 25,
+    "storybooks": 29,
+    "traps": 119,
+    "verbs": 1456
+  },
+  "en": {
+    "lessons": 78,
+    "levels": {
+      "A1": 13,
+      "A2": 16,
+      "B1": 19,
+      "B2": 16,
+      "C1": 14
+    },
+    "bands": {
+      "A": {
+        "lessons": 29,
+        "titles": [
+          "To be (am / is / are)",
+          "Geniş zaman ve şimdiki zaman",
+          "Artikeller (a / an / the)",
+          "Zamirler ve iyelik (I / me / my / mine)"
+        ],
+        "example": {
+          "text": "I am a student, and my sister is a nurse.",
+          "tr": "Ben öğrenciyim, kız kardeşim de hemşire."
+        }
+      },
+      "B": {
+        "lessons": 35,
+        "titles": [
+          "Gerund ve infinitive",
+          "Bağlaçlar (fikrin yönü)",
+          "Fiil, sıfat ve edat",
+          "Eşdizimler (hangi fiil?)"
+        ],
+        "example": {
+          "text": "He avoided talking about his new job.",
+          "tr": "Yeni işinden söz etmekten kaçındı."
+        }
+      },
+      "C": {
+        "lessons": 14,
+        "titles": [
+          "Devrik yapı (inversion)",
+          "Yazıda bağlama ve temkinli dil (whereas, nonetheless, albeit)",
+          "Future perfect continuous (will have been doing)",
+          "Gerçek dışı geçmiş: it's time, as if, suppose"
+        ],
+        "example": {
+          "text": "Rarely have I met such a generous person.",
+          "tr": "Bu kadar cömert birine nadiren rastladım."
+        }
+      }
+    },
+    "grammar": 990,
+    "dialogues": 22,
+    "exam": 28,
+    "audiobooks": 28,
+    "storybooks": 29,
+    "traps": 115,
+    "verbs": 402
+  }
+}
