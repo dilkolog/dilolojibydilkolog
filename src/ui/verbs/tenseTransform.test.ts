@@ -5,7 +5,8 @@ import es from '../../data/tenses/es.json'
 import frSentences from '../../data/tenses/fr-sentences.json'
 import esSentences from '../../data/tenses/es-sentences.json'
 import { addTenses, addTenseSentences, tenseVerbs } from '../../engine/tenses'
-import { fitsTime, narrowBySubject, personsOfForm, TRANSFORM_PAIRS, transformFor, transformRound } from './tenseTransform'
+import { choiceRound, fitsTime, narrowBySubject, pairQuestion, personsOfForm, TRANSFORM_PAIRS, transformFor, transformRound } from './tenseTransform'
+import type { TransformPair } from '../../engine/transformPairs'
 import { judge } from './labShared'
 import { conjugateTense } from '../../engine/tenses'
 import { verbEntry } from './labShared'
@@ -81,4 +82,49 @@ describe('the move', () => {
     expect(round[0].verb).toBe('tener')
     expect(new Set(round.map((q) => q.verb)).size).toBe(round.length)
   })
+})
+
+describe('rounds with written pairs', () => {
+  const pair = (verb: string, kind: TransformPair['kind'], n: number): TransformPair => ({
+    id: `fr|${verb}|${kind}|${n}`,
+    verb,
+    kind,
+    from: 'present',
+    to: 'imparfait',
+    source: `Il dit qu’il [${verb === 'être' ? 'est' : 'a'}] là ${n}.`,
+    target: `Il a dit qu’il [${verb === 'être' ? 'était' : 'avait'}] là ${n}.`,
+    tr: 'Orada olduğunu söyledi.',
+    persons: [2],
+  })
+  const pairs = [pair('être', 'aktarim', 1), pair('avoir', 'aktarim', 2), pair('avoir', 'aktarim', 3), pair('être', 'temel', 4)]
+
+  it('a pair becomes a question with a gap in the target', () => {
+    const q = pairQuestion(pairs[0])!
+    expect(q.text).toBe('Il dit qu’il ___ là 1.')
+    expect(q.form).toBe('est')
+    expect(q.target).toBe('Il a dit qu’il ___ là 1.')
+    expect(q.kind).toBe('aktarim')
+  })
+
+  it('one kind: only its pairs, the chosen verb first, each verb once', () => {
+    for (let seed = 1; seed < 20; seed++) {
+      const r = choiceRound('fr', ['avoir', 'être'], pairs, 'aktarim', seed)
+      expect(r.map((q) => q.kind)).toEqual(['aktarim', 'aktarim'])
+      expect(r[0].verb).toBe('avoir')
+      expect(new Set(r.map((q) => q.verb)).size).toBe(r.length)
+    }
+  })
+
+  it('mixed: written pairs and plain sentences both come', () => {
+    const verbs = tenseVerbs('fr').slice(0, 200)
+    const r = choiceRound('fr', verbs, pairs, 'mixed', 3)
+    expect(r.some((q) => q.target)).toBe(true)
+    expect(r.some((q) => !q.target)).toBe(true)
+    expect(new Set(r.map((q) => q.verb)).size).toBe(r.length)
+  })
+})
+
+it('a written pair keeps only the person its subject names', () => {
+  const p: TransformPair = { id: 'x', verb: 'parler', kind: 'kosul', from: 'conditionnel', to: 'conditionnel-passe', source: 'Si je pouvais, je lui [parlerais].', target: 'Si j’avais pu, je lui [aurais parlé].', tr: 'x', persons: [0, 1] }
+  expect(choiceRound('fr', ['parler'], [p], 'kosul', 1)[0].persons).toEqual([0])
 })

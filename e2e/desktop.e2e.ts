@@ -3691,6 +3691,29 @@ test('verb lab: change the tense of a real sentence', async ({ page }) => {
   await expect(main.locator('.lab-transform')).toContainText('2 / 8')
 })
 
+test('verb lab: a reported-speech pair shows the target sentence, the rule and the lesson', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Zamanı değiştir' }).click()
+  await main.getByRole('radiogroup', { name: 'Dönüşüm türü' }).getByRole('radio', { name: 'Dolaylı anlatım' }).click()
+  await expect(main.getByRole('radio', { name: 'Dolaylı anlatım' })).toHaveAttribute('aria-checked', 'true')
+  await expect(main.locator('.lab-transform-target')).toBeVisible()
+  const answer = main.getByRole('textbox', { name: /biçimi$/ })
+  await answer.fill('zzz')
+  await answer.press('Enter')
+  await expect(main.getByRole('status')).toContainText('Doğrusu:')
+  await expect(main.locator('.lab-transform-rule')).toContainText('Ana fiil geçmişe')
+  await main.getByRole('button', { name: /^Dersi aç/ }).click()
+  const sheet = page.getByRole('dialog')
+  await expect(sheet).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(sheet).toBeHidden()
+  // The choice stays for the next visit.
+  expect(await page.evaluate(() => localStorage.getItem('diloloji:transform-kind'))).toBe('aktarim')
+})
+
 test('verb lab: a finished round offers a new random verb in the same tense', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'parler')
