@@ -23,3 +23,12 @@ describe('the words that grew today', () => {
     expect(html).not.toContain('is-bloom')
   })
 })
+
+
+it('distinguishes a completed round from independent recall and remaining learning work', () => {
+  const html = render({ ...base, words: [], independentCorrect: 2, pendingLearning: [a.id] })
+  expect(html).toContain('Kelime turun tamamlandı')
+  expect(html).toContain('2 cevabı yardımsız hatırladın')
+  expect(html).toContain('kalıcı olarak öğrenildiği anlamına gelmez')
+  expect(html).toContain('1 kelime ek pekiştirme bekliyor')
+})

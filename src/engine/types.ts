@@ -264,12 +264,23 @@ export interface WordStats {
   consecutiveWrong: number
 }
 
+export interface LearningEvidence {
+  remaining: number
+  at: string
+  /** An independent answer at least a day after introduction. */
+  delayed: boolean
+  lastFailureAt?: string
+  sequence?: number
+}
+
 export interface UserWordState {
   entryId: string
   language: TargetLanguage
   introducedAt: Date
   /** One FSRS card per skill; created lazily when the skill is first practised. */
   skills: Partial<Record<Skill, Card>>
+  /** Durable, per-skill learning debt and delayed recall evidence. */
+  learning?: Partial<Record<Skill, LearningEvidence>>
   lastExerciseType?: ExerciseType
   lastReviewAt?: Date
   stats: WordStats

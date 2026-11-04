@@ -9,6 +9,8 @@ import { createEntry } from '../data/wordInput'
 import type { PlanItem } from '../engine/dailyPlan'
 import type { UserWordState, VocabularyEntry } from '../engine/types'
 import { prefs } from './prefs'
+import { readSessionDraft } from '../data/sessionDraft'
+import type { Session } from '../engine/session'
 import { SessionScreen } from './Session'
 
 describe('Session: right answers go on by themselves when asked to', () => {
@@ -41,10 +43,10 @@ describe('Session: right answers go on by themselves when asked to', () => {
     vi.unstubAllGlobals()
   })
 
-  const mount = async (onFinish = vi.fn(), plan = items(), states: UserWordState[] = []) => {
+  const mount = async (onFinish = vi.fn(), plan = items(), states: UserWordState[] = [], initialSession?: Session) => {
     await act(async () => {
       root.render(
-        <SessionScreen db={db} scheduler={scheduler} mode="normal" options={{}} vocabulary={[entry]} states={states} mistakes={[]} items={plan} seed={42} onFinish={onFinish} onQuit={vi.fn()} />,
+        <SessionScreen db={db} scheduler={scheduler} mode="normal" initialSession={initialSession} options={{}} vocabulary={[entry]} states={states} mistakes={[]} items={plan} seed={42} onFinish={onFinish} onQuit={vi.fn()} />,
       )
     })
   }
@@ -112,7 +114,7 @@ describe('Session: right answers go on by themselves when asked to', () => {
     expect(container.querySelectorAll('.option').length).toBeGreaterThan(0)
   })
 
-  it('teaches first, then asks two choices and a written recall that creates its FSRS card', async () => {
+  it('moves fast independent recognition to written recall and creates its FSRS card', async () => {
     const finished = vi.fn()
     const plan: PlanItem[] = [
       { entryId: entry.id, kind: 'introduce', reason: 'new', skill: 'recognition' },
@@ -128,8 +130,6 @@ describe('Session: right answers go on by themselves when asked to', () => {
     }
     await choose(true)
     await proceed()
-    await choose(true)
-    await proceed()
     expect(container.textContent).toContain('Yazarak hatırla')
     const input = container.querySelector<HTMLInputElement>('.answer-input')!
     await act(async () => {
@@ -140,10 +140,32 @@ describe('Session: right answers go on by themselves when asked to', () => {
     for (let i = 0; i < 50 && !answered(); i++) await act(async () => void (await new Promise((r) => setTimeout(r, 40))))
     expect(answered()).toBe(true)
     await proceed()
-    expect(finished).toHaveBeenCalledWith(expect.objectContaining({ answered: 3, correct: 3 }))
+    expect(finished).toHaveBeenCalledWith(expect.objectContaining({ answered: 2, correct: 2 }))
     const saved = await db.wordStates.get(entry.id)
     expect(saved?.skills.recognition?.reps).toBe(1)
     expect(saved?.skills.recall?.reps).toBe(1)
+  })
+
+  it('reloads after saving an answer without asking or recording that answer again', async () => {
+    const plan: PlanItem[] = [
+      { entryId: entry.id, kind: 'introduce', reason: 'new', skill: 'recognition' },
+      { entryId: entry.id, kind: 'exercise', reason: 'new', skill: 'recognition', exerciseType: 'mc_meaning' },
+    ]
+    await mount(vi.fn(), plan)
+    await act(async () => [...container.querySelectorAll<HTMLButtonElement>('button')].find((b) => b.textContent?.includes('Öğrendim, devam'))!.click())
+    const before = await db.events.count()
+    await choose(true)
+    const draft = await readSessionDraft(db, 'fr')
+    expect(draft?.session.index).toBe(2)
+    expect(draft?.session.items[draft.session.index].exerciseType).toBe('typed_translation')
+    expect(await db.events.count()).toBe(before + 1)
+    act(() => root.unmount())
+    root = createRoot(container)
+    await mount(vi.fn(), draft!.session.items, await db.wordStates.toArray(), draft!.session)
+    expect(container.querySelector('.answer-input')).not.toBeNull()
+    expect(container.querySelector('.intro-card')).toBeNull()
+    expect(await db.events.count()).toBe(before + 1)
+    expect((await readSessionDraft(db, 'fr'))?.session.index).toBe(2)
   })
 
   it('is off by default', async () => {

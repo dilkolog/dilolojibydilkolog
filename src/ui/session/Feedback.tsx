@@ -32,6 +32,7 @@ const CONFIDENT_ERROR_PAUSE_MS = 800
 /** The sheet after an answer: verdict, the right answer, why it was wrong, and Devam. */
 export function Feedback({
   ev,
+  independent,
   confidence,
   grew,
   entry,
@@ -52,6 +53,7 @@ export function Feedback({
   history,
 }: {
   /** "Unuttum": the answer is shown as a lesson, not as a mistake (no red, no scolding). */
+  independent?: boolean
   forgot?: boolean
   /** The kind of question just answered (when it can be tuned) and what turns its share down or off: offered after a miss, when a kind is a struggle. */
   typeName?: string
@@ -185,6 +187,9 @@ export function Feedback({
               </div>
             )
           })()}
+          {independent === false && ev.verdict === 'correct' && (
+            <p className="note">Bu kelimeyi henüz yardımsız ve emin biçimde hatırlamadın. Birazdan yeniden deneyeceğiz.</p>
+          )}
           {ev.intrusion && (
             <div className="formative-tip formative-warning">
               <div className="formative-tip-head">

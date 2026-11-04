@@ -11,6 +11,8 @@ import { createRng } from '../engine/rng'
 import { firstSittingEnd, SPLIT_ABOVE_MINUTES } from '../engine/session'
 import { TARGET_LANGUAGES, type EngineOptions, type ReviewMode, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import type { Settings } from '../data/db'
+import { readSessionDraft, writeSessionDraft, draftRecord } from '../data/sessionDraft'
+import { skipRemaining, isFinished } from '../engine/session'
 import { db, scheduler } from '../data/instance'
 import { daySeed, launch, MIXED_SIZE, QUICK_REVIEW, type LanguageData, type Screen } from '../appNav'
 import type { GameState } from './game'
@@ -35,7 +37,24 @@ interface Input {
  */
 export function useSessionStarters({ settings, data, game, plan, planInput, options, dayForms, setScreen }: Input) {
   /** `extra`: words that may not be in the loaded list yet (just added), so the session has them. */
-  const startSession = (items: PlanItem[], mode: ReviewMode, seed = Date.now() % 2 ** 31, extra?: VocabularyEntry[], topic?: 'difficult', firstSitting?: boolean) => {
+  const startSession = async (items: PlanItem[], mode: ReviewMode, seed = Date.now() % 2 ** 31, extra?: VocabularyEntry[], topic?: 'difficult', firstSitting?: boolean) => {
+    if (mode === 'normal' && data) {
+      const draft = await readSessionDraft(db, data.language)
+      if (draft) {
+        const allWords = await db.vocabulary.toArray()
+        const ids = new Set(allWords.map((w) => w.id))
+        let session = draft.session
+        for (const item of session.items.slice(session.index)) if ((!item.form && !ids.has(item.entryId)) || (item.form && options.off?.includes('conjugation'))) session = skipRemaining(session, item.entryId)
+        if (!isFinished(session)) {
+          const allStates = await db.wordStates.toArray()
+          const allMistakes = await db.mistakes.toArray()
+          setScreen({ name: 'session', initialSession: session, items: session.items, seed: draft.seed, mode, gameBefore: game, extra: allWords, extraStates: allStates, extraMistakes: allMistakes })
+          showToast('Yarım kalan turuna dönüldü.')
+          return
+        }
+        await writeSessionDraft(db, draftRecord(data.language, draft.seed, session))
+      }
+    }
     // A session cap takes a prefix: introductions always come before their first test.
     const capped = settings?.sessionMax ? items.slice(0, firstSittingEnd(items, settings.sessionMax)) : items
     if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra, topic, firstSitting })
@@ -50,7 +69,8 @@ export function useSessionStarters({ settings, data, game, plan, planInput, opti
     startSession(withDayProbes(items.slice(0, end)), 'normal', daySeed(new Date()), undefined, undefined, split && end < items.length)
   }
   const startDay = () => {
-    if (plan) startPlan(plan)
+    if (plan?.items.length) startPlan(plan)
+    else void startSession([], 'normal')
   }
   /**
    * Two measurement probes among the day's questions (engine/probes.ts): cards picked at random among those not due,
@@ -172,6 +192,7 @@ export function useSessionStarters({ settings, data, game, plan, planInput, opti
     const items: PlanItem[] = []
     for (let i = 0; items.length < MIXED_SIZE && perLanguage.some((l) => i < l.length); i++) for (const l of perLanguage) if (l[i] && items.length < MIXED_SIZE) items.push(l[i])
     if (!items.length) return
+    if (data && await readSessionDraft(db, data.language)) return startSession(items, 'normal')
     setScreen({
       name: 'session',
       items,

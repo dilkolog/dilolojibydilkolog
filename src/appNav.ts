@@ -1,7 +1,7 @@
 import type { Trouble } from './engine/trouble'
 import type { ReactElement } from 'react'
 import type { PlanItem } from './engine/dailyPlan'
-import type { SessionSummary } from './engine/session'
+import type { Session, SessionSummary } from './engine/session'
 import type { Mistake, ReviewEvent, ReviewMode, TargetLanguage, UserWordState, VocabularyEntry, WordList } from './engine/types'
 import type { GameState } from './ui/game'
 import type { GameId } from './ui/gameList'
@@ -38,7 +38,7 @@ export const daySeed = (d: Date) => d.getFullYear() * 10000 + (d.getMonth() + 1)
 
 export type Screen =
   | { name: 'home' }
-  | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; extraStates?: UserWordState[]; extraMistakes?: Mistake[]; firstSitting?: boolean }
+  | { name: 'session'; initialSession?: Session; items: PlanItem[]; seed: number; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; extraStates?: UserWordState[]; extraMistakes?: Mistake[]; firstSitting?: boolean }
   | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; firstSitting?: boolean }
   | { name: 'words'; list?: string }
   | { name: 'dictionary'; query?: string }

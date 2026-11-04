@@ -85,7 +85,7 @@ export function Summary({
     }
     return id
   }
-  const accuracy = summary.answered ? summary.correct / summary.answered : 0
+  const accuracy = summary.answered ? (practice ? summary.correct : summary.independentCorrect ?? summary.correct) / summary.answered : 0
   const errors = Object.entries(summary.errors) as [keyof typeof ERROR_NAME, number][]
   const leveledUp = !!before && !!after && after.level.level > before.level.level
   const newBadges = before && after ? after.achievements.filter((a) => a.unlocked && !before.achievements.find((b) => b.id === a.id)?.unlocked) : []
@@ -151,13 +151,22 @@ export function Summary({
             <BoltIcon size={15} /> Zor kelime çalışması
           </span>
         )}
-        <h1>{topic === 'difficult' ? hardHeadline(accuracy) : headline(accuracy, practice)}</h1>
+        <h1>{topic === 'difficult' ? hardHeadline(accuracy) : practice ? headline(accuracy, true) : 'Kelime turun tamamlandı'}</h1>
         <p className="muted mt-2">
           {topic === 'difficult'
             ? `${summary.words.length} zor kelimeyle çalıştın: ${summary.answered} sorudan ${summary.correct} tanesini doğru bildin.`
             : `${summary.answered} sorudan ${summary.correct} tanesini doğru bildin.`}
+          {!practice && summary.independentCorrect !== undefined && ` ${summary.independentCorrect} cevabı yardımsız hatırladın.`}
           {practice && ' Serbest pratikti: takvimin ve hata listen değişmedi.'}
         </p>
+        {!practice && (
+          <p className="note">
+            Bu turdaki çalışma tamamlandı; bu, kelimelerin kalıcı olarak öğrenildiği anlamına gelmez.
+            {summary.pendingLearning?.length
+              ? ` ${summary.pendingLearning.length} kelime ek pekiştirme bekliyor; sonraki turda öncelikli gelecek.`
+              : ' Hatırlaman, sonraki günlerdeki yardımsız tekrarlarla doğrulanacak.'}
+          </p>
+        )}
         <p className="xp-gain">
           +<GainCount value={summary.xp} /> XP
         </p>

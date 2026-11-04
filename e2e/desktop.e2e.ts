@@ -3715,3 +3715,40 @@ test('verb lab: a finished round offers a new random verb in the same tense', as
   await expect(main.locator('.lab-verb').first()).not.toHaveText(/^parler$/i)
   await expect(main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'true')
 })
+
+test('an unfinished learning group resumes after reloading feedback without recording the answer twice', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-11-04T12:00:00'))
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  // Teach the small group's words before the first recognition question.
+  for (let i = 0; i < 6 && !(await page.locator('.session-stage .forgot-chip').count()); i++) {
+    const text = await page.locator('.intro-card').innerText()
+    await page.getByRole('button', { name: 'Öğrendim, devam', exact: true }).click()
+    await expect.poll(async () => await page.locator('.intro-card').count() ? page.locator('.intro-card').innerText() : '').not.toBe(text)
+  }
+  await page.locator('.session-stage .forgot-chip').click()
+  await expect(page.locator('.sheet')).toBeVisible()
+  const saved = () => page.evaluate(() => new Promise<{ index: number; events: number; relearn: Record<string, number> }>((resolve, reject) => {
+    const req = indexedDB.open('kelime-koc')
+    req.onerror = () => reject(req.error)
+    req.onsuccess = () => {
+      const db = req.result
+      const tx = db.transaction(['meta', 'events'])
+      const draft = tx.objectStore('meta').get('study-session:fr')
+      const count = tx.objectStore('events').count()
+      tx.oncomplete = () => {
+        resolve({ index: draft.result.value.session.index, events: count.result, relearn: draft.result.value.session.relearn })
+        db.close()
+      }
+    }
+  }))
+  const before = await saved()
+  expect(Object.values(before.relearn)).toContain(2)
+  await page.reload()
+  const resume = page.getByRole('region', { name: 'Yarım kalan kelime turu' })
+  await expect(resume).toBeVisible()
+  await resume.getByRole('button', { name: /Devam et/ }).click()
+  await expect(page.locator('.session-stage')).toBeVisible()
+  await expect(page.locator('.sheet')).toHaveCount(0)
+  expect(await saved()).toEqual(before)
+})

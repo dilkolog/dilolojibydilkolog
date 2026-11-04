@@ -1,3 +1,4 @@
+import { learningDebts } from './learningProgress'
 import { EXERCISES, exerciseTypesFor } from './exercises'
 import { openMistakes } from './mistakes'
 import { createRng, shuffle, type Rng } from './rng'
@@ -188,8 +189,13 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
   for (const state of states) {
     const entry = byId.get(state.entryId)
     if (!entry) continue
-    if (isRetired(state, auto) && !checked.has(state.entryId)) continue
+    if (isRetired(state, auto) && !checked.has(state.entryId) && !learningDebts(state).length) continue
     const opts = input.options ?? {}
+    const debt = learningDebts(state).find((skill) => exerciseTypesFor(skill, entry, opts, state).length > 0)
+    if (debt) {
+      scored.push({ item: { kind: 'exercise', entryId: entry.id, reason: 'mistake', skill: debt, exerciseType: pickExerciseType(debt, entry, state, rng, opts), learningFollowUp: true }, r: 0, fresh: false })
+      continue
+    }
     const due = dueSkills(state, entry, scheduler, now, opts)
     const open = openMistakes(input.mistakes, state.entryId)
     // Trouble by ear or voice: a listening question, unless listening is already coming up for the word

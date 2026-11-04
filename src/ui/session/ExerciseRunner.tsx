@@ -90,7 +90,7 @@ export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride
   goOn.current = onContinue
   // "Doğruda otomatik devam": a plain right answer (nothing to read below it) goes on by itself.
   useEffect(() => {
-    if (!result || result.ev.verdict !== 'correct' || result.ev.feedback || editing || mnemonic || !prefs.autoAdvance) return
+    if (!result || result.log.independent === false || result.ev.verdict !== 'correct' || result.ev.feedback || editing || mnemonic || !prefs.autoAdvance) return
     const t = setTimeout(() => goOn.current(result.log), prefs.autoAdvance * 1000)
     return () => clearTimeout(t)
   }, [result, editing, mnemonic])
@@ -333,6 +333,7 @@ export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride
           <Feedback
             ev={result.ev}
             confidence={result.confidence}
+            independent={result.log.independent}
             grew={
               result.log.stageAfter && result.log.stageBefore && MASTERY_STAGES.indexOf(result.log.stageAfter) > MASTERY_STAGES.indexOf(result.log.stageBefore)
                 ? result.log.stageAfter
