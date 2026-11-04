@@ -104,10 +104,10 @@ export function listOrder(lists: readonly WordList[], vocabulary: readonly Vocab
 /** The page (and placement value) of the words in no list. */
 export const UNLISTED = '__none'
 
-/** The words in no list (sample words aside: they are only there to try the app). */
+/** Every word in no existing list, including samples counted in the vocabulary total. */
 export function unlistedWords(vocabulary: readonly VocabularyEntry[], lists: readonly Pick<WordList, 'id'>[]): VocabularyEntry[] {
   const ids = new Set(lists.map((l) => l.id))
-  return vocabulary.filter((v) => v.source !== 'sample' && (!v.listId || !ids.has(v.listId)))
+  return vocabulary.filter((v) => !v.listId || !ids.has(v.listId))
 }
 
 export const newLevelId = () => `lvl:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`
