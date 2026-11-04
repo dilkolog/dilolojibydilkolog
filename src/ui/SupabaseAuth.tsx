@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 import { approvalEnabled } from '../data/access'
 import { reportError } from '../data/errorReport'
 import { VaultError } from '../data/vault'
-import { clearReturn, currentSession, isRecoveryReturn, returnError, resendConfirmation, sendMagicLink, sendPasswordReset, setNewPassword, signIn, signInWithGoogle, signUp, supabase, authErrorText, TURNSTILE_SITE_KEY } from '../data/supabase'
+import { clearReturn, currentSession, isRecoveryReturn, returnError, resendConfirmation, sendMagicLink, sendPasswordReset, setNewPassword, signIn, signInWithFacebook, signInWithGoogle, signUp, supabase, authErrorText, TURNSTILE_SITE_KEY } from '../data/supabase'
 import { Turnstile } from './Turnstile'
+import { FacebookMark } from './GoogleMark'
+import { useFacebookLogin } from './facebookLogin'
 import { AuthFrame } from './AuthFrame'
 import { ChevronLeftIcon, LockIcon } from './icons'
 import { PasswordInput } from './PasswordInput'
@@ -60,6 +62,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack, backLabel 
   const [note, setNote] = useState('')
   const [sentWhat, setSentWhat] = useState('')
   const [busy, setBusy] = useState(false)
+  const facebook = useFacebookLogin()
   const [error, setError] = useState('')
   // A link from a mail that no longer works (used or expired): the form offers to send the confirmation again.
   const [linkFailed, setLinkFailed] = useState(false)
@@ -228,6 +231,11 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack, backLabel 
             <button type="button" className="btn btn-quiet auth-google" disabled={busy} onClick={() => void attempt(() => signInWithGoogle())}>
               <GoogleMark /> Google ile devam et
             </button>
+            {facebook && (
+              <button type="button" className="btn btn-quiet auth-google" disabled={busy} onClick={() => void attempt(() => signInWithFacebook())}>
+                <FacebookMark /> Facebook ile devam et
+              </button>
+            )}
             <p className="auth-or small muted">ya da e-postayla</p>
           </>
         )}

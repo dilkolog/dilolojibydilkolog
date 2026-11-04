@@ -260,6 +260,12 @@ export async function GET(request: Request): Promise<Response> {
     if (overLimit(request, 'access-news', 30)) return tooMany()
     return json({ announcement: await currentAnnouncement().catch(() => null) })
   }
+  // Which ways in the sign-in page offers besides e-mail and Google (the owner's switches).
+  if (q.has('signin')) {
+    if (overLimit(request, 'access-signin', 60)) return tooMany()
+    const settings = await getSettings().catch(() => ({ facebookLogin: false }))
+    return json({ facebook: settings.facebookLogin === true })
+  }
   if (q.has('owner')) return ownerGet(request, q)
   if (q.has('friends') || q.has('inbox') || q.has('blocked') || q.has('friend-handle') || q.has('friend-find') || q.has('friend-invite')) return friendsGet(request)
   if (new URL(request.url).searchParams.has('vault')) return vaultGet(request)

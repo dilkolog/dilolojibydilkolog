@@ -8,6 +8,7 @@ import { rest, supabaseOn } from './_supabase.js'
  *
  * - Daily limits per account: AI calls and money, translated characters, natural-voice characters.
  * - autoApprove: a new person is approved at their first sign-in (no waiting list).
+ * - facebookLogin: the sign-in page offers Facebook (the owner turns it on once the Meta app is set up).
  * - announcement: one short message every signed-in person gets once in their bell.
  */
 
@@ -23,6 +24,7 @@ export interface ServerSettings {
   translateChars?: number
   ttsChars?: number
   autoApprove?: boolean
+  facebookLogin?: boolean
   announcement?: Announcement | null
 }
 
@@ -68,6 +70,7 @@ export function cleanSettings(raw: unknown): ServerSettings {
     if (v !== undefined) out[name] = v
   }
   if (typeof r.autoApprove === 'boolean') out.autoApprove = r.autoApprove
+  if (typeof r.facebookLogin === 'boolean') out.facebookLogin = r.facebookLogin
   const a = cleanAnnouncement(r.announcement)
   if (a !== undefined) out.announcement = a
   return out

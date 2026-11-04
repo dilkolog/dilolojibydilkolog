@@ -276,12 +276,12 @@ async function settingsView() {
   }
 }
 
-/** POST { action: 'settings', settings: { aiDailyCalls?, …, autoApprove? } }: a limit set to null goes back to its default. */
+/** POST { action: 'settings', settings: { aiDailyCalls?, …, autoApprove?, facebookLogin? } }: a limit set to null goes back to its default. */
 async function settingsChange(raw: unknown): Promise<Response> {
   if (!raw || typeof raw !== 'object') return json({ error: 'bad request' }, 400)
   const change: Record<string, unknown> = {}
   for (const [key, value] of Object.entries(raw as Record<string, unknown>)) {
-    if (key in LIMITS || key === 'autoApprove') change[key] = value
+    if (key in LIMITS || key === 'autoApprove' || key === 'facebookLogin') change[key] = value
   }
   if (!Object.keys(change).length) return json({ error: 'bad request' }, 400)
   return ownerStep(async () => {
