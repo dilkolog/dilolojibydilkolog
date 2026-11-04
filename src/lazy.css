@@ -4116,7 +4116,8 @@ html:has(.lp) { scroll-behavior: smooth; }
 .admin-search:focus-within { box-shadow: 0 0 0 2px var(--lang); }
 .admin-search input { flex: 1; min-width: 0; border: 0; background: none; color: var(--ink); font: inherit; outline: none; }
 .admin-empty { padding: 0.5rem 0; }
-.admin-people { margin-top: 0; }
+/* The AI level menu opens out of a row: the list must not clip it (account-group hides overflow). */
+.admin-people { margin-top: 0; overflow: visible; }
 .admin-person { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem 1rem; padding: 0.875rem 1rem; border-bottom: 1px solid var(--rule); }
 .admin-person:last-child { border-bottom: 0; }
 .admin-initial { display: grid; place-items: center; flex: none; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--lang-soft); color: var(--lang-text); font-weight: 700; }
