@@ -68,7 +68,8 @@ export function ReadingHome({
   onBook: (f: File) => void
   youtube: string
   onYoutube: (v: string) => void
-  onFetchYoutube: () => void
+  /** Fetch the link in the field, or the one just pasted into it. */
+  onFetchYoutube: (link?: string) => void
   ytBusy: boolean
   fileBusy: boolean
   bookError: { ok: boolean; text: string } | null

@@ -785,6 +785,21 @@ test('reading: a PDF file and a web page link both become texts to read', async 
   await expect(page.locator('.reader')).toContainText('Le marché ouvre tôt le samedi.')
 })
 
+test('reading: a video link dropped in the text box opens its transcript without another tap; a shared one too', async ({ page }) => {
+  await startWithSamples(page)
+  await approveAccount(page)
+  await page.route(
+    (u) => u.pathname === '/api/youtube',
+    (r) => r.fulfill({ json: { id: 'abcdefghijk', title: 'Une vidéo du marché', channel: 'Chaîne', auto: false, text: 'Bonjour à tous. Aujourd’hui nous allons au marché du village.' } }),
+  )
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('https://www.youtube.com/watch?v=abcdefghijk')
+  await expect(page.locator('.reader')).toContainText('nous allons au marché du village')
+  // Share → Diloloji from the YouTube app (the video's name beside the link): straight to the reader as well.
+  await page.goto('/?share_text=' + encodeURIComponent('Une vidéo du marché https://youtu.be/abcdefghijk'))
+  await expect(page.locator('.reader')).toContainText('nous allons au marché du village')
+})
+
 test('reading: the forms list finds a reflexive compound tense and lights the form\'s sentence in the text', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Okuma')

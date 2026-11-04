@@ -49,8 +49,13 @@ export function readShared(p: URLSearchParams): IncomingWord | null {
   // Some apps put the link in the text field.
   const link = p.get('share_url') ?? text.match(/https?:\/\/\S+/)?.[0]
   const clean = text.replace(/https?:\/\/\S+/g, '').replace(/^["“«]|["”»]$/g, '').trim()
-  // A video link alone (nothing else was selected) goes to Reading, where the subtitles can be fetched.
-  if (!clean && link && YOUTUBE.test(link)) return { word: '', context: '', src: link, read: { url: link, title: p.get('share_title')?.trim() || undefined } }
+  const sharedTitle = p.get('share_title')?.trim() || undefined
+  // A video goes to Reading, where its transcript is fetched at once: the YouTube app often sends the video's
+  // name along with the link ("Watch “…” on YouTube"), which is a title, not a word to learn.
+  if (link && YOUTUBE.test(link) && clean.split(/\s+/).length < READ_WORDS)
+    return { word: '', context: '', src: link, read: { url: link, title: sharedTitle || (clean && clean !== sharedTitle ? clean.slice(0, 140) : undefined) } }
+  // A web page's link alone is read too: its text is fetched the same way.
+  if (!clean && link && /^https:\/\//i.test(link)) return { word: '', context: '', src: link, read: { url: link, title: sharedTitle } }
   if (!clean) return null
   const words = clean.split(/\s+/).length
   // An article is read, not turned into one example sentence.

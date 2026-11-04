@@ -89,7 +89,8 @@ export function AddTextCard({
   onBook: (f: File) => void
   youtube: string
   onYoutube: (v: string) => void
-  onFetchYoutube: () => void
+  /** Fetch the link in the field, or the one just pasted into it. */
+  onFetchYoutube: (link?: string) => void
   ytBusy: boolean
   /** A Word or PDF file is being read. */
   fileBusy?: boolean
@@ -138,12 +139,23 @@ export function AddTextCard({
           onFetchYoutube()
         }}
       >
-        <input className="input" value={youtube} onChange={(e) => onYoutube(e.target.value)} placeholder="Web sayfası ya da YouTube bağlantısı" aria-label="Web sayfası ya da YouTube bağlantısı" inputMode="url" />
+        <input
+          className="input"
+          value={youtube}
+          onChange={(e) => onYoutube(e.target.value)}
+          // A pasted link is fetched at once: the transcript or the page's text opens without another tap.
+          onPaste={(e) => {
+            const link = e.clipboardData.getData('text').trim()
+            if (!/^https?:\/\/\S+$/i.test(link) || ytBusy) return
+            e.preventDefault()
+            onFetchYoutube(link)
+          }}
+          placeholder="Web sayfası ya da YouTube bağlantısı" aria-label="Web sayfası ya da YouTube bağlantısı" inputMode="url" />
         <button className="btn btn-quiet" type="submit" disabled={!youtube.trim() || ytBusy}>
           {ytBusy ? 'Getiriliyor…' : isYoutubeLink(youtube) ? <><img className="chip-art" src={ADD_ART.video} alt="" width={20} height={20} draggable={false} />Altyazıyı getir</> : <><LinkIcon size={18} />Metni getir</>}
         </button>
       </form>
-      <p className="small muted">Bir sayfadan yalnızca yazısı alınır ve yalnızca senin kütüphanende durur; kendi okuman için, başkalarıyla paylaşmak için değil.</p>
+      <p className="small muted">Bağlantıyı yapıştırman yeter: videonun altyazısı ya da sayfanın yazısı kendiliğinden gelir ve okuma açılır. Yalnızca yazı alınır ve yalnızca senin kütüphanende durur; kendi okuman için, başkalarıyla paylaşmak için değil.</p>
       {bookError && (
         <p className={bookError.ok ? 'notice' : 'error'} role="status">
           {bookError.ok && <BookIcon size={16} className="inline-icon" />}

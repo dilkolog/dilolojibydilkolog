@@ -8,6 +8,9 @@ import { importDocument, importEpub, isDocumentFile, isYoutubeLink, pageText, te
 import { undoable } from './toastFeed'
 
 /** What the reader's own state takes from a library that has just loaded: the open text and the words marked before. */
+/** A text box holding a single web address and nothing else. */
+const LINK_ONLY = /^https?:\/\/\S+$/i
+
 export interface LoadedLibrary {
   open: ReadingText | null
   known: Set<string>
@@ -125,12 +128,18 @@ export function useReadingLibrary({
     setBookError(note)
   }
 
-  /** A link: a YouTube video's subtitles in this language, or a web page's main text, as a reading text with a link back. */
-  const importYoutube = async () => {
+  /**
+   * A link: a YouTube video's transcript in this language, or a web page's main text, as a reading text with a link
+   * back, opened at once. `link` is the field's own value unless one was just pasted or shared.
+   */
+  const importYoutube = async (link = youtube) => {
+    if (!link.trim()) return
     setBookError(null)
+    setYoutube(link)
     setYtBusy(true)
     try {
-      const got = isYoutubeLink(youtube) ? await youtubeText(youtube, language) : await pageText(youtube, language)
+      const got = isYoutubeLink(link) ? await youtubeText(link, language) : await pageText(link, language)
+      if ('item' in got && !got.item.title.trim() && shared?.title) got.item.title = shared.title
       if ('note' in got) {
         setBookError(got.note)
         return
@@ -144,6 +153,27 @@ export function useReadingLibrary({
     } finally {
       setYtBusy(false)
     }
+  }
+
+  // A video or a page shared to the app ("Share → Diloloji") is fetched straight away: nothing to press.
+  const sharedLink = useRef(shared?.url && !shared.text ? shared.url : '')
+  const loaded = library !== null
+  useEffect(() => {
+    const link = sharedLink.current
+    if (!link || !loaded) return
+    sharedLink.current = ''
+    void importYoutube(link)
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- once, when the library has loaded
+  }, [loaded])
+
+  /** A link dropped into the text box instead of a text: fetched like one put in the link field. */
+  const changeDraft = (value: string) => {
+    if (LINK_ONLY.test(value.trim())) {
+      setDraft('')
+      void importYoutube(value.trim())
+      return
+    }
+    setDraft(value)
   }
 
   const restore = useCallback(
@@ -172,7 +202,7 @@ export function useReadingLibrary({
 
   return {
     library, setLibrary, current, setCurrent,
-    draft, setDraft, title, setTitle, youtube, setYoutube, ytBusy, fileBusy, bookError, loadFailed,
+    draft, setDraft, changeDraft, title, setTitle, youtube, setYoutube, ytBusy, fileBusy, bookError, loadFailed,
     open, start, loadFile, addPhotoText, importBook, importYoutube, removeBook, remove, nextChapter,
   }
 }
