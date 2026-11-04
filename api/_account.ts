@@ -1,4 +1,5 @@
 import { del, get, put } from '@vercel/blob'
+import { createDoc, DocsError, docsMoved, isDocPath, readDoc, removeDoc, writeDoc } from './_docs.js'
 import { allowedIds } from './_allow.js'
 import { profileStatus, supabaseOn } from './_supabase.js'
 
@@ -31,8 +32,21 @@ export async function sha256(s: string): Promise<string> {
 /** The storage itself failed (not "nothing there"): a later try may work. */
 export class StorageError extends Error {}
 
-/** A blob's text, or null when there is none. A failing store throws StorageError. */
+/**
+ * A blob's text, or null when there is none. A failing store throws StorageError. The server's small documents (names,
+ * requests, blocks, reports, approval marks, account keys) are read from Supabase once migration 0010 has run (_docs.ts).
+ */
 export async function readText(path: string): Promise<string | null> {
+  if (isDocPath(path)) {
+    try {
+      const doc = await readDoc(path)
+      if (doc !== undefined) return doc
+    } catch (e) {
+      if (!(e instanceof DocsError)) throw e
+      // Supabase unreachable: until the move has finished the old file still holds it (an older sign-up's key, a name).
+      if (await docsMoved()) throw new StorageError('storage unavailable')
+    }
+  }
   try {
     const blob = await get(path, { access: 'private', useCache: false })
     if (!blob || blob.statusCode !== 200 || !blob.stream) return null
@@ -47,11 +61,41 @@ export const approvedPath = (id: string) => `access/approved/${id}.json`
 export const rejectedPath = (id: string) => `access/rejected/${id}.json`
 
 export async function writeJson(path: string, value: unknown) {
+  if (isDocPath(path) && (await writeDoc(path, JSON.stringify(value)).catch(unlessMoved))) return
   await put(path, JSON.stringify(value), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json' })
 }
 
+/** Writes the text only if there is none yet (the table and, until the move finished, the old file); false when there was. */
+export async function createText(path: string, text: string, contentType = 'application/json'): Promise<boolean> {
+  if (isDocPath(path)) {
+    const made = await createDoc(path, text).catch(unlessMoved)
+    if (made !== undefined) return made
+  }
+  try {
+    await put(path, text, { access: 'private', addRandomSuffix: false, allowOverwrite: false, contentType })
+    return true
+  } catch (e) {
+    if ((await readText(path)) !== null) return false
+    throw e
+  }
+}
+
 export async function removeBlob(path: string, strict = false) {
+  if (isDocPath(path)) {
+    await removeDoc(path).catch((error: unknown) => { if (strict) throw error })
+    return
+  }
   await del(path).catch((error: unknown) => { if (strict) throw error })
+}
+
+/**
+ * A Supabase failure on a document: until the move has finished the old file is still a valid place, so the caller
+ * writes there (undefined); after it, a storage failure (the endpoints answer 502 and the app tries again).
+ */
+async function unlessMoved(e: unknown): Promise<undefined> {
+  if (!(e instanceof DocsError)) throw e
+  if (await docsMoved()) throw new StorageError('storage unavailable')
+  return undefined
 }
 
 const remembered = new Map<string, { value: unknown; until: number }>()
@@ -139,7 +183,7 @@ export async function requireApproved(request: Request): Promise<Response | null
 export async function claimAccount(id: string, token: string): Promise<boolean> {
   if (await storedAuth(id)) return tokenMatches(id, token)
   const hash = await sha256(token)
-  await put(`sync/${id}/auth.txt`, hash, { access: 'private', addRandomSuffix: false, allowOverwrite: false, contentType: 'text/plain' }).catch(() => {})
+  await createText(`sync/${id}/auth.txt`, hash, 'text/plain').catch(() => false)
   remembered.delete(`auth:${id}`)
   return (await storedAuth(id)) === hash
 }

@@ -1,4 +1,5 @@
-import { list } from '@vercel/blob'
+import { listDocPaths } from './_docs.js'
+import { confirmedUser } from './_supabase.js'
 import { readText } from './_account.js'
 import type { Report } from './_reports.js'
 import { shareStore, SHARE_ID } from './share.js'
@@ -22,6 +23,24 @@ export async function ownerAuthorized(request: Request): Promise<boolean> {
   return diff === 0
 }
 
+/** The owner's address(es): OWNER_EMAIL (a Worker secret), several separated by commas. */
+const ownerEmails = () =>
+  (process.env.OWNER_EMAIL ?? '')
+    .split(',')
+    .map((e) => e.trim().toLowerCase())
+    .filter((e) => e.includes('@'))
+
+/**
+ * Whether the request is the owner signed in: a Supabase session whose confirmed email is OWNER_EMAIL. This opens the
+ * admin screen (approvals, AI levels, reports, the move to Supabase) without a secret to carry around.
+ */
+export async function isOwnerSession(request: Request): Promise<boolean> {
+  const owners = ownerEmails()
+  if (!owners.length) return false
+  const user = await confirmedUser(request)
+  return !!user && owners.includes(user.email.trim().toLowerCase())
+}
+
 const MAX_REPORTS = 200
 
 /** Reports of the last `days` days, newest first (at most 200). */
@@ -29,19 +48,14 @@ export async function listReports(days: number, now = Date.now()): Promise<Repor
   const found: Report[] = []
   for (let back = 0; back < days; back++) {
     const day = new Date(now - back * 86_400_000).toISOString().slice(0, 10)
-    let cursor: string | undefined
-    do {
-      const page = await list({ prefix: `reports/${day}/`, cursor })
-      for (const blob of page.blobs) {
-        const raw = await readText(blob.pathname).catch(() => null)
-        try {
-          if (raw) found.push(JSON.parse(raw) as Report)
-        } catch {
-          // A broken file is skipped; the others still show.
-        }
+    for (const path of await listDocPaths(`reports/${day}/`)) {
+      const raw = await readText(path).catch(() => null)
+      try {
+        if (raw) found.push(JSON.parse(raw) as Report)
+      } catch {
+        // A broken file is skipped; the others still show.
       }
-      cursor = page.hasMore ? page.cursor : undefined
-    } while (cursor)
+    }
   }
   return found.sort((x, y) => y.at.localeCompare(x.at)).slice(0, MAX_REPORTS)
 }

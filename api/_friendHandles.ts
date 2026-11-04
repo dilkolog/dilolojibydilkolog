@@ -1,5 +1,4 @@
-import { put } from '@vercel/blob'
-import { readText, removeBlob, writeJson } from './_account.js'
+import { createText, removeBlob, writeJson } from './_account.js'
 import { type InboxItem, deliver, readInbox, withInbox } from './_friendInbox.js'
 import { friendStore, readJson } from './_friendStore.js'
 import { blockedBy, ownCard } from './_friends.js'
@@ -9,7 +8,7 @@ import { blockedBy, ownCard } from './_friends.js'
 // found (an exact match: no listing, no e-mail, no real name), and a find only lets one send a *request*: the
 // other side sees it in their inbox and becomes a friend only by accepting (a code or an invite link, which
 // the owner handed out on purpose, still adds at once).
-// Kept in Blob files in both modes (a few hundred bytes each, no table or migration needed):
+// Kept as small documents (Supabase `server_docs` once migration 0010 has run, R2 files before; see _docs.ts):
 //   friends/handle/<name>.json   → { id }  (who holds the name)
 //   friends/handle-of/<id>.json  → { handle, findable }
 // ---------------------------------------------------------------------------
@@ -50,15 +49,7 @@ export async function setHandle(id: string, rawHandle: unknown, findable: unknow
 }
 
 /** Writes a file only if there is none yet; false when one was already there. */
-async function createJson(path: string, value: unknown): Promise<boolean> {
-  try {
-    await put(path, JSON.stringify(value), { access: 'private', addRandomSuffix: false, allowOverwrite: false, contentType: 'application/json' })
-    return true
-  } catch (e) {
-    if (await readText(path)) return false
-    throw e
-  }
-}
+const createJson = (path: string, value: unknown) => createText(path, JSON.stringify(value))
 
 /** Frees a name, but only while this account holds it: a name another account has since taken stays theirs. */
 export async function releaseHandle(handle: string, id: string, strict = false): Promise<void> {
