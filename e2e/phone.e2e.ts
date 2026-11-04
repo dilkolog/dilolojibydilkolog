@@ -1363,7 +1363,8 @@ test('lists: a new list opens on its own page, takes the words added there, and 
   expect(await contrastProblems(page), 'list page contrast').toEqual([])
   // Cards for this list: the round opens set to it.
   await page.locator('.wl-games').getByRole('button', { name: 'Kartlar' }).click()
-  await expect(page.locator('.study-lists').getByRole('button', { name: /Seyahat/ })).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('.study-scope', { hasText: 'Bir listeden' })).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('.study-list-pick')).toContainText('Seyahat')
   // Back on the words screen, the shelf shows the list.
   await openScreen(page, 'Kelimeler')
   await expect(page.locator('.wl-tile', { hasText: 'Seyahat' })).toContainText('1 kelime')
