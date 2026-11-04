@@ -6,7 +6,7 @@ import { LANGUAGE_NAME } from '../ui/labels'
 import { accessFetch } from '../data/access'
 import { aiConfig, CHEAP_FEATURES, costOf, type AiFeature, type AiModel } from './usage'
 import { cleanQuestions } from './quizClean'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PronTipsRequest, type PronTip, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PhotoWordsRequest, type PodcastRequest, type PodcastScript, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PronTipsRequest, type PronTip, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PhotoWordsRequest, type PhotoTextRequest, type PhotoText, type PodcastRequest, type PodcastScript, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -455,6 +455,35 @@ export async function wordsFromPhoto(apiKey: string, req: PhotoWordsRequest): Pr
   const out = await structured(apiKey, WordBatch, system, messages, 'low', 'photo_words')
   const seen = new Set(req.have.map((w) => w.toLocaleLowerCase(req.language)))
   return out.words.filter((w) => !seen.has(w.lemma.toLocaleLowerCase(req.language))).slice(0, req.count)
+}
+
+const PhotoPage = z.object({
+  found: z.boolean().describe('False when the photo shows no readable text in the target language.'),
+  title: z.string().describe('The heading on the page if there is one, else a short title (in the target language) for what the text is about; empty when nothing was found.'),
+  text: z.string().describe('The running text, exactly as written, paragraphs separated by a blank line; empty when nothing was found.'),
+})
+
+/** The running text of a photographed page (a book, a magazine, a notice), to be read in the reading screen. */
+export async function textFromPhoto(apiKey: string, req: PhotoTextRequest): Promise<PhotoText> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You transcribe the ${lang} text in a photo (a book or magazine page, a notice, a letter) so a learner can read it in a reading app.`,
+    'Copy the running text word for word, with its spelling, accents and punctuation; do not translate, correct, summarise or add anything. Join lines that belong to one paragraph and put a blank line between paragraphs; a word broken with a hyphen at the end of a line is written whole.',
+    'Leave out page numbers, running headers and footers, captions, prices and anything that is not part of the text. If part of the page is cut off or unreadable, transcribe what can be read and do not guess the rest.',
+    `If there is no readable ${lang} text in the photo, set found to false and leave title and text empty.`,
+  ].join('\n')
+  const messages: Anthropic.Beta.BetaMessageParam[] = [
+    {
+      role: 'user',
+      content: [
+        { type: 'image', source: { type: 'base64', media_type: req.mediaType, data: req.imageBase64 } },
+        { type: 'text', text: `Transcribe the ${lang} text of this page.` },
+      ],
+    },
+  ]
+  const out = await structured(apiKey, PhotoPage, system, messages, 'low', 'photo_text')
+  const text = out.text.trim()
+  return { found: out.found && text.length > 0, title: out.title.trim(), text }
 }
 
 const Podcast = z.object({

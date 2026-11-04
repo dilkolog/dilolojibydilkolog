@@ -508,6 +508,12 @@ export const PrintIcon = (p: P) => (
     <path d="M7 9V4.5h10V9M7 14h10v5.5H7z" />
   </Icon>
 )
+export const CameraIcon = (p: P) => (
+  <Icon {...p}>
+    <S d="M4.5 7.5h3l1.5-2.5h6l1.5 2.5h3A1.5 1.5 0 0 1 21 9v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18V9a1.5 1.5 0 0 1 1.5-1.5z" />
+    <circle cx="12" cy="13.2" r="3.4" />
+  </Icon>
+)
 export const StarIcon = (p: P) => (
   <Icon {...p}>
     <S d="m12 3.2 2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.6l-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z" />

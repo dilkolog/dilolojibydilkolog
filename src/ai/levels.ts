@@ -14,8 +14,8 @@ export const LEVEL_NAME: Record<AiLevel, string> = { kapali: 'Kapalı', kelime: 
 export const LEVEL_NOTE: Record<AiLevel, string> = {
   kapali: 'YZ özelliklerinin hiçbiri açık değil.',
   kelime: 'Kelime doldurma, öneriler, hafıza ipuçları ve okuma soruları açık.',
-  calisma: 'Kelime özelliklerine ek olarak cümle değerlendirme, ters çeviri, hikâye, günlük ve yorumlar açık. Monki sohbeti, fotoğraftan kelime ve mini podcast kapalı.',
-  tam: 'Her şey açık: Monki sohbeti, fotoğraftan kelime ve mini podcast dahil.',
+  calisma: 'Kelime özelliklerine ek olarak cümle değerlendirme, ters çeviri, hikâye, günlük ve yorumlar açık. Monki sohbeti, fotoğraftan kelime ve metin, mini podcast kapalı.',
+  tam: 'Her şey açık: Monki sohbeti, fotoğraftan kelime ve metin, mini podcast dahil.',
 }
 
 /** The lowest level that may use each feature. */
@@ -43,6 +43,7 @@ export const FEATURE_LEVEL: Record<AiFeature, AiLevel> = {
   chat: 'tam',
   monki: 'tam',
   photo_words: 'tam',
+  photo_text: 'tam',
   podcast: 'tam',
 }
 

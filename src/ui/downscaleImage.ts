@@ -23,3 +23,12 @@ export async function downscaleImage(file: Blob, max = MAX_SIDE): Promise<Blob> 
   bitmap.close()
   return new Promise((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('encode'))), 'image/jpeg', 0.85))
 }
+
+/** A blob as base64, without the data-URL prefix (what an image block of the AI request takes). */
+export const blobToBase64 = (blob: Blob) =>
+  new Promise<string>((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onerror = () => reject(reader.error)
+    reader.onload = () => resolve(String(reader.result).split(',')[1] ?? '')
+    reader.readAsDataURL(blob)
+  })

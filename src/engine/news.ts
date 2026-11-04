@@ -117,3 +117,36 @@ export function allowedArticle(link: string, hosts: readonly string[]): boolean 
     return false
   }
 }
+
+/** Host names a page fetch must never reach: this machine, a private network, a cloud's metadata service. */
+const PRIVATE_HOST = /^(localhost|.*\.localhost|.*\.local|.*\.internal|.*\.lan|.*\.home|.*\.arpa|metadata(\..*)?)$/i
+
+/**
+ * A learner's link to a page as a URL the server may fetch, or null: https only, a real host name
+ * (not an address written as numbers, not a private name), no user name or password in it, the usual port.
+ */
+export function publicPageUrl(link: string): URL | null {
+  let u: URL
+  try {
+    u = new URL(link.trim())
+  } catch {
+    return null
+  }
+  if (u.protocol !== 'https:' || u.username || u.password || (u.port && u.port !== '443')) return null
+  const host = u.hostname.replace(/\.$/, '')
+  // IPv4 / IPv6 literals (and the odd number-only forms) are refused outright; only names reach the fetch.
+  if (host.startsWith('[') || /^[\d.]+$/.test(host) || /^0x/i.test(host) || !host.includes('.') || PRIVATE_HOST.test(host)) return null
+  u.hash = ''
+  return u
+}
+
+/** A page's own title: the sharing title (og:title) when there is one, else <title>, with the site name after a dash dropped. */
+export function pageTitle(html: string): string {
+  const og = /<meta[^>]+property=["']og:title["'][^>]*>/i.exec(html)?.[0]
+  const fromOg = og && /content=["']([^"']*)["']/i.exec(og)?.[1]
+  const raw = fromOg || /<title[^>]*>([\s\S]*?)<\/title>/i.exec(html)?.[1] || ''
+  const title = stripTags(raw)
+  // "Article name | Site" / "Article name - Site": keep the article's name when it is long enough on its own.
+  const cut = /^(.{12,}?)\s+[|–—-]\s+[^|–—-]{2,40}$/.exec(title)?.[1]
+  return (cut ?? title).slice(0, 140)
+}

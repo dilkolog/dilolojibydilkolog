@@ -746,6 +746,45 @@ test('a signed-in account waits for approval: the account card says so, and ther
   await expect(page.getByText('Yönetici: hesap onayları')).toHaveCount(0)
 })
 
+/** A one-page PDF with these lines of text (Helvetica), built by hand: the reader's own pdf.js must read it. */
+function tinyPdf(lines: string[]): Buffer {
+  const stream = ['BT', '/F1 12 Tf', ...lines.map((l, i) => `1 0 0 1 72 ${750 - i * 14} Tm (${l}) Tj`), 'ET'].join('\n')
+  const objects = [
+    '<< /Type /Catalog /Pages 2 0 R >>',
+    '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
+    '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>',
+    `<< /Length ${stream.length} >>\nstream\n${stream}\nendstream`,
+    '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>',
+  ]
+  let out = '%PDF-1.4\n'
+  const offsets: number[] = []
+  objects.forEach((o, i) => {
+    offsets.push(out.length)
+    out += `${i + 1} 0 obj\n${o}\nendobj\n`
+  })
+  const xref = out.length
+  out += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n${offsets.map((o) => `${String(o).padStart(10, '0')} 00000 n \n`).join('')}trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`
+  return Buffer.from(out, 'latin1')
+}
+
+test('reading: a PDF file and a web page link both become texts to read', async ({ page }) => {
+  await startWithSamples(page)
+  await approveAccount(page)
+  await page.route(
+    (u) => u.pathname === '/api/news' && u.searchParams.has('url'),
+    (r) => r.fulfill({ json: { title: 'Un billet de blog', text: 'Le marché ouvre tôt le samedi. Les gens achètent du pain et du fromage.', url: 'https://blog.example.fr/billet' } }),
+  )
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Dosya (PDF, Word, metin, alt yazı)').setInputFiles({ name: 'le_chat.pdf', mimeType: 'application/pdf', buffer: tinyPdf(['Le chat dort sur le canape depuis le matin et ne', 'veut pas se lever.']) })
+  await expect(page.getByLabel('Metin', { exact: true })).toHaveValue('Le chat dort sur le canape depuis le matin et ne veut pas se lever.', { timeout: 20_000 })
+  await expect(page.getByLabel('Başlık')).toHaveValue('le chat')
+  await page.getByLabel('Metin', { exact: true }).fill('')
+  const link = page.getByLabel('Web sayfası ya da YouTube bağlantısı')
+  await link.fill('https://blog.example.fr/billet')
+  await page.getByRole('button', { name: 'Metni getir' }).click()
+  await expect(page.locator('.reader')).toContainText('Le marché ouvre tôt le samedi.')
+})
+
 test('reading: the forms list finds a reflexive compound tense and lights the form\'s sentence in the text', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Okuma')

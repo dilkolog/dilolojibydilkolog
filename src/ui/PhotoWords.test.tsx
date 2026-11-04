@@ -32,7 +32,7 @@ vi.mock('../ai', async (orig) => ({
     return result
   },
 }))
-vi.mock('./downscaleImage', () => ({ downscaleImage: async () => new Blob(['jpeg-bytes'], { type: 'image/jpeg' }) }))
+vi.mock('./downscaleImage', async (orig) => ({ ...(await orig<typeof import('./downscaleImage')>()), downscaleImage: async () => new Blob(['jpeg-bytes'], { type: 'image/jpeg' }) }))
 const { PhotoWords } = await import('./PhotoWords')
 
 let root: ReturnType<typeof createRoot> | undefined

@@ -4,7 +4,7 @@ import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
 import { reportError } from '../data/errorReport'
 import { type TargetLanguage } from '../engine/types'
 import type { SharedRead } from './incoming'
-import { importEpub, textOfFile, youtubeText } from './readingImport'
+import { importDocument, importEpub, isDocumentFile, isYoutubeLink, pageText, textOfFile, youtubeText } from './readingImport'
 import { undoable } from './toastFeed'
 
 /** What the reader's own state takes from a library that has just loaded: the open text and the words marked before. */
@@ -40,6 +40,7 @@ export function useReadingLibrary({
   const [title, setTitle] = useState(shared?.title ?? '')
   const [youtube, setYoutube] = useState(shared?.url && !shared.text ? shared.url : '')
   const [ytBusy, setYtBusy] = useState(false)
+  const [fileBusy, setFileBusy] = useState(false)
   const [bookError, setBookError] = useState<{ ok: boolean; text: string } | null>(null)
   const [loadFailed, setLoadFailed] = useState(false)
 
@@ -82,11 +83,37 @@ export function useReadingLibrary({
     await open(item)
   }
 
-  /** A subtitle (.srt/.vtt) or plain-text file goes into the draft; subtitles are cleaned up first. */
+  /**
+   * A subtitle (.srt/.vtt) or plain-text file goes into the draft; subtitles are cleaned up first. A Word or PDF
+   * file too when it is short; a long one becomes a book in parts, straight into the library.
+   */
   const loadFile = async (file: File) => {
-    const loaded = textOfFile(file.name, await file.text())
-    setDraft(loaded.text)
-    setTitle(loaded.title)
+    setBookError(null)
+    if (!isDocumentFile(file.name)) {
+      const loaded = textOfFile(file.name, await file.text())
+      setDraft(loaded.text)
+      setTitle(loaded.title)
+      return
+    }
+    setFileBusy(true)
+    try {
+      const got = await importDocument(db, file, language)
+      if ('draft' in got) {
+        setDraft(got.draft.text)
+        setTitle(got.draft.title)
+        return
+      }
+      if (got.texts.length) setLibrary((lib) => [...got.texts, ...(lib ?? [])])
+      setBookError(got.note)
+    } finally {
+      setFileBusy(false)
+    }
+  }
+
+  /** Text read off photos joins the draft (after what is there), to look over before reading. */
+  const addPhotoText = (text: string, photoTitle: string) => {
+    setDraft((d) => (d.trim() ? `${d.trim()}\n\n${text}` : text))
+    setTitle((t) => t || photoTitle)
   }
 
   /** An EPUB becomes one library entry per chapter, read in order. */
@@ -98,12 +125,12 @@ export function useReadingLibrary({
     setBookError(note)
   }
 
-  /** A YouTube video's subtitles in this language, as a reading text with a link back to the video. */
+  /** A link: a YouTube video's subtitles in this language, or a web page's main text, as a reading text with a link back. */
   const importYoutube = async () => {
     setBookError(null)
     setYtBusy(true)
     try {
-      const got = await youtubeText(youtube, language)
+      const got = isYoutubeLink(youtube) ? await youtubeText(youtube, language) : await pageText(youtube, language)
       if ('note' in got) {
         setBookError(got.note)
         return
@@ -113,7 +140,7 @@ export function useReadingLibrary({
       setYoutube('')
       await open(got.item)
     } catch {
-      setBookError({ ok: false, text: 'Altyazı alınamadı; internet bağlantını kontrol et.' })
+      setBookError({ ok: false, text: 'Getirilemedi; internet bağlantını kontrol et.' })
     } finally {
       setYtBusy(false)
     }
@@ -145,7 +172,7 @@ export function useReadingLibrary({
 
   return {
     library, setLibrary, current, setCurrent,
-    draft, setDraft, title, setTitle, youtube, setYoutube, ytBusy, bookError, loadFailed,
-    open, start, loadFile, importBook, importYoutube, removeBook, remove, nextChapter,
+    draft, setDraft, title, setTitle, youtube, setYoutube, ytBusy, fileBusy, bookError, loadFailed,
+    open, start, loadFile, addPhotoText, importBook, importYoutube, removeBook, remove, nextChapter,
   }
 }

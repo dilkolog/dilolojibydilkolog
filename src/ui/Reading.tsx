@@ -136,8 +136,8 @@ export function ReadingScreen({
 
   const {
     library, setLibrary, current, setCurrent,
-    draft, setDraft, title, setTitle, youtube, setYoutube, ytBusy, bookError, loadFailed,
-    open, start, loadFile, importBook, importYoutube, removeBook, remove, nextChapter,
+    draft, setDraft, title, setTitle, youtube, setYoutube, ytBusy, fileBusy, bookError, loadFailed,
+    open, start, loadFile, addPhotoText, importBook, importYoutube, removeBook, remove, nextChapter,
   } = useReadingLibrary({
     db,
     language,
@@ -307,7 +307,9 @@ export function ReadingScreen({
         onYoutube={setYoutube}
         onFetchYoutube={() => void importYoutube()}
         ytBusy={ytBusy}
+        fileBusy={fileBusy}
         bookError={bookError}
+        onPhotoText={addPhotoText}
       />
       </>
     )

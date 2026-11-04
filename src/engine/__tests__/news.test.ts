@@ -65,3 +65,17 @@ describe('news parsing', () => {
     expect(decodeEntities('&Eacute;t&eacute; &ndash; &iquest;qu&eacute;? &ntilde; &Ntilde; &uuml; &mdash; &unknown;')).toBe('Été – ¿qué? ñ Ñ ü — &unknown;')
   })
 })
+
+describe('a page the learner links to', async () => {
+  const { pageTitle, publicPageUrl } = await import('../news')
+  it('takes only public https pages by name', () => {
+    expect(publicPageUrl(' https://www.lemonde.fr/a#b ')?.href).toBe('https://www.lemonde.fr/a')
+    for (const bad of ['http://a.fr/', 'https://localhost/', 'https://a.localhost/', 'https://192.168.1.1/', 'https://0x7f000001/', 'https://[fe80::1]/', 'https://intranet/', 'https://x.internal/', 'https://u@a.fr/', 'https://a.fr:444/']) expect(publicPageUrl(bad), bad).toBeNull()
+  })
+  it('names the page by its sharing title, else its title without the site name', () => {
+    expect(pageTitle('<meta property="og:title" content="L&#39;été en ville"><title>x</title>')).toBe("L'été en ville")
+    expect(pageTitle('<title>Un article assez long – Le Site</title>')).toBe('Un article assez long')
+    expect(pageTitle('<title>Court | Site</title>')).toBe('Court | Site')
+    expect(pageTitle('<p>none</p>')).toBe('')
+  })
+})

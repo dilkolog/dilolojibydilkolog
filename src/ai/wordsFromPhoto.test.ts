@@ -48,3 +48,18 @@ describe('miniPodcast', () => {
     expect(sent.messages[0].content).toContain('yemek')
   })
 })
+
+describe('textFromPhoto', () => {
+  beforeEach(() => parse.mockReset())
+
+  it('sends the page as an image and brings back its text, or nothing found', async () => {
+    const { textFromPhoto } = await import('./claude')
+    parse.mockResolvedValue({ parsed_output: { found: true, title: ' Chapitre ', text: ' Il était une fois. ' }, stop_reason: 'end_turn', usage: { input_tokens: 5, output_tokens: 5 } })
+    expect(await textFromPhoto('key', { language: 'fr', imageBase64: 'QUJD', mediaType: 'image/jpeg' })).toEqual({ found: true, title: 'Chapitre', text: 'Il était une fois.' })
+    const sent = parse.mock.calls[0][0]
+    expect(sent.messages[0].content[0]).toEqual({ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: 'QUJD' } })
+    expect(sent.system).toContain('word for word')
+    parse.mockResolvedValue({ parsed_output: { found: true, title: '', text: '   ' }, stop_reason: 'end_turn', usage: { input_tokens: 5, output_tokens: 5 } })
+    expect((await textFromPhoto('key', { language: 'fr', imageBase64: 'QUJD', mediaType: 'image/jpeg' })).found).toBe(false)
+  })
+})
