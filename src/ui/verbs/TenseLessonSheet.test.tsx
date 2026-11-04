@@ -32,6 +32,9 @@ describe('TenseInfoButton', () => {
     expect(dialog).toBeTruthy()
     for (const h of ['Ne zaman', 'Nasıl kurulur', 'Örnekler', 'Dikkat']) expect(dialog.textContent).toContain(h)
     expect(dialog.querySelectorAll('button[aria-label^="Dinle:"]').length).toBeGreaterThanOrEqual(2)
+    // The fine points, folded: participle agreement is one of them.
+    const deep = [...dialog.querySelectorAll('.tg-deep-item > summary')].map((s) => s.textContent)
+    expect(deep).toContain('Ortaç uyumu (en ince kural)')
   })
 
   it('opens a lesson for a Spanish tense too', () => {

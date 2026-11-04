@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { loadTenses } from '../../data/tenseData'
 import { TENSE_LESSON } from '../../data/tenseLesson'
 import { TENSE_LESSON_MORE } from '../../data/tenseLessonMore'
+import { TENSE_LESSON_DEEP } from '../../data/tenseLessonDeep'
 import { conjugateTense, personsOf, subjectLabel, tensesLoaded, type Tense } from '../../engine/tenses'
 import { CloseIcon, InfoIcon, SpeakerIcon } from '../icons'
 import { speak } from '../speech'
@@ -76,6 +77,7 @@ export function TenseInfoButton({ language, tense }: { language: LabLanguage; te
 export function TenseLessonSheet({ language, tense, onClose, onVerbs }: { language: LabLanguage; tense: Tense; onClose: () => void; onVerbs?: () => void }) {
   const guide = TENSE_LESSON[tense]
   const more = TENSE_LESSON_MORE[tense]
+  const deep = TENSE_LESSON_DEEP[tense] ?? []
   const closeRef = useRef<HTMLButtonElement>(null)
   const [ready, setReady] = useState(() => tensesLoaded(language))
   useEffect(() => {
@@ -213,6 +215,38 @@ export function TenseLessonSheet({ language, tense, onClose, onVerbs }: { langua
             ))}
           </ul>
         </section>
+        {deep.length > 0 && (
+          <section className="tg-section tg-deep" aria-labelledby="tense-deep-title">
+            <h3 id="tense-deep-title" className="subhead">
+              Ayrıntılar
+            </h3>
+            {deep.map((d) => (
+              <details key={d.title} className="tg-deep-item">
+                <summary>{d.title}</summary>
+                <ul className="tg-list">
+                  {d.points.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
+                {d.examples && (
+                  <ul className="tg-examples">
+                    {d.examples.map((x) => (
+                      <li key={x.text}>
+                        <button type="button" className="icon-btn icon-btn-sm" onClick={() => speak(x.text, language)} aria-label={`Dinle: ${x.text}`}>
+                          <SpeakerIcon size={16} />
+                        </button>
+                        <span className="tg-ex" lang={language}>
+                          {x.text}
+                        </span>
+                        <span className="small muted">{x.tr}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </details>
+            ))}
+          </section>
+        )}
         <p className="note tg-tip">
           <strong>Aklında kalsın:</strong> {guide.tip}
         </p>
