@@ -7,6 +7,7 @@ import { conjugateTense, labTensesOf, tensesOf, tenseVerbs, type Tense } from '.
 import { addToReview, awardLabXp, dueItems, labKey, pushRecent, recordCheck, recordForm, openSlips, recordRound, recordSlip, recordTourDay, toggleFavorite } from '../../engine/labProgress'
 import { localDate } from '../../engine/progress'
 import { diagnose } from '../../engine/formDiagnosis'
+import { nextIrregular } from '../../engine/irregularNext'
 import type { Scheduler } from '../../engine/scheduler'
 import type { UserWordState, VocabularyEntry } from '../../engine/types'
 import { EnglishVerbs } from './EnglishVerbs'
@@ -127,6 +128,12 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
   useEffect(() => {
     if (verb && labReady && ready && lab.recent[0] !== verb) update((l) => pushRecent(l, verb))
   }, [verb, labReady, ready]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  /** After a finished round: the next irregular verb in this tense, most common first (the tense stays). */
+  const irregularNext = useMemo(
+    () => (verb && ready ? nextIrregular(language, verb, current, [...COMMON[language].map(([v]) => v), ...byFrequency.slice(0, 600)]) : undefined),
+    [language, verb, current, byFrequency, ready],
+  )
 
   if (!ready || !labReady || !verb)
     return (
@@ -311,6 +318,8 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 timed={<TimedTab language={language} byFrequency={byFrequency} levels={levels} vocabulary={vocabulary} states={states} onAnswer={onAnswer} />}
                 byFrequency={byFrequency}
                 onNewVerb={newVerbInTense}
+                onNextIrregular={irregularNext ? () => setPicked(irregularNext) : undefined}
+                nextIrregular={irregularNext}
               />
             ) : tab === 'slips' ? (
               <SlipsTab

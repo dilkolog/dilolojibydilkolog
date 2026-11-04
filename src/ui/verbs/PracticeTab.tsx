@@ -81,6 +81,8 @@ export function PracticeTab({
   initialMode = 'type',
   byFrequency,
   onNewVerb,
+  onNextIrregular,
+  nextIrregular,
 }: {
   language: LabLanguage
   verb: string
@@ -102,6 +104,9 @@ export function PracticeTab({
   byFrequency: readonly string[]
   /** A random other verb that has this tense: offered when a round is done. */
   onNewVerb?: () => void
+  /** Goes on to the next irregular verb in the same tense (`nextIrregular`). */
+  onNextIrregular?: () => void
+  nextIrregular?: string
 }) {
   const [mode, setMode] = useState<Mode>(initialMode)
   const pickMode = (m: Mode) => {
@@ -270,12 +275,17 @@ export function PracticeTab({
           )}
           <div className="row gap-2">
             {/* A round with every form right goes on to another verb in the same tense; a bad one is tried again first. */}
+            {onNextIrregular && nextIrregular && (
+              <button type="button" className={wrong === 0 ? 'btn' : 'btn btn-quiet'} onClick={onNextIrregular} autoFocus={wrong === 0}>
+                Düzensizlerden devam et: <span lang={language}>{nextIrregular}</span>
+              </button>
+            )}
             {onNewVerb && (
-              <button type="button" className={wrong === 0 ? 'btn' : 'btn btn-quiet'} onClick={onNewVerb} autoFocus={wrong === 0}>
+              <button type="button" className={wrong === 0 && !onNextIrregular ? 'btn' : 'btn btn-quiet'} onClick={onNewVerb} autoFocus={wrong === 0 && !onNextIrregular}>
                 Yeni fiil
               </button>
             )}
-            <button type="button" className={onNewVerb && wrong === 0 ? 'btn btn-quiet' : 'btn'} onClick={reset} autoFocus={!onNewVerb || wrong > 0}>
+            <button type="button" className={(onNewVerb || onNextIrregular) && wrong === 0 ? 'btn btn-quiet' : 'btn'} onClick={reset} autoFocus={!(onNewVerb || onNextIrregular) || wrong > 0}>
               Tekrar
             </button>
             {nextTense !== tense && (
