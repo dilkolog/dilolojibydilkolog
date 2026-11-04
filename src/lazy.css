@@ -1098,7 +1098,9 @@ section:has(> .media-split) { container-type: inline-size; }
 /* Advanced settings (settingsWidgets.tsx Extra, `advanced` rows): out of sight until the group's switch is on; a search shows them all. */
 .settings-page:not(.is-searching) .settings-pane:not([data-more]) [data-advanced] { display: none; }
 .settings-extra { display: contents; }
-.settings-more-bar { padding: 0.125rem 1rem; border: 1px solid var(--rule); border-radius: var(--r-lg); background: var(--surface-2); }
+.settings-more-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.75rem 1.25rem; border: 1px solid var(--rule); border-radius: var(--r-lg); background: var(--surface-2); cursor: pointer; }
+.settings-more-bar strong { font-size: var(--t-sm); font-weight: 600; }
+.settings-more-bar .switch { flex: none; }
 .settings-reset { margin: 0; text-align: center; }
 .settings-page.is-searching :is(.settings-more-bar, .settings-reset) { display: none; }
 
