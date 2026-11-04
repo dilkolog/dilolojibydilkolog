@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest'
+import { State } from 'ts-fsrs'
+import { createScheduler } from '../scheduler'
 import type { PlanItem } from '../dailyPlan'
 import { newWordState } from '../review'
 import { createRng } from '../rng'
@@ -59,7 +61,10 @@ describe('session', () => {
   })
 
   it('retries in a different format', () => {
-    const state = { ...newWordState(decision, new Date()), lastExerciseType: 'mc_meaning' as const }
+    const state = newWordState(decision, new Date())
+    state.lastExerciseType = 'mc_meaning'
+    state.skills.recognition = { ...createScheduler({ fuzz: false }).newCard(new Date()), reps: 4, stability: 8, state: State.Review }
+    state.skills.recall = { ...state.skills.recognition }
     const r = retryItem(item('en:decision'), decision, state, createRng(1))
     expect(r.exerciseType).not.toBe('mc_meaning')
     expect(r.skill).toBe('recognition')

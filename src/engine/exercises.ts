@@ -6,6 +6,7 @@ import { detectIntrusion, trapGlosses, type Intrusion, type IntrusionSources } f
 import { pick, shuffle, type Rng } from './rng'
 import { sweetSpot } from './sentenceFit'
 import { familyRelative, suffixVariants } from './morphology'
+import { contextReady } from './mastery'
 import type {
   Direction,
   EngineOptions,
@@ -13,6 +14,7 @@ import type {
   ExerciseType,
   Example,
   Skill,
+  UserWordState,
   VocabularyEntry,
   Verdict,
 } from './types'
@@ -165,10 +167,23 @@ const GLOSS_QUESTIONS: readonly ExerciseType[] = ['typed_translation', 'speak_wo
 export const blockedByPrefs = (type: ExerciseType, entry: VocabularyEntry, opts: EngineOptions = {}) =>
   !!opts.off?.includes(type) || (!!opts.skipLong && GLOSS_QUESTIONS.includes(type) && hasLongGloss(entry))
 
-export function exerciseTypesFor(skill: Skill, entry: VocabularyEntry, opts: EngineOptions = {}): ExerciseType[] {
+/**
+ * The question types that can be asked for a skill. With `state` given (`null` for a word with no
+ * history yet), sentence questions are left out until the word is known well (`contextReady`):
+ * the first weeks go to plain meaning ⇄ word questions. Without it nothing is held back (games,
+ * availability checks).
+ */
+export function exerciseTypesFor(
+  skill: Skill,
+  entry: VocabularyEntry,
+  opts: EngineOptions = {},
+  state?: UserWordState | null,
+): ExerciseType[] {
+  const ready = state === undefined || contextReady(state)
   return (Object.keys(EXERCISES) as ExerciseType[]).filter(
     (t) =>
       EXERCISES[t].skill === skill &&
+      (ready || EXERCISES[t].direction !== 'context') &&
       EXERCISES[t].applicable(entry) &&
       (!EXERCISES[t].requiresAI || opts.ai) &&
       (!EXERCISES[t].requiresSpeech || opts.speech) &&

@@ -23,10 +23,10 @@ export function unlockedSkills(state: UserWordState | undefined, entry: Vocabula
   const basis = recallAsked ? recall : recognition
   const recalledOnce = !!basis && basis.reps > 0 && basis.stability >= 1
   const recallHeld = basis?.state === State.Review
-  if (recalledOnce && exerciseTypesFor('gender', entry, opts).length) out.push('gender')
-  if (recallHeld && exerciseTypesFor('listening', entry, opts).length) out.push('listening')
-  if (recallHeld && exerciseTypesFor('collocation', entry, opts).length) out.push('collocation')
-  if (recallHeld && exerciseTypesFor('production', entry, opts).length) out.push('production')
+  if (recalledOnce && exerciseTypesFor('gender', entry, opts, state).length) out.push('gender')
+  if (recallHeld && exerciseTypesFor('listening', entry, opts, state).length) out.push('listening')
+  if (recallHeld && exerciseTypesFor('collocation', entry, opts, state).length) out.push('collocation')
+  if (recallHeld && exerciseTypesFor('production', entry, opts, state).length) out.push('production')
   return out
 }
 
@@ -92,8 +92,14 @@ export function pickExerciseType(
   rng: Rng,
   opts: EngineOptions = {},
 ): ExerciseType {
-  const types = exerciseTypesFor(skill, entry, opts)
-  if (!types.length) throw new Error(`no exercise for ${skill} on ${entry.id}`)
+  // Sentence questions wait until the word is known well (contextReady); a skill with nothing
+  // else to ask keeps them rather than leaving the caller without a question.
+  const types = exerciseTypesFor(skill, entry, opts, state ?? null)
+  if (!types.length) {
+    const any = exerciseTypesFor(skill, entry, opts)
+    if (!any.length) throw new Error(`no exercise for ${skill} on ${entry.id}`)
+    types.push(...any)
+  }
   // A phrase or a term of several words: its meaning is easy to pick among four by elimination,
   // so it is recognised in a sentence instead (its own example) whenever there is one.
   const multiword = entry.partOfSpeech === 'phrase' || entry.lemma.trim().includes(' ')
