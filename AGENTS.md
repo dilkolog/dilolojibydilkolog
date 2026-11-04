@@ -1,7 +1,7 @@
 # Diloloji — ajanlar için devir notu
 
 Bu dosya, projede çalışacak bir yapay zekâ ajanının (Claude Code'dan devralan) bilmesi gerekenleri toplar.
-Son güncelleme: 2026-11-02.
+Son güncelleme: 2026-11-04.
 
 ## Kullanıcıyla çalışma kuralları
 - **Kullanıcıya her yanıt Türkçe.** Özet, rapor, liste, soru, ara notlar dahil. İngilizce özet verme (kullanıcı birkaç kez itiraz etti).
@@ -82,6 +82,9 @@ Yerel WebKit indirmesi ağ politikası nedeniyle 403 veriyor; GitHub CI'da tam p
 - Çeviri: sunucu `api/translate.ts` (DeepL, anahtar Vercel ortam değişkeni `DEEPL_AUTH_KEY`; anahtarı asla koda ya da sohbete yazma). Her çeviri cihazdaki **çeviri belleğinde** (`meta 'translations'`, `src/engine/translationMemory.ts`) saklanır, yedeğe ve eşitlemeye girer; aynı cümle bir daha sunucuya gitmez. Kotayı koruyan kod (sırayla çeviri, yalnızca ekrana gelen paragraf) bu deseni bozmasın.
 - **Ortam değişkenleri ve Node:** README'deki tabloya bak; Node `>=22.12` (`engines`, `.nvmrc` 24). `pw.tmp.config.ts` makineye özeldir ve izlenmez (`.gitignore`).
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
+
+## Arka uç turu (2026-11-04)
+- **Sayaçlar Supabase'te, kesin (1. adım):** `supabase/migrations/0009_usage_counters.sql` (`usage_counters` + `counter_used/add/take/prune`; RLS açık politika yok, işlevler yalnızca `service_role`). `api/_quota.ts` önce tabloyu kullanır: `counter_take` kontrol ve sayımı tek ifadede yapar (aynı anda gelen istekler sınırı birlikte aşamaz), sayı her örnekte aynıdır (önbellek yok). **Göç çalışana kadar** (işlev 404/PGRST202) ya da Supabase'siz derlemede, ya da test kendi `store`unu verince eski R2 dosyaları (`quota/<ad>/<gün>/<id>.json`, yaklaşık) kullanılır; tablo 5 dk sonra yeniden sorulur. Supabase hata verirse çağrı yine geçer (kota asla çeviriyi/YZ'yi düşürmez). Yeni `quotaTake` (al ya da reddet); `overDaily` onu kullanır. Çeviri, ses ve YZ parası bilerek başarıdan sonra sayılır (başarısız istek haktan düşmesin). Saatlik görev 03:00 UTC'de `counter_prune(120)`. SQL PGlite'ta denendi (`scratchpad`, kalıcı değil). **Sahibi SQL Editor'de 0009'u çalıştırmalı.** Test: `src/data/apiQuotaTable.test.ts`.
 
 ## YZ artık sitenin anahtarıyla (2026-11-02)
 - **Kullanıcı Anthropic anahtarı girmez.** Ayarlar → Araçlar → YZ yardımcısı'ndaki anahtar alanı kalktı; `src/ai/claude.ts` SDK'yı sitenin kendi ucuna yöneltir (`baseURL /api/ai`, `fetch` = `accessFetch('/api/ai')`, hesap kimliğiyle) ve gerçek anahtar yalnızca Worker'da durur. `apiKey` parametresi artık yalnızca "YZ açık" işaretidir (`'account'`, `data/aiAccess.ts` `AI_ACCOUNT`): hiçbir yere gönderilmez. YZ yalnızca onaylı hesapta ve sunucuda anahtar varsa açık (`useAppSettings`: `access.approved && aiAvailable()`); eski kayıtlı kullanıcı anahtarı açılışta silinir.
