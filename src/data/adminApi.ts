@@ -74,6 +74,10 @@ export const loadPeople = (filter: PeopleFilter, q = '') =>
 export const changePerson = (user: string, change: { change?: 'approve' | 'reject' | 'wait'; level?: AiLevel | null }) =>
   adminFetch<{ ok: true }>('', { method: 'POST', body: JSON.stringify({ action: 'person', user, ...change }) })
 
+/** Deletes a person's account; `confirm` is their e-mail, typed by the owner. */
+export const deletePerson = (user: string, confirm: string) =>
+  adminFetch<{ ok: true }>('', { method: 'POST', body: JSON.stringify({ action: 'person-delete', user, confirm }) })
+
 export const loadReports = (days = 7) => adminFetch<{ reports: OwnerReport[] }>(`?view=reports&days=${days}`)
 
 export const unpublishSet = (id: string) => adminFetch<{ ok: boolean }>('', { method: 'POST', body: JSON.stringify({ action: 'unpublish', id }) })

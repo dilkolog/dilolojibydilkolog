@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState, type FormEvent } from 'react'
 import {
   AdminError,
   changePerson,
+  deletePerson,
   loadPeople,
   loadReports,
   loadSystem,
@@ -15,6 +16,7 @@ import {
   type SystemState,
 } from '../data/adminApi'
 import { CheckCircleIcon, ChevronRightIcon, SearchIcon } from './icons'
+import { ConfirmDialog } from './Dialog'
 import { PageHeader } from './PageHeader'
 import { Sticker } from './Sticker'
 import { Select, type SelectOption } from './Select'
@@ -76,6 +78,7 @@ function PeopleCard({ tell }: { tell: Tell }) {
   const [data, setData] = useState<{ people: Person[]; levels: boolean; pending: number } | null>(null)
   const [error, setError] = useState('')
   const [busy, setBusy] = useState<string | null>(null)
+  const [deleting, setDeleting] = useState<Person | null>(null)
 
   const load = useCallback(async () => {
     setError('')
@@ -99,6 +102,20 @@ function PeopleCard({ tell }: { tell: Tell }) {
       await load()
     } catch (e) {
       showToast(`Olmadı: ${failText(e)}`, undefined, 5000, 'info')
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  const remove = async (person: Person, typed: string) => {
+    setBusy(person.id)
+    try {
+      await deletePerson(person.id, typed)
+      setDeleting(null)
+      showToast(`${person.email} hesabı silindi.`)
+      await load()
+    } catch (e) {
+      showToast(`Silinemedi: ${failText(e)}`, undefined, 6000, 'info')
     } finally {
       setBusy(null)
     }
@@ -184,16 +201,64 @@ function PeopleCard({ tell }: { tell: Tell }) {
                       Beklemeye al
                     </button>
                   )}
+                  <button type="button" className="btn btn-sm btn-quiet admin-delete" disabled={busy === p.id} onClick={() => setDeleting(p)}>
+                    Hesabı sil
+                  </button>
                 </div>
               </li>
             )
           })}
         </ul>
       )}
+      {deleting && <DeletePerson person={deleting} busy={busy === deleting.id} onDelete={(typed) => void remove(deleting, typed)} onCancel={() => setDeleting(null)} />}
       {data && !data.levels && <p className="small muted">YZ düzeyi seçmek için Supabase'te 0007 göçünü çalıştır.</p>}
       {data && data.people.length >= 200 && <p className="text-xs muted">En yeni 200 kişi gösteriliyor; aramayla daralt.</p>}
       {data && data.people.length > 0 && <p className="text-xs muted">Değişiklik birkaç dakika içinde her yerde geçerli olur.</p>}
     </section>
+  )
+}
+
+/** Deleting someone's account asks for their e-mail, typed: the server checks it too. */
+function DeletePerson({ person, busy, onDelete, onCancel }: { person: Person; busy: boolean; onDelete: (typed: string) => void; onCancel: () => void }) {
+  const [typed, setTyped] = useState('')
+  const [wrong, setWrong] = useState(false)
+  const matches = typed.trim().toLowerCase() === person.email.trim().toLowerCase()
+  const confirm = () => {
+    if (busy) return
+    if (!matches) return setWrong(true)
+    onDelete(typed)
+  }
+  return (
+    <ConfirmDialog title={`${nameOf(person)} hesabı silinsin mi?`} confirmLabel={busy ? 'Siliniyor…' : 'Hesabı sil'} danger onConfirm={confirm} onCancel={onCancel}>
+      <div className="stack admin-delete-body">
+        <p className="small">
+          Kelimeleri, cevapları, okuma metinleri, dosyaları, arkadaşlıkları ve hatırlatmaları sunucudan silinir; giriş yapamaz. Geri alınamaz. Cihazındaki kopya bir sonraki açılışa dek kalır.
+        </p>
+        <label className="stack admin-delete-field">
+          <span className="small">
+            Onaylamak için e-postasını yaz: <strong>{person.email}</strong>
+          </span>
+          <input
+            className="input"
+            type="email"
+            value={typed}
+            autoComplete="off"
+            spellCheck={false}
+            aria-invalid={wrong && !matches}
+            onChange={(e) => {
+              setTyped(e.target.value)
+              setWrong(false)
+            }}
+            onKeyDown={(e) => e.key === 'Enter' && confirm()}
+          />
+        </label>
+        {wrong && !matches && (
+          <p className="small admin-delete-wrong" role="alert">
+            E-posta tutmuyor.
+          </p>
+        )}
+      </div>
+    </ConfirmDialog>
   )
 }
 
