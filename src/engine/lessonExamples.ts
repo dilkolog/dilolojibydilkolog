@@ -179,6 +179,9 @@ const PATTERNS: Record<string, RegExp> = {
 /** Topics that have a pattern (the others have no "your own sentences" section unless they teach a tense). */
 export const hasPattern = (topic: string): boolean => topic in PATTERNS
 
+/** The pattern of a topic that is not a tense (the content checks count its matches in a text). */
+export const topicPattern = (topic: string): RegExp | undefined => PATTERNS[topic]
+
 /** The words of a sentence worth showing: not a fragment, not a paragraph. */
 const FIT = { minWords: 4, maxWords: 30, maxChars: 200 }
 

@@ -1,0 +1,22 @@
+{"job":"es-grammar-0001","results":[
+{"id":"es-g-000001","answer":"es","single":true},
+{"id":"es-g-000002","answer":"son","single":true},
+{"id":"es-g-000003","answer":"somos","single":true},
+{"id":"es-g-000004","answer":"está","single":true},
+{"id":"es-g-000005","answer":"estoy","single":true},
+{"id":"es-g-000006","answer":"está","single":true},
+{"id":"es-g-000007","answer":"estaban","single":false,"note":"No tense cue: están, estaban and estuvieron are all correct"},
+{"id":"es-g-000008","answer":"está","single":true},
+{"id":"es-g-000009","answer":"es","single":true},
+{"id":"es-g-000010","answer":"estoy","single":true},
+{"id":"es-g-000011","answer":"está","single":true},
+{"id":"es-g-000012","answer":"está","single":true,"note":"Context points to 'es aburrido' (boring); 'está aburrido' is grammatical but contradicts the context"},
+{"id":"es-g-000013","answer":"es","single":true},
+{"id":"es-g-000014","answer":"es","single":true},
+{"id":"es-g-000015","answer":"es","single":false,"note":"'será' (future) is equally correct with 'mañana'"},
+{"id":"es-g-000016","answer":"es","single":true},
+{"id":"es-g-000017","answer":"está","single":true},
+{"id":"es-g-000018","answer":"estás","single":true},
+{"id":"es-g-000019","answer":"están","single":true},
+{"id":"es-g-000020","answer":"son","single":true}
+]}

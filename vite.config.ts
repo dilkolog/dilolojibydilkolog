@@ -58,7 +58,7 @@ export default defineConfig({
         // assetlinks.json) are files, not app screens: never answer them with the app's index.html.
         navigateFallbackDenylist: [/^\/hakkinda/, /^\/gizlilik/, /^\/kosullar/, /^\/hesap-silme/, /^\/\.well-known\//, /^\/api\//],
         // Only Latin glyphs are needed for TR/EN/FR/ES; the browser never requests the other subsets.
-        globIgnores: ['**/*-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*', 'fonts/**', 'mail/**', 'og/**', 'assets/pdf-*.js'],
+        globIgnores: ['**/*-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*', 'fonts/**', 'mail/**', 'og/**', 'assets/pdf-*.js', 'content/**'],
         // The static pages' fonts (public/fonts) and the mails' pictures (public/mail) are served to those who open them, not stored on every device.
         // Server push reminders (public/push-sw.js).
         importScripts: ['push-sw.js'],
@@ -71,6 +71,10 @@ export default defineConfig({
           { urlPattern: /\/assets\/[\w-]+\.webp$/, handler: 'CacheFirst', options: { cacheName: 'art', expiration: { maxEntries: 250 } } },
           // The PDF reader (pdf.js, ~1.8 MB with its worker) is fetched the first time a PDF is added, then kept.
           { urlPattern: /\/assets\/pdf(\.worker\.min)?-[\w-]+\.m?js$/, handler: 'CacheFirst', options: { cacheName: 'pdf-reader', expiration: { maxEntries: 4 } } },
+          // Diloloji's own content (docs/ICERIK-FABRIKASI.md §6): the manifest is asked anew when online (it says
+          // what is new) and kept for offline; the files are named by their content, so a kept one is never stale.
+          { urlPattern: /\/content\/(fr|es)\/manifest\.json$/, handler: 'NetworkFirst', options: { cacheName: 'content-manifest', networkTimeoutSeconds: 4, expiration: { maxEntries: 4 } } },
+          { urlPattern: /\/content\/(fr|es)\/(reading|grammar)\/.+\.json$/, handler: 'CacheFirst', options: { cacheName: 'content', expiration: { maxEntries: 150 } } },
         ],
       },
       manifest: {

@@ -73,6 +73,8 @@ export interface ReadingText {
   watch?: Record<number, WatchRating>
   /** A chapter of an imported book (EPUB): chapters share the book id and keep their order. */
   book?: { id: string; title: string; index: number; total: number }
+  /** Questions about what the text says, when it came with them (Diloloji's own texts): asked after reading, no AI needed. */
+  questions?: { question: string; options: string[]; answer: number; explanation: string }[]
 }
 
 /** A short title from a text's first words. */

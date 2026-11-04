@@ -1,0 +1,50 @@
+[
+  {
+    "id": "fr-g-000001",
+    "language": "fr",
+    "level": "A2",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Quand j'étais petit, je ___ chaque été chez mes grands-parents.",
+    "answer": "allais",
+    "options": [
+      "allais",
+      "suis allé",
+      "irai"
+    ],
+    "explanation": "\"Chaque été\" tekrarlanan bir alışkanlık anlatır; geçmişteki alışkanlık imparfait ile söylenir.",
+    "source": "Diloloji (özgün)",
+    "difficulty": 2,
+    "batch": "fr-grammar-0001",
+    "subskill": "alışkanlık"
+  },
+  {
+    "id": "fr-g-000002",
+    "language": "fr",
+    "level": "A2",
+    "topic": "passe_imparfait",
+    "type": "cloze",
+    "prompt": "Je lisais un livre quand le téléphone ___ (sonner).",
+    "answer": "a sonné",
+    "explanation": "Süren bir eylemi (lisais) kesen tek seferlik olay passé composé ile söylenir.",
+    "source": "Diloloji (özgün)",
+    "difficulty": 3,
+    "batch": "fr-grammar-0001",
+    "subskill": "araya giren olay"
+  },
+  {
+    "id": "fr-g-000003",
+    "language": "fr",
+    "level": "A2",
+    "topic": "passe_imparfait",
+    "type": "error",
+    "prompt": "Chaque dimanche, nous mangeons chez notre tante quand nous étions enfants.",
+    "answer": "mangeons",
+    "fix": "mangions",
+    "explanation": "\"Quand nous étions enfants\" geçmişteki bir alışkanlığı anlatır; alışkanlık imparfait ile söylenir: nous mangions.",
+    "source": "Diloloji (özgün)",
+    "difficulty": 4,
+    "batch": "fr-grammar-0001",
+    "subskill": "betimleme"
+  }
+]

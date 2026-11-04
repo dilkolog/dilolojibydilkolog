@@ -1,0 +1,22 @@
+{
+  "id": "es-grammar-0001",
+  "language": "es",
+  "kind": "grammar",
+  "level": "A2",
+  "grammar": [
+    "ser_estar"
+  ],
+  "count": 20,
+  "subskills": [
+    "kimlik ve özellik",
+    "durum ve yer",
+    "anlamı değişen sıfatlar",
+    "olaylar (ser)",
+    "sık hata"
+  ],
+  "ids": {
+    "from": 1,
+    "to": 20
+  },
+  "createdAt": "2026-11-04T22:12:20.843Z"
+}

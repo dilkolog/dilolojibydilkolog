@@ -1523,6 +1523,34 @@ test('verb lab change the tense: a written pair and its result pass accessibilit
   expect(problems).toEqual([])
 })
 
+test('Diloloji texts: the list and a text’s own questions pass accessibility and contrast checks in light and dark', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  const section = page.getByRole('region', { name: 'Diloloji metinleri' })
+  await expect(section.locator('.library-open').first()).toBeVisible()
+  const problems: string[] = []
+  const scanThemes = async (where: string) => {
+    for (const theme of ['light', 'dark'] as const) {
+      await page.evaluate((t) => {
+        document.documentElement.dataset.theme = t
+      }, theme)
+      await settleTransitions(page)
+      problems.push(...(await scan(page, `${where}-${theme}`)))
+      for (const c of await contrastProblems(page)) problems.push(`${where}-${theme} contrast: ${c}`)
+    }
+  }
+  await scanThemes('content-list')
+  await section.locator('.library-open').first().click()
+  await page.locator('.reader-tools').getByRole('button', { name: 'Okumayı bitir' }).click()
+  await page.getByRole('alertdialog', { name: 'Okumayı bitir' }).getByRole('button', { name: 'Bitir' }).click()
+  await page.getByRole('button', { name: /Okuduğunu sına/ }).click()
+  const card = page.getByRole('region', { name: 'Okuduğunu anlama soruları' })
+  await card.locator('.comprehension-option').first().click()
+  await scanThemes('content-questions')
+  expect(problems).toEqual([])
+})
+
 test('exam-style tasks: the list, a reading task, a listening task and the result pass accessibility checks in light, dark and calm themes', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')

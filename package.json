@@ -25,7 +25,8 @@
     "build:cf": "npm run build && node scripts/cf-headers.mjs && node scripts/lang-pages.mjs",
     "deploy:cf": "node scripts/check-deploy-env.mjs && npm run build:cf && wrangler deploy && node scripts/verify-deploy.mjs",
     "dev:cf": "npm run build:cf && wrangler dev",
-    "verify:deploy": "node scripts/verify-deploy.mjs"
+    "verify:deploy": "node scripts/verify-deploy.mjs",
+    "content": "node scripts/content/run.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.131.0",

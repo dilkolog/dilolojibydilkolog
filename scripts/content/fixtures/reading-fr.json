@@ -1,0 +1,34 @@
+{
+  "id": "fr-r-000001",
+  "language": "fr",
+  "level": "A1",
+  "theme": "alisveris",
+  "genre": "story",
+  "grammar": ["basics_fr_present"],
+  "title": "Le marché du samedi",
+  "paragraphs": [
+    "Le samedi, Léa va au marché avec sa mère. Le marché est à côté de la gare. Il y a beaucoup de monde.",
+    "Léa aime les fruits. Elle achète des pommes et des fraises. Sa mère prend du pain et du fromage. Le vendeur est très gentil.",
+    "Après le marché, elles rentrent à la maison. Elles mangent ensemble dans le jardin. Léa est contente."
+  ],
+  "tr": [
+    "Cumartesi günleri Léa annesiyle pazara gider. Pazar istasyonun yakınında. Çok kalabalık oluyor.",
+    "Léa meyveyi sever. Elma ve çilek alır. Annesi ekmek ve peynir alır. Satıcı çok nazik.",
+    "Pazardan sonra eve dönerler. Bahçede birlikte yemek yerler. Léa mutludur."
+  ],
+  "vocabulary": [
+    { "word": "marché", "lemma": "marché", "tr": "pazar" },
+    { "word": "gare", "lemma": "gare", "tr": "istasyon" },
+    { "word": "achète", "lemma": "acheter", "tr": "satın alır" },
+    { "word": "fraises", "lemma": "fraise", "tr": "çilek" },
+    { "word": "vendeur", "lemma": "vendeur", "tr": "satıcı" },
+    { "word": "rentrent", "lemma": "rentrer", "tr": "dönerler" }
+  ],
+  "questions": [
+    { "q": "Léa cumartesi günleri nereye gider?", "options": ["Pazara", "Okula", "Sinemaya", "Parka"], "answer": 0, "why": "İlk cümle: Le samedi, Léa va au marché." },
+    { "q": "Léa ne satın alır?", "options": ["Ekmek ve peynir", "Elma ve çilek", "Balık", "Çiçek"], "answer": 1, "why": "Elle achète des pommes et des fraises." },
+    { "q": "Pazardan sonra ne yaparlar?", "options": ["Sinemaya giderler", "Bahçede birlikte yemek yerler", "Trene binerler", "Alışverişe devam ederler"], "answer": 1, "why": "Elles mangent ensemble dans le jardin." }
+  ],
+  "source": "Diloloji (özgün)",
+  "batch": "fr-reading-0001"
+}

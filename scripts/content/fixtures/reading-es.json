@@ -1,0 +1,34 @@
+{
+  "id": "es-r-000001",
+  "language": "es",
+  "level": "A1",
+  "theme": "aile",
+  "genre": "email",
+  "grammar": ["basics_es_presente"],
+  "title": "Un correo de Lucía",
+  "paragraphs": [
+    "Hola, Marta: ¿Qué tal? Yo estoy muy bien. Vivo en Sevilla con mi familia. Mi casa es pequeña, pero tiene un jardín bonito.",
+    "Mi hermano se llama Diego. Tiene diez años y estudia en una escuela cerca de casa. Por la tarde jugamos en el parque.",
+    "Mis padres trabajan mucho. Los domingos comemos juntos y hablamos de la semana. ¿Y tú? ¿Cómo es tu familia? Un abrazo, Lucía."
+  ],
+  "tr": [
+    "Merhaba Marta, nasılsın? Ben çok iyiyim. Sevilla'da ailemle yaşıyorum. Evim küçük ama güzel bir bahçesi var.",
+    "Kardeşimin adı Diego. On yaşında ve evin yakınındaki bir okulda okuyor. Öğleden sonra parkta oynuyoruz.",
+    "Annemle babam çok çalışıyor. Pazar günleri birlikte yemek yiyip haftayı konuşuyoruz. Ya sen? Ailen nasıl? Sevgiler, Lucía."
+  ],
+  "vocabulary": [
+    { "word": "jardín", "lemma": "jardín", "tr": "bahçe" },
+    { "word": "hermano", "lemma": "hermano", "tr": "erkek kardeş" },
+    { "word": "escuela", "lemma": "escuela", "tr": "okul" },
+    { "word": "jugamos", "lemma": "jugar", "tr": "oynuyoruz" },
+    { "word": "trabajan", "lemma": "trabajar", "tr": "çalışıyorlar" },
+    { "word": "abrazo", "lemma": "abrazo", "tr": "sarılma; sevgiler" }
+  ],
+  "questions": [
+    { "q": "Lucía nerede yaşıyor?", "options": ["Madrid'de", "Sevilla'da", "Barselona'da", "Valensiya'da"], "answer": 1, "why": "Vivo en Sevilla con mi familia." },
+    { "q": "Diego kaç yaşında?", "options": ["Sekiz", "On", "On iki", "Beş"], "answer": 1, "why": "Tiene diez años." },
+    { "q": "Aile pazar günleri ne yapar?", "options": ["Birlikte yemek yer", "Sinemaya gider", "Denize gider", "Alışveriş yapar"], "answer": 0, "why": "Los domingos comemos juntos." }
+  ],
+  "source": "Diloloji (özgün)",
+  "batch": "es-reading-0001"
+}

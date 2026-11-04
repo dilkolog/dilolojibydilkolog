@@ -272,7 +272,7 @@ src/data/content.ts                # uygulamanın istemcisi
 
 ## 9. Aşamalar
 
-**Faz 0: Altyapı.** Tek ajan, tek PR dizisi.
+**Faz 0: Altyapı.** Tek ajan, tek PR dizisi. **Durum (2026-11-04): kuruldu**; kullanım ve ayrıntılar AGENTS.md "İçerik fabrikası, Faz 0" notunda, stil rehberleri sahibinin onayını bekliyor.
 - Plan dosyaları, stil rehberleri (taslak, sahibi onaylar), şemalar.
 - `check.ts`, `build.ts`, `coverage.ts`, `jobs.ts`.
 - `src/data/content.ts` ve okuma kütüphanesinde "Diloloji metinleri" girişi.

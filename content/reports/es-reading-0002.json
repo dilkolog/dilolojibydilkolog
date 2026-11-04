@@ -1,0 +1,13 @@
+{
+  "job": "es-reading-0002",
+  "language": "es",
+  "kind": "reading",
+  "total": 2,
+  "accepted": [
+    "es-r-000004",
+    "es-r-000005"
+  ],
+  "rejected": [],
+  "warnings": [],
+  "rate": 1
+}

@@ -1,6 +1,8 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { AudiobooksPicker } from './AudiobooksPicker'
 import { AdvancedReadingsPicker } from './AdvancedReadingsPicker'
+import { ContentReadingsPicker } from './ContentReadingsPicker'
+import { contentReadingText, contentTextId } from '../data/content'
 import { ClassicsPicker } from './ClassicsPicker'
 import { ListeningPicker } from './Listening'
 import { NewsPicker } from './News'
@@ -217,6 +219,21 @@ export function SourcePickers({
 }) {
   return (
     <div className="source-tiles">
+    <ContentReadingsPicker
+      language={language}
+      vocabulary={vocabulary}
+      states={states}
+      known={known}
+      onRead={async (text) => {
+        // Opened before: the same entry, with its reading history and marks.
+        const had = (library ?? []).find((t) => t.id === contentTextId(text.id))
+        if (had) return void (await open(had))
+        const item = contentReadingText(text)
+        await db.saveText(item)
+        setLibrary((lib) => [item, ...(lib ?? [])])
+        await open(item)
+      }}
+    />
     <StorybooksPicker
       language={language}
       vocabulary={vocabulary}

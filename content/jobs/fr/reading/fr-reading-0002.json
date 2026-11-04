@@ -1,0 +1,17 @@
+{
+  "id": "fr-reading-0002",
+  "language": "fr",
+  "kind": "reading",
+  "level": "A2",
+  "theme": "arkadaslik",
+  "genre": "email",
+  "grammar": [
+    "basics_fr_passe_compose"
+  ],
+  "count": 2,
+  "ids": {
+    "from": 4,
+    "to": 5
+  },
+  "createdAt": "2026-11-04T22:12:18.739Z"
+}
