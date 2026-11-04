@@ -587,7 +587,6 @@
 .swipe-yes { left: 1.25rem; color: var(--ok); transform: rotate(-12deg); }
 .swipe-no { right: 1.25rem; color: var(--bad); transform: rotate(12deg); }
 .swipe-actions { display: flex; justify-content: center; align-items: center; gap: 1.5rem; }
-.swipe-missed { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.375rem; }
 .mission-grid { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr)); }
 .mission-card {
   display: grid; gap: 0.5rem; text-align: left; padding: 1rem 1.125rem; cursor: pointer;
@@ -2516,12 +2515,61 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .btn-near:active:not(:disabled) { box-shadow: 0 1px 0 var(--near-btn-deep); }
 .flash-write .answer-input { font-size: var(--t-lg); }
 
-.flash-result { display: flex; align-items: center; gap: 1.25rem; }
+/* The end of a round: the share known at once as a ring, three numbers beside it, then the cards that need another look. */
+.flash-done-head { display: flex; align-items: center; gap: 1rem; }
+.flash-done-head .greeting-sub { margin-top: 0.25rem; }
+.flash-result { display: flex; align-items: center; gap: 1.5rem; padding: 1.25rem 1.5rem; }
 .flash-ring {
-  flex: none; display: grid; place-items: center; width: 5.5rem; height: 5.5rem; border-radius: 50%;
-  background: radial-gradient(closest-side, var(--surface) 76%, transparent 77%), conic-gradient(var(--ok) var(--p, 0%), var(--track) 0);
+  flex: none; display: grid; place-items: center; align-content: center; width: 6.5rem; height: 6.5rem; border-radius: 50%;
+  background: radial-gradient(closest-side, var(--surface) 78%, transparent 79%), conic-gradient(var(--ok) var(--p, 0%), var(--track) 0);
 }
-.flash-ring b { font-size: var(--t-lg); font-variant-numeric: tabular-nums; }
+.flash-ring b { font-size: var(--t-xl); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.flash-ring span { font-size: var(--t-xs); color: var(--ink-soft); }
+.flash-stats { flex: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin: 0; }
+.flash-stats > div { display: grid; gap: 0.125rem; padding: 0.75rem 1rem; border-radius: var(--r-md); background: var(--surface-2); }
+.flash-stats dt { order: 2; font-size: var(--t-sm); color: var(--ink-soft); }
+.flash-stats dd { margin: 0; font-size: var(--t-2xl); font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.flash-stat-ok dd { color: var(--ok-text); }
+.flash-stat-miss dd { color: var(--bad-text); }
+.flash-missed { display: grid; gap: 0.5rem; }
+.flash-missed .section-title { margin: 0; }
+.flash-missed-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.flash-missed-row { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) 8.5rem; align-items: baseline; gap: 0.25rem 1rem; padding: 0.625rem 0; border-top: 1px solid var(--rule); }
+.flash-missed-row:first-child { border-top: 0; }
+.flash-missed-word { font-family: var(--serif); font-size: var(--t-lg); color: var(--ink); overflow-wrap: anywhere; }
+.flash-missed-meaning { color: var(--ink-soft); overflow-wrap: anywhere; }
+.flash-missed-tag { justify-self: end; padding: 0.125rem 0.625rem; border-radius: var(--r-full); background: var(--near-soft); color: var(--near-text); font-size: var(--t-xs); font-weight: 700; white-space: nowrap; }
+.flash-missed-tag.flash-missed-no { background: var(--bad-soft); color: var(--bad-text); }
+.flash-known-list summary { cursor: pointer; font-weight: 700; }
+.flash-known-list:not([open]) { padding-block: 1rem; }
+.flash-known-list[open] summary { margin-bottom: 0.25rem; }
+.flash-done-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+@container main (max-width: 40rem) {
+  .flash-result { flex-direction: column; align-items: stretch; }
+  .flash-ring { align-self: center; }
+  .flash-stats > div { padding: 0.625rem 0.75rem; }
+  .flash-missed-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .flash-missed-row:not(:has(.flash-missed-tag)) { grid-template-columns: minmax(0, 1fr); }
+  .flash-missed-meaning { grid-column: 1; grid-row: 2; }
+  .flash-missed-tag { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+  .flash-done-actions .btn { flex: 1 1 100%; }
+}
+
+/* The set-up of a round (cards, true/false, gravity, test): the sets as tiles, then one row per choice. */
+.study-scopes { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(9rem, 100%), 1fr)); gap: 0.625rem; }
+.study-scope { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 0.625rem; align-items: center; padding: 0.75rem 0.875rem; border: 0; border-radius: var(--r-lg); background: var(--surface-2); box-shadow: inset 0 0 0 1.5px var(--rule); color: var(--ink); font: inherit; text-align: left; cursor: pointer; transition: box-shadow var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out); }
+.study-scope:hover:not(:disabled) { box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--lang) 45%, var(--rule)); }
+.study-scope[aria-pressed='true'] { background: var(--lang-soft); box-shadow: inset 0 0 0 2px var(--lang); }
+.study-scope:disabled { cursor: default; opacity: 0.55; }
+.study-scope:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; }
+.study-scope-icon { grid-row: 1 / span 2; display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: var(--r-md); background: var(--surface); color: var(--lang-text); }
+.study-scope[aria-pressed='true'] .study-scope-icon { background: var(--lang); color: var(--on-lang); }
+.study-scope-name { font-size: var(--t-sm); font-weight: 700; line-height: 1.25; }
+.study-scope-count { font-size: var(--t-xs); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.study-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem 1rem; flex-wrap: wrap; }
+.study-row-label { font-size: var(--t-sm); font-weight: 700; color: var(--ink); }
+.study-shuffle { cursor: pointer; }
+.study-list-pick { flex: 1 1 14rem; max-width: 22rem; }
 @media (prefers-reduced-motion: reduce) { .flash-inner { transition: none; } }
 /* On a phone there is no keyboard to hint at, and three grades must fit side by side. */
 @media (max-width: 40rem) {

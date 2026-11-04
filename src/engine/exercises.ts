@@ -533,6 +533,8 @@ export interface ExerciseContext {
   productionReps?: number
   /** Persons not to ask (4 = vosotros, for learners of Latin American Spanish). */
   skipPersons?: number[]
+  /** "Fiili çek" switched off: no question turns into a conjugation one. */
+  conjugationOff?: boolean
 }
 
 export function buildExercise(
@@ -751,7 +753,7 @@ export function buildExercise(
 
     case 'aspect_choice': {
       // The past tenses open with the first production (as in conjugation questions).
-      if (context.productionReps !== undefined && context.productionReps < 1 && EXERCISES.conjugation.applicable(entry)) return buildExercise('conjugation', entry, catalog, rng, context)
+      if (!context.conjugationOff && context.productionReps !== undefined && context.productionReps < 1 && EXERCISES.conjugation.applicable(entry)) return buildExercise('conjugation', entry, catalog, rng, context)
       const item = pick(aspectItemsFor(entry), rng)
       const lang = entry.language as 'fr' | 'es'
       const atStart = item.text.startsWith(BLANK)

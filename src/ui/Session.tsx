@@ -152,9 +152,20 @@ export function SessionScreen(p: Props) {
     const mixed = mixInTyping(it, st, TYPING_SHARE[prefs.typingShare], rng, typedAllowed(it.entryId))
     return prefs.exerciseOff.includes('cloze_typed') ? mixed : typeStrongCloze(mixed, st)
   }
-  const [session, setSession] = useState(() =>
-    startSession(p.mode === 'practice' || !p.items.length ? p.items : [shape(p.items[0], states.current.get(p.items[0].entryId)), ...p.items.slice(1)]),
-  )
+  /**
+   * The settings' switched-off kinds hold from the first question: a plan built before the switch (or the lab's
+   * forms, which are conjugation questions) must not still ask them. Later items are checked again as they come.
+   */
+  const opening = (): PlanItem[] => {
+    const opts = { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss }
+    const kept = prefs.exerciseOff.includes('conjugation') ? p.items.filter((it) => !it.form) : p.items
+    const honored = kept.map((it) => {
+      const entry = byId.get(it.entryId)
+      return entry ? honorOff(it, entry, states.current.get(it.entryId), rng, opts) : it
+    })
+    return p.mode === 'practice' || !honored.length ? honored : [shape(honored[0], states.current.get(honored[0].entryId)), ...honored.slice(1)]
+  }
+  const [session, setSession] = useState(() => startSession(opening()))
   const item = currentItem(session)
   // The day's XP goal is reached in the middle of a round: said once, with the same little chime as a run of five.
   const dayGame = useGame()
@@ -254,7 +265,8 @@ export function SessionScreen(p: Props) {
       const mixed = p.mode === 'practice' || up.reason === 'practice' ? up : shape(up, states.current.get(up.entryId))
       const adapted = adaptExercise(mixed, upEntry, states.current.get(up.entryId), after.log.map((l) => l.verdict), rng, p.options)
       // A type switched off in this session's settings applies to what is still to come, not only to the next plan.
-      const final = p.mode === 'practice' || up.reason === 'practice' ? adapted : honorOff(adapted, upEntry, states.current.get(up.entryId), rng, { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss })
+      // Practice sessions too: a kind switched off is off everywhere.
+      const final = honorOff(adapted, upEntry, states.current.get(up.entryId), rng, { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss })
       if (final === up) return after
       const items = [...after.items]
       items[after.index] = final
