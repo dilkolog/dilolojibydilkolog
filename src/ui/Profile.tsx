@@ -7,7 +7,7 @@ import { Avatar } from './Avatar'
 import { DRAWN_AVATARS, DRAWN_AVATAR_IDS, EARNED_AVATARS, avatarNeed, drawnAvatarName } from './avatarArt'
 import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
-import { CheckCircleIcon, CloseIcon, GearIcon, LockIcon, PaletteIcon, PinIcon, PlusIcon, SmileIcon, SparkleIcon } from './icons'
+import { CheckCircleIcon, CloseIcon, GearIcon, LockIcon, PaletteIcon, PinIcon, PlusIcon, SmileIcon, TrophyIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
 import { TIER_NAME } from './badgeTier'
 import { BadgeMedal } from './Medal'
@@ -197,11 +197,12 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
           <div className="profile-level-box">
             <div className="profile-level-top">
               <span className="profile-level-label">
-                <SparkleIcon size={15} className="inline-icon" />
+                <TrophyIcon size={15} className="inline-icon" />
                 <strong>Seviye İlerlemesi</strong>
               </span>
               <span className="profile-xp-readout">
-                <strong>{game.xp.total.toLocaleString('tr-TR')}</strong>
+                {/* This level's share, as the bar shows it (the total is on the stats below and on Progress). */}
+                <strong>{game.level.into.toLocaleString('tr-TR')}</strong>
                 <span className="muted"> / {game.level.needed.toLocaleString('tr-TR')} XP</span>
               </span>
             </div>

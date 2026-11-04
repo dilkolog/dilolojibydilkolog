@@ -392,7 +392,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       <JumpNav groups={WORD_GROUPS.filter(([id]) => id !== 'w-voice' || !!entry.audioUrl || naturalEnabled() || azureEnabled())} label="Kelime bölümleri" onPick={openGroup} />
       <GroupToggle id="w-use" icon={<PenIcon size={18} />} open={isOpen('w-use')} onToggle={() => toggle('w-use')}>Cümleler ve kullanım</GroupToggle>
       {isOpen('w-use') && (
-        <>
+        <div className="detail-group">
           <div id="word-examples">
             <WordExamples db={db} entry={entry} onChanged={onChanged} />
           </div>
@@ -441,11 +441,11 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
               </div>
             </section>
           )}
-        </>
+        </div>
       )}
       {(entry.audioUrl || naturalEnabled() || azureEnabled()) && <GroupToggle id="w-voice" icon={<SpeakerIcon size={18} />} open={isOpen('w-voice')} onToggle={() => toggle('w-voice')}>Telaffuz</GroupToggle>}
       {isOpen('w-voice') && (
-        <>
+        <div className="detail-group">
           {azureEnabled() && <WordPronunciation db={db} entry={entry} />}
           {(entry.audioUrl || naturalEnabled()) && (
             <section className="section stack">
@@ -461,11 +461,11 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
               />
             </section>
           )}
-        </>
+        </div>
       )}
       <GroupToggle id="w-family" icon={<LeafIcon size={18} />} open={isOpen('w-family')} onToggle={() => toggle('w-family')}>Aile ve diğer diller</GroupToggle>
       {isOpen('w-family') && (
-        <>
+        <div className="detail-group">
           <MorphemeTree db={db} entry={entry} vocabulary={vocabulary} onOpen={onOpen} onChanged={onChanged} />
           <WordFamilyMap entry={entry} vocabulary={vocabulary} onOpen={onOpen} />
           <WordFamilySection db={db} entry={entry} vocabulary={vocabulary} onChanged={onChanged} />
@@ -529,12 +529,12 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
               )}
             </section>
           )}
-        </>
+        </div>
       )}
       <GroupToggle id="w-progress" icon={<ChartIcon size={18} />} open={isOpen('w-progress')} onToggle={() => toggle('w-progress')}>İlerleme</GroupToggle>
+      {isOpen('w-progress') && <GrowthPanel entry={entry} state={state} scheduler={scheduler} now={now} />}
       {isOpen('w-progress') && (
-        <>
-          <GrowthPanel entry={entry} state={state} scheduler={scheduler} now={now} />
+        <div className="detail-group">
           <MemoryCurveChart db={db} entryId={entry.id} refresh={state} />
           <WordJourney db={db} entry={entry} state={state} mistakes={mistakes} />
           <section className="section stack">
@@ -572,7 +572,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
               </ul>
             </section>
           )}
-        </>
+        </div>
       )}
     </div>
   )
