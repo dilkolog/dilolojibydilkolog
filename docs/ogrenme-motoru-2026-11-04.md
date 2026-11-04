@@ -30,3 +30,13 @@ Bu üç kaynaktan alınan ilkeler, Diloloji'nin mevcut FSRS ve beceri kayıtlar�
 - Genel test paketi: 3.007 başarılı, 2 atlanan; tek hata bütün oyunları soğuk yükleyen smoke testinin varsayılan 5 saniyelik sınırıydı. Ayrı 30 saniyelik çalıştırma geçti; yalnız bu çoklu tembel yükleme testinin süre sınırı 30 saniyeye çıkarıldı.
 - Chromium: ertesi gün cevabı göstermeden tekrar ve yeni kelime görevinin tanıtımla başlaması, 2/2 başarılı. Sistem Chromium'u kullanıldı. WebKit/fiziksel cihaz doğrulaması bu değişiklik için yapılmadı.
 - Typecheck ve değişen dosyaların lint kontrolü geçti. Hesapsız test derlemesi başarılı. Üretim derlemesi ortamda Supabase giriş ayarları bulunmadığı için engellendi; canlıya dağıtım yapılmadı.
+
+## Güncel main ile yayın hazırlığı — PR #730
+
+- Değişiklikler `84da1a70` ana dalı üzerine taşındı; ölçüm sorularının `probe` işaretleri ve güncel soru türü/bağlam kuralları korundu.
+- Motor/oturum testleri: 182 dosyada 1.250 başarılı.
+- Genel paket: 594 dosyada 3.280 başarılı, 9 zamanlama/süre hatası, 1 atlanan test. Başarısız testlerin bulunduğu 7 dosya, tek işçi ve 30 saniyelik sınırla tekrar çalıştırıldı: 60/60 geçti. Aynı dosyalar değişikliksiz ana dalda da 60/60 geçti. Toplu çalıştırmanın tek seferde tamamen yeşil olduğu iddia edilmiyor.
+- Tip kontrolü (istemci/API/betik/Worker ve eklenti), lint, gizli anahtar taraması ve bağımlılık denetimi geçti; 0 güvenlik açığı.
+- Chromium: ertesi gün cevabı önceden göstermeden tekrar, yeni kelime görevi ve oturum ayarları, 3/3 başarılı.
+- Üç dil × açık/koyu tema × telefon/masaüstü: 12 görsel senaryo Linux'ta güncellendi ve ikinci çalıştırmada 12/12 doğrulandı. Sistem Chromium'u kullanıldı; WebKit bu ortamda çalıştırılmadı.
+- Kullanıcı Actions kotasının dolduğunu bildirdi ve Actions kontrollerini atlamayı açıkça istedi. Yeni Actions işi başlatılmıyor; yayın mevcut Cloudflare Workers Builds bağlantısından yapılacak. Yerel Supabase/Cloudflare gizlisi eklenmedi, misafir derlemesi üretime yüklenmedi.
