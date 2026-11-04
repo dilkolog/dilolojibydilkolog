@@ -1727,7 +1727,8 @@ button.badge-card:active { transform: none; }
 .account-actions > .account-password > * { max-width: 26rem; }
 .account-actions > :last-child { border-bottom: 0; }
 /* Deleting the account: a quiet red link under the card, not a button that invites a press. */
-.account-delete-link { justify-self: start; align-self: flex-start; min-height: 1.5rem; padding: 0.25rem 0; border: 0; background: none; color: var(--bad-text); font: inherit; font-size: var(--t-sm); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; cursor: pointer; }
+/* On the right, away from "Çıkış yap" just above: a slip of the thumb does not land on it. */
+.account-delete-link { justify-self: end; align-self: flex-end; margin-top: 0.25rem; min-height: 1.5rem; padding: 0.25rem 0; border: 0; background: none; color: var(--bad-text); font: inherit; font-size: var(--t-sm); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; cursor: pointer; }
 .account-delete-link:hover { text-decoration-thickness: 2px; }
 .account-delete-link:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; border-radius: var(--r-sm); }
 .account-profile-link { justify-self: start; min-height: 1.5rem; margin-top: 0.125rem; padding: 0; border: 0; background: none; color: var(--lang-text); font: inherit; font-size: var(--t-sm); font-weight: 600; cursor: pointer; }

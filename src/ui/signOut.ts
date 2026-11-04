@@ -31,9 +31,13 @@ export async function signOutThisDevice(identity?: Identity | null): Promise<boo
         showToast(`Çıkış yapılmadı: ${result.skipped} görsel/ses kaydı eşitlenemedi. Bu cihazdaki verilerin korunuyor; eşitleme tamamlanınca tekrar çıkış yapabilirsin.`, undefined, 15_000, 'info')
         return false
       }
-    } catch {
+    } catch (e) {
+      // An account still waiting for approval cannot send anything yet: no retry helps, so it is said as it is.
+      const waiting = e instanceof Error && e.name === 'SyncApprovalError'
       showToast(
-        'Çıkış yapılmadı: son değişiklikler hesabına gönderilemedi, silinmesin diye bekledim. İnternetini kontrol edip tekrar dene. Yine de çıkarsan eşitlenmeyen yerel veriler silinir.',
+        waiting
+          ? 'Çıkış yapılmadı: hesabın henüz onaylanmadığı için kelimelerin ve ilerlemen hesabına gönderilemiyor; şimdilik yalnızca bu cihazda. Yine de çıkarsan bu cihazdaki veriler silinir.'
+          : 'Çıkış yapılmadı: son değişiklikler hesabına gönderilemedi, silinmesin diye bekledim. İnternetini kontrol edip tekrar dene. Yine de çıkarsan eşitlenmeyen yerel veriler silinir.',
         { label: 'Yine de çık', run: () => void leaveAndWipe() },
         15_000,
         'info',

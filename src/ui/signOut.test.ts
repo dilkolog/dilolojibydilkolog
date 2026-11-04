@@ -46,6 +46,17 @@ describe('signing out of an account', () => {
     action.run()
     await vi.waitFor(() => expect(state.wipe).toHaveBeenCalled())
   })
+
+  it('says so plainly when the account is still waiting for approval (no retry helps then)', async () => {
+    const waiting = new Error('approval required')
+    waiting.name = 'SyncApprovalError'
+    state.runSync.mockRejectedValueOnce(waiting)
+    expect(await signOutThisDevice()).toBe(false)
+    expect(state.toast.mock.calls[0]![0]).toContain('henüz onaylanmadığı')
+    expect(state.toast.mock.calls[0]![0]).not.toContain('İnternetini')
+    expect((state.toast.mock.calls[0]![1] as { label: string }).label).toBe('Yine de çık')
+    expect(state.wipe).not.toHaveBeenCalled()
+  })
 })
 
 
