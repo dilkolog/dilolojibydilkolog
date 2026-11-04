@@ -17,6 +17,11 @@ describe('isChunkError', () => {
     expect(isChunkError(new Error('Importing a module script failed.'))).toBe(true)
   })
 
+  it('identifies a replaced chunk answered with the page (Safari after a deploy)', () => {
+    expect(isChunkError(new TypeError("'text/html' is not a valid JavaScript MIME type for module script 'https://diloloji.com/assets/FriendPrivacy-DafBdC6Z.js'."))).toBe(true)
+    expect(isChunkError(new TypeError('Failed to load module script: Expected a JavaScript module script but the server responded with a MIME type of "text/html".'))).toBe(true)
+  })
+
   it('identifies network fetch failures for chunks', () => {
     expect(isChunkError(new TypeError('Failed to fetch'))).toBe(true)
   })

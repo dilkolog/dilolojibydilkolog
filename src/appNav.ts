@@ -53,6 +53,7 @@ export type Screen =
   | { name: 'exam'; repair?: boolean }
   | { name: 'games'; game?: GameId; topic?: string }
   | { name: 'community' }
+  | { name: 'admin' }
   | { name: 'guide'; lesson?: string; tense?: string; review?: boolean; placement?: boolean }
   | { name: 'verbs'; verb?: string; tense?: string; tab?: LabTab }
   | { name: 'profile' }

@@ -398,3 +398,47 @@ test('an invite link with name mentions the inviter on the landing page', async 
   expect(new URL(page.url()).search).toBe('')
   expect(await page.evaluate(() => JSON.parse(localStorage.getItem('diloloji:invite-in') ?? 'null')?.name)).toBe('Zeynep')
 })
+
+test("the owner's admin screen: only the owner sees the entry; people, reports and system on one page", async ({ page }) => {
+  await signedInWithWords(page)
+  let owner = false
+  const changes: unknown[] = []
+  await page.route(
+    (u) => u.pathname === '/api/admin',
+    async (r) => {
+      if (!owner) return r.fulfill({ status: 503, json: { error: 'not configured' } })
+      if (r.request().method() === 'POST') {
+        changes.push(r.request().postDataJSON())
+        return r.fulfill({ json: { ok: true } })
+      }
+      const view = new URL(r.request().url()).searchParams.get('view')
+      if (view === 'me') return r.fulfill({ json: { owner: true } })
+      if (view === 'people')
+        return r.fulfill({ json: { levels: true, pending: 1, people: [{ id: '11111111-1111-4111-8111-111111111111', email: 'ayse@example.com', username: 'ayse', approved: false, rejected: false, createdAt: '2026-11-04T10:00:00Z', aiLevel: null }] } })
+      if (view === 'reports') return r.fulfill({ json: { reports: [{ id: 'r1', at: '2026-11-04T09:00:00Z', kind: 'set', reason: 'spam', note: '', target: 'f'.repeat(32), content: 'Bir liste', about: { name: 'Biri' } }] } })
+      return r.fulfill({ json: { health: { ok: true, supabase: 'ok', storage: 'ok' }, problems: [], docs: 'ready', tables: 'off' } })
+    },
+  )
+  const toAccount = async () => {
+    await openScreen(page, 'Ayarlar')
+    await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
+    await expect(page.locator('.account-card')).toBeVisible()
+  }
+  // Not the owner: no entry.
+  await toAccount()
+  await expect(page.getByText('Onaylar, YZ düzeyleri, şikâyetler')).toHaveCount(0)
+  // The owner (a fresh visit asks the server again).
+  owner = true
+  await page.reload()
+  await toAccount()
+  await page.locator('.account-row', { hasText: 'Yönetim' }).getByRole('button', { name: 'Aç' }).click()
+  await expect(page.getByRole('heading', { name: 'Yönetim', exact: true })).toBeVisible()
+  await expect(page.getByText('1 onay bekliyor')).toBeVisible()
+  await expect(page.getByText('Topluluk listesi · Spam ya da reklam · Biri')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Eski dosyaları taşı' })).toBeVisible()
+  expect(await overflow(page)).toEqual([])
+  const axe = await new AxeBuilder({ page }).include('.admin-page').analyze()
+  expect(axe.violations.map((v) => v.id)).toEqual([])
+  await page.getByRole('button', { name: 'Onayla' }).click()
+  await expect.poll(() => changes).toContainEqual({ action: 'person', user: '11111111-1111-4111-8111-111111111111', change: 'approve' })
+})

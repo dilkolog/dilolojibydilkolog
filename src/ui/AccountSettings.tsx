@@ -25,7 +25,7 @@ const STATUS_TEXT = { rejected: 'Onaylanmadı', pending: 'Onay bekliyor' } as co
  * quiet link to delete it. Syncing runs by itself (useLiveSync) and needs no
  * button; only a problem it left behind (files too big to take along, the data nearing the limit) is shown. Signed out: the way in (Google in one tap, or the sign-in page) and what an account gives.
  */
-export function AccountSettings({ onOpenAuth, onOpenProfile }: { onOpenAuth?: (mode: AuthMode) => void; onOpenProfile?: () => void }) {
+export function AccountSettings({ onOpenAuth, onOpenProfile, onOpenAdmin }: { onOpenAuth?: (mode: AuthMode) => void; onOpenProfile?: () => void; onOpenAdmin?: () => void }) {
   const [account, setAcc] = useState<Account | null | undefined>(undefined)
   const [size, setSize] = useState<number | null>(null)
   const [skipped, setSkipped] = useState(0)
@@ -37,6 +37,16 @@ export function AccountSettings({ onOpenAuth, onOpenProfile }: { onOpenAuth?: (m
     void approvalEnabled().then((on) => setApprovalOn(on === true))
   }, [])
   const modern = supabaseConfigured()
+  // The admin entry: only for the owner, as the server says (api/_owner.ts: the confirmed OWNER_EMAIL).
+  const [owner, setOwner] = useState(false)
+  useEffect(() => {
+    if (!onOpenAdmin || !modern) return
+    let live = true
+    void import('../data/adminApi').then((m) => m.amOwner()).then((yes) => live && setOwner(yes))
+    return () => {
+      live = false
+    }
+  }, [onOpenAdmin, modern])
   const handle = useAccountHandle(access === 'approved')
 
   const refresh = async () => {
@@ -179,6 +189,19 @@ export function AccountSettings({ onOpenAuth, onOpenProfile }: { onOpenAuth?: (m
         </div>
       )}
 
+      {owner && onOpenAdmin && (
+        <div className="account-group">
+          <div className="account-row">
+            <div className="account-row-text">
+              <strong>Yönetim</strong>
+              <span className="small muted">Onaylar, YZ düzeyleri, şikâyetler ve sistemin durumu. Yalnızca sana görünür.</span>
+            </div>
+            <button type="button" className="btn btn-sm" onClick={onOpenAdmin}>
+              Aç
+            </button>
+          </div>
+        </div>
+      )}
       <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} />
       <AccountDelete account={account} identity={identity} onGone={() => void refresh()} />
     </section>

@@ -27,6 +27,8 @@ vi.mock('../data/friends', async () => {
 })
 vi.mock('./pendingHandle', () => ({ pendingHandle: () => null }))
 vi.mock('./toastFeed', () => ({ showToast: () => undefined }))
+const owner = vi.hoisted(() => ({ yes: false }))
+vi.mock('../data/adminApi', () => ({ amOwner: async () => owner.yes }))
 
 const { AccountSettings } = await import('./AccountSettings')
 
@@ -149,5 +151,34 @@ describe('AccountSettings header', () => {
     state.identity = { email: 'ali@example.com', name: 'Ali', avatar: '', providers: ['email'] }
     await mount()
     expect(host.querySelector('.account-email [role="img"]')).toBeNull()
+  })
+})
+
+describe('AccountSettings admin entry', () => {
+  it('shows the admin entry only to the owner, and opens it', async () => {
+    const onOpenAdmin = vi.fn()
+    owner.yes = false
+    await act(async () => {
+      host = document.createElement('div')
+      document.body.append(host)
+      root = createRoot(host)
+      root.render(<AccountSettings onOpenAdmin={onOpenAdmin} />)
+    })
+    await act(() => new Promise((r) => setTimeout(r, 0)))
+    expect(host.textContent).not.toContain('Yönetim')
+    act(() => root?.unmount())
+    document.body.innerHTML = ''
+    owner.yes = true
+    await act(async () => {
+      host = document.createElement('div')
+      document.body.append(host)
+      root = createRoot(host)
+      root.render(<AccountSettings onOpenAdmin={onOpenAdmin} />)
+    })
+    await act(() => new Promise((r) => setTimeout(r, 0)))
+    await act(() => new Promise((r) => setTimeout(r, 0)))
+    expect(host.textContent).toContain('Yönetim')
+    await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Aç')!.click())
+    expect(onOpenAdmin).toHaveBeenCalled()
   })
 })
