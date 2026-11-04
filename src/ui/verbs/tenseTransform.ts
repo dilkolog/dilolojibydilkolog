@@ -71,17 +71,24 @@ const FRAME: Partial<Record<Tense, Frame>> = {
   futur: 'future',
 }
 
+/**
+ * A word list as a pattern with letter boundaries that know accents: \b does not (it sees "à" and
+ * "è" as non-letters, so "à l'époque" and "ce jour-là" never matched).
+ */
+const words = (alternatives: string) => new RegExp(`(?<!\\p{L})(?:${alternatives})(?!\\p{L})`, 'iu')
+
 /** Time words that tie a sentence to one time. Morning (la mañana) is not tomorrow (mañana). */
 const MARKERS: Record<LabLanguage, Record<Frame, RegExp>> = {
   es: {
-    past: /\b(ayer|anoche|anteayer|pasad[oa]s?|hace (un|una|dos|tres|unos|unas|mucho|poco|años|días|meses|tiempo)|cuando (era|éramos|tenía|vivía)|de (niñ[oa]|pequeñ[oa]|joven)|aquel(la)?|en aquel|entonces|antes)\b/i,
-    present: /\b(hoy|ahora|actualmente|esta semana|este (año|mes)|en este momento)\b/i,
-    future: /(^|[^a-záéíóúñ])(?<!(la|esta|cada|una|por la|de la) )mañana\b|\b(próxim[oa]s?|dentro de|que viene|pronto|para entonces|el lunes que)\b/i,
+    past: words('ayer|anoche|anteayer|pasad[oa]s?|hace (?:un|una|dos|tres|unos|unas|mucho|poco|años|días|meses|tiempo)|cuando (?:era|éramos|tenía|vivía)|de (?:niñ[oa]|pequeñ[oa]|joven)|aquel(?:la)?|en aquel|entonces|antes'),
+    present: words('hoy|ahora|actualmente|esta semana|este (?:año|mes)|en este momento'),
+    future: words('(?<!(?:la|esta|cada|una|por la|de la) )mañana|próxim[oa]s?|dentro de|que viene|pronto|para entonces|el lunes que'),
   },
   fr: {
-    past: /\b(hier|avant-hier|derni(er|ère)s?|il y a|quand j'étais|quand j’étais|autrefois|jadis|ce jour-là|à l'époque|à l’époque|la veille|autrefois)\b/i,
-    present: /\b(aujourd'hui|aujourd’hui|maintenant|en ce moment|actuellement)\b/i,
-    future: /\b(demain|prochain(e|s)?|bientôt|à l'avenir|à l’avenir|plus tard|dans (deux|trois|quatre|cinq|dix|quelques|\d+) )/i,
+    // "il y a" is "ago" only before a length of time ("il y a un chat" is "there is a cat").
+    past: words("hier|avant-hier|derni(?:er|ère)s?|il y a (?:(?:\\d+|un|une|deux|trois|quatre|cinq|six|dix|quelques|des|peu de) (?:an|ans|année|années|jour|jours|semaine|semaines|mois|heure|heures|minute|minutes|siècle|siècles|temps)|longtemps)|quand j['’]étais|autrefois|jadis|ce jour-là|à l['’]époque|la veille"),
+    present: words("aujourd['’]hui|maintenant|en ce moment|actuellement"),
+    future: words("demain|prochaine?s?|bientôt|à l['’]avenir|plus tard|dans (?:deux|trois|quatre|cinq|dix|quelques|\\d+) "),
   },
 }
 
@@ -105,7 +112,7 @@ export function personsOfForm(language: LabLanguage, verb: string, tense: Tense,
 }
 
 const FR_SUBJECT: [RegExp, number][] = [
-  [/(^|[\s,;:«"])(je|j['’])/i, 0],
+  [/(^|[\s,;:«"])(je\s|j['’])/i, 0],
   [/(^|[\s,;:«"])tu\s/i, 1],
   [/(^|[\s,;:«"])(il|elle|on)\s/i, 2],
   [/(^|[\s,;:«"])nous\s/i, 3],

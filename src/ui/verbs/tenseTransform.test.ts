@@ -26,6 +26,14 @@ describe('time words', () => {
     expect(fitsTime('fr', 'Demain, nous ___ à la mer.', 'present')).toBe(true)
   })
 
+  it('accented words are found, and "il y a" is "ago" only before a length of time', () => {
+    expect(fitsTime('fr', "À l'époque, il ___ ici.", 'futur')).toBe(false)
+    expect(fitsTime('fr', 'Ce jour-là, il ___ très tôt.', 'futur')).toBe(false)
+    expect(fitsTime('fr', "À l’avenir, nous ___ mieux.", 'passe-compose')).toBe(false)
+    expect(fitsTime('fr', 'Il y a deux ans, je ___ à Lyon.', 'futur')).toBe(false)
+    expect(fitsTime('fr', 'Il y a un chat qui ___ dans le jardin.', 'present')).toBe(true)
+  })
+
   it('the morning is not tomorrow', () => {
     expect(fitsTime('es', 'Esta mañana ___ café.', 'preterito')).toBe(true)
     expect(fitsTime('es', 'Mañana ___ café.', 'preterito')).toBe(false)
@@ -42,6 +50,8 @@ describe('the move', () => {
     expect(narrowBySubject('fr', "J'___ les enfants à l'école.", [0, 1])).toEqual([0])
     expect(narrowBySubject('fr', 'Tu ___ trop vite.', [0, 1])).toEqual([1])
     expect(narrowBySubject('fr', 'Mon frère ___ souvent.', [0, 1])).toEqual([0, 1])
+    // "jeune" is not "je".
+    expect(narrowBySubject('fr', 'Le jeune homme ___ vite.', [0, 1])).toEqual([0, 1])
   })
 
   it('a question keeps the person and asks the other tense', () => {
