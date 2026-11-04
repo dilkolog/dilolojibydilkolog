@@ -12,6 +12,22 @@ Son güncelleme: 2026-11-04.
 - **Üst üste kurulu PR'larda:** alttakini birleştirmeden ÖNCE üstündekinin tabanını main'e çevir (`gh pr edit <üstteki> --base main`). Yoksa `--delete-branch` taban dalı silince GitHub üstteki PR'ı kapatır (2026-10-08'de #49'da oldu; dal geri oluşturulup PR yeniden açıldı).
 - Commit sonu: `Co-Authored-By: <model adı> <noreply@…>` tarzı bir satır kullanılıyordu; PR açıklaması sonu "🤖 Generated with …" satırı. Kendi aracının kuralına uy.
 
+## Öncelik: içerik ve eğitim (2026-11-04, sahibinin kararı)
+Sahibi şimdilik altyapıyla değil, **içerik ve eğitim tarafıyla** (dersler, alıştırmalar, fiil laboratuvarı, Rehber, okuma/dinleme içeriği) ilerlemek istiyor. Aşağıdaki altyapı işleri **sonraya kaldı**; sahibi açmadan başlatma, yalnızca sorulursa hatırlat.
+
+**Ajanın yapacakları (bekliyor):**
+- [ ] Birden çok `OWNER_EMAIL`: yönetim erişimi virgüllü listeyle çalışıyor, ama şikâyet ve yeni kayıt mailleri (`_reports.ts`, `_signupNotice.ts`) listeyi tek adres sanıyor; her adrese gitsin.
+- [ ] `claude/iphone-webkit-tests` dalını güncel main'e taşı, PR aç, bu dosyaya "Telefon testleri" bölümünü yaz (ayrıntı aşağıdaki Android bölümünde).
+- [ ] Play Store sayfası: kısa/uzun açıklama, telefon ekran görüntüleri, 1024×500 tanıtım görseli (sahibi onaylar).
+- [ ] İsteğe bağlı: eşitlemeyi R2'den Supabase'e taşımak (`0002_sync_data.sql` canlıda hiç çalıştırılmadı; `sync_parts` ve `people`/`words`/`answers` görünümleri yok). Taşınırsa Yönetim'de etkin kişi ve kişi başına kelime sayıları görünür; o zamana dek bu sayılar bilerek gizli (#721).
+
+**Sahibinin yapacakları (bekliyor):**
+- [ ] Google Play: geliştirici hesabı, yükleme anahtarı + `.aab`, Play App Signing SHA-256'sı, mağaza formları, 12 testçiyle 14 gün kapalı test (ayrıntı aşağıda).
+- [ ] Gizlilik, kullanım koşulları ve hesap silme metinlerini onaylamak.
+- [ ] Cloudflare'de `ERROR_DIGEST_TO` gizlisi (haftalık hata özeti).
+- [ ] Supabase → Auth: en az 8 karakter şifre, "Secure password change" ve "Secure email change".
+- [ ] Gerçek cihaz denemeleri: Safari mikrofon, iki telefonla canlı düello, push ve e-posta hatırlatmaları.
+
 ## Açık işler: Android uygulaması ve telefon testleri (2026-10-28)
 Sahibi Diloloji'yi **kişisel** bir Google Play hesabıyla Android uygulaması (TWA) olarak yayınlamak istiyor; iOS sonraya kaldı. Ayrıntılar: `android/README.md` ve aşağıdaki "Android uygulaması, TWA" ve "Şikâyet ve engelleme" notları. Bir maddeyi bitiren burada üstünü çizsin (`~~…~~`) ve tarih yazsın.
 
