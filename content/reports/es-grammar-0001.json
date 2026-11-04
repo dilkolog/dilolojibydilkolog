@@ -27,5 +27,10 @@
   ],
   "rejected": [],
   "warnings": [],
-  "rate": 1
+  "rate": 1,
+  "solver": {
+    "checked": 20,
+    "disagreements": 0,
+    "rate": 0
+  }
 }
