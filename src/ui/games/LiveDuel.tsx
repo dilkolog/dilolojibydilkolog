@@ -266,7 +266,7 @@ function LiveResult({ room, total, onAgain, onExit }: { room: RoomView; total: n
   const title = room.winner === 'tie' ? 'Berabere!' : room.winner === 'you' ? 'Kazandın!' : `${room.players.find((_, i) => i !== room.you)?.name ?? 'Arkadaşın'} kazandı`
   const mine = room.you
   useEffect(() => {
-    sfx.levelUp()
+    sfx.finish()
   }, [])
   return (
     <div className="stack duel-result">

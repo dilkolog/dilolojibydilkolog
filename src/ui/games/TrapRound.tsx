@@ -62,7 +62,7 @@ export function TrapRound({ language, onExit }: { language: TargetLanguage; onEx
       setGiven(null)
       return
     }
-    sfx.levelUp()
+    sfx.finish()
     setPhase('over')
   }
 

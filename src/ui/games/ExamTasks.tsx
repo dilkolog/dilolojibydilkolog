@@ -146,7 +146,7 @@ function Task({ passage, mode, onBack, onNext, next }: { passage: ExamPassage; m
   const check = () => {
     setChecked(true)
     picked.forEach((p, i) => void note(examQuestionId(passage, i), p === shuffled[i].answer))
-    if (right === passage.questions.length) sfx.levelUp()
+    if (right === passage.questions.length) sfx.finish()
     else sfx.correct()
   }
   const showText = mode === 'read' || checked

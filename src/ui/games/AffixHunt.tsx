@@ -104,7 +104,7 @@ export function AffixHunt({ language, onExit }: { language: TargetLanguage; onEx
       setGiven(null)
       return
     }
-    sfx.levelUp()
+    sfx.finish()
     setPhase('over')
   }
 

@@ -161,11 +161,13 @@ export function SessionScreen(p: Props) {
   const earnedXp = session.log.reduce((sum, l) => sum + (l.xp ?? 0), 0)
   const dayGoal = p.settings?.dailyXpGoal ?? 0
   const goalSaid = useRef(false)
+  // A session starts the right-answers climb from the bottom.
+  useEffect(() => sfx.resetRun(), [])
   useEffect(() => {
     if (goalSaid.current || !dayGoal || !dayGame || p.mode !== 'normal') return
     if (dayGame.xp.today < dayGoal && dayGame.xp.today + earnedXp >= dayGoal) {
       goalSaid.current = true
-      sfx.combo()
+      sfx.goal()
       showToast('Günlük XP hedefin tamam!')
     }
   }, [earnedXp, dayGoal, dayGame, p.mode])
@@ -289,7 +291,7 @@ export function SessionScreen(p: Props) {
     !session.log.some((l) => l.entryId === e.id) &&
     timeOf(states.current.get(e.id)?.introducedAt) >= startOfYesterday()
 
-  const answer = async (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number, confidence?: Confidence) => {
+  const answer = async (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number, confidence?: Confidence, forgot = false) => {
     setAnsweredAt(session.index)
     const hadState = states.current.has(entry.id)
     const before = states.current.get(entry.id) ?? newWordState(entry, new Date())
@@ -345,7 +347,8 @@ export function SessionScreen(p: Props) {
       }
     }
     const run = ev.verdict === 'wrong' ? 0 : strictRunOf(session.log) + 1
-    if (ev.verdict === 'wrong') sfx.wrong()
+    if (forgot) sfx.forgot()
+    else if (ev.verdict === 'wrong') sfx.wrong()
     else if (run === 5 || run === 10 || run === 20) sfx.combo()
     else if (ev.verdict === 'near') sfx.near()
     else sfx.correct()

@@ -7,7 +7,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../../data/instance'
 import { SENTENCE_REWRITES } from '../../data/sentenceRewrites'
 
-vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), near: vi.fn() } }))
+vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), finish: vi.fn(), badge: vi.fn(), goal: vi.fn(), pair: vi.fn(), flip: vi.fn(), tick: vi.fn(), forgot: vi.fn(), resetRun: vi.fn(), near: vi.fn() } }))
 vi.mock('../haptics', () => ({ haptics: { tap: vi.fn(), success: vi.fn(), error: vi.fn(), victory: vi.fn() } }))
 const { SentenceRewriteGame } = await import('./SentenceRewriteGame')
 

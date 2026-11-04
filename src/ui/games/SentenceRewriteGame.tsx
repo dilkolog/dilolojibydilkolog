@@ -104,7 +104,7 @@ export function SentenceRewriteGame({
       await db.saveRecord(recordKey, pct)
       setRecord(best !== undefined)
     }
-    sfx.levelUp()
+    sfx.finish()
     haptics.victory()
     setPhase('over')
   }

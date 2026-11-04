@@ -121,7 +121,7 @@ export function SpotErrorGame({
       await db.saveRecord(recordKey, pct)
       setRecord(best !== undefined)
     }
-    sfx.levelUp()
+    sfx.finish()
     setPhase('over')
   }
 

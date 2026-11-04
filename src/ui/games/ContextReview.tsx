@@ -92,7 +92,7 @@ export function ContextReview({ language, vocabulary, states, onChanged, onExit 
   const next = () => {
     if (index + 1 < round.length) show(index + 1)
     else {
-      sfx.levelUp()
+      sfx.finish()
       setPhase('over')
     }
   }

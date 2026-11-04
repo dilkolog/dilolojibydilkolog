@@ -249,6 +249,9 @@
 
 .setting-row { display: grid; grid-template-columns: minmax(min(12rem, 100%), 1fr) minmax(0, 1.6fr); gap: 0.5rem 1.5rem; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
 @media (max-width: 40rem) { .setting-row { grid-template-columns: 1fr; } }
+/* Settings → Ses: every sound to try, as a row of quiet buttons under its label. */
+.settings-content .setting-row.sound-try, .setting-row.sound-try { grid-template-columns: 1fr; }
+.sound-try-list { display: flex; flex-wrap: wrap; gap: 0.375rem; }
 .toggle-row { display: flex; align-items: center; gap: 1rem; justify-content: space-between; cursor: pointer; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
 .toggle-row > span { display: grid; gap: 0.125rem; }
 .danger-zone { border: 1px solid var(--bad-soft); }

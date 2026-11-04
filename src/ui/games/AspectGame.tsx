@@ -109,7 +109,7 @@ export function AspectGame({
     started.current = performance.now()
     if (index + 1 < round.length) return setIndex(index + 1)
     setPhase('over')
-    sfx.levelUp()
+    sfx.finish()
     const pct = Math.round((results.filter((r) => r.ok).length / round.length) * 100)
     if (isPctRecord(pct, best)) void db.saveRecord(recordKey, pct).then(() => setRecord(best !== undefined))
   }

@@ -320,7 +320,7 @@ function Episode({
       setActive(nextBlank?.index ?? null)
       if (!nextBlank) {
         await db.stories.update(episode.id, { completedAt: new Date(), answers: nextAnswers })
-        sfx.levelUp()
+        sfx.finish()
         onUpdated()
       } else {
         await db.stories.update(episode.id, { answers: nextAnswers })

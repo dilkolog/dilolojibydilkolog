@@ -10,6 +10,7 @@ import { db } from '../../data/instance'
 import { SAMPLE_WORDS } from '../../data/seed'
 import { FlameIcon } from '../icons'
 import { sfx } from '../sounds'
+import { useCountdownTicks } from '../useCountdownTicks'
 import { type Props, recordPractice } from './shared'
 
 const BLITZ_MS = 60_000
@@ -61,7 +62,7 @@ export function BlitzGame({ language, vocabulary, states, best: bestChoose, best
     const isRecord = score > (best ?? 0)
     if (isRecord) await db.saveRecord(recordKey, score)
     setRecord(isRecord)
-    sfx.levelUp()
+    sfx.finish()
     onChanged()
   }, [score, best, recordKey, onChanged])
 
@@ -148,6 +149,7 @@ export function BlitzGame({ language, vocabulary, states, best: bestChoose, best
   })
 
   const left = Math.max(0, ends - now)
+  useCountdownTicks(left / 1000, phase === 'play')
 
   return (
     <div className="stack">

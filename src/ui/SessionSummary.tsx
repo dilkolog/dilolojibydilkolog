@@ -106,8 +106,9 @@ export function Summary({
     for (const a of newBadges) void notify(badgeNotice(a.id, a.title))
   }, [newBadges.map((a) => a.id).join()]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (leveledUp || newBadges.length) sfx.levelUp()
-    else if (accuracy >= 0.85 && summary.answered >= 5) sfx.combo()
+    if (leveledUp) sfx.levelUp()
+    else if (newBadges.length) sfx.badge()
+    else if (accuracy >= 0.85 && summary.answered >= 5) sfx.finish()
     if (after) markLevelSeen(after.level.level)
     if (leveledUp && after) void notify(levelNotice(after.level.level, after.level.title))
     // Play once when the summary opens.

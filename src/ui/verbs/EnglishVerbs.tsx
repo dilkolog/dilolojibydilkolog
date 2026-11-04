@@ -184,7 +184,7 @@ function IrregularQuiz({ onExit }: { onExit: () => void }) {
       setChecked(null)
       return
     }
-    sfx.levelUp()
+    sfx.finish()
     setPhase('over')
   }
 
@@ -302,7 +302,7 @@ function PhrasalQuiz({ onExit }: { onExit: () => void }) {
       setGiven(null)
       return
     }
-    sfx.levelUp()
+    sfx.finish()
     setPhase('over')
   }
 

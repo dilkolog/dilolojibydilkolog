@@ -13,6 +13,7 @@ import { FlameIcon, HeartIcon, SproutIcon, TimerIcon } from '../icons'
 import { sfx } from '../sounds'
 import { Diagnosis } from './Diagnosis'
 import { CORE_TENSES, tenseName, verbEntry, type LabLanguage } from './labShared'
+import { useCountdownTicks } from '../useCountdownTicks'
 
 type Difficulty = 'easy' | 'medium' | 'hard'
 
@@ -226,6 +227,7 @@ function TimedRun({
     }, 100)
     return () => clearInterval(id)
   }, [index, shown, over]) // eslint-disable-line react-hooks/exhaustive-deps
+  useCountdownTicks(left, !shown && !over && !!q)
 
   const forms = q ? conjugateTense(verbEntry(language, q.verb), q.tense) : undefined
 
@@ -254,7 +256,7 @@ function TimedRun({
   const next = () => {
     if (lives <= 0 || index + 1 >= round.length) {
       setOver(true)
-      sfx.levelUp()
+      sfx.finish()
       if (score > 0 && score > (best ?? 0)) {
         onSaved(score)
         setRecord(true)

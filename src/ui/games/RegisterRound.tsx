@@ -94,7 +94,7 @@ export function RegisterRound({ language, onExit, onLesson }: { language: Target
       await db.saveRecord(recordKey, pct)
       setRecord(best !== undefined)
     }
-    sfx.levelUp()
+    sfx.finish()
     setPhase('over')
   }
 

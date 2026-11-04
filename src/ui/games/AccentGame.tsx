@@ -66,7 +66,7 @@ export function AccentGame({ language, vocabulary, states, mistakes = [], best, 
     }
     // The round ends at once, so nothing can be answered again while the record is saved.
     setPhase('over')
-    sfx.levelUp()
+    sfx.finish()
     const pct = Math.round((results.filter((r) => r.ok).length / round.length) * 100)
     if (isPctRecord(pct, best)) void db.saveRecord(recordKey, pct).then(() => setRecord(best !== undefined))
   }

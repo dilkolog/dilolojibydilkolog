@@ -6149,8 +6149,12 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
 .game-suggest-list { display: grid; gap: 0.75rem; }
 @media (min-width: 46rem) {
   .game-suggest-list { grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
-  .game-suggest-list .game-suggest { flex-wrap: wrap; }
-  .game-suggest-list .game-suggest .btn { margin-left: auto; }
+  /* One card keeps its row; side by side a card is narrow: the picture beside the title and the reason, the button across the bottom (beside
+     the text it squeezed every line to two words). */
+  .game-suggest-list:has(> :nth-child(2)) .game-suggest { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: 1fr auto; align-items: start; gap: 1rem 0.875rem; }
+  .game-suggest-list:has(> :nth-child(2)) .game-suggest-icon { grid-row: 1; }
+  .game-suggest-list:has(> :nth-child(2)) .game-suggest-body { grid-row: 1; gap: 0.25rem; }
+  .game-suggest-list:has(> :nth-child(2)) .game-suggest .btn { grid-column: 1 / -1; grid-row: 2; width: 100%; justify-content: center; }
 }
 .game-search { position: relative; display: flex; align-items: center; }
 .game-search svg { position: absolute; left: 0.875rem; color: var(--ink-soft); pointer-events: none; }

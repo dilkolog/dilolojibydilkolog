@@ -69,7 +69,7 @@ export function FluencyGame({
     if (allTimes.length) await db.saveRecord(`${recordKey}:last`, Math.round(med))
     setResult({ median: med, accuracy, record, previous: last })
     setPhase('over')
-    sfx.levelUp()
+    sfx.finish()
     onChanged()
   }
 

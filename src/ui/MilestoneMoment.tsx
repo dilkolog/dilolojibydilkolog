@@ -38,7 +38,7 @@ export function LevelUpBadge({ from, to, size = 'md' }: { from: number; to: numb
 /** A crossed milestone, once, full screen: big sign, a line on what it means, confetti, share. */
 export function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; onClose: () => void }) {
   useEffect(() => {
-    sfx.levelUp()
+    sfx.badge()
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.stopImmediatePropagation()

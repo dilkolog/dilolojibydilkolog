@@ -6,6 +6,7 @@ import { SPEECH_LANG } from './labels'
 import { exampleAudio } from '../data/corpus'
 import { cacheAudio, cachedAudio, readyAudio } from '../data/audioCache'
 import { naturalEnabled, naturalPlaying, playNatural, stopNatural } from './naturalVoice'
+import { duckEffects } from './effectDuck'
 
 export const canSpeak = () => typeof window !== 'undefined' && 'speechSynthesis' in window
 
@@ -50,6 +51,7 @@ function variedVoice(text: string, voices: SpeechSynthesisVoice[]): SpeechSynthe
  * (listening exercises) picks a different voice each time when the setting is on.
  */
 export function speak(text: string, language: TargetLanguage, rate = speechPrefs.rate, vary = false) {
+  duckEffects()
   if (naturalEnabled()) {
     if (canSpeak()) window.speechSynthesis.cancel()
     playNatural(text, language, rate, vary).catch(() => systemSpeak(text, language, rate, vary))
@@ -101,6 +103,7 @@ export function isAudioPlaying(): boolean {
 }
 
 function playUrl(url: string, rate = 1): Promise<void> {
+  duckEffects()
   current?.pause()
   current = new Audio(url)
   current.playbackRate = Math.min(1.5, Math.max(0.5, rate))
@@ -164,6 +167,7 @@ export async function unlockedAudio(url: string): Promise<HTMLAudioElement> {
 
 /** Speak and resolve when finished (for playing two clips back to back). */
 export function speakAsync(text: string, language: TargetLanguage, rate = speechPrefs.rate, second = false): Promise<void> {
+  duckEffects()
   if (naturalEnabled()) return playNatural(text, language, rate).catch(() => systemSpeakAsync(text, language, rate, second))
   return systemSpeakAsync(text, language, rate, second)
 }
@@ -202,6 +206,7 @@ export function speakTurkishAsync(text: string, rate = speechPrefs.rate): Promis
 
 /** The word in the learner's own recording if there is one (awaiting its end), otherwise TTS. */
 export async function playWordAsync(entry: VocabularyEntry, rate = speechPrefs.rate): Promise<void> {
+  duckEffects()
   const url = recordings.get(entry.audioId ?? '') ?? (await preloadRecording(entry.audioId))
   if (url) {
     current?.pause()

@@ -5,7 +5,7 @@ import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), near: vi.fn() } }))
+vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), finish: vi.fn(), badge: vi.fn(), goal: vi.fn(), pair: vi.fn(), flip: vi.fn(), tick: vi.fn(), forgot: vi.fn(), resetRun: vi.fn(), near: vi.fn() } }))
 const spoken: string[] = []
 vi.mock('../speech', () => ({ canSpeak: () => true, speak: (text: string) => void spoken.push(text), speechPrefs: { rate: 1, voices: {}, varyVoices: false } }))
 vi.mock('../../engine/spelling', async (original) => ({ ...(await original<typeof import('../../engine/spelling')>()), spellingRound: () => ['Hélène', 'maison'] }))

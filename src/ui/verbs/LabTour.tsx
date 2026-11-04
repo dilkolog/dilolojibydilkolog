@@ -155,7 +155,7 @@ export function TourRun({
       } catch {
         // Storage off: the start card just won't say "done".
       }
-      sfx.levelUp()
+      sfx.finish()
       onFinished?.()
     }
   }, [questions, index, language]) // eslint-disable-line react-hooks/exhaustive-deps
