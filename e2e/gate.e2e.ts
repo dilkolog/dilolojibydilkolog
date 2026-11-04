@@ -101,6 +101,8 @@ test('a signed-out visit opens the landing page, and the sign-in page is one ste
   await page.getByRole('button', { name: 'Giriş yap', exact: true }).first().click()
   await expect(signInPage(page)).toBeVisible()
   await expect(page.getByRole('button', { name: 'Google ile devam et' })).toBeVisible()
+  // Facebook only once the owner turns it on.
+  await expect(page.getByRole('button', { name: 'Facebook ile devam et' })).toHaveCount(0)
   await expect(page.getByLabel('E-posta')).toBeVisible()
   await expect(appChrome(page)).toHaveCount(0)
   await expect(landing(page)).toHaveCount(0)
@@ -108,6 +110,24 @@ test('a signed-out visit opens the landing page, and the sign-in page is one ste
   await expect(page.locator('.auth-back')).toHaveCount(0)
   await page.locator('.lp-brand').click()
   await expect(landing(page)).toBeVisible()
+})
+
+test('the owner turned Facebook sign-in on: the sign-in page offers it and it leaves for Facebook asking for the e-mail', async ({ page }) => {
+  await stubNetwork(page)
+  await page.route((u) => u.pathname === '/api/access' && u.searchParams.has('signin'), (r) => r.fulfill({ json: { facebook: true } }))
+  await page.goto('/')
+  await pastLanding(page)
+  const button = page.getByRole('button', { name: 'Facebook ile devam et' })
+  await expect(button).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Google ile devam et' })).toBeVisible()
+  expect(await overflow(page)).toEqual([])
+  const axe = await new AxeBuilder({ page }).include('.auth-card, main').analyze()
+  expect(axe.violations.map((v) => v.id)).toEqual([])
+  const leaving = page.waitForRequest((r) => r.url().includes('/auth/v1/authorize'))
+  await button.click()
+  const url = new URL((await leaving).url())
+  expect(url.searchParams.get('provider')).toBe('facebook')
+  expect(url.searchParams.get('scopes')).toBe('email')
 })
 
 test('the landing page shows the app in the language chosen, and keeps French verbs for English', async ({ page }) => {

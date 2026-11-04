@@ -9,3 +9,13 @@ export function GoogleMark({ size = 18 }: { size?: number }) {
     </svg>
   )
 }
+
+/** Facebook's "f" on its blue circle, for the sign-in button. */
+export function FacebookMark({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="24" cy="24" r="24" fill="#1877F2" />
+      <path fill="#fff" d="M33.3 30.9 34.4 24H27.8v-4.5c0-1.9.9-3.7 3.9-3.7h3V9.9s-2.7-.5-5.3-.5c-5.4 0-8.9 3.3-8.9 9.2V24h-6v6.9h6V48c1.2.2 2.4.3 3.6.3s2.5-.1 3.7-.3V30.9h5.5z" />
+    </svg>
+  )
+}

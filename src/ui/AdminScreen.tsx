@@ -487,7 +487,7 @@ const count = (n: number) => n.toLocaleString('tr-TR')
 const usd = (n: number) => `${n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} $`
 const sizeOf = (bytes: number) => (bytes < 1024 * 1024 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1024 / 1024).toLocaleString('tr-TR', { maximumFractionDigits: 1 })} MB`)
 const dayName = (day: string) => new Date(`${day}T12:00:00Z`).toLocaleDateString('tr-TR', { weekday: 'short' })
-const PROVIDER: Record<string, string> = { email: 'E-posta', google: 'Google' }
+const PROVIDER: Record<string, string> = { email: 'E-posta', google: 'Google', facebook: 'Facebook' }
 
 /** One person's figures, read when their row is opened. */
 function PersonInfo({ id }: { id: string }) {
@@ -761,11 +761,11 @@ function SettingsCard() {
       .then(setView)
       .catch((e: unknown) => setError(failText(e)))
   }, [])
-  const autoApprove = async (on: boolean) => {
+  const change = async (settings: { autoApprove?: boolean; facebookLogin?: boolean }, done: string) => {
     setBusy(true)
     try {
-      setView(await saveSettings({ autoApprove: on }))
-      showToast(on ? 'Yeni kayıtlar artık hemen onaylanacak.' : 'Yeni kayıtlar onay bekleyecek.')
+      setView(await saveSettings(settings))
+      showToast(done)
     } catch (e) {
       showToast(`Olmadı: ${failText(e)}`, undefined, 5000, 'info')
     } finally {
@@ -802,7 +802,13 @@ function SettingsCard() {
             label="Yeni kayıtları hemen onayla"
             help="Açıkken yeni bir kişi ilk girişinde onaylı olur, bekleme listesine düşmez. Var olan bekleyenler etkilenmez."
             checked={view.settings.autoApprove === true}
-            onChange={(v) => !busy && void autoApprove(v)}
+            onChange={(v) => !busy && void change({ autoApprove: v }, v ? 'Yeni kayıtlar artık hemen onaylanacak.' : 'Yeni kayıtlar onay bekleyecek.')}
+          />
+          <Toggle
+            label="Facebook ile giriş"
+            help="Giriş sayfasında “Facebook ile devam et” düğmesi görünür. Meta'daki uygulama yayınlanmadan (Live) yalnızca sen girebilirsin; önce kendinle dene."
+            checked={view.settings.facebookLogin === true}
+            onChange={(v) => !busy && void change({ facebookLogin: v }, v ? 'Facebook ile giriş açıldı; bir dakika içinde görünür.' : 'Facebook ile giriş kapatıldı.')}
           />
           <form
             className="stack admin-announce"

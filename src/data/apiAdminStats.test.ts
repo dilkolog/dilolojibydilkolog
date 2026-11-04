@@ -184,6 +184,15 @@ describe("the owner's switches: limits, auto-approval, announcement", () => {
     expect((await post({ action: 'settings', settings: { nothing: 1 } })).status).toBe(400)
   })
 
+  it('Facebook sign-in shows on the sign-in page only once the owner turns it on', async () => {
+    const ask = async () => (await (await access.GET(new Request('https://app.test/api/access?signin=1', { headers: { 'sec-fetch-site': 'same-origin' } }))).json()) as { facebook: boolean }
+    expect(await ask()).toEqual({ facebook: false })
+    expect((await post({ action: 'settings', settings: { facebookLogin: true } })).status).toBe(200)
+    forgetSettings()
+    expect(await ask()).toEqual({ facebook: true })
+    expect((await post({ action: 'settings', settings: { facebookLogin: 'yes' } }, 'tok-other')).status).toBe(503)
+  })
+
   it('a stored value out of range or of the wrong kind is dropped', () => {
     expect(cleanSettings({ aiDailyBudgetUsd: 0.123, ttsChars: 10, autoApprove: 'yes', announcement: { id: 'x', text: 'hi', at: 'never' } })).toEqual({ aiDailyBudgetUsd: 0.12 })
   })

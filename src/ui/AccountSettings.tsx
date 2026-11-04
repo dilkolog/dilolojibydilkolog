@@ -1,4 +1,4 @@
-import { currentIdentity, signInWithGoogle, supabaseConfigured, type Identity } from '../data/supabase'
+import { currentIdentity, signInWithFacebook, signInWithGoogle, supabaseConfigured, type Identity } from '../data/supabase'
 import { AccountManage, AccountDelete } from './AccountManage'
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
@@ -13,7 +13,8 @@ import { useAccountHandle } from './useAccountHandle'
 import { ACCOUNT_ART } from './drawnArt'
 import { StatusPicture } from './StatusArt'
 import { useAccess } from './accessContext'
-import { GoogleMark } from './GoogleMark'
+import { FacebookMark, GoogleMark } from './GoogleMark'
+import { useFacebookLogin } from './facebookLogin'
 import { signOutThisDevice } from './signOut'
 import { approvalEnabled } from '../data/access'
 
@@ -29,6 +30,7 @@ export function AccountSettings({ onOpenAuth, onOpenProfile, onOpenAdmin }: { on
   const [account, setAcc] = useState<Account | null | undefined>(undefined)
   const [size, setSize] = useState<number | null>(null)
   const [skipped, setSkipped] = useState(0)
+  const facebookOn = useFacebookLogin()
   const [identity, setIdentity] = useState<Identity | null>(null)
   const { status: access } = useAccess()
   // The tick means the owner approved this person: with approval switched off everyone passes and it would mean nothing.
@@ -74,6 +76,13 @@ export function AccountSettings({ onOpenAuth, onOpenProfile, onOpenAdmin }: { on
       showToast(e instanceof Error ? e.message : 'Google ile giriş açılamadı.', undefined, 5000, 'info')
     }
   }
+  const facebook = async () => {
+    try {
+      await signInWithFacebook()
+    } catch (e) {
+      showToast(e instanceof Error ? e.message : 'Facebook ile giriş açılamadı.', undefined, 5000, 'info')
+    }
+  }
 
   if (account === undefined) return null
 
@@ -92,6 +101,11 @@ export function AccountSettings({ onOpenAuth, onOpenProfile, onOpenAdmin }: { on
             {modern && (
               <button className="btn account-google" onClick={() => void google()}>
                 <GoogleMark /> Google ile devam et
+              </button>
+            )}
+            {modern && facebookOn && (
+              <button className="btn btn-quiet account-google" onClick={() => void facebook()}>
+                <FacebookMark /> Facebook ile devam et
               </button>
             )}
             <button className={modern ? 'btn btn-quiet' : 'btn'} onClick={() => onOpenAuth('login')}>
@@ -154,6 +168,11 @@ export function AccountSettings({ onOpenAuth, onOpenProfile, onOpenAdmin }: { on
               {identity.providers.includes('google') && (
                 <span className="account-provider" role="img" aria-label="Google ile bağlı" title="Google ile bağlı">
                   <GoogleMark size={14} />
+                </span>
+              )}
+              {identity.providers.includes('facebook') && (
+                <span className="account-provider" role="img" aria-label="Facebook ile bağlı" title="Facebook ile bağlı">
+                  <FacebookMark size={14} />
                 </span>
               )}
             </p>

@@ -134,6 +134,11 @@ export async function resendConfirmation(email: string, captchaToken?: string): 
   await run((await supabase()).auth.resend({ type: 'signup', email, options: { emailRedirectTo: back(), captchaToken } }))
 }
 
+/** Leaves for Facebook (asking for the e-mail: the account is known by it); the person comes back signed in. */
+export async function signInWithFacebook(): Promise<void> {
+  await run((await supabase()).auth.signInWithOAuth({ provider: 'facebook', options: { redirectTo: back(), scopes: 'email' } }))
+}
+
 /** Leaves for Google; the person comes back to the app signed in. */
 export async function signInWithGoogle(): Promise<void> {
   await run((await supabase()).auth.signInWithOAuth({ provider: 'google', options: { redirectTo: back() } }))

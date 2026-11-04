@@ -129,7 +129,7 @@ export interface Announcement {
 }
 
 export interface SettingsView {
-  settings: Partial<Record<LimitName, number>> & { autoApprove?: boolean; announcement?: Announcement | null }
+  settings: Partial<Record<LimitName, number>> & { autoApprove?: boolean; facebookLogin?: boolean; announcement?: Announcement | null }
   effective: Record<LimitName, number>
   defaults: Record<LimitName, number>
   ranges: Record<LimitName, { min: number; max: number }>
@@ -147,7 +147,7 @@ export const loadUsage = () => adminFetch<Usage>('?view=usage')
 export const loadPerson = (user: string) => adminFetch<PersonDetail>(`?view=person&user=${encodeURIComponent(user)}`)
 export const loadSettings = () => adminFetch<SettingsView>('?view=settings')
 /** A limit set to null goes back to its default. */
-export const saveSettings = (settings: Partial<Record<LimitName, number | null>> & { autoApprove?: boolean }) =>
+export const saveSettings = (settings: Partial<Record<LimitName, number | null>> & { autoApprove?: boolean; facebookLogin?: boolean }) =>
   adminFetch<SettingsView>('', { method: 'POST', body: JSON.stringify({ action: 'settings', settings }) })
 /** An empty text takes the announcement back. */
 export const announce = (text: string) =>
