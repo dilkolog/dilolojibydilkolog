@@ -3637,6 +3637,60 @@ test('verb lab: a finished round goes on to the next irregular verb in the same 
   await expect(main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'true')
 })
 
+test('verb lab: a past or future pattern, drilled, then shown among the weak patterns', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'faire')
+  const main = page.locator('.lab-main')
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Futur simple' }).click()
+  // In the future the verb's future pattern is offered next to its present one.
+  await main.getByRole('button', { name: /^Futur’de düzensiz kökler/ }).click()
+  await expect(main.getByRole('heading', { name: 'Futur simple' })).toBeVisible()
+  await expect(main.getByRole('heading', { name: 'Passé composé' })).toBeVisible()
+  await main.getByRole('button', { name: 'Bu kalıpla çalış' }).click()
+  const answer = main.getByRole('textbox', { name: 'Cevap' })
+  // Eight wrong answers: the family turns weak.
+  for (let i = 0; i < 8; i++) {
+    await answer.fill('zzz')
+    await answer.press('Enter')
+    await expect(main.getByRole('status')).toContainText('Doğrusu:')
+    await main.getByRole('button', { name: i === 7 ? 'Bitir' : 'Devam' }).click()
+  }
+  await expect(main.locator('.lab-result')).toContainText('0 / 8 doğru')
+  await main.getByRole('button', { name: 'Kalıplara dön' }).click()
+  await expect(main.getByRole('heading', { name: 'En çok zorlandığın kalıplar' })).toBeVisible()
+  await main.getByRole('tab', { name: 'İlerleme' }).click()
+  await expect(main.getByRole('heading', { name: 'Zorlandığın kalıplar' })).toBeVisible()
+  await main.getByRole('button', { name: 'Kalıbı çalış' }).first().click()
+  await expect(main.getByRole('textbox', { name: 'Cevap' })).toBeVisible()
+  await expect(main.locator('.lab-drill')).toContainText('Futur’de düzensiz kökler')
+})
+
+test('verb lab: a prefixed verb is drilled with its model verb named', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'comprendre')
+  const main = page.locator('.lab-main')
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' }).click()
+  await main.getByRole('button', { name: /^Ön ekli düzensizler/ }).click()
+  await main.getByRole('button', { name: 'Bu kalıpla çalış' }).click()
+  await expect(main.locator('.lab-drill')).toContainText('gibi çekilir')
+})
+
+test('verb lab: change the tense of a real sentence', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Zamanı değiştir' }).click()
+  await expect(main.locator('.lab-transform')).toContainText('1 / 8')
+  await expect(main.locator('.lab-transform-form')).toBeVisible()
+  const answer = main.getByRole('textbox', { name: /biçimi$/ })
+  await answer.fill('zzz')
+  await answer.press('Enter')
+  await expect(main.getByRole('status')).toContainText('Doğrusu:')
+  await main.getByRole('button', { name: 'Devam' }).click()
+  await expect(main.locator('.lab-transform')).toContainText('2 / 8')
+})
+
 test('verb lab: a finished round offers a new random verb in the same tense', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'parler')

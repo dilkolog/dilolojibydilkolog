@@ -7,6 +7,7 @@ import { DRILL_TEXT, DRILLABLE, drillQueue } from './drills'
 import { FormRun, type RunCheck } from './ReviewTab'
 import type { Asked } from './reviewSelection'
 import { CORE_TENSES, tenseName, type LabLanguage } from './labShared'
+import { FAMILIES, weakFamilies, type FamilyId } from '../../engine/verbFamilies'
 
 /** Plots shown in the verb garden before "show all": the ones needing water come first anyway. */
 const GARDEN_SHOWN = 8
@@ -28,6 +29,7 @@ export function MasteryTab({
   onCheck,
   dueCount = 0,
   onReview,
+  onFamily,
 }: {
   language: LabLanguage
   verb: string
@@ -46,6 +48,8 @@ export function MasteryTab({
   /** Forms whose review is due, and the way to the queue. */
   dueCount?: number
   onReview?: () => void
+  /** Open the verb patterns, on a family's drill when `drill`. */
+  onFamily?: (id: FamilyId | undefined, drill: boolean) => void
 }) {
   // A focused round on one kind of slip, with its questions fixed when it starts.
   const [allPlots, setAllPlots] = useState(false)
@@ -69,6 +73,7 @@ export function MasteryTab({
   const worst = weakestCell(lab)
   const kinds = errorBreakdown(lab)
   const difficult = difficultItems(lab)
+  const weakPatterns = weakFamilies(language, lab).slice(0, 3)
   const seen = lab.seen?.[verb] ?? []
   const metVerbs = seenVerbs(lab).filter((v) => v.verb !== verb)
   const startDrill = (kind: ErrorKind) => {
@@ -214,6 +219,26 @@ export function MasteryTab({
             </ul>
           )}
           <p className="small muted">Hücrelerde doğru/toplam cevap görünür; kırmızıya yakın hücreler çalışılacak yerler.</p>
+          {weakPatterns.length > 0 && onFamily && (
+            <>
+              <h3 className="lab-mood-title">Zorlandığın kalıplar</h3>
+              <ul className="lab-weak-list">
+                {weakPatterns.map((w) => (
+                  <li key={w.id} className="lab-weak-row">
+                    <span className="lab-weak-text">
+                      <strong>{FAMILIES[w.id].name}</strong>
+                      <span className="small muted">
+                        <span lang={language}>{tenseName(FAMILIES[w.id].tense)}</span> · %{Math.round(w.rate * 100)} yanlış
+                      </span>
+                    </span>
+                    <button type="button" className="btn btn-sm" onClick={() => onFamily(w.id, true)}>
+                      Kalıbı çalış
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
           {difficult.length > 0 && (
             <>
               <h3 className="lab-mood-title">Zorlandığın çekimler</h3>
@@ -227,6 +252,14 @@ export function MasteryTab({
             </>
           )}
         </section>
+      )}
+      {onFamily && (
+        <p className="small muted">
+          Düzensiz fiiller kalıplar hâlinde daha kolay öğrenilir.{' '}
+          <button type="button" className="link" onClick={() => onFamily(undefined, false)}>
+            Bütün kalıplar
+          </button>
+        </p>
       )}
       <WeeklyProgress weeks={weeklyProgress(lab, new Date())} />
       {seen.length > 0 && (

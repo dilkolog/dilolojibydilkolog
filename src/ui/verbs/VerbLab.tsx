@@ -17,8 +17,9 @@ import { nextIrregular } from './nextIrregular'
 import { PatternsTab } from './PatternsTab'
 import { ReviewTab } from './ReviewTab'
 import { SlipsTab } from './SlipsTab'
-import { verbFamilies, type FamilyId } from '../../engine/verbFamilies'
+import { familiesInView, type FamilyId } from '../../engine/verbFamilies'
 import { SentenceQuiz } from './SentenceQuiz'
+import { TransformQuiz } from './TransformQuiz'
 import { TenseSheet } from './TenseSheet'
 import { TenseBar } from './TenseBar'
 import { TimedTab } from './TimedTab'
@@ -110,6 +111,8 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
   // The verb lists stay folded: once a verb is chosen they would only crowd the lesson.
   const [listsOpen, setListsOpen] = useState(false)
   const [family, setFamily] = useState<FamilyId | undefined>()
+  /** Open the family on its drill (a weak family chosen from İlerleme). */
+  const [familyDrill, setFamilyDrill] = useState(false)
   /** A conjugated form searched for: its person is marked while that verb and tense are in view. */
   const [found, setFound] = useState<{ verb: string; tense: Tense; person: number } | null>(null)
   const main = useRef<HTMLElement>(null)
@@ -296,9 +299,10 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 favorite={lab.favorites.includes(verb)}
                 onTense={setTense}
                 onFavorite={() => update((l) => toggleFavorite(l, verb))}
-                families={verbFamilies(language, verb)}
+                families={familiesInView(language, verb, current)}
                 onFamily={(id) => {
                   setFamily(id)
+                  setFamilyDrill(false)
                   setTab('patterns')
                 }}
                 inReview={reviewable.filter((t) => lab.records[labKey(verb, t)]).length}
@@ -323,6 +327,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 onAnswer={onAnswer}
                 initialMode={timedFirst ? 'timed' : undefined}
                 sentences={<SentenceQuiz language={language} verbs={[verb, ...ownVerbs, ...lab.recent, ...byFrequency.slice(0, 300)].filter((v, i, all) => all.indexOf(v) === i)} onAnswer={onAnswer} />}
+                transform={<TransformQuiz language={language} verbs={[verb, ...ownVerbs, ...lab.recent, ...byFrequency.slice(0, 300)].filter((v, i, all) => all.indexOf(v) === i)} onAnswer={onAnswer} />}
                 sheet={<TenseSheet language={language} verb={verb} tense={current} verbs={[verb, ...ownVerbs, ...lab.recent, ...byFrequency.slice(0, 300)].filter((v, i, all) => all.indexOf(v) === i)} onAnswer={onAnswer} />}
                 timed={<TimedTab language={language} byFrequency={byFrequency} levels={levels} vocabulary={vocabulary} states={states} onAnswer={onAnswer} />}
                 byFrequency={byFrequency}
@@ -353,10 +358,12 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
               />
             ) : tab === 'patterns' ? (
               <PatternsTab
-                key={family ?? 'all'}
+                key={`${family ?? 'all'}${familyDrill}`}
                 language={language}
                 frequency={frequency}
+                lab={lab}
                 initial={family}
+                initialDrill={familyDrill}
                 onVerb={(v) => {
                   choose(v)
                   setTab('learn')
@@ -393,6 +400,11 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 }}
                 dueCount={dueCount}
                 onReview={() => setTab('review')}
+                onFamily={(id, drill) => {
+                  setFamily(id)
+                  setFamilyDrill(drill)
+                  setTab('patterns')
+                }}
               />
             )}
           </div>

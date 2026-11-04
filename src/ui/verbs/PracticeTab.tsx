@@ -6,7 +6,7 @@ import { TENSE_GUIDE } from '../../engine/tenseGuide'
 import { conjugateTense, personsOf, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
 import { AccentBar } from '../AccentBar'
 import { accentChange, insertAt } from '../accentCaret'
-import { CheckIcon, ClipboardIcon, CloseIcon, TimerIcon, MoreIcon, MicIcon, ReadIcon, ScaleIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
+import { CheckIcon, ClipboardIcon, CloseIcon, TimerIcon, MoreIcon, MicIcon, ReadIcon, ScaleIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, SwapIcon, TargetIcon } from '../icons'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 import { Diagnosis } from './Diagnosis'
@@ -19,21 +19,22 @@ import { recordVisit } from '../screenUsage'
 import { MenuItem, Popover } from '../Popover'
 import { judge, tenseName, verbEntry, type LabLanguage } from './labShared'
 
-export type PracticeMode = 'type' | 'choose' | 'listen' | 'speak' | 'match' | 'sentence' | 'tense' | 'mood' | 'reverse' | 'timed' | 'sheet'
+export type PracticeMode = 'type' | 'choose' | 'listen' | 'speak' | 'match' | 'sentence' | 'transform' | 'tense' | 'mood' | 'reverse' | 'timed' | 'sheet'
 type Mode = PracticeMode
 const HEARTS = 3
 /** Modes with their own questions and counting: no lives and no tense tip. */
-const QUIZ: Mode[] = ['speak', 'sentence', 'sheet', 'tense', 'mood', 'reverse', 'timed']
+const QUIZ: Mode[] = ['speak', 'sentence', 'transform', 'sheet', 'tense', 'mood', 'reverse', 'timed']
 
 /**
- * The ways to practise. Four are on show (write the forms, pick them, write them into sentences,
- * race the clock); the rest wait in "Diğer", so practising starts with a choice of four, not ten.
+ * The ways to practise. Five are on show (write the forms, pick them, write them into sentences,
+ * move a sentence into another tense, race the clock); the rest wait in "Diğer", so practising starts with a few, not twelve.
  * The day's round (the card on top of the lab) picks for the learner; this is free practice.
  */
 const MODES: { id: Mode; label: string; hint: string; icon: typeof PenIcon; main?: boolean }[] = [
   { id: 'type', label: 'Yaz', hint: 'Altı biçimi yaz', icon: PenIcon, main: true },
   { id: 'choose', label: 'Seç', hint: 'Doğru biçimi seç', icon: TargetIcon, main: true },
   { id: 'sentence', label: 'Cümlede', hint: 'Gerçek cümlenin boşluğuna yaz', icon: ReadIcon, main: true },
+  { id: 'transform', label: 'Zamanı değiştir', hint: 'Cümledeki fiili başka zamana çevir', icon: SwapIcon, main: true },
   { id: 'timed', label: 'Zamana karşı', hint: 'Birçok fiil, 60 saniye', icon: TimerIcon, main: true },
   { id: 'sheet', label: 'Cümle listesi', hint: 'Bir zamanda birçok cümle, hepsini birden kontrol et', icon: ClipboardIcon },
   { id: 'listen', label: 'Dinle', hint: 'Duyduğun biçimi yaz', icon: HeadphonesIcon },
@@ -77,6 +78,7 @@ export function PracticeTab({
   onAnswer,
   timed,
   sentences,
+  transform,
   sheet,
   initialMode = 'type',
   byFrequency,
@@ -97,6 +99,8 @@ export function PracticeTab({
   timed: ReactNode
   /** Real sentences with the verb's form to write back. */
   sentences: ReactNode
+  /** A sentence's verb moved into another tense. */
+  transform?: ReactNode
   /** A worksheet of sentences in one tense, checked together. */
   sheet: ReactNode
   initialMode?: Mode
@@ -256,6 +260,7 @@ export function PracticeTab({
       {mode === 'mood' && <MoodQuiz key={verb} language={language} verbs={moodVerbs} />}
       {mode === 'reverse' && <ReverseQuiz key={language} language={language} byFrequency={byFrequency} />}
       {mode === 'sentence' && sentences}
+      {mode === 'transform' && transform}
       {mode === 'sheet' && sheet}
       {mode === 'timed' && timed}
 

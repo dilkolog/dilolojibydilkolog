@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { createRng, shuffle } from '../../engine/rng'
-import { FAMILIES, FAMILY_ORDER, familyVerbs, type Family, type FamilyId } from '../../engine/verbFamilies'
+import { FAMILIES, FAMILY_ORDER, familyVerbs, prefixBase, weakFamilies, type Family, type FamilyId } from '../../engine/verbFamilies'
+import type { LabData } from '../../engine/labProgress'
 import { conjugateTense, subjectLabel, withSubject, type Tense } from '../../engine/tenses'
 import { AccentBar } from '../AccentBar'
 import { accentChange, insertAt } from '../accentCaret'
@@ -37,7 +38,7 @@ const TABLE_VERBS = 6
  */
 function FamilyTable({ family, verbs }: { family: Family; verbs: readonly string[] }) {
   const language = family.language
-  const tense = family.tense as Tense
+  const tense = family.tense
   const rows = verbs
     .slice(0, 20)
     .map((v) => ({ verb: v, forms: conjugateTense(verbEntry(language, v), tense) }))
@@ -81,16 +82,37 @@ function FamilyTable({ family, verbs }: { family: Family; verbs: readonly string
 }
 
 /** Drill: one person of the family's tense for a handful of its verbs; after each answer the whole tense shows the shape. */
-function FamilyDrill({ family, verbs, onCheck, onClose }: { family: Family; verbs: readonly string[]; onCheck: (verb: string, tense: Tense, ok: boolean, given: string, expected: string, person: number) => void; onClose: () => void }) {
+function FamilyDrill({
+  family,
+  verbs,
+  first = [],
+  onCheck,
+  onClose,
+}: {
+  family: Family
+  verbs: readonly string[]
+  /** Verbs to ask before the rest (the ones the learner got wrong). */
+  first?: readonly string[]
+  onCheck: (verb: string, tense: Tense, ok: boolean, given: string, expected: string, person: number) => void
+  onClose: () => void
+}) {
   const language = family.language
-  const queue = useMemo(() => shuffle(verbs.slice(0, 40), createRng(Date.now())).slice(0, DRILL_SIZE), [verbs])
+  const queue = useMemo(() => {
+    const rng = createRng(Date.now())
+    const missed = first.filter((v) => verbs.includes(v)).slice(0, DRILL_SIZE / 2)
+    const rest = shuffle(verbs.slice(0, 40).filter((v) => !missed.includes(v)), rng)
+    return [...missed, ...rest].slice(0, DRILL_SIZE)
+  }, [verbs, first])
   const [index, setIndex] = useState(0)
   const [typed, setTyped] = useState('')
   const [shown, setShown] = useState<boolean | null>(null)
   const [right, setRight] = useState(0)
   const input = useRef<HTMLInputElement>(null)
   const verb = queue[index]
-  const tense = family.tense as Tense
+  const tense = family.tense
+  // The persons asked in turn, or the one that shows the change.
+  const person = family.asks?.length ? family.asks[index % family.asks.length] : family.ask
+  const base = verb && family.id.endsWith('-prefix') ? prefixBase(language, verb) : undefined
   const forms = verb ? conjugateTense(verbEntry(language, verb), tense) : undefined
   useEffect(() => {
     if (index >= queue.length && queue.length) sfx.finish()
@@ -109,13 +131,13 @@ function FamilyDrill({ family, verbs, onCheck, onClose }: { family: Family; verb
     )
   const check = () => {
     if (!typed.trim() || shown !== null) return
-    const ok = judge(language, verb, tense, family.ask, typed)
+    const ok = judge(language, verb, tense, person, typed)
     setShown(ok)
     if (ok) {
       setRight((n) => n + 1)
       sfx.correct()
     } else sfx.wrong()
-    onCheck(verb, tense, ok, typed.trim(), forms[family.ask], family.ask)
+    onCheck(verb, tense, ok, typed.trim(), forms[person], person)
   }
   const next = () => {
     setShown(null)
@@ -140,8 +162,13 @@ function FamilyDrill({ family, verbs, onCheck, onClose }: { family: Family; verb
         <span lang={language}>{tenseName(tense)}</span>
       </p>
       <p className="prompt-text" lang={language}>
-        {subjectLabel(language, tense, family.ask)} · {verb}
+        {subjectLabel(language, tense, person)} · {verb}
       </p>
+      {base && (
+        <p className="small muted">
+          <span lang={language}>{base}</span> gibi çekilir
+        </p>
+      )}
       <form
         className="stack"
         onSubmit={(e) => {
@@ -176,7 +203,7 @@ function FamilyDrill({ family, verbs, onCheck, onClose }: { family: Family; verb
           <div className={`accent-result is-${shown ? 'correct' : 'wrong'}`}>
             <p className="small" role="status">
               {shown ? 'Doğru!' : 'Doğrusu: '}
-              {!shown && <strong lang={language}>{withSubject(language, tense, family.ask, forms[family.ask])}</strong>}
+              {!shown && <strong lang={language}>{withSubject(language, tense, person, forms[person])}</strong>}
             </p>
             <FormTable language={language} tense={tense} forms={forms} layout="single" speakable={false} />
             <div className="row">
@@ -205,7 +232,7 @@ function FamilyFind({ family, verbs, others, onClose }: { family: Family; verbs:
   }, [verbs, others])
   const [picked, setPicked] = useState<ReadonlySet<string>>(new Set())
   const [done, setDone] = useState(false)
-  const tense = family.tense as Tense
+  const tense = family.tense
   const score = set.filter((s) => s.member === picked.has(s.verb)).length
   return (
     <div className="stack lab-find">
@@ -261,23 +288,31 @@ function FamilyFind({ family, verbs, others, onClose }: { family: Family; verbs:
 /**
  * Patterns: the families of verbs that break the rule the same way, each with its rule, the shape
  * of what changes, the verbs that follow it, and two ways to practise it: write forms of its verbs,
- * or tell which verbs belong to it.
+ * or tell which verbs belong to it. Grouped by tense (the present's families, then the past's, the
+ * future's, the subjunctive's), with the families the learner slips in most on top.
  */
 export function PatternsTab({
   language,
   frequency,
+  lab,
   initial,
+  initialDrill = false,
   onVerb,
   onCheck,
 }: {
   language: LabLanguage
   frequency: ReadonlyMap<string, number>
+  lab: Pick<LabData, 'records' | 'slips'>
   initial?: FamilyId
+  /** Open straight on the drill of `initial` (from the weak families elsewhere). */
+  initialDrill?: boolean
   onVerb: (verb: string) => void
   onCheck: (verb: string, tense: Tense, ok: boolean, given: string, expected: string, person: number) => void
 }) {
   const [open, setOpen] = useState<FamilyId | null>(initial ?? null)
-  const [mode, setMode] = useState<'drill' | 'find' | null>(null)
+  const weak = useMemo(() => weakFamilies(language, lab), [language, lab])
+  const firstOf = (id: FamilyId) => weak.find((w) => w.id === id)?.missed ?? []
+  const [mode, setMode] = useState<'drill' | 'find' | null>(initial && initialDrill ? 'drill' : null)
   const order = FAMILY_ORDER[language]
   const list = (id: FamilyId) => familyVerbs(language, id, frequency)
   if (open && mode) {
@@ -285,57 +320,102 @@ export function PatternsTab({
     const close = () => setMode(null)
     const verbs = list(open)
     return mode === 'drill' ? (
-      <FamilyDrill key={open} family={family} verbs={verbs} onCheck={onCheck} onClose={close} />
+      <FamilyDrill key={open} family={family} verbs={verbs} first={firstOf(open)} onCheck={onCheck} onClose={close} />
     ) : (
       <FamilyFind key={open} family={family} verbs={verbs} others={list(language === 'es' ? 'es-regular' : 'fr-er')} onClose={close} />
     )
   }
+  const tenses = [...new Set(order.map((id) => FAMILIES[id].tense))]
   return (
     <div className="stack lab-patterns">
       <p className="muted">Düzensiz fiilleri tek tek ezberlemek yerine kalıbı bir kez öğren: aynı kural yüzlerce fiili kapsar.</p>
-      <ul className="lab-family-list">
-        {order.map((id) => {
-          const f = FAMILIES[id]
-          const verbs = list(id)
-          const expanded = open === id
-          return (
-            <li key={id} className={`lab-family${expanded ? ' is-open' : ''}`}>
-              <button type="button" className="lab-family-head" aria-expanded={expanded} onClick={() => setOpen(expanded ? null : id)}>
-                <strong>{f.name}</strong>
-                <span className="lab-count">{verbs.length} fiil</span>
-              </button>
-              {expanded && (
-                <div className="stack lab-family-body">
-                  <p>{f.rule}</p>
-                  {f.persons.length > 0 && <PatternShape family={f} />}
-                  <ul className="lab-family-examples" lang={language}>
-                    {f.examples.map((e) => (
-                      <li key={e}>{e}</li>
-                    ))}
-                  </ul>
-                  {f.persons.length > 0 && <FamilyTable family={f} verbs={verbs} />}
-                  <div className="lab-chips" lang={language}>
-                    {verbs.slice(0, 24).map((v) => (
-                      <button key={v} type="button" className="chip chip-sm" onClick={() => onVerb(v)}>
-                        {v}
-                      </button>
-                    ))}
-                    {verbs.length > 24 && <span className="small muted">+{verbs.length - 24}</span>}
-                  </div>
-                  <div className="row gap-2">
-                    <button type="button" className="btn btn-sm" onClick={() => setMode('drill')} disabled={!verbs.length}>
-                      Bu kalıpla çalış
+      {weak.length > 0 && (
+        <section className="lab-weak-families" aria-labelledby="weak-families-title">
+          <h3 id="weak-families-title" className="section-title">
+            En çok zorlandığın kalıplar
+          </h3>
+          <ul className="lab-weak-list">
+            {weak.slice(0, 3).map((w) => (
+              <li key={w.id} className="lab-weak-row">
+                <span className="lab-weak-text">
+                  <strong>{FAMILIES[w.id].name}</strong>
+                  <span className="small muted">
+                    <span lang={language}>{tenseName(FAMILIES[w.id].tense)}</span> · {w.ok + w.wrong} cevapta %{Math.round(w.rate * 100)} yanlış
+                    {w.missed.length > 0 && (
+                      <>
+                        {' '}
+                        · <span lang={language}>{w.missed.slice(0, 3).join(', ')}</span>
+                      </>
+                    )}
+                  </span>
+                </span>
+                <button
+                  type="button"
+                  className="btn btn-sm"
+                  onClick={() => {
+                    setOpen(w.id)
+                    setMode('drill')
+                  }}
+                >
+                  Çalış
+                </button>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {tenses.map((tense) => (
+        <section key={tense} className="stack lab-family-group" aria-label={tenseName(tense)}>
+          <h3 className="section-title" lang={language}>
+            {tenseName(tense)}
+          </h3>
+          <ul className="lab-family-list">
+            {order
+              .filter((id) => FAMILIES[id].tense === tense)
+              .map((id) => {
+                const f = FAMILIES[id]
+                const verbs = list(id)
+                const expanded = open === id
+                return (
+                  <li key={id} className={`lab-family${expanded ? ' is-open' : ''}`}>
+                    <button type="button" className="lab-family-head" aria-expanded={expanded} onClick={() => setOpen(expanded ? null : id)}>
+                      <strong>{f.name}</strong>
+                      <span className="lab-count">{verbs.length} fiil</span>
                     </button>
-                    <button type="button" className="btn btn-quiet btn-sm" onClick={() => setMode('find')} disabled={verbs.length < FIND_MEMBERS}>
-                      Kalıbı tanı
-                    </button>
-                  </div>
-                </div>
-              )}
-            </li>
-          )
-        })}
-      </ul>
+                    {expanded && (
+                      <div className="stack lab-family-body">
+                        <p>{f.rule}</p>
+                        {f.persons.length > 0 && f.persons.length < 6 && <PatternShape family={f} />}
+                        <ul className="lab-family-examples" lang={language}>
+                          {f.examples.map((e) => (
+                            <li key={e}>{e}</li>
+                          ))}
+                        </ul>
+                        {f.persons.length > 0 && <FamilyTable family={f} verbs={verbs} />}
+                        <div className="lab-chips" lang={language}>
+                          {verbs.slice(0, 24).map((v) => (
+                            <button key={v} type="button" className="chip chip-sm" onClick={() => onVerb(v)}>
+                              {v}
+                            </button>
+                          ))}
+                          {verbs.length > 24 && <span className="small muted">+{verbs.length - 24}</span>}
+                        </div>
+                        <div className="row gap-2">
+                          <button type="button" className="btn btn-sm" onClick={() => setMode('drill')} disabled={!verbs.length}>
+                            Bu kalıpla çalış
+                          </button>
+                          <button type="button" className="btn btn-quiet btn-sm" onClick={() => setMode('find')} disabled={verbs.length < FIND_MEMBERS}>
+                            Kalıbı tanı
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </li>
+                )
+              })}
+          </ul>
+        </section>
+      ))}
     </div>
   )
 }
