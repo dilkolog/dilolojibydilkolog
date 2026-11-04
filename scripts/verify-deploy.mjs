@@ -62,6 +62,10 @@ check('/api/log takes a report', logRes.status === 204, String(logRes.status))
 
 for (const p of ['/hakkinda', '/gizlilik', '/kosullar', '/hesap-silme']) check(`${p} answers 200`, (await fetch(`${BASE}${p}`)).status === 200)
 // The Android app opens full screen only if this file names it (android/README.md).
+// The outside monitor's address: the Worker, Supabase and R2 answer.
+const health = await fetch(`${BASE}/api/health`).catch(() => null)
+const healthBody = health ? await health.json().catch(() => null) : null
+check('/api/health answers 200 (Supabase and R2 reachable)', health?.status === 200 && healthBody?.ok === true, healthBody ? `supabase ${healthBody.supabase}, storage ${healthBody.storage}` : '')
 const links = await fetch(`${BASE}/.well-known/assetlinks.json`)
 const linksBody = await json(links)
 check('/.well-known/assetlinks.json names the Android app', links.ok && /json/.test(links.headers.get('content-type') ?? '') && Array.isArray(linksBody) && linksBody.some((l) => l?.target?.package_name === 'com.diloloji.app'))
