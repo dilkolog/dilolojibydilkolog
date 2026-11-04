@@ -4158,3 +4158,15 @@ html:has(.lp) { scroll-behavior: smooth; }
   .admin-toolbar .seg-group { flex: 1 1 100%; overflow-x: auto; }
 }
 .transcript-help ol { margin: 0; padding-inline-start: 1.25rem; display: grid; gap: 0.25rem; }
+
+/* Watching a video sentence by sentence: the question after each sentence and the understanding map. */
+.watch-check { display: grid; gap: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--rule); }
+.watch-check-choices { flex-wrap: wrap; gap: 0.5rem; }
+.watch-check-sentence { margin: 0; font-family: var(--serif); }
+.watch-strip { display: flex; gap: 2px; height: 1.25rem; }
+.watch-part { flex: 1 1 0; min-width: 3px; border: 0; padding: 0; border-radius: 3px; background: var(--rule); cursor: pointer; }
+.watch-part.watch-ok { background: var(--ok); }
+.watch-part.watch-half { background: var(--gold); }
+.watch-part.watch-no { background: var(--bad); }
+.watch-part:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; }
+.own-clips-title { margin: 0; font-weight: 600; color: var(--ink-soft); }

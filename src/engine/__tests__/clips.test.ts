@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { embedUrl, findClips, parseInnertubeSearch, parseTimedCues, parseYouglishClips, splitAround } from '../clips'
+import { embedUrl, findClips, ownClips, parseInnertubeSearch, parseTimedCues, parseYouglishClips, splitAround } from '../clips'
 
 const XML = `<?xml version="1.0" encoding="utf-8" ?><timedtext format="3"><body>
 <p t="1000" d="2500">Il faut <s>décider</s> maintenant.</p>
@@ -105,3 +105,25 @@ describe('YouGlish and Innertube parsers', () => {
   })
 })
 
+
+describe('where a word is spoken in the learner\'s own videos', () => {
+  const video = (id: string, title: string, lines: string[]) => ({ title, source: `https://www.youtube.com/watch?v=${id}`, cues: lines.map((text, i) => ({ start: i * 5, text })) })
+  it('finds the word (in any form) in the transcripts of videos read along, with the line\'s own times', () => {
+    const texts = [
+      video('aaaaaaaaaaa', 'Au marché', ['Bonjour à tous.', 'Nous avons décidé de partir.', 'Le marché est grand.']),
+      { title: 'Un texte', cues: [{ start: 0, text: 'Il a décidé.' }] },
+      video('bbbbbbbbbbb', 'Leçon 2', ['Elle décide vite.']),
+    ]
+    const clips = ownClips(texts, 'décider', 'fr')
+    expect(clips.map((c) => [c.id, c.start, c.end, c.form])).toEqual([
+      ['aaaaaaaaaaa', 5, 10, 'décidé'],
+      ['bbbbbbbbbbb', 0, 4, 'décide'],
+    ])
+    expect(clips[0]).toMatchObject({ title: 'Au marché', before: 'Bonjour à tous.', after: 'Le marché est grand.' })
+  })
+  it('keeps to a few, and a text with a recording of its own is not a video', () => {
+    const many = Array.from({ length: 5 }, (_, i) => video(`video${i}`.padEnd(11, "x"), `V${i}`, ['On décide.', 'Tu décides.', 'Ils décident.']))
+    expect(ownClips(many, 'décider', 'fr', 6, 2)).toHaveLength(6)
+    expect(ownClips([{ ...video('aaaaaaaaaaa', 'Podcast', ['On décide.']), audio: 'https://x/a.mp3' }], 'décider', 'fr')).toEqual([])
+  })
+})

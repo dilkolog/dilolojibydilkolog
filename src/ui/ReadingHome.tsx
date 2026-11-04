@@ -117,6 +117,11 @@ export function ReadingHome({
       {library.length > 0 && (
         <section className="section stack">
           <h2 className="section-title">Kütüphanen: kaldığın yerden devam et</h2>
+          {ytBusy && (
+            <p className="small muted" role="status">
+              Altyazı getiriliyor…
+            </p>
+          )}
           <ul className="library">
             {groupBooks(library).map((group) =>
               'chapters' in group ? (
@@ -140,7 +145,8 @@ export function ReadingHome({
       )}
       <AddTextCard
         language={language}
-        startOpen={!library.length || !!shared}
+        // A text that could not be brought (an episode's subtitles): the card opens to say why.
+        startOpen={!library.length || !!shared || (!!bookError && !bookError.ok)}
         title={title}
         onTitle={onTitle}
         draft={draft}

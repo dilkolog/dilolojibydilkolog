@@ -882,6 +882,65 @@ test('reading: when YouTube keeps the captions from the server, a pasted transcr
   await expect(page.locator('.reader .rs.is-heard')).toContainText('nous allons au marché')
 })
 
+test('reading a playlist: the whole course goes in as a series, the episode linked opens with its subtitles', async ({ page }) => {
+  await startWithSamples(page)
+  await approveAccount(page)
+  await page.route('https://www.youtube-nocookie.com/embed/**', (r) => r.fulfill({ contentType: 'text/html', body: FAKE_PLAYER }))
+  const asked: string[] = []
+  await page.route(
+    (u) => u.pathname === '/api/youtube',
+    (r) => {
+      const u = new URL(r.request().url())
+      asked.push(u.search)
+      if (u.searchParams.has('list')) return r.fulfill({ json: { id: 'PLcourse12345', title: 'Cours de français', videos: [{ id: 'aaaaaaaaaaa', title: 'Leçon 1' }, { id: 'bbbbbbbbbbb', title: 'Leçon 2' }, { id: 'ccccccccccc', title: 'Leçon 3' }] } })
+      return r.fulfill({ json: { id: u.searchParams.get('v'), title: 'x', auto: true, text: 'Bonjour et bienvenue dans la deuxième leçon.', cues: [{ start: 0, end: 4, text: 'Bonjour et bienvenue dans la deuxième leçon.' }] } })
+    },
+  )
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('https://www.youtube.com/watch?v=bbbbbbbbbbb&list=PLcourse12345')
+  await expect(page.locator('.reader')).toContainText('deuxième leçon')
+  await expect(page.locator('.video-panel iframe')).toHaveAttribute('src', /embed\/bbbbbbbbbbb\?/)
+  // Only the list and the episode opened were asked for: the others wait until they are opened.
+  expect(asked.filter((q) => q.includes('v=')).length).toBe(1)
+  await page.getByRole('button', { name: '← Kütüphane' }).click()
+  await expect(page.locator('.book-item')).toContainText('Cours de français')
+  await expect(page.locator('.book-item')).toContainText('3 bölüm')
+})
+
+test('watching sentence by sentence: the video asks after each sentence, a lost one comes back slowly, the map shows the hard parts', async ({ page }) => {
+  await startWithSamples(page)
+  await approveAccount(page)
+  await page.route('https://www.youtube-nocookie.com/embed/**', (r) => r.fulfill({ contentType: 'text/html', body: FAKE_PLAYER }))
+  const cues = [
+    { start: 0, end: 2, text: 'Bonjour à tous.' },
+    { start: 2, end: 6, text: 'Aujourd’hui nous allons au marché du village.' },
+    { start: 6, end: 9, text: 'Le marché est très grand.' },
+  ]
+  await page.route(
+    (u) => u.pathname === '/api/youtube',
+    (r) => r.fulfill({ json: { id: 'abcdefghijk', title: 'Au marché', channel: 'Chaîne', auto: false, text: cues.map((c) => c.text).join(' '), cues } }),
+  )
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('https://www.youtube.com/watch?v=abcdefghijk')
+  await expect(page.locator('.video-panel iframe')).toBeVisible()
+  await page.getByRole('button', { name: 'Cümle cümle' }).click()
+  await page.locator('.reader .rw', { hasText: 'Bonjour' }).click()
+  await page.getByRole('button', { name: /Bu cümleden dinle/ }).click()
+  const question = page.getByRole('group', { name: 'Bu cümleyi anladın mı?' })
+  await expect(question).toBeVisible({ timeout: 10_000 })
+  await question.getByRole('button', { name: 'Anlamadım' }).click()
+  const lost = page.getByRole('group', { name: 'Anlaşılmayan cümle' })
+  await expect(lost).toContainText('Bonjour à tous.')
+  const map = page.getByRole('region', { name: 'Anlama haritası' })
+  await expect(map).toContainText('0 anladın · 0 yarısını · 1 anlamadın')
+  await expect(map.getByRole('button', { name: '1. cümle: anlamadın' })).toBeVisible()
+  await map.getByRole('button', { name: /Anlamadığın 1 cümleyi karta ekle/ }).click()
+  await expect(page.getByText(/1 cümle kartı eklendi/).first()).toBeVisible()
+  await lost.getByRole('button', { name: 'Devam' }).click()
+  await expect(page.locator('.reader .rs.is-heard')).toContainText('nous allons au marché')
+  expect(await overflow(page)).toEqual([])
+})
+
 test('reading: the forms list finds a reflexive compound tense and lights the form\'s sentence in the text', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Okuma')

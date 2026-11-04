@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { useStudyClock } from './useStudyClock'
 import { drivenEmbed, nextStop, PLAYING, youtubeController, type YoutubeController } from './youtubePlayer'
 
@@ -33,6 +33,8 @@ export function VideoPanel({
   stops,
   still = false,
   onListened,
+  onStop,
+  children,
 }: {
   id: string
   title: string
@@ -48,6 +50,10 @@ export function VideoPanel({
   stops?: readonly number[] | null
   still?: boolean
   onListened?: (seconds: number) => void
+  /** "Sentence by sentence" stopped after this sentence (its index in the text): the reader may ask about it. */
+  onStop?: (sentence: number) => void
+  /** Shown under the controls, in view while the video is pinned (the question after a sentence). */
+  children?: ReactNode
 }) {
   const frame = useRef<HTMLIFrameElement>(null)
   const panel = useRef<HTMLElement>(null)
@@ -60,9 +66,9 @@ export function VideoPanel({
   useStudyClock({ active: playing && !!onListened, needsActivity: false, record: onListened })
 
   // The latest props for the player's callbacks and the tick (they change every render).
-  const live = useRef({ onTime, onDuration, stops, eachSentence })
+  const live = useRef({ onTime, onDuration, stops, eachSentence, onStop })
   useEffect(() => {
-    live.current = { onTime, onDuration, stops, eachSentence }
+    live.current = { onTime, onDuration, stops, eachSentence, onStop }
   })
   const durationSent = useRef(0)
   /** Where playing (re)started: "sentence by sentence" waits at the first sentence start after it. */
@@ -94,6 +100,9 @@ export function VideoPanel({
       if (stop !== undefined && t >= stop - 0.15) {
         p.pause()
         playedFrom.current = stop
+        // The sentence that just ended is the one before the stop.
+        const ended = s!.indexOf(stop) - 1
+        if (ended >= 0) live.current.onStop?.(ended)
       }
     }, TICK_MS)
     return () => {
@@ -212,7 +221,7 @@ export function VideoPanel({
           ))}
         </div>
         {!!stops?.length && (
-          <button type="button" className="chip chip-sm" aria-pressed={eachSentence} onClick={() => setEachSentence((e) => !e)} title="Her cümlenin sonunda durur; devam etmek için oynat">
+          <button type="button" className="chip chip-sm" aria-pressed={eachSentence} onClick={() => setEachSentence((e) => !e)} title="Her cümlenin sonunda durur ve anlayıp anlamadığını sorar">
             Cümle cümle
           </button>
         )}
@@ -220,6 +229,7 @@ export function VideoPanel({
           {small ? 'Videoyu büyüt' : 'Videoyu küçült'}
         </button>
       </div>
+      {children}
       {silent && <p className="small muted">Video metinle eşleşemedi; videoyu yine izleyebilir, metni ayrıca okuyabilirsin.</p>}
     </section>
   )

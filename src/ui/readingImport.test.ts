@@ -154,3 +154,33 @@ describe('a link', () => {
     }
   })
 })
+
+describe('a YouTube playlist as a series', async () => {
+  const { fillEpisode, isPlaylistLink, playlistBook } = await import('./readingImport')
+  it('tells a course\'s list from a single video or a YouTube mix', () => {
+    expect(isPlaylistLink('https://www.youtube.com/watch?v=2sCXhPefmz8&list=PLcoQWyFpRIxgcTcTpz-hmpDqhcRq701sb')).toBe(true)
+    expect(isPlaylistLink('https://www.youtube.com/playlist?list=PLcoQWyFpRIxgcTcTpz')).toBe(true)
+    expect(isPlaylistLink('https://www.youtube.com/watch?v=2sCXhPefmz8')).toBe(false)
+    expect(isPlaylistLink('https://www.youtube.com/watch?v=2sCXhPefmz8&list=RD2sCXhPefmz8')).toBe(false)
+  })
+
+  it('saves one empty text per episode, in order, as a book, and opens the episode the link pointed at', async () => {
+    const db = new KelimeDB(`pl-${crypto.randomUUID()}`)
+    vi.stubGlobal('fetch', async () => Response.json({ title: 'Cours', videos: [{ id: 'aaaaaaaaaaa', title: 'Leçon 1' }, { id: 'bbbbbbbbbbb', title: 'Leçon 2' }] }))
+    const got = await playlistBook(db, 'https://www.youtube.com/watch?v=bbbbbbbbbbb&list=PLcoQWyFpRIxgcTcTpz', 'fr')
+    if (!('texts' in got)) throw new Error(got.note.text)
+    expect(got.texts.map((t) => [t.title, t.text, t.book?.index, t.book?.total, t.source])).toEqual([
+      ['Leçon 1', '', 0, 2, 'https://www.youtube.com/watch?v=aaaaaaaaaaa'],
+      ['Leçon 2', '', 1, 2, 'https://www.youtube.com/watch?v=bbbbbbbbbbb'],
+    ])
+    expect(got.open.title).toBe('Leçon 2')
+    expect((await db.getLibrary('fr')).length).toBe(2)
+
+    // Opened for the first time, an episode brings its subtitles (with their times) and keeps them.
+    vi.stubGlobal('fetch', async () => Response.json({ id: 'bbbbbbbbbbb', title: 'x', text: 'Bonjour à tous.', cues: [{ start: 0, text: 'Bonjour à tous.' }] }))
+    const filled = await fillEpisode(db, got.open)
+    if (!('item' in filled)) throw new Error(filled.note.text)
+    expect(filled.item).toMatchObject({ title: 'Leçon 2', text: 'Bonjour à tous.', cues: [{ start: 0, text: 'Bonjour à tous.' }], book: { index: 1 } })
+    expect((await db.getLibrary('fr')).find((t) => t.id === got.open.id)?.text).toBe('Bonjour à tous.')
+  })
+})

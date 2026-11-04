@@ -4,9 +4,9 @@ import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
 import { reportError } from '../data/errorReport'
 import { type TargetLanguage } from '../engine/types'
 import type { SharedRead } from './incoming'
-import { parseTimedCues, parseTranscriptPaste, youtubeId, type Cue } from '../engine/subtitles'
-import { importDocument, importEpub, isDocumentFile, isYoutubeLink, pageText, textOfFile, youtubeText } from './readingImport'
-import { undoable } from './toastFeed'
+import { parseTimedCues, parseTranscriptPaste, videoOf, youtubeId, type Cue } from '../engine/subtitles'
+import { fillEpisode, importDocument, importEpub, isDocumentFile, isPlaylistLink, isYoutubeLink, pageText, playlistBook, textOfFile, youtubeText } from './readingImport'
+import { showToast, undoable } from './toastFeed'
 
 /** What the reader's own state takes from a library that has just loaded: the open text and the words marked before. */
 /** A text box holding a single web address and nothing else. */
@@ -74,16 +74,53 @@ export function useReadingLibrary({
       })
   }, [db, language])
 
-  const open = async (item: ReadingText | null) => {
+  /** The episode of a series whose subtitles could not be brought: a transcript pasted next fills it. */
+  const [fillFor, setFillFor] = useState<ReadingText | null>(null)
+
+  const show = async (item: ReadingText | null) => {
     await db.setCurrentText(language, item?.id ?? null)
     setCurrent(item)
     callbacks.current.onOpened(item)
+  }
+
+  /** Opens a text; an episode of a series opened for the first time brings its subtitles first. */
+  const open = async (item: ReadingText | null) => {
+    if (!item || item.text.trim() || !videoOf(item)) return show(item)
+    setBookError(null)
+    setYtBusy(true)
+    try {
+      const got = await fillEpisode(db, item)
+      if ('note' in got) {
+        // Back to the library, where the add card says why (and how to paste the transcript instead).
+        setBookError(got.note)
+        setVideoFor(got.paste ? (item.source ?? null) : null)
+        setFillFor(got.paste ? item : null)
+        if (current) await show(null)
+        return
+      }
+      setLibrary((lib) => (lib ?? []).map((t) => (t.id === item.id ? got.item : t)))
+      await show(got.item)
+    } finally {
+      setYtBusy(false)
+    }
   }
 
   const start = async () => {
     const t = draft.trim()
     if (!t) return
     const video = videoFor ? youtubeId(videoFor) : null
+    // A transcript pasted for an episode of a series fills that episode, in its place in the series.
+    if (fillFor && video && youtubeId(fillFor.source ?? '') === video) {
+      const filled: ReadingText = { ...fillFor, text: t, ...(draftCues?.length ? { cues: draftCues } : {}) }
+      await db.saveText(filled)
+      setLibrary((lib) => (lib ?? []).map((x) => (x.id === filled.id ? filled : x)))
+      setDraft('')
+      setTitle('')
+      setVideoFor(null)
+      setFillFor(null)
+      setDraftCues(null)
+      return show(filled)
+    }
     const item: ReadingText = {
       id: crypto.randomUUID(),
       language,
@@ -159,6 +196,20 @@ export function useReadingLibrary({
     setYoutube(link)
     setYtBusy(true)
     try {
+      // A course's playlist: the whole series goes in, and the episode the link pointed at opens.
+      if (isPlaylistLink(link)) {
+        const series = await playlistBook(db, link, language)
+        if ('note' in series) {
+          setBookError(series.note)
+          return
+        }
+        setLibrary((lib) => [...series.texts, ...(lib ?? [])])
+        setYoutube('')
+        showToast(`${series.texts[0].book?.title}: ${series.texts.length} bölüm kütüphanene eklendi.`)
+        setYtBusy(false)
+        await open(series.open)
+        return
+      }
       const isVideo = isYoutubeLink(link)
       const got = isVideo ? await youtubeText(link, language) : await pageText(link, language)
       setVideoFor(isVideo && 'paste' in got && got.paste ? link.trim() : null)
