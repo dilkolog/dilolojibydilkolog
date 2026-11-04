@@ -225,6 +225,12 @@ import statSprout from '../assets/art/stat-sprout.webp'
 import statStar from '../assets/art/stat-star.webp'
 import statBook from '../assets/art/stat-book.webp'
 import statCheck from '../assets/art/stat-check.webp'
+import monkiSlipsCleared from '../assets/art/monki-slips-cleared.webp'
+import monkiScanner from '../assets/art/monki-scanner.webp'
+import monkiVideoListen from '../assets/art/monki-video-listen.webp'
+import catEssay from '../assets/art/cat-essay.webp'
+import catFeature from '../assets/art/cat-feature.webp'
+import catStory from '../assets/art/cat-story.webp'
 
 /** A badge's own drawn medal, by what it counts: every badge has one (the metal medal stays in lists, where tiers matter). */
 const MEDAL_OF: Record<string, string> = {
@@ -338,8 +344,8 @@ export const MISSION_ART: Record<string, string> = {
   persuade: missionPersuade,
 }
 
-/** Small drawn icons for adding one's own text: a file of notes, a book, a video. */
-export const ADD_ART = { notes: srcNotes, ebook: srcEbook, video: srcVideo }
+/** Small drawn icons for adding one's own text: a file of notes, a book, a video, a photo scan. */
+export const ADD_ART = { notes: srcNotes, ebook: srcEbook, video: srcVideo, scanner: monkiScanner }
 
 /** Monki acting out a part of speech (nothing drawn for 'other'). */
 export const POS_ART: Partial<Record<PartOfSpeech, string>> = {
@@ -475,4 +481,18 @@ export const ANIMATED_MONKI = {
   wave: animWave,
   celebrate: animCelebrate,
   wink: animWink,
+}
+
+/** Original B2–C1 library category badges (essays, features, stories). */
+export const ADVANCED_CATEGORY_ART = {
+  essay: catEssay,
+  feature: catFeature,
+  story: catStory,
+}
+
+/** Situational mascot illustrations for dedicated modes. */
+export const MASCOT_ART = {
+  scanner: monkiScanner,
+  slipsCleared: monkiSlipsCleared,
+  videoListen: monkiVideoListen,
 }

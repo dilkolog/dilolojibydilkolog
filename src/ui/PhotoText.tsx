@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { AiError, textFromPhoto } from '../ai'
 import type { TargetLanguage } from '../engine/types'
 import { useAi, useAllows } from './aiContext'
-import { CameraIcon } from './icons'
 import { blobToBase64, downscaleImage } from './downscaleImage'
+import monkiScanner from '../assets/art/monki-scanner.webp'
 
 /** Sharp enough for a book page's small print (the size the model reads best), small enough to send quickly. */
 const PAGE_SIDE = 1568
@@ -57,7 +57,7 @@ export function PhotoText({ language, onText }: { language: TargetLanguage; onTe
   return (
     <>
       <label className={`btn btn-quiet file-btn${busy ? ' file-btn-off' : ''}`} aria-busy={!!busy || undefined}>
-        <CameraIcon size={18} />
+        <img className="chip-art" src={monkiScanner} alt="" width={20} height={20} draggable={false} />
         <span>{busy || 'Fotoğraftan metin'}</span>
         <input
           type="file"

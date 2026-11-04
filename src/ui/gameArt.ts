@@ -40,6 +40,9 @@ import gNumbers from '../assets/art/game-numbers.webp'
 import gSpelling from '../assets/art/game-spelling.webp'
 import gDialogues from '../assets/art/game-dialogues.webp'
 import gConfusables from '../assets/art/game-confusables.webp'
+import gTransform from '../assets/art/game-transform.webp'
+
+export { gTransform }
 
 /** The drawn sign of the games that have one; the others keep their emoji glyph. */
 export const GAME_ART: Partial<Record<GameId, string>> = {

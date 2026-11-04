@@ -8,6 +8,7 @@ import { accentChange, insertAt } from '../accentCaret'
 import { CheckIcon, CloseIcon } from '../icons'
 import { Sticker } from '../Sticker'
 import { sfx } from '../sounds'
+import monkiSlipsCleared from '../../assets/art/monki-slips-cleared.webp'
 import { Diagnosis } from './Diagnosis'
 import { judge, tenseName, verbEntry, type LabLanguage } from './labShared'
 import type { RunCheck } from './ReviewTab'
@@ -25,7 +26,7 @@ export function SlipsTab({ language, lab, onCheck, onOpen }: { language: LabLang
   if (!open.length)
     return (
       <div className="stack lab-review-empty center">
-        <Sticker name="thumbs" size={96} className="sticker-lead" />
+        <img src={monkiSlipsCleared} width={112} height={112} alt="" className="sticker-lead" draggable={false} />
         <h2>Açık hatan yok</h2>
         <p className="muted">Alıştırmada yanlış yaptığın her çekim buraya kaydolur. Üst üste {SLIP_CLEAR} kez doğru yapınca hatalarından çıkar.</p>
       </div>
@@ -108,6 +109,11 @@ function SlipRun({ language, lab, seed, onCheck, onOpen, onClose }: { language: 
     const left = openSlips(lab).length
     return (
       <section className="stack lab-result center" role="status">
+        {left === 0 ? (
+          <img src={monkiSlipsCleared} width={100} height={100} alt="" className="sticker-lead" draggable={false} />
+        ) : (
+          <Sticker name="thumbs" size={88} className="sticker-lead" />
+        )}
         <h2>Hatalarım bitti</h2>
         <p className="lab-score">
           {right} / {queue.length}
