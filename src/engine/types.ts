@@ -298,6 +298,8 @@ export type Confidence = 'sure' | 'unsure'
  * forecast hold, and would another way of choosing have done better?" (docs/KISISEL-ALGORITMA.md).
  */
 export interface ReviewContext {
+  /** Learning generation: old offline attempts must not undo a later progress reset. */
+  introducedAt?: string
   /** Days since the card was last reviewed (0 for a new card). */
   elapsedDays: number
   /** The card's FSRS stability and difficulty just before the answer. */

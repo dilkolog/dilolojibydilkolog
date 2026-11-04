@@ -24,7 +24,7 @@ import type { ReviewResult } from '../engine/review'
 import type { MissionResult } from '../engine/missions'
 import type { SentenceCard } from '../engine/sentences'
 import { troubleWords } from '../engine/trouble'
-import { deadIds, mergeTombs, tombList, tombMap, type Mark, type Tombstone } from './tombstones'
+import { deadIds, isDead, mergeTombs, tombList, tombMap, type Mark, type Tombstone } from './tombstones'
 import type { TypingShare } from '../engine/session'
 import {
   TARGET_LANGUAGES,
@@ -1248,6 +1248,7 @@ export class KelimeDB extends Dexie {
   saveReview(result: ReviewResult, checkpoint?: { key: string; value: unknown }) {
     const touched = result.mistakes.filter((m) => m.entryId === result.state.entryId)
     return this.transaction('rw', [this.wordStates, this.events, this.mistakes, this.meta], async () => {
+      if (isDead(tombMap(await this.getDeleted(), Date.now()), `reset-word:${result.state.entryId}`, result.state.introducedAt)) throw Object.assign(new Error('Learning was reset in another session'), { name: 'LearningResetError' })
       if (checkpoint) {
         if (checkpoint.value === undefined) await this.meta.delete(checkpoint.key)
         else await this.meta.put(checkpoint)
@@ -1274,6 +1275,7 @@ export class KelimeDB extends Dexie {
   replaceReview(oldEventId: string, result: ReviewResult, staleMistakeIds: string[], checkpoint?: { key: string; value: unknown }) {
     const touched = result.mistakes.filter((m) => m.entryId === result.state.entryId)
     return this.transaction('rw', [this.wordStates, this.events, this.mistakes, this.meta], async () => {
+      if (isDead(tombMap(await this.getDeleted(), Date.now()), `reset-word:${result.state.entryId}`, result.state.introducedAt)) throw Object.assign(new Error('Learning was reset in another session'), { name: 'LearningResetError' })
       if (checkpoint) {
         if (checkpoint.value === undefined) await this.meta.delete(checkpoint.key)
         else await this.meta.put(checkpoint)
@@ -1293,6 +1295,8 @@ export class KelimeDB extends Dexie {
   revertReview(eventId: string, before: UserWordState | null, entryId: string, mistakesBefore: Mistake[], checkpoint?: { key: string; value: unknown }) {
     const restore = mistakesBefore.filter((m) => m.entryId === entryId)
     return this.transaction('rw', [this.wordStates, this.events, this.mistakes, this.meta], async () => {
+      const introducedAt = before?.introducedAt ?? (await this.events.get(eventId))?.timestamp
+      if (isDead(tombMap(await this.getDeleted(), Date.now()), `reset-word:${entryId}`, introducedAt)) throw Object.assign(new Error('Learning was reset in another session'), { name: 'LearningResetError' })
       if (checkpoint) {
         if (checkpoint.value === undefined) await this.meta.delete(checkpoint.key)
         else await this.meta.put(checkpoint)

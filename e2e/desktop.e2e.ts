@@ -3752,3 +3752,74 @@ test('an unfinished learning group resumes after reloading feedback without reco
   await expect(page.locator('.sheet')).toHaveCount(0)
   expect(await saved()).toEqual(before)
 })
+
+async function seedCardList(page: Page) {
+  await startWithSamples(page)
+  await page.evaluate(() => new Promise<void>((resolve, reject) => {
+    const request = indexedDB.open('kelime-koc')
+    request.onerror = () => reject(request.error)
+    request.onsuccess = () => {
+      const db = request.result
+      const tx = db.transaction(['vocabulary', 'wordStates', 'meta'], 'readwrite')
+      const all = tx.objectStore('vocabulary').getAll()
+      all.onsuccess = () => {
+        const now = new Date()
+        tx.objectStore('meta').put({ key: 'wordLists', value: [{ id: 'card-list', name: 'AVANZADO', language: 'fr', levels: [], createdAt: now.toISOString(), updatedAt: now.toISOString() }, { id: 'empty-list', name: 'deneme', language: 'fr', levels: [], createdAt: now.toISOString(), updatedAt: now.toISOString() }] })
+        all.result.filter((w: { language: string }) => w.language === 'fr').slice(0, 17).forEach((word: { id: string }, i: number) => {
+          const id = `fr:card-layout-${i}`
+          tx.objectStore('vocabulary').put({ ...word, id, source: 'user', listId: 'card-list' })
+          tx.objectStore('wordStates').put({ entryId: id, language: 'fr', introducedAt: new Date(now.getTime() - 86400000), lastReviewAt: new Date(now.getTime() - 86400000), skills: { recognition: { due: new Date(now.getTime() - 1000), last_review: new Date(now.getTime() - 86400000), stability: 3, difficulty: 5, elapsed_days: 1, scheduled_days: 1, reps: 3, lapses: 0, learning_steps: 0, state: 2 } }, stats: { reviews: 3, correct: 3, wrong: 0, hints: 0, totalResponseMs: 9000, consecutiveWrong: 0 } })
+        })
+      }
+      tx.oncomplete = () => { db.close(); resolve() }
+      tx.onerror = () => reject(tx.error)
+    }
+  }))
+  await page.reload()
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('tab', { name: 'Listeler', exact: true }).click()
+  await page.locator('.wl-tile', { hasText: 'AVANZADO' }).click()
+}
+
+test('list learning reset keeps its words and offers starting the list from introductions again', async ({ page }) => {
+  await seedCardList(page)
+  await expect(page.locator('.wl-figures dd').nth(1)).toHaveText('17')
+  await page.getByRole('button', { name: 'Liste işlemleri', exact: true }).click()
+  await page.getByRole('menuitem', { name: /Öğrenmeyi sıfırla/ }).click()
+  const dialog = page.getByRole('alertdialog')
+  await expect(dialog).toContainText('Kelimeler, anlamlar, notlar ve seviyeler korunur')
+  await dialog.getByRole('button', { name: 'Öğrenmeyi sıfırla', exact: true }).click()
+  await expect(page.locator('.wl-figures dd').nth(0)).toHaveText('17')
+  await expect(page.locator('.wl-figures dd').nth(1)).toHaveText('0')
+  await page.getByRole('button', { name: 'Geri al', exact: true }).click()
+  await expect(page.locator('.wl-figures dd').nth(1)).toHaveText('17')
+  await page.getByRole('button', { name: 'Liste işlemleri', exact: true }).click()
+  await page.getByRole('menuitem', { name: /Öğrenmeyi sıfırla/ }).click()
+  await page.getByRole('alertdialog').getByRole('button', { name: 'Öğrenmeyi sıfırla', exact: true }).click()
+  await expect(page.locator('.wl-figures dd').nth(1)).toHaveText('0')
+  await page.getByRole('button', { name: 'Listeyi çalış', exact: true }).click()
+  await expect(page.locator('.intro-card')).toBeVisible()
+})
+
+for (const width of [1440, 375]) {
+  test(`card setup stays readable with a visible start action at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 })
+    await seedCardList(page)
+    await page.locator('.wl-games button', { hasText: 'Kartlar' }).click()
+    const setup = page.locator('.flash-setup')
+    await expect(setup).toBeVisible()
+    const start = setup.getByRole('button', { name: '17 kartla başla', exact: true })
+    await expect(start).toBeInViewport()
+    expect(await overflow(page)).toEqual([])
+    const overlaps = await setup.locator('.study-scope-name').evaluateAll((names) => names.filter((name) => {
+      const parent = name.closest('.study-scope')!.getBoundingClientRect()
+      const range = document.createRange()
+      range.selectNodeContents(name)
+      return [...range.getClientRects()].some((r) => r.right > parent.right + 1 || r.left < parent.left - 1)
+    }).map((n) => n.textContent))
+    expect(overlaps).toEqual([])
+    await page.screenshot({ path: `/tmp/card-setup-${width}.png` })
+    await start.click()
+    await expect(page.getByRole('button', { name: 'Anlamı göster', exact: true })).toBeVisible()
+  })
+}

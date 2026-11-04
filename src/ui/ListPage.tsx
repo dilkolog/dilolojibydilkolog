@@ -9,7 +9,8 @@ import type { KelimeDB } from '../data/db'
 import { ConfirmDialog } from './Dialog'
 import { EmptyState } from './EmptyState'
 import { ChevronDownIcon, MoreIcon, PlusIcon, TargetIcon } from './icons'
-import { showToast } from './toastFeed'
+import { resetListLearning, undoListLearningReset } from '../data/resetListLearning'
+import { undoable, showToast } from './toastFeed'
 import { ShareList } from './ShareList'
 import { getCollabs, syncCollab, ShareError } from '../data/share'
 import { MenuItem, Popover } from './Popover'
@@ -103,6 +104,9 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
   const [renaming, setRenaming] = useState<string | null>(null)
   const [levelName, setLevelName] = useState('')
   const [deleting, setDeleting] = useState(false)
+  const [resetting, setResetting] = useState(false)
+  const [resetBusy, setResetBusy] = useState(false)
+  const resetLock = useRef(false)
   const [sharing, setSharing] = useState(false)
   const [collab, setCollab] = useState(false)
   const [syncing, setSyncing] = useState(false)
@@ -292,6 +296,12 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
                         }}
                       />
                     )}
+                    <MenuItem
+                      title="Öğrenmeyi sıfırla"
+                      hint="Kelimeler kalsın, listeyi baştan öğren"
+                      disabled={!words.length}
+                      onSelect={() => { close(); setResetting(true) }}
+                    />
                     <MenuItem
                       title="Listeyi sil"
                       hint="Kelimeler ve öğrendiklerin kalır"
@@ -506,6 +516,33 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
 
       {words.length > 0 && children}
 
+      {list && resetting && (
+        <ConfirmDialog
+          title={`“${list.name}” öğrenmesi sıfırlansın mı?`}
+          confirmLabel={resetBusy ? 'Sıfırlanıyor…' : 'Öğrenmeyi sıfırla'}
+          danger
+          onCancel={() => { if (!resetLock.current) setResetting(false) }}
+          onConfirm={async () => {
+            if (resetLock.current) return
+            resetLock.current = true
+            setResetBusy(true)
+            try {
+              const reset = await resetListLearning(db, list.id)
+              setResetting(false)
+              onListsChanged()
+              undoable(`${reset.ids.length} kelime baştan öğrenmeye hazır.`, async () => {
+                const restored = await undoListLearningReset(db, reset)
+                onListsChanged()
+                showToast(restored ? 'Öğrenme ilerlemesi geri getirildi.' : 'Bu kelimeler değiştiği için sıfırlama geri alınamadı.')
+              })
+            } catch {
+              showToast('Öğrenme sıfırlanamadı. Yeniden deneyebilirsin.')
+            } finally { resetLock.current = false; setResetBusy(false) }
+          }}
+        >
+          Bu listedeki {words.length} kelimenin tekrar takvimi, cevap geçmişi ve hataları sıfırlanır. Bu kelimelerin geçmişine bağlı XP ve istatistikler değişebilir. Kelimeler, anlamlar, notlar ve seviyeler korunur. Diğer listeler etkilenmez.
+        </ConfirmDialog>
+      )}
       {list && deleting && (
         <ConfirmDialog
           title={`"${list.name}" silinsin mi?`}
