@@ -2,7 +2,7 @@ import type { Settings } from '../data/db'
 import { shortcutHelp } from '../engine/accents'
 import type { TypingShare } from '../engine/session'
 import { ExerciseTypeSettings } from './ExerciseTypeSettings'
-import { Chips, Row, Toggle } from './settingsWidgets'
+import { Chips, Extra, Row, Toggle } from './settingsWidgets'
 
 const HINT_DELAYS = [0, 3, 6, 10]
 
@@ -27,25 +27,28 @@ export function AnswerSettings({
             format={(v) => ({ low: 'Az', balanced: 'Dengeli', high: 'Çok' })[v]}
           />
         </Row>
-        <Row label="Doğruda otomatik devam" help="Düz bir doğru cevaptan sonra sonraki soru kendiliğinden gelir. Yanlış cevapta ve açıklaması olan cevapta beklenir.">
+        <Row advanced label="Doğruda otomatik devam" help="Düz bir doğru cevaptan sonra sonraki soru kendiliğinden gelir. Yanlış cevapta ve açıklaması olan cevapta beklenir.">
           <Chips<number> options={[0, 1, 2]} value={settings.autoAdvance ?? 0} onChange={(v) => set('autoAdvance', v)} format={(v) => (v === 0 ? 'Kapalı' : `${v} sn`)} />
         </Row>
-        <Row label="İpucu gecikmesi" help="İpuçları ancak bu süre sonra açılır; önce hatırlamaya çalışırsın.">
+        <Row advanced label="İpucu gecikmesi" help="İpuçları ancak bu süre sonra açılır; önce hatırlamaya çalışırsın.">
           <Chips options={HINT_DELAYS} value={settings.hintDelaySec} onChange={(v) => set('hintDelaySec', v)} format={(s) => (s ? `${s} sn` : 'Hemen')} />
         </Row>
         <Toggle
+          advanced
           label="Aksan kısa yolları"
           help={`Yazarken harfin ardından işaret koyunca aksanlı harfe dönüşür. FR: ${shortcutHelp('fr').join(', ')}… ES: ${shortcutHelp('es').slice(0, 4).join(', ')}, n~ → ñ. Cevap kutusunun altındaki harf çubuğu her zaman açık.`}
           checked={settings.accentShortcuts}
           onChange={(v) => set('accentShortcuts', v)}
         />
         <Toggle
+          advanced
           label="Emin değilim seçeneği"
           help="Cevaplamadan önce emin olmadığını işaretleyebilirsin (Shift + cevap). Emin değilken doğru bilinen kelime daha erken tekrar gelir; emin olduğun bir yanlış ise ayrıca vurgulanır ve hatalarda öne alınır."
           checked={settings.confidence}
           onChange={(v) => set('confidence', v)}
         />
         <Toggle
+          advanced={settings.activeLanguage !== 'es'}
           label="İspanyolcada vosotros'u sorma"
           help="Latin Amerika İspanyolcasında vosotros yerine ustedes kullanılır. Açıkken vosotros biçimleri çekim sorularında çıkmaz ve tablolarda soluk görünür."
           checked={settings.hideVosotros ?? false}
@@ -58,7 +61,9 @@ export function AnswerSettings({
           onChange={(v) => set('accentStrict', v)}
         />
       </section>
-      <ExerciseTypeSettings settings={settings} onChange={onChange} />
+      <Extra>
+        <ExerciseTypeSettings settings={settings} onChange={onChange} />
+      </Extra>
       <section className="card stack">
         <h2 className="section-title">Yeni kelimeler</h2>
         <Toggle
@@ -68,12 +73,14 @@ export function AnswerSettings({
           onChange={(v) => set('pretest', v)}
         />
         <Toggle
+          advanced
           label="Dünkü yeni kelimeleri önce kartla hatırlat"
           help="Dün (ya da bugün, başka bir oturumda) tanıştığın bir kelime ilk sorusundan önce kart olarak gelir: sağa kaydır ya da → ile hatırlıyorum, sola kaydır ya da ← ile zorlanıyorum. Zorlandığın kelime oturumun ilerisinde bir kez daha kolay bir soruyla sorulur."
           checked={settings.refreshCard !== false}
           onChange={(v) => set('refreshCard', v)}
         />
         <Toggle
+          advanced
           label="Anlamı hedef dilde göster"
           help="Türkçe anlam yerine kelimenin kendi dilindeki tanımı sorulur (Wiktionary'den; tanımı olan kelimelerde). Çeviri yapmadan o dilde düşünmeye alıştırır; Türkçesi bir dokunuşla görünür."
           checked={settings.targetDefinitions}

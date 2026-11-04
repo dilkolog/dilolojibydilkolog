@@ -230,13 +230,14 @@ export function ReminderSettings({
       <MailReminder state={pushState} />
       {badgeSupported() && (
         <Toggle
+          advanced
           label="Simgede tekrar sayısı"
           help="Ana ekrana eklenmiş uygulamanın simgesinde bekleyen tekrar sayısı görünür; hepsi bitince kaybolur."
           checked={settings.appBadge ?? true}
           onChange={(v) => set('appBadge', v)}
         />
       )}
-      <div className="row">
+      <div className="row" data-advanced="">
         <button className="btn btn-quiet" onClick={calendar}>
           Takvime ekle (.ics)
         </button>
@@ -246,7 +247,7 @@ export function ReminderSettings({
           </button>
         )}
       </div>
-      <p className="small muted">Takvim dosyası her gün bu saatte uyaran bir etkinlik ekler; uygulama kapalıyken de çalışır.</p>
+      <p className="small muted" data-advanced="">Takvim dosyası her gün bu saatte uyaran bir etkinlik ekler; uygulama kapalıyken de çalışır.</p>
     </section>
   )
 }
@@ -255,7 +256,7 @@ export function ReminderSettings({
 export function NoticeSettings({ settings, onChange }: { settings: Settings; onChange: (s: Settings) => void }) {
   const off = settings.noticeOff ?? []
   return (
-    <section className="card stack">
+    <section className="card stack" data-advanced="">
       <h2 className="section-title">Bildirimler (çan)</h2>
       <p className="small muted">Üst çubuktaki çan, sen başka yerdeyken olanları listeler. Burada hangilerinin listeleneceğini seçersin.</p>
       {NOTICE_GROUPS.map((g) => (

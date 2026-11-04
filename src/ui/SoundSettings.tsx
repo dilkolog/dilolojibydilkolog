@@ -67,10 +67,10 @@ export function SoundSettings({
               }}
             />
           </Row>
-          <Row label="Ne zaman çalsın" help="“Yalnızca önemli anlarda”: cevaplarda ses çıkmaz; tur bittiğinde, günün hedefi tamamlanınca, rozet kazanınca ve seviye atlayınca çalar.">
+          <Row advanced label="Ne zaman çalsın" help="“Yalnızca önemli anlarda”: cevaplarda ses çıkmaz; tur bittiğinde, günün hedefi tamamlanınca, rozet kazanınca ve seviye atlayınca çalar.">
             <Chips label="Ne zaman çalsın" options={['all', 'moments'] as const} value={settings.soundLevel ?? 'all'} format={(v) => LEVEL_NAME[v]} onChange={(v) => set('soundLevel', v)} />
           </Row>
-          <div className="setting-row sound-try">
+          <div className="setting-row sound-try" data-advanced="">
             <div className="setting-text">
               <strong>Sesleri dinle</strong>
             </div>
@@ -92,6 +92,7 @@ export function SoundSettings({
         onChange={(v) => set('speechExercises', v)}
       />
       <Toggle
+        advanced
         label="Dinlemede farklı sesler"
         help={`Dinleme sorularında her seferinde sistemdeki başka bir ses konuşur; kelimeyi her konuşmacıdan tanımayı öğrenirsin. ${voices.length < 2 ? `Şu an ${LANGUAGE_NAME[lang]} için tek ses var; macOS'te Ayarlar → Erişilebilirlik → Okunan İçerik'ten başka sesler indirebilirsin.` : `${LANGUAGE_NAME[lang]} için ${voices.length} ses var.`}`}
         checked={settings.varyVoices}
@@ -100,7 +101,7 @@ export function SoundSettings({
       <Row label="Konuşma hızı">
         <Chips options={RATES} value={settings.speechRate} onChange={(v) => set('speechRate', v)} format={(r) => `${r}×`} />
       </Row>
-      <Row label={`${LANGUAGE_NAME[lang]} sesi`} help="Sistemdeki seslerden seç. macOS'te Ayarlar → Erişilebilirlik → Okunan İçerik'ten yenilerini indirebilirsin.">
+      <Row advanced label={`${LANGUAGE_NAME[lang]} sesi`} help="Sistemdeki seslerden seç. macOS'te Ayarlar → Erişilebilirlik → Okunan İçerik'ten yenilerini indirebilirsin.">
         <div className="row nowrap">
           <div className="settings-voice-select">
             <Select
