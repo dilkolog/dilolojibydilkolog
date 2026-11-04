@@ -3,6 +3,7 @@ import { analyzeText, coverageLine } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { ADVANCED_CATEGORY_LABELS, advancedFor, type AdvancedLevel } from '../data/advancedReadings'
 import { SourceTitle } from './SourceTitle'
+import { ADVANCED_CATEGORY_ART } from './drawnArt'
 
 /**
  * Original B2–C1 texts (essays, features, short stories) written for the app, available offline, with the share of
@@ -51,7 +52,10 @@ export function AdvancedReadingsPicker({
           <li key={r.id}>
             <button type="button" className="word-link library-open" onClick={() => onRead(r.title, r.text, `Özgün metin (${r.level})`)}>
               <div className="row justify-between items-baseline gap-2">
-                <strong>{r.title}</strong>
+                <div className="row items-center gap-2">
+                  <img src={ADVANCED_CATEGORY_ART[r.category]} width={22} height={22} alt="" draggable={false} className="inline-art" />
+                  <strong>{r.title}</strong>
+                </div>
                 <span className="badge badge-sm">{r.level}</span>
               </div>
               <span className="small muted">{r.summary}</span>

@@ -9,7 +9,10 @@ import {
   AMBIENT_SKY,
   GARDEN_POTS,
   ANIMATED_MONKI,
+  ADVANCED_CATEGORY_ART,
+  MASCOT_ART,
 } from './drawnArt'
+import { gTransform } from './gameArt'
 import { readerStyle } from './readerSettings'
 
 describe('New Visual Art Assets', () => {
@@ -83,5 +86,15 @@ describe('New Visual Art Assets', () => {
     expect(ANIMATED_MONKI.wave).toBeTruthy()
     expect(ANIMATED_MONKI.celebrate).toBeTruthy()
     expect(ANIMATED_MONKI.wink).toBeTruthy()
+  })
+
+  it('registers advanced reading category icons and situational mode mascots', () => {
+    expect(ADVANCED_CATEGORY_ART.essay).toBeTruthy()
+    expect(ADVANCED_CATEGORY_ART.feature).toBeTruthy()
+    expect(ADVANCED_CATEGORY_ART.story).toBeTruthy()
+    expect(MASCOT_ART.scanner).toBeTruthy()
+    expect(MASCOT_ART.slipsCleared).toBeTruthy()
+    expect(MASCOT_ART.videoListen).toBeTruthy()
+    expect(gTransform).toBeTruthy()
   })
 })

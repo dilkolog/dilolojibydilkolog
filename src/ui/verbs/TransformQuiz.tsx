@@ -12,6 +12,7 @@ import { judge, tenseName, verbEntry, type LabLanguage } from './labShared'
 import { choiceRound, type Transform } from './tenseTransform'
 import { TenseLessonSheet } from './TenseLessonSheet'
 import { KIND_NAME, KIND_RULE, readChoice, saveChoice, TRANSFORM_CHOICES, type TransformChoice } from './transformKinds'
+import { gTransform } from '../gameArt'
 
 /**
  * Change the tense: a real sentence with its verb in one tense, the same person to be written in
@@ -73,8 +74,9 @@ export function TransformQuiz({
   const q = questions[index]
   if (!q)
     return (
-      <section className="stack lab-result" role="status">
+      <section className="stack lab-result center" role="status">
         {picker}
+        <img src={gTransform} width={72} height={72} alt="" draggable={false} className="sticker-lead" />
         <h3>
           {right} / {questions.length} doğru
         </h3>
@@ -97,9 +99,12 @@ export function TransformQuiz({
   return (
     <div className="stack lab-transform">
       {index === 0 && picker}
-      <p className="small muted">
-        {index + 1} / {questions.length} · Fiili başka zamana çevir, kişi aynı kalsın
-      </p>
+      <div className="row items-center gap-2">
+        <img src={gTransform} width={22} height={22} alt="" draggable={false} className="inline-art" />
+        <p className="small muted">
+          {index + 1} / {questions.length} · Fiili başka zamana çevir, kişi aynı kalsın
+        </p>
+      </div>
       <TransformQuestion
         key={`${round}-${index}`}
         language={language}
