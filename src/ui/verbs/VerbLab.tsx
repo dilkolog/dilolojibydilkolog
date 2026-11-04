@@ -13,6 +13,7 @@ import { EnglishVerbs } from './EnglishVerbs'
 import { LearnTab } from './LearnTab'
 import { MasteryTab } from './MasteryTab'
 import { PracticeTab } from './PracticeTab'
+import { nextIrregular } from './nextIrregular'
 import { PatternsTab } from './PatternsTab'
 import { ReviewTab } from './ReviewTab'
 import { SlipsTab } from './SlipsTab'
@@ -128,6 +129,15 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
     if (verb && labReady && ready && lab.recent[0] !== verb) update((l) => pushRecent(l, verb))
   }, [verb, labReady, ready]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  /** Verbs practised this visit, per tense: "next irregular" goes on to ones not done yet. */
+  const practised = useRef(new Map<Tense, Set<string>>())
+  const [rounds, setRounds] = useState(0)
+  const irregularNext = useMemo(
+    () => (tab === 'practice' && ready && verb ? nextIrregular(language, current, verb, byFrequency, practised.current.get(current)) : null),
+    // `rounds`: a finished round adds to what was practised.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [tab, ready, language, current, verb, byFrequency, rounds],
+  )
   if (!ready || !labReady || !verb)
     return (
       <div className="stack">
@@ -303,7 +313,13 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 tense={current}
                 available={available}
                 onTense={setTense}
-                onRound={(v, t, r) => update((l) => recordRound(l, scheduler, v, t, r, new Date()))}
+                onRound={(v, t, r) => {
+                  update((l) => recordRound(l, scheduler, v, t, r, new Date()))
+                  practised.current.set(t, new Set(practised.current.get(t)).add(v))
+                  setRounds((n) => n + 1)
+                }}
+                nextIrregular={irregularNext}
+                onNextIrregular={() => irregularNext && setPicked(irregularNext)}
                 onAnswer={onAnswer}
                 initialMode={timedFirst ? 'timed' : undefined}
                 sentences={<SentenceQuiz language={language} verbs={[verb, ...ownVerbs, ...lab.recent, ...byFrequency.slice(0, 300)].filter((v, i, all) => all.indexOf(v) === i)} onAnswer={onAnswer} />}

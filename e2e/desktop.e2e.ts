@@ -3617,6 +3617,26 @@ test('verb lab: a wrong form lands in Hatalarım, is asked mixed and leaves afte
   await expect(main.getByRole('tab', { name: /^Hatalarım/ }).locator('.lab-count')).toHaveCount(0)
 })
 
+test('verb lab: a finished round goes on to the next irregular verb in the same tense', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' }).click()
+  await main.getByRole('button', { name: 'Liste', exact: true }).click()
+  for (const [i, a] of ['parle', 'parles', 'parle', 'parlons', 'parlez', 'parlent'].entries()) await page.locator(`#lab-in-${i}`).fill(a)
+  await main.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(main.locator('.lab-result')).toContainText('Hepsi doğru!')
+  const next = main.getByRole('button', { name: /^Sıradaki düzensiz: / })
+  await expect(next).toBeFocused()
+  const verb = ((await next.textContent()) ?? '').replace('Sıradaki düzensiz:', '').trim()
+  expect(verb).not.toBe('parler')
+  await next.click()
+  // That verb, the same tense.
+  await expect(main.locator('.lab-verb').first()).toHaveText(new RegExp(`^${verb}$`, 'i'))
+  await expect(main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'true')
+})
+
 test('verb lab: a finished round offers a new random verb in the same tense', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'parler')
