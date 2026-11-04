@@ -1,4 +1,6 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { loadTransforms } from '../../data/transforms'
+import type { TransformPair } from '../../engine/transformPairs'
 import { conjugateTense, subjectLabel, withSubject, type Tense } from '../../engine/tenses'
 import { TENSE_BRIEF } from '../../engine/tenseBrief'
 import { AccentBar } from '../AccentBar'
@@ -7,7 +9,9 @@ import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 import { SpeakerIcon } from '../icons'
 import { judge, tenseName, verbEntry, type LabLanguage } from './labShared'
-import { transformRound, type Transform } from './tenseTransform'
+import { choiceRound, type Transform } from './tenseTransform'
+import { TenseLessonSheet } from './TenseLessonSheet'
+import { KIND_NAME, KIND_RULE, readChoice, saveChoice, TRANSFORM_CHOICES, type TransformChoice } from './transformKinds'
 
 /**
  * Change the tense: a real sentence with its verb in one tense, the same person to be written in
@@ -25,16 +29,52 @@ export function TransformQuiz({
   onAnswer?: (verb: string, tense: Tense, ok: boolean, given: string, expected: string, person: number) => void
 }) {
   const [round, setRound] = useState(0)
+  const [choice, setChoice] = useState<TransformChoice>(readChoice)
+  const [pairs, setPairs] = useState<TransformPair[] | null>(null)
+  useEffect(() => {
+    let live = true
+    setPairs(null)
+    void loadTransforms(language).then((p) => live && setPairs(p))
+    return () => {
+      live = false
+    }
+  }, [language])
   const key = verbs.slice(0, 1).join()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const questions = useMemo(() => transformRound(language, verbs, Date.now() + round), [language, key, round])
+  const questions = useMemo(
+    () => (pairs ? choiceRound(language, verbs, pairs, choice, Date.now() + round) : []),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [language, key, round, pairs, choice],
+  )
   const [index, setIndex] = useState(0)
   const [right, setRight] = useState(0)
-  if (!questions.length) return <p className="muted">Bu fiillerle zaman değiştirilecek cümle bulunamadı.</p>
+  const pick = (c: TransformChoice) => {
+    setChoice(c)
+    saveChoice(c)
+    setIndex(0)
+    setRight(0)
+  }
+  const picker = (
+    <div className="seg-group lab-transform-kinds" role="radiogroup" aria-label="Dönüşüm türü">
+      {TRANSFORM_CHOICES.map((c) => (
+        <button key={c.id} type="button" role="radio" className="seg-btn" aria-checked={choice === c.id} onClick={() => pick(c.id)}>
+          {c.label}
+        </button>
+      ))}
+    </div>
+  )
+  if (!pairs) return <p className="muted">Cümleler yükleniyor…</p>
+  if (!questions.length)
+    return (
+      <div className="stack lab-transform">
+        {picker}
+        <p className="muted">Bu türde henüz cümle yok.</p>
+      </div>
+    )
   const q = questions[index]
   if (!q)
     return (
       <section className="stack lab-result" role="status">
+        {picker}
         <h3>
           {right} / {questions.length} doğru
         </h3>
@@ -56,6 +96,7 @@ export function TransformQuiz({
     )
   return (
     <div className="stack lab-transform">
+      {index === 0 && picker}
       <p className="small muted">
         {index + 1} / {questions.length} · Fiili başka zamana çevir, kişi aynı kalsın
       </p>
@@ -70,9 +111,11 @@ export function TransformQuiz({
         }}
         onContinue={() => setIndex((i) => i + 1)}
       />
-      <p className="small muted">
-        Cümleler: <a href="https://tatoeba.org" target="_blank" rel="noreferrer">Tatoeba</a> (CC BY 2.0 FR) ve Diloloji
-      </p>
+      {!q.target && (
+        <p className="small muted">
+          Cümleler: <a href="https://tatoeba.org" target="_blank" rel="noreferrer">Tatoeba</a> (CC BY 2.0 FR) ve Diloloji
+        </p>
+      )}
     </div>
   )
 }
@@ -97,6 +140,10 @@ function TransformQuestion({
   const [before, after] = q.text.split('___')
   // The person the answer is recorded under: the one typed when several fit.
   const [person, setPerson] = useState(q.persons[0])
+  const [lesson, setLesson] = useState(false)
+  const [gapBefore, gapAfter] = (q.target ?? '').split('___')
+  const answer = target[person] ?? ''
+  const full = q.target ? `${gapBefore}${answer}${gapAfter}` : `${before}${q.form}${after}`
   const check = () => {
     if (!typed.trim() || shown !== null) return
     const hit = q.persons.find((p) => judge(language, q.verb, q.to, p, typed))
@@ -114,17 +161,31 @@ function TransformQuestion({
       <p className="prompt-label" lang={language}>
         <span className="chip chip-sm">{tenseName(q.from)}</span> → <span className="chip chip-sm lab-transform-to">{tenseName(q.to)}</span>
       </p>
-      <p className="prompt-text" lang={language}>
+      <p className={`prompt-text${q.target ? ' lab-transform-source' : ''}`} lang={language}>
         {before}
         <mark className="lab-transform-form">{q.form}</mark>
         {after}
       </p>
-      {q.translation && <p className="small muted">{q.translation}</p>}
+      {q.target ? (
+        <p className="prompt-text lab-transform-target" lang={language}>
+          {gapBefore}
+          {shown === null ? (
+            <span className="lab-transform-gap" role="img" aria-label="boşluk">
+              ___
+            </span>
+          ) : (
+            <mark className="lab-transform-form">{answer}</mark>
+          )}
+          {gapAfter}
+        </p>
+      ) : (
+        q.translation && <p className="small muted">{q.translation}</p>
+      )}
       <p className="small">
         <span lang={language}>
           <strong>{q.verb}</strong> · {subjects}
         </span>{' '}
-        <span className="muted">· {TENSE_BRIEF[q.to].tr}</span>
+        <span className="muted">· {q.kind ? KIND_NAME[q.kind] : TENSE_BRIEF[q.to].tr}</span>
       </p>
       <form
         className="stack"
@@ -146,7 +207,7 @@ function TransformQuestion({
           autoCorrect="off"
           spellCheck={false}
           disabled={shown !== null}
-          aria-label={`${tenseName(q.to)} biçimi`}
+          aria-label={`${q.verb}, ${tenseName(q.to)} biçimi`}
           placeholder={`${tenseName(q.to)} biçimini yaz`}
         />
         <AccentBar language={language} disabled={shown !== null} onInsert={(ch) => input.current && setTyped(insertAt(input.current, ch))} />
@@ -168,14 +229,24 @@ function TransformQuestion({
                 </span>
               )}
               {canSpeak() && (
-                <button type="button" className="icon-btn icon-btn-sm" aria-label="Cümleyi dinle" onClick={() => speak(`${before}${q.form}${after}`, language)}>
+                <button type="button" className="icon-btn icon-btn-sm" aria-label="Cümleyi dinle" onClick={() => speak(full, language)}>
                   <SpeakerIcon size={15} />
                 </button>
               )}
             </p>
-            <p className="small muted">
-              <span lang={language}>{tenseName(q.to)}</span>: {TENSE_BRIEF[q.to].short}
-            </p>
+            {q.target && (
+              <p className="small" lang={language}>
+                {full}
+                {q.translation && <span className="muted"> · <span lang="tr">{q.translation}</span></span>}
+              </p>
+            )}
+            <p className="small muted lab-transform-rule">{q.kind ? KIND_RULE[language][q.kind] : <><span lang={language}>{tenseName(q.to)}</span>: {TENSE_BRIEF[q.to].short}</>}</p>
+            <button type="button" className="link small" onClick={() => setLesson(true)}>
+              <span>
+                Dersi aç: <span lang={language}>{tenseName(q.to)}</span>
+              </span>
+            </button>
+            {lesson && <TenseLessonSheet language={language} tense={q.to} onClose={() => setLesson(false)} />}
             <div className="row">
               <button type="button" className="btn" onClick={onContinue} autoFocus>
                 {last ? 'Bitir' : 'Devam'}

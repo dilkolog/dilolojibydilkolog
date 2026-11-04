@@ -4237,3 +4237,14 @@ html:has(.lp) { scroll-behavior: smooth; }
 .tg-deep-item[open] { padding-bottom: 0.875rem; }
 .tg-deep-item[open] > summary { margin-bottom: 0.25rem; }
 .tg-deep-item .tg-examples { margin-top: 0.5rem; }
+/* Change the tense: the kinds of move wrap on phones rather than squeeze; the target sentence's gap. */
+.lab-transform-kinds { flex-wrap: wrap; }
+@media (max-width: 30rem) {
+  .lab-transform-kinds.seg-group { flex-wrap: wrap; }
+  .lab-transform-kinds .seg-btn { flex: 1 1 auto; }
+}
+.lab-transform-target { color: var(--ink-soft); }
+.lab-transform-gap { display: inline-block; min-width: 3.5em; border-bottom: 2px solid var(--lang); color: transparent; }
+/* A written pair shows two whole sentences: smaller than a single prompt so both fit on a phone. */
+.lab-transform-source, .lab-transform-target { font-size: clamp(1.125rem, 4.6vw, 1.5rem); line-height: 1.35; }
+.lab-transform-target { margin-top: -0.25rem; }

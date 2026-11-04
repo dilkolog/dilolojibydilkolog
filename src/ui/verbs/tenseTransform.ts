@@ -1,5 +1,6 @@
 import { createRng, shuffle } from '../../engine/rng'
 import { conjugateTense, labTensesOf, tenseSentence, type Tense } from '../../engine/tenses'
+import type { TransformKind, TransformPair } from '../../engine/transformPairs'
 import { verbEntry, type LabLanguage } from './labShared'
 
 /**
@@ -20,6 +21,11 @@ export interface Transform {
   translation?: string
   /** The persons the form can be (je / tu parlais): any of their forms in `to` is right. */
   persons: number[]
+  /** A written pair: the target sentence with "___" where the answer goes (its other words changed too). */
+  target?: string
+  kind?: TransformKind
+  /** The pair's id (a Tatoeba sentence has none). */
+  id?: string
 }
 
 export const TRANSFORM_PAIRS: Record<LabLanguage, [Tense, Tense][]> = {
@@ -158,6 +164,72 @@ export function transformRound(language: LabLanguage, verbs: readonly string[], 
       }
     }
     if (out.length >= size) break
+  }
+  return out
+}
+
+const BRACKET = /\[([^\]]+)\]/
+
+/** A written pair as a question: the source with its form, the target with a gap. */
+export function pairQuestion(pair: TransformPair): Transform | undefined {
+  const m = BRACKET.exec(pair.source)
+  if (!m || !BRACKET.test(pair.target)) return undefined
+  return {
+    verb: pair.verb,
+    from: pair.from,
+    to: pair.to,
+    text: pair.source.replace(BRACKET, '___'),
+    form: m[1],
+    translation: pair.tr,
+    persons: pair.persons,
+    target: pair.target.replace(BRACKET, '___'),
+    kind: pair.kind,
+    id: pair.id,
+  }
+}
+
+/**
+ * A round for the chosen kind of move: the written pairs of that kind, the chosen verb first, each
+ * verb once. "Mixed" puts pairs of every kind and the plain sentences half and half; when there are
+ * too few pairs the plain sentences fill the round.
+ */
+export function choiceRound(
+  language: LabLanguage,
+  verbs: readonly string[],
+  pairs: readonly TransformPair[],
+  choice: 'mixed' | TransformKind,
+  seed: number,
+  size = TRANSFORM_ROUND,
+): Transform[] {
+  const rng = createRng(seed)
+  const pool = choice === 'mixed' ? pairs : pairs.filter((p) => p.kind === choice)
+  const first = verbs[0]
+  const mine = shuffle(
+    pool.filter((p) => p.verb === first),
+    rng,
+  )
+  const ordered = [...mine.slice(0, 1), ...shuffle(pool.filter((p) => p.verb !== first), rng)]
+  const want = choice === 'mixed' ? Math.ceil(size / 2) : size
+  const used = new Set<string>()
+  const written: Transform[] = []
+  for (const p of ordered) {
+    if (written.length >= want) break
+    if (used.has(p.verb)) continue
+    const q = pairQuestion(p)
+    if (!q) continue
+    used.add(p.verb)
+    // je / tu aurais parlé: the subject written before the gap settles which.
+    written.push({ ...q, persons: narrowBySubject(language, q.target!, q.persons) })
+  }
+  if (choice !== 'mixed') return written
+  const plainOnes = transformRound(language, verbs, seed + 1, size * 2)
+    .filter((q) => !used.has(q.verb))
+    .slice(0, size - written.length)
+  // Interleaved: a written pair, a plain sentence, and so on.
+  const out: Transform[] = []
+  for (let i = 0; out.length < written.length + plainOnes.length; i++) {
+    if (written[i]) out.push(written[i])
+    if (plainOnes[i]) out.push(plainOnes[i])
   }
   return out
 }

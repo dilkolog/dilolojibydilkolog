@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
-import { aiRoute, approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, settleTransitions, startWithSamples } from './helpers'
+import { aiRoute, approveAccount, openVerbLab, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, settleTransitions, startWithSamples } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -1491,6 +1491,35 @@ test('English verb lab: lists, quiz question and feedback pass accessibility che
   await page.getByRole('button', { name: 'Kontrol et' }).click()
   await expect(page.getByRole('status')).toContainText('Doğrusu')
   await scanThemes('irregular-feedback')
+  expect(problems).toEqual([])
+})
+
+test('verb lab change the tense: a written pair and its result pass accessibility and contrast checks in light and dark', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Zamanı değiştir' }).click()
+  await main.getByRole('radio', { name: 'si cümleleri' }).click()
+  await expect(main.locator('.lab-transform-target')).toBeVisible()
+  const problems: string[] = []
+  const scanThemes = async (where: string) => {
+    for (const theme of ['light', 'dark'] as const) {
+      await page.evaluate((t) => {
+        document.documentElement.dataset.theme = t
+      }, theme)
+      await settleTransitions(page)
+      problems.push(...(await scan(page, `${where}-${theme}`)))
+      for (const c of await contrastProblems(page)) problems.push(`${where}-${theme} contrast: ${c}`)
+    }
+  }
+  await scanThemes('transform-question')
+  const answer = main.getByRole('textbox', { name: /biçimi$/ })
+  await answer.fill('zzz')
+  await answer.press('Enter')
+  await expect(main.locator('.lab-transform-rule')).toBeVisible()
+  await scanThemes('transform-result')
   expect(problems).toEqual([])
 })
 

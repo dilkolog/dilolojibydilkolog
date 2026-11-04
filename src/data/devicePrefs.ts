@@ -21,6 +21,7 @@ const LOCAL_PREFIXES = [
   'diloloji:guide-placement',
   'diloloji:guide-lesson-nudge:',
   'diloloji:guide-view',
+  'diloloji:transform-kind',
   'diloloji:shadow-scores',
   'diloloji:pitch-scores',
   'diloloji:league-wins',

@@ -270,10 +270,12 @@ E2E_PORT=4180 npx playwright test e2e/phone.e2e.ts e2e/desktop.e2e.ts e2e/a11y.e
 
 ## 11. Kabul ölçütleri
 
-- [ ] `docs/veri/donusum-ciftleri/` altında FR ve ES partileri; §8'deki sayılara ulaşıldı ya da yakın (her tür için en az %80).
-- [ ] `scripts/add-transform-pairs.ts` §5'teki kurallarla çalışıyor; `--dry` reddedilenleri nedenleriyle listeliyor.
-- [ ] `src/data/transforms/{fr,es}.json` yalnız araçla üretildi; dinamik yükleniyor; ilk açılış paketi büyümedi (`vite build` sonrası `dist/index.html`deki betiklerin gzip toplamıyla karşılaştırın).
-- [ ] "Zamanı değiştir" turunda tür seçici var; dönüşüm çiftinde kaynak ve hedef cümle, kural satırı ve "Dersi aç" görünüyor.
-- [ ] Fransızca présent artık kaynak zaman olarak soruluyor (dönüşüm çiftleri üzerinden).
+**Durum (2026-11-04):** ilk tur yapıldı (dil başına 500 çift); aşağıdaki maddeler PR'da işaretlendi.
+
+- [x] `docs/veri/donusum-ciftleri/` altında FR ve ES partileri; §8'deki sayılara ulaşıldı ya da yakın (her tür için en az %80).
+- [x] `scripts/add-transform-pairs.ts` §5'teki kurallarla çalışıyor; `--dry` reddedilenleri nedenleriyle listeliyor.
+- [x] `src/data/transforms/{fr,es}.json` yalnız araçla üretildi; dinamik yükleniyor; ilk açılış paketi büyümedi (`vite build` sonrası `dist/index.html`deki betiklerin gzip toplamıyla karşılaştırın).
+- [x] "Zamanı değiştir" turunda tür seçici var; dönüşüm çiftinde kaynak ve hedef cümle, kural satırı ve "Dersi aç" görünüyor.
+- [x] Fransızca présent artık kaynak zaman olarak soruluyor (dönüşüm çiftleri üzerinden).
 - [ ] Bütün testler yeşil; yeni veri, birim, E2E ve a11y testleri eklendi.
 - [ ] PR birleşti, canlıda doğrulandı, AGENTS.md'ye not düşüldü.
