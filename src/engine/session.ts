@@ -66,7 +66,7 @@ export function adaptExercise(item: PlanItem, entry: VocabularyEntry, state: Use
   if (!want) return item
   const isChoice = (t: ExerciseType) => EXERCISES[t].input === 'choice'
   if (want === 'harder' ? !isChoice(item.exerciseType) : isChoice(item.exerciseType)) return item
-  const pool = exerciseTypesFor(item.skill, entry, opts).filter((t) => (want === 'harder' ? !isChoice(t) : isChoice(t)))
+  const pool = exerciseTypesFor(item.skill, entry, opts, state ?? null).filter((t) => (want === 'harder' ? !isChoice(t) : isChoice(t)))
   if (!pool.length) return item
   const fresh = pool.filter((t) => t !== state?.lastExerciseType)
   return { ...item, exerciseType: (fresh.length ? fresh : pool)[Math.floor(rng() * (fresh.length ? fresh : pool).length)] }

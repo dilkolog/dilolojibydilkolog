@@ -50,6 +50,21 @@ export function masteryStage(state: UserWordState): MasteryStage {
   return 'introduced'
 }
 
+/** Days of recall stability after which a word is asked inside a sentence (see contextReady). */
+export const CONTEXT_READY_DAYS = STRONG_STABILITY_DAYS
+
+/**
+ * Whether a word is known well enough to be asked in a sentence (fill the blank, pick the word
+ * for a gap). A new word first meets plain questions (meaning ⇄ word, choosing and typing);
+ * a blank in a sentence asks for more than the word itself (reading the sentence, spotting the
+ * gap), which pulls a word that is still shaky away from being learnt. No state yet = not ready.
+ */
+export function contextReady(state: UserWordState | null | undefined): boolean {
+  if (!state) return false
+  const { recognition, recall } = state.skills
+  return graduated(recognition) && stable(recall, CONTEXT_READY_DAYS)
+}
+
 /** 0–100 per skill: current probability of recall. Untouched skills score 0. */
 export function skillScores(state: UserWordState, scheduler: Scheduler, now: Date): Record<Skill, number> {
   const out = {} as Record<Skill, number>

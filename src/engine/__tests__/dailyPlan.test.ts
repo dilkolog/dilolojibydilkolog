@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { State } from 'ts-fsrs'
 import { EXERCISES } from '../exercises'
 import { BACKLOG_AT, buildDailyPlan, buildExtraNewPlan, interleave, roundForMinutes, shortRound, SHORT_ROUND, isFormId, MAX_DAY_FORMS, mixForms, type PlanInput, type PlanItem } from '../dailyPlan'
 import { recordMistake } from '../mistakes'
@@ -189,15 +190,26 @@ describe('habits', () => {
 })
 
 describe('the day after', () => {
-  it('a word met yesterday is also asked inside a sentence, one met earlier is not', () => {
-    const states = [learned(decide, daysAgo(1)), learned(affect, daysAgo(4))].map((s) => ({
+  it('a word met yesterday is also asked inside a sentence once it is known well, one met earlier is not', () => {
+    const strong = (s: UserWordState): UserWordState => {
+      const card = { ...s.skills.recognition!, state: State.Review, stability: 8, due: daysAgo(0.1) }
+      return { ...s, skills: { recognition: card, recall: { ...card } } }
+    }
+    const states = [strong(learned(decide, daysAgo(1))), learned(affect, daysAgo(4))].map((s) => ({
       ...s,
-      skills: { recognition: { ...s.skills.recognition!, due: daysAgo(0.1) } },
+      skills: { ...s.skills, recognition: { ...s.skills.recognition!, due: daysAgo(0.1) } },
     }))
     const plan = buildDailyPlan(input({ states, settings: { ...settings, newWordsPerDay: 0, dailyMinutes: 30 } }))
     const of = (id: string) => plan.items.filter((i) => i.entryId === id).map((i) => i.exerciseType)
     expect(of('en:decide')).toContain('mc_context')
     expect(of('en:affect')).not.toContain('mc_context')
+  })
+
+  it('a word met yesterday that is still shaky stays on plain meaning questions', () => {
+    const s = learned(decide, daysAgo(1))
+    const states = [{ ...s, skills: { recognition: { ...s.skills.recognition!, due: daysAgo(0.1) } } }]
+    const plan = buildDailyPlan(input({ states, settings: { ...settings, newWordsPerDay: 0, dailyMinutes: 30 } }))
+    expect(plan.items.map((i) => i.exerciseType)).not.toContain('mc_context')
   })
 })
 

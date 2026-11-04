@@ -250,8 +250,20 @@ describe('phrases are recognised in a sentence', () => {
     const bare = createEntry({ word: 'echar de menos', meaning: 'özlemek', partOfSpeech: 'phrase' }, 'es', at)
     const word = createEntry({ word: 'la casa', meaning: 'ev', example: 'La casa es grande.' }, 'es', at)
     const rng = createRng(7)
-    const kinds = (e: typeof phrase) => new Set(Array.from({ length: 30 }, () => pickExerciseType('recognition', e, undefined, rng)))
+    const { newWordState } = await import('../review')
+    const { createScheduler } = await import('../scheduler')
+    const { State } = await import('ts-fsrs')
+    const sched = createScheduler({ fuzz: false })
+    const known = (e: typeof phrase) => {
+      const st = newWordState(e, at)
+      st.skills.recognition = { ...sched.newCard(at), reps: 4, stability: 8, state: State.Review }
+      st.skills.recall = { ...st.skills.recognition }
+      return st
+    }
+    const kinds = (e: typeof phrase) => new Set(Array.from({ length: 30 }, () => pickExerciseType('recognition', e, known(e), rng)))
     expect([...kinds(phrase)].every((t) => t === 'mc_context' || t === 'discriminate')).toBe(true)
+    // Until the phrase is known well it is asked by its meaning, not in a sentence.
+    expect(pickExerciseType('recognition', phrase, undefined, rng)).toBe('mc_meaning')
     // No sentence to put it in: the meaning question stays.
     expect(kinds(bare).has('mc_meaning')).toBe(true)
     expect(kinds(word).has('mc_meaning')).toBe(true)

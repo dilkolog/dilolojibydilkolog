@@ -208,9 +208,10 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
       const reason: PlanReason =
         r < FORGOTTEN_R ? 'forgotten' : open.length ? 'mistake' : r < WEAK_R ? 'weak' : 'due'
       const fresh = state.introducedAt >= yesterday && state.introducedAt < today
-      // Met yesterday: seen again today inside a sentence, where it lives (and is retrieved from context,
-      // not only from its translation). A recognition item turns into the sentence; otherwise one is added.
-      const inSentence = fresh && exerciseTypesFor('recognition', entry, opts).includes('mc_context')
+      // Met yesterday and already known well (a word met a day ago usually isn't: sentence questions wait for
+      // contextReady): seen again today inside a sentence, where it lives. A recognition item turns into the
+      // sentence; otherwise one is added.
+      const inSentence = fresh && exerciseTypesFor('recognition', entry, opts, state).includes('mc_context')
       const exerciseType = inSentence && skill === 'recognition' ? 'mc_context' : pickExerciseType(skill, entry, state, rng, opts)
       scored.push({ item: { kind: 'exercise', entryId: entry.id, reason, skill, exerciseType }, r, fresh })
       if (inSentence && skill !== 'recognition')

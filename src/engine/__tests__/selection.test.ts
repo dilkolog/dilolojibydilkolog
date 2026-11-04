@@ -19,6 +19,14 @@ describe('selection engine', () => {
   const scheduler = createScheduler({ fuzz: false })
   const now = new Date('2026-10-10T12:00:00Z')
 
+  /** A word recalled reliably for a week: sentence questions are open for it. */
+  const known = () => {
+    const state = newWordState(decision, now)
+    state.skills.recognition = { ...scheduler.newCard(now), reps: 4, stability: 8, state: State.Review }
+    state.skills.recall = { ...scheduler.newCard(now), reps: 4, stability: 8, state: State.Review }
+    return state
+  }
+
   describe('startOfDay', () => {
     it('zeroes out hours, minutes, seconds and ms', () => {
       const d = new Date('2026-10-10T15:45:32.123Z')
@@ -115,7 +123,7 @@ describe('selection engine', () => {
       const count = (o: typeof opts | undefined) => {
         const rng = createRng(5)
         let n = 0
-        for (let i = 0; i < 3000; i++) if (pickExerciseType('recognition', decision, undefined, rng, o) === 'mc_context') n++
+        for (let i = 0; i < 3000; i++) if (pickExerciseType('recognition', decision, known(), rng, o) === 'mc_context') n++
         return n
       }
       const normal = count(undefined)
@@ -197,10 +205,22 @@ describe('selection engine', () => {
     })
 
     it('prefers a different exercise than the last seen format if alternatives exist', () => {
-      const state = newWordState(decision, now)
+      const state = known()
       state.lastExerciseType = 'mc_meaning'
       const type = pickExerciseType('recognition', decision, state, rng)
       expect(type).not.toBe('mc_meaning')
+    })
+
+    it('a word not yet known well is asked plain meaning questions, no sentence ones', () => {
+      const fresh = newWordState(decision, now)
+      fresh.skills.recognition = { ...scheduler.newCard(now), reps: 2 }
+      for (const state of [undefined, fresh]) {
+        const kinds = new Set(Array.from({ length: 60 }, () => pickExerciseType('recognition', decision, state, createRng(Math.random() * 1e6))))
+        expect([...kinds].every((t) => t === 'mc_meaning' || t === 'picture_choice')).toBe(true)
+      }
+      // Once recall holds for a week the sentence questions open up.
+      const kinds = new Set(Array.from({ length: 80 }, (_, i) => pickExerciseType('recognition', decision, known(), createRng(i))))
+      expect(kinds.has('mc_context')).toBe(true)
     })
 
     it('prefers mc_context for multiword phrases in recognition', () => {
@@ -210,8 +230,10 @@ describe('selection engine', () => {
         lemma: 'make a decision',
         partOfSpeech: 'phrase',
       }
-      const type = pickExerciseType('recognition', phraseEntry, undefined, rng)
+      const type = pickExerciseType('recognition', phraseEntry, known(), rng)
       expect(type).toBe('mc_context')
+      // A phrase met for the first time still starts with the plain meaning question.
+      expect(pickExerciseType('recognition', phraseEntry, undefined, rng)).toBe('mc_meaning')
     })
   })
 })
