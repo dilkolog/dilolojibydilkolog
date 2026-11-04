@@ -493,6 +493,11 @@ async function pullShard(store: PartStore, name: string): Promise<Pulled> {
 }
 
 /** Fetches parts a few at a time. */
+/** Runs the work over the items, `size` at a time (a failure stops it, as a plain loop would). */
+async function inBatches<T>(items: T[], size: number, work: (item: T) => Promise<void>) {
+  for (let i = 0; i < items.length; i += size) await Promise.all(items.slice(i, i + size).map(work))
+}
+
 async function pullShards(store: PartStore, names: string[], into: Map<string, Pulled>) {
   for (let i = 0; i < names.length; i += 6) {
     await Promise.all(names.slice(i, i + 6).map(async (name) => void into.set(name, await pullShard(store, name))))
@@ -719,9 +724,9 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
       skipped++
     }
   }
-  for (const mid of remoteMedia) {
-    if (localMedia.has(mid)) continue
-    await isolated(async () => {
+  // A few at a time: one by one, a first sign-in on a new device waited a round trip per picture and recording.
+  await inBatches([...remoteMedia].filter((mid) => !localMedia.has(mid)), 6, (mid) =>
+    isolated(async () => {
       const bytes = (await store.fetch(await mediaPart(mid)))?.bytes
       if (!bytes) return
       const { kind, type, data } = JSON.parse(new TextDecoder().decode(bytes)) as { kind: 'image' | 'audio'; type: string; data: string }
@@ -729,13 +734,12 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
       await db.media.put({ id: mid, kind, type, data: raw.buffer, createdAt: new Date() })
       localMedia.add(mid)
       received++
-    })
-  }
+    }),
+  )
   let sent = 0
   const unsent = new Set<string>()
-  for (const mid of localMedia) {
-    if (remoteMedia.has(mid) || mid.startsWith('tts:') || mid.startsWith('aud:')) continue
-    await isolated(async () => {
+  await inBatches([...localMedia].filter((mid) => !remoteMedia.has(mid) && !mid.startsWith('tts:') && !mid.startsWith('aud:')), 4, (mid) =>
+    isolated(async () => {
       const row = await db.media.get(mid)
       if (!row) return
       unsent.add(mid)
@@ -747,17 +751,16 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
       await store.put(await mediaPart(mid), new TextEncoder().encode(JSON.stringify({ kind: row.kind, type: blob.type, data: btoa(bin) })))
       unsent.delete(mid)
       sent++
-    })
-  }
+    }),
+  )
   // Items that did not go up stay off the list, so other devices don't ask for what the server doesn't have.
   const mediaIds = [...localMedia].filter((m) => !m.startsWith('tts:') && !m.startsWith('aud:') && !unsent.has(m))
   // The parts that changed go up first; the core, which lists them, goes last and is the one that must still be as read.
   let biggest = 0
-  for (const [name, shard] of shards) {
-    if (shard.fp === manifest[name]) continue
+  await inBatches([...shards].filter(([name, shard]) => shard.fp !== manifest[name]), 6, async ([name, shard]) => {
     const was = pulled.get(name)
     biggest = Math.max(biggest, await store.put(name, shardFile(shard), was?.exists ? { ifMatch: was.etag } : { createOnly: true }))
-  }
+  })
   const listed = Object.fromEntries([...shards].map(([name, shard]) => [name, shard.fp]))
   const coreBytes = await store.put('core', new TextEncoder().encode(JSON.stringify({ ...withoutShards(merged), shards: listed, mediaIds })), fetched ? { ifMatch: fetched.etag } : { createOnly: true })
   await db.meta.put({ key: 'syncSize', value: Math.max(coreBytes, biggest) })

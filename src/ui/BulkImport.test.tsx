@@ -86,10 +86,10 @@ describe('BulkImport wizard (Quizlet & Memrise)', () => {
     expect(banner?.textContent).toContain('Quizlet')
 
     // Column select dropdowns appear above table columns
-    const colSelects = container.querySelectorAll('.col-select') as NodeListOf<HTMLSelectElement>
+    const colSelects = container.querySelectorAll('.col-select .select-trigger')
     expect(colSelects.length).toBeGreaterThanOrEqual(2)
-    expect(colSelects[0].value).toBe('word')
-    expect(colSelects[1].value).toBe('meaning')
+    expect(colSelects[0].textContent).toBe('Kelime')
+    expect(colSelects[1].textContent).toBe('Anlam')
 
     // Table preview displays rows
     const rows = container.querySelectorAll('.preview-table tbody tr')
@@ -114,9 +114,9 @@ describe('BulkImport wizard (Quizlet & Memrise)', () => {
       swapBtn?.click()
     })
 
-    const colSelects = container.querySelectorAll('.col-select') as NodeListOf<HTMLSelectElement>
-    expect(colSelects[0].value).toBe('meaning')
-    expect(colSelects[1].value).toBe('word')
+    const colSelects = container.querySelectorAll('.col-select .select-trigger')
+    expect(colSelects[0].textContent).toBe('Anlam')
+    expect(colSelects[1].textContent).toBe('Kelime')
   })
 
   it('switches to export mode and allows copying Quizlet text', async () => {

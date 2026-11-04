@@ -22,8 +22,20 @@ import { toMemriseTsv, toQuizletText } from '../data/exportList'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
 import { ImportPlacement } from './ImportPlacement'
+import { Select, type SelectOption } from './Select'
 import { useImportList } from './useImportList'
 import { showToast } from './toastFeed'
+
+/** What a column of the file is, in the app's own dropdown (the native one could not be styled). */
+const COLUMN_ROLES: SelectOption<ColumnRole>[] = [
+  { value: 'word', label: 'Kelime' },
+  { value: 'meaning', label: 'Anlam' },
+  { value: 'example', label: 'Örnek' },
+  { value: 'exampleTranslation', label: 'Çeviri' },
+  { value: 'notes', label: 'Not' },
+  { value: 'tags', label: 'Etiket' },
+  { value: 'ignore', label: 'Yoksay' },
+]
 
 const TERM_OPTIONS: [TermSeparator, string][] = [
   ['auto', 'Otomatik'],
@@ -493,27 +505,19 @@ export function BulkImport({
                       <tr>
                         {Array.from({ length: colCount }, (_, cIdx) => (
                           <th key={cIdx} className="col-mapping-th">
-                            <label className="sr-only" htmlFor={`col-role-${cIdx}`}>
-                              Sütun {cIdx + 1} rolü
-                            </label>
-                            <select
+                            <Select<ColumnRole>
                               id={`col-role-${cIdx}`}
                               className="col-select"
+                              floating
+                              label={`Sütun ${cIdx + 1} rolü`}
                               value={effectiveColumns[cIdx] ?? 'ignore'}
-                              onChange={(e) => {
+                              options={COLUMN_ROLES}
+                              onChange={(role) => {
                                 const next = Array.from({ length: colCount }, (_, k) => effectiveColumns[k] ?? 'ignore')
-                                next[cIdx] = e.target.value as ColumnRole
+                                next[cIdx] = role
                                 setCustomColumns(next)
                               }}
-                            >
-                              <option value="word">Kelime</option>
-                              <option value="meaning">Anlam</option>
-                              <option value="example">Örnek</option>
-                              <option value="exampleTranslation">Çeviri</option>
-                              <option value="notes">Not</option>
-                              <option value="tags">Etiket</option>
-                              <option value="ignore">Yoksay</option>
-                            </select>
+                            />
                           </th>
                         ))}
                         <th scope="col" style={{ width: '6rem' }}>

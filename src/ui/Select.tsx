@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { CheckIcon, ChevronDownIcon } from './icons'
 
 export interface SelectOption<T extends string> {
@@ -20,6 +20,8 @@ export function Select<T extends string>({
   label,
   id,
   placeholder = 'Seç',
+  className,
+  floating,
 }: {
   value: T | undefined
   options: SelectOption<T>[]
@@ -27,11 +29,15 @@ export function Select<T extends string>({
   label: string
   id?: string
   placeholder?: string
+  className?: string
+  /** The list is placed on the screen, not in the page: for a field inside a scrolling box (a table) that would cut it. */
+  floating?: boolean
 }) {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(0)
   // Opens upwards when there isn't room below (a field near the bottom of the screen).
   const [up, setUp] = useState(false)
+  const [place, setPlace] = useState<CSSProperties | undefined>(undefined)
   const root = useRef<HTMLDivElement>(null)
   const list = useRef<HTMLUListElement>(null)
   const listId = useId()
@@ -43,8 +49,20 @@ export function Select<T extends string>({
       if (!root.current?.contains(e.target as Node)) setOpen(false)
     }
     document.addEventListener('mousedown', close)
-    return () => document.removeEventListener('mousedown', close)
-  }, [open])
+    // A list placed on the screen would stay behind when the box under it scrolls: it closes instead.
+    const drop = (e: Event) => {
+      if (!list.current?.contains(e.target as Node)) setOpen(false)
+    }
+    if (floating) {
+      window.addEventListener('scroll', drop, true)
+      window.addEventListener('resize', drop)
+    }
+    return () => {
+      document.removeEventListener('mousedown', close)
+      window.removeEventListener('scroll', drop, true)
+      window.removeEventListener('resize', drop)
+    }
+  }, [open, floating])
 
   useEffect(() => {
     if (open) list.current?.querySelector<HTMLElement>(`[data-index="${active}"]`)?.scrollIntoView({ block: 'nearest' })
@@ -53,7 +71,13 @@ export function Select<T extends string>({
   const openAt = () => {
     setActive(Math.max(0, options.findIndex((o) => o.value === value)))
     const r = root.current?.getBoundingClientRect()
-    setUp(!!r && window.innerHeight - r.bottom < 280 && r.top > window.innerHeight - r.bottom)
+    const goesUp = !!r && window.innerHeight - r.bottom < 280 && r.top > window.innerHeight - r.bottom
+    setUp(goesUp)
+    setPlace(
+      floating && r
+        ? { position: 'fixed', left: r.left, minWidth: r.width, ...(goesUp ? { top: 'auto', bottom: window.innerHeight - r.top + 6 } : { top: r.bottom + 6 }) }
+        : undefined,
+    )
     setOpen(true)
   }
 
@@ -88,7 +112,7 @@ export function Select<T extends string>({
   }
 
   return (
-    <div className="select" ref={root}>
+    <div className={`select${className ? ` ${className}` : ''}`} ref={root}>
       <button
         type="button"
         id={id}
@@ -105,7 +129,7 @@ export function Select<T extends string>({
         <ChevronDownIcon size={16} className="select-chevron" />
       </button>
       {open && (
-        <ul className={`select-list${up ? ' is-up' : ''}`} role="listbox" id={listId} ref={list} aria-label={label}>
+        <ul className={`select-list${up ? ' is-up' : ''}`} role="listbox" id={listId} ref={list} aria-label={label} style={place}>
           {options.map((o, i) => (
             <li
               key={o.value}

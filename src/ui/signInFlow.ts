@@ -14,10 +14,13 @@ export function nameOf(session: Session): string {
 }
 
 export type SignInOutcome = { kind: 'done'; waiting: boolean; fresh: boolean }
+/** Where a sign-in is, for the screen: the account found or made, then the data brought to this device. */
+export type SignInStage = 'account' | 'data'
 
 /** Uses the account on this device, merges with what it holds on the server, and says whether approval is pending. */
-async function takeAccount(account: Account, fresh: boolean): Promise<SignInOutcome> {
+async function takeAccount(account: Account, fresh: boolean, onStage?: (stage: SignInStage) => void): Promise<SignInOutcome> {
   await setAccount(account)
+  onStage?.('data')
   if (await getSyncCode()) await setSyncCode(null)
   let waiting = false
   try {
@@ -34,16 +37,18 @@ async function takeAccount(account: Account, fresh: boolean): Promise<SignInOutc
  * Whatever this device holds (words, progress) merges into it on the first sync, so nothing studied here
  * is left behind; accounts from the old username sign-in are not carried over.
  */
-export const completeSignIn = (session: Session): Promise<SignInOutcome> => whileSigningIn(() => completeSignInNow(session))
+export const completeSignIn = (session: Session, onStage?: (stage: SignInStage) => void): Promise<SignInOutcome> =>
+  whileSigningIn(() => completeSignInNow(session, onStage))
 
-async function completeSignInNow(session: Session): Promise<SignInOutcome> {
+async function completeSignInNow(session: Session, onStage?: (stage: SignInStage) => void): Promise<SignInOutcome> {
+  onStage?.('account')
   const kept = await fetchVault(session.access_token, nameOf(session))
   let outcome: SignInOutcome
-  if (kept) outcome = await takeAccount(kept, false)
+  if (kept) outcome = await takeAccount(kept, false, onStage)
   else {
     const account = freshAccount(nameOf(session))
     await linkVault(session.access_token, account)
-    outcome = await takeAccount(account, true)
+    outcome = await takeAccount(account, true, onStage)
   }
   try {
     const settings = (await db.getSettings()) ?? DEFAULT_SETTINGS
