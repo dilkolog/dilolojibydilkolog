@@ -202,6 +202,11 @@ describe('Quizlet & Memrise import wizard, column mapping and detection', () => 
   it('auto-detects columns from standard headers (English, Turkish, Quizlet, Memrise)', () => {
     expect(autoDetectColumns(['Word', 'Meaning', 'Example'], true)).toEqual(['word', 'meaning', 'example'])
     expect(autoDetectColumns(['Front', 'Back'], true)).toEqual(['word', 'meaning'])
+  })
+
+  it('without a header, the Turkish column is the meaning, a multi-word idiom before it the word', () => {
+    expect(autoDetectColumns(['Ser un flechazo', 'İlk görüşte aşk olmak', 'Fue un flechazo cuando la vi en la fiesta.'], false, 'es')).toEqual(['word', 'meaning', 'example'])
+    expect(autoDetectColumns(['Çok sıkılmak', 'Aburrirse como una ostra', 'En la conferencia me aburrí como una ostra.'], false, 'es')).toEqual(['meaning', 'word', 'example'])
     expect(autoDetectColumns(['Term', 'Definition'], true)).toEqual(['word', 'meaning'])
     expect(autoDetectColumns(['Kelime', 'Anlam', 'Örnek Cümle', 'Çeviri'], true)).toEqual(['word', 'meaning', 'example', 'exampleTranslation'])
     expect(autoDetectColumns(['Anlam', 'Kelime'], true)).toEqual(['meaning', 'word'])

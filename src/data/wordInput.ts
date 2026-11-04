@@ -433,6 +433,23 @@ export function autoDetectColumns(
     return ['word', 'meaning']
   }
 
+  // A column written in Turkish (ı, ğ, ş, İ: letters no target language has) is the meaning, the first other column the
+  // word, the longest of the rest its example; a second Turkish column is the example's translation. Without this, a
+  // multi-word idiom in the first column ("Ser un flechazo") looked like a sentence and the Turkish became the "word".
+  const turkish = sampleRow.map((c) => /[ığşİĞŞ]/.test(c ?? ''))
+  const trAt = turkish.indexOf(true)
+  if (trAt >= 0) {
+    const roles: ColumnRole[] = sampleRow.map(() => 'ignore')
+    roles[trAt] = 'meaning'
+    const others = sampleRow.map((c, i) => ({ i, c: (c ?? '').trim() })).filter(({ i, c }) => i !== trAt && c && !turkish[i] && !/^\[sound:.*\]$/.test(c) && !/\.(mp3|wav|ogg|jpg|png|webp)$/i.test(c))
+    if (others[0]) roles[others[0].i] = 'word'
+    const example = others.slice(1).sort((a, b) => b.c.length - a.c.length)[0]
+    if (example) roles[example.i] = 'example'
+    const secondTr = turkish.findIndex((t, i) => t && i !== trAt)
+    if (secondTr >= 0 && example) roles[secondTr] = 'exampleTranslation'
+    return roles
+  }
+
   let wordAssigned = false
   let meaningAssigned = false
   let exampleAssigned = false
