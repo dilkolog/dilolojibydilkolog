@@ -60,6 +60,11 @@ export async function supabaseUser(request: Request): Promise<SupabaseUser | nul
   }
 }
 
+/** Supabase's auth admin API (the service key): reading a person's sign-in record. */
+export async function authAdmin(path: string): Promise<Response> {
+  return fetch(`${base()}/auth/v1/admin/${path}`, { headers: keyHeaders() })
+}
+
 export async function rest(path: string, init: RequestInit = {}): Promise<Response> {
   return fetch(`${base()}/rest/v1/${path}`, {
     ...init,

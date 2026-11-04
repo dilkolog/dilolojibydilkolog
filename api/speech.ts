@@ -15,6 +15,7 @@ import { accountOf, requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
 import { dailyQuotaReached, DAILY_TTS_CHARS, overDaily, quotaLeft, spendQuota } from './_quota.js'
 import { overLimit, tooMany } from './_rate.js'
+import { limitOf } from './_settings.js'
 
 export { fromApp }
 
@@ -95,7 +96,7 @@ async function speak(request: Request): Promise<Response> {
   if (!text || text.length > MAX_TTS_CHARS || !isLang(body?.language) || !validVoice(body.voice, body.language)) return json({ error: 'bad request' }, 400)
   const rate = typeof body?.rate === 'number' && Number.isFinite(body.rate) ? Math.min(2, Math.max(0.25, body.rate)) : 1
   const account = await accountOf(request).catch(() => null)
-  if (account && !(await quotaLeft('tts', account, text.length, DAILY_TTS_CHARS))) return dailyQuotaReached()
+  if (account && !(await quotaLeft('tts', account, text.length, await limitOf('ttsChars', DAILY_TTS_CHARS)))) return dailyQuotaReached()
 
   const res = await fetch('https://texttospeech.googleapis.com/v1/text:synthesize', {
     method: 'POST',

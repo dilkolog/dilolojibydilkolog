@@ -18,6 +18,7 @@ import { fromApp } from './_origin.js'
 import { overLimit, tooMany } from './_rate.js'
 import { dailyQuotaReached, quotaLeft, quotaUsed, spendQuota } from './_quota.js'
 import { aiLevelOf } from './_supabase.js'
+import { limitOf } from './_settings.js'
 import { BUDGET_SHARE, DEFAULT_AI_LEVEL, FEATURE_LEVEL, featuresOf, isAiFeature, isAiLevel, levelAllows, type AiLevel } from '../src/ai/levels.js'
 
 export { fromApp }
@@ -36,8 +37,9 @@ export const DEFAULT_DAILY_BUDGET_USD = 0.75
 const BETA = /^[a-z0-9][a-z0-9.,\- ]{0,200}$/
 
 const json = (body: unknown, status = 200) => Response.json(body, { status, headers: { 'cache-control': 'no-store' } })
-const dailyCalls = () => Math.max(1, Number(process.env.AI_DAILY_CALLS) || DEFAULT_DAILY_CALLS)
-const dailyBudget = (level: AiLevel = 'tam') => Math.round((Number(process.env.AI_DAILY_BUDGET_USD) || DEFAULT_DAILY_BUDGET_USD) * UNIT * BUDGET_SHARE[level])
+/** The owner's limits (admin screen), else the Worker variables, else the defaults. */
+const dailyCalls = async () => Math.max(1, await limitOf('aiDailyCalls', DEFAULT_DAILY_CALLS, 'AI_DAILY_CALLS'))
+const dailyBudget = async (level: AiLevel = 'tam') => Math.round((await limitOf('aiDailyBudgetUsd', DEFAULT_DAILY_BUDGET_USD, 'AI_DAILY_BUDGET_USD')) * UNIT * BUDGET_SHARE[level])
 
 /** The level the owner gave the request's account: the default one when none is set; without accounts (local development) everything is open. */
 export async function levelOf(request: Request): Promise<AiLevel> {
@@ -103,8 +105,8 @@ export async function POST(request: Request): Promise<Response> {
   if (!levelAllows(level, feature)) return json({ error: 'ai_level', level, needs: FEATURE_LEVEL[feature] }, 403)
 
   const account = await accountOf(request).catch(() => null)
-  if (account && !(await quotaLeft('ai', account, 1, dailyCalls()))) return dailyQuotaReached()
-  if (account && (await quotaUsed('ai-cost', account)) >= dailyBudget(level)) return dailyQuotaReached()
+  if (account && !(await quotaLeft('ai', account, 1, await dailyCalls()))) return dailyQuotaReached()
+  if (account && (await quotaUsed('ai-cost', account)) >= (await dailyBudget(level))) return dailyQuotaReached()
 
   const beta = request.headers.get('anthropic-beta')?.trim()
   const res = await fetch('https://api.anthropic.com/v1/messages?beta=true', {

@@ -4,7 +4,7 @@ import { BellIcon, CloseIcon, HeartIcon, InfoIcon, TrophyIcon, UserIcon } from '
 import { useNotices } from './noticeCenter'
 import { Popover } from './Popover'
 
-const ICON: Record<NoticeKind, typeof InfoIcon> = { sync: InfoIcon, badge: TrophyIcon, level: TrophyIcon, cert: TrophyIcon, account: UserIcon, friend: HeartIcon }
+const ICON: Record<NoticeKind, typeof InfoIcon> = { sync: InfoIcon, badge: TrophyIcon, level: TrophyIcon, cert: TrophyIcon, account: UserIcon, friend: HeartIcon, announce: BellIcon }
 
 /**
  * The bell in the top bar: what happened while the learner was elsewhere, newest first. The count is what has not been

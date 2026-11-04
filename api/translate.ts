@@ -14,6 +14,7 @@
 import { accountOf, requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
 import { DAILY_TRANSLATE_CHARS, quotaLeft, spendQuota } from './_quota.js'
+import { limitOf } from './_settings.js'
 
 export { fromApp }
 
@@ -53,7 +54,7 @@ export async function GET(request: Request): Promise<Response> {
   if (!to || !(to in LANGS) || (from && !(from in LANGS)) || from === to) return json({ error: 'bad language' }, 400)
   // The account's daily allowance (none to count without accounts: local development).
   const account = await accountOf(request).catch(() => null)
-  if (account && !(await quotaLeft('translate', account, text.length, DAILY_TRANSLATE_CHARS))) return json({ error: 'daily_quota' }, 429)
+  if (account && !(await quotaLeft('translate', account, text.length, await limitOf('translateChars', DAILY_TRANSLATE_CHARS)))) return json({ error: 'daily_quota' }, 429)
 
   const res = await fetch(`${endpoint(key)}/v2/translate`, {
     method: 'POST',

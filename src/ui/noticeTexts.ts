@@ -39,4 +39,7 @@ export const accountNotice = (status: 'approved' | 'rejected'): Draft =>
     ? { id: 'account|approved', kind: 'account', text: 'Hesabın onaylandı: eşitleme, çeviri ve YZ ekranları açıldı.', target: 'settings' }
     : { id: 'account|rejected', kind: 'account', text: 'Hesabın onaylanmadı. Ayrıntı için Ayarlar → Hesap.', target: 'settings' }
 
+/** The owner's announcement to everyone (admin screen); its id is the announcement's, so it is listed once. */
+export const announceNotice = (id: string, text: string, at: string): Draft & { at: string } => ({ id: `announce|${id}`, kind: 'announce', text: `Duyuru: ${text}`, at })
+
 export const syncNotice = (line: string, at = Date.now()): Draft => ({ id: `sync|${at}`, kind: 'sync', text: line, target: 'home' })
