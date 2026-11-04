@@ -7,7 +7,7 @@ export type GroupId = 's-account' | 's-study' | 's-answers' | 's-sound' | 's-loo
  * the settings each group's "Varsayılana dön" puts back. Personal things stay: the study plan, the
  * fitted memory model, holidays, reminders and the chosen voice language aside.
  */
-export const ADVANCED_GROUPS: GroupId[] = ['s-study', 's-answers', 's-sound', 's-look', 's-remind', 's-tools']
+export const ADVANCED_GROUPS: GroupId[] = ['s-study', 's-answers', 's-sound', 's-look', 's-remind', 's-tools', 's-data']
 export const RESET_KEYS: Partial<Record<GroupId, (keyof Settings)[]>> = {
   's-study': ['dailyMinutes', 'newWordsPerDay', 'dailyXpGoal', 'sessionMax', 'splitLongDays', 'probes', 'retention', 'frequencyFirst', 'autoRetire', 'dayWeights'],
   's-answers': ['typingShare', 'autoAdvance', 'hintDelaySec', 'accentShortcuts', 'confidence', 'hideVosotros', 'accentStrict', 'exercisePrefs', 'typedBlanks', 'skipLongGloss', 'pretest', 'refreshCard', 'targetDefinitions'],

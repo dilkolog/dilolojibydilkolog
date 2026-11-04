@@ -11,6 +11,7 @@ import { LANGUAGE_NAME } from './labels'
 import { showToast } from './toastFeed'
 import { AccountDelete } from './AccountManage'
 import { getAccount } from './syncRunner'
+import { Chips, Row } from './settingsWidgets'
 import { currentIdentity, type Identity } from '../data/supabase'
 import type { Account } from '../data/sync'
 
@@ -28,6 +29,7 @@ export function DataSettings({
   const [pendingUndo, setPendingUndo] = useState(false)
   const [account, setAccount] = useState<Account | null>(null)
   const [identity, setIdentity] = useState<Identity | null>(null)
+  const [scope, setScope] = useState<'one' | 'all'>('one')
 
   useEffect(() => {
     void getSafetySnapshot(db).then(setSafety)
@@ -141,84 +143,97 @@ export function DataSettings({
     <>
       <section className="card stack">
         <h2 className="section-title">Yedek</h2>
-        <p className="small muted">Veriler yalnızca bu cihazda duruyor. Yedek; kelimeleri, ilerlemeyi, görselleri ve ses kayıtlarını içerir.</p>
-        <div className="row">
-          <button className="btn btn-quiet" onClick={download}>
-            Yedeği indir
+        <p className="small muted">
+          {account ? 'Verilerin hesabında güvende ve kendiliğinden eşitlenir. Buradan istersen bilgisayarına bir kopya alırsın.' : 'Veriler yalnızca bu cihazda duruyor; yedek almak onları korur.'}
+        </p>
+        <Row label="Yedeği indir" help="Kelimeler, ilerleme, görseller ve ses kayıtları tek bir dosyada.">
+          <button type="button" className="btn btn-sm btn-quiet" onClick={download}>
+            İndir
           </button>
-          <label className="btn btn-quiet">
-            Yedekten geri yükle
+        </Row>
+        <Row label="Yedekten geri yükle" help="Önce ne geleceğini gösterir; bu cihazın hâli yedeklenir, istersen geri dönersin.">
+          <label className="btn btn-sm btn-quiet">
+            Dosya seç
             <input type="file" accept=".json,application/json" className="sr-only" onChange={(e) => e.target.files?.[0] && restore(e.target.files[0])} />
           </label>
-        </div>
+        </Row>
         {safety && (
-          <div className="row">
-            <span className="small muted">
-              Geri yüklemeden önce bu cihazın hâli otomatik saklandı ({new Date(safety.at).toLocaleString('tr-TR')}, {safety.words} kelime).
-            </span>
-            <button className="btn btn-sm btn-quiet" onClick={() => setPendingUndo(true)}>
+          <Row label="Geri yüklemeden önceki hâl" help={`Otomatik saklandı: ${new Date(safety.at).toLocaleString('tr-TR')}, ${safety.words} kelime.`}>
+            <button type="button" className="btn btn-sm btn-quiet" onClick={() => setPendingUndo(true)}>
               Önceki hâle dön
             </button>
-          </div>
+          </Row>
         )}
-        <h3 className="subhead">Kelime listesini dışa aktar</h3>
-        <p className="small muted">Excel dosyası Excel, Numbers ve Google E-Tablolar'da düzgün açılır. CSV'yi başka bir programa vereceksen kullan. Sözlük ve kartlar, yazdırma penceresinden PDF olarak da kaydedilebilir (kartlar kesilip çift taraflı basılacak şekilde dizilir).</p>
-        <div className="row">
-          <button className="btn btn-quiet" onClick={() => exportList(false, 'xlsx')}>
-            {LANGUAGE_NAME[lang]} listesi (Excel)
+      </section>
+      <section className="card stack">
+        <h2 className="section-title">Dışa aktar</h2>
+        <Row label="Excel'e aktar" help="Excel, Numbers ve Google E-Tablolar'da düzgün açılır.">
+          <div className="data-export">
+            <Chips<'one' | 'all'> label="Hangi kelimeler" options={['one', 'all']} value={scope} onChange={setScope} format={(v) => (v === 'one' ? LANGUAGE_NAME[lang] : 'Üç dil')} />
+            <button type="button" className="btn btn-sm btn-quiet" onClick={() => exportList(scope === 'all', 'xlsx')}>
+              İndir
+            </button>
+          </div>
+        </Row>
+        <Row advanced label="CSV olarak indir" help="Başka bir programa vereceksen; Excel'deki kelime seçimiyle aynı.">
+          <button type="button" className="btn btn-sm btn-quiet" onClick={() => exportList(scope === 'all', 'csv')}>
+            CSV indir
           </button>
-          <button className="btn btn-quiet" onClick={() => exportList(true, 'xlsx')}>
-            Üç dil (Excel)
+        </Row>
+        <Row advanced label="Quizlet ya da Memrise'a kopyala" help={`${LANGUAGE_NAME[lang]} kelimelerin panoya, o sitenin içe aktarma biçiminde kopyalanır.`}>
+          <div className="row nowrap">
+            <button type="button" className="btn btn-sm btn-quiet" onClick={() => exportQuizletOrMemrise('quizlet')}>
+              Quizlet
+            </button>
+            <button type="button" className="btn btn-sm btn-quiet" onClick={() => exportQuizletOrMemrise('memrise')}>
+              Memrise
+            </button>
+          </div>
+        </Row>
+      </section>
+      <section className="card stack">
+        <h2 className="section-title">Yazdır</h2>
+        <Row label="Yazdırılabilir sözlük" help={`${LANGUAGE_NAME[lang]} kelimelerin, anlamları ve örnekleriyle; PDF olarak da kaydedilir.`}>
+          <button type="button" className="btn btn-sm btn-quiet" onClick={() => printWords('dictionary')}>
+            Yazdır
           </button>
-          <button className="btn btn-quiet" onClick={() => printWords('dictionary')}>
-            Yazdırılabilir sözlük
+        </Row>
+        <Row label="Yazdırılabilir kartlar" help="Kesilip çift taraflı basılacak şekilde dizilir: her kartın arkasında anlamı.">
+          <button type="button" className="btn btn-sm btn-quiet" onClick={() => printWords('cards')}>
+            Yazdır
           </button>
-          <button className="btn btn-quiet" onClick={() => printWords('cards')}>
-            Yazdırılabilir kartlar
-          </button>
-        </div>
-        <p className="small muted">
-          CSV olarak:{' '}
-          <button className="link small" onClick={() => exportList(false, 'csv')}>
-            {LANGUAGE_NAME[lang]}
-          </button>{' '}
-          ·{' '}
-          <button className="link small" onClick={() => exportList(true, 'csv')}>
-            üç dil
-          </button>
-        </p>
-        <p className="small muted">
-          Quizlet / Memrise formatı (panoya kopyala):{' '}
-          <button className="link small" onClick={() => exportQuizletOrMemrise('quizlet')}>
-            Quizlet
-          </button>{' '}
-          ·{' '}
-          <button className="link small" onClick={() => exportQuizletOrMemrise('memrise')}>
-            Memrise (TSV)
-          </button>
-        </p>
+        </Row>
       </section>
       <section className="card stack danger-zone">
         <h2 className="section-title">Sıfırlama</h2>
-        <p className="small muted">Önce yedek almanı öneririm. Bu işlemler geri alınamaz.</p>
-        <div className="row">
-          <button className="btn btn-danger" onClick={() => setDanger('language')}>
-            {LANGUAGE_NAME[lang]} ilerlemesini sıfırla
+        <p className="small muted">Bunlar geri alınamaz; önce yedek almanı öneririm.</p>
+        <Row label={`${LANGUAGE_NAME[lang]} ilerlemesini sıfırla`} help="Kelimelerin kalır; tekrar takvimi, cevap geçmişi ve hatalar silinir.">
+          <button type="button" className="btn btn-sm btn-danger" onClick={() => setDanger('language')}>
+            Sıfırla
           </button>
-          <button className="btn btn-danger" onClick={() => setDanger('all')}>
-            Tüm verileri sil
+        </Row>
+        <Row
+          label={account ? 'Bu cihazdaki verileri sil' : 'Tüm verileri sil'}
+          help={account ? 'Hesabındaki veriler durur; yeniden giriş yapınca geri gelir.' : 'Kelimeler, ilerleme, görseller ve ayarlar bu cihazdan silinir.'}
+        >
+          <button type="button" className="btn btn-sm btn-danger" onClick={() => setDanger('all')}>
+            Sil
           </button>
-        </div>
+        </Row>
         {account && (
-          <AccountDelete
-            account={account}
-            identity={identity}
-            onGone={() => {
-              setAccount(null)
-              setIdentity(null)
-              onDataChanged()
-            }}
-          />
+          <Row label="Hesabı sil" help="Hesabın ve sunucudaki her şey kalıcı olarak silinir.">
+            <AccountDelete
+              account={account}
+              identity={identity}
+              label="Hesabı sil"
+              className="btn btn-sm btn-danger"
+              onGone={() => {
+                setAccount(null)
+                setIdentity(null)
+                onDataChanged()
+              }}
+            />
+          </Row>
         )}
       </section>
 
@@ -244,8 +259,9 @@ export function DataSettings({
         </ConfirmDialog>
       )}
       {danger === 'all' && (
-        <ConfirmDialog title="Tüm veriler silinsin mi?" confirmLabel="Hepsini sil" danger onConfirm={deleteAll} onCancel={() => setDanger(null)}>
+        <ConfirmDialog title={account ? 'Bu cihazdaki veriler silinsin mi?' : 'Tüm veriler silinsin mi?'} confirmLabel="Hepsini sil" danger onConfirm={deleteAll} onCancel={() => setDanger(null)}>
           {TARGET_LANGUAGES.map((l) => LANGUAGE_NAME[l]).join(', ')} için tüm kelimeler, ilerleme, görseller, ses kayıtları, profil ve ayarlar bu cihazdan silinir.
+          {account ? ' Hesabındaki kopya durur; yeniden giriş yapınca geri gelir.' : ''}
         </ConfirmDialog>
       )}
     </>

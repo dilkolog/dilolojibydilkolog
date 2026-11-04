@@ -2470,10 +2470,10 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .source-tiles > .section, .source-tiles > section { margin: 0; background: var(--surface); border-radius: var(--r-lg); padding: 1.25rem 1.5rem; box-shadow: var(--shadow); }
 
 /* ---------- Word detail: sections as the same tiles as Progress ---------- */
-.detail-page > section.section:not(.card):not(.word-hero):not(.word-notes) {
+:is(.detail-page, .detail-group) > section.section:not(.card):not(.word-hero):not(.word-notes) {
   background: var(--surface); border-radius: var(--r-lg); padding: 1.25rem 1.5rem; box-shadow: var(--shadow);
 }
-.detail-page > section.section + section.section { margin-top: 1.5rem; }
+:is(.detail-page, .detail-group) > section.section + section.section { margin-top: 1.5rem; }
 
 /* Word media: picture and own voice as two flat columns inside the one tile. */
 .media-split > .media-block + .media-block { border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 1rem; }
