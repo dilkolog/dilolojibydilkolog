@@ -7,6 +7,9 @@ import { shareCard } from './shareCard'
 import { sfx } from './sounds'
 import { CloseIcon } from './icons'
 import trophyUrl from '../assets/art/milestone-trophy.webp'
+import sproutUrl from '../assets/art/milestone-sprout.webp'
+import bloomUrl from '../assets/art/milestone-bloom.webp'
+import crownUrl from '../assets/art/milestone-crown.webp'
 
 /** The new level: the badge shows the old number, charges with anticipation, and bursts to the new one with rings and sparkles. */
 export function LevelUpBadge({ from, to, size = 'md' }: { from: number; to: number; size?: 'md' | 'xl' }) {
@@ -63,6 +66,13 @@ export function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; 
 
   const rankMatch = milestone.text.match(/^Yeni unvanın:\s*([^.]+)\.\s*(.*)$/i)
   const isLevel = Boolean(milestone.level)
+  const artUrl = isLevel
+    ? crownUrl
+    : milestone.id.startsWith('words-')
+      ? sproutUrl
+      : milestone.id.startsWith('mastered-')
+        ? bloomUrl
+        : trophyUrl
 
   return (
     <div className="dialog-backdrop milestone-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
@@ -81,20 +91,19 @@ export function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; 
 
         <div className="milestone-art">
           <div className="milestone-aura" aria-hidden="true" />
-          {milestone.level ? (
-            <span className="milestone-level" aria-hidden>
-              <LevelUpBadge from={milestone.level.from} to={milestone.level.to} size="xl" />
-            </span>
-          ) : (
-            <div className="milestone-trophy-wrap" aria-hidden>
-              <img src={trophyUrl} alt="" className="milestone-trophy-img" draggable={false} />
-              {milestone.emoji && (
-                <span className="milestone-emoji-badge" aria-hidden>
-                  <Glyph emoji={milestone.emoji} size={24} />
-                </span>
-              )}
-            </div>
-          )}
+          <div className="milestone-trophy-wrap" aria-hidden>
+            <img src={artUrl} alt="" className="milestone-trophy-img" draggable={false} />
+            {isLevel && milestone.level && (
+              <span className="milestone-level" aria-hidden>
+                <LevelUpBadge from={milestone.level.from} to={milestone.level.to} size="xl" />
+              </span>
+            )}
+            {!isLevel && milestone.emoji && (
+              <span className="milestone-emoji-badge" aria-hidden>
+                <Glyph emoji={milestone.emoji} size={24} />
+              </span>
+            )}
+          </div>
         </div>
 
         <h2 id="ms-title" className="milestone-title">

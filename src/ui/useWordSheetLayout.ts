@@ -19,18 +19,41 @@ export function useWordSheetLayout(openKey: string | undefined, openAt: string |
   }, [openKey])
   useEffect(() => {
     if (!openKey) return
-    const frame = requestAnimationFrame(() => {
+    let cancelled = false
+    let attempts = 0
+    let lastHeight = 0
+    const adjust = () => {
+      if (cancelled) return
       const card = document.querySelector<HTMLElement>('.word-pop')
       // The word in the lit sentence (the same word may stand earlier in the text).
       const key = CSS.escape(openKey)
       const word = document.querySelector<HTMLElement>(`.rs.is-lit [data-key="${key}"]`) ?? document.querySelector<HTMLElement>(`[data-key="${key}"]`)
-      if (!card || !word || getComputedStyle(card).position !== 'fixed') return
+      if (!card || !word) {
+        if (++attempts < 15) requestAnimationFrame(adjust)
+        return
+      }
+      const pos = getComputedStyle(card).position
+      if (pos !== 'fixed') {
+        if (++attempts < 15) requestAnimationFrame(adjust)
+        return
+      }
+      const h = card.offsetHeight
+      // If card content is still rendering/expanding, wait for next frame
+      if (h < 50 || (h !== lastHeight && attempts < 4)) {
+        lastHeight = h
+        if (++attempts < 15) requestAnimationFrame(adjust)
+        return
+      }
       // Where the sheet will stand (it is still rising into place, so its rectangle is not the answer yet).
-      const top = innerHeight - parseFloat(getComputedStyle(card).bottom) - card.offsetHeight
+      const top = innerHeight - parseFloat(getComputedStyle(card).bottom) - h
       const covered = word.getBoundingClientRect().bottom - (top - 12)
-      if (covered > 0) window.scrollBy({ top: covered + 8, behavior: 'smooth' })
-    })
-    return () => cancelAnimationFrame(frame)
+      if (covered > 0) window.scrollBy({ top: covered + 8, behavior: 'instant' })
+    }
+    const frame = requestAnimationFrame(adjust)
+    return () => {
+      cancelled = true
+      cancelAnimationFrame(frame)
+    }
   }, [openKey, openAt])
   return sheetBox
 }

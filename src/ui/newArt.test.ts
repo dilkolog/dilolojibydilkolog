@@ -19,10 +19,15 @@ describe('New Visual Art Assets', () => {
     expect(LANG_MONKI.es).toBeTruthy()
   })
 
-  it('registers CEFR level Monki mascots', () => {
+  it('registers CEFR level Monki mascots for all levels with distinct art', () => {
     expect(CEFR_MONKI.A1).toBeTruthy()
+    expect(CEFR_MONKI.A2).toBeTruthy()
     expect(CEFR_MONKI.B1).toBeTruthy()
+    expect(CEFR_MONKI.B2).toBeTruthy()
     expect(CEFR_MONKI.C1).toBeTruthy()
+    expect(CEFR_MONKI.C2).toBeTruthy()
+    const uniqueIcons = new Set(Object.values(CEFR_MONKI))
+    expect(uniqueIcons.size).toBe(6)
   })
 
   it('registers all 6 new Monki stickers', () => {

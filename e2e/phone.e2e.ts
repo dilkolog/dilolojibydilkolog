@@ -1182,8 +1182,11 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   expect(box.x).toBeGreaterThanOrEqual(0)
   expect(box.x + box.width).toBeLessThanOrEqual(view.width)
   // The tapped word is above the sheet, not behind it.
-  const word = (await target.boundingBox())!
-  expect(word.y + word.height, 'the tapped word is not under the sheet').toBeLessThanOrEqual(box.y)
+  await expect.poll(async () => {
+    const word = (await target.boundingBox())!
+    const curBox = (await sheet.boundingBox())!
+    return word.y + word.height <= curBox.y
+  }, 'the tapped word is not under the sheet').toBe(true)
   // What the learner does with the word is at the top of the sheet, within reach without scrolling it.
   const add = (await sheet.getByRole('button', { name: /^Kelimelerime ekle/ }).boundingBox())!
   expect(add.y + add.height).toBeLessThanOrEqual(box.y + box.height)
