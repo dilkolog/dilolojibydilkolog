@@ -98,7 +98,7 @@ export function restoreScreen(): Screen {
  * Screens that spread out on wide screens; the session and the forms keep a measure. The tabs of one place (GROUPS)
  * are all wide or all narrow: switching tabs must not make the page jump narrower (appNav.test.ts).
  */
-export const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'dictionary', 'translate', 'games', 'verbs', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings', 'guide', 'community', 'produce', 'story'])
+export const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'dictionary', 'translate', 'games', 'verbs', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings', 'guide', 'community', 'produce', 'story', 'admin'])
 
 /**
  * Five places in the menu (all of them fit the phone's tab bar). Related screens share one place
