@@ -4229,3 +4229,10 @@ html:has(.lp) { scroll-behavior: smooth; }
 /* Change the tense: the form to move, and the tense to move it into. */
 .lab-transform-form { padding: 0 0.125rem; border-radius: var(--r-sm); background: var(--lang-soft); color: inherit; font-weight: 600; }
 .lab-transform-to { background: var(--lang); color: var(--on-lang); }
+/* Tense lesson, third layer: one folded section per fine point. */
+.tg-deep { gap: 0.5rem; }
+.tg-deep-item { border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); padding: 0 0.875rem; }
+.tg-deep-item > summary { cursor: pointer; min-height: 2.75rem; display: flex; align-items: center; font-weight: 600; }
+.tg-deep-item[open] { padding-bottom: 0.875rem; }
+.tg-deep-item[open] > summary { margin-bottom: 0.25rem; }
+.tg-deep-item .tg-examples { margin-top: 0.5rem; }

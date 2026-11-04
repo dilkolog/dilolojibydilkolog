@@ -1616,3 +1616,22 @@ test('dialogues: the list and an answered turn pass accessibility and contrast c
   await scanThemes('dialogues-turn')
   expect(problems).toEqual([])
 })
+
+test('a tense lesson with every fine point open passes the accessibility and contrast checks in light and dark', async ({ page }) => {
+  await startWithSamples(page)
+  await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^Pratik\d*$/ }).first().click()
+  await page.locator('.hub-tab').filter({ hasText: /^Fiiller$/ }).click()
+  await page.getByRole('button', { name: 'Bu zamanın konu anlatımı' }).click()
+  const sheet = page.locator('.tense-lesson')
+  await expect(sheet).toBeVisible()
+  const items = sheet.locator('.tg-deep-item > summary')
+  expect(await items.count()).toBeGreaterThanOrEqual(2)
+  for (let i = 0; i < (await items.count()); i++) await items.nth(i).click()
+  const problems: string[] = []
+  for (const theme of ['light', 'dark'] as const) {
+    await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+    problems.push(...(await scan(page, `tense-lesson-${theme}`)))
+    for (const c of await contrastProblems(page)) problems.push(`${theme}: ${c}`)
+  }
+  expect(problems).toEqual([])
+})
