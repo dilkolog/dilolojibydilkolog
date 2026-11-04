@@ -125,7 +125,7 @@ const FR_TABLE: Record<string, string[]> = {
 
 /** -ir verbs of the finir group (-iss- in the plural). */
 const FR_ISS = new Set(
-  'finir choisir réussir réfléchir grandir remplir obéir agir bâtir punir rougir vieillir maigrir grossir saisir établir fournir guérir nourrir unir bannir aplatir épanouir évanouir accroupir dépolir endolorir flétrir rabougrir tapir'.split(' '),
+  'finir choisir réussir réfléchir grandir remplir obéir agir bâtir punir rougir vieillir maigrir grossir saisir établir fournir guérir nourrir unir bannir aplatir épanouir évanouir accroupir dépolir endolorir flétrir rabougrir tapir aguerrir ahurir aigrir amaigrir amoindrir mûrir rejaillir renchérir'.split(' '),
 )
 
 const ES_TABLE: Record<string, string[]> = {
@@ -274,7 +274,8 @@ export function conjugate(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'p
     v = v.slice(0, -2)
   }
   const table = (lang === 'fr' ? FR_TABLE : ES_TABLE)[v]
-  const listed = table ? undefined : DICTIONARY[lang].get(v)
+  // A verb known to take -iss- wins over the downloaded list, which gets a few of them wrong (je mûre for je mûris).
+  const listed = table || (lang === 'fr' && FR_ISS.has(v)) ? undefined : DICTIONARY[lang].get(v)
   const forms = table ?? listed ?? (lang === 'fr' ? frRegular(v) : esRegular(v))
   if (!forms) return undefined
   const withPronoun = reflexive

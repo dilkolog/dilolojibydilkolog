@@ -1,4 +1,5 @@
-import { conjugateTense, irregularForms, tenseVerbs, verbParts } from './tenses'
+import type { LabData } from './labProgress'
+import { conjugateTense, irregularForms, tenseVerbs, verbParts, type Tense } from './tenses'
 
 /**
  * Verb families: verbs that break the regular pattern in the same way. Learning "e becomes ie in
@@ -26,6 +27,20 @@ export type FamilyId =
   | 'fr-oir'
   | 'fr-etre'
   | 'fr-other'
+  | 'es-prefix'
+  | 'es-pret-strong'
+  | 'es-pret-j'
+  | 'es-pret-y'
+  | 'es-pret-stem'
+  | 'es-pret-spell'
+  | 'es-pret-other'
+  | 'es-fut-stem'
+  | 'es-subj-yo'
+  | 'es-subj-other'
+  | 'fr-prefix'
+  | 'fr-pp'
+  | 'fr-fut-stem'
+  | 'fr-subj-stem'
 
 export interface Family {
   id: FamilyId
@@ -38,8 +53,10 @@ export interface Family {
   persons: number[]
   /** The person worth asking when drilling the family. */
   ask: number
+  /** When set, the drill asks these persons in turn instead of `ask` alone. */
+  asks?: number[]
   /** The tense the family is drilled in. */
-  tense: 'presente' | 'present' | 'passe-compose'
+  tense: Tense
   /** Verbs that show the pattern at a glance, for the card. */
   examples: string[]
 }
@@ -65,12 +82,26 @@ export const FAMILIES: Record<FamilyId, Family> = {
   'fr-oir': { id: 'fr-oir', language: 'fr', name: '-oir fiilleri', rule: 'Kural yok: kökler tekilde ve çoğulda değişir, tek tek öğrenilir.', persons: [0, 1, 2, 3, 4, 5], ask: 0, tense: 'present', examples: ['pouvoir → je peux', 'vouloir → je veux', 'savoir → je sais', 'devoir → je dois'] },
   'fr-etre': { id: 'fr-etre', language: 'fr', name: 'être alan fiiller', rule: 'Hareket ve durum değişimi fiilleri ile dönüşlü fiiller passé composé’de être alır, ortaç özneye uyar: elle est allée, ils sont partis.', persons: [0, 1, 2, 3, 4, 5], ask: 0, tense: 'passe-compose', examples: ['aller → je suis allé', 'venir → je suis venu', 'partir → je suis parti', 'se lever → je me suis levé'] },
   'fr-other': { id: 'fr-other', language: 'fr', name: 'Tek tek öğrenilenler', rule: 'Hiçbir kalıba girmeyen düzensizler.', persons: [0, 1, 2, 3, 4, 5], ask: 0, tense: 'present', examples: ['être → je suis', 'avoir → j’ai', 'aller → je vais', 'faire → je fais'] },
+  'es-prefix': { id: 'es-prefix', language: 'es', name: 'Ön ekli düzensizler (tener → obtener)', rule: 'Düzensiz bir fiilin başına ön ek gelince çekimi aynen kalır: tener’i bilen obtener, mantener, contener’i de bilir; poner’i bilen proponer, suponer’i.', persons: [0, 1, 2, 3, 4, 5], ask: 0, asks: [0, 2, 5, 1], tense: 'presente', examples: ['tener → obtengo, mantengo', 'poner → propongo, supongo', 'venir → convengo, prevengo', 'hacer → deshago, rehago'] },
+  'es-pret-strong': { id: 'es-pret-strong', language: 'es', name: 'Güçlü geçmiş kökleri (tuve, hice)', rule: 'Pretérito indefinido’de kök tamamen değişir ve ekler vurgusuz olur: -e, -iste, -o, -imos, -isteis, -ieron. yo “tuve” (tuvé değil), él “tuvo” (tuvó değil).', persons: [0, 1, 2, 3, 4, 5], ask: 2, asks: [0, 2, 5, 3], tense: 'preterito', examples: ['tener → tuve, tuvo', 'estar → estuve', 'poder → pude', 'hacer → hice, hizo', 'querer → quise', 'venir → vine'] },
+  'es-pret-j': { id: 'es-pret-j', language: 'es', name: 'j kökü (dije, traje)', rule: 'Kökü j ile biten güçlü geçmişlerde ellos/ustedes -ieron değil -eron alır: dijeron, trajeron, condujeron. Ekler vurgusuz: dije, dijo.', persons: [0, 1, 2, 3, 4, 5], ask: 5, asks: [5, 0, 2], tense: 'preterito', examples: ['decir → dije, dijeron', 'traer → traje, trajeron', 'conducir → conduje, condujeron', 'producir → produje'] },
+  'es-pret-y': { id: 'es-pret-y', language: 'es', name: 'él / ellos’ta y (leyó, cayeron)', rule: 'Kökü ünlüyle biten -er/-ir fiillerinde iki ünlü arasındaki i, y olur: leyó, leyeron (leió değil). Diğer kişilerde vurgu işareti gelir: leí, leíste, leímos.', persons: [2, 5], ask: 2, asks: [2, 5], tense: 'preterito', examples: ['leer → leyó, leyeron', 'creer → creyó', 'oír → oyó', 'construir → construyó'] },
+  'es-pret-stem': { id: 'es-pret-stem', language: 'es', name: '-ir: él / ellos’ta e → i, o → u', rule: 'Şimdiki zamanda kök değiştiren -ir fiilleri geçmişte yalnız él ve ellos’ta değişir: e → i (pidió, sintieron), o → u (durmió, murieron). -ar ve -er fiillerinde geçmişte değişim yoktur.', persons: [2, 5], ask: 2, asks: [2, 5], tense: 'preterito', examples: ['pedir → pidió, pidieron', 'sentir → sintió', 'dormir → durmió, durmieron', 'preferir → prefirió'] },
+  'es-pret-spell': { id: 'es-pret-spell', language: 'es', name: 'yo’da yazım: busqué, llegué, empecé', rule: 'Sesi korumak için yalnız yo biçimi yazımda değişir: -car → -qué, -gar → -gué, -zar → -cé. Diğer kişiler kurallı: buscaste, buscó.', persons: [0], ask: 0, tense: 'preterito', examples: ['buscar → busqué', 'llegar → llegué', 'empezar → empecé', 'tocar → toqué', 'pagar → pagué'] },
+  'es-pret-other': { id: 'es-pret-other', language: 'es', name: 'Geçmişte tek tek öğrenilenler', rule: 'ser ve ir geçmişte aynıdır (fui, fue, fueron: anlamı cümleden çıkar); dar ve ver kısa ve vurgusuzdur (di, dio; vi, vio).', persons: [0, 1, 2, 3, 4, 5], ask: 0, asks: [0, 2, 5], tense: 'preterito', examples: ['ser / ir → fui, fue', 'dar → di, dio', 'ver → vi, vio'] },
+  'es-fut-stem': { id: 'es-fut-stem', language: 'es', name: 'Gelecekte kısa kökler (tendré, haré)', rule: 'Ekler bütün fiillerde aynıdır (-é, -ás, -á, -emos, -éis, -án); bu fiillerde yalnız kök değişir. Aynı kök condicional’de de kullanılır: tendría, haría.', persons: [0, 1, 2, 3, 4, 5], ask: 0, asks: [0, 2, 3, 5], tense: 'futuro', examples: ['tener → tendré', 'poner → pondré', 'salir → saldré', 'poder → podré', 'saber → sabré', 'hacer → haré', 'decir → diré', 'querer → querré'] },
+  'es-subj-yo': { id: 'es-subj-yo', language: 'es', name: 'Subjuntivo yo’dan gelir (tenga, conozca)', rule: 'Presente de subjuntivo şimdiki zamanın yo biçiminden kurulur: -o atılır, ters ünlü eklenir. yo’daki -g- ve -zc- bütün kişilere geçer: tengo → tenga, tengamos; conozco → conozca, conozcamos.', persons: [0, 1, 2, 3, 4, 5], ask: 3, asks: [3, 0, 2, 5], tense: 'subjuntivo', examples: ['tener (tengo) → tenga', 'hacer (hago) → hagamos', 'conocer (conozco) → conozca', 'decir (digo) → digan'] },
+  'es-subj-other': { id: 'es-subj-other', language: 'es', name: 'Subjuntivo’da tek tek öğrenilenler', rule: 'yo biçimi -o ile bitmeyen altı fiil subjuntivo’yu kuralsız kurar: ser → sea, ir → vaya, saber → sepa, haber → haya, estar → esté, dar → dé.', persons: [0, 1, 2, 3, 4, 5], ask: 0, asks: [0, 2, 3], tense: 'subjuntivo', examples: ['ser → sea', 'ir → vaya', 'saber → sepa', 'estar → esté', 'dar → dé'] },
+  'fr-prefix': { id: 'fr-prefix', language: 'fr', name: 'Ön ekli düzensizler (prendre → comprendre)', rule: 'Düzensiz bir fiilin başına ön ek gelince çekimi aynen kalır: prendre’ı bilen comprendre, apprendre, surprendre’ı da bilir; venir’i bilen devenir, revenir, prévenir’i.', persons: [0, 1, 2, 3, 4, 5], ask: 0, asks: [0, 2, 3, 5], tense: 'present', examples: ['prendre → je comprends', 'venir → je deviens', 'mettre → je promets', 'tenir → j’obtiens'] },
+  'fr-pp': { id: 'fr-pp', language: 'fr', name: 'Düzensiz ortaçlar (fait, pris, vu)', rule: 'Kural: -er → -é, -ir → -i, -re → -u. Bu fiillerin ortacı ezberlenir: passé composé, plus-que-parfait, futur antérieur hep aynı ortacı kullanır.', persons: [0, 1, 2, 3, 4, 5], ask: 0, asks: [0, 2, 3], tense: 'passe-compose', examples: ['faire → fait', 'prendre → pris', 'voir → vu', 'mettre → mis', 'ouvrir → ouvert', 'venir → venu', 'avoir → eu'] },
+  'fr-fut-stem': { id: 'fr-fut-stem', language: 'fr', name: 'Futur’de düzensiz kökler (je serai, j’irai)', rule: 'Ekler hep aynıdır (-ai, -as, -a, -ons, -ez, -ont); bu fiillerde mastarın yerine özel bir kök gelir. Aynı kök conditionnel’de de kullanılır: je serais, j’irais.', persons: [0, 1, 2, 3, 4, 5], ask: 0, asks: [0, 2, 3, 5], tense: 'futur', examples: ['être → je serai', 'avoir → j’aurai', 'aller → j’irai', 'faire → je ferai', 'pouvoir → je pourrai', 'venir → je viendrai', 'voir → je verrai'] },
+  'fr-subj-stem': { id: 'fr-subj-stem', language: 'fr', name: 'Subjonctif’te düzensiz kökler (que je fasse)', rule: 'Kural: ils biçiminden -ent atılır, -e, -es, -e, -ions, -iez, -ent eklenir (ils finissent → que je finisse). Bu fiiller kendi köklerini kullanır.', persons: [0, 1, 2, 3, 4, 5], ask: 0, asks: [0, 2, 3, 5], tense: 'subjonctif', examples: ['faire → que je fasse', 'pouvoir → que je puisse', 'savoir → que je sache', 'aller → que j’aille', 'vouloir → que je veuille', 'être → que je sois'] },
 }
 
 /** The families of each language in the order they are best met: the rules that cover most verbs first. */
 export const FAMILY_ORDER: Record<'fr' | 'es', FamilyId[]> = {
-  es: ['es-e-ie', 'es-o-ue', 'es-e-i', 'es-go', 'es-zco', 'es-uir', 'es-other', 'es-regular'],
-  fr: ['fr-er', 'fr-ir-iss', 'fr-re', 'fr-ir-irreg', 'fr-cer', 'fr-ger', 'fr-yer', 'fr-accent', 'fr-double', 'fr-oir', 'fr-etre', 'fr-other'],
+  es: ['es-e-ie', 'es-o-ue', 'es-e-i', 'es-go', 'es-zco', 'es-uir', 'es-prefix', 'es-other', 'es-regular', 'es-pret-spell', 'es-pret-stem', 'es-pret-y', 'es-pret-strong', 'es-pret-j', 'es-pret-other', 'es-fut-stem', 'es-subj-yo', 'es-subj-other'],
+  fr: ['fr-er', 'fr-ir-iss', 'fr-re', 'fr-ir-irreg', 'fr-cer', 'fr-ger', 'fr-yer', 'fr-accent', 'fr-double', 'fr-oir', 'fr-prefix', 'fr-other', 'fr-pp', 'fr-etre', 'fr-fut-stem', 'fr-subj-stem'],
 }
 
 const stemOf = (key: string) => key.slice(0, -2)
@@ -93,11 +124,16 @@ export function verbFamilies(language: 'fr' | 'es', key: string): FamilyId[] {
     if (present[0].endsWith('go') && !/(gar|guir)$/.test(key)) tags.push('es-go')
     if (present[0].endsWith('zco')) tags.push('es-zco')
     if (/uir$/.test(key) && !/[gq]uir$/.test(key) && /uy/.test(present[1])) tags.push('es-uir')
+    if (prefixBase(language, key)) tags.push('es-prefix')
     if (!tags.length) tags.push(irregularForms(entry, 'presente').some(Boolean) ? 'es-other' : 'es-regular')
-    return tags
+    return [...tags, ...spanishOtherTenses(key, present)]
   }
   const irregular = irregularForms(entry, 'present').some(Boolean)
-  if (key.endsWith('er')) {
+  const prefixed = !!prefixBase(language, key)
+  if (prefixed) tags.push('fr-prefix')
+  if (prefixed) {
+    // Its present is its base verb's: the base's family says nothing new.
+  } else if (key.endsWith('er')) {
     if (key.endsWith('cer') && present[3].includes('ç')) tags.push('fr-cer')
     else if (key.endsWith('ger') && /ge(ons|ant)/.test(present[3])) tags.push('fr-ger')
     else if (/[aou]yer$/.test(key) || /[aeiou]yer$/.test(key)) tags.push('fr-yer')
@@ -109,7 +145,106 @@ export function verbFamilies(language: 'fr' | 'es', key: string): FamilyId[] {
   else if (key.endsWith('re')) tags.push(irregular ? 'fr-other' : 'fr-re')
   else tags.push('fr-other')
   if (verbParts(entry)?.auxiliary === 'être') tags.push('fr-etre')
+  return [...tags, ...frenchOtherTenses(key, present)]
+}
+
+const strip = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+/** Without accents, doubled letters or y for i: tells a spelling change from a new stem. */
+const loose = (s: string) => strip(s).replace(/(.)\1/g, '$1').replace(/y/g, 'i')
+
+/** Spanish families of the past, the future and the subjunctive, read off each tense's own forms. */
+function spanishOtherTenses(key: string, present: string[]): FamilyId[] {
+  const entry = { language: 'es' as const, lemma: key, partOfSpeech: 'verb' as const }
+  const tags: FamilyId[] = []
+  const stem = stemOf(key)
+  const past = conjugateTense(entry, 'preterito')
+  if (past) {
+    const [yo, , el, , , ellos] = past
+    if (/^(ser|ir|dar|ver)$/.test(key)) tags.push('es-pret-other')
+    else if (/[^éí]e$/.test(yo) && /[^ó]o$/.test(el) && yo !== `${stem}e`) tags.push(/je$/.test(yo) && /jeron$/.test(ellos) ? 'es-pret-j' : 'es-pret-strong')
+    else if (key.endsWith('car') && yo === `${stem.slice(0, -1)}qué`) tags.push('es-pret-spell')
+    else if (key.endsWith('gar') && yo === `${stem}ué`) tags.push('es-pret-spell')
+    else if (key.endsWith('zar') && yo === `${stem.slice(0, -1)}cé`) tags.push('es-pret-spell')
+    else if (/yó$/.test(el) && /yeron$/.test(ellos) && !key.endsWith('ar')) tags.push('es-pret-y')
+    else if (key.endsWith('ir') && el.endsWith('ió') && el !== `${stem}ió` && strip(el) !== strip(`${stem}io`)) tags.push('es-pret-stem')
+  }
+  const future = conjugateTense(entry, 'futuro')
+  if (future && strip(future[0]) !== strip(`${key}e`) && !key.endsWith('ír')) tags.push('es-fut-stem')
+  const subj = conjugateTense(entry, 'subjuntivo')
+  if (subj) {
+    if (!present[0].endsWith('o')) tags.push('es-subj-other')
+    else if (/(g|zc)o$/.test(present[0]) && !/(gar|guir|ger|gir)$/.test(key) && subj[0] === `${present[0].slice(0, -1)}a`) tags.push('es-subj-yo')
+  }
   return tags
+}
+
+/** French families of the past participle, the future and the subjunctive. */
+function frenchOtherTenses(key: string, present: string[]): FamilyId[] {
+  const entry = { language: 'fr' as const, lemma: key, partOfSpeech: 'verb' as const }
+  const tags: FamilyId[] = []
+  const pp = verbParts(entry)?.participle
+  const regularPp = key.endsWith('er') ? `${stemOf(key)}é` : key.endsWith('ir') && !key.endsWith('oir') ? `${stemOf(key)}i` : key.endsWith('re') ? `${stemOf(key)}u` : ''
+  if (pp && pp !== regularPp) tags.push('fr-pp')
+  const future = conjugateTense(entry, 'futur')
+  if (future) {
+    const base = key.endsWith('re') ? key.slice(0, -1) : key
+    // -er spelling changes (j'achèterai, j'appellerai, je paierai) are the infinitive with an accent, a doubled letter or i for y: not a new stem.
+    if (loose(future[0]) !== loose(`${base}ai`)) tags.push('fr-fut-stem')
+  }
+  const subj = conjugateTense(entry, 'subjonctif')
+  // -er verbs (but aller) and the -iss- verbs always build it by rule; the rest from ils (ils prennent → que je prenne).
+  const byRule = (key.endsWith('er') && key !== 'aller') || subj?.[0] === `${stemOf(key)}isse`
+  if (subj && !byRule && (!present[5]?.endsWith('ent') || loose(subj[0]) !== loose(`${present[5].slice(0, -3)}e`))) tags.push('fr-subj-stem')
+  return tags
+}
+
+const PREFIXES = {
+  es: ['ob', 'man', 'con', 'de', 'des', 'dis', 're', 'pro', 'su', 'com', 'ex', 'im', 'pre', 'pos', 'sos', 'sobre', 'entre', 'inter', 'contra', 'de', 'a', 'sub', 'tras', 'satis', 'per', 'retro', 'super'],
+  fr: ['contre', 'a', 'com', 'ap', 'sur', 'ap', 'dé', 'de', 're', 'ré', 'pré', 'pro', 'per', 'ad', 'ob', 'sou', 'main', 'con', 'ap', 'dis', 'entre', 'inter', 'trans', 'par', 'sub', 'cir', 'pour', 'mé', 'se'],
+}
+
+/**
+ * A verb worth naming as the model of its prefixed ones: one that has to be learnt on its own
+ * (tener, poner, hacer; prendre, venir, mettre), not one with a spelling or stem rule anyone can
+ * apply (probar, sentir; lancer, appeler).
+ */
+function strongBase(language: 'fr' | 'es', base: string): boolean {
+  const entry = { language, lemma: base, partOfSpeech: 'verb' as const }
+  if (language === 'fr') return !base.endsWith('er') && irregularForms(entry, 'present').some(Boolean)
+  const present = conjugateTense(entry, 'presente')
+  const past = conjugateTense(entry, 'preterito')
+  return !!present && ((/(go|zco)$/.test(present[0]) && !/(gar|guir)$/.test(base) && present[0] !== `${stemOf(base)}o`) || !present[0].endsWith('o') || (!!past && /[^éí]e$/.test(past[0]) && past[0] !== `${stemOf(base)}e`))
+}
+
+const PREFIX_CACHE = new Map<string, string | null>()
+
+/**
+ * The irregular verb a prefixed one is conjugated like (obtener → tener, comprendre → prendre), or
+ * undefined: the base must be in the tables, irregular, and its present must give the verb's whole
+ * present with the prefix in front.
+ */
+export function prefixBase(language: 'fr' | 'es', key: string): string | undefined {
+  const cacheKey = `${language}:${key}`
+  if (PREFIX_CACHE.has(cacheKey)) return PREFIX_CACHE.get(cacheKey) ?? undefined
+  let found: string | undefined
+  const tense: Tense = language === 'fr' ? 'present' : 'presente'
+  const mine = conjugateTense({ language, lemma: key, partOfSpeech: 'verb' }, tense)
+  if (mine && verbParts({ language, lemma: key, partOfSpeech: 'verb' })) {
+    for (const prefix of new Set(PREFIXES[language])) {
+      if (!key.startsWith(prefix) || key.length - prefix.length < 3) continue
+      const base = key.slice(prefix.length)
+      const entry = { language, lemma: base, partOfSpeech: 'verb' as const }
+      if (!verbParts(entry) || !strongBase(language, base)) continue
+      const theirs = conjugateTense(entry, tense)
+      // Spanish written accents move with the stress (detener, detienes; tener, tienes: same), so compare without them.
+      if (theirs && theirs.every((f, i) => strip(mine[i]) === strip(prefix + f))) {
+        found = base
+        break
+      }
+    }
+  }
+  PREFIX_CACHE.set(cacheKey, found ?? null)
+  return found
 }
 
 const CACHE = new Map<string, Map<FamilyId, string[]>>()
@@ -128,4 +263,60 @@ export function familyVerbs(language: 'fr' | 'es', id: FamilyId, frequency?: Rea
   if (!frequency) return list
   const rank = (v: string) => frequency.get(v) ?? Number.MAX_SAFE_INTEGER
   return [...list].sort((a, b) => rank(a) - rank(b))
+}
+
+/** How the learner does in one family's tense, from the lab's own answers. */
+export interface FamilyWeakness {
+  id: FamilyId
+  ok: number
+  wrong: number
+  /** Wrong answers as a share of all (0–1). */
+  rate: number
+  /** The family's verbs answered wrong, most missed first: the round asks them first. */
+  missed: string[]
+}
+
+/** Enough answers in a family for its share of mistakes to mean something. */
+export const WEAK_MIN_ANSWERS = 6
+const WEAK_MIN_RATE = 0.25
+
+/**
+ * The families the learner slips in most: every verb-and-tense record counted into the families
+ * the verb belongs to in that tense (the regular ones left out: no pattern to drill there), the
+ * worst share of mistakes first. Only families with enough answers and a real share of slips.
+ */
+export function weakFamilies(language: 'fr' | 'es', lab: Pick<LabData, 'records' | 'slips'>): FamilyWeakness[] {
+  const by = new Map<FamilyId, { ok: number; wrong: number; missed: Map<string, number> }>()
+  for (const [key, rec] of Object.entries(lab.records)) {
+    const [verb, tense] = key.split('|')
+    if (!verb || !tense || !(rec.ok + rec.wrong)) continue
+    for (const id of verbFamilies(language, verb)) {
+      if (FAMILIES[id].tense !== tense || REGULAR.has(id)) continue
+      const row = by.get(id) ?? { ok: 0, wrong: 0, missed: new Map() }
+      row.ok += rec.ok
+      row.wrong += rec.wrong
+      if (rec.wrong) row.missed.set(verb, (row.missed.get(verb) ?? 0) + rec.wrong)
+      by.set(id, row)
+    }
+  }
+  // The open mistakes bank names the verbs still wrong: those first.
+  for (const slip of Object.values(lab.slips ?? {})) {
+    if (slip.done) continue
+    for (const id of verbFamilies(language, slip.verb)) {
+      const row = by.get(id)
+      if (row && FAMILIES[id].tense === slip.tense) row.missed.set(slip.verb, (row.missed.get(slip.verb) ?? 0) + 100)
+    }
+  }
+  return [...by.entries()]
+    .map(([id, r]) => ({ id, ok: r.ok, wrong: r.wrong, rate: r.wrong / (r.ok + r.wrong), missed: [...r.missed.entries()].sort((a, b) => b[1] - a[1]).map(([v]) => v) }))
+    .filter((r) => r.ok + r.wrong >= WEAK_MIN_ANSWERS && r.wrong >= 2 && r.rate >= WEAK_MIN_RATE)
+    .sort((a, b) => b.rate - a.rate || b.wrong - a.wrong)
+}
+
+const REGULAR = new Set<FamilyId>(['es-regular', 'fr-er', 'fr-re', 'fr-ir-iss'])
+
+/** The families shown for a verb in a tense: its present-tense ones (what kind of verb it is) and the ones of the tense in view. */
+export function familiesInView(language: 'fr' | 'es', key: string, tense: Tense): FamilyId[] {
+  const present: Tense = language === 'fr' ? 'present' : 'presente'
+  return verbFamilies(language, key).filter((id) => FAMILIES[id].tense === present || FAMILIES[id].tense === tense || id === 'fr-etre')
 }
