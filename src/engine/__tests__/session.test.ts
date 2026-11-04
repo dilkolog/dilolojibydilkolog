@@ -164,6 +164,8 @@ describe('two sittings for a long day', () => {
     const items = [test_('a', 'due'), test_('b', 'due'), intro('n'), test_('c', 'due'), test_('n'), test_('d', 'due')]
     // Halfway (3) would leave "n" introduced and untested; the cut moves past its test.
     expect(firstSittingEnd(items)).toBe(5)
+    // A user-configured session cap must also keep the introduction and first test together.
+    expect(firstSittingEnd(items, 3)).toBe(5)
     expect(firstSittingEnd([])).toBe(0)
   })
 })

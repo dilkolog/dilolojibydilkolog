@@ -78,6 +78,10 @@ Yerel WebKit indirmesi ağ politikası nedeniyle 403 veriyor; GitHub CI'da tam p
 - CI: `.github/workflows/ci.yml` — kontrol/birim/Chromium ve ayrı WebKit işi; WebKit'in yavaş telefon kontrolleri ana işin süre sınırını tüketmez. Yalnızca PR'larda; main'e push'ta ve yalnızca `.md`/`docs/` değişince çalışmaz, taslak PR'da çalışmaz. Elle: Actions → CI → Run workflow.
 - **Actions dakikaları sınırlı** (özel depo, ücretsiz plan: ayda 2.000 dk; 2026-10-08'de doldu, işler "payments failed / spending limit" hatasıyla başlamadı). Gereksiz push yapma; bir PR'a art arda küçük commit'ler atmak yerine yerelde tam doğrulayıp tek seferde push'la. Ekran görüntüsü yenilemeyi (snapshots.yml) yalnızca görünüm gerçekten değiştiğinde çalıştır.
 
+## Kelime öğrenme motoru (2026-11-04)
+
+Yeni kelimeler `session.ts:startSession` içinde üçlü gruplara ayrılır (`learningBatch`); dinamik pekiştirmeler sonraki grubun önünde kalır. İlk tanıtım tahmin sorusuyla başlamaz; anlam seçme → pekiştirme → yazılı hatırlama sırası korunur. `proceed` yanlış sonrası ilk doğrudan sonra da yeniden deneme üretmelidir (iki başarılı geri çağırma hedefi); bekleyen aynı beceri soruları çoğaltılmaz. `attemptMode` rehberli tekrardaki ilk yeni beceriyi FSRS'ye kaydeder, sonraki pekiştirmeler aralığı büyütmez. Yakın zamanda öğrenilen kelimenin cevabı sınamadan önce gösterilmez; yalnız yarım tanıtım kartla sürdürülür. Süre/soru sınırı tanıtımı ilk sorudan ayırmamalı; hızlı tekrar yeni kelime sorusunu tanıtımsız almamalı. Eksik artikel aynı kelimenin türevi olarak işaretlenmemeli (`evaluateTypedInner`). Analiz, kaynaklar ve doğrulama: [öğrenme motoru raporu](docs/ogrenme-motoru-2026-11-04.md).
+
 ## Bilinen tuzaklar
 - **Telefonda yapışık öğeler:** üst çubuk da yapışık; altına girmemeleri için `top: calc(var(--topbar-h) + 0.5rem)` (`.shell` telefonda `--topbar-h` tanımlar, #125).
 - E2E'de mikrofon yok: gölgeleme testi `getUserMedia`'yı sessiz bir `AudioContext` akışıyla taklit eder (#127). LanguageTool testi `page.route('https://api.languagetool.org/v2/check', …)` ile taklit edilir.

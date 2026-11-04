@@ -333,6 +333,7 @@ describe('a pile of reviews', () => {
 
   it('introductions are not part of a short round', () => {
     const intro: PlanItem = { kind: 'introduce', entryId: 'n', reason: 'new', skill: 'recognition' }
-    expect(shortRound([intro, item('a', 'due')], 5).map((i) => i.entryId)).toEqual(['a'])
+    expect(shortRound([intro, item('n', 'new'), item('a', 'due')], 5).map((i) => i.entryId)).toEqual(['a'])
+    expect(roundForMinutes([intro, item('n', 'new')], 0.01)).toEqual([intro, item('n', 'new')])
   })
 })

@@ -13,7 +13,7 @@ import { listeningRate } from '../engine/listening'
 import { createRng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
 import { AWAY_DAYS, daysAway, easiestWords, struggling } from '../engine/easyRound'
-import { adaptExercise, completeItem, currentItem, honorOff, insertLater, isFinished, mixInTyping, retryItem, skipRemaining, startSession, suggestBreak, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
+import { attemptMode, sessionProgress, adaptExercise, completeItem, currentItem, honorOff, insertLater, isFinished, mixInTyping, retryItem, skipRemaining, startSession, suggestBreak, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
 import { TARGET_LANGUAGES, timeOf, type Confidence, type EngineOptions, type ExerciseType, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry, type Verdict } from '../engine/types'
 import type { KelimeDB, Settings } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
@@ -149,23 +149,26 @@ export function SessionScreen(p: Props) {
     return !blockedByPrefs('typed_translation', word ?? ({ senses: [{ gloss: '' }] } as VocabularyEntry), { off: prefs.exerciseOff, skipLong: prefs.skipLongGloss })
   }
   const shape = (it: PlanItem, st: UserWordState | undefined) => {
+    if (it.reason === 'new' || it.reason === 'practice') return it
     const mixed = mixInTyping(it, st, TYPING_SHARE[prefs.typingShare], rng, typedAllowed(it.entryId))
     return prefs.exerciseOff.includes('cloze_typed') ? mixed : typeStrongCloze(mixed, st)
   }
-  /**
-   * The settings' switched-off kinds hold from the first question: a plan built before the switch (or the lab's
-   * forms, which are conjugation questions) must not still ask them. Later items are checked again as they come.
-   */
-  const opening = (): PlanItem[] => {
+  const [session, setSession] = useState(() => {
     const opts = { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss }
     const kept = prefs.exerciseOff.includes('conjugation') ? p.items.filter((it) => !it.form) : p.items
     const honored = kept.map((it) => {
       const entry = byId.get(it.entryId)
       return entry ? honorOff(it, entry, states.current.get(it.entryId), rng, opts) : it
     })
-    return p.mode === 'practice' || !honored.length ? honored : [shape(honored[0], states.current.get(honored[0].entryId)), ...honored.slice(1)]
-  }
-  const [session, setSession] = useState(() => startSession(opening()))
+    const initial = startSession(honored)
+    const first = currentItem(initial)
+    const word = first && byId.get(first.entryId)
+    if (first && word && p.mode !== 'practice') {
+      const state = states.current.get(first.entryId)
+      initial.items[0] = honorOff(shape(first, state), word, state, rng, opts)
+    }
+    return initial
+  })
   const item = currentItem(session)
   // The day's XP goal is reached in the middle of a round: said once, with the same little chime as a run of five.
   const dayGame = useGame()
@@ -252,7 +255,8 @@ export function SessionScreen(p: Props) {
   if (!item) return null
   const form = item.form
   const found = byId.get(item.entryId)
-  const progress = (session.index / session.items.length) * 100
+  const goal = sessionProgress(session)
+  const progress = goal.percent
 
   const next = (log: Omit<SessionLogEntry, 'item'>, retry?: PlanItem, followUp?: PlanItem) =>
     setSession((s) => {
@@ -291,7 +295,7 @@ export function SessionScreen(p: Props) {
     else next({ entryId: entry.id })
   }
 
-  // A word met yesterday or earlier today comes back as a card before its first question here (not one just introduced in this session).
+  // Only resume an unfinished introduction; revealing a learned word before its test cues the answer.
   const refreshDue = (it: PlanItem, e: VocabularyEntry) =>
     prefs.refreshCard &&
     p.mode === 'normal' &&
@@ -301,6 +305,7 @@ export function SessionScreen(p: Props) {
     // Never over an answer already given (answering gives a new word its state).
     answeredAt !== session.index &&
     !session.log.some((l) => l.entryId === e.id) &&
+    Object.keys(states.current.get(e.id)?.skills ?? {}).length === 0 &&
     timeOf(states.current.get(e.id)?.introducedAt) >= startOfYesterday()
 
   const answer = async (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number, confidence?: Confidence, forgot = false) => {
@@ -317,8 +322,8 @@ export function SessionScreen(p: Props) {
       hintsUsed,
       maxHints,
       at: new Date(),
-      // Graduated follow-ups of a new word are practice: they help memory, not the schedule.
-      mode: item.reason === 'practice' ? 'practice' : p.mode,
+      // Repetitions preserve existing schedules; the first test of a new skill creates its card.
+      mode: attemptMode(item, p.mode, before),
       confidence,
       plan: { reason: item.reason, slot: session.index, ...(item.probe !== undefined ? { probe: item.probe } : {}) },
     }
@@ -442,12 +447,13 @@ export function SessionScreen(p: Props) {
 
   const proceed = (log: Omit<SessionLogEntry, 'item'>) => {
     const state = states.current.get(entry.id)
-    const retry = log.verdict === 'wrong' && state ? retryItem(item, entry, state, rng, p.options) : undefined
+    const opts = { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss }
+    const retry = state && (log.verdict === 'wrong' || (session.relearn[entry.id] ?? 0) > 0) ? retryItem(item, entry, state, rng, opts) : undefined
     // A new word answered right comes back a little later in another format (graduated recall).
     // The second comeback is typed: picked out twice, now produced from its meaning.
     const comebacks = session.followUps?.[entry.id] ?? 0
     const followUp =
-      log.verdict && log.verdict !== 'wrong' && state ? (comebacks >= 1 ? typedFollowUp(item, typedAllowed(entry.id)) : retryItem(item, entry, state, rng, p.options)) : undefined
+      log.verdict && log.verdict !== 'wrong' && state ? (comebacks >= 1 ? typedFollowUp(item, typedAllowed(entry.id)) : { ...item, kind: 'exercise' as const, skill: 'recognition' as const, exerciseType: 'mc_meaning' as const }) : undefined
     next(log, retry, followUp)
   }
 
@@ -467,13 +473,9 @@ export function SessionScreen(p: Props) {
         <button className="icon-btn" onClick={() => setConfirmQuit(true)} aria-label="Oturumu bitir">
           <CloseIcon size={22} />
         </button>
-        {/* One segment per question, coloured by why it is here; done ones solid, the rest faint. */}
-        <div className="progress progress-segments" role="progressbar" aria-label="Oturumun ilerlemesi" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
-          {session.items.length <= 60 ? (
-            session.items.map((it, i) => <span key={i} className={`seg seg-${it.kind === 'introduce' ? 'new' : it.reason}${i < session.index ? ' is-done' : ''}${i === session.index ? ' is-now' : ''}`} />)
-          ) : (
-            <div style={{ width: `${Math.max(progress, 3)}%` }} />
-          )}
+        {/* A stable word goal: adding a repetition does not move progress backwards. */}
+        <div className="progress" role="progressbar" aria-label="Oturumun ilerlemesi" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
+          <div style={{ width: `${progress}%` }} />
         </div>
         {combo >= 3 ? (
           <span className="combo" key={combo} data-tier={combo >= 10 ? 3 : combo >= 5 ? 2 : 1} data-burst={combo === 5 || combo === 10 || combo === 20 ? '' : undefined}>
@@ -481,7 +483,7 @@ export function SessionScreen(p: Props) {
           </span>
         ) : (
           <span className="progress-count">
-            {session.index}/{session.items.length}
+            {goal.completed}/{goal.total} kelime
           </span>
         )}
         <span className="session-xp" key={sessionXp}>
@@ -552,6 +554,13 @@ export function SessionScreen(p: Props) {
           </div>
         </div>
       )}
+      {item.learningBatch !== undefined && (
+        <p className="small muted" role="status">
+          Öğrenme grubu {item.learningBatch + 1}/{Math.max(...session.items.map((it) => it.learningBatch ?? 0)) + 1}
+          {' · '}{item.kind === 'introduce' ? 'Kelimeyi tanı' : item.exerciseType === 'typed_translation' ? 'Yazarak hatırla' : 'Anlamı pekiştir'}
+          {' · '}Bu grubun soruları bitince yeni kelimelere geçeceğiz.
+        </p>
+      )}
       {p.mode === 'practice' && (
         <p className="practice-badge">
           <span className="badge">Serbest pratik</span>
@@ -577,7 +586,7 @@ export function SessionScreen(p: Props) {
           {/* A word card brings its own drawing (the part of speech): one monkey in a box, not two. */}
           {item && !form && item.kind !== 'introduce' && !refreshDue(item, entry) && <img src={ANIMATED_MONKI.wave} alt="" width={44} height={44} draggable={false} />}
           <span>
-            Merhaba! <strong>{session.items.length}</strong> soruluk bir tur, hadi başlayalım.
+            Bu turda <strong>{goal.total}</strong> kelime var. Pekiştirme soruları gerektiğinde geri gelecek.
           </span>
         </p>
       )}
@@ -609,6 +618,7 @@ export function SessionScreen(p: Props) {
           entry={entry}
           catalog={distractorPool}
           rng={rng}
+          teachFirst={item.learningBatch !== undefined}
           onContinue={() => introduce(false)}
           onKnown={() => introduce(true)}
           onPretestOff={p.settings && p.onSettings ? () => { const next = { ...p.settings!, pretest: false }; applySettings(next); p.onSettings!(next); showToast('Yeni kelimeler artık önce kart olarak gösterilecek. Geri açmak için Ayarlar > Sorular.') } : undefined}

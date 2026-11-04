@@ -4,7 +4,7 @@ import type { Rng } from './rng'
 import { exerciseTypesFor, EXERCISES } from './exercises'
 import { blockedByPrefs } from './exercises'
 import { pickExerciseType } from './selection'
-import type { EngineOptions, ErrorType, ExerciseType, UserWordState, VocabularyEntry, Verdict } from './types'
+import type { EngineOptions, ErrorType, ExerciseType, ReviewMode, UserWordState, VocabularyEntry, Verdict } from './types'
 
 export interface SessionLogEntry {
   entryId: string
@@ -58,7 +58,7 @@ export function graduatedGap(s: Session, entryId: string): number | undefined {
  * format (typing instead of choosing); below 75 %, in an easier one. The skill stays the same.
  */
 export function adaptExercise(item: PlanItem, entry: VocabularyEntry, state: UserWordState | undefined, recent: readonly (Verdict | undefined)[], rng: Rng, opts: EngineOptions = {}): PlanItem {
-  if (item.kind !== 'exercise' || !item.exerciseType) return item
+  if (item.kind !== 'exercise' || !item.exerciseType || item.reason === 'new' || item.reason === 'practice' || item.learningFollowUp) return item
   const graded = recent.filter((v): v is Verdict => !!v).slice(-8)
   if (graded.length < 5) return item
   const accuracy = graded.filter((v) => v !== 'wrong').length / graded.length
@@ -97,7 +97,7 @@ export const TYPING_SHARE: Record<TypingShare, number> = { low: 0, balanced: 0.2
  * least once, some recognition questions become "type the word for this meaning".
  */
 export function mixInTyping(item: PlanItem, state: UserWordState | undefined, share: number, rng: Rng, typedAllowed = true): PlanItem {
-  if (item.kind !== 'exercise' || item.skill !== 'recognition' || share <= 0 || !typedAllowed) return item
+  if (item.kind !== 'exercise' || item.reason === 'new' || item.skill !== 'recognition' || share <= 0 || !typedAllowed) return item
   if (!state?.skills.recognition || state.skills.recognition.reps < 1) return item
   if (state.lastExerciseType === 'typed_translation' || rng() >= share) return item
   return { ...item, skill: 'recall', exerciseType: 'typed_translation' }
@@ -139,8 +139,15 @@ export function honorOff(item: PlanItem, entry: VocabularyEntry, state: UserWord
   }
 }
 
+export const LEARNING_BATCH_SIZE = 3
+
 export function startSession(items: readonly PlanItem[]): Session {
-  return { items: [...items], index: 0, retries: {}, relearn: {}, log: [] }
+  const ids = [...new Set(items.filter((it) => it.kind === 'introduce').map((it) => it.entryId))]
+  const groups = new Map(ids.map((id, i) => [id, Math.floor(i / LEARNING_BATCH_SIZE)]))
+  // Reviews first; each new group finishes its guided repetitions before the next one opens.
+  const grouped = items.map((it) => groups.has(it.entryId) ? { ...it, learningBatch: groups.get(it.entryId) } : it)
+  if (ids.length > LEARNING_BATCH_SIZE) grouped.sort((a, b) => (a.learningBatch ?? -1) - (b.learningBatch ?? -1))
+  return { items: grouped, index: 0, retries: {}, relearn: {}, log: [] }
 }
 
 export const currentItem = (s: Session): PlanItem | undefined => s.items[s.index]
@@ -154,8 +161,9 @@ export function retryItem(
   rng: Rng,
   opts: EngineOptions = {},
 ): PlanItem {
-  // A retry is a second try after the correction, not the measurement the probe was for.
-  return { ...item, probe: undefined, kind: 'exercise', exerciseType: pickExerciseType(item.skill, entry, state, rng, opts) }
+  const available = exerciseTypesFor(item.skill, entry, opts, state)
+  const base: PlanItem = available.length ? item : { ...item, skill: 'recognition', firstLetter: undefined }
+  return { ...base, probe: undefined, kind: 'exercise', exerciseType: available.length ? pickExerciseType(item.skill, entry, state, rng, opts) : 'mc_meaning', reason: 'practice', learningFollowUp: true }
 }
 
 /**
@@ -171,17 +179,36 @@ export function completeItem(s: Session, log: Omit<SessionLogEntry, 'item'>, ret
   const retries = { ...s.retries }
   if (log.verdict === 'wrong') relearn[id] = RELEARN_TARGET
   else if (log.verdict && relearn[id]) relearn[id]--
-  if (retry && relearn[id] > 0 && (retries[id] ?? 0) < MAX_RETRIES) {
-    items.splice(Math.min(s.index + 1 + RETRY_GAP, items.length), 0, retry)
+  const nextBatch = item.learningBatch === undefined ? -1 : items.findIndex((it, i) => i > s.index && it.learningBatch !== undefined && it.learningBatch > item.learningBatch!)
+  const insertAt = (gap: number) => Math.min(s.index + 1 + gap, nextBatch < 0 ? items.length : nextBatch)
+  const pending = items.slice(s.index + 1).some((it) => it.entryId === id && it.kind === 'exercise' && it.skill === item.skill)
+  if (retry && !pending && relearn[id] > 0 && (retries[id] ?? 0) < MAX_RETRIES) {
+    items.splice(insertAt(RETRY_GAP), 0, { ...retry, learningBatch: item.learningBatch })
     retries[id] = (retries[id] ?? 0) + 1
   }
   const followUps = { ...(s.followUps ?? {}) }
   const gap = log.verdict && log.verdict !== 'wrong' ? graduatedGap(s, id) : undefined
-  if (followUp && gap !== undefined) {
-    items.splice(Math.min(s.index + 1 + gap, items.length), 0, { ...followUp, reason: 'practice' })
+  if (followUp && gap !== undefined && !pending && !(relearn[id] > 0)) {
+    items.splice(insertAt(gap), 0, { ...followUp, probe: undefined, reason: 'practice', learningFollowUp: true, learningBatch: item.learningBatch })
     followUps[id] = (followUps[id] ?? 0) + 1
   }
   return { items, index: s.index + 1, retries, relearn, followUps, log: [...s.log, { ...log, item }] }
+}
+
+/** A first recall test must create its card; repeats must not repeatedly advance FSRS. */
+export function attemptMode(item: PlanItem, mode: ReviewMode, state: UserWordState): ReviewMode {
+  if (mode !== 'normal') return mode
+  if (item.reason !== 'practice') return mode
+  const skill = item.exerciseType && EXERCISES[item.exerciseType].skill
+  return item.learningFollowUp && skill && !state.skills[skill] ? 'normal' : 'practice'
+}
+
+/** Stable word goal: adding a retry cannot move the progress bar backwards. */
+export function sessionProgress(s: Session): { completed: number; total: number; percent: number } {
+  const all = new Set(s.items.map((it) => it.entryId))
+  const pending = new Set(s.items.slice(s.index).map((it) => it.entryId))
+  const completed = all.size - pending.size
+  return { completed, total: all.size, percent: all.size ? completed / all.size * 100 : 100 }
 }
 
 /** Puts an extra item `gap` places after the current one (at the end when the session is shorter). */
@@ -259,8 +286,8 @@ export const SPLIT_ABOVE_MINUTES = 15
  * two sittings is remembered better than the same practice in one (distributed practice;
  * Cepeda et al. 2006), and the second half isn't done tired.
  */
-export function firstSittingEnd(items: readonly PlanItem[]): number {
-  const half = Math.ceil(items.length / 2)
+export function firstSittingEnd(items: readonly PlanItem[], requestedEnd = Math.ceil(items.length / 2)): number {
+  const half = Math.max(0, requestedEnd)
   for (let end = half; end < items.length; end++) {
     const before = items.slice(0, end)
     const open = before.some((it) => it.kind === 'introduce' && !before.some((x) => x.kind === 'exercise' && x.entryId === it.entryId))
