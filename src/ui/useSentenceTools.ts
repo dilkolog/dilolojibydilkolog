@@ -1,3 +1,4 @@
+import { videoOf } from '../engine/subtitles'
 import { useState, type MutableRefObject } from 'react'
 
 import type { KelimeDB, ReadingText } from '../data/db'
@@ -41,7 +42,7 @@ export function useSentenceTools({
 
   // Dictation plays a sentence from the text's own recording when its subtitles time it exactly,
   // else the device reads it (approximate times would cut sentences in the middle).
-  const recorded = !!(current?.audio && current.cues?.length && times)
+  const recorded = !!((current?.audio || videoOf(current)) && current?.cues?.length && times)
   const sentenceEnd = (i: number) => (times ? (times[i + 1] ?? audioDuration ?? times[i] + 10) : 0)
   const playSentence = (i: number, slow: boolean): Promise<void> => {
     if (recorded && times && rangeRef.current) return rangeRef.current(times[i], sentenceEnd(i), slow)

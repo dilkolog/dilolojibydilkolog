@@ -61,6 +61,9 @@ export function youtubeId(input: string): string | null {
   return m?.[1] ?? null
 }
 
+/** The YouTube video a reading text is the transcript of (its source link), when it has no recording of its own. */
+export const videoOf = (text: { audio?: string; source?: string } | null | undefined): string | null => (text && !text.audio && text.source ? youtubeId(text.source) : null)
+
 /** True when the text looks like a subtitle file rather than prose. */
 export const looksLikeSubtitles = (raw: string) => /\d{2}:\d{2}:\d{2}[,.]\d{3}\s*-->/.test(raw)
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { Rating } from 'ts-fsrs'
 import { createRng } from '../rng'
 import { createScheduler } from '../scheduler'
-import { clozeWord, dueSentences, gradeSentence, newSentence, sentenceExercise, sentenceScore } from '../sentences'
+import { cleanClip, clozeWord, dueSentences, gradeSentence, newSentence, sentenceExercise, sentenceScore } from '../sentences'
 
 const scheduler = createScheduler({ fuzz: false })
 const NOW = new Date('2026-10-02T10:00:00Z')
@@ -37,5 +37,15 @@ describe('sentence cards', () => {
     expect(gradeSentence({ kind: 'dictation', answer: s.text }, 'Il a pris une désision dificile')).toBe('near')
     expect(gradeSentence({ kind: 'dictation', answer: s.text }, 'Il prend une chose')).toBe('wrong')
     expect(gradeSentence({ kind: 'cloze', shown: '', answer: 'décision' }, 'decision')).toBe('near')
+  })
+})
+
+describe('a sentence card from a video', () => {
+  it('keeps the moment it was heard in, and only a sensible one', () => {
+    const clip = { video: 'abcdefghijk', start: 12.3, end: 15.8 }
+    expect(newSentence({ language: 'fr', text: 'Bonjour à tous.', clip }, scheduler, NOW).clip).toEqual(clip)
+    expect(newSentence({ language: 'fr', text: 'Bonjour à tous.' }, scheduler, NOW)).not.toHaveProperty('clip')
+    for (const bad of [{ video: 'x', start: 1, end: 2 }, { video: 'abcdefghijk', start: 5, end: 4 }, { video: 'abcdefghijk', start: -1, end: 2 }, { video: 'abcdefghijk', start: 0, end: 90 }, null, 'abc'])
+      expect(cleanClip(bad), JSON.stringify(bad)).toBeUndefined()
   })
 })

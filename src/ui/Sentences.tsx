@@ -13,6 +13,7 @@ import { PlusIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { sfx } from './sounds'
 import { canSpeak, speak } from './speech'
+import { VideoClip } from './VideoClip'
 import { undoable } from './toastFeed'
 import { EmptyState } from './EmptyState'
 import { Sticker } from './Sticker'
@@ -210,7 +211,8 @@ function SentenceReview({ cards, onDone }: { cards: SentenceCard[]; onDone: () =
   useEffect(() => {
     setText('')
     setVerdict(null)
-    if (ex?.kind === 'dictation' && card) speak(card.text, card.language)
+    // A sentence from a video is heard in the speaker's own voice (the clip plays on its own below).
+    if (ex?.kind === 'dictation' && card && !card.clip) speak(card.text, card.language)
   }, [ex, card])
 
   if (!card || !ex) {
@@ -264,7 +266,16 @@ function SentenceReview({ cards, onDone }: { cards: SentenceCard[]; onDone: () =
           {card.translation && <p className="small muted">{card.translation}</p>}
         </>
       )}
-      {ex.kind === 'dictation' && (
+      {ex.kind === 'dictation' && card.clip && (
+        <div className="stack">
+          <p className="muted">Videoda duyduğun cümleyi yaz</p>
+          <VideoClip key={card.id} clip={card.clip} autoplay blur />
+          <button className="link small" onClick={() => speak(card.text, card.language, 0.7)}>
+            Cihaz sesiyle yavaş dinle
+          </button>
+        </div>
+      )}
+      {ex.kind === 'dictation' && !card.clip && (
         <div className="row">
           <p className="muted">Duyduğun cümleyi yaz</p>
           <button className="speak speak-big" onClick={() => speak(card.text, card.language)} aria-label="Tekrar dinle">
@@ -330,6 +341,7 @@ function SentenceReview({ cards, onDone }: { cards: SentenceCard[]; onDone: () =
             </p>
           )}
           {card.note && <p className="small muted sentence-note">{card.note}</p>}
+          {card.clip && ex.kind !== 'dictation' && <VideoClip key={card.id} clip={card.clip} label="Videoda geçtiği an" />}
           <div className="row">
             {ex.kind === 'translate' && verdict !== 'correct' ? (
               <>
