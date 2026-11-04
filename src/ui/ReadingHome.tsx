@@ -41,7 +41,9 @@ export function ReadingHome({
   onYoutube,
   onFetchYoutube,
   ytBusy,
+  fileBusy,
   bookError,
+  onPhotoText,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -66,9 +68,12 @@ export function ReadingHome({
   onBook: (f: File) => void
   youtube: string
   onYoutube: (v: string) => void
-  onFetchYoutube: () => void
+  /** Fetch the link in the field, or the one just pasted into it. */
+  onFetchYoutube: (link?: string) => void
   ytBusy: boolean
+  fileBusy: boolean
   bookError: { ok: boolean; text: string } | null
+  onPhotoText: (text: string, title: string) => void
 }) {
   const now = Date.now()
   return (
@@ -141,7 +146,9 @@ export function ReadingHome({
         onYoutube={onYoutube}
         onFetchYoutube={onFetchYoutube}
         ytBusy={ytBusy}
+        fileBusy={fileBusy}
         bookError={bookError}
+        onPhotoText={onPhotoText}
       />
       <SourcePickers db={db} language={language} vocabulary={vocabulary} states={states} known={known} library={library} setLibrary={setLibrary} open={open} />
       <ExternalResources language={language} />

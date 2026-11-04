@@ -37,6 +37,7 @@
     "dexie": "^4.4.6",
     "fflate": "^0.8.3",
     "fzstd": "^0.1.1",
+    "pdfjs-dist": "6.4.299",
     "qrcode-generator": "^2.0.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",

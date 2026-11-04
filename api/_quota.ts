@@ -75,7 +75,7 @@ export async function spendQuota(name: string, id: string, amount: number, store
 
 /** Calls a day per account to the endpoints that fetch from other sites (YouTube, news, programmes): each call costs
  * several outbound requests, and YouTube's search has a small daily quota shared by everyone. */
-export const DAILY_CALLS = { clips: 60, youtube: 40, news: 150, listen: 150, share: 30, assess: 60 } as const
+export const DAILY_CALLS = { clips: 60, youtube: 40, news: 150, page: 40, listen: 150, share: 30, assess: 60 } as const
 
 /**
  * For an endpoint that costs per call: counts the call against the account's day and says whether it is over

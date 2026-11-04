@@ -109,6 +109,20 @@ export interface PodcastScript {
   lines: PodcastLine[]
 }
 
+export interface PhotoTextRequest {
+  language: import('../engine/types').TargetLanguage
+  /** The photo, base64 without the data-URL prefix (shrunk before it gets here). */
+  imageBase64: string
+  mediaType: 'image/jpeg' | 'image/png' | 'image/webp'
+}
+
+/** The text read off a photographed page, or why there is none (`found: false`). */
+export interface PhotoText {
+  found: boolean
+  title: string
+  text: string
+}
+
 export interface PhotoWordsRequest {
   language: import('../engine/types').TargetLanguage
   /** The photo, base64 without the data-URL prefix (shrunk before it gets here). */

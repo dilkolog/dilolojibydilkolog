@@ -12,8 +12,8 @@ describe('shared text from other apps', () => {
     expect(r).toEqual({ word: '', context: 'Il a décidé de tout quitter pour vivre à la campagne.', src: 'https://ex.fr/x' })
   })
   it('ignores empty shares', () => {
-    expect(readShared(q({ share_url: 'https://ex.fr' }))).toBeNull()
     expect(readShared(q({}))).toBeNull()
+    expect(readShared(q({ share_url: 'http://ex.fr' }))).toBeNull()
   })
 })
 
@@ -31,8 +31,12 @@ describe('Share → Diloloji: an article or a video goes to Reading', () => {
     expect(readShared(q({ share_text: 'https://youtu.be/abc123', share_title: 'Vidéo' }))?.read).toEqual({ url: 'https://youtu.be/abc123', title: 'Vidéo' })
     expect(readShared(q({ share_url: 'https://www.youtube.com/watch?v=abc123' }))?.read).toEqual({ url: 'https://www.youtube.com/watch?v=abc123', title: undefined })
   })
-  it('another link alone is nothing to take', () => {
-    expect(readShared(q({ share_url: 'https://lemonde.fr/a' }))).toBeNull()
+  it('a video shared with its name beside the link is read, not learnt as a word', () => {
+    expect(readShared(q({ share_text: 'Apprendre le français https://youtu.be/abcdefghijk' }))).toEqual({ word: '', context: '', src: 'https://youtu.be/abcdefghijk', read: { url: 'https://youtu.be/abcdefghijk', title: 'Apprendre le français' } })
+    expect(readShared(q({ share_title: 'Une vidéo', share_url: 'https://www.youtube.com/watch?v=abcdefghijk' }))?.read).toEqual({ url: 'https://www.youtube.com/watch?v=abcdefghijk', title: 'Une vidéo' })
+  })
+
+  it('a web page’s link alone is read too', () => {
+    expect(readShared(q({ share_url: 'https://www.lemonde.fr/article' }))?.read).toEqual({ url: 'https://www.lemonde.fr/article', title: undefined })
   })
 })
-

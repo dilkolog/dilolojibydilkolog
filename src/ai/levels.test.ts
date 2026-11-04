@@ -16,7 +16,7 @@ describe('AI levels', () => {
 
   it('the default level keeps the free chat, the photo and the podcast shut', () => {
     expect(DEFAULT_AI_LEVEL).toBe('calisma')
-    for (const f of ['monki', 'chat', 'photo_words', 'podcast'] as const) expect(levelAllows(DEFAULT_AI_LEVEL, f)).toBe(false)
+    for (const f of ['monki', 'chat', 'photo_words', 'photo_text', 'podcast'] as const) expect(levelAllows(DEFAULT_AI_LEVEL, f)).toBe(false)
     expect(levelAllows(DEFAULT_AI_LEVEL, 'sentence')).toBe(true)
     expect(levelAllows('kelime', 'sentence')).toBe(false)
     expect(levelAllows('tam', 'monki')).toBe(true)

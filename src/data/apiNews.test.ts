@@ -1,4 +1,5 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { resetRate } from '../../api/_rate'
 import { GET as NEWS } from '../../api/news'
 import { GET as LISTEN } from '../../api/listen'
 
@@ -86,5 +87,64 @@ describe('/api/listen', () => {
     // Too short to read along with, so nothing comes back; the point is what was not fetched.
     expect(await res.json()).toEqual({ episodes: [] })
     expect(asked).toEqual(['https://learningenglish.voanews.com/api/zkm-ql-vomx-tpej-rqi'])
+  })
+})
+
+describe('/api/news?url= (a page the learner chose)', () => {
+  beforeEach(() => resetRate())
+  const call = (link: string) => NEWS(new Request(`https://app.test/api/news?url=${encodeURIComponent(link)}`, { headers: FROM_APP }))
+  const long = (n: number) => Array.from({ length: n }, (_, i) => `<p>Voici la phrase numéro ${i + 1} de cet article, écrite pour être assez longue et gardée.</p>`).join('')
+  /** Answers by URL; a number is a redirect to the next string, a Response is sent as it is. */
+  function pages(table: Record<string, Response | (() => Response)>) {
+    const asked: string[] = []
+    vi.stubGlobal('fetch', async (url: string | URL) => {
+      asked.push(String(url))
+      const page = table[String(url)]
+      if (!page) throw new Error(`unexpected fetch ${url}`)
+      return typeof page === 'function' ? page() : page
+    })
+    return asked
+  }
+  const html = (body: string, type = 'text/html; charset=utf-8') => new Response(body, { headers: { 'content-type': type } })
+
+  it('brings back the title and the main text of a public page', async () => {
+    pages({ 'https://blog.example.fr/billet': html(`<html><head><title>Mon billet du jour | Le Blog</title></head><body><nav><p>Menu menu menu menu menu menu menu menu menu menu menu.</p></nav><article>${long(5)}</article></body></html>`) })
+    const res = await call('https://blog.example.fr/billet#haut')
+    expect(res.status).toBe(200)
+    const j = (await res.json()) as { title: string; text: string; url: string }
+    expect(j.title).toBe('Mon billet du jour')
+    expect(j.text).toContain('phrase numéro 5')
+    expect(j.text).not.toContain('Menu')
+    expect(j.url).toBe('https://blog.example.fr/billet')
+    expect(res.headers.get('cache-control')).toContain('no-store')
+  })
+
+  it('never reaches this machine, a private network or an address written as numbers', async () => {
+    const asked = pages({})
+    for (const link of ['http://blog.example.fr/a', 'https://localhost/a', 'https://127.0.0.1/a', 'https://[::1]/a', 'https://10.0.0.1/a', 'https://router.lan/a', 'https://metadata.google.internal/a', 'https://user:pw@blog.example.fr/', 'https://blog.example.fr:8443/', 'ftp://x.fr/', 'pas un lien'])
+      expect((await call(link)).status, link).toBe(400)
+    expect(asked).toEqual([])
+  })
+
+  it('checks every redirect like the first address', async () => {
+    const asked = pages({
+      'https://short.example/x': new Response('', { status: 302, headers: { location: 'https://blog.example.fr/billet' } }),
+      'https://blog.example.fr/billet': html(`<article>${long(5)}</article>`),
+      'https://short.example/evil': new Response('', { status: 301, headers: { location: 'http://169.254.169.254/latest/' } }),
+    })
+    expect((await call('https://short.example/x')).status).toBe(200)
+    expect((await call('https://short.example/evil')).status).toBe(400)
+    expect(asked.some((u) => u.includes('169.254'))).toBe(false)
+  })
+
+  it('says why a page gives nothing to read', async () => {
+    pages({
+      'https://a.example.fr/doc.pdf': html('%PDF', 'application/pdf'),
+      'https://a.example.fr/vide': html('<html><body><p>Trop court.</p></body></html>'),
+      'https://a.example.fr/gros': () => html(`<article>${'x'.repeat(3_100_000)}</article>`),
+    })
+    expect(((await (await call('https://a.example.fr/doc.pdf')).json()) as { error: string }).error).toBe('not html')
+    expect(((await (await call('https://a.example.fr/vide')).json()) as { error: string }).error).toBe('no text')
+    expect(((await (await call('https://a.example.fr/gros')).json()) as { error: string }).error).toBe('too large')
   })
 })

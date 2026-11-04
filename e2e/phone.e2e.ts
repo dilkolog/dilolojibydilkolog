@@ -172,7 +172,7 @@ test('an empty reading library has one way in: the open form, not three buttons'
   // The other sources sit as tiles of one width; the YouTube link has a line of its own.
   const tiles = await page.locator('.add-sources .btn').evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().width)))
   expect(new Set(tiles).size).toBe(1)
-  const field = await page.getByLabel('YouTube bağlantısı').boundingBox()
+  const field = await page.getByLabel('Web sayfası ya da YouTube bağlantısı').boundingBox()
   const form = await page.locator('.add-youtube').boundingBox()
   expect(field!.width).toBeGreaterThan(form!.width * 0.9)
 })

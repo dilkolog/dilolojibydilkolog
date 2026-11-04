@@ -4,7 +4,7 @@ import type { KelimeDB } from '../data/db'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { addWordInfos } from './addWordInfos'
 import { useAi } from './aiContext'
-import { downscaleImage } from './downscaleImage'
+import { blobToBase64 as toBase64, downscaleImage } from './downscaleImage'
 
 /** The most words one photo brings back. */
 const MAX_WORDS = 12
@@ -12,14 +12,6 @@ const MAX_WORDS = 12
 const PHOTO_SIDE = 1280
 
 type Row = { info: WordInfo; selected: boolean }
-
-const toBase64 = (blob: Blob) =>
-  new Promise<string>((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onerror = () => reject(reader.error)
-    reader.onload = () => resolve(String(reader.result).split(',')[1] ?? '')
-    reader.readAsDataURL(blob)
-  })
 
 /**
  * Words from a photo: a menu, a sign, a package, a book page. The AI reads the words off the picture

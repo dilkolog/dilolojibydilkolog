@@ -6,15 +6,17 @@ import { ListeningPicker } from './Listening'
 import { NewsPicker } from './News'
 import { StorybooksPicker } from './StorybooksPicker'
 import { WikipediaPicker } from './WikipediaPicker'
-import { BookIcon, PlayIcon, CloseIcon } from './icons'
+import { BookIcon, PlayIcon, CloseIcon, LinkIcon } from './icons'
 import { showToast } from './toastFeed'
 import { chapterToReadingText } from '../data/audiobooks'
 import { storyCredit } from '../data/storybooks'
 import type { KelimeDB, ReadingText } from '../data/db'
+import { isYoutubeLink } from './readingImport'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { Cover } from './ReadingBooks'
 import { OfflineAudioChip } from './OfflineAudioChip'
 import { ADD_ART } from './drawnArt'
+import { PhotoText } from './PhotoText'
 
 /** Days after finishing a text when re-reading it is suggested. */
 const REREAD_DAYS = 7
@@ -72,7 +74,9 @@ export function AddTextCard({
   onYoutube,
   onFetchYoutube,
   ytBusy,
+  fileBusy,
   bookError,
+  onPhotoText,
 }: {
   language: TargetLanguage
   startOpen: boolean
@@ -85,13 +89,18 @@ export function AddTextCard({
   onBook: (f: File) => void
   youtube: string
   onYoutube: (v: string) => void
-  onFetchYoutube: () => void
+  /** Fetch the link in the field, or the one just pasted into it. */
+  onFetchYoutube: (link?: string) => void
   ytBusy: boolean
+  /** A Word or PDF file is being read. */
+  fileBusy?: boolean
   bookError: { ok: boolean; text: string } | null
+  /** Text read off photos goes into the draft. */
+  onPhotoText?: (text: string, title: string) => void
 }) {
   return (
     <details className="card add-text" open={startOpen}>
-      <summary>Kendi metnini ekle: yapıştır, dosya, kitap (EPUB) ya da YouTube</summary>
+      <summary>Kendi metnini ekle: yapıştır, dosya (PDF, Word, EPUB), fotoğraf ya da bağlantı</summary>
       <div className="stack mt-3">
       <input className="input" value={title} onChange={(e) => onTitle(e.target.value)} placeholder="Başlık (isteğe bağlı)" aria-label="Başlık" />
       <textarea className="textarea reading-draft-textarea" lang={language} aria-label="Metin" placeholder="Metni buraya yapıştır…" value={draft} onChange={(e) => onDraft(e.target.value)} />
@@ -102,15 +111,26 @@ export function AddTextCard({
       </div>
       <p className="small muted">ya da başka bir kaynaktan:</p>
       <div className="add-sources">
-        <label className="btn btn-quiet file-btn">
+        <label className={`btn btn-quiet file-btn${fileBusy ? ' file-btn-off' : ''}`} aria-busy={fileBusy || undefined}>
           <img className="chip-art" src={ADD_ART.notes} alt="" width={20} height={20} draggable={false} />
-          <span>Alt yazı / metin dosyası</span>
-          <input type="file" accept=".srt,.vtt,.txt,text/plain" onChange={(e) => e.target.files?.[0] && onFile(e.target.files[0])} />
+          <span>{fileBusy ? 'Dosya okunuyor…' : 'Dosya (PDF, Word, metin, alt yazı)'}</span>
+          <input
+            type="file"
+            aria-label="Dosya (PDF, Word, metin, alt yazı)"
+            accept=".pdf,application/pdf,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.srt,.vtt,.txt,text/plain"
+            disabled={fileBusy}
+            onChange={(e) => {
+              const file = e.target.files?.[0]
+              e.target.value = ''
+              if (file) onFile(file)
+            }}
+          />
         </label>
         <label className="btn btn-quiet file-btn">
           <img className="chip-art" src={ADD_ART.ebook} alt="" width={20} height={20} draggable={false} />Kitap (EPUB)
           <input type="file" accept=".epub,application/epub+zip" onChange={(e) => e.target.files?.[0] && onBook(e.target.files[0])} />
         </label>
+        {onPhotoText && <PhotoText language={language} onText={onPhotoText} />}
       </div>
       <form
         className="add-youtube"
@@ -119,11 +139,23 @@ export function AddTextCard({
           onFetchYoutube()
         }}
       >
-        <input className="input" value={youtube} onChange={(e) => onYoutube(e.target.value)} placeholder="YouTube bağlantısı" aria-label="YouTube bağlantısı" inputMode="url" />
+        <input
+          className="input"
+          value={youtube}
+          onChange={(e) => onYoutube(e.target.value)}
+          // A pasted link is fetched at once: the transcript or the page's text opens without another tap.
+          onPaste={(e) => {
+            const link = e.clipboardData.getData('text').trim()
+            if (!/^https?:\/\/\S+$/i.test(link) || ytBusy) return
+            e.preventDefault()
+            onFetchYoutube(link)
+          }}
+          placeholder="Web sayfası ya da YouTube bağlantısı" aria-label="Web sayfası ya da YouTube bağlantısı" inputMode="url" />
         <button className="btn btn-quiet" type="submit" disabled={!youtube.trim() || ytBusy}>
-          {ytBusy ? 'Getiriliyor…' : <><img className="chip-art" src={ADD_ART.video} alt="" width={20} height={20} draggable={false} />Altyazıyı getir</>}
+          {ytBusy ? 'Getiriliyor…' : isYoutubeLink(youtube) ? <><img className="chip-art" src={ADD_ART.video} alt="" width={20} height={20} draggable={false} />Altyazıyı getir</> : <><LinkIcon size={18} />Metni getir</>}
         </button>
       </form>
+      <p className="small muted">Bağlantıyı yapıştırman yeter: videonun altyazısı ya da sayfanın yazısı kendiliğinden gelir ve okuma açılır. Yalnızca yazı alınır ve yalnızca senin kütüphanende durur; kendi okuman için, başkalarıyla paylaşmak için değil.</p>
       {bookError && (
         <p className={bookError.ok ? 'notice' : 'error'} role="status">
           {bookError.ok && <BookIcon size={16} className="inline-icon" />}

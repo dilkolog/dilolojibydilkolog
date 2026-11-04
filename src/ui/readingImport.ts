@@ -1,5 +1,5 @@
 import { accessFetch, APPROVAL_MESSAGE, isApprovalRefusal } from '../data/access'
-import type { KelimeDB, ReadingText } from '../data/db'
+import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
 import { looksLikeSubtitles, parseSubtitles } from '../engine/subtitles'
 import { TARGET_LANGUAGES, type TargetLanguage } from '../engine/types'
 import { LANGUAGE_NAME } from './labels'
@@ -9,6 +9,76 @@ export interface ImportNote {
   ok: boolean
   text: string
 }
+
+/** A file the add card reads itself (rather than as plain text): Word and PDF. */
+export const isDocumentFile = (name: string) => /\.(pdf|docx)$/i.test(name)
+
+/**
+ * A Word or PDF file: a short one goes into the add card's draft (to look over, then read), a long one is cut
+ * into parts and saved as a book, read in order like an EPUB.
+ */
+export async function importDocument(
+  db: KelimeDB,
+  file: File,
+  language: TargetLanguage,
+): Promise<{ draft: { text: string; title: string } } | { note: ImportNote; texts: ReadingText[] }> {
+  const files = await import('../data/readingFiles')
+  try {
+    const bytes = new Uint8Array(await file.arrayBuffer())
+    const read = /\.pdf$/i.test(file.name) ? await files.pdfReadingText(bytes) : { text: files.docxReadingText(bytes), title: undefined }
+    const title = read.title || fileTitle(file.name)
+    if (files.wordCount(read.text) <= files.BOOK_WORDS) return { draft: { text: read.text, title } }
+    const parts = files.splitIntoParts(read.text)
+    const id = crypto.randomUUID()
+    const addedAt = new Date().toISOString()
+    const texts: ReadingText[] = parts.map((text, index) => ({
+      id: crypto.randomUUID(),
+      language,
+      title: `${title} (${index + 1}/${parts.length})`,
+      text,
+      addedAt,
+      history: [],
+      book: { id, title, index, total: parts.length },
+    }))
+    await db.saveTexts(texts)
+    return { texts, note: { ok: true, text: `${title} uzun bir metin: ${parts.length} parça olarak kütüphanene eklendi.` } }
+  } catch (e) {
+    return { texts: [], note: { ok: false, text: e instanceof files.ReadingFileError ? e.message : 'Dosya okunamadı.' } }
+  }
+}
+
+const fileTitle = (name: string) => name.replace(/\.[^.]+$/, '').replace(/[._]+/g, ' ').trim()
+
+/** A web page's main text (an article, a blog post), fetched by the server, as a reading text (not saved); or why there is none. */
+export async function pageText(link: string, language: TargetLanguage): Promise<{ item: ReadingText } | { note: ImportNote }> {
+  try {
+    const res = await accessFetch(`/api/news?url=${encodeURIComponent(link.trim())}`)
+    const j = (await res.json().catch(() => ({}))) as { title?: string; text?: string; url?: string; error?: string }
+    if (!res.ok || !j.text) {
+      const why: Record<string, string> = {
+        'bad url': 'Bu bir web sayfası bağlantısı gibi görünmüyor (https:// ile başlamalı).',
+        'not html': 'Bu bağlantı bir web sayfası değil. PDF ise indirip “Dosya” ile ekleyebilirsin.',
+        'too large': 'Sayfa çok büyük. Metni kopyalayıp buraya yapıştırabilirsin.',
+        'no text': 'Sayfada okunacak bir yazı bulunamadı. Metni kopyalayıp buraya yapıştırabilirsin.',
+        daily_quota: 'Bugünkü sayfa hakkın doldu; yarın yeniden dene ya da metni yapıştır.',
+      }
+      return {
+        note: {
+          ok: false,
+          text: isApprovalRefusal(j.error) ? APPROVAL_MESSAGE : (j.error && why[j.error]) || 'Sayfa getirilemedi; site izin vermiyor olabilir. Metni kopyalayıp buraya yapıştırabilirsin.',
+        },
+      }
+    }
+    return {
+      item: { id: crypto.randomUUID(), language, title: j.title?.trim() || titleOf(j.text), text: j.text, source: j.url || link.trim(), addedAt: new Date().toISOString(), history: [] },
+    }
+  } catch {
+    return { note: { ok: false, text: 'Sayfa getirilemedi; internet bağlantını kontrol et.' } }
+  }
+}
+
+/** Whether a link is a YouTube video (its subtitles are fetched) rather than a page (its text is). */
+export const isYoutubeLink = (link: string) => /(^|\/\/|\.)(youtube\.com|youtu\.be)\b/i.test(link.trim()) || /^[\w-]{11}$/.test(link.trim())
 
 /** A subtitle (.srt/.vtt) or plain-text file as text for the add card; subtitles are cleaned up first. The title is the file's name. */
 export function textOfFile(name: string, raw: string): { text: string; title: string } {
