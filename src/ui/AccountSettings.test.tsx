@@ -178,7 +178,7 @@ describe('AccountSettings admin entry', () => {
     await act(() => new Promise((r) => setTimeout(r, 0)))
     await act(() => new Promise((r) => setTimeout(r, 0)))
     expect(host.textContent).toContain('Yönetim')
-    await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Aç')!.click())
+    await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent?.startsWith('Yönetim'))!.click())
     expect(onOpenAdmin).toHaveBeenCalled()
   })
 })

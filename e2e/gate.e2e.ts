@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page, type Route } from '@playwright/test'
-import { openScreen, overflow } from './helpers'
+import { openScreen, overflow, settleTransitions } from './helpers'
 
 /**
  * With Supabase set up an account is required: until the device is signed in, the app is the sign-in page.
@@ -431,14 +431,20 @@ test("the owner's admin screen: only the owner sees the entry; people, reports a
   owner = true
   await page.reload()
   await toAccount()
-  await page.locator('.account-row', { hasText: 'Yönetim' }).getByRole('button', { name: 'Aç' }).click()
+  await page.locator('.account-action', { hasText: 'Yönetim' }).click()
   await expect(page.getByRole('heading', { name: 'Yönetim', exact: true })).toBeVisible()
-  await expect(page.getByText('1 onay bekliyor')).toBeVisible()
-  await expect(page.getByText('Topluluk listesi · Spam ya da reklam · Biri')).toBeVisible()
+  await expect(page.locator('.admin-figure', { hasText: 'Onay bekleyen' })).toContainText('1')
+  await expect(page.locator('.admin-figure', { hasText: 'Sistem' })).toContainText('Sağlıklı')
+  await expect(page.locator('.admin-report', { hasText: 'Spam ya da reklam' })).toContainText('Topluluk listesi')
   await expect(page.getByRole('button', { name: 'Eski dosyaları taşı' })).toBeVisible()
   expect(await overflow(page)).toEqual([])
   const axe = await new AxeBuilder({ page }).include('.admin-page').analyze()
   expect(axe.violations.map((v) => v.id)).toEqual([])
+  await page.evaluate(() => (document.documentElement.dataset.theme = 'dark'))
+  await settleTransitions(page)
+  const dark = await new AxeBuilder({ page }).include('.admin-page').analyze()
+  expect(dark.violations.map((v) => v.id)).toEqual([])
+  await page.evaluate(() => delete document.documentElement.dataset.theme)
   await page.getByRole('button', { name: 'Onayla' }).click()
   await expect.poll(() => changes).toContainEqual({ action: 'person', user: '11111111-1111-4111-8111-111111111111', change: 'approve' })
 })

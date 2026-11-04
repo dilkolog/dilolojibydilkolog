@@ -2,7 +2,7 @@ import { currentIdentity, signInWithGoogle, supabaseConfigured, type Identity } 
 import { AccountManage, AccountDelete } from './AccountManage'
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
-import { ChartIcon, LockIcon } from './icons'
+import { ChartIcon, ChevronRightIcon, LockIcon, SlidersIcon } from './icons'
 import { db } from '../data/instance'
 import { syncUsage, type Account } from '../data/sync'
 import type { AuthMode } from './AuthScreen'
@@ -191,15 +191,14 @@ export function AccountSettings({ onOpenAuth, onOpenProfile, onOpenAdmin }: { on
 
       {owner && onOpenAdmin && (
         <div className="account-group">
-          <div className="account-row">
-            <div className="account-row-text">
-              <strong>Yönetim</strong>
+          <button type="button" className="account-row account-action" onClick={onOpenAdmin}>
+            <SlidersIcon size={18} />
+            <span className="admin-entry-text">
+              <span>Yönetim</span>
               <span className="small muted">Onaylar, YZ düzeyleri, şikâyetler ve sistemin durumu. Yalnızca sana görünür.</span>
-            </div>
-            <button type="button" className="btn btn-sm" onClick={onOpenAdmin}>
-              Aç
-            </button>
-          </div>
+            </span>
+            <ChevronRightIcon size={18} />
+          </button>
         </div>
       )}
       <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} />

@@ -52,7 +52,7 @@ afterEach(() => {
 describe('AdminScreen', () => {
   it('shows who waits and approves them', async () => {
     await mount()
-    expect(host.textContent).toContain('1 onay bekliyor')
+    expect(host.querySelector('.admin-figure')!.textContent).toContain('1')
     expect(host.textContent).toContain('ayse@example.com')
     await act(async () => button('Onayla').click())
     await flush()
@@ -75,7 +75,7 @@ describe('AdminScreen', () => {
 
   it('takes a reported list off the library', async () => {
     await mount()
-    expect(host.textContent).toContain('Topluluk listesi · Spam ya da reklam · Biri')
+    expect(host.querySelector('.admin-report')!.textContent).toContain('Spam ya da reklam')
     await act(async () => button('Kütüphaneden kaldır').click())
     await flush()
     expect(api.unpublishSet).toHaveBeenCalledWith('f'.repeat(32))
