@@ -414,7 +414,7 @@ test("the owner's admin screen: only the owner sees the entry; people, reports a
       const view = new URL(r.request().url()).searchParams.get('view')
       if (view === 'me') return r.fulfill({ json: { owner: true } })
       if (view === 'people')
-        return r.fulfill({ json: { levels: true, pending: 1, people: [{ id: '11111111-1111-4111-8111-111111111111', email: 'ayse@example.com', username: 'ayse', approved: false, rejected: false, createdAt: '2026-11-04T10:00:00Z', aiLevel: null }] } })
+        return r.fulfill({ json: { levels: true, pending: 1, people: [{ id: '11111111-1111-4111-8111-111111111111', email: 'ayse@example.com', username: 'ayse', approved: false, rejected: false, createdAt: '2026-11-04T10:00:00Z', aiLevel: null }, { id: '22222222-2222-4222-8222-222222222222', email: 'veli@example.com', username: 'veli', approved: true, rejected: false, createdAt: '2026-11-01T10:00:00Z', aiLevel: 'tam' }] } })
       if (view === 'stats') return r.fulfill({ json: { total: 42, pending: 1, active7: 12, active30: 30, newByDay: [0, 2, 1, 4, 0, 3, 1].map((count, i) => ({ day: `2026-11-0${i + 1}`, count })) } })
       if (view === 'usage') {
         const t = { aiCalls: 34, aiUsd: 0.62, translateChars: 4200, ttsChars: 1800, assessCalls: 5, people: 6 }
@@ -453,9 +453,23 @@ test("the owner's admin screen: only the owner sees the entry; people, reports a
   await expect(page.locator('.admin-usage-cols')).toContainText('820 istek')
   await expect(page.locator('.admin-current')).toContainText('bakım')
   await expect(page.locator('.admin-blocks')).toContainText('spam.example')
-  await page.locator('.admin-person').getByRole('button', { name: 'Ayrıntı' }).click()
+  await page.locator('.admin-person').first().getByRole('button', { name: 'Ayrıntı' }).click()
   await expect(page.locator('.admin-person-info')).toContainText('Google')
   expect(await overflow(page)).toEqual([])
+  // The AI level menu opens whole, not cut off by the list around it.
+  await page.locator('.admin-person', { hasText: 'veli' }).locator('.select-trigger').click()
+  const menu = page.locator('.admin-level .select-list')
+  await expect(menu).toBeVisible()
+  const shown = await menu.evaluate((list) => {
+    const box = list.getBoundingClientRect()
+    let clip = list.parentElement
+    while (clip && getComputedStyle(clip).overflow === 'visible') clip = clip.parentElement
+    const outer = clip ? clip.getBoundingClientRect() : { top: -Infinity, bottom: Infinity }
+    return box.top >= outer.top - 1 && box.bottom <= outer.bottom + 1
+  })
+  expect(shown).toBe(true)
+  await page.keyboard.press('Escape')
+  await expect(menu).toBeHidden()
   const axe = await new AxeBuilder({ page }).include('.admin-page').analyze()
   expect(axe.violations.map((v) => v.id)).toEqual([])
   await page.evaluate(() => (document.documentElement.dataset.theme = 'dark'))
@@ -466,7 +480,7 @@ test("the owner's admin screen: only the owner sees the entry; people, reports a
   await page.getByRole('button', { name: 'Onayla' }).click()
   await expect.poll(() => changes).toContainEqual({ action: 'person', user: '11111111-1111-4111-8111-111111111111', change: 'approve' })
   // Deleting asks for the e-mail, typed.
-  await page.getByRole('button', { name: 'Hesabı sil' }).click()
+  await page.locator('.admin-person').first().getByRole('button', { name: 'Hesabı sil' }).click()
   const dialog = page.getByRole('alertdialog').or(page.getByRole('dialog'))
   await expect(dialog).toContainText('ayse@example.com')
   await expect(dialog).toBeVisible()
