@@ -1102,6 +1102,9 @@ section:has(> .media-split) { container-type: inline-size; }
 .settings-more-bar strong { font-size: var(--t-sm); font-weight: 600; }
 .settings-more-bar .switch { flex: none; }
 .settings-reset { margin: 0; text-align: center; }
+.data-export { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 0.5rem; }
+.data-export .seg-group { width: auto; flex: none; }
+@media (max-width: 40rem) { .data-export { justify-content: flex-start; } }
 .settings-page.is-searching :is(.settings-more-bar, .settings-reset) { display: none; }
 
 

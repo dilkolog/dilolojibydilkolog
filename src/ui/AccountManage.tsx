@@ -125,10 +125,15 @@ export function AccountDelete({
   account,
   identity,
   onGone,
+  label = 'Hesabı sil…',
+  className = 'account-delete-link',
 }: {
   account: Account
   identity: Identity | null
   onGone: () => void
+  /** The trigger's words and look (a quiet link under the account card; a small danger button in Veriler). */
+  label?: string
+  className?: string
 }) {
   const [open, setOpen] = useState(false)
 
@@ -150,8 +155,8 @@ export function AccountDelete({
 
   return (
     <>
-      <button type="button" className="account-delete-link" onClick={() => setOpen(true)}>
-        Hesabı sil…
+      <button type="button" className={className} onClick={() => setOpen(true)}>
+        {label}
       </button>
       {open && <AccountDeleteDialog onDelete={remove} onClose={() => setOpen(false)} />}
     </>
