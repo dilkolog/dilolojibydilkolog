@@ -67,6 +67,22 @@ export async function rest(path: string, init: RequestInit = {}): Promise<Respon
   })
 }
 
+/** The request's sign-in, when its email is confirmed by Supabase (an unconfirmed address proves nothing). */
+export async function confirmedUser(request: Request): Promise<{ id: string; email: string } | null> {
+  if (!supabaseOn()) return null
+  const token = (request.headers.get('authorization') ?? '').replace(/^Bearer\s+/i, '').trim()
+  if (!token || token.length > 4096) return null
+  try {
+    const res = await fetch(`${base()}/auth/v1/user`, { headers: { apikey: serviceKey(), authorization: `Bearer ${token}` } })
+    if (!res.ok) return null
+    const u = (await res.json()) as { id?: unknown; email?: unknown; email_confirmed_at?: unknown }
+    if (typeof u.id !== 'string' || !UUID.test(u.id) || typeof u.email !== 'string' || !u.email_confirmed_at) return null
+    return { id: u.id, email: u.email }
+  } catch {
+    return null
+  }
+}
+
 /** The person's sync account, or null when they have none yet. Throws when Supabase cannot be read. */
 export async function vaultOf(userId: string): Promise<Vault | null> {
   const res = await rest(`sync_keys?user_id=eq.${encodeURIComponent(userId)}&select=sync_id,enc,auth,username`)

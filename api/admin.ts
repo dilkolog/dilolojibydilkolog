@@ -1,4 +1,6 @@
 import { del, list } from '@vercel/blob'
+import { docsMoved, docsReady, listDocPaths, moveDocs, MOVE_BATCH } from './_docs.js'
+import { isOwnerSession } from './_owner.js'
 import { idOfUsername } from './_allow.js'
 import { mirrorApproval } from './_supabase.js'
 import { moveToTables } from './_moveTables.js'
@@ -17,6 +19,11 @@ import { approvedPath, clearAccessCache, ID, readText, rejectedPath, removeBlob,
  *   name can be claimed again. For the case where someone else claimed a name the owner listed in
  *   SYNC_ALLOWED before the owner did (the first claim wins). It also deletes that account's data.
  *
+ * POST /api/admin { action: 'move-docs', from? }
+ *   one step of copying the small R2 documents into Supabase (_docs.ts, after 0010); answers { copied, next, at }:
+ *   the caller repeats with `from: next` until `next` is null.
+ * The owner signed in (a Supabase session whose confirmed email is OWNER_EMAIL) needs no token.
+ *
  * POST /api/admin { action: 'move-tables' }
  *   moves friends, shared lists and reminders from Blob to the Supabase tables (see _moveTables.ts);
  *   GET's `tables` says whether that is possible ('ready'), done ('on'), waits for 0003 ('missing') or
@@ -30,6 +37,8 @@ import { approvedPath, clearAccessCache, ID, readText, rejectedPath, removeBlob,
 const json = (body: unknown, status = 200) => Response.json(body, { status, headers: { 'cache-control': 'no-store' } })
 
 async function authorised(request: Request): Promise<Response | null> {
+  // The owner signed in (OWNER_EMAIL, confirmed) needs no token.
+  if (await isOwnerSession(request)) return null
   const secrets = (process.env.ADMIN_TOKEN ?? '').split(/[\s,]+/).filter(Boolean)
   if (!secrets.length) return json({ error: 'not configured' }, 503)
   const given = (request.headers.get('authorization') ?? '').replace(/^Bearer\s+/i, '')
@@ -48,20 +57,13 @@ const SHOWN = 200
 const LIST_CAP = 5000
 
 async function entries(prefix: string): Promise<Entry[]> {
-  // The whole list is paged through and the newest taken: the first page is in no useful order, so a flood of
-  // requests could otherwise hide a real applicant.
-  const all: { pathname: string; uploadedAt?: Date | string }[] = []
-  let cursor: string | undefined
-  do {
-    const page = await list({ prefix, cursor })
-    all.push(...page.blobs)
-    cursor = page.hasMore && all.length < LIST_CAP ? page.cursor : undefined
-  } while (cursor)
-  const newest = all.sort((a, b) => new Date(b.uploadedAt ?? 0).getTime() - new Date(a.uploadedAt ?? 0).getTime()).slice(0, SHOWN)
+  // Read from the documents (Supabase once 0010 has run, with the old files until the move finished); a flooded
+  // queue is capped so the page stays readable, the newest shown first.
+  const paths = (await listDocPaths(prefix)).slice(0, LIST_CAP)
   const out = await Promise.all(
-    newest.map(async (b) => {
-      const id = b.pathname.match(/([0-9a-f]{64})\.json$/)?.[1]
-      const raw = id ? await readText(b.pathname) : null
+    paths.map(async (path) => {
+      const id = path.match(/([0-9a-f]{64})\.json$/)?.[1]
+      const raw = id ? await readText(path) : null
       if (!id || !raw) return null
       try {
         return { id, ...(JSON.parse(raw) as Omit<Entry, 'id'>) }
@@ -70,15 +72,18 @@ async function entries(prefix: string): Promise<Entry[]> {
       }
     }),
   )
-  return out.filter((e): e is Entry => !!e).sort((a, b) => b.at.localeCompare(a.at))
+  return out
+    .filter((e): e is Entry => !!e)
+    .sort((a, b) => (b.at ?? '').localeCompare(a.at ?? ''))
+    .slice(0, SHOWN)
 }
 
 export async function GET(request: Request): Promise<Response> {
   const refused = await authorised(request)
   if (refused) return refused
   try {
-    const [pending, approved, rejected, tables] = await Promise.all([entries('access/requests/'), entries('access/approved/'), entries('access/rejected/'), tablesState().catch(() => 'off' as const)])
-    return json({ pending, approved, rejected, tables })
+    const [pending, approved, rejected, tables, moved] = await Promise.all([entries('access/requests/'), entries('access/approved/'), entries('access/rejected/'), tablesState().catch(() => 'off' as const), docsMoved().catch(() => false)])
+    return json({ pending, approved, rejected, tables, docs: moved ? 'on' : docsReady() ? 'ready' : 'off' })
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
     throw e
@@ -88,9 +93,10 @@ export async function GET(request: Request): Promise<Response> {
 export async function POST(request: Request): Promise<Response> {
   const refused = await authorised(request)
   if (refused) return refused
-  const body = (await request.json().catch(() => null)) as { action?: string; id?: string; username?: string } | null
+  const body = (await request.json().catch(() => null)) as { action?: string; id?: string; username?: string; from?: unknown } | null
   if (body?.action === 'release') return release(body.username)
   if (body?.action === 'move-tables') return moveTables()
+  if (body?.action === 'move-docs') return moveDocsStep(body.from)
   const id = body?.id ?? ''
   if (!ID.test(id) || !['approve', 'reject', 'revoke'].includes(body?.action ?? '')) return json({ error: 'bad request' }, 400)
   try {
@@ -145,5 +151,17 @@ async function moveTables(): Promise<Response> {
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
     throw e
+  }
+}
+
+/** One step of the move of the small documents (names, requests, blocks, reports…) to Supabase (_docs.ts); the screen repeats it with `next`. */
+async function moveDocsStep(from: unknown): Promise<Response> {
+  const f = from && typeof from === 'object' ? (from as { prefix?: unknown; cursor?: unknown }) : {}
+  const prefix = Number.isInteger(f.prefix) && (f.prefix as number) >= 0 ? (f.prefix as number) : 0
+  const cursor = typeof f.cursor === 'string' && f.cursor.length < 2000 ? f.cursor : undefined
+  try {
+    return json({ ...(await moveDocs({ prefix, cursor })), batch: MOVE_BATCH })
+  } catch (e) {
+    return json({ error: e instanceof Error ? e.message : 'move failed' }, 502)
   }
 }
