@@ -665,27 +665,48 @@ function ActivityMini({ byDay, records }: { byDay: Map<string, number>; records:
   }
   const max = Math.max(1, ...days.map((d) => d.xp))
   const active = days.filter((d) => d.xp > 0).length
+  const todayKey = localDate(today)
+  // A month's name over the week its first Monday falls in (and over the first week, unless a name follows right after).
+  const mondays = Array.from({ length: weeks }, (_, w) => new Date(`${days[w * 7].key}T12:00:00`))
+  const changes = mondays.map((d, w) => w > 0 && d.getMonth() !== mondays[w - 1].getMonth())
+  const monthLabel = (w: number) =>
+    changes[w] || (w === 0 && !changes[1] && !changes[2]) ? mondays[w].toLocaleDateString('tr-TR', { month: 'short' }).replace('.', '') : ''
+  const level = (xp: number) => (xp ? 0.25 + 0.75 * (xp / max) : 0)
   return (
     <section className="card activity-mini">
       <div className="row justify-between items-center">
         <strong>{weeks >= 26 ? 'Son 6 ay' : `Son ${weeks} hafta`}</strong>
         <span className="small muted">{active ? `${active} gün çalıştın` : 'İlk çalıştığın gün burada renklenir'}</span>
       </div>
-      <div className="activity-grid" role="img" aria-label={`Son ${weeks} haftada ${active} gün çalıştın`}>
-        {/* The first column names the weekdays (Mon, Wed, Fri), so a square can be read as a day. */}
-        {['Pzt', '', 'Çar', '', 'Cum', '', ''].map((label, i) => (
-          <span key={`day${i}`} className="activity-day" aria-hidden>
-            {label}
-          </span>
-        ))}
-        {days.map((d) => (
-          <span
-            key={d.key}
-            className={`activity-cell${d.future ? ' is-future' : ''}`}
-            style={{ ['--level' as string]: d.xp ? 0.25 + 0.75 * (d.xp / max) : 0 }}
-            title={d.future ? undefined : `${new Date(`${d.key}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })}: ${d.xp} XP`}
-          />
-        ))}
+      <div className="activity-map">
+        <div className="activity-grid" role="img" aria-label={`Son ${weeks} haftada ${active} gün çalıştın`} style={{ ['--weeks' as string]: weeks }}>
+          {/* The first column names the weekdays (Mon, Wed, Fri), the first row the months, so a square can be read as a day. */}
+          {['', 'Pzt', '', 'Çar', '', 'Cum', '', ''].map((label, i) => (
+            <span key={`day${i}`} className="activity-day" aria-hidden>
+              {label}
+            </span>
+          ))}
+          {mondays.map((_, w) => [
+            <span key={`month${w}`} className="activity-month" aria-hidden>
+              {monthLabel(w)}
+            </span>,
+            ...days.slice(w * 7, w * 7 + 7).map((d) => (
+              <span
+                key={d.key}
+                className={`activity-cell${d.future ? ' is-future' : ''}${d.key === todayKey ? ' activity-today' : ''}`}
+                style={{ ['--level' as string]: level(d.xp) }}
+                title={d.future ? undefined : `${new Date(`${d.key}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })}: ${d.xp} XP`}
+              />
+            )),
+          ])}
+        </div>
+        <div className="activity-legend small muted" aria-hidden>
+          <span>Az</span>
+          {[0, 0.4, 0.7, 1].map((l) => (
+            <span key={l} className="activity-cell" style={{ ['--level' as string]: l }} />
+          ))}
+          <span>Çok</span>
+        </div>
       </div>
       <dl className="profile-records">
         {records.map(([value, label]) => (

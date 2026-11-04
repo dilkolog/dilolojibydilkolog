@@ -12,7 +12,7 @@ import { PasswordInput } from './PasswordInput'
 import { cleanHandle, HANDLE_RULE } from '../data/friends'
 import { PASSWORD_HINT, passwordProblem } from '../data/passwordRule'
 import { setPendingHandle } from './pendingHandle'
-import { completeSignIn, vaultErrorText, type SignInOutcome } from './signInFlow'
+import { completeSignIn, vaultErrorText, type SignInOutcome, type SignInStage } from './signInFlow'
 import { showToast } from './toastFeed'
 
 export type SupabaseMode = 'login' | 'create' | 'return'
@@ -52,6 +52,7 @@ function GoogleMark() {
  */
 export function SupabaseAuth({ initialMode = 'login', onDone, onBack, backLabel = 'Ayarlar', onHome }: { initialMode?: SupabaseMode; onDone: () => void; onBack?: () => void; /** What the way back says (Settings). */ backLabel?: string; /** Before signing in: the site's bar on top, its logo leading back to the landing page (no "back" link then). */ onHome?: () => void }) {
   const [step, setStep] = useState<Step>(initialMode === 'return' ? 'working' : initialMode)
+  const [stage, setStage] = useState<SignInStage>('account')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [repeat, setRepeat] = useState('')
@@ -123,7 +124,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack, backLabel 
       }
       session.current = s
       if (recovery) return setStep('recovery')
-      await attempt(async () => finish(await completeSignIn(s)))
+      await attempt(async () => finish(await completeSignIn(s, setStage)))
     })()
   }, [initialMode]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -168,7 +169,10 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack, backLabel 
       const s = await currentSession()
       if (!s) throw new Error('Giriş tamamlanamadı; tekrar dene.')
       session.current = s
-      finish(await completeSignIn(s))
+      // The password was right: what is left (the account, the data to this device) shows as its own step, not as a button that says "wait".
+      setStage('account')
+      setStep('working')
+      finish(await completeSignIn(s, setStage))
     }, true)
 
   const resend = () =>
@@ -318,7 +322,8 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack, backLabel 
         {step === 'working' && (
           <div className="auth-working" role="status">
             {!error && <span className="auth-spinner" aria-hidden />}
-            <p className="muted">{error ? 'Giriş tamamlanamadı.' : 'Hesabın hazırlanıyor…'}</p>
+            <p className="muted">{error ? 'Giriş tamamlanamadı.' : stage === 'data' ? 'Verilerin bu cihaza getiriliyor…' : 'Hesabın açılıyor…'}</p>
+            {!error && stage === 'data' && <p className="small muted">İlk girişte biraz sürebilir: kelimelerin, ilerlemen, resimlerin ve ses kayıtların iniyor.</p>}
           </div>
         )}
         {step === 'working' && error && (
@@ -328,7 +333,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack, backLabel 
             </p>
             <div className="stack gap-2">
               {session.current && (
-                <button type="button" className="btn auth-submit" disabled={busy} onClick={() => void attempt(async () => finish(await completeSignIn(session.current!)))}>
+                <button type="button" className="btn auth-submit" disabled={busy} onClick={() => void attempt(async () => finish(await completeSignIn(session.current!, setStage)))}>
                   {busy ? 'Bekle…' : 'Tekrar dene'}
                 </button>
               )}
@@ -339,7 +344,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack, backLabel 
           </>
         )}
 
-        {step === 'recovery' && <Recovery onSaved={() => session.current && void attempt(async () => finish(await completeSignIn(session.current!)))} />}
+        {step === 'recovery' && <Recovery onSaved={() => session.current && void attempt(async () => finish(await completeSignIn(session.current!, setStage)))} />}
 
 
         <div className="auth-note">
