@@ -1,5 +1,6 @@
 import { normalize, stripDiacritics } from './answerCheck'
 import { timeOf, type TargetLanguage } from './types'
+import { catalogTopicName } from '../data/grammarCatalog'
 
 /**
  * Grammar questions: the basics of A1–A2 (the topics of the guide's basic lessons) and the hard points of B1–C1: a gap to fill, a choice, or an error to find.
@@ -7,7 +8,7 @@ import { timeOf, type TargetLanguage } from './types'
  * (own, and later imported open-licence sets); how the learner does is kept per question.
  */
 export type GrammarType = 'cloze' | 'choice' | 'error'
-export type GrammarLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1'
+export type GrammarLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'
 
 export interface GrammarExercise {
   id: string
@@ -185,7 +186,7 @@ export const TOPIC_NAME: Record<string, string> = {
   rewrite_en: 'Cümle dönüşümü',
 }
 
-export const topicName = (topic: string) => TOPIC_NAME[topic] ?? topic
+export const topicName = (topic: string) => TOPIC_NAME[topic] ?? catalogTopicName(topic) ?? topic
 
 export type GrammarVerdict = 'correct' | 'near' | 'wrong'
 

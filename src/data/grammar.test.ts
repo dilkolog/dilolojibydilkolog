@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { checkGrammar, sentenceTokens, TOPIC_NAME } from '../engine/grammar'
+import { checkGrammar, sentenceTokens, topicName } from '../engine/grammar'
 import { grammarExercises } from './grammar'
 
 describe('the grammar questions', () => {
@@ -14,7 +14,7 @@ describe('the grammar questions', () => {
 
   it('each have a known topic, a rule in Turkish and a source', () => {
     for (const e of all) {
-      expect(TOPIC_NAME[e.topic], e.id).toBeTruthy()
+      expect(topicName(e.topic), e.id).not.toBe(e.topic)
       expect(e.explanation.length, e.id).toBeGreaterThan(20)
       expect(e.source, e.id).toBeTruthy()
     }
