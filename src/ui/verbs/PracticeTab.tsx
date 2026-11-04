@@ -81,6 +81,8 @@ export function PracticeTab({
   initialMode = 'type',
   byFrequency,
   onNewVerb,
+  nextIrregular,
+  onNextIrregular,
 }: {
   language: LabLanguage
   verb: string
@@ -102,6 +104,9 @@ export function PracticeTab({
   byFrequency: readonly string[]
   /** A random other verb that has this tense: offered when a round is done. */
   onNewVerb?: () => void
+  /** The next common verb with irregular forms in this tense (not practised this visit): offered first when a round is done. */
+  nextIrregular?: string | null
+  onNextIrregular?: () => void
 }) {
   const [mode, setMode] = useState<Mode>(initialMode)
   const pickMode = (m: Mode) => {
@@ -269,13 +274,18 @@ export function PracticeTab({
             </ul>
           )}
           <div className="row gap-2">
-            {/* A round with every form right goes on to another verb in the same tense; a bad one is tried again first. */}
+            {/* A round with every form right goes on in the same tense (the next irregular first, else a random verb); a bad one is tried again first. */}
+            {nextIrregular && onNextIrregular && (
+              <button type="button" className={wrong === 0 ? 'btn' : 'btn btn-quiet'} onClick={onNextIrregular} autoFocus={wrong === 0}>
+                Sıradaki düzensiz: <span lang={language}>{nextIrregular}</span>
+              </button>
+            )}
             {onNewVerb && (
-              <button type="button" className={wrong === 0 ? 'btn' : 'btn btn-quiet'} onClick={onNewVerb} autoFocus={wrong === 0}>
+              <button type="button" className={wrong === 0 && !nextIrregular ? 'btn' : 'btn btn-quiet'} onClick={onNewVerb} autoFocus={wrong === 0 && !nextIrregular}>
                 Yeni fiil
               </button>
             )}
-            <button type="button" className={onNewVerb && wrong === 0 ? 'btn btn-quiet' : 'btn'} onClick={reset} autoFocus={!onNewVerb || wrong > 0}>
+            <button type="button" className={(onNewVerb || nextIrregular) && wrong === 0 ? 'btn btn-quiet' : 'btn'} onClick={reset} autoFocus={(!onNewVerb && !nextIrregular) || wrong > 0}>
               Tekrar
             </button>
             {nextTense !== tense && (
