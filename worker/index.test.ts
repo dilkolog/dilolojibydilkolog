@@ -117,7 +117,8 @@ describe('Worker scheduled cron job (16.3 F5)', () => {
 
     await worker.scheduled(controller, env, ctx)
 
-    expect(ctx.waitUntil).toHaveBeenCalledTimes(1)
+    // The reminders and the hourly health check (api/_health.ts).
+    expect(ctx.waitUntil).toHaveBeenCalledTimes(2)
     expect(cronGetSpy).toHaveBeenCalled()
     expect(capturedRequest).toBeDefined()
 
@@ -141,9 +142,10 @@ describe('Worker scheduled cron job (16.3 F5)', () => {
       await Promise.all(promises)
       return (ctx.waitUntil as ReturnType<typeof vi.fn>).mock.calls.length
     }
-    expect(await run(Date.UTC(2026, 9, 19, 8))).toBe(2)
-    expect(await run(Date.UTC(2026, 9, 19, 5))).toBe(1)
-    expect(await run(Date.UTC(2026, 9, 21, 8))).toBe(1)
+    // Every hour: reminders and the health check; Monday from 07:00 the digest too.
+    expect(await run(Date.UTC(2026, 9, 19, 8))).toBe(3)
+    expect(await run(Date.UTC(2026, 9, 19, 5))).toBe(2)
+    expect(await run(Date.UTC(2026, 9, 21, 8))).toBe(2)
     cronGetSpy.mockRestore()
     logSpy.mockRestore()
   })

@@ -9,6 +9,7 @@ import * as ai from '../api/ai.js'
 import * as admin from '../api/admin.js'
 import * as clips from '../api/clips.js'
 import * as cron from '../api/cron-reminder.js'
+import * as health from '../api/health.js'
 import * as listen from '../api/listen.js'
 import * as log from '../api/log.js'
 import * as news from '../api/news.js'
@@ -20,6 +21,7 @@ import * as translate from '../api/translate.js'
 import * as youtube from '../api/youtube.js'
 import { noteError, sendErrorDigest } from '../api/_errorDigest.js'
 import { pruneCounters } from '../api/_quota.js'
+import { healthAlert } from '../api/_health.js'
 import { fromApp } from '../api/_origin.js'
 import { clientKey, overLimit, tooMany } from '../api/_rate.js'
 import { cleanRoomCode } from '../src/engine/liveDuel.js'
@@ -51,7 +53,7 @@ function hardened(res: Response, bodyless: boolean): Response {
   return new Response(bodyless ? null : res.body, { status: res.status, statusText: res.statusText, headers })
 }
 
-const ROUTES: Record<string, Module> = { access, admin, ai, clips, 'cron-reminder': cron, listen, log, news, push, share, speech, sync, translate, youtube }
+const ROUTES: Record<string, Module> = { access, admin, ai, clips, 'cron-reminder': cron, health, listen, log, news, push, share, speech, sync, translate, youtube }
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
@@ -101,6 +103,8 @@ export default {
     const when = new Date(controller.scheduledTime)
     if (when.getUTCDay() === 1 && hour >= 7) ctx.waitUntil(sendErrorDigest(controller.scheduledTime).then((r) => console.log('[error-digest]', r)).catch((e) => console.error('[error-digest-failed]', e)))
     // Once a day, 03:00 UTC: counters older than 120 days go (api/_quota.ts; nothing to do before migration 0009).
+    // Every hour: the owner hears when something breaks or is fixed (api/_health.ts; only when the problems change).
+    ctx.waitUntil(healthAlert(controller.scheduledTime).then((r) => console.log('[health-alert]', r)))
     if (hour === 3) ctx.waitUntil(pruneCounters().then((n) => console.log('[counter-prune]', n)).catch((e) => console.error('[counter-prune-failed]', e)))
     ctx.waitUntil(
       cron.GET(request).then(async (res) => {
