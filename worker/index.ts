@@ -19,6 +19,7 @@ import * as sync from '../api/sync.js'
 import * as translate from '../api/translate.js'
 import * as youtube from '../api/youtube.js'
 import { noteError, sendErrorDigest } from '../api/_errorDigest.js'
+import { pruneCounters } from '../api/_quota.js'
 import { fromApp } from '../api/_origin.js'
 import { clientKey, overLimit, tooMany } from '../api/_rate.js'
 import { cleanRoomCode } from '../src/engine/liveDuel.js'
@@ -99,6 +100,8 @@ export default {
     // Monday, from 07:00 UTC: last week's most frequent errors to the owner (once; see api/_errorDigest.ts).
     const when = new Date(controller.scheduledTime)
     if (when.getUTCDay() === 1 && hour >= 7) ctx.waitUntil(sendErrorDigest(controller.scheduledTime).then((r) => console.log('[error-digest]', r)).catch((e) => console.error('[error-digest-failed]', e)))
+    // Once a day, 03:00 UTC: counters older than 120 days go (api/_quota.ts; nothing to do before migration 0009).
+    if (hour === 3) ctx.waitUntil(pruneCounters().then((n) => console.log('[counter-prune]', n)).catch((e) => console.error('[counter-prune-failed]', e)))
     ctx.waitUntil(
       cron.GET(request).then(async (res) => {
         const text = await res.text()
