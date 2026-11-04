@@ -1,0 +1,1368 @@
+[
+  {
+    "id": "nouns",
+    "title": "İsimler ve artikeller",
+    "description": "Cinsiyet, çoğul, tanımlıklar ve isim grubu.",
+    "topics": [
+      {
+        "id": "basics_es_articulos",
+        "level": "A1",
+        "title": "Artikeller ve cinsiyet",
+        "description": "el, la, los, las · un, una, unos, unas"
+      },
+      {
+        "id": "catalog_es_noun_gender",
+        "level": "A1",
+        "title": "İsimlerde eril ve dişil",
+        "description": "Biçim, anlam ve cinsiyet ipuçları"
+      },
+      {
+        "id": "catalog_es_noun_plural",
+        "level": "A1",
+        "title": "İsimlerde çoğul",
+        "description": "Ünlü, ünsüz ve vurguya göre çoğul"
+      },
+      {
+        "id": "catalog_es_definite_articles",
+        "level": "A1",
+        "title": "Belirli artikeller",
+        "description": "el, la, los, las"
+      },
+      {
+        "id": "catalog_es_indefinite_articles",
+        "level": "A1",
+        "title": "Belirsiz artikeller",
+        "description": "un, una, unos, unas"
+      },
+      {
+        "id": "catalog_es_article_contractions",
+        "level": "A1",
+        "title": "Al ve del birleşmeleri",
+        "description": "a + el; de + el; özel isim istisnaları"
+      },
+      {
+        "id": "catalog_es_stressed_a",
+        "level": "A2",
+        "title": "Vurgulu a / ha önünde artikel",
+        "description": "el agua fría, un águila; sıfat uyumu"
+      },
+      {
+        "id": "catalog_es_article_omission",
+        "level": "A2",
+        "title": "Artikelin kullanılmadığı durumlar",
+        "description": "Meslek, madde, sayılamayan isim ve genel ifadeler"
+      },
+      {
+        "id": "catalog_es_article_proper_names",
+        "level": "B1",
+        "title": "Özel isimlerle artikel",
+        "description": "Ülkeler, kişiler, kurumlar ve başlıklar"
+      },
+      {
+        "id": "catalog_es_count_mass",
+        "level": "A2",
+        "title": "Sayılabilen ve sayılamayan isimler",
+        "description": "Nesne, madde ve anlam değişimi"
+      },
+      {
+        "id": "catalog_es_gender_meaning",
+        "level": "B2",
+        "title": "Cinsiyetle anlamı değişen isimler",
+        "description": "el capital / la capital; el orden / la orden"
+      },
+      {
+        "id": "catalog_es_compound_nouns",
+        "level": "B2",
+        "title": "Birleşik isimler ve çoğulları",
+        "description": "sacacorchos, hombre rana, palabras clave"
+      },
+      {
+        "id": "catalog_es_common_gender",
+        "level": "B2",
+        "title": "Ortak ve sabit cinsiyetli isimler",
+        "description": "el / la estudiante; la víctima"
+      },
+      {
+        "id": "catalog_es_nominal_ellipsis",
+        "level": "C1",
+        "title": "İsim grubunda eksilti",
+        "description": "el de ayer, la pequeña; örtük isim"
+      }
+    ]
+  },
+  {
+    "id": "determiners",
+    "title": "Belirleyiciler ve miktar",
+    "description": "İyelik, işaret, belirsizlik ve nötr yapılar.",
+    "topics": [
+      {
+        "id": "basics_es_posesivos",
+        "level": "A1",
+        "title": "İyelik ve işaret sıfatları",
+        "description": "mi, tu, su · este, ese, aquel"
+      },
+      {
+        "id": "catalog_es_possessives",
+        "level": "A1",
+        "title": "Kısa ve uzun iyelik biçimleri",
+        "description": "mi libro, un amigo mío, el mío"
+      },
+      {
+        "id": "catalog_es_demonstratives",
+        "level": "A1",
+        "title": "İşaret belirleyicileri",
+        "description": "este, ese, aquel ve uzaklık"
+      },
+      {
+        "id": "catalog_es_neutral_demonstratives",
+        "level": "A2",
+        "title": "Nötr işaret zamirleri",
+        "description": "esto, eso, aquello"
+      },
+      {
+        "id": "catalog_es_indefinite_determiners",
+        "level": "A2",
+        "title": "Belirsiz belirleyiciler",
+        "description": "algún, ningún, cualquier, otro"
+      },
+      {
+        "id": "catalog_es_quantifiers",
+        "level": "A2",
+        "title": "Miktar belirten sözcükler",
+        "description": "mucho, poco, bastante, demasiado"
+      },
+      {
+        "id": "catalog_es_todo_cada",
+        "level": "A2",
+        "title": "Todo ve cada",
+        "description": "Bütünlük, dağıtım ve uyum"
+      },
+      {
+        "id": "catalog_es_ambos_sendos",
+        "level": "C1",
+        "title": "Ambos, sendos ve demás",
+        "description": "İkilik, dağılım ve ileri belirleyiciler"
+      },
+      {
+        "id": "catalog_es_un_cierto_cualquiera",
+        "level": "B2",
+        "title": "Un, cierto ve cualquiera ile anlam",
+        "description": "Belirsizlik, değerlendirme ve sözcük sırası"
+      },
+      {
+        "id": "basics_es_lo_neutro",
+        "level": "B2",
+        "title": "Nötr lo",
+        "description": "lo bueno, lo de ayer, lo que"
+      }
+    ]
+  },
+  {
+    "id": "adjectives",
+    "title": "Sıfatlar ve karşılaştırma",
+    "description": "Uyum, yer, kısalma ve derecelendirme.",
+    "topics": [
+      {
+        "id": "basics_es_adjetivos",
+        "level": "A1",
+        "title": "Sıfatlar: uyum ve yer",
+        "description": "Cinsiyet, sayı ve sıfatın konumu"
+      },
+      {
+        "id": "catalog_es_adjective_agreement",
+        "level": "A1",
+        "title": "Sıfatlarda cinsiyet ve çoğul",
+        "description": "Düzenli biçimler ve değişmeyen sıfatlar"
+      },
+      {
+        "id": "catalog_es_adjective_position",
+        "level": "A2",
+        "title": "Sıfatın yeriyle anlam değişimi",
+        "description": "un viejo amigo / un amigo viejo"
+      },
+      {
+        "id": "catalog_es_apocope",
+        "level": "A2",
+        "title": "Sıfat ve belirleyicilerde kısalma",
+        "description": "bueno → buen; grande → gran; alguno → algún"
+      },
+      {
+        "id": "catalog_es_relational_adjectives",
+        "level": "B2",
+        "title": "Niteleme ve ilişki sıfatları",
+        "description": "Sıralama, derecelendirme ve anlam"
+      },
+      {
+        "id": "comparativos_es",
+        "level": "A2",
+        "title": "Karşılaştırma ve üstünlük",
+        "description": "más, menos, tan; el más"
+      },
+      {
+        "id": "catalog_es_irregular_comparatives",
+        "level": "A2",
+        "title": "Düzensiz karşılaştırma",
+        "description": "mejor, peor, mayor, menor"
+      },
+      {
+        "id": "catalog_es_absolute_superlatives",
+        "level": "B1",
+        "title": "Mutlak üstünlük",
+        "description": "-ísimo, -érrimo ve yazım değişimleri"
+      },
+      {
+        "id": "catalog_es_adjective_complements",
+        "level": "B1",
+        "title": "Sıfatların aldığı edatlar",
+        "description": "fácil de, útil para, dispuesto a"
+      },
+      {
+        "id": "catalog_es_ser_estar_adjective",
+        "level": "B1",
+        "title": "Sıfatla ser / estar anlam farkı",
+        "description": "ser listo / estar listo; ser aburrido / estar aburrido"
+      },
+      {
+        "id": "catalog_es_adjective_adverb",
+        "level": "B2",
+        "title": "Zarf görevinde sıfatlar",
+        "description": "hablar claro, trabajar duro"
+      }
+    ]
+  },
+  {
+    "id": "pronouns",
+    "title": "Zamirler",
+    "description": "Kişi, nesne, dönüşlülük ve zamir sırası.",
+    "topics": [
+      {
+        "id": "basics_es_pronombres",
+        "level": "A1",
+        "title": "Kişi zamirleri",
+        "description": "yo, tú, él; mí, ti, conmigo"
+      },
+      {
+        "id": "catalog_es_subject_omission",
+        "level": "A2",
+        "title": "Özne zamirini kullanma ve düşürme",
+        "description": "Vurgu, karşıtlık ve bağlam"
+      },
+      {
+        "id": "catalog_es_usted_vosotros",
+        "level": "A1",
+        "title": "Tú, usted, vosotros, ustedes",
+        "description": "Hitap ve kişi uyumu"
+      },
+      {
+        "id": "catalog_es_direct_pronouns",
+        "level": "A2",
+        "title": "Doğrudan nesne zamirleri",
+        "description": "me, te, lo, la, nos, os, los, las"
+      },
+      {
+        "id": "catalog_es_indirect_pronouns",
+        "level": "A2",
+        "title": "Dolaylı nesne zamirleri",
+        "description": "me, te, le, nos, os, les"
+      },
+      {
+        "id": "pronombres_atonos",
+        "level": "B1",
+        "title": "Zamirler: lo / la / le / se lo",
+        "description": "COD / COI ve çift nesne"
+      },
+      {
+        "id": "basics_es_orden_pronombres",
+        "level": "B1",
+        "title": "Zamir sırası, kazara se ve leísmo",
+        "description": "se lo, se me; kişi ve nesne sırası"
+      },
+      {
+        "id": "catalog_es_clitic_position",
+        "level": "A2",
+        "title": "Zamirin fiile göre yeri",
+        "description": "lo hago, hacerlo, haciéndolo, hazlo"
+      },
+      {
+        "id": "catalog_es_object_doubling",
+        "level": "B1",
+        "title": "Nesnenin zamirle tekrarı",
+        "description": "A María le gusta; a él lo vi"
+      },
+      {
+        "id": "catalog_es_leismo_laismo_loismo",
+        "level": "C1",
+        "title": "Leísmo, laísmo ve loísmo",
+        "description": "Standart kullanım ve bölgesel farklılıklar"
+      },
+      {
+        "id": "catalog_es_ethical_dative",
+        "level": "C1",
+        "title": "İlgi ve sahiplik datifi",
+        "description": "se me cayó, me comí, te lo guardo"
+      },
+      {
+        "id": "catalog_es_reciprocal_pronouns",
+        "level": "B1",
+        "title": "Karşılıklılık",
+        "description": "nos, os, se; el uno al otro"
+      },
+      {
+        "id": "catalog_es_indefinite_pronouns",
+        "level": "A2",
+        "title": "Belirsiz zamirler",
+        "description": "alguien, nadie, algo, nada, cualquiera"
+      },
+      {
+        "id": "catalog_es_pronoun_reference",
+        "level": "C1",
+        "title": "Zamirlerde gönderim",
+        "description": "Öncül, belirsizlik ve metin bağdaşıklığı"
+      }
+    ]
+  },
+  {
+    "id": "verb-basics",
+    "title": "Fiillerin temelleri",
+    "description": "Çekim, ser / estar, dönüşlü fiiller ve fiil kalıpları.",
+    "topics": [
+      {
+        "id": "catalog_es_verb_groups",
+        "level": "A1",
+        "title": "Fiil grupları ve kişi ekleri",
+        "description": "-ar, -er, -ir"
+      },
+      {
+        "id": "catalog_es_stem_changes",
+        "level": "A1",
+        "title": "Kök değişimli fiiller",
+        "description": "e → ie, o → ue, e → i"
+      },
+      {
+        "id": "catalog_es_spelling_changes",
+        "level": "A2",
+        "title": "Çekimde yazım değişimleri",
+        "description": "-car, -gar, -zar, -ger, -gir, -guir"
+      },
+      {
+        "id": "catalog_es_irregular_verbs",
+        "level": "A1",
+        "title": "Sık kullanılan düzensiz fiiller",
+        "description": "ser, estar, ir, tener, venir, hacer"
+      },
+      {
+        "id": "ser_estar",
+        "level": "A2",
+        "title": "Ser ve estar",
+        "description": "Nitelik, durum, yer ve anlam farkları"
+      },
+      {
+        "id": "basics_es_hay_estar",
+        "level": "A1",
+        "title": "Hay mı, está mı?",
+        "description": "Varlık ve belirli bir şeyin konumu"
+      },
+      {
+        "id": "catalog_es_haber_tener",
+        "level": "A2",
+        "title": "Haber ve tener",
+        "description": "Yardımcı fiil, varlık ve sahiplik"
+      },
+      {
+        "id": "basics_es_reflexivos",
+        "level": "A1",
+        "title": "Dönüşlü fiiller",
+        "description": "levantarse, llamarse, ducharse"
+      },
+      {
+        "id": "catalog_es_pronominal_meaning",
+        "level": "B1",
+        "title": "Se ile anlamı değişen fiiller",
+        "description": "ir / irse; quedar / quedarse; dormir / dormirse"
+      },
+      {
+        "id": "basics_es_gustar",
+        "level": "A1",
+        "title": "Gustar ve benzeri fiiller",
+        "description": "encantar, interesar, doler; özne-nesne düzeni"
+      },
+      {
+        "id": "catalog_es_modal_verbs",
+        "level": "A2",
+        "title": "Yetenek, izin ve zorunluluk",
+        "description": "poder, saber, deber, tener que"
+      },
+      {
+        "id": "basics_es_verbos_cambio",
+        "level": "B2",
+        "title": "Değişim bildiren fiiller",
+        "description": "ponerse, quedarse, volverse, hacerse, llegar a ser"
+      },
+      {
+        "id": "colloc_es",
+        "level": "B1",
+        "title": "Eşdizimler: hangi fiil?",
+        "description": "hacer, dar, tomar, tener ve kalıplar"
+      },
+      {
+        "id": "catalog_es_verb_valency",
+        "level": "B2",
+        "title": "Geçişli ve geçişsiz fiiller",
+        "description": "Nesne, edatlı tümleç ve çift yapı"
+      },
+      {
+        "id": "catalog_es_defective_verbs",
+        "level": "C1",
+        "title": "Eksik çekimli ve kişisiz fiiller",
+        "description": "soler, llover; hava olayları ve sınırlı çekimler"
+      }
+    ]
+  },
+  {
+    "id": "indicative",
+    "title": "Haber kipi ve zamanlar",
+    "description": "Presente, geçmiş zamanlar, gelecek ve zaman karşılaştırmaları.",
+    "topics": [
+      {
+        "id": "basics_es_presente",
+        "level": "A1",
+        "title": "Şimdiki zaman (presente)",
+        "description": "Düzenli ve düzensiz çekimler"
+      },
+      {
+        "id": "catalog_es_present_uses",
+        "level": "A2",
+        "title": "Presente kullanım alanları",
+        "description": "Alışkanlık, genel gerçek, anlatı ve gelecek"
+      },
+      {
+        "id": "catalog_es_perfecto",
+        "level": "A2",
+        "title": "Pretérito perfecto compuesto",
+        "description": "he hablado; kuruluş ve kullanım"
+      },
+      {
+        "id": "basics_es_preterito",
+        "level": "A2",
+        "title": "Pretérito indefinido",
+        "description": "hablé, comí, fui; bitmiş geçmiş"
+      },
+      {
+        "id": "catalog_es_imperfecto",
+        "level": "A2",
+        "title": "Pretérito imperfecto",
+        "description": "hablaba, tenía, era; tasvir ve alışkanlık"
+      },
+      {
+        "id": "preterito_imperfecto",
+        "level": "B1",
+        "title": "Indefinido ve imperfecto",
+        "description": "Olay, arka plan ve görünüş farkı"
+      },
+      {
+        "id": "basics_es_perfecto_indefinido",
+        "level": "B1",
+        "title": "Perfecto mu, indefinido mu?",
+        "description": "he hecho / hice; zaman işaretleri"
+      },
+      {
+        "id": "basics_es_pluscuamperfecto",
+        "level": "B1",
+        "title": "Pluscuamperfecto",
+        "description": "había hecho; geçmişin geçmişi"
+      },
+      {
+        "id": "catalog_es_preterito_anterior",
+        "level": "C2",
+        "title": "Pretérito anterior",
+        "description": "hube terminado; edebî kullanım"
+      },
+      {
+        "id": "basics_es_futuro",
+        "level": "A2",
+        "title": "Gelecek zamanlar: karma alıştırmalar",
+        "description": "ir a, futuro simple ve tahmin"
+      },
+      {
+        "id": "catalog_es_futuro_simple",
+        "level": "A2",
+        "title": "Futuro simple",
+        "description": "Düzenli ve düzensiz kökler"
+      },
+      {
+        "id": "catalog_es_futuro_compuesto",
+        "level": "B2",
+        "title": "Futuro compuesto",
+        "description": "habré hecho; gelecekte tamamlanmışlık"
+      },
+      {
+        "id": "catalog_es_ir_a",
+        "level": "A1",
+        "title": "Yakın gelecek: ir a + mastar",
+        "description": "Plan ve niyet"
+      },
+      {
+        "id": "basics_es_probabilidad",
+        "level": "B2",
+        "title": "Zamanlarla olasılık ve tahmin",
+        "description": "serán, habrán sido, serían"
+      },
+      {
+        "id": "catalog_es_historical_present",
+        "level": "B2",
+        "title": "Anlatıda zaman seçimi",
+        "description": "Presente histórico ve anlatı perspektifi"
+      },
+      {
+        "id": "catalog_es_tense_aspect",
+        "level": "C1",
+        "title": "Zaman, görünüş ve eylem türü",
+        "description": "Bitmişlik, süreklilik, başlangıç ve sonuç"
+      }
+    ]
+  },
+  {
+    "id": "subjunctive",
+    "title": "Dilek kipi: subjuntivo",
+    "description": "Çekim, tetikleyiciler, kip seçimi ve geçmiş biçimler.",
+    "topics": [
+      {
+        "id": "subjuntivo",
+        "level": "B1",
+        "title": "Subjuntivo: karma alıştırmalar",
+        "description": "İstek, duygu, şüphe ve bağlaçlar"
+      },
+      {
+        "id": "catalog_es_subjuntivo_present_forms",
+        "level": "B1",
+        "title": "Presente de subjuntivo çekimi",
+        "description": "Düzenli, düzensiz ve kök değişimli biçimler"
+      },
+      {
+        "id": "catalog_es_subjuntivo_wish",
+        "level": "B1",
+        "title": "İstek, rica ve etki",
+        "description": "querer que, pedir que, recomendar que"
+      },
+      {
+        "id": "catalog_es_subjuntivo_emotion",
+        "level": "B1",
+        "title": "Duygu ve değerlendirme",
+        "description": "me alegra que, es importante que"
+      },
+      {
+        "id": "catalog_es_subjuntivo_doubt",
+        "level": "B1",
+        "title": "Şüphe, ihtimal ve olumsuz inanç",
+        "description": "dudar que, es posible que, no creer que"
+      },
+      {
+        "id": "catalog_es_indicativo_subjuntivo",
+        "level": "B2",
+        "title": "Indicativo mu, subjuntivo mu?",
+        "description": "Bilgi, tutum ve anlam değişimi"
+      },
+      {
+        "id": "catalog_es_ojala",
+        "level": "B1",
+        "title": "Ojalá ve bağımsız dilek cümleleri",
+        "description": "Gerçekleşebilir ve gerçekleşmemiş dilekler"
+      },
+      {
+        "id": "basics_es_imperfecto_subjuntivo",
+        "level": "B2",
+        "title": "Imperfecto de subjuntivo",
+        "description": "-ra / -se biçimleri ve kullanım"
+      },
+      {
+        "id": "basics_es_subjuntivo_compuesto",
+        "level": "B2",
+        "title": "Bileşik subjuntivo zamanları",
+        "description": "haya hecho, hubiera hecho"
+      },
+      {
+        "id": "catalog_es_perfecto_subjuntivo",
+        "level": "B2",
+        "title": "Pretérito perfecto de subjuntivo",
+        "description": "haya + participio"
+      },
+      {
+        "id": "catalog_es_pluscuamperfecto_subjuntivo",
+        "level": "C1",
+        "title": "Pluscuamperfecto de subjuntivo",
+        "description": "hubiera / hubiese + participio"
+      },
+      {
+        "id": "basics_es_subjuntivo_relativo",
+        "level": "B2",
+        "title": "İlgi cümlesinde subjuntivo",
+        "description": "Belirsiz, aranan veya var olmayan öncül"
+      },
+      {
+        "id": "catalog_es_subjuntivo_independent",
+        "level": "C1",
+        "title": "Bağımsız subjuntivo yapıları",
+        "description": "Que te vaya bien; sea lo que sea"
+      },
+      {
+        "id": "catalog_es_subjuntivo_alternation",
+        "level": "C1",
+        "title": "Kiple anlamı değişen yapılar",
+        "description": "aunque, como, cuando; aktarım ve varsayım"
+      },
+      {
+        "id": "catalog_es_future_subjuntivo",
+        "level": "C2",
+        "title": "Futuro de subjuntivo",
+        "description": "fuere, hubiere; hukuk ve kalıplaşmış dil"
+      }
+    ]
+  },
+  {
+    "id": "conditions",
+    "title": "Koşul, varsayım ve şart kipi",
+    "description": "Condicional, si cümleleri ve alternatif koşul yapıları.",
+    "topics": [
+      {
+        "id": "catalog_es_condicional_simple",
+        "level": "B1",
+        "title": "Condicional simple",
+        "description": "Çekim, rica, öneri ve geçmişten gelecek"
+      },
+      {
+        "id": "catalog_es_condicional_compuesto",
+        "level": "B2",
+        "title": "Condicional compuesto",
+        "description": "habría hecho; geçmişte gerçekleşmeyen sonuç"
+      },
+      {
+        "id": "condicionales",
+        "level": "B2",
+        "title": "Şart cümleleri: karma alıştırmalar",
+        "description": "si ile gerçek, varsayımsal ve geçmiş koşullar"
+      },
+      {
+        "id": "catalog_es_si_real",
+        "level": "A2",
+        "title": "Gerçek ve olası şartlar",
+        "description": "si + presente; presente, futuro, imperativo"
+      },
+      {
+        "id": "catalog_es_si_unreal_present",
+        "level": "B1",
+        "title": "Şimdiki zamanda varsayım",
+        "description": "si tuviera, haría"
+      },
+      {
+        "id": "catalog_es_si_unreal_past",
+        "level": "B2",
+        "title": "Geçmişte gerçekleşmeyen şart",
+        "description": "si hubiera hecho, habría hecho"
+      },
+      {
+        "id": "catalog_es_mixed_conditions",
+        "level": "C1",
+        "title": "Karma şart cümleleri",
+        "description": "Geçmiş neden, bugünkü sonuç ve tersi"
+      },
+      {
+        "id": "basics_es_condicion_alternativa",
+        "level": "C1",
+        "title": "Si’siz koşul yapıları",
+        "description": "en caso de que, a no ser que, como, de + mastar"
+      },
+      {
+        "id": "catalog_es_conditional_regret",
+        "level": "B2",
+        "title": "Pişmanlık ve sitem",
+        "description": "debería haber, podría haber, si hubiera sabido"
+      },
+      {
+        "id": "catalog_es_conditional_information",
+        "level": "C1",
+        "title": "Haber ve söylentide condicional",
+        "description": "Doğrulanmamış bilgi ve mesafe"
+      },
+      {
+        "id": "catalog_es_como_si",
+        "level": "B2",
+        "title": "Como si ile varsayımsal karşılaştırma",
+        "description": "Sanki: imperfecto / pluscuamperfecto de subjuntivo"
+      }
+    ]
+  },
+  {
+    "id": "nonfinite",
+    "title": "Emir, mastar ve ortaçlar",
+    "description": "Imperativo, infinitivo, gerundio ve participio.",
+    "topics": [
+      {
+        "id": "imperativo_es",
+        "level": "A2",
+        "title": "Emir kipi ve zamirler",
+        "description": "Olumlu-olumsuz emir ve zamirlerin yeri"
+      },
+      {
+        "id": "catalog_es_imperative_forms",
+        "level": "A2",
+        "title": "Olumlu emir çekimleri",
+        "description": "tú, usted, nosotros, vosotros, ustedes"
+      },
+      {
+        "id": "catalog_es_negative_imperative",
+        "level": "A2",
+        "title": "Olumsuz emir",
+        "description": "no + subjuntivo; zamirlerin yeri"
+      },
+      {
+        "id": "catalog_es_infinitive",
+        "level": "A2",
+        "title": "Mastarın kullanımları",
+        "description": "Özne, nesne, edat sonrası ve talimatlar"
+      },
+      {
+        "id": "catalog_es_compound_infinitive",
+        "level": "B2",
+        "title": "Bileşik mastar",
+        "description": "haber hecho; öncelik ve tamamlanmışlık"
+      },
+      {
+        "id": "catalog_es_infinitive_subject",
+        "level": "C1",
+        "title": "Mastar cümlesinde açık özne",
+        "description": "al llegar yo, de saberlo tú"
+      },
+      {
+        "id": "basics_es_gerundio",
+        "level": "B1",
+        "title": "Gerundio ve -ing tuzakları",
+        "description": "Kuruluş, eşzamanlılık ve kullanım sınırları"
+      },
+      {
+        "id": "catalog_es_gerundio_forms",
+        "level": "A2",
+        "title": "Gerundio biçimleri",
+        "description": "hablando, comiendo, durmiendo, yendo"
+      },
+      {
+        "id": "catalog_es_gerundio_compound",
+        "level": "C1",
+        "title": "Bileşik ve bağımsız gerundio",
+        "description": "habiendo hecho; özne ve zaman ilişkisi"
+      },
+      {
+        "id": "catalog_es_participle",
+        "level": "A2",
+        "title": "Participio: düzenli ve düzensiz biçimler",
+        "description": "hablado, escrito, abierto, visto"
+      },
+      {
+        "id": "catalog_es_participle_agreement",
+        "level": "B1",
+        "title": "Participio: sıfat uyumu ve haber farkı",
+        "description": "puertas abiertas / han abierto"
+      },
+      {
+        "id": "catalog_es_absolute_participle",
+        "level": "C1",
+        "title": "Bağımsız ortaç yapıları",
+        "description": "Terminada la reunión, dicho esto"
+      }
+    ]
+  },
+  {
+    "id": "voice",
+    "title": "Çatı, se ve fiil çevrelemeleri",
+    "description": "Edilgenlik, kişisizlik, süreç ve modal yapılar.",
+    "topics": [
+      {
+        "id": "se_pasivo",
+        "level": "B1",
+        "title": "Se pasivo ve impersonal",
+        "description": "Se venden libros / se vive bien"
+      },
+      {
+        "id": "catalog_es_se_functions",
+        "level": "B2",
+        "title": "Se’nin bütün görevleri",
+        "description": "Dönüşlü, karşılıklı, edilgen, kişisiz ve datif"
+      },
+      {
+        "id": "catalog_es_accidental_se",
+        "level": "B1",
+        "title": "İstem dışı olaylarda se",
+        "description": "se me cayó, se nos olvidó"
+      },
+      {
+        "id": "basics_es_pasiva_ser_estar",
+        "level": "B2",
+        "title": "Ser ve estar ile edilgen yapılar",
+        "description": "Süreç, sonuç ve agente tümleci"
+      },
+      {
+        "id": "catalog_es_passive_agent",
+        "level": "B2",
+        "title": "Edilgenlikte yapan ve araç",
+        "description": "por, de; edilgen-etken dönüşümü"
+      },
+      {
+        "id": "catalog_es_impersonal_haber",
+        "level": "B1",
+        "title": "Kişisiz haber ve hacer",
+        "description": "había muchas personas; hace dos años"
+      },
+      {
+        "id": "perifrasis",
+        "level": "B1",
+        "title": "Perífrasis verbales: karma alıştırmalar",
+        "description": "Fiil çevrelemeleri ve anlam farkları"
+      },
+      {
+        "id": "basics_es_perifrasis_obligacion_modal",
+        "level": "B2",
+        "title": "Zorunluluk, tahmin ve süreç",
+        "description": "tener que, deber de, ir + gerundio"
+      },
+      {
+        "id": "catalog_es_progressive_periphrases",
+        "level": "A2",
+        "title": "Estar / seguir / llevar + gerundio",
+        "description": "Sürmekte olan ve devam eden eylem"
+      },
+      {
+        "id": "catalog_es_aspect_periphrases",
+        "level": "B1",
+        "title": "Başlama, bitirme ve tekrar",
+        "description": "empezar a, dejar de, acabar de, volver a"
+      },
+      {
+        "id": "catalog_es_result_periphrases",
+        "level": "B2",
+        "title": "Sonuç bildiren çevrelemeler",
+        "description": "tener, llevar, dejar + participio"
+      },
+      {
+        "id": "catalog_es_modal_periphrases",
+        "level": "B2",
+        "title": "Deber, deber de, haber que, haber de",
+        "description": "Zorunluluk ve olasılık ayrımı"
+      },
+      {
+        "id": "catalog_es_causative",
+        "level": "B2",
+        "title": "Ettirgen yapılar",
+        "description": "hacer + infinitivo; dejar + infinitivo"
+      }
+    ]
+  },
+  {
+    "id": "adverbs",
+    "title": "Zarflar, sayılar ve zaman ifadeleri",
+    "description": "Sıklık, derece, ölçü, tarih ve süre.",
+    "topics": [
+      {
+        "id": "basics_es_adverbios_mente",
+        "level": "B1",
+        "title": "-mente ile zarflar",
+        "description": "Kuruluş, aksan ve birden fazla zarf"
+      },
+      {
+        "id": "catalog_es_adverb_frequency",
+        "level": "A1",
+        "title": "Sıklık zarfları",
+        "description": "siempre, a menudo, a veces, nunca"
+      },
+      {
+        "id": "catalog_es_adverb_place_time",
+        "level": "A1",
+        "title": "Yer ve zaman zarfları",
+        "description": "aquí, ahí, allí; hoy, ayer, mañana"
+      },
+      {
+        "id": "catalog_es_adverb_degree",
+        "level": "A2",
+        "title": "Derece ve miktar zarfları",
+        "description": "muy, mucho, bastante, demasiado"
+      },
+      {
+        "id": "catalog_es_muy_mucho",
+        "level": "A1",
+        "title": "Muy ve mucho farkı",
+        "description": "Sıfat, zarf, fiil ve isimle kullanım"
+      },
+      {
+        "id": "catalog_es_tan_tanto",
+        "level": "A2",
+        "title": "Tan ve tanto",
+        "description": "Derece, miktar ve sonuç"
+      },
+      {
+        "id": "catalog_es_adverb_position",
+        "level": "B1",
+        "title": "Zarfın yeri ve kapsamı",
+        "description": "Anlam odağı, olumsuzluk ve vurgu"
+      },
+      {
+        "id": "basics_es_numeros_hora",
+        "level": "A1",
+        "title": "Sayılar, saat ve tarih",
+        "description": "Temel ve sıra sayıları, takvim ve saat"
+      },
+      {
+        "id": "catalog_es_number_agreement",
+        "level": "A2",
+        "title": "Sayıların uyumu ve kısalması",
+        "description": "veintiún, doscientas, primer, tercer"
+      },
+      {
+        "id": "catalog_es_fractions_percentages",
+        "level": "B1",
+        "title": "Kesirler, yüzdeler ve ölçüler",
+        "description": "medio, un tercio, por ciento"
+      },
+      {
+        "id": "basics_es_hace_desde",
+        "level": "A2",
+        "title": "Süre bildiren yapılar",
+        "description": "hace, desde, desde hace, llevar"
+      },
+      {
+        "id": "catalog_es_ya_todavia",
+        "level": "A2",
+        "title": "Ya, todavía, aún ve seguir",
+        "description": "Devamlılık, tamamlanma ve beklenti"
+      }
+    ]
+  },
+  {
+    "id": "prepositions",
+    "title": "Edatlar",
+    "description": "Yer, yön, zaman ve fiillerin aldığı edatlar.",
+    "topics": [
+      {
+        "id": "catalog_es_place_prepositions",
+        "level": "A1",
+        "title": "Yer ve yön edatları",
+        "description": "en, a, de, desde, hasta, hacia"
+      },
+      {
+        "id": "catalog_es_time_prepositions",
+        "level": "A1",
+        "title": "Zaman edatları",
+        "description": "a las, en, por, desde, hasta, durante"
+      },
+      {
+        "id": "por_para",
+        "level": "B1",
+        "title": "Por ve para",
+        "description": "Sebep, amaç, süre, güzergâh ve alıcı"
+      },
+      {
+        "id": "catalog_es_personal_a",
+        "level": "A2",
+        "title": "Kişisel a",
+        "description": "Canlı ve belirli doğrudan nesneler"
+      },
+      {
+        "id": "prep_es",
+        "level": "B1",
+        "title": "Fiil ve edat",
+        "description": "de, en, a, con; régimen verbal"
+      },
+      {
+        "id": "catalog_es_preposition_infinitive",
+        "level": "B1",
+        "title": "Edat + mastar yapıları",
+        "description": "al salir, antes de ir, sin decir"
+      },
+      {
+        "id": "catalog_es_preposition_pairs",
+        "level": "B2",
+        "title": "Karışan edatlar",
+        "description": "a / en; de / desde; entre / dentro de"
+      },
+      {
+        "id": "catalog_es_compound_prepositions",
+        "level": "B2",
+        "title": "Birleşik edatlar",
+        "description": "a pesar de, con respecto a, en vez de"
+      },
+      {
+        "id": "catalog_es_adjective_noun_prepositions",
+        "level": "B2",
+        "title": "İsim ve sıfatların aldığı edatlar",
+        "description": "capaz de, aficionado a, interés por"
+      },
+      {
+        "id": "catalog_es_dequeismo_queismo",
+        "level": "C1",
+        "title": "Dequeísmo ve queísmo",
+        "description": "creo que / me alegro de que"
+      }
+    ]
+  },
+  {
+    "id": "questions-negation",
+    "title": "Sorular ve olumsuzluk",
+    "description": "Soru yapıları, olumsuz uyum ve kapsam.",
+    "topics": [
+      {
+        "id": "basics_es_preguntas",
+        "level": "A1",
+        "title": "Soru sözcükleri",
+        "description": "qué, cuál, quién, dónde, cómo, cuánto"
+      },
+      {
+        "id": "catalog_es_question_order",
+        "level": "A1",
+        "title": "Soru cümlesinin düzeni",
+        "description": "Özne, fiil, soru sözcüğü ve tonlama"
+      },
+      {
+        "id": "catalog_es_que_cual",
+        "level": "A2",
+        "title": "Qué ve cuál farkı",
+        "description": "Tanım, seçim ve isim önünde kullanım"
+      },
+      {
+        "id": "catalog_es_indirect_questions",
+        "level": "B1",
+        "title": "Dolaylı soru cümleleri",
+        "description": "No sé qué quiere; Me pregunto si…"
+      },
+      {
+        "id": "basics_es_negacion",
+        "level": "A1",
+        "title": "Olumsuzluk",
+        "description": "no, nada, nadie; olumsuz uyum"
+      },
+      {
+        "id": "catalog_es_negative_concord",
+        "level": "A2",
+        "title": "Çift olumsuzluk ve sözcük sırası",
+        "description": "No vino nadie / Nadie vino"
+      },
+      {
+        "id": "catalog_es_ni_tampoco",
+        "level": "A2",
+        "title": "Ni, tampoco ve olumsuz bağlama",
+        "description": "ni… ni; también / tampoco"
+      },
+      {
+        "id": "catalog_es_negative_indefinites",
+        "level": "B1",
+        "title": "Alguno, ninguno ve olumsuz kutupluluk",
+        "description": "algún día, ningún problema, nada de"
+      },
+      {
+        "id": "catalog_es_negation_scope",
+        "level": "C1",
+        "title": "Olumsuzluğun kapsamı",
+        "description": "no todos, no siempre, no necesariamente"
+      },
+      {
+        "id": "catalog_es_expletive_negation",
+        "level": "C2",
+        "title": "Olumsuz anlam taşımayan no",
+        "description": "hasta que no; ünlem ve özel bağlamlar"
+      }
+    ]
+  },
+  {
+    "id": "clauses",
+    "title": "Cümleler, ilgi yapıları ve bağlaçlar",
+    "description": "Temel sözdizimi ve yan cümle çeşitleri.",
+    "topics": [
+      {
+        "id": "catalog_es_word_order",
+        "level": "A1",
+        "title": "Temel cümle düzeni",
+        "description": "Özne, fiil, nesne ve bilgi akışı"
+      },
+      {
+        "id": "catalog_es_coordination",
+        "level": "A2",
+        "title": "Sıralı ve bağlı cümleler",
+        "description": "y / e, o / u, pero, sino"
+      },
+      {
+        "id": "catalog_es_pero_sino",
+        "level": "B1",
+        "title": "Pero, sino ve sino que",
+        "description": "Karşıtlık ve düzeltme"
+      },
+      {
+        "id": "relativos_es",
+        "level": "B1",
+        "title": "İlgi zamirleri",
+        "description": "que, quien, cuyo, donde"
+      },
+      {
+        "id": "catalog_es_relative_que_quien",
+        "level": "A2",
+        "title": "Que ve quien ile ilgi cümleleri",
+        "description": "Öncül ve kişi-nesne ayrımı"
+      },
+      {
+        "id": "catalog_es_relative_prepositions",
+        "level": "B2",
+        "title": "Edatlı ilgi yapıları",
+        "description": "con quien, del que, en el cual"
+      },
+      {
+        "id": "catalog_es_relative_cuyo",
+        "level": "B2",
+        "title": "Cuyo ve biçimleri",
+        "description": "Sahiplik ve sonraki isimle uyum"
+      },
+      {
+        "id": "catalog_es_relative_restrictive",
+        "level": "B2",
+        "title": "Açıklayıcı ve sınırlayıcı ilgi cümleleri",
+        "description": "Virgülle anlam değişimi"
+      },
+      {
+        "id": "catalog_es_substantive_clauses",
+        "level": "B1",
+        "title": "İsim görevindeki yan cümleler",
+        "description": "que, si; mastar veya çekimli fiil"
+      },
+      {
+        "id": "basics_es_temporales",
+        "level": "B2",
+        "title": "Zaman cümlelerinde kip seçimi",
+        "description": "cuando, en cuanto, hasta que"
+      },
+      {
+        "id": "catalog_es_cause_clauses",
+        "level": "B1",
+        "title": "Sebep bildiren cümleler",
+        "description": "porque, como, ya que, puesto que"
+      },
+      {
+        "id": "catalog_es_consequence_clauses",
+        "level": "B1",
+        "title": "Sonuç bildiren cümleler",
+        "description": "así que, por eso, de modo que, tan… que"
+      },
+      {
+        "id": "basics_es_finales_concesivas",
+        "level": "B2",
+        "title": "Amaç ve taviz",
+        "description": "para que, aunque; indicativo / subjuntivo"
+      },
+      {
+        "id": "catalog_es_purpose_clauses",
+        "level": "B1",
+        "title": "Amaç cümleleri",
+        "description": "para, para que, a fin de que"
+      },
+      {
+        "id": "catalog_es_concession_clauses",
+        "level": "B2",
+        "title": "Taviz cümleleri",
+        "description": "aunque, a pesar de que, por mucho que"
+      },
+      {
+        "id": "catalog_es_comparison_proportion",
+        "level": "C1",
+        "title": "Karşılaştırma ve orantı cümleleri",
+        "description": "cuanto más… más; a medida que"
+      },
+      {
+        "id": "conn_es",
+        "level": "B2",
+        "title": "Bağlaçlar: fikrin yönü",
+        "description": "Neden, sonuç, taviz ve karşıtlıkta karma alıştırmalar"
+      },
+      {
+        "id": "catalog_es_ellipsis_coordination",
+        "level": "C1",
+        "title": "Eksilti ve paralel yapılar",
+        "description": "Tekrarlanan özne, fiil ve tümleçleri düşürme"
+      }
+    ]
+  },
+  {
+    "id": "discourse",
+    "title": "Anlatım, vurgu ve metin",
+    "description": "Dolaylı anlatım, bilgi odağı ve metin bağdaşıklığı.",
+    "topics": [
+      {
+        "id": "estilo_indirecto",
+        "level": "B2",
+        "title": "Dolaylı anlatım",
+        "description": "Söz aktarma, zaman ve kişi dönüşümleri"
+      },
+      {
+        "id": "catalog_es_reported_orders",
+        "level": "B1",
+        "title": "Dolaylı emir ve rica",
+        "description": "decir que + subjuntivo; pedir que"
+      },
+      {
+        "id": "catalog_es_reported_time_place",
+        "level": "B1",
+        "title": "Aktarımda zaman ve yer",
+        "description": "hoy / aquel día; aquí / allí"
+      },
+      {
+        "id": "catalog_es_tense_sequence",
+        "level": "B2",
+        "title": "Yan cümlede zaman uyumu",
+        "description": "Geçmiş ana fiil ve subjuntivo zamanları"
+      },
+      {
+        "id": "catalog_es_free_indirect",
+        "level": "C1",
+        "title": "Serbest dolaylı anlatım",
+        "description": "Estilo indirecto libre"
+      },
+      {
+        "id": "basics_es_oraciones_hendidas",
+        "level": "C1",
+        "title": "Vurgulu ve yarık cümleler",
+        "description": "fue Ana quien…; lo que necesito es…"
+      },
+      {
+        "id": "catalog_es_fronting",
+        "level": "B2",
+        "title": "Öne taşıma ve bilgi odağı",
+        "description": "Ese libro, lo leí; a mí me…"
+      },
+      {
+        "id": "catalog_es_nominalisation",
+        "level": "C1",
+        "title": "Adlaştırma",
+        "description": "Fiil ve sıfatlardan isim grupları kurma"
+      },
+      {
+        "id": "rewrite_es",
+        "level": "B2",
+        "title": "Cümle dönüşümü",
+        "description": "Anlamı koruyarak yapıyı değiştirme"
+      },
+      {
+        "id": "basics_es_marcadores",
+        "level": "C1",
+        "title": "Yazıda söylem belirleyicileri",
+        "description": "no obstante, por consiguiente"
+      },
+      {
+        "id": "catalog_es_discourse_spoken",
+        "level": "B2",
+        "title": "Konuşmada söylem belirleyicileri",
+        "description": "pues, o sea, bueno, es que"
+      },
+      {
+        "id": "catalog_es_cohesion",
+        "level": "C1",
+        "title": "Metinde gönderim ve bağdaşıklık",
+        "description": "Zamir, tekrar, eksilti ve yeniden adlandırma"
+      },
+      {
+        "id": "catalog_es_argumentation",
+        "level": "C1",
+        "title": "Akademik ve tartışmacı anlatım",
+        "description": "İddia, gerekçe, itiraz, taviz ve sonuç"
+      },
+      {
+        "id": "catalog_es_modality_evidentiality",
+        "level": "C2",
+        "title": "Tutum ve bilgi kaynağı",
+        "description": "Kesinlik, mesafe, aktarılan bilgi ve ironi"
+      }
+    ]
+  },
+  {
+    "id": "usage-writing",
+    "title": "Yazım, noktalama ve kullanım",
+    "description": "Vurgu işaretleri, yazı kuralları ve bölgesel çeşitlilik.",
+    "topics": [
+      {
+        "id": "catalog_es_written_accents",
+        "level": "A1",
+        "title": "Yazılı vurgu kuralları",
+        "description": "agudas, llanas, esdrújulas"
+      },
+      {
+        "id": "catalog_es_diacritical_accents",
+        "level": "A2",
+        "title": "Anlam ayıran aksanlar",
+        "description": "tú / tu, él / el, sí / si, dé / de"
+      },
+      {
+        "id": "catalog_es_hiatus_diphthong",
+        "level": "B1",
+        "title": "Hiato ve diptongo yazımı",
+        "description": "Vurgu ve aksan ilişkisi"
+      },
+      {
+        "id": "catalog_es_interrogative_accents",
+        "level": "A2",
+        "title": "Soru ve ünlem sözcüklerinin aksanı",
+        "description": "qué / que; cómo / como; dolaylı sorular"
+      },
+      {
+        "id": "catalog_es_porques",
+        "level": "B1",
+        "title": "Porque, por qué, porqué, por que",
+        "description": "Sebep, soru, isim ve edatlı bağlaç"
+      },
+      {
+        "id": "catalog_es_punctuation",
+        "level": "A2",
+        "title": "Noktalama ve ters soru işaretleri",
+        "description": "¿…?, ¡…!; virgül ve cümle sınırları"
+      },
+      {
+        "id": "catalog_es_capitalisation",
+        "level": "A2",
+        "title": "Büyük harf ve yazım kuralları",
+        "description": "Diller, milliyetler, günler ve özel isimler"
+      },
+      {
+        "id": "catalog_es_clitic_accents",
+        "level": "B1",
+        "title": "Bitişik zamirlerle aksan",
+        "description": "dímelo, ayúdame, haciéndolo"
+      },
+      {
+        "id": "basics_es_registro_formal",
+        "level": "C1",
+        "title": "Resmî ve gündelik dil",
+        "description": "Hitap, sözdizimi ve bağlama uygunluk"
+      },
+      {
+        "id": "catalog_es_voseo",
+        "level": "B2",
+        "title": "Voseo ve bölgesel kişi biçimleri",
+        "description": "vos tenés, vos hablás; hitap çeşitleri"
+      },
+      {
+        "id": "catalog_es_regional_tense_usage",
+        "level": "B2",
+        "title": "Bölgelere göre zaman kullanımı",
+        "description": "İspanya ve Amerika’da perfecto / indefinido"
+      },
+      {
+        "id": "catalog_es_agreement_special",
+        "level": "C1",
+        "title": "Özel uyum durumları",
+        "description": "la mayoría de, colectivos, un grupo de"
+      },
+      {
+        "id": "catalog_es_inclusive_usage",
+        "level": "C2",
+        "title": "Kapsayıcı dil ve değişen kullanımlar",
+        "description": "İsimlendirme, uyum ve bağlam"
+      },
+      {
+        "id": "catalog_es_legal_literary",
+        "level": "C2",
+        "title": "Hukuk ve edebiyat dilinde yapılar",
+        "description": "fórmulas jurídicas, arkaizmler ve ileri sözdizimi"
+      }
+    ]
+  }
+]

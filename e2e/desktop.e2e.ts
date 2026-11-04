@@ -5,6 +5,7 @@ import { spellOut } from '../src/engine/spelling'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
 import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
+import AxeBuilder from '@axe-core/playwright'
 import { unzipSync } from 'fflate'
 import { aiRoute, approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
 
@@ -1725,6 +1726,7 @@ test('grammar questions: a topic round of the three kinds, the rule after each a
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
   await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
+  await page.getByRole('searchbox', { name: 'Dilbilgisi konusu ara' }).fill('Participe passé uyumu')
   await page.getByRole('button', { name: 'Participe passé uyumu' }).click()
   await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
   for (let i = 1; i <= 8; i++) {
@@ -1744,7 +1746,8 @@ test('grammar questions: a topic round of the three kinds, the rule after each a
   await expect(page.locator('.game-result')).toContainText('/ 8 doğru')
   await page.getByRole('button', { name: 'Oyunlara dön' }).click()
   await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
-  await expect(page.getByRole('button', { name: /Participe passé uyumu · %\d+/ })).toBeVisible()
+  await page.getByRole('searchbox', { name: 'Dilbilgisi konusu ara' }).fill('Participe passé uyumu')
+  await expect(page.locator('.grammar-topic', { hasText: 'Participe passé uyumu' })).toContainText(/%\d+ doğruluk/)
 })
 
 test('reflex round and false friends: a phrase picked from its Turkish, a word’s meaning picked from its sentence, both kept in the log', async ({ page }) => {
@@ -3821,5 +3824,39 @@ for (const width of [1440, 375]) {
     await page.screenshot({ path: `/tmp/card-setup-${width}.png` })
     await start.click()
     await expect(page.getByRole('button', { name: 'Anlamı göster', exact: true })).toBeVisible()
+  })
+}
+
+for (const language of ['fr', 'es'] as const) {
+  test(`grammar catalog ${language}: browse categories, open an empty topic, filter advanced exercises and start on a phone`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await startWithSamples(page)
+    if (language === 'es') await page.getByRole('button', { name: /İspanyolca/ }).click()
+    await openScreen(page, 'Oyunlar')
+    await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
+    await expect(page.locator('.grammar-category')).toHaveCount(16)
+    expect((await new AxeBuilder({ page }).include('.grammar-catalog').withTags(['wcag2a', 'wcag2aa']).analyze()).violations).toEqual([])
+    expect(await overflow(page)).toEqual([])
+    await page.screenshot({ path: `/tmp/grammar-catalog-${language}-desktop.png` })
+    await page.locator('.grammar-category', { hasText: 'İsimler ve artikeller' }).click()
+    const emptyTitle = language === 'fr' ? 'İsimlerde düzensiz çoğul' : 'Vurgulu a / ha önünde artikel'
+    await page.getByRole('button', { name: new RegExp(emptyTitle) }).click()
+    const selection = page.getByRole('region', { name: 'Seçili çalışma' })
+    await expect(selection).toContainText('Alıştırmalar henüz eklenmedi')
+    await expect(selection.getByRole('button', { name: /tura başla/ })).toHaveCount(0)
+    await page.getByRole('button', { name: 'Seçimi temizle' }).click()
+    await page.setViewportSize({ width: 375, height: 812 })
+    const level = page.locator('.grammar-catalog-filter select').first()
+    await level.selectOption('B2-C1')
+    await page.locator('.grammar-catalog-filter select').last().selectOption('ready')
+    await page.getByRole('searchbox', { name: 'Dilbilgisi konusu ara' }).fill(language === 'fr' ? 'subjonctif' : 'subjuntivo')
+    await expect(page.locator('.grammar-topic').first()).toBeVisible()
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
+    await page.screenshot({ path: `/tmp/grammar-catalog-${language}-phone.png` })
+    expect(await overflow(page)).toEqual([])
+    await page.locator('.grammar-topic').first().click()
+    await selection.getByRole('button', { name: /soruluk tura başla/ }).click()
+    await expect(page.locator('.prompt-label')).toContainText(/B2|C1/)
+    await expect(page.locator('.grammar-sentence')).toBeVisible()
   })
 }
