@@ -13,7 +13,9 @@ import { listeningRate } from '../engine/listening'
 import { createRng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
 import { AWAY_DAYS, daysAway, easiestWords, struggling } from '../engine/easyRound'
-import { attemptMode, sessionProgress, adaptExercise, completeItem, currentItem, honorOff, insertLater, isFinished, mixInTyping, retryItem, skipRemaining, startSession, suggestBreak, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
+import { advanceLearning, attemptMode, sessionProgress, adaptExercise, completeItem, currentItem, honorOff, insertLater, isFinished, mixInTyping, skipRemaining, startSession, suggestBreak, summarize, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
+import { independentAnswer } from '../engine/learningProgress'
+import { draftRecord, writeSessionDraft } from '../data/sessionDraft'
 import { TARGET_LANGUAGES, timeOf, type Confidence, type EngineOptions, type ExerciseType, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry, type Verdict } from '../engine/types'
 import type { KelimeDB, Settings } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
@@ -51,6 +53,8 @@ interface Props {
   db: KelimeDB
   scheduler: Scheduler
   seed: number
+  initialSession?: import('../engine/session').Session
+  draftLanguage?: import('../engine/types').TargetLanguage
   options: EngineOptions
   onFinish: (summary: SessionSummary) => void
   onQuit: () => void
@@ -102,6 +106,7 @@ export function SessionScreen(p: Props) {
   const lastAnswer = useRef<{ before: UserWordState; hadState: boolean; bank: Mistake[]; input: AttemptInput; eventId: string } | null>(null)
   const states = useRef(new Map(p.states.map((s) => [s.entryId, s])))
   const mistakes = useRef(p.mistakes)
+  const introducing = useRef(false)
   /** Words already offered help this session (a chronic leech is offered once, not on every miss). */
   const offeredHelp = useRef(new Set<string>())
   // Distractors may come from the sample set too, so options are full even with few own words.
@@ -153,6 +158,8 @@ export function SessionScreen(p: Props) {
     const mixed = mixInTyping(it, st, TYPING_SHARE[prefs.typingShare], rng, typedAllowed(it.entryId))
     return prefs.exerciseOff.includes('cloze_typed') ? mixed : typeStrongCloze(mixed, st)
   }
+  const draftLanguage = p.draftLanguage ?? p.vocabulary[0]?.language ?? p.items[0]?.form?.language ?? 'en'
+  const initialLogCount = useRef(p.initialSession?.log.length ?? 0)
   const [session, setSession] = useState(() => {
     const opts = { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss }
     const kept = prefs.exerciseOff.includes('conjugation') ? p.items.filter((it) => !it.form) : p.items
@@ -160,19 +167,22 @@ export function SessionScreen(p: Props) {
       const entry = byId.get(it.entryId)
       return entry ? honorOff(it, entry, states.current.get(it.entryId), rng, opts) : it
     })
-    const initial = startSession(honored)
+    const initial = p.initialSession ? { ...p.initialSession, items: [...p.initialSession.items] } : startSession(honored)
     const first = currentItem(initial)
     const word = first && byId.get(first.entryId)
     if (first && word && p.mode !== 'practice') {
       const state = states.current.get(first.entryId)
-      initial.items[0] = honorOff(shape(first, state), word, state, rng, opts)
+      initial.items[initial.index] = honorOff(shape(first, state), word, state, rng, opts)
     }
     return initial
   })
+  useEffect(() => {
+    if (p.mode === 'normal') void writeSessionDraft(p.db, draftRecord(draftLanguage, p.seed, session)).catch(() => showToast('Tur kaydı güncellenemedi. Depolama alanını kontrol et.'))
+  }, [session, p.db, p.mode, p.seed, draftLanguage])
   const item = currentItem(session)
   // The day's XP goal is reached in the middle of a round: said once, with the same little chime as a run of five.
   const dayGame = useGame()
-  const earnedXp = session.log.reduce((sum, l) => sum + (l.xp ?? 0), 0)
+  const earnedXp = session.log.slice(initialLogCount.current).reduce((sum, l) => sum + (l.xp ?? 0), 0)
   const dayGoal = p.settings?.dailyXpGoal ?? 0
   const goalSaid = useRef(false)
   // A session starts the right-answers climb from the bottom.
@@ -188,13 +198,14 @@ export function SessionScreen(p: Props) {
   // What the day already holds, for the XP the answers earn: the answers given before this session (a long day pays less) and
   // whether today picks the studying up after a few days away (the fifth real answer then brings the comeback bonus).
   const today = useRef({ answers: 0, normal: 0, comeback: false, paid: false })
+  const todayReady = useRef<Promise<void>>(Promise.resolve())
   // Days since the last studied day, when the first session of today opens after a long break (0 = no offer).
   const [awayFor, setAwayFor] = useState(0)
   useEffect(() => {
     let live = true
     const start = new Date()
     start.setHours(0, 0, 0, 0)
-    void (async () => {
+    todayReady.current = (async () => {
       const [earlier, last] = await Promise.all([p.db.eventsSince(start), p.db.events.where('timestamp').below(start).filter((e) => e.mode === 'normal').last()])
       if (!live) return
       const away = daysAway(last ? localDate(last.timestamp) : null, localDate(start))
@@ -258,9 +269,14 @@ export function SessionScreen(p: Props) {
   const goal = sessionProgress(session)
   const progress = goal.percent
 
-  const next = (log: Omit<SessionLogEntry, 'item'>, retry?: PlanItem, followUp?: PlanItem) =>
+  const next = (log: Omit<SessionLogEntry, 'item'>) =>
     setSession((s) => {
-      const after = completeItem(s, log, retry, followUp)
+      const current = currentItem(s)!
+      const word = byId.get(current.entryId)
+      const state = states.current.get(current.entryId)
+      const after = word && state && log.verdict
+        ? advanceLearning(s, log, word, state, createRng(p.seed + s.index), { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss })
+        : completeItem(s, log)
       // 85 % rule: the coming item's format follows how the session is going.
       const up = after.items[after.index]
       const upEntry = up && byId.get(up.entryId)
@@ -286,13 +302,26 @@ export function SessionScreen(p: Props) {
   const entry = found as VocabularyEntry
 
   const introduce = async (known = false) => {
-    const now = new Date()
-    let state = states.current.get(entry.id) ?? newWordState(entry, now)
-    if (known) state = markKnown(state, p.scheduler, now)
-    states.current.set(entry.id, state)
-    await p.db.wordStates.put(state)
-    if (known) setSession((s) => skipRemaining(completeItem(s, { entryId: entry.id }), entry.id))
-    else next({ entryId: entry.id })
+    if (introducing.current) return
+    introducing.current = true
+    try {
+      const now = new Date()
+      let state = states.current.get(entry.id) ?? { ...newWordState(entry, now), learning: { recognition: { remaining: 0, delayed: false, at: now.toISOString(), sequence: 0 } } }
+      if (known) state = markKnown(state, p.scheduler, now)
+      const completed = completeItem(session, { entryId: entry.id })
+      const after = known ? skipRemaining(completed, entry.id) : completed
+      await p.db.transaction('rw', [p.db.wordStates, p.db.meta], async () => {
+        await p.db.wordStates.put(state)
+        if (p.mode === 'normal') await writeSessionDraft(p.db, draftRecord(draftLanguage, p.seed, after))
+      })
+      states.current.set(entry.id, state)
+      if (known) setSession(after)
+      else next({ entryId: entry.id })
+    } catch {
+      showToast('Kelime kaydedilemedi. Depolama alanını kontrol edip yeniden dene.')
+    } finally {
+      introducing.current = false
+    }
   }
 
   // Only resume an unfinished introduction; revealing a learned word before its test cues the answer.
@@ -310,6 +339,7 @@ export function SessionScreen(p: Props) {
 
   const answer = async (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number, confidence?: Confidence, forgot = false) => {
     setAnsweredAt(session.index)
+    await todayReady.current
     const hadState = states.current.has(entry.id)
     const before = states.current.get(entry.id) ?? newWordState(entry, new Date())
     const input: AttemptInput = {
@@ -323,23 +353,14 @@ export function SessionScreen(p: Props) {
       maxHints,
       at: new Date(),
       // Repetitions preserve existing schedules; the first test of a new skill creates its card.
-      mode: attemptMode(item, p.mode, before),
+      mode: attemptMode(item, p.mode, before, { verdict: ev.verdict, hintsUsed, maxHints }),
+      guided: p.mode === 'normal' && (item.learningBatch !== undefined || !!item.learningFollowUp || !hadState),
+      recallExpected: typedAllowed(entry.id),
       confidence,
       plan: { reason: item.reason, slot: session.index, ...(item.probe !== undefined ? { probe: item.probe } : {}) },
     }
     const bank = mistakes.current
     const result = processAttempt(before, input, bank, p.scheduler)
-    // The in-memory copies change only once the answer is saved: a refused write (storage full, database closed)
-    // leaves them as they were, in step with what is on the device.
-    try {
-      await p.db.saveReview(result)
-    } catch (e) {
-      setAnsweredAt((a) => (a === session.index ? null : a))
-      throw e
-    }
-    states.current.set(entry.id, result.state)
-    mistakes.current = result.mistakes
-    lastAnswer.current = { before, hadState, bank, input, eventId: result.event.id }
     const runBefore = comboOf(session.log)
     const xp = xpForAnswer({
       exerciseType: input.exerciseType,
@@ -351,17 +372,36 @@ export function SessionScreen(p: Props) {
       retrievability: result.event.retrievabilityBefore,
       wordReviews: before.stats.reviews,
       wordWrong: before.stats.wrong,
-      answersToday: today.current.answers + session.log.filter((l) => l.verdict !== undefined).length,
+      answersToday: today.current.answers + session.log.slice(initialLogCount.current).filter((l) => l.verdict !== undefined).length,
     })
     // The comeback bonus, with the day's fifth real answer (the same rule as `comebackBonus`).
     let bonus = 0
     if ((input.mode ?? p.mode) === 'normal') {
-      const normal = today.current.normal + session.log.filter((l) => l.verdict !== undefined).length + 1
+      const normal = today.current.normal + session.log.slice(initialLogCount.current).filter((l) => l.verdict !== undefined).length + 1
       if (today.current.comeback && !today.current.paid && normal >= COMEBACK_MIN_ANSWERS) {
-        today.current.paid = true
         bonus = COMEBACK_XP
-        showToast(`Hoş geldin! Döndüğün için +${COMEBACK_XP} XP`)
       }
+    }
+    const log: Omit<SessionLogEntry, 'item'> = {
+      entryId: entry.id, verdict: ev.verdict, errorType: ev.errorType,
+      stageBefore: masteryStage(before), stageAfter: masteryStage(result.state), xp: xp + bonus,
+      independent: independentAnswer(input), responseMs, confidence,
+    }
+    const checkpoint = p.mode === 'normal' ? draftRecord(draftLanguage, p.seed,
+      advanceLearning(session, log, entry, result.state, createRng(p.seed + session.index), { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss })) : undefined
+    // The saved answer and the next learning step commit together; reload never regrades it.
+    try {
+      await p.db.saveReview(result, checkpoint)
+    } catch (e) {
+      setAnsweredAt((a) => (a === session.index ? null : a))
+      throw e
+    }
+    states.current.set(entry.id, result.state)
+    mistakes.current = result.mistakes
+    lastAnswer.current = { before, hadState, bank, input, eventId: result.event.id }
+    if (bonus) {
+      today.current.paid = true
+      showToast(`Hoş geldin! Döndüğün için +${bonus} XP`)
     }
     const run = ev.verdict === 'wrong' ? 0 : strictRunOf(session.log) + 1
     if (forgot) sfx.forgot()
@@ -369,14 +409,7 @@ export function SessionScreen(p: Props) {
     else if (run === 5 || run === 10 || run === 20) sfx.combo()
     else if (ev.verdict === 'near') sfx.near()
     else sfx.correct()
-    return {
-      entryId: entry.id,
-      verdict: ev.verdict,
-      errorType: ev.errorType,
-      stageBefore: masteryStage(before),
-      stageAfter: masteryStage(result.state),
-      xp: xp + bonus,
-    }
+    return log
   }
 
   /**
@@ -390,7 +423,10 @@ export function SessionScreen(p: Props) {
     const result = processAttempt(last.before, input, last.bank, p.scheduler)
     const keep = new Set(result.mistakes.map((m) => m.id))
     const stale = mistakes.current.filter((m) => m.entryId === entry.id && !keep.has(m.id)).map((m) => m.id)
-    await p.db.replaceReview(last.eventId, result, stale)
+    const xp = xpForAnswer({ exerciseType: input.exerciseType, verdict: 'correct', hintsUsed: input.hintsUsed, responseMs: input.responseMs, mode: input.mode ?? p.mode, combo: 0 })
+    const log: Omit<SessionLogEntry, 'item'> = { entryId: entry.id, verdict: 'correct', stageBefore: masteryStage(last.before), stageAfter: masteryStage(result.state), xp, independent: independentAnswer(input), responseMs: input.responseMs, confidence: input.confidence }
+    const checkpoint = p.mode === 'normal' ? draftRecord(draftLanguage, p.seed, advanceLearning(session, log, entry, result.state, createRng(p.seed + session.index), { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss })) : undefined
+    await p.db.replaceReview(last.eventId, result, stale, checkpoint)
     states.current.set(entry.id, result.state)
     mistakes.current = result.mistakes
     lastAnswer.current = { ...last, input, eventId: result.event.id }
@@ -400,8 +436,7 @@ export function SessionScreen(p: Props) {
       setById((m) => new Map(m).set(entry.id, updated))
       await p.db.vocabulary.put(updated)
     }
-    const xp = xpForAnswer({ exerciseType: input.exerciseType, verdict: 'correct', hintsUsed: input.hintsUsed, responseMs: input.responseMs, mode: p.mode, combo: 0 })
-    return { entryId: entry.id, verdict: 'correct', stageBefore: masteryStage(last.before), stageAfter: masteryStage(result.state), xp }
+    return log
   }
 
   /** A word that keeps failing is started over (progress and its recorded mistakes reset); "Geri al" brings all of it back. */
@@ -423,7 +458,7 @@ export function SessionScreen(p: Props) {
   const discard = async (): Promise<boolean> => {
     const last = lastAnswer.current
     if (!last) return false
-    await p.db.revertReview(last.eventId, last.hadState ? last.before : null, entry.id, last.bank)
+    await p.db.revertReview(last.eventId, last.hadState ? last.before : null, entry.id, last.bank, p.mode === 'normal' ? draftRecord(draftLanguage, p.seed, session) : undefined)
     if (last.hadState) states.current.set(entry.id, last.before)
     else states.current.delete(entry.id)
     mistakes.current = last.bank
@@ -445,17 +480,7 @@ export function SessionScreen(p: Props) {
     undoable(level === 'off' ? `“${name}” soruları artık sorulmayacak.` : `“${name}” soruları daha az sorulacak.`, () => apply(settings))
   }
 
-  const proceed = (log: Omit<SessionLogEntry, 'item'>) => {
-    const state = states.current.get(entry.id)
-    const opts = { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss }
-    const retry = state && (log.verdict === 'wrong' || (session.relearn[entry.id] ?? 0) > 0) ? retryItem(item, entry, state, rng, opts) : undefined
-    // A new word answered right comes back a little later in another format (graduated recall).
-    // The second comeback is typed: picked out twice, now produced from its meaning.
-    const comebacks = session.followUps?.[entry.id] ?? 0
-    const followUp =
-      log.verdict && log.verdict !== 'wrong' && state ? (comebacks >= 1 ? typedFollowUp(item, typedAllowed(entry.id)) : { ...item, kind: 'exercise' as const, skill: 'recognition' as const, exerciseType: 'mc_meaning' as const }) : undefined
-    next(log, retry, followUp)
-  }
+  const proceed = (log: Omit<SessionLogEntry, 'item'>) => next(log)
 
   // The lightning mark, kept on the word itself, so a hard word is gathered for a practice of its own.
   const markDifficult = async (on: boolean) => {
@@ -561,6 +586,10 @@ export function SessionScreen(p: Props) {
           {' · '}Bu grubun soruları bitince yeni kelimelere geçeceğiz.
         </p>
       )}
+      {item.learningBatch !== undefined && (() => {
+        const deferred = (session.pendingLearning ?? []).filter((id) => session.items.some((it) => it.entryId === id && it.learningBatch !== undefined && it.learningBatch < item.learningBatch!))
+        return deferred.length > 0 ? <p className="note small">Önceki gruptan {deferred.length} kelime ek pekiştirme için ayrıldı; sonraki turda öncelikli gelecek.</p> : null
+      })()}
       {p.mode === 'practice' && (
         <p className="practice-badge">
           <span className="badge">Serbest pratik</span>
@@ -576,7 +605,7 @@ export function SessionScreen(p: Props) {
           onCancel={() => setConfirmQuit(false)}
         >
           {answered + onScreen > 0
-            ? `Verdiğin ${answered + onScreen} cevap kaydedildi. Kalan ${session.items.length - session.index - onScreen} soru bugünkü görevinde bekleyecek.`
+            ? `Verdiğin ${answered + onScreen} cevap kaydedildi. Kalan ${session.items.length - session.index - onScreen} soru ve pekiştirme adımların kaldığın yerden devam etmek üzere kaydedildi.`
             : 'Henüz cevap vermedin; görev olduğu gibi bekleyecek.'}
         </ConfirmDialog>
       )}
@@ -664,7 +693,7 @@ export function SessionScreen(p: Props) {
 /** The run that multiplies XP at the end of the log: a wrong answer halves it (introductions don't count). Same rule as `computeXp`. */
 function comboOf(log: readonly SessionLogEntry[]): number {
   let n = 0
-  for (const entry of log) if (entry.verdict !== undefined) n = nextCombo(n, entry.verdict)
+  for (const entry of log) if (entry.verdict !== undefined) n = entry.independent === false ? 0 : nextCombo(n, entry.verdict)
   return n
 }
 
@@ -673,7 +702,7 @@ function strictRunOf(log: readonly SessionLogEntry[]): number {
   let n = 0
   for (let i = log.length - 1; i >= 0; i--) {
     if (log[i].verdict === undefined) continue
-    if (log[i].verdict === 'wrong') break
+    if (log[i].verdict === 'wrong' || log[i].independent === false) break
     n++
   }
   return n

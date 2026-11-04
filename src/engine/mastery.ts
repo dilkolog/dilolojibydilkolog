@@ -36,15 +36,17 @@ const stable = (c: Card | undefined, days: number) => graduated(c) && c!.stabili
  */
 export function masteryStage(state: UserWordState): MasteryStage {
   const { recognition, recall, production } = state.skills
+  // New evidence is required only for guided words; legacy learning histories remain valid.
+  const confirmed = !state.learning || (!!state.learning.recall?.delayed && !Object.values(state.learning).some((e) => e && e.remaining > 0))
   if (
-    stable(recognition, MASTERED_STABILITY_DAYS) &&
+    confirmed && stable(recognition, MASTERED_STABILITY_DAYS) &&
     stable(recall, MASTERED_STABILITY_DAYS) &&
     stable(production, MASTERED_STABILITY_DAYS)
   )
     return 'mastered'
-  if (stable(recall, STRONG_STABILITY_DAYS) && stable(production, PRODUCTION_READY_STABILITY_DAYS))
+  if (confirmed && stable(recall, STRONG_STABILITY_DAYS) && stable(production, PRODUCTION_READY_STABILITY_DAYS))
     return 'production_ready'
-  if (stable(recognition, STRONG_STABILITY_DAYS) && stable(recall, STRONG_STABILITY_DAYS)) return 'strong'
+  if (confirmed && stable(recognition, STRONG_STABILITY_DAYS) && stable(recall, STRONG_STABILITY_DAYS)) return 'strong'
   if (graduated(recall)) return 'recallable'
   if (graduated(recognition)) return 'familiar'
   return 'introduced'

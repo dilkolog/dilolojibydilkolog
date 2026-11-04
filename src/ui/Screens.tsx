@@ -1,3 +1,4 @@
+import { SessionResumeCard } from './SessionResumeCard'
 import { Fragment, useEffect, useState, type ReactNode } from 'react'
 import { SPLIT_ABOVE_MINUTES } from '../engine/session'
 import { BACKLOG_AT, SHORT_ROUND } from '../engine/dailyPlan'
@@ -317,6 +318,7 @@ export function Home({
 
   return (
     <div>
+      <SessionResumeCard language={language} onResume={onStart} />
       <div className="greeting-row">
         <h1 className="greeting"><DayMark now={now} weather={weather} />{hello}</h1>
         {showcase.length > 0 && (

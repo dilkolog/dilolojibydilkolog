@@ -4,7 +4,7 @@ import type { Rng } from './rng'
 import { exerciseTypesFor, EXERCISES } from './exercises'
 import { blockedByPrefs } from './exercises'
 import { pickExerciseType } from './selection'
-import type { EngineOptions, ErrorType, ExerciseType, ReviewMode, UserWordState, VocabularyEntry, Verdict } from './types'
+import type { Confidence, EngineOptions, ErrorType, ExerciseType, ReviewMode, Skill, UserWordState, VocabularyEntry, Verdict } from './types'
 
 export interface SessionLogEntry {
   entryId: string
@@ -15,6 +15,9 @@ export interface SessionLogEntry {
   stageAfter?: MasteryStage
   /** XP earned by this answer. */
   xp?: number
+  independent?: boolean
+  responseMs?: number
+  confidence?: Confidence
 }
 
 export interface Session {
@@ -24,8 +27,11 @@ export interface Session {
   retries: Record<string, number>
   /** Correct answers a missed word still needs before it may leave the session. */
   relearn: Record<string, number>
+  relearnSkills?: Record<string, Skill>
   /** Graduated follow-ups already given to each word met for the first time this session. */
   followUps?: Record<string, number>
+  followUpTargets?: Record<string, number>
+  pendingLearning?: string[]
   log: SessionLogEntry[]
 }
 
@@ -49,7 +55,8 @@ export const GRADUATED_GAPS = [4, 9]
 export function graduatedGap(s: Session, entryId: string): number | undefined {
   const isNew = s.log.some((l) => l.entryId === entryId && l.item.kind === 'introduce')
   if (!isNew || (s.relearn[entryId] ?? 0) > 0) return undefined
-  return GRADUATED_GAPS[s.followUps?.[entryId] ?? 0]
+  const done = s.followUps?.[entryId] ?? 0
+  return done < (s.followUpTargets?.[entryId] ?? GRADUATED_GAPS.length) ? GRADUATED_GAPS[done] : undefined
 }
 
 /**
@@ -131,7 +138,10 @@ export function typedFollowUp(item: PlanItem, typedAllowed = true): PlanItem {
  * Another type of the same skill, or a plain meaning choice when that skill has none left.
  */
 export function honorOff(item: PlanItem, entry: VocabularyEntry, state: UserWordState | undefined, rng: Rng, opts: EngineOptions = {}): PlanItem {
-  if (item.kind !== 'exercise' || !item.exerciseType || !blockedByPrefs(item.exerciseType, entry, opts)) return item
+  if (item.kind !== 'exercise' || !item.exerciseType) return item
+  const meta = EXERCISES[item.exerciseType]
+  const available = meta.applicable(entry) && (!meta.requiresAI || opts.ai) && (!meta.requiresSpeech || opts.speech)
+  if (available && !blockedByPrefs(item.exerciseType, entry, opts)) return item
   try {
     return { ...item, exerciseType: pickExerciseType(item.skill, entry, state, rng, opts) }
   } catch {
@@ -177,30 +187,55 @@ export function completeItem(s: Session, log: Omit<SessionLogEntry, 'item'>, ret
   const items = [...s.items]
   const relearn = { ...s.relearn }
   const retries = { ...s.retries }
-  if (log.verdict === 'wrong') relearn[id] = RELEARN_TARGET
-  else if (log.verdict && relearn[id]) relearn[id]--
+  const relearnSkills = { ...s.relearnSkills }
+  if (log.verdict === 'wrong' || log.independent === false) {
+    relearn[id] = RELEARN_TARGET
+    relearnSkills[id] = item.skill
+  } else if (log.verdict && relearn[id] && (!relearnSkills[id] || relearnSkills[id] === item.skill)) relearn[id]--
   const nextBatch = item.learningBatch === undefined ? -1 : items.findIndex((it, i) => i > s.index && it.learningBatch !== undefined && it.learningBatch > item.learningBatch!)
   const insertAt = (gap: number) => Math.min(s.index + 1 + gap, nextBatch < 0 ? items.length : nextBatch)
-  const pending = items.slice(s.index + 1).some((it) => it.entryId === id && it.kind === 'exercise' && it.skill === item.skill)
+  const pending = items.slice(s.index + 1).some((it) => it.entryId === id && it.kind === 'exercise')
   if (retry && !pending && relearn[id] > 0 && (retries[id] ?? 0) < MAX_RETRIES) {
     items.splice(insertAt(RETRY_GAP), 0, { ...retry, learningBatch: item.learningBatch })
     retries[id] = (retries[id] ?? 0) + 1
   }
   const followUps = { ...(s.followUps ?? {}) }
-  const gap = log.verdict && log.verdict !== 'wrong' ? graduatedGap(s, id) : undefined
+  const followUpTargets = { ...(s.followUpTargets ?? {}) }
+  const firstAnswer = !s.log.some((l) => l.entryId === id && l.verdict)
+  if (firstAnswer && log.independent === true && log.responseMs && log.responseMs < 3000) followUpTargets[id] = 1
+  const gap = log.independent !== false && log.verdict && log.verdict !== 'wrong' ? graduatedGap({ ...s, followUpTargets }, id) : undefined
   if (followUp && gap !== undefined && !pending && !(relearn[id] > 0)) {
     items.splice(insertAt(gap), 0, { ...followUp, probe: undefined, reason: 'practice', learningFollowUp: true, learningBatch: item.learningBatch })
     followUps[id] = (followUps[id] ?? 0) + 1
   }
-  return { items, index: s.index + 1, retries, relearn, followUps, log: [...s.log, { ...log, item }] }
+  return { items, index: s.index + 1, retries, relearn, relearnSkills, followUps, followUpTargets, log: [...s.log, { ...log, item }] }
 }
 
 /** A first recall test must create its card; repeats must not repeatedly advance FSRS. */
-export function attemptMode(item: PlanItem, mode: ReviewMode, state: UserWordState): ReviewMode {
+export function attemptMode(item: PlanItem, mode: ReviewMode, state: UserWordState, evidence?: { verdict: Verdict; hintsUsed: number; maxHints: number }): ReviewMode {
   if (mode !== 'normal') return mode
   if (item.reason !== 'practice') return mode
+  if (item.learningFollowUp && evidence && (evidence.verdict === 'wrong' || (evidence.maxHints > 0 && evidence.hintsUsed >= evidence.maxHints))) return 'normal'
   const skill = item.exerciseType && EXERCISES[item.exerciseType].skill
   return item.learningFollowUp && skill && !state.skills[skill] ? 'normal' : 'practice'
+}
+
+/** Per-word progression: fast independent recognition goes straight to recall; misses keep two recoveries. */
+export function advanceLearning(s: Session, log: Omit<SessionLogEntry, 'item'>, entry: VocabularyEntry, state: UserWordState, rng: Rng, opts: EngineOptions = {}): Session {
+  const item = currentItem(s)!
+  const debt = state.learning?.[item.skill]?.remaining ?? 0
+  const before = debt && !s.relearn[entry.id] ? { ...s, relearn: { ...s.relearn, [entry.id]: debt + 1 }, relearnSkills: { ...s.relearnSkills, [entry.id]: item.skill } } : s
+  const retry = log.verdict === 'wrong' || log.independent === false || (before.relearn[entry.id] ?? 0) > 0 ? retryItem({ ...item, skill: before.relearnSkills?.[entry.id] ?? item.skill }, entry, state, rng, opts) : undefined
+  const typedAllowed = !blockedByPrefs('typed_translation', entry, opts)
+  const directRecall = log.independent === true && !!log.responseMs && log.responseMs < 3000 && !s.log.some((l) => l.entryId === entry.id && l.verdict)
+  const followUp = (before.followUps?.[entry.id] ?? 0) >= 1 || directRecall
+    ? typedFollowUp(item, typedAllowed)
+    : { ...item, kind: 'exercise' as const, skill: 'recognition' as const, exerciseType: 'mc_meaning' as const }
+  const after = completeItem(before, log, retry, followUp)
+  const pending = new Set(after.pendingLearning ?? [])
+  if (Object.values(state.learning ?? {}).some((e) => e && e.remaining > 0)) pending.add(entry.id)
+  else pending.delete(entry.id)
+  return { ...after, pendingLearning: [...pending] }
 }
 
 /** Stable word goal: adding a retry cannot move the progress bar backwards. */
@@ -244,6 +279,9 @@ export interface SessionSummary {
   errors: Partial<Record<ErrorType, number>>
   introduced: string[]
   xp: number
+  /** Still needs independent recoveries; a finished round is not a learned word. */
+  pendingLearning?: string[]
+  independentCorrect?: number
 }
 
 export function summarize(s: Session): SessionSummary {
@@ -266,6 +304,8 @@ export function summarize(s: Session): SessionSummary {
     words.set(l.entryId, w)
   }
   return {
+    ...([...new Set([...(s.pendingLearning ?? []), ...Object.keys(s.relearn).filter((id) => s.relearn[id] > 0)])].length ? { pendingLearning: [...new Set([...(s.pendingLearning ?? []), ...Object.keys(s.relearn).filter((id) => s.relearn[id] > 0)])] } : {}),
+    ...(s.log.some((l) => l.independent !== undefined) ? { independentCorrect: s.log.filter((l) => l.independent).length } : {}),
     words: [...words.values()],
     answered: answers.length,
     correct: answers.filter((l) => l.verdict !== 'wrong').length,

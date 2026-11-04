@@ -82,6 +82,7 @@ describe('session', () => {
       ],
       answered: 2,
       correct: 1,
+      pendingLearning: ['b'],
       strengthened: ['a'],
       struggling: ['b'],
       errors: { gender: 1 },

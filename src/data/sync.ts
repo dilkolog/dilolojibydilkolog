@@ -1,3 +1,4 @@
+import { mergeLearning } from '../engine/learningProgress'
 import { mergeSeen, mergeSlips, type LabData } from '../engine/labProgress'
 import { mergeMarks } from '../engine/guideReview'
 import { mergeLedgers } from '../engine/xpLedger'
@@ -219,6 +220,7 @@ export function mergeWordState(x: WordState, y: WordState): WordState {
   const most = (k: keyof WordState['stats']) => Math.max(win.stats[k] ?? 0, lose.stats[k] ?? 0)
   return {
     ...win,
+    ...(x.learning || y.learning ? { learning: mergeLearning(x.learning, y.learning) } : {}),
     skills,
     introducedAt: time(lose.introducedAt) && time(lose.introducedAt) < time(win.introducedAt) ? lose.introducedAt : win.introducedAt,
     stats: { ...win.stats, reviews: most('reviews'), correct: most('correct'), wrong: most('wrong'), hints: most('hints'), totalResponseMs: most('totalResponseMs') },

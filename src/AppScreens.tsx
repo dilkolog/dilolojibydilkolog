@@ -116,10 +116,12 @@ export function AppScreens(props: AppScreensProps) {
       {!data || !plan ? <ScreenSkeleton kind={skeletonFor(screen.name)} /> : screen.name === 'session' ? (
         <SessionScreen
           items={screen.items}
+          initialSession={screen.initialSession}
+          draftLanguage={data.language}
           mode={screen.mode}
           vocabulary={sessionVocabulary ?? data.vocabulary}
-          states={screen.extraStates ? [...data.states, ...screen.extraStates] : data.states}
-          mistakes={screen.extraMistakes ? [...data.mistakes, ...screen.extraMistakes] : data.mistakes}
+          states={screen.extraStates ? [...new Map([...data.states, ...screen.extraStates].map((s) => [s.entryId, s])).values()] : data.states}
+          mistakes={screen.extraMistakes ? [...new Map([...data.mistakes, ...screen.extraMistakes].map((m) => [m.id, m])).values()] : data.mistakes}
           db={db}
           scheduler={scheduler}
           seed={screen.seed}

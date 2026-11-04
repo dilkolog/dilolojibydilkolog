@@ -1245,9 +1245,13 @@ export class KelimeDB extends Dexie {
   }
 
   /** Persists one answered exercise atomically: new word state, the event, and touched mistakes. */
-  saveReview(result: ReviewResult) {
+  saveReview(result: ReviewResult, checkpoint?: { key: string; value: unknown }) {
     const touched = result.mistakes.filter((m) => m.entryId === result.state.entryId)
-    return this.transaction('rw', [this.wordStates, this.events, this.mistakes], async () => {
+    return this.transaction('rw', [this.wordStates, this.events, this.mistakes, this.meta], async () => {
+      if (checkpoint) {
+        if (checkpoint.value === undefined) await this.meta.delete(checkpoint.key)
+        else await this.meta.put(checkpoint)
+      }
       await this.wordStates.put(result.state)
       await this.events.add(result.event)
       await this.mistakes.bulkPut(touched)
@@ -1267,9 +1271,13 @@ export class KelimeDB extends Dexie {
    * Replaces an answer that the learner overrode ("my answer was right too"): the old event is
    * removed and the recomputed state/event/mistakes take its place, atomically.
    */
-  replaceReview(oldEventId: string, result: ReviewResult, staleMistakeIds: string[]) {
+  replaceReview(oldEventId: string, result: ReviewResult, staleMistakeIds: string[], checkpoint?: { key: string; value: unknown }) {
     const touched = result.mistakes.filter((m) => m.entryId === result.state.entryId)
-    return this.transaction('rw', [this.wordStates, this.events, this.mistakes], async () => {
+    return this.transaction('rw', [this.wordStates, this.events, this.mistakes, this.meta], async () => {
+      if (checkpoint) {
+        if (checkpoint.value === undefined) await this.meta.delete(checkpoint.key)
+        else await this.meta.put(checkpoint)
+      }
       await this.events.delete(oldEventId)
       await this.wordStates.put(result.state)
       await this.events.add(result.event)
@@ -1282,9 +1290,13 @@ export class KelimeDB extends Dexie {
    * Takes an answer back entirely ("I tapped the wrong option"): the event goes, the word's state
    * is what it was before (or none, for a word never answered), and so are its mistakes.
    */
-  revertReview(eventId: string, before: UserWordState | null, entryId: string, mistakesBefore: Mistake[]) {
+  revertReview(eventId: string, before: UserWordState | null, entryId: string, mistakesBefore: Mistake[], checkpoint?: { key: string; value: unknown }) {
     const restore = mistakesBefore.filter((m) => m.entryId === entryId)
-    return this.transaction('rw', [this.wordStates, this.events, this.mistakes], async () => {
+    return this.transaction('rw', [this.wordStates, this.events, this.mistakes, this.meta], async () => {
+      if (checkpoint) {
+        if (checkpoint.value === undefined) await this.meta.delete(checkpoint.key)
+        else await this.meta.put(checkpoint)
+      }
       await this.events.delete(eventId)
       if (before) await this.wordStates.put(before)
       else await this.wordStates.delete(entryId)
