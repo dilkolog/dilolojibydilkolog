@@ -800,6 +800,67 @@ test('reading: a video link dropped in the text box opens its transcript without
   await expect(page.locator('.reader')).toContainText('nous allons au marché du village')
 })
 
+/**
+ * A stand-in for YouTube's embed: it speaks the same postMessage protocol (listening, infoDelivery, commands), so the
+ * reader's own video code is what is tested. It counts the pauses it was asked for in `window.paused`.
+ */
+const FAKE_PLAYER = `<!doctype html><body>fake player<script>
+let t = 0, state = -1, rate = 1, timer = 0; window.paused = 0
+const send = (info) => parent.postMessage(JSON.stringify({ event: 'infoDelivery', info }), '*')
+addEventListener('message', (e) => {
+  const m = JSON.parse(e.data)
+  if (m.event === 'listening') send({ currentTime: t, duration: 30, playerState: state, playbackRate: rate })
+  if (m.event !== 'command') return
+  if (m.func === 'playVideo') { state = 1; clearInterval(timer); timer = setInterval(() => { t += 0.25 * rate; send({ currentTime: t }) }, 250); send({ playerState: 1, currentTime: t }) }
+  if (m.func === 'pauseVideo') { window.paused++; state = 2; clearInterval(timer); send({ playerState: 2, currentTime: t }) }
+  if (m.func === 'seekTo') { t = m.args[0]; send({ currentTime: t }) }
+  if (m.func === 'setPlaybackRate') { rate = m.args[0]; send({ playbackRate: rate }) }
+})
+</script></body>`
+
+test('reading along a video: the sentence heard is lit, a tapped word stops the video, a kept sentence plays its moment in review', async ({ page }) => {
+  await startWithSamples(page)
+  await approveAccount(page)
+  await page.route('https://www.youtube-nocookie.com/embed/**', (r) => r.fulfill({ contentType: 'text/html', body: FAKE_PLAYER }))
+  const cues = [
+    { start: 0, end: 4, text: 'Bonjour à tous.' },
+    { start: 4, end: 9, text: 'Aujourd’hui nous allons au marché du village.' },
+    { start: 9, end: 14, text: 'Le marché est très grand.' },
+  ]
+  await page.route(
+    (u) => u.pathname === '/api/youtube',
+    (r) => r.fulfill({ json: { id: 'abcdefghijk', title: 'Au marché', channel: 'Chaîne', auto: false, text: cues.map((c) => c.text).join(' '), cues } }),
+  )
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('https://www.youtube.com/watch?v=abcdefghijk')
+  const panel = page.locator('.video-panel')
+  await expect(panel.locator('iframe')).toHaveAttribute('src', /youtube-nocookie\.com\/embed\/abcdefghijk\?enablejsapi=1/)
+  const player = () => page.frame({ url: /youtube-nocookie\.com\/embed/ })!
+  await expect.poll(() => player()?.evaluate(() => (window as unknown as { paused: number }).paused).catch(() => -1)).toBe(0)
+  // A word of the second sentence: its card can play the video from there, and the sentence is lit as it is heard.
+  await page.locator('.reader .rw', { hasText: 'village' }).click()
+  await page.getByRole('button', { name: /Bu cümleden dinle/ }).click()
+  await expect(page.locator('.reader .rs.is-heard')).toContainText('nous allons au marché')
+  // Tapping a word while it plays stops it.
+  const before = await player().evaluate(() => (window as unknown as { paused: number }).paused)
+  await page.locator('.reader .rw', { hasText: 'Bonjour' }).click()
+  await expect.poll(() => player().evaluate(() => (window as unknown as { paused: number }).paused)).toBeGreaterThan(before)
+  // The sentence kept from the video brings its moment along.
+  await page.locator('.reader .rw', { hasText: 'village' }).click()
+  await page.getByRole('button', { name: 'Cümleyi kaydet' }).click()
+  await expect(page.getByText('Cümle kaydedildi').first()).toBeVisible()
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Cümle kartları' }).click()
+  await page.getByRole('button', { name: /cümle tekrar bekliyor/ }).click()
+  const clip = page.locator('.video-clip iframe')
+  if (!(await clip.count())) {
+    await page.getByRole('button', { name: 'Bilmiyorum' }).click()
+    await page.getByRole('button', { name: /Videoda geçtiği an/ }).click()
+  }
+  await expect(clip).toHaveAttribute('src', /embed\/abcdefghijk\?.*autoplay=1&start=3&end=10/)
+  expect(await overflow(page)).toEqual([])
+})
+
 test('reading: the forms list finds a reflexive compound tense and lights the form\'s sentence in the text', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Okuma')

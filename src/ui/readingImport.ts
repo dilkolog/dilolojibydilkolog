@@ -127,8 +127,8 @@ export async function importEpub(db: KelimeDB, file: File, language: TargetLangu
 /** A YouTube video's subtitles in this language, as a reading text (not saved) with a link back to the video; or why there is none. */
 export async function youtubeText(link: string, language: TargetLanguage): Promise<{ item: ReadingText } | { note: ImportNote }> {
   try {
-    const res = await accessFetch(`/api/youtube?v=${encodeURIComponent(link.trim())}&lang=${language}`)
-    const j = (await res.json()) as { id?: string; title?: string; channel?: string; auto?: boolean; text?: string; error?: string; available?: string[] }
+    const res = await accessFetch(`/api/youtube?v=${encodeURIComponent(link.trim())}&lang=${language}&cues=1`)
+    const j = (await res.json()) as { id?: string; title?: string; channel?: string; auto?: boolean; text?: string; cues?: { start: number; text: string }[]; error?: string; available?: string[] }
     if (!res.ok || !j.text) {
       return {
         note: {
@@ -151,6 +151,8 @@ export async function youtubeText(link: string, language: TargetLanguage): Promi
         title: `${j.title}${j.auto ? ' (otomatik altyazı)' : ''}`,
         text: j.text,
         source: `https://www.youtube.com/watch?v=${j.id}`,
+        // The lines' times: the video above the text lights the sentence heard, exactly.
+        ...(j.cues?.length ? { cues: j.cues.filter((c) => typeof c.start === 'number' && typeof c.text === 'string').map((c) => ({ start: c.start, text: c.text })) } : {}),
         addedAt: new Date().toISOString(),
         history: [],
       },

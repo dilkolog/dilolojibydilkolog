@@ -57,4 +57,26 @@ describe('the sentence cards screen', () => {
     await mount()
     expect(host.querySelector('.sentence-week')?.textContent).toContain('vadesi gelen cümle yok')
   })
+
+  it('a sentence saved from a video plays its moment again in review', async () => {
+    const s = newSentence({ language: 'fr', text: 'Nous allons au marché du village.', translation: 'Köyün pazarına gidiyoruz.', clip: { video: 'abcdefghijk', start: 12.3, end: 15.8 } }, scheduler, new Date(Date.now() - 60_000))
+    await db.saveSentence(s)
+    await mount()
+    const click = async (el: Element | null | undefined) => {
+      await act(async () => void (el as HTMLElement).click())
+      await act(async () => void (await new Promise((r) => setTimeout(r, 30))))
+    }
+    await click([...host.querySelectorAll('button')].find((b) => b.textContent?.includes('tekrar bekliyor')))
+    let frame = host.querySelector<HTMLIFrameElement>('.video-clip iframe')
+    if (frame) {
+      // A dictation: heard from the video at once, its picture hidden (the video's own captions would tell).
+      expect(host.querySelector('.video-clip-blur')).not.toBeNull()
+    } else {
+      await click([...host.querySelectorAll('button')].find((b) => b.textContent === 'Bilmiyorum'))
+      await click([...host.querySelectorAll('button')].find((b) => b.textContent?.includes('Videoda geçtiği an')))
+      frame = host.querySelector<HTMLIFrameElement>('.video-clip iframe')
+    }
+    expect(frame?.getAttribute('src')).toContain('/embed/abcdefghijk?')
+    expect(frame?.getAttribute('src')).toContain('start=11&end=17')
+  })
 })

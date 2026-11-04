@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReadingText } from '../data/db'
 import { sentenceAt, sentenceTimes } from '../engine/listenFollow'
+import { videoOf } from '../engine/subtitles'
 import type { analyzeText } from '../engine/reading'
 
 /**
@@ -18,7 +19,7 @@ export function useListenFollow(current: ReadingText | null, analysis: ReturnTyp
   // Which sentences open a paragraph (a story's page turn is a pause in the reading).
   const paragraphStarts = useMemo(() => sentencesFlat.map((_, i) => paragraphStart.includes(i)), [sentencesFlat, paragraphStart])
   const times = useMemo(
-    () => (current?.audio ? sentenceTimes(sentencesFlat, current.cues, audioDuration, { paragraphStarts, anchors: current.syncAnchors }) : null),
+    () => (current && (current.audio || videoOf(current)) ? sentenceTimes(sentencesFlat, current.cues, audioDuration, { paragraphStarts, anchors: current.syncAnchors }) : null),
     [current, sentencesFlat, audioDuration, paragraphStarts],
   )
   const heardAt = useRef(0)

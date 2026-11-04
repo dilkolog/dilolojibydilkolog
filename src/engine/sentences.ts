@@ -20,8 +20,26 @@ export interface SentenceCard {
   source?: string
   /** A short Turkish note shown with the answer: why the sentence is the way it is (a correction's reason). */
   note?: string
+  /** The moment of a video the sentence was heard in (a YouTube video read along): played again in review. */
+  clip?: SentenceClip
   addedAt: string
   card: Card
+}
+
+/** A stretch of a YouTube video, in seconds. */
+export interface SentenceClip {
+  video: string
+  start: number
+  end: number
+}
+
+/** A clip as it may be kept: an 11-character video id and a short, sensible stretch (anything else is dropped). */
+export function cleanClip(clip: unknown): SentenceClip | undefined {
+  if (!clip || typeof clip !== 'object') return undefined
+  const { video, start, end } = clip as Record<string, unknown>
+  if (typeof video !== 'string' || !/^[\w-]{11}$/.test(video) || typeof start !== 'number' || typeof end !== 'number') return undefined
+  if (!(start >= 0) || !(end > start) || end - start > 60) return undefined
+  return { video, start, end }
 }
 
 export type SentenceExercise =
@@ -85,7 +103,8 @@ export function gradeSentence(ex: SentenceExercise, given: string): SentenceVerd
   return score >= 0.95 ? 'correct' : score >= 0.8 ? 'near' : 'wrong'
 }
 
-export function newSentence(input: { language: TargetLanguage; text: string; translation?: string; focus?: string; source?: string; note?: string }, scheduler: Scheduler, now: Date): SentenceCard {
+export function newSentence(input: { language: TargetLanguage; text: string; translation?: string; focus?: string; source?: string; note?: string; clip?: SentenceClip }, scheduler: Scheduler, now: Date): SentenceCard {
+  const clip = cleanClip(input.clip)
   return {
     id: crypto.randomUUID(),
     language: input.language,
@@ -94,6 +113,7 @@ export function newSentence(input: { language: TargetLanguage; text: string; tra
     focus: input.focus,
     source: input.source,
     ...(input.note?.trim() ? { note: input.note.trim() } : {}),
+    ...(clip ? { clip } : {}),
     addedAt: now.toISOString(),
     card: scheduler.newCard(now),
   }

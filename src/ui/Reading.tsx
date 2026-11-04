@@ -11,6 +11,8 @@ import { type TargetLanguage, type UserWordState, type VocabularyEntry } from '.
 import { type KelimeDB, type ReadingText } from '../data/db'
 import { SameTopic } from './News'
 import { AudioPanel } from './Listening'
+import { VideoPanel } from './VideoPanel'
+import { videoOf } from '../engine/subtitles'
 import { wordKeys } from '../data/wordInput'
 import { ConfirmDialog } from './Dialog'
 import { showToast } from './toastFeed'
@@ -207,7 +209,10 @@ export function ReadingScreen({
   // The paragraphs are memoised (ReaderParagraph): each gets only what concerns it, so picking a word
   // or the next heard sentence renders a paragraph or two again, not the whole text.
   const paragraphKeys = useMemo(() => analysis?.paragraphs.map((p) => new Set(p.flatMap((x) => x.tokens.flatMap((t) => (t.key ? [t.key] : []))))) ?? [], [analysis])
+  // A tapped word stops the video, so the word card is read without the talk running on.
+  const pauseVideo = useRef<(() => void) | null>(null)
   const pickToken = useCallback((token: ReadToken, sentence: string, at: string, hidden: boolean) => {
+    pauseVideo.current?.()
     if (hidden) setGuess(token.key!)
     setSelected({ token, sentence, at })
   }, [])
@@ -256,7 +261,11 @@ export function ReadingScreen({
   const keepSentence = async (sentence: string, focus: string) => {
     // With translation on, the card comes with its Turkish (and so with the translation exercise).
     const translation = (await translationReady()) ? await translate(sentence, language).catch(() => '') : ''
-    const ok = await saveSentence({ language, text: sentence, focus, source: current?.title, ...(translation ? { translation } : {}) })
+    // From a video timed by its subtitles, the card keeps the moment: it is played again in review.
+    const video = videoOf(current)
+    const at = sentencesFlat.indexOf(sentence)
+    const clip = video && recorded && times && at >= 0 ? { video, start: Math.round(times[at] * 10) / 10, end: Math.round(sentenceEnd(at) * 10) / 10 } : undefined
+    const ok = await saveSentence({ language, text: sentence, focus, source: current?.title, ...(translation ? { translation } : {}), ...(clip && clip.end > clip.start ? { clip } : {}) })
     if (ok && current?.title && focus) {
       await db.addFirstEncounters({ [`${language}:${focus.trim().toLowerCase()}`]: { title: current.title, sentence, at: new Date().toISOString() } })
     }
@@ -350,7 +359,22 @@ export function ReadingScreen({
           onListened={addListened}
         />
       )}
-      {current?.audio && !current.cues?.length && !!current.syncAnchors?.length && (
+      {!current?.audio && videoOf(current) && (
+        <VideoPanel
+          key={`video-${current!.id}`}
+          id={videoOf(current)!}
+          title={current!.title}
+          onTime={followTime}
+          onDuration={setAudioDuration}
+          seekRef={seekRef}
+          rangeRef={rangeRef}
+          pauseRef={pauseVideo}
+          stops={current!.cues?.length ? times : null}
+          still={dictating !== null || shadowing !== null}
+          onListened={addListened}
+        />
+      )}
+      {(current?.audio || videoOf(current)) && !current?.cues?.length && !!current?.syncAnchors?.length && (
         <p className="small muted">
           Takip {current.syncAnchors.length} noktayla ayarlandı.{' '}
           <button type="button" className="link small" onClick={() => void setAnchors([])}>
