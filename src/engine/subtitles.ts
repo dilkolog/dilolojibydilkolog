@@ -95,3 +95,40 @@ export function parseTimedCues(raw: string): Cue[] {
   }
   return out
 }
+
+/** A transcript timestamp as YouTube shows it: 0:07, 12:30, 1:02:45. */
+const STAMP = /^(\d{1,2}:)?\d{1,2}:\d{2}$/
+/** The same at the head of a line, with the words after it ("0:07 bonjour à tous"). */
+const STAMP_HEAD = /^((?:\d{1,2}:)?\d{1,2}:\d{2})\s+(.+)$/
+/** Fewer stamps than this and a text is prose that happens to hold a time, not a transcript. */
+const MIN_STAMPS = 3
+
+/**
+ * A transcript copied from YouTube ("Show transcript": a timestamp, then its words, line after line; or both on one
+ * line) as reading text and timed cues, so a video above it is followed exactly. Null for anything else.
+ * Lines before the first timestamp (the panel's own heading) are left out; a chapter title between two cues
+ * joins the cue before it (it cannot be told from the words).
+ */
+export function parseTranscriptPaste(raw: string): { text: string; cues: Cue[] } | null {
+  const lines = raw.replace(/^﻿/, '').replace(/\r/g, '').split('\n').map((l) => l.trim()).filter(Boolean)
+  const cues: { start: number; parts: string[] }[] = []
+  let stamps = 0
+  for (const line of lines) {
+    const head = STAMP_HEAD.exec(line)
+    if (STAMP.test(line) || head) {
+      stamps++
+      cues.push({ start: toSeconds(head ? head[1] : line), parts: head ? [head[2]] : [] })
+      continue
+    }
+    cues.at(-1)?.parts.push(line)
+  }
+  if (stamps < MIN_STAMPS) return null
+  // Stamps must run forwards (a transcript), not be the odd times inside prose.
+  if (cues.some((c, i) => i > 0 && c.start < cues[i - 1].start)) return null
+  const timed = cues.flatMap((c) => {
+    const text = c.parts.map(cleanCue).filter(Boolean).join(' ')
+    return text ? [{ start: c.start, text }] : []
+  })
+  if (timed.length < MIN_STAMPS) return null
+  return { text: cuesToText(timed.map((c) => c.text)), cues: timed }
+}

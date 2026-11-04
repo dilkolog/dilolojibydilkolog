@@ -861,6 +861,27 @@ test('reading along a video: the sentence heard is lit, a tapped word stops the 
   expect(await overflow(page)).toEqual([])
 })
 
+test('reading: when YouTube keeps the captions from the server, a pasted transcript keeps the video and its times', async ({ page }) => {
+  await startWithSamples(page)
+  await approveAccount(page)
+  await page.route('https://www.youtube-nocookie.com/embed/**', (r) => r.fulfill({ contentType: 'text/html', body: FAKE_PLAYER }))
+  await page.route((u) => u.pathname === '/api/youtube', (r) => r.fulfill({ status: 502, json: { error: 'youtube blocked', status: 'LOGIN_REQUIRED' } }))
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Web sayfası ya da YouTube bağlantısı').fill('https://www.youtube.com/watch?v=abcdefghijk&list=PL1')
+  await page.getByRole('button', { name: /Altyazıyı getir/ }).click()
+  await expect(page.getByText('sunucumuza vermiyor')).toBeVisible()
+  await expect(page.getByText('Transkripti kendin ekleyebilirsin')).toBeVisible()
+  await expect(page.getByText(/altyazı yok/)).toHaveCount(0)
+  await page.getByLabel('Metin', { exact: true }).fill('Transkript\n0:00\nBonjour à tous.\n0:04\nAujourd’hui nous allons au marché du village.\n0:09\nLe marché est très grand.')
+  await expect(page.getByText('3 satır zamanlarıyla tanındı')).toBeVisible()
+  await expect(page.getByLabel('Metin', { exact: true })).toHaveValue('Bonjour à tous. Aujourd’hui nous allons au marché du village. Le marché est très grand.')
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await expect(page.locator('.video-panel iframe')).toHaveAttribute('src', /embed\/abcdefghijk\?/)
+  await page.locator('.reader .rw', { hasText: 'village' }).click()
+  await page.getByRole('button', { name: /Bu cümleden dinle/ }).click()
+  await expect(page.locator('.reader .rs.is-heard')).toContainText('nous allons au marché')
+})
+
 test('reading: the forms list finds a reflexive compound tense and lights the form\'s sentence in the text', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Okuma')

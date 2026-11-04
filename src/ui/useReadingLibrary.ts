@@ -4,6 +4,7 @@ import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
 import { reportError } from '../data/errorReport'
 import { type TargetLanguage } from '../engine/types'
 import type { SharedRead } from './incoming'
+import { parseTimedCues, parseTranscriptPaste, youtubeId, type Cue } from '../engine/subtitles'
 import { importDocument, importEpub, isDocumentFile, isYoutubeLink, pageText, textOfFile, youtubeText } from './readingImport'
 import { undoable } from './toastFeed'
 
@@ -44,6 +45,10 @@ export function useReadingLibrary({
   const [youtube, setYoutube] = useState(shared?.url && !shared.text ? shared.url : '')
   const [ytBusy, setYtBusy] = useState(false)
   const [fileBusy, setFileBusy] = useState(false)
+  /** A video whose transcript the server could not bring: the text pasted next is tied to it. */
+  const [videoFor, setVideoFor] = useState<string | null>(null)
+  /** The times of a pasted transcript or a subtitle file, kept with the text it became. */
+  const [draftCues, setDraftCues] = useState<Cue[] | null>(null)
   const [bookError, setBookError] = useState<{ ok: boolean; text: string } | null>(null)
   const [loadFailed, setLoadFailed] = useState(false)
 
@@ -78,11 +83,24 @@ export function useReadingLibrary({
   const start = async () => {
     const t = draft.trim()
     if (!t) return
-    const item: ReadingText = { id: crypto.randomUUID(), language, title: title.trim() || titleOf(t), text: t, addedAt: new Date().toISOString(), history: [] }
+    const video = videoFor ? youtubeId(videoFor) : null
+    const item: ReadingText = {
+      id: crypto.randomUUID(),
+      language,
+      title: title.trim() || titleOf(t),
+      text: t,
+      addedAt: new Date().toISOString(),
+      history: [],
+      // A transcript pasted for a video: the video opens above it, followed by the transcript's own times.
+      ...(video ? { source: `https://www.youtube.com/watch?v=${video}` } : {}),
+      ...(draftCues?.length ? { cues: draftCues } : {}),
+    }
     await db.saveText(item)
     setLibrary((lib) => [item, ...(lib ?? [])])
     setDraft('')
     setTitle('')
+    setVideoFor(null)
+    setDraftCues(null)
     await open(item)
   }
 
@@ -93,9 +111,12 @@ export function useReadingLibrary({
   const loadFile = async (file: File) => {
     setBookError(null)
     if (!isDocumentFile(file.name)) {
-      const loaded = textOfFile(file.name, await file.text())
+      const raw = await file.text()
+      const loaded = textOfFile(file.name, raw)
       setDraft(loaded.text)
       setTitle(loaded.title)
+      const cues = parseTimedCues(raw)
+      setDraftCues(cues.length ? cues : null)
       return
     }
     setFileBusy(true)
@@ -138,7 +159,9 @@ export function useReadingLibrary({
     setYoutube(link)
     setYtBusy(true)
     try {
-      const got = isYoutubeLink(link) ? await youtubeText(link, language) : await pageText(link, language)
+      const isVideo = isYoutubeLink(link)
+      const got = isVideo ? await youtubeText(link, language) : await pageText(link, language)
+      setVideoFor(isVideo && 'paste' in got && got.paste ? link.trim() : null)
       if ('item' in got && !got.item.title.trim() && shared?.title) got.item.title = shared.title
       if ('note' in got) {
         setBookError(got.note)
@@ -173,6 +196,14 @@ export function useReadingLibrary({
       void importYoutube(value.trim())
       return
     }
+    // A transcript copied from YouTube: its times are kept, the text is what is left without them.
+    const transcript = parseTranscriptPaste(value)
+    if (transcript) {
+      setDraft(transcript.text)
+      setDraftCues(transcript.cues)
+      return
+    }
+    if (!value.trim()) setDraftCues(null)
     setDraft(value)
   }
 
@@ -202,7 +233,7 @@ export function useReadingLibrary({
 
   return {
     library, setLibrary, current, setCurrent,
-    draft, setDraft, changeDraft, title, setTitle, youtube, setYoutube, ytBusy, fileBusy, bookError, loadFailed,
+    draft, setDraft, changeDraft, draftCues, videoFor, setVideoFor, title, setTitle, youtube, setYoutube, ytBusy, fileBusy, bookError, loadFailed,
     open, start, loadFile, addPhotoText, importBook, importYoutube, removeBook, remove, nextChapter,
   }
 }

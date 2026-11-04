@@ -43,3 +43,28 @@ describe('YouTube subtitles', () => {
     expect(parseTimedText(xml)).toBe("We're no strangers il fait beau")
   })
 })
+
+describe('a transcript copied from YouTube', async () => {
+  const { parseTranscriptPaste } = await import('../subtitles')
+  it('reads a timestamp line, then its words, into text and timed cues', () => {
+    const got = parseTranscriptPaste('Transkript\n\n0:00\nbonjour bonjour et bienvenue dans ce\n0:03\ncours de français pour débutant\n0:07\nalors aujourd’hui\n1:02:05\non commence\n')
+    expect(got?.cues).toEqual([
+      { start: 0, text: 'bonjour bonjour et bienvenue dans ce' },
+      { start: 3, text: 'cours de français pour débutant' },
+      { start: 7, text: 'alors aujourd’hui' },
+      { start: 3725, text: 'on commence' },
+    ])
+    expect(got?.text).toBe('bonjour bonjour et bienvenue dans ce cours de français pour débutant alors aujourd’hui on commence')
+  })
+  it('reads the stamp and the words on one line too, and drops sound notes', () => {
+    expect(parseTranscriptPaste('0:01 Salut !\n0:04 [Musique]\n0:06 Ça va ?\n0:09 Très bien.')?.cues).toEqual([
+      { start: 1, text: 'Salut !' },
+      { start: 6, text: 'Ça va ?' },
+      { start: 9, text: 'Très bien.' },
+    ])
+  })
+  it('leaves prose alone, even with a time or two in it', () => {
+    expect(parseTranscriptPaste('Le train part à 10:30.\nNous arrivons à 12:45.\nBon voyage.')).toBeNull()
+    expect(parseTranscriptPaste('0:05\na\n0:02\nb\n0:09\nc')).toBeNull()
+  })
+})

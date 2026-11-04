@@ -127,3 +127,48 @@ describe('/api/youtube still gives subtitles as reading text', () => {
     expect(timed.cues[0]).toEqual({ start: expect.any(Number), end: expect.any(Number), text: expect.any(String) })
   })
 })
+
+describe('/api/youtube when YouTube treats the server as a bot', () => {
+  afterEach(() => vi.unstubAllGlobals())
+  const ask = () => GET_YOUTUBE(new Request('https://x/api/youtube?v=abc12345678&lang=fr', { headers: FROM_APP }))
+  /** Answers the player API per client (by the user agent asked with), the track by its address. */
+  function byClient(players: Record<string, unknown>, track = TIMED) {
+    const asked: string[] = []
+    vi.stubGlobal('fetch', async (url: string, init?: RequestInit) => {
+      if (url.includes('youtubei/v1/player')) {
+        const client = (JSON.parse(String(init?.body)) as { context: { client: { clientName: string } } }).context.client.clientName
+        asked.push(client)
+        return new Response(JSON.stringify(players[client] ?? { playabilityStatus: { status: 'LOGIN_REQUIRED', reason: 'Sign in to confirm you’re not a bot' } }))
+      }
+      return new Response(track)
+    })
+    return asked
+  }
+
+  it('tries the next app client when one gets no caption list', async () => {
+    const asked = byClient({ IOS: player([{ baseUrl: 'https://yt/timedtext', languageCode: 'fr', kind: 'asr' }]) })
+    const res = await ask()
+    expect(res.status).toBe(200)
+    expect(await res.json()).toMatchObject({ auto: true, text: expect.stringContaining('décider') })
+    expect(asked).toEqual(['ANDROID', 'IOS'])
+  })
+
+  it('says YouTube would not tell, not that the video has no captions, when every client is turned away', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const asked = byClient({})
+    const res = await ask()
+    expect(res.status).toBe(502)
+    expect(await res.json()).toEqual({ error: 'youtube blocked', status: 'LOGIN_REQUIRED' })
+    expect(asked).toEqual(['ANDROID', 'IOS', 'TVHTML5_SIMPLY_EMBEDDED_PLAYER'])
+    expect(warn).toHaveBeenCalledWith('[captions]', expect.stringContaining('LOGIN_REQUIRED'))
+    warn.mockRestore()
+  })
+
+  it('a listed track that comes back empty is not "no captions" either', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const fr = player([{ baseUrl: 'https://yt/timedtext', languageCode: 'fr' }])
+    byClient({ ANDROID: fr, IOS: fr, TVHTML5_SIMPLY_EMBEDDED_PLAYER: fr }, '')
+    expect(((await (await ask()).json()) as { error: string }).error).toBe('youtube blocked')
+    warn.mockRestore()
+  })
+})
