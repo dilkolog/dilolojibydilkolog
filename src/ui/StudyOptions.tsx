@@ -3,17 +3,21 @@ import { createRng } from '../engine/rng'
 import { SCOPE_NAME, STUDY_SIZES, selectStudyWords, type StudyDirection, type StudyOptions, type StudyScope } from '../engine/studySet'
 import type { TargetLanguage, UserWordState, VocabularyEntry, WordList } from '../engine/types'
 import { db, scheduler } from '../data/instance'
+import { BoltIcon, BookIcon, CalendarIcon, SproutIcon, TagIcon, TargetIcon } from './icons'
+import { Select } from './Select'
+import { Chips } from './settingsWidgets'
 
 const SCOPES: StudyScope[] = ['weak', 'today', 'all', 'hard', 'unlearned', 'list']
-const DIRECTION_NAME: Record<StudyDirection, string> = { forward: 'Kelime önce', reverse: 'Anlam önce', mixed: 'Karışık' }
-const SCOPE_ICON: Record<StudyScope, string> = {
-  weak: '⚡',
-  today: '📅',
-  all: '📚',
-  hard: '🎯',
-  unlearned: '🌱',
-  list: '📑',
+const DIRECTION_NAME: Record<StudyDirection, string> = { forward: 'Kelime', reverse: 'Anlam', mixed: 'Karışık' }
+const SCOPE_ICON: Record<StudyScope, React.ReactNode> = {
+  weak: <BoltIcon size={20} />,
+  today: <CalendarIcon size={20} />,
+  all: <BookIcon size={20} />,
+  hard: <TargetIcon size={20} />,
+  unlearned: <SproutIcon size={20} />,
+  list: <TagIcon size={20} />,
 }
+const SIZE_NAME = (n: number) => (n === 0 ? 'Hepsi' : String(n))
 
 /**
  * The choices before a round of cards: which words, shuffled or not, which side first, how many.
@@ -70,49 +74,47 @@ export function StudyOptionsPanel({
     <div className="study-options" role="group" aria-label="Çalışma seçenekleri">
       <section className="study-group">
         <h2 className="study-label">Hangi kelimeler?</h2>
-        <div className="choice-row" role="group" aria-label="Hangi kelimeler">
+        {/* One tile per set: its name and how many words are in it; an empty set can't be picked. */}
+        <div className="study-scopes" role="group" aria-label="Hangi kelimeler">
           {SCOPES.filter((s) => s !== 'list' || lists.length > 0).map((s) => (
-            <button key={s} type="button" className="chip study-chip" aria-pressed={value.scope === s} disabled={counts[s] === 0 && value.scope !== s} onClick={() => set({ scope: s, listId: s === 'list' ? listId : value.listId })}>
-              <span className="study-chip-icon" aria-hidden="true">{SCOPE_ICON[s]}</span>
-              <span>{SCOPE_NAME[s]}</span>
-              <span className="study-count">{counts[s]}</span>
+            <button key={s} type="button" className="study-scope" aria-pressed={value.scope === s} disabled={counts[s] === 0 && value.scope !== s} onClick={() => set({ scope: s, listId: s === 'list' ? listId : value.listId })}>
+              <span className="study-scope-icon" aria-hidden="true">{SCOPE_ICON[s]}</span>
+              <span className="study-scope-name">{s === 'list' ? 'Bir listeden' : SCOPE_NAME[s]}</span>
+              <span className="study-scope-count">{counts[s]} kelime</span>
             </button>
           ))}
         </div>
         {value.scope === 'list' && lists.length > 0 && (
-          <div className="choice-row study-lists" role="group" aria-label="Hangi liste">
-            {lists.map((l) => (
-              <button key={l.id} type="button" className="chip chip-sm study-chip" aria-pressed={listId === l.id} onClick={() => set({ listId: l.id })}>
-                <span>{l.name}</span>
-                <span className="study-count">{listCount(l.id)}</span>
-              </button>
-            ))}
+          <div className="study-row">
+            <span className="study-row-label">Liste</span>
+            <div className="study-list-pick">
+              <Select
+                label="Liste"
+                value={listId}
+                onChange={(id) => set({ listId: id })}
+                options={lists.map((l) => ({ value: l.id, label: l.name, hint: `${listCount(l.id)} kelime` }))}
+              />
+            </div>
           </div>
         )}
       </section>
       <section className="study-group">
-        <h2 className="study-label">Kaç kart?</h2>
-        <div className="choice-row" role="group" aria-label="Kart sayısı">
-          {STUDY_SIZES.map((n) => (
-            <button key={n} type="button" className="chip study-chip" aria-pressed={value.size === n} onClick={() => set({ size: n })}>
-              {n === 0 ? 'Hepsi' : `${n} kart`}
-            </button>
-          ))}
+        <div className="study-row">
+          <span className="study-row-label">Kaç kart?</span>
+          <Chips label="Kart sayısı" options={STUDY_SIZES} value={value.size} onChange={(n) => set({ size: n })} format={SIZE_NAME} />
         </div>
-      </section>
-      <section className="study-group">
-        <h2 className="study-label">Düzen</h2>
-        <div className="choice-row" role="group" aria-label="Sıra ve yön">
-          <button type="button" className="chip study-chip" aria-pressed={value.shuffle} onClick={() => set({ shuffle: !value.shuffle })}>
-            Karıştır
+        {directions && (
+          <div className="study-row">
+            <span className="study-row-label">Önce ne görünsün?</span>
+            <Chips<StudyDirection> label="Önce ne görünsün" options={['forward', 'reverse', 'mixed']} value={value.direction} onChange={(d) => set({ direction: d })} format={(d) => DIRECTION_NAME[d]} />
+          </div>
+        )}
+        <label className="study-row study-shuffle">
+          <span className="study-row-label">Karıştır</span>
+          <button type="button" role="switch" aria-checked={value.shuffle} aria-label="Karıştır" className="switch" onClick={() => set({ shuffle: !value.shuffle })}>
+            <span />
           </button>
-          {directions &&
-            (['forward', 'reverse', 'mixed'] as const).map((d) => (
-              <button key={d} type="button" className="chip study-chip" aria-pressed={value.direction === d} onClick={() => set({ direction: d })}>
-                {DIRECTION_NAME[d]}
-              </button>
-            ))}
-        </div>
+        </label>
       </section>
       {children}
     </div>

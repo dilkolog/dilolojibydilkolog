@@ -3,7 +3,7 @@ import { isDifficult, withDifficult } from '../../engine/difficult'
 import { buildExercise, displayForm, evaluateTyped } from '../../engine/exercises'
 import { requeue, type FlashGrade } from '../../engine/flashQueue'
 import { createRng } from '../../engine/rng'
-import { dealCards, SCOPE_NAME, selectStudyWords, type Card } from '../../engine/studySet'
+import { dealCards, selectStudyWords, type Card } from '../../engine/studySet'
 import type { VocabularyEntry } from '../../engine/types'
 import { db, scheduler } from '../../data/instance'
 import { AccentBar } from '../AccentBar'
@@ -225,14 +225,11 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
             <span className="small muted">Anlamı gör, kelimeyi yaz; uygulama kontrol eder</span>
           </button>
         </div>
-        <section className="card">
-          <StudyOptionsPanel value={options} onChange={setOptions} language={language} vocabulary={vocabulary} states={states} directions={mode === 'flip'} />
-        </section>
+        <StudyOptionsPanel value={options} onChange={setOptions} language={language} vocabulary={vocabulary} states={states} directions={mode === 'flip'} />
         <div className="flash-go">
           <button className="btn btn-lg" disabled={!available} onClick={start}>
             {available ? `${count} kartla başla` : 'Bu grupta kelime yok'}
           </button>
-          {available > 0 && <span className="small muted">{SCOPE_NAME[options.scope]}</span>}
         </div>
         <p className="small muted kbd">
           {mode === 'flip' ? (
@@ -252,48 +249,82 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
   if (!card) {
     const total = roundIds.length
     const firstTry = roundIds.filter((id) => grades[id]?.[0] === 2).length
-    const stumbled = roundIds.filter((id) => (grades[id] ?? []).some((g) => g < 2))
+    // How hard each card was: the times it was not known, then the times it was hard.
+    const misses = (id: string) => (grades[id] ?? []).filter((g) => g === 0).length
+    const hards = (id: string) => (grades[id] ?? []).filter((g) => g === 1).length
+    const stumbled = roundIds
+      .filter((id) => (grades[id] ?? []).some((g) => g < 2))
+      .sort((a, b) => misses(b) - misses(a) || hards(b) - hards(a))
+    const knownAtOnce = roundIds.filter((id) => !stumbled.includes(id))
     const percent = total ? Math.round((firstTry / total) * 100) : 0
+    const row = (id: string) => {
+      const e = byId.get(id)
+      if (!e) return null
+      const m = misses(id)
+      const h = hards(id)
+      return (
+        <li key={id} className="flash-missed-row">
+          <span className="flash-missed-word" lang={language}>
+            {displayForm(e)}
+          </span>
+          <span className="flash-missed-meaning">{e.senses[0]?.gloss}</span>
+          {(m > 0 || h > 0) && <span className={`flash-missed-tag${m > 0 ? ' flash-missed-no' : ''}`}>{m > 0 ? (m > 1 ? `${m} kez bilemedin` : 'Bilemedin') : 'Zorlandın'}</span>}
+        </li>
+      )
+    }
     return (
       <div className="stack flash-done">
-        <img className="flash-done-art" src={NEW_ART.flashDone} alt="" height={128} draggable={false} />
-        <h1 className="greeting">Tur bitti</h1>
+        <header className="flash-done-head">
+          <img className="flash-done-art" src={NEW_ART.flashDone} alt="" height={112} draggable={false} />
+          <div>
+            <h1 className="greeting">Tur bitti</h1>
+            <p className="greeting-sub">{stumbled.length ? `${stumbled.length} kartı bir kez daha çalışmak iyi gelir.` : 'Hepsini ilk seferde bildin.'}</p>
+          </div>
+        </header>
         <div className="flash-result card">
           <span className="flash-ring" style={{ '--p': `${percent}%` } as CSSProperties} role="img" aria-label={`İlk seferde %${percent}`}>
             <b>%{percent}</b>
+            <span>ilk seferde</span>
           </span>
-          <div className="stack gap-1">
-            <strong>
-              {total} kartın {firstTry} tanesini ilk seferde bildin
-            </strong>
-            <span className="small muted">{stumbled.length ? `${stumbled.length} kartta takıldın; hepsi tur bitmeden en az bir kez bilindi ya da sona kaldı.` : 'Hiç takılmadın.'}</span>
-          </div>
+          <dl className="flash-stats">
+            <div className="flash-stat-ok">
+              <dt>İlk seferde bildin</dt>
+              <dd>{firstTry}</dd>
+            </div>
+            <div className="flash-stat-miss">
+              <dt>Takıldın</dt>
+              <dd>{stumbled.length}</dd>
+            </div>
+            <div>
+              <dt>Toplam kart</dt>
+              <dd>{total}</dd>
+            </div>
+          </dl>
         </div>
         {stumbled.length > 0 && (
-          <section className="card stack">
-            <strong>Takıldıkların</strong>
-            <ul className="swipe-missed">
-              {stumbled
-                .map((id) => byId.get(id))
-                .filter((e): e is VocabularyEntry => !!e)
-                .map((e) => (
-                  <li key={e.id}>
-                    <span lang={language}>{displayForm(e)}</span> <span className="muted">{e.senses[0]?.gloss}</span>
-                  </li>
-                ))}
-            </ul>
+          <section className="card flash-missed">
+            <h2 className="section-title">Takıldıkların</h2>
+            <ul className="flash-missed-list">{stumbled.map(row)}</ul>
           </section>
         )}
-        <div className="row">
+        {knownAtOnce.length > 0 && stumbled.length > 0 && (
+          <details className="card flash-missed flash-known-list">
+            <summary>
+              İlk seferde bildiklerin <span className="muted">({knownAtOnce.length})</span>
+            </summary>
+            <ul className="flash-missed-list">{knownAtOnce.map(row)}</ul>
+          </details>
+        )}
+        <div className="flash-done-actions">
           {stumbled.length > 0 && (
-            <button className="btn" onClick={() => studyAgain(stumbled)}>
+            <button className="btn btn-lg" onClick={() => studyAgain(stumbled)}>
               Takıldıklarını çalış ({stumbled.length})
             </button>
           )}
-          <button className={stumbled.length ? 'btn btn-quiet' : 'btn'} onClick={start}>
+          <button className={stumbled.length ? 'btn btn-lg btn-quiet' : 'btn btn-lg'} onClick={start}>
             Bir tur daha
           </button>
-          <button className="btn btn-quiet" onClick={onExit}>
+          <button className="btn btn-lg btn-quiet" onClick={onExit}>
             Oyunlara dön
           </button>
         </div>

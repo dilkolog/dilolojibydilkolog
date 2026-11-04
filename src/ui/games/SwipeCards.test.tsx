@@ -29,6 +29,9 @@ afterEach(() => {
 
 const click = (el: Element | null | undefined) => act(async () => (el as HTMLElement).click())
 const byText = (host: HTMLElement, text: string) => [...host.querySelectorAll('button')].find((b) => b.textContent?.includes(text))
+/** One choice of a segmented control, by the control's name and the choice's words. */
+const choice = (host: HTMLElement, group: string, text: string) =>
+  [...host.querySelectorAll(`[role="radiogroup"][aria-label="${group}"] button`)].find((b) => b.textContent === text) as HTMLButtonElement | undefined
 
 async function mount() {
   const host = document.createElement('div')
@@ -43,7 +46,7 @@ describe('SwipeCards study options', () => {
     const host = await mount()
     expect(byText(host, 'Öğrendiklerimin hepsi')?.textContent).toContain('4')
     expect(byText(host, 'Zor işaretliler')?.disabled).toBe(true)
-    await click(byText(host, '10 kart'))
+    await click(choice(host, 'Kart sayısı', '10'))
     expect(byText(host, 'kartla başla')?.textContent).toContain('4 kartla')
   })
 
@@ -56,7 +59,7 @@ describe('SwipeCards study options', () => {
     document.body.innerHTML = ''
 
     const reverse = await mount()
-    await click(byText(reverse, 'Anlam önce'))
+    await click(choice(reverse, 'Önce ne görünsün', 'Anlam'))
     await click(byText(reverse, 'kartla başla'))
     const meaning = reverse.querySelector('.swipe-word')!.textContent!
     const entry = words.find((w) => w.senses[0].gloss === meaning)!
@@ -67,13 +70,13 @@ describe('SwipeCards study options', () => {
 
   it('remembers the choice for next time', async () => {
     const host = await mount()
-    await click(byText(host, 'Karıştır'))
-    await click(byText(host, 'Karışık'))
+    await click(host.querySelector('[role="switch"][aria-label="Karıştır"]'))
+    await click(choice(host, 'Önce ne görünsün', 'Karışık'))
     act(() => root?.unmount())
     document.body.innerHTML = ''
     const again = await mount()
-    expect(byText(again, 'Karıştır')?.getAttribute('aria-pressed')).toBe('true')
-    expect(byText(again, 'Karışık')?.getAttribute('aria-pressed')).toBe('true')
+    expect(again.querySelector('[role="switch"][aria-label="Karıştır"]')?.getAttribute('aria-checked')).toBe('true')
+    expect(choice(again, 'Önce ne görünsün', 'Karışık')?.getAttribute('aria-checked')).toBe('true')
   })
 
   it('a card not known stays in the round and counts as still learning; known ones leave', async () => {

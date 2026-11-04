@@ -43,7 +43,8 @@ export function useSessionStarters({ settings, data, game, plan, planInput, opti
   /** The day's plan; a long day (and no session cap set) in two sittings, the first ending about halfway. */
   const startPlan = (plan: DailyPlan) => {
     // A few of the verb lab's due forms join the words (interleaving), spread through the session.
-    const items = mixForms(plan.items, dayForms)
+    // Not when "Fiili çek" is switched off (Settings → Sorular): those forms are conjugation questions too.
+    const items = mixForms(plan.items, options?.off?.includes('conjugation') ? [] : dayForms)
     const split = !settings?.sessionMax && (settings?.splitLongDays ?? true) && plan.estimatedMinutes > SPLIT_ABOVE_MINUTES
     const end = split ? firstSittingEnd(items) : items.length
     startSession(withDayProbes(items.slice(0, end)), 'normal', daySeed(new Date()), undefined, undefined, split && end < items.length)
