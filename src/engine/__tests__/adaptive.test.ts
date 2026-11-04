@@ -14,11 +14,11 @@ describe('85 % rule', () => {
   const rng = createRng(1)
   it('asks a harder format when nearly everything is right, an easier one when much goes wrong', () => {
     const allRight: Verdict[] = Array(8).fill('correct')
-    const harder = adaptExercise(ex('listen_choose'), decision, undefined, allRight, rng)
+    const harder = adaptExercise({ ...ex('listen_choose'), reason: 'due' }, decision, undefined, allRight, rng)
     expect(EXERCISES[harder.exerciseType!].input).not.toBe('choice')
     expect(EXERCISES[harder.exerciseType!].skill).toBe('listening')
     const struggling: Verdict[] = ['wrong', 'correct', 'wrong', 'wrong', 'correct', 'wrong']
-    const easier = adaptExercise(ex('listen_type'), decision, undefined, struggling, rng)
+    const easier = adaptExercise({ ...ex('listen_type'), reason: 'due' }, decision, undefined, struggling, rng)
     expect(easier.exerciseType).toBe('listen_choose')
     // Recognition has only choice formats: nothing harder to switch to, so it stays.
     const rec = ex('mc_meaning')

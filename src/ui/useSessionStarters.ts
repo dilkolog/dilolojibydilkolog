@@ -37,7 +37,7 @@ export function useSessionStarters({ settings, data, game, plan, planInput, opti
   /** `extra`: words that may not be in the loaded list yet (just added), so the session has them. */
   const startSession = (items: PlanItem[], mode: ReviewMode, seed = Date.now() % 2 ** 31, extra?: VocabularyEntry[], topic?: 'difficult', firstSitting?: boolean) => {
     // A session cap takes a prefix: introductions always come before their first test.
-    const capped = settings?.sessionMax ? items.slice(0, settings.sessionMax) : items
+    const capped = settings?.sessionMax ? items.slice(0, firstSittingEnd(items, settings.sessionMax)) : items
     if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra, topic, firstSitting })
   }
   /** The day's plan; a long day (and no session cap set) in two sittings, the first ending about halfway. */

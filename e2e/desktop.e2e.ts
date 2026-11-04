@@ -1212,7 +1212,7 @@ test("Games: the day's reviews come first, with a start button", async ({ page }
   await expect(page.locator('.session-stage')).toBeVisible()
 })
 
-test('a word met yesterday comes back as a card before its first question: the arrow keys decide, a hard one is asked once more', async ({ page }) => {
+test('a word learned yesterday is tested without revealing its answer first', async ({ page }) => {
   test.setTimeout(120_000)
   await page.clock.setFixedTime(new Date('2026-03-04T10:00:00'))
   await startWithSamples(page)
@@ -1223,21 +1223,7 @@ test('a word met yesterday comes back as a card before its first question: the a
   await page.reload()
   for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').click()
   await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
-  const card = page.locator('.refresh')
-  // The plan mixes new words in among the reviews, so a new word's introduction can come first: step past
-  // it (and its question) until the first word met yesterday comes up.
-  for (let i = 0; i < 12 && !(await card.count()); i++) {
-    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
-    const guess = page.locator('.session-stage .option:not([disabled])')
-    if (await next.count()) await next.first().click({ timeout: 3000 }).catch(() => {})
-    else if (await guess.count()) await guess.first().click({ timeout: 3000 }).catch(() => {})
-    await page.waitForTimeout(150)
-  }
-  await expect(card).toContainText('Önce bir bak')
-  await expect(card.locator('.swipe-gloss')).not.toBeEmpty()
-  // Left: "Zorlanıyorum"; the question comes, and the same word returns later as a quick question.
-  await page.keyboard.press('ArrowLeft')
-  await expect(card).toHaveCount(0)
+  await expect(page.locator('.refresh')).toHaveCount(0)
   await expect(page.locator('.session-stage .prompt-label')).toBeVisible()
   await expect(page.locator('.session-stage')).not.toContainText('Önce bir bak')
 })

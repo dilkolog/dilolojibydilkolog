@@ -28,6 +28,10 @@ export interface PlanItem {
   firstLetter?: boolean
   /** A measurement probe (engine/probes.ts): the chance this card had of being picked; asked in practice mode. */
   probe?: number
+  /** Guided in-session repetition; initialise an untested skill without inflating existing schedules. */
+  learningFollowUp?: boolean
+  /** Three-word learning group, assigned when the session starts. */
+  learningBatch?: number
   /**
    * A conjugated form from the verb lab's review queue, mixed into the day (entryId is then
    * `form:<verb>|<tense>`): the person's form of the verb in the tense, typed.
@@ -302,6 +306,8 @@ export function interleave(items: readonly PlanItem[], rng: Rng): PlanItem[] {
 
   const ready = (it: PlanItem) =>
     it.reason !== 'new' || it.kind === 'introduce' || introAt.has(it.entryId)
+  // Do not show a wall of introductions before asking the learner anything.
+  const paced = (it: PlanItem) => it.kind !== 'introduce' || !out.slice(-3).every((x) => x.kind === 'introduce') || out.length < 3
   const spaced = (it: PlanItem) =>
     it.reason !== 'new' || it.kind === 'introduce' || out.length - introAt.get(it.entryId)! > INTRO_GAP
   const varied = (it: PlanItem) => {
@@ -311,7 +317,7 @@ export function interleave(items: readonly PlanItem[], rng: Rng): PlanItem[] {
 
   while (pool.length) {
     const i =
-      [(it: PlanItem) => ready(it) && spaced(it) && varied(it), (it: PlanItem) => ready(it) && spaced(it), ready]
+      [(it: PlanItem) => ready(it) && paced(it) && spaced(it) && varied(it), (it: PlanItem) => ready(it) && paced(it) && spaced(it), (it: PlanItem) => ready(it) && paced(it), ready]
         .map((test) => pool.findIndex(test))
         .find((idx) => idx >= 0) ?? 0
     const [it] = pool.splice(i, 1)
@@ -385,7 +391,9 @@ function introductionPair(entry: VocabularyEntry, rng: Rng, options?: EngineOpti
       entryId: entry.id,
       reason: 'new',
       skill: 'recognition',
-      exerciseType: pickExerciseType('recognition', entry, undefined, rng, { off: options?.off, less: options?.less }),
+      exerciseType: exerciseTypesFor('recognition', entry, options).includes('mc_meaning')
+        ? 'mc_meaning'
+        : pickExerciseType('recognition', entry, undefined, rng, options),
     },
   ]
 }
@@ -404,7 +412,7 @@ export function buildExtraNewPlan(input: PlanInput, count: number): PlanItem[] {
 export function shortRound(items: readonly PlanItem[], n = SHORT_ROUND): PlanItem[] {
   const urgent = items
     .map((item, at) => ({ item, at }))
-    .filter((x) => x.item.kind === 'exercise')
+    .filter((x) => x.item.kind === 'exercise' && x.item.reason !== 'new')
     .sort((a, b) => REASON_ORDER.indexOf(a.item.reason) - REASON_ORDER.indexOf(b.item.reason) || a.at - b.at)
     .slice(0, n)
   return urgent.sort((a, b) => a.at - b.at).map((x) => x.item)
@@ -435,5 +443,12 @@ export function roundForMinutes(items: readonly PlanItem[], minutes: number): Pl
   }
   const urgent = take(reviews)
   if (urgent.length) return urgent.sort((a, b) => a.at - b.at).map((x) => x.item)
-  return take(items.map((item, at) => ({ item, at }))).map((x) => x.item)
+  let end = take(items.map((item, at) => ({ item, at }))).length
+  // A time estimate is a soft limit: never teach a word and omit its first test.
+  for (let i = 0; i < end; i++) {
+    if (items[i].kind !== 'introduce') continue
+    const testAt = items.findIndex((it, at) => at > i && it.entryId === items[i].entryId && it.kind === 'exercise')
+    if (testAt >= end) end = testAt + 1
+  }
+  return items.slice(0, end)
 }

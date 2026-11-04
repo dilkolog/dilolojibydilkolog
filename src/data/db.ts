@@ -210,7 +210,7 @@ export interface Settings {
   retention: number
   /** Guess a new word's meaning before it is shown (pretesting effect). */
   pretest: boolean
-  /** A word met yesterday or today comes back as a card before its first question (default on). */
+  /** Resume an unfinished recent introduction with its card; never reveal an already tested word. */
   refreshCard?: boolean
   /** Offer "not sure" before answering; confident errors get extra attention. */
   confidence: boolean

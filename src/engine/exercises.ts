@@ -1,4 +1,4 @@
-import { checkSentence, checkTyped, levenshtein, normalize, stripDiacritics } from './answerCheck'
+import { checkSentence, checkTyped, levenshtein, normalize, splitArticle, stripDiacritics } from './answerCheck'
 import { PERSONS } from './conjugation'
 import { TENSE_BRIEF } from './tenseBrief'
 import { answersFor, aspectItemsFor, conjugateTense, subjectLabel, tenseSentence, tensesOf, tenseVariants, unlockedTenses, type Tense } from './tenses'
@@ -871,7 +871,7 @@ function evaluateTypedInner(
     .map((r) => catalog.find((c) => c.id === r.targetId)?.lemma)
     .filter((l): l is string => !!l)
   const familyForms = [entry.lemma, ...entry.wordFamily.map((m) => m.lemma)].filter(
-    (f) => !ex.accepted.some((a) => normalize(a) === normalize(f)),
+    (f) => !ex.accepted.some((a) => splitArticle(normalize(a), entry.language).rest === splitArticle(normalize(f), entry.language).rest),
   )
   if (ex.type === 'dictation') {
     const s = checkSentence(text, ex.accepted[0], entry.language)
