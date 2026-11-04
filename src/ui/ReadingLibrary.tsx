@@ -77,6 +77,9 @@ export function AddTextCard({
   fileBusy,
   bookError,
   onPhotoText,
+  videoFor,
+  onDropVideo,
+  timedLines,
 }: {
   language: TargetLanguage
   startOpen: boolean
@@ -97,13 +100,23 @@ export function AddTextCard({
   bookError: { ok: boolean; text: string } | null
   /** Text read off photos goes into the draft. */
   onPhotoText?: (text: string, title: string) => void
+  /** A video whose transcript could not be brought: the text pasted next is tied to it. */
+  videoFor?: string | null
+  onDropVideo?: () => void
+  /** How many timed lines the draft holds (a pasted transcript, a subtitle file). */
+  timedLines?: number
 }) {
   return (
     <details className="card add-text" open={startOpen}>
       <summary>Kendi metnini ekle: yapıştır, dosya (PDF, Word, EPUB), fotoğraf ya da bağlantı</summary>
       <div className="stack mt-3">
       <input className="input" value={title} onChange={(e) => onTitle(e.target.value)} placeholder="Başlık (isteğe bağlı)" aria-label="Başlık" />
-      <textarea className="textarea reading-draft-textarea" lang={language} aria-label="Metin" placeholder="Metni buraya yapıştır…" value={draft} onChange={(e) => onDraft(e.target.value)} />
+      <textarea className="textarea reading-draft-textarea" lang={language} aria-label="Metin" placeholder={videoFor ? 'Videonun transkriptini buraya yapıştır…' : 'Metni buraya yapıştır…'} value={draft} onChange={(e) => onDraft(e.target.value)} />
+      {!!timedLines && draft.trim() && (
+        <p className="small muted" role="status">
+          {timedLines} satır zamanlarıyla tanındı{videoFor ? ': okurken video metnin üstünde, söylenen cümle yanarak açılır.' : '.'}
+        </p>
+      )}
       <div className="row">
         <button className="btn" onClick={onStart} disabled={!draft.trim()}>
           Okumaya başla
@@ -156,6 +169,21 @@ export function AddTextCard({
         </button>
       </form>
       <p className="small muted">Bağlantıyı yapıştırman yeter: videonun altyazısı ya da sayfanın yazısı kendiliğinden gelir ve okuma açılır. Yalnızca yazı alınır ve yalnızca senin kütüphanende durur; kendi okuman için, başkalarıyla paylaşmak için değil.</p>
+      {videoFor && (
+        <div className="note stack transcript-help" role="status">
+          <strong>Transkripti kendin ekleyebilirsin</strong>
+          <ol className="small">
+            <li>YouTube'da videoyu aç; açıklamanın altındaki “Transkripti göster”e bas (bilgisayarda en kolayı).</li>
+            <li>Transkriptin hepsini seçip kopyala (zamanlarıyla birlikte).</li>
+            <li>Yukarıdaki metin kutusuna yapıştır ve “Okumaya başla”: zamanlar tanınır, video metnin üstünde açılır.</li>
+          </ol>
+          {onDropVideo && (
+            <button type="button" className="link small" onClick={onDropVideo}>
+              Bu videodan vazgeç
+            </button>
+          )}
+        </div>
+      )}
       {bookError && (
         <p className={bookError.ok ? 'notice' : 'error'} role="status">
           {bookError.ok && <BookIcon size={16} className="inline-icon" />}

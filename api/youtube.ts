@@ -32,7 +32,9 @@ export async function GET(request: Request): Promise<Response> {
       { headers: { 'cache-control': 'private, max-age=86400' } },
     )
   } catch (e) {
-    if (e instanceof CaptionError && e.message === 'no captions') return Response.json({ error: 'no captions', ...e.detail }, { status: 404 })
+    if (e instanceof CaptionError && e.message === 'no captions') return Response.json({ error: 'no captions', available: e.detail.available }, { status: 404 })
+    // YouTube would not give this server the captions (it often treats cloud servers as bots): said as such.
+    if (e instanceof CaptionError && e.message === 'youtube blocked') return Response.json({ error: 'youtube blocked', status: e.detail.status }, { status: 502 })
     return Response.json({ error: 'youtube unavailable' }, { status: 502 })
   }
 }

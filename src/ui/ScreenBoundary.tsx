@@ -1,6 +1,6 @@
 import { Component, type ReactNode } from 'react'
 import { reportError } from '../data/errorReport'
-import { isChunkError } from './chunkError'
+import { isChunkError, reloadForNewVersion } from './chunkError'
 import { supportMailto } from './helpInfo'
 import { StatusPicture } from './StatusArt'
 
@@ -21,8 +21,10 @@ export class ScreenBoundary extends Component<{ resetKey: string; onHome: () => 
 
   componentDidCatch(error: unknown) {
     console.error(error)
-    // A screen that failed to download is expected after a deploy or offline; not a bug.
-    if (!isChunkError(error)) reportError(error, this.props.resetKey)
+    // A screen that failed to download is expected after a deploy or offline; not a bug. After a deploy the
+    // page picks up the new version by itself (once a minute at most).
+    if (isChunkError(error)) reloadForNewVersion()
+    else reportError(error, this.props.resetKey)
   }
 
   render() {

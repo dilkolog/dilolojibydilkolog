@@ -138,7 +138,7 @@ export function ReadingScreen({
 
   const {
     library, setLibrary, current, setCurrent,
-    draft, changeDraft, title, setTitle, youtube, setYoutube, ytBusy, fileBusy, bookError, loadFailed,
+    draft, changeDraft, draftCues, videoFor, setVideoFor, title, setTitle, youtube, setYoutube, ytBusy, fileBusy, bookError, loadFailed,
     open, start, loadFile, addPhotoText, importBook, importYoutube, removeBook, remove, nextChapter,
   } = useReadingLibrary({
     db,
@@ -319,6 +319,9 @@ export function ReadingScreen({
         fileBusy={fileBusy}
         bookError={bookError}
         onPhotoText={addPhotoText}
+        videoFor={videoFor}
+        onDropVideo={() => setVideoFor(null)}
+        timedLines={draftCues?.length ?? 0}
       />
       </>
     )
