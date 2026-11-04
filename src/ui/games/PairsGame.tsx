@@ -97,7 +97,7 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
         await db.saveRecord(recordKey, pct)
         setRecord(best !== undefined)
       }
-      sfx.levelUp()
+      sfx.finish()
     }
     setIndex((i) => i + 1)
   }

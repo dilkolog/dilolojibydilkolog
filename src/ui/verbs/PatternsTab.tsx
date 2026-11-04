@@ -93,7 +93,7 @@ function FamilyDrill({ family, verbs, onCheck, onClose }: { family: Family; verb
   const tense = family.tense as Tense
   const forms = verb ? conjugateTense(verbEntry(language, verb), tense) : undefined
   useEffect(() => {
-    if (index >= queue.length && queue.length) sfx.levelUp()
+    if (index >= queue.length && queue.length) sfx.finish()
   }, [index, queue.length])
 
   if (!verb || !forms)

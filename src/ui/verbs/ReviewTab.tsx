@@ -89,7 +89,7 @@ export function FormRun({
     requestAnimationFrame(() => input.current?.focus())
   }
   useEffect(() => {
-    if (index >= queue.length && queue.length) sfx.levelUp()
+    if (index >= queue.length && queue.length) sfx.finish()
   }, [index, queue.length])
 
   if (index >= queue.length)

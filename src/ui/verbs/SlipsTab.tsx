@@ -91,7 +91,7 @@ function SlipRun({ language, lab, seed, onCheck, onOpen, onClose }: { language: 
     requestAnimationFrame(() => input.current?.focus())
   }
   useEffect(() => {
-    if (index >= queue.length && queue.length) sfx.levelUp()
+    if (index >= queue.length && queue.length) sfx.finish()
   }, [index, queue.length])
 
   if (!queue.length) {

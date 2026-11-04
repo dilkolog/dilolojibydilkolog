@@ -75,7 +75,7 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
       if (round[index + 1].type === 'cloze') requestAnimationFrame(() => input.current?.focus())
       return
     }
-    sfx.levelUp()
+    sfx.finish()
     setPhase('over')
   }
 

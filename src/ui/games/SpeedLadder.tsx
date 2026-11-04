@@ -105,7 +105,7 @@ export function SpeedLadder({ language, vocabulary, onExit }: { language: Target
     } catch {
       // Progress is a convenience; a full or blocked store only means no comparison next time.
     }
-    sfx.levelUp()
+    sfx.finish()
     setPhase('over')
   }
 

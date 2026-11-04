@@ -12,6 +12,10 @@ export const prefs = {
   hintDelayMs: 6000,
   accentStrict: false,
   soundEffects: true,
+  /** Effects' loudness, 0–1 (Settings → Ses). */
+  soundVolume: 0.8,
+  /** 'moments': only the big moments sound (round over, goal, badge, level), not every answer. */
+  soundLevel: 'all' as 'all' | 'moments',
   showKeyLegend: true,
   pretest: true,
   refreshCard: true,
@@ -38,6 +42,8 @@ export function applySettings(s: Settings) {
   prefs.hintDelayMs = s.hintDelaySec * 1000
   prefs.accentStrict = s.accentStrict
   prefs.soundEffects = s.soundEffects
+  prefs.soundVolume = typeof s.soundVolume === 'number' ? Math.max(0, Math.min(1, s.soundVolume)) : 0.8
+  prefs.soundLevel = s.soundLevel === 'moments' ? 'moments' : 'all'
   prefs.showKeyLegend = s.showKeyLegend
   prefs.pretest = s.pretest
   prefs.refreshCard = s.refreshCard !== false

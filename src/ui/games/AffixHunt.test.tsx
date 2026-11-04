@@ -17,7 +17,7 @@ const pack = {
     comfortably: rec('d', 'rahatça'),
   },
 } as unknown as Pack
-vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), near: vi.fn() } }))
+vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), finish: vi.fn(), badge: vi.fn(), goal: vi.fn(), pair: vi.fn(), flip: vi.fn(), tick: vi.fn(), forgot: vi.fn(), resetRun: vi.fn(), near: vi.fn() } }))
 vi.mock('../../data/wordpack', async (orig) => ({ ...(await orig<typeof import('../../data/wordpack')>()), loadPack: async () => pack }))
 vi.mock('../../data/frequency', async (orig) => ({ ...(await orig<typeof import('../../data/frequency')>()), loadFrequency: async () => new Map([['comfort', 1], ['comfortable', 2]]) }))
 const { AffixHunt } = await import('./AffixHunt')

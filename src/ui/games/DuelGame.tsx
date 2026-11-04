@@ -164,7 +164,7 @@ export function DuelGame({ language, onExit }: { language: TargetLanguage; onExi
     }
     const result: DuelResult = { name: player, score: right, ms: spent }
     setFinal(result)
-    sfx.levelUp()
+    sfx.finish()
     setPhase('over')
   }
 

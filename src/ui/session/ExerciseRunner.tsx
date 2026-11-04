@@ -35,7 +35,7 @@ export interface RunnerProps {
   item: PlanItem
   catalog: VocabularyEntry[]
   rng: Rng
-  onAnswer: (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number, confidence?: Confidence) => Promise<Omit<SessionLogEntry, 'item'>>
+  onAnswer: (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number, confidence?: Confidence, forgot?: boolean) => Promise<Omit<SessionLogEntry, 'item'>>
   onOverride: () => Promise<Omit<SessionLogEntry, 'item'> | null>
   onDiscard: () => Promise<boolean>
   onContinue: (log: Omit<SessionLogEntry, 'item'>) => void
@@ -124,7 +124,7 @@ export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride
     const confidence: Confidence | undefined = asksConfidence && !forgot ? (unsure || shift ? 'unsure' : 'sure') : undefined
     let log: Omit<SessionLogEntry, 'item'>
     try {
-      log = await onAnswer(ev, ms, hintsUsed, maxHints, confidence)
+      log = await onAnswer(ev, ms, hintsUsed, maxHints, confidence, forgot)
     } catch {
       // Not saved (storage full, database closed): said, and the same question can be answered again.
       busy.current = false

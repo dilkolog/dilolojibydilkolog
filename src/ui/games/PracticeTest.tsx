@@ -340,7 +340,7 @@ function MatchQuestion({
     if (!picked || matched.includes(id)) return
     if (picked === id) {
       setMatched((m) => [...m, id])
-      sfx.correct()
+      sfx.pair()
     } else {
       setSlipped((s) => (s.includes(picked) ? s : [...s, picked]))
       sfx.wrong()

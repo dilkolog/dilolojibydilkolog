@@ -179,7 +179,10 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
       else if (mode === 'write') {
         if (e.key === 'Enter' && checked) grade(checked.grade, false)
         else return
-      } else if (e.code === 'Space') setFlipped((f) => !f)
+      } else if (e.code === 'Space') {
+        sfx.flip()
+        setFlipped((f) => !f)
+      }
       else if (e.key === 'ArrowRight') grade(2)
       else if (e.key === 'ArrowLeft') grade(0)
       else if (['1', '2', '3'].includes(e.key)) grade((Number(e.key) - 1) as FlashGrade)
@@ -347,6 +350,7 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
               setDx(0)
               if (!moved) {
                 haptics.tap()
+                sfx.flip()
                 setFlipped((f) => !f)
               }
             }

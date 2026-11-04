@@ -7,7 +7,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../../data/instance'
 
 const spoken: { text: string; rate: number }[] = []
-vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn() } }))
+vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), finish: vi.fn(), badge: vi.fn(), goal: vi.fn(), pair: vi.fn(), flip: vi.fn(), tick: vi.fn(), forgot: vi.fn(), resetRun: vi.fn() } }))
 vi.mock('../speech', () => ({
   speechPrefs: { rate: 1 },
   stopSpeaking: vi.fn(),

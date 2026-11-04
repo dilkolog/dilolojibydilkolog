@@ -190,6 +190,10 @@ export interface Settings {
   /** Chosen system voice per language (voiceURI). */
   voices: Partial<Record<TargetLanguage, string>>
   soundEffects: boolean
+  /** Effects' loudness, 0–1 (default 0.8). */
+  soundVolume?: number
+  /** 'moments': only round over, daily goal, badge and level sound; 'all' (default): every answer too. */
+  soundLevel?: 'all' | 'moments'
   /** Seconds before the first hint unlocks (then the same again for each next one). */
   hintDelaySec: number
   /** Missing/wrong accents count as wrong instead of "almost". */

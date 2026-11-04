@@ -138,7 +138,7 @@ export function PracticeTab({
   const finish = (final: Record<number, boolean>) => {
     setFinished(true)
     onRound(verb, tense, { correct: Object.values(final).filter(Boolean).length, total: people.length })
-    sfx.levelUp()
+    sfx.finish()
   }
   /** One answered form: lives, the outcome, and the end of the round. */
   const settle = (person: number, ok: boolean, given: string, defer = false) => {

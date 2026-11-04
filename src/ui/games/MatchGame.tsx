@@ -55,7 +55,7 @@ export function MatchGame({ language, vocabulary, states, best, recordKey, onExi
     if (start === null) setStart(s)
     if (!selected || selected.side === t.side) return setSelected(t)
     if (selected.entryId === t.entryId) {
-      sfx.correct()
+      sfx.pair()
       const next = new Set(matched).add(t.entryId)
       setMatched(next)
       setSelected(null)
@@ -66,7 +66,7 @@ export function MatchGame({ language, vocabulary, states, best, recordKey, onExi
         const record = !best || ms < best
         if (record) await db.saveRecord(recordKey, Math.round(ms))
         setDone({ ms, record })
-        sfx.levelUp()
+        sfx.finish()
         onChanged()
       }
     } else {

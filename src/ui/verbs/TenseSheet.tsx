@@ -77,7 +77,7 @@ function TenseSheetBody({
     if (marks) return
     const next = rows.map((r, i) => clozeRight({ verb: r.verb, tense: r.tense, before: '', form: r.form, after: '', translation: r.translation ?? '' }, typed[i] ?? '', language))
     setMarks(next)
-    if (next.every(Boolean)) sfx.levelUp()
+    if (next.every(Boolean)) sfx.finish()
     else sfx.wrong()
     rows.forEach((r, i) => onAnswer?.(r.verb, r.tense, next[i], (typed[i] ?? '').trim(), r.form))
   }

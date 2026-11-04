@@ -95,7 +95,7 @@ export function FlowRound({ language, onExit, onLesson }: { language: TargetLang
       await db.saveRecord(recordKey, pct)
       setRecord(best !== undefined)
     }
-    sfx.levelUp()
+    sfx.finish()
     setPhase('over')
   }
 

@@ -156,7 +156,7 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
     setHearts(nextHearts)
     if (nextHp === 0) {
       await db.addBossWin({ entryId: entry.id, at: new Date().toISOString(), wrongAtWin: state?.stats.wrong ?? boss.wrong })
-      sfx.levelUp()
+      sfx.finish()
       setOutcome('won')
     } else if (nextHearts === 0) setOutcome('lost')
   }

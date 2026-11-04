@@ -7,7 +7,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../../data/instance'
 import type { Diagram } from '../../engine/diagram'
 
-vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), near: vi.fn() } }))
+vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), finish: vi.fn(), badge: vi.fn(), goal: vi.fn(), pair: vi.fn(), flip: vi.fn(), tick: vi.fn(), forgot: vi.fn(), resetRun: vi.fn(), near: vi.fn() } }))
 vi.stubGlobal('URL', Object.assign(URL, { createObjectURL: () => 'blob:x', revokeObjectURL: () => {} }))
 const { DiagramGame } = await import('./DiagramGame')
 

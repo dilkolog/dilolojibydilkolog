@@ -44,7 +44,7 @@ export function GameResult({
 
   useEffect(() => {
     if (isCelebration) {
-      sfx.levelUp()
+      sfx.finish()
       haptics.victory()
     }
   }, [isCelebration])

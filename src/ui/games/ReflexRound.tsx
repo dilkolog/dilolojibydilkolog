@@ -77,7 +77,7 @@ export function ReflexRound({ language, onExit }: { language: TargetLanguage; on
       shownAt.current = performance.now()
       return
     }
-    sfx.levelUp()
+    sfx.finish()
     haptics.victory()
     setPhase('over')
   }
