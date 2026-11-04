@@ -3,9 +3,10 @@ import { addFriend, blockedPeople, blockFriend, clearInbox, findFriend, friendsO
 import { friendMessage, pushToOwner } from './_notify.js'
 import { fromApp } from './_origin.js'
 import { deleteAccountData, timed } from './_deleteAccount.js'
-import { deleteSupabaseMedia, deleteSupabaseUser, ensureProfile, mirrorApproval, saveVault, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
+import { deleteSupabaseMedia, deleteSupabaseUser, ensureProfile, mirrorApproval, rest, saveVault, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
 import { overLimit, tooMany } from './_rate.js'
 import { noticeSignup } from './_signupNotice.js'
+import { currentAnnouncement, getSettings } from './_settings.js'
 import { fileReport } from './_reports.js'
 import { countUse, USE_NAMES, usageLast, type UseName } from './_usage.js'
 import { listReports, ownerAuthorized, unpublishList } from './_owner.js'
@@ -205,6 +206,10 @@ async function vaultLink(request: Request, body: Record<string, unknown>): Promi
     if ((await saveVault(user.id, { id, enc, auth, username })) === 'taken') return json({ error: 'taken' }, 409)
     // A person's first sign-in (their account was just linked): the owner hears of it.
     if (!had) await noticeSignup({ email: user.email, name: user.name, username })
+    // The owner chose to let new people in at once (admin screen → Ayarlar): approved at their first sign-in.
+    if (!had && approvalOn() && (await getSettings()).autoApprove) {
+      await rest(`profiles?user_id=eq.${user.id}`, { method: 'PATCH', headers: { prefer: 'return=minimal' }, body: JSON.stringify({ approved: true, rejected: false }) }).catch(() => null)
+    }
     if (!approvalOn()) {
       await mirrorApproval(id, 'approved')
       return json({ status: 'approved' })
@@ -250,6 +255,11 @@ async function accountDelete(request: Request): Promise<Response> {
 export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
   const q = new URL(request.url).searchParams
+  // The owner's announcement (admin screen), for everyone's bell: public text, nothing about anyone.
+  if (q.has('news')) {
+    if (overLimit(request, 'access-news', 30)) return tooMany()
+    return json({ announcement: await currentAnnouncement().catch(() => null) })
+  }
   if (q.has('owner')) return ownerGet(request, q)
   if (q.has('friends') || q.has('inbox') || q.has('blocked') || q.has('friend-handle') || q.has('friend-find') || q.has('friend-invite')) return friendsGet(request)
   if (new URL(request.url).searchParams.has('vault')) return vaultGet(request)

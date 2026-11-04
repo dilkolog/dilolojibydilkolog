@@ -2,13 +2,29 @@ import '../lazy.css'
 import { useCallback, useEffect, useState, type FormEvent } from 'react'
 import {
   AdminError,
+  announce,
+  approveAll,
+  block,
   changePerson,
   deletePerson,
+  loadBlocks,
   loadPeople,
+  loadPerson,
   loadReports,
+  loadSettings,
+  loadStats,
+  loadUsage,
   loadSystem,
   moveStep,
+  saveSettings,
+  unblock,
   unpublishSet,
+  type Block,
+  type LimitName,
+  type PersonDetail,
+  type SettingsView,
+  type Stats,
+  type Usage,
   type AiLevel,
   type OwnerReport,
   type PeopleFilter,
@@ -18,6 +34,7 @@ import {
 import { CheckCircleIcon, ChevronRightIcon, SearchIcon } from './icons'
 import { ConfirmDialog } from './Dialog'
 import { PageHeader } from './PageHeader'
+import { Toggle } from './settingsWidgets'
 import { Sticker } from './Sticker'
 import { Select, type SelectOption } from './Select'
 import { showToast } from './toastFeed'
@@ -79,6 +96,8 @@ function PeopleCard({ tell }: { tell: Tell }) {
   const [error, setError] = useState('')
   const [busy, setBusy] = useState<string | null>(null)
   const [deleting, setDeleting] = useState<Person | null>(null)
+  const [open, setOpen] = useState<string | null>(null)
+  const [approvingAll, setApprovingAll] = useState(false)
 
   const load = useCallback(async () => {
     setError('')
@@ -107,15 +126,29 @@ function PeopleCard({ tell }: { tell: Tell }) {
     }
   }
 
-  const remove = async (person: Person, typed: string) => {
+  const remove = async (person: Person, typed: string, blockToo: boolean) => {
     setBusy(person.id)
     try {
-      await deletePerson(person.id, typed)
+      const done = await deletePerson(person.id, typed, blockToo)
       setDeleting(null)
-      showToast(`${person.email} hesabı silindi.`)
+      showToast(blockToo && done.blocked !== 'ok' ? `${person.email} hesabı silindi; adres engellenemedi (0011 göçü çalıştı mı?).` : `${person.email} hesabı silindi.`)
       await load()
     } catch (e) {
       showToast(`Silinemedi: ${failText(e)}`, undefined, 6000, 'info')
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  const approveEveryone = async () => {
+    setBusy('all')
+    try {
+      const { approved } = await approveAll()
+      setApprovingAll(false)
+      showToast(`${approved} kişi onaylandı.`)
+      await load()
+    } catch (e) {
+      showToast(`Olmadı: ${failText(e)}`, undefined, 5000, 'info')
     } finally {
       setBusy(null)
     }
@@ -149,6 +182,18 @@ function PeopleCard({ tell }: { tell: Tell }) {
         <p className="note" role="alert">
           Yüklenemedi: {error}
         </p>
+      )}
+      {filter === 'pending' && !asked && data && data.pending > 1 && (
+        <div className="admin-bulk">
+          <button type="button" className="btn btn-sm btn-quiet" disabled={busy === 'all'} onClick={() => setApprovingAll(true)}>
+            Hepsini onayla ({data.pending})
+          </button>
+        </div>
+      )}
+      {approvingAll && data && (
+        <ConfirmDialog title={`Bekleyen ${data.pending} kişinin hepsi onaylansın mı?`} confirmLabel={busy === 'all' ? 'Onaylanıyor…' : 'Hepsini onayla'} onConfirm={() => busy !== 'all' && void approveEveryone()} onCancel={() => setApprovingAll(false)}>
+          <p className="small">Onaylanan herkes eşitleme, çeviri ve YZ'yi (varsayılan düzeyde) kullanabilir. Tek tek beklemeye geri alabilirsin.</p>
+        </ConfirmDialog>
       )}
       {data && data.people.length === 0 && (
         <p className="small muted sticker-note admin-empty">
@@ -201,16 +246,20 @@ function PeopleCard({ tell }: { tell: Tell }) {
                       Beklemeye al
                     </button>
                   )}
+                  <button type="button" className="btn btn-sm btn-quiet" aria-expanded={open === p.id} onClick={() => setOpen(open === p.id ? null : p.id)}>
+                    Ayrıntı
+                  </button>
                   <button type="button" className="btn btn-sm btn-quiet admin-delete" disabled={busy === p.id} onClick={() => setDeleting(p)}>
                     Hesabı sil
                   </button>
                 </div>
+                {open === p.id && <PersonInfo id={p.id} />}
               </li>
             )
           })}
         </ul>
       )}
-      {deleting && <DeletePerson person={deleting} busy={busy === deleting.id} onDelete={(typed) => void remove(deleting, typed)} onCancel={() => setDeleting(null)} />}
+      {deleting && <DeletePerson person={deleting} busy={busy === deleting.id} onDelete={(typed, blockToo) => void remove(deleting, typed, blockToo)} onCancel={() => setDeleting(null)} />}
       {data && !data.levels && <p className="small muted">YZ düzeyi seçmek için Supabase'te 0007 göçünü çalıştır.</p>}
       {data && data.people.length >= 200 && <p className="text-xs muted">En yeni 200 kişi gösteriliyor; aramayla daralt.</p>}
       {data && data.people.length > 0 && <p className="text-xs muted">Değişiklik birkaç dakika içinde her yerde geçerli olur.</p>}
@@ -219,14 +268,15 @@ function PeopleCard({ tell }: { tell: Tell }) {
 }
 
 /** Deleting someone's account asks for their e-mail, typed: the server checks it too. */
-function DeletePerson({ person, busy, onDelete, onCancel }: { person: Person; busy: boolean; onDelete: (typed: string) => void; onCancel: () => void }) {
+function DeletePerson({ person, busy, onDelete, onCancel }: { person: Person; busy: boolean; onDelete: (typed: string, blockToo: boolean) => void; onCancel: () => void }) {
   const [typed, setTyped] = useState('')
+  const [blockToo, setBlockToo] = useState(false)
   const [wrong, setWrong] = useState(false)
   const matches = typed.trim().toLowerCase() === person.email.trim().toLowerCase()
   const confirm = () => {
     if (busy) return
     if (!matches) return setWrong(true)
-    onDelete(typed)
+    onDelete(typed, blockToo)
   }
   return (
     <ConfirmDialog title={`${nameOf(person)} hesabı silinsin mi?`} confirmLabel={busy ? 'Siliniyor…' : 'Hesabı sil'} danger onConfirm={confirm} onCancel={onCancel}>
@@ -251,6 +301,10 @@ function DeletePerson({ person, busy, onDelete, onCancel }: { person: Person; bu
             }}
             onKeyDown={(e) => e.key === 'Enter' && confirm()}
           />
+        </label>
+        <label className="admin-check-row">
+          <input type="checkbox" checked={blockToo} onChange={(e) => setBlockToo(e.target.checked)} />
+          <span className="small">Bu adres yeniden kayıt olamasın</span>
         </label>
         {wrong && !matches && (
           <p className="small admin-delete-wrong" role="alert">
@@ -429,6 +483,449 @@ function SystemCard({ tell }: { tell: Tell }) {
   )
 }
 
+const count = (n: number) => n.toLocaleString('tr-TR')
+const usd = (n: number) => `${n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} $`
+const sizeOf = (bytes: number) => (bytes < 1024 * 1024 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1024 / 1024).toLocaleString('tr-TR', { maximumFractionDigits: 1 })} MB`)
+const dayName = (day: string) => new Date(`${day}T12:00:00Z`).toLocaleDateString('tr-TR', { weekday: 'short' })
+const PROVIDER: Record<string, string> = { email: 'E-posta', google: 'Google' }
+
+/** One person's figures, read when their row is opened. */
+function PersonInfo({ id }: { id: string }) {
+  const [detail, setDetail] = useState<PersonDetail | null>(null)
+  const [error, setError] = useState('')
+  useEffect(() => {
+    loadPerson(id)
+      .then(setDetail)
+      .catch((e: unknown) => setError(failText(e)))
+  }, [id])
+  if (error) return <p className="small muted admin-person-info">Ayrıntı yüklenemedi: {error}</p>
+  if (!detail) return <p className="small muted admin-person-info">Yükleniyor…</p>
+  const rows: [string, string][] = [
+    ['Kelime', count(detail.words)],
+    ['Cevap', count(detail.answers)],
+    ['Okuma metni', count(detail.texts)],
+    ['Eşitlenen veri', detail.bytes ? sizeOf(detail.bytes) : 'yok'],
+    ['Son eşitleme', detail.lastSync ? when(detail.lastSync) : 'hiç'],
+    ['Son giriş', detail.lastSignIn ? when(detail.lastSignIn) : 'bilinmiyor'],
+    ['Giriş yolu', PROVIDER[detail.provider] ?? (detail.provider || 'bilinmiyor')],
+  ]
+  if (detail.today) rows.push(['Bugün', `YZ ${count(detail.today.aiCalls)} istek (${usd(detail.today.aiUsd)}) · çeviri ${count(detail.today.translateChars)} · ses ${count(detail.today.ttsChars)} karakter`])
+  return (
+    <dl className="admin-person-info">
+      {rows.map(([k, v]) => (
+        <div key={k}>
+          <dt>{k}</dt>
+          <dd>{v}</dd>
+        </div>
+      ))}
+    </dl>
+  )
+}
+
+/** How many people, how many come back, and new sign-ups day by day. */
+function StatsCard({ tell }: { tell: Tell }) {
+  const [stats, setStats] = useState<Stats | null>(null)
+  const [error, setError] = useState('')
+  useEffect(() => {
+    loadStats()
+      .then((s) => {
+        setStats(s)
+        tell({ pending: s.pending })
+      })
+      .catch((e: unknown) => setError(failText(e)))
+  }, [tell])
+  const most = Math.max(1, ...(stats?.newByDay.map((d) => d.count) ?? [1]))
+  const week = stats?.newByDay.reduce((n, d) => n + d.count, 0) ?? 0
+  return (
+    <section className="card stack admin-card" aria-labelledby="admin-stats" id="admin-stats-card">
+      <h2 className="section-title" id="admin-stats">
+        Sayılar
+      </h2>
+      {error && (
+        <p className="note" role="alert">
+          Yüklenemedi: {error}
+        </p>
+      )}
+      {stats && (
+        <>
+          <dl className="admin-numbers">
+            <div>
+              <dt>Toplam kişi</dt>
+              <dd>{count(stats.total)}</dd>
+            </div>
+            <div>
+              <dt>Onay bekleyen</dt>
+              <dd>{count(stats.pending)}</dd>
+            </div>
+            <div>
+              <dt>Son 7 günde etkin</dt>
+              <dd>{count(stats.active7)}</dd>
+            </div>
+            <div>
+              <dt>Son 30 günde etkin</dt>
+              <dd>{count(stats.active30)}</dd>
+            </div>
+          </dl>
+          <div className="stack admin-signups">
+            <p className="small">
+              Son 7 günde <strong>{count(week)}</strong> yeni hesap
+            </p>
+            <ul className="plain admin-days" aria-label="Günlük yeni hesaplar">
+              {stats.newByDay.map((d) => (
+                <li key={d.day} title={`${d.day}: ${d.count}`}>
+                  <span className="admin-day-count">{d.count}</span>
+                  <span className="admin-day-bar" aria-hidden>
+                    <span style={{ height: `${Math.round((d.count / most) * 100)}%` }} />
+                  </span>
+                  <span className="admin-day-name">{dayName(d.day)}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-xs muted">Etkin: verisi o süre içinde eşitlenen kişi.</p>
+          </div>
+        </>
+      )}
+    </section>
+  )
+}
+
+const LIMIT_ROWS: { name: LimitName; label: string; unit: string; step: number }[] = [
+  { name: 'aiDailyCalls', label: 'YZ isteği', unit: 'istek', step: 1 },
+  { name: 'aiDailyBudgetUsd', label: 'YZ harcaması', unit: '$', step: 0.05 },
+  { name: 'translateChars', label: 'Çeviri', unit: 'karakter', step: 500 },
+  { name: 'ttsChars', label: 'Doğal ses', unit: 'karakter', step: 500 },
+]
+
+function UsageTotalsList({ title, t }: { title: string; t: Usage['today'] }) {
+  return (
+    <div className="stack admin-usage-col">
+      <h3 className="small admin-sub">{title}</h3>
+      <dl className="admin-usage">
+        <div>
+          <dt>YZ</dt>
+          <dd>
+            {count(t.aiCalls)} istek · {usd(t.aiUsd)}
+          </dd>
+        </div>
+        <div>
+          <dt>Çeviri</dt>
+          <dd>{count(t.translateChars)} karakter</dd>
+        </div>
+        <div>
+          <dt>Doğal ses</dt>
+          <dd>{count(t.ttsChars)} karakter</dd>
+        </div>
+        <div>
+          <dt>Telaffuz puanı</dt>
+          <dd>{count(t.assessCalls)}</dd>
+        </div>
+        <div>
+          <dt>Kullanan</dt>
+          <dd>{count(t.people)} kişi</dd>
+        </div>
+      </dl>
+    </div>
+  )
+}
+
+/** What the paid services cost today and this month, who used most, and each account's daily limits. */
+function UsageCard() {
+  const [usage, setUsage] = useState<Usage | null>(null)
+  const [view, setView] = useState<SettingsView | null>(null)
+  const [draft, setDraft] = useState<Partial<Record<LimitName, string>>>({})
+  const [error, setError] = useState('')
+  const [saving, setSaving] = useState(false)
+  useEffect(() => {
+    loadUsage()
+      .then(setUsage)
+      .catch((e: unknown) => setError(failText(e)))
+    loadSettings()
+      .then(setView)
+      .catch((e: unknown) => setError(failText(e)))
+  }, [])
+  const save = async (change: Partial<Record<LimitName, number | null>>) => {
+    setSaving(true)
+    try {
+      setView(await saveSettings(change))
+      setDraft({})
+      showToast('Sınırlar kaydedildi; bir dakika içinde her yerde geçerli.')
+    } catch (e) {
+      showToast(`Olmadı: ${failText(e)}`, undefined, 5000, 'info')
+    } finally {
+      setSaving(false)
+    }
+  }
+  const submit = (e: FormEvent) => {
+    e.preventDefault()
+    if (!view) return
+    const change: Partial<Record<LimitName, number>> = {}
+    for (const row of LIMIT_ROWS) {
+      const raw = draft[row.name]
+      if (raw === undefined || raw.trim() === '') continue
+      const n = Number(raw.replace(',', '.'))
+      const { min, max } = view.ranges[row.name]
+      if (!Number.isFinite(n) || n < min || n > max) {
+        showToast(`${row.label}: ${count(min)} ile ${count(max)} arasında olmalı.`, undefined, 5000, 'info')
+        return
+      }
+      change[row.name] = n
+    }
+    if (Object.keys(change).length) void save(change)
+  }
+  const custom = view ? LIMIT_ROWS.filter((r) => view.settings[r.name] !== undefined) : []
+  return (
+    <section className="card stack admin-card" aria-labelledby="admin-usage" id="admin-usage-card">
+      <h2 className="section-title" id="admin-usage">
+        Kullanım ve sınırlar
+      </h2>
+      {error && (
+        <p className="note" role="alert">
+          Yüklenemedi: {error}
+        </p>
+      )}
+      {usage && !usage.available && <p className="small muted">Kullanım sayıları için Supabase'te 0009 göçünü çalıştır.</p>}
+      {usage?.available && (
+        <>
+          <div className="admin-usage-cols">
+            <UsageTotalsList title="Bugün" t={usage.today} />
+            <UsageTotalsList title="Bu ay" t={usage.month} />
+          </div>
+          {usage.top.length > 0 && (
+            <div className="stack">
+              <h3 className="small admin-sub">Bugün en çok kullananlar</h3>
+              <ol className="plain account-group admin-top">
+                {usage.top.map((t) => (
+                  <li key={t.email}>
+                    <span className="admin-top-mail">{t.email}</span>
+                    <span className="small muted">
+                      YZ {count(t.aiCalls)} · {usd(t.aiUsd)} · çeviri {count(t.translateChars)}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+        </>
+      )}
+      {view && (
+        <form className="stack admin-limits" onSubmit={submit}>
+          <h3 className="small admin-sub">Kişi başına günlük sınırlar</h3>
+          {LIMIT_ROWS.map((row) => (
+            <label key={row.name} className="admin-limit">
+              <span>
+                {row.label}
+                <span className="text-xs muted">
+                  {' '}
+                  · şimdi {count(view.effective[row.name])} {row.unit}
+                  {view.settings[row.name] === undefined ? ' (varsayılan)' : ` (varsayılan ${count(view.defaults[row.name])})`}
+                </span>
+              </span>
+              <input
+                className="input"
+                type="number"
+                inputMode="decimal"
+                min={view.ranges[row.name].min}
+                max={view.ranges[row.name].max}
+                step={row.step}
+                placeholder={String(view.effective[row.name])}
+                value={draft[row.name] ?? ''}
+                onChange={(e) => setDraft((d) => ({ ...d, [row.name]: e.target.value }))}
+              />
+            </label>
+          ))}
+          <div className="row">
+            <button type="submit" className="btn btn-sm" disabled={saving || !Object.values(draft).some((v) => v?.trim())}>
+              Kaydet
+            </button>
+            {custom.length > 0 && (
+              <button type="button" className="btn btn-sm btn-quiet" disabled={saving} onClick={() => void save(Object.fromEntries(custom.map((r) => [r.name, null])))}>
+                Varsayılanlara dön
+              </button>
+            )}
+          </div>
+          <p className="text-xs muted">YZ harcaması tam düzeyin sınırıdır; kelime düzeyi %20'sini, çalışma düzeyi %50'sini kullanır.</p>
+        </form>
+      )}
+    </section>
+  )
+}
+
+/** Auto-approval and the announcement to everyone. */
+function SettingsCard() {
+  const [view, setView] = useState<SettingsView | null>(null)
+  const [error, setError] = useState('')
+  const [text, setText] = useState('')
+  const [busy, setBusy] = useState(false)
+  useEffect(() => {
+    loadSettings()
+      .then(setView)
+      .catch((e: unknown) => setError(failText(e)))
+  }, [])
+  const autoApprove = async (on: boolean) => {
+    setBusy(true)
+    try {
+      setView(await saveSettings({ autoApprove: on }))
+      showToast(on ? 'Yeni kayıtlar artık hemen onaylanacak.' : 'Yeni kayıtlar onay bekleyecek.')
+    } catch (e) {
+      showToast(`Olmadı: ${failText(e)}`, undefined, 5000, 'info')
+    } finally {
+      setBusy(false)
+    }
+  }
+  const send = async (value: string) => {
+    setBusy(true)
+    try {
+      const { announcement } = await announce(value)
+      setView((v) => (v ? { ...v, settings: { ...v.settings, announcement } } : v))
+      setText('')
+      showToast(announcement ? 'Duyuru gönderildi: herkes bir sonraki açılışta görür.' : 'Duyuru kaldırıldı.')
+    } catch (e) {
+      showToast(`Olmadı: ${failText(e)}`, undefined, 5000, 'info')
+    } finally {
+      setBusy(false)
+    }
+  }
+  const current = view?.settings.announcement
+  return (
+    <section className="card stack admin-card" aria-labelledby="admin-settings" id="admin-settings-card">
+      <h2 className="section-title" id="admin-settings">
+        Ayarlar ve duyuru
+      </h2>
+      {error && (
+        <p className="note" role="alert">
+          Yüklenemedi: {error}
+        </p>
+      )}
+      {view && (
+        <>
+          <Toggle
+            label="Yeni kayıtları hemen onayla"
+            help="Açıkken yeni bir kişi ilk girişinde onaylı olur, bekleme listesine düşmez. Var olan bekleyenler etkilenmez."
+            checked={view.settings.autoApprove === true}
+            onChange={(v) => !busy && void autoApprove(v)}
+          />
+          <form
+            className="stack admin-announce"
+            onSubmit={(e) => {
+              e.preventDefault()
+              if (text.trim()) void send(text)
+            }}
+          >
+            <label className="stack">
+              <span className="small">
+                <strong>Herkese duyuru</strong> <span className="muted">(zil bildirimine düşer, 30 gün durur)</span>
+              </span>
+              <textarea className="input textarea textarea-sm" maxLength={220} value={text} onChange={(e) => setText(e.target.value)} placeholder="Örnek: Bu gece 23.00'te kısa bir bakım yapılacak." />
+            </label>
+            <div className="row">
+              <button type="submit" className="btn btn-sm" disabled={busy || !text.trim()}>
+                {current ? 'Yenisini gönder' : 'Gönder'}
+              </button>
+              <span className="text-xs muted">{text.length}/220</span>
+            </div>
+          </form>
+          {current && (
+            <div className="note admin-current">
+              <p className="small">
+                <strong>Şu anki duyuru</strong> · {when(current.at)}
+              </p>
+              <p className="small">{current.text}</p>
+              <button type="button" className="btn btn-sm btn-quiet" disabled={busy} onClick={() => void send('')}>
+                Kaldır
+              </button>
+            </div>
+          )}
+        </>
+      )}
+    </section>
+  )
+}
+
+/** The owner's list of addresses and domains that may not sign up again. */
+function BlocksCard() {
+  const [data, setData] = useState<{ available: boolean; blocks: Block[] } | null>(null)
+  const [error, setError] = useState('')
+  const [value, setValue] = useState('')
+  const [busy, setBusy] = useState(false)
+  const load = useCallback(() => {
+    loadBlocks()
+      .then(setData)
+      .catch((e: unknown) => setError(failText(e)))
+  }, [])
+  useEffect(load, [load])
+  const add = async (e: FormEvent) => {
+    e.preventDefault()
+    if (!value.trim()) return
+    setBusy(true)
+    try {
+      await block(value.trim())
+      setValue('')
+      showToast('Engellendi.')
+      load()
+    } catch (err) {
+      showToast(err instanceof AdminError && err.message === 'bad request' ? 'Bir e-posta (ad@ornek.com) ya da alan adı (ornek.com) yaz.' : `Olmadı: ${failText(err)}`, undefined, 5000, 'info')
+    } finally {
+      setBusy(false)
+    }
+  }
+  const remove = async (b: Block) => {
+    setBusy(true)
+    try {
+      await unblock(b.kind, b.value)
+      showToast('Engel kaldırıldı.')
+      load()
+    } catch (err) {
+      showToast(`Olmadı: ${failText(err)}`, undefined, 5000, 'info')
+    } finally {
+      setBusy(false)
+    }
+  }
+  return (
+    <section className="card stack admin-card" aria-labelledby="admin-blocks" id="admin-blocks-card">
+      <h2 className="section-title" id="admin-blocks">
+        Engellenenler
+      </h2>
+      {error && (
+        <p className="note" role="alert">
+          Yüklenemedi: {error}
+        </p>
+      )}
+      {data && !data.available && <p className="small muted">Engelleme için Supabase'te 0011 göçünü çalıştır.</p>}
+      {data?.available && (
+        <>
+          <p className="small muted">Buradaki adresler ve alan adları yeni hesap açamaz. Var olan bir hesap etkilenmez; onu Kişiler'den sil.</p>
+          <form className="admin-block-form" onSubmit={(e) => void add(e)}>
+            <input className="input" value={value} onChange={(e) => setValue(e.target.value)} placeholder="ad@ornek.com ya da ornek.com" aria-label="Engellenecek e-posta ya da alan adı" autoComplete="off" spellCheck={false} />
+            <button type="submit" className="btn btn-sm" disabled={busy || !value.trim()}>
+              Engelle
+            </button>
+          </form>
+          {data.blocks.length === 0 ? (
+            <p className="small muted">Engellenen yok.</p>
+          ) : (
+            <ul className="plain account-group admin-blocks">
+              {data.blocks.map((b) => (
+                <li key={`${b.kind}|${b.value}`}>
+                  <span className="admin-block-text">
+                    <strong>{b.value}</strong>
+                    <span className="text-xs muted">
+                      {b.kind === 'domain' ? 'Alan adı' : 'E-posta'} · {when(b.createdAt)}
+                      {b.note ? ` · ${b.note}` : ''}
+                    </span>
+                  </span>
+                  <button type="button" className="btn btn-sm btn-quiet" disabled={busy} onClick={() => void remove(b)}>
+                    Kaldır
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </>
+      )}
+    </section>
+  )
+}
+
 function Figure({ value, label, target, tone }: { value: string; label: string; target: string; tone?: 'due' | 'ok' | 'bad' }) {
   return (
     <button type="button" className="admin-figure" data-tone={tone} onClick={() => scrollTo(target)}>
@@ -453,8 +950,12 @@ export function AdminScreen() {
         <Figure value={reports === undefined ? '…' : String(reports)} label="Şikâyet (7 gün)" target="admin-reports-card" tone={reports ? 'bad' : undefined} />
         <Figure value={healthy === undefined ? '…' : healthy ? 'Sağlıklı' : 'Dikkat'} label="Sistem" target="admin-system-card" tone={healthy === undefined ? undefined : healthy ? 'ok' : 'bad'} />
       </div>
+      <StatsCard tell={tell} />
       <PeopleCard tell={tell} />
       <ReportsCard tell={tell} />
+      <UsageCard />
+      <SettingsCard />
+      <BlocksCard />
       <SystemCard tell={tell} />
     </div>
   )

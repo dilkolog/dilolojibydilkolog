@@ -12,6 +12,7 @@ describe('authErrorText', () => {
   })
   it('explains that another spelling of the address already has an account', () => {
     expect(authErrorText('alias_email: Bu adresin başka bir yazılışıyla zaten bir hesap var.', true)).toContain('başka bir yazılışıyla')
+    expect(authErrorText('blocked_email: Bu adresle hesap açılamıyor.', true)).toBe('Bu adresle hesap açılamıyor.')
   })
   it('turns an unknown technical message into a plain one, or leaves it when asked to', () => {
     expect(authErrorText('Database error querying schema', true)).toContain('Bir sorun oldu')

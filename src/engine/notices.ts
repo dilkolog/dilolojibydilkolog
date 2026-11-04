@@ -2,7 +2,7 @@
  * The notice center's list: what happened while the learner was elsewhere (a sync brought words, a badge, a friend's
  * cheer). Kept on this device only; the toast says it once, the list keeps it.
  */
-export type NoticeKind = 'sync' | 'badge' | 'level' | 'cert' | 'account' | 'friend'
+export type NoticeKind = 'sync' | 'badge' | 'level' | 'cert' | 'account' | 'friend' | 'announce'
 /** Where a notice leads: a place of the app, so the list stays free of screen objects. */
 export type NoticeTarget = 'home' | 'profile' | 'settings' | 'guide'
 
@@ -27,8 +27,9 @@ export const NOTICE_GROUPS: { id: string; label: string; help: string; kinds: re
   { id: 'sync', label: 'Eşitleme haberleri', help: 'Diğer cihazlarından gelen kelime ve ayar değişiklikleri.', kinds: ['sync'] },
   { id: 'achievement', label: 'Rozet, seviye ve sertifika', help: 'Kazandıkların.', kinds: ['badge', 'level', 'cert'] },
   { id: 'account', label: 'Hesap durumu', help: 'Başvurunun onaylanması ya da reddi.', kinds: ['account'] },
+  { id: 'announce', label: 'Duyurular', help: 'Site sahibinin herkese yazdığı kısa notlar (bakım, yenilik).', kinds: ['announce'] },
 ]
-const KINDS: readonly NoticeKind[] = ['sync', 'badge', 'level', 'cert', 'account', 'friend']
+const KINDS: readonly NoticeKind[] = ['sync', 'badge', 'level', 'cert', 'account', 'friend', 'announce']
 const TARGETS: readonly NoticeTarget[] = ['home', 'profile', 'settings', 'guide']
 const ID = /^[a-z]+\|[\w.:|-]{1,120}$/
 const MAX_TEXT = 240

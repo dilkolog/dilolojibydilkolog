@@ -70,6 +70,7 @@ export function authErrorText(message: string, unknownAsGeneric = false): string
   const m = message.toLowerCase()
   if (m.includes('invalid login credentials')) return 'E-posta ya da şifre yanlış.'
   if (m.includes('disposable_email')) return 'Tek kullanımlık (geçici) e-posta adresleriyle hesap açılamıyor; kalıcı bir adres kullan ya da Google ile devam et.'
+  if (m.includes('blocked_email')) return 'Bu adresle hesap açılamıyor.'
   if (m.includes('alias_email')) return 'Bu adresin başka bir yazılışıyla (nokta ya da + etiketi) zaten bir hesap var. Hesabı ilk açtığın yazılışla giriş yap.'
   if (m.includes('captcha')) return 'Robot kontrolü tamamlanamadı; kutucuğun yenilenmesini bekleyip tekrar dene.'
   if (m.includes('email not confirmed')) return 'E-postanı henüz onaylamadın: gelen kutundaki bağlantıya dokun.'
@@ -98,7 +99,7 @@ export class SupabaseAuthError extends Error {
 }
 
 /** Errors a person caused or can fix themselves (a wrong password, a weak one): not worth a report. */
-const EXPECTED = /invalid login credentials|disposable_email|alias_email|captcha|email not confirmed|already registered|password should be|weak password|for security purposes|only request this after|rate limit|too many|invalid (format|email)|unable to validate email|expired|signups? not allowed|not authorized|current[ _]password/i
+const EXPECTED = /invalid login credentials|disposable_email|alias_email|blocked_email|captcha|email not confirmed|already registered|password should be|weak password|for security purposes|only request this after|rate limit|too many|invalid (format|email)|unable to validate email|expired|signups? not allowed|not authorized|current[ _]password/i
 
 async function run<T extends { error: { message: string; status?: number; code?: string; name?: string } | null }>(p: Promise<T>): Promise<T> {
   const r = await p

@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 vi.mock('../../api/_account.js', () => ({ requireApproved: vi.fn(async () => null), accountOf: vi.fn(async () => 'acct') }))
-vi.mock('../../api/_supabase.js', () => ({ aiLevelOf: vi.fn(async () => null) }))
+vi.mock('../../api/_supabase.js', () => ({ aiLevelOf: vi.fn(async () => null), supabaseOn: () => false, rest: vi.fn() }))
 vi.mock('../../api/_quota.js', () => ({ quotaLeft: vi.fn(async () => true), quotaUsed: vi.fn(async () => 0), spendQuota: vi.fn(async () => {}), dailyQuotaReached: () => Response.json({ error: 'daily_quota' }, { status: 429 }) }))
 
 import { POST, GET, refuse, costUnits, MAX_TOKENS } from '../../api/ai'

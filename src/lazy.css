@@ -4152,6 +4152,46 @@ html:has(.lp) { scroll-behavior: smooth; }
 .admin-move p { margin: 0; }
 .admin-done { display: flex; align-items: flex-start; gap: 0.375rem; }
 .admin-done svg { flex: none; margin-top: 0.15rem; color: var(--ok-text); }
+.admin-bulk { display: flex; justify-content: flex-end; }
+.admin-person-info { flex: 1 1 100%; display: grid; grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); gap: 0.5rem 1rem; margin: 0; padding: 0.75rem; border-radius: var(--r-md); background: var(--surface-2); }
+.admin-person-info dt, .admin-numbers dt, .admin-usage dt { font-size: var(--t-xs); color: var(--ink-soft); }
+.admin-person-info dd, .admin-usage dd { margin: 0; font-size: var(--t-sm); font-weight: 600; overflow-wrap: anywhere; }
+.admin-person-info > div:last-child:nth-child(8) { grid-column: 1 / -1; }
+.admin-numbers { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; margin: 0; }
+.admin-numbers > div { display: grid; gap: 0.125rem; padding: 0.625rem 0.75rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); }
+.admin-numbers dd { margin: 0; font-size: var(--t-xl); font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.admin-signups p { margin: 0; }
+.admin-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem; align-items: end; }
+.admin-days li { display: grid; justify-items: center; gap: 0.25rem; }
+.admin-day-count { font-size: var(--t-xs); font-weight: 700; font-variant-numeric: tabular-nums; }
+.admin-day-bar { display: flex; align-items: flex-end; width: 100%; max-width: 2.25rem; height: 4rem; border-radius: var(--r-xs); background: var(--track); overflow: hidden; }
+.admin-day-bar > span { display: block; width: 100%; min-height: 2px; background: var(--lang); }
+.admin-day-name { font-size: var(--t-xs); color: var(--ink-soft); }
+.admin-sub { margin: 0; font-weight: 700; }
+.admin-usage-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
+.admin-usage { display: grid; gap: 0.375rem; margin: 0; }
+.admin-usage > div { display: flex; justify-content: space-between; gap: 0.75rem; padding-bottom: 0.375rem; border-bottom: 1px solid var(--rule); }
+.admin-usage > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.admin-usage dd { text-align: right; font-variant-numeric: tabular-nums; }
+.admin-top { margin-top: 0; }
+.admin-top li { display: grid; gap: 0.125rem; padding: 0.625rem 1rem; border-bottom: 1px solid var(--rule); }
+.admin-top li:last-child { border-bottom: 0; }
+.admin-top-mail { font-weight: 600; overflow-wrap: anywhere; }
+.admin-limits { padding-top: 0.75rem; border-top: 1px solid var(--rule); }
+.admin-limit { display: grid; grid-template-columns: minmax(0, 1fr) 9rem; align-items: center; gap: 0.75rem; font-size: var(--t-sm); font-weight: 600; }
+.admin-announce { padding-top: 0.75rem; border-top: 1px solid var(--rule); }
+.admin-announce .row { align-items: center; }
+.admin-current { display: grid; gap: 0.375rem; }
+.admin-current p { margin: 0; overflow-wrap: anywhere; }
+.admin-current .btn { justify-self: start; }
+.admin-check-row { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+.admin-check-row input { width: 1.125rem; height: 1.125rem; accent-color: var(--bad); }
+.admin-block-form { display: flex; gap: 0.5rem; }
+.admin-block-form .input { flex: 1; min-width: 0; }
+.admin-blocks { margin-top: 0; }
+.admin-blocks li { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.625rem 1rem; border-bottom: 1px solid var(--rule); }
+.admin-blocks li:last-child { border-bottom: 0; }
+.admin-block-text { display: grid; gap: 0.125rem; min-width: 0; overflow-wrap: anywhere; }
 .admin-entry-text { display: grid; gap: 0.125rem; }
 .admin-entry-text .small { font-weight: 400; }
 @media (max-width: 30rem) {
@@ -4160,6 +4200,8 @@ html:has(.lp) { scroll-behavior: smooth; }
   .admin-figure-value { font-size: var(--t-lg); }
   .admin-figure-label { font-size: var(--t-xs); }
   .admin-figure-label svg { display: none; }
+  .admin-numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .admin-limit { grid-template-columns: minmax(0, 1fr); gap: 0.375rem; }
   .admin-toolbar .seg-group { flex: 1 1 100%; overflow-x: auto; }
 }
 .transcript-help ol { margin: 0; padding-inline-start: 1.25rem; display: grid; gap: 0.25rem; }

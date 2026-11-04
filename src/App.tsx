@@ -65,6 +65,8 @@ import { readIncoming, type IncomingWord } from './ui/incoming'
 import { captureInvite, pendingInviteInfo } from './ui/invite'
 import { HandleClaim } from './ui/HandleClaim'
 import { InviteAccept } from './ui/InviteAccept'
+import { Announcements } from './ui/Announcements'
+import { supabaseConfigured } from './data/supabase'
 import { GAME_LIST } from './ui/gameList'
 import { ScreenBoundary } from './ui/ScreenBoundary'
 
@@ -677,6 +679,7 @@ export default function App() {
       <BadgeWatcher game={game} paused={screen.name === 'session' || screen.name === 'summary'} onProfile={go({ name: 'profile' })} onLogged={reload} />
       <InviteAccept onDone={reload} />
       <HandleClaim />
+      <Announcements signedIn={signedIn === true && supabaseConfigured()} />
       <LevelWatcher game={game} paused={screen.name === 'session' || screen.name === 'summary'} />
       </GameContext.Provider>
     </AiContext.Provider>

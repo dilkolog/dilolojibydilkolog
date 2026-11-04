@@ -11,6 +11,16 @@ const api = vi.hoisted(() => ({
   unpublishSet: vi.fn(async () => ({ ok: true })),
   loadSystem: vi.fn(),
   moveStep: vi.fn(),
+  loadStats: vi.fn(),
+  loadUsage: vi.fn(),
+  loadPerson: vi.fn(),
+  loadSettings: vi.fn(),
+  saveSettings: vi.fn(),
+  announce: vi.fn(),
+  approveAll: vi.fn(async () => ({ ok: true, approved: 2 })),
+  loadBlocks: vi.fn(),
+  block: vi.fn(async () => ({ ok: true })),
+  unblock: vi.fn(async () => ({ ok: true })),
 }))
 vi.mock('../data/adminApi', async () => {
   const real = await vi.importActual<typeof import('../data/adminApi')>('../data/adminApi')
@@ -37,8 +47,30 @@ const mount = async () => {
 }
 const button = (text: string) => [...host.querySelectorAll('button')].find((b) => b.textContent?.trim() === text)!
 
+const VIEW = {
+  settings: { aiDailyCalls: 100 },
+  effective: { aiDailyCalls: 100, aiDailyBudgetUsd: 0.75, translateChars: 20000, ttsChars: 8000 },
+  defaults: { aiDailyCalls: 150, aiDailyBudgetUsd: 0.75, translateChars: 20000, ttsChars: 8000 },
+  ranges: { aiDailyCalls: { min: 1, max: 2000 }, aiDailyBudgetUsd: { min: 0.01, max: 50 }, translateChars: { min: 500, max: 500000 }, ttsChars: { min: 500, max: 500000 } },
+}
+const TOTALS = { aiCalls: 12, aiUsd: 0.4, translateChars: 900, ttsChars: 0, assessCalls: 1, people: 2 }
+
+const typeInto = (input: HTMLInputElement | HTMLTextAreaElement, value: string) =>
+  act(async () => {
+    const proto = input instanceof HTMLTextAreaElement ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype
+    Object.getOwnPropertyDescriptor(proto, 'value')!.set!.call(input, value)
+    input.dispatchEvent(new Event('input', { bubbles: true }))
+  })
+
 beforeEach(() => {
   vi.clearAllMocks()
+  api.loadStats.mockResolvedValue({ total: 40, pending: 1, active7: 12, active30: 25, newByDay: Array.from({ length: 7 }, (_, i) => ({ day: `2026-11-0${i + 1}`, count: i % 3 })) })
+  api.loadUsage.mockResolvedValue({ available: true, today: TOTALS, month: { ...TOTALS, aiCalls: 300, aiUsd: 9.5 }, top: [{ email: 'veli@example.com', aiCalls: 10, aiUsd: 0.3, translateChars: 500 }] })
+  api.loadPerson.mockResolvedValue({ words: 320, answers: 1500, texts: 4, lastSync: '2026-11-04T09:00:00Z', bytes: 2_500_000, lastSignIn: '2026-11-04T08:00:00Z', provider: 'google', today: { aiCalls: 3, aiUsd: 0.05, translateChars: 100, ttsChars: 0 } })
+  api.loadSettings.mockResolvedValue(VIEW)
+  api.saveSettings.mockImplementation(async (change: Record<string, unknown>) => ({ ...VIEW, settings: { ...VIEW.settings, ...change } }))
+  api.announce.mockImplementation(async (text: string) => ({ ok: true, announcement: text ? { id: 'a-1', text, at: '2026-11-04T10:00:00Z' } : null }))
+  api.loadBlocks.mockResolvedValue({ available: true, blocks: [{ kind: 'domain', value: 'spam.example', note: '', createdAt: '2026-11-03T10:00:00Z' }] })
   api.loadPeople.mockImplementation(async (filter: string) => ({ people: filter === 'approved' ? [APPROVED] : [PENDING], levels: true, pending: 1 }))
   api.loadReports.mockResolvedValue({ reports: [{ id: 'r1', at: '2026-11-04T09:00:00Z', kind: 'set', reason: 'spam', note: '', target: 'f'.repeat(32), content: 'Liste: kötü', about: { name: 'Biri' } }] })
   api.loadSystem.mockResolvedValue({ health: { ok: true, supabase: 'ok', storage: 'ok' }, problems: ['DEEPL_AUTH_KEY tanımlı değil (çeviri).'], docs: 'ready', tables: 'off' })
@@ -108,7 +140,78 @@ describe('AdminScreen', () => {
     })
     await act(async () => confirm().click())
     await flush()
-    expect(api.deletePerson).toHaveBeenCalledWith('a', 'ayse@example.com')
+    expect(api.deletePerson).toHaveBeenCalledWith('a', 'ayse@example.com', false)
     expect(api.loadPeople).toHaveBeenCalledTimes(2)
+  })
+
+  it('shows the numbers, usage and a person\'s details', async () => {
+    await mount()
+    expect(host.querySelector('.admin-numbers')!.textContent).toContain('40')
+    expect(host.querySelectorAll('.admin-days li')).toHaveLength(7)
+    expect(host.querySelector('.admin-usage-cols')!.textContent).toContain('300 istek')
+    expect(host.querySelector('.admin-top')!.textContent).toContain('veli@example.com')
+    await act(async () => button('Ayrıntı').click())
+    await flush()
+    expect(api.loadPerson).toHaveBeenCalledWith('a')
+    expect(host.querySelector('.admin-person-info')!.textContent).toContain('Google')
+    expect(host.querySelector('.admin-person-info')!.textContent).toContain('2,4 MB')
+  })
+
+  it('saves a limit, and goes back to the defaults', async () => {
+    await mount()
+    const input = host.querySelectorAll<HTMLInputElement>('.admin-limit input')[2]
+    await typeInto(input, '30000')
+    await act(async () => button('Kaydet').click())
+    await flush()
+    expect(api.saveSettings).toHaveBeenCalledWith({ translateChars: 30000 })
+    await act(async () => button('Varsayılanlara dön').click())
+    await flush()
+    expect(api.saveSettings).toHaveBeenLastCalledWith(expect.objectContaining({ aiDailyCalls: null }))
+  })
+
+  it('turns auto-approval on and sends then takes back an announcement', async () => {
+    await mount()
+    const toggle = [...host.querySelectorAll<HTMLElement>('[role="switch"], input[type="checkbox"]')].find((el) => el.closest('.card')?.id === 'admin-settings-card')!
+    await act(async () => toggle.click())
+    await flush()
+    expect(api.saveSettings).toHaveBeenCalledWith({ autoApprove: true })
+    await typeInto(host.querySelector('.admin-announce textarea')!, 'Bu gece bakım var.')
+    await act(async () => button('Gönder').click())
+    await flush()
+    expect(api.announce).toHaveBeenCalledWith('Bu gece bakım var.')
+    expect(host.querySelector('.admin-current')!.textContent).toContain('Bu gece bakım var.')
+    await act(async () => [...host.querySelectorAll<HTMLButtonElement>('.admin-current button')][0].click())
+    await flush()
+    expect(api.announce).toHaveBeenLastCalledWith('')
+    expect(host.querySelector('.admin-current')).toBeNull()
+  })
+
+  it('blocks and unblocks an address, and deletes with a block', async () => {
+    await mount()
+    expect(host.querySelector('.admin-blocks')!.textContent).toContain('spam.example')
+    await typeInto(host.querySelector('.admin-block-form input')!, 'kotu@example.com')
+    await act(async () => button('Engelle').click())
+    await flush()
+    expect(api.block).toHaveBeenCalledWith('kotu@example.com')
+    await act(async () => [...host.querySelectorAll<HTMLButtonElement>('.admin-blocks button')][0].click())
+    await flush()
+    expect(api.unblock).toHaveBeenCalledWith('domain', 'spam.example')
+    await act(async () => button('Hesabı sil').click())
+    const dialog = document.querySelector<HTMLElement>('[role="dialog"], [role="alertdialog"]')!
+    await act(async () => dialog.querySelector<HTMLInputElement>('input[type="checkbox"]')!.click())
+    await typeInto(dialog.querySelector<HTMLInputElement>('input[type="email"]')!, 'ayse@example.com')
+    await act(async () => [...dialog.querySelectorAll('button')].find((b) => b.textContent === 'Hesabı sil')!.click())
+    await flush()
+    expect(api.deletePerson).toHaveBeenCalledWith('a', 'ayse@example.com', true)
+  })
+
+  it('approves everyone waiting after asking', async () => {
+    api.loadPeople.mockImplementation(async () => ({ people: [PENDING, { ...PENDING, id: 'c', email: 'can@example.com', username: 'can' }], levels: true, pending: 2 }))
+    await mount()
+    await act(async () => button('Hepsini onayla (2)').click())
+    const dialog = document.querySelector<HTMLElement>('[role="dialog"], [role="alertdialog"]')!
+    await act(async () => [...dialog.querySelectorAll('button')].find((b) => b.textContent === 'Hepsini onayla')!.click())
+    await flush()
+    expect(api.approveAll).toHaveBeenCalledTimes(1)
   })
 })

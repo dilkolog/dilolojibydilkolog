@@ -3,6 +3,10 @@ import { docsMoved, docsReady, listDocPaths, moveDocs, MOVE_BATCH } from './_doc
 import { isOwnerSession, listReports, unpublishList } from './_owner.js'
 import { deletePerson, listPeople, pendingCount, updatePerson, type PeopleFilter } from './_adminPeople.js'
 import { checkHealth, problems } from './_health.js'
+import { addBlock, approveAll, listBlocks, personDetail, removeBlock, stats, usage } from './_adminStats.js'
+import { forgetSettings, getSettings, LIMITS, limitOf, MAX_ANNOUNCEMENT, saveSettings } from './_settings.js'
+import { DEFAULT_DAILY_BUDGET_USD, DEFAULT_DAILY_CALLS } from './ai.js'
+import { DAILY_TRANSLATE_CHARS, DAILY_TTS_CHARS } from './_quota.js'
 import { idOfUsername } from './_allow.js'
 import { mirrorApproval } from './_supabase.js'
 import { moveToTables } from './_moveTables.js'
@@ -98,12 +102,32 @@ export async function GET(request: Request): Promise<Response> {
 export async function POST(request: Request): Promise<Response> {
   const refused = await authorised(request)
   if (refused) return refused
-  const body = (await request.json().catch(() => null)) as { action?: string; id?: string; username?: string; from?: unknown; user?: unknown; change?: unknown; level?: unknown } | null
+  const body = (await request.json().catch(() => null)) as {
+    action?: string
+    id?: string
+    username?: string
+    from?: unknown
+    user?: unknown
+    change?: unknown
+    level?: unknown
+    confirm?: unknown
+    block?: unknown
+    value?: unknown
+    kind?: unknown
+    note?: unknown
+    settings?: unknown
+    text?: unknown
+  } | null
   if (body?.action === 'release') return release(body.username)
   if (body?.action === 'move-tables') return moveTables()
   if (body?.action === 'move-docs') return moveDocsStep(body.from)
   if (body?.action === 'person') return person(body)
   if (body?.action === 'person-delete') return personDelete(body)
+  if (body?.action === 'approve-all') return ownerStep(async () => json({ ok: true, approved: await approveAll() }))
+  if (body?.action === 'settings') return settingsChange(body.settings)
+  if (body?.action === 'announce') return announce(body.text)
+  if (body?.action === 'block') return ownerStep(async () => blockAnswer(await addBlock(body.value, body.note)))
+  if (body?.action === 'unblock') return ownerStep(async () => blockAnswer(await removeBlock(body.kind, body.value)))
   if (body?.action === 'unpublish') return json({ ok: await unpublishList(String(body.id ?? '')).catch(() => false) })
   const id = body?.id ?? ''
   if (!ID.test(id) || !['approve', 'reject', 'revoke'].includes(body?.action ?? '')) return json({ error: 'bad request' }, 400)
@@ -196,6 +220,19 @@ async function ownerView(view: string, q: URLSearchParams): Promise<Response> {
       const days = Math.min(30, Math.max(1, Number(q.get('days')) || 7))
       return json({ reports: await listReports(days) })
     }
+    if (view === 'stats') return json(await stats())
+    if (view === 'usage') return json(await usage())
+    if (view === 'person') {
+      const detail = await personDetail(q.get('user'))
+      if (detail === 'bad') return json({ error: 'bad request' }, 400)
+      if (detail === 'missing') return json({ error: 'no such person' }, 404)
+      return json(detail)
+    }
+    if (view === 'settings') return json(await settingsView())
+    if (view === 'blocks') {
+      const blocks = await listBlocks()
+      return json(blocks === 'missing' ? { available: false, blocks: [] } : { available: true, blocks })
+    }
     if (view === 'system') {
       const health = await checkHealth()
       const [found, moved, tables] = await Promise.all([problems(health), docsMoved().catch(() => false), tablesState().catch(() => 'off' as const)])
@@ -208,11 +245,70 @@ async function ownerView(view: string, q: URLSearchParams): Promise<Response> {
   }
 }
 
-/** POST { action: 'person-delete', user, confirm: <the person's e-mail> } */
-async function personDelete(body: { user?: unknown; confirm?: unknown }): Promise<Response> {
+/** Runs one owner action, turning a storage failure into 502. */
+async function ownerStep(run: () => Promise<Response>): Promise<Response> {
+  try {
+    return await run()
+  } catch (e) {
+    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
+    return json({ error: 'failed' }, 502)
+  }
+}
+
+const blockAnswer = (result: 'ok' | 'bad' | 'missing') =>
+  result === 'ok' ? json({ ok: true }) : result === 'missing' ? json({ error: 'owner_blocks missing: run migration 0011' }, 409) : json({ error: 'bad request' }, 400)
+
+/** The limits in force, what the owner set, and the defaults (the screen shows all three). */
+async function settingsView() {
+  forgetSettings()
+  const settings = await getSettings()
+  const [aiDailyCalls, aiDailyBudgetUsd, translateChars, ttsChars] = await Promise.all([
+    limitOf('aiDailyCalls', DEFAULT_DAILY_CALLS, 'AI_DAILY_CALLS'),
+    limitOf('aiDailyBudgetUsd', DEFAULT_DAILY_BUDGET_USD, 'AI_DAILY_BUDGET_USD'),
+    limitOf('translateChars', DAILY_TRANSLATE_CHARS),
+    limitOf('ttsChars', DAILY_TTS_CHARS),
+  ])
+  return {
+    settings,
+    effective: { aiDailyCalls, aiDailyBudgetUsd, translateChars, ttsChars },
+    defaults: { aiDailyCalls: DEFAULT_DAILY_CALLS, aiDailyBudgetUsd: DEFAULT_DAILY_BUDGET_USD, translateChars: DAILY_TRANSLATE_CHARS, ttsChars: DAILY_TTS_CHARS },
+    ranges: LIMITS,
+  }
+}
+
+/** POST { action: 'settings', settings: { aiDailyCalls?, …, autoApprove? } }: a limit set to null goes back to its default. */
+async function settingsChange(raw: unknown): Promise<Response> {
+  if (!raw || typeof raw !== 'object') return json({ error: 'bad request' }, 400)
+  const change: Record<string, unknown> = {}
+  for (const [key, value] of Object.entries(raw as Record<string, unknown>)) {
+    if (key in LIMITS || key === 'autoApprove') change[key] = value
+  }
+  if (!Object.keys(change).length) return json({ error: 'bad request' }, 400)
+  return ownerStep(async () => {
+    await saveSettings(change)
+    return json(await settingsView())
+  })
+}
+
+/** POST { action: 'announce', text } sends one announcement to everyone's bell; text '' (or null) takes it back. */
+async function announce(text: unknown): Promise<Response> {
+  const clean = typeof text === 'string' ? text.trim() : ''
+  if (clean.length > MAX_ANNOUNCEMENT) return json({ error: 'too long' }, 400)
+  const announcement = clean ? { id: `a-${Date.now().toString(36)}`, text: clean, at: new Date().toISOString() } : null
+  return ownerStep(async () => {
+    const saved = await saveSettings({ announcement })
+    return json({ ok: true, announcement: saved.announcement ?? null })
+  })
+}
+
+/** POST { action: 'person-delete', user, confirm: <the person's e-mail>, block?: true } (block: the address may not sign up again). */
+async function personDelete(body: { user?: unknown; confirm?: unknown; block?: unknown }): Promise<Response> {
   try {
     const result = await deletePerson(body.user, body.confirm)
-    if (result === 'ok') return json({ ok: true })
+    if (result === 'ok') {
+      const blocked = body.block === true ? await addBlock(body.confirm, 'Hesabı silindi').catch(() => 'failed' as const) : null
+      return json({ ok: true, ...(blocked ? { blocked } : {}) })
+    }
     if (result === 'missing') return json({ error: 'no such person' }, 404)
     if (result === 'owner') return json({ error: 'an owner account is not deleted here' }, 403)
     if (result === 'confirm') return json({ error: 'confirm with the e-mail' }, 400)
