@@ -54,7 +54,7 @@ function cleanAnnouncement(v: unknown): Announcement | null | undefined {
   if (v === null) return null
   if (!v || typeof v !== 'object') return undefined
   const a = v as Record<string, unknown>
-  const text = typeof a.text === 'string' ? a.text.replace(/[\u0000-\u0008\u000b-\u001f\u007f\p{Cf}]/gu, '').trim().slice(0, MAX_ANNOUNCEMENT) : ''
+  const text = typeof a.text === 'string' ? a.text.replace(/[\p{Cc}\p{Cf}]/gu, ' ').replace(/\s+/g, ' ').trim().slice(0, MAX_ANNOUNCEMENT) : ''
   if (!text || typeof a.id !== 'string' || !/^[a-z0-9-]{4,40}$/.test(a.id) || typeof a.at !== 'string' || Number.isNaN(Date.parse(a.at))) return undefined
   return { id: a.id, text, at: a.at }
 }

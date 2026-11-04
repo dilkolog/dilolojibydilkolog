@@ -29,6 +29,7 @@ const access = await import('../../api/access')
 const admin = await import('../../api/admin')
 const { clearAccessCache, accessStatus } = await import('../../api/_account')
 const { resetRate } = await import('../../api/_rate')
+const { forgetSettings } = await import('../../api/_settings')
 
 const SB = 'https://proj.supabase.co'
 const USERS: Record<string, { id: string; email: string; user_metadata: Record<string, unknown> }> = {
@@ -41,6 +42,7 @@ const seen: { url: string; headers: Record<string, string> }[] = []
 const deletedUsers: string[] = []
 const media = new Set<string>()
 let mediaFailure: 'list' | 'delete' | null = null
+let settingsValue: Record<string, unknown> | null = null
 
 function fakeSupabase(input: string, init: RequestInit = {}): Response {
   const url = new URL(input)
@@ -69,6 +71,7 @@ function fakeSupabase(input: string, init: RequestInit = {}): Response {
     return user ? Response.json(user) : Response.json({ msg: 'bad jwt' }, { status: 401 })
   }
   const table = url.pathname.replace('/rest/v1/', '')
+  if (table === 'server_flags' && url.searchParams.get('name') === 'eq.settings') return Response.json(settingsValue ? [{ value: settingsValue }] : [])
   if (table === 'profiles' && init.method === 'PATCH') {
     const id = url.searchParams.get('user_id')?.replace('eq.', '')
     const patch = JSON.parse(String(init.body)) as { approved: boolean; rejected: boolean }
@@ -118,6 +121,8 @@ beforeEach(async () => {
   keys = []
   seen.length = 0
   deletedUsers.length = 0
+  settingsValue = null
+  forgetSettings()
   vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
   vi.stubEnv('SUPABASE_URL', SB)
   vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
@@ -167,6 +172,14 @@ describe('/api/access: the Supabase vault', () => {
     profiles[0]!.rejected = true
     clearAccessCache()
     expect(await accessStatus(NEW.id)).toBe('rejected')
+  })
+
+  it('with the owner\'s "approve new sign-ups at once", a new person is approved at their first sign-in', async () => {
+    settingsValue = { autoApprove: true }
+    const res = await link('tok-veli', NEW)
+    expect(await res.json()).toEqual({ status: 'approved' })
+    expect(profiles[0]).toMatchObject({ approved: true, rejected: false })
+    expect(blobs.has(`access/requests/${NEW.id}.json`)).toBe(false)
   })
 
   it('needs a signed-in person, and is off without the Supabase settings', async () => {

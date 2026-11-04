@@ -43,6 +43,3 @@ export function Announcements({ signedIn }: { signedIn: boolean }) {
   }, [signedIn])
   return null
 }
-
-/** For tests. */
-export const resetAnnouncements = () => void (asked = false)

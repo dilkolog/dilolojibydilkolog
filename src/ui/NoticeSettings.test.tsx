@@ -18,13 +18,13 @@ const switches = (host: HTMLElement) => [...host.querySelectorAll<HTMLButtonElem
 describe('NoticeSettings', () => {
   it('lists the groups, all on to begin with; turning one off keeps its kinds, turning it on takes them back', async () => {
     const { host, onChange, unmount } = await mount(DEFAULT_SETTINGS)
-    expect(switches(host).map((s) => s.getAttribute('aria-checked'))).toEqual(['true', 'true', 'true', 'true'])
+    expect(switches(host).map((s) => s.getAttribute('aria-checked'))).toEqual(['true', 'true', 'true', 'true', 'true'])
     // Rozet, seviye ve sertifika is the third group: three kinds go off together.
     await act(async () => switches(host)[2].click())
     expect(onChange).toHaveBeenLastCalledWith({ ...DEFAULT_SETTINGS, noticeOff: ['badge', 'level', 'cert'] })
     unmount()
     const again = await mount({ ...DEFAULT_SETTINGS, noticeOff: ['friend', 'badge', 'level', 'cert'] })
-    expect(switches(again.host).map((s) => s.getAttribute('aria-checked'))).toEqual(['false', 'true', 'false', 'true'])
+    expect(switches(again.host).map((s) => s.getAttribute('aria-checked'))).toEqual(['false', 'true', 'false', 'true', 'true'])
     await act(async () => switches(again.host)[0].click())
     expect(again.onChange).toHaveBeenLastCalledWith({ ...DEFAULT_SETTINGS, noticeOff: ['badge', 'level', 'cert'] })
     again.unmount()

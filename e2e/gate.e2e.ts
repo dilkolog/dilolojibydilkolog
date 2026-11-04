@@ -415,6 +415,18 @@ test("the owner's admin screen: only the owner sees the entry; people, reports a
       if (view === 'me') return r.fulfill({ json: { owner: true } })
       if (view === 'people')
         return r.fulfill({ json: { levels: true, pending: 1, people: [{ id: '11111111-1111-4111-8111-111111111111', email: 'ayse@example.com', username: 'ayse', approved: false, rejected: false, createdAt: '2026-11-04T10:00:00Z', aiLevel: null }] } })
+      if (view === 'stats') return r.fulfill({ json: { total: 42, pending: 1, active7: 12, active30: 30, newByDay: [0, 2, 1, 4, 0, 3, 1].map((count, i) => ({ day: `2026-11-0${i + 1}`, count })) } })
+      if (view === 'usage') {
+        const t = { aiCalls: 34, aiUsd: 0.62, translateChars: 4200, ttsChars: 1800, assessCalls: 5, people: 6 }
+        return r.fulfill({ json: { available: true, today: t, month: { ...t, aiCalls: 820, aiUsd: 14.3 }, top: [{ email: 'veli@example.com', aiCalls: 20, aiUsd: 0.4, translateChars: 900 }] } })
+      }
+      if (view === 'person') return r.fulfill({ json: { words: 320, answers: 1500, texts: 4, lastSync: '2026-11-04T09:00:00Z', bytes: 2500000, lastSignIn: '2026-11-04T08:00:00Z', provider: 'google', today: { aiCalls: 3, aiUsd: 0.05, translateChars: 100, ttsChars: 0 } } })
+      if (view === 'settings') {
+        const n = { aiDailyCalls: 150, aiDailyBudgetUsd: 0.75, translateChars: 20000, ttsChars: 8000 }
+        const range = { min: 1, max: 500000 }
+        return r.fulfill({ json: { settings: { announcement: { id: 'a-1', text: 'Bu gece kısa bir bakım var.', at: '2026-11-04T10:00:00Z' } }, effective: n, defaults: n, ranges: { aiDailyCalls: range, aiDailyBudgetUsd: range, translateChars: range, ttsChars: range } } })
+      }
+      if (view === 'blocks') return r.fulfill({ json: { available: true, blocks: [{ kind: 'domain', value: 'spam.example', note: '', createdAt: '2026-11-03T10:00:00Z' }] } })
       if (view === 'reports') return r.fulfill({ json: { reports: [{ id: 'r1', at: '2026-11-04T09:00:00Z', kind: 'set', reason: 'spam', note: '', target: 'f'.repeat(32), content: 'Bir liste', about: { name: 'Biri' } }] } })
       return r.fulfill({ json: { health: { ok: true, supabase: 'ok', storage: 'ok' }, problems: [], docs: 'ready', tables: 'off' } })
     },
@@ -437,6 +449,12 @@ test("the owner's admin screen: only the owner sees the entry; people, reports a
   await expect(page.locator('.admin-figure', { hasText: 'Sistem' })).toContainText('Sağlıklı')
   await expect(page.locator('.admin-report', { hasText: 'Spam ya da reklam' })).toContainText('Topluluk listesi')
   await expect(page.getByRole('button', { name: 'Eski dosyaları taşı' })).toBeVisible()
+  await expect(page.locator('.admin-numbers')).toContainText('42')
+  await expect(page.locator('.admin-usage-cols')).toContainText('820 istek')
+  await expect(page.locator('.admin-current')).toContainText('bakım')
+  await expect(page.locator('.admin-blocks')).toContainText('spam.example')
+  await page.locator('.admin-person').getByRole('button', { name: 'Ayrıntı' }).click()
+  await expect(page.locator('.admin-person-info')).toContainText('Google')
   expect(await overflow(page)).toEqual([])
   const axe = await new AxeBuilder({ page }).include('.admin-page').analyze()
   expect(axe.violations.map((v) => v.id)).toEqual([])
@@ -456,6 +474,16 @@ test("the owner's admin screen: only the owner sees the entry; people, reports a
   const dialogAxe = await new AxeBuilder({ page }).include('.dialog').analyze()
   expect(dialogAxe.violations.map((v) => v.id)).toEqual([])
   await dialog.getByRole('textbox').fill('ayse@example.com')
+  await dialog.getByRole('checkbox', { name: 'Bu adres yeniden kayıt olamasın' }).check()
   await dialog.getByRole('button', { name: 'Hesabı sil' }).click()
-  await expect.poll(() => changes).toContainEqual({ action: 'person-delete', user: '11111111-1111-4111-8111-111111111111', confirm: 'ayse@example.com' })
+  await expect.poll(() => changes).toContainEqual({ action: 'person-delete', user: '11111111-1111-4111-8111-111111111111', confirm: 'ayse@example.com', block: true })
+  // An announcement and a block from the screen.
+  await expect(dialog).toBeHidden()
+  await page.locator('.admin-announce textarea').fill('Yeni oyun geldi!')
+  await expect(page.getByRole('button', { name: 'Yenisini gönder' })).toBeEnabled()
+  await page.getByRole('button', { name: 'Yenisini gönder' }).click()
+  await expect.poll(() => changes).toContainEqual({ action: 'announce', text: 'Yeni oyun geldi!' })
+  await page.locator('.admin-block-form input').fill('kotu@example.com')
+  await page.getByRole('button', { name: 'Engelle' }).click()
+  await expect.poll(() => changes).toContainEqual({ action: 'block', value: 'kotu@example.com', note: '' })
 })

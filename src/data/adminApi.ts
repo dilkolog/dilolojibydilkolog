@@ -75,8 +75,8 @@ export const changePerson = (user: string, change: { change?: 'approve' | 'rejec
   adminFetch<{ ok: true }>('', { method: 'POST', body: JSON.stringify({ action: 'person', user, ...change }) })
 
 /** Deletes a person's account; `confirm` is their e-mail, typed by the owner. */
-export const deletePerson = (user: string, confirm: string) =>
-  adminFetch<{ ok: true }>('', { method: 'POST', body: JSON.stringify({ action: 'person-delete', user, confirm }) })
+export const deletePerson = (user: string, confirm: string, block = false) =>
+  adminFetch<{ ok: true; blocked?: string }>('', { method: 'POST', body: JSON.stringify({ action: 'person-delete', user, confirm, ...(block ? { block: true } : {}) }) })
 
 export const loadReports = (days = 7) => adminFetch<{ reports: OwnerReport[] }>(`?view=reports&days=${days}`)
 
@@ -85,3 +85,75 @@ export const unpublishSet = (id: string) => adminFetch<{ ok: boolean }>('', { me
 export const loadSystem = () => adminFetch<SystemState>('?view=system')
 
 export const moveStep = (from?: MoveStep['next']) => adminFetch<MoveStep>('', { method: 'POST', body: JSON.stringify({ action: 'move-docs', ...(from ? { from } : {}) }) })
+
+export interface Stats {
+  total: number
+  pending: number
+  newByDay: { day: string; count: number }[]
+  active7: number
+  active30: number
+}
+
+export interface UsageTotals {
+  aiCalls: number
+  aiUsd: number
+  translateChars: number
+  ttsChars: number
+  assessCalls: number
+  people: number
+}
+
+export interface Usage {
+  available: boolean
+  today: UsageTotals
+  month: UsageTotals
+  top: { email: string; aiCalls: number; aiUsd: number; translateChars: number }[]
+}
+
+export interface PersonDetail {
+  words: number
+  answers: number
+  texts: number
+  lastSync: string | null
+  bytes: number
+  lastSignIn: string | null
+  provider: string
+  today: { aiCalls: number; aiUsd: number; translateChars: number; ttsChars: number } | null
+}
+
+export type LimitName = 'aiDailyCalls' | 'aiDailyBudgetUsd' | 'translateChars' | 'ttsChars'
+export interface Announcement {
+  id: string
+  text: string
+  at: string
+}
+
+export interface SettingsView {
+  settings: Partial<Record<LimitName, number>> & { autoApprove?: boolean; announcement?: Announcement | null }
+  effective: Record<LimitName, number>
+  defaults: Record<LimitName, number>
+  ranges: Record<LimitName, { min: number; max: number }>
+}
+
+export interface Block {
+  kind: 'email' | 'domain'
+  value: string
+  note: string
+  createdAt: string
+}
+
+export const loadStats = () => adminFetch<Stats>('?view=stats')
+export const loadUsage = () => adminFetch<Usage>('?view=usage')
+export const loadPerson = (user: string) => adminFetch<PersonDetail>(`?view=person&user=${encodeURIComponent(user)}`)
+export const loadSettings = () => adminFetch<SettingsView>('?view=settings')
+/** A limit set to null goes back to its default. */
+export const saveSettings = (settings: Partial<Record<LimitName, number | null>> & { autoApprove?: boolean }) =>
+  adminFetch<SettingsView>('', { method: 'POST', body: JSON.stringify({ action: 'settings', settings }) })
+/** An empty text takes the announcement back. */
+export const announce = (text: string) =>
+  adminFetch<{ ok: true; announcement: Announcement | null }>('', { method: 'POST', body: JSON.stringify({ action: 'announce', text }) })
+export const approveAll = () => adminFetch<{ ok: true; approved: number }>('', { method: 'POST', body: JSON.stringify({ action: 'approve-all' }) })
+export const loadBlocks = () => adminFetch<{ available: boolean; blocks: Block[] }>('?view=blocks')
+export const block = (value: string, note = '') => adminFetch<{ ok: true }>('', { method: 'POST', body: JSON.stringify({ action: 'block', value, note }) })
+export const unblock = (kind: Block['kind'], value: string) =>
+  adminFetch<{ ok: true }>('', { method: 'POST', body: JSON.stringify({ action: 'unblock', kind, value }) })
