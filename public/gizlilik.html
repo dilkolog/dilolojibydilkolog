@@ -27,69 +27,74 @@
 <main>
 <header class="top"><a class="brand" href="/"><img src="/favicon.svg" width="34" height="34" alt="">Diloloji</a><a class="open" href="/">Uygulamayı aç</a></header>
 <div class="card"><div class="bar"><i></i><i></i><i></i></div><article>
-<h1>Gizlilik politikası ve Aydınlatma Metni</h1>
-<p class="muted">Son güncelleme: 28 Ekim 2026</p>
+<span class="eyebrow">Gizlilik</span>
+<h1>Gizlilik politikası ve aydınlatma metni</h1>
+<p class="lead">Diloloji, yabancı dil öğrenmek için geliştirilmiş kişisel bir uygulamadır; web sitesi (diloloji.com) ve Android uygulaması aynı hizmettir. Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) uyarınca verilerinizin nerede tutulduğunu, ne için işlendiğini ve kimlerle paylaşıldığını açıklar.</p>
+<p class="updated">Son güncelleme: 4 Kasım 2026</p>
+<section class="summary" aria-labelledby="kisaca"><h2 id="kisaca">Kısaca</h2><ul>
+<li>Reklam yok, izleme pikseli ya da davranış takibi yok.</li>
+<li>Verileriniz satılmaz, pazarlama için kullanılmaz.</li>
+<li>Dış bir hizmete yalnızca o özelliği kullandığınızda, gereken en az veri gider.</li>
+<li>Yedeğinizi istediğiniz an indirir, hesabınızı istediğiniz an silersiniz.</li>
+</ul></section>
+<nav class="toc" aria-label="Bu sayfada"><p>Bu sayfada</p><ol><li><a href="#sorumlu">Veri sorumlusu</a></li><li><a href="#cihaz">Verileriniz nerede durur</a></li><li><a href="#hesap">Hesabınızla birlikte tutulan veriler</a></li><li><a href="#dis">Dış hizmetler ve açık veri kaynakları</a></li><li><a href="#android">Android uygulaması</a></li><li><a href="#aktarim">Yurt dışına veri aktarımı</a></li><li><a href="#yas">Yaş sınırı</a></li><li><a href="#haklar">Saklama süresi ve haklarınız</a></li><li><a href="#degisiklik">Değişiklikler</a></li></ol></nav>
 
-<p>Diloloji, yabancı dil öğrenimi için geliştirilmiş kişisel bir uygulamadır; web sitesi (diloloji.com) ve Android uygulaması aynı hizmettir. Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") ve ilgili mevzuat uyarınca hangi verilerinizin nerede tutulduğunu, hangi amaçlarla işlendiğini ve kimlerle paylaşıldığını açıklar.</p>
+<h2 id="sorumlu"><span class="n">1</span>Veri sorumlusu</h2>
+<p>KVKK kapsamında veri sorumlusu Diloloji platformudur. Her türlü soru, görüş ya da hak kullanımı talebiniz için <a href="mailto:destek@diloloji.com">destek@diloloji.com</a> adresine yazabilirsiniz.</p>
 
-<div class="notice-box">
-<strong>Kısaca ilkelerimiz:</strong> Reklam ağı yoktur, davranışsal takip veya izleme pikseli yoktur, verileriniz üçüncü taraflara satılmaz veya pazarlama amacıyla kullanılmaz.
-</div>
+<h2 id="cihaz"><span class="n">2</span>Verileriniz nerede durur</h2>
+<p>Kelimeleriniz, çalışma geçmişiniz, cevaplarınız, listeleriniz, okuma metinleriniz ve tercihleriniz hesabınızda saklanır ve cihazlarınız arasında kendiliğinden eşitlenir. Uygulamanın çevrimdışı da çalışabilmesi için her cihazda tarayıcının kendi depolarında (IndexedDB ve localStorage) bir kopyası durur.</p>
+<p><strong>Çıkış:</strong> bir cihazdan çıkış yaptığınızda son değişiklikleriniz önce hesabınıza eşitlenir, ardından o cihazdaki kopya silinir. Eşitleme yapılamazsa çıkış durur ve size sorulur; böylece veri kaybolmaz.</p>
 
-<h2>1. Veri Sorumlusu</h2>
-<p>KVKK kapsamında veri sorumlusu Diloloji platformudur. Her türlü soru, görüş veya hak kullanımı talebiniz için <a href="mailto:destek@diloloji.com">destek@diloloji.com</a> adresinden iletişime geçebilirsiniz.</p>
-
-<h2>2. Cihazınızda Kalan ve İşlenen Veriler</h2>
-<p>Kelimeleriniz, çalışma geçmişiniz, cevaplarınız, özel listeleriniz, okuma metinleriniz ve tercihleriniz öncelikli olarak kendi cihazınızda (tarayıcınızın yerel IndexedDB ve localStorage veritabanında) saklanır. Uygulamayı kullanmak için bir hesap açtığınızda bu veriler çoklu cihaz eşitlemesi için sunucuya aktarılır.</p>
-<p><strong>Çıkış durumu:</strong> Bir cihazdan çıkış yaptığınızda son değişiklikleriniz önce hesabınıza eşitlenir, ardından o cihazdaki çalışma verileri silinir. Eşitleme yapılamazsa çıkış durdurulur ve size sorulur; böylece veri kaybolmaz.</p>
-
-<h2>3. Hesabınızla Birlikte Tutulan Veriler</h2>
-<ul>
-<li><strong>Kullanıcı Kimliği ve Giriş:</strong> E-posta adresiniz ve (şifreli giriş yapıyorsanız) şifrenizin tek yönlü kriptografik özeti, kimlik doğrulama altyapımız Supabase üzerinde saklanır. Google ile giriş yaptığınızda Google'dan yalnızca adınız, e-posta adresiniz ve profil fotoğrafınız alınır; diğer hiçbir Google hesabınız verisine erişilmez.</li>
-<li><strong>Eşitleme Verisi:</strong> Birden fazla cihazınız arasında çalışabilmeniz için çalışma istatistikleriniz, kelimeleriniz ve ayarlarınız hesabınızla eşleştirilmiş olarak Supabase (Postgres) ve Cloudflare R2 depolarında şifrelenmiş olarak tutulur. Verilere erişim Satır Düzeyinde Güvenlik (RLS) politikalarıyla yalnızca oturum açmış hesabınıza aittir.</li>
-<li><strong>Arkadaşlar (İsteğe bağlı):</strong> Arkadaş kodunuzu paylaştığınız diğer kullanıcılar yalnızca adınızı, avatarınızı, çalışma serinizi, seviyenizi ve son 14 günlük XP toplamınızı görebilir. Hangi kelimeleri çalıştığınız ya da cevaplarınız diğer kullanıcılara asla gösterilmez.</li>
-<li><strong>Paylaşılan Listeler (İsteğe bağlı):</strong> Kendi hazırladığınız bir kelime listesini bağlantıyla paylaşırsanız bağlantıya sahip olanlar; topluluk kütüphanesine eklerseniz tüm Diloloji kullanıcıları listenizi görebilir ve çalışabilir.</li>
+<h2 id="hesap"><span class="n">3</span>Hesabınızla birlikte tutulan veriler</h2>
+<ul class="points">
+<li><strong>Kimlik ve giriş</strong>E-posta adresiniz ve (şifreyle giriyorsanız) şifrenizin tek yönlü kriptografik özeti, kimlik doğrulama altyapımız Supabase’te saklanır. Google ile girişte Google’dan yalnızca adınız, e-posta adresiniz ve profil fotoğrafınız alınır; Google hesabınızın başka hiçbir verisine erişilmez.</li>
+<li><strong>Eşitleme verisi</strong>Kelimeleriniz, çalışma istatistikleriniz ve ayarlarınız hesabınıza bağlı olarak Supabase (Postgres) ve Cloudflare R2 depolarında tutulur. Aktarım her zaman şifreli bağlantıyla (HTTPS) yapılır, veriler sağlayıcıların şifreli depolarında durur. Satır düzeyinde güvenlik (RLS) kuralları sayesinde verilerinize yalnızca kendi oturumunuz erişebilir.</li>
+<li><strong>Profil ve konum (isteğe bağlı)</strong>Profilinize bir şehir yazar ya da “Bul” düğmesine basarsanız, gökyüzü ve hava durumu teması için yaklaşık konum (yaklaşık 10 km’ye yuvarlanmış koordinat) profilinizle saklanır. Konum yalnızca “Bul”a dokunduğunuzda, tarayıcının izniyle bir kez alınır; arka planda konum toplanmaz.</li>
+<li><strong>Arkadaşlar (isteğe bağlı)</strong>Kullanıcı adınızla ya da davet bağlantınızla arkadaş olduğunuz kişiler yalnızca adınızı, avatarınızı, çalışma serinizi, seviyenizi ve son 14 günde hangi günler çalıştığınızı görür; XP’nizi gizlemeyi de seçebilirsiniz. Hangi kelimeleri çalıştığınız ve cevaplarınız başka kullanıcılara asla gösterilmez.</li>
+<li><strong>Paylaşılan listeler (isteğe bağlı)</strong>Bir kelime listesini bağlantıyla paylaşırsanız bağlantıyı bilenler, topluluk kütüphanesine eklerseniz tüm Diloloji kullanıcıları listeyi görebilir ve çalışabilir.</li>
 </ul>
 
-<h2>4. Dış Hizmetler ve Açık Veri Kaynakları</h2>
-<p>Uygulama çalışırken bazı özellikler yalnızca siz talep ettiğinizde ilgili hizmete teknik olarak zorunlu minimum veriyi gönderir:</p>
-<ul>
-<li><strong>Tatoeba (api.tatoeba.org):</strong> Kelime ayrıntısında veya sözlükte örnek cümle ve çevirileri göstermek için yalnızca aradığınız kelime ve hedef dil gönderilir.</li>
-<li><strong>Wiktionary, Wikimedia Commons ve Wikidata:</strong> Açık lisanslı sözlük tanımları, kelime etimolojileri, telifsiz kelime resimleri ve telaffuz sesleri için aranan kelime sorgulanır.</li>
-<li><strong>Open-Meteo (api.open-meteo.com):</strong> Ana ekranda ve bahçede günün saatine uygun gökyüzü ve hava durumu temasını göstermek için profilinizde seçtiğiniz şehrin enlem/boylam koordinatları gönderilir. Cihazınızdan otomatik GPS konumu veya IP tabanlı konum toplanmaz.</li>
-<li><strong>YouTube ve Archive.org:</strong> Şarkıyla öğrenme ve sesli kitap dinleme özelliklerinde medya oynatımı için ilgili içerik ID'si veya dosya bağlantısı çağrılır.</li>
-<li><strong>Openverse ve Pixabay:</strong> Kelimelerinize görsel eklerken telifsiz resim aramak için arama teriminiz (ve Pixabay için varsa kendi eklediğiniz API anahtarınız) gönderilir.</li>
-<li><strong>LanguageTool (api.languagetool.org):</strong> Yaz & konuş ve hikaye özetinde "Denetle" butonuna dokunduğunuzda, yazdığınız metin dilbilgisi ve yazım kontrolü amacıyla gönderilir.</li>
-<li><strong>Çeviri (DeepL API):</strong> Cümle ve paragraf çevirilerinde metin DeepL sunucularına iletilir. Çevrilen cümleler cihazınızdaki yerel çeviri belleğinde saklanır; aynı cümle tekrar sunucuya gitmez.</li>
-<li><strong>E-posta (Resend):</strong> Giriş doğrulama bağlantıları, şifre sıfırlama ve isteğe bağlı açtığınız haftalık ilerleme özetleri için e-posta adresiniz kullanılır.</li>
-<li><strong>Yapay zekâ (Anthropic Claude):</strong> Monki sohbeti, cümle değerlendirme, kelime doldurma, fotoğraftan kelime gibi yapay zekâ özellikleri yalnızca site sahibince onaylanmış hesaplarda çalışır. Bu özellikleri kullandığınızda ilgili metin (fotoğraftan kelime özelliğinde seçtiğiniz, küçültülmüş fotoğraf) Diloloji sunucusu üzerinden Anthropic'e iletilir; sunucu içeriği saklamaz, yalnızca günlük kullanım sayısını hesabınıza bağlı tutar. Anthropic'in kendi gizlilik koşulları geçerlidir. Bu özelliği kullanmak için anahtar girmeniz gerekmez ve özellikler açıkça kullanmadıkça hiçbir şey göndermez.</li>
-<li><strong>Telaffuz puanı (Microsoft Azure Speech) ve doğal ses (Google Cloud Text-to-Speech):</strong> Bu özellikleri kullandığınızda, puanlanacak kısa ses kaydı ve söylenecek metin Diloloji sunucusu üzerinden ilgili firmaya iletilir; anahtar girmeniz gerekmez. Sunucu kaydı ve metni saklamaz, yalnızca günlük kullanım sayısını hesabınıza bağlı tutar. Üretilen doğal ses cihazınızda önbelleğe alınır. Firmaların kendi gizlilik koşulları geçerlidir.</li>
+<h2 id="dis"><span class="n">4</span>Dış hizmetler ve açık veri kaynakları</h2>
+<p>Bazı özellikler yalnızca siz kullandığınızda, ilgili hizmete işin gerektirdiği en az veriyi gönderir:</p>
+<ul class="points">
+<li><strong>Tatoeba</strong>Örnek cümle ve çevirileri göstermek için yalnızca aradığınız kelime ve dil gönderilir.</li>
+<li><strong>Wiktionary, Wikimedia Commons ve Wikidata</strong>Açık lisanslı tanımlar, kökenler, telifsiz resimler ve telaffuz sesleri için aranan kelime sorgulanır.</li>
+<li><strong>Open-Meteo</strong>Gökyüzü ve hava durumu teması için profilinizdeki şehrin adı ya da yuvarlanmış koordinatı gönderilir.</li>
+<li><strong>YouTube ve Archive.org</strong>Şarkıyla öğrenme ve sesli kitap özelliklerinde oynatılacak içeriğin kimliği ya da dosya bağlantısı çağrılır.</li>
+<li><strong>Openverse ve Pixabay</strong>Kelimelerinize resim ararken arama teriminiz (Pixabay’de, eklediyseniz kendi anahtarınız) gönderilir.</li>
+<li><strong>LanguageTool</strong>Yazdığınız bir metinde “Denetle”ye dokunduğunuzda o metin dilbilgisi ve yazım denetimi için gönderilir.</li>
+<li><strong>DeepL</strong>Cümle ve paragraf çevirilerinde metin DeepL’e iletilir. Çevrilen cümleler cihazınızdaki çeviri belleğinde saklanır; aynı cümle bir daha gönderilmez.</li>
+<li><strong>Resend (e-posta)</strong>Giriş doğrulama, şifre yenileme ve isteğe bağlı açtığınız hatırlatma ve haftalık özet mailleri için e-posta adresiniz kullanılır.</li>
+<li><strong>Anthropic Claude (yapay zekâ)</strong>Monki sohbeti, cümle değerlendirme, kelime doldurma, fotoğraftan kelime gibi özellikler yalnızca onaylı hesaplarda çalışır. Kullandığınızda ilgili metin (fotoğraftan kelimede seçtiğiniz küçültülmüş fotoğraf) Diloloji sunucusu üzerinden Anthropic’e iletilir. Sunucu içeriği saklamaz, yalnızca günlük kullanım sayısını hesabınıza bağlı tutar. Siz kullanmadıkça hiçbir şey gönderilmez.</li>
+<li><strong>Microsoft Azure Speech ve Google Cloud Text-to-Speech</strong>Telaffuz puanında kısa ses kaydınız, doğal seste okunacak metin Diloloji sunucusu üzerinden ilgili firmaya iletilir. Sunucu kaydı ve metni saklamaz, yalnızca günlük kullanım sayısını tutar. Üretilen ses cihazınızda önbelleğe alınır.</li>
+</ul>
+<p class="muted">Bu firmaların kendi gizlilik koşulları geçerlidir.</p>
+
+<h2 id="android"><span class="n">5</span>Android uygulaması</h2>
+<p>Android uygulaması diloloji.com’u telefonunuzdaki Chrome altyapısıyla tam ekran açar; ayrıca veri toplamaz ve bu politikanın tamamı geçerlidir. İzinleri yalnızca ilgili özelliği kullandığınızda ister:</p>
+<ul class="points">
+<li><strong>Mikrofon</strong>Telaffuz, gölgeleme ve sesli cevapta kullanılır. Sesli cevapta konuşma tanımayı tarayıcının kendi hizmeti yapar (Android’de Google); söyledikleriniz bu iş için o hizmete iletilebilir. Gölgeleme kayıtları cihazınızda kalır; telaffuz puanı istediğinizde kayıt yalnızca puanlama için Diloloji sunucusu üzerinden Microsoft’a iletilir ve saklanmaz. Bir kelimeye kendi ses kaydınızı eklerseniz o kayıt kelimenin parçası olarak hesabınızla eşitlenir.</li>
+<li><strong>Bildirimler</strong>Açtığınız günlük hatırlatmalar ve arkadaş iletileri için kullanılır. Uygulamadan ya da telefonunuzun ayarlarından dilediğiniz an kapatabilirsiniz.</li>
+</ul>
+<p>Uygulama reklam kimliği kullanmaz; rehber gibi verilere erişmez, konumu yalnızca profilde “Bul”a bastığınızda ister.</p>
+
+<h2 id="aktarim"><span class="n">6</span>Yurt dışına veri aktarımı</h2>
+<p>Diloloji’nin güvenli ve kesintisiz çalışması için Cloudflare (içerik dağıtımı ve sunucular), Supabase (Frankfurt, AB veri merkezi) ve Resend (e-posta gönderimi) altyapıları kullanılır. Hizmeti kullanarak bu teknik zorunlu aktarımı kabul etmiş olursunuz.</p>
+
+<h2 id="yas"><span class="n">7</span>Yaş sınırı</h2>
+<p>Diloloji 13 yaş ve üzeri kullanıcılar için tasarlanmıştır. 13 yaşından küçükler uygulamayı yalnızca velisinin ya da yasal vasisinin gözetiminde ve izniyle kullanmalıdır.</p>
+
+<h2 id="haklar"><span class="n">8</span>Saklama süresi ve haklarınız</h2>
+<p>Kişisel verileriniz hesabınız açık olduğu sürece saklanır. KVKK’nın 11. maddesindeki haklarınız kapsamında:</p>
+<ul class="points">
+<li><strong>Yedek</strong>Bütün çalışma verilerinizi <em>Ayarlar → Veriler → Yedeği indir</em> ile istediğiniz an JSON dosyası olarak indirebilirsiniz.</li>
+<li><strong>Hesap silme</strong>Hesabınızı ve sunucudaki bütün verilerinizi <em>Ayarlar → Hesap → Hesabı sil</em> ile kalıcı olarak silebilirsiniz; uygulamaya giremiyorsanız e-postayla da isteyebilirsiniz. Neyin silindiği: <a href="/hesap-silme">Hesap silme</a>. Silinen veriler geri getirilemez.</li>
+<li><strong>Bilgi ve düzeltme</strong>Verilerinizle ilgili her türlü bilgi, düzeltme ya da erişim talebinizi <a href="mailto:destek@diloloji.com">destek@diloloji.com</a> adresine iletebilirsiniz.</li>
 </ul>
 
-<h2>5. Android Uygulaması</h2>
-<p>Android uygulaması, diloloji.com'u telefonunuzdaki Chrome altyapısıyla tam ekran açar; ayrı bir veri toplamaz ve bu politikadaki kuralların tamamı geçerlidir. Uygulama aşağıdaki izinleri yalnızca ilgili özelliği kullandığınızda ister:</p>
-<ul>
-<li><strong>Mikrofon:</strong> Telaffuz, gölgeleme ve sesli cevap özelliklerinde kullanılır. Sesli cevaplarda konuşma tanımayı tarayıcının kendi hizmeti yapar (Android'de Google); söyledikleriniz bu iş için o hizmete iletilebilir. Gölgeleme kayıtları cihazınızda kalır; telaffuz puanlaması istediğinizde kayıt yalnızca puanlama için Diloloji sunucusu üzerinden Microsoft'a iletilir ve saklanmaz. Bir kelimeye kendi ses kaydınızı eklerseniz, o kayıt kelimenin parçası olarak hesabınızla eşitlenir.</li>
-<li><strong>Bildirimler:</strong> Açtığınız günlük hatırlatmalar ve arkadaş iletileri için kullanılır. Bildirimleri dilediğiniz an uygulamadan ya da telefonunuzun ayarlarından kapatabilirsiniz.</li>
-</ul>
-<p>Uygulama reklam kimliği kullanmaz, konum ve rehber gibi verilere erişmez.</p>
-
-<h2>6. Yurt Dışına Veri Aktarımı</h2>
-<p>Diloloji'nin güvenli, hızlı ve kesintisiz çalışabilmesi adına bulut altyapımızda Cloudflare (küresel içerik dağıtım ağı ve sunucusuz mimari), Supabase (Frankfurt / AB veri merkezi) ve Resend (e-posta gönderimi) servis sağlayıcıları kullanılmaktadır. Hizmeti kullanarak teknik zorunluluk kapsamındaki bu güvenli altyapı aktarımını kabul etmiş olursunuz.</p>
-
-<h2>7. Yaş Sınırı</h2>
-<p>Diloloji 13 yaş ve üzeri kullanıcılar için tasarlanmıştır. 13 yaşından küçüklerin uygulamayı yalnızca veli ya da yasal vasilerinin gözetiminde ve izniyle kullanmaları gerekmektedir.</p>
-
-<h2>8. Veri Saklama Süresi ve Haklarınız</h2>
-<p>Kişisel verileriniz hesabınız aktif olduğu müddetçe saklanır. KVKK'nın 11. maddesi kapsamındaki haklarınız uyarınca:</p>
-<ul>
-<li><strong>Yedekleme:</strong> Tüm çalışma verilerinizi dilediğiniz an <em>Ayarlar → Veriler → Yedeği indir</em> bölümünden JSON formatında cihazınıza indirebilirsiniz.</li>
-<li><strong>Hesap Silme:</strong> Hesabınızı ve sunucudaki tüm eşitleme verilerinizi <em>Ayarlar → Hesap → Hesabı sil</em> adımıyla kalıcı olarak silebilirsiniz; uygulamaya giremiyorsanız e-postayla da isteyebilirsiniz. Ayrıntılar ve neyin silindiği: <a href="/hesap-silme">Hesap silme</a>. Silinen veriler geri getirilemez.</li>
-<li><strong>Düzeltme ve Bilgi Talebi:</strong> Verilerinizle ilgili her türlü bilgi, düzeltme veya erişim talebinizi <a href="mailto:destek@diloloji.com">destek@diloloji.com</a> adresine iletebilirsiniz.</li>
-</ul>
-
-<h2>9. Değişiklikler</h2>
-<p>Bu politika metninde yapılan güncellemeler bu sayfada yayımlanır ve üst kısımdaki güncelleme tarihi yenilenir.</p>
+<h2 id="degisiklik"><span class="n">9</span>Değişiklikler</h2>
+<p>Bu metindeki güncellemeler bu sayfada yayımlanır ve üstteki tarih yenilenir.</p>
 </article></div>
 <footer class="foot"><nav><a href="/hakkinda">Hakkında</a><a href="/gizlilik" aria-current="page">Gizlilik politikası</a><a href="/kosullar">Kullanım koşulları</a><a href="/hesap-silme">Hesap silme</a></nav><p>Diloloji · <a href="https://diloloji.com">diloloji.com</a> · destek@diloloji.com</p></footer>
 </main>

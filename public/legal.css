@@ -1,34 +1,93 @@
-/* The static pages (/hakkinda, /gizlilik, /kosullar) in the app's own design language (DESIGN.md): slate page, white card with the
-   three language colours as a thin stripe, Lexend, the logo's indigo, a tactile button, dark mode. Same look as the mails. */
+/* The static pages (/hakkinda, /gizlilik, /kosullar, /hesap-silme) in the app's own design language (DESIGN.md): slate page,
+   white card with the three language colours as a thin stripe, Lexend, the logo's indigo, a tactile button, dark mode.
+   Long pages get a short summary box and a table of contents; sections are numbered chips; lists read as small tiles. */
 @font-face{font-family:'Lexend';font-style:normal;font-display:swap;font-weight:400;src:url(/fonts/lexend-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'Lexend';font-style:normal;font-display:swap;font-weight:400;src:url(/fonts/lexend-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Lexend';font-style:normal;font-display:swap;font-weight:700;src:url(/fonts/lexend-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'Lexend';font-style:normal;font-display:swap;font-weight:700;src:url(/fonts/lexend-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-:root{color-scheme:light dark;--bg:#f1f5f9;--card:#fff;--box:#f8fafc;--ink:#0f172a;--soft:#57677e;--rule:#e2e8f0;--accent:#4338ca;--edge:#312e81;--on-accent:#fff;--en:#2f6de6;--fr:#c6317c;--es:#e6a313;--font:'Lexend',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
-@media (prefers-color-scheme:dark){:root{--bg:#0f172a;--card:#1e293b;--box:#0f172a;--ink:#f1f5f9;--soft:#a3b1c6;--rule:#334155;--accent:#a5b4fc;--edge:#312e81}}
+:root{color-scheme:light dark;--bg:#f1f5f9;--card:#fff;--box:#f8fafc;--ink:#0f172a;--soft:#57677e;--rule:#e2e8f0;--accent:#4338ca;--accent-soft:#eef2ff;--accent-ring:#c7d2fe;--edge:#312e81;--on-accent:#fff;--en:#2f6de6;--fr:#c6317c;--es:#e6a313;--ok:#15803d;--font:'Lexend',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;--shadow:0 1px 2px rgb(15 23 42/.04),0 8px 24px rgb(15 23 42/.06)}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1120;--card:#1e293b;--box:#172033;--ink:#f1f5f9;--soft:#a3b1c6;--rule:#334155;--accent:#a5b4fc;--accent-soft:#1e2448;--accent-ring:#3730a3;--edge:#1e1b4b;--ok:#4ade80;--shadow:0 1px 2px rgb(0 0 0/.3)}}
 *{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.7 var(--font);-webkit-text-size-adjust:100%}
-main{max-width:44rem;margin:0 auto;padding:1.25rem 1rem 3rem}
-.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.25rem .25rem 1rem}
+main{max-width:46rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+/* Top bar: the logo back to the app, and the app as a small button. */
+.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.25rem .25rem 1.25rem}
 .brand{display:inline-flex;align-items:center;gap:.6rem;font-weight:700;font-size:1.25rem;color:var(--ink);text-decoration:none}
 .brand img{border-radius:9px;display:block}
-.open{font-size:.9rem;font-weight:700;color:var(--accent);text-decoration:none}
-.open:hover,.foot a:hover{text-decoration:underline}
-.card{background:var(--card);border:1px solid var(--rule);border-radius:20px;overflow:hidden}
+.open{display:inline-flex;align-items:center;min-height:2.5rem;padding:0 1rem;border-radius:999px;background:var(--card);box-shadow:inset 0 0 0 1px var(--rule);font-size:.9rem;font-weight:700;color:var(--ink);text-decoration:none}
+.open:hover{box-shadow:inset 0 0 0 1px var(--accent-ring);color:var(--accent)}
+
+.card{background:var(--card);border:1px solid var(--rule);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
 .bar{display:flex;height:4px}.bar i{flex:1}.bar i:nth-child(1){background:var(--en)}.bar i:nth-child(2){background:var(--fr)}.bar i:nth-child(3){background:var(--es)}
-article{padding:1.75rem 1.5rem 2rem}
-h1{margin:0 0 .5rem;font-size:1.875rem;line-height:1.2;font-weight:700;letter-spacing:-.01em}
-h2{margin:2rem 0 .4rem;font-size:1.125rem;line-height:1.3;font-weight:700}
-p,li{margin:.45rem 0}ul,ol{padding-left:1.25rem}li::marker{color:var(--soft)}
+article{padding:2rem 2rem 2.25rem}
+
+/* The page's head: a small label, the title, one calm line and the date. */
+.eyebrow{display:inline-block;margin:0 0 .75rem;padding:.2rem .7rem;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:.8125rem;font-weight:700;letter-spacing:.02em}
+h1{margin:0 0 .5rem;font-size:2rem;line-height:1.2;font-weight:700;letter-spacing:-.015em}
+.lead{margin:.5rem 0 0;font-size:1.0625rem;color:var(--soft)}
+.updated{margin:.9rem 0 0;font-size:.8125rem;color:var(--soft)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.25rem;align-items:center}
+.hero img{width:7.5rem;height:auto}
+
+h2{display:flex;align-items:baseline;gap:.6rem;margin:2.25rem 0 .5rem;font-size:1.1875rem;line-height:1.35;font-weight:700}
+h2 .n{flex:none;display:inline-grid;place-items:center;min-width:1.75rem;height:1.75rem;padding:0 .4rem;border-radius:9px;background:var(--accent-soft);color:var(--accent);font-size:.875rem;transform:translateY(-.1rem)}
+h3{margin:1.25rem 0 .25rem;font-size:1rem;font-weight:700}
+p,li{margin:.5rem 0}ul,ol{padding-left:1.25rem}li::marker{color:var(--soft)}
 strong{font-weight:700}
-.lead{font-size:1.0625rem;color:var(--soft)}
 .muted{color:var(--soft);font-size:.875rem}
 article a{color:var(--accent);font-weight:700;text-underline-offset:.15em}
-.cta{display:inline-block;margin-top:.75rem;padding:.8rem 1.5rem .65rem;border-radius:14px;border-bottom:4px solid var(--edge);background:var(--accent);color:var(--on-accent)!important;font-weight:700;text-decoration:none!important}
+em{font-style:normal;font-weight:700;color:var(--ink);background:var(--box);padding:0 .3rem;border-radius:5px;box-shadow:inset 0 0 0 1px var(--rule);white-space:nowrap}
+
+/* "Kısaca": the three or four things to know, before the details. */
+.summary{margin:1.5rem 0 0;padding:1.1rem 1.25rem;border-radius:16px;background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent-ring)}
+.summary h2{margin:0 0 .4rem;font-size:1rem}
+.summary ul{list-style:none;padding:0;margin:0}
+.summary li{position:relative;padding-left:1.6rem;margin:.35rem 0}
+.summary li::before{content:"";position:absolute;left:.15rem;top:.55rem;width:.75rem;height:.4rem;border-left:2.5px solid var(--ok);border-bottom:2.5px solid var(--ok);transform:rotate(-45deg)}
+
+/* Table of contents of a long page. */
+.toc{margin:1.5rem 0 0;padding:1rem 1.25rem;border-radius:16px;background:var(--box);box-shadow:inset 0 0 0 1px var(--rule)}
+.toc p{margin:0 0 .4rem;font-size:.8125rem;font-weight:700;color:var(--soft);letter-spacing:.04em;text-transform:uppercase}
+.toc ol{margin:0;padding:0;list-style:none;columns:2;column-gap:1.5rem;counter-reset:t}
+.toc li{margin:0;break-inside:avoid;counter-increment:t}
+.toc a{display:flex;gap:.5rem;padding:.25rem 0;color:var(--ink);font-weight:400;text-decoration:none}
+.toc a::before{content:counter(t);flex:none;min-width:1.25rem;color:var(--accent);font-weight:700}
+.toc a:hover{color:var(--accent)}
+
+/* Lists of things with a name: each a small tile, the name on its own line. */
+.points{list-style:none;padding:0;margin:.75rem 0;display:grid;gap:.6rem}
+.points li{margin:0;padding:.85rem 1rem;border-radius:14px;background:var(--box);box-shadow:inset 0 0 0 1px var(--rule)}
+.points li>strong:first-child{display:block;margin-bottom:.15rem}
+
+/* About: what the app does, as tiles with the three language colours. */
+.features{list-style:none;padding:0;margin:1rem 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+.features li{margin:0;padding:1rem 1.1rem;border-radius:16px;background:var(--box);box-shadow:inset 0 0 0 1px var(--rule);border-top:3px solid var(--en)}
+.features li:nth-child(3n+2){border-top-color:var(--fr)}.features li:nth-child(3n){border-top-color:var(--es)}
+.features strong{display:block;margin-bottom:.2rem}
+.features span{color:var(--soft);font-size:.9375rem}
+.links{list-style:none;padding:0;margin:.75rem 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+.links a{display:block;height:100%;padding:.8rem 1rem;border-radius:14px;background:var(--box);box-shadow:inset 0 0 0 1px var(--rule);color:var(--ink);text-decoration:none}
+.links a:hover{box-shadow:inset 0 0 0 1px var(--accent-ring)}
+.links a span{display:block;font-weight:400;font-size:.875rem;color:var(--soft)}
+
+ol.steps{list-style:none;padding:0;margin:.75rem 0;counter-reset:s;display:grid;gap:.5rem}
+ol.steps li{position:relative;margin:0;padding:.1rem 0 .1rem 2.5rem;counter-increment:s}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:.1rem;display:grid;place-items:center;width:1.75rem;height:1.75rem;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:.875rem;font-weight:700}
+
+.contact{margin:2.25rem 0 0;padding:1.1rem 1.25rem;border-radius:16px;background:var(--box);box-shadow:inset 0 0 0 1px var(--rule)}
+.contact h2{margin:0 0 .25rem;font-size:1rem}
+.contact p{margin:0}
+
+.cta{display:inline-block;margin-top:1.25rem;padding:.8rem 1.5rem .65rem;border-radius:14px;border-bottom:4px solid var(--edge);background:var(--accent);color:var(--on-accent)!important;font-weight:700;text-decoration:none!important}
 .cta:active{transform:translateY(3px);border-bottom-width:1px}
-.foot{padding:1.25rem .25rem 0;font-size:.875rem;color:var(--soft)}
+
+.foot{padding:1.5rem .25rem 0;font-size:.875rem;color:var(--soft)}
 .foot nav{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;margin-bottom:.5rem}
-.foot a{color:var(--soft);text-underline-offset:.15em}.foot a[aria-current]{color:var(--ink);font-weight:700;text-decoration:none}
-@media (prefers-color-scheme:dark){.cta{background:#4f46e5}}
-@media (max-width:30rem){article{padding:1.5rem 1.25rem 1.75rem}h1{font-size:1.625rem}}
-@media print{body{background:#fff}.top .open,.foot nav{display:none}.card{border:0}}
+.foot a{color:var(--soft);text-underline-offset:.15em}.foot a:hover{text-decoration:underline}.foot a[aria-current]{color:var(--ink);font-weight:700;text-decoration:none}
+@media (prefers-color-scheme:dark){.cta{background:#4f46e5;color:#fff!important}.hero img{filter:drop-shadow(0 0 1px rgb(255 255 255/.5))}}
+@media (max-width:36rem){article{padding:1.5rem 1.25rem 1.75rem}h1{font-size:1.625rem}.toc ol{columns:1}.features,.links{grid-template-columns:minmax(0,1fr)}.hero img{width:5rem}}
+@media print{body{background:#fff}.top .open,.foot nav,.toc{display:none}.card{border:0;box-shadow:none}h2 .n{background:none;padding:0}}
