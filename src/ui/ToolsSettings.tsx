@@ -5,7 +5,7 @@ import { askClipboard, clipboardSupported } from './clipboardSuggest'
 import { bookmarkletCode } from './incoming'
 import { IosShortcut } from './IosShortcut'
 import { OfflinePack } from './OfflinePack'
-import { Toggle } from './settingsWidgets'
+import { Extra, Toggle } from './settingsWidgets'
 import { showToast } from './toastFeed'
 import { TranslationSettings } from './TranslationSettings'
 
@@ -41,37 +41,39 @@ export function ToolsSettings({
     <>
       <AiSettings />
       <TranslationSettings onFilled={onDataChanged} />
-      {clipboardOk && (
-        <section className="card stack">
-          <h2 className="section-title">Panodan kelime ekle</h2>
-          <Toggle
-            label="Kopyaladığım kelimeyi öner"
-            help="Başka bir uygulamada bir kelimeyi kopyalayıp buraya dönünce, listende yoksa eklemeyi önerir. Pano yalnızca bu cihazda okunur, hiçbir yere gönderilmez."
-            checked={settings.clipboardSuggest ?? false}
-            onChange={async (v) => {
-              if (v && !(await askClipboard())) {
-                showToast('Pano izni verilmedi; tarayıcının site ayarlarından açabilirsin.', undefined, 5000, 'info')
-                return
-              }
-              set('clipboardSuggest', v)
-            }}
-          />
+      <Extra>
+        {clipboardOk && (
+          <section className="card stack">
+            <h2 className="section-title">Panodan kelime ekle</h2>
+            <Toggle
+              label="Kopyaladığım kelimeyi öner"
+              help="Başka bir uygulamada bir kelimeyi kopyalayıp buraya dönünce, listende yoksa eklemeyi önerir. Pano yalnızca bu cihazda okunur, hiçbir yere gönderilmez."
+              checked={settings.clipboardSuggest ?? false}
+              onChange={async (v) => {
+                if (v && !(await askClipboard())) {
+                  showToast('Pano izni verilmedi; tarayıcının site ayarlarından açabilirsin.', undefined, 5000, 'info')
+                  return
+                }
+                set('clipboardSuggest', v)
+              }}
+            />
+          </section>
+        )}
+        <IosShortcut />
+        <section className="card stack desktop-only">
+          <h2 className="section-title">Web'den kelime ekle</h2>
+          <p className="small muted">
+            Aşağıdaki butonu tarayıcının yer imleri çubuğuna sürükle. Bir makale okurken kelimeyi seçip bu yer imine tıkla:
+            kelime, geçtiği cümle ve kaynağıyla birlikte ekleme formunda açılır. Sayfanın dili İngilizce, Fransızca ya da
+            İspanyolca ise doğru dile kendiliğinden geçer.
+          </p>
+          <div className="row">
+            <Bookmarklet />
+            <span className="small muted">← yer imleri çubuğuna sürükle (Safari: ⌘⇧B ile çubuğu göster)</span>
+          </div>
         </section>
-      )}
-      <IosShortcut />
-      <section className="card stack desktop-only">
-        <h2 className="section-title">Web'den kelime ekle</h2>
-        <p className="small muted">
-          Aşağıdaki butonu tarayıcının yer imleri çubuğuna sürükle. Bir makale okurken kelimeyi seçip bu yer imine tıkla:
-          kelime, geçtiği cümle ve kaynağıyla birlikte ekleme formunda açılır. Sayfanın dili İngilizce, Fransızca ya da
-          İspanyolca ise doğru dile kendiliğinden geçer.
-        </p>
-        <div className="row">
-          <Bookmarklet />
-          <span className="small muted">← yer imleri çubuğuna sürükle (Safari: ⌘⇧B ile çubuğu göster)</span>
-        </div>
-      </section>
-      <OfflinePack settings={settings} />
+        <OfflinePack settings={settings} />
+      </Extra>
     </>
   )
 }

@@ -1678,7 +1678,10 @@ test('settings: a question type can be set to less or off, and stays so after a 
   await startWithSamples(page)
   await openScreen(page, 'Ayarlar')
   await page.locator('.settings-menu-item', { hasText: 'Sorular' }).click()
+  // The question types are an advanced setting: out of sight until the group's switch is on.
   const blank = page.getByRole('radiogroup', { name: 'Cümlede boşluğu yaz' })
+  await expect(blank).toBeHidden()
+  await page.getByRole('switch', { name: /Gelişmiş ayarlar/ }).click()
   await expect(blank.getByRole('radio', { name: 'Normal' })).toHaveAttribute('aria-checked', 'true')
   await blank.getByRole('radio', { name: 'Hiç' }).click()
   await expect(blank.getByRole('radio', { name: 'Hiç' })).toHaveAttribute('aria-checked', 'true')
@@ -1693,6 +1696,35 @@ test('settings: a question type can be set to less or off, and stays so after a 
   // The way back to the usual.
   await page.getByRole('button', { name: 'Hepsini normale döndür' }).click()
   await expect(page.getByRole('radiogroup', { name: 'Cümlede boşluğu yaz' }).getByRole('radio', { name: 'Normal' })).toHaveAttribute('aria-checked', 'true')
+})
+
+test('settings: the fine ones wait behind a switch, the search still finds them, and a group goes back to its defaults', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Ayarlar')
+  await page.locator('.settings-menu-item', { hasText: 'Çalışma' }).click()
+  const pane = page.locator('.settings-pane[data-active]')
+  await expect(pane.getByText('Günlük süre', { exact: true })).toBeVisible()
+  await expect(pane.getByRole('heading', { name: 'Hafıza modeli' })).toBeHidden()
+  await expect(pane.getByText('Bir oturumda en fazla', { exact: true })).toBeHidden()
+  // Found by the search all the same.
+  await page.getByRole('searchbox', { name: 'Ayar ara' }).fill('oturumda en fazla')
+  await expect(page.getByText('Bir oturumda en fazla', { exact: true })).toBeVisible()
+  await page.getByRole('searchbox', { name: 'Ayar ara' }).fill('')
+  // The switch shows them, and is remembered.
+  await pane.getByRole('switch', { name: /Gelişmiş ayarlar/ }).click()
+  await expect(pane.getByRole('heading', { name: 'Hafıza modeli' })).toBeVisible()
+  await page.reload()
+  await openScreen(page, 'Ayarlar')
+  await page.locator('.settings-menu-item', { hasText: 'Çalışma' }).click()
+  await expect(page.locator('.settings-pane[data-active]').getByRole('heading', { name: 'Hafıza modeli' })).toBeVisible()
+  // A change brings the way back to the defaults, which can be undone.
+  const goal = page.getByRole('radiogroup').filter({ has: page.getByRole('radio', { name: '200 XP' }) })
+  await goal.getByRole('radio', { name: '200 XP' }).click()
+  await page.getByRole('button', { name: 'Çalışma ayarlarını varsayılana döndür' }).click()
+  await expect(goal.getByRole('radio', { name: '50 XP' })).toHaveAttribute('aria-checked', 'true')
+  await expect(page.getByRole('button', { name: 'Çalışma ayarlarını varsayılana döndür' })).toHaveCount(0)
+  await page.getByRole('button', { name: 'Geri al' }).click()
+  await expect(goal.getByRole('radio', { name: '200 XP' })).toHaveAttribute('aria-checked', 'true')
 })
 
 test('affix hunt: a word and its relative in Turkish, the ending that makes it is picked and shown put on the word', async ({ page }) => {
@@ -3257,6 +3289,7 @@ test('notice bell: the count of unseen notices, the list marks them seen, a noti
   await expect(list.locator('.notice')).toHaveCount(2)
   await openScreen(page, 'Ayarlar')
   await page.locator('.settings-menu-item', { hasText: 'Bildirimler' }).click()
+  await page.locator('.settings-pane[data-active]').getByRole('switch', { name: /Gelişmiş ayarlar/ }).click()
   await expect(page.getByRole('heading', { name: 'Bildirimler (çan)' })).toBeVisible()
   await page.getByRole('switch', { name: /Arkadaş iletileri/ }).click()
   await expect(page.getByRole('switch', { name: /Arkadaş iletileri/ })).toHaveAttribute('aria-checked', 'false')

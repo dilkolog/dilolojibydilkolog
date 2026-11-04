@@ -194,6 +194,9 @@ test('study calendar days hold their state name and are big enough to tap', asyn
   await startWithSamples(page)
   await openScreen(page, 'Profil')
   await page.locator('.profile-settings').click()
+  // The study calendar is an advanced setting of the Study group.
+  await page.locator('.settings-menu-item', { hasText: 'Çalışma' }).click()
+  await page.locator('.settings-pane[data-active]').getByRole('switch', { name: /Gelişmiş ayarlar/ }).click()
   const days = page.locator('.week-day')
   await days.first().scrollIntoViewIfNeeded()
   // Walk one day through all three states: Normal → Hafif → Dinlenme.

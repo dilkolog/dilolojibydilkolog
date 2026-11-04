@@ -12,12 +12,14 @@ import { PageHeader } from './PageHeader'
 import type { PushState } from './pushReminders'
 import { NoticeSettings, ReminderSettings } from './ReminderSettings'
 import { SETTINGS_ART } from './drawnArt'
+import { ADVANCED_GROUPS, changedFromDefault, MORE_KEY, readMore, RESET_KEYS, resetGroup, type GroupId } from './settingsDefaults'
 import { PANE_KEY } from './settingsPane'
 import { SoundSettings } from './SoundSettings'
+import { Toggle } from './settingsWidgets'
 import { StudySettings } from './StudySettings'
+import { showToast } from './toastFeed'
 import { ToolsSettings } from './ToolsSettings'
 
-type GroupId = 's-account' | 's-study' | 's-answers' | 's-sound' | 's-look' | 's-remind' | 's-tools' | 's-data' | 's-help'
 
 interface Group {
   id: GroupId
@@ -42,9 +44,24 @@ const GROUP_LIST: Group[] = [
 const HELP_GROUP: GroupId = 's-help'
 const GROUP_BY_ID = Object.fromEntries(GROUP_LIST.map((g) => [g.id, g])) as Record<GroupId, Group>
 
-function Pane({ group, active, children }: { group: Group; active: boolean; children: ReactNode }) {
+function Pane({
+  group,
+  active,
+  more,
+  onMore,
+  onReset,
+  children,
+}: {
+  group: Group
+  active: boolean
+  /** Advanced settings shown (undefined: the group has none). */
+  more?: boolean
+  onMore?: (on: boolean) => void
+  onReset?: () => void
+  children: ReactNode
+}) {
   return (
-    <div className="settings-pane" id={group.id} data-active={active || undefined}>
+    <div className="settings-pane" id={group.id} data-active={active || undefined} data-more={more || undefined}>
       <header className="settings-pane-head">
         {SETTINGS_ART[group.id] ? <img className="settings-pane-art" src={SETTINGS_ART[group.id]} alt="" height={48} /> : <span className="settings-pane-icon">{group.icon}</span>}
         <div>
@@ -52,7 +69,24 @@ function Pane({ group, active, children }: { group: Group; active: boolean; chil
           <p className="small muted">{group.sub}</p>
         </div>
       </header>
+      {more !== undefined && onMore && (
+        <div className="settings-more-bar">
+          <Toggle
+            label="Gelişmiş ayarlar"
+            help="Çoğu kişi için varsayılanlar yeterli. Açınca ince ayarlar da görünür; arama onları her zaman bulur."
+            checked={more}
+            onChange={onMore}
+          />
+        </div>
+      )}
       {children}
+      {onReset && (
+        <p className="settings-reset">
+          <button type="button" className="link small" onClick={onReset}>
+            {group.name} ayarlarını varsayılana döndür
+          </button>
+        </p>
+      )}
     </div>
   )
 }
@@ -105,7 +139,8 @@ export function SettingsScreen({
     let any = false
     for (const pane of el.querySelectorAll<HTMLElement>('.settings-pane')) {
       let paneHit = false
-      for (const card of pane.querySelectorAll<HTMLElement>(':scope > section, :scope > .card, :scope > div.card')) {
+      // Cards straight in the group, or in a block of advanced ones (settingsWidgets.tsx Extra).
+      for (const card of pane.querySelectorAll<HTMLElement>(':scope > section, :scope > .card, :scope > .settings-extra > section, :scope > .settings-extra > .card')) {
         const rows = [...card.querySelectorAll<HTMLElement>('.setting-row, .toggle-row')]
         const title = card.querySelector('.section-title')
         const titleHit = !q || (title ? has(title) : false)
@@ -126,8 +161,29 @@ export function SettingsScreen({
     setNoMatch(!!q && !any)
   }, [query, active])
 
+  const [more, setMore] = useState<GroupId[]>(() => readMore((id) => id in GROUP_BY_ID))
+  const toggleMore = (id: GroupId, on: boolean) => {
+    const next = on ? [...new Set([...more, id])] : more.filter((g) => g !== id)
+    setMore(next)
+    try {
+      localStorage.setItem(MORE_KEY, JSON.stringify(next))
+    } catch {
+      // Only a convenience.
+    }
+  }
+  const reset = (id: GroupId) => {
+    const before = settings
+    onChange(resetGroup(settings, id))
+    showToast(`${GROUP_BY_ID[id].name} ayarları varsayılana döndü.`, { label: 'Geri al', run: () => onChange(before) }, 6000)
+  }
+
   const searching = !!query.trim()
-  const pane = (id: GroupId) => ({ group: GROUP_BY_ID[id], active: searching || active === id })
+  const pane = (id: GroupId) => ({
+    group: GROUP_BY_ID[id],
+    active: searching || active === id,
+    ...(ADVANCED_GROUPS.includes(id) ? { more: more.includes(id), onMore: (on: boolean) => toggleMore(id, on) } : {}),
+    ...(RESET_KEYS[id] && changedFromDefault(settings, id) ? { onReset: () => reset(id) } : {}),
+  })
 
   return (
     <div className={`settings-page${searching ? ' is-searching' : ''}`} ref={root}>

@@ -28,11 +28,11 @@ export function Chips<T extends string | number>({
   )
 }
 
-export function Toggle({ checked, onChange, label, help }: { checked: boolean; onChange: (v: boolean) => void; label: string; help?: string }) {
+export function Toggle({ checked, onChange, label, help, advanced }: { checked: boolean; onChange: (v: boolean) => void; label: string; help?: string; advanced?: boolean }) {
   // The whole row toggles (the label points at the switch, not at the ⓘ button inside it).
   const id = useId()
   return (
-    <label className="toggle-row" htmlFor={id}>
+    <label className="toggle-row" htmlFor={id} data-advanced={advanced || undefined}>
       <span className="setting-text">
         <strong>{label}</strong>
         {help && <Help text={help} />}
@@ -44,14 +44,26 @@ export function Toggle({ checked, onChange, label, help }: { checked: boolean; o
   )
 }
 
-export function Row({ label, help, children }: { label: string; help?: string; children: ReactNode }) {
+export function Row({ label, help, children, advanced }: { label: string; help?: string; children: ReactNode; advanced?: boolean }) {
   return (
-    <div className="setting-row">
+    <div className="setting-row" data-advanced={advanced || undefined}>
       <div className="setting-text">
         <strong>{label}</strong>
         {help && <Help text={help} />}
       </div>
       <div className="setting-control">{children}</div>
+    </div>
+  )
+}
+
+/**
+ * Settings most people never change: out of sight until the group's "Gelişmiş ayarlar" switch is on
+ * (SettingsScreen), and always found by the search. A row or card can also carry `data-advanced` itself.
+ */
+export function Extra({ children }: { children: ReactNode }) {
+  return (
+    <div className="settings-extra" data-advanced="">
+      {children}
     </div>
   )
 }

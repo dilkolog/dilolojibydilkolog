@@ -54,6 +54,7 @@ const LOCAL_PREFIXES = [
   'diloloji:whats-new',
   'diloloji:deduce',
   'diloloji:song-link',
+  'diloloji:settings-more',
   'kelime-koc:week-seen',
   'kelime-koc:week-note',
   'kelime-koc:badges-seen',

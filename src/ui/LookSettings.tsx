@@ -3,7 +3,7 @@ import type { Settings } from '../data/db'
 import { getDensity, setDensity, type Density } from './density'
 import { HIDEABLE_TABS, partsSummary, readUsage, SCREEN_LABEL, trackedSince, usageLabel, usageSummary, type ScreenUse } from './screenUsage'
 import { GAME_LIST } from './gameList'
-import { Chips, Row, Toggle } from './settingsWidgets'
+import { Chips, Extra, Row, Toggle } from './settingsWidgets'
 
 export function LookSettings({
   settings,
@@ -23,7 +23,7 @@ export function LookSettings({
         <Row label="Tema" help="Sakin: koyu tema, renkleri kısılmış; geceleri ve uzun çalışmada gözü yormaz. Kontrast: beyaz zemin, siyah yazı, belirgin çerçeveler.">
           <Chips<Settings['theme']> options={['system', 'light', 'dark', 'calm', 'contrast']} value={settings.theme} onChange={(v) => set('theme', v)} format={(t) => ({ system: 'Sistem', light: 'Açık', dark: 'Koyu', calm: 'Sakin', contrast: 'Kontrast' })[t]} />
         </Row>
-        <Row label="Liste sıklığı" help="Yoğun: kelime listesi, hatalar ve tabloda satırlar daralır, ekrana iki kat kelime sığar. Bu cihaza özel.">
+        <Row advanced label="Liste sıklığı" help="Yoğun: kelime listesi, hatalar ve tabloda satırlar daralır, ekrana iki kat kelime sığar. Bu cihaza özel.">
           <Chips<Density> options={['comfortable', 'compact']} value={density} onChange={(v) => (setDensity(v), setDensityState(v))} format={(d) => ({ comfortable: 'Rahat', compact: 'Yoğun' })[d]} />
         </Row>
         <Row label="Yazı boyutu" help="Bütün uygulamayı büyütür; uzun okumalarda ve telefonda rahatlatır.">
@@ -34,13 +34,14 @@ export function LookSettings({
             format={(t) => ({ normal: 'Normal', large: 'Büyük', xlarge: 'Çok büyük' })[t]}
           />
         </Row>
-        <Toggle label="Titreşim" help="Telefonda doğru cevapta kısa, yanlışta çift titreşim (Android; iPhone tarayıcıları desteklemiyor)." checked={settings.haptics ?? true} onChange={(v) => set('haptics', v)} />
-        <Toggle label="Ekranı açık tut" help="Oturum sürerken ekran kararmaz (desteklenen tarayıcılarda)." checked={settings.keepAwake !== false} onChange={(v) => set('keepAwake', v)} />
-        <div className="desktop-only">
+        <Toggle advanced label="Ekranı açık tut" help="Oturum sürerken ekran kararmaz (desteklenen tarayıcılarda)." checked={settings.keepAwake !== false} onChange={(v) => set('keepAwake', v)} />
+        <div className="desktop-only" data-advanced="">
           <Toggle label="Klavye kısayollarını göster" help="Oturum ekranının altındaki kısayol listesi." checked={settings.showKeyLegend} onChange={(v) => set('showKeyLegend', v)} />
         </div>
       </section>
-      <UsageCard hidden={settings.hiddenTabs ?? []} english={lang === 'en'} onChange={(tabs) => set('hiddenTabs', tabs)} />
+      <Extra>
+        <UsageCard hidden={settings.hiddenTabs ?? []} english={lang === 'en'} onChange={(tabs) => set('hiddenTabs', tabs)} />
+      </Extra>
     </>
   )
 }

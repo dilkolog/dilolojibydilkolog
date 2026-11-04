@@ -4,7 +4,7 @@ import { forecastWorkload, monthlyMinutes, recommendedNewWords } from '../engine
 import { JumpNav } from './JumpNav'
 import { MemoryModel } from './MemoryModel'
 import { StudyCalendar } from './StudyCalendar'
-import { Chips, Row, Toggle } from './settingsWidgets'
+import { Chips, Extra, Row, Toggle } from './settingsWidgets'
 
 const MINUTES = [5, 10, 15, 20, 30, 45]
 const NEW_WORDS = [0, 3, 5, 8, 12, 20]
@@ -68,7 +68,11 @@ export function StudySettings({
   return (
     <>
       {/* Four cards, one thing each, with a row of shortcuts: the group was one long list. */}
-      {!searching && <JumpNav groups={STUDY_CARDS} label="Çalışma ayarları" />}
+      {!searching && (
+        <Extra>
+          <JumpNav groups={STUDY_CARDS} label="Çalışma ayarları" />
+        </Extra>
+      )}
       <section className="card stack" id="st-goal">
         <h2 className="section-title">Günlük hedef</h2>
         <Row label="Günlük süre" help="Günlük görev bu süreye sığacak şekilde hazırlanır.">
@@ -81,11 +85,12 @@ export function StudySettings({
         <Row label="Günlük XP hedefi" help="Ana sayfada hedef çubuğu olarak görünür.">
           <Chips options={XP_GOALS} value={settings.dailyXpGoal} onChange={(v) => set('dailyXpGoal', v)} format={(x) => `${x} XP`} />
         </Row>
-        <Row label="Bir oturumda en fazla" help="Uzun görevleri parçalara böler; kalanı sonraki oturuma kalır.">
+        <Row advanced label="Bir oturumda en fazla" help="Uzun görevleri parçalara böler; kalanı sonraki oturuma kalır.">
           <Chips options={SESSION_MAX} value={settings.sessionMax} onChange={(v) => set('sessionMax', v)} format={(n) => (n ? `${n} soru` : 'Sınırsız')} />
         </Row>
         {!settings.sessionMax && (
           <Toggle
+            advanced
             label="Uzun günü ikiye böl"
             help="Günün görevi 15 dakikayı aşınca ilk oturum yarıda biter, kalanı Bugün'de bekler. Aynı çalışma iki oturuma yayılınca daha kalıcı olur ve ikinci yarı yorgun yapılmaz."
             checked={settings.splitLongDays ?? true}
@@ -93,16 +98,17 @@ export function StudySettings({
           />
         )}
         <Toggle
+          advanced
           label="Ölçüm soruları"
           help="Günde en çok 2 ek soru: vadesi gelmemiş kelimelerden rastgele seçilir ve sorulur. Takvimini değiştirmez; hafıza tahmininin ne kadar tuttuğunu ölçmeye yarar (İlerleme → Model tahmini ve gerçek). Kapatırsan bu ölçüm yapılmaz."
           checked={settings.probes ?? true}
           onChange={(v) => set('probes', v)}
         />
-        <Row label="Çalışma planın" help="Ne zaman ve nerede çalışacağını önceden belirlemek, alışkanlığa dönüşmesini belirgin şekilde kolaylaştırır. Hatırlatma bildiriminde de görünür.">
+        <Row advanced label="Çalışma planın" help="Ne zaman ve nerede çalışacağını önceden belirlemek, alışkanlığa dönüşmesini belirgin şekilde kolaylaştırır. Hatırlatma bildiriminde de görünür.">
           <input className="input" value={settings.studyPlan} onChange={(e) => onChange({ ...settings, studyPlan: e.target.value, studyPlanAsked: true })} placeholder="Sabah kahvemi içerken" />
         </Row>
       </section>
-      <section className="card stack" id="st-words">
+      <section className="card stack" id="st-words" data-advanced="">
         <h2 className="section-title">Kelimeler ve hatırlama</h2>
         <Row
           label="Hedef hatırlama oranı"
@@ -127,8 +133,10 @@ export function StudySettings({
           onChange={(v) => set('autoRetire', v)}
         />
       </section>
-      <MemoryModel settings={settings} onChange={onChange} id="st-memory" />
-      <StudyCalendar settings={settings} onChange={onChange} id="st-calendar" />
+      <Extra>
+        <MemoryModel settings={settings} onChange={onChange} id="st-memory" />
+        <StudyCalendar settings={settings} onChange={onChange} id="st-calendar" />
+      </Extra>
     </>
   )
 }
