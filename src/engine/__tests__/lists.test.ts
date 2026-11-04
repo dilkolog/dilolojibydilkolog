@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { currentLevel, levelGroups, listWords, progressOf } from '../lists'
+import { currentLevel, levelGroups, listWords, progressOf, unlistedWords } from '../lists'
 import { newWordState } from '../review'
 import type { VocabularyEntry, WordList } from '../types'
 import { leave } from './fixtures'
@@ -46,5 +46,25 @@ describe('word lists with the learner’s own levels', () => {
     const groups = levelGroups({ ...list, levels: [{ id: 'hotel', name: 'Otel' }] }, words)
     expect(groups.map((g) => g.level?.name ?? null)).toEqual(['Otel', null])
     expect(groups[1].words.map((w) => w.lemma)).toEqual(['map', 'gate'])
+  })
+})
+
+
+describe('unlisted vocabulary visibility', () => {
+  it('accounts for all 47 words when 30 samples are outside a 17-word list', () => {
+    const listed = Array.from({ length: 17 }, (_, i) => word(`own-${i}`, { listId: list.id }))
+    const samples = Array.from({ length: 30 }, (_, i) => word(`sample-${i}`, { source: 'sample' }))
+    const vocabulary = [...listed, ...samples]
+    const unlisted = unlistedWords(vocabulary, [list])
+    expect(unlisted).toEqual(samples)
+    expect(listWords(list, vocabulary).length + unlisted.length).toBe(vocabulary.length)
+  })
+
+  it('includes orphaned list assignments, and does not duplicate assigned samples', () => {
+    const orphan = word('orphan', { source: 'sample', listId: 'deleted-list' })
+    const assigned = word('assigned', { source: 'sample', listId: list.id })
+    const own = word('own')
+    expect(unlistedWords([orphan, assigned, own], [list])).toEqual([orphan, own])
+    expect(unlistedWords([orphan, assigned, own], [])).toEqual([orphan, assigned, own])
   })
 })
