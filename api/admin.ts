@@ -1,6 +1,8 @@
 import { del, list } from '@vercel/blob'
 import { docsMoved, docsReady, listDocPaths, moveDocs, MOVE_BATCH } from './_docs.js'
-import { isOwnerSession } from './_owner.js'
+import { isOwnerSession, listReports, unpublishList } from './_owner.js'
+import { listPeople, pendingCount, updatePerson, type PeopleFilter } from './_adminPeople.js'
+import { checkHealth, problems } from './_health.js'
 import { idOfUsername } from './_allow.js'
 import { mirrorApproval } from './_supabase.js'
 import { moveToTables } from './_moveTables.js'
@@ -81,6 +83,9 @@ async function entries(prefix: string): Promise<Entry[]> {
 export async function GET(request: Request): Promise<Response> {
   const refused = await authorised(request)
   if (refused) return refused
+  const q = new URL(request.url).searchParams
+  const view = q.get('view')
+  if (view) return ownerView(view, q)
   try {
     const [pending, approved, rejected, tables, moved] = await Promise.all([entries('access/requests/'), entries('access/approved/'), entries('access/rejected/'), tablesState().catch(() => 'off' as const), docsMoved().catch(() => false)])
     return json({ pending, approved, rejected, tables, docs: moved ? 'on' : docsReady() ? 'ready' : 'off' })
@@ -93,10 +98,12 @@ export async function GET(request: Request): Promise<Response> {
 export async function POST(request: Request): Promise<Response> {
   const refused = await authorised(request)
   if (refused) return refused
-  const body = (await request.json().catch(() => null)) as { action?: string; id?: string; username?: string; from?: unknown } | null
+  const body = (await request.json().catch(() => null)) as { action?: string; id?: string; username?: string; from?: unknown; user?: unknown; change?: unknown; level?: unknown } | null
   if (body?.action === 'release') return release(body.username)
   if (body?.action === 'move-tables') return moveTables()
   if (body?.action === 'move-docs') return moveDocsStep(body.from)
+  if (body?.action === 'person') return person(body)
+  if (body?.action === 'unpublish') return json({ ok: await unpublishList(String(body.id ?? '')).catch(() => false) })
   const id = body?.id ?? ''
   if (!ID.test(id) || !['approve', 'reject', 'revoke'].includes(body?.action ?? '')) return json({ error: 'bad request' }, 400)
   try {
@@ -163,5 +170,52 @@ async function moveDocsStep(from: unknown): Promise<Response> {
     return json({ ...(await moveDocs({ prefix, cursor })), batch: MOVE_BATCH })
   } catch (e) {
     return json({ error: e instanceof Error ? e.message : 'move failed' }, 502)
+  }
+}
+
+// --- The owner's admin screen (GET ?view=…, POST person / unpublish) ------------------------------------------------
+
+const FILTERS: PeopleFilter[] = ['pending', 'approved', 'rejected', 'all']
+
+/**
+ * GET /api/admin?view=me      → { owner: true } (the screen's way to know it may show itself)
+ * GET /api/admin?view=people&filter=pending|approved|rejected|all&q=… → { people, levels, pending }
+ * GET /api/admin?view=reports&days=1..30 → { reports }
+ * GET /api/admin?view=system  → { health, problems, docs, tables }
+ */
+async function ownerView(view: string, q: URLSearchParams): Promise<Response> {
+  try {
+    if (view === 'me') return json({ owner: true })
+    if (view === 'people') {
+      const filter = FILTERS.find((f) => f === q.get('filter')) ?? 'pending'
+      const [list, pending] = await Promise.all([listPeople(filter, q.get('q')), pendingCount()])
+      return json({ ...list, pending })
+    }
+    if (view === 'reports') {
+      const days = Math.min(30, Math.max(1, Number(q.get('days')) || 7))
+      return json({ reports: await listReports(days) })
+    }
+    if (view === 'system') {
+      const health = await checkHealth()
+      const [found, moved, tables] = await Promise.all([problems(health), docsMoved().catch(() => false), tablesState().catch(() => 'off' as const)])
+      return json({ health, problems: found, docs: moved ? 'on' : docsReady() ? 'ready' : 'off', tables })
+    }
+    return json({ error: 'unknown view' }, 400)
+  } catch (e) {
+    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
+    throw e
+  }
+}
+
+/** POST { action: 'person', user, change?: 'approve'|'reject'|'wait', level?: 'kapali'|'kelime'|'calisma'|'tam'|null } */
+async function person(body: { user?: unknown; change?: unknown; level?: unknown }): Promise<Response> {
+  try {
+    const result = await updatePerson(body.user, body.change, body.level)
+    if (result === 'ok') return json({ ok: true })
+    if (result === 'missing') return json({ error: 'ai_level column missing: run migration 0007' }, 409)
+    return json({ error: 'bad request' }, 400)
+  } catch (e) {
+    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
+    throw e
   }
 }

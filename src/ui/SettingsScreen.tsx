@@ -100,6 +100,7 @@ export function SettingsScreen({
   pushState,
   onOpenAuth,
   onOpenProfile,
+  onOpenAdmin,
 }: {
   settings: Settings
   onChange: (s: Settings) => void
@@ -107,6 +108,8 @@ export function SettingsScreen({
   pushState: PushState
   onOpenAuth?: (mode: AuthMode) => void
   onOpenProfile?: () => void
+  /** Opens the owner's admin screen (the entry shows only to the owner). */
+  onOpenAdmin?: () => void
 }) {
   const [active, setActive] = useState<GroupId>(() => {
     try {
@@ -239,7 +242,7 @@ export function SettingsScreen({
           {searching && noMatch && <p className="muted">“{query.trim()}” ile eşleşen bir ayar yok.</p>}
 
           <Pane {...pane('s-account')}>
-            <AccountSettings onOpenAuth={onOpenAuth} onOpenProfile={onOpenProfile} />
+            <AccountSettings onOpenAuth={onOpenAuth} onOpenProfile={onOpenProfile} onOpenAdmin={onOpenAdmin} />
           </Pane>
 
           <Pane {...pane('s-study')}>

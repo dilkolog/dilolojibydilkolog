@@ -4093,4 +4093,20 @@ html:has(.lp) { scroll-behavior: smooth; }
 .video-clip { display: grid; gap: 0.375rem; max-width: 26rem; }
 .video-clip-blur .video-frame iframe { filter: blur(18px) brightness(0.8); }
 .video-clip-open { justify-self: start; }
+
+/* Admin screen (owner only, AdminScreen.tsx): the site's rows and controls, a few local arrangements. */
+.admin-search { display: flex; gap: 0.5rem; }
+.admin-search .input { flex: 1; min-width: 0; }
+.admin-person { align-items: flex-start; flex-wrap: wrap; }
+.admin-person-text { display: grid; gap: 0.125rem; min-width: 0; flex: 1 1 14rem; }
+.admin-person-text .small { overflow-wrap: anywhere; }
+.admin-person-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.admin-level { min-width: 9.5rem; }
+.admin-reports { gap: 0.875rem; }
+.admin-report { display: grid; gap: 0.375rem; padding-bottom: 0.875rem; border-bottom: 1px solid var(--rule); }
+.admin-report:last-child { border-bottom: 0; padding-bottom: 0; }
+.admin-report p { margin: 0; }
+.admin-report-content { margin: 0; padding: 0.5rem 0.75rem; border-left: 3px solid var(--rule); background: var(--surface-2); border-radius: var(--r-xs); font-size: var(--t-sm); white-space: pre-wrap; overflow-wrap: anywhere; }
+.admin-move { gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
+.admin-move p { margin: 0; }
 .transcript-help ol { margin: 0; padding-inline-start: 1.25rem; display: grid; gap: 0.25rem; }

@@ -54,7 +54,7 @@ import { skeletonFor } from './ui/skeletonFor'
 
 import { currentLevel, levelGroups } from './engine/lists'
 
-import { Summary, SessionScreen, GamesScreen, MistakesScreen, TranslateScreen, ProfileScreen, ProgressScreen, ReadingScreen, ProduceScreen, VocabTestScreen, ExamScreen, SettingsScreen, StoryScreen, WordDetail, WordsScreen, VerbLab, DictionaryScreen, AuthScreen, GuideScreen, CommunityScreen } from './lazyScreens'
+import { Summary, SessionScreen, GamesScreen, MistakesScreen, TranslateScreen, ProfileScreen, ProgressScreen, ReadingScreen, ProduceScreen, VocabTestScreen, ExamScreen, SettingsScreen, StoryScreen, WordDetail, WordsScreen, VerbLab, DictionaryScreen, AuthScreen, GuideScreen, CommunityScreen, AdminScreen } from './lazyScreens'
 import { nextReviewAt } from './engine/review'
 import type { UserWordState } from './engine/types'
 import type { PushState } from './ui/pushReminders'
@@ -300,6 +300,8 @@ export function AppScreens(props: AppScreensProps) {
         <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} scheduler={scheduler} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} onAdded={reload} />
       ) : screen.name === 'guide' ? (
         <GuideScreen key={`${data.language}|${screen.lesson ?? ''}|${screen.tense ?? ''}|${screen.review ? 1 : 0}|${screen.placement ? 1 : 0}`} language={data.language} initialLesson={screen.lesson} initialTense={screen.tense} review={screen.review} placement={screen.placement} goal={settings.guideGoal} onGoal={(n) => void updateSettings({ ...settings, guideGoal: n })} onPractice={(topic) => setScreen({ name: 'games', game: 'grammar', topic })} onVerbs={(tense) => setScreen({ name: 'verbs', tense })} onNumbers={() => setScreen({ name: 'games', game: 'numbers' })} onChanged={reload} />
+      ) : screen.name === 'admin' ? (
+        <AdminScreen />
       ) : screen.name === 'community' ? (
         <CommunityScreen
           game={game}
@@ -324,6 +326,7 @@ export function AppScreens(props: AppScreensProps) {
           pushState={pushState}
           onOpenAuth={(mode) => setScreen({ name: 'account', mode })}
           onOpenProfile={() => setScreen({ name: 'profile' })}
+          onOpenAdmin={() => setScreen({ name: 'admin' })}
           onDataChanged={async () => {
             const s = await db.getSettings()
             setSettings(s ?? null)
