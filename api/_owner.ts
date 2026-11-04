@@ -24,7 +24,7 @@ export async function ownerAuthorized(request: Request): Promise<boolean> {
 }
 
 /** The owner's address(es): OWNER_EMAIL (a Worker secret), several separated by commas. */
-const ownerEmails = () =>
+export const ownerEmails = () =>
   (process.env.OWNER_EMAIL ?? '')
     .split(',')
     .map((e) => e.trim().toLowerCase())

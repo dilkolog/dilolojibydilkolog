@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 const api = vi.hoisted(() => ({
   loadPeople: vi.fn(),
   changePerson: vi.fn(async () => ({ ok: true })),
+  deletePerson: vi.fn(async () => ({ ok: true })),
   loadReports: vi.fn(),
   unpublishSet: vi.fn(async () => ({ ok: true })),
   loadSystem: vi.fn(),
@@ -90,5 +91,24 @@ describe('AdminScreen', () => {
     expect(api.moveStep).toHaveBeenCalledTimes(3)
     expect(api.moveStep.mock.calls[1][0]).toEqual({ prefix: 0, cursor: '30' })
     expect(api.loadSystem).toHaveBeenCalledTimes(2)
+  })
+
+  it('deletes an account only after the e-mail is typed', async () => {
+    await mount()
+    await act(async () => button('Hesabı sil').click())
+    const dialog = () => document.querySelector<HTMLElement>('[role="dialog"], [role="alertdialog"]')!
+    const confirm = () => [...dialog().querySelectorAll('button')].find((b) => b.textContent === 'Hesabı sil')!
+    await act(async () => confirm().click())
+    expect(dialog().textContent).toContain('E-posta tutmuyor.')
+    expect(api.deletePerson).not.toHaveBeenCalled()
+    const input = dialog().querySelector('input')!
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(input, 'ayse@example.com')
+      input.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    await act(async () => confirm().click())
+    await flush()
+    expect(api.deletePerson).toHaveBeenCalledWith('a', 'ayse@example.com')
+    expect(api.loadPeople).toHaveBeenCalledTimes(2)
   })
 })

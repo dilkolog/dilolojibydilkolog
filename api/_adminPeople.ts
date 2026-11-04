@@ -1,5 +1,7 @@
 import { clearAccessCache, StorageError } from './_account.js'
-import { rest } from './_supabase.js'
+import { deleteAccountData, timed } from './_deleteAccount.js'
+import { ownerEmails } from './_owner.js'
+import { deleteSupabaseMedia, deleteSupabaseUser, rest, vaultOf } from './_supabase.js'
 
 /**
  * The owner's view of the people (Supabase `profiles`), for the admin screen: who waits for approval, who is approved
@@ -104,4 +106,32 @@ export async function updatePerson(id: unknown, action: unknown, level: unknown)
   // This instance forgets its remembered answers at once; the others within their few minutes.
   clearAccessCache()
   return ((await res.json()) as unknown[]).length ? 'ok' : 'bad'
+}
+
+export type DeleteResult = 'ok' | 'bad' | 'confirm' | 'owner' | 'missing'
+
+/**
+ * The owner deletes someone's account: the same as the person deleting it themselves (access.ts accountDelete): the
+ * server's stores for their sync account, their Supabase files, then the person (last, so a failure before leaves it
+ * to retry). `confirm` must be the person's e-mail as the screen showed it, so a slip of the finger deletes nobody;
+ * an owner address is never deleted from here. Their devices keep their own copy until they next sign in.
+ */
+export async function deletePerson(id: unknown, confirm: unknown): Promise<DeleteResult> {
+  if (typeof id !== 'string' || !UUID.test(id)) return 'bad'
+  const res = await rest(`profiles?select=email&user_id=eq.${id}`).catch(() => null)
+  if (!res || !res.ok) throw new StorageError(`supabase ${res?.status ?? 'unreachable'}`)
+  const rows = (await res.json()) as { email: string | null }[]
+  if (!rows.length) return 'missing'
+  const email = (rows[0].email ?? '').trim().toLowerCase()
+  if (typeof confirm !== 'string' || !email || confirm.trim().toLowerCase() !== email) return 'confirm'
+  if (ownerEmails().includes(email)) return 'owner'
+  const steps: Record<string, number> = {}
+  const vault = await vaultOf(id)
+  await Promise.all([
+    vault ? timed(steps, 'data', () => deleteAccountData(vault.id, steps)) : Promise.resolve(0),
+    timed(steps, 'media', () => deleteSupabaseMedia(id)),
+  ])
+  await timed(steps, 'user', () => deleteSupabaseUser(id))
+  console.log('[owner-delete]', JSON.stringify({ user: id, ...steps }))
+  return 'ok'
 }

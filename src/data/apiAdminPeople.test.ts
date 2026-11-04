@@ -12,6 +12,7 @@ type Row = { user_id: string; email: string; username: string; approved: boolean
 let profiles: Row[] = []
 let levelsColumn = true
 const patches: { id: string; body: Record<string, unknown> }[] = []
+const deletedUsers: string[] = []
 
 const USERS: Record<string, { id: string; email: string; email_confirmed_at: string | null }> = {
   'tok-owner': { id: '99999999-9999-4999-8999-999999999999', email: 'sahip@example.com', email_confirmed_at: '2026-01-01T00:00:00Z' },
@@ -23,6 +24,12 @@ function fakeSupabase(input: string, init: RequestInit = {}): Response {
   if (url.pathname === '/auth/v1/user') {
     const user = USERS[new Headers(init.headers).get('authorization')?.replace('Bearer ', '') ?? '']
     return user ? Response.json(user) : Response.json({}, { status: 401 })
+  }
+  const gone = /^\/auth\/v1\/admin\/users\/(.+)$/.exec(url.pathname)
+  if (gone && init.method === 'DELETE') {
+    deletedUsers.push(gone[1])
+    profiles = profiles.filter((p) => p.user_id !== gone[1])
+    return Response.json({})
   }
   if (url.pathname !== '/rest/v1/profiles') return Response.json([])
   const select = url.searchParams.get('select') ?? ''
@@ -36,6 +43,8 @@ function fakeSupabase(input: string, init: RequestInit = {}): Response {
     return Response.json(profiles.filter((p) => p.user_id === id))
   }
   let rows = profiles
+  const only = url.searchParams.get('user_id')
+  if (only) rows = rows.filter((p) => `eq.${p.user_id}` === only)
   if (url.searchParams.get('approved') === 'eq.false') rows = rows.filter((p) => !p.approved)
   if (url.searchParams.get('approved') === 'eq.true') rows = rows.filter((p) => p.approved)
   if (url.searchParams.get('rejected') === 'eq.false') rows = rows.filter((p) => !p.rejected)
@@ -61,6 +70,7 @@ beforeEach(() => {
   ]
   levelsColumn = true
   patches.length = 0
+  deletedUsers.length = 0
   resetDocs()
   vi.stubEnv('SUPABASE_URL', SB)
   vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
@@ -116,5 +126,18 @@ describe("the owner's admin screen: people", () => {
     expect(list.levels).toBe(false)
     expect(list.people[0].aiLevel).toBeNull()
     expect((await post({ action: 'person', user: B, level: 'tam' })).status).toBe(409)
+  })
+
+  it("deletes someone's account only with their e-mail typed, and never an owner's", async () => {
+    expect((await post({ action: 'person-delete', user: A })).status).toBe(400)
+    expect((await post({ action: 'person-delete', user: A, confirm: 'veli@example.com' })).status).toBe(400)
+    expect((await post({ action: 'person-delete', user: A, confirm: 'ayse@example.com' }, 'tok-other')).status).toBe(503)
+    expect(deletedUsers).toEqual([])
+    expect((await post({ action: 'person-delete', user: A, confirm: ' AYSE@example.com ' })).status).toBe(200)
+    expect(deletedUsers).toEqual([A])
+    expect((await post({ action: 'person-delete', user: A, confirm: 'ayse@example.com' })).status).toBe(404)
+    profiles.push({ user_id: B.replace('2222', '9999'), email: 'sahip@example.com', username: 'sahip', approved: true, rejected: false, created_at: '2026-01-01T00:00:00Z', ai_level: 'tam' })
+    expect((await post({ action: 'person-delete', user: B.replace('2222', '9999'), confirm: 'sahip@example.com' })).status).toBe(403)
+    expect(deletedUsers).toEqual([A])
   })
 })

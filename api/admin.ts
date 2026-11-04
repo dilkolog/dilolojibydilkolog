@@ -1,7 +1,7 @@
 import { del, list } from '@vercel/blob'
 import { docsMoved, docsReady, listDocPaths, moveDocs, MOVE_BATCH } from './_docs.js'
 import { isOwnerSession, listReports, unpublishList } from './_owner.js'
-import { listPeople, pendingCount, updatePerson, type PeopleFilter } from './_adminPeople.js'
+import { deletePerson, listPeople, pendingCount, updatePerson, type PeopleFilter } from './_adminPeople.js'
 import { checkHealth, problems } from './_health.js'
 import { idOfUsername } from './_allow.js'
 import { mirrorApproval } from './_supabase.js'
@@ -103,6 +103,7 @@ export async function POST(request: Request): Promise<Response> {
   if (body?.action === 'move-tables') return moveTables()
   if (body?.action === 'move-docs') return moveDocsStep(body.from)
   if (body?.action === 'person') return person(body)
+  if (body?.action === 'person-delete') return personDelete(body)
   if (body?.action === 'unpublish') return json({ ok: await unpublishList(String(body.id ?? '')).catch(() => false) })
   const id = body?.id ?? ''
   if (!ID.test(id) || !['approve', 'reject', 'revoke'].includes(body?.action ?? '')) return json({ error: 'bad request' }, 400)
@@ -204,6 +205,21 @@ async function ownerView(view: string, q: URLSearchParams): Promise<Response> {
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
     throw e
+  }
+}
+
+/** POST { action: 'person-delete', user, confirm: <the person's e-mail> } */
+async function personDelete(body: { user?: unknown; confirm?: unknown }): Promise<Response> {
+  try {
+    const result = await deletePerson(body.user, body.confirm)
+    if (result === 'ok') return json({ ok: true })
+    if (result === 'missing') return json({ error: 'no such person' }, 404)
+    if (result === 'owner') return json({ error: 'an owner account is not deleted here' }, 403)
+    if (result === 'confirm') return json({ error: 'confirm with the e-mail' }, 400)
+    return json({ error: 'bad request' }, 400)
+  } catch (e) {
+    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
+    return json({ error: 'delete failed' }, 502)
   }
 }
 
