@@ -84,6 +84,7 @@ export function processAttempt(
   const card = state.skills[meta.skill] ?? scheduler.newCard(now)
   const retrievabilityBefore = scheduler.retrievability(card, now)
   const ctx: ReviewContext = {
+    introducedAt: new Date(state.introducedAt).toISOString(),
     elapsedDays: card.last_review ? Math.max(0, (now.getTime() - new Date(card.last_review).getTime()) / DAY_MS) : 0,
     stabilityBefore: card.stability,
     difficultyBefore: card.difficulty,

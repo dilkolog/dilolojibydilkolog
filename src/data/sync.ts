@@ -266,6 +266,11 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
   // "Reset this language's progress" leaves a mark ("reset:fr"): answers and states at least as old as
   // it are gone on every device, while what was learned after it stays.
   const resetOf = (language: string | undefined, at?: Date | string) => !!language && dead(`reset:${language}`, at)
+  const resetWord = (id: string, at?: Date | string) => dead(`reset-word:${id}`, at)
+  const epochOf = (backup: Backup) => new Map(backup.wordStates.map((s) => [s.entryId, s.introducedAt]))
+  const oldEpochs = epochOf(older)
+  const newEpochs = epochOf(newer)
+  const keepEvent = (e: ReviewEvent, epochs: Map<string, Date>) => !resetWord(e.entryId, e.ctx?.introducedAt ?? epochs.get(e.entryId) ?? e.timestamp) && !resetWord(e.entryId, e.timestamp)
   const languageOf = new Map([...older.vocabulary, ...newer.vocabulary].map((v) => [v.id, v.language]))
   const latest = (...ats: (Date | string | undefined)[]) => new Date(Math.max(0, ...ats.map((a) => time(a)))).toISOString()
   const known: NonNullable<Backup['reading']>['known'] = {}
@@ -279,8 +284,8 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
   for (const [id, n] of Object.entries(newer.reading?.encounters ?? {})) encounters[id] = Math.max(encounters[id] ?? 0, n)
   const firstEncounters: Record<string, FirstEncounterContext> = { ...(newer.reading?.firstEncounters ?? {}), ...(older.reading?.firstEncounters ?? {}) }
 
-  const events = unionBy(older.events, newer.events, (e) => e.id).filter((e) => !dead(e.entryId, e.timestamp) && !resetOf(e.language, e.timestamp))
-  const wordStates = unionBy(older.wordStates, newer.wordStates, (s) => s.entryId, mergeWordState).filter(
+  const events = unionBy(older.events.filter((e) => keepEvent(e, oldEpochs)), newer.events.filter((e) => keepEvent(e, newEpochs)), (e) => e.id).filter((e) => !dead(e.entryId, e.timestamp) && !resetOf(e.language, e.timestamp))
+  const wordStates = unionBy(older.wordStates.filter((s) => !resetWord(s.entryId, s.introducedAt)), newer.wordStates.filter((s) => !resetWord(s.entryId, s.introducedAt)), (s) => s.entryId, mergeWordState).filter(
     (s) => !dead(s.entryId, s.introducedAt) && !resetOf(s.language, latest(s.lastReviewAt, s.introducedAt)),
   )
   return {
@@ -293,7 +298,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     // Counts from both devices' answers (the merge of the states alone keeps only the larger count).
     wordStates: raiseCounters(wordStates, events),
     events,
-    mistakes: unionBy(older.mistakes, newer.mistakes, (m) => m.id, (x, y) => (y.count > x.count || (y.count === x.count && time(y.lastAt) >= time(x.lastAt)) ? y : x)).filter(
+    mistakes: unionBy(older.mistakes.filter((m) => !resetWord(m.entryId, oldEpochs.get(m.entryId) ?? m.lastAt) && !resetWord(m.entryId, m.lastAt)), newer.mistakes.filter((m) => !resetWord(m.entryId, newEpochs.get(m.entryId) ?? m.lastAt) && !resetWord(m.entryId, m.lastAt)), (m) => m.id, (x, y) => (y.count > x.count || (y.count === x.count && time(y.lastAt) >= time(x.lastAt)) ? y : x)).filter(
       (m) => !dead(m.entryId, m.lastAt) && !resetOf(languageOf.get(m.entryId), m.lastAt),
     ),
     stories: unionBy(older.stories, newer.stories, (s) => s.id, (x, y) => (y.completedAt || !x.completedAt ? y : x)),

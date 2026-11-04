@@ -125,9 +125,13 @@ export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride
     let log: Omit<SessionLogEntry, 'item'>
     try {
       log = await onAnswer(ev, ms, hintsUsed, maxHints, confidence, forgot)
-    } catch {
+    } catch (error) {
       // Not saved (storage full, database closed): said, and the same question can be answered again.
       busy.current = false
+      if (error instanceof Error && error.name === 'LearningResetError') {
+        showToast('Bu kelimenin öğrenmesi sıfırlandı. Turdan çıkıp yeniden başlat.', undefined, 7000, 'info')
+        return
+      }
       showToast('Cevabın kaydedilemedi: cihazın depolaması dolu olabilir. Biraz yer açıp tekrar dene.', undefined, 7000, 'info')
       return
     }
