@@ -153,6 +153,16 @@ describe("the owner's admin screen: numbers and usage", () => {
     expect(await (await get('?view=usage')).json()).toMatchObject({ available: false })
   })
 
+  it('without the synced data tables (sync kept in R2) the numbers still load, the unknown ones null', async () => {
+    missing.add('sync_parts')
+    missing.add('people')
+    const res = await get('?view=stats')
+    expect(res.status).toBe(200)
+    expect(await res.json()).toMatchObject({ total: 3, pending: 2, active7: null, active30: null })
+    const d = await (await get(`?view=person&user=${A}`)).json()
+    expect(d).toMatchObject({ words: null, answers: null, texts: null, bytes: null, lastSync: null, provider: 'google' })
+  })
+
   it("shows one person's figures, sign-in and today's use", async () => {
     const d = (await (await get(`?view=person&user=${A}`)).json()) as Record<string, unknown>
     expect(d).toMatchObject({ words: 320, answers: 1500, texts: 4, bytes: 1_500_000, provider: 'google', today: { aiCalls: 12, aiUsd: 0.4 } })

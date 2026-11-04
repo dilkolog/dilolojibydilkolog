@@ -500,12 +500,18 @@ function PersonInfo({ id }: { id: string }) {
   }, [id])
   if (error) return <p className="small muted admin-person-info">Ayrıntı yüklenemedi: {error}</p>
   if (!detail) return <p className="small muted admin-person-info">Yükleniyor…</p>
+  // The synced figures are known only where sync is kept in Supabase.
+  const synced = detail.words !== null
   const rows: [string, string][] = [
-    ['Kelime', count(detail.words)],
-    ['Cevap', count(detail.answers)],
-    ['Okuma metni', count(detail.texts)],
-    ['Eşitlenen veri', detail.bytes ? sizeOf(detail.bytes) : 'yok'],
-    ['Son eşitleme', detail.lastSync ? when(detail.lastSync) : 'hiç'],
+    ...(synced
+      ? ([
+          ['Kelime', count(detail.words ?? 0)],
+          ['Cevap', count(detail.answers ?? 0)],
+          ['Okuma metni', count(detail.texts ?? 0)],
+          ['Eşitlenen veri', detail.bytes ? sizeOf(detail.bytes) : 'yok'],
+          ['Son eşitleme', detail.lastSync ? when(detail.lastSync) : 'hiç'],
+        ] as [string, string][])
+      : []),
     ['Son giriş', detail.lastSignIn ? when(detail.lastSignIn) : 'bilinmiyor'],
     ['Giriş yolu', PROVIDER[detail.provider] ?? (detail.provider || 'bilinmiyor')],
   ]
@@ -557,15 +563,20 @@ function StatsCard({ tell }: { tell: Tell }) {
               <dt>Onay bekleyen</dt>
               <dd>{count(stats.pending)}</dd>
             </div>
-            <div>
-              <dt>Son 7 günde etkin</dt>
-              <dd>{count(stats.active7)}</dd>
-            </div>
-            <div>
-              <dt>Son 30 günde etkin</dt>
-              <dd>{count(stats.active30)}</dd>
-            </div>
+            {stats.active7 !== null && (
+              <div>
+                <dt>Son 7 günde etkin</dt>
+                <dd>{count(stats.active7)}</dd>
+              </div>
+            )}
+            {stats.active30 !== null && (
+              <div>
+                <dt>Son 30 günde etkin</dt>
+                <dd>{count(stats.active30)}</dd>
+              </div>
+            )}
           </dl>
+          {stats.active7 === null && <p className="small muted">Eşitleme verisi R2’de tutulduğu için kimin ne zaman etkin olduğu burada sayılamıyor.</p>}
           <div className="stack admin-signups">
             <p className="small">
               Son 7 günde <strong>{count(week)}</strong> yeni hesap

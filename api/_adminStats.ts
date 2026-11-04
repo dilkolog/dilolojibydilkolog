@@ -13,17 +13,32 @@ const HEX64 = /^[0-9a-f]{64}$/
 const dayOf = (t: number) => new Date(t).toISOString().slice(0, 10)
 const isMissing = (status: number, text: string) => status === 404 || /PGRST205|PGRST202|42P01|42883/.test(text)
 
+/**
+ * A table or view this project's database does not have. The synced data tables (sync_parts and the
+ * views on it, migration 0002) exist only where sync was moved to Supabase; elsewhere sync lives in
+ * R2 and the figures read from them are simply unknown.
+ */
+class MissingTable extends Error {}
+
+/** The answer, or null when its table is missing (any other failure still throws). */
+const orNull = <T>(p: Promise<T>): Promise<T | null> => p.catch((e: unknown) => (e instanceof MissingTable ? null : Promise.reject(e)))
+
+async function failed(res: Response): Promise<never> {
+  if (isMissing(res.status, await res.text().catch(() => ''))) throw new MissingTable(`supabase ${res.status}`)
+  throw new StorageError(`supabase ${res.status}`)
+}
+
 /** The total behind a `count=exact` answer (its content-range). */
 async function countOf(path: string): Promise<number> {
   const res = await rest(path, { headers: { prefer: 'count=exact', range: '0-0' } })
-  if (!res.ok) throw new StorageError(`supabase ${res.status}`)
+  if (!res.ok) return failed(res)
   const total = res.headers.get('content-range')?.split('/')[1]
   return total && /^\d+$/.test(total) ? Number(total) : 0
 }
 
 async function rows<T>(path: string): Promise<T[]> {
   const res = await rest(path)
-  if (!res.ok) throw new StorageError(`supabase ${res.status}`)
+  if (!res.ok) return failed(res)
   return (await res.json()) as T[]
 }
 
@@ -32,9 +47,9 @@ export interface Stats {
   pending: number
   /** New accounts of the last 7 days, oldest day first, with the day. */
   newByDay: { day: string; count: number }[]
-  /** People whose data changed (a sync) within 7 and 30 days. */
-  active7: number
-  active30: number
+  /** People whose data changed (a sync) within 7 and 30 days; null where sync is not kept in Supabase. */
+  active7: number | null
+  active30: number | null
 }
 
 export async function stats(now = Date.now()): Promise<Stats> {
@@ -43,8 +58,8 @@ export async function stats(now = Date.now()): Promise<Stats> {
     countOf('profiles?select=user_id'),
     countOf('profiles?select=user_id&approved=eq.false&rejected=eq.false'),
     rows<{ created_at: string }>(`profiles?select=created_at&created_at=gte.${since7}&limit=5000`),
-    countOf(`sync_parts?select=user_id&name=eq.core&updated_at=gte.${new Date(now - 7 * DAY).toISOString()}`),
-    countOf(`sync_parts?select=user_id&name=eq.core&updated_at=gte.${new Date(now - 30 * DAY).toISOString()}`),
+    orNull(countOf(`sync_parts?select=user_id&name=eq.core&updated_at=gte.${new Date(now - 7 * DAY).toISOString()}`)),
+    orNull(countOf(`sync_parts?select=user_id&name=eq.core&updated_at=gte.${new Date(now - 30 * DAY).toISOString()}`)),
   ])
   const newByDay = Array.from({ length: 7 }, (_, i) => ({ day: dayOf(now - (6 - i) * DAY), count: 0 }))
   for (const r of created) {
@@ -140,12 +155,13 @@ export async function usage(now = Date.now()): Promise<Usage> {
 }
 
 export interface PersonDetail {
-  words: number
-  answers: number
-  texts: number
+  /** The synced figures; all null where sync is not kept in Supabase (no sync_parts / people). */
+  words: number | null
+  answers: number | null
+  texts: number | null
   lastSync: string | null
   /** Bytes of synced data on the server. */
-  bytes: number
+  bytes: number | null
   lastSignIn: string | null
   provider: string
   today: { aiCalls: number; aiUsd: number; translateChars: number; ttsChars: number } | null
@@ -154,12 +170,12 @@ export interface PersonDetail {
 export async function personDetail(id: unknown, now = Date.now()): Promise<PersonDetail | 'bad' | 'missing'> {
   if (typeof id !== 'string' || !UUID.test(id)) return 'bad'
   const [figures, parts, key, auth] = await Promise.all([
-    rows<{ words: number; answers: number; texts: number; last_sync: string | null }>(`people?select=words,answers,texts,last_sync&user_id=eq.${id}`),
-    rows<{ bytes: number }>(`sync_parts?select=bytes&user_id=eq.${id}&limit=2000`),
+    orNull(rows<{ words: number; answers: number; texts: number; last_sync: string | null }>(`people?select=words,answers,texts,last_sync&user_id=eq.${id}`)),
+    orNull(rows<{ bytes: number }>(`sync_parts?select=bytes&user_id=eq.${id}&limit=2000`)),
     rows<{ sync_id: string }>(`sync_keys?select=sync_id&user_id=eq.${id}`),
     authAdmin(`users/${id}`).catch(() => null),
   ])
-  if (!figures.length && (!auth || auth.status === 404)) return 'missing'
+  if (!figures?.length && (!auth || auth.status === 404)) return 'missing'
   const user = auth?.ok ? ((await auth.json().catch(() => ({}))) as { last_sign_in_at?: string | null; app_metadata?: { provider?: string } }) : {}
   const syncId = key[0]?.sync_id
   let today: PersonDetail['today'] = null
@@ -170,13 +186,13 @@ export async function personDetail(id: unknown, now = Date.now()): Promise<Perso
       today = { aiCalls: t.aiCalls, aiUsd: t.aiUsd, translateChars: t.translateChars, ttsChars: t.ttsChars }
     }
   }
-  const f = figures[0]
+  const f = figures?.[0]
   return {
-    words: Number(f?.words ?? 0),
-    answers: Number(f?.answers ?? 0),
-    texts: Number(f?.texts ?? 0),
+    words: figures ? Number(f?.words ?? 0) : null,
+    answers: figures ? Number(f?.answers ?? 0) : null,
+    texts: figures ? Number(f?.texts ?? 0) : null,
     lastSync: f?.last_sync ?? null,
-    bytes: parts.reduce((n, p) => n + Number(p.bytes || 0), 0),
+    bytes: parts ? parts.reduce((n, p) => n + Number(p.bytes || 0), 0) : null,
     lastSignIn: user.last_sign_in_at ?? null,
     provider: user.app_metadata?.provider ?? '',
     today,

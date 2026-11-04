@@ -90,8 +90,9 @@ export interface Stats {
   total: number
   pending: number
   newByDay: { day: string; count: number }[]
-  active7: number
-  active30: number
+  /** null where sync is not kept in Supabase: the server cannot tell. */
+  active7: number | null
+  active30: number | null
 }
 
 export interface UsageTotals {
@@ -111,11 +112,12 @@ export interface Usage {
 }
 
 export interface PersonDetail {
-  words: number
-  answers: number
-  texts: number
+  /** The synced figures: null where sync is not kept in Supabase. */
+  words: number | null
+  answers: number | null
+  texts: number | null
   lastSync: string | null
-  bytes: number
+  bytes: number | null
   lastSignIn: string | null
   provider: string
   today: { aiCalls: number; aiUsd: number; translateChars: number; ttsChars: number } | null
