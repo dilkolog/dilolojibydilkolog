@@ -15,7 +15,6 @@ import { SETTINGS_ART } from './drawnArt'
 import { ADVANCED_GROUPS, changedFromDefault, MORE_KEY, readMore, RESET_KEYS, resetGroup, type GroupId } from './settingsDefaults'
 import { PANE_KEY } from './settingsPane'
 import { SoundSettings } from './SoundSettings'
-import { Toggle } from './settingsWidgets'
 import { StudySettings } from './StudySettings'
 import { showToast } from './toastFeed'
 import { ToolsSettings } from './ToolsSettings'
@@ -70,14 +69,16 @@ function Pane({
         </div>
       </header>
       {more !== undefined && onMore && (
-        <div className="settings-more-bar">
-          <Toggle
-            label="Gelişmiş ayarlar"
-            help="Çoğu kişi için varsayılanlar yeterli. Açınca ince ayarlar da görünür; arama onları her zaman bulur."
-            checked={more}
-            onChange={onMore}
-          />
-        </div>
+        // One calm line, the whole of it a switch: no ⓘ to open (it pushed the switch out of line).
+        <label className="settings-more-bar" htmlFor={`${group.id}-more`}>
+          <span className="setting-text">
+            <strong>Gelişmiş ayarlar</strong>
+            <span className="small muted">{more ? 'İnce ayarlar da görünüyor.' : 'Çoğu kişi için varsayılanlar yeterli; arama hepsini bulur.'}</span>
+          </span>
+          <button id={`${group.id}-more`} type="button" role="switch" aria-checked={more} aria-label="Gelişmiş ayarlar" className="switch" onClick={() => onMore(!more)}>
+            <span />
+          </button>
+        </label>
       )}
       {children}
       {onReset && (
