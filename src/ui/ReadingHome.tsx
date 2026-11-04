@@ -44,6 +44,9 @@ export function ReadingHome({
   fileBusy,
   bookError,
   onPhotoText,
+  videoFor,
+  onDropVideo,
+  timedLines,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -74,6 +77,9 @@ export function ReadingHome({
   fileBusy: boolean
   bookError: { ok: boolean; text: string } | null
   onPhotoText: (text: string, title: string) => void
+  videoFor: string | null
+  onDropVideo: () => void
+  timedLines: number
 }) {
   const now = Date.now()
   return (
@@ -149,6 +155,9 @@ export function ReadingHome({
         fileBusy={fileBusy}
         bookError={bookError}
         onPhotoText={onPhotoText}
+        videoFor={videoFor}
+        onDropVideo={onDropVideo}
+        timedLines={timedLines}
       />
       <SourcePickers db={db} language={language} vocabulary={vocabulary} states={states} known={known} library={library} setLibrary={setLibrary} open={open} />
       <ExternalResources language={language} />

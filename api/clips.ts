@@ -1,6 +1,6 @@
 import { findClips, parseInnertubeSearch, parseTimedCues, parseYouglishClips, type Clip } from '../src/engine/clips.js'
 import type { TargetLanguage } from '../src/engine/types.js'
-import { fetchCaptions } from './_captions.js'
+import { CLIENTS, fetchCaptions } from './_captions.js'
 import { requireApproved } from './_account.js'
 import { overLimit, tooMany } from './_rate.js'
 import { dailyQuotaReached, overDaily } from './_quota.js'
@@ -142,7 +142,8 @@ export async function GET(request: Request): Promise<Response> {
     const found = await Promise.all(
       videos.map(async (v): Promise<Clip[]> => {
         try {
-          const captions = await fetchCaptions(v.id, lang)
+          // Several videos at once: two clients each keeps the request under the platform's subrequest limit.
+          const captions = await fetchCaptions(v.id, lang, CLIENTS.slice(0, 2))
           return findClips(parseTimedCues(captions.xml), word, targetLang, { ...v, auto: captions.auto }, PER_VIDEO)
         } catch {
           return []

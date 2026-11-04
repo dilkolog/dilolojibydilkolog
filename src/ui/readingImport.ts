@@ -124,24 +124,33 @@ export async function importEpub(db: KelimeDB, file: File, language: TargetLangu
   }
 }
 
-/** A YouTube video's subtitles in this language, as a reading text (not saved) with a link back to the video; or why there is none. */
-export async function youtubeText(link: string, language: TargetLanguage): Promise<{ item: ReadingText } | { note: ImportNote }> {
+/**
+ * A YouTube video's subtitles in this language, as a reading text (not saved) with a link back to the video; or why
+ * there are none. `paste`: the captions exist but could not be brought (YouTube turned the server away), so the
+ * learner can paste the video's transcript instead and keep the video above it.
+ */
+export async function youtubeText(link: string, language: TargetLanguage): Promise<{ item: ReadingText } | { note: ImportNote; paste?: boolean }> {
   try {
     const res = await accessFetch(`/api/youtube?v=${encodeURIComponent(link.trim())}&lang=${language}&cues=1`)
     const j = (await res.json()) as { id?: string; title?: string; channel?: string; auto?: boolean; text?: string; cues?: { start: number; text: string }[]; error?: string; available?: string[] }
     if (!res.ok || !j.text) {
+      // Only a list of the video's own tracks proves it has none in this language; anything else is YouTube not telling.
+      const none = j.error === 'no captions' && !!j.available?.length
+      const refused = isApprovalRefusal(j.error) || j.error === 'bad request' || j.error === 'daily_quota'
       return {
         note: {
           ok: false,
-          text:
-            j.error === 'no captions'
-              ? `Bu videoda ${LANGUAGE_NAME[language]} altyazı yok${j.available?.length ? ` (olanlar: ${j.available.join(', ')})` : ''}.`
-              : isApprovalRefusal(j.error)
-                ? APPROVAL_MESSAGE
-                : j.error === 'bad request'
-                  ? 'Bağlantı bir YouTube videosu gibi görünmüyor.'
-                  : 'Altyazı alınamadı; YouTube şu an izin vermiyor olabilir. Altyazıyı .srt olarak indirip yükleyebilirsin.',
+          text: none
+            ? `Bu videoda ${LANGUAGE_NAME[language]} altyazı yok (olanlar: ${j.available!.join(', ')}).`
+            : isApprovalRefusal(j.error)
+              ? APPROVAL_MESSAGE
+              : j.error === 'bad request'
+                ? 'Bağlantı bir YouTube videosu gibi görünmüyor.'
+                : j.error === 'daily_quota'
+                  ? 'Bugünkü video hakkın doldu; yarın yeniden dene.'
+                  : 'YouTube bu videonun altyazısını şu an sunucumuza vermiyor (bulut sunucularından gelen istekleri zaman zaman engelliyor).',
         },
+        ...(!none && !refused ? { paste: true } : {}),
       }
     }
     return {

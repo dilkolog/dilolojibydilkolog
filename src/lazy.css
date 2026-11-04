@@ -4109,3 +4109,4 @@ html:has(.lp) { scroll-behavior: smooth; }
 .admin-report-content { margin: 0; padding: 0.5rem 0.75rem; border-left: 3px solid var(--rule); background: var(--surface-2); border-radius: var(--r-xs); font-size: var(--t-sm); white-space: pre-wrap; overflow-wrap: anywhere; }
 .admin-move { gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
 .admin-move p { margin: 0; }
+.transcript-help ol { margin: 0; padding-inline-start: 1.25rem; display: grid; gap: 0.25rem; }

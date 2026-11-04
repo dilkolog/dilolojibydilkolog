@@ -83,8 +83,13 @@ describe('YouTube subtitles', () => {
     expect(await youtubeText('x', 'fr')).toMatchObject({ note: { text: 'Bağlantı bir YouTube videosu gibi görünmüyor.' } })
     answer(403, { error: 'approval_required' })
     expect(await youtubeText('x', 'fr')).toMatchObject({ note: { text: expect.stringContaining('onayladığı hesaplara') } })
-    answer(502, { error: 'upstream' })
-    expect(await youtubeText('x', 'fr')).toMatchObject({ note: { text: expect.stringContaining('.srt') } })
+    answer(502, { error: 'youtube blocked', status: 'LOGIN_REQUIRED' })
+    expect(await youtubeText('x', 'fr')).toMatchObject({ note: { text: expect.stringContaining('sunucumuza vermiyor') }, paste: true })
+    // A "none" without the video's own list of tracks is YouTube not telling, not a video without captions.
+    answer(404, { error: 'no captions', available: [] })
+    expect(await youtubeText('x', 'fr')).toMatchObject({ paste: true, note: { text: expect.not.stringContaining('altyazı yok') } })
+    answer(404, { error: 'no captions', available: ['en'] })
+    expect(await youtubeText('x', 'fr')).not.toHaveProperty('paste')
   })
 
   it('no network is said as such', async () => {

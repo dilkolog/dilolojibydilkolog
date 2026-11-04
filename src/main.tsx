@@ -16,6 +16,7 @@ import { watchForUpdates } from './ui/update'
 import { installFocusTrap } from './ui/focusTrap'
 import { installErrorReporting } from './data/errorReport'
 import { dropBootHero } from './ui/bootHero'
+import { reloadForNewVersion } from './ui/chunkError'
 
 applyDensity()
 watchForUpdates()
@@ -23,6 +24,11 @@ installFocusTrap()
 installErrorReporting()
 // A safety net: the landing page's first lines from index.html never stay over the app for long.
 setTimeout(dropBootHero, 15_000)
+// A screen's files from before a deploy are gone: Vite says so here before the import fails; the page reloads
+// once to the new version (see chunkError.ts).
+window.addEventListener('vite:preloadError', (event) => {
+  if (reloadForNewVersion()) event.preventDefault()
+})
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
