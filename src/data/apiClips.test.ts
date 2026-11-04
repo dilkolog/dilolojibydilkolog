@@ -1,4 +1,5 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { resetRate } from '../../api/_rate'
 import { GET } from '../../api/clips'
 import { GET as GET_YOUTUBE } from '../../api/youtube'
 
@@ -170,5 +171,38 @@ describe('/api/youtube when YouTube treats the server as a bot', () => {
     byClient({ ANDROID: fr, IOS: fr, TVHTML5_SIMPLY_EMBEDDED_PLAYER: fr }, '')
     expect(((await (await ask()).json()) as { error: string }).error).toBe('youtube blocked')
     warn.mockRestore()
+  })
+})
+
+describe('/api/youtube?list= (a playlist as a series)', () => {
+  beforeEach(() => resetRate())
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.unstubAllEnvs()
+  })
+  const ask = (list: string) => GET_YOUTUBE(new Request(`https://x/api/youtube?list=${encodeURIComponent(list)}`, { headers: FROM_APP }))
+  const item = (id: string, title: string, position: number, privacy = 'public') => ({ snippet: { title, position, resourceId: { videoId: id } }, status: { privacyStatus: privacy } })
+
+  it('lists the videos in order, without the private and deleted ones, with the list\'s title', async () => {
+    vi.stubEnv('YOUTUBE_API_KEY', 'key')
+    const asked: string[] = []
+    vi.stubGlobal('fetch', async (url: string) => {
+      asked.push(url)
+      if (url.includes('/playlistItems')) return Response.json({ items: [item('bbbbbbbbbbb', 'Leçon 2', 1), item('aaaaaaaaaaa', 'Leçon 1', 0), item('ccccccccccc', 'Private video', 2, 'private'), item('ddddddddddd', 'Deleted video', 3)] })
+      return Response.json({ items: [{ snippet: { title: 'Cours de français', channelTitle: 'Pierre' } }] })
+    })
+    const res = await ask('https://www.youtube.com/watch?v=aaaaaaaaaaa&list=PLcoQWyFpRIxgcTcTpz')
+    expect(res.status).toBe(200)
+    expect(await res.json()).toEqual({ id: 'PLcoQWyFpRIxgcTcTpz', title: 'Cours de français', channel: 'Pierre', videos: [{ id: 'aaaaaaaaaaa', title: 'Leçon 1' }, { id: 'bbbbbbbbbbb', title: 'Leçon 2' }] })
+    expect(asked.every((u) => u.includes('playlistId=PLcoQWyFpRIxgcTcTpz') || u.includes('id=PLcoQWyFpRIxgcTcTpz'))).toBe(true)
+  })
+
+  it('says why there is no list: no key, not found, a bad link', async () => {
+    vi.stubEnv('YOUTUBE_API_KEY', '')
+    expect(((await (await ask('PLcoQWyFpRIxgcTcTpz')).json()) as { error: string }).error).toBe('no key')
+    vi.stubEnv('YOUTUBE_API_KEY', 'key')
+    vi.stubGlobal('fetch', async () => new Response('{}', { status: 404 }))
+    expect((await ask('PLcoQWyFpRIxgcTcTpz')).status).toBe(404)
+    expect((await ask('not a list')).status).toBe(400)
   })
 })

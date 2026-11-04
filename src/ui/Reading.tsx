@@ -12,6 +12,8 @@ import { type KelimeDB, type ReadingText } from '../data/db'
 import { SameTopic } from './News'
 import { AudioPanel } from './Listening'
 import { VideoPanel } from './VideoPanel'
+import { WatchCheck, WatchMap } from './WatchCheck'
+import type { WatchRating } from '../data/db'
 import { videoOf } from '../engine/subtitles'
 import { wordKeys } from '../data/wordInput'
 import { ConfirmDialog } from './Dialog'
@@ -258,7 +260,7 @@ export function ReadingScreen({
   }, [deduce, openedKey])
 
   /** Keeps the whole sentence as a sentence card, with the word it was saved for. */
-  const keepSentence = async (sentence: string, focus: string) => {
+  const keepSentence = async (sentence: string, focus: string, quiet = false): Promise<boolean> => {
     // With translation on, the card comes with its Turkish (and so with the translation exercise).
     const translation = (await translationReady()) ? await translate(sentence, language).catch(() => '') : ''
     // From a video timed by its subtitles, the card keeps the moment: it is played again in review.
@@ -269,7 +271,29 @@ export function ReadingScreen({
     if (ok && current?.title && focus) {
       await db.addFirstEncounters({ [`${language}:${focus.trim().toLowerCase()}`]: { title: current.title, sentence, at: new Date().toISOString() } })
     }
-    showToast(ok ? 'Cümle kaydedildi: Oyunlar → Cümle kartları' : 'Bu cümle zaten kayıtlı', undefined, 3500, ok ? 'success' : 'info')
+    if (!quiet) showToast(ok ? 'Cümle kaydedildi: Oyunlar → Cümle kartları' : 'Bu cümle zaten kayıtlı', undefined, 3500, ok ? 'success' : 'info')
+    return ok
+  }
+
+  // Watching sentence by sentence: the sentence the video stopped after, asked about, and how each one went.
+  const [asking, setAsking] = useState<number | null>(null)
+  useEffect(() => setAsking(null), [current?.id])
+  const rateSentence = async (i: number, rating: WatchRating) => {
+    if (!current) return
+    const updated = { ...current, watch: { ...current.watch, [i]: rating } }
+    setCurrent(updated)
+    setLibrary((lib) => (lib ?? []).map((t) => (t.id === updated.id ? updated : t)))
+    await db.saveText(updated)
+  }
+  const goOn = (i: number) => {
+    setAsking(null)
+    const next = times?.[i + 1]
+    if (next !== undefined) seekRef.current?.(next)
+  }
+  const keepHard = async (sentences: number[]) => {
+    let added = 0
+    for (const i of sentences) if (sentencesFlat[i] && (await keepSentence(sentencesFlat[i], '', true))) added++
+    showToast(added ? `${added} cümle kartı eklendi: Oyunlar → Cümle kartları` : 'Bu cümleler zaten kayıtlı', undefined, 3500, added ? 'success' : 'info')
   }
 
   const { markKnown, toggleIgnored, skip, markUnknown } = useReaderMarks({ db, language, openTokens, skipped, ignored, selected, adding, setKnown, setIgnored, setSkipped, setSelected, setAdding })
@@ -375,6 +399,30 @@ export function ReadingScreen({
           stops={current!.cues?.length ? times : null}
           still={dictating !== null || shadowing !== null}
           onListened={addListened}
+          onStop={setAsking}
+        >
+          {asking !== null && sentencesFlat[asking] && times && (
+            <WatchCheck
+              key={asking}
+              sentence={sentencesFlat[asking]}
+              language={language}
+              onRate={(r) => void rateSentence(asking, r)}
+              onSlow={() => void rangeRef.current?.(times[asking], sentenceEnd(asking), true)}
+              onKeep={() => void keepSentence(sentencesFlat[asking], '')}
+              onGoOn={() => goOn(asking)}
+            />
+          )}
+        </VideoPanel>
+      )}
+      {!current?.audio && videoOf(current) && current?.watch && times && (
+        <WatchMap
+          ratings={current.watch}
+          total={sentencesFlat.length}
+          onPlay={(i) => {
+            setAsking(null)
+            seekRef.current?.(times[i])
+          }}
+          onKeepHard={keepHard}
         />
       )}
       {(current?.audio || videoOf(current)) && !current?.cues?.length && !!current?.syncAnchors?.length && (

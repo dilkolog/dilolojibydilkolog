@@ -1,6 +1,6 @@
 import { accessFetch, APPROVAL_MESSAGE, isApprovalRefusal } from '../data/access'
 import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
-import { looksLikeSubtitles, parseSubtitles } from '../engine/subtitles'
+import { looksLikeSubtitles, parseSubtitles, youtubeId } from '../engine/subtitles'
 import { TARGET_LANGUAGES, type TargetLanguage } from '../engine/types'
 import { LANGUAGE_NAME } from './labels'
 
@@ -75,6 +75,56 @@ export async function pageText(link: string, language: TargetLanguage): Promise<
   } catch {
     return { note: { ok: false, text: 'Sayfa getirilemedi; internet bağlantını kontrol et.' } }
   }
+}
+
+/** A YouTube link that names a playlist (…&list=…): a course to add as a series. Mixes YouTube makes (RD…) are no list. */
+export const isPlaylistLink = (link: string) => isYoutubeLink(link) && /[?&]list=(?!RD)[\w-]{10,64}/.test(link)
+
+/**
+ * A YouTube playlist as a series in the library: one text per video, in order, shared as a book. The texts are
+ * empty until opened (`fillEpisode` brings each one's subtitles then), so a long course costs one request now.
+ * `open` is the episode the link pointed at (watch?v=…&list=…), else the first.
+ */
+export async function playlistBook(db: KelimeDB, link: string, language: TargetLanguage): Promise<{ texts: ReadingText[]; open: ReadingText } | { note: ImportNote }> {
+  try {
+    const res = await accessFetch(`/api/youtube?list=${encodeURIComponent(link.trim())}`)
+    const j = (await res.json().catch(() => ({}))) as { title?: string; videos?: { id: string; title: string }[]; error?: string }
+    if (!res.ok || !j.videos?.length) {
+      const why: Record<string, string> = {
+        'not found': 'Bu oynatma listesi bulunamadı ya da gizli.',
+        'no key': 'Oynatma listesi okunamıyor (sunucuda YouTube anahtarı yok). Videoları tek tek ekleyebilirsin.',
+        quota: 'Bugünkü YouTube hakkı doldu; yarın yeniden dene.',
+        daily_quota: 'Bugünkü video hakkın doldu; yarın yeniden dene.',
+      }
+      return { note: { ok: false, text: isApprovalRefusal(j.error) ? APPROVAL_MESSAGE : (j.error && why[j.error]) || 'Oynatma listesi alınamadı; biraz sonra yeniden dene.' } }
+    }
+    const book = { id: crypto.randomUUID(), title: j.title || 'YouTube listesi', total: j.videos.length }
+    const addedAt = new Date().toISOString()
+    const texts: ReadingText[] = j.videos.map((v, index) => ({
+      id: crypto.randomUUID(),
+      language,
+      title: v.title,
+      text: '',
+      source: `https://www.youtube.com/watch?v=${v.id}`,
+      addedAt,
+      history: [],
+      book: { ...book, index },
+    }))
+    await db.saveTexts(texts)
+    const wanted = youtubeId(link)
+    return { texts, open: texts.find((t) => youtubeId(t.source ?? '') === wanted) ?? texts[0] }
+  } catch {
+    return { note: { ok: false, text: 'Oynatma listesi alınamadı; internet bağlantını kontrol et.' } }
+  }
+}
+
+/** An episode of a series not opened before: its subtitles (with their times) fetched and kept with it. */
+export async function fillEpisode(db: KelimeDB, item: ReadingText): Promise<{ item: ReadingText } | { note: ImportNote; paste?: boolean }> {
+  const got = await youtubeText(item.source ?? '', item.language)
+  if ('note' in got) return got
+  const filled: ReadingText = { ...item, text: got.item.text, ...(got.item.cues ? { cues: got.item.cues } : {}) }
+  await db.saveText(filled)
+  return { item: filled }
 }
 
 /** Whether a link is a YouTube video (its subtitles are fetched) rather than a page (its text is). */

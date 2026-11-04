@@ -41,6 +41,9 @@ import {
 } from '../engine/types'
 
 /** A text in the reading library. */
+/** How well a sentence of a video was understood when heard. */
+export type WatchRating = 'ok' | 'half' | 'no'
+
 export interface ReadingText {
   id: string
   language: TargetLanguage
@@ -66,6 +69,8 @@ export interface ReadingText {
   images?: string[]
   /** Who made it and under which licence, shown with the text (open licences ask for it). */
   credit?: string
+  /** Read along a video sentence by sentence: how well each sentence (by its index) was understood. */
+  watch?: Record<number, WatchRating>
   /** A chapter of an imported book (EPUB): chapters share the book id and keep their order. */
   book?: { id: string; title: string; index: number; total: number }
 }

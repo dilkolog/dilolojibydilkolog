@@ -3,7 +3,8 @@ import { APPROVAL_MESSAGE } from '../data/access'
 import { ClipsError, fetchClips, type ClipsProblem } from '../data/clips'
 import type { KelimeDB } from '../data/db'
 import { addExample, markWord, WordInputError } from '../data/wordInput'
-import { cleanWordForClips, embedUrl, splitAround, type Clip } from '../engine/clips'
+import { addedTime } from '../engine/types'
+import { cleanWordForClips, embedUrl, ownClips, splitAround, type Clip } from '../engine/clips'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { CloseIcon, PlayIcon } from './icons'
 import { LinesSkeleton } from './Skeleton'
@@ -29,6 +30,26 @@ function Line({ clip }: { clip: Pick<Clip, 'text' | 'form'> }) {
   )
 }
 
+function ClipRow({ clip, language, onOpen }: { clip: Clip; language: TargetLanguage; onOpen: () => void }) {
+  return (
+    <button type="button" className="clip" onClick={onOpen}>
+      <span className="clip-play" aria-hidden>
+        <PlayIcon size={16} />
+      </span>
+      <span className="clip-text">
+        <span className="clip-line" lang={language}>
+          <Line clip={clip} />
+        </span>
+        <span className="small muted">
+          {clip.title}
+          {clip.channel && ` · ${clip.channel}`}
+          {clip.auto && ' · otomatik altyazı'}
+        </span>
+      </span>
+    </button>
+  )
+}
+
 /**
  * "Videolarda duy": where the word is spoken in real videos (YouGlish-style). Searching costs part of a
  * daily quota, so it starts only when asked; each result is a caption line that opens the video at that moment.
@@ -37,8 +58,24 @@ export function ClipsSection({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
   const [clips, setClips] = useState<Clip[] | null>(null)
   const [busy, setBusy] = useState(false)
   const [problem, setProblem] = useState<ClipsProblem | null>(null)
-  const [open, setOpen] = useState<number | null>(null)
+  const [open, setOpen] = useState<{ list: 'own' | 'found'; index: number } | null>(null)
   const query = cleanWordForClips(entry.lemma, entry.language)
+  // The word in the learner's own videos (transcripts in the reading library): free, no search, shown at once.
+  const [own, setOwn] = useState<Clip[]>([])
+  useEffect(() => {
+    let live = true
+    if (typeof db.getLibrary !== 'function') return
+    void db
+      .getLibrary(entry.language)
+      .then((texts) => {
+        const recent = [...texts].sort((a, b) => addedTime(b) - addedTime(a))
+        if (live) setOwn(ownClips(recent, query, entry.language))
+      })
+      .catch(() => {})
+    return () => {
+      live = false
+    }
+  }, [db, entry.language, query])
 
   const search = async () => {
     setBusy(true)
@@ -64,6 +101,18 @@ export function ClipsSection({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
         </button>
       </div>
       <p className="small muted">Kelimenin gerçek konuşmada, YouTube videolarında geçtiği anlar. Dokununca video o saniyede açılır.</p>
+      {own.length > 0 && (
+        <div className="stack gap-xs">
+          <h3 className="small own-clips-title">Senin videolarından</h3>
+          <ul className="clip-list">
+            {own.map((c, i) => (
+              <li key={`own-${c.id}-${c.start}`}>
+                <ClipRow clip={c} language={entry.language} onOpen={() => setOpen({ list: 'own', index: i })} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {busy && <LinesSkeleton lines={3} label="Videolar aranıyor" />}
       {problem && (
         <div className="stack gap-xs">
@@ -119,26 +168,22 @@ export function ClipsSection({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
         <ul className="clip-list">
           {clips.map((c, i) => (
             <li key={`${c.id}-${c.start}`}>
-              <button type="button" className="clip" onClick={() => setOpen(i)}>
-                <span className="clip-play" aria-hidden>
-                  <PlayIcon size={16} />
-                </span>
-                <span className="clip-text">
-                  <span className="clip-line" lang={entry.language}>
-                    <Line clip={c} />
-                  </span>
-                  <span className="small muted">
-                    {c.title}
-                    {c.channel && ` · ${c.channel}`}
-                    {c.auto && ' · otomatik altyazı'}
-                  </span>
-                </span>
-              </button>
+              <ClipRow clip={c} language={entry.language} onOpen={() => setOpen({ list: 'found', index: i })} />
             </li>
           ))}
         </ul>
       )}
-      {clips && open !== null && clips[open] && <ClipPlayer db={db} entry={entry} clips={clips} index={open} onIndex={setOpen} onClose={() => setOpen(null)} onChanged={onChanged} />}
+      {open && (open.list === 'own' ? own : clips ?? [])[open.index] && (
+        <ClipPlayer
+          db={db}
+          entry={entry}
+          clips={open.list === 'own' ? own : clips!}
+          index={open.index}
+          onIndex={(index) => setOpen({ ...open, index })}
+          onClose={() => setOpen(null)}
+          onChanged={onChanged}
+        />
+      )}
     </section>
   )
 }

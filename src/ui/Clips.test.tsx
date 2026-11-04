@@ -61,4 +61,21 @@ describe('ClipsSection', () => {
     expect(links.some((a) => a.href.includes('youtube.com/results?search_query=beau'))).toBe(true)
     act(() => root.unmount())
   })
+
+  it('shows the word in the learner\'s own videos at once, with no search, and plays the moment', async () => {
+    const library = [{ id: 't1', language: 'fr', title: 'Au marché', text: 'x', addedAt: '2026-11-01', history: [], source: 'https://www.youtube.com/watch?v=abcdefghijk', cues: [{ start: 0, text: 'Bonjour.' }, { start: 6, text: 'Il fait beau ce matin.' }, { start: 9, text: 'Allons-y.' }] }]
+    const fetch = vi.fn()
+    vi.stubGlobal('fetch', fetch)
+    const root = createRoot(container)
+    await act(async () => {
+      root.render(<ClipsSection db={{ getLibrary: async () => library } as any} entry={ENTRY} onChanged={() => {}} />)
+    })
+    await act(async () => void (await new Promise((r) => setTimeout(r, 20))))
+    expect(container.textContent).toContain('Senin videolarından')
+    expect(container.querySelector('.clip-line mark')?.textContent).toBe('beau')
+    expect(fetch).not.toHaveBeenCalled()
+    await act(async () => (container.querySelector('.clip') as HTMLButtonElement).click())
+    expect(document.querySelector('.clip-player iframe')?.getAttribute('src')).toContain('/embed/abcdefghijk?start=5&end=10')
+    act(() => root.unmount())
+  })
 })

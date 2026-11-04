@@ -1,6 +1,6 @@
 import { splitArticle } from './answerCheck.js'
 import { formIn } from './inflection.js'
-import { cleanCue } from './subtitles.js'
+import { cleanCue, videoOf } from './subtitles.js'
 import type { TargetLanguage } from './types.js'
 
 /**
@@ -57,6 +57,30 @@ export function findClips(cues: readonly Cue[], word: string, language: TargetLa
     if (!form || seen.has(text) || text.length > 160) continue
     seen.add(text)
     out.push({ ...video, start: cues[i].start, end: cues[i].end, text, form, before: cues[i - 1]?.text, after: cues[i + 1]?.text })
+  }
+  return out
+}
+
+/** A reading text that may be a video's transcript, with the times of its lines. */
+interface WatchedText {
+  title: string
+  source?: string
+  audio?: string
+  cues?: readonly { start: number; text: string }[]
+}
+
+/**
+ * Where a word is spoken in the learner's own videos (the transcripts in the reading library, with their times):
+ * a few moments from each, the most recent videos first. Free and offline, unlike searching YouTube.
+ */
+export function ownClips(texts: readonly WatchedText[], word: string, language: TargetLanguage, max = 6, perVideo = 2): Clip[] {
+  const out: Clip[] = []
+  for (const t of texts) {
+    if (out.length >= max) break
+    const id = videoOf(t)
+    if (!id || !t.cues?.length) continue
+    const cues: Cue[] = t.cues.map((c, i) => ({ start: c.start, end: t.cues![i + 1]?.start ?? c.start + 4, text: c.text }))
+    out.push(...findClips(cues, word, language, { id, title: t.title, channel: '' }, Math.min(perVideo, max - out.length)))
   }
   return out
 }
