@@ -69,8 +69,9 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
     setLocating(true)
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        const lat = pos.coords.latitude
-        const lon = pos.coords.longitude
+        // Rounded to about 10 km: the sky and the weather need no more, and the profile travels with the account.
+        const lat = Math.round(pos.coords.latitude * 10) / 10
+        const lon = Math.round(pos.coords.longitude * 10) / 10
         const name = `${lat.toFixed(1)}°, ${lon.toFixed(1)}°`
         setLocation(name)
         save({ location: name, coordinates: { lat, lon } })
