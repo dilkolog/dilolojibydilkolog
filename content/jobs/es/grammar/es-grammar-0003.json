@@ -1,0 +1,24 @@
+{
+  "id": "es-grammar-0003",
+  "language": "es",
+  "kind": "grammar",
+  "level": "B1",
+  "grammar": [
+    "subjuntivo"
+  ],
+  "count": 50,
+  "subskills": [
+    "istek ve duygu",
+    "olumsuz düşünce",
+    "bağlaçlar (para que, aunque)",
+    "ojalá",
+    "düzensiz biçimler"
+  ],
+  "ids": {
+    "from": 71,
+    "to": 120
+  },
+  "createdAt": "2026-11-05T12:59:57.431Z",
+  "claimedBy": "claude-code-es-grammar",
+  "claimedAt": "2026-11-05T13:00:34.101Z"
+}

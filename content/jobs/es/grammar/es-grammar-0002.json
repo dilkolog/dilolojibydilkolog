@@ -1,0 +1,24 @@
+{
+  "id": "es-grammar-0002",
+  "language": "es",
+  "kind": "grammar",
+  "level": "A1",
+  "grammar": [
+    "basics_es_articulos"
+  ],
+  "count": 50,
+  "subskills": [
+    "temel kullanım",
+    "olumsuz ve soru",
+    "bağlamda seçim",
+    "sık hata (Türkçe konuşan için)",
+    "istisna ve düzensiz biçim"
+  ],
+  "ids": {
+    "from": 21,
+    "to": 70
+  },
+  "createdAt": "2026-11-05T12:59:56.915Z",
+  "claimedBy": "claude-code-es-grammar",
+  "claimedAt": "2026-11-05T13:00:33.434Z"
+}

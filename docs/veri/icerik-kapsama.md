@@ -106,7 +106,7 @@ Bu dosyayı `npm run content -- coverage` yazar; elle düzenlenmez. Yalnız dene
 
 | Seviye | Konu | Var | Planlı | Hedef | Dolu |
 |---|---|---|---|---|---|
-| A1 | Artikeller ve cinsiyet (el / la / un / una) (`basics_es_articulos`) | 0 | 0 | 300 | 0 % |
+| A1 | Artikeller ve cinsiyet (el / la / un / una) (`basics_es_articulos`) | 50 | 0 | 300 | 17 % |
 | A1 | Şimdiki zaman (presente) (`basics_es_presente`) | 0 | 0 | 300 | 0 % |
 | A1 | Gustar ve benzeri fiiller (`basics_es_gustar`) | 0 | 0 | 300 | 0 % |
 | A1 | Olumsuzluk (no / nada / nadie) (`basics_es_negacion`) | 0 | 0 | 300 | 0 % |
@@ -116,7 +116,7 @@ Bu dosyayı `npm run content -- coverage` yazar; elle düzenlenmez. Yalnız dene
 | A1 | Soru sözcükleri (`basics_es_preguntas`) | 0 | 0 | 300 | 0 % |
 | A1 | Hay mı, está mı? (`basics_es_hay_estar`) | 0 | 0 | 300 | 0 % |
 | A1 | Dönüşlü fiiller (`basics_es_reflexivos`) | 0 | 0 | 300 | 0 % |
-| A2 | Sıfatlar: uyum ve yer (`basics_es_adjetivos`) | 0 | 0 | 300 | 0 % |
+| A2 | Sıfatlar: uyum ve yer (`basics_es_adjetivos`) | 50 | 0 | 300 | 17 % |
 | A2 | Pretérito indefinido (`basics_es_preterito`) | 0 | 0 | 300 | 0 % |
 | A2 | Ser ve estar (`ser_estar`) | 20 | 0 | 300 | 7 % |
 | A2 | Pretérito ve imperfecto (`preterito_imperfecto`) | 0 | 0 | 300 | 0 % |
@@ -125,7 +125,7 @@ Bu dosyayı `npm run content -- coverage` yazar; elle düzenlenmez. Yalnız dene
 | A2 | He hecho mu, hice mi? Zaman işaretleri (`basics_es_perfecto_indefinido`) | 0 | 0 | 300 | 0 % |
 | A2 | Gelecek: ir a, futuro simple ve tahmin (`basics_es_futuro`) | 0 | 0 | 300 | 0 % |
 | A2 | Süre: hace, desde, desde hace, llevar (`basics_es_hace_desde`) | 0 | 0 | 300 | 0 % |
-| B1 | Subjuntivo (`subjuntivo`) | 0 | 0 | 300 | 0 % |
+| B1 | Subjuntivo (`subjuntivo`) | 50 | 0 | 300 | 17 % |
 | B1 | Por ve para (`por_para`) | 0 | 0 | 300 | 0 % |
 | B1 | Şart cümleleri (si) (`condicionales`) | 0 | 0 | 300 | 0 % |
 | B1 | Perífrasis verbales (`perifrasis`) | 0 | 0 | 300 | 0 % |
