@@ -1,0 +1,24 @@
+{
+  "id": "es-grammar-0005",
+  "language": "es",
+  "kind": "grammar",
+  "level": "B2",
+  "grammar": [
+    "se_pasivo"
+  ],
+  "count": 50,
+  "subskills": [
+    "temel kullanım",
+    "olumsuz ve soru",
+    "bağlamda seçim",
+    "sık hata (Türkçe konuşan için)",
+    "istisna ve düzensiz biçim"
+  ],
+  "ids": {
+    "from": 171,
+    "to": 220
+  },
+  "createdAt": "2026-11-05T15:42:15.235Z",
+  "claimedBy": "claude-session-01Wd",
+  "claimedAt": "2026-11-05T15:42:17.166Z"
+}
