@@ -1,0 +1,5 @@
+{
+  "note": "Okuma ve dilbilgisi içeriğinde reddedilen sözcükler (content/style/reading.md §2). Küçük harfle, tam sözcük olarak aranır. Gerektikçe eklenir.",
+  "fr": ["élection", "élections", "président de la république", "parti politique", "religion", "dieu", "église", "mosquée", "synagogue", "guerre", "arme", "armes", "tuer", "meurtre", "drogue", "drogues", "casino", "sexe", "sexuel", "suicide", "terroriste", "coca-cola", "mcdonald's", "nike", "amazon", "google"],
+  "es": ["elecciones", "elección presidencial", "partido político", "religión", "dios", "iglesia", "mezquita", "sinagoga", "guerra", "arma", "armas", "matar", "asesinato", "droga", "drogas", "casino", "sexo", "sexual", "suicidio", "terrorista", "coca-cola", "mcdonald's", "nike", "amazon", "google"]
+}

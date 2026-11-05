@@ -1,0 +1,432 @@
+{
+  "language": "es",
+  "note": "Müfredat matrisi (docs/ICERIK-FABRIKASI.md §3). Elle düzenlenir; iş emirleri ve kapsama raporu buradan üretilir.",
+  "levels": {
+    "A1": {
+      "words": [
+        60,
+        120
+      ],
+      "sentenceWords": 10,
+      "topics": [
+        "basics_es_articulos",
+        "basics_es_presente",
+        "basics_es_gustar",
+        "basics_es_negacion",
+        "basics_es_pronombres",
+        "basics_es_posesivos",
+        "basics_es_numeros_hora",
+        "basics_es_preguntas",
+        "basics_es_hay_estar",
+        "basics_es_reflexivos"
+      ]
+    },
+    "A2": {
+      "words": [
+        100,
+        180
+      ],
+      "sentenceWords": 14,
+      "topics": [
+        "basics_es_adjetivos",
+        "basics_es_preterito",
+        "ser_estar",
+        "preterito_imperfecto",
+        "comparativos_es",
+        "imperativo_es",
+        "basics_es_perfecto_indefinido",
+        "basics_es_futuro",
+        "basics_es_hace_desde"
+      ]
+    },
+    "B1": {
+      "words": [
+        150,
+        260
+      ],
+      "sentenceWords": 20,
+      "topics": [
+        "subjuntivo",
+        "por_para",
+        "condicionales",
+        "perifrasis",
+        "pronombres_atonos",
+        "relativos_es",
+        "conn_es",
+        "prep_es",
+        "colloc_es",
+        "basics_es_pluscuamperfecto",
+        "basics_es_gerundio",
+        "basics_es_orden_pronombres",
+        "basics_es_adverbios_mente"
+      ]
+    },
+    "B2": {
+      "words": [
+        220,
+        360
+      ],
+      "sentenceWords": 26,
+      "topics": [
+        "se_pasivo",
+        "estilo_indirecto",
+        "basics_es_imperfecto_subjuntivo",
+        "basics_es_finales_concesivas",
+        "basics_es_subjuntivo_relativo",
+        "basics_es_verbos_cambio",
+        "basics_es_temporales",
+        "basics_es_lo_neutro",
+        "basics_es_pasiva_ser_estar",
+        "basics_es_perifrasis_obligacion_modal"
+      ]
+    },
+    "C1": {
+      "words": [
+        300,
+        480
+      ],
+      "sentenceWords": 32,
+      "topics": [
+        "basics_es_subjuntivo_compuesto",
+        "basics_es_marcadores",
+        "basics_es_probabilidad",
+        "basics_es_registro_formal",
+        "basics_es_condicion_alternativa",
+        "basics_es_oraciones_hendidas"
+      ]
+    }
+  },
+  "themes": [
+    {
+      "id": "aile",
+      "tr": "Aile"
+    },
+    {
+      "id": "arkadaslik",
+      "tr": "Arkadaşlık"
+    },
+    {
+      "id": "ev",
+      "tr": "Ev ve yaşam"
+    },
+    {
+      "id": "mahalle",
+      "tr": "Mahalle ve komşular"
+    },
+    {
+      "id": "alisveris",
+      "tr": "Alışveriş"
+    },
+    {
+      "id": "yemek",
+      "tr": "Yemek ve mutfak"
+    },
+    {
+      "id": "restoran",
+      "tr": "Restoran ve kafe"
+    },
+    {
+      "id": "saglik",
+      "tr": "Sağlık"
+    },
+    {
+      "id": "spor",
+      "tr": "Spor"
+    },
+    {
+      "id": "beden",
+      "tr": "Beden ve iyi yaşam"
+    },
+    {
+      "id": "okul",
+      "tr": "Okul"
+    },
+    {
+      "id": "universite",
+      "tr": "Üniversite"
+    },
+    {
+      "id": "is",
+      "tr": "İş hayatı"
+    },
+    {
+      "id": "meslekler",
+      "tr": "Meslekler"
+    },
+    {
+      "id": "para",
+      "tr": "Para ve bütçe"
+    },
+    {
+      "id": "ulasim",
+      "tr": "Ulaşım"
+    },
+    {
+      "id": "seyahat",
+      "tr": "Seyahat"
+    },
+    {
+      "id": "tatil",
+      "tr": "Tatil"
+    },
+    {
+      "id": "otel",
+      "tr": "Konaklama"
+    },
+    {
+      "id": "sehir",
+      "tr": "Şehir hayatı"
+    },
+    {
+      "id": "koy",
+      "tr": "Kır ve köy hayatı"
+    },
+    {
+      "id": "doga",
+      "tr": "Doğa"
+    },
+    {
+      "id": "hayvanlar",
+      "tr": "Hayvanlar"
+    },
+    {
+      "id": "hava",
+      "tr": "Hava durumu"
+    },
+    {
+      "id": "iklim",
+      "tr": "İklim ve çevre"
+    },
+    {
+      "id": "enerji",
+      "tr": "Enerji"
+    },
+    {
+      "id": "teknoloji",
+      "tr": "Teknoloji"
+    },
+    {
+      "id": "internet",
+      "tr": "İnternet ve sosyal ağlar"
+    },
+    {
+      "id": "bilim",
+      "tr": "Bilim"
+    },
+    {
+      "id": "uzay",
+      "tr": "Uzay"
+    },
+    {
+      "id": "tarih",
+      "tr": "Tarih"
+    },
+    {
+      "id": "sanat",
+      "tr": "Sanat"
+    },
+    {
+      "id": "muzik",
+      "tr": "Müzik"
+    },
+    {
+      "id": "sinema",
+      "tr": "Sinema ve dizi"
+    },
+    {
+      "id": "edebiyat",
+      "tr": "Kitaplar ve edebiyat"
+    },
+    {
+      "id": "moda",
+      "tr": "Giyim ve moda"
+    },
+    {
+      "id": "bayramlar",
+      "tr": "Bayramlar ve gelenekler"
+    },
+    {
+      "id": "kultur",
+      "tr": "Kültür ve yaşam biçimi"
+    },
+    {
+      "id": "diller",
+      "tr": "Dil öğrenmek"
+    },
+    {
+      "id": "medya",
+      "tr": "Haber ve medya"
+    },
+    {
+      "id": "toplum",
+      "tr": "Toplum ve gönüllülük"
+    },
+    {
+      "id": "hukuk",
+      "tr": "Kurallar ve günlük işler"
+    },
+    {
+      "id": "resmi",
+      "tr": "Resmî işler"
+    },
+    {
+      "id": "konut",
+      "tr": "Ev aramak"
+    },
+    {
+      "id": "tasinma",
+      "tr": "Taşınma"
+    },
+    {
+      "id": "zaman",
+      "tr": "Zaman ve planlar"
+    },
+    {
+      "id": "duygular",
+      "tr": "Duygular"
+    },
+    {
+      "id": "karakter",
+      "tr": "Karakter ve kişilik"
+    },
+    {
+      "id": "anilar",
+      "tr": "Anılar ve çocukluk"
+    },
+    {
+      "id": "hobi",
+      "tr": "Hobiler"
+    },
+    {
+      "id": "oyunlar",
+      "tr": "Oyunlar"
+    },
+    {
+      "id": "bahce",
+      "tr": "Bahçe ve bitkiler"
+    },
+    {
+      "id": "mimari",
+      "tr": "Mimari ve yapılar"
+    },
+    {
+      "id": "ekonomi",
+      "tr": "Ekonomi"
+    },
+    {
+      "id": "girisim",
+      "tr": "Girişim ve küçük işletme"
+    },
+    {
+      "id": "egitim",
+      "tr": "Eğitim ve öğrenme"
+    },
+    {
+      "id": "psikoloji",
+      "tr": "Psikoloji ve alışkanlıklar"
+    },
+    {
+      "id": "beslenme",
+      "tr": "Beslenme"
+    },
+    {
+      "id": "ulke",
+      "tr": "Ülkeler ve bölgeler"
+    },
+    {
+      "id": "gelecek",
+      "tr": "Gelecek ve hayaller"
+    }
+  ],
+  "genres": [
+    {
+      "id": "dialogue",
+      "tr": "Diyalog"
+    },
+    {
+      "id": "email",
+      "tr": "E-posta / mektup"
+    },
+    {
+      "id": "news",
+      "tr": "Haber"
+    },
+    {
+      "id": "blog",
+      "tr": "Blog / görüş"
+    },
+    {
+      "id": "story",
+      "tr": "Hikâye"
+    },
+    {
+      "id": "recipe",
+      "tr": "Tarif / talimat"
+    },
+    {
+      "id": "ad",
+      "tr": "İlan"
+    },
+    {
+      "id": "interview",
+      "tr": "Röportaj"
+    },
+    {
+      "id": "biography",
+      "tr": "Biyografi"
+    },
+    {
+      "id": "info",
+      "tr": "Bilgi metni"
+    }
+  ],
+  "subskills": {
+    "default": [
+      "temel kullanım",
+      "olumsuz ve soru",
+      "bağlamda seçim",
+      "sık hata (Türkçe konuşan için)",
+      "istisna ve düzensiz biçim"
+    ],
+    "preterito_imperfecto": [
+      "betimleme",
+      "alışkanlık",
+      "araya giren olay",
+      "zaman sözcüğü ipucu",
+      "anlamı değişen fiiller"
+    ],
+    "ser_estar": [
+      "kimlik ve özellik",
+      "durum ve yer",
+      "anlamı değişen sıfatlar",
+      "olaylar (ser)",
+      "sık hata"
+    ],
+    "por_para": [
+      "amaç",
+      "neden",
+      "süre ve zaman",
+      "yer ve geçiş",
+      "kalıplar"
+    ],
+    "subjuntivo": [
+      "istek ve duygu",
+      "olumsuz düşünce",
+      "bağlaçlar (para que, aunque)",
+      "ojalá",
+      "düzensiz biçimler"
+    ]
+  },
+  "targets": {
+    "reading": {
+      "perCell": 3
+    },
+    "grammar": {
+      "perTopicLevel": 300
+    }
+  },
+  "jobSize": {
+    "reading": 10,
+    "grammar": 50
+  }
+}

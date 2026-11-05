@@ -1,0 +1,36 @@
+{
+  "job": "fr-grammar-0001",
+  "language": "fr",
+  "kind": "grammar",
+  "total": 20,
+  "accepted": [
+    "fr-g-000001",
+    "fr-g-000002",
+    "fr-g-000003",
+    "fr-g-000004",
+    "fr-g-000005",
+    "fr-g-000006",
+    "fr-g-000007",
+    "fr-g-000008",
+    "fr-g-000009",
+    "fr-g-000010",
+    "fr-g-000011",
+    "fr-g-000012",
+    "fr-g-000013",
+    "fr-g-000014",
+    "fr-g-000015",
+    "fr-g-000016",
+    "fr-g-000017",
+    "fr-g-000018",
+    "fr-g-000019",
+    "fr-g-000020"
+  ],
+  "rejected": [],
+  "warnings": [],
+  "rate": 1,
+  "solver": {
+    "checked": 20,
+    "disagreements": 0,
+    "rate": 0
+  }
+}

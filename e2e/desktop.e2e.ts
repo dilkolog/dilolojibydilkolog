@@ -3719,6 +3719,73 @@ test('verb lab: a finished round offers a new random verb in the same tense', as
   await expect(main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'true')
 })
 
+/** The published content (public/content, built by `npm run content -- build`): the tests follow whatever is in it. */
+const published = (lang: string) => {
+  const dir = `public/content/${lang}`
+  const manifest = JSON.parse(fs.readFileSync(`${dir}/manifest.json`, 'utf8')) as {
+    reading: Record<string, { path: string }[]>
+    grammar: Record<string, { path: string }[]>
+  }
+  const file = <T>(path: string) => JSON.parse(fs.readFileSync(`${dir}/${path}`, 'utf8')) as T
+  return { manifest, file }
+}
+
+test('Diloloji texts: a level’s texts listed, one opened, read, and its own questions asked without the AI', async ({ page }) => {
+  const { manifest, file } = published('fr')
+  const first = file<{ title: string; questions: { q: string }[] }[]>(manifest.reading.A1[0].path)[0]
+  let shardCalls = 0
+  page.on('request', (r) => {
+    if (/\/content\/fr\/reading\//.test(r.url())) shardCalls++
+  })
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  const section = page.getByRole('region', { name: 'Diloloji metinleri' })
+  await expect(section.getByRole('button', { name: /^A1 \(\d+\)$/ })).toHaveAttribute('aria-pressed', 'true')
+  await section.getByRole('button', { name: new RegExp(first.title) }).click()
+  await expect(page.locator('.reader').first()).toBeVisible()
+  expect(shardCalls).toBe(1)
+  await page.locator('.reader-tools').getByRole('button', { name: 'Okumayı bitir' }).click()
+  await page.getByRole('alertdialog', { name: 'Okumayı bitir' }).getByRole('button', { name: 'Bitir' }).click()
+  await page.getByRole('button', { name: `Okuduğunu sına (${first.questions.length} soru)` }).click()
+  const card = page.getByRole('region', { name: 'Okuduğunu anlama soruları' })
+  await expect(card.locator('fieldset')).toHaveCount(first.questions.length)
+  await expect(card).toContainText(first.questions[0].q)
+  await card.locator('fieldset').first().locator('.comprehension-option').first().click()
+  await expect(card.getByRole('status').first()).toContainText(/Doğru\.|Doğrusu başka\./)
+  // The text is in the learner's own library now, once.
+  await page.getByRole('button', { name: '← Kütüphane' }).first().click()
+  await expect(page.locator('.lib-card').filter({ hasText: first.title })).toHaveCount(1)
+})
+
+test('content grammar: a topic’s file is fetched when chosen, and a logged question from a file comes back when due', async ({ page }) => {
+  const { manifest, file } = published('fr')
+  const [topic] = Object.keys(manifest.grammar)
+  const question = file<{ id: string; prompt: string }[]>(manifest.grammar[topic][0].path)[0]
+  await startWithSamples(page)
+  // Answered wrong two days ago: due again today; the question lives only in the published file.
+  await page.evaluate(
+    ({ id, last }) =>
+      new Promise<void>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onsuccess = () => {
+          const tx = open.result.transaction('meta', 'readwrite')
+          tx.objectStore('meta').put({ key: 'grammar', value: { [id]: { ok: 0, wrong: 1, last, streak: 0 } } })
+          tx.oncomplete = () => resolve()
+        }
+      }),
+    { id: question.id, last: new Date(Date.now() - 2 * 86_400_000).toISOString() },
+  )
+  let topicCalls = 0
+  page.on('request', (r) => {
+    if (r.url().includes(`/content/fr/grammar/${topic}/`)) topicCalls++
+  })
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
+  await page.getByRole('button', { name: /^Tekrar zamanı gelen 1 soru/ }).click()
+  await expect(page.locator('.grammar-game')).toContainText(question.prompt.split('___')[0].trim().slice(0, 30))
+  expect(topicCalls).toBe(1)
+})
+
 test('an unfinished learning group resumes after reloading feedback without recording the answer twice', async ({ page }) => {
   await page.clock.setFixedTime(new Date('2026-11-04T12:00:00'))
   await startWithSamples(page)

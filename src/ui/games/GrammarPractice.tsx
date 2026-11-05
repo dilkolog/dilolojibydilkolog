@@ -6,6 +6,8 @@ import type { TargetLanguage } from '../../engine/types'
 import { db } from '../../data/instance'
 import { noteIn } from './logNote'
 import { grammarExercises } from '../../data/grammar'
+import { grammarForIds, grammarForTopic, loadManifest } from '../../data/content'
+import type { ContentManifest } from '../../engine/contentTypes'
 import { AccentBar } from '../AccentBar'
 import { accentChange, insertAt } from '../accentCaret'
 import { LANGUAGE_NAME } from '../labels'
@@ -24,9 +26,68 @@ const note = noteIn(() => db.getGrammarLog(), (log) => db.saveGrammarLog(log))
  * than right, come first; a topic can be picked.
  */
 export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { language: TargetLanguage; onExit: () => void; initialTopic?: string; onLesson?: (topic: string) => void }) {
-  const all = useMemo(() => grammarExercises(language), [language])
+  const bundled = useMemo(() => grammarExercises(language), [language])
+  // Questions published as content files (docs/ICERIK-FABRIKASI.md §6.2): a topic's files are fetched when it is
+  // chosen, and the files holding questions the log has seen, so their review still comes due.
+  const [manifest, setManifest] = useState<ContentManifest | null>(null)
+  const [fetched, setFetched] = useState<GrammarExercise[]>([])
+  const [topicState, setTopicState] = useState<'idle' | 'loading' | 'failed'>('idle')
+  const all = useMemo(() => {
+    if (!fetched.length) return bundled
+    const ids = new Set(bundled.map((e) => e.id))
+    return [...bundled, ...fetched.filter((e) => !ids.has(e.id))]
+  }, [bundled, fetched])
   const [log, setLog] = useState<GrammarLog | null>(null)
   const [topic, setTopic] = useState<string | undefined>(initialTopic)
+  const add = (more: GrammarExercise[]) =>
+    setFetched((old) => {
+      const have = new Set(old.map((e) => e.id))
+      const fresh = more.filter((e) => !have.has(e.id))
+      return fresh.length ? [...old, ...fresh] : old
+    })
+
+  useEffect(() => {
+    let live = true
+    setManifest(null)
+    setFetched([])
+    void loadManifest(language).then((m) => live && setManifest(m))
+    return () => {
+      live = false
+    }
+  }, [language])
+
+  // The files of questions already answered: due reviews need them.
+  useEffect(() => {
+    if (!manifest || !log || (language !== 'fr' && language !== 'es')) return
+    const known = new Set(bundled.map((e) => e.id))
+    const ids = Object.keys(log).filter((id) => !known.has(id))
+    if (!ids.length) return
+    let live = true
+    void grammarForIds(language, manifest, ids).then((qs) => live && add(qs))
+    return () => {
+      live = false
+    }
+  }, [manifest, log, bundled, language])
+
+  // The chosen topic's files.
+  useEffect(() => {
+    if (!manifest || !topic || !manifest.grammar[topic] || (language !== 'fr' && language !== 'es')) {
+      setTopicState('idle')
+      return
+    }
+    let live = true
+    setTopicState('loading')
+    grammarForTopic(language, manifest, topic)
+      .then((qs) => {
+        if (!live) return
+        add(qs)
+        setTopicState('idle')
+      })
+      .catch(() => live && setTopicState('failed'))
+    return () => {
+      live = false
+    }
+  }, [manifest, topic, language])
   const [category, setCategory] = useState<string | undefined>(() => grammarCatalog(language).find((c) => c.topics.some((t) => t.id === initialTopic))?.id)
   const [level, setLevel] = useState<GrammarLevelFilter>('all')
   const [phase, setPhase] = useState<'intro' | 'play' | 'over'>('intro')
@@ -57,7 +118,13 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
     }
   }, [phase])
 
-  const stats = useMemo(() => (log ? topicStats(log, all) : []), [log, all])
+  const stats = useMemo(() => {
+    if (!log) return []
+    const own = topicStats(log, all)
+    // Topics only the content files have: listed too, their questions come when chosen.
+    const more = Object.keys(manifest?.grammar ?? {}).filter((t) => !own.some((s) => s.topic === t))
+    return [...own, ...more.map((t) => ({ topic: t, answered: 0, accuracy: 0 }))]
+  }, [log, all, manifest])
   const q = round[index]
 
   const dueCount = useMemo(() => (log ? dueGrammar(pool.filter((e) => !topic || e.topic === topic), log, new Date()).length : 0), [log, pool, topic])
@@ -111,8 +178,13 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
   const categoryIds = grammarCatalog(language).find((c) => c.id === category)?.topics.map((t) => t.id)
   const hasQuestions = all.some((e) => (!topic || e.topic === topic) && (!categoryIds || categoryIds.includes(e.topic)))
   const controls = <>
+    {topic && topicState !== 'idle' && (
+      <p className="small muted grammar-topic-count" role="status">
+        {topicState === 'loading' ? 'Bu konunun soruları getiriliyor…' : 'Bu konunun yeni soruları için internet gerekiyor; şimdilik elindeki sorularla çalışabilirsin.'}
+      </p>
+    )}
     {size > 0 ? <div className="row">
-      <button className={`btn${dueCount ? ' btn-quiet' : ''}`} onClick={() => start()} disabled={!log}>{size} soruluk tura başla</button>
+      <button className={`btn${dueCount ? ' btn-quiet' : ''}`} onClick={() => start()} disabled={!log || topicState === 'loading'}>{size} soruluk tura başla</button>
       {dueCount > 0 && <button className="btn" onClick={() => start(true)}>Tekrar zamanı gelen {Math.min(dueCount, GRAMMAR_ROUND)} soru{dueCount > GRAMMAR_ROUND ? ` (${dueCount} bekliyor)` : ''}</button>}
     </div> : <p className="note small" role="status">{hasQuestions ? 'Bu seçim için seçtiğin seviyede henüz soru yok. Başka bir seviye seçebilirsin.' : 'Alıştırmalar henüz eklenmedi. Bu başlık hazır; sorular eklendiğinde buradan çalışabileceksin.'}</p>}
     {dueCount > 0 && <p className="small muted">Yanlış yaptıkların ertesi gün, doğru yaptıkların giderek artan aralıklarla yeniden gelir.</p>}

@@ -1,0 +1,22 @@
+{
+  "id": "fr-grammar-0001",
+  "language": "fr",
+  "kind": "grammar",
+  "level": "A2",
+  "grammar": [
+    "passe_imparfait"
+  ],
+  "count": 20,
+  "subskills": [
+    "betimleme",
+    "alışkanlık",
+    "araya giren olay",
+    "zaman sözcüğü ipucu",
+    "anlamı değişen fiiller"
+  ],
+  "ids": {
+    "from": 1,
+    "to": 20
+  },
+  "createdAt": "2026-11-04T22:12:20.310Z"
+}

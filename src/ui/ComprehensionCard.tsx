@@ -20,15 +20,24 @@ const MIN_WORDS = 40
  * checked here (the one request only writes the questions), each with the reason and where the text
  * says it. Needs the AI key; nothing is kept.
  */
-export function ComprehensionCard({ text, language }: { text: string; language: TargetLanguage }) {
+export function ComprehensionCard({ text, language, ready }: { text: string; language: TargetLanguage; ready?: QuizQuestion[] }) {
   const { apiKey } = useAi()
   const [questions, setQuestions] = useState<QuizQuestion[] | null>(null)
   const [picked, setPicked] = useState<(number | null)[]>([])
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
-  if (!apiKey || text.split(/\s+/).length < MIN_WORDS) return null
+  // A text that came with its questions asks them without the AI (and however short it is).
+  const own = !!ready?.length
+  if (!own && (!apiKey || text.split(/\s+/).length < MIN_WORDS)) return null
 
   const ask = async () => {
+    if (ready?.length) {
+      const rng = createRng(Date.now())
+      setQuestions(ready.map((q) => shown(q, rng)))
+      setPicked(ready.map(() => null))
+      return
+    }
+    if (!apiKey) return
     setBusy(true)
     setError('')
     try {
@@ -48,7 +57,7 @@ export function ComprehensionCard({ text, language }: { text: string; language: 
     return (
       <div className="row">
         <button type="button" className="btn btn-sm btn-quiet" onClick={() => void ask()} disabled={busy}>
-          {busy ? 'Hazırlanıyor…' : <><HelpIcon size={16} className="inline-icon" />Okuduğunu sına (3 soru)</>}
+          {busy ? 'Hazırlanıyor…' : <><HelpIcon size={16} className="inline-icon" />Okuduğunu sına ({own ? ready!.length : 3} soru)</>}
         </button>
         <span className="small muted">Kelimeleri değil, metnin ne anlattığını sorar.</span>
         {error && <span className="error small" role="alert">{error}</span>}

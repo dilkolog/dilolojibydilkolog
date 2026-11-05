@@ -1,0 +1,17 @@
+{
+  "id": "es-reading-0002",
+  "language": "es",
+  "kind": "reading",
+  "level": "A2",
+  "theme": "arkadaslik",
+  "genre": "email",
+  "grammar": [
+    "basics_es_preterito"
+  ],
+  "count": 2,
+  "ids": {
+    "from": 4,
+    "to": 5
+  },
+  "createdAt": "2026-11-04T22:12:19.801Z"
+}

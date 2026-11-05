@@ -1,0 +1,17 @@
+{
+  "id": "es-reading-0001",
+  "language": "es",
+  "kind": "reading",
+  "level": "A1",
+  "theme": "aile",
+  "genre": "dialogue",
+  "grammar": [
+    "basics_es_presente"
+  ],
+  "count": 3,
+  "ids": {
+    "from": 1,
+    "to": 3
+  },
+  "createdAt": "2026-11-04T22:12:19.250Z"
+}

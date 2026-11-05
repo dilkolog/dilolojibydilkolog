@@ -1,0 +1,34 @@
+{
+  "job": "es-reading-0001",
+  "language": "es",
+  "kind": "reading",
+  "total": 3,
+  "accepted": [
+    "es-r-000001",
+    "es-r-000002",
+    "es-r-000003"
+  ],
+  "rejected": [],
+  "warnings": [
+    {
+      "id": "es-r-000001",
+      "reasons": [
+        "above A1 or unlisted: julia, doce, julio",
+        "in no list (typo?): doce"
+      ]
+    },
+    {
+      "id": "es-r-000002",
+      "reasons": [
+        "above A1 or unlisted: diciembre"
+      ]
+    },
+    {
+      "id": "es-r-000003",
+      "reasons": [
+        "above A1 or unlisted: favor"
+      ]
+    }
+  ],
+  "rate": 1
+}

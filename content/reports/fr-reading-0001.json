@@ -1,0 +1,21 @@
+{
+  "job": "fr-reading-0001",
+  "language": "fr",
+  "kind": "reading",
+  "total": 3,
+  "accepted": [
+    "fr-r-000001",
+    "fr-r-000002",
+    "fr-r-000003"
+  ],
+  "rejected": [],
+  "warnings": [
+    {
+      "id": "fr-r-000002",
+      "reasons": [
+        "above A1 or unlisted: rose"
+      ]
+    }
+  ],
+  "rate": 1
+}

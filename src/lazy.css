@@ -4239,6 +4239,8 @@ html:has(.lp) { scroll-behavior: smooth; }
 .tg-deep-item .tg-examples { margin-top: 0.5rem; }
 /* Change the tense: the kinds of move wrap on phones rather than squeeze; the target sentence's gap. */
 .lab-transform-kinds { flex-wrap: wrap; }
+/* Touch targets stay at least 24 px tall however the row wraps (axe target-size). */
+.lab-transform-kinds .seg-btn { min-height: 2rem; }
 @media (max-width: 30rem) {
   .lab-transform-kinds.seg-group { flex-wrap: wrap; }
   .lab-transform-kinds .seg-btn { flex: 1 1 auto; }
