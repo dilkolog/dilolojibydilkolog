@@ -11,6 +11,8 @@ import sceneCardbox from '../assets/art/scene-cardbox.webp'
 import sceneClean from '../assets/art/scene-clean.webp'
 import sceneLabels from '../assets/art/scene-labels.webp'
 import sceneTogether from '../assets/art/scene-together.webp'
+import sceneJournal from '../assets/art/scene-journal.webp'
+import sceneLibrary from '../assets/art/scene-library.webp'
 
 export type ArtKind = 'garden' | 'library' | 'journal' | 'sentences' | 'clear' | 'search'
 
@@ -19,7 +21,7 @@ export type ArtKind = 'garden' | 'library' | 'journal' | 'sentences' | 'clear' |
  * that lost its plug, a calendar asleep; and Monki's scenes: a board swept clean (no mistakes left),
  * an empty card box (no sentences), tags pinned on a picture (labelling), two Monkis over one notebook.
  */
-export type PictureKind = 'shelf' | 'nothing-found' | 'offline' | 'rest' | 'clean' | 'cardbox' | 'labels' | 'together' | 'garden'
+export type PictureKind = 'shelf' | 'nothing-found' | 'offline' | 'rest' | 'clean' | 'cardbox' | 'labels' | 'together' | 'garden' | 'journal' | 'library'
 const PICTURE: Record<PictureKind, string> = {
   shelf: emptyShelf,
   'nothing-found': emptySearch,
@@ -30,6 +32,8 @@ const PICTURE: Record<PictureKind, string> = {
   labels: sceneLabels,
   together: sceneTogether,
   garden: emptyGarden,
+  journal: sceneJournal,
+  library: sceneLibrary,
 }
 
 export function EmptyPicture({ kind }: { kind: PictureKind }) {
