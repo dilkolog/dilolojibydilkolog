@@ -117,7 +117,7 @@ Bu dosyayı `npm run content -- coverage` yazar; elle düzenlenmez. Yalnız dene
 | A1 | Hay mı, está mı? (`basics_es_hay_estar`) | 0 | 0 | 300 | 0 % |
 | A1 | Dönüşlü fiiller (`basics_es_reflexivos`) | 0 | 0 | 300 | 0 % |
 | A2 | Sıfatlar: uyum ve yer (`basics_es_adjetivos`) | 50 | 0 | 300 | 17 % |
-| A2 | Pretérito indefinido (`basics_es_preterito`) | 0 | 0 | 300 | 0 % |
+| A2 | Pretérito indefinido (`basics_es_preterito`) | 50 | 0 | 300 | 17 % |
 | A2 | Ser ve estar (`ser_estar`) | 20 | 0 | 300 | 7 % |
 | A2 | Pretérito ve imperfecto (`preterito_imperfecto`) | 0 | 0 | 300 | 0 % |
 | A2 | Karşılaştırma ve üstünlük (`comparativos_es`) | 0 | 0 | 300 | 0 % |
