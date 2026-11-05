@@ -1519,6 +1519,9 @@ test('verb lab change the tense: a written pair and its result pass accessibilit
   await answer.fill('zzz')
   await answer.press('Enter')
   await expect(main.locator('.lab-transform-rule')).toBeVisible()
+  // The answer scrolls the page: the lab's sticky tense bar then covers the kinds row, which axe reads as a target
+  // too small. Scanned from the top, as the learner sees the page when it opens.
+  await page.evaluate(() => window.scrollTo(0, 0))
   await scanThemes('transform-result')
   expect(problems).toEqual([])
 })

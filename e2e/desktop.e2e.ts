@@ -2677,7 +2677,9 @@ test('the guide: a lesson leads to its own grammar questions, the links open out
   await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
   await page.getByRole('button', { name: /Bu konuda \d+ soru çöz/ }).click()
-  await expect(page.getByRole('button', { name: 'Subjonctif', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  // The topic is chosen in the grammar catalog: its row is pressed and the selection names it.
+  await expect(page.locator('.grammar-topic[aria-pressed="true"]')).toContainText('Subjonctif: karma alıştırmalar')
+  await expect(page.locator('.grammar-selection-copy h2')).toHaveText('Subjonctif: karma alıştırmalar')
   await openScreen(page, 'Rehber')
   await page.getByRole('tab', { name: 'Dış kaynaklar' }).click()
   const link = page.locator('a.guide-link').first()
