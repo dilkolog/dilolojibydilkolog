@@ -1,0 +1,257 @@
+{
+ "job": "es-grammar-0005",
+ "results": [
+  {
+   "id": "es-g-000171",
+   "answer": "se vende",
+   "single": true
+  },
+  {
+   "id": "es-g-000172",
+   "answer": "se vendieron",
+   "single": true
+  },
+  {
+   "id": "es-g-000173",
+   "answer": "se envían",
+   "single": true
+  },
+  {
+   "id": "es-g-000174",
+   "answer": "se trabaja",
+   "single": true
+  },
+  {
+   "id": "es-g-000175",
+   "answer": "se cortan",
+   "single": true
+  },
+  {
+   "id": "es-g-000176",
+   "answer": "organizan",
+   "single": true
+  },
+  {
+   "id": "es-g-000177",
+   "answer": "leen",
+   "single": true
+  },
+  {
+   "id": "es-g-000178",
+   "answer": "ve",
+   "single": true
+  },
+  {
+   "id": "es-g-000179",
+   "answer": "abrieron",
+   "single": true
+  },
+  {
+   "id": "es-g-000180",
+   "answer": "celebra",
+   "single": true
+  },
+  {
+   "id": "es-g-000181",
+   "answer": "se dice",
+   "single": true
+  },
+  {
+   "id": "es-g-000182",
+   "answer": "se compran",
+   "single": true
+  },
+  {
+   "id": "es-g-000183",
+   "answer": "se admiten",
+   "single": true
+  },
+  {
+   "id": "es-g-000184",
+   "answer": "Se puede",
+   "single": true
+  },
+  {
+   "id": "es-g-000185",
+   "answer": "se abren",
+   "single": true
+  },
+  {
+   "id": "es-g-000186",
+   "answer": "hacen",
+   "single": true
+  },
+  {
+   "id": "es-g-000187",
+   "answer": "cena",
+   "single": true
+  },
+  {
+   "id": "es-g-000188",
+   "answer": "necesitan",
+   "single": true
+  },
+  {
+   "id": "es-g-000189",
+   "answer": "fabrican",
+   "single": true
+  },
+  {
+   "id": "es-g-000190",
+   "answer": "pueden",
+   "single": true
+  },
+  {
+   "id": "es-g-000191",
+   "answer": "fue construido",
+   "single": false,
+   "note": "'se construyó por los romanos' (pasiva refleja con complemento agente) es poco recomendada pero la NGLE la registra como posible en registro formal/administrativo; dos opciones defendibles."
+  },
+  {
+   "id": "es-g-000192",
+   "answer": "se dice",
+   "single": true
+  },
+  {
+   "id": "es-g-000193",
+   "answer": "se contrató",
+   "single": true
+  },
+  {
+   "id": "es-g-000194",
+   "answer": "será inaugurado",
+   "single": false,
+   "note": "'se inaugurará por la alcaldesa' (pasiva refleja con agente) es desaconsejada pero aparece en lengua periodística/administrativa; 'será inaugurado' es la claramente correcta."
+  },
+  {
+   "id": "es-g-000195",
+   "answer": "se premia",
+   "single": true
+  },
+  {
+   "id": "es-g-000196",
+   "answer": "pintadas",
+   "single": true
+  },
+  {
+   "id": "es-g-000197",
+   "answer": "oyen",
+   "single": true
+  },
+  {
+   "id": "es-g-000198",
+   "answer": "ofrecen",
+   "single": true
+  },
+  {
+   "id": "es-g-000199",
+   "answer": "pintado",
+   "single": true
+  },
+  {
+   "id": "es-g-000200",
+   "answer": "creían",
+   "single": true
+  },
+  {
+   "id": "es-g-000201",
+   "answer": "se venden",
+   "single": true
+  },
+  {
+   "id": "es-g-000202",
+   "answer": "se llamó",
+   "single": true
+  },
+  {
+   "id": "es-g-000203",
+   "answer": "se atiende",
+   "single": true
+  },
+  {
+   "id": "es-g-000204",
+   "answer": "se apagan",
+   "single": true
+  },
+  {
+   "id": "es-g-000205",
+   "answer": "se toman",
+   "single": true
+  },
+  {
+   "id": "es-g-000206",
+   "answer": "preguntó",
+   "single": true
+  },
+  {
+   "id": "es-g-000207",
+   "answer": "ven",
+   "single": true
+  },
+  {
+   "id": "es-g-000208",
+   "answer": "piden",
+   "single": true
+  },
+  {
+   "id": "es-g-000209",
+   "answer": "enseña",
+   "single": true
+  },
+  {
+   "id": "es-g-000210",
+   "answer": "eligieron",
+   "single": true
+  },
+  {
+   "id": "es-g-000211",
+   "answer": "uno",
+   "single": true
+  },
+  {
+   "id": "es-g-000212",
+   "answer": "se es",
+   "single": true
+  },
+  {
+   "id": "es-g-000213",
+   "answer": "se habló",
+   "single": true
+  },
+  {
+   "id": "es-g-000214",
+   "answer": "se busca",
+   "single": true
+  },
+  {
+   "id": "es-g-000215",
+   "answer": "se confía",
+   "single": true
+  },
+  {
+   "id": "es-g-000216",
+   "answer": "conduce",
+   "single": true
+  },
+  {
+   "id": "es-g-000217",
+   "answer": "debe",
+   "single": true
+  },
+  {
+   "id": "es-g-000218",
+   "answer": "distinguen",
+   "single": true
+  },
+  {
+   "id": "es-g-000219",
+   "answer": "juegan",
+   "single": true
+  },
+  {
+   "id": "es-g-000220",
+   "answer": "comen",
+   "single": true
+  }
+ ]
+}
