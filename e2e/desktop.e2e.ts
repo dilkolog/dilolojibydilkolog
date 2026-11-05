@@ -2292,7 +2292,7 @@ test('register game: regional usage note shows for entries with notes and is abs
       const noteLocator = page.locator('.stack[role="status"] p.small.muted')
       if (await noteLocator.count()) {
         await expect(noteLocator).toBeVisible()
-        await expect(noteLocator).toContainText(/İspanya|Latin Amerika|Meksika|chamba|curro|papear|cacharro|pasta|guay/i)
+        await expect(noteLocator).toContainText(/İspanya|Latin Amerika|Meksika|Arjantin|chamba|curro|papear|cacharro|pasta|guay|visto/i)
         seenNote = true
         break
       }

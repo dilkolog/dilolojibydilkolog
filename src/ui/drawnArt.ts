@@ -226,6 +226,7 @@ import statStar from '../assets/art/stat-star.webp'
 import statBook from '../assets/art/stat-book.webp'
 import statCheck from '../assets/art/stat-check.webp'
 import monkiSlipsCleared from '../assets/art/monki-slips-cleared.webp'
+import monkiReviewEmpty from '../assets/art/monki-review-empty.webp'
 import monkiScanner from '../assets/art/monki-scanner.webp'
 import monkiVideoListen from '../assets/art/monki-video-listen.webp'
 import catEssay from '../assets/art/cat-essay.webp'
@@ -494,5 +495,6 @@ export const ADVANCED_CATEGORY_ART = {
 export const MASCOT_ART = {
   scanner: monkiScanner,
   slipsCleared: monkiSlipsCleared,
+  reviewEmpty: monkiReviewEmpty,
   videoListen: monkiVideoListen,
 }

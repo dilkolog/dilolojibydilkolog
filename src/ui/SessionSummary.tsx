@@ -10,7 +10,8 @@ import type { SessionSummary } from '../engine/session'
 import { type VocabularyEntry } from '../engine/types'
 import { MASTERY_STAGES } from '../engine/mastery'
 
-import { BoltIcon, BulbIcon, CheckIcon, CloseIcon } from './icons'
+import { BoltIcon, BulbIcon, CheckIcon, CloseIcon, ShareIcon } from './icons'
+import { shareCard } from './shareCard'
 import { ERROR_NAME, STAGE_NAME } from './labels'
 import { GrowingPlant, Plant } from './Plant'
 
@@ -176,7 +177,30 @@ export function Summary({
               <dd>
                 <StreakPicture streak={after.streak} size={40} ignite={!!before && after.streak > before.streak} /> {after.streak}
               </dd>
-              <dt>günlük seri</dt>
+              <dt>
+                günlük seri
+                {after.streak >= 3 && (
+                  <button
+                    type="button"
+                    className="streak-share-btn"
+                    onClick={() => {
+                      void shareCard(
+                        {
+                          kicker: 'Seri alevi',
+                          title: `${after.streak} günlük seri!`,
+                          text: 'Diloloji ile her gün düzenli pratik yapıyorum.',
+                          art: 'streak',
+                        },
+                        `Diloloji'de ${after.streak} günlük seriye ulaştım!`,
+                      )
+                    }}
+                    title="Serini paylaş"
+                    aria-label="Serini paylaş"
+                  >
+                    <ShareIcon size={13} />
+                  </button>
+                )}
+              </dt>
             </div>
             <div>
               <dd>
@@ -208,6 +232,24 @@ export function Summary({
                     {after.level.level}. seviye: {after.level.title}
                   </span>
                 </span>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-quiet reward-share-btn"
+                  onClick={() => {
+                    void shareCard(
+                      {
+                        kicker: 'Yeni seviye',
+                        title: `${after.level.level}. Seviye: ${after.level.title}`,
+                        text: 'Diloloji ile her gün öğrenmeye devam ediyorum.',
+                        art: 'level',
+                      },
+                      `Diloloji'de ${after.level.level}. seviyeye ulaştım (${after.level.title})!`,
+                    )
+                  }}
+                  aria-label="Seviyeni paylaş"
+                >
+                  <ShareIcon size={14} /> Paylaş
+                </button>
               </li>
             )}
             {newBadges.map((a) => (

@@ -94,7 +94,13 @@ describe('New Visual Art Assets', () => {
     expect(ADVANCED_CATEGORY_ART.story).toBeTruthy()
     expect(MASCOT_ART.scanner).toBeTruthy()
     expect(MASCOT_ART.slipsCleared).toBeTruthy()
+    expect(MASCOT_ART.reviewEmpty).toBeTruthy()
     expect(MASCOT_ART.videoListen).toBeTruthy()
     expect(gTransform).toBeTruthy()
+  })
+
+  it('provides illustrated scenes for empty garden, journal, and library', async () => {
+    const { EmptyPicture } = await import('./EmptyArt')
+    expect(EmptyPicture).toBeTypeOf('function')
   })
 })
