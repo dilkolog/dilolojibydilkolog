@@ -1,0 +1,24 @@
+{
+  "id": "es-grammar-0008",
+  "language": "es",
+  "kind": "grammar",
+  "level": "B1",
+  "grammar": [
+    "por_para"
+  ],
+  "count": 50,
+  "subskills": [
+    "amaç",
+    "neden",
+    "süre ve zaman",
+    "yer ve geçiş",
+    "kalıplar"
+  ],
+  "ids": {
+    "from": 321,
+    "to": 370
+  },
+  "createdAt": "2026-11-05T20:41:03.576Z",
+  "claimedBy": "antigravity",
+  "claimedAt": "2026-11-05T20:42:00.000Z"
+}

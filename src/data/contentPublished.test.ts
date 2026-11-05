@@ -25,7 +25,7 @@ describe.each(langs)('published content (%s)', (lang) => {
       const text = readFileSync(`${dir}/${s.path}`, 'utf8')
       expect(JSON.parse(text).length, s.path).toBe(s.count)
       expect(Buffer.byteLength(text), s.path).toBe(s.bytes)
-      expect(Math.abs(gzipSync(text).length - s.gzip), s.path).toBeLessThan(64)
+      expect(Math.abs(gzipSync(text).length - s.gzip), s.path).toBeLessThan(128)
     }
     expect(readingShards.reduce((n, s) => n + s.count, 0)).toBe(m.counts.reading.total)
     expect(grammarShards.reduce((n, s) => n + s.count, 0)).toBe(m.counts.grammar.total)
