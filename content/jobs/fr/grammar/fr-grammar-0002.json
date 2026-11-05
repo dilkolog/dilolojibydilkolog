@@ -1,0 +1,24 @@
+{
+  "id": "fr-grammar-0002",
+  "language": "fr",
+  "kind": "grammar",
+  "level": "A1",
+  "grammar": [
+    "basics_fr_present"
+  ],
+  "count": 50,
+  "subskills": [
+    "düzenli -er",
+    "düzensiz sık fiiller",
+    "olumsuz",
+    "soru",
+    "dönüşlü"
+  ],
+  "ids": {
+    "from": 21,
+    "to": 70
+  },
+  "createdAt": "2026-11-05T21:36:17.187Z",
+  "claimedBy": "antigravity",
+  "claimedAt": "2026-11-05T21:36:21.835Z"
+}
