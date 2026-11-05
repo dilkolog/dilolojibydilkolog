@@ -1,0 +1,24 @@
+{
+  "id": "es-grammar-0004",
+  "language": "es",
+  "kind": "grammar",
+  "level": "B2",
+  "grammar": [
+    "basics_es_lo_neutro"
+  ],
+  "count": 20,
+  "subskills": [
+    "temel kullanım",
+    "olumsuz ve soru",
+    "bağlamda seçim",
+    "sık hata (Türkçe konuşan için)",
+    "istisna ve düzensiz biçim"
+  ],
+  "ids": {
+    "from": 61,
+    "to": 80
+  },
+  "createdAt": "2026-11-05T10:46:41.406Z",
+  "claimedBy": "codex/content-es-grammar-2026-11-05",
+  "claimedAt": "2026-11-05T10:47:21.917Z"
+}
