@@ -126,7 +126,7 @@ Bu dosyayı `npm run content -- coverage` yazar; elle düzenlenmez. Yalnız dene
 | A2 | Gelecek: ir a, futuro simple ve tahmin (`basics_es_futuro`) | 0 | 0 | 300 | 0 % |
 | A2 | Süre: hace, desde, desde hace, llevar (`basics_es_hace_desde`) | 0 | 0 | 300 | 0 % |
 | B1 | Subjuntivo (`subjuntivo`) | 50 | 0 | 300 | 17 % |
-| B1 | Por ve para (`por_para`) | 0 | 0 | 300 | 0 % |
+| B1 | Por ve para (`por_para`) | 50 | 0 | 300 | 17 % |
 | B1 | Şart cümleleri (si) (`condicionales`) | 0 | 0 | 300 | 0 % |
 | B1 | Perífrasis verbales (`perifrasis`) | 0 | 0 | 300 | 0 % |
 | B1 | Zamirler: lo / la / le / se lo (`pronombres_atonos`) | 0 | 0 | 300 | 0 % |
