@@ -20,7 +20,7 @@ Bu dosyayı `npm run content -- coverage` yazar; elle düzenlenmez. Yalnız dene
 |---|---|---|---|---|---|
 | A1 | Artikeller ve cinsiyet (le / la / un / une) (`basics_fr_articles`) | 0 | 0 | 300 | 0 % |
 | A1 | Être ve avoir (`basics_fr_etre_avoir`) | 0 | 0 | 300 | 0 % |
-| A1 | Şimdiki zaman (présent) (`basics_fr_present`) | 0 | 0 | 300 | 0 % |
+| A1 | Şimdiki zaman (présent) (`basics_fr_present`) | 50 | 0 | 300 | 17 % |
 | A1 | Olumsuz cümle (ne … pas) (`basics_fr_negation`) | 0 | 0 | 300 | 0 % |
 | A1 | Kişi zamirleri ve vurgulu zamirler (`basics_fr_pronoms`) | 0 | 0 | 300 | 0 % |
 | A1 | İyelik ve işaret sıfatları (`basics_fr_possessifs`) | 0 | 0 | 300 | 0 % |
