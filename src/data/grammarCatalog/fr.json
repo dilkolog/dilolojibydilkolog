@@ -1,0 +1,1260 @@
+[
+  {
+    "id": "nouns",
+    "title": "İsimler ve artikeller",
+    "description": "Cinsiyet, çoğul, tanımlıklar ve isim grubunun temelleri.",
+    "topics": [
+      {
+        "id": "basics_fr_articles",
+        "level": "A1",
+        "title": "Artikeller ve cinsiyet",
+        "description": "le, la, l’, les · un, une, des"
+      },
+      {
+        "id": "catalog_fr_noun_gender",
+        "level": "A1",
+        "title": "İsimlerde eril ve dişil",
+        "description": "İnsanlar, hayvanlar, nesneler ve cinsiyet ipuçları"
+      },
+      {
+        "id": "catalog_fr_noun_plural",
+        "level": "A1",
+        "title": "İsimlerde düzenli çoğul",
+        "description": "Tekil ve çoğul biçimler"
+      },
+      {
+        "id": "catalog_fr_noun_plural_irregular",
+        "level": "A2",
+        "title": "İsimlerde düzensiz çoğul",
+        "description": "-al, -ail, -eau, -eu ve istisnalar"
+      },
+      {
+        "id": "catalog_fr_definite_articles",
+        "level": "A1",
+        "title": "Belirli artikeller",
+        "description": "le, la, l’, les"
+      },
+      {
+        "id": "catalog_fr_indefinite_articles",
+        "level": "A1",
+        "title": "Belirsiz artikeller",
+        "description": "un, une, des"
+      },
+      {
+        "id": "articles_quantite",
+        "level": "A2",
+        "title": "Partitif ve miktar ifadeleri",
+        "description": "du, de la, de l’, des · beaucoup de"
+      },
+      {
+        "id": "catalog_fr_article_contractions",
+        "level": "A1",
+        "title": "Artikel birleşmeleri",
+        "description": "au, aux, du, des"
+      },
+      {
+        "id": "catalog_fr_article_omission",
+        "level": "B1",
+        "title": "Artikelin kullanılmadığı durumlar",
+        "description": "Meslekler, başlıklar, avec ve sans"
+      },
+      {
+        "id": "catalog_fr_articles_negation",
+        "level": "A2",
+        "title": "Olumsuzlukta de ve d’",
+        "description": "pas de, plus de; être istisnası"
+      },
+      {
+        "id": "catalog_fr_proper_nouns",
+        "level": "B1",
+        "title": "Özel isimler ve coğrafi adlar",
+        "description": "Ülkeler, şehirler, diller ve artikeller"
+      },
+      {
+        "id": "catalog_fr_compound_nouns",
+        "level": "B2",
+        "title": "Birleşik isimlerin çoğulu",
+        "description": "des arcs-en-ciel, des chefs-d’œuvre"
+      },
+      {
+        "id": "catalog_fr_noun_meaning_gender",
+        "level": "B2",
+        "title": "Cinsiyetle anlamı değişen isimler",
+        "description": "un livre / une livre; le mode / la mode"
+      },
+      {
+        "id": "catalog_fr_epicene_nouns",
+        "level": "C1",
+        "title": "Ortak cinsiyetli ve meslek isimleri",
+        "description": "Épicènes, meslek adlarının dişilleştirilmesi"
+      }
+    ]
+  },
+  {
+    "id": "determiners",
+    "title": "Belirleyiciler ve miktar",
+    "description": "İyelik, işaret, belirsizlik ve nicelik.",
+    "topics": [
+      {
+        "id": "basics_fr_possessifs",
+        "level": "A1",
+        "title": "İyelik ve işaret sıfatları",
+        "description": "mon, ton, son · ce, cet, cette, ces"
+      },
+      {
+        "id": "catalog_fr_possessive_determiners",
+        "level": "A1",
+        "title": "İyelik belirleyicileri",
+        "description": "mon amie, leur maison, leurs enfants"
+      },
+      {
+        "id": "catalog_fr_demonstrative_determiners",
+        "level": "A1",
+        "title": "İşaret belirleyicileri",
+        "description": "ce, cet, cette, ces; -ci ve -là"
+      },
+      {
+        "id": "catalog_fr_indefinite_determiners",
+        "level": "A2",
+        "title": "Belirsiz belirleyiciler",
+        "description": "chaque, quelques, plusieurs, aucun"
+      },
+      {
+        "id": "catalog_fr_quantifiers",
+        "level": "A2",
+        "title": "Miktar belirten yapılar",
+        "description": "assez de, trop de, peu de, la plupart de"
+      },
+      {
+        "id": "catalog_fr_quel",
+        "level": "A1",
+        "title": "Quel ve biçimleri",
+        "description": "quel, quelle, quels, quelles"
+      },
+      {
+        "id": "catalog_fr_tout",
+        "level": "B1",
+        "title": "Tout, tous, toute, toutes",
+        "description": "Belirleyici, zamir ve zarf görevleri"
+      },
+      {
+        "id": "catalog_fr_chaque_chacun",
+        "level": "B1",
+        "title": "Chaque ile chacun farkı",
+        "description": "Her biri, her ve uyum"
+      },
+      {
+        "id": "catalog_fr_autre_meme_tel",
+        "level": "B2",
+        "title": "Autre, même ve tel",
+        "description": "Yer, anlam ve uyum"
+      },
+      {
+        "id": "catalog_fr_nimporte_quel",
+        "level": "B2",
+        "title": "N’importe quel ve herhangi biri",
+        "description": "Herhangi bir seçim ve belirsizlik"
+      }
+    ]
+  },
+  {
+    "id": "adjectives",
+    "title": "Sıfatlar ve karşılaştırma",
+    "description": "Sıfat uyumu, sıralama ve anlam farkları.",
+    "topics": [
+      {
+        "id": "basics_fr_adjectifs",
+        "level": "A1",
+        "title": "Sıfatlar: uyum ve yer",
+        "description": "Eril-dişil, tekil-çoğul; isimden önce ve sonra"
+      },
+      {
+        "id": "catalog_fr_adjective_feminine",
+        "level": "A1",
+        "title": "Sıfatların dişil biçimleri",
+        "description": "Düzenli ve düzensiz değişimler"
+      },
+      {
+        "id": "catalog_fr_adjective_plural",
+        "level": "A1",
+        "title": "Sıfatların çoğulu",
+        "description": "Genel kurallar ve istisnalar"
+      },
+      {
+        "id": "catalog_fr_adjective_position",
+        "level": "A2",
+        "title": "Sıfatın yeri ve anlam değişimi",
+        "description": "un ancien professeur / un professeur ancien"
+      },
+      {
+        "id": "catalog_fr_adjective_special",
+        "level": "A2",
+        "title": "Bel, nouvel, vieil gibi özel biçimler",
+        "description": "Ünlü önünde değişen sıfatlar"
+      },
+      {
+        "id": "catalog_fr_colour_adjectives",
+        "level": "B1",
+        "title": "Renk sıfatlarının uyumu",
+        "description": "orange, marron ve birleşik renkler"
+      },
+      {
+        "id": "basics_fr_comparaison",
+        "level": "A2",
+        "title": "Karşılaştırma ve en üstünlük",
+        "description": "plus, moins, aussi · le plus"
+      },
+      {
+        "id": "catalog_fr_irregular_comparison",
+        "level": "A2",
+        "title": "Meilleur, mieux ve pire",
+        "description": "bon / bien karşılaştırması"
+      },
+      {
+        "id": "catalog_fr_adjective_complements",
+        "level": "B1",
+        "title": "Sıfatların aldığı edatlar",
+        "description": "content de, prêt à, facile à"
+      },
+      {
+        "id": "catalog_fr_adjectival_participles",
+        "level": "B2",
+        "title": "Sıfatlaşmış ortaçlar",
+        "description": "fatigant / fatiguant; convaincant / convainquant"
+      },
+      {
+        "id": "catalog_fr_adjective_agreement_complex",
+        "level": "C1",
+        "title": "Karmaşık sıfat uyumları",
+        "description": "demi, nu, feu, possible; birden çok isim"
+      }
+    ]
+  },
+  {
+    "id": "pronouns",
+    "title": "Zamirler",
+    "description": "Kişi, nesne, iyelik ve işaret zamirleri; zamir sırası.",
+    "topics": [
+      {
+        "id": "basics_fr_pronoms",
+        "level": "A1",
+        "title": "Kişi zamirleri ve vurgulu zamirler",
+        "description": "je, tu, il, on · moi, toi, lui"
+      },
+      {
+        "id": "catalog_fr_subject_on",
+        "level": "A2",
+        "title": "On zamiri ve anlamları",
+        "description": "Genel özne, nous yerine kullanım ve uyum"
+      },
+      {
+        "id": "catalog_fr_direct_pronouns",
+        "level": "A2",
+        "title": "Doğrudan nesne zamirleri (COD)",
+        "description": "me, te, le, la, nous, vous, les"
+      },
+      {
+        "id": "catalog_fr_indirect_pronouns",
+        "level": "A2",
+        "title": "Dolaylı nesne zamirleri (COI)",
+        "description": "lui, leur; à + kişi"
+      },
+      {
+        "id": "pronoms_y_en",
+        "level": "B1",
+        "title": "Zamirler: le / lui / y / en",
+        "description": "Nesne, yer ve miktar zamirleri"
+      },
+      {
+        "id": "catalog_fr_y_pronoun",
+        "level": "A2",
+        "title": "Y zamiri",
+        "description": "à + nesne ve yer ifadeleri"
+      },
+      {
+        "id": "catalog_fr_en_pronoun",
+        "level": "A2",
+        "title": "En zamiri",
+        "description": "de + nesne, miktar ve belirsiz nesne"
+      },
+      {
+        "id": "basics_fr_ordre_pronoms",
+        "level": "B1",
+        "title": "İki zamir bir arada",
+        "description": "me le, le lui, y en; olumlu ve olumsuz emir"
+      },
+      {
+        "id": "catalog_fr_possessive_pronouns",
+        "level": "A2",
+        "title": "İyelik zamirleri",
+        "description": "le mien, la tienne, les leurs"
+      },
+      {
+        "id": "basics_fr_demonstratifs",
+        "level": "B2",
+        "title": "İşaret zamirleri",
+        "description": "celui, celle-ci, ceci, cela, ça"
+      },
+      {
+        "id": "catalog_fr_indefinite_pronouns",
+        "level": "B1",
+        "title": "Belirsiz zamirler",
+        "description": "quelqu’un, quelque chose, chacun, personne"
+      },
+      {
+        "id": "catalog_fr_reciprocal_pronouns",
+        "level": "B1",
+        "title": "Karşılıklılık zamirleri",
+        "description": "l’un l’autre, les uns les autres"
+      },
+      {
+        "id": "catalog_fr_pronoun_reference",
+        "level": "C1",
+        "title": "Zamirlerde gönderim ve belirsizlik",
+        "description": "Öncül, cinsiyet ve metinde iz sürme"
+      }
+    ]
+  },
+  {
+    "id": "verb-basics",
+    "title": "Fiillerin temelleri",
+    "description": "Çekim grupları, yardımcı fiiller, dönüşlülük ve fiil kalıpları.",
+    "topics": [
+      {
+        "id": "basics_fr_etre_avoir",
+        "level": "A1",
+        "title": "Être ve avoir",
+        "description": "Temel kullanımlar ve yardımcı fiiller"
+      },
+      {
+        "id": "catalog_fr_verb_groups",
+        "level": "A1",
+        "title": "Fiil grupları ve çekim kökleri",
+        "description": "-er, -ir, üçüncü grup ve kişi ekleri"
+      },
+      {
+        "id": "catalog_fr_spelling_stem_changes",
+        "level": "A2",
+        "title": "Çekimde yazım ve kök değişimleri",
+        "description": "-ger, -cer, -yer, -eler, -eter"
+      },
+      {
+        "id": "catalog_fr_irregular_verbs",
+        "level": "A2",
+        "title": "Sık kullanılan düzensiz fiiller",
+        "description": "aller, faire, venir, prendre, pouvoir"
+      },
+      {
+        "id": "basics_fr_pronominaux",
+        "level": "A2",
+        "title": "Dönüşlü fiiller",
+        "description": "se lever; se + fiil ve kişi uyumu"
+      },
+      {
+        "id": "catalog_fr_reciprocal_verbs",
+        "level": "B1",
+        "title": "Karşılıklı eylemler",
+        "description": "se rencontrer, se parler"
+      },
+      {
+        "id": "catalog_fr_essential_pronominal",
+        "level": "B2",
+        "title": "Zorunlu dönüşlü fiiller",
+        "description": "s’enfuir, se souvenir, s’apercevoir"
+      },
+      {
+        "id": "catalog_fr_modal_verbs",
+        "level": "A2",
+        "title": "Pouvoir, devoir ve vouloir",
+        "description": "Yetenek, izin, zorunluluk ve istek"
+      },
+      {
+        "id": "catalog_fr_impersonal_verbs",
+        "level": "B1",
+        "title": "Kişisiz fiiller",
+        "description": "il faut, il s’agit de, il semble"
+      },
+      {
+        "id": "catalog_fr_defective_verbs",
+        "level": "C1",
+        "title": "Eksik çekimli fiiller",
+        "description": "falloir, pleuvoir ve sınırlı çekimler"
+      },
+      {
+        "id": "colloc_fr",
+        "level": "B1",
+        "title": "Eşdizimler: hangi fiil?",
+        "description": "faire, prendre, avoir ve kalıplaşmış birliktelikler"
+      },
+      {
+        "id": "catalog_fr_verb_valency",
+        "level": "B2",
+        "title": "Geçişli ve geçişsiz fiiller",
+        "description": "Nesne yapısı, çift nesne ve anlam değişimi"
+      }
+    ]
+  },
+  {
+    "id": "indicative",
+    "title": "Haber kipi ve zamanlar",
+    "description": "Présent’den anlatı zamanlarına; zamanlar arasındaki farklar.",
+    "topics": [
+      {
+        "id": "basics_fr_present",
+        "level": "A1",
+        "title": "Şimdiki zaman (présent)",
+        "description": "Düzenli ve yaygın düzensiz çekimler"
+      },
+      {
+        "id": "catalog_fr_present_uses",
+        "level": "A2",
+        "title": "Présent kullanım alanları",
+        "description": "Alışkanlık, genel gerçek, anlatı ve gelecek"
+      },
+      {
+        "id": "catalog_fr_recent_past",
+        "level": "A2",
+        "title": "Yakın geçmiş (venir de)",
+        "description": "venir de + mastar"
+      },
+      {
+        "id": "catalog_fr_progressive",
+        "level": "A2",
+        "title": "Sürmekte olan eylem",
+        "description": "être en train de + mastar"
+      },
+      {
+        "id": "basics_fr_passe_compose",
+        "level": "A2",
+        "title": "Passé composé",
+        "description": "avoir / être ve geçmiş ortaç"
+      },
+      {
+        "id": "catalog_fr_imparfait",
+        "level": "A2",
+        "title": "Imparfait: kuruluş ve kullanım",
+        "description": "Tasvir, alışkanlık ve sürmekte olan geçmiş"
+      },
+      {
+        "id": "passe_imparfait",
+        "level": "B1",
+        "title": "Passé composé ve imparfait",
+        "description": "Olay ile arka planın ayrımı"
+      },
+      {
+        "id": "basics_fr_plus_que_parfait",
+        "level": "B1",
+        "title": "Plus-que-parfait",
+        "description": "Geçmişin geçmişi"
+      },
+      {
+        "id": "futur_fr",
+        "level": "B1",
+        "title": "Gelecek zamanlar: karma alıştırmalar",
+        "description": "futur proche, futur simple, futur antérieur"
+      },
+      {
+        "id": "catalog_fr_futur_proche",
+        "level": "A1",
+        "title": "Futur proche",
+        "description": "aller + mastar"
+      },
+      {
+        "id": "catalog_fr_futur_simple",
+        "level": "A2",
+        "title": "Futur simple",
+        "description": "Kuruluş, düzensiz kökler ve kullanım"
+      },
+      {
+        "id": "catalog_fr_futur_anterieur",
+        "level": "B2",
+        "title": "Futur antérieur",
+        "description": "Gelecekte tamamlanmış eylem ve tahmin"
+      },
+      {
+        "id": "basics_fr_passe_simple",
+        "level": "B2",
+        "title": "Passé simple",
+        "description": "Yazılı anlatı ve edebî metinlerde tanıma"
+      },
+      {
+        "id": "catalog_fr_passe_anterieur",
+        "level": "C1",
+        "title": "Passé antérieur",
+        "description": "Passé simple’den önce tamamlanan eylem"
+      },
+      {
+        "id": "catalog_fr_surcompose",
+        "level": "C2",
+        "title": "Temps surcomposés",
+        "description": "il a eu fini; bölgesel ve özel kullanımlar"
+      },
+      {
+        "id": "catalog_fr_historical_present",
+        "level": "B2",
+        "title": "Anlatıdaki zaman seçimi",
+        "description": "Présent historique, anlatı akışı ve bakış açısı"
+      },
+      {
+        "id": "catalog_fr_tense_aspect",
+        "level": "C1",
+        "title": "Zaman, görünüş ve eylem türü",
+        "description": "Bitmişlik, süreklilik ve yineleme"
+      }
+    ]
+  },
+  {
+    "id": "subjunctive",
+    "title": "Dilek kipi: subjonctif",
+    "description": "Kuruluş, tetikleyiciler, kip seçimi ve edebî biçimler.",
+    "topics": [
+      {
+        "id": "subjonctif",
+        "level": "B1",
+        "title": "Subjonctif: karma alıştırmalar",
+        "description": "İstek, duygu, şüphe, değerlendirme ve bağlaçlar"
+      },
+      {
+        "id": "catalog_fr_subjonctif_present_forms",
+        "level": "B1",
+        "title": "Subjonctif présent çekimi",
+        "description": "Düzenli ve düzensiz kökler"
+      },
+      {
+        "id": "catalog_fr_subjonctif_wishes",
+        "level": "B1",
+        "title": "İstek, emir ve etki",
+        "description": "vouloir que, demander que, il faut que"
+      },
+      {
+        "id": "catalog_fr_subjonctif_emotions",
+        "level": "B1",
+        "title": "Duygu ve değerlendirme",
+        "description": "être heureux que, regretter que"
+      },
+      {
+        "id": "catalog_fr_subjonctif_doubt",
+        "level": "B1",
+        "title": "Şüphe, olasılık ve olumsuz inanç",
+        "description": "douter que, ne pas croire que"
+      },
+      {
+        "id": "catalog_fr_indicatif_subjonctif",
+        "level": "B2",
+        "title": "Indicatif mi, subjonctif mi?",
+        "description": "Kesinlik, bakış açısı ve anlam farkları"
+      },
+      {
+        "id": "catalog_fr_subjonctif_relative",
+        "level": "B2",
+        "title": "İlgi cümlesinde subjonctif",
+        "description": "Aranan, belirsiz ve tek olma niteliği"
+      },
+      {
+        "id": "catalog_fr_subjonctif_conjunctions",
+        "level": "B2",
+        "title": "Subjonctif isteyen bağlaçlar",
+        "description": "bien que, pour que, à condition que"
+      },
+      {
+        "id": "basics_fr_subjonctif_passe",
+        "level": "B2",
+        "title": "Subjonctif passé ve mastar alternatifi",
+        "description": "Öncelik, tamamlanmışlık ve özne ortaklığı"
+      },
+      {
+        "id": "catalog_fr_subjonctif_independent",
+        "level": "C1",
+        "title": "Bağımsız subjonctif cümleleri",
+        "description": "Qu’il entre ! Soit ! Vive…"
+      },
+      {
+        "id": "basics_fr_subjonctif_imparfait",
+        "level": "C1",
+        "title": "Edebî subjonctif zamanları",
+        "description": "Imparfait ve plus-que-parfait biçimlerini tanıma"
+      },
+      {
+        "id": "catalog_fr_subjonctif_literary_sequence",
+        "level": "C2",
+        "title": "Edebî dilde kip ve zaman uyumu",
+        "description": "Fût-il, eût-il ve ileri nüanslar"
+      }
+    ]
+  },
+  {
+    "id": "conditions",
+    "title": "Koşul, varsayım ve şart kipi",
+    "description": "Si cümleleri, conditionnel ve gerçekleşmemiş durumlar.",
+    "topics": [
+      {
+        "id": "catalog_fr_conditionnel_present",
+        "level": "A2",
+        "title": "Conditionnel présent",
+        "description": "Çekim, rica, öneri ve varsayım"
+      },
+      {
+        "id": "conditionnel_passe",
+        "level": "B2",
+        "title": "Conditionnel passé ve şart",
+        "description": "Geçmişte gerçekleşmeyen durumlar"
+      },
+      {
+        "id": "catalog_fr_si_real",
+        "level": "A2",
+        "title": "Gerçek ve olası şartlar",
+        "description": "si + présent; présent, futur, impératif"
+      },
+      {
+        "id": "catalog_fr_si_unreal_present",
+        "level": "B1",
+        "title": "Şimdiki zamanda varsayım",
+        "description": "si + imparfait, conditionnel présent"
+      },
+      {
+        "id": "catalog_fr_si_unreal_past",
+        "level": "B2",
+        "title": "Geçmişte gerçekleşmeyen şart",
+        "description": "si + plus-que-parfait, conditionnel passé"
+      },
+      {
+        "id": "catalog_fr_mixed_conditions",
+        "level": "B2",
+        "title": "Karma şart cümleleri",
+        "description": "Geçmiş neden ve bugünkü sonuç"
+      },
+      {
+        "id": "basics_fr_hypothese",
+        "level": "C1",
+        "title": "Si’siz varsayım",
+        "description": "au cas où, à supposer que, quand bien même"
+      },
+      {
+        "id": "catalog_fr_conditional_report",
+        "level": "C1",
+        "title": "Haber dilinde conditionnel",
+        "description": "Doğrulanmamış bilgi ve aktarılan iddia"
+      },
+      {
+        "id": "catalog_fr_regret_reproach",
+        "level": "B2",
+        "title": "Pişmanlık ve sitem",
+        "description": "j’aurais dû, si seulement, tu aurais pu"
+      },
+      {
+        "id": "catalog_fr_condition_restrictions",
+        "level": "B2",
+        "title": "Si ile kip ve zaman tuzakları",
+        "description": "Şart si’si ve dolaylı soru si’si"
+      }
+    ]
+  },
+  {
+    "id": "nonfinite",
+    "title": "Emir, mastar ve ortaçlar",
+    "description": "Emir kipi, fiilimsiler ve ortaç uyumu.",
+    "topics": [
+      {
+        "id": "basics_fr_imperatif",
+        "level": "A2",
+        "title": "Emir kipi",
+        "description": "Olumlu-olumsuz emir ve zamirler"
+      },
+      {
+        "id": "catalog_fr_imperatif_passe",
+        "level": "C1",
+        "title": "Impératif passé",
+        "description": "Önceden tamamlanması istenen eylem"
+      },
+      {
+        "id": "catalog_fr_infinitive",
+        "level": "A2",
+        "title": "Mastarın kullanımları",
+        "description": "Özne, nesne, edat sonrası ve talimatlar"
+      },
+      {
+        "id": "catalog_fr_infinitive_passe",
+        "level": "B2",
+        "title": "Infinitif passé",
+        "description": "après avoir fait, après être parti"
+      },
+      {
+        "id": "catalog_fr_infinitive_subject",
+        "level": "B2",
+        "title": "Mastar cümlesinin öznesi",
+        "description": "Aynı özne, farklı özne ve dönüşümler"
+      },
+      {
+        "id": "basics_fr_gerondif",
+        "level": "B1",
+        "title": "Gérondif ve participe présent",
+        "description": "en faisant, faisant; eşzamanlılık ve neden"
+      },
+      {
+        "id": "catalog_fr_gerondif_limits",
+        "level": "B2",
+        "title": "Gérondif: özne ve anlam sınırları",
+        "description": "Zaman, araç, koşul ve taviz"
+      },
+      {
+        "id": "catalog_fr_participe_present",
+        "level": "B2",
+        "title": "Participe présent ve verbal sıfat",
+        "description": "Yapı, yazım ve uyum farkları"
+      },
+      {
+        "id": "participe_passe",
+        "level": "B2",
+        "title": "Participe passé uyumu",
+        "description": "avoir, être ve dönüşlü fiiller"
+      },
+      {
+        "id": "catalog_fr_participle_avoir",
+        "level": "B1",
+        "title": "Avoir ile geçmiş ortaç uyumu",
+        "description": "Önce gelen COD ve que"
+      },
+      {
+        "id": "catalog_fr_participle_pronominal",
+        "level": "B2",
+        "title": "Dönüşlü fiillerde ortaç uyumu",
+        "description": "se laver, se parler; COD / COI"
+      },
+      {
+        "id": "catalog_fr_participle_infinitive",
+        "level": "C1",
+        "title": "Mastar önündeki geçmiş ortaç",
+        "description": "fait, laissé, vu, entendu + mastar"
+      },
+      {
+        "id": "catalog_fr_absolute_participle",
+        "level": "C1",
+        "title": "Bağımsız ortaç cümleleri",
+        "description": "Le travail terminé, une fois arrivé"
+      }
+    ]
+  },
+  {
+    "id": "voice",
+    "title": "Çatı ve özel fiil yapıları",
+    "description": "Etken, edilgen, ettirgen ve kişisiz anlatım.",
+    "topics": [
+      {
+        "id": "basics_fr_passif",
+        "level": "B2",
+        "title": "Edilgen çatı",
+        "description": "être + ortaç, on, se faire"
+      },
+      {
+        "id": "catalog_fr_passive_par_de",
+        "level": "B2",
+        "title": "Edilgende par ve de",
+        "description": "Eylemi yapan ve durum belirten tümleçler"
+      },
+      {
+        "id": "catalog_fr_passive_pronominal",
+        "level": "B2",
+        "title": "Dönüşlü biçimle edilgenlik",
+        "description": "Cela se dit; ça se vend"
+      },
+      {
+        "id": "basics_fr_faire_causatif",
+        "level": "B2",
+        "title": "Ettirgen yapılar",
+        "description": "faire + mastar; laisser + mastar"
+      },
+      {
+        "id": "catalog_fr_se_faire",
+        "level": "C1",
+        "title": "Se faire, se laisser, se voir",
+        "description": "İstemli-istem dışı etkilenme ve edilgenlik"
+      },
+      {
+        "id": "catalog_fr_presentatives",
+        "level": "A1",
+        "title": "C’est ve il est",
+        "description": "Tanıtma, niteleme, meslek ve değerlendirme"
+      },
+      {
+        "id": "catalog_fr_il_y_a",
+        "level": "A1",
+        "title": "Il y a ve varlık bildirme",
+        "description": "Varlık, yokluk ve zaman ifadeleri"
+      },
+      {
+        "id": "catalog_fr_impersonal_transform",
+        "level": "C1",
+        "title": "Kişisiz yapıya dönüştürme",
+        "description": "il arrive que, il reste à, il convient de"
+      }
+    ]
+  },
+  {
+    "id": "adverbs",
+    "title": "Zarflar, sayılar ve zaman ifadeleri",
+    "description": "Derece, sıklık, miktar, saat ve süre.",
+    "topics": [
+      {
+        "id": "basics_fr_adverbes",
+        "level": "B1",
+        "title": "-ment zarfları",
+        "description": "Kuruluş, yer ve kapsam"
+      },
+      {
+        "id": "catalog_fr_adverb_frequency",
+        "level": "A1",
+        "title": "Sıklık zarfları",
+        "description": "toujours, souvent, parfois, rarement"
+      },
+      {
+        "id": "catalog_fr_adverb_degree",
+        "level": "A2",
+        "title": "Derece ve miktar zarfları",
+        "description": "très, trop, assez, tellement, si"
+      },
+      {
+        "id": "catalog_fr_adverb_position",
+        "level": "B1",
+        "title": "Zarfın cümledeki yeri",
+        "description": "Birleşik zamanlar ve anlam odağı"
+      },
+      {
+        "id": "catalog_fr_adverb_pairs",
+        "level": "B1",
+        "title": "Bien / bon, mal / mauvais",
+        "description": "Sıfat-zarf ayrımı ve kalıplar"
+      },
+      {
+        "id": "basics_fr_nombres",
+        "level": "A1",
+        "title": "Sayılar, saat ve tarih",
+        "description": "Temel sayılar, sıra sayıları ve takvim"
+      },
+      {
+        "id": "catalog_fr_number_agreement",
+        "level": "B1",
+        "title": "Sayıların yazımı ve uyumu",
+        "description": "cent, vingt, mille, million"
+      },
+      {
+        "id": "catalog_fr_fractions_measures",
+        "level": "B1",
+        "title": "Kesirler, yüzdeler ve ölçüler",
+        "description": "Miktar, oran ve ölçü birimleri"
+      },
+      {
+        "id": "basics_fr_depuis",
+        "level": "A2",
+        "title": "Depuis, pendant, il y a",
+        "description": "Süre, başlangıç ve geçmişte uzaklık"
+      },
+      {
+        "id": "catalog_fr_temporal_pairs",
+        "level": "B1",
+        "title": "Dans / en ve pour / pendant",
+        "description": "Tamamlanma süresi, gelecek ve planlanan süre"
+      },
+      {
+        "id": "catalog_fr_deja_encore",
+        "level": "B1",
+        "title": "Déjà, encore, toujours ve ne… plus",
+        "description": "Devamlılık, tekrar ve sona erme"
+      }
+    ]
+  },
+  {
+    "id": "prepositions",
+    "title": "Edatlar",
+    "description": "Yer, yön, zaman ve fiillerin aldığı edatlar.",
+    "topics": [
+      {
+        "id": "basics_fr_lieux",
+        "level": "A1",
+        "title": "Yer ve yön edatları",
+        "description": "à, en, au, chez, dans, sur"
+      },
+      {
+        "id": "catalog_fr_country_prepositions",
+        "level": "A1",
+        "title": "Ülke ve şehir edatları",
+        "description": "à Paris, en France, au Canada, des États-Unis"
+      },
+      {
+        "id": "catalog_fr_time_prepositions",
+        "level": "A2",
+        "title": "Zaman edatları",
+        "description": "à, en, de… à, vers, dès, jusqu’à"
+      },
+      {
+        "id": "prep_fr",
+        "level": "B1",
+        "title": "Fiil ve edat: de / à",
+        "description": "Fiil + edat + mastar / isim"
+      },
+      {
+        "id": "catalog_fr_verb_infinitive_preposition",
+        "level": "B1",
+        "title": "Mastardan önce à, de veya edatsız kullanım",
+        "description": "commencer à, décider de, préférer"
+      },
+      {
+        "id": "catalog_fr_preposition_person",
+        "level": "B1",
+        "title": "Kişi önünde edat ve zamir",
+        "description": "chez moi, pour lui, à elle"
+      },
+      {
+        "id": "catalog_fr_preposition_pairs",
+        "level": "B2",
+        "title": "Karışan edatlar",
+        "description": "dans / en, sur / au-dessus de, entre / parmi"
+      },
+      {
+        "id": "catalog_fr_compound_prepositions",
+        "level": "B2",
+        "title": "Birleşik edatlar",
+        "description": "à l’égard de, vis-à-vis de, en dépit de"
+      },
+      {
+        "id": "catalog_fr_preposition_nominal",
+        "level": "C1",
+        "title": "İsim ve sıfat tümleçlerinde edat",
+        "description": "un intérêt pour, apte à, digne de"
+      }
+    ]
+  },
+  {
+    "id": "questions-negation",
+    "title": "Sorular ve olumsuzluk",
+    "description": "Soru kurma, olumsuz yapılar ve kapsam.",
+    "topics": [
+      {
+        "id": "basics_fr_questions",
+        "level": "A1",
+        "title": "Soru sözcükleri ve soru kurma",
+        "description": "qui, que, où, pourquoi; est-ce que"
+      },
+      {
+        "id": "catalog_fr_question_inversion",
+        "level": "A2",
+        "title": "Soruda devrik yapı",
+        "description": "Parles-tu ? A-t-il ? Jean vient-il ?"
+      },
+      {
+        "id": "catalog_fr_indirect_questions",
+        "level": "B1",
+        "title": "Dolaylı soru cümleleri",
+        "description": "Je me demande où…; soru düzeninin değişmesi"
+      },
+      {
+        "id": "catalog_fr_interrogative_pronouns",
+        "level": "B1",
+        "title": "Soru zamirleri ve belirleyicileri",
+        "description": "qui, que, quoi, lequel, quel"
+      },
+      {
+        "id": "basics_fr_negation",
+        "level": "A1",
+        "title": "Temel olumsuzluk",
+        "description": "ne… pas, n’… pas"
+      },
+      {
+        "id": "negation_fr",
+        "level": "B1",
+        "title": "Genişletilmiş olumsuzluk",
+        "description": "ne… plus, jamais, rien, personne"
+      },
+      {
+        "id": "catalog_fr_restrictive_ne_que",
+        "level": "B1",
+        "title": "Ne… que ile sınırlama",
+        "description": "Yalnızca anlamı ve kapsam"
+      },
+      {
+        "id": "catalog_fr_double_negation",
+        "level": "B2",
+        "title": "Olumsuzların birlikte kullanımı",
+        "description": "ne… plus jamais; ni… ni"
+      },
+      {
+        "id": "basics_fr_ne_expletif",
+        "level": "C1",
+        "title": "Ne explétif",
+        "description": "Olumsuz anlam taşımayan ne"
+      },
+      {
+        "id": "catalog_fr_ne_without_pas",
+        "level": "C1",
+        "title": "Pas olmadan olumsuz ne",
+        "description": "oser, cesser, pouvoir, savoir"
+      },
+      {
+        "id": "catalog_fr_negation_scope",
+        "level": "C1",
+        "title": "Olumsuzluğun kapsamı ve litote",
+        "description": "pas tous, pas toujours, ne pas manquer de"
+      }
+    ]
+  },
+  {
+    "id": "clauses",
+    "title": "Cümleler, ilgi yapıları ve bağlaçlar",
+    "description": "Basit cümleden karmaşık yan cümlelere.",
+    "topics": [
+      {
+        "id": "catalog_fr_basic_word_order",
+        "level": "A1",
+        "title": "Temel cümle düzeni",
+        "description": "Özne, fiil, nesne ve tümleçler"
+      },
+      {
+        "id": "catalog_fr_coordination",
+        "level": "A2",
+        "title": "Sıralı ve bağlı cümleler",
+        "description": "et, mais, ou, donc, car, ni, or"
+      },
+      {
+        "id": "catalog_fr_relative_simple",
+        "level": "A2",
+        "title": "Temel ilgi zamirleri",
+        "description": "qui, que, où"
+      },
+      {
+        "id": "catalog_fr_relative_dont",
+        "level": "B1",
+        "title": "Dont ve de + ilgi yapıları",
+        "description": "dont / duquel; cümlede görev"
+      },
+      {
+        "id": "pronoms_relatifs",
+        "level": "B2",
+        "title": "Birleşik ilgi zamirleri",
+        "description": "lequel, auquel, duquel ve biçimleri"
+      },
+      {
+        "id": "catalog_fr_relative_ce",
+        "level": "B1",
+        "title": "Ce qui, ce que, ce dont",
+        "description": "Belirli bir öncülü olmayan ilgi cümleleri"
+      },
+      {
+        "id": "catalog_fr_relative_apposition",
+        "level": "B2",
+        "title": "Açıklayıcı ve sınırlayıcı ilgi cümleleri",
+        "description": "Virgül, anlam ve öncül"
+      },
+      {
+        "id": "catalog_fr_completive_que",
+        "level": "B1",
+        "title": "Que ile tamamlayıcı yan cümle",
+        "description": "Fiilin, ismin veya sıfatın tümleci"
+      },
+      {
+        "id": "basics_fr_subordonnees_temporelles",
+        "level": "B2",
+        "title": "Zaman bağlaçları",
+        "description": "dès que, jusqu’à ce que, avant que"
+      },
+      {
+        "id": "basics_fr_cause_consequence",
+        "level": "B2",
+        "title": "Neden ve sonuç",
+        "description": "étant donné que, faute de, si bien que"
+      },
+      {
+        "id": "catalog_fr_purpose_clauses",
+        "level": "B1",
+        "title": "Amaç bildiren yan cümleler",
+        "description": "pour que, afin que, de peur que"
+      },
+      {
+        "id": "basics_fr_concession",
+        "level": "C1",
+        "title": "Taviz ve karşıtlık",
+        "description": "quoique, encore que, si… que"
+      },
+      {
+        "id": "catalog_fr_comparison_clauses",
+        "level": "B2",
+        "title": "Karşılaştırma ve benzetme cümleleri",
+        "description": "comme si, à mesure que, d’autant plus que"
+      },
+      {
+        "id": "catalog_fr_proportion_clauses",
+        "level": "C1",
+        "title": "Orantı ve derecelendirme",
+        "description": "plus… plus, moins… moins"
+      },
+      {
+        "id": "conn_fr",
+        "level": "B2",
+        "title": "Bağlaçlar: fikrin yönü",
+        "description": "Sebep, sonuç, taviz ve karşıtlıkta karma alıştırmalar"
+      },
+      {
+        "id": "catalog_fr_juxtaposition_ellipsis",
+        "level": "C1",
+        "title": "Yan yana getirme ve eksilti",
+        "description": "Tekrarı azaltma ve örtük bağlantılar"
+      }
+    ]
+  },
+  {
+    "id": "discourse",
+    "title": "Anlatım, vurgu ve metin",
+    "description": "Dolaylı anlatım, cümle dönüşümü ve söylem düzeni.",
+    "topics": [
+      {
+        "id": "discours_indirect_fr",
+        "level": "B2",
+        "title": "Dolaylı anlatım ve zaman uyumu",
+        "description": "Söz aktarma, zamir ve zaman dönüşümleri"
+      },
+      {
+        "id": "catalog_fr_reported_orders",
+        "level": "B1",
+        "title": "Dolaylı emir ve rica",
+        "description": "dire de, demander de; mastarlı aktarım"
+      },
+      {
+        "id": "catalog_fr_reported_time_place",
+        "level": "B1",
+        "title": "Aktarımda zaman ve yer ifadeleri",
+        "description": "demain / le lendemain; ici / là"
+      },
+      {
+        "id": "catalog_fr_free_indirect",
+        "level": "C1",
+        "title": "Serbest dolaylı anlatım",
+        "description": "Discours indirect libre"
+      },
+      {
+        "id": "basics_fr_mise_en_relief",
+        "level": "B2",
+        "title": "Vurgu yapıları",
+        "description": "c’est… qui / que; ce qui… c’est"
+      },
+      {
+        "id": "catalog_fr_dislocation",
+        "level": "B2",
+        "title": "Öne ve sona taşıma",
+        "description": "Moi, je…; il est beau, ce livre"
+      },
+      {
+        "id": "catalog_fr_inversion_style",
+        "level": "C1",
+        "title": "Yazılı dilde devrik yapı",
+        "description": "ainsi, aussi, à peine; anlatım fiilleri"
+      },
+      {
+        "id": "basics_fr_nominalisation",
+        "level": "C1",
+        "title": "Adlaştırma",
+        "description": "Fiil ve sıfat yapılarından isim grubu oluşturma"
+      },
+      {
+        "id": "rewrite_fr",
+        "level": "B2",
+        "title": "Cümle dönüşümü",
+        "description": "Anlamı koruyarak yapıyı değiştirme"
+      },
+      {
+        "id": "catalog_fr_logical_markers",
+        "level": "B2",
+        "title": "Metin bağlayıcıları",
+        "description": "en revanche, néanmoins, par conséquent"
+      },
+      {
+        "id": "catalog_fr_anaphora_cohesion",
+        "level": "C1",
+        "title": "Metinde bağdaşıklık ve gönderim",
+        "description": "Zamir, sözcüksel tekrar ve yeniden adlandırma"
+      },
+      {
+        "id": "catalog_fr_argumentation",
+        "level": "C1",
+        "title": "Akademik ve tartışmacı anlatım",
+        "description": "Gerekçe, itiraz, taviz ve sonuç"
+      },
+      {
+        "id": "catalog_fr_modality_evidentiality",
+        "level": "C2",
+        "title": "Tutum ve bilgi kaynağı",
+        "description": "Kesinlik derecesi, mesafe ve çok seslilik"
+      }
+    ]
+  },
+  {
+    "id": "usage-writing",
+    "title": "Yazım, noktalama ve kullanım",
+    "description": "Dilbilgisini tamamlayan yazılı ve toplumsal kullanım kuralları.",
+    "topics": [
+      {
+        "id": "catalog_fr_accents",
+        "level": "A1",
+        "title": "Aksanlar ve cédille",
+        "description": "é, è, ê, ë, ç; anlamı ayıran işaretler"
+      },
+      {
+        "id": "catalog_fr_elision",
+        "level": "A1",
+        "title": "Élision ve kesme işareti",
+        "description": "l’, d’, j’; h muet / h aspiré"
+      },
+      {
+        "id": "catalog_fr_homophones",
+        "level": "B1",
+        "title": "Dilbilgisel eşsesliler",
+        "description": "a / à, et / est, son / sont, ce / se"
+      },
+      {
+        "id": "catalog_fr_capitalisation",
+        "level": "A2",
+        "title": "Büyük harfler",
+        "description": "Diller, milliyetler, aylar ve özel isimler"
+      },
+      {
+        "id": "catalog_fr_punctuation",
+        "level": "B1",
+        "title": "Noktalama ve cümle sınırları",
+        "description": "Virgül, iki nokta, noktalı virgül ve tırnak"
+      },
+      {
+        "id": "catalog_fr_hyphenation",
+        "level": "B2",
+        "title": "Kısa çizgi ve birleşik yazım",
+        "description": "Emir zamirleri, devrik sorular ve sayılar"
+      },
+      {
+        "id": "basics_fr_registres",
+        "level": "C1",
+        "title": "Resmî ve gündelik dil",
+        "description": "Registres; konuşma ve yazı dili"
+      },
+      {
+        "id": "catalog_fr_tu_vous",
+        "level": "A1",
+        "title": "Tu / vous ve hitap",
+        "description": "Resmiyet, yakınlık ve uyum"
+      },
+      {
+        "id": "catalog_fr_regional_usage",
+        "level": "C1",
+        "title": "Frankofon bölgelerde kullanım",
+        "description": "Fransa, Belçika, İsviçre ve Québec farkları"
+      },
+      {
+        "id": "catalog_fr_inclusive_usage",
+        "level": "C2",
+        "title": "Kapsayıcı dil ve değişen kullanımlar",
+        "description": "İsimlendirme, uyum tercihleri ve bağlam"
+      },
+      {
+        "id": "catalog_fr_literary_archaism",
+        "level": "C2",
+        "title": "Edebî ve eski yapılar",
+        "description": "Arkaik sözdizimini okurken tanıma"
+      }
+    ]
+  }
+]

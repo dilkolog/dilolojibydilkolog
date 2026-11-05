@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { WatchRating } from '../data/db'
 import type { TargetLanguage } from '../engine/types'
 import { SentenceTranslation } from './TranslateButton'
+import monkiVideoListen from '../assets/art/monki-video-listen.webp'
 
 const RATINGS: { value: WatchRating; label: string }[] = [
   { value: 'ok', label: 'Anladım' },
@@ -57,6 +58,10 @@ export function WatchCheck({
     )
   return (
     <div className="watch-check stack" role="group" aria-label="Anlaşılmayan cümle">
+      <div className="row items-center gap-2">
+        <img src={monkiVideoListen} width={22} height={22} alt="" draggable={false} className="inline-art" />
+        <span className="small muted">Tekrar dinle ve incele:</span>
+      </div>
       <p className="watch-check-sentence" lang={language}>
         {sentence}
       </p>
@@ -111,8 +116,11 @@ export function WatchMap({
     .sort((a, b) => a - b)
   return (
     <section className="card stack watch-map" aria-label="Anlama haritası">
-      <div className="row justify-between">
-        <strong>Anlama haritası</strong>
+      <div className="row justify-between items-center">
+        <div className="row items-center gap-2">
+          <img src={monkiVideoListen} width={22} height={22} alt="" draggable={false} className="inline-art" />
+          <strong>Anlama haritası</strong>
+        </div>
         <span className="small muted">
           {count('ok')} anladın · {count('half')} yarısını · {count('no')} anlamadın
         </span>

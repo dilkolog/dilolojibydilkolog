@@ -1,4 +1,5 @@
 import { Rating, type Card } from 'ts-fsrs'
+import { learningEvidence } from './learningProgress'
 import { EXERCISES } from './exercises'
 import { gradeAttempt } from './grading'
 import { recordCorrect, recordMistake } from './mistakes'
@@ -41,6 +42,9 @@ export interface AttemptInput {
   /** 'practice' = low-stakes: logged, but affects neither the schedule nor the Mistake Bank. */
   mode?: ReviewMode
   confidence?: Confidence
+  /** Guided repetitions update learning evidence even without advancing FSRS. */
+  guided?: boolean
+  recallExpected?: boolean
   /** What the plan says about this question (why, where, whether it is a probe); the rest of the context is read off the card. */
   plan?: { reason?: string; slot?: number; probe?: number }
 }
@@ -80,6 +84,7 @@ export function processAttempt(
   const card = state.skills[meta.skill] ?? scheduler.newCard(now)
   const retrievabilityBefore = scheduler.retrievability(card, now)
   const ctx: ReviewContext = {
+    introducedAt: new Date(state.introducedAt).toISOString(),
     elapsedDays: card.last_review ? Math.max(0, (now.getTime() - new Date(card.last_review).getTime()) / DAY_MS) : 0,
     stabilityBefore: card.stability,
     difficultyBefore: card.difficulty,
@@ -130,6 +135,9 @@ export function processAttempt(
   } else {
     nextState = { ...state, lastExerciseType: input.exerciseType }
   }
+
+  const learning = learningEvidence(state, input)
+  if (learning !== state.learning) nextState = { ...nextState, learning }
 
   const after = nextState.skills[meta.skill] ?? card
   const event: ReviewEvent = {

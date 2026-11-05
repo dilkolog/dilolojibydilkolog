@@ -201,6 +201,10 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
     }
   }, [started, card, onChanged])
 
+  useEffect(() => {
+    if (!started) window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [started])
+
   if (!started) {
     const count = available ? (options.size > 0 ? Math.min(options.size, available) : available) : 0
     return (
@@ -209,29 +213,33 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
           ← Oyunlar
         </button>
         <header className="flash-hero">
-          <GameIcon id="swipe" emoji="👆" size={64} />
+          <GameIcon id="swipe" emoji="👆" size={48} />
           <div>
             <h1 className="greeting">Kaydırmalı kartlar</h1>
-            <p className="greeting-sub">Bilmediğin kart birkaç kart sonra yine gelir, bilene kadar. Bildiklerin turdan çıkar.</p>
+            <p className="greeting-sub">Çevirerek veya yazarak çalış. Bilmediklerini bu turda yeniden gör.</p>
           </div>
         </header>
         <div className="flash-modes" role="radiogroup" aria-label="Nasıl çalışalım?">
           <button type="button" role="radio" aria-checked={mode === 'flip'} className="flash-mode" onClick={() => setMode('flip')}>
             <strong>Çevirerek</strong>
-            <span className="small muted">Kartı çevir, kendin notla: Bilmiyorum · Zorlandım · Biliyorum</span>
+            <span className="small muted">Kartı çevir, ne kadar hatırladığını seç</span>
           </button>
           <button type="button" role="radio" aria-checked={mode === 'write'} className="flash-mode" onClick={() => setMode('write')}>
             <strong>Yazarak</strong>
-            <span className="small muted">Anlamı gör, kelimeyi yaz; uygulama kontrol eder</span>
+            <span className="small muted">Anlamı gör, kelimeyi yaz; cevabını kontrol edelim</span>
           </button>
         </div>
         <StudyOptionsPanel value={options} onChange={setOptions} language={language} vocabulary={vocabulary} states={states} directions={mode === 'flip'} />
         <div className="flash-go">
+          <div className="flash-go-summary" aria-live="polite">
+            <strong>{count} kart hazır</strong>
+            <span className="small muted">{mode === 'write' ? 'Anlamdan kelimeye · Yazarak' : options.direction === 'reverse' ? 'Önce anlam · Çevirerek' : options.direction === 'mixed' ? 'İki yönde · Çevirerek' : 'Önce kelime · Çevirerek'}</span>
+          </div>
           <button className="btn btn-lg" disabled={!available} onClick={start}>
             {available ? `${count} kartla başla` : 'Bu grupta kelime yok'}
           </button>
         </div>
-        <p className="small muted kbd">
+        <details className="small muted flash-shortcuts"><summary>Klavye kısayolları</summary><p className="kbd">
           {mode === 'flip' ? (
             <>
               <kbd>Boşluk</kbd> çevir · <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> notla · <kbd>←</kbd> <kbd>→</kbd> kaydır · <kbd>S</kbd> zor işaretle
@@ -241,7 +249,7 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
               <kbd>Enter</kbd> kontrol et, sonra devam
             </>
           )}
-        </p>
+        </p></details>
       </div>
     )
   }

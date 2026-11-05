@@ -18,6 +18,7 @@ import { TenseQuiz } from './TenseQuiz'
 import { recordVisit } from '../screenUsage'
 import { MenuItem, Popover } from '../Popover'
 import { judge, tenseName, verbEntry, type LabLanguage } from './labShared'
+import { gTransform } from '../gameArt'
 
 export type PracticeMode = 'type' | 'choose' | 'listen' | 'speak' | 'match' | 'sentence' | 'transform' | 'tense' | 'mood' | 'reverse' | 'timed' | 'sheet'
 type Mode = PracticeMode
@@ -30,11 +31,11 @@ const QUIZ: Mode[] = ['speak', 'sentence', 'transform', 'sheet', 'tense', 'mood'
  * move a sentence into another tense, race the clock); the rest wait in "Diğer", so practising starts with a few, not twelve.
  * The day's round (the card on top of the lab) picks for the learner; this is free practice.
  */
-const MODES: { id: Mode; label: string; hint: string; icon: typeof PenIcon; main?: boolean }[] = [
+const MODES: { id: Mode; label: string; hint: string; icon: typeof PenIcon; art?: string; main?: boolean }[] = [
   { id: 'type', label: 'Yaz', hint: 'Altı biçimi yaz', icon: PenIcon, main: true },
   { id: 'choose', label: 'Seç', hint: 'Doğru biçimi seç', icon: TargetIcon, main: true },
   { id: 'sentence', label: 'Cümlede', hint: 'Gerçek cümlenin boşluğuna yaz', icon: ReadIcon, main: true },
-  { id: 'transform', label: 'Zamanı değiştir', hint: 'Cümledeki fiili başka zamana çevir', icon: SwapIcon, main: true },
+  { id: 'transform', label: 'Zamanı değiştir', hint: 'Cümledeki fiili başka zamana çevir', icon: SwapIcon, art: gTransform, main: true },
   { id: 'timed', label: 'Zamana karşı', hint: 'Birçok fiil, 60 saniye', icon: TimerIcon, main: true },
   { id: 'sheet', label: 'Cümle listesi', hint: 'Bir zamanda birçok cümle, hepsini birden kontrol et', icon: ClipboardIcon },
   { id: 'listen', label: 'Dinle', hint: 'Duyduğun biçimi yaz', icon: HeadphonesIcon },
@@ -202,7 +203,7 @@ export function PracticeTab({
         <div className="lab-modes" role="group" aria-label="Alıştırma türü">
           {MODES.filter((m) => m.main || m.id === mode).map((m) => (
             <button key={m.id} type="button" className="lab-mode" aria-pressed={mode === m.id} onClick={() => pickMode(m.id)} aria-label={m.label} title={m.hint}>
-              <m.icon size={18} />
+              {m.art ? <img src={m.art} width={18} height={18} alt="" draggable={false} className="lab-mode-art" /> : <m.icon size={18} />}
               <span>{m.label}</span>
             </button>
           ))}
@@ -224,7 +225,7 @@ export function PracticeTab({
                 {MODES.filter((m) => !m.main).map((m) => (
                   <MenuItem
                     key={m.id}
-                    icon={<m.icon size={18} />}
+                    icon={m.art ? <img src={m.art} width={18} height={18} alt="" draggable={false} className="lab-mode-art" /> : <m.icon size={18} />}
                     title={m.label}
                     hint={m.hint}
                     disabled={(m.id === 'listen' && !canSpeak()) || (m.id === 'speak' && !canListen())}

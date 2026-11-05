@@ -67,7 +67,10 @@ export function StudyOptionsPanel({
     const fallback = (['weak', 'all', 'today', 'unlearned', 'hard', 'list'] as const).find((s) => counts[s] > 0 && (s !== 'list' || lists.length > 0))
     if (fallback) onChange({ ...value, scope: fallback, listId: fallback === 'list' ? lists.find((l) => vocabulary.some((e) => e.listId === l.id))?.id : value.listId })
   }, [counts, value, lists, listsRead, vocabulary, onChange])
-  const listId = value.listId && lists.some((l) => l.id === value.listId) ? value.listId : lists[0]?.id
+  const listId = value.listId && lists.some((l) => l.id === value.listId) ? value.listId : (lists.find((l) => vocabulary.some((w) => w.listId === l.id)) ?? lists[0])?.id
+  useEffect(() => {
+    if (listsRead && value.scope === 'list' && listId && listId !== value.listId) onChange({ ...value, listId })
+  }, [listsRead, listId, value, onChange])
   const set = (patch: Partial<StudyOptions>) => onChange({ ...value, ...patch })
   const listCount = (id?: string) => (id ? vocabulary.filter((e) => e.listId === id).length : 0)
   return (
@@ -80,7 +83,7 @@ export function StudyOptionsPanel({
             <button key={s} type="button" className="study-scope" aria-pressed={value.scope === s} disabled={counts[s] === 0 && value.scope !== s} onClick={() => set({ scope: s, listId: s === 'list' ? listId : value.listId })}>
               <span className="study-scope-icon" aria-hidden="true">{SCOPE_ICON[s]}</span>
               <span className="study-scope-name">{s === 'list' ? 'Bir listeden' : SCOPE_NAME[s]}</span>
-              <span className="study-scope-count">{counts[s]} kelime</span>
+              <span className="study-scope-count">{s === 'list' ? listCount(listId) : counts[s]} kelime</span>
             </button>
           ))}
         </div>

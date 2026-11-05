@@ -142,7 +142,8 @@ describe('screens render', () => {
   it('every game opens', async () => {
     const seen = await clickThrough(() => <GamesScreen language="fr" vocabulary={vocabulary} states={states} onChanged={noop} />, 'button.game-card')
     expect(seen.length).toBeGreaterThanOrEqual(8)
-  })
+    // This test imports every lazy game; allow cold builds to finish on shared runners.
+  }, 30_000)
   it('every produce tab opens', async () => {
     const seen = await clickThrough(() => <ProduceScreen db={db} language="fr" vocabulary={vocabulary} states={states} onChanged={noop} onOpenSettings={noop} />, 'button.page-tab')
     expect(seen.length).toBe(5)

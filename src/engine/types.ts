@@ -264,12 +264,23 @@ export interface WordStats {
   consecutiveWrong: number
 }
 
+export interface LearningEvidence {
+  remaining: number
+  at: string
+  /** An independent answer at least a day after introduction. */
+  delayed: boolean
+  lastFailureAt?: string
+  sequence?: number
+}
+
 export interface UserWordState {
   entryId: string
   language: TargetLanguage
   introducedAt: Date
   /** One FSRS card per skill; created lazily when the skill is first practised. */
   skills: Partial<Record<Skill, Card>>
+  /** Durable, per-skill learning debt and delayed recall evidence. */
+  learning?: Partial<Record<Skill, LearningEvidence>>
   lastExerciseType?: ExerciseType
   lastReviewAt?: Date
   stats: WordStats
@@ -287,6 +298,8 @@ export type Confidence = 'sure' | 'unsure'
  * forecast hold, and would another way of choosing have done better?" (docs/KISISEL-ALGORITMA.md).
  */
 export interface ReviewContext {
+  /** Learning generation: old offline attempts must not undo a later progress reset. */
+  introducedAt?: string
   /** Days since the card was last reviewed (0 for a new card). */
   elapsedDays: number
   /** The card's FSRS stability and difficulty just before the answer. */

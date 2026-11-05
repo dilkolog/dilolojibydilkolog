@@ -5,6 +5,7 @@ import { spellOut } from '../src/engine/spelling'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
 import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
+import AxeBuilder from '@axe-core/playwright'
 import { unzipSync } from 'fflate'
 import { aiRoute, approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
 
@@ -1212,7 +1213,7 @@ test("Games: the day's reviews come first, with a start button", async ({ page }
   await expect(page.locator('.session-stage')).toBeVisible()
 })
 
-test('a word met yesterday comes back as a card before its first question: the arrow keys decide, a hard one is asked once more', async ({ page }) => {
+test('a word learned yesterday is tested without revealing its answer first', async ({ page }) => {
   test.setTimeout(120_000)
   await page.clock.setFixedTime(new Date('2026-03-04T10:00:00'))
   await startWithSamples(page)
@@ -1223,21 +1224,7 @@ test('a word met yesterday comes back as a card before its first question: the a
   await page.reload()
   for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').click()
   await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
-  const card = page.locator('.refresh')
-  // The plan mixes new words in among the reviews, so a new word's introduction can come first: step past
-  // it (and its question) until the first word met yesterday comes up.
-  for (let i = 0; i < 12 && !(await card.count()); i++) {
-    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
-    const guess = page.locator('.session-stage .option:not([disabled])')
-    if (await next.count()) await next.first().click({ timeout: 3000 }).catch(() => {})
-    else if (await guess.count()) await guess.first().click({ timeout: 3000 }).catch(() => {})
-    await page.waitForTimeout(150)
-  }
-  await expect(card).toContainText('Önce bir bak')
-  await expect(card.locator('.swipe-gloss')).not.toBeEmpty()
-  // Left: "Zorlanıyorum"; the question comes, and the same word returns later as a quick question.
-  await page.keyboard.press('ArrowLeft')
-  await expect(card).toHaveCount(0)
+  await expect(page.locator('.refresh')).toHaveCount(0)
   await expect(page.locator('.session-stage .prompt-label')).toBeVisible()
   await expect(page.locator('.session-stage')).not.toContainText('Önce bir bak')
 })
@@ -1739,6 +1726,7 @@ test('grammar questions: a topic round of the three kinds, the rule after each a
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
   await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
+  await page.getByRole('searchbox', { name: 'Dilbilgisi konusu ara' }).fill('Participe passé uyumu')
   await page.getByRole('button', { name: 'Participe passé uyumu' }).click()
   await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
   for (let i = 1; i <= 8; i++) {
@@ -1758,7 +1746,8 @@ test('grammar questions: a topic round of the three kinds, the rule after each a
   await expect(page.locator('.game-result')).toContainText('/ 8 doğru')
   await page.getByRole('button', { name: 'Oyunlara dön' }).click()
   await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
-  await expect(page.getByRole('button', { name: /Participe passé uyumu · %\d+/ })).toBeVisible()
+  await page.getByRole('searchbox', { name: 'Dilbilgisi konusu ara' }).fill('Participe passé uyumu')
+  await expect(page.locator('.grammar-topic', { hasText: 'Participe passé uyumu' })).toContainText(/%\d+ doğruluk/)
 })
 
 test('reflex round and false friends: a phrase picked from its Turkish, a word’s meaning picked from its sentence, both kept in the log', async ({ page }) => {
@@ -3796,3 +3785,145 @@ test('content grammar: a topic’s file is fetched when chosen, and a logged que
   await expect(page.locator('.grammar-game')).toContainText(question.prompt.split('___')[0].trim().slice(0, 30))
   expect(topicCalls).toBe(1)
 })
+
+test('an unfinished learning group resumes after reloading feedback without recording the answer twice', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-11-04T12:00:00'))
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  // Teach the small group's words before the first recognition question.
+  for (let i = 0; i < 6 && !(await page.locator('.session-stage .forgot-chip').count()); i++) {
+    const text = await page.locator('.intro-card').innerText()
+    await page.getByRole('button', { name: 'Öğrendim, devam', exact: true }).click()
+    await expect.poll(async () => await page.locator('.intro-card').count() ? page.locator('.intro-card').innerText() : '').not.toBe(text)
+  }
+  await page.locator('.session-stage .forgot-chip').click()
+  await expect(page.locator('.sheet')).toBeVisible()
+  const saved = () => page.evaluate(() => new Promise<{ index: number; events: number; relearn: Record<string, number> }>((resolve, reject) => {
+    const req = indexedDB.open('kelime-koc')
+    req.onerror = () => reject(req.error)
+    req.onsuccess = () => {
+      const db = req.result
+      const tx = db.transaction(['meta', 'events'])
+      const draft = tx.objectStore('meta').get('study-session:fr')
+      const count = tx.objectStore('events').count()
+      tx.oncomplete = () => {
+        resolve({ index: draft.result.value.session.index, events: count.result, relearn: draft.result.value.session.relearn })
+        db.close()
+      }
+    }
+  }))
+  const before = await saved()
+  expect(Object.values(before.relearn)).toContain(2)
+  await page.reload()
+  const resume = page.getByRole('region', { name: 'Yarım kalan kelime turu' })
+  await expect(resume).toBeVisible()
+  await resume.getByRole('button', { name: /Devam et/ }).click()
+  await expect(page.locator('.session-stage')).toBeVisible()
+  await expect(page.locator('.sheet')).toHaveCount(0)
+  expect(await saved()).toEqual(before)
+})
+
+async function seedCardList(page: Page) {
+  await startWithSamples(page)
+  await page.evaluate(() => new Promise<void>((resolve, reject) => {
+    const request = indexedDB.open('kelime-koc')
+    request.onerror = () => reject(request.error)
+    request.onsuccess = () => {
+      const db = request.result
+      const tx = db.transaction(['vocabulary', 'wordStates', 'meta'], 'readwrite')
+      const all = tx.objectStore('vocabulary').getAll()
+      all.onsuccess = () => {
+        const now = new Date()
+        tx.objectStore('meta').put({ key: 'wordLists', value: [{ id: 'card-list', name: 'AVANZADO', language: 'fr', levels: [], createdAt: now.toISOString(), updatedAt: now.toISOString() }, { id: 'empty-list', name: 'deneme', language: 'fr', levels: [], createdAt: now.toISOString(), updatedAt: now.toISOString() }] })
+        all.result.filter((w: { language: string }) => w.language === 'fr').slice(0, 17).forEach((word: { id: string }, i: number) => {
+          const id = `fr:card-layout-${i}`
+          tx.objectStore('vocabulary').put({ ...word, id, source: 'user', listId: 'card-list' })
+          tx.objectStore('wordStates').put({ entryId: id, language: 'fr', introducedAt: new Date(now.getTime() - 86400000), lastReviewAt: new Date(now.getTime() - 86400000), skills: { recognition: { due: new Date(now.getTime() - 1000), last_review: new Date(now.getTime() - 86400000), stability: 3, difficulty: 5, elapsed_days: 1, scheduled_days: 1, reps: 3, lapses: 0, learning_steps: 0, state: 2 } }, stats: { reviews: 3, correct: 3, wrong: 0, hints: 0, totalResponseMs: 9000, consecutiveWrong: 0 } })
+        })
+      }
+      tx.oncomplete = () => { db.close(); resolve() }
+      tx.onerror = () => reject(tx.error)
+    }
+  }))
+  await page.reload()
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('tab', { name: 'Listeler', exact: true }).click()
+  await page.locator('.wl-tile', { hasText: 'AVANZADO' }).click()
+}
+
+test('list learning reset keeps its words and offers starting the list from introductions again', async ({ page }) => {
+  await seedCardList(page)
+  await expect(page.locator('.wl-figures dd').nth(1)).toHaveText('17')
+  await page.getByRole('button', { name: 'Liste işlemleri', exact: true }).click()
+  await page.getByRole('menuitem', { name: /Öğrenmeyi sıfırla/ }).click()
+  const dialog = page.getByRole('alertdialog')
+  await expect(dialog).toContainText('Kelimeler, anlamlar, notlar ve seviyeler korunur')
+  await dialog.getByRole('button', { name: 'Öğrenmeyi sıfırla', exact: true }).click()
+  await expect(page.locator('.wl-figures dd').nth(0)).toHaveText('17')
+  await expect(page.locator('.wl-figures dd').nth(1)).toHaveText('0')
+  await page.getByRole('button', { name: 'Geri al', exact: true }).click()
+  await expect(page.locator('.wl-figures dd').nth(1)).toHaveText('17')
+  await page.getByRole('button', { name: 'Liste işlemleri', exact: true }).click()
+  await page.getByRole('menuitem', { name: /Öğrenmeyi sıfırla/ }).click()
+  await page.getByRole('alertdialog').getByRole('button', { name: 'Öğrenmeyi sıfırla', exact: true }).click()
+  await expect(page.locator('.wl-figures dd').nth(1)).toHaveText('0')
+  await page.getByRole('button', { name: 'Listeyi çalış', exact: true }).click()
+  await expect(page.locator('.intro-card')).toBeVisible()
+})
+
+for (const width of [1440, 375]) {
+  test(`card setup stays readable with a visible start action at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 })
+    await seedCardList(page)
+    await page.locator('.wl-games button', { hasText: 'Kartlar' }).click()
+    const setup = page.locator('.flash-setup')
+    await expect(setup).toBeVisible()
+    const start = setup.getByRole('button', { name: '17 kartla başla', exact: true })
+    await expect(start).toBeInViewport()
+    expect(await overflow(page)).toEqual([])
+    const overlaps = await setup.locator('.study-scope-name').evaluateAll((names) => names.filter((name) => {
+      const parent = name.closest('.study-scope')!.getBoundingClientRect()
+      const range = document.createRange()
+      range.selectNodeContents(name)
+      return [...range.getClientRects()].some((r) => r.right > parent.right + 1 || r.left < parent.left - 1)
+    }).map((n) => n.textContent))
+    expect(overlaps).toEqual([])
+    await page.screenshot({ path: `/tmp/card-setup-${width}.png` })
+    await start.click()
+    await expect(page.getByRole('button', { name: 'Anlamı göster', exact: true })).toBeVisible()
+  })
+}
+
+for (const language of ['fr', 'es'] as const) {
+  test(`grammar catalog ${language}: browse categories, open an empty topic, filter advanced exercises and start on a phone`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await startWithSamples(page)
+    if (language === 'es') await page.getByRole('button', { name: /İspanyolca/ }).click()
+    await openScreen(page, 'Oyunlar')
+    await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
+    await expect(page.locator('.grammar-category')).toHaveCount(16)
+    expect((await new AxeBuilder({ page }).include('.grammar-catalog').withTags(['wcag2a', 'wcag2aa']).analyze()).violations).toEqual([])
+    expect(await overflow(page)).toEqual([])
+    await page.screenshot({ path: `/tmp/grammar-catalog-${language}-desktop.png` })
+    await page.locator('.grammar-category', { hasText: 'İsimler ve artikeller' }).click()
+    const emptyTitle = language === 'fr' ? 'İsimlerde düzensiz çoğul' : 'Vurgulu a / ha önünde artikel'
+    await page.getByRole('button', { name: new RegExp(emptyTitle) }).click()
+    const selection = page.getByRole('region', { name: 'Seçili çalışma' })
+    await expect(selection).toContainText('Alıştırmalar henüz eklenmedi')
+    await expect(selection.getByRole('button', { name: /tura başla/ })).toHaveCount(0)
+    await page.getByRole('button', { name: 'Seçimi temizle' }).click()
+    await page.setViewportSize({ width: 375, height: 812 })
+    const level = page.locator('.grammar-catalog-filter select').first()
+    await level.selectOption('B2-C1')
+    await page.locator('.grammar-catalog-filter select').last().selectOption('ready')
+    await page.getByRole('searchbox', { name: 'Dilbilgisi konusu ara' }).fill(language === 'fr' ? 'subjonctif' : 'subjuntivo')
+    await expect(page.locator('.grammar-topic').first()).toBeVisible()
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
+    await page.screenshot({ path: `/tmp/grammar-catalog-${language}-phone.png` })
+    expect(await overflow(page)).toEqual([])
+    await page.locator('.grammar-topic').first().click()
+    await selection.getByRole('button', { name: /soruluk tura başla/ }).click()
+    await expect(page.locator('.prompt-label')).toContainText(/B2|C1/)
+    await expect(page.locator('.grammar-sentence')).toBeVisible()
+  })
+}

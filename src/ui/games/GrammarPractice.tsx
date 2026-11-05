@@ -13,6 +13,8 @@ import { accentChange, insertAt } from '../accentCaret'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
 import { LessonLink } from '../LessonLink'
+import { grammarCatalog, matchesGrammarLevel, type GrammarLevelFilter } from '../../data/grammarCatalog'
+import { GrammarCatalog } from './GrammarCatalog'
 
 const TYPE_LABEL = { cloze: 'Boşluğu doldur', choice: 'Doğru seçeneği seç', error: 'Hatalı kelimeye dokun' } as const
 
@@ -86,6 +88,8 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
       live = false
     }
   }, [manifest, topic, language])
+  const [category, setCategory] = useState<string | undefined>(() => grammarCatalog(language).find((c) => c.topics.some((t) => t.id === initialTopic))?.id)
+  const [level, setLevel] = useState<GrammarLevelFilter>('all')
   const [phase, setPhase] = useState<'intro' | 'play' | 'over'>('intro')
   const [round, setRound] = useState<GrammarExercise[]>([])
   const [index, setIndex] = useState(0)
@@ -93,6 +97,18 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
   const [graded, setGraded] = useState<{ verdict: GrammarVerdict; given: string } | null>(null)
   const [results, setResults] = useState<{ ex: GrammarExercise; ok: boolean }[]>([])
   const input = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    setTopic(initialTopic)
+    setCategory(grammarCatalog(language).find((c) => c.topics.some((t) => t.id === initialTopic))?.id)
+    setLevel('all')
+    setPhase('intro')
+  }, [language, initialTopic])
+
+  const pool = useMemo(() => {
+    const ids = grammarCatalog(language).find((c) => c.id === category)?.topics.map((t) => t.id)
+    return all.filter((e) => matchesGrammarLevel(e.level, level) && (!ids || ids.includes(e.topic)))
+  }, [all, category, language, level])
 
   useEffect(() => {
     let live = true
@@ -111,10 +127,10 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
   }, [log, all, manifest])
   const q = round[index]
 
-  const dueCount = useMemo(() => (log ? dueGrammar(all.filter((e) => !topic || e.topic === topic), log, new Date()).length : 0), [log, all, topic])
+  const dueCount = useMemo(() => (log ? dueGrammar(pool.filter((e) => !topic || e.topic === topic), log, new Date()).length : 0), [log, pool, topic])
 
   const start = (dueOnly = false) => {
-    const picked = pickGrammarRound(all, log ?? {}, createRng(Date.now()), { topic, due: dueOnly })
+    const picked = pickGrammarRound(pool, log ?? {}, createRng(Date.now()), { topic, due: dueOnly })
     if (!picked.length) return
     setRound(picked)
     setIndex(0)
@@ -158,7 +174,21 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
   })
 
   const missed = results.filter((r) => !r.ok)
-  const size = Math.min(GRAMMAR_ROUND, topic ? all.filter((e) => e.topic === topic).length : all.length)
+  const size = Math.min(GRAMMAR_ROUND, topic ? pool.filter((e) => e.topic === topic).length : pool.length)
+  const categoryIds = grammarCatalog(language).find((c) => c.id === category)?.topics.map((t) => t.id)
+  const hasQuestions = all.some((e) => (!topic || e.topic === topic) && (!categoryIds || categoryIds.includes(e.topic)))
+  const controls = <>
+    {topic && topicState !== 'idle' && (
+      <p className="small muted grammar-topic-count" role="status">
+        {topicState === 'loading' ? 'Bu konunun soruları getiriliyor…' : 'Bu konunun yeni soruları için internet gerekiyor; şimdilik elindeki sorularla çalışabilirsin.'}
+      </p>
+    )}
+    {size > 0 ? <div className="row">
+      <button className={`btn${dueCount ? ' btn-quiet' : ''}`} onClick={() => start()} disabled={!log || topicState === 'loading'}>{size} soruluk tura başla</button>
+      {dueCount > 0 && <button className="btn" onClick={() => start(true)}>Tekrar zamanı gelen {Math.min(dueCount, GRAMMAR_ROUND)} soru{dueCount > GRAMMAR_ROUND ? ` (${dueCount} bekliyor)` : ''}</button>}
+    </div> : <p className="note small" role="status">{hasQuestions ? 'Bu seçim için seçtiğin seviyede henüz soru yok. Başka bir seviye seçebilirsin.' : 'Alıştırmalar henüz eklenmedi. Bu başlık hazır; sorular eklendiğinde buradan çalışabileceksin.'}</p>}
+    {dueCount > 0 && <p className="small muted">Yanlış yaptıkların ertesi gün, doğru yaptıkların giderek artan aralıklarla yeniden gelir.</p>}
+  </>
 
   return (
     <div className="stack grammar-game">
@@ -178,8 +208,9 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
         <div className="stack">
           <h1 className="greeting">Dilbilgisi soruları</h1>
           <p className="muted">
-            {LANGUAGE_NAME[language]} dilbilgisi, temel konulardan (A1) zor noktalara (C1): boşluk doldur, seçeneği seç ya da hatalı kelimeyi bul. Her cevaptan sonra kuralı Türkçe görürsün. Henüz sormadıkların ve yanlış yaptıkların önce gelir.
+            {LANGUAGE_NAME[language]} dilbilgisini konu konu çalış. {language === 'en' ? 'Boşluk doldur, seçeneği seç ya da hatalı kelimeyi bul; her cevaptan sonra kuralı Türkçe gör.' : 'A1’den C2’ye kategori ve alt konuları keşfet; hazır alıştırmalarla pratik yap.'}
           </p>
+          {language !== 'en' ? <GrammarCatalog key={language} language={language} exercises={all} stats={stats} category={category} topic={topic} level={level} onLevel={setLevel} onCategory={(id) => { setCategory(id); setTopic(undefined) }} onTopic={(id) => { setTopic(id); setCategory(grammarCatalog(language).find((c) => c.topics.some((t) => t.id === id))?.id) }}>{controls}</GrammarCatalog> : <>
           <div className="choice-row" role="group" aria-label="Konu">
             <button type="button" className="chip" aria-pressed={!topic} onClick={() => setTopic(undefined)}>
               Hepsi
@@ -191,26 +222,8 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
               </button>
             ))}
           </div>
-          {topic && (
-            <p className="small muted grammar-topic-count" role="status">
-              {topicState === 'loading'
-                ? 'Bu konunun soruları getiriliyor…'
-                : topicState === 'failed'
-                  ? 'Bu konunun yeni soruları için internet gerekiyor; şimdilik elindeki sorularla çalışabilirsin.'
-                  : `Bu konuda ${all.filter((e) => e.topic === topic).length} soru`}
-            </p>
-          )}
-          <div className="row">
-            <button className={`btn btn-lg${dueCount ? ' btn-quiet' : ''}`} onClick={() => start()} autoFocus={!dueCount} disabled={!log || size === 0 || topicState === 'loading'}>
-              {size} soruluk tura başla
-            </button>
-            {dueCount > 0 && (
-              <button className="btn btn-lg" onClick={() => start(true)} autoFocus>
-                Tekrar zamanı gelen {Math.min(dueCount, GRAMMAR_ROUND)} soru{dueCount > GRAMMAR_ROUND ? ` (${dueCount} bekliyor)` : ''}
-              </button>
-            )}
-          </div>
-          {dueCount > 0 && <p className="small muted">Daha önce çözdüğün sorular yanlışsa ertesi gün, doğruysa giderek seyrekleşen aralıklarla (3, 7, 16, 35 gün) yeniden gelir.</p>}
+          {controls}
+          </>}
         </div>
       )}
 

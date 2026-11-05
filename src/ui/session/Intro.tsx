@@ -34,6 +34,7 @@ export function Intro({
   onKnown,
   onOwnSentence,
   onPretestOff,
+  teachFirst = false,
 }: {
   entry: VocabularyEntry
   catalog: VocabularyEntry[]
@@ -44,12 +45,14 @@ export function Intro({
   onOwnSentence: (text: string) => Promise<void>
   /** Turns the first-guess question off for good (a setting); the card is shown instead. Absent: no such link. */
   onPretestOff?: () => void
+  /** Guided groups teach the word before asking its meaning. */
+  teachFirst?: boolean
 }) {
   const sense = entry.senses[0]
   const example = sense.examples[0]
   const btn = useRef<HTMLButtonElement>(null)
   const imageUrl = useMediaUrl(entry.imageId)
-  const [pretest] = useState(() => (prefs.pretest ? buildPretest(entry, catalog, rng) : null))
+  const [pretest] = useState(() => (!teachFirst && prefs.pretest ? buildPretest(entry, catalog, rng) : null))
   const [guess, setGuess] = useState<{ label: string; correct: boolean } | 'skipped' | null>(null)
   const guessing = pretest !== null && guess === null
   useEffect(() => {

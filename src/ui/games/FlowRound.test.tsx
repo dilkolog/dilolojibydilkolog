@@ -14,8 +14,10 @@ let root: ReturnType<typeof createRoot> | undefined
 beforeEach(async () => {
   await db.meta.delete('flow')
 })
-afterEach(() => {
-  act(() => root?.unmount())
+afterEach(async () => {
+  await act(async () => {
+    root?.unmount()
+  })
   document.body.innerHTML = ''
 })
 
@@ -68,7 +70,7 @@ describe('FlowRound', () => {
     const host = await mount()
     await click(byText(host, 'tura başla'))
     const item = current(host)
-    await click(options(host).find((o) => o.querySelector('.option-serif')?.textContent !== item.gaps[0].answer))
+    await click(options(host).find((o) => o.querySelector('.option-serif')?.textContent?.trim() !== item.gaps[0].answer))
     expect(host.textContent).toContain('Bu bağlaç uymaz')
     expect(host.querySelectorAll('.flow-gap.is-wrong')).toHaveLength(1)
     expect((await db.getFlowLog())[`${item.id}|1`]).toMatchObject({ ok: 0, wrong: 1 })
