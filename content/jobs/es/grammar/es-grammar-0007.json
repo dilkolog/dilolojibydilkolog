@@ -1,0 +1,24 @@
+{
+  "id": "es-grammar-0007",
+  "language": "es",
+  "kind": "grammar",
+  "level": "A1",
+  "grammar": [
+    "basics_es_presente"
+  ],
+  "count": 50,
+  "subskills": [
+    "temel kullanım",
+    "olumsuz ve soru",
+    "bağlamda seçim",
+    "sık hata (Türkçe konuşan için)",
+    "istisna ve düzensiz biçim"
+  ],
+  "ids": {
+    "from": 271,
+    "to": 320
+  },
+  "createdAt": "2026-11-05T19:43:08.224Z",
+  "claimedBy": "antigravity",
+  "claimedAt": "2026-11-05T19:45:00.000Z"
+}

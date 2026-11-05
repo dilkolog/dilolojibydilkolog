@@ -107,7 +107,7 @@ Bu dosyayı `npm run content -- coverage` yazar; elle düzenlenmez. Yalnız dene
 | Seviye | Konu | Var | Planlı | Hedef | Dolu |
 |---|---|---|---|---|---|
 | A1 | Artikeller ve cinsiyet (el / la / un / una) (`basics_es_articulos`) | 50 | 0 | 300 | 17 % |
-| A1 | Şimdiki zaman (presente) (`basics_es_presente`) | 0 | 0 | 300 | 0 % |
+| A1 | Şimdiki zaman (presente) (`basics_es_presente`) | 50 | 0 | 300 | 17 % |
 | A1 | Gustar ve benzeri fiiller (`basics_es_gustar`) | 0 | 0 | 300 | 0 % |
 | A1 | Olumsuzluk (no / nada / nadie) (`basics_es_negacion`) | 0 | 0 | 300 | 0 % |
 | A1 | Kişi zamirleri (yo, mí, conmigo) (`basics_es_pronombres`) | 0 | 0 | 300 | 0 % |
