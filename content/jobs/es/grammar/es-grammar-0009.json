@@ -1,0 +1,24 @@
+{
+  "id": "es-grammar-0009",
+  "language": "es",
+  "kind": "grammar",
+  "level": "A2",
+  "grammar": [
+    "basics_es_preterito"
+  ],
+  "count": 50,
+  "subskills": [
+    "temel kullanım",
+    "olumsuz ve soru",
+    "bağlamda seçim",
+    "sık hata (Türkçe konuşan için)",
+    "istisna ve düzensiz biçim"
+  ],
+  "ids": {
+    "from": 371,
+    "to": 420
+  },
+  "createdAt": "2026-11-05T21:14:48.234Z",
+  "claimedBy": "antigravity",
+  "claimedAt": "2026-11-05T21:14:53.280Z"
+}
