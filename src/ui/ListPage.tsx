@@ -379,7 +379,7 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
         ) : (
           list && (
             <EmptyState
-              art={collab ? 'together' : 'library'}
+              art={collab ? 'together' : 'scene-library'}
               title="Bu liste boş"
               action={
                 <button type="button" className="btn" onClick={onAdd}>

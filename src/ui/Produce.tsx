@@ -265,7 +265,7 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
         <h2 className="section-title">Önceki yazdıkların</h2>
         {entries.length === 0 ? (
           <EmptyState
-            art="journal"
+            art="scene-journal"
             title="İlk günlüğünü yaz"
             action={
               <button className="btn btn-quiet" onClick={() => document.querySelector<HTMLTextAreaElement>('.journal-editor')?.focus()}>

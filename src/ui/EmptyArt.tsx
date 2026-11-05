@@ -21,7 +21,7 @@ export type ArtKind = 'garden' | 'library' | 'journal' | 'sentences' | 'clear' |
  * that lost its plug, a calendar asleep; and Monki's scenes: a board swept clean (no mistakes left),
  * an empty card box (no sentences), tags pinned on a picture (labelling), two Monkis over one notebook.
  */
-export type PictureKind = 'shelf' | 'nothing-found' | 'offline' | 'rest' | 'clean' | 'cardbox' | 'labels' | 'together' | 'garden' | 'journal' | 'library'
+export type PictureKind = 'shelf' | 'nothing-found' | 'offline' | 'rest' | 'clean' | 'cardbox' | 'labels' | 'together' | 'garden' | 'scene-journal' | 'scene-library'
 const PICTURE: Record<PictureKind, string> = {
   shelf: emptyShelf,
   'nothing-found': emptySearch,
@@ -32,8 +32,8 @@ const PICTURE: Record<PictureKind, string> = {
   labels: sceneLabels,
   together: sceneTogether,
   garden: emptyGarden,
-  journal: sceneJournal,
-  library: sceneLibrary,
+  'scene-journal': sceneJournal,
+  'scene-library': sceneLibrary,
 }
 
 export function EmptyPicture({ kind }: { kind: PictureKind }) {
