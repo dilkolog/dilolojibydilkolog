@@ -297,13 +297,20 @@ test('a word marked hard in a session is gathered for a practice of its own', as
   await expect(page.locator('.session .difficult-btn')).toHaveAttribute('aria-pressed', 'true')
 })
 
-test('the end of a practice of hard words is about them, and a word that went well can leave the list', async ({ page }) => {
-  test.setTimeout(120_000)
+test('a practice of hard words waits for an unfinished round, then its end is about them, and a word that went well can leave the list', async ({ page }) => {
+  test.setTimeout(150_000)
   await startWithSamples(page)
   await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
   await page.locator('.session .difficult-btn').click()
   await page.keyboard.press('Escape')
   await page.getByRole('button', { name: 'Çık', exact: true }).click()
+  await openScreen(page, 'Bugün')
+  // A normal round left half way is finished first (docs/kalici-ogrenme-motoru-2026-11-04.md, 1).
+  await page.getByRole('button', { name: /Zor kelimelerin/ }).click()
+  await expect(page.getByText('Yarım kalan turuna dönüldü.')).toBeVisible()
+  await playSession(page, false)
+  await expect(page.locator('.topic-chip')).toHaveCount(0)
+  // With the round done, the hard words have their own practice, and its end is about them.
   await openScreen(page, 'Bugün')
   await page.getByRole('button', { name: /Zor kelimelerin/ }).click()
   await playSession(page, false)
@@ -317,22 +324,13 @@ test('the end of a practice of hard words is about them, and a word that went we
   }
 })
 
-test('a new word can be asked as a guess or shown as a card first, and one tap makes the card the habit', async ({ page }) => {
-  test.setTimeout(90_000)
+test('a new word of the day is taught first: the card, never a guess question', async ({ page }) => {
   await startWithSamples(page)
   await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
-  // The first word comes as a guess, with the way out beside "Hiç fikrim yok".
-  await expect(page.getByText('Sence ne anlama geliyor?')).toBeVisible()
-  await page.getByRole('button', { name: 'Hep önce kartı göster' }).click()
-  // Now it is the card; the guess question is gone.
+  // Guided groups teach the word before asking it (AGENTS.md: "İlk tanıtım tahmin sorusuyla başlamaz").
+  await expect(page.locator('.session-stage').getByText('Yeni kelime')).toBeVisible()
   await expect(page.getByText('Sence ne anlama geliyor?')).toHaveCount(0)
-  await expect(page.locator('.session-stage button:visible', { hasText: /^(Anladım|Öğrendim|Devam)/ }).first()).toBeVisible()
-  // Kept: the setting is off, and the next new words come as cards too.
-  await page.keyboard.press('Escape')
-  await page.getByRole('button', { name: 'Çık', exact: true }).click()
-  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
-  await expect(page.getByText('Sence ne anlama geliyor?')).toHaveCount(0)
-  await expect(page.locator('.session-stage .badge', { hasText: 'Yeni kelime' })).toBeVisible()
+  await expect(page.getByRole('button', { name: /^Öğrendim/ })).toBeVisible()
 })
 
 test('the verb round card goes away with a swipe to the left, stays away for the day, and can be taken back', async ({ page }) => {
