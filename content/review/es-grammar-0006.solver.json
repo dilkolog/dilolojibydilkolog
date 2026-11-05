@@ -1,0 +1,258 @@
+{
+ "job": "es-grammar-0006",
+ "results": [
+  {
+   "id": "es-g-000221",
+   "answer": "hayas encontrado",
+   "single": true
+  },
+  {
+   "id": "es-g-000222",
+   "answer": "hayas rellenado",
+   "single": true
+  },
+  {
+   "id": "es-g-000223",
+   "answer": "hubieran empezado",
+   "single": true
+  },
+  {
+   "id": "es-g-000224",
+   "answer": "hubiéramos mirado",
+   "single": true
+  },
+  {
+   "id": "es-g-000225",
+   "answer": "haya resuelto",
+   "single": true
+  },
+  {
+   "id": "es-g-000226",
+   "answer": "haya llamado",
+   "single": true
+  },
+  {
+   "id": "es-g-000227",
+   "answer": "hubiera estudiado",
+   "single": true
+  },
+  {
+   "id": "es-g-000228",
+   "answer": "hubiera cerrado",
+   "single": true
+  },
+  {
+   "id": "es-g-000229",
+   "answer": "haya visto",
+   "single": true
+  },
+  {
+   "id": "es-g-000230",
+   "answer": "hubieras",
+   "single": true
+  },
+  {
+   "id": "es-g-000231",
+   "answer": "haya abierto",
+   "single": true
+  },
+  {
+   "id": "es-g-000232",
+   "answer": "hubiera salido",
+   "single": true
+  },
+  {
+   "id": "es-g-000233",
+   "answer": "haya respondido",
+   "single": true
+  },
+  {
+   "id": "es-g-000234",
+   "answer": "hubiera cambiado",
+   "single": true
+  },
+  {
+   "id": "es-g-000235",
+   "answer": "haya usado",
+   "single": true
+  },
+  {
+   "id": "es-g-000236",
+   "answer": "haya llegado",
+   "single": true
+  },
+  {
+   "id": "es-g-000237",
+   "answer": "hubieras perdido",
+   "single": true
+  },
+  {
+   "id": "es-g-000238",
+   "answer": "haya hecho",
+   "single": true,
+   "note": "Re-solved after the sentence was changed."
+  },
+  {
+   "id": "es-g-000239",
+   "answer": "habías",
+   "single": true
+  },
+  {
+   "id": "es-g-000240",
+   "answer": "ha",
+   "single": true
+  },
+  {
+   "id": "es-g-000241",
+   "answer": "haya ido",
+   "single": true,
+   "note": "Re-solved after the options were changed."
+  },
+  {
+   "id": "es-g-000242",
+   "answer": "hubiera estudiado",
+   "single": true
+  },
+  {
+   "id": "es-g-000243",
+   "answer": "se haya ido",
+   "single": true
+  },
+  {
+   "id": "es-g-000244",
+   "answer": "se hubiera marchado",
+   "single": true
+  },
+  {
+   "id": "es-g-000245",
+   "answer": "hubiera pasado",
+   "single": true
+  },
+  {
+   "id": "es-g-000246",
+   "answer": "hubiera sabido",
+   "single": true
+  },
+  {
+   "id": "es-g-000247",
+   "answer": "haya comido",
+   "single": true
+  },
+  {
+   "id": "es-g-000248",
+   "answer": "hubiera traído",
+   "single": true
+  },
+  {
+   "id": "es-g-000249",
+   "answer": "hubiera hecho",
+   "single": true
+  },
+  {
+   "id": "es-g-000250",
+   "answer": "hayas",
+   "single": true
+  },
+  {
+   "id": "es-g-000251",
+   "answer": "hubieran montado",
+   "single": true
+  },
+  {
+   "id": "es-g-000252",
+   "answer": "haya vuelto",
+   "single": true
+  },
+  {
+   "id": "es-g-000253",
+   "answer": "haya cerrado",
+   "single": true
+  },
+  {
+   "id": "es-g-000254",
+   "answer": "hubiéramos tomado",
+   "single": true
+  },
+  {
+   "id": "es-g-000255",
+   "answer": "hubiera preparado",
+   "single": true
+  },
+  {
+   "id": "es-g-000256",
+   "answer": "hubiéramos salido",
+   "single": true
+  },
+  {
+   "id": "es-g-000257",
+   "answer": "hayas podido",
+   "single": true
+  },
+  {
+   "id": "es-g-000258",
+   "answer": "hubiera escrito",
+   "single": true
+  },
+  {
+   "id": "es-g-000259",
+   "answer": "habría",
+   "single": true,
+   "note": "Only 'habría' (in the si-clause) is wrong; 'no se hubiera perdido' in the main clause is an accepted variant of 'habría perdido'."
+  },
+  {
+   "id": "es-g-000260",
+   "answer": "terminados",
+   "single": true
+  },
+  {
+   "id": "es-g-000261",
+   "answer": "hayas puesto",
+   "single": true
+  },
+  {
+   "id": "es-g-000262",
+   "answer": "hubiera escrito",
+   "single": true
+  },
+  {
+   "id": "es-g-000263",
+   "answer": "hayan descubierto",
+   "single": true
+  },
+  {
+   "id": "es-g-000264",
+   "answer": "hubieras dicho",
+   "single": true
+  },
+  {
+   "id": "es-g-000265",
+   "answer": "hubiera roto",
+   "single": true
+  },
+  {
+   "id": "es-g-000266",
+   "answer": "haya resuelto",
+   "single": true
+  },
+  {
+   "id": "es-g-000267",
+   "answer": "hubiera abierto",
+   "single": true
+  },
+  {
+   "id": "es-g-000268",
+   "answer": "hubiera vuelto",
+   "single": true
+  },
+  {
+   "id": "es-g-000269",
+   "answer": "satisfacido",
+   "single": true
+  },
+  {
+   "id": "es-g-000270",
+   "answer": "haiga",
+   "single": true
+  }
+ ]
+}

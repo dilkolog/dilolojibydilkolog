@@ -104,8 +104,8 @@
   {
    "id": "es-g-000191",
    "answer": "fue construido",
-   "single": false,
-   "note": "'se construyó por los romanos' (pasiva refleja con complemento agente) es poco recomendada pero la NGLE la registra como posible en registro formal/administrativo; dos opciones defendibles."
+   "single": true,
+   "note": "Re-solved after the options were changed."
   },
   {
    "id": "es-g-000192",
@@ -120,8 +120,8 @@
   {
    "id": "es-g-000194",
    "answer": "será inaugurado",
-   "single": false,
-   "note": "'se inaugurará por la alcaldesa' (pasiva refleja con agente) es desaconsejada pero aparece en lengua periodística/administrativa; 'será inaugurado' es la claramente correcta."
+   "single": true,
+   "note": "Re-solved after the options were changed."
   },
   {
    "id": "es-g-000195",

@@ -37,12 +37,12 @@ Değerlendirme:
 > El puente antiguo ___ por los romanos hace casi dos mil años.
 
 - ✓ fue construido
-- · se construyó
 - · se construyeron
+- · construyó
 
 **Cevap:** fue construido
 
-**Kural:** Eylemi yapan “por + kişi” ile söyleniyorsa se'li yapı değil, ser + ortaç (fue construido) kullanılır.
+**Kural:** Eylemi yapan “por + kişi” ile söyleniyorsa ser + ortaç (fue construido) kullanılır; “puente” tekil olduğu için çoğul “se construyeron” olmaz, özne köprü olduğu için etken “construyó” da olmaz.
 
 Değerlendirme: 
 

@@ -138,7 +138,7 @@ Bu dosyayı `npm run content -- coverage` yazar; elle düzenlenmez. Yalnız dene
 | B1 | Gerundio ve İngilizce -ing tuzakları (`basics_es_gerundio`) | 0 | 0 | 300 | 0 % |
 | B1 | Zamir sırası, kazara se ve leísmo (`basics_es_orden_pronombres`) | 0 | 0 | 300 | 0 % |
 | B1 | -mente ile zarflar (`basics_es_adverbios_mente`) | 0 | 0 | 300 | 0 % |
-| B2 | Se pasivo ve impersonal (`se_pasivo`) | 0 | 0 | 300 | 0 % |
+| B2 | Se pasivo ve impersonal (`se_pasivo`) | 50 | 0 | 300 | 17 % |
 | B2 | Dolaylı anlatım (estilo indirecto) (`estilo_indirecto`) | 0 | 0 | 300 | 0 % |
 | B2 | İmperfecto de subjuntivo (-ra / -se) (`basics_es_imperfecto_subjuntivo`) | 0 | 0 | 300 | 0 % |
 | B2 | Amaç ve taviz: para que, aunque (`basics_es_finales_concesivas`) | 0 | 0 | 300 | 0 % |
@@ -148,7 +148,7 @@ Bu dosyayı `npm run content -- coverage` yazar; elle düzenlenmez. Yalnız dene
 | B2 | lo + sıfat ve lo que: lo bueno es que… (`basics_es_lo_neutro`) | 0 | 0 | 300 | 0 % |
 | B2 | Edilgen: ser + ortaç ve estar + ortaç (`basics_es_pasiva_ser_estar`) | 0 | 0 | 300 | 0 % |
 | B2 | Zorunluluk, tahmin ve süreç: tener que, deber de, ir + gerundio (`basics_es_perifrasis_obligacion_modal`) | 0 | 0 | 300 | 0 % |
-| C1 | Bileşik subjuntivo: haya hecho, hubiera hecho (`basics_es_subjuntivo_compuesto`) | 0 | 0 | 300 | 0 % |
+| C1 | Bileşik subjuntivo: haya hecho, hubiera hecho (`basics_es_subjuntivo_compuesto`) | 50 | 0 | 300 | 17 % |
 | C1 | Yazıda söylem belirleyicileri (no obstante, por consiguiente) (`basics_es_marcadores`) | 0 | 0 | 300 | 0 % |
 | C1 | Tahmin: serán las ocho, estaría cansado (`basics_es_probabilidad`) | 0 | 0 | 300 | 0 % |
 | C1 | Resmî yazışma: usted ve nezaket kalıpları (`basics_es_registro_formal`) | 0 | 0 | 300 | 0 % |

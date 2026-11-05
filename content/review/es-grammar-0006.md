@@ -37,12 +37,12 @@ Değerlendirme:
 > Todavía no sé el resultado de la prueba de mi hermana; ojalá le ___ bien.
 
 - ✓ haya ido
-- · hubiera ido
 - · ha ido
+- · habrá ido
 
 **Cevap:** haya ido
 
-**Kural:** Sonucu bilmiyorsak ojalá + haya + ortaç umut bildirir; hubiera olsaydı işin kötü gittiğini bilip üzüldüğümüz anlamına gelirdi.
+**Kural:** Ojalá her zaman subjuntivo ister; sonucunu henüz bilmediğimiz geçmiş bir iş için haya + ortaç kullanılır (ha ido ve habrá ido bildirme kipidir).
 
 Değerlendirme: 
 
