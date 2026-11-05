@@ -138,22 +138,22 @@ Bu dosyayı `npm run content -- coverage` yazar; elle düzenlenmez. Yalnız dene
 | B1 | Gerundio ve İngilizce -ing tuzakları (`basics_es_gerundio`) | 0 | 0 | 300 | 0 % |
 | B1 | Zamir sırası, kazara se ve leísmo (`basics_es_orden_pronombres`) | 0 | 0 | 300 | 0 % |
 | B1 | -mente ile zarflar (`basics_es_adverbios_mente`) | 0 | 0 | 300 | 0 % |
-| B2 | Se pasivo ve impersonal (`se_pasivo`) | 0 | 0 | 300 | 0 % |
+| B2 | Se pasivo ve impersonal (`se_pasivo`) | 20 | 0 | 300 | 7 % |
 | B2 | Dolaylı anlatım (estilo indirecto) (`estilo_indirecto`) | 0 | 0 | 300 | 0 % |
 | B2 | İmperfecto de subjuntivo (-ra / -se) (`basics_es_imperfecto_subjuntivo`) | 0 | 0 | 300 | 0 % |
 | B2 | Amaç ve taviz: para que, aunque (`basics_es_finales_concesivas`) | 0 | 0 | 300 | 0 % |
 | B2 | İlgi cümlesinde kip: busco a alguien que sepa (`basics_es_subjuntivo_relativo`) | 0 | 0 | 300 | 0 % |
-| B2 | Değişim fiilleri: ponerse, volverse, hacerse, quedarse (`basics_es_verbos_cambio`) | 0 | 0 | 300 | 0 % |
+| B2 | Değişim fiilleri: ponerse, volverse, hacerse, quedarse (`basics_es_verbos_cambio`) | 20 | 0 | 300 | 7 % |
 | B2 | Zaman cümleleri: cuando llegues, en cuanto, hasta que (`basics_es_temporales`) | 0 | 0 | 300 | 0 % |
-| B2 | lo + sıfat ve lo que: lo bueno es que… (`basics_es_lo_neutro`) | 0 | 0 | 300 | 0 % |
+| B2 | lo + sıfat ve lo que: lo bueno es que… (`basics_es_lo_neutro`) | 20 | 0 | 300 | 7 % |
 | B2 | Edilgen: ser + ortaç ve estar + ortaç (`basics_es_pasiva_ser_estar`) | 0 | 0 | 300 | 0 % |
 | B2 | Zorunluluk, tahmin ve süreç: tener que, deber de, ir + gerundio (`basics_es_perifrasis_obligacion_modal`) | 0 | 0 | 300 | 0 % |
 | C1 | Bileşik subjuntivo: haya hecho, hubiera hecho (`basics_es_subjuntivo_compuesto`) | 0 | 0 | 300 | 0 % |
 | C1 | Yazıda söylem belirleyicileri (no obstante, por consiguiente) (`basics_es_marcadores`) | 0 | 0 | 300 | 0 % |
 | C1 | Tahmin: serán las ocho, estaría cansado (`basics_es_probabilidad`) | 0 | 0 | 300 | 0 % |
 | C1 | Resmî yazışma: usted ve nezaket kalıpları (`basics_es_registro_formal`) | 0 | 0 | 300 | 0 % |
-| C1 | Şartın diğer yolları: en caso de que, a no ser que, como, de + mastar (`basics_es_condicion_alternativa`) | 0 | 0 | 300 | 0 % |
-| C1 | Vurgulu cümleler: fue Ana quien…, lo que necesito es… (`basics_es_oraciones_hendidas`) | 0 | 0 | 300 | 0 % |
+| C1 | Şartın diğer yolları: en caso de que, a no ser que, como, de + mastar (`basics_es_condicion_alternativa`) | 20 | 0 | 300 | 7 % |
+| C1 | Vurgulu cümleler: fue Ana quien…, lo que necesito es… (`basics_es_oraciones_hendidas`) | 20 | 0 | 300 | 7 % |
 
 ### En boş 20 hücre
 
