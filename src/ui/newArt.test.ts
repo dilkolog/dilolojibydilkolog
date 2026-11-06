@@ -103,4 +103,9 @@ describe('New Visual Art Assets', () => {
     const { EmptyPicture } = await import('./EmptyArt')
     expect(EmptyPicture).toBeTypeOf('function')
   })
+
+  it('registers head-admin in PageHeader art', async () => {
+    const headAdmin = await import('../assets/art/head-admin.webp')
+    expect(headAdmin.default).toBeTruthy()
+  })
 })

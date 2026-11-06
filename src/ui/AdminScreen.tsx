@@ -961,7 +961,7 @@ export function AdminScreen() {
   const { pending, reports, healthy } = summary
   return (
     <div className="stack admin-page">
-      <PageHeader title="Yönetim" sub="Yalnızca sana görünür: onaylar, YZ düzeyleri, şikâyetler ve sistemin durumu." art="look" />
+      <PageHeader title="Yönetim" sub="Yalnızca sana görünür: onaylar, YZ düzeyleri, şikâyetler ve sistemin durumu." art="admin" />
       <div className="admin-figures" aria-label="Özet">
         <Figure value={pending === undefined ? '…' : String(pending)} label="Onay bekleyen" target="admin-people-card" tone={pending ? 'due' : undefined} />
         <Figure value={reports === undefined ? '…' : String(reports)} label="Şikâyet (7 gün)" target="admin-reports-card" tone={reports ? 'bad' : undefined} />
