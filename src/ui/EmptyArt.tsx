@@ -4,7 +4,6 @@
  */
 import emptyOffline from '../assets/art/empty-offline.webp'
 import emptyRest from '../assets/art/empty-rest.webp'
-import emptySearch from '../assets/art/empty-search.webp'
 import emptyShelf from '../assets/art/empty-shelf.webp'
 import emptyGarden from '../assets/art/empty-garden.webp'
 import sceneCardbox from '../assets/art/scene-cardbox.webp'
@@ -13,6 +12,8 @@ import sceneLabels from '../assets/art/scene-labels.webp'
 import sceneTogether from '../assets/art/scene-together.webp'
 import sceneJournal from '../assets/art/scene-journal.webp'
 import sceneLibrary from '../assets/art/scene-library.webp'
+import sceneSentences from '../assets/art/scene-sentences.webp'
+import sceneSearchEmpty from '../assets/art/scene-search-empty.webp'
 
 export type ArtKind = 'garden' | 'library' | 'journal' | 'sentences' | 'clear' | 'search'
 
@@ -21,10 +22,10 @@ export type ArtKind = 'garden' | 'library' | 'journal' | 'sentences' | 'clear' |
  * that lost its plug, a calendar asleep; and Monki's scenes: a board swept clean (no mistakes left),
  * an empty card box (no sentences), tags pinned on a picture (labelling), two Monkis over one notebook.
  */
-export type PictureKind = 'shelf' | 'nothing-found' | 'offline' | 'rest' | 'clean' | 'cardbox' | 'labels' | 'together' | 'garden' | 'scene-journal' | 'scene-library'
+export type PictureKind = 'shelf' | 'nothing-found' | 'offline' | 'rest' | 'clean' | 'cardbox' | 'labels' | 'together' | 'garden' | 'scene-journal' | 'scene-library' | 'scene-sentences' | 'scene-search-empty'
 const PICTURE: Record<PictureKind, string> = {
   shelf: emptyShelf,
-  'nothing-found': emptySearch,
+  'nothing-found': sceneSearchEmpty,
   offline: emptyOffline,
   rest: emptyRest,
   clean: sceneClean,
@@ -34,6 +35,8 @@ const PICTURE: Record<PictureKind, string> = {
   garden: emptyGarden,
   'scene-journal': sceneJournal,
   'scene-library': sceneLibrary,
+  'scene-sentences': sceneSentences,
+  'scene-search-empty': sceneSearchEmpty,
 }
 
 export function EmptyPicture({ kind }: { kind: PictureKind }) {

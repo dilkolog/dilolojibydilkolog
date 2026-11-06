@@ -43,6 +43,7 @@ import bossOctopus from '../assets/art/boss-octopus.webp'
 import bossYeti from '../assets/art/boss-yeti.webp'
 import bossDragon from '../assets/art/boss-dragon.webp'
 import bossGolem from '../assets/art/boss-golem.webp'
+import bossChronos from '../assets/art/boss-chronos.webp'
 
 /** The drawn avatar is stored as this emoji value; it shows the picture instead of a glyph. */
 export const MONKI_AVATAR = 'monki'
@@ -103,6 +104,7 @@ export const EARNED_AVATARS: EarnedAvatar[] = [
   { id: 'boss-dino', art: bossDino, name: 'Dino', stat: 'mastered', goal: 50 },
   { id: 'monki-graduate', art: monkiGraduate, name: 'Mezun Monki', stat: 'level', goal: 15 },
   { id: 'boss-yeti', art: bossYeti, name: 'Yeti', stat: 'bossesDefeated', goal: 10 },
+  { id: 'boss-chronos', art: bossChronos, name: 'Zaman Bükücü Kronos', stat: 'bossesDefeated', goal: 15 },
   { id: 'monki-sleep', art: monkiSleep, name: 'Uykucu Monki', stat: 'level', goal: 20 },
   { id: 'boss-dragon', art: bossDragon, name: 'Ejderha', stat: 'longestStreak', goal: 30 },
   { id: 'sticker-read', art: stickerRead, name: 'Kitap Kurdu Monki', stat: 'mastered', goal: 100 },
