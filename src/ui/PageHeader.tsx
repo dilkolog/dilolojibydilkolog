@@ -19,6 +19,7 @@ import headBack from '../assets/art/head-back.webp'
 import headExam from '../assets/art/head-exam.webp'
 import headVocabtest from '../assets/art/head-vocabtest.webp'
 import headEdit from '../assets/art/head-edit.webp'
+import headAdmin from '../assets/art/head-admin.webp'
 import reactHello from '../assets/art/react-hello.webp'
 import guideTeach from '../assets/art/guide-teach.webp'
 
@@ -44,6 +45,7 @@ const ART = {
   exam: headExam,
   vocabtest: headVocabtest,
   edit: headEdit,
+  admin: headAdmin,
   hello: reactHello,
   guide: guideTeach,
 }
