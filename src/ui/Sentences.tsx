@@ -64,7 +64,7 @@ export function SentencesGame({ language, onExit }: { language: TargetLanguage; 
       )}
       {!mine.length && (
         <EmptyState
-          art="cardbox"
+          art="scene-sentences"
           title="Henüz cümle yok"
           action={
             <button className="btn btn-quiet" onClick={() => document.querySelector<HTMLTextAreaElement>('textarea[aria-label="Cümle"]')?.focus()}>

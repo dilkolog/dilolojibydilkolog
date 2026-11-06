@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import onbGoal from '../assets/art/onb-goal.webp'
-import onbMap from '../assets/art/onb-map.webp'
 import onbFlags from '../assets/art/onb-flags.webp'
+import onbWelcome from '../assets/art/onb-welcome.webp'
 
 import { TARGET_LANGUAGES, type TargetLanguage } from '../engine/types'
 
@@ -121,7 +121,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
       <section className="card stack onboarding-form ob-step" key={step}>
         {step === 0 && (
           <>
-            <img className="ob-art" src={onbMap} alt="" draggable={false} />
+            <img className="ob-art" src={onbWelcome} alt="" draggable={false} />
             <button type="button" className="btn btn-lg btn-block" onClick={next}>
               Başlayalım
             </button>

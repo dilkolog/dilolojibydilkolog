@@ -187,6 +187,7 @@ import bossOctopus from '../assets/art/boss-octopus.webp'
 import bossGolem from '../assets/art/boss-golem.webp'
 import bossThunder from '../assets/art/boss-thunder.webp'
 import bossBookwyrm from '../assets/art/boss-bookwyrm.webp'
+import bossChronos from '../assets/art/boss-chronos.webp'
 import langMonkiEn from '../assets/art/lang-monki-en.webp'
 import langMonkiFr from '../assets/art/lang-monki-fr.webp'
 import langMonkiEs from '../assets/art/lang-monki-es.webp'
@@ -318,7 +319,7 @@ export const EMBLEM = { chat: emChat, mic: emMic, trophy: emTrophy }
 export const ROLE_ART = { cafe: roleCafe, hotel: roleHotel, directions: roleDirections, doctor: roleDoctor, interview: roleInterview, shopping: roleShopping }
 
 /** The bosses of the boss arena: a word is always the same one of them. */
-export const BOSS_ART = [bossBlob, bossDragon, bossSlime, bossYeti, bossDino, bossGhost, bossOctopus, bossGolem, bossThunder, bossBookwyrm]
+export const BOSS_ART = [bossBlob, bossDragon, bossSlime, bossYeti, bossDino, bossGhost, bossOctopus, bossGolem, bossThunder, bossBookwyrm, bossChronos]
 
 /** Monki in authentic cultural dress for each language (English Detective, French Artist, Spanish Guitarist). */
 export const LANG_MONKI: Record<TargetLanguage, string> = { en: langMonkiEn, fr: langMonkiFr, es: langMonkiEs }

@@ -52,7 +52,7 @@ describe('New Visual Art Assets', () => {
   })
 
   it('registers new boss monsters in boss arena', () => {
-    expect(BOSS_ART.length).toBe(10)
+    expect(BOSS_ART.length).toBe(11)
   })
 
   it('registers speed duel and shadowing in tile art', () => {
@@ -99,7 +99,7 @@ describe('New Visual Art Assets', () => {
     expect(gTransform).toBeTruthy()
   })
 
-  it('provides illustrated scenes for empty garden, journal, and library', async () => {
+  it('provides illustrated scenes for empty garden, journal, library, sentences, and search', async () => {
     const { EmptyPicture } = await import('./EmptyArt')
     expect(EmptyPicture).toBeTypeOf('function')
   })

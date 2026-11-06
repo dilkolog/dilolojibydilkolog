@@ -701,7 +701,7 @@ export function WordList({
           )}
           {list.length === 0 ? (
             <EmptyState
-              sticker="shy"
+              art="scene-search-empty"
               title="Bu aramaya uyan kelime yok"
               action={
                 <button
