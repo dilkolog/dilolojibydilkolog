@@ -123,7 +123,7 @@ describe('Session: right answers go on by themselves when asked to', () => {
     await mount(finished, plan)
     expect(container.querySelector('.intro-card')).not.toBeNull()
     expect(container.textContent).toContain('Öğrenme grubu 1/1')
-    await act(async () => [...container.querySelectorAll<HTMLButtonElement>('button')].find((b) => b.textContent?.includes('Öğrendim, devam'))!.click())
+    await act(async () => [...container.querySelectorAll<HTMLButtonElement>('button')].find((b) => b.textContent?.includes('Tanıdım, şimdi dene'))!.click())
     const proceed = async () => {
       for (let i = 0; i < 75 && !container.querySelector('.sheet button.btn-lg:not([disabled])'); i++) await act(async () => void (await new Promise((r) => setTimeout(r, 40))))
       await act(async () => container.querySelector<HTMLButtonElement>('.sheet button.btn-lg:not([disabled])')!.click())
@@ -152,7 +152,7 @@ describe('Session: right answers go on by themselves when asked to', () => {
       { entryId: entry.id, kind: 'exercise', reason: 'new', skill: 'recognition', exerciseType: 'mc_meaning' },
     ]
     await mount(vi.fn(), plan)
-    await act(async () => [...container.querySelectorAll<HTMLButtonElement>('button')].find((b) => b.textContent?.includes('Öğrendim, devam'))!.click())
+    await act(async () => [...container.querySelectorAll<HTMLButtonElement>('button')].find((b) => b.textContent?.includes('Tanıdım, şimdi dene'))!.click())
     const before = await db.events.count()
     await choose(true)
     const draft = await readSessionDraft(db, 'fr')

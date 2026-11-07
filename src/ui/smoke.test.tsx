@@ -251,7 +251,7 @@ describe('screens render', () => {
       const buttons = [...el.querySelectorAll<HTMLButtonElement>('button')].filter((b) => !b.disabled)
       const option = el.querySelector<HTMLButtonElement>('button.option:not([disabled])')
       const input = el.querySelector<HTMLInputElement>('input.answer-input:not([disabled]), textarea.answer-input:not([disabled])')
-      const go = buttons.find((b) => /^(Devam|Anladım|Kontrol et|Tamam|Başla|Sonraki|Öğrendim)/.test(b.textContent?.trim() ?? ''))
+      const go = buttons.find((b) => /^(Devam|Anladım|Kontrol et|Tamam|Başla|Sonraki|Tanıdım)/.test(b.textContent?.trim() ?? ''))
       if (option || input || go) waits = 0
       if (option) await click(option)
       else if (input) {

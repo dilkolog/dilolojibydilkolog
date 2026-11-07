@@ -111,7 +111,7 @@ export function ReadingHome({
       <DailyNewsHero db={db} language={language} vocabulary={vocabulary} states={states} known={known} onOpen={open} />
       {library.length === 0 && (
         <EmptyState art="shelf" title="Kütüphanen boş">
-          Bir haber, kitaptan bir bölüm ya da bir videonun alt yazısı: ne kadarını bildiğini görürsün, bilmediklerini kelimelerine eklersin. Aşağıdan ilk metnini ekle veya klasik masallar ve öyküler koleksiyonundan başla.
+          Bir haber, kitaptan bir bölüm ya da bir videonun alt yazısı: ne kadarını bildiğini görürsün, bilmediklerini kelimelerine eklersin. Hazır metinlerden birini aç ya da altta kendi metnini ekle.
         </EmptyState>
       )}
       {library.length > 0 && (
@@ -143,6 +143,8 @@ export function ReadingHome({
           </ul>
         </section>
       )}
+      {/* A first-time reader sees the ready texts first and the form for their own text second; with a library it is the other way round. */}
+      {library.length === 0 && <SourcePickers db={db} language={language} vocabulary={vocabulary} states={states} known={known} library={library} setLibrary={setLibrary} open={open} />}
       <AddTextCard
         language={language}
         // A text that could not be brought (an episode's subtitles): the card opens to say why.
@@ -165,7 +167,7 @@ export function ReadingHome({
         onDropVideo={onDropVideo}
         timedLines={timedLines}
       />
-      <SourcePickers db={db} language={language} vocabulary={vocabulary} states={states} known={known} library={library} setLibrary={setLibrary} open={open} />
+      {library.length > 0 && <SourcePickers db={db} language={language} vocabulary={vocabulary} states={states} known={known} library={library} setLibrary={setLibrary} open={open} />}
       <ExternalResources language={language} />
     </div>
   )

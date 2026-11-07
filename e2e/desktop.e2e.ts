@@ -1249,7 +1249,7 @@ test('study settings inside a session: shorten it, turn the kind of question dow
   await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
   // Past the introduction cards, to a first question.
   for (let i = 0; i < 12 && !(await page.locator('.session-stage .option, .session-stage input.answer-input').count()); i++) {
-    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim|Hatırlıyorum)/ })
+    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Tanıdım|Hatırlıyorum)/ })
     if (await next.count()) await next.first().click()
     await page.waitForTimeout(150)
   }
@@ -3795,7 +3795,7 @@ test('an unfinished learning group resumes after reloading feedback without reco
   // Teach the small group's words before the first recognition question.
   for (let i = 0; i < 6 && !(await page.locator('.session-stage .forgot-chip').count()); i++) {
     const text = await page.locator('.intro-card').innerText()
-    await page.getByRole('button', { name: 'Öğrendim, devam', exact: true }).click()
+    await page.getByRole('button', { name: 'Tanıdım, şimdi dene', exact: true }).click()
     await expect.poll(async () => await page.locator('.intro-card').count() ? page.locator('.intro-card').innerText() : '').not.toBe(text)
   }
   await page.locator('.session-stage .forgot-chip').click()

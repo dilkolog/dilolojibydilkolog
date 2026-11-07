@@ -440,11 +440,39 @@ export function pickDistractors(
   const linked = (a: VocabularyEntry, b: VocabularyEntry) =>
     a.relations.some((r) => r.targetId === b.id) || b.relations.some((r) => r.targetId === a.id)
   const picked: VocabularyEntry[] = []
-  for (const c of ranked) {
-    if (picked.length >= count) break
-    if (!picked.some((p) => linked(p, c) || normalize(p.senses[0].gloss) === normalize(c.senses[0].gloss))) picked.push(c)
+  const take = (strict: boolean) => {
+    for (const c of ranked) {
+      if (picked.length >= count) break
+      if (picked.includes(c)) continue
+      const g = c.senses[0].gloss
+      // Strict: a Turkish meaning that overlaps the answer's or another option's ("yıl" and "yıl (yıl boyu)") would also be right.
+      if (strict && (glossesClash(g, entry.senses[0].gloss) || picked.some((p) => glossesClash(g, p.senses[0].gloss)))) continue
+      if (!picked.some((p) => linked(p, c) || normalize(p.senses[0].gloss) === normalize(g))) picked.push(c)
+    }
   }
+  take(true)
+  // Too few words in the list to be that choosy: fall back to the plain rule rather than leave an option short.
+  if (picked.length < count) take(false)
   return picked
+}
+
+/** Words too general to make two meanings the same. */
+const GLOSS_STOP = new Set(['bir', 'için', 'ile', 'gibi', 'olan', 'olmak', 'etmek', 'yapmak', 'veya', 'ama', 'çok', 'daha', 'bu', 'şey'])
+
+/** The meaningful words of a Turkish meaning, parentheses included ("yıl (yıl boyu)" → yıl, boyu). */
+function glossWords(gloss: string): string[] {
+  return normalize(gloss)
+    .split(/[^\p{L}\p{N}]+/u)
+    .filter((w) => w.length >= 3 && !GLOSS_STOP.has(w))
+}
+
+/**
+ * Whether two Turkish meanings share a word (or a word and its suffixed form: yıl / yılı): as two
+ * options of one question they cannot be told apart, so the learner who knows the word is marked wrong.
+ */
+export function glossesClash(a: string, b: string): boolean {
+  const wb = glossWords(b)
+  return glossWords(a).some((x) => wb.some((y) => x === y || (Math.abs(x.length - y.length) <= 2 && (x.startsWith(y) || y.startsWith(x)))))
 }
 
 /**

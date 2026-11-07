@@ -185,7 +185,7 @@ export function KeyLegend({ mode, hints, override }: { mode: LegendMode; hints?:
       )}
       {mode === 'intro' && (
         <>
-          <span>{k('Enter')} öğrendim</span>
+          <span>{k('Enter')} tanıdım</span>
           <span>{k('B')} zaten biliyorum</span>
         </>
       )}

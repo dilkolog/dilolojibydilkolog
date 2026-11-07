@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
+import { dueLabel } from './dueLabel'
 import { addedTime, type CefrLevel, type Mistake, type TargetLanguage, type UserWordState, type VocabularyEntry, type WordList as WordListRow } from '../engine/types'
 import { bandOf } from '../data/wordInput'
 import { BoltIcon, CheckIcon, ImageIcon, MicIcon, PlusIcon, SlidersIcon, SearchIcon } from './icons'
@@ -849,7 +850,7 @@ export function WordList({
                       </span>
                       {withMistakes.has(v.id) && <span className="pill pill-bad">hata</span>}
                       {/* When the word comes back: the one thing a list row can't otherwise tell. */}
-                      {st && <span className={`word-row-due${due && due.getTime() <= now.getTime() ? ' is-due' : ''}`}>{due ? dueShort(due, now) : 'emekli'}</span>}
+                      {st && <span className={`word-row-due${due && due.getTime() <= now.getTime() ? ' is-due' : ''}`}>{dueLabel(st, due, now)}</span>}
                     </button>
                   </li>
                 )
@@ -881,16 +882,6 @@ function MoreRows({ left, onMore }: { left: number; onMore: () => void }) {
       {left} kelime daha göster
     </button>
   )
-}
-
-/** "bugün", "yarın", "5 gün", "12 Kas": short enough for the end of a list row. */
-function dueShort(d: Date, now: Date): string {
-  const day = (x: Date) => new Date(x.getFullYear(), x.getMonth(), x.getDate()).getTime()
-  const diff = Math.round((day(d) - day(now)) / 86_400_000)
-  if (diff <= 0) return 'bugün'
-  if (diff === 1) return 'yarın'
-  if (diff < 30) return `${diff} gün`
-  return d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' })
 }
 
 /** A table header that sorts by its column. */

@@ -93,7 +93,7 @@ test('in a session the answer choices sit within thumb reach', async ({ page }) 
   await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
   // Introductions first; then a question with choices.
   for (let i = 0; i < 20 && !(await page.locator('.session-stage > div > .options .option:not([disabled])').count()); i++) {
-    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
+    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Tanıdım)/ })
     const guess = page.locator('.session-stage .option:not([disabled])')
     // A click on a button that went away in the meantime is let go (3 s), the loop looks again.
     if (await next.count()) await next.first().click({ timeout: 3000 }).catch(() => undefined)
@@ -330,7 +330,7 @@ test('a new word of the day is taught first: the card, never a guess question', 
   // Guided groups teach the word before asking it (AGENTS.md: "İlk tanıtım tahmin sorusuyla başlamaz").
   await expect(page.locator('.session-stage').getByText('Yeni kelime')).toBeVisible()
   await expect(page.getByText('Sence ne anlama geliyor?')).toHaveCount(0)
-  await expect(page.getByRole('button', { name: /^Öğrendim/ })).toBeVisible()
+  await expect(page.getByRole('button', { name: /^Tanıdım/ })).toBeVisible()
 })
 
 test('the verb round card goes away with a swipe to the left, stays away for the day, and can be taken back', async ({ page }) => {
@@ -365,7 +365,7 @@ test('"Unuttum" shows the answer at once, counts as a miss with no guess recorde
   await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
   const chip = page.locator('.prompt-tools .forgot-chip')
   for (let i = 0; i < 40 && !(await chip.count()); i++) {
-    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
+    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Tanıdım)/ })
     const guess = page.locator('.session-stage .option:not([disabled])')
     if (await next.count()) await next.first().click()
     else if (await guess.count()) await guess.first().click()
@@ -394,7 +394,7 @@ test('a question has a labelled "Zor" chip beside "Emin değilim", and it marks 
   // Past the new-word cards, to the first question.
   const chip = page.locator('.prompt-tools .difficult-chip')
   for (let i = 0; i < 40 && !(await chip.count()); i++) {
-    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
+    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Tanıdım)/ })
     const guess = page.locator('.session-stage .option:not([disabled])')
     if (await next.count()) await next.first().click()
     else if (await guess.count()) await guess.first().click()

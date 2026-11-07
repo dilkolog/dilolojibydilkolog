@@ -318,3 +318,15 @@ describe('options that do not give the answer away', () => {
     expect(exampleSource(ex('c', 'c'), withEx)).toBeUndefined()
   })
 })
+
+describe('Turkish meanings that cannot be told apart', () => {
+  it('flags two meanings that share a word', async () => {
+    const { glossesClash } = await import('../exercises')
+    expect(glossesClash('yıl', 'yıl (yıl boyu)')).toBe(true)
+    expect(glossesClash('yılı', 'yıl')).toBe(true)
+    expect(glossesClash('karar vermek', 'bir karar')).toBe(true)
+    expect(glossesClash('etki', 'etkilemek')).toBe(false)
+    expect(glossesClash('ev', 'araba')).toBe(false)
+    expect(glossesClash('bir ev', 'bir araba')).toBe(false)
+  })
+})
