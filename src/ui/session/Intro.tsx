@@ -172,7 +172,7 @@ export function Intro({
       </div>
       <div className="session-actions">
         <button ref={btn} className="btn btn-lg grow" onClick={onContinue}>
-          Öğrendim, devam
+          Tanıdım, şimdi dene
         </button>
         <button className="btn btn-lg btn-quiet" onClick={onKnown}>
           Zaten biliyorum

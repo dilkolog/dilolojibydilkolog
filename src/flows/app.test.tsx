@@ -56,7 +56,7 @@ async function answerUntilSheet(pick: (options: HTMLButtonElement[]) => HTMLButt
     if (el.querySelector('.sheet')) return
     const options = [...el.querySelectorAll<HTMLButtonElement>('.session-stage .option:not([disabled])')]
     const input = el.querySelector<HTMLInputElement>('.session input.answer-input:not([disabled])')
-    const go = button(/^(Devam|Anladım|Öğrendim|Yazarak cevapla)/)
+    const go = button(/^(Devam|Anladım|Tanıdım|Yazarak cevapla)/)
     if (options.length) await click(pick(options))
     else if (input) {
       await type(input, 'xyz')

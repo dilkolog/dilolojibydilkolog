@@ -155,7 +155,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
                 onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
               />
               {game && (
-                <span className="profile-badge-pill" title="Seviye ve unvan">
+                <span className="profile-badge-pill" title="Deneyim seviyesi (XP) ve unvan">
                   <span className="level-badge">Seviye {game.level.level}</span>
                   <strong className="profile-title-text">{unlockables ? titleName(profile.title, unlockables) : game.level.title}</strong>
                 </span>
@@ -199,7 +199,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
             <div className="profile-level-top">
               <span className="profile-level-label">
                 <TrophyIcon size={15} className="inline-icon" />
-                <strong>Seviye İlerlemesi</strong>
+                <strong>Deneyim seviyesi</strong>
               </span>
               <span className="profile-xp-readout">
                 {/* This level's share, as the bar shows it (the total is on the stats below and on Progress). */}
@@ -302,7 +302,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
             <section className="stat-grid profile-stats">
               <Stat value={<><StreakPicture streak={game.streak} size={24} /> {game.streak}</>} label="günlük seri" />
               <Stat value={<><img className="stat-art-img" src={STAT_ART.star} alt="" height={22} width={22} draggable={false} /> {game.stats.mastered}</>} label="oturan kelime" />
-              <Stat value={<><img className="stat-art-img" src={STAT_ART.sprout} alt="" height={22} width={22} draggable={false} /> {game.stats.wordsIntroduced}</>} label="öğrenilen kelime" />
+              <Stat value={<><img className="stat-art-img" src={STAT_ART.sprout} alt="" height={22} width={22} draggable={false} /> {game.stats.wordsIntroduced}</>} label="tanışılan kelime" />
               <Stat value={<><img className="stat-art-img" src={STAT_ART.check} alt="" height={22} width={22} draggable={false} /> {game.stats.totalAnswers.toLocaleString('tr-TR')}</>} label="cevap" />
             </section>
             <ActivityMini
