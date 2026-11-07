@@ -140,16 +140,13 @@ export function Feedback({
           <div className="sheet-notes">
           {confidentError && (
             <div className="hyper">
-              <p className="small">
-                “Emin değilim” demeden yanlış cevapladın. Bildiğini sandığın bir kelimeyi düzeltmek, doğrusunu en kalıcı şekilde öğrenmeni sağlar. Farka
-                bir bak:
-              </p>
+              {/* Short and calm: what to look at, not a lecture about being sure (the example is one tap away below). */}
+              <p className="small">Emin olduğun halde yanlış çıktı. Fark:</p>
               {ev.given && (
                 <p className="small">
                   <s>{ev.given}</s> → <strong>{ev.expected}</strong>
                 </p>
               )}
-              {example && <p className="small sentence-sm">{example.text}</p>}
             </div>
           )}
           {grew && (

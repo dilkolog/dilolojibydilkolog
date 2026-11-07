@@ -3,6 +3,7 @@ import { fillTranslations, missingTranslations } from '../data/fillTranslations'
 import { translationUsage } from '../data/translate'
 import { showToast } from './toastFeed'
 import { Help } from './SettingHelp'
+import { unavailableNote } from './serviceNote'
 
 /** Sentence translation (DeepL through the app's server): the fill-in-missing button, and why it is off when it is. The month's use is the site's quota, not shown to people. */
 export function TranslationSettings({ onFilled }: { onFilled?: () => void }) {
@@ -44,7 +45,7 @@ export function TranslationSettings({ onFilled }: { onFilled?: () => void }) {
         </div>
       )}
       {usage === null ? (
-        <p className="small muted">Şu an kullanılamıyor (çevrimdışı ya da sunucuda kurulmamış). Kapalıyken uygulamanın geri kalanı aynen çalışır.</p>
+        <p className="small muted">{unavailableNote('Çeviri')}</p>
       ) : null}
     </section>
   )

@@ -20,6 +20,7 @@ import { addNotes, memoryLines, removeNote, type MemoryNote } from '../../engine
 import { localDate } from '../../engine/progress'
 import { loadMemory, memoryOn, saveMemory, setMemoryOn } from './memoryStore'
 import { Sticker } from '../Sticker'
+import { unavailableNote } from '../serviceNote'
 
 interface Msg {
   role: 'user' | 'assistant'
@@ -585,7 +586,7 @@ export default function Monki({
                   ? 'Benimle sohbet henüz hesabına açılmadı. Site sahibi izin verince kendiliğinden açılırım; o zamana dek diğer YZ özellikleri (cümle değerlendirme, ters çeviri…) çalışır.'
                   : needsApproval
                   ? 'Benimle konuşmak için hesabının site sahibi tarafından onaylanması gerekiyor. Onaylanınca ben de kendiliğinden açılırım, anahtar girmen gerekmez.'
-                  : 'Şu an sana ulaşamıyorum: internet yok ya da YZ henüz sunucuda kurulmamış. Biraz sonra yeniden dene.'}
+                  : unavailableNote('Monki')}
               </p>
               <button type="button" className="btn" onClick={() => (setOpen(false), onSettings())}>
                 Ayarlara git

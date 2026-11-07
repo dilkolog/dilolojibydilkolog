@@ -12,6 +12,7 @@ import { changeWordsWithUndo } from './undo'
 const BATCH = 15
 
 import { dismissFillMissing, isFillMissingDismissed } from './fillMissingDismiss'
+import { unavailableNote } from './serviceNote'
 
 /**
  * One button for the blanks across the whole list: words without an example sentence, nouns
@@ -90,7 +91,7 @@ export function FillMissingBar({ db, vocabulary, onChanged }: { db: KelimeDB; vo
           <span className="small muted"> örnek cümle, isim cinsiyeti ya da tür</span>
         </span>
         <div className="row items-center gap-2 fill-missing-actions">
-          <button type="button" className="btn btn-sm" onClick={run} disabled={!apiKey || !!busy} title={apiKey ? undefined : needsApproval ? 'YZ özellikleri onay bekliyor' : 'YZ şu an kullanılamıyor (internet yok ya da sunucuda kurulmamış)'}>
+          <button type="button" className="btn btn-sm" onClick={run} disabled={!apiKey || !!busy} title={apiKey ? undefined : needsApproval ? 'YZ özellikleri onay bekliyor' : unavailableNote('YZ')}>
             <WandIcon size={14} /> {busy || 'Eksikleri YZ ile tamamla'}
           </button>
           <button

@@ -50,7 +50,7 @@
   /* Grammatical gender, apart from the language accents (blue / pink / amber) and the feedback colours. */
   --gender-m: #0e7490; --gender-f: #7c3aed;   /* cyan-700, violet-600: both 4.5:1+ on white */
   --gold: #f59e0b;
-  --gold-text: #b45309;   /* amber-700: XP numbers as text (gold itself is too light on white) */
+  --gold-text: #a84d08;   /* darker than amber-700: XP numbers as text, 4.9:1 even on the gold tint of the XP chips (gold itself is too light on white) */
 
   /* Category / topic palette: games and mistake kinds (distinct from feedback ok/near/bad). */
   --cat-blue: #3b82f6;
@@ -3412,6 +3412,8 @@ p, .help, .small { text-wrap: pretty; }
 .habit-nudge-main { flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.625rem; padding: 0.5rem 0.75rem; border: 0; background: none; color: var(--ink); font-size: var(--t-sm); text-align: left; cursor: pointer; border-radius: var(--r-sm); }
 .habit-nudge-main > svg { flex: none; color: var(--lang-text); }
 .habit-nudge-main > span:nth-child(2) { flex: 1; min-width: 0; }
+/* A title and its line under it: the stack's children are inline spans, so without a grid they run on as one line. */
+.habit-nudge-main > .stack { display: grid; }
 .habit-nudge-cta { flex: none; font-weight: 700; color: var(--lang-text); }
 .habit-nudge-main:hover { background: var(--lang-soft); }
 /* A nudge with no dismiss button keeps that button's place, so the action words (İlerleme, Plan yap, Kelimelerime ekle) end at the same edge in every card. */
@@ -3811,6 +3813,13 @@ button.hero-list-pick, .hero-list-btn {
   .hub-tabs {
     width: 100%;
     scroll-snap-type: x proximity;
+    /* Scroll shadows: a soft edge shows on the side that still has tabs beyond it (the covers scroll with the content), so a cut-off last tab reads as "more this way". */
+    background:
+      linear-gradient(to right, var(--surface) 30%, transparent) left center / 1.5rem 100% no-repeat local,
+      linear-gradient(to left, var(--surface) 30%, transparent) right center / 1.5rem 100% no-repeat local,
+      linear-gradient(to right, color-mix(in srgb, var(--ink) 16%, transparent), transparent) left center / 0.75rem 100% no-repeat scroll,
+      linear-gradient(to left, color-mix(in srgb, var(--ink) 16%, transparent), transparent) right center / 0.75rem 100% no-repeat scroll,
+      var(--surface);
   }
   .hub-tab {
     flex: 1 0 auto;

@@ -12,6 +12,7 @@ import { showToast } from './toastFeed'
 import { ClipboardIcon, CloseIcon, CopyIcon, GlobeIcon, PlusIcon, SpeakerIcon, SwapIcon } from './icons'
 import { MAX_TOTAL, sentencesOf, stripLabel, uniquePairs } from './translateSentences'
 import { timeOf } from '../engine/types'
+import { unavailableNote } from './serviceNote'
 
 /** Entries of the memory shown before "more". */
 const RECENT_SHOWN = 5
@@ -143,7 +144,7 @@ export function TranslateScreen({ language, onAdd }: { language: TargetLanguage;
     <div className="stack translate-screen">
       <PageHeader art="translate" title="Çeviri" sub={`${name} bir cümle ya da kısa bir metin: cümle cümle, yan yana.`} />
       {!ready ? (
-        <p className="note">Çeviri şu an kullanılamıyor (çevrimdışı ya da sunucuda kurulmamış).</p>
+        <p className="note">{unavailableNote('Çeviri')}</p>
       ) : (
         <div className={`translate-grid${hasResult ? ' has-result' : ''}`}>
           <section className="card stack translate-input" aria-label="Metin girişi">

@@ -2,6 +2,7 @@ import { Help } from './SettingHelp'
 import { useAccess } from './accessContext'
 import { useAi } from './aiContext'
 import { WandIcon } from './icons'
+import { unavailableNote } from './serviceNote'
 
 /** The AI layer: on by itself for an approved account (the calls go through the site's own /api/ai: no key, no model, no budget to pick; the site holds the limits). When it is on there is nothing to show; the card only explains why it is off. */
 export function AiSettings() {
@@ -25,7 +26,7 @@ export function AiSettings() {
         <p className="note" role="status">
           {level === 'kapali'
             ? 'YZ özellikleri hesabın için kapalı (düzeyi site sahibi belirler).'
-            : 'YZ şu an kullanılamıyor: internet yok ya da sunucuda henüz kurulmamış. Uygulamanın geri kalanı aynen çalışır.'}
+            : unavailableNote('YZ')}
         </p>
       )}
     </section>
