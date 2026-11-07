@@ -5,7 +5,6 @@ import { engineFlags } from './engine/exercisePrefs'
 import { openMistakes } from './engine/mistakes'
 import { kindOff } from './engine/notices'
 import { mistakesForMonki, weakWordsOf } from './engine/monkiContext'
-import { dailyTalkWords } from './engine/dailyTalk'
 import { monthKey } from './ai/usage'
 import { weakPronWords } from './engine/pronWeak'
 import { displayForm } from './engine/exercises'
@@ -276,7 +275,6 @@ export default function App() {
     const month = (await db.getAiUsage())[monthKey(new Date())]?.features.monki
     return month ? { requests: month.requests, cost: month.cost } : null
   }, [])
-  const dailyWords = useMemo(() => (data ? dailyTalkWords(data.vocabulary, data.states, data.mistakes, new Date()) : undefined), [data])
   // The collaborative lists this device has joined, kept in step with the others.
   useCollabSync(reload, ready)
 
@@ -646,13 +644,13 @@ export default function App() {
                 name={settings.profile.name || undefined}
                 weakWords={weakWords}
                 mistakes={monkiMistakes}
-                dailyWords={dailyWords}
                 loadPronWords={loadPronWords}
                 dailyLimit={settings.monkiDailyLimit ?? 0}
                 loadUsage={loadMonkiUsage}
                 showButton={screen.name !== 'summary'}
                 inSession={inSession}
                 onSettings={go({ name: 'settings' })}
+                onPractice={go({ name: 'produce' })}
               />
             </Suspense>
           )}

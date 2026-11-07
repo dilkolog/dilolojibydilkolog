@@ -22,7 +22,6 @@ import { BackupNudge } from './ui/BackupNudge'
 import { WhatsNew } from './ui/WhatsNew'
 import { MindSeed } from './ui/MindSeed'
 import { MonkiNudge } from './ui/monki/MonkiNudge'
-import { dailyTalkWords } from './engine/dailyTalk'
 import { GuideReviewNudge } from './ui/GuideReviewNudge'
 import { GuideLessonNudge } from './ui/GuideLessonNudge'
 import { WeeklyCare } from './ui/WeeklyCare'
@@ -489,7 +488,7 @@ export function AppScreens(props: AppScreensProps) {
             />
             <GuideLessonNudge language={data.language} goal={settings.guideGoal} onOpen={(topic) => setScreen({ name: 'guide', lesson: topic })} />
             <GuidePlacementNudge language={data.language} words={data.vocabulary.filter((v) => v.source !== 'sample').length} goal={settings.guideGoal} onOpen={() => setScreen({ name: 'guide', placement: true })} />
-            <MonkiNudge openMistakes={openMistakes(data.mistakes).length} dailyWords={dailyTalkWords(data.vocabulary, data.states, data.mistakes, new Date())} />
+            <MonkiNudge openMistakes={openMistakes(data.mistakes).length} />
             {/* Last: only when no other nudge has something to say (one at a time). */}
             <MindSeed language={data.language} />
             </>

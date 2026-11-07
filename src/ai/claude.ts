@@ -657,7 +657,7 @@ export async function chatTurn(apiKey: string, req: ChatRequest): Promise<ChatRe
 const Monki = z.object({
   say: z.string().describe('Role-play only: the in-character lines the other person says aloud, in the target language and nothing else (no Turkish, no correction line, no stage directions). In pronunciation mode: the single word to be read aloud. An empty string in every other mode.'),
   reply: z.string().describe('Your answer, in Turkish with target-language examples. Short: a few lines unless asked for more. Only **bold**, _italic_ and plain lines or "- " lists; no headings, no tables.'),
-  suggestions: z.array(z.string()).describe('Two or three short things the learner might tap next, each under 40 characters. Normally Turkish requests or questions to you; in a role-play scene, replies the learner could say next in the target language; in a quiz, the answer options of a multiple-choice question or Turkish taps like "İpucu ver".'),
+  suggestions: z.array(z.string()).describe('Two or three short things the learner might tap next, each under 40 characters. Normally Turkish requests or questions to you; in a quiz, the answer options of a multiple-choice question or Turkish taps like "İpucu ver".'),
   remember: z
     .array(z.string())
     .describe('Zero, one or two short Turkish notes (each under 100 characters) about the learner worth remembering for later talks: a recurring mistake, a topic they find hard, a goal or interest they mentioned. Empty on most turns; never repeat what is already remembered; nothing about their private life beyond learning.'),
@@ -668,10 +668,6 @@ function monkiModeRules(req: MonkiRequest, lang: string): string[] {
   if (req.mode === 'quiz')
     return [
       `QUIZ MODE: ask exactly one question at a time, then wait. Mix: Turkish meaning to ${lang} word, ${lang} word to Turkish meaning, fill-in-the-blank sentences, short translations. Fit the level to how the learner answers, and start from the weak words. After an answer say in one short line whether it was right, give the correct form and a brief reason, then ask the next question. Taps: the options of a multiple-choice question, or Turkish ones like "İpucu ver" and "Sonraki soru".`,
-    ]
-  if (req.mode === 'roleplay')
-    return [
-      `ROLE-PLAY MODE: scene: ${req.scenario || 'an everyday conversation'}. You play the other person in the scene and stay in character. Speak only in simple, natural ${lang} (A2-B1), one or two short sentences, then wait for the learner. No translation unless asked. If the learner makes a real mistake, finish your in-character reply and add one new line in Turkish starting with "✏️ Düzeltme:" followed by the whole corrected sentence in curly quotes “…”, a dash and a few words of reason (exactly this shape, so the app can save it). After about eight exchanges close the scene and sum up in two Turkish lines what went well and what to watch. Override the "answer in Turkish" rule for the scene itself. Put the in-character lines (and only those) in "say" as well. Taps: two or three things the learner could say next, in ${lang}, of different difficulty.`,
     ]
   if (req.mode === 'mistakes')
     return [

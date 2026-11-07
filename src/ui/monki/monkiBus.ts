@@ -4,11 +4,8 @@ import type { MonkiMode } from '../../ai'
 export interface MonkiAsk {
   text: string
   mode?: MonkiMode
-  scenario?: string
   /** Words mode: the words to get the learner to use. */
   targets?: string[]
-  /** Words mode: today's talk (its summary closes it and the Today card steps aside for the day). */
-  daily?: boolean
   send?: boolean
 }
 

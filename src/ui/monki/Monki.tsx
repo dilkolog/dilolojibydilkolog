@@ -10,9 +10,8 @@ import { LANGUAGE_NAME } from '../labels'
 import { RichText } from '../RichText'
 import { MonkiFace, MonkiPose, MonkiStage } from './MonkiMascot'
 import { setMonkiListener, type MonkiAsk } from './monkiBus'
-import { EMBLEM, ROLE_ART } from '../drawnArt'
+import { EMBLEM } from '../drawnArt'
 import { talkProgress, usesWord } from './monkiWords'
-import { markDailyTalkDone } from './dailyTalkStore'
 import { askedToday, countAsk, overLimit } from './dailyLimit'
 import { changedWord, parseCorrection, type Correction } from './corrections'
 import { saveSentence } from '../saveSentence'
@@ -60,39 +59,26 @@ function saveChat(language: TargetLanguage, msgs: Msg[]) {
 }
 
 /** A small drawn emblem on three of the four mode chips. */
-const MODE_EMBLEM: Partial<Record<MonkiMode, string>> = { chat: EMBLEM.chat, quiz: EMBLEM.trophy, roleplay: EMBLEM.mic }
+const MODE_EMBLEM: Partial<Record<MonkiMode, string>> = { chat: EMBLEM.chat, quiz: EMBLEM.trophy, pron: EMBLEM.mic }
 
 type ChipMode = Exclude<MonkiMode, 'words' | 'write' | 'exam'>
 const MODES: { id: ChipMode; label: string; hint: string }[] = [
   { id: 'chat', label: 'Sohbet', hint: 'Her şeyi sor' },
   { id: 'quiz', label: 'Sınav', hint: 'Her seferinde tek soru' },
-  { id: 'roleplay', label: 'Rol yap', hint: 'Bir sahneyi konuşarak çalış' },
   { id: 'mistakes', label: 'Hatalarım', hint: 'Son hatalarını konuş' },
   { id: 'pron', label: 'Telaffuz', hint: 'Zayıf telaffuzlu kelimelerini söyle' },
 ]
 
-const SCENES: { label: string; art: string }[] = [
-  { label: 'Kafede sipariş vermek', art: ROLE_ART.cafe },
-  { label: 'Otelde check-in', art: ROLE_ART.hotel },
-  { label: 'Yol sormak', art: ROLE_ART.directions },
-  { label: 'Doktora gitmek', art: ROLE_ART.doctor },
-  { label: 'İş mülakatı', art: ROLE_ART.interview },
-  { label: 'Alışveriş yapmak', art: ROLE_ART.shopping },
-]
-const SCENARIOS = SCENES.map((s) => s.label)
-
 const STARTERS = (mode: MonkiMode, hasWeak: boolean, hasMistakes: boolean): string[] => {
   if (mode === 'quiz') return ['Kelimelerimden sor', 'Dilbilgisi sorusu sor', 'Boşluk doldurma sorusu sor', 'Çeviri sorusu sor']
-  if (mode === 'roleplay') return SCENARIOS
   if (mode === 'mistakes') return hasMistakes ? ['Hatalarımı sırayla inceleyelim', 'En çok yaptığım hatadan başla'] : []
   if (mode === 'words' || mode === 'pron') return ['Başlayalım']
   return ['Bugün işime yarayacak 5 kalıp öğret', 'Yazdığım cümleyi düzeltir misin?', hasWeak ? 'Zorlandığım kelimelerle kısa bir hikâye yaz' : 'Bana kısa, kolay bir hikâye yaz']
 }
 
 const INTRO: Record<MonkiMode, (hello: string, lang: string, hasMistakes: boolean) => string> = {
-  chat: (hello, lang) => `**${hello}** ${lang} çalışırken takıldığın her şeyi bana sorabilirsin: bir kelime, bir kural, bir cümle. Nereden başlayalım?`,
+  chat: (hello, lang) => `**${hello}** Hangi ekrandaysan oradayım: ${lang} çalışırken takıldığın bir kelimeyi, kuralı ya da cümleyi bana sor, kısaca açıklarım.`,
   quiz: (_h, lang) => `**Sınav zamanı!** Sana ${lang} tek tek soru soracağım; cevabını yaz ya da seçeneklerden birine dokun. Hangisiyle başlayalım?`,
-  roleplay: (_h, lang) => `**Bir sahne seç**, ben karşındaki kişi olurum ve ${lang} konuşuruz. Hata yaparsan konuşmayı bölmeden altına küçük bir düzeltme yazarım.`,
   mistakes: (_h, _l, has) => (has ? '**Son hatalarına bakalım.** Tek tek, nedenini ve bir hafıza ipucunu konuşalım, sonra yeni bir cümle kuralım.' : '**Açık hatan yok**, harika! Birkaç soru çözüp hata biriktirdikçe burada onlarla çalışabiliriz.'),
   pron: (_h, lang) => `**Telaffuz çalışalım.** Telaffuz puanı düşük kelimelerinden birini sana okurum, sesleri nasıl çıkaracağını anlatırım; sen mikrofona dokunup söylersin. Seni duyamam, ${lang} tanıyıcının yazıya çevirdiğine bakarım.`,
   write: () => '**Yazarken yanındayım.** Takıldığın yerde devam etmen için kalıplar ve sorular önerebilirim; metnini ben yazmam.',
@@ -177,17 +163,14 @@ function SaveCorrection({ text, original, language }: { text: string; original?:
 /** A talk on set words is over once all of them were used or the learner has answered this many times. */
 const TALK_TURNS = 5
 
-/** At the end of a words talk (today's talk included): which words were used, which were not, and a tap to go on with the rest. */
-function TalkSummary({ targets, learnerMessages, language, daily, onGoOn }: { targets: string[]; learnerMessages: string[]; language: TargetLanguage; daily: boolean; onGoOn: (unused: string[]) => void }) {
+/** At the end of a words talk: which words were used, which were not, and a tap to go on with the rest. */
+function TalkSummary({ targets, learnerMessages, language, onGoOn }: { targets: string[]; learnerMessages: string[]; language: TargetLanguage; onGoOn: (unused: string[]) => void }) {
   const { used, unused } = talkProgress(targets, learnerMessages, language)
   const over = learnerMessages.length > 0 && (unused.length === 0 || learnerMessages.length >= TALK_TURNS)
-  useEffect(() => {
-    if (over && daily) markDailyTalkDone()
-  }, [over, daily])
   if (!over) return null
   return (
     <div className="monki-summary" role="status">
-      <strong>{daily ? 'Günün sohbeti bitti' : 'Konuşma özeti'}</strong>
+      <strong>Konuşma özeti</strong>
       <p className="small">
         {used.length}/{targets.length} kelimeyi kendi cümlenle kullandın.
       </p>
@@ -216,20 +199,18 @@ export default function Monki({
   name,
   weakWords,
   mistakes,
-  dailyWords,
   loadPronWords,
   dailyLimit = 0,
   loadUsage,
   showButton = true,
   inSession = false,
   onSettings,
+  onPractice,
 }: {
   language: TargetLanguage
   name?: string
   weakWords?: string[]
   mistakes?: { word: string; given: string; expected: string }[]
-  /** The words for today's short talk (engine/dailyTalk): with enough of them the panel offers it as a mode. */
-  dailyWords?: string[]
   /** The words whose pronunciation scores are low (read when the panel opens): with any, the panel offers the pronunciation mode. */
   loadPronWords?: () => Promise<{ word: string; score: number }[]>
   /** The most messages a day (Ayarlar → YZ yardımcısı); 0 = no limit. */
@@ -241,6 +222,8 @@ export default function Monki({
   /** In a session the chat pauses the keyboard shortcuts (a number key would answer the question). */
   inSession?: boolean
   onSettings: () => void
+  /** Opens Yaz & konuş: goal-led speaking and writing practice lives there, Monki helps where the learner is. */
+  onPractice?: () => void
 }) {
   const { apiKey, needsApproval, server } = useAi()
   const [open, setOpen] = useState(false)
@@ -250,8 +233,7 @@ export default function Monki({
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [mode, setMode] = useState<MonkiMode>('chat')
-  const [scenario, setScenario] = useState('')
-  // Voice: the other person's lines are spoken (role-play) and the microphone answers instead of typing.
+  // Voice: the word to say is spoken (pronunciation) and the microphone answers instead of typing.
   const [voice, setVoice] = useState(() => {
     try {
       return localStorage.getItem(VOICE_KEY) !== 'off'
@@ -266,8 +248,6 @@ export default function Monki({
   voiceRef.current = voice
   // Words mode: the words to use, and which of them the learner has used so far.
   const [targets, setTargets] = useState<string[]>([])
-  // Today's talk: its words are the day's, and the summary at its end closes the day's offer on Today.
-  const [daily, setDaily] = useState(false)
   // Where in the chat the words talk began (the summary counts the learner's messages from there).
   const [talkFrom, setTalkFrom] = useState(0)
   const [usage, setUsage] = useState<{ requests: number; cost: number } | null>(null)
@@ -365,7 +345,7 @@ export default function Monki({
   }, [msgs, busy, open, suggestions])
 
   const send = useCallback(
-    async (raw: string, over?: { mode?: MonkiMode; scenario?: string; targets?: string[] }) => {
+    async (raw: string, over?: { mode?: MonkiMode; targets?: string[] }) => {
       const message = raw.trim()
       if (!message || busy || !apiKey) return
       if (overLimit(dailyLimit)) {
@@ -388,7 +368,6 @@ export default function Monki({
           name: name || undefined,
           weakWords,
           mode: over?.mode ?? mode,
-          scenario: (over?.scenario ?? scenario) || undefined,
           mistakes,
           targets: (over?.mode ?? mode) === 'words' ? (over?.targets ?? targets) : undefined,
           memory: remembering && memory.length ? memoryLines(memory) : undefined,
@@ -406,7 +385,7 @@ export default function Monki({
             saveMemory(asked, kept)
           }
         }
-        if (voiceRef.current && ['roleplay', 'pron'].includes(over?.mode ?? mode) && reply.say?.trim() && canSpeak()) speak(reply.say, asked)
+        if (voiceRef.current && (over?.mode ?? mode) === 'pron' && reply.say?.trim() && canSpeak()) speak(reply.say, asked)
       } catch (e) {
         if (languageRef.current !== asked) return
         setError(e instanceof AiError ? e.message : 'Monki şu an cevap veremedi. Biraz sonra tekrar dene.')
@@ -414,7 +393,7 @@ export default function Monki({
         if (languageRef.current === asked) setBusy(false)
       }
     },
-    [apiKey, busy, language, msgs, name, weakWords, mode, scenario, mistakes, targets, memory, remembering, pronWords, dailyLimit],
+    [apiKey, busy, language, msgs, name, weakWords, mode, mistakes, targets, memory, remembering, pronWords, dailyLimit],
   )
 
   // A question from elsewhere in the app (a word page, a wrong answer, a sentence being read).
@@ -458,41 +437,23 @@ export default function Monki({
       returnTo.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
       if (ask.mode) {
         setMode(ask.mode)
-        setScenario(ask.scenario ?? '')
         setTargets(ask.targets ?? [])
-        setDaily(!!ask.daily)
         setTalkFrom(msgsRef.current.length)
       }
       setOpen(true)
-      if (ask.send) void sendRef.current(ask.text, { mode: ask.mode, scenario: ask.scenario, targets: ask.targets })
+      if (ask.send) void sendRef.current(ask.text, { mode: ask.mode, targets: ask.targets })
       else setText(ask.text)
     })
     return () => setMonkiListener(null)
   }, [])
 
-  const startDaily = () => {
-    setMode('words')
-    setScenario('')
-    setTargets(dailyWords ?? [])
-    setDaily(true)
-    setTalkFrom(msgs.length)
-    setSuggestions([])
-    setError('')
-  }
   const pickMode = (m: MonkiMode) => {
     setMode(m)
-    setDaily(false)
-    setScenario('')
     setSuggestions([])
     setError('')
   }
-  /** A starter chip: in the role-play it picks the scene, elsewhere it is simply the first question. */
-  const startWith = (label: string) => {
-    if (mode === 'roleplay') {
-      setScenario(label)
-      void send(`Rol yapalım: ${label}. Sahneyi sen başlat.`, { mode, scenario: label })
-    } else void send(label)
-  }
+  /** A starter chip: the first question. */
+  const startWith = (label: string) => void send(label)
 
   const forget = (id: string) => {
     const left = removeNote(memory, id)
@@ -607,15 +568,19 @@ export default function Monki({
                     {m.label}
                   </button>
                 ))}
-                {dailyWords && dailyWords.length >= 3 && (
-                  <button type="button" className="chip chip-sm" aria-pressed={mode === 'words' && daily} title="Bugünün zayıf kelimeleriyle kısa bir konuşma" onClick={startDaily}>
-                    Günün sohbeti
-                  </button>
-                )}
               </div>
-              {(mode === 'roleplay' || mode === 'pron') && canSpeak() && (
+              {onPractice && (
+                <p className="monki-practice small">
+                  Hedefli konuşma, rol yapma ve yazma çalışmaları{' '}
+                  <button type="button" className="link" onClick={() => (setOpen(false), onPractice())}>
+                    Yaz &amp; konuş’ta
+                  </button>
+                  .
+                </p>
+              )}
+              {mode === 'pron' && canSpeak() && (
                 <div className="monki-voice small">
-                  <button type="button" className="chip chip-sm" aria-pressed={voice} onClick={toggleVoice} title="Karşındaki kişinin cümlelerini (telaffuzda kelimeyi) sesli oku">
+                  <button type="button" className="chip chip-sm" aria-pressed={voice} onClick={toggleVoice} title="Söylenecek kelimeyi sesli oku">
                     {voice ? 'Sesli: açık' : 'Sesli: kapalı'}
                   </button>
                   {canListen() && <span className="muted">Mikrofona dokunup cevap ver.</span>}
@@ -658,7 +623,6 @@ export default function Monki({
                     targets={targets}
                     learnerMessages={msgs.slice(talkFrom).filter((m) => m.role === 'user').map((m) => m.text)}
                     language={language}
-                    daily={daily}
                     onGoOn={(unused) => void send(`Kullanmadığım kelimelerle devam edelim: ${unused.join(', ')}`, { mode: 'words', targets: unused })}
                   />
                 )}
@@ -676,25 +640,13 @@ export default function Monki({
                   </div>
                 )}
               </div>
-              {/* Choosing a scene: a picture for each, so the six read at a glance. */}
-              {mode === 'roleplay' && !scenario ? (
-                <div className="monki-scenes" role="group" aria-label="Sahne seç">
-                  {SCENES.map((s) => (
-                    <button key={s.label} type="button" className="monki-scene" disabled={busy} onClick={() => startWith(s.label)}>
-                      <img src={s.art} alt="" draggable={false} />
-                      <span>{s.label}</span>
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <div className="monki-chips">
-                  {(msgs.length === 0 || (mode === 'roleplay' && !scenario) ? STARTERS(mode, !!weakWords?.length, !!mistakes?.length) : suggestions).map((s) => (
-                    <button key={s} type="button" className="chip" disabled={busy} onClick={() => (msgs.length === 0 || (mode === 'roleplay' && !scenario) ? startWith(s) : void send(s))}>
+              <div className="monki-chips">
+                  {(msgs.length === 0 ? STARTERS(mode, !!weakWords?.length, !!mistakes?.length) : suggestions).map((s) => (
+                    <button key={s} type="button" className="chip" disabled={busy} onClick={() => (msgs.length === 0 ? startWith(s) : void send(s))}>
                       {s}
                     </button>
                   ))}
                 </div>
-              )}
               <form
                 className="monki-form"
                 onSubmit={(e) => {

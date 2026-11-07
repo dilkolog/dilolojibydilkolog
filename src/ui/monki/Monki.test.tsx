@@ -21,7 +21,7 @@ describe('Monki', () => {
   let root: ReturnType<typeof createRoot>
   const onSettings = vi.fn()
 
-  const render = (apiKey: string | null, needsApproval = false, extra: { inSession?: boolean; showButton?: boolean } = {}) =>
+  const render = (apiKey: string | null, needsApproval = false, extra: { inSession?: boolean; showButton?: boolean; onPractice?: () => void } = {}) =>
     act(() =>
       root.render(
         <AiContext.Provider value={{ apiKey, needsApproval, setApiKey: async () => {} }}>
@@ -110,8 +110,7 @@ describe('Monki', () => {
     expect(container.querySelector('.monki-save')).toBeNull()
   })
 
-  it('in a role-play with voice on, the other person\'s line is spoken; the microphone sends what was heard', async () => {
-    speech.canSpeak.mockReturnValue(true)
+  it('the microphone sends what was heard as a message', async () => {
     input.canListen.mockReturnValue(true)
     const finish = vi.fn()
     let handlers: { onFinal: (a: string[]) => void; onEnd?: () => void } | undefined
@@ -119,16 +118,9 @@ describe('Monki', () => {
       handlers = h
       return Object.assign(() => {}, { finish })
     })
-    monkiTurn.mockResolvedValue({ reply: 'Le serveur: Bonjour ! Que désirez-vous ?', say: 'Bonjour ! Que désirez-vous ?', suggestions: [] })
+    monkiTurn.mockResolvedValue({ reply: 'Très bien.', suggestions: [] })
     render('sk-test')
     openPanel()
-    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-modes .chip')].find((b) => b.textContent?.includes('Rol yap'))!.click())
-    expect(container.textContent).toContain('Sesli: açık')
-    await act(async () => container.querySelector<HTMLButtonElement>('.monki-scene')!.click())
-    await flush()
-    expect(speech.speak).toHaveBeenCalledWith('Bonjour ! Que désirez-vous ?', 'fr')
-    // The learner answers by voice: the heard sentence goes to Monki as a message.
-    monkiTurn.mockResolvedValue({ reply: 'Très bien.', say: 'Très bien.', suggestions: [] })
     act(() => container.querySelector<HTMLButtonElement>('.monki-mic')!.click())
     expect(input.listen).toHaveBeenCalledTimes(1)
     await act(async () => handlers!.onFinal(['Je voudrais un café']))
@@ -136,14 +128,22 @@ describe('Monki', () => {
     expect(monkiTurn.mock.calls.at(-1)![1].history.at(-1)).toEqual({ role: 'user', text: 'Je voudrais un café' })
   })
 
-  it('with voice off nothing is spoken', async () => {
+  it('with voice off the word to say is not read out', async () => {
     speech.canSpeak.mockReturnValue(true)
     localStorage.setItem('diloloji:monki-voice', 'off')
-    monkiTurn.mockResolvedValue({ reply: 'Bonjour', say: 'Bonjour', suggestions: [] })
-    render('sk-test')
+    monkiTurn.mockResolvedValue({ reply: 'Burun sesi…', say: 'rue', suggestions: [], remember: [] })
+    act(() =>
+      root.render(
+        <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false, setApiKey: async () => {} }}>
+          <Monki language="fr" loadPronWords={async () => [{ word: 'rue', score: 41 }]} onSettings={onSettings} />
+        </AiContext.Provider>,
+      ),
+    )
     openPanel()
-    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-modes .chip')].find((b) => b.textContent?.includes('Rol yap'))!.click())
-    await act(async () => container.querySelector<HTMLButtonElement>('.monki-scene')!.click())
+    await flush()
+    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-modes .chip')].find((b) => b.textContent === 'Telaffuz')!.click())
+    expect(container.textContent).toContain('Sesli: kapalı')
+    act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
     await flush()
     expect(speech.speak).not.toHaveBeenCalled()
   })
@@ -220,20 +220,16 @@ describe('Monki', () => {
     expect(monkiTurn.mock.calls[0][1].mode).toBe('quiz')
   })
 
-  it('a role-play starts by choosing the scene, which goes along with every turn', async () => {
-    monkiTurn.mockResolvedValue({ reply: 'Bonjour!', suggestions: ['Un café, s’il vous plaît'] })
-    render('sk-test')
+  it('helps where the learner is: no role-play here, a link to Yaz & konuş instead', async () => {
+    const onPractice = vi.fn()
+    render('sk-test', false, { onPractice })
     openPanel()
-    act(() => modeChip('Rol yap').click())
-    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-scene')].find((b) => b.textContent === 'Kafede sipariş vermek')!.click())
-    await flush()
-    const req = monkiTurn.mock.calls[0][1]
-    expect(req.mode).toBe('roleplay')
-    expect(req.scenario).toBe('Kafede sipariş vermek')
-    // The suggestions are things to say back; tapping one is a plain turn of the same scene.
-    act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
-    await flush()
-    expect(monkiTurn.mock.calls[1][1].scenario).toBe('Kafede sipariş vermek')
+    const chips = [...container.querySelectorAll('.monki-modes .chip')].map((c) => c.textContent)
+    expect(chips).not.toContain('Rol yap')
+    expect(chips).not.toContain('Günün sohbeti')
+    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-practice .link')][0]!.click())
+    expect(onPractice).toHaveBeenCalled()
+    expect(container.querySelector('.monki-panel')).toBeNull()
   })
 
   it('the mistakes mode sends the recent mistakes', async () => {
@@ -352,66 +348,6 @@ describe('Monki', () => {
       await flush()
       expect(monkiTurn.mock.calls[0][1].memory).toBeUndefined()
       expect(JSON.parse(localStorage.getItem('diloloji:monki-memory:fr')!)).toHaveLength(1)
-    })
-  })
-
-  describe('the day\'s talk', () => {
-    const renderDaily = (words: string[] = ['maison', 'arbre', 'chat']) =>
-      act(() =>
-        root.render(
-          <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false, setApiKey: async () => {} }}>
-            <Monki language="fr" dailyWords={words} onSettings={onSettings} />
-          </AiContext.Provider>,
-        ),
-      )
-    const dailyChip = () => [...container.querySelectorAll<HTMLButtonElement>('.monki-modes .chip')].find((b) => b.textContent === 'Günün sohbeti')
-    const typeAndSend = async (value: string) => {
-      const field = container.querySelector<HTMLTextAreaElement>('textarea')!
-      await act(async () => {
-        Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value')!.set!.call(field, value)
-        field.dispatchEvent(new Event('input', { bubbles: true }))
-      })
-      await act(async () => container.querySelector<HTMLButtonElement>('.monki-send')!.click())
-      await flush()
-    }
-
-    it('is offered as a mode only with enough words', () => {
-      renderDaily(['maison'])
-      openPanel()
-      expect(dailyChip()).toBeUndefined()
-    })
-
-    it('opens the words talk with the day\'s words and ends with a summary that closes the day\'s offer', async () => {
-      monkiTurn.mockResolvedValue({ reply: 'Très bien', suggestions: [], remember: [] })
-      renderDaily()
-      openPanel()
-      act(() => dailyChip()!.click())
-      expect([...container.querySelectorAll('.monki-target')].map((e) => e.textContent?.replace('✓ ', ''))).toEqual(['maison', 'arbre', 'chat'])
-      act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
-      await flush()
-      expect(monkiTurn.mock.calls[0][1]).toMatchObject({ mode: 'words', targets: ['maison', 'arbre', 'chat'] })
-      expect(container.querySelector('.monki-summary')).toBeNull()
-      await typeAndSend('Ma maison est belle et mon chat dort sous un arbre.')
-      expect(container.querySelector('.monki-summary')?.textContent).toContain('3/3')
-      expect(localStorage.getItem('diloloji:monki-daily')).toMatch(/^\d{4}-\d{2}-\d{2}$/)
-    })
-
-    it('names the words not used yet and offers to go on with them', async () => {
-      monkiTurn.mockResolvedValue({ reply: 'Très bien', suggestions: [], remember: [] })
-      renderDaily()
-      openPanel()
-      act(() => dailyChip()!.click())
-      act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
-      await flush()
-      for (const line of ['Ma maison.', 'Oui.', 'Non.', 'Peut-être.', 'Bien sûr.']) await typeAndSend(line)
-      const summary = container.querySelector('.monki-summary')!
-      expect(summary.textContent).toContain('1/3')
-      expect(summary.textContent).toContain('Kullanmadıkların: arbre, chat')
-      await act(async () => summary.querySelector<HTMLButtonElement>('button')!.click())
-      await flush()
-      const last = monkiTurn.mock.calls.at(-1)![1]
-      expect(last.targets).toEqual(['arbre', 'chat'])
-      expect(last.history.at(-1).text).toContain('arbre, chat')
     })
   })
 

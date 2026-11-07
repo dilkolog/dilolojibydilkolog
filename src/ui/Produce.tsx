@@ -19,7 +19,8 @@ import { useAi } from './aiContext'
 import { BrandMark, CheckCircleIcon, CheckIcon, MicIcon, PenIcon, SparkleIcon, SpeakerIcon, StarIcon, StopIcon, TrashIcon } from './icons'
 import { ConfirmDialog } from './Dialog'
 import { undoable } from './toastFeed'
-import { MISSION_ART } from './drawnArt'
+import { MISSION_ART, ROLE_ART } from './drawnArt'
+import { AiLocked } from './AiLocked'
 import { Glyph } from './Glyph'
 import { LANGUAGE_NAME } from './labels'
 import { canSpeak, speak } from './speech'
@@ -58,7 +59,7 @@ export function ProduceScreen(p: Props) {
   const fluencyWords = usePracticeWords(p.vocabulary, p.states, 3)
   return (
     <div className="stack">
-      <PageHeader art="produce" title="Yaz & konuş" sub="Bildiğin kelimeleri kullanarak yaz ve konuş: asıl öğrenme burada pekişir." />
+      <PageHeader art="produce" title="Yaz & konuş" sub="Hedefli yazma ve konuşma çalışmaları: her biri değerlendirilir ve geçmişin kalır. Takıldığın yerde Monki yardım eder." />
       <div className="page-tabs ind-line" role="tablist" aria-label="Bölüm" ref={tabsRef}>
         <button role="tab" className="page-tab" aria-selected={tab === 'journal'} onClick={() => setTab('journal')}>
           Günlük
@@ -386,22 +387,25 @@ function Review({ entry, language, added }: { entry: JournalEntry; language: Tar
 // Conversation partner
 // ---------------------------------------------------------------------------
 
-const SCENARIOS = [
-  'Kafede sipariş vermek',
-  'Arkadaşla hafta sonu planı yapmak',
-  'Otelde oda ayırtmak',
-  'Sokakta yol tarifi almak',
-  'İş görüşmesi',
-  'Doktora derdini anlatmak',
-  'Bir dizi ya da film üzerine sohbet',
+/** The conversation scenes, each with its drawing where there is one (the role-play scenes that were Monki's). */
+const SCENES: { label: string; art?: string }[] = [
+  { label: 'Kafede sipariş vermek', art: ROLE_ART.cafe },
+  { label: 'Otelde oda ayırtmak', art: ROLE_ART.hotel },
+  { label: 'Sokakta yol tarifi almak', art: ROLE_ART.directions },
+  { label: 'Alışveriş yapmak', art: ROLE_ART.shopping },
+  { label: 'Doktora derdini anlatmak', art: ROLE_ART.doctor },
+  { label: 'İş görüşmesi', art: ROLE_ART.interview },
+  { label: 'Arkadaşla hafta sonu planı yapmak' },
+  { label: 'Bir dizi ya da film üzerine sohbet' },
 ]
+const SCENARIOS = SCENES.map((s) => s.label)
 
 interface Line extends ChatTurn {
   correction?: ChatReply['correction']
 }
 
 function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mission }: Props & { mission?: boolean }) {
-  const { apiKey } = useAi()
+  const { apiKey, server } = useAi()
   const words = usePracticeWords(vocabulary, states, mission ? 3 : 8)
   const [active, setActive] = useState<Mission | null>(null)
   const [goalsDone, setGoalsDone] = useState<Set<number>>(new Set())
@@ -429,11 +433,15 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
     return (
       <section className="card stack">
         <p>Sohbet partneri için YZ gerekiyor: seçtiğin bir senaryoda seninle {LANGUAGE_NAME[language]} konuşur ve zayıf kelimelerini sohbete yerleştirir.</p>
-        <div>
-          <button className="btn btn-quiet" onClick={onOpenSettings}>
-            YZ'yi Ayarlar'dan aç
-          </button>
-        </div>
+        {server ? (
+          <AiLocked />
+        ) : (
+          <div>
+            <button className="btn btn-quiet" onClick={onOpenSettings}>
+              YZ'yi Ayarlar'dan aç
+            </button>
+          </div>
+        )}
       </section>
     )
   }
@@ -533,10 +541,11 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
     return (
       <section className="card stack">
         <p className="small muted">Bir senaryo seç; partner ilk cümleyi söyler. Yazarak ya da mikrofonla cevap verirsin, küçük hatalarını yanında düzeltir.</p>
-        <div className="choice-row">
-          {SCENARIOS.map((s) => (
-            <button key={s} className="chip chip-sm" aria-pressed={!custom.trim() && scenario === s} onClick={() => (setScenario(s), setCustom(''))}>
-              {s}
+        <div className="chat-scenes" role="group" aria-label="Sahne">
+          {SCENES.map((s) => (
+            <button key={s.label} type="button" className="chat-scene" aria-pressed={!custom.trim() && scenario === s.label} onClick={() => (setScenario(s.label), setCustom(''))}>
+              {s.art && <img src={s.art} alt="" draggable={false} />}
+              <span className={s.art ? undefined : 'chat-scene-text'}>{s.label}</span>
             </button>
           ))}
         </div>

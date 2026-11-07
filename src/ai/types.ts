@@ -243,8 +243,9 @@ export interface ChatRequest {
   goals?: string[]
 }
 
-/** What Monki is doing: free talk, a quiz one question at a time, a role-play scene, or going through the learner's recent mistakes. */
-export type MonkiMode = 'chat' | 'quiz' | 'roleplay' | 'mistakes' | 'words' | 'pron' | 'write' | 'exam'
+/** What Monki is doing: answering questions, a quiz one question at a time, going through the learner's recent mistakes, and so on.
+ * Role-play scenes are practice and live in Yaz & konuş (ChatRequest), not here. */
+export type MonkiMode = 'chat' | 'quiz' | 'mistakes' | 'words' | 'pron' | 'write' | 'exam'
 
 /** One turn with Monki, the assistant: free talk about the language being learned. */
 export interface MonkiRequest {
@@ -255,8 +256,6 @@ export interface MonkiRequest {
   /** Words they struggle with (lemmas), to build examples and small quizzes from. */
   weakWords?: string[]
   mode?: MonkiMode
-  /** Role-play: the scene, in Turkish ("Kafede sipariş vermek"). */
-  scenario?: string
   /** Mistakes mode: what went wrong lately, most repeated first. */
   mistakes?: { word: string; given: string; expected: string }[]
   /** Words mode: the words the learner should get to use in the talk. */
