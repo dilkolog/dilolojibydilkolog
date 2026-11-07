@@ -43,7 +43,8 @@ export function KeyWordsCard({
   const [hints, setHints] = useState<Map<string, { lemma: string; hint: string }>>(new Map())
   const [adding, setAdding] = useState<string | null>(null)
   const [added, setAdded] = useState<VocabularyEntry[]>([])
-  const [hidden, setHidden] = useState(false)
+  // Closed at first: the text comes first, the preparation is there for whoever wants it.
+  const [open, setOpen] = useState(false)
   const [lesson, setLesson] = useState(false)
   const [pack, setPack] = useState<Pack | undefined>()
   const [listing, setListing] = useState(false)
@@ -103,7 +104,21 @@ export function KeyWordsCard({
     }
   }
 
-  if (hidden || (!words.length && !added.length)) return null
+  if (!words.length && !added.length) return null
+  if (!open)
+    return (
+      <section className="card key-words-closed">
+        <div className="row justify-between">
+          <span className="small">
+            <strong>Okumadan önce:</strong> {words.length} anahtar kelime var
+            {added.length > 0 && `, ${added.length} tanesini ekledin`}
+          </span>
+          <button type="button" className="btn btn-sm btn-quiet" aria-expanded="false" onClick={() => setOpen(true)}>
+            Önce anahtar kelimeleri çalış
+          </button>
+        </div>
+      </section>
+    )
   if (lesson)
     return (
       <section className="card stack key-words">
@@ -129,7 +144,7 @@ export function KeyWordsCard({
     <section className="card stack key-words">
       <div className="row justify-between">
         <h2 className="section-title">Okumadan önce: anahtar kelimeler</h2>
-        <button className="link small" onClick={() => setHidden(true)}>
+        <button className="link small" aria-expanded="true" onClick={() => setOpen(false)}>
           Gizle
         </button>
       </div>

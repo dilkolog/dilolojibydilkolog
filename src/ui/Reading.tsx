@@ -167,6 +167,9 @@ export function ReadingScreen({
       setMulti(new Set())
       // A new listening episode opens with its text hidden; one already read shows it.
       setListenFirst(!!item?.audio && !item.readAt)
+      // The reader opens at its top: coming from the add form far down the page, the title would otherwise be off screen
+      // and the text itself far below it. (No reading position is saved, so a text always starts at the beginning.)
+      if (item) requestAnimationFrame(() => window.scrollTo({ top: 0 }))
     },
   })
   // Reading together: a club on the open text, or one joined from a link (its text opened here).
