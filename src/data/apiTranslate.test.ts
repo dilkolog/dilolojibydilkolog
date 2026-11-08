@@ -37,6 +37,8 @@ describe('/api/translate', () => {
     expect(calls).toEqual([])
     // A preview-looking Vercel address is anyone's to take: not trusted.
     expect(fromApp(new Request('https://x/', { headers: { referer: 'https://diloloji-git-deepl-ali.vercel.app/words' } }))).toBe(false)
+    // The old production address is not trusted either: the site left Vercel and the name can be freed.
+    expect(fromApp(new Request('https://x/', { headers: { origin: 'https://diloloji.vercel.app' } }))).toBe(false)
     expect(fromApp(new Request('https://x/', { headers: { origin: 'http://localhost:5174' } }))).toBe(true)
     expect(fromApp(new Request('https://x/', { headers: { origin: 'https://diloloji.com' } }))).toBe(true)
     expect(fromApp(new Request('https://x/', { headers: { origin: 'https://www.diloloji.com' } }))).toBe(true)

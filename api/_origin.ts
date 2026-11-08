@@ -8,8 +8,9 @@
 export const extraHosts = (): string[] => (process.env.APP_HOSTS ?? '').split(',').map((h) => h.trim().toLowerCase()).filter(Boolean)
 
 /**
- * The app's own pages: production, the old Vercel address and development on this machine. Vercel preview addresses
- * (`diloloji-*.vercel.app`) are not trusted: anyone can name a Vercel project so. A preview to test goes in APP_HOSTS.
+ * The app's own pages: production and development on this machine (`vite preview` sends /api to the live site with a
+ * localhost Origin). No `*.vercel.app` address is trusted, the old production one included: the site left Vercel, and a
+ * freed project name can be taken by anyone. A preview to test goes in APP_HOSTS.
  */
 export function fromApp(request: Request): boolean {
   if (request.headers.get('sec-fetch-site') === 'same-origin') return true
@@ -17,7 +18,7 @@ export function fromApp(request: Request): boolean {
   if (!from) return false
   try {
     const host = new URL(from).hostname
-    return host === 'diloloji.com' || host === 'www.diloloji.com' || host === 'diloloji.vercel.app' || extraHosts().includes(host) || host === 'localhost' || host === '127.0.0.1' || host.endsWith('.localhost')
+    return host === 'diloloji.com' || host === 'www.diloloji.com' || extraHosts().includes(host) || host === 'localhost' || host === '127.0.0.1' || host.endsWith('.localhost')
   } catch {
     return false
   }

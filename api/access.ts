@@ -24,7 +24,7 @@ import { listReports, ownerAuthorized, unpublishList } from './_owner.js'
  * The server otherwise never sees usernames; this request is the one place it does, so the owner
  * knows whom they approve. Passwords and data stay out of it.
  *
- * Friends (approved accounts; see _friends.ts), here because Vercel Hobby's twelve functions are all taken:
+ * Friends (approved accounts; see _friends.ts), here because the endpoints were once limited to twelve Vercel functions:
  * GET  /api/access?friends=1&today=YYYY-MM-DD  → { me, friends }: the own card (with its code) and the followed ones
  * POST /api/access  { action: 'friends-publish', name, avatar, color, days, streak, level, today } → { me }
  * POST /api/access  { action: 'friends-add' | 'friends-remove', code } → { ok } or { error }

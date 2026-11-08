@@ -1,4 +1,5 @@
 import { listDocPaths } from './_docs.js'
+import { bearerOf, secretMatches } from './_secret.js'
 import { confirmedUser } from './_supabase.js'
 import { readText } from './_account.js'
 import type { Report } from './_reports.js'
@@ -10,17 +11,12 @@ import { shareStore, SHARE_ID } from './share.js'
  * REPORTS_TOKEN (a long random secret of its own, not ADMIN_TOKEN: that one switches the approval system on).
  * Without the secret set the endpoints do not exist. Used by scripts/reports.mjs.
  */
-const digest = async (text: string) => new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)))
 
 /** Whether the request carries the owner's token (compared without leaking where it differs). */
 export async function ownerAuthorized(request: Request): Promise<boolean> {
   const secret = process.env.REPORTS_TOKEN?.trim() ?? ''
   if (secret.length < 24) return false
-  const given = /^Bearer (.+)$/.exec(request.headers.get('authorization') ?? '')?.[1]?.trim() ?? ''
-  const [a, b] = await Promise.all([digest(secret), digest(given)])
-  let diff = 0
-  for (let i = 0; i < a.length; i++) diff |= a[i] ^ b[i]
-  return diff === 0
+  return secretMatches(bearerOf(request), secret)
 }
 
 /** The owner's address(es): OWNER_EMAIL (a Worker secret), several separated by commas. */

@@ -4,6 +4,7 @@ import { APP_URL, mailConfigured, reminderMail, sendMail, siteFrom, weeklyMail, 
 import { VAPID_PUBLIC_KEY } from './_notify.js'
 import { dueNow, localHour } from './_due.js'
 import { reminderStore } from './_reminders.js'
+import { bearerOf, secretMatches } from './_secret.js'
 
 /**
  * Every hour (wrangler.jsonc: one hourly trigger; the worker passes the UTC hour as `?h=`): a push reminder (and a mail, to the confirmed addresses
@@ -51,7 +52,7 @@ const BATCH = 10
 const SEND_TIMEOUT_MS = 5000
 
 export async function GET(request: Request): Promise<Response> {
-  if (!process.env.CRON_SECRET || request.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) return new Response('unauthorized', { status: 401 })
+  if (!(await secretMatches(bearerOf(request), process.env.CRON_SECRET?.trim() ?? ''))) return new Response('unauthorized', { status: 401 })
   const pushOn = !!process.env.VAPID_PRIVATE_KEY
   const mailOn = mailConfigured()
   // Without either key every send would fail the same way: said once, not a 500 after the first call.

@@ -8,13 +8,14 @@ import { forgetSettings, getSettings, LIMITS, limitOf, MAX_ANNOUNCEMENT, saveSet
 import { DEFAULT_DAILY_BUDGET_USD, DEFAULT_DAILY_CALLS } from './ai.js'
 import { DAILY_TRANSLATE_CHARS, DAILY_TTS_CHARS } from './_quota.js'
 import { idOfUsername } from './_allow.js'
+import { anySecretMatches, bearerOf } from './_secret.js'
 import { mirrorApproval } from './_supabase.js'
 import { moveToTables } from './_moveTables.js'
 import { tablesState } from './_tables.js'
-import { approvedPath, clearAccessCache, ID, readText, rejectedPath, removeBlob, requestPath, sha256, StorageError, writeJson } from './_account.js'
+import { approvedPath, clearAccessCache, ID, readText, rejectedPath, removeBlob, requestPath, StorageError, writeJson } from './_account.js'
 
 /**
- * The owner's side of the approval (ADMIN_TOKEN, a Vercel environment variable, as a bearer token).
+ * The owner's side of the approval (ADMIN_TOKEN, a Worker secret, as a bearer token).
  *
  * GET  /api/admin → { pending, approved, rejected }: each { id, username, note?, at }
  * POST /api/admin { action: 'approve' | 'reject' | 'revoke', id }
@@ -47,12 +48,10 @@ async function authorised(request: Request): Promise<Response | null> {
   if (await isOwnerSession(request)) return null
   const secrets = (process.env.ADMIN_TOKEN ?? '').split(/[\s,]+/).filter(Boolean)
   if (!secrets.length) return json({ error: 'not configured' }, 503)
-  const given = (request.headers.get('authorization') ?? '').replace(/^Bearer\s+/i, '')
+  const given = bearerOf(request)
   if (!given) return json({ error: 'forbidden' }, 403)
-  // Hashes are compared, so the comparison does not leak how much of the token matched.
-  const hash = await sha256(given)
-  const hashes = await Promise.all(secrets.map(sha256))
-  return hashes.includes(hash) ? null : json({ error: 'forbidden' }, 403)
+  // Compared in constant time (api/_secret.ts): the answer does not leak how much of the token matched.
+  return (await anySecretMatches(given, secrets)) ? null : json({ error: 'forbidden' }, 403)
 }
 
 type Entry = { id: string; username: string; note?: string; at: string }
