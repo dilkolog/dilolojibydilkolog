@@ -1,4 +1,4 @@
-import { del, list } from '@vercel/blob'
+import { del, list } from './_blob'
 import { docsMoved, docsReady, listDocPaths, moveDocs, MOVE_BATCH } from './_docs.js'
 import { isOwnerSession, listReports, unpublishList } from './_owner.js'
 import { deletePerson, listPeople, pendingCount, updatePerson, type PeopleFilter } from './_adminPeople.js'

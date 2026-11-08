@@ -1,4 +1,4 @@
-import { del, list } from '@vercel/blob'
+import { del, list } from './_blob'
 import { approvedPath, clearAccessCache, rejectedPath, removeBlob, requestPath } from './_account.js'
 import { forgetFriends } from './_friends.js'
 import { blobReminders, tableReminders } from './_reminders.js'

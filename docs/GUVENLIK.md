@@ -48,7 +48,7 @@ Açık kalanlar (kalıcı sayaç ya da şema gerekir):
 - **Hız freni (`api/_rate.ts`):** herkese açık uçlarda adres başına dakikada sınır: `log` 60, `access` okuma 120 / başvuru 10, `share` okuma 120 / yazma 30, `push` 60, `sync` yazma 240; aşınca 429. Sayaç çalışan işlev örneğinin belleğindedir: patlama ve betiklere karşı bir fren, kesin genel kota değildir (örnekler gelip gider, birden çok örnek çalışabilir). Sert sınır için aşağıdaki Vercel Firewall kuralı hâlâ geçerli. Adres hiçbir yere yazılmaz.
 - **HSTS:** Vercel ekliyordu; Cloudflare'de `_headers` ile ekleniyor (yukarıdaki güncelleme).
 
-## Başlıklar (`vercel.json`, #—)
+## Başlıklar (`security-headers.json`, #—)
 | Başlık | Ne yapar |
 |---|---|
 | `X-Frame-Options: DENY` | Uygulama başka bir sitede çerçeve içine alınamaz (tıklatma tuzağı). |
@@ -58,10 +58,10 @@ Açık kalanlar (kalıcı sayaç ya da şema gerekir):
 | `Content-Security-Policy` | **Zorunlu (2026-10-20'den beri engeller).** Betikler yalnızca kendi sitemizden ve `index.html`'deki satır içi betiklerin hash'iyle (`unsafe-inline`/`unsafe-eval` yok); `object-src 'none'`; resim/ses/bağlantı `https:` (+ düello odaları için `wss:`); çerçeve yalnızca YouTube. İhlaller yine `/api/log?csp=1` → Workers Logs'ta `[csp-report]`. |
 
 ### CSP nasıl korunur
-1. **Hash'ler derlemede otomatik:** `npm run build:cf` → `scripts/cf-headers.mjs`, `dist/index.html`'deki satır içi betiklerin SHA-256'sını (`scripts/cspHashes.mjs`) `dist/_headers`'a yazar. `index.html`'deki bir betik değişirse `vercel.json`'daki hash'leri de güncelle: `src/csp.test.ts` farkı yakalar (birim testi düşer), derleme de uyarı basar.
+1. **Hash'ler derlemede otomatik:** `npm run build:cf` → `scripts/cf-headers.mjs`, `dist/index.html`'deki satır içi betiklerin SHA-256'sını (`scripts/cspHashes.mjs`) `dist/_headers`'a yazar. `index.html`'deki bir betik değişirse `security-headers.json`'daki hash'leri de güncelle: `src/csp.test.ts` farkı yakalar (birim testi düşer), derleme de uyarı basar.
 2. **`connect-src` neden geniş:** çevrimdışı ses indirme (`audioCache`), seçilen resimler (`imageSearch`), `PitchCompare` ve sözlük paketleri önceden bilinemeyen adreslere bağlanır; ayrıca YZ (`api.anthropic.com`) ve Tatoeba doğrudan tarayıcıdan çağrılır. Daraltmak bu özellikleri bozar.
 3. **Yeni bir dış kaynak** (betik, çerçeve) eklenirse politikaya yaz; yoksa zorunlu modda engellenir. Önce yerelde `npx vite preview` ile konsolda "Refused to …" iletisine bak.
-4. **Geri alma:** bir şey kırılırsa `vercel.json`'da başlığın adını `Content-Security-Policy-Report-Only` yap ve yeniden yayınla.
+4. **Geri alma:** bir şey kırılırsa `security-headers.json`'da başlığın adını `Content-Security-Policy-Report-Only` yap ve yeniden yayınla.
 
 ## Kullanıcının yapacakları
 1. **`SYNC_ALLOWED`:** Vercel → proje → Settings → Environment Variables → `SYNC_ALLOWED` = kullanıcı adın (ya da eşitleme kodunun 64 haneli kimliği), Production; sonra yeniden yayınla. Yoksa herkes Blob deposuna yazabilir (verini okuyamaz ama depoyu doldurabilir).

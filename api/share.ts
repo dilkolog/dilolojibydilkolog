@@ -1,4 +1,4 @@
-import { del, get, list, put } from '@vercel/blob'
+import { del, get, list, put } from './_blob'
 import { accountOf, requireApproved, StorageError } from './_account.js'
 import { eq, rows, tablesOn, write } from './_tables.js'
 import { fromApp } from './_origin.js'

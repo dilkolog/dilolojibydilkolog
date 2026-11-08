@@ -1,4 +1,4 @@
-import { del, get, put } from '@vercel/blob'
+import { del, get, put } from './_blob'
 import { StorageError } from './_account.js'
 import { eq, inboxTableOn, rows, upsert, write } from './_tables.js'
 import { friendStore } from './_friendStore.js'

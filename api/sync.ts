@@ -1,4 +1,4 @@
-import { del, get, list, put } from '@vercel/blob'
+import { del, get, list, put } from './_blob'
 import { isAllowed } from './_allow.js'
 import { approvalOn, claimAccount, isApproved, storedAuth, StorageError as AccountStorageError, TOKEN as ACCOUNT_TOKEN } from './_account.js'
 import { overLimit, tooMany } from './_rate.js'

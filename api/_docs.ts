@@ -1,4 +1,4 @@
-import { del, get, list, put } from '@vercel/blob'
+import { del, get, list, put } from './_blob'
 import { rest, supabaseOn } from './_supabase.js'
 
 /**

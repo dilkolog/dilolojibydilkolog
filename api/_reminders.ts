@@ -1,4 +1,4 @@
-import { del, get, list, put } from '@vercel/blob'
+import { del, get, list, put } from './_blob'
 import type { PushRecord } from './push.js'
 import { eq, rows, tablesOn, upsert, write } from './_tables.js'
 import { dueHours, dueNow } from './_due.js'

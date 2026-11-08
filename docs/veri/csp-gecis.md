@@ -1,8 +1,8 @@
 # Content Security Policy (CSP) Zorunlu Moda Geçiş Raporu ve Eylem Planı (B10)
 
 > **Uygulandı (2026-10-20, Claude Code):**
-> - **Politika zorunlu:** `vercel.json` anahtarı `Content-Security-Policy`; `report-uri` duruyor.
-> - **Hash'ler derlemede:** `scripts/cf-headers.mjs`, `dist/index.html`deki satır içi betiklerin hash'lerini her derlemede yeniden hesaplar (`scripts/cspHashes.mjs`). `src/csp.test.ts`, `vercel.json`daki hash'lerin `index.html` ile uyuştuğunu denetler.
+> - **Politika zorunlu:** `security-headers.json` anahtarı `Content-Security-Policy`; `report-uri` duruyor.
+> - **Hash'ler derlemede:** `scripts/cf-headers.mjs`, `dist/index.html`deki satır içi betiklerin hash'lerini her derlemede yeniden hesaplar (`scripts/cspHashes.mjs`). `src/csp.test.ts`, `security-headers.json`daki hash'lerin `index.html` ile uyuştuğunu denetler.
 > - **`connect-src` açık listeye indirilmedi:** `'self' https: wss:` olarak kaldı (`wss:` düello odası içindir). Nedeni, §4'teki listenin eksik olması: `api.anthropic.com` (YZ), `api.tatoeba.org`, `audio.tatoeba.org` ve Vikidia listede yok. Ayrıca çevrimdışı ses indirme (`audioCache`), görsel seçme (`imageSearch`) ve ses karşılaştırma (`PitchCompare`) önceden bilinemeyen adreslerden `fetch` yapıyor; açık liste bunları bozar.
 > - **XSS koruması:** asıl koruma `script-src`te (satır içi betik yalnızca hash'le, `unsafe-inline`/`unsafe-eval` yok).
 > - **Doğrulama:** zorunlu politikayla bütün ekranlar telefon ve masaüstünde gezildi, ihlal çıkmadı. Kontrol olarak bilerek bozulan bir hash yakalandı.
@@ -15,10 +15,10 @@ Bu rapor, `diloloji.com` etki alanında şu anda `Content-Security-Policy-Report
 ## 1. Mevcut Durum ve Mimari İnceleme
 
 ### 1.1 Politikanın Tanımlandığı Yerler
-1. **`vercel.json`:**
+1. **`security-headers.json`:**
    `/ (.*)` rotası altında `Content-Security-Policy-Report-Only` başlığı olarak tanımlıdır.
 2. **`scripts/cf-headers.mjs`:**
-   Statik derleme (`npm run build:cf`) sırasında `vercel.json`'daki başlıkları okuyarak Cloudflare Workers Static Assets için `dist/_headers` dosyasına yazar.
+   Statik derleme (`npm run build:cf`) sırasında `security-headers.json`'daki başlıkları okuyarak Cloudflare Workers Static Assets için `dist/_headers` dosyasına yazar.
 3. **`worker/index.ts` ve Raporlama:**
    Tarayıcılar CSP ihlallerini `report-uri /api/log?csp=1` adresine `POST` eder. `api/log.ts` bu raporları `[csp-report]` etiketiyle konsola basar ve Cloudflare Workers Logs (`npx wrangler tail diloloji --search "[csp-report]"`) üzerinden canlı izlenir.
 
@@ -150,7 +150,7 @@ Ağ üzerinden indirilen sesler, görseller ve YouTube oynatıcıları için:
 - `package.json` build komutunda `npm run build && node scripts/cf-headers.mjs` akışının başlığı hatasız ürettiği doğrulanır.
 
 ### Aşama 2: `connect-src` Direktifinin Sıkılaştırılması (`Report-Only` Modunda)
-- `vercel.json` ve `cf-headers.mjs` içindeki `connect-src` yukarıdaki §4 açık listesiyle güncellenir.
+- `security-headers.json` ve `cf-headers.mjs` içindeki `connect-src` yukarıdaki §4 açık listesiyle güncellenir.
 - Başlık adı hâlâ `Content-Security-Policy-Report-Only` olarak bırakılır.
 - Kod canlıya dağıtılır (`npm run deploy:cf`).
 
@@ -163,13 +163,13 @@ Ağ üzerinden indirilen sesler, görseller ve YouTube oynatıcıları için:
 
 ### Aşama 4: Zorunlu Moda Geçiş (Enforce)
 - 48 saatlik gözlemde sıfır meşru ihlal görüldüğünde:
-  - `vercel.json` içindeki anahtar: `Content-Security-Policy-Report-Only` → `Content-Security-Policy`
+  - `security-headers.json` içindeki anahtar: `Content-Security-Policy-Report-Only` → `Content-Security-Policy`
   - `cf-headers.mjs` çıktısı: `Content-Security-Policy`
   - Raporlama ucu (`report-uri /api/log?csp=1`) korunur (bloklanan saldırıları veya olası regresyonları anında izlemek için).
 - Dağıtım yapılır ve `curl -I https://diloloji.com/` ile canlı başlık doğrulanır.
 
 ### Aşama 5: Geri Alma (Rollback) Güvencesi
-- Beklenmedik bir bloklama veya beyaz ekranda kalma durumunda, `dist/_headers` ve `vercel.json` içindeki başlık yeniden `Content-Security-Policy-Report-Only` yapılır ve 2 dakika içinde `npm run deploy:cf` ile canlı geri çekilir.
+- Beklenmedik bir bloklama veya beyaz ekranda kalma durumunda, `dist/_headers` ve `security-headers.json` içindeki başlık yeniden `Content-Security-Policy-Report-Only` yapılır ve 2 dakika içinde `npm run deploy:cf` ile canlı geri çekilir.
 
 ---
 

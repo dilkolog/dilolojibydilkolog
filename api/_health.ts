@@ -1,4 +1,4 @@
-import { get } from '@vercel/blob'
+import { get } from './_blob'
 import { readText, writeJson } from './_account.js'
 import { APP_URL, EMAIL, mailConfigured, sendMail, type Mail } from './_mail.js'
 import { escapeHtml, mailLayout, paragraph } from './_mailLayout.js'

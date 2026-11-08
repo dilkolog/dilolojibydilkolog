@@ -1,4 +1,4 @@
-import { del, get, put } from '@vercel/blob'
+import { del, get, put } from './_blob'
 import { createDoc, DocsError, docsMoved, isDocPath, readDoc, removeDoc, writeDoc } from './_docs.js'
 import { allowedIds } from './_allow.js'
 import { profileStatus, supabaseOn } from './_supabase.js'

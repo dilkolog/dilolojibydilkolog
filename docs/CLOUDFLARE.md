@@ -1,15 +1,16 @@
 # Cloudflare'e taşınma (Vercel Hobby kotası dolduğu için)
 
 Uygulama tek bir Cloudflare Worker olarak çalışır: statik dosyalar (`dist/`) Workers Static Assets ile
-(ücretsiz, sınırsız), `/api/*` ise `api/*.ts` işleyicileriyle (`worker/index.ts`). Vercel yapılandırması
-(`vercel.json`, `api/`) olduğu gibi duruyor; ikisi birlikte çalışabilir.
+(ücretsiz, sınırsız), `/api/*` ise `api/*.ts` işleyicileriyle (`worker/index.ts`). Vercel'e özel yapılandırma
+(`vercel.json`'daki `functions`/`crons`) kaldırıldı (2026-11-08); güvenlik başlıkları `security-headers.json`'da. `api/` işleyicileri
+standart `Request`/`Response` olduğu için hâlâ Vercel biçimindeki gibi okunur.
 
 ## Nasıl çalışıyor
 - `worker/index.ts`: `/api/<ad>` isteğini `api/<ad>.ts` dosyasındaki `GET/POST/PUT/DELETE` işleyicisine verir;
   saatlik cron (`scheduled`) `api/cron-reminder.ts`yi çağırır (Vercel'deki 24 günlük cron yerine tek `0 * * * *`).
 - `wrangler.jsonc` `alias`: `@vercel/blob` → `worker/blob.ts` (R2), `web-push` → `worker/webpush.ts` (Web Crypto).
   `api/` kodu değişmedi; birim testleri hâlâ `@vercel/blob`u taklit eder.
-- `scripts/cf-headers.mjs`: `vercel.json`daki güvenlik başlıklarından `dist/_headers` üretir (statik dosyalar için).
+- `scripts/cf-headers.mjs`: `security-headers.json`daki güvenlik başlıklarından `dist/_headers` üretir (statik dosyalar için).
 - Yerelde: `npm run dev:cf` (derler, `.dev.vars` dosyasındaki gizlilerle `wrangler dev`).
 
 ## Sahibinin yapacakları (bir kez)
