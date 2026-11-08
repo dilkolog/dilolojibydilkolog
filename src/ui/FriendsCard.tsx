@@ -206,7 +206,13 @@ export function FriendsCard({ game, profile, vocabulary, language, share = 'xp',
   }
   const remove = async (f: FriendView) => {
     const displayName = nicknames[f.code] || f.name
-    await removeFriend(f.code).catch(() => undefined)
+    try {
+      await removeFriend(f.code)
+    } catch {
+      // Offline or refused: the friend is still there, so saying "removed" would be wrong.
+      showToast(`${displayName} çıkarılamadı. Bağlantını kontrol edip yine dene.`, undefined, 5000, 'info')
+      return
+    }
     showToast(`${displayName} listenden çıkarıldı.`)
     await refresh()
   }

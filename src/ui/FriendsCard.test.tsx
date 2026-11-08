@@ -6,6 +6,7 @@ import { createRoot } from 'react-dom/client'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { AccessContext } from './accessContext'
 import { FriendsCard } from './FriendsCard'
+import { setToastListener } from './toastFeed'
 import type { GameState } from './game'
 import type { Profile } from '../data/db'
 import { db } from '../data/instance'
@@ -90,6 +91,23 @@ describe('FriendsCard', () => {
     expect(names()).toEqual(['Sen', 'Veli'])
     expect(host.querySelector('.friends-add .friends-invite-row button')?.textContent).toBe('Davet et')
     expect(host.querySelector('.friends-add input[aria-label="Arkadaşının kodu"]')).toBeNull()
+  })
+
+  it('removing a friend that the server refuses says so, and keeps the friend on the board', async () => {
+    const { host } = await mount(true)
+    const toasts: string[] = []
+    setToastListener((t) => t && toasts.push(t.text))
+    const answer = globalThis.fetch
+    vi.stubGlobal('fetch', async (url: string, init?: RequestInit) => {
+      const body = init?.body ? JSON.parse(String(init.body)) : undefined
+      if (body?.action === 'friends-remove') return Response.json({ error: 'unavailable' }, { status: 503 })
+      return answer(url, init)
+    })
+    await act(async () => (host.querySelector('.friends-remove') as HTMLButtonElement).click())
+    await until(() => toasts.length > 0)
+    setToastListener(null)
+    expect(toasts).toEqual(['Veli çıkarılamadı. Bağlantını kontrol edip yine dene.'])
+    expect(host.querySelector('.friends-board')?.textContent).toContain('Veli')
   })
 
   it('a friend card from an older app (no days) does not break the board', async () => {
