@@ -132,7 +132,7 @@ export function RegisterRound({ language, onExit, onLesson }: { language: Target
 
       {phase === 'intro' && (
         <div className="card register-card stack gap-2">
-          <h1 className="greeting">Kayıt farkı</h1>
+          <h1 className="greeting">Resmî mi, günlük mü?</h1>
           <p className="muted">
             Aynı şey {LANGUAGE_NAME[language]} üç ortamda üç türlü söylenir: sokakta, standart ve resmî. Bir durum ve bir düşünce görürsün; o ortama uyan söyleyişi seçersin. Doğru kelimeyi yanlış yerde kullanmamak için.
           </p>

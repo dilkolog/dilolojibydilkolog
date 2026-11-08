@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
-import { aiRoute, approveAccount, openVerbLab, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, settleTransitions, startWithSamples } from './helpers'
+import { aiRoute, approveAccount, openVerbLab, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, settleTransitions, startWithSamples, gameCard } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -453,7 +453,7 @@ test('new games and insight cards pass accessibility check across dark and calm 
 
   // 2. Oyunlar → Dilbilgisi soruları (intro ve soru ekranı)
   await openScreen(page, 'Oyunlar')
-  const grammarCard = page.locator('.game-card', { hasText: 'Dilbilgisi soruları' })
+  const grammarCard = (await gameCard(page, 'Dilbilgisi soruları'))
   if (await grammarCard.count()) {
     await grammarCard.click()
     await expect(page.locator('.greeting', { hasText: 'Dilbilgisi soruları' })).toBeVisible()
@@ -472,7 +472,7 @@ test('new games and insight cards pass accessibility check across dark and calm 
   }
 
   // 3. Oyunlar → Refleks turu (intro ve soru ekranı)
-  const reflexCard = page.locator('.game-card', { hasText: 'Refleks turu' })
+  const reflexCard = (await gameCard(page, 'Refleks turu'))
   if (await reflexCard.count()) {
     await reflexCard.click()
     await expect(page.locator('.greeting', { hasText: 'Refleks turu' })).toBeVisible()
@@ -490,7 +490,7 @@ test('new games and insight cards pass accessibility check across dark and calm 
   }
 
   // 4. Oyunlar → Tuzak kelimeler (intro ve soru ekranı)
-  const trapsCard = page.locator('.game-card', { hasText: 'Tuzak kelimeler' })
+  const trapsCard = (await gameCard(page, 'Tuzak kelimeler'))
   if (await trapsCard.count()) {
     await trapsCard.click()
     await expect(page.locator('.greeting', { hasText: 'Tuzak kelimeler' })).toBeVisible()
@@ -508,10 +508,10 @@ test('new games and insight cards pass accessibility check across dark and calm 
   }
 
   // 4b. Oyunlar → Kayıt farkı (intro, soru ve cevap sonrası üç söyleyiş)
-  const registerCard = page.locator('.game-card', { hasText: 'Kayıt farkı' })
+  const registerCard = (await gameCard(page, 'Resmî mi, günlük mü?'))
   if (await registerCard.count()) {
     await registerCard.click()
-    await expect(page.locator('.greeting', { hasText: 'Kayıt farkı' })).toBeVisible()
+    await expect(page.locator('.greeting', { hasText: 'Resmî mi, günlük mü?' })).toBeVisible()
     await page.getByRole('button', { name: /soruluk tura başla/ }).click()
     await expect(page.locator('.option')).toHaveCount(3)
     for (const theme of ['dark', 'calm'] as const) {
@@ -528,7 +528,7 @@ test('new games and insight cards pass accessibility check across dark and calm 
   }
 
   // 4c. Oyunlar → Metin akışı (açık boşluk, cevaplanmış boşluk ve Türkçesi)
-  const flowCard = page.locator('.game-card', { hasText: 'Metin akışı' })
+  const flowCard = (await gameCard(page, 'Bağlaçlarla paragraf'))
   if (await flowCard.count()) {
     await flowCard.click()
     await page.getByRole('button', { name: /paragraflık tura başla/ }).click()
@@ -547,7 +547,7 @@ test('new games and insight cards pass accessibility check across dark and calm 
   }
 
   // 4d. Oyunlar → Ek avı (soru ve cevap sonrası ek açıklaması)
-  const affixCard = page.locator('.game-card', { hasText: 'Ek avı' })
+  const affixCard = (await gameCard(page, 'Kelime türet'))
   if (await affixCard.count()) {
     await affixCard.click()
     await page.getByRole('button', { name: /soruluk tura başla/ }).click()
@@ -566,7 +566,7 @@ test('new games and insight cards pass accessibility check across dark and calm 
   }
 
   // 5. Oyunlar → Ses ayırt etme (oyun ekranı)
-  const pairsCard = page.locator('.game-card', { hasText: 'Kulak jimnastiği' })
+  const pairsCard = (await gameCard(page, 'Kulak jimnastiği'))
   if (await pairsCard.count()) {
     await pairsCard.click()
     await expect(page.locator('.game-stage')).toBeVisible()
@@ -729,7 +729,7 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
 
   // 4. Oyunlar → Dilbilgisi soruları (soru ve cevap sonrası)
   await openScreen(page, 'Oyunlar')
-  const grammarCard = page.locator('.game-card', { hasText: 'Dilbilgisi soruları' })
+  const grammarCard = (await gameCard(page, 'Dilbilgisi soruları'))
   await grammarCard.click()
   await expect(page.locator('.greeting', { hasText: 'Dilbilgisi soruları' })).toBeVisible()
   await page.getByRole('button', { name: /soruluk tura başla/ }).click()
@@ -752,7 +752,7 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
   await page.locator('button.link', { hasText: '← Oyunlar' }).click()
 
   // 5. Oyunlar → Refleks turu (süreli ve süresiz)
-  const reflexCard = page.locator('.game-card', { hasText: 'Refleks turu' })
+  const reflexCard = (await gameCard(page, 'Refleks turu'))
   await reflexCard.click()
   await expect(page.locator('.greeting', { hasText: 'Refleks turu' })).toBeVisible()
   // 5a. Süreli (timed - with progress bar animation)
@@ -772,7 +772,7 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
   await page.locator('button.link', { hasText: '← Oyunlar' }).click()
 
   // 6. Oyunlar → Tuzak kelimeler (soru ve cevap)
-  const trapsCard = page.locator('.game-card', { hasText: 'Tuzak kelimeler' })
+  const trapsCard = (await gameCard(page, 'Tuzak kelimeler'))
   await trapsCard.click()
   await expect(page.locator('.greeting', { hasText: 'Tuzak kelimeler' })).toBeVisible()
   await page.getByRole('button', { name: /soruluk tura başla/ }).click()
@@ -784,14 +784,14 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
   await page.locator('button.link', { hasText: '← Oyunlar' }).click()
 
   // 7. Oyunlar → Ses ayırt etme (oyun ekranı)
-  const pairsCard = page.locator('.game-card', { hasText: 'Kulak jimnastiği' })
+  const pairsCard = (await gameCard(page, 'Kulak jimnastiği'))
   await pairsCard.click()
   await expect(page.locator('.game-stage')).toBeVisible()
   await scanBoth('phone-pairs-play')
   await page.locator('button.link', { hasText: '← Oyunlar' }).click()
 
   // 8. Oyunlar → Geri çeviri (döngü çipleri görünürken)
-  const backCard = page.locator('.game-card', { hasText: 'Geri çeviri' })
+  const backCard = (await gameCard(page, 'Geri çeviri'))
   await backCard.click()
   await expect(page.locator('.choice-row[aria-label="Hangi cümleler"]')).toBeVisible()
   await scanBoth('phone-back-translation-loop-chips')
@@ -802,9 +802,9 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
   await page.getByRole('button', { name: /İspanyolca/ }).click()
   await page.setViewportSize({ width: 375, height: 667 })
   await openScreen(page, 'Oyunlar')
-  const registerCard = page.locator('.game-card', { hasText: 'Kayıt farkı' })
+  const registerCard = (await gameCard(page, 'Resmî mi, günlük mü?'))
   await registerCard.click()
-  await expect(page.locator('.greeting', { hasText: 'Kayıt farkı' })).toBeVisible()
+  await expect(page.locator('.greeting', { hasText: 'Resmî mi, günlük mü?' })).toBeVisible()
   await page.getByRole('button', { name: /soruluk tura başla/ }).click()
   let scannedNote = false
   // The round's items are picked at random: a new round when one ends, until an item with a regional note comes up.
@@ -1104,7 +1104,7 @@ test('new games (Spot Error, Sentence Rewrite, Collocations), FriendsCard, and l
 
   // 2. Oyunlar → Hata Avcısı (SpotErrorGame: intro, soru ve çeldirici seçimi)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Hata avcısı' }).click()
+  await (await gameCard(page, 'Hata avcısı')).click()
   await expect(page.locator('.spot-game')).toBeVisible()
   await scanAllThemes('spot-error-intro')
   await page.getByRole('button', { name: 'Başla' }).click()
@@ -1115,7 +1115,7 @@ test('new games (Spot Error, Sentence Rewrite, Collocations), FriendsCard, and l
   await page.locator('button.link', { hasText: '← Oyunlar' }).click()
 
   // 3. Oyunlar → Cümle Dönüşümü (SentenceRewriteGame: intro ve play)
-  await page.locator('.game-card', { hasText: 'Cümle dönüşümü' }).click()
+  await (await gameCard(page, 'Cümle dönüşümü')).click()
   await expect(page.locator('.rewrite-game')).toBeVisible()
   await scanAllThemes('sentence-rewrite-intro')
   await page.getByRole('button', { name: /Başla/ }).click()
@@ -1124,7 +1124,7 @@ test('new games (Spot Error, Sentence Rewrite, Collocations), FriendsCard, and l
   await page.locator('button.link', { hasText: '← Oyunlar' }).click()
 
   // 4. Oyunlar → Edat ve Kalıplar (CollocationsGame: intro ve play)
-  await page.locator('.game-card', { hasText: 'Edat ve kalıplar' }).click()
+  await (await gameCard(page, 'Edat ve kalıplar')).click()
   await expect(page.locator('.colloc-game .game-intro-card')).toBeVisible()
   await scanAllThemes('collocations-intro')
   await page.getByRole('button', { name: /Başla/ }).click()
@@ -1459,7 +1459,7 @@ test('English verb lab: lists, quiz question and feedback pass accessibility che
   await startWithSamples(page)
   await page.getByRole('button', { name: /İngilizce/ }).click()
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Fiil laboratuvarı' }).click()
+  await (await gameCard(page, 'Fiil laboratuvarı')).click()
   const problems: string[] = []
   const scanThemes = async (where: string) => {
     for (const theme of ['light', 'dark', 'calm'] as const) {
@@ -1557,7 +1557,7 @@ test('Diloloji texts: the list and a text’s own questions pass accessibility a
 test('exam-style tasks: the list, a reading task, a listening task and the result pass accessibility checks in light, dark and calm themes', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Sınav tarzı görevler' }).click()
+  await (await gameCard(page, 'Sınav tarzı görevler')).click()
   const problems: string[] = []
   const scanThemes = async (where: string) => {
     for (const theme of ['light', 'dark', 'calm'] as const) {
@@ -1590,7 +1590,7 @@ test('exam-style tasks: the list, a reading task, a listening task and the resul
 test('numbers and times: the start, a listening question, and a wrong written answer pass accessibility and contrast checks in light and dark', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Sayılar ve saatler' }).click()
+  await (await gameCard(page, 'Sayılar ve saatler')).click()
   const problems: string[] = []
   const scanThemes = async (where: string) => {
     for (const theme of ['light', 'dark'] as const) {
@@ -1604,7 +1604,7 @@ test('numbers and times: the start, a listening question, and a wrong written an
   await expect(page.getByRole('button', { name: 'Dinle', exact: true })).toBeVisible()
   await scanThemes('numbers-listen')
   await page.getByRole('button', { name: '← Oyunlar' }).click()
-  await page.locator('.game-card', { hasText: 'Sayılar ve saatler' }).click()
+  await (await gameCard(page, 'Sayılar ve saatler')).click()
   await page.getByRole('button', { name: 'Gör ve yaz' }).click()
   await page.getByRole('button', { name: /tura başla/ }).click()
   await page.getByLabel('Kelimeyle cevap').fill('zzz')
@@ -1617,7 +1617,7 @@ test('numbers and times: the start, a listening question, and a wrong written an
 test('twins: the start and an answered sentence pass accessibility and contrast checks in light and dark', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'İkizler Arenası' }).click()
+  await (await gameCard(page, 'Karıştırılan kelimeler')).click()
   const problems: string[] = []
   const scanThemes = async (where: string) => {
     for (const theme of ['light', 'dark'] as const) {
@@ -1625,7 +1625,7 @@ test('twins: the start and an answered sentence pass accessibility and contrast 
       problems.push(...(await scan(page, `${where}-${theme}`)), ...(await contrastProblems(page)).map((p) => `${where}-${theme}: ${p}`))
     }
   }
-  await expect(page.getByRole('heading', { name: 'İkizler Arenası' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Karıştırılan kelimeler' })).toBeVisible()
   await scanThemes('twins-start')
   await page.getByRole('button', { name: /tura başla/ }).click()
   await page.locator('.options .option').first().click()
@@ -1637,7 +1637,7 @@ test('twins: the start and an answered sentence pass accessibility and contrast 
 test('spelling aloud: the start and an answered word pass accessibility and contrast checks in light and dark', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Harf harf' }).click()
+  await (await gameCard(page, 'Harf harf')).click()
   const problems: string[] = []
   const scanThemes = async (where: string) => {
     for (const theme of ['light', 'dark'] as const) {
@@ -1659,7 +1659,7 @@ test('spelling aloud: the start and an answered word pass accessibility and cont
 test('dialogues: the list and an answered turn pass accessibility and contrast checks in light and dark', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
-  await page.locator('.game-card', { hasText: 'Diyaloglar' }).click()
+  await (await gameCard(page, 'Diyaloglar')).click()
   const problems: string[] = []
   const scanThemes = async (where: string) => {
     for (const theme of ['light', 'dark'] as const) {
