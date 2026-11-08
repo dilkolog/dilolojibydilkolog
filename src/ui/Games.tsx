@@ -1,5 +1,5 @@
 import '../lazy.css'
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { openMistakes } from '../engine/mistakes'
 import { BOSS_XP, findBosses, type BossWin } from '../engine/bosses'
 import { GameIcon } from './GameIcon'
@@ -7,72 +7,65 @@ import { PlayIcon, SearchIcon, TrophyIcon } from './icons'
 import { FLUENCY_MIN_WORDS, pickFluencyWords } from '../engine/practice'
 import { createRng } from '../engine/rng'
 import { db } from '../data/instance'
-import { SentencesGame } from './Sentences'
-import { NativeDictation } from './NativeDictation'
-import { BackTranslation } from './BackTranslation'
-import { EarMissesGame } from './EarMisses'
-import { SpeedLadder } from './games/SpeedLadder'
-import { NumbersGame } from './games/NumbersGame'
-import { SpellingGame } from './games/SpellingGame'
-import { DialoguesGame } from './games/DialoguesGame'
-import { dialogues } from '../data/dialogues'
-import { PronPractice } from './PronPractice'
 import { azureEnabled } from './pronunciation'
 import { weakPronWords } from '../engine/pronWeak'
 import { stillMissed } from '../engine/earMisses'
 import { loadBackItems } from '../data/backItems'
 import { loopItems } from '../engine/backTranslation'
-import { ArticleDrill } from './ArticleDrill'
-import { GrammarPractice } from './games/GrammarPractice'
-import { DuelGame } from './games/DuelGame'
-import { MiniPodcast } from './games/MiniPodcast'
-import { SongGame } from './games/SongGame'
-import { SpotErrorGame } from './games/SpotErrorGame'
-import { SentenceRewriteGame } from './games/SentenceRewriteGame'
-import { CollocationsGame } from './games/CollocationsGame'
-import { SPOT_ERRORS } from '../data/spotErrors'
-import { SENTENCE_REWRITES } from '../data/sentenceRewrites'
-import { COLLOCATION_DRILLS } from '../data/collocationDrill'
-import { ReflexRound } from './games/ReflexRound'
-import { TrapRound } from './games/TrapRound'
-import { RegisterRound } from './games/RegisterRound'
-import { registerItems } from '../data/register'
-import { FlowRound } from './games/FlowRound'
-import { ContextReview } from './games/ContextReview'
-import { AffixHunt } from './games/AffixHunt'
-import { flowItems } from '../data/flow'
-import { trapWords } from '../data/traps'
-import { irregularVerbs, phrasalVerbs } from '../data/englishVerbs'
-import { examPassages } from '../data/examReading'
-import { ExamTasks } from './games/ExamTasks'
-import { CONFUSABLE_RULES } from '../data/confusableRules'
-import { ConfusablesGame } from './games/ConfusablesGame'
-import { grammarExercises } from '../data/grammar'
 import { dueSentences } from '../engine/sentences'
 import { dueGrammar } from '../engine/grammar'
 import { cardMatches, suggestGames } from '../engine/gameSuggest'
 import { useOnline } from './useOnline'
 import { canSpeak } from './speech'
 import { type Props, FLUENCY_ROUND, fmt } from './games/shared'
-import { MatchGame } from './games/MatchGame'
-import { BlitzGame } from './games/BlitzGame'
-import { FluencyGame } from './games/FluencyGame'
-import { PairsGame } from './games/PairsGame'
-import { GenderGame } from './games/GenderGame'
-import { AccentGame } from './games/AccentGame'
 import { ACCENT_MIN_WORDS, accentedWords } from './games/accentedWords'
-import { SwipeCards } from './games/SwipeCards'
-import { TrueFalseGame } from './games/TrueFalseGame'
-import { PracticeTest } from './games/PracticeTest'
-import { GravityGame } from './games/GravityGame'
-import { NotesQuiz } from './games/NotesQuiz'
-import { DiagramGame } from './games/DiagramGame'
 import { useAi } from './aiContext'
-import { AudioReview } from './games/AudioReview'
-import { BossArena } from './games/BossArena'
 import { PageHeader } from './PageHeader'
 import { recordVisit } from './screenUsage'
 import type { GameId } from './gameList'
+import { GAME_COUNTS } from '../data/gameCounts'
+import { ScreenSkeleton } from './Skeleton'
+
+// Each game is its own chunk, its data with it: the list loads only what the cards show (counts from gameCounts.json).
+const SentencesGame = lazy(() => import('./Sentences').then((m) => ({ default: m.SentencesGame })))
+const NativeDictation = lazy(() => import('./NativeDictation').then((m) => ({ default: m.NativeDictation })))
+const BackTranslation = lazy(() => import('./BackTranslation').then((m) => ({ default: m.BackTranslation })))
+const EarMissesGame = lazy(() => import('./EarMisses').then((m) => ({ default: m.EarMissesGame })))
+const SpeedLadder = lazy(() => import('./games/SpeedLadder').then((m) => ({ default: m.SpeedLadder })))
+const NumbersGame = lazy(() => import('./games/NumbersGame').then((m) => ({ default: m.NumbersGame })))
+const SpellingGame = lazy(() => import('./games/SpellingGame').then((m) => ({ default: m.SpellingGame })))
+const DialoguesGame = lazy(() => import('./games/DialoguesGame').then((m) => ({ default: m.DialoguesGame })))
+const PronPractice = lazy(() => import('./PronPractice').then((m) => ({ default: m.PronPractice })))
+const ArticleDrill = lazy(() => import('./ArticleDrill').then((m) => ({ default: m.ArticleDrill })))
+const GrammarPractice = lazy(() => import('./games/GrammarPractice').then((m) => ({ default: m.GrammarPractice })))
+const DuelGame = lazy(() => import('./games/DuelGame').then((m) => ({ default: m.DuelGame })))
+const MiniPodcast = lazy(() => import('./games/MiniPodcast').then((m) => ({ default: m.MiniPodcast })))
+const SongGame = lazy(() => import('./games/SongGame').then((m) => ({ default: m.SongGame })))
+const SpotErrorGame = lazy(() => import('./games/SpotErrorGame').then((m) => ({ default: m.SpotErrorGame })))
+const SentenceRewriteGame = lazy(() => import('./games/SentenceRewriteGame').then((m) => ({ default: m.SentenceRewriteGame })))
+const CollocationsGame = lazy(() => import('./games/CollocationsGame').then((m) => ({ default: m.CollocationsGame })))
+const ReflexRound = lazy(() => import('./games/ReflexRound').then((m) => ({ default: m.ReflexRound })))
+const TrapRound = lazy(() => import('./games/TrapRound').then((m) => ({ default: m.TrapRound })))
+const RegisterRound = lazy(() => import('./games/RegisterRound').then((m) => ({ default: m.RegisterRound })))
+const FlowRound = lazy(() => import('./games/FlowRound').then((m) => ({ default: m.FlowRound })))
+const ContextReview = lazy(() => import('./games/ContextReview').then((m) => ({ default: m.ContextReview })))
+const AffixHunt = lazy(() => import('./games/AffixHunt').then((m) => ({ default: m.AffixHunt })))
+const ExamTasks = lazy(() => import('./games/ExamTasks').then((m) => ({ default: m.ExamTasks })))
+const ConfusablesGame = lazy(() => import('./games/ConfusablesGame').then((m) => ({ default: m.ConfusablesGame })))
+const MatchGame = lazy(() => import('./games/MatchGame').then((m) => ({ default: m.MatchGame })))
+const BlitzGame = lazy(() => import('./games/BlitzGame').then((m) => ({ default: m.BlitzGame })))
+const FluencyGame = lazy(() => import('./games/FluencyGame').then((m) => ({ default: m.FluencyGame })))
+const PairsGame = lazy(() => import('./games/PairsGame').then((m) => ({ default: m.PairsGame })))
+const GenderGame = lazy(() => import('./games/GenderGame').then((m) => ({ default: m.GenderGame })))
+const AccentGame = lazy(() => import('./games/AccentGame').then((m) => ({ default: m.AccentGame })))
+const SwipeCards = lazy(() => import('./games/SwipeCards').then((m) => ({ default: m.SwipeCards })))
+const TrueFalseGame = lazy(() => import('./games/TrueFalseGame').then((m) => ({ default: m.TrueFalseGame })))
+const PracticeTest = lazy(() => import('./games/PracticeTest').then((m) => ({ default: m.PracticeTest })))
+const GravityGame = lazy(() => import('./games/GravityGame').then((m) => ({ default: m.GravityGame })))
+const NotesQuiz = lazy(() => import('./games/NotesQuiz').then((m) => ({ default: m.NotesQuiz })))
+const DiagramGame = lazy(() => import('./games/DiagramGame').then((m) => ({ default: m.DiagramGame })))
+const AudioReview = lazy(() => import('./games/AudioReview').then((m) => ({ default: m.AudioReview })))
+const BossArena = lazy(() => import('./games/BossArena').then((m) => ({ default: m.BossArena })))
 
 type Game = GameId | null
 
@@ -124,7 +117,7 @@ export function GamesScreen(
   // Grammar questions whose turn to come back has come.
   const [dueGrammarCount, setDueGrammarCount] = useState(0)
   useEffect(() => {
-    void db.getGrammarLog().then((log) => setDueGrammarCount(dueGrammar(grammarExercises(p.language), log, new Date()).length))
+    void Promise.all([db.getGrammarLog(), import('../data/grammar')]).then(([log, { grammarExercises }]) => setDueGrammarCount(dueGrammar(grammarExercises(p.language), log, new Date()).length))
   }, [p.language, game])
   const [query, setQuery] = useState('')
   const [purpose, setPurposeState] = useState<Purpose>(readPurpose)
@@ -207,9 +200,15 @@ export function GamesScreen(
     if (game === 'blitz') return <BlitzGame {...p} best={records[blitzKey]} bestTyped={records[`${blitzKey}:typed`]} recordKey={blitzKey} onExit={() => setGame(null)} />
     return null
   })()
-  if (active) return <div className="game-stage">{active}</div>
+  if (active)
+    return (
+      <div className="game-stage">
+        <Suspense fallback={<ScreenSkeleton kind="session" />}>{active}</Suspense>
+      </div>
+    )
 
   const learnFirst = 'Önce birkaç kelime öğren'
+  const counts = GAME_COUNTS[p.language]
   const accentCount = accentedWords(p.vocabulary).length
   const record = (key: string, show: (v: number) => string) => (records[key] ? `Rekorun: ${show(records[key])}` : 'Henüz rekor yok')
   const sourceGroups: { title: string; tone: Tone; cards: GameCard[] }[] = [
@@ -241,7 +240,7 @@ export function GamesScreen(
         { id: 'song', emoji: '🎵', name: 'Şarkıyla öğren', text: 'Altyazılı bir şarkının satırlarındaki eksik kelimeleri dinleyerek yaz.', status: online ? 'YouTube bağlantısıyla' : 'İnternet gerekir', disabled: !online },
         { id: 'dictation', emoji: '📝', name: 'Gerçek seslerle dikte', text: 'Farklı insanların sesinden gerçek cümleleri dinle ve yaz.', status: online ? 'Her cümle başka bir ses' : 'İnternet gerekir', disabled: !online },
         { id: 'ladder', emoji: '🪜', name: 'Hız merdiveni', text: 'Aynı cümleyi 0,75×, 1× ve 1,25× hızda dinle; her seferinde cümlede hangi kelime vardı? Kulağının bugünkü hızını gör.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : 'Kendi cümlelerinden', disabled: !canSpeak() || p.vocabulary.length === 0 },
-        { id: 'dialogues', emoji: '💬', name: 'Diyaloglar', text: 'Kafede, otelde, doktorda: karşındaki konuşur, sen uygun cevabı seçersin; her cevapta nedenini gör.', status: `${dialogues.filter((d) => d.language === p.language).length} diyalog · A1–B1` },
+        { id: 'dialogues', emoji: '💬', name: 'Diyaloglar', text: 'Kafede, otelde, doktorda: karşındaki konuşur, sen uygun cevabı seçersin; her cevapta nedenini gör.', status: `${counts.dialogues} diyalog · A1–B1` },
         { id: 'numbers', emoji: '🔢', name: 'Sayılar ve saatler', text: 'Sayı, saat, fiyat, tarih ve telefon numarasını dinleyip rakamla yaz ya da rakamları kelimeyle yaz.', status: canSpeak() ? record(`numbers:${p.language}`, (v) => `%${v}`) : 'Sesli okuma yok: yalnızca yazarak' },
         { id: 'spelling', emoji: '🔤', name: 'Harf harf', text: 'Bir kelime ya da ad harf adlarıyla tek tek söylenir (bé, o, enne…); sen yazarsın. Otelde, telefonda adını kodlamak için.', status: canSpeak() ? record(`spelling:${p.language}`, (v) => `%${v}`) : 'Bu tarayıcıda sesli okuma yok', disabled: !canSpeak() },
         { id: 'ear', emoji: '🦻', name: 'Kaçırdıkların', text: 'Dikte ederken duymadığın kelimeler, kendi cümleleriyle: dinle ve yaz.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : earCount ? `${earCount} kelime` : 'Dikte yaptıkça birikir', disabled: !canSpeak() || earCount === 0 },
@@ -270,18 +269,18 @@ export function GamesScreen(
       ],
     },
   ]
-  const grammarCard: GameCard = { id: 'grammar', emoji: '📐', name: 'Dilbilgisi soruları', text: 'Boşluk doldur, seçeneği seç, hatalı kelimeyi bul; her cevapta kuralı Türkçe gör.', status: `${grammarExercises(p.language).length} soru · A1–C1` }
-  const spotErrorCard: GameCard = { id: 'spot-error', emoji: '🎯', name: 'Hata avcısı', text: 'Cümledeki tek bir gramer/uyum tuzağını bul ve doğrusunu seç.', status: `${SPOT_ERRORS.filter((s) => s.language === p.language).length} soru · B1–C1` }
-  const rewriteCard: GameCard = { id: 'rewrite', emoji: '🔄', name: 'Cümle dönüşümü', text: 'Verilen anahtar kelimeyle cümleyi anlamını koruyarak yeniden kur.', status: `${SENTENCE_REWRITES.filter((s) => s.language === p.language).length} kalıp · B2–C1` }
-  const collocationsCard: GameCard = { id: 'collocations', emoji: '🔗', name: 'Edat ve kalıplar', text: 'Fiillerin aldığı edatlar ve doğal eşdizimler: boşluğu doğru kelimeyle tamamla.', status: `${COLLOCATION_DRILLS.filter((c) => c.language === p.language).length} kalıp · B1–C1` }
-  const trapCard: GameCard = { id: 'traps', emoji: '⚠️', name: 'Tuzak kelimeler', text: 'Başka bir kelimeye benzeyip başka şey diyenler: gerçek anlamı seç.', status: `${trapWords.filter((t) => t.language === p.language).length} kelime` }
-  const confusablesCard: GameCard = { id: 'confusables', emoji: '👯', name: 'Karıştırılan kelimeler', text: 'İkizler Arenası: birbirine benzeyen ya da sık karıştırılan iki kelimeden doğrusunu seç, farkı kuralıyla öğren.', status: record(`confusables:${p.language}`, (v) => `%${v}`) ?? `${CONFUSABLE_RULES.filter((r) => r.language === p.language).length} kural çifti` }
-  const registerCard: GameCard = { id: 'register', emoji: '🎭', name: 'Resmî mi, günlük mü?', text: 'Arkadaşa, yabancıya, resmî bir yere: durumu oku, ortama uyan söyleyişi seç.', status: record(`register:${p.language}`, (v) => `%${v}`) ?? `${registerItems.filter((r) => r.language === p.language).length} düşünce · B1–C1` }
-  const flowCard: GameCard = { id: 'flow', emoji: '🧱', name: 'Bağlaçlarla paragraf', text: 'Paragraftaki eksik bağlaçları yerleştir: zıtlık, neden, taviz, koşul.', status: record(`flow:${p.language}`, (v) => `%${v}`) ?? `${flowItems.filter((r) => r.language === p.language).length} paragraf · B1–C1` }
-  const examCard: GameCard = { id: 'exam-tasks', emoji: '📝', name: 'Sınav tarzı görevler', text: 'DELF, DELE, Cambridge tarzı kısa metinler: oku ya da yalnızca dinle, üç soruyu cevapla.', status: record(`exam-tasks:${p.language}`, (v) => `%${v}`) ?? `${examPassages.filter((e) => e.language === p.language).length} metin · A2–C1` }
+  const grammarCard: GameCard = { id: 'grammar', emoji: '📐', name: 'Dilbilgisi soruları', text: 'Boşluk doldur, seçeneği seç, hatalı kelimeyi bul; her cevapta kuralı Türkçe gör.', status: `${counts.grammar} soru · A1–C1` }
+  const spotErrorCard: GameCard = { id: 'spot-error', emoji: '🎯', name: 'Hata avcısı', text: 'Cümledeki tek bir gramer/uyum tuzağını bul ve doğrusunu seç.', status: `${counts.spotErrors} soru · B1–C1` }
+  const rewriteCard: GameCard = { id: 'rewrite', emoji: '🔄', name: 'Cümle dönüşümü', text: 'Verilen anahtar kelimeyle cümleyi anlamını koruyarak yeniden kur.', status: `${counts.rewrites} kalıp · B2–C1` }
+  const collocationsCard: GameCard = { id: 'collocations', emoji: '🔗', name: 'Edat ve kalıplar', text: 'Fiillerin aldığı edatlar ve doğal eşdizimler: boşluğu doğru kelimeyle tamamla.', status: `${counts.collocations} kalıp · B1–C1` }
+  const trapCard: GameCard = { id: 'traps', emoji: '⚠️', name: 'Tuzak kelimeler', text: 'Başka bir kelimeye benzeyip başka şey diyenler: gerçek anlamı seç.', status: `${counts.traps} kelime` }
+  const confusablesCard: GameCard = { id: 'confusables', emoji: '👯', name: 'Karıştırılan kelimeler', text: 'İkizler Arenası: birbirine benzeyen ya da sık karıştırılan iki kelimeden doğrusunu seç, farkı kuralıyla öğren.', status: record(`confusables:${p.language}`, (v) => `%${v}`) ?? `${counts.confusables} kural çifti` }
+  const registerCard: GameCard = { id: 'register', emoji: '🎭', name: 'Resmî mi, günlük mü?', text: 'Arkadaşa, yabancıya, resmî bir yere: durumu oku, ortama uyan söyleyişi seç.', status: record(`register:${p.language}`, (v) => `%${v}`) ?? `${counts.register} düşünce · B1–C1` }
+  const flowCard: GameCard = { id: 'flow', emoji: '🧱', name: 'Bağlaçlarla paragraf', text: 'Paragraftaki eksik bağlaçları yerleştir: zıtlık, neden, taviz, koşul.', status: record(`flow:${p.language}`, (v) => `%${v}`) ?? `${counts.flow} paragraf · B1–C1` }
+  const examCard: GameCard = { id: 'exam-tasks', emoji: '📝', name: 'Sınav tarzı görevler', text: 'DELF, DELE, Cambridge tarzı kısa metinler: oku ya da yalnızca dinle, üç soruyu cevapla.', status: record(`exam-tasks:${p.language}`, (v) => `%${v}`) ?? `${counts.exam} metin · A2–C1` }
   const duelCard: GameCard = { id: 'duel', emoji: '🥊', name: 'Arkadaşla düello', text: 'Aynı 10 soruyu ikiniz de çözün: kendi zamanınızda bir bağlantıyla ya da canlı odada aynı anda. Hesap gerekmez.', status: 'Bağlantıyla ya da canlı oda' }
   const affixCard: GameCard = { id: 'affix', emoji: '🌱', name: 'Kelime türet', text: 'Ek avı: bir kelimeden türevini hangi ek ya da ön ek kurar? Kelimeyi sen kur.', status: 'Kendi kelimelerinden' }
-  const enVerbsCard: GameCard = { id: 'verbs', emoji: '🕰️', name: 'Fiil laboratuvarı', text: 'Düzensiz fiiller ve phrasal verb’ler: listeye bak, sonra alıştır.', status: `${irregularVerbs.length} düzensiz fiil · ${phrasalVerbs.length} phrasal verb`, open: p.onOpenVerbs }
+  const enVerbsCard: GameCard = { id: 'verbs', emoji: '🕰️', name: 'Fiil laboratuvarı', text: 'Düzensiz fiiller ve phrasal verb’ler: listeye bak, sonra alıştır.', status: `${GAME_COUNTS.en.irregularVerbs} düzensiz fiil · ${GAME_COUNTS.en.phrasalVerbs} phrasal verb`, open: p.onOpenVerbs }
   if (p.language === 'en') sourceGroups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, spotErrorCard, rewriteCard, collocationsCard, duelCard, trapCard, confusablesCard, registerCard, flowCard, affixCard, examCard, enVerbsCard] })
   else
     sourceGroups.push({
