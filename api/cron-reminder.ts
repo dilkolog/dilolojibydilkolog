@@ -6,8 +6,7 @@ import { dueNow, localHour } from './_due.js'
 import { reminderStore } from './_reminders.js'
 
 /**
- * Every hour (vercel.json: one daily cron per UTC hour, `?h=` its hour, as the Hobby plan runs each
- * cron once a day and anywhere within its hour): a push reminder (and a mail, to the confirmed addresses
+ * Every hour (wrangler.jsonc: one hourly trigger; the worker passes the UTC hour as `?h=`): a push reminder (and a mail, to the confirmed addresses
  * of mail records; see _reminders.ts for where they are kept) to the devices whose local hour is
  * their reminder hour (default 20:00) and whose learner hasn't studied today, on any of their synced
  * devices. Expired subscriptions are removed.

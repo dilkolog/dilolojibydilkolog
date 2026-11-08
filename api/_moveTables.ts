@@ -1,4 +1,4 @@
-import { list } from '@vercel/blob'
+import { list } from './_blob'
 import { readText } from './_account.js'
 import { CODE, rowOfCard, type FriendCard } from './_friends.js'
 import { blobReminders, rowOfReminder } from './_reminders.js'

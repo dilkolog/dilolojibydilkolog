@@ -1,7 +1,7 @@
 /**
  * The subset of `@vercel/blob` the server uses (get, put, del, list), on a Cloudflare R2 bucket.
- * The Worker build points the package name at this file (wrangler.jsonc `alias`), so api/ stays as it is
- * and still runs on Vercel and in the unit tests, which mock `@vercel/blob`.
+ * The Worker build points the package name at this file (wrangler.jsonc `alias`); api/_blob.ts is the one
+ * place that names the package, and the unit tests mock `@vercel/blob`.
  */
 import type { R2Bucket } from '@cloudflare/workers-types'
 
