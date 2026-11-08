@@ -240,6 +240,7 @@ export function AppScreens(props: AppScreensProps) {
           onEarPractice={go({ name: 'games', game: 'ear' })}
           onRepair={(target) => (target === 'verbs' ? setScreen({ name: 'verbs' }) : setScreen({ name: 'games', game: target }))}
           onLesson={(lesson) => setScreen({ name: 'guide', lesson: lesson.topic, tense: lesson.tense })}
+          onVerdict={(to) => ('day' in to ? startDay() : 'screen' in to ? setScreen({ name: to.screen }) : setScreen({ name: 'games', game: to.game }))}
           weeklyGoal={settings.weeklyTimeGoal}
           onWeeklyGoal={(minutes) => void updateSettings({ ...settings, weeklyTimeGoal: minutes })}
           learnerName={settings.profile.name}
