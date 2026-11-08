@@ -1,0 +1,40 @@
+{
+  "fr": {
+    "dialogues": 22,
+    "grammar": 913,
+    "spotErrors": 45,
+    "rewrites": 45,
+    "collocations": 50,
+    "traps": 121,
+    "confusables": 35,
+    "register": 133,
+    "flow": 51,
+    "exam": 28
+  },
+  "es": {
+    "dialogues": 22,
+    "grammar": 934,
+    "spotErrors": 45,
+    "rewrites": 45,
+    "collocations": 50,
+    "traps": 119,
+    "confusables": 34,
+    "register": 133,
+    "flow": 51,
+    "exam": 28
+  },
+  "en": {
+    "dialogues": 22,
+    "grammar": 990,
+    "spotErrors": 45,
+    "rewrites": 45,
+    "collocations": 50,
+    "traps": 115,
+    "confusables": 35,
+    "register": 133,
+    "flow": 51,
+    "exam": 28,
+    "irregularVerbs": 171,
+    "phrasalVerbs": 231
+  }
+}
