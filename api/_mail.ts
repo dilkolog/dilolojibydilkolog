@@ -1,5 +1,5 @@
 /**
- * Mail through Resend (RESEND_API_KEY, a Vercel environment variable; RESEND_FROM names the sender,
+ * Mail through Resend (RESEND_API_KEY, a Worker secret; RESEND_FROM names the sender,
  * "Diloloji <hatirlatma@your-domain>" once a domain is verified there; until then Resend's sandbox
  * sender only delivers to the account's own address). Without the key the mail reminders are off.
  */

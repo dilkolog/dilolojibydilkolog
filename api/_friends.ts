@@ -12,7 +12,7 @@ import { blobFriends, friendStore, readJson, tableFriends } from './_friendStore
  *
  * Kept in Blob files or, once the owner moved them, Supabase tables (see FriendStore below).
  *
- * The app reaches this through /api/access (Vercel Hobby allows twelve functions, all taken).
+ * The app reaches this through /api/access (a leftover of Vercel's twelve-function limit).
  */
 
 export const MAX_FRIENDS = 50

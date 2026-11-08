@@ -1,6 +1,6 @@
 /**
  * GET /api/translate?text=…&from=fr&to=tr: one sentence translated by DeepL with the server's
- * key (DEEPL_AUTH_KEY, a Vercel environment variable), so the app has translations ready on
+ * key (DEEPL_AUTH_KEY, a Worker secret), so the app has translations ready on
  * every device without anyone pasting a key.
  * GET /api/translate?usage=1: this month's characters used and the limit, for Settings.
  *
