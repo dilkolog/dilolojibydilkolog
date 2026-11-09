@@ -35,6 +35,8 @@ Sahibi şimdilik altyapıyla değil, **içerik ve eğitim tarafıyla** (dersler,
 - [x] ~~Dış gözcü~~ (2026-11-09): UptimeRobot `diloloji.com`, `/api/health`, `/api/push?mail=status`, `/hakkinda` (5 dk).
 
 ## Açık işler: Android uygulaması ve telefon testleri (2026-10-28)
+**Rafta (2026-11-09, sahibinin kararı): Google Play adımları 1–2 hafta bekliyor; sahibi açana dek bu bölümdeki işlere başlama, yalnızca sorulursa hatırlat.** Gerçek cihaz denemeleri sürüyor (uzun sürecek).
+
 Sahibi Diloloji'yi **kişisel** bir Google Play hesabıyla Android uygulaması (TWA) olarak yayınlamak istiyor; iOS sonraya kaldı. Ayrıntılar: `android/README.md` ve aşağıdaki "Android uygulaması, TWA" ve "Şikâyet ve engelleme" notları. Bir maddeyi bitiren burada üstünü çizsin (`~~…~~`) ve tarih yazsın.
 
 **Bekleyen PR'lar ve dallar (sırayla):**
