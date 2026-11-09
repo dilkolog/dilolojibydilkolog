@@ -22,6 +22,7 @@ create table storage.buckets (id text primary key, name text, public boolean, fi
 create table storage.objects (id uuid default gen_random_uuid() primary key, bucket_id text, name text, owner uuid, metadata jsonb);
 alter table storage.objects enable row level security;
 create function storage.foldername(name text) returns text[] language sql immutable as $$ select string_to_array(name, '/') $$;
+grant usage on schema auth to supabase_auth_admin; grant insert, select on auth.users to supabase_auth_admin;
 `
 
 async function run(order: string[]) {
@@ -69,5 +70,14 @@ describe('Supabase migrations', () => {
     await expect(put('core', 1, false)).rejects.toMatchObject({ code: '40001' })
     await expect(put('nope', null, true)).rejects.toMatchObject({ code: '22023' })
     expect((await db.query<{ words: number }>(`select words from public.people`)).rows).toHaveLength(1)
+  }, 60_000)
+
+  it('the sign-up trigger cannot be called through the API, and still makes the profile when a user is created', async () => {
+    const { db } = await run(FILES)
+    const can = async (role: string) => (await db.query<{ ok: boolean }>(`select has_function_privilege('${role}', 'public.handle_new_user()', 'execute') as ok`)).rows[0]!.ok
+    expect([await can('anon'), await can('authenticated'), await can('supabase_auth_admin')]).toEqual([false, false, true])
+    // As Supabase Auth does it: the auth role inserts the user, the trigger (security definer) writes the profile.
+    await db.exec(`set role supabase_auth_admin; insert into auth.users (id, email) values ('22222222-2222-2222-2222-222222222222', 'b@c.d'); reset role;`)
+    expect((await db.query<{ email: string }>(`select email from public.profiles where user_id = '22222222-2222-2222-2222-222222222222'`)).rows).toEqual([{ email: 'b@c.d' }])
   }, 60_000)
 })

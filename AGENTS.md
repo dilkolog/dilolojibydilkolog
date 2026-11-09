@@ -18,9 +18,9 @@ Son güncelleme: 2026-11-08.
 Sahibi şimdilik altyapıyla değil, **içerik ve eğitim tarafıyla** (dersler, alıştırmalar, fiil laboratuvarı, Rehber, okuma/dinleme içeriği) ilerlemek istiyor. Aşağıdaki altyapı işleri **sonraya kaldı**; sahibi açmadan başlatma, yalnızca sorulursa hatırlat.
 
 **Ajanın yapacakları (bekliyor):**
-- [ ] Birden çok `OWNER_EMAIL`: yönetim erişimi virgüllü listeyle çalışıyor, ama şikâyet ve yeni kayıt mailleri (`_reports.ts`, `_signupNotice.ts`) listeyi tek adres sanıyor; her adrese gitsin.
-- [ ] `claude/iphone-webkit-tests` dalını güncel main'e taşı, PR aç, bu dosyaya "Telefon testleri" bölümünü yaz (ayrıntı aşağıdaki Android bölümünde).
-- [ ] Play Store sayfası: kısa/uzun açıklama, telefon ekran görüntüleri, 1024×500 tanıtım görseli (sahibi onaylar).
+- Birden çok `OWNER_EMAIL`: şikâyet ve yeni kayıt mailleri (`_reports.ts`, `_signupNotice.ts`) listeyi tek adres sanıyor. Sahibi ikinci adres istemiyor (2026-11-09); ikinci adres eklenirse yapılacak.
+- [x] ~~`claude/iphone-webkit-tests` dalını güncel main'e taşı, PR aç, "Telefon testleri" bölümünü yaz~~ (#655 ile — 2026-11-01).
+- [x] ~~Play Store sayfası: kısa/uzun açıklama, telefon ekran görüntüleri, 1024×500 tanıtım görseli~~ (`android/store/`, 2026-11-01; sahibi onaylar).
 - [x] ~~Eşitlemeyi ve sunucu verilerini R2'den Supabase'e taşımaya hazırlamak~~ (2026-11-09): kod hazır, sıra testli (`supabaseMigrations.test.ts`), sunucu verileri adım adım taşınıyor. Kalanı sahibinde (aşağıda).
 
 **Sahibinin yapacakları (bekliyor):**
@@ -32,7 +32,7 @@ Sahibi şimdilik altyapıyla değil, **içerik ve eğitim tarafıyla** (dersler,
 - [ ] Gerçek cihaz denemeleri: Safari mikrofon, iki telefonla canlı düello, push ve e-posta hatırlatmaları.
 - [x] ~~**Eşitlemeyi Supabase'e taşımak**~~ (2026-11-09: `0002` + `0005` çalıştı, kontrol sorgusu üç `true`; sahibinin verisi `sync_parts`'ta, öbür iki hesabın R2'de eşitleme verisi yoktu).
 - [x] ~~**Arkadaşlar, listeler, hatırlatmalar**~~ (2026-11-09: `tables` işareti yazıldı; R2'deki 2 kart tabloda, takip/liste/hatırlatma dosyası yoktu). R2 artık bunlar için okunmuyor.
-- Supabase güvenlik denetimi (2026-11-09): sızdırılmış şifre koruması (HaveIBeenPwned) yalnızca Pro planda, ücretsiz planda açılamıyor. `handle_new_user` RPC ile çağrılabilir görünüyor (tetikleyici, çağrı reddedilir; istenirse `revoke execute … from anon, authenticated`).
+- Supabase güvenlik denetimi (2026-11-09): sızdırılmış şifre koruması (HaveIBeenPwned) yalnızca Pro planda, ücretsiz planda açılamıyor. ~~`handle_new_user` RPC ile çağrılabilir~~ (`0012_trigger_privileges.sql`, canlıya uygulandı ve testli — 2026-11-09).
 - [x] ~~Dış gözcü~~ (2026-11-09): UptimeRobot `diloloji.com`, `/api/health`, `/api/push?mail=status`, `/hakkinda` (5 dk).
 
 ## Açık işler: Android uygulaması ve telefon testleri (2026-10-28)
