@@ -26,13 +26,14 @@ function readingBlock(r: ReadingItem): string {
   r.paragraphs.forEach((p, i) => lines.push(`> ${p}`, '', `*${r.tr[i]}*`, ''))
   lines.push('**Kelimeler:** ' + r.vocabulary.map((v) => `${v.word} (${v.lemma}) = ${v.tr}`).join(' · '), '', '**Sorular:**', '')
   for (const q of r.questions) lines.push(`- ${q.q}`, ...q.options.map((o, i) => `  ${i === q.answer ? '✓' : '·'} ${o}`), `  *${q.why}*`)
-  lines.push('', 'Değerlendirme: ', '', '---', '')
+  lines.push('', 'Değerlendirme:', '', '---', '')
   return lines.join('\n')
 }
 
 function grammarBlock(g: ContentGrammar): string {
   const lines = [`## ${g.id} · ${g.type} · zorluk ${g.difficulty}${g.subskill ? ` · ${g.subskill}` : ''}`, '', `> ${g.prompt}`, '']
+  if (g.hint) lines.push(`**İpucu:** ${g.hint}`, '')
   if (g.options) lines.push(...g.options.map((o) => `- ${o === g.answer ? '✓' : '·'} ${o}`), '')
-  lines.push(`**Cevap:** ${g.answer}${g.fix ? ` → ${g.fix}` : ''}${g.alternatives?.length ? ` (ya da ${g.alternatives.join(', ')})` : ''}`, '', `**Kural:** ${g.explanation}`, '', 'Değerlendirme: ', '', '---', '')
+  lines.push(`**Cevap:** ${g.answer}${g.fix ? ` → ${g.fix}` : ''}${g.alternatives?.length ? ` (ya da ${g.alternatives.join(', ')})` : ''}`, '', `**Kural:** ${g.explanation}`, '', 'Değerlendirme:', '', '---', '')
   return lines.join('\n')
 }

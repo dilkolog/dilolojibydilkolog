@@ -163,6 +163,9 @@ describe('sample and derive', () => {
     const md = sampleMarkdown(readingJob(), [frText], 10, 1)
     expect(md).toContain('## fr-r-000001 · Le marché du samedi')
     expect(md).toContain('Değerlendirme:')
+    const question = { ...frGrammar[0], hint: 'Utilisez le temps composé indiqué.' }
+    const grammarSample = sampleMarkdown(readingJob({ kind: 'grammar' }), [question], 10, 1)
+    expect(grammarSample).toContain(`**İpucu:** ${question.hint}`)
   })
 
   it('derives gaps of the target tense and the listed words, with ids from the text', () => {
