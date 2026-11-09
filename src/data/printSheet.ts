@@ -16,7 +16,7 @@ export const PRINT_COLOURS: Record<TargetLanguage, { lang: string; soft: string;
   es: { lang: '#e6a313', soft: '#fceed9', text: '#844b00', on: '#451a03' },
 }
 
-/** The languages' Turkish names (as ui/labels.ts LANGUAGE_NAME; data code does not import the interface). */
+/** The languages' Turkish names (as ui/shared/labels.ts LANGUAGE_NAME; data code does not import the interface). */
 export const PRINT_LANGUAGE: Record<TargetLanguage, string> = { en: 'İngilizce', fr: 'Fransızca', es: 'İspanyolca' }
 
 /** The site's address, for the fonts and the logo: a print window is a new document and needs it in full. */

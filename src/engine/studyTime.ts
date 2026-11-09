@@ -3,7 +3,7 @@ import type { TargetLanguage } from './types'
 
 /**
  * How long the learner read, listened and spoke, per language and local day, in seconds. Only the time they
- * were really at it counts (see ui/useStudyClock.ts); the numbers are for a weekly goal and a look
+ * were really at it counts (see ui/reading/useStudyClock.ts); the numbers are for a weekly goal and a look
  * at the habit, not for points.
  */
 export type TimeKind = 'read' | 'listen' | 'speak'

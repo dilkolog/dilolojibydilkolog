@@ -12,7 +12,7 @@
     - Tüm kontroller ve CI (typecheck, lint, birim testleri, Playwright E2E) yeşil geçti ve PR #650 birleştirildi.
   - **B2–C1 İleri Seviye Dilbilgisi Soruları (90 adet):** Açık lisanslı (CC BY 4.0) akademik kaynaklardan Fransızca (30: `basics_fr_subjonctif_passe`, `basics_fr_mise_en_relief`, `conditionnel_passe`), İspanyolca (30: `basics_es_subjuntivo_compuesto`, `condicionales`, `basics_es_oraciones_hendidas`) ve İngilizce (30: `inversion`, `cleft`, `mixed_conditionals`) ileri düzey karmaşık yapı soruları eklendi (`fr-b2c1-1.json`, `es-b2c1-1.json`, `en-b2c1-1.json`). Tekil doğru seçenekler, ipuçları ve detaylı Türkçe açıklamalar doğrulandı.
   - **Yapay Zekâ Özelliklerinin Uçtan Uca Doğrulanması:**
-    - Serbest geri anlatım (`evaluateRetelling`): Hikâye özetleme, hedef kelime kullanımı, Türkçe geri bildirim, eksik/hatalı kullanım ve SDK hata haritalama senaryoları birim düzeyinde (`src/ai/productionModules.test.ts`) ve Hikâye ekranı UI entegrasyonunda (`src/ui/StoryRetell.test.tsx`) doğrulandı.
+    - Serbest geri anlatım (`evaluateRetelling`): Hikâye özetleme, hedef kelime kullanımı, Türkçe geri bildirim, eksik/hatalı kullanım ve SDK hata haritalama senaryoları birim düzeyinde (`src/ai/productionModules.test.ts`) ve Hikâye ekranı UI entegrasyonunda (`src/ui/reading/StoryRetell.test.tsx`) doğrulandı.
     - Ters çeviri (`evaluateTranslation`): Referans cümleden bağımsız doğal çeviri takdiri, küçük aksan/uyum kayması ve hatalı anlam senaryoları birim düzeyinde ve oturum çalışma ekranında (`src/ui/session/ExerciseRunnerBackTranslation.test.tsx`) doğrulandı.
     - Canlı API ortam değişkeni desteği (`process.env.ANTHROPIC_API_KEY`) koşullu entegrasyon testine bağlandı.
   - **Doğrulama ve Sağlamlık:** `npm run typecheck`, `npx oxlint src api e2e` (0 hata, 0 uyarı), tüm yeni ve ilgili vitest testleri yeşil.
@@ -75,7 +75,7 @@ Yeni Claude hesabı bu dosyayı okuyup şuradan devam eder. Kullanıcıya her ya
   - #185: TV5Monde & DELE Ahora telif ve kullanım şartları araştırma raporu (`docs/kaynaklar/tv5monde-dele-ahora.md`).
 - Antigravity 6. tur (#187, #190):
   - 6.1: LibriVox ses kitapları bölüm bazlı metin-ses eşleştirme (`scripts/build-audiobook-chapters.ts`, `src/data/audiobooks/{fr,es}.json`, `src/data/audiobooks.ts`, `docs/kaynaklar/audiobooks-chapters.md`). 23 doğrulanmış bölüm (13 FR + 10 ES).
-  - 6.3: Yeni özelliklere kapsamlı birim testleri (`src/ui/useSwipeAway.test.tsx`, `src/ui/verbs/LabTourCard.test.tsx`, `src/ui/TranslateScreen.test.tsx`, `src/ui/SessionForgot.test.tsx`, `src/engine/__tests__/listenFollow.test.ts`).
+  - 6.3: Yeni özelliklere kapsamlı birim testleri (`src/ui/shared/useSwipeAway.test.tsx`, `src/ui/verbs/LabTourCard.test.tsx`, `src/ui/dictionary/TranslateScreen.test.tsx`, `src/ui/session/SessionForgot.test.tsx`, `src/engine/__tests__/listenFollow.test.ts`).
   - 6.4: Erişilebilirlik (a11y) test kapsamının genişletilmesi (`e2e/a11y.e2e.ts`: Çeviri ekranı açık/koyu/sakin tema ve sonuç durumları, okuma dışarıda çalış ve çekimler kartları, oturum unuttum soru ve cevap durumları, çevrimdışı rozeti axe taramaları, `clippedContent` ikon denetimi).
   - 6.5: Metin denetimi raporu (`docs/METIN-DENETIMI.md`), Diloloji isim güncellemesi (`README.md`, `package.json`, `extension/`).
   - 6.6: Performans ve bundle boyutu analiz raporu (`docs/PERFORMANS.md`).
@@ -88,7 +88,7 @@ Yeni Claude hesabı bu dosyayı okuyup şuradan devam eder. Kullanıcıya her ya
 - Çeviri (#111, #113, #114, #120): DeepL ile cümle çevirisi (her cihazda hazır), Çeviri ekranı, çeviri belleği, okumada "Cümlenin Türkçesi" ve paragraf altında "Türkçesi".
 - Dinleme ve üretim (#118, #122):
   - dinlerken duyulan cümle aydınlanır, "Bu cümleden dinle" (`src/engine/listenFollow.ts`; zamanlı altyazılı beslemelerde kesin, diğerlerinde yaklaşık);
-  - Okuma → "Dikte": metin cümle cümle dinlenip yazılır (`src/ui/TextDictation.tsx`);
+  - Okuma → "Dikte": metin cümle cümle dinlenip yazılır (`src/ui/reading/TextDictation.tsx`);
   - Oyunlar → "Geri çeviri": çeviri belleğindeki cümleler Türkçesinden yazılır, denenen her cümle cümle kartı olur (`src/engine/backTranslation.ts`).
 - Dinleme ve konuşma devamı (#125, #127): dikte hataları kaydedilir (`src/engine/earMisses.ts`, `meta 'earMisses'`, yedek + eşitleme) → Oyunlar → "Kaçırdıkların" ve İlerleme kartı; Okuma → "Gölgele" (cümle cümle, kaydın kendi sesiyle; `ShadowControls` her sesle çalışır). Ses panelinin `rangeRef`'i parça bitince çözülen Promise döndürür.
 - CEFR seviyeleri (#129): FLELex/ELELex → `src/data/cefr/{fr,es}.txt` (`scripts/build-cefr.ts`, CC BY-NC-SA, `SOURCE.md`); kelime ayrıntısı/sözlükte seviye, İlerleme'de seviyeye göre kapsam, eksik kelimelerde A1–B2. Uygulamadaki eski "seviye sistemi" bilerek kaldırılmıştı; bu yalnızca ölçüm ve seçim için.

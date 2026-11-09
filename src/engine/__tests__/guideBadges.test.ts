@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { ACHIEVEMENTS, achievements, emptyStats, medalTier } from '../gamification'
-import { drawnMedal } from '../../ui/drawnArt'
+import { drawnMedal } from '../../ui/shared/drawnArt'
 
 describe('guide badges', () => {
   it('defines the required grammar guide achievements', () => {

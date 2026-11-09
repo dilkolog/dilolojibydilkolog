@@ -1,13 +1,13 @@
 import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react'
-import { AccentBar } from '../AccentBar'
-import { accentChange, insertAt } from '../accentCaret'
-import { ShuffleIcon, StarIcon } from '../icons'
+import { AccentBar } from '../shared/AccentBar'
+import { accentChange, insertAt } from '../shared/accentCaret'
+import { ShuffleIcon, StarIcon } from '../shared/icons'
 import type { LabData } from '../../engine/labProgress'
 import { irregularForms, tenseVerbs, type Tense } from '../../engine/tenses'
 import { LEVELS, suggestVerbs, type Level } from '../../engine/verbLab'
 import { verbFormsOf, type VerbFormHit } from '../../engine/verbLookup'
 import { tenseName, verbEntry, verbTitle, type LabLanguage } from './labShared'
-import { Sticker } from '../Sticker'
+import { Sticker } from '../shared/Sticker'
 
 const MORE = 36
 

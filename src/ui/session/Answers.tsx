@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import type { ChoiceExercise, Evaluation, TypedExercise } from '../../engine/exercises'
 import type { VocabularyEntry } from '../../engine/types'
-import { AccentBar } from '../AccentBar'
-import { accentChange, insertAt } from '../accentCaret'
+import { AccentBar } from '../shared/AccentBar'
+import { accentChange, insertAt } from '../shared/accentCaret'
 import { prefs } from '../prefs'
-import { canListen, listen } from '../speechInput'
+import { canListen, listen } from '../shared/speechInput'
 import { modalOpen } from './keys'
-import { CheckIcon, CloseIcon, MicIcon } from '../icons'
+import { CheckIcon, CloseIcon, MicIcon } from '../shared/icons'
 
 
 /** Multiple-choice options. */

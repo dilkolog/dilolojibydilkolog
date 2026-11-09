@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { localDate } from '../../engine/progress'
 import { useAi } from '../aiContext'
-import { CloseIcon } from '../icons'
+import { CloseIcon } from '../shared/icons'
 import { MonkiFace } from './MonkiMascot'
 import { askMonki } from './monkiBus'
 import { dailyTalkDone } from './dailyTalkStore'

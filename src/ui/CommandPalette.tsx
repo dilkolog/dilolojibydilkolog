@@ -3,8 +3,8 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { stripDiacritics } from '../engine/answerCheck'
 import { displayForm } from '../engine/exercises'
 import type { VocabularyEntry } from '../engine/types'
-import { CloseIcon, SearchIcon } from './icons'
-import { commandArtIcon } from './paletteArt'
+import { CloseIcon, SearchIcon } from './shared/icons'
+import { commandArtIcon } from './practice/paletteArt'
 
 export interface Command {
   id: string

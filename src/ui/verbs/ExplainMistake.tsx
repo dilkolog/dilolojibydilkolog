@@ -3,7 +3,7 @@ import { AiError, explainConjugation } from '../../ai'
 import { explainKey, explainRequest } from '../../engine/conjugationExplain'
 import type { Tense } from '../../engine/tenses'
 import { useAi } from '../aiContext'
-import { SparkleIcon } from '../icons'
+import { SparkleIcon } from '../shared/icons'
 import type { LabLanguage } from './labShared'
 
 type Explained = { explanation: string; tip: string }

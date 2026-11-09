@@ -3,7 +3,7 @@ name: Diloloji
 description: Cesaret veren bir kelime koçu — dil değişince odanın ışığı değişir, her cevap anında renkli bir karşılık alır.
 source:
   - src/index.css            # :root tokenları (satır 8–94), koyu tema (96–148), dil vurgusu (151–152), sakin mod (:root[data-calm])
-  - src/ui/icons.tsx         # uygulamanın kendi ikon seti
+  - src/ui/shared/icons.tsx         # uygulamanın kendi ikon seti
   - package.json             # @fontsource/lexend, @fontsource/literata
 generatedAt: "2026-10-08"
 colors:
@@ -124,8 +124,8 @@ breakpoints:
   - { name: "tablet", value: "46rem", note: "min-width (max 45.99rem)" }
   - { name: "desktop", value: "64rem", note: "min-width (max 63.99rem)" }
 icons:
-  set: "Diloloji'nun kendi seti (src/ui/icons.tsx, 82 ikon)"
-  source: "src/ui/icons.tsx"
+  set: "Diloloji'nun kendi seti (src/ui/shared/icons.tsx, 82 ikon)"
+  source: "src/ui/shared/icons.tsx"
   grid: "24px viewBox"
   style: { variant: "outline + aynı renkte yumuşak dolgu (.icon-duo)", strokeWidth: 1.8, linecap: "round" }
   sizes: { xs: 14, sm: 16, md: 18, lg: 20, xl: 22 }
@@ -182,19 +182,19 @@ components:
     track: "{colors.track}"
     fill: "{colors.chart-data}"
   menu:
-    source: "src/ui/Popover.tsx (Popover, MenuItem)"
+    source: "src/ui/shared/Popover.tsx (Popover, MenuItem)"
   dialog:
-    source: "src/ui/Dialog.tsx (ConfirmDialog)"
+    source: "src/ui/shared/Dialog.tsx (ConfirmDialog)"
   toggle:
-    source: "src/ui/SettingsScreen.tsx (Toggle)"
+    source: "src/ui/settings/SettingsScreen.tsx (Toggle)"
   page-header:
-    source: "src/ui/PageHeader.tsx"
+    source: "src/ui/shared/PageHeader.tsx"
   empty-state:
-    source: "src/ui/EmptyState.tsx"
+    source: "src/ui/shared/EmptyState.tsx"
   group-toggle:
-    source: "src/ui/JumpNav.tsx (GroupToggle)"
+    source: "src/ui/shared/JumpNav.tsx (GroupToggle)"
   plant:
-    source: "src/ui/Plant.tsx"
+    source: "src/ui/home/Plant.tsx"
 ---
 
 # Tasarım Sistemi: Diloloji
@@ -332,7 +332,7 @@ Ad, iz ve değer üç sütun; dolgu `--chart-data`. Grafiklerde tek veri rengi v
 
 ## İkonlar
 
-**Set:** Diloloji'nun kendi seti (`src/ui/icons.tsx`): 24px ızgara, 1.8px yuvarlak uçlu çizgi ve aynı renkte yumuşak bir dolgu katmanı. Hazır bir kütüphane (lucide, heroicons) eklenmez.
+**Set:** Diloloji'nun kendi seti (`src/ui/shared/icons.tsx`): 24px ızgara, 1.8px yuvarlak uçlu çizgi ve aynı renkte yumuşak bir dolgu katmanı. Hazır bir kütüphane (lucide, heroicons) eklenmez.
 **Boyut:** 14–22 px; en sık 16 ve 18. **Renk:** `currentColor`; ikon metnin rengini alır.
 
 - Dinle → `SpeakerIcon` · Ekle → `PlusIcon` · Kapat / yanlış → `CloseIcon` · Doğru → `CheckIcon` · Diğer seçenekler → `MoreIcon` · Fiil zamanı → `TenseIcon`
@@ -343,7 +343,7 @@ Ad, iz ve değer üç sütun; dolgu `--chart-data`. Grafiklerde tek veri rengi v
 
 ### Çizimler (`src/assets/art`)
 
-Monki ve çizili simgeler WebP olarak gelir, `ui/drawnArt.ts` (ve `gameArt.ts`, `StatusArt.tsx`, `EmptyArt.tsx`) üzerinden bağlanır. Koyu kahve dış çizgileri koyu ve sakin temada zemine karışır.
+Monki ve çizili simgeler WebP olarak gelir, `ui/shared/drawnArt.ts` (ve `gameArt.ts`, `StatusArt.tsx`, `EmptyArt.tsx`) üzerinden bağlanır. Koyu kahve dış çizgileri koyu ve sakin temada zemine karışır.
 
 **Çizim Kenarı Kuralı.** Bir çizimi gösteren her `<img>` sınıfı `index.css`teki `--art-edge` kuralının listesine girer. Bu token açık temada `none`, koyu ve sakin temada ince açık bir `drop-shadow`. Çizime ayrıca `filter` yazılmaz. Konfeti kareleri, karşılama afişi ve oyun filigranı bu kuralın dışındadır.
 
@@ -369,5 +369,5 @@ Monki ve çizili simgeler WebP olarak gelir, `ui/drawnArt.ts` (ve `gameArt.ts`, 
 
 > Bu bölüm **kural değildir**; bugünkü kodun yukarıdaki kurallardan saptığı yerlerin listesi.
 
-- **Süs öğelerinde düz renkler.** Gerçek: seri alevi seviyeleri, profil afişleri, avatar çerçeveleri, madalyalar düz hex kullanıyor. Yer: `src/index.css` 2453–2455, 4092–4110; `src/ui/Medal.tsx` (24 yer). Durum: izin verilen istisna olarak öneriliyor (illüstrasyon ve kozmetik; arayüz anlamı taşımıyor). Senin onayınla kesinleşir.
+- **Süs öğelerinde düz renkler.** Gerçek: seri alevi seviyeleri, profil afişleri, avatar çerçeveleri, madalyalar düz hex kullanıyor. Yer: `src/index.css` 2453–2455, 4092–4110; `src/ui/words/Medal.tsx` (24 yer). Durum: izin verilen istisna olarak öneriliyor (illüstrasyon ve kozmetik; arayüz anlamı taşımıyor). Senin onayınla kesinleşir.
 - **Sol kenar şeritleri.** `border-left: 3px` beş yerde (tanım, hikâye çevirisi, karışma notu, günlük, `.hyper`). Tutarlı bir desen gibi kullanılıyor; şimdilik izin verilen istisna. Yeni yerlerde iç kutu (`.note`) tercih edilmeli.

@@ -4,7 +4,7 @@
  * e-mail address are cut from the message, and the stack keeps only file paths and line numbers.
  */
 
-import { isChunkError } from '../ui/chunkError'
+import { isChunkError } from '../ui/shared/chunkError'
 import { isClosing } from './closing'
 
 export interface ErrorReport {
@@ -70,7 +70,7 @@ const seen = new Set<string>()
 export function shouldReport(error: unknown): boolean {
   // A browser driven by a test (Playwright, WebDriver) is not a person: its errors (fake accounts hitting the live sync) would bury the real ones in the weekly digest.
   if (typeof navigator !== 'undefined' && navigator.webdriver) return false
-  // An open page asking for the files of the version before a deploy: the app reloads itself (ui/chunkError.ts), nothing to fix.
+  // An open page asking for the files of the version before a deploy: the app reloads itself (ui/shared/chunkError.ts), nothing to fix.
   if (isChunkError(error)) return false
   // The database closed on purpose (signing out, deleting all data) a moment before the page reloads.
   if (isClosing() && error instanceof Error && error.name === 'DatabaseClosedError') return false

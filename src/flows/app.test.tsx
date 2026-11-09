@@ -7,7 +7,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 import App from '../App'
 import { db } from '../data/instance'
 import { createEntry } from '../data/wordInput'
-import { installFocusTrap } from '../ui/focusTrap'
+import { installFocusTrap } from '../ui/shared/focusTrap'
 
 /**
  * End-to-end flows through the whole app (happy-dom, an in-memory IndexedDB): the paths a

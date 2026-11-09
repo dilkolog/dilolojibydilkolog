@@ -8,9 +8,9 @@ import { createRng, pick } from '../../engine/rng'
 import type { VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { SAMPLE_WORDS } from '../../data/seed'
-import { FlameIcon } from '../icons'
-import { sfx } from '../sounds'
-import { useCountdownTicks } from '../useCountdownTicks'
+import { FlameIcon } from '../shared/icons'
+import { sfx } from '../shared/sounds'
+import { useCountdownTicks } from '../shared/useCountdownTicks'
 import { type Props, recordPractice } from './shared'
 
 const BLITZ_MS = 60_000

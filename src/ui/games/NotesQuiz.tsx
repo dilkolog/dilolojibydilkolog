@@ -3,10 +3,10 @@ import { AiError, notesQuiz, type QuizQuestion } from '../../ai'
 import { createRng, shuffle } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
 import { useAi } from '../aiContext'
-import { SparkleIcon } from '../icons'
-import { sfx } from '../sounds'
+import { SparkleIcon } from '../shared/icons'
+import { sfx } from '../shared/sounds'
 import { GameResult } from './GameResult'
-import { Sticker } from '../Sticker'
+import { Sticker } from '../shared/Sticker'
 
 const COUNTS = [5, 10, 15] as const
 

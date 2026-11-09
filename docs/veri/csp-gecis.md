@@ -98,8 +98,8 @@ Uygulamanın tarayıcı üzerinden doğrudan (`fetch`) çağırdığı tüm hari
 |---|---|---|---|
 | **Diloloji API & CDN** | Kendi API rotaları (`/api/*`) ve statik varlıklar | `src/*` | `'self'` |
 | **Supabase** | Kullanıcı kimlik doğrulama, REST veritabanı, Realtime | `src/data/supabase*.ts`, `src/data/vault.ts` | `https://*.supabase.co` |
-| **Azure Speech Services** | Telaffuz değerlendirme ve konuşma tanıma (STT) | `src/ui/pronunciation.ts` | `https://*.stt.speech.microsoft.com` |
-| **Google Cloud TTS** | Doğal ses sentezleme (Neural TTS) | `src/ui/naturalVoice.ts` | `https://texttospeech.googleapis.com` |
+| **Azure Speech Services** | Telaffuz değerlendirme ve konuşma tanıma (STT) | `src/ui/practice/pronunciation.ts` | `https://*.stt.speech.microsoft.com` |
+| **Google Cloud TTS** | Doğal ses sentezleme (Neural TTS) | `src/ui/shared/naturalVoice.ts` | `https://texttospeech.googleapis.com` |
 | **LanguageTool** | Serbest yazma denetimi ve dilbilgisi ipuçları | `src/data/grammarCheck.ts` | `https://api.languagetool.org` |
 | **Open-Meteo** | Konuma göre hava durumu ve dinamik selamlama | `src/data/weather.ts` | `https://api.open-meteo.com`, `https://geocoding-api.open-meteo.com` |
 | **Tatoeba Project** | Cümle arama, sesli telaffuzlar ve örnekler | `src/data/corpus.ts` | `https://tatoeba.org` |

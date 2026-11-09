@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { dueItems, type LabData } from '../../engine/labProgress'
 import { conjugateTense, subjectLabel, withSubject, type Tense } from '../../engine/tenses'
-import { AccentBar } from '../AccentBar'
-import { accentChange, insertAt } from '../accentCaret'
-import { sfx } from '../sounds'
+import { AccentBar } from '../shared/AccentBar'
+import { accentChange, insertAt } from '../shared/accentCaret'
+import { sfx } from '../shared/sounds'
 import { Diagnosis } from './Diagnosis'
 import { judge } from './labShared'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 import { REVIEW_SIZE, type Asked, personFor } from './reviewSelection'
-import { MASCOT_ART } from '../drawnArt'
+import { MASCOT_ART } from '../shared/drawnArt'
 export type { Asked } from './reviewSelection'
 
 /**

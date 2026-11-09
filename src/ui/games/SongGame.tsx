@@ -9,10 +9,10 @@ import {
 } from "../../engine/lyrics";
 import { youtubeId } from "../../engine/subtitles";
 import type { TargetLanguage } from "../../engine/types";
-import { accentChange } from "../accentCaret";
-import { PlayIcon } from "../icons";
-import { saveSentence } from "../saveSentence";
-import { showToast } from "../toastFeed";
+import { accentChange } from "../shared/accentCaret";
+import { PlayIcon } from "../shared/icons";
+import { saveSentence } from "../words/saveSentence";
+import { showToast } from "../shared/toastFeed";
 import { fetchSong, songEmbed, type Song } from "./songFetch";
 
 /** Lines to a page: enough to stay in the song, few enough to check often. */

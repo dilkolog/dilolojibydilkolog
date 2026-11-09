@@ -2,7 +2,7 @@ import { useRef, useState, type ReactNode } from 'react'
 import { CATALOG_LEVELS, grammarCatalog, grammarSearchKey, matchesGrammarLevel, type GrammarLevelFilter } from '../../data/grammarCatalog'
 import { topicName, type GrammarExercise, type TopicStat } from '../../engine/grammar'
 import type { TargetLanguage } from '../../engine/types'
-import { BookIcon, ChevronRightIcon, SearchIcon } from '../icons'
+import { BookIcon, ChevronRightIcon, SearchIcon } from '../shared/icons'
 
 export function GrammarCatalog({ language, exercises, stats, category, topic, level, onLevel, onCategory, onTopic, children }: {
   language: TargetLanguage

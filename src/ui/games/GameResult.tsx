@@ -1,11 +1,11 @@
 import { useEffect, type ReactNode } from 'react'
 import type { TargetLanguage } from '../../engine/types'
-import { FlagIcon, TrophyIcon } from '../icons'
-import { Ring } from '../Ring'
-import { Sticker } from '../Sticker'
-import { Burst } from '../Burst'
-import { sfx } from '../sounds'
-import { haptics } from '../haptics'
+import { FlagIcon, TrophyIcon } from '../shared/icons'
+import { Ring } from '../home/Ring'
+import { Sticker } from '../shared/Sticker'
+import { Burst } from '../shared/Burst'
+import { sfx } from '../shared/sounds'
+import { haptics } from '../shared/haptics'
 
 /**
  * The end of every game in one layout: the result (a ring for accuracy, or a badge), the headline

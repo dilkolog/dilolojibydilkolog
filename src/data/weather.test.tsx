@@ -11,7 +11,7 @@ import {
   weatherOrDayScene,
   type WeatherInfo,
 } from './weather'
-import { DayMark } from '../ui/HomeParts'
+import { DayMark } from '../ui/home/HomeParts'
 import weatherRain from '../assets/art/weather-rain.webp'
 import weatherSnow from '../assets/art/weather-snow.webp'
 import weatherCloudy from '../assets/art/weather-cloudy.webp'

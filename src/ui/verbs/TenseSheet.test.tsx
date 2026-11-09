@@ -8,7 +8,7 @@ import { addTenseSentences } from '../../engine/tenses'
 import { TenseSheet } from './TenseSheet'
 import { sheetRows } from './tenseSheetRows'
 
-vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), finish: vi.fn(), badge: vi.fn(), goal: vi.fn(), pair: vi.fn(), flip: vi.fn(), tick: vi.fn(), forgot: vi.fn(), resetRun: vi.fn(), near: vi.fn() } }))
+vi.mock('../shared/sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), finish: vi.fn(), badge: vi.fn(), goal: vi.fn(), pair: vi.fn(), flip: vi.fn(), tick: vi.fn(), forgot: vi.fn(), resetRun: vi.fn(), near: vi.fn() } }))
 
 const ES = {
   tener: { preterito: 'Raquel y Vicente [tuvieron] que cancelar sus vacaciones.\tTatillerini iptal etmek zorunda kaldılar.' },

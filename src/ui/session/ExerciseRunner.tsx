@@ -8,22 +8,22 @@ import { MASTERY_STAGES } from '../../engine/mastery'
 import type { Rng } from '../../engine/rng'
 import type { SessionLogEntry } from '../../engine/session'
 import type { Confidence, ExerciseType, UserWordState, VocabularyEntry } from '../../engine/types'
-import { LANGUAGE_NAME, PROMPT_TEXT } from '../labels'
+import { LANGUAGE_NAME, PROMPT_TEXT } from '../shared/labels'
 import { AiError, evaluateSentence, evaluateTranslation } from '../../ai'
 import { useAi } from '../aiContext'
-import { BoltIcon, CheckIcon, HelpIcon, HourglassIcon, SlowIcon } from '../icons'
+import { BoltIcon, CheckIcon, HelpIcon, HourglassIcon, SlowIcon } from '../shared/icons'
 import { prefs } from '../prefs'
-import { canSpeak, playWord, speak } from '../speech'
+import { canSpeak, playWord, speak } from '../shared/speech'
 import { KeyLegend, type Graded } from './shared'
 import { Prompt } from './Prompt'
-import { showToast } from '../toastFeed'
+import { showToast } from '../shared/toastFeed'
 import { PREF_TYPES } from '../../engine/exercisePrefs'
 import { isDifficult } from '../../engine/difficult'
 import { WordPlant } from './WordPlant'
 import { Choices, TypedAnswer, SpeakAnswer } from './Answers'
 import { Feedback } from './Feedback'
 
-const MnemonicDialog = lazy(() => import('../Mnemonic').then((m) => ({ default: m.MnemonicDialog })))
+const MnemonicDialog = lazy(() => import('../words/Mnemonic').then((m) => ({ default: m.MnemonicDialog })))
 const QuickEditDialog = lazy(() => import('./QuickEdit').then((m) => ({ default: m.QuickEditDialog })))
 
 export interface RunnerProps {

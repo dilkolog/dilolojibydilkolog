@@ -2,7 +2,7 @@
  * How often each screen (and game) is opened, counted per day on this device only: never synced,
  * never sent. Settings shows it so tabs that are never used can leave the menu.
  */
-import { GAME_LIST } from './gameList'
+import { GAME_LIST } from './practice/gameList'
 
 const KEY = 'kelime-koc:screen-usage'
 /** Days kept; older counts are dropped on the next visit. */

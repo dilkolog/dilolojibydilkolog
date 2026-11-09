@@ -4,7 +4,7 @@ import { db } from '../../data/instance'
 import { entryToInput, updateEntry, WordInputError } from '../../data/wordInput'
 import type { VocabularyEntry } from '../../engine/types'
 import headEdit from '../../assets/art/head-edit.webp'
-import { CloseIcon } from '../icons'
+import { CloseIcon } from '../shared/icons'
 
 /**
  * Fixing a word without leaving the session: a typo in the meaning, a wrong article, an example

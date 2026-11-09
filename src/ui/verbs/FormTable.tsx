@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { prefs } from '../prefs'
 import { subjectLabel, isCompound, personsOf, withSubject, type Tense } from '../../engine/tenses'
-import { canSpeak, speak } from '../speech'
-import { CheckIcon, CloseIcon, SpeakerIcon } from '../icons'
+import { canSpeak, speak } from '../shared/speech'
+import { CheckIcon, CloseIcon, SpeakerIcon } from '../shared/icons'
 import { splitEndings, type LabLanguage, type Seg } from './labShared'
 
 /** One form with its ending coloured (and the part that breaks the rule marked when it does). */

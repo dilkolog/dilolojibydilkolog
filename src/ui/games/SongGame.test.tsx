@@ -21,7 +21,7 @@ const SONG: Song = {
 let result: { song: Song } | { note: string } = { song: SONG }
 vi.mock('./songFetch', async (orig) => ({ ...(await orig<typeof import('./songFetch')>()), fetchSong: async () => result }))
 const saved: { text: string; source?: string }[] = []
-vi.mock('../saveSentence', () => ({ saveSentence: async (s: { text: string; source?: string }) => (saved.push(s), true) }))
+vi.mock('../words/saveSentence', () => ({ saveSentence: async (s: { text: string; source?: string }) => (saved.push(s), true) }))
 const { SongGame } = await import('./SongGame')
 
 let root: ReturnType<typeof createRoot> | undefined

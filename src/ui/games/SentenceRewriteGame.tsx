@@ -1,4 +1,4 @@
-import { GameIcon } from '../GameIcon'
+import { GameIcon } from '../practice/GameIcon'
 import { useEffect, useRef, useState } from 'react'
 import { GameResult } from './GameResult'
 import {
@@ -13,10 +13,10 @@ import type { GrammarLog } from '../../engine/grammar'
 import { createRng } from '../../engine/rng'
 import { db } from '../../data/instance'
 import { noteIn } from './logNote'
-import { sfx } from '../sounds'
-import { haptics } from '../haptics'
+import { sfx } from '../shared/sounds'
+import { haptics } from '../shared/haptics'
 import { isPctRecord } from './shared'
-import { CheckIcon } from '../icons'
+import { CheckIcon } from '../shared/icons'
 
 const noteRewrite = noteIn(
   () => db.getSentenceRewriteLog(),

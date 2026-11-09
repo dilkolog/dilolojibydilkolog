@@ -4,12 +4,12 @@ import type { PlanItem } from './engine/dailyPlan'
 import type { Session, SessionSummary } from './engine/session'
 import type { Mistake, ReviewEvent, ReviewMode, TargetLanguage, UserWordState, VocabularyEntry, WordList } from './engine/types'
 import type { GameState } from './ui/game'
-import type { GameId } from './ui/gameList'
+import type { GameId } from './ui/practice/gameList'
 import type { LabTab } from './ui/verbs/VerbLab'
-import type { AuthMode } from './ui/AuthScreen'
+import type { AuthMode } from './ui/account/AuthScreen'
 import type { SharedRead } from './ui/incoming'
 import { authReturnPending } from './data/supabase'
-import { AlertIcon, BookIcon, ChartIcon, GameIcon, GearIcon, GlobeIcon, HomeIcon, PenIcon, ReadIcon, SchoolIcon, SearchIcon, StoryIcon, TenseIcon, UserIcon, UsersIcon } from './ui/icons'
+import { AlertIcon, BookIcon, ChartIcon, GameIcon, GearIcon, GlobeIcon, HomeIcon, PenIcon, ReadIcon, SchoolIcon, SearchIcon, StoryIcon, TenseIcon, UserIcon, UsersIcon } from './ui/shared/icons'
 
 /** Set when opened from a reminder ("?go=quick"): start a short review as soon as the plan is ready. */
 export const launch = { quick: false }

@@ -2,30 +2,30 @@ import { lazy } from 'react'
 
 export const screenModules = {
   // The daily loop's session too: Today comes first, and the idle prefetch has it long before a tap.
-  Session: () => import('./ui/Session'),
-  Games: () => import('./ui/Games'),
-  Mistakes: () => import('./ui/Mistakes'),
-  Profile: () => import('./ui/Profile'),
-  Progress: () => import('./ui/Progress'),
-  Reading: () => import('./ui/Reading'),
-  Produce: () => import('./ui/Produce'),
-  VocabTest: () => import('./ui/VocabTest'),
-  Exam: () => import('./ui/Exam'),
-  Settings: () => import('./ui/SettingsScreen'),
-  Story: () => import('./ui/Story'),
-  WordDetail: () => import('./ui/WordDetail'),
-  Words: () => import('./ui/Words'),
+  Session: () => import('./ui/session/Session'),
+  Games: () => import('./ui/practice/Games'),
+  Mistakes: () => import('./ui/words/Mistakes'),
+  Profile: () => import('./ui/profile/Profile'),
+  Progress: () => import('./ui/progress/Progress'),
+  Reading: () => import('./ui/reading/Reading'),
+  Produce: () => import('./ui/practice/Produce'),
+  VocabTest: () => import('./ui/progress/VocabTest'),
+  Exam: () => import('./ui/progress/Exam'),
+  Settings: () => import('./ui/settings/SettingsScreen'),
+  Story: () => import('./ui/reading/Story'),
+  WordDetail: () => import('./ui/words/WordDetail'),
+  Words: () => import('./ui/words/Words'),
   VerbLab: () => import('./ui/verbs/VerbLab'),
-  Dictionary: () => import('./ui/Dictionary'),
-  Translate: () => import('./ui/TranslateScreen'),
-  Guide: () => import('./ui/Guide'),
-  Community: () => import('./ui/Community'),
-  Admin: () => import('./ui/AdminScreen'),
+  Dictionary: () => import('./ui/dictionary/Dictionary'),
+  Translate: () => import('./ui/dictionary/TranslateScreen'),
+  Guide: () => import('./ui/guide/Guide'),
+  Community: () => import('./ui/social/Community'),
+  Admin: () => import('./ui/admin/AdminScreen'),
   // Rarely opened, so not in the startup code either.
-  Auth: () => import('./ui/AuthScreen'),
+  Auth: () => import('./ui/account/AuthScreen'),
   Palette: () => import('./ui/CommandPalette'),
   // Shown only after a session, prefetched long before one ends.
-  Summary: () => import('./ui/SessionSummary'),
+  Summary: () => import('./ui/session/SessionSummary'),
 }
 export const SessionScreen = lazy(() => screenModules.Session().then((m) => ({ default: m.SessionScreen })))
 export const GamesScreen = lazy(() => screenModules.Games().then((m) => ({ default: m.GamesScreen })))
@@ -51,10 +51,10 @@ export const AuthScreen = lazy(() => screenModules.Auth().then((m) => ({ default
 export const CommandPalette = lazy(() => screenModules.Palette().then((m) => ({ default: m.CommandPalette })))
 
 /** What a signed-out visitor sees first: only for them, so not in the screen list that is prefetched. */
-export const Landing = lazy(() => import('./ui/Landing').then((m) => ({ default: m.Landing })))
+export const Landing = lazy(() => import('./ui/home/Landing').then((m) => ({ default: m.Landing })))
 
 /** A list somebody shared, opened from a link: rarely, so not in the startup code and not prefetched. */
-export const IncomingSet = lazy(() => import('./ui/IncomingSet'))
+export const IncomingSet = lazy(() => import('./ui/social/IncomingSet'))
 
 /** Monki, the assistant: a floating button, loaded once the app is ready. */
 export const Monki = lazy(() => import('./ui/monki/Monki'))

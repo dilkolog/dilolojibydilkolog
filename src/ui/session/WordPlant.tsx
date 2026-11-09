@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { growthStage, stageProgress } from '../../engine/growth'
 import { MASTERY_STAGES } from '../../engine/mastery'
 import type { UserWordState } from '../../engine/types'
-import { STAGE_NAME } from '../labels'
-import { Plant } from '../Plant'
+import { STAGE_NAME } from '../shared/labels'
+import { Plant } from '../home/Plant'
 
 const R = 27
 const CIRCUMFERENCE = 2 * Math.PI * R

@@ -72,7 +72,7 @@ Bu boyut, 4G bağlantıda ~150–250 ms, 3G bağlantıda ~600–900 ms içinde i
 | **`@anthropic-ai/sdk`** | 317 kB (82.7 kB gzip) | `src/ai/usage.ts`: Yalnızca kullanıcı Claude API anahtarı girip serbest cümle değerlendirmesi istediğinde dinamik `import()` edilir. | **Çok İyi:** İlk açılışa 0 bayt etki eder. |
 | **`sql.js`** | 39.7 kB + wasm | `src/data/ankiImport.ts`: Yalnızca `.apkg` Anki destesi içe aktarılırken dinamik yüklenir. | **Çok İyi:** İhtiyaç anına kadar ertelenmiştir. |
 | **`fflate`** | ~25 kB | `src/data/ankiImport.ts` ve yedekleme: Zip sıkıştırma/açma için lazy kullanılır. | **Optimize.** |
-| **`d3-force`** | ~35 kB | `src/ui/WordGraph.tsx`: Sadece Kelimeler → Ağ Görünümü açıldığında yüklenir. | **Optimize.** |
+| **`d3-force`** | ~35 kB | `src/ui/words/WordGraph.tsx`: Sadece Kelimeler → Ağ Görünümü açıldığında yüklenir. | **Optimize.** |
 | **`dexie`** | ~110 kB | `src/data/db.ts`: Tüm uygulamanın offline IndexedDB omurgası. | **Gerekli:** İlk açılışta yüklenmesi zorunludur. |
 | **`ts-fsrs`** | ~15 kB | `src/engine/scheduler.ts`: Aralıklı tekrar hesaplamaları. | **Hafif ve gerekli.** |
 
@@ -117,5 +117,5 @@ Aşağıdaki iyileştirmeler uygulamanın ilk açılış hızını ve veri tüke
 ### 4. İkon Setinin Ağaç Budaması (Tree-shaking)
 - **Etki:** ~10 kB tasarruf
 - **Risk:** Düşük
-- **İlgili Dosyalar:** `src/ui/icons.tsx`
+- **İlgili Dosyalar:** `src/ui/shared/icons.tsx`
 - **Açıklama:** 82 ikon tek bir dosyadan dışa aktarıldığı için bazı bundler yapılandırmalarında kullanılmayan ikonlar da chunk içinde kalabilmektedir. İkonların alt kategorilere bölünmesi veya doğrudan SVG optimizasyonu sağlanabilir.

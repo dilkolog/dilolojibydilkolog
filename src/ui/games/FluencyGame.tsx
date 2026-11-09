@@ -6,7 +6,7 @@ import { createRng, shuffle } from '../../engine/rng'
 import type { VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { SAMPLE_WORDS } from '../../data/seed'
-import { sfx } from '../sounds'
+import { sfx } from '../shared/sounds'
 import { type Props, recordPractice, FLUENCY_ROUND, FLUENCY_MIN_ACCURACY, fmt } from './shared'
 
 interface FluencyQ {

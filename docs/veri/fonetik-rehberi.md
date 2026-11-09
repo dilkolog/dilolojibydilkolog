@@ -156,11 +156,11 @@ Diloloji, fonetik beceriyi geliştirmek için birbirini besleyen entegre modüll
 * **İşlev:** Metin cümle cümle akar. Sesli kitap veya podcast kaydından cümlenin orijinal telaffuzu çalınır. Öğrenici mikrofonu açıp gecikmesiz eşzamanlı taklit eder. Kendi sesini dinleme ve dalga formu takibi sunar.
 
 ### 3. Okuma ➔ "Dikte" (Text Dictation) & Kaçırdıkların
-* **Motor:** `src/ui/TextDictation.tsx` & `src/engine/earMisses.ts`.
+* **Motor:** `src/ui/reading/TextDictation.tsx` & `src/engine/earMisses.ts`.
 * **İşlev:** Dinlenen cümle kelime kelime yazılır. İşitsel olarak kaçırılan hece ve kelimeler kaydedilir (`meta 'earMisses'`). Bu kelimeler daha sonra Oyunlar ➔ "Kaçırdıkların" modunda öncelikli dinleme testine girer.
 
 ### 4. Oyunlar ➔ "Telaffuz Çalışması" (Azure Speech Pronunciation Assessment)
-* **Motor:** `src/engine/pronWeak.ts` & `src/ui/PronPractice.tsx`.
+* **Motor:** `src/engine/pronWeak.ts` & `src/ui/practice/PronPractice.tsx`.
 * **İşlev:** Azure konuşma motoru API'si ile öğrenicinin telaffuzu doğruluk, akıcılık, tamlık ve prozodi kriterlerinde 0–100 arası puanlanır. Ortalaması <75 olan kelimeler "zayıf fonetik bankası"nda toplanarak özel antrenmana sokulur.
 
 ---

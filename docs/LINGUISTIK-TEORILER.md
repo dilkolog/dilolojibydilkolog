@@ -20,33 +20,33 @@ Son güncelleme: 2026-10-20.
 | Üretken geri çağırma | Karpicke & Roediger 2008 | `engine/session.ts` (kararlı kelimelerde boşluk ilk harfle yazılır) |
 | Test etkisi, ipucusuz hatırlama | Roediger & Karpicke 2006 | `engine/freeRecall.ts` (oturum sonu serbest hatırlama) |
 | Ön test etkisi (pretesting) | Kornell, Hays & Bjork 2009 | `ui/session/Intro.tsx` (anlamı önce tahmin et) |
-| Karışık çalışma (interleaving) | Kornell & Bjork 2008 | `ui/useSessionStarters.ts` (diller arası karışık oturum), `engine/dailyPlan.ts` |
-| Uyku ve pekiştirme | Diekelmann & Born 2010 | `engine/dailyPlan.ts` (dünkü kelimeler önce), `ui/Habits.tsx` |
+| Karışık çalışma (interleaving) | Kornell & Bjork 2008 | `ui/home/useSessionStarters.ts` (diller arası karışık oturum), `engine/dailyPlan.ts` |
+| Uyku ve pekiştirme | Diekelmann & Born 2010 | `engine/dailyPlan.ts` (dünkü kelimeler önce), `ui/home/Habits.tsx` |
 | Kendine gönderme etkisi | Rogers et al. 1977 | `engine/exercises.ts` (cümle nereden geldiği söylenir) |
 | Günün saati etkisi | May & Hasher 1998 | `engine/hours.ts` (en iyi hatırlama saatini bulur) |
-| Alışkanlık ipucu; uygulama niyeti | Lally et al. 2010; Gollwitzer & Sheeran 2006 | `engine/hours.ts`, `ui/Habits.tsx` (hatırlatma saati, "eğer–o zaman" planı) |
+| Alışkanlık ipucu; uygulama niyeti | Lally et al. 2010; Gollwitzer & Sheeran 2006 | `engine/hours.ts`, `ui/home/Habits.tsx` (hatırlatma saati, "eğer–o zaman" planı) |
 | FSRS (unutma eğrisi, kararlılık) | ts-fsrs | `engine/scheduler.ts`, `engine/memoryCurve.ts`, `engine/optimizer.ts` |
 
 ### Okuma, kelime bilgisi, girdi
 | Kuram | Atıf | Nerede |
 |---|---|---|
 | Sözcük kapsamı eşikleri (%98 rahat, ~%95 öğrenmeye ideal) | Hu & Nation 2000; Schmitt et al. 2011 | `engine/reading.ts` (`easy` ≥0,98; `ideal` ≥0,95) |
-| Sıklığın getirisi | Nation 2006 | `data/wordInput.ts`, `engine/reading.ts` (eksik sık kelimeler), `ui/FrequencyCoverage.tsx` |
+| Sıklığın getirisi | Nation 2006 | `data/wordInput.ts`, `engine/reading.ts` (eksik sık kelimeler), `ui/words/FrequencyCoverage.tsx` |
 | Bağlamda yeterli karşılaşma (~10) | Webb 2007; Uchihara et al. 2019 | `engine/reading.ts` (`ENCOUNTER_TARGET`) |
-| Dar okuma (narrow reading) | Krashen 2004; Kang 2015 | `engine/reading.ts`, `ui/News.tsx` ("Sana göre haberler") |
-| Okumadan önce soru | Carpenter & Toftness 2017 | `ui/Prequestions.tsx`, `ai/claude.ts` |
+| Dar okuma (narrow reading) | Krashen 2004; Kang 2015 | `engine/reading.ts`, `ui/reading/News.tsx` ("Sana göre haberler") |
+| Okumadan önce soru | Carpenter & Toftness 2017 | `ui/reading/Prequestions.tsx`, `ai/claude.ts` |
 | Kelime dağarcığı boyutu testi | Meara 1992; Lemhöfer & Broersma 2012 (LexTALE) | `engine/vocabTest.ts` (evet/hayır biçimi, uydurma kelimeler) |
 | Frekansa göre kaba seviye | Milton & Alexiou 2009 | `engine/wordLevel.ts` |
-| Altyazı ve tekrar dinleme | Winke, Gass & Sydorenko 2010; Montero Perez et al. 2014 | `ui/Listening.tsx` |
+| Altyazı ve tekrar dinleme | Winke, Gass & Sydorenko 2010; Montero Perez et al. 2014 | `ui/reading/Listening.tsx` |
 | i+1 uygunluğu (kaç bilinmeyen sözcük) | Krashen'in i+1'i (yorumda adı geçer) | `engine/sentenceFit.ts` |
 
 ### Konuşma, dinleme, telaffuz, akıcılık
 | Kuram | Atıf | Nerede |
 |---|---|---|
-| 4/3/2 tekniği (akıcılık) | Nation 1989; de Jong & Perfetti 2011 | `ui/Fluency432.tsx` |
+| 4/3/2 tekniği (akıcılık) | Nation 1989; de Jong & Perfetti 2011 | `ui/practice/Fluency432.tsx` |
 | Yüksek değişkenlikli ses eğitimi | Logan, Lively & Pisoni 1991; Thomson 2018 | `engine/listening.ts` (ses ayırt etme, anında geri bildirim) |
-| Ton ve vurgu eğrisini görmek | Hardison 2004; Chun 1998 | `engine/pitch.ts`, `ui/PitchCompare.tsx` |
-| Dictogloss (dikte + yeniden kurma) | Wajnryb 1990; Kowal & Swain 1994 | `ui/Dictogloss.tsx` |
+| Ton ve vurgu eğrisini görmek | Hardison 2004; Chun 1998 | `engine/pitch.ts`, `ui/practice/PitchCompare.tsx` |
+| Dictogloss (dikte + yeniden kurma) | Wajnryb 1990; Kowal & Swain 1994 | `ui/reading/Dictogloss.tsx` |
 
 ### Dilbilgisi ve geri bildirim
 | Kuram | Atıf | Nerede |
@@ -68,7 +68,7 @@ Son güncelleme: 2026-10-20.
 | **Görünüş (aspect)** | Görünüş oyunu (imparfait / passé composé; indefinido / imperfecto) |
 | **Söylem ve bağdaşıklık** (Halliday & Hasan) | Metin akışı (`engine/flow.ts`: zıtlık, neden, taviz, koşul bağlaçları) |
 | **Sosyodilbilim ve edimbilim** | Kayıt farkı (`engine/register.ts`: günlük/standart/resmî), rol yapma sahneleri (istek, izin, davet) |
-| **Ses bilgisi** | Minimal çiftler, Gölgeleme (`ui/TextShadow.tsx`), Azure kelime puanı (`ui/pronunciation.ts`) |
+| **Ses bilgisi** | Minimal çiftler, Gölgeleme (`ui/reading/TextShadow.tsx`), Azure kelime puanı (`ui/practice/pronunciation.ts`) |
 | **Bağlamdan çıkarım** | Çıkarım modu (`engine/deduction.ts`) |
 | **Derlem dilbilimi** | Sıklık listeleri, Tatoeba cümleleri, Wiktionary, UniMorph, FLELex/ELELex seviyeleri (`data/cefr/`) |
 | **CEFR** | Rehber dersleri ve sertifikalar, kelime seviyesi, hedef planlayıcı |

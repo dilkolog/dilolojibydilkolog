@@ -24,7 +24,7 @@ Kıyafetli Monki (B), seri alevi, hesap durumları, hayvan avatarları, ayarlar 
 
 ## İşlenenler (2026-10-18)
 - **Yeni görev simgeleri seti (9)** (`Gemini_Generated_Image_z8y6ogz8y6ogz8y6.jpg`): 3x3 ızgara ayrıştırıldı, beyaz arka planı antialiasing ile şeffaflaştırıldı ve `src/assets/art/quest-{sprout,target,chain,recall,dictation,ear,dialogue,speed,trophy}.webp` olarak kaydedildi.
-- `src/ui/drawnArt.ts` içindeki `QUEST_ART` haritasına bağlandı; haftalık meydan okumalardaki geçici fallback simgeleri (`studyDays` -> `questSpeed`, `bossWins` -> `questTrophy`, `journalEntries` -> `questDictation`) doğrudan kendi özel çizimlerine kavuştu. `NEW_QUEST_ART` nesnesiyle dışa aktarıldı.
+- `src/ui/shared/drawnArt.ts` içindeki `QUEST_ART` haritasına bağlandı; haftalık meydan okumalardaki geçici fallback simgeleri (`studyDays` -> `questSpeed`, `bossWins` -> `questTrophy`, `journalEntries` -> `questDictation`) doğrudan kendi özel çizimlerine kavuştu. `NEW_QUEST_ART` nesnesiyle dışa aktarıldı.
 
 ## Bekleyenler
 Yok. Yeni set gelirse buraya yükle; adını ve kaç parça olduğunu yaz.

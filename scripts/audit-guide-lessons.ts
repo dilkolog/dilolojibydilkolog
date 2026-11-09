@@ -136,7 +136,7 @@ function runAudit() {
 
 ## 1. Yönetici Özeti
 
-Rehber modülü (\`src/ui/Guide.tsx\`), her dilde A1'den C1'e kadar pedagojik konu anlatımları, kurallar, doğal örnekler ve Türk öğrencilerin tipik hatalarını hedefleyen "Dikkat" uyarıları sunmaktadır.
+Rehber modülü (\`src/ui/guide/Guide.tsx\`), her dilde A1'den C1'e kadar pedagojik konu anlatımları, kurallar, doğal örnekler ve Türk öğrencilerin tipik hatalarını hedefleyen "Dikkat" uyarıları sunmaktadır.
 
 Taranan toplam **144 dersin** genel durumu:
 - **Fransızca (45 ders):** Kurallar Le Robert ve Bescherelle standartlarıyla tam uyumludur. C1 konularındaki (*ne explétif*, *adlaştırma*, *subjonctif imparfait*) açıklamalar yüksek pedagojik değer taşımaktadır.

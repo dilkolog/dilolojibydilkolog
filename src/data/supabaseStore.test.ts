@@ -24,7 +24,7 @@ const api = await import('../../api/sync')
 const { clearAccessCache } = await import('../../api/_account')
 const { deriveAccount, syncNow, SyncConflictError, SyncApprovalError, SyncMovedError } = await import('./sync')
 const { supabaseStore, probeStore } = await import('./supabaseStore')
-const { moveToSupabase } = await import('../ui/syncData')
+const { moveToSupabase } = await import('../ui/account/syncData')
 const { KelimeDB } = await import('./db')
 const { createEntry } = await import('./wordInput')
 

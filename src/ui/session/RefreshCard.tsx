@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { displayForm } from '../../engine/exercises'
 import type { VocabularyEntry } from '../../engine/types'
-import { PosTag } from '../PosTag'
-import { CheckIcon, CloseIcon } from '../icons'
-import { sfx } from '../sounds'
+import { PosTag } from '../words/PosTag'
+import { CheckIcon, CloseIcon } from '../shared/icons'
+import { sfx } from '../shared/sounds'
 import { modalOpen } from './keys'
 import { SpeakButton, Word, Sentence } from './shared'
-import { POS_ART, REACT } from '../drawnArt'
+import { POS_ART, REACT } from '../shared/drawnArt'
 
 /** How far the card must travel (px) to count as a decision. */
 const SWIPE_COMMIT = 90

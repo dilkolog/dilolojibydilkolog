@@ -7,11 +7,11 @@ import type { TargetLanguage } from '../../engine/types'
 import { db } from '../../data/instance'
 import { noteIn } from './logNote'
 import { reflexPhrases } from '../../data/reflex'
-import { SpeakerIcon } from '../icons'
-import { LANGUAGE_NAME } from '../labels'
-import { sfx } from '../sounds'
-import { haptics } from '../haptics'
-import { canSpeak, speak } from '../speech'
+import { SpeakerIcon } from '../shared/icons'
+import { LANGUAGE_NAME } from '../shared/labels'
+import { sfx } from '../shared/sounds'
+import { haptics } from '../shared/haptics'
+import { canSpeak, speak } from '../shared/speech'
 
 const note = noteIn(() => db.getReflexLog(), (log) => db.saveReflexLog(log))
 

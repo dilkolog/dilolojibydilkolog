@@ -21,8 +21,8 @@ Son güncelleme: 2026-10-20 (17. tur eklendi: açık lisanslı içerik).
 ## Dosya sahipliği (çakışmayı önlemek için)
 | Kimde | Dosyalar |
 |---|---|
-| Antigravity | `src/ui/Words.tsx`, `src/ui/Progress.tsx`, `src/ui/SettingsScreen.tsx`, `docs/`, `scripts/`, `e2e/` |
-| Claude Code | `src/ui/Reading.tsx` (+ `ReadingBooks.tsx`, `ReadingLibrary.tsx`, `CoverageCard.tsx`, `WordCard.tsx`, `SingleUnknownSentences.tsx`, `readingHelpers.tsx`, `TextForms.tsx`), `src/ui/Screens.tsx` (Bugün), `Onboarding.tsx`, `SessionSummary.tsx`, `src/ui/verbs/`, `src/engine/` |
+| Antigravity | `src/ui/words/Words.tsx`, `src/ui/progress/Progress.tsx`, `src/ui/settings/SettingsScreen.tsx`, `docs/`, `scripts/`, `e2e/` |
+| Claude Code | `src/ui/reading/Reading.tsx` (+ `ReadingBooks.tsx`, `ReadingLibrary.tsx`, `CoverageCard.tsx`, `WordCard.tsx`, `SingleUnknownSentences.tsx`, `readingHelpers.tsx`, `TextForms.tsx`), `src/ui/home/Screens.tsx` (Bugün), `Onboarding.tsx`, `SessionSummary.tsx`, `src/ui/verbs/`, `src/engine/` |
 | Ortak (önce haber ver) | `src/App.tsx` (+ `AppScreens.tsx`, `appNav.ts`, `lazyScreens.ts`, `ui/AppSidebar.tsx`), `src/index.css`, `src/data/db.ts` |
 
 `src/index.css`'e yeni kuralı dosyanın **sonuna**, kendi başlığıyla ekle (çakışma çıkmasın). Sahip olmadığın bir dosyaya dokunman gerekirse PR açıklamasında belirt.
@@ -33,7 +33,7 @@ Son güncelleme: 2026-10-20 (17. tur eklendi: açık lisanslı içerik).
 
 ### 1.1 Çevrimdışı göstergesi
 *Rapor: öncelik 1, madde 2.*
-- İnternet yokken üst çubukta küçük, sakin bir "Çevrimdışı" rozeti; çevrimiçine dönünce kaybolsun. `src/ui/useOnline.ts` zaten var, kabuğa (`App.tsx`) bağla.
+- İnternet yokken üst çubukta küçük, sakin bir "Çevrimdışı" rozeti; çevrimiçine dönünce kaybolsun. `src/ui/shared/useOnline.ts` zaten var, kabuğa (`App.tsx`) bağla.
 - Metin ve renk sakin olsun (uyarı kırmızısı değil), erişilebilir ad (`role="status"`).
 - Test: Playwright `context.setOffline(true/false)` ile rozetin görünüp kaybolduğunu doğrula; telefonda üst çubuğa sığdığını kontrol et.
 
@@ -121,7 +121,7 @@ Kullanıcı sordu: *TV5Monde'daki içerikler telifsiz mi? DELE Ahora'daki (Espa�
 **Çakışma uyarısı:** Claude Code şu sıra `src/index.css`'te **animasyon ve hareket** kurallarını (cevap anı, ilerleme çubukları `scaleX`, oturum özeti, bitki sıçraması, süs animasyonları) değiştiriyor. Bu turdaki işler `index.css`'in hareket bölümlerine **dokunmaz**; dokunman gerekirse önce haber ver. Aşağıdaki işlerin çoğu yeni dosya ve `docs/`.
 
 ### 5.1 İkon denetimi (rapor; kod yok)
-- Çıktı: `docs/IKON-DENETIMI.md`. `src/ui/icons.tsx` (82 ikon, 24 px ızgara, 1.8 px çizgi, yumuşak dolgu) için:
+- Çıktı: `docs/IKON-DENETIMI.md`. `src/ui/shared/icons.tsx` (82 ikon, 24 px ızgara, 1.8 px çizgi, yumuşak dolgu) için:
   1. **Tutarlılık tablosu:** her ikon için çizgi kalınlığı, uç/birleşim biçimi, dolgu katmanının opaklığı, görsel ağırlık; `DESIGN.md` kuralından (24 px ızgara, 1.8 px, yuvarlak uç, `currentColor`) sapanlar.
   2. **Kullanım taraması:** kodda ikon yerine emoji, `✓`/`×`/`←` gibi metin karakteri ya da satır içi SVG kullanılan yerler (örn. kapat düğmeleri `×`); hangi ikonun hiçbir yerde kullanılmadığı (ölü ikon).
   3. **Anlam çakışmaları:** aynı ikonun birbirinden farklı işler için kullanıldığı yerler (ör. `SparkleIcon`).
@@ -131,10 +131,10 @@ Kullanıcı sordu: *TV5Monde'daki içerikler telifsiz mi? DELE Ahora'daki (Espa�
 
 ### 5.2 Yeni bölünen bileşenlere test
 Son turlarda bölünen dosyalar yeni; davranışı sabitleyen bileşen testi yaz (`@testing-library/react`, mevcut `*.test.tsx` desenine uy). **Davranışı değiştirme.**
-- `src/ui/TextForms.tsx` (grup başlıkları, "kez" sayısı, düğmeler, boş durum, `onReview`/`onOpenLab` çağrıları)
-- `src/ui/CoverageCard.tsx` (bölge başlığı, açılınca açıklama, önceki okuma satırı, bilinen kelime azsa not)
-- `src/ui/WordCard.tsx` (bilinen/bilinmeyen kelime düğmeleri, fiil çekimi satırı, "Bu cümleden dinle" yalnızca zamanlı seste)
-- `src/ui/ReadingLibrary.tsx` (`LibraryItem` durum rozeti: Yeni / Okundu / Tekrar oku; `AddTextCard` düğmesi boş taslakta kapalı)
+- `src/ui/reading/TextForms.tsx` (grup başlıkları, "kez" sayısı, düğmeler, boş durum, `onReview`/`onOpenLab` çağrıları)
+- `src/ui/progress/CoverageCard.tsx` (bölge başlığı, açılınca açıklama, önceki okuma satırı, bilinen kelime azsa not)
+- `src/ui/words/WordCard.tsx` (bilinen/bilinmeyen kelime düğmeleri, fiil çekimi satırı, "Bu cümleden dinle" yalnızca zamanlı seste)
+- `src/ui/reading/ReadingLibrary.tsx` (`LibraryItem` durum rozeti: Yeni / Okundu / Tekrar oku; `AddTextCard` düğmesi boş taslakta kapalı)
 - `src/ui/AppSidebar.tsx` (seçili yer `aria-current`, rozet etiketi, dil düğmesi ve bekleyen tekrar noktası)
 - `src/engine/textForms.ts` zaten testli; bileşik zaman için kenar durumlar bulursan (ör. "il n'a jamais mangé", dönüşlü fiiller) hatayı düzeltme, PR açıklamasına yaz.
 
@@ -151,7 +151,7 @@ Son turlarda bölünen dosyalar yeni; davranışı sabitleyen bileşen testi yaz
 
 ## 6. tur: ses kitabı eşleştirme, testler, erişilebilirlik, metin ve performans (5. tur bitti; kullanıcı istedi)
 
-**Çakışma uyarısı:** Claude Code `src/ui/Reading*.tsx`, `Listening.tsx`, `Session.tsx`, `src/engine/` ve `index.css`'in hareket/ikon bölümlerinde çalışıyor. Aşağıdaki işler bunlara **dokunmaz** (yeni dosya, `docs/`, `scripts/`, `e2e/`, `src/data/audiobooks/`); dokunman gerekirse PR açıklamasına yaz.
+**Çakışma uyarısı:** Claude Code `src/ui/reading/Reading*.tsx`, `Listening.tsx`, `Session.tsx`, `src/engine/` ve `index.css`'in hareket/ikon bölümlerinde çalışıyor. Aşağıdaki işler bunlara **dokunmaz** (yeni dosya, `docs/`, `scripts/`, `e2e/`, `src/data/audiobooks/`); dokunman gerekirse PR açıklamasına yaz.
 
 ### 6.1 LibriVox ses kitapları: bölüm bazlı metin-ses eşleştirme (veri; TAMAMLANDI — `scripts/build-audiobook-chapters.ts`, `src/data/audiobooks/{fr,es}.json`, `docs/kaynaklar/audiobooks-chapters.md`)
 Sorun: `docs/kaynaklar/audiobooks-{fr,es}.json`'daki her ses tek bir kitaba (ör. La Fontaine "Livre 01", 44 dk) ait, ama Gutenberg metni tüm eserin tek dosyası. Uygulamada metnin sesi sentence-by-sentence takip edebilmesi için **ses parçası ile metin bölümü birebir** örtüşmeli (aynı kısım, aynı baskı).
@@ -165,9 +165,9 @@ Sorun: `docs/kaynaklar/audiobooks-{fr,es}.json`'daki her ses tek bir kitaba (ör
 Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Son turlarda değişenler: logo (sol üst), yan menü adı, Çeviri ekranı, Oyunlar listesi ve ikonları, okuma araç satırı (Çekimler/Dikte/Gölgele ikonları), ses paneli, fiil turu kartı, oturum özeti kademeli girişi. Beklenmeyen fark çıkarsa nedenini bul ve yaz.
 
 ### 6.3 Yeni özelliklere birim testleri (TAMAMLANDI — `useSwipeAway.test.tsx`, `LabTourCard.test.tsx`, `TranslateScreen.test.tsx`, `SessionForgot.test.tsx`, `listenFollow.test.ts`)
-- `src/ui/useSwipeAway.ts` (sola kaydırma eşiği, kısa kaydırmada geri yaylanma, fare yok sayılır, dikey hareket kaydırma sayılmaz).
+- `src/ui/shared/useSwipeAway.ts` (sola kaydırma eşiği, kısa kaydırmada geri yaylanma, fare yok sayılır, dikey hareket kaydırma sayılmaz).
 - `src/ui/verbs/LabTour.tsx` `TourCard` (gizle düğmesi, aynı gün hatırlama, ertesi gün yeniden görünme, "Geri al").
-- `src/ui/TranslateScreen.tsx` (yön değiştirme çeviriyi yeni metin yapar, "Örnek:" etiketi gönderilmez, aynı cümle bir kez istenir, son çeviriler tekrarsız ve dokununca yeniden açılır).
+- `src/ui/dictionary/TranslateScreen.tsx` (yön değiştirme çeviriyi yeni metin yapar, "Örnek:" etiketi gönderilmez, aynı cümle bir kez istenir, son çeviriler tekrarsız ve dokununca yeniden açılır).
 - `Session.tsx` "Unuttum" (cevap gösterilir, yanlış sayılır, "emin değilim" notları çıkmaz; Alt+U).
 - `src/engine/listenFollow.ts` (kenar durumlar: boş liste, tek cümle, süre bilinmiyor [0/undefined], negatif pin sınırları).
 
@@ -186,16 +186,16 @@ Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Son turla
 
 ## 7. tur: performans uygulaması, güvenlik kopyası testleri ve belgeler (TAMAMLANDI — #199, #201, #202)
 
-**Çakışma uyarısı:** Claude Code şu an `src/data/sync.ts`, `src/data/db.ts` (yedek/geri yükleme), `api/sync.ts`, `src/data/safetyBackup.ts`, `src/ui/DataSettings.tsx`, `src/ui/SyncSettings.tsx` ve ayarların birleştirilmesi üzerinde çalışıyor. Bunlara **dokunma**; testlerini yazarken bile yalnızca *yeni* test dosyası ekle. Okuma ekranı (`Reading*.tsx`) ve ses kitabı arayüzü de Claude Code'da.
+**Çakışma uyarısı:** Claude Code şu an `src/data/sync.ts`, `src/data/db.ts` (yedek/geri yükleme), `api/sync.ts`, `src/data/safetyBackup.ts`, `src/ui/settings/DataSettings.tsx`, `src/ui/SyncSettings.tsx` ve ayarların birleştirilmesi üzerinde çalışıyor. Bunlara **dokunma**; testlerini yazarken bile yalnızca *yeni* test dosyası ekle. Okuma ekranı (`Reading*.tsx`) ve ses kitabı arayüzü de Claude Code'da.
 
 ### 7.1 Güvenlik kopyası ve eşitleme medya sınırı için arayüz testleri (TAMAMLANDI — #199)
-- `src/ui/DataSettings.test.tsx` (yeni, 3 test): bozuk dosya seçilince hata mesajı çıkar ve veriye dokunulmaz; geçerli yedek onay penceresi gösterir; onaydan sonra "Önceki hâle dön" görünür; onaylayınca güvenlik kopyası başarıyla geri yüklenir.
+- `src/ui/settings/DataSettings.test.tsx` (yeni, 3 test): bozuk dosya seçilince hata mesajı çıkar ve veriye dokunulmaz; geçerli yedek onay penceresi gösterir; onaydan sonra "Önceki hâle dön" görünür; onaylayınca güvenlik kopyası başarıyla geri yüklenir.
 - `src/ui/SyncSettings.test.tsx` (yeni, 2 test): `runSync` `{ skipped: 2 }` dönünce uyarı metni görünür, `skipped: 0` iken görünmez.
 - `e2e/a11y.e2e.ts` desenine uyarak Ayarlar → Veriler'de "Önceki hâle dön" satırı ve onay penceresi için `axe` taraması eklendi; mobilde Ayarlar butonuna geçiş sağlamlaştırıldı.
 
 ### 7.2 Performans raporunun düşük riskli önerilerini uygula (`docs/PERFORMANS.md` bölüm 6) (TAMAMLANDI — #201)
 - **Öneri 2 (TAMAMLANDI — #201):** `src/data/wordpackBuild.ts` ve `src/data/wordpack.ts`: cümle parçaları hem sütun bazlı `{ s, t }` hem TSV dize desteğiyle kompakt çözücüye kavuşturuldu. `src/data/wordpackSentences.test.ts` ile tüm biçimlerin özdeş `Example[]` ürettiği kanıtlandı.
-- **Öneri 4:** `src/ui/icons.tsx` ağaç budaması ölçüldü; 82 ikon gzip ile toplamda sadece 5.32 kB olduğu için budama kazancı < 0.5 kB çıktı (< 3 kB eşiği). Kod değiştirilmedi.
+- **Öneri 4:** `src/ui/shared/icons.tsx` ağaç budaması ölçüldü; 82 ikon gzip ile toplamda sadece 5.32 kB olduğu için budama kazancı < 0.5 kB çıktı (< 3 kB eşiği). Kod değiştirilmedi.
 - **Öneri 1 (`tenseGuide` tembel yükleme):** `src/engine` üzerinde Claude Code son commit'lerde aktif çalıştığı için çakışma riski nedeniyle atlandı.
 - **Öneri 3 (Service Worker precache):** Çevrimdışı riski nedeniyle raporda değerlendirildi, kod değişikliği yapılmadı.
 
@@ -211,7 +211,7 @@ GitHub Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Ko
 
 ## 8. tur: yeni özelliklerin erişilebilirliği, iki cihazlı eşitleme testi, İngilizce içerik (TAMAMLANDI — #206, #207, #208)
 
-**Çakışma uyarısı:** Claude Code sıradaki işlerde `src/engine/` (zayıf kelimeleri tekrara katma), `src/ui/Session*.tsx`, `src/ui/Reading*.tsx`, `src/ui/AudiobooksPicker.tsx` ve `src/data/sync.ts` üzerinde çalışabilir. Aşağıdaki işler yeni dosya, `e2e/`, `docs/` ve `scripts/` ile sınırlı; başka dosyaya dokunman gerekirse PR açıklamasına yaz.
+**Çakışma uyarısı:** Claude Code sıradaki işlerde `src/engine/` (zayıf kelimeleri tekrara katma), `src/ui/session/Session*.tsx`, `src/ui/reading/Reading*.tsx`, `src/ui/reading/AudiobooksPicker.tsx` ve `src/data/sync.ts` üzerinde çalışabilir. Aşağıdaki işler yeni dosya, `e2e/`, `docs/` ve `scripts/` ile sınırlı; başka dosyaya dokunman gerekirse PR açıklamasına yaz.
 
 ### 8.1 Yeni özellikler için erişilebilirlik taraması (TAMAMLANDI — `e2e/a11y.e2e.ts`, #208)
 Son turlarda gelenler: **Okuma → Sesli kitaplar** (liste, seviye çipleri, açık bölüm), **Oyunlar → Telaffuz çalışması** (`azureSpeech` anahtarı ve boş durum; `pronScores` ile zayıf kelimeler listesi), **kelime sayfasında "Bana özel cümleler"** (`aiKey` ve Anthropic mock ile öneri listesi), **içe aktarmada "Hangi listeye eklensin?"** (Toplu ekle açıkken "Yeni liste" alanı), **oturum özetinde "Hataların için kısa yorum"** (AI koç notu), **Ayarlar → Eşitleme'de "Eşitlenen veri" satırı** (%50 kota ve %85 uyarı durumu). Tüm taramalar hem koyu (`dark`) hem sakin (`calm`) temalarda sıfır axe ihlaliyle başarıyla tamamlandı (20 test yeşil).
@@ -245,7 +245,7 @@ GitHub Actions aylık 2.000 dk çalışma kotası hâlâ dolu olduğu için work
 
 **Bağlam:** Claude Code şu oyunları ekledi: **Dilbilgisi soruları** (`src/engine/grammar.ts`, `src/data/grammar/{fr,es,en}.json`), **Refleks turu** (`src/engine/reflex.ts`, `src/data/reflex/phrases-1.json`), **Tuzak kelimeler** (`src/engine/traps.ts`, `src/data/traps/{fr,es,en}.json`, kelime sayfasında ve sözlükte "Tuzak kelime" çipi), **Ses ayırt etme**'ye yeni çiftler ve çift başına kayıt (`src/engine/listening.ts`) ve **Geri çeviri döngü modu** (`src/engine/backTranslation.ts`). Her veri klasörü `import.meta.glob` ile okunur: **yeni bir `*.json` dosyası koymak yeni içerik ekler, kodda değişiklik gerekmez.**
 
-**Çakışma uyarısı:** Claude Code `src/engine/`, `src/ui/games/`, `src/ui/Games.tsx`, `src/data/db.ts`, `src/data/sync.ts` üzerinde çalışıyor. Aşağıdaki işler **yeni veri dosyaları, `e2e/`, `docs/` ve `scripts/`** ile sınırlı. Mevcut veri dosyalarını (`*-1.json`, `fr.json`, `es.json`, `en.json`) düzenleme; yeni dosya ekle. Başka dosyaya dokunman gerekirse PR açıklamasına yaz.
+**Çakışma uyarısı:** Claude Code `src/engine/`, `src/ui/games/`, `src/ui/practice/Games.tsx`, `src/data/db.ts`, `src/data/sync.ts` üzerinde çalışıyor. Aşağıdaki işler **yeni veri dosyaları, `e2e/`, `docs/` ve `scripts/`** ile sınırlı. Mevcut veri dosyalarını (`*-1.json`, `fr.json`, `es.json`, `en.json`) düzenleme; yeni dosya ekle. Başka dosyaya dokunman gerekirse PR açıklamasına yaz.
 
 **Genel kurallar (veri için):** Sadece lisansı belli kaynaklardan al ya da kendin yaz; her kayıtta `source` alanına kaynak + lisans yaz (örn. `"Wiktionary (CC BY-SA 4.0)"`, `"Diloloji (özgün)"`). Uydurma kayıt yok: emin olmadığın bir şeyi ekleme, raporda "doğrulanamadı" diye listele. Türkçe karşılıklar doğal Türkçe olsun. Her yeni dosyanın doğruluğunu `npx vitest run src/data` ile sına (veri bütünlüğü testleri var).
 
@@ -350,7 +350,7 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 
 ## 12. tur: sözlük ve eşdizim testleri, içerik genişletme, yeni besleme alan adları (11. tur bitti; kullanıcı istedi)
 
-**Bağlam:** 11. turdaki raporlar uygulandı (#253: bileşik zaman motoru ve tuzak kelime verisi; #254: üç yeni haber beslemesi). Ayrıca Claude Code şunları ekledi: **Sözlük → "Sözlüğe kaydet"** (paketi olmayan kelime için DeepL sonucu ya da elle yazılan anlam sözlüğe kalıcı yazılır: `DictionaryNotes.added`, `src/engine/dictionaryNotes.ts`, `src/ui/Dictionary.tsx` `NotFound`/`SavedCard`/`SavedList`; yedek ve eşitlemeye girer), **Birlikte kullanılanlar çipi** (`src/engine/collocations.ts`, `src/data/collocations/{fr,es,en}.json`, kelime sayfası ve Sözlük), **edat/eşdizim dilbilgisi soruları** (`src/data/grammar/{fr,es,en}-4.json`, konular `prep_*`, `colloc_*`), **fiil laboratuvarında "Tek tek" varsayılan** (Liste bir dokunuş uzakta, Tab alandan alana geçer, tek "İpucu: ilk harfler" düğmesi), **Bugün'de canlı tohum** (`Plant` `live`, `.plant-waiting`, `.ring.is-start`).
+**Bağlam:** 11. turdaki raporlar uygulandı (#253: bileşik zaman motoru ve tuzak kelime verisi; #254: üç yeni haber beslemesi). Ayrıca Claude Code şunları ekledi: **Sözlük → "Sözlüğe kaydet"** (paketi olmayan kelime için DeepL sonucu ya da elle yazılan anlam sözlüğe kalıcı yazılır: `DictionaryNotes.added`, `src/engine/dictionaryNotes.ts`, `src/ui/dictionary/Dictionary.tsx` `NotFound`/`SavedCard`/`SavedList`; yedek ve eşitlemeye girer), **Birlikte kullanılanlar çipi** (`src/engine/collocations.ts`, `src/data/collocations/{fr,es,en}.json`, kelime sayfası ve Sözlük), **edat/eşdizim dilbilgisi soruları** (`src/data/grammar/{fr,es,en}-4.json`, konular `prep_*`, `colloc_*`), **fiil laboratuvarında "Tek tek" varsayılan** (Liste bir dokunuş uzakta, Tab alandan alana geçer, tek "İpucu: ilk harfler" düğmesi), **Bugün'de canlı tohum** (`Plant` `live`, `.plant-waiting`, `.ring.is-start`).
 
 **Çakışma uyarısı:** Claude Code `src/engine/`, `src/ui/`, `api/`, `src/data/db.ts`, `src/data/sync.ts` üzerinde çalışıyor. Bu turdaki işler `e2e/`, `docs/`, `scripts/` ve **yeni** veri dosyaları ile sınırlı; mevcut veri dosyalarını düzenleme. Başka dosyaya dokunman gerekirse PR açıklamasına yaz. Veri kuralları 9. turdakiyle aynı (kaynak + lisans satırı, uydurma yok, doğrulanamayanlar raporda ayrı). Her PR tek konu.
 
@@ -417,10 +417,10 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 ## 13. tur: Rehber içeriğinin denetimi, Supabase güvenlik duman testi, yeni ekranların testleri (kullanıcı istedi)
 
 **Bağlam (12. turdan sonra Claude Code'un ekledikleri):**
-- **Rehber** (Pratik → Rehber, `src/ui/Guide.tsx`): dil başına yaklaşık 50 ders (`src/data/guide/lessons-{fr,es,en}{,-2,-3}.ts`, şema `lessonTypes.ts`).
+- **Rehber** (Pratik → Rehber, `src/ui/guide/Guide.tsx`): dil başına yaklaşık 50 ders (`src/data/guide/lessons-{fr,es,en}{,-2,-3}.ts`, şema `lessonTypes.ts`).
   - Her temel dersin sonunda 3 soruluk **mini sınav** var (`check`; 2 doğru = "öğrenildi").
   - Dilbilgisi konularının dersleri sınav sorularını kendi konusunun `choice` sorularından alır (`src/data/guide/lessonOf.ts` `checkFor`).
-  - Okunan ders 3, 10 ve 30 gün sonra Bugün'de **"Hatırlıyor musun?"** kartıyla geri gelir (`engine/guideReview.ts`, `ui/GuideReviewNudge.tsx`).
+  - Okunan ders 3, 10 ve 30 gün sonra Bugün'de **"Hatırlıyor musun?"** kartıyla geri gelir (`engine/guideReview.ts`, `ui/guide/GuideReviewNudge.tsx`).
   - İlgili dersin bağlantısı üç yerde çıkar: yanlış dilbilgisi cevabının altında ("Konunun dersi"), kör nokta kartında ("Dersi oku") ve fiil laboratuvarı teşhisinde ("Bu zamanın anlatımı").
   - İngilizcenin de artık **Zamanlar** sekmesi var.
   - **Dış kaynaklar** sekmesinde 38 bağlantı var (`src/data/guide/resources.ts`).
@@ -601,7 +601,7 @@ Actions kotası dönünce `gh workflow run snapshots.yml --ref main`.
 
 ## 16. tur: kusursuz site (2026-10-19, kullanıcı istedi; kaynak: `docs/KUSURSUZ-SITE-RAPORU.md`)
 
-Yarın 1–2 kişi siteyi deneyecek. Önce raporun §5 tablosunu oku (bulgu kodları aşağıda parantezde). **Claude Code şu dosyalara dokunuyor, sen dokunma:** `api/*`, `worker/*`, `src/data/supabase.ts`, `src/data/sync*.ts`, `src/data/vault.ts`, `src/ui/SupabaseAuth.tsx`, `src/ui/AccountManage.tsx`, `src/ui/AccountSettings.tsx`, `src/ui/signInFlow.ts`, `src/ui/useSignedIn.ts`, `src/ui/syncRunner.ts`, `src/ui/syncTarget.ts`, `src/ui/syncData.ts`. İlk mesajında "16.x'e başlıyorum" de; bitince PR numarasını bu dosyaya yaz. Her görev ayrı PR. Sunucuya, Supabase'e ya da canlı siteye **yazan** hiçbir şey yapma; yalnızca oku.
+Yarın 1–2 kişi siteyi deneyecek. Önce raporun §5 tablosunu oku (bulgu kodları aşağıda parantezde). **Claude Code şu dosyalara dokunuyor, sen dokunma:** `api/*`, `worker/*`, `src/data/supabase.ts`, `src/data/sync*.ts`, `src/data/vault.ts`, `src/ui/account/SupabaseAuth.tsx`, `src/ui/account/AccountManage.tsx`, `src/ui/account/AccountSettings.tsx`, `src/ui/account/signInFlow.ts`, `src/ui/account/useSignedIn.ts`, `src/ui/account/syncRunner.ts`, `src/ui/account/syncTarget.ts`, `src/ui/account/syncData.ts`. İlk mesajında "16.x'e başlıyorum" de; bitince PR numarasını bu dosyaya yaz. Her görev ayrı PR. Sunucuya, Supabase'e ya da canlı siteye **yazan** hiçbir şey yapma; yalnızca oku.
 
 ### 16.1 Statik sayfalar ve paylaşım önizlemesi (UX7, UX8, L1–L4) — TAMAMLANDI (#506)
 Dosyalar: `index.html`, `public/hakkinda.html`, `public/gizlilik.html`, `public/kosullar.html` (başka kimse dokunmuyor).
@@ -635,7 +635,7 @@ Dosyalar: `src/data/seed/*.ts`, `src/data/storybooks/`, `docs/kaynaklar/`.
 - `docs/CLOUDFLARE.md`'ye "Günlükler ve hata izleme" bölümü yaz: Workers Logs'ta `[client-error]`, `[csp-report]`, `[worker-error]` nerede görülür, `npx wrangler tail diloloji`; AGENTS.md'deki "Vercel günlükleri" ifadelerini Cloudflare'e çevir (F1).
 
 ### 16.6 Ayarlar → Yardım grubu (UX5) — TAMAMLANDI (#517)
-Dosyalar: yeni `src/ui/settings/HelpSettings.tsx`, `src/ui/SettingsScreen.tsx` (yalnızca grup listesi), `src/ui/RootBoundary.tsx`, `src/ui/ScreenBoundary.tsx` (yalnızca iletişim bağlantısı), `vite.config.ts` (`define` ile derleme kimliği: yalnızca bu satır).
+Dosyalar: yeni `src/ui/settings/HelpSettings.tsx`, `src/ui/settings/SettingsScreen.tsx` (yalnızca grup listesi), `src/ui/shared/RootBoundary.tsx`, `src/ui/shared/ScreenBoundary.tsx` (yalnızca iletişim bağlantısı), `vite.config.ts` (`define` ile derleme kimliği: yalnızca bu satır).
 - Ayarlar'a "Yardım" grubu: `mailto:destek@diloloji.com` (konuya sürüm/derleme kimliği, dil, tarayıcı otomatik), Gizlilik ve Koşullar bağlantıları, derleme kimliği (kısa git sha ya da tarih), 6–8 maddelik SSS (şifre/giriş, eşitleme, bildirim, ses/mikrofon, sözlük paketi indirme, hesap silme).
 - Hata sınırlarına aynı destek bağlantısı (ham `error.message` kalsın, altına "Sürerse bize yaz" bağlantısı).
 - `DESIGN.md` bileşenlerini kullan; telefon + koyu tema ekran görüntüsü; a11y testi.

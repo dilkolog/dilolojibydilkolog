@@ -1,9 +1,9 @@
 import { useMemo, useRef, useState } from 'react'
-import { useNumberKeys } from '../useNumberKeys'
+import { useNumberKeys } from '../shared/useNumberKeys'
 import { createRng, shuffle } from '../../engine/rng'
 import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { tenseSentence, type Tense } from '../../engine/tenses'
-import { sfx } from '../sounds'
+import { sfx } from '../shared/sounds'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
 const ROUND = 6

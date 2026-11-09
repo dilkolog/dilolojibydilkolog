@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 // @ts-expect-error a plain .mjs build script, without types
 import { LANG_PAGES, languagePage } from '../scripts/lang-pages.mjs'
-import { LANGUAGE_PATHS } from './ui/startLanguage'
+import { LANGUAGE_PATHS } from './ui/home/startLanguage'
 
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8')
 

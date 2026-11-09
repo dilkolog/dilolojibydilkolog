@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Tense } from '../../engine/tenses'
-import { ChevronLeftIcon, ChevronRightIcon } from '../icons'
+import { ChevronLeftIcon, ChevronRightIcon } from '../shared/icons'
 import { TensePicker } from './LearnTab'
 import { TenseInfoButton } from './TenseLessonSheet'
 import { CORE_TENSES, stepTense, tenseName, type LabLanguage } from './labShared'

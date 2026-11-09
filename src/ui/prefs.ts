@@ -4,7 +4,7 @@ import type { TypingShare } from '../engine/session'
 import type { ExerciseType } from '../engine/types'
 import { configureScheduler } from '../data/instance'
 import { aiConfig, SITE_MODEL } from '../ai/usage'
-import { speechPrefs } from './speech'
+import { speechPrefs } from './shared/speech'
 
 /** Runtime preferences read by session components; updated whenever settings change. */
 export const prefs = {

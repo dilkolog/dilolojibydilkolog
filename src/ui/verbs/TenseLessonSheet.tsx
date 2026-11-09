@@ -4,8 +4,8 @@ import { TENSE_LESSON } from '../../data/tenseLesson'
 import { TENSE_LESSON_MORE } from '../../data/tenseLessonMore'
 import { TENSE_LESSON_DEEP } from '../../data/tenseLessonDeep'
 import { conjugateTense, personsOf, subjectLabel, tensesLoaded, type Tense } from '../../engine/tenses'
-import { CloseIcon, InfoIcon, SpeakerIcon } from '../icons'
-import { speak } from '../speech'
+import { CloseIcon, InfoIcon, SpeakerIcon } from '../shared/icons'
+import { speak } from '../shared/speech'
 import { tenseName, type LabLanguage } from './labShared'
 
 const SAMPLE_VERBS: Record<LabLanguage, readonly [string, string, string]> = {
