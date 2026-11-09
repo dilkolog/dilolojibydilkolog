@@ -10,4 +10,14 @@ describe('/api/log', () => {
     expect(warn).toHaveBeenCalledWith('[csp-report]', JSON.stringify({ directive: 'script-src-elem', blocked: 'https://evil.example', page: '/okuma' }))
     warn.mockRestore()
   })
+
+  it("the deploy check's test report is answered but neither logged nor counted for the weekly digest", async () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {})
+    const post = (name: string) => POST(new Request('https://diloloji.com/api/log', { method: 'POST', headers: { 'sec-fetch-site': 'same-origin' }, body: JSON.stringify({ name, message: 'live deploy verification' }) }))
+    expect((await post('smoke-test')).status).toBe(204)
+    expect(error).not.toHaveBeenCalled()
+    expect((await post('Error')).status).toBe(204)
+    expect(error).toHaveBeenCalledWith('[client-error]', expect.stringContaining('"name":"Error"'))
+    error.mockRestore()
+  })
 })

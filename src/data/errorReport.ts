@@ -1,8 +1,12 @@
 /**
- * Uncaught errors go to /api/log, which writes one line to the Vercel logs, so a bug on a phone can be
+ * Uncaught errors go to /api/log, which writes one line to the Worker logs (Cloudflare), so a bug on a phone can be
  * seen without asking. Nothing personal goes: quoted text (a word, a sentence) and anything like an
  * e-mail address are cut from the message, and the stack keeps only file paths and line numbers.
  */
+
+import { isChunkError } from '../ui/chunkError'
+import { isClosing } from './closing'
+
 export interface ErrorReport {
   name: string
   message: string
@@ -62,10 +66,20 @@ let sent = 0
 const seen = new Set<string>()
 
 /** Sends once per kind of error and at most a few per page load; never throws. */
+/** Whether an error is worth the owner's weekly digest: not a test's, and not one the app expects and handles. */
+export function shouldReport(error: unknown): boolean {
+  // A browser driven by a test (Playwright, WebDriver) is not a person: its errors (fake accounts hitting the live sync) would bury the real ones in the weekly digest.
+  if (typeof navigator !== 'undefined' && navigator.webdriver) return false
+  // An open page asking for the files of the version before a deploy: the app reloads itself (ui/chunkError.ts), nothing to fix.
+  if (isChunkError(error)) return false
+  // The database closed on purpose (signing out, deleting all data) a moment before the page reloads.
+  if (isClosing() && error instanceof Error && error.name === 'DatabaseClosedError') return false
+  return true
+}
+
 export function reportError(error: unknown, where: string) {
   if (import.meta.env.DEV || import.meta.env.MODE === 'test' || sent >= PER_LOAD) return
-  // A browser driven by a test (Playwright, WebDriver) is not a person: its errors (fake accounts hitting the live sync) would bury the real ones in the weekly digest.
-  if (typeof navigator !== 'undefined' && navigator.webdriver) return
+  if (!shouldReport(error)) return
   try {
     const report = toReport(error, where)
     const key = `${report.name}:${report.message}:${report.stack[0] ?? ''}`

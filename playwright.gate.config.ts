@@ -16,7 +16,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI ? [['list'], ['html', { open: 'never', outputFolder: 'playwright-report-gate' }]] : [['list']],
   use: { baseURL: `http://localhost:${PORT}`, serviceWorkers: 'block' },
-  webServer: { command: `npx vite preview --outDir dist-gate --port ${PORT} --strictPort`, url: `http://localhost:${PORT}`, reuseExistingServer: true },
+  webServer: { command: `npx vite preview --outDir dist-gate --port ${PORT} --strictPort`, url: `http://localhost:${PORT}`, reuseExistingServer: true, env: { E2E_LOCAL_API: '1' } },
   projects: [
     { name: 'phone', use: { ...devices['Pixel 7'], viewport: { width: 375, height: 812 } } },
     { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } } },

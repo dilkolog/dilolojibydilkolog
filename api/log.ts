@@ -15,6 +15,9 @@ const MAX_BODY = 4096
 
 const str = (v: unknown, max: number) => (typeof v === 'string' ? v.slice(0, max) : '')
 
+/** The name the deploy check gives its report (scripts/verify-deploy.mjs). */
+export const SMOKE_TEST = 'smoke-test'
+
 export async function POST(request: Request): Promise<Response> {
   if (overLimit(request, 'log', 60)) return tooMany()
   const text = await request.text().catch(() => '')
@@ -51,6 +54,8 @@ export async function POST(request: Request): Promise<Response> {
     where: str(body.where, 30),
   }
   if (!report.name && !report.message) return new Response(null, { status: 400 })
+  // The deploy check (scripts/verify-deploy.mjs) files one to see the endpoint answer: not a learner's error.
+  if (report.name === SMOKE_TEST) return new Response(null, { status: 204 })
   console.error('[client-error]', JSON.stringify(report))
   await noteError('client', report)
   return new Response(null, { status: 204 })

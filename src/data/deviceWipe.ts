@@ -1,3 +1,4 @@
+import { markClosing } from './closing'
 import { db } from './instance'
 
 /** The IndexedDB name is an internal id that never changed (renaming it would orphan every device's data). */
@@ -10,6 +11,7 @@ const KEY_PREFIXES = ['diloloji:', 'kelime-koc:']
  * all (a sync) and has signed out; the page is reloaded afterwards.
  */
 export async function wipeDevice(): Promise<void> {
+  markClosing()
   db.close()
   await new Promise<void>((resolve) => {
     const request = indexedDB.deleteDatabase(DATABASE)
