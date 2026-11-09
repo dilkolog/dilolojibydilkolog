@@ -27,11 +27,12 @@ Sahibi şimdilik altyapıyla değil, **içerik ve eğitim tarafıyla** (dersler,
 - [ ] Google Play: geliştirici hesabı, yükleme anahtarı + `.aab`, Play App Signing SHA-256'sı, mağaza formları, 12 testçiyle 14 gün kapalı test (ayrıntı aşağıda).
 - [ ] Gizlilik, kullanım koşulları ve hesap silme metinlerini onaylamak.
 - [x] ~~Cloudflare'de `ERROR_DIGEST_TO` gizlisi (haftalık hata özeti).~~ (tanımlı: özet maili geliyor — 2026-11-09)
-- [ ] Supabase → Auth: en az 8 karakter şifre, "Secure password change" ve "Secure email change".
+- [x] ~~Supabase → Auth: en az 8 karakter şifre ve "Secure email change"~~ (2026-11-09; şifre: küçük/büyük harf, rakam, sembol; "Require current password" açık). **"Secure password change" bilerek kapalı:** 24 saatten eski oturumda e-posta ile yeniden doğrulama (nonce) ister, uygulama bu akışı desteklemiyor.
 - [ ] Gerçek cihaz denemeleri: Safari mikrofon, iki telefonla canlı düello, push ve e-posta hatırlatmaları.
 - [x] ~~**Eşitlemeyi Supabase'e taşımak**~~ (2026-11-09: `0002` + `0005` çalıştı, kontrol sorgusu üç `true`; sahibinin verisi `sync_parts`'ta, öbür iki hesabın R2'de eşitleme verisi yoktu).
 - [x] ~~**Arkadaşlar, listeler, hatırlatmalar**~~ (2026-11-09: `tables` işareti yazıldı; R2'deki 2 kart tabloda, takip/liste/hatırlatma dosyası yoktu). R2 artık bunlar için okunmuyor.
-- [ ] Supabase güvenlik denetimi (2026-11-09): Authentication → Settings'te sızdırılmış şifre koruması (HaveIBeenPwned) kapalı. `handle_new_user` RPC ile çağrılabilir görünüyor (tetikleyici, çağrı reddedilir; istenirse `revoke execute … from anon, authenticated`).
+- Supabase güvenlik denetimi (2026-11-09): sızdırılmış şifre koruması (HaveIBeenPwned) yalnızca Pro planda, ücretsiz planda açılamıyor. `handle_new_user` RPC ile çağrılabilir görünüyor (tetikleyici, çağrı reddedilir; istenirse `revoke execute … from anon, authenticated`).
+- [x] ~~Dış gözcü~~ (2026-11-09): UptimeRobot `diloloji.com`, `/api/health`, `/api/push?mail=status`, `/hakkinda` (5 dk).
 
 ## Açık işler: Android uygulaması ve telefon testleri (2026-10-28)
 Sahibi Diloloji'yi **kişisel** bir Google Play hesabıyla Android uygulaması (TWA) olarak yayınlamak istiyor; iOS sonraya kaldı. Ayrıntılar: `android/README.md` ve aşağıdaki "Android uygulaması, TWA" ve "Şikâyet ve engelleme" notları. Bir maddeyi bitiren burada üstünü çizsin (`~~…~~`) ve tarih yazsın.
@@ -43,7 +44,7 @@ Sahibi Diloloji'yi **kişisel** bir Google Play hesabıyla Android uygulaması (
 
 **Sahibinin yapacakları (ajan yapamaz):**
 - [ ] #647 ve #649'daki metinleri (gizlilik, hesap silme, kullanım koşulları) okuyup onaylamak.
-- [ ] Cloudflare'de `OWNER_EMAIL` Worker gizlisinin tanımlı olduğunu doğrulamak (şikâyet mailleri ve yeni kayıt bildirimi bunu kullanır; yoksa şikâyetler yalnızca R2'de `reports/` altında birikir).
+- [x] ~~Cloudflare'de `OWNER_EMAIL` Worker gizlisinin tanımlı olduğunu doğrulamak~~ (tanımlı — 2026-11-09) (şikâyet mailleri ve yeni kayıt bildirimi bunu kullanır; yoksa şikâyetler yalnızca R2'de `reports/` altında birikir).
 - [ ] Google Play geliştirici hesabı (25 $, kimlik doğrulaması).
 - [ ] Yükleme anahtarı üretmek ve saklamak (`android/README.md` §2); `.aab` derlemek (§3: Bubblewrap ya da PWABuilder). **Claude ortamında derlenemez:** `dl.google.com` ağ politikasında kapalı, Android SDK inmiyor.
 - [ ] Play App Signing'i açıp SHA-256 parmak izini ajana vermek (Play Console → Uygulama bütünlüğü).
