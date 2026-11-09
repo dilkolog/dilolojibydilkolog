@@ -26,12 +26,14 @@ import { LanguageFacts, LevelBands, LiveReading, MemoryCurve, PlayingPhone, Stic
 export type LandingStart = 'create' | 'login'
 
 // The app's screens as photographed for each language (scripts/capture-landing-shots.ts): only the picture chosen is fetched.
-const SHOTS = import.meta.glob('../../assets/landing/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>
+const SHOT_FILES = import.meta.glob('../../assets/landing/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>
+// By file name ("today-fr.webp"): the glob's keys are paths relative to this file, which change when it moves.
+const SHOTS = Object.fromEntries(Object.entries(SHOT_FILES).map(([path, url]) => [path.slice(path.lastIndexOf('/') + 1), url]))
 type Screen = 'today' | 'session' | 'correct' | 'summary' | 'verbs' | 'guide' | 'path' | 'dialogue'
 const shotOf = (screen: Screen, language: TargetLanguage) => {
   // English has no conjugation tables in the lab: that picture keeps showing French.
   const lang = screen === 'verbs' && language === 'en' ? 'fr' : language
-  return SHOTS[`../assets/landing/${screen}-${lang}.webp`]
+  return SHOTS[`${screen}-${lang}.webp`]
 }
 
 /** The word tapped in the reading picture, shown beside the phone as just added. */
