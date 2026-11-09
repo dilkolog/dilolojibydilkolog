@@ -16,7 +16,13 @@ vi.mock('@vercel/blob', () => ({
     const b = blobs.get(path)
     return b ? { statusCode: 200, stream: new Response(b.bytes.slice()).body, blob: { etag: b.etag } } : null
   },
-  list: async ({ prefix }: { prefix: string }) => ({ blobs: [...blobs.keys()].filter((k) => k.startsWith(prefix)).map((pathname) => ({ pathname })), hasMore: false }),
+  // Paged like R2: `limit` files at a time, the cursor is where the next page starts.
+  list: async ({ prefix, cursor, limit }: { prefix: string; cursor?: string; limit?: number }) => {
+    const all = [...blobs.keys()].filter((k) => k.startsWith(prefix)).sort()
+    const from = Number(cursor ?? 0)
+    const to = limit ? from + limit : all.length
+    return { blobs: all.slice(from, to).map((pathname) => ({ pathname })), hasMore: to < all.length, cursor: to < all.length ? String(to) : undefined }
+  },
   del: async (path: string | string[]) => void (Array.isArray(path) ? path : [path]).forEach((p) => blobs.delete(p)),
 }))
 const sent: string[] = []
@@ -68,15 +74,18 @@ async function fakeRest(input: string, init: RequestInit = {}): Promise<Response
     return Response.json(found.map((r) => ({ ...r })))
   }
   if (method === 'POST') {
-    const row = JSON.parse(String(init.body)) as Row
+    const body = JSON.parse(String(init.body)) as Row | Row[]
     const conflict = q.get('on_conflict')?.split(',')
-    const same = conflict ? table.find((r) => clash(name, r, row, conflict)) : undefined
-    if (same) {
-      if (prefer.includes('merge-duplicates')) Object.assign(same, row)
-      return new Response(null, { status: 201 })
+    // An array is one statement: a unique violation anywhere fails the whole insert.
+    for (const row of Array.isArray(body) ? body : [body]) {
+      const same = conflict ? table.find((r) => clash(name, r, row, conflict)) : undefined
+      if (same) {
+        if (prefer.includes('merge-duplicates')) Object.assign(same, row)
+        continue
+      }
+      if (table.some((r) => clash(name, r, row))) return Response.json({ code: '23505' }, { status: 409 })
+      table.push({ ...row })
     }
-    if (table.some((r) => clash(name, r, row))) return Response.json({ code: '23505' }, { status: 409 })
-    table.push({ ...row })
     return new Response(null, { status: 201 })
   }
   const hit = table.filter((r) => matches(r, q))
@@ -114,6 +123,27 @@ const setBlob = (path: string, value: unknown) => void blobs.set(path, { bytes: 
 const friendsPost = (who: [string, string], body: unknown) => access.POST(new Request('https://app.test/api/access', { method: 'POST', headers: as(...who), body: JSON.stringify(body) }))
 const friendsView = async (who: [string, string]) => (await access.GET(new Request('https://app.test/api/access?friends=1&today=2026-10-15', { headers: as(...who) }))).json() as Promise<{ me: { code: string }; friends: { name: string; week: number }[] }>
 const adminPost = (body: unknown) => admin.POST(new Request('https://app.test/api/admin', { method: 'POST', headers: OWNER, body: JSON.stringify(body) }))
+type Step = { copied: number; next: unknown; at: string; wait?: number }
+const moveStep = async (from?: unknown) => (await (await adminPost({ action: 'move-tables', ...(from ? { from } : {}) })).json()) as Step
+/** As if SETTLE_MS had passed since the move started (and every instance had read the flag again). */
+const settle = () => {
+  const f = tables.server_flags!.find((r) => r.name === 'tables-moving')
+  if (f) f.value = { at: new Date(Date.now() - 60_000).toISOString() }
+  forgetTablesFlag()
+}
+/** The admin screen's loop: steps until `next` is null; gives how many records were copied. */
+async function moveAll(): Promise<number> {
+  let from: unknown
+  let copied = 0
+  for (let i = 0; i < 100; i++) {
+    const step = await moveStep(from)
+    copied += step.copied
+    if (step.wait) settle()
+    if (step.next === null) return copied
+    from = step.next
+  }
+  throw new Error('the move did not finish')
+}
 const adminState = async () => ((await (await admin.GET(new Request('https://app.test/api/admin', { headers: OWNER }))).json()) as { tables: string }).tables
 const words = [{ key: 'fr:maison', word: 'la maison', meaning: 'ev', at: '2026-10-12T10:00:00Z' }]
 const card = { name: 'Ali', avatar: 'fox', color: '#2f6de6', streak: 5, level: 6, days: { '2026-10-15': 40, '2026-10-12': 60 }, today: '2026-10-15' }
@@ -155,14 +185,15 @@ describe('server data in Supabase tables', () => {
     expect(tables.friend_cards).toEqual([])
     expect([...blobs.keys()].filter((k) => k.startsWith('friends/') || k.startsWith('share/') || k.startsWith('push/')).length).toBeGreaterThanOrEqual(7)
 
-    const moved = await adminPost({ action: 'move-tables' })
-    expect(await moved.json()).toMatchObject({ ok: true, shares: 1, reminders: 2 })
+    // Two cards (adding a friend gives Veli one too), two follows (a friendship goes both ways), a list, two reminders.
+    expect(await moveAll()).toBe(7)
+    expect([tables.friend_cards!.length, tables.friend_follows!.length]).toEqual([2, 2])
     expect(await adminState()).toBe('on')
     expect(tables.friend_cards).toContainEqual(expect.objectContaining({ sync_id: ALI, code: me.code, name: 'Ali', streak: 5 }))
     expect(tables.shared_lists).toEqual([expect.objectContaining({ id, published: true, published_by: 'ali', word_count: 1 })])
     expect(tables.reminders!.map((r) => r.kind).sort()).toEqual(['mail', 'push'])
     // Run again: nothing doubles.
-    await adminPost({ action: 'move-tables' })
+    await moveAll()
     expect([tables.shared_lists.length, tables.reminders!.length]).toEqual([1, 2])
 
     // After: the friend still sees Ali, the set still opens and is in the library, without Blob.
@@ -174,7 +205,7 @@ describe('server data in Supabase tables', () => {
   })
 
   it('after the move, friends, collaborative lists and reminders are written to the tables', async () => {
-    await adminPost({ action: 'move-tables' })
+    await moveAll()
 
     // Friends.
     const { me } = (await (await friendsPost(ALI_P, { action: 'friends-publish', ...card })).json()) as { me: { code: string } }
@@ -214,7 +245,7 @@ describe('server data in Supabase tables', () => {
   })
 
   it('a mail confirmation link and an account deletion reach the tables', async () => {
-    await adminPost({ action: 'move-tables' })
+    await moveAll()
     const key = 'd'.repeat(40)
     tables.reminders!.push({ key: `mail-${key}`, kind: 'mail', owner: ALI, email: 'ali@example.com', confirmed: false, record: { email: 'ali@example.com', owner: ALI, token: 'e'.repeat(24), tz: 0, studiedDay: null, streak: 0, plan: '', group: ALI } })
     // The link only shows a button; the button's POST confirms.
@@ -230,6 +261,90 @@ describe('server data in Supabase tables', () => {
     await deleteAccountData(ALI)
     expect(tables.reminders).toEqual([])
     expect(tables.friend_cards!.map((r) => r.sync_id)).toEqual([VELI])
+  })
+
+  it('a move starts by waiting: nothing is copied until every instance writes to the tables', async () => {
+    const { me } = (await (await friendsPost(ALI_P, { action: 'friends-publish', ...card })).json()) as { me: { code: string } }
+    expect(me.code).toBeTruthy()
+    const first = await moveStep()
+    expect(first).toMatchObject({ copied: 0, next: { prefix: 0 } })
+    expect(first.wait).toBeGreaterThan(0)
+    expect(await adminState()).toBe('moving')
+    // Too soon: still waiting, still nothing copied.
+    expect(await moveStep(first.next)).toMatchObject({ copied: 0, wait: expect.any(Number) })
+    expect(tables.friend_cards).toEqual([])
+    settle()
+    expect(await moveStep(first.next)).toMatchObject({ copied: 1, at: 'friends/card/' })
+    expect(tables.friend_cards).toHaveLength(1)
+  })
+
+  it('a move cut short loses nothing: reads find what is not copied yet, writes and removals reach both places', async () => {
+    vi.stubEnv('VAPID_PRIVATE_KEY', 'k')
+    vi.stubEnv('CRON_SECRET', 's')
+    // Before: Ali's card, the friendship, a published list, a collaborative list and a push subscription, in R2.
+    const { me } = (await (await friendsPost(ALI_P, { action: 'friends-publish', ...card })).json()) as { me: { code: string } }
+    await friendsPost(VELI_P, { action: 'friends-add', code: me.code })
+    const post = (body: unknown) => share.POST(new Request('https://app.test/api/share', { method: 'POST', headers: as(...ALI_P), body: JSON.stringify(body) }))
+    const { id: setId } = (await (await post({ kind: 'set', name: 'Ev', language: 'fr', words, publish: true, by: 'ali' })).json()) as { id: string }
+    const { id: collabId } = (await (await post({ kind: 'collab', name: 'Birlikte', language: 'fr', words })).json()) as { id: string }
+    const endpoint = 'https://fcm.googleapis.com/fcm/send/3'
+    await push.POST(new Request('https://app.test/api/push', { method: 'POST', headers: as(...ALI_P), body: JSON.stringify({ action: 'save', subscription: { endpoint, keys: { p256dh: 'p', auth: 'a' } }, tz: 0, hour: 9 }) }))
+
+    // The move starts and copies only the cards, then stops (a closed tab, a lost connection).
+    const first = await moveStep()
+    settle()
+    expect((await moveStep(first.next)).at).toBe('friends/card/')
+    expect([tables.friend_cards!.length, tables.friend_follows!.length, tables.shared_lists!.length, tables.reminders!.length]).toEqual([2, 0, 0, 0])
+
+    // Reads: the friendship (in R2 only) is there, the lists open, the library shows the set, the cron reminds.
+    expect((await friendsView(VELI_P)).friends).toEqual([expect.objectContaining({ name: 'Ali' })])
+    expect((await share.GET(new Request(`https://app.test/api/share?id=${setId}`))).status).toBe(200)
+    const lib = (await (await share.GET(new Request('https://app.test/api/share?library=1&language=fr', { headers: as(...VELI_P) }))).json()) as { items: { id: string }[] }
+    expect(lib.items.map((i) => i.id)).toEqual([setId])
+    expect(await (await CRON(new Request('https://app.test/api/cron-reminder?h=9', { headers: { authorization: 'Bearer s' } }))).json()).toMatchObject({ devices: 1, sent: 1 })
+
+    // A collaborative list still in R2 moves to the table on its first change; the R2 tag is honoured once.
+    const read = await share.GET(new Request(`https://app.test/api/share?id=${collabId}`))
+    const oldTag = read.headers.get('etag')!
+    const change = (tag: string) => share.PUT(new Request(`https://app.test/api/share?id=${collabId}`, { method: 'PUT', headers: { ...as(...VELI_P), 'if-match': tag }, body: JSON.stringify({ words: [...words, { key: 'fr:chat', word: 'le chat', meaning: 'kedi', at: '2026-10-13T10:00:00Z' }] }) }))
+    expect((await change(oldTag)).status).toBe(204)
+    expect(tables.shared_lists).toEqual([expect.objectContaining({ id: collabId, version: 1, word_count: 2 })])
+    expect((await change(oldTag)).status).toBe(412)
+    expect((await share.GET(new Request(`https://app.test/api/share?id=${collabId}`))).headers.get('etag')).toBe('"v1"')
+
+    // Writes go to the tables; a removal reaches both, so a file not copied yet cannot come back.
+    expect((await friendsPost(VELI_P, { action: 'friends-remove', code: me.code })).status).toBe(200)
+    expect((await friendsView(VELI_P)).friends).toEqual([])
+    expect((await share.DELETE(new Request(`https://app.test/api/share?id=${setId}`, { method: 'DELETE', headers: as(...ALI_P) }))).status).toBe(204)
+    expect(blobs.has(`share/${setId}.json`)).toBe(false)
+    await push.POST(new Request('https://app.test/api/push', { method: 'POST', body: JSON.stringify({ action: 'remove', endpoint }) }))
+    expect([...blobs.keys()].some((k) => k.startsWith('push/'))).toBe(false)
+
+    // The rest of the move: the removed things stay removed, the files are no longer read.
+    await moveAll()
+    expect(await adminState()).toBe('on')
+    expect(tables.shared_lists!.map((r) => r.id)).toEqual([collabId])
+    expect(tables.reminders).toEqual([])
+    expect((await friendsView(VELI_P)).friends).toEqual([])
+    for (const key of [...blobs.keys()]) if (/^(friends|share|push)\//.test(key)) blobs.delete(key)
+    expect((await friendsView(ALI_P)).me.code).toBe(me.code)
+  })
+
+  it('a long list of files is copied a page at a time', async () => {
+    for (let i = 0; i < 20; i++) setBlob(`push/${i.toString(16).padStart(40, '0')}.json`, { owner: ALI, tz: 0, hour: 9, studiedDay: null, streak: 0, plan: '', group: ALI, subscription: { endpoint: `https://fcm.googleapis.com/fcm/send/x${i}`, keys: { p256dh: 'p', auth: 'a' } } })
+    const pushSteps: number[] = []
+    let from: unknown
+    const first = await moveStep()
+    settle()
+    from = first.next
+    for (let i = 0; i < 20 && from; i++) {
+      const step = await moveStep(from)
+      if (step.at === 'push/') pushSteps.push(step.copied)
+      from = step.next
+    }
+    expect(pushSteps).toEqual([15, 5])
+    expect(tables.reminders).toHaveLength(20)
+    expect(await adminState()).toBe('on')
   })
 
   it('without 0003 the move is refused and Blob stays in use', async () => {

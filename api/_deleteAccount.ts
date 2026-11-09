@@ -2,7 +2,7 @@ import { del, list } from './_blob'
 import { approvedPath, clearAccessCache, rejectedPath, removeBlob, requestPath } from './_account.js'
 import { forgetFriends } from './_friends.js'
 import { blobReminders, tableReminders } from './_reminders.js'
-import { tablesOn } from './_tables.js'
+import { tablesInUse } from './_tables.js'
 
 async function deletePrefix(prefix: string, keep?: string): Promise<number> {
   let removed = 0
@@ -20,7 +20,7 @@ async function deletePrefix(prefix: string, keep?: string): Promise<number> {
 /** The account's reminder records, mail and push (their `owner` is the account), so no reminder goes out after it is gone. */
 async function deleteOwnMail(id: string): Promise<number> {
   // Both places: an account deleted soon after the move must leave nothing behind in either.
-  const stores = (await tablesOn()) ? [blobReminders, tableReminders] : [blobReminders]
+  const stores = (await tablesInUse()) ? [blobReminders, tableReminders] : [blobReminders]
   let removed = 0
   for (const store of stores) {
     const keys = await store.mailsOf(id, true)

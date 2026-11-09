@@ -1,5 +1,5 @@
 import { removeBlob, StorageError, writeJson } from './_account.js'
-import { eq, inboxTableOn, rows, tablesOn, write } from './_tables.js'
+import { eq, inboxTableOn, rows, tablesInUse, write } from './_tables.js'
 import { handleOf, handleOfPath, releaseHandle, requestsPath } from './_friendHandles.js'
 import { type InboxItem, clearInbox, inboxOf, inboxPath } from './_friendInbox.js'
 import { blobFriends, friendStore, readJson, tableFriends } from './_friendStore.js'
@@ -77,7 +77,7 @@ export function cleanCard(body: Record<string, unknown>, today: string): Omit<Fr
 export async function resolveAccountName(id: string): Promise<string | null> {
   if (!id) return null
   try {
-    if (await tablesOn()) {
+    if (await tablesInUse()) {
       const keyRows = await rows<{ username: string | null }>(`sync_keys?sync_id=${eq(id)}&select=username`)
       if (keyRows[0]?.username?.trim()) return keyRows[0].username.trim()
     }
@@ -298,7 +298,7 @@ export async function forgetFriends(id: string): Promise<void> {
   await Promise.all([removeBlob(handleOfPath(id), true), removeBlob(requestsPath(id), true), removeBlob(blockedPath(id), true)])
   // Not swallowed: a deletion that left the messages behind must fail (and can be tried again).
   if (await inboxTableOn()) await write(`friend_inbox?sync_id=${eq(id)}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } })
-  await Promise.all([blobFriends.forget(id), removeBlob(inboxPath(id), true), (await tablesOn()) ? tableFriends.forget(id) : Promise.resolve()])
+  await Promise.all([blobFriends.forget(id), removeBlob(inboxPath(id), true), (await tablesInUse()) ? tableFriends.forget(id) : Promise.resolve()])
 }
 
 export * from './_friendInbox.js'

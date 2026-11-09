@@ -3,33 +3,52 @@ import { StorageError } from './_account.js'
 
 /**
  * Supabase tables for what the server keeps besides the synced data (supabase/migrations/0003_server_tables.sql):
- * friend cards and follows, shared lists, push and mail reminders. They are used once the owner moved the
- * Blob files over (admin.ts 'move-tables', which writes the 'tables' flag); before that, and whenever
- * Supabase is not set up, everything stays in Blob as it was.
+ * friend cards and follows, shared lists, push and mail reminders. Three states, kept in server_flags:
+ * - 'blob': before the owner's move (and whenever Supabase is not set up), everything stays in the R2 files.
+ * - 'moving' (flag 'tables-moving', written when the move starts): writes go to the tables, reads look in the tables
+ *   first and then in the old files, lists are the two together, deletions reach both. The owner's move copies the
+ *   files over a few at a time (_moveTables.ts), so a move cut short loses nothing.
+ * - 'table' (flag 'tables', written when the copying has finished): the old files are no longer read.
  */
+export type TablesMode = 'blob' | 'moving' | 'table'
 
-/** How long a server instance trusts its answer about the flag: after a move, the others follow within this. */
-const FLAG_MS = 15_000
-let flag: { on: boolean; until: number } | null = null
+/** How long a server instance trusts its answer about the flags: after a change, the others follow within this. */
+export const FLAG_MS = 15_000
+let flag: { mode: TablesMode; movingSince: number | null; until: number } | null = null
 
 export const forgetTablesFlag = () => void (flag = null)
 
-/** Whether friends, shares and reminders are read from and written to the tables. */
-export async function tablesOn(): Promise<boolean> {
-  if (!supabaseOn()) return false
-  if (flag && flag.until > Date.now()) return flag.on
-  let on = false
+async function readFlags(): Promise<{ mode: TablesMode; movingSince: number | null }> {
+  const res = await rest('server_flags?name=in.(tables,tables-moving)&select=name,value')
+  // A missing table (0003 not run yet) reads as no flags.
+  if (!res.ok) return { mode: 'blob', movingSince: null }
+  const found = (await res.json()) as { name: string; value: unknown }[]
+  if (found.some((f) => f.name === 'tables')) return { mode: 'table', movingSince: null }
+  const moving = found.find((f) => f.name === 'tables-moving')
+  if (!moving) return { mode: 'blob', movingSince: null }
+  const at = Date.parse(String((moving.value as { at?: string } | null)?.at ?? ''))
+  return { mode: 'moving', movingSince: Number.isFinite(at) ? at : 0 }
+}
+
+/** Which of the three states the server data is in. */
+export async function tablesMode(): Promise<TablesMode> {
+  if (!supabaseOn()) return 'blob'
+  if (flag && flag.until > Date.now()) return flag.mode
   try {
-    const res = await rest('server_flags?name=eq.tables&select=name')
-    // A missing table (0003 not run yet) reads as off, like a missing flag.
-    on = res.ok && ((await res.json()) as unknown[]).length > 0
+    const read = await readFlags()
+    flag = { ...read, until: Date.now() + FLAG_MS }
   } catch {
     // Supabase unreachable: keep the last answer if there was one, else Blob.
-    on = flag?.on ?? false
+    flag = { mode: flag?.mode ?? 'blob', movingSince: flag?.movingSince ?? null, until: Date.now() + FLAG_MS }
   }
-  flag = { on, until: Date.now() + FLAG_MS }
-  return on
+  return flag.mode
 }
+
+/** Whether friends, shares and reminders live in the tables only (the move has finished). */
+export const tablesOn = async (): Promise<boolean> => (await tablesMode()) === 'table'
+
+/** Whether the tables may hold any of it (moving or moved): a deletion must reach them. */
+export const tablesInUse = async (): Promise<boolean> => (await tablesMode()) !== 'blob'
 
 /** The friends' inbox has its own switch: migration 0004 creates its table and writes the 'inbox' flag. */
 let inboxFlag: { on: boolean; until: number } | null = null
@@ -51,11 +70,21 @@ export async function inboxTableOn(): Promise<boolean> {
   return on
 }
 
-/** Sets the flag (the move is under way or done): from now on this instance uses the tables. */
-export async function setTablesFlag(): Promise<void> {
-  const res = await rest('server_flags?on_conflict=name', { method: 'POST', headers: { prefer: 'resolution=merge-duplicates,return=minimal' }, body: JSON.stringify({ name: 'tables', value: true }) })
+async function setFlag(name: string, value: unknown): Promise<void> {
+  const res = await rest('server_flags?on_conflict=name', { method: 'POST', headers: { prefer: 'resolution=merge-duplicates,return=minimal' }, body: JSON.stringify({ name, value }) })
   if (!res.ok) throw new StorageError(`supabase ${res.status}`)
-  flag = { on: true, until: Date.now() + FLAG_MS }
+}
+
+/** The move starts: from now on (on the other instances within FLAG_MS) writes go to the tables. */
+export async function startMoving(now = Date.now()): Promise<void> {
+  await setFlag('tables-moving', { at: new Date(now).toISOString() })
+  flag = { mode: 'moving', movingSince: now, until: Date.now() + FLAG_MS }
+}
+
+/** The copying has finished: the old files are no longer read. */
+export async function finishMoving(): Promise<void> {
+  await setFlag('tables', true)
+  flag = { mode: 'table', movingSince: null, until: Date.now() + FLAG_MS }
 }
 
 /** A REST call whose failure is a storage failure (the endpoints answer 502, the app tries again later). */
@@ -88,12 +117,14 @@ export const upsert = (name: string, conflict: string, row: unknown, ignore = fa
 
 export const eq = (v: string) => `eq.${encodeURIComponent(v)}`
 
-/** For the owner's card: Supabase not set up, 0003 not run, ready to move, or moved. */
-export async function tablesState(): Promise<'off' | 'missing' | 'ready' | 'on'> {
-  if (!supabaseOn()) return 'off'
-  const res = await table('server_flags?name=eq.tables&select=name')
-  if (!res.ok) return res.status === 404 ? 'missing' : 'off'
-  const on = ((await res.json()) as unknown[]).length > 0
-  flag = { on, until: Date.now() + FLAG_MS }
-  return on ? 'on' : 'ready'
+/** For the owner's card: Supabase not set up, 0003 not run, ready to move, being moved (since when), or moved. */
+export async function tablesState(): Promise<{ state: 'off' | 'missing' | 'ready' | 'moving' | 'on'; since?: number }> {
+  if (!supabaseOn()) return { state: 'off' }
+  const res = await table('server_flags?select=name&limit=1')
+  if (!res.ok) return { state: res.status === 404 ? 'missing' : 'off' }
+  const read = await readFlags()
+  flag = { ...read, until: Date.now() + FLAG_MS }
+  if (read.mode === 'table') return { state: 'on' }
+  if (read.mode === 'moving') return { state: 'moving', since: read.movingSince ?? 0 }
+  return { state: 'ready' }
 }
