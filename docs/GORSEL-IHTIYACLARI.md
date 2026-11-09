@@ -12,6 +12,8 @@ Zayıf yerler üç türlü:
 2. **Eski üslupta kalan tek çizim:** Hikaye'nin boş durumu hâlâ ince çizgili SVG defter. Yanındaki her şey Monki sahnesi.
 3. **Hazır ama kullanılmayan 9 çizim:** `lang-en/fr/es` (dil kartlarındaki `lang-monki-*`ın ikinci takımı), `onb-map`, `onb-plant`, `celebration-confetti`, `game-twins`, `empty-search`, `share-card-story`. Bunlar için yeni çizim gerekmez; yerlerine koymak ya da silmek benim işim (aşağıda B).
 
+> **ChatGPT'ye verilecek hazır görev dosyası:** [`docs/chatgpt/GORSEL-GOREVLERI.md`](chatgpt/GORSEL-GOREVLERI.md) ve referans görseli `docs/chatgpt/monki-referans.jpg`. Aşağıdaki A bölümünün kendi başına okunur hâli.
+
 ## ChatGPT'ye verilecek ortak üslup
 
 Her istemin başına bu blok eklenir. Tutarlılık için istemle birlikte mevcut üç çizimi **referans görsel** olarak sohbete yükle: `src/assets/art/monki-wave.webp`, `src/assets/art/head-games.webp`, `src/assets/art/scene-together.webp`.
