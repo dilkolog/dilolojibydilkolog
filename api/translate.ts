@@ -13,7 +13,7 @@
 
 import { accountOf, requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
-import { DAILY_TRANSLATE_CHARS, quotaLeft, spendQuota } from './_quota.js'
+import { DAILY_TRANSLATE_CHARS, quotaRefund, quotaTake } from './_quota.js'
 import { limitOf } from './_settings.js'
 
 export { fromApp }
@@ -54,7 +54,10 @@ export async function GET(request: Request): Promise<Response> {
   if (!to || !(to in LANGS) || (from && !(from in LANGS)) || from === to) return json({ error: 'bad language' }, 400)
   // The account's daily allowance (none to count without accounts: local development).
   const account = await accountOf(request).catch(() => null)
-  if (account && !(await quotaLeft('translate', account, text.length, await limitOf('translateChars', DAILY_TRANSLATE_CHARS)))) return json({ error: 'daily_quota' }, 429)
+  // Taken before the call, in one step: requests sent at once cannot all slip under the line. Given back when DeepL fails.
+  const takenAt = Date.now()
+  if (account && !(await quotaTake('translate', account, text.length, await limitOf('translateChars', DAILY_TRANSLATE_CHARS), undefined, takenAt))) return json({ error: 'daily_quota' }, 429)
+  const giveBack = async () => void (account && (await quotaRefund('translate', account, text.length, undefined, takenAt)))
 
   const res = await fetch(`${endpoint(key)}/v2/translate`, {
     method: 'POST',
@@ -63,14 +66,17 @@ export async function GET(request: Request): Promise<Response> {
     signal: AbortSignal.timeout(10000),
   }).catch(() => null)
   // 456: this month's characters are used up; 429: too many at once. Both say "later", not "broken".
+  if (!res?.ok) await giveBack()
   if (!res) return json({ error: 'unavailable' }, 502)
   if (res.status === 456) return json({ error: 'quota' }, 429)
   if (res.status === 429) return json({ error: 'busy' }, 429)
   if (!res.ok) return json({ error: 'unavailable' }, 502)
-  const out = (await res.json()) as { translations?: { text: string }[] }
+  const out = (await res.json().catch(() => ({}))) as { translations?: { text: string }[] }
   const translation = out.translations?.[0]?.text?.trim()
-  if (!translation) return json({ error: 'unavailable' }, 502)
-  if (account) await spendQuota('translate', account, text.length)
+  if (!translation) {
+    await giveBack()
+    return json({ error: 'unavailable' }, 502)
+  }
   // The same sentence translates the same way: the browser keeps it (private: a shared cache would hand it to callers who were never approved).
   return json({ translation }, 200, 'private, max-age=31536000')
 }

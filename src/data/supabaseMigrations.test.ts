@@ -72,6 +72,23 @@ describe('Supabase migrations', () => {
     expect((await db.query<{ words: number }>(`select words from public.people`)).rows).toHaveLength(1)
   }, 60_000)
 
+  it('replacing a media file is held to the person’s total, like adding one (0005 and 0013)', async () => {
+    const { db } = await run(FILES)
+    const id = '33333333-3333-3333-3333-333333333333'
+    await db.exec(`insert into auth.users (id, email) values ('${id}', 'm@b.c'); update public.profiles set approved = true where user_id = '${id}';`)
+    await db.exec(`grant usage on schema storage to authenticated; grant select, insert, update on storage.objects to authenticated; grant usage on schema public to authenticated; grant select on public.profiles to authenticated;`)
+    const as = (sql: string) => db.exec(`select set_config('request.jwt.claim.sub', '${id}', false); set role authenticated; ${sql}; reset role;`).finally(() => db.exec('reset role'))
+    await as(`insert into storage.objects (bucket_id, name, metadata) values ('media', '${id}/a.json', '{"size": 1000}'), ('media', '${id}/b.json', '{"size": 1000}')`)
+    // Under the line a file may grow; once the total is past it, nothing may be replaced any more.
+    await as(`update storage.objects set metadata = '{"size": 199999999}' where name = '${id}/a.json'`)
+    await expect(as(`update storage.objects set metadata = '{"size": 6000000}' where name = '${id}/b.json'`)).rejects.toThrow(/row-level security/)
+    await expect(as(`insert into storage.objects (bucket_id, name, metadata) values ('media', '${id}/c.json', '{"size": 10}')`)).rejects.toThrow(/row-level security/)
+    // 0002 run again alone drops the rule, 0005 after it brings it back (the order docs/SUPABASE.md asks for).
+    const again = await run([...FILES, '0002_sync_data.sql', '0005_storage_limits.sql'])
+    const rule = (await again.db.query<{ rule: string }>(`select with_check as rule from pg_policies where tablename = 'objects' and policyname = 'own media update'`)).rows[0]!.rule
+    expect(rule).toMatch(/my_media_usage/)
+  }, 60_000)
+
   it('the sign-up trigger cannot be called through the API, and still makes the profile when a user is created', async () => {
     const { db } = await run(FILES)
     const can = async (role: string) => (await db.query<{ ok: boolean }>(`select has_function_privilege('${role}', 'public.handle_new_user()', 'execute') as ok`)).rows[0]!.ok

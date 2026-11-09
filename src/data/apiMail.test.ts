@@ -205,8 +205,16 @@ describe('the links in the mails', () => {
   it('unsubscribe deletes the address, from a page and from a mail client’s one-click POST', async () => {
     await post({ action: 'email', email: EMAIL, ...state })
     const token = linkOf(mails[0].text, 'u')
-    expect((await get(`u=${token}`)).status).toBe(200)
+    // Opening the link only shows the button (a mail scanner opens every link); the button's POST deletes.
+    const opened = await get(`u=${token}`)
+    expect(opened.status).toBe(200)
+    expect(await opened.text()).toContain(`action="/api/push?u=${token}&amp;page=1"`)
+    expect(blobs.size).toBe(1)
+    const pressed = await POST(new Request(`https://app.test/api/push?u=${token}&page=1`, { method: 'POST' }))
+    expect(pressed.status).toBe(200)
+    expect(pressed.headers.get('content-type')).toContain('text/html')
     expect(blobs.size).toBe(0)
+    expect((await POST(new Request(`https://app.test/api/push?u=${token}&page=1`, { method: 'POST' }))).status).toBe(404)
     await post({ action: 'email', email: EMAIL, ...state })
     const second = linkOf(mails[1].text, 'u')
     const res = await POST(new Request(`https://app.test/api/push?u=${second}`, { method: 'POST', body: 'List-Unsubscribe=One-Click' }))

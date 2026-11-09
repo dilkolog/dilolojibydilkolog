@@ -9,7 +9,7 @@ vi.mock('@vercel/blob', () => ({
   del: async () => undefined,
 }))
 
-const { quotaLeft, quotaTake, quotaUsed, spendQuota, pruneCounters, resetQuota, resetCounterTable } = await import('../../api/_quota')
+const { quotaLeft, quotaRefund, quotaTake, quotaUsed, spendQuota, pruneCounters, resetQuota, resetCounterTable } = await import('../../api/_quota')
 
 const SB = 'https://proj.supabase.co'
 const ID = 'a'.repeat(64)
@@ -70,6 +70,18 @@ describe('daily counters in Supabase (migration 0009)', () => {
     expect(await quotaLeft('translate', ID, 1, 1000, undefined, NOON + 1000)).toBe(false)
     expect(await quotaUsed('translate', ID, undefined, NOON + 24 * 3600_000)).toBe(0)
     expect(blobs.size).toBe(0)
+  })
+
+  it('gives back what a take reserved, on the day of the take', async () => {
+    expect(await quotaTake('ai-cost', ID, 800, 1000, undefined, NOON)).toBe(true)
+    expect(await quotaTake('ai-cost', ID, 300, 1000, undefined, NOON)).toBe(false)
+    await quotaRefund('ai-cost', ID, 500, undefined, NOON)
+    expect(counters.get(`ai-cost|2026-11-04|${ID}`)).toBe(300)
+    expect(await quotaTake('ai-cost', ID, 300, 1000, undefined, NOON)).toBe(true)
+    await quotaRefund('ai-cost', ID, 0, undefined, NOON)
+    expect(counters.get(`ai-cost|2026-11-04|${ID}`)).toBe(600)
+    mode = 'down'
+    await expect(quotaRefund('ai-cost', ID, 5, undefined, NOON)).resolves.toBeUndefined()
   })
 
   it('takes in one step: requests at once never go past the line together', async () => {

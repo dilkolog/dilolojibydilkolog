@@ -19,7 +19,8 @@ import { supabaseOn } from './_supabase.js'
  * POST /api/push  { action: 'email', email, tz, studiedDay?, streak, due, hour, …, update?, resend? }
  * POST /api/push  { action: 'email-status' | 'email-remove', email }
  * GET  /api/push?mail=status   → { available, sandbox }  (sandbox: still Resend's test sender; mails go to spam)
- * GET  /api/push?c=<token>     → confirms the address (a page)       GET/POST ?u=<token> → turns the mails off
+ * GET  /api/push?c=<token> / ?u=<token> → a page with a button; its POST confirms the address / turns the mails off
+ *   (POST ?u=<token> without &page=1 is a mail client's one-click unsubscribe: 204)
  *
  * When SYNC_ALLOWED is set (see _allow.ts), only devices of a listed account or sync code (`group`)
  * may save a reminder, so strangers can't fill the store; removing one's own is always allowed.
@@ -175,8 +176,9 @@ async function handleGet(request: Request): Promise<Response> {
     // GET that confirmed would confirm an address its owner never saw. The confirmation is the button's POST.
     return page('Hatırlatma maillerini aç', 'Bu adrese günlük hatırlatma mailleri gelsin mi? Onaylamak için düğmeye dokun.', 200, here, `<form method="post" action="/api/push?c=${link.key}.${link.token}"><button type="submit" class="go">Onaylıyorum</button></form>`)
   }
-  await store.remove(mailRecordKey(link.key))
-  return page('Hatırlatmalar kapatıldı', 'Bu adrese artık mail göndermeyeceğiz ve adresin silindi.', 200, here)
+  // Like the confirmation: opening the link only shows the button (a mail scanner that opens every link in a mail
+  // would otherwise turn the reminders off). The button's POST, or a mail client's one-click POST, does it.
+  return page('Hatırlatma maillerini kapat', 'Bu adrese artık hatırlatma maili gelmesin mi? Kapatmak için düğmeye dokun.', 200, here, `<form method="post" action="/api/push?u=${link.key}.${link.token}&amp;page=1"><button type="submit" class="go">Mailleri kapat</button></form>`)
 }
 
 /** Unconfirmed addresses an account may have waiting at once. */
@@ -258,7 +260,13 @@ async function handlePost(request: Request): Promise<Response> {
   if (stop) {
     const store = await reminderStore()
     const record = await store.get(mailRecordKey(stop.key))
-    if (record && record.token === stop.token) await store.remove(mailRecordKey(stop.key))
+    const known = !!record && record.token === stop.token
+    if (known) await store.remove(mailRecordKey(stop.key))
+    // The page's own button asks for a page back; a mail client's one-click call gets a bare answer.
+    if (new URL(request.url).searchParams.get('page')) {
+      const here = siteFrom(request.url) ?? APP_URL
+      return known ? page('Hatırlatmalar kapatıldı', 'Bu adrese artık mail göndermeyeceğiz ve adresin silindi.', 200, here) : page('Bağlantı geçersiz', 'Bu bağlantının süresi dolmuş ya da adres zaten silinmiş.', 404, here)
+    }
     return new Response(null, { status: 204 })
   }
   const text = await request.text()

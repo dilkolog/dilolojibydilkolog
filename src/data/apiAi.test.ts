@@ -2,13 +2,14 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 vi.mock('../../api/_account.js', () => ({ requireApproved: vi.fn(async () => null), accountOf: vi.fn(async () => 'acct') }))
 vi.mock('../../api/_supabase.js', () => ({ aiLevelOf: vi.fn(async () => null), supabaseOn: () => false, rest: vi.fn() }))
-vi.mock('../../api/_quota.js', () => ({ quotaLeft: vi.fn(async () => true), quotaUsed: vi.fn(async () => 0), spendQuota: vi.fn(async () => {}), dailyQuotaReached: () => Response.json({ error: 'daily_quota' }, { status: 429 }) }))
+vi.mock('../../api/_quota.js', () => ({ quotaTake: vi.fn(async () => true), quotaRefund: vi.fn(async () => {}), spendQuota: vi.fn(async () => {}), dailyQuotaReached: () => Response.json({ error: 'daily_quota' }, { status: 429 }) }))
 
-import { POST, GET, refuse, costUnits, MAX_TOKENS } from '../../api/ai'
+import { POST, GET, refuse, costUnits, reserveUnits, MAX_TOKENS } from '../../api/ai'
 import { requireApproved } from '../../api/_account.js'
-import { quotaLeft, quotaUsed, spendQuota } from '../../api/_quota.js'
+import { quotaRefund, quotaTake, spendQuota } from '../../api/_quota.js'
 import { aiLevelOf } from '../../api/_supabase.js'
 import { resetRate } from '../../api/_rate.js'
+import { BUDGET_SHARE, DEFAULT_AI_LEVEL } from '../ai/levels'
 
 const good = { model: 'claude-sonnet-5-5', max_tokens: 1000, messages: [{ role: 'user', content: 'hi' }] }
 const ask = (body: unknown, headers: Record<string, string> = {}) =>
@@ -18,8 +19,8 @@ beforeEach(() => {
   resetRate()
   vi.restoreAllMocks()
   vi.mocked(requireApproved).mockResolvedValue(null)
-  vi.mocked(quotaLeft).mockResolvedValue(true)
-  vi.mocked(quotaUsed).mockResolvedValue(0)
+  vi.mocked(quotaTake).mockReset().mockResolvedValue(true)
+  vi.mocked(quotaRefund).mockClear()
   vi.mocked(spendQuota).mockClear()
   vi.mocked(aiLevelOf).mockResolvedValue(null)
   process.env.ANTHROPIC_API_KEY = 'sk-test-key'
@@ -66,7 +67,7 @@ describe('/api/ai', () => {
     expect((await POST(ask({ ...good, model: 'claude-fake' }))).status).toBe(400)
     await POST(ask(good, { 'anthropic-beta': 'x; injected=1' }))
     expect(((upstream.mock.calls[0][1] as RequestInit).headers as Record<string, string>)['anthropic-beta']).toBeUndefined()
-    vi.mocked(quotaLeft).mockResolvedValue(false)
+    vi.mocked(quotaTake).mockResolvedValue(false)
     expect((await POST(ask(good))).status).toBe(429)
   })
 
@@ -88,13 +89,38 @@ describe('what a day may cost', () => {
     expect(costUnits('claude-opus-5-5', null)).toBe(0)
   })
 
-  it('spends the call and its money after a good answer, and stops once the day’s money is used', async () => {
-    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({ usage: { input_tokens: 10_000, output_tokens: 2_000 } }), { status: 200 }))
+  it('takes the call and an estimate of its money before asking, and settles the money from the answer', async () => {
+    const upstream = vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({ usage: { input_tokens: 10_000, output_tokens: 2_000 } }), { status: 200 }))
     expect((await POST(ask(good))).status).toBe(200)
-    expect(spendQuota).toHaveBeenCalledWith('ai', 'acct', 1)
-    expect(spendQuota).toHaveBeenCalledWith('ai-cost', 'acct', expect.any(Number))
-    vi.mocked(quotaUsed).mockResolvedValue(10_000_000)
+    const model = (good as { model: string }).model
+    const reserved = reserveUnits(model, JSON.stringify(good).length, (good as { max_tokens: number }).max_tokens)
+    const real = costUnits(model, { input_tokens: 10_000, output_tokens: 2_000 })
+    expect(quotaTake).toHaveBeenCalledWith('ai', 'acct', 1, expect.any(Number), undefined, expect.any(Number))
+    // The estimate may sit on top of the budget: the line is "nothing more once the day's money is used up".
+    const cost = vi.mocked(quotaTake).mock.calls.find((c) => c[0] === 'ai-cost')!
+    expect(cost[2]).toBe(reserved)
+    expect(cost[3]).toBe(Math.round(0.75 * 10_000 * BUDGET_SHARE[DEFAULT_AI_LEVEL]) + reserved)
+    expect(real).toBeGreaterThan(reserved)
+    expect(spendQuota).toHaveBeenCalledWith('ai-cost', 'acct', real - reserved, undefined, expect.any(Number))
+    // The day's money used up: refused before Anthropic is asked, and the call it took is given back.
+    upstream.mockClear()
+    vi.mocked(quotaTake).mockImplementation(async (name) => name !== 'ai-cost')
     expect((await POST(ask(good))).status).toBe(429)
+    expect(upstream).not.toHaveBeenCalled()
+    expect(quotaRefund).toHaveBeenCalledWith('ai', 'acct', 1, undefined, expect.any(Number))
+  })
+
+  it('gives the call and its money back when Anthropic did not answer well, and the rest of an estimate that was too high', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response('{"error":"overloaded"}', { status: 529 }))
+    expect((await POST(ask(good))).status).toBe(529)
+    expect(quotaRefund).toHaveBeenCalledWith('ai', 'acct', 1, undefined, expect.any(Number))
+    expect(quotaRefund).toHaveBeenCalledWith('ai-cost', 'acct', expect.any(Number), undefined, expect.any(Number))
+    expect(spendQuota).not.toHaveBeenCalled()
+    vi.mocked(quotaRefund).mockClear()
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({ usage: { input_tokens: 1, output_tokens: 1 } }), { status: 200 }))
+    expect((await POST(ask(good))).status).toBe(200)
+    expect(vi.mocked(quotaRefund).mock.calls.filter((c) => c[0] === 'ai')).toHaveLength(0)
+    expect(vi.mocked(quotaRefund).mock.calls.filter((c) => c[0] === 'ai-cost')).toHaveLength(1)
   })
 })
 
@@ -132,7 +158,9 @@ describe('what the owner opened for an account (profiles.ai_level)', () => {
   it('the day’s money is shared out by level: a smaller level stops sooner', async () => {
     ok()
     vi.mocked(aiLevelOf).mockResolvedValue('kelime')
-    vi.mocked(quotaUsed).mockResolvedValue(Math.round(0.75 * 10_000 * 0.2))
+    // The account has used a fifth of the whole day's money: the take passes only when the level's share is larger.
+    const used = Math.round(0.75 * 10_000 * 0.2) + 1
+    vi.mocked(quotaTake).mockImplementation(async (name, _id, amount, max) => name !== 'ai-cost' || used + amount <= max)
     expect((await POST(ask(good, { 'x-ai-feature': 'word_fill' }))).status).toBe(429)
     vi.mocked(aiLevelOf).mockResolvedValue('tam')
     expect((await POST(ask(good, { 'x-ai-feature': 'word_fill' }))).status).toBe(200)

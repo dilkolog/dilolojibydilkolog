@@ -13,7 +13,7 @@
  */
 import { accountOf, requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
-import { dailyQuotaReached, DAILY_TTS_CHARS, overDaily, quotaLeft, spendQuota } from './_quota.js'
+import { dailyQuotaReached, DAILY_TTS_CHARS, overDaily, quotaRefund, quotaTake } from './_quota.js'
 import { overLimit, tooMany } from './_rate.js'
 import { limitOf } from './_settings.js'
 
@@ -96,7 +96,10 @@ async function speak(request: Request): Promise<Response> {
   if (!text || text.length > MAX_TTS_CHARS || !isLang(body?.language) || !validVoice(body.voice, body.language)) return json({ error: 'bad request' }, 400)
   const rate = typeof body?.rate === 'number' && Number.isFinite(body.rate) ? Math.min(2, Math.max(0.25, body.rate)) : 1
   const account = await accountOf(request).catch(() => null)
-  if (account && !(await quotaLeft('tts', account, text.length, await limitOf('ttsChars', DAILY_TTS_CHARS)))) return dailyQuotaReached()
+  // Taken before the call, in one step (requests sent at once cannot all slip under the line); given back when Google fails.
+  const takenAt = Date.now()
+  if (account && !(await quotaTake('tts', account, text.length, await limitOf('ttsChars', DAILY_TTS_CHARS), undefined, takenAt))) return dailyQuotaReached()
+  const giveBack = async () => void (account && (await quotaRefund('tts', account, text.length, undefined, takenAt)))
 
   const res = await fetch('https://texttospeech.googleapis.com/v1/text:synthesize', {
     method: 'POST',
@@ -104,6 +107,7 @@ async function speak(request: Request): Promise<Response> {
     body: JSON.stringify({ input: { text }, voice: { languageCode: LANGS[body.language], name: body.voice }, audioConfig: { audioEncoding: 'MP3', speakingRate: rate } }),
     signal: AbortSignal.timeout(10000),
   }).catch(() => null)
+  if (!res?.ok) await giveBack()
   if (!res) return json({ error: 'unavailable' }, 502)
   if (res.status === 429) return json({ error: 'busy' }, 429)
   if (!res.ok) {
@@ -112,8 +116,10 @@ async function speak(request: Request): Promise<Response> {
     return json({ error: 'unavailable' }, 502)
   }
   const { audioContent } = (await res.json().catch(() => ({}))) as { audioContent?: string }
-  if (!audioContent) return json({ error: 'unavailable' }, 502)
-  if (account) await spendQuota('tts', account, text.length)
+  if (!audioContent) {
+    await giveBack()
+    return json({ error: 'unavailable' }, 502)
+  }
   const bytes = Uint8Array.from(atob(audioContent), (c) => c.charCodeAt(0))
   // The same text in the same voice sounds the same: the browser keeps it (private: a shared cache would reach callers who were never approved).
   return new Response(bytes, { headers: { 'content-type': 'audio/mpeg', 'cache-control': 'private, max-age=31536000' } })

@@ -145,6 +145,31 @@ export async function quotaTake(name: string, id: string, amount: number, max: n
   return true
 }
 
+/**
+ * Gives back what a take reserved (the call it was for failed, or cost less than the estimate). Pass the `now` of the
+ * take, so the refund lands on the same day's count. Never throws: a refund that fails only leaves the day a little short.
+ */
+export async function quotaRefund(name: string, id: string, amount: number, store = blobStore, now = Date.now()): Promise<void> {
+  if (!(amount > 0)) return
+  if (inTable(store, now)) {
+    try {
+      // counter_take with a negative amount lowers the day's count in one statement (the take before it made the row).
+      await counter<boolean>('counter_take', { p_name: name, p_subject: id, p_amount: -Math.floor(amount), p_max: Number.MAX_SAFE_INTEGER, p_day: today(now) }, now)
+      return
+    } catch (e) {
+      if (!(e instanceof Missing)) return
+    }
+  }
+  const path = pathOf(name, id, now)
+  try {
+    const used = Math.max(0, (await usedNow(path, store, now)) - amount)
+    known.set(path, { used, at: known.get(path)?.at ?? now })
+    await store.write(path, { used })
+  } catch {
+    // Left as it was.
+  }
+}
+
 /** Drops counters older than `keepDays` (the hourly job); nothing to do for the files, which are per day already. */
 export async function pruneCounters(keepDays = 120, now = Date.now()): Promise<number> {
   if (!inTable(blobStore, now)) return 0

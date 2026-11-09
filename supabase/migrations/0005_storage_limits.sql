@@ -83,4 +83,7 @@ drop policy if exists "own media update" on storage.objects;
 create policy "own media update" on storage.objects for update to authenticated
   using (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text)
   with check (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text
-    and exists (select 1 from public.profiles where user_id = auth.uid() and approved));
+    and exists (select 1 from public.profiles where user_id = auth.uid() and approved)
+    -- Replacing a file is held to the same total: without it a person could make small files and grow each to the
+    -- file limit afterwards, past the 200 MB (the same rule is in 0013 for projects that ran this file before it had it).
+    and (select u.files <= 3000 and u.bytes < 200000000 from public.my_media_usage() u));
