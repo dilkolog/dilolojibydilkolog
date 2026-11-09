@@ -30,7 +30,7 @@
 <span class="eyebrow">Gizlilik</span>
 <h1>Gizlilik politikası ve aydınlatma metni</h1>
 <p class="lead">Diloloji, yabancı dil öğrenmek için geliştirilmiş kişisel bir uygulamadır; web sitesi (diloloji.com) ve Android uygulaması aynı hizmettir. Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) uyarınca verilerinizin nerede tutulduğunu, ne için işlendiğini ve kimlerle paylaşıldığını açıklar.</p>
-<p class="updated">Son güncelleme: 4 Kasım 2026</p>
+<p class="updated">Son güncelleme: 9 Kasım 2026</p>
 <section class="summary" aria-labelledby="kisaca"><h2 id="kisaca">Kısaca</h2><ul>
 <li>Reklam yok, izleme pikseli ya da davranış takibi yok.</li>
 <li>Verileriniz satılmaz, pazarlama için kullanılmaz.</li>
@@ -48,11 +48,12 @@
 
 <h2 id="hesap"><span class="n">3</span>Hesabınızla birlikte tutulan veriler</h2>
 <ul class="points">
-<li><strong>Kimlik ve giriş</strong>E-posta adresiniz ve (şifreyle giriyorsanız) şifrenizin tek yönlü kriptografik özeti, kimlik doğrulama altyapımız Supabase’te saklanır. Google ile girişte Google’dan yalnızca adınız, e-posta adresiniz ve profil fotoğrafınız alınır; Google hesabınızın başka hiçbir verisine erişilmez.</li>
-<li><strong>Eşitleme verisi</strong>Kelimeleriniz, çalışma istatistikleriniz ve ayarlarınız hesabınıza bağlı olarak Supabase (Postgres) ve Cloudflare R2 depolarında tutulur. Aktarım her zaman şifreli bağlantıyla (HTTPS) yapılır, veriler sağlayıcıların şifreli depolarında durur. Satır düzeyinde güvenlik (RLS) kuralları sayesinde verilerinize yalnızca kendi oturumunuz erişebilir.</li>
+<li><strong>Kimlik ve giriş</strong>E-posta adresiniz ve (şifreyle giriyorsanız) şifrenizin tek yönlü kriptografik özeti, kimlik doğrulama altyapımız Supabase’te saklanır. Google ya da Facebook ile girişte o hizmetten yalnızca adınız, e-posta adresiniz ve profil fotoğrafınız alınır; hesabınızın başka hiçbir verisine (arkadaş listesi, gönderiler vb.) erişilmez ve sizin adınıza hiçbir şey paylaşılmaz.</li>
+<li><strong>Eşitleme verisi</strong>Kelimeleriniz, çalışma istatistikleriniz ve ayarlarınız hesabınıza bağlı olarak Supabase (Postgres) veritabanında tutulur; arkadaş kartları, paylaşılan listeler ve hatırlatma kayıtları da oradadır. Eski sürümden kalan kopyalar bir süre Cloudflare R2 depolamasında durur ve hesap silindiğinde onlar da silinir. Aktarım her zaman şifreli bağlantıyla (HTTPS) yapılır, veriler sağlayıcıların şifreli depolarında durur. Satır düzeyinde güvenlik (RLS) kuralları sayesinde verilerinize yalnızca kendi oturumunuz erişebilir.</li>
 <li><strong>Profil ve konum (isteğe bağlı)</strong>Profilinize bir şehir yazar ya da “Bul” düğmesine basarsanız, gökyüzü ve hava durumu teması için yaklaşık konum (yaklaşık 10 km’ye yuvarlanmış koordinat) profilinizle saklanır. Konum yalnızca “Bul”a dokunduğunuzda, tarayıcının izniyle bir kez alınır; arka planda konum toplanmaz.</li>
 <li><strong>Arkadaşlar (isteğe bağlı)</strong>Kullanıcı adınızla ya da davet bağlantınızla arkadaş olduğunuz kişiler yalnızca adınızı, avatarınızı, çalışma serinizi, seviyenizi ve son 14 günde hangi günler çalıştığınızı görür; XP’nizi gizlemeyi de seçebilirsiniz. Hangi kelimeleri çalıştığınız ve cevaplarınız başka kullanıcılara asla gösterilmez.</li>
 <li><strong>Paylaşılan listeler (isteğe bağlı)</strong>Bir kelime listesini bağlantıyla paylaşırsanız bağlantıyı bilenler, topluluk kütüphanesine eklerseniz tüm Diloloji kullanıcıları listeyi görebilir ve çalışabilir.</li>
+<li><strong>Teknik kayıtlar</strong>Sunucularımız (Cloudflare) her isteğin zamanını, adresini, IP adresinizi ve tarayıcı bilgisini hata ayıklama ve güvenlik için birkaç gün tutar; bu süre dolunca kendiliğinden silinir. Uygulamada beklenmeyen bir hata olursa hatanın adı ve kodun hangi satırında çıktığı kısa bir rapor olarak gönderilir. Bu rapordan tırnak içindeki metinler (bir kelime, bir cümle), e-posta adresleri, uzun sayılar ve adreslerin sorgu kısımları önceden silinir; raporlar hesabınıza bağlanmaz, yalnızca haftalık hata özetinde sayılır.</li>
 </ul>
 
 <h2 id="dis"><span class="n">4</span>Dış hizmetler ve açık veri kaynakları</h2>
@@ -66,6 +67,8 @@
 <li><strong>Openverse ve Pixabay</strong>Kelimelerinize resim ararken arama teriminiz (Pixabay’de, eklediyseniz kendi anahtarınız) gönderilir.</li>
 <li><strong>LanguageTool</strong>Yazdığınız bir metinde “Denetle”ye dokunduğunuzda o metin dilbilgisi ve yazım denetimi için gönderilir.</li>
 <li><strong>DeepL</strong>Cümle ve paragraf çevirilerinde metin DeepL’e iletilir. Çevrilen cümleler cihazınızdaki çeviri belleğinde saklanır; aynı cümle bir daha gönderilmez.</li>
+<li><strong>Cloudflare Turnstile (robot denetimi)</strong>Hesap açarken, giriş yaparken ve şifre yenilerken otomatik kayıtları engellemek için Cloudflare’in robot denetimi çalışır; tarayıcınızın bu iş için gereken teknik bilgileri Cloudflare’e gider. Çerez ya da reklam amaçlı izleme yapmaz.</li>
+<li><strong>Tarayıcının bildirim servisi</strong>Günlük hatırlatmaları açarsanız bildirim, tarayıcınızın ya da telefonunuzun kendi bildirim servisi (Google, Apple ya da Mozilla) üzerinden size ulaştırılır. Sunucuda bu cihazın bildirim adresi, saat diliminiz, hatırlatma saatiniz ve bildirimde gösterilen sayılar (seri, bekleyen tekrar, bir kelime sorusu) tutulur.</li>
 <li><strong>Resend (e-posta)</strong>Giriş doğrulama, şifre yenileme ve isteğe bağlı açtığınız hatırlatma ve haftalık özet mailleri için e-posta adresiniz kullanılır.</li>
 <li><strong>Anthropic Claude (yapay zekâ)</strong>Monki sohbeti, cümle değerlendirme, kelime doldurma, fotoğraftan kelime ve metin gibi özellikler yalnızca onaylı hesaplarda çalışır. Kullandığınızda ilgili metin (fotoğraftan kelime ve metinde seçtiğiniz küçültülmüş fotoğraf) Diloloji sunucusu üzerinden Anthropic’e iletilir. Sunucu içeriği saklamaz, yalnızca günlük kullanım sayısını hesabınıza bağlı tutar. Siz kullanmadıkça hiçbir şey gönderilmez.</li>
 <li><strong>Microsoft Azure Speech ve Google Cloud Text-to-Speech</strong>Telaffuz puanında kısa ses kaydınız, doğal seste okunacak metin Diloloji sunucusu üzerinden ilgili firmaya iletilir. Sunucu kaydı ve metni saklamaz, yalnızca günlük kullanım sayısını tutar. Üretilen ses cihazınızda önbelleğe alınır.</li>
@@ -81,7 +84,14 @@
 <p>Uygulama reklam kimliği kullanmaz; rehber gibi verilere erişmez, konumu yalnızca profilde “Bul”a bastığınızda ister.</p>
 
 <h2 id="aktarim"><span class="n">6</span>Yurt dışına veri aktarımı</h2>
-<p>Diloloji’nin güvenli ve kesintisiz çalışması için Cloudflare (içerik dağıtımı ve sunucular), Supabase (Frankfurt, AB veri merkezi) ve Resend (e-posta gönderimi) altyapıları kullanılır. Hizmeti kullanarak bu teknik zorunlu aktarımı kabul etmiş olursunuz.</p>
+<p>Diloloji’nin çalışması için kullanılan hizmetlerin sunucuları Türkiye dışındadır, bu yüzden verileriniz yurt dışına aktarılır:</p>
+<ul>
+<li><strong>Supabase</strong> (hesap, giriş ve eşitlenen veriler): veri merkezi Avustralya’da (Sidney).</li>
+<li><strong>Cloudflare</strong> (site, sunucular, R2 depolama, robot denetimi, e-posta yönlendirmesi): ABD merkezli, dünya genelindeki veri merkezleri.</li>
+<li><strong>Resend</strong> (e-posta gönderimi): ABD.</li>
+<li>Yalnızca ilgili özelliği kullandığınızda: <strong>DeepL</strong> (çeviri, Almanya), <strong>Anthropic</strong> (yapay zekâ, ABD), <strong>Microsoft Azure</strong> (telaffuz puanı), <strong>Google</strong> (doğal ses, Google ile giriş) ve <strong>Meta</strong> (Facebook ile giriş), ayrıca 4. bölümde sayılan açık veri kaynakları.</li>
+</ul>
+<p>Hizmeti kullanarak bu teknik zorunlu aktarımı kabul etmiş olursunuz.</p>
 
 <h2 id="yas"><span class="n">7</span>Yaş sınırı</h2>
 <p>Diloloji 13 yaş ve üzeri kullanıcılar için tasarlanmıştır. 13 yaşından küçükler uygulamayı yalnızca velisinin ya da yasal vasisinin gözetiminde ve izniyle kullanmalıdır.</p>
