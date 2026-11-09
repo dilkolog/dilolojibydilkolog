@@ -21,7 +21,7 @@ describe('Monki', () => {
   let root: ReturnType<typeof createRoot>
   const onSettings = vi.fn()
 
-  const render = (apiKey: string | null, needsApproval = false, extra: { inSession?: boolean; showButton?: boolean } = {}) =>
+  const render = (apiKey: string | null, needsApproval = false, extra: { inSession?: boolean; showButton?: boolean; onPractice?: () => void } = {}) =>
     act(() =>
       root.render(
         <AiContext.Provider value={{ apiKey, needsApproval }}>
@@ -123,8 +123,7 @@ describe('Monki', () => {
     expect(container.querySelector('.monki-save')).toBeNull()
   })
 
-  it('in a role-play with voice on, the other person\'s line is spoken; the microphone sends what was heard', async () => {
-    speech.canSpeak.mockReturnValue(true)
+  it('the microphone sends what was heard as a message', async () => {
     input.canListen.mockReturnValue(true)
     const finish = vi.fn()
     let handlers: { onFinal: (a: string[]) => void; onEnd?: () => void } | undefined
@@ -132,16 +131,9 @@ describe('Monki', () => {
       handlers = h
       return Object.assign(() => {}, { finish })
     })
-    monkiTurn.mockResolvedValue({ reply: 'Le serveur: Bonjour ! Que désirez-vous ?', say: 'Bonjour ! Que désirez-vous ?', suggestions: [] })
+    monkiTurn.mockResolvedValue({ reply: 'Très bien.', suggestions: [] })
     render('sk-test')
     openPanel()
-    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-modes .chip')].find((b) => b.textContent?.includes('Rol yap'))!.click())
-    expect(container.textContent).toContain('Sesli: açık')
-    await act(async () => container.querySelector<HTMLButtonElement>('.monki-scene')!.click())
-    await flush()
-    expect(speech.speak).toHaveBeenCalledWith('Bonjour ! Que désirez-vous ?', 'fr')
-    // The learner answers by voice: the heard sentence goes to Monki as a message.
-    monkiTurn.mockResolvedValue({ reply: 'Très bien.', say: 'Très bien.', suggestions: [] })
     act(() => container.querySelector<HTMLButtonElement>('.monki-mic')!.click())
     expect(input.listen).toHaveBeenCalledTimes(1)
     await act(async () => handlers!.onFinal(['Je voudrais un café']))
@@ -149,14 +141,22 @@ describe('Monki', () => {
     expect(monkiTurn.mock.calls.at(-1)![1].history.at(-1)).toEqual({ role: 'user', text: 'Je voudrais un café' })
   })
 
-  it('with voice off nothing is spoken', async () => {
+  it('with voice off the word to say is not read out', async () => {
     speech.canSpeak.mockReturnValue(true)
     localStorage.setItem('diloloji:monki-voice', 'off')
-    monkiTurn.mockResolvedValue({ reply: 'Bonjour', say: 'Bonjour', suggestions: [] })
-    render('sk-test')
+    monkiTurn.mockResolvedValue({ reply: 'Burun sesi…', say: 'rue', suggestions: [], remember: [] })
+    act(() =>
+      root.render(
+        <AiContext.Provider value={{ apiKey: 'sk-test', needsApproval: false }}>
+          <Monki language="fr" loadPronWords={async () => [{ word: 'rue', score: 41 }]} onSettings={onSettings} />
+        </AiContext.Provider>,
+      ),
+    )
     openPanel()
-    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-modes .chip')].find((b) => b.textContent?.includes('Rol yap'))!.click())
-    await act(async () => container.querySelector<HTMLButtonElement>('.monki-scene')!.click())
+    await flush()
+    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-modes .chip')].find((b) => b.textContent === 'Telaffuz')!.click())
+    expect(container.textContent).toContain('Sesli: kapalı')
+    act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
     await flush()
     expect(speech.speak).not.toHaveBeenCalled()
   })
@@ -233,20 +233,14 @@ describe('Monki', () => {
     expect(monkiTurn.mock.calls[0][1].mode).toBe('quiz')
   })
 
-  it('a role-play starts by choosing the scene, which goes along with every turn', async () => {
-    monkiTurn.mockResolvedValue({ reply: 'Bonjour!', suggestions: ['Un café, s’il vous plaît'] })
-    render('sk-test')
+  it('has no role-play of its own: a link opens Yaz & konuş, where the scenes are', async () => {
+    const onPractice = vi.fn()
+    render('sk-test', false, { onPractice })
     openPanel()
-    act(() => modeChip('Rol yap').click())
-    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-scene')].find((b) => b.textContent === 'Kafede sipariş vermek')!.click())
-    await flush()
-    const req = monkiTurn.mock.calls[0][1]
-    expect(req.mode).toBe('roleplay')
-    expect(req.scenario).toBe('Kafede sipariş vermek')
-    // The suggestions are things to say back; tapping one is a plain turn of the same scene.
-    act(() => container.querySelector<HTMLButtonElement>('.monki-chips .chip')!.click())
-    await flush()
-    expect(monkiTurn.mock.calls[1][1].scenario).toBe('Kafede sipariş vermek')
+    expect([...container.querySelectorAll('.monki-modes .chip')].map((c) => c.textContent)).not.toContain('Rol yap')
+    act(() => container.querySelector<HTMLButtonElement>('.monki-practice .link')!.click())
+    expect(onPractice).toHaveBeenCalled()
+    expect(container.querySelector('.monki-panel')).toBeNull()
   })
 
   it('the mistakes mode sends the recent mistakes', async () => {

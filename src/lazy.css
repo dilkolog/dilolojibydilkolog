@@ -2323,15 +2323,19 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .monki-chips-start .chip { flex: none; max-width: none; white-space: normal; overflow: visible; text-overflow: clip; }
 .monki-chips:empty { display: none; }
 .monki-chips .chip { font-size: var(--t-sm); padding: 0.25rem 0.75rem; text-align: left; }
-/* Role-play: the six scenes as picture cards, three to a row, kept short enough to leave the input in view. */
-.monki-scenes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.375rem; padding: 0 0.875rem 0.5rem; max-height: 15rem; overflow-y: auto; }
-.monki-scene {
-  display: grid; justify-items: center; gap: 0.25rem; padding: 0.375rem 0.25rem 0.5rem; border: 1px solid var(--rule); border-radius: var(--r-md);
-  background: var(--surface); color: var(--ink); font: inherit; font-size: var(--t-xs); line-height: 1.25; text-align: center; cursor: pointer;
+/* Yaz & konuş → Sohbet: the scenes as picture cards (a scene without a drawing is a card with its name only). */
+.chat-scenes { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(8.5rem, 100%), 1fr)); gap: 0.5rem; }
+.chat-scene {
+  display: grid; justify-items: center; align-content: start; gap: 0.25rem; padding: 0.5rem 0.375rem 0.625rem; border: 2px solid var(--rule); border-radius: var(--r-md);
+  background: var(--surface); color: var(--ink); font: inherit; font-size: var(--t-sm); font-weight: 600; line-height: 1.25; text-align: center; cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
 }
-.monki-scene:hover:not(:disabled), .monki-scene:focus-visible { border-color: var(--lang); background: var(--lang-soft); }
-.monki-scene:disabled { opacity: 0.5; cursor: default; }
-.monki-scene img { width: 100%; max-width: 4.5rem; aspect-ratio: 1; object-fit: contain; }
+.chat-scene:hover, .chat-scene:focus-visible { border-color: var(--lang); }
+.chat-scene[aria-pressed='true'] { border-color: var(--lang); background: var(--lang-soft); }
+.chat-scene img { width: 100%; max-width: 4.5rem; aspect-ratio: 1; object-fit: contain; }
+.chat-scene-text { padding-top: 0.25rem; }
+/* Monki: where role-play and goal-led practice live. */
+.monki-practice { margin: 0; padding: 0 0.875rem 0.5rem; color: var(--ink-soft); }
 .monki-form { display: flex; align-items: flex-end; gap: 0.5rem; padding: 0.625rem 0.75rem; border-top: 1px solid var(--rule); }
 .monki-form textarea { flex: 1; resize: none; max-height: 6rem; field-sizing: content; padding: 0.5rem 0.75rem; border: 2px solid var(--rule); border-radius: var(--r-md); background: var(--surface); color: var(--ink); font: inherit; }
 .monki-form textarea:focus-visible { outline: none; border-color: var(--lang); }
