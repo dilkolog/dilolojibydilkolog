@@ -26,11 +26,12 @@ Sahibi şimdilik altyapıyla değil, **içerik ve eğitim tarafıyla** (dersler,
 **Sahibinin yapacakları (bekliyor):**
 - [ ] Google Play: geliştirici hesabı, yükleme anahtarı + `.aab`, Play App Signing SHA-256'sı, mağaza formları, 12 testçiyle 14 gün kapalı test (ayrıntı aşağıda).
 - [ ] Gizlilik, kullanım koşulları ve hesap silme metinlerini onaylamak.
-- [ ] Cloudflare'de `ERROR_DIGEST_TO` gizlisi (haftalık hata özeti).
+- [x] ~~Cloudflare'de `ERROR_DIGEST_TO` gizlisi (haftalık hata özeti).~~ (tanımlı: özet maili geliyor — 2026-11-09)
 - [ ] Supabase → Auth: en az 8 karakter şifre, "Secure password change" ve "Secure email change".
 - [ ] Gerçek cihaz denemeleri: Safari mikrofon, iki telefonla canlı düello, push ve e-posta hatırlatmaları.
-- [ ] **Eşitlemeyi Supabase'e taşımak** (`docs/SUPABASE.md` 2. aşama): SQL Editor'de `0002_sync_data.sql`, **hemen ardından `0005_storage_limits.sql` yeniden** (yoksa kişi başı sınırlar kalkar), sonra kontrol sorgusu. Cihazlar kendiliğinden taşınır.
-- [ ] **Arkadaşlar, listeler, hatırlatmalar:** Yönetim → Sistem → "Taşımayı başlat" (adım adım, yarıda kalırsa sürdürülür).
+- [x] ~~**Eşitlemeyi Supabase'e taşımak**~~ (2026-11-09: `0002` + `0005` çalıştı, kontrol sorgusu üç `true`; sahibinin verisi `sync_parts`'ta, öbür iki hesabın R2'de eşitleme verisi yoktu).
+- [x] ~~**Arkadaşlar, listeler, hatırlatmalar**~~ (2026-11-09: `tables` işareti yazıldı; R2'deki 2 kart tabloda, takip/liste/hatırlatma dosyası yoktu). R2 artık bunlar için okunmuyor.
+- [ ] Supabase güvenlik denetimi (2026-11-09): Authentication → Settings'te sızdırılmış şifre koruması (HaveIBeenPwned) kapalı. `handle_new_user` RPC ile çağrılabilir görünüyor (tetikleyici, çağrı reddedilir; istenirse `revoke execute … from anon, authenticated`).
 
 ## Açık işler: Android uygulaması ve telefon testleri (2026-10-28)
 Sahibi Diloloji'yi **kişisel** bir Google Play hesabıyla Android uygulaması (TWA) olarak yayınlamak istiyor; iOS sonraya kaldı. Ayrıntılar: `android/README.md` ve aşağıdaki "Android uygulaması, TWA" ve "Şikâyet ve engelleme" notları. Bir maddeyi bitiren burada üstünü çizsin (`~~…~~`) ve tarih yazsın.
