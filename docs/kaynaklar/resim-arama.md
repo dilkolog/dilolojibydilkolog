@@ -7,7 +7,7 @@
 
 ## 1. Resim Arama Servisleri Karşılaştırma ve Canlı Doğrulama
 
-Uygulama kelime kartlarına görsel eklemek için üç katmanlı hibrit bir arama motoru (`src/data/imageSearch.ts`) ve harici arama köprüsü (`src/ui/ImagePicker.tsx`) kullanmaktadır:
+Uygulama kelime kartlarına görsel eklemek için üç katmanlı hibrit bir arama motoru (`src/data/imageSearch.ts`) ve harici arama köprüsü (`src/ui/words/ImagePicker.tsx`) kullanmaktadır:
 
 | Servis | API / Endpoint | Kimlik Doğrulama | CORS | Hız Sınırı (Rate Limit) | Lisans & Atıf Modeli |
 | :--- | :--- | :--- | :--- | :--- | :--- |

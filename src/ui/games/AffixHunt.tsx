@@ -11,8 +11,8 @@ import { db } from '../../data/instance'
 import { noteIn } from './logNote'
 import { loadPack } from '../../data/wordpack'
 import type { Pack } from '../../data/wordpackBuild'
-import { LANGUAGE_NAME, POS_NAME } from '../labels'
-import { sfx } from '../sounds'
+import { LANGUAGE_NAME, POS_NAME } from '../shared/labels'
+import { sfx } from '../shared/sounds'
 
 const note = noteIn(() => db.getAffixLog(), (log) => db.saveAffixLog(log))
 

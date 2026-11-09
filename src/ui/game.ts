@@ -26,7 +26,7 @@ import { dayMetrics, questStatus, type QuestStatus } from '../engine/quests'
 import { CORE_TENSES } from './verbs/labShared'
 import type { KelimeDB } from '../data/db'
 import { isRead } from '../engine/guideReview'
-import { loadPlacement } from './guidePlacementStore'
+import { loadPlacement } from './guide/guidePlacementStore'
 
 export interface GameState {
   xp: XpSummary

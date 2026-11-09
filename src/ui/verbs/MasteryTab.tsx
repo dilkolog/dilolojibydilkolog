@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ERROR_TEXT, type ErrorKind } from '../../engine/formDiagnosis'
 import { MASTERY_MAX, difficultItems, errorBreakdown, gardenVerbs, labKey, masteryLevel, plantStage, seenVerbs, tallyCells, verbMastery, weakestCell, weeklyProgress, type LabData, type WeekProgress, type MasteryLevel } from '../../engine/labProgress'
-import { Plant } from '../Plant'
+import { Plant } from '../home/Plant'
 import { subjectLabel, type Tense } from '../../engine/tenses'
 import { DRILL_TEXT, DRILLABLE, drillQueue } from './drills'
 import { FormRun, type RunCheck } from './ReviewTab'

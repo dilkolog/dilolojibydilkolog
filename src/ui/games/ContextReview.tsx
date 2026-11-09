@@ -3,9 +3,9 @@ import { GameResult } from './GameResult'
 import { recordPractice, type Props } from './shared'
 import { checkSlots, contextBank, contextItems, contextParts, contextRound, CONTEXT_ROUND, type ContextItem } from '../../engine/contextReview'
 import { createRng } from '../../engine/rng'
-import { EmptyState } from '../EmptyState'
-import { LANGUAGE_NAME } from '../labels'
-import { sfx } from '../sounds'
+import { EmptyState } from '../shared/EmptyState'
+import { LANGUAGE_NAME } from '../shared/labels'
+import { sfx } from '../shared/sounds'
 import { loadSources } from './sentenceSources'
 
 /**

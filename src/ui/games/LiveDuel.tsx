@@ -6,15 +6,15 @@ import { checkGrammar, filled, topicName } from '../../engine/grammar'
 import { roomLink, type RoomView, type SeriesView } from '../../engine/liveDuel'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
-import { LANGUAGE_NAME } from '../labels'
-import { sfx } from '../sounds'
+import { LANGUAGE_NAME } from '../shared/labels'
+import { sfx } from '../shared/sounds'
 import { duelComment } from '../../engine/duelComment'
 import { MonkiVerdict } from '../monki/MonkiVerdict'
 import { DuelSide } from './duelParts'
 import { noteIn } from './logNote'
 import { share } from './shareLink'
 import { useLiveRoom } from './useLiveRoom'
-import { NEW_ART } from '../drawnArt'
+import { NEW_ART } from '../shared/drawnArt'
 
 const LEVELS = ['B1', 'B2', 'C1'] as const
 const note = noteIn(() => db.getGrammarLog(), (log) => db.saveGrammarLog(log))

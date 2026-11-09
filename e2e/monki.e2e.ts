@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { aiRoute, approveAccount, openMonki, openScreen, overflow, startWithSamples } from './helpers'
+import { aiRoute, approveAccount, openMonki, openScreen, overflow, startWithSamples, gameCard } from './helpers'
 
 test('Monki: the button opens a chat that explains the key when there is none', async ({ page }) => {
   await startWithSamples(page)
@@ -118,8 +118,9 @@ test('games: with a key the mini podcast card is there (waiting for learned word
   })
   await page.reload()
   await openScreen(page, 'Oyunlar')
-  await expect(page.getByText('Mini podcast', { exact: true })).toBeVisible()
-  await expect(page.getByText('Arkadaşla düello', { exact: true })).toBeVisible()
+  // The cards sit under their purpose (Games shows one at a time): gameCard switches to "Tümü" when needed.
+  await expect((await gameCard(page, 'Mini podcast')).first()).toBeVisible()
+  await expect((await gameCard(page, 'Arkadaşla düello')).first()).toBeVisible()
   expect(await overflow(page)).toEqual([])
 })
 

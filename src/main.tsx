@@ -10,13 +10,13 @@ import '@fontsource/lexend/700.css'
 import './index.css'
 import './engine/conjugationData'
 import App from './App.tsx'
-import { RootBoundary } from './ui/RootBoundary'
-import { applyDensity } from './ui/density'
+import { RootBoundary } from './ui/shared/RootBoundary'
+import { applyDensity } from './ui/shared/density'
 import { watchForUpdates } from './ui/update'
-import { installFocusTrap } from './ui/focusTrap'
+import { installFocusTrap } from './ui/shared/focusTrap'
 import { installErrorReporting } from './data/errorReport'
-import { dropBootHero } from './ui/bootHero'
-import { reloadForNewVersion } from './ui/chunkError'
+import { dropBootHero } from './ui/home/bootHero'
+import { reloadForNewVersion } from './ui/shared/chunkError'
 
 applyDensity()
 watchForUpdates()

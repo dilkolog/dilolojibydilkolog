@@ -14,7 +14,7 @@ const EXERCISES: GrammarExercise[] = [
   { ...base, id: 'en-t-03', type: 'error', prompt: 'No sooner had he left when it rained.', answer: 'when', fix: 'than', explanation: 'No sooner … than.' },
 ]
 vi.mock('../../data/grammar', () => ({ grammarExercises: () => EXERCISES }))
-vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), finish: vi.fn(), badge: vi.fn(), goal: vi.fn(), pair: vi.fn(), flip: vi.fn(), tick: vi.fn(), forgot: vi.fn(), resetRun: vi.fn() } }))
+vi.mock('../shared/sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), finish: vi.fn(), badge: vi.fn(), goal: vi.fn(), pair: vi.fn(), flip: vi.fn(), tick: vi.fn(), forgot: vi.fn(), resetRun: vi.fn() } }))
 const { GrammarPractice } = await import('./GrammarPractice')
 
 let root: ReturnType<typeof createRoot> | undefined

@@ -387,11 +387,11 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `src/engine/__tests__/quests.test.ts`: Günlük görev üretimi (`dailyQuests`), metrik toplamı (`dayMetrics`), görev durumu (`questStatus`) ve bonus XP (`questBonus`).
 - [x] **Gece Bakım Turu 4 — Arayüz (UI) Yardımcı Modülleri Test Kapsamı (#364):**
   - Arayüzde doğrudan testi bulunmayan 5 kritik yardımcı modül için 24 yeni birim testi yazıldı:
-    - `src/ui/flameTier.test.ts`: Seri (streak) alevi kademelerinin (0..4) gün eşiklerine (3, 7, 30, 100 gün) göre doğru hesaplanması.
-    - `src/ui/badgeTier.test.ts`: Başarı madalyası aşamaları (`TIER_NAME`) ve madalya kademelerine göre sıralama (`byTier`: bronz < gümüş < özel < altın).
-    - `src/ui/dayPlantStage.test.ts`: Günlük çalışma çiçeği büyüme evreleri (-1 tohum, 0-4 beşte birlik ilerleme, 5 tamamlama).
-    - `src/ui/articleQuestion.test.ts`: Fransızca sesli/sessiz harf ayrımı (sessiz harfte le/la; sesli harf ve sessiz h'de l' düşmesini önlemek için un/une) ve İspanyolca artikel (el/la) soru üretimi.
-    - `src/ui/knownMilestones.test.ts`: Kapsamlı okuma bilinen kelime toplamı (`knownTotal`), hedef kilometre taşları (`milestone`), haftalık büyüme (`weeklyGrowth`) ve hedef tahminleme (`goalForecast`).
+    - `src/ui/home/flameTier.test.ts`: Seri (streak) alevi kademelerinin (0..4) gün eşiklerine (3, 7, 30, 100 gün) göre doğru hesaplanması.
+    - `src/ui/profile/badgeTier.test.ts`: Başarı madalyası aşamaları (`TIER_NAME`) ve madalya kademelerine göre sıralama (`byTier`: bronz < gümüş < özel < altın).
+    - `src/ui/home/dayPlantStage.test.ts`: Günlük çalışma çiçeği büyüme evreleri (-1 tohum, 0-4 beşte birlik ilerleme, 5 tamamlama).
+    - `src/ui/reading/articleQuestion.test.ts`: Fransızca sesli/sessiz harf ayrımı (sessiz harfte le/la; sesli harf ve sessiz h'de l' düşmesini önlemek için un/une) ve İspanyolca artikel (el/la) soru üretimi.
+    - `src/ui/words/knownMilestones.test.ts`: Kapsamlı okuma bilinen kelime toplamı (`knownTotal`), hedef kilometre taşları (`milestone`), haftalık büyüme (`weeklyGrowth`) ve hedef tahminleme (`goalForecast`).
 - [x] **Gece Bakım Turu 5 — Rehber Pedagojik Zenginleştirmesi ve Açık Kaynaklar (#366):**
   - Dilbilgisi kuralları ve dikkat notları zenginleştirildi: İngilizce'de kurumlarda artikel düşmesi (`go to school`), `been to` vs `gone to`, `try to` vs `try -ing`, doğa kanunlarında backshift yapılmaması; Fransızca'da zamanla anlamı değişen fiiller (`savoir`/`connaître`), `y` zamirinin insan yerine kullanılamayışı, `probable` (indicatif) vs `possible` (subjonctif); İspanyolca'da aynı öznede mastar kullanımı, `trabajar para` vs `trabajar por`, `si`'den sonra asla presente de subjuntivo gelmemesi.
   - Açık öğrenme kaynakları: `SHARED_RESOURCES` içine `Wiktionary`, `Project Gutenberg` ve `LibriVox` eklendi.
@@ -400,9 +400,9 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `src/engine/__tests__/bosses.test.ts`: Sülük (leech) tespiti, HP formülü (`4 + min(6, wrong)`), yenilen boss'un yeni hata yapılmadıkça gelmemesi ve rövanş (`rematch: true`) mantığı.
     - `src/engine/__tests__/race.test.ts`: Haftalık yarış motoru, Pazartesi yerel hafta başlangıcı (`weekStart`), geçen haftanın aynı gününe kadar olan XP kıyası ve galibiyet serisi (`streak`).
     - `src/engine/__tests__/tenseBrief.test.ts`: FR ve ES dillerindeki 30 zamanın kısa tanımları, Türkçe etiketleri ve pedagojik açıklamalarının tamlığı.
-    - `src/ui/guideProgress.test.ts`: Rehber derslerinin okundu (`markRead`), öğrenildi (`markChecked`) ve ertelendi (`markPutOff`) durumlarının yönetimi, yerel depolama ve eski dizi biçiminden göç.
-    - `src/ui/tenseStats.test.ts`: 90 günlük fiil çekim istatistiklerinden en zayıf zamanın (`weakestTense`) tespiti (asgari 3 cevap ve <%80 başarı eşiği).
-    - `src/ui/dictSentences.test.ts`: Sözlük örnek cümlelerinin 30 günlük yerel önbellek (`MAX_AGE`) ve paket yedeği (`examplesFromPack`) yönetimi.
+    - `src/ui/guide/guideProgress.test.ts`: Rehber derslerinin okundu (`markRead`), öğrenildi (`markChecked`) ve ertelendi (`markPutOff`) durumlarının yönetimi, yerel depolama ve eski dizi biçiminden göç.
+    - `src/ui/words/tenseStats.test.ts`: 90 günlük fiil çekim istatistiklerinden en zayıf zamanın (`weakestTense`) tespiti (asgari 3 cevap ve <%80 başarı eşiği).
+    - `src/ui/dictionary/dictSentences.test.ts`: Sözlük örnek cümlelerinin 30 günlük yerel önbellek (`MAX_AGE`) ve paket yedeği (`examplesFromPack`) yönetimi.
 - [x] **Gece Bakım Turu 7 — Rehber Pedagojik Zenginleştirmesi (2. Dalga, #368):**
   - İspanyolca (`lessons-es.ts` - `prep_es`): Kişisel 'a' (`a personal`) kuralı (belirli bir insan/evcil hayvan doğrudan nesne olduğunda 'a' edatı gelmesi: `Busco a mi hermano` vs `Busco mi teléfono`), yeni örnek ve dikkat uyarısı.
   - Fransızca (`lessons-fr.ts` - `participe_passe`): « en » zamirinin doğrudan nesne gibi görünmesine rağmen geçmiş zaman ortacında asla uyum (`accord`) almaması kuralı (`J'en ai cueilli` - `cueillies` değil), yeni örnek ve sınav uyarısı.
@@ -420,10 +420,10 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - İngilizce (`lessons-en.ts` - `inversion`): Şart cümlelerinde devriklik (*conditional inversion* - `Had I known`, `Were I you`, `Should you need help`), yeni örneği (`Had I known about the traffic, I would have taken the train`) ve `If had I known` hatasına karşı dikkat uyarısı.
 - [x] **Gece Bakım Turu 10 — Arayüz & Fiil Mantığı Birim Test Kapsamı (#371):**
   - Doğrudan testi bulunmayan 5 kritik arayüz ve fiil mantığı modülü için 32 yeni birim testi yazıldı:
-    - `src/ui/gardenSkyCalculations.test.ts` (10 test): Bahçe gökyüzü evreleri (`skyPhase`: sabah/gündüz/akşam/gece saat sınırları), Türkçe evre adları (`PHASE_NAME`), güneş ve ay eğrisi koordinatları (`bodyPosition`), kelebek ve arı ziyaretçi hesaplamaları (`visitors`).
-    - `src/ui/labels.test.ts` (7 test): Dil karşılama mesajları (`HELLO`), dil adları ve kodları (`LANGUAGE_NAME`, `LANGUAGE_SHORT`, `SPEECH_LANG`), beceri, seviye ve parça adları, hata ipuçları (`ERROR_HINT`), kural ve istisna metin üretimi (`genderRuleText` — Fransızca ve İspanyolca eril/dişil kural ve istisnaları).
-    - `src/ui/personalInterests.test.ts` (4 test): Profil ilgi alanları ve hikaye konularının birleştirilmesi (`interestsOf`), boşluk budama, boş değer filtreleme, mükerrer temizliği ve azami 8 öge kısıtlaması.
-    - `src/ui/splitHelp.test.ts` (5 test): Ayar yardım metinlerinin bölünmesi (`splitHelp`: 24 karakter altı bölünmeme, nokta/ünlem/soru işareti ayrımı, çok satırlı açıklamaların korunması).
+    - `src/ui/words/gardenSkyCalculations.test.ts` (10 test): Bahçe gökyüzü evreleri (`skyPhase`: sabah/gündüz/akşam/gece saat sınırları), Türkçe evre adları (`PHASE_NAME`), güneş ve ay eğrisi koordinatları (`bodyPosition`), kelebek ve arı ziyaretçi hesaplamaları (`visitors`).
+    - `src/ui/shared/labels.test.ts` (7 test): Dil karşılama mesajları (`HELLO`), dil adları ve kodları (`LANGUAGE_NAME`, `LANGUAGE_SHORT`, `SPEECH_LANG`), beceri, seviye ve parça adları, hata ipuçları (`ERROR_HINT`), kural ve istisna metin üretimi (`genderRuleText` — Fransızca ve İspanyolca eril/dişil kural ve istisnaları).
+    - `src/ui/profile/personalInterests.test.ts` (4 test): Profil ilgi alanları ve hikaye konularının birleştirilmesi (`interestsOf`), boşluk budama, boş değer filtreleme, mükerrer temizliği ve azami 8 öge kısıtlaması.
+    - `src/ui/shared/splitHelp.test.ts` (5 test): Ayar yardım metinlerinin bölünmesi (`splitHelp`: 24 karakter altı bölünmeme, nokta/ünlem/soru işareti ayrımı, çok satırlı açıklamaların korunması).
     - `src/ui/verbs/tenseTwin.test.ts` (6 test): İki dilli fiil laboratuvarı eş zaman eşleştirmesi (`otherLab`: fr <-> es), zaman tablosu sorgusu (`twinOf`: Fransızca présent -> İspanyolca presente), passé composé -> pretérito pedagojik fark notu, Fransızca'da être ile kurulan bileşik zamanlarda pedagojik uyarı üretimi.
 - [x] **Gece Bakım Turu 11 — Rehber Pedagojik Zenginleştirmesi (3. Dalga, #372):**
   - İngilizce (`lessons-en.ts` - `prep_en`): `marry` ve `divorce` fiillerinin etken kullanımda edatsız olması (`She married John`), durum/sıfat kullanımında `to` alması (`She is married to John`), `married with` hatasına karşı dikkat uyarısı ve yeni örnek.
@@ -431,16 +431,16 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - İspanyolca (`lessons-es.ts` - `ser_estar`): `ser rico` (varlıklı olmak) vs `estar rico` (yiyeceğin lezzetli olması) ayrımı (`Esta sopa está riquísima`), `es rico` hatasına karşı dikkat uyarısı ve yeni örnek.
 - [x] **Gece Bakım Turu 12 — Arayüz & Veri Modülleri Test Kapsamı (#373):**
   - Doğrudan testi bulunmayan 5 kritik yardımcı ve veri modülü için 21 yeni birim testi yazıldı:
-    - `src/ui/density.test.ts` (4 test): Arayüz liste yoğunluk modu (`getDensity`, `setDensity`, `applyDensity` ve `localStorage` / `dataset.density` entegrasyonu).
-    - `src/ui/wordListId.test.ts` (3 test): Liste kimlik üretimi (`newListId`: `list:` ön eki, alfanümerik format ve benzersizlik güvencesi).
-    - `src/ui/whatsNewLogic.test.ts` (6 test): Yenilikler kartı gösterim mantığı (`whatsNewDue`: kelime eşiği denetimi [en az 10 kelime], sürüm kontrolü ve `markWhatsNewSeen` / `whatsNewSeen` kalıcılığı).
-    - `src/ui/summaryGardenWords.test.ts` (3 test): Oturum sonu bahçe bitkisi sıralaması (`sceneWords`: ustalık aşaması ilerleyen kelimelerin önceliklendirilmesi ve en fazla 9 bitki ile sınırlandırma).
+    - `src/ui/shared/density.test.ts` (4 test): Arayüz liste yoğunluk modu (`getDensity`, `setDensity`, `applyDensity` ve `localStorage` / `dataset.density` entegrasyonu).
+    - `src/ui/words/wordListId.test.ts` (3 test): Liste kimlik üretimi (`newListId`: `list:` ön eki, alfanümerik format ve benzersizlik güvencesi).
+    - `src/ui/home/whatsNewLogic.test.ts` (6 test): Yenilikler kartı gösterim mantığı (`whatsNewDue`: kelime eşiği denetimi [en az 10 kelime], sürüm kontrolü ve `markWhatsNewSeen` / `whatsNewSeen` kalıcılığı).
+    - `src/ui/words/summaryGardenWords.test.ts` (3 test): Oturum sonu bahçe bitkisi sıralaması (`sceneWords`: ustalık aşaması ilerleyen kelimelerin önceliklendirilmesi ve en fazla 9 bitki ile sınırlandırma).
     - `src/data/__tests__/friends.test.ts` (5 test): Arkadaş kodu gösterimi (`showCode`: 8 karakterde tireli bölme), son 14 günlük XP filtresi (`recentDays`: 13 günden eski, gelecek ve sıfır/negatif puanların ayıklanması) ve `FriendsError` sınıfı.
 - [x] **Gece Bakım Turu 13 — Oyunlar & Arayüz Mantığı Test Kapsamı (#374):**
   - Doğrudan testi bulunmayan 5 yardımcı ve oyun modülü için 20 yeni birim testi yazıldı:
-    - `src/ui/skeletonFor.test.ts` (6 test): Ekran yükleme iskeleti seçici (`skeletonFor`: home, list, detail, settings, session ve grid varsayılanı).
-    - `src/ui/chunkError.test.ts` (6 test): Kod parçası yükleme / ağ hatası tespiti (`isChunkError`: ChunkLoadError, dinamik içe aktarım ve modül betik hataları, ilgisiz hata ayrımı).
-    - `src/ui/repairTry.test.ts` (3 test): Seri tamir sınavı deneme kontrolü ve yerel kayıt (`repairTried`, `markRepairTried`).
+    - `src/ui/shared/skeletonFor.test.ts` (6 test): Ekran yükleme iskeleti seçici (`skeletonFor`: home, list, detail, settings, session ve grid varsayılanı).
+    - `src/ui/shared/chunkError.test.ts` (6 test): Kod parçası yükleme / ağ hatası tespiti (`isChunkError`: ChunkLoadError, dinamik içe aktarım ve modül betik hataları, ilgisiz hata ayrımı).
+    - `src/ui/home/repairTry.test.ts` (3 test): Seri tamir sınavı deneme kontrolü ve yerel kayıt (`repairTried`, `markRepairTried`).
     - `src/ui/games/aspectPair.test.ts` (2 test): Geçmiş zaman görünüş ikilileri tanımı (`ASPECT_PAIR`: Fransızca passé composé vs imparfait, İspanyolca pretérito vs imperfecto).
     - `src/ui/games/accentedWords.test.ts` (3 test): Aksanlı kelime oyunu filtreleme motoru (`accentedWords`: aksan/inceltme içeren kelimelerin ayıklanması, `ACCENT_MIN_WORDS` eşiği).
 - [x] **Gece Bakım Turu 14 — Veri Servisleri & Geri Alma Mantığı Test Kapsamı (#375):**
@@ -448,21 +448,21 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `src/data/__tests__/grammarCheck.test.ts` (6 test): LanguageTool dilbilgisi denetim servisi (`checkGrammar`: azami karakter sınırı, çevrimdışı ağ hatası, 429 kota aşımı, sunucu hatası, imla/üslup/dilbilgisi tür ayrımı ve azami 4 düzeltme önerisi).
     - `src/data/__tests__/cefr.test.ts` (4 test): CEFR kelime seviyesi yükleme (`loadCefr`: İngilizce null kontrolü, Fransızca ve İspanyolca seviye haritaları, önbellek tekliği güvencesi).
     - `src/data/__tests__/familyLinks.test.ts` (2 test): Kelime ailesi karşılıklı bağlama (`linkEntries`: iki kelimeyi çift yönlü `wordFamily` listesine ekleme, mükerrer bağlantıyı önleme).
-    - `src/ui/saveSentence.test.ts` (3 test): Cümle kaydetme motoru (`saveSentence`: boş metin reddi, mükerrer cümle kontrolü, boşluk temizleme ve FSRS kartı üretimi).
-    - `src/ui/undo.test.ts` (2 test): Güvenli kelime silme ve geri alma (`changeWordsWithUndo`, `deleteWordsWithUndo`: kelime enstantanesi alma, değişiklik yürütme ve "Geri Al" bildirimi tetiklendiğinde geri yükleme).
+    - `src/ui/words/saveSentence.test.ts` (3 test): Cümle kaydetme motoru (`saveSentence`: boş metin reddi, mükerrer cümle kontrolü, boşluk temizleme ve FSRS kartı üretimi).
+    - `src/ui/shared/undo.test.ts` (2 test): Güvenli kelime silme ve geri alma (`changeWordsWithUndo`, `deleteWordsWithUndo`: kelime enstantanesi alma, değişiklik yürütme ve "Geri Al" bildirimi tetiklendiğinde geri yükleme).
 - [x] **Gece Bakım Turu 15 — Oturum, Kart & Metin Yeniden İnşa Mantığı Test Kapsamı (#376):**
   - Doğrudan testi bulunmayan 5 kritik yardımcı modül için 19 yeni birim testi yazıldı:
     - `src/ui/session/wordFit.test.ts` (2 test): Oturum büyük yazı tipi için kelime uzunluğu hesaplama (`wordFit`: CSS değişkeni `--len`).
     - `src/ui/session/keys.test.ts` (4 test): Oturum klavye kestirmesi ve odak yönetimi (`modalOpen`, `ownsKey`: input, textarea, button, select ayrımı).
-    - `src/ui/dictoglossReconstruct.test.ts` (5 test): Metin dinleme ve yeniden yazma mantığı (`glossParagraphs`: 30-90 kelime aralığı filtresi, `recallCheck`: anlam kelimelerini tespit etme ve hatırlanma kontrolü, `sentenceWith`: kelimeyi içeren cümleyi ayıklama).
-    - `src/ui/gameList.test.ts` (3 test): Oyun kataloğu doğrulaması (`GAME_LIST`: benzersiz oyun kimlikleri, isim ve emoji tamlığı, dilbilgisi oyunları işareti).
-    - `src/ui/progressCardSvg.test.ts` (5 test): İlerleme kartı SVG üretimi (`cardSvg`: 1080x1350 boyutları, XML güvenli karakter kaçışı, dark/light/banner temaları, hedefler, rozetler ve ilgi alanları).
+    - `src/ui/reading/dictoglossReconstruct.test.ts` (5 test): Metin dinleme ve yeniden yazma mantığı (`glossParagraphs`: 30-90 kelime aralığı filtresi, `recallCheck`: anlam kelimelerini tespit etme ve hatırlanma kontrolü, `sentenceWith`: kelimeyi içeren cümleyi ayıklama).
+    - `src/ui/practice/gameList.test.ts` (3 test): Oyun kataloğu doğrulaması (`GAME_LIST`: benzersiz oyun kimlikleri, isim ve emoji tamlığı, dilbilgisi oyunları işareti).
+    - `src/ui/progress/progressCardSvg.test.ts` (5 test): İlerleme kartı SVG üretimi (`cardSvg`: 1080x1350 boyutları, XML güvenli karakter kaçışı, dark/light/banner temaları, hedefler, rozetler ve ilgi alanları).
 - [x] **Gece Bakım Turu 16 — Veri Kuyruğu, Çeviri Hafızası, Liste Seçenekleri & Ses Mantığı Test Kapsamı (#377):**
   - Doğrudan testi bulunmayan 4 kritik veri ve arayüz modülü için 21 yeni birim testi yazıldı:
     - `src/data/__tests__/earLog.test.ts` (2 test): Dikte kaçırılan kelime kaydı (`noteDictation`: kelime ve durum eşleştirmesi, `db.saveEarLog` kaydı ve eşzamanlı yazımlarda sıra/kuyruk güvenliği).
     - `src/data/__tests__/backItems.test.ts` (2 test): Geri çeviri pratik havuzu (`loadBackItems`: çeviri hafızası ve cümle kartlarının harmanlanması, kartı bulunanların elenmesi, veri tabanı hatasında güvenli boş liste dönüşü).
-    - `src/ui/listOptions.test.ts` (9 test): Kelime listesi ve alt seviye yerleşim seçenekleri (`placementOptions`: liste ve seviyeleri düz seçeneklere dönüştürme, özel "listesiz" etiketi; `placementValue`: eşleşen seviye veya liste değeri; `parsePlacement`: liste ve seviye ayrıştırma; `progressLine`: grup ilerleme metni formatı).
-    - `src/ui/speech.test.ts` (8 test): Web Speech API ve ses sentezi yönetimi (`canSpeak`: tarayıcı desteği tespiti; `voicesFor`: yabancı dil ön eki eşleşmesi, anlamsız/şaka seslerin filtrelenmesi, premium/enhanced kalite sıralaması; `speak`: önceki konuşmayı iptal etme ve ses hızı ayarı; `isAudioPlaying`: ses çalma durumu tespiti; `stopSpeaking`: ses ve doğal ses motorunu durdurma).
+    - `src/ui/words/listOptions.test.ts` (9 test): Kelime listesi ve alt seviye yerleşim seçenekleri (`placementOptions`: liste ve seviyeleri düz seçeneklere dönüştürme, özel "listesiz" etiketi; `placementValue`: eşleşen seviye veya liste değeri; `parsePlacement`: liste ve seviye ayrıştırma; `progressLine`: grup ilerleme metni formatı).
+    - `src/ui/shared/speech.test.ts` (8 test): Web Speech API ve ses sentezi yönetimi (`canSpeak`: tarayıcı desteği tespiti; `voicesFor`: yabancı dil ön eki eşleşmesi, anlamsız/şaka seslerin filtrelenmesi, premium/enhanced kalite sıralaması; `speak`: önceki konuşmayı iptal etme ve ses hızı ayarı; `isAudioPlaying`: ses çalma durumu tespiti; `stopSpeaking`: ses ve doğal ses motorunu durdurma).
 - [x] **Gece Bakım Turu 17 — Rehber B1/B2 İngilizce İnteraktif Pekiştirme Sınavları (#378):**
   - Rehberde daha önce mini sınavı bulunmayan 10 ileri düzey İngilizce dersi için 3'er soruluk (toplam 30 soru) pedagojik açıklamalı interaktif pekiştirme sınavları (`check`) eklendi:
     - `gerund_infinitive` (B1 - 3 soru): `avoid doing`, `look forward to doing` (edat to), `stop to do` vs `stop doing` ayrımı.
@@ -518,44 +518,44 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
       - `cleft` (C1 - 3 soru): yer vurgusunda `It was ... that`, `Wh-cleft` tekil fiil uyumu (`What I need is`), kişi vurgusunda `It was ... who`.
       - `subjunctive` (C1 - 3 soru): `recommend that ... resign`, `It is essential that ... be`, yardımcı fiilsiz olumsuz `that ... not sign`.
 - [x] **Gece Bakım Turu 21 — Rehber Klavye Kestirmeleri, Sesli Zaman Örnekleri & Fiil Laboratuvarı Derin Bağlantıları (#382):**
-  - `src/ui/LessonCheck.tsx`: Seçenek düğmelerinde görsel olarak gösterilen `1`–`4` tuş rozetleri için gerçek klavye kestirme dinleyicisi (`keydown`: `1`–`4` ile seçenek işaretleme, `Enter` ile sonraki soruya geçme) eklendi.
-  - `src/data/guide/lessonOf.ts` & `src/ui/Guide.tsx`: Fransızca ve İspanyolca fiil/kip derslerini (`imperativo_es`, `basics_fr_imperatif`, `basics_es_pluscuamperfecto`, `condicionales` vb. dâhil 23 ders) doğrudan Fiil Laboratuvarındaki ilgili zamanla eşleştiren `lessonTense` yardımcısı eklendi; ders içindeki "Fiil laboratuvarında çalış" düğmesi artık ilgili zamanı doğrudan açıyor (`onVerbs(targetTense)`).
-  - `src/ui/verbs/TenseLessonSheet.tsx` & `src/ui/Guide.tsx`: Zaman anlatım penceresindeki (`TenseLessonSheet`) örnek cümlelere sesli telaffuz (`Dinle`) düğmeleri ve Rehber → Zamanlar sekmesinden açıldığında doğrudan o zamanla Fiil Laboratuvarına geçiş sağlayan "Fiil laboratuvarında çalış" düğmesi eklendi.
+  - `src/ui/guide/LessonCheck.tsx`: Seçenek düğmelerinde görsel olarak gösterilen `1`–`4` tuş rozetleri için gerçek klavye kestirme dinleyicisi (`keydown`: `1`–`4` ile seçenek işaretleme, `Enter` ile sonraki soruya geçme) eklendi.
+  - `src/data/guide/lessonOf.ts` & `src/ui/guide/Guide.tsx`: Fransızca ve İspanyolca fiil/kip derslerini (`imperativo_es`, `basics_fr_imperatif`, `basics_es_pluscuamperfecto`, `condicionales` vb. dâhil 23 ders) doğrudan Fiil Laboratuvarındaki ilgili zamanla eşleştiren `lessonTense` yardımcısı eklendi; ders içindeki "Fiil laboratuvarında çalış" düğmesi artık ilgili zamanı doğrudan açıyor (`onVerbs(targetTense)`).
+  - `src/ui/verbs/TenseLessonSheet.tsx` & `src/ui/guide/Guide.tsx`: Zaman anlatım penceresindeki (`TenseLessonSheet`) örnek cümlelere sesli telaffuz (`Dinle`) düğmeleri ve Rehber → Zamanlar sekmesinden açıldığında doğrudan o zamanla Fiil Laboratuvarına geçiş sağlayan "Fiil laboratuvarında çalış" düğmesi eklendi.
 - [x] **Gece Bakım Turu 22 — Rehber Sıralı Ders Geçişi & Zaman/Hatırlatıcı Birim Testleri (#383):**
-  - `src/ui/Guide.tsx` (`LessonView`): Bir dersin sonunda müfredat sırasındaki bir sonraki derse (`Sıradaki ders`) ana listeye dönmeye gerek kalmadan tek tıkla geçiş sağlayan kart eklendi.
-  - `src/ui/GuideReviewNudge.test.tsx` (2 test): Bugün ekranındaki Rehber tekrar hatırlatıcısının (`GuideReviewNudge`) boş durumda gizlenmesi, günü gelen derste ("Hatırlıyor musun?") gösterilmesi, tıklanınca dersi açması ve "Şimdi değil" ile ertelenmesi doğrulandı.
+  - `src/ui/guide/Guide.tsx` (`LessonView`): Bir dersin sonunda müfredat sırasındaki bir sonraki derse (`Sıradaki ders`) ana listeye dönmeye gerek kalmadan tek tıkla geçiş sağlayan kart eklendi.
+  - `src/ui/guide/GuideReviewNudge.test.tsx` (2 test): Bugün ekranındaki Rehber tekrar hatırlatıcısının (`GuideReviewNudge`) boş durumda gizlenmesi, günü gelen derste ("Hatırlıyor musun?") gösterilmesi, tıklanınca dersi açması ve "Şimdi değil" ile ertelenmesi doğrulandı.
   - `src/data/tenseLesson.test.ts` (1 kapsamlı doğrulama testi): Fransızca (12 zaman) ve İspanyolca (14 zaman) Fiil Laboratuvarındaki tüm 26 zamanın `TENSE_LESSON` içinde eksiksiz pedagojik alanlara (`summary`, `uses`, `formation`, `examples`, `watch`, `tip`, `turkish`) sahip olduğu güvence altına alındı.
 - [x] **Gece Bakım Turu 23 — Yeni Diloloji Logo ve Uygulama İkonu Tasarımı (#384):**
   - Gemini ile tasarlanan ve seçilen yeni **Modern "D" Konuşma Balonu + Çift Yapraklı Filiz + Açık Kitap Sayfaları + Altın Kıvılcım** logosu vektörel olarak işlendi (`scripts/build-icons.mjs`).
-  - Uygulama içi marka amblemi (`src/ui/icons.tsx` — `BrandMark`), açılış ekranı (`index.html`), sekme simgesi (`public/favicon.svg`), bildirim rozeti (`public/notification-badge.png`) ve tüm PWA/iOS uygulama simgeleri (`public/pwa-512.png`, `public/pwa-192.png`, `public/pwa-maskable-512.png`, `public/apple-touch-icon.png`) yeni logoyla güncellendi.
+  - Uygulama içi marka amblemi (`src/ui/shared/icons.tsx` — `BrandMark`), açılış ekranı (`index.html`), sekme simgesi (`public/favicon.svg`), bildirim rozeti (`public/notification-badge.png`) ve tüm PWA/iOS uygulama simgeleri (`public/pwa-512.png`, `public/pwa-192.png`, `public/pwa-maskable-512.png`, `public/apple-touch-icon.png`) yeni logoyla güncellendi.
 - [x] **Gece Bakım Turu 24 — "Videolarda Duy" (`/api/clips`) Özelliğinin Onarımı (#385):**
   - `api/clips.ts` & `src/engine/clips.ts`: Vercel ortamındaki geçersiz `YOUTUBE_API_KEY` (`400 API_KEY_INVALID`) ve YouTube `/api/timedtext` hız sınırı (`429`) nedeniyle çalışmayan "Videolarda duy" özelliği için anahtar ve kota gerektirmeyen **YouGlish altyazı dizini + YouTube oEmbed** birincil hızlı kaynağı (`~300 ms`) ve **YouTube Innertube arama** yedek hattı eklendi.
   - `api/_captions.ts`: Altyazı yanıtlarında HTTP durum kodu ve HTML hata sayfası (`429 Sorry...`) denetimi eklendi.
-  - `src/data/clips.ts`, `src/ui/Clips.tsx` & `api/_origin.ts`: Boş sonuçların `localStorage`'da 7 gün önbelleklenmesi engellendi, "Yeniden ara" düğmesine önbellek atlama (`fresh`) desteği ve `diloloji-*.vercel.app` kaynak izni eklendi.
+  - `src/data/clips.ts`, `src/ui/reading/Clips.tsx` & `api/_origin.ts`: Boş sonuçların `localStorage`'da 7 gün önbelleklenmesi engellendi, "Yeniden ara" düğmesine önbellek atlama (`fresh`) desteği ve `diloloji-*.vercel.app` kaynak izni eklendi.
 - [x] **Gece Bakım Turu 25 — Monki Açılış Ekranı Aktif Karakter Animasyonu (#386):**
   - `src/ui/monki/MonkiMascot.tsx` & `src/ui/monki/Monki.tsx`: Monki karşılama/kurulum ekranlarına (`monki-setup` ve `monki-hello`) otomatik poz geçişli (`wave` → `cheer` → `hang` → `think`), hedef dilde konuşma balonlu (`¡Hola!`, `¡Vamos!` vb.) ve dokunulduğunda zıplayıp poz değiştiren etkileşimli `MonkiStage` bileşeni eklendi.
   - `src/lazy.css` & `src/index.css`: Yaylanmalı zıplama (`monki-dance`, `monki-hop-burst`), zıplamayla senkronize dinamik zemin gölgesi (`monki-shadow-pulse`), süzülen konuşma balonu ve kıvılcım animasyonları eklendi.
 - [x] **Gece Bakım Turu 26 — Sevimli İstatistik Maskotları (Filiz, Yıldız, Kitap) & Karşılıklı Arkadaşlık Senkronizasyonu (#387):**
-  - **Uyumlu Çizim Maskotlar (`src/assets/art/stat-sprout.webp`, `stat-star.webp`, `stat-book.webp`, `src/ui/drawnArt.ts`):** `StreakPicture` ateş karakteriyle tam uyumlu sıcak kawaii çizim tarzında, koyu kahve hatlı ve gülen yüzlü sevimli Filiz (`yeni kelime`), Yıldız (`güçlenen` / `aktif kelime`) ve Açık Kitap (`kelime öğreniliyor`) karakterleri şeffaf WebP olarak eklendi (`STAT_ART`).
-  - **Arayüz Bütünlüğü (`src/ui/SessionSummary.tsx`, `src/ui/Screens.tsx`, `src/ui/Profile.tsx`, `src/index.css`):** Oturum sonu kutlama çubuğunda (`SessionSummary`), Bugün ekranı durum kartında (`Screens.tsx`) ve Profil istatistiklerinde (`Profile.tsx`) ince SVG hat ikonları yerine aynı sevimli çizim karakterleri kullanıldı; koyu temada `--art-edge` kenar aydınlatması uygulandı.
+  - **Uyumlu Çizim Maskotlar (`src/assets/art/stat-sprout.webp`, `stat-star.webp`, `stat-book.webp`, `src/ui/shared/drawnArt.ts`):** `StreakPicture` ateş karakteriyle tam uyumlu sıcak kawaii çizim tarzında, koyu kahve hatlı ve gülen yüzlü sevimli Filiz (`yeni kelime`), Yıldız (`güçlenen` / `aktif kelime`) ve Açık Kitap (`kelime öğreniliyor`) karakterleri şeffaf WebP olarak eklendi (`STAT_ART`).
+  - **Arayüz Bütünlüğü (`src/ui/session/SessionSummary.tsx`, `src/ui/home/Screens.tsx`, `src/ui/profile/Profile.tsx`, `src/index.css`):** Oturum sonu kutlama çubuğunda (`SessionSummary`), Bugün ekranı durum kartında (`Screens.tsx`) ve Profil istatistiklerinde (`Profile.tsx`) ince SVG hat ikonları yerine aynı sevimli çizim karakterleri kullanıldı; koyu temada `--art-edge` kenar aydınlatması uygulandı.
   - **Karşılıklı Arkadaşlık Desteği (`api/_friends.ts`):** Arkadaş ekleme tek taraflı takip modelinden iki yönlü (karşılıklı) arkadaşlık modeline taşındı. Biri sizin kodunuzu eklediğinde veya siz birini eklediğinizde iki taraf da birbirini anında liderlik panosunda görür; `friendsOf` hem takip edilenleri hem de takipçileri harmanlayarak listeye dahil eder.
 - [x] **Gece Bakım Turu 27 — Arkadaş Takipçileri PostgREST Sözdizimi Onarımı & Birim Testleri (#388):**
   - `api/_friends.ts`: `tableFriends.followers` içerisindeki `in.()` filtre sözdizimi PostgREST standardına (`in.(id1,id2,...)`) uygun hâle getirildi.
   - `src/data/friends.test.ts`: Takipçi listeleme, karşılıklı arkadaşlık ve boş takipçi kümesi birim testleriyle güvenceye alındı (3/3 geçti).
 - [x] **Gelişim Turu 28 — İleri Seviye Pedagojik Özellikler (Günün Mikro Haberi, Hata Avcısı, Cümle Dönüşümü) (#389):**
-  - **Günün 2 Dakikalık Mikro Haberi (`src/ui/DailyNewsHero.tsx`, `src/ui/Reading.tsx`, `src/ui/icons.tsx`, `src/index.css`):**
+  - **Günün 2 Dakikalık Mikro Haberi (`src/ui/reading/DailyNewsHero.tsx`, `src/ui/reading/Reading.tsx`, `src/ui/shared/icons.tsx`, `src/index.css`):**
     - Okuma ekranının en üstüne Fransızca için RFI Savoirs (*Le journal en français facile*), İngilizce ve İspanyolca için VOA açık bültenlerinden günün en anlaşılır haberini getiren canlı mikro haber vitrini eklendi.
     - Metin kelime dağarcığı kapsamını otomatik hesaplama (`coverageLine`), tahmini okuma süresi, sesli dinleme rozeti ve tek tıkla senkronize cümle takibiyle okuma başlatma desteği sağlandı.
-  - **Hata Avcısı / Spot the Error (`src/data/spotErrors.ts`, `src/ui/games/SpotErrorGame.tsx`, `src/ui/Games.tsx`, `src/ui/gameList.ts`):**
+  - **Hata Avcısı / Spot the Error (`src/data/spotErrors.ts`, `src/ui/games/SpotErrorGame.tsx`, `src/ui/practice/Games.tsx`, `src/ui/practice/gameList.ts`):**
     - B2/C1 seviyesinde en kritik gramer ve sözdizimi tuzaklarını (Fransızca participe passé COD uyumu, subjonctif zorunlulukları; İspanyolca haber impersonal tekilliği, aunque ile subjuntivo; İngilizce negative inversion, mandative subjunctive, preposition gerund) içeren 45 uzmanlık sorusu hazırlandı.
     - Cümledeki kelimeleri dokunulabilir etkileşimli çiplere bölen, hatalı kelime tıklandığında 3 seçenekli düzeltme ve derinlemesine Türkçe gramer kuralı açıklaması sunan yeni oyun modu geliştirildi.
   - **Cümle Dönüşümü / Sentence Transformation (`src/data/sentenceRewrites.ts`, `src/ui/games/SentenceRewriteGame.tsx`):**
     - Cambridge C1 Advanced, DALF C1 ve DELE C1 sınav standartlarında, zorunlu anahtar kelime verilerek cümlenin anlamı bozulmadan tamamlanmasını gerektiren 45 C1 dönüşüm alıştırması geliştirildi.
     - Büyük ve küçük harf, kesme işareti ve boşluk toleranslı bulanık denetim motoru (`isRewriteAnswerCorrect`), adım adım harf ipucu butonu ve detaylı kural izahı eklendi.
   - **Birim Testleri & Kapsamlı Doğrulama:**
-    - `src/data/spotErrors.test.ts` (4 test), `src/data/sentenceRewrites.test.ts` (5 test), `src/ui/games/SpotErrorGame.test.tsx` (1 test), `src/ui/games/SentenceRewriteGame.test.tsx` (1 test), `src/ui/DailyNewsHero.test.tsx` (1 test) eklendi; tüm testler (390 dosya, 2018 test) %100 başarıyla geçti.
+    - `src/data/spotErrors.test.ts` (4 test), `src/data/sentenceRewrites.test.ts` (5 test), `src/ui/games/SpotErrorGame.test.tsx` (1 test), `src/ui/games/SentenceRewriteGame.test.tsx` (1 test), `src/ui/reading/DailyNewsHero.test.tsx` (1 test) eklendi; tüm testler (390 dosya, 2018 test) %100 başarıyla geçti.
 - [x] **Gelişim Turu 29 — Eşdizimlilik ve Edat Kalıpları Oyunu & Kelimeye Kendi Bağlamını Bağlama (#390):**
-  - **Edat ve Kalıplar Oyunu (`src/data/collocationDrill.ts`, `src/ui/games/CollocationsGame.tsx`, `src/ui/Games.tsx`, `src/ui/gameList.ts`):**
+  - **Edat ve Kalıplar Oyunu (`src/data/collocationDrill.ts`, `src/ui/games/CollocationsGame.tsx`, `src/ui/practice/Games.tsx`, `src/ui/practice/gameList.ts`):**
     - B1/B2/C1 seviyesinde fiil-edat bağımlılıkları (*décider de, réussir à, s'intéresser à, soñar con, depender de, depend on, be interested in, accuse of* vb.) ve doğal eşdizimleri (*heavy rain, make a mistake, do someone a favour, poser une question, tomar una decisión, dar un paseo* vb.) test eden 54 soru hazırlandı (FR, ES ve EN için 18'er soru).
     - Cümledeki kilit edat/kelime boşluğunu (`___`) 4 seçenekten seçtiren, klavye kısayolları (`1`–`4`, `Enter`), sesli telaffuz (`speakAsync`), Türkçe pedagojik kural açıklaması ve rekor/log kaydı sunan tam donanımlı yeni oyun modu geliştirildi.
     - `GAME_LIST` ve `GamesScreen` içinde `Dilbilgisi` kategorisine kaydedildi.
@@ -577,27 +577,27 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
 - [x] **Gelişim Turu 31 — Arkadaş İsmi Çözümleme ve Takma Ad Düzenleme Desteği (#391):**
   - **Sunucu Tarafı Yedek İsim Çözümleme (`api/_friends.ts`):** `ownCard`, `publishCard`, `blobFriends.cardsOf` ve `tableFriends.cardsOf` katmanlarında, kart adı boş ya da varsayılan `'Arkadaş'` olduğunda, hesabın `sync_keys` tablosundaki veya `access/approved` / `access/requests` blob dosyasındaki gerçek `username` bilgisi otomatik çözümlenerek karta işlenir.
-  - **İstemci Giriş & Kayıt Akışında Profil İsmi Entegrasyonu (`src/ui/signInFlow.ts`, `src/ui/AuthScreen.tsx`):** Supabase veya kullanıcı adı ile giriş yapıldığında ya da hesap açıldığında, `profile.name` boşsa hesap kullanıcı adı otomatik olarak `settings.profile.name` alanına atanır.
-  - **İstemcide Kart Yayınlama İyileştirmesi (`src/ui/FriendsCard.tsx`):** Profil ismi henüz girilmemişse oturum açmış hesabın `username`'i yedek olarak kullanılır ve profil arka planda kalıcı olarak güncellenir.
-  - **Liderlik Panosunda Arkadaşa İsim / Takma Ad Verme (`src/ui/FriendsCard.tsx`, `src/index.css`):**
+  - **İstemci Giriş & Kayıt Akışında Profil İsmi Entegrasyonu (`src/ui/account/signInFlow.ts`, `src/ui/account/AuthScreen.tsx`):** Supabase veya kullanıcı adı ile giriş yapıldığında ya da hesap açıldığında, `profile.name` boşsa hesap kullanıcı adı otomatik olarak `settings.profile.name` alanına atanır.
+  - **İstemcide Kart Yayınlama İyileştirmesi (`src/ui/social/FriendsCard.tsx`):** Profil ismi henüz girilmemişse oturum açmış hesabın `username`'i yedek olarak kullanılır ve profil arka planda kalıcı olarak güncellenir.
+  - **Liderlik Panosunda Arkadaşa İsim / Takma Ad Verme (`src/ui/social/FriendsCard.tsx`, `src/index.css`):**
     - Arkadaşın adı `'Arkadaş'` ise veya kullanıcı arkadaşına özel bir isim vermek isterse, satır içindeki `✎` veya `✎ İsim ver` butonuna tıklayarak doğrudan takma ad belirleyebilir (`diloloji:friend-nicknames`).
     - Takma ad anında liderlik tablosuna, avatarına ve çıkarma bildirimlerine yansır; istendiğinde güncellenebilir veya silinerek orijinal ada dönülebilir.
   - **Birim Testleri & Kapsamlı Doğrulama:**
 - [x] **Gelişim Turu 32 — Eksik Çizim Varlıklarının Prompt ile Tasarımı, Entegrasyonu & Görsel Zenginleştirme:**
-  - **Oyun Kartı Çizimleri (`src/assets/art/`, `src/ui/gameArt.ts`, `src/ui/Games.tsx`):**
+  - **Oyun Kartı Çizimleri (`src/assets/art/`, `src/ui/practice/gameArt.ts`, `src/ui/practice/Games.tsx`):**
     - Sitedeki tüm 32 oyun analiz edildi; çizimi bulunmayan son 3 oyun için storybook/kawaii çizim tarzında özel görseller üretildi ve optimize edilmiş şeffaf alfa maskeli WebP olarak entegre edildi:
       - `game-spot-error.webp`: Büyüteç, altın hedef tahtası ve parıltılarla Hata Avcısı ikonu.
       - `game-rewrite.webp`: İki döngüsel sihirli ok, altın anahtar ve parşömen ile Cümle Dönüşümü ikonu.
       - `game-collocations.webp`: Birbirine kenetlenen kawaii yapboz parçaları ve altın bağlantılarla Edat ve Kalıplar ikonu.
     - `verbs` oyun kartı için `conjugation` görseli fallback tanımlandı; 32 oyunun tamamı (%100) artık sistem emojisi yerine özel çizim illüstrasyonuna sahip.
-  - **Günün Mikro Haberi Vitrin Çizimi (`src/assets/art/hero-micro-news.webp`, `src/ui/DailyNewsHero.tsx`, `src/index.css`):**
+  - **Günün Mikro Haberi Vitrin Çizimi (`src/assets/art/hero-micro-news.webp`, `src/ui/reading/DailyNewsHero.tsx`, `src/index.css`):**
     - Okuma ekranının en üstündeki günün canlı mikro haberi için nostaljik kulaklıklı sevimli maskotun gazete okuduğu ve yanında kahvesinin tüttüğü storybook vitrin çizimi üretildi.
     - `DailyNewsHero.tsx` içine responsive vitrin düzeni (`.daily-news-layout`, `.daily-news-art`) eklendi, koyu tema uyumu sağlandı.
-  - **Zihin Tohumu & Boş Ekran Görsel Zenginleştirmeleri (`src/ui/MindSeed.tsx`, `src/ui/WordGraph.tsx`):**
+  - **Zihin Tohumu & Boş Ekran Görsel Zenginleştirmeleri (`src/ui/home/MindSeed.tsx`, `src/ui/words/WordGraph.tsx`):**
     - Zihin Tohumu kartında düz SVG ikonu yerine sevimli fidan maskot görseli (`STAT_ART.sprout`) entegre edildi.
     - Kelime Ağı henüz bağlantı içermediğinde düz gri metin yerine çizimli `EmptyState` (`art="sentences"`) entegre edildi.
 - [x] **Gelişim Turu 33 — Profil Avatar Koleksiyonunun Genişletilmesi (15 Serbest Hayvan & 26 Kazanılan Avatar):**
-  - **Yeni Serbest Hayvan Avatarları (`src/assets/art/avatar-*.webp`, `src/ui/avatarArt.ts`):**
+  - **Yeni Serbest Hayvan Avatarları (`src/assets/art/avatar-*.webp`, `src/ui/profile/avatarArt.ts`):**
     - Storybook/kawaii dairesel rozet stilinde 6 yeni sevimli hayvan avatarı prompt ile üretildi ve 160x160 RGBA WebP olarak entegre edildi:
       - `dog` (Köpek / Sevimli Corgi)
       - `bear` (Ayı / Sevimli Bal Ayıcığı)
@@ -613,9 +613,9 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
       - İleri başarılar: `monki-sleep` (Seviye 20), `sticker-read` (100 kelime "Oturdu"), `monki-cheer` (50 günlük seri), `stat-book` (300 kelime "Oturdu").
     - Toplam avatar sayısı 22'den 41'e yükseltildi.
   - **Birim Testleri & Kapsamlı Doğrulama:**
-    - `src/ui/avatarArt.test.ts` ve `src/ui/Avatar.test.tsx` tüm yeni avatarlar için doğrulandı (5/5 geçti).
+    - `src/ui/profile/avatarArt.test.ts` ve `src/ui/profile/Avatar.test.tsx` tüm yeni avatarlar için doğrulandı (5/5 geçti).
 - [x] **Gelişim Turu 34 — Canlı Hava Durumu Sahnesi ve Profil Konum Yönetimi:**
-  - **Profilden Konum Ekleme (`src/data/db.ts`, `src/ui/Profile.tsx`, `src/lazy.css`):**
+  - **Profilden Konum Ekleme (`src/data/db.ts`, `src/ui/profile/Profile.tsx`, `src/lazy.css`):**
     - `Profile` veri modeline `location` (şehir/bölge adı) ve `coordinates` ({lat, lon}) alanları eklendi.
     - Profil ekranında ad ve mottonun hemen altına `📍 Konumun (ör. İstanbul, Paris, İzmir...)` giriş satırı ve `Bul` GPS butonu (`navigator.geolocation`) yerleştirildi.
     - Profil etiketlerine (`profile-tags`) aktif konum rozeti eklendi.
@@ -623,33 +623,33 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - Open-Meteo API entegrasyonu ile popüler şehirler (İstanbul, Ankara, İzmir, Paris, Londra vb.) için çevrimdışı koordinat haritası ve dinamik geocoding desteği kuruldu.
     - WMO kodları standart hava durumlarına (`clear`, `cloudy`, `rain`, `snow`, `thunder`, `fog`) dönüştürüldü; Türkçe açıklamalar (`Güneşli`, `Yağmurlu`, `Karlı` vb.) eklendi.
     - 30 dakikalık yerel önbellek (`diloloji:weather-cache`) ile gereksiz ağ istekleri önlendi.
-  - **Hava Durumuna Duyarlı Karşılama Sahnesi (`src/assets/art/weather-*.webp`, `src/ui/HomeParts.tsx`, `src/ui/Screens.tsx`, `src/index.css`):**
+  - **Hava Durumuna Duyarlı Karşılama Sahnesi (`src/assets/art/weather-*.webp`, `src/ui/home/HomeParts.tsx`, `src/ui/home/Screens.tsx`, `src/index.css`):**
     - Yağmurlu (`weather-rain.webp`) ve karlı (`weather-snow.webp`) havalar için storybook Monki sahneleri üretildi ve WebP formatında entegre edildi.
     - `DayMark` bileşeni hava durumuna göre sahneyi dinamik değiştirecek şekilde güncellendi: Yağmurlu/karlı havalarda özel sahne, açık havalarda günün saatine uygun sahne (`time-*.webp`) gösterilir.
     - Sahnenin köşesinde sıcaklık derecesi rozeti (`.weather-badge-pill`) ve zengin durum ipucu (ör. "İstanbul · 16°C, Yağmurlu") sağlandı.
   - **Birim Testleri & Kapsamlı Doğrulama:**
     - `src/data/weather.test.tsx` (6 test) eklendi; `smoke.test.tsx` (20 test) %100 yeşil.
 - [x] **Gelişim Turu 35 — Hesap Silme Alanının Güvenli Taşınması (Göz Önünden Kaldırma & Veriler Sekmesi):**
-  - **Göz Önünden Kaldırma & En Alta Taşıma (`src/ui/AccountManage.tsx`, `src/ui/AccountSettings.tsx`):**
+  - **Göz Önünden Kaldırma & En Alta Taşıma (`src/ui/account/AccountManage.tsx`, `src/ui/account/AccountSettings.tsx`):**
     - "Oturum" grubu içindeki doğrudan kırmızı butonlu "Hesabı sil" satırı kaldırıldı; Oturum alanında yalnızca "Bu cihazda çıkış yap" butonu bırakıldı.
     - Bağımsız `AccountDelete` bileşeni oluşturuldu.
     - Hesap ayarları sayfasının en altına (`RestorePoints` ve `AdminAccess` bileşenlerinin de altına) yerleştirildi.
     - `<details className="account-advanced account-danger-details">` katlanabilir yapısıyla gizlendi; kullanıcı bilerek açmadığı sürece görünmez ve yanlışlıkla basılamaz hale getirildi.
-  - **Veriler Sekmesinde Tehlikeli Bölge Entegrasyonu (`src/ui/DataSettings.tsx`):**
+  - **Veriler Sekmesinde Tehlikeli Bölge Entegrasyonu (`src/ui/settings/DataSettings.tsx`):**
     - Ayarlar → Veriler sekmesindeki "Sıfırlama" (`danger-zone`) kartına da oturum açık olduğunda `AccountDelete` katlanabilir tehlike alanı eklendi.
     - Böylece hesap silme işlemi hem en altta güvenli bir şekilde hem de veri sıfırlama işlemlerinin doğal yerinde konumlandırıldı.
   - **Stil & Tasarım İyileştirmesi (`src/lazy.css`):**
     - `.account-danger-details` ve `.account-danger-body` sınıfları için kesikli ayırıcı çizgi, zarif tipografi ve açıkken kırmızılaşan güvenli özet stili tanımlandı.
   - **Kapsamlı Doğrulama:**
-    - `npm run typecheck`, `npx oxlint` ve `npx vitest run src/ui/smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
+    - `npm run typecheck`, `npx oxlint` ve `npx vitest run src/ui/practice/smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
 - [x] **Gelişim Turu 36 — Profil İstatistik Kartı Uyumlandırması ("Cevap" İkonu Storybook Çizim Standardı):**
-  - **İkon Tasarım Eşitlemesi (`src/assets/art/stat-check.webp`, `src/ui/drawnArt.ts`, `src/ui/Profile.tsx`):**
+  - **İkon Tasarım Eşitlemesi (`src/assets/art/stat-check.webp`, `src/ui/shared/drawnArt.ts`, `src/ui/profile/Profile.tsx`):**
     - Profil genel bakışındaki 4 istatistik kartı incelendi: Alev (`StreakPicture`), Altın Yıldız (`stat-star`), Zihin Fidanı (`stat-sprout`) çizim kalitesinde storybook illüstrasyonlarıyken, "cevap" kartındaki ikonun düz bir SVG daire onay imi (`CheckCircleIcon`) kaldığı ve tasarımsal olarak uyumsuz olduğu tespit edildi.
     - Orijinal storybook el çizimi 3D dairesel hedef/onay amblemi ve çevresindeki altın kutlama ışıltıları temel alınarak, aktif temanın canlı meyve/gül-ahududu tonuyla (`var(--lang-text)`) uyumlu 200x200 RGBA WebP formatında `stat-check.webp` üretildi.
     - `STAT_ART.check` olarak `drawnArt.ts` içerisine eklendi.
     - `Profile.tsx` içindeki "cevap" kartı, diğer iki kartla birebir aynı `.stat-art-img` standardına (`<img className="stat-art-img" src={STAT_ART.check} alt="" height={22} width={22} draggable={false} />`) kavuşturularak 4 kartın tamamında görsel eşitlik ve kusursuz bütünlük sağlandı.
   - **Birim & Duman Testleri:**
-    - `src/ui/drawnArt.test.ts` (STAT_ART.check testi) ve `src/ui/smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
+    - `src/ui/shared/drawnArt.test.ts` (STAT_ART.check testi) ve `src/ui/practice/smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
 - [x] **Gelişim Turu 37 — Monki Boş / Kurulum Durumunda "Temizle" Butonunun Gizlenmesi:**
   - **Başlık Çubuğu Mantık Düzeltmesi (`src/ui/monki/Monki.tsx`):**
     - Monki sohbet paneli açıldığında henüz YZ API anahtarı eklenmemişken (kurulum ekranı: "Benimle konuşmak için Ayarlar → YZ yardımcısı...") veya geçmiş boşken başlıkta "Temizle" butonunun görünmesi hatası giderildi.
@@ -658,14 +658,14 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - Depolamada eski kayıt kalsa dahi anahtar olmadığında veya konuşma başlatılmadığında "Temizle" butonunun görünmediğini doğrulayan birim testi eklendi.
     - `Monki.test.tsx` (14 test) ve `smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
 - [x] **Gelişim Turu 38 — Komut Paleti & Arama İkonlarının Storybook Çizim Standardına Dönüştürülmesi:**
-  - **Merkezi Çizim Haritası (`src/ui/paletteArt.tsx`, `src/ui/paletteArt.test.tsx`):**
+  - **Merkezi Çizim Haritası (`src/ui/practice/paletteArt.tsx`, `src/ui/practice/paletteArt.test.tsx`):**
     - Komut paletinde (⌘K / Omnibox arama modalı) yer alan 32 oyunun tamamı, tüm navigasyon ekranları (Sözlük, Rehber, Dinleme, Okuma, İlerleme, Kelimeler, Ayarlar vb.) ve aksiyonlar (Kelime ekle, Metin aktar, Gece modu vb.) için tel çerçeveli SVG veya sistem emojileri yerine Diloloji'nin el çizimi hikaye kitabı/kawaii WebP çizimlerine bağlanan `commandArtIcon(id, fallback)` harita motoru geliştirildi.
     - Tüm 32 oyun `GAME_ART` haritasından, ekranlar `SCREEN_PALETTE_ART` (`head-dictionary`, `guide-teach`, `listen-radio`, `stat-sprout`, `badge-gold` vb.) ve aksiyonlar `ACTION_PALETTE_ART` üzerinden hikaye çizimlerine bağlandı.
   - **Arama Paleti Entegrasyonu & Görsel İyileştirme (`src/ui/CommandPalette.tsx`, `src/index.css`):**
     - Arama sonuçlarında hem varsayılan komut listesi hem de son kullanılanlar listesi (`Son kullanılanlar`) otomatik olarak yüksek çözünürlüklü çizim ikonlarını (`.palette-art-icon`) kullanacak şekilde entegre edildi.
     - `.palette-icon` kapsayıcısına `overflow: hidden` ve 1.375rem pürüzsüz nesne yerleşimi eklendi.
   - **Birim & Duman Testleri:**
-    - `src/ui/paletteArt.test.tsx` (4 test), `src/ui/CommandPalette.test.tsx` (2 test) ve `src/ui/smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
+    - `src/ui/practice/paletteArt.test.tsx` (4 test), `src/ui/CommandPalette.test.tsx` (2 test) ve `src/ui/practice/smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
 - [x] **Gelişim Turu 39 — Rehber İçeriğinin Devasa Zenginleştirilmesi (+30 Yeni Kapsamlı Ders & Toplam 174 Konu Anlatımı):**
   - **İngilizce 4. Dalga Dersleri (`src/data/guide/lessons-en-4.ts` — +10 Ders):**
     - Durum ve eylem fiilleri (*stative vs dynamic* - think, have, taste, smell, see nüansları), Kurumlarda sıfır artikel (*in hospital vs in the hospital, at school, in prison, go to bed*), Ettirgen çatı incelikleri (*have, get, make, let* ve edilgen *have something done*), Vurgulu cümle çeşitleri (*it-clefts, wh-clefts, all-clefts*), Paralel karşılaştırma formülleri (*the more ... the better*), Üç parçalı phrasal verb'ler ve ikili edatlar (*look forward to, put up with, run out of*), Şart cümlelerinde devriklik (*Had I known, Were I, Should you need*), Emir/tavsiye dilek kipi (*mandative subjunctive: insist that he take, vital that she be*), İleri ortaç cümlecikleri ve bağımsız yapılar (*having done, weather permitting*), Akademik bağlaçlar ve akış (*however, therefore, on the contrary vs on the other hand*).
@@ -693,7 +693,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - **Saçma / İlgisiz Görsel Krizinin Çözümü (Danimarkalı Rock Grubu & 1950 Boksör Portreleri Problemi):**
     - `src/data/imageQueue.ts`: Wikidata üzerinden kavram görseli ararken somut anlamlar yerine isim benzerliği nedeniyle müzik grupları (`Q215380`), albümler (`Q482994`), filmler (`Q11424`), şarkılar (`Q134556`), beldeler (`Q486970`), şirketler (`Q43229`) veya 19. yüzyıl tarihi şahıs portrelerinin (`Q5`) öneri olarak çıkmasını engelleyen katı ontoloji filtreleme motoru kuruldu.
     - `src/data/imageSearch.ts`: Wikimedia Commons tam metin aramasındaki gürültüyü (`Smith & Nephew`, mezar taşları, tarihi nüfus sayım belgeleri, albüm kapakları, posta pulları vb.) temizleyen negatif anahtar sözcük kümesi ve başlık doğrulama filtresi entegre edildi.
-  - **Google Görseller Tek Tık Köprüsü ve Pano (⌘V) Akışı (`src/ui/ImagePicker.tsx`, `src/ui/imageTools.ts`):**
+  - **Google Görseller Tek Tık Köprüsü ve Pano (⌘V) Akışı (`src/ui/words/ImagePicker.tsx`, `src/ui/shared/imageTools.ts`):**
     - Arama çubuğuna doğrudan `Google'da Ara ↗` butonu eklendi; kelime için tek tıkla yeni sekmede filtrelenmiş Google Görseller açılıyor.
     - Modal içerisine yönlendirici ve pratik kullanım kartı eklendi: *"Google'da beğendiğin görsele sağ tıkla → 'Resmi Kopyala' de ve burada doğrudan ⌘V / Ctrl+V yap!"*
     - `imageUrlFromClipboard`: Panodan sadece ikili (binary) resim verisi değil, web görsel bağlantısı (URL) kopyalandığında dahi anında algılanıp indirilerek karta dönüştürülmesi sağlandı.
@@ -701,7 +701,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - Kullanıcı yabancı bir kelime ararken (örn. FR: *neveu*, ES: *sobrino*), tek tıkla Türkçe anlamı, İngilizce karşılığı veya `+ İllüstrasyon`, `+ Çizim`, `+ Sade Nesne` gibi görsel arama netliğini katlayan hazır tarz filtreleri sunuldu.
   - **Pixabay HD Stok Görsel Motoru Desteği:**
     - Ücretsiz Pixabay API anahtarı ekleme ve kaldırma seçeneği entegre edildi (`src/data/imageSearch.ts`, `PIXABAY_KEY_STORAGE`). Anahtar girildiğinde açık kaynak arşivlerin ötesinde doğrudan milyonlarca profesyonel, stüdyo aydınlatmalı HD fotoğraf ve vektörel çizim ilk sırada listelenir.
-  - **Kelime Giriş Formu Dil Eşitlemesi (`src/ui/WordForm.tsx`):**
+  - **Kelime Giriş Formu Dil Eşitlemesi (`src/ui/words/WordForm.tsx`):**
     - `WordForm` içindeki `ImagePicker` çağrısında eksik olan `language={language}` parametresi bağlanarak Wikidata kavram çözümlemesinin hedef dil ile %100 uyumlu çalışması sağlandı.
   - **Birim & Duman Testleri:**
     - `imageSearch.test.ts` (3 test), `imageQueue.test.ts` (6 test), `ImagePicker.test.tsx` (5 test) ve `smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
@@ -725,7 +725,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - Diloloji'nin sevimli maskotu Monki'nin yer aldığı eksik iki hava durumu sahnesi (`weather-cloudy.webp` - bulutların arasından bakan Monki; `weather-thunder.webp` - sarı yağmurluğuyla şimşek kıvılcımına gülümseyen Monki) üretildi, şeffaf arka planla optimize edilip entegre edildi. `thunder`, `cloudy` ve `fog` durumları gerçek canlı illüstrasyonlarla buluşturuldu (`weather.test.tsx` 6/6 test yeşil).
   - **3. Boş Durum (Empty / Zero State) Kartlarının Zenginleştirilmesi:**
     - İçerik henüz eklenmemiş ya da boş olan ekranlarda (`WordLists.tsx` kelime listeleri, `Reading.tsx` okuma kütüphanesi, `BackTranslation.tsx` geri çeviri havuzu, `WordGraph.tsx` kelime ağı) kuru yazılar yerine sıcacık hikaye sanatı (`art="shelf"`, `art="cardbox"`, `art="together"`) ve teşvik edici açıklamalar yerleştirildi.
-  - **4. Seviye Atlama (Level Up) ve Kilometre Taşı Kutlama Modalı (`src/ui/LevelWatcher.tsx`, `src/ui/MilestoneMoment.tsx`, `src/ui/levelSeen.ts`):**
+  - **4. Seviye Atlama (Level Up) ve Kilometre Taşı Kutlama Modalı (`src/ui/profile/LevelWatcher.tsx`, `src/ui/progress/MilestoneMoment.tsx`, `src/ui/profile/levelSeen.ts`):**
     - Oturum özeti dışında (mini oyunlar, fiil laboratuvarı, okuma veya görevlerden kazanılan XP ile) seviye atlandığında da kullanıcının başarısını taçlandıran tam ekran kutlama modalı (`MilestoneMoment`) geliştirildi.
     - Seviye atlama rozeti (`LevelUpBadge`) animasyonu, `sfx.levelUp()`, `Burst` konfeti ve `shareCard` ile hikaye tarzı sosyal paylaşım kartı desteği eklendi. Cihaz hafızası (`levelSeen.ts`) ile ilk açılışta sessiz başlangıç ve çift kutlama engellemesi sağlandı; `LevelWatcher.test.tsx` ve `levelSeen.test.ts` ile birim testleri yazıldı.
   - **5. Koyu Tema (Dark Mode) Kontrast, Gölge ve Yüzey İnce Ayarları (`src/index.css`):**

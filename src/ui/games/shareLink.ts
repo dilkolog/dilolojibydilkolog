@@ -1,4 +1,4 @@
-import { showToast } from '../toastFeed'
+import { showToast } from '../shared/toastFeed'
 
 /** Hands the link to the share sheet where there is one, otherwise to the clipboard. */
 export async function share(text: string, url: string, title = 'Diloloji düellosu') {

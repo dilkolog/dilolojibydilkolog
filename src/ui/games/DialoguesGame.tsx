@@ -2,9 +2,9 @@ import { useEffect, useMemo, useState } from 'react'
 import { dialogueOrder, recordDialogue, type Dialogue, type DialogueLevel, type DialogueScores } from '../../engine/dialogues'
 import type { TargetLanguage } from '../../engine/types'
 import { dialogues } from '../../data/dialogues'
-import { BulbIcon, SpeakerIcon } from '../icons'
-import { sfx } from '../sounds'
-import { canSpeak, speak } from '../speech'
+import { BulbIcon, SpeakerIcon } from '../shared/icons'
+import { sfx } from '../shared/sounds'
+import { canSpeak, speak } from '../shared/speech'
 import { GameResult } from './GameResult'
 
 const LEVELS: DialogueLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']

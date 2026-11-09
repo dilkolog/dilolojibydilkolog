@@ -1,7 +1,7 @@
 import { accessFetch, APPROVAL_MESSAGE, isApprovalRefusal } from '../../data/access'
 import { lyricLines, type LyricLine } from '../../engine/lyrics'
 import type { TargetLanguage } from '../../engine/types'
-import { LANGUAGE_NAME } from '../labels'
+import { LANGUAGE_NAME } from '../shared/labels'
 
 export interface Song {
   id: string

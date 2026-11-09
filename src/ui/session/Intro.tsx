@@ -1,22 +1,22 @@
-import { RichText } from '../RichText'
+import { RichText } from '../shared/RichText'
 import { Suspense, lazy, useEffect, useRef, useState } from 'react'
 import { buildPretest, displayForm } from '../../engine/exercises'
 import type { Rng } from '../../engine/rng'
 import type { VocabularyEntry } from '../../engine/types'
 import { WordInputError } from '../../data/wordInput'
-import { PosTag } from '../PosTag'
-import { BulbIcon, PenIcon, SpeakerIcon } from '../icons'
+import { PosTag } from '../words/PosTag'
+import { BulbIcon, PenIcon, SpeakerIcon } from '../shared/icons'
 import { prefs } from '../prefs'
-import { sfx } from '../sounds'
-import { canSpeak, speak, speechPrefs } from '../speech'
-import { useMediaUrl } from '../useMedia'
+import { sfx } from '../shared/sounds'
+import { canSpeak, speak, speechPrefs } from '../shared/speech'
+import { useMediaUrl } from '../words/useMedia'
 import { SpeakButton, Word, Sentence, KeyLegend } from './shared'
 import { Choices } from './Answers'
 import { modalOpen } from './keys'
-import { POS_ART, REACT } from '../drawnArt'
+import { POS_ART, REACT } from '../shared/drawnArt'
 
 // Notes on the word in the other languages: fetched after the card shows.
-const CrossLanguageNotes = lazy(() => import('../CrossLanguage').then((m) => ({ default: m.CrossLanguageNotes })))
+const CrossLanguageNotes = lazy(() => import('../words/CrossLanguage').then((m) => ({ default: m.CrossLanguageNotes })))
 
 /**
  * First encounter: only the word, its sound, the core meaning and one strong example.

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { irregularForms, type Tense } from '../../engine/tenses'
 import { labForms } from '../../engine/verbLab'
-import { Select } from '../Select'
+import { Select } from '../shared/Select'
 import { FormTable } from './FormTable'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 

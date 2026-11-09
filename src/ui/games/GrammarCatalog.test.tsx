@@ -13,7 +13,7 @@ vi.mock('../../data/grammar', () => ({ grammarExercises: (language: string) => [
   { id: 'fr-present-a1', language: 'fr', level: 'A1', topic: 'basics_fr_present', type: 'choice', prompt: 'Je ___ ici.', answer: 'suis', options: ['suis', 'es'], explanation: 'Je ile suis kullanılır.', source: 'test' },
   { id: 'es-subj-b1', language: 'es', level: 'B1', topic: 'subjuntivo', type: 'choice', prompt: 'Quiero que ___ aquí.', answer: 'estés', options: ['estés', 'estás'], explanation: 'İstek subjuntivo gerektirir.', source: 'test' },
 ].filter((e) => e.language === language) }))
-vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), finish: vi.fn() } }))
+vi.mock('../shared/sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), finish: vi.fn() } }))
 
 let root: ReturnType<typeof createRoot>
 let host: HTMLDivElement

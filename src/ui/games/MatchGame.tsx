@@ -4,7 +4,7 @@ import { displayForm } from '../../engine/exercises'
 import { pickGameWords } from '../../engine/practice'
 import { createRng, shuffle } from '../../engine/rng'
 import { db } from '../../data/instance'
-import { sfx } from '../sounds'
+import { sfx } from '../shared/sounds'
 import { type Props, recordPractice, fmt } from './shared'
 
 interface Tile {

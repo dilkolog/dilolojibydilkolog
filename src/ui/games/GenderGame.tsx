@@ -3,7 +3,7 @@ import { GameResult } from './GameResult'
 import { createRng } from '../../engine/rng'
 import { GENDER_RULES, ruleQuiz, troubleRules, type RuleQuestion } from '../../engine/genderRules'
 import { db } from '../../data/instance'
-import { sfx } from '../sounds'
+import { sfx } from '../shared/sounds'
 import { isPctRecord, type Props } from './shared'
 
 const GENDER_ROUND = 15

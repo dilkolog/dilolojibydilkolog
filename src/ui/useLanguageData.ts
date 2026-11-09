@@ -10,7 +10,7 @@ import type { TargetLanguage } from '../engine/types'
 import { RECENT_DAYS, type LanguageData } from '../appNav'
 import { loadGame, type GameState } from './game'
 import { pushToExtension } from './extensionBridge'
-import { showToast } from './toastFeed'
+import { showToast } from './shared/toastFeed'
 
 let corpusRun: Promise<number> | null = null
 let wiktRun: Promise<number> | null = null

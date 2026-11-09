@@ -1,14 +1,14 @@
 # İkon Denetimi Raporu
 
 **Tarih:** 2026-10-10  
-**Kapsam:** `src/ui/icons.tsx` (82 ikon), arayüzdeki ikon kullanımları, emoji sapmaları, satır içi SVG'ler ve hizalama kuralları.  
+**Kapsam:** `src/ui/shared/icons.tsx` (82 ikon), arayüzdeki ikon kullanımları, emoji sapmaları, satır içi SVG'ler ve hizalama kuralları.  
 **Tasarım Kılavuzu Referansı:** `DESIGN.md` (24 px ızgara, 1.8 px çizgi kalınlığı, yuvarlak uç/birleşim `round`, `currentColor`, 14–22 px boyut aralığı).
 
 ---
 
 ## 1. Tutarlılık Tablosu ve Token Uyumu
 
-Kelime Koçu'nun kendi ikon seti `src/ui/icons.tsx` içinde tek bir elden çizilmiş 82 ikondan oluşmaktadır.
+Kelime Koçu'nun kendi ikon seti `src/ui/shared/icons.tsx` içinde tek bir elden çizilmiş 82 ikondan oluşmaktadır.
 Tüm ikonlar temel olarak `Icon` bileşeni sarmalayıcısını kullanır:
 - **Izgara:** `viewBox="0 0 24 24"`
 - **Çizgi:** `stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"`
@@ -33,11 +33,11 @@ Tüm ikonlar temel olarak `Icon` bileşeni sarmalayıcısını kullanır:
 ### A. Kapat Düğmelerinde `CloseIcon` Yerine Metin Karakteri `×` Kullanılan Yerler
 `DESIGN.md` "Tek Set Kuralı" gereğince arayüzdeki tüm kapatma düğmeleri `CloseIcon` kullanmalıdır. Kod tabanında 5 farklı dosyada metin karakteri `×` kullanıldığı tespit edilmiştir:
 
-1. `src/ui/ReadingLibrary.tsx:47` — Kitap/metin silme/kapatma butonu: `<button ...>×</button>`
-2. `src/ui/WordCard.tsx:86` — Kelime kartı kapat butonu: `<button className="btn-close" ...>×</button>`
-3. `src/ui/WordDetail.tsx:363` — Kelime detay kartı kapatma butonu: `<button ...>×</button>`
-4. `src/ui/WordExamples.tsx:126` ve `269` — Örnek cümle kapatma / kaldırma butonu: `<button ...>×</button>`
-5. `src/ui/WordGraph.tsx:192` — Kelime ağı detay kapatma butonu: `<button ...>×</button>`
+1. `src/ui/reading/ReadingLibrary.tsx:47` — Kitap/metin silme/kapatma butonu: `<button ...>×</button>`
+2. `src/ui/words/WordCard.tsx:86` — Kelime kartı kapat butonu: `<button className="btn-close" ...>×</button>`
+3. `src/ui/words/WordDetail.tsx:363` — Kelime detay kartı kapatma butonu: `<button ...>×</button>`
+4. `src/ui/words/WordExamples.tsx:126` ve `269` — Örnek cümle kapatma / kaldırma butonu: `<button ...>×</button>`
+5. `src/ui/words/WordGraph.tsx:192` — Kelime ağı detay kapatma butonu: `<button ...>×</button>`
 
 > **Öneri:** Bu 5 noktadaki `×` metin karakterleri `<CloseIcon size={16} />` ile değiştirilmelidir.
 
@@ -46,23 +46,23 @@ Tüm ikonlar temel olarak `Icon` bileşeni sarmalayıcısını kullanır:
 ### B. Kod İçerisinde Satır İçi `<svg>` Çizilen Yerler
 İkon kütüphanesine dahil edilmesi gerekirken doğrudan JSX içinde satır içi SVG olarak çizilmiş 3 kritik yer bulunmaktadır:
 
-1. `src/ui/Dictionary.tsx:137` ve `src/ui/WordListView.tsx:291`:
+1. `src/ui/dictionary/Dictionary.tsx:137` ve `src/ui/words/WordListView.tsx:291`:
    - Dokunsal düzenleme/kalem ikonu satır içi SVG olarak çizilmiş:
      ```tsx
      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" aria-hidden>
      ```
    - Hem `strokeWidth="2.25"` ile tasarım kuralından (1.8px) sapmakta hem de `PenIcon` varken satır içi tekrarlanmaktadır.
-2. `src/ui/Screens.tsx:84`:
+2. `src/ui/home/Screens.tsx:84`:
    - Çevrimdışı göstergesi (`OfflineBadge`) içinde bulut-kapalı SVG'si doğrudan satır içi çizilmiş:
      ```tsx
      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
      ```
-   - Bu ikon `src/ui/icons.tsx` setinde yer almadığı için satır içi eklenmiştir. `CloudOffIcon` veya `OfflineIcon` olarak `icons.tsx`'e taşınmalıdır.
+   - Bu ikon `src/ui/shared/icons.tsx` setinde yer almadığı için satır içi eklenmiştir. `CloudOffIcon` veya `OfflineIcon` olarak `icons.tsx`'e taşınmalıdır.
 
 ---
 
 ### C. Yalnızca `glyphIcon.ts`'te Kalan (Arayüzde Doğrudan Çağrılmayan) İkonlar
-`icons.tsx` içinde tanımlanan 82 ikonun tamamı projede mevcuttur (ölü ikon yoktur). Ancak aşağıdaki 12 ikon React bileşenlerinde JSX olarak (`<IconName />`) **hiç doğrudan kullanılmamakta**, yalnızca `src/ui/glyphIcon.ts` dosyasındaki emoji çevirici sözlüğünde (`BY_EMOJI`) yer almaktadır:
+`icons.tsx` içinde tanımlanan 82 ikonun tamamı projede mevcuttur (ölü ikon yoktur). Ancak aşağıdaki 12 ikon React bileşenlerinde JSX olarak (`<IconName />`) **hiç doğrudan kullanılmamakta**, yalnızca `src/ui/shared/glyphIcon.ts` dosyasındaki emoji çevirici sözlüğünde (`BY_EMOJI`) yer almaktadır:
 
 - `KeyboardIcon` (`icons.tsx:196`)
 - `GaugeIcon` (`icons.tsx:283`)
@@ -122,19 +122,19 @@ Son turlarda eklenen yenilikçi özelliklerin bir kısmı jenerik ikonlarla veya
 `DESIGN.md` kuralı: "Boyut: 14–22 px; en sık 16 ve 18."
 
 - **Çok Küçük Boyutlar (<14px):**
-  - `src/ui/ConjugationTable.tsx:68, 81`: `<CheckIcon size={12} />` (Retina ekranlarda bile çizgisi silikleşiyor).
-  - `src/ui/Onboarding.tsx:109`: `<CheckIcon size={12} />`
-  - `src/ui/ProfileTitles.tsx:42, 73`: `<LockIcon size={12} />` (Kilit detayları 12px'te seçilmiyor).
-  - `src/ui/WordListView.tsx:644`: `<MicIcon size={12} />`
-  - `src/ui/Dictionary.tsx:398`: `<SpeakerIcon size={13} />`
-  - `src/ui/Produce.tsx:482`: `<CheckIcon size={13} />`
-  - `src/ui/Profile.tsx:78`: `<LockIcon size={13} />`
-  - `src/ui/SessionSummary.tsx:338`: `<StarIcon size={13} />`
+  - `src/ui/words/ConjugationTable.tsx:68, 81`: `<CheckIcon size={12} />` (Retina ekranlarda bile çizgisi silikleşiyor).
+  - `src/ui/home/Onboarding.tsx:109`: `<CheckIcon size={12} />`
+  - `src/ui/profile/ProfileTitles.tsx:42, 73`: `<LockIcon size={12} />` (Kilit detayları 12px'te seçilmiyor).
+  - `src/ui/words/WordListView.tsx:644`: `<MicIcon size={12} />`
+  - `src/ui/dictionary/Dictionary.tsx:398`: `<SpeakerIcon size={13} />`
+  - `src/ui/practice/Produce.tsx:482`: `<CheckIcon size={13} />`
+  - `src/ui/profile/Profile.tsx:78`: `<LockIcon size={13} />`
+  - `src/ui/session/SessionSummary.tsx:338`: `<StarIcon size={13} />`
   > **Öneri:** 12px ve 13px kullanılan yerlerin tamamı taban sınır olan **14px** değerine çekilmelidir.
 
 - **Büyük Buton ve Hero Boyutları (>22px):**
-  - `src/ui/AccountSettings.tsx:54`: `<UserIcon size={24} />` (Avatar kutusunda 22px'e çekilebilir).
-  - `src/ui/Habits.tsx:39, 72`: `<SunIcon size={24} />`, `<MoonIcon size={24} />` (20-22px olmalı).
+  - `src/ui/account/AccountSettings.tsx:54`: `<UserIcon size={24} />` (Avatar kutusunda 22px'e çekilebilir).
+  - `src/ui/home/Habits.tsx:39, 72`: `<SunIcon size={24} />`, `<MoonIcon size={24} />` (20-22px olmalı).
   - `src/ui/games/GameResult.tsx:49`: `<TrophyIcon size={24} />`
   - Oyun ve Dikte merkez oynatıcıları: `SpeakerIcon size={32}` (`NativeDictation.tsx:157`, `Sentences.tsx:235`, `TextDictation.tsx:128`, `AudioReview.tsx:143`).
   - Boss arenası: `SwordsIcon size={32}`, `FlameIcon size={34}`, `TrophyIcon size={36}` (`BossArena.tsx:211, 298`).
@@ -150,10 +150,10 @@ Son turlarda eklenen yenilikçi özelliklerin bir kısmı jenerik ikonlarla veya
 ```
 
 1. **Tırnak ve Parantez Yanında Düşüklük:**
-   - `src/ui/ProfileTitles.tsx:73`: `<LockIcon size={12} className="inline-icon" />“{badge?.title}”`
+   - `src/ui/profile/ProfileTitles.tsx:73`: `<LockIcon size={12} className="inline-icon" />“{badge?.title}”`
    - Tırnak işareti (`“`) üst çizgide başlarken `-0.18em` ile aşağı kaydırılan kilit ikonu görsel olarak çok aşağıda kalmaktadır.
 2. **Buton İçi Hizalama:**
-   - `src/ui/Prequestions.tsx:34`: `<button ...><HelpIcon size={16} className="inline-icon" />Okumadan önce 3 soru</button>`
+   - `src/ui/reading/Prequestions.tsx:34`: `<button ...><HelpIcon size={16} className="inline-icon" />Okumadan önce 3 soru</button>`
    - Buton zaten `display: inline-flex; align-items: center;` ile hizalandığında `vertical-align: -0.18em` ikonu gereksiz yere aşağı çekmektedir.
    > **Öneri:** Buton içindeki ikonlar için `margin-right: 0.35em; vertical-align: middle;` ya da butonun doğrudan flexbox merkezlemesine güvenilmesi tavsiye edilir.
 

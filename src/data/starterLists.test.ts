@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { starterItems } from '../ui/starterItems'
-import { keyEntries } from '../ui/keyWordsList'
+import { starterItems } from '../ui/words/starterItems'
+import { keyEntries } from '../ui/reading/keyWordsList'
 import { splitArticle } from '../engine/answerCheck'
 import { loadStarterLists } from './starterLists'
 import type { TargetLanguage } from '../engine/types'

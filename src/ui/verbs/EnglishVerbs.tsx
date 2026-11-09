@@ -7,12 +7,12 @@ import type { GrammarLog } from '../../engine/grammar'
 import { createRng } from '../../engine/rng'
 import { GameResult } from '../games/GameResult'
 import { noteIn } from '../games/logNote'
-import { PageHeader } from '../PageHeader'
+import { PageHeader } from '../shared/PageHeader'
 import { recordVisit } from '../screenUsage'
-import { sfx } from '../sounds'
-import { canSpeak, speak } from '../speech'
-import { useTabIndicator } from '../useTabIndicator'
-import { SpeakerIcon } from '../icons'
+import { sfx } from '../shared/sounds'
+import { canSpeak, speak } from '../shared/speech'
+import { useTabIndicator } from '../shared/useTabIndicator'
+import { SpeakerIcon } from '../shared/icons'
 
 const note = noteIn(() => db.getEnVerbLog(), (log) => db.saveEnVerbLog(log))
 

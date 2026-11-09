@@ -12,18 +12,18 @@ Aşağıdaki semboller yalnızca tanımlandıkları dosya içinde kullanılmakta
 
 | Dosya | Sembol | Durum | Açıklama |
 |---|---|---|---|
-| `src/ui/pronunciation.ts` | `assessLocale` | Dahili yapıldı | Yalnızca `pronunciation.ts` içinde telaffuz tanıma çağrısında kullanılıyor. |
-| `src/ui/pronunciation.ts` | `toWav16k` | Dahili yapıldı | Yalnızca `pronunciation.ts` içinde ses dönüştürmede kullanılıyor. |
-| `src/ui/clipboardSuggest.ts` | `markOffered` | Dahili yapıldı | Yalnızca `clipboardSuggest.ts` içinde öneri takibinde kullanılıyor. |
-| `src/ui/clipboardSuggest.ts` | `clipboardGranted` | Dahili yapıldı | Yalnızca `clipboardSuggest.ts` içinde izin denetiminde kullanılıyor. |
-| `src/ui/glyphIcon.ts` | `glyphFor` | Dahili yapıldı | Yalnızca `glyphIcon.ts` içinde emoji glif eşlemesinde kullanılıyor. |
-| `src/ui/wordOrder.ts` | `loadWordOrder` | Dahili yapıldı | Yalnızca `wordOrder.ts` içinde komşuluk sıralamasında varsayılan argüman olarak kullanılıyor. |
-| `src/ui/backup.ts` | `BACKUP_EVERY_DAYS` | Dahili yapıldı | Yalnızca `backup.ts` içinde bayatlık kontrolünde kullanılıyor. |
-| `src/ui/pushReminders.ts` | `localDay` | Dahili yapıldı | Yalnızca `pushReminders.ts` içinde tarih biçimlendirmede kullanılıyor. |
-| `src/ui/knownMilestones.ts` | `KNOWN_MILESTONES` | Dahili yapıldı | Yalnızca `knownMilestones.ts` içinde kilometre taşı sınırlarında kullanılıyor. |
-| `src/ui/BadgeWatcher.tsx` | `CELEBRATE_MAX` | Dahili yapıldı | Yalnızca `BadgeWatcher.tsx` içinde rozet anı sınırında kullanılıyor. |
-| `src/ui/DictionarySaved.tsx` | `SAVED_SHOWN` | Dahili yapıldı | Yalnızca `DictionarySaved.tsx` içinde gösterim sınırında kullanılıyor. |
-| `src/ui/downscaleImage.ts` | `MAX_SIDE`, `fitSize` | Dahili yapıldı | Yalnızca `downscaleImage.ts` içinde resim boyutlandırmada kullanılıyor. |
+| `src/ui/practice/pronunciation.ts` | `assessLocale` | Dahili yapıldı | Yalnızca `pronunciation.ts` içinde telaffuz tanıma çağrısında kullanılıyor. |
+| `src/ui/practice/pronunciation.ts` | `toWav16k` | Dahili yapıldı | Yalnızca `pronunciation.ts` içinde ses dönüştürmede kullanılıyor. |
+| `src/ui/shared/clipboardSuggest.ts` | `markOffered` | Dahili yapıldı | Yalnızca `clipboardSuggest.ts` içinde öneri takibinde kullanılıyor. |
+| `src/ui/shared/clipboardSuggest.ts` | `clipboardGranted` | Dahili yapıldı | Yalnızca `clipboardSuggest.ts` içinde izin denetiminde kullanılıyor. |
+| `src/ui/shared/glyphIcon.ts` | `glyphFor` | Dahili yapıldı | Yalnızca `glyphIcon.ts` içinde emoji glif eşlemesinde kullanılıyor. |
+| `src/ui/words/wordOrder.ts` | `loadWordOrder` | Dahili yapıldı | Yalnızca `wordOrder.ts` içinde komşuluk sıralamasında varsayılan argüman olarak kullanılıyor. |
+| `src/ui/settings/backup.ts` | `BACKUP_EVERY_DAYS` | Dahili yapıldı | Yalnızca `backup.ts` içinde bayatlık kontrolünde kullanılıyor. |
+| `src/ui/settings/pushReminders.ts` | `localDay` | Dahili yapıldı | Yalnızca `pushReminders.ts` içinde tarih biçimlendirmede kullanılıyor. |
+| `src/ui/words/knownMilestones.ts` | `KNOWN_MILESTONES` | Dahili yapıldı | Yalnızca `knownMilestones.ts` içinde kilometre taşı sınırlarında kullanılıyor. |
+| `src/ui/profile/BadgeWatcher.tsx` | `CELEBRATE_MAX` | Dahili yapıldı | Yalnızca `BadgeWatcher.tsx` içinde rozet anı sınırında kullanılıyor. |
+| `src/ui/dictionary/DictionarySaved.tsx` | `SAVED_SHOWN` | Dahili yapıldı | Yalnızca `DictionarySaved.tsx` içinde gösterim sınırında kullanılıyor. |
+| `src/ui/shared/downscaleImage.ts` | `MAX_SIDE`, `fitSize` | Dahili yapıldı | Yalnızca `downscaleImage.ts` içinde resim boyutlandırmada kullanılıyor. |
 | `src/ui/games/shared.tsx` | `RECORD_MIN_PCT` | Dahili yapıldı | Yalnızca `games/shared.tsx` içinde rekor yüzdesi kontrolünde kullanılıyor. |
 | `src/ui/incoming.ts` | `READ_WORDS` | Dahili yapıldı | Yalnızca `incoming.ts` içinde metin uzunluğu ayrımında kullanılıyor. |
 | `src/ui/monki/monkiWords.ts` | `TALK_WORDS` | Dahili yapıldı | Yalnızca `monkiWords.ts` içinde Monki sohbet kelime sınırında kullanılıyor. |

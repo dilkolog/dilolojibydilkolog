@@ -9,7 +9,7 @@ import { createEntry } from '../../data/wordInput'
 import { newWordState, processAttempt } from '../../engine/review'
 import type { UserWordState, VocabularyEntry } from '../../engine/types'
 
-vi.mock('../sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), finish: vi.fn(), badge: vi.fn(), goal: vi.fn(), pair: vi.fn(), flip: vi.fn(), tick: vi.fn(), forgot: vi.fn(), resetRun: vi.fn(), near: vi.fn() } }))
+vi.mock('../shared/sounds', () => ({ sfx: { correct: vi.fn(), wrong: vi.fn(), levelUp: vi.fn(), finish: vi.fn(), badge: vi.fn(), goal: vi.fn(), pair: vi.fn(), flip: vi.fn(), tick: vi.fn(), forgot: vi.fn(), resetRun: vi.fn(), near: vi.fn() } }))
 const { GravityGame } = await import('./GravityGame')
 
 let root: ReturnType<typeof createRoot> | undefined

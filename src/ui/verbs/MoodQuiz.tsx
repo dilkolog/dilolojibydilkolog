@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
-import { useNumberKeys } from '../useNumberKeys'
-import { sfx } from '../sounds'
+import { useNumberKeys } from '../shared/useNumberKeys'
+import { sfx } from '../shared/sounds'
 import { moodRound } from './moodRound'
 import type { LabLanguage } from './labShared'
 

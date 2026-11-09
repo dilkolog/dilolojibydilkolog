@@ -4,7 +4,7 @@ import type { Settings } from '../../data/db'
 import { effectivePrefs, PREF_TYPES, type ExercisePref } from '../../engine/exercisePrefs'
 import type { TypingShare } from '../../engine/session'
 import type { ExerciseType } from '../../engine/types'
-import { CloseIcon, GearIcon } from '../icons'
+import { CloseIcon, GearIcon } from '../shared/icons'
 
 /**
  * Study settings from inside a session (like Memrise and Quizlet): how questions are asked and

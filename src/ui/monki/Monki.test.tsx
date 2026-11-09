@@ -8,11 +8,11 @@ import { AiContext } from '../aiContext'
 const monkiTurn = vi.fn()
 const speech = vi.hoisted(() => ({ canSpeak: vi.fn(() => false), speak: vi.fn(), stopSpeaking: vi.fn() }))
 const input = vi.hoisted(() => ({ canListen: vi.fn(() => false), listen: vi.fn() }))
-vi.mock('../speech', () => speech)
-vi.mock('../speechInput', () => input)
+vi.mock('../shared/speech', () => speech)
+vi.mock('../shared/speechInput', () => input)
 vi.mock('../../ai', async (orig) => ({ ...(await orig<typeof import('../../ai')>()), monkiTurn: (...a: unknown[]) => monkiTurn(...a) }))
 const saveSentence = vi.fn()
-vi.mock('../saveSentence', () => ({ saveSentence: (...a: unknown[]) => saveSentence(...a) }))
+vi.mock('../words/saveSentence', () => ({ saveSentence: (...a: unknown[]) => saveSentence(...a) }))
 import Monki from './Monki'
 import { askMonki } from './monkiBus'
 

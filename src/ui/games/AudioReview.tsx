@@ -4,11 +4,11 @@ import { pickAudioWords, type AudioSet } from '../../engine/practice'
 import { createRng } from '../../engine/rng'
 import { db, scheduler } from '../../data/instance'
 import { isDifficult, withDifficult } from '../../engine/difficult'
-import { DifficultButton } from '../DifficultButton'
-import { playWordAsync, preloadRecording, speakAsync, speakTurkishAsync, speechPrefs, stopSpeaking } from '../speech'
+import { DifficultButton } from '../words/DifficultButton'
+import { playWordAsync, preloadRecording, speakAsync, speakTurkishAsync, speechPrefs, stopSpeaking } from '../shared/speech'
 import type { Props } from './shared'
-import { ChevronLeftIcon, ChevronRightIcon, PauseIcon, PlayIcon } from '../icons'
-import { Sticker } from '../Sticker'
+import { ChevronLeftIcon, ChevronRightIcon, PauseIcon, PlayIcon } from '../shared/icons'
+import { Sticker } from '../shared/Sticker'
 
 const AUDIO_SETS: [AudioSet, string][] = [
   ['weak', 'Zayıf kelimeler'],

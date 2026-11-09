@@ -5,7 +5,7 @@ import type { VocabularyEntry } from '../../engine/types'
 import { MOODS, tenseName, type LabLanguage } from './labShared'
 
 import { esc, printBase, printFoot, printOrigin, printPage, printTop } from '../../data/printSheet'
-import { LANGUAGE_NAME } from '../labels'
+import { LANGUAGE_NAME } from '../shared/labels'
 
 const CSS = `
     h1 { font-family: var(--serif); font-weight: 400; font-size: 26pt; color: var(--text); }

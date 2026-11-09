@@ -1,4 +1,4 @@
-import { GameIcon } from '../GameIcon'
+import { GameIcon } from '../practice/GameIcon'
 import { useEffect, useMemo, useState } from 'react'
 import { GameResult } from './GameResult'
 import {
@@ -11,10 +11,10 @@ import type { GrammarLog } from '../../engine/grammar'
 import { createRng } from '../../engine/rng'
 import { db } from '../../data/instance'
 import { noteIn } from './logNote'
-import { sfx } from '../sounds'
+import { sfx } from '../shared/sounds'
 import { isPctRecord } from './shared'
-import { CheckIcon, SpeakerIcon } from '../icons'
-import { canSpeak, speakAsync } from '../speech'
+import { CheckIcon, SpeakerIcon } from '../shared/icons'
+import { canSpeak, speakAsync } from '../shared/speech'
 
 const ROUND_SIZE = 10
 

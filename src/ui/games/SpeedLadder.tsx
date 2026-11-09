@@ -4,10 +4,10 @@ import { loadSources } from './sentenceSources'
 import { canClimb, ladder, LADDER_RATES, LADDER_SENTENCES, addRun, advice, change, cleanRuns, scoreByRate, type LadderAnswer, type LadderItem, type LadderRun } from '../../engine/speedLadder'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage, VocabularyEntry } from '../../engine/types'
-import { EmptyState } from '../EmptyState'
-import { LANGUAGE_NAME } from '../labels'
-import { sfx } from '../sounds'
-import { speakAsync, speechPrefs, stopSpeaking } from '../speech'
+import { EmptyState } from '../shared/EmptyState'
+import { LANGUAGE_NAME } from '../shared/labels'
+import { sfx } from '../shared/sounds'
+import { speakAsync, speechPrefs, stopSpeaking } from '../shared/speech'
 
 const storeKey = (language: TargetLanguage) => `diloloji:ladder:${language}`
 const loadRuns = (language: TargetLanguage): LadderRun[] => {

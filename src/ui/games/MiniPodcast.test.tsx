@@ -27,7 +27,7 @@ vi.mock('../../ai', async (orig) => ({
   },
 }))
 const spoken: { text: string; second: boolean }[] = []
-vi.mock('../speech', () => ({
+vi.mock('../shared/speech', () => ({
   speakAsync: async (text: string, _l: string, _r: number, second = false) => void spoken.push({ text, second }),
   speechPrefs: { rate: 0.9 },
   stopSpeaking: () => {},

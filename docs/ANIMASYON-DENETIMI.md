@@ -52,11 +52,11 @@ Kod tabanında toplam **66 `@keyframes` kuralı**, **202 CSS animasyon/geçiş d
 - **`src/ui/games/BlitzGame.tsx:194`:**  
   `style={{ width: `${(left / BLITZ_MS) * 100}%`, transition: 'width 0.1s linear' }}`  
   *Sorun:* Doğrudan `width` animasyonu yapılarak her 100 ms'de reflow (yerleşim hesabı) tetikleniyor.
-- **`src/ui/Burst.tsx:27`:**  
+- **`src/ui/shared/Burst.tsx:27`:**  
   Kutlama konfetisi / parçacık patlaması CSS değişkenleriyle (`--x`, `--y`, `--r`) GPU üzerinde çalışıyor.
-- **`src/ui/Garden.tsx:179`:**  
+- **`src/ui/words/Garden.tsx:179`:**  
   Yağmur damlaları satır içi gecikme ve sürelerle CSS `rain-drop` keyframe'ine bağlanıyor.
-- **`src/ui/useTabIndicator.ts`:**  
+- **`src/ui/shared/useTabIndicator.ts`:**  
   Sekme altı kayan çizgi `transform` ve `width` geçişiyle hareket ediyor.
 
 ---

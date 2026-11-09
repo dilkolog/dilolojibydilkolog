@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react'
 import { conjugateTense, subjectLabel, withSubject, type Tense } from '../../engine/tenses'
 import type { PlanItem } from '../../engine/dailyPlan'
-import { AccentBar } from '../AccentBar'
-import { accentChange, insertAt } from '../accentCaret'
-import { sfx } from '../sounds'
+import { AccentBar } from '../shared/AccentBar'
+import { accentChange, insertAt } from '../shared/accentCaret'
+import { sfx } from '../shared/sounds'
 import { Diagnosis } from '../verbs/Diagnosis'
 import { judge, tenseName, verbEntry } from '../verbs/labShared'
 

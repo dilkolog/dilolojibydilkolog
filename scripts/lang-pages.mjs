@@ -1,6 +1,6 @@
 // A page for each language, for sharing: /fransizca, /ispanyolca, /ingilizce. They are the app's own index.html with
 // that language's title, description and picture (public/og/), so a link shared on WhatsApp shows the language's
-// colour and Monki; the landing page opens on that language (src/ui/startLanguage.ts languageOfPath).
+// colour and Monki; the landing page opens on that language (src/ui/home/startLanguage.ts languageOfPath).
 // Run after the build (npm run build:cf): writes dist/<slug>.html, which Cloudflare serves at /<slug>.
 import { readFileSync, writeFileSync } from 'node:fs'
 

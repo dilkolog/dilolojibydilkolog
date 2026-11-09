@@ -36,7 +36,7 @@ Bugünkü zayıf kelimelerle 3–5 turluk kısa konuşma; bitince "bugün şunla
 ### 2. Gramer koçu — YAPILDI (2026-10-24)
 Uygulama: `asks.ts` `lessonAsk`/`habitAsk`; Rehber dersinde "Başka anlat", mini sınavda yanlış cevapta "Monki açıklasın" (`LessonCheck` `lesson` prop'u), Yazı hata defterinde her tür için "Monki'ye sor". Kör nokta kartlarına henüz eklenmedi.
 Rehber dersinde takılınca "bunu bana başka anlat"; ders kuralını senin yanlış cümlenle örnekle.
-- `ui/Guide.tsx` `LessonView`: ders sonuna (ve yanlış sınav cevabında) `AskMonki`. Metin: ders kuralının özeti + yanlış cevap/senin cümlen (≤700 karakter, `asks.ts` desenine yeni `lessonAsk`).
+- `ui/guide/Guide.tsx` `LessonView`: ders sonuna (ve yanlış sınav cevabında) `AskMonki`. Metin: ders kuralının özeti + yanlış cevap/senin cümlen (≤700 karakter, `asks.ts` desenine yeni `lessonAsk`).
 - Yazı hata defterinden (`WritingNotebook`) ve kör nokta bulgularından aynı düğme.
 
 ### 3. "Neden yanlış?" ve aynı hatayı hatırlatma — YAPILDI (2026-10-24)
@@ -53,7 +53,7 @@ Azure puanı düşük kelimeleri alıp "bu sesi şöyle çıkar" der; sesli tekr
 ### 6. Yazı arkadaşı — YAPILDI (2026-10-24)
 Uygulama: Günlük'te "Takıldım" (`asks.ts` `stuckAsk`, `MonkiMode 'write'`): metin + görev gider, Monki yazıyı düzeltmez/yazmaz, 2–3 devam yolu ve yönlendirici soru verir.
 Günlük yazarken yanında durur; yalnızca istenince "devam etmek için şu kalıbı dene" önerir.
-- `ui/Produce.tsx` Günlük alanında küçük "Monki'ye takıldım" düğmesi: o ana kadar yazılan metin + hedef (sınav görevi varsa `engine/examTasks.ts`) → 2–3 devam önerisi (cümle başı kalıpları, kelime önerisi). Düzeltme değil, yönlendirme; yazıyı kendisi değiştirmez.
+- `ui/practice/Produce.tsx` Günlük alanında küçük "Monki'ye takıldım" düğmesi: o ana kadar yazılan metin + hedef (sınav görevi varsa `engine/examTasks.ts`) → 2–3 devam önerisi (cümle başı kalıpları, kelime önerisi). Düzeltme değil, yönlendirme; yazıyı kendisi değiştirmez.
 
 ### 7. Sınav provası — YAPILDI (2026-10-24)
 Uygulama: sınav görevi seçiliyken ve ≥20 kelimeyken "Monki puanlasın" (`examAsk`, `MonkiMode 'exam'`): dört ölçüt 0–5 + toplam/20, Türkçe gerekçe, "resmî puan değil" notu, tek en değerli düzeltme.
@@ -86,7 +86,7 @@ Ayarlar'da "bu ay Monki'ye ne kadar harcadın" ve günlük sınır.
 ### 4. Kelime hikâyesi — YAPILDI (2026-10-24)
 Uygulama: kelime sayfasında Köken satırında "Hikâyesini anlat" (`storyAsk`: köken notu + kelime ailesi/eş anlamlılar).
 Kök ve ekler ağacındaki kelimenin köken ve akrabalarını kısa hikâye olarak anlatır.
-- `ui/MorphemeTree.tsx`, `engine/derive.ts` `familyOf`, kelime sayfasındaki köken (`cleanEtymology`). `wordAsk`'a "kelime hikâyesi" modu: köken + aile üyeleri bağlama girer; hikâye 4–5 cümle, Türkçe, örnekler hedef dilde.
+- `ui/words/MorphemeTree.tsx`, `engine/derive.ts` `familyOf`, kelime sayfasındaki köken (`cleanEtymology`). `wordAsk`'a "kelime hikâyesi" modu: köken + aile üyeleri bağlama girer; hikâye 4–5 cümle, Türkçe, örnekler hedef dilde.
 
 ### 8. Yeni rol yapma sahneleri — YAPILAMAZ (şimdilik; çizim ister)
 `Monki.tsx` `SCENES` her sahne için çizim ister (`ROLE_ART`, `MISSION_ART`). Çizimi sahibi üretmeden yeni sahne ekleme. Sahibine hangi sahneleri istediğini (doktor, kiracı, iş mülakatı…) ve çizim ihtiyacını bildir.

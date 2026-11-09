@@ -1,13 +1,13 @@
-import { TapNote, TapWords } from '../TapWords'
-import { useTapGloss } from '../useTapGloss'
+import { TapNote, TapWords } from '../dictionary/TapWords'
+import { useTapGloss } from '../dictionary/useTapGloss'
 import { useEffect, useRef, useState } from 'react'
 import { BLANK, type ContextSource, type Evaluation } from '../../engine/exercises'
 import type { VocabularyEntry } from '../../engine/types'
-import { BookIcon, PenIcon, PinIcon, SpeakerIcon } from '../icons'
+import { BookIcon, PenIcon, PinIcon, SpeakerIcon } from '../shared/icons'
 import { prefs } from '../prefs'
-import { canSpeak, isAudioPlaying, playWord } from '../speech'
+import { canSpeak, isAudioPlaying, playWord } from '../shared/speech'
 import { modalOpen } from './keys'
-import { ArticleTag } from '../WrittenForm'
+import { ArticleTag } from '../words/WrittenForm'
 import { wordFit } from './wordFit'
 
 /** Plays the word; Alt+S (or Space when not typing) replays it. */

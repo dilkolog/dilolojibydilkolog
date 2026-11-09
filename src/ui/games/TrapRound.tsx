@@ -7,10 +7,10 @@ import type { TargetLanguage } from '../../engine/types'
 import { db } from '../../data/instance'
 import { noteIn } from './logNote'
 import { trapWords } from '../../data/traps'
-import { AlertIcon, SpeakerIcon } from '../icons'
-import { LANGUAGE_NAME } from '../labels'
-import { sfx } from '../sounds'
-import { canSpeak, speak } from '../speech'
+import { AlertIcon, SpeakerIcon } from '../shared/icons'
+import { LANGUAGE_NAME } from '../shared/labels'
+import { sfx } from '../shared/sounds'
+import { canSpeak, speak } from '../shared/speech'
 
 const note = noteIn(() => db.getTrapLog(), (log) => db.saveTrapLog(log))
 

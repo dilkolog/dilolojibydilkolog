@@ -1,11 +1,11 @@
 import { useMemo, useRef, useState } from 'react'
-import { useNumberKeys } from '../useNumberKeys'
+import { useNumberKeys } from '../shared/useNumberKeys'
 import { normalize } from '../../engine/answerCheck'
 import { createRng, pick, shuffle } from '../../engine/rng'
 import { analyzeForm, conjugateTense, isImperative, subjectLabel, LAB_TENSES, type FormAnalysis, type Tense } from '../../engine/tenses'
-import { AccentBar } from '../AccentBar'
-import { accentChange, insertAt } from '../accentCaret'
-import { sfx } from '../sounds'
+import { AccentBar } from '../shared/AccentBar'
+import { accentChange, insertAt } from '../shared/accentCaret'
+import { sfx } from '../shared/sounds'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
 const ROUND = 6

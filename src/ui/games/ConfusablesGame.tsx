@@ -3,10 +3,10 @@ import { buildConfusableQuestions, CONFUSABLE_RULES, confusableRound, CONFUSABLE
 import { db } from '../../data/instance'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
-import { BulbIcon, SpeakerIcon } from '../icons'
-import { LANGUAGE_NAME } from '../labels'
-import { sfx } from '../sounds'
-import { canSpeak, speak } from '../speech'
+import { BulbIcon, SpeakerIcon } from '../shared/icons'
+import { LANGUAGE_NAME } from '../shared/labels'
+import { sfx } from '../shared/sounds'
+import { canSpeak, speak } from '../shared/speech'
 import { GameResult } from './GameResult'
 
 interface Props {
