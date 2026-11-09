@@ -11,6 +11,7 @@ const api = vi.hoisted(() => ({
   unpublishSet: vi.fn(async () => ({ ok: true })),
   loadSystem: vi.fn(),
   moveStep: vi.fn(),
+  moveTablesStep: vi.fn(),
   loadStats: vi.fn(),
   loadUsage: vi.fn(),
   loadPerson: vi.fn(),
@@ -123,6 +124,30 @@ describe('AdminScreen', () => {
     expect(api.moveStep).toHaveBeenCalledTimes(3)
     expect(api.moveStep.mock.calls[1][0]).toEqual({ prefix: 0, cursor: '30' })
     expect(api.loadSystem).toHaveBeenCalledTimes(2)
+  })
+
+  it('moves friends, lists and reminders to the tables, waiting where the server asks', async () => {
+    api.loadSystem.mockResolvedValue({ health: { ok: true, supabase: 'ok', storage: 'ok' }, problems: [], docs: 'on', tables: 'ready' })
+    api.moveTablesStep.mockReset()
+    api.moveTablesStep
+      .mockResolvedValueOnce({ copied: 0, next: { prefix: 0 }, at: '', wait: 5 })
+      .mockResolvedValueOnce({ copied: 3, next: { prefix: 1 }, at: 'friends/card/' })
+      .mockResolvedValueOnce({ copied: 0, next: null, at: '' })
+    await mount()
+    expect(host.textContent).toContain('yarıda kalırsa hiçbir şey kaybolmaz')
+    await act(async () => button('Taşımayı başlat').click())
+    for (let i = 0; i < 20 && api.moveTablesStep.mock.calls.length < 3; i++) await act(() => new Promise((r) => setTimeout(r, 10)))
+    for (let i = 0; i < 4; i++) await flush()
+    expect(api.moveTablesStep).toHaveBeenCalledTimes(3)
+    expect(api.moveTablesStep.mock.calls[1][0]).toEqual({ prefix: 0 })
+    expect(api.moveTablesStep.mock.calls[2][0]).toEqual({ prefix: 1 })
+  })
+
+  it('a move under way says so and offers to go on', async () => {
+    api.loadSystem.mockResolvedValue({ health: { ok: true, supabase: 'ok', storage: 'ok' }, problems: [], docs: 'on', tables: 'moving' })
+    await mount()
+    expect(host.textContent).toContain('Taşıma başlamış ama bitmemiş')
+    expect(button('Taşımayı sürdür')).toBeTruthy()
   })
 
   it('deletes an account only after the e-mail is typed', async () => {

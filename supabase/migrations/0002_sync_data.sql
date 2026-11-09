@@ -1,6 +1,10 @@
 -- Diloloji phase 2: the synced data lives in Supabase (plain JSON, each person sees only their own).
 -- Run once in Supabase → SQL Editor, after 0001_accounts.sql.
 --
+-- IMPORTANT: if 0005_storage_limits.sql was run before this file (as on the live project), run 0005 again right
+-- after: this file defines put_sync_part and the media policies without the limits, and 0005 had found no media
+-- bucket to limit. (src/data/supabaseMigrations.test.ts checks both orders.)
+--
 -- The app's sync keeps its own merge rules and sends its data in parts, as before:
 --   core            everything but the answers and the reading texts (words, states, lists, settings…)
 --   ev-YYYY-MM      the answers of a month

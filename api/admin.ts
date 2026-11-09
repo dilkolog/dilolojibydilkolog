@@ -10,7 +10,7 @@ import { DAILY_TRANSLATE_CHARS, DAILY_TTS_CHARS } from './_quota.js'
 import { idOfUsername } from './_allow.js'
 import { anySecretMatches, bearerOf } from './_secret.js'
 import { mirrorApproval } from './_supabase.js'
-import { moveToTables } from './_moveTables.js'
+import { MOVE_STEP, moveTablesStep } from './_moveTables.js'
 import { tablesState } from './_tables.js'
 import { approvedPath, clearAccessCache, ID, readText, rejectedPath, removeBlob, requestPath, StorageError, writeJson } from './_account.js'
 
@@ -31,10 +31,11 @@ import { approvedPath, clearAccessCache, ID, readText, rejectedPath, removeBlob,
  *   the caller repeats with `from: next` until `next` is null.
  * The owner signed in (a Supabase session whose confirmed email is OWNER_EMAIL) needs no token.
  *
- * POST /api/admin { action: 'move-tables' }
- *   moves friends, shared lists and reminders from Blob to the Supabase tables (see _moveTables.ts);
- *   GET's `tables` says whether that is possible ('ready'), done ('on'), waits for 0003 ('missing') or
- *   Supabase is not set up ('off').
+ * POST /api/admin { action: 'move-tables', from? }
+ *   one step of moving friends, shared lists and reminders from R2 to the Supabase tables (see _moveTables.ts);
+ *   answers { copied, next, at, wait? }: the caller waits `wait` ms if given, and repeats with `from: next` until
+ *   `next` is null. GET's `tables` says whether that is possible ('ready'), under way ('moving'), done ('on'),
+ *   waits for 0003 ('missing') or Supabase is not set up ('off').
  *
  * ADMIN_TOKEN may hold several keys (separated by spaces or commas): during a rotation the old and
  * the new one both work until the old one is taken out.
@@ -90,7 +91,7 @@ export async function GET(request: Request): Promise<Response> {
   const view = q.get('view')
   if (view) return ownerView(view, q)
   try {
-    const [pending, approved, rejected, tables, moved] = await Promise.all([entries('access/requests/'), entries('access/approved/'), entries('access/rejected/'), tablesState().catch(() => 'off' as const), docsMoved().catch(() => false)])
+    const [pending, approved, rejected, tables, moved] = await Promise.all([entries('access/requests/'), entries('access/approved/'), entries('access/rejected/'), tablesState().then((t) => t.state).catch(() => 'off' as const), docsMoved().catch(() => false)])
     return json({ pending, approved, rejected, tables, docs: moved ? 'on' : docsReady() ? 'ready' : 'off' })
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
@@ -118,7 +119,7 @@ export async function POST(request: Request): Promise<Response> {
     text?: unknown
   } | null
   if (body?.action === 'release') return release(body.username)
-  if (body?.action === 'move-tables') return moveTables()
+  if (body?.action === 'move-tables') return moveTables(body.from)
   if (body?.action === 'move-docs') return moveDocsStep(body.from)
   if (body?.action === 'person') return person(body)
   if (body?.action === 'person-delete') return personDelete(body)
@@ -172,13 +173,16 @@ async function release(username: unknown): Promise<Response> {
   }
 }
 
-/** The one-time move to the Supabase tables (see the header). */
-async function moveTables(): Promise<Response> {
+/** One step of the move to the Supabase tables (see the header). */
+async function moveTables(from: unknown): Promise<Response> {
+  const f = from && typeof from === 'object' ? (from as { prefix?: unknown; cursor?: unknown }) : {}
+  const prefix = Number.isInteger(f.prefix) && (f.prefix as number) >= 0 ? (f.prefix as number) : 0
+  const cursor = typeof f.cursor === 'string' && f.cursor.length < 2000 ? f.cursor : undefined
   try {
-    const state = await tablesState()
+    const { state } = await tablesState()
     if (state === 'off') return json({ error: 'supabase not configured' }, 503)
     if (state === 'missing') return json({ error: 'run 0003_server_tables.sql first' }, 409)
-    return json({ ok: true, ...(await moveToTables()) })
+    return json({ ok: true, ...(await moveTablesStep({ prefix, cursor })), batch: MOVE_STEP })
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
     throw e
@@ -234,7 +238,7 @@ async function ownerView(view: string, q: URLSearchParams): Promise<Response> {
     }
     if (view === 'system') {
       const health = await checkHealth()
-      const [found, moved, tables] = await Promise.all([problems(health), docsMoved().catch(() => false), tablesState().catch(() => 'off' as const)])
+      const [found, moved, tables] = await Promise.all([problems(health), docsMoved().catch(() => false), tablesState().then((t) => t.state).catch(() => 'off' as const)])
       return json({ health, problems: found, docs: moved ? 'on' : docsReady() ? 'ready' : 'off', tables })
     }
     return json({ error: 'unknown view' }, 400)

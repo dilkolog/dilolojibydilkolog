@@ -107,10 +107,21 @@ Hesaplar artık Supabase'ten açılır: **e-posta + şifre**, **e-postaya giriş
   - Yönetici kartında onayla/reddet anında.
 - **Hesap silme:** kişiyi siler; `sync_parts` satırları zincirleme gider, `media` dosyaları da silinir.
 
-### Sahibinin yapacağı
-1. **Supabase → SQL Editor:** `supabase/migrations/0002_sync_data.sql` içeriğini yapıştır, Run. Tablo, işlev, kova ve görünümler kurulur.
-2. **Denemek için:** uygulamada Ayarlar → Hesap → **Şimdi eşitle**. Sonra Supabase → Table Editor → `sync_parts`'ta satırları, Views altında `people` ve `words`'ü gör.
-3. Diğer cihazlarda da Supabase ile (e-posta ya da Google) bir kez giriş yap. Eski yolla girişli kalan cihaz eşitlemeyi durdurur ve bunu söyler.
+### Sahibinin yapacağı (canlıda henüz yapılmadı, 2026-11-09)
+Canlı projede `0002` hiç çalışmadı ama `0005` çalıştı. **Sıra önemli:** `0002` kişi başı sınırları olmayan `put_sync_part` işlevini ve medya izinlerini kurar; `0005` çalıştığında da `media` kovası henüz yoktu. Bu yüzden:
+
+1. **Supabase → SQL Editor:** `supabase/migrations/0002_sync_data.sql` içeriğini yapıştır, **Run**.
+2. Hemen ardından **`supabase/migrations/0005_storage_limits.sql`'i yeniden** yapıştır, **Run** (sınırlar ve kova sınırı geri gelir).
+3. **Kontrol sorgusu** (SQL Editor; üç sütun da `true` olmalı):
+   ```sql
+   select to_regclass('public.sync_parts') is not null as tablo_var,
+     (select prosrc like '%5000%' from pg_proc where proname = 'put_sync_part') as sinirlar_var,
+     (select file_size_limit = 6000000 from storage.buckets where id = 'media') as kova_siniri_var;
+   ```
+4. **Uygulamada:** bir cihazda sayfayı yenile ve birkaç saniye bekle (eşitleme kendiliğinden çalışır; ilk Supabase eşitlemesi eski depodan son hâli çekip hepsini yükler). Sonra Table Editor → `sync_parts`'ta satırları, Views altında `people` ve `words`'ü gör. Yönetim → Sayılar'da "son 7/30 günde etkin" satırları da görünmeye başlar (#721).
+5. Diğer cihazlar Supabase ile girişli olduğundan (giriş zorunlu) ilk eşitlemelerinde kendiliğinden Supabase'e geçer; cihazdaki değişiklikler birleşir.
+
+Bu sıra `src/data/supabaseMigrations.test.ts` ile denetlenir (göçler PGlite'ta, Supabase'in `auth`/`storage` şemalarının küçük bir taklidiyle çalıştırılır; "yalnız 0002" sınırları siler, "0002 + 0005" doğru sonucu verir). Yeni bir göç eklenince test onu da çalıştırır.
 
 ## 2b. aşama: arkadaşlar, paylaşılan listeler, hatırlatmalar
 
@@ -122,15 +133,18 @@ Sunucunun eşitleme dışında tuttuğu üç şey de tablolara geçebilir (`supa
 
 Hepsinde RLS açık ve hiç politika yok: uygulamanın açık anahtarı bu tabloları göremez, yalnızca sunucu (gizli anahtar) okur/yazar. Panel için görünümler: `friend_overview`, `shared_overview`, `reminder_overview`.
 
-**Nasıl geçer:** sunucu, `server_flags`ta `tables` satırı olana kadar her şeyi eskisi gibi Blob'da tutar (`api/_tables.ts` `tablesOn`, 15 sn önbellek). Yönetici kartındaki **Supabase'e taşı** düğmesi (`POST /api/admin {action:'move-tables'}`, `api/_moveTables.ts`):
-1. önce işareti yazar (bundan sonraki her yazma tablolara gider; diğer sunucu örnekleri en geç 15 sn içinde geçer),
-2. sonra Blob'daki kartları, takipleri, listeleri (kütüphane bilgisiyle) ve hatırlatmaları kopyalar; tabloda zaten olan satırın üzerine yazmaz.
+**Nasıl geçer (2026-11-09'dan beri adım adım):** üç durum, `server_flags`ta (`api/_tables.ts` `tablesMode`, 15 sn önbellek):
+- **R2** (işaret yok): her şey eskisi gibi R2 dosyalarında.
+- **Taşınıyor** (`tables-moving`, başlangıç zamanıyla): yazmalar tablolara gider; okumalar önce tablodan, yoksa eski dosyadan; listeler (hatırlatmalar, takipler, kütüphane) ikisinin birleşimi; silme iki yerden. R2'de kalmış bir ortak liste ilk değişikliğinde tabloya geçer (eski dosyanın etiketi bir kez kabul edilir, sonra `"v1"`).
+- **Tablolar** (`tables`): eski dosyalar artık okunmaz (silinmez).
 
-Yeniden çalıştırmak güvenlidir (yarım kalanı tamamlar). Blob dosyaları silinmez ama artık okunmaz. Taşımadan önce açık kalmış bir ortak listenin eski etiketi (`If-Match`) reddedilir (412); uygulama yeniden okuyup birleştirir. Hesap silme her iki yerdeki kaydı da siler. Sunucu kodu: `api/_friends.ts` `FriendStore`, `api/share.ts` `ShareStore`, `api/_reminders.ts` `ReminderStore` (her biri Blob ve tablo uygulamasıyla). Testler `src/data/apiTables.test.ts` (sahte PostgREST).
+Yönetim → Sistem → **Taşımayı başlat** (`POST /api/admin {action:'move-tables', from}`, `api/_moveTables.ts` `moveTablesStep`): ilk adım yalnızca "taşınıyor" işaretini yazar ve `SETTLE_MS` (30 sn) bekletir: öbür sunucu örnekleri eski cevabı 15 sn'ye dek tutar, o arada biri dosyaya yazıp kopyayı eskitmesin. Sonraki her adım bir türün bir sayfasını (en çok `MOVE_STEP` = 15 dosya; ücretsiz planda istek başına 50 alt istek) kopyalar: kartlar, takipler (hesap başına tek toplu ekleme), listeler (kütüphane bilgisiyle), hatırlatmalar. Tabloda zaten olan satırın üzerine yazılmaz (o, taşıma başladıktan sonra yazılmıştır, yenidir). Son sayfadan sonra `tables` işareti. Ekran adımları `next` bitene dek sırayla çağırır; yarıda kalırsa "Taşımayı sürdür" kaldığı yerden devam eder, hiçbir şey çift yazılmaz ya da kaybolmaz. (Eskiden tek seferde koşuyordu: önce işareti yazıp sonra kopyaladığı için alt istek sınırına takılınca kopyalanmamış kayıtlar görünmez kalırdı.)
+
+Hesap silme iki yerdeki kaydı da siler (`tablesInUse`). Sunucu kodu: `api/_friendStore.ts` (`blobFriends`, `movingFriends`, `tableFriends`), `api/share.ts` (`blobShares`, `movingShares`, `tableShares`), `api/_reminders.ts` (`blobReminders`, `movingReminders`, `tableReminders`). Testler `src/data/apiTables.test.ts` (sahte PostgREST; yarıda kalan taşıma, bekleme ve sayfalama dahil).
 
 ### Sahibinin yapacağı
-1. **Supabase → SQL Editor:** `supabase/migrations/0003_server_tables.sql` içeriğini yapıştır, Run.
-2. **Uygulamada:** Ayarlar → Hesap → Yönetici → anahtarla Listele → "Sunucu verileri" altında **Supabase'e taşı**. Sonuç satırı kaç kart, takip, liste ve hatırlatmanın tablolarda olduğunu söyler.
+1. `0003_server_tables.sql` canlıda çalışmış durumda (`server_flags` var). Değilse önce onu çalıştır.
+2. **Uygulamada:** Ayarlar → Hesap → Yönetim → Sistem → **Taşımayı başlat**. Önce 30 sn bekler, sonra sayıyı göstererek ilerler; bitince "Taşındı" yazar.
 3. **Denetle:** Table Editor → `friend_cards`, `shared_lists`, `reminders`; Views → `friend_overview`, `reminder_overview`.
 
 ### Arkadaş gelen kutusu (0004)
