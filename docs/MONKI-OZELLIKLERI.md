@@ -5,10 +5,10 @@ Sahibi "hepsini sırayla yap" dedi. Bu dosya, işi devralacak Claude oturumu iç
 ## Monki'nin bugünkü hâli (kod haritası)
 
 - Panel ve sohbet: `src/ui/monki/Monki.tsx` (lazy; App'te `ready && data`, düğme oturum/özet dışında). Çizim `MonkiMascot.tsx`. Geçmiş dil başına `localStorage 'diloloji:monki:<dil>'` (cihazda, son 30 mesaj, eşitlenmez; API'ye son 12 mesaj gider).
-- Köprü: `monkiBus.ts` `askMonki({text, mode?, scenario?, send?})`, `AskMonki.tsx` (yalnızca YZ anahtarı varken), `asks.ts` (`wordAsk`, `missAsk`, `sentenceAsk`).
-- YZ: `src/ai/claude.ts` `monkiTurn(apiKey, MonkiRequest)` → `{reply, suggestions, say}`; kurallar `monkiModeRules`; maliyet anahtarı `monki`. Modlar: `chat | quiz | roleplay | mistakes | words`. İstek bağlamı: `engine/monkiContext.ts` (`weakWordsOf`, `mistakesForMonki`), `monki/monkiWords.ts` (`talkWords`).
+- Köprü: `monkiBus.ts` `askMonki({text, mode?, targets?, daily?, send?})`, `AskMonki.tsx` (yalnızca YZ anahtarı varken), `asks.ts` (`wordAsk`, `missAsk`, `sentenceAsk`).
+- YZ: `src/ai/claude.ts` `monkiTurn(apiKey, MonkiRequest)` → `{reply, suggestions, say}`; kurallar `monkiModeRules`; maliyet anahtarı `monki`. Modlar: `chat | quiz | mistakes | words | pron | write | exam` (rol yapma 2026-11-09'dan beri Monki'de değil, Yaz & konuş → Sohbet'te). İstek bağlamı: `engine/monkiContext.ts` (`weakWordsOf`, `mistakesForMonki`), `monki/monkiWords.ts` (`talkWords`).
 - Düzeltme → cümle kartı: `monki/corrections.ts` `parseCorrection`, `SaveCorrection`, `SaveAllCorrections`.
-- Sesli rol yapma: `MonkiReply.say` + `speak`, mikrofon `listen`; anahtarlar `diloloji:monki-voice`.
+- Sesli okuma: telaffuz modunda `MonkiReply.say` (söylenecek kelime) + `speak`, mikrofon `listen`; anahtar `diloloji:monki-voice`.
 - Bugün önerisi: `monki/MonkiNudge.tsx` (günde bir, `localStorage 'diloloji:monki-nudge'`).
 - Testler: `Monki.test.tsx`, `AskMonki.test.tsx`, `asks.test.ts`; E2E `e2e/monki.e2e.ts` (Anthropic taklit eder; yanıt taklitleri `say` alanını da vermeli).
 - Kurallar: kullanıcıya görünen metinde "AI" değil "YZ"; sınıf adında `is-`/`level-` öneki kullanma (cssSplit); yeni ayar anahtarı `diloloji:` öneki alır ve hesapla gitsin isteniyorsa `data/devicePrefs.ts` `LOCAL_PREFIXES`a eklenir; maliyet saymak için `ai/claude.ts`'te yeni bir kullanım anahtarı verilir; hiçbir şey kullanıcıya sormadan kelime/kart eklememeli; YZ yalnızca kullanıcı isteyince çağrılır (kendiliğinden istek atma).
@@ -88,8 +88,8 @@ Uygulama: kelime sayfasında Köken satırında "Hikâyesini anlat" (`storyAsk`:
 Kök ve ekler ağacındaki kelimenin köken ve akrabalarını kısa hikâye olarak anlatır.
 - `ui/words/MorphemeTree.tsx`, `engine/derive.ts` `familyOf`, kelime sayfasındaki köken (`cleanEtymology`). `wordAsk`'a "kelime hikâyesi" modu: köken + aile üyeleri bağlama girer; hikâye 4–5 cümle, Türkçe, örnekler hedef dilde.
 
-### 8. Yeni rol yapma sahneleri — YAPILAMAZ (şimdilik; çizim ister)
-`Monki.tsx` `SCENES` her sahne için çizim ister (`ROLE_ART`, `MISSION_ART`). Çizimi sahibi üretmeden yeni sahne ekleme. Sahibine hangi sahneleri istediğini (doktor, kiracı, iş mülakatı…) ve çizim ihtiyacını bildir.
+### 8. Yeni rol yapma sahneleri — çizim ister
+Rol yapma sahneleri 2026-11-09'dan beri Yaz & konuş → Sohbet'te çizimli kartlar (`ui/practice/Produce.tsx` `SCENES`, çizimler `ROLE_ART`). Çizimi olmayan sahne yalnızca adıyla görünür; iki eksik çizim (`role-weekend`, `role-series`) `docs/chatgpt/GORSEL-GOREVLERI.md` Görev 4'te. Yeni sahne için çizimi sahibi üretir.
 
 ## Her maddede yapılacaklar
 - Yeni YZ çağrısı: `ai/claude.ts`'te kullanım anahtarı (maliyet sayımı), `Settings`/anahtar yoksa Monki'nin mevcut "Ayarlar'a git" yönlendirmesi.

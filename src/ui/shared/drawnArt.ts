@@ -315,7 +315,7 @@ export const levelMonki = (level: number): string => LEVEL_MONKI[level >= 25 ? 5
 /** The other three badge emblems: a trophy for what was won, a chat bubble and a microphone for Monki's modes. */
 export const EMBLEM = { chat: emChat, mic: emMic, trophy: emTrophy }
 
-/** Monki in each role-play scene (the scenes of Monki's "Rol yap" mode, in its order). */
+/** Monki in each role-play scene (Yaz & konuş → Sohbet, src/ui/practice/Produce.tsx). */
 export const ROLE_ART = { cafe: roleCafe, hotel: roleHotel, directions: roleDirections, doctor: roleDoctor, interview: roleInterview, shopping: roleShopping }
 
 /** The bosses of the boss arena: a word is always the same one of them. */

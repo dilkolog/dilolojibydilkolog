@@ -655,6 +655,7 @@ export default function App() {
                 showButton={inSession}
                 inSession={inSession}
                 onSettings={go({ name: 'settings' })}
+                onPractice={go({ name: 'produce' })}
               />
             </Suspense>
           )}

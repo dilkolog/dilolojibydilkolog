@@ -74,7 +74,7 @@ LAYOUT: 2 separate illustrations in a grid of 1 row and 2 columns.
 ```
 
 ### A4. Yaz & konuş → Sohbet sahneleri: eksik iki sahne
-**Nerede:** Yaz & konuş → Sohbet konu listesi (`src/ui/practice/Produce.tsx` `SCENARIOS`). Altı sahnenin çizimi var (`role-*`: kafe, otel, yol, doktor, mülakat, alışveriş); "Arkadaşla hafta sonu planı yapmak" ve "Bir dizi ya da film üzerine sohbet" çizimsiz. Yedek daldaki yarım tasarım (sahneleri Monki'den Yaz & konuş'a taşıyıp çizimli kart yapmak, bkz. "Karar bekleyen") bu iki çizimi gerektiriyor.
+**Nerede:** Yaz & konuş → Sohbet konu listesi (`src/ui/practice/Produce.tsx` `SCENARIOS`). Altı sahnenin çizimi var (`role-*`: kafe, otel, yol, doktor, mülakat, alışveriş); "Arkadaşla hafta sonu planı yapmak" ve "Bir dizi ya da film üzerine sohbet" çizimsiz. Sahneler artık çizimli kart; bu ikisi yalnızca adıyla duruyor.
 **Dosya adları:** `role-weekend.webp`, `role-series.webp` (mevcut `role-cafe.webp` ile aynı ölçek: Monki ve yanında küçük bir mekân)
 
 ```text
@@ -144,13 +144,13 @@ Bunu üretmeden önce yönü konuşalım. Uygulama simgesi değişirse Android u
 | B5 | Kullanılmayan çizimler | `celebration-confetti`, `game-twins`, `empty-search`, `share-card-story` hiçbir yerde yok | Yer bulunanlar bağlanır (ör. `game-twins` → zaman ikizleri oyunu), kalanlar silinir |
 | B6 | **Kelimeler** listesinde kelimenin bitki simgesi | 18 px'lik tohum aşaması koyu temada zemine karışıyor | `Plant` SVG'sinde koyu tema rengi |
 
-## Karar bekleyen: yedek daldaki yarım tasarım
+## Yedek daldaki yarım tasarım (tamamlandı, 2026-11-09)
 
-`claude/proje-inceleme-site-iyilestirme-a764eb` dalının son commit'i (8 Kasım, yerel kopyadaki kaydedilmemiş değişikliklerin yedeği) main'de olmayan bir değişiklik taşıyor: rol yapma sahneleri Monki'den Yaz & konuş → Sohbet'e çizimli kartlar olarak taşınıyor, Monki "soru yanıtlayan yardımcı" olarak kalıyor ve "Günün sohbeti" kaldırılıyor. Sürdürülecekse A4'teki iki çizim gerekiyor.
+Rol yapma sahneleri Monki'den Yaz & konuş → Sohbet'e çizimli kartlar olarak taşındı; "Günün sohbeti" sahibinin kararıyla kaldı. Çizimsiz kalan iki sahne A4'te.
 
 ## Öneri sırası
 
 1. **B1–B3** (çizim beklemeden, benden): en göze batan boşluklar hemen kapanır.
 2. **A1–A3** (ChatGPT): her gün görülen ve ilk izlenimi belirleyen yerler.
-3. **A4** (yedek dal kararına göre), **A5–A6**.
+3. **A4**, **A5–A6**.
 4. **A7**, sonra **A8** (marka yönü konuşulduktan sonra).
