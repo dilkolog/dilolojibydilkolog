@@ -7,7 +7,7 @@
 **Veri Çıktısı:** 
 - `src/data/audiobooks/fr.json` (28 bölüm: 13 orijinal + 15 yeni)
 - `src/data/audiobooks/es.json` (25 bölüm: 10 orijinal + 15 yeni)
-- `src/data/audiobooks/en.json` (17 bölüm: ilk İngilizce kütüphanesi)
+- `src/data/audiobooks/en.json` (29 bölüm: Wilde 5 + Carroll 12 + Conan Doyle 12)
 
 ---
 
@@ -134,7 +134,7 @@ Bu çalışmada:
 
 ---
 
-## 4. İngilizce Eserler ve Bölümler (17 Bölüm — İlk EN Kütüphanesi)
+## 4. İngilizce Eserler ve Bölümler (29 Bölüm)
 
 ### 4.1. Oscar Wilde — *The Happy Prince and Other Tales* (5 Masal)
 - **Gutenberg Kimliği:** #902 | **CEFR Seviyesi:** B1
@@ -170,6 +170,27 @@ Bu çalışmada:
 | `en-carroll-alice-10` | Chapter X: The Lobster Quadrille | ~23 dk | [MP3](https://archive.org/download/alice_in_wonderland_librivox/wonderland_ch_10_64kb.mp3) |
 | `en-carroll-alice-11` | Chapter XI: Who Stole the Tarts? | ~10 dk | [MP3](https://archive.org/download/alice_in_wonderland_librivox/wonderland_ch_11_64kb.mp3) |
 | `en-carroll-alice-12` | Chapter XII: Alice's Evidence | ~13 dk | [MP3](https://archive.org/download/alice_in_wonderland_librivox/wonderland_ch_12_64kb.mp3) |
+
+### 4.3. Arthur Conan Doyle — *The Adventures of Sherlock Holmes* (12 Bölüm)
+- **Gutenberg Kimliği:** #1661 | **CEFR Seviyesi:** B2
+- **LibriVox Koleksiyonu:** `adventures_sherlockholmes_1007_librivox`
+- **Okuyan:** Mark F. Smith | **Lisans:** Public Domain / CC0
+- **Eşleşme Notu:** Baker Street 221B, Dr. Watson anlatımı ve klasik Sherlock Holmes dedektif öyküleri. LibriVox kaydı ve Gutenberg #1661 metni harfi harfine örtüşmektedir (`textAudioMatch: true`).
+
+| Bölüm Kimliği | Başlık | Süre | LibriVox MP3 URL |
+|:---|:---|:---:|:---|
+| `en-doyle-sherlock-01` | I. A Scandal in Bohemia | ~58 dk | [MP3](https://archive.org/download/adventures_sherlockholmes_1007_librivox/adventuresherlockholmes_01_doyle_64kb.mp3) |
+| `en-doyle-sherlock-02` | II. The Red-Headed League | ~60 dk | [MP3](https://archive.org/download/adventures_sherlockholmes_1007_librivox/adventuresherlockholmes_02_doyle_64kb.mp3) |
+| `en-doyle-sherlock-03` | III. A Case of Identity | ~45 dk | [MP3](https://archive.org/download/adventures_sherlockholmes_1007_librivox/adventuresherlockholmes_03_doyle_64kb.mp3) |
+| `en-doyle-sherlock-04` | IV. The Boscombe Valley Mystery | ~63 dk | [MP3](https://archive.org/download/adventures_sherlockholmes_1007_librivox/adventuresherlockholmes_04_doyle_64kb.mp3) |
+| `en-doyle-sherlock-05` | V. The Five Orange Pips | ~47 dk | [MP3](https://archive.org/download/adventures_sherlockholmes_1007_librivox/adventuresherlockholmes_05_doyle_64kb.mp3) |
+| `en-doyle-sherlock-06` | VI. The Man with the Twisted Lip | ~60 dk | [MP3](https://archive.org/download/adventures_sherlockholmes_1007_librivox/adventuresherlockholmes_06_doyle_64kb.mp3) |
+| `en-doyle-sherlock-07` | VII. The Adventure of the Blue Carbuncle | ~52 dk | [MP3](https://archive.org/download/adventures_sherlockholmes_1007_librivox/adventuresherlockholmes_07_doyle_64kb.mp3) |
+| `en-doyle-sherlock-08` | VIII. The Adventure of the Speckled Band | ~63 dk | [MP3](https://archive.org/download/adventures_sherlockholmes_1007_librivox/adventuresherlockholmes_08_doyle_64kb.mp3) |
+| `en-doyle-sherlock-09` | IX. The Adventure of the Engineer’s Thumb | ~53 dk | [MP3](https://archive.org/download/adventures_sherlockholmes_1007_librivox/adventuresherlockholmes_09_doyle_64kb.mp3) |
+| `en-doyle-sherlock-10` | X. The Adventure of the Noble Bachelor | ~53 dk | [MP3](https://archive.org/download/adventures_sherlockholmes_1007_librivox/adventuresherlockholmes_10_doyle_64kb.mp3) |
+| `en-doyle-sherlock-11` | XI. The Adventure of the Beryl Coronet | ~59 dk | [MP3](https://archive.org/download/adventures_sherlockholmes_1007_librivox/adventuresherlockholmes_11_doyle_64kb.mp3) |
+| `en-doyle-sherlock-12` | XII. The Adventure of the Copper Beeches | ~63 dk | [MP3](https://archive.org/download/adventures_sherlockholmes_1007_librivox/adventuresherlockholmes_12_doyle_64kb.mp3) |
 
 ---
 
