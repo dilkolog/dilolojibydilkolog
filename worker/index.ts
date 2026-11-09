@@ -23,6 +23,7 @@ import { noteError, sendErrorDigest } from '../api/_errorDigest.js'
 import { pruneCounters } from '../api/_quota.js'
 import { healthAlert } from '../api/_health.js'
 import { fromApp } from '../api/_origin.js'
+import { roomTicketsOn, validRoomTicket } from '../api/_roomTicket.js'
 import { clientKey, overLimit, tooMany } from '../api/_rate.js'
 import { cleanRoomCode } from '../src/engine/liveDuel.js'
 import { bindBucket } from './blob.js'
@@ -64,13 +65,15 @@ export default {
       const { success } = await env.API_LIMITER.limit({ key: clientKey(request) }).catch(() => ({ success: true }))
       if (!success) return hardened(tooMany(), false)
     }
-    // A live duel room: a WebSocket to the room's Durable Object (named by its code), only from the app's own pages.
+    // A live duel room: a WebSocket to the room's Durable Object (named by its code), only from the app's own pages and with a ticket.
     if (pathname === '/api/room') {
       const code = cleanRoomCode(searchParams.get('code'))
       if (!code) return new Response('bad room code', { status: 400 })
       if (request.headers.get('upgrade')?.toLowerCase() !== 'websocket') return new Response('expected a websocket', { status: 426 })
       if (!fromApp(request)) return new Response('forbidden', { status: 403 })
       if (overLimit(request, 'room', 30)) return tooMany()
+      // The Origin is only what the caller says: a room opens for a ticket an approved account was given (api/_roomTicket.ts).
+      if (roomTicketsOn() && !(await validRoomTicket(searchParams.get('t')))) return new Response('ticket required', { status: 403 })
       if (!env.DUEL) return new Response('rooms are not set up', { status: 503 })
       // A reading club's room has its own name, so a duel and a club with the same code never meet.
       const roomName = searchParams.get('kind') === 'club' ? `club:${code}` : code

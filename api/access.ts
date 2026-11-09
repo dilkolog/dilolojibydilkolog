@@ -10,6 +10,7 @@ import { currentAnnouncement, getSettings } from './_settings.js'
 import { fileReport } from './_reports.js'
 import { countUse, USE_NAMES, usageLast, type UseName } from './_usage.js'
 import { listReports, ownerAuthorized, unpublishList } from './_owner.js'
+import { issueRoomTicket, roomTicketsOn } from './_roomTicket.js'
 
 /**
  * An account's way to the owner's approval.
@@ -40,6 +41,8 @@ import { listReports, ownerAuthorized, unpublishList } from './_owner.js'
  *   waiting messages gone, no way back by code, link or request) or lift a block
  * POST /api/access  { action: 'report', kind: 'user' | 'message' | 'set' | 'club', target, reason, note?, shown? } → { ok }
  *   or { error: 'bad_request' | 'not_found' | 'too_many' }: a report to the owner (_reports.ts)
+ *
+ * GET  /api/access?room-ticket=1                  → { ticket }: what a live room's WebSocket must name (`&t=`), or null when rooms ask for none
  *
  * Supabase sign-in (see _supabase.ts), with `Authorization: Bearer <Supabase access token>`:
  * GET  /api/access?vault=1 → { account: { id, enc, auth, username } | null }: the person's sync account
@@ -267,6 +270,14 @@ export async function GET(request: Request): Promise<Response> {
     return json({ facebook: settings.facebookLogin === true })
   }
   if (q.has('owner')) return ownerGet(request, q)
+  // A ticket for a live room (_roomTicket.ts): an approved account, as for the other features; null when rooms ask for none.
+  if (q.has('room-ticket')) {
+    if (overLimit(request, 'room-ticket', 30)) return tooMany()
+    if (!roomTicketsOn()) return json({ ticket: null })
+    const denied = await requireApproved(request)
+    if (denied) return denied
+    return json({ ticket: await issueRoomTicket() })
+  }
   if (q.has('friends') || q.has('inbox') || q.has('blocked') || q.has('friend-handle') || q.has('friend-find') || q.has('friend-invite')) return friendsGet(request)
   if (new URL(request.url).searchParams.has('vault')) return vaultGet(request)
   if (overLimit(request, 'access-read', 120)) return tooMany()
