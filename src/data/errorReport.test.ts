@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { POST } from '../../api/log'
-import { scrubMessage, scrubStack, toReport } from './errorReport'
+import { markClosing } from './closing'
+import { scrubMessage, scrubStack, shouldReport, toReport } from './errorReport'
 
 describe('error reports carry nothing personal', () => {
   it('cuts quoted text, e-mail addresses, long numbers and URL origins and queries from the message', () => {
@@ -47,5 +48,18 @@ describe('/api/log', () => {
     expect(res.status).toBe(403)
     expect(log).not.toHaveBeenCalled()
     log.mockRestore()
+  })
+
+  it('leaves out what the app expects and handles: a stale page after a deploy, the database closed while signing out', () => {
+    const named = (name: string, message: string) => Object.assign(new Error(message), { name })
+    expect(shouldReport(new TypeError("'text/html' is not a valid JavaScript MIME type."))).toBe(false)
+    expect(shouldReport(new TypeError('Importing a module script failed.'))).toBe(false)
+    expect(shouldReport(new Error('Unable to preload CSS for /assets/lazy-B4.css'))).toBe(false)
+    expect(shouldReport(new Error('sync 500: server error'))).toBe(true)
+    // A closed database is reported, unless the app is closing it on purpose.
+    expect(shouldReport(named('DatabaseClosedError', 'Database has been closed'))).toBe(true)
+    markClosing()
+    expect(shouldReport(named('DatabaseClosedError', 'Database has been closed'))).toBe(false)
+    expect(shouldReport(new Error('something else'))).toBe(true)
   })
 })

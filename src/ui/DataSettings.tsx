@@ -1,3 +1,4 @@
+import { markClosing } from '../data/closing'
 import { useEffect, useState } from 'react'
 import { parseBackup, restoreBackup, type Backup, type Settings } from '../data/db'
 import { dictionaryHtml, flashcardsHtml, toCsv, toMemriseTsv, toQuizletText, toXlsx } from '../data/exportList'
@@ -135,6 +136,7 @@ export function DataSettings({
   }
 
   const deleteAll = async () => {
+    markClosing()
     await db.delete()
     location.reload()
   }

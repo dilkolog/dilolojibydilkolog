@@ -26,7 +26,7 @@ export default defineConfig({
   workers: process.env.CI ? 4 : undefined,
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : [['list']],
   use: { baseURL: `http://localhost:${PORT}`, serviceWorkers: 'block', actionTimeout: 15_000 },
-  webServer: { command: `npx vite preview --port ${PORT} --strictPort`, url: `http://localhost:${PORT}`, reuseExistingServer: true },
+  webServer: { command: `npx vite preview --port ${PORT} --strictPort`, url: `http://localhost:${PORT}`, reuseExistingServer: true, env: { E2E_LOCAL_API: '1' } },
   projects: [
     { name: 'iPhone (WebKit)', use: { ...devices['iPhone 13'] }, timeout: 120_000, testMatch: ['**/phone.e2e.ts', '**/a11y.e2e.ts', '**/dictionary-active.e2e.ts'] },
     { name: 'phone', use: { ...devices['Pixel 7'], viewport: { width: 375, height: 812 } }, testMatch: ['**/phone.e2e.ts', '**/visual.e2e.ts', '**/a11y.e2e.ts', '**/monki.e2e.ts', '**/dictionary-active.e2e.ts'] },

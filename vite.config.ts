@@ -34,6 +34,33 @@ function requireSignIn(): import('vite').Plugin {
 }
 
 // https://vite.dev/config/
+/**
+ * End-to-end tests (E2E_LOCAL_API=1, set by the Playwright configs): the preview sends /api to the live site, so the
+ * tests' fake accounts reached the live sync (a 403 or a 400 every run) and their errors landed in the owner's weekly
+ * digest as if learners had them. Here the preview answers these two itself, as the live site would a fake account:
+ * sync refused, a report taken and dropped. A test that wants more routes them itself (page.route comes first).
+ */
+function e2eLocalApi(): import('vite').Plugin {
+  return {
+    name: 'e2e-local-api',
+    configurePreviewServer(server) {
+      if (!process.env.E2E_LOCAL_API) return
+      server.middlewares.use((req, res, next) => {
+        const path = (req.url ?? '').split('?')[0]
+        if (path === '/api/log') {
+          res.statusCode = 204
+          return res.end()
+        }
+        if (path === '/api/sync') {
+          res.statusCode = 403
+          return res.end('forbidden')
+        }
+        next()
+      })
+    },
+  }
+}
+
 export default defineConfig({
   define: { __BUILD_ID__: JSON.stringify(buildId()) },
   // The tests assume a build without the sign-in gate; a developer's .env.local (needed by deploy:cf) must not leak in.
@@ -45,6 +72,7 @@ export default defineConfig({
   server: { proxy: { '/api': { target: 'https://diloloji.com', changeOrigin: true } } },
   plugins: [
     requireSignIn(),
+    e2eLocalApi(),
     react(),
     // Precaches the built app (JS, CSS, fonts, icons) so it opens and works without internet.
     // All data already lives in IndexedDB on the device.
