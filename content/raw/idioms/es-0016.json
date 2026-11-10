@@ -1,0 +1,529 @@
+[
+  {
+    "w": "hacer las maletas",
+    "t": "bavulları toplamak, yola hazırlanmak",
+    "lit": "bavulları yapmak",
+    "eq": "bavulları toplamak",
+    "s": "Mañana nos vamos de vacaciones así que debemos hacer las maletas esta noche.",
+    "tr": "Yarın tatile gidiyoruz, o yüzden bu gece bavulları toplamalıyız.",
+    "form": "hacer las maletas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_las_maletas",
+      "https://es.wikipedia.org/wiki/Maleta"
+    ]
+  },
+  {
+    "w": "ponerse en camino",
+    "t": "yola koyulmak, harekete geçmek",
+    "lit": "kendini yola koymak",
+    "eq": "yola koyulmak",
+    "s": "Es mejor ponerse en camino temprano para evitar el tráfico de la mañana.",
+    "tr": "Sabah trafiğinden kaçınmak için erken saatte yola koyulmak en iyisidir.",
+    "form": "ponerse en camino",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/ponerse_en_camino",
+      "https://es.wikipedia.org/wiki/Camino"
+    ]
+  },
+  {
+    "w": "ponerse en marcha",
+    "t": "harekete geçmek, yola çıkmak",
+    "lit": "kendini yürüyüşe koymak",
+    "eq": "harekete geçmek",
+    "s": "El convoy humanitario logró ponerse en marcha al amanecer con suministros.",
+    "tr": "İnsani yardım konvoyu şafak sökerken erzaklarla birlikte harekete geçmeyi başardı.",
+    "form": "ponerse en marcha",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/ponerse_en_marcha",
+      "https://es.wikipedia.org/wiki/Marcha"
+    ]
+  },
+  {
+    "w": "salir corriendo",
+    "t": "koşarak çıkmak, aceleyle ayrılmak",
+    "lit": "koşarak çıkmak",
+    "eq": "apar topar çıkmak",
+    "s": "Al oír la alarma de incendios todos tuvieron que salir corriendo del edificio.",
+    "tr": "Yangın alarmını duyunca herkes binadan apar topar koşarak çıkmak zorunda kaldı.",
+    "form": "salir corriendo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/salir_corriendo",
+      "https://es.wikipedia.org/wiki/Carrera"
+    ]
+  },
+  {
+    "w": "perder el tren",
+    "t": "treni kaçırmak, fırsatı tepmek",
+    "lit": "treni kaybetmek",
+    "eq": "treni kaçırmak",
+    "s": "Si no solicitas la beca esta semana vas a perder el tren definitivamente.",
+    "tr": "Bursa bu hafta başvurmazsan fırsat trenini kesin olarak kaçıracaksın.",
+    "form": "perder el tren",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/perder_el_tren",
+      "https://es.wikipedia.org/wiki/Tren"
+    ]
+  },
+  {
+    "w": "dar media vuelta",
+    "t": "geri dönmek, yüz seksen derece dönmek",
+    "lit": "yarım tur vermek",
+    "eq": "geri dönmek",
+    "s": "Vio que el camino estaba cortado y tuvo que dar media vuelta enseguida.",
+    "tr": "Yolun kapalı olduğunu görünce hemen geri dönmek zorunda kaldı.",
+    "form": "dar media vuelta",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_media_vuelta",
+      "https://es.wikipedia.org/wiki/Vuelta"
+    ]
+  },
+  {
+    "w": "salir disparado",
+    "t": "ok gibi fırlamak, hızla uzaklaşmak",
+    "lit": "fırlatılmış çıkmak",
+    "eq": "ok gibi fırlamak",
+    "s": "Apenas sonó el timbre del colegio el niño salió disparado hacia la puerta.",
+    "tr": "Okul zili çalar çalmaz çocuk kapıya doğru ok gibi fırladı.",
+    "form": "salió disparado",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/salir_disparado",
+      "https://es.wikipedia.org/wiki/Disparo"
+    ]
+  },
+  {
+    "w": "abrirse paso",
+    "t": "kendine yol açmak, kalabalığı yarmak",
+    "lit": "adımı açmak",
+    "eq": "yol açmak",
+    "s": "La ambulancia logró abrirse paso entre el tráfico con la sirena encendida.",
+    "tr": "Ambulans sireni açık halde trafiğin arasında kendine yol açmayı başardı.",
+    "form": "abrirse paso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/abrirse_paso",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "abrirse camino",
+    "t": "yolunu çizmek, kendine alan açmak",
+    "lit": "yolu açmak",
+    "eq": "yolunu çizmek",
+    "s": "La joven científica supo abrirse camino en un sector muy competitivo.",
+    "tr": "Genç bilim insanı oldukça rekabetçi bir sektörde kendine yol açmayı bildi.",
+    "form": "abrirse camino",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/abrirse_camino",
+      "https://es.wikipedia.org/wiki/Camino"
+    ]
+  },
+  {
+    "w": "frenar en seco",
+    "t": "aniden durmak, bıçak gibi kesilmek",
+    "lit": "kuruda fren yapmak",
+    "eq": "zınk diye durmak",
+    "s": "El conductor tuvo que frenar en seco cuando un perro cruzó la calle.",
+    "tr": "Caddeye bir köpek fırlayınca sürücü zınk diye aniden durmak zorunda kaldı.",
+    "form": "frenar en seco",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/frenar_en_seco",
+      "https://es.wikipedia.org/wiki/Freno"
+    ]
+  },
+  {
+    "w": "volver sobre sus pasos",
+    "t": "adımlarını geri takip etmek, geri dönmek",
+    "lit": "adımlarının üzerine dönmek",
+    "eq": "adımlarını geri saymak",
+    "s": "Se dio cuenta de que olvidó la cartera y volvió sobre sus pasos rápidamente.",
+    "tr": "Cüzdanını unuttuğunu fark etti ve çabucak adımlarını geri takip edip döndü.",
+    "form": "volvió sobre sus pasos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/volver_sobre_sus_pasos",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "cambiar de rumbo",
+    "t": "rota değiştirmek, yönünü çevirmek",
+    "lit": "rotadan değişmek",
+    "eq": "rota değiştirmek",
+    "s": "El barco tuvo que cambiar de rumbo debido al temporal marítimo.",
+    "tr": "Gemi denizdeki fırtına yüzünden rotasını değiştirmek zorunda kaldı.",
+    "form": "cambiar de rumbo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/cambiar_de_rumbo",
+      "https://es.wikipedia.org/wiki/Rumbo"
+    ]
+  },
+  {
+    "w": "apretar el paso",
+    "t": "adımlarını hızlandırmak, tempoyu artırmak",
+    "lit": "adımı sıkmak",
+    "eq": "adımlarını sıklaştırmak",
+    "s": "Debemos apretar el paso si queremos coger el último metro de la noche.",
+    "tr": "Gecenin son metrosuna yetişmek istiyorsak adımlarımızı sıklaştırmalıyız.",
+    "form": "apretar el paso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/apretar_el_paso",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "cerrar el paso",
+    "t": "geçişi engellemek, yolu kapatmak",
+    "lit": "adımı kapatmak",
+    "eq": "yolu kesmek",
+    "s": "La policía decidió cerrar el paso a los manifestantes en la avenida principal.",
+    "tr": "Polis ana caddede göstericilerin geçişini engelleyip yolu kapatmaya karar verdi.",
+    "form": "cerrar el paso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/cerrar_el_paso",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "ganar terreno",
+    "t": "zemin kazanmak, mesafe katetmek",
+    "lit": "toprak kazanmak",
+    "eq": "zemin kazanmak",
+    "s": "Los coches eléctricos siguen ganando terreno en las grandes ciudades europeas.",
+    "tr": "Elektrikli otomobiller büyük Avrupa şehirlerinde zemin kazanmayı sürdürüyor.",
+    "form": "ganando terreno",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/ganar_terreno",
+      "https://es.wikipedia.org/wiki/Terreno"
+    ]
+  },
+  {
+    "w": "perder terreno",
+    "t": "zemin kaybetmek, gerilemek",
+    "lit": "toprak kaybetmek",
+    "eq": "zemin kaybetmek",
+    "s": "La marca clásica empezó a perder terreno frente a sus nuevos competidores digitales.",
+    "tr": "Klasik marka yeni dijital rakipleri karşısında zemin kaybetmeye başladı.",
+    "form": "perder terreno",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/perder_terreno",
+      "https://es.wikipedia.org/wiki/Terreno"
+    ]
+  },
+  {
+    "w": "quedarse atrás",
+    "t": "geride kalmak, ayak uyduramamak",
+    "lit": "arkada kalmak",
+    "eq": "geride kalmak",
+    "s": "Ninguna empresa tecnológica quiere quedarse atrás en la era de la inteligencia artificial.",
+    "tr": "Hiçbir teknoloji şirketi yapay zeka çağında geride kalmak istemez.",
+    "form": "quedarse atrás",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/quedarse_atr%C3%A1s",
+      "https://es.wikipedia.org/wiki/Atr%C3%A1s"
+    ]
+  },
+  {
+    "w": "seguir los pasos",
+    "t": "izinden gitmek, adımlarını takip etmek",
+    "lit": "adımları takip etmek",
+    "eq": "izinden gitmek",
+    "s": "El joven médico decidió seguir los pasos de su abuelo en la medicina.",
+    "tr": "Genç doktor tıp alanında büyükbabasının izinden gitmeye karar verdi.",
+    "form": "seguir los pasos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/seguir_los_pasos",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "levar anclas",
+    "t": "demir almak, yola çıkmak",
+    "lit": "çapaları kaldırmak",
+    "eq": "demir almak",
+    "s": "El velero se prepara para levar anclas rumbo a las islas Baleares.",
+    "tr": "Yelkenli Balear Adaları'na doğru demir almaya hazırlanıyor.",
+    "form": "levar anclas",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/levar_anclas",
+      "https://es.wikipedia.org/wiki/Ancla"
+    ]
+  },
+  {
+    "w": "alzar el vuelo",
+    "t": "kanatlanmak, uçup gitmek",
+    "lit": "uçuşu kaldırmak",
+    "eq": "kanatlanıp uçmak",
+    "s": "Las aves migratorias decidieron alzar el vuelo antes de las primeras heladas.",
+    "tr": "Göçmen kuşlar ilk don olaylarından önce kanatlanıp uçmaya karar verdiler.",
+    "form": "alzar el vuelo",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/alzar_el_vuelo",
+      "https://es.wikipedia.org/wiki/Vuelo"
+    ]
+  },
+  {
+    "w": "emprender el vuelo",
+    "t": "uçuşa geçmek, yeni ufuklara açılmak",
+    "lit": "uçuşa girişmek",
+    "eq": "kanat açmak",
+    "s": "Tras graduarse en la universidad decidió emprender el vuelo hacia el extranjero.",
+    "tr": "Üniversiteden mezun olduktan sonra yurt dışına doğru kanat açmaya karar verdi.",
+    "form": "emprender el vuelo",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/emprender_el_vuelo",
+      "https://es.wikipedia.org/wiki/Vuelo"
+    ]
+  },
+  {
+    "w": "marcar el paso",
+    "t": "tempoyu belirlemek, adımı ayarlamak",
+    "lit": "adımı işaretlemek",
+    "eq": "tempoyu belirlemek",
+    "s": "El guía de montaña supo marcar el paso durante toda la ascensión.",
+    "tr": "Dağ rehberi bütün tırmanış boyunca tempoyu ayarlayıp adımı belirlemeyi bildi.",
+    "form": "marcar el paso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/marcar_el_paso",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "cerrar la marcha",
+    "t": "artçı olmak, konvoyun en arkasında yer almak",
+    "lit": "yürüyüşü kapatmak",
+    "eq": "artçı olmak",
+    "s": "Dos vehículos de apoyo se encargaron de cerrar la marcha del pelotón ciclista.",
+    "tr": "İki destek aracı bisiklet pelotonunun en arkasında yer alıp artçı oldu.",
+    "form": "cerrar la marcha",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/cerrar_la_marcha",
+      "https://es.wikipedia.org/wiki/Marcha"
+    ]
+  },
+  {
+    "w": "poner en fuga",
+    "t": "kaçırmak, bozguna uğratmak",
+    "lit": "kaçışa koymak",
+    "eq": "kaçmaya zorlamak",
+    "s": "La llegada de la caballería logró poner en fuga a las tropas enemigas.",
+    "tr": "Süvarilerin gelişi düşman birliklerini bozguna uğratıp kaçırmayı başardı.",
+    "form": "poner en fuga",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/poner_en_fuga",
+      "https://es.wikipedia.org/wiki/Fuga"
+    ]
+  },
+  {
+    "w": "cruzar el charco",
+    "t": "okyanusu aşmak, Amerika'ya gitmek",
+    "lit": "su birikintisini geçmek",
+    "eq": "okyanusu aşmak",
+    "s": "El cantante viajará a Buenos Aires para cruzar el charco estas Navidades.",
+    "tr": "Şarkıcı bu Noel'de okyanusu aşıp Buenos Aires'e seyahat edecek.",
+    "form": "cruzar el charco",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/cruzar_el_charco",
+      "https://es.wikipedia.org/wiki/Charco"
+    ]
+  },
+  {
+    "w": "poner rumbo",
+    "t": "rotayı çevirmek, istikamet tutturmak",
+    "lit": "rotayı koymak",
+    "eq": "rotayı çevirmek",
+    "s": "La expedición científica decidió poner rumbo hacia las tierras polares vírgenes.",
+    "tr": "Bilimsel keşif heyeti rotasını bakir kutup topraklarına doğru çevirmeye karar verdi.",
+    "form": "poner rumbo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/poner_rumbo",
+      "https://es.wikipedia.org/wiki/Rumbo"
+    ]
+  },
+  {
+    "w": "hacer un alto en el camino",
+    "t": "mola vermek, yolculuğa ara vermek",
+    "lit": "yolda bir duruş yapmak",
+    "eq": "soluklanmak",
+    "s": "Decidieron hacer un alto en el camino en una posada del valle.",
+    "tr": "Vadideki bir handa soluklanıp yolculuklarına mola vermeye karar verdiler.",
+    "form": "hacer un alto en el camino",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_un_alto_en_el_camino",
+      "https://es.wikipedia.org/wiki/Camino"
+    ]
+  },
+  {
+    "w": "llegar a buen puerto",
+    "t": "sağ salim hedefe varmak, başarıyla sonuçlanmak",
+    "lit": "iyi limana varmak",
+    "eq": "selamete ermek",
+    "s": "Esperamos que las complejas negociaciones salariales logren llegar a buen puerto.",
+    "tr": "Karmaşık maaş müzakerelerinin selamete erip başarıyla sonuçlanmasını umuyoruz.",
+    "form": "llegar a buen puerto",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/llegar_a_buen_puerto",
+      "https://es.wikipedia.org/wiki/Puerto"
+    ]
+  },
+  {
+    "w": "andar a tientas",
+    "t": "el yordamıyla yürümek, karanlıkta yolunu aramak",
+    "lit": "dokunmalara yürümek",
+    "eq": "el yordamıyla ilerlemek",
+    "s": "Se fue la luz en la casa y tuvimos que andar a tientas por el pasillo.",
+    "tr": "Evde elektrikler kesilince koridorda el yordamıyla ilerlemek zorunda kaldık.",
+    "form": "andar a tientas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/andar_a_tientas",
+      "https://es.wikipedia.org/wiki/Tiento"
+    ]
+  },
+  {
+    "w": "tomar las de Villadiego",
+    "t": "tüymek, sırra kadem basmak",
+    "lit": "Villadiego'nunkileri almak",
+    "eq": "sırra kadem basmak",
+    "s": "En cuanto vio aparecer a la policía decidió tomar las de Villadiego.",
+    "tr": "Polisin geldiğini görür görmez hemen tüymeye ve sırra kadem basmaya karar verdi.",
+    "form": "tomar las de Villadiego",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/tomar_las_de_Villadiego",
+      "https://es.wikipedia.org/wiki/Villadiego"
+    ]
+  },
+  {
+    "w": "poner pies en polvorosa",
+    "t": "tozu dumana katıp kaçmak, tabanları yağlamak",
+    "lit": "ayakları tozluluğa koymak",
+    "eq": "tabanları yağlamak",
+    "s": "El ladrón decidió poner pies en polvorosa al escuchar las sirenas patrulleras.",
+    "tr": "Hırsız devriye sirenlerini duyunca tabanları yağlayıp kaçmaya karar verdi.",
+    "form": "poner pies en polvorosa",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/poner_pies_en_polvorosa",
+      "https://es.wikipedia.org/wiki/Polvorosa"
+    ]
+  }
+]

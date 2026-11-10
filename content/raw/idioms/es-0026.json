@@ -1,0 +1,527 @@
+[
+  {
+    "w": "hacer daño",
+    "t": "zarar vermek, incitmek",
+    "lit": "hasar yapmak",
+    "s": "No debes hacer daño a tus compañeros con burlas pesadas durante el recreo.",
+    "tr": "Teneffüste ağır alaylarla arkadaşlarını incitmemeli ve onlara zarar vermemelisin.",
+    "form": "hacer daño",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_da%C3%B1o",
+      "https://es.wikipedia.org/wiki/Da%C3%B1o"
+    ]
+  },
+  {
+    "w": "hacer trampa",
+    "t": "hile yapmak, kuralları çiğnemek",
+    "lit": "tuzak yapmak",
+    "eq": "hile yapmak",
+    "s": "El árbitro expulsó al jugador por intentar hacer trampa en la jugada decisiva.",
+    "tr": "Hakem, kritik pozisyonda hile yapmaya çalışan oyuncuyu oyundan attı.",
+    "form": "hacer trampa",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_trampa",
+      "https://es.wikipedia.org/wiki/Hacer_trampa"
+    ]
+  },
+  {
+    "w": "hacer el ridículo",
+    "t": "kendini küçük düşürmek, rezil olmak",
+    "lit": "gülünç olanı yapmak",
+    "eq": "rezil olmak",
+    "s": "Subió al escenario sin saber la letra y acabó haciendo el ridículo.",
+    "tr": "Sözleri bilmeden sahneye çıktı ve sonunda kendini küçük düşürüp rezil oldu.",
+    "form": "haciendo el ridículo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_el_rid%C3%ADculo",
+      "https://es.wikipedia.org/wiki/Rid%C3%ADculo"
+    ]
+  },
+  {
+    "w": "ir de mal en peor",
+    "t": "kötüden daha da kötüye gitmek",
+    "lit": "kötüden daha kötüye gitmek",
+    "eq": "yağmurdan kaçarken doluya tutulmak",
+    "s": "La situación financiera de la tienda fue de mal en peor este trimestre.",
+    "tr": "Dükkanın mali durumu bu çeyrekte kötüden daha da kötüye gitti.",
+    "form": "fue de mal en peor",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/ir_de_mal_en_peor",
+      "https://es.wikipedia.org/wiki/Mal"
+    ]
+  },
+  {
+    "w": "dejar sin efecto",
+    "t": "hükümsüz kılmak, geçersiz bırakmak",
+    "lit": "etkisiz bırakmak",
+    "s": "El juez decidió dejar sin efecto la sanción impuesta por falta de pruebas.",
+    "tr": "Yargıç, delil yetersizliğinden dolayı verilen cezayı hükümsüz kılmaya karar verdi.",
+    "form": "dejar sin efecto",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/dejar_sin_efecto",
+      "https://es.wikipedia.org/wiki/Efecto"
+    ]
+  },
+  {
+    "w": "quedar mal",
+    "t": "mahcup olmak, zor durumda kalmak",
+    "lit": "kötü kalmak",
+    "eq": "yüzü kara çıkmak",
+    "s": "No entregar el pedido a tiempo te hará quedar mal ante el cliente.",
+    "tr": "Siparişi vaktinde teslim etmemek seni müşterinin karşısında zor durumda bırakır.",
+    "form": "quedar mal",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/quedar_mal",
+      "https://es.wikipedia.org/wiki/Problema_del_mal"
+    ]
+  },
+  {
+    "w": "atenerse a las consecuencias",
+    "t": "sonuçlarına katlanmak, bedelini ödemek",
+    "lit": "sonuçlara bağlanmak",
+    "eq": "sonucuna katlanmak",
+    "s": "Si decides ignorar la normativa laboral, tendrás que atenerte a las consecuencias legales.",
+    "tr": "İş kurallarını yok saymaya karar verirsen yasal sonuçlarına katlanmak zorunda kalırsın.",
+    "form": "atenerte a las consecuencias",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/atenerse_a_las_consecuencias",
+      "https://es.wikipedia.org/wiki/Condones.com"
+    ]
+  },
+  {
+    "w": "caer en desgracia",
+    "t": "gözden düşmek, itibarını kaybetmek",
+    "lit": "talihsizliğe düşmek",
+    "eq": "gözden düşmek",
+    "s": "El ministro cayó en desgracia tras descubrirse sus cuentas secretas en el extranjero.",
+    "tr": "Bakanın yurt dışındaki gizli hesapları ortaya çıkınca tamamen gözden düştü.",
+    "form": "cayó en desgracia",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/caer_en_desgracia",
+      "https://es.wikipedia.org/wiki/Desgracia"
+    ]
+  },
+  {
+    "w": "cortar por lo sano",
+    "t": "kestirip atmak, kökten çözüm uygulamak",
+    "lit": "sağlıklı olandan kesmek",
+    "eq": "kestirip atmak",
+    "s": "Ante las pérdidas continuas, la dirección decidió cortar por lo sano y cerrar la fábrica.",
+    "tr": "Sürekli zararlar karşısında yönetim kestirip atmaya ve fabrikayı kapatmaya karar verdi.",
+    "form": "cortar por lo sano",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/cortar_por_lo_sano",
+      "https://es.wikipedia.org/wiki/Cortar_por_lo_sano"
+    ]
+  },
+  {
+    "w": "dar un paso en falso",
+    "t": "yanlış bir adım atmak, tökezlemek",
+    "lit": "sahte bir adım vermek",
+    "eq": "yanlış adım atmak",
+    "s": "En una negociación diplomática tan tensa no podemos permitirnos dar un paso en falso.",
+    "tr": "Bu kadar gergin bir diplomatik müzakerede yanlış bir adım atmayı göze alamayız.",
+    "form": "dar un paso en falso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_un_paso_en_falso",
+      "https://es.wikipedia.org/wiki/Falso"
+    ]
+  },
+  {
+    "w": "hacer añicos",
+    "t": "tuzla buz etmek, paramparça etmek",
+    "lit": "parçacıklar yapmak",
+    "eq": "tuzla buz etmek",
+    "s": "La crisis inesperada hizo añicos todos los proyectos de expansión internacional.",
+    "tr": "Beklenmedik kriz uluslararası büyüme projelerinin tamamını tuzla buz etti.",
+    "form": "hizo añicos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacer_a%C3%B1icos",
+      "https://es.wikipedia.org/wiki/A%C3%B1icos"
+    ]
+  },
+  {
+    "w": "irse a pique",
+    "t": "batmak, iflas etmek, suya düşmek",
+    "lit": "dikine batışa gitmek",
+    "eq": "suya düşmek",
+    "s": "Si no encontramos inversores pronto, toda la empresa se irá a pique este invierno.",
+    "tr": "Yakında yatırımcı bulamazsak bütün şirket bu kış batacak.",
+    "form": "se irá a pique",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/irse_a_pique",
+      "https://es.wikipedia.org/wiki/Pique"
+    ]
+  },
+  {
+    "w": "irse al garete",
+    "t": "boşa gitmek, berbat olmak",
+    "lit": "gareteye gitmek",
+    "eq": "heba olmak",
+    "s": "Por culpa de un corte eléctrico repentino, toda la grabación se fue al garete.",
+    "tr": "Ani bir elektrik kesintisi yüzünden bütün kayıt boşa gitti ve berbat oldu.",
+    "form": "se fue al garete",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/irse_al_garete",
+      "https://es.wikipedia.org/wiki/Irse_al_garete"
+    ]
+  },
+  {
+    "w": "montar un jaleo",
+    "t": "patırtı koparmak, olay çıkarmak",
+    "lit": "bir kargaşa kurmak",
+    "eq": "patırtı çıkarmak",
+    "s": "Los vecinos montaron un jaleo tremendo en la reunión de la comunidad de propietarios.",
+    "tr": "Apartman sakinleri bina toplantısında muazzam bir patırtı koparıp olay çıkardılar.",
+    "form": "montaron un jaleo",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/montar_un_jaleo",
+      "https://es.wikipedia.org/wiki/Jaleo"
+    ]
+  },
+  {
+    "w": "montar una escena",
+    "t": "rezalet çıkarmak, olay yaratmak",
+    "lit": "bir sahne kurmak",
+    "eq": "olay çıkarmak",
+    "s": "Perdió los nervios en el restaurante y montó una escena desagradable delante de todos.",
+    "tr": "Restoranda sinirlerine hakim olamayıp herkesin önünde nahoş bir rezalet çıkardı.",
+    "form": "montó una escena",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/montar_una_escena",
+      "https://es.wikipedia.org/wiki/Escena"
+    ]
+  },
+  {
+    "w": "pasar la pelota",
+    "t": "sorumluluktan kaçmak, topu başkasına atmak",
+    "lit": "topu geçirmek",
+    "eq": "topu başkasına atmak",
+    "s": "En vez de asumir su fallo, prefirió pasar la pelota a su equipo.",
+    "tr": "Hatasını üstlenmek yerine topu ekibine atmayı tercih etti.",
+    "form": "pasar la pelota",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/pasar_la_pelota",
+      "https://es.wikipedia.org/wiki/Pelota"
+    ]
+  },
+  {
+    "w": "tirar por la borda",
+    "t": "heba etmek, çöpe atmak",
+    "lit": "küpeşteden fırlatmak",
+    "eq": "çöpe atmak",
+    "s": "No tires por la borda todo tu esfuerzo por una fiesta.",
+    "tr": "Tek bir parti için bunca emeğini çöpe atıp heba etme.",
+    "form": "tires por la borda",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/tirar_por_la_borda",
+      "https://es.wikipedia.org/wiki/Borda"
+    ]
+  },
+  {
+    "w": "dejar en la estacada",
+    "t": "yüzüstü bırakmak, yarı yolda bırakmak",
+    "lit": "çit kazığında bırakmak",
+    "eq": "yarı yolda bırakmak",
+    "s": "Prometió ayudarnos con la mudanza, pero nos dejó en la estacada a última hora.",
+    "tr": "Taşınmada bize yardım etmeye söz verdi ama son dakikada bizi yarı yolda bıraktı.",
+    "form": "dejó en la estacada",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/dejar_en_la_estacada",
+      "https://es.wikipedia.org/wiki/Estacada"
+    ]
+  },
+  {
+    "w": "dar la nota",
+    "t": "yersiz davranışla rezil olmak, dikkat çekmek",
+    "lit": "notayı vermek",
+    "eq": "dikkat çekmek",
+    "s": "Bebió demasiado en la boda y dio la nota ante todos.",
+    "tr": "Düğünde fazla içti ve herkesin önünde tuhaf davranarak rezil oldu.",
+    "form": "dio la nota",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_la_nota",
+      "https://es.wikipedia.org/wiki/Nota"
+    ]
+  },
+  {
+    "w": "andar en malos pasos",
+    "t": "tekinsiz işlere bulaşmak, kötü yollara düşmek",
+    "lit": "kötü adımlarda yürümek",
+    "eq": "kötü yola düşmek",
+    "s": "La policía sospechaba desde hacía meses que el sospechoso andaba en malos pasos.",
+    "tr": "Polis, şüphelinin aylardır tekinsiz işlere bulaştığından ve kötü yolda olduğundan şüpheleniyordu.",
+    "form": "andaba en malos pasos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/andar_en_malos_pasos",
+      "https://es.wikipedia.org/wiki/Pasos"
+    ]
+  },
+  {
+    "w": "armar la de san Quintín",
+    "t": "kızılca kıyameti koparmak, büyük kavga çıkarmak",
+    "lit": "San Quintin'inkini kurmak",
+    "eq": "kızılca kıyamet kopmak",
+    "s": "Cuando los socios descubrieron el desfalco económico, se armó la de san Quintín.",
+    "tr": "Ortaklar kasadaki zimmeti keşfettiklerinde ofiste kızılca kıyamet koptu.",
+    "form": "armó la de san Quintín",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/armar_la_de_san_Quint%C3%ADn",
+      "https://es.wikipedia.org/wiki/Canal_Ofqui"
+    ]
+  },
+  {
+    "w": "caer de bruces",
+    "t": "yüzüstü kapaklanmak, fena halde çakılmak",
+    "lit": "yüzüstü düşmek",
+    "eq": "kapaklanmak",
+    "s": "Tropezó con el bordillo de la acera y cayó de bruces sobre el asfalto.",
+    "tr": "Kaldırım kenarına ayağı takıldı ve asfaltın üzerine yüzüstü kapaklandı.",
+    "form": "cayó de bruces",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/caer_de_bruces",
+      "https://es.wikipedia.org/wiki/Facebuster"
+    ]
+  },
+  {
+    "w": "dar tumbos",
+    "t": "bocalamak, ne yapacağını bilemeyip savrulmak",
+    "lit": "taklalar vermek",
+    "eq": "savrulup durmak",
+    "s": "Tras el cierre de su negocio, estuvo dando tumbos laborales durante dos años.",
+    "tr": "İşletmesi kapandıktan sonra iki yıl boyunca ne yapacağını bilemeyip savrulup durdu.",
+    "form": "dando tumbos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_tumbos",
+      "https://es.wikipedia.org/wiki/Provincia_de_Tumbes"
+    ]
+  },
+  {
+    "w": "embarrar la cancha",
+    "t": "süreci bilerek tıkamak, oyunu bozmak",
+    "lit": "sahayı çamurlamak",
+    "eq": "oyunbozanlık etmek",
+    "s": "La oposición intentó embarrar la cancha judicial con recursos procesales continuos.",
+    "tr": "Muhalefet sürekli usul itirazlarıyla yargı sürecini bilerek tıkamaya çalıştı.",
+    "form": "embarrar la cancha",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/embarrar_la_cancha",
+      "https://es.wikipedia.org/wiki/Cancha"
+    ]
+  },
+  {
+    "w": "estar para el arrastre",
+    "t": "pestili çıkmak, takatı kalmamak",
+    "lit": "sürükleme için olmak",
+    "eq": "pestili çıkmak",
+    "s": "Tras doblar el turno en el hospital, los enfermeros estaban para el arrastre.",
+    "tr": "Hastanede çift vardiya yaptıktan sonra hemşirelerin resmen pestili çıkmıştı.",
+    "form": "estaban para el arrastre",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/estar_para_el_arrastre",
+      "https://es.wikipedia.org/wiki/Arrastre"
+    ]
+  },
+  {
+    "w": "firmar su propia sentencia de muerte",
+    "t": "kendi ipini çekmek, kendi sonunu hazırlamak",
+    "lit": "kendi ölüm fermanını imzalamak",
+    "eq": "kendi ipini çekmek",
+    "s": "Con esa declaración imprudente en directo, el ministro firmó su propia sentencia de muerte política.",
+    "tr": "Canlı yayındaki o düşüncesiz açıklamayla bakan kendi siyasi ölüm fermanını imzaladı.",
+    "form": "firmó su propia sentencia de muerte",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/firmar_su_propia_sentencia_de_muerte",
+      "https://es.wikipedia.org/wiki/Muerte"
+    ]
+  },
+  {
+    "w": "hacer la trece catorce",
+    "t": "kazık atmak, kalleşçe aldatmak",
+    "lit": "on üç on dördü yapmak",
+    "eq": "kazık atmak",
+    "s": "Creyó que eran amigos leales hasta que le hicieron la trece catorce con el contrato.",
+    "tr": "Sözleşmeyle kendisine kalleşçe kazık atana kadar onların sadık dostlar olduğunu sanıyordu.",
+    "form": "hicieron la trece catorce",
+    "reg": "slang",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacer_la_trece_catorce",
+      "https://es.wikipedia.org/wiki/Catorce"
+    ]
+  },
+  {
+    "w": "irse de rositas",
+    "t": "cezasız kurtulmak, yanına kâr kalmak",
+    "lit": "gülcüklerle gitmek",
+    "eq": "tereyağından kıl çeker gibi kurtulmak",
+    "s": "Cometieron una infracción grave y pretendían irse de rositas sin pagar la multa.",
+    "tr": "Ağır bir kural ihlali yaptılar ve cezayı ödemeden tereyağından kıl çeker gibi kurtulmayı umuyorlardı.",
+    "form": "irse de rositas",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/irse_de_rositas",
+      "https://es.wikipedia.org/wiki/Rosita_Espinosa"
+    ]
+  },
+  {
+    "w": "no dar una a derechas",
+    "t": "hiçbir işi doğru dürüst becerememek, sürekli çuvallamak",
+    "lit": "sağlara bir tane bile verememek",
+    "eq": "elini attığı işi berbat etmek",
+    "s": "Hoy tengo un día desastroso; estoy tan distraído que no doy una a derechas.",
+    "tr": "Bugün felaket bir günümdeyim; o kadar dalgınım ki hiçbir işi doğru dürüst beceremiyorum.",
+    "form": "no doy una a derechas",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/no_dar_una_a_derechas",
+      "https://es.wikipedia.org/wiki/Derechas"
+    ]
+  },
+  {
+    "w": "pagar justos por pecadores",
+    "t": "suçsuzlar suçlular yüzünden ceza çekmek",
+    "lit": "günahkarlar için adiller ödemek",
+    "eq": "kurunun yanında yaş da yanmak",
+    "s": "Por la travesura de dos alumnos, en el aula pagaron justos por pecadores sin recreo.",
+    "tr": "İki öğrencinin yaramazlığı yüzünden sınıfta kurunun yanında yaş da yandı ve teneffüs iptal oldu.",
+    "form": "pagaron justos por pecadores",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/pagar_justos_por_pecadores",
+      "https://es.wikipedia.org/wiki/Pecadores"
+    ]
+  },
+  {
+    "w": "ser el acabose",
+    "t": "akıllara zarar felaket olmak, bardağı taşıran son nokta olmak",
+    "lit": "bitişin kendisi olmak",
+    "eq": "artık bu kadarı da fazla",
+    "s": "Que ahora nos corten el agua tras la avería de luz es ya el acabose.",
+    "tr": "Elektrik arızasının ardından şimdi de suları kesmeleri artık akıllara zarar son nokta oldu.",
+    "form": "el acabose",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/ser_el_acabose",
+      "https://es.wikipedia.org/wiki/Lucas_Garc%C3%ADa"
+    ]
+  }
+]

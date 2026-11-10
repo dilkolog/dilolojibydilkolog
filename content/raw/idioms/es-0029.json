@@ -1,0 +1,529 @@
+[
+  {
+    "w": "tocar la lotería",
+    "t": "piyango vurmak, şansı açılmak",
+    "lit": "piyangoya dokunmak",
+    "eq": "piyango vurmak",
+    "s": "Conseguir una plaza fija en esa empresa fue como tocarle la lotería.",
+    "tr": "O şirkette kadrolu iş bulmak ona adeta piyango vurması gibi oldu.",
+    "form": "tocarle la lotería",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/loter%C3%ADa",
+      "https://es.wikipedia.org/wiki/Loter%C3%ADa"
+    ]
+  },
+  {
+    "w": "correr el riesgo",
+    "t": "riski göze almak, tehlikeye atılmak",
+    "lit": "riski koşmak",
+    "eq": "riski göze almak",
+    "s": "No quiso correr el riesgo de viajar de noche con niebla densa.",
+    "tr": "Yoğun siste gece yolculuk etme riskini göze almak istemedi.",
+    "form": "correr el riesgo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/correr_el_riesgo",
+      "https://es.wikipedia.org/wiki/Riesgo"
+    ]
+  },
+  {
+    "w": "estar de suerte",
+    "t": "şansı yaver gitmek, talihli olmak",
+    "lit": "şanstta olmak",
+    "eq": "şansı yaver gitmek",
+    "s": "Hoy estamos de suerte porque encontramos la última entrada disponible para el concierto.",
+    "tr": "Bugün şansımız yaver gitti çünkü konsere kalan son bileti bulduk.",
+    "form": "estamos de suerte",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/estar_de_suerte",
+      "https://es.wikipedia.org/wiki/Suerte"
+    ]
+  },
+  {
+    "w": "dejar al azar",
+    "t": "şansa bırakmak, kadere terk etmek",
+    "lit": "şansa bırakmak",
+    "eq": "şansa bırakmak",
+    "s": "Un buen estratega militar nunca suele dejar al azar el plan defensivo.",
+    "tr": "İyi bir askeri stratejist savunma planını asla şansa bırakmaz.",
+    "form": "dejar al azar",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/azar",
+      "https://es.wikipedia.org/wiki/Azar"
+    ]
+  },
+  {
+    "w": "echar una moneda al aire",
+    "t": "yazı tura atmak, şansa bırakmak",
+    "lit": "havaya bir madeni para fırlatmak",
+    "eq": "yazı tura atmak",
+    "s": "Antes de empezar el partido el árbitro va a echar una moneda al aire.",
+    "tr": "Maça başlamadan önce hakem sahada yazı tura atacak.",
+    "form": "echar una moneda al aire",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/moneda",
+      "https://es.wikipedia.org/wiki/Moneda"
+    ]
+  },
+  {
+    "w": "correr con suerte",
+    "t": "şanslı olmak, talihli çıkmak",
+    "lit": "şansla koşmak",
+    "eq": "şanslı çıkmak",
+    "s": "Tuvimos que correr con suerte para encontrar mesa en esa terraza llena.",
+    "tr": "O dolu terasta masa bulabilmek için oldukça şanslı olmamız gerekti.",
+    "form": "correr con suerte",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/suerte",
+      "https://es.wikipedia.org/wiki/Suerte"
+    ]
+  },
+  {
+    "w": "tocar el gordo",
+    "t": "büyük ikramiye çıkmak, talihi parlamak",
+    "lit": "şişmana dokunmak",
+    "eq": "turnayı gözünden vurmak",
+    "s": "Vender todas las acciones antes de la caída fue como tocarle el gordo.",
+    "tr": "Düşüşten önce tüm hisseleri satmak ona adeta büyük ikramiye çıkması gibi oldu.",
+    "form": "tocarle el gordo",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/gordo",
+      "https://es.wikipedia.org/wiki/El_Gordo_de_la_Primitiva"
+    ]
+  },
+  {
+    "w": "estar de racha",
+    "t": "seri yakalamak, şansı yaver gitmek",
+    "lit": "rüzgar esintisinde olmak",
+    "eq": "formunda olmak",
+    "s": "El delantero lleva cuatro partidos seguidos marcando goles y está de racha.",
+    "tr": "Forvet art arda dört maçtır gol atıyor ve müthiş bir seri yakaladı.",
+    "form": "está de racha",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/racha",
+      "https://es.wikipedia.org/wiki/Racha"
+    ]
+  },
+  {
+    "w": "cantar victoria",
+    "t": "erken sevinmek, zafer kutlamak",
+    "lit": "zaferi şarkı söylemek",
+    "eq": "erken sevinmek",
+    "s": "Quedan diez minutos de juego y no conviene cantar victoria antes de tiempo.",
+    "tr": "Maçın bitmesine on dakika var, erkenden zafer kutlayıp sevinmemek gerekir.",
+    "form": "cantar victoria",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/cantar_victoria",
+      "https://es.wikipedia.org/wiki/Victoria"
+    ]
+  },
+  {
+    "w": "tener buena estrella",
+    "t": "şanslı doğmak, talihi açık olmak",
+    "lit": "iyi yıldıza sahip olmak",
+    "eq": "yıldızı parlak olmak",
+    "s": "En todos sus negocios siempre parece tener buena estrella y ganar dinero.",
+    "tr": "Tüm girişimlerinde talihi hep açık görünüyor ve sürekli para kazanıyor.",
+    "form": "tener buena estrella",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/estrella",
+      "https://es.wikipedia.org/wiki/Estrella"
+    ]
+  },
+  {
+    "w": "tener mala estrella",
+    "t": "kadersiz olmak, bahtsız olmak",
+    "lit": "kötü yıldıza sahip olmak",
+    "eq": "bahtı kara olmak",
+    "s": "Todo lo que intenta emprender fracasa, parece tener mala estrella el pobre.",
+    "tr": "Giriştiği her iş batıyor, zavallının adeta bahtı kara gibi.",
+    "form": "tener mala estrella",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/estrella",
+      "https://es.wikipedia.org/wiki/Estrella"
+    ]
+  },
+  {
+    "w": "tener buena pata",
+    "t": "şanslı olmak, talihi dönmek",
+    "lit": "iyi bacağa sahip olmak",
+    "eq": "talihi yaver gitmek",
+    "s": "Llegamos justo cuando abrieron la taquilla y tuvimos buena pata para comprar.",
+    "tr": "Tam gişe açıldığında vardık ve bilet almakta talihimiz yaver gitti.",
+    "form": "tuvimos buena pata",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/pata",
+      "https://es.wikipedia.org/wiki/Pata"
+    ]
+  },
+  {
+    "w": "tener mala pata",
+    "t": "bahtsız olmak, şanssızlık yaşamak",
+    "lit": "kötü bacağa sahip olmak",
+    "eq": "şansı yaver gitmemek",
+    "s": "Se torció el tobillo antes de la final, qué mala pata tuvo.",
+    "tr": "Finalden önce ayak bileğini burktu, ne kadar büyük bir şanssızlık yaşadı.",
+    "form": "mala pata tuvo",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/mala_pata",
+      "https://es.wikipedia.org/wiki/Pata"
+    ]
+  },
+  {
+    "w": "estar en juego",
+    "t": "tehlikede olmak, söz konusu olmak",
+    "lit": "oyunda olmak",
+    "eq": "tehlikede olmak",
+    "s": "El futuro de cientos de trabajadores está en juego tras la fusión empresarial.",
+    "tr": "Şirket birleşmesinin ardından yüzlerce işçinin geleceği tehlikede ve söz konusu.",
+    "form": "está en juego",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/en_juego",
+      "https://es.wikipedia.org/wiki/Juego"
+    ]
+  },
+  {
+    "w": "apostar fuerte",
+    "t": "büyük oynamak, yüksek risk almak",
+    "lit": "güçlü bahse girmek",
+    "eq": "büyük oynamak",
+    "s": "El fondo de inversión decidió apostar fuerte por las energías renovables emergentes.",
+    "tr": "Yatırım fonu yeni gelişen yenilenebilir enerjilere büyük oynayıp yüksek risk aldı.",
+    "form": "apostar fuerte",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/apostar",
+      "https://es.wikipedia.org/wiki/Apuesta"
+    ]
+  },
+  {
+    "w": "sonreír la suerte",
+    "t": "şans yüzüne gülmek, talihi açılmak",
+    "lit": "şans gülümsemek",
+    "eq": "şans yüzüne gülmek",
+    "s": "Tras años de dificultades por fin pareció sonreír la suerte a la familia.",
+    "tr": "Yıllar süren zorlukların ardından sonunda şans ailenin yüzüne güler gibi oldu.",
+    "form": "sonreír la suerte",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/suerte",
+      "https://es.wikipedia.org/wiki/Suerte"
+    ]
+  },
+  {
+    "w": "cambiar la suerte",
+    "t": "şansı dönmek, talihi değişmek",
+    "lit": "şansı değiştirmek",
+    "eq": "talihi dönmek",
+    "s": "Con aquel gol en el último minuto logró cambiar la suerte del club.",
+    "tr": "Son dakikadaki o golle kulübün makus talihini döndürmeyi başardı.",
+    "form": "cambiar la suerte",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/suerte",
+      "https://es.wikipedia.org/wiki/Suerte"
+    ]
+  },
+  {
+    "w": "jugar con ventaja",
+    "t": "avantajlı oynamak, üstünlüğe sahip olmak",
+    "lit": "avantajla oynamak",
+    "eq": "avanslı olmak",
+    "s": "Quien conoce las preguntas del examen juega con ventaja frente a los demás.",
+    "tr": "Sınav sorularını önceden bilen kişi diğerlerine kıyasla avantajlı oynar.",
+    "form": "juega con ventaja",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/ventaja",
+      "https://es.wikipedia.org/wiki/Ventaja"
+    ]
+  },
+  {
+    "w": "arriesgar el pellejo",
+    "t": "postu tehlikeye atmak, canını riske atmak",
+    "lit": "deriyi riske atmak",
+    "eq": "postu tehlikeye atmak",
+    "s": "No merece la pena arriesgar el pellejo cruzando ese río tan caudaloso.",
+    "tr": "O kadar coşkun bir nehri geçerek postu tehlikeye atmaya değmez.",
+    "form": "arriesgar el pellejo",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/pellejo",
+      "https://es.wikipedia.org/wiki/Piel"
+    ]
+  },
+  {
+    "w": "tener la negra",
+    "t": "üzerinde kara bulutlar dolaşmak, bahtsız olmak",
+    "lit": "siyaha sahip olmak",
+    "eq": "bahtı kara olmak",
+    "s": "Perdió las llaves y se le pinchó una rueda, hoy parece tener la negra.",
+    "tr": "Anahtarlarını kaybetti ve lastiği patladı, bugün üzerinde kara bulutlar dolaşıyor.",
+    "form": "tener la negra",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/negra",
+      "https://es.wikipedia.org/wiki/Negro"
+    ]
+  },
+  {
+    "w": "hacer pleno",
+    "t": "tam isabet kaydetmek, firesiz kazanmak",
+    "lit": "dolu yapmak",
+    "eq": "tam isabet sağlamak",
+    "s": "El tirador logró hacer pleno en todas las dianas durante el campeonato internacional.",
+    "tr": "Atıcı uluslararası şampiyona boyunca bütün hedeflerde tam isabet kaydetti.",
+    "form": "hacer pleno",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/pleno",
+      "https://es.wikipedia.org/wiki/Pleno"
+    ]
+  },
+  {
+    "w": "jugarse el cuello",
+    "t": "kellesini ortaya koymak, boynunu riske atmak",
+    "lit": "boynu oynamak",
+    "eq": "kellesini koltuğa almak",
+    "s": "El testigo decidió jugarse el cuello al declarar contra la mafia local.",
+    "tr": "Tanık yerel mafyaya karşı ifade vererek kellesini ortaya koymaya karar verdi.",
+    "form": "jugarse el cuello",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/cuello",
+      "https://es.wikipedia.org/wiki/Cuello"
+    ]
+  },
+  {
+    "w": "volverse la tortilla",
+    "t": "talih tersine dönmek, devran dönmek",
+    "lit": "omlet dönmek",
+    "eq": "devran dönmek",
+    "s": "Iban perdiendo con claridad pero en el segundo tiempo se volvió la tortilla.",
+    "tr": "Açık farkla yeniliyorlardı ama ikinci yarıda devran tersine döndü.",
+    "form": "se volvió la tortilla",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/tortilla",
+      "https://es.wikipedia.org/wiki/Tortilla_de_patatas"
+    ]
+  },
+  {
+    "w": "acertar de lleno",
+    "t": "tam on ikiden vurmak, tam isabet sağlamak",
+    "lit": "dolusuna isabet etmek",
+    "eq": "on ikiden vurmak",
+    "s": "Con su previsión económica para el nuevo trimestre supo acertar de lleno totalmente.",
+    "tr": "Yeni çeyrek için yaptığı ekonomik öngörüyle tam isabet sağlayıp on ikiden vurdu.",
+    "form": "acertar de lleno",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/acertar",
+      "https://es.wikipedia.org/wiki/Diana_(tiro)"
+    ]
+  },
+  {
+    "w": "salir bien parado",
+    "t": "işin içinden sıyrılmak, kazasız atlatmak",
+    "lit": "iyi durdurulmuş çıkmak",
+    "eq": "paçayı kurtarmak",
+    "s": "A pesar de la dura auditoría fiscal la empresa logró salir bien parada.",
+    "tr": "Ağır vergi denetimine rağmen şirket işin içinden kazasız belasız sıyrılmayı başardı.",
+    "form": "salir bien parada",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/parado",
+      "https://es.wikipedia.org/wiki/Parada"
+    ]
+  },
+  {
+    "w": "salir mal parado",
+    "t": "zararlı çıkmak, hırpalanarak çıkmak",
+    "lit": "kötü durdurulmuş çıkmak",
+    "eq": "zararlı çıkmak",
+    "s": "El conductor del vehículo menor salió mal parado tras la colisión frontal matutina.",
+    "tr": "Sabahki kafa kafaya çarpışmanın ardından küçük aracın sürücüsü oldukça hırpalanarak çıktı.",
+    "form": "salió mal parado",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/parado",
+      "https://es.wikipedia.org/wiki/Parada"
+    ]
+  },
+  {
+    "w": "a la suerte de Dios",
+    "t": "kaderin eline bırakılmış, Allah'a emanet",
+    "lit": "Tanrı'nın şansına",
+    "eq": "Allah'a emanet",
+    "s": "Abandonaron el viejo barco en alta mar a la suerte de Dios totalmente.",
+    "tr": "Eski gemiyi açık denizde tamamen Allah'a emanet, kaderin eline terk ettiler.",
+    "form": "a la suerte de Dios",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/suerte",
+      "https://es.wikipedia.org/wiki/Dios"
+    ]
+  },
+  {
+    "w": "jugar con las cartas marcadas",
+    "t": "hileli oynamak, kural dışı davranmak",
+    "lit": "işaretlenmiş kartlarla oynamak",
+    "eq": "hileli oynamak",
+    "s": "En esa licitación amañada todos sabían que jugaban con las cartas marcadas.",
+    "tr": "O hileli ihalede herkes kurallara aykırı, hileli oynandığını biliyordu.",
+    "form": "jugaban con las cartas marcadas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/carta",
+      "https://es.wikipedia.org/wiki/Carta"
+    ]
+  },
+  {
+    "w": "jugarse la vida",
+    "t": "hayatını tehlikeye atmak, canını hiçe saymak",
+    "lit": "hayatı oynamak",
+    "eq": "canını tehlikeye atmak",
+    "s": "Los rescatistas tuvieron que jugarse la vida para salvar a los alpinistas perdidos.",
+    "tr": "Kurtarma ekipleri kayıp dağcıları kurtarmak için hayatlarını tehlikeye atmak zorunda kaldı.",
+    "form": "jugarse la vida",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/vida",
+      "https://es.wikipedia.org/wiki/Vida"
+    ]
+  },
+  {
+    "w": "jugar bien sus bazas",
+    "t": "kartlarını iyi oynamak, avantajı değerlendirmek",
+    "lit": "kart ellerini iyi oynamak",
+    "eq": "kartlarını iyi oynamak",
+    "s": "Durante la entrevista de trabajo supo jugar bien sus bazas con habilidad.",
+    "tr": "İş görüşmesinde ustalığıyla kartlarını iyi oynamayı ve avantajını kullanmayı bildi.",
+    "form": "jugar bien sus bazas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/baza",
+      "https://es.wikipedia.org/wiki/Baza_(juegos_de_naipes)"
+    ]
+  },
+  {
+    "w": "jugarse la cabeza",
+    "t": "kellesini ortaya koymak, büyük tehlikeye girmek",
+    "lit": "kafayı oynamak",
+    "eq": "kellesini ortaya koymak",
+    "s": "Nadie en la redacción quiso jugarse la cabeza firmando ese polémico reportaje confidencial.",
+    "tr": "Yazı işlerinde hiç kimse o tartışmalı gizli haberi imzalayıp kellesini ortaya koymak istemedi.",
+    "form": "jugarse la cabeza",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/cabeza",
+      "https://es.wikipedia.org/wiki/Cabeza"
+    ]
+  }
+]

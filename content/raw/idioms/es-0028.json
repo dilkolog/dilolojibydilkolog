@@ -1,0 +1,526 @@
+[
+  {
+    "w": "llover a mares",
+    "t": "sel gibi yağmak, şiddetle yağmak",
+    "lit": "denizlerle yağmak",
+    "eq": "bardaktan boşanırcasına yağmak",
+    "s": "Tuvimos que resguardarnos bajo el puente porque llovía a mares.",
+    "tr": "Sel gibi yağmur yağdığı için köprünün altına sığınmak zorunda kaldık.",
+    "form": "llovía a mares",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/llover_a_mares",
+      "https://es.wikisource.org/wiki/El_sabor_de_la_tierruca%2FI"
+    ]
+  },
+  {
+    "w": "abrir fuego",
+    "t": "ateş açmak, ilk adımı atıp başlamak",
+    "lit": "ateşi açmak",
+    "eq": "ateş açmak",
+    "s": "El periodista abrió fuego en la rueda de prensa con una pregunta muy comprometida.",
+    "tr": "Gazeteci basın toplantısında çok zorlu bir soruyla ateş açtı.",
+    "form": "abrió fuego",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/abrir_fuego",
+      "https://es.wikipedia.org/wiki/Ametralladora_pesada_Kord-12%2C7"
+    ]
+  },
+  {
+    "w": "echar flores",
+    "t": "övgüler yağdırmak, iltifat etmek",
+    "lit": "çiçekler atmak",
+    "eq": "övgü yağdırmak",
+    "s": "El crítico no paró de echar flores a los jóvenes actores tras el estreno.",
+    "tr": "Eleştirmen ilk gösterimin ardından genç oyunculara övgüler yağdırmaktan geri durmadı.",
+    "form": "echar flores",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/echar_flores",
+      "https://es.wikipedia.org/wiki/Argyreia_nervosa"
+    ]
+  },
+  {
+    "w": "ser un sol",
+    "t": "dünya tatlısı olmak, çok iyi kalpli olmak",
+    "lit": "bir güneş olmak",
+    "eq": "melek gibi olmak",
+    "s": "Nuestra vecina es un sol; siempre nos ayuda a cuidar a las mascotas.",
+    "tr": "Komşumuz dünya tatlısı bir insandır; evcil hayvanlarımıza bakmamıza hep yardım eder.",
+    "form": "es un sol",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/ser_un_sol",
+      "https://es.wikipedia.org/wiki/Sol"
+    ]
+  },
+  {
+    "w": "trabajar de sol a sol",
+    "t": "sabahtan akşama kadar durmadan çalışmak",
+    "lit": "güneşten güneşe çalışmak",
+    "eq": "gün doğumundan batımına kadar çalışmak",
+    "s": "Los agricultores trabajan de sol a sol durante las semanas de recolección de uva.",
+    "tr": "Çiftçiler üzüm hasadı haftaları boyunca sabahtan akşama kadar güneş batana dek çalışırlar.",
+    "form": "trabajan de sol a sol",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_sol_a_sol",
+      "https://es.wikipedia.org/wiki/De_sol_a_sol"
+    ]
+  },
+  {
+    "w": "hacer sombra",
+    "t": "gölgede bırakmak, üstün başarıyla geri plana itmek",
+    "lit": "gölge yapmak",
+    "eq": "gölgede bırakmak",
+    "s": "El joven violinista hizo sombra al solista principal con su virtuosismo.",
+    "tr": "Genç kemancı üstün ustalığıyla baş solisti adeta gölgede bıraktı.",
+    "form": "hizo sombra",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_sombra",
+      "https://es.wikipedia.org/wiki/Sombra"
+    ]
+  },
+  {
+    "w": "ser la gota que colmó el vaso",
+    "t": "bardağı taşıran son damla olmak",
+    "lit": "bardağı taşıran damla olmak",
+    "eq": "bardağı taşıran damla",
+    "s": "Aquel insulto injustificado fue la gota que colmó el vaso de su paciencia.",
+    "tr": "O haksız hakaret, sabrını tüketen ve bardağı taşıran son damla oldu.",
+    "form": "la gota que colmó el vaso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/la_gota_que_colm%C3%B3_el_vaso",
+      "https://es.wikipedia.org/wiki/La_gota_que_colm%C3%B3_el_vaso"
+    ]
+  },
+  {
+    "w": "caer cuatro gotas",
+    "t": "bir iki damla atıştırmak, hafif çiselemek",
+    "lit": "dört damla düşmek",
+    "eq": "yağmur atıştırmak",
+    "s": "No necesitas coger el paraguas grande porque solo van a caer cuatro gotas.",
+    "tr": "Büyük şemsiyeyi almana gerek yok çünkü sadece bir iki damla atıştıracak.",
+    "form": "caer cuatro gotas",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/caer_cuatro_gotas",
+      "https://es.wikipedia.org/wiki/Gota"
+    ]
+  },
+  {
+    "w": "construir castillos en el aire",
+    "t": "boş hayaller kurmak, gerçek dışı planlar yapmak",
+    "lit": "havada kaleler inşa etmek",
+    "eq": "hayal aleminde yaşamak",
+    "s": "Deja de construir castillos en el aire y busca un trabajo seguro.",
+    "tr": "Boş hayaller kurmayı bırak ve kendine güvenli bir iş bul.",
+    "form": "construir castillos en el aire",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/construir_castillos_en_las_nubes",
+      "https://es.wikipedia.org/wiki/Castillo_en_el_aire"
+    ]
+  },
+  {
+    "w": "estar en la luna de Valencia",
+    "t": "dünyadan bihaber olmak, dalıp gitmek",
+    "lit": "Valencia'nın ayında olmak",
+    "eq": "aklı bir karış havada olmak",
+    "s": "El alumno no escuchó la explicación porque estaba en la luna de Valencia.",
+    "tr": "Öğrenci aklı bir karış havada dalıp gittiği için açıklamayı hiç duymadı.",
+    "form": "estaba en la luna de Valencia",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/en_la_luna_de_Valencia",
+      "https://es.wikipedia.org/wiki/Valencia"
+    ]
+  },
+  {
+    "w": "pedir la luna",
+    "t": "imkansızı istemek, olmayacak duaya amin demek",
+    "lit": "ayı istemek",
+    "eq": "gökteki yıldızları istemek",
+    "s": "Pedir un aumento de sueldo del cincuenta por ciento en plena crisis es pedir la luna.",
+    "tr": "Krizin ortasında yüzde elli maaş zammı istemek imkansızı istemektir.",
+    "form": "pedir la luna",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/pedir_la_luna",
+      "https://es.wikipedia.org/wiki/Luna"
+    ]
+  },
+  {
+    "w": "nacer con estrella",
+    "t": "şanslı doğmak, talihi açık olmak",
+    "lit": "yıldızla doğmak",
+    "eq": "talih kuşu konmak",
+    "s": "Consiguió el empleo a la primera entrevista; está claro que nació con estrella.",
+    "tr": "İlk mülakatta işe kabul edildi; şanslı doğduğu çok açık.",
+    "form": "nació con estrella",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/nacer_con_estrella",
+      "https://es.wikipedia.org/wiki/Estrella"
+    ]
+  },
+  {
+    "w": "sacar los trapos al sol",
+    "t": "kirli çamaşırları ortaya dökmek, sırları ifşa etmek",
+    "lit": "bezleri güneşe çıkarmak",
+    "eq": "kirli çamaşırları dökmek",
+    "s": "En el debate televisado ambos candidatos sacaron los trapos al sol del adversario.",
+    "tr": "Televizyon münazarasında her iki aday da rakibinin kirli çamaşırlarını ortaya döktü.",
+    "form": "sacaron los trapos al sol",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/sacar_los_trapos_al_sol",
+      "https://es.wikipedia.org/wiki/Trapo"
+    ]
+  },
+  {
+    "w": "dormir a la sombra",
+    "t": "parmaklıklar ardında yatmak, hapse girmek",
+    "lit": "gölgede uyumak",
+    "eq": "damda yatmak",
+    "s": "Si continúa cometiendo fraudes fiscales, acabará durmiendo a la sombra varios años.",
+    "tr": "Vergi kaçakçılığı yapmaya devam ederse birkaç yılını parmaklıklar ardında geçirir.",
+    "form": "durmiendo a la sombra",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_la_sombra",
+      "https://es.wikipedia.org/wiki/Sombra"
+    ]
+  },
+  {
+    "w": "estar en la cresta de la ola",
+    "t": "başarının doruğunda olmak, çok popüler olmak",
+    "lit": "dalganın tepesinde olmak",
+    "eq": "zirvede olmak",
+    "s": "Tras ganar dos premios internacionales, la actriz está en la cresta de la ola.",
+    "tr": "İki uluslararası ödül kazandıktan sonra oyuncu şu sıralar kariyerinin zirvesinde.",
+    "form": "está en la cresta de la ola",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/estar_en_la_cresta_de_la_ola",
+      "https://es.wikipedia.org/wiki/Ola"
+    ]
+  },
+  {
+    "w": "hacerse a la mar",
+    "t": "denize açılmak, sefere çıkmak",
+    "lit": "kendini denize yapmak",
+    "s": "La flota pesquera se hizo a la mar antes del amanecer con marea favorable.",
+    "tr": "Balıkçı filosu elverişli gelgitle birlikte şafaktan önce denize açıldı.",
+    "form": "se hizo a la mar",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacerse_a_la_mar",
+      "https://es.wikipedia.org/wiki/Mar"
+    ]
+  },
+  {
+    "w": "echar una cana al aire",
+    "t": "felekten bir gün çalmak, kaçamak yapmak",
+    "lit": "havaya beyaz bir saç teli atmak",
+    "eq": "felekten bir gün çalmak",
+    "s": "Decidieron hacer un viaje sorpresa de fin de semana para echar una cana al aire.",
+    "tr": "Felekten bir gün çalmak için hafta sonu sürpriz bir seyahate çıkmaya karar verdiler.",
+    "form": "echar una cana al aire",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/echar_una_cana_al_aire",
+      "https://es.wikipedia.org/wiki/Cana"
+    ]
+  },
+  {
+    "w": "mandar a tomar viento",
+    "t": "başından savmak, cehennemin dibine göndermek",
+    "lit": "rüzgar almaya göndermek",
+    "eq": "başından savmak",
+    "s": "Harto de sus continuas quejas, decidió mandarlo a tomar viento sin contemplaciones.",
+    "tr": "Sürekli şikayetlerinden bıkıp onu hiç düşünmeden başından savdı.",
+    "form": "mandarlo a tomar viento",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/irse_a_tomar_viento",
+      "https://es.wikipedia.org/wiki/Viento"
+    ]
+  },
+  {
+    "w": "atizar el fuego",
+    "t": "kavgayı kızıştırmak, ateşi körüklemek",
+    "lit": "ateşi dürtmek",
+    "eq": "yangına körükle gitmek",
+    "s": "Con esos comentarios despectivos solo consigues atizar el fuego de la discordia.",
+    "tr": "Bu aşağılayıcı yorumlarla sadece aradaki anlaşmazlık ateşini körüklüyorsun.",
+    "form": "atizar el fuego",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/atizar_el_fuego",
+      "https://es.wikipedia.org/wiki/Mallac%C3%A1n"
+    ]
+  },
+  {
+    "w": "ladrar a la luna",
+    "t": "boşuna nefes tüketmek, beyhude çabalamak",
+    "lit": "aya havlamak",
+    "eq": "havanda su dövmek",
+    "s": "Intentar convencer a ese fanático de su error es como ladrar a la luna.",
+    "tr": "O fanatiği hatasından vazgeçirmeye çalışmak beyhude yere havanda su dövmektir.",
+    "form": "ladrar a la luna",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/ladrar_a_la_luna",
+      "https://es.wikipedia.org/wiki/Luna"
+    ]
+  },
+  {
+    "w": "hacer un brindis al sol",
+    "t": "göstermelik jest yapmak, havaya konuşmak",
+    "lit": "güneşe bir kadeh kaldırmak",
+    "s": "Sus promesas electorales no son más que un mero brindis al sol para la galería.",
+    "tr": "Seçim vaatleri tribünlere oynanan göstermelik bir jestten öteye geçmiyor.",
+    "form": "brindis al sol",
+    "reg": "formal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_brindis_al_sol",
+      "https://es.wikipedia.org/wiki/Brindis"
+    ]
+  },
+  {
+    "w": "arar en el mar",
+    "t": "beyhude kürek çekmek, imkansız bir işle uğraşmak",
+    "lit": "denizde çift sürmek",
+    "eq": "çöle tohum ekmek",
+    "s": "Reformar esa vieja burocracia sin voluntad política es como arar en el mar.",
+    "tr": "Siyasi irade olmadan o eski bürokrasiyi reforme etmeye kalkışmak çöle tohum ekmektir.",
+    "form": "arar en el mar",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/arar_en_el_mar",
+      "https://es.wikipedia.org/wiki/Mar"
+    ]
+  },
+  {
+    "w": "echar agua al mar",
+    "t": "gereksiz yere fazlalık yapmak, faydasız işle uğraşmak",
+    "lit": "denize su dökmek",
+    "eq": "denize bir kova su dökmek",
+    "s": "Regalarle más libros a quien ya posee una biblioteca inmensa es echar agua al mar.",
+    "tr": "Zaten devasa bir kütüphanesi olan birine daha fazla kitap hediye etmek denize su dökmektir.",
+    "form": "echar agua al mar",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/echar_agua_al_mar",
+      "https://es.wikipedia.org/wiki/Agua"
+    ]
+  },
+  {
+    "w": "haber mar de fondo",
+    "t": "alttan alta sinsi bir gerginlik olmak",
+    "lit": "dip denizi bulunmak",
+    "eq": "alttan alta kaynamak",
+    "s": "Aunque sonrían en público, entre ambos socios hay mar de fondo desde hace meses.",
+    "tr": "Toplum önünde gülümseseler de iki ortak arasında aylardır sinsi bir gerginlik kaynıyor.",
+    "form": "hay mar de fondo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/mar_de_fondo",
+      "https://es.wikipedia.org/wiki/Mar_de_fondo"
+    ]
+  },
+  {
+    "w": "ir de perdidos al río",
+    "t": "battı balık yan gider demek, göze almak",
+    "lit": "kayıplardan nehre gitmek",
+    "eq": "battı balık yan gider",
+    "s": "Ya que hemos invertido casi todo el capital, vamos de perdidos al río.",
+    "tr": "Madem neredeyse tüm sermayeyi yatırdık, artık battı balık yan gider deyip devam edelim.",
+    "form": "vamos de perdidos al río",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_perdidos_al_r%C3%ADo",
+      "https://es.wikipedia.org/wiki/R%C3%ADo"
+    ]
+  },
+  {
+    "w": "hacer leña del árbol caído",
+    "t": "düşene bir darbe de kendisi vurmak, zayıflığından faydalanmak",
+    "lit": "devrilmiş ağaçtan odun yapmak",
+    "eq": "düşene vurmak",
+    "s": "Tras el escándalo del ministro, toda la oposición hizo leña del árbol caído.",
+    "tr": "Bakanın karıştığı skandalın ardından bütün muhalefet düşene bir tekme de kendisi vurdu.",
+    "form": "hizo leña del árbol caído",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_le%C3%B1a_del_%C3%A1rbol_ca%C3%ADdo",
+      "https://es.wikipedia.org/wiki/%C3%81rbol"
+    ]
+  },
+  {
+    "w": "llevar leña al monte",
+    "t": "tereciye tere satmak, fazladan lüzumsuz iş yapmak",
+    "lit": "dağa odun taşımak",
+    "eq": "tereciye tere satmak",
+    "s": "Enseñar técnicas de programación a esos ingenieros veteranos es llevar leña al monte.",
+    "tr": "O kıdemli mühendislere programlama teknikleri öğretmeye kalkmak tereciye tere satmaktır.",
+    "form": "llevar leña al monte",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/llevar_le%C3%B1a_al_monte",
+      "https://es.wikipedia.org/wiki/Monte"
+    ]
+  },
+  {
+    "w": "despedir con viento fresco",
+    "t": "tersleyip kapı dışarı etmek, sepetlemek",
+    "lit": "taze rüzgarla uğurlamak",
+    "eq": "kapı önüne koymak",
+    "s": "Al insolente vendedor lo despidieron con viento fresco nada más entrar al despacho.",
+    "tr": "Küstah satıcıyı ofise adımını atar atmaz tersleyip kapının önüne koydular.",
+    "form": "despidieron con viento fresco",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/con_viento_fresco",
+      "https://es.wikipedia.org/wiki/Viento"
+    ]
+  },
+  {
+    "w": "correr malos vientos",
+    "t": "kara bulutlar dolaşmak, uğursuz rüzgarlar esmek",
+    "lit": "kötü rüzgarların koşması",
+    "s": "Corren malos vientos para el sector inmobiliario con la reciente subida de tipos.",
+    "tr": "Son faiz artışıyla birlikte emlak sektörünün üzerinde kara bulutlar dolaşıyor.",
+    "form": "Corren malos vientos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/correr_malos_vientos",
+      "https://es.wikipedia.org/wiki/Viento"
+    ]
+  },
+  {
+    "w": "estar entre dos aguas",
+    "t": "iki arada bir derede kalmak, kesin karar verememek",
+    "lit": "iki su arasında bulunmak",
+    "eq": "iki arada bir derede kalmak",
+    "s": "Está entre dos aguas sin saber si aceptar la beca o quedarse trabajando.",
+    "tr": "Bursu kabul etmek ile çalışmaya devam etmek arasında iki arada bir derede kalmış durumda.",
+    "form": "Está entre dos aguas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/estar_entre_dos_aguas",
+      "https://es.wikiquote.org/wiki/Estar"
+    ]
+  },
+  {
+    "w": "ser más claro que el agua",
+    "t": "gün gibi aşikar olmak, apaçık ortada bulunmak",
+    "lit": "sudan daha berrak olmak",
+    "eq": "gün gibi aşikar olmak",
+    "s": "Las intenciones del consejo directivo son más claras que el agua desde la votación.",
+    "tr": "Yönetim kurulunun gerçek niyetleri oylamadan beri gün gibi apaçık ortada.",
+    "form": "más claras que el agua",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/m%C3%A1s_claro_que_el_agua",
+      "https://es.wikipedia.org/wiki/Agua"
+    ]
+  }
+]

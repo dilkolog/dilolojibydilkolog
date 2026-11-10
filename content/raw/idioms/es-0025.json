@@ -1,0 +1,523 @@
+[
+  {
+    "w": "portarse bien",
+    "t": "uslu durmak, iyi davranmak",
+    "lit": "iyi taşınmak",
+    "eq": "uslu durmak",
+    "s": "Los niños prometieron portarse bien durante la visita al museo de ciencias.",
+    "tr": "Çocuklar bilim müzesi ziyareti sırasında uslu durmaya söz verdiler.",
+    "form": "portarse bien",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/portarse_bien",
+      "https://es.wikipedia.org/wiki/Bien"
+    ]
+  },
+  {
+    "w": "portarse mal",
+    "t": "yaramazlık yapmak, kötü davranmak",
+    "lit": "kötü taşınmak",
+    "s": "Si sigues portándote mal en clase, llamarán a tus padres al colegio.",
+    "tr": "Derste yaramazlık yapmaya devam edersen aileni okula çağıracaklar.",
+    "form": "portándote mal",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/portarse_mal",
+      "https://es.wikipedia.org/wiki/Portarse_mal_(libro)"
+    ]
+  },
+  {
+    "w": "hacer caso",
+    "t": "söz dinlemek, dikkate almak",
+    "lit": "vaka yapmak",
+    "eq": "söz dinlemek",
+    "s": "Debes hacer caso a los consejos de los médicos para recuperarte antes.",
+    "tr": "Daha çabuk iyileşmek için doktorların tavsiyelerini dinlemelisin.",
+    "form": "hacer caso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_caso",
+      "https://es.wikipedia.org/wiki/Caso"
+    ]
+  },
+  {
+    "w": "dejar en paz",
+    "t": "rahat bırakmak, kendi haline bırakmak",
+    "lit": "barışta bırakmak",
+    "eq": "rahat bırakmak",
+    "s": "Por favor, déjame en paz una hora para que pueda terminar este informe.",
+    "tr": "Lütfen bu raporu bitirebilmem için beni bir saat rahat bırak.",
+    "form": "déjame en paz",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/dejar_en_paz",
+      "https://es.wikipedia.org/wiki/Paz"
+    ]
+  },
+  {
+    "w": "darse cita",
+    "t": "randevulaşmak, kararlaştırılan yerde buluşmak",
+    "lit": "kendine randevu vermek",
+    "s": "Centenares de aficionados se dieron cita en la plaza para celebrar el triunfo.",
+    "tr": "Yüzlerce taraftar zaferi kutlamak için meydanda bir araya gelip buluştu.",
+    "form": "se dieron cita",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/darse_cita",
+      "https://es.wikipedia.org/wiki/Cita"
+    ]
+  },
+  {
+    "w": "tratar de tú",
+    "t": "senli benli konuşmak, samimi davranmak",
+    "lit": "sen ile davranmak",
+    "s": "En esta empresa moderna todos los empleados se tratan de tú con naturalidad.",
+    "tr": "Bu modern şirkette bütün çalışanlar birbirleriyle doğallıkla senli benli konuşuyor.",
+    "form": "tratan de tú",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/tratar_de_t%C3%BA",
+      "https://es.wikipedia.org/wiki/N%C3%BAmero_(de_pacientes)_que_es_necesario_tratar"
+    ]
+  },
+  {
+    "w": "dejar de lado",
+    "t": "bir kenara bırakmak, göz ardı etmek",
+    "lit": "kenardan bırakmak",
+    "eq": "bir kenara koymak",
+    "s": "Debemos dejar de lado las diferencias personales para trabajar en el objetivo común.",
+    "tr": "Ortak hedef için çalışmak adına kişisel anlaşmazlıkları bir kenara bırakmalıyız.",
+    "form": "dejar de lado",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/dejar_de_lado",
+      "https://es.wikipedia.org/wiki/Lado"
+    ]
+  },
+  {
+    "w": "hacer la corte",
+    "t": "kur yapmak, peşinden koşmak",
+    "lit": "sarayı yapmak",
+    "eq": "kur yapmak",
+    "s": "El joven caballero estuvo meses haciéndole la corte con flores y poesías.",
+    "tr": "Genç beyefendi aylarca çiçekler ve şiirlerle onun peşinden koşup kur yaptı.",
+    "form": "haciéndole la corte",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacer_la_corte",
+      "https://es.wikipedia.org/wiki/Corte"
+    ]
+  },
+  {
+    "w": "hacer un feo",
+    "t": "ayıp etmek, saygısızca davranmak",
+    "lit": "çirkin bir şey yapmak",
+    "eq": "ayıp etmek",
+    "s": "Rechazar la invitación a la boda de tu primo fue hacerle un feo imperdonable.",
+    "tr": "Kuzeninin düğün davetini geri çevirmek ona bağışlanamaz bir ayıp etmekti.",
+    "form": "hacerle un feo",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacer_un_feo",
+      "https://es.wikipedia.org/wiki/Feo"
+    ]
+  },
+  {
+    "w": "hacerse querer",
+    "t": "kendini sevdirmek, sempati kazanmak",
+    "lit": "kendini sevilir yapmak",
+    "s": "Con su trato amable y sincero sabe muy bien cómo hacerse querer.",
+    "tr": "Nazik ve samimi tavırlarıyla kendini nasıl sevdireceğini gayet iyi biliyor.",
+    "form": "hacerse querer",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacerse_querer",
+      "https://es.wikipedia.org/wiki/Querer"
+    ]
+  },
+  {
+    "w": "guardar las apariencias",
+    "t": "görünüşü kurtarmak, durumu idare etmek",
+    "lit": "görünüşleri saklamak",
+    "eq": "dostlar alışverişte görsün",
+    "s": "Sonreían durante la cena familiar solo para guardar las apariencias ante los abuelos.",
+    "tr": "Büyükanne ve büyükbabanın önünde sadece görünüşü kurtarmak için yemekte gülümsüyorlardı.",
+    "form": "guardar las apariencias",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/guardar_las_apariencias",
+      "https://es.wikipedia.org/wiki/Apariencias"
+    ]
+  },
+  {
+    "w": "ir cada uno por su lado",
+    "t": "herkes kendi yoluna gitmek, yolları ayırmak",
+    "lit": "herkesin kendi yanından gitmesi",
+    "eq": "kendi yoluna gitmek",
+    "s": "Tras disolver la sociedad mercantil, decidieron ir cada uno por su lado.",
+    "tr": "Ticari ortaklığı feshettikten sonra herkesin kendi yoluna gitmesine karar verdiler.",
+    "form": "ir cada uno por su lado",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/ir_cada_uno_por_su_lado",
+      "https://es.wikipedia.org/wiki/Lado"
+    ]
+  },
+  {
+    "w": "llevar los pantalones",
+    "t": "sözü geçen taraf olmak, otoriteyi elinde tutmak",
+    "lit": "pantolonları giymek",
+    "eq": "borusu ötmek",
+    "s": "En la gestión económica de esa familia es la madre quien lleva los pantalones.",
+    "tr": "O ailenin mali yönetiminde ipleri ve yetkiyi elinde tutan annedir.",
+    "form": "lleva los pantalones",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/llevar_los_pantalones",
+      "https://es.wikipedia.org/wiki/Pantalones"
+    ]
+  },
+  {
+    "w": "medir con el mismo rasero",
+    "t": "aynı ölçütle değerlendirmek, adil tartmak",
+    "lit": "aynı düzleme çıtasıyla ölçmek",
+    "eq": "aynı kefeye koymak",
+    "s": "El tribunal debe medir con el mismo rasero a todos los acusados del juicio.",
+    "tr": "Mahkeme duruşmadaki bütün sanıkları aynı adil ölçütle değerlendirmelidir.",
+    "form": "medir con el mismo rasero",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/medir_con_el_mismo_rasero",
+      "https://es.wikipedia.org/wiki/Rasero"
+    ]
+  },
+  {
+    "w": "mirar de reojo",
+    "t": "yan gözle bakmak, şüpheyle süzmek",
+    "lit": "gözün kuyrukcuğundan bakmak",
+    "eq": "yan gözle bakmak",
+    "s": "El guardia de seguridad miraba de reojo al cliente que vestía abrigo oscuro.",
+    "tr": "Güvenlik görevlisi koyu renk palto giyen müşteriyi yan gözle şüpheyle süzüyordu.",
+    "form": "miraba de reojo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/mirar_de_reojo",
+      "https://es.wikipedia.org/wiki/Jeff_Wall"
+    ]
+  },
+  {
+    "w": "tener tacto",
+    "t": "sağduyulu davranmak, ince düşünceli olmak",
+    "lit": "dokunma duyusuna sahip olmak",
+    "s": "Hay que tener tacto al comunicar una noticia médica tan delicada a los familiares.",
+    "tr": "Bu kadar hassas bir sağlık haberini yakınlara bildirirken ince düşünceli ve sağduyulu olmak gerekir.",
+    "form": "tener tacto",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/tener_tacto",
+      "https://es.wikipedia.org/wiki/Tacto"
+    ]
+  },
+  {
+    "w": "darse importancia",
+    "t": "kendini önemli göstermek, kasılmak",
+    "lit": "kendine önem vermek",
+    "eq": "büyüklenmek",
+    "s": "No para de darse importancia enumerando los contactos influyentes que supuestamente tiene.",
+    "tr": "Sözde sahip olduğu nüfuzlu tanıdıkları sayıp dökerek kasılmaktan geri durmuyor.",
+    "form": "darse importancia",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/darse_importancia",
+      "https://es.wikipedia.org/wiki/Descendimiento_de_Jes%C3%BAs_en_el_arte"
+    ]
+  },
+  {
+    "w": "caer en gracia",
+    "t": "sempatik bulunmak, gözüne girmek",
+    "lit": "lütfa düşmek",
+    "eq": "gözüne girmek",
+    "s": "El nuevo fichaje cayó en gracia a toda la plantilla desde su primer entrenamiento.",
+    "tr": "Yeni transfer ilk antrenmanından itibaren tüm takımın sempatisini kazanıp gözüne girdi.",
+    "form": "cayó en gracia",
+    "reg": "neutral",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/caer_en_gracia",
+      "https://es.wikipedia.org/wiki/Gracia"
+    ]
+  },
+  {
+    "w": "andar a la greña",
+    "t": "saç saça baş başa kavga etmek, sürekli çekişmek",
+    "lit": "dağınık saçta yürümek",
+    "eq": "saç başa girmek",
+    "s": "Esos dos vecinos siempre andan a la greña por los límites de sus jardines.",
+    "tr": "O iki komşu bahçelerinin sınırları yüzünden sürekli saç saça baş başa kavga ediyor.",
+    "form": "andan a la greña",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/andar_a_la_gre%C3%B1a",
+      "https://es.wikipedia.org/wiki/Gre%C3%B1a"
+    ]
+  },
+  {
+    "w": "bailar al son que le tocan",
+    "t": "çalınan havaya göre oynamak, çıkara göre yön değiştirmek",
+    "lit": "kendisine çalınan sese dans etmek",
+    "eq": "nabza göre şerbet vermek",
+    "s": "Ese político sin principios siempre baila al son que le tocan las encuestas.",
+    "tr": "İlkeleri olmayan o siyasetçi anketler hangi havayı çalıyorsa hep ona göre oynuyor.",
+    "form": "baila al son que le tocan",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/bailar_al_son_que_le_tocan",
+      "https://es.wikipedia.org/wiki/Manipuri"
+    ]
+  },
+  {
+    "w": "barrer para casa",
+    "t": "kendi çıkarını gözetmek, kendine yontmak",
+    "lit": "eve doğru süpürmek",
+    "eq": "kendine yontmak",
+    "s": "En las negociaciones salariales cada sindicato barre para casa con firmeza.",
+    "tr": "Maaş müzakerelerinde her sendika kararlılıkla kendi çıkarını gözetip kendine yontuyor.",
+    "form": "barre para casa",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/barrer_para_casa",
+      "https://es.wikipedia.org/wiki/Casa"
+    ]
+  },
+  {
+    "w": "dar coba",
+    "t": "yağ çekmek, çıkar için aşırı pohpohlamak",
+    "lit": "kuluçka vermek",
+    "eq": "yağ çekmek",
+    "s": "No intentes darme coba con elogios baratos; conozco bien tus verdaderas intenciones.",
+    "tr": "Ucuz övgülerle bana yağ çekmeye kalkma; gerçek niyetlerini gayet iyi biliyorum.",
+    "form": "darme coba",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_coba",
+      "https://es.wikipedia.org/wiki/Coba"
+    ]
+  },
+  {
+    "w": "dar el cambiazo",
+    "t": "çaktırmadan değiştirmek, el çabukluğuyla takas etmek",
+    "lit": "büyük değişimi vermek",
+    "s": "El hábil ilusionista dio el cambiazo a las cartas delante de todo el público.",
+    "tr": "Usta sihirbaz bütün seyircilerin gözü önünde kartları çaktırmadan el çabukluğuyla değiştirdi.",
+    "form": "dio el cambiazo",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_el_cambiazo",
+      "https://es.wikipedia.org/wiki/2001%3A_Despega_como_puedas"
+    ]
+  },
+  {
+    "w": "dar el pego",
+    "t": "orijinal gibi görünmek, gerçeğini aratmamak",
+    "lit": "yapışkanı vermek",
+    "eq": "gerçeğini aratmamak",
+    "s": "Ese cuadro es una copia, pero da el pego ante los ojos no expertos.",
+    "tr": "O tablo bir kopya ama uzman olmayan gözlerin önünde gerçeğini hiç aratmıyor.",
+    "form": "da el pego",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_el_pego",
+      "https://es.wikipedia.org/wiki/Pego"
+    ]
+  },
+  {
+    "w": "darse pisto",
+    "t": "çalım satmak, gereksiz yere böbürlenmek",
+    "lit": "kendine sebze güveci vermek",
+    "eq": "çalım satmak",
+    "s": "Le encanta darse pisto con su coche nuevo cada vez que pasa por aquí.",
+    "tr": "Buradan her geçtiğinde yeni arabasıyla çalım satıp hava atmaya bayılıyor.",
+    "form": "darse pisto",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/darse_pisto",
+      "https://es.wikipedia.org/wiki/Pisto"
+    ]
+  },
+  {
+    "w": "echar con cajas destempladas",
+    "t": "tersleyip kapı dışarı etmek, kovmak",
+    "lit": "akordu bozuk davullarla fırlatmak",
+    "eq": "sepetlemek",
+    "s": "Al vendedor entrometido lo echaron con cajas destempladas tras insistir demasiado en la puerta.",
+    "tr": "Kapıda fazla ısrar eden hadsiz satıcıyı tersleyip anında kapı dışarı ettiler.",
+    "form": "echaron con cajas destempladas",
+    "reg": "formal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/echar_con_cajas_destempladas",
+      "https://es.wikipedia.org/wiki/Palo_mayor"
+    ]
+  },
+  {
+    "w": "echar un capote",
+    "t": "arka çıkmak, zorda kalan arkadaşına yardım etmek",
+    "lit": "bir pelerin atmak",
+    "eq": "arka çıkmak",
+    "s": "Cuando me quedé bloqueado en la presentación, mi colega me echó un capote oportuno.",
+    "tr": "Sunumda tıkandığım anda meslektaşım tam vaktinde bana arka çıkıp imdadıma yetişti.",
+    "form": "echó un capote",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/echar_un_capote",
+      "https://es.wikipedia.org/wiki/Capote"
+    ]
+  },
+  {
+    "w": "estar encantado de haberse conocido",
+    "t": "aşırı kendini beğenmiş olmak, burnu havada olmak",
+    "lit": "kendisiyle tanışmaktan büyülenmiş olmak",
+    "eq": "küçük dağları ben yarattım demek",
+    "s": "Apenas escucha a los demás porque está encantado de haberse conocido.",
+    "tr": "Burnu havada ve kendini aşırı beğenmiş olduğu için başkalarını neredeyse hiç dinlemiyor.",
+    "form": "está encantado de haberse conocido",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/estar_encantado_de_haberse_conocido",
+      "https://es.wikipedia.org/wiki/Legio_VI_Ferrata"
+    ]
+  },
+  {
+    "w": "hacer la cama",
+    "t": "kuyusunu kazmak, arkasından gizlice iş çevirmek",
+    "lit": "yatağı yapmak",
+    "eq": "kuyusunu kazmak",
+    "s": "Descubrió que varios compañeros le hacían la cama para arrebatarle la jefatura.",
+    "tr": "Birkaç arkadaşının yöneticiliği elinden almak için gizlice kuyusunu kazdığını öğrendi.",
+    "form": "hacían la cama",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_la_cama",
+      "https://es.wikipedia.org/wiki/Hacer_la_cama"
+    ]
+  },
+  {
+    "w": "mostrar la hilacha",
+    "t": "gerçek yüzünü göstermek, açığını ele vermek",
+    "lit": "iplik söküğünü göstermek",
+    "eq": "foyası meydana çıkmak",
+    "s": "Al repartir el botín mostró la hilacha con su desmedida ambición personal.",
+    "tr": "Ganimeti paylaştırırken ölçüsüz hırsıyla gerçek niyetini ve açığını ele verdi.",
+    "form": "mostró la hilacha",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/mostrar_la_hilacha",
+      "https://es.wikipedia.org/wiki/Jordi_Castell"
+    ]
+  },
+  {
+    "w": "parar los carros",
+    "t": "haddini bildirmek, dur bakalım demek",
+    "lit": "arabaları durdurmak",
+    "eq": "haddini bildirmek",
+    "s": "Tuve que pararle los carros cuando empezó a gritar sin motivo en mi casa.",
+    "tr": "Evimde sebepsiz yere bağırmaya başladığında ona haddini bildirip durdurmak zorunda kaldım.",
+    "form": "pararle los carros",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/parar_los_carros",
+      "https://es.wikipedia.org/wiki/Carros"
+    ]
+  }
+]

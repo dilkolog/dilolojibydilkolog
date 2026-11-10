@@ -1,0 +1,541 @@
+[
+  {
+    "w": "dar miedo",
+    "pat": "darle miedo algo a alguien",
+    "t": "korkutmak, ürkütmek",
+    "lit": "korku vermek",
+    "s": "Caminar solo por aquel callejón sin farolas de noche daba miedo.",
+    "form": "daba miedo",
+    "tr": "Geceleyin sokak lambası olmayan o dar sokakta yalnız yürümek korkutucuydu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_miedo",
+      "https://es.wikipedia.org/wiki/Miedo"
+    ]
+  },
+  {
+    "w": "dar vergüenza",
+    "pat": "darle vergüenza algo a alguien",
+    "t": "utandırmak, çekingenlik vermek",
+    "lit": "utanç vermek",
+    "s": "Al principio le daba vergüenza hablar en público delante de tantos desconocidos.",
+    "form": "daba vergüenza",
+    "tr": "Başlangıçta bu kadar yabancının önünde topluluk karşısında konuşmak onu utandırıyordu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_verg%C3%BCenza",
+      "https://es.wikipedia.org/wiki/Verg%C3%BCenza"
+    ]
+  },
+  {
+    "w": "dar asco",
+    "pat": "darle asco algo a alguien",
+    "t": "tiksindirmek, iğrendirmek",
+    "lit": "tiksinti vermek",
+    "eq": "midesini bulandırmak",
+    "s": "El olor a basura acumulada detrás del contenedor nos dio asco.",
+    "form": "dio asco",
+    "tr": "Konteynerin arkasında birikmiş çöp kokusu hepimizi tiksindirdi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_asco",
+      "https://es.wikipedia.org/wiki/Asco"
+    ]
+  },
+  {
+    "w": "dar ganas",
+    "pat": "darle ganas de algo a alguien",
+    "t": "içinden gelmek, istek uyandırmak",
+    "lit": "istekler vermek",
+    "s": "Con este paisaje tan tranquilo dan ganas de quedarse toda la semana.",
+    "form": "dan ganas",
+    "tr": "Böylesine huzurlu bir manzarayı görünce insanın bütün hafta burada kalası geliyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_ganas",
+      "https://es.wikipedia.org/wiki/Ganas"
+    ]
+  },
+  {
+    "w": "tener ganas",
+    "pat": "tener ganas de algo",
+    "t": "canı istemek, hevesli olmak",
+    "lit": "istekleri olmak",
+    "eq": "canı çekmek",
+    "s": "Después de tantos meses de trabajo, teníamos ganas de descansar junto al lago.",
+    "form": "teníamos ganas",
+    "tr": "Aylar süren çalışmanın ardından göl kenarında dinlenmeye çok hevesliydik.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/tener_ganas",
+      "https://es.wikipedia.org/wiki/Ganas"
+    ]
+  },
+  {
+    "w": "echar en falta",
+    "pat": "echar en falta a alguien",
+    "t": "yokluğunu hissetmek, özlemek",
+    "lit": "eksikliğe atmak",
+    "eq": "yokluğunu aramak",
+    "s": "En la celebración del aniversario echamos en falta a nuestros antiguos compañeros.",
+    "form": "echamos en falta",
+    "tr": "Yıl dönümü kutlamasında eski çalışma arkadaşlarımızın yokluğunu hissettik.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/echar_en_falta",
+      "https://es.wikipedia.org/wiki/Falta"
+    ]
+  },
+  {
+    "w": "dar cosa",
+    "pat": "darle cosa algo a alguien",
+    "t": "tuhaf bir çekingenlik vermek, içini ürpertmek",
+    "lit": "şey vermek",
+    "s": "Me da cosa llamarlo tan tarde sin haber avisado antes por mensaje.",
+    "form": "da cosa",
+    "tr": "Önceden mesajla haber vermeden onu bu kadar geç saatte aramaya çekiniyorum.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_cosa",
+      "https://es.wikipedia.org/wiki/Cosa"
+    ]
+  },
+  {
+    "w": "dar grima",
+    "pat": "darle grima algo a alguien",
+    "t": "içini ürpertmek, rahatsızlık vermek",
+    "lit": "ürperti vermek",
+    "eq": "içini gıcıklamak",
+    "s": "El chirrido de la tiza sobre la pizarra siempre me da grima.",
+    "form": "da grima",
+    "tr": "Tebeşirin yazı tahtasında çıkardığı o gıcırtı her zaman içimi ürpertir.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_grima",
+      "https://es.wikipedia.org/wiki/Grima"
+    ]
+  },
+  {
+    "w": "dar dentera",
+    "pat": "darle dentera algo a alguien",
+    "t": "dişlerini kamaştırmak, içini ürpertmek",
+    "lit": "diş kamaşması vermek",
+    "s": "El roce del cuchillo contra la bandeja metálica le dio dentera enseguida.",
+    "form": "dio dentera",
+    "tr": "Bıçağın metal tepsiye sürtünmesi anında dişlerini kamaştırıp içini ürpertti.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_dentera",
+      "https://es.wikipedia.org/wiki/Marco_Livio_Salinator"
+    ]
+  },
+  {
+    "w": "dar brincos",
+    "t": "sevinçten zıplamak, havalara uçmak",
+    "lit": "sıçrayışlar vermek",
+    "eq": "havalara uçmak",
+    "s": "Cuando le confirmaron que había obtenido la plaza, empezó a dar brincos.",
+    "form": "dar brincos",
+    "tr": "Kadroya kabul edildiğini onayladıklarında sevinçten zıplamaya başladı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_brincos",
+      "https://es.wikipedia.org/wiki/Hyainailouros"
+    ]
+  },
+  {
+    "w": "estar que arde",
+    "t": "çok gergin olmak, öfkeden kaynamak",
+    "lit": "yanıyor durumda olmak",
+    "eq": "barut fıçısı gibi olmak",
+    "s": "Tras las polémicas declaraciones del árbitro, el ambiente en el estadio está que arde.",
+    "form": "está que arde",
+    "tr": "Hakemin tartışmalı açıklamalarından sonra stadyumdaki ortam barut fıçısı gibi gergin.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/estar_que_arde",
+      "https://es.wikipedia.org/wiki/Arde"
+    ]
+  },
+  {
+    "w": "ver el vaso medio vacío",
+    "t": "bardağın boş tarafını görmek, karamsar yaklaşmak",
+    "lit": "bardağı yarı boş görmek",
+    "eq": "bardağın boş tarafını görmek",
+    "s": "Aunque el proyecto avanza bien, él tiende a ver el vaso medio vacío.",
+    "form": "ver el vaso medio vacío",
+    "tr": "Proje iyi ilerlese de o hep bardağın boş tarafını görmeye meyillidir.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/ver_el_vaso_medio_vac%C3%ADo",
+      "https://es.wikipedia.org/wiki/Vac%C3%ADo"
+    ]
+  },
+  {
+    "w": "hacer ilusión",
+    "pat": "hacerle ilusión algo a alguien",
+    "t": "heyecanlandırmak, mutluluk vermek",
+    "lit": "beklenti yapmak",
+    "s": "A los abuelos les hace ilusión recibir a toda la familia en verano.",
+    "form": "hace ilusión",
+    "tr": "Yazın bütün aileyi ağırlamak büyükanne ve büyükbabayı çok heyecanlandırıp mutlu ediyor.",
+    "reg": "neutral",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacer_ilusi%C3%B3n",
+      "https://es.wikipedia.org/wiki/Ilusi%C3%B3n"
+    ]
+  },
+  {
+    "w": "dejar frío",
+    "pat": "dejar frío a alguien",
+    "t": "hiç etkilememek, şaşırtıp tepkisiz bırakmak",
+    "lit": "soğuk bırakmak",
+    "eq": "soğuk duş etkisi yapmak",
+    "s": "El desenlace tan abrupto de aquella novela policíaca nos dejó fríos a todos.",
+    "form": "dejó fríos",
+    "tr": "O polisiye romanın böylesine ani sonu hepimizi hayal kırıklığına uğratıp tepkisiz bıraktı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/dejar_fr%C3%ADo",
+      "https://es.wikipedia.org/wiki/Fr%C3%ADo"
+    ]
+  },
+  {
+    "w": "poner a cien",
+    "pat": "poner a cien a alguien",
+    "t": "aşırı heyecanlandırmak, çok sinirlendirmek",
+    "lit": "yüze çıkarmak",
+    "s": "La falta de puntualidad en las reuniones importantes siempre lo pone a cien.",
+    "form": "pone a cien",
+    "tr": "Önemli toplantılarda dakik olunmaması onu her zaman fena halde sinirlendirir.",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/poner_a_cien",
+      "https://es.wikipedia.org/wiki/Cien"
+    ]
+  },
+  {
+    "w": "flipar en colores",
+    "t": "hayranlıktan veya şaşkınlıktan küçük dilini yutmak",
+    "lit": "renklerle şaşırmak",
+    "eq": "küçük dilini yutmak",
+    "s": "Cuando vimos los efectos visuales del concierto, empezamos a flipar en colores.",
+    "form": "flipar en colores",
+    "tr": "Konserin görsel efektlerini gördüğümüzde hayranlıktan küçük dilimizi yuttuk.",
+    "reg": "slang",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/flipar_en_colores",
+      "https://es.wikipedia.org/wiki/Colores"
+    ]
+  },
+  {
+    "w": "montar en cólera",
+    "t": "küplere binmek, öfkeden deliye dönmek",
+    "lit": "öfkeye binmek",
+    "eq": "küplere binmek",
+    "s": "Al descubrir que habían dañado su violín antiguo, el músico montó en cólera.",
+    "form": "montó en cólera",
+    "tr": "Antika kemanına zarar verdiklerini fark edince müzisyen küplere bindi.",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/montar_en_c%C3%B3lera",
+      "https://es.wikipedia.org/wiki/C%C3%B3lera"
+    ]
+  },
+  {
+    "w": "perder los papeles",
+    "t": "soğukkanlılığını yitirmek, öfkeyle kontrolü kaybetmek",
+    "lit": "kâğıtları kaybetmek",
+    "eq": "kontrolü kaybetmek",
+    "s": "Incluso bajo mucha presión, un portavoz experimentado nunca debe perder los papeles.",
+    "form": "perder los papeles",
+    "tr": "Yoğun baskı altında bile deneyimli bir sözcü asla soğukkanlılığını yitirmemelidir.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/perder_los_papeles",
+      "https://es.wikipedia.org/wiki/Papeles"
+    ]
+  },
+  {
+    "w": "caérsele la casa encima",
+    "pat": "caérsele la casa encima a alguien",
+    "t": "evde durmaktan çok bunalmak, duvarlar üstüne gelmek",
+    "lit": "ev üstüne düşmek",
+    "eq": "duvarlar üstüne üstüne gelmek",
+    "s": "Después de tres días encerrado por el resfriado, se le caía la casa encima.",
+    "form": "se le caía la casa encima",
+    "tr": "Soğuk algınlığı yüzünden üç gün eve kapandıktan sonra duvarlar üstüne üstüne geliyordu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/ca%C3%A9rsele_la_casa_encima",
+      "https://es.wikipedia.org/wiki/Fats_Domino"
+    ]
+  },
+  {
+    "w": "caérsele los palos del sombrajo",
+    "pat": "caérsele los palos del sombrajo a alguien",
+    "t": "büyük hayal kırıklığına uğramak, cesareti ve umudu kırılmak",
+    "lit": "çardağın direkleri yıkılmak",
+    "eq": "kolu kanadı kırılmak",
+    "s": "Al conocer el rechazo de su solicitud, se le cayeron los palos del sombrajo.",
+    "form": "se le cayeron los palos del sombrajo",
+    "tr": "Başvurusunun reddedildiğini öğrenince bütün umudu kırılıp büyük bir çöküntü yaşadı.",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/ca%C3%A9rsele_los_palos_del_sombrajo",
+      "https://es.wikipedia.org/wiki/Sombrajo"
+    ]
+  },
+  {
+    "w": "sentirse tocado",
+    "t": "alınganlık göstermek, duygusal olarak etkilenmek",
+    "lit": "dokunulmuş hissetmek",
+    "eq": "üstüne alınmak",
+    "s": "Aunque la crítica era general, varios miembros del equipo se sintieron tocados.",
+    "form": "se sintieron tocados",
+    "tr": "Eleştiri genel nitelikte olsa da ekipteki birkaç kişi bunu üstüne alınıp içerledi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/sentirse_tocado",
+      "https://es.wikipedia.org/wiki/Tocado"
+    ]
+  },
+  {
+    "w": "ponerse como la grana",
+    "t": "utançtan kıpkırmızı kesilmek, yüzü kızarmak",
+    "lit": "kırmız böceği rengi gibi olmak",
+    "eq": "pancar gibi kızarmak",
+    "s": "Cuando mencionaron su poema delante de toda la clase, se puso como la grana.",
+    "form": "se puso como la grana",
+    "tr": "Bütün sınıfın önünde şiirinden söz ettiklerinde utançtan pancar gibi kızardı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/ponerse_como_la_grana",
+      "https://es.wikipedia.org/wiki/Grana"
+    ]
+  },
+  {
+    "w": "ponerse como un quique",
+    "t": "öfkeden barut kesilmek, çok sinirlenmek",
+    "lit": "bir gelincik gibi olmak",
+    "eq": "barut kesilmek",
+    "s": "En cuanto vio el rayón en la puerta recién pintada, se puso como un quique.",
+    "form": "se puso como un quique",
+    "tr": "Yeni boyanmış kapıdaki çiziği görür görmez öfkeden barut kesildi.",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/ponerse_como_un_quique",
+      "https://es.wikipedia.org/wiki/Quique"
+    ]
+  },
+  {
+    "w": "dar un yuyu",
+    "pat": "darle un yuyu a alguien",
+    "t": "korkudan veya heyecandan fenalık geçirmek",
+    "lit": "bir büyü vermek",
+    "eq": "yüreğine inmek",
+    "s": "Casi me da un yuyu al ver que la maleta no aparecía en la cinta.",
+    "form": "da un yuyu",
+    "tr": "Bavulun banttan çıkmadığını görünce korkudan neredeyse yüreğime iniyordu.",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_un_yuyu",
+      "https://es.wikipedia.org/wiki/Yuyu"
+    ]
+  },
+  {
+    "w": "saltar la térmica",
+    "pat": "saltarle la térmica a alguien",
+    "t": "sigortaları atmak, aniden öfke patlaması yaşamak",
+    "lit": "termik şalterin atması",
+    "eq": "sigortaları atmak",
+    "s": "Aguantó las bromas un buen rato hasta que por fin le saltó la térmica.",
+    "form": "saltó la térmica",
+    "tr": "Şakalara epey bir süre katlandı ama sonunda sigortaları attı.",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/saltar_la_t%C3%A9rmica",
+      "https://es.wikipedia.org/wiki/T%C3%A9rmica"
+    ]
+  },
+  {
+    "w": "sacar pica",
+    "pat": "sacarle pica a alguien",
+    "t": "kıskandırmak, nispet yapmak",
+    "lit": "mızrak çıkarmak",
+    "eq": "nispet yapmak",
+    "s": "Subió aquellas fotos de la playa solo para sacar pica a sus compañeros.",
+    "form": "sacar pica",
+    "tr": "O plaj fotoğraflarını sırf arkadaşlarına nispet yapmak için paylaştı.",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/sacar_pica",
+      "https://es.wikipedia.org/wiki/Pica"
+    ]
+  },
+  {
+    "w": "estar hasta la tusa",
+    "t": "bıkıp usanmak, sabrı tükenmek",
+    "lit": "mısır koçanına kadar olmak",
+    "eq": "illallah etmek",
+    "s": "Los vecinos están hasta la tusa de que aparquen frente a sus garajes.",
+    "form": "están hasta la tusa",
+    "tr": "Mahalle sakinleri garajlarının önüne park edilmesinden artık bıkıp usandı.",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/estar_hasta_la_tusa",
+      "https://es.wikipedia.org/wiki/Tusa"
+    ]
+  },
+  {
+    "w": "tascar el freno",
+    "t": "öfkesini zor zaptedip sabretmek, dişini sıkmak",
+    "lit": "gemi ısırmak",
+    "eq": "dişini sıkmak",
+    "s": "Ante aquella injusticia tan evidente, tuvo que tascar el freno y guardar calma.",
+    "form": "tascar el freno",
+    "tr": "Böylesine açık bir haksızlık karşısında öfkesini bastırıp dişini sıkmak zorunda kaldı.",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/tascar_el_freno",
+      "https://es.wikipedia.org/wiki/Freno"
+    ]
+  },
+  {
+    "w": "importar una higa",
+    "pat": "importarle una higa algo a alguien",
+    "t": "hiç umurunda olmamak, zerre kadar önemsememek",
+    "lit": "bir nazarlık kadar önem taşımak",
+    "eq": "vız gelmek",
+    "s": "Al veterano escritor le importaban una higa los rumores de los salones literarios.",
+    "form": "importaban una higa",
+    "tr": "Edebiyat çevrelerindeki söylentiler usta yazarın hiç umurunda değildi.",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://en.wiktionary.org/wiki/importar_una_higa",
+      "https://es.wikipedia.org/wiki/Higa"
+    ]
+  },
+  {
+    "w": "despacharse a gusto",
+    "t": "içini döküp rahatlamak, düşündüğünü çekinmeden söylemek",
+    "lit": "keyfince kendini göndermek",
+    "eq": "içini dökmek",
+    "s": "En la entrevista radiofónica el exentrenador se despachó a gusto sobre la directiva.",
+    "form": "se despachó a gusto",
+    "tr": "Radyo röportajında eski teknik direktör yönetim hakkında içini döküp rahatladı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/despacharse_a_gusto",
+      "https://es.wikipedia.org/wiki/Gusto"
+    ]
+  },
+  {
+    "w": "hacer tilín",
+    "pat": "hacerle tilín alguien a alguien",
+    "t": "hoşuna gitmek, gönlünü çelmek",
+    "lit": "çın sesi yapmak",
+    "eq": "gönlünü çelmek",
+    "s": "Desde que coincidieron en el curso de fotografía, aquel chico le hace tilín.",
+    "form": "hace tilín",
+    "tr": "Fotoğrafçılık kursunda karşılaştıklarından beri o gençten hoşlanıyor.",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_til%C3%ADn",
+      "https://es.wikipedia.org/wiki/Conjugaci%C3%B3n_de_verbos_regulares_en_catal%C3%A1n"
+    ]
+  }
+]

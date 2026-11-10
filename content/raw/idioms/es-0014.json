@@ -1,0 +1,529 @@
+[
+  {
+    "w": "pan comido",
+    "t": "çantada keklik, çocuk oyuncağı",
+    "lit": "yenmiş ekmek",
+    "eq": "çocuk oyuncağı",
+    "s": "Para un experto como él resolver este problema fue pan comido.",
+    "tr": "Onun gibi bir uzman için bu sorunu çözmek çocuk oyuncağıydı.",
+    "form": "pan comido",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/pan_comido",
+      "https://es.wikipedia.org/wiki/Pan"
+    ]
+  },
+  {
+    "w": "abrir camino",
+    "t": "yol açmak, öncülük etmek",
+    "lit": "yol açmak",
+    "eq": "çığır açmak",
+    "s": "Sus investigaciones científicas lograron abrir camino a nuevos tratamientos médicos.",
+    "tr": "Bilimsel araştırmaları yeni tıbbi tedavilere yol açmayı ve çığır açmayı başardı.",
+    "form": "abrir camino",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/abrir_camino",
+      "https://es.wikipedia.org/wiki/Camino"
+    ]
+  },
+  {
+    "w": "valer la pena",
+    "t": "zahmete değmek, kıymetli olmak",
+    "lit": "cezaya değer olmak",
+    "eq": "zahmetine değmek",
+    "s": "Madrugar tanto para ver el amanecer desde la cumbre valió la pena.",
+    "tr": "Zirveden gün doğumunu izlemek için bu kadar erken kalkmaya değdi.",
+    "form": "valió la pena",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/valer_la_pena",
+      "https://es.wikipedia.org/wiki/Pena"
+    ]
+  },
+  {
+    "w": "salir del paso",
+    "t": "durumu kurtarmak, idare etmek",
+    "lit": "adımdan çıkmak",
+    "eq": "durumu kurtarmak",
+    "s": "Improvisó una respuesta sencilla para salir del paso ante los periodistas.",
+    "tr": "Gazetecilerin karşısında durumu kurtarmak için basit bir cevap uydurdu.",
+    "form": "salir del paso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/salir_del_paso",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "viento en popa",
+    "t": "işleri tıkırında gitmek, tam yol ileri",
+    "lit": "kıçtan rüzgar",
+    "eq": "tıkırında gitmek",
+    "s": "Las ventas de la nueva tienda van viento en popa estas semanas.",
+    "tr": "Yeni mağazanın satışları bu haftalarda son derece tıkırında gidiyor.",
+    "form": "viento en popa",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/viento_en_popa",
+      "https://es.wikipedia.org/wiki/Popa"
+    ]
+  },
+  {
+    "w": "en un abrir y cerrar de ojos",
+    "t": "göz açıp kapayıncaya kadar, kaşla göz arasında",
+    "lit": "gözlerin bir açılıp kapanmasında",
+    "eq": "göz açıp kapayıncaya kadar",
+    "s": "El verano pasó en un abrir y cerrar de ojos para nosotros.",
+    "tr": "Yaz mevsimi bizim için adeta göz açıp kapayıncaya kadar geçti.",
+    "form": "en un abrir y cerrar de ojos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "ease",
+    "src": [
+      "https://en.wiktionary.org/wiki/en_un_abrir_y_cerrar_de_ojos",
+      "https://es.wikipedia.org/wiki/Ojo"
+    ]
+  },
+  {
+    "w": "coser y cantar",
+    "t": "çocuk oyuncağı, pek kolay",
+    "lit": "dikmek ve şarkı söylemek",
+    "eq": "çocuk oyuncağı",
+    "s": "Pensábamos que montar el mueble sería coser y cantar pero tardamos horas.",
+    "tr": "Mobilyayı monte etmenin çocuk oyuncağı olacağını sanıyorduk ama saatler sürdü.",
+    "form": "coser y cantar",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://en.wiktionary.org/wiki/coser_y_cantar",
+      "https://es.wikipedia.org/wiki/Costura"
+    ]
+  },
+  {
+    "w": "a pedir de boca",
+    "t": "istendiği gibi, tam kıvamında",
+    "lit": "ağzın talebine göre",
+    "eq": "tıkırında gitmek",
+    "s": "Toda la organización del congreso salió a pedir de boca este año.",
+    "tr": "Kongrenin tüm organizasyonu bu yıl tam da istendiği gibi tıkırında gitti.",
+    "form": "a pedir de boca",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://en.wiktionary.org/wiki/a_pedir_de_boca",
+      "https://es.wikipedia.org/wiki/Boca"
+    ]
+  },
+  {
+    "w": "a duras penas",
+    "t": "zar zor, güçbela",
+    "lit": "sert cezalarla",
+    "eq": "zar zor",
+    "s": "Logró llegar al refugio a duras penas después de la tormenta.",
+    "tr": "Fırtınanın ardından sığınağa güçbela ve zar zor ulaşmayı başardı.",
+    "form": "a duras penas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://en.wiktionary.org/wiki/a_duras_penas",
+      "https://es.wikipedia.org/wiki/Pena"
+    ]
+  },
+  {
+    "w": "callejón sin salida",
+    "t": "çıkmaz sokak, çözümsüz durum",
+    "lit": "çıkışı olmayan dar sokak",
+    "eq": "çıkmaz sokak",
+    "s": "Las negociaciones entre las dos delegaciones llegaron a un callejón sin salida.",
+    "tr": "İki heyet arasındaki müzakereler tam bir çıkmaz sokağa girdi.",
+    "form": "callejón sin salida",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/callej%C3%B3n_sin_salida",
+      "https://es.wikipedia.org/wiki/Callej%C3%B3n"
+    ]
+  },
+  {
+    "w": "poner trabas",
+    "t": "engel çıkarmak, köstek olmak",
+    "lit": "köstekler koymak",
+    "eq": "köstek olmak",
+    "s": "La burocracia no para de poner trabas a los nuevos emprendedores.",
+    "tr": "Bürokrasi yeni girişimcilere sürekli engel çıkarıp köstek olmaktan geri durmuyor.",
+    "form": "poner trabas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/poner_trabas",
+      "https://es.wikipedia.org/wiki/Traba"
+    ]
+  },
+  {
+    "w": "camino de rosas",
+    "t": "dikensiz gül bahçesi, kolay hayat",
+    "lit": "güllerin yolu",
+    "eq": "dikensiz gül bahçesi",
+    "s": "Iniciar una empresa nunca ha sido un camino de rosas para nadie.",
+    "tr": "Şirket kurmak hiç kimse için dikensiz bir gül bahçesi olmamıştır.",
+    "form": "camino de rosas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://en.wiktionary.org/wiki/camino_de_rosas",
+      "https://es.wikipedia.org/wiki/Rosa"
+    ]
+  },
+  {
+    "w": "hueso duro de roer",
+    "t": "çetin ceviz, zor lokma",
+    "lit": "kemirmesi sert kemik",
+    "eq": "çetin ceviz",
+    "s": "El equipo rival demostró ser un hueso duro de roer en defensa.",
+    "tr": "Rakip takım savunmada gerçekten çetin bir ceviz olduğunu kanıtladı.",
+    "form": "hueso duro de roer",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://en.wiktionary.org/wiki/hueso_duro_de_roer",
+      "https://es.wikipedia.org/wiki/Hueso"
+    ]
+  },
+  {
+    "w": "en un dos por tres",
+    "t": "kaşla göz arasında, bir anda",
+    "lit": "bir iki kere üçte",
+    "eq": "kaşla göz arasında",
+    "s": "El mecánico arregló la avería del motor en un dos por tres.",
+    "tr": "Tamirci motor arızasını kaşla göz arasında hemen çözüverdi.",
+    "form": "en un dos por tres",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/en_un_dos_por_tres",
+      "https://es.wikipedia.org/wiki/Tres"
+    ]
+  },
+  {
+    "w": "en un santiamén",
+    "t": "bir çırpıda, göz açıp kapayıncaya dek",
+    "lit": "bir santiamende",
+    "eq": "bir çırpıda",
+    "s": "Los niños se comieron toda la tarta de chocolate en un santiamén.",
+    "tr": "Çocuklar bütün çikolatalı pastayı bir çırpıda yiyip bitirdiler.",
+    "form": "en un santiamén",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/en_un_santiam%C3%A9n",
+      "https://es.wikipedia.org/wiki/Santiam%C3%A9n"
+    ]
+  },
+  {
+    "w": "en un periquete",
+    "t": "bir lahzada, hemencecik",
+    "lit": "bir periketede",
+    "eq": "bir lahzada",
+    "s": "Terminó de limpiar la cocina en un periquete antes de salir.",
+    "tr": "Dışarı çıkmadan önce mutfağı temizlemeyi bir lahzada bitirdi.",
+    "form": "en un periquete",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/en_un_periquete",
+      "https://es.wikipedia.org/wiki/Periquete"
+    ]
+  },
+  {
+    "w": "ahogarse en poca agua",
+    "t": "bir kaşık suda boğulmak, paniğe kapılmak",
+    "lit": "az suda boğulmak",
+    "eq": "bir kaşık suda boğulmak",
+    "s": "Es un contratiempo menor, no tienes por qué ahogarte en poca agua.",
+    "tr": "Bu ufak bir aksilik, bir kaşık suda boğulup paniklemenin alemi yok.",
+    "form": "ahogarte en poca agua",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/ahogarse_en_poca_agua",
+      "https://es.wikipedia.org/wiki/Agua"
+    ]
+  },
+  {
+    "w": "sin pena ni gloria",
+    "t": "ne iyi ne kötü, vasat bir şekilde",
+    "lit": "cezasız ve zafersiz",
+    "eq": "ne iyi ne kötü",
+    "s": "La nueva película pasó por las salas de cine sin pena ni gloria.",
+    "tr": "Yeni film sinema salonlarından ne iyi ne kötü, oldukça vasatça geçti.",
+    "form": "sin pena ni gloria",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/sin_pena_ni_gloria",
+      "https://es.wikipedia.org/wiki/Gloria"
+    ]
+  },
+  {
+    "w": "con pies de plomo",
+    "t": "yoğurdu üfleyerek yemek, temkinli davranmak",
+    "lit": "kurşun ayaklarla",
+    "eq": "yoğurdu üfleyerek yemek",
+    "s": "Debemos andar con pies de plomo antes de firmar cualquier acuerdo comercial.",
+    "tr": "Herhangi bir ticari anlaşma imzalamadan önce yoğurdu üfleyerek yemeliyiz.",
+    "form": "con pies de plomo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/con_pies_de_plomo",
+      "https://es.wikipedia.org/wiki/Plomo"
+    ]
+  },
+  {
+    "w": "armarse un lío",
+    "t": "ortalık karışmak, içinden çıkılmaz hale gelmek",
+    "lit": "bir kargaşa kurulmak",
+    "eq": "ortalık karışmak",
+    "s": "Con tantas versiones del documento se armó un lío monumental en el despacho.",
+    "tr": "Belgenin bunca farklı versiyonu olunca ofiste ortalık fena halde karıştı.",
+    "form": "armó un lío",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/armarse_un_l%C3%ADo",
+      "https://es.wikipedia.org/wiki/L%C3%ADo"
+    ]
+  },
+  {
+    "w": "comulgar con ruedas de carreta",
+    "t": "saçmalığa inanmak, akıl almaz yalanı yutmak",
+    "lit": "el arabası tekerlekleriyle komünyon almak",
+    "eq": "kül yutmak",
+    "s": "Esa justificación es absurda y nadie va a comulgar con ruedas de carreta.",
+    "tr": "Bu gerekçe saçma ve hiç kimse böyle akıl almaz bir yalanı yutmaz.",
+    "form": "comulgar con ruedas de carreta",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/comulgar_con_ruedas_de_carreta",
+      "https://es.wikipedia.org/wiki/Carreta"
+    ]
+  },
+  {
+    "w": "pasar trabajo",
+    "t": "sıkıntı çekmek, zorlanmak",
+    "lit": "iş geçirmek",
+    "eq": "sıkıntı çekmek",
+    "s": "Tuvieron que pasar trabajo durante los primeros años en el extranjero.",
+    "tr": "Yurt dışındaki ilk yıllarında epey zorluk ve sıkıntı çekmek zorunda kaldılar.",
+    "form": "pasar trabajo",
+    "reg": "neutral",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/pasar_trabajo",
+      "https://es.wikipedia.org/wiki/Trabajo"
+    ]
+  },
+  {
+    "w": "a pie firme",
+    "t": "sarsılmadan, dimdik durarak",
+    "lit": "sağlam ayakta",
+    "eq": "dimdik durmak",
+    "s": "El batallón resistió el ataque enemigo a pie firme durante horas.",
+    "tr": "Tabur düşman saldırısına karşı saatlerce dimdik ve sarsılmadan direndi.",
+    "form": "a pie firme",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_pie_firme",
+      "https://es.wikipedia.org/wiki/Firmeza"
+    ]
+  },
+  {
+    "w": "al pie de la letra",
+    "t": "harfi harfine, eksiksizce",
+    "lit": "harfin ayağında",
+    "eq": "harfi harfine",
+    "s": "Sigue las instrucciones del fabricante al pie de la letra para evitar riesgos.",
+    "tr": "Risklerden kaçınmak için üreticinin talimatlarını harfi harfine uygula.",
+    "form": "al pie de la letra",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/al_pie_de_la_letra",
+      "https://es.wikipedia.org/wiki/Letra"
+    ]
+  },
+  {
+    "w": "costar dios y ayuda",
+    "t": "akla karayı seçtirmek, fevkalade zor olmak",
+    "lit": "tanrıya ve yardıma mal olmak",
+    "eq": "akla karayı seçtirmek",
+    "s": "Convencer a los accionistas nos costó dios y ayuda tras muchas reuniones.",
+    "tr": "Hissedarları ikna etmek birçok toplantıdan sonra bize adeta akla karayı seçtirdi.",
+    "form": "costó dios y ayuda",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/costar_Dios_y_ayuda",
+      "https://es.wikipedia.org/wiki/Dios"
+    ]
+  },
+  {
+    "w": "llegar y besar el santo",
+    "t": "ilk denemede tutturmak, hemen başarmak",
+    "lit": "varıp azizi öpmek",
+    "eq": "ilk seferde tutturmak",
+    "s": "Presentó su primera novela y fue llegar y besar el santo al ganar.",
+    "tr": "İlk romanını sundu ve ödülü kazanarak daha ilk seferde turnayı gözünden vurdu.",
+    "form": "llegar y besar el santo",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/llegar_y_besar_el_santo",
+      "https://es.wikipedia.org/wiki/Santo"
+    ]
+  },
+  {
+    "w": "harina de otro costal",
+    "t": "başka bir mesele, farklı bir konu",
+    "lit": "başka çuvalın unu",
+    "eq": "başka bir konu",
+    "s": "Ese asunto presupuestario es harina de otro costal y lo veremos mañana.",
+    "tr": "O bütçe meselesi bambaşka bir konu, onu yarın ayrıca ele alacağız.",
+    "form": "harina de otro costal",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/harina_de_otro_costal",
+      "https://es.wikipedia.org/wiki/Costal"
+    ]
+  },
+  {
+    "w": "salir del atolladero",
+    "t": "darboğazı aşmak, bataktan kurtulmak",
+    "lit": "çıkmaz bataktan çıkmak",
+    "eq": "darboğazdan çıkmak",
+    "s": "El préstamo bancario nos permitió salir del atolladero financiero con rapidez.",
+    "tr": "Banka kredisi mali darboğazdan çabucak çıkıp kurtulmamızı sağladı.",
+    "form": "salir del atolladero",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/salir_del_atolladero",
+      "https://es.wikipedia.org/wiki/Atolladero"
+    ]
+  },
+  {
+    "w": "caer por su propio peso",
+    "t": "kendiliğinden anlaşılmak, açıkça belli olmak",
+    "lit": "kendi ağırlığıyla düşmek",
+    "eq": "kendiliğinden anlaşılmak",
+    "s": "La verdad sobre el accidente acabará cayendo por su propio peso.",
+    "tr": "Kaza hakkındaki gerçek er ya da geç kendiliğinden anlaşılacaktır.",
+    "form": "cayendo por su propio peso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/caer_por_su_propio_peso",
+      "https://es.wikipedia.org/wiki/Peso"
+    ]
+  },
+  {
+    "w": "tener fácil arreglo",
+    "t": "kolayca halledilmek, çözümü basit olmak",
+    "lit": "kolay tamire sahip olmak",
+    "eq": "kolay çözümü bulunmak",
+    "s": "No te preocupes por el error en el informe, tiene fácil arreglo.",
+    "tr": "Rapordaki hata için tasalanma, onun çözümü son derece basit.",
+    "form": "tiene fácil arreglo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/arreglo",
+      "https://es.wikipedia.org/wiki/Arreglo"
+    ]
+  },
+  {
+    "w": "a pesar de los pesares",
+    "t": "tüm güçlüklere rağmen, ne olursa olsun",
+    "lit": "üzüntülerin üzüntülerine rağmen",
+    "eq": "her şeye rağmen",
+    "s": "A pesar de los pesares la pareja logró mantener su relación sólida.",
+    "tr": "Tüm güçlüklere ve zorluklara rağmen çift ilişkisini sağlam tutmayı başardı.",
+    "form": "A pesar de los pesares",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_pesar_de_los_pesares",
+      "https://es.wikipedia.org/wiki/Pesar"
+    ]
+  }
+]

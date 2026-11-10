@@ -1,0 +1,529 @@
+[
+  {
+    "w": "ir por buen camino",
+    "t": "doğru yolda olmak, iyi gitmek",
+    "lit": "iyi yoldan gitmek",
+    "eq": "doğru yolda olmak",
+    "s": "Las negociaciones van por buen camino y pronto firmaremos el acuerdo.",
+    "tr": "Müzakereler doğru yolda ilerliyor ve yakında anlaşmayı imzalayacağız.",
+    "form": "van por buen camino",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/camino",
+      "https://es.wikipedia.org/wiki/Camino"
+    ]
+  },
+  {
+    "w": "ir por mal camino",
+    "t": "yanlış yola sapmak, tehlikeli gitmek",
+    "lit": "kötü yoldan gitmek",
+    "eq": "yanlış yola sapmak",
+    "s": "Si sigues gastando sin control vas por mal camino hacia la bancarrota.",
+    "tr": "Kontrolsüzce harcamaya devam edersen iflasa doğru yanlış bir yola saparsın.",
+    "form": "vas por mal camino",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/camino",
+      "https://es.wikipedia.org/wiki/Camino"
+    ]
+  },
+  {
+    "w": "acortar camino",
+    "t": "yolu kısaltmak, kestirmeden gitmek",
+    "lit": "yolu kısaltmak",
+    "eq": "kestirmeden gitmek",
+    "s": "Cruzamos por el parque para acortar camino y llegar antes a la estación.",
+    "tr": "İstasyona daha erken varmak ve kestirmeden gitmek için parkın içinden geçtik.",
+    "form": "acortar camino",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/acortar",
+      "https://es.wikipedia.org/wiki/Camino"
+    ]
+  },
+  {
+    "w": "cambiar de dirección",
+    "t": "yön değiştirmek, başka tarafa sapmak",
+    "lit": "yönden değişmek",
+    "eq": "yön değiştirmek",
+    "s": "El viento acaba de cambiar de dirección y ahora sopla desde el norte.",
+    "tr": "Rüzgar az önce yön değiştirdi ve şimdi kuzeyden esiyor.",
+    "form": "cambiar de dirección",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/direcci%C3%B3n",
+      "https://es.wikipedia.org/wiki/Direcci%C3%B3n"
+    ]
+  },
+  {
+    "w": "echar a correr",
+    "t": "koşmaya başlamak, hızla uzaklaşmak",
+    "lit": "koşmaya fırlatmak",
+    "eq": "tabanları yağlamak",
+    "s": "Al ver aproximarse el autobús el joven decidió echar a correr enseguida.",
+    "tr": "Otobüsün yaklaştığını görünce genç hemen koşmaya başlamaya karar verdi.",
+    "form": "echar a correr",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/echar_a_correr",
+      "https://es.wikipedia.org/wiki/Carrera"
+    ]
+  },
+  {
+    "w": "hacer escala",
+    "t": "aktarma yapmak, ara durakta durmak",
+    "lit": "merdiven yapmak",
+    "eq": "aktarma yapmak",
+    "s": "El vuelo transatlántico tuvo que hacer escala técnica en Lisboa para repostar.",
+    "tr": "Okyanus aşırı uçuş yakıt ikmali için Lizbon'da teknik aktarma yapmak zorunda kaldı.",
+    "form": "hacer escala",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/escala",
+      "https://es.wikipedia.org/wiki/Escala_(viaje)"
+    ]
+  },
+  {
+    "w": "pisar el acelerador",
+    "t": "gaza basmak, süreci hızlandırmak",
+    "lit": "hızlandırıcıya basmak",
+    "eq": "gaza basmak",
+    "s": "La directiva decidió pisar el acelerador para concluir las obras del estadio.",
+    "tr": "Yönetim stadyum inşaatını tamamlamak için süreci hızlandırıp gaza basmaya karar verdi.",
+    "form": "pisar el acelerador",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/acelerador",
+      "https://es.wikipedia.org/wiki/Acelerador"
+    ]
+  },
+  {
+    "w": "ir a toda prisa",
+    "t": "son sürat gitmek, aceleyle ilerlemek",
+    "lit": "tüm aceleyle gitmek",
+    "eq": "palas pandıras gitmek",
+    "s": "Iba a toda prisa por la avenida porque llegaba tarde a su boda.",
+    "tr": "Kendi düğününe geç kaldığı için caddeden son sürat ve aceleyle geçiyordu.",
+    "form": "Iba a toda prisa",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/prisa",
+      "https://es.wikipedia.org/wiki/Prisa"
+    ]
+  },
+  {
+    "w": "ir a toda máquina",
+    "t": "tam güçle ilerlemek, tam gaz gitmek",
+    "lit": "tüm makineyle gitmek",
+    "eq": "tam gaz gitmek",
+    "s": "Los operarios trabajan a toda máquina para reabrir la línea del metro.",
+    "tr": "İşçiler metro hattını yeniden açmak için tam gaz ve var güçleriyle çalışıyorlar.",
+    "form": "a toda máquina",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/m%C3%A1quina",
+      "https://es.wikipedia.org/wiki/M%C3%A1quina"
+    ]
+  },
+  {
+    "w": "estar de paso",
+    "t": "gelip geçici olmak, yol üstünde durmak",
+    "lit": "adımdan olmak",
+    "eq": "yolcu olmak",
+    "s": "No alquilaré un piso porque solo voy a estar de paso dos meses.",
+    "tr": "Daire kiralamayacağım çünkü burada yalnızca iki ay boyunca gelip geçici olarak kalacağım.",
+    "form": "estar de paso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/paso",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "seguir la pista",
+    "t": "iz sürmek, peşini bırakmamak",
+    "lit": "pisti takip etmek",
+    "eq": "izini sürmek",
+    "s": "Los detectives intentan seguir la pista de los fugitivos por varios países europeos.",
+    "tr": "Dedektifler çeşitli Avrupa ülkelerinde firarilerin peşini bırakmayıp izini sürmeye çalışıyor.",
+    "form": "seguir la pista",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/pista",
+      "https://es.wikipedia.org/wiki/Pista"
+    ]
+  },
+  {
+    "w": "perder la pista",
+    "t": "izini kaybetmek, irtibatı koparmak",
+    "lit": "pisti kaybetmek",
+    "eq": "izini kaybetmek",
+    "s": "Le perdí la pista a mi antiguo compañero de colegio hace ya décadas.",
+    "tr": "Eski okul arkadaşımın izini onlarca yıl önce tamamen kaybettim.",
+    "form": "perdí la pista",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/pista",
+      "https://es.wikipedia.org/wiki/Pista"
+    ]
+  },
+  {
+    "w": "perder el rastro",
+    "t": "izini bulamamak, izini kaybetmek",
+    "lit": "izi kaybetmek",
+    "eq": "izini kaybetmek",
+    "s": "Los perros rastreadores llegaron a perder el rastro junto a la orilla rocosa.",
+    "tr": "İz takip köpekleri kayalık kıyının yanında nihayet hedefin izini kaybettiler.",
+    "form": "perder el rastro",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/rastro",
+      "https://es.wikipedia.org/wiki/Rastro"
+    ]
+  },
+  {
+    "w": "ir a paso ligero",
+    "t": "hızlı adımlarla yürümek, tempolu yürümek",
+    "lit": "hafif adımla gitmek",
+    "eq": "tempolu yürümek",
+    "s": "Caminaba a paso ligero por la alameda para entrar en calor durante el invierno.",
+    "tr": "Kışın ısınmak için korulukta tempolu ve oldukça hızlı adımlarla yürüyordu.",
+    "form": "a paso ligero",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/paso",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "cortar el paso",
+    "t": "yolunu kesmek, geçişi engellemek",
+    "lit": "adımı kesmek",
+    "eq": "yolunu kesmek",
+    "s": "Un desprendimiento de rocas logró cortar el paso a todos los vehículos de montaña.",
+    "tr": "Meydana gelen kaya düşmesi tüm dağ araçlarının geçişini engelleyip yolunu kesti.",
+    "form": "cortar el paso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/paso",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "salir al paso",
+    "t": "karşısına çıkmak, önünü kesmek",
+    "lit": "adıma doğru çıkmak",
+    "eq": "önünü kesmek",
+    "s": "El portavoz tuvo que salir al paso de los rumores de crisis ministerial.",
+    "tr": "Sözcü bakanlık krizi söylentilerinin hemen önünü kesip karşısına çıkmak zorunda kaldı.",
+    "form": "salir al paso",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/paso",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "quedarse en el camino",
+    "t": "yarı yolda kalmak, hedefe varamamak",
+    "lit": "yolda kalmak",
+    "eq": "yarı yolda kalmak",
+    "s": "Muchos buenos proyectos suelen quedarse en el camino por falta de financiación adecuada.",
+    "tr": "Pek çok güzel proje yeterli finansman eksikliği yüzünden yarı yolda kalır.",
+    "form": "quedarse en el camino",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/camino",
+      "https://es.wikipedia.org/wiki/Camino"
+    ]
+  },
+  {
+    "w": "perder el norte",
+    "t": "pusulayı şaşırmak, yönünü kaybetmek",
+    "lit": "kuzeyi kaybetmek",
+    "eq": "pusulayı şaşırmak",
+    "s": "Con tanto éxito repentino el joven músico pareció perder el norte por completo.",
+    "tr": "Böylesine ani bir başarıyla genç müzisyen adeta pusulayı tamamen şaşırmış göründü.",
+    "form": "perder el norte",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/norte",
+      "https://es.wikipedia.org/wiki/Norte"
+    ]
+  },
+  {
+    "w": "tomarse el buque",
+    "t": "çekip gitmek, sıvışmak",
+    "lit": "gemiyi almak",
+    "eq": "sıvışmak",
+    "s": "Al ver la discusión familiar decidió tomarse el buque sin despedirse de nadie.",
+    "tr": "Aile tartışmasını görünce kimseye veda etmeden hemen oradan çekip gitmeye karar verdi.",
+    "form": "tomarse el buque",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/buque",
+      "https://es.wikipedia.org/wiki/Buque"
+    ]
+  },
+  {
+    "w": "mandarse a mudar",
+    "t": "defolup gitmek, toplanıp ayrılmak",
+    "lit": "taşınmaya emretmek",
+    "eq": "defolup gitmek",
+    "s": "Tras la acalorada bronca con el dueño decidió mandarse a mudar del piso.",
+    "tr": "Ev sahibiyle girdiği hararetli kavganın ardından daireden toplanıp gitmeye karar verdi.",
+    "form": "mandarse a mudar",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/mudar",
+      "https://es.wikipedia.org/wiki/Mudanza"
+    ]
+  },
+  {
+    "w": "echar a volar",
+    "t": "uçup gitmek, hayallere dalmak",
+    "lit": "uçmaya fırlatmak",
+    "eq": "kanatlanmak",
+    "s": "Escuchando esa hermosa melodía su imaginación empezó a echar a volar sin freno.",
+    "tr": "O güzel melodiyi dinlerken hayal gücü fren tanımaksızın kanatlanıp uçmaya başladı.",
+    "form": "echar a volar",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/volar",
+      "https://es.wikipedia.org/wiki/Vuelo"
+    ]
+  },
+  {
+    "w": "ir a toda pastilla",
+    "t": "rüzgar gibi gitmek, deli gibi hız yapmak",
+    "lit": "tüm hapla gitmek",
+    "eq": "rüzgar gibi gitmek",
+    "s": "La moto circulaba a toda pastilla por la autovía saltándose los límites legales.",
+    "tr": "Motosiklet yasal hız sınırlarını hiçe sayarak otoyolda rüzgar gibi hızla gidiyordu.",
+    "form": "a toda pastilla",
+    "reg": "slang",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/pastilla",
+      "https://es.wikipedia.org/wiki/Pastilla"
+    ]
+  },
+  {
+    "w": "tomar el portante",
+    "t": "pılını pırtını toplayıp gitmek, çekip gitmek",
+    "lit": "taşıyıcıyı almak",
+    "eq": "pılını pırtını toplayıp gitmek",
+    "s": "Cansado de la mala paga decidió tomar el portante y buscar otro taller.",
+    "tr": "Kötü ücretten bıkarak pılını pırtını toplayıp gitmeye ve başka atölye aramaya karar verdi.",
+    "form": "tomar el portante",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/portante",
+      "https://es.wikipedia.org/wiki/Portante"
+    ]
+  },
+  {
+    "w": "abrir brecha",
+    "t": "gedik açmak, yarık açarak ilerlemek",
+    "lit": "gedik açmak",
+    "eq": "gedik açmak",
+    "s": "La artillería pesada logró abrir brecha en las murallas de la antigua fortaleza.",
+    "tr": "Ağır topçu birlikleri eski kalenin surlarında gedik açmayı başardı.",
+    "form": "abrir brecha",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/brecha",
+      "https://es.wikipedia.org/wiki/Brecha"
+    ]
+  },
+  {
+    "w": "ser ave de paso",
+    "t": "gelip geçici olmak, bir yerde tutunamamak",
+    "lit": "geçiş kuşu olmak",
+    "eq": "gelip geçici olmak",
+    "s": "Nunca echa raíces en ninguna ciudad porque le gusta ser ave de paso.",
+    "tr": "Hiçbir şehirde kök salmaz çünkü gelip geçici bir yolcu olmayı sever.",
+    "form": "ser ave de paso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/ave",
+      "https://es.wikipedia.org/wiki/Ave_migratoria"
+    ]
+  },
+  {
+    "w": "desandar lo andado",
+    "t": "geldiği yolu geri dönmek, eski adımlarını geri almak",
+    "lit": "yürünmüş olanı geri yürümek",
+    "eq": "adımlarını geri almak",
+    "s": "Tras equivocarse de sendero en la colina tuvo que desandar lo andado pacientemente.",
+    "tr": "Tepedeki patikayı şaşırınca sabırla geldiği yolu geri dönmek zorunda kaldı.",
+    "form": "desandar lo andado",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/desandar",
+      "https://es.wikipedia.org/wiki/Camino"
+    ]
+  },
+  {
+    "w": "franquear el paso",
+    "t": "geçit vermek, geçişe izin vermek",
+    "lit": "adımı serbest bırakmak",
+    "eq": "geçit vermek",
+    "s": "Los guardias fronterizos decidieron franquear el paso a los camiones con ayuda humanitaria.",
+    "tr": "Sınır muhafızları insani yardım taşıyan tırların geçişine izin verip geçit verdi.",
+    "form": "franquear el paso",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/franquear",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "abrir la marcha",
+    "t": "öncülük etmek, kortejin başında yürümek",
+    "lit": "yürüyüşü açmak",
+    "eq": "öncülük etmek",
+    "s": "Los atletas veteranos tuvieron el honor de abrir la marcha de la delegación olímpica.",
+    "tr": "Kıdemli atletler olimpiyat heyetinin kortejinde en önde yürüyüp öncülük etme onuruna erişti.",
+    "form": "abrir la marcha",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/marcha",
+      "https://es.wikipedia.org/wiki/Marcha"
+    ]
+  },
+  {
+    "w": "ir en fila india",
+    "t": "tek sıra halinde dizilmek, peş peşe yürümek",
+    "lit": "kızılderili sırasında gitmek",
+    "eq": "tek sıra halinde gitmek",
+    "s": "Por la estrecha senda del acantilado tuvimos que ir en fila india despacio.",
+    "tr": "Uçurumun dar patikasında yavaşça tek sıra halinde peş peşe yürümek zorunda kaldık.",
+    "form": "ir en fila india",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/fila_india",
+      "https://es.wikipedia.org/wiki/Fila_india"
+    ]
+  },
+  {
+    "w": "ir a la zaga",
+    "t": "arkasından gelmek, geride kalmak",
+    "lit": "arka kısma gitmek",
+    "eq": "geride kalmak",
+    "s": "En innovación tecnológica nuestro país no quiere ir a la zaga de nadie.",
+    "tr": "Teknolojik yenilikte ülkemiz hiç kimsenin arkasından gelip geride kalmak istemez.",
+    "form": "ir a la zaga",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/zaga",
+      "https://es.wikipedia.org/wiki/Zaga"
+    ]
+  },
+  {
+    "w": "pisar tierra firme",
+    "t": "sağlam yere basmak, karaya ayak basmak",
+    "lit": "sağlam toprağa basmak",
+    "eq": "ayakları yere basmak",
+    "s": "Tras dos semanas de tormentas en el barco por fin pudimos pisar tierra firme.",
+    "tr": "Gemide fırtınalarla geçen iki haftanın ardından sonunda karaya ayak basabildik.",
+    "form": "pisar tierra firme",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://es.wiktionary.org/wiki/tierra_firme",
+      "https://es.wikipedia.org/wiki/Tierra_firme"
+    ]
+  }
+]

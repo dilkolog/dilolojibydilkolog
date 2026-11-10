@@ -1,0 +1,529 @@
+[
+  {
+    "w": "tomar el mando",
+    "t": "idareyi ele almak, komutayı devralmak",
+    "lit": "komutayı almak",
+    "eq": "yönetimi ele almak",
+    "s": "Tras la renuncia del presidente el vicepresidente tuvo que tomar el mando temporalmente.",
+    "tr": "Başkanın istifasının ardından başkan yardımcısı geçici olarak idareyi ele almak zorunda kaldı.",
+    "form": "tomar el mando",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/mando",
+      "https://es.wikipedia.org/wiki/Mando"
+    ]
+  },
+  {
+    "w": "poner límites",
+    "t": "sınır koymak, haddini bildirmek",
+    "lit": "sınırlar koymak",
+    "eq": "sınır çizmek",
+    "s": "Los educadores aconsejan poner límites claros a los niños desde pequeños.",
+    "tr": "Eğitimciler çocuklara küçük yaştan itibaren net sınırlar koymayı tavsiye ediyorlar.",
+    "form": "poner límites",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/l%C3%ADmite",
+      "https://es.wikipedia.org/wiki/L%C3%ADmite"
+    ]
+  },
+  {
+    "w": "dar el sí",
+    "t": "evet demek, onay vermek",
+    "lit": "eveti vermek",
+    "eq": "onay vermek",
+    "s": "Tras meses de negociaciones el comité decidió dar el sí a la fusión.",
+    "tr": "Aylarca süren müzakerelerin ardından komite şirket birleşmesine evet demeye karar verdi.",
+    "form": "dar el sí",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/s%C3%AD",
+      "https://es.wikipedia.org/wiki/S%C3%AD"
+    ]
+  },
+  {
+    "w": "cerrar el trato",
+    "t": "anlaşmayı bağlamak, el sıkışmak",
+    "lit": "muameleyi kapatmak",
+    "eq": "el sıkışmak",
+    "s": "Ambos directores se reunieron para cerrar el trato definitivo de compraventa inmobiliaria.",
+    "tr": "İki müdür gayrimenkul alım satımının kesin anlaşmasını bağlamak için bir araya geldi.",
+    "form": "cerrar el trato",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/trato",
+      "https://es.wikipedia.org/wiki/Contrato"
+    ]
+  },
+  {
+    "w": "poner freno",
+    "t": "fren vurmak, durdurmak",
+    "lit": "fren koymak",
+    "eq": "fren vurmak",
+    "s": "El gobierno anunció medidas fiscales para poner freno a la inflación descontrolada.",
+    "tr": "Hükümet kontrolden çıkan enflasyona fren vurmak için mali önlemler açıkladı.",
+    "form": "poner freno",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/freno",
+      "https://es.wikipedia.org/wiki/Freno"
+    ]
+  },
+  {
+    "w": "dar el salto",
+    "t": "büyük adımı atmak, atılım yapmak",
+    "lit": "sıçramayı vermek",
+    "eq": "büyük adım atmak",
+    "s": "La pequeña empresa familiar decidió dar el salto al mercado internacional este año.",
+    "tr": "Küçük aile şirketi bu yıl uluslararası pazara doğru büyük adımı atmaya karar verdi.",
+    "form": "dar el salto",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/salto",
+      "https://es.wikipedia.org/wiki/Salto"
+    ]
+  },
+  {
+    "w": "tomar las riendas",
+    "t": "dizginleri ele almak, yönetimi üstlenmek",
+    "lit": "dizginleri almak",
+    "eq": "dizginleri ele almak",
+    "s": "La nueva consejera delegada supo tomar las riendas de la compañía en crisis.",
+    "tr": "Yeni genel müdür krizdeki şirketin dizginlerini kararlılıkla ele almayı bildi.",
+    "form": "tomar las riendas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/rienda",
+      "https://es.wikipedia.org/wiki/Rienda"
+    ]
+  },
+  {
+    "w": "hacer borrón y cuenta nueva",
+    "t": "temiz bir sayfa açmak, geçmişe sünger çekmek",
+    "lit": "silinti ve yeni hesap yapmak",
+    "eq": "geçmişe sünger çekmek",
+    "s": "Tras discutir agriamente acordaron hacer borrón y cuenta nueva y reconciliarse.",
+    "tr": "Sert bir tartışmanın ardından geçmişe sünger çekip barışmaya ve temiz sayfa açmaya karar verdiler.",
+    "form": "hacer borrón y cuenta nueva",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/borr%C3%B3n_y_cuenta_nueva",
+      "https://es.wikipedia.org/wiki/Borr%C3%B3n_y_cuenta_nueva"
+    ]
+  },
+  {
+    "w": "poner punto final",
+    "t": "noktayı koymak, sonlandırmak",
+    "lit": "son nokta koymak",
+    "eq": "noktayı koymak",
+    "s": "Los socios decidieron poner punto final a su colaboración empresarial de mutuo acuerdo.",
+    "tr": "Ortaklar karşılıklı rızayla ticari iş birliklerine resmen son noktayı koymaya karar verdiler.",
+    "form": "poner punto final",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/punto_final",
+      "https://es.wikipedia.org/wiki/Punto_final"
+    ]
+  },
+  {
+    "w": "romper el silencio",
+    "t": "sessizliği bozmak, suskunluğunu bozmak",
+    "lit": "sessizliği kırmak",
+    "eq": "suskunluğunu bozmak",
+    "s": "El testigo clave decidió romper el silencio tras años de investigaciones secretas.",
+    "tr": "Kilit tanık yıllar süren gizli soruşturmaların ardından suskunluğunu bozmaya karar verdi.",
+    "form": "romper el silencio",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/silencio",
+      "https://es.wikipedia.org/wiki/Silencio"
+    ]
+  },
+  {
+    "w": "marcar distancia",
+    "t": "mesafe koymak, araya sınır çekmek",
+    "lit": "mesafe işaretlemek",
+    "eq": "mesafe koymak",
+    "s": "El ministro prefirió marcar distancia con las declaraciones polémicas de su colega.",
+    "tr": "Bakan meslektaşının tartışmalı açıklamalarıyla arasına açık bir mesafe koymayı tercih etti.",
+    "form": "marcar distancia",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/distancia",
+      "https://es.wikipedia.org/wiki/Distancia"
+    ]
+  },
+  {
+    "w": "dar un paso al frente",
+    "t": "öne çıkmak, inisiyatif almak",
+    "lit": "öne doğru bir adım vermek",
+    "eq": "öne çıkmak",
+    "s": "Nadie quería hablar pero ella supo dar un paso al frente con valentía.",
+    "tr": "Hiç kimse konuşmak istemiyordu ama o cesaretle öne çıkıp inisiyatif almayı bildi.",
+    "form": "dar un paso al frente",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/paso",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "mover ficha",
+    "t": "hamle yapmak, adım atmak",
+    "lit": "pul oynatmak",
+    "eq": "hamle yapmak",
+    "s": "La empresa competidora acaba de mover ficha bajando los precios de suscripción.",
+    "tr": "Rakip şirket abonelik fiyatlarını düşürerek piyasada yeni bir hamle yaptı.",
+    "form": "mover ficha",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/ficha",
+      "https://es.wikipedia.org/wiki/Ficha"
+    ]
+  },
+  {
+    "w": "mantener la compostura",
+    "t": "soğukkanlılığını korumak, itidalini muhafaza etmek",
+    "lit": "düzgünlüğü sürdürmek",
+    "eq": "soğukkanlılığını korumak",
+    "s": "A pesar de las provocaciones del rival logró mantener la compostura en el debate.",
+    "tr": "Rakibin kışkırtmalarına rağmen münazarada soğukkanlılığını korumayı başardı.",
+    "form": "mantener la compostura",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/compostura",
+      "https://es.wikipedia.org/wiki/Compostura"
+    ]
+  },
+  {
+    "w": "perder la compostura",
+    "t": "itidalini kaybetmek, kendini tutamamak",
+    "lit": "düzgünlüğü kaybetmek",
+    "eq": "itidalini kaybetmek",
+    "s": "El entrenador llegó a perder la compostura tras el injusto penalti pitado.",
+    "tr": "Teknik direktör aleyhte çalınan haksız penaltının ardından itidalini kaybetti.",
+    "form": "perder la compostura",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/compostura",
+      "https://es.wikipedia.org/wiki/Compostura"
+    ]
+  },
+  {
+    "w": "jugar sus cartas",
+    "t": "kartlarını oynamak, kozlarını kullanmak",
+    "lit": "kartlarını oynamak",
+    "eq": "kozlarını oynamak",
+    "s": "En la negociación laboral cada sindicato intentó jugar sus cartas con astucia.",
+    "tr": "İş pazarlığında her sendika kozlarını kurnazca oynamaya çalıştı.",
+    "form": "jugar sus cartas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/carta",
+      "https://es.wikipedia.org/wiki/Carta"
+    ]
+  },
+  {
+    "w": "marcar límites",
+    "t": "sınırları çizmek, kuralları belirlemek",
+    "lit": "sınırları işaretlemek",
+    "eq": "çerçeveyi çizmek",
+    "s": "El nuevo reglamento servirá para marcar límites claros a la conducta digital.",
+    "tr": "Yeni yönetmelik dijital davranış kurallarının çerçevesini net olarak çizmeye yarayacak.",
+    "form": "marcar límites",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/l%C3%ADmite",
+      "https://es.wikipedia.org/wiki/L%C3%ADmite"
+    ]
+  },
+  {
+    "w": "asumir el mando",
+    "t": "yönetimi devralmak, başa geçmek",
+    "lit": "komutayı üstlenmek",
+    "eq": "yönetimi devralmak",
+    "s": "El general veterano tuvo que asumir el mando de la operación de rescate.",
+    "tr": "Kıdemli general kurtarma operasyonunun yönetimini bizzat devralmak zorunda kaldı.",
+    "form": "asumir el mando",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/mando",
+      "https://es.wikipedia.org/wiki/Mando"
+    ]
+  },
+  {
+    "w": "quemar las naves",
+    "t": "gemileri yakmak, geri dönüşü olmamak",
+    "lit": "gemileri yakmak",
+    "eq": "gemileri yakmak",
+    "s": "Vendió su piso para fundar la empresa y decidió quemar las naves definitivamente.",
+    "tr": "Şirketi kurmak için dairesini sattı ve geri dönüşü olmayacak şekilde gemileri yaktı.",
+    "form": "quemar las naves",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/nave",
+      "https://es.wikipedia.org/wiki/Barco"
+    ]
+  },
+  {
+    "w": "dar un golpe en la mesa",
+    "t": "masaya yumruğunu vurmak, otoritesini koymak",
+    "lit": "masaya bir darbe vurmak",
+    "eq": "masaya yumruğunu vurmak",
+    "s": "La presidenta tuvo que dar un golpe en la mesa para frenar las divisiones.",
+    "tr": "Başkan parti içindeki bölünmeleri durdurmak için masaya yumruğunu vurmak zorunda kaldı.",
+    "form": "dar un golpe en la mesa",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/mesa",
+      "https://es.wikipedia.org/wiki/Mesa"
+    ]
+  },
+  {
+    "w": "dar un golpe de timón",
+    "t": "dümen kırmak, radikal yön değişikliği yapmak",
+    "lit": "dümene bir darbe vermek",
+    "eq": "dümen kırmak",
+    "s": "El partido necesitó dar un golpe de timón en su estrategia electoral tras las encuestas.",
+    "tr": "Parti anketlerin ardından seçim stratejisinde radikal bir şekilde dümen kırmak zorunda kaldı.",
+    "form": "dar un golpe de timón",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/tim%C3%B3n",
+      "https://es.wikipedia.org/wiki/Tim%C3%B3n"
+    ]
+  },
+  {
+    "w": "marcar la pauta",
+    "t": "standartları belirlemek, yol göstermek",
+    "lit": "cetveli işaretlemek",
+    "eq": "yol göstermek",
+    "s": "Su innovador modelo de negocio logró marcar la pauta en toda la industria textil.",
+    "tr": "Yenilikçi iş modeli tüm tekstil endüstrisinde standartları belirleyip yol göstermeyi başardı.",
+    "form": "marcar la pauta",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/pauta",
+      "https://es.wikipedia.org/wiki/Pauta"
+    ]
+  },
+  {
+    "w": "llevar la batuta",
+    "t": "ipleri elinde tutmak, orkestra şefliği yapmak",
+    "lit": "batonu taşımak",
+    "eq": "ipleri elinde tutmak",
+    "s": "En el comité directivo es la tesorera quien suele llevar la batuta siempre.",
+    "tr": "Yönetim kurulunda ipleri her zaman elinde tutan kişi genellikle saymandır.",
+    "form": "llevar la batuta",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/batuta",
+      "https://es.wikipedia.org/wiki/Batuta"
+    ]
+  },
+  {
+    "w": "fijar postura",
+    "t": "tavrını belirlemek, duruşunu netleştirmek",
+    "lit": "duruşu sabitlemek",
+    "eq": "tavrını koymak",
+    "s": "El portavoz parlamentario va a fijar postura sobre la nueva ley energética.",
+    "tr": "Parlamento sözcüsü yeni enerji yasası konusunda partisinin duruşunu netleştirecek.",
+    "form": "fijar postura",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/postura",
+      "https://es.wikipedia.org/wiki/Postura"
+    ]
+  },
+  {
+    "w": "sentar postura",
+    "t": "duruş sergilemek, tavır koymak",
+    "lit": "duruşu oturtmak",
+    "eq": "tavır koymak",
+    "s": "La universidad quiso sentar postura firme en defensa de la libertad académica.",
+    "tr": "Üniversite akademik özgürlüğü savunma konusunda sağlam bir tavır koymak istedi.",
+    "form": "sentar postura",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/postura",
+      "https://es.wikipedia.org/wiki/Postura"
+    ]
+  },
+  {
+    "w": "tomar posición",
+    "t": "konum almak, safını belirlemek",
+    "lit": "pozisyon almak",
+    "eq": "safını belirlemek",
+    "s": "El gobierno decidió tomar posición neutral en el conflicto geopolítico regional.",
+    "tr": "Hükümet bölgesel jeopolitik çatışmada tarafsız bir saf ve konum almaya karar verdi.",
+    "form": "tomar posición",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/posici%C3%B3n",
+      "https://es.wikipedia.org/wiki/Posici%C3%B3n"
+    ]
+  },
+  {
+    "w": "romper el molde",
+    "t": "kalıpları kırmak, tabuları yıkmak",
+    "lit": "kalıbı kırmak",
+    "eq": "ezber bozmak",
+    "s": "Con su última novela experimental el autor logró romper el molde narrativo clásico.",
+    "tr": "Yazar son deneysel romanıyla klasik anlatı kalıplarını kırıp ezber bozmayı başardı.",
+    "form": "romper el molde",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/molde",
+      "https://es.wikipedia.org/wiki/Molde"
+    ]
+  },
+  {
+    "w": "mantener el rumbo",
+    "t": "rotadan şaşmamak, istikametini korumak",
+    "lit": "rotayı sürdürmek",
+    "eq": "rotadan şaşmamak",
+    "s": "A pesar de la tormenta mediática el ministro supo mantener el rumbo reformista.",
+    "tr": "Medyadaki fırtınaya rağmen bakan reformcu rotasından şaşmamayı bildi.",
+    "form": "mantener el rumbo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/rumbo",
+      "https://es.wikipedia.org/wiki/Rumbo"
+    ]
+  },
+  {
+    "w": "poner el grito en el cielo",
+    "t": "kıyameti koparmak, feryat figan etmek",
+    "lit": "gökyüzüne çığlık koymak",
+    "eq": "kıyameti koparmak",
+    "s": "La oposición decidió poner el grito en el cielo por la subida tributaria.",
+    "tr": "Muhalefet vergi artışı yüzünden ortalıkta feryat figan edip kıyameti kopardı.",
+    "form": "poner el grito en el cielo",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/cielo",
+      "https://es.wikipedia.org/wiki/Cielo"
+    ]
+  },
+  {
+    "w": "dar un giro de ciento ochenta grados",
+    "t": "yüz seksen derece dönmek, tam tersi karar almak",
+    "lit": "yüz seksen derecelik bir dönüş vermek",
+    "eq": "yüz seksen derece dönmek",
+    "s": "La política exterior del nuevo ejecutivo supuso dar un giro de ciento ochenta grados.",
+    "tr": "Yeni hükümetin dış politikası tam anlamıyla yüz seksen derece dönmek oldu.",
+    "form": "dar un giro de ciento ochenta grados",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/giro",
+      "https://es.wikipedia.org/wiki/Giro"
+    ]
+  },
+  {
+    "w": "plantar bandera",
+    "t": "bayrak dikmek, iddiasını ortaya koymak",
+    "lit": "bayrağı dikmek",
+    "eq": "bayrak dikmek",
+    "s": "La multinacional decidió plantar bandera en América Latina con nuevas filiales comerciales.",
+    "tr": "Çok uluslu şirket yeni ticari şubeleriyle Latin Amerika'ya resmen bayrak dikmeye karar verdi.",
+    "form": "plantar bandera",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/bandera",
+      "https://es.wikipedia.org/wiki/Bandera"
+    ]
+  }
+]

@@ -1,0 +1,525 @@
+[
+  {
+    "w": "cruzar los dedos",
+    "t": "şans dilemek, iyi sonuç ummak",
+    "lit": "parmakları çaprazlamak",
+    "eq": "parmak ısırmak",
+    "s": "Todos en la oficina estamos cruzando los dedos para conseguir la licitación.",
+    "tr": "İhaleyi kazanabilmek için ofisteki herkes şans diliyor ve iyi sonuç umuyor.",
+    "form": "cruzando los dedos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/cruzar_los_dedos",
+      "https://es.wikipedia.org/wiki/Higa"
+    ]
+  },
+  {
+    "w": "cerrar la boca",
+    "t": "çenesini kapatmak, susmak",
+    "lit": "ağzı kapatmak",
+    "eq": "çenesini tutmak",
+    "s": "Le pidieron amablemente cerrar la boca durante la proyección de la película.",
+    "tr": "Film gösterimi sırasında ondan kibarca çenesini kapatmasını istediler.",
+    "form": "cerrar la boca",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/cerrar_la_boca",
+      "https://es.wikipedia.org/wiki/Gnathosaurus"
+    ]
+  },
+  {
+    "w": "romper el corazón",
+    "t": "kalbini kırmak, derin üzüntü vermek",
+    "lit": "kalbi kırmak",
+    "eq": "kalbini kırmak",
+    "s": "Ver llorar desconsoladamente a su mejor amigo le rompió el corazón.",
+    "tr": "En iyi arkadaşını teselli bulmaz biçimde ağlarken görmek kalbini kırdı.",
+    "form": "rompió el corazón",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/romper_el_coraz%C3%B3n",
+      "https://es.wikipedia.org/wiki/Coraz%C3%B3n_roto"
+    ]
+  },
+  {
+    "w": "tender la mano",
+    "t": "el uzatmak, yardım etmek",
+    "lit": "eli uzatmak",
+    "eq": "el uzatmak",
+    "s": "En momentos de dificultad siempre hay vecinos dispuestos a tender la mano.",
+    "tr": "Zor zamanlarda her zaman el uzatmaya hazır komşular bulunur.",
+    "form": "tender la mano",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/tender_la_mano",
+      "https://es.wikipedia.org/wiki/Mano"
+    ]
+  },
+  {
+    "w": "fruncir el ceño",
+    "t": "kaşlarını çatmak, hoşnutsuzluk göstermek",
+    "lit": "alın kırışıklığını büzmek",
+    "eq": "kaş çatmak",
+    "s": "El examinador frunció el ceño al notar varios errores en la respuesta.",
+    "tr": "Sınav görevlisi cevaptaki birkaç hatayı fark edince kaşlarını çattı.",
+    "form": "frunció el ceño",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/fruncir_el_ce%C3%B1o",
+      "https://es.wikipedia.org/wiki/Fruncir_el_ce%C3%B1o"
+    ]
+  },
+  {
+    "w": "no tener corazón",
+    "t": "kalpsiz olmak, acımasız davranmak",
+    "lit": "kalbe sahip olmamak",
+    "eq": "taş kalpli olmak",
+    "s": "Abandonar a un cachorro en la carretera demuestra que no tiene corazón.",
+    "tr": "Bir yavru köpeği yolda terk etmek onun taş kalpli olduğunu gösterir.",
+    "form": "no tiene corazón",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/no_tener_coraz%C3%B3n",
+      "https://es.wikipedia.org/wiki/Yo_soy_Franky"
+    ]
+  },
+  {
+    "w": "hacer oídos sordos",
+    "t": "kulak tıkamak, duymazdan gelmek",
+    "lit": "sağır kulaklar yapmak",
+    "eq": "kulak tıkamak",
+    "s": "Hizo oídos sordos a las recomendaciones del médico y siguió fumando.",
+    "tr": "Doktorun tavsiyelerine kulak tıkadı ve sigara içmeye devam etti.",
+    "form": "Hizo oídos sordos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_o%C3%ADdos_sordos",
+      "https://es.wikipedia.org/wiki/The_Adventures_of_Sebastian_Cole"
+    ]
+  },
+  {
+    "w": "dar el brazo a torcer",
+    "t": "inat etmekten vazgeçmek, boyun eğmek",
+    "lit": "kolu bükülmeye vermek",
+    "eq": "pes etmek",
+    "s": "Aunque todos insistieron en cambiar el plan, él no dio el brazo a torcer.",
+    "tr": "Herkes planı değiştirmede ısrar etmesine rağmen o inat etmekten vazgeçmedi.",
+    "form": "dio el brazo a torcer",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_el_brazo_a_torcer",
+      "https://es.wikipedia.org/wiki/Les_Mentettes"
+    ]
+  },
+  {
+    "w": "echar en cara",
+    "t": "yüzüne vurmak, başına kakmak",
+    "lit": "yüze doğru fırlatmak",
+    "eq": "başına kakmak",
+    "s": "No me eches en cara ese error del pasado después de tantos años.",
+    "tr": "Bunca yıldan sonra geçmişteki o hatayı yüzüme vurup başıma kakma.",
+    "form": "eches en cara",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/echar_en_cara",
+      "https://es.wikipedia.org/wiki/Lenguaje_soez"
+    ]
+  },
+  {
+    "w": "plantar cara",
+    "t": "meydan okumak, kafa tutmak",
+    "lit": "yüz dikmek",
+    "eq": "kafa tutmak",
+    "s": "El pequeño club de barrio plantó cara al campeón durante todo el encuentro.",
+    "tr": "Küçük mahalle kulübü karşılaşma boyunca şampiyona cesurca kafa tuttu.",
+    "form": "plantó cara",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/plantar_cara",
+      "https://es.wikipedia.org/wiki/Batalla_de_Lutecia_(52_a._C.)"
+    ]
+  },
+  {
+    "w": "sentar la cabeza",
+    "t": "akıllanmak, durulup olgunlaşmak",
+    "lit": "kafayı oturtmak",
+    "eq": "aklı başına gelmek",
+    "s": "Tras años de fiestas continuas, decidió sentar la cabeza y formar una familia.",
+    "tr": "Yıllar süren kesintisiz partilerin ardından durulup aile kurmaya karar verdi.",
+    "form": "sentar la cabeza",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/sentar_la_cabeza",
+      "https://es.wikipedia.org/wiki/Barney_Stinson"
+    ]
+  },
+  {
+    "w": "agachar la cabeza",
+    "t": "boyun eğmek, itirazsız kabullenmek",
+    "lit": "kafayı eğmek",
+    "eq": "boyun eğmek",
+    "s": "Prefirió agachar la cabeza ante su superior para evitar un despido fulminante.",
+    "tr": "Ani bir işten çıkarmayı önlemek için üstünün karşısında boyun eğmeyi tercih etti.",
+    "form": "agachar la cabeza",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/agachar_la_cabeza",
+      "https://es.wikipedia.org/wiki/Tolcayuca"
+    ]
+  },
+  {
+    "w": "estar en boca de todos",
+    "t": "dillerde dolaşmak, herkes tarafından konuşulmak",
+    "lit": "herkesin ağzında olmak",
+    "eq": "dillere düşmek",
+    "s": "El estreno de la nueva serie de intriga está en boca de todos.",
+    "tr": "Yeni gerilim dizisinin ilk gösterimi şu günlerde herkesin dilinde dolaşıyor.",
+    "form": "está en boca de todos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/estar_en_boca_de_todos",
+      "https://es.wikipedia.org/wiki/Los_Tipitos"
+    ]
+  },
+  {
+    "w": "salir a pedir de boca",
+    "t": "tam istendiği gibi gerçekleşmek, tıkırında gitmek",
+    "lit": "ağzın dilemesine göre çıkmak",
+    "eq": "yağ gibi gitmek",
+    "s": "La inauguración de la galería de arte salió a pedir de boca anoche.",
+    "tr": "Sanat galerisinin açılışı dün gece tam arzulandığı gibi mükemmel geçti.",
+    "form": "salió a pedir de boca",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/salir_a_pedir_de_boca",
+      "https://es.wikipedia.org/wiki/Siete_y_media"
+    ]
+  },
+  {
+    "w": "dejar con la palabra en la boca",
+    "t": "sözünü yarıda kesip gitmek",
+    "lit": "kelimeyi ağızda bırakmak",
+    "eq": "lafını ağzına tıkmak",
+    "s": "Se dio la vuelta furioso y me dejó con la palabra en la boca.",
+    "tr": "Sorunu anlatırken arkasını dönüp gitti ve beni lafım ağzımda kalakalmış bıraktı.",
+    "form": "dejó con la palabra en la boca",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/dejar_con_la_palabra_en_la_boca",
+      "https://es.wikipedia.org/wiki/Historia_de_Boca_Juniors_(f%C3%BAtbol)"
+    ]
+  },
+  {
+    "w": "ver con malos ojos",
+    "t": "hoş karşılamamak, onaylamamak",
+    "lit": "kötü gözlerle görmek",
+    "eq": "yan gözle bakmak",
+    "s": "La directiva vio con malos ojos la reducción injustificada del horario de oficina.",
+    "tr": "Yönetim kurulu ofis çalışma saatlerinin gerekçesiz azaltılmasını hiç hoş karşılamadı.",
+    "form": "vio con malos ojos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/ver_con_malos_ojos",
+      "https://es.wikipedia.org/wiki/Consulta_p%C3%BAblica"
+    ]
+  },
+  {
+    "w": "arquear las cejas",
+    "t": "kaşlarını kaldırmak, şaşkınlık göstermek",
+    "lit": "kaşları yay gibi yapmak",
+    "s": "El detective arqueó las cejas con incredulidad ante aquella coartada inverosímil.",
+    "form": "arqueó las cejas",
+    "tr": "Dedektif o akıl almaz mazeret karşısında şüpheyle kaşlarını kaldırdı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/arquear_las_cejas",
+      "https://es.wikipedia.org/wiki/Mi_nombre_es_Khan"
+    ]
+  },
+  {
+    "w": "mirar por el rabillo del ojo",
+    "t": "göz ucuyla bakmak, çaktırmadan süzmek",
+    "lit": "gözün kuyrukcuğundan bakmak",
+    "eq": "göz ucuyla bakmak",
+    "s": "Disimulaba leyendo la revista, pero miraba por el rabillo del ojo al sospechoso.",
+    "tr": "Dergi okuyormuş gibi yapıyordu ama şüpheliyi göz ucuyla çaktırmadan süzüyordu.",
+    "form": "miraba por el rabillo del ojo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/mirar_por_el_rabillo_del_ojo",
+      "https://es.wikipedia.org/wiki/El_jard%C3%ADn_de_las_m%C3%A1quinas_parlantes"
+    ]
+  },
+  {
+    "w": "hacer de tripas corazón",
+    "t": "bağrına taş basmak, metanet göstermek",
+    "lit": "bağırsaklardan kalp yapmak",
+    "eq": "bağrına taş basmak",
+    "s": "Tuvo que hacer de tripas corazón y subir al escenario a pesar del pánico.",
+    "tr": "Sahne korkusuna rağmen bağrına taş basıp sahneye çıkmak zorunda kaldı.",
+    "form": "hacer de tripas corazón",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_de_tripas_coraz%C3%B3n",
+      "https://es.wikipedia.org/wiki/Kurt_Hiller"
+    ]
+  },
+  {
+    "w": "coserse la boca",
+    "t": "ağzını mühürlemek, tek kelime etmemek",
+    "lit": "ağzı dikmek",
+    "eq": "ağzını fermuarlamak",
+    "s": "Le ofrecieron dinero por revelar el secreto, pero prefirió coserse la boca.",
+    "tr": "Sırrı açığa vurması için para teklif ettiler ama o tek kelime etmemeyi seçti.",
+    "form": "coserse la boca",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/coserse_la_boca",
+      "https://es.wikipedia.org/wiki/Piotr_Pavlenski"
+    ]
+  },
+  {
+    "w": "tirar de la lengua",
+    "t": "ağzından laf almaya çalışmak, konuşturmak",
+    "lit": "dilden çekmek",
+    "eq": "ağzından laf almak",
+    "s": "Intentó tirarle de la lengua para averiguar con quién salía su hermano.",
+    "tr": "Kardeşinin kiminle çıktığını öğrenmek için onun ağzından laf almaya çalıştı.",
+    "form": "tirarle de la lengua",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/tirar_de_la_lengua",
+      "https://tatoeba.org/es/sentences/show/10381211"
+    ]
+  },
+  {
+    "w": "aflojar la lengua",
+    "t": "dili çözülmek, sırrı ağzından kaçırmak",
+    "lit": "dili gevşetmek",
+    "eq": "bülbül gibi ötmek",
+    "s": "Después de un par de copas de vino, aflojó la lengua sobre la herencia.",
+    "tr": "Bir iki kadeh şarabın ardından miras konusunda dili çözülüverdi.",
+    "form": "aflojó la lengua",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/aflojar_la_lengua",
+      "https://tatoeba.org/es/sentences/show/662959"
+    ]
+  },
+  {
+    "w": "poner los ojos en blanco",
+    "t": "gözlerini devirmek, bıkkınlık göstermek",
+    "lit": "gözleri beyaza koymak",
+    "eq": "göz devirmek",
+    "s": "Cada vez que su padre repetía el mismo chiste, ella ponía los ojos en blanco.",
+    "tr": "Babası aynı espriyi her tekrarladığında bıkkınlıkla gözlerini deviriyordu.",
+    "form": "ponía los ojos en blanco",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/poner_los_ojos_en_blanco",
+      "https://es.wikipedia.org/wiki/Raya_(puntuaci%C3%B3n)"
+    ]
+  },
+  {
+    "w": "estar ojo avizor",
+    "t": "tetikte olmak, gözünü dört açmak",
+    "lit": "uyanık gözde olmak",
+    "eq": "gözünü dört açmak",
+    "s": "En esa estación tan concurrida conviene estar ojo avizor con los carteristas.",
+    "tr": "O kadar kalabalık bir istasyonda yankesicilere karşı gözü dört açmakta fayda var.",
+    "form": "estar ojo avizor",
+    "reg": "neutral",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/estar_ojo_avizor",
+      "https://es.wikipedia.org/wiki/Los_proverbios_flamencos"
+    ]
+  },
+  {
+    "w": "ver la paja en el ojo ajeno",
+    "t": "başkalarının kusurunu görüp kendininkini görmemek",
+    "lit": "başkasının gözündeki samanı görmek",
+    "s": "Siempre critica mis retrasos; sabe bien ver la paja en el ojo ajeno.",
+    "tr": "Benim gecikmelerimi hep eleştirir; başkasının kusurunu görmeyi çok iyi bilir.",
+    "form": "ver la paja en el ojo ajeno",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/ver_la_paja_en_el_ojo_ajeno",
+      "https://es.wikipedia.org/wiki/Asobi_Asobase"
+    ]
+  },
+  {
+    "w": "quemarse las pestañas",
+    "t": "gece gündüz çok ders çalışmak, dirsek çürütmek",
+    "lit": "kirpikleri yakmak",
+    "eq": "dirsek çürütmek",
+    "s": "Se quemó las pestañas estudiando toda la noche para aprobar la oposición.",
+    "tr": "Memurluk sınavını geçebilmek için bütün gece dirsek çürüterek ders çalıştı.",
+    "form": "quemó las pestañas",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/quemarse_las_pesta%C3%B1as",
+      "https://es.wikipedia.org/wiki/Benito_Quinquela_Mart%C3%ADn"
+    ]
+  },
+  {
+    "w": "aguzar las orejas",
+    "t": "kulak kabartmak, dikkatle dinlemek",
+    "lit": "kulakları sivriltmek",
+    "eq": "kulak kabartmak",
+    "s": "Al oír ruidos extraños en el pasillo, el vigilante aguzó las orejas.",
+    "tr": "Koridorda garip sesler duyunca nöbetçi dikkatle kulak kabarttı.",
+    "form": "aguzó las orejas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/aguzar_las_orejas",
+      "https://es.wikipedia.org/wiki/Oreja"
+    ]
+  },
+  {
+    "w": "hacer boca",
+    "t": "iştah açmak, tadımlık atıştırmak",
+    "lit": "ağız yapmak",
+    "s": "Nos sirvieron unas aceitunas rellenas para hacer boca antes del plato principal.",
+    "tr": "Ana yemekten önce iştah açmak için bize dolgulu zeytin ikram ettiler.",
+    "form": "hacer boca",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_boca",
+      "https://es.wikipedia.org/wiki/Bartolillo"
+    ]
+  },
+  {
+    "w": "llenarse la boca",
+    "t": "ağız dolusu övünmek, büyük konuşmak",
+    "lit": "ağzı doldurmak",
+    "eq": "büyük lokma ye büyük laf etme",
+    "s": "Se le llena la boca hablando de honestidad, pero evade sus impuestos.",
+    "tr": "Dürüstlükten bahsederken ağız dolusu konuşuyor ama vergilerini kaçırıyor.",
+    "form": "llena la boca",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/llenarse_la_boca",
+      "https://tatoeba.org/es/sentences/show/4448237"
+    ]
+  },
+  {
+    "w": "conocer como la palma de la mano",
+    "t": "avucunun içi gibi bilmek, çok iyi tanımak",
+    "lit": "elin ayası gibi bilmek",
+    "eq": "avucunun içi gibi bilmek",
+    "s": "Nació y creció en este barrio; lo conoce como la palma de la mano.",
+    "tr": "Bu mahallede doğup büyüdü; burayı avucunun içi gibi bilir.",
+    "form": "conoce como la palma de la mano",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/conocer_como_a_la_palma_de_la_mano",
+      "https://es.wikipedia.org/wiki/Palma_(anatom%C3%ADa)"
+    ]
+  },
+  {
+    "w": "llevarse a la boca",
+    "t": "ağzına bir lokma koymak, yiyecek bulmak",
+    "lit": "ağza götürmek",
+    "s": "Durante la huelga apenas tenían algo caliente que llevarse a la boca.",
+    "tr": "Grev boyunca ağızlarına koyacak sıcak bir lokmayı bile zor buldular.",
+    "form": "llevarse a la boca",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "body",
+    "src": [
+      "https://es.wiktionary.org/wiki/llevarse_a_la_boca",
+      "https://tatoeba.org/es/sentences/show/9687992"
+    ]
+  }
+]

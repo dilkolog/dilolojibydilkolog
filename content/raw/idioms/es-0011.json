@@ -1,0 +1,513 @@
+[
+  {
+    "w": "perder el tiempo",
+    "t": "vakit kaybetmek, zamanı boşa harcamak",
+    "lit": "zamanı kaybetmek",
+    "s": "Deja de mirar las redes sociales y no pierdas el tiempo esta mañana.",
+    "tr": "Sosyal medyaya bakmayı bırak ve bu sabah vaktini boşa harcama.",
+    "form": "pierdas el tiempo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/perder_el_tiempo",
+      "https://tatoeba.org/es/sentences/show/4392426"
+    ]
+  },
+  {
+    "w": "ganar tiempo",
+    "t": "vakit kazanmak, zaman yaratmak",
+    "lit": "zaman kazanmak",
+    "s": "Tomamos un atajo por la autovía para ganar tiempo antes de la reunión.",
+    "tr": "Toplantıdan önce zaman kazanmak için otoyoldan kestirme bir yola girdik.",
+    "form": "ganar tiempo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/ganar_tiempo",
+      "https://es.wikipedia.org/wiki/Piquero"
+    ]
+  },
+  {
+    "w": "matar el tiempo",
+    "t": "vakit öldürmek, oyalanmak",
+    "lit": "zamanı öldürmek",
+    "eq": "vakit öldürmek",
+    "s": "Mientras esperaba la salida del vuelo, resolví crucigramas para matar el tiempo.",
+    "tr": "Uçağın kalkışını beklerken vakit öldürmek için bulmaca çözdüm.",
+    "form": "matar el tiempo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/matar_el_tiempo",
+      "https://es.wikipedia.org/wiki/Timbiriche_(juego)"
+    ]
+  },
+  {
+    "w": "llegar a tiempo",
+    "t": "vaktinde gelmek, zamanında yetişmek",
+    "lit": "zamana varmak",
+    "s": "Salimos de casa con bastante antelación para llegar a tiempo al concierto.",
+    "tr": "Konsere vaktinde yetişebilmek için evden epey erken çıktık.",
+    "form": "llegar a tiempo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_tiempo",
+      "https://es.wikipedia.org/wiki/A_tiempo"
+    ]
+  },
+  {
+    "w": "hacerse tarde",
+    "t": "vakit geç olmak, geç kalmak",
+    "lit": "kendini geç yapmak",
+    "s": "Debemos despedirnos ahora mismo porque se está haciendo tarde para volver.",
+    "tr": "Şimdi vedalaşmamız gerek çünkü geri dönmek için vakit geç oluyor.",
+    "form": "haciendo tarde",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "time",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacerse_tarde",
+      "https://es.wikipedia.org/wiki/Tarde"
+    ]
+  },
+  {
+    "w": "no tener tiempo",
+    "t": "vakti olmamak, yetişememek",
+    "lit": "zamana sahip olmamak",
+    "s": "Esta semana tengo tantos exámenes que no tengo tiempo para descansar.",
+    "tr": "Bu hafta o kadar çok sınavım var ki dinlenmeye hiç vaktim yok.",
+    "form": "no tengo tiempo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/no_tener_tiempo",
+      "https://es.wikipedia.org/wiki/Mario_Casta%C3%B1eda"
+    ]
+  },
+  {
+    "w": "dar tiempo al tiempo",
+    "t": "zamana bırakmak, acele etmemek",
+    "lit": "zamana zaman vermek",
+    "eq": "zamana bırakmak",
+    "s": "No te impacientes con esa herida; debes dar tiempo al tiempo para sanar.",
+    "tr": "O yara için sabırsızlanma; iyileşmesi için zamana bırakmalısın.",
+    "form": "dar tiempo al tiempo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_tiempo_al_tiempo",
+      "https://es.wikipedia.org/wiki/Antonio_Molero"
+    ]
+  },
+  {
+    "w": "pasar el rato",
+    "t": "hoşça vakit geçirmek, oyalanmak",
+    "lit": "kısa süreyi geçirmek",
+    "s": "Nos reunimos en el parque simplemente para charlar y pasar el rato.",
+    "tr": "Sadece sohbet etmek ve vakit geçirmek için parkta buluştuk.",
+    "form": "pasar el rato",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://en.wiktionary.org/wiki/pasar_el_rato",
+      "https://es.wikipedia.org/wiki/Onsen"
+    ]
+  },
+  {
+    "w": "hacerse de noche",
+    "t": "gece olmak, akşam çökmek",
+    "lit": "geceden olmak",
+    "s": "Nos dimos prisa en descender de la montaña antes de que se hiciera de noche.",
+    "tr": "Akşam çökmeden önce dağdan aşağı inmek için acele ettik.",
+    "form": "se hiciera de noche",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacerse_de_noche",
+      "https://es.wikipedia.org/wiki/V%C3%ADctor_Palomo"
+    ]
+  },
+  {
+    "w": "trabajar contra reloj",
+    "t": "zamana karşı yarışmak, aceleyle çalışmak",
+    "lit": "saate karşı çalışmak",
+    "eq": "zamana karşı yarışmak",
+    "s": "Los bomberos tuvieron que trabajar contra reloj para contener las llamas en el bosque.",
+    "tr": "İtfaiyeciler ormandaki alevleri kontrol altına almak için zamana karşı yarışmak zorunda kaldı.",
+    "form": "trabajar contra reloj",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/contra_reloj",
+      "https://es.wikipedia.org/wiki/Santiago_Cabrera"
+    ]
+  },
+  {
+    "w": "salir a primera hora",
+    "t": "sabahın erken saatinde yola çıkmak",
+    "lit": "ilk saatte çıkmak",
+    "s": "Para evitar los atascos de la carretera, preferimos salir a primera hora.",
+    "tr": "Yoldaki trafik sıkışıklığından kaçınmak için sabahın ilk saatinde çıkmayı tercih ettik.",
+    "form": "salir a primera hora",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_primera_hora",
+      "https://es.wikipedia.org/wiki/A_primera_hora"
+    ]
+  },
+  {
+    "w": "dejar para última hora",
+    "t": "son ana bırakmak, ertelemek",
+    "lit": "son saat için bırakmak",
+    "eq": "son ana bırakmak",
+    "s": "Siempre dejas tus entregas para última hora y luego sufres un estrés innecesario.",
+    "tr": "Ödevlerini hep son ana bırakıyorsun, sonra da gereksiz bir stres yaşıyorsun.",
+    "form": "para última hora",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_%C3%BAltima_hora",
+      "https://es.wikipedia.org/wiki/Nic%C3%B3maco_(pintor)"
+    ]
+  },
+  {
+    "w": "estar al día",
+    "t": "gelişmeleri takip etmek, güncel olmak",
+    "lit": "günde olmak",
+    "s": "Leo las noticias económicas cada mañana para estar al día de las inversiones.",
+    "tr": "Yatırımlardan haberdar ve güncel kalmak için her sabah ekonomi haberlerini okurum.",
+    "form": "estar al día",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/al_d%C3%ADa",
+      "https://tatoeba.org/es/sentences/show/970731"
+    ]
+  },
+  {
+    "w": "ponerse al día",
+    "t": "arayı kapatmak, güncellenmek",
+    "lit": "kendini güne koymak",
+    "s": "Quedamos en la terraza para tomar un café y ponernos al día tras meses.",
+    "tr": "Aylar sonra kahve içip aradaki açığı kapatmak için terasta buluştuk.",
+    "form": "ponernos al día",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://en.wiktionary.org/wiki/ponerse_al_d%C3%ADa",
+      "https://es.wikipedia.org/wiki/Hanns_Braun"
+    ]
+  },
+  {
+    "w": "ir a mil por hora",
+    "t": "baş döndürücü bir hızla gitmek, çok koşturmak",
+    "lit": "saatte bin ile gitmek",
+    "s": "Con este ritmo de trabajo en la oficina siento que voy a mil por hora.",
+    "tr": "Ofisteki bu çalışma temposuyla baş döndürücü bir hızda koşturduğumu hissediyorum.",
+    "form": "voy a mil por hora",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_mil_por_hora",
+      "https://es.wikipedia.org/wiki/Primer_amor_(telenovela)"
+    ]
+  },
+  {
+    "w": "ocurrir de la noche a la mañana",
+    "t": "aniden gerçekleşmek, bir gecede olmak",
+    "lit": "geceden sabaha meydana gelmek",
+    "eq": "bir gecede olmak",
+    "s": "El éxito de esa nueva aplicación no ocurrió de la noche a la mañana.",
+    "tr": "Bu yeni uygulamanın başarısı bir gecede gerçekleşmedi.",
+    "form": "ocurrió de la noche a la mañana",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_la_noche_a_la_ma%C3%B1ana",
+      "https://es.wikipedia.org/wiki/De_la_noche_a_la_ma%C3%B1ana"
+    ]
+  },
+  {
+    "w": "pasar en un abrir y cerrar de ojos",
+    "t": "göz açıp kapayıncaya kadar geçmek",
+    "lit": "gözleri bir açıp kapamada geçmek",
+    "eq": "göz açıp kapayıncaya kadar",
+    "s": "Las dos semanas de vacaciones en la costa pasaron en un abrir y cerrar de ojos.",
+    "tr": "Sahildeki iki haftalık tatil göz açıp kapayıncaya kadar geçti.",
+    "form": "pasaron en un abrir y cerrar de ojos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/en_un_abrir_y_cerrar_de_ojos",
+      "https://es.wikipedia.org/wiki/Transporte_en_Etiop%C3%ADa"
+    ]
+  },
+  {
+    "w": "ser cuestión de tiempo",
+    "t": "zaman meselesi olmak, an meselesi olmak",
+    "lit": "zaman konusu olmak",
+    "eq": "an meselesi olmak",
+    "s": "Con tanta preparación previa, su ascenso en la empresa era solo cuestión de tiempo.",
+    "tr": "Bu kadar ön hazırlıktan sonra şirkette yükselmesi sadece bir zaman meselesiydi.",
+    "form": "cuestión de tiempo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/cuesti%C3%B3n_de_tiempo",
+      "https://es.wikipedia.org/wiki/Cuesti%C3%B3n_de_tiempo"
+    ]
+  },
+  {
+    "w": "terminar en un santiamén",
+    "t": "kaşla göz arasında bitirmek, çabucak tamamlamak",
+    "lit": "bir amin içinde bitirmek",
+    "eq": "kaşla göz arasında",
+    "s": "Si todos colaboramos con la limpieza, vamos a terminar en un santiamén.",
+    "tr": "Temizlikte hepimiz yardımlaşırsak kaşla göz arasında bitiririz.",
+    "form": "terminar en un santiamén",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/en_un_santiam%C3%A9n",
+      "https://es.wikipedia.org/wiki/Signo_del_tigre"
+    ]
+  },
+  {
+    "w": "hacer en un periquete",
+    "t": "çarçabuk yapmak, bir çırpıda halletmek",
+    "lit": "bir periquete içinde yapmak",
+    "eq": "bir çırpıda",
+    "s": "No te preocupes por el informe; te lo hago en un periquete esta tarde.",
+    "tr": "Rapor için endişelenme; bu öğleden sonra sana onu bir çırpıda hallederim.",
+    "form": "hago en un periquete",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/en_un_periquete",
+      "https://es.wikipedia.org/wiki/Paja"
+    ]
+  },
+  {
+    "w": "pensar a largo plazo",
+    "t": "uzun vadeli düşünmek, geleceği hesaba katmak",
+    "lit": "uzun mühlette düşünmek",
+    "s": "Para construir una carrera sólida es imprescindible aprender a pensar a largo plazo.",
+    "tr": "Sağlam bir kariyer inşa etmek için uzun vadeli düşünmeyi öğrenmek şarttır.",
+    "form": "pensar a largo plazo",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_largo_plazo",
+      "https://es.wikipedia.org/wiki/Gas_venenoso_en_la_Primera_Guerra_Mundial"
+    ]
+  },
+  {
+    "w": "ser el cuento de nunca acabar",
+    "t": "sonu gelmeyen bir döngü olmak, bitmek bilmemek",
+    "lit": "asla bitmeyen masal olmak",
+    "s": "Las obras de la avenida principal son el cuento de nunca acabar desde hace años.",
+    "tr": "Ana caddedeki inşaat çalışmaları yıllardır bitmek bilmeyen bir çileye dönüştü.",
+    "form": "el cuento de nunca acabar",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/el_cuento_de_nunca_acabar",
+      "https://tatoeba.org/es/sentences/show/1922071"
+    ]
+  },
+  {
+    "w": "llegar la hora de la verdad",
+    "t": "hakikat anı gelip çatmak, sınav vakti gelmek",
+    "lit": "gerçeğin saatinin gelmesi",
+    "eq": "dananın kuyruğu kopmak",
+    "s": "Tras meses de duros entrenamientos, ha llegado la hora de la verdad en la pista.",
+    "tr": "Aylar süren zorlu antrenmanların ardından pistte hakikat anı gelip çattı.",
+    "form": "llegado la hora de la verdad",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/hora_de_verdad",
+      "https://es.wikipedia.org/wiki/Jun_Wakita"
+    ]
+  },
+  {
+    "w": "pasar a mejor vida",
+    "t": "bu dünyadan göçmek, vefat etmek",
+    "lit": "daha iyi hayata geçmek",
+    "eq": "hakkın rahmetine kavuşmak",
+    "s": "El viejo reloj de pared del abuelo finalmente pasó a mejor vida anoche.",
+    "tr": "Dedemin eski duvar saati nihayet dün gece ömrünü tamamladı.",
+    "form": "pasó a mejor vida",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/pasar_a_mejor_vida",
+      "https://es.wikipedia.org/wiki/Disfemismo"
+    ]
+  },
+  {
+    "w": "ser flor de un día",
+    "t": "kısa ömürlü bir heves olmak, saman alevi gibi sönmek",
+    "lit": "bir günün çiçeği olmak",
+    "eq": "saman alevi gibi olmak",
+    "s": "Muchos temían que su fama fuera flor de un día, pero consolidó su carrera.",
+    "tr": "Pek çok kişi şöhretinin saman alevi gibi söneceğinden korkuyordu ama kariyerini sağlamlaştırdı.",
+    "form": "fuera flor de un día",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/flor_de_un_d%C3%ADa",
+      "https://es.wikipedia.org/wiki/Flor_de_un_d%C3%ADa"
+    ]
+  },
+  {
+    "w": "ser del año de Maricastaña",
+    "t": "çok eski devirlerden kalma olmak, antika olmak",
+    "lit": "Maricastaña'nın yılından olmak",
+    "eq": "nuh nebiden kalma olmak",
+    "s": "Ese ordenador del laboratorio es del año de Maricastaña y no abre el programa.",
+    "tr": "Laboratuvardaki o bilgisayar Nuh Nebi'den kalma ve programı açmıyor.",
+    "form": "es del año de Maricastaña",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a%C3%B1o_de_Maricasta%C3%B1a",
+      "https://es.wikipedia.org/wiki/Maricasta%C3%B1a"
+    ]
+  },
+  {
+    "w": "dejar para las calendas griegas",
+    "t": "çıkmaz ayın son çarşambasına bırakmak, asla yapmamak",
+    "lit": "Yunan takvim günlerine bırakmak",
+    "eq": "çıkmaz ayın son çarşambası",
+    "s": "Si no fijamos una fecha exacta hoy, lo dejarán para las calendas griegas.",
+    "tr": "Bugün kesin bir tarih belirlemezsek bunu çıkmaz ayın son çarşambasına bırakırlar.",
+    "form": "dejarán para las calendas griegas",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/calendas_griegas",
+      "https://es.wikipedia.org/wiki/Calendas_griegas"
+    ]
+  },
+  {
+    "w": "perderse en la noche de los tiempos",
+    "t": "tarihin karanlıklarında kaybolmak, çok eskiye dayanmak",
+    "lit": "zamanların gecesinde kaybolmak",
+    "s": "El origen de este rito popular se pierde en la noche de los tiempos.",
+    "tr": "Bu halk ritüelinin kökeni tarihin derin karanlıklarında kayboluyor.",
+    "form": "se pierde en la noche de los tiempos",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/la_noche_de_los_tiempos",
+      "https://es.wikipedia.org/wiki/La_noche_de_los_tiempos_(novela)"
+    ]
+  },
+  {
+    "w": "venir a buenas horas mangas verdes",
+    "t": "iş işten geçtikten sonra yetişmek",
+    "lit": "yeşil kollular iyi saatlerde gelmek",
+    "eq": "geçti bor'un pazarı",
+    "s": "Trajeron la ayuda cuando todo había terminado; vienen a buenas horas mangas verdes.",
+    "tr": "Her şey bittikten sonra yardım getirdiler; artık iş işten çoktan geçti.",
+    "form": "vienen a buenas horas mangas verdes",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_buenas_horas_mangas_verdes",
+      "https://es.wikipedia.org/wiki/Santa_Hermandad"
+    ]
+  },
+  {
+    "w": "pasar las horas muertas",
+    "t": "boş boş vakit öldürmek, amaçsızca beklemek",
+    "lit": "ölü saatleri geçirmek",
+    "s": "Se quedaba en el andén pasando las horas muertas mientras miraba los trenes partir.",
+    "tr": "Trenlerin kalkışını izlerken peronda amaçsızca boş boş vakit öldürüyordu.",
+    "form": "pasando las horas muertas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/hora_muerta",
+      "https://es.wikipedia.org/wiki/Hora_muerta"
+    ]
+  },
+  {
+    "w": "vivir como si no hubiera un mañana",
+    "t": "yarın yokmuşçasına yaşamak, anı çılgınca tüketmek",
+    "lit": "bir yarın yokmuş gibi yaşamak",
+    "s": "Gasta todo su sueldo en fiestas viviendo como si no hubiera un mañana.",
+    "tr": "Yarın yokmuşçasına yaşayarak bütün maaşını partilerde harcıyor.",
+    "form": "viviendo como si no hubiera un mañana",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/como_si_no_hubiera_un_ma%C3%B1ana",
+      "https://es.wikipedia.org/wiki/Como_si_no_hubiera_un_ma%C3%B1ana"
+    ]
+  }
+]

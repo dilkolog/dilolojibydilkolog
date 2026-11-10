@@ -1,0 +1,529 @@
+[
+  {
+    "w": "por si acaso",
+    "t": "ne olur ne olmaz, her ihtimale karşı",
+    "lit": "eğer olursa için",
+    "eq": "her ihtimale karşı",
+    "s": "Lleva un paraguas por si acaso empieza a llover por la tarde.",
+    "tr": "Öğleden sonra yağmur başlar diye her ihtimale karşı yanına bir şemsiye al.",
+    "form": "por si acaso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/por_si_acaso",
+      "https://es.wikipedia.org/wiki/Acortamiento"
+    ]
+  },
+  {
+    "w": "probar suerte",
+    "t": "şansını denemek, talihini aramak",
+    "lit": "şansı denemek",
+    "eq": "şansını denemek",
+    "s": "Decidió viajar a la capital para probar suerte en el teatro.",
+    "tr": "Tiyatroda şansını denemek için başkente seyahat etmeye karar verdi.",
+    "form": "probar suerte",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/probar_suerte",
+      "https://es.wikipedia.org/wiki/Luny_Tunes"
+    ]
+  },
+  {
+    "w": "al azar",
+    "t": "rastgele, tesadüfen",
+    "lit": "şansa doğru",
+    "eq": "rastgele",
+    "s": "El profesor eligió un nombre al azar de la lista de alumnos.",
+    "tr": "Öğretmen öğrenci listesinden rastgele bir isim seçti.",
+    "form": "al azar",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/al_azar",
+      "https://es.wikipedia.org/wiki/Identificador_de_ingrediente_%C3%BAnico"
+    ]
+  },
+  {
+    "w": "por arte de magia",
+    "t": "büyüyle olmuş gibi, ansızın",
+    "lit": "büyü sanatıyla",
+    "eq": "sanki sihirle",
+    "s": "Las llaves perdidas aparecieron sobre la mesa por arte de magia.",
+    "tr": "Kayıp anahtarlar masanın üzerinde sanki sihirle beliriverdi.",
+    "form": "por arte de magia",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/por_arte_de_magia",
+      "https://es.wikipedia.org/wiki/Por_arte_de_magia"
+    ]
+  },
+  {
+    "w": "tocar madera",
+    "t": "tahtaya vurmak, nazar değmesin demek",
+    "lit": "tahtaya dokunmak",
+    "eq": "tahtaya vurmak",
+    "s": "Nunca hemos tenido averías con este coche, y toco madera.",
+    "tr": "Bu arabayla hiç arıza yaşamadık, nazar değmesin tahtaya vurayım.",
+    "form": "toco madera",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/tocar_madera",
+      "https://es.wikipedia.org/wiki/Suerte"
+    ]
+  },
+  {
+    "w": "ir a lo seguro",
+    "t": "garantiye gitmek, riske girmemek",
+    "lit": "güvenli olana gitmek",
+    "eq": "sağlamcı davranmak",
+    "s": "En la inversión prefirió ir a lo seguro y elegir bonos del estado.",
+    "tr": "Yatırımda garantiye gitmeyi ve devlet tahvillerini seçmeyi tercih etti.",
+    "form": "ir a lo seguro",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/ir_a_lo_seguro",
+      "https://es.wikipedia.org/wiki/Convenci%C3%B3n_de_conservadurismo"
+    ]
+  },
+  {
+    "w": "a cara o cruz",
+    "t": "yazı tura, şansa kalmış",
+    "lit": "yüze ya da haça",
+    "eq": "yazı tura",
+    "s": "No pudimos ponernos de acuerdo y lo decidimos a cara o cruz.",
+    "tr": "Bir türlü anlaşamadık ve kararı yazı tura atarak verdik.",
+    "form": "a cara o cruz",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/a_cara_o_cruz",
+      "https://es.wikipedia.org/wiki/A_cara_o_cruz_(%C3%A1lbum)"
+    ]
+  },
+  {
+    "w": "ni de casualidad",
+    "t": "asla, tesadüfen bile olsa hayır",
+    "lit": "tesadüfen bile değil",
+    "eq": "dünya yıkılsa olmaz",
+    "s": "No pienso volver a ese restaurante sucio ni de casualidad.",
+    "tr": "O pis restorana tesadüfen bile olsa bir daha adım atmam.",
+    "form": "ni de casualidad",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/ni_de_casualidad",
+      "https://es.wikipedia.org/wiki/Aleatoriedad"
+    ]
+  },
+  {
+    "w": "de chiripa",
+    "t": "tesadüfen, şans eseri",
+    "lit": "chiripa eseri",
+    "eq": "şans eseri",
+    "s": "Aprobó el examen de física de chiripa porque cayó lo que repasó.",
+    "tr": "Fizik sınavını şans eseri geçti çünkü tam tekrar ettiği konu çıktı.",
+    "form": "de chiripa",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/de_chiripa",
+      "https://es.wikipedia.org/wiki/Cultura_chiripa"
+    ]
+  },
+  {
+    "w": "venir de perlas",
+    "t": "cuk oturmak, çok iyi gelmek",
+    "lit": "incilerden gelmek",
+    "eq": "ilaç gibi gelmek",
+    "s": "Ese descanso de fin de semana me vino de perlas para recuperarme.",
+    "tr": "O hafta sonu dinlenmesi toparlanmam için bana ilaç gibi geldi.",
+    "form": "vino de perlas",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/venir_de_perlas",
+      "https://es.wikisource.org/wiki/La_primavera_(de_Pereda)"
+    ]
+  },
+  {
+    "w": "dar en la diana",
+    "t": "hedefi tutturmak, tam isabet sağlamak",
+    "lit": "hedef tahtasına vurmak",
+    "eq": "tam isabet",
+    "s": "Con su propuesta para abaratar costes el analista dio en la diana.",
+    "tr": "Maliyetleri düşürme önerisiyle analist tam isabet sağladı.",
+    "form": "dio en la diana",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_en_la_diana",
+      "https://es.wikipedia.org/wiki/La_Guardia_(banda)"
+    ]
+  },
+  {
+    "w": "dar en el blanco",
+    "t": "hedefi vurmak, doğru tahmin etmek",
+    "lit": "beyaza vurmak",
+    "eq": "hedefi on ikiden vurmak",
+    "s": "Supo dar en el blanco con la respuesta correcta durante el concurso.",
+    "tr": "Yarışma sırasında doğru cevapla hedefi on ikiden vurmayı bildi.",
+    "form": "dar en el blanco",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_en_el_blanco",
+      "https://es.wikipedia.org/wiki/Hamartia"
+    ]
+  },
+  {
+    "w": "echar a suertes",
+    "t": "kurayla belirlemek, şansa bırakmak",
+    "lit": "şanslara fırlatmak",
+    "eq": "kura çekmek",
+    "s": "Tuvimos que echar a suertes quién se quedaba de guardia el domingo.",
+    "tr": "Pazar günü kimin nöbete kalacağını kurayla belirlemek zorunda kaldık.",
+    "form": "echar a suertes",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/echar_a_suertes",
+      "https://es.wikipedia.org/wiki/Juegos_para_escoger"
+    ]
+  },
+  {
+    "w": "ver el cielo abierto",
+    "t": "feraha çıkmak, kurtuluş yolu görmek",
+    "lit": "açık gökyüzünü görmek",
+    "eq": "feraha çıkmak",
+    "s": "Cuando le ofrecieron el nuevo trabajo vio el cielo abierto tras meses.",
+    "tr": "Aylar sonra yeni bir iş teklif edilince feraha çıkıp rahatladı.",
+    "form": "vio el cielo abierto",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/ver_el_cielo_abierto",
+      "https://es.wikipedia.org/wiki/Cielo_abierto"
+    ]
+  },
+  {
+    "w": "caer de pie",
+    "t": "dört ayak üstüne düşmek, paçayı kurtarmak",
+    "lit": "ayak üstünde düşmek",
+    "eq": "dört ayak üstüne düşmek",
+    "s": "Cerraron la filial pero él siempre sabe caer de pie en otra empresa.",
+    "tr": "Şubeyi kapattılar ama o başka bir şirkette hep dört ayak üstüne düşer.",
+    "form": "caer de pie",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/caer_de_pie",
+      "https://es.wikipedia.org/wiki/DDT_(lucha_libre)"
+    ]
+  },
+  {
+    "w": "pasar por alto",
+    "t": "gözden kaçırmak, önemsememek",
+    "lit": "yüksekten geçmek",
+    "eq": "es geçmek",
+    "s": "El auditor no quiso pasar por alto aquel descuadre en las cuentas.",
+    "tr": "Denetçi hesaplardaki o tutarsızlığı es geçip göz ardı etmek istemedi.",
+    "form": "pasar por alto",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/pasar_por_alto",
+      "https://es.wikipedia.org/wiki/Pastoral_(religi%C3%B3n)"
+    ]
+  },
+  {
+    "w": "por si las moscas",
+    "t": "her ihtimale karşı, tedbiren",
+    "lit": "sinekler olursa için",
+    "eq": "ne olur ne olmaz",
+    "s": "Guarda una copia de seguridad en tu disco duro por si las moscas.",
+    "tr": "Ne olur ne olmaz diye harici diskine bir yedek kopya al.",
+    "form": "por si las moscas",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/por_si_las_moscas",
+      "https://es.wikipedia.org/wiki/Likes_y_cicatrices"
+    ]
+  },
+  {
+    "w": "probar fortuna",
+    "t": "talihini denemek, şansını aramak",
+    "lit": "talihi denemek",
+    "eq": "şansını denemek",
+    "s": "Vendió su taller para probar fortuna con una empresa tecnológica.",
+    "tr": "Bir teknoloji şirketiyle talihini denemek için atölyesini sattı.",
+    "form": "probar fortuna",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/probar_fortuna",
+      "https://es.wikipedia.org/wiki/Roberto_Sojo_Serrano"
+    ]
+  },
+  {
+    "w": "tentar a la suerte",
+    "t": "şansını zorlamak, riske girmek",
+    "lit": "şansı yoklamak",
+    "eq": "şansını fazla zorlamak",
+    "s": "Conducir con nieve sin cadenas es tentar a la suerte innecesariamente.",
+    "tr": "Karda zincirsiz araç kullanmak gereksiz yere şansını fazla zorlamaktır.",
+    "form": "tentar a la suerte",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/tentar_a_la_suerte",
+      "https://es.wikipedia.org/wiki/Daniel_Ngom_Kome"
+    ]
+  },
+  {
+    "w": "tentar a la fortuna",
+    "t": "talihini zorlamak, cüret etmek",
+    "lit": "talihi yoklamak",
+    "eq": "kaderini zorlamak",
+    "s": "Apostar los ahorros familiares en bolsa fue tentar a la fortuna.",
+    "tr": "Aile birikimini borsada riske etmek kaderini fazla zorlamak oldu.",
+    "form": "tentar a la fortuna",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/tentar_a_la_fortuna",
+      "https://es.wikisource.org/wiki/Arroz_y_tartana%2FX"
+    ]
+  },
+  {
+    "w": "tentar al diablo",
+    "t": "şeytana uymak, belayı aramak",
+    "lit": "şeytanı yoklamak",
+    "eq": "belasını aramak",
+    "s": "Salir al mar con temporal anunciado es tentar al diablo sin sentido.",
+    "tr": "Fırtına uyarısına rağmen denize açılmak anlamsızca belasını aramaktır.",
+    "form": "tentar al diablo",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/tentar_al_diablo",
+      "https://es.wikipedia.org/wiki/Wilbur_Smith"
+    ]
+  },
+  {
+    "w": "jugarse el todo por el todo",
+    "t": "her şeyi göze almak, varını yoğunu ortaya koymak",
+    "lit": "her şey için her şeyi oynamak",
+    "eq": "varını yoğunu ortaya koymak",
+    "s": "En el último asalto decidió jugarse el todo por el todo.",
+    "tr": "Son rauntta varını yoğunu ortaya koyup her şeyi göze almaya karar verdi.",
+    "form": "jugarse el todo por el todo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/jugarse_el_todo_por_el_todo",
+      "https://es.wikipedia.org/wiki/La_hora_del_drag%C3%B3n"
+    ]
+  },
+  {
+    "w": "jugarse el tipo",
+    "t": "hayatını tehlikeye atmak, kellesini ortaya koymak",
+    "lit": "tipini oynamak",
+    "eq": "kellesini koltuğuna almak",
+    "s": "Los bomberos tuvieron que jugarse el tipo para rescatar al niño.",
+    "tr": "İtfaiyeciler çocuğu kurtarmak için hayatlarını tehlikeye atmak zorunda kaldı.",
+    "form": "jugarse el tipo",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/jugarse_el_tipo",
+      "https://es.wikipedia.org/wiki/Javier_Aguirre"
+    ]
+  },
+  {
+    "w": "jugarse todo a una carta",
+    "t": "her şeyi tek ihtimale bağlamak, tek karta oynamak",
+    "lit": "her şeyi tek bir karta oynamak",
+    "eq": "her şeyi tek karta oynamak",
+    "s": "No conviene jugarse todo a una carta en un mercado tan volátil.",
+    "tr": "Bu kadar değişken bir piyasada her şeyi tek karta oynamak akıl kârı değil.",
+    "form": "jugarse todo a una carta",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/jugarse_todo_a_una_carta",
+      "https://es.wikipedia.org/wiki/Truco_(juego_de_naipes)"
+    ]
+  },
+  {
+    "w": "jugar la última carta",
+    "t": "son kozunu oynamak, son çareye başvurmak",
+    "lit": "son kartı oynamak",
+    "eq": "son kozunu oynamak",
+    "s": "El abogado intentará jugar la última carta con este recurso judicial.",
+    "tr": "Avukat bu temyiz başvurusuyla son kozunu oynamaya çalışacak.",
+    "form": "jugar la última carta",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/jugar_la_%C3%BAltima_carta",
+      "https://es.wikipedia.org/wiki/Jacques_Canetti"
+    ]
+  },
+  {
+    "w": "tener un as en la manga",
+    "t": "yedekte gizli kozu olmak, hazırlıklı olmak",
+    "lit": "yende bir asa sahip olmak",
+    "eq": "cebinde kozu bulunmak",
+    "s": "El negociador sonreía porque sabía tener un as en la manga.",
+    "tr": "Müzakereci cebinde gizli bir kozu olduğunu bildiği için gülümsüyordu.",
+    "form": "tener un as en la manga",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/tener_un_as_en_la_manga",
+      "https://es.wikipedia.org/wiki/Dicho"
+    ]
+  },
+  {
+    "w": "jugarse el pellejo",
+    "t": "canını ortaya koymak, postu tehlikeye atmak",
+    "lit": "derisini oynamak",
+    "eq": "postu tehlikeye atmak",
+    "s": "Nadie quiere jugarse el pellejo por un jefe que no lo valora.",
+    "tr": "Kendisine değer vermeyen bir patron için kimse canını ortaya koymak istemez.",
+    "form": "jugarse el pellejo",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/jugarse_el_pellejo",
+      "https://es.wikipedia.org/wiki/Code_Black"
+    ]
+  },
+  {
+    "w": "tener las de ganar",
+    "t": "kazanma şansı yüksek olmak, avantajlı olmak",
+    "lit": "kazanmaya dair olanlara sahip olmak",
+    "eq": "eli güçlü olmak",
+    "s": "Con esa sólida defensa jurídica el acusado parece tener las de ganar.",
+    "tr": "Bu sağlam hukuki savunmayla sanığın kazanma şansı çok yüksek görünüyor.",
+    "form": "tener las de ganar",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/tener_las_de_ganar",
+      "https://es.wikipedia.org/wiki/Teor%C3%ADa_del_domin%C3%B3"
+    ]
+  },
+  {
+    "w": "tener las de perder",
+    "t": "kaybetmeye mahkûm olmak, dezavantajlı olmak",
+    "lit": "kaybetmeye dair olanlara sahip olmak",
+    "eq": "kaybetmeye mahkûm olmak",
+    "s": "Si vas a juicio sin pruebas contundentes tienes las de perder.",
+    "tr": "Sağlam deliller olmadan mahkemeye gidersen baştan kaybetmeye mahkûmsun.",
+    "form": "tienes las de perder",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/tener_las_de_perder",
+      "https://es.wikipedia.org/wiki/Nada_por_perder_(pel%C3%ADcula)"
+    ]
+  },
+  {
+    "w": "llevar las de ganar",
+    "t": "avantajlı durumda olmak, üstünlüğü taşımak",
+    "lit": "kazanmaya dair olanları taşımak",
+    "eq": "üstünlüğü elinde tutmak",
+    "s": "Tras el primer gol el equipo local parecía llevar las de ganar.",
+    "tr": "İlk golden sonra ev sahibi takım açık bir üstünlüğü elinde tutuyordu.",
+    "form": "llevar las de ganar",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://es.wiktionary.org/wiki/llevar_las_de_ganar",
+      "https://es.wikipedia.org/wiki/Tao_Yuanming"
+    ]
+  },
+  {
+    "w": "llevar las de perder",
+    "t": "kaybetme olasılığı yüksek olmak, geride kalmak",
+    "lit": "kaybetmeye dair olanları taşımak",
+    "eq": "dezavantajlı durumda olmak",
+    "s": "En una guerra de precios la empresa pequeña suele llevar las de perder.",
+    "tr": "Bir fiyat savaşında küçük şirket genellikle daha dezavantajlı durumda kalır.",
+    "form": "llevar las de perder",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://en.wiktionary.org/wiki/llevar_las_de_perder",
+      "https://es.wikipedia.org/wiki/El_vencedor"
+    ]
+  }
+]

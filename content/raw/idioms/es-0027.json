@@ -1,0 +1,512 @@
+[
+  {
+    "w": "hacerse de día",
+    "t": "gün ağarmak, sabah olmak",
+    "lit": "günden olmak",
+    "s": "Estuvimos conversando en el balcón hasta que se hizo de día.",
+    "tr": "Gün ağarana kadar balkonda sohbet etmeye devam ettik.",
+    "form": "se hizo de día",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_d%C3%ADa",
+      "https://es.wikipedia.org/wiki/Parque_Jur%C3%A1sico_(novela)"
+    ]
+  },
+  {
+    "w": "trabajar día y noche",
+    "t": "gece gündüz çalışmak, durmaksızın emek vermek",
+    "lit": "gün ve gece çalışmak",
+    "eq": "geceyi gündüze katmak",
+    "s": "Los científicos trabajaron día y noche para sintetizar la nueva vacuna a tiempo.",
+    "tr": "Bilim insanları yeni aşıyı zamanında sentezlemek için gece gündüz çalıştılar.",
+    "form": "trabajaron día y noche",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/d%C3%ADa_y_noche",
+      "https://es.wikipedia.org/wiki/D%C3%ADa_y_noche"
+    ]
+  },
+  {
+    "w": "responder al instante",
+    "t": "anında cevap vermek, hiç bekletmemek",
+    "lit": "anda cevap vermek",
+    "s": "El servicio de atención al cliente respondió al instante a nuestra consulta urgente.",
+    "tr": "Müşteri hizmetleri acil sorumuza anında cevap verdi.",
+    "form": "respondió al instante",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/al_instante",
+      "https://es.wikipedia.org/wiki/Min_(navegador)"
+    ]
+  },
+  {
+    "w": "hacer de vez en cuando",
+    "t": "ara sıra yapmak, zaman zaman yapmak",
+    "lit": "zamandan zamana yapmak",
+    "s": "Es saludable hacer de vez en cuando una caminata larga por el bosque.",
+    "tr": "Ormanda ara sıra uzun bir yürüyüş yapmak sağlık için faydalıdır.",
+    "form": "hacer de vez en cuando",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_vez_en_cuando",
+      "https://es.wikipedia.org/wiki/Flatulencia"
+    ]
+  },
+  {
+    "w": "pedir hora",
+    "t": "randevu almak",
+    "lit": "saat istemek",
+    "s": "Llamé al centro médico esta mañana para pedir hora con el especialista.",
+    "tr": "Uzman doktordan randevu almak için bu sabah sağlık merkezini aradım.",
+    "form": "pedir hora",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_hora",
+      "https://es.wikisource.org/wiki/Tormento%2FXXXIV"
+    ]
+  },
+  {
+    "w": "no ver la hora de",
+    "t": "dört gözle beklemek, sabırsızlanmak",
+    "lit": "saatini görememek",
+    "eq": "dört gözle beklemek",
+    "s": "Llevo meses trabajando sin descanso y no veo la hora de tomar vacaciones.",
+    "tr": "Aylardır dinlenmeden çalışıyorum ve tatile çıkmayı dört gözle bekliyorum.",
+    "form": "no veo la hora de",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/no_ver_la_hora_de",
+      "https://es.wikipedia.org/wiki/Mosca_%26_Smith"
+    ]
+  },
+  {
+    "w": "ir a contrarreloj",
+    "t": "zamana karşı yarışmak, telaşla ilerlemek",
+    "lit": "saate karşı gitmek",
+    "eq": "zamana karşı yarışmak",
+    "s": "El equipo de rescate va a contrarreloj para hallar supervivientes tras el sismo.",
+    "tr": "Kurtarma ekibi depremin ardından hayatta kalanları bulmak için zamana karşı yarışıyor.",
+    "form": "va a contrarreloj",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_contrarreloj",
+      "https://es.wikipedia.org/wiki/A_contrarreloj"
+    ]
+  },
+  {
+    "w": "vivir en el pasado",
+    "t": "geçmişte yaşamak, maziye takılıp kalmak",
+    "lit": "geçmişte yaşamak",
+    "s": "No puedes avanzar si continúas viviendo en el pasado y lamentando viejos errores.",
+    "tr": "Sürekli geçmişte yaşayıp eski hatalara hayıflanırsan ileriye adım atamazsın.",
+    "form": "viviendo en el pasado",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/en_otro_tiempo",
+      "https://tatoeba.org/es/sentences/show/13330557"
+    ]
+  },
+  {
+    "w": "buscar a corto plazo",
+    "t": "kısa vadeli çözümler aramak",
+    "lit": "kısa vadede aramak",
+    "s": "Buscar a corto plazo solo parches temporales no resolverá el déficit estructural.",
+    "tr": "Kısa vadeli geçici pansuman çözümler aramak yapısal açığı ortadan kaldırmaz.",
+    "form": "Buscar a corto plazo",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_corto_plazo",
+      "https://es.wikipedia.org/wiki/Memoria_a_corto_plazo"
+    ]
+  },
+  {
+    "w": "estar entrado en años",
+    "t": "yaşını başını almış olmak, yaşlanmak",
+    "lit": "yıllara girmiş olmak",
+    "eq": "ununu eleyip eleğini asmak",
+    "s": "A pesar de estar entrado en años, conserva una lucidez mental admirable.",
+    "tr": "Yaşını başını almış olmasına rağmen hayranlık uyandırıcı bir zihin berraklığını koruyor.",
+    "form": "estar entrado en años",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/entrado_en_a%C3%B1os",
+      "https://tatoeba.org/es/sentences/show/994288"
+    ]
+  },
+  {
+    "w": "dar largas",
+    "t": "oyalamak, işi uzatıp ertelemek",
+    "lit": "uzunluklar vermek",
+    "eq": "ipe un sermek",
+    "s": "Lleva dos semanas dándome largas para no devolverme el dinero que le presté.",
+    "tr": "Ödünç verdiğim parayı geri ödememek için iki haftadır beni oyalayıp duruyor.",
+    "form": "dándome largas",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_largas",
+      "https://es.wikipedia.org/wiki/Gazella"
+    ]
+  },
+  {
+    "w": "salir a la larga",
+    "t": "uzun vadede ortaya çıkmak, zamanla anlaşılmak",
+    "lit": "uzuna çıkmak",
+    "s": "Esa mala postura en la silla del trabajo te saldrá a la larga muy cara.",
+    "tr": "Çalışma koltuğundaki o kötü oturuş biçimi uzun vadede sana çok pahalıya patlar.",
+    "form": "saldrá a la larga",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_la_larga",
+      "https://tatoeba.org/es/sentences/show/2313797"
+    ]
+  },
+  {
+    "w": "ocurrir de tarde en tarde",
+    "t": "kırk yılda bir olmak, nadiren gerçekleşmek",
+    "lit": "ikindiden ikindiye olmak",
+    "eq": "kırk yılda bir",
+    "s": "Un eclipse solar total ocurre de tarde en tarde en esta misma franja geográfica.",
+    "tr": "Tam güneş tutulması bu coğrafi kuşakta kırk yılda bir meydana gelir.",
+    "form": "ocurre de tarde en tarde",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_tarde_a_tarde",
+      "https://es.wikipedia.org/wiki/Calendario_hebreo"
+    ]
+  },
+  {
+    "w": "pasar de un día para otro",
+    "t": "aniden değişmek, çabucak oluvermek",
+    "lit": "bir günden diğerine geçmek",
+    "s": "No puedes pretender dominar un idioma extranjero de un día para otro.",
+    "tr": "Yabancı bir dile aniden bir günden diğerine hakim olmayı bekleyemezsin.",
+    "form": "de un día para otro",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_un_d%C3%ADa_para_otro",
+      "https://es.wikipedia.org/wiki/Giro_de_Italia_1960"
+    ]
+  },
+  {
+    "w": "llegar de un momento a otro",
+    "t": "eli kulağında olmak, ha geldi ha gelecek olmak",
+    "lit": "bir andan diğerine varmak",
+    "eq": "eli kulağında",
+    "s": "El tren de alta velocidad debería llegar de un momento a otro al andén.",
+    "tr": "Yüksek hızlı trenin perona varması ha geldi ha gelecek eli kulağında.",
+    "form": "llegar de un momento a otro",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_un_momento_a_otro",
+      "https://es.wikipedia.org/wiki/De_un_momento_a_otro"
+    ]
+  },
+  {
+    "w": "terminar de una vez por todas",
+    "t": "temelli noktalamak, kökten bitirmek",
+    "lit": "bütün her şey için bir kerede bitirmek",
+    "eq": "kökten bitirmek",
+    "s": "Queremos negociar con firmeza para terminar de una vez por todas con este pleito.",
+    "tr": "Bu davayı temelli noktalamak için kararlılıkla müzakere etmek istiyoruz.",
+    "form": "terminar de una vez por todas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_una_vez_por_todas",
+      "https://es.wikipedia.org/wiki/Galera"
+    ]
+  },
+  {
+    "w": "viajar en hora punta",
+    "t": "trafiğin en yoğun saatinde seyahat etmek",
+    "lit": "sivri saatte seyahat etmek",
+    "s": "Es agotador viajar en hora punta en el metro subterráneo del centro urbano.",
+    "tr": "Şehir merkezindeki metroda trafiğin en yoğun saatinde seyahat etmek çok yorucudur.",
+    "form": "viajar en hora punta",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/hora_punta",
+      "https://es.wikipedia.org/wiki/Hora_punta"
+    ]
+  },
+  {
+    "w": "cambiar de un día a otro",
+    "t": "günden güne değişmek, birdenbire başkalaşmak",
+    "lit": "bir günden diğerine değişmek",
+    "s": "El humor del jefe cambia de un día a otro y descoloca a todo el equipo.",
+    "tr": "Müdürün ruh hali günden güne değişiyor ve tüm ekibin dengesini bozuyor.",
+    "form": "cambia de un día a otro",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_un_d%C3%ADa_a_otro",
+      "https://es.wikipedia.org/wiki/Giro_de_Italia_1960"
+    ]
+  },
+  {
+    "w": "nacer ayer",
+    "t": "dünkü çocuk olmak, dünyadan habersiz olmak",
+    "lit": "dün doğmak",
+    "eq": "dünkü çocuk olmak",
+    "s": "No intentes engañarme con excusas absurdas; sé perfectamente que no nací ayer.",
+    "tr": "Beni saçma sapan bahanelerle kandırmaya çalışma; dünkü çocuk olmadığımı gayet iyi biliyorum.",
+    "form": "no nací ayer",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/nacer_ayer",
+      "https://es.wikisource.org/wiki/De_los_nombres_de_Cristo%2FTomo_3%2C_Hijo_de_Dios_(II)"
+    ]
+  },
+  {
+    "w": "ser del año de la polca",
+    "t": "çok eski devirlerden kalmak, antika olmak",
+    "lit": "polka yılından olmak",
+    "eq": "eski püskü",
+    "s": "Ese coche averiado es del año de la polca y ya no fabrican sus recambios.",
+    "tr": "O bozuk araba çok eski devirlerden kalma ve artık yedek parçaları üretilmiyor.",
+    "form": "es del año de la polca",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a%C3%B1o_de_la_polca",
+      "https://es.wikipedia.org/wiki/Abuela_de_verano"
+    ]
+  },
+  {
+    "w": "ser de tiempos del rey Wamba",
+    "t": "tarih öncesinden kalma olmak, çağ dışı kalmak",
+    "lit": "Kral Wamba'nın zamanlarından olmak",
+    "s": "Esas leyes gremiales son de tiempos del rey Wamba y requieren una modernización urgente.",
+    "tr": "O lonca yasaları tarih öncesinden kalma ve acil bir modernizasyon gerektiriyor.",
+    "form": "son de tiempos del rey Wamba",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/en_tiempos_del_rey_Wamba",
+      "https://es.wikipedia.org/wiki/Leodegisio"
+    ]
+  },
+  {
+    "w": "hablar a bote pronto",
+    "t": "düşünmeden pat diye söylemek, peşin hüküm vermek",
+    "lit": "yakın sekişten konuşmak",
+    "eq": "ayaküstü söylemek",
+    "s": "Hablo a bote pronto, pero estimo que el presupuesto superará los diez mil euros.",
+    "tr": "Ayaküstü ilk aklıma geleni söylüyorum ama bütçe on bin avroyu aşacaktır.",
+    "form": "Hablo a bote pronto",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_bote_pronto",
+      "https://es.wikipedia.org/wiki/Mistela"
+    ]
+  },
+  {
+    "w": "llegar a buenas horas",
+    "t": "iş işten geçtikten sonra gelmek",
+    "lit": "iyi saatlerde varmak",
+    "eq": "geçti bor'un pazarı",
+    "s": "Llegas a buenas horas con la comida; ya hemos recogido todos los platos.",
+    "tr": "Yemekle birlikte tam iş işten geçtikten sonra geldin; bütün tabakları çoktan topladık.",
+    "form": "Llegas a buenas horas",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_buenas_horas",
+      "https://tatoeba.org/es/sentences/show/6589712"
+    ]
+  },
+  {
+    "w": "dar la hora",
+    "t": "zamanı haber vermek, çan çalmak",
+    "lit": "saati vermek",
+    "s": "El reloj del campanario de la plaza da la hora con doce campanadas sonoras.",
+    "tr": "Meydandaki çan kulesinin saati on iki gür sesli vuruşla zamanı haber veriyor.",
+    "form": "da la hora",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_la_hora",
+      "https://es.wikipedia.org/wiki/Gnom%C3%B3nica"
+    ]
+  },
+  {
+    "w": "llegar en hora menguada",
+    "t": "uğursuz bir saatte çıkagelmek, talihsiz zamanda gelmek",
+    "lit": "küçülmüş saatte varmak",
+    "s": "Aquella mala noticia llegó en hora menguada para toda la familia reunida.",
+    "tr": "O kötü haber toplanmış olan bütün aile için son derece talihsiz bir saatte geldi.",
+    "form": "llegó en hora menguada",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/hora_menguada",
+      "https://es.wikipedia.org/wiki/Marina_Baura"
+    ]
+  },
+  {
+    "w": "trabajar a todas horas",
+    "t": "vakitli vakitsiz durmadan çalışmak",
+    "lit": "bütün saatlerde çalışmak",
+    "s": "Trabaja a todas horas para pagar la hipoteca y apenas ve a sus hijos.",
+    "tr": "İpoteği ödemek için vakitli vakitsiz durmaksızın çalışıyor ve çocuklarını neredeyse hiç göremiyor.",
+    "form": "Trabaja a todas horas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_todas_horas",
+      "https://tatoeba.org/es/sentences/show/7536696"
+    ]
+  },
+  {
+    "w": "llamar a altas horas de la noche",
+    "t": "gecenin köründe aramak, zamansız telefon etmek",
+    "lit": "gecenin yüksek saatlerinde aramak",
+    "s": "Es de muy mala educación llamar a altas horas de la noche sin una urgencia.",
+    "tr": "Acil bir durum yokken gecenin köründe telefon etmek çok büyük bir görgüsüzlüktür.",
+    "form": "llamar a altas horas de la noche",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/altas_horas",
+      "https://tatoeba.org/es/sentences/show/2258448"
+    ]
+  },
+  {
+    "w": "aparecer el día menos pensado",
+    "t": "hiç umulmadık bir günde ansızın çıkagelmek",
+    "lit": "en az düşünülmüş günde belirmek",
+    "s": "Ese viejo amigo aparecerá el día menos pensado por la puerta de nuestra casa.",
+    "tr": "O eski arkadaş hiç umulmadık bir günde evimizin kapısında ansızın çıkagelecek.",
+    "form": "aparecerá el día menos pensado",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/el_d%C3%ADa_menos_pensado",
+      "https://es.wikipedia.org/wiki/El_d%C3%ADa_menos_pensado"
+    ]
+  },
+  {
+    "w": "hacer a plena luz del día",
+    "t": "güpegündüz yapmak, herkesin gözü önünde işlemek",
+    "lit": "günün tam ışığında yapmak",
+    "eq": "güpegündüz",
+    "s": "Cometieron el robo a plena luz del día sin importarles las cámaras del banco.",
+    "tr": "Bankanın kameralarını hiç umursamadan soygunu güpegündüz herkesin gözü önünde yaptılar.",
+    "form": "a plena luz del día",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_plena_luz_del_d%C3%ADa",
+      "https://es.wikipedia.org/wiki/A_plena_luz"
+    ]
+  },
+  {
+    "w": "brindar por los viejos tiempos",
+    "t": "eski günlerin şerefine kadeh kaldırmak",
+    "lit": "eski zamanlar için kadeh kaldırmak",
+    "s": "Al reencontrarse en el bar, brindaron por los viejos tiempos universitarios.",
+    "tr": "Barda yeniden buluştuklarında eski üniversite günlerinin şerefine kadeh kaldırdılar.",
+    "form": "brindaron por los viejos tiempos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/por_los_viejos_tiempos",
+      "https://es.wikipedia.org/wiki/Brindis"
+    ]
+  },
+  {
+    "w": "llegar el momento de la verdad",
+    "t": "karar anı gelip çatmak, kader sınavı başlamak",
+    "lit": "gerçeğin anının gelmesi",
+    "eq": "dananın kuyruğu kopmak",
+    "s": "Ha llegado el momento de la verdad para defender la tesis doctoral ante el tribunal.",
+    "tr": "Jüri önünde doktora tezini savunmak için kader anı nihayet gelip çattı.",
+    "form": "llegado el momento de la verdad",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://es.wiktionary.org/wiki/momento_de_la_verdad",
+      "https://es.wikipedia.org/wiki/El_momento_de_la_verdad"
+    ]
+  }
+]

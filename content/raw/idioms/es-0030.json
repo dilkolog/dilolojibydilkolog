@@ -1,0 +1,529 @@
+[
+  {
+    "w": "tener buena pinta",
+    "t": "iyi görünmek, umut vadetmek",
+    "lit": "iyi görünüme sahip olmak",
+    "eq": "iyi görünmek",
+    "s": "Ese pastel recién horneado parece tener buena pinta para la merienda.",
+    "tr": "Fırından yeni çıkmış o kek ikindi çayı için oldukça iyi görünüyor.",
+    "form": "tener buena pinta",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/pinta",
+      "https://es.wikipedia.org/wiki/Pinta_(aspecto)"
+    ]
+  },
+  {
+    "w": "tener mala pinta",
+    "t": "kötü görünmek, tekinsiz durmak",
+    "lit": "kötü görünüme sahip olmak",
+    "eq": "tekinsiz görünmek",
+    "s": "Ese cielo gris tan oscuro parece tener mala pinta de tormenta inminente.",
+    "tr": "Şu kapkaranlık gri gökyüzü yaklaşan fırtına habercisi gibi kötü görünüyor.",
+    "form": "tener mala pinta",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/pinta",
+      "https://es.wikipedia.org/wiki/Pinta_(aspecto)"
+    ]
+  },
+  {
+    "w": "a la mano",
+    "t": "el altında, kolay ulaşılır yerde",
+    "lit": "ele doğru",
+    "eq": "el altında",
+    "s": "Conviene tener el botiquín siempre a la mano en caso de accidente doméstico.",
+    "tr": "Ev kazası durumunda ilk yardım çantasını daima el altında bulundurmakta fayda var.",
+    "form": "a la mano",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_la_mano",
+      "https://es.wikipedia.org/wiki/Mano"
+    ]
+  },
+  {
+    "w": "no caber duda",
+    "t": "şüpheye yer olmamak, apaçık olmak",
+    "lit": "şüphe sığmamak",
+    "eq": "şüphe götürmemek",
+    "s": "No cabe duda de que este equipo jugará la final con merecimiento.",
+    "tr": "Bu takımın hak ederek final oynayacağına hiç şüphe yok.",
+    "form": "No cabe duda",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/caber",
+      "https://es.wikipedia.org/wiki/Duda"
+    ]
+  },
+  {
+    "w": "no tener pérdida",
+    "t": "kolay bulunmak, yolu şaşırması imkansız olmak",
+    "lit": "kaybı olmamak",
+    "eq": "eliyle koymuş gibi bulmak",
+    "s": "Sigue recto hasta la plaza mayor, la catedral no tiene pérdida.",
+    "tr": "Ana meydana kadar dümdüz git, katedrali bulamamak imkansızdır.",
+    "form": "no tiene pérdida",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/p%C3%A9rdida",
+      "https://es.wikipedia.org/wiki/P%C3%A9rdida"
+    ]
+  },
+  {
+    "w": "dar facilidades",
+    "t": "kolaylık sağlamak, imkân tanımak",
+    "lit": "kolaylıklar vermek",
+    "eq": "kolaylık sağlamak",
+    "s": "El banco decidió dar facilidades de pago para los clientes más afectados.",
+    "tr": "Banka en çok etkilenen müşteriler için ödeme kolaylıkları sağlamaya karar verdi.",
+    "form": "dar facilidades",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/facilidad",
+      "https://es.wikipedia.org/wiki/Facilidad"
+    ]
+  },
+  {
+    "w": "andar sobre ruedas",
+    "t": "tıkırında gitmek, pürüzsüzce ilerlemek",
+    "lit": "tekerlekler üstünde yürümek",
+    "eq": "saat gibi işlemek",
+    "s": "Los preparativos de la boda parecen andar sobre ruedas sin ningún contratiempo.",
+    "tr": "Düğün hazırlıkları hiçbir aksilik olmadan tereyağından kıl çeker gibi tıkırında gidiyor.",
+    "form": "andar sobre ruedas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/rueda",
+      "https://es.wikipedia.org/wiki/Rueda"
+    ]
+  },
+  {
+    "w": "ir sobre ruedas",
+    "t": "saat gibi işlemek, tereyağından kıl çeker gibi gitmek",
+    "lit": "tekerlekler üstünde gitmek",
+    "eq": "tıkırında gitmek",
+    "s": "Todo el proyecto tecnológico va sobre ruedas gracias a la dedicación del equipo.",
+    "tr": "Bütün teknoloji projesi ekibin özverisi sayesinde saat gibi tıkırında işliyor.",
+    "form": "va sobre ruedas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/rueda",
+      "https://es.wikipedia.org/wiki/Rueda"
+    ]
+  },
+  {
+    "w": "como la seda",
+    "t": "yağ gibi, pürüzsüzce",
+    "lit": "ipek gibi",
+    "eq": "yağ gibi akmak",
+    "s": "Tras reparar el carburador el motor del coche viejo funciona como la seda.",
+    "tr": "Karbüratör tamir edildikten sonra eski arabanın motoru yağ gibi pürüzsüz çalışıyor.",
+    "form": "como la seda",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/seda",
+      "https://es.wikipedia.org/wiki/Seda"
+    ]
+  },
+  {
+    "w": "estar chupado",
+    "t": "lokum gibi olmak, pek kolay olmak",
+    "lit": "emilmiş olmak",
+    "eq": "çocuk oyuncağı",
+    "s": "El examen práctico de conducir me pareció que estaba chupado hoy.",
+    "tr": "Bugün direksiyon uygulama sınavı bana çocuk oyuncağı gibi pek kolay geldi.",
+    "form": "estaba chupado",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/chupado",
+      "https://es.wikipedia.org/wiki/Chupado"
+    ]
+  },
+  {
+    "w": "estar tirado",
+    "t": "çantada keklik olmak, çok basit olmak",
+    "lit": "atılmış olmak",
+    "eq": "kolay lokma",
+    "s": "Ese test de nivel básico de inglés está tirado para cualquier estudiante.",
+    "tr": "O temel seviye İngilizce testi herhangi bir öğrenci için çantada keklik.",
+    "form": "está tirado",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/tirado",
+      "https://es.wikipedia.org/wiki/Tirado"
+    ]
+  },
+  {
+    "w": "estar cantado",
+    "t": "belli olmak, apaçık ortada olmak",
+    "lit": "şarkısı söylenmiş olmak",
+    "eq": "kabak gibi ortada olmak",
+    "s": "La victoria del líder del campeonato en esta carrera estaba cantada totalmente.",
+    "tr": "Şampiyona liderinin bu yarıştaki galibiyeti zaten baştan apaçık ortadaydı.",
+    "form": "estaba cantada",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/cantado",
+      "https://es.wikipedia.org/wiki/Canto"
+    ]
+  },
+  {
+    "w": "hacer maravillas",
+    "t": "harikalar yaratmak, olağanüstü iş çıkarmak",
+    "lit": "harikalar yapmak",
+    "eq": "harikalar yaratmak",
+    "s": "Con un presupuesto muy modesto el director logró hacer maravillas en el rodaje.",
+    "tr": "Oldukça mütevazı bir bütçeyle yönetmen çekimlerde harikalar yaratmayı başardı.",
+    "form": "hacer maravillas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/maravilla",
+      "https://es.wikipedia.org/wiki/Maravilla"
+    ]
+  },
+  {
+    "w": "hacer milagros",
+    "t": "mucizeler yaratmak, imkansızı başarmak",
+    "lit": "mucizeler yapmak",
+    "eq": "mucize yaratmak",
+    "s": "El cirujano tuvo que hacer milagros para reconstruir la pierna fracturada.",
+    "tr": "Cerrah kırık bacağı yeniden yapılandırabilmek için adeta mucizeler yaratmak zorunda kaldı.",
+    "form": "hacer milagros",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/milagro",
+      "https://es.wikipedia.org/wiki/Milagro"
+    ]
+  },
+  {
+    "w": "a ojo de buen cubero",
+    "t": "göz kararı, yaklaşık olarak",
+    "lit": "iyi fıçıcının gözüne",
+    "eq": "göz kararı",
+    "s": "Calculó la distancia a ojo de buen cubero y acertó por pocos metros.",
+    "tr": "Mesafeyi göz kararı hesapladı ve sadece birkaç metre yanılmayla tutturdu.",
+    "form": "a ojo de buen cubero",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_ojo_de_buen_cubero",
+      "https://es.wikipedia.org/wiki/Cubero"
+    ]
+  },
+  {
+    "w": "poner pegas",
+    "t": "pürüz çıkarmak, itiraz etmek",
+    "lit": "yapıştırıcılar koymak",
+    "eq": "yokuşa sürmek",
+    "s": "Siempre suele poner pegas a cualquier cambio en la estructura del departamento.",
+    "tr": "Bölüm yapısındaki herhangi bir değişikliği her zaman yokuşa sürmeye meyillidir.",
+    "form": "poner pegas",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/pega",
+      "https://es.wikipedia.org/wiki/Pega"
+    ]
+  },
+  {
+    "w": "despejar el camino",
+    "t": "engelleri kaldırmak, yolu temizlemek",
+    "lit": "yolu aydınlatmak",
+    "eq": "yolu temizlemek",
+    "s": "El acuerdo firmado logró despejar el camino para futuras inversiones conjuntas.",
+    "tr": "İmzalanan anlaşma gelecekteki ortak yatırımların önündeki engelleri kaldırmayı başardı.",
+    "form": "despejar el camino",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/camino",
+      "https://es.wikipedia.org/wiki/Camino"
+    ]
+  },
+  {
+    "w": "allanar el terreno",
+    "t": "zemini hazırlamak, pürüzleri gidermek",
+    "lit": "araziyi düzleştirmek",
+    "eq": "zemini hazırlamak",
+    "s": "Las negociaciones previas sirvieron para allanar el terreno antes de la cumbre.",
+    "tr": "Ön görüşmeler zirveden önce pürüzleri giderip zemini hazırlamaya yaradı.",
+    "form": "allanar el terreno",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/terreno",
+      "https://es.wikipedia.org/wiki/Terreno"
+    ]
+  },
+  {
+    "w": "costar un riñón",
+    "t": "bir böbreğe mal olmak, ateş pahası olmak",
+    "lit": "bir böbreğe mal olmak",
+    "eq": "ateş pahası olmak",
+    "s": "Reparar la transmisión del coche importado va a costar un riñón.",
+    "tr": "İthal arabanın şanzımanını tamir ettirmek adeta bir böbreğe ve ateş pahasına mal olacak.",
+    "form": "costar un riñón",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/ri%C3%B1%C3%B3n",
+      "https://es.wikipedia.org/wiki/Ri%C3%B1%C3%B3n"
+    ]
+  },
+  {
+    "w": "costar sudor y lágrimas",
+    "t": "alın teri ve gözyaşına mal olmak, çok zor kazanılmak",
+    "lit": "tere ve gözyaşlarına mal olmak",
+    "eq": "kan ter ve gözyaşı dökmek",
+    "s": "Construir esta casa con sus propias manos les costó sudor y lágrimas.",
+    "tr": "Bu evi kendi elleriyle inşa etmek onlara alın teri ve gözyaşına mal oldu.",
+    "form": "costó sudor y lágrimas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/sudor",
+      "https://es.wikipedia.org/wiki/Sudor"
+    ]
+  },
+  {
+    "w": "verse negro",
+    "t": "karalar bağlamak, çok zor durumda kalmak",
+    "lit": "kendini siyah görmek",
+    "eq": "akla karayı seçmek",
+    "s": "Me vi negro para terminar la traducción jurada antes de la medianoche.",
+    "tr": "Yeminli tercümeyi gece yarısından önce yetiştirebilmek için akla karayı seçtim.",
+    "form": "Me vi negro",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/negro",
+      "https://es.wikipedia.org/wiki/Negro"
+    ]
+  },
+  {
+    "w": "verse morado",
+    "t": "morarmak, güç duruma düşmek",
+    "lit": "kendini mor görmek",
+    "eq": "zor durumda kalmak",
+    "s": "El equipo se vio morado para aguantar la presión en los minutos finales.",
+    "tr": "Takım son dakikalardaki baskıya direnebilmek için son derece zor durumda kaldı.",
+    "form": "se vio morado",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/morado",
+      "https://es.wikipedia.org/wiki/Morado"
+    ]
+  },
+  {
+    "w": "pasar las canutas",
+    "t": "akla karayı seçmek, canı çıkmak",
+    "lit": "kamışları geçirmek",
+    "eq": "canı burnuna gelmek",
+    "s": "Tuvimos que pasar las canutas para llegar a fin de mes durante la crisis.",
+    "tr": "Kriz döneminde ay sonunu getirebilmek için adeta akla karayı seçtik.",
+    "form": "pasar las canutas",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/canuta",
+      "https://es.wikipedia.org/wiki/Canuta"
+    ]
+  },
+  {
+    "w": "verlas canutas",
+    "t": "zor günler geçirmek, sıkıntı çekmek",
+    "lit": "kamış olanları görmek",
+    "eq": "sıkıntı çekmek",
+    "s": "El marinero las vio canutas cuando el motor se paró en plena borrasca.",
+    "tr": "Fırtınanın ortasında motor durunca denizci son derece zor günler ve anlar yaşadı.",
+    "form": "las vio canutas",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/canuta",
+      "https://es.wikipedia.org/wiki/Canuta"
+    ]
+  },
+  {
+    "w": "pasar fatigas",
+    "t": "sıkıntı çekmek, meşakkat görmek",
+    "lit": "yorgunluklar geçirmek",
+    "eq": "meşakkat çekmek",
+    "s": "Los refugiados tuvieron que pasar fatigas indecibles hasta cruzar la frontera montañosa.",
+    "tr": "Mülteciler dağ sınırını geçene kadar tarif edilemez sıkıntı ve meşakkat çektiler.",
+    "form": "pasar fatigas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/fatiga",
+      "https://es.wikipedia.org/wiki/Fatiga"
+    ]
+  },
+  {
+    "w": "dar guerra",
+    "t": "zahmet vermek, yormak",
+    "lit": "savaş vermek",
+    "eq": "zahmet vermek",
+    "s": "Ese coche viejo no para de dar guerra con continuas averías eléctricas.",
+    "tr": "O eski araba sürekli çıkan elektrik arızalarıyla zahmet vermekten geri durmuyor.",
+    "form": "dar guerra",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/guerra",
+      "https://es.wikipedia.org/wiki/Guerra"
+    ]
+  },
+  {
+    "w": "no dar guerra",
+    "t": "zahmet vermemek, uslu durmak",
+    "lit": "savaş vermemek",
+    "eq": "uslu durmak",
+    "s": "El bebé durmió toda la noche y no dio guerra a sus padres.",
+    "tr": "Bebek bütün gece uyudu ve anne babasına hiç zahmet vermeyip uslu durdu.",
+    "form": "no dio guerra",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/guerra",
+      "https://es.wikipedia.org/wiki/Guerra"
+    ]
+  },
+  {
+    "w": "dar abasto",
+    "t": "yetişebilmek, başa çıkabilmek",
+    "lit": "erzak tedariği vermek",
+    "eq": "başa çıkabilmek",
+    "s": "Con tantos clientes en rebajas los dependientes apenas logran dar abasto hoy.",
+    "tr": "İndirimde bunca müşteri varken tezgahtarlar bugün talebe güçbela yetişebiliyor.",
+    "form": "dar abasto",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/abasto",
+      "https://es.wikipedia.org/wiki/Abasto"
+    ]
+  },
+  {
+    "w": "no dar la talla",
+    "t": "yetersiz kalmak, beklentiyi karşılayamamak",
+    "lit": "bedeni vermemek",
+    "eq": "yetersiz kalmak",
+    "s": "El delantero fichado no dio la talla en los partidos decisivos de copa.",
+    "tr": "Yeni transfer edilen forvet kupa finallerinde yetersiz kalıp beklentiyi karşılayamadı.",
+    "form": "no dio la talla",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/talla",
+      "https://es.wikipedia.org/wiki/Talla"
+    ]
+  },
+  {
+    "w": "a desmano",
+    "t": "sapa yerde, el altında olmayan",
+    "lit": "elin dışına",
+    "eq": "sapa yerde",
+    "s": "Ese supermercado nos pilla a desmano y preferimos comprar en el barrio.",
+    "tr": "O süpermarket bize çok sapa kalıyor, mahalledeki bakkaldan almayı yeğliyoruz.",
+    "form": "a desmano",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_desmano",
+      "https://es.wikipedia.org/wiki/Mano"
+    ]
+  },
+  {
+    "w": "a trasmano",
+    "t": "sapa, yolu uzatan bir konumda",
+    "lit": "elin arkasına",
+    "eq": "ters istikamette",
+    "s": "La gasolinera queda a trasmano de nuestra ruta habitual hacia el trabajo.",
+    "tr": "Benzinlik işe giderken kullandığımız olağan rotamıza göre oldukça sapa kalıyor.",
+    "form": "a trasmano",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "ease",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_trasmano",
+      "https://es.wikipedia.org/wiki/Mano"
+    ]
+  }
+]

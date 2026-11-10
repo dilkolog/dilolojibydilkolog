@@ -1,0 +1,529 @@
+[
+  {
+    "w": "dar el primer paso",
+    "t": "ilk adımı atmak, önayak olmak",
+    "lit": "ilk adımı vermek",
+    "eq": "ilk adımı atmak",
+    "s": "Alguien tiene que dar el primer paso para resolver el conflicto.",
+    "tr": "Anlaşmazlığı çözmek için birinin ilk adımı atması gerekiyor.",
+    "form": "dar el primer paso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_el_primer_paso",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "dar igual",
+    "t": "fark etmemek, önemsiz olmak",
+    "lit": "eşit vermek",
+    "eq": "fark etmemek",
+    "s": "Me da igual comer pizza o ensalada hoy.",
+    "tr": "Bugün pizza ya da salata yemek benim için fark etmez.",
+    "form": "da igual",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_igual",
+      "https://es.wikipedia.org/wiki/Igualdad"
+    ]
+  },
+  {
+    "w": "dar lo mismo",
+    "t": "fark etmemek, değişmemek",
+    "lit": "aynısını vermek",
+    "eq": "fark etmemek",
+    "s": "A él le da lo mismo llegar temprano o tarde.",
+    "tr": "Erken ya da geç gelmek onun için hiç fark etmiyor.",
+    "form": "da lo mismo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_lo_mismo",
+      "https://es.wikipedia.org/wiki/Mismo"
+    ]
+  },
+  {
+    "w": "seguir adelante",
+    "t": "yoluna devam etmek, yılmamak",
+    "lit": "ileriye doğru takip etmek",
+    "eq": "yoluna devam etmek",
+    "s": "A pesar de las dificultades, decidieron seguir adelante con el proyecto.",
+    "tr": "Zorluklara rağmen projeyle yollarına devam etmeye karar verdiler.",
+    "form": "seguir adelante",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/seguir_adelante",
+      "https://es.wikipedia.org/wiki/Adelante"
+    ]
+  },
+  {
+    "w": "echarse atrás",
+    "t": "vazgeçmek, caymak",
+    "lit": "kendini arkaya atmak",
+    "eq": "geri adım atmak",
+    "s": "Firmó el contrato y ya no puede echarse atrás.",
+    "tr": "Sözleşmeyi imzaladı, artık vazgeçip geri adım atamaz.",
+    "form": "echarse atrás",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/echarse_atr%C3%A1s",
+      "https://es.wikipedia.org/wiki/Atr%C3%A1s"
+    ]
+  },
+  {
+    "w": "tirar la toalla",
+    "t": "pes etmek, havlu atmak",
+    "lit": "havluyu fırlatmak",
+    "eq": "havlu atmak",
+    "s": "El examen era difícil pero nunca pensó en tirar la toalla.",
+    "tr": "Sınav zordu ama hiçbir zaman havlu atmayı düşünmedi.",
+    "form": "tirar la toalla",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/tirar_la_toalla",
+      "https://es.wikipedia.org/wiki/Toalla"
+    ]
+  },
+  {
+    "w": "dar un paso atrás",
+    "t": "geri adım atmak, taviz vermek",
+    "lit": "bir adım arkaya vermek",
+    "eq": "geri adım atmak",
+    "s": "La empresa tuvo que dar un paso atrás en su política de precios.",
+    "tr": "Şirket fiyat politikasında geri adım atmak zorunda kaldı.",
+    "form": "dar un paso atrás",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_un_paso_atr%C3%A1s",
+      "https://es.wikipedia.org/wiki/Paso"
+    ]
+  },
+  {
+    "w": "darse por vencido",
+    "t": "yenilgiyi kabul etmek, pes etmek",
+    "lit": "kendini yenilmiş saymak",
+    "eq": "pes etmek",
+    "s": "Luchó hasta el final y se negó a darse por vencido.",
+    "tr": "Sonuna kadar mücadele etti ve pes etmeyi reddetti.",
+    "form": "darse por vencido",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/darse_por_vencido",
+      "https://es.wikipedia.org/wiki/Victoria"
+    ]
+  },
+  {
+    "w": "salirse con la suya",
+    "t": "dediğini yaptırmak, istediğini elde etmek",
+    "lit": "kendisininkiyle çıkmak",
+    "eq": "dediğini yaptırmak",
+    "s": "Insistió tanto que al final logró salirse con la suya.",
+    "tr": "O kadar ısrar etti ki sonunda dediğini yaptırmayı başardı.",
+    "form": "salirse con la suya",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/salirse_con_la_suya",
+      "https://es.wikipedia.org/wiki/Suyos"
+    ]
+  },
+  {
+    "w": "mantenerse firme",
+    "t": "kararlı durmak, dik durmak",
+    "lit": "sağlam kalmak",
+    "eq": "dik durmak",
+    "s": "El director decidió mantenerse firme frente a las presiones del comité.",
+    "tr": "Müdür komitenin baskıları karşısında dik durmaya karar verdi.",
+    "form": "mantenerse firme",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/mantenerse_firme",
+      "https://es.wikipedia.org/wiki/Firmeza"
+    ]
+  },
+  {
+    "w": "tomar partido",
+    "t": "taraf tutmak, safını seçmek",
+    "lit": "taraf almak",
+    "eq": "taraf tutmak",
+    "s": "Prefiero escuchar a ambos antes de tomar partido en la discusión.",
+    "tr": "Tartışmada taraf tutmadan önce ikisini de dinlemeyi tercih ederim.",
+    "form": "tomar partido",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/tomar_partido",
+      "https://es.wikipedia.org/wiki/Partido"
+    ]
+  },
+  {
+    "w": "dar marcha atrás",
+    "t": "kararından dönmek, geri adım atmak",
+    "lit": "geri vitese takmak",
+    "eq": "çark etmek",
+    "s": "El gobierno decidió dar marcha atrás con la nueva ley tributaria.",
+    "tr": "Hükümet yeni vergi kanununda çark edip geri adım atmaya karar verdi.",
+    "form": "dar marcha atrás",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_marcha_atr%C3%A1s",
+      "https://es.wikipedia.org/wiki/Marcha_atr%C3%A1s"
+    ]
+  },
+  {
+    "w": "ceder el paso",
+    "t": "öncelik tanımak, yol vermek",
+    "lit": "adımı teslim etmek",
+    "eq": "yol vermek",
+    "s": "Decidió ceder el paso a su colega para dirigir la presentación.",
+    "tr": "Sunumu yönetmesi için meslektaşına öncelik tanımaya karar verdi.",
+    "form": "ceder el paso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/ceder_el_paso",
+      "https://es.wikipedia.org/wiki/Ceda_el_paso"
+    ]
+  },
+  {
+    "w": "hacer frente",
+    "t": "karşı koymak, göğüs germek",
+    "lit": "alın yapmak",
+    "eq": "göğüs germek",
+    "s": "Tuvimos que hacer frente a la crisis con medidas urgentes.",
+    "tr": "Krize acil önlemler alarak göğüs germek zorunda kaldık.",
+    "form": "hacer frente",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_frente",
+      "https://es.wikipedia.org/wiki/Frente"
+    ]
+  },
+  {
+    "w": "seguir la corriente",
+    "t": "çoğunluğa uymak, akıntıya kapılmak",
+    "lit": "akıntıyı takip etmek",
+    "eq": "akıntıya kapılmak",
+    "s": "No me gusta discutir en las reuniones, prefiero seguir la corriente.",
+    "tr": "Toplantılarda tartışmayı sevmem, çoğunluğa uymayı tercih ederim.",
+    "form": "seguir la corriente",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/seguir_la_corriente",
+      "https://es.wikipedia.org/wiki/Corriente"
+    ]
+  },
+  {
+    "w": "tomar la delantera",
+    "t": "öne geçmek, inisiyatif almak",
+    "lit": "önlüğü almak",
+    "eq": "öne geçmek",
+    "s": "Nuestra empresa supo tomar la delantera en el mercado digital.",
+    "tr": "Şirketimiz dijital pazarda inisiyatif alıp öne geçmeyi bildi.",
+    "form": "tomar la delantera",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/tomar_la_delantera",
+      "https://es.wikipedia.org/wiki/Delantera"
+    ]
+  },
+  {
+    "w": "declarar la guerra",
+    "t": "savaş açmak, cephe almak",
+    "lit": "savaşı ilan etmek",
+    "eq": "savaş açmak",
+    "s": "El ayuntamiento decidió declarar la guerra al ruido nocturno en el barrio.",
+    "tr": "Belediye mahalledeki gece gürültüsüne resmen savaş açmaya karar verdi.",
+    "form": "declarar la guerra",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/declarar_la_guerra",
+      "https://es.wikipedia.org/wiki/Declaraci%C3%B3n_de_guerra"
+    ]
+  },
+  {
+    "w": "dar el visto bueno",
+    "t": "onay vermek, uygun bulmak",
+    "lit": "iyi görüldü vermek",
+    "eq": "onay vermek",
+    "s": "El arquitecto tardó tres semanas en dar el visto bueno a los planos.",
+    "tr": "Mimarın planlara onay vermesi üç hafta sürdü.",
+    "form": "dar el visto bueno",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_el_visto_bueno",
+      "https://es.wikipedia.org/wiki/Visto_bueno"
+    ]
+  },
+  {
+    "w": "cerrarse en banda",
+    "t": "inat etmek, fikrinden caymamak",
+    "lit": "bantta kapanmak",
+    "eq": "ayak diremek",
+    "s": "Intentamos negociar con el vendedor, pero optó por cerrarse en banda.",
+    "tr": "Satıcıyla pazarlık etmeye çalıştık ama ayak direyip kestirip attı.",
+    "form": "cerrarse en banda",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/cerrarse_en_banda",
+      "https://es.wikipedia.org/wiki/Banda"
+    ]
+  },
+  {
+    "w": "tirarse a la piscina",
+    "t": "gözü karartmak, cesurca atılmak",
+    "lit": "havuza atlamak",
+    "eq": "gözü karartmak",
+    "s": "Dejó su empleo fijo para tirarse a la piscina y montar su negocio.",
+    "tr": "Kendi işini kurmak için gözünü karartıp kadrolu işini bıraktı.",
+    "form": "tirarse a la piscina",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/tirarse_a_la_piscina",
+      "https://es.wikipedia.org/wiki/Piscina"
+    ]
+  },
+  {
+    "w": "arrojar el guante",
+    "t": "meydan okumak, davet etmek",
+    "lit": "eldiveni fırlatmak",
+    "eq": "meydan okumak",
+    "s": "El campeón decidió arrojar el guante a su rival más fuerte.",
+    "tr": "Şampiyon en güçlü rakibine resmen meydan okumaya karar verdi.",
+    "form": "arrojar el guante",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/arrojar_el_guante",
+      "https://es.wikipedia.org/wiki/Guante"
+    ]
+  },
+  {
+    "w": "recoger el guante",
+    "t": "meydan okumayı kabul etmek, çağrıya uymak",
+    "lit": "eldiveni toplamak",
+    "eq": "meydan okumayı kabul etmek",
+    "s": "La ministra no dudó en recoger el guante lanzado por la oposición.",
+    "tr": "Bakan muhalefetin savurduğu meydan okumayı kabul etmekte tereddüt etmedi.",
+    "form": "recoger el guante",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/recoger_el_guante",
+      "https://es.wikipedia.org/wiki/Guante"
+    ]
+  },
+  {
+    "w": "colgar los guantes",
+    "t": "bırakmak, sporu veya işi noktalamak",
+    "lit": "eldivenleri asmak",
+    "eq": "el etek çekmek",
+    "s": "Tras ganar el título mundial decidió colgar los guantes definitivamente.",
+    "tr": "Dünya şampiyonluğunu kazandıktan sonra sporu kesin olarak noktalamaya karar verdi.",
+    "form": "colgar los guantes",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/colgar_los_guantes",
+      "https://es.wikipedia.org/wiki/Boxeo"
+    ]
+  },
+  {
+    "w": "colgar los botines",
+    "t": "jübile yapmak, futbolu bırakmak",
+    "lit": "kramponları asmak",
+    "eq": "kramponları asmak",
+    "s": "El veterano delantero anunció su plan de colgar los botines este verano.",
+    "tr": "Kıdemli santrfor bu yaz kramponlarını asma planını duyurdu.",
+    "form": "colgar los botines",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/colgar_los_botines",
+      "https://es.wikipedia.org/wiki/Bot%C3%ADn"
+    ]
+  },
+  {
+    "w": "cortarse la coleta",
+    "t": "mesleği bırakmak, jübile yapmak",
+    "lit": "saç örgüsünü kesmek",
+    "eq": "jübile yapmak",
+    "s": "El célebre actor decidió cortarse la coleta tras cincuenta años sobre los escenarios.",
+    "tr": "Ünlü oyuncu sahnelerde geçen elli yılın ardından mesleği bırakmaya karar verdi.",
+    "form": "cortarse la coleta",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/cortarse_la_coleta",
+      "https://es.wikipedia.org/wiki/Coleta"
+    ]
+  },
+  {
+    "w": "dar carpetazo",
+    "t": "dosyayı kapatmak, sümen altı etmek",
+    "lit": "klasör darbesi vurmak",
+    "eq": "sümen altı etmek",
+    "s": "El juez decidió dar carpetazo a la investigación por falta de pruebas.",
+    "tr": "Yargıç delil yetersizliğinden soruşturmayı sümen altı edip kapatmaya karar verdi.",
+    "form": "dar carpetazo",
+    "reg": "neutral",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_carpetazo",
+      "https://es.wikipedia.org/wiki/Carpeta"
+    ]
+  },
+  {
+    "w": "dar por concluido",
+    "t": "sona erdirmek, noktayı koymak",
+    "lit": "tamamlanmış saymak",
+    "eq": "noktayı koymak",
+    "s": "La presidenta prefirió dar por concluido el debate antes de la votación.",
+    "tr": "Başkan oylamadan önce tartışmayı sona erdirip noktayı koymayı tercih etti.",
+    "form": "dar por concluido",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_por_concluido",
+      "https://es.wikipedia.org/wiki/Conclusi%C3%B3n"
+    ]
+  },
+  {
+    "w": "romper una lanza",
+    "t": "arka çıkmak, birini savunmak",
+    "lit": "bir mızrak kırmak",
+    "eq": "arka çıkmak",
+    "s": "Quiero romper una lanza a favor de mi compañero de departamento.",
+    "tr": "Bölümdeki meslektaşımı savunup ona açıkça arka çıkmak istiyorum.",
+    "form": "romper una lanza",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/romper_una_lanza",
+      "https://es.wikipedia.org/wiki/Lanza"
+    ]
+  },
+  {
+    "w": "tomar cartas en el asunto",
+    "t": "olaya el koymak, inisiyatif almak",
+    "lit": "konuda mektuplar almak",
+    "eq": "el koymak",
+    "s": "La dirección tuvo que tomar cartas en el asunto ante las quejas.",
+    "tr": "Yönetim şikayetler karşısında olaya bizzat el koymak zorunda kaldı.",
+    "form": "tomar cartas en el asunto",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/tomar_cartas_en_el_asunto",
+      "https://es.wikipedia.org/wiki/Carta"
+    ]
+  },
+  {
+    "w": "coger el toro por los cuernos",
+    "t": "güçlüğü göğüslemek, kararlılıkla çözmek",
+    "lit": "boğayı boynuzlarından tutmak",
+    "eq": "boğayı boynuzundan yakalamak",
+    "s": "Es momento de coger el toro por los cuernos y solucionar las deudas.",
+    "tr": "Güçlüğü göğüsleyip borçları kararlılıkla çözmenin tam vaktidir.",
+    "form": "coger el toro por los cuernos",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/coger_el_toro_por_los_cuernos",
+      "https://es.wikipedia.org/wiki/Toro"
+    ]
+  },
+  {
+    "w": "cerrar filas",
+    "t": "safları sıklaştırmak, kenetlenmek",
+    "lit": "sıraları kapatmak",
+    "eq": "safları sıklaştırmak",
+    "s": "Los miembros del partido optaron por cerrar filas en torno al líder.",
+    "tr": "Parti üyeleri liderin etrafında safları sıklaştırıp kenetlenmeyi seçti.",
+    "form": "cerrar filas",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://es.wiktionary.org/wiki/cerrar_filas",
+      "https://es.wikipedia.org/wiki/Fila"
+    ]
+  }
+]

@@ -1,0 +1,525 @@
+[
+  {
+    "w": "tomar el sol",
+    "t": "güneşlenmek",
+    "lit": "güneşi almak",
+    "s": "Pasamos toda la mañana del sábado tomando el sol junto a la piscina.",
+    "tr": "Cumartesi sabahının tamamını havuz başında güneşlenerek geçirdik.",
+    "form": "tomando el sol",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/tomar_el_sol",
+      "https://es.wikipedia.org/wiki/Tomar_el_sol"
+    ]
+  },
+  {
+    "w": "romper el hielo",
+    "t": "buzları eritmek, ortamdaki çekingenliği gidermek",
+    "lit": "buzu kırmak",
+    "eq": "buzları eritmek",
+    "s": "El profesor contó un chiste gracioso para romper el hielo en la primera clase.",
+    "tr": "Öğretmen ilk derste ortamdaki çekingenliği gidermek için komik bir fıkra anlattı.",
+    "form": "romper el hielo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/romper_el_hielo",
+      "https://es.wikipedia.org/wiki/Picahielo"
+    ]
+  },
+  {
+    "w": "jugar con fuego",
+    "t": "ateşle oynamak, tehlikeli işe kalkışmak",
+    "lit": "ateşle oynamak",
+    "eq": "ateşle oynamak",
+    "s": "Firmar ese contrato sin leer la letra pequeña es jugar con fuego.",
+    "tr": "Küçük yazıları okumadan o sözleşmeyi imzalamak ateşle oynamaktır.",
+    "form": "jugar con fuego",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/jugar_con_fuego",
+      "https://es.wikipedia.org/wiki/Jugar_con_fuego"
+    ]
+  },
+  {
+    "w": "llover a cántaros",
+    "t": "bardaktan boşanırcasına yağmak",
+    "lit": "testilerle yağmak",
+    "eq": "bardaktan boşanırcasına yağmak",
+    "s": "No pudimos salir al campo porque empezó a llover a cántaros sin parar.",
+    "tr": "Durmaksızın bardaktan boşanırcasına yağmur yağmaya başladığı için kıra çıkamadık.",
+    "form": "llover a cántaros",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/llover_a_c%C3%A1ntaros",
+      "https://es.wikipedia.org/wiki/Orquesta_de_las_Nubes"
+    ]
+  },
+  {
+    "w": "cambiar de aires",
+    "t": "hava değişimi yapmak, ortam değiştirmek",
+    "lit": "havaları değiştirmek",
+    "s": "Decidió mudarse a la costa para cambiar de aires tras un año agotador.",
+    "tr": "Yorucu bir yılın ardından hava değişimi yapmak için sahile taşınmaya karar verdi.",
+    "form": "cambiar de aires",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/cambiar_de_aires",
+      "https://es.wikipedia.org/wiki/Gante"
+    ]
+  },
+  {
+    "w": "dar a luz",
+    "t": "doğurmak, dünyaya çocuk getirmek",
+    "lit": "ışığa vermek",
+    "eq": "dünyaya getirmek",
+    "s": "La doctora confirmó que la paciente dio a luz a una niña sana.",
+    "tr": "Doktor, hastanın sağlıklı bir kız çocuğu dünyaya getirdiğini doğruladı.",
+    "form": "dio a luz",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_a_luz",
+      "https://es.wikipedia.org/wiki/Dar_a_luz"
+    ]
+  },
+  {
+    "w": "echar raíces",
+    "t": "kök salmak, bir yere temelli yerleşmek",
+    "lit": "kökler atmak",
+    "eq": "kök salmak",
+    "s": "Después de viajar durante años por varios continentes, decidieron echar raíces en Sevilla.",
+    "tr": "Yıllarca kıtalar arası seyahat ettikten sonra Sevilla'ya temelli yerleşip kök salmaya karar verdiler.",
+    "form": "echar raíces",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/echar_ra%C3%ADces",
+      "https://es.wikipedia.org/wiki/Echar_ra%C3%ADces"
+    ]
+  },
+  {
+    "w": "cortar de raíz",
+    "t": "kökünden kesmek, sorunu temelinden bitirmek",
+    "lit": "kökten kesmek",
+    "eq": "kökünü kazımak",
+    "s": "Hay que cortar de raíz esas malas costumbres antes de que perjudiquen al grupo.",
+    "tr": "Gruba zarar vermeden önce bu kötü alışkanlıkları kökünden kesip bitirmek gerekir.",
+    "form": "cortar de raíz",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/cortar_de_ra%C3%ADz",
+      "https://es.wikipedia.org/wiki/Sacramental"
+    ]
+  },
+  {
+    "w": "arrojar luz",
+    "t": "ışık tutmak, anlaşılmasını sağlamak",
+    "lit": "ışık fırlatmak",
+    "eq": "ışık tutmak",
+    "s": "Los nuevos documentos del archivo arrojaron luz sobre el misterioso caso judicial.",
+    "tr": "Arşivden çıkan yeni belgeler gizemli dava dosyasına önemli ölçüde ışık tuttu.",
+    "form": "arrojaron luz",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/arrojar_luz",
+      "https://es.wikipedia.org/wiki/IceCube"
+    ]
+  },
+  {
+    "w": "salir a la luz",
+    "t": "gün yüzüne çıkmak, açığa çıkmak",
+    "lit": "ışığa çıkmak",
+    "eq": "gün yüzüne çıkmak",
+    "s": "Toda la verdad sobre los contratos secretos salió a la luz esta semana.",
+    "tr": "Gizli sözleşmelerle ilgili tüm gerçekler bu hafta gün yüzüne çıktı.",
+    "form": "salió a la luz",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://en.wiktionary.org/wiki/salir_a_la_luz",
+      "https://es.wikipedia.org/wiki/Richard_Axel"
+    ]
+  },
+  {
+    "w": "dar luz verde",
+    "t": "yeşil ışık yakmak, izin vermek",
+    "lit": "yeşil ışık vermek",
+    "eq": "yeşil ışık yakmak",
+    "s": "El ayuntamiento por fin dio luz verde a la construcción del polideportivo.",
+    "tr": "Belediye nihayet spor merkezinin inşaatına yeşil ışık yaktı.",
+    "form": "dio luz verde",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/luz_verde",
+      "https://es.wikipedia.org/wiki/Luz_verde_(cine)"
+    ]
+  },
+  {
+    "w": "echar leña al fuego",
+    "t": "yangına körükle gitmek, gerginliği artırmak",
+    "lit": "ateşe odun atmak",
+    "eq": "yangına körükle gitmek",
+    "s": "Mencionar viejos rencores durante la discusión solo sirvió para echar leña al fuego.",
+    "tr": "Tartışma sırasında eski kırgınlıkları açmak sadece yangına körükle gitmeye yaradı.",
+    "form": "echar leña al fuego",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/echar_le%C3%B1a_al_fuego",
+      "https://tatoeba.org/es/sentences/show/2735306"
+    ]
+  },
+  {
+    "w": "mover cielo y tierra",
+    "t": "yeri göğü birbirine katmak, her yolu denemek",
+    "lit": "göğü ve yeri hareket ettirmek",
+    "eq": "yeri göğü inletmek",
+    "s": "Movieron cielo y tierra para conseguir las entradas de la final de campeonato.",
+    "tr": "Şampiyona finalinin biletlerini alabilmek için yeri göğü birbirine kattılar.",
+    "form": "Movieron cielo y tierra",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/mover_cielo_y_tierra",
+      "https://es.wikisource.org/wiki/Do%C3%B1a_Berta%2FX"
+    ]
+  },
+  {
+    "w": "venir como caído del cielo",
+    "t": "hızır gibi yetişmek, tam vaktinde imdada yetişmek",
+    "lit": "gökten düşmüş gibi gelmek",
+    "eq": "hızır gibi yetişmek",
+    "s": "Ese dinero extra de la prima nos vino como caído del cielo este mes.",
+    "tr": "Primden gelen o fazladan para bu ay bize hızır gibi yetişti.",
+    "form": "vino como caído del cielo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/como_ca%C3%ADdo_del_cielo",
+      "https://es.wikipedia.org/wiki/Como_ca%C3%ADdo_del_cielo"
+    ]
+  },
+  {
+    "w": "ser agua pasada",
+    "t": "geçmişte kalmak, artık önemi kalmamak",
+    "lit": "geçmiş su olmak",
+    "eq": "köprünün altından çok sular aktı",
+    "s": "Aquella pequeña diferencia de opiniones ya es agua pasada entre nosotros.",
+    "tr": "Aramızdaki o küçük görüş ayrılığı artık çoktan geçmişte kaldı.",
+    "form": "es agua pasada",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/agua_pasada",
+      "https://es.wikiquote.org/wiki/Ser_(locuciones)"
+    ]
+  },
+  {
+    "w": "ahogarse en un vaso de agua",
+    "t": "küçük bir sorunu büyütmek, paniğe kapılmak",
+    "lit": "bir bardak suda boğulmak",
+    "eq": "bir kaşık suda boğulmak",
+    "s": "Es un contratiempo menor; no te ahogues en un vaso de agua por eso.",
+    "tr": "Bu ufak bir aksilik; bunun yüzünden bir kaşık suda boğulup panik yapma.",
+    "form": "te ahogues en un vaso de agua",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/ahogarse_en_un_vaso_de_agua",
+      "https://es.wikiquote.org/wiki/Vaso"
+    ]
+  },
+  {
+    "w": "caer como un jarro de agua fría",
+    "t": "soğuk duş etkisi yapmak, hayal kırıklığı yaratmak",
+    "lit": "bir sürahi soğuk su gibi düşmek",
+    "eq": "soğuk duş etkisi yapmak",
+    "s": "La cancelación repentina del vuelo cayó como un jarro de agua fría sobre nosotros.",
+    "tr": "Uçuşun aniden iptal edilmesi üzerimizde soğuk duş etkisi yarattı.",
+    "form": "cayó como un jarro de agua fría",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/jarro_de_agua_fr%C3%ADa",
+      "https://es.wikipedia.org/wiki/Al_Capp"
+    ]
+  },
+  {
+    "w": "luchar contra viento y marea",
+    "t": "her türlü zorluğa göğüs germek, yılmadan mücadele etmek",
+    "lit": "rüzgara ve gelgite karşı savaşmak",
+    "s": "El equipo luchó contra viento y marea para sacar adelante el proyecto comunitario.",
+    "tr": "Ekip, topluluk projesini hayata geçirmek için her türlü engele göğüs gererek savaştı.",
+    "form": "luchó contra viento y marea",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/contra_viento_y_marea",
+      "https://es.wikipedia.org/wiki/Sepiida"
+    ]
+  },
+  {
+    "w": "ver la luz al final del túnel",
+    "t": "tünelin ucundaki ışığı görmek, umut ışığı bulmak",
+    "lit": "tünelin sonundaki ışığı görmek",
+    "eq": "tünelin ucundaki ışığı görmek",
+    "s": "Tras meses de duros tratamientos, el paciente por fin ve la luz al final del túnel.",
+    "tr": "Aylar süren ağır tedavilerin ardından hasta nihayet tünelin ucundaki ışığı görüyor.",
+    "form": "ve la luz al final del túnel",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/haber_luz_al_final_del_t%C3%BAnel",
+      "https://tatoeba.org/es/sentences/show/12489599"
+    ]
+  },
+  {
+    "w": "echar por tierra",
+    "t": "yerle bir etmek, altüst etmek",
+    "lit": "yere doğru fırlatmak",
+    "eq": "yerle bir etmek",
+    "s": "Una sola mala decisión echó por tierra años de meticulosa investigación científica.",
+    "tr": "Tek bir yanlış karar, yıllar süren titiz bilimsel araştırmayı yerle bir etti.",
+    "form": "echó por tierra",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/echar_por_tierra",
+      "https://es.wikipedia.org/wiki/Paramount_Television_Network"
+    ]
+  },
+  {
+    "w": "clamar al cielo",
+    "t": "arşa yükselmek, isyan ettirecek kadar adaletsiz olmak",
+    "lit": "göğe yakarmak",
+    "eq": "arşa dayanmak",
+    "s": "Las pésimas condiciones de seguridad de aquel taller clandestino claman al cielo.",
+    "tr": "O kaçak atölyenin berbat güvenlik koşulları insanı resmen isyan ettiriyor.",
+    "form": "claman al cielo",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/clamar_al_cielo",
+      "https://es.wikipedia.org/wiki/Pecados_que_claman_Venganza_al_Cielo"
+    ]
+  },
+  {
+    "w": "escupir al cielo",
+    "t": "kendi aleyhine sonuçlanacak davranışta bulunmak",
+    "lit": "göğe tükürmek",
+    "eq": "göğe tükürmek",
+    "s": "Criticar sin pruebas a tus propios compañeros es escupir al cielo ante la dirección.",
+    "tr": "Kendi çalışma arkadaşlarını kanıtsız eleştirmek yönetim önünde kendi aleyhine tükürmektir.",
+    "form": "escupir al cielo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/escupir_al_cielo",
+      "https://tatoeba.org/es/sentences/show/1396011"
+    ]
+  },
+  {
+    "w": "venir como agua de mayo",
+    "t": "ilaç gibi gelmek, tam zamanında yetişmek",
+    "lit": "mayıs suyu gibi gelmek",
+    "eq": "ilaç gibi gelmek",
+    "s": "La subvención del ministerio vino como agua de mayo para renovar el laboratorio.",
+    "tr": "Bakanlığın verdiği hibe laboratuvarı yenilemek için ilaç gibi geldi.",
+    "form": "vino como agua de mayo",
+    "reg": "neutral",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/como_agua_de_mayo",
+      "https://es.wikipedia.org/wiki/Frase_hecha"
+    ]
+  },
+  {
+    "w": "nadar entre dos aguas",
+    "t": "ikili oynamak, tarafını belli etmemek",
+    "lit": "iki su arasında yüzmek",
+    "eq": "ikili oynamak",
+    "s": "El diplomático prefirió nadar entre dos aguas para no comprometer el pacto.",
+    "tr": "Diplomat, anlaşmayı tehlikeye atmamak için tarafını belli etmeden ikili oynamayı seçti.",
+    "form": "nadar entre dos aguas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/nadar_entre_dos_aguas",
+      "https://es.wikipedia.org/wiki/Sepiida"
+    ]
+  },
+  {
+    "w": "hacer agua",
+    "t": "su almak, açık vermek, zaaf göstermek",
+    "lit": "su yapmak",
+    "s": "La teoría económica presentada por el analista empezó a hacer agua en el debate.",
+    "tr": "Analistin sunduğu ekonomi teorisi tartışma sırasında ciddi açıklar vermeye başladı.",
+    "form": "hacer agua",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_agua",
+      "https://tatoeba.org/es/sentences/show/13691885"
+    ]
+  },
+  {
+    "w": "llover sobre mojado",
+    "t": "derdin üstüne dert gelmek, kötünün üstüne daha kötüsü olmak",
+    "lit": "ıslak olanın üzerine yağmak",
+    "eq": "tuz biber ekmek",
+    "s": "Otra avería eléctrica en la fábrica; realmente llueve sobre mojado esta temporada.",
+    "tr": "Fabrikada bir elektrik arızası daha; bu sezon gerçekten derdin üstüne dert yağıyor.",
+    "form": "llueve sobre mojado",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/llover_sobre_mojado",
+      "https://es.wikipedia.org/wiki/Llover_sobre_mojado"
+    ]
+  },
+  {
+    "w": "aguantar el chaparrón",
+    "t": "sağanağa göğüs germek, sert eleştirilere katlanmak",
+    "lit": "sağanağa dayanmak",
+    "eq": "fırtınayı göğüslemek",
+    "s": "El portavoz aguantó el chaparrón de preguntas difíciles de los periodistas sin perder la calma.",
+    "tr": "Sözcü, gazetecilerin zor soru yağmurunu soğukkanlılığını yitirmeden göğüsledi.",
+    "form": "aguantó el chaparrón",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/aguantar_el_chaparr%C3%B3n",
+      "https://es.wikipedia.org/wiki/Chaparr%C3%B3n"
+    ]
+  },
+  {
+    "w": "ir viento en popa",
+    "t": "işleri çok iyi gitmek, tıkırında olmak",
+    "lit": "pupa rüzgarıyla gitmek",
+    "eq": "rüzgarı arkasına almak",
+    "s": "Desde la apertura de la sucursal, el nuevo negocio va viento en popa.",
+    "tr": "Şubenin açılışından beri yeni işletmenin işleri gayet tıkırında gidiyor.",
+    "form": "va viento en popa",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/viento_en_popa",
+      "https://es.wikipedia.org/wiki/Viento_en_popa"
+    ]
+  },
+  {
+    "w": "beber los vientos",
+    "t": "peşinden divane olmak, deli gibi istemek",
+    "lit": "rüzgarları içmek",
+    "eq": "hasretiyle yanıp tutuşmak",
+    "s": "Bebía los vientos por conseguir aquel puesto de corresponsal en el extranjero.",
+    "tr": "Yurt dışındaki o muhabirlik pozisyonunu kapabilmek için resmen can atıyordu.",
+    "form": "Bebía los vientos",
+    "reg": "neutral",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/beber_los_vientos",
+      "https://es.wikipedia.org/wiki/Viento"
+    ]
+  },
+  {
+    "w": "gritar a los cuatro vientos",
+    "t": "dört bir yana duyurmak, cümle aleme ilan etmek",
+    "lit": "dört rüzgara bağırmak",
+    "eq": "cümle aleme duyurmak",
+    "s": "No hacía falta gritar a los cuatro vientos una noticia confidencial de la empresa.",
+    "tr": "Şirketin gizli bir haberini cümle aleme dört bir yana duyurmaya gerek yoktu.",
+    "form": "gritar a los cuatro vientos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_los_cuatro_vientos",
+      "https://es.wikipedia.org/wiki/Los_cuatro_vientos"
+    ]
+  },
+  {
+    "w": "dormir como una piedra",
+    "t": "deliksiz uyumak, taş gibi uyumak",
+    "lit": "taş gibi uyumak",
+    "eq": "taş gibi uyumak",
+    "s": "Estaba tan agotado tras la carrera que durmió como una piedra diez horas.",
+    "tr": "Koşudan sonra o kadar yorulmuştu ki on saat boyunca deliksiz uyudu.",
+    "form": "durmió como una piedra",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://es.wiktionary.org/wiki/dormir_como_una_piedra",
+      "https://es.wikipedia.org/wiki/Piedra"
+    ]
+  }
+]

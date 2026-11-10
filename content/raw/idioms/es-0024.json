@@ -1,0 +1,514 @@
+[
+  {
+    "w": "cambiar de idea",
+    "t": "fikrini değiştirmek, caymak",
+    "lit": "fikri değiştirmek",
+    "s": "Iba a viajar este fin de semana, pero cambié de idea por la lluvia.",
+    "tr": "Bu hafta sonu seyahate gidecektim ama yağmur yüzünden fikrimi değiştirdim.",
+    "form": "cambié de idea",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "mind",
+    "src": [
+      "https://en.wiktionary.org/wiki/cambiar_de_idea",
+      "https://es.wikipedia.org/wiki/Idea"
+    ]
+  },
+  {
+    "w": "cambiar de opinión",
+    "t": "görüşünü değiştirmek, fikrinden dönmek",
+    "lit": "görüşü değiştirmek",
+    "s": "Tras escuchar todos los argumentos del debate, decidió cambiar de opinión por completo.",
+    "tr": "Münazaradaki tüm argümanları dinledikten sonra görüşünü tamamen değiştirmeye karar verdi.",
+    "form": "cambiar de opinión",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "mind",
+    "src": [
+      "https://en.wiktionary.org/wiki/cambiar_de_opini%C3%B3n",
+      "https://es.wikipedia.org/wiki/Opini%C3%B3n"
+    ]
+  },
+  {
+    "w": "tomar en cuenta",
+    "t": "dikkate almak, hesaba katmak",
+    "lit": "hesaba almak",
+    "eq": "hesaba katmak",
+    "s": "Debes tomar en cuenta las sugerencias del profesor para mejorar tu redacción.",
+    "tr": "Yazını geliştirmek için öğretmenin önerilerini dikkate almalısın.",
+    "form": "tomar en cuenta",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/tomar_en_cuenta",
+      "https://es.wikipedia.org/wiki/Cuenta"
+    ]
+  },
+  {
+    "w": "poner cuidado",
+    "t": "dikkat etmek, özen göstermek",
+    "lit": "dikkat koymak",
+    "s": "Pon cuidado al cruzar esa avenida porque pasan coches a gran velocidad.",
+    "tr": "O caddeden karşıya geçerken dikkat et çünkü arabalar çok hızlı geçiyor.",
+    "form": "Pon cuidado",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/poner_cuidado",
+      "https://es.wikipedia.org/wiki/Cuidado"
+    ]
+  },
+  {
+    "w": "estar pendiente",
+    "t": "gözü üstünde olmak, takipte kalmak",
+    "lit": "asılı olmak",
+    "eq": "dört gözle beklemek",
+    "s": "Estoy pendiente del teléfono porque el médico prometió llamarme con los resultados.",
+    "tr": "Doktor sonuçlarla ilgili aramaya söz verdiği için telefonun başından ayrılmıyorum.",
+    "form": "Estoy pendiente",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "mind",
+    "src": [
+      "https://en.wiktionary.org/wiki/estar_pendiente",
+      "https://es.wikipedia.org/wiki/Pendiente"
+    ]
+  },
+  {
+    "w": "echar un vistazo",
+    "t": "göz gezdirmek, bir bakış atmak",
+    "lit": "bir bakış fırlatmak",
+    "eq": "göz gezdirmek",
+    "s": "¿Puedes echar un vistazo a este documento antes de que lo envíe?",
+    "tr": "Göndermeden önce şu belgeye bir göz gezdirebilir misin?",
+    "form": "echar un vistazo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "mind",
+    "src": [
+      "https://en.wiktionary.org/wiki/echar_un_vistazo",
+      "https://es.wikipedia.org/wiki/Vistazo"
+    ]
+  },
+  {
+    "w": "conocer de vista",
+    "t": "yüzden tanımak, simasını bilmek",
+    "lit": "görüşten tanımak",
+    "s": "No sé su nombre exacto, pero lo conozco de vista del gimnasio.",
+    "tr": "Tam adını bilmiyorum ama onu spor salonundan sima olarak tanıyorum.",
+    "form": "conozco de vista",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/conocer_de_vista",
+      "https://es.wikipedia.org/wiki/Vista"
+    ]
+  },
+  {
+    "w": "hablar de memoria",
+    "t": "ezberden konuşmak, kafadan söylemek",
+    "lit": "hafızadan konuşmak",
+    "s": "No tengo las cifras aquí; hablo de memoria, pero rondaban los mil euros.",
+    "tr": "Rakamlar yanımda yok; ezberden konuşuyorum ama bin avro civarındaydı.",
+    "form": "hablo de memoria",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/hablar_de_memoria",
+      "https://es.wikipedia.org/wiki/Memoria"
+    ]
+  },
+  {
+    "w": "dar por supuesto",
+    "t": "peşinen varsaymak, kesin kabul etmek",
+    "lit": "varsayılmış olarak vermek",
+    "eq": "çantada keklik görmek",
+    "s": "No des por supuesto que vendrá; pregúntale antes para confirmar su asistencia.",
+    "tr": "Geleceğini peşinen varsayma; katılımını teyit etmek için önceden sor.",
+    "form": "des por supuesto",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_por_supuesto",
+      "https://es.wikipedia.org/wiki/Supuesto"
+    ]
+  },
+  {
+    "w": "saltar a la vista",
+    "t": "göze çarpmak, apaçık ortada olmak",
+    "lit": "görüşe zıplamak",
+    "eq": "göze çarpmak",
+    "s": "La diferencia de calidad entre ambos productos salta a la vista enseguida.",
+    "tr": "İki ürün arasındaki kalite farkı hemen göze çarpıyor.",
+    "form": "salta a la vista",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/saltar_a_la_vista",
+      "https://es.wikipedia.org/wiki/Vista"
+    ]
+  },
+  {
+    "w": "enterrar en el olvido",
+    "t": "unutulmaya terk etmek, tamamen unutmak",
+    "lit": "unutuluşta gömmek",
+    "s": "Con los años lograron enterrar en el olvido los rencores de la infancia.",
+    "tr": "Yıllar geçtikçe çocukluk kırgınlıklarını unutulmaya terk etmeyi başardılar.",
+    "form": "enterrar en el olvido",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://en.wiktionary.org/wiki/enterrar_en_el_olvido",
+      "https://es.wikipedia.org/wiki/Olvido"
+    ]
+  },
+  {
+    "w": "hacer caso omiso",
+    "t": "kulak ardı etmek, dikkate almamak",
+    "lit": "ihmalkar dikkat yapmak",
+    "eq": "kulak ardı etmek",
+    "s": "Hizo caso omiso a las advertencias de seguridad y cruzó con roja.",
+    "tr": "Güvenlik uyarılarını kulak ardı etti ve kırmızı ışıkta karşıya geçti.",
+    "form": "Hizo caso omiso",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_caso_omiso",
+      "https://es.wikipedia.org/wiki/Parque_nacional_Alpino"
+    ]
+  },
+  {
+    "w": "no tener ni la más remota idea",
+    "t": "en ufak bir fikri dahi olmamak",
+    "lit": "en uzak fikre bile sahip olmamak",
+    "s": "Le pregunté por la dirección del museo y no tenía ni la más remota idea.",
+    "tr": "Ona müzenin adresini sordum ama en ufak bir fikri bile yoktu.",
+    "form": "no tenía ni la más remota idea",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://en.wiktionary.org/wiki/no_tener_ni_la_m%C3%A1s_remota_idea",
+      "https://es.wikipedia.org/wiki/Idea"
+    ]
+  },
+  {
+    "w": "venir al caso",
+    "t": "konuyla ilgili olmak, yeri olmak",
+    "lit": "vakaya gelmek",
+    "s": "Ese comentario sobre su pasado no viene al caso en esta reunión profesional.",
+    "tr": "Geçmişiyle ilgili o yorum bu profesyonel toplantının konusuyla hiç alakalı değil.",
+    "form": "viene al caso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/venir_al_caso",
+      "https://es.wikipedia.org/wiki/Caso"
+    ]
+  },
+  {
+    "w": "hacerse el loco",
+    "t": "deliliğe vurmak, duymazdan gelmek",
+    "lit": "kendini deli yapmak",
+    "s": "Cuando le pidieron su parte del pago, se hizo el loco y se marchó.",
+    "tr": "Ödemedeki kendi payını istediklerinde deliliğe vurup oradan ayrıldı.",
+    "form": "se hizo el loco",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacerse_el_loco",
+      "https://es.wikipedia.org/wiki/Loco"
+    ]
+  },
+  {
+    "w": "hacerse el tonto",
+    "t": "aptala yatmak, saflığa vurmak",
+    "lit": "kendini aptal yapmak",
+    "eq": "aptala yatmak",
+    "s": "Sabe muy bien lo ocurrido; no te hagas el tonto delante de todos.",
+    "tr": "Ne olduğunu çok iyi biliyorsun; herkesin önünde aptala yatma.",
+    "form": "hagas el tonto",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacerse_el_tonto",
+      "https://es.wikipedia.org/wiki/Hacerse_el_tonto"
+    ]
+  },
+  {
+    "w": "poner de relieve",
+    "t": "öne çıkarmak, vurgulamak",
+    "lit": "kabartıdan koymak",
+    "s": "El informe anual puso de relieve la necesidad de modernizar las instalaciones.",
+    "tr": "Yıllık rapor tesislerin modernleştirilmesi ihtiyacını güçlü biçimde öne çıkardı.",
+    "form": "puso de relieve",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/poner_de_relieve",
+      "https://es.wikipedia.org/wiki/Relieve"
+    ]
+  },
+  {
+    "w": "dar mil vueltas",
+    "t": "kara kara düşünmek, evirip çevirmek",
+    "lit": "bin tur vermek",
+    "s": "Lleva días dándole mil vueltas a la misma propuesta de empleo.",
+    "tr": "Günlerdir aynı iş teklifini kafasında evirip çevirip kara kara düşünüyor.",
+    "form": "dándole mil vueltas",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_mil_vueltas",
+      "https://es.wikipedia.org/wiki/Guerra_de_los_Mil_D%C3%ADas"
+    ]
+  },
+  {
+    "w": "andar por los cerros de Úbeda",
+    "t": "lafı dolandırmak, konudan sapmak",
+    "lit": "Úbeda tepelerinde dolaşmak",
+    "s": "Ve directo al grano y no andes por los cerros de Úbeda otra vez.",
+    "tr": "Doğrudan sadede gel ve lafı yine gereksiz yere dolandırıp durma.",
+    "form": "andes por los cerros de Úbeda",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/andar_por_los_cerros_de_%C3%9Abeda",
+      "https://es.wikipedia.org/wiki/%C3%9Abeda"
+    ]
+  },
+  {
+    "w": "caer la ficha",
+    "t": "jetonu düşmek, durumu aniden kavramak",
+    "lit": "jetonun düşmesi",
+    "eq": "jetonu düşmek",
+    "s": "Tras horas repasando el problema matemático, de repente le cayó la ficha.",
+    "tr": "Matematik problemini saatlerce inceledikten sonra aniden jetonu düştü.",
+    "form": "cayó la ficha",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/caer_la_ficha",
+      "https://es.wikipedia.org/wiki/Ficha"
+    ]
+  },
+  {
+    "w": "comerse el tarro",
+    "t": "kafayı yemek, kuruntu yapıp durmak",
+    "lit": "kavanozu yemek",
+    "eq": "kafayı yemek",
+    "s": "Deja de comerte el tarro por un fallo que ya no puedes solucionar.",
+    "tr": "Artık düzeltemeyeceğin bir hata yüzünden kafayı yiyip kuruntu yapmayı bırak.",
+    "form": "comerte el tarro",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://en.wiktionary.org/wiki/comerse_el_tarro",
+      "https://es.wikipedia.org/wiki/Tarro"
+    ]
+  },
+  {
+    "w": "dar en la tecla",
+    "t": "tam yerine basmak, doğru çözümü bulmak",
+    "lit": "tuşa vurmak",
+    "eq": "turnayı gözünden vurmak",
+    "s": "Después de muchos ensayos, el ingeniero dio en la tecla con el nuevo diseño.",
+    "tr": "Pek çok denemeden sonra mühendis yeni tasarımla doğru çözümü tam yerinde buldu.",
+    "form": "dio en la tecla",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_en_la_tecla",
+      "https://es.wikipedia.org/wiki/Tecla"
+    ]
+  },
+  {
+    "w": "dar palos de ciego",
+    "t": "el yordamıyla hareket etmek, kör dövüşü yapmak",
+    "lit": "körün sopalarıyla vurmak",
+    "s": "Sin una estrategia clara, la empresa solo da palos de ciego en el mercado.",
+    "tr": "Net bir strateji olmadan şirket pazarda sadece el yordamıyla kör dövüşü yapıyor.",
+    "form": "da palos de ciego",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_palos_de_ciego",
+      "https://es.wikipedia.org/wiki/Ciego"
+    ]
+  },
+  {
+    "w": "descubrir el hilo negro",
+    "t": "malumu ilan etmek, bilinen şeyi yeni sanmak",
+    "lit": "siyah ipliği keşfetmek",
+    "eq": "Amerika'yı yeniden keşfetmek",
+    "s": "Presentó su idea como revolucionaria, pero en realidad no descubrió el hilo negro.",
+    "tr": "Fikrini devrimsel gibi sundu ama aslında Amerika'yı yeniden keşfetmiş falan değildi.",
+    "form": "descubrió el hilo negro",
+    "reg": "informal",
+    "area": "Meksika",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/descubrir_el_hilo_negro",
+      "https://es.wikipedia.org/wiki/Negro"
+    ]
+  },
+  {
+    "w": "estar al cabo de la calle",
+    "t": "her şeyin farkında olmak, durumu çok iyi bilmek",
+    "lit": "sokağın sonunda olmak",
+    "s": "No intentes engañarla; ella está al cabo de la calle de lo sucedido.",
+    "tr": "Onu kandırmaya çalışma; olan biten her şeyin gayet iyi farkında.",
+    "form": "está al cabo de la calle",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://en.wiktionary.org/wiki/estar_al_cabo_de_la_calle",
+      "https://es.wikipedia.org/wiki/Calle"
+    ]
+  },
+  {
+    "w": "hacerse el sueco",
+    "t": "duymazdan gelmek, anlamazlıktan gelmek",
+    "lit": "kendini İsveçli yapmak",
+    "eq": "duymazdan gelmek",
+    "s": "Le pedí explicaciones sobre el retraso y se hizo el sueco disimulando.",
+    "tr": "Gecikmeyle ilgili açıklama istedim ama hiçbir şey duymamış gibi anlamazlıktan geldi.",
+    "form": "se hizo el sueco",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacerse_el_sueco",
+      "https://es.wikipedia.org/wiki/Sueco"
+    ]
+  },
+  {
+    "w": "irse la pinza",
+    "t": "aklı başından gitmek, kafası karışmak",
+    "lit": "mandalın gitmesi",
+    "eq": "balataları sıyırmak",
+    "s": "Se me fue la pinza por completo y olvidé apagar el horno al salir.",
+    "tr": "Aklım tamamen başımdan gitti ve çıkarken fırını kapatmayı unuttum.",
+    "form": "fue la pinza",
+    "reg": "slang",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/irse_la_pinza",
+      "https://es.wikipedia.org/wiki/Pinza"
+    ]
+  },
+  {
+    "w": "tener trastienda",
+    "t": "gizli bir art niyeti olmak, göründüğü gibi olmamak",
+    "lit": "arka dükkana sahip olmak",
+    "s": "Sus halagos excesivos me inquietan; estoy convencido de que tiene trastienda.",
+    "tr": "Aşırı övgüleri beni huzursuz ediyor; arkasında gizli bir art niyet olduğuna eminim.",
+    "form": "tiene trastienda",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/tener_trastienda",
+      "https://es.wikipedia.org/wiki/Tienda"
+    ]
+  },
+  {
+    "w": "volver tarumba",
+    "t": "aklını başından almak, serseme çevirmek",
+    "lit": "tarumba döndürmek",
+    "eq": "serseme çevirmek",
+    "s": "Tantas instrucciones contradictorias van a volver tarumba a cualquiera en el taller.",
+    "tr": "Bu kadar çelişkili talimat atölyedeki herkesi serseme çevirir.",
+    "form": "volver tarumba",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/volver_tarumba",
+      "https://es.wikipedia.org/wiki/La_Tarumba"
+    ]
+  },
+  {
+    "w": "olerse el percal",
+    "t": "durumun nereye varacağını sezmek, işin kokusunu almak",
+    "lit": "patiska kumaşını koklamak",
+    "eq": "kokusunu almak",
+    "s": "En cuanto vio la tensión en la sala, se olió el percal de inmediato.",
+    "tr": "Salondaki gerginliği görür görmez işin nereye varacağını hemen sezdi.",
+    "form": "olió el percal",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://es.wiktionary.org/wiki/olerse_el_percal",
+      "https://es.wikipedia.org/wiki/Percal"
+    ]
+  },
+  {
+    "w": "estar a oscuras",
+    "t": "hiçbir şeyden haberi olmamak, bilgi sahibi olmamak",
+    "lit": "karanlıklarda olmak",
+    "eq": "habersiz olmak",
+    "s": "Sobre los motivos reales de su dimisión, todavía estamos a oscuras.",
+    "tr": "İstifasının ardındaki gerçek sebepler hakkında hâlâ hiçbir bilgimiz yok.",
+    "form": "estamos a oscuras",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://en.wiktionary.org/wiki/estar_a_oscuras",
+      "https://es.wikipedia.org/wiki/Oscuro_(desambiguaci%C3%B3n)"
+    ]
+  }
+]

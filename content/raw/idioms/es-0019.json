@@ -1,0 +1,522 @@
+[
+  {
+    "w": "matar el hambre",
+    "t": "açlığını bastırmak, karnını doyurmak",
+    "lit": "açlığı öldürmek",
+    "eq": "açlığını bastırmak",
+    "s": "Comimos unos frutos secos en el tren para matar el hambre hasta la cena.",
+    "form": "matar el hambre",
+    "tr": "Akşam yemeğine kadar açlığımızı bastırmak için trende biraz kuruyemiş yedik.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/matar_el_hambre",
+      "https://es.wikipedia.org/wiki/Matambre_(corte_de_carne)"
+    ]
+  },
+  {
+    "w": "comer con los ojos",
+    "t": "gözü doymamak, yemeğe açgözlülükle bakmak",
+    "lit": "gözlerle yemek",
+    "eq": "gözü doymamak",
+    "s": "Pidió demasiados platos en el bufé porque siempre come con los ojos.",
+    "form": "come con los ojos",
+    "tr": "Gözü hiç doymadığı için açık büfede gereğinden fazla tabak aldı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/comer_con_los_ojos",
+      "https://es.wikipedia.org/wiki/Patitas_con_man%C3%AD"
+    ]
+  },
+  {
+    "w": "pasar un mal trago",
+    "t": "zor ve tatsız bir durum yaşamak",
+    "lit": "kötü bir yudum geçirmek",
+    "s": "El conferenciante pasó un mal trago cuando se apagó el proyector.",
+    "form": "pasó un mal trago",
+    "tr": "Projeksiyon cihazı kapanınca konuşmacı oldukça zor bir an yaşadı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/mal_trago",
+      "https://es.wikipedia.org/wiki/El_mal_trago_de_Ob%C3%A9lix"
+    ]
+  },
+  {
+    "w": "estar más fresco que una lechuga",
+    "t": "dipdiri ve zinde olmak, hiç istifini bozmamak",
+    "lit": "bir maruldan daha taze olmak",
+    "eq": "turp gibi olmak",
+    "s": "Después de diez horas de viaje en autobús, el niño estaba más fresco que una lechuga.",
+    "form": "estaba más fresco que una lechuga",
+    "tr": "On saatlik otobüs yolculuğundan sonra çocuk hâlâ dipdiri ve zindeydi.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/estar_m%C3%A1s_fresco_que_una_lechuga",
+      "https://es.wikipedia.org/wiki/Tinga"
+    ]
+  },
+  {
+    "w": "ser como el aceite y el agua",
+    "t": "hiç uyuşmamak, birbirine taban tabana zıt olmak",
+    "lit": "yağ ve su gibi olmak",
+    "eq": "geceyle gündüz gibi olmak",
+    "s": "Aquellos dos socios tenían caracteres opuestos y eran como el aceite y el agua.",
+    "form": "eran como el aceite y el agua",
+    "tr": "O iki ortağın karakterleri birbirine zıttı ve hiç uyuşmuyorlardı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/como_el_aceite_y_el_agua",
+      "https://es.wikipedia.org/wiki/Separaci%C3%B3n_de_fases"
+    ]
+  },
+  {
+    "w": "comparar peras con manzanas",
+    "t": "elmayla armudu karıştırmak, bambaşka şeyleri kıyaslamak",
+    "lit": "armutları elmalarla karşılaştırmak",
+    "eq": "elmayla armudu karıştırmak",
+    "s": "Equiparar esos dos sectores industriales tan distintos es comparar peras con manzanas.",
+    "form": "comparar peras con manzanas",
+    "tr": "Birbirinden bu kadar farklı iki sanayi dalını bir tutmak elmayla armudu karıştırmaktır.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/comparar_peras_con_manzanas",
+      "https://es.wikipedia.org/wiki/Peras_con_manzanas"
+    ]
+  },
+  {
+    "w": "ganarse las lentejas",
+    "t": "ekmek parasını kazanmak, geçimini sağlamak",
+    "lit": "mercimeklerini kazanmak",
+    "eq": "ekmek parasını çıkarmak",
+    "s": "Empezó a dar clases particulares por las tardes para ganarse las lentejas.",
+    "form": "ganarse las lentejas",
+    "tr": "Geçimini sağlamak için öğleden sonraları özel ders vermeye başladı.",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/ganarse_las_lentejas",
+      "https://es.wikipedia.org/wiki/Jeanne_de_Valois-Saint-R%C3%A9my"
+    ]
+  },
+  {
+    "w": "ganarse los frijoles",
+    "t": "alınteriyle geçimini sağlamak, ekmek parasını kazanmak",
+    "lit": "fasulyelerini kazanmak",
+    "eq": "ekmek parasını çıkarmak",
+    "s": "Sale temprano al taller mecánico todos los días para ganarse los frijoles.",
+    "form": "ganarse los frijoles",
+    "tr": "Ekmek parasını kazanmak için her gün sabah erkenden tamirhaneye gider.",
+    "reg": "informal",
+    "area": "Meksika",
+    "level": "B2",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/ganarse_los_frijoles",
+      "https://es.wikipedia.org/wiki/Lisa_the_Tree_Hugger"
+    ]
+  },
+  {
+    "w": "comer a dos carrillos",
+    "t": "iki yanağı şişerek büyük bir iştahla yemek",
+    "lit": "iki yanakla yemek",
+    "s": "Tras la caminata por la montaña, todos comían a dos carrillos.",
+    "form": "comían a dos carrillos",
+    "tr": "Dağ yürüyüşünün ardından herkes büyük bir iştahla yemek yiyordu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/comer_a_dos_carrillos",
+      "https://es.wikipedia.org/wiki/Margaret_Elizabeth_O'Brien"
+    ]
+  },
+  {
+    "w": "beber a morro",
+    "t": "bardak kullanmadan doğrudan şişeden içmek",
+    "lit": "ağızdan doğrudan içmek",
+    "s": "Como no quedaban vasos limpios en la cocina, bebió a morro de la botella.",
+    "form": "bebió a morro",
+    "tr": "Mutfakta temiz bardak kalmadığı için suyu doğrudan şişeden içti.",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/beber_a_morro",
+      "https://es.wikipedia.org/wiki/Castellano_churro"
+    ]
+  },
+  {
+    "w": "hacer pucheros",
+    "t": "dudağını büküp ağlamaklı olmak",
+    "lit": "güveç yemekleri yapmak",
+    "s": "Cuando le dijeron que el parque estaba cerrado, el pequeño empezó a hacer pucheros.",
+    "form": "hacer pucheros",
+    "tr": "Parkın kapalı olduğunu söylediklerinde küçük çocuk dudağını büküp ağlamaklı oldu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_pucheros",
+      "https://es.wikipedia.org/wiki/Puchero_de_barro"
+    ]
+  },
+  {
+    "w": "aguar la fiesta",
+    "pat": "aguarle la fiesta a alguien",
+    "t": "keyfini kaçırmak, sevincini kursağında bırakmak",
+    "lit": "kutlamayı sulandırmak",
+    "eq": "tadı tuzu kaçırmak",
+    "s": "Un gol del equipo rival en el último minuto nos aguó la fiesta.",
+    "form": "aguó la fiesta",
+    "tr": "Rakip takımın son dakikada attığı gol sevincimizi kursağımızda bıraktı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/aguar_la_fiesta",
+      "https://es.wikipedia.org/wiki/Antonio_Caballero_Holgu%C3%ADn"
+    ]
+  },
+  {
+    "w": "estar a punto de caramelo",
+    "t": "tam kıvamında olmak, gerçekleşmeye çok yakın olmak",
+    "lit": "karamel kıvamında olmak",
+    "s": "El acuerdo comercial entre ambas empresas ya está a punto de caramelo.",
+    "form": "está a punto de caramelo",
+    "tr": "İki şirket arasındaki ticari anlaşma artık imzalanacak kıvama geldi.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/a_punto_de_caramelo",
+      "https://es.wikipedia.org/wiki/Noche_sin_fin"
+    ]
+  },
+  {
+    "w": "ser la guinda de la tarta",
+    "t": "bir başarıyı taçlandıran son dokunuş olmak",
+    "lit": "pastanın vişnesi olmak",
+    "s": "El premio internacional fue la guinda de la tarta para su carrera.",
+    "form": "fue la guinda de la tarta",
+    "tr": "Uluslararası ödül, onun meslek hayatını taçlandıran son dokunuş oldu.",
+    "reg": "neutral",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/guinda_de_la_tarta",
+      "https://es.wikipedia.org/wiki/Tarta"
+    ]
+  },
+  {
+    "w": "ser un pan de Dios",
+    "t": "çok iyi kalpli ve uysal bir insan olmak",
+    "lit": "Tanrı'nın bir ekmeği olmak",
+    "eq": "melek gibi olmak",
+    "s": "Nuestro vecino siempre ayuda a todo el barrio porque es un pan de Dios.",
+    "form": "es un pan de Dios",
+    "tr": "Komşumuz çok iyi kalpli biri olduğu için bütün mahalleye her zaman yardım eder.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/pan_de_Dios",
+      "https://es.wikipedia.org/wiki/Carita_de_at%C3%BAn"
+    ]
+  },
+  {
+    "w": "no saber ni papa",
+    "t": "tek kelime bile bilmemek, konudan hiç anlamamak",
+    "lit": "patates bile bilmemek",
+    "s": "Cuando aterrizó en Tokio por primera vez, no sabía ni papa de japonés.",
+    "form": "no sabía ni papa",
+    "tr": "Tokyo'ya ilk kez indiğinde tek kelime bile Japonca bilmiyordu.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/no_saber_ni_papa",
+      "https://es.wikipedia.org/wiki/Papa_Don't_Leech"
+    ]
+  },
+  {
+    "w": "poner a caldo",
+    "pat": "poner a caldo a alguien",
+    "t": "ağır biçimde eleştirmek, arkasından veriştirmek",
+    "lit": "et suyuna koymak",
+    "eq": "yerden yere vurmak",
+    "s": "Los críticos de cine pusieron a caldo la última película del director.",
+    "form": "pusieron a caldo",
+    "tr": "Sinema eleştirmenleri yönetmenin son filmini yerden yere vurdu.",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/poner_a_caldo",
+      "https://es.wikiquote.org/wiki/Caldo"
+    ]
+  },
+  {
+    "w": "estar en el ajo",
+    "t": "gizli bir işin içinde olmak, sırdan haberdar olmak",
+    "lit": "sarımsağın içinde olmak",
+    "eq": "işin içinde olmak",
+    "s": "Nadie sospechaba que el contable también estaba en el ajo desde el principio.",
+    "form": "estaba en el ajo",
+    "tr": "Muhasebecinin de en başından beri o gizli işin içinde olduğundan kimse şüphelenmiyordu.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/en_el_ajo",
+      "https://es.wikipedia.org/wiki/Salsa_picante"
+    ]
+  },
+  {
+    "w": "no ser trigo limpio",
+    "t": "tekin olmamak, dürüstlüğünden şüphe edilmek",
+    "lit": "temiz buğday olmamak",
+    "eq": "tekin olmamak",
+    "s": "Desconfía de sus promesas de negocio porque ese intermediario no es trigo limpio.",
+    "form": "no es trigo limpio",
+    "tr": "Onun iş vaatlerine güvenme çünkü o aracı pek tekin biri değil.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/no_ser_trigo_limpio",
+      "https://es.wikipedia.org/wiki/Dexter"
+    ]
+  },
+  {
+    "w": "arrimar el ascua a su sardina",
+    "t": "her durumu kendi çıkarına yontmak",
+    "lit": "koru kendi sardalyasına yaklaştırmak",
+    "eq": "kendi çıkarına yontmak",
+    "s": "En el debate presupuestario cada departamento intentó arrimar el ascua a su sardina.",
+    "form": "arrimar el ascua a su sardina",
+    "tr": "Bütçe görüşmesinde her bölüm durumu kendi çıkarına yontmaya çalıştı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/arrimar_el_ascua_a_su_sardina",
+      "https://es.wikisource.org/wiki/Carta_de_D._Miguel_Garc%C3%ADa_de_C%C3%A1ceres_a_D._Dionicio_Francisco%2C_con_exposici%C3%B3n_de_criterios_pol%C3%ADticos_y_econ%C3%B3micos_para_la_anexi%C3%B3n_de_la_Provincia_de_Guayaquil_al_Virreynato_del_Per%C3%BA"
+    ]
+  },
+  {
+    "w": "hacer el caldo gordo",
+    "pat": "hacerle el caldo gordo a alguien",
+    "t": "başkasının işine yarayacak biçimde davranmak, ekmeğine yağ sürmek",
+    "lit": "yağlı et suyunu yapmak",
+    "eq": "ekmeğine yağ sürmek",
+    "s": "Con esas declaraciones polémicas solo consigues hacer el caldo gordo a tus rivales.",
+    "form": "hacer el caldo gordo",
+    "tr": "Bu tartışmalı açıklamalarla yalnızca rakiplerinin ekmeğine yağ sürüyorsun.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacer_el_caldo_gordo",
+      "https://es.wikisource.org/wiki/Torquemada_en_la_hoguera%2FIII"
+    ]
+  },
+  {
+    "w": "venderse por un plato de lentejas",
+    "t": "küçük bir çıkar uğruna ilkelerinden vazgeçmek",
+    "lit": "bir tabak mercimeğe satılmak",
+    "s": "Prefirió renunciar al cargo antes que venderse por un plato de lentejas.",
+    "form": "venderse por un plato de lentejas",
+    "tr": "Küçük bir çıkar uğruna ilkelerinden vazgeçmektense görevinden ayrılmayı tercih etti.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/venderse_por_un_plato_de_lentejas",
+      "https://es.wikipedia.org/wiki/Esa%C3%BA"
+    ]
+  },
+  {
+    "w": "no ser una perita en dulce",
+    "t": "hiç de kolay lokma olmamak, geçinilmesi güç olmak",
+    "lit": "tatlıda küçük bir armut olmamak",
+    "eq": "kolay lokma olmamak",
+    "s": "El nuevo cliente paga bien, pero negociar con él no es una perita en dulce.",
+    "form": "no es una perita en dulce",
+    "tr": "Yeni müşteri iyi ödeme yapıyor ama onunla pazarlık etmek hiç kolay değil.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/no_ser_una_perita_en_dulce",
+      "https://es.wikipedia.org/wiki/Tomate_de_pera"
+    ]
+  },
+  {
+    "w": "parecerse como un huevo a una castaña",
+    "t": "birbirine zerre kadar benzememek",
+    "lit": "bir yumurtanın bir kestaneye benzemesi gibi benzemek",
+    "s": "Aunque son hermanos gemelos, en el carácter se parecen como un huevo a una castaña.",
+    "form": "se parecen como un huevo a una castaña",
+    "tr": "İkiz kardeş olsalar da huy bakımından birbirlerine zerre kadar benzemiyorlar.",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/parecerse_como_un_huevo_a_una_casta%C3%B1a",
+      "https://es.wikiquote.org/wiki/Refranes_en_espa%C3%B1ol_(P)"
+    ]
+  },
+  {
+    "w": "importar un bledo",
+    "pat": "importarle un bledo algo a alguien",
+    "t": "zerre kadar umurunda olmamak, hiç aldırmamak",
+    "lit": "bir yabani pazı kadar önem taşımak",
+    "eq": "vız gelmek",
+    "s": "Al veterano escritor le importaban un bledo las modas literarias del momento.",
+    "form": "importaban un bledo",
+    "tr": "Usta yazarın o dönemin edebiyat modaları zerre kadar umurunda değildi.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://en.wiktionary.org/wiki/importar_un_bledo",
+      "https://es.wikipedia.org/wiki/Premonition"
+    ]
+  },
+  {
+    "w": "ser la manzana de la discordia",
+    "t": "anlaşmazlık ve kavga konusu olmak",
+    "lit": "nifak elması olmak",
+    "eq": "nifak tohumu olmak",
+    "s": "El reparto de aquel terreno familiar fue la manzana de la discordia entre los primos.",
+    "form": "fue la manzana de la discordia",
+    "tr": "Aileye ait o arsanın paylaşımı kuzenler arasında anlaşmazlık konusu oldu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/manzana_de_la_discordia",
+      "https://es.wikipedia.org/wiki/Manzana_de_la_discordia"
+    ]
+  },
+  {
+    "w": "ser la flor y nata",
+    "t": "bir alanın en seçkin kesimi olmak",
+    "lit": "çiçek ve kaymak olmak",
+    "eq": "kaymak tabakası olmak",
+    "s": "Al congreso anual de física acudió la que era la flor y nata de la ciencia.",
+    "form": "era la flor y nata",
+    "tr": "Yıllık fizik kongresine bilim dünyasının en seçkin isimleri katıldı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/flor_y_nata",
+      "https://es.wikipedia.org/wiki/Arcabucero"
+    ]
+  },
+  {
+    "w": "comerse el turrón",
+    "t": "görevinde Noel'e kadar tutunabilmek, kovulmadan yılı tamamlamak",
+    "lit": "koz helvayı yemek",
+    "s": "Tras cinco derrotas seguidas, dudan que el entrenador llegue a comerse el turrón.",
+    "form": "comerse el turrón",
+    "tr": "Üst üste beş yenilgiden sonra teknik direktörün yıl sonunu görebileceğinden şüphe ediyorlar.",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/comerse_el_turr%C3%B3n",
+      "https://es.wikipedia.org/wiki/Juanma_Lillo"
+    ]
+  },
+  {
+    "w": "tirar manteca al techo",
+    "t": "bol keseden para saçmak, savurganca eğlenmek",
+    "lit": "tavana tereyağı fırlatmak",
+    "s": "Cuando cobró el premio mayor, salió a celebrar y a tirar manteca al techo.",
+    "form": "tirar manteca al techo",
+    "tr": "Büyük ikramiyeyi tahsil edince kutlama yapıp bol keseden para saçmaya çıktı.",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/tirar_manteca_al_techo",
+      "https://es.wikipedia.org/wiki/Mart%C3%ADn_de_Alzaga_Unzu%C3%A9"
+    ]
+  },
+  {
+    "w": "parar la olla",
+    "t": "ev halkının karnını doyurmak, mutfak masrafını karşılamak",
+    "lit": "tencereyi dik tutmak",
+    "eq": "tencereyi kaynatmak",
+    "s": "Trabajaba en dos oficios distintos para poder parar la olla en su casa.",
+    "form": "parar la olla",
+    "tr": "Evinde tencereyi kaynatabilmek için iki ayrı işte çalışıyordu.",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/parar_la_olla",
+      "https://es.wikisource.org/wiki/Margot_(Flores)"
+    ]
+  },
+  {
+    "w": "dar papaya",
+    "t": "boş bulunup koz vermek, kendini savunmasız bırakmak",
+    "lit": "papaya vermek",
+    "eq": "açık vermek",
+    "s": "En esta avenida tan concurrida cuida tu mochila y evita dar papaya.",
+    "form": "dar papaya",
+    "tr": "Bu kalabalık caddede sırt çantana dikkat et ve sakın açık verme.",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "food",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_papaya",
+      "https://es.wikipedia.org/wiki/Espa%C3%B1ol_colombiano"
+    ]
+  }
+]

@@ -1,0 +1,520 @@
+[
+  {
+    "w": "cerrar el pico",
+    "t": "çenesini kapatmak, sesini kesmek",
+    "lit": "gagayı kapatmak",
+    "eq": "çenesini tutmak",
+    "s": "Le ordenó cerrar el pico para que todos pudieran escuchar la conferencia.",
+    "tr": "Herkesin konferansı dinleyebilmesi için ona çenesini kapatmasını emretti.",
+    "form": "cerrar el pico",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/cerrar_el_pico",
+      "https://es.wikipedia.org/wiki/Carl_Gustav_Jung"
+    ]
+  },
+  {
+    "w": "abrir el pico",
+    "t": "ağzını açmak, konuşmaya başlamak",
+    "lit": "gagayı açmak",
+    "s": "No abrió el pico durante toda la reunión a pesar de nuestras preguntas.",
+    "tr": "Sorularımıza rağmen bütün toplantı boyunca ağzını açıp tek kelime etmedi.",
+    "form": "abrió el pico",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/abrir_el_pico",
+      "https://es.wikipedia.org/wiki/Icteridae"
+    ]
+  },
+  {
+    "w": "hablar como un loro",
+    "t": "durmadan konuşmak, makineli tüfek gibi konuşmak",
+    "lit": "papağan gibi konuşmak",
+    "eq": "bülbül gibi konuşmak",
+    "s": "Mi sobrina pequeña habla como un loro desde que aprendió a leer cuentos.",
+    "tr": "Küçük yeğenim masal okumayı öğrendiğinden beri durmaksızın makineli tüfek gibi konuşuyor.",
+    "form": "habla como un loro",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/hablar_como_un_loro",
+      "https://es.wikipedia.org/wiki/Alex_(loro)"
+    ]
+  },
+  {
+    "w": "beber como un pez",
+    "t": "sünger gibi içmek, çok içki tüketmek",
+    "lit": "balık gibi içmek",
+    "eq": "sünger gibi içmek",
+    "s": "En las fiestas del pueblo muchos asistentes beben como un pez hasta medianoche.",
+    "tr": "Köy şenliklerinde pek çok katılımcı gece yarısına kadar sünger gibi içki içiyor.",
+    "form": "beben como un pez",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/beber_como_un_pez",
+      "https://es.wikipedia.org/wiki/Gilly_Hicks"
+    ]
+  },
+  {
+    "w": "ser un lobo solitario",
+    "t": "tek başına hareket etmek, yalnızlığı tercih etmek",
+    "lit": "yalnız bir kurt olmak",
+    "eq": "yalnız kurt",
+    "s": "Prefiere trabajar sin ayudantes porque siempre ha sido un lobo solitario.",
+    "tr": "Her zaman yalnız bir kurt olduğu için yardımcısız çalışmayı tercih ediyor.",
+    "form": "un lobo solitario",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/lobo_solitario",
+      "https://es.wikipedia.org/wiki/Lobo_solitario"
+    ]
+  },
+  {
+    "w": "estar hecho un toro",
+    "t": "turp gibi olmak, çok güçlü ve sağlıklı olmak",
+    "lit": "boğa yapılmış olmak",
+    "eq": "çakı gibi olmak",
+    "s": "A sus ochenta años camina diez kilómetros diarios y está hecho un toro.",
+    "tr": "Seksen yaşında her gün on kilometre yürüyor ve turp gibi güçlü.",
+    "form": "está hecho un toro",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/estar_hecho_un_toro",
+      "https://es.wikipedia.org/wiki/Toro_(geometr%C3%ADa)"
+    ]
+  },
+  {
+    "w": "aburrirse como una ostra",
+    "t": "patlayacak kadar sıkılmak, aşırı canı sıkılmak",
+    "lit": "istiridye gibi sıkılmak",
+    "eq": "canı burnundan gelmek",
+    "s": "La conferencia sobre leyes fiscales fue larguísima y nos aburrimos como una ostra.",
+    "tr": "Vergi yasaları üzerine konferans çok uzundu ve resmen patlayacak kadar sıkıldık.",
+    "form": "aburrimos como una ostra",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/aburrirse_como_una_ostra",
+      "https://es.wikisource.org/wiki/A_flor_de_piel%2F05"
+    ]
+  },
+  {
+    "w": "estar pez",
+    "t": "bir konudan hiç anlamamak, Fransız kalmak",
+    "lit": "balık olmak",
+    "eq": "Fransız kalmak",
+    "s": "No me preguntes sobre química orgánica porque estoy pez en esa asignatura.",
+    "tr": "Bana organik kimya hakkında soru sorma çünkü o derse tamamen Fransızım.",
+    "form": "estoy pez",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/estar_pez",
+      "https://es.wikipedia.org/wiki/Estar_en_el_armario"
+    ]
+  },
+  {
+    "w": "caerse del nido",
+    "t": "dünyadan haberi olmamak, saf ve habersiz olmak",
+    "lit": "yuvadan düşmek",
+    "s": "Creyó todas las promesas del estafador como si se hubiera caído del nido.",
+    "tr": "Dolandırıcının tüm vaatlerine dünyadan hiç haberi yokmuş gibi safça inandı.",
+    "form": "caído del nido",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/caerse_del_nido",
+      "https://tatoeba.org/es/sentences/show/13485104"
+    ]
+  },
+  {
+    "w": "no ser moco de pavo",
+    "t": "hafife alınacak şey olmamak, önemli olmak",
+    "lit": "hindi sümüğü olmamak",
+    "eq": "borusu ötmek",
+    "s": "Conseguir una beca completa de investigación no es moco de pavo hoy en día.",
+    "tr": "Bugünlerde tam kapsamlı bir araştırma bursu kazanmak hiç de hafife alınacak bir iş değil.",
+    "form": "no es moco de pavo",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/no_ser_moco_de_pavo",
+      "https://es.wikipedia.org/wiki/Amaranthus_viridis"
+    ]
+  },
+  {
+    "w": "estar en la edad del pavo",
+    "t": "ergenlik çağında olmak, kaprisli dönemde bulunmak",
+    "lit": "hindinin yaşında olmak",
+    "eq": "ergenlik hezeyanı yaşamak",
+    "s": "Mi hijo responde a todo con quejas porque está en la edad del pavo.",
+    "tr": "Oğlum tam ergenlik çağında olduğu için her şeye şikayetle karşılık veriyor.",
+    "form": "está en la edad del pavo",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/edad_del_pavo",
+      "https://es.wikipedia.org/wiki/La_edad_del_pavo_(Aquiles_Tal%C3%B3n)"
+    ]
+  },
+  {
+    "w": "montar el pollo",
+    "t": "ortalığı birbirine katmak, patırtı çıkarmak",
+    "lit": "tavuğu kurmak",
+    "eq": "kıyameti koparmak",
+    "s": "El cliente insatisfecho montó el pollo en la recepción del hotel sin motivo justificado.",
+    "tr": "Memnun kalmayan müşteri otel resepsiyonunda haklı hiçbir sebep yokken ortalığı birbirine kattı.",
+    "form": "montó el pollo",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/montar_el_pollo",
+      "https://es.wikipedia.org/wiki/Maldita_la_hora"
+    ]
+  },
+  {
+    "w": "cantar otro gallo",
+    "t": "işin rengi değişmek, durum farklılaşmak",
+    "lit": "başka horozun ötmesi",
+    "s": "Si hubiéramos tenido más financiación desde el principio, otro gallo cantaría.",
+    "tr": "En başından beri daha fazla fonumuz olsaydı işin rengi çok daha farklı olurdu.",
+    "form": "otro gallo cantaría",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/otro_gallo_cantar%C3%ADa",
+      "https://es.wikipedia.org/wiki/Querer_creer%2C_creer_querer"
+    ]
+  },
+  {
+    "w": "contar los pollos antes de nacer",
+    "t": "sonucu görmeden kesin varsaymak",
+    "lit": "civcivleri doğmadan önce saymak",
+    "eq": "doğmamış çocuğa don biçmek",
+    "s": "No celebres la victoria antes de tiempo; no cuentes los pollos antes de nacer.",
+    "tr": "Zamanından önce zafer kutlaması yapma; doğmamış çocuğa don biçme.",
+    "form": "cuentes los pollos antes de nacer",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/contar_los_pollos_antes_de_nacer",
+      "https://es.wikipedia.org/wiki/Lowell_Lee_Andrews"
+    ]
+  },
+  {
+    "w": "ver los toros desde la barrera",
+    "t": "olayları uzaktan güvenle izlemek, suya sabuna dokunmamak",
+    "lit": "boğaları bariyerden görmek",
+    "eq": "uzaktan gazel okumak",
+    "s": "Es muy cómodo criticar las dificultades cuando ves los toros desde la barrera.",
+    "tr": "Olayları uzaktan güvenle izlerken zorlukları eleştirmek çok kolaydır.",
+    "form": "ves los toros desde la barrera",
+    "reg": "neutral",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/ver_los_toros_desde_la_barrera",
+      "https://es.wikipedia.org/wiki/Jos%C3%A9_Luis_Cruz"
+    ]
+  },
+  {
+    "w": "hacer una vaca",
+    "t": "ortaklaşa para toplamak, imece usulü denkleştirmek",
+    "lit": "bir inek yapmak",
+    "s": "Hicimos una vaca entre todos los compañeros para comprarle el regalo de jubilación.",
+    "tr": "Emeklilik hediyesini almak için tüm iş arkadaşları aramızda ortaklaşa para topladık.",
+    "form": "Hicimos una vaca",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_una_vaca",
+      "https://es.wikipedia.org/wiki/Espa%C3%B1ol_chileno"
+    ]
+  },
+  {
+    "w": "ser un chivo expiatorio",
+    "t": "günah keçisi olmak, suçu üstüne çekmek",
+    "lit": "kefaret keçisi olmak",
+    "eq": "günah keçisi olmak",
+    "s": "El joven técnico fue el chivo expiatorio del fallo informático general de la empresa.",
+    "tr": "Genç teknisyen, şirketin genel bilgisayar arızasının günah keçisi ilan edildi.",
+    "form": "el chivo expiatorio",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/chivo_expiatorio",
+      "https://es.wikipedia.org/wiki/Chivo_expiatorio"
+    ]
+  },
+  {
+    "w": "ser un elefante blanco",
+    "t": "kullanışsız ve masraflı mülk olmak",
+    "lit": "beyaz bir fil olmak",
+    "s": "Aquel aeropuerto abandonado en mitad de la llanura resultó ser un elefante blanco.",
+    "tr": "Ovanın ortasındaki o terk edilmiş havalimanı devasa ve masraflı bir yüke dönüştü.",
+    "form": "un elefante blanco",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/elefante_blanco",
+      "https://es.wikipedia.org/wiki/Elefante_blanco"
+    ]
+  },
+  {
+    "w": "hacer el ganso",
+    "t": "şapşallık etmek, soytarılık yapmak",
+    "lit": "kaz yapmak",
+    "eq": "maskaralık etmek",
+    "s": "Deja de hacer el ganso en la biblioteca y ponte a estudiar seriamente.",
+    "tr": "Kütüphanede soytarılık yapmayı bırak da oturup ciddi şekilde ders çalış.",
+    "form": "hacer el ganso",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_el_ganso",
+      "https://es.wikipedia.org/wiki/Cuentos_de_Mam%C3%A1_Ganso"
+    ]
+  },
+  {
+    "w": "hablar por boca de ganso",
+    "t": "başkalarının lafını papağan gibi tekrarlamak",
+    "lit": "kazın ağzından konuşmak",
+    "s": "No tiene ideas propias; siempre habla por boca de ganso de su jefe.",
+    "tr": "Kendi özgün fikirleri yok; hep müdürünün sözlerini papağan gibi tekrarlıyor.",
+    "form": "habla por boca de ganso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/hablar_por_boca_de_ganso",
+      "https://es.wikipedia.org/wiki/Doctus_cum_libro"
+    ]
+  },
+  {
+    "w": "hacer en menos que canta un gallo",
+    "t": "kaşla göz arasında bitirmek, çabucak yapmak",
+    "lit": "horozun ötmesinden daha azda yapmak",
+    "eq": "kaşla göz arasında",
+    "s": "Trae tus maletas y te preparo la habitación en menos que canta un gallo.",
+    "tr": "Bavullarını getir, sana odayı kaşla göz arasında çabucak hazırlayayım.",
+    "form": "en menos que canta un gallo",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/en_menos_que_canta_un_gallo",
+      "https://es.wikisource.org/wiki/La_Tribuna%2F10"
+    ]
+  },
+  {
+    "w": "echar la capa al toro",
+    "t": "tehlikeyi savuşturmak için kendini öne atmak",
+    "lit": "pelerini boğaya atmak",
+    "s": "El ministro tuvo que echar la capa al toro ante la prensa para defender la ley.",
+    "tr": "Bakan yasayı savunmak için basının önünde tehlikeyi göğüsleyip kendini öne attı.",
+    "form": "echar la capa al toro",
+    "reg": "formal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/echar_la_capa_al_toro",
+      "https://es.wikisource.org/wiki/Or%C3%A1culo_manual_y_arte_de_prudencia%2FAforismos_(76-100)"
+    ]
+  },
+  {
+    "w": "hablar a toro pasado",
+    "t": "iş olup bittikten sonra ahkam kesmek",
+    "lit": "geçmiş boğaya konuşmak",
+    "eq": "iş işten geçtikten sonra konuşmak",
+    "s": "Es muy fácil encontrar soluciones cuando se habla a toro pasado tras la crisis.",
+    "tr": "Kriz bittikten sonra ahkam keserken çözüm bulmak elbette çok kolaydır.",
+    "form": "habla a toro pasado",
+    "reg": "neutral",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_toro_pasado",
+      "https://es.wikipedia.org/wiki/A_toro_pasado"
+    ]
+  },
+  {
+    "w": "poner el carro delante del caballo",
+    "t": "işleri ters sırayla yapmak, acelecilik etmek",
+    "lit": "arabayı atın önüne koymak",
+    "eq": "atı arabanın arkasına koşmak",
+    "s": "Firmar la compra sin revisar la escritura es poner el carro delante del caballo.",
+    "tr": "Tapuyu kontrol etmeden alımı imzalamak işleri tamamen ters sırayla yapmaktır.",
+    "form": "poner el carro delante del caballo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/poner_el_carro_delante_del_caballo",
+      "https://es.wikiquote.org/wiki/Refranes_argentinos"
+    ]
+  },
+  {
+    "w": "ser el caballo de batalla",
+    "t": "en can alıcı nokta olmak, ana tartışma konusu olmak",
+    "lit": "savaş atı olmak",
+    "s": "La reforma de las pensiones fue el caballo de batalla en toda la campaña electoral.",
+    "tr": "Emeklilik reformu seçim kampanyası boyunca en can alıcı ana tartışma konusu oldu.",
+    "form": "el caballo de batalla",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/caballo_de_batalla",
+      "https://es.wikipedia.org/wiki/Caballo_de_batalla"
+    ]
+  },
+  {
+    "w": "huir a uña de caballo",
+    "t": "dörtnala kaçmak, arkasına bakmadan kaçmak",
+    "lit": "at tırnağında kaçmak",
+    "eq": "tabanları yağlamak",
+    "s": "Al divisar a la patrulla, los sospechosos huyeron a uña de caballo por el callejón.",
+    "tr": "Devriyeyi görünce şüpheliler ara sokaktan arkalarına bile bakmadan dörtnala kaçtılar.",
+    "form": "huyeron a uña de caballo",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_u%C3%B1a_de_caballo",
+      "https://es.wikipedia.org/wiki/Falces"
+    ]
+  },
+  {
+    "w": "ir a mata caballo",
+    "t": "nefes nefese koşturmak, aşırı telaşla gitmek",
+    "lit": "atı öldüresiye gitmek",
+    "s": "Siempre vas a mata caballo a las citas porque nunca calculas bien el tiempo.",
+    "tr": "Zamanı hiç iyi hesaplayamadığın için randevulara hep nefes nefese koşturarak gidiyorsun.",
+    "form": "vas a mata caballo",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_mata_caballo",
+      "https://es.wikipedia.org/wiki/El_padrino_(videojuego)"
+    ]
+  },
+  {
+    "w": "tener la vaca atada",
+    "t": "geleceğini garantiye almak, sırtı yere gelmemek",
+    "lit": "ineği bağlı bulundurmak",
+    "eq": "sırtı yere gelmemek",
+    "s": "Cree que tiene la vaca atada con esa herencia y no quiere esforzarse más.",
+    "tr": "O mirasla geleceğini tamamen garantiye aldığını sanıyor ve artık hiç çaba göstermiyor.",
+    "form": "tiene la vaca atada",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/tener_la_vaca_atada",
+      "https://es.wikiquote.org/wiki/Refranes_argentinos"
+    ]
+  },
+  {
+    "w": "ser la madre del cordero",
+    "t": "işin asıl sebebi olmak, meselenin püf noktası olmak",
+    "lit": "kuzunun anası olmak",
+    "eq": "dananın kuyruğu",
+    "s": "Ese desacuerdo financiero sobre las comisiones es la madre del cordero en la disputa.",
+    "tr": "Komisyonlar hakkındaki o mali anlaşmazlık bu kavganın asıl püf noktasıdır.",
+    "form": "la madre del cordero",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/la_madre_del_cordero",
+      "https://es.wikipedia.org/wiki/Juan_Eslava_Gal%C3%A1n"
+    ]
+  },
+  {
+    "w": "dar margaritas a los cerdos",
+    "t": "kadir kıymet bilmeyene değer vermek, incileri domuzların önüne saçmak",
+    "lit": "domuzlara papatyalar vermek",
+    "eq": "eşeğe altın semer vurmak",
+    "s": "Explicar poesía clásica a quien no le interesa es dar margaritas a los cerdos.",
+    "tr": "İlgilenmeyen birine klasik şiir anlatmak kadir kıymet bilmeyene inci saçmaktır.",
+    "form": "dar margaritas a los cerdos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_margaritas_a_los_cerdos",
+      "https://es.wikipedia.org/wiki/Koban"
+    ]
+  },
+  {
+    "w": "vender la piel del oso antes de cazarlo",
+    "t": "henüz elde edilmemiş kazanca güvenip hesap yapmak",
+    "lit": "ayının derisini avlamadan önce satmak",
+    "eq": "dereyi görmeden paçaları sıvamak",
+    "s": "Festejar el campeonato antes del último partido es vender la piel del oso antes de cazarlo.",
+    "tr": "Son maçtan önce şampiyonluğu kutlamak dereyi görmeden paçaları sıvamaktır.",
+    "form": "vender la piel del oso antes de cazarlo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://en.wiktionary.org/wiki/vender_la_piel_del_oso_antes_de_cazarlo",
+      "https://es.wikipedia.org/wiki/Los_proverbios_flamencos"
+    ]
+  }
+]

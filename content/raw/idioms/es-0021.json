@@ -1,0 +1,529 @@
+[
+  {
+    "w": "manos a la obra",
+    "t": "işe koyulmak, kolları sıvamak",
+    "lit": "eller işe",
+    "eq": "kolları sıvamak",
+    "s": "Tenemos poco tiempo para entregar el informe, así que manos a la obra.",
+    "tr": "Raporu teslim etmek için az vaktimiz var, o yüzden kolları sıvayalım.",
+    "form": "manos a la obra",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/manos_a_la_obra",
+      "https://es.wikipedia.org/wiki/Obra"
+    ]
+  },
+  {
+    "w": "hincar los codos",
+    "t": "harıl harıl ders çalışmak, kafa patlatmak",
+    "lit": "dirsekleri saplamak",
+    "eq": "dirsek çürütmek",
+    "s": "Tuvo que hincar los codos todo el fin de semana para aprobar.",
+    "tr": "Dersi geçebilmek için bütün hafta sonu dirsek çürütmek zorunda kaldı.",
+    "form": "hincar los codos",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/hincar_los_codos",
+      "https://es.wikipedia.org/wiki/Codo"
+    ]
+  },
+  {
+    "w": "codo con codo",
+    "t": "omuz omuza, yan yana çalışmak",
+    "lit": "dirsek dirseğe",
+    "eq": "omuz omuza",
+    "s": "Trabajamos codo con codo para terminar la campaña a tiempo.",
+    "tr": "Kampanyayı zamanında bitirmek için omuz omuza çalıştık.",
+    "form": "codo con codo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/codo_con_codo",
+      "https://es.wikipedia.org/wiki/Codo"
+    ]
+  },
+  {
+    "w": "ir de la mano",
+    "t": "birlikte yürütmek, el ele gitmek",
+    "lit": "elden gitmek",
+    "eq": "el ele yürütmek",
+    "s": "En este negocio la calidad y la puntualidad deben ir de la mano.",
+    "tr": "Bu işte kalite ile zamanlama mutlaka el ele gitmelidir.",
+    "form": "ir de la mano",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/ir_de_la_mano",
+      "https://es.wikipedia.org/wiki/Mano"
+    ]
+  },
+  {
+    "w": "de sol a sol",
+    "t": "sabahtan akşama kadar, gün boyu durmaksızın",
+    "lit": "güneşten güneşe",
+    "eq": "şafaktan gün batımına",
+    "s": "Los agricultores trabajan de sol a sol durante la época de cosecha.",
+    "tr": "Çiftçiler hasat döneminde sabahtan akşama kadar durmaksızın çalışır.",
+    "form": "de sol a sol",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_sol_a_sol",
+      "https://es.wikipedia.org/wiki/Sol"
+    ]
+  },
+  {
+    "w": "bastar y sobrar",
+    "t": "yetip de artmak, fazlasıyla yetmek",
+    "lit": "yetmek ve artmak",
+    "eq": "yetip de artmak",
+    "s": "Con dos operarios cualificados suele bastar y sobrar para esta tarea.",
+    "tr": "Bu iş için iki nitelikli operatör genellikle fazlasıyla yetip de artar.",
+    "form": "bastar y sobrar",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/bastar_y_sobrar",
+      "https://es.wikipedia.org/wiki/Basta"
+    ]
+  },
+  {
+    "w": "a hombros",
+    "t": "omuzlarda taşımak, büyük destek vermek",
+    "lit": "omuzlara",
+    "eq": "el üstünde tutmak",
+    "s": "Tras ganar la licitación llevaron al ingeniero a hombros por la oficina.",
+    "tr": "İhaleyi kazandıktan sonra mühendisi ofiste adeta omuzlarda taşıdılar.",
+    "form": "a hombros",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/a_hombros",
+      "https://es.wikipedia.org/wiki/Hombro"
+    ]
+  },
+  {
+    "w": "trabajar como un condenado",
+    "t": "canını dişine takıp çalışmak, nefes almadan çalışmak",
+    "lit": "mahkûm gibi çalışmak",
+    "eq": "eşek gibi çalışmak",
+    "s": "Tuvo que trabajar como un condenado para pagar la hipoteca a tiempo.",
+    "tr": "İpoteği vaktinde ödeyebilmek için canını dişine takıp çalışmak zorunda kaldı.",
+    "form": "trabajar como un condenado",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/trabajar_como_un_condenado",
+      "https://es.wikipedia.org/wiki/Condenado"
+    ]
+  },
+  {
+    "w": "no dar palo al agua",
+    "t": "elini sıcak sudan soğuk suya sokmamak, yan gelip yatmak",
+    "lit": "suya sopa vurmamak",
+    "eq": "yan gelip yatmak",
+    "s": "Se pasa el día jugando con el móvil y no da palo al agua.",
+    "tr": "Bütün günü telefonla oynayarak geçiriyor ve elini sıcak sudan soğuk suya sokmuyor.",
+    "form": "no da palo al agua",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/no_dar_palo_al_agua",
+      "https://es.wikipedia.org/wiki/Palo"
+    ]
+  },
+  {
+    "w": "rascarse la barriga",
+    "t": "göbeğini kaşımak, tembellik etmek",
+    "lit": "karnını kaşımak",
+    "eq": "yan gelip yatmak",
+    "s": "Mientras los demás preparaban la mudanza, él se rascaba la barriga.",
+    "tr": "Diğerleri taşınmayı hazırlarken o yan gelip yatıyordu.",
+    "form": "se rascaba la barriga",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/rascarse_la_barriga",
+      "https://es.wikipedia.org/wiki/Barriga"
+    ]
+  },
+  {
+    "w": "estar por la labor",
+    "t": "istekli olmak, işe yanaşmak",
+    "lit": "emek için olmak",
+    "eq": "yanaşmak",
+    "s": "El jefe no parece estar por la labor de conceder más vacaciones.",
+    "tr": "Patron daha fazla tatil vermeye pek yanaşacak gibi görünmüyor.",
+    "form": "estar por la labor",
+    "reg": "neutral",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/estar_por_la_labor",
+      "https://es.wikipedia.org/wiki/Labor"
+    ]
+  },
+  {
+    "w": "a brazo partido",
+    "t": "kıran kırana, var gücüyle çalışmak",
+    "lit": "kırık kolla",
+    "eq": "var gücüyle",
+    "s": "Lucharon a brazo partido para salvar a los heridos del derrumbe.",
+    "tr": "Göçük altındaki yaralıları kurtarmak için var güçleriyle çabaladılar.",
+    "form": "a brazo partido",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/a_brazo_partido",
+      "https://es.wikipedia.org/wiki/Brazo"
+    ]
+  },
+  {
+    "w": "a destajo",
+    "t": "parça başı, harıl harıl çalışmak",
+    "lit": "kesintiye doğru",
+    "eq": "harıl harıl",
+    "s": "Los obreros tuvieron que trabajar a destajo para cumplir con el plazo.",
+    "tr": "İşçiler teslim süresine yetişebilmek için harıl harıl çalışmak zorunda kaldı.",
+    "form": "a destajo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/a_destajo",
+      "https://es.wikipedia.org/wiki/Destajo"
+    ]
+  },
+  {
+    "w": "gajes del oficio",
+    "t": "meslek icabı, mesleğin cilvesi",
+    "lit": "mesleğin ücretleri",
+    "eq": "meslek icabı",
+    "s": "Mancharse las manos de harina son los gajes del oficio del panadero.",
+    "tr": "Ellerin una bulanması fırıncılık mesleğinin cilvesidir.",
+    "form": "gajes del oficio",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/gajes_del_oficio",
+      "https://es.wikipedia.org/wiki/Oficio"
+    ]
+  },
+  {
+    "w": "de tomo y lomo",
+    "t": "dört dörtlük, ağırlığı olan",
+    "lit": "ciltten ve sırttan",
+    "eq": "dört dörtlük",
+    "s": "Es un profesional de tomo y lomo con veinte años en el sector.",
+    "tr": "Sektörde yirmi yılı geride bırakmış dört dörtlük bir profesyoneldir.",
+    "form": "de tomo y lomo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/de_tomo_y_lomo",
+      "https://es.wikipedia.org/wiki/Lomo"
+    ]
+  },
+  {
+    "w": "partirse el lomo",
+    "t": "sırtını kırmak, canını dişine takmak",
+    "lit": "sırtını bölmek",
+    "eq": "canını dişine takmak",
+    "s": "Mi padre tuvo que partirse el lomo para pagarnos los estudios.",
+    "tr": "Babam eğitim masraflarımızı karşılamak için canını dişine taktı.",
+    "form": "partirse el lomo",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/partirse_el_lomo",
+      "https://es.wikipedia.org/wiki/Lomo"
+    ]
+  },
+  {
+    "w": "faena de aliño",
+    "t": "baştan savma iş, asgari çabayla geçiştirme",
+    "lit": "soslama işi",
+    "eq": "baştan savma",
+    "s": "Hizo una faena de aliño para salir del paso sin esforzarse demasiado.",
+    "tr": "Çok fazla gayret göstermeden günü kurtarmak için baştan savma bir iş yaptı.",
+    "form": "faena de aliño",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/faena_de_ali%C3%B1o",
+      "https://es.wikipedia.org/wiki/Ali%C3%B1o"
+    ]
+  },
+  {
+    "w": "de brazos cruzados",
+    "t": "kolları bağlı durmak, hiçbir şey yapmamak",
+    "lit": "kolları çapraz",
+    "eq": "eli kolu bağlı durmak",
+    "s": "No podemos quedarnos de brazos cruzados mientras la fábrica se arruina.",
+    "tr": "Fabrika iflasa sürüklenirken elimiz kolumuz bağlı duramayız.",
+    "form": "de brazos cruzados",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/de_brazos_cruzados",
+      "https://es.wikipedia.org/wiki/Brazo"
+    ]
+  },
+  {
+    "w": "echar el bofe",
+    "t": "canı çıkana kadar çalışmak, nefesi tükenmek",
+    "lit": "akciğerini fırlatmak",
+    "eq": "canı çıkmak",
+    "s": "El peón tuvo que echar el bofe para terminar la zanja antes del anochecer.",
+    "tr": "Amele hava kararmadan önce hendeği bitirmek için canı çıkana kadar çalıştı.",
+    "form": "echar el bofe",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/echar_el_bofe",
+      "https://es.wikipedia.org/wiki/Bofe"
+    ]
+  },
+  {
+    "w": "dar el pecho",
+    "t": "göğüs germek, sorumluluğu üstlenmek",
+    "lit": "göğsü vermek",
+    "eq": "göğüs germek",
+    "s": "En los momentos de crisis el director supo dar el pecho ante la junta.",
+    "tr": "Kriz anlarında müdür yönetim kurulu karşısında göğüs germeyi bildi.",
+    "form": "dar el pecho",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_el_pecho",
+      "https://es.wikipedia.org/wiki/Pecho"
+    ]
+  },
+  {
+    "w": "romperse los cuernos",
+    "t": "canla başla çabalamak, kafa patlatmak",
+    "lit": "boynuzlarını kırmak",
+    "eq": "kafa patlatmak",
+    "s": "Los científicos se rompieron los cuernos buscando una vacuna eficaz.",
+    "tr": "Bilim insanları etkili bir aşı bulmak için canla başla çabaladı.",
+    "form": "rompieron los cuernos",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/romperse_los_cuernos",
+      "https://es.wikipedia.org/wiki/Cuerno"
+    ]
+  },
+  {
+    "w": "darse a la tarea de",
+    "t": "kendini bir işe adamak, vazife edinmek",
+    "lit": "kendini göreve vermek",
+    "eq": "vazife edinmek",
+    "s": "El historiador se dio a la tarea de clasificar miles de manuscritos.",
+    "tr": "Tarihçi binlerce el yazmasını sınıflandırmayı kendine vazife edindi.",
+    "form": "dio a la tarea de",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/darse_a_la_tarea_de",
+      "https://es.wikipedia.org/wiki/Tarea"
+    ]
+  },
+  {
+    "w": "dar la última mano",
+    "t": "son rötuşu yapmak, tamamlamak",
+    "lit": "son eli vermek",
+    "eq": "son rötuşu yapmak",
+    "s": "El pintor quiso dar la última mano a su cuadro antes de exponerlo.",
+    "tr": "Ressam tablosunu sergilemeden önce son rötuşunu bizzat yapmak istedi.",
+    "form": "dar la última mano",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_la_%C3%BAltima_mano",
+      "https://es.wikipedia.org/wiki/Mano"
+    ]
+  },
+  {
+    "w": "brazo derecho",
+    "t": "sağ kolu olmak, en güvendiği yardımcısı",
+    "lit": "sağ kol",
+    "eq": "sağ kolu",
+    "s": "Laura ha sido el brazo derecho del director desde la fundación.",
+    "tr": "Laura kuruluşundan bu yana müdürün en güvendiği sağ kolu oldu.",
+    "form": "brazo derecho",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/brazo_derecho",
+      "https://es.wikipedia.org/wiki/Brazo"
+    ]
+  },
+  {
+    "w": "echarse el equipo al hombro",
+    "t": "takımı sırtlamak, yükü tek başına üstlenmek",
+    "lit": "takımı omza atmak",
+    "eq": "sırtlamak",
+    "s": "En el partido decisivo el capitán supo echarse el equipo al hombro.",
+    "tr": "Karar maçında kaptan bütün takımı tek başına sırtlamayı bildi.",
+    "form": "echarse el equipo al hombro",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/echarse_el_equipo_al_hombro",
+      "https://es.wikipedia.org/wiki/Hombro"
+    ]
+  },
+  {
+    "w": "echar mano de",
+    "t": "başvurmak, çare olarak kullanmak",
+    "lit": "el atmak de",
+    "eq": "başvurmak",
+    "s": "Para pagar las deudas urgentes tuvo que echar mano de sus ahorros.",
+    "tr": "Acil borçları ödemek için birikimlerine başvurmak zorunda kaldı.",
+    "form": "echar mano de",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/echar_mano_de",
+      "https://es.wikipedia.org/wiki/Mano"
+    ]
+  },
+  {
+    "w": "al pie del cañón",
+    "t": "görev başında, siperde beklemek",
+    "lit": "topun ayağında",
+    "eq": "görev başında olmak",
+    "s": "A pesar de su enfermedad, el conserje sigue siempre al pie del cañón.",
+    "tr": "Hastalığına rağmen kapıcı her zaman görev başında durmaya devam ediyor.",
+    "form": "al pie del cañón",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/al_pie_del_ca%C3%B1%C3%B3n",
+      "https://es.wikipedia.org/wiki/Ca%C3%B1%C3%B3n"
+    ]
+  },
+  {
+    "w": "abrir la mano",
+    "t": "eli bollaşmak, esneklik tanımak",
+    "lit": "eli açmak",
+    "eq": "esneklik göstermek",
+    "s": "La administración decidió abrir la mano con los plazos de entrega.",
+    "tr": "Yönetim teslim süreleri konusunda biraz esneklik tanımaya karar verdi.",
+    "form": "abrir la mano",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/abrir_la_mano",
+      "https://es.wikipedia.org/wiki/Mano"
+    ]
+  },
+  {
+    "w": "cargar la mano",
+    "t": "fazla yüklenmek, dozu artırmak",
+    "lit": "eli yüklemek",
+    "eq": "aşırı yüklenmek",
+    "s": "El profesor suele cargar la mano con las tareas de matemáticas.",
+    "tr": "Öğretmen matematik ödevlerinde öğrencilere fazla yüklenmeye meyillidir.",
+    "form": "cargar la mano",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/cargar_la_mano",
+      "https://es.wikipedia.org/wiki/Mano"
+    ]
+  },
+  {
+    "w": "en buenas manos",
+    "t": "güvenilir ellerde, emin ellerde",
+    "lit": "iyi ellerde",
+    "eq": "emin ellerde",
+    "s": "Puedes viajar tranquilo porque la clínica queda en buenas manos.",
+    "tr": "Gönül rahatlığıyla seyahat edebilirsin çünkü klinik emin ellerde kalıyor.",
+    "form": "en buenas manos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://en.wiktionary.org/wiki/en_buenas_manos",
+      "https://es.wikipedia.org/wiki/Mano"
+    ]
+  },
+  {
+    "w": "labor de zapa",
+    "t": "yıpratma faaliyeti, alttan alta oyma",
+    "lit": "istihkâm kazması işi",
+    "eq": "kuyusunu kazmak",
+    "s": "Hizo una constante labor de zapa para desacreditar a su rival político.",
+    "tr": "Siyasi rakibini gözden düşürmek için sürekli kuyusunu kazdı.",
+    "form": "labor de zapa",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://es.wiktionary.org/wiki/labor_de_zapa",
+      "https://es.wikipedia.org/wiki/Zapa"
+    ]
+  }
+]

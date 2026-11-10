@@ -1,0 +1,526 @@
+[
+  {
+    "w": "leer en voz baja",
+    "t": "alçak sesle okumak, sessizce okumak",
+    "lit": "alçak seste okumak",
+    "s": "En la sala de estudio de la biblioteca solo se permite leer en voz baja.",
+    "form": "leer en voz baja",
+    "tr": "Kütüphanenin çalışma salonunda yalnızca alçak sesle okumaya izin veriliyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "talk",
+    "src": [
+      "https://es.wiktionary.org/wiki/leer_en_voz_baja",
+      "https://es.wikipedia.org/wiki/Baja"
+    ]
+  },
+  {
+    "w": "hablar en broma",
+    "t": "şakasına konuşmak, şaka yapmak",
+    "lit": "şakada konuşmak",
+    "s": "No te enfades por su comentario, estaba claro que hablaba en broma.",
+    "form": "hablaba en broma",
+    "tr": "Onun yorumuna kızma, şakasına konuştuğu çok açıktı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "talk",
+    "src": [
+      "https://es.wiktionary.org/wiki/hablar_en_broma",
+      "https://es.wikipedia.org/wiki/Broma"
+    ]
+  },
+  {
+    "w": "decir por decir",
+    "t": "laf olsun diye söylemek, düşünmeden konuşmak",
+    "lit": "söylemek için söylemek",
+    "s": "No tengo ningún dato confirmado sobre el traslado, lo dije por decir.",
+    "form": "dije por decir",
+    "tr": "Taşınma hakkında doğrulanmış hiçbir bilgim yok, sadece laf olsun diye söyledim.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "talk",
+    "src": [
+      "https://es.wiktionary.org/wiki/decir_por_decir",
+      "https://es.wikipedia.org/wiki/D%C3%A9jame_decir_que_te_amo"
+    ]
+  },
+  {
+    "w": "pedir la palabra",
+    "t": "söz hakkı istemek, konuşmak için izin istemek",
+    "lit": "kelimeyi istemek",
+    "eq": "söz istemek",
+    "s": "Antes de que terminara la asamblea, una vecina levantó el brazo para pedir la palabra.",
+    "form": "pedir la palabra",
+    "tr": "Toplantı sona ermeden önce bir komşu söz istemek için kolunu kaldırdı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/pedir_la_palabra",
+      "https://es.wikipedia.org/wiki/Palabra"
+    ]
+  },
+  {
+    "w": "tomar la palabra",
+    "t": "söz almak, konuşmaya başlamak",
+    "lit": "kelimeyi almak",
+    "eq": "söz almak",
+    "s": "El director del museo tomó la palabra para inaugurar la exposición de otoño.",
+    "form": "tomó la palabra",
+    "tr": "Müze müdürü sonbahar sergisini açmak üzere söz aldı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/tomar_la_palabra",
+      "https://es.wikipedia.org/wiki/Palabra"
+    ]
+  },
+  {
+    "w": "hacer mención",
+    "pat": "hacer mención de algo",
+    "t": "sözünü etmek, bahsetmek",
+    "lit": "anma yapmak",
+    "eq": "söz açmak",
+    "s": "En el informe anual no hicieron mención de los retrasos en la obra.",
+    "form": "hicieron mención",
+    "tr": "Yıllık raporda inşaattaki gecikmelerden hiç söz etmediler.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacer_menci%C3%B3n",
+      "https://es.wikipedia.org/wiki/Menci%C3%B3n"
+    ]
+  },
+  {
+    "w": "hablar el mismo idioma",
+    "t": "aynı dili konuşmak, birbirini çok iyi anlamak",
+    "lit": "aynı dili konuşmak",
+    "eq": "frekansı tutmak",
+    "s": "Desde la primera reunión notamos que ambos equipos hablaban el mismo idioma.",
+    "form": "hablaban el mismo idioma",
+    "tr": "İlk toplantıdan itibaren her iki ekibin de birbirini çok iyi anladığını fark ettik.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "talk",
+    "src": [
+      "https://es.wiktionary.org/wiki/hablar_el_mismo_idioma",
+      "https://es.wikipedia.org/wiki/Idioma"
+    ]
+  },
+  {
+    "w": "entrar en materia",
+    "t": "asıl konuya girmek, sadede gelmek",
+    "lit": "maddeye girmek",
+    "eq": "sadede gelmek",
+    "s": "Tras los saludos iniciales, la conferenciante decidió entrar en materia sin demora.",
+    "form": "entrar en materia",
+    "tr": "Açılış selamlamalarının ardından konuşmacı vakit kaybetmeden asıl konuya girmeye karar verdi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/entrar_en_materia",
+      "https://es.wikipedia.org/wiki/Materia"
+    ]
+  },
+  {
+    "w": "ir con la verdad por delante",
+    "t": "her zaman doğruyu açıkça söylemek, dürüst davranmak",
+    "lit": "önde gerçekle gitmek",
+    "s": "Confiaron en su propuesta porque siempre va con la verdad por delante.",
+    "form": "va con la verdad por delante",
+    "tr": "Her zaman doğruyu açıkça söylediği için onun teklifine güvendiler.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/ir_con_la_verdad_por_delante",
+      "https://es.wikipedia.org/wiki/Out_of_Time_(pel%C3%ADcula)"
+    ]
+  },
+  {
+    "w": "hacer uso de la palabra",
+    "t": "söz hakkını kullanmak, kürsüde konuşmak",
+    "lit": "kelimenin kullanımını yapmak",
+    "s": "Cada representante dispondrá de cinco minutos para hacer uso de la palabra.",
+    "form": "hacer uso de la palabra",
+    "tr": "Her temsilcinin söz hakkını kullanmak için beş dakikası olacak.",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacer_uso_de_la_palabra",
+      "https://es.wikipedia.org/wiki/Palabra"
+    ]
+  },
+  {
+    "w": "hacerse eco de",
+    "t": "bir haberi veya görüşü duyurmak, yankılandırmak",
+    "lit": "bir şeyin yankısı olmak",
+    "s": "Todos los periódicos locales se hicieron eco de aquel descubrimiento arqueológico.",
+    "form": "se hicieron eco de",
+    "tr": "Tüm yerel gazeteler o arkeolojik keşfe geniş yer verip haberi duyurdu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacerse_eco_de",
+      "https://es.wikipedia.org/wiki/De"
+    ]
+  },
+  {
+    "w": "faltar a la verdad",
+    "t": "gerçeğe aykırı konuşmak, doğruyu söylememek",
+    "lit": "gerçeğe eksik kalmak",
+    "s": "El testigo aseguró ante el tribunal que jamás había faltado a la verdad.",
+    "form": "faltado a la verdad",
+    "tr": "Tanık mahkeme önünde asla gerçeğe aykırı konuşmadığını belirtti.",
+    "reg": "formal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "talk",
+    "src": [
+      "https://es.wiktionary.org/wiki/faltar_a_la_verdad",
+      "https://es.wikipedia.org/wiki/Verdad"
+    ]
+  },
+  {
+    "w": "dar la lata",
+    "pat": "darle la lata a alguien",
+    "t": "dırdır etmek, ısrarlı konuşmalarla can sıkmak",
+    "lit": "tenekeyi vermek",
+    "eq": "başının etini yemek",
+    "s": "Estuvo toda la mañana dando la lata para que cambiáramos de mesa.",
+    "form": "dando la lata",
+    "tr": "Masamızı değiştirelim diye bütün sabah başımızın etini yedi.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "talk",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_la_lata",
+      "https://es.wikipedia.org/wiki/Lata"
+    ]
+  },
+  {
+    "w": "dar la chapa",
+    "pat": "darle la chapa a alguien",
+    "t": "uzun uzun anlatıp kafa ütülemek, sıkmak",
+    "lit": "metal plakayı vermek",
+    "eq": "kafa ütülemek",
+    "s": "Perdona si te doy la chapa con mi tesis, pero necesito consejo.",
+    "form": "doy la chapa",
+    "tr": "Tezimle kafanı ütülüyorsam kusura bakma ama tavsiyeye ihtiyacım var.",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "talk",
+    "src": [
+      "https://es.wiktionary.org/wiki/dar_la_chapa",
+      "https://es.wikipedia.org/wiki/Chapa"
+    ]
+  },
+  {
+    "w": "bajar el tono",
+    "t": "sesini veya üslubunu yumuşatmak, alttan almak",
+    "lit": "tonu indirmek",
+    "s": "El mediador pidió a ambas partes bajar el tono para continuar el diálogo.",
+    "form": "bajar el tono",
+    "tr": "Arabulucu diyaloğu sürdürebilmek için her iki taraftan da üslubunu yumuşatmasını istedi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "talk",
+    "src": [
+      "https://es.wiktionary.org/wiki/bajar_el_tono",
+      "https://es.wikipedia.org/wiki/Tono"
+    ]
+  },
+  {
+    "w": "dejar caer",
+    "pat": "dejar caer algo",
+    "t": "laf arasında sezdirmek, çıtlatmak",
+    "lit": "düşmeye bırakmak",
+    "eq": "laf arasında çıtlatmak",
+    "s": "Durante el almuerzo dejó caer que pensaba jubilarse el próximo otoño.",
+    "form": "dejó caer",
+    "tr": "Öğle yemeği sırasında gelecek sonbaharda emekli olmayı düşündüğünü laf arasında çıtlattı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/dejar_caer",
+      "https://es.wikipedia.org/wiki/Caer"
+    ]
+  },
+  {
+    "w": "darse a entender",
+    "t": "meramını anlatmak, ne demek istediğini açıklamak",
+    "lit": "anlaşılmaya kendini vermek",
+    "eq": "derdini anlatmak",
+    "s": "Aunque todavía habla poco español, consiguió darse a entender en la farmacia.",
+    "form": "darse a entender",
+    "tr": "Henüz az İspanyolca konuşsa da eczanede derdini anlatmayı başardı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/darse_a_entender",
+      "https://es.wikipedia.org/wiki/Entender"
+    ]
+  },
+  {
+    "w": "no tener voz ni voto",
+    "t": "söz ve karar hakkı olmamak, fikri sorulmamak",
+    "lit": "ne sesi ne oyu olmak",
+    "eq": "söz hakkı olmamak",
+    "s": "Como asistimos solo como observadores, en esta comisión no tenemos voz ni voto.",
+    "form": "no tenemos voz ni voto",
+    "tr": "Yalnızca gözlemci olarak katıldığımız için bu komisyonda söz ve oy hakkımız yok.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "talk",
+    "src": [
+      "https://es.wiktionary.org/wiki/no_tener_voz_ni_voto",
+      "https://es.wikipedia.org/wiki/Voto"
+    ]
+  },
+  {
+    "w": "andar con ambages",
+    "t": "lafı dolandırmak, kaçamak konuşmak",
+    "lit": "dolambaçlarla yürümek",
+    "eq": "lafı dolandırmak",
+    "s": "Explica claramente cuál es el problema técnico y no andes con ambages.",
+    "form": "andes con ambages",
+    "tr": "Teknik sorunun ne olduğunu açıkça anlat, lafı hiç dolandırma.",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/andar_con_ambages",
+      "https://es.wikipedia.org/wiki/Douglas_Bader"
+    ]
+  },
+  {
+    "w": "cantar de plano",
+    "t": "her şeyi gizlemeden itiraf etmek, bülbül gibi ötmek",
+    "lit": "düzden şarkı söylemek",
+    "eq": "bülbül gibi ötmek",
+    "s": "Al ver las pruebas documentales sobre la mesa, el sospechoso cantó de plano.",
+    "form": "cantó de plano",
+    "tr": "Masanın üzerindeki yazılı kanıtları görünce şüpheli her şeyi itiraf etti.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/cantar_de_plano",
+      "https://es.wikipedia.org/wiki/Plano"
+    ]
+  },
+  {
+    "w": "correr la bola",
+    "t": "söylenti yaymak, dedikoduyu dolaştırmak",
+    "lit": "topu koşturmak",
+    "eq": "fısıltı gazetesi yaymak",
+    "s": "Alguien hizo correr la bola de que iban a cerrar el teatro municipal.",
+    "form": "correr la bola",
+    "tr": "Birisi belediye tiyatrosunun kapatılacağı söylentisini ortalığa yaydı.",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/correr_la_bola",
+      "https://es.wikipedia.org/wiki/Bola"
+    ]
+  },
+  {
+    "w": "cargar las tintas",
+    "t": "anlatırken abartmak, bir yönü fazla keskin vurgulamak",
+    "lit": "mürekkepleri yoğunlaştırmak",
+    "eq": "bire bin katmak",
+    "s": "El cronista cargó las tintas al describir los fallos defensivos del equipo visitante.",
+    "form": "cargó las tintas",
+    "tr": "Spor yazarı konuk takımın savunma hatalarını anlatırken eleştirinin dozunu epey abarttı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/cargar_las_tintas",
+      "https://es.wikipedia.org/wiki/Jaime_de_Nevares%2C_%C3%BAltimo_viaje"
+    ]
+  },
+  {
+    "w": "decir cuatro cosas",
+    "pat": "decirle cuatro cosas a alguien",
+    "t": "haddini bildirmek, sitemini açıkça yüzüne söylemek",
+    "lit": "dört şey söylemek",
+    "eq": "iki çift laf etmek",
+    "s": "Estaba tan molesta por el retraso que fue a decirle cuatro cosas.",
+    "form": "decirle cuatro cosas",
+    "tr": "Gecikmeye o kadar bozulmuştu ki gidip ona ağzına geleni söyledi.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/decir_cuatro_cosas",
+      "https://es.wikipedia.org/wiki/Cosas"
+    ]
+  },
+  {
+    "w": "decir misa",
+    "t": "ne derse desin boşuna konuşmak, sözü hiç ciddiye alınmamak",
+    "lit": "ayin söylemek",
+    "s": "Él puede decir misa, pero los recibos demuestran que pagamos a tiempo.",
+    "form": "decir misa",
+    "tr": "O istediği kadar konuşsun, makbuzlar zamanında ödeme yaptığımızı kanıtlıyor.",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/decir_misa",
+      "https://es.wikipedia.org/wiki/Misa"
+    ]
+  },
+  {
+    "w": "dar el soplo",
+    "t": "gizlice haber uçurmak, tüyo vermek",
+    "lit": "üflemeyi vermek",
+    "eq": "haber uçurmak",
+    "s": "Un empleado anónimo dio el soplo a los inspectores sobre la mercancía oculta.",
+    "form": "dio el soplo",
+    "tr": "İsimsiz bir çalışan gizlenen mallar hakkında müfettişlere haber uçurdu.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_el_soplo",
+      "https://es.wikipedia.org/wiki/Soplo"
+    ]
+  },
+  {
+    "w": "dar la murga",
+    "pat": "darle la murga a alguien",
+    "t": "sürekli sızlanıp kafa şişirmek, bunaltmak",
+    "lit": "sokak çalgısını vermek",
+    "eq": "kafa şişirmek",
+    "s": "Lleva toda la semana dándonos la murga con las reformas de su terraza.",
+    "form": "dándonos la murga",
+    "tr": "Bütün haftadır terasındaki tadilat muhabbetiyle kafamızı şişiriyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_la_murga",
+      "https://es.wikipedia.org/wiki/Murga"
+    ]
+  },
+  {
+    "w": "dar la barrila",
+    "pat": "darle la barrila a alguien",
+    "t": "bitmek bilmeyen sohbetle bunaltmak, baş ağrıtmak",
+    "lit": "küçük fıçıyı vermek",
+    "s": "Se sentó a nuestro lado en el tren y nos dio la barrila.",
+    "form": "dio la barrila",
+    "tr": "Trende yanımıza oturdu ve bitmek bilmeyen sohbetiyle bizi bunalttı.",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_la_barrila",
+      "https://es.wikipedia.org/wiki/Barrila"
+    ]
+  },
+  {
+    "w": "discutir sobre el sexo de los ángeles",
+    "t": "hiçbir pratik yararı olmayan boş konular üzerine tartışmak",
+    "lit": "meleklerin cinsiyeti üzerine tartışmak",
+    "eq": "havanda su dövmek",
+    "s": "Con tantas urgencias pendientes, no podemos discutir sobre el sexo de los ángeles.",
+    "form": "discutir sobre el sexo de los ángeles",
+    "tr": "Bekleyen bunca acil iş varken hiçbir yararı olmayan boş konular üzerinde tartışamayız.",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://es.wiktionary.org/wiki/discutir_sobre_el_sexo_de_los_%C3%A1ngeles",
+      "https://es.wikipedia.org/wiki/%C3%81ngeles"
+    ]
+  },
+  {
+    "w": "echar un párrafo",
+    "t": "ayaküstü sohbet etmek, iki çift laf etmek",
+    "lit": "bir paragraf atmak",
+    "eq": "iki çift laf etmek",
+    "s": "Nos detuvimos en la esquina de la panadería para echar un párrafo.",
+    "form": "echar un párrafo",
+    "tr": "Ayaküstü iki çift laf etmek için fırının köşesinde durduk.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://en.wiktionary.org/wiki/echar_un_p%C3%A1rrafo",
+      "https://es.wikipedia.org/wiki/P%C3%A1rrafo"
+    ]
+  },
+  {
+    "w": "hablar a borbotones",
+    "t": "heyecanla ve kelimeleri ardı ardına sıralayarak çok hızlı konuşmak",
+    "lit": "fokurtularla konuşmak",
+    "eq": "makineli tüfek gibi konuşmak",
+    "s": "Estaba tan entusiasmado con la noticia que empezó a hablar a borbotones.",
+    "form": "hablar a borbotones",
+    "tr": "Habere o kadar heyecanlanmıştı ki kelimeleri ardı ardına sıralayarak hızla konuşmaya başladı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://es.wiktionary.org/wiki/hablar_a_borbotones",
+      "https://es.wikipedia.org/wiki/Borbotones"
+    ]
+  },
+  {
+    "w": "pegar la hebra",
+    "t": "sohbete tutuşmak, koyu bir muhabbete başlamak",
+    "lit": "ipliği yapıştırmak",
+    "eq": "muhabbete dalmak",
+    "s": "Siempre que coincide con el librero del barrio acaba pegando la hebra.",
+    "form": "pegando la hebra",
+    "tr": "Mahallenin kitapçısıyla ne zaman karşılaşsa sonunda koyu bir sohbete tutuşur.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "talk",
+    "src": [
+      "https://es.wiktionary.org/wiki/pegar_la_hebra",
+      "https://es.wikipedia.org/wiki/Hebra"
+    ]
+  }
+]
