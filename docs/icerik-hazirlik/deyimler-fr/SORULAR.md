@@ -1,6 +1,6 @@
-# Fransızca deyimler — cevap anahtarsız soru dosyası
+# Paket 01 — cevap anahtarsız sorular
 
-Bu dosyada cevaplar, anlam kartları ve açıklamalar bulunmaz. Bağımsız çözücü her soruda seçtiği harfi ve varsa ikinci bir geçerli seçeneği ayrı rapora yazmalı.
+Önce bu dosyayı çöz; sonra INCELEME.md veya JSON anahtarıyla karşılaştır. İkinci geçerli seçenek varsa ayrıca bildir.
 
 ## fr-idiom-000001
 

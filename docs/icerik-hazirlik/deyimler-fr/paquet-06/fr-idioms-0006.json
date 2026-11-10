@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": 1,
+  "batch": "fr-idioms-0006",
+  "language": "fr",
+  "themeTr": "İlişkiler ve dayanışma",
+  "status": "ready_for_independent_review",
+  "author": "Codex",
+  "intendedReviewer": "Antigravity",
+  "createdOn": "2026-11-10",
+  "levelPolicy": "CEFR levels remain unassigned pending the full task plan and independent pedagogical review. Dictionary citations do not certify levels.",
+  "contentOrigin": "Original examples, translations, explanations and exercises by Diloloji; dictionaries are lexical references, not sources of copied examples.",
+  "items": [
+    {
+      "id": "fr-idiom-000131",
+      "expression": "avoir le cœur sur la main",
+      "meaningTr": "Cömert ve yardımsever olmak",
+      "usageNoteTr": "Bu kart cömertlik anlamını seçer; fiziksel kalp konumu değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Notre voisine a le cœur sur la main.",
+          "tr": "Komşumuz çok cömert ve yardımsever."
+        },
+        {
+          "fr": "Il a le cœur sur la main et partage même son dernier repas.",
+          "tr": "Çok cömert; son yemeğini bile paylaşır."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_le_c%C5%93ur_sur_la_main",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir le cœur sur la main : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Il a le cœur sur la main et partage même son dernier repas.",
+        "promptTr": "Bu bağlamda « avoir le cœur sur la main » ne anlama geliyor?",
+        "optionsTr": [
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Cömert ve yardımsever olmak",
+          "Birbirine çok düşman olmak",
+          "Birini zayıflatmak için gizlice uğraşmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Cömert ve yardımsever olmak. Bu kart cömertlik anlamını seçer; fiziksel kalp konumu değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000132",
+      "expression": "être comme les deux doigts de la main",
+      "meaningTr": "Birbirinden ayrılmayacak kadar yakın olmak",
+      "usageNoteTr": "İki kişi arasındaki güçlü bağ; benzer görünmek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ces deux sœurs sont comme les deux doigts de la main.",
+          "tr": "Bu iki kız kardeş birbirinden ayrılmayacak kadar yakın."
+        },
+        {
+          "fr": "Depuis l'enfance, ils sont comme les deux doigts de la main.",
+          "tr": "Çocukluktan beri birbirinden ayrılmayacak kadar yakınlar."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/comme_les_deux_doigts_de_la_main",
+          "verification": "dictionary_entry_opened",
+          "locator": "être comme les deux doigts de la main : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Depuis l'enfance, ils sont comme les deux doigts de la main.",
+        "promptTr": "Bu bağlamda « être comme les deux doigts de la main » ne anlama geliyor?",
+        "optionsTr": [
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birbirine çok düşman olmak",
+          "Birbirinden ayrılmayacak kadar yakın olmak",
+          "Birini zayıflatmak için gizlice uğraşmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Birbirinden ayrılmayacak kadar yakın olmak. İki kişi arasındaki güçlü bağ; benzer görünmek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000133",
+      "expression": "s'entendre comme larrons en foire",
+      "meaningTr": "Birlikte yaramazlık yapacak kadar iyi anlaşmak",
+      "usageNoteTr": "Samimi ifade; suç ortaklığı veya muzipçe işbirliği çağrışımı vardır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ces cousins s'entendent comme larrons en foire pour préparer leurs farces.",
+          "tr": "Bu kuzenler şakalarını hazırlarken çok iyi anlaşıyor."
+        },
+        {
+          "fr": "Pour cacher le cadeau et piéger gentiment leur ami, ils s'entendaient comme larrons en foire.",
+          "tr": "Hediyeyi saklayıp arkadaşlarına tatlı bir oyun oynarken tam bir işbirliği içindeydiler."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/s%E2%80%99entendre_comme_larrons_en_foire",
+          "verification": "dictionary_entry_opened",
+          "locator": "s'entendre comme larrons en foire : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Pour cacher le cadeau et piéger gentiment leur ami, ils s'entendaient comme larrons en foire.",
+        "promptTr": "Bu bağlamda « s'entendre comme larrons en foire » ne anlama geliyor?",
+        "optionsTr": [
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birbirine çok düşman olmak",
+          "Birini zayıflatmak için gizlice uğraşmak",
+          "Birlikte yaramazlık yapacak kadar iyi anlaşmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Birlikte yaramazlık yapacak kadar iyi anlaşmak. Samimi ifade; suç ortaklığı veya muzipçe işbirliği çağrışımı vardır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000134",
+      "expression": "être sur la même longueur d'onde",
+      "meaningTr": "Aynı düşünce çizgisinde olup iyi anlaşmak",
+      "usageNoteTr": "Mecaz; radyo frekansı değil, anlayış uyumu anlatılır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Sur ce projet, nous sommes sur la même longueur d'onde.",
+          "tr": "Bu projede aynı düşünce çizgisindeyiz."
+        },
+        {
+          "fr": "Ils se comprennent vite : ils sont sur la même longueur d'onde.",
+          "tr": "Birbirlerini çabuk anlıyorlar; aynı düşünce çizgisindeler."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_sur_la_m%C3%AAme_longueur_d'onde",
+          "verification": "dictionary_entry_opened",
+          "locator": "être sur la même longueur d'onde : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Ils se comprennent vite : ils sont sur la même longueur d'onde.",
+        "promptTr": "Bu bağlamda « être sur la même longueur d'onde » ne anlama geliyor?",
+        "optionsTr": [
+          "Aynı düşünce çizgisinde olup iyi anlaşmak",
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birbirine çok düşman olmak",
+          "Birini zayıflatmak için gizlice uğraşmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Aynı düşünce çizgisinde olup iyi anlaşmak. Mecaz; radyo frekansı değil, anlayış uyumu anlatılır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000135",
+      "expression": "se serrer les coudes",
+      "meaningTr": "Birbirine destek olup dayanışmak",
+      "usageNoteTr": "Karşılıklı yardım; yalnız fiziksel yakınlık değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Dans cette période difficile, serrons-nous les coudes.",
+          "tr": "Bu zor dönemde birbirimize destek olalım."
+        },
+        {
+          "fr": "Les voisins se sont serré les coudes après la fermeture du magasin.",
+          "tr": "Mağazanın kapanmasından sonra komşular birbirine destek oldu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/se_serrer_les_coudes",
+          "verification": "dictionary_entry_opened",
+          "locator": "se serrer les coudes : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Les voisins se sont serré les coudes après la fermeture du magasin.",
+        "promptTr": "Bu bağlamda « se serrer les coudes » ne anlama geliyor?",
+        "optionsTr": [
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birbirine destek olup dayanışmak",
+          "Birbirine çok düşman olmak",
+          "Birini zayıflatmak için gizlice uğraşmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Birbirine destek olup dayanışmak. Karşılıklı yardım; yalnız fiziksel yakınlık değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000136",
+      "expression": "donner un coup de pouce à quelqu'un",
+      "meaningTr": "Birine küçük ama yararlı bir destek vermek",
+      "usageNoteTr": "İlerlemeyi kolaylaştıran yardım; gerçek başparmak hareketi seçilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Cette bourse lui a donné un coup de pouce.",
+          "tr": "Bu burs ona yararlı bir destek sağladı."
+        },
+        {
+          "fr": "Sa professeure lui a donné un coup de pouce en relisant son dossier.",
+          "tr": "Öğretmeni dosyasını yeniden okuyarak ona küçük ama yararlı bir destek verdi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.larousse.fr/dictionnaires/college/coup/9822",
+          "verification": "dictionary_entry_opened",
+          "locator": "donner un coup de pouce à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Sa professeure lui a donné un coup de pouce en relisant son dossier.",
+        "promptTr": "Bu bağlamda « donner un coup de pouce à quelqu'un » ne anlama geliyor?",
+        "optionsTr": [
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birbirine çok düşman olmak",
+          "Birine küçük ama yararlı bir destek vermek",
+          "Birini zayıflatmak için gizlice uğraşmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Birine küçük ama yararlı bir destek vermek. İlerlemeyi kolaylaştıran yardım; gerçek başparmak hareketi seçilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000137",
+      "expression": "tendre la perche à quelqu'un",
+      "meaningTr": "Birine bir konuyu açma fırsatı vermek",
+      "usageNoteTr": "Konuşmada elverişli bir giriş sunmak; her tür maddi yardım değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "En évoquant le voyage, tu lui tends la perche.",
+          "tr": "Yolculuktan söz ederek ona konuyu açma fırsatı veriyorsun."
+        },
+        {
+          "fr": "Elle lui a tendu la perche en demandant comment avançait son roman.",
+          "tr": "Romanının nasıl gittiğini sorarak ona konuyu açma fırsatı verdi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/tendre_la_perche",
+          "verification": "dictionary_entry_opened",
+          "locator": "tendre la perche à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Elle lui a tendu la perche en demandant comment avançait son roman.",
+        "promptTr": "Bu bağlamda « tendre la perche à quelqu'un » ne anlama geliyor?",
+        "optionsTr": [
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birbirine çok düşman olmak",
+          "Birini zayıflatmak için gizlice uğraşmak",
+          "Birine bir konuyu açma fırsatı vermek"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Birine bir konuyu açma fırsatı vermek. Konuşmada elverişli bir giriş sunmak; her tür maddi yardım değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000138",
+      "expression": "tirer quelqu'un d'affaire",
+      "meaningTr": "Birini zor durumdan kurtarmak",
+      "usageNoteTr": "Sorununu çözmesine yardım etmek; sadece övmek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Le prêt de son vélo m'a tiré d'affaire.",
+          "tr": "Bisikletini ödünç vermesi beni zor durumdan kurtardı."
+        },
+        {
+          "fr": "Quand ma voiture est tombée en panne, une voisine m'a tiré d'affaire.",
+          "tr": "Arabam bozulunca bir komşum beni zor durumdan kurtardı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/tirer_d%E2%80%99affaire",
+          "verification": "dictionary_entry_opened",
+          "locator": "tirer quelqu'un d'affaire : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Quand ma voiture est tombée en panne, une voisine m'a tiré d'affaire.",
+        "promptTr": "Bu bağlamda « tirer quelqu'un d'affaire » ne anlama geliyor?",
+        "optionsTr": [
+          "Birini zor durumdan kurtarmak",
+          "Birini göklere çıkararak övmek",
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birini zayıflatmak için gizlice uğraşmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Birini zor durumdan kurtarmak. Sorununu çözmesine yardım etmek; sadece övmek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000139",
+      "expression": "porter quelqu'un aux nues",
+      "meaningTr": "Birini göklere çıkararak övmek",
+      "usageNoteTr": "Övgünün çok güçlü, bazen ölçüsüz olması vurgulanır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "La critique porte cette jeune actrice aux nues.",
+          "tr": "Eleştirmenler bu genç oyuncuyu göklere çıkarıyor."
+        },
+        {
+          "fr": "Après un seul concert, certains journalistes le portaient déjà aux nues.",
+          "tr": "Tek bir konserden sonra bazı gazeteciler onu göklere çıkarıyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/porter_aux_nues",
+          "verification": "dictionary_entry_opened",
+          "locator": "porter quelqu'un aux nues : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Après un seul concert, certains journalistes le portaient déjà aux nues.",
+        "promptTr": "Bu bağlamda « porter quelqu'un aux nues » ne anlama geliyor?",
+        "optionsTr": [
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birini göklere çıkararak övmek",
+          "Birbirine çok düşman olmak",
+          "Birini zayıflatmak için gizlice uğraşmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Birini göklere çıkararak övmek. Övgünün çok güçlü, bazen ölçüsüz olması vurgulanır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000140",
+      "expression": "passer de la pommade à quelqu'un",
+      "meaningTr": "Çıkar için birine yağ çekmek",
+      "usageNoteTr": "Küçümseyici mecaz; gerçek merhem sürmek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Il passe de la pommade au chef pour obtenir un avantage.",
+          "tr": "Bir çıkar elde etmek için şefine yağ çekiyor."
+        },
+        {
+          "fr": "Avant de demander un congé, elle lui a passé de la pommade.",
+          "tr": "İzin istemeden önce ona yağ çekti."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/passer_de_la_pommade",
+          "verification": "dictionary_entry_opened",
+          "locator": "passer de la pommade à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Avant de demander un congé, elle lui a passé de la pommade.",
+        "promptTr": "Bu bağlamda « passer de la pommade à quelqu'un » ne anlama geliyor?",
+        "optionsTr": [
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birbirine çok düşman olmak",
+          "Çıkar için birine yağ çekmek",
+          "Özel anlaşmazlıkları kendi içinde çözmek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Çıkar için birine yağ çekmek. Küçümseyici mecaz; gerçek merhem sürmek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000141",
+      "expression": "brosser quelqu'un dans le sens du poil",
+      "meaningTr": "Birinin hoşuna gidecek şekilde davranıp güvenini kazanmak",
+      "usageNoteTr": "Özellikle iltifatla yaklaşma; gerçek fırçalama değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ce vendeur sait brosser ses clients dans le sens du poil.",
+          "tr": "Bu satıcı müşterilerinin hoşuna gidecek biçimde davranmayı biliyor."
+        },
+        {
+          "fr": "Pour gagner sa confiance, il l'a brossée dans le sens du poil.",
+          "tr": "Güvenini kazanmak için onun hoşuna gidecek biçimde davrandı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/brosser_dans_le_sens_du_poil",
+          "verification": "dictionary_entry_opened",
+          "locator": "brosser quelqu'un dans le sens du poil : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Pour gagner sa confiance, il l'a brossée dans le sens du poil.",
+        "promptTr": "Bu bağlamda « brosser quelqu'un dans le sens du poil » ne anlama geliyor?",
+        "optionsTr": [
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birbirine çok düşman olmak",
+          "Özel anlaşmazlıkları kendi içinde çözmek",
+          "Birinin hoşuna gidecek şekilde davranıp güvenini kazanmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Birinin hoşuna gidecek şekilde davranıp güvenini kazanmak. Özellikle iltifatla yaklaşma; gerçek fırçalama değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000142",
+      "expression": "mettre quelqu'un sur un piédestal",
+      "meaningTr": "Birini kusursuz görüp aşırı yüceltmek",
+      "usageNoteTr": "İdealize etme vurgulanır; yalnız bir başarısını kutlamak değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ne mets pas ton mentor sur un piédestal.",
+          "tr": "Rehberini kusursuz görüp aşırı yüceltme."
+        },
+        {
+          "fr": "Elle mettait son auteur préféré sur un piédestal et refusait toute critique.",
+          "tr": "Sevdiği yazarı kusursuz görüp yüceltiyor, bütün eleştirileri reddediyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cnrtl.fr/definition/pi%C3%A9destal",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre quelqu'un sur un piédestal : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Elle mettait son auteur préféré sur un piédestal et refusait toute critique.",
+        "promptTr": "Bu bağlamda « mettre quelqu'un sur un piédestal » ne anlama geliyor?",
+        "optionsTr": [
+          "Birini kusursuz görüp aşırı yüceltmek",
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birbirine çok düşman olmak",
+          "Birini zayıflatmak için gizlice uğraşmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Birini kusursuz görüp aşırı yüceltmek. İdealize etme vurgulanır; yalnız bir başarısını kutlamak değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000143",
+      "expression": "tenir quelqu'un à bout de bras",
+      "meaningTr": "Birini büyük çabayla ayakta tutmak",
+      "usageNoteTr": "Mecaz; uzun veya yoğun destek, fiziksel taşıma değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Sa sœur le tient à bout de bras depuis des mois.",
+          "tr": "Kız kardeşi aylardır onu büyük çabayla ayakta tutuyor."
+        },
+        {
+          "fr": "Sans revenu stable, il était tenu à bout de bras par sa famille.",
+          "tr": "Düzenli geliri yoktu; ailesi onu büyük çabayla ayakta tutuyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/%C3%A0_bout_de_bras",
+          "verification": "dictionary_entry_opened",
+          "locator": "tenir quelqu'un à bout de bras : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Sans revenu stable, il était tenu à bout de bras par sa famille.",
+        "promptTr": "Bu bağlamda « tenir quelqu'un à bout de bras » ne anlama geliyor?",
+        "optionsTr": [
+          "Birini göklere çıkararak övmek",
+          "Birini büyük çabayla ayakta tutmak",
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birini zayıflatmak için gizlice uğraşmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Birini büyük çabayla ayakta tutmak. Mecaz; uzun veya yoğun destek, fiziksel taşıma değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000144",
+      "expression": "faire faux bond à quelqu'un",
+      "meaningTr": "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+      "usageNoteTr": "Gelmemek veya yükümlülüğü yerine getirmemek; önceden uzlaşılmış iptal değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ne nous fais pas faux bond au dernier moment.",
+          "tr": "Son anda bizi yarı yolda bırakma."
+        },
+        {
+          "fr": "Le bénévole chargé des clés nous a fait faux bond le matin de l'événement.",
+          "tr": "Anahtarlardan sorumlu gönüllü etkinlik sabahı bizi yarı yolda bıraktı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/faire_faux_bond",
+          "verification": "dictionary_entry_opened",
+          "locator": "faire faux bond à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Le bénévole chargé des clés nous a fait faux bond le matin de l'événement.",
+        "promptTr": "Bu bağlamda « faire faux bond à quelqu'un » ne anlama geliyor?",
+        "optionsTr": [
+          "Cömert ve yardımsever olmak",
+          "Birbirine destek olup dayanışmak",
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Birini zor durumdan kurtarmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Söz verdiği desteği vermeyip birini yarı yolda bırakmak. Gelmemek veya yükümlülüğü yerine getirmemek; önceden uzlaşılmış iptal değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000145",
+      "expression": "tourner le dos à quelqu'un",
+      "meaningTr": "Birinden yüz çevirip uzaklaşmak",
+      "usageNoteTr": "Mecaz ilişkisel uzaklaşma; yalnız bedenini döndürmek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Quand elle a demandé de l'aide, il lui a tourné le dos.",
+          "tr": "Yardım istediğinde ona yüz çevirdi."
+        },
+        {
+          "fr": "Après le scandale, plusieurs soutiens lui ont tourné le dos.",
+          "tr": "Skandaldan sonra birçok destekçisi ona yüz çevirdi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/tourner_le_dos",
+          "verification": "dictionary_entry_opened",
+          "locator": "tourner le dos à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Après le scandale, plusieurs soutiens lui ont tourné le dos.",
+        "promptTr": "Bu bağlamda « tourner le dos à quelqu'un » ne anlama geliyor?",
+        "optionsTr": [
+          "Cömert ve yardımsever olmak",
+          "Birbirine destek olup dayanışmak",
+          "Birini zor durumdan kurtarmak",
+          "Birinden yüz çevirip uzaklaşmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Birinden yüz çevirip uzaklaşmak. Mecaz ilişkisel uzaklaşma; yalnız bedenini döndürmek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000146",
+      "expression": "laisser tomber quelqu'un",
+      "meaningTr": "Birini desteksiz bırakıp terk etmek",
+      "usageNoteTr": "Bu kart kişi nesnesiyle kullanımı seçer; bir eşyayı düşürmek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Je ne te laisserai pas tomber dans cette épreuve.",
+          "tr": "Bu zorlukta seni yalnız bırakmayacağım."
+        },
+        {
+          "fr": "Au premier problème, ses partenaires l'ont laissé tomber.",
+          "tr": "İlk sorunda ortakları onu desteksiz bıraktı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/laisser_tomber",
+          "verification": "dictionary_entry_opened",
+          "locator": "laisser tomber quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Au premier problème, ses partenaires l'ont laissé tomber.",
+        "promptTr": "Bu bağlamda « laisser tomber quelqu'un » ne anlama geliyor?",
+        "optionsTr": [
+          "Birini desteksiz bırakıp terk etmek",
+          "Cömert ve yardımsever olmak",
+          "Birbirine destek olup dayanışmak",
+          "Birini zor durumdan kurtarmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Birini desteksiz bırakıp terk etmek. Bu kart kişi nesnesiyle kullanımı seçer; bir eşyayı düşürmek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000147",
+      "expression": "faire la tête",
+      "meaningTr": "Küsüp somurtmak",
+      "usageNoteTr": "Samimi ifade; başla ilgili gerçek hareket değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Tu fais la tête depuis notre discussion ?",
+          "tr": "Konuşmamızdan beri küsüp somurtuyor musun?"
+        },
+        {
+          "fr": "Après cette remarque, il a fait la tête toute la soirée.",
+          "tr": "Bu sözden sonra bütün akşam küsüp somurttu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/faire_la_t%C3%AAte",
+          "verification": "dictionary_entry_opened",
+          "locator": "faire la tête : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Après cette remarque, il a fait la tête toute la soirée.",
+        "promptTr": "Bu bağlamda « faire la tête » ne anlama geliyor?",
+        "optionsTr": [
+          "Cömert ve yardımsever olmak",
+          "Küsüp somurtmak",
+          "Birine küçük ama yararlı bir destek vermek",
+          "Husumeti bırakıp barışmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Küsüp somurtmak. Samimi ifade; başla ilgili gerçek hareket değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000148",
+      "expression": "être à couteaux tirés",
+      "meaningTr": "Birbirine çok düşman olmak",
+      "usageNoteTr": "Güçlü gerginlik ve karşıtlık; gerçek silahlı olay gerekmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Les deux associés sont à couteaux tirés.",
+          "tr": "İki ortak birbirine çok düşman."
+        },
+        {
+          "fr": "Depuis le partage de l'héritage, ils sont à couteaux tirés.",
+          "tr": "Miras paylaşıldığından beri birbirlerine çok düşmanlar."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/%C3%A0_couteaux_tir%C3%A9s",
+          "verification": "dictionary_entry_opened",
+          "locator": "être à couteaux tirés : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Depuis le partage de l'héritage, ils sont à couteaux tirés.",
+        "promptTr": "Bu bağlamda « être à couteaux tirés » ne anlama geliyor?",
+        "optionsTr": [
+          "Birbirinden ayrılmayacak kadar yakın olmak",
+          "Aynı düşünce çizgisinde olup iyi anlaşmak",
+          "Birbirine çok düşman olmak",
+          "Birbirine destek olup dayanışmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Birbirine çok düşman olmak. Güçlü gerginlik ve karşıtlık; gerçek silahlı olay gerekmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000149",
+      "expression": "se regarder en chiens de faïence",
+      "meaningTr": "Birbirine soğuk ve kuşkulu bakmak",
+      "usageNoteTr": "Yan yana olup konuşmadan karşılıklı soğukluk göstermek.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Dans le salon, ils se regardaient en chiens de faïence.",
+          "tr": "Salonda birbirlerine soğuk ve kuşkulu bakıyorlardı."
+        },
+        {
+          "fr": "Après la dispute, les voisins se regardaient en chiens de faïence.",
+          "tr": "Tartışmadan sonra komşular birbirlerine soğuk ve kuşkulu bakıyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/se_regarder_en_chiens_de_fa%C3%AFence",
+          "verification": "dictionary_entry_opened",
+          "locator": "se regarder en chiens de faïence : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Après la dispute, les voisins se regardaient en chiens de faïence.",
+        "promptTr": "Bu bağlamda « se regarder en chiens de faïence » ne anlama geliyor?",
+        "optionsTr": [
+          "Birbirinden ayrılmayacak kadar yakın olmak",
+          "Aynı düşünce çizgisinde olup iyi anlaşmak",
+          "Birbirine destek olup dayanışmak",
+          "Birbirine soğuk ve kuşkulu bakmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Birbirine soğuk ve kuşkulu bakmak. Yan yana olup konuşmadan karşılıklı soğukluk göstermek."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000150",
+      "expression": "jeter de l'huile sur le feu",
+      "meaningTr": "Gerginliği daha da artırmak",
+      "usageNoteTr": "Çatışmayı körükleyen söz veya davranış; gerçek yangın anlatılmaz.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Cette moquerie ne fait que jeter de l'huile sur le feu.",
+          "tr": "Bu alay yalnızca gerginliği artırıyor."
+        },
+        {
+          "fr": "En accusant tout le monde, il a jeté de l'huile sur le feu.",
+          "tr": "Herkesi suçlayarak gerginliği daha da artırdı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/jeter_de_l'huile_sur_le_feu",
+          "verification": "dictionary_entry_opened",
+          "locator": "jeter de l'huile sur le feu : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "En accusant tout le monde, il a jeté de l'huile sur le feu.",
+        "promptTr": "Bu bağlamda « jeter de l'huile sur le feu » ne anlama geliyor?",
+        "optionsTr": [
+          "Gerginliği daha da artırmak",
+          "Aynı düşünce çizgisinde olup iyi anlaşmak",
+          "Birbirine destek olup dayanışmak",
+          "Husumeti bırakıp barışmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Gerginliği daha da artırmak. Çatışmayı körükleyen söz veya davranış; gerçek yangın anlatılmaz."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000151",
+      "expression": "mettre de l'huile dans les rouages",
+      "meaningTr": "İlişkilerin veya işleyişin pürüzlerini azaltmak",
+      "usageNoteTr": "Kolaylaştırıcı, yumuşatıcı arabuluculuk; gerçek mekanik yağlama değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Un peu d'écoute met de l'huile dans les rouages.",
+          "tr": "Biraz dinlemek ilişkilerin pürüzlerini azaltır."
+        },
+        {
+          "fr": "La médiatrice a mis de l'huile dans les rouages entre les deux services.",
+          "tr": "Arabulucu iki birim arasındaki işleyişin pürüzlerini azalttı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://usito.usherbrooke.ca/expressions/rouage",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre de l'huile dans les rouages : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "La médiatrice a mis de l'huile dans les rouages entre les deux services.",
+        "promptTr": "Bu bağlamda « mettre de l'huile dans les rouages » ne anlama geliyor?",
+        "optionsTr": [
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "İlişkilerin veya işleyişin pürüzlerini azaltmak",
+          "Birbirine çok düşman olmak",
+          "Gerginliği daha da artırmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: İlişkilerin veya işleyişin pürüzlerini azaltmak. Kolaylaştırıcı, yumuşatıcı arabuluculuk; gerçek mekanik yağlama değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000152",
+      "expression": "mettre des bâtons dans les roues de quelqu'un",
+      "meaningTr": "Birinin işine engeller çıkarmak",
+      "usageNoteTr": "İlerleyişi aksatan davranış; gerçek tekerlek anlatılmaz.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Pourquoi lui mets-tu des bâtons dans les roues ?",
+          "tr": "Neden onun işine engel çıkarıyorsun?"
+        },
+        {
+          "fr": "En retenant les documents, il nous a mis des bâtons dans les roues.",
+          "tr": "Belgeleri vermeyerek işimize engeller çıkardı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/mettre_des_b%C3%A2tons_dans_les_roues",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre des bâtons dans les roues de quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "En retenant les documents, il nous a mis des bâtons dans les roues.",
+        "promptTr": "Bu bağlamda « mettre des bâtons dans les roues de quelqu'un » ne anlama geliyor?",
+        "optionsTr": [
+          "Cömert ve yardımsever olmak",
+          "Birbirine destek olup dayanışmak",
+          "Birinin işine engeller çıkarmak",
+          "Birini zor durumdan kurtarmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Birinin işine engeller çıkarmak. İlerleyişi aksatan davranış; gerçek tekerlek anlatılmaz."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000153",
+      "expression": "tirer dans les pattes de quelqu'un",
+      "meaningTr": "Birini zayıflatmak için gizlice uğraşmak",
+      "usageNoteTr": "Samimi mecaz; kötücül rekabet. Genel eleştiriyle eşitlenmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ces rivaux se tirent constamment dans les pattes.",
+          "tr": "Bu rakipler sürekli birbirlerini gizlice zayıflatmaya çalışıyor."
+        },
+        {
+          "fr": "Au lieu de coopérer, ils se tiraient dans les pattes pour obtenir le poste.",
+          "tr": "İşbirliği yapmak yerine görevi kapmak için birbirlerini zayıflatmaya çalışıyorlardı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cnrtl.fr/definition/TIRAIT",
+          "verification": "dictionary_entry_opened",
+          "locator": "tirer dans les pattes de quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Au lieu de coopérer, ils se tiraient dans les pattes pour obtenir le poste.",
+        "promptTr": "Bu bağlamda « tirer dans les pattes de quelqu'un » ne anlama geliyor?",
+        "optionsTr": [
+          "Cömert ve yardımsever olmak",
+          "Birbirine destek olup dayanışmak",
+          "Birini zor durumdan kurtarmak",
+          "Birini zayıflatmak için gizlice uğraşmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Birini zayıflatmak için gizlice uğraşmak. Samimi mecaz; kötücül rekabet. Genel eleştiriyle eşitlenmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000154",
+      "expression": "laver son linge sale en famille",
+      "meaningTr": "Özel anlaşmazlıkları kendi içinde çözmek",
+      "usageNoteTr": "Aile veya grubun sorunlarını dışarıya taşırmadan ele alma; gerçek çamaşır değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Réglons cela entre nous : lavons notre linge sale en famille.",
+          "tr": "Bunu aramızda çözelim; özel anlaşmazlığımızı dışarıya taşımayalım."
+        },
+        {
+          "fr": "Le club a préféré laver son linge sale en famille plutôt que se disputer en public.",
+          "tr": "Kulüp herkesin önünde tartışmak yerine sorunlarını kendi içinde çözmeyi seçti."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/laver_son_linge_sale_en_famille",
+          "verification": "dictionary_entry_opened",
+          "locator": "laver son linge sale en famille : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Le club a préféré laver son linge sale en famille plutôt que se disputer en public.",
+        "promptTr": "Bu bağlamda « laver son linge sale en famille » ne anlama geliyor?",
+        "optionsTr": [
+          "Özel anlaşmazlıkları kendi içinde çözmek",
+          "Birini göklere çıkararak övmek",
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Gerginliği daha da artırmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Özel anlaşmazlıkları kendi içinde çözmek. Aile veya grubun sorunlarını dışarıya taşırmadan ele alma; gerçek çamaşır değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000155",
+      "expression": "enterrer la hache de guerre",
+      "meaningTr": "Husumeti bırakıp barışmak",
+      "usageNoteTr": "Kavga veya anlaşmazlığa son verme; gerçek savaş eylemi değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Après des années, ils ont enterré la hache de guerre.",
+          "tr": "Yıllar sonra husumeti bırakıp barıştılar."
+        },
+        {
+          "fr": "Les deux voisins ont enterré la hache de guerre autour d'un café.",
+          "tr": "İki komşu bir kahve eşliğinde husumeti bırakıp barıştı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/enterrer_la_hache_de_guerre",
+          "verification": "dictionary_entry_opened",
+          "locator": "enterrer la hache de guerre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Les deux voisins ont enterré la hache de guerre autour d'un café.",
+        "promptTr": "Bu bağlamda « enterrer la hache de guerre » ne anlama geliyor?",
+        "optionsTr": [
+          "Söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+          "Husumeti bırakıp barışmak",
+          "Birbirine çok düşman olmak",
+          "Gerginliği daha da artırmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Husumeti bırakıp barışmak. Kavga veya anlaşmazlığa son verme; gerçek savaş eylemi değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000156",
+      "expression": "mettre son grain de sel",
+      "meaningTr": "İstenmeden söze veya işe karışmak",
+      "usageNoteTr": "Samimi kullanım; gereksiz müdahale çağrışımı taşır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Il met toujours son grain de sel dans nos discussions.",
+          "tr": "Tartışmalarımıza hep istenmeden karışıyor."
+        },
+        {
+          "fr": "Sans connaître le dossier, elle a mis son grain de sel dans la négociation.",
+          "tr": "Dosyayı bilmeden müzakereye istenmeden karıştı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/mettre_son_grain_de_sel",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre son grain de sel : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Sans connaître le dossier, elle a mis son grain de sel dans la négociation.",
+        "promptTr": "Bu bağlamda « mettre son grain de sel » ne anlama geliyor?",
+        "optionsTr": [
+          "Cömert ve yardımsever olmak",
+          "Birbirine destek olup dayanışmak",
+          "İstenmeden söze veya işe karışmak",
+          "Birini zor durumdan kurtarmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: İstenmeden söze veya işe karışmak. Samimi kullanım; gereksiz müdahale çağrışımı taşır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    }
+  ]
+}

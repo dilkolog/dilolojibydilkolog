@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": 1,
+  "batch": "fr-idioms-0007",
+  "language": "fr",
+  "themeTr": "Para ve kaynaklar",
+  "status": "ready_for_independent_review",
+  "author": "Codex",
+  "intendedReviewer": "Antigravity",
+  "createdOn": "2026-11-10",
+  "levelPolicy": "CEFR levels remain unassigned pending the full task plan and independent pedagogical review. Dictionary citations do not certify levels.",
+  "contentOrigin": "Original examples, translations, explanations and exercises by Diloloji; dictionaries are lexical references, not sources of copied examples.",
+  "items": [
+    {
+      "id": "fr-idiom-000157",
+      "expression": "jeter l'argent par les fenêtres",
+      "meaningTr": "Parayı gereksiz yere savurmak",
+      "usageNoteTr": "Aşırı ve akılsızca harcama; gerçek pencereden atma değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Acheter cela sans l'utiliser, c'est jeter l'argent par les fenêtres.",
+          "tr": "Bunu kullanmadan satın almak parayı savurmaktır."
+        },
+        {
+          "fr": "Avec ces abonnements inutiles, il jetait l'argent par les fenêtres.",
+          "tr": "Bu gereksiz aboneliklerle parayı savuruyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/jeter_l%E2%80%99argent_par_les_fen%C3%AAtres",
+          "verification": "dictionary_entry_opened",
+          "locator": "jeter l'argent par les fenêtres : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Avec ces abonnements inutiles, il jetait l'argent par les fenêtres.",
+        "promptTr": "Bu bağlamda « jeter l'argent par les fenêtres » ne anlama geliyor?",
+        "optionsTr": [
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Etkili bağlantılara ve nüfuza sahip olmak",
+          "Parayı gereksiz yere savurmak",
+          "Borcunu eksiksiz ve hemen ödemek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Parayı gereksiz yere savurmak. Aşırı ve akılsızca harcama; gerçek pencereden atma değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000158",
+      "expression": "rouler sur l'or",
+      "meaningTr": "Çok zengin olmak",
+      "usageNoteTr": "Mecaz; altın üzerinde hareket etmek değildir. Diğer zenginlik deyimleri çeldirici yapılmaz.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Cette famille roule sur l'or depuis des générations.",
+          "tr": "Bu aile nesillerdir çok zengin."
+        },
+        {
+          "fr": "Ne suppose pas qu'il roule sur l'or parce qu'il possède une voiture neuve.",
+          "tr": "Yeni arabası var diye çok zengin olduğunu varsayma."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/rouler_sur_l'or",
+          "verification": "dictionary_entry_opened",
+          "locator": "rouler sur l'or : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Ne suppose pas qu'il roule sur l'or parce qu'il possède une voiture neuve.",
+        "promptTr": "Bu bağlamda « rouler sur l'or » ne anlama geliyor?",
+        "optionsTr": [
+          "Hesabı eksi bakiyede olmak",
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Çalışmaya üşenen tembel biri olmak",
+          "Çok zengin olmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Çok zengin olmak. Mecaz; altın üzerinde hareket etmek değildir. Diğer zenginlik deyimleri çeldirici yapılmaz."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000159",
+      "expression": "être plein aux as",
+      "meaningTr": "Çok varlıklı olmak",
+      "usageNoteTr": "Samimi ve abartılı ifade; kart oyunu eliyle sınırlı değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Avec ses propriétés, on le dit plein aux as.",
+          "tr": "Mülkleri nedeniyle onun çok varlıklı olduğu söyleniyor."
+        },
+        {
+          "fr": "Elle peut financer le projet seule : elle est pleine aux as.",
+          "tr": "Projeyi tek başına finanse edebilir; çok varlıklı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/plein_aux_as",
+          "verification": "dictionary_entry_opened",
+          "locator": "être plein aux as : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Elle peut financer le projet seule : elle est pleine aux as.",
+        "promptTr": "Bu bağlamda « être plein aux as » ne anlama geliyor?",
+        "optionsTr": [
+          "Çok varlıklı olmak",
+          "Hesabı eksi bakiyede olmak",
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Çalışmaya üşenen tembel biri olmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Çok varlıklı olmak. Samimi ve abartılı ifade; kart oyunu eliyle sınırlı değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000160",
+      "expression": "être cousu d'or",
+      "meaningTr": "Servet sahibi olacak kadar zengin olmak",
+      "usageNoteTr": "Abartılı zenginlik ifadesi; gerçek altınla dikilmiş giysi anlatılmaz.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ses voisins le croient cousu d'or.",
+          "tr": "Komşuları onun büyük bir serveti olduğunu düşünüyor."
+        },
+        {
+          "fr": "Malgré son apparence modeste, elle est cousue d'or.",
+          "tr": "Mütevazı görünümüne rağmen büyük bir servet sahibi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://usito.usherbrooke.ca/d%C3%A9finitions/cousu/lexies",
+          "verification": "dictionary_entry_opened",
+          "locator": "être cousu d'or : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Malgré son apparence modeste, elle est cousue d'or.",
+        "promptTr": "Bu bağlamda « être cousu d'or » ne anlama geliyor?",
+        "optionsTr": [
+          "Hesabı eksi bakiyede olmak",
+          "Servet sahibi olacak kadar zengin olmak",
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Çalışmaya üşenen tembel biri olmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Servet sahibi olacak kadar zengin olmak. Abartılı zenginlik ifadesi; gerçek altınla dikilmiş giysi anlatılmaz."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000161",
+      "expression": "être dans le rouge",
+      "meaningTr": "Hesabı eksi bakiyede olmak",
+      "usageNoteTr": "Bu kart banka hesabının mali durumunu seçer; her türlü parasızlıkla eşitlenmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Après le prélèvement du loyer, mon compte est dans le rouge.",
+          "tr": "Kira kesilince hesabım eksi bakiyeye düştü."
+        },
+        {
+          "fr": "Avec un solde de moins cent euros, elle était dans le rouge.",
+          "tr": "Bakiyesi eksi yüz avroydu; hesabı eksideydi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_rouge",
+          "verification": "dictionary_entry_opened",
+          "locator": "être dans le rouge : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Avec un solde de moins cent euros, elle était dans le rouge.",
+        "promptTr": "Bu bağlamda « être dans le rouge » ne anlama geliyor?",
+        "optionsTr": [
+          "Çok zengin olmak",
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Hesabı eksi bakiyede olmak",
+          "Borcunu eksiksiz ve hemen ödemek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Hesabı eksi bakiyede olmak. Bu kart banka hesabının mali durumunu seçer; her türlü parasızlıkla eşitlenmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000162",
+      "expression": "être à sec",
+      "meaningTr": "Elinde para kalmamış olmak",
+      "usageNoteTr": "Bu kart paranın tükenmesi anlamında; su veya yakıt anlamı sınanmaz.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Je ne peux rien avancer, je suis à sec.",
+          "tr": "Hiç para veremem; elimde para kalmadı."
+        },
+        {
+          "fr": "Après avoir payé les billets, il était à sec jusqu'au salaire.",
+          "tr": "Biletleri ödedikten sonra maaşa kadar elinde para kalmamıştı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/%C3%A0_sec",
+          "verification": "dictionary_entry_opened",
+          "locator": "être à sec : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Après avoir payé les billets, il était à sec jusqu'au salaire.",
+        "promptTr": "Bu bağlamda « être à sec » ne anlama geliyor?",
+        "optionsTr": [
+          "Çok varlıklı olmak",
+          "Etkili bağlantılara ve nüfuza sahip olmak",
+          "Borcunu eksiksiz ve hemen ödemek",
+          "Elinde para kalmamış olmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Elinde para kalmamış olmak. Bu kart paranın tükenmesi anlamında; su veya yakıt anlamı sınanmaz."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000163",
+      "expression": "être fauché comme les blés",
+      "meaningTr": "Tamamen parasız olmak",
+      "usageNoteTr": "Samimi, abartılı yoksulluk ifadesi; gerçek tarla anlatılmaz.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "En fin de mois, nous sommes fauchés comme les blés.",
+          "tr": "Ay sonunda tamamen parasızız."
+        },
+        {
+          "fr": "Elle a payé ses frais d'inscription et se retrouve fauchée comme les blés.",
+          "tr": "Kayıt ücretini ödedi; şimdi tamamen parasız kaldı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/fauch%C3%A9_comme_les_bl%C3%A9s",
+          "verification": "dictionary_entry_opened",
+          "locator": "être fauché comme les blés : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Elle a payé ses frais d'inscription et se retrouve fauchée comme les blés.",
+        "promptTr": "Bu bağlamda « être fauché comme les blés » ne anlama geliyor?",
+        "optionsTr": [
+          "Tamamen parasız olmak",
+          "Servet sahibi olacak kadar zengin olmak",
+          "Etkili bağlantılara ve nüfuza sahip olmak",
+          "Borcunu eksiksiz ve hemen ödemek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Tamamen parasız olmak. Samimi, abartılı yoksulluk ifadesi; gerçek tarla anlatılmaz."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000164",
+      "expression": "tirer le diable par la queue",
+      "meaningTr": "Geçim sıkıntısı içinde yaşamak",
+      "usageNoteTr": "Gelir ve ihtiyaçlar arasındaki güçlüğü anlatır; kişiyi küçümseyen bir yargı değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Avec ce petit revenu, ils tirent le diable par la queue.",
+          "tr": "Bu küçük gelirle geçim sıkıntısı içinde yaşıyorlar."
+        },
+        {
+          "fr": "Depuis la perte de son emploi, il tire le diable par la queue.",
+          "tr": "İşini kaybettiğinden beri geçim sıkıntısı çekiyor."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/tirer_le_diable_par_la_queue",
+          "verification": "dictionary_entry_opened",
+          "locator": "tirer le diable par la queue : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Depuis la perte de son emploi, il tire le diable par la queue.",
+        "promptTr": "Bu bağlamda « tirer le diable par la queue » ne anlama geliyor?",
+        "optionsTr": [
+          "Çok zengin olmak",
+          "Geçim sıkıntısı içinde yaşamak",
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Borcunu eksiksiz ve hemen ödemek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Geçim sıkıntısı içinde yaşamak. Gelir ve ihtiyaçlar arasındaki güçlüğü anlatır; kişiyi küçümseyen bir yargı değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000165",
+      "expression": "joindre les deux bouts",
+      "meaningTr": "Geliriyle temel giderlerini karşılayabilmek",
+      "usageNoteTr": "Çoğu kez güçlük veya olumsuzlukla kullanılır; zenginleşmek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Avec deux petits salaires, ils parviennent à joindre les deux bouts.",
+          "tr": "İki küçük maaşla temel giderlerini karşılayabiliyorlar."
+        },
+        {
+          "fr": "Malgré la hausse du loyer, elle réussit encore à joindre les deux bouts.",
+          "tr": "Kira artışına rağmen hâlâ temel giderlerini karşılayabiliyor."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/joindre_les_deux_bouts",
+          "verification": "dictionary_entry_opened",
+          "locator": "joindre les deux bouts : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Malgré la hausse du loyer, elle réussit encore à joindre les deux bouts.",
+        "promptTr": "Bu bağlamda « joindre les deux bouts » ne anlama geliyor?",
+        "optionsTr": [
+          "Çok varlıklı olmak",
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Geliriyle temel giderlerini karşılayabilmek",
+          "Çalışmaya üşenen tembel biri olmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Geliriyle temel giderlerini karşılayabilmek. Çoğu kez güçlük veya olumsuzlukla kullanılır; zenginleşmek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000166",
+      "expression": "se serrer la ceinture",
+      "meaningTr": "Masrafları kısmak, kemer sıkmak",
+      "usageNoteTr": "Harcamaları zorunlu olarak azaltma; diyet veya beden ölçüsü değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Pendant quelques mois, nous devrons nous serrer la ceinture.",
+          "tr": "Birkaç ay kemer sıkmamız gerekecek."
+        },
+        {
+          "fr": "Après la baisse de ses revenus, elle s'est serré la ceinture.",
+          "tr": "Geliri azalınca masraflarını kıstı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/se_serrer_la_ceinture",
+          "verification": "dictionary_entry_opened",
+          "locator": "se serrer la ceinture : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Après la baisse de ses revenus, elle s'est serré la ceinture.",
+        "promptTr": "Bu bağlamda « se serrer la ceinture » ne anlama geliyor?",
+        "optionsTr": [
+          "Çok zengin olmak",
+          "Etkili bağlantılara ve nüfuza sahip olmak",
+          "Borcunu eksiksiz ve hemen ödemek",
+          "Masrafları kısmak, kemer sıkmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Masrafları kısmak, kemer sıkmak. Harcamaları zorunlu olarak azaltma; diyet veya beden ölçüsü değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000167",
+      "expression": "mettre du beurre dans les épinards",
+      "meaningTr": "Ek gelirle maddi durumunu biraz rahatlatmak",
+      "usageNoteTr": "Geliri artıran katkı; gerçek yemek tarifi değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ces cours du soir mettent du beurre dans les épinards.",
+          "tr": "Bu akşam dersleri ek gelir sağlayıp bizi biraz rahatlatıyor."
+        },
+        {
+          "fr": "Son petit travail du week-end met du beurre dans les épinards.",
+          "tr": "Hafta sonundaki küçük işi ek gelirle maddi durumunu biraz rahatlatıyor."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/mettre_du_beurre_dans_les_%C3%A9pinards",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre du beurre dans les épinards : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Son petit travail du week-end met du beurre dans les épinards.",
+        "promptTr": "Bu bağlamda « mettre du beurre dans les épinards » ne anlama geliyor?",
+        "optionsTr": [
+          "Ek gelirle maddi durumunu biraz rahatlatmak",
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Çalışmaya üşenen tembel biri olmak",
+          "Bir işin kötü sonuçlarının bedelini üstlenmek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Ek gelirle maddi durumunu biraz rahatlatmak. Geliri artıran katkı; gerçek yemek tarifi değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000168",
+      "expression": "faire bouillir la marmite",
+      "meaningTr": "Evin geçimini sağlayacak parayı kazanmak",
+      "usageNoteTr": "Aileyi yaşatan gelir; gerçek yemek kaynatmak değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Son activité de couture fait bouillir la marmite.",
+          "tr": "Dikiş işi evin geçimini sağlıyor."
+        },
+        {
+          "fr": "Dans cette famille, la petite épicerie fait bouillir la marmite.",
+          "tr": "Bu ailede küçük bakkal evin geçimini sağlıyor."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/faire_bouillir_la_marmite",
+          "verification": "dictionary_entry_opened",
+          "locator": "faire bouillir la marmite : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Dans cette famille, la petite épicerie fait bouillir la marmite.",
+        "promptTr": "Bu bağlamda « faire bouillir la marmite » ne anlama geliyor?",
+        "optionsTr": [
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Evin geçimini sağlayacak parayı kazanmak",
+          "Çalışmaya üşenen tembel biri olmak",
+          "Bir işin kötü sonuçlarının bedelini üstlenmek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Evin geçimini sağlayacak parayı kazanmak. Aileyi yaşatan gelir; gerçek yemek kaynatmak değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000169",
+      "expression": "gagner sa croûte",
+      "meaningTr": "Çalışarak ekmeğini kazanmak",
+      "usageNoteTr": "Samimi, halk dili ifadesi; işin küçümsenmesi amaçlanmaz.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Il gagne sa croûte en réparant des vélos.",
+          "tr": "Bisiklet tamir ederek ekmeğini kazanıyor."
+        },
+        {
+          "fr": "Elle gagne sa croûte comme photographe indépendante.",
+          "tr": "Serbest fotoğrafçı olarak ekmeğini kazanıyor."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/gagner_sa_cro%C3%BBte",
+          "verification": "dictionary_entry_opened",
+          "locator": "gagner sa croûte : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Elle gagne sa croûte comme photographe indépendante.",
+        "promptTr": "Bu bağlamda « gagner sa croûte » ne anlama geliyor?",
+        "optionsTr": [
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Çalışmaya üşenen tembel biri olmak",
+          "Çalışarak ekmeğini kazanmak",
+          "Bir işin kötü sonuçlarının bedelini üstlenmek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Çalışarak ekmeğini kazanmak. Samimi, halk dili ifadesi; işin küçümsenmesi amaçlanmaz."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000170",
+      "expression": "mettre les petits plats dans les grands",
+      "meaningTr": "Birini ağırlamak için gösterişli bir sofra hazırlamak",
+      "usageNoteTr": "Gösterişli veya çok özenli ağırlama hazırlığı; tabakları gerçekten iç içe yerleştirmek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Pour recevoir ses amis à dîner, elle a mis les petits plats dans les grands.",
+          "tr": "Arkadaşlarını akşam yemeğinde ağırlamak için gösterişli bir sofra hazırladı."
+        },
+        {
+          "fr": "Pour le repas d'anniversaire, les hôtes avaient mis les petits plats dans les grands.",
+          "tr": "Doğum günü yemeği için ev sahipleri gösterişli bir sofra hazırlamıştı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/mettre_les_petits_plats_dans_les_grands",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre les petits plats dans les grands : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Pour le repas d'anniversaire, les hôtes avaient mis les petits plats dans les grands.",
+        "promptTr": "Bu bağlamda « mettre les petits plats dans les grands » ne anlama geliyor?",
+        "optionsTr": [
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Çalışmaya üşenen tembel biri olmak",
+          "Bir işin kötü sonuçlarının bedelini üstlenmek",
+          "Birini ağırlamak için gösterişli bir sofra hazırlamak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Birini ağırlamak için gösterişli bir sofra hazırlamak. Gösterişli veya çok özenli ağırlama hazırlığı; tabakları gerçekten iç içe yerleştirmek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000171",
+      "expression": "avoir des oursins dans les poches",
+      "meaningTr": "Para harcamaya yanaşmayacak kadar cimri olmak",
+      "usageNoteTr": "Eleştirel ve samimi ifade; fiziksel cep içeriği değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Quand il faut participer, il a des oursins dans les poches.",
+          "tr": "Masrafa katılmak gerektiğinde cimriliği tutuyor."
+        },
+        {
+          "fr": "Il refuse toujours de payer sa part : il a des oursins dans les poches.",
+          "tr": "Kendi payını ödemeyi hep reddediyor; çok cimri."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_des_oursins_dans_les_poches",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir des oursins dans les poches : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Il refuse toujours de payer sa part : il a des oursins dans les poches.",
+        "promptTr": "Bu bağlamda « avoir des oursins dans les poches » ne anlama geliyor?",
+        "optionsTr": [
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Parayı gereksiz yere savurmak",
+          "Etkili bağlantılara ve nüfuza sahip olmak",
+          "Borcunu eksiksiz ve hemen ödemek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Para harcamaya yanaşmayacak kadar cimri olmak. Eleştirel ve samimi ifade; fiziksel cep içeriği değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000172",
+      "expression": "avoir le bras long",
+      "meaningTr": "Etkili bağlantılara ve nüfuza sahip olmak",
+      "usageNoteTr": "Mali servetle aynı şey değildir; çevre ve etki gücü anlatılır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Elle connaît les décideurs et a le bras long.",
+          "tr": "Karar vericileri tanıyor ve güçlü nüfuzu var."
+        },
+        {
+          "fr": "Pour obtenir une audience si vite, il devait avoir le bras long.",
+          "tr": "Bu kadar çabuk görüşme ayarlayabildiğine göre güçlü bağlantıları olmalıydı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_le_bras_long",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir le bras long : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Pour obtenir une audience si vite, il devait avoir le bras long.",
+        "promptTr": "Bu bağlamda « avoir le bras long » ne anlama geliyor?",
+        "optionsTr": [
+          "Parayı gereksiz yere savurmak",
+          "Etkili bağlantılara ve nüfuza sahip olmak",
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Çalışmaya üşenen tembel biri olmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Etkili bağlantılara ve nüfuza sahip olmak. Mali servetle aynı şey değildir; çevre ve etki gücü anlatılır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000173",
+      "expression": "avoir un poil dans la main",
+      "meaningTr": "Çalışmaya üşenen tembel biri olmak",
+      "usageNoteTr": "Eleştirel, samimi etiket; kişilere nesnel teşhis gibi uygulanmamalı.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Il évite toutes les corvées ; on dit qu'il a un poil dans la main.",
+          "tr": "Bütün işleri geçiştiriyor; onun için tembel diyorlar."
+        },
+        {
+          "fr": "Dans la comédie, le personnage a un poil dans la main et laisse tout faire aux autres.",
+          "tr": "Komedideki karakter tembel; bütün işi başkalarına bırakıyor."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_un_poil_dans_la_main",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir un poil dans la main : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Dans la comédie, le personnage a un poil dans la main et laisse tout faire aux autres.",
+        "promptTr": "Bu bağlamda « avoir un poil dans la main » ne anlama geliyor?",
+        "optionsTr": [
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Etkili bağlantılara ve nüfuza sahip olmak",
+          "Çalışmaya üşenen tembel biri olmak",
+          "Borcunu eksiksiz ve hemen ödemek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Çalışmaya üşenen tembel biri olmak. Eleştirel, samimi etiket; kişilere nesnel teşhis gibi uygulanmamalı."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000174",
+      "expression": "avoir les poches percées",
+      "meaningTr": "Eline geçen parayı tutamayıp harcamak",
+      "usageNoteTr": "Parayı elde tutamama alışkanlığı; gerçek delik cepler seçilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Dès qu'il est payé, il dépense : il a les poches percées.",
+          "tr": "Maaşı gelir gelmez harcıyor; eline geçen parayı tutamıyor."
+        },
+        {
+          "fr": "Elle voudrait économiser, mais elle a les poches percées.",
+          "tr": "Biriktirmek istiyor ama eline geçen parayı tutamıyor."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.dictionnaire-academie.fr/article/A9P3031",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir les poches percées : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Elle voudrait économiser, mais elle a les poches percées.",
+        "promptTr": "Bu bağlamda « avoir les poches percées » ne anlama geliyor?",
+        "optionsTr": [
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Etkili bağlantılara ve nüfuza sahip olmak",
+          "Borcunu eksiksiz ve hemen ödemek",
+          "Eline geçen parayı tutamayıp harcamak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Eline geçen parayı tutamayıp harcamak. Parayı elde tutamama alışkanlığı; gerçek delik cepler seçilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000175",
+      "expression": "manger son blé en herbe",
+      "meaningTr": "Henüz gelmemiş geliri önceden harcamak",
+      "usageNoteTr": "Gelecekteki kaynağı tüketme; yalnız bugünkü yüksek harcama değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "N'achète pas à crédit sur cette prime incertaine : tu manges ton blé en herbe.",
+          "tr": "Bu belirsiz ikramiyeye güvenip borçla alışveriş yapma; gelecek gelirini önceden tüketiyorsun."
+        },
+        {
+          "fr": "Il avait déjà dépensé sa commission avant de la recevoir ; il mangeait son blé en herbe.",
+          "tr": "Komisyonunu almadan harcamıştı; gelmemiş gelirini önceden tüketiyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/manger_son_bl%C3%A9_en_herbe",
+          "verification": "dictionary_entry_opened",
+          "locator": "manger son blé en herbe : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Il avait déjà dépensé sa commission avant de la recevoir ; il mangeait son blé en herbe.",
+        "promptTr": "Bu bağlamda « manger son blé en herbe » ne anlama geliyor?",
+        "optionsTr": [
+          "Henüz gelmemiş geliri önceden harcamak",
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Etkili bağlantılara ve nüfuza sahip olmak",
+          "Borcunu eksiksiz ve hemen ödemek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Henüz gelmemiş geliri önceden harcamak. Gelecekteki kaynağı tüketme; yalnız bugünkü yüksek harcama değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000176",
+      "expression": "faire des économies de bouts de chandelle",
+      "meaningTr": "Önemsiz tutarlar için anlamsız tasarruf yapmak",
+      "usageNoteTr": "Tasarrufun yersiz küçüklüğü eleştirilir; yararlı bütçe yönetiminin bütünü değil.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Supprimer les crayons, c'est faire des économies de bouts de chandelle.",
+          "tr": "Kurşun kalemleri kaldırmak önemsiz tutarlar için anlamsız tasarruf yapmaktır."
+        },
+        {
+          "fr": "L'entreprise a fait des économies de bouts de chandelle en supprimant le savon.",
+          "tr": "Şirket sabunu kaldırarak önemsiz tutarlar uğruna anlamsız tasarruf yaptı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.dictionnaire-academie.fr/article/A9B1888",
+          "verification": "dictionary_entry_opened",
+          "locator": "faire des économies de bouts de chandelle : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "L'entreprise a fait des économies de bouts de chandelle en supprimant le savon.",
+        "promptTr": "Bu bağlamda « faire des économies de bouts de chandelle » ne anlama geliyor?",
+        "optionsTr": [
+          "Çok zengin olmak",
+          "Önemsiz tutarlar için anlamsız tasarruf yapmak",
+          "Etkili bağlantılara ve nüfuza sahip olmak",
+          "Borcunu eksiksiz ve hemen ödemek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Önemsiz tutarlar için anlamsız tasarruf yapmak. Tasarrufun yersiz küçüklüğü eleştirilir; yararlı bütçe yönetiminin bütünü değil."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000177",
+      "expression": "payer rubis sur l'ongle",
+      "meaningTr": "Borcunu eksiksiz ve hemen ödemek",
+      "usageNoteTr": "Tam ödeme vurgulanır; taksit veya pazarlıkla aynı değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Il a réglé sa dette rubis sur l'ongle.",
+          "tr": "Borcunu eksiksiz ve hemen ödedi."
+        },
+        {
+          "fr": "Sans demander de délai, la cliente a payé rubis sur l'ongle.",
+          "tr": "Müşteri süre istemeden eksiksiz ve hemen ödedi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/rubis_sur_l%E2%80%99ongle",
+          "verification": "dictionary_entry_opened",
+          "locator": "payer rubis sur l'ongle : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Sans demander de délai, la cliente a payé rubis sur l'ongle.",
+        "promptTr": "Bu bağlamda « payer rubis sur l'ongle » ne anlama geliyor?",
+        "optionsTr": [
+          "Parayı gereksiz yere savurmak",
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Borcunu eksiksiz ve hemen ödemek",
+          "Çalışmaya üşenen tembel biri olmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Borcunu eksiksiz ve hemen ödemek. Tam ödeme vurgulanır; taksit veya pazarlıkla aynı değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000178",
+      "expression": "payer les pots cassés",
+      "meaningTr": "Bir işin kötü sonuçlarının bedelini üstlenmek",
+      "usageNoteTr": "Sorumlusu olmadığı sonuçları da kapsayabilir; gerçek kırık kap gerekmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Le projet échoue et les salariés paient les pots cassés.",
+          "tr": "Proje çöküyor ve kötü sonuçların bedelini çalışanlar ödüyor."
+        },
+        {
+          "fr": "Les dirigeants se sont trompés, mais les usagers ont payé les pots cassés.",
+          "tr": "Yöneticiler hata yaptı ama sonuçların bedelini kullanıcılar üstlendi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/payer_les_pots_cass%C3%A9s",
+          "verification": "dictionary_entry_opened",
+          "locator": "payer les pots cassés : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Les dirigeants se sont trompés, mais les usagers ont payé les pots cassés.",
+        "promptTr": "Bu bağlamda « payer les pots cassés » ne anlama geliyor?",
+        "optionsTr": [
+          "Çok varlıklı olmak",
+          "Etkili bağlantılara ve nüfuza sahip olmak",
+          "Borcunu eksiksiz ve hemen ödemek",
+          "Bir işin kötü sonuçlarının bedelini üstlenmek"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Bir işin kötü sonuçlarının bedelini üstlenmek. Sorumlusu olmadığı sonuçları da kapsayabilir; gerçek kırık kap gerekmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000179",
+      "expression": "en être pour ses frais",
+      "meaningTr": "Yaptığı harcamayı karşılayamayıp zararda kalmak",
+      "usageNoteTr": "Bu kart mali anlamı seçer; kaynakta bulunan mecaz hayal kırıklığı anlamı sınanmaz.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Sans ventes suffisantes, l'organisateur en sera pour ses frais.",
+          "tr": "Yeterli satış olmazsa organizatör masrafını karşılayamayıp zararda kalacak."
+        },
+        {
+          "fr": "Les billets ont rapporté moins que la location ; nous en avons été pour nos frais.",
+          "tr": "Bilet geliri kiradan azdı; masrafımızı karşılayamayıp zararda kaldık."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/en_%C3%AAtre_pour_ses_frais",
+          "verification": "dictionary_entry_opened",
+          "locator": "en être pour ses frais : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Les billets ont rapporté moins que la location ; nous en avons été pour nos frais.",
+        "promptTr": "Bu bağlamda « en être pour ses frais » ne anlama geliyor?",
+        "optionsTr": [
+          "Yaptığı harcamayı karşılayamayıp zararda kalmak",
+          "Çok zengin olmak",
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Borcunu eksiksiz ve hemen ödemek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Yaptığı harcamayı karşılayamayıp zararda kalmak. Bu kart mali anlamı seçer; kaynakta bulunan mecaz hayal kırıklığı anlamı sınanmaz."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000180",
+      "expression": "faire chou blanc",
+      "meaningTr": "Aradığı sonucu elde edememek",
+      "usageNoteTr": "Samimi mecaz; araştırma veya girişimin sonuçsuz kalması.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "J'ai cherché ce livre partout et fait chou blanc.",
+          "tr": "Bu kitabı her yerde aradım ama sonuç alamadım."
+        },
+        {
+          "fr": "Malgré trois visites chez les brocanteurs, elle a fait chou blanc.",
+          "tr": "Eskicilere üç kez gitmesine rağmen aradığını bulamadı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/faire_chou_blanc",
+          "verification": "dictionary_entry_opened",
+          "locator": "faire chou blanc : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Malgré trois visites chez les brocanteurs, elle a fait chou blanc.",
+        "promptTr": "Bu bağlamda « faire chou blanc » ne anlama geliyor?",
+        "optionsTr": [
+          "Çok varlıklı olmak",
+          "Aradığı sonucu elde edememek",
+          "Etkili bağlantılara ve nüfuza sahip olmak",
+          "Borcunu eksiksiz ve hemen ödemek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Aradığı sonucu elde edememek. Samimi mecaz; araştırma veya girişimin sonuçsuz kalması."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000181",
+      "expression": "faire d'une pierre deux coups",
+      "meaningTr": "Tek bir işle iki sonuç elde etmek",
+      "usageNoteTr": "İki hedefin aynı eylemle karşılanması; gerçek taş atmak değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "En venant à vélo, je fais du sport et économise : d'une pierre deux coups.",
+          "tr": "Bisikletle gelerek spor yapıyor ve tasarruf ediyorum; bir taşla iki kuş."
+        },
+        {
+          "fr": "En allant à pied poster son colis, elle a fait d'une pierre deux coups : une course et de l'exercice.",
+          "tr": "Paketini göndermeye yürüyerek gidip hem işini gördü hem spor yaptı; bir taşla iki kuş vurdu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/faire_d%E2%80%99une_pierre_deux_coups",
+          "verification": "dictionary_entry_opened",
+          "locator": "faire d'une pierre deux coups : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "En allant à pied poster son colis, elle a fait d'une pierre deux coups : une course et de l'exercice.",
+        "promptTr": "Bu bağlamda « faire d'une pierre deux coups » ne anlama geliyor?",
+        "optionsTr": [
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Çalışmaya üşenen tembel biri olmak",
+          "Tek bir işle iki sonuç elde etmek",
+          "Yaptığı harcamayı karşılayamayıp zararda kalmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Tek bir işle iki sonuç elde etmek. İki hedefin aynı eylemle karşılanması; gerçek taş atmak değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000182",
+      "expression": "mettre la main à la poche",
+      "meaningTr": "Masrafı karşılamak için cebinden para vermek",
+      "usageNoteTr": "Mecaz ödeme katkısı; yalnızca elini cebine sokmak değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Pour financer la sortie, chacun devra mettre la main à la poche.",
+          "tr": "Geziyi finanse etmek için herkes cebinden para verecek."
+        },
+        {
+          "fr": "Les membres ont mis la main à la poche pour réparer le toit.",
+          "tr": "Üyeler çatıyı onarmak için ceplerinden para verdi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/mettre_la_main_%C3%A0_la_poche",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre la main à la poche : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Les membres ont mis la main à la poche pour réparer le toit.",
+        "promptTr": "Bu bağlamda « mettre la main à la poche » ne anlama geliyor?",
+        "optionsTr": [
+          "Para harcamaya yanaşmayacak kadar cimri olmak",
+          "Çalışmaya üşenen tembel biri olmak",
+          "Yaptığı harcamayı karşılayamayıp zararda kalmak",
+          "Masrafı karşılamak için cebinden para vermek"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Masrafı karşılamak için cebinden para vermek. Mecaz ödeme katkısı; yalnızca elini cebine sokmak değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    }
+  ]
+}

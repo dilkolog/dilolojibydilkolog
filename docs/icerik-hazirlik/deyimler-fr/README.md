@@ -1,27 +1,39 @@
-# Fransızca deyimler — ilk teslim paketi
+# Fransızca deyimler — 10 paket
 
-**26 deyim, 52 özgün örnek ve Türkçe çevirisi, 26 bağlam sorusu.** Her deyimde kullanım notu ve açılarak kontrol edilmiş sözlük maddesi bulunur. Kaynaklar: 24 Larousse maddesi ve 2 Wiktionnaire maddesi. Üretici Codex; bağımsız denetleyici Antigravity.
+**260 deyim ve kalıp · 520 özgün Fransızca örnek ve Türkçe çevirisi · 260 bağlam sorusu.** Kullanıcının istediği toplam 10 paket tamamlandı; ilk paket korunup dokuz yeni paket eklendi. Her pakette 26 kayıt, 52 örnek ve 26 soru var.
 
-Bu ilk parti **bağımsız denetime hazırdır**. Henüz uygulamada yayınlanmadı. Ekran görüntüsünde görev planının altı kesildiğinden toplam hedef, CEFR dağılımı ve nihai veri şeması doğrulanamadı. Bu nedenle düzeyler `null`; 26 sayısı bu teslimin kapsamıdır, doğrulanmış nihai görev kotası değildir.
+[On paketi birlikte indir](arsivler/deyimler-fr-10-paket.zip) · [Claude için devir](CLAUDE-DEVIR.md) · [Makinece okunabilir dizin](PAKET-DIZINI.json) · [Doğrulama](DOGRULAMA.json) · [Teslim kontrolü](TESLIM-KONTROLU.md)
 
-## Dosyalar
+| Paket | Tema | İnceleme | Cevap anahtarsız sorular | ZIP |
+| --- | --- | --- | --- | --- |
+| 01 | İlk karma paket | [Kartlar](INCELEME.md) | [Sorular](SORULAR.md) | [İndir](arsivler/deyimler-fr-paket-01.zip) |
+| 02 | Duygular ve tepkiler | [Kartlar](paquet-02/INCELEME.md) | [Sorular](paquet-02/SORULAR.md) | [İndir](arsivler/deyimler-fr-paket-02.zip) |
+| 03 | Konuşma ve iletişim | [Kartlar](paquet-03/INCELEME.md) | [Sorular](paquet-03/SORULAR.md) | [İndir](arsivler/deyimler-fr-paket-03.zip) |
+| 04 | Çalışma ve çaba | [Kartlar](paquet-04/INCELEME.md) | [Sorular](paquet-04/SORULAR.md) | [İndir](arsivler/deyimler-fr-paket-04.zip) |
+| 05 | Karar, risk ve tedbir | [Kartlar](paquet-05/INCELEME.md) | [Sorular](paquet-05/SORULAR.md) | [İndir](arsivler/deyimler-fr-paket-05.zip) |
+| 06 | İlişkiler ve dayanışma | [Kartlar](paquet-06/INCELEME.md) | [Sorular](paquet-06/SORULAR.md) | [İndir](arsivler/deyimler-fr-paket-06.zip) |
+| 07 | Para ve kaynaklar | [Kartlar](paquet-07/INCELEME.md) | [Sorular](paquet-07/SORULAR.md) | [İndir](arsivler/deyimler-fr-paket-07.zip) |
+| 08 | Zaman ve gündelik ritim | [Kartlar](paquet-08/INCELEME.md) | [Sorular](paquet-08/SORULAR.md) | [İndir](arsivler/deyimler-fr-paket-08.zip) |
+| 09 | Başarı ve güçlükler | [Kartlar](paquet-09/INCELEME.md) | [Sorular](paquet-09/SORULAR.md) | [İndir](arsivler/deyimler-fr-paket-09.zip) |
+| 10 | Anlama, sezgi ve yanılgı | [Kartlar](paquet-10/INCELEME.md) | [Sorular](paquet-10/SORULAR.md) | [İndir](arsivler/deyimler-fr-paket-10.zip) |
 
-- [SORULAR.md](SORULAR.md): cevap anahtarı ve anlam kartları olmadan çözücü dosyası.
-- [INCELEME.md](INCELEME.md): okunabilir kartlar, örnekler, sorular ve açılır cevap anahtarları.
-- [fr-idioms-0001.json](fr-idioms-0001.json): düzenlenebilir asıl veri; tüm kimlikler korunmalı.
-- [KAYNAKLAR.md](KAYNAKLAR.md): madde düzeyinde bağlantılar ve kaynak kontrolünün kapsamı.
-- [MEVCUT-ICERIK-TARAMASI.md](MEVCUT-ICERIK-TARAMASI.md): mevcut verilerde 42 satırda bulunan ifade parçaları; yanlış pozitifler içerebilir.
-- [DOGRULAMA.json](DOGRULAMA.json): yapı kontrolünün çıktısı.
-- [CLAUDE-DEVIR.md](CLAUDE-DEVIR.md): entegrasyon ve bağımsız inceleme için notlar.
-- [validate.py](validate.py): `python3 docs/icerik-hazirlik/deyimler-fr/validate.py` ile tekrar çalıştırılabilir yapı denetimi.
+Her paketin asıl verisi kendi `fr-idioms-XXXX.json` dosyasıdır. İlk paketin eski dosya yolları ve 26 kimliği korundu; yeni kimlikler `fr-idiom-000027`–`fr-idiom-000260` aralığındadır. İlk paketin kendi kontrolü [DOGRULAMA-PAKET-01.json](DOGRULAMA-PAKET-01.json), önceki teslim notu [PAKET-01.md](PAKET-01.md) dosyasındadır.
 
-## Editoryal kararlar
+## Kaynak ve kalite durumu
 
-- İlk taslaktaki `vendre la peau de l'ours avant de l'avoir tué` atasözü niteliği nedeniyle bu partiye alınmadı.
-- `mettre la charrue avant les bœufs` fiil grubu olarak tutuldu; görev atasözü kökenli kalıpları da dışlıyorsa denetleyici yeniden değerlendirmeli.
-- Bu 26 deyimin tamamı sitede ilk kez bulunacak ifadeler değildir. Mevcut B2 `idioms_everyday` listesi ve başka derslerle örtüşmeler raporda gösterildi. Yeni örnekler, anlam soruları ve kaynak notları mevcut içeriği genişletmek için de kullanılabilir.
-- Deyimlerin sözlük anlamı kontrol edildi. Örneklerin doğallığı, çeviriler, çeldiricilerin tek doğru cevabı koruması ve seviye kararı hâlâ bağımsız inceleme gerektirir. Yapı kontrolü bu dil değerlendirmesinin yerine geçmez.
-- Kaynak tanımları, sesler ve sözlük örnekleri pakete kopyalanmadı. Türkçe açıklamalar ve öğrenme içeriği özgün yazıldı.
-- Yakın anlamlı `tourner autour du pot` ve `noyer le poisson` birbirine çeldirici yapılmadı. `donner sa langue au chat` genel bir vazgeçme olarak, `faire la part des choses` eşit pay dağıtmak olarak öğretilmedi.
+259 kaydın dayandığı sözlük maddesi açıldı. `fr-idiom-000117` için Le Robert tanımı arama sonucunda okundu; doğrudan sayfa erişimi 403 döndürdüğü için bu kayıt **madde açılmış gibi işaretlenmedi**. Ayrıntı [paket 05 kaynaklarında](paquet-05/KAYNAKLAR.md).
 
-İspanyolca derleme için aynı tarihli uzak dal kontrolünde `icerik/deyimler-es` bulunamadı; bu teslimde İspanyolca denetimi yapıldığı iddia edilmez.
+Kaynaklar yalnız sözlük anlamı içindir. Tanımlar, sözlük örnekleri, ses ve görseller kopyalanmadı. Anlamlar, kullanım açıklamaları, örnekler, çeviriler ve sorular özgün yazıldı.
+
+Bağımsız dil ve soru denetimi bekliyor; üreticinin kendi kontrolü bunun yerine geçmez. Tam görevdeki CEFR dağılımı hâlâ doğrulanmadığından düzeyler `null` bırakıldı. Paketler uygulamaya bağlanmadı. Yerleşik söyleyişler ve bazı kalıplaşmış ifadeler de bulunur; daha dar bir deyim tanımı isteniyorsa sınırdaki kayıtlar [denetim notlarında](DENETIM-NOTLARI.md) işaretli.
+
+Mevcut derslerle örtüşen kalıplar [toplu tarama raporunda](MEVCUT-ICERIK-TARAMASI-TUMU.md). Bu 260 kaydın tamamı sitede ilk kez görülecek ifadeler olarak sayılmamalı. [İlk dar tarama](MEVCUT-ICERIK-TARAMASI.md) tarihsel referans olarak korundu; iki taramanın yöntemleri farklıdır.
+
+## Yeniden üretim
+
+```sh
+python3 docs/icerik-hazirlik/deyimler-fr/validate.py
+python3 docs/icerik-hazirlik/deyimler-fr/render.py
+```
+
+İlk komut 10 paketi birlikte kontrol eder; ikincisi Markdown dosyalarını, mevcut içerik taramasını, paket dizinini ve 11 ZIP'i üretir. [SHA-256 listesi](arsivler/SHA256SUMS.txt) arşivleri doğrulamak içindir. Bağımsız inceleme tamamlandığında doğrulayıcının ilk teslim durumunu bekleyen koşulları da güncellenmeli.

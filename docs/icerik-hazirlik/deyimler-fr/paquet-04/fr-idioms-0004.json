@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": 1,
+  "batch": "fr-idioms-0004",
+  "language": "fr",
+  "themeTr": "Çalışma ve çaba",
+  "status": "ready_for_independent_review",
+  "author": "Codex",
+  "intendedReviewer": "Antigravity",
+  "createdOn": "2026-11-10",
+  "levelPolicy": "CEFR levels remain unassigned pending the full task plan and independent pedagogical review. Dictionary citations do not certify levels.",
+  "contentOrigin": "Original examples, translations, explanations and exercises by Diloloji; dictionaries are lexical references, not sources of copied examples.",
+  "items": [
+    {
+      "id": "fr-idiom-000079",
+      "expression": "mettre la main à la pâte",
+      "meaningTr": "İşe bizzat katılıp el atmak",
+      "usageNoteTr": "Somut katkı vurgulanır; sadece talimat vermek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Tout le monde a mis la main à la pâte pour décorer.",
+          "tr": "Süsleme için herkes işe el attı."
+        },
+        {
+          "fr": "Même la directrice a mis la main à la pâte pour préparer les colis.",
+          "tr": "Müdür bile kolileri hazırlamak için işe bizzat katıldı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/mettre_la_main_%C3%A0_la_p%C3%A2te",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre la main à la pâte : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Même la directrice a mis la main à la pâte pour préparer les colis.",
+        "promptTr": "Bu bağlamda « mettre la main à la pâte » ne anlama geliyor?",
+        "optionsTr": [
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "İşi yaparken uygulama içinde öğrenmek",
+          "İşe gömülüp bütünü değerlendirememek",
+          "İşe bizzat katılıp el atmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: İşe bizzat katılıp el atmak. Somut katkı vurgulanır; sadece talimat vermek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000080",
+      "expression": "se retrousser les manches",
+      "meaningTr": "Kolları sıvayıp işe koyulmak",
+      "usageNoteTr": "Başlamaya hazır, kararlı çalışma tavrı anlatılır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Il reste tout à nettoyer ; retroussons-nous les manches.",
+          "tr": "Her yer hâlâ temizlenecek; kolları sıvayalım."
+        },
+        {
+          "fr": "Devant le chantier, les bénévoles se sont retroussé les manches.",
+          "tr": "Gönüllüler yapılacak işleri görünce kolları sıvayıp işe koyuldu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/se_retrousser_les_manches",
+          "verification": "dictionary_entry_opened",
+          "locator": "se retrousser les manches : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Devant le chantier, les bénévoles se sont retroussé les manches.",
+        "promptTr": "Bu bağlamda « se retrousser les manches » ne anlama geliyor?",
+        "optionsTr": [
+          "Kolları sıvayıp işe koyulmak",
+          "Çözüm üretmek için çok sayıda hüneri olmak",
+          "Bir işin alışkanlığını edinmek",
+          "Bir işe son rötuşları yapmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Kolları sıvayıp işe koyulmak. Başlamaya hazır, kararlı çalışma tavrı anlatılır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000081",
+      "expression": "mettre les bouchées doubles",
+      "meaningTr": "İşi hızlandırıp çabayı artırmak",
+      "usageNoteTr": "Acil işi yetiştirme bağlamı; fiziksel yeme hızı seçilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Pour livrer vendredi, nous devons mettre les bouchées doubles.",
+          "tr": "Cuma teslim etmek için tempoyu artırmalıyız."
+        },
+        {
+          "fr": "Après la panne, l'atelier a mis les bouchées doubles pour rattraper le retard.",
+          "tr": "Arızadan sonra atölye gecikmeyi telafi etmek için tempoyu artırdı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/mettre_les_bouch%C3%A9es_doubles",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre les bouchées doubles : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Après la panne, l'atelier a mis les bouchées doubles pour rattraper le retard.",
+        "promptTr": "Bu bağlamda « mettre les bouchées doubles » ne anlama geliyor?",
+        "optionsTr": [
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "İşi hızlandırıp çabayı artırmak",
+          "İşi yaparken uygulama içinde öğrenmek",
+          "Kendi imkânlarıyla bağımsız hareket etmek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: İşi hızlandırıp çabayı artırmak. Acil işi yetiştirme bağlamı; fiziksel yeme hızı seçilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000082",
+      "expression": "travailler d'arrache-pied",
+      "meaningTr": "Durmaksızın yoğun biçimde çalışmak",
+      "usageNoteTr": "Uzun ve yoğun çaba; işin sonucunun mutlaka başarılı olması gerekmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Les équipes travaillent d'arrache-pied à la réparation du pont.",
+          "tr": "Ekipler köprünün onarımı için durmaksızın yoğun biçimde çalışıyor."
+        },
+        {
+          "fr": "Elle a travaillé d'arrache-pied pendant deux semaines sur sa traduction.",
+          "tr": "İki hafta boyunca çevirisi üzerinde yoğun biçimde çalıştı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/d%E2%80%99arrache-pied",
+          "verification": "dictionary_entry_opened",
+          "locator": "travailler d'arrache-pied : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Elle a travaillé d'arrache-pied pendant deux semaines sur sa traduction.",
+        "promptTr": "Bu bağlamda « travailler d'arrache-pied » ne anlama geliyor?",
+        "optionsTr": [
+          "Çözüm üretmek için çok sayıda hüneri olmak",
+          "Bir işin alışkanlığını edinmek",
+          "Durmaksızın yoğun biçimde çalışmak",
+          "Bir işe son rötuşları yapmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Durmaksızın yoğun biçimde çalışmak. Uzun ve yoğun çaba; işin sonucunun mutlaka başarılı olması gerekmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000083",
+      "expression": "se donner du mal",
+      "meaningTr": "Bir şey için emek ve çaba harcamak",
+      "usageNoteTr": "Se donner du mal çaba göstermek; kendine zarar vermek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Tu t'es donné du mal pour préparer cet accueil.",
+          "tr": "Bu karşılamayı hazırlamak için emek harcadın."
+        },
+        {
+          "fr": "Les élèves se sont donné du mal pour rendre leur exposé clair.",
+          "tr": "Öğrenciler sunumlarını anlaşılır kılmak için çaba harcadı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.larousse.fr/dictionnaires/francais/mal/48790",
+          "verification": "dictionary_entry_opened",
+          "locator": "se donner du mal : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Les élèves se sont donné du mal pour rendre leur exposé clair.",
+        "promptTr": "Bu bağlamda « se donner du mal » ne anlama geliyor?",
+        "optionsTr": [
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "İşi yaparken uygulama içinde öğrenmek",
+          "Kendi imkânlarıyla bağımsız hareket etmek",
+          "Bir şey için emek ve çaba harcamak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Bir şey için emek ve çaba harcamak. Se donner du mal çaba göstermek; kendine zarar vermek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000084",
+      "expression": "se donner à fond",
+      "meaningTr": "Bütün enerjisini ortaya koymak",
+      "usageNoteTr": "Kendini tam olarak verme; sonuç garantisi veya sağlık öğüdü değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Au concours, chacun s'est donné à fond.",
+          "tr": "Yarışmada herkes bütün enerjisini ortaya koydu."
+        },
+        {
+          "fr": "Même sans gagner, l'équipe s'est donnée à fond jusqu'à la fin.",
+          "tr": "Kazanmasa da ekip sonuna kadar bütün enerjisini ortaya koydu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/se_donner_%C3%A0_fond",
+          "verification": "dictionary_entry_opened",
+          "locator": "se donner à fond : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Même sans gagner, l'équipe s'est donnée à fond jusqu'à la fin.",
+        "promptTr": "Bu bağlamda « se donner à fond » ne anlama geliyor?",
+        "optionsTr": [
+          "Bütün enerjisini ortaya koymak",
+          "Çözüm üretmek için çok sayıda hüneri olmak",
+          "Bir işin alışkanlığını edinmek",
+          "İşe gömülüp bütünü değerlendirememek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Bütün enerjisini ortaya koymak. Kendini tam olarak verme; sonuç garantisi veya sağlık öğüdü değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000085",
+      "expression": "mettre du cœur à l'ouvrage",
+      "meaningTr": "İşe gönlünü ve hevesini katmak",
+      "usageNoteTr": "İstekli çalışma vurgulanır; sadece süre uzunluğu değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Les apprentis mettent du cœur à l'ouvrage.",
+          "tr": "Çıraklar işe gönüllerini katıyor."
+        },
+        {
+          "fr": "Pour restaurer le vieux décor, chacun a mis du cœur à l'ouvrage.",
+          "tr": "Eski dekoru onarmak için herkes gönülden çalıştı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.larousse.fr/dictionnaires/college/c%C5%93ur/8362",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre du cœur à l'ouvrage : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Pour restaurer le vieux décor, chacun a mis du cœur à l'ouvrage.",
+        "promptTr": "Bu bağlamda « mettre du cœur à l'ouvrage » ne anlama geliyor?",
+        "optionsTr": [
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "İşe gönlünü ve hevesini katmak",
+          "İşi yaparken uygulama içinde öğrenmek",
+          "Kendi imkânlarıyla bağımsız hareket etmek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: İşe gönlünü ve hevesini katmak. İstekli çalışma vurgulanır; sadece süre uzunluğu değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000086",
+      "expression": "ne pas compter ses heures",
+      "meaningTr": "Çalışırken saat hesabı yapmamak",
+      "usageNoteTr": "Süre sınırını gözetmeden çalışma; fazla mesai önerisi veya övgüsü sayılmamalı.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Pendant l'ouverture du café, elle ne comptait pas ses heures.",
+          "tr": "Kafenin açılışı sırasında çalışırken saat hesabı yapmıyordu."
+        },
+        {
+          "fr": "Il ne comptait plus ses heures, puis a décidé de mieux protéger son repos.",
+          "tr": "Artık çalışırken saat hesabı yapmıyordu; sonra dinlenmesini daha iyi korumaya karar verdi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/ne_pas_compter_ses_heures",
+          "verification": "dictionary_entry_opened",
+          "locator": "ne pas compter ses heures : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Il ne comptait plus ses heures, puis a décidé de mieux protéger son repos.",
+        "promptTr": "Bu bağlamda « ne pas compter ses heures » ne anlama geliyor?",
+        "optionsTr": [
+          "Çözüm üretmek için çok sayıda hüneri olmak",
+          "Bir işin alışkanlığını edinmek",
+          "Çalışırken saat hesabı yapmamak",
+          "Bir işe son rötuşları yapmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Çalışırken saat hesabı yapmamak. Süre sınırını gözetmeden çalışma; fazla mesai önerisi veya övgüsü sayılmamalı."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000087",
+      "expression": "travailler comme un forçat",
+      "meaningTr": "Çok ağır ve yorucu biçimde çalışmak",
+      "usageNoteTr": "Forçat benzetmesi abartılıdır; gerçek hükümlülük bağlamı öğretilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Sans machine, ils travaillaient comme des forçats dans l'atelier.",
+          "tr": "Makine olmayınca atölyede çok ağır koşullarda çalışıyorlardı."
+        },
+        {
+          "fr": "Après avoir travaillé comme un forçat, il a demandé de l'aide.",
+          "tr": "Çok ağır ve yorucu biçimde çalıştıktan sonra yardım istedi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/for%C3%A7at",
+          "verification": "dictionary_entry_opened",
+          "locator": "travailler comme un forçat : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Après avoir travaillé comme un forçat, il a demandé de l'aide.",
+        "promptTr": "Bu bağlamda « travailler comme un forçat » ne anlama geliyor?",
+        "optionsTr": [
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "İşi yaparken uygulama içinde öğrenmek",
+          "Kendi imkânlarıyla bağımsız hareket etmek",
+          "Çok ağır ve yorucu biçimde çalışmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Çok ağır ve yorucu biçimde çalışmak. Forçat benzetmesi abartılıdır; gerçek hükümlülük bağlamı öğretilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000088",
+      "expression": "faire des pieds et des mains",
+      "meaningTr": "Bir sonuç için her türlü girişimde bulunmak",
+      "usageNoteTr": "Hizmet veya imkân elde etmek için yoğun çaba; gerçek el-ayak hareketi değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Elle fait des pieds et des mains pour trouver une salle.",
+          "tr": "Salon bulmak için her türlü girişimde bulunuyor."
+        },
+        {
+          "fr": "Il a fait des pieds et des mains pour obtenir un rendez-vous urgent.",
+          "tr": "Acil randevu alabilmek için her türlü girişimde bulundu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/faire_des_pieds_et_des_mains",
+          "verification": "dictionary_entry_opened",
+          "locator": "faire des pieds et des mains : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Il a fait des pieds et des mains pour obtenir un rendez-vous urgent.",
+        "promptTr": "Bu bağlamda « faire des pieds et des mains » ne anlama geliyor?",
+        "optionsTr": [
+          "Bir sonuç için her türlü girişimde bulunmak",
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "İşi yaparken uygulama içinde öğrenmek",
+          "Kendi imkânlarıyla bağımsız hareket etmek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Bir sonuç için her türlü girişimde bulunmak. Hizmet veya imkân elde etmek için yoğun çaba; gerçek el-ayak hareketi değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000089",
+      "expression": "remuer ciel et terre",
+      "meaningTr": "Amacına ulaşmak için her yolu denemek",
+      "usageNoteTr": "Büyük seferberlik ve çaba; başarma garantisi değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ils ont remué ciel et terre pour retrouver leur chien.",
+          "tr": "Köpeklerini bulmak için her yolu denediler."
+        },
+        {
+          "fr": "La famille a remué ciel et terre pour réunir les documents perdus.",
+          "tr": "Aile kayıp belgeleri toplamak için her yolu denedi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/remuer_ciel_et_terre",
+          "verification": "dictionary_entry_opened",
+          "locator": "remuer ciel et terre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "La famille a remué ciel et terre pour réunir les documents perdus.",
+        "promptTr": "Bu bağlamda « remuer ciel et terre » ne anlama geliyor?",
+        "optionsTr": [
+          "Çözüm üretmek için çok sayıda hüneri olmak",
+          "Amacına ulaşmak için her yolu denemek",
+          "Bir işin alışkanlığını edinmek",
+          "İşe gömülüp bütünü değerlendirememek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Amacına ulaşmak için her yolu denemek. Büyük seferberlik ve çaba; başarma garantisi değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000090",
+      "expression": "se plier en quatre",
+      "meaningTr": "Birini memnun etmek için çok çabalamak",
+      "usageNoteTr": "Başkasını memnun etme vurgusu taşır; gerçek katlanma hareketi değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "L'hôte se plie en quatre pour ses invités.",
+          "tr": "Ev sahibi misafirlerini memnun etmek için çok çabalıyor."
+        },
+        {
+          "fr": "Elle s'est pliée en quatre pour adapter le repas aux goûts de chacun.",
+          "tr": "Yemeği herkesin zevkine uydurmak için büyük çaba harcadı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/se_plier_en_quatre",
+          "verification": "dictionary_entry_opened",
+          "locator": "se plier en quatre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Elle s'est pliée en quatre pour adapter le repas aux goûts de chacun.",
+        "promptTr": "Bu bağlamda « se plier en quatre » ne anlama geliyor?",
+        "optionsTr": [
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "İşi yaparken uygulama içinde öğrenmek",
+          "Birini memnun etmek için çok çabalamak",
+          "Kendi imkânlarıyla bağımsız hareket etmek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Birini memnun etmek için çok çabalamak. Başkasını memnun etme vurgusu taşır; gerçek katlanma hareketi değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000091",
+      "expression": "se creuser la tête",
+      "meaningTr": "Çözüm bulmak için kafa yormak",
+      "usageNoteTr": "Yoğun düşünme veya hatırlama; fiziksel bir eylem değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Je me creuse la tête pour résoudre cette énigme.",
+          "tr": "Bu bilmeceyi çözmek için kafa yoruyorum."
+        },
+        {
+          "fr": "Les techniciens se sont creusé la tête pour comprendre cette panne étrange.",
+          "tr": "Teknisyenler bu tuhaf arızayı anlamak için kafa yordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/se_creuser_la_t%C3%AAte",
+          "verification": "dictionary_entry_opened",
+          "locator": "se creuser la tête : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Les techniciens se sont creusé la tête pour comprendre cette panne étrange.",
+        "promptTr": "Bu bağlamda « se creuser la tête » ne anlama geliyor?",
+        "optionsTr": [
+          "İşe bizzat katılıp el atmak",
+          "Bir işin alışkanlığını edinmek",
+          "Çok miktarda işi tamamlamak",
+          "Çözüm bulmak için kafa yormak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Çözüm bulmak için kafa yormak. Yoğun düşünme veya hatırlama; fiziksel bir eylem değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000092",
+      "expression": "se casser la tête",
+      "meaningTr": "Bir meseleyi çözmek için çok kafa patlatmak",
+      "usageNoteTr": "Samimi kullanım; sıklıkla olumsuz yapıda gereksiz zorluğu azaltma önerisi verir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ne te casse pas la tête, un simple message suffira.",
+          "tr": "Kafana takıp durma; basit bir mesaj yeter."
+        },
+        {
+          "fr": "Nous nous sommes cassé la tête sur ce calcul toute la matinée.",
+          "tr": "Bütün sabah bu hesap üzerinde kafa patlattık."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/se_casser_la_t%C3%AAte",
+          "verification": "dictionary_entry_opened",
+          "locator": "se casser la tête : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Nous nous sommes cassé la tête sur ce calcul toute la matinée.",
+        "promptTr": "Bu bağlamda « se casser la tête » ne anlama geliyor?",
+        "optionsTr": [
+          "Bir meseleyi çözmek için çok kafa patlatmak",
+          "İşe bizzat katılıp el atmak",
+          "Bir alanda ilk deneyimlerini edinmek",
+          "Çok miktarda işi tamamlamak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Bir meseleyi çözmek için çok kafa patlatmak. Samimi kullanım; sıklıkla olumsuz yapıda gereksiz zorluğu azaltma önerisi verir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000093",
+      "expression": "avoir plusieurs cordes à son arc",
+      "meaningTr": "Birden fazla beceri veya çözüm yoluna sahip olmak",
+      "usageNoteTr": "Mecaz; farklı yetenek ve yöntemler sayesinde seçenek sahibi olmak.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Elle sait traduire et programmer : elle a plusieurs cordes à son arc.",
+          "tr": "Çeviri ve programlama biliyor; birden fazla becerisi var."
+        },
+        {
+          "fr": "Pour changer de métier, il peut compter sur plusieurs cordes à son arc.",
+          "tr": "Meslek değiştirmek için farklı becerilerine güvenebilir."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_plusieurs_cordes_%C3%A0_son_arc",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir plusieurs cordes à son arc : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Pour changer de métier, il peut compter sur plusieurs cordes à son arc.",
+        "promptTr": "Bu bağlamda « avoir plusieurs cordes à son arc » ne anlama geliyor?",
+        "optionsTr": [
+          "İşe bizzat katılıp el atmak",
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "Çalışırken saat hesabı yapmamak",
+          "İşe gömülüp bütünü değerlendirememek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Birden fazla beceri veya çözüm yoluna sahip olmak. Mecaz; farklı yetenek ve yöntemler sayesinde seçenek sahibi olmak."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000094",
+      "expression": "avoir plus d'un tour dans son sac",
+      "meaningTr": "Çözüm üretmek için çok sayıda hüneri olmak",
+      "usageNoteTr": "Pratik zekâ ve beklenmedik yöntemler; gerçek çanta içeriği değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ce réparateur a plus d'un tour dans son sac.",
+          "tr": "Bu tamircinin çözüm üretecek çok hüneri var."
+        },
+        {
+          "fr": "Même sans la pièce habituelle, elle avait plus d'un tour dans son sac pour réparer la lampe.",
+          "tr": "Alışılmış parça olmadan da lambayı onaracak farklı hünerleri vardı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_plus_d%E2%80%99un_tour_dans_son_sac",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir plus d'un tour dans son sac : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Même sans la pièce habituelle, elle avait plus d'un tour dans son sac pour réparer la lampe.",
+        "promptTr": "Bu bağlamda « avoir plus d'un tour dans son sac » ne anlama geliyor?",
+        "optionsTr": [
+          "Çalışırken saat hesabı yapmamak",
+          "Bir alanda ilk deneyimlerini edinmek",
+          "Çözüm üretmek için çok sayıda hüneri olmak",
+          "İşe gömülüp bütünü değerlendirememek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Çözüm üretmek için çok sayıda hüneri olmak. Pratik zekâ ve beklenmedik yöntemler; gerçek çanta içeriği değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000095",
+      "expression": "apprendre sur le tas",
+      "meaningTr": "İşi yaparken uygulama içinde öğrenmek",
+      "usageNoteTr": "Önceden tam eğitim almadan pratikle öğrenme; bütün eğitimlerin gereksiz olduğu iddia edilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Il a appris la vente sur le tas.",
+          "tr": "Satıcılığı işi yaparken öğrendi."
+        },
+        {
+          "fr": "Sans formation en cuisine, elle a appris sur le tas auprès de l'équipe.",
+          "tr": "Mutfak eğitimi olmadan, ekiple çalışırken uygulama içinde öğrendi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/sur_le_tas",
+          "verification": "dictionary_entry_opened",
+          "locator": "apprendre sur le tas : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Sans formation en cuisine, elle a appris sur le tas auprès de l'équipe.",
+        "promptTr": "Bu bağlamda « apprendre sur le tas » ne anlama geliyor?",
+        "optionsTr": [
+          "Kolları sıvayıp işe koyulmak",
+          "Çalışırken saat hesabı yapmamak",
+          "Bir işe son rötuşları yapmak",
+          "İşi yaparken uygulama içinde öğrenmek"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: İşi yaparken uygulama içinde öğrenmek. Önceden tam eğitim almadan pratikle öğrenme; bütün eğitimlerin gereksiz olduğu iddia edilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000096",
+      "expression": "prendre le pli",
+      "meaningTr": "Bir işin alışkanlığını edinmek",
+      "usageNoteTr": "Tekrarla uyum sağlamak; yalnız kumaş kıvrımı değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Au début c'était difficile, puis j'ai pris le pli.",
+          "tr": "Başta zordu, sonra alışkanlığını edindim."
+        },
+        {
+          "fr": "Après deux semaines, les nouveaux ont pris le pli des horaires décalés.",
+          "tr": "İki hafta sonra yeniler farklı çalışma saatlerinin alışkanlığını edindi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/prendre_le_pli",
+          "verification": "dictionary_entry_opened",
+          "locator": "prendre le pli : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Après deux semaines, les nouveaux ont pris le pli des horaires décalés.",
+        "promptTr": "Bu bağlamda « prendre le pli » ne anlama geliyor?",
+        "optionsTr": [
+          "Bir işin alışkanlığını edinmek",
+          "İşe gönlünü ve hevesini katmak",
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "Bir işe son rötuşları yapmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Bir işin alışkanlığını edinmek. Tekrarla uyum sağlamak; yalnız kumaş kıvrımı değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000097",
+      "expression": "faire ses premières armes",
+      "meaningTr": "Bir alanda ilk deneyimlerini edinmek",
+      "usageNoteTr": "Askerî anlam dışındaki mesleki başlangıç kullanımı seçilir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Elle a fait ses premières armes dans une petite rédaction.",
+          "tr": "İlk deneyimlerini küçük bir haber merkezinde edindi."
+        },
+        {
+          "fr": "Ce cuisinier a fait ses premières armes dans le restaurant familial.",
+          "tr": "Bu aşçı ilk deneyimlerini ailesinin lokantasında edindi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/faire_ses_premi%C3%A8res_armes",
+          "verification": "dictionary_entry_opened",
+          "locator": "faire ses premières armes : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Ce cuisinier a fait ses premières armes dans le restaurant familial.",
+        "promptTr": "Bu bağlamda « faire ses premières armes » ne anlama geliyor?",
+        "optionsTr": [
+          "Çalışırken saat hesabı yapmamak",
+          "Bir alanda ilk deneyimlerini edinmek",
+          "Çözüm üretmek için çok sayıda hüneri olmak",
+          "Bir işe son rötuşları yapmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Bir alanda ilk deneyimlerini edinmek. Askerî anlam dışındaki mesleki başlangıç kullanımı seçilir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000098",
+      "expression": "prendre son envol",
+      "meaningTr": "Kendi alanında gelişip yükselmeye başlamak",
+      "usageNoteTr": "Kariyer veya girişimin gelişmesi; gerçek uçuş anlamı seçilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Après son premier album, sa carrière a pris son envol.",
+          "tr": "İlk albümünden sonra kariyeri yükselmeye başladı."
+        },
+        {
+          "fr": "Avec ce nouveau contrat, la jeune entreprise a pris son envol.",
+          "tr": "Bu yeni sözleşmeyle genç şirket gelişip yükselmeye başladı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/prendre_son_envol",
+          "verification": "dictionary_entry_opened",
+          "locator": "prendre son envol : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Avec ce nouveau contrat, la jeune entreprise a pris son envol.",
+        "promptTr": "Bu bağlamda « prendre son envol » ne anlama geliyor?",
+        "optionsTr": [
+          "Çalışırken saat hesabı yapmamak",
+          "Bir meseleyi çözmek için çok kafa patlatmak",
+          "Kendi alanında gelişip yükselmeye başlamak",
+          "İşe gömülüp bütünü değerlendirememek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Kendi alanında gelişip yükselmeye başlamak. Kariyer veya girişimin gelişmesi; gerçek uçuş anlamı seçilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000099",
+      "expression": "voler de ses propres ailes",
+      "meaningTr": "Kendi imkânlarıyla bağımsız hareket etmek",
+      "usageNoteTr": "Bağımsızlık vurgusu; yalnızca başarılı veya çok meşgul olmak değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Après son apprentissage, elle veut voler de ses propres ailes.",
+          "tr": "Çıraklıktan sonra kendi ayakları üzerinde durmak istiyor."
+        },
+        {
+          "fr": "Il a quitté l'entreprise familiale pour voler de ses propres ailes.",
+          "tr": "Kendi imkânlarıyla bağımsız çalışmak için aile şirketinden ayrıldı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/voler_de_ses_propres_ailes",
+          "verification": "dictionary_entry_opened",
+          "locator": "voler de ses propres ailes : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Il a quitté l'entreprise familiale pour voler de ses propres ailes.",
+        "promptTr": "Bu bağlamda « voler de ses propres ailes » ne anlama geliyor?",
+        "optionsTr": [
+          "Çalışırken saat hesabı yapmamak",
+          "Bir meseleyi çözmek için çok kafa patlatmak",
+          "İşe gömülüp bütünü değerlendirememek",
+          "Kendi imkânlarıyla bağımsız hareket etmek"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Kendi imkânlarıyla bağımsız hareket etmek. Bağımsızlık vurgusu; yalnızca başarılı veya çok meşgul olmak değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000100",
+      "expression": "être sur tous les fronts",
+      "meaningTr": "Birden çok alanda aynı anda uğraş vermek",
+      "usageNoteTr": "Gerçek savaş alanları değil, farklı sorumluluklar anlatılır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Entre l'accueil et la logistique, elle est sur tous les fronts.",
+          "tr": "Karşılama ve lojistik arasında birçok alanda aynı anda uğraşıyor."
+        },
+        {
+          "fr": "Le coordinateur était sur tous les fronts pendant le festival.",
+          "tr": "Koordinatör festival boyunca her alanda aynı anda uğraşıyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/sur_tous_les_fronts",
+          "verification": "dictionary_entry_opened",
+          "locator": "être sur tous les fronts : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Le coordinateur était sur tous les fronts pendant le festival.",
+        "promptTr": "Bu bağlamda « être sur tous les fronts » ne anlama geliyor?",
+        "optionsTr": [
+          "Birden çok alanda aynı anda uğraş vermek",
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "İşi yaparken uygulama içinde öğrenmek",
+          "Bir işe son rötuşları yapmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Birden çok alanda aynı anda uğraş vermek. Gerçek savaş alanları değil, farklı sorumluluklar anlatılır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000101",
+      "expression": "être au four et au moulin",
+      "meaningTr": "Aynı anda birçok işe yetişmeye çalışmak",
+      "usageNoteTr": "Çoğu zaman bunun güçlüğü veya imkânsızlığı olumsuz yapıyla belirtilir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Je ne peux pas être au four et au moulin.",
+          "tr": "Aynı anda her işe yetişemem."
+        },
+        {
+          "fr": "Il gérait seul les commandes et les livraisons ; impossible d'être au four et au moulin.",
+          "tr": "Siparişlerle teslimatı tek başına yürütüyordu; her işe birden yetişmek imkânsızdı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_au_four_et_au_moulin",
+          "verification": "dictionary_entry_opened",
+          "locator": "être au four et au moulin : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Il gérait seul les commandes et les livraisons ; impossible d'être au four et au moulin.",
+        "promptTr": "Bu bağlamda « être au four et au moulin » ne anlama geliyor?",
+        "optionsTr": [
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "Aynı anda birçok işe yetişmeye çalışmak",
+          "İşi yaparken uygulama içinde öğrenmek",
+          "Bir işe son rötuşları yapmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Aynı anda birçok işe yetişmeye çalışmak. Çoğu zaman bunun güçlüğü veya imkânsızlığı olumsuz yapıyla belirtilir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000102",
+      "expression": "avoir la tête dans le guidon",
+      "meaningTr": "İşe gömülüp bütünü değerlendirememek",
+      "usageNoteTr": "Yoğun uğraş yüzünden geri çekilip bakamama; yalnız bisiklet sürüşü değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Avec ces urgences, nous avons la tête dans le guidon.",
+          "tr": "Bu acil işlerle uğraşırken işe gömülüp bütünü göremiyoruz."
+        },
+        {
+          "fr": "Elle avait la tête dans le guidon et ne voyait plus les priorités.",
+          "tr": "İşe öyle gömülmüştü ki öncelikleri artık göremiyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/la_t%C3%AAte_dans_le_guidon",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir la tête dans le guidon : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Elle avait la tête dans le guidon et ne voyait plus les priorités.",
+        "promptTr": "Bu bağlamda « avoir la tête dans le guidon » ne anlama geliyor?",
+        "optionsTr": [
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "İşi yaparken uygulama içinde öğrenmek",
+          "İşe gömülüp bütünü değerlendirememek",
+          "Kendi imkânlarıyla bağımsız hareket etmek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: İşe gömülüp bütünü değerlendirememek. Yoğun uğraş yüzünden geri çekilip bakamama; yalnız bisiklet sürüşü değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000103",
+      "expression": "abattre du travail",
+      "meaningTr": "Çok miktarda işi tamamlamak",
+      "usageNoteTr": "Tamamlanan iş hacmi vurgulanır; çalışarak bir şeyi yıkmak değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "L'équipe a abattu beaucoup de travail ce matin.",
+          "tr": "Ekip bu sabah çok iş bitirdi."
+        },
+        {
+          "fr": "En une journée, elle a abattu le travail prévu pour trois.",
+          "tr": "Bir günde üç günlük işi tamamladı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/abattre",
+          "verification": "dictionary_entry_opened",
+          "locator": "abattre du travail : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "En une journée, elle a abattu le travail prévu pour trois.",
+        "promptTr": "Bu bağlamda « abattre du travail » ne anlama geliyor?",
+        "optionsTr": [
+          "Birden fazla beceri veya çözüm yoluna sahip olmak",
+          "İşi yaparken uygulama içinde öğrenmek",
+          "İşe gömülüp bütünü değerlendirememek",
+          "Çok miktarda işi tamamlamak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Çok miktarda işi tamamlamak. Tamamlanan iş hacmi vurgulanır; çalışarak bir şeyi yıkmak değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000104",
+      "expression": "mettre la dernière main à quelque chose",
+      "meaningTr": "Bir işe son rötuşları yapmak",
+      "usageNoteTr": "Tamamlamaya yaklaşmış bir çalışmayı son kez düzenlemek.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Nous mettons la dernière main au rapport.",
+          "tr": "Rapora son rötuşları yapıyoruz."
+        },
+        {
+          "fr": "Avant l'impression, elle a mis la dernière main à son recueil.",
+          "tr": "Baskıdan önce derlemesine son rötuşları yaptı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/mettre_la_derni%C3%A8re_main_%C3%A0",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre la dernière main à quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Avant l'impression, elle a mis la dernière main à son recueil.",
+        "promptTr": "Bu bağlamda « mettre la dernière main à quelque chose » ne anlama geliyor?",
+        "optionsTr": [
+          "Bir işe son rötuşları yapmak",
+          "Kolları sıvayıp işe koyulmak",
+          "İşi yaparken uygulama içinde öğrenmek",
+          "Bir alanda ilk deneyimlerini edinmek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Bir işe son rötuşları yapmak. Tamamlamaya yaklaşmış bir çalışmayı son kez düzenlemek."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    }
+  ]
+}

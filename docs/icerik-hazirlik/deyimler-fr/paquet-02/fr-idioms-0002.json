@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": 1,
+  "batch": "fr-idioms-0002",
+  "language": "fr",
+  "themeTr": "Duygular ve tepkiler",
+  "status": "ready_for_independent_review",
+  "author": "Codex",
+  "intendedReviewer": "Antigravity",
+  "createdOn": "2026-11-10",
+  "levelPolicy": "CEFR levels remain unassigned pending the full task plan and independent pedagogical review. Dictionary citations do not certify levels.",
+  "contentOrigin": "Original examples, translations, explanations and exercises by Diloloji; dictionaries are lexical references, not sources of copied examples.",
+  "items": [
+    {
+      "id": "fr-idiom-000027",
+      "expression": "avoir le cœur gros",
+      "meaningTr": "İçi hüzünle dolmak",
+      "usageNoteTr": "Üzüntüyü anlatır; öfke veya cömertlik anlamı verilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "J'avais le cœur gros en quittant notre ancienne maison.",
+          "tr": "Eski evimizden ayrılırken içim hüzünle doldu."
+        },
+        {
+          "fr": "Au départ de sa meilleure amie, Lina avait le cœur gros.",
+          "tr": "En yakın arkadaşı giderken Lina'nın içi hüzünle doluydu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_le_c%C5%93ur_gros",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir le cœur gros : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Au départ de sa meilleure amie, Lina avait le cœur gros.",
+        "promptTr": "Bu bağlamda « avoir le cœur gros » ne anlama geliyor?",
+        "optionsTr": [
+          "Sevinçten havalara uçmak",
+          "İçi hüzünle dolmak",
+          "İçinde yoğun bir korku taşımak",
+          "Öfkeden kendini kaybetmek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: İçi hüzünle dolmak. Üzüntüyü anlatır; öfke veya cömertlik anlamı verilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000028",
+      "expression": "avoir le cœur serré",
+      "meaningTr": "İçi burkulmak",
+      "usageNoteTr": "Duygusal sıkışma anlatılır; fiziksel kalp rahatsızlığına ilişkin bir teşhis değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Elle avait le cœur serré en lisant cette lettre d'adieu.",
+          "tr": "Bu veda mektubunu okurken içi burkuldu."
+        },
+        {
+          "fr": "En voyant la salle de classe vide, le professeur a eu le cœur serré.",
+          "tr": "Öğretmen boş sınıfı görünce içi burkuldu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_le_c%C5%93ur_serr%C3%A9",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir le cœur serré : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "En voyant la salle de classe vide, le professeur a eu le cœur serré.",
+        "promptTr": "Bu bağlamda « avoir le cœur serré » ne anlama geliyor?",
+        "optionsTr": [
+          "Mutluluktan bulutların üzerinde olmak",
+          "Öfkeden kıpkırmızı kesilmek",
+          "İçi burkulmak",
+          "Küçük bir söze aniden alınmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: İçi burkulmak. Duygusal sıkışma anlatılır; fiziksel kalp rahatsızlığına ilişkin bir teşhis değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000029",
+      "expression": "avoir le moral dans les chaussettes",
+      "meaningTr": "Morali çok bozuk olmak",
+      "usageNoteTr": "Samimi konuşmada moralin çok düşük olmasını anlatır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Après son échec au concours, Jules avait le moral dans les chaussettes.",
+          "tr": "Jules sınavdaki başarısızlığından sonra çok moralsizdi."
+        },
+        {
+          "fr": "Depuis l'annulation du voyage, j'ai le moral dans les chaussettes.",
+          "tr": "Yolculuk iptal edildiğinden beri moralim çok bozuk."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_le_moral_dans_les_chaussettes",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir le moral dans les chaussettes : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Depuis l'annulation du voyage, j'ai le moral dans les chaussettes.",
+        "promptTr": "Bu bağlamda « avoir le moral dans les chaussettes » ne anlama geliyor?",
+        "optionsTr": [
+          "Sevinçten zıplamak",
+          "Yaprak gibi titremek",
+          "Sert ve üstten bir tavırla çıkışmak",
+          "Morali çok bozuk olmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Morali çok bozuk olmak. Samimi konuşmada moralin çok düşük olmasını anlatır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000030",
+      "expression": "avoir le blues",
+      "meaningTr": "Nedeni tam belirgin olmayan bir hüzün duymak",
+      "usageNoteTr": "Hafif melankoliyi anlatır; müzik türü dinlemek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Le dimanche soir, j'ai parfois le blues sans savoir pourquoi.",
+          "tr": "Pazar akşamları bazen nedenini bilmeden hüzünleniyorum."
+        },
+        {
+          "fr": "Tout allait bien, pourtant Maëlle avait le blues ce matin-là.",
+          "tr": "Her şey yolundaydı ama o sabah Maëlle'nin içinde bir hüzün vardı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_le_blues",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir le blues : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Tout allait bien, pourtant Maëlle avait le blues ce matin-là.",
+        "promptTr": "Bu bağlamda « avoir le blues » ne anlama geliyor?",
+        "optionsTr": [
+          "Nedeni tam belirgin olmayan bir hüzün duymak",
+          "Mutluluktan ağzı kulaklarına varmak",
+          "Korkudan soğuk terler dökmek",
+          "Öfkeden kuduracak hâle gelmek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Nedeni tam belirgin olmayan bir hüzün duymak. Hafif melankoliyi anlatır; müzik türü dinlemek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000031",
+      "expression": "broyer du noir",
+      "meaningTr": "Karamsar düşüncelere dalmak",
+      "usageNoteTr": "Olumsuz düşüncelerle zihnini meşgul etmek; yalnız siyah rengi düşünmek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Seul dans sa chambre, il broyait du noir après cette déception.",
+          "tr": "Bu hayal kırıklığından sonra odasında yalnız başına karamsar düşüncelere dalmıştı."
+        },
+        {
+          "fr": "Au lieu de broyer du noir toute la soirée, Zoé a appelé une amie.",
+          "tr": "Zoé bütün akşam karamsarlığa gömülmek yerine bir arkadaşını aradı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/broyer_du_noir",
+          "verification": "dictionary_entry_opened",
+          "locator": "broyer du noir : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Au lieu de broyer du noir toute la soirée, Zoé a appelé une amie.",
+        "promptTr": "Bu bağlamda « broyer du noir » ne anlama geliyor?",
+        "optionsTr": [
+          "Sevinçten havalara uçmak",
+          "Karamsar düşüncelere dalmak",
+          "Heyecandan midesinde kelebekler uçuşmak",
+          "Öfkeden kendini kaybetmek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Karamsar düşüncelere dalmak. Olumsuz düşüncelerle zihnini meşgul etmek; yalnız siyah rengi düşünmek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000032",
+      "expression": "voir la vie en rose",
+      "meaningTr": "Hayatın hep iyi tarafını görmek",
+      "usageNoteTr": "İyimser bakışı, bazen aşırı iyimserliği anlatır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Depuis son déménagement, elle voit la vie en rose.",
+          "tr": "Taşındığından beri hayatın hep iyi tarafını görüyor."
+        },
+        {
+          "fr": "Même face aux petits soucis, Marc voit la vie en rose.",
+          "tr": "Marc küçük sorunlar karşısında bile hayata iyimser bakıyor."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/voir_la_vie_en_rose",
+          "verification": "dictionary_entry_opened",
+          "locator": "voir la vie en rose : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Même face aux petits soucis, Marc voit la vie en rose.",
+        "promptTr": "Bu bağlamda « voir la vie en rose » ne anlama geliyor?",
+        "optionsTr": [
+          "Morali çok bozuk olmak",
+          "İçinde yoğun bir korku taşımak",
+          "Hayatın hep iyi tarafını görmek",
+          "Birine uzun süredir kin beslemek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Hayatın hep iyi tarafını görmek. İyimser bakışı, bazen aşırı iyimserliği anlatır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000033",
+      "expression": "être aux anges",
+      "meaningTr": "Sevinçten havalara uçmak",
+      "usageNoteTr": "Çok büyük mutluluk anlatılır; bütün olumlu ruh hâlleriyle eşitlenmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Les enfants étaient aux anges en découvrant la cabane.",
+          "tr": "Çocuklar kulübeyi görünce sevinçten havalara uçtu."
+        },
+        {
+          "fr": "Sa sœur lui a offert un billet de concert ; il était aux anges.",
+          "tr": "Kız kardeşi ona konser bileti hediye etti; sevinçten havalara uçuyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_aux_anges",
+          "verification": "dictionary_entry_opened",
+          "locator": "être aux anges : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Sa sœur lui a offert un billet de concert ; il était aux anges.",
+        "promptTr": "Bu bağlamda « être aux anges » ne anlama geliyor?",
+        "optionsTr": [
+          "İçi hüzünle dolmak",
+          "Tüyleri diken diken olmak",
+          "Öfkeden kuduracak hâle gelmek",
+          "Sevinçten havalara uçmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Sevinçten havalara uçmak. Çok büyük mutluluk anlatılır; bütün olumlu ruh hâlleriyle eşitlenmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000034",
+      "expression": "être sur un petit nuage",
+      "meaningTr": "Mutluluktan bulutların üzerinde olmak",
+      "usageNoteTr": "Güzel bir olayın ardından süren coşkulu mutluluk anlatılır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Depuis leurs retrouvailles, ils sont sur un petit nuage.",
+          "tr": "Yeniden buluştuklarından beri mutluluktan bulutların üzerindeler."
+        },
+        {
+          "fr": "Admise dans l'école de son choix, Ana était sur un petit nuage.",
+          "tr": "İstediği okula kabul edilen Ana mutluluktan bulutların üzerindeydi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_sur_un_petit_nuage",
+          "verification": "dictionary_entry_opened",
+          "locator": "être sur un petit nuage : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Admise dans l'école de son choix, Ana était sur un petit nuage.",
+        "promptTr": "Bu bağlamda « être sur un petit nuage » ne anlama geliyor?",
+        "optionsTr": [
+          "Mutluluktan bulutların üzerinde olmak",
+          "Nedeni tam belirgin olmayan bir hüzün duymak",
+          "Korkudan soğuk terler dökmek",
+          "Küçük bir söze aniden alınmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Mutluluktan bulutların üzerinde olmak. Güzel bir olayın ardından süren coşkulu mutluluk anlatılır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000035",
+      "expression": "sauter de joie",
+      "meaningTr": "Sevinçten zıplamak",
+      "usageNoteTr": "Sevincin hareketli dışavurumu; korkuyla irkilmekten ayrılır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Il a sauté de joie en apprenant la bonne nouvelle.",
+          "tr": "İyi haberi öğrenince sevinçten zıpladı."
+        },
+        {
+          "fr": "Quand leur équipe a gagné, les supporters ont sauté de joie.",
+          "tr": "Takımları kazanınca taraftarlar sevinçten zıpladı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/sauter",
+          "verification": "dictionary_entry_opened",
+          "locator": "sauter de joie : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Quand leur équipe a gagné, les supporters ont sauté de joie.",
+        "promptTr": "Bu bağlamda « sauter de joie » ne anlama geliyor?",
+        "optionsTr": [
+          "İçi burkulmak",
+          "Sevinçten zıplamak",
+          "Yaprak gibi titremek",
+          "Sinirleri çok hassas olmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Sevinçten zıplamak. Sevincin hareketli dışavurumu; korkuyla irkilmekten ayrılır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000036",
+      "expression": "avoir le sourire jusqu'aux oreilles",
+      "meaningTr": "Mutluluktan ağzı kulaklarına varmak",
+      "usageNoteTr": "Geniş gülümsemeyle görülen mutluluk; sahte iltifat değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Avec son diplôme à la main, elle avait le sourire jusqu'aux oreilles.",
+          "tr": "Diploması elinde, mutluluktan ağzı kulaklarına varmıştı."
+        },
+        {
+          "fr": "Après la surprise de ses amis, Yanis avait le sourire jusqu'aux oreilles.",
+          "tr": "Arkadaşlarının sürprizinden sonra Yanis'in ağzı kulaklarına varmıştı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/sourire_jusqu%E2%80%99aux_oreilles",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir le sourire jusqu'aux oreilles : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Après la surprise de ses amis, Yanis avait le sourire jusqu'aux oreilles.",
+        "promptTr": "Bu bağlamda « avoir le sourire jusqu'aux oreilles » ne anlama geliyor?",
+        "optionsTr": [
+          "Karamsar düşüncelere dalmak",
+          "İçinde yoğun bir korku taşımak",
+          "Mutluluktan ağzı kulaklarına varmak",
+          "Öfkeden kendini kaybetmek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Mutluluktan ağzı kulaklarına varmak. Geniş gülümsemeyle görülen mutluluk; sahte iltifat değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000037",
+      "expression": "avoir la peur au ventre",
+      "meaningTr": "İçinde yoğun bir korku taşımak",
+      "usageNoteTr": "Beklenen tehdit karşısındaki korku; yalnızca açlık veya karın ağrısı değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Il avançait dans le couloir sombre avec la peur au ventre.",
+          "tr": "Karanlık koridorda içini yoğun bir korku kaplamış hâlde ilerliyordu."
+        },
+        {
+          "fr": "Avant de traverser le pont suspendu, elle avait la peur au ventre.",
+          "tr": "Asma köprüden geçmeden önce içinde yoğun bir korku vardı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_la_peur_au_ventre",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir la peur au ventre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Avant de traverser le pont suspendu, elle avait la peur au ventre.",
+        "promptTr": "Bu bağlamda « avoir la peur au ventre » ne anlama geliyor?",
+        "optionsTr": [
+          "Hayatın hep iyi tarafını görmek",
+          "Mutluluktan ağzı kulaklarına varmak",
+          "Birine uzun süredir kin beslemek",
+          "İçinde yoğun bir korku taşımak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: İçinde yoğun bir korku taşımak. Beklenen tehdit karşısındaki korku; yalnızca açlık veya karın ağrısı değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000038",
+      "expression": "trembler comme une feuille",
+      "meaningTr": "Yaprak gibi titremek",
+      "usageNoteTr": "Korku veya soğuktan titremek; örnekler korku anlamını seçer.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Devant le chien qui grognait, l'enfant tremblait comme une feuille.",
+          "tr": "Hırlayan köpeğin karşısında çocuk yaprak gibi titriyordu."
+        },
+        {
+          "fr": "Pendant son premier vol, Karim tremblait comme une feuille au décollage.",
+          "tr": "İlk uçuşunda Karim kalkış sırasında yaprak gibi titriyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/trembler_comme_une_feuille",
+          "verification": "dictionary_entry_opened",
+          "locator": "trembler comme une feuille : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Pendant son premier vol, Karim tremblait comme une feuille au décollage.",
+        "promptTr": "Bu bağlamda « trembler comme une feuille » ne anlama geliyor?",
+        "optionsTr": [
+          "Yaprak gibi titremek",
+          "Sevinçten havalara uçmak",
+          "Öfkeden kıpkırmızı kesilmek",
+          "İçi büyük bir üzüntü ve kırgınlıkla dolu olmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Yaprak gibi titremek. Korku veya soğuktan titremek; örnekler korku anlamını seçer."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000039",
+      "expression": "avoir la chair de poule",
+      "meaningTr": "Tüyleri diken diken olmak",
+      "usageNoteTr": "Soğuk, korku veya güçlü bir duyguyla oluşabilir; bu kart korku bağlamındadır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ce récit de fantômes m'a donné la chair de poule.",
+          "tr": "Bu hayalet öyküsü tüylerimi diken diken etti."
+        },
+        {
+          "fr": "En entendant des pas derrière elle dans le noir, elle a eu la chair de poule.",
+          "tr": "Karanlıkta arkasından gelen ayak seslerini duyunca tüyleri diken diken oldu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_la_chair_de_poule",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir la chair de poule : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "En entendant des pas derrière elle dans le noir, elle a eu la chair de poule.",
+        "promptTr": "Bu bağlamda « avoir la chair de poule » ne anlama geliyor?",
+        "optionsTr": [
+          "Mutluluktan bulutların üzerinde olmak",
+          "Tüyleri diken diken olmak",
+          "Sert ve üstten bir tavırla çıkışmak",
+          "Gücü ve dayanma kapasitesi tükenmiş olmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Tüyleri diken diken olmak. Soğuk, korku veya güçlü bir duyguyla oluşabilir; bu kart korku bağlamındadır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000040",
+      "expression": "avoir des sueurs froides",
+      "meaningTr": "Korkudan soğuk terler dökmek",
+      "usageNoteTr": "Korku anlatılır; sıcak hava yüzünden terlemek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "La voiture a glissé près du ravin ; nous avons eu des sueurs froides.",
+          "tr": "Araba uçurumun yakınında kaydı; korkudan soğuk terler döktük."
+        },
+        {
+          "fr": "Quand la porte de l'ascenseur est restée bloquée, j'ai eu des sueurs froides.",
+          "tr": "Asansörün kapısı sıkışıp kalınca korkudan soğuk terler döktüm."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_des_sueurs_froides",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir des sueurs froides : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Quand la porte de l'ascenseur est restée bloquée, j'ai eu des sueurs froides.",
+        "promptTr": "Bu bağlamda « avoir des sueurs froides » ne anlama geliyor?",
+        "optionsTr": [
+          "Hayatın hep iyi tarafını görmek",
+          "Bir anda öfkeye kapılmak",
+          "Korkudan soğuk terler dökmek",
+          "Birine uzun süredir kin beslemek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Korkudan soğuk terler dökmek. Korku anlatılır; sıcak hava yüzünden terlemek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000041",
+      "expression": "avoir des papillons dans le ventre",
+      "meaningTr": "Heyecandan midesinde kelebekler uçuşmak",
+      "usageNoteTr": "Olumlu heyecan ve bazen kaygı anlatır; burada romantik beklenti seçilir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Avant leur premier rendez-vous, elle avait des papillons dans le ventre.",
+          "tr": "İlk buluşmalarından önce heyecandan midesinde kelebekler uçuşuyordu."
+        },
+        {
+          "fr": "En attendant le message de celui qui lui plaisait, Lou avait des papillons dans le ventre.",
+          "tr": "Hoşlandığı kişinin mesajını beklerken Lou'nun midesinde kelebekler uçuşuyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/papillons_dans_le_ventre",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir des papillons dans le ventre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "En attendant le message de celui qui lui plaisait, Lou avait des papillons dans le ventre.",
+        "promptTr": "Bu bağlamda « avoir des papillons dans le ventre » ne anlama geliyor?",
+        "optionsTr": [
+          "Morali çok bozuk olmak",
+          "Öfkeden kendini kaybetmek",
+          "Gücü ve dayanma kapasitesi tükenmiş olmak",
+          "Heyecandan midesinde kelebekler uçuşmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Heyecandan midesinde kelebekler uçuşmak. Olumlu heyecan ve bazen kaygı anlatır; burada romantik beklenti seçilir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000042",
+      "expression": "être rouge de colère",
+      "meaningTr": "Öfkeden kıpkırmızı kesilmek",
+      "usageNoteTr": "Kızarma öfkeye bağlanır; utanma veya güneşte yanma anlamı seçilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Accusé injustement, il est devenu rouge de colère.",
+          "tr": "Haksız yere suçlanınca öfkeden kıpkırmızı kesildi."
+        },
+        {
+          "fr": "La cliente était rouge de colère après cette réponse méprisante.",
+          "tr": "Müşteri bu küçümseyici cevaptan sonra öfkeden kıpkırmızıydı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.dictionnaire-academie.fr/article/A9C2894",
+          "verification": "dictionary_entry_opened",
+          "locator": "être rouge de colère : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "La cliente était rouge de colère après cette réponse méprisante.",
+        "promptTr": "Bu bağlamda « être rouge de colère » ne anlama geliyor?",
+        "optionsTr": [
+          "Öfkeden kıpkırmızı kesilmek",
+          "Nedeni tam belirgin olmayan bir hüzün duymak",
+          "Sevinçten zıplamak",
+          "İçinde yoğun bir korku taşımak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Öfkeden kıpkırmızı kesilmek. Kızarma öfkeye bağlanır; utanma veya güneşte yanma anlamı seçilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000043",
+      "expression": "voir rouge",
+      "meaningTr": "Bir anda öfkeye kapılmak",
+      "usageNoteTr": "Voir rouge mecazdır; gerçek renk algısını anlatmaz.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Quand on a insulté son frère, il a vu rouge.",
+          "tr": "Kardeşine hakaret edilince bir anda öfkeye kapıldı."
+        },
+        {
+          "fr": "En découvrant qu'on avait détruit ses dessins, elle a vu rouge.",
+          "tr": "Çizimlerinin yok edildiğini görünce bir anda öfkeye kapıldı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/voir_rouge",
+          "verification": "dictionary_entry_opened",
+          "locator": "voir rouge : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "En découvrant qu'on avait détruit ses dessins, elle a vu rouge.",
+        "promptTr": "Bu bağlamda « voir rouge » ne anlama geliyor?",
+        "optionsTr": [
+          "Karamsar düşüncelere dalmak",
+          "Bir anda öfkeye kapılmak",
+          "Mutluluktan bulutların üzerinde olmak",
+          "Heyecandan midesinde kelebekler uçuşmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Bir anda öfkeye kapılmak. Voir rouge mecazdır; gerçek renk algısını anlatmaz."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000044",
+      "expression": "sortir de ses gonds",
+      "meaningTr": "Öfkeden kendini kaybetmek",
+      "usageNoteTr": "Kontrolünü yitirecek kadar öfkelenmek; sessiz küskünlük değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "D'habitude calme, il est sorti de ses gonds devant ce mensonge.",
+          "tr": "Genellikle sakin olan adam bu yalan karşısında öfkeden kendini kaybetti."
+        },
+        {
+          "fr": "La provocation a fait sortir Nora de ses gonds ; elle s'est mise à crier.",
+          "tr": "Kışkırtma Nora'yı çileden çıkardı; bağırmaya başladı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/sortir_de_ses_gonds",
+          "verification": "dictionary_entry_opened",
+          "locator": "sortir de ses gonds : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "La provocation a fait sortir Nora de ses gonds ; elle s'est mise à crier.",
+        "promptTr": "Bu bağlamda « sortir de ses gonds » ne anlama geliyor?",
+        "optionsTr": [
+          "İçi burkulmak",
+          "Mutluluktan ağzı kulaklarına varmak",
+          "Öfkeden kendini kaybetmek",
+          "Yaprak gibi titremek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Öfkeden kendini kaybetmek. Kontrolünü yitirecek kadar öfkelenmek; sessiz küskünlük değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000045",
+      "expression": "monter sur ses grands chevaux",
+      "meaningTr": "Sert ve üstten bir tavırla çıkışmak",
+      "usageNoteTr": "Öfkeli veya mağrur bir çıkış; yalnız at binmek değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Pour une simple remarque, il est monté sur ses grands chevaux.",
+          "tr": "Basit bir yorum üzerine sert ve üstten bir tavırla çıkıştı."
+        },
+        {
+          "fr": "Au lieu d'écouter la critique, elle est montée sur ses grands chevaux.",
+          "tr": "Eleştiriyi dinlemek yerine sert ve üstten bir tavırla çıkıştı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/monter_sur_ses_grands_chevaux",
+          "verification": "dictionary_entry_opened",
+          "locator": "monter sur ses grands chevaux : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Au lieu d'écouter la critique, elle est montée sur ses grands chevaux.",
+        "promptTr": "Bu bağlamda « monter sur ses grands chevaux » ne anlama geliyor?",
+        "optionsTr": [
+          "İçi hüzünle dolmak",
+          "Sevinçten havalara uçmak",
+          "Korkudan soğuk terler dökmek",
+          "Sert ve üstten bir tavırla çıkışmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Sert ve üstten bir tavırla çıkışmak. Öfkeli veya mağrur bir çıkış; yalnız at binmek değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000046",
+      "expression": "prendre la mouche",
+      "meaningTr": "Küçük bir söze aniden alınmak",
+      "usageNoteTr": "Ani ve kolay gücenme anlatılır; uzun süreli kin tutmaktan ayrılır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ne prends pas la mouche, je plaisantais sur mon propre retard.",
+          "tr": "Hemen alınma; kendi gecikmemle ilgili şaka yapıyordum."
+        },
+        {
+          "fr": "Il a pris la mouche parce qu'on avait mal prononcé son prénom.",
+          "tr": "Adı yanlış telaffuz edildi diye bir anda alındı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/prendre_la_mouche",
+          "verification": "dictionary_entry_opened",
+          "locator": "prendre la mouche : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Il a pris la mouche parce qu'on avait mal prononcé son prénom.",
+        "promptTr": "Bu bağlamda « prendre la mouche » ne anlama geliyor?",
+        "optionsTr": [
+          "Küçük bir söze aniden alınmak",
+          "Hayatın hep iyi tarafını görmek",
+          "Sevinçten zıplamak",
+          "Tüyleri diken diken olmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Küçük bir söze aniden alınmak. Ani ve kolay gücenme anlatılır; uzun süreli kin tutmaktan ayrılır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000047",
+      "expression": "avoir une dent contre quelqu'un",
+      "meaningTr": "Birine uzun süredir kin beslemek",
+      "usageNoteTr": "Geçmiş bir olaya bağlı kalıcı kırgınlık; anlık şaşkınlık değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Depuis leur dispute, il a une dent contre son ancien associé.",
+          "tr": "Tartışmalarından beri eski ortağına kin besliyor."
+        },
+        {
+          "fr": "Elle a encore une dent contre celui qui a trahi sa confiance.",
+          "tr": "Güvenini boşa çıkaran kişiye hâlâ kin besliyor."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_une_dent_contre_quelqu'un",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir une dent contre quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Elle a encore une dent contre celui qui a trahi sa confiance.",
+        "promptTr": "Bu bağlamda « avoir une dent contre quelqu'un » ne anlama geliyor?",
+        "optionsTr": [
+          "Mutluluktan bulutların üzerinde olmak",
+          "Birine uzun süredir kin beslemek",
+          "Yaprak gibi titremek",
+          "Heyecandan midesinde kelebekler uçuşmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Birine uzun süredir kin beslemek. Geçmiş bir olaya bağlı kalıcı kırgınlık; anlık şaşkınlık değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000048",
+      "expression": "en avoir gros sur le cœur",
+      "meaningTr": "İçi büyük bir üzüntü ve kırgınlıkla dolu olmak",
+      "usageNoteTr": "Burada duygusal yük anlamı seçilir; kaynakta görülen başka kaba anlamlar öğretilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Après toutes ces promesses oubliées, j'en ai gros sur le cœur.",
+          "tr": "Unutulan bütün bu sözlerden sonra içim kırgınlıkla dolu."
+        },
+        {
+          "fr": "Écartée sans explication, la bénévole en avait gros sur le cœur.",
+          "tr": "Açıklama yapılmadan dışlanan gönüllünün içi üzüntü ve kırgınlıkla doluydu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/en_avoir_gros_sur_le_c%C5%93ur",
+          "verification": "dictionary_entry_opened",
+          "locator": "en avoir gros sur le cœur : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Écartée sans explication, la bénévole en avait gros sur le cœur.",
+        "promptTr": "Bu bağlamda « en avoir gros sur le cœur » ne anlama geliyor?",
+        "optionsTr": [
+          "Sevinçten havalara uçmak",
+          "İçinde yoğun bir korku taşımak",
+          "İçi büyük bir üzüntü ve kırgınlıkla dolu olmak",
+          "Öfkeden kıpkırmızı kesilmek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: İçi büyük bir üzüntü ve kırgınlıkla dolu olmak. Burada duygusal yük anlamı seçilir; kaynakta görülen başka kaba anlamlar öğretilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000049",
+      "expression": "avoir les nerfs à fleur de peau",
+      "meaningTr": "Sinirleri çok hassas olmak",
+      "usageNoteTr": "Küçük bir uyarana bile kolayca gerilme; sevinç coşkusu değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Après cette semaine agitée, elle a les nerfs à fleur de peau.",
+          "tr": "Bu çalkantılı haftadan sonra sinirleri çok hassas."
+        },
+        {
+          "fr": "Épuisé par le bruit, Sami avait les nerfs à fleur de peau et supportait mal les remarques.",
+          "tr": "Gürültüden bitkin düşen Sami'nin sinirleri çok hassastı; yorumlara tahammül edemiyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_les_nerfs_%C3%A0_fleur_de_peau",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir les nerfs à fleur de peau : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Épuisé par le bruit, Sami avait les nerfs à fleur de peau et supportait mal les remarques.",
+        "promptTr": "Bu bağlamda « avoir les nerfs à fleur de peau » ne anlama geliyor?",
+        "optionsTr": [
+          "İçi hüzünle dolmak",
+          "Hayatın hep iyi tarafını görmek",
+          "Heyecandan midesinde kelebekler uçuşmak",
+          "Sinirleri çok hassas olmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Sinirleri çok hassas olmak. Küçük bir uyarana bile kolayca gerilme; sevinç coşkusu değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000050",
+      "expression": "être au bout du rouleau",
+      "meaningTr": "Gücü ve dayanma kapasitesi tükenmiş olmak",
+      "usageNoteTr": "Fiziksel veya ruhsal tükenmişlik; tıbbi tanı iddiası taşımaz.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Après trois nuits sans repos, je suis au bout du rouleau.",
+          "tr": "Dinlenmeden geçen üç geceden sonra gücüm tükendi."
+        },
+        {
+          "fr": "Entre les examens et le travail du soir, elle était au bout du rouleau.",
+          "tr": "Sınavlarla akşam işi arasında dayanacak gücü kalmamıştı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_au_bout_du_rouleau",
+          "verification": "dictionary_entry_opened",
+          "locator": "être au bout du rouleau : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Entre les examens et le travail du soir, elle était au bout du rouleau.",
+        "promptTr": "Bu bağlamda « être au bout du rouleau » ne anlama geliyor?",
+        "optionsTr": [
+          "Gücü ve dayanma kapasitesi tükenmiş olmak",
+          "Mutluluktan bulutların üzerinde olmak",
+          "Bir anda öfkeye kapılmak",
+          "Birine uzun süredir kin beslemek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Gücü ve dayanma kapasitesi tükenmiş olmak. Fiziksel veya ruhsal tükenmişlik; tıbbi tanı iddiası taşımaz."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000051",
+      "expression": "avoir l'estomac noué",
+      "meaningTr": "Kaygıdan midesi düğümlenmek",
+      "usageNoteTr": "Beklenti kaygısının bedensel ifadesi; sağlık tanısı değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Avant l'annonce des résultats, j'avais l'estomac noué.",
+          "tr": "Sonuçlar açıklanmadan önce kaygıdan midem düğümlenmişti."
+        },
+        {
+          "fr": "En attendant cet appel décisif, Thomas avait l'estomac noué.",
+          "tr": "Bu belirleyici telefonu beklerken Thomas'ın midesi kaygıdan düğümlenmişti."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_l%E2%80%99estomac_nou%C3%A9",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir l'estomac noué : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "En attendant cet appel décisif, Thomas avait l'estomac noué.",
+        "promptTr": "Bu bağlamda « avoir l'estomac noué » ne anlama geliyor?",
+        "optionsTr": [
+          "Nedeni tam belirgin olmayan bir hüzün duymak",
+          "Kaygıdan midesi düğümlenmek",
+          "Sevinçten zıplamak",
+          "Sert ve üstten bir tavırla çıkışmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Kaygıdan midesi düğümlenmek. Beklenti kaygısının bedensel ifadesi; sağlık tanısı değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000052",
+      "expression": "être vert de rage",
+      "meaningTr": "Öfkeden kuduracak hâle gelmek",
+      "usageNoteTr": "Abartılı öfke ifadesi; yüzün gerçekten yeşile dönmesi gerekmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "En découvrant la tricherie, elle était verte de rage.",
+          "tr": "Hileyi fark edince öfkeden kuduracak hâle geldi."
+        },
+        {
+          "fr": "Son collègue s'était attribué tout le mérite ; il était vert de rage.",
+          "tr": "İş arkadaşı bütün başarıyı kendine mal etmişti; öfkeden kuduruyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_vert_de_rage",
+          "verification": "dictionary_entry_opened",
+          "locator": "être vert de rage : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Son collègue s'était attribué tout le mérite ; il était vert de rage.",
+        "promptTr": "Bu bağlamda « être vert de rage » ne anlama geliyor?",
+        "optionsTr": [
+          "Morali çok bozuk olmak",
+          "Mutluluktan ağzı kulaklarına varmak",
+          "Öfkeden kuduracak hâle gelmek",
+          "Korkudan soğuk terler dökmek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Öfkeden kuduracak hâle gelmek. Abartılı öfke ifadesi; yüzün gerçekten yeşile dönmesi gerekmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    }
+  ]
+}

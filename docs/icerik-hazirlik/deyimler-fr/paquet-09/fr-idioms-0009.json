@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": 1,
+  "batch": "fr-idioms-0009",
+  "language": "fr",
+  "themeTr": "Başarı ve güçlükler",
+  "status": "ready_for_independent_review",
+  "author": "Codex",
+  "intendedReviewer": "Antigravity",
+  "createdOn": "2026-11-10",
+  "levelPolicy": "CEFR levels remain unassigned pending the full task plan and independent pedagogical review. Dictionary citations do not certify levels.",
+  "contentOrigin": "Original examples, translations, explanations and exercises by Diloloji; dictionaries are lexical references, not sources of copied examples.",
+  "items": [
+    {
+      "id": "fr-idiom-000209",
+      "expression": "avoir le vent en poupe",
+      "meaningTr": "Başarıyı destekleyen elverişli bir dönemde olmak",
+      "usageNoteTr": "Mecaz; işin veya kişinin yükseliş dönemini anlatır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Avec ses nouveaux clients, l'atelier a le vent en poupe.",
+          "tr": "Yeni müşterileriyle atölye elverişli bir başarı döneminde."
+        },
+        {
+          "fr": "Ce genre de spectacle a le vent en poupe cette année.",
+          "tr": "Bu tür gösteriler bu yıl yükselişte."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_le_vent_en_poupe",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir le vent en poupe : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Ce genre de spectacle a le vent en poupe cette année.",
+        "promptTr": "Bu bağlamda « avoir le vent en poupe » ne anlama geliyor?",
+        "optionsTr": [
+          "Başarıyı destekleyen elverişli bir dönemde olmak",
+          "Kendini ciddi bir sıkıntının içinde bulmak",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "İşletmeyi tamamen kapatmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Başarıyı destekleyen elverişli bir dönemde olmak. Mecaz; işin veya kişinin yükseliş dönemini anlatır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000210",
+      "expression": "avoir la main heureuse",
+      "meaningTr": "Seçimlerinde veya girişimlerinde şanslı olmak",
+      "usageNoteTr": "Başarılı sonuç getiren seçim; bitki bakımı anlamı değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Tu as eu la main heureuse avec ce recrutement.",
+          "tr": "Bu işe alımda şanslı bir seçim yaptın."
+        },
+        {
+          "fr": "En choisissant ce petit éditeur, elle a eu la main heureuse.",
+          "tr": "Bu küçük yayınevini seçerek şanslı bir tercih yaptı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_la_main_heureuse",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir la main heureuse : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "En choisissant ce petit éditeur, elle a eu la main heureuse.",
+        "promptTr": "Bu bağlamda « avoir la main heureuse » ne anlama geliyor?",
+        "optionsTr": [
+          "Kendini ciddi bir sıkıntının içinde bulmak",
+          "Seçimlerinde veya girişimlerinde şanslı olmak",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "İşletmeyi tamamen kapatmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Seçimlerinde veya girişimlerinde şanslı olmak. Başarılı sonuç getiren seçim; bitki bakımı anlamı değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000211",
+      "expression": "mettre le pied à l'étrier à quelqu'un",
+      "meaningTr": "Birinin bir işe başlamasına yardımcı olmak",
+      "usageNoteTr": "İlk adımı kolaylaştıran destek; gerçek binicilik değil.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Ce stage lui a mis le pied à l'étrier.",
+          "tr": "Bu staj işe başlamasına yardımcı oldu."
+        },
+        {
+          "fr": "Son professeur lui a mis le pied à l'étrier en le recommandant pour son premier rôle.",
+          "tr": "Öğretmeni ilk rolü için onu önererek mesleğe başlamasına yardımcı oldu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/mettre_le_pied_%C3%A0_l%E2%80%99%C3%A9trier",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre le pied à l'étrier à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Son professeur lui a mis le pied à l'étrier en le recommandant pour son premier rôle.",
+        "promptTr": "Bu bağlamda « mettre le pied à l'étrier à quelqu'un » ne anlama geliyor?",
+        "optionsTr": [
+          "Kendini ciddi bir sıkıntının içinde bulmak",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "İşletmeyi tamamen kapatmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Birinin bir işe başlamasına yardımcı olmak. İlk adımı kolaylaştıran destek; gerçek binicilik değil."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000212",
+      "expression": "tenir le bon bout",
+      "meaningTr": "Başarıya yakın ve avantajlı konumda olmak",
+      "usageNoteTr": "Başarı henüz kesinleşmemiş olabilir; olumlu gidişat vurgulanır.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Continue, tu tiens le bon bout !",
+          "tr": "Devam et; başarıya çok yaklaştın!"
+        },
+        {
+          "fr": "Avec un financement presque acquis, l'équipe tenait le bon bout.",
+          "tr": "Finansman neredeyse kesinleşmişken ekip avantajlı konumdaydı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/tenir_le_bon_bout",
+          "verification": "dictionary_entry_opened",
+          "locator": "tenir le bon bout : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Avec un financement presque acquis, l'équipe tenait le bon bout.",
+        "promptTr": "Bu bağlamda « tenir le bon bout » ne anlama geliyor?",
+        "optionsTr": [
+          "Kendini ciddi bir sıkıntının içinde bulmak",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "İşletmeyi tamamen kapatmak",
+          "Başarıya yakın ve avantajlı konumda olmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Başarıya yakın ve avantajlı konumda olmak. Başarı henüz kesinleşmemiş olabilir; olumlu gidişat vurgulanır."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000213",
+      "expression": "toucher au but",
+      "meaningTr": "Hedefe ulaşmak veya çok yaklaşmak",
+      "usageNoteTr": "Bu kart sürecin sonuna yaklaşma bağlamını seçer.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Après des mois de recherche, nous touchons au but.",
+          "tr": "Aylar süren araştırmadan sonra hedefe çok yaklaştık."
+        },
+        {
+          "fr": "Il ne restait qu'une signature ; elle touchait au but.",
+          "tr": "Yalnızca bir imza kalmıştı; hedefe ulaşmak üzereydi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/toucher_au_but",
+          "verification": "dictionary_entry_opened",
+          "locator": "toucher au but : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Il ne restait qu'une signature ; elle touchait au but.",
+        "promptTr": "Bu bağlamda « toucher au but » ne anlama geliyor?",
+        "optionsTr": [
+          "Hedefe ulaşmak veya çok yaklaşmak",
+          "Kendini ciddi bir sıkıntının içinde bulmak",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "İşletmeyi tamamen kapatmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Hedefe ulaşmak veya çok yaklaşmak. Bu kart sürecin sonuna yaklaşma bağlamını seçer."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000214",
+      "expression": "faire mouche",
+      "meaningTr": "Sözüyle veya işiyle hedefi tam tutturmak",
+      "usageNoteTr": "Etkili ve yerinde sonuç; gerçek atış anlamı seçilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Son exemple concret a fait mouche.",
+          "tr": "Somut örneği tam yerini buldu."
+        },
+        {
+          "fr": "La dernière phrase du discours a fait mouche et convaincu les hésitants.",
+          "tr": "Konuşmanın son cümlesi hedefi tam tutturup kararsızları ikna etti."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/faire_mouche",
+          "verification": "dictionary_entry_opened",
+          "locator": "faire mouche : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "La dernière phrase du discours a fait mouche et convaincu les hésitants.",
+        "promptTr": "Bu bağlamda « faire mouche » ne anlama geliyor?",
+        "optionsTr": [
+          "Kendini ciddi bir sıkıntının içinde bulmak",
+          "Sözüyle veya işiyle hedefi tam tutturmak",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "İşletmeyi tamamen kapatmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Sözüyle veya işiyle hedefi tam tutturmak. Etkili ve yerinde sonuç; gerçek atış anlamı seçilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000215",
+      "expression": "faire un carton",
+      "meaningTr": "Çok büyük ilgi ve başarı kazanmak",
+      "usageNoteTr": "Samimi mecaz; gerçek hedefe atış veya kutu yapmak değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Le nouveau jeu fait un carton auprès des familles.",
+          "tr": "Yeni oyun aileler arasında büyük ilgi görüyor."
+        },
+        {
+          "fr": "Leur premier roman a fait un carton et a été réimprimé.",
+          "tr": "İlk romanları büyük başarı kazandı ve yeniden basıldı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/faire_un_carton",
+          "verification": "dictionary_entry_opened",
+          "locator": "faire un carton : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Leur premier roman a fait un carton et a été réimprimé.",
+        "promptTr": "Bu bağlamda « faire un carton » ne anlama geliyor?",
+        "optionsTr": [
+          "Kendini ciddi bir sıkıntının içinde bulmak",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "Çok büyük ilgi ve başarı kazanmak",
+          "İşletmeyi tamamen kapatmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Çok büyük ilgi ve başarı kazanmak. Samimi mecaz; gerçek hedefe atış veya kutu yapmak değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000216",
+      "expression": "faire un tabac",
+      "meaningTr": "Seyirciden büyük başarı ve alkış almak",
+      "usageNoteTr": "Samimi ifade; tütünle ilgili gerçek kullanım değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "La troupe a fait un tabac au festival.",
+          "tr": "Topluluk festivalde büyük başarı kazandı."
+        },
+        {
+          "fr": "Son numéro a fait un tabac : le public l'a longuement applaudie.",
+          "tr": "Gösterisi büyük başarı kazandı; seyirciler onu uzun süre alkışladı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/faire_un_tabac",
+          "verification": "dictionary_entry_opened",
+          "locator": "faire un tabac : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Son numéro a fait un tabac : le public l'a longuement applaudie.",
+        "promptTr": "Bu bağlamda « faire un tabac » ne anlama geliyor?",
+        "optionsTr": [
+          "Kendini ciddi bir sıkıntının içinde bulmak",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "İşletmeyi tamamen kapatmak",
+          "Seyirciden büyük başarı ve alkış almak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Seyirciden büyük başarı ve alkış almak. Samimi ifade; tütünle ilgili gerçek kullanım değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000217",
+      "expression": "avoir le beurre et l'argent du beurre",
+      "meaningTr": "Birbiriyle bağdaşmayan bütün avantajları birden istemek",
+      "usageNoteTr": "Genellikle eleştirel veya olumsuz yapıda kullanılır; elde edilmiş başarı garantisi değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Tu veux le beurre et l'argent du beurre.",
+          "tr": "Birbiriyle bağdaşmayan bütün avantajları birden istiyorsun."
+        },
+        {
+          "fr": "Il veut vendre son vélo et continuer à l'utiliser : le beurre et l'argent du beurre.",
+          "tr": "Bisikletini satıp kullanmayı sürdürmek istiyor; bütün avantajları birden istiyor."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/avoir_le_beurre_et_l'argent_du_beurre",
+          "verification": "dictionary_entry_opened",
+          "locator": "avoir le beurre et l'argent du beurre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Il veut vendre son vélo et continuer à l'utiliser : le beurre et l'argent du beurre.",
+        "promptTr": "Bu bağlamda « avoir le beurre et l'argent du beurre » ne anlama geliyor?",
+        "optionsTr": [
+          "Birbiriyle bağdaşmayan bütün avantajları birden istemek",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "Kendini ciddi bir sıkıntının içinde bulmak",
+          "İşletmeyi tamamen kapatmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Birbiriyle bağdaşmayan bütün avantajları birden istemek. Genellikle eleştirel veya olumsuz yapıda kullanılır; elde edilmiş başarı garantisi değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000218",
+      "expression": "décrocher la lune",
+      "meaningTr": "Çok zor görünen büyük bir başarı elde etmek",
+      "usageNoteTr": "Mecaz; gerçek Ay yolculuğu veya her küçük kazanım değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Avec ce prix international, elle a décroché la lune.",
+          "tr": "Bu uluslararası ödülle çok büyük bir başarı elde etti."
+        },
+        {
+          "fr": "Obtenir cette salle gratuitement, c'était décrocher la lune pour notre petit groupe.",
+          "tr": "O salonu ücretsiz almak küçük grubumuz için çok büyük bir başarıydı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/d%C3%A9crocher_la_lune",
+          "verification": "dictionary_entry_opened",
+          "locator": "décrocher la lune : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Obtenir cette salle gratuitement, c'était décrocher la lune pour notre petit groupe.",
+        "promptTr": "Bu bağlamda « décrocher la lune » ne anlama geliyor?",
+        "optionsTr": [
+          "Kendini ciddi bir sıkıntının içinde bulmak",
+          "Çok zor görünen büyük bir başarı elde etmek",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "İşletmeyi tamamen kapatmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Çok zor görünen büyük bir başarı elde etmek. Mecaz; gerçek Ay yolculuğu veya her küçük kazanım değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000219",
+      "expression": "faire des étincelles",
+      "meaningTr": "Çok parlak bir performans göstermek",
+      "usageNoteTr": "Kişinin etkileyici başarısı; gerçek kıvılcımlar seçilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Cette jeune équipe promet de faire des étincelles.",
+          "tr": "Bu genç ekip çok parlak bir performans vad ediyor."
+        },
+        {
+          "fr": "Lors du débat, elle a fait des étincelles par la précision de ses réponses.",
+          "tr": "Tartışmada kesin cevaplarıyla çok parlak bir performans gösterdi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/faire_des_%C3%A9tincelles",
+          "verification": "dictionary_entry_opened",
+          "locator": "faire des étincelles : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Lors du débat, elle a fait des étincelles par la précision de ses réponses.",
+        "promptTr": "Bu bağlamda « faire des étincelles » ne anlama geliyor?",
+        "optionsTr": [
+          "Kendini ciddi bir sıkıntının içinde bulmak",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "Çok parlak bir performans göstermek",
+          "İşletmeyi tamamen kapatmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Çok parlak bir performans göstermek. Kişinin etkileyici başarısı; gerçek kıvılcımlar seçilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000220",
+      "expression": "retomber sur ses pieds",
+      "meaningTr": "Zor bir durumdan sıyrılıp dengesini yeniden bulmak",
+      "usageNoteTr": "Talihsizliği toparlayabilme; gerçek yere düşme değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Même après un refus, il retombe sur ses pieds.",
+          "tr": "Reddedilse bile toparlanıp yeniden dengesini buluyor."
+        },
+        {
+          "fr": "Le contrat a été annulé, mais elle est retombée sur ses pieds grâce à une autre commande.",
+          "tr": "Sözleşme iptal oldu ama başka bir siparişle toparlandı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/retomber_sur_ses_pieds",
+          "verification": "dictionary_entry_opened",
+          "locator": "retomber sur ses pieds : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Le contrat a été annulé, mais elle est retombée sur ses pieds grâce à une autre commande.",
+        "promptTr": "Bu bağlamda « retomber sur ses pieds » ne anlama geliyor?",
+        "optionsTr": [
+          "Birbiriyle bağdaşmayan bütün avantajları birden istemek",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "İşletmeyi tamamen kapatmak",
+          "Zor bir durumdan sıyrılıp dengesini yeniden bulmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Zor bir durumdan sıyrılıp dengesini yeniden bulmak. Talihsizliği toparlayabilme; gerçek yere düşme değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000221",
+      "expression": "remonter la pente",
+      "meaningTr": "Zor bir dönemden yavaş yavaş çıkmak",
+      "usageNoteTr": "İyileşen gidişat; sadece fiziksel yokuş tırmanışı değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Après une mauvaise année, la librairie remonte la pente.",
+          "tr": "Kötü bir yıldan sonra kitapçı yavaş yavaş toparlanıyor."
+        },
+        {
+          "fr": "Avec le retour des clients, le café a commencé à remonter la pente.",
+          "tr": "Müşteriler dönünce kafe zor dönemden yavaş yavaş çıkmaya başladı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/remonter_la_pente",
+          "verification": "dictionary_entry_opened",
+          "locator": "remonter la pente : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Avec le retour des clients, le café a commencé à remonter la pente.",
+        "promptTr": "Bu bağlamda « remonter la pente » ne anlama geliyor?",
+        "optionsTr": [
+          "Zor bir dönemden yavaş yavaş çıkmak",
+          "Birbiriyle bağdaşmayan bütün avantajları birden istemek",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "İşletmeyi tamamen kapatmak"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Zor bir dönemden yavaş yavaş çıkmak. İyileşen gidişat; sadece fiziksel yokuş tırmanışı değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000222",
+      "expression": "sortir la tête de l'eau",
+      "meaningTr": "Zorluğun baskısından kurtulup yeniden rahatlamak",
+      "usageNoteTr": "Mecaz; yüzme veya boğulma bağlamı seçilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Avec cette aide, nous sortons enfin la tête de l'eau.",
+          "tr": "Bu yardımla sonunda zorluğun baskısından kurtuluyoruz."
+        },
+        {
+          "fr": "Une fois les dettes réglées, l'association a sorti la tête de l'eau.",
+          "tr": "Borçlar ödenince dernek zorluğun baskısından kurtulup rahatladı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/sortir_la_t%C3%AAte_de_l'eau",
+          "verification": "dictionary_entry_opened",
+          "locator": "sortir la tête de l'eau : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Une fois les dettes réglées, l'association a sorti la tête de l'eau.",
+        "promptTr": "Bu bağlamda « sortir la tête de l'eau » ne anlama geliyor?",
+        "optionsTr": [
+          "Birbiriyle bağdaşmayan bütün avantajları birden istemek",
+          "Zorluğun baskısından kurtulup yeniden rahatlamak",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "İşletmeyi tamamen kapatmak"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Zorluğun baskısından kurtulup yeniden rahatlamak. Mecaz; yüzme veya boğulma bağlamı seçilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000223",
+      "expression": "voir le bout du tunnel",
+      "meaningTr": "Zorlu sürecin sonunun yaklaştığını görmek",
+      "usageNoteTr": "Tamamen bitmiş olması şart değildir; sona ilişkin umut belirir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Après tant de travaux, on voit le bout du tunnel.",
+          "tr": "Bunca çalışmadan sonra zorlu sürecin sonu görünüyor."
+        },
+        {
+          "fr": "Il ne reste que deux chapitres : elle voit le bout du tunnel.",
+          "tr": "Yalnızca iki bölüm kaldı; zorlu sürecin sonunun yaklaştığını görüyor."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/voir_le_bout_du_tunnel",
+          "verification": "dictionary_entry_opened",
+          "locator": "voir le bout du tunnel : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Il ne reste que deux chapitres : elle voit le bout du tunnel.",
+        "promptTr": "Bu bağlamda « voir le bout du tunnel » ne anlama geliyor?",
+        "optionsTr": [
+          "Birbiriyle bağdaşmayan bütün avantajları birden istemek",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "Zorlu sürecin sonunun yaklaştığını görmek",
+          "İşletmeyi tamamen kapatmak"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Zorlu sürecin sonunun yaklaştığını görmek. Tamamen bitmiş olması şart değildir; sona ilişkin umut belirir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000224",
+      "expression": "être dans de beaux draps",
+      "meaningTr": "Kendini ciddi bir sıkıntının içinde bulmak",
+      "usageNoteTr": "İronik kullanım; iyi yatak takımı anlamı değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Sans clés ni téléphone, nous sommes dans de beaux draps.",
+          "tr": "Anahtarsız ve telefonsuz ciddi bir sıkıntı içindeyiz."
+        },
+        {
+          "fr": "Il avait effacé la seule copie ; il était dans de beaux draps.",
+          "tr": "Tek kopyayı silmişti; ciddi bir sıkıntı içindeydi."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_de_beaux_draps",
+          "verification": "dictionary_entry_opened",
+          "locator": "être dans de beaux draps : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Il avait effacé la seule copie ; il était dans de beaux draps.",
+        "promptTr": "Bu bağlamda « être dans de beaux draps » ne anlama geliyor?",
+        "optionsTr": [
+          "Başarıyı destekleyen elverişli bir dönemde olmak",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "Çok parlak bir performans göstermek",
+          "Kendini ciddi bir sıkıntının içinde bulmak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Kendini ciddi bir sıkıntının içinde bulmak. İronik kullanım; iyi yatak takımı anlamı değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000225",
+      "expression": "être dans le pétrin",
+      "meaningTr": "Başı belada olmak",
+      "usageNoteTr": "Samimi mecaz; hamur yoğurma anlamı seçilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Si le bus ne vient pas, nous sommes dans le pétrin.",
+          "tr": "Otobüs gelmezse başımız belada."
+        },
+        {
+          "fr": "Sans passeport à la frontière, elle s'est retrouvée dans le pétrin.",
+          "tr": "Sınırda pasaportsuz kalınca başını belaya soktu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_p%C3%A9trin",
+          "verification": "dictionary_entry_opened",
+          "locator": "être dans le pétrin : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Sans passeport à la frontière, elle s'est retrouvée dans le pétrin.",
+        "promptTr": "Bu bağlamda « être dans le pétrin » ne anlama geliyor?",
+        "optionsTr": [
+          "Başı belada olmak",
+          "Başarıyı destekleyen elverişli bir dönemde olmak",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "Çok parlak bir performans göstermek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Başı belada olmak. Samimi mecaz; hamur yoğurma anlamı seçilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000226",
+      "expression": "être dans une impasse",
+      "meaningTr": "Çözüm yolu görünmeyen bir çıkmaza girmek",
+      "usageNoteTr": "Bu kart müzakere veya problem çözmedeki mecaz anlamı seçer.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Sans accord sur le budget, nous sommes dans une impasse.",
+          "tr": "Bütçede anlaşma yok; çözüm yolu görünmeyen bir çıkmazdayız."
+        },
+        {
+          "fr": "Chaque proposition était refusée ; les négociateurs étaient dans une impasse.",
+          "tr": "Bütün öneriler reddediliyordu; müzakereciler çıkmaza girmişti."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/impasse",
+          "verification": "dictionary_entry_opened",
+          "locator": "être dans une impasse : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Chaque proposition était refusée ; les négociateurs étaient dans une impasse.",
+        "promptTr": "Bu bağlamda « être dans une impasse » ne anlama geliyor?",
+        "optionsTr": [
+          "Başarıyı destekleyen elverişli bir dönemde olmak",
+          "Çözüm yolu görünmeyen bir çıkmaza girmek",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "Çok parlak bir performans göstermek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Çözüm yolu görünmeyen bir çıkmaza girmek. Bu kart müzakere veya problem çözmedeki mecaz anlamı seçer."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000227",
+      "expression": "aller droit dans le mur",
+      "meaningTr": "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+      "usageNoteTr": "Yanlış yönün doğuracağı sonuç vurgulanır; gerçek çarpışma seçilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Avec ce budget irréaliste, nous allons droit dans le mur.",
+          "tr": "Bu gerçekçi olmayan bütçeyle başarısızlığa doğru gidiyoruz."
+        },
+        {
+          "fr": "Sans changer de méthode, l'équipe allait droit dans le mur.",
+          "tr": "Yöntemini değiştirmezse ekip kesin başarısızlığa doğru gidiyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/aller_droit_dans_le_mur",
+          "verification": "dictionary_entry_opened",
+          "locator": "aller droit dans le mur : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Sans changer de méthode, l'équipe allait droit dans le mur.",
+        "promptTr": "Bu bağlamda « aller droit dans le mur » ne anlama geliyor?",
+        "optionsTr": [
+          "Başarıyı destekleyen elverişli bir dönemde olmak",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "Aynı şekilde devam ederse kesin başarısızlığa ilerlemek",
+          "Çok parlak bir performans göstermek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Aynı şekilde devam ederse kesin başarısızlığa ilerlemek. Yanlış yönün doğuracağı sonuç vurgulanır; gerçek çarpışma seçilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000228",
+      "expression": "essuyer les plâtres",
+      "meaningTr": "Yeni bir uygulamanın ilk aksaklıklarını yaşamak",
+      "usageNoteTr": "İlk kullanıcı veya denek olmanın güçlüğü; gerçek inşaat temizliği değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Les premiers clients essuient les plâtres du nouveau service.",
+          "tr": "İlk müşteriler yeni hizmetin başlangıç aksaklıklarını yaşıyor."
+        },
+        {
+          "fr": "Notre classe a essuyé les plâtres de la plateforme encore instable.",
+          "tr": "Sınıfımız henüz kararsız platformun ilk aksaklıklarını yaşadı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/essuyer_les_pl%C3%A2tres",
+          "verification": "dictionary_entry_opened",
+          "locator": "essuyer les plâtres : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Notre classe a essuyé les plâtres de la plateforme encore instable.",
+        "promptTr": "Bu bağlamda « essuyer les plâtres » ne anlama geliyor?",
+        "optionsTr": [
+          "Başarıyı destekleyen elverişli bir dönemde olmak",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "Çok parlak bir performans göstermek",
+          "Yeni bir uygulamanın ilk aksaklıklarını yaşamak"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Yeni bir uygulamanın ilk aksaklıklarını yaşamak. İlk kullanıcı veya denek olmanın güçlüğü; gerçek inşaat temizliği değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000229",
+      "expression": "boire la tasse",
+      "meaningTr": "Bir girişimde ağır yenilgi veya mali çöküş yaşamak",
+      "usageNoteTr": "Bu kart mecaz başarısızlık anlamını seçer; yüzerken su yutmak değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Avec cette expansion trop rapide, le commerce a bu la tasse.",
+          "tr": "Bu aşırı hızlı büyümeyle işletme mali çöküş yaşadı."
+        },
+        {
+          "fr": "Après trois investissements ratés, la société a bu la tasse.",
+          "tr": "Üç başarısız yatırımdan sonra şirket mali çöküş yaşadı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/boire_la_tasse",
+          "verification": "dictionary_entry_opened",
+          "locator": "boire la tasse : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Après trois investissements ratés, la société a bu la tasse.",
+        "promptTr": "Bu bağlamda « boire la tasse » ne anlama geliyor?",
+        "optionsTr": [
+          "Bir girişimde ağır yenilgi veya mali çöküş yaşamak",
+          "Başarıyı destekleyen elverişli bir dönemde olmak",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "Çok parlak bir performans göstermek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Bir girişimde ağır yenilgi veya mali çöküş yaşamak. Bu kart mecaz başarısızlık anlamını seçer; yüzerken su yutmak değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000230",
+      "expression": "se casser les dents sur quelque chose",
+      "meaningTr": "Bir güçlüğü aşmaya çalışıp başarısız olmak",
+      "usageNoteTr": "Çetin engel karşısında sonuç alamamak; gerçek diş yaralanması değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Plusieurs équipes se sont cassé les dents sur ce problème.",
+          "tr": "Birkaç ekip bu sorunu çözmeye çalışıp başarısız oldu."
+        },
+        {
+          "fr": "Malgré son expérience, il s'est cassé les dents sur cette négociation.",
+          "tr": "Deneyimine rağmen bu müzakereyi sonuçlandırmayı başaramadı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/se_casser_les_dents",
+          "verification": "dictionary_entry_opened",
+          "locator": "se casser les dents sur quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Malgré son expérience, il s'est cassé les dents sur cette négociation.",
+        "promptTr": "Bu bağlamda « se casser les dents sur quelque chose » ne anlama geliyor?",
+        "optionsTr": [
+          "Başarıyı destekleyen elverişli bir dönemde olmak",
+          "Bir güçlüğü aşmaya çalışıp başarısız olmak",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "Çok parlak bir performans göstermek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: Bir güçlüğü aşmaya çalışıp başarısız olmak. Çetin engel karşısında sonuç alamamak; gerçek diş yaralanması değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000231",
+      "expression": "se heurter à un mur",
+      "meaningTr": "Aşılamayan bir engelle karşılaşmak",
+      "usageNoteTr": "Mecaz; kesin ret veya çözülmeyen güçlük. Fiziksel çarpışma gerekmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Toutes nos demandes se heurtent à un mur.",
+          "tr": "Bütün taleplerimiz aşılamayan bir engelle karşılaşıyor."
+        },
+        {
+          "fr": "En proposant ce changement, elle s'est heurtée à un mur de refus.",
+          "tr": "Bu değişikliği önerdiğinde aşılamayan bir ret duvarıyla karşılaştı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/se_heurter_%C3%A0_un_mur",
+          "verification": "dictionary_entry_opened",
+          "locator": "se heurter à un mur : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "En proposant ce changement, elle s'est heurtée à un mur de refus.",
+        "promptTr": "Bu bağlamda « se heurter à un mur » ne anlama geliyor?",
+        "optionsTr": [
+          "Başarıyı destekleyen elverişli bir dönemde olmak",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "Aşılamayan bir engelle karşılaşmak",
+          "Çok parlak bir performans göstermek"
+        ],
+        "answerIndex": 2,
+        "explanationTr": "Buradaki anlamı: Aşılamayan bir engelle karşılaşmak. Mecaz; kesin ret veya çözülmeyen güçlük. Fiziksel çarpışma gerekmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000232",
+      "expression": "en voir de toutes les couleurs",
+      "meaningTr": "Türlü türlü sıkıntılar çekmek",
+      "usageNoteTr": "Samimi kullanım; renk görme deneyimi değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Pendant le déménagement, nous en avons vu de toutes les couleurs.",
+          "tr": "Taşınırken türlü türlü sıkıntılar çektik."
+        },
+        {
+          "fr": "Entre pannes et retards, les voyageurs en ont vu de toutes les couleurs.",
+          "tr": "Arızalarla gecikmeler arasında yolcular türlü türlü sıkıntılar çekti."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/en_voir_de_toutes_les_couleurs",
+          "verification": "dictionary_entry_opened",
+          "locator": "en voir de toutes les couleurs : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Entre pannes et retards, les voyageurs en ont vu de toutes les couleurs.",
+        "promptTr": "Bu bağlamda « en voir de toutes les couleurs » ne anlama geliyor?",
+        "optionsTr": [
+          "Başarıyı destekleyen elverişli bir dönemde olmak",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "Çok parlak bir performans göstermek",
+          "Türlü türlü sıkıntılar çekmek"
+        ],
+        "answerIndex": 3,
+        "explanationTr": "Buradaki anlamı: Türlü türlü sıkıntılar çekmek. Samimi kullanım; renk görme deneyimi değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000233",
+      "expression": "manger son pain noir",
+      "meaningTr": "Hayatının zor bir dönemini geçirmek",
+      "usageNoteTr": "Mecaz; bu dönem kalıcı olmak zorunda değildir, gerçek ekmek türü seçilmez.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Après la fermeture, les commerçants mangent leur pain noir.",
+          "tr": "Kapanıştan sonra esnaf zor bir dönem geçiriyor."
+        },
+        {
+          "fr": "Privée de commandes, cette entreprise mangeait son pain noir.",
+          "tr": "Siparişsiz kalan bu şirket zor bir dönem geçiriyordu."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/manger_son_pain_noir",
+          "verification": "dictionary_entry_opened",
+          "locator": "manger son pain noir : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Privée de commandes, cette entreprise mangeait son pain noir.",
+        "promptTr": "Bu bağlamda « manger son pain noir » ne anlama geliyor?",
+        "optionsTr": [
+          "Hayatının zor bir dönemini geçirmek",
+          "Başarıyı destekleyen elverişli bir dönemde olmak",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "Çok parlak bir performans göstermek"
+        ],
+        "answerIndex": 0,
+        "explanationTr": "Buradaki anlamı: Hayatının zor bir dönemini geçirmek. Mecaz; bu dönem kalıcı olmak zorunda değildir, gerçek ekmek türü seçilmez."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "fr-idiom-000234",
+      "expression": "mettre la clé sous la porte",
+      "meaningTr": "İşletmeyi tamamen kapatmak",
+      "usageNoteTr": "Bu kart ticari kapanış anlamını seçer; gerçek anahtar saklama değildir.",
+      "level": null,
+      "examples": [
+        {
+          "fr": "Le restaurant a mis la clé sous la porte.",
+          "tr": "Lokanta tamamen kapandı."
+        },
+        {
+          "fr": "Faute de clients, l'atelier a mis la clé sous la porte.",
+          "tr": "Müşteri olmadığı için atölye tamamen kapandı."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/mettre_la_cl%C3%A9_sous_la_porte",
+          "verification": "dictionary_entry_opened",
+          "locator": "mettre la clé sous la porte : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+          "checkedOn": "2026-11-10",
+          "purpose": "meaning_and_expression"
+        }
+      ],
+      "exercise": {
+        "type": "meaning_in_context",
+        "context": "Faute de clients, l'atelier a mis la clé sous la porte.",
+        "promptTr": "Bu bağlamda « mettre la clé sous la porte » ne anlama geliyor?",
+        "optionsTr": [
+          "Başarıyı destekleyen elverişli bir dönemde olmak",
+          "İşletmeyi tamamen kapatmak",
+          "Birinin bir işe başlamasına yardımcı olmak",
+          "Çok parlak bir performans göstermek"
+        ],
+        "answerIndex": 1,
+        "explanationTr": "Buradaki anlamı: İşletmeyi tamamen kapatmak. Bu kart ticari kapanış anlamını seçer; gerçek anahtar saklama değildir."
+      },
+      "independentReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    }
+  ]
+}
