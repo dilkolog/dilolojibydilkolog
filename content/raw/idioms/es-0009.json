@@ -1,0 +1,514 @@
+[
+  {
+    "w": "caer bien",
+    "t": "sempatik gelmek, sevilmek",
+    "lit": "iyi düşmek",
+    "eq": "kanı ısınmak",
+    "s": "La nueva vecina del tercer piso nos cae bien a todos desde el primer día.",
+    "tr": "Üçüncü kattaki yeni komşu ilk günden beri hepimize sempatik geliyor.",
+    "form": "cae bien",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/caer_bien",
+      "https://es.wikipedia.org/wiki/%C4%90i%E1%BB%87n_Bi%C3%AAn_Ph%E1%BB%A7"
+    ]
+  },
+  {
+    "w": "caer mal",
+    "t": "itici gelmek, hoşlanılmamak",
+    "lit": "kötü düşmek",
+    "s": "Ese presentador me cae mal porque interrumpe constantemente a todos sus invitados.",
+    "tr": "O sunucu tüm konuklarının sözünü sürekli kestiği için bana itici geliyor.",
+    "form": "cae mal",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/caer_mal",
+      "https://es.wikipedia.org/wiki/Problema_del_mal"
+    ]
+  },
+  {
+    "w": "hacer amigos",
+    "t": "arkadaş edinmek, dost kazanmak",
+    "lit": "arkadaşlar yapmak",
+    "s": "En el campamento de verano es muy fácil hacer amigos de otras ciudades.",
+    "tr": "Yaz kampında başka şehirlerden arkadaş edinmek çok kolaydır.",
+    "form": "hacer amigos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacer_amigos",
+      "https://es.wikipedia.org/wiki/S%C3%BAper_amigos"
+    ]
+  },
+  {
+    "w": "hacer las paces",
+    "t": "barışmak, arayı düzeltmek",
+    "lit": "barışları yapmak",
+    "s": "Después de discutir por una tontería, los dos hermanos decidieron hacer las paces.",
+    "tr": "Saçma bir şey yüzünden tartıştıktan sonra iki kardeş barışmaya karar verdi.",
+    "form": "hacer las paces",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/hacer_las_paces",
+      "https://es.wikipedia.org/wiki/La_tregua"
+    ]
+  },
+  {
+    "w": "ponerse en contacto",
+    "t": "iletişime geçmek, irtibat kurmak",
+    "lit": "kendini temasa koymak",
+    "s": "Mañana por la mañana vamos a ponernos en contacto con el dueño del piso.",
+    "tr": "Yarın sabah dairenin sahibiyle iletişime geçeceğiz.",
+    "form": "ponernos en contacto",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/ponerse_en_contacto",
+      "https://es.wikipedia.org/wiki/Contacto"
+    ]
+  },
+  {
+    "w": "faltar al respeto",
+    "t": "saygısızlık etmek",
+    "lit": "saygıya eksik kalmak",
+    "s": "Debes defender tus opiniones con calma, pero sin faltar al respeto a nadie.",
+    "tr": "Fikirlerini sakinlikle ama kimseye saygısızlık etmeden savunmalısın.",
+    "form": "faltar al respeto",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/faltar_al_respeto",
+      "https://es.wikipedia.org/wiki/Chris_Kirkpatrick"
+    ]
+  },
+  {
+    "w": "dejar plantado",
+    "t": "randevuya gelmeyip bekletmek, ekmek",
+    "lit": "dikilmiş bırakmak",
+    "s": "La esperé una hora en la cafetería, pero me dejó plantado sin avisar.",
+    "tr": "Kafede onu bir saat bekledim ama haber vermeden beni ekti.",
+    "form": "dejó plantado",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/dejar_plantado",
+      "https://es.wikipedia.org/wiki/Amurar_(lunfardo)"
+    ]
+  },
+  {
+    "w": "dar plantón",
+    "t": "buluşmaya gelmemek, birini ekmek",
+    "lit": "büyük fide vermek",
+    "s": "Habíamos quedado a las ocho en el cine y nos dio plantón otra vez.",
+    "tr": "Sekizde sinemada sözleşmiştik ve yine bizi ekti.",
+    "form": "dio plantón",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_plant%C3%B3n",
+      "https://es.wikipedia.org/wiki/Rouven_Roessler"
+    ]
+  },
+  {
+    "w": "echar un cable",
+    "t": "yardım etmek, destek olmak",
+    "lit": "bir kablo atmak",
+    "eq": "el atmak",
+    "s": "¿Puedes echarme un cable con estas cajas tan pesadas antes de irte?",
+    "tr": "Gitmeden önce şu çok ağır kutular için bana biraz yardım edebilir misin?",
+    "form": "echarme un cable",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/echar_un_cable",
+      "https://es.wikipedia.org/wiki/Cable_(n%C3%A1utica)"
+    ]
+  },
+  {
+    "w": "hacer el vacío",
+    "t": "dışlamak, yok saymak",
+    "lit": "boşluğu yapmak",
+    "s": "Tras el conflicto en la oficina, varios compañeros empezaron a hacerle el vacío.",
+    "tr": "Ofisteki anlaşmazlıktan sonra birkaç iş arkadaşı onu dışlamaya başladı.",
+    "form": "hacerle el vacío",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacer_el_vac%C3%ADo",
+      "https://es.wikipedia.org/wiki/Vac%C3%ADo"
+    ]
+  },
+  {
+    "w": "hacer la pelota",
+    "t": "yağcılık yapmak, dalkavukluk etmek",
+    "lit": "topu yapmak",
+    "eq": "yağ çekmek",
+    "s": "Siempre le hace la pelota al director para conseguir los mejores turnos.",
+    "tr": "En iyi vardiyaları kapmak için müdüre hep yağ çekiyor.",
+    "form": "hace la pelota",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/hacer_la_pelota",
+      "https://es.wikipedia.org/wiki/Pelota_pur%C3%A9pecha"
+    ]
+  },
+  {
+    "w": "dar jabón",
+    "t": "pohpohlamak, yaltaklanmak",
+    "lit": "sabun vermek",
+    "eq": "yağlamak yıkamak",
+    "s": "No intentes darme jabón ahora, sé perfectamente que olvidaste mi encargo.",
+    "tr": "Şimdi beni pohpohlamaya çalışma, siparişimi unuttuğunu çok iyi biliyorum.",
+    "form": "darme jabón",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_jab%C3%B3n",
+      "https://es.wikipedia.org/wiki/Residuos_de_jab%C3%B3n"
+    ]
+  },
+  {
+    "w": "guardar las distancias",
+    "t": "mesafeyi korumak, yüz göz olmamak",
+    "lit": "mesafeleri saklamak",
+    "s": "Es amable con todo el vecindario, pero prefiere guardar las distancias con los desconocidos.",
+    "tr": "Tüm mahalleliye karşı naziktir ama yabancılarla mesafeyi korumayı tercih eder.",
+    "form": "guardar las distancias",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/guardar_las_distancias",
+      "https://es.wikipedia.org/wiki/Cong%C3%A9_(poes%C3%ADa)"
+    ]
+  },
+  {
+    "w": "llevar la contraria",
+    "t": "zıtlaşmak, tersini savunmak",
+    "lit": "tersini taşımak",
+    "s": "Parece que disfrutas llevando la contraria en cada reunión familiar sin motivo alguno.",
+    "tr": "Görünüşe göre her aile toplantısında hiçbir sebep yokken zıtlaşmaktan keyif alıyorsun.",
+    "form": "llevando la contraria",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/llevar_la_contraria",
+      "https://es.wikipedia.org/wiki/Hockey"
+    ]
+  },
+  {
+    "w": "tirar los tejos",
+    "t": "kur yapmak, asılmak",
+    "lit": "disk taşlarını atmak",
+    "s": "Estuvo toda la fiesta intentando tirarle los tejos al hermano de su amiga.",
+    "tr": "Bütün parti boyunca arkadaşının erkek kardeşine kur yapmaya çalıştı.",
+    "form": "tirarle los tejos",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/tirar_los_tejos",
+      "https://es.wikipedia.org/wiki/Chito"
+    ]
+  },
+  {
+    "w": "despedirse a la francesa",
+    "t": "veda etmeden gizlice ayrılmak",
+    "lit": "Fransız usulü vedalaşmak",
+    "s": "Como la cena se alargaba demasiado, decidimos despedirnos a la francesa antes de medianoche.",
+    "tr": "Akşam yemeği fazla uzadığı için gece yarısından önce kimseye görünmeden sıvışmaya karar verdik.",
+    "form": "despedirnos a la francesa",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/despedirse_a_la_francesa",
+      "https://es.wikipedia.org/wiki/Torneo_de_Amberes"
+    ]
+  },
+  {
+    "w": "brillar por su ausencia",
+    "t": "hiç ortalıkta görünmemek, yokluğuyla dikkat çekmek",
+    "lit": "yokluğuyla parlamak",
+    "eq": "sırra kadem basmak",
+    "s": "Cuando llegó el momento de limpiar la cocina, los invitados brillaron por su ausencia.",
+    "tr": "Mutfağı temizleme vakti geldiğinde konuklar ortalıkta hiç görünmedi.",
+    "form": "brillaron por su ausencia",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/brillar_por_su_ausencia",
+      "https://es.wikipedia.org/wiki/Jumpstyle"
+    ]
+  },
+  {
+    "w": "dejar tirado",
+    "t": "yüzüstü bırakmak, yarı yolda bırakmak",
+    "lit": "atılmış bırakmak",
+    "eq": "yarı yolda bırakmak",
+    "s": "Prometió llevarnos al aeropuerto en su coche, pero nos dejó tirados a última hora.",
+    "tr": "Bizi arabasıyla havalimanına götürmeye söz verdi ama son dakikada bizi yarı yolda bıraktı.",
+    "form": "dejó tirados",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/dejar_tirado",
+      "https://es.wikipedia.org/wiki/Claudio_N._Tirado"
+    ]
+  },
+  {
+    "w": "estar a partir un piñón",
+    "t": "çok sıkı fıkı olmak, çok iyi anlaşmak",
+    "lit": "bir çam fıstığını bölecek durumda olmak",
+    "eq": "içtikleri su ayrı gitmemek",
+    "s": "Antes apenas se saludaban y ahora están a partir un piñón todo el día.",
+    "tr": "Önceden birbirlerine zor selam verirlerdi, şimdi ise bütün gün içtikleri su ayrı gitmiyor.",
+    "form": "están a partir un piñón",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/estar_a_partir_un_pi%C3%B1%C3%B3n",
+      "https://es.wikipedia.org/wiki/Casa_del_Pi%C3%B1%C3%B3n"
+    ]
+  },
+  {
+    "w": "no casarse con nadie",
+    "t": "kimseye eyvallahı olmamak, bağımsız davranmak",
+    "lit": "kimseyle evlenmemek",
+    "eq": "kimseye eyvallah etmemek",
+    "s": "La jueza es conocida por su imparcialidad y por no casarse con nadie.",
+    "tr": "Yargıç, tarafsızlığıyla ve kimseye eyvallah etmemesiyle tanınır.",
+    "form": "no casarse con nadie",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/no_casarse_con_nadie",
+      "https://es.wikipedia.org/wiki/%C2%BFQui%C3%A9n_quiere_casarse_con_mi_hijo%3F"
+    ]
+  },
+  {
+    "w": "ser un cero a la izquierda",
+    "t": "hiçbir etkisi olmamak, sözü geçmemek",
+    "lit": "soldaki bir sıfır olmak",
+    "eq": "etkisiz eleman olmak",
+    "s": "En esa junta directiva me sentía como si fuera un cero a la izquierda.",
+    "tr": "O yönetim kurulunda kendimi tamamen etkisiz eleman gibi hissediyordum.",
+    "form": "fuera un cero a la izquierda",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/ser_un_cero_a_la_izquierda",
+      "https://es.wikipedia.org/wiki/Divisi%C3%B3n_por_cero"
+    ]
+  },
+  {
+    "w": "dar esquinazo",
+    "t": "birini atlatmak, başından savmak",
+    "lit": "köşe darbesi vermek",
+    "eq": "başından savmak",
+    "s": "Aceleró el paso entre la multitud para darle esquinazo a aquel vendedor insistente.",
+    "tr": "O ısrarcı satıcıyı atlatmak için kalabalığın arasında adımlarını hızlandırdı.",
+    "form": "darle esquinazo",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_esquinazo",
+      "https://es.wikipedia.org/wiki/The_Wicked_Darling"
+    ]
+  },
+  {
+    "w": "encontrar la horma de su zapato",
+    "t": "kendine dişli bir rakip bulmak, sert kayaya çarpmak",
+    "lit": "ayakkabısının kalıbını bulmak",
+    "eq": "sert kayaya çarpmak",
+    "s": "El campeón invicto por fin encontró la horma de su zapato en la final.",
+    "tr": "Namağlup şampiyon sonunda finalde dişine göre sert bir rakiple karşılaştı.",
+    "form": "encontró la horma de su zapato",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/encontrar_la_horma_de_su_zapato",
+      "https://es.wikipedia.org/wiki/Zapato"
+    ]
+  },
+  {
+    "w": "no poder ver ni en pintura",
+    "t": "birinden nefret etmek, görmeye bile dayanamamak",
+    "lit": "resimde bile görememek",
+    "eq": "günahı kadar sevmemek",
+    "s": "Desde aquella disputa por la herencia, los dos primos no se pueden ver ni en pintura.",
+    "tr": "Miras yüzünden çıkan o kavgadan beri iki kuzen birbirini görmeye bile dayanamıyor.",
+    "form": "no se pueden ver ni en pintura",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/no_poder_ver_ni_en_pintura",
+      "https://es.wikipedia.org/wiki/Pintura"
+    ]
+  },
+  {
+    "w": "limar asperezas",
+    "t": "pürüzleri gidermek, gerginliği yumuşatmak",
+    "lit": "pürüzleri törpülemek",
+    "eq": "buzları eritmek",
+    "s": "Ambos socios organizaron una cena privada con el fin de limar asperezas.",
+    "tr": "Her iki ortak da aradaki pürüzleri gidermek amacıyla özel bir akşam yemeği düzenledi.",
+    "form": "limar asperezas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/limar_asperezas",
+      "https://es.wikipedia.org/wiki/Pacto_de_Xochimilco"
+    ]
+  },
+  {
+    "w": "acercar posturas",
+    "t": "uzlaşmaya yaklaşmak, ortak noktada buluşmak",
+    "lit": "duruşları yaklaştırmak",
+    "s": "Tras varias horas de diálogo, los representantes lograron acercar posturas sobre el acuerdo.",
+    "tr": "Saatler süren görüşmelerin ardından temsilciler anlaşma konusunda ortak noktaya yaklaşmayı başardı.",
+    "form": "acercar posturas",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/acercar_posturas",
+      "https://es.wikipedia.org/wiki/Vela_(posici%C3%B3n_de_yoga)"
+    ]
+  },
+  {
+    "w": "poner de patitas en la calle",
+    "t": "kapı dışarı etmek, işten veya evden kovmak",
+    "lit": "ayakçıklar üzerinde sokağa koymak",
+    "eq": "kapı önüne koymak",
+    "s": "Si sigue llegando tarde sin justificación, lo van a poner de patitas en la calle.",
+    "tr": "Mazeretsiz geç kalmaya devam ederse onu kapının önüne koyacaklar.",
+    "form": "poner de patitas en la calle",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/poner_de_patitas_en_la_calle",
+      "https://es.wikipedia.org/wiki/Carnaval_de_Isla_Cristina"
+    ]
+  },
+  {
+    "w": "no tener abuela",
+    "t": "kendi kendini aşırı övmek, böbürlenmek",
+    "lit": "büyükannesi olmamak",
+    "s": "Se pasa el día presumiendo de sus cuadros; está claro que no tiene abuela.",
+    "tr": "Bütün gün tablolarıyla övünüp duruyor; kendi kendini övmeye bayıldığı çok açık.",
+    "form": "no tiene abuela",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/no_tener_abuela",
+      "https://es.wikipedia.org/wiki/Abuelo"
+    ]
+  },
+  {
+    "w": "bailar con la más fea",
+    "t": "en zor veya en nahoş işi üstlenmek",
+    "lit": "en çirkiniyle dans etmek",
+    "eq": "kabak başına patlamak",
+    "s": "En el reparto de tareas del proyecto, siempre me toca bailar con la más fea.",
+    "tr": "Projenin görev dağılımında en nahoş işi üstlenmek hep bana düşüyor.",
+    "form": "bailar con la más fea",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/bailar_con_la_m%C3%A1s_fea",
+      "https://es.wikipedia.org/wiki/Confesiones_de_un_g%C3%A1nster_de_Barcelona"
+    ]
+  },
+  {
+    "w": "llevar al huerto",
+    "t": "birini kandırıp istediğini yaptırmak, baştan çıkarmak",
+    "lit": "bostana götürmek",
+    "s": "Con sus promesas halagadoras consiguió llevar al huerto a todos los socios.",
+    "tr": "Tatlı vaatleriyle tüm ortakları ikna edip kendi istediği çizgiye getirmeyi başardı.",
+    "form": "llevar al huerto",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://en.wiktionary.org/wiki/llevar_al_huerto",
+      "https://es.wikipedia.org/wiki/Huerta"
+    ]
+  },
+  {
+    "w": "serruchar el piso",
+    "t": "birinin kuyusunu kazmak, ayağını kaydırmak",
+    "lit": "zemini testereyle kesmek",
+    "eq": "ayağını kaydırmak",
+    "s": "Ten cuidado con ese colega porque intenta serrucharte el piso ante la gerencia.",
+    "tr": "O iş arkadaşına dikkat et çünkü yönetimin önünde senin ayağını kaydırmaya çalışıyor.",
+    "form": "serrucharte el piso",
+    "reg": "informal",
+    "area": "Latin Amerika",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://es.wiktionary.org/wiki/serruchar_el_piso",
+      "https://es.wikipedia.org/wiki/Escape_del_Cuartel_San_Carlos"
+    ]
+  }
+]

@@ -1,0 +1,511 @@
+[
+ {
+  "w": "ganarse la vida",
+  "t": "geçimini sağlamak, hayatını kazanmak",
+  "lit": "kendine hayatı kazanmak",
+  "eq": "hayatını kazanmak",
+  "s": "Desde muy joven se ganaba la vida reparando relojes antiguos.",
+  "form": "ganaba la vida",
+  "tr": "Çok genç yaşlardan beri eski saatleri tamir ederek geçimini sağlıyordu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/ganarse_la_vida",
+   "https://es.wikipedia.org/wiki/Manumisi%C3%B3n"
+  ]
+ },
+ {
+  "w": "hacer carrera",
+  "t": "kariyer yapmak, mesleğinde yükselmek",
+  "lit": "koşu yapmak",
+  "eq": "kariyer yapmak",
+  "s": "Estudió ingeniería naval con la ilusión de hacer carrera en el puerto.",
+  "form": "hacer carrera",
+  "tr": "Limanda kariyer yapma hayaliyle gemi inşaatı mühendisliği okudu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/hacer_carrera",
+   "https://es.wikipedia.org/wiki/Campina_Grande"
+  ]
+ },
+ {
+  "w": "llevar a cabo",
+  "t": "gerçekleştirmek, yürütüp tamamlamak",
+  "lit": "uca götürmek",
+  "s": "El laboratorio logró llevar a cabo el experimento sin ningún retraso.",
+  "form": "llevar a cabo",
+  "tr": "Laboratuvar deneyi hiçbir gecikme olmadan gerçekleştirmeyi başardı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/llevar_a_cabo",
+   "https://es.wikipedia.org/wiki/Osteodermo"
+  ]
+ },
+ {
+  "w": "empezar de cero",
+  "t": "her şeye baştan başlamak, yeniden kurmak",
+  "lit": "sıfırdan başlamak",
+  "eq": "sıfırdan başlamak",
+  "s": "Se mudó a otra ciudad para abrir su taller y empezar de cero.",
+  "form": "empezar de cero",
+  "tr": "Atölyesini açmak ve sıfırdan başlamak için başka bir şehre taşındı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/empezar_de_cero",
+   "https://es.wikipedia.org/wiki/Roberto_Arg%C3%BCello"
+  ]
+ },
+ {
+  "w": "darse prisa",
+  "t": "acele etmek, elini çabuk tutmak",
+  "lit": "kendine acele vermek",
+  "eq": "elini çabuk tutmak",
+  "s": "Tenemos que darnos prisa si queremos entregar el informe antes de las cinco.",
+  "form": "darnos prisa",
+  "tr": "Raporu saat beşten önce teslim etmek istiyorsak elimizi çabuk tutmalıyız.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/darse_prisa",
+   "https://es.wikipedia.org/wiki/Espa%C3%B1ol_centroamericano"
+  ]
+ },
+ {
+  "w": "hacer puente",
+  "t": "resmi tatili hafta sonuyla birleştirip izin yapmak",
+  "lit": "köprü yapmak",
+  "s": "Como el martes es festivo, media oficina piensa hacer puente el lunes.",
+  "form": "hacer puente",
+  "tr": "Salı günü resmi tatil olduğu için ofisin yarısı pazartesiyi birleştirip izin yapmayı düşünüyor.",
+  "reg": "neutral",
+  "area": "İspanya",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/hacer_puente",
+   "https://es.wikipedia.org/wiki/Tiocianato"
+  ]
+ },
+ {
+  "w": "sudar la camiseta",
+  "t": "ter dökmek, bir iş için var gücüyle çalışmak",
+  "lit": "formayı terletmek",
+  "eq": "ter dökmek",
+  "s": "En esta cooperativa todos sudan la camiseta para sacar los pedidos a tiempo.",
+  "form": "sudan la camiseta",
+  "tr": "Bu kooperatifte herkes siparişleri zamanında yetiştirmek için ter döküyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/sudar_la_camiseta",
+   "https://es.wikipedia.org/wiki/Oscar_Villano"
+  ]
+ },
+ {
+  "w": "sudar la gota gorda",
+  "t": "kan ter içinde kalmak, çok zahmet çekmek",
+  "lit": "iri damlayı terletmek",
+  "eq": "kan ter içinde kalmak",
+  "s": "Subiendo aquellos muebles por la escalera sudamos la gota gorda.",
+  "form": "sudamos la gota gorda",
+  "tr": "O mobilyaları merdivenden çıkarırken kan ter içinde kaldık.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/sudar_la_gota_gorda",
+   "https://es.wikipedia.org/wiki/The_Meaning_of_Dreams"
+  ]
+ },
+ {
+  "w": "emplearse a fondo",
+  "t": "bütün gücünü ortaya koymak, canla başla çalışmak",
+  "lit": "dibine kadar kullanılmak",
+  "s": "Los bomberos tuvieron que emplearse a fondo para controlar el incendio.",
+  "form": "emplearse a fondo",
+  "tr": "İtfaiyeciler yangını kontrol altına almak için bütün güçlerini ortaya koymak zorunda kaldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/emplearse_a_fondo",
+   "https://es.wikipedia.org/wiki/Impuesto_de_consumos"
+  ]
+ },
+ {
+  "w": "dar la talla",
+  "t": "beklentiyi karşılamak, işin altından kalkacak yeterlilikte olmak",
+  "lit": "boy ölçüsünü vermek",
+  "s": "La nueva arquitecta dio la talla desde su primer proyecto importante.",
+  "form": "dio la talla",
+  "tr": "Yeni mimar, daha ilk önemli projesinden itibaren beklentiyi fazlasıyla karşıladı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/dar_la_talla",
+   "https://es.wikipedia.org/wiki/Campeonato_de_F%C3%BAtbol_de_Costa_Rica_1931"
+  ]
+ },
+ {
+  "w": "coger el tranquillo",
+  "pat": "cogerle el tranquillo a algo",
+  "t": "bir işin püf noktasını kapmak, elini alıştırmak",
+  "lit": "küçük sürgüyü yakalamak",
+  "eq": "püf noktasını kapmak",
+  "s": "Al principio el programa parece difícil, pero pronto le coges el tranquillo.",
+  "form": "coges el tranquillo",
+  "tr": "Program başta zor görünür ama kısa sürede püf noktasını kaparsın.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/coger_el_tranquillo",
+   "https://es.wikipedia.org/wiki/Tranquillo"
+  ]
+ },
+ {
+  "w": "no dar abasto",
+  "t": "iş yoğunluğuna yetişememek, talebe güç yetirememek",
+  "lit": "yeterlilik verememek",
+  "s": "En época de cosecha los agricultores no dan abasto con tanto trabajo.",
+  "form": "no dan abasto",
+  "tr": "Hasat zamanında çiftçiler bu kadar çok işe yetişemiyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/dar_a_basto",
+   "https://es.wikipedia.org/wiki/Centro_Universitario_Regional_del_Valle_de_Agu%C3%A1n"
+  ]
+ },
+ {
+  "w": "vivir para trabajar",
+  "t": "hayatını tamamen işe adamak, işkolik olmak",
+  "lit": "çalışmak için yaşamak",
+  "s": "Aceptó reducir su jornada porque no quería vivir para trabajar.",
+  "form": "vivir para trabajar",
+  "tr": "Sadece çalışmak için yaşamak istemediğinden mesai saatlerini azaltmayı kabul etti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/vivir_para_trabajar",
+   "https://es.wikipedia.org/wiki/Jerez_de_la_Frontera"
+  ]
+ },
+ {
+  "w": "calentar motores",
+  "t": "işe başlamadan önce ısınma ve hazırlık yapmak",
+  "lit": "motorları ısıtmak",
+  "s": "Hicimos unos ejercicios breves para calentar motores antes del ensayo general.",
+  "form": "calentar motores",
+  "tr": "Genel provadan önce ısınmak için birkaç kısa alıştırma yaptık.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/calentar_motores",
+   "https://es.wikipedia.org/wiki/D%C3%ADa_del_Blusa"
+  ]
+ },
+ {
+  "w": "hacer méritos",
+  "t": "takdir kazanmak için çabalamak, kendini kanıtlamak",
+  "lit": "liyakatler yapmak",
+  "s": "El becario trabajó con esmero todo el verano para hacer méritos.",
+  "form": "hacer méritos",
+  "tr": "Stajyer kendini kanıtlamak için bütün yaz özenle çalıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/hacer_m%C3%A9ritos",
+   "https://es.wikipedia.org/wiki/Canci%C3%B3n_(trovador)"
+  ]
+ },
+ {
+  "w": "entrar en faena",
+  "t": "işe koyulmak, asıl çalışmaya başlamak",
+  "lit": "mesaiye girmek",
+  "eq": "kolları sıvamak",
+  "s": "Tras revisar los planos de la obra, los albañiles entraron en faena.",
+  "form": "entraron en faena",
+  "tr": "İnşaat planlarını inceledikten sonra duvar ustaları işe koyuldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/entrar_en_faena",
+   "https://es.wikipedia.org/wiki/Iv%C3%A1n_Fandi%C3%B1o"
+  ]
+ },
+ {
+  "w": "buscarse la vida",
+  "t": "başının çaresine bakmak, kendi çabasıyla geçimini sağlamak",
+  "lit": "kendine hayatı aramak",
+  "eq": "başının çaresine bakmak",
+  "s": "Cuando llegó al país sin contactos, supo buscarse la vida honradamente.",
+  "form": "buscarse la vida",
+  "tr": "Ülkeye hiçbir tanıdığı olmadan geldiğinde dürüstçe başının çaresine bakmayı bildi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/buscarse_la_vida",
+   "https://es.wikipedia.org/wiki/Machete_(pel%C3%ADcula)"
+  ]
+ },
+ {
+  "w": "escalar puestos",
+  "t": "meslekte basamakları tırmanmak, hızla terfi etmek",
+  "lit": "mevkileri tırmanmak",
+  "s": "Gracias a su constancia logró escalar puestos dentro del ministerio.",
+  "form": "escalar puestos",
+  "tr": "Azmi sayesinde bakanlık içinde basamakları hızla tırmanmayı başardı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/escalar_puestos",
+   "https://es.wikipedia.org/wiki/EA_Sports_MMA"
+  ]
+ },
+ {
+  "w": "sudar tinta",
+  "t": "çok zorlanarak çalışmak, akla karayı seçmek",
+  "lit": "mürekkep terlemek",
+  "eq": "akla karayı seçmek",
+  "s": "Los técnicos sudaron tinta para recuperar los archivos del servidor dañado.",
+  "form": "sudaron tinta",
+  "tr": "Teknisyenler hasarlı sunucudaki dosyaları kurtarmak için akla karayı seçti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/sudar_tinta",
+   "https://es.wikipedia.org/wiki/Eureka_(serie_de_televisi%C3%B3n)"
+  ]
+ },
+ {
+  "w": "dar el callo",
+  "t": "ağır işte çalışmak, çok emek vermek",
+  "lit": "nasırı vermek",
+  "s": "Lleva treinta años dando el callo en la fábrica desde el amanecer.",
+  "form": "dando el callo",
+  "tr": "Otuz yıldır şafak vaktinden itibaren fabrikada ağır emek veriyor.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/dar_el_callo",
+   "https://es.wikipedia.org/wiki/Amuleto_(novela)"
+  ]
+ },
+ {
+  "w": "echar el resto",
+  "t": "bütün gücünü ve çabasını ortaya koymak",
+  "lit": "kalanı atmak",
+  "s": "En el último kilómetro de la etapa, la ciclista echó el resto.",
+  "form": "echó el resto",
+  "tr": "Etabın son kilometresinde bisikletçi bütün gücünü ortaya koydu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/echar_el_resto",
+   "https://es.wikipedia.org/wiki/Paula_Fern%C3%A1ndez_Via%C3%B1a"
+  ]
+ },
+ {
+  "w": "batirse el cobre",
+  "t": "kıyasıya emek vermek, zorlu bir işte yoğun çaba harcamak",
+  "lit": "bakırı dövmek",
+  "s": "Los abogados se batieron el cobre durante meses en aquel juicio laboral.",
+  "form": "batieron el cobre",
+  "tr": "Avukatlar o iş davasında aylarca kıyasıya çaba harcadı.",
+  "reg": "neutral",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/batirse_el_cobre",
+   "https://es.wikipedia.org/wiki/Club_Uni%C3%B3n_Collado_Villalba"
+  ]
+ },
+ {
+  "w": "escurrir el bulto",
+  "t": "işten veya sorumluluktan sıvışmak, yan çizmek",
+  "lit": "yükü kaydırmak",
+  "eq": "yan çizmek",
+  "s": "Cada vez que toca limpiar el almacén, intenta escurrir el bulto.",
+  "form": "escurrir el bulto",
+  "tr": "Ne zaman depoyu temizleme sırası gelse işten sıvışmaya çalışır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/escurrir_el_bulto",
+   "https://es.wikipedia.org/wiki/El_crimen_del_se%C3%B1or_Lange"
+  ]
+ },
+ {
+  "w": "dormirse en los laureles",
+  "t": "elde ettiği başarıya güvenip rehavete kapılmak, çabayı gevşetmek",
+  "lit": "defnelerin üstünde uyuyakalmak",
+  "s": "Ganamos el primer premio, pero no debemos dormirnos en los laureles.",
+  "form": "dormirnos en los laureles",
+  "tr": "Birincilik ödülünü kazandık ama rehavete kapılıp çalışmayı bırakmamalıyız.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/dormirse_en_los_laureles",
+   "https://es.wikipedia.org/wiki/Anata_(banda)"
+  ]
+ },
+ {
+  "w": "poner una pica en Flandes",
+  "t": "çok zor ve zahmetli bir işi başarmak",
+  "lit": "Flandre'ye bir mızrak dikmek",
+  "s": "Conseguir aquel permiso municipal fue como poner una pica en Flandes.",
+  "form": "poner una pica en Flandes",
+  "tr": "Belediyeden o izni koparmak deveye hendek atlatmak kadar zor bir başarıydı.",
+  "reg": "neutral",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/poner_una_pica_en_Flandes",
+   "https://es.wikipedia.org/wiki/Ej%C3%A9rcito_de_Flandes"
+  ]
+ },
+ {
+  "w": "caérsele los anillos",
+  "pat": "no caérsele los anillos a alguien",
+  "t": "bir işi yapmaktan gocunmamak, kibirlenmeyip işe el atmak",
+  "lit": "yüzükleri düşmek",
+  "s": "Aunque sea el director, no se le caen los anillos por ayudar.",
+  "form": "caen los anillos",
+  "tr": "Müdür olsa da yardım etmekten hiç gocunmaz.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/ca%C3%A9rsele_los_anillos",
+   "https://es.wikipedia.org/wiki/Anillo"
+  ]
+ },
+ {
+  "w": "trabajar a destajo",
+  "t": "parça başı veya aralıksız çok yoğun çalışmak",
+  "lit": "kesinti usulü çalışmak",
+  "s": "Toda la imprenta tuvo que trabajar a destajo para entregar la edición.",
+  "form": "trabajar a destajo",
+  "tr": "Baskıyı yetiştirmek için bütün matbaa aralıksız yoğun çalışmak zorunda kaldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/a_destajo",
+   "https://es.wikipedia.org/wiki/Club_Deportivo_Juventud_Unida"
+  ]
+ },
+ {
+  "w": "llevar adelante",
+  "t": "bir işi zorluklara rağmen yürütüp sürdürmek",
+  "lit": "ileriye taşımak",
+  "s": "Con pocos recursos lograron llevar adelante la reforma de la biblioteca.",
+  "form": "llevar adelante",
+  "tr": "Kısıtlı imkânlarla kütüphanenin yenilenmesini yürütmeyi başardılar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/llevar_adelante",
+   "https://es.wikipedia.org/wiki/Seguridad_nacional"
+  ]
+ },
+ {
+  "w": "echarse a dormir",
+  "t": "rehavete kapılıp işi boşlamak, gayreti bırakmak",
+  "lit": "uyumaya yatmak",
+  "s": "Conseguiste buenos clientes, pero no te puedes echar a dormir ahora.",
+  "form": "echar a dormir",
+  "tr": "İyi müşteriler edindin ama şimdi rehavete kapılıp işi boşlayamazsın.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/echarse_a_dormir",
+   "https://es.wikipedia.org/wiki/Desaparici%C3%B3n_de_Christina_Calayca"
+  ]
+ },
+ {
+  "w": "gastar la pólvora en salvas",
+  "t": "boşa çaba harcamak, önemsiz işlere güç tüketmek",
+  "lit": "barutu kuru sıkı atışlarda harcamak",
+  "s": "Discutir esos detalles menores antes del acuerdo es gastar la pólvora en salvas.",
+  "form": "gastar la pólvora en salvas",
+  "tr": "Anlaşmadan önce o küçük ayrıntıları tartışmak boşa çaba harcamaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/gastar_la_p%C3%B3lvora_en_salvas",
+   "https://es.wikipedia.org/wiki/Thaddeus_Peregrinus_Haenke"
+  ]
+ },
+ {
+  "w": "empezar la casa por el tejado",
+  "t": "işe sondan başlamak, yöntemsiz ve ters sırayla çalışmak",
+  "lit": "eve çatıdan başlamak",
+  "s": "Comprar los muebles antes de alquilar el local es empezar la casa por el tejado.",
+  "form": "empezar la casa por el tejado",
+  "tr": "Dükkânı kiralamadan önce mobilyaları almak işe sondan başlamaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/empezar_la_casa_por_el_tejado",
+   "https://es.wikipedia.org/wiki/Casa_William_H._Copeland"
+  ]
+ }
+]

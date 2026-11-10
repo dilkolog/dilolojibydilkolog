@@ -1,0 +1,522 @@
+[
+  {
+    "w": "echar a perder",
+    "t": "bozmak, berbat etmek",
+    "lit": "kaybetmeye atmak",
+    "s": "La tormenta repentina de la tarde echó a perder nuestra excursión por el campo.",
+    "tr": "Öğleden sonraki ani fırtına kır gezimizi berbat etti.",
+    "form": "echó a perder",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/echar_a_perder",
+      "https://es.wikipedia.org/wiki/Desulfotomaculum"
+    ]
+  },
+  {
+    "w": "echar la culpa",
+    "t": "suçu atmak, kabahati yüklemek",
+    "lit": "suçu atmak",
+    "eq": "suçu üstüne atmak",
+    "s": "En lugar de asumir su error, intentó echar la culpa al equipo técnico.",
+    "tr": "Hatasını üstlenmek yerine suçu teknik ekibe atmaya çalıştı.",
+    "form": "echar la culpa",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/echar_la_culpa",
+      "https://es.wikipedia.org/wiki/Boleslao_I_de_Bohemia"
+    ]
+  },
+  {
+    "w": "correr peligro",
+    "t": "tehlikede olmak, risk altında bulunmak",
+    "lit": "tehlike koşmak",
+    "s": "Los alpinistas corren peligro si deciden subir a la cumbre con tanta niebla.",
+    "tr": "Dağcılar bu kadar siste zirveye çıkmaya karar verirlerse tehlikeye girerler.",
+    "form": "corren peligro",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/correr_peligro",
+      "https://es.wikipedia.org/wiki/Bola_(h%C3%A1mster)"
+    ]
+  },
+  {
+    "w": "venirse abajo",
+    "t": "çökmek, suya düşmek",
+    "lit": "aşağıya gelmek",
+    "eq": "suya düşmek",
+    "s": "Todos nuestros planes para el verano se vinieron abajo por falta de presupuesto.",
+    "tr": "Yaz için yaptığımız tüm planlar bütçe yetersizliğinden suya düştü.",
+    "form": "se vinieron abajo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/venirse_abajo",
+      "https://es.wikipedia.org/wiki/Lazos_que_atan"
+    ]
+  },
+  {
+    "w": "dar un mal paso",
+    "t": "yanlış bir adım atmak, hata yapmak",
+    "lit": "kötü bir adım vermek",
+    "s": "Cualquiera puede dar un mal paso en su juventud, pero siempre se puede aprender.",
+    "tr": "Herkes gençliğinde yanlış bir adım atabilir ama her zaman ders çıkarılabilir.",
+    "form": "dar un mal paso",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_un_mal_paso",
+      "https://es.wikipedia.org/wiki/Batalla_de_Mal_Paso"
+    ]
+  },
+  {
+    "w": "no tener remedio",
+    "t": "çaresi olmamak, iflah olmamak",
+    "lit": "çaresi olmamak",
+    "s": "He intentado arreglar la impresora tres veces, pero esta avería no tiene remedio.",
+    "tr": "Yazıcıyı üç kez tamir etmeye çalıştım ama bu arızanın çaresi yok.",
+    "form": "no tiene remedio",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/no_tener_remedio",
+      "https://es.wikipedia.org/wiki/Remedio"
+    ]
+  },
+  {
+    "w": "salir el tiro por la culata",
+    "t": "işi ters tepmek, planı geri tepmek",
+    "lit": "atışın dipçikten çıkması",
+    "eq": "ava giderken avlanmak",
+    "s": "Quiso engañar al jurado con una excusa falsa y le salió el tiro por la culata.",
+    "tr": "Jüriyi uydurma bir mazeretle kandırmak istedi ama planı fena halde ters tepti.",
+    "form": "salió el tiro por la culata",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/salir_el_tiro_por_la_culata",
+      "https://es.wikipedia.org/wiki/Tiro_(bal%C3%ADstica)"
+    ]
+  },
+  {
+    "w": "pagar los platos rotos",
+    "t": "başkasının hatasının bedelini ödemek",
+    "lit": "kırık tabakları ödemek",
+    "eq": "kabak başına patlamak",
+    "s": "El director cometió la imprudencia y al final los empleados pagaron los platos rotos.",
+    "tr": "Tedbirsizliği müdür yaptı, sonunda ise faturayı çalışanlar ödedi.",
+    "form": "pagaron los platos rotos",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/pagar_los_platos_rotos",
+      "https://es.wikipedia.org/wiki/Plato"
+    ]
+  },
+  {
+    "w": "pasar factura",
+    "t": "kötü sonuçlarını göstermek, bedel ödetmek",
+    "lit": "fatura geçirmek",
+    "s": "Dormir apenas cuatro horas diarias durante meses acabó pasándole factura a su salud.",
+    "tr": "Aylar boyunca günde yalnızca dört saat uyumak sonunda sağlığına ağır bir bedel ödetti.",
+    "form": "pasándole factura",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/pasar_factura",
+      "https://es.wikipedia.org/wiki/Factura_electr%C3%B3nica"
+    ]
+  },
+  {
+    "w": "cavar su propia tumba",
+    "t": "kendi sonunu hazırlamak, kendi kuyusunu kazmak",
+    "lit": "kendi mezarını kazmak",
+    "eq": "kendi kuyusunu kazmak",
+    "s": "Con esas declaraciones tan imprudentes ante la prensa, el candidato cavó su propia tumba.",
+    "tr": "Basın önünde yaptığı o düşüncesiz açıklamalarla aday kendi kuyusunu kazdı.",
+    "form": "cavó su propia tumba",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/cavar_su_propia_tumba",
+      "https://es.wikipedia.org/wiki/Cavar"
+    ]
+  },
+  {
+    "w": "echar balones fuera",
+    "t": "sorumluluktan kaçmak, konuyu saptırmak",
+    "lit": "topları dışarı atmak",
+    "eq": "topu taca atmak",
+    "s": "Cuando le preguntaron por las pérdidas anuales, el portavoz se limitó a echar balones fuera.",
+    "tr": "Yıllık zararlar sorulduğunda sözcü yalnızca topu taca atmakla yetindi.",
+    "form": "echar balones fuera",
+    "reg": "neutral",
+    "area": "İspanya",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/echar_balones_fuera",
+      "https://es.wikipedia.org/wiki/T%C3%A9cnica_del_voleibol"
+    ]
+  },
+  {
+    "w": "pasarse de la raya",
+    "t": "çizgiyi aşmak, haddini aşmak",
+    "lit": "çizgiyi geçmek",
+    "eq": "çizmeyi aşmak",
+    "s": "Me gustan las bromas entre amigos, pero ayer te pasaste de la raya.",
+    "tr": "Arkadaşlar arasındaki şakaları severim ama dün çizgiyi aştın.",
+    "form": "te pasaste de la raya",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/pasarse_de_la_raya",
+      "https://es.wikipedia.org/wiki/Nen%C3%A9_Morales"
+    ]
+  },
+  {
+    "w": "dar al traste",
+    "t": "altüst etmek, boşa çıkarmak",
+    "lit": "perdeye vurmak",
+    "eq": "suya düşürmek",
+    "s": "Una avería eléctrica de última hora dio al traste con todo el espectáculo.",
+    "tr": "Son dakikada çıkan bir elektrik arızası bütün gösteriyi altüst etti.",
+    "form": "dio al traste",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/dar_al_traste",
+      "https://es.wikipedia.org/wiki/Cuatro_(instrumento_musical)"
+    ]
+  },
+  {
+    "w": "poner palos en las ruedas",
+    "t": "işi yokuşa sürmek, engel çıkarmak",
+    "lit": "tekerleklere sopalar koymak",
+    "eq": "tekerine çomak sokmak",
+    "s": "En vez de colaborar con la reforma, algunos departamentos ponen palos en las ruedas.",
+    "tr": "Yenilenmeye katkıda bulunmak yerine bazı bölümler işin tekerine çomak sokuyor.",
+    "form": "ponen palos en las ruedas",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/poner_palos_en_las_ruedas",
+      "https://es.wikipedia.org/wiki/Rueda_de_casino"
+    ]
+  },
+  {
+    "w": "caer en saco roto",
+    "t": "boşa gitmek, dikkate alınmamak",
+    "lit": "yırtık çuvala düşmek",
+    "eq": "havada kalmak",
+    "s": "Todas nuestras advertencias sobre la seguridad del puente cayeron en saco roto.",
+    "tr": "Köprünün güvenliği hakkındaki tüm uyarılarımız boşa gitti.",
+    "form": "cayeron en saco roto",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/caer_en_saco_roto",
+      "https://es.wikipedia.org/wiki/Roto_chileno"
+    ]
+  },
+  {
+    "w": "ser peor el remedio que la enfermedad",
+    "t": "çözümün sorundan daha kötü olması",
+    "lit": "çarenin hastalıktan daha kötü olması",
+    "eq": "yağmurdan kaçarken doluya tutulmak",
+    "s": "Quisieron ahorrar cerrando la sucursal, pero fue peor el remedio que la enfermedad.",
+    "tr": "Şubeyi kapatarak tasarruf etmek istediler ama çözüm sorundan daha beter oldu.",
+    "form": "fue peor el remedio que la enfermedad",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/ser_peor_el_remedio_que_la_enfermedad",
+      "https://es.wikipedia.org/wiki/Artemis_Fowl%3A_Y_su_peor_enemigo"
+    ]
+  },
+  {
+    "w": "agarrarse a un clavo ardiendo",
+    "t": "son çareye sarılmak, umutsuzca her yolu denemek",
+    "lit": "yanan bir çiviye tutunmak",
+    "eq": "denize düşen yılana sarılır",
+    "s": "Ante la amenaza de quiebra, la empresa tuvo que agarrarse a un clavo ardiendo.",
+    "tr": "İflas tehdidi karşısında şirket son çare olarak en riskli teklife bile sarılmak zorunda kaldı.",
+    "form": "agarrarse a un clavo ardiendo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/agarrarse_a_un_clavo_ardiendo",
+      "https://es.wikipedia.org/wiki/Nido_de_v%C3%ADboras_(pel%C3%ADcula_de_2020)"
+    ]
+  },
+  {
+    "w": "hurgar en la herida",
+    "t": "acıyı deşmek, hassas bir konuyu kurcalamak",
+    "lit": "yarayı karıştırmak",
+    "eq": "yaraya tuz basmak",
+    "s": "Ya sabe que perdió la beca; no hace falta seguir hurgando en la herida.",
+    "tr": "Bursu kaybettiğini zaten biliyor; yarayı daha fazla deşmeye gerek yok.",
+    "form": "hurgando en la herida",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/hurgar_en_la_herida",
+      "https://es.wikipedia.org/wiki/The_Devil's_Own"
+    ]
+  },
+  {
+    "w": "cargar el muerto",
+    "t": "suçu veya angaryayı birinin üstüne yıkmak",
+    "lit": "ölüyü yüklemek",
+    "eq": "ihale üstüne kalmak",
+    "s": "Cuando descubrieron el fallo contable, intentaron cargarle el muerto al nuevo becario.",
+    "tr": "Muhasebe hatasını fark ettiklerinde suçu yeni stajyerin üstüne yıkmaya çalıştılar.",
+    "form": "cargarle el muerto",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/cargar_el_muerto",
+      "https://es.wikipedia.org/wiki/Cargar_la_suerte_(tauromaquia)"
+    ]
+  },
+  {
+    "w": "armarse la marimorena",
+    "t": "büyük kavga çıkmak, ortalık karışmak",
+    "lit": "Marimorena'nın kopması",
+    "eq": "kızılca kıyamet kopmak",
+    "s": "En cuanto el árbitro anuló el gol local, se armó la marimorena en la grada.",
+    "tr": "Hakem ev sahibi takımın golünü iptal eder etmez tribünde kızılca kıyamet koptu.",
+    "form": "se armó la marimorena",
+    "reg": "informal",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/armarse_la_marimorena",
+      "https://es.wikipedia.org/wiki/Ande_la_marimorena"
+    ]
+  },
+  {
+    "w": "armarse la gorda",
+    "t": "büyük patırtı kopmak, ortalık fena karışmak",
+    "lit": "şişman olanın kurulması",
+    "eq": "ortalık birbirine girmek",
+    "s": "Si se descubre que falsificaron las firmas del acta, se va a armar la gorda.",
+    "tr": "Tutanaktaki imzaları taklit ettikleri ortaya çıkarsa ortalık fena karışacak.",
+    "form": "armar la gorda",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/armarse_la_gorda",
+      "https://es.wikipedia.org/wiki/Cecilio_Zubillaga_Perera"
+    ]
+  },
+  {
+    "w": "arder Troya",
+    "t": "kıyamet kopmak, ortalık yangın yerine dönmek",
+    "lit": "Truva'nın yanması",
+    "eq": "kıyamet kopmak",
+    "s": "Cuando el cliente vio los desperfectos en su coche nuevo, allí ardió Troya.",
+    "tr": "Müşteri yeni arabasındaki hasarları görünce orada kıyamet koptu.",
+    "form": "ardió Troya",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/arder_Troya",
+      "https://es.wikipedia.org/wiki/Infierno%2C_canto_trig%C3%A9simo"
+    ]
+  },
+  {
+    "w": "entrar en barrena",
+    "t": "hızla kötüye gitmek, kontrolden çıkmak",
+    "lit": "burgusal düşüşe girmek",
+    "eq": "tepetaklak gitmek",
+    "s": "Tras perder a su principal patrocinador, las cuentas del club entraron en barrena.",
+    "tr": "Ana sponsorunu kaybettikten sonra kulübün mali durumu hızla tepetaklak gitti.",
+    "form": "entraron en barrena",
+    "reg": "neutral",
+    "area": "İspanya",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/entrar_en_barrena",
+      "https://es.wikipedia.org/wiki/Barrena"
+    ]
+  },
+  {
+    "w": "pasar las de Caín",
+    "t": "çok eziyet çekmek, binbir güçlük yaşamak",
+    "lit": "Kabil'inkileri geçirmek",
+    "eq": "akla karayı seçmek",
+    "s": "Durante el primer año del negocio pasamos las de Caín para llegar a fin de mes.",
+    "tr": "İşletmenin ilk yılında ay sonunu getirmek için akla karayı seçtik.",
+    "form": "pasamos las de Caín",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/pasar_las_de_Ca%C3%ADn",
+      "https://es.wikipedia.org/wiki/Ca%C3%ADn_y_Abel_(telenovela)"
+    ]
+  },
+  {
+    "w": "oler a chamusquina",
+    "t": "işin içinde bir bit yeniği sezmek, şüphe uyandırmak",
+    "lit": "yanık kokmak",
+    "eq": "burnuna pis kokular gelmek",
+    "s": "Esa oferta tan ventajosa sin ningún requisito previo me huele a chamusquina.",
+    "tr": "Hiçbir ön şart taşımayan bu aşırı avantajlı teklifte bir bit yeniği var gibi geliyor.",
+    "form": "huele a chamusquina",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/oler_a_chamusquina",
+      "https://es.wikisource.org/wiki/Libertad_de_imprenta_(DCB)"
+    ]
+  },
+  {
+    "w": "pender de un hilo",
+    "t": "pamuk ipliğine bağlı olmak, her an bozulabilecek durumda olmak",
+    "lit": "bir iplikten sarkmak",
+    "eq": "pamuk ipliğine bağlı olmak",
+    "s": "La continuidad del acuerdo comercial pende de un hilo tras las últimas declaraciones.",
+    "tr": "Ticari anlaşmanın devamı son açıklamaların ardından pamuk ipliğine bağlı durumda.",
+    "form": "pende de un hilo",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/pender_de_un_hilo",
+      "https://es.wikipedia.org/wiki/Filipendula_camtschatica"
+    ]
+  },
+  {
+    "w": "enmendar la plana",
+    "t": "birinin hatasını düzeltip ona akıl vermek",
+    "lit": "sayfayı düzeltmek",
+    "s": "A nadie le agrada que un recién llegado intente enmendarle la plana en público.",
+    "tr": "Yeni gelen birinin herkesin önünde hatalarını düzeltip akıl vermeye kalkması kimsenin hoşuna gitmez.",
+    "form": "enmendarle la plana",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/enmendar_la_plana",
+      "https://es.wikipedia.org/wiki/Dicho"
+    ]
+  },
+  {
+    "w": "tirar piedras contra el propio tejado",
+    "t": "kendi çıkarına zarar vermek, kendi ayağına sıkmak",
+    "lit": "kendi çatısına taş atmak",
+    "eq": "kendi ayağına sıkmak",
+    "s": "Criticar nuestros propios productos delante del cliente es tirar piedras contra el propio tejado.",
+    "tr": "Müşterinin önünde kendi ürünlerimizi eleştirmek kendi ayağımıza sıkmaktır.",
+    "form": "tirar piedras contra el propio tejado",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/tirar_piedras_contra_el_propio_tejado",
+      "https://es.wikipedia.org/wiki/Piedra"
+    ]
+  },
+  {
+    "w": "curarse en salud",
+    "t": "tehlike doğmadan önlem almak, kendini sağlama almak",
+    "lit": "sağlıklıyken kendini iyileştirmek",
+    "eq": "eşeğini sağlam kazığa bağlamak",
+    "s": "Hicimos una copia adicional de todos los contratos para curarnos en salud.",
+    "tr": "Kendimizi sağlama almak için tüm sözleşmelerin ek birer kopyasını çıkardık.",
+    "form": "curarnos en salud",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/curarse_en_salud",
+      "https://es.wikipedia.org/wiki/Salud_en_Venezuela"
+    ]
+  },
+  {
+    "w": "capear el temporal",
+    "t": "zor bir dönemi kazasız atlatmak, fırtınayı göğüslemek",
+    "lit": "fırtınayı savuşturmak",
+    "s": "Con reducciones de gastos logramos capear el temporal durante los meses de crisis.",
+    "tr": "Gider kesintileriyle kriz ayları boyunca fırtınayı göğüsleyip ayakta kalmayı başardık.",
+    "form": "capear el temporal",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://en.wiktionary.org/wiki/capear_el_temporal",
+      "https://es.wikipedia.org/wiki/Le%C3%B3n_Aillaud"
+    ]
+  },
+  {
+    "w": "pasarse de rosca",
+    "t": "ölçüyü kaçırmak, aşırıya kaçmak",
+    "lit": "vida dişini sıyırmak",
+    "eq": "kantarın topuzunu kaçırmak",
+    "s": "Quería hacer un comentario gracioso en la boda, pero se pasó de rosca.",
+    "tr": "Düğünde esprili bir yorum yapmak istedi ama kantarın topuzunu kaçırdı.",
+    "form": "se pasó de rosca",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "trouble",
+    "src": [
+      "https://es.wiktionary.org/wiki/pasarse_de_rosca",
+      "https://es.wikipedia.org/wiki/Blas_de_Sebaste"
+    ]
+  }
+]
