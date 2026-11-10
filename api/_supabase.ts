@@ -27,6 +27,8 @@ export const supabaseOn = () => /^https:\/\//.test(base()) && !!serviceKey()
 export interface SupabaseUser {
   id: string
   email: string
+  /** Whether Supabase has the address confirmed (an unconfirmed one proves nothing about who signed in). */
+  confirmed: boolean
   /** A name to show the owner: the one chosen at sign-up, Google's, or the email's first part. */
   name: string
 }
@@ -49,12 +51,12 @@ export async function supabaseUser(request: Request): Promise<SupabaseUser | nul
   try {
     const res = await fetch(`${base()}/auth/v1/user`, { headers: { apikey: serviceKey(), authorization: `Bearer ${token}` } })
     if (!res.ok) return null
-    const u = (await res.json()) as { id?: unknown; email?: unknown; user_metadata?: Record<string, unknown> }
+    const u = (await res.json()) as { id?: unknown; email?: unknown; email_confirmed_at?: unknown; user_metadata?: Record<string, unknown> }
     if (typeof u.id !== 'string' || !UUID.test(u.id)) return null
     const email = typeof u.email === 'string' ? u.email : ''
     const meta = u.user_metadata ?? {}
     const named = [meta.username, meta.full_name, meta.name].find((v): v is string => typeof v === 'string' && !!v.trim())
-    return { id: u.id, email, name: (named ?? email.split('@')[0] ?? '').trim().slice(0, 40) || 'kullanıcı' }
+    return { id: u.id, email, confirmed: !!email && !!u.email_confirmed_at, name: (named ?? email.split('@')[0] ?? '').trim().slice(0, 40) || 'kullanıcı' }
   } catch {
     return null
   }

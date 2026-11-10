@@ -26,6 +26,7 @@ import { fromApp } from '../api/_origin.js'
 import { clientKey, overLimit, tooMany } from '../api/_rate.js'
 import { cleanRoomCode } from '../src/engine/liveDuel.js'
 import { bindBucket } from './blob.js'
+import { hardened } from './hardened.js'
 
 export { DuelRoom } from './duelRoom.js'
 
@@ -41,17 +42,6 @@ interface Env {
 
 type Handler = (request: Request) => Response | Promise<Response>
 type Module = Partial<Record<'GET' | 'POST' | 'PUT' | 'DELETE', Handler>>
-
-/**
- * What an API answer carries beyond its handler's: the headers the assets layer adds to the app's files do not
- * reach /api/* (the Worker answers those), and the confirmation page of the mail reminders is HTML.
- * `bodyless`: a HEAD answer (the handler's GET without its body).
- */
-function hardened(res: Response, bodyless: boolean): Response {
-  const headers = new Headers(res.headers)
-  headers.set('x-content-type-options', 'nosniff')
-  return new Response(bodyless ? null : res.body, { status: res.status, statusText: res.statusText, headers })
-}
 
 const ROUTES: Record<string, Module> = { access, admin, ai, clips, 'cron-reminder': cron, health, listen, log, news, push, share, speech, sync, translate, youtube }
 

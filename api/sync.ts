@@ -5,8 +5,12 @@ import { overLimit, tooMany } from './_rate.js'
 import { supabaseOn } from './_supabase.js'
 
 /**
- * Encrypted sync storage. The app sends opaque, client-encrypted bytes under an id derived from
- * the learner's sync code; this function only stores and returns them (private Blob store).
+ * Encrypted sync storage (R2). The app sends opaque, client-encrypted bytes under an id derived from
+ * the learner's sync code; this function only stores and returns them.
+ *
+ * With Supabase on, sync lives in Supabase (sync_parts and the media bucket, with per-person limits) and this
+ * store is read-only: a device moving over still reads its old data here, but nothing new is written (an account
+ * could otherwise fill R2 with parts that no limit counts). Writes answer 410.
  *
  * GET  /api/sync?id=<64 hex>&part=<core | m-<40 hex> | ev-YYYY-MM | tx-<40 hex>>  → the bytes, or 404
  * PUT  same query, body = bytes                         → stored (with `If-Match: <etag of the GET>`: 412 if the file changed since;
@@ -29,7 +33,7 @@ import { supabaseOn } from './_supabase.js'
 const ID = /^[0-9a-f]{64}$/
 const PART = /^(core|m-[0-9a-f]{40}|tx-[0-9a-f]{40}|ev-\d{4}-\d{2}|h-\d{4}-\d{2}-\d{2})$/
 const POINTS_KEPT = 7
-/** Vercel's request body limit is 4.5 MB; stay under it. */
+/** The largest part accepted (the app splits its data far below this). */
 const MAX_BYTES = 4_400_000
 
 const TOKEN = /^[0-9a-f]{64}$/
@@ -157,6 +161,8 @@ export async function PUT(request: Request): Promise<Response> {
 }
 
 async function handlePut(request: Request): Promise<Response> {
+  // Sync moved to Supabase: the old store only serves the move (see above).
+  if (supabaseOn()) return new Response('moved', { status: 410 })
   // A sync writes a handful of files; this stops a script that fills the store with new accounts.
   if (overLimit(request, 'sync-write', 240)) return tooMany()
   const path = target(request)

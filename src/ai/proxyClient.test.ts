@@ -15,3 +15,19 @@ describe('the AI client', () => {
     expect(new Headers(accessFetch.mock.calls[0][1]?.headers).get('x-ai-feature')).toBe('sentence')
   })
 })
+
+describe('what the app sends passes the proxy’s allow-list', () => {
+  it('a structured call with a picture, the effort setting, the fallback and the SDK’s beta header', async () => {
+    const { refuse, betaHeader } = await import('../../api/ai')
+    const { wordsFromPhoto } = await import('./claude')
+    accessFetch.mockClear()
+    accessFetch.mockResolvedValueOnce(
+      new Response(JSON.stringify({ id: 'm', type: 'message', role: 'assistant', model: 'claude-opus-5-5', content: [{ type: 'text', text: '{"words":[]}' }], stop_reason: 'end_turn', usage: { input_tokens: 1, output_tokens: 1 } }), { headers: { 'content-type': 'application/json' } }),
+    )
+    await wordsFromPhoto('account', { language: 'fr', count: 5, have: [], mediaType: 'image/jpeg', imageBase64: 'AAAA' } as Parameters<typeof wordsFromPhoto>[1])
+    const init = accessFetch.mock.calls[0][1]!
+    expect(refuse(JSON.parse(String(init.body)))).toBeNull()
+    const beta = new Headers(init.headers).get('anthropic-beta')
+    expect(betaHeader(beta)?.split(',').sort()).toEqual(beta?.split(',').map((b) => b.trim()).sort())
+  })
+})
