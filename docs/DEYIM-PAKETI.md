@@ -4,7 +4,7 @@ Hedef: **dil başına 500 deyim** (İngilizce, Fransızca, İspanyolca), tek pak
 
 Sözlükte bulunabilsin diye `t` alanına insanların arayacağı sade Türkçe karşılık, `eq` alanına Türkçe deyim yazılır; `w` insanların yazacağı sözlük biçimidir.
 
-Bu belge toplamayı ve denetimi yapan ajanlar içindir. Sahibinin kararı (2026-11-10): 500 deyim, hepsi aynı pakette; İspanyolcayı Antigravity, Fransızcayı Codex toplar, birbirlerini denetlerler.
+Bu belge toplamayı ve denetimi yapan ajanlar içindir. Sahibinin kararı (2026-11-10): 500 deyim, hepsi aynı pakette; İspanyolcayı Antigravity, Fransızcayı ve İngilizceyi Codex toplar; birbirlerini denetlerler.
 
 ## Nasıl çalışır
 
@@ -82,7 +82,7 @@ Tema, deyimin **anlamına** göre seçilir, içindeki kelimeye göre değil; tek
 |---|---|---|---|
 | İspanyolca (`es`) | **Antigravity** | Codex | `icerik/deyimler-es` |
 | Fransızca (`fr`) | **Codex** | Antigravity | `icerik/deyimler-fr` |
-| İngilizce (`en`) | sonra (sahibi atayacak) | | |
+| İngilizce (`en`) | **Codex** (Fransızca bittikten sonra) | Antigravity | `icerik/deyimler-en` |
 
 **Dosya sahipliği (çakışma olmasın diye):** bir ajan yalnızca kendi dilinin dosyalarına yazar.
 
@@ -149,7 +149,26 @@ Bu tur: <TUR NO> (partiler ve temalar belgedeki tur tablosunda). Parti başına 
 - Son mesajın kısa bir rapor olsun: kaç deyim, kaçını eledin ve neden, emin olamadıkların.
 ```
 
-### Denetim (Codex → İspanyolca, Antigravity → Fransızca)
+### Codex: İngilizce toplama (Fransızca dört turu bitince)
+
+```text
+Diloloji deposunda docs/DEYIM-PAKETI.md dosyasını baştan sona oku ve aynen uygula. Kullanıcıya Türkçe yaz.
+
+Rolün: İngilizce (en) deyim paketinin TOPLAYANI. Dal: icerik/deyimler-en (güncel main'den).
+Bu tur: <TUR NO> (partiler ve temalar belgedeki tur tablosunda). Parti başına 31 deyim: 6 B1, 12 B2, 13 C1.
+
+- Her deyimi iki bağımsız kaynakta doğrula ve adreslerini src alanına yaz; doğrulayamadığını alma.
+  Kaynaklara erişemiyorsan src uydurma: dur ve bunu söyle.
+- Yalnızca İngiltere'de ya da yalnızca ABD'de kullanılanı area alanında "UK" / "US" diye belirt; ortak olanı "genel" yaz.
+- Sözlük biçiminde iyelik yer tutucusu İngilizcede olduğu gibi kalır ("pull someone's leg"); düz kesme işareti kullan.
+- Deyim olmayan öbek fiilleri (give up, look after) alma: imgesi olan deyimler.
+- Yalnızca content/raw/idioms/en-NNNN.json dosyalarını yaz; src/data/idioms/en.json'u betik üretir.
+- Bitince: node scripts/build-idioms.mjs, sonra npx vitest run src/data/idioms.test.ts. İkisi de hatasız geçmeli.
+- Tek commit, push, main'e TASLAK PR aç: "Deyim paketi: en tur <TUR NO>".
+- Son mesajın kısa bir rapor olsun: kaç deyim, kaçını eledin ve neden, emin olamadıkların.
+```
+
+### Denetim (Codex → İspanyolca; Antigravity → Fransızca ve İngilizce)
 
 ```text
 Diloloji deposunda docs/DEYIM-PAKETI.md dosyasını oku. Kullanıcıya Türkçe yaz.
