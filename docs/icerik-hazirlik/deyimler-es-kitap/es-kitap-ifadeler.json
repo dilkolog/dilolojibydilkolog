@@ -1,0 +1,4412 @@
+{
+  "schemaVersion": 1,
+  "language": "es",
+  "createdOn": "2026-11-10",
+  "status": "authoring_complete_review_pending",
+  "sourceBook": {
+    "title": "Practica tu español — Las expresiones coloquiales",
+    "authors": [
+      "M.ª Dolores Martínez",
+      "Isabel Ordeig"
+    ],
+    "publisher": "SGEL",
+    "fileName": "Practica tu Español_Las expresiones coloquiales.pdf",
+    "pdfPages": 55,
+    "sha256": "4735c1e57134a10d8e67c3ddfb577e221df5ecd83edd9140f3d3c272377c17bc",
+    "noteTr": "Yüklenen kopya basılı sayfa 103 sonunda bitiyor; içindekilerdeki çözüm anahtarı ve sözlük bu kopyada yok."
+  },
+  "scopeTr": "Kitabın hedef listelerinden yalnız ifade ve kalıplar çıkarıldı. Türkçe anlamlar, kullanım açıklamaları ve iki örnek/çevirisi özgün yazıldı; kitabın tanım ve örnekleri aktarılmadı.",
+  "items": [
+    {
+      "id": "es-libro-0001",
+      "expression": "ser un flechazo",
+      "kind": "idiom",
+      "meaningTr": "İlk görüşte doğan aşk olmak",
+      "examples": [
+        {
+          "es": "Su encuentro en la librería fue un flechazo para ambos.",
+          "tr": "Kitapçıdaki karşılaşmaları ikisi için de ilk görüşte aşktı."
+        },
+        {
+          "es": "Lo de Clara y Diego fue un flechazo inesperado.",
+          "tr": "Clara ile Diego'nunki beklenmedik bir ilk görüşte aşktı."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0002",
+      "expression": "aburrirse como una ostra",
+      "kind": "idiom",
+      "meaningTr": "Fena hâlde sıkılmak",
+      "examples": [
+        {
+          "es": "Sin conexión ni libros, me aburrí como una ostra.",
+          "tr": "İnternet ve kitap olmayınca fena hâlde sıkıldım."
+        },
+        {
+          "es": "Durante aquella charla interminable, los invitados se aburrían como ostras.",
+          "tr": "O bitmek bilmeyen konuşmada davetliler fena hâlde sıkılıyordu."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0003",
+      "expression": "partirse de risa",
+      "kind": "idiom",
+      "meaningTr": "Gülmekten kırılmak",
+      "examples": [
+        {
+          "es": "Nos partimos de risa con las imitaciones de Lucía.",
+          "tr": "Lucía'nın taklitlerine gülmekten kırıldık."
+        },
+        {
+          "es": "Mi abuelo se partía de risa al recordar aquella anécdota.",
+          "tr": "Dedem o olayı hatırladıkça gülmekten kırılıyordu."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0004",
+      "expression": "ser la media naranja",
+      "kind": "idiom",
+      "meaningTr": "Birinin ruh eşi olmak",
+      "examples": [
+        {
+          "es": "Después de años juntos, cree que Ana es su media naranja.",
+          "tr": "Birlikte geçen yıllardan sonra Ana'nın ruh eşi olduğunu düşünüyor."
+        },
+        {
+          "es": "No busco una media naranja que decida todo por mí.",
+          "tr": "Her şeye benim yerime karar verecek bir ruh eşi aramıyorum."
+        }
+      ],
+      "usageNoteTr": "Kullanım kalıbı: ser la media naranja de alguien.",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0005",
+      "expression": "llevarse bien",
+      "kind": "colloquial_predicate",
+      "meaningTr": "İyi geçinmek",
+      "examples": [
+        {
+          "es": "Mis compañeros de piso se llevan bien desde el principio.",
+          "tr": "Ev arkadaşlarım başından beri iyi geçiniyor."
+        },
+        {
+          "es": "Me llevo bien con mis primos, aunque pensamos distinto.",
+          "tr": "Farklı düşünsek de kuzenlerimle iyi geçiniyorum."
+        }
+      ],
+      "usageNoteTr": "Kitapta llevarse mal karşıt biçimi de var; kötü geçinmek demektir.",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0006",
+      "expression": "ponerse como un tomate",
+      "kind": "idiom",
+      "meaningTr": "Utançtan kıpkırmızı kesilmek",
+      "examples": [
+        {
+          "es": "Cuando mencionaron su premio, Marta se puso como un tomate.",
+          "tr": "Ödülünden söz edilince Marta utançtan kıpkırmızı kesildi."
+        },
+        {
+          "es": "Me puse como un tomate al confundir sus nombres.",
+          "tr": "İsimlerini karıştırınca utançtan kıpkırmızı kesildim."
+        }
+      ],
+      "usageNoteTr": "Ponerse rojo veya colorado como un tomate biçimleri de aynı grupta.",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0007",
+      "expression": "estar como si nada",
+      "kind": "idiom",
+      "meaningTr": "Hiçbir şey olmamış gibi sakin kalmak",
+      "examples": [
+        {
+          "es": "Todos discutían y él seguía como si nada, leyendo.",
+          "tr": "Herkes tartışıyordu; o hiçbir şey olmamış gibi okumayı sürdürüyordu."
+        },
+        {
+          "es": "Tras aquel susto, la niña estaba como si nada.",
+          "tr": "O korkutucu olaydan sonra kız hiçbir şey olmamış gibi sakindi."
+        }
+      ],
+      "usageNoteTr": "Estar fiili kullanılmadan como si nada da denir.",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0008",
+      "expression": "quedarse de piedra",
+      "kind": "idiom",
+      "meaningTr": "Şaşkınlıktan donakalmak",
+      "examples": [
+        {
+          "es": "Nos quedamos de piedra al descubrir el precio del garaje.",
+          "tr": "Garajın fiyatını öğrenince şaşkınlıktan donakaldık."
+        },
+        {
+          "es": "Julia se quedó de piedra cuando reconoció a su antigua profesora.",
+          "tr": "Julia eski öğretmenini tanıyınca şaşkınlıktan donakaldı."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0009",
+      "expression": "quedarse cortado",
+      "kind": "idiom",
+      "meaningTr": "Utanıp ne diyeceğini bilememek",
+      "examples": [
+        {
+          "es": "Al equivocarme de puerta, me quedé cortado ante todos.",
+          "tr": "Yanlış kapıya girince herkesin karşısında utanıp ne diyeceğimi bilemedim."
+        },
+        {
+          "es": "Elena se quedó cortada después de aquel comentario personal.",
+          "tr": "Elena o kişisel yorumdan sonra utanıp ne diyeceğini bilemedi."
+        }
+      ],
+      "usageNoteTr": "Cortado, cortada biçimi kişiye göre değişir.",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0010",
+      "expression": "tierra trágame",
+      "kind": "fixed_expression",
+      "meaningTr": "Utançtan yer yarılsa da içine girsem demek",
+      "examples": [
+        {
+          "es": "Envié el audio al grupo equivocado: ¡tierra, trágame!",
+          "tr": "Ses kaydını yanlış gruba gönderdim; yer yarılsa da içine girseydim!"
+        },
+        {
+          "es": "Llamé mamá a la directora y pensé: «¡Tierra, trágame!».",
+          "tr": "Müdüre anne dedim ve içimden yer yarılsa da içine girsem dedim."
+        }
+      ],
+      "usageNoteTr": "Ünlem niteliğinde kalıplaşmış ifade.",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0011",
+      "expression": "estar colado por alguien",
+      "kind": "idiom",
+      "meaningTr": "Birine sırılsıklam âşık olmak",
+      "examples": [
+        {
+          "es": "Pablo está colado por su compañera del taller de cerámica.",
+          "tr": "Pablo seramik atölyesindeki arkadaşına sırılsıklam âşık."
+        },
+        {
+          "es": "Creo que Laura está colada por ese músico del barrio.",
+          "tr": "Bence Laura mahalledeki o müzisyene sırılsıklam âşık."
+        }
+      ],
+      "usageNoteTr": "Colado, colada biçimi kişiye göre değişir.",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0012",
+      "expression": "dar calabazas",
+      "kind": "idiom",
+      "meaningTr": "Birinin romantik teklifini reddetmek",
+      "examples": [
+        {
+          "es": "Invitó a Nuria a cenar, pero ella le dio calabazas.",
+          "tr": "Nuria'yı yemeğe davet etti ama Nuria romantik teklifini reddetti."
+        },
+        {
+          "es": "Temía que le dieran calabazas si confesaba sus sentimientos.",
+          "tr": "Duygularını açıklarsa reddedilmekten korkuyordu."
+        }
+      ],
+      "usageNoteTr": "Kullanım kalıbı: dar calabazas a alguien.",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0013",
+      "expression": "estar hasta las narices",
+      "kind": "idiom",
+      "meaningTr": "Bir şeyden iyice bıkmış olmak",
+      "examples": [
+        {
+          "es": "Estoy hasta las narices de las llamadas publicitarias.",
+          "tr": "Reklam aramalarından iyice bıktım."
+        },
+        {
+          "es": "Los vecinos están hasta las narices del ruido nocturno.",
+          "tr": "Komşular gece gürültüsünden iyice bıkmış durumda."
+        }
+      ],
+      "usageNoteTr": "Neyden bıkıldığı de ile belirtilir.",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0014",
+      "expression": "echar de menos",
+      "kind": "idiom",
+      "meaningTr": "Birini veya bir şeyi özlemek",
+      "examples": [
+        {
+          "es": "Desde que vivo lejos, echo de menos las comidas familiares.",
+          "tr": "Uzakta yaşadığımdan beri aile yemeklerini özlüyorum."
+        },
+        {
+          "es": "Mis hijos echan de menos a sus amigos del pueblo.",
+          "tr": "Çocuklarım köydeki arkadaşlarını özlüyor."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0015",
+      "expression": "estar como un niño con zapatos nuevos",
+      "kind": "idiom",
+      "meaningTr": "Yeni bir şeye kavuşmuş gibi çok sevinçli olmak",
+      "examples": [
+        {
+          "es": "Con su bicicleta reparada, Leo está como un niño con zapatos nuevos.",
+          "tr": "Bisikleti onarılınca Leo yeni bir şeye kavuşmuş gibi çok sevinçli."
+        },
+        {
+          "es": "Mi madre está como un niño con zapatos nuevos con su jardín.",
+          "tr": "Annem bahçesine kavuşunca yeni bir şey almış çocuk gibi sevinçli."
+        }
+      ],
+      "usageNoteTr": "Kalıptaki niño sözcüğü kadın özneyle de kullanılabilir.",
+      "level": null,
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0016",
+      "expression": "dársele bien algo a alguien",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Bir işte becerikli olmak",
+      "examples": [
+        {
+          "es": "A Sofía se le da bien organizar excursiones escolares.",
+          "tr": "Sofía okul gezileri düzenlemekte becerikli."
+        },
+        {
+          "es": "Se me da bien reparar radios antiguas con paciencia.",
+          "tr": "Eski radyoları sabırla tamir etmekte becerikliyim."
+        }
+      ],
+      "usageNoteTr": "Kitapta mal ve fatal karşıtları da var; becerememeyi, fatal ise çok kötü yapmayı anlatır.",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0017",
+      "expression": "poner las pilas a alguien",
+      "kind": "idiom",
+      "meaningTr": "Birini görevini yapması için sıkıştırıp harekete geçirmek",
+      "examples": [
+        {
+          "es": "La encargada nos puso las pilas para terminar el inventario.",
+          "tr": "Sorumlu kişi envanteri bitirmemiz için bizi sıkıştırıp harekete geçirdi."
+        },
+        {
+          "es": "El entrenador les puso las pilas después de varios entrenamientos flojos.",
+          "tr": "Antrenör birkaç verimsiz antrenmandan sonra onları sıkıştırıp harekete geçirdi."
+        }
+      ],
+      "usageNoteTr": "Ponerse las pilas dönüşlü biçimiyle aynı kayıt olarak sunulmadı.",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0018",
+      "expression": "arrimar el hombro",
+      "kind": "idiom",
+      "meaningTr": "İşe omuz vermek",
+      "examples": [
+        {
+          "es": "Para limpiar el patio, todos arrimamos el hombro.",
+          "tr": "Avluyu temizlemek için hepimiz işe omuz verdik."
+        },
+        {
+          "es": "Los vecinos arrimaron el hombro tras la inundación del local.",
+          "tr": "Dükkânı su bastıktan sonra komşular işe omuz verdi."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0019",
+      "expression": "echar una mano",
+      "kind": "idiom",
+      "meaningTr": "Yardım etmek",
+      "examples": [
+        {
+          "es": "¿Me echas una mano con estas cajas tan pesadas?",
+          "tr": "Bu ağır koliler konusunda bana yardım eder misin?"
+        },
+        {
+          "es": "Un compañero me echó una mano al preparar la presentación.",
+          "tr": "Bir iş arkadaşım sunumu hazırlarken bana yardım etti."
+        }
+      ],
+      "usageNoteTr": "Kullanım kalıbı: echar una mano a alguien.",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0020",
+      "expression": "trabajar a destajo",
+      "kind": "idiom",
+      "meaningTr": "Aralıksız ve yoğun tempoda çalışmak",
+      "examples": [
+        {
+          "es": "Antes de la feria, el taller trabajó a destajo.",
+          "tr": "Fuar öncesinde atölye aralıksız ve yoğun tempoda çalıştı."
+        },
+        {
+          "es": "Trabajamos a destajo para reparar los equipos antes del lunes.",
+          "tr": "Ekipmanları pazartesiden önce onarmak için yoğun tempoda çalıştık."
+        }
+      ],
+      "usageNoteTr": "Bu kart yoğun çalışma anlamında; parça başı ücretlendirme anlamı ayrıca değerlendirilmelidir.",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0021",
+      "expression": "estar mano sobre mano",
+      "kind": "idiom",
+      "meaningTr": "Eli kolu bağlı boş oturmak",
+      "examples": [
+        {
+          "es": "Con la máquina averiada, pasamos la mañana mano sobre mano.",
+          "tr": "Makine bozuk olunca sabahı boş oturarak geçirdik."
+        },
+        {
+          "es": "Había mucho que ordenar y él estaba mano sobre mano.",
+          "tr": "Toplanacak çok şey vardı ama o boş oturuyordu."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0022",
+      "expression": "tener mucha cara",
+      "kind": "idiom",
+      "meaningTr": "Arsızca ve utanmadan davranmak",
+      "examples": [
+        {
+          "es": "Tiene mucha cara: usa mis herramientas y nunca las devuelve.",
+          "tr": "Çok arsız; aletlerimi kullanıyor ve hiç geri vermiyor."
+        },
+        {
+          "es": "Hay que tener mucha cara para reclamar un trabajo ajeno.",
+          "tr": "Başkasının işini sahiplenmek için epey arsız olmak gerekir."
+        }
+      ],
+      "usageNoteTr": "Eleştirel bir niteleme.",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0023",
+      "expression": "no dar palo al agua",
+      "kind": "idiom",
+      "meaningTr": "Elini hiçbir işe sürmemek",
+      "examples": [
+        {
+          "es": "Durante la mudanza, Tomás no dio palo al agua.",
+          "tr": "Tomás taşınma boyunca elini hiçbir işe sürmedi."
+        },
+        {
+          "es": "Llevan horas aquí y no dan palo al agua.",
+          "tr": "Saatlerdir buradalar ama ellerini hiçbir işe sürmüyorlar."
+        }
+      ],
+      "usageNoteTr": "Olumsuzluk kalıbın anlamı için korunur.",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0024",
+      "expression": "ir al grano",
+      "kind": "idiom",
+      "meaningTr": "Doğrudan konuya girmek",
+      "examples": [
+        {
+          "es": "Tenemos poco tiempo, así que voy al grano.",
+          "tr": "Az zamanımız var; bu yüzden doğrudan konuya giriyorum."
+        },
+        {
+          "es": "La abogada fue al grano y explicó el problema principal.",
+          "tr": "Avukat doğrudan konuya girip asıl sorunu açıkladı."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0025",
+      "expression": "dar el brazo a torcer",
+      "kind": "idiom",
+      "meaningTr": "Görüşünde direnmekten vazgeçip geri adım atmak",
+      "examples": [
+        {
+          "es": "Tras escuchar los argumentos, el gerente dio su brazo a torcer.",
+          "tr": "Gerekçeleri dinledikten sonra müdür geri adım attı."
+        },
+        {
+          "es": "Finalmente dimos nuestro brazo a torcer y cambiamos la fecha.",
+          "tr": "Sonunda geri adım atıp tarihi değiştirdik."
+        }
+      ],
+      "usageNoteTr": "İyelik kişiyle değişir: mi, tu, su, nuestro brazo.",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0026",
+      "expression": "irse por las ramas",
+      "kind": "idiom",
+      "meaningTr": "Asıl konudan uzaklaşıp lafı dolandırmak",
+      "examples": [
+        {
+          "es": "Le pregunté por el presupuesto y se fue por las ramas.",
+          "tr": "Bütçeyi sordum ama konudan uzaklaşıp lafı dolandırdı."
+        },
+        {
+          "es": "En las reuniones, Andrés se va por las ramas con facilidad.",
+          "tr": "Andrés toplantılarda kolayca asıl konudan uzaklaşıyor."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0027",
+      "expression": "estar en el paro",
+      "kind": "colloquial_predicate",
+      "meaningTr": "İşsiz olmak",
+      "examples": [
+        {
+          "es": "Está en el paro desde que cerró la fábrica.",
+          "tr": "Fabrika kapandığından beri işsiz."
+        },
+        {
+          "es": "Después de meses en el paro, encontró trabajo cerca.",
+          "tr": "Aylarca işsiz kaldıktan sonra yakında bir iş buldu."
+        }
+      ],
+      "usageNoteTr": "Yerleşik işsizlik ifadesi; tek başına işsizlik ödeneği aldığını göstermez.",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0028",
+      "expression": "ahogarse en un vaso de agua",
+      "kind": "idiom",
+      "meaningTr": "Küçük bir güçlük karşısında aşırı telaşa kapılmak",
+      "examples": [
+        {
+          "es": "Con cada cambio de horario, se ahoga en un vaso de agua.",
+          "tr": "Her saat değişikliğinde küçük sorunu büyütüp telaşa kapılıyor."
+        },
+        {
+          "es": "Intento mantener la calma para no ahogarme en un vaso de agua.",
+          "tr": "Küçük bir güçlükte aşırı telaşa kapılmamak için sakin kalmaya çalışıyorum."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0029",
+      "expression": "poner pegas",
+      "kind": "idiom",
+      "meaningTr": "Bir işe sürekli itiraz ve engel çıkarmak",
+      "examples": [
+        {
+          "es": "Pone pegas a cualquier propuesta sin ofrecer alternativas.",
+          "tr": "Alternatif sunmadan her öneriye itiraz ediyor."
+        },
+        {
+          "es": "La comisión puso varias pegas al diseño de la entrada.",
+          "tr": "Komisyon giriş tasarımına çeşitli itirazlar getirdi."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0030",
+      "expression": "estar liado",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Çok meşgul olmak",
+      "examples": [
+        {
+          "es": "Esta semana estoy liada con la organización del congreso.",
+          "tr": "Bu hafta kongre düzenleme işiyle çok meşgulüm."
+        },
+        {
+          "es": "Carlos estaba tan liado que olvidó revisar el correo.",
+          "tr": "Carlos öyle meşguldü ki e-postalarını kontrol etmeyi unuttu."
+        }
+      ],
+      "usageNoteTr": "Bu kart meşgul olma anlamını seçer; romantik ilişki anlamı değil.",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0031",
+      "expression": "hacer una chapuza",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Bir işi baştan savma ve kötü yapmak",
+      "examples": [
+        {
+          "es": "Por acabar pronto, hicieron una chapuza con la instalación.",
+          "tr": "Çabuk bitirmek için tesisatı baştan savma yaptılar."
+        },
+        {
+          "es": "No quiero hacer una chapuza; prefiero medir otra vez.",
+          "tr": "Baştan savma iş yapmak istemiyorum; yeniden ölçmeyi tercih ederim."
+        }
+      ],
+      "usageNoteTr": "Kitapta ser una chapuza nitelemesi de aynı grupta yer alır.",
+      "level": null,
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 16
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0032",
+      "expression": "ser un manirroto",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Eline geçen parayı düşünmeden harcayan biri olmak",
+      "examples": [
+        {
+          "es": "Mi hermano es un manirroto y compra todo lo que ve.",
+          "tr": "Kardeşim eline geçen parayı düşünmeden harcıyor; gördüğü her şeyi alıyor."
+        },
+        {
+          "es": "Era tan manirrota que agotaba el sueldo en pocos días.",
+          "tr": "Öyle savurgandı ki maaşını birkaç günde bitiriyordu."
+        }
+      ],
+      "usageNoteTr": "Konuşma dilinde kişi nitelemesi.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0033",
+      "expression": "ser un agarrado",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Para harcamaya yanaşmayan cimri biri olmak",
+      "examples": [
+        {
+          "es": "Es un agarrado: nunca quiere compartir los gastos del viaje.",
+          "tr": "Çok cimri; yolculuk masraflarını hiç paylaşmak istemiyor."
+        },
+        {
+          "es": "Su personaje es una agarrada que cuenta hasta las servilletas.",
+          "tr": "Canlandırdığı kişi peçeteleri bile sayan cimri bir kadın."
+        }
+      ],
+      "usageNoteTr": "Konuşma dilinde eleştirel kişi nitelemesi.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0034",
+      "expression": "tirar la casa por la ventana",
+      "kind": "idiom",
+      "meaningTr": "Özel bir kutlama için bol para harcamak",
+      "examples": [
+        {
+          "es": "Para sus bodas de oro, tiraron la casa por la ventana.",
+          "tr": "Altın evlilik yıldönümleri için parayı esirgemeden büyük kutlama yaptılar."
+        },
+        {
+          "es": "La familia tiró la casa por la ventana con aquella fiesta.",
+          "tr": "Aile o parti için bol para harcadı."
+        }
+      ],
+      "usageNoteTr": "Gelişigüzel her harcama değil, olağanüstü harcama vurgulanır.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0035",
+      "expression": "mirar el dinero",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Harcamalarını dikkatle hesaplamak",
+      "examples": [
+        {
+          "es": "Ahora que pagamos dos alquileres, miramos mucho el dinero.",
+          "tr": "İki kira ödediğimiz için harcamalarımızı dikkatle hesaplıyoruz."
+        },
+        {
+          "es": "Aunque tiene ingresos estables, mira el dinero en cada compra.",
+          "tr": "Düzenli geliri olsa da her alışverişte harcamayı dikkatle hesaplıyor."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0036",
+      "expression": "llegar a fin de mes",
+      "kind": "idiom",
+      "meaningTr": "Ay sonuna kadar geçimini sağlayabilmek",
+      "examples": [
+        {
+          "es": "Con ese sueldo, le cuesta llegar a fin de mes.",
+          "tr": "O maaşla ay sonunu getirmekte zorlanıyor."
+        },
+        {
+          "es": "Compartiendo piso, consigue llegar a fin de mes sin préstamos.",
+          "tr": "Ev paylaşarak borç almadan ay sonunu getirebiliyor."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0037",
+      "expression": "ser un chollo",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Fiyatına göre çok avantajlı bir fırsat olmak",
+      "examples": [
+        {
+          "es": "Esta mesa de segunda mano es un chollo por veinte euros.",
+          "tr": "Bu ikinci el masa yirmi avroya çok iyi bir fırsat."
+        },
+        {
+          "es": "El abono mensual es un chollo si viajas cada día.",
+          "tr": "Her gün yolculuk ediyorsan aylık abonman çok avantajlı."
+        }
+      ],
+      "usageNoteTr": "Konuşma dilinde değerlendirme kalıbı.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0038",
+      "expression": "pagar al contado",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Bedelini taksite bölmeden peşin ödemek",
+      "examples": [
+        {
+          "es": "Pagamos al contado y evitamos los intereses de financiación.",
+          "tr": "Peşin ödeyip finansman faizinden kaçındık."
+        },
+        {
+          "es": "La tienda ofrece un descuento si pagas al contado.",
+          "tr": "Mağaza peşin ödersen indirim yapıyor."
+        }
+      ],
+      "usageNoteTr": "Al contado her durumda kâğıt para kullanmak demek değildir; esas olan peşin ödemedir.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0039",
+      "expression": "costar un ojo de la cara",
+      "kind": "idiom",
+      "meaningTr": "Çok pahalıya mal olmak",
+      "examples": [
+        {
+          "es": "Cambiar todas las ventanas nos costó un ojo de la cara.",
+          "tr": "Bütün pencereleri değiştirmek bize çok pahalıya mal oldu."
+        },
+        {
+          "es": "Ese apartamento cuesta un ojo de la cara incluso sin muebles.",
+          "tr": "O daire mobilyasızken bile çok pahalı."
+        }
+      ],
+      "usageNoteTr": "Kitapta pagar un ojo de la cara da var; çok yüksek bir bedel ödemek anlamındadır.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0040",
+      "expression": "estar por las nubes",
+      "kind": "idiom",
+      "meaningTr": "Fiyatların aşırı yüksek olması",
+      "examples": [
+        {
+          "es": "Los alquileres del centro están por las nubes este año.",
+          "tr": "Merkezdeki kiralar bu yıl aşırı yüksek."
+        },
+        {
+          "es": "Con las entradas por las nubes, elegimos otro espectáculo.",
+          "tr": "Bilet fiyatları aşırı yüksek olunca başka bir gösteri seçtik."
+        }
+      ],
+      "usageNoteTr": "Bu kart para bağlamını seçer; başka bağlamlarda yükseklik veya dalgınlık anlamı çıkabilir.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0041",
+      "expression": "estar por los suelos",
+      "kind": "idiom",
+      "meaningTr": "Fiyatların çok düşük olması",
+      "examples": [
+        {
+          "es": "El precio de las naranjas está por los suelos.",
+          "tr": "Portakal fiyatları çok düşük."
+        },
+        {
+          "es": "Durante la liquidación, los precios estaban por los suelos.",
+          "tr": "Tasfiye satışında fiyatlar çok düşüktü."
+        }
+      ],
+      "usageNoteTr": "Bu kart fiyatı anlatır; moralin çok düşük olması anlamını sınamaz.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0042",
+      "expression": "estar sin blanca",
+      "kind": "idiom",
+      "meaningTr": "Cebinde hiç para kalmamış olmak",
+      "examples": [
+        {
+          "es": "Después de pagar la matrícula, me quedé sin blanca.",
+          "tr": "Kayıt ücretini ödedikten sonra cebimde hiç para kalmadı."
+        },
+        {
+          "es": "Estoy sin blanca hasta que cobre el viernes.",
+          "tr": "Cuma günü para alana kadar cebimde hiç para yok."
+        }
+      ],
+      "usageNoteTr": "Estar sin blanca ve quedarse sin blanca biçimleri birlikte gösterilir.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0043",
+      "expression": "pagar a escote",
+      "kind": "idiom",
+      "meaningTr": "Ortak giderden kendine düşen payı ödemek",
+      "examples": [
+        {
+          "es": "En la cena del equipo, decidimos pagar a escote.",
+          "tr": "Ekip yemeğinde hesabı eşit paylara bölerek ödemeye karar verdik."
+        },
+        {
+          "es": "Pagamos a escote dividiendo la cuenta entre seis.",
+          "tr": "Hesabı altıya bölerek herkes kendi payını ödedi."
+        }
+      ],
+      "usageNoteTr": "Temel karşılık herkesin ortak giderden kendi payını ödemesidir; örneklerde eşit bölüşme ayrıca belirtilir.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending",
+      "additionalChecks": [
+        {
+          "url": "https://dle.rae.es/escote",
+          "checkedOn": "2026-11-10",
+          "scope": "meaning_only"
+        },
+        {
+          "url": "https://es.wiktionary.org/wiki/a_escote",
+          "checkedOn": "2026-11-10",
+          "scope": "meaning_only"
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0044",
+      "expression": "pagar por barba",
+      "kind": "idiom",
+      "meaningTr": "Kişi başına belirli bir tutar ödemek",
+      "examples": [
+        {
+          "es": "Para alquilar la pista, pagamos cinco euros por barba.",
+          "tr": "Sahayı kiralamak için kişi başı beş avro ödedik."
+        },
+        {
+          "es": "La excursión salió barata: diez euros por barba.",
+          "tr": "Gezi ucuza geldi; kişi başına on avro."
+        }
+      ],
+      "usageNoteTr": "Kitaptaki poner dinero por barba kullanımını da kapsar.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0045",
+      "expression": "irse a pique",
+      "kind": "idiom",
+      "meaningTr": "Bir iş veya girişim batmak",
+      "examples": [
+        {
+          "es": "Sin pedidos nuevos, la pequeña editorial se fue a pique.",
+          "tr": "Yeni sipariş olmayınca küçük yayınevi battı."
+        },
+        {
+          "es": "El negocio podía irse a pique si perdía aquel contrato.",
+          "tr": "O sözleşmeyi kaybederse işletme batabilirdi."
+        }
+      ],
+      "usageNoteTr": "Bu kart gemi dışındaki mecaz anlamı seçer.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0046",
+      "expression": "estar forrado",
+      "kind": "idiom",
+      "meaningTr": "Çok zengin olmak",
+      "examples": [
+        {
+          "es": "Dicen que está forrado desde que vendió su empresa.",
+          "tr": "Şirketini sattığından beri çok zengin olduğunu söylüyorlar."
+        },
+        {
+          "es": "No estoy forrada; ese coche lo compré de segunda mano.",
+          "tr": "Çok zengin değilim; o arabayı ikinci el aldım."
+        }
+      ],
+      "usageNoteTr": "Kitapta forrarse da var; çok para kazanıp zenginleşmeyi anlatır.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0047",
+      "expression": "hacer el agosto",
+      "kind": "idiom",
+      "meaningTr": "Elverişli bir fırsattan çok para kazanmak",
+      "examples": [
+        {
+          "es": "Los vendedores de paraguas hicieron el agosto con aquellas lluvias.",
+          "tr": "Şemsiye satıcıları o yağmurlarda çok iyi para kazandı."
+        },
+        {
+          "es": "Durante el festival, los alojamientos hicieron el agosto.",
+          "tr": "Festival sırasında konaklama işletmeleri fırsattan çok para kazandı."
+        }
+      ],
+      "usageNoteTr": "Ağustos ayında gerçekleşmesi gerekmez.",
+      "level": null,
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 16
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0048",
+      "expression": "estar como un roble",
+      "kind": "idiom",
+      "meaningTr": "Çok sağlam ve dayanıklı olmak",
+      "examples": [
+        {
+          "es": "Con sus caminatas diarias, mi abuelo sigue como un roble.",
+          "tr": "Her gün yürüyen dedem hâlâ çok sağlam ve dayanıklı."
+        },
+        {
+          "es": "Después de aquella temporada difícil, ya está como un roble.",
+          "tr": "O zor dönemden sonra artık çok sağlam ve dayanıklı."
+        }
+      ],
+      "usageNoteTr": "Sağlıkla ilgili mecaz nitelemedir; tıbbi değerlendirme değildir.",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0049",
+      "expression": "no levantar cabeza",
+      "kind": "idiom",
+      "meaningTr": "Bir türlü toparlanamamak",
+      "examples": [
+        {
+          "es": "Entre averías y gastos imprevistos, este mes no levantamos cabeza.",
+          "tr": "Arızalar ve beklenmedik masraflarla bu ay bir türlü toparlanamadık."
+        },
+        {
+          "es": "Desde el cierre del local, el negocio no levanta cabeza.",
+          "tr": "Dükkân kapandığından beri işletme bir türlü toparlanamıyor."
+        }
+      ],
+      "usageNoteTr": "Arka arkaya güçlükler yüzünden durumun düzelememesi.",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0050",
+      "expression": "estar hecho polvo",
+      "kind": "idiom",
+      "meaningTr": "Bitkin ve perişan olmak",
+      "examples": [
+        {
+          "es": "Después de descargar los muebles, estoy hecho polvo.",
+          "tr": "Mobilyaları indirdikten sonra bitkin düştüm."
+        },
+        {
+          "es": "Tras la noticia del cierre, Elena estaba hecha polvo.",
+          "tr": "Kapanış haberinden sonra Elena perişandı."
+        }
+      ],
+      "usageNoteTr": "Fiziksel yorgunluğu veya duygusal sarsıntıyı anlatabilir.",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0051",
+      "expression": "tener buena cara",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Sağlıklı veya dinç görünmek",
+      "examples": [
+        {
+          "es": "Después de descansar varios días, tienes muy buena cara.",
+          "tr": "Birkaç gün dinlendikten sonra çok dinç görünüyorsun."
+        },
+        {
+          "es": "La vi ayer y tenía buena cara, mucho mejor.",
+          "tr": "Dün gördüm; çok daha dinç ve iyi görünüyordu."
+        }
+      ],
+      "usageNoteTr": "Kitapta tener mala cara karşıtı da var; iyi görünmemeyi anlatır.",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0052",
+      "expression": "tomarse algo con calma",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Bir meseleyi sakinlikle karşılamak",
+      "examples": [
+        {
+          "es": "Nos tomamos el retraso con calma y buscamos otra conexión.",
+          "tr": "Gecikmeyi sakin karşılayıp başka bir bağlantı aradık."
+        },
+        {
+          "es": "Tómatelo con calma; podemos resolverlo después de comer.",
+          "tr": "Sakin karşıla; yemekten sonra çözebiliriz."
+        }
+      ],
+      "usageNoteTr": "Değişken nesne zamirle ifade edilebilir.",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0053",
+      "expression": "estar como una foca",
+      "kind": "idiom",
+      "meaningTr": "Çok kilolu olmak",
+      "examples": [
+        {
+          "es": "En la novela, el vecino dice que está como una foca.",
+          "tr": "Romanda komşu, çok kilolu olduğunu söylüyor."
+        },
+        {
+          "es": "Me molestó que dijeran que estaba como una foca.",
+          "tr": "Benim için çok kilolu anlamındaki o ifadeyi kullanmaları beni rahatsız etti."
+        }
+      ],
+      "usageNoteTr": "Kırıcı bir beden benzetmesidir. Kitapta ponerse como una foca, çok kilo almak biçimi de var.",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0054",
+      "expression": "estar en los huesos",
+      "kind": "idiom",
+      "meaningTr": "Çok zayıf, bir deri bir kemik olmak",
+      "examples": [
+        {
+          "es": "El perro rescatado estaba en los huesos cuando llegó.",
+          "tr": "Kurtarılan köpek geldiğinde bir deri bir kemikti."
+        },
+        {
+          "es": "Su personaje vuelve del viaje y se queda en los huesos.",
+          "tr": "Canlandırdığı kişi yolculuktan dönünce bir deri bir kemik kalıyor."
+        }
+      ],
+      "usageNoteTr": "Kitapta quedarse en los huesos değişim biçimi de var.",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0055",
+      "expression": "no pegar ojo",
+      "kind": "idiom",
+      "meaningTr": "Gece hiç uyuyamamak",
+      "examples": [
+        {
+          "es": "Con los mosquitos de aquella habitación, no pegué ojo.",
+          "tr": "O odadaki sivrisinekler yüzünden gece hiç uyuyamadım."
+        },
+        {
+          "es": "Mi hermana no pegó ojo antes de su primera entrevista.",
+          "tr": "Kız kardeşim ilk mülakatından önceki gece hiç uyuyamadı."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0056",
+      "expression": "pasarlo mal",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Zor ve üzücü bir süreç yaşamak",
+      "examples": [
+        {
+          "es": "Lo pasó mal durante los meses lejos de su familia.",
+          "tr": "Ailesinden uzakta geçirdiği aylarda çok zorlandı."
+        },
+        {
+          "es": "Mis amigos lo pasaron mal después de perder el taller.",
+          "tr": "Arkadaşlarım atölyelerini kaybettikten sonra zor bir süreç yaşadı."
+        }
+      ],
+      "usageNoteTr": "Yerleşik durum anlatımı; belirli bir hastalık anlamına gelmez.",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0057",
+      "expression": "ponerse las botas",
+      "kind": "idiom",
+      "meaningTr": "Bol bol ve iştahla yemek",
+      "examples": [
+        {
+          "es": "En la comida familiar, nos pusimos las botas con las empanadas.",
+          "tr": "Aile yemeğinde böreklerden bol bol yedik."
+        },
+        {
+          "es": "Después de la caminata, se pusieron las botas en el restaurante.",
+          "tr": "Yürüyüşten sonra lokantada bol bol yemek yediler."
+        }
+      ],
+      "usageNoteTr": "Bu kart yemek anlamını seçer.",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0058",
+      "expression": "tener una salud de hierro",
+      "kind": "idiom",
+      "meaningTr": "Çok dayanıklı bir sağlığa sahip olmak",
+      "examples": [
+        {
+          "es": "Parece tener una salud de hierro y rara vez falta.",
+          "tr": "Sağlığı çok dayanıklı görünüyor; nadiren devamsızlık yapıyor."
+        },
+        {
+          "es": "Siempre presumía de tener una salud de hierro.",
+          "tr": "Sağlığının çok dayanıklı olmasıyla hep övünürdü."
+        }
+      ],
+      "usageNoteTr": "Mecaz niteleme, tıbbi garanti değildir.",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0059",
+      "expression": "estar como una rosa",
+      "kind": "idiom",
+      "meaningTr": "Çok iyi ve dinç hissetmek",
+      "examples": [
+        {
+          "es": "Con una siesta corta, volví a estar como una rosa.",
+          "tr": "Kısa bir uykuyla yeniden çok dinç hissettim."
+        },
+        {
+          "es": "Tras el descanso del fin de semana, está como una rosa.",
+          "tr": "Hafta sonu dinlenmesinden sonra çok iyi ve dinç."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0060",
+      "expression": "ver las estrellas",
+      "kind": "idiom",
+      "meaningTr": "Acıdan gözünden yıldızlar çıkmak",
+      "examples": [
+        {
+          "es": "Al golpearme el codo contra la puerta, vi las estrellas.",
+          "tr": "Dirseğimi kapıya çarpınca acıdan gözümden yıldızlar çıktı."
+        },
+        {
+          "es": "Pisó una pieza del juguete y vio las estrellas.",
+          "tr": "Oyuncağın bir parçasına basınca acıdan gözünden yıldızlar çıktı."
+        }
+      ],
+      "usageNoteTr": "Gerçek gökyüzü gözlemi değil, güçlü acı anlatımı.",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0061",
+      "expression": "comer como un pajarito",
+      "kind": "idiom",
+      "meaningTr": "Çok az yemek",
+      "examples": [
+        {
+          "es": "A la hora de cenar, su hija come como un pajarito.",
+          "tr": "Akşam yemeğinde kızı çok az yiyor."
+        },
+        {
+          "es": "Hoy he comido como un pajarito porque desayuné tarde.",
+          "tr": "Geç kahvaltı ettiğim için bugün çok az yedim."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0062",
+      "expression": "dormir como un tronco",
+      "kind": "idiom",
+      "meaningTr": "Derin ve deliksiz uyumak",
+      "examples": [
+        {
+          "es": "Después de tantas horas de viaje, dormimos como troncos.",
+          "tr": "Onca saat yolculuktan sonra derin ve deliksiz uyuduk."
+        },
+        {
+          "es": "El bebé dormía como un tronco durante la tormenta.",
+          "tr": "Fırtına sırasında bebek derin ve deliksiz uyuyordu."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0063",
+      "expression": "dar un plantón",
+      "kind": "idiom",
+      "meaningTr": "Buluşmaya gelmeyip birini bekletmek",
+      "examples": [
+        {
+          "es": "Me dio un plantón y esperé solo frente al museo.",
+          "tr": "Buluşmaya gelmedi; müzenin önünde tek başıma bekledim."
+        },
+        {
+          "es": "Espero que esta vez no nos den un plantón.",
+          "tr": "Umarım bu kez buluşmaya gelmeyip bizi bekletmezler."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0064",
+      "expression": "quedar bien con alguien",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Birinin gözünde iyi bir izlenim bırakmak",
+      "examples": [
+        {
+          "es": "Llevó flores para quedar bien con la anfitriona.",
+          "tr": "Ev sahibinde iyi izlenim bırakmak için çiçek götürdü."
+        },
+        {
+          "es": "Quería quedar bien con sus compañeros y ofreció su ayuda.",
+          "tr": "İş arkadaşlarının gözünde iyi izlenim bırakmak için yardım önerdi."
+        }
+      ],
+      "usageNoteTr": "Kitapta quedar mal con alguien karşıtı da var; kötü izlenim bırakmayı anlatır.",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0065",
+      "expression": "hablar por los codos",
+      "kind": "idiom",
+      "meaningTr": "Çenesi düşüp çok konuşmak",
+      "examples": [
+        {
+          "es": "En el autobús, mi tío hablaba por los codos.",
+          "tr": "Otobüste amcamın çenesi düşmüştü; durmadan konuşuyordu."
+        },
+        {
+          "es": "La nueva vecina habla por los codos cuando nos encontramos.",
+          "tr": "Yeni komşuyla karşılaşınca çenesi düşüyor, durmadan konuşuyor."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0066",
+      "expression": "ser un pesado",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Davranışlarıyla insanı bezdiren biri olmak",
+      "examples": [
+        {
+          "es": "Su personaje es un pesado que repite siempre las mismas bromas.",
+          "tr": "Canlandırdığı kişi aynı şakaları tekrarlayarak insanı bezdiren biri."
+        },
+        {
+          "es": "No quiero ser un pesado, pero necesito una respuesta.",
+          "tr": "Seni bezdirmek istemiyorum ama bir cevaba ihtiyacım var."
+        }
+      ],
+      "usageNoteTr": "Konuşma dilinde eleştirel kişi nitelemesi.",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0067",
+      "expression": "meter la pata",
+      "kind": "idiom",
+      "meaningTr": "Pot kırmak, uygunsuz bir şey söylemek veya yapmak",
+      "examples": [
+        {
+          "es": "Metí la pata al preguntar por un asunto privado.",
+          "tr": "Özel bir meseleyi sorarak pot kırdım."
+        },
+        {
+          "es": "Luis metió la pata y reveló la sorpresa antes de tiempo.",
+          "tr": "Luis pot kırıp sürprizi vaktinden önce açıkladı."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0068",
+      "expression": "hacer buenas migas",
+      "kind": "idiom",
+      "meaningTr": "Birbiriyle çabucak iyi anlaşmak",
+      "examples": [
+        {
+          "es": "Hicimos buenas migas en el curso de fotografía.",
+          "tr": "Fotoğrafçılık kursunda hemen iyi anlaştık."
+        },
+        {
+          "es": "Mi abuela hizo buenas migas con su nueva vecina.",
+          "tr": "Anneannem yeni komşusuyla çabucak iyi anlaştı."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0069",
+      "expression": "hacerse el sueco",
+      "kind": "idiom",
+      "meaningTr": "Duymamış veya anlamamış gibi yapmak",
+      "examples": [
+        {
+          "es": "Cuando toca limpiar la cocina, siempre se hace el sueco.",
+          "tr": "Mutfağı temizleme sırası gelince hep anlamamış gibi yapıyor."
+        },
+        {
+          "es": "Le pedí las llaves, pero se hizo el sueco.",
+          "tr": "Anahtarları istedim ama duymamış gibi yaptı."
+        }
+      ],
+      "usageNoteTr": "Kalıplaşmış ifade; bir topluluk hakkında gerçek niteleme olarak sunulmaz.",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0070",
+      "expression": "romper el hielo",
+      "kind": "idiom",
+      "meaningTr": "İlk karşılaşmadaki gerginliği gidermek",
+      "examples": [
+        {
+          "es": "Una pregunta sobre viajes ayudó a romper el hielo.",
+          "tr": "Yolculuklarla ilgili bir soru ilk gerginliği gidermeye yardımcı oldu."
+        },
+        {
+          "es": "Para romper el hielo, compartieron una anécdota del curso.",
+          "tr": "İlk gerginliği gidermek için kursla ilgili bir anı anlattılar."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0071",
+      "expression": "sentar bien",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Bir davranışın veya sözün hoşuna gitmesi",
+      "examples": [
+        {
+          "es": "Tu comentario sobre mi trabajo me sentó muy bien.",
+          "tr": "İşimle ilgili yorumun çok hoşuma gitti."
+        },
+        {
+          "es": "Le sentó bien que recordáramos su cumpleaños sin avisar.",
+          "tr": "Hatırlatmadan doğum gününü hatırlamamız hoşuna gitti."
+        }
+      ],
+      "usageNoteTr": "Kitapta no sentar bien olumsuzu da var. Bu kart sindirim veya kıyafet anlamını seçmez.",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0072",
+      "expression": "caer bien",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Birinden hoşlanmak, birini sempatik bulmak",
+      "examples": [
+        {
+          "es": "El nuevo bibliotecario me cae bien por su amabilidad.",
+          "tr": "Yeni kütüphaneciyi nezaketinden dolayı sempatik buluyorum."
+        },
+        {
+          "es": "A los niños les cayó bien la monitora del campamento.",
+          "tr": "Çocuklar kamp eğitmenini sempatik buldu."
+        }
+      ],
+      "usageNoteTr": "Kitapta caer mal karşıtı da var; birini itici bulmayı anlatır.",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0073",
+      "expression": "tener mano izquierda",
+      "kind": "idiom",
+      "meaningTr": "İnsanlarla zor durumları incelikle yönetebilmek",
+      "examples": [
+        {
+          "es": "La coordinadora tiene mano izquierda con los clientes enfadados.",
+          "tr": "Koordinatör öfkeli müşterileri incelikle idare edebiliyor."
+        },
+        {
+          "es": "Hace falta mano izquierda para resolver ese desacuerdo familiar.",
+          "tr": "O aile anlaşmazlığını çözmek için insanları incelikle idare etmek gerekir."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0074",
+      "expression": "dar la lata",
+      "kind": "idiom",
+      "meaningTr": "Birini tekrarlanan davranışlarla rahatsız etmek",
+      "examples": [
+        {
+          "es": "El vecino da la lata con su música cada noche.",
+          "tr": "Komşu her gece müziğiyle bizi rahatsız ediyor."
+        },
+        {
+          "es": "Perdona que te dé la lata, pero falta tu firma.",
+          "tr": "Seni tekrar tekrar rahatsız ettiğim için kusura bakma; imzan eksik."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0075",
+      "expression": "mandar a alguien a freír espárragos",
+      "kind": "idiom",
+      "meaningTr": "Birini sertçe başından savmak",
+      "examples": [
+        {
+          "es": "Tras tantas exigencias, acabó mandándolo a freír espárragos.",
+          "tr": "Bunca talepten sonra onu sertçe başından savurdu."
+        },
+        {
+          "es": "En la comedia, la protagonista manda a su pretendiente a freír espárragos.",
+          "tr": "Komedide başkarakter kendisine kur yapan adamı sertçe başından savuyor."
+        }
+      ],
+      "usageNoteTr": "Sert ve kaba kaçabilen bir kovma ifadesi.",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0076",
+      "expression": "poner verde a alguien",
+      "kind": "idiom",
+      "meaningTr": "Birini arkasından ağır biçimde eleştirmek",
+      "examples": [
+        {
+          "es": "En la cafetería, pusieron verde al director ausente.",
+          "tr": "Kafede orada olmayan müdürü ağır biçimde eleştirdiler."
+        },
+        {
+          "es": "La puso verde después de que rechazara su propuesta.",
+          "tr": "Önerisini reddetmesinden sonra onu arkasından ağır biçimde eleştirdi."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0077",
+      "expression": "de Pascuas a Ramos",
+      "kind": "fixed_expression",
+      "meaningTr": "Çok seyrek, uzun aralıklarla",
+      "examples": [
+        {
+          "es": "Mis primos nos visitan de Pascuas a Ramos.",
+          "tr": "Kuzenlerim bizi çok seyrek ziyaret ediyor."
+        },
+        {
+          "es": "De Pascuas a Ramos, abre aquel cajón lleno de cartas.",
+          "tr": "O mektup dolu çekmeceyi ancak çok seyrek açıyor."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0078",
+      "expression": "cada dos por tres",
+      "kind": "fixed_expression",
+      "meaningTr": "İkide bir, çok sık",
+      "examples": [
+        {
+          "es": "La impresora se atasca cada dos por tres.",
+          "tr": "Yazıcı ikide bir sıkışıyor."
+        },
+        {
+          "es": "Cada dos por tres recibimos llamadas ofreciendo cambiar de compañía.",
+          "tr": "Şirket değiştirmemizi öneren aramalar ikide bir geliyor."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0079",
+      "expression": "a regañadientes",
+      "kind": "fixed_expression",
+      "meaningTr": "İstemeye istemeye",
+      "examples": [
+        {
+          "es": "Aceptó a regañadientes cambiar el turno del sábado.",
+          "tr": "Cumartesi vardiyasını değiştirmeyi istemeye istemeye kabul etti."
+        },
+        {
+          "es": "Los chicos recogieron los juguetes a regañadientes.",
+          "tr": "Çocuklar oyuncakları istemeye istemeye topladı."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0080",
+      "expression": "comer como una lima",
+      "kind": "idiom",
+      "meaningTr": "Çok fazla yemek",
+      "examples": [
+        {
+          "es": "Después del partido, mi sobrino come como una lima.",
+          "tr": "Yeğenim maçtan sonra çok fazla yiyor."
+        },
+        {
+          "es": "Con tanto ejercicio, estos días estoy comiendo como una lima.",
+          "tr": "Bu kadar hareket edince bugünlerde çok fazla yiyorum."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0081",
+      "expression": "en un abrir y cerrar de ojos",
+      "kind": "fixed_expression",
+      "meaningTr": "Göz açıp kapayıncaya kadar",
+      "examples": [
+        {
+          "es": "Las entradas se agotaron en un abrir y cerrar de ojos.",
+          "tr": "Biletler göz açıp kapayıncaya kadar tükendi."
+        },
+        {
+          "es": "En un abrir y cerrar de ojos, ordenó todas las carpetas.",
+          "tr": "Göz açıp kapayıncaya kadar bütün dosyaları düzenledi."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0082",
+      "expression": "a toda pastilla",
+      "kind": "fixed_expression",
+      "meaningTr": "Çok büyük hızla",
+      "examples": [
+        {
+          "es": "El mensajero salió a toda pastilla para alcanzar el tren.",
+          "tr": "Kurye trene yetişmek için büyük hızla çıktı."
+        },
+        {
+          "es": "Trabajaron a toda pastilla durante la última hora.",
+          "tr": "Son saatte çok büyük hızla çalıştılar."
+        }
+      ],
+      "usageNoteTr": "Samimi konuşma kalıbı.",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0083",
+      "expression": "a rajatabla",
+      "kind": "fixed_expression",
+      "meaningTr": "Harfiyen ve taviz vermeden",
+      "examples": [
+        {
+          "es": "En este laboratorio seguimos las instrucciones a rajatabla.",
+          "tr": "Bu laboratuvarda talimatlara harfiyen uyuyoruz."
+        },
+        {
+          "es": "Cumplió a rajatabla el horario que habían acordado.",
+          "tr": "Anlaştıkları programa taviz vermeden uydu."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0084",
+      "expression": "de una vez por todas",
+      "kind": "fixed_expression",
+      "meaningTr": "Kesin olarak, artık bir daha uzatmadan",
+      "examples": [
+        {
+          "es": "Terminemos de una vez por todas esta discusión.",
+          "tr": "Bu tartışmayı artık bir daha uzatmadan bitirelim."
+        },
+        {
+          "es": "Quiere resolver de una vez por todas el problema del acceso.",
+          "tr": "Giriş sorununu artık kesin olarak çözmek istiyor."
+        }
+      ],
+      "usageNoteTr": "Sabırsızlık veya sonuca bağlama isteği taşıyabilir.",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0085",
+      "expression": "de buenas a primeras",
+      "kind": "fixed_expression",
+      "meaningTr": "Birdenbire, beklenmedik şekilde",
+      "examples": [
+        {
+          "es": "De buenas a primeras, anunció que quería mudarse.",
+          "tr": "Birdenbire taşınmak istediğini açıkladı."
+        },
+        {
+          "es": "El aparato dejó de funcionar de buenas a primeras.",
+          "tr": "Cihaz beklenmedik şekilde çalışmaz oldu."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0086",
+      "expression": "sin ton ni son",
+      "kind": "fixed_expression",
+      "meaningTr": "Anlamsız ve gelişigüzel biçimde",
+      "examples": [
+        {
+          "es": "No cambies las etiquetas sin ton ni son.",
+          "tr": "Etiketleri gelişigüzel değiştirme."
+        },
+        {
+          "es": "El informe mezclaba cifras sin ton ni son.",
+          "tr": "Rapor rakamları anlamsız ve gelişigüzel biçimde birbirine karıştırıyordu."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0087",
+      "expression": "a propósito",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Bilerek ve isteyerek",
+      "examples": [
+        {
+          "es": "Dejó la puerta abierta a propósito para ventilar.",
+          "tr": "Hava girsin diye kapıyı bilerek açık bıraktı."
+        },
+        {
+          "es": "Creo que omitió mi nombre a propósito en la lista.",
+          "tr": "Bence adımı listeden bilerek çıkardı."
+        }
+      ],
+      "usageNoteTr": "Bu kart kasıt anlamını seçer; konu açma kalıbı a propósito de değil.",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0088",
+      "expression": "a la ligera",
+      "kind": "fixed_expression",
+      "meaningTr": "Yeterince düşünmeden, gelişigüzel",
+      "examples": [
+        {
+          "es": "No tomemos a la ligera una decisión tan importante.",
+          "tr": "Böylesine önemli bir kararı düşünmeden vermeyelim."
+        },
+        {
+          "es": "Aceptó la oferta a la ligera y luego revisó los detalles.",
+          "tr": "Teklifi düşünmeden kabul etti; ayrıntıları sonra inceledi."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0089",
+      "expression": "con pelos y señales",
+      "kind": "fixed_expression",
+      "meaningTr": "En ince ayrıntısına kadar",
+      "examples": [
+        {
+          "es": "Nos contó el incidente con pelos y señales.",
+          "tr": "Olayı bize en ince ayrıntısına kadar anlattı."
+        },
+        {
+          "es": "Describió con pelos y señales cómo encontró el documento.",
+          "tr": "Belgeyi nasıl bulduğunu en ince ayrıntısına kadar anlattı."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0090",
+      "expression": "con pies de plomo",
+      "kind": "fixed_expression",
+      "meaningTr": "Çok ihtiyatlı davranarak",
+      "examples": [
+        {
+          "es": "Con ese contrato confuso, conviene andar con pies de plomo.",
+          "tr": "O belirsiz sözleşmede çok ihtiyatlı davranmak gerekir."
+        },
+        {
+          "es": "Avanzamos con pies de plomo para evitar otro malentendido.",
+          "tr": "Yeni bir yanlış anlamayı önlemek için çok ihtiyatlı ilerledik."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0091",
+      "expression": "de miedo",
+      "kind": "idiom",
+      "meaningTr": "Harika, çok iyi",
+      "examples": [
+        {
+          "es": "El concierto de ayer estuvo de miedo.",
+          "tr": "Dünkü konser harikaydı."
+        },
+        {
+          "es": "Con mis primos lo pasé de miedo en la excursión.",
+          "tr": "Kuzenlerimle gezide harika vakit geçirdim."
+        }
+      ],
+      "usageNoteTr": "Bu bağlamda olumlu pekiştirme; korku yaşamak anlamı seçilmez.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0092",
+      "expression": "de maravilla",
+      "kind": "idiom",
+      "meaningTr": "Harika, çok güzel",
+      "examples": [
+        {
+          "es": "La cena estuvo de maravilla, especialmente el postre.",
+          "tr": "Akşam yemeği, özellikle tatlı, harikaydı."
+        },
+        {
+          "es": "En aquel pequeño pueblo lo pasamos de maravilla.",
+          "tr": "O küçük kasabada harika vakit geçirdik."
+        }
+      ],
+      "usageNoteTr": "Pasarlo ve estar ile kullanımlar aynı kalıpta tutuldu.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0093",
+      "expression": "de cine",
+      "kind": "idiom",
+      "meaningTr": "Harika, olağanüstü iyi",
+      "examples": [
+        {
+          "es": "El nuevo salón ha quedado de cine.",
+          "tr": "Yeni salon harika olmuş."
+        },
+        {
+          "es": "Lo pasamos de cine celebrando el final del curso.",
+          "tr": "Kursun bitişini kutlarken harika vakit geçirdik."
+        }
+      ],
+      "usageNoteTr": "Bu kullanım gerçek sinema ziyareti anlamına gelmez.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0094",
+      "expression": "de pena",
+      "kind": "idiom",
+      "meaningTr": "Çok kötü, berbat",
+      "examples": [
+        {
+          "es": "El equipo jugó de pena durante la primera parte.",
+          "tr": "Takım ilk yarıda berbat oynadı."
+        },
+        {
+          "es": "La conexión estaba de pena y perdimos la llamada.",
+          "tr": "Bağlantı berbattı; görüşme kesildi."
+        }
+      ],
+      "usageNoteTr": "Kitapta pasarlo de pena ve estar de pena biçimleri var.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0095",
+      "expression": "no decir ni pío",
+      "kind": "idiom",
+      "meaningTr": "Tek kelime bile etmemek",
+      "examples": [
+        {
+          "es": "Durante toda la reunión, no dijo ni pío.",
+          "tr": "Bütün toplantı boyunca tek kelime bile etmedi."
+        },
+        {
+          "es": "Los espectadores no decían ni pío mientras hablaba la testigo.",
+          "tr": "Tanık konuşurken izleyiciler tek kelime bile etmiyordu."
+        }
+      ],
+      "usageNoteTr": "Olumsuzluk korunur.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0096",
+      "expression": "no ver ni torta",
+      "kind": "idiom",
+      "meaningTr": "Hiçbir şey görememek",
+      "examples": [
+        {
+          "es": "Sin mis gafas, no veo ni torta a esa distancia.",
+          "tr": "Gözlüğüm olmadan o mesafede hiçbir şey göremiyorum."
+        },
+        {
+          "es": "Con aquel humo, los técnicos no veían ni torta.",
+          "tr": "O dumanın içinde teknisyenler hiçbir şey göremiyordu."
+        }
+      ],
+      "usageNoteTr": "Samimi ve abartılı görme güçlüğü ifadesi.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0097",
+      "expression": "no ver ni tres en un burro",
+      "kind": "idiom",
+      "meaningTr": "Çok az görebilmek, neredeyse hiçbir şey görememek",
+      "examples": [
+        {
+          "es": "Sin luz en el pasillo, no veíamos ni tres en un burro.",
+          "tr": "Koridorda ışık olmayınca neredeyse hiçbir şey göremiyorduk."
+        },
+        {
+          "es": "No veo ni tres en un burro con estas gafas viejas.",
+          "tr": "Bu eski gözlükle neredeyse hiçbir şey göremiyorum."
+        }
+      ],
+      "usageNoteTr": "No ver ni torta ile aynı kitap maddesinde verilen ayrı benzetme.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0098",
+      "expression": "no entender ni jota",
+      "kind": "idiom",
+      "meaningTr": "Hiçbir şey anlamamak",
+      "examples": [
+        {
+          "es": "Con aquellas explicaciones tan rápidas, no entendí ni jota.",
+          "tr": "O çok hızlı açıklamalardan hiçbir şey anlamadım."
+        },
+        {
+          "es": "Mis padres no entienden ni jota de ese juego.",
+          "tr": "Annemle babam o oyundan hiçbir şey anlamıyor."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0099",
+      "expression": "no poder ver a alguien ni en pintura",
+      "kind": "idiom",
+      "meaningTr": "Birine hiç tahammül edememek",
+      "examples": [
+        {
+          "es": "Después de tantas burlas, no puedo verlo ni en pintura.",
+          "tr": "Bunca alaydan sonra ona hiç tahammül edemiyorum."
+        },
+        {
+          "es": "Mi tía no puede ver ni en pintura a ese presentador.",
+          "tr": "Teyzem o sunucuya hiç tahammül edemiyor."
+        }
+      ],
+      "usageNoteTr": "Sert bir hoşlanmama ifadesi.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0100",
+      "expression": "que te mueres",
+      "kind": "idiom",
+      "meaningTr": "Aşırı derecede, çok",
+      "examples": [
+        {
+          "es": "La tarta está buena que te mueres.",
+          "tr": "Pasta inanılmaz derecede güzel."
+        },
+        {
+          "es": "En la plaza hacía calor que te mueres.",
+          "tr": "Meydanda hava aşırı derecede sıcaktı."
+        }
+      ],
+      "usageNoteTr": "Önceki sıfatı veya durumu güçlendiren samimi kalıp.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0101",
+      "expression": "por un tubo",
+      "kind": "idiom",
+      "meaningTr": "Çok bol miktarda",
+      "examples": [
+        {
+          "es": "En esa cafetería sirven patatas por un tubo.",
+          "tr": "O kafede çok bol patates servis ediyorlar."
+        },
+        {
+          "es": "Durante el festival hubo música por un tubo.",
+          "tr": "Festival boyunca bol bol müzik vardı."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0102",
+      "expression": "a tope",
+      "kind": "idiom",
+      "meaningTr": "Son kapasitesine kadar, tüm gücüyle",
+      "examples": [
+        {
+          "es": "Estamos trabajando a tope para preparar la apertura.",
+          "tr": "Açılışı hazırlamak için tüm gücümüzle çalışıyoruz."
+        },
+        {
+          "es": "El autobús iba a tope y tuvimos que esperar otro.",
+          "tr": "Otobüs tıklım tıklımdı; başka bir otobüs beklemek zorunda kaldık."
+        }
+      ],
+      "usageNoteTr": "Çaba, yoğunluk veya doluluk bağlamına göre Türkçesi değişir.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0103",
+      "expression": "hacer un frío que pela",
+      "kind": "idiom",
+      "meaningTr": "Havanın dondurucu derecede soğuk olması",
+      "examples": [
+        {
+          "es": "En la parada hacía un frío que pelaba.",
+          "tr": "Durakta hava dondurucu derecede soğuktu."
+        },
+        {
+          "es": "Lleva guantes, que fuera hace un frío que pela.",
+          "tr": "Eldiven al; dışarıda hava dondurucu derecede soğuk."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0104",
+      "expression": "estar para chuparse los dedos",
+      "kind": "idiom",
+      "meaningTr": "Yemeğin parmak yalatacak kadar lezzetli olması",
+      "examples": [
+        {
+          "es": "Estas berenjenas están para chuparse los dedos.",
+          "tr": "Bu patlıcanlar parmak yalatacak kadar lezzetli."
+        },
+        {
+          "es": "El arroz que preparó Elena estaba para chuparse los dedos.",
+          "tr": "Elena'nın yaptığı pilav parmak yalatacak kadar lezzetliydi."
+        }
+      ],
+      "usageNoteTr": "Bu kart yalnızca yemek bağlamını seçer.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0105",
+      "expression": "estar en el quinto pino",
+      "kind": "idiom",
+      "meaningTr": "Çok uzak bir yerde olmak",
+      "examples": [
+        {
+          "es": "La estación provisional está en el quinto pino.",
+          "tr": "Geçici istasyon çok uzak bir yerde."
+        },
+        {
+          "es": "Reservaron un hotel en el quinto pino y necesitaban coche.",
+          "tr": "Çok uzakta bir otel ayırmışlardı; arabaya ihtiyaç duyuyorlardı."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0106",
+      "expression": "estar a la vuelta de la esquina",
+      "kind": "idiom",
+      "meaningTr": "Çok yakında olmak",
+      "examples": [
+        {
+          "es": "La biblioteca está a la vuelta de la esquina.",
+          "tr": "Kütüphane çok yakında."
+        },
+        {
+          "es": "Las vacaciones están a la vuelta de la esquina.",
+          "tr": "Tatil çok yakında."
+        }
+      ],
+      "usageNoteTr": "Mekânsal ve zamansal yakınlık birlikte gösterilir.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0107",
+      "expression": "no pegar ni con cola",
+      "kind": "idiom",
+      "meaningTr": "Birbirine hiç uymamak",
+      "examples": [
+        {
+          "es": "Ese sombrero no pega ni con cola con el uniforme.",
+          "tr": "O şapka üniformaya hiç uymuyor."
+        },
+        {
+          "es": "La música elegida no pegaba ni con cola con la escena.",
+          "tr": "Seçilen müzik sahneye hiç uymuyordu."
+        }
+      ],
+      "usageNoteTr": "Samimi kullanım; gerçek yapıştırma anlatılmaz.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0108",
+      "expression": "importar un comino",
+      "kind": "idiom",
+      "meaningTr": "Hiç umurunda olmamak",
+      "examples": [
+        {
+          "es": "Me importa un comino el precio de su coche.",
+          "tr": "Arabasının fiyatı hiç umurumda değil."
+        },
+        {
+          "es": "A Clara le importa un comino lo que diga aquel desconocido.",
+          "tr": "O yabancının ne dediği Clara'nın hiç umurunda değil."
+        }
+      ],
+      "usageNoteTr": "Olumsuz anlam için ayrıca no gerekmez.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0109",
+      "expression": "ser más largo que un día sin pan",
+      "kind": "idiom",
+      "meaningTr": "Bitmek bilmeyecek kadar uzun olmak",
+      "examples": [
+        {
+          "es": "La espera fue más larga que un día sin pan.",
+          "tr": "Bekleyiş bitmek bilmeyecek kadar uzundu."
+        },
+        {
+          "es": "Aquel discurso resultó más largo que un día sin pan.",
+          "tr": "O konuşma bitmek bilmeyecek kadar uzundu."
+        }
+      ],
+      "usageNoteTr": "Largo sözcüğü nitelenen isme göre değişir.",
+      "level": null,
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 16
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0110",
+      "expression": "llorar como una Magdalena",
+      "kind": "idiom",
+      "meaningTr": "Hüngür hüngür ağlamak",
+      "examples": [
+        {
+          "es": "Al despedirse de su hermana, lloró como una Magdalena.",
+          "tr": "Kız kardeşiyle vedalaşırken hüngür hüngür ağladı."
+        },
+        {
+          "es": "Yo lloraba como una Magdalena viendo el final de la película.",
+          "tr": "Filmin sonunu izlerken hüngür hüngür ağlıyordum."
+        }
+      ],
+      "usageNoteTr": "Kitapta ponerse a llorar ile başlama biçimi de var.",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0111",
+      "expression": "ser un pedazo de pan",
+      "kind": "idiom",
+      "meaningTr": "Çok iyi kalpli biri olmak",
+      "examples": [
+        {
+          "es": "El portero es un pedazo de pan y ayuda a todos.",
+          "tr": "Kapıcı çok iyi kalpli biri; herkese yardım ediyor."
+        },
+        {
+          "es": "Aunque parece serio, mi tío es un pedazo de pan.",
+          "tr": "Ciddi görünse de amcam çok iyi kalpli biri."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0112",
+      "expression": "ser un fenómeno",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Bir işte olağanüstü yetenekli olmak",
+      "examples": [
+        {
+          "es": "Tu prima es un fenómeno resolviendo problemas de lógica.",
+          "tr": "Kuzenin mantık problemleri çözmekte olağanüstü yetenekli."
+        },
+        {
+          "es": "Esta mecánica es un fenómeno con los motores antiguos.",
+          "tr": "Bu kadın tamirci eski motorlar konusunda olağanüstü yetenekli."
+        }
+      ],
+      "usageNoteTr": "Konuşma dilinde olumlu kişi nitelemesi.",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0113",
+      "expression": "ponerse como una fiera",
+      "kind": "idiom",
+      "meaningTr": "Çok öfkelenip sertleşmek",
+      "examples": [
+        {
+          "es": "Cuando descubrió el engaño, se puso como una fiera.",
+          "tr": "Aldatıldığını fark edince çok öfkelenip sertleşti."
+        },
+        {
+          "es": "Mi vecino se puso como una fiera por aquel arañazo.",
+          "tr": "Komşum o çizik yüzünden çok öfkelendi."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0114",
+      "expression": "ser un caradura",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Utanmadan çıkarını kollayan yüzsüz biri olmak",
+      "examples": [
+        {
+          "es": "Es un caradura: presume de un trabajo que hicimos nosotros.",
+          "tr": "Yüzsüz biri; bizim yaptığımız işle övünüyor."
+        },
+        {
+          "es": "La novela presenta a una caradura que nunca cumple sus promesas.",
+          "tr": "Roman verdiği sözleri hiç tutmayan yüzsüz bir kadını anlatıyor."
+        }
+      ],
+      "usageNoteTr": "Kitaptaki cara dura yazımı, güncel kişi adı caradura biçimiyle kaydedildi.",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0115",
+      "expression": "ser un soso",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Tatsız ve neşesiz bulunan biri olmak",
+      "examples": [
+        {
+          "es": "En la obra, su compañero es un soso que nunca participa.",
+          "tr": "Oyunda arkadaşı hiçbir şeye katılmayan, tatsız bulunan biri."
+        },
+        {
+          "es": "Dicen que soy un soso porque prefiero leer en casa.",
+          "tr": "Evde okumayı tercih ettiğim için bana neşesiz diyorlar."
+        }
+      ],
+      "usageNoteTr": "Öznel ve eleştirel kişi nitelemesi.",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0116",
+      "expression": "ponerse como un flan",
+      "kind": "idiom",
+      "meaningTr": "Heyecandan veya korkudan tir tir titremek",
+      "examples": [
+        {
+          "es": "Antes de subir al escenario, me puse como un flan.",
+          "tr": "Sahneye çıkmadan önce heyecandan tir tir titremeye başladım."
+        },
+        {
+          "es": "Se puso como un flan al oír que tenía que hablar.",
+          "tr": "Konuşması gerektiğini duyunca heyecandan tir tir titredi."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0117",
+      "expression": "ser un pez gordo",
+      "kind": "idiom",
+      "meaningTr": "Çok etkili ve nüfuzlu biri olmak",
+      "examples": [
+        {
+          "es": "En aquella empresa, su antiguo profesor era un pez gordo.",
+          "tr": "O şirkette eski öğretmeni çok nüfuzlu biriydi."
+        },
+        {
+          "es": "La investigación afectaba a varios peces gordos del sector.",
+          "tr": "Araştırma sektörün birkaç nüfuzlu kişisini ilgilendiriyordu."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0118",
+      "expression": "ponerse como loco de contento",
+      "kind": "idiom",
+      "meaningTr": "Sevinçten çılgına dönmek",
+      "examples": [
+        {
+          "es": "Al recibir la beca, se puso como loca de contenta.",
+          "tr": "Bursu alınca sevinçten çılgına döndü."
+        },
+        {
+          "es": "Los niños se pusieron como locos de contentos con la noticia.",
+          "tr": "Çocuklar haberi alınca sevinçten çılgına döndü."
+        }
+      ],
+      "usageNoteTr": "Loco ve contento, kişiye ve sayıya göre değişebilir.",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0119",
+      "expression": "ser un cabezota",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Fikrini kolay değiştirmeyen inatçı biri olmak",
+      "examples": [
+        {
+          "es": "Mi abuelo es un cabezota cuando se habla de horarios.",
+          "tr": "Dedem saatler söz konusu olunca inatçı biridir."
+        },
+        {
+          "es": "No seas cabezota y escucha también la otra propuesta.",
+          "tr": "İnat etme; diğer öneriyi de dinle."
+        }
+      ],
+      "usageNoteTr": "Konuşma dilinde kişi nitelemesi.",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0120",
+      "expression": "mirar por encima del hombro",
+      "kind": "idiom",
+      "meaningTr": "Birini küçümseyerek tepeden bakmak",
+      "examples": [
+        {
+          "es": "No soporto que mire a mis amigos por encima del hombro.",
+          "tr": "Arkadaşlarıma tepeden bakmasına tahammül edemiyorum."
+        },
+        {
+          "es": "Antes miraba a sus compañeros por encima del hombro.",
+          "tr": "Eskiden iş arkadaşlarını küçümseyerek tepeden bakardı."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0121",
+      "expression": "sacar de quicio",
+      "kind": "idiom",
+      "meaningTr": "Birini çileden çıkarmak",
+      "examples": [
+        {
+          "es": "Ese pitido continuo me saca de quicio.",
+          "tr": "O sürekli ötme sesi beni çileden çıkarıyor."
+        },
+        {
+          "es": "La falta de puntualidad sacaba de quicio a la coordinadora.",
+          "tr": "Dakik olunmaması koordinatörü çileden çıkarıyordu."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0122",
+      "expression": "ser un cielo",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Çok sevimli ve yardımsever biri olmak",
+      "examples": [
+        {
+          "es": "Tu hermana es un cielo y nos recibió con cariño.",
+          "tr": "Kız kardeşin çok sevimli ve yardımsever; bizi sevgiyle karşıladı."
+        },
+        {
+          "es": "El vecino fue un cielo y cuidó nuestras plantas.",
+          "tr": "Komşu çok yardımseverdi; bitkilerimize baktı."
+        }
+      ],
+      "usageNoteTr": "Sevgi ve takdir bildiren kişi nitelemesi.",
+      "level": null,
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0123",
+      "expression": "tener algo en la punta de la lengua",
+      "kind": "idiom",
+      "meaningTr": "Hatırlamak istediği söz dilinin ucunda olmak",
+      "examples": [
+        {
+          "es": "Tengo el título en la punta de la lengua.",
+          "tr": "Kitabın adı dilimin ucunda."
+        },
+        {
+          "es": "Tenía su apellido en la punta de la lengua, pero no lograba recordarlo.",
+          "tr": "Soyadı dilimin ucundaydı ama hatırlayamadım."
+        }
+      ],
+      "usageNoteTr": "Değişken nesne, kalıbın arasına girer.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0124",
+      "expression": "estar pez en algo",
+      "kind": "idiom",
+      "meaningTr": "Bir konuda hiçbir şey bilmemek",
+      "examples": [
+        {
+          "es": "Estoy pez en contabilidad y necesito una explicación sencilla.",
+          "tr": "Muhasebe konusunda hiçbir şey bilmiyorum; basit bir açıklamaya ihtiyacım var."
+        },
+        {
+          "es": "Al empezar el curso, todos estábamos pez en programación.",
+          "tr": "Kursa başladığımızda hiçbirimiz programlama bilmiyorduk."
+        }
+      ],
+      "usageNoteTr": "Samimi bir bilgisizlik ifadesi.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0125",
+      "expression": "no tener ni idea",
+      "kind": "idiom",
+      "meaningTr": "Hiçbir fikri veya bilgisi olmamak",
+      "examples": [
+        {
+          "es": "No tengo ni idea de dónde guardaron las llaves.",
+          "tr": "Anahtarları nereye koydukları hakkında hiçbir fikrim yok."
+        },
+        {
+          "es": "Mis compañeros no tenían ni idea del cambio de aula.",
+          "tr": "Arkadaşlarımın sınıf değişikliğinden hiç haberi yoktu."
+        }
+      ],
+      "usageNoteTr": "Estar pez ile kitapta aynı grupta verilen ayrı kalıp.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0126",
+      "expression": "quedarse en blanco",
+      "kind": "idiom",
+      "meaningTr": "Bildiğini aniden hatırlayamayıp donakalmak",
+      "examples": [
+        {
+          "es": "Al empezar la entrevista, me quedé en blanco.",
+          "tr": "Mülakat başlarken bildiklerimi hatırlayamayıp donakaldım."
+        },
+        {
+          "es": "Sabía la respuesta, pero se quedó en blanco ante la cámara.",
+          "tr": "Cevabı biliyordu ama kamera karşısında birden hatırlayamaz oldu."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0127",
+      "expression": "hacerse un lío",
+      "kind": "idiom",
+      "meaningTr": "Kafası karışmak",
+      "examples": [
+        {
+          "es": "Con tantas instrucciones diferentes, me hice un lío.",
+          "tr": "Bu kadar farklı talimatla kafam karıştı."
+        },
+        {
+          "es": "Se hace un lío cuando intenta explicar los parentescos.",
+          "tr": "Akrabalıkları açıklamaya çalışırken kafası karışıyor."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0128",
+      "expression": "no dar pie con bola",
+      "kind": "idiom",
+      "meaningTr": "Hiçbir şeyi doğru yapamamak",
+      "examples": [
+        {
+          "es": "Hoy no doy pie con bola con estas cuentas.",
+          "tr": "Bugün bu hesaplarda hiçbir şeyi doğru yapamıyorum."
+        },
+        {
+          "es": "Durante el ensayo, el actor no daba pie con bola.",
+          "tr": "Prova sırasında oyuncu hiçbir şeyi doğru yapamıyordu."
+        }
+      ],
+      "usageNoteTr": "Hacerse un lío ile aynı kitap grubunda, fakat başarısızlık vurgusu ayrıca yazıldı.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0129",
+      "expression": "salirle algo bordado a alguien",
+      "kind": "idiom",
+      "meaningTr": "Bir işi çok iyi ve kusursuza yakın yapmak",
+      "examples": [
+        {
+          "es": "A Marta le salió bordada la presentación del proyecto.",
+          "tr": "Marta projenin sunumunu çok iyi yaptı."
+        },
+        {
+          "es": "La cena nos salió bordada y todos pidieron la receta.",
+          "tr": "Yemek elimizden çok iyi çıktı; herkes tarifini istedi."
+        }
+      ],
+      "usageNoteTr": "Bordado, yapılan işe göre bordada biçimine girebilir.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0130",
+      "expression": "a ver si cuela",
+      "kind": "idiom",
+      "meaningTr": "Belki kabul edilir diye denemek",
+      "examples": [
+        {
+          "es": "Pidió otro descuento a ver si colaba.",
+          "tr": "Belki kabul edilir diye bir indirim daha istedi."
+        },
+        {
+          "es": "Presentó aquella excusa a ver si colaba entre tanta confusión.",
+          "tr": "O karmaşada belki kabul edilir diye o bahaneyi öne sürdü."
+        }
+      ],
+      "usageNoteTr": "Sıralı kalıbın zamanla değişebilen kullanımını örnekler.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0131",
+      "expression": "oír campanas y no saber dónde",
+      "kind": "idiom",
+      "meaningTr": "Bir şeyler duymuş ama ayrıntıları bilmemek",
+      "examples": [
+        {
+          "es": "Oyes campanas y no sabes dónde: esa noticia era sobre otro barrio.",
+          "tr": "Bir şeyler duymuşsun ama ayrıntıları karıştırmışsın; o haber başka mahalleyle ilgiliydi."
+        },
+        {
+          "es": "Oyó campanas y no sabía dónde cuando habló de las nuevas normas.",
+          "tr": "Yeni kurallardan söz ederken bir şeyler duymuştu ama ayrıntıları bilmiyordu."
+        }
+      ],
+      "usageNoteTr": "İki fiil de zamana ve kişiye göre çekilir.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0132",
+      "expression": "saberse algo al dedillo",
+      "kind": "idiom",
+      "meaningTr": "Bir şeyi bütün ayrıntılarıyla bilmek",
+      "examples": [
+        {
+          "es": "Me sé al dedillo las normas de este juego.",
+          "tr": "Bu oyunun kurallarını bütün ayrıntılarıyla biliyorum."
+        },
+        {
+          "es": "La guía se sabía al dedillo la historia del edificio.",
+          "tr": "Rehber binanın tarihini bütün ayrıntılarıyla biliyordu."
+        }
+      ],
+      "usageNoteTr": "Saber veya saberse algo al dedillo biçimleri bulunur.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0133",
+      "expression": "hacerse una chuleta",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Sınav için kopya kâğıdı hazırlamak",
+      "examples": [
+        {
+          "es": "En la película, el alumno se hace una chuleta.",
+          "tr": "Filmde öğrenci sınav için kopya kâğıdı hazırlıyor."
+        },
+        {
+          "es": "La profesora descubrió que se habían hecho una chuleta.",
+          "tr": "Öğretmen sınav için kopya kâğıdı hazırladıklarını fark etti."
+        }
+      ],
+      "usageNoteTr": "Burada chuleta yemek adı değildir; kopya kâğıdı anlamındadır.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0134",
+      "expression": "hincar los codos",
+      "kind": "idiom",
+      "meaningTr": "Ders çalışmaya ciddi biçimde yoğunlaşmak",
+      "examples": [
+        {
+          "es": "Para aprobar ese examen, habrá que hincar los codos.",
+          "tr": "O sınavı geçmek için ders çalışmaya ciddi biçimde yoğunlaşmak gerekecek."
+        },
+        {
+          "es": "Este trimestre hemos hincado los codos para mejorar las notas.",
+          "tr": "Bu dönem notlarımızı yükseltmek için sıkı ders çalıştık."
+        }
+      ],
+      "usageNoteTr": "",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0135",
+      "expression": "ser un empollón",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Çok ders çalışan bir öğrenci olmak",
+      "examples": [
+        {
+          "es": "En la novela, llaman empollona a la protagonista por estudiar tanto.",
+          "tr": "Romanda çok ders çalıştığı için başkaraktere inek diyorlar."
+        },
+        {
+          "es": "De pequeño era un empollón y disfrutaba preparando los exámenes.",
+          "tr": "Küçükken çok çalışkan bir öğrenciydi; sınavlara hazırlanmayı severdi."
+        }
+      ],
+      "usageNoteTr": "Empollón samimi, bazen küçümseyici bir kişi nitelemesidir.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0136",
+      "expression": "ser un hueso",
+      "kind": "idiom",
+      "meaningTr": "Çok sert ve zorlayıcı bir öğretmen olmak",
+      "examples": [
+        {
+          "es": "Dicen que la profesora de química es un hueso.",
+          "tr": "Kimya öğretmeninin çok sert ve zorlayıcı olduğunu söylüyorlar."
+        },
+        {
+          "es": "Su tutor era un hueso y exigía justificar cada respuesta.",
+          "tr": "Danışmanı çok zorlayıcıydı; her cevabın gerekçelendirilmesini istiyordu."
+        }
+      ],
+      "usageNoteTr": "Bu kart kitapta seçilen öğretmen anlamını kullanır.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0137",
+      "expression": "saltarse una clase",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Bir derse bilerek katılmamak",
+      "examples": [
+        {
+          "es": "En la historia, dos alumnos se saltan una clase.",
+          "tr": "Öyküde iki öğrenci bir derse bilerek katılmıyor."
+        },
+        {
+          "es": "Se saltó la clase de música sin avisar al profesor.",
+          "tr": "Öğretmene haber vermeden müzik dersine bilerek katılmadı."
+        }
+      ],
+      "usageNoteTr": "Derse katılmama nedenini tek başına açıklamaz.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0138",
+      "expression": "hacer pellas",
+      "kind": "idiom",
+      "meaningTr": "Okulu veya dersi izinsiz asmak",
+      "examples": [
+        {
+          "es": "En aquella serie, los protagonistas hacen pellas para ir al río.",
+          "tr": "O dizide başkarakterler nehre gitmek için okulu asıyor."
+        },
+        {
+          "es": "El profesor habló con quienes habían hecho pellas el viernes.",
+          "tr": "Öğretmen cuma günü dersi asanlarla konuştu."
+        }
+      ],
+      "usageNoteTr": "Samimi, yerel kullanım olabilecek bir kalıp; bölge etiketi yayına aktarırken doğrulanmalı.",
+      "level": null,
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0139",
+      "expression": "ni de broma",
+      "kind": "fixed_expression",
+      "meaningTr": "Şaka bile olsa asla",
+      "examples": [
+        {
+          "es": "No compro ese coche ni de broma con tantos fallos.",
+          "tr": "Bu kadar arızalı arabayı şaka bile olsa almam."
+        },
+        {
+          "es": "¿Volver a esperar tres horas? Ni de broma.",
+          "tr": "Yeniden üç saat beklemek mi? Asla!"
+        }
+      ],
+      "usageNoteTr": "Güçlü ret bildiren kalıplaşmış tepki.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0140",
+      "expression": "ni hablar",
+      "kind": "fixed_expression",
+      "meaningTr": "Kesinlikle olmaz",
+      "examples": [
+        {
+          "es": "¿Prestártelo sin permiso de su dueña? Ni hablar.",
+          "tr": "Sahibinden izin almadan sana ödünç vermek mi? Kesinlikle olmaz!"
+        },
+        {
+          "es": "Ni hablar de salir sin cerrar las ventanas.",
+          "tr": "Pencereleri kapatmadan çıkmak kesinlikle olmaz."
+        }
+      ],
+      "usageNoteTr": "Bu kullanım konuşamamak anlamında değildir.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0141",
+      "expression": "qué va",
+      "kind": "fixed_expression",
+      "meaningTr": "Hiç de öyle değil, yok canım",
+      "examples": [
+        {
+          "es": "¿Todo fue fácil para ellos? ¡Qué va! Trabajaron muchísimo.",
+          "tr": "Onlar için her şey kolay mıydı? Hiç de değil! Çok çalıştılar."
+        },
+        {
+          "es": "¿Está cerrado el museo? ¡Qué va! Abre hasta tarde.",
+          "tr": "Müze kapalı mı? Yok canım! Geç saate kadar açık."
+        }
+      ],
+      "usageNoteTr": "Güçlü ve samimi olumsuz karşılık.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0142",
+      "expression": "de eso nada",
+      "kind": "fixed_expression",
+      "meaningTr": "Öyle bir şey yok, kesinlikle hayır",
+      "examples": [
+        {
+          "es": "¿Que vamos a pagar dos veces? De eso nada.",
+          "tr": "İki kez ödeme yapacağımızı mı söylüyorsun? Öyle bir şey yok!"
+        },
+        {
+          "es": "De eso nada: el acuerdo incluye también el transporte.",
+          "tr": "Hiç de öyle değil; anlaşmaya ulaşım da dâhil."
+        }
+      ],
+      "usageNoteTr": "Önceki önerme veya öneriyi reddeder.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0143",
+      "expression": "ser alucinante",
+      "kind": "colloquial_predicate",
+      "meaningTr": "Şaşırtıcı ve inanılmaz olmak",
+      "examples": [
+        {
+          "es": "La vista desde aquel mirador es alucinante.",
+          "tr": "O seyir yerindeki manzara inanılmaz."
+        },
+        {
+          "es": "Fue alucinante escuchar nuestra canción en aquella plaza.",
+          "tr": "Şarkımızı o meydanda duymak inanılmazdı."
+        }
+      ],
+      "usageNoteTr": "Olumlu veya olumsuz şaşkınlıkla kullanılabilen konuşma dili nitelemesi.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0144",
+      "expression": "no me digas",
+      "kind": "fixed_expression",
+      "meaningTr": "Gerçekten mi, şaşırdım",
+      "examples": [
+        {
+          "es": "¿Tu vecino ganó el concurso? ¡No me digas!",
+          "tr": "Komşun yarışmayı mı kazandı? Gerçekten mi!"
+        },
+        {
+          "es": "¡No me digas! ¿También encontraste mi cartera en el tren?",
+          "tr": "Gerçekten mi! Trende cüzdanımı da mı buldun?"
+        }
+      ],
+      "usageNoteTr": "Bu kart şaşkınlık tepkisini seçer; konuşmayı yasaklama değildir.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0145",
+      "expression": "yo qué sé",
+      "kind": "fixed_expression",
+      "meaningTr": "Ben nereden bileyim",
+      "examples": [
+        {
+          "es": "¿Por qué cambiaron la hora? ¡Yo qué sé!",
+          "tr": "Saati neden değiştirdiler? Ben nereden bileyim!"
+        },
+        {
+          "es": "Yo qué sé dónde guardan los formularios nuevos.",
+          "tr": "Yeni formları nerede tuttuklarını ben nereden bileyim."
+        }
+      ],
+      "usageNoteTr": "Samimi kullanım; bıkkın veya sert duyulabilir.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0146",
+      "expression": "desde luego",
+      "kind": "fixed_expression",
+      "meaningTr": "Elbette, kesinlikle",
+      "examples": [
+        {
+          "es": "Desde luego que iremos a tu exposición el sábado.",
+          "tr": "Elbette cumartesi günü sergine geleceğiz."
+        },
+        {
+          "es": "Has trabajado mucho; desde luego, mereces un descanso.",
+          "tr": "Çok çalıştın; kesinlikle dinlenmeyi hak ediyorsun."
+        }
+      ],
+      "usageNoteTr": "Bu kart onay anlamını seçer; sitemli ton da mümkün olabilir.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0147",
+      "expression": "qué más da",
+      "kind": "fixed_expression",
+      "meaningTr": "Ne fark eder",
+      "examples": [
+        {
+          "es": "¿Azul o verde? Qué más da, ambos sirven.",
+          "tr": "Mavi mi yeşil mi? Ne fark eder; ikisi de olur."
+        },
+        {
+          "es": "¿Qué más da el orden si todos vamos a participar?",
+          "tr": "Hepimiz katılacaksak sıranın ne önemi var?"
+        }
+      ],
+      "usageNoteTr": "İlgisizlik veya farkın önemsizliğini ifade eder.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0148",
+      "expression": "que te vaya bien",
+      "kind": "fixed_expression",
+      "meaningTr": "İşlerin iyi gitsin",
+      "examples": [
+        {
+          "es": "Mañana empiezas el curso; ¡que te vaya bien!",
+          "tr": "Yarın kursa başlıyorsun; işlerin iyi gitsin!"
+        },
+        {
+          "es": "Al despedirse, le deseó que le fuera bien en su nuevo trabajo.",
+          "tr": "Vedalaşırken yeni işinde her şeyin iyi gitmesini diledi."
+        }
+      ],
+      "usageNoteTr": "İyi dilek kalıbı; kişi ve zaman değişebilir.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0149",
+      "expression": "ya veremos",
+      "kind": "fixed_expression",
+      "meaningTr": "Bakarız, henüz karar vermedim",
+      "examples": [
+        {
+          "es": "¿Vendrás a cenar el viernes? Ya veremos, tengo guardia.",
+          "tr": "Cuma yemeğe gelir misin? Bakarız; nöbetim var."
+        },
+        {
+          "es": "Ya veremos si podemos cambiar los billetes sin coste.",
+          "tr": "Biletleri ücretsiz değiştirip değiştiremeyeceğimize bakarız."
+        }
+      ],
+      "usageNoteTr": "Kararı erteleme veya belirsizlik ifade eder.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0150",
+      "expression": "que lo pases genial",
+      "kind": "fixed_expression",
+      "meaningTr": "Harika vakit geçirmeni dilerim",
+      "examples": [
+        {
+          "es": "¡Que lo pases genial en el campamento de verano!",
+          "tr": "Yaz kampında harika vakit geçirmeni dilerim!"
+        },
+        {
+          "es": "Te vas al concierto; ¡que lo pases genial!",
+          "tr": "Konsere gidiyorsun; harika vakit geçirmeni dilerim!"
+        }
+      ],
+      "usageNoteTr": "İyi dilek niteliğinde konuşma kalıbı.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "es-libro-0151",
+      "expression": "vaya muermo",
+      "kind": "fixed_expression",
+      "meaningTr": "Ne sıkıcı şey, ne büyük can sıkıntısı",
+      "examples": [
+        {
+          "es": "Otra reunión de tres horas sobre lo mismo, ¡vaya muermo!",
+          "tr": "Yine aynı konuda üç saatlik toplantı; ne sıkıcı şey!"
+        },
+        {
+          "es": "Vimos media película y salimos pensando: «¡Vaya muermo!».",
+          "tr": "Filmin yarısını izleyip ne sıkıcı şey diye düşünerek çıktık."
+        }
+      ],
+      "usageNoteTr": "Sıkıntı veya bıkkınlık bildiren samimi tepki; ünitenin giriş konuşmasında vurgulanmış.",
+      "level": null,
+      "source": {
+        "unit": 10,
+        "pdfPage": 53,
+        "side": "left",
+        "printedPage": 98,
+        "section": "opening_dialogue",
+        "sourceGroup": 9
+      },
+      "meaningOrigin": "original",
+      "examplesOrigin": "original",
+      "reviewStatus": "pending"
+    }
+  ]
+}

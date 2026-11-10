@@ -1,0 +1,22 @@
+{
+  "expressions": 151,
+  "examples": 302,
+  "units": {
+    "1": 15,
+    "2": 16,
+    "3": 16,
+    "4": 15,
+    "5": 14,
+    "6": 14,
+    "7": 19,
+    "8": 13,
+    "9": 16,
+    "10": 13
+  },
+  "extractedCandidates": 155,
+  "excludedSingleWords": 4,
+  "structuralCheck": "passed",
+  "independentLanguageReview": "pending",
+  "publicationStatus": "not_integrated",
+  "noteTr": "Bu denetim anlamların dilsel doğruluğunu veya iki bağımsız kaynak koşulunu onaylamaz."
+}

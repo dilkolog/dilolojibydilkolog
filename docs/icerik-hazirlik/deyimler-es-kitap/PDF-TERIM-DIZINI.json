@@ -1,0 +1,2022 @@
+{
+  "candidates": 155,
+  "included": 151,
+  "excluded": 4,
+  "terms": [
+    {
+      "expression": "ser un flechazo",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "status": "included",
+      "id": "es-libro-0001"
+    },
+    {
+      "expression": "aburrirse como una ostra",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "status": "included",
+      "id": "es-libro-0002"
+    },
+    {
+      "expression": "partirse de risa",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "status": "included",
+      "id": "es-libro-0003"
+    },
+    {
+      "expression": "ser la media naranja",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "status": "included",
+      "id": "es-libro-0004"
+    },
+    {
+      "expression": "llevarse bien",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "status": "included",
+      "id": "es-libro-0005"
+    },
+    {
+      "expression": "ponerse como un tomate",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "status": "included",
+      "id": "es-libro-0006"
+    },
+    {
+      "expression": "estar como si nada",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "status": "included",
+      "id": "es-libro-0007"
+    },
+    {
+      "expression": "quedarse de piedra",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "status": "included",
+      "id": "es-libro-0008"
+    },
+    {
+      "expression": "quedarse cortado",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "status": "included",
+      "id": "es-libro-0009"
+    },
+    {
+      "expression": "tierra trágame",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "status": "included",
+      "id": "es-libro-0010"
+    },
+    {
+      "expression": "estar colado por alguien",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "status": "included",
+      "id": "es-libro-0011"
+    },
+    {
+      "expression": "dar calabazas",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "status": "included",
+      "id": "es-libro-0012"
+    },
+    {
+      "expression": "estar hasta las narices",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "status": "included",
+      "id": "es-libro-0013"
+    },
+    {
+      "expression": "echar de menos",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "status": "included",
+      "id": "es-libro-0014"
+    },
+    {
+      "expression": "estar como un niño con zapatos nuevos",
+      "source": {
+        "unit": 1,
+        "pdfPage": 5,
+        "side": "native",
+        "printedPage": 8,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "status": "included",
+      "id": "es-libro-0015"
+    },
+    {
+      "expression": "dársele bien algo a alguien",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "status": "included",
+      "id": "es-libro-0016"
+    },
+    {
+      "expression": "poner las pilas a alguien",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "status": "included",
+      "id": "es-libro-0017"
+    },
+    {
+      "expression": "arrimar el hombro",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "status": "included",
+      "id": "es-libro-0018"
+    },
+    {
+      "expression": "echar una mano",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "status": "included",
+      "id": "es-libro-0019"
+    },
+    {
+      "expression": "trabajar a destajo",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "status": "included",
+      "id": "es-libro-0020"
+    },
+    {
+      "expression": "estar mano sobre mano",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "status": "included",
+      "id": "es-libro-0021"
+    },
+    {
+      "expression": "tener mucha cara",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "status": "included",
+      "id": "es-libro-0022"
+    },
+    {
+      "expression": "no dar palo al agua",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "status": "included",
+      "id": "es-libro-0023"
+    },
+    {
+      "expression": "ir al grano",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "status": "included",
+      "id": "es-libro-0024"
+    },
+    {
+      "expression": "dar el brazo a torcer",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "status": "included",
+      "id": "es-libro-0025"
+    },
+    {
+      "expression": "irse por las ramas",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "status": "included",
+      "id": "es-libro-0026"
+    },
+    {
+      "expression": "estar en el paro",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "status": "included",
+      "id": "es-libro-0027"
+    },
+    {
+      "expression": "ahogarse en un vaso de agua",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "status": "included",
+      "id": "es-libro-0028"
+    },
+    {
+      "expression": "poner pegas",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "status": "included",
+      "id": "es-libro-0029"
+    },
+    {
+      "expression": "estar liado",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "status": "included",
+      "id": "es-libro-0030"
+    },
+    {
+      "expression": "hacer una chapuza",
+      "source": {
+        "unit": 2,
+        "pdfPage": 12,
+        "side": "left",
+        "printedPage": 16,
+        "section": "target_list",
+        "sourceGroup": 16
+      },
+      "status": "included",
+      "id": "es-libro-0031"
+    },
+    {
+      "expression": "ser un manirroto",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "status": "included",
+      "id": "es-libro-0032"
+    },
+    {
+      "expression": "ser un agarrado",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "status": "included",
+      "id": "es-libro-0033"
+    },
+    {
+      "expression": "tirar la casa por la ventana",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "status": "included",
+      "id": "es-libro-0034"
+    },
+    {
+      "expression": "mirar el dinero",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "status": "included",
+      "id": "es-libro-0035"
+    },
+    {
+      "expression": "llegar a fin de mes",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "status": "included",
+      "id": "es-libro-0036"
+    },
+    {
+      "expression": "ser un chollo",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "status": "included",
+      "id": "es-libro-0037"
+    },
+    {
+      "expression": "pagar al contado",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "status": "included",
+      "id": "es-libro-0038"
+    },
+    {
+      "expression": "costar un ojo de la cara",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "status": "included",
+      "id": "es-libro-0039"
+    },
+    {
+      "expression": "estar por las nubes",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "status": "included",
+      "id": "es-libro-0040"
+    },
+    {
+      "expression": "estar por los suelos",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "status": "included",
+      "id": "es-libro-0041"
+    },
+    {
+      "expression": "estar sin blanca",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "status": "included",
+      "id": "es-libro-0042"
+    },
+    {
+      "expression": "pagar a escote",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "status": "included",
+      "id": "es-libro-0043"
+    },
+    {
+      "expression": "pagar por barba",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "status": "included",
+      "id": "es-libro-0044"
+    },
+    {
+      "expression": "irse a pique",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "status": "included",
+      "id": "es-libro-0045"
+    },
+    {
+      "expression": "estar forrado",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "status": "included",
+      "id": "es-libro-0046"
+    },
+    {
+      "expression": "hacer el agosto",
+      "source": {
+        "unit": 3,
+        "pdfPage": 18,
+        "side": "right",
+        "printedPage": 29,
+        "section": "target_list",
+        "sourceGroup": 16
+      },
+      "status": "included",
+      "id": "es-libro-0047"
+    },
+    {
+      "expression": "estar como un roble",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "status": "included",
+      "id": "es-libro-0048"
+    },
+    {
+      "expression": "no levantar cabeza",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "status": "included",
+      "id": "es-libro-0049"
+    },
+    {
+      "expression": "estar hecho polvo",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "status": "included",
+      "id": "es-libro-0050"
+    },
+    {
+      "expression": "tener buena cara",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "status": "included",
+      "id": "es-libro-0051"
+    },
+    {
+      "expression": "tomarse algo con calma",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "status": "included",
+      "id": "es-libro-0052"
+    },
+    {
+      "expression": "estar como una foca",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "status": "included",
+      "id": "es-libro-0053"
+    },
+    {
+      "expression": "estar en los huesos",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "status": "included",
+      "id": "es-libro-0054"
+    },
+    {
+      "expression": "no pegar ojo",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "status": "included",
+      "id": "es-libro-0055"
+    },
+    {
+      "expression": "pasarlo mal",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "status": "included",
+      "id": "es-libro-0056"
+    },
+    {
+      "expression": "ponerse las botas",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "status": "included",
+      "id": "es-libro-0057"
+    },
+    {
+      "expression": "tener una salud de hierro",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "status": "included",
+      "id": "es-libro-0058"
+    },
+    {
+      "expression": "estar como una rosa",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "status": "included",
+      "id": "es-libro-0059"
+    },
+    {
+      "expression": "ver las estrellas",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "status": "included",
+      "id": "es-libro-0060"
+    },
+    {
+      "expression": "comer como un pajarito",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "status": "included",
+      "id": "es-libro-0061"
+    },
+    {
+      "expression": "dormir como un tronco",
+      "source": {
+        "unit": 4,
+        "pdfPage": 23,
+        "side": "right",
+        "printedPage": 39,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "status": "included",
+      "id": "es-libro-0062"
+    },
+    {
+      "expression": "dar un plantón",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "status": "included",
+      "id": "es-libro-0063"
+    },
+    {
+      "expression": "quedar bien con alguien",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "status": "included",
+      "id": "es-libro-0064"
+    },
+    {
+      "expression": "hablar por los codos",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "status": "included",
+      "id": "es-libro-0065"
+    },
+    {
+      "expression": "ser un pesado",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "status": "included",
+      "id": "es-libro-0066"
+    },
+    {
+      "expression": "meter la pata",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "status": "included",
+      "id": "es-libro-0067"
+    },
+    {
+      "expression": "hacer buenas migas",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "status": "included",
+      "id": "es-libro-0068"
+    },
+    {
+      "expression": "hacerse el sueco",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "status": "included",
+      "id": "es-libro-0069"
+    },
+    {
+      "expression": "romper el hielo",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "status": "included",
+      "id": "es-libro-0070"
+    },
+    {
+      "expression": "sentar bien",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "status": "included",
+      "id": "es-libro-0071"
+    },
+    {
+      "expression": "caer bien",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "status": "included",
+      "id": "es-libro-0072"
+    },
+    {
+      "expression": "tener mano izquierda",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "status": "included",
+      "id": "es-libro-0073"
+    },
+    {
+      "expression": "dar la lata",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "status": "included",
+      "id": "es-libro-0074"
+    },
+    {
+      "expression": "pasarse",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "status": "excluded_single_word",
+      "reasonTr": "Tek sözcüklü fiil; deyim listesine alınmadı."
+    },
+    {
+      "expression": "mandar a alguien a freír espárragos",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "status": "included",
+      "id": "es-libro-0075"
+    },
+    {
+      "expression": "poner verde a alguien",
+      "source": {
+        "unit": 5,
+        "pdfPage": 28,
+        "side": "left",
+        "printedPage": 48,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "status": "included",
+      "id": "es-libro-0076"
+    },
+    {
+      "expression": "de Pascuas a Ramos",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "status": "included",
+      "id": "es-libro-0077"
+    },
+    {
+      "expression": "cada dos por tres",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "status": "included",
+      "id": "es-libro-0078"
+    },
+    {
+      "expression": "a regañadientes",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "status": "included",
+      "id": "es-libro-0079"
+    },
+    {
+      "expression": "comer como una lima",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "status": "included",
+      "id": "es-libro-0080"
+    },
+    {
+      "expression": "en un abrir y cerrar de ojos",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "status": "included",
+      "id": "es-libro-0081"
+    },
+    {
+      "expression": "a toda pastilla",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "status": "included",
+      "id": "es-libro-0082"
+    },
+    {
+      "expression": "a rajatabla",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "status": "included",
+      "id": "es-libro-0083"
+    },
+    {
+      "expression": "de una vez por todas",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "status": "included",
+      "id": "es-libro-0084"
+    },
+    {
+      "expression": "de buenas a primeras",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "status": "included",
+      "id": "es-libro-0085"
+    },
+    {
+      "expression": "sin ton ni son",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "status": "included",
+      "id": "es-libro-0086"
+    },
+    {
+      "expression": "a propósito",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "status": "included",
+      "id": "es-libro-0087"
+    },
+    {
+      "expression": "a la ligera",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "status": "included",
+      "id": "es-libro-0088"
+    },
+    {
+      "expression": "con pelos y señales",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "status": "included",
+      "id": "es-libro-0089"
+    },
+    {
+      "expression": "con pies de plomo",
+      "source": {
+        "unit": 6,
+        "pdfPage": 33,
+        "side": "left",
+        "printedPage": 58,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "status": "included",
+      "id": "es-libro-0090"
+    },
+    {
+      "expression": "de miedo",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "status": "included",
+      "id": "es-libro-0091"
+    },
+    {
+      "expression": "de maravilla",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "status": "included",
+      "id": "es-libro-0092"
+    },
+    {
+      "expression": "de cine",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "status": "included",
+      "id": "es-libro-0093"
+    },
+    {
+      "expression": "de pena",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "status": "included",
+      "id": "es-libro-0094"
+    },
+    {
+      "expression": "no decir ni pío",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "status": "included",
+      "id": "es-libro-0095"
+    },
+    {
+      "expression": "no ver ni torta",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "status": "included",
+      "id": "es-libro-0096"
+    },
+    {
+      "expression": "no ver ni tres en un burro",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "status": "included",
+      "id": "es-libro-0097"
+    },
+    {
+      "expression": "no entender ni jota",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "status": "included",
+      "id": "es-libro-0098"
+    },
+    {
+      "expression": "no poder ver a alguien ni en pintura",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "status": "included",
+      "id": "es-libro-0099"
+    },
+    {
+      "expression": "que te mueres",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "status": "included",
+      "id": "es-libro-0100"
+    },
+    {
+      "expression": "por un tubo",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "status": "included",
+      "id": "es-libro-0101"
+    },
+    {
+      "expression": "a tope",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "status": "included",
+      "id": "es-libro-0102"
+    },
+    {
+      "expression": "hacer un frío que pela",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "status": "included",
+      "id": "es-libro-0103"
+    },
+    {
+      "expression": "estar para chuparse los dedos",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "status": "included",
+      "id": "es-libro-0104"
+    },
+    {
+      "expression": "estar en el quinto pino",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "status": "included",
+      "id": "es-libro-0105"
+    },
+    {
+      "expression": "estar a la vuelta de la esquina",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "status": "included",
+      "id": "es-libro-0106"
+    },
+    {
+      "expression": "no pegar ni con cola",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "status": "included",
+      "id": "es-libro-0107"
+    },
+    {
+      "expression": "importar un comino",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "status": "included",
+      "id": "es-libro-0108"
+    },
+    {
+      "expression": "ser más largo que un día sin pan",
+      "source": {
+        "unit": 7,
+        "pdfPage": 39,
+        "side": "left",
+        "printedPage": 70,
+        "section": "target_list",
+        "sourceGroup": 16
+      },
+      "status": "included",
+      "id": "es-libro-0109"
+    },
+    {
+      "expression": "llorar como una Magdalena",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "status": "included",
+      "id": "es-libro-0110"
+    },
+    {
+      "expression": "ser un pedazo de pan",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "status": "included",
+      "id": "es-libro-0111"
+    },
+    {
+      "expression": "ser un fenómeno",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "status": "included",
+      "id": "es-libro-0112"
+    },
+    {
+      "expression": "ponerse como una fiera",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "status": "included",
+      "id": "es-libro-0113"
+    },
+    {
+      "expression": "ser un caradura",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "status": "included",
+      "id": "es-libro-0114"
+    },
+    {
+      "expression": "ser un soso",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "status": "included",
+      "id": "es-libro-0115"
+    },
+    {
+      "expression": "ponerse como un flan",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "status": "included",
+      "id": "es-libro-0116"
+    },
+    {
+      "expression": "ser un pez gordo",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "status": "included",
+      "id": "es-libro-0117"
+    },
+    {
+      "expression": "ponerse como loco de contento",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "status": "included",
+      "id": "es-libro-0118"
+    },
+    {
+      "expression": "ser un cabezota",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "status": "included",
+      "id": "es-libro-0119"
+    },
+    {
+      "expression": "mirar por encima del hombro",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "status": "included",
+      "id": "es-libro-0120"
+    },
+    {
+      "expression": "sacar de quicio",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "status": "included",
+      "id": "es-libro-0121"
+    },
+    {
+      "expression": "ser un cielo",
+      "source": {
+        "unit": 8,
+        "pdfPage": 45,
+        "side": "left",
+        "printedPage": 82,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "status": "included",
+      "id": "es-libro-0122"
+    },
+    {
+      "expression": "tener algo en la punta de la lengua",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "status": "included",
+      "id": "es-libro-0123"
+    },
+    {
+      "expression": "estar pez en algo",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "status": "included",
+      "id": "es-libro-0124"
+    },
+    {
+      "expression": "no tener ni idea",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "status": "included",
+      "id": "es-libro-0125"
+    },
+    {
+      "expression": "quedarse en blanco",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "status": "included",
+      "id": "es-libro-0126"
+    },
+    {
+      "expression": "hacerse un lío",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "status": "included",
+      "id": "es-libro-0127"
+    },
+    {
+      "expression": "no dar pie con bola",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "status": "included",
+      "id": "es-libro-0128"
+    },
+    {
+      "expression": "salirle algo bordado a alguien",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "status": "included",
+      "id": "es-libro-0129"
+    },
+    {
+      "expression": "a ver si cuela",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "status": "included",
+      "id": "es-libro-0130"
+    },
+    {
+      "expression": "oír campanas y no saber dónde",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "status": "included",
+      "id": "es-libro-0131"
+    },
+    {
+      "expression": "saberse algo al dedillo",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "status": "included",
+      "id": "es-libro-0132"
+    },
+    {
+      "expression": "hacerse una chuleta",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "status": "included",
+      "id": "es-libro-0133"
+    },
+    {
+      "expression": "hincar los codos",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "status": "included",
+      "id": "es-libro-0134"
+    },
+    {
+      "expression": "ser un empollón",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "status": "included",
+      "id": "es-libro-0135"
+    },
+    {
+      "expression": "ser un hueso",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "status": "included",
+      "id": "es-libro-0136"
+    },
+    {
+      "expression": "saltarse una clase",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "status": "included",
+      "id": "es-libro-0137"
+    },
+    {
+      "expression": "hacer pellas",
+      "source": {
+        "unit": 9,
+        "pdfPage": 49,
+        "side": "left",
+        "printedPage": 90,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "status": "included",
+      "id": "es-libro-0138"
+    },
+    {
+      "expression": "ni de broma",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 1
+      },
+      "status": "included",
+      "id": "es-libro-0139"
+    },
+    {
+      "expression": "ni hablar",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 2
+      },
+      "status": "included",
+      "id": "es-libro-0140"
+    },
+    {
+      "expression": "venga",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 3
+      },
+      "status": "excluded_single_word",
+      "reasonTr": "Tek sözcüklü ünlem; deyim listesine alınmadı."
+    },
+    {
+      "expression": "qué va",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 4
+      },
+      "status": "included",
+      "id": "es-libro-0141"
+    },
+    {
+      "expression": "de eso nada",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 5
+      },
+      "status": "included",
+      "id": "es-libro-0142"
+    },
+    {
+      "expression": "vaya",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 6
+      },
+      "status": "excluded_single_word",
+      "reasonTr": "Tek sözcüklü ünlem; deyim listesine alınmadı."
+    },
+    {
+      "expression": "ser alucinante",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 7
+      },
+      "status": "included",
+      "id": "es-libro-0143"
+    },
+    {
+      "expression": "no me digas",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 8
+      },
+      "status": "included",
+      "id": "es-libro-0144"
+    },
+    {
+      "expression": "yo qué sé",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 9
+      },
+      "status": "included",
+      "id": "es-libro-0145"
+    },
+    {
+      "expression": "ánimo",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 10
+      },
+      "status": "excluded_single_word",
+      "reasonTr": "Tek sözcüklü ünlem; deyim listesine alınmadı."
+    },
+    {
+      "expression": "desde luego",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 11
+      },
+      "status": "included",
+      "id": "es-libro-0146"
+    },
+    {
+      "expression": "qué más da",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 12
+      },
+      "status": "included",
+      "id": "es-libro-0147"
+    },
+    {
+      "expression": "que te vaya bien",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 13
+      },
+      "status": "included",
+      "id": "es-libro-0148"
+    },
+    {
+      "expression": "ya veremos",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 14
+      },
+      "status": "included",
+      "id": "es-libro-0149"
+    },
+    {
+      "expression": "que lo pases genial",
+      "source": {
+        "unit": 10,
+        "pdfPage": 54,
+        "side": "left",
+        "printedPage": 100,
+        "section": "target_list",
+        "sourceGroup": 15
+      },
+      "status": "included",
+      "id": "es-libro-0150"
+    },
+    {
+      "expression": "vaya muermo",
+      "source": {
+        "unit": 10,
+        "pdfPage": 53,
+        "side": "left",
+        "printedPage": 98,
+        "section": "opening_dialogue",
+        "sourceGroup": 9
+      },
+      "status": "included",
+      "id": "es-libro-0151"
+    }
+  ]
+}

@@ -1,0 +1,477 @@
+{
+  "comparedBranch": "icerik/deyimler-es",
+  "comparedCommit": "cdc40431f85bcac4dfe9ec6cf2a2585c482b8efb",
+  "comparedItems": 326,
+  "noteTr": "Yalnız ifade biçimleri karşılaştırıldı; önceki anlam ve örnekler alınmadı. Yakın eşleşmeler aynı deyim olduğu kanıtı değildir.",
+  "matches": [
+    {
+      "id": "es-libro-0003",
+      "expression": "partirse de risa",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "morirse de risa",
+          "batch": "es-0006",
+          "similarity": 0.839
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0008",
+      "expression": "quedarse de piedra",
+      "exact": [
+        {
+          "expression": "quedarse de piedra",
+          "batch": "es-0000"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0012",
+      "expression": "dar calabazas",
+      "exact": [
+        {
+          "expression": "dar calabazas",
+          "batch": "es-0003"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0014",
+      "expression": "echar de menos",
+      "exact": [
+        {
+          "expression": "echar de menos",
+          "batch": "es-0006"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0017",
+      "expression": "poner las pilas a alguien",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "ponerse las pilas",
+          "batch": "es-0000",
+          "similarity": 0.938
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0018",
+      "expression": "arrimar el hombro",
+      "exact": [
+        {
+          "expression": "arrimar el hombro",
+          "batch": "es-0001"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0019",
+      "expression": "echar una mano",
+      "exact": [
+        {
+          "expression": "echar una mano",
+          "batch": "es-0000"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0020",
+      "expression": "trabajar a destajo",
+      "exact": [
+        {
+          "expression": "trabajar a destajo",
+          "batch": "es-0005"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0024",
+      "expression": "ir al grano",
+      "exact": [
+        {
+          "expression": "ir al grano",
+          "batch": "es-0000"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0026",
+      "expression": "irse por las ramas",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "andarse por las ramas",
+          "batch": "es-0007",
+          "similarity": 0.872
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0036",
+      "expression": "llegar a fin de mes",
+      "exact": [
+        {
+          "expression": "llegar a fin de mes",
+          "batch": "es-0004"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0039",
+      "expression": "costar un ojo de la cara",
+      "exact": [
+        {
+          "expression": "costar un ojo de la cara",
+          "batch": "es-0000"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0040",
+      "expression": "estar por las nubes",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "estar en las nubes",
+          "batch": "es-0000",
+          "similarity": 0.865
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0043",
+      "expression": "pagar a escote",
+      "exact": [
+        {
+          "expression": "pagar a escote",
+          "batch": "es-0004"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0047",
+      "expression": "hacer el agosto",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "hacer su agosto",
+          "batch": "es-0004",
+          "similarity": 0.867
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0049",
+      "expression": "no levantar cabeza",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "levantar cabeza",
+          "batch": "es-0001",
+          "similarity": 0.909
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0053",
+      "expression": "estar como una foca",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "estar como una sopa",
+          "batch": "es-0003",
+          "similarity": 0.895
+        },
+        {
+          "expression": "estar como una cabra",
+          "batch": "es-0002",
+          "similarity": 0.872
+        },
+        {
+          "expression": "estar como un flan",
+          "batch": "es-0003",
+          "similarity": 0.865
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0054",
+      "expression": "estar en los huesos",
+      "exact": [
+        {
+          "expression": "estar en los huesos",
+          "batch": "es-0001"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0055",
+      "expression": "no pegar ojo",
+      "exact": [
+        {
+          "expression": "no pegar ojo",
+          "batch": "es-0000"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0056",
+      "expression": "pasarlo mal",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "pasarlo bomba",
+          "batch": "es-0006",
+          "similarity": 0.833
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0057",
+      "expression": "ponerse las botas",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "ponerse las pilas",
+          "batch": "es-0000",
+          "similarity": 0.824
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0059",
+      "expression": "estar como una rosa",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "estar como una sopa",
+          "batch": "es-0003",
+          "similarity": 0.895
+        },
+        {
+          "expression": "estar como una cabra",
+          "batch": "es-0002",
+          "similarity": 0.872
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0062",
+      "expression": "dormir como un tronco",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "dormir como un lirón",
+          "batch": "es-0002",
+          "similarity": 0.829
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0063",
+      "expression": "dar un plantón",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "dar plantón",
+          "batch": "es-0009",
+          "similarity": 0.88
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0065",
+      "expression": "hablar por los codos",
+      "exact": [
+        {
+          "expression": "hablar por los codos",
+          "batch": "es-0001"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0067",
+      "expression": "meter la pata",
+      "exact": [
+        {
+          "expression": "meter la pata",
+          "batch": "es-0000"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0068",
+      "expression": "hacer buenas migas",
+      "exact": [
+        {
+          "expression": "hacer buenas migas",
+          "batch": "es-0003"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0072",
+      "expression": "caer bien",
+      "exact": [
+        {
+          "expression": "caer bien",
+          "batch": "es-0009"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0073",
+      "expression": "tener mano izquierda",
+      "exact": [
+        {
+          "expression": "tener mano izquierda",
+          "batch": "es-0001"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0075",
+      "expression": "mandar a alguien a freír espárragos",
+      "exact": [
+        {
+          "expression": "mandar a freír espárragos",
+          "batch": "es-0003"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0090",
+      "expression": "con pies de plomo",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "andar con pies de plomo",
+          "batch": "es-0001",
+          "similarity": 0.85
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0095",
+      "expression": "no decir ni pío",
+      "exact": [
+        {
+          "expression": "no decir ni pío",
+          "batch": "es-0007"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0097",
+      "expression": "no ver ni tres en un burro",
+      "exact": [],
+      "possible": [
+        {
+          "expression": "no ver tres en un burro",
+          "batch": "es-0002",
+          "similarity": 0.939
+        }
+      ]
+    },
+    {
+      "id": "es-libro-0099",
+      "expression": "no poder ver a alguien ni en pintura",
+      "exact": [
+        {
+          "expression": "no poder ver ni en pintura",
+          "batch": "es-0009"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0108",
+      "expression": "importar un comino",
+      "exact": [
+        {
+          "expression": "importar un comino",
+          "batch": "es-0003"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0120",
+      "expression": "mirar por encima del hombro",
+      "exact": [
+        {
+          "expression": "mirar por encima del hombro",
+          "batch": "es-0001"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0121",
+      "expression": "sacar de quicio",
+      "exact": [
+        {
+          "expression": "sacar de quicio",
+          "batch": "es-0006"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0123",
+      "expression": "tener algo en la punta de la lengua",
+      "exact": [
+        {
+          "expression": "tener en la punta de la lengua",
+          "batch": "es-0001"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0125",
+      "expression": "no tener ni idea",
+      "exact": [
+        {
+          "expression": "no tener ni idea",
+          "batch": "es-0008"
+        }
+      ],
+      "possible": []
+    },
+    {
+      "id": "es-libro-0128",
+      "expression": "no dar pie con bola",
+      "exact": [
+        {
+          "expression": "no dar pie con bola",
+          "batch": "es-0001"
+        }
+      ],
+      "possible": []
+    }
+  ]
+}
