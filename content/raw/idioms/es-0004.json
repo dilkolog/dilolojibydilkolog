@@ -1,0 +1,515 @@
+[
+ {
+  "w": "llegar a fin de mes",
+  "t": "ay sonunu getirmek, maaşı yetiştirmek",
+  "lit": "ay sonuna varmak",
+  "eq": "ay sonunu getirmek",
+  "s": "Con la subida del alquiler nos cuesta mucho llegar a fin de mes.",
+  "form": "llegar a fin de mes",
+  "tr": "Kira artışıyla birlikte ay sonunu getirmekte çok zorlanıyoruz.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "money",
+  "src": [
+   "https://es.wiktionary.org/wiki/llegar_a_fin_de_mes",
+   "https://es.wikipedia.org/wiki/Outerlands"
+  ]
+ },
+ {
+  "w": "apretarse el cinturón",
+  "t": "kemer sıkmak, harcamaları kısmak",
+  "lit": "kemerini sıkmak",
+  "eq": "kemer sıkmak",
+  "s": "Este trimestre toda la familia tendrá que apretarse el cinturón.",
+  "form": "apretarse el cinturón",
+  "tr": "Bu çeyrekte bütün ailenin kemer sıkması gerekecek.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/apretarse_el_cintur%C3%B3n",
+   "https://es.wikipedia.org/wiki/Deudas"
+  ]
+ },
+ {
+  "w": "andar mal de dinero",
+  "t": "para sıkıntısı çekmek, maddi durumu sıkışık olmak",
+  "lit": "paraca kötü yürümek",
+  "eq": "eli darda olmak",
+  "s": "No puedo ir al concierto porque últimamente ando mal de dinero.",
+  "form": "ando mal de dinero",
+  "tr": "Konsere gelemem çünkü son zamanlarda para sıkıntısı çekiyorum.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/andar_mal_de_dinero",
+   "https://es.wikipedia.org/wiki/Cuerda_de_presos"
+  ]
+ },
+ {
+  "w": "ir a medias",
+  "t": "masrafı yarı yarıya paylaşmak, ortaklaşa ödemek",
+  "lit": "yarımlara gitmek",
+  "s": "Si pedimos una pizza grande para cenar, podemos ir a medias.",
+  "form": "ir a medias",
+  "tr": "Akşam yemeği için büyük bir pizza söylersek hesabı yarı yarıya paylaşabiliriz.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/ir_a_medias",
+   "https://es.wikipedia.org/wiki/Carlos_del_Frade"
+  ]
+ },
+ {
+  "w": "estar en números rojos",
+  "t": "hesabı ekside olmak, borçta olmak",
+  "lit": "kırmızı sayılarda olmak",
+  "s": "Tras pagar la matrícula de la universidad, mi cuenta está en números rojos.",
+  "form": "está en números rojos",
+  "tr": "Üniversite harcını ödedikten sonra banka hesabım eksiye düştü.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/n%C3%BAmeros_rojos",
+   "https://es.wikipedia.org/wiki/Sobregiro"
+  ]
+ },
+ {
+  "w": "comprar a precio de saldo",
+  "t": "yok pahasına satın almak, kelepir fiyata almak",
+  "lit": "tasfiye fiyatına satın almak",
+  "s": "En la liquidación de invierno compramos a precio de saldo estos abrigos.",
+  "form": "compramos a precio de saldo",
+  "tr": "Kış indiriminde bu paltoları kelepir fiyata satın aldık.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/a_precio_de_saldo",
+   "https://es.wikipedia.org/wiki/Esc%C3%A1ndalo_de_Enron"
+  ]
+ },
+ {
+  "w": "nadar en la abundancia",
+  "t": "bolluk içinde yüzmek, çok zengin olmak",
+  "lit": "bollukta yüzmek",
+  "eq": "para içinde yüzmek",
+  "s": "Llevan una vida cómoda y tranquila, aunque tampoco nadan en la abundancia.",
+  "form": "nadan en la abundancia",
+  "tr": "Para içinde yüzmeseler de rahat ve sakin bir hayat sürüyorlar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/nadar_en_la_abundancia",
+   "https://es.wikipedia.org/wiki/Mill%C3%B3n"
+  ]
+ },
+ {
+  "w": "rascarse el bolsillo",
+  "t": "elini cebine atmak, para harcamaya razı olmak",
+  "lit": "cebini kaşımak",
+  "eq": "elini cebine atmak",
+  "s": "Si quieres entradas en primera fila, tendrás que rascarte el bolsillo.",
+  "form": "rascarte el bolsillo",
+  "tr": "Ön sıradan bilet istiyorsan elini cebine atman gerekecek.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/rascarse_el_bolsillo",
+   "https://es.wikipedia.org/wiki/Mississippi_Queen_%26_The_Wet_Dogs"
+  ]
+ },
+ {
+  "w": "hacer su agosto",
+  "t": "kısa sürede bol kazanç sağlamak, vurgun yapmak",
+  "lit": "kendi ağustosunu yapmak",
+  "eq": "köşeyi dönmek",
+  "s": "Los hoteles de la costa hacen su agosto durante las fiestas patronales.",
+  "form": "hacen su agosto",
+  "tr": "Sahildeki oteller yerel festival günlerinde bol kazanç sağlıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://es.wiktionary.org/wiki/hacer_su_agosto",
+   "https://es.wikipedia.org/wiki/Agosto"
+  ]
+ },
+ {
+  "w": "vivir al día",
+  "t": "günü gününe geçinmek, kenara hiç para koyamamak",
+  "lit": "güne göre yaşamak",
+  "eq": "kıt kanaat geçinmek",
+  "s": "Con un sueldo tan ajustado no puede ahorrar y vive al día.",
+  "form": "vive al día",
+  "tr": "Bu kadar kısıtlı bir maaşla para biriktiremiyor ve günü gününe geçiniyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/vivir_al_d%C3%ADa",
+   "https://es.wikipedia.org/wiki/Osvaldo_Miranda"
+  ]
+ },
+ {
+  "w": "pagar a pachas",
+  "t": "hesabı ortaklaşa ödemek, masrafı bölüşmek",
+  "lit": "paylarla ödemek",
+  "s": "Como los dos pedimos el menú del día, decidimos pagar a pachas.",
+  "form": "pagar a pachas",
+  "tr": "İkimiz de günün menüsünü söylediğimiz için hesabı bölüşerek ödemeye karar verdik.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://es.wiktionary.org/wiki/a_pachas",
+   "https://es.wikipedia.org/wiki/Provincia_de_Huamal%C3%ADes"
+  ]
+ },
+ {
+  "w": "hacerse de oro",
+  "t": "köşeyi dönmek, kısa sürede büyük servet kazanmak",
+  "lit": "kendini altından yapmak",
+  "eq": "köşeyi dönmek",
+  "s": "Inventó un filtro industrial muy barato y se hizo de oro.",
+  "form": "hizo de oro",
+  "tr": "Çok ucuz bir sanayi filtresi icat etti ve köşeyi döndü.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/hacerse_de_oro",
+   "https://es.wikipedia.org/wiki/Eric_Frattini"
+  ]
+ },
+ {
+  "w": "ser una mina de oro",
+  "t": "altın madeni gibi bol para kazandırmak, çok kârlı olmak",
+  "lit": "bir altın madeni olmak",
+  "s": "Aquella cafetería frente a la estación resultó ser una mina de oro.",
+  "form": "ser una mina de oro",
+  "tr": "İstasyonun karşısındaki o kafe tam bir altın madeni çıktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/mina_de_oro",
+   "https://es.wikipedia.org/wiki/Elmina"
+  ]
+ },
+ {
+  "w": "costar un pico",
+  "t": "epey pahalıya mal olmak, tuzluya patlamak",
+  "lit": "bir gagaya mal olmak",
+  "eq": "tuzluya patlamak",
+  "s": "Cambiar todas las ventanas del piso antiguo nos costó un pico.",
+  "form": "costó un pico",
+  "tr": "Eski dairenin bütün pencerelerini değiştirmek bize epey tuzluya patladı.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/costar_un_pico",
+   "https://es.wikipedia.org/wiki/Maruxa"
+  ]
+ },
+ {
+  "w": "salir a cuenta",
+  "pat": "salirle a cuenta algo a alguien",
+  "t": "hesaplı gelmek, masrafına değip kârlı çıkmak",
+  "lit": "hesaba çıkmak",
+  "s": "Si viajamos cuatro personas, alquilar un coche nos sale a cuenta.",
+  "form": "sale a cuenta",
+  "tr": "Dört kişi seyahat edersek araba kiralamak bize daha hesaplıya gelir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/salir_a_cuenta",
+   "https://es.wikipedia.org/wiki/Metro_(supermercado)"
+  ]
+ },
+ {
+  "w": "quedarse con lo puesto",
+  "t": "her şeyini kaybedip beş parasız kalmak, yalnızca üstündeki giysiyle kalmak",
+  "lit": "üstüne giydiğiyle kalmak",
+  "s": "Tras la quiebra del negocio familiar, se quedaron con lo puesto.",
+  "form": "quedaron con lo puesto",
+  "tr": "Aile işinin iflasından sonra her şeylerini kaybedip beş parasız kaldılar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/con_lo_puesto",
+   "https://es.wikipedia.org/wiki/Guerra_de_Arauco"
+  ]
+ },
+ {
+  "w": "cobrar en dinero negro",
+  "t": "kayıt dışı para almak, vergilendirilmemiş elden ödeme almak",
+  "lit": "kara parayla tahsil etmek",
+  "s": "Rechazó el trabajo porque le ofrecían cobrar en dinero negro.",
+  "form": "cobrar en dinero negro",
+  "tr": "Ödemeyi kayıt dışı elden yapmayı teklif ettikleri için işi reddetti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://es.wiktionary.org/wiki/dinero_negro",
+   "https://es.wikipedia.org/wiki/Dinero_negro"
+  ]
+ },
+ {
+  "w": "quedar por puertas",
+  "t": "iflas edip yoksul düşmek, beş parasız kalmak",
+  "lit": "kapılarda kalmak",
+  "eq": "kapı dışarı kalmak",
+  "s": "Una mala inversión bursátil hizo a la empresa quedar por puertas.",
+  "form": "quedar por puertas",
+  "tr": "Borsadaki kötü bir yatırım şirketi iflasın eşiğine getirdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/por_puertas",
+   "https://es.wikipedia.org/wiki/Sistema_combinacional"
+  ]
+ },
+ {
+  "w": "no tener donde caerse muerto",
+  "t": "dikili ağacı olmamak, aşırı yoksul olmak",
+  "lit": "ölü düşecek yeri olmamak",
+  "eq": "dikili ağacı olmamak",
+  "s": "Presumía de grandes lujos cuando en realidad no tenía donde caerse muerto.",
+  "form": "no tenía donde caerse muerto",
+  "tr": "Gerçekte dikili bir ağacı bile yokken büyük lükslerle övünüyordu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://es.wiktionary.org/wiki/no_tener_donde_caerse_muerto",
+   "https://es.wikipedia.org/wiki/Pipiolos"
+  ]
+ },
+ {
+  "w": "aflojar el bolsillo",
+  "t": "kesenin ağzını açmak, isteksizce de olsa para ödemek",
+  "lit": "cebini gevşetmek",
+  "eq": "kesenin ağzını açmak",
+  "s": "El patrocinador tardó semanas en decidirse a aflojar el bolsillo.",
+  "form": "aflojar el bolsillo",
+  "tr": "Sponsorun kesenin ağzını açmaya karar vermesi haftalar sürdü.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/aflojar_el_bolsillo",
+   "https://es.wikisource.org/wiki/La_vuelta_al_mundo_en_ochenta_d%C3%ADas%2FCap%C3%ADtulo_XXV"
+  ]
+ },
+ {
+  "w": "estar a dos velas",
+  "t": "beş parasız kalmak, cebinde tek kuruş olmamak",
+  "lit": "iki mumda olmak",
+  "eq": "beş parasız kalmak",
+  "s": "Tras pagar el seguro del coche, todo el mes estuve a dos velas.",
+  "form": "estuve a dos velas",
+  "tr": "Araba sigortasını ödedikten sonra bütün ay beş parasız kaldım.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/a_dos_velas",
+   "https://es.wikipedia.org/wiki/Starlite_Festival"
+  ]
+ },
+ {
+  "w": "valer un potosí",
+  "t": "bir servet değerinde olmak, paha biçilemez olmak",
+  "lit": "bir Potosí gümüş madenine değmek",
+  "eq": "bir servet değerinde olmak",
+  "s": "Aquella edición príncipe del siglo diecisiete valía un potosí.",
+  "form": "valía un potosí",
+  "tr": "On yedinci yüzyıldan kalma o ilk baskı bir servet değerindeydi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://es.wiktionary.org/wiki/valer_un_potos%C3%AD",
+   "https://es.wikipedia.org/wiki/Potos%C3%AD_(moneda)"
+  ]
+ },
+ {
+  "w": "pagar a escote",
+  "t": "hesabı kişi başı eşit bölüşerek ödemek, Alman usulü ödemek",
+  "lit": "pay usulü ödemek",
+  "s": "En las cenas de antiguos alumnos siempre acordamos pagar a escote.",
+  "form": "pagar a escote",
+  "tr": "Mezunlar yemeklerinde hesabı her zaman kişi başı eşit bölüşerek ödemekte anlaşırız.",
+  "reg": "neutral",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/pagar_a_escote",
+   "https://es.wikipedia.org/wiki/Antimio_de_Arriba"
+  ]
+ },
+ {
+  "w": "pagar a tocateja",
+  "t": "peşin ve nakit olarak anında ödemek",
+  "lit": "kiremit dokunuşuyla ödemek",
+  "eq": "tıkır tıkır peşin ödemek",
+  "s": "No quiso pedir ninguna hipoteca y prefirió pagar a tocateja.",
+  "form": "pagar a tocateja",
+  "tr": "Hiç konut kredisi çekmek istemedi ve peşin ödemeyi tercih etti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/pagar_a_tocateja",
+   "https://es.wikipedia.org/wiki/Pandemia_de_COVID-19_en_Espa%C3%B1a"
+  ]
+ },
+ {
+  "w": "hacer caja",
+  "t": "hasılat toplamak, satıştan nakit gelir elde etmek",
+  "lit": "kasa yapmak",
+  "s": "El club vendió a dos titulares para hacer caja antes de agosto.",
+  "form": "hacer caja",
+  "tr": "Kulüp ağustostan önce kasasına nakit koymak için iki as oyuncusunu sattı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/hacer_caja",
+   "https://es.wikipedia.org/wiki/Tour_de_Pek%C3%ADn"
+  ]
+ },
+ {
+  "w": "tirar de talonario",
+  "t": "çek defterine sarılmak, bol para dökerek sorunu çözmek",
+  "lit": "çek defterinden çekmek",
+  "s": "Para fichar al delantero estrella tuvieron que tirar de talonario.",
+  "form": "tirar de talonario",
+  "tr": "Yıldız forveti transfer etmek için çek defterine sarılıp bol para dökmeleri gerekti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://es.wiktionary.org/wiki/tirar_de_talonario",
+   "https://es.wikipedia.org/wiki/Gog"
+  ]
+ },
+ {
+  "w": "vivir de gorra",
+  "t": "beleş geçinmek, hiç para harcamadan başkalarının sırtından yaşamak",
+  "lit": "şapkadan yaşamak",
+  "s": "Se apunta a todas las fiestas porque le encanta vivir de gorra.",
+  "form": "vivir de gorra",
+  "tr": "Bedavadan yiyip içmeye bayıldığı için bütün davetlere katılır.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/de_gorra",
+   "https://es.wikipedia.org/wiki/Gorra"
+  ]
+ },
+ {
+  "w": "pagar contante y sonante",
+  "t": "nakit ve eksiksiz olarak hemen ödemek",
+  "lit": "sayılır ve çınlar şekilde ödemek",
+  "s": "El comprador exigió un descuento por pagar contante y sonante.",
+  "form": "pagar contante y sonante",
+  "tr": "Alıcı, bedeli nakit ve peşin ödediği için indirim talep etti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/contante_y_sonante",
+   "https://es.wikipedia.org/wiki/Dinero_en_efectivo"
+  ]
+ },
+ {
+  "w": "pedir el oro y el moro",
+  "t": "dünyanın parasını istemek, aşırı yüksek bedel talep etmek",
+  "lit": "altını ve Mağripliyi istemek",
+  "s": "Por aquel local tan pequeño el propietario pedía el oro y el moro.",
+  "form": "pedía el oro y el moro",
+  "tr": "O küçücük dükkân için mülk sahibi dünyanın parasını istiyordu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://en.wiktionary.org/wiki/el_oro_y_el_moro",
+   "https://es.wikipedia.org/wiki/El_oro_y_el_moro"
+  ]
+ },
+ {
+  "w": "hacer un simpa",
+  "t": "hesabı ödemeden sıvışmak",
+  "lit": "bir ödemesiz yapmak",
+  "s": "El camarero vigilaba la terraza para que nadie hiciera un simpa.",
+  "form": "hiciera un simpa",
+  "tr": "Garson, kimse hesabı ödemeden sıvışmasın diye terası gözlüyordu.",
+  "reg": "slang",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://es.wiktionary.org/wiki/hacer_un_simpa",
+   "https://es.wikipedia.org/wiki/Irse_sin_pagar"
+  ]
+ },
+ {
+  "w": "no tener ni cobre",
+  "t": "beş kuruşu olmamak, meteliksiz olmak",
+  "lit": "bakırı bile olmamak",
+  "eq": "beş kuruşu olmamak",
+  "s": "Aquel mes buscaba trabajo desesperadamente porque no tenía ni cobre.",
+  "form": "no tenía ni cobre",
+  "tr": "O ay cebinde beş kuruşu olmadığı için umutsuzca iş arıyordu.",
+  "reg": "informal",
+  "area": "Latin Amerika",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://es.wiktionary.org/wiki/no_tener_ni_cobre",
+   "https://es.wikipedia.org/wiki/Is%C3%B3topo"
+  ]
+ }
+]

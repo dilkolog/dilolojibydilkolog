@@ -1,0 +1,519 @@
+[
+ {
+  "w": "ser un ratón de biblioteca",
+  "t": "kitap kurdu olmak, okumaya çok düşkün olmak",
+  "lit": "bir kütüphane faresi olmak",
+  "eq": "kitap kurdu olmak",
+  "s": "Desde pequeña mi hermana era un ratón de biblioteca.",
+  "form": "era un ratón de biblioteca",
+  "tr": "Kız kardeşim küçüklüğünden beri tam bir kitap kurduydu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/rat%C3%B3n_de_biblioteca",
+   "https://es.wikipedia.org/wiki/El_rat%C3%B3n_de_biblioteca"
+  ]
+ },
+ {
+  "w": "tener memoria de elefante",
+  "t": "fil hafızasına sahip olmak, hiçbir şeyi unutmamak",
+  "lit": "fil hafızası olmak",
+  "eq": "fil hafızası olmak",
+  "s": "Mi abuelo tiene memoria de elefante para las fechas históricas.",
+  "form": "tiene memoria de elefante",
+  "tr": "Dedemin tarihi günler konusunda fil gibi hafızası vardır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/memoria_de_elefante",
+   "https://es.wikipedia.org/wiki/Chicho_Ib%C3%A1%C3%B1ez_Serrador"
+  ]
+ },
+ {
+  "w": "sentirse como pez en el agua",
+  "t": "kendi ortamında çok rahat hissetmek",
+  "lit": "suda balık gibi hissetmek",
+  "s": "En el escenario, la cantante se siente como pez en el agua.",
+  "form": "siente como pez en el agua",
+  "tr": "Şarkıcı sahnede kendini suda balık gibi rahat hissediyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/como_pez_en_el_agua",
+   "https://es.wikipedia.org/wiki/Gran_Premio_de_B%C3%A9lgica_de_Motociclismo_de_1990"
+  ]
+ },
+ {
+  "w": "ser la oveja negra",
+  "t": "kara koyun olmak, ailenin aykırı üyesi olmak",
+  "lit": "kara koyun olmak",
+  "eq": "kara koyun olmak",
+  "s": "Por dejar la carrera de derecho, decía ser la oveja negra.",
+  "form": "ser la oveja negra",
+  "tr": "Hukuk fakültesini bıraktığı için ailenin kara koyunu olduğunu söylerdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/oveja_negra",
+   "https://es.wikipedia.org/wiki/Oveja_Negra_(sello_discogr%C3%A1fico)"
+  ]
+ },
+ {
+  "w": "ponerse la piel de gallina",
+  "pat": "ponérsele la piel de gallina a alguien",
+  "t": "tüyleri diken diken olmak, ürpermek",
+  "lit": "tavuk derisi olmak",
+  "eq": "tüyleri diken diken olmak",
+  "s": "Al escuchar aquel coro en directo, se me puso la piel de gallina.",
+  "form": "puso la piel de gallina",
+  "tr": "O koroyu canlı dinleyince tüylerim diken diken oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/piel_de_gallina",
+   "https://es.wikipedia.org/wiki/Piloerecci%C3%B3n"
+  ]
+ },
+ {
+  "w": "ir a paso de tortuga",
+  "t": "kaplumbağa hızıyla ilerlemek, çok yavaş gitmek",
+  "lit": "kaplumbağa adımıyla gitmek",
+  "eq": "kaplumbağa hızıyla gitmek",
+  "s": "Con las obras en la autopista, los coches iban a paso de tortuga.",
+  "form": "iban a paso de tortuga",
+  "tr": "Otoyoldaki çalışmalar yüzünden arabalar kaplumbağa hızıyla ilerliyordu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/a_paso_de_tortuga",
+   "https://es.wikipedia.org/wiki/C%C3%B3nyuge"
+  ]
+ },
+ {
+  "w": "matar dos pájaros de un tiro",
+  "t": "bir taşla iki kuş vurmak",
+  "lit": "bir atışta iki kuş öldürmek",
+  "eq": "bir taşla iki kuş vurmak",
+  "s": "Si paso por el banco camino del mercado, mato dos pájaros de un tiro.",
+  "form": "mato dos pájaros de un tiro",
+  "tr": "Pazara giderken bankaya uğrarsam bir taşla iki kuş vurmuş olurum.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/matar_dos_p%C3%A1jaros_de_un_tiro",
+   "https://es.wikipedia.org/wiki/Dos_p%C3%A1jaros_de_un_tiro"
+  ]
+ },
+ {
+  "w": "haber gato encerrado",
+  "t": "işin içinde bir bit yeniği olmak",
+  "lit": "kilitli kedi bulunmak",
+  "eq": "işin içinde bir bit yeniği olmak",
+  "s": "Esa oferta parece demasiado generosa; seguro que aquí hay gato encerrado.",
+  "form": "hay gato encerrado",
+  "tr": "O teklif fazla cömert görünüyor; kesin burada bir bit yeniği var.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/haber_gato_encerrado",
+   "https://tatoeba.org/es/sentences/show/6536446"
+  ]
+ },
+ {
+  "w": "dar gato por liebre",
+  "pat": "darle gato por liebre a alguien",
+  "t": "aldatmak, iyisi yerine kötüsünü yutturmak",
+  "lit": "yabani tavşan yerine kedi vermek",
+  "s": "Revisa bien el contrato para que no te den gato por liebre.",
+  "form": "den gato por liebre",
+  "tr": "Seni kandırmamaları için sözleşmeyi iyice kontrol et.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/dar_gato_por_liebre",
+   "https://es.wikipedia.org/wiki/Gato_por_liebre_(programa_de_televisi%C3%B3n)"
+  ]
+ },
+ {
+  "w": "tomar el toro por los cuernos",
+  "t": "sorunu cesurca ve doğrudan ele almak",
+  "lit": "boğayı boynuzlarından tutmak",
+  "s": "Dejemos de aplazar la decisión y tomemos el toro por los cuernos.",
+  "form": "tomemos el toro por los cuernos",
+  "tr": "Kararı ertelemeyi bırakalım ve sorunu cesurca ele alalım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/tomar_el_toro_por_los_cuernos",
+   "https://es.wikipedia.org/wiki/Elecciones_generales_de_Israel_de_1999"
+  ]
+ },
+ {
+  "w": "tener pájaros en la cabeza",
+  "t": "boş hayaller peşinde koşmak, ayakları yere basmamak",
+  "lit": "kafasında kuşlar olmak",
+  "s": "A esa edad todavía tenía pájaros en la cabeza y poca experiencia.",
+  "form": "tenía pájaros en la cabeza",
+  "tr": "O yaşta hâlâ boş hayaller peşindeydi ve pek tecrübesi yoktu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/tener_p%C3%A1jaros_en_la_cabeza",
+   "https://es.wikipedia.org/wiki/P%C3%A1jaros_en_la_cabeza"
+  ]
+ },
+ {
+  "w": "buscarle tres pies al gato",
+  "t": "öküz altında buzağı aramak, gereksiz bahane aramak",
+  "lit": "kedide üç ayak aramak",
+  "eq": "öküz altında buzağı aramak",
+  "s": "El asunto es muy sencillo, no hace falta buscarle tres pies al gato.",
+  "form": "buscarle tres pies al gato",
+  "tr": "Mesele çok basit, öküz altında buzağı aramaya gerek yok.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/buscarle_tres_pies_al_gato",
+   "https://es.wikipedia.org/wiki/Pragma"
+  ]
+ },
+ {
+  "w": "pagar el pato",
+  "t": "kabak başına patlamak, başkasının suçunu çekmek",
+  "lit": "ördeği ödemek",
+  "eq": "kabak başına patlamak",
+  "s": "Ellos cometieron la imprudencia, pero al final yo pagué el pato.",
+  "form": "pagué el pato",
+  "tr": "Dikkatsizliği onlar yaptı ama sonunda kabak benim başıma patladı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/pagar_el_pato",
+   "https://es.wikipedia.org/wiki/Gabriela_Iribarren"
+  ]
+ },
+ {
+  "w": "ser un lobo con piel de cordero",
+  "t": "kuzu postuna bürünmüş kurt olmak, masum görünüp sinsi olmak",
+  "lit": "kuzu derili bir kurt olmak",
+  "eq": "kuzu postuna bürünmüş kurt olmak",
+  "s": "Parece muy amable al principio, pero es un lobo con piel de cordero.",
+  "form": "es un lobo con piel de cordero",
+  "tr": "Başta çok nazik görünür ama kuzu postuna bürünmüş bir kurttur.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/lobo_con_piel_de_cordero",
+   "https://es.wikipedia.org/wiki/Mimetismo_agresivo"
+  ]
+ },
+ {
+  "w": "estar como una cabra",
+  "t": "keçileri kaçırmak, çılgınca davranmak",
+  "lit": "bir keçi gibi olmak",
+  "eq": "keçileri kaçırmak",
+  "s": "Se bañó en el mar en pleno enero; está como una cabra.",
+  "form": "está como una cabra",
+  "tr": "Ocak ayının ortasında denize girdi; keçileri kaçırmış olmalı.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/como_una_cabra",
+   "https://es.wikipedia.org/wiki/Amaltea_(mitolog%C3%ADa)"
+  ]
+ },
+ {
+  "w": "tener vista de lince",
+  "t": "çok keskin gözlü olmak, en ufak ayrıntıyı fark etmek",
+  "lit": "vaşak bakışına sahip olmak",
+  "s": "Aquel corrector tenía vista de lince para detectar erratas en el texto.",
+  "form": "tenía vista de lince",
+  "tr": "O düzeltmen metindeki dizgi hatalarını yakalamakta şahin gibi keskin gözlüydü.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/vista_de_lince",
+   "https://es.wikipedia.org/wiki/Linceo_(hijo_de_Afareo)"
+  ]
+ },
+ {
+  "w": "dormir como un lirón",
+  "t": "kütük gibi uyumak, deliksiz uyumak",
+  "lit": "bir yediuyur gibi uyumak",
+  "eq": "kütük gibi uyumak",
+  "s": "Después de la caminata por la montaña, los niños durmieron como un lirón.",
+  "form": "durmieron como un lirón",
+  "tr": "Dağ yürüyüşünden sonra çocuklar kütük gibi deliksiz uyudu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/dormir_como_un_lir%C3%B3n",
+   "https://es.wikipedia.org/wiki/El_cuento_de_Jengibre_y_Pepinillos"
+  ]
+ },
+ {
+  "w": "llorar lágrimas de cocodrilo",
+  "t": "timsah gözyaşları dökmek, sahte üzüntü göstermek",
+  "lit": "timsah gözyaşları ağlamak",
+  "eq": "timsah gözyaşları dökmek",
+  "s": "Nadie creyó sus disculpas porque solo lloraba lágrimas de cocodrilo.",
+  "form": "lloraba lágrimas de cocodrilo",
+  "tr": "Sadece timsah gözyaşları döktüğü için özrüne kimse inanmadı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/l%C3%A1grimas_de_cocodrilo",
+   "https://es.wikipedia.org/wiki/L%C3%A1grimas_de_cocodrilo_(%C3%A1lbum)"
+  ]
+ },
+ {
+  "w": "ver las orejas al lobo",
+  "t": "tehlikenin kapıya dayandığını görmek",
+  "lit": "kurdun kulaklarını görmek",
+  "s": "Solo empezó a ahorrar cuando vio las orejas al lobo.",
+  "form": "vio las orejas al lobo",
+  "tr": "Ancak tehlikenin kapıya dayandığını görünce para biriktirmeye başladı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/ver_las_orejas_al_lobo",
+   "https://es.wikipedia.org/wiki/Odio%2C_amistad%2C_noviazgo%2C_amor%2C_matrimonio"
+  ]
+ },
+ {
+  "w": "entrar en la boca del lobo",
+  "t": "aslanın ağzına girmek, tehlikenin tam ortasına dalmak",
+  "lit": "kurdun ağzına girmek",
+  "eq": "aslanın ağzına girmek",
+  "s": "Ir allí sin documentos era entrar en la boca del lobo.",
+  "form": "entrar en la boca del lobo",
+  "tr": "Oraya belgesiz gitmek aslanın ağzına girmek demekti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/boca_del_lobo",
+   "https://es.wikipedia.org/wiki/En_la_boca_del_lobo"
+  ]
+ },
+ {
+  "w": "llevarse el gato al agua",
+  "t": "zoru başarmak, çetin bir yarışta galip gelmek",
+  "lit": "kediyi suya götürmek",
+  "s": "El partido estuvo muy reñido, pero el equipo local se llevó el gato al agua.",
+  "form": "llevó el gato al agua",
+  "tr": "Maç çok çekişmeli geçti ama ev sahibi takım zoru başarıp galip geldi.",
+  "reg": "neutral",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/llevarse_el_gato_al_agua",
+   "https://es.wikipedia.org/wiki/El_gato_al_agua"
+  ]
+ },
+ {
+  "w": "tener la mosca detrás de la oreja",
+  "t": "içine kurt düşmek, bir durumdan işkillenmek",
+  "lit": "kulağının arkasında sinek olmak",
+  "eq": "içine kurt düşmek",
+  "s": "Su silencio repentino me hizo tener la mosca detrás de la oreja.",
+  "form": "tener la mosca detrás de la oreja",
+  "tr": "Onun ani sessizliği içime kurt düşürdü.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/tener_la_mosca_detr%C3%A1s_de_la_oreja",
+   "https://es.wikipedia.org/wiki/Blanca_Rodr%C3%ADguez_(actriz)"
+  ]
+ },
+ {
+  "w": "ser un bicho raro",
+  "t": "tuhaf biri olmak, çevresine uymayan aykırı biri olmak",
+  "lit": "nadir bir böcek olmak",
+  "s": "En aquel pueblo tan tradicional, el pintor parecía ser un bicho raro.",
+  "form": "ser un bicho raro",
+  "tr": "O geleneksel kasabada ressam tuhaf biri gibi görünüyordu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/bicho_raro",
+   "https://es.wikipedia.org/wiki/Bicho_raro"
+  ]
+ },
+ {
+  "w": "no ver tres en un burro",
+  "t": "çok uzağı görememek, gözü aşırı bozuk olmak",
+  "lit": "bir eşekte üç kişiyi görememek",
+  "s": "Sin mis gafas graduadas no veo tres en un burro.",
+  "form": "no veo tres en un burro",
+  "tr": "Numaralı gözlüğüm olmadan burnumun ucunu bile göremiyorum.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/no_ver_tres_en_un_burro",
+   "https://es.wikipedia.org/wiki/Modismo"
+  ]
+ },
+ {
+  "w": "marear la perdiz",
+  "t": "lafı dolandırmak, sadede gelmeyip vakit kazanmak",
+  "lit": "kekliği sersemletmek",
+  "eq": "lafı gevelemek",
+  "s": "Responde a la pregunta directamente y deja de marear la perdiz.",
+  "form": "marear la perdiz",
+  "tr": "Soruya doğrudan cevap ver ve lafı dolandırmayı bırak.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/marear_la_perdiz",
+   "https://es.wikipedia.org/wiki/Jordi_Bold%C3%B3"
+  ]
+ },
+ {
+  "w": "matar el gusanillo",
+  "t": "açlığını biraz bastırmak, nefsini köreltmek",
+  "lit": "kurtçuğu öldürmek",
+  "eq": "açlığını bastırmak",
+  "s": "Tomamos unas aceitunas para matar el gusanillo antes de la cena.",
+  "form": "matar el gusanillo",
+  "tr": "Akşam yemeğinden önce açlığımızı bastırmak için birkaç zeytin yedik.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/matar_el_gusanillo",
+   "https://es.wikipedia.org/wiki/Mike_Hansen"
+  ]
+ },
+ {
+  "w": "tener malas pulgas",
+  "t": "çok huysuz olmak, çabuk öfkelenmek",
+  "lit": "kötü pireleri olmak",
+  "s": "No le hables antes del café porque por las mañanas tiene malas pulgas.",
+  "form": "tiene malas pulgas",
+  "tr": "Kahveden önce onunla konuşma çünkü sabahları çok huysuz olur.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/tener_malas_pulgas",
+   "https://es.wikipedia.org/wiki/Malas_pulgas"
+  ]
+ },
+ {
+  "w": "ser perro viejo",
+  "t": "eski kurt olmak, çok deneyimli olup kolay kanmamak",
+  "lit": "yaşlı köpek olmak",
+  "eq": "eski kurt olmak",
+  "s": "El inspector es perro viejo y notó la contradicción al instante.",
+  "form": "es perro viejo",
+  "tr": "Müfettiş eski kurttur, çelişkiyi anında fark etti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/perro_viejo",
+   "https://es.wikipedia.org/wiki/Jorge_Serrano_(m%C3%BAsico)"
+  ]
+ },
+ {
+  "w": "caer como moscas",
+  "t": "sinek gibi dökülmek, peş peşe devrilmek",
+  "lit": "sinekler gibi düşmek",
+  "eq": "sinek gibi dökülmek",
+  "s": "Con aquella ola de gripe invernal, los jugadores caían como moscas.",
+  "form": "caían como moscas",
+  "tr": "O kış gribi dalgasında oyuncular sinek gibi dökülüyordu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/caer_como_moscas",
+   "https://es.wikipedia.org/wiki/Sen_Dog"
+  ]
+ },
+ {
+  "w": "dormir la mona",
+  "t": "içkiyi fazla kaçırdıktan sonra sızıp uyumak, uyuyarak ayılmak",
+  "lit": "dişi maymunu uyumak",
+  "s": "Tras la fiesta de anoche, se quedó en el sofá durmiendo la mona.",
+  "form": "durmiendo la mona",
+  "tr": "Dün geceki partiden sonra kanepede sızıp uyuyarak sarhoşluğunu attı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://es.wiktionary.org/wiki/dormir_la_mona",
+   "https://es.wikipedia.org/wiki/Adriana_Ducret"
+  ]
+ },
+ {
+  "w": "matar moscas a cañonazos",
+  "t": "küçük bir iş için aşırı güç harcamak, orantısız önlem almak",
+  "lit": "top atışlarıyla sinek öldürmek",
+  "s": "Contratar un bufete entero para esa multa es matar moscas a cañonazos.",
+  "form": "matar moscas a cañonazos",
+  "tr": "O ceza için koca bir hukuk bürosu tutmak, sineği top atışıyla vurmaya benzer.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://en.wiktionary.org/wiki/matar_moscas_a_ca%C3%B1onazos",
+   "https://es.wikipedia.org/wiki/Telegram_en_Espa%C3%B1a"
+  ]
+ }
+]

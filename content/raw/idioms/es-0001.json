@@ -1,0 +1,531 @@
+[
+ {
+  "w": "echar un ojo",
+  "pat": "echarle un ojo a algo",
+  "t": "göz atmak, göz kulak olmak",
+  "lit": "bir göz atmak",
+  "eq": "göz atmak",
+  "s": "¿Puedes echar un ojo a mi maleta un momento?",
+  "form": "echar un ojo",
+  "tr": "Bir dakikalığına bavuluma göz kulak olabilir misin?",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "body",
+  "src": [
+   "https://es.wiktionary.org/wiki/echar_un_ojo",
+   "https://es.wikipedia.org/wiki/Pintura_r%C3%A1pida"
+  ]
+ },
+ {
+  "w": "dar la espalda",
+  "pat": "darle la espalda a alguien",
+  "t": "sırt çevirmek, yüzüstü bırakmak",
+  "lit": "sırtını vermek",
+  "eq": "sırt çevirmek",
+  "s": "Nunca les dio la espalda a sus amigos cuando lo necesitaban.",
+  "form": "dio la espalda",
+  "tr": "Arkadaşları ona ihtiyaç duyduğunda onlara asla sırt çevirmedi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/dar_la_espalda",
+   "https://es.wikipedia.org/wiki/Clarisse_McClellan"
+  ]
+ },
+ {
+  "w": "perder la cabeza",
+  "pat": "perder la cabeza por algo",
+  "t": "aklını kaybetmek, paniğe kapılmak",
+  "lit": "başını kaybetmek",
+  "s": "Mantén la calma y trata de no perder la cabeza.",
+  "form": "perder la cabeza",
+  "tr": "Sakinliğini koru ve paniğe kapılmamaya çalış.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "body",
+  "src": [
+   "https://es.wiktionary.org/wiki/perder_la_cabeza",
+   "https://es.wikipedia.org/wiki/Head_Over_Heels_(pel%C3%ADcula)"
+  ]
+ },
+ {
+  "w": "tener en la punta de la lengua",
+  "pat": "tener algo en la punta de la lengua",
+  "t": "dilinin ucunda olmak, hatırlayacak gibi olmak",
+  "lit": "dilinin ucunda tutmak",
+  "eq": "dilinin ucunda olmak",
+  "s": "Sé cómo se llama ese actor, lo tengo en la punta de la lengua.",
+  "form": "tengo en la punta de la lengua",
+  "tr": "O oyuncunun adını biliyorum, tam dilimin ucunda.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/en_la_punta_de_la_lengua",
+   "https://es.wikipedia.org/wiki/Consonante_alveolar"
+  ]
+ },
+ {
+  "w": "seguir al pie de la letra",
+  "pat": "seguir algo al pie de la letra",
+  "t": "harfi harfine uymak, birebir uygulamak",
+  "lit": "harfin ayağında takip etmek",
+  "eq": "harfi harfine uymak",
+  "s": "El médico me pidió seguir al pie de la letra el tratamiento.",
+  "form": "seguir al pie de la letra",
+  "tr": "Doktor tedaviyi harfi harfine uygulamamı istedi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "body",
+  "src": [
+   "https://es.wiktionary.org/wiki/al_pie_de_la_letra",
+   "https://es.wikipedia.org/wiki/Al_pie_de_la_letra_(programa_de_televisi%C3%B3n)"
+  ]
+ },
+ {
+  "w": "trabajar codo con codo",
+  "pat": "trabajar codo con codo con alguien",
+  "t": "omuz omuza çalışmak, birlikte ter dökmek",
+  "lit": "dirsek dirsekle çalışmak",
+  "eq": "omuz omuza çalışmak",
+  "s": "Llevamos cinco años trabajando codo con codo en este taller.",
+  "form": "trabajando codo con codo",
+  "tr": "Bu atölyede beş yıldır omuz omuza çalışıyoruz.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/codo_con_codo",
+   "https://es.wikipedia.org/wiki/Henk_Lubberding"
+  ]
+ },
+ {
+  "w": "hablar por los codos",
+  "t": "çenesi düşmek, durmadan konuşmak",
+  "lit": "dirseklerinden konuşmak",
+  "eq": "çenesi düşmek",
+  "s": "Cuando se pone nervioso, mi primo habla por los codos.",
+  "form": "habla por los codos",
+  "tr": "Kuzenim heyecanlandığında çenesi düşer, durmadan konuşur.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://es.wiktionary.org/wiki/hablar_por_los_codos",
+   "https://es.wikisource.org/wiki/Otelo_(Men%C3%A9ndez_y_Pelayo_tr.)%2FActo_II"
+  ]
+ },
+ {
+  "w": "dar la cara",
+  "pat": "dar la cara por alguien",
+  "t": "sorumluluk üstlenmek, çıkıp yüzleşmek",
+  "lit": "yüzünü vermek",
+  "s": "Después del fallo, el director salió a dar la cara.",
+  "form": "dar la cara",
+  "tr": "Hatadan sonra müdür çıkıp sorumluluğu üstlendi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://es.wiktionary.org/wiki/dar_la_cara",
+   "https://tatoeba.org/es/sentences/show/2258372"
+  ]
+ },
+ {
+  "w": "lavarse las manos",
+  "t": "sorumluluktan sıyrılmak, karışmamak",
+  "lit": "ellerini yıkamak",
+  "s": "Cuando surgió el problema, el jefe prefirió lavarse las manos.",
+  "form": "lavarse las manos",
+  "tr": "Sorun çıktığında patron sorumluluktan sıyrılmayı tercih etti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://es.wiktionary.org/wiki/lavarse_las_manos",
+   "https://es.wikipedia.org/wiki/Higiene_de_manos"
+  ]
+ },
+ {
+  "w": "morderse la lengua",
+  "t": "dilini ısırmak, söyleyeceğini yutmak",
+  "lit": "dilini ısırmak",
+  "eq": "dilini ısırmak",
+  "s": "Tuve que morderme la lengua para no discutir en la cena.",
+  "form": "morderme la lengua",
+  "tr": "Akşam yemeğinde tartışmamak için dilimi ısırmak zorunda kaldım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://es.wiktionary.org/wiki/morderse_la_lengua",
+   "https://es.wikipedia.org/wiki/Frase_hecha"
+  ]
+ },
+ {
+  "w": "romperse la cabeza",
+  "t": "kafa patlatmak, çok kafa yormak",
+  "lit": "kafasını kırmak",
+  "eq": "kafa patlatmak",
+  "s": "Llevo toda la tarde rompiéndome la cabeza con este acertijo.",
+  "form": "rompiéndome la cabeza",
+  "tr": "Bütün öğleden sonra bu bilmeceye kafa patlatıyorum.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/romperse_la_cabeza",
+   "https://es.wikipedia.org/wiki/Terminal_punto_de_venta"
+  ]
+ },
+ {
+  "w": "tener mano izquierda",
+  "t": "insanları ustalıkla idare etmek, diplomatik davranmak",
+  "lit": "sol eli olmak",
+  "s": "Para dirigir un equipo tan diverso hay que tener mano izquierda.",
+  "form": "tener mano izquierda",
+  "tr": "Bu kadar farklı bir ekibi yönetmek için insanları ustalıkla idare edebilmek gerekir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/mano_izquierda",
+   "https://es.wikipedia.org/wiki/Magia_negra"
+  ]
+ },
+ {
+  "w": "irse de las manos",
+  "pat": "írsele algo de las manos a alguien",
+  "t": "çığırından çıkmak, kontrolden çıkmak",
+  "lit": "ellerden gitmek",
+  "eq": "çığırından çıkmak",
+  "s": "La broma empezó bien, pero pronto se nos fue de las manos.",
+  "form": "fue de las manos",
+  "tr": "Şaka güzel başladı ama kısa sürede elimizden kaçıp çığırından çıktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/irse_de_las_manos",
+   "https://es.wikipedia.org/wiki/The_Bridge_(The_Walking_Dead)"
+  ]
+ },
+ {
+  "w": "levantar cabeza",
+  "t": "belini doğrultmak, toparlanmak",
+  "lit": "baş kaldırmak",
+  "eq": "belini doğrultmak",
+  "s": "Desde que cerró su tienda, el pobre no logra levantar cabeza.",
+  "form": "levantar cabeza",
+  "tr": "Dükkânını kapattığından beri zavallı bir türlü belini doğrultamıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/levantar_cabeza",
+   "https://es.wikipedia.org/wiki/Neferura"
+  ]
+ },
+ {
+  "w": "no mover un dedo",
+  "pat": "no mover un dedo por alguien",
+  "t": "parmağını bile kıpırdatmamak, hiç yardım etmemek",
+  "lit": "bir parmak hareket ettirmemek",
+  "eq": "parmağını bile kıpırdatmamak",
+  "s": "Mientras limpiábamos toda la casa, él no movió un dedo.",
+  "form": "no movió un dedo",
+  "tr": "Biz bütün evi temizlerken o parmağını bile kıpırdatmadı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/no_mover_un_dedo",
+   "https://es.wikipedia.org/wiki/Yordano_(%C3%A1lbum)"
+  ]
+ },
+ {
+  "w": "estar en los huesos",
+  "t": "bir deri bir kemik kalmak, çok zayıflamak",
+  "lit": "kemiklerde olmak",
+  "eq": "bir deri bir kemik kalmak",
+  "s": "Después de dos semanas con fiebre, el chico estaba en los huesos.",
+  "form": "estaba en los huesos",
+  "tr": "İki hafta ateşli yattıktan sonra çocuk bir deri bir kemik kalmıştı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/estar_en_los_huesos",
+   "https://es.wikipedia.org/wiki/Fear_Itself_(serie_de_televisi%C3%B3n)"
+  ]
+ },
+ {
+  "w": "dormir a pierna suelta",
+  "t": "mışıl mışıl uyumak, kaygısızca derin uyumak",
+  "lit": "gevşek bacakla uyumak",
+  "s": "Terminó todos sus exámenes y por fin durmió a pierna suelta.",
+  "form": "durmió a pierna suelta",
+  "tr": "Bütün sınavlarını bitirdi ve nihayet mışıl mışıl uyudu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/dormir_a_pierna_suelta",
+   "https://es.wikipedia.org/wiki/Ya_es_hora"
+  ]
+ },
+ {
+  "w": "comerse la cabeza",
+  "t": "kuruntu yapmak, kafayı fazla takmak",
+  "lit": "kafasını yemek",
+  "s": "Deja de comerte la cabeza por cosas que aún no han pasado.",
+  "form": "comerte la cabeza",
+  "tr": "Henüz olmamış şeyler için kuruntu yapıp kafanı yormayı bırak.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/comerse_la_cabeza",
+   "https://es.wikipedia.org/wiki/Billy_%26_Mandy%3A_Wrath_of_the_Spider_Queen"
+  ]
+ },
+ {
+  "w": "arrimar el hombro",
+  "t": "omuz vermek, işin ucundan tutmak",
+  "lit": "omzunu yaklaştırmak",
+  "eq": "omuz vermek",
+  "s": "Si todos arrimamos el hombro, terminaremos la mudanza antes del anochecer.",
+  "form": "arrimamos el hombro",
+  "tr": "Hepimiz omuz verirsek taşınmayı hava kararmadan bitiririz.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://es.wiktionary.org/wiki/arrimar_el_hombro",
+   "https://es.wikipedia.org/wiki/Justinas_Olechnavicius"
+  ]
+ },
+ {
+  "w": "no dar pie con bola",
+  "t": "hiçbir işi rast gitmemek, sürekli hata yapmak",
+  "lit": "ayakla topa isabet ettirememek",
+  "s": "Hoy estoy tan distraído que no doy pie con bola.",
+  "form": "no doy pie con bola",
+  "tr": "Bugün kafam o kadar dağınık ki elim ayağıma dolaşıyor, hiçbir şeyi tutturamıyorum.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/no_dar_pie_con_bola",
+   "https://es.wikipedia.org/wiki/Dicho"
+  ]
+ },
+ {
+  "w": "tener dos dedos de frente",
+  "t": "azıcık aklı olmak, sağduyulu olmak",
+  "lit": "iki parmak alnı olmak",
+  "s": "Cualquiera que tenga dos dedos de frente rechazaría esa oferta engañosa.",
+  "form": "tenga dos dedos de frente",
+  "tr": "Azıcık aklı olan herkes o aldatıcı teklifi geri çevirir.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/tener_dos_dedos_de_frente",
+   "https://es.wikipedia.org/wiki/Augusto_%C3%81lvarez_Rodrich"
+  ]
+ },
+ {
+  "w": "traer de cabeza",
+  "pat": "traer de cabeza a alguien",
+  "t": "başını döndürmek, çok uğraştırmak",
+  "lit": "kafadan getirmek",
+  "s": "Este fallo informático nos trae de cabeza desde el lunes.",
+  "form": "trae de cabeza",
+  "tr": "Bu bilgisayar arızası pazartesiden beri bizi çok uğraştırıyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/traer_de_cabeza",
+   "https://es.wikipedia.org/wiki/Silvio_Jos%C3%A9%2C_el_buen_par%C3%A1sito"
+  ]
+ },
+ {
+  "w": "mirar por encima del hombro",
+  "pat": "mirar a alguien por encima del hombro",
+  "t": "tepeden bakmak, küçümsemek",
+  "lit": "omzunun üstünden bakmak",
+  "eq": "tepeden bakmak",
+  "s": "Nadie soporta su costumbre de mirar por encima del hombro a los nuevos.",
+  "form": "mirar por encima del hombro",
+  "tr": "Yeni gelenlere tepeden bakma huyuna kimse katlanamıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/mirar_por_encima_del_hombro",
+   "https://es.wikipedia.org/wiki/Mirar_por_encima_del_hombro"
+  ]
+ },
+ {
+  "w": "andar con pies de plomo",
+  "t": "çok temkinli adım atmak, ince eleyip sık dokumak",
+  "lit": "kurşun ayaklarla yürümek",
+  "s": "En una negociación tan delicada conviene andar con pies de plomo.",
+  "form": "andar con pies de plomo",
+  "tr": "Böylesine hassas bir müzakerede çok temkinli adım atmak gerekir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/pies_de_plomo",
+   "https://es.wikipedia.org/wiki/Jerem%C3%ADas%2C_Pies_de_Plomo"
+  ]
+ },
+ {
+  "w": "venir como anillo al dedo",
+  "pat": "venirle como anillo al dedo a alguien",
+  "t": "cuk oturmak, tam işine gelmek",
+  "lit": "parmağa yüzük gibi gelmek",
+  "eq": "cuk oturmak",
+  "s": "Ese curso intensivo te viene como anillo al dedo para el puesto.",
+  "form": "viene como anillo al dedo",
+  "tr": "O yoğun kurs, bu pozisyon için sana cuk oturuyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://es.wiktionary.org/wiki/como_anillo_al_dedo",
+   "https://es.wikipedia.org/wiki/Como_anillo_al_dedo"
+  ]
+ },
+ {
+  "w": "no tener pies ni cabeza",
+  "t": "ipe sapa gelmemek, baştan sona tutarsız olmak",
+  "lit": "ne ayağı ne başı olmak",
+  "eq": "ipe sapa gelmemek",
+  "s": "La excusa que inventó para justificarse no tenía pies ni cabeza.",
+  "form": "no tenía pies ni cabeza",
+  "tr": "Kendini haklı çıkarmak için uydurduğu bahane ipe sapa gelmiyordu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://es.wiktionary.org/wiki/no_tener_pies_ni_cabeza",
+   "https://es.wikipedia.org/wiki/Arzach"
+  ]
+ },
+ {
+  "w": "darse con un canto en los dientes",
+  "t": "eldekine şükretmek, daha kötüsü olmadığına sevinmek",
+  "lit": "dişlerine bir taşla vurmak",
+  "eq": "öpüp başına koymak",
+  "s": "Con este tráfico, podemos darnos con un canto en los dientes si llegamos.",
+  "form": "darnos con un canto en los dientes",
+  "tr": "Bu trafikte varabilirsek öpüp başımıza koyalım.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/darse_con_un_canto_en_los_dientes",
+   "https://es.wikipedia.org/wiki/Tontxu"
+  ]
+ },
+ {
+  "w": "chuparse el dedo",
+  "t": "saf olmak, kolayca kanmak",
+  "lit": "parmağını emmek",
+  "s": "No intentes engañarme con ese cuento, que ya no me chupo el dedo.",
+  "form": "chupo el dedo",
+  "tr": "Beni o masalla kandırmaya çalışma, dünkü çocuk değilim.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/chuparse_el_dedo",
+   "https://es.wikipedia.org/wiki/Succi%C3%B3n_digital"
+  ]
+ },
+ {
+  "w": "caérsele el alma a los pies",
+  "pat": "caérsele el alma a los pies a alguien",
+  "t": "dünyası başına yıkılmak, büyük hayal kırıklığına uğramak",
+  "lit": "ruhu ayaklarına düşmek",
+  "eq": "dünyası başına yıkılmak",
+  "s": "Al ver su casa inundada, al vecino se le cayó el alma a los pies.",
+  "form": "cayó el alma a los pies",
+  "tr": "Evini su bastığını görünce komşunun dünyası başına yıkıldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/ca%C3%A9rsele_el_alma_a_los_pies",
+   "https://es.wikipedia.org/wiki/Jos%C3%A9_de_Vicente_Mu%C3%B1oz"
+  ]
+ },
+ {
+  "w": "caérsele la venda de los ojos",
+  "pat": "caérsele la venda de los ojos a alguien",
+  "t": "gözündeki perde kalkmak, gerçeği nihayet görmek",
+  "lit": "gözlerinin bağı düşmek",
+  "eq": "gözündeki perde kalkmak",
+  "s": "Al descubrir aquellas mentiras, por fin se le cayó la venda de los ojos.",
+  "form": "cayó la venda de los ojos",
+  "tr": "O yalanları öğrenince nihayet gözündeki perde kalktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://en.wiktionary.org/wiki/ca%C3%A9rsele_la_venda_de_los_ojos",
+   "https://es.wikipedia.org/wiki/La_venda"
+  ]
+ },
+ {
+  "w": "tener los nervios a flor de piel",
+  "t": "sinirleri çok gergin olmak, aşırı hassaslaşmak",
+  "lit": "sinirleri derinin çiçeğinde olmak",
+  "s": "Antes del estreno, todo el elenco tenía los nervios a flor de piel.",
+  "form": "tenía los nervios a flor de piel",
+  "tr": "Prömiyerden önce bütün oyuncu kadrosunun sinirleri yay gibi gergindi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://es.wiktionary.org/wiki/a_flor_de_piel",
+   "https://es.wikipedia.org/wiki/A_flor_de_piel_(telenovela)"
+  ]
+ }
+]
