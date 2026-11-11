@@ -135,14 +135,23 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
   const task = examTasks.find((t) => t.id === taskId)
   const area = useRef<HTMLTextAreaElement>(null)
 
+  // Both loads may land after the tab is left (or the screen closed): their result is then dropped.
   useEffect(() => {
-    db.getJournal(language).then(setEntries)
+    let live = true
+    void db.getJournal(language).then((j) => live && setEntries(j))
+    return () => {
+      live = false
+    }
   }, [db, language])
 
   useEffect(() => {
+    let live = true
     setTaskId('')
     setExamTasks([])
-    void loadExamTasks(language).then(setExamTasks)
+    void loadExamTasks(language).then((t) => live && setExamTasks(t))
+    return () => {
+      live = false
+    }
   }, [language])
 
   const handleDelete = async (entryToDelete: JournalEntry) => {
@@ -411,7 +420,12 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
   const [best, setBest] = useState<Record<string, number>>({})
   const [stars, setStars] = useState<number | null>(null)
   useEffect(() => {
-    if (mission) void db.getMissions().then((r) => setBest(bestStars(r, language)))
+    if (!mission) return
+    let live = true
+    void db.getMissions().then((r) => live && setBest(bestStars(r, language)))
+    return () => {
+      live = false
+    }
   }, [db, language, mission])
   const [scenario, setScenario] = useState(SCENARIOS[0])
   const [custom, setCustom] = useState('')
