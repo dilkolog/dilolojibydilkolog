@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import type { KelimeDB, Settings } from '../../data/db'
 import type { TargetLanguage, CefrLevel } from '../../engine/types'
 import { CEFR_LEVELS, type LevelCoverage } from '../../engine/cefrLevels'
-import { calculateGoalProgress, type CefrGoal } from '../../engine/goalPlanner'
+import { calculateGoalProgress, type CefrGoal, type GoalProgress } from '../../engine/goalPlanner'
+import { NEW_WORD_OPTIONS, recommendedNewWords } from '../../engine/workloadForecast'
 import { CalendarIcon, TargetIcon } from '../shared/icons'
 import { showToast } from '../shared/toastFeed'
 import { CEFR_MONKI } from '../shared/drawnArt'
@@ -56,6 +57,11 @@ export function GoalPlannerCard({
         // Pick the first incomplete level the form offers as default
         const next = levels.find((l) => GOAL_LEVELS.includes(l.level) && l.known / Math.max(1, l.total) < 0.85)
         if (next) setSelectedLevel(next.level)
+        // And the shortest time the learner's own pace reaches it in: the form opens on a plan that fits their day.
+        const pace = Math.min(s.newWordsPerDay, sustainableOf(s)) || s.newWordsPerDay
+        const level = next?.level ?? 'A2'
+        const fits = TIMEFRAMES.find((tf) => calculateGoalProgress({ level, targetDate: dateAfterDays(tf.days), createdAt: todayIso() }, levels, s.newWordsPerDay).neededDailyNew <= pace)
+        setSelectedDays((fits ?? TIMEFRAMES[TIMEFRAMES.length - 1]).days)
       }
     })
   }, [db, language, levels])
@@ -63,6 +69,7 @@ export function GoalPlannerCard({
   if (!settings || !levels.length) return null
 
   const activeGoal = settings.cefrGoals?.[language]
+  const sustainable = sustainableOf(settings)
 
   // Every change starts from the stored settings, not this card's copy: a sync or another screen may have changed them since.
   const change = async (edit: (s: Settings) => Settings) => {
@@ -99,7 +106,7 @@ export function GoalPlannerCard({
   }
 
   if (activeGoal && !isEditing) {
-    const progress = calculateGoalProgress(activeGoal, levels, settings.newWordsPerDay)
+    const progress = calculateGoalProgress(activeGoal, levels, settings.newWordsPerDay, new Date(), sustainable)
     const [badge, badgeClass] = progress.isCompleted
       ? ['Hedefe ulaştın', 'goal-ahead']
       : progress.isOverdue
@@ -144,11 +151,7 @@ export function GoalPlannerCard({
           </div>
         </div>
 
-        {progress.unrealistic && !progress.isOverdue && (
-          <p className="small muted">
-            Bu tarihe yetişmek için günde {progress.neededDailyNew} yeni kelime gerekiyor; bu çok fazla. Tarihi ileri almayı düşün.
-          </p>
-        )}
+        {!progress.isCompleted && !progress.isOverdue && <PaceLines progress={progress} settings={settings} sustainable={sustainable} />}
         {progress.isOverdue && <p className="small muted">Hedef tarih geçti. Yeni bir tarih seçmek için hedefi düzenle.</p>}
 
         <div className="row goal-actions">
@@ -174,6 +177,8 @@ export function GoalPlannerCard({
     { level: selectedLevel, targetDate: effectiveTargetDate, createdAt: todayIso() },
     levels,
     settings.newWordsPerDay,
+    new Date(),
+    sustainable,
   )
 
   return (
@@ -225,9 +230,9 @@ export function GoalPlannerCard({
 
       <p className="note small goal-preview-note">
         <strong>{selectedLevel}</strong> için yaklaşık <strong>{previewProgress.wordsRemaining.toLocaleString('tr')}</strong> kelime daha gerekiyor.{' '}
-        {dateText(effectiveTargetDate)} tarihine kadar günde <strong>{previewProgress.neededDailyNew}</strong> yeni kelime
-        {previewProgress.unrealistic ? '; bu çok fazla, daha uzak bir tarih seç.' : '.'}
+        {dateText(effectiveTargetDate)} tarihine kadar günde <strong>{previewProgress.neededDailyNew}</strong> yeni kelime.
       </p>
+      {!previewProgress.isCompleted && <PaceLines progress={previewProgress} settings={settings} sustainable={sustainable} />}
 
       <div className="row">
         <button type="button" className="btn btn-sm" onClick={() => saveGoal(selectedLevel, effectiveTargetDate)}>
@@ -241,6 +246,35 @@ export function GoalPlannerCard({
       </div>
     </section>
   )
+}
+
+/** The most new words a day the learner's daily minutes hold a month on (the Settings pace note's figure). */
+function sustainableOf(s: Settings): number {
+  return recommendedNewWords(NEW_WORD_OPTIONS, s.dailyMinutes, s.retention, s.fsrsWeights)
+}
+
+/**
+ * What the goal means for the learner's own day: the quota they have set (and when it gets there), and what their
+ * daily minutes can hold. The need alone said "14 a day" beside a quota of 5 that Settings already called too much.
+ */
+function PaceLines({ progress, settings, sustainable }: { progress: GoalProgress; settings: Settings; sustainable: number }) {
+  const current = settings.newWordsPerDay
+  const lines: string[] = []
+  if (progress.neededDailyNew > current)
+    lines.push(
+      current > 0 && progress.etaAtCurrent
+        ? `Şu anki ayarın günde ${current} yeni kelime; bu hızla ${dateText(progress.etaAtCurrent)} civarında ulaşırsın.`
+        : 'Şu an günlük yeni kelime kapalı.',
+    )
+  if (progress.unrealistic) lines.push(`Günde ${progress.neededDailyNew} kelime çok fazla: daha uzak bir tarih seç.`)
+  else if (progress.overMinutes)
+    lines.push(
+      sustainable > 0
+        ? `Günlük ${settings.dailyMinutes} dakikan, tekrarlar birikmeden günde en çok ${sustainable} yeni kelimeye yetiyor: tarihi ileri al ya da Ayarlar'da günlük süreyi artır.`
+        : `Günlük ${settings.dailyMinutes} dakikan yeni kelimelerin tekrarına yetmiyor: Ayarlar'da günlük süreyi artır.`,
+    )
+  if (!lines.length) return null
+  return <p className="small muted">{lines.join(' ')}</p>
 }
 
 /** "19 Ocak 2027" for a stored yyyy-mm-dd day; anything else as it is. */

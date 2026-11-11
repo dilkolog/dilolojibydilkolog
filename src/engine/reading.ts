@@ -44,13 +44,50 @@ export interface ReadingAnalysis {
 }
 
 const WORD = new RegExp(`(${WORD_SOURCE})`, 'u')
+const NO_WORDS: ReadonlySet<string> = new Set()
 
 export function readingKey(word: string, language: TargetLanguage): string {
   return stem(cleanToken(word, language).toLocaleLowerCase(language), language)
 }
 
+/**
+ * Function words (articles, prepositions: le, de, et…) count as known only once the learner shows a foundation: this
+ * many words known from reading or learned on the list. Before that a learner who knows nothing would read "%62
+ * known" over a text and "A1: %6" on Progress beside "0 known words". Until then they are new words like any other,
+ * and finishing a text adds them to the known words as usual.
+ */
+export const BASICS_AT = 50
+
+/** Words of the list in `language` the learner has learned (recognition in review). */
+function graduatedCount(language: TargetLanguage, vocabulary: readonly VocabularyEntry[], stateById: ReadonlyMap<string, UserWordState>): number {
+  let n = 0
+  for (const e of vocabulary) if (e.language === language && stateById.get(e.id)?.skills.recognition?.state === State.Review) n++
+  return n
+}
+
+/** Words the learner is known to know: marked known while reading, plus words learned on the list. */
+export function foundationSize(language: TargetLanguage, vocabulary: readonly VocabularyEntry[], states: readonly UserWordState[], known: ReadonlySet<string>): number {
+  return known.size + lookups(language, vocabulary, states).graduated
+}
+
+/** Whether function words count as known for this learner (see BASICS_AT). */
+export function basicsKnown(language: TargetLanguage, vocabulary: readonly VocabularyEntry[], states: readonly UserWordState[], known: ReadonlySet<string>): boolean {
+  return foundationSize(language, vocabulary, states, known) >= BASICS_AT
+}
+
+/**
+ * Below this many known words a learner is a beginner, and a text written for A1 is their material even though its
+ * coverage says "too hard" (every text does, at the start): it is labelled a starter text instead.
+ */
+export const STARTER_WORDS = 500
+
+/** A graded text written for beginners, for a learner who is one: rated as a starter text, not by coverage alone. */
+export function isStarterText(level: string | undefined, foundation: number): boolean {
+  return level === 'A1' && foundation < STARTER_WORDS
+}
+
 /** The word list and states as lookups: built once for the same arrays (a library of texts is rated against one list). */
-let lastLookups: { language: TargetLanguage; vocabulary: readonly VocabularyEntry[]; states: readonly UserWordState[]; stateById: Map<string, UserWordState>; byKey: Map<string, VocabularyEntry> } | null = null
+let lastLookups: { language: TargetLanguage; vocabulary: readonly VocabularyEntry[]; states: readonly UserWordState[]; stateById: Map<string, UserWordState>; byKey: Map<string, VocabularyEntry>; graduated: number } | null = null
 function lookups(language: TargetLanguage, vocabulary: readonly VocabularyEntry[], states: readonly UserWordState[]) {
   if (lastLookups && lastLookups.language === language && lastLookups.vocabulary === vocabulary && lastLookups.states === states) return lastLookups
   const stateById = new Map(states.map((s) => [s.entryId, s]))
@@ -59,7 +96,7 @@ function lookups(language: TargetLanguage, vocabulary: readonly VocabularyEntry[
     if (e.language !== language) continue
     for (const w of [e.lemma, ...(e.alternativeForms ?? [])]) if (!w.includes(' ')) byKey.set(readingKey(w, language), e)
   }
-  lastLookups = { language, vocabulary, states, stateById, byKey }
+  lastLookups = { language, vocabulary, states, stateById, byKey, graduated: graduatedCount(language, vocabulary, stateById) }
   return lastLookups
 }
 
@@ -73,6 +110,7 @@ export function analyzeText(
   ignored: ReadonlySet<string> = new Set(),
 ): ReadingAnalysis {
   const { stateById, byKey } = lookups(language, vocabulary, states)
+  const stop = basicsKnown(language, vocabulary, states, known) ? STOP[language] : NO_WORDS
 
   // A capitalised word never seen in lowercase anywhere in the text is taken as a name.
   const lowerSeen = new Set<string>()
@@ -105,7 +143,7 @@ export function analyzeText(
               const st = stateById.get(entry.id)
               status = st?.skills.recognition?.state === State.Review ? 'known' : st ? 'learning' : 'new'
             } else if (ignored.has(key)) status = 'name'
-            else if (STOP[language].has(lower) || known.has(key) || lower.length < 2) status = 'known'
+            else if (stop.has(lower) || known.has(key) || lower.length < 2) status = 'known'
             else if (/^\p{Lu}/u.test(clean) && !first && !lowerSeen.has(key)) status = 'name'
             else status = 'unseen'
             counts[status]++
@@ -149,11 +187,13 @@ const ZONE_LABEL = { easy: 'rahat', ideal: 'öğrenmeye ideal', hard: 'zorlayıc
 export type CoverageZone = 'easy' | 'ideal' | 'hard' | 'too_hard'
 
 /** The line a text carries in a picker: "%92 biliyorsun (rahat) · 14 yeni kelime". Empty for a text without words. */
-export function coverageLine(a: Pick<ReadingAnalysis, 'coverage' | 'unknownWords'> & { total?: number }): string {
+export function coverageLine(a: Pick<ReadingAnalysis, 'coverage' | 'unknownWords'> & { total?: number }, opts: { starter?: boolean } = {}): string {
   if (a.total === 0) return ''
   // The zone is the one of the figure shown: 97.96% reads %98 and is "rahat", not "öğrenmeye ideal".
   const pct = Math.round(a.coverage * 1000) / 10
-  const zone = ZONE_LABEL[coverageZone(pct / 100)]
+  const level = coverageZone(pct / 100)
+  // A beginner's A1 text (isStarterText): what it is for, not "çok zor", which every text is at the very start.
+  const zone = opts.starter && (level === 'hard' || level === 'too_hard') ? 'başlangıç metni' : ZONE_LABEL[level]
   // Words that are on the list but not yet known still count against the share: say so instead of "no new words".
   const news = a.unknownWords > 0 ? `${a.unknownWords} yeni kelime` : a.coverage < 1 ? 'kalanlar listende' : 'yeni kelime yok'
   return `%${pct.toLocaleString('tr-TR')} biliyorsun (${zone}) · ${news}`
@@ -244,6 +284,8 @@ export function keyUnknownWords(a: ReadingAnalysis, language: TargetLanguage, ra
   const found = new Map<string, KeyWord>()
   for (const p of a.paragraphs) for (const s of p) for (const t of s.tokens) {
     if (t.status !== 'unseen' || !t.key) continue
+    // A beginner's function words (the, le, de) are "new" too (BASICS_AT), but they are learned by reading, not studied first.
+    if (STOP[language].has(cleanToken(t.text, language).toLocaleLowerCase(language))) continue
     const k = found.get(t.key)
     if (k) k.count++
     else found.set(t.key, { key: t.key, word: cleanToken(t.text, language).toLocaleLowerCase(language), count: 1, sentence: s.text })
@@ -281,6 +323,7 @@ export function frequencyCoverage(
     if (e.language !== language) continue
     for (const w of [e.lemma, ...(e.alternativeForms ?? [])]) if (!w.includes(' ')) inList.set(readingKey(w, language), inList.get(readingKey(w, language)) || graduated.has(e.id))
   }
+  const stop = basicsKnown(language, vocabulary, states, known) ? STOP[language] : NO_WORDS
   const out: BandCoverage[] = bands.map((max) => ({ max, total: 0, known: 0, learning: 0 }))
   const seen = new Set<string>()
   list.slice(0, Math.max(...bands)).forEach((word, i) => {
@@ -288,7 +331,7 @@ export function frequencyCoverage(
     const key = readingKey(word, language)
     if (seen.has(key)) return
     seen.add(key)
-    const status = STOP[language].has(word) || known.has(key) || inList.get(key) === true ? 'known' : inList.has(key) ? 'learning' : 'unknown'
+    const status = stop.has(word) || known.has(key) || inList.get(key) === true ? 'known' : inList.has(key) ? 'learning' : 'unknown'
     for (const band of out) {
       if (i >= band.max) continue
       band.total++

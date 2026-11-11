@@ -360,7 +360,7 @@ export default function App() {
   // What is waiting where, shown as small counts in the menu.
   const navBadge: Partial<Record<NavScreen, number>> = useMemo(
     () => ({
-      home: plan?.items.filter((i) => i.kind === 'exercise').length ?? 0,
+      home: plan?.items.some((i) => i.kind === 'exercise') ? plan.questions : 0,
       words: data ? new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size : 0,
     }),
     [plan, data],

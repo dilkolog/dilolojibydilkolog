@@ -9,17 +9,21 @@ const ZONE: Record<CoverageZone, { title: string; text: string }> = {
   too_hard: { title: 'Çok zor', text: 'Bu metin şu an çoğunlukla çözümleme olur. Daha kolay bir metin seçmek daha verimli.' },
 }
 
+/** A beginner's A1 text (isStarterText): every text is "too hard" at the very start, and this one was written for it. */
+const STARTER = { title: 'Başlangıç metni', text: 'Yeni başlayanlar için yazıldı: bilmediğin kelime çok olacak, bu normal. Türkçesine ve kelimelere dokunarak oku; bitirdiğinde işaretlemediğin kelimeler bilinenlere eklenir ve sonraki metinler kolaylaşır.' }
+
 const pct = (x: number) => `%${Math.round(x * 1000) / 10}`.replace('.', ',')
 
 /** One line while reading (score, verdict, bar); the explanations open on request. */
-export function CoverageCard({ analysis, current, startCoverage, knownCount, expanded, onToggle }: { analysis: ReadingAnalysis; current: ReadingText | null; startCoverage: number | null; knownCount: number; expanded: boolean; onToggle: () => void }) {
+export function CoverageCard({ analysis, current, startCoverage, knownCount, starter = false, expanded, onToggle }: { analysis: ReadingAnalysis; current: ReadingText | null; startCoverage: number | null; knownCount: number; /** A beginner's A1 text: named for what it is, not "too hard". */ starter?: boolean; expanded: boolean; onToggle: () => void }) {
   const zone = coverageZone(analysis.coverage)
+  const verdict = starter && (zone === 'hard' || zone === 'too_hard') ? STARTER : ZONE[zone]
   const share = (n: number) => `${(n / Math.max(1, analysis.total)) * 100}%`
   return (
-    <section className={`card coverage coverage-compact zone-${zone}`}>
+    <section className={`card coverage coverage-compact zone-${verdict === STARTER ? 'hard' : zone}`}>
       <button type="button" className="coverage-line" aria-expanded={expanded} onClick={onToggle}>
         <span className="coverage-num">{pct(analysis.coverage)}</span>
-        <strong className="coverage-title">{ZONE[zone].title}</strong>
+        <strong className="coverage-title">{verdict.title}</strong>
         <span className="coverage-bar" role="img" aria-label={`Bilinen ${pct(analysis.coverage)}, kelimelerinde ${pct(analysis.coverageWithList - analysis.coverage)}, yeni ${pct(1 - analysis.coverageWithList)}`}>
           <span className="cb-known" style={{ width: share(analysis.counts.known) }} />
           <span className="cb-list" style={{ width: share(analysis.counts.learning + analysis.counts.new) }} />
@@ -29,7 +33,7 @@ export function CoverageCard({ analysis, current, startCoverage, knownCount, exp
       </button>
       {expanded && (
         <div className="stack gap-2 coverage-more">
-          <p className="small muted">{ZONE[zone].text}</p>
+          <p className="small muted">{verdict.text}</p>
           <p className="small muted coverage-legend">
             <span><i className="cb-known" /> bildiğin {analysis.counts.known}</span>
             <span><i className="cb-list" /> kelimelerinde {analysis.counts.learning + analysis.counts.new}</span>

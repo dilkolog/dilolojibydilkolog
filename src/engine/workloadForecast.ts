@@ -52,6 +52,9 @@ export function monthlyMinutes(perDay: number, retention: number, weights?: read
   return forecastWorkload(perDay, retention, weights).minutesAt(30) + perDay * NEW_WORD_MINUTES
 }
 
+/** The daily new-word quotas the study settings offer. */
+export const NEW_WORD_OPTIONS = [0, 3, 5, 8, 12, 20] as const
+
 /** The largest of `options` that still fits `dailyMinutes` a month on (0 when none does). */
 export function recommendedNewWords(options: readonly number[], dailyMinutes: number, retention: number, weights?: readonly number[] | null): number {
   return [...options].sort((a, b) => b - a).find((n) => monthlyMinutes(n, retention, weights) <= dailyMinutes) ?? 0

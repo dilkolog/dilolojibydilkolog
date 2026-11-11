@@ -207,12 +207,14 @@ export function Home({
   const showcase = pinnedBadges(pinned, earned).map((id) => game?.achievements.find((a) => a.id === id)).filter((a): a is NonNullable<typeof a> => !!a)
   const hello = `${greetingFor(now)}${name ? `, ${name}` : ''}!`
   const remaining = plan.items.filter((i) => i.kind === 'exercise').length
+  // What the day asks, not the planned items: each new word's first question brings two follow-ups (plan.questions).
+  const questions = remaining > 0 ? plan.questions : 0
   // A day over the split length with many new words: the hint suggests fewer, not more.
   // A deep pile of due reviews: not all of it has to be done today; the most urgent few are one tap away.
   const piled = !!onShortRound && plan.dueTotal >= BACKLOG_AT && remaining > SHORT_ROUND
   const long = !!onLowerNew && plan.estimatedMinutes > SPLIT_ABOVE_MINUTES && (newWordsPerDay ?? 0) > LIGHTER_NEW
   // Today's goal = what was already answered + what is still planned, so the ring fills as you go.
-  const goal = answeredToday + remaining
+  const goal = answeredToday + questions
   const progress = goal ? answeredToday / goal : 0
   const [moreOpen, setMoreOpen] = useState(() => {
     try {
@@ -397,7 +399,7 @@ export function Home({
               <>
                 <h2 className="hero-title">{answeredToday > 0 ? 'Güzel gidiyor, devam!' : 'Bugünün görevi'}</h2>
                 <p className="hero-sub">
-                  {remaining} soru · yaklaşık {plan.estimatedMinutes} dakika
+                  {questions} soru · yaklaşık {plan.estimatedMinutes} dakika
                 </p>
                 <ul className="mission">
                   {REASONS.filter((r) => plan.counts[r] > 0).map((r) => (

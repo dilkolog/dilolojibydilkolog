@@ -17,6 +17,8 @@ function makeMockDb(initialSettings: Partial<Settings> = {}): KelimeDB {
   let settings: Settings = {
     newWordsPerDay: 10,
     dailyGoal: 20,
+    dailyMinutes: 60,
+    retention: 0.9,
     language: 'fr',
     cefrGoals: {},
     ...initialSettings,
@@ -108,6 +110,19 @@ describe('GoalPlannerCard', () => {
     expect(db.saveSettings).toHaveBeenCalled()
     const saved = (db.saveSettings as unknown as ReturnType<typeof vi.fn>).mock.calls[0][0] as Settings
     expect(saved.newWordsPerDay).toBeGreaterThan(1)
+  })
+
+  it('says what the learner’s quota and daily minutes make of the goal, and suggests no more than the minutes hold', async () => {
+    const targetDate = new Date(Date.now() + 30 * 86_400_000).toISOString().slice(0, 10)
+    const db = makeMockDb({ newWordsPerDay: 5, dailyMinutes: 5, cefrGoals: { fr: { level: 'A2', targetDate, createdAt: '2026-01-01' } } })
+    await act(async () => {
+      root.render(<GoalPlannerCard db={db} language="fr" levels={mockLevels} />)
+    })
+    expect(rootEl.textContent).toContain('Şu anki ayarın günde 5 yeni kelime')
+    expect(rootEl.textContent).toMatch(/Günlük 5 dakikan/)
+    const quotaBtn = Array.from(rootEl.querySelectorAll('button')).find((b) => b.textContent?.includes('Günlük kotayı'))
+    const offered = Number(quotaBtn?.textContent?.match(/\d+/)?.[0] ?? 0)
+    expect(offered).toBeLessThanOrEqual(5)
   })
 
   it('allows editing and removing an existing goal', async () => {

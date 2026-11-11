@@ -78,14 +78,12 @@ export function NotFound({
           <p>
             <strong lang={language}>{word}</strong>: {deepl} <span className="small muted">(DeepL)</span>
           </p>
-          <p className="small muted">Tek kelimede çeviri yanılabilir. “Sözlüğe kaydet” kelimeyi sözlükte hep bulunsun diye saklar (çalışma listene girmez); “Kelimelerime ekle” onu çalışma kartı yapar. Yanlışsa anlamı düzeltip kaydet.</p>
+          <p className="small muted">Tek kelimede çeviri yanılabilir; yanlışsa anlamı düzelt.</p>
           <input type="text" className="input" placeholder={deepl} value={customMeaning} onChange={(e) => setCustomMeaning(e.target.value)} aria-label="Türkçe anlamı" />
+          {/* Learning the word is what a learner looks one up for: that is the main button. Keeping it only in the dictionary is the quiet one. */}
           <div className="row gap-xs items-center">
-            <button type="button" className="btn btn-sm" onClick={() => onSave(word, parseMeanings(customMeaning.trim() || deepl), customMeaning.trim() ? 'own' : 'deepl')}>
-              <BookIcon size={15} /> Sözlüğe kaydet
-            </button>
             <div className="word-hero-add-wrap">
-              <button type="button" className="btn btn-sm btn-quiet" onClick={() => onAdd(word, (customMeaning.trim() || deepl).trim())}>
+              <button type="button" className="btn btn-sm" onClick={() => onAdd(word, (customMeaning.trim() || deepl).trim())}>
                 <PlusIcon size={15} /> Kelimelerime ekle
               </button>
               {targetListName && (
@@ -95,6 +93,9 @@ export function NotFound({
                 </span>
               )}
             </div>
+            <button type="button" className="btn btn-sm btn-quiet" title="Kelime sözlükte hep bulunsun; çalışma kartı olmaz" onClick={() => onSave(word, parseMeanings(customMeaning.trim() || deepl), customMeaning.trim() ? 'own' : 'deepl')}>
+              <BookIcon size={15} /> Sözlüğe kaydet
+            </button>
           </div>
         </>
       ) : ai ? (
@@ -160,6 +161,7 @@ export function NotFound({
             <button
               type="button"
               className="btn btn-sm btn-quiet"
+              title="Kelime sözlükte hep bulunsun; çalışma kartı olmaz"
               disabled={!customMeaning.trim()}
               onClick={() => {
                 onSave(word, parseMeanings(customMeaning), 'own')
