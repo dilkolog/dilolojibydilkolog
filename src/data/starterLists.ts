@@ -1,7 +1,7 @@
 import type { CefrLevel, Gender, PartOfSpeech, TargetLanguage } from '../engine/types'
 
 /**
- * Ready-made starter lists (themed word sets from A1 everyday basics up to B1–C1 street language, idioms, work and
+ * Ready-made starter lists (themed word sets from A1 everyday basics up to B1–C1 street language, work and
  * academic discourse, with a sentence each), one file per language in `starterLists/`. A word of French or Spanish
  * carries its article ("la maison"), which gives the noun its gender; `g` sets the gender where the article does not
  * (el agua is feminine).
