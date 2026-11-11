@@ -21,6 +21,7 @@ import { deleteWordsWithUndo } from '../shared/undo'
 import { TextImport } from '../reading/TextImport'
 import { CommunitySets } from '../social/CommunitySets'
 import { StarterLists } from './StarterLists'
+import { IdiomPack } from './IdiomPack'
 import type { IncomingWord } from '../incoming'
 import { WordGraph } from './WordGraph'
 import { LANGUAGE_NAME } from '../shared/labels'
@@ -355,6 +356,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           <KindleImport db={db} language={language} existing={keys} onAdded={onChanged} />
           <TranslateImport db={db} language={language} existing={keys} onAdded={onChanged} />
           <StarterLists db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
+          <IdiomPack db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
           <CommunitySets language={language} onAdded={onChanged} />
           <MissingWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
           <PhotoWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />

@@ -3,7 +3,7 @@ import { baseForm, packRecord, unpackSentences } from '../../data/wordpack'
 import { genderOfCode, POS_CODE, type Pack } from '../../data/wordpackBuild'
 import { createEntry, markWord } from '../../data/wordInput'
 import { formIn } from '../../engine/inflection'
-import type { Gender, PartOfSpeech, TargetLanguage, VocabularyEntry, WordList } from '../../engine/types'
+import type { CefrLevel, Gender, PartOfSpeech, Register, TargetLanguage, VocabularyEntry, WordExtra, WordList } from '../../engine/types'
 import { rememberPlacement } from '../words/listMemory'
 import { newListId } from '../words/wordListId'
 
@@ -17,6 +17,11 @@ export interface KeyItem {
   translation?: string
   pos?: PartOfSpeech
   gender?: Gender
+  /** What a ready-made pack knows beyond that: the level, an idiom's word-for-word image, its register, more faces for the card. */
+  level?: CefrLevel
+  literal?: string
+  register?: Register
+  extras?: WordExtra[]
 }
 
 /**
@@ -59,13 +64,15 @@ export function keyEntries(items: readonly KeyItem[], language: TargetLanguage, 
           example: x.sentence ? markWord(x.sentence, x.word) : undefined,
           exampleTranslation: x.translation,
           exampleMetIn: x.sentence ? title : undefined,
+          level: x.level,
+          literal: x.literal,
         },
         language,
         now,
       )
       if (seen.has(entry.id)) return []
       seen.add(entry.id)
-      return [entry]
+      return [{ ...entry, ...(x.register ? { register: x.register } : {}), ...(x.extras?.length ? { extras: x.extras } : {}) }]
     } catch {
       return []
     }

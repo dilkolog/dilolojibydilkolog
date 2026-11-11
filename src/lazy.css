@@ -4355,3 +4355,9 @@ html:has(.lp) { scroll-behavior: smooth; }
 .progress-verdict .eyebrow { margin: 0; color: var(--lang-text); }
 .progress-verdict-text { margin: 0; font-size: var(--t-md); font-weight: 600; line-height: 1.5; max-width: 42rem; }
 .progress-verdict-go { justify-self: start; }
+
+/* Dictionary: an idiom's facts (pattern, Turkish twin, where it is said), label beside value. */
+.idiom-facts { display: grid; gap: 0.25rem; margin: 0; }
+.idiom-facts > div { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.idiom-facts dt { min-width: 6.5rem; }
+.idiom-facts dd { margin: 0; }

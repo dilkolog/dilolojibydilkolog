@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { buildConfusableQuestions, CONFUSABLE_RULES, confusableRound, CONFUSABLE_ROUND as ROUND_SIZE, type ConfusableQuestion } from '../../data/confusableRules'
 import { db } from '../../data/instance'
 import { createRng } from '../../engine/rng'
@@ -47,6 +47,12 @@ export function ConfusablesGame({ language, best, recordKey, onExit }: Props) {
   const [only, setOnly] = useState<string>('')
   const pool = useMemo(() => buildConfusableQuestions(language).filter((q) => !only || q.rule.id === only), [language, only])
   const [phase, setPhase] = useState<'intro' | 'play' | 'over'>('intro')
+  // Enter starts the round, but the page stays at its top: the button sits under a long row of pairs, and
+  // plain autofocus scrolled down to it (the game opened at its bottom, the pairs under the top bar).
+  const startButton = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    if (phase === 'intro') startButton.current?.focus({ preventScroll: true })
+  }, [phase])
   const [round, setRound] = useState<ConfusableQuestion[]>([])
   const [index, setIndex] = useState(0)
   const [selected, setSelected] = useState<string | null>(null)
@@ -161,7 +167,7 @@ export function ConfusablesGame({ language, best, recordKey, onExit }: Props) {
           {comingBack > 0 && <p className="small muted">Geçen sefer karıştırdığın {comingBack} cümle turun başına gelir.</p>}
           {top !== undefined && <p className="small muted">Rekorun: %{top}</p>}
           <div className="row">
-            <button className="btn btn-lg" onClick={start} autoFocus disabled={pool.length === 0}>
+            <button ref={startButton} className="btn btn-lg" onClick={start} disabled={pool.length === 0}>
               {Math.min(ROUND_SIZE, pool.length)} soruluk tura başla
             </button>
           </div>

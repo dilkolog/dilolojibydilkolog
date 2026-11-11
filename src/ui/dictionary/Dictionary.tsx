@@ -29,6 +29,10 @@ import { WordCard } from './DictionaryCard'
 import { NotFound } from './DictionaryNotFound'
 import { SavedCard, DayWord, SavedList } from './DictionarySaved'
 import { sentencesNow } from './dictSentences'
+import { findIdioms, loadIdioms, type Idiom } from '../../data/idioms'
+import { idiomItems } from '../words/idiomItems'
+import { keyEntries } from '../reading/keyWordsList'
+import { IdiomCard, IdiomList } from './DictionaryIdioms'
 
 /**
  * Any word, in the list or not: what it means in Turkish, how it sounds, where it comes from and
@@ -101,6 +105,7 @@ export function DictionaryScreen({ language, vocabulary, states = [], lists: pro
     })
   }
   const [pack, setPack] = useState<Pack | null | undefined>(undefined)
+  const [idioms, setIdioms] = useState<readonly Idiom[]>([])
   const [recent, setRecent] = useState(() => loadRecent(language))
   const [notes, setNotes] = useState<DictionaryNotes>(emptyNotes)
   const notesRef = useRef(notes)
@@ -122,6 +127,8 @@ export function DictionaryScreen({ language, vocabulary, states = [], lists: pro
     setReviewing(false)
     setRecent(loadRecent(language))
     void loadPack(language).then((p) => live && setPack(p ?? null))
+    setIdioms([])
+    void loadIdioms(language).then((l) => live && setIdioms(l))
     void db.getDictionaryNotes(language).then((n) => {
       if (!live) return
       notesRef.current = n
@@ -247,6 +254,27 @@ export function DictionaryScreen({ language, vocabulary, states = [], lists: pro
     return sentencesNow(language, hit?.word ?? word, hit?.rec.c)[0]?.text
   }
   const targetListName = currentPlacementInfo.listId ? currentPlacementInfo.label : 'Listesiz'
+  // The idiom pack: an idiom typed whole gets its own card; a word shows the idioms it is in.
+  const idiomHit = useMemo(() => findIdioms(idioms, typed), [idioms, typed])
+  const idiomEntry = useMemo(() => (idiomHit.exact ? keyEntries(idiomItems([idiomHit.exact]), language, new Date(), '')[0] : undefined), [idiomHit.exact, language])
+  const idiomOwn = idiomEntry ? vocabulary.find((v) => v.id === idiomEntry.id) : undefined
+  const addIdiom = async () => {
+    if (!idiomEntry) return
+    const { listId, levelId } = parsePlacement(targetPlacement)
+    const list = lists.find((l) => l.id === listId)
+    await db.vocabulary.put({ ...idiomEntry, addedAt: new Date(), ...(list ? { listId: list.id, ...(levelId ? { levelId } : {}) } : {}) })
+    setRecent(saveRecent(language, idiomEntry.lemma))
+    onAdded?.()
+    showToast(list ? `“${idiomEntry.lemma}” “${list.name}” listesine eklendi.` : `“${idiomEntry.lemma}” kelimelerine eklendi.`, { label: 'Aç', run: () => onOpenWord(idiomEntry.id) }, 5000, 'success')
+  }
+  // An idiom whose card stays up a moment was looked up: it joins the recent searches like a word.
+  const idiomShown = !result.exact ? idiomHit.exact?.w : undefined
+  useEffect(() => {
+    if (!idiomShown) return
+    const t = setTimeout(() => setRecent(saveRecent(language, idiomShown)), 1500)
+    return () => clearTimeout(t)
+  }, [idiomShown, language])
+  const idiomCard = idiomHit.exact && !result.exact ? <IdiomCard key={idiomHit.exact.w} language={language} idiom={idiomHit.exact} own={idiomOwn} targetListName={targetListName} onOpenWord={onOpenWord} onAdd={() => void addIdiom()} /> : null
   const savedExact = result.exact ? undefined : saved.find((e) => e.exact)
   const savedOthers = saved.filter((e) => e !== savedExact)
   const savedCard = savedExact ? (
@@ -462,6 +490,8 @@ export function DictionaryScreen({ language, vocabulary, states = [], lists: pro
             </li>)}</ul>
             {analyses.length > 1 && <p className="small muted">Bu yazım birden fazla çekime karşılık geliyor; cümlenin bağlamına göre seç.</p>}
           </section>}
+          {/* With no word of that spelling, the idioms it touches are the answer: they come first. */}
+          {!result.exact && <IdiomList language={language} typed={typed} idioms={idiomHit.others} onPick={pick} />}
           {result.exact ? (
             <WordCard
               key={result.exact.word}
@@ -502,7 +532,7 @@ export function DictionaryScreen({ language, vocabulary, states = [], lists: pro
               onPick={pick}
               onSwitchLanguage={onSwitchLanguage}
             />
-          ) : savedCard ?? (
+          ) : idiomCard ?? savedCard ?? (
             <NotFound
               key={typed}
               language={language}
@@ -513,10 +543,12 @@ export function DictionaryScreen({ language, vocabulary, states = [], lists: pro
               onAdd={onAdd}
               onSave={save}
               deeplOn={deeplOn}
-              hasOthers={result.fromTurkish.length > 0}
+              hasOthers={result.fromTurkish.length > 0 || idiomHit.others.length > 0}
               hasSimilar={result.similar.length > 0}
             />
           )}
+
+          {result.exact && <IdiomList language={language} typed={typed} idioms={idiomHit.others} onPick={pick} />}
 
           {savedOthers.length > 0 && <SavedList language={language} list={savedOthers} sentenceOf={sentenceOf} onPick={pick} onRemove={(w) => updateNotes((n) => removeEntry(n, w))} />}
 

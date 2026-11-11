@@ -110,11 +110,16 @@ export function Summary({
     if (leveledUp) sfx.levelUp()
     else if (newBadges.length) sfx.badge()
     else if (accuracy >= 0.85 && summary.answered >= 5) sfx.finish()
-    if (after) markLevelSeen(after.level.level)
     if (leveledUp && after) void notify(levelNotice(after.level.level, after.level.title))
     // Play once when the summary opens.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  // The level this summary shows is seen, whenever it arrives (the game state after the session may come a moment
+  // after the summary opens): otherwise the level watcher celebrated it a second time once the summary closed.
+  const levelAfter = after?.level.level
+  useEffect(() => {
+    if (levelAfter !== undefined) markLevelSeen(levelAfter)
+  }, [levelAfter])
 
   const grown = practice
     ? []
