@@ -23,6 +23,18 @@ export interface SharedRead {
 const READ_WORDS = 30
 const YOUTUBE = /^https?:\/\/((www|m)\.)?(youtube\.com|youtu\.be)\//i
 
+/** A source link is kept only as a web address: anything else (javascript:, data:…) would be drawn as a link. */
+export function webLink(url: string | null | undefined): string | undefined {
+  const raw = url?.trim()
+  if (!raw) return undefined
+  try {
+    const parsed = new URL(raw)
+    return parsed.protocol === 'https:' || parsed.protocol === 'http:' ? raw : undefined
+  } catch {
+    return undefined
+  }
+}
+
 export function readIncoming(): IncomingWord | null {
   const p = new URLSearchParams(location.search)
   const shared = readShared(p)
@@ -30,13 +42,13 @@ export function readIncoming(): IncomingWord | null {
   const word = p.get('add')?.trim()
   if (!word) return null
   // A whole selection sent from an iPhone shortcut: a sentence to pick the word from.
-  if (word.split(/\s+/).length > 4 && !p.get('context')) return { word: '', context: word.slice(0, 400), lang: undefined, src: p.get('src') ?? undefined }
+  if (word.split(/\s+/).length > 4 && !p.get('context')) return { word: '', context: word.slice(0, 400), lang: undefined, src: webLink(p.get('src')) }
   const lang = p.get('lang') as TargetLanguage | null
   return {
     word,
     context: p.get('context')?.trim() ?? '',
     lang: lang && TARGET_LANGUAGES.includes(lang) ? lang : undefined,
-    src: p.get('src') ?? undefined,
+    src: webLink(p.get('src')),
   }
 }
 
@@ -47,7 +59,7 @@ export function readIncoming(): IncomingWord | null {
 export function readShared(p: URLSearchParams): IncomingWord | null {
   const text = (p.get('share_text') ?? p.get('share_title') ?? '').trim()
   // Some apps put the link in the text field.
-  const link = p.get('share_url') ?? text.match(/https?:\/\/\S+/)?.[0]
+  const link = webLink(p.get('share_url') ?? text.match(/https?:\/\/\S+/)?.[0])
   const clean = text.replace(/https?:\/\/\S+/g, '').replace(/^["“«]|["”»]$/g, '').trim()
   const sharedTitle = p.get('share_title')?.trim() || undefined
   // A video goes to Reading, where its transcript is fetched at once: the YouTube app often sends the video's

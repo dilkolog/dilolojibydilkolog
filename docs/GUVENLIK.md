@@ -1,11 +1,20 @@
 # Güvenlik
 
-Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13; **2026-10-19 güncellemesi aşağıda**).
+Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13; güncellemeler aşağıda, en yenisi 2026-11-11).
+
+Altyapı Cloudflare Worker + R2 + Supabase'tedir (Vercel'den 2026-11-08'de çıkıldı). Aşağıdaki eski bölümlerde geçen "Vercel ortam değişkeni / Redeploy / Vercel Firewall / Vercel Blob" karşılıkları: Cloudflare Worker gizlisi (`npx wrangler secret put …` ya da panel), `main`'e birleştirme (Workers Builds kendiliğinden dağıtır), Cloudflare hız sınırlayıcı ve R2 (`diloloji-blobs`).
+
+## 2026-11-11 güncellemesi
+- **Hız freni artık sert:** Worker'a bağlı Cloudflare hız sınırlayıcı (`API_LIMITER`, `wrangler.jsonc` `ratelimits`) bütün `/api/*` için adres başına dakikada 300 istek uygular. `api/_rate.ts`'in örnek belleğindeki uç başına sınırlar bunun üstüne ek frendir. Aşağıdaki "hız freni zayıf" ve "WAF kuralı" notları bununla geçersiz.
+- **Kullanıcının verdiği adresi çeken tek uç: `/api/news?url=`** (Okuma → bağlantıdan metin ekle). Korumalar: yalnızca `https`, IP adresi, `localhost` ve özel/yerel adlar reddedilir (`publicPageUrl`, `src/engine/news.ts`); yönlendirmeler elle izlenir ve her adım yeniden denetlenir (en çok 4); yalnızca HTML kabul edilir, gövde 3 MB'ta kesilir, istek 8 sn'de zaman aşımına uğrar; yalnızca metin döner, hiçbir şey saklanmaz. Adı özel bir adrese çözülen bir alan adı Worker'da zararsızdır: Cloudflare Worker'ın `fetch`i iç ağa ulaşmaz. Haber ve dinleme kaynakları ise hâlâ izin listesindeki kimlikle seçilir. "Sunucu keyfi adres almaz" cümlesi bu yüzden aşağıda düzeltildi.
+- **Web'den gelen kelimenin kaynağı:** yer imi/paylaşımla gelen `?src=` ve `share_url` yalnızca `http(s)` ise saklanır ve bağlantı olarak çizilir (`webLink`, `src/ui/incoming.ts`; `Words.tsx` ayrıca denetler). Önceden `javascript://alan/…` biçimli bir adres bağlantı olarak çiziliyordu; CSP satır içi betiği engellediği için çalışmazdı.
+- **Bilinen, bilerek bırakılanlar:** ortak düzenlenen bir listeyi bağlantıyı bilen her onaylı üye tümüyle değiştirebilir (boşaltmak dahil) ve geri alma yok; GitHub Actions adımları commit özetiyle değil sürüm etiketiyle (`@v4`) sabitli (düşük risk).
+
 
 ## 2026-10-19 güncellemesi (Cloudflare Worker + Supabase girişi)
 - **Şifreleme iddiası değişti.** Supabase eşitlemesinde (`sync_parts`) veri açık jsonb olarak tutulur; yalnızca eski Blob/R2 yolu istemci tarafında şifrelidir. `sync_keys.enc` ve `auth` Supabase'te düz metindir. Servis anahtarına ya da panele erişen veriyi okuyabilir; bu bir tasarım ödünüdür (satır düzeyinde güvenlik kendi satırını korur). Aşağıdaki "uçtan uca şifreli" cümlesi bu yüzden Blob/R2 yolu için geçerlidir.
 - **Hesap şartı sunucuda:** Supabase açıkken `ADMIN_TOKEN` olmasa da kota kullanan uçlar (`translate`, `news`, `listen`, `clips`, `youtube`, `share`, `access` arkadaşlar, `push` mail) geçerli bir eşitleme hesabı ister; `api/sync.ts` ilk yazmayla hesap açmaz (hesap yalnızca `vault-link`le talep edilir).
-- **Hız freni Worker'da zayıf:** `api/_rate.ts` sayacı Worker örneğinin belleğindedir; Cloudflare çok sayıda kısa ömürlü örnek çalıştırır, yani fiilen kesin sınır yoktur. Sert sınır için Cloudflare WAF **Rate Limiting** kuralı (ücretsiz planda 1 kural; öncelik `/api/translate`, `/api/push`, `/api/sync`) ya da Workers Rate Limiting bağlaması gerekir. "Vercel Firewall" önerisi artık geçersiz.
+- ~~**Hız freni Worker'da zayıf:**~~ (2026-11-11: geçersiz, `API_LIMITER` bağlı; yukarıya bak) `api/_rate.ts` sayacı Worker örneğinin belleğindedir; Cloudflare çok sayıda kısa ömürlü örnek çalıştırır, yani fiilen kesin sınır yoktur. Sert sınır için Cloudflare WAF **Rate Limiting** kuralı (ücretsiz planda 1 kural; öncelik `/api/translate`, `/api/push`, `/api/sync`) ya da Workers Rate Limiting bağlaması gerekir. "Vercel Firewall" önerisi artık geçersiz.
 - **Başlıklar:** statik dosyalara `dist/_headers` (HSTS dahil, `scripts/cf-headers.mjs`), `/api/*` yanıtlarına Worker `x-content-type-options: nosniff` ekler (`worker/index.ts`).
 - **Mail onayı** bağlantıda GET ile değil, sayfadaki düğmeyle POST ile yapılır; onay bekleyen adres bir saat silinemez (mail bombası freni).
 - **CSP zorunlu (2026-10-20):** başlık artık `Content-Security-Policy` (engeller); ayrıntı aşağıda ve `docs/veri/csp-gecis.md`.
@@ -40,12 +49,12 @@ Açık kalanlar (kalıcı sayaç ya da şema gerekir):
 
 ## Var olanlar
 - **Eşitleme uçtan uca şifreli:** veri cihazda şifrelenir; sunucu (`api/sync.ts`, özel Vercel Blob) yalnızca opak bayt saklar. Hesaplı girişte erişim belirteci denetlenir; günlük geri yükleme noktaları.
-- **Sunucu fonksiyonları keyfi adres almaz:** haber/dinleme kaynakları kimlikle seçilir (izin listesi), SSRF yok.
+- **Sunucunun çektiği adresler:** haber/dinleme kaynakları kimlikle seçilir (izin listesi). Tek istisna `/api/news?url=` (kullanıcının seçtiği sayfa); SSRF'e karşı korumaları yukarıda, 2026-11-11 güncellemesinde.
 - **Gizli anahtarlar sunucuda:** `DEEPL_AUTH_KEY`, `CRON_SECRET`, Blob belirteci Vercel ortam değişkenlerinde; cron `CRON_SECRET` ile korunur.
 - **Çeviri ucu:** yalnızca uygulamanın sayfaları (`fromApp`: diloloji.com, www.diloloji.com, önizlemeler, localhost), istek başına 600 karakter, yanıtlar CDN önbelleğinde.
 - **XSS yüzeyi küçük:** `dangerouslySetInnerHTML` yok; React metni kaçışlar.
 - **Bağımlılıklar ve sır taraması:** `npm run security` (= `npm run scan:secrets` + `npm run audit:deps`). Sır taraması izlenen dosyalarda anahtar biçimli dizgi arar (`scripts/scan-secrets.mjs`; 2026-10-13: dosyalarda ve bütün git geçmişinde bulgu yok); `npm audit --omit=dev --audit-level=high` 0 açık. CI'da `npm run typecheck:ext`ten sonra çalışır; Actions kotası dolu olduğu için şimdilik yerelde: **her PR öncesi ve ayda en az bir kez** `npm run security`.
-- **Hız freni (`api/_rate.ts`):** herkese açık uçlarda adres başına dakikada sınır: `log` 60, `access` okuma 120 / başvuru 10, `share` okuma 120 / yazma 30, `push` 60, `sync` yazma 240; aşınca 429. Sayaç çalışan işlev örneğinin belleğindedir: patlama ve betiklere karşı bir fren, kesin genel kota değildir (örnekler gelip gider, birden çok örnek çalışabilir). Sert sınır için aşağıdaki Vercel Firewall kuralı hâlâ geçerli. Adres hiçbir yere yazılmaz.
+- **Hız freni (`api/_rate.ts`):** herkese açık uçlarda adres başına dakikada sınır: `log` 60, `access` okuma 120 / başvuru 10, `share` okuma 120 / yazma 30, `push` 60, `sync` yazma 240; aşınca 429. Sayaç çalışan işlev örneğinin belleğindedir: patlama ve betiklere karşı bir fren, kesin genel kota değildir (örnekler gelip gider, birden çok örnek çalışabilir). Sert sınır Worker'daki `API_LIMITER`dır (adres başına 300/dk). Adres hiçbir yere yazılmaz.
 - **HSTS:** Vercel ekliyordu; Cloudflare'de `_headers` ile ekleniyor (yukarıdaki güncelleme).
 
 ## Başlıklar (`security-headers.json`, #—)
@@ -65,7 +74,7 @@ Açık kalanlar (kalıcı sayaç ya da şema gerekir):
 
 ## Kullanıcının yapacakları
 1. **`SYNC_ALLOWED`:** Vercel → proje → Settings → Environment Variables → `SYNC_ALLOWED` = kullanıcı adın (ya da eşitleme kodunun 64 haneli kimliği), Production; sonra yeniden yayınla. Yoksa herkes Blob deposuna yazabilir (verini okuyamaz ama depoyu doldurabilir).
-2. **Hız sınırı:** Vercel → proje → Firewall → Custom Rules → "Rate limit": `/api/translate` ve `/api/log` için IP başına dakikada ~30 istek, aşınca 429. (DeepL kotasının betikle tüketilmesine ve günlük çöpüne karşı.)
+2. ~~**Hız sınırı:** Vercel Firewall kuralı~~ (gerek kalmadı: Worker'da `API_LIMITER` ve hesap başına günlük kotalar).
 3. **Anthropic hesabında aylık harcama sınırı:** YZ çağrıları sitenin kendi `/api/ai` ucundan geçer ve sahibin `ANTHROPIC_API_KEY` gizlisiyle gider (2026-11-02); Anthropic Console'dan aylık harcama sınırı koy. Hesap başına günlük çağrı sınırı `AI_DAILY_CALLS` (varsayılan 150) ve günlük para sınırı `AI_DAILY_BUDGET_USD` (0,75 $). YZ yalnızca sahibin onayladığı hesaplara açıktır (Supabase `profiles.approved`; Supabase açıkken onay kendiliğinden açık, `APPROVAL=off` kapatır).
 4. **Yedek dosyaları** (`diloloji-yedek-*.json`) kişisel veri içerir; `.gitignore`'da, yine de depoya koyma, işin bitince sil.
 5. **Adresler ve depolama:** Ana adres `diloloji.com` (ve `www.diloloji.com`). Her adres tarayıcıda ayrı depo kullanır: adres değişirse yeni adres boş başlar; eşitleme (hesapla giriş) yoksa eski adreste yedek alıp yenisine yükle.
