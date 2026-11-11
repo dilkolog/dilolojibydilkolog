@@ -12,7 +12,8 @@ import { rest, supabaseOn } from './_supabase.js'
  * - **R2 files** (quota/<name>/<day>/<id>.json) until 0009 has run, without Supabase (local development), or when a test
  *   passes its own store: approximate. This instance remembers what it last read or wrote, so two instances may each
  *   count a few calls the other did not see.
- * Either way a failing store lets the call through: the allowance must never take translation or the AI down.
+ * A failing store lets the call through for the free or cheap services (translation, speech, the fetching endpoints):
+ * the allowance must never take them down. The AI is the owner's money, so it uses `quotaReserve`, which refuses instead.
  */
 export interface QuotaStore {
   read(path: string): Promise<string | null>
@@ -143,6 +144,57 @@ export async function quotaTake(name: string, id: string, amount: number, max: n
   if (!(await quotaLeft(name, id, amount, max, store, now))) return false
   await spendQuota(name, id, amount, store, now)
   return true
+}
+
+/** The counter store could not answer (`quotaReserve` refuses then, where the other calls let the request through). */
+export class QuotaUnavailable extends Error {}
+
+/**
+ * Like `quotaTake`, but closed when the store fails: for what costs the owner money (the AI), a counter that cannot be
+ * read must not mean "unlimited". Throws QuotaUnavailable then; false when the amount does not fit.
+ */
+export async function quotaReserve(name: string, id: string, amount: number, max: number, store = blobStore, now = Date.now()): Promise<boolean> {
+  if (inTable(store, now)) {
+    try {
+      return (await counter<boolean>('counter_take', { p_name: name, p_subject: id, p_amount: amount, p_max: max, p_day: today(now) }, now)) === true
+    } catch (e) {
+      if (!(e instanceof Missing)) throw new QuotaUnavailable(name)
+    }
+  }
+  const path = pathOf(name, id, now)
+  let used: number
+  try {
+    used = await usedNow(path, store, now)
+  } catch {
+    throw new QuotaUnavailable(name)
+  }
+  if (used + amount > max) return false
+  // The files are approximate anyway (see above); a failed write here is counted in this instance's memory at least.
+  known.set(path, { used: used + amount, at: known.get(path)?.at ?? now })
+  await store.write(path, { used: used + amount }).catch(() => {})
+  return true
+}
+
+/**
+ * Gives back part of what `quotaReserve` or `quotaTake` took (the call failed, or cost less than was set aside).
+ * Never below zero. A failure is ignored: the account then has a little less left today, never more.
+ */
+export async function quotaGiveBack(name: string, id: string, amount: number, store = blobStore, now = Date.now()): Promise<void> {
+  if (!(amount > 0)) return
+  if (inTable(store, now)) {
+    // Called directly, not through counter(): an old project without counter_give (migration 0013) must not switch every
+    // counter back to the files.
+    await rest('rpc/counter_give', { method: 'POST', body: JSON.stringify({ p_name: name, p_subject: id, p_amount: amount, p_day: today(now) }) }).catch(() => null)
+    return
+  }
+  const path = pathOf(name, id, now)
+  try {
+    const used = Math.max(0, (await usedNow(path, store, now)) - amount)
+    known.set(path, { used, at: known.get(path)?.at ?? now })
+    await store.write(path, { used })
+  } catch {
+    // Not given back this once.
+  }
 }
 
 /** Drops counters older than `keepDays` (the hourly job); nothing to do for the files, which are per day already. */

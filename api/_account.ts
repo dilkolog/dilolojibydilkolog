@@ -99,6 +99,8 @@ async function unlessMoved(e: unknown): Promise<undefined> {
 }
 
 const remembered = new Map<string, { value: unknown; until: number }>()
+/** How long an instance trusts an approval it read (see accessStatus). */
+export const APPROVAL_CACHE_MS = 2 * 60_000
 export const clearAccessCache = () => remembered.clear()
 
 /** The stored hash of the account's token, or null while nobody has claimed the id. */
@@ -123,7 +125,9 @@ export async function accessStatus(id: string): Promise<AccessStatus> {
   if (!approvalOn()) return 'approved'
   const listed = await allowedIds()
   if (listed?.has(id)) return 'approved'
-  // An approval is remembered for minutes (every check is several billed Blob reads), any other answer for a short while so a decision shows soon.
+  // An approval is remembered for a couple of minutes (every check is several billed reads), any other answer for a short
+  // while so a decision shows soon. clearAccessCache only reaches this instance: a rejected or deleted account keeps what
+  // it had on the others until its approval here runs out, so this stays short (APPROVAL_CACHE_MS).
   const hit = remembered.get(`status:${id}`)
   if (hit && hit.until > Date.now()) return hit.value as AccessStatus
   const status = await (async (): Promise<AccessStatus> => {
@@ -135,7 +139,7 @@ export async function accessStatus(id: string): Promise<AccessStatus> {
     if (profile === 'pending' || (await readText(requestPath(id)))) return 'pending'
     return 'none'
   })()
-  remembered.set(`status:${id}`, { value: status, until: Date.now() + (status === 'approved' ? 10 * 60_000 : 30_000) })
+  remembered.set(`status:${id}`, { value: status, until: Date.now() + (status === 'approved' ? APPROVAL_CACHE_MS : 30_000) })
   return status
 }
 

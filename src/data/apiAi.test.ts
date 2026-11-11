@@ -2,11 +2,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 vi.mock('../../api/_account.js', () => ({ requireApproved: vi.fn(async () => null), accountOf: vi.fn(async () => 'acct') }))
 vi.mock('../../api/_supabase.js', () => ({ aiLevelOf: vi.fn(async () => null), supabaseOn: () => false, rest: vi.fn() }))
-vi.mock('../../api/_quota.js', () => ({ quotaLeft: vi.fn(async () => true), quotaUsed: vi.fn(async () => 0), spendQuota: vi.fn(async () => {}), dailyQuotaReached: () => Response.json({ error: 'daily_quota' }, { status: 429 }) }))
+vi.mock('../../api/_quota.js', () => ({ quotaReserve: vi.fn(async () => true), quotaGiveBack: vi.fn(async () => {}), spendQuota: vi.fn(async () => {}), dailyQuotaReached: () => Response.json({ error: 'daily_quota' }, { status: 429 }) }))
 
-import { POST, GET, refuse, costUnits, MAX_TOKENS } from '../../api/ai'
+import { POST, GET, refuse, costUnits, estimateUnits, betaHeader, MAX_TOKENS } from '../../api/ai'
 import { requireApproved } from '../../api/_account.js'
-import { quotaLeft, quotaUsed, spendQuota } from '../../api/_quota.js'
+import { quotaGiveBack, quotaReserve, spendQuota } from '../../api/_quota.js'
 import { aiLevelOf } from '../../api/_supabase.js'
 import { resetRate } from '../../api/_rate.js'
 
@@ -18,8 +18,8 @@ beforeEach(() => {
   resetRate()
   vi.restoreAllMocks()
   vi.mocked(requireApproved).mockResolvedValue(null)
-  vi.mocked(quotaLeft).mockResolvedValue(true)
-  vi.mocked(quotaUsed).mockResolvedValue(0)
+  vi.mocked(quotaReserve).mockReset().mockResolvedValue(true)
+  vi.mocked(quotaGiveBack).mockClear()
   vi.mocked(spendQuota).mockClear()
   vi.mocked(aiLevelOf).mockResolvedValue(null)
   process.env.ANTHROPIC_API_KEY = 'sk-test-key'
@@ -34,6 +34,35 @@ describe('refuse', () => {
     expect(refuse({ ...good, messages: [] })).toBe('bad messages')
     expect(refuse({ ...good, max_tokens: MAX_TOKENS + 1 })).toBe('bad max_tokens')
     expect(refuse('x')).toBe('bad body')
+  })
+
+  it('lets through only the fields the app sends: nothing else that could change the price', () => {
+    const app = { ...good, system: 'be brief', fallbacks: 'default', output_config: { effort: 'low', format: { type: 'json_schema', schema: {} } } }
+    expect(refuse(app)).toBeNull()
+    for (const extra of [{ speed: 'fast' }, { service_tier: 'priority' }, { inference_geo: 'us' }, { context_management: {} }, { metadata: {} }]) expect(refuse({ ...good, ...extra })).toMatch(/^field not allowed/)
+    expect(refuse({ ...good, fallbacks: [{ model: 'claude-opus-5-5' }] })).toBe('bad fallbacks')
+    expect(refuse({ ...good, output_config: { effort: 'max' } })).toBe('bad effort')
+    expect(refuse({ ...good, output_config: { task_budget: 1 } })).toBe('bad output_config')
+    expect(refuse({ ...good, thinking: { type: 'enabled', budget_tokens: 9000 } })).toBe('bad thinking')
+    expect(refuse({ ...good, temperature: 3 })).toBe('bad temperature')
+  })
+
+  it('takes text and inline pictures only: no documents or links the API would fetch', () => {
+    const photo = { role: 'user', content: [{ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: 'AAAA' } }, { type: 'text', text: 'words?' }] }
+    expect(refuse({ ...good, messages: [photo, { role: 'assistant', content: 'ok' }] })).toBeNull()
+    expect(refuse({ ...good, messages: [{ role: 'user', content: [{ type: 'image', source: { type: 'url', url: 'https://x.example/a.png' } }] }] })).toBe('bad messages')
+    expect(refuse({ ...good, messages: [{ role: 'user', content: [{ type: 'document', source: { type: 'url', url: 'https://x.example/a.pdf' } }] }] })).toBe('bad messages')
+    expect(refuse({ ...good, messages: [{ role: 'user', content: [{ type: 'text', text: 'hi', cache_control: { type: 'ephemeral', ttl: '1h' } }] }] })).toBe('bad messages')
+    expect(refuse({ ...good, messages: [{ role: 'system', content: 'hi' }] })).toBe('bad messages')
+  })
+})
+
+describe('the beta header', () => {
+  it('keeps only the app’s own beta features', () => {
+    expect(betaHeader('server-side-fallback-2026-07-01,structured-outputs-2025-12-15')).toBe('server-side-fallback-2026-07-01,structured-outputs-2025-12-15')
+    expect(betaHeader('structured-outputs-2025-12-15, fast-mode-2026-01-01')).toBe('structured-outputs-2025-12-15')
+    expect(betaHeader('context-1m-2025-08-07')).toBeNull()
+    expect(betaHeader(null)).toBeNull()
   })
 })
 
@@ -66,8 +95,15 @@ describe('/api/ai', () => {
     expect((await POST(ask({ ...good, model: 'claude-fake' }))).status).toBe(400)
     await POST(ask(good, { 'anthropic-beta': 'x; injected=1' }))
     expect(((upstream.mock.calls[0][1] as RequestInit).headers as Record<string, string>)['anthropic-beta']).toBeUndefined()
-    vi.mocked(quotaLeft).mockResolvedValue(false)
+    vi.mocked(quotaReserve).mockResolvedValue(false)
     expect((await POST(ask(good))).status).toBe(429)
+  })
+
+  it('refuses when the counters cannot be read: the owner’s money is never spent uncounted', async () => {
+    const upstream = vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response('{}'))
+    vi.mocked(quotaReserve).mockRejectedValue(new Error('store down'))
+    expect((await POST(ask(good))).status).toBe(503)
+    expect(upstream).not.toHaveBeenCalled()
   })
 
   it('hides the key’s own failures behind a plain 502', async () => {
@@ -84,17 +120,37 @@ describe('what a day may cost', () => {
     expect(costUnits('claude-opus-5-5', { input_tokens: 1_000_000, output_tokens: 0 })).toBe(40_000)
     expect(costUnits('claude-haiku-4-5', { input_tokens: 0, output_tokens: 1_000_000 })).toBe(50_000)
     expect(costUnits('claude-sonnet-5-5', { input_tokens: 1000, output_tokens: 1000, cache_read_input_tokens: 1000 })).toBeGreaterThan(0)
-    expect(costUnits('claude-other', { input_tokens: 5 })).toBe(0)
+    // A model the app does not know (a fallback Anthropic picked) is priced as the dearest, never as free.
+    expect(costUnits('claude-other', { input_tokens: 1_000_000 })).toBe(40_000)
     expect(costUnits('claude-opus-5-5', null)).toBe(0)
   })
 
-  it('spends the call and its money after a good answer, and stops once the day’s money is used', async () => {
-    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({ usage: { input_tokens: 10_000, output_tokens: 2_000 } }), { status: 200 }))
+  it('sets the call and a guess of its money aside first, then corrects the guess to what the answer cost', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({ model: 'claude-sonnet-5-5', usage: { input_tokens: 10, output_tokens: 20 } }), { status: 200 }))
     expect((await POST(ask(good))).status).toBe(200)
-    expect(spendQuota).toHaveBeenCalledWith('ai', 'acct', 1)
-    expect(spendQuota).toHaveBeenCalledWith('ai-cost', 'acct', expect.any(Number))
-    vi.mocked(quotaUsed).mockResolvedValue(10_000_000)
+    const guess = estimateUnits(good)
+    expect(quotaReserve).toHaveBeenCalledWith('ai', 'acct', 1, 150)
+    expect(quotaReserve).toHaveBeenCalledWith('ai-cost', 'acct', guess, expect.any(Number))
+    expect(quotaGiveBack).toHaveBeenCalledWith('ai-cost', 'acct', guess - costUnits('claude-sonnet-5-5', { input_tokens: 10, output_tokens: 20 }))
+    vi.mocked(quotaReserve).mockImplementation(async (name) => name !== 'ai-cost')
     expect((await POST(ask(good))).status).toBe(429)
+    // The call set aside for it goes back when the money does not fit.
+    expect(quotaGiveBack).toHaveBeenCalledWith('ai', 'acct', 1)
+  })
+
+  it('prices the answer by the model that wrote it: a fallback to a dearer model costs what it cost', async () => {
+    const usage = { input_tokens: 100_000, output_tokens: 10_000 }
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({ model: 'claude-opus-5-5', usage }), { status: 200 }))
+    await POST(ask({ ...good, model: 'claude-haiku-4-5' }))
+    const guess = estimateUnits({ ...good, model: 'claude-haiku-4-5' })
+    expect(spendQuota).toHaveBeenCalledWith('ai-cost', 'acct', costUnits('claude-opus-5-5', usage) - guess)
+  })
+
+  it('gives everything back when the call fails', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response('{"error":"overloaded"}', { status: 529 }))
+    expect((await POST(ask(good))).status).toBe(529)
+    expect(quotaGiveBack).toHaveBeenCalledWith('ai', 'acct', 1)
+    expect(quotaGiveBack).toHaveBeenCalledWith('ai-cost', 'acct', estimateUnits(good))
   })
 })
 
@@ -131,11 +187,13 @@ describe('what the owner opened for an account (profiles.ai_level)', () => {
 
   it('the day’s money is shared out by level: a smaller level stops sooner', async () => {
     ok()
+    const budgets: number[] = []
+    vi.mocked(quotaReserve).mockImplementation(async (name, _id, _amount, max) => (name === 'ai-cost' && budgets.push(max), true))
     vi.mocked(aiLevelOf).mockResolvedValue('kelime')
-    vi.mocked(quotaUsed).mockResolvedValue(Math.round(0.75 * 10_000 * 0.2))
-    expect((await POST(ask(good, { 'x-ai-feature': 'word_fill' }))).status).toBe(429)
+    await POST(ask(good, { 'x-ai-feature': 'word_fill' }))
     vi.mocked(aiLevelOf).mockResolvedValue('tam')
-    expect((await POST(ask(good, { 'x-ai-feature': 'word_fill' }))).status).toBe(200)
+    await POST(ask(good, { 'x-ai-feature': 'word_fill' }))
+    expect(budgets).toEqual([Math.round(0.75 * 10_000 * 0.2), 0.75 * 10_000])
   })
 
   it('GET tells the app its level and what it opens, and closed means not available', async () => {

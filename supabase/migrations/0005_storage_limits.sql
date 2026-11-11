@@ -79,8 +79,13 @@ create policy "own media write" on storage.objects for insert to authenticated
   with check (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text
     and exists (select 1 from public.profiles where user_id = auth.uid() and approved)
     and (select u.files < 3000 and u.bytes < 200000000 from public.my_media_usage() u));
+-- Rewriting a file (an upload with upsert) counts against the same limit (0013 made it so; kept here, as this file is run again after 0002).
 drop policy if exists "own media update" on storage.objects;
 create policy "own media update" on storage.objects for update to authenticated
   using (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text)
   with check (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text
-    and exists (select 1 from public.profiles where user_id = auth.uid() and approved));
+    and exists (select 1 from public.profiles where user_id = auth.uid() and approved)
+    and (select u.bytes < 200000000 from public.my_media_usage() u));
+drop policy if exists "own media delete" on storage.objects;
+create policy "own media delete" on storage.objects for delete to authenticated
+  using (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text);

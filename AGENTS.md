@@ -32,6 +32,7 @@ Sahibi şimdilik altyapıyla değil, **içerik ve eğitim tarafıyla** (dersler,
 - [ ] Gerçek cihaz denemeleri: Safari mikrofon, iki telefonla canlı düello, push ve e-posta hatırlatmaları.
 - [x] ~~**Eşitlemeyi Supabase'e taşımak**~~ (2026-11-09: `0002` + `0005` çalıştı, kontrol sorgusu üç `true`; sahibinin verisi `sync_parts`'ta, öbür iki hesabın R2'de eşitleme verisi yoktu).
 - [x] ~~**Arkadaşlar, listeler, hatırlatmalar**~~ (2026-11-09: `tables` işareti yazıldı; R2'deki 2 kart tabloda, takip/liste/hatırlatma dosyası yoktu). R2 artık bunlar için okunmuyor.
+- [ ] **Güvenlik incelemesi (2026-11-10), sahibinin yapacağı:** SQL Editor'de `0013_quota_media_limits.sql`'i çalıştırmak (kota iadesi, medya güncelleme sınırı ve silme politikası, kullanıcı adı 40 karakter; `docs/SUPABASE.md`). Ayrıntı ve açık kalanlar: `docs/notlar/sunucu-guvenlik-dagitim.md` "Güvenlik incelemesi (2026-11-10)".
 - Supabase güvenlik denetimi (2026-11-09): sızdırılmış şifre koruması (HaveIBeenPwned) yalnızca Pro planda, ücretsiz planda açılamıyor. ~~`handle_new_user` RPC ile çağrılabilir~~ (`0012_trigger_privileges.sql`, canlıya uygulandı ve testli — 2026-11-09).
 - [x] ~~Dış gözcü~~ (2026-11-09): UptimeRobot `diloloji.com`, `/api/health`, `/api/push?mail=status`, `/hakkinda` (5 dk).
 
@@ -80,7 +81,7 @@ Yerel WebKit indirmesi ağ politikası nedeniyle 403 veriyor; GitHub CI'da tam p
 - Komutlar:
   - `npm run typecheck` (= `tsc -b && tsc -p tsconfig.api.json && tsc -p tsconfig.scripts.json && tsc -p tsconfig.worker.json`; Worker tipleri dahil)
   - `npx oxlint src api e2e`
-  - `npx vitest run` (birim, ~2400 test)
+  - `npx vitest run` (birim, ~3400 test; ağ kapalı: `src/test/noNetwork.ts` taklit edilmemiş her `fetch`'i reddeder, gerçek servise istek gitmez)
   - `npm run build:cf` (statik build + dist/_headers üretimi) / `npm run deploy:cf` (Cloudflare Worker dağıtımı)
   - `npx vite build && npx playwright test e2e/phone.e2e.ts e2e/desktop.e2e.ts e2e/a11y.e2e.ts --workers=4` (E2E, ~3 dk; `E2E_PORT` için aşağıya bak)
   - Görsel testler: `e2e/visual.e2e.ts` — referanslar **yalnızca Linux** (`*-linux.png`). macOS'ta `--ignore-snapshots` ile çalıştır. **`*-darwin.png` dosyalarını asla commit etme.**

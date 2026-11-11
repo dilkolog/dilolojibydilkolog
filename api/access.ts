@@ -193,6 +193,9 @@ async function vaultLink(request: Request, body: Record<string, unknown>): Promi
   if (overLimit(request, 'vault-write', 10)) return tooMany()
   const user = await supabaseUser(request)
   if (!user) return json({ error: 'signed_out' }, 401)
+  // Only a confirmed address links an account (and so gets AI and translation, and goes to the owner as a new sign-up):
+  // Supabase's "Confirm email" makes this so today, this keeps it so if the setting is ever turned off.
+  if (!user.confirmed) return json({ error: 'email_unconfirmed' }, 403)
   const { id, enc, auth } = body
   if (typeof id !== 'string' || typeof enc !== 'string' || typeof auth !== 'string' || !ID.test(id) || !TOKEN.test(enc) || !TOKEN.test(auth)) return json({ error: 'bad request' }, 400)
   const username = typeof body.username === 'string' && /^[\p{L}\p{N}._-]{3,32}$/u.test(body.username.trim()) ? body.username.trim() : ''

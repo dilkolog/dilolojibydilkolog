@@ -32,9 +32,11 @@ const { resetRate } = await import('../../api/_rate')
 const { forgetSettings } = await import('../../api/_settings')
 
 const SB = 'https://proj.supabase.co'
-const USERS: Record<string, { id: string; email: string; user_metadata: Record<string, unknown> }> = {
-  'tok-ali': { id: '11111111-1111-1111-1111-111111111111', email: 'ali@example.com', user_metadata: { username: 'ali' } },
-  'tok-veli': { id: '22222222-2222-2222-2222-222222222222', email: 'veli@example.com', user_metadata: {} },
+const CONFIRMED = '2026-11-01T10:00:00Z'
+const USERS: Record<string, { id: string; email: string; email_confirmed_at: string | null; user_metadata: Record<string, unknown> }> = {
+  'tok-ali': { id: '11111111-1111-1111-1111-111111111111', email: 'ali@example.com', email_confirmed_at: CONFIRMED, user_metadata: { username: 'ali' } },
+  'tok-veli': { id: '22222222-2222-2222-2222-222222222222', email: 'veli@example.com', email_confirmed_at: CONFIRMED, user_metadata: {} },
+  'tok-new': { id: '33333333-3333-3333-3333-333333333333', email: 'new@example.com', email_confirmed_at: null, user_metadata: {} },
 }
 let profiles: { user_id: string; approved: boolean; rejected: boolean }[] = []
 let keys: { user_id: string; sync_id: string; enc: string; auth: string; username: string | null }[] = []
@@ -155,6 +157,12 @@ describe('/api/access: the Supabase vault', () => {
     // Veli has the token too (shared password): the account still belongs to Ali.
     expect(await (await link('tok-veli', OLD)).json()).toEqual({ error: 'taken' })
     expect(await (await link('tok-ali', NEW)).json()).toEqual({ error: 'linked' })
+  })
+
+  it('an address Supabase has not confirmed links nothing (and claims nothing)', async () => {
+    const res = await link('tok-new', NEW)
+    expect([res.status, await res.json()]).toEqual([403, { error: 'email_unconfirmed' }])
+    expect(blobs.has(`sync/${NEW.id}/auth.txt`)).toBe(false)
   })
 
   it('a new account is claimed, waits for approval on the Yönetici card, and the profile switch approves it', async () => {
