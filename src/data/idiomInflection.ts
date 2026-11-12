@@ -49,7 +49,7 @@ export function idiomInflectionMatcher(query: string, languages: readonly Target
   }
   return (phrase: string) => languages.some((language) => {
     const idiom = tokens(phrase)
-    const reflexive = language === 'fr' ? ['se', 's'].includes(idiom[0]) : language === 'es' && /[aei]rse$/.test(idiom[0] ?? '')
+    const reflexive = language === 'fr' ? ['se', 's'].includes(idiom[0] ?? '') : language === 'es' && /[aei]rse$/.test(idiom[0] ?? '')
     if (language === 'fr' && reflexive) idiom.shift()
     const head = idiom.shift()
     if (!head || !idiom.length) return false
