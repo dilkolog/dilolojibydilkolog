@@ -34,6 +34,7 @@ import {
 } from '../../data/adminApi'
 import { CheckCircleIcon, ChevronRightIcon, SearchIcon } from '../shared/icons'
 import { ConfirmDialog } from '../shared/Dialog'
+import { OwnerSecretDialog } from './OwnerSecretDialog'
 import { PageHeader } from '../shared/PageHeader'
 import { Toggle } from '../settings/settingsWidgets'
 import { Sticker } from '../shared/Sticker'
@@ -1009,6 +1010,7 @@ export function AdminScreen() {
       <SettingsCard />
       <BlocksCard />
       <SystemCard tell={tell} />
+      <OwnerSecretDialog />
     </div>
   )
 }

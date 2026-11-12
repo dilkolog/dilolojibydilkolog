@@ -47,14 +47,37 @@ export interface MoveStep {
 
 export class AdminError extends Error {}
 
-async function adminFetch<T>(query: string, init: RequestInit = {}): Promise<T> {
+/**
+ * The owner's second secret (OWNER_STEP_SECRET) for the steps that cannot be undone: asked once when the server wants
+ * it, kept in this tab's memory only (never stored), and sent with every admin request after.
+ */
+let ownerSecret = ''
+let askSecret: ((wrong: boolean) => Promise<string | null>) | null = null
+export const setOwnerSecretAsker = (ask: typeof askSecret) => void (askSecret = ask)
+export const forgetOwnerSecret = () => void (ownerSecret = '')
+
+/** Shown for a step the owner did not confirm with the second secret. */
+export const OWNER_SECRET_TEXT = 'Bu adım için ikinci gizli gerekiyor (OWNER_STEP_SECRET).'
+
+async function adminFetch<T>(query: string, init: RequestInit = {}, asked = false): Promise<T> {
   const session = await currentSession().catch(() => null)
   if (!session?.access_token) throw new AdminError('signed out')
   const res = await fetch(`/api/admin${query}`, {
     ...init,
-    headers: { ...(init.body ? { 'content-type': 'application/json' } : {}), authorization: `Bearer ${session.access_token}` },
+    headers: {
+      ...(init.body ? { 'content-type': 'application/json' } : {}),
+      authorization: `Bearer ${session.access_token}`,
+      ...(ownerSecret ? { 'x-owner-secret': ownerSecret } : {}),
+    },
   })
   const body = (await res.json().catch(() => ({}))) as T & { error?: string }
+  if (res.status === 403 && (body.error === 'owner_secret' || body.error === 'owner_secret_wrong')) {
+    ownerSecret = ''
+    const given = !asked && askSecret ? await askSecret(body.error === 'owner_secret_wrong') : null
+    if (!given) throw new AdminError(body.error === 'owner_secret_wrong' ? 'İkinci gizli yanlış.' : OWNER_SECRET_TEXT)
+    ownerSecret = given
+    return adminFetch<T>(query, init, true)
+  }
   if (!res.ok) throw new AdminError(body.error ?? `HTTP ${res.status}`)
   return body
 }

@@ -8,7 +8,8 @@ import { forgetSettings, getSettings, LIMITS, limitOf, MAX_ANNOUNCEMENT, saveSet
 import { DEFAULT_DAILY_BUDGET_USD, DEFAULT_DAILY_CALLS, DEFAULT_SITE_DAILY_BUDGET_USD } from './ai.js'
 import { DAILY_TRANSLATE_CHARS, DAILY_TTS_CHARS } from './_quota.js'
 import { idOfUsername } from './_allow.js'
-import { anySecretMatches, bearerOf } from './_secret.js'
+import { anySecretMatches, bearerOf, secretMatches } from './_secret.js'
+import { overLimit, tooMany } from './_rate.js'
 import { mirrorApproval } from './_supabase.js'
 import { MOVE_STEP, moveTablesStep } from './_moveTables.js'
 import { tablesState } from './_tables.js'
@@ -53,6 +54,24 @@ async function authorised(request: Request): Promise<Response | null> {
   if (!given) return json({ error: 'forbidden' }, 403)
   // Compared in constant time (api/_secret.ts): the answer does not leak how much of the token matched.
   return (await anySecretMatches(given, secrets)) ? null : json({ error: 'forbidden' }, 403)
+}
+
+/**
+ * The steps that cannot be undone or that spend the owner's money: deleting a person or a username's data, approving
+ * everyone at once, and the limits and switches. With OWNER_STEP_SECRET set (a Worker secret, at least 16 characters),
+ * they also need it in `x-owner-secret`: the owner's mailbox or Google account alone (which is what the signed-in admin
+ * screen rests on) is then not enough. Without it set, nothing changes.
+ */
+export const STEP_ACTIONS = ['person-delete', 'release', 'approve-all', 'settings'] as const
+
+async function secondFactor(request: Request): Promise<Response | null> {
+  const secret = process.env.OWNER_STEP_SECRET?.trim() ?? ''
+  if (secret.length < 16) return null
+  const given = request.headers.get('x-owner-secret') ?? ''
+  if (!given) return json({ error: 'owner_secret' }, 403)
+  // A guess costs a request out of a small allowance.
+  if (overLimit(request, 'owner-secret', 10)) return tooMany()
+  return (await secretMatches(given, secret)) ? null : json({ error: 'owner_secret_wrong' }, 403)
 }
 
 type Entry = { id: string; username: string; note?: string; at: string }
@@ -118,6 +137,10 @@ export async function POST(request: Request): Promise<Response> {
     settings?: unknown
     text?: unknown
   } | null
+  if (body?.action && (STEP_ACTIONS as readonly string[]).includes(body.action)) {
+    const second = await secondFactor(request)
+    if (second) return second
+  }
   if (body?.action === 'release') return release(body.username)
   if (body?.action === 'move-tables') return moveTables(body.from)
   if (body?.action === 'move-docs') return moveDocsStep(body.from)
