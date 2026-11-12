@@ -1,8 +1,15 @@
 # Güvenlik
 
-Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13; güncellemeler aşağıda, en yenisi 2026-11-11).
+Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13; güncellemeler aşağıda, en yenisi 2026-11-12).
 
 Altyapı Cloudflare Worker + R2 + Supabase'tedir (Vercel'den 2026-11-08'de çıkıldı). Aşağıdaki eski bölümlerde geçen "Vercel ortam değişkeni / Redeploy / Vercel Firewall / Vercel Blob" karşılıkları: Cloudflare Worker gizlisi (`npx wrangler secret put …` ya da panel), `main`'e birleştirme (Workers Builds kendiliğinden dağıtır), Cloudflare hız sınırlayıcı ve R2 (`diloloji-blobs`).
+
+## 2026-11-12 güncellemesi (orta düzey bulgular)
+- **Eşitleme anahtarı yenilenebiliyor:** `x-sync-auth` artık kalıcı değil. Şifre değişince (Ayarlar → Hesap ya da şifre sıfırlama) uygulama `POST /api/access {action:'vault-rotate'}` ile yeni rastgele anahtar alır (`sync_keys.auth` ve `sync/<id>/auth.txt` özeti; şifreleme anahtarı ve kimlik değişmez, veri yeniden şifrelenmez). Eski anahtar bu örnekte hemen, öbür örneklerde en çok 2 dakikada geçersiz olur (önbellek 10 dk'dan 2 dk'ya indi). Kişinin oturum açık öbür cihazları eski anahtarla `account_required` alınca anahtarı Supabase oturumuyla yeniden çeker ve isteği bir kez daha yollar (`accessFetch`). Kalan: Supabase oturumu da çalınmışsa şifre değişikliği o oturumu kapatmaz (Supabase'in kendi davranışı).
+- **YZ site tavanı:** tüm sitenin günlük YZ harcaması `AI_SITE_DAILY_BUDGET_USD` (varsayılan 5 $, yönetici ekranından değişir). Her çağrı tüm `max_tokens`'ı çağrı sürerken tutar; aynı anda gelen istekler artık günü 3–4 kat aşamaz (en çok bir çağrının boş payı). `0013` çalışmadan (`counter_give` yok) eski tahmini ayırmaya düşer, yoksa ayrılan geri verilemezdi. Anthropic Console'da aylık harcama sınırı yine konmalı.
+- **Depolama sınırları:** kişi başı 30 MB eşitleme verisi, geri dönüş noktaları 20 MB, medya 50 MB (`0005`, yeniden çalıştırılmalı). Saatlik sağlık denetimi veritabanı/dosya deposu %80 ve %90'ı geçince sahibine yazar (`0014`).
+- **Yönetici için ikinci gizli (isteğe bağlı):** Worker gizlisi `OWNER_STEP_SECRET` (en az 16 karakter, `openssl rand -hex 24`) tanımlanınca kişi silme, ad serbest bırakma, toplu onay ve sınır/ayar değişikliği bu gizliyi de ister (`x-owner-secret`; yönetici ekranı bir kez sorar, yalnızca sekmenin belleğinde tutar). Posta kutusu ya da Google hesabı tek başına artık bunları açmaz. Tam MFA (TOTP, `aal2`) yapılmadı: kurtarma yolu olmadan sahibi kendini kilitleyebilir.
+- **Yedek:** `scripts/backup-supabase.mjs` (sahibinin bilgisayarında, haftada bir; `docs/SUPABASE.md` "Yedek ve geri yükleme").
 
 ## 2026-11-11 güncellemesi
 - **Hız freni artık sert:** Worker'a bağlı Cloudflare hız sınırlayıcı (`API_LIMITER`, `wrangler.jsonc` `ratelimits`) bütün `/api/*` için adres başına dakikada 300 istek uygular. `api/_rate.ts`'in örnek belleğindeki uç başına sınırlar bunun üstüne ek frendir. Aşağıdaki "hız freni zayıf" ve "WAF kuralı" notları bununla geçersiz.
