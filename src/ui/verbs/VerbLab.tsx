@@ -123,8 +123,9 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
     return [...new Set(vocabulary.filter((v) => v.partOfSpeech === 'verb').map((v) => verbKey(language, v.lemma)))].filter((v) => known.has(v))
   }, [vocabulary, language, ready])
 
-  // The verb: the one chosen, else the last looked at, else the learner's first own verb, else the most common one.
-  const verb = picked ?? (labReady ? (lab.recent[0] ?? ownVerbs[0] ?? COMMON[language][0][0]) : undefined)
+  // The verb: the one chosen, else today's verb (Today offers it under the same name), else the last looked at, else the
+  // learner's first own verb, else the most common one. The lab used to open on the last verb looked at, not the day's.
+  const verb = picked ?? (labReady ? (verbOfDay ?? lab.recent[0] ?? ownVerbs[0] ?? COMMON[language][0][0]) : undefined)
   const available = useMemo(() => (verb && ready ? labTensesOf(verbEntry(language, verb)) : []), [verb, ready, language])
   const current: Tense = available.includes(tense) ? tense : (available[0] ?? tense)
 

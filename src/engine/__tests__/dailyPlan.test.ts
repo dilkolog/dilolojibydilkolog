@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import { State } from 'ts-fsrs'
 import { EXERCISES } from '../exercises'
-import { BACKLOG_AT, buildDailyPlan, buildExtraNewPlan, interleave, roundForMinutes, shortRound, SHORT_ROUND, isFormId, MAX_DAY_FORMS, mixForms, type PlanInput, type PlanItem } from '../dailyPlan'
+import { BACKLOG_AT, buildDailyPlan, buildExtraNewPlan, interleave, roundForMinutes, shortRound, SHORT_ROUND, isFormId, MAX_DAY_FORMS, mixForms, NEW_WORD_FOLLOW_UPS, type PlanInput, type PlanItem } from '../dailyPlan'
 import { recordMistake } from '../mistakes'
+import { GRADUATED_GAPS } from '../session'
 import { newWordState, processAttempt } from '../review'
 import { createScheduler } from '../scheduler'
 import type { UserWordState, VocabularyEntry } from '../types'
@@ -59,6 +60,16 @@ describe('new words', () => {
     expect(plan.newEntryIds).toHaveLength(2)
     expect(plan.newBlockedBy).toBe('budget')
     expect(plan.estimatedMinutes).toBe(2)
+  })
+
+  it('says how many questions the day asks, follow-ups included (not one a new word)', () => {
+    const plan = buildDailyPlan(input({ settings: { ...settings, newWordsPerDay: 5, dailyMinutes: 60 } }))
+    expect(plan.newEntryIds).toHaveLength(5)
+    const planned = plan.items.filter((i) => i.kind === 'exercise').length
+    expect(planned).toBe(5)
+    // Each new word: its first question, a reinforcement and a typed recall.
+    expect(plan.questions).toBe(15)
+    expect(NEW_WORD_FOLLOW_UPS).toBe(GRADUATED_GAPS.length)
   })
 
   it('can add extra new words beyond the daily limit on request', () => {

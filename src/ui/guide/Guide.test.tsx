@@ -109,12 +109,15 @@ describe('GuideScreen', () => {
     const { host } = await mount('en', { initialLesson: lesson.topic, review: true })
     expect(lessonFor('en', lesson.topic)?.topic).toBe(lesson.topic)
     for (let i = 0; i < 3; i++) {
-      // Each question answered right: the item is found by its options.
-      const options = [...host.querySelectorAll<HTMLButtonElement>('.lesson-check .option')]
+      // Each question answered right: the item is found by its options. Only the lesson's own check (#lesson-check):
+      // "Hemen dene" above it asks with the same component, and its options read with the check's prompt matched the
+      // wrong question now and then (no award, and the wait below ran past the test's time).
+      const check = host.querySelector<HTMLElement>('#lesson-check')!
+      const options = [...check.querySelectorAll<HTMLButtonElement>('.lesson-check .option')]
       // The shown options without their number key; the question is found by its text and by exactly these options
       // (questions of a lesson can share a text, or an option can sit inside another one).
       const shown = options.map((o) => (o.textContent ?? '').replace(/^\d+\s*/, ''))
-      const prompt = (host.querySelector('.lesson-check-prompt')?.textContent ?? '').replace(/\s+/g, ' ').trim()
+      const prompt = (check.querySelector('.lesson-check-prompt')?.textContent ?? '').replace(/\s+/g, ' ').trim()
       const sameOptions = (c: { options: string[] }) => c.options.length === shown.length && c.options.every((o) => shown.includes(o))
       const pool = checkPool(lesson)
       const item = pool.find((c) => c.prompt.replace(/\s+/g, ' ').trim() === prompt && sameOptions(c)) ?? pool.find(sameOptions)!

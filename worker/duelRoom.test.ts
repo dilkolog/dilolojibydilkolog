@@ -185,6 +185,29 @@ describe('the Worker route for rooms', () => {
     expect(names).toEqual(['ABC234', 'club:ABC234'])
   })
 
+  it('with accounts on, a room opens only for a ticket an approved account was given', async () => {
+    vi.stubEnv('SUPABASE_URL', 'https://proj.supabase.co')
+    vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
+    vi.stubEnv('ROOM_SECRET', 'a-room-secret-for-the-test')
+    const { issueRoomTicket, validRoomTicket, TICKET_SECONDS } = await import('../api/_roomTicket.js')
+    const now = Date.now()
+    const ticket = await issueRoomTicket(now)
+    const at = (t: string) => new Request(`https://diloloji.com/api/room?code=ABC234&t=${t}`, { headers: { upgrade: 'websocket', origin: 'https://diloloji.com' } })
+    room.mockClear()
+    // An Origin alone (what a script can say) no longer opens a room.
+    expect((await worker.fetch(ws('ABC234'), env)).status).toBe(403)
+    expect((await worker.fetch(at(ticket.replace(/.$/, (c) => (c === '0' ? '1' : '0'))), env)).status).toBe(403)
+    expect(room).not.toHaveBeenCalled()
+    expect((await worker.fetch(at(ticket), env)).status).toBe(200)
+    // Good for a couple of minutes, never dated ahead, and of no use under another secret.
+    expect(await validRoomTicket(ticket, now + (TICKET_SECONDS + 2) * 1000)).toBe(false)
+    expect(await validRoomTicket(await issueRoomTicket(now + 3600_000), now)).toBe(false)
+    expect(await validRoomTicket('', now)).toBe(false)
+    vi.stubEnv('ROOM_SECRET', 'another-secret')
+    expect(await validRoomTicket(ticket, now)).toBe(false)
+    vi.unstubAllEnvs()
+  })
+
   it('turns away a bad code, a plain request, a stranger\'s page and a Worker with no rooms', async () => {
     expect((await worker.fetch(ws('NOPE'), env)).status).toBe(400)
     expect((await worker.fetch(new Request('https://diloloji.com/api/room?code=ABC234'), env)).status).toBe(426)

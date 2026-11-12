@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { loadManifest, readingPage, readingShards } from '../../data/content'
 import { CONTENT_LEVELS, type ContentLanguage, type ContentLevel, type ContentManifest, type PublishedReading } from '../../engine/contentTypes'
-import { analyzeText, coverageLine } from '../../engine/reading'
+import { analyzeText, coverageLine, foundationSize, isStarterText } from '../../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../../engine/types'
 import { GENRE_TR, THEME_TR } from '../../data/contentNames'
 import { Select } from '../shared/Select'
@@ -91,6 +91,8 @@ export function ContentReadingsPicker({
     [shown, language, vocabulary, states, known],
   )
 
+  const foundation = foundationSize(language, vocabulary, states, known)
+
   if (!manifest || !manifest.counts.reading.total) return null
   const themes = [...new Set(items.map((r) => r.theme))].sort()
   const genres = [...new Set(items.map((r) => r.genre))].sort()
@@ -137,7 +139,7 @@ export function ContentReadingsPicker({
                 <span className="badge badge-sm">{r.level}</span>
               </div>
               <span className="small muted">
-                {THEME_TR[r.theme] ?? r.theme} · {GENRE_TR[r.genre] ?? r.genre} · {words} kelime · {coverageLine(cov)}
+                {THEME_TR[r.theme] ?? r.theme} · {GENRE_TR[r.genre] ?? r.genre} · {words} kelime · {coverageLine(cov, { starter: isStarterText(r.level, foundation) })}
               </span>
             </button>
           </li>

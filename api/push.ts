@@ -19,10 +19,11 @@ import { supabaseOn } from './_supabase.js'
  * POST /api/push  { action: 'email', email, tz, studiedDay?, streak, due, hour, …, update?, resend? }
  * POST /api/push  { action: 'email-status' | 'email-remove', email }
  * GET  /api/push?mail=status   → { available, sandbox }  (sandbox: still Resend's test sender; mails go to spam)
- * GET  /api/push?c=<token>     → confirms the address (a page)       GET/POST ?u=<token> → turns the mails off
+ * GET  /api/push?c=<token>     → a page whose button (POST) confirms the address
+ * GET  /api/push?u=<token>     → a page whose button (POST ?u=…&page=1) turns the mails off; POST ?u= alone is the mail client's one-click unsubscribe
  *
- * When SYNC_ALLOWED is set (see _allow.ts), only devices of a listed account or sync code (`group`)
- * may save a reminder, so strangers can't fill the store; removing one's own is always allowed.
+ * `group` is the signed-in account (the page's own `group` only counts without accounts). When SYNC_ALLOWED is set
+ * (see _allow.ts), only devices of a listed account or sync code may save a reminder, so strangers can't fill the store; removing one's own is always allowed.
  */
 export interface PushRecord {
   /** A browser's push subscription; a record kept for mail reminders has `email` instead. */
@@ -175,8 +176,9 @@ async function handleGet(request: Request): Promise<Response> {
     // GET that confirmed would confirm an address its owner never saw. The confirmation is the button's POST.
     return page('Hatırlatma maillerini aç', 'Bu adrese günlük hatırlatma mailleri gelsin mi? Onaylamak için düğmeye dokun.', 200, here, `<form method="post" action="/api/push?c=${link.key}.${link.token}"><button type="submit" class="go">Onaylıyorum</button></form>`)
   }
-  await store.remove(mailRecordKey(link.key))
-  return page('Hatırlatmalar kapatıldı', 'Bu adrese artık mail göndermeyeceğiz ve adresin silindi.', 200, here)
+  // The same for turning the mails off: a mail scanner opening the link must not turn the reminders off unseen.
+  // The button posts back (page=1 asks for a page in answer; a mail client's one-click POST gets a bare 204).
+  return page('Hatırlatma maillerini kapat', 'Bu adrese hatırlatma mailleri gelmesin mi? Kapatmak için düğmeye dokun; adresin de silinir.', 200, here, `<form method="post" action="/api/push?u=${link.key}.${link.token}&amp;page=1"><button type="submit" class="go">Mailleri kapat</button></form>`)
 }
 
 /** Unconfirmed addresses an account may have waiting at once. */
@@ -258,7 +260,15 @@ async function handlePost(request: Request): Promise<Response> {
   if (stop) {
     const store = await reminderStore()
     const record = await store.get(mailRecordKey(stop.key))
-    if (record && record.token === stop.token) await store.remove(mailRecordKey(stop.key))
+    const valid = !!record && record.token === stop.token
+    if (valid) await store.remove(mailRecordKey(stop.key))
+    // The button of the page the mail's link opens (handleGet) gets a page back; a mail client's one-click POST does not.
+    if (new URL(request.url).searchParams.get('page') === '1') {
+      const here = siteFrom(request.url) ?? APP_URL
+      return valid
+        ? page('Hatırlatmalar kapatıldı', 'Bu adrese artık mail göndermeyeceğiz ve adresin silindi.', 200, here)
+        : page('Bağlantı geçersiz', 'Bu bağlantının süresi dolmuş ya da adres zaten silinmiş.', 404, here)
+    }
     return new Response(null, { status: 204 })
   }
   const text = await request.text()
@@ -284,14 +294,18 @@ async function handlePost(request: Request): Promise<Response> {
   // Only the app's pages, and (with accounts on) only a device signed in to one: the hourly run and friends' pushes
   // read these records, so a stranger must not fill the store with made-up subscriptions.
   if (!fromApp(request)) return new Response('forbidden', { status: 403 })
-  const allowed = await allowedIds()
-  if (allowed && !(typeof body.group === 'string' && allowed.has(body.group))) return new Response('not allowed', { status: 403 })
   const owner = await accountOf(request)
   if (!owner && supabaseOn()) return Response.json({ error: 'account_required' }, { status: 403 })
+  // The devices whose study counts together: the signed-in account itself, never a group the page names (anyone could
+  // name another account's and report "studied today" for it, so its reminder would not go). Only without accounts
+  // (a sync code, local development) is the device's own word all there is.
+  const group = owner ?? (typeof body.group === 'string' && /^[0-9a-f]{64}$/.test(body.group) ? body.group : null)
+  const allowed = await allowedIds()
+  if (allowed && !(group && allowed.has(group))) return new Response('not allowed', { status: 403 })
   const record: PushRecord = {
     subscription: { endpoint: sub.endpoint, keys: { p256dh: String(sub.keys.p256dh), auth: String(sub.keys.auth) } },
     ...stateFields(body),
-    group: typeof body.group === 'string' && /^[0-9a-f]{64}$/.test(body.group) ? body.group : null,
+    group,
     week: typeof body.week === 'string' ? body.week.slice(0, 200) : '',
     word: cleanWord(body.word),
     // A device that proves its account may ask for friends' messages (the token is checked, so nobody can ask for another's).

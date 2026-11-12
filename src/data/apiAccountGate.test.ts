@@ -50,15 +50,16 @@ describe('without the owner approving accounts', () => {
     expect((await requireApproved(ask({ ...account, 'x-sync-auth': 'd'.repeat(64) })))?.status).toBe(403)
   })
 
-  it('Supabase on: a first write does not open an account, with or without a token', async () => {
+  it('Supabase on: the old store takes no writes at all, not even from an account made through its sign-in', async () => {
     vi.stubEnv('SUPABASE_URL', 'https://x.supabase.co')
     vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
-    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(403)
-    expect((await PUT(write({}))).status).toBe(403)
-    expect(blobs.size).toBe(0)
-    // An account made through its sign-in writes as before.
+    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(410)
+    expect((await PUT(write({}))).status).toBe(410)
     expect(await claimAccount(ID, TOKEN)).toBe(true)
-    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(204)
+    const before = blobs.size
+    // Sync lives in Supabase now, with its limits; R2 only serves a device moving its old data over.
+    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(410)
+    expect(blobs.size).toBe(before)
   })
 
   it('Supabase off: the old first write still opens the account', async () => {
@@ -87,8 +88,8 @@ describe('with Supabase on and the owner approving people (the default)', () => 
     expect(await requireApproved(ask(account))).toBeNull()
   })
 
-  it('a write is refused for an account the owner has not approved', async () => {
+  it('a write is refused, approved or not: sync is in Supabase', async () => {
     expect(await claimAccount(ID, TOKEN)).toBe(true)
-    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(403)
+    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(410)
   })
 })

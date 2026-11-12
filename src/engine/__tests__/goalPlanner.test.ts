@@ -12,6 +12,24 @@ const MOCK_COVERAGE: LevelCoverage[] = [
 ]
 
 describe('calculateGoalProgress', () => {
+  it('weighs the goal against the learner’s own quota and what the daily minutes hold', () => {
+    const goal: CefrGoal = { level: 'A2', targetDate: '2026-11-19', createdAt: '2026-10-01' }
+    // 310 words in 31 days: 10 a day. The quota is 5, the minutes hold 3.
+    const p = calculateGoalProgress(goal, MOCK_COVERAGE, 5, NOW, 3)
+    expect(p.neededDailyNew).toBe(10)
+    expect(p.overMinutes).toBe(true)
+    expect(p.unrealistic).toBe(false)
+    // Never a quota the minutes can't carry.
+    expect(p.suggestedDailyNew).toBe(3)
+    // At 5 a day, 310 words take 62 days.
+    expect(p.etaAtCurrent).toBe('2026-12-21')
+    // Without the minutes given, as before.
+    const old = calculateGoalProgress(goal, MOCK_COVERAGE, 5, NOW)
+    expect(old.overMinutes).toBe(false)
+    expect(old.suggestedDailyNew).toBe(10)
+    expect(calculateGoalProgress(goal, MOCK_COVERAGE, 0, NOW).etaAtCurrent).toBeNull()
+  })
+
   it('calculates progress, remaining words, and suggested daily quota correctly for an A2 goal', () => {
     const goal: CefrGoal = {
       level: 'A2',

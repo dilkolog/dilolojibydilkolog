@@ -69,7 +69,9 @@ interface Props {
 
 const hostOf = (url: string) => {
   try {
-    return new URL(url).hostname
+    // Only a web address is drawn as a link (readIncoming already drops anything else).
+    const parsed = new URL(url)
+    return parsed.protocol === 'https:' || parsed.protocol === 'http:' ? parsed.hostname : ''
   } catch {
     return ''
   }

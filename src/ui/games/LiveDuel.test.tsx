@@ -8,7 +8,12 @@ import { duelOptions, duelPool } from '../../engine/duel'
 import { checkGrammar } from '../../engine/grammar'
 import type { RoomView } from '../../engine/liveDuel'
 import { LiveDuel } from './LiveDuel'
-import { roomUrl } from './useLiveRoom'
+import { roomTicket, roomUrl } from './useLiveRoom'
+import { accessFetch } from '../../data/access'
+
+// The room asks for a ticket first (api/_roomTicket.ts): the test's server hands one out.
+vi.mock('../../data/access', () => ({ accessFetch: vi.fn() }))
+const TICKET = `1794268800.${'ab'.repeat(32)}`
 
 ;(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true
 
@@ -47,6 +52,8 @@ const ws = () => FakeWebSocket.all[FakeWebSocket.all.length - 1]
 const flush = () => act(async () => void (await new Promise((r) => setTimeout(r, 20))))
 const mount = async (code = 'ABC234') => {
   await act(async () => root.render(<LiveDuel language="fr" name="Ali" code={code} onExit={() => {}} />))
+  // The ticket is asked for before the socket is made.
+  await act(async () => void (await vi.waitFor(() => expect(ws()).toBeTruthy())))
   await act(async () => ws().open())
 }
 const view = (over: Partial<RoomView> = {}): RoomView => ({ phase: 'lobby', ids: [], you: 0, players: [{ name: 'Ali', connected: true, answered: 0, score: 0, ms: 0 }], ...over })
@@ -60,6 +67,7 @@ const button = (re: RegExp) => [...host.querySelectorAll<HTMLButtonElement>('but
 beforeEach(() => {
   FakeWebSocket.all = []
   vi.stubGlobal('WebSocket', FakeWebSocket)
+  vi.mocked(accessFetch).mockReset().mockImplementation(async () => Response.json({ ticket: TICKET }))
   host = document.createElement('div')
   document.body.appendChild(host)
   root = createRoot(host)
@@ -73,7 +81,8 @@ afterEach(() => {
 describe('the live duel screen', () => {
   it('joins the room by name when the connection opens, and shows the code, the link and who is there', async () => {
     await mount()
-    expect(ws().url).toBe('ws://localhost:3000/api/room?code=ABC234'.replace('localhost:3000', location.host))
+    expect(accessFetch).toHaveBeenCalledWith('/api/access?room-ticket=1')
+    expect(ws().url).toBe(`ws://localhost:3000/api/room?code=ABC234&t=${TICKET}`.replace('localhost:3000', location.host))
     expect(ws().sent).toEqual([{ t: 'join', name: 'Ali' }])
     expect(text()).toContain('Odaya girildi')
     await state(view())
@@ -177,8 +186,10 @@ describe('the live duel screen', () => {
     await mount()
     await act(async () => ws().push({ t: 'state', room: view() }))
     await act(async () => ws().close())
-    await act(async () => void vi.advanceTimersByTime(900))
+    await act(async () => void (await vi.advanceTimersByTimeAsync(900)))
     expect(FakeWebSocket.all).toHaveLength(2)
+    // A reconnect asks for a ticket of its own.
+    expect(accessFetch).toHaveBeenCalledTimes(2)
     await act(async () => ws().open())
     expect(ws().sent).toEqual([{ t: 'join', name: 'Ali' }])
     vi.useRealTimers()
@@ -189,5 +200,19 @@ describe('the room address', () => {
   it('follows the page: wss on https, ws otherwise', () => {
     expect(roomUrl('ABC234', { protocol: 'https:', host: 'diloloji.com' })).toBe('wss://diloloji.com/api/room?code=ABC234')
     expect(roomUrl('ABC234', { protocol: 'http:', host: 'localhost:4180' })).toBe('ws://localhost:4180/api/room?code=ABC234')
+    expect(roomUrl('ABC234', { protocol: 'https:', host: 'diloloji.com' }, 'club', TICKET)).toBe(`wss://diloloji.com/api/room?code=ABC234&kind=club&t=${TICKET}`)
+  })
+
+  it('names the ticket the server gave, and connects without one when there is none to be had', async () => {
+    vi.mocked(accessFetch).mockResolvedValueOnce(Response.json({ ticket: TICKET }))
+    expect(await roomTicket()).toBe(TICKET)
+    vi.mocked(accessFetch).mockResolvedValueOnce(Response.json({ ticket: null }))
+    expect(await roomTicket()).toBeNull()
+    vi.mocked(accessFetch).mockResolvedValueOnce(Response.json({ error: 'approval_required' }, { status: 403 }))
+    expect(await roomTicket()).toBeNull()
+    vi.mocked(accessFetch).mockRejectedValueOnce(new Error('offline'))
+    expect(await roomTicket()).toBeNull()
+    vi.mocked(accessFetch).mockResolvedValueOnce(Response.json({ ticket: 'x&code=OTHER' }))
+    expect(await roomTicket()).toBeNull()
   })
 })

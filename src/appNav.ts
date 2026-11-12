@@ -112,7 +112,7 @@ export const NAV: { screen: NavScreen; label: string; icon: (p: { size?: number 
   { screen: 'home', label: 'Bugün', icon: HomeIcon },
   { screen: 'words', label: 'Kelimeler', icon: BookIcon },
   { screen: 'reading', label: 'Okuma', icon: ReadIcon },
-  { screen: 'practice', label: 'Pratik', icon: GameIcon },
+  { screen: 'practice', label: 'Öğren', icon: SchoolIcon },
   { screen: 'progress', label: 'İlerleme', icon: ChartIcon },
 ]
 
@@ -121,17 +121,23 @@ export const GROUPS: Partial<Record<NavScreen, { screen: ScreenName; label: stri
     { screen: 'words', label: 'Kelimeler' },
     { screen: 'dictionary', label: 'Sözlük' },
     { screen: 'translate', label: 'Çeviri' },
-    { screen: 'mistakes', label: 'Hatalar' },
   ],
   reading: [
     { screen: 'reading', label: 'Metinler' },
     { screen: 'story', label: 'Hikaye' },
   ],
+  // Learning: the lessons first, then the places to use what they teach (2026-11-12: "Pratik" held the lessons and the
+  // friends; lessons are not practice, and friends are neither).
   practice: [
-    { screen: 'games', label: 'Oyunlar' },
+    { screen: 'guide', label: 'Rehber' },
     { screen: 'verbs', label: 'Fiiller' },
     { screen: 'produce', label: 'Yaz & konuş' },
-    { screen: 'guide', label: 'Rehber' },
+    { screen: 'games', label: 'Oyunlar' },
+  ],
+  // How it goes: the numbers, what goes wrong (the mistakes, beside the blind spots), and the others (league, friends).
+  progress: [
+    { screen: 'progress', label: 'Genel' },
+    { screen: 'mistakes', label: 'Hatalar' },
     { screen: 'community', label: 'Topluluk' },
   ],
 }
@@ -140,7 +146,7 @@ export const GROUPS: Partial<Record<NavScreen, { screen: ScreenName; label: stri
 export function placeOf(name: ScreenName): NavScreen | undefined {
   if (name === 'word') return 'words'
   if (name === 'summary') return 'home'
-  if (name === 'home' || name === 'progress') return name
+  if (name === 'home') return name
   return (Object.keys(GROUPS) as NavScreen[]).find((k) => GROUPS[k]!.some((g) => g.screen === name))
 }
 

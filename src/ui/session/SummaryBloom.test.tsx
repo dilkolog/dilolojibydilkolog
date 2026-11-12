@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import { createEntry } from '../../data/wordInput'
 import type { SessionSummary } from '../../engine/session'
-import { Summary } from './SessionSummary'
+import { EARLY_ANSWERS, Summary } from './SessionSummary'
 
 const a = createEntry({ word: 'attendre', meaning: 'beklemek', partOfSpeech: 'verb' }, 'fr', new Date())
 const b = createEntry({ word: 'viser', meaning: 'hedeflemek', partOfSpeech: 'verb' }, 'fr', new Date())
@@ -27,8 +27,24 @@ describe('the words that grew today', () => {
 
 it('distinguishes a completed round from independent recall and remaining learning work', () => {
   const html = render({ ...base, words: [], independentCorrect: 2, pendingLearning: [a.id] })
-  expect(html).toContain('Kelime turun tamamlandı')
+  expect(html).toContain('Tur bitti')
   expect(html).toContain('2 cevabı yardımsız hatırladın')
-  expect(html).toContain('kalıcı olarak öğrenildiği anlamına gelmez')
-  expect(html).toContain('1 kelime ek pekiştirme bekliyor')
+  // What comes next, without "completed" beside "not learned".
+  expect(html).toContain('1 kelimenin pekiştirmesi sırada')
+  expect(html).not.toContain('Kelime turun tamamlandı')
+  expect(html).not.toContain('öğrenildiği anlamına gelmez')
+})
+
+describe('the coach note after a hard session', () => {
+  const hard = { ...base, answered: 20, correct: 10, independentCorrect: 10, words: [] }
+  const withHistory = (totalAnswers: number) =>
+    renderToStaticMarkup(<Summary summary={{ ...hard, introduced: [] }} byId={byId} before={{ stats: { totalAnswers } } as never} after={null} onDone={() => {}} />)
+  it('stays quiet while the learner is just starting: low scores on new words are how learning begins', () => {
+    expect(withHistory(EARLY_ANSWERS - 1)).not.toContain('zorlayıcıydı')
+    // A session of mostly new words, later on: still no "slow down".
+    expect(renderToStaticMarkup(<Summary summary={{ ...hard, introduced: [a.id, b.id, 'x', 'y'] }} byId={byId} before={{ stats: { totalAnswers: 5000 } } as never} after={null} onDone={() => {}} />)).not.toContain('zorlayıcıydı')
+  })
+  it('speaks up once there is a history and the words were not new', () => {
+    expect(withHistory(EARLY_ANSWERS)).toContain('zorlayıcıydı')
+  })
 })

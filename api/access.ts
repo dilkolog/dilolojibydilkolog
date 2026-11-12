@@ -10,6 +10,7 @@ import { currentAnnouncement, getSettings } from './_settings.js'
 import { fileReport } from './_reports.js'
 import { countUse, USE_NAMES, usageLast, type UseName } from './_usage.js'
 import { listReports, ownerAuthorized, unpublishList } from './_owner.js'
+import { issueRoomTicket, roomTicketsOn } from './_roomTicket.js'
 
 /**
  * An account's way to the owner's approval.
@@ -40,6 +41,8 @@ import { listReports, ownerAuthorized, unpublishList } from './_owner.js'
  *   waiting messages gone, no way back by code, link or request) or lift a block
  * POST /api/access  { action: 'report', kind: 'user' | 'message' | 'set' | 'club', target, reason, note?, shown? } → { ok }
  *   or { error: 'bad_request' | 'not_found' | 'too_many' }: a report to the owner (_reports.ts)
+ *
+ * GET  /api/access?room-ticket=1                  → { ticket }: what a live room's WebSocket must name (`&t=`), or null when rooms ask for none
  *
  * Supabase sign-in (see _supabase.ts), with `Authorization: Bearer <Supabase access token>`:
  * GET  /api/access?vault=1 → { account: { id, enc, auth, username } | null }: the person's sync account
@@ -193,6 +196,9 @@ async function vaultLink(request: Request, body: Record<string, unknown>): Promi
   if (overLimit(request, 'vault-write', 10)) return tooMany()
   const user = await supabaseUser(request)
   if (!user) return json({ error: 'signed_out' }, 401)
+  // Only a confirmed address links an account (and so gets AI and translation, and goes to the owner as a new sign-up):
+  // Supabase's "Confirm email" makes this so today, this keeps it so if the setting is ever turned off.
+  if (!user.confirmed) return json({ error: 'email_unconfirmed' }, 403)
   const { id, enc, auth } = body
   if (typeof id !== 'string' || typeof enc !== 'string' || typeof auth !== 'string' || !ID.test(id) || !TOKEN.test(enc) || !TOKEN.test(auth)) return json({ error: 'bad request' }, 400)
   const username = typeof body.username === 'string' && /^[\p{L}\p{N}._-]{3,32}$/u.test(body.username.trim()) ? body.username.trim() : ''
@@ -267,6 +273,14 @@ export async function GET(request: Request): Promise<Response> {
     return json({ facebook: settings.facebookLogin === true })
   }
   if (q.has('owner')) return ownerGet(request, q)
+  // A ticket for a live room (_roomTicket.ts): an approved account, as for the other features; null when rooms ask for none.
+  if (q.has('room-ticket')) {
+    if (overLimit(request, 'room-ticket', 30)) return tooMany()
+    if (!roomTicketsOn()) return json({ ticket: null })
+    const denied = await requireApproved(request)
+    if (denied) return denied
+    return json({ ticket: await issueRoomTicket() })
+  }
   if (q.has('friends') || q.has('inbox') || q.has('blocked') || q.has('friend-handle') || q.has('friend-find') || q.has('friend-invite')) return friendsGet(request)
   if (new URL(request.url).searchParams.has('vault')) return vaultGet(request)
   if (overLimit(request, 'access-read', 120)) return tooMany()

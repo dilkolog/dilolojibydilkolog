@@ -9,7 +9,7 @@ import { useSwipeAway } from '../shared/useSwipeAway'
 import { LinesSkeleton } from '../shared/Skeleton'
 import { FormQuestion } from '../session/FormQuestion'
 import { sfx } from '../shared/sounds'
-import { dayNumber, tenseName, verbEntry, type LabLanguage } from './labShared'
+import { dayNumber, tenseName, verbEntry, verbTitle, type LabLanguage } from './labShared'
 import { clozesFor, type Cloze } from './sentenceCloze'
 import { ClozeQuestion } from './SentenceQuiz'
 import { formOptions } from './labTourItems'
@@ -76,7 +76,7 @@ export function TourCard({ language, items, onStart }: { language: LabLanguage; 
         <h2 className="section-title">{done ? 'Bugünkü fiil turun bitti' : 'Bugünün fiil turu'}</h2>
         <p className="small muted">
           {items.length} soru · yaklaşık {minutes} dk ·{' '}
-          <span lang={language}>{tourVerbs(items).join(', ')}</span>
+          <span lang={language}>{tourVerbs(items).map((v) => verbTitle(language, v)).join(', ')}</span>
           {parts.length > 0 && ` (${parts.join(', ')})`}
         </p>
       </div>
@@ -179,7 +179,7 @@ export function TourRun({
         <div className="lab-chips" lang={language}>
           {tourVerbs(questions).map((v) => (
             <button key={v} type="button" className="chip chip-sm" onClick={() => onOpenVerb(v)}>
-              {v}
+              {verbTitle(language, v)}
             </button>
           ))}
         </div>

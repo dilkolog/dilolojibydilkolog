@@ -1,13 +1,13 @@
 import type { Settings } from '../../data/db'
 import { relativeWorkload } from '../../engine/scheduler'
-import { forecastWorkload, monthlyMinutes, recommendedNewWords } from '../../engine/workloadForecast'
+import { forecastWorkload, monthlyMinutes, NEW_WORD_OPTIONS, recommendedNewWords } from '../../engine/workloadForecast'
 import { JumpNav } from '../shared/JumpNav'
 import { MemoryModel } from './MemoryModel'
 import { StudyCalendar } from '../progress/StudyCalendar'
 import { Chips, Extra, Row, Toggle } from './settingsWidgets'
 
 const MINUTES = [5, 10, 15, 20, 30, 45]
-const NEW_WORDS = [0, 3, 5, 8, 12, 20]
+const NEW_WORDS = NEW_WORD_OPTIONS
 const XP_GOALS = [30, 50, 100, 200, 300]
 const SESSION_MAX = [0, 10, 20, 30, 50]
 const RETENTIONS = [0.85, 0.88, 0.9, 0.93, 0.95]

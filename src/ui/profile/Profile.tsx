@@ -1,4 +1,5 @@
 import '../../lazy.css'
+import { WordCountLabel } from '../shared/wordCounts'
 import { useEffect, useState } from 'react'
 import { BADGE_CATEGORIES, badgeCategory, badgeSeries, levelTitle, medalTier, type BadgeSeries } from '../../engine/gamification'
 import type { Profile, Settings } from '../../data/db'
@@ -301,8 +302,8 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
           <div className="profile-overview">
             <section className="stat-grid profile-stats">
               <Stat value={<><StreakPicture streak={game.streak} size={24} /> {game.streak}</>} label="günlük seri" />
-              <Stat value={<><img className="stat-art-img" src={STAT_ART.star} alt="" height={22} width={22} draggable={false} /> {game.stats.mastered}</>} label="oturan kelime" />
-              <Stat value={<><img className="stat-art-img" src={STAT_ART.sprout} alt="" height={22} width={22} draggable={false} /> {game.stats.wordsIntroduced}</>} label="tanışılan kelime" />
+              <Stat value={<><img className="stat-art-img" src={STAT_ART.star} alt="" height={22} width={22} draggable={false} /> {game.stats.mastered}</>} label={<WordCountLabel kind="settled" />} />
+              <Stat value={<><img className="stat-art-img" src={STAT_ART.sprout} alt="" height={22} width={22} draggable={false} /> {game.stats.wordsIntroduced}</>} label={<WordCountLabel kind="met" />} />
               <Stat value={<><img className="stat-art-img" src={STAT_ART.check} alt="" height={22} width={22} draggable={false} /> {game.stats.totalAnswers.toLocaleString('tr-TR')}</>} label="cevap" />
             </section>
             <ActivityMini
@@ -636,11 +637,11 @@ function BadgeDialog({ s, pinned = [], onTogglePin, onClose }: { s: BadgeSeries;
   )
 }
 
-function Stat({ value, label }: { value: React.ReactNode; label: string }) {
+function Stat({ value, label }: { value: React.ReactNode; label: React.ReactNode }) {
   return (
     <div className="stat">
       <span className="stat-value">{value}</span>
-      <span className="stat-label">{label}</span>
+      {typeof label === 'string' ? <span className="stat-label">{label}</span> : label}
     </div>
   )
 }
