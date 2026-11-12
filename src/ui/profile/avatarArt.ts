@@ -13,6 +13,35 @@ import frog from '../../assets/art/avatar-frog.webp'
 import lion from '../../assets/art/avatar-lion.webp'
 import deer from '../../assets/art/avatar-deer.webp'
 import tiger from '../../assets/art/avatar-tiger.webp'
+import redPanda from '../../assets/art/avatar-red-panda.webp'
+import otter from '../../assets/art/avatar-otter.webp'
+import capybara from '../../assets/art/avatar-capybara.webp'
+import hedgehog from '../../assets/art/avatar-hedgehog.webp'
+import raccoon from '../../assets/art/avatar-raccoon.webp'
+import sloth from '../../assets/art/avatar-sloth.webp'
+import squirrel from '../../assets/art/avatar-squirrel.webp'
+import elephant from '../../assets/art/avatar-elephant.webp'
+import parrot from '../../assets/art/avatar-parrot.webp'
+import whale from '../../assets/art/avatar-whale.webp'
+import seal from '../../assets/art/avatar-seal.webp'
+import axolotl from '../../assets/art/avatar-axolotl.webp'
+import turtle from '../../assets/art/avatar-turtle.webp'
+import bee from '../../assets/art/avatar-bee.webp'
+
+// The earned avatars that are not Monki: round portraits of the arena's monsters and the stat pictures
+// (the whole figures stay where they are used elsewhere, the arena and the stats).
+import avatarBossBlob from '../../assets/art/avatar-boss-blob.webp'
+import avatarBossGhost from '../../assets/art/avatar-boss-ghost.webp'
+import avatarBossSlime from '../../assets/art/avatar-boss-slime.webp'
+import avatarBossDino from '../../assets/art/avatar-boss-dino.webp'
+import avatarBossOctopus from '../../assets/art/avatar-boss-octopus.webp'
+import avatarBossYeti from '../../assets/art/avatar-boss-yeti.webp'
+import avatarBossChronos from '../../assets/art/avatar-boss-chronos.webp'
+import avatarBossDragon from '../../assets/art/avatar-boss-dragon.webp'
+import avatarBossGolem from '../../assets/art/avatar-boss-golem.webp'
+import avatarStatSprout from '../../assets/art/avatar-stat-sprout.webp'
+import avatarStatStar from '../../assets/art/avatar-stat-star.webp'
+import avatarStatBook from '../../assets/art/avatar-stat-book.webp'
 
 import monkiWave from '../../assets/art/monki-wave.webp'
 import monkiScarf from '../../assets/art/monki-lvl-1.webp'
@@ -31,27 +60,17 @@ import stickerThumbs from '../../assets/art/sticker-thumbs.webp'
 import stickerParty from '../../assets/art/sticker-party.webp'
 import stickerRead from '../../assets/art/sticker-read.webp'
 
-import statSprout from '../../assets/art/stat-sprout.webp'
-import statStar from '../../assets/art/stat-star.webp'
-import statBook from '../../assets/art/stat-book.webp'
-
-import bossBlob from '../../assets/art/boss-blob.webp'
-import bossSlime from '../../assets/art/boss-slime.webp'
-import bossGhost from '../../assets/art/boss-ghost.webp'
-import bossDino from '../../assets/art/boss-dino.webp'
-import bossOctopus from '../../assets/art/boss-octopus.webp'
-import bossYeti from '../../assets/art/boss-yeti.webp'
-import bossDragon from '../../assets/art/boss-dragon.webp'
-import bossGolem from '../../assets/art/boss-golem.webp'
-import bossChronos from '../../assets/art/boss-chronos.webp'
 
 /** The drawn avatar is stored as this emoji value; it shows the picture instead of a glyph. */
 export const MONKI_AVATAR = 'monki'
 export { monkiAvatarUrl }
 
-/** The avatars everyone has: Monki first, then the animals (each is a round picture with its own colour). */
+/**
+ * The avatars everyone has, as offered on the profile: the animals, each a round portrait with its own colour
+ * (avatar-koleksiyonu-01, 2026-11-12: the 14 animals redrawn and 14 new ones). Monki is not offered any more: it is
+ * the app's mascot, and a profile that chose it keeps it (LEGACY below).
+ */
 const FREE: Record<string, string> = {
-  [MONKI_AVATAR]: monkiAvatarUrl,
   fox,
   panda,
   owl,
@@ -66,6 +85,20 @@ const FREE: Record<string, string> = {
   lion,
   deer,
   tiger,
+  'red-panda': redPanda,
+  otter,
+  capybara,
+  hedgehog,
+  raccoon,
+  sloth,
+  squirrel,
+  elephant,
+  parrot,
+  whale,
+  seal,
+  axolotl,
+  turtle,
+  bee,
 }
 export const DRAWN_AVATAR_IDS = Object.keys(FREE)
 
@@ -81,44 +114,60 @@ export interface EarnedAvatar {
 }
 
 /**
- * Avatars to earn, in the order they open for most learners: Monki in the outfits of the levels, and the
- * arena's monsters. Whole figures (not round pictures): they stand on the profile's colour.
+ * Avatars to earn, as offered on the profile, in the order they open for most learners: the arena's monsters and the
+ * stat pictures, as round portraits. Ids, goals and names are those they always had (a profile that chose one keeps it).
  */
 export const EARNED_AVATARS: EarnedAvatar[] = [
-  { id: 'monki-wave', art: monkiWave, name: 'Selamlayan Monki', stat: 'level', goal: 2 },
-  { id: 'sticker-coffee', art: stickerCoffee, name: 'Kahve Molası Monki', stat: 'longestStreak', goal: 3 },
-  { id: 'monki-scarf', art: monkiScarf, name: 'Atkılı Monki', stat: 'level', goal: 3 },
-  { id: 'boss-blob', art: bossBlob, name: 'Mor canavar', stat: 'bossesDefeated', goal: 1 },
-  { id: 'stat-sprout', art: statSprout, name: 'Zihin Fidanı', stat: 'mastered', goal: 10 },
-  { id: 'monki-student', art: monkiStudent, name: 'Öğrenci Monki', stat: 'level', goal: 5 },
-  { id: 'boss-ghost', art: bossGhost, name: 'Hayalet', stat: 'longestStreak', goal: 7 },
-  { id: 'boss-slime', art: bossSlime, name: 'Jöle', stat: 'bossesDefeated', goal: 3 },
-  { id: 'stat-star', art: statStar, name: 'Altın Yıldız', stat: 'longestStreak', goal: 10 },
-  { id: 'monki-explorer', art: monkiExplorer, name: 'Kâşif Monki', stat: 'level', goal: 8 },
-  { id: 'monki-think', art: monkiThink, name: 'Düşünür Monki', stat: 'mastered', goal: 25 },
-  { id: 'sticker-music', art: stickerMusic, name: 'Müzisyen Monki', stat: 'bossesDefeated', goal: 5 },
-  { id: 'sticker-thumbs', art: stickerThumbs, name: 'Süper Monki', stat: 'level', goal: 10 },
-  { id: 'boss-octopus', art: bossOctopus, name: 'Kral ahtapot', stat: 'longestStreak', goal: 14 },
-  { id: 'monki-hang', art: monkiHang, name: 'Akrobat Monki', stat: 'bossesDefeated', goal: 7 },
-  { id: 'sticker-party', art: stickerParty, name: 'Parti Monki', stat: 'longestStreak', goal: 21 },
-  { id: 'boss-dino', art: bossDino, name: 'Dino', stat: 'mastered', goal: 50 },
-  { id: 'monki-graduate', art: monkiGraduate, name: 'Mezun Monki', stat: 'level', goal: 15 },
-  { id: 'boss-yeti', art: bossYeti, name: 'Yeti', stat: 'bossesDefeated', goal: 10 },
-  { id: 'boss-chronos', art: bossChronos, name: 'Zaman Bükücü Kronos', stat: 'bossesDefeated', goal: 15 },
-  { id: 'monki-sleep', art: monkiSleep, name: 'Uykucu Monki', stat: 'level', goal: 20 },
-  { id: 'boss-dragon', art: bossDragon, name: 'Ejderha', stat: 'longestStreak', goal: 30 },
-  { id: 'sticker-read', art: stickerRead, name: 'Kitap Kurdu Monki', stat: 'mastered', goal: 100 },
-  { id: 'monki-king', art: monkiKing, name: 'Kral Monki', stat: 'level', goal: 25 },
-  { id: 'monki-cheer', art: monkiCheer, name: 'Kutlayan Monki', stat: 'longestStreak', goal: 50 },
-  { id: 'boss-golem', art: bossGolem, name: 'Taş dev', stat: 'mastered', goal: 200 },
-  { id: 'stat-book', art: statBook, name: 'Büyülü Kitap', stat: 'mastered', goal: 300 },
+  { id: 'boss-blob', art: avatarBossBlob, name: 'Mor canavar', stat: 'bossesDefeated', goal: 1 },
+  { id: 'stat-sprout', art: avatarStatSprout, name: 'Zihin Fidanı', stat: 'mastered', goal: 10 },
+  { id: 'boss-ghost', art: avatarBossGhost, name: 'Hayalet', stat: 'longestStreak', goal: 7 },
+  { id: 'boss-slime', art: avatarBossSlime, name: 'Jöle', stat: 'bossesDefeated', goal: 3 },
+  { id: 'stat-star', art: avatarStatStar, name: 'Altın Yıldız', stat: 'longestStreak', goal: 10 },
+  { id: 'boss-octopus', art: avatarBossOctopus, name: 'Kral ahtapot', stat: 'longestStreak', goal: 14 },
+  { id: 'boss-dino', art: avatarBossDino, name: 'Dino', stat: 'mastered', goal: 50 },
+  { id: 'boss-yeti', art: avatarBossYeti, name: 'Yeti', stat: 'bossesDefeated', goal: 10 },
+  { id: 'boss-chronos', art: avatarBossChronos, name: 'Zaman Bükücü Kronos', stat: 'bossesDefeated', goal: 15 },
+  { id: 'boss-dragon', art: avatarBossDragon, name: 'Ejderha', stat: 'longestStreak', goal: 30 },
+  { id: 'boss-golem', art: avatarBossGolem, name: 'Taş dev', stat: 'mastered', goal: 200 },
+  { id: 'stat-book', art: avatarStatBook, name: 'Büyülü Kitap', stat: 'mastered', goal: 300 },
 ]
 const EARNED_BY_ID = new Map(EARNED_AVATARS.map((a) => [a.id, a]))
 
-/** Every drawn avatar by the value kept in `Profile.emoji`, the free ones and the ones to earn. */
-export const DRAWN_AVATARS: Record<string, string> = { ...FREE, ...Object.fromEntries(EARNED_AVATARS.map((a) => [a.id, a.art])) }
-/** A whole figure (an earned avatar) rather than a round picture. */
-export const isFigureAvatar = (id: string): boolean => EARNED_BY_ID.has(id)
+/**
+ * Monki and the Monki figures that were avatars before (the round Monki, and the outfits earned by level, streak,
+ * bosses and settled words). No longer offered, but a profile that chose one keeps showing it, unchanged, until
+ * another is picked: the stored value is never rewritten.
+ */
+const LEGACY_FIGURES: { id: string; art: string; name: string }[] = [
+  { id: 'monki-wave', art: monkiWave, name: 'Selamlayan Monki' },
+  { id: 'sticker-coffee', art: stickerCoffee, name: 'Kahve Molası Monki' },
+  { id: 'monki-scarf', art: monkiScarf, name: 'Atkılı Monki' },
+  { id: 'monki-student', art: monkiStudent, name: 'Öğrenci Monki' },
+  { id: 'monki-explorer', art: monkiExplorer, name: 'Kâşif Monki' },
+  { id: 'monki-think', art: monkiThink, name: 'Düşünür Monki' },
+  { id: 'sticker-music', art: stickerMusic, name: 'Müzisyen Monki' },
+  { id: 'sticker-thumbs', art: stickerThumbs, name: 'Süper Monki' },
+  { id: 'monki-hang', art: monkiHang, name: 'Akrobat Monki' },
+  { id: 'sticker-party', art: stickerParty, name: 'Parti Monki' },
+  { id: 'monki-graduate', art: monkiGraduate, name: 'Mezun Monki' },
+  { id: 'monki-sleep', art: monkiSleep, name: 'Uykucu Monki' },
+  { id: 'sticker-read', art: stickerRead, name: 'Kitap Kurdu Monki' },
+  { id: 'monki-king', art: monkiKing, name: 'Kral Monki' },
+  { id: 'monki-cheer', art: monkiCheer, name: 'Kutlayan Monki' },
+]
+const LEGACY_BY_ID = new Map(LEGACY_FIGURES.map((a) => [a.id, a]))
+/** Values kept on old profiles that are shown but no longer offered (`LEGACY_FIGURES` and the round Monki). */
+export const LEGACY_AVATAR_IDS = [MONKI_AVATAR, ...LEGACY_FIGURES.map((a) => a.id)]
+
+/** Every drawn avatar by the value kept in `Profile.emoji`: the offered ones and the legacy Monki ones. */
+export const DRAWN_AVATARS: Record<string, string> = {
+  ...FREE,
+  ...Object.fromEntries(EARNED_AVATARS.map((a) => [a.id, a.art])),
+  [MONKI_AVATAR]: monkiAvatarUrl,
+  ...Object.fromEntries(LEGACY_FIGURES.map((a) => [a.id, a.art])),
+}
+/** A whole figure (a legacy Monki outfit) rather than a round picture: it stands on the profile's colour. */
+export const isFigureAvatar = (id: string): boolean => LEGACY_BY_ID.has(id)
 
 /** What it takes, in words: "Seviye 8", "7 günlük seri", "3 boss", "50 kelime Oturdu". */
 export function avatarNeed(a: Pick<EarnedAvatar, 'stat' | 'goal'>): string {
@@ -144,5 +193,19 @@ const NAMES: Record<string, string> = {
   lion: 'Aslan',
   deer: 'Geyik',
   tiger: 'Kaplan',
+  'red-panda': 'Kızıl panda',
+  otter: 'Su samuru',
+  capybara: 'Kapibara',
+  hedgehog: 'Kirpi',
+  raccoon: 'Rakun',
+  sloth: 'Tembel hayvan',
+  squirrel: 'Sincap',
+  elephant: 'Fil',
+  parrot: 'Papağan',
+  whale: 'Balina',
+  seal: 'Fok',
+  axolotl: 'Aksolotl',
+  turtle: 'Kaplumbağa',
+  bee: 'Arı',
 }
-export const drawnAvatarName = (id: string): string => NAMES[id] ?? EARNED_BY_ID.get(id)?.name ?? id
+export const drawnAvatarName = (id: string): string => NAMES[id] ?? EARNED_BY_ID.get(id)?.name ?? LEGACY_BY_ID.get(id)?.name ?? id
