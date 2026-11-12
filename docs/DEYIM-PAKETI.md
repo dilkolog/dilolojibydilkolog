@@ -4,7 +4,7 @@ Hedef: **dil başına 500 deyim** (İngilizce, Fransızca, İspanyolca), tek pak
 
 Sözlükte bulunabilsin diye `t` alanına insanların arayacağı sade Türkçe karşılık, `eq` alanına Türkçe deyim yazılır; `w` insanların yazacağı sözlük biçimidir.
 
-Bu belge toplamayı ve denetimi yapan ajanlar içindir. Sahibinin kararı (2026-11-10): 500 deyim, hepsi aynı pakette; İspanyolcayı Antigravity, Fransızcayı ve İngilizceyi Codex toplar; birbirlerini denetlerler.
+Bu belge toplamayı ve denetimi yapan ajanlar içindir. Sahibinin güncel kararı (2026-11-13): üç dilin toplayanı Codex, bağımsız denetleyeni Claude oturumudur. Antigravity bu işte çalışmaz. Sıra İspanyolca → Fransızca → İngilizce; dil başına tek PR. 16 × 31 parti planı korunur; 16 çekirdekle toplam 512 olabilir. İki gerçek kaynakla doğrulanmış 31 güçlü deyim bulunamazsa parti eksik bırakılır ve raporlanır; sayı doldurmak için zayıf kalıp alınmaz.
 
 ## Nasıl çalışır
 
@@ -34,8 +34,8 @@ Tema, deyimin **anlamına** göre seçilir, içindeki kelimeye göre değil; tek
 
 ## Kurallar
 
-1. **Yalnızca bugün kullanılan deyimler.** Ana dili konuşanların günlük konuşmada ya da basında gerçekten kullandığı deyimler; kitapta kalmış, eskimiş olanlar alınmaz. Her deyim **iki bağımsız kaynakta** doğrulanır (bir sözlük + gerçek kullanım: gazete, altyazı, derlem). Doğrulanamayan alınmaz.
-2. **Dilin kendi deyimi.** Başka dilden çevrilmiş deyim yazılmaz. Atasözü (tam cümle) değil, deyim (söz öbeği).
+1. **Yalnızca bugün kullanılan deyimler.** Ana dili konuşanların günlük konuşmada ya da basında gerçekten kullandığı deyimler; kitapta kalmış, eskimiş olanlar alınmaz. Her deyim **iki bağımsız kaynakta** doğrulanır (tercihen bir sözlük + gerçek kullanım: gazete, altyazı, derlem). İki sayfa gerçekten açılır; her birinde deyimin kendisi veya doğal çekimli kullanımı görülür. Sayfa yalnızca içindeki tek kelimeyi anlatıyorsa kaynak sayılamaz. Açılmayan veya ifade bulunmayan URL yazılmaz. İki geçerli kaynak bulunamayan deyim alınmaz.
+2. **Anlamı bileşenlerinden doğrudan çıkarılamayan söz öbeği.** `poner límites`, `cerrar el trato`, `trabajar por su cuenta` gibi şeffaf kalıplar alınmaz. **Dilin kendi deyimi.** Başka dilden çevrilmiş deyim yazılmaz. Atasözü (tam cümle) değil, deyim (söz öbeği).
 3. **Özgün metin.** Anlam, kelimesi kelimesine çeviri ve örnek cümle kendi yazdığındır; hiçbir sözlükten tanım ya da örnek kopyalanmaz. Kaynaklar yalnızca doğrulama içindir.
 4. **Örnek cümle:** en çok 16 kelime, günlük, seviyeye uygun. Deyim cümlede **bölünmeden** geçer (araya `pas`, `no`, zarf girmez; gerekirse cümleyi öyle kur). `form` deyimin cümledeki hâlidir, birebir (çekimli olabilir).
 5. **Sözlük biçimi (`w`):** mastar hâlinde, en az iki kelime, parantez / eğik çizgi / virgül yok. "Birine, bir şeye" gibi yer tutucular `pat` alanına gider.
@@ -78,109 +78,72 @@ Tema, deyimin **anlamına** göre seçilir, içindeki kelimeye göre değil; tek
 
 ## İş düzeni: kim neyi yapar
 
-| Dil | Toplayan | Denetleyen | Dal |
-|---|---|---|---|
-| İspanyolca (`es`) | **Antigravity** | Codex | `icerik/deyimler-es` |
-| Fransızca (`fr`) | **Codex** | Antigravity | `icerik/deyimler-fr` |
-| İngilizce (`en`) | **Codex** (Fransızca bittikten sonra) | Antigravity | `icerik/deyimler-en` |
+Güncelleme: 2026-11-13, sahibinin talimatı. Antigravity bu çalışmada görev almaz.
 
-**Dosya sahipliği (çakışma olmasın diye):** bir ajan yalnızca kendi dilinin dosyalarına yazar.
+| Sıra | Dil | Toplayan | Denetleyen | Dal / PR |
+|---|---|---|---|---|
+| 1 | İspanyolca (`es`) | **Codex** | **Claude oturumu** | `icerik/deyimler-es`, #774 |
+| 2 | Fransızca (`fr`) | **Codex** | **Claude oturumu** | `icerik/deyimler-fr`, #773 |
+| 3 | İngilizce (`en`) | **Codex** | **Claude oturumu** | `icerik/deyimler-en`, tek yeni PR |
 
-- Toplayan: `content/raw/idioms/<dil>-NNNN.json` ve üretilen `src/data/idioms/<dil>.json`.
-- Denetleyen: yalnızca `content/review/idioms/<dil>-NNNN.md` (rapor). Deyim dosyasını kendisi düzeltmez.
-- Kimse dokunmaz: `src/` altındaki başka her şey, bu belge, öteki dilin dosyaları, `<dil>-0000.json`.
+**Dosya sahipliği:**
 
-**Tur (4 parti = 1 PR, dil başına 4 tur):**
+- Toplayan, ilgili dilin `content/raw/idioms/<dil>-NNNN.json` partilerini ve betiğin ürettiği `src/data/idioms/<dil>.json` dosyasını günceller. Başka uygulama kodunu değiştirmez.
+- Denetleyen, `content/review/idioms/<dil>-NNNN.md` raporlarını bağımsız yazar; hataları toplayana bildirir. Toplayanın kendi kontrolü bağımsız Claude denetimi yerine geçmez.
+- Çekirdek `<dil>-0000.json` ve öteki dilin dosyaları mevcut kapsamda korunur. Bu belge iş düzenini güncellemek için yetkili olarak değiştirilmiştir.
+- Hazırlık klasörleri ve ZIP'ler içerik PR'larına alınmaz. Kitabın 151 ifadesi yalnız adaydır; kitap doğrulama kaynağı sayılmaz. Kitap aday klasörü depoya aktarılmaz; #775 kapatılır.
 
-| Tur | Partiler | Temalar |
+**Parti grupları (dil başına tek PR içinde):**
+
+| Grup | Partiler | Temalar |
 |---|---|---|
 | 1 | 0001–0004 | body, animals, food, money |
 | 2 | 0005–0008 | work, feelings, talk, mind |
 | 3 | 0009–0012 | people, trouble, time, nature |
 | 4 | 0013–0016 | luck, ease, decide, move |
 
-Bir turun adımları:
+**Hedef:** yeni parti başına 31 deyim (6 B1, 12 B2, 13 C1). 496 yeni + 16 çekirdek = 512 olabilir. Sayı ve seviye kotası kaynak/kalite kuralının önüne geçmez; doldurulamayan yerler gerekçesiyle açık yazılır. Seviye etiketleri editoryal tahmindir; resmî CEFR sertifikası değildir.
 
-1. **Toplayan** dalını güncel `main`den açar (ya da günceller), turun dört partisini yazar, `node scripts/build-idioms.mjs` ve `npx vitest run src/data/idioms.test.ts` çalıştırır; ikisi de geçince tek commit ile push'lar ve `main`e **taslak** PR açar (başlık: `Deyim paketi: <dil> tur <n>`). Taslak PR'da CI çalışmaz; Actions dakikası harcanmaz.
-2. **Denetleyen** aynı dalı çeker, dört partiyi bağımsız okur, her parti için `content/review/idioms/<dil>-NNNN.md` raporunu aynı dala commit'ler. Rapor: sorunlu deyimler (gerekçeli), şüpheliler, "temiz" sayısı.
-3. **Toplayan** raporlardaki her maddeyi ya düzeltir ya da deyimi çıkarır (tartışmaz: şüpheli deyim pakete girmez), çıkan deyimin yerine aynı seviyeden yenisini koyar, betiği ve testi yeniden çalıştırır, push'lar.
-4. **Sahibi** her partiden 5–6 deyime bakar; uygunsa PR'ı "hazır"a çevirir. CI yeşilse birleştirilir.
-5. Sonraki tur, önceki birleştikten sonra güncel `main`den başlar.
+Bir dilin adımları:
 
-İki dil birbirini beklemez: Antigravity İspanyolca tur 1'i yazarken Codex Fransızca tur 1'i yazar; sonra karşılıklı denetlerler.
+1. Codex ilgili dalı güncel `main` ile uzlaştırır. Mevcut sorunlu kaynakları yeniden doğrular; her aday için iki gerçek sayfayı açıp deyimi görür. Erişim zamanı ve teyit edilen ifade kısa doğrulama kaydında tutulur; sözlük tanımları/örnekleri kopyalanmaz.
+2. Özgün Türkçe anlam, literal çeviri, doğal ve en çok 16 kelimelik örnek, birebir `form`, doğru tema/üslup/bölge yazılır. Şeffaf kalıp, atasözü, kaba ifade ve yinelenen elenir. Şüpheli madde yerine doğrulanmış aday bulunamazsa parti eksik kalır.
+3. Dilin bütün partileri aynı PR'da toplanır; dört parti başına ayrı PR açılmaz. Taslak PR, içerik ve bağımsız inceleme bitene kadar hazır sayılmaz.
+4. Claude oturumu partileri bağımsız inceler. Codex rapordaki sorunları düzeltir veya deyimi çıkarır; kaynak doğrulamasını kendi kendine bağımsız denetim diye adlandırmaz.
+5. `node scripts/build-idioms.mjs`, `npx vitest run src/data/idioms.test.ts`, `npm run typecheck` ve `npx oxlint src api e2e` geçer. Kaynak sayfasının gerçekten ilgili olduğunu bu yapısal testler kanıtlamaz; ayrı kaynak kaydı gereklidir.
+6. İçerik/denetim koşulları tamamlanan PR hazır duruma alınır; CI yeşilse birleştirilir. Başarısız veya eksik kontrol saklanmaz.
+7. Son rapor: eklenen ve toplam deyim sayısı, parti/tema/seviye dağılımı, hedefe göre açıklar, elenen aday ve gerekçeleri, kaynak sitelerinin bağlantı sayıları ve belirsizlikler. Sonra sıradaki dile geçilir.
 
-**İnternet yoksa:** kaynaklara erişemeyen ajan `src` uydurmaz. Erişemediğini raporda söyler ve durur; parti yarım bırakılır, tamamlanmış gibi gösterilmez.
-
-**Durum:** ayrı bir tablo tutulmaz. `node scripts/build-idioms.mjs` her dilin deyim ve parti sayısını, seviye ve tema dağılımını basar.
+**İnternet yoksa:** kaynaklara erişemeyen ajan `src` uydurmaz. Erişemediğini raporda söyler ve durur; parti yarım bırakılır, tamamlanmış gibi gösterilmez. Tek bir kaynağın engellenmesi bütün internetin kapalı olduğu anlamına gelmez; erişilebilir bağımsız kaynak aranır.
 
 ## Başlatma metinleri
 
-### Antigravity: İspanyolca toplama
+### Codex: üç dilin toplayanı
 
 ```text
-Diloloji deposunda docs/DEYIM-PAKETI.md dosyasını baştan sona oku ve aynen uygula. Kullanıcıya Türkçe yaz.
-
-Rolün: İspanyolca (es) deyim paketinin TOPLAYANI. Dal: icerik/deyimler-es (güncel main'den).
-Bu tur: <TUR NO> (partiler ve temalar belgedeki tur tablosunda). Parti başına 31 deyim: 6 B1, 12 B2, 13 C1.
-
-- Her deyimi iki bağımsız kaynakta doğrula ve adreslerini src alanına yaz; doğrulayamadığını alma.
-- İspanya'ya ya da Latin Amerika'ya özgü olanı area alanında belirt; ikisinde de geçeni "genel" yaz.
-- Yalnızca content/raw/idioms/es-NNNN.json dosyalarını yaz; src/data/idioms/es.json'u betik üretir.
-- Bitince: node scripts/build-idioms.mjs, sonra npx vitest run src/data/idioms.test.ts. İkisi de hatasız geçmeli.
-- Tek commit, push, main'e TASLAK PR aç: "Deyim paketi: es tur <TUR NO>".
-- Son mesajın kısa bir rapor olsun: kaç deyim, kaçını eledin ve neden, emin olamadıkların.
+Diloloji deposunda AGENTS.md ve docs/DEYIM-PAKETI.md dosyalarını baştan sona oku. Kullanıcıya Türkçe yaz.
+Rolün: es, sonra fr, sonra en deyim paketinin TOPLAYANI. Her dil için tek dal ve tek PR kullan.
+Bağımsız denetleyen Claude oturumudur; Antigravity bu işte çalışmıyor.
+Partiler 0001–0016, hedef her partide 31 deyim: 6 B1, 12 B2, 13 C1.
+İki gerçek kaynakla doğrulayamadığını alma; sayı doldurmak için şeffaf/zayıf kalıp ekleme.
+Sayfaları gerçekten aç ve her birinde deyimin kendisini gör. URL tahmin etme.
+Anlam/örnekler özgün; örnek en çok 16 kelime ve deyim bölünmeden geçer.
+İspanyolcada bölgeyi belirt. Fransızcada araya pas/jamais/zarf sokma.
+İngilizcede someone's gibi yer tutucular gerektiğinde sözlük biçiminde kalır, düz apostrof kullan.
+Şeffaf öbek fiiller give up/look after ve atasözleri alınmaz. UK/US kapsamını belirt.
+Hazırlık klasörü/ZIP'leri PR'a alma; kitap yalnız adaydır, kaynak değildir.
+Her dil sonunda derleyici, deyim testi, typecheck ve oxlint çalıştır; başarısızlığı gizleme.
+Rapor: sayılar, tema/seviye dağılımı, elenenler ve nedenleri, site başına kaynak sayısı, belirsizlikler.
 ```
 
-### Codex: Fransızca toplama
+### Claude oturumu: bağımsız denetim
 
 ```text
-Diloloji deposunda docs/DEYIM-PAKETI.md dosyasını baştan sona oku ve aynen uygula. Kullanıcıya Türkçe yaz.
-
-Rolün: Fransızca (fr) deyim paketinin TOPLAYANI. Dal: icerik/deyimler-fr (güncel main'den).
-Bu tur: <TUR NO> (partiler ve temalar belgedeki tur tablosunda). Parti başına 31 deyim: 6 B1, 12 B2, 13 C1.
-
-- Her deyimi iki bağımsız kaynakta doğrula ve adreslerini src alanına yaz; doğrulayamadığını alma.
-  Kaynaklara erişemiyorsan src uydurma: dur ve bunu söyle.
-- Fransa dışına özgü olanı (Québec, Belçika, İsviçre) area alanında belirt; ortak olanı "genel" yaz.
-- Örnek cümlede deyim bölünmeden geçsin: araya "pas", "jamais", zarf girmesin; cümleyi buna göre kur.
-- Yalnızca content/raw/idioms/fr-NNNN.json dosyalarını yaz; src/data/idioms/fr.json'u betik üretir.
-- Bitince: node scripts/build-idioms.mjs, sonra npx vitest run src/data/idioms.test.ts. İkisi de hatasız geçmeli.
-- Tek commit, push, main'e TASLAK PR aç: "Deyim paketi: fr tur <TUR NO>".
-- Son mesajın kısa bir rapor olsun: kaç deyim, kaçını eledin ve neden, emin olamadıkların.
-```
-
-### Codex: İngilizce toplama (Fransızca dört turu bitince)
-
-```text
-Diloloji deposunda docs/DEYIM-PAKETI.md dosyasını baştan sona oku ve aynen uygula. Kullanıcıya Türkçe yaz.
-
-Rolün: İngilizce (en) deyim paketinin TOPLAYANI. Dal: icerik/deyimler-en (güncel main'den).
-Bu tur: <TUR NO> (partiler ve temalar belgedeki tur tablosunda). Parti başına 31 deyim: 6 B1, 12 B2, 13 C1.
-
-- Her deyimi iki bağımsız kaynakta doğrula ve adreslerini src alanına yaz; doğrulayamadığını alma.
-  Kaynaklara erişemiyorsan src uydurma: dur ve bunu söyle.
-- Yalnızca İngiltere'de ya da yalnızca ABD'de kullanılanı area alanında "UK" / "US" diye belirt; ortak olanı "genel" yaz.
-- Sözlük biçiminde iyelik yer tutucusu İngilizcede olduğu gibi kalır ("pull someone's leg"); düz kesme işareti kullan.
-- Deyim olmayan öbek fiilleri (give up, look after) alma: imgesi olan deyimler.
-- Yalnızca content/raw/idioms/en-NNNN.json dosyalarını yaz; src/data/idioms/en.json'u betik üretir.
-- Bitince: node scripts/build-idioms.mjs, sonra npx vitest run src/data/idioms.test.ts. İkisi de hatasız geçmeli.
-- Tek commit, push, main'e TASLAK PR aç: "Deyim paketi: en tur <TUR NO>".
-- Son mesajın kısa bir rapor olsun: kaç deyim, kaçını eledin ve neden, emin olamadıkların.
-```
-
-### Denetim (Codex → İspanyolca; Antigravity → Fransızca ve İngilizce)
-
-```text
-Diloloji deposunda docs/DEYIM-PAKETI.md dosyasını oku. Kullanıcıya Türkçe yaz.
-
-Rolün: <DİL> deyim paketinin DENETLEYENİ. Dal: icerik/deyimler-<dil> (çek, yeni dal açma).
-Bu tur: <TUR NO>. Turun her partisi için content/raw/idioms/<dil>-NNNN.json dosyasını, yazandan bağımsız oku.
-
-Her deyim için: (1) bugün gerçekten kullanılıyor mu, (2) Türkçe anlam doğru mu, (3) kelimesi kelimesine
-çeviri doğru mu, (4) örnek cümle doğal ve dil bilgisi açısından kusursuz mu, (5) seviye, üslup ve bölge
-doğru mu, (6) Türkçe eşdeğer deyim gerçekten aynı anlamda mı, (7) tema doğru mu.
-
-Çıktı: parti başına content/review/idioms/<dil>-NNNN.md: "Sorunlu" (deyim, hangi madde, gerekçe,
-önerilen düzeltme), "Şüpheli" (emin olamadıkların), "Temiz: N". Deyim dosyalarını ve başka hiçbir
-dosyayı değiştirme. Raporları aynı dala tek commit ile push'la.
+Diloloji deposunda AGENTS.md ve docs/DEYIM-PAKETI.md dosyalarını baştan sona oku. Kullanıcıya Türkçe yaz.
+Rolün: Codex'in topladığı es/fr/en deyim paketlerinin bağımsız DENETLEYENİ.
+İlgili icerik/deyimler-<dil> dalını çek; her partiyi ve kaynak doğrulamasını bağımsız incele.
+Her deyimde: deyim niteliği, güncel kullanım, iki gerçekten açılmış ilgili bağımsız kaynak,
+özgün/doğru Türkçe anlam ve literal çeviri, doğal örnek/form, tema/seviye/üslup/bölge ve tekrar kontrolü.
+Çıktı content/review/idioms/<dil>-NNNN.md: sorunlu, şüpheli, gerekçeler ve doğrulanan temiz sayı.
+Erişemediğin kaynak veya eksik inceleme için temiz deme. Deyim verisini değiştirme; toplayana raporla.
 ```
