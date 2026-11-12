@@ -72,6 +72,30 @@ describe('Supabase migrations', () => {
     expect((await db.query<{ words: number }>(`select words from public.people`)).rows).toHaveLength(1)
   }, 60_000)
 
+  it('keeps a person within 30 MB of data and 20 MB of restore points (today\'s always stays)', async () => {
+    const { db } = await run(FILES)
+    const id = '33333333-3333-3333-3333-333333333333'
+    await db.exec(`insert into auth.users (id, email) values ('${id}', 'c@d.e'); update public.profiles set approved = true where user_id = '${id}'; select set_config('request.jwt.claim.sub', '${id}', false);`)
+    // Old restore points, 8 MB each (written as the server would have), then today's core.
+    for (const day of ['2099-01-01', '2099-01-02', '2099-01-03']) await db.exec(`insert into public.sync_parts (user_id, name, data, bytes) values ('${id}', 'h-${day}', '{}'::jsonb, 8000000)`)
+    await db.query(`select public.put_sync_part('core', '{"a":1}'::jsonb, null, true)`)
+    const history = (await db.query<{ name: string }>(`select name from public.sync_parts where user_id = '${id}' and name like 'h-%' order by name desc`)).rows.map((r) => r.name)
+    // The newest that fit within 20 MB stay (today's small one counts too); the oldest went.
+    expect(history.length).toBe(3)
+    expect(history).not.toContain('h-2099-01-01')
+    await db.exec(`insert into public.sync_parts (user_id, name, data, bytes) values ('${id}', 'ev-2026-01', '{}'::jsonb, 29999990)`)
+    await expect(db.query(`select public.put_sync_part('ev-2026-02', '{"aaaa":1}'::jsonb, null, true)`)).rejects.toMatchObject({ code: '54000' })
+  }, 60_000)
+
+  it('storage_usage is for the server only', async () => {
+    const { db } = await run(FILES)
+    const can = async (role: string) => (await db.query<{ ok: boolean }>(`select has_function_privilege('${role}', 'public.storage_usage()', 'execute') as ok`)).rows[0]!.ok
+    expect([await can('anon'), await can('authenticated'), await can('service_role')]).toEqual([false, false, true])
+    const row = (await db.query<{ db_bytes: number; media_bytes: number }>(`select * from public.storage_usage()`)).rows[0]!
+    expect(Number(row.db_bytes)).toBeGreaterThan(0)
+    expect(Number(row.media_bytes)).toBe(0)
+  }, 60_000)
+
   it('the sign-up trigger cannot be called through the API, and still makes the profile when a user is created', async () => {
     const { db } = await run(FILES)
     const can = async (role: string) => (await db.query<{ ok: boolean }>(`select has_function_privilege('${role}', 'public.handle_new_user()', 'execute') as ok`)).rows[0]!.ok

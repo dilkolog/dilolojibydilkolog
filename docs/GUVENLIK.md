@@ -22,7 +22,7 @@ Altyapı Cloudflare Worker + R2 + Supabase'tedir (Vercel'den 2026-11-08'de çık
 
 ## 2026-10-22 güvenlik incelemesi
 Yapılanlar:
-- **Hesap başına depolama sınırı** (`supabase/migrations/0005_storage_limits.sql`, sahibi SQL Editor'de çalıştırır): `put_sync_part` kişi başı en çok 100 MB veri (geri dönüş noktaları `h-…` sayılmaz) ve 5000 okuma metni yazar, aşınca `54000` (uygulamada "çok büyük"). `media` kovası: dosya başına 6 MB, yalnız `application/json`, kişi başı 3000 dosya ve 200 MB (`my_media_usage()`, yalnızca kendi klasörü). Sınırları değiştirmek: dosyadaki sayıları değiştirip yeniden çalıştır.
+- **Hesap başına depolama sınırı** (`supabase/migrations/0005_storage_limits.sql`, sahibi SQL Editor'de çalıştırır): `put_sync_part` kişi başı en çok 30 MB veri (geri dönüş noktaları `h-…` sayılmaz, onlar kişi başı 20 MB'ta tutulur) ve 5000 okuma metni yazar, aşınca `54000` (uygulamada "çok büyük"). `media` kovası: dosya başına 6 MB, yalnız `application/json`, kişi başı 3000 dosya ve 50 MB (2026-11-12; önce 100 MB / 200 MB). Toplam doluluk saatlik sağlık denetiminde (`0014`, `storage_usage()`) (`my_media_usage()`, yalnızca kendi klasörü). Sınırları değiştirmek: dosyadaki sayıları değiştirip yeniden çalıştır.
 - **Hesap başına günlük çeviri tavanı** (`api/_quota.ts`, `DAILY_TRANSLATE_CHARS` = 20.000 karakter/gün, UTC): sayaç `quota/translate/<gün>/<hesap>.json` (R2/Blob), örnek başına 1 dk önbellekli, yaklaşık; depo çalışmazsa çeviri engellenmez. Aşınca 429 `daily_quota` ("Bugünkü çeviri hakkın doldu").
 - `/api/sync` beklenmeyen hatada yalnızca `server error` döndürür (ayrıntı günlükte).
 - `/api/access` Supabase açıkken yanlış belirteçle bir kullanıcı adının var olduğunu söylemez (`exists`).

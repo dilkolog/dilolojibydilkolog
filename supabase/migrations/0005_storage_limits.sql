@@ -3,11 +3,13 @@
 -- (after 0002). Sign-up is open and a new account counts as approved, so without these one account could fill
 -- the project's database (500 MB on the free plan) or Storage and stop sync for everyone.
 --
--- sync_parts: at most 100 MB of data per person (restore points "h-…" not counted: they are copies of the core,
---   at most a week of them) and at most 5000 reading texts ("tx-…"). Over the limit the write fails with 54000,
---   which the app shows as "too large" (SyncTooLargeError).
+-- sync_parts: at most 30 MB of data per person and at most 5000 reading texts ("tx-…"). Over the limit the write fails
+--   with 54000, which the app shows as "too large" (SyncTooLargeError). Restore points ("h-…", copies of the core, a
+--   week of them) are not counted there but kept within 20 MB per person: the oldest go first, today's always stays.
 -- media (pictures, recordings): at most 6 MB per file (the app sends at most 3 MB, as JSON), JSON only,
---   at most 3000 files and 200 MB per person. A refused upload is skipped by the app like a too large one.
+--   at most 3000 files and 50 MB per person. A refused upload is skipped by the app like a too large one.
+-- (2026-11-12: from 100 MB, unlimited restore points and 200 MB of media: a handful of full accounts could fill the free
+-- plan's 500 MB database and 1 GB of Storage. A person already over a limit keeps their data; only new writes stop.)
 -- Change the numbers here and run again to move a limit.
 
 create or replace function public.put_sync_part(p_name text, p_data jsonb, p_expect bigint default null, p_create boolean default false)
@@ -32,7 +34,7 @@ begin
   select coalesce(sum(bytes), 0), count(*) filter (where name like 'tx-%')
     into others, texts
     from public.sync_parts where user_id = uid and name <> p_name and name not like 'h-%';
-  if others + size > 100000000 then raise exception 'quota' using errcode = '54000'; end if;
+  if others + size > 30000000 then raise exception 'quota' using errcode = '54000'; end if;
   if p_name like 'tx-%' and texts >= 5000 then raise exception 'quota' using errcode = '54000'; end if;
 
   if p_create then
@@ -53,6 +55,12 @@ begin
       on conflict (user_id, name) do nothing;
     delete from public.sync_parts where user_id = uid and name like 'h-%'
       and name < 'h-' || to_char((now() - interval '7 days') at time zone 'utc', 'YYYY-MM-DD');
+    -- The restore points within 20 MB: newest first, the ones past it go (never today's).
+    delete from public.sync_parts p using (
+        select name, sum(bytes) over (order by name desc) as running
+          from public.sync_parts where user_id = uid and name like 'h-%'
+      ) h
+      where p.user_id = uid and p.name = h.name and h.running > 20000000 and h.name <> 'h-' || today;
   end if;
   return v;
 end;
@@ -78,14 +86,14 @@ drop policy if exists "own media write" on storage.objects;
 create policy "own media write" on storage.objects for insert to authenticated
   with check (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text
     and exists (select 1 from public.profiles where user_id = auth.uid() and approved)
-    and (select u.files < 3000 and u.bytes < 200000000 from public.my_media_usage() u));
+    and (select u.files < 3000 and u.bytes < 50000000 from public.my_media_usage() u));
 -- Rewriting a file (an upload with upsert) counts against the same limit (0013 made it so; kept here, as this file is run again after 0002).
 drop policy if exists "own media update" on storage.objects;
 create policy "own media update" on storage.objects for update to authenticated
   using (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text)
   with check (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text
     and exists (select 1 from public.profiles where user_id = auth.uid() and approved)
-    and (select u.bytes < 200000000 from public.my_media_usage() u));
+    and (select u.bytes < 50000000 from public.my_media_usage() u));
 drop policy if exists "own media delete" on storage.objects;
 create policy "own media delete" on storage.objects for delete to authenticated
   using (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text);
