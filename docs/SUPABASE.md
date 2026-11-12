@@ -207,3 +207,23 @@ Derlemede `VITE_TURNSTILE_SITE_KEY` varsa giriş formu (giriş, kayıt, bağlant
 
 ### Doluluk denetimi (0014, 2026-11-12)
 `supabase/migrations/0014_storage_usage.sql`: `storage_usage()` veritabanının boyutunu (`pg_database_size`) ve `media` kovasındaki toplamı döndürür; yalnızca sunucu (service role) çağırabilir. Saatlik sağlık denetimi (`api/_health.ts` `fullness`) veritabanı 500 MB'ın, dosya deposu 1 GB'ın %80'ini ve %90'ını geçince sahibine bir kez mail atar (oran değil basamak yazılır, sayı oynadıkça mail gelmez). Plan büyürse Worker değişkenleri `SUPABASE_DB_LIMIT_MB` / `SUPABASE_STORAGE_LIMIT_MB`. Fonksiyon yoksa denetim sessizce atlanır. **Sahibinin yapacağı:** 0013 ve yeniden 0005'ten sonra SQL Editor'de bir kez çalıştırmak.
+
+### Yedek ve geri yükleme (2026-11-12)
+Ücretsiz planda Supabase yedek tutmuyor; Worker'ın ücretsiz plandaki CPU payı da veritabanını kopyalamaya yetmiyor. Yedek sahibinin bilgisayarında alınır: `scripts/backup-supabase.mjs`.
+
+**Kurulum (bir kez):** `brew install postgresql@17` (projenin Postgres sürümü ya da daha yenisi; `pg_dump --version`). Supabase → Connect → **Session pooler** adresini veritabanı şifresiyle kopyala (doğrudan bağlantı yalnızca IPv6). Medya için `SUPABASE_URL` ve `SUPABASE_SECRET_KEY` (Cloudflare'deki değerler).
+
+**Yedek (haftada bir):**
+```bash
+SUPABASE_DB_URL='postgresql://…pooler.supabase.com:5432/postgres' SUPABASE_URL='https://….supabase.co' SUPABASE_SECRET_KEY='sb_secret_…' node scripts/backup-supabase.mjs
+```
+`~/Diloloji-yedek/<tarih>/schema.sql` (public tablolar, fonksiyonlar, politikalar) ve `data.dump` (public tabloların, `auth.users`/`auth.identities`'in ve `storage` kayıtlarının satırları), `~/Diloloji-yedek/media/` (medya kovasının aynası; yalnızca yeni/değişmiş dosya iner). En yeni 8 yedek kalır (`--keep N`), `--no-media` medyayı atlar, `--out DIR` başka yer. Son yedeğin zamanı `SON-YEDEK.txt`. **Yedekte herkesin verisi var:** şifreli diskte (FileVault) tut, buluta/paylaşılan klasöre koyma. Yerel Postgres 16'da döküm ve geri yükleme denendi (kişi, profil, eşitleme ve medya kayıtları aynen döndü).
+
+**Geri yükleme (yeni ya da boşaltılmış proje):** 1) `supabase/migrations/` dosyalarını sırayla SQL Editor'de çalıştır. 2) Satırları yükle:
+```bash
+pg_restore --data-only -f data.sql ~/Diloloji-yedek/<tarih>/data.dump
+```
+```bash
+psql "$SUPABASE_DB_URL" -c 'set session_replication_role = replica' -f data.sql
+```
+Göçlerin kendisinin eklediği satırlarda (`blocked_email_domains`, `server_flags`, `storage.buckets`) "duplicate key" hatası beklenir, zararsız. 3) Medyayı geri koymak için `media/` altındaki dosyaları aynı yollarla kovaya yükle (Storage arayüzü ya da `supabase storage cp`). `schema.sql` yalnızca karşılaştırma içindir (göçlerle aynı olmalı).
