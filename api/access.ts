@@ -1,9 +1,9 @@
-import { accessStatus, accountOf, approvalOn, claimAccount, clearAccessCache, ID, requestPath, requireApproved, StorageError, storedAuth, tokenMatches, TOKEN, writeJson, type AccessStatus } from './_account.js'
+import { accessStatus, accountOf, approvalOn, claimAccount, clearAccessCache, ID, replaceAuth, requestPath, requireApproved, StorageError, storedAuth, tokenMatches, TOKEN, writeJson, type AccessStatus } from './_account.js'
 import { addFriend, blockedPeople, blockFriend, clearInbox, findFriend, friendsOf, handleOf, inboxOf, inviterCard, normalizeCode, publishCard, removeFriend, requestFriend, sendToFriend, setHandle, unblockFriend } from './_friends.js'
 import { friendMessage, pushToOwner } from './_notify.js'
 import { fromApp } from './_origin.js'
 import { deleteAccountData, timed } from './_deleteAccount.js'
-import { deleteSupabaseMedia, deleteSupabaseUser, ensureProfile, mirrorApproval, rest, saveVault, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
+import { deleteSupabaseMedia, deleteSupabaseUser, ensureProfile, mirrorApproval, rest, saveVault, setVaultAuth, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
 import { overLimit, tooMany } from './_rate.js'
 import { noticeSignup } from './_signupNotice.js'
 import { currentAnnouncement, getSettings } from './_settings.js'
@@ -47,6 +47,7 @@ import { issueRoomTicket, roomTicketsOn } from './_roomTicket.js'
  * Supabase sign-in (see _supabase.ts), with `Authorization: Bearer <Supabase access token>`:
  * GET  /api/access?vault=1 → { account: { id, enc, auth, username } | null }: the person's sync account
  * POST /api/access  { action: 'vault-link', id, enc, auth, username?, note? } → { status }
+ * POST /api/access  { action: 'vault-rotate' } → { account }: a new sync token (the old one stops working; signed-in devices fetch the new one)
  *   ties a sync account to the person: a new one (claimed here) or the one they had (its token must
  *   match the claim). A person keeps one sync account; one sync account belongs to one person.
  * POST /api/access  { action: 'account-delete' } → { ok, removed }
@@ -232,6 +233,36 @@ async function vaultLink(request: Request, body: Record<string, unknown>): Promi
   }
 }
 
+/**
+ * A new random token for the person's sync account, with their Supabase sign-in: the old one (a copied key, an old
+ * device's backup) stops working. The encryption key and the id stay, so the data and the other devices' copies do not
+ * change; a signed-in device that sends the old token is refused and fetches the new one (src/data/access.ts).
+ */
+async function vaultRotate(request: Request): Promise<Response> {
+  if (!supabaseOn()) return json({ error: 'not configured' }, 503)
+  if (overLimit(request, 'vault-write', 10)) return tooMany()
+  const user = await supabaseUser(request)
+  if (!user) return json({ error: 'signed_out' }, 401)
+  try {
+    const had = await vaultOf(user.id)
+    if (!had) return json({ account: null })
+    const auth = [...crypto.getRandomValues(new Uint8Array(32))].map((b) => b.toString(16).padStart(2, '0')).join('')
+    // The person's row first: a device that fetches it then gets the token the server is about to check. If the check's
+    // hash cannot be written, the row goes back, so the devices never hold a token the server refuses.
+    await setVaultAuth(user.id, had.id, auth)
+    try {
+      await replaceAuth(had.id, auth)
+    } catch (e) {
+      await setVaultAuth(user.id, had.id, had.auth).catch(() => undefined)
+      throw e
+    }
+    return json({ account: { ...had, auth } })
+  } catch (e) {
+    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
+    return json({ error: 'supabase unavailable' }, 502)
+  }
+}
+
 async function accountDelete(request: Request): Promise<Response> {
   if (overLimit(request, 'account-delete', 5)) return tooMany()
   try {
@@ -313,6 +344,7 @@ export async function POST(request: Request): Promise<Response> {
   }
   if (typeof body?.action === 'string' && body.action.startsWith('friends-')) return friendsPost(request, body as Record<string, unknown>)
   if (body?.action === 'vault-link') return vaultLink(request, body as Record<string, unknown>)
+  if (body?.action === 'vault-rotate') return vaultRotate(request)
   if (body?.action === 'account-delete') return accountDelete(request)
   if (body?.action === 'report') return report(request, body as Record<string, unknown>)
   // The old username sign-up is closed once sign-in moved to Supabase (the app asks there instead).

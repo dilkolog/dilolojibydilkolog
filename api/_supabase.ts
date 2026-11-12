@@ -122,6 +122,16 @@ export async function saveVault(userId: string, vault: Vault): Promise<'ok' | 't
   return 'ok'
 }
 
+/** Puts a new token on the person's sync account (the key was renewed). Throws when Supabase cannot be written. */
+export async function setVaultAuth(userId: string, syncId: string, auth: string): Promise<void> {
+  const res = await rest(`sync_keys?user_id=eq.${encodeURIComponent(userId)}&sync_id=eq.${syncId}`, {
+    method: 'PATCH',
+    headers: { prefer: 'return=minimal' },
+    body: JSON.stringify({ auth }),
+  })
+  if (!res.ok) throw new Error(`supabase ${res.status}`)
+}
+
 /**
  * The owner's word on a sync account through its person's profile: 'approved', 'rejected', 'pending'
  * (tied to a person the owner has not decided on), or null when no person has it (or Supabase is off
