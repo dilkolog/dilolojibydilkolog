@@ -1,0 +1,107 @@
+{
+  "id": "fr-r-000006",
+  "language": "fr",
+  "level": "A1",
+  "starter": true,
+  "theme": "aile",
+  "genre": "dialogue",
+  "grammar": [
+    "basics_fr_present"
+  ],
+  "title": "Ce soir",
+  "paragraphs": [
+    "Léa : Maman, tu es là ?",
+    "Maman : Oui, je suis ici. Qu’est-ce que tu veux ?",
+    "Léa : Je veux sortir ce soir avec mes amis.",
+    "Maman : Ce soir ? Tu as des devoirs pour demain ?",
+    "Léa : Non, j’ai déjà fini.",
+    "Maman : Bon, d’accord. Mais pas trop tard !"
+  ],
+  "tr": [
+    "Léa: Anne, orada mısın?",
+    "Anne: Evet, buradayım. Ne istiyorsun?",
+    "Léa: Bu akşam arkadaşlarımla dışarı çıkmak istiyorum.",
+    "Anne: Bu akşam mı? Yarın için ödevin var mı?",
+    "Léa: Hayır, çoktan bitirdim.",
+    "Anne: Peki, tamam. Ama çok geç olmasın!"
+  ],
+  "vocabulary": [
+    {
+      "word": "maman",
+      "lemma": "maman",
+      "tr": "anne"
+    },
+    {
+      "word": "soir",
+      "lemma": "soir",
+      "tr": "akşam"
+    },
+    {
+      "word": "sortir",
+      "lemma": "sortir",
+      "tr": "dışarı çıkmak"
+    },
+    {
+      "word": "amis",
+      "lemma": "ami",
+      "tr": "arkadaş"
+    },
+    {
+      "word": "devoirs",
+      "lemma": "devoir",
+      "tr": "ödev"
+    },
+    {
+      "word": "demain",
+      "lemma": "demain",
+      "tr": "yarın"
+    },
+    {
+      "word": "déjà",
+      "lemma": "déjà",
+      "tr": "çoktan, zaten"
+    },
+    {
+      "word": "tard",
+      "lemma": "tard",
+      "tr": "geç"
+    }
+  ],
+  "questions": [
+    {
+      "q": "Léa ne istiyor?",
+      "options": [
+        "Bu akşam arkadaşlarıyla çıkmak",
+        "Yarın okula gitmemek",
+        "Annesiyle yemek yapmak",
+        "Erken uyumak"
+      ],
+      "answer": 0,
+      "why": "Je veux sortir ce soir avec mes amis."
+    },
+    {
+      "q": "Léa'nın yarın için işi var mı?",
+      "options": [
+        "Evet, çok işi var",
+        "Hayır, işini bitirdi",
+        "Bilmiyor",
+        "Annesi yapacak"
+      ],
+      "answer": 1,
+      "why": "Non, j’ai déjà fini."
+    },
+    {
+      "q": "Annesi ne diyor?",
+      "options": [
+        "Hayır, çıkamazsın",
+        "Tamam, ama geç kalma",
+        "Ben de geliyorum",
+        "Yarın çıkarsın"
+      ],
+      "answer": 1,
+      "why": "Bon, d’accord. Mais pas trop tard !"
+    }
+  ],
+  "source": "Diloloji (özgün)",
+  "batch": "fr-reading-0003"
+}

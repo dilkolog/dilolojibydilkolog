@@ -5,7 +5,7 @@ import { checkBatch } from './lib/batch'
 import { loadContext, type CheckContext } from './lib/context'
 import { derive } from './lib/derive'
 import { acceptedItems, emptiest, grammarCells, nextJobs, openJobs, readingCells } from './lib/plan'
-import { checkGrammarItem, checkReading, levelFit, topicUses, wordLevel } from './lib/rules'
+import { checkGrammarItem, checkReading, levelFit, rankFit, speakers, topicUses, wordLevel, wordRank } from './lib/rules'
 import { sampleMarkdown } from './lib/sample'
 import { buildContent, idRanges } from './lib/shards'
 import { jaccard, shingles, SimilarityIndex } from './lib/similarity'
@@ -16,6 +16,7 @@ const fixture = <T>(name: string) => JSON.parse(readFileSync(`scripts/content/fi
 const frText = fixture<ReadingItem>('reading-fr')
 const esText = fixture<ReadingItem>('reading-es')
 const frGrammar = fixture<ContentGrammar[]>('grammar-fr')
+const frStarter = fixture<ReadingItem>('reading-fr-starter')
 
 let fr: CheckContext
 let es: CheckContext
@@ -60,6 +61,33 @@ describe('reading checks', () => {
     expect(wordLevel('mangent', fr)).toBe('A1')
     expect(wordLevel('pequeñas', es)).toBeTruthy()
     expect(levelFit('Léa et Karim habitent à Lille.', 'A1', fr).above).toEqual([])
+  })
+
+  it('a starter text: short, from the most frequent words, in a starter job', () => {
+    const job = readingJob({ id: 'fr-reading-0003', theme: undefined, genre: undefined, count: 25, starter: true, ids: { from: 6, to: 30 } })
+    expect(checkReading(frStarter, fr, { job }).errors).toEqual([])
+    expect(checkReading(frStarter, fr, { job: { ...job, starter: undefined } }).errors.join()).toMatch(/not for starter texts/)
+    expect(checkReading({ ...frStarter, starter: undefined }, fr, { job }).errors.join()).toMatch(/asks for starter texts/)
+    expect(checkReading({ ...frStarter, level: 'A2' }, fr).errors.join()).toMatch(/a starter text is A1/)
+    // The ordinary A1 band is longer: the same text is too short for it.
+    expect(checkReading({ ...frStarter, starter: undefined }, fr).errors.join()).toMatch(/words, A1 asks 60/)
+    const rare = { ...frStarter, paragraphs: frStarter.paragraphs.map((p, i) => (i === 1 ? `${p} Le football, la guitare et le chocolat.` : p)) }
+    expect(checkReading(rare, fr).errors.join()).toMatch(/starter: only \d+ %/)
+  })
+
+  it('knows frequency ranks, the A1 allowance and dialogue speakers', () => {
+    expect(wordRank('mangent', fr)).toBeLessThanOrEqual(500)
+    expect(wordRank('xylophonique', fr)).toBeUndefined()
+    // "pain" ranks past 1500 in a subtitle list but is an A1 word: known within the A1 allowance, not within 300 alone.
+    expect(rankFit('Le pain.', 300, fr).share).toBeLessThan(1)
+    expect(rankFit('Le pain.', 300, fr, 2000).share).toBe(1)
+    expect([...speakers('Lucía: Hola.\nLuc, au café : Bonjour.\nUne femme : Oui.')]).toEqual(['Lucía', 'Luc'])
+  })
+
+  it('wants half the key words from the level list', () => {
+    const vocabulary = [['épistémologie', 'épistémologie'], ['exhaustivité', 'exhaustivité'], ['controverse', 'controverse'], ['perspective', 'perspective'], ['néanmoins', 'néanmoins'], ['demeure', 'demeurer']].map(([word, lemma]) => ({ word, lemma, tr: 'x' }))
+    const text = { ...frText, paragraphs: [...frText.paragraphs.slice(0, -1), `${frText.paragraphs.at(-1)} Néanmoins : épistémologie, exhaustivité, controverse, perspective ; elle demeure.`], vocabulary }
+    expect(checkReading(text, fr).errors.join()).toMatch(/key words are on the A1 list/)
   })
 
   it('refuses a text above its level, too short, or without its grammar target', () => {

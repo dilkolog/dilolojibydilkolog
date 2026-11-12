@@ -78,7 +78,20 @@ function variants(w: string, language: CheckContext['language']): string[] {
 
 const analyse = (text: string, ctx: CheckContext) => analyzeText(text, ctx.language, [], [], new Set())
 
-const wordTokens = (a: ReadingAnalysis) => a.paragraphs.flat().flatMap((s) => s.tokens.filter((t) => t.key && t.status !== 'name' && !/\d/.test(t.text)))
+/**
+ * The speakers of a dialogue: a capitalised word opening a line before a colon ("Lucía:", "Luc, au café :"). Always
+ * at a sentence start, a name there looks like any word, and some are words too (Lucía is a form of "lucir").
+ */
+export function speakers(text: string): Set<string> {
+  const out = new Set<string>()
+  for (const m of text.matchAll(/^(\p{Lu}[\p{L}'’-]*)(?:\s*:|,[^:\n]{1,30}:)/gmu)) out.add(m[1])
+  return out
+}
+
+const wordTokens = (a: ReadingAnalysis, text = '') => {
+  const named = speakers(text)
+  return a.paragraphs.flat().flatMap((s) => s.tokens.filter((t) => t.key && t.status !== 'name' && !named.has(t.text) && !/\d/.test(t.text)))
+}
 
 /** A capitalised word no list knows is a name (Léa, Lille), left out of the level count. */
 const isName = (text: string, ctx: CheckContext) => /^\p{Lu}/u.test(text) && !wordLevel(text, ctx)
@@ -93,7 +106,7 @@ export interface LevelFit {
 /** How much of a text is at or below a level, names and the listed new words aside. */
 export function levelFit(text: string, level: string, ctx: CheckContext, exclude: readonly string[] = []): LevelFit {
   const skip = new Set(exclude.flatMap((w) => [w.toLocaleLowerCase(ctx.language), readingKey(w, ctx.language)]))
-  const tokens = wordTokens(analyse(text, ctx)).filter((t) => !isName(t.text, ctx) && !skip.has(t.text.toLocaleLowerCase(ctx.language)) && !skip.has(t.key!))
+  const tokens = wordTokens(analyse(text, ctx), text).filter((t) => !isName(t.text, ctx) && !skip.has(t.text.toLocaleLowerCase(ctx.language)) && !skip.has(t.key!))
   const above = new Set<string>()
   let fit = 0
   for (const t of tokens) {
@@ -102,6 +115,44 @@ export function levelFit(text: string, level: string, ctx: CheckContext, exclude
   }
   return { share: tokens.length ? fit / tokens.length : 1, total: tokens.length, above: [...above] }
 }
+
+/** A word's frequency rank (1 = most frequent), as written or as its dictionary form; undefined when in no list. */
+export function wordRank(word: string, ctx: CheckContext): number | undefined {
+  const w = cleanToken(word, ctx.language).toLocaleLowerCase(ctx.language).replace(/’/g, "'")
+  const keys = [w, ctx.forms[w], ...analyzeForm(ctx.language, w).map((f) => f.lemma), ...variants(w, ctx.language)].filter((k): k is string => !!k)
+  const ranks = keys.map((k) => ctx.frequency.get(readingKey(k, ctx.language))).filter((r): r is number => r !== undefined)
+  return ranks.length ? Math.min(...ranks) : undefined
+}
+
+export interface RankFit {
+  share: number
+  total: number
+  /** The words past the rank (or in no list), each once. */
+  outside: string[]
+}
+
+/**
+ * How much of a text a beginner can read: names aside, every word counts, the key words too (a starter text teaches
+ * through them, it cannot lean on them). A word is known when it is among the language's first `rank` words, or an A1
+ * word among the first `a1Rank`.
+ */
+export function rankFit(text: string, rank: number, ctx: CheckContext, a1Rank = rank): RankFit {
+  const tokens = wordTokens(analyse(text, ctx), text).filter((t) => !isName(t.text, ctx))
+  const outside = new Set<string>()
+  let fit = 0
+  for (const t of tokens) {
+    const r = wordRank(t.text, ctx)
+    if (r !== undefined && (r <= rank || (r <= a1Rank && wordLevel(t.text, ctx) === 'A1'))) fit++
+    else outside.add(t.text.toLocaleLowerCase(ctx.language))
+  }
+  return { share: tokens.length ? fit / tokens.length : 1, total: tokens.length, outside: [...outside] }
+}
+
+/**
+ * The share of a text's key words the learner meets on the level's word list (or below): a text should bring back
+ * words that are studied, not only its own (docs/ICERIK-FABRIKASI.md: a text is fed from the level's list).
+ */
+export const LISTED_KEY_WORDS = 0.5
 
 /** How often a text uses a grammar topic: forms of its tense, or matches of its pattern; undefined when it can't be seen. */
 export function topicUses(text: string, topic: string, ctx: CheckContext): number | undefined {
@@ -147,6 +198,7 @@ export function checkReading(item: ReadingItem, ctx: CheckContext, opts: Reading
     return { errors, warnings }
   }
   if (opts.job && (item.level !== opts.job.level || (opts.job.theme && item.theme !== opts.job.theme) || (opts.job.genre && item.genre !== opts.job.genre))) errors.push('level, theme or genre differs from the job')
+  if (opts.job && !!opts.job.starter !== (item.starter === true)) errors.push(opts.job.starter ? 'the job asks for starter texts (starter: true)' : 'a starter text in a job that is not for starter texts')
   if (!plan.themes.some((t) => t.id === item.theme)) errors.push(`unknown theme "${item.theme}"`)
   if (!plan.genres.some((g) => g.id === item.genre)) errors.push(`unknown genre "${item.genre}"`)
   if (!Array.isArray(item.grammar) || !item.grammar.length) errors.push('no grammar target')
@@ -184,9 +236,12 @@ export function checkReading(item: ReadingItem, ctx: CheckContext, opts: Reading
     if (opts2.some((o) => /^(hepsi|hiçbiri)/i.test(o.trim()))) errors.push(`question ${i + 1}: no "hepsi / hiçbiri" option`)
   }
 
-  const level = plan.levels[item.level]
+  const starter = item.starter === true ? plan.starter : undefined
+  if (item.starter === true && !plan.starter) errors.push('the plan has no starter band')
+  if (item.starter === true && item.level !== 'A1') errors.push('a starter text is A1')
+  const level = starter ? { ...plan.levels[item.level], words: starter.words, sentenceWords: starter.sentenceWords } : plan.levels[item.level]
   const analysis = analyse(text, ctx)
-  const tokens = wordTokens(analysis)
+  const tokens = wordTokens(analysis, text)
   const count = analysis.paragraphs.flat().reduce((n, s) => n + s.tokens.filter((t) => t.key).length, 0)
   if (count < level.words[0] || count > level.words[1]) errors.push(`${count} words, ${item.level} asks ${level.words[0]}–${level.words[1]}`)
   const sentences = analysis.paragraphs.flat().filter((s) => s.tokens.some((t) => t.key))
@@ -195,6 +250,14 @@ export function checkReading(item: ReadingItem, ctx: CheckContext, opts: Reading
   const fit = levelFit(text, item.level, ctx, voc.map((v) => v.word))
   if (fit.share < LEVEL_FIT) errors.push(`only ${Math.round(fit.share * 100)} % of the words are ${item.level} or below (needs ${LEVEL_FIT * 100} %); above: ${fit.above.slice(0, 15).join(', ')}`)
   else if (fit.above.length) warnings.push(`above ${item.level} or unlisted: ${fit.above.slice(0, 20).join(', ')}`)
+  if (starter) {
+    const rf = rankFit(text, starter.rank, ctx, starter.a1Rank)
+    const known = `among the ${starter.rank} most frequent or A1 within ${starter.a1Rank}`
+    if (rf.share < starter.fit) errors.push(`starter: only ${Math.floor(rf.share * 100)} % of the words are ${known} (needs ${Math.round(starter.fit * 100)} %); outside: ${rf.outside.slice(0, 15).join(', ')}`)
+    else if (rf.outside.length) warnings.push(`starter, outside (${known}): ${rf.outside.join(', ')}`)
+  }
+  const listed = voc.filter((v) => filled(v?.lemma) && levelRank(wordLevel(v.lemma, ctx) ?? wordLevel(v.word, ctx)) <= levelRank(item.level)).length
+  if (voc.length && listed / voc.length < LISTED_KEY_WORDS) errors.push(`only ${listed} of ${voc.length} key words are on the ${item.level} list or below (needs half): the text should bring back studied words`)
   for (const t of item.grammar) {
     const uses = topicUses(text, t, ctx)
     if (uses === undefined) {

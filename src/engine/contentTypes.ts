@@ -37,6 +37,8 @@ export interface ReadingItem {
   source: 'Diloloji (özgün)'
   /** The job it was written for. */
   batch: string
+  /** A starter text (A1 only): written from the language's most frequent words, for a learner's first weeks. */
+  starter?: boolean
 }
 
 /** A grammar question as the factory keeps it: the app's question with a few more fields. */

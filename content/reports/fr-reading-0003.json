@@ -1,0 +1,109 @@
+{
+  "job": "fr-reading-0003",
+  "language": "fr",
+  "kind": "reading",
+  "total": 25,
+  "accepted": [
+    "fr-r-000006",
+    "fr-r-000007",
+    "fr-r-000008",
+    "fr-r-000009",
+    "fr-r-000010",
+    "fr-r-000011",
+    "fr-r-000012",
+    "fr-r-000013",
+    "fr-r-000014",
+    "fr-r-000015",
+    "fr-r-000016",
+    "fr-r-000017",
+    "fr-r-000018",
+    "fr-r-000019",
+    "fr-r-000020",
+    "fr-r-000021",
+    "fr-r-000022",
+    "fr-r-000023",
+    "fr-r-000024",
+    "fr-r-000025",
+    "fr-r-000026",
+    "fr-r-000027",
+    "fr-r-000028",
+    "fr-r-000029",
+    "fr-r-000030"
+  ],
+  "rejected": [],
+  "warnings": [
+    {
+      "id": "fr-r-000008",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): football"
+      ]
+    },
+    {
+      "id": "fr-r-000013",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): euros"
+      ]
+    },
+    {
+      "id": "fr-r-000014",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): musée"
+      ]
+    },
+    {
+      "id": "fr-r-000015",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): douche"
+      ]
+    },
+    {
+      "id": "fr-r-000016",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): docteur"
+      ]
+    },
+    {
+      "id": "fr-r-000017",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): pleut"
+      ]
+    },
+    {
+      "id": "fr-r-000022",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): quinze, guitare"
+      ]
+    },
+    {
+      "id": "fr-r-000026",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): nage"
+      ]
+    },
+    {
+      "id": "fr-r-000027",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): vingt"
+      ]
+    },
+    {
+      "id": "fr-r-000028",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): chocolat"
+      ]
+    },
+    {
+      "id": "fr-r-000029",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): clés"
+      ]
+    },
+    {
+      "id": "fr-r-000030",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): minuit"
+      ]
+    }
+  ],
+  "rate": 1
+}

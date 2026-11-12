@@ -4,6 +4,13 @@ import type { ContentLanguage, ContentLevel } from '../../../src/engine/contentT
 export interface ContentPlan {
   language: ContentLanguage
   levels: Record<ContentLevel, { words: [number, number]; sentenceWords: number; topics: string[] }>
+  /**
+   * The starter band of A1 (texts marked `starter`): a learner who knows a language's first few hundred words reads
+   * them. A word fits when its frequency rank is within `rank`, or when it is an A1 word within `a1Rank` (the frequency
+   * lists come from film subtitles: "pain" or "samedi" rank past 1500, yet every course teaches them first);
+   * `fit`: the share of the text's words that must.
+   */
+  starter?: { words: [number, number]; sentenceWords: number; rank: number; a1Rank: number; fit: number }
   themes: { id: string; tr: string }[]
   genres: { id: string; tr: string }[]
   /** Sub-skills a grammar job spreads its questions over: per topic, or the default. */
@@ -26,6 +33,8 @@ export interface ContentJob {
   /** Reading: the grammar topics to use on purpose; grammar: the one topic. */
   grammar: string[]
   count: number
+  /** Reading: starter texts (the plan's starter band, A1); every item of the job is marked `starter`. */
+  starter?: boolean
   /** Grammar: what to spread the questions over. */
   subskills?: string[]
   /** The item numbers this job may use (inclusive): no two jobs share one, so agents never collide. */
