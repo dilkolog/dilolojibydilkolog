@@ -19,9 +19,10 @@ afterEach(() => {
 })
 
 describe('Topluluk', () => {
-  it('is a tab of Pratik, so it shows in the menu and in the place the learner expects', () => {
-    expect(GROUPS.practice?.some((g) => g.screen === 'community')).toBe(true)
-    expect(placeOf('community')).toBe('practice')
+  it('is a tab of İlerleme (league and friends beside the numbers), not of the learning place', () => {
+    expect(GROUPS.progress?.some((g) => g.screen === 'community')).toBe(true)
+    expect(placeOf('community')).toBe('progress')
+    expect(GROUPS.practice?.some((g) => g.screen === 'community')).toBe(false)
   })
 
   it('gathers the ways to work together, the friends and the shared lists in one screen', async () => {

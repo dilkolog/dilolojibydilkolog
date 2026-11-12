@@ -63,7 +63,7 @@ describe('AppSidebar and TabBar', () => {
       expect(wordsBtn?.getAttribute('aria-current')).toBe('page')
 
       const practiceBtn = Array.from(rootEl.querySelectorAll<HTMLButtonElement>('.nav-btn')).find((b) =>
-        b.textContent?.includes('Pratik'),
+        b.textContent?.includes('Öğren'),
       )
       expect(practiceBtn?.getAttribute('aria-current')).toBeNull()
 
@@ -305,7 +305,7 @@ describe('AppSidebar and TabBar', () => {
       expect(readTab?.getAttribute('aria-current')).toBe('page')
 
       const practiceTab = Array.from(rootEl.querySelectorAll<HTMLButtonElement>('.tab')).find((b) =>
-        b.textContent?.includes('Pratik'),
+        b.textContent?.includes('Öğren'),
       )
       expect(practiceTab?.getAttribute('aria-current')).toBeNull()
 

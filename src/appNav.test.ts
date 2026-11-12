@@ -9,3 +9,15 @@ describe('the width of a place', () => {
     }
   })
 })
+
+describe('the menu', () => {
+  it('learns in one place (the lessons first) and keeps mistakes and friends with the progress', async () => {
+    const { GROUPS, NAV, placeOf } = await import('./appNav')
+    expect(NAV.find((n) => n.screen === 'practice')?.label).toBe('Öğren')
+    expect(GROUPS.practice?.map((g) => g.screen)).toEqual(['guide', 'verbs', 'produce', 'games'])
+    expect(placeOf('mistakes')).toBe('progress')
+    expect(placeOf('community')).toBe('progress')
+    expect(placeOf('progress')).toBe('progress')
+    expect(NAV).toHaveLength(5)
+  })
+})

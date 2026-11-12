@@ -304,7 +304,7 @@ export function GamesScreen(
           emoji: '🕰️',
           name: 'Fiil laboratuvarı',
           text: 'Her fiili her zamanda çek: öğren, alıştır, zamana karşı dene, hangi geçmiş zaman olduğunu bul.',
-          status: 'Pratik → Fiiller',
+          status: 'Öğren → Fiiller',
           open: p.onOpenVerbs,
         },
         { id: 'gender', emoji: '⚖️', name: 'Cinsiyet kuralları', text: 'Kelimenin sonu artikelini söyler (‑tion → la, ‑age → le).', status: record(`gender:${p.language}`, (v) => `%${v}`) },
