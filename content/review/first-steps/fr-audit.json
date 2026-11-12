@@ -1,0 +1,930 @@
+{
+  "job": "fr-reading-0003",
+  "rows": [
+    {
+      "id": "fr-r-000006",
+      "position": 1,
+      "words": 46,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "ami",
+          "lemma": "ami",
+          "tr": "arkadaş"
+        },
+        {
+          "word": "Paris",
+          "lemma": "Paris",
+          "tr": "Paris (şehir)"
+        }
+      ],
+      "outside": [
+        "paris"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_etre_avoir",
+          "uses": 7
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000007",
+      "position": 2,
+      "words": 63,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "ami",
+          "lemma": "ami",
+          "tr": "arkadaş"
+        },
+        {
+          "word": "maison",
+          "lemma": "maison",
+          "tr": "ev"
+        },
+        {
+          "word": "Paris",
+          "lemma": "Paris",
+          "tr": "Paris (şehir)"
+        }
+      ],
+      "outside": [
+        "paris"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_possessifs",
+          "uses": 8
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000008",
+      "position": 3,
+      "words": 58,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "ami",
+          "lemma": "ami",
+          "tr": "arkadaş"
+        },
+        {
+          "word": "maison",
+          "lemma": "maison",
+          "tr": "ev"
+        },
+        {
+          "word": "table",
+          "lemma": "table",
+          "tr": "masa"
+        },
+        {
+          "word": "Paris",
+          "lemma": "Paris",
+          "tr": "Paris (şehir)"
+        }
+      ],
+      "outside": [
+        "paris"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_etre_avoir",
+          "uses": 4
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000009",
+      "position": 4,
+      "words": 49,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "maison",
+          "lemma": "maison",
+          "tr": "ev"
+        },
+        {
+          "word": "table",
+          "lemma": "table",
+          "tr": "masa"
+        },
+        {
+          "word": "chaise",
+          "lemma": "chaise",
+          "tr": "sandalye"
+        },
+        {
+          "word": "Bruxelles",
+          "lemma": "Bruxelles",
+          "tr": "Brüksel (şehir)"
+        }
+      ],
+      "outside": [
+        "bruxelles"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_possessifs",
+          "uses": 4
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000010",
+      "position": 5,
+      "words": 57,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "table",
+          "lemma": "table",
+          "tr": "masa"
+        },
+        {
+          "word": "chaise",
+          "lemma": "chaise",
+          "tr": "sandalye"
+        },
+        {
+          "word": "eau",
+          "lemma": "eau",
+          "tr": "su"
+        },
+        {
+          "word": "Bruxelles",
+          "lemma": "Bruxelles",
+          "tr": "Brüksel (şehir)"
+        }
+      ],
+      "outside": [
+        "bruxelles"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_etre_avoir",
+          "uses": 5
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000011",
+      "position": 6,
+      "words": 55,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "chaise",
+          "lemma": "chaise",
+          "tr": "sandalye"
+        },
+        {
+          "word": "eau",
+          "lemma": "eau",
+          "tr": "su"
+        },
+        {
+          "word": "pain",
+          "lemma": "pain",
+          "tr": "ekmek"
+        },
+        {
+          "word": "Bruxelles",
+          "lemma": "Bruxelles",
+          "tr": "Brüksel (şehir)"
+        }
+      ],
+      "outside": [
+        "bruxelles"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_etre_avoir",
+          "uses": 5
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000012",
+      "position": 7,
+      "words": 57,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "eau",
+          "lemma": "eau",
+          "tr": "su"
+        },
+        {
+          "word": "pain",
+          "lemma": "pain",
+          "tr": "ekmek"
+        },
+        {
+          "word": "café",
+          "lemma": "café",
+          "tr": "kahve"
+        },
+        {
+          "word": "Montréal",
+          "lemma": "Montréal",
+          "tr": "Montréal (şehir)"
+        }
+      ],
+      "outside": [
+        "montréal"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_etre_avoir",
+          "uses": 4
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000013",
+      "position": 8,
+      "words": 62,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "pain",
+          "lemma": "pain",
+          "tr": "ekmek"
+        },
+        {
+          "word": "café",
+          "lemma": "café",
+          "tr": "kahve"
+        },
+        {
+          "word": "lait",
+          "lemma": "lait",
+          "tr": "süt"
+        },
+        {
+          "word": "Montréal",
+          "lemma": "Montréal",
+          "tr": "Montréal (şehir)"
+        }
+      ],
+      "outside": [
+        "montréal"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_negation",
+          "uses": 2
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000014",
+      "position": 9,
+      "words": 58,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "café",
+          "lemma": "café",
+          "tr": "kahve"
+        },
+        {
+          "word": "lait",
+          "lemma": "lait",
+          "tr": "süt"
+        },
+        {
+          "word": "pomme",
+          "lemma": "pomme",
+          "tr": "elma"
+        },
+        {
+          "word": "Montréal",
+          "lemma": "Montréal",
+          "tr": "Montréal (şehir)"
+        }
+      ],
+      "outside": [
+        "montréal"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_present",
+          "uses": 14
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000015",
+      "position": 10,
+      "words": 59,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "lait",
+          "lemma": "lait",
+          "tr": "süt"
+        },
+        {
+          "word": "pomme",
+          "lemma": "pomme",
+          "tr": "elma"
+        },
+        {
+          "word": "fromage",
+          "lemma": "fromage",
+          "tr": "peynir"
+        },
+        {
+          "word": "Dakar",
+          "lemma": "Dakar",
+          "tr": "Dakar (şehir)"
+        }
+      ],
+      "outside": [
+        "dakar"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_present",
+          "uses": 14
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000016",
+      "position": 11,
+      "words": 58,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "pomme",
+          "lemma": "pomme",
+          "tr": "elma"
+        },
+        {
+          "word": "fromage",
+          "lemma": "fromage",
+          "tr": "peynir"
+        },
+        {
+          "word": "riz",
+          "lemma": "riz",
+          "tr": "pirinç"
+        },
+        {
+          "word": "Dakar",
+          "lemma": "Dakar",
+          "tr": "Dakar (şehir)"
+        }
+      ],
+      "outside": [
+        "dakar"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_present",
+          "uses": 15
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000017",
+      "position": 12,
+      "words": 61,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "fromage",
+          "lemma": "fromage",
+          "tr": "peynir"
+        },
+        {
+          "word": "riz",
+          "lemma": "riz",
+          "tr": "pirinç"
+        },
+        {
+          "word": "œuf",
+          "lemma": "œuf",
+          "tr": "yumurta"
+        },
+        {
+          "word": "Dakar",
+          "lemma": "Dakar",
+          "tr": "Dakar (şehir)"
+        }
+      ],
+      "outside": [
+        "dakar"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_possessifs",
+          "uses": 4
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000018",
+      "position": 13,
+      "words": 63,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "riz",
+          "lemma": "riz",
+          "tr": "pirinç"
+        },
+        {
+          "word": "œuf",
+          "lemma": "œuf",
+          "tr": "yumurta"
+        },
+        {
+          "word": "école",
+          "lemma": "école",
+          "tr": "okul"
+        },
+        {
+          "word": "Lyon",
+          "lemma": "Lyon",
+          "tr": "Lyon (şehir)"
+        }
+      ],
+      "outside": [
+        "lyon"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_etre_avoir",
+          "uses": 5
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000019",
+      "position": 14,
+      "words": 54,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "œuf",
+          "lemma": "œuf",
+          "tr": "yumurta"
+        },
+        {
+          "word": "école",
+          "lemma": "école",
+          "tr": "okul"
+        },
+        {
+          "word": "cours",
+          "lemma": "cours",
+          "tr": "ders"
+        },
+        {
+          "word": "Lyon",
+          "lemma": "Lyon",
+          "tr": "Lyon (şehir)"
+        }
+      ],
+      "outside": [
+        "lyon"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_questions",
+          "uses": 2
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000020",
+      "position": 15,
+      "words": 57,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "école",
+          "lemma": "école",
+          "tr": "okul"
+        },
+        {
+          "word": "cours",
+          "lemma": "cours",
+          "tr": "ders"
+        },
+        {
+          "word": "professeur",
+          "lemma": "professeur",
+          "tr": "öğretmen"
+        },
+        {
+          "word": "Lyon",
+          "lemma": "Lyon",
+          "tr": "Lyon (şehir)"
+        }
+      ],
+      "outside": [
+        "lyon"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_etre_avoir",
+          "uses": 2
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000021",
+      "position": 16,
+      "words": 65,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "cours",
+          "lemma": "cours",
+          "tr": "ders"
+        },
+        {
+          "word": "professeur",
+          "lemma": "professeur",
+          "tr": "öğretmen"
+        },
+        {
+          "word": "travail",
+          "lemma": "travail",
+          "tr": "iş"
+        },
+        {
+          "word": "Liège",
+          "lemma": "Liège",
+          "tr": "Liège (şehir)"
+        }
+      ],
+      "outside": [
+        "liège"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_present",
+          "uses": 14
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000022",
+      "position": 17,
+      "words": 65,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "professeur",
+          "lemma": "professeur",
+          "tr": "öğretmen"
+        },
+        {
+          "word": "travail",
+          "lemma": "travail",
+          "tr": "iş"
+        },
+        {
+          "word": "bureau",
+          "lemma": "bureau",
+          "tr": "çalışma masası"
+        },
+        {
+          "word": "Liège",
+          "lemma": "Liège",
+          "tr": "Liège (şehir)"
+        }
+      ],
+      "outside": [
+        "liège"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_possessifs",
+          "uses": 6
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000023",
+      "position": 18,
+      "words": 60,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "travail",
+          "lemma": "travail",
+          "tr": "iş"
+        },
+        {
+          "word": "bureau",
+          "lemma": "bureau",
+          "tr": "çalışma masası"
+        },
+        {
+          "word": "collègue",
+          "lemma": "collègue",
+          "tr": "iş arkadaşı"
+        },
+        {
+          "word": "Liège",
+          "lemma": "Liège",
+          "tr": "Liège (şehir)"
+        }
+      ],
+      "outside": [
+        "liège"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_possessifs",
+          "uses": 8
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000024",
+      "position": 19,
+      "words": 59,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "bureau",
+          "lemma": "bureau",
+          "tr": "çalışma masası"
+        },
+        {
+          "word": "collègue",
+          "lemma": "collègue",
+          "tr": "iş arkadaşı"
+        },
+        {
+          "word": "rue",
+          "lemma": "rue",
+          "tr": "sokak"
+        },
+        {
+          "word": "Lausanne",
+          "lemma": "Lausanne",
+          "tr": "Lozan (şehir)"
+        }
+      ],
+      "outside": [
+        "lausanne"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_etre_avoir",
+          "uses": 4
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000025",
+      "position": 20,
+      "words": 67,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "collègue",
+          "lemma": "collègue",
+          "tr": "iş arkadaşı"
+        },
+        {
+          "word": "rue",
+          "lemma": "rue",
+          "tr": "sokak"
+        },
+        {
+          "word": "magasin",
+          "lemma": "magasin",
+          "tr": "dükkân"
+        },
+        {
+          "word": "Lausanne",
+          "lemma": "Lausanne",
+          "tr": "Lozan (şehir)"
+        }
+      ],
+      "outside": [
+        "lausanne"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_present",
+          "uses": 17
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000026",
+      "position": 21,
+      "words": 68,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "rue",
+          "lemma": "rue",
+          "tr": "sokak"
+        },
+        {
+          "word": "magasin",
+          "lemma": "magasin",
+          "tr": "dükkân"
+        },
+        {
+          "word": "marché",
+          "lemma": "marché",
+          "tr": "pazar"
+        },
+        {
+          "word": "Lausanne",
+          "lemma": "Lausanne",
+          "tr": "Lozan (şehir)"
+        }
+      ],
+      "outside": [
+        "lausanne"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_present",
+          "uses": 16
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000027",
+      "position": 22,
+      "words": 63,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "magasin",
+          "lemma": "magasin",
+          "tr": "dükkân"
+        },
+        {
+          "word": "marché",
+          "lemma": "marché",
+          "tr": "pazar"
+        },
+        {
+          "word": "soleil",
+          "lemma": "soleil",
+          "tr": "güneş"
+        },
+        {
+          "word": "Montréal",
+          "lemma": "Montréal",
+          "tr": "Montréal (şehir)"
+        }
+      ],
+      "outside": [
+        "montréal"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_possessifs",
+          "uses": 3
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000028",
+      "position": 23,
+      "words": 64,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "marché",
+          "lemma": "marché",
+          "tr": "pazar"
+        },
+        {
+          "word": "soleil",
+          "lemma": "soleil",
+          "tr": "güneş"
+        },
+        {
+          "word": "pluie",
+          "lemma": "pluie",
+          "tr": "yağmur"
+        },
+        {
+          "word": "Montréal",
+          "lemma": "Montréal",
+          "tr": "Montréal (şehir)"
+        }
+      ],
+      "outside": [
+        "montréal"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_etre_avoir",
+          "uses": 4
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000029",
+      "position": 24,
+      "words": 70,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "soleil",
+          "lemma": "soleil",
+          "tr": "güneş"
+        },
+        {
+          "word": "pluie",
+          "lemma": "pluie",
+          "tr": "yağmur"
+        },
+        {
+          "word": "Montréal",
+          "lemma": "Montréal",
+          "tr": "Montréal (şehir)"
+        }
+      ],
+      "outside": [
+        "montréal"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_negation",
+          "uses": 2
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "fr-r-000030",
+      "position": 25,
+      "words": 70,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "pluie",
+          "lemma": "pluie",
+          "tr": "yağmur"
+        },
+        {
+          "word": "Montréal",
+          "lemma": "Montréal",
+          "tr": "Montréal (şehir)"
+        },
+        {
+          "word": "riz",
+          "lemma": "riz",
+          "tr": "pirinç"
+        }
+      ],
+      "outside": [
+        "montréal"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_fr_present",
+          "uses": 16
+        }
+      ],
+      "errors": []
+    }
+  ]
+}
