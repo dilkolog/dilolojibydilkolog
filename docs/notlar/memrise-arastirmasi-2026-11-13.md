@@ -150,4 +150,4 @@ Sonraki inceleme, bu soruları test hesabıyla ve zarar vermeyen kontrollü gör
 
 ## Ek: değerlendirilip temel alınmayan belge
 
-[Memrise GitHub ürün belgesi](https://github.com/Memrise/memrise-prd/blob/main/README.md) geniş bir özellik ve prototip envanteri sunuyor; eski/yeni ilerleme ve farklı erişim açıklamalarını birlikte içeriyor. Sunucu uygulamasının kaynak kodu değil. Bu raporda fiyat, kesin teknik zamanlayıcı veya tüm dillerde kullanılabilirlik kanıtı olarak kullanılmadı.
+[Memrise GitHub ürün belgesi](https://github.com/Memrise/memrise-prd/blob/main/README.md) kendisini canlı üründen tersine çıkarılmış (reverse-engineered) bir belge olarak tanımlıyor; resmî algoritma dokümantasyonu sayılmamalı. Geniş bir özellik ve prototip envanteri sunuyor; eski/yeni ilerleme ve farklı erişim açıklamalarını birlikte içeriyor. Sunucu uygulamasının kaynak kodu değil. Bu raporda fiyat, kesin teknik zamanlayıcı veya tüm dillerde kullanılabilirlik kanıtı olarak kullanılmadı.

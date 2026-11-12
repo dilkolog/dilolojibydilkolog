@@ -92,3 +92,7 @@ Başka bir dalda çalışılıyorsa mevcut değişiklikleri koruyup ayrı worktr
 ## 13 Kasım · Memrise araştırması
 
 [Çalışma mantığı ve Diloloji çıkarımları](../docs/notlar/memrise-arastirmasi-2026-11-13.md). Resmî kaynaklar, eski/yeni sürüm ayrımı, kamuya açıklanan SRS, etkinlik planlama, video/konuşma döngüsü, çiçek ve 3/4/6 ilk öğrenme kuralı. Bulgular, tarihsel davranışlar ve bizim önerilerimiz ayrı. Üretim değişikliği veya yeni eksik-özellik denetimi değildir.
+
+## 13 Kasım · Eski Memrise motoru
+
+[Klasik motor araştırması](../docs/notlar/eski-memrise-ogrenme-motoru-2026-11-13.md): ilk öğrenme, yanlışın oturum kuyruğuna dönmesi, değerlendirme kuralları, ses çeşitliliği, filiz ve modern tekrar motorunu koruyarak yeniden kurulabilecek deneyim. Kanıt düzeyleri ve bilinmeyen parametreler ayrı. Uygulanmış kod veya Memrise kaynak kodunun kopyası değildir.

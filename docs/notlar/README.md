@@ -27,3 +27,5 @@ Bir konuya dokunmadan önce ilgili dosyayı oku; notlardaki "yukarıdaki/aşağ�
 | [yapilacaklar-fikirler.md](yapilacaklar-fikirler.md) | **Yapılacaklar ve fikirler.** Tasarım iyileştirme listesi, sıradaki olası işler, kullanıcıya önerilenler. |
 
 - [Memrise çalışma mantığı — internet araştırması (13 Kasım 2026)](memrise-arastirmasi-2026-11-13.md): kaynaklı ürün incelemesi, sürüm farkları ve Diloloji önerileri.
+
+- [Eski Memrise öğrenme motoru — derinleştirme (13 Kasım 2026)](eski-memrise-ogrenme-motoru-2026-11-13.md): klasik edinim, hata kuyruğu, test yönü, tolerans ve yeniden kurulum sözleşmesi.
