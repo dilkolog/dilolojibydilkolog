@@ -1,11 +1,11 @@
 {
-  "updated": "2026-11-12",
+  "updated": "2026-11-13",
   "files": [
     {
       "packageId": "diloloji-tasarim-is-plani-01",
       "path": "tasarim/CLAUDE-ONCE-OKU.md",
-      "bytes": 9843,
-      "sha256": "e77b4cdcca7d8cb3e68d2b4db98e5a389ba279ec4c01d18c67f88c135c02a378"
+      "bytes": 10274,
+      "sha256": "14f169a3f5d5690ccf19b5fb3a632f5cdbc84d3dfc6b049367d083fa0ea00da6"
     },
     {
       "packageId": "diloloji-tasarim-is-plani-01",

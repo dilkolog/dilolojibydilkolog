@@ -25,3 +25,5 @@ Bir konuya dokunmadan önce ilgili dosyayı oku; notlardaki "yukarıdaki/aşağ�
 | [tur-notlari.md](tur-notlari.md) | **Tur notları (çok konulu).** Birden çok konuyu içeren tarihli iş turları. |
 | [xp-rozet-sosyal.md](xp-rozet-sosyal.md) | **XP, rozetler, bildirimler ve sosyal özellikler.** XP kuralları, rozetler, seviye, bildirim merkezi, arkadaşlar, lig, davet, şikâyet ve engelleme. |
 | [yapilacaklar-fikirler.md](yapilacaklar-fikirler.md) | **Yapılacaklar ve fikirler.** Tasarım iyileştirme listesi, sıradaki olası işler, kullanıcıya önerilenler. |
+
+- [Memrise çalışma mantığı — internet araştırması (13 Kasım 2026)](memrise-arastirmasi-2026-11-13.md): kaynaklı ürün incelemesi, sürüm farkları ve Diloloji önerileri.

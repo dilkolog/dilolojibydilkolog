@@ -88,3 +88,7 @@ git switch --track origin/tasarim/tum-paketler-2026-11-12
 ```
 
 Başka bir dalda çalışılıyorsa mevcut değişiklikleri koruyup ayrı worktree açılabilir. Bu teslim yalnızca tasarım kaynakları ve notları içerir; uygulamaya entegrasyon/deploy yapılmadı. Ham kaynakların depoda eksik olanları `docs/gelen-gorseller/` altına eklendi; güncel main’de var olan dosyaların üzerine yazılmadı. Paket notlarındaki kaynak commitleri tarihsel inceleme referanslarıdır.
+
+## 13 Kasım · Memrise araştırması
+
+[Çalışma mantığı ve Diloloji çıkarımları](../docs/notlar/memrise-arastirmasi-2026-11-13.md). Resmî kaynaklar, eski/yeni sürüm ayrımı, kamuya açıklanan SRS, etkinlik planlama, video/konuşma döngüsü, çiçek ve 3/4/6 ilk öğrenme kuralı. Bulgular, tarihsel davranışlar ve bizim önerilerimiz ayrı. Üretim değişikliği veya yeni eksik-özellik denetimi değildir.
