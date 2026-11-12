@@ -5,7 +5,7 @@ import { deletePerson, listPeople, pendingCount, updatePerson, type PeopleFilter
 import { checkHealth, problems } from './_health.js'
 import { addBlock, approveAll, listBlocks, personDetail, removeBlock, stats, usage } from './_adminStats.js'
 import { forgetSettings, getSettings, LIMITS, limitOf, MAX_ANNOUNCEMENT, saveSettings } from './_settings.js'
-import { DEFAULT_DAILY_BUDGET_USD, DEFAULT_DAILY_CALLS } from './ai.js'
+import { DEFAULT_DAILY_BUDGET_USD, DEFAULT_DAILY_CALLS, DEFAULT_SITE_DAILY_BUDGET_USD } from './ai.js'
 import { DAILY_TRANSLATE_CHARS, DAILY_TTS_CHARS } from './_quota.js'
 import { idOfUsername } from './_allow.js'
 import { anySecretMatches, bearerOf } from './_secret.js'
@@ -265,16 +265,17 @@ const blockAnswer = (result: 'ok' | 'bad' | 'missing') =>
 async function settingsView() {
   forgetSettings()
   const settings = await getSettings()
-  const [aiDailyCalls, aiDailyBudgetUsd, translateChars, ttsChars] = await Promise.all([
+  const [aiDailyCalls, aiDailyBudgetUsd, aiSiteBudgetUsd, translateChars, ttsChars] = await Promise.all([
     limitOf('aiDailyCalls', DEFAULT_DAILY_CALLS, 'AI_DAILY_CALLS'),
     limitOf('aiDailyBudgetUsd', DEFAULT_DAILY_BUDGET_USD, 'AI_DAILY_BUDGET_USD'),
+    limitOf('aiSiteBudgetUsd', DEFAULT_SITE_DAILY_BUDGET_USD, 'AI_SITE_DAILY_BUDGET_USD'),
     limitOf('translateChars', DAILY_TRANSLATE_CHARS),
     limitOf('ttsChars', DAILY_TTS_CHARS),
   ])
   return {
     settings,
-    effective: { aiDailyCalls, aiDailyBudgetUsd, translateChars, ttsChars },
-    defaults: { aiDailyCalls: DEFAULT_DAILY_CALLS, aiDailyBudgetUsd: DEFAULT_DAILY_BUDGET_USD, translateChars: DAILY_TRANSLATE_CHARS, ttsChars: DAILY_TTS_CHARS },
+    effective: { aiDailyCalls, aiDailyBudgetUsd, aiSiteBudgetUsd, translateChars, ttsChars },
+    defaults: { aiDailyCalls: DEFAULT_DAILY_CALLS, aiDailyBudgetUsd: DEFAULT_DAILY_BUDGET_USD, aiSiteBudgetUsd: DEFAULT_SITE_DAILY_BUDGET_USD, translateChars: DAILY_TRANSLATE_CHARS, ttsChars: DAILY_TTS_CHARS },
     ranges: LIMITS,
   }
 }

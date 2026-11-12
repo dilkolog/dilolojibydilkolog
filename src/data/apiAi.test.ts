@@ -4,7 +4,7 @@ vi.mock('../../api/_account.js', () => ({ requireApproved: vi.fn(async () => nul
 vi.mock('../../api/_supabase.js', () => ({ aiLevelOf: vi.fn(async () => null), supabaseOn: () => false, rest: vi.fn() }))
 vi.mock('../../api/_quota.js', () => ({ quotaReserve: vi.fn(async () => true), quotaGiveBack: vi.fn(async () => {}), spendQuota: vi.fn(async () => {}), dailyQuotaReached: () => Response.json({ error: 'daily_quota' }, { status: 429 }) }))
 
-import { POST, GET, refuse, costUnits, estimateUnits, betaHeader, MAX_TOKENS } from '../../api/ai'
+import { POST, GET, refuse, costUnits, callUnits, betaHeader, MAX_TOKENS } from '../../api/ai'
 import { requireApproved } from '../../api/_account.js'
 import { quotaGiveBack, quotaReserve, spendQuota } from '../../api/_quota.js'
 import { aiLevelOf } from '../../api/_supabase.js'
@@ -125,13 +125,17 @@ describe('what a day may cost', () => {
     expect(costUnits('claude-opus-5-5', null)).toBe(0)
   })
 
-  it('sets the call and a guess of its money aside first, then corrects the guess to what the answer cost', async () => {
+  it('sets the call and its worst case aside first (the account, then the site), then corrects it to what the answer cost', async () => {
     vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({ model: 'claude-sonnet-5-5', usage: { input_tokens: 10, output_tokens: 20 } }), { status: 200 }))
     expect((await POST(ask(good))).status).toBe(200)
-    const guess = estimateUnits(good)
+    const { expected, worst } = callUnits(good)
     expect(quotaReserve).toHaveBeenCalledWith('ai', 'acct', 1, 150)
-    expect(quotaReserve).toHaveBeenCalledWith('ai-cost', 'acct', guess, expect.any(Number))
-    expect(quotaGiveBack).toHaveBeenCalledWith('ai-cost', 'acct', guess - costUnits('claude-sonnet-5-5', { input_tokens: 10, output_tokens: 20 }))
+    // Let in while the expected cost fits the day; held at the worst case.
+    expect(quotaReserve).toHaveBeenCalledWith('ai-cost', 'acct', worst, 0.75 * 10_000 * 0.5 + worst - expected)
+    expect(quotaReserve).toHaveBeenCalledWith('ai-site', 'site', worst, 5 * 10_000 + worst - expected)
+    const cost = costUnits('claude-sonnet-5-5', { input_tokens: 10, output_tokens: 20 })
+    expect(quotaGiveBack).toHaveBeenCalledWith('ai-cost', 'acct', worst - cost)
+    expect(quotaGiveBack).toHaveBeenCalledWith('ai-site', 'site', worst - cost)
     vi.mocked(quotaReserve).mockImplementation(async (name) => name !== 'ai-cost')
     expect((await POST(ask(good))).status).toBe(429)
     // The call set aside for it goes back when the money does not fit.
@@ -141,16 +145,61 @@ describe('what a day may cost', () => {
   it('prices the answer by the model that wrote it: a fallback to a dearer model costs what it cost', async () => {
     const usage = { input_tokens: 100_000, output_tokens: 10_000 }
     vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({ model: 'claude-opus-5-5', usage }), { status: 200 }))
-    await POST(ask({ ...good, model: 'claude-haiku-4-5' }))
-    const guess = estimateUnits({ ...good, model: 'claude-haiku-4-5' })
-    expect(spendQuota).toHaveBeenCalledWith('ai-cost', 'acct', costUnits('claude-opus-5-5', usage) - guess)
+    await POST(ask({ ...good, model: 'claude-haiku-4-5', max_tokens: 10_000 }))
+    const { worst } = callUnits({ ...good, model: 'claude-haiku-4-5', max_tokens: 10_000 })
+    expect(spendQuota).toHaveBeenCalledWith('ai-cost', 'acct', costUnits('claude-opus-5-5', usage) - worst)
   })
 
   it('gives everything back when the call fails', async () => {
     vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response('{"error":"overloaded"}', { status: 529 }))
     expect((await POST(ask(good))).status).toBe(529)
     expect(quotaGiveBack).toHaveBeenCalledWith('ai', 'acct', 1)
-    expect(quotaGiveBack).toHaveBeenCalledWith('ai-cost', 'acct', estimateUnits(good))
+    expect(quotaGiveBack).toHaveBeenCalledWith('ai-cost', 'acct', callUnits(good).worst)
+    expect(quotaGiveBack).toHaveBeenCalledWith('ai-site', 'site', callUnits(good).worst)
+  })
+
+  describe('with real counters', () => {
+    // counter_take's rule (used + amount <= max) over an in-memory day, so the arithmetic of the holds is what is tested.
+    let used: Map<string, number>
+    beforeEach(() => {
+      used = new Map()
+      const key = (name: string, id: string) => `${name}|${id}`
+      vi.mocked(quotaReserve).mockImplementation(async (name, id, amount, max) => {
+        const now = used.get(key(name, id)) ?? 0
+        if (now + amount > max) return false
+        used.set(key(name, id), now + amount)
+        return true
+      })
+      vi.mocked(quotaGiveBack).mockImplementation(async (name, id, amount) => void used.set(key(name, id), Math.max(0, (used.get(key(name, id)) ?? 0) - amount)))
+      vi.mocked(spendQuota).mockImplementation(async (name, id, amount) => void used.set(key(name, id), (used.get(key(name, id)) ?? 0) + amount))
+    })
+    const big = { ...good, model: 'claude-opus-5-5', max_tokens: 16_000 }
+    // Every call writes all of its max_tokens: the worst an account could make it do.
+    const answer = () => new Response(JSON.stringify({ model: 'claude-opus-5-5', usage: { input_tokens: 10, output_tokens: 16_000 } }), { status: 200 })
+
+    it('requests sent at once cannot spend the day several times over', async () => {
+      let release!: () => void
+      const gate = new Promise<void>((r) => (release = r))
+      vi.spyOn(globalThis, 'fetch').mockImplementation(async () => (await gate, answer()))
+      const all = Promise.all(Array.from({ length: 10 }, () => POST(ask(big))))
+      await new Promise((r) => setTimeout(r, 20))
+      release()
+      const statuses = (await all).map((r) => r.status)
+      const spent = used.get('ai-cost|acct')!
+      const budget = 0.75 * 10_000
+      // One call's worth over the day at most (the last one let in), never 3-4 times the day.
+      expect(spent).toBeLessThanOrEqual(budget + callUnits(big).worst)
+      expect(statuses.filter((s) => s === 429).length).toBeGreaterThan(0)
+    })
+
+    it('the whole site stops at its own day, whoever asks', async () => {
+      vi.spyOn(globalThis, 'fetch').mockImplementation(async () => answer())
+      used.set('ai-site|site', 5 * 10_000 - 10)
+      expect((await POST(ask(big))).status).toBe(429)
+      // Nothing of the account's day stays taken by the refused call.
+      expect(used.get('ai|acct')).toBe(0)
+      expect(used.get('ai-cost|acct')).toBe(0)
+    })
   })
 })
 

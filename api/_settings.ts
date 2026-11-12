@@ -6,7 +6,8 @@ import { rest, supabaseOn } from './_supabase.js'
  * that. Without Supabase, or when the row cannot be read, every value falls back to its Worker variable or default:
  * a failed read never closes anything.
  *
- * - Daily limits per account: AI calls and money, translated characters, natural-voice characters.
+ * - Daily limits per account: AI calls and money, translated characters, natural-voice characters; the AI money of the
+ *   whole site in a day (aiSiteBudgetUsd).
  * - autoApprove: a new person is approved at their first sign-in (no waiting list).
  * - facebookLogin: the sign-in page offers Facebook (the owner turns it on once the Meta app is set up).
  * - announcement: one short message every signed-in person gets once in their bell.
@@ -21,6 +22,7 @@ export interface Announcement {
 export interface ServerSettings {
   aiDailyCalls?: number
   aiDailyBudgetUsd?: number
+  aiSiteBudgetUsd?: number
   translateChars?: number
   ttsChars?: number
   autoApprove?: boolean
@@ -32,6 +34,7 @@ export interface ServerSettings {
 export const LIMITS = {
   aiDailyCalls: { min: 1, max: 2000 },
   aiDailyBudgetUsd: { min: 0.01, max: 50 },
+  aiSiteBudgetUsd: { min: 0.5, max: 500 },
   translateChars: { min: 500, max: 500_000 },
   ttsChars: { min: 500, max: 500_000 },
 } as const
@@ -49,7 +52,7 @@ const inRange = (name: LimitName, v: unknown): number | undefined => {
   const n = typeof v === 'number' ? v : typeof v === 'string' && v.trim() ? Number(v) : NaN
   if (!Number.isFinite(n)) return undefined
   const { min, max } = LIMITS[name]
-  return n >= min && n <= max ? (name === 'aiDailyBudgetUsd' ? Math.round(n * 100) / 100 : Math.round(n)) : undefined
+  return n >= min && n <= max ? (name === 'aiDailyBudgetUsd' || name === 'aiSiteBudgetUsd' ? Math.round(n * 100) / 100 : Math.round(n)) : undefined
 }
 
 function cleanAnnouncement(v: unknown): Announcement | null | undefined {

@@ -128,7 +128,7 @@ export interface PersonDetail {
   today: { aiCalls: number; aiUsd: number; translateChars: number; ttsChars: number } | null
 }
 
-export type LimitName = 'aiDailyCalls' | 'aiDailyBudgetUsd' | 'translateChars' | 'ttsChars'
+export type LimitName = 'aiDailyCalls' | 'aiDailyBudgetUsd' | 'aiSiteBudgetUsd' | 'translateChars' | 'ttsChars'
 export interface Announcement {
   id: string
   text: string
