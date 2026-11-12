@@ -1,3 +1,4 @@
+import { automatedOnLive } from '../../data/automation'
 import { db } from '../../data/instance'
 import { ACCOUNT_EVENT, forgetAccess } from '../../data/access'
 import { showToast } from '../shared/toastFeed'
@@ -106,9 +107,21 @@ export const isSyncing = () => running !== null
  * One sync runs at a time and whoever asks meanwhile shares it, with its failure too: a caller that wants errors
  * (signing out, which empties the device) must not take a background sync's silent failure for a success.
  */
+/** Said once to a driven browser on the live site, whose syncs are skipped. */
+const BOT = 'Otomasyonla açılan bir tarayıcı: eşitleme kapalı, bu cihazdaki cevaplar hesabına yazılmaz.'
+let botSaid = false
+
 export async function runSync(throwErrors = false, quiet = false): Promise<SyncResult | null> {
   running ??= (async (): Promise<Outcome> => {
     try {
+      // A bot on the live site keeps its answers on its own device: they never reach the account (automation.ts).
+      if (automatedOnLive()) {
+        if (!botSaid) {
+          botSaid = true
+          showToast(BOT, undefined, 10_000, 'info')
+        }
+        return { result: null, failed: false }
+      }
       const cred = await getCredential()
       if (!cred) return { result: null, failed: false }
       if (typeof cred !== 'string' && (await signOutOldAccount())) return { result: null, failed: false }
