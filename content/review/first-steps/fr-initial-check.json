@@ -1,0 +1,250 @@
+{
+  "job": "fr-reading-0003",
+  "language": "fr",
+  "kind": "reading",
+  "total": 25,
+  "accepted": [
+    "fr-r-000007"
+  ],
+  "rejected": [
+    {
+      "id": "fr-r-000006",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: sac",
+        "new target \"eau\" must recur in next text 2",
+        "new target \"eau\" must recur in next text 3",
+        "new target \"café\" must recur in next text 2"
+      ]
+    },
+    {
+      "id": "fr-r-000008",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: j, tasses"
+      ]
+    },
+    {
+      "id": "fr-r-000009",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: tasse, vide, j"
+      ]
+    },
+    {
+      "id": "fr-r-000010",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: tasse, j, verre, près, verres"
+      ]
+    },
+    {
+      "id": "fr-r-000011",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: verre, faim, j, repas, simple"
+      ]
+    },
+    {
+      "id": "fr-r-000012",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: j, tôt, calme, tasses",
+        "new target \"travail\" must recur in next text 8",
+        "new target \"travail\" must recur in next text 9"
+      ]
+    },
+    {
+      "id": "fr-r-000013",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: prépare, sucre, tasse, n, j, chaque, tasses, différentes"
+      ]
+    },
+    {
+      "id": "fr-r-000014",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: tasse, sac, rouge, faim",
+        "new target \"cours\" must recur in next text 10",
+        "new target \"cours\" must recur in next text 11"
+      ]
+    },
+    {
+      "id": "fr-r-000015",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: repas, préparer, j, assiette, verres"
+      ]
+    },
+    {
+      "id": "fr-r-000016",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: repas, prépare, assiette, journée"
+      ]
+    },
+    {
+      "id": "fr-r-000017",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: repas, presque, assiette, près, sienne, n, chacun"
+      ]
+    },
+    {
+      "id": "fr-r-000018",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: sac, repas"
+      ]
+    },
+    {
+      "id": "fr-r-000019",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: commence, neuf, j, sac, près, premier, étage, calme"
+      ]
+    },
+    {
+      "id": "fr-r-000020",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: près, tasse, quatre, chaque, pose, lentement, réponse"
+      ]
+    },
+    {
+      "id": "fr-r-000021",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: journée, j, utile"
+      ]
+    },
+    {
+      "id": "fr-r-000022",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: près, j, parfois, souris"
+      ]
+    },
+    {
+      "id": "fr-r-000023",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: près, côté, mien, tasse, rouge, j, midi"
+      ]
+    },
+    {
+      "id": "fr-r-000024",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: dehors, vivante, midi, près, faim, repas"
+      ]
+    },
+    {
+      "id": "fr-r-000025",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: calme, près, loin, sacs"
+      ]
+    },
+    {
+      "id": "fr-r-000026",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: voulons, aimons, sacs"
+      ]
+    },
+    {
+      "id": "fr-r-000027",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: fermé, ouvert, sac, presque, vide, lourd, rentrons"
+      ]
+    },
+    {
+      "id": "fr-r-000028",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: derrière, n, forte, sac, près, ouvert, intérieur, tasses, dehors"
+      ]
+    },
+    {
+      "id": "fr-r-000029",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: près, n, forte, tasse, côté, dehors, sacs"
+      ]
+    },
+    {
+      "id": "fr-r-000030",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: prépare, près, derrière, journée, simple"
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "id": "fr-r-000008",
+      "reasons": [
+        "above A1 or unlisted: tasses"
+      ]
+    },
+    {
+      "id": "fr-r-000009",
+      "reasons": [
+        "above A1 or unlisted: tasse"
+      ]
+    },
+    {
+      "id": "fr-r-000010",
+      "reasons": [
+        "above A1 or unlisted: tasse"
+      ]
+    },
+    {
+      "id": "fr-r-000012",
+      "reasons": [
+        "above A1 or unlisted: tasses"
+      ]
+    },
+    {
+      "id": "fr-r-000013",
+      "reasons": [
+        "above A1 or unlisted: tasse, tasses"
+      ]
+    },
+    {
+      "id": "fr-r-000014",
+      "reasons": [
+        "above A1 or unlisted: tasse"
+      ]
+    },
+    {
+      "id": "fr-r-000015",
+      "reasons": [
+        "above A1 or unlisted: assiette"
+      ]
+    },
+    {
+      "id": "fr-r-000016",
+      "reasons": [
+        "above A1 or unlisted: assiette"
+      ]
+    },
+    {
+      "id": "fr-r-000017",
+      "reasons": [
+        "above A1 or unlisted: assiette, sienne"
+      ]
+    },
+    {
+      "id": "fr-r-000020",
+      "reasons": [
+        "above A1 or unlisted: tasse"
+      ]
+    },
+    {
+      "id": "fr-r-000023",
+      "reasons": [
+        "above A1 or unlisted: mien, tasse"
+      ]
+    },
+    {
+      "id": "fr-r-000028",
+      "reasons": [
+        "above A1 or unlisted: tasses"
+      ]
+    },
+    {
+      "id": "fr-r-000029",
+      "reasons": [
+        "above A1 or unlisted: tasse"
+      ]
+    },
+    {
+      "id": "fr-r-000030",
+      "reasons": [
+        "above A1 or unlisted: riz, nuages",
+        "in no list (typo?): riz"
+      ]
+    }
+  ],
+  "rate": 0.04
+}

@@ -1,0 +1,22 @@
+{
+  "id": "fr-reading-0003",
+  "language": "fr",
+  "kind": "reading",
+  "level": "A1",
+  "genre": "story",
+  "grammar": [
+    "basics_fr_etre_avoir",
+    "basics_fr_possessifs",
+    "basics_fr_negation",
+    "basics_fr_present",
+    "basics_fr_questions"
+  ],
+  "count": 25,
+  "ids": {
+    "from": 6,
+    "to": 30
+  },
+  "createdAt": "2026-11-12T22:54:31.862Z",
+  "claimedBy": "Codex/icerik/ilk-adim-fr",
+  "claimedAt": "2026-11-12T22:57:56.561Z"
+}
