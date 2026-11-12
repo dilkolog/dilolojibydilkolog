@@ -1,0 +1,251 @@
+{
+  "job": "es-reading-0003",
+  "language": "es",
+  "kind": "reading",
+  "total": 25,
+  "accepted": [],
+  "rejected": [
+    {
+      "id": "es-r-000006",
+      "reasons": [
+        "first-step uses non-present forms: para (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000007",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: azul",
+        "first-step uses non-present forms: una (subjuntivo), una (subjuntivo), para (subjuntivo)",
+        "new target \"agua\" must recur in next text 4"
+      ]
+    },
+    {
+      "id": "es-r-000008",
+      "reasons": [
+        "first-step uses non-present forms: una (subjuntivo), para (subjuntivo), sobre (subjuntivo), una (subjuntivo), una (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000009",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: junto",
+        "first-step uses non-present forms: una (subjuntivo), una (subjuntivo), entre (subjuntivo), una (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000010",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: delante",
+        "first-step uses non-present forms: para (subjuntivo)",
+        "grammar target \"basics_es_negacion\" is used 0 times, needs 2"
+      ]
+    },
+    {
+      "id": "es-r-000011",
+      "reasons": [
+        "first-step uses non-present forms: para (subjuntivo), una (subjuntivo), para (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000012",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: cerca",
+        "first-step uses non-present forms: para (subjuntivo), una (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000013",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: cerca",
+        "first-step uses non-present forms: para (subjuntivo), para (subjuntivo), para (subjuntivo), calle (subjuntivo)",
+        "grammar target \"basics_es_negacion\" is used 0 times, needs 2",
+        "new target \"trabajo\" must recur in next text 10",
+        "new target \"calle\" must recur in next text 9",
+        "new target \"calle\" must recur in next text 10"
+      ]
+    },
+    {
+      "id": "es-r-000014",
+      "reasons": [
+        "first-step uses non-present forms: una (subjuntivo), una (subjuntivo), para (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000015",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: cerca",
+        "first-step uses non-present forms: una (subjuntivo), para (subjuntivo), para (subjuntivo), para (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000016",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: palabras, caliente",
+        "first-step uses non-present forms: para (subjuntivo), caliente (subjuntivo), una (subjuntivo), para (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000017",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: palabras, caliente, pregunta, escucho",
+        "first-step uses non-present forms: para (subjuntivo), para (subjuntivo), caliente (subjuntivo), para (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000018",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: delante",
+        "first-step uses non-present forms: calle (subjuntivo), una (subjuntivo), para (subjuntivo), para (subjuntivo)",
+        "new target \"profesor\" must recur in next text 14"
+      ]
+    },
+    {
+      "id": "es-r-000019",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: cerca, preguntas, palabras",
+        "first-step uses non-present forms: tarde (subjuntivo), para (subjuntivo), unas (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000020",
+      "reasons": [
+        "first-step uses non-present forms: una (subjuntivo), una (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000021",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: escucha, preguntas, palabras",
+        "first-step uses non-present forms: una (subjuntivo), tarde (subjuntivo), para (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000022",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: palabras, conoce, preguntas",
+        "first-step uses non-present forms: tarde (subjuntivo), una (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000023",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: junto, delante",
+        "first-step uses non-present forms: una (subjuntivo), entre (subjuntivo)",
+        "grammar target \"basics_es_negacion\" is used 0 times, needs 2"
+      ]
+    },
+    {
+      "id": "es-r-000024",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: delante, cerca",
+        "first-step uses non-present forms: una (subjuntivo), calle (subjuntivo), una (subjuntivo), calle (subjuntivo), para (subjuntivo), calle (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000025",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: cerca",
+        "first-step uses non-present forms: calle (subjuntivo), una (subjuntivo), tienda (subjuntivo), tienda (subjuntivo), calle (subjuntivo), para (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000026",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: cerca, mirar",
+        "first-step uses non-present forms: calle (subjuntivo), tienda (subjuntivo), una (subjuntivo), unas (subjuntivo), para (subjuntivo), tienda (subjuntivo), unas (subjuntivo), para (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000027",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: cerca",
+        "first-step uses non-present forms: tienda (subjuntivo), tienda (subjuntivo), para (subjuntivo), una (subjuntivo), para (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000028",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: cerca",
+        "first-step uses non-present forms: para (subjuntivo), sobre (subjuntivo), tienda (subjuntivo), calle (subjuntivo)",
+        "grammar target \"basics_es_negacion\" is used 0 times, needs 2"
+      ]
+    },
+    {
+      "id": "es-r-000029",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: cerca, dentro",
+        "first-step uses non-present forms: tienda (subjuntivo), calle (subjuntivo), para (subjuntivo), una (subjuntivo), una (subjuntivo), para (subjuntivo)"
+      ]
+    },
+    {
+      "id": "es-r-000030",
+      "reasons": [
+        "first-step words outside top 300/starter lists need vocabulary: escucho",
+        "first-step uses non-present forms: calle (subjuntivo), tienda (subjuntivo), una (subjuntivo), para (subjuntivo), para (subjuntivo)"
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "id": "es-r-000010",
+      "reasons": [
+        "above A1 or unlisted: delante"
+      ]
+    },
+    {
+      "id": "es-r-000018",
+      "reasons": [
+        "above A1 or unlisted: delante"
+      ]
+    },
+    {
+      "id": "es-r-000020",
+      "reasons": [
+        "above A1 or unlisted: derecha, izquierda"
+      ]
+    },
+    {
+      "id": "es-r-000023",
+      "reasons": [
+        "above A1 or unlisted: delante"
+      ]
+    },
+    {
+      "id": "es-r-000024",
+      "reasons": [
+        "above A1 or unlisted: delante"
+      ]
+    },
+    {
+      "id": "es-r-000026",
+      "reasons": [
+        "above A1 or unlisted: manzanas"
+      ]
+    },
+    {
+      "id": "es-r-000027",
+      "reasons": [
+        "above A1 or unlisted: manzanas, manzana"
+      ]
+    },
+    {
+      "id": "es-r-000028",
+      "reasons": [
+        "above A1 or unlisted: manzanas"
+      ]
+    },
+    {
+      "id": "es-r-000029",
+      "reasons": [
+        "above A1 or unlisted: manzanas, manzana, dentro"
+      ]
+    },
+    {
+      "id": "es-r-000030",
+      "reasons": [
+        "above A1 or unlisted: manzanas, manzana"
+      ]
+    }
+  ],
+  "rate": 0
+}

@@ -3,6 +3,7 @@ import type { ReadingItem } from '../../../src/engine/contentTypes'
 import { analyzeForm } from '../../../src/engine/tenses'
 import { analyzeText } from '../../../src/engine/reading'
 import { textForms } from '../../../src/engine/textForms'
+import { STOP } from '../../../src/engine/extract'
 import type { CheckContext } from './context'
 
 /** Surface words only: examples and Turkish translations never extend the beginner lexicon. */
@@ -48,7 +49,22 @@ export function firstStepErrors(item: ReadingItem, ctx: CheckContext): string[] 
   if (missing.length) errors.push(`first-step words outside top 300/starter lists need vocabulary: ${missing.join(', ')}`)
   const analysis = analyzeText(item.paragraphs.join('\n\n'), ctx.language, [], [], new Set())
   const present = ctx.language === 'fr' ? 'present' : 'presente'
-  const nonPresent = textForms(ctx.language, analysis).filter((form) => form.tense !== present)
+  const sentences = analysis.paragraphs.flat().map((sentence) => sentence.text.toLowerCase())
+  const nonPresent = textForms(ctx.language, analysis).filter((form) => {
+    if (form.tense === present) return false
+    // Spanish function words and nouns also have rare verb readings (una/unir, calle/callar).
+    // A present reading or an unambiguous nominal position must not be rejected as a subjunctive.
+    if (ctx.language === 'es' && form.tense === 'subjuntivo' && !form.form.includes(' ')) {
+      if (analyzeForm('es', form.form).some((hit) => hit.tense === present)) return false
+      const sentence = sentences[form.sentence] ?? ''
+      if ((STOP.es.has(form.form) || form.form === 'unas') && !new RegExp(`\\b(?:que|no)\\s+(?:[\\p{L}]+\\s+){0,2}${form.form}\\b`, 'u').test(sentence)) return false
+      if (['calle', 'tienda', 'tarde', 'cosas'].includes(form.form)) {
+        const uses = [...sentence.matchAll(new RegExp(`(?<![\\p{L}])${form.form}(?![\\p{L}])`, 'gu'))]
+        if (uses.length && uses.every((use) => /(?:la|una|unas|muchas|estas|esa|mi|su|nuestra|aprendo)\s+(?:(?:misma|pequeña|gran|otra)\s+)?$/.test(sentence.slice(0, use.index)))) return false
+      }
+    }
+    return true
+  })
   if (nonPresent.length) errors.push(`first-step uses non-present forms: ${nonPresent.map((f) => `${f.form} (${f.tense})`).join(', ')}`)
   return errors
 }
