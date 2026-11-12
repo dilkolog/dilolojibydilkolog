@@ -1679,7 +1679,7 @@ test('dialogues: the list and an answered turn pass accessibility and contrast c
 
 test('a tense lesson with every fine point open passes the accessibility and contrast checks in light and dark', async ({ page }) => {
   await startWithSamples(page)
-  await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^Pratik\d*$/ }).first().click()
+  await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^Öğren\d*$/ }).first().click()
   await page.locator('.hub-tab').filter({ hasText: /^Fiiller$/ }).click()
   await page.getByRole('button', { name: 'Bu zamanın konu anlatımı' }).click()
   const sheet = page.locator('.tense-lesson')

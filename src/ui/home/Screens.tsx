@@ -1,3 +1,4 @@
+import { WordCountLabel } from '../shared/wordCounts'
 import { SessionResumeCard } from './SessionResumeCard'
 import { Fragment, useEffect, useState, type ReactNode } from 'react'
 import { SPLIT_ABOVE_MINUTES } from '../../engine/session'
@@ -351,14 +352,15 @@ export function Home({
             )}
           </li>
         )}
-        <li>
-          <StreakPicture streak={streak} size={28} /> {streak > 0 ? <><strong>{streak}</strong> günlük seri</> : 'Seri bugün başlar'}
+        {/* The streak's own count sits in the stats below: no line of it here before there is one ("0" there, "starts today" here). */}
+        {streak > 0 && <li>
+          <StreakPicture streak={streak} size={28} /> <strong>{streak}</strong> günlük seri
           {game && (game.freezes ?? 0) > 0 && (
             <span className="freeze-chip small" title={`${game.freezes} gün seri kalkanı devrede: bir gün kaçırsan bile serin sıfırlanmaz`}>
               🛡️ {game.freezes} kalkan
             </span>
           )}
-        </li>
+        </li>}
         {game?.frozenYesterday && (
           <li className="is-nudge streak-frozen-note" role="status">
             🛡️ Dün çalışamadın ama Seri Kalkanın gün serini korudu! Serin kaldığı yerden devam ediyor.
@@ -717,14 +719,14 @@ export function Home({
             <span className="stat-value">
               <img className="stat-art-img" src={STAT_ART.star} alt="" height={26} width={26} draggable={false} /> {activeVocabulary}
             </span>
-            <span className="stat-label">aktif kelime</span>
+            <WordCountLabel kind="active" />
           </div>
           <div className="stat">
             <span className="stat-value">
               <img className="stat-art-img" src={STAT_ART.book} alt="" height={26} width={26} draggable={false} /> {learningCount}
               <span className="small muted stat-total">/{vocabularyCount}</span>
             </span>
-            <span className="stat-label">kelime öğreniliyor</span>
+            <WordCountLabel kind="met" />
           </div>
         </div>
         </section>

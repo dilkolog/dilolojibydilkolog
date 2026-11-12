@@ -40,9 +40,9 @@ export async function packApplied(page: Page) {
   await page.waitForTimeout(300)
 }
 
-/** Opens the verb lab (Pratik → Fiiller) and picks a verb by typing it. */
+/** Opens the verb lab (Öğren → Fiiller) and picks a verb by typing it. */
 export async function openVerbLab(page: Page, verb?: string) {
-  await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^Pratik\d*$/ }).first().click()
+  await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^Öğren\d*$/ }).first().click()
   await page.locator('.hub-tab').filter({ hasText: /^Fiiller$/ }).click()
   await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
   if (verb) {
@@ -58,16 +58,16 @@ const ROUTE: Record<string, [string, string?]> = {
   Bugün: ['Bugün'],
   Kelimeler: ['Kelimeler', 'Kelimeler'],
   Sözlük: ['Kelimeler', 'Sözlük'],
-  Hatalar: ['Kelimeler', 'Hatalar'],
+  Hatalar: ['İlerleme', 'Hatalar'],
   Çeviri: ['Kelimeler', 'Çeviri'],
   Okuma: ['Okuma', 'Metinler'],
   Hikaye: ['Okuma', 'Hikaye'],
-  Oyunlar: ['Pratik', 'Oyunlar'],
-  Fiiller: ['Pratik', 'Fiiller'],
-  'Yaz & konuş': ['Pratik', 'Yaz & konuş'],
-  Rehber: ['Pratik', 'Rehber'],
-  Topluluk: ['Pratik', 'Topluluk'],
-  İlerleme: ['İlerleme'],
+  Oyunlar: ['Öğren', 'Oyunlar'],
+  Fiiller: ['Öğren', 'Fiiller'],
+  'Yaz & konuş': ['Öğren', 'Yaz & konuş'],
+  Rehber: ['Öğren', 'Rehber'],
+  Topluluk: ['İlerleme', 'Topluluk'],
+  İlerleme: ['İlerleme', 'Genel'],
 }
 
 /** Opens a screen the way a user would: the menu (side menu or tab bar), then its tab; Profile and Settings via the avatar or the side menu. */
