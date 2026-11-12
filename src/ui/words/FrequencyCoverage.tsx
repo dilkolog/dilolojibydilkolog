@@ -71,7 +71,7 @@ export function FrequencyCoverageCard({
         ) : (
           <>Bir dilin en sık birkaç bin kelimesi her metnin büyük kısmını oluşturur; rahat okumak için ilk katmanların %95'ini bilmek gerekir (Nation 2006). </>
         )}
-        Kelimeler kök olarak sayılır; okurken işaretlediklerin ve listende öğrendiklerin bilinen sayılır. Artikel, edat gibi temel kelimeler (le, de, et…) ise
+        Kelimeler kök olarak sayılır; okurken işaretlediklerin ve listende öğrendiklerin bilinen sayılır. Artikel, edat gibi temel kelimeler (le, de, et…) ise{' '}
         {BASICS_AT} kelime bildiğin belli olunca bilinenlere katılır; o zamana dek okurken öğrenilir.
       </p>
       <ul className="band-list">
