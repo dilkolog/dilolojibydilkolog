@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { KelimeDB, Settings } from '../../data/db'
 import { frequencyWords } from '../../data/frequency'
-import { frequencyCoverage } from '../../engine/reading'
+import { BASICS_AT, frequencyCoverage } from '../../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../../engine/types'
 import { levelCoverage } from '../../engine/cefrLevels'
 import { GoalPlannerCard } from '../progress/GoalPlannerCard'
@@ -71,8 +71,8 @@ export function FrequencyCoverageCard({
         ) : (
           <>Bir dilin en sık birkaç bin kelimesi her metnin büyük kısmını oluşturur; rahat okumak için ilk katmanların %95'ini bilmek gerekir (Nation 2006). </>
         )}
-        Kelimeler kök olarak sayılır; okurken işaretlediklerin, listende öğrendiklerin ve artikel, edat gibi temel kelimeler (le, de, et…) bilinen sayılır. Bu yüzden
-        hiç kelime öğrenmeden de yüzde sıfırdan başlamaz.
+        Kelimeler kök olarak sayılır; okurken işaretlediklerin ve listende öğrendiklerin bilinen sayılır. Artikel, edat gibi temel kelimeler (le, de, et…) ise{' '}
+        {BASICS_AT} kelime bildiğin belli olunca bilinenlere katılır; o zamana dek okurken öğrenilir.
       </p>
       <ul className="band-list">
         {rows.map((b) => (

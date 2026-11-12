@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { analyzeText, contextEncounters, coverageLine, coverageZone, finishReading, readingKey } from '../reading'
+import { analyzeText, contextEncounters, coverageLine, coverageZone, finishReading, readingKey, basicsKnown, BASICS_AT, isStarterText, STARTER_WORDS } from '../reading'
 import { newWordState, processAttempt } from '../review'
 import { createScheduler } from '../scheduler'
 import { decide, decision } from './fixtures'
+const foundation = (...words: string[]) => new Set([...words, ...Array.from({ length: BASICS_AT }, (_, i) => `known${i}`)])
 
 const scheduler = createScheduler({ fuzz: false })
 const T = new Date('2026-10-01T10:00:00')
@@ -28,7 +29,7 @@ describe('analyzeText', () => {
   })
 
   it('uses the known-word set and computes coverage', () => {
-    const known = new Set(['brave', 'yesterday', 'leave', 'village', 'forever', 'marie', 'made'].map((w) => readingKey(w, 'en')))
+    const known = foundation(...['brave', 'yesterday', 'leave', 'village', 'forever', 'marie', 'made'].map((w) => readingKey(w, 'en')))
     const a = analyzeText(text, 'en', [decision, decide], [graduated], known)
     expect(a.counts.unseen).toBe(0)
     expect(a.counts.new).toBe(1)
@@ -88,9 +89,43 @@ describe('missingFrequent', () => {
   })
 })
 
+describe('function words and a beginner', () => {
+  it('counts them known only once the learner knows BASICS_AT words', () => {
+    const text = 'The cat and the dog.'
+    const beginner = analyzeText(text, 'en', [], [], new Set())
+    expect(beginner.coverage).toBe(0)
+    expect(beginner.counts.unseen).toBe(5)
+    expect(basicsKnown('en', [], [], new Set())).toBe(false)
+    const later = analyzeText(text, 'en', [], [], foundation())
+    // the, and, the: known; cat, dog: still new.
+    expect(later.counts.known).toBe(3)
+    expect(later.counts.unseen).toBe(2)
+  })
+  it('counts words learned on the list toward the foundation', () => {
+    const entries = Array.from({ length: BASICS_AT }, (_, i) => ({ ...decision, id: `w${i}`, lemma: `word${i}` }))
+    const learned = entries.map((e) => ({ ...graduated, entryId: e.id }))
+    expect(basicsKnown('en', entries, learned, new Set())).toBe(true)
+    expect(basicsKnown('en', entries, learned.slice(1), new Set())).toBe(false)
+  })
+})
+
+describe('starter texts', () => {
+  it('names a beginner’s A1 text for what it is instead of “çok zor”', () => {
+    expect(isStarterText('A1', 0)).toBe(true)
+    expect(isStarterText('A2', 0)).toBe(false)
+    expect(isStarterText('A1', STARTER_WORDS)).toBe(false)
+    expect(isStarterText(undefined, 0)).toBe(false)
+    const a = { coverage: 0.4, unknownWords: 30, total: 80 }
+    expect(coverageLine(a)).toBe('%40 biliyorsun (çok zor) · 30 yeni kelime')
+    expect(coverageLine(a, { starter: true })).toBe('%40 biliyorsun (başlangıç metni) · 30 yeni kelime')
+    // An easy text stays easy, starter or not.
+    expect(coverageLine({ coverage: 0.99, unknownWords: 1, total: 80 }, { starter: true })).toBe('%99 biliyorsun (rahat) · 1 yeni kelime')
+  })
+})
+
 describe('what a text would bring new', () => {
   it('counts the different words that are neither known nor in the list', () => {
-    const a = analyzeText('The village village forest. The forest was quiet.', 'en', [], [], new Set(['quiet']))
+    const a = analyzeText('The village village forest. The forest was quiet.', 'en', [], [], foundation('quiet'))
     // village (twice) and forest (twice) are two different new words; "quiet" is known.
     expect(a.unknownWords).toBe(2)
     expect(a.counts.unseen).toBe(4)

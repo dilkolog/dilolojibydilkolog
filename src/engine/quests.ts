@@ -14,19 +14,28 @@ export interface QuestDef {
   id: QuestMetric
   icon: string
   title: (n: number) => string
-  /** Possible targets; one is picked per day. All ≥ 3 so a quest always takes some effort. */
+  /** Possible targets; one is picked per day. Sized to a usual day's task (QUEST_TARGETS_FROM): a little past it at most. */
   targets: number[]
+  /** The targets used before QUEST_TARGETS_FROM, kept so past days' bonus XP (recomputed from their answers) stays the same. */
+  oldTargets: number[]
   xp: number
 }
 
+/**
+ * From this day on, quests are sized to the day's own task. Before, "50 soru cevapla" sat under a task of about 15
+ * questions with the line "your daily study is enough". Earlier days keep their old targets: their bonus is
+ * recomputed from their answers, and a learner's past XP must not move.
+ */
+export const QUEST_TARGETS_FROM = '2026-11-12'
+
 export const QUESTS: QuestDef[] = [
-  { id: 'answers', icon: '✍️', title: (n) => `${n} soru cevapla`, targets: [20, 30, 50], xp: 20 },
-  { id: 'correct', icon: '🎯', title: (n) => `${n} doğru cevap ver`, targets: [15, 25, 40], xp: 25 },
-  { id: 'combo', icon: '🔥', title: (n) => `Üst üste ${n} doğru yap`, targets: [5, 8, 12], xp: 30 },
-  { id: 'typedCorrect', icon: '⌨️', title: (n) => `Yazarak ${n} doğru cevap ver`, targets: [5, 10, 15], xp: 30 },
-  { id: 'listenCorrect', icon: '🎧', title: (n) => `Dinleme sorularında ${n} doğru`, targets: [5, 8, 12], xp: 25 },
-  { id: 'newWords', icon: '🌱', title: (n) => `${n} yeni kelimeyle tanış`, targets: [3, 5, 8], xp: 20 },
-  { id: 'noHintCorrect', icon: '🧠', title: (n) => `İpucusuz ${n} doğru`, targets: [10, 20, 30], xp: 25 },
+  { id: 'answers', icon: '✍️', title: (n) => `${n} soru cevapla`, targets: [10, 15, 20], oldTargets: [20, 30, 50], xp: 20 },
+  { id: 'correct', icon: '🎯', title: (n) => `${n} doğru cevap ver`, targets: [8, 12, 15], oldTargets: [15, 25, 40], xp: 25 },
+  { id: 'combo', icon: '🔥', title: (n) => `Üst üste ${n} doğru yap`, targets: [4, 6, 8], oldTargets: [5, 8, 12], xp: 30 },
+  { id: 'typedCorrect', icon: '⌨️', title: (n) => `Yazarak ${n} doğru cevap ver`, targets: [3, 5, 8], oldTargets: [5, 10, 15], xp: 30 },
+  { id: 'listenCorrect', icon: '🎧', title: (n) => `Dinleme sorularında ${n} doğru`, targets: [3, 4, 6], oldTargets: [5, 8, 12], xp: 25 },
+  { id: 'newWords', icon: '🌱', title: (n) => `${n} yeni kelimeyle tanış`, targets: [2, 3, 5], oldTargets: [3, 5, 8], xp: 20 },
+  { id: 'noHintCorrect', icon: '🧠', title: (n) => `İpucusuz ${n} doğru`, targets: [5, 8, 12], oldTargets: [10, 20, 30], xp: 25 },
 ]
 
 export type DayMetrics = Record<QuestMetric, number>
@@ -37,7 +46,10 @@ export function dailyQuests(date: string): { def: QuestDef; target: number }[] {
   const rng = createRng(daySeed(date))
   return shuffle(QUESTS, rng)
     .slice(0, 3)
-    .map((def) => ({ def, target: def.targets[Math.floor(rng() * def.targets.length)] }))
+    .map((def) => {
+      const targets = date >= QUEST_TARGETS_FROM ? def.targets : def.oldTargets
+      return { def, target: targets[Math.floor(rng() * targets.length)] }
+    })
 }
 
 /** One day's quest metrics from that day's real (non-practice) answers and introductions. */

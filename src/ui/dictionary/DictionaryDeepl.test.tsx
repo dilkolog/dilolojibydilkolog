@@ -60,6 +60,9 @@ describe('Dictionary: a word that is not in the pack', () => {
     translateMock.mockResolvedValue('karalamak')
     await mount()
     await act(async () => button('DeepL ile çevir')!.click())
+    // Learning the word is the main button; keeping it only in the dictionary the quiet one.
+    expect(button('Kelimelerime ekle')!.classList.contains('btn-quiet')).toBe(false)
+    expect(button('Sözlüğe kaydet')!.classList.contains('btn-quiet')).toBe(true)
     await act(async () => button('Sözlüğe kaydet')!.click())
     await act(async () => new Promise((r) => setTimeout(r, 30)))
     expect(el.querySelector('[aria-label="Kaydettiğin kelime"]')?.textContent).toContain('karalamak')

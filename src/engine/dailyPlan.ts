@@ -105,6 +105,11 @@ export interface DailyPlan {
   counts: Record<PlanReason, number>
   bySkill: Partial<Record<Skill, number>>
   estimatedMinutes: number
+  /**
+   * Questions the day asks: the planned exercises plus the follow-ups the session adds after each new word's first
+   * question (a reinforcement and a typed recall, NEW_WORD_FOLLOW_UPS). Retries after a wrong answer come on top.
+   */
+  questions: number
   /** Words in the vocabulary not yet introduced. */
   waitingNew: number
   /** Set when more words are waiting but none (more) were added today. */
@@ -149,6 +154,8 @@ const OVERHEAD_MS = 4000
  * more while it is fragile (GRADUATED_GAPS in session.ts: once by choice, once typed). Counting
  * them keeps the estimate honest and the day's new words within the time the learner gave.
  */
+/** Follow-up questions the session adds after a new word's first one (session.ts GRADUATED_GAPS: one each). */
+export const NEW_WORD_FOLLOW_UPS = 2
 const NEW_FOLLOW_UPS_MS = EXERCISES.mc_meaning.expectedMs + EXERCISES.typed_translation.expectedMs + 2 * OVERHEAD_MS
 const DAY_MS = 86_400_000
 const REASON_ORDER: PlanReason[] = ['forgotten', 'mistake', 'weak', 'due', 'new', 'practice']
@@ -385,7 +392,8 @@ export function buildDailyPlan(input: PlanInput): DailyPlan {
     bySkill[it.skill] = (bySkill[it.skill] ?? 0) + 1
   }
   const focusDone = !!input.settings.focusListId && waitingNew <= 0
-  return { items, newEntryIds, counts, bySkill, estimatedMinutes: Math.ceil(used / 60_000), waitingNew, newBlockedBy, dueTotal: allReviews.length, ...(otherDue ? { otherDue } : {}), ...(focusDone ? { focusDone } : {}) }
+  const questions = items.filter((it) => it.kind === 'exercise').length + NEW_WORD_FOLLOW_UPS * newEntryIds.length
+  return { items, newEntryIds, counts, bySkill, estimatedMinutes: Math.ceil(used / 60_000), questions, waitingNew, newBlockedBy, dueTotal: allReviews.length, ...(otherDue ? { otherDue } : {}), ...(focusDone ? { focusDone } : {}) }
 }
 
 /** Only the learner's question-type choices count here: a new word's first question is never an AI or speech one. */

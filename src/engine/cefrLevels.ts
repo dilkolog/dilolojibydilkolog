@@ -1,4 +1,4 @@
-import { readingKey } from './reading'
+import { basicsKnown, readingKey } from './reading'
 import { STOP } from './extract'
 import type { CefrLevel, TargetLanguage, UserWordState, VocabularyEntry } from './types'
 import { State } from 'ts-fsrs'
@@ -42,7 +42,7 @@ export const wordsAt = (list: CefrList, level: CefrLevel) => [...list].filter(([
 
 /**
  * How much of each level's words the learner has: known, being learned, or not yet. Counted the
- * way the frequency card counts (by stem, function words known), level by level, not cumulative.
+ * way the frequency card counts (by stem, function words known once the learner has a foundation: BASICS_AT), level by level, not cumulative.
  */
 export function levelCoverage(
   list: CefrList,
@@ -61,6 +61,7 @@ export function levelCoverage(
       inList.set(key, inList.get(key) || graduated.has(e.id))
     }
   }
+  const stop = basicsKnown(language, vocabulary, states, known) ? STOP[language] : new Set<string>()
   const out = new Map<CefrLevel, LevelCoverage>(CEFR_LEVELS.map((level) => [level, { level, total: 0, known: 0, learning: 0 }]))
   const seen = new Set<string>()
   for (const [word, level] of list) {
@@ -70,7 +71,7 @@ export function levelCoverage(
     seen.add(key)
     const row = out.get(level)!
     row.total++
-    if (STOP[language].has(word) || known.has(key) || inList.get(key) === true) row.known++
+    if (stop.has(word) || known.has(key) || inList.get(key) === true) row.known++
     else if (inList.has(key)) row.learning++
   }
   return [...out.values()].filter((r) => r.total > 0)

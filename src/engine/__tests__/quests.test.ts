@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { dailyQuests, dayMetrics, questBonus, questStatus } from '../quests'
+import { dailyQuests, dayMetrics, questBonus, questStatus, QUEST_TARGETS_FROM } from '../quests'
 import type { ReviewEvent } from '../types'
 
 describe('dailyQuests', () => {
@@ -7,9 +7,23 @@ describe('dailyQuests', () => {
     const quests = dailyQuests('2026-10-15')
     expect(quests).toHaveLength(3)
     for (const q of quests) {
-      expect(q.def.targets).toContain(q.target)
+      // A day before QUEST_TARGETS_FROM keeps the old targets.
+      expect(q.def.oldTargets).toContain(q.target)
       expect(q.def.xp).toBeGreaterThan(0)
     }
+  })
+
+  it('sizes quests to a usual day from QUEST_TARGETS_FROM, and keeps past days as they were', () => {
+    for (let d = 12; d <= 30; d++) {
+      const day = `2026-11-${d}`
+      for (const q of dailyQuests(day)) {
+        expect(q.def.targets).toContain(q.target)
+        if (q.def.id === 'answers') expect(q.target).toBeLessThanOrEqual(20)
+      }
+    }
+    // A past day: the same quests with the targets it had (its bonus XP is recomputed from its answers).
+    for (let d = 1; d <= 11; d++) for (const q of dailyQuests(`2026-11-${String(d).padStart(2, '0')}`)) expect(q.def.oldTargets).toContain(q.target)
+    expect(QUEST_TARGETS_FROM).toBe('2026-11-12')
   })
 
   it('is completely deterministic for the same date', () => {
