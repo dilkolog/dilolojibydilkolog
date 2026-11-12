@@ -39,6 +39,20 @@ recent() {
 
 backup() {
   mkdir -p "$OUT"
+  # One backup at a time (the job at login and a manual `now` may meet); a lock older than a day is a crashed run's.
+  local lock="$OUT/.calisiyor"
+  find "$lock" -maxdepth 0 -mmin +1440 -exec rmdir {} \; 2>/dev/null || true
+  if ! mkdir "$lock" 2>/dev/null; then
+    echo "$(date '+%F %T') başka bir yedek sürüyor, bu atlandı" >>"$LOG"
+    return 0
+  fi
+  local rc=0
+  dump || rc=$?
+  rmdir "$lock" 2>/dev/null || true
+  return $rc
+}
+
+dump() {
   local key value
   for key in "${KEYS[@]}"; do
     value=$(secret "$key") || { echo "$(date '+%F %T') $key Anahtar Zinciri'nde yok: bash scripts/backup-mac.sh install" >>"$LOG"; notify "Kurulum eksik ($key)."; return 1; }
@@ -87,15 +101,24 @@ install() {
   <array><string>/bin/bash</string><string>$REPO/scripts/backup-mac.sh</string><string>run</string></array>
   <key>StartCalendarInterval</key><dict><key>Hour</key><integer>3</integer><key>Minute</key><integer>30</integer></dict>
   <key>RunAtLoad</key><true/>
-  <key>StandardOutPath</key><string>$LOG</string>
+  <key>StandardOutPath</key><string>/dev/null</string>
   <key>StandardErrorPath</key><string>$LOG</string>
 </dict>
 </plist>
 PLIST
+  # The first backup here, before the job is loaded (its run at load then finds it recent and does nothing).
   launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
+  echo "İlk yedek alınıyor (birkaç dakika sürebilir)…"
+  local ok=1
+  backup || ok=0
   launchctl bootstrap "gui/$(id -u)" "$PLIST"
-  echo "Kuruldu. İlk yedek şimdi alınıyor (birkaç dakika sürebilir)…"
-  if backup; then echo "Tamam: $OUT"; else echo "İlk yedek alınamadı; $LOG dosyasına bak."; fi
+  if [ $ok = 1 ]; then
+    echo "Kuruldu, ilk yedek tamam: $OUT"
+  else
+    echo "Görev kuruldu ama ilk yedek alınamadı. Son satırlar:"
+    tail -n 6 "$LOG" | grep -v '^\s*$' || true
+    echo "Düzeltip: bash scripts/backup-mac.sh install"
+  fi
 }
 
 remove() {
