@@ -110,12 +110,12 @@ A1 · yemek · story · basics_fr_present
   ✓ Masada
   · Çantada
   *İlk paragrafta elmanın masada olduğu yazıyor.*
-- Bu akşam dışarıda yemek planları var mı?
-  · Evet, pazardalar
-  ✓ Hayır, evde kalıyorlar
-  · Evet, restorandalar
-  · Evet, kafeye gidiyorlar
-  *Son cümle evde kaldıklarını açıkça belirtiyor.*
+- Evde küçük bir atıştırmalık yapmaları mümkün mü?
+  · Hayır, evde değiller
+  ✓ Evet, elma ve peynir gibi yiyecekleri var
+  · Hayır, hiç yiyecekleri yok
+  · Evet, çünkü bir restorandalar
+  *İki paragraftaki elma, peynir ve süt, evde yiyecek bulunduğunu gösteriyor; metin akşam için dışarı çıkma planı bildirmiyor.*
 
 Değerlendirme:
 
@@ -149,12 +149,12 @@ A1 · yemek · story · basics_fr_present
   · Anlatıcı
   · Anne
   *İkinci paragrafta erkek kardeşin pirinci yaptığı yazıyor.*
-- Sohbetleri iş üzerine mi?
-  ✓ Hayır, aileleri hakkında konuşuyorlar
-  · Evet, yalnız fiyat konuşuyorlar
-  · Evet, yeni bir kafe arıyorlar
-  · Hayır, hiç konuşmuyorlar
-  *Son cümlede aileleri hakkında konuştukları belirtiliyor.*
+- Bu yemek sırasında yalnızca yemekle mi ilgileniyorlar?
+  ✓ Hayır, aile üzerine de sohbet ediyorlar
+  · Evet, ikisi de sessiz
+  · Hayır, aynı anda alışveriş yapıyorlar
+  · Evet, çünkü birlikte değiller
+  *Son cümlede birlikte yiyip ailelerinden konuşmaları, yemeğin aynı zamanda sohbet zamanı olduğunu gösteriyor.*
 
 Değerlendirme:
 
@@ -383,12 +383,12 @@ A1 · arkadaslik · story · basics_fr_negation
   · Kapının arkasında
   · Evde
   *İlk cümle kafenin penceresinin önünde olduğunu söylüyor.*
-- İçeride kalmaktan memnunlar mı?
-  · Hayır, tartışıyorlar
-  · Hayır, işte olmak istiyorlar
-  · Evet, çünkü yağmur bitiyor
-  ✓ Evet, sıcak masadan memnunlar
-  *Son cümlede sıcak masalarından memnun oldukları belirtiliyor; yağmur ise sürüyor.*
+- Bu bekleme süresi sohbet için fırsata dönüşüyor mu?
+  · Hayır, hemen işe koşuyorlar
+  · Evet, çünkü yağmur tamamen bitiyor
+  · Hayır, hiç zamanları yok
+  ✓ Evet, sıcak bir yerde konuşmaya zaman buluyorlar
+  *Yağmur sürerken sıcak masada kalmaları ve konuşacak zamanları olması, beklemeyi birlikte geçirilen zamana dönüştürüyor.*
 
 Değerlendirme:
 
