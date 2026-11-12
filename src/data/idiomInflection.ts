@@ -1,4 +1,4 @@
-import { irregularVerbs } from './englishVerbs'
+import { irregularVerbs, phrasalVerbs } from './englishVerbs'
 import { dictionaryForms } from './dictionaryForms'
 import type { TargetLanguage } from '../engine/types'
 
@@ -15,6 +15,9 @@ const FUNCTION_WORDS = {
   fr: sets('a au aux de du des le la les un une en avec pour par sans et ou se s l'),
   en: sets('a an the to of in on at for from with without and or it my your his her our their'),
 }
+// Only known verb heads: existing verb data plus two regular verbs from the seed pack.
+// Do not invent conjugations for noun/preposition heads of nonverbal idioms.
+const ENGLISH_VERBS = new Set(['spill', 'wrap', ...irregularVerbs.map((v) => v.base), ...phrasalVerbs.map((v) => v.phrasal.split(' ')[0])])
 const POSSESSIVES = sets('my your his her its our their')
 
 function englishVerbMatches(verb: string, part: string[]): boolean {
@@ -52,7 +55,7 @@ export function idiomInflectionMatcher(query: string, languages: readonly Target
     const reflexive = language === 'fr' ? ['se', 's'].includes(idiom[0] ?? '') : language === 'es' && /[aei]rse$/.test(idiom[0] ?? '')
     if (language === 'fr' && reflexive) idiom.shift()
     const head = idiom.shift()
-    if (!head || !idiom.length) return false
+    if (!head || !idiom.length || (language === 'en' && !ENGLISH_VERBS.has(head))) return false
     const verb = language === 'es' ? lower(head).replace(/(?<=[aei]r)se$/, '') : lower(head)
     // The verb counts as a content word; articles, pronouns and prepositions do not.
     if (1 + idiom.filter((w) => !FUNCTION_WORDS[language].has(lower(w))).length < 2) return false

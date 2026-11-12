@@ -123,6 +123,9 @@ describe('inflected idiom searches', () => {
   })
 
   it('requires two content words and preserves exact, partial-word and Turkish searches', () => {
+    for (const [w, q] of [['under the weather', 'undered the weather'], ['piece of cake', 'piecing of cake'], ['blessing in disguise', 'blessinging in disguise']]) {
+      expect(findIdioms([fixture(w)], q, 8, 'en').exact, q).toBeUndefined()
+    }
     expect(findIdioms([fixture('be on it')], 'was on it', 8, 'en').exact).toBeUndefined()
     expect(findIdioms([fixture('pull leg')], 'pulling arm', 8, 'en').exact).toBeUndefined()
     expect(findIdioms([fixture('take the plunge')], 'takes the plunge').exact?.w).toBe('take the plunge')
