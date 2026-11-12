@@ -19,7 +19,7 @@
 import { accountOf, requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
 import { overLimit, tooMany } from './_rate.js'
-import { dailyQuotaReached, quotaGiveBack, quotaReserve, spendQuota } from './_quota.js'
+import { canGiveBack, dailyQuotaReached, quotaGiveBack, quotaReserve, spendQuota } from './_quota.js'
 import { aiLevelOf } from './_supabase.js'
 import { limitOf } from './_settings.js'
 import { BUDGET_SHARE, DEFAULT_AI_LEVEL, FEATURE_LEVEL, featuresOf, isAiFeature, isAiLevel, levelAllows, type AiLevel } from '../src/ai/levels.js'
@@ -203,7 +203,9 @@ export async function POST(request: Request): Promise<Response> {
   const account = await accountOf(request).catch(() => null)
   // The call and its worst case are set aside first (the account's day, then the whole site's), so requests sent at
   // once cannot all find room left.
-  const units = callUnits(body as Parameters<typeof callUnits>[0])
+  const call = callUnits(body as Parameters<typeof callUnits>[0])
+  // Without counter_give (migration 0013 not run) nothing comes back: hold only the expected cost, as before 0013.
+  const units = canGiveBack() ? call : { expected: call.expected, worst: call.expected }
   const reserved = account ? units.worst : 0
   if (account) {
     const taken: (() => Promise<void>)[] = []

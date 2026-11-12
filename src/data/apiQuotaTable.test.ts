@@ -9,7 +9,7 @@ vi.mock('@vercel/blob', () => ({
   del: async () => undefined,
 }))
 
-const { quotaLeft, quotaTake, quotaUsed, spendQuota, pruneCounters, resetQuota, resetCounterTable, quotaReserve, quotaGiveBack, QuotaUnavailable } = await import('../../api/_quota')
+const { quotaLeft, quotaTake, quotaUsed, spendQuota, pruneCounters, resetQuota, resetCounterTable, resetGiveBack, canGiveBack, quotaReserve, quotaGiveBack, QuotaUnavailable } = await import('../../api/_quota')
 
 const SB = 'https://proj.supabase.co'
 const ID = 'a'.repeat(64)
@@ -54,6 +54,7 @@ beforeEach(() => {
   mode = 'ready'
   resetQuota()
   resetCounterTable()
+  resetGiveBack()
   vi.stubEnv('SUPABASE_URL', SB)
   vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
   vi.stubGlobal('fetch', async (input: string | URL | Request, init?: RequestInit) => fakeSupabase(String(input), init))
@@ -122,10 +123,13 @@ describe('daily counters in Supabase (migration 0009)', () => {
     vi.stubGlobal('fetch', async (input: string | URL | Request, init?: RequestInit) =>
       String(input).endsWith('counter_give') ? Response.json({ code: 'PGRST202' }, { status: 404 }) : real(String(input), init),
     )
+    expect(canGiveBack(NOON)).toBe(true)
     await quotaGiveBack('tts', ID, 40, undefined, NOON)
     await spendQuota('tts', ID, 1, undefined, NOON)
     expect(counters.get(`tts|2026-11-04|${ID}`)).toBe(101)
     expect(blobs.size).toBe(0)
+    // Known missing for a while: the AI then sets aside only what it expects to use.
+    expect(canGiveBack(NOON)).toBe(false)
   })
 
   it('in the files, a reservation and a give-back move the same count', async () => {

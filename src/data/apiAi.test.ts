@@ -2,11 +2,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 vi.mock('../../api/_account.js', () => ({ requireApproved: vi.fn(async () => null), accountOf: vi.fn(async () => 'acct') }))
 vi.mock('../../api/_supabase.js', () => ({ aiLevelOf: vi.fn(async () => null), supabaseOn: () => false, rest: vi.fn() }))
-vi.mock('../../api/_quota.js', () => ({ quotaReserve: vi.fn(async () => true), quotaGiveBack: vi.fn(async () => {}), spendQuota: vi.fn(async () => {}), dailyQuotaReached: () => Response.json({ error: 'daily_quota' }, { status: 429 }) }))
+vi.mock('../../api/_quota.js', () => ({ canGiveBack: vi.fn(() => true), quotaReserve: vi.fn(async () => true), quotaGiveBack: vi.fn(async () => {}), spendQuota: vi.fn(async () => {}), dailyQuotaReached: () => Response.json({ error: 'daily_quota' }, { status: 429 }) }))
 
 import { POST, GET, refuse, costUnits, callUnits, betaHeader, MAX_TOKENS } from '../../api/ai'
 import { requireApproved } from '../../api/_account.js'
-import { quotaGiveBack, quotaReserve, spendQuota } from '../../api/_quota.js'
+import { canGiveBack, quotaGiveBack, quotaReserve, spendQuota } from '../../api/_quota.js'
 import { aiLevelOf } from '../../api/_supabase.js'
 import { resetRate } from '../../api/_rate.js'
 
@@ -21,6 +21,7 @@ beforeEach(() => {
   vi.mocked(quotaReserve).mockReset().mockResolvedValue(true)
   vi.mocked(quotaGiveBack).mockClear()
   vi.mocked(spendQuota).mockClear()
+  vi.mocked(canGiveBack).mockReturnValue(true)
   vi.mocked(aiLevelOf).mockResolvedValue(null)
   process.env.ANTHROPIC_API_KEY = 'sk-test-key'
 })
@@ -140,6 +141,14 @@ describe('what a day may cost', () => {
     expect((await POST(ask(good))).status).toBe(429)
     // The call set aside for it goes back when the money does not fit.
     expect(quotaGiveBack).toHaveBeenCalledWith('ai', 'acct', 1)
+  })
+
+  it('holds only the expected cost while nothing set aside can be given back (0013 not run)', async () => {
+    vi.mocked(canGiveBack).mockReturnValue(false)
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({ model: 'claude-opus-5-5', usage: { input_tokens: 10, output_tokens: 20 } }), { status: 200 }))
+    const big = { ...good, model: 'claude-opus-5-5', max_tokens: 16_000 }
+    await POST(ask(big))
+    expect(quotaReserve).toHaveBeenCalledWith('ai-cost', 'acct', callUnits(big).expected, 0.75 * 10_000 * 0.5)
   })
 
   it('prices the answer by the model that wrote it: a fallback to a dearer model costs what it cost', async () => {
