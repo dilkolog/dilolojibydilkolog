@@ -50,9 +50,9 @@ const button = (text: string) => [...host.querySelectorAll('button')].find((b) =
 
 const VIEW = {
   settings: { aiDailyCalls: 100 },
-  effective: { aiDailyCalls: 100, aiDailyBudgetUsd: 0.75, translateChars: 20000, ttsChars: 8000 },
-  defaults: { aiDailyCalls: 150, aiDailyBudgetUsd: 0.75, translateChars: 20000, ttsChars: 8000 },
-  ranges: { aiDailyCalls: { min: 1, max: 2000 }, aiDailyBudgetUsd: { min: 0.01, max: 50 }, translateChars: { min: 500, max: 500000 }, ttsChars: { min: 500, max: 500000 } },
+  effective: { aiDailyCalls: 100, aiDailyBudgetUsd: 0.75, aiSiteBudgetUsd: 5, translateChars: 20000, ttsChars: 8000 },
+  defaults: { aiDailyCalls: 150, aiDailyBudgetUsd: 0.75, aiSiteBudgetUsd: 5, translateChars: 20000, ttsChars: 8000 },
+  ranges: { aiDailyCalls: { min: 1, max: 2000 }, aiDailyBudgetUsd: { min: 0.01, max: 50 }, aiSiteBudgetUsd: { min: 0.5, max: 500 }, translateChars: { min: 500, max: 500000 }, ttsChars: { min: 500, max: 500000 } },
 }
 const TOTALS = { aiCalls: 12, aiUsd: 0.4, translateChars: 900, ttsChars: 0, assessCalls: 1, people: 2 }
 

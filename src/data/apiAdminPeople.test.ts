@@ -141,3 +141,31 @@ describe("the owner's admin screen: people", () => {
     expect(deletedUsers).toEqual([A])
   })
 })
+
+describe("the owner's second secret (OWNER_STEP_SECRET)", () => {
+  const SECRET = 'a-long-second-secret-1234'
+  const postWith = (body: unknown, secret?: string) =>
+    admin.POST(new Request('https://app.test/api/admin', { method: 'POST', headers: { authorization: 'Bearer tok-owner', ...(secret ? { 'x-owner-secret': secret } : {}) }, body: JSON.stringify(body) }))
+
+  it('is asked for deleting someone once it is set: the owner\'s sign-in alone is not enough', async () => {
+    vi.stubEnv('OWNER_STEP_SECRET', SECRET)
+    const del = { action: 'person-delete', user: A, confirm: 'ayse@example.com' }
+    expect(await (await postWith(del)).json()).toEqual({ error: 'owner_secret' })
+    expect(await (await postWith(del, 'wrong-wrong-wrong-wrong')).json()).toEqual({ error: 'owner_secret_wrong' })
+    expect(deletedUsers).toEqual([])
+    expect((await postWith(del, SECRET)).status).toBe(200)
+    expect(deletedUsers).toEqual([A])
+  })
+
+  it('guards approving everyone and the limits too, not the everyday steps', async () => {
+    vi.stubEnv('OWNER_STEP_SECRET', SECRET)
+    expect((await postWith({ action: 'approve-all' })).status).toBe(403)
+    expect((await postWith({ action: 'settings', settings: { aiDailyCalls: 10 } })).status).toBe(403)
+    // Approving one person or changing their AI level stays a single step.
+    expect((await postWith({ action: 'person', user: A, change: 'approve' })).status).toBe(200)
+  })
+
+  it('changes nothing while it is not set', async () => {
+    expect((await postWith({ action: 'person-delete', user: A, confirm: 'ayse@example.com' })).status).toBe(200)
+  })
+})

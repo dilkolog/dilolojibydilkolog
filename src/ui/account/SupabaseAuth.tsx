@@ -1,7 +1,7 @@
 import { ACCOUNT_ART, REACT } from '../shared/drawnArt'
 import type { Session } from '@supabase/supabase-js'
 import { useEffect, useRef, useState } from 'react'
-import { approvalEnabled } from '../../data/access'
+import { approvalEnabled, renewSyncKey } from '../../data/access'
 import { reportError } from '../../data/errorReport'
 import { VaultError } from '../../data/vault'
 import { clearReturn, currentSession, isRecoveryReturn, returnError, resendConfirmation, sendMagicLink, sendPasswordReset, setNewPassword, signIn, signInWithFacebook, signInWithGoogle, signUp, supabase, authErrorText, TURNSTILE_SITE_KEY } from '../../data/supabase'
@@ -387,6 +387,7 @@ function Recovery({ onSaved }: { onSaved: () => void }) {
         if (password !== repeat) return setError('Şifreler aynı değil.')
         setBusy(true)
         setNewPassword(password)
+          .then(() => renewSyncKey())
           .then(() => {
             showToast('Yeni şifren kaydedildi.')
             onSaved()

@@ -47,6 +47,14 @@ export async function linkVault(token: string, account: Account, note = ''): Pro
   return ((await res.json()) as { status?: string }).status ?? 'pending'
 }
 
+/** A new token for the person's sync account (the old one stops working); null when they have none. */
+export async function rotateVault(token: string): Promise<{ id: string; auth: string } | null> {
+  const res = await fetch('/api/access', { method: 'POST', headers: bearer(token), body: JSON.stringify({ action: 'vault-rotate' }) })
+  if (!res.ok) throw await failure(res)
+  const { account } = (await res.json()) as { account: { id: string; auth: string } | null }
+  return account
+}
+
 /**
  * Deletes the account on the server: with the Supabase sign-in (the person and their sync account) or,
  * for an account from before, its own token. The device keeps its copy. Resolves to the files removed.

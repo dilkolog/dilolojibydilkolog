@@ -45,6 +45,7 @@ const deletedUsers: string[] = []
 const media = new Set<string>()
 let mediaFailure: 'list' | 'delete' | null = null
 let settingsValue: Record<string, unknown> | null = null
+let patchFailure = false
 
 function fakeSupabase(input: string, init: RequestInit = {}): Response {
   const url = new URL(input)
@@ -91,6 +92,14 @@ function fakeSupabase(input: string, init: RequestInit = {}): Response {
     keys = [...keys.filter((k) => k.user_id !== row.user_id), row]
     return new Response(null, { status: 201 })
   }
+  if (table === 'sync_keys' && init.method === 'PATCH') {
+    if (patchFailure) return new Response('unavailable', { status: 503 })
+    const byUser = url.searchParams.get('user_id')?.replace('eq.', '')
+    const bySync = url.searchParams.get('sync_id')?.replace('eq.', '')
+    const patch = JSON.parse(String(init.body)) as { auth: string }
+    keys = keys.map((k) => (k.user_id === byUser && k.sync_id === bySync ? { ...k, ...patch } : k))
+    return new Response(null, { status: 204 })
+  }
   if (table === 'sync_keys') {
     const byUser = url.searchParams.get('user_id')?.replace('eq.', '')
     const bySync = url.searchParams.get('sync_id')?.replace('eq.', '')
@@ -124,6 +133,7 @@ beforeEach(async () => {
   seen.length = 0
   deletedUsers.length = 0
   settingsValue = null
+  patchFailure = false
   forgetSettings()
   vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
   vi.stubEnv('SUPABASE_URL', SB)
@@ -301,4 +311,35 @@ it('keeps the legacy credential until cleanup succeeds so a failed deletion can 
   pushListFailure = false
   expect((await request()).status).toBe(200)
   expect(blobs.has(`sync/${OLD.id}/auth.txt`)).toBe(false)
+})
+
+describe('/api/access: renewing the sync key', () => {
+  const rotate = (token: string) => access.POST(new Request('https://app.test/api/access', { method: 'POST', headers: bearer(token), body: JSON.stringify({ action: 'vault-rotate' }) }))
+  const probe = (auth: string) => access.GET(new Request('https://app.test/api/access', { headers: { ...APP, 'x-sync-id': OLD.id, 'x-sync-auth': auth } }))
+
+  it('gives a new token: the old one stops working, the new one works and the vault hands it out', async () => {
+    expect((await link('tok-ali', OLD)).status).toBe(200)
+    const res = await rotate('tok-ali')
+    expect(res.status).toBe(200)
+    const { account } = (await res.json()) as { account: { id: string; enc: string; auth: string } }
+    expect(account.id).toBe(OLD.id)
+    expect(account.enc).toBe(OLD.enc)
+    expect(account.auth).toMatch(/^[0-9a-f]{64}$/)
+    expect(account.auth).not.toBe(OLD.auth)
+    expect(((await (await probe(OLD.auth)).json()) as { match: boolean }).match).toBe(false)
+    expect(((await (await probe(account.auth)).json()) as { match: boolean }).match).toBe(true)
+    expect(((await (await vault('tok-ali')).json()) as { account: { auth: string } }).account.auth).toBe(account.auth)
+  })
+
+  it('needs the sign-in, and is nothing to do without a sync account', async () => {
+    expect((await rotate('nope')).status).toBe(401)
+    expect(await (await rotate('tok-veli')).json()).toEqual({ account: null })
+  })
+
+  it('leaves the old token in place when the person\'s row cannot be written', async () => {
+    await link('tok-ali', OLD)
+    patchFailure = true
+    expect((await rotate('tok-ali')).status).toBe(502)
+    expect(((await (await probe(OLD.auth)).json()) as { match: boolean }).match).toBe(true)
+  })
 })

@@ -5,12 +5,12 @@
  *
  * The key is the owner's money on a public address, so: only the app's own pages may ask, only an approved
  * account, a few calls a minute, AI_DAILY_CALLS calls (default 150) and AI_DAILY_BUDGET_USD (default 0.75) a day
- * per account (the money is counted from the usage Anthropic reports, priced by the model that answered, so a few big
+ * per account and AI_SITE_DAILY_BUDGET_USD (default 5) for the whole site (the money is counted from the usage Anthropic reports, priced by the model that answered, so a few big
  * calls cannot hide behind the call count and a fallback model is not priced as the one asked for), a request body of
  * at most MAX_BODY bytes holding only the fields the app sends (FIELDS: no tools, no streaming, no other paid options),
  * only the models the app offers, only the beta features the app uses, and max_tokens capped. The call and an estimate
- * of its money are set aside before it goes out (one statement in Supabase, so requests sent at once cannot all see
- * room left), then the estimate is corrected to what it cost; a counter that cannot be read refuses the call. What each account may do is the owner's call: profiles.ai_level
+ * of its money (all of max_tokens) are set aside before it goes out (one statement in Supabase, so requests sent at
+ * once cannot all see room left), then corrected to what it cost; a counter that cannot be read refuses the call. What each account may do is the owner's call: profiles.ai_level
  * (kapali, kelime, calisma, tam; src/ai/levels.ts) says which features its requests may name (the x-ai-feature header),
  * and the day's money is shared out by level. A request names its feature honestly or it is not the app's: the
  * level keeps the app's own screens in line and bulk misuse in bounds, the money limit is the hard stop. The answer goes back as Anthropic wrote it (the SDK reads usage and refusals from it).
@@ -19,7 +19,7 @@
 import { accountOf, requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
 import { overLimit, tooMany } from './_rate.js'
-import { dailyQuotaReached, quotaGiveBack, quotaReserve, spendQuota } from './_quota.js'
+import { canGiveBack, dailyQuotaReached, quotaGiveBack, quotaReserve, spendQuota } from './_quota.js'
 import { aiLevelOf } from './_supabase.js'
 import { limitOf } from './_settings.js'
 import { BUDGET_SHARE, DEFAULT_AI_LEVEL, FEATURE_LEVEL, featuresOf, isAiFeature, isAiLevel, levelAllows, type AiLevel } from '../src/ai/levels.js'
@@ -37,11 +37,15 @@ const PRICE: Record<string, [number, number]> = { 'claude-opus-5-5': [4, 20], 'c
 /** The money is counted in ten-thousandths of a dollar, so the day's file holds whole numbers. */
 const UNIT = 10_000
 export const DEFAULT_DAILY_BUDGET_USD = 0.75
+/** What the whole site may spend on the AI in a day (UTC), every account together: the owner's ceiling. */
+export const DEFAULT_SITE_DAILY_BUDGET_USD = 5
+/** The counter subject that holds the whole site's day (not an account id: those are 64 hex characters). */
+const SITE = 'site'
 /** The beta features the app asks for (src/ai/claude.ts; the SDK adds structured outputs to every parse). Nothing else is passed on. */
 export const BETAS = ['server-side-fallback-2026-07-01', 'structured-outputs-2025-12-15']
 /** The request fields the app sends; anything else (tools, streaming, speed or service tiers, containers…) is refused. */
 export const FIELDS = ['model', 'messages', 'system', 'max_tokens', 'temperature', 'thinking', 'output_config', 'fallbacks']
-/** Output tokens set aside before a call (the app asks for up to MAX_TOKENS but its answers are far shorter); corrected after. */
+/** Output tokens a call is expected to use (the app asks for up to MAX_TOKENS but its answers are far shorter). */
 const RESERVE_OUTPUT = 4_000
 /** Input tokens set aside for a picture (a downscaled photo is well under this). */
 const RESERVE_IMAGE = 5_000
@@ -50,6 +54,7 @@ const json = (body: unknown, status = 200) => Response.json(body, { status, head
 /** The owner's limits (admin screen), else the Worker variables, else the defaults. */
 const dailyCalls = async () => Math.max(1, await limitOf('aiDailyCalls', DEFAULT_DAILY_CALLS, 'AI_DAILY_CALLS'))
 const dailyBudget = async (level: AiLevel = 'tam') => Math.round((await limitOf('aiDailyBudgetUsd', DEFAULT_DAILY_BUDGET_USD, 'AI_DAILY_BUDGET_USD')) * UNIT * BUDGET_SHARE[level])
+const siteBudget = async () => Math.round((await limitOf('aiSiteBudgetUsd', DEFAULT_SITE_DAILY_BUDGET_USD, 'AI_SITE_DAILY_BUDGET_USD')) * UNIT)
 
 /** The level the owner gave the request's account: the default one when none is set; without accounts (local development) everything is open. */
 export async function levelOf(request: Request): Promise<AiLevel> {
@@ -128,8 +133,12 @@ export function betaHeader(value: string | null): string | null {
   return kept.length ? kept.join(',') : null
 }
 
-/** A generous guess of what a call will cost, in budget units, set aside before it goes out: its text, its pictures and some output. */
-export function estimateUnits(body: { model: string; max_tokens: number; system?: unknown; messages: unknown[] }): number {
+/**
+ * What a call may cost, in budget units: `expected` with the output it usually writes, `worst` with all of its
+ * max_tokens. A call holds `worst` while it runs (so requests sent at once cannot each spend past the day) and is let
+ * in when `expected` still fits: see `reserve`.
+ */
+export function callUnits(body: { model: string; max_tokens: number; system?: unknown; messages: unknown[] }): { expected: number; worst: number } {
   let chars = typeof body.system === 'string' ? body.system.length : JSON.stringify(body.system ?? '').length
   let images = 0
   for (const m of body.messages as { content: unknown }[]) {
@@ -142,7 +151,28 @@ export function estimateUnits(body: { model: string; max_tokens: number; system?
   }
   // About three characters a token for the app's languages (Turkish and French run shorter than English).
   const input = Math.ceil(chars / 3) + images * RESERVE_IMAGE
-  return costUnits(body.model, { input_tokens: input, output_tokens: Math.min(body.max_tokens, RESERVE_OUTPUT) })
+  return {
+    expected: costUnits(body.model, { input_tokens: input, output_tokens: Math.min(body.max_tokens, RESERVE_OUTPUT) }),
+    worst: costUnits(body.model, { input_tokens: input, output_tokens: body.max_tokens }),
+  }
+}
+
+/** The day's money: the old name, kept for the tests and the screen's estimate. */
+export const estimateUnits = (body: Parameters<typeof callUnits>[0]) => callUnits(body).expected
+
+/**
+ * Sets the call's worst case aside on a day counter, if the call fits. A call fits when what is spent or held already,
+ * plus what it is expected to cost, is within `max`; it then holds its worst case until it is settled. So a lone call
+ * is let in as before, calls sent together see each other's worst cases, and the day can be passed by at most one
+ * call's unused headroom, never several times over. Throws QuotaUnavailable when the counter cannot be read.
+ */
+const reserve = (name: string, subject: string, units: { expected: number; worst: number }, max: number) =>
+  quotaReserve(name, subject, units.worst, max + units.worst - units.expected)
+
+/** Brings a counter from the worst case it held to what the call cost. */
+async function settle(name: string, subject: string, held: number, cost: number) {
+  if (cost > held) await spendQuota(name, subject, cost - held)
+  else await quotaGiveBack(name, subject, held - cost)
 }
 
 export async function POST(request: Request): Promise<Response> {
@@ -171,17 +201,33 @@ export async function POST(request: Request): Promise<Response> {
   if (!levelAllows(level, feature)) return json({ error: 'ai_level', level, needs: FEATURE_LEVEL[feature] }, 403)
 
   const account = await accountOf(request).catch(() => null)
-  // The call and a guess of its money are set aside first, so requests sent at once cannot all find room left.
-  const reserved = account ? estimateUnits(body as Parameters<typeof estimateUnits>[0]) : 0
+  // The call and its worst case are set aside first (the account's day, then the whole site's), so requests sent at
+  // once cannot all find room left.
+  const call = callUnits(body as Parameters<typeof callUnits>[0])
+  // Without counter_give (migration 0013 not run) nothing comes back: hold only the expected cost, as before 0013.
+  const units = canGiveBack() ? call : { expected: call.expected, worst: call.expected }
+  const reserved = account ? units.worst : 0
   if (account) {
+    const taken: (() => Promise<void>)[] = []
+    const undo = async () => {
+      for (const give of taken) await give()
+    }
     try {
       if (!(await quotaReserve('ai', account, 1, await dailyCalls()))) return dailyQuotaReached()
-      if (!(await quotaReserve('ai-cost', account, reserved, await dailyBudget(level)))) {
-        await quotaGiveBack('ai', account, 1)
+      taken.push(() => quotaGiveBack('ai', account, 1))
+      if (!(await reserve('ai-cost', account, units, await dailyBudget(level)))) {
+        await undo()
+        return dailyQuotaReached()
+      }
+      taken.push(() => quotaGiveBack('ai-cost', account, reserved))
+      if (!(await reserve('ai-site', SITE, units, await siteBudget()))) {
+        await undo()
+        console.error('[ai-proxy] the site-wide daily AI budget is used up (aiSiteBudgetUsd)')
         return dailyQuotaReached()
       }
     } catch {
       // The counters cannot be read: this is the owner's money, so no call goes out uncounted.
+      await undo().catch(() => undefined)
       return json({ error: 'unavailable' }, 503)
     }
   }
@@ -189,6 +235,7 @@ export async function POST(request: Request): Promise<Response> {
     if (!account) return
     await quotaGiveBack('ai', account, 1)
     await quotaGiveBack('ai-cost', account, reserved)
+    await quotaGiveBack('ai-site', SITE, reserved)
   }
 
   const beta = betaHeader(request.headers.get('anthropic-beta'))
@@ -226,9 +273,10 @@ export async function POST(request: Request): Promise<Response> {
       } catch {
         // Not JSON: the estimate stands.
       }
-      const units = reply.usage ? costUnits(reply.model ?? (body as { model: string }).model, reply.usage) : reserved
-      if (units > reserved) await spendQuota('ai-cost', account, units - reserved)
-      else await quotaGiveBack('ai-cost', account, reserved - units)
+      // No usage reported: what it was expected to cost stands.
+      const cost = reply.usage ? costUnits(reply.model ?? (body as { model: string }).model, reply.usage) : units.expected
+      await settle('ai-cost', account, reserved, cost)
+      await settle('ai-site', SITE, reserved, cost)
     }
   }
   return new Response(answer, { status: res.status, headers: { 'content-type': res.headers.get('content-type') ?? 'application/json', 'cache-control': 'no-store' } })
