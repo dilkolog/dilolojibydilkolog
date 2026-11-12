@@ -26,6 +26,8 @@ describe('idiom source preflight', () => {
     for (const url of ['https://pelo.example.com/other', 'https://example.com/other#pelo', 'https://example.com/el', 'https://example.com/pelota', 'not-a-url', 'https://example.com/%ZZ']) {
       expect(sourceMatches('es', 'tomar el pelo', url), url).toBe(false)
     }
+    expect(sourceMatches('es', 'no mover un dedo', 'https://example.com/no')).toBe(false)
+    expect(sourceMatches('fr', 'ne pas perdre le nord', 'https://example.com/pas')).toBe(false)
     expect(sourceMatches('en', 'pull someone’s leg', 'https://example.com/someone')).toBe(false)
   })
 

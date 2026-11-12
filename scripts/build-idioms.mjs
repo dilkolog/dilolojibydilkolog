@@ -9,9 +9,9 @@ const key = (w) => w.toLowerCase().replace(/[’‘]/g, "'").replace(/\s+/g, ' '
 const fold = (s) => s.toLowerCase().normalize('NFD').replace(/\p{M}/gu, '')
 const tokens = (s) => fold(s).match(/\p{L}+/gu) ?? []
 const STOP = {
-  es: new Set('a al de del el la las los un una unos unas en por para con sin y o que se me te le les lo nos os su sus mi tu alguien algo'.split(' ')),
-  fr: new Set('a au aux de du des le la les un une en par pour avec sans et ou que qui se me te lui leur nous vous on il elle ils elles son sa ses mon ma mes ton ta tes quelqu un quelque chose l d s'.split(' ')),
-  en: new Set('a an the to of in on at for from with without and or it its someone somebody something one s my your his her our their'.split(' ')),
+  es: new Set('a al de del el la las los un una unos unas en por para con sin y o que se me te le les lo nos os su sus mi tu alguien algo no ni'.split(' ')),
+  fr: new Set('a au aux de du des le la les un une en par pour avec sans et ou que qui se me te lui leur nous vous on il elle ils elles son sa ses mon ma mes ton ta tes quelqu un quelque chose je j tu ne n pas l d s'.split(' ')),
+  en: new Set('a an the to of in on at for from with without and or it its someone somebody something one s my your his her our their no not'.split(' ')),
 }
 
 export function sourceMatches(language, idiom, address) {
