@@ -1,0 +1,29 @@
+{
+  "id": "diloloji-ogrenme-deneyimi-01",
+  "date": "2026-11-10",
+  "status": "design-ready",
+  "productionIntegrated": false,
+  "areas": [
+    "filiz-ogrenme-yolu",
+    "ders-sonucu",
+    "rozetler",
+    "bos-hata-durumlari",
+    "pratik-ikonlari",
+    "kelime-deyim-kartlari"
+  ],
+  "newIllustrations": 12,
+  "newSvgIcons": 8,
+  "reusedPlantStages": 7,
+  "illustrationFormats": [
+    "png",
+    "webp"
+  ],
+  "illustrationSize": [
+    384,
+    384
+  ],
+  "entry": "index.html",
+  "gallery": "galeri.html",
+  "handoff": "CLAUDE-DEVIR.md",
+  "reviewedMain": "b1c059bbedb911aa967e60759c1a46c801cde56b"
+}

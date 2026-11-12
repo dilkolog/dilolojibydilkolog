@@ -1,0 +1,166 @@
+{
+  "origin": "Original text written for this design",
+  "sample": {
+    "id": "barrio",
+    "title": "Una pausa en el barrio",
+    "subtitle": "Mahallede kısa bir mola",
+    "category": "Gündelik hikâye",
+    "language": "es",
+    "sentences": [
+      {
+        "p": 0,
+        "es": "Cada sábado, Clara cruza la plaza para comprar pan en la panadería del barrio.",
+        "tr": "Clara her cumartesi, mahalledeki fırından ekmek almak için meydanı geçer."
+      },
+      {
+        "p": 0,
+        "es": "Normalmente camina deprisa, pero hoy se detiene delante de un escaparate lleno de plantas.",
+        "tr": "Genellikle hızlı yürür ama bugün bitkilerle dolu bir vitrinin önünde durur."
+      },
+      {
+        "p": 1,
+        "es": "En la puerta, el tendero saluda a una vecina que lleva una bolsa de semillas.",
+        "tr": "Kapıda dükkân sahibi, elinde bir torba tohum taşıyan komşusuna selam verir."
+      },
+      {
+        "p": 1,
+        "es": "Los dos empiezan a charlar y Clara decide escuchar un momento.",
+        "tr": "İkisi sohbet etmeye başlar; Clara da bir süre dinlemeye karar verir."
+      },
+      {
+        "p": 2,
+        "es": "La vecina cuenta que sus primeras flores tardaron mucho en florecer.",
+        "tr": "Komşusu, ilk çiçeklerinin açmasının çok zaman aldığını anlatır."
+      },
+      {
+        "p": 2,
+        "es": "Al principio estaba preocupada, pero aprendió a esperar y a cuidar cada planta con paciencia.",
+        "tr": "Başta kaygılıydı ama beklemeyi ve her bitkiyle sabırla ilgilenmeyi öğrendi."
+      },
+      {
+        "p": 3,
+        "es": "Clara reconoce aquella sensación: también ella quiere hacerlo todo demasiado rápido.",
+        "tr": "Clara bu duyguyu tanır: kendisi de her şeyi fazla hızlı yapmak ister."
+      },
+      {
+        "p": 3,
+        "es": "Por eso decidió aprovechar la mañana para pasear despacio y mirar las calles con otros ojos.",
+        "tr": "Bu yüzden sabahı değerlendirmeye, yavaşça yürüyüp sokaklara başka gözle bakmaya karar verdi."
+      },
+      {
+        "p": 4,
+        "es": "Antes de marcharse, compra una pequeña maceta y comparte una sonrisa con sus nuevos conocidos.",
+        "tr": "Ayrılmadan önce küçük bir saksı alır ve yeni tanıştığı insanlarla gülümsemesini paylaşır."
+      },
+      {
+        "p": 4,
+        "es": "Al volver a casa, piensa que aprender algo nuevo también puede empezar con una simple conversación.",
+        "tr": "Eve dönerken yeni bir şey öğrenmenin basit bir sohbetle de başlayabileceğini düşünür."
+      }
+    ]
+  },
+  "glossary": {
+    "plaza": {
+      "lemma": "plaza",
+      "meaning": "meydan",
+      "kind": "İsim · dişil",
+      "status": "known"
+    },
+    "panadería": {
+      "lemma": "panadería",
+      "meaning": "fırın; ekmek satılan dükkân",
+      "kind": "İsim · dişil",
+      "status": "learning"
+    },
+    "barrio": {
+      "lemma": "barrio",
+      "meaning": "mahalle",
+      "kind": "İsim · eril",
+      "status": "known"
+    },
+    "escaparate": {
+      "lemma": "escaparate",
+      "meaning": "vitrin",
+      "kind": "İsim · eril",
+      "status": "new"
+    },
+    "tendero": {
+      "lemma": "tendero",
+      "meaning": "dükkân sahibi; esnaf",
+      "kind": "İsim · eril",
+      "status": "new"
+    },
+    "semillas": {
+      "lemma": "semilla",
+      "meaning": "tohum",
+      "kind": "İsim · dişil, metinde çoğul",
+      "status": "new"
+    },
+    "charlar": {
+      "lemma": "charlar",
+      "meaning": "sohbet etmek",
+      "kind": "Fiil · mastar",
+      "status": "learning"
+    },
+    "florecer": {
+      "lemma": "florecer",
+      "meaning": "çiçek açmak; gelişmek",
+      "kind": "Fiil · mastar",
+      "status": "learning"
+    },
+    "preocupada": {
+      "lemma": "preocupado",
+      "meaning": "kaygılı; endişeli",
+      "kind": "Sıfat · metinde dişil",
+      "status": "new"
+    },
+    "paciencia": {
+      "lemma": "paciencia",
+      "meaning": "sabır",
+      "kind": "İsim · dişil",
+      "status": "new"
+    },
+    "reconoce": {
+      "lemma": "reconocer",
+      "meaning": "tanımak; farkına varmak",
+      "kind": "Fiil · geniş zaman, 3. tekil",
+      "status": "new"
+    },
+    "aprovechar": {
+      "lemma": "aprovechar",
+      "meaning": "Bir fırsatı, zamanı veya eldeki imkânı değerlendirmek; ondan yararlanmak. Bu cümlede sabahı güzelce değerlendirmek anlamındadır.",
+      "kind": "Fiil · mastar",
+      "status": "new"
+    },
+    "despacio": {
+      "lemma": "despacio",
+      "meaning": "yavaşça",
+      "kind": "Zarf",
+      "status": "known"
+    },
+    "maceta": {
+      "lemma": "maceta",
+      "meaning": "saksı",
+      "kind": "İsim · dişil",
+      "status": "new"
+    },
+    "comparte": {
+      "lemma": "compartir",
+      "meaning": "paylaşmak",
+      "kind": "Fiil · geniş zaman, 3. tekil",
+      "status": "known"
+    },
+    "cruza": {
+      "lemma": "cruzar",
+      "meaning": "geçmek; bir yandan öbür yana geçmek",
+      "kind": "Fiil · geniş zaman, 3. tekil",
+      "status": "known"
+    },
+    "decidió": {
+      "lemma": "decidir",
+      "meaning": "karar vermek",
+      "kind": "Fiil · geçmiş zaman, 3. tekil",
+      "status": "known"
+    }
+  }
+}

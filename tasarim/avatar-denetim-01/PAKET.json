@@ -1,0 +1,14 @@
+{
+  "packageId": "diloloji-avatar-denetim-01",
+  "type": "design-audit",
+  "date": "2026-11-10",
+  "sourceCommit": "b1c059bb",
+  "reviewedAssets": 42,
+  "freePortraits": 15,
+  "earnedOptions": 27,
+  "status": "review_complete",
+  "implementationChanged": false,
+  "newArtworkGenerated": false,
+  "entry": "README.md",
+  "handoff": "CLAUDE-DEVIR.md"
+}

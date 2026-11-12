@@ -1,0 +1,4751 @@
+{
+  "updated": "2026-11-12",
+  "files": [
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/CLAUDE-ONCE-OKU.md",
+      "bytes": 9843,
+      "sha256": "e77b4cdcca7d8cb3e68d2b4db98e5a389ba279ec4c01d18c67f88c135c02a378"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/README.md",
+      "bytes": 7105,
+      "sha256": "09e8d458f53991981727602c04654e45bcebcf40af6f91213beaa0ab9bcc613b"
+    },
+    {
+      "packageId": "diloloji-avatar-denetim-01",
+      "path": "tasarim/avatar-denetim-01/CLAUDE-DEVIR.md",
+      "bytes": 2014,
+      "sha256": "81d3309263ad17ee374549c726b14769073a467b5cfa349194cc18a8647f2307"
+    },
+    {
+      "packageId": "diloloji-avatar-denetim-01",
+      "path": "tasarim/avatar-denetim-01/PAKET.json",
+      "bytes": 351,
+      "sha256": "78c0d3fc6d3d259aa4cd992ff767673ea2c0dc662c0e46439f13553ac002077f"
+    },
+    {
+      "packageId": "diloloji-avatar-denetim-01",
+      "path": "tasarim/avatar-denetim-01/README.md",
+      "bytes": 4628,
+      "sha256": "65289301b00e72a885d869021ffa86462903b53bd24fe98056b1211a46ddb174"
+    },
+    {
+      "packageId": "diloloji-avatar-denetim-01",
+      "path": "tasarim/avatar-denetim-01/envanter.json",
+      "bytes": 4166,
+      "sha256": "3ab67206d062b9748ba11fceb18ee04b9dc88d7bf8c2c8b35ecd2a56198f6c3c"
+    },
+    {
+      "packageId": "diloloji-avatar-denetim-01",
+      "path": "tasarim/avatar-denetim-01/mevcut-avatarlar.jpg",
+      "bytes": 198662,
+      "sha256": "2ff1154d714ce42f94c3fb7a4355e867bbbba79ed07a8247d9d77e38964de3fd"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01.zip",
+      "bytes": 19530048,
+      "sha256": "d373f018c3c09654dbb79233eb6e8dbe78faccd9259ea0df36de704911db88b1"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/CLAUDE-DEVIR.md",
+      "bytes": 3698,
+      "sha256": "ace7a18ee583ee8262c03ab2393b793660d624125b2e3349fb8b18ac34c1b8e4"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/DOGRULAMA.json",
+      "bytes": 382,
+      "sha256": "e30c3179b9b557c923d59f15c8ad782056a279a94a6edbfd5e65819d7ec28725"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/PAKET.json",
+      "bytes": 283,
+      "sha256": "09167837841fc39a570ac7c3ea647844315a24e73bd2963ec23c85ffff119c16"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/README.md",
+      "bytes": 1769,
+      "sha256": "5a33814a560d45ac661d17ecb763afd432dcf96fb4fa9b5fda857562949da92b"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/app.js",
+      "bytes": 3698,
+      "sha256": "19db910e7fb74c8fa42ac02e5b34d73ccbaade33a6058fa0b22999f2f4182d7c"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/LEXEND-LICENSE",
+      "bytes": 4384,
+      "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/kaynak/atlas-01.png",
+      "bytes": 1567228,
+      "sha256": "1c0e0ff2b9af3bd13a8760d24d6b8e7f98da55082265e14c64e63424dfe84c66"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/kaynak/atlas-02.png",
+      "bytes": 1432833,
+      "sha256": "7d480168871c79ce93ca553db6d17ca078b33a607262798b96bda81f9e360712"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/kaynak/atlas-03.png",
+      "bytes": 2222221,
+      "sha256": "f42b9bbf031009eb35d790858550701f568532e99b07a622eba9a7267aefe4e0"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/kaynak/atlas-04.png",
+      "bytes": 1574576,
+      "sha256": "b2f5b32cccd2604ca0db00e8d45fa190570dd22928c6a8e685ee2c5c4c38a819"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/kaynak/atlas-05.png",
+      "bytes": 1579875,
+      "sha256": "fb9ee47932f1d532f96751a87c67a48eed303b997107f25b1b1b498bd7b10ba8"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/lexend-latin-400-normal.woff2",
+      "bytes": 14476,
+      "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/lexend-latin-600-normal.woff2",
+      "bytes": 14856,
+      "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/lexend-latin-700-normal.woff2",
+      "bytes": 14808,
+      "sha256": "52dcdaa127bac4a5ea4c39ee17a3f454ceacc18d9f2a45cc453eeab68d378588"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/lexend-latin-ext-400-normal.woff2",
+      "bytes": 13144,
+      "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/lexend-latin-ext-600-normal.woff2",
+      "bytes": 13680,
+      "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/lexend-latin-ext-700-normal.woff2",
+      "bytes": 13708,
+      "sha256": "5ae459b6dc29461eab9f02d0ff4395d3842d6bdf280e8224a79ab2667e65ee2f"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-bear.webp",
+      "bytes": 11550,
+      "sha256": "3c738e23430911cbfc9a2a71caa8af997bc36102c3f56928b76c9f71cabcbfa5"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-cat.webp",
+      "bytes": 7412,
+      "sha256": "1bd401865e29b01ebfb5b9d280cac62dbb05f1b5b7444a52b46193d62395b8d8"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-deer.webp",
+      "bytes": 10516,
+      "sha256": "dfaa1c135409e2446e5fbb1f045ce6e9d0a7c8c0e98f00d38305c56b89302855"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-dog.webp",
+      "bytes": 13334,
+      "sha256": "450eca4ffb480a16109dc1b14869e6b74fff2f2394bb4e93aaf34879e897b12b"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-fox.webp",
+      "bytes": 8126,
+      "sha256": "aa08ca2e42a4c9cb2cac6229d598a3a228fc0cabea2b62ec36d1b1fd8a21bd38"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-frog.webp",
+      "bytes": 9834,
+      "sha256": "18b43942b229d784f4e07bdedde1d440d7a55f3a373e2f75ce8eeaf5fe557a8d"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-koala.webp",
+      "bytes": 8234,
+      "sha256": "ad67402ebea0c83f7757b1afd53aa99fcb8b8024cffb2266d5b4f42cb6c5a88d"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-lion.webp",
+      "bytes": 11946,
+      "sha256": "26f2bc00b89ec99296493b09bdc76177ad18750657829299fd3ff8f3364e872a"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-octopus.webp",
+      "bytes": 7702,
+      "sha256": "3f7badfd8fa1ace4c38869e57f05b926004cd4fb6266cd22b187c0f56b29d909"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-owl.webp",
+      "bytes": 8346,
+      "sha256": "5b42458e791d7521c5faa731e95a375b829c9ec2288da50c8af139266313f14d"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-panda.webp",
+      "bytes": 7440,
+      "sha256": "fa86bb7738d3c5847dbb1ce10d48fe8bfc1a61d9d2dde9041965f9f777489971"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-penguin.webp",
+      "bytes": 7608,
+      "sha256": "7bd4db0f04bdbf01e93a677eadc59c81f8e1df467d3811516a729f1062e0da93"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-rabbit.webp",
+      "bytes": 8522,
+      "sha256": "6cc57e296877890fc28b8ae08801792a6925afbbbbd7c5ac8c4edd17af6322bb"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/avatar-tiger.webp",
+      "bytes": 11402,
+      "sha256": "d78c67affa081dfe58a82fd4931abb0e28a597fcfade707b04b36ee147cda2df"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/boss-blob.webp",
+      "bytes": 12606,
+      "sha256": "c83d169dc3156ca7834abd67e8bc723e38dd3c2a46e2df905dcad0f8acb87895"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/boss-chronos.webp",
+      "bytes": 26900,
+      "sha256": "038a89bbc1e349ee4a088741ecb08a18d8ca722288c8655a01286d10fa8021d2"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/boss-dino.webp",
+      "bytes": 11384,
+      "sha256": "c092f9992cfd5331c77130be028c9a530e6d83459b3d65b38e79667888e2be56"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/boss-dragon.webp",
+      "bytes": 15524,
+      "sha256": "f35c43c2a0ac44eb0021699ff81853b652139c7b2ded81e6f1be9b6323aaade2"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/boss-ghost.webp",
+      "bytes": 10140,
+      "sha256": "dceb843c32f257f6808b48f102519a26dddae867dde6d2997444605f839b3296"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/boss-golem.webp",
+      "bytes": 13616,
+      "sha256": "4470096aa9510d89fe35eb2234b17f8ac450dd5c3b05b80cca7fb4d904f77039"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/boss-octopus.webp",
+      "bytes": 14218,
+      "sha256": "a847023d5fcd001f496ecbac65c5a692febc5efb5ce42a000dc69ca73a63b83a"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/boss-slime.webp",
+      "bytes": 12194,
+      "sha256": "7c48387fbfb8fe757320490e8e8838ed8b74a9c10af20909d993ce5c6e2ab354"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/boss-yeti.webp",
+      "bytes": 16214,
+      "sha256": "c9741d23a2c61cd3f575eddcc74e19167d71a21d3846cd1676c6d9f286d63c5d"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/stat-book.webp",
+      "bytes": 19516,
+      "sha256": "5ee09bf28c364734793d53172fa12f4477784299d596af3869004eea896f47a5"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/stat-sprout.webp",
+      "bytes": 14762,
+      "sha256": "80718e58b283a953fb474210ff46377bedda779e486c1cf2a11f5bfe61902515"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/mevcut/stat-star.webp",
+      "bytes": 14472,
+      "sha256": "6c9f7d8e7d9c6191bd79e84446e76e5529237017a2ae38811720b084ad2e8471"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-axolotl.png",
+      "bytes": 164405,
+      "sha256": "e9186f6ff867c7f4defc98f24b6a67810a3c0f86a57cb0d878ad7e4a30ef96b4"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-axolotl.webp",
+      "bytes": 31316,
+      "sha256": "8bf0098aa0bea340308822a5fa2d5113cfba85b468554e78ec303e4dd1320c64"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-bear.png",
+      "bytes": 148112,
+      "sha256": "31bc53a32ed47de6edd905de4886d00c01bb4a31cc90849588ed042cb4193c9d"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-bear.webp",
+      "bytes": 27186,
+      "sha256": "23f7467253e0a1e5c65e7765d8652b64686699ad59a5c83e00f0b97efe2015e1"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-bee.png",
+      "bytes": 163139,
+      "sha256": "6f6922b708b0e3d5c13c65cb5adda70cd1c0d4693dbfb4baebf5ec358653c440"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-bee.webp",
+      "bytes": 28892,
+      "sha256": "04a10fe962e393ca8847048fe2b8ab03b543b46e6ce5823aee574dbd648e61d9"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-blob.png",
+      "bytes": 147631,
+      "sha256": "9ce7f46ba0cc924b2aad8df682f5d713bcf0cfcda2c0575f8e493a0369472f0e"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-blob.webp",
+      "bytes": 27822,
+      "sha256": "649ac6851d510b7a81a83e0a3db29d5efbeacd21dfe060d1d2326c32b6b3b42f"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-chronos.png",
+      "bytes": 174073,
+      "sha256": "375145773dee838cfb6ea4a40eba64fddcbb7db7dc51d19e6288020ffc4af416"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-chronos.webp",
+      "bytes": 29386,
+      "sha256": "256efcf5a684ab4cb90ecf369f1ceb645efe56f426b73f35b028424dd674487b"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-dino.png",
+      "bytes": 153343,
+      "sha256": "6cedcc20e827826e349c6af46acfa40225bb3bc0fc39b7bd7170a3da44f6367f"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-dino.webp",
+      "bytes": 26022,
+      "sha256": "ad4a028efed76ff3dd8baa4cc937c1be5b11f31443afaaec5aae6f183b5e21d4"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-dragon.png",
+      "bytes": 165908,
+      "sha256": "1ff0d807d569d70805a90b13cd9b63dcec755a2ab3882db29c78fa52f34be67c"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-dragon.webp",
+      "bytes": 28326,
+      "sha256": "ca3fd85c201f86d91cf1fa53fbcb11a2dc63f3ec33e17dd585d1c497c2007044"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-ghost.png",
+      "bytes": 144539,
+      "sha256": "9b6b1a0bacf496f49f565dec5c0d0076791a25c99f769910b2196bef3fa820e4"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-ghost.webp",
+      "bytes": 26138,
+      "sha256": "50f0644c58f6c13172ca2f80afeb19cb865cebcb89f4a0f8468c4e91e828effe"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-golem.png",
+      "bytes": 155219,
+      "sha256": "4d55662591faebdb540cccf7aa6b2fe1f4d97b9b7b87914bb91ebe666423502a"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-golem.webp",
+      "bytes": 23234,
+      "sha256": "e4704c5e556d3e3655c59bafee7a98136196cd656d8c07c31189ae00b0c7bcc2"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-octopus.png",
+      "bytes": 158644,
+      "sha256": "57a8aa4d50bfd20ca79454c7d5cef1b6ca70763db74e776d6f8c0ec8c58d5258"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-octopus.webp",
+      "bytes": 30690,
+      "sha256": "295d8f0d63dce4fc3c058e0b401c13fd4cde4fcd84c7e773a26f45d059322bde"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-slime.png",
+      "bytes": 155081,
+      "sha256": "e7ff6406b90337cfa5c5ed2f2d5001a9d3690d9fad99111be0e1b1443c0cb789"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-slime.webp",
+      "bytes": 29392,
+      "sha256": "44b5ccb62b082639f60edb7357fd930285eadbe3b4388cf864f65ea33c5b1939"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-yeti.png",
+      "bytes": 166721,
+      "sha256": "7d462e6d510bb26063860d303990c9b34a61c819fbae999e2d77002c10d3d591"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-boss-yeti.webp",
+      "bytes": 29088,
+      "sha256": "c28796a679b7cbf2476698ea4c72a61b83744b11eaa31137907c6d7a49a44b2f"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-capybara.png",
+      "bytes": 148294,
+      "sha256": "78fd92c7f5f9bcfbff0fc2190f629e50693410de64c788e83b06d3d8fb909007"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-capybara.webp",
+      "bytes": 24544,
+      "sha256": "e7e54bab96c5b941443c6e41f3469d1a770df41f5876d0eb5e7d073c0cbde2f0"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-cat.png",
+      "bytes": 155811,
+      "sha256": "eba33c0afa61072d31457a2a211acb8c6504874c2b151ac8bec6ae1d7adad3c4"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-cat.webp",
+      "bytes": 21396,
+      "sha256": "d93da75f10097003f8d8e164e369552d07f3c9e824ded6239b278acf1c3ff05c"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-deer.png",
+      "bytes": 156302,
+      "sha256": "f490f9b20204a8ffac980e81cd47e9609d56e4d865bb63909238380cfd73857b"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-deer.webp",
+      "bytes": 30466,
+      "sha256": "c7d2597d778e3d86b8bba7c8cfa53ddc41c2abe12846f81c2a6e1de5100b2194"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-dog.png",
+      "bytes": 157581,
+      "sha256": "4d279c21d23141f6c44a9194527593b60033f798d9f3dac33f5da3c6202634fb"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-dog.webp",
+      "bytes": 28926,
+      "sha256": "a183ef81bd55f4a0829cb01ed57f299b03117232cd856822c53c1c05d6c83f85"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-elephant.png",
+      "bytes": 163871,
+      "sha256": "3afbf4b0338d6710d09a0170c5f4d7c8c350e8798cbe0ce153075a5403a10133"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-elephant.webp",
+      "bytes": 26908,
+      "sha256": "119bb7d54f85eb95eebd179684337ba700669e5e065c02debdb9aa4bec7e014f"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-fox.png",
+      "bytes": 155762,
+      "sha256": "d52dab1e1813ddba304b0d9d08ab7982427b1c234cfed17033ebe137c85a175e"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-fox.webp",
+      "bytes": 22776,
+      "sha256": "41e7e7930aeea5e0fe4c42f39a45e929fe5d083adc8a81318a8c31ae95a6051a"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-frog.png",
+      "bytes": 142385,
+      "sha256": "6b2ca92d21d2e420879afb199d0dcafe93da1f9a3fed470fa867589e36687863"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-frog.webp",
+      "bytes": 19110,
+      "sha256": "cbcb0fb8e81ced13ac614d3fda5c829c6b39b0316b910c66b2ea7bf0bd9e4238"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-hedgehog.png",
+      "bytes": 167635,
+      "sha256": "1a4bc8d64efa313743ffd2581973804d85576be7c2888d73118af958816da0b1"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-hedgehog.webp",
+      "bytes": 26770,
+      "sha256": "136b84d7c1324ae1f41545de55869dc45561af36dc3429dd6bf62c0a15e9c18a"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-koala.png",
+      "bytes": 150336,
+      "sha256": "13d4e98499470e8d41fc249a13828daaff970bdbfe764b3e0b82c69a6272bd92"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-koala.webp",
+      "bytes": 19846,
+      "sha256": "27f2980e8b2872fcc5a583b3cfd54038bdf1091506ca346e54763de60e8f766a"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-lion.png",
+      "bytes": 166577,
+      "sha256": "e738632cb948283d829241a5e86bdd4f499fca7c213b9c3250796ad690e9aff3"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-lion.webp",
+      "bytes": 30764,
+      "sha256": "1535b2cbe01ee30bc626872ff29270914b45d88434117cce08dcfaf593edefce"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-octopus.png",
+      "bytes": 146315,
+      "sha256": "06fcc1faf53792becee6020fb47ec8db77a3d5205dbc3dbfe098bafee4068d10"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-octopus.webp",
+      "bytes": 22512,
+      "sha256": "d8b59be911d7340ec55e918a4bffa8ca7e0e7eddeb7e091d685a995e686c180d"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-otter.png",
+      "bytes": 149201,
+      "sha256": "c3ed2594d971251ae284a35bc33e8e1d72fe92a95f031b4ddf7ba98f57349b87"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-otter.webp",
+      "bytes": 27398,
+      "sha256": "e090efe4f44ff996ae31ba3e7e1ba820147e8f75572a12d924d18a14c4633d9f"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-owl.png",
+      "bytes": 153814,
+      "sha256": "5e9605f0cedc63d86b760b27c980ac784002d6f2f669f11b12867adbeb9f5045"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-owl.webp",
+      "bytes": 21830,
+      "sha256": "1b459f8e0caf05320014f45c49930680be3effce35638334f5ca16288fefe58a"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-panda.png",
+      "bytes": 152361,
+      "sha256": "bdd58ca79040dccc53458c776c7c45df31e7fefd93b0a41b964e1e51e24a7d6b"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-panda.webp",
+      "bytes": 20384,
+      "sha256": "6b4822a9bb3069c4081b8c886f8f5c328f04ae434fdea644f37717897bc28d14"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-parrot.png",
+      "bytes": 162377,
+      "sha256": "f47c9d6bc0c27a83690aa4d4b5cf3fbd7eb64401d7fc0fd094a929e0fde39951"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-parrot.webp",
+      "bytes": 25976,
+      "sha256": "db29c056ce2e8d8ed6b7c1fea9732be5971e439895d2d004df39ad2536a17034"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-penguin.png",
+      "bytes": 146263,
+      "sha256": "3d4eab658f037a7d2af8f3e892720f5cbb3453843b7b3dea53013b83ca7b3c41"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-penguin.webp",
+      "bytes": 20034,
+      "sha256": "81ac4ad8e1d134c80cad38e5efa12dba9deb7c829072656896b7f1f7fbe52846"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-rabbit.png",
+      "bytes": 149567,
+      "sha256": "4d88e6d1877c91c44d62c1676131c6d6e99ba7601195328068c20f5b028b7ecc"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-rabbit.webp",
+      "bytes": 20444,
+      "sha256": "43a69c2a249ebdfc40ba53e0ed676fb818355d593a3c04d0b7f263fa6da6fc88"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-raccoon.png",
+      "bytes": 164048,
+      "sha256": "f606e9fac12a8d5b5dde60fd5296436d4be58e9b512f8dd23d3d25d3bc55930c"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-raccoon.webp",
+      "bytes": 25762,
+      "sha256": "15c41e4a11f3bdf63e84d24c8853e299f17f08d04531d24b3cb0f608650eedcd"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-red-panda.png",
+      "bytes": 159719,
+      "sha256": "052b129b2c046fe624351f6f336522c39765f396b2e2cd97ef4b596d0c1b83df"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-red-panda.webp",
+      "bytes": 29986,
+      "sha256": "6c5ad4f3a878ddeba590a1ab01f0fe33a087e9553680861383770ee03ab2a5b2"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-seal.png",
+      "bytes": 150852,
+      "sha256": "34c604d9a1452ceec1fdca03a3a8fa9da56a96930067a62e5f8e92e77816385a"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-seal.webp",
+      "bytes": 22700,
+      "sha256": "a73a76f037fca4c09ff62c3469c64951aeac0a9a980277eb93a191e9da4c4f25"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-sloth.png",
+      "bytes": 160458,
+      "sha256": "db4e320fd4e4ba22a955880f72dfbd841d086338dbbc2ea9b6bf4d7ac2eb50d9"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-sloth.webp",
+      "bytes": 25124,
+      "sha256": "faa31ad2eac576afa5acd8ace5ca901a2eb448d477561cdbc6fe36dbd9a0cfe2"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-squirrel.png",
+      "bytes": 163729,
+      "sha256": "b8456ec0112989fcd9697f154f9f48f875deb04027d466a7f99e7de1d2648d28"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-squirrel.webp",
+      "bytes": 26628,
+      "sha256": "6472065f91dffcf14ba306f261105a87584c5e8a1a9adc20a1350da56921963f"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-stat-book.png",
+      "bytes": 152518,
+      "sha256": "cbbaebf758341c055e0add9dea21a3e8c1ea2a16d13636178ea007c267a51209"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-stat-book.webp",
+      "bytes": 23790,
+      "sha256": "098e1f6755a19a670bc0da2ae2e2ee27297447be946f4947680de849da297cea"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-stat-sprout.png",
+      "bytes": 158702,
+      "sha256": "a7d0ec24dae0ec15f1f46e8a0dba0bb253ad3ebe22f09ac549d4e89574ca0424"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-stat-sprout.webp",
+      "bytes": 25184,
+      "sha256": "bccccc7b9f3fb6add0fa8467fd45b739a7c9b45897d58af21a8fc8514c7d4139"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-stat-star.png",
+      "bytes": 146338,
+      "sha256": "4339bb602b114df0b9cb7e17b00c0e7100ddb622c06cf1b2234d6d30dd3fc584"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-stat-star.webp",
+      "bytes": 22328,
+      "sha256": "4fa4f3afc642bdeed24cbc0bc9d80efeb23898d618834d56ea57be4a40a01706"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-tiger.png",
+      "bytes": 158869,
+      "sha256": "22afa78f9f900636fb689479eea23dab50e0dcbe180e5c41d6145b413281f12d"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-tiger.webp",
+      "bytes": 30248,
+      "sha256": "a14a1f99679ea2790d898394d0bb2bde7b05694d6f85412ec1f897dac989984b"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-turtle.png",
+      "bytes": 156003,
+      "sha256": "4e60b4467669e8da6de3445cb46d349b07b7b760e40511234b43c4ca10b71b9c"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-turtle.webp",
+      "bytes": 28980,
+      "sha256": "adb8116a336735c3f7bb3c8bbb94acc85d04614a5dbc300bda851226520beb3c"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-whale.png",
+      "bytes": 158341,
+      "sha256": "1070487480fdb8bde31dc1d04ba60e014b1b8b469024d55ef5c44c0e1d12106e"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/assets/portreler/avatar-whale.webp",
+      "bytes": 27132,
+      "sha256": "a8e92b954b9e72332e40228070149edf5c1b7d2a635faae44b6fa43d4b57d9db"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/data.js",
+      "bytes": 9024,
+      "sha256": "c113bfe78577f0fc70e68a3a930501a957724bcce40ae222bf5560c5054635b0"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/data.json",
+      "bytes": 10974,
+      "sha256": "4d062686e105d1ec107387721a2201f6d6ddf2d2e1f91adb57b5e96548d7c0ca"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/galeri.html",
+      "bytes": 1676,
+      "sha256": "edb2cd434636d5e26b28d56146083d4038a42f5656b520b3edb8b11a4ed27e04"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/index.html",
+      "bytes": 3206,
+      "sha256": "e4e4fc8cc2126f9ad97eeb86f0c321b44fc7a6928282d6c87ab3455691f8f63e"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/onizlemeler/galeri-ve-karsilastirma.png",
+      "bytes": 1658844,
+      "sha256": "6521ce5d0fe62a0a4ade6703ad25afa785947df77864872995c52811c022f19a"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/onizlemeler/koyu-tema.png",
+      "bytes": 777829,
+      "sha256": "6baa3e8be294110927b44b1b26dc8af05c1cf368cc2888b9d851ee9eb6f60dab"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/onizlemeler/masaustu.png",
+      "bytes": 756703,
+      "sha256": "c17c701011e852a25b2a41143deb15f25954113877c4b1e00335d54678a90fc1"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/onizlemeler/mobil-375.png",
+      "bytes": 586817,
+      "sha256": "0bcbe3c3458aa1501c4b3770c8872652867b0d14b0e311938d482469ad01dfc5"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/onizlemeler/tum-40-figur.png",
+      "bytes": 660350,
+      "sha256": "ef5b2eecbb7b489d89fd68766fe23ea13f7c6d05240c92b5d7f435403009a614"
+    },
+    {
+      "packageId": "diloloji-avatar-koleksiyonu-01",
+      "path": "tasarim/avatar-koleksiyonu-01/style.css",
+      "bytes": 8982,
+      "sha256": "976bcb3f42a15d66511725c065a73726b59726d41c487accc616085b302a9143"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01.zip",
+      "bytes": 5205573,
+      "sha256": "b36f2b5eb0885a9d9508b5479304847a6a133132e82b2e3dad0a5f44cf8f5946"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/BILESEN-SOZLESMESI.md",
+      "bytes": 3782,
+      "sha256": "a4da2447837cb23ac938a7472a9f45f9ae9e82be2921949279edd7311b27ed07"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/CLAUDE-DEVIR.md",
+      "bytes": 4873,
+      "sha256": "bd85a5b1439dcd5a53be9e1d0f8ec1a9ade84c47eaa79549128cf5a758ebfcd1"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/DOGRULAMA.json",
+      "bytes": 1026,
+      "sha256": "05c7b19ec66e58ffd14521e889fbda2a4c570c2c812ae126e8231126e9150d85"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/DOSYALAR.json",
+      "bytes": 8760,
+      "sha256": "4511e98949356e9b6096295e67516f8790b5b4d36b9bc5d724bd04e9d14bd8ce"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/DURUM-MATRISI.md",
+      "bytes": 1378,
+      "sha256": "9e7424f5d5ba5a670e216a0e53fbbb077ecaf715f8452459f1e88777d240deac"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/DURUMLAR.json",
+      "bytes": 2901,
+      "sha256": "dfe7351dc07d0cd812ddfac184010ed3b78ccf383e05ea8230428bd9a7c8241f"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/KAYNAKLAR.json",
+      "bytes": 1268,
+      "sha256": "26ec2c1ec9c9c5fb3ca398482a2fc29f370e6798141f15854d5a079799471e98"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/PAKET.json",
+      "bytes": 434,
+      "sha256": "a92aa986b32da03c03a273b73662a2835ca2632655b7c4ae107badc98815afdb"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/README.md",
+      "bytes": 2170,
+      "sha256": "2c8e4408bd2b5aefb737cf71d4cca5b57b39904e3bf4a8137bb7e26a7c4af5f2"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/app.js",
+      "bytes": 18191,
+      "sha256": "04dba2fa1e6f48d8ba4769d1f57bfae6ad7526196367c7dbe2316457f56ff10e"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/LEXEND-LICENSE",
+      "bytes": 4384,
+      "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/LITERATA-LICENSE",
+      "bytes": 4506,
+      "sha256": "9895ebc015226accf416b758ac1ca02a2fb4f83a89d316791ef697c3dc0852aa"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/avatar-fox.webp",
+      "bytes": 22776,
+      "sha256": "41e7e7930aeea5e0fe4c42f39a45e929fe5d083adc8a81318a8c31ae95a6051a"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/empty-first.webp",
+      "bytes": 25212,
+      "sha256": "45f344faf931348e4432ad6759d74ab9adbaee6a7b73ca04d218f2fe50a688e1"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/filiz/stage-0.svg",
+      "bytes": 5957,
+      "sha256": "5e3a1496cc08b0f2404470435cec13010afca24b22a19b23e5d00bbc4e144ab2"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/filiz/stage-1.svg",
+      "bytes": 6152,
+      "sha256": "a652f8a258d72c9f55f5a39ccfc0486a8a2f7c911dad09a27f57828cd03a9e9b"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/filiz/stage-2.svg",
+      "bytes": 6040,
+      "sha256": "d0a16377a602aa2721493e7554ce9f6231a2bf17a4a3d49539e14a0c1d723f04"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/filiz/stage-3.svg",
+      "bytes": 6143,
+      "sha256": "fbc7751800f05a13ffda46d95959f88e5959911c4e9cec9741561e7e9f08e803"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/filiz/stage-4.svg",
+      "bytes": 6051,
+      "sha256": "ec450ada9b4e8b062a9da4ccc6eae8a68d1b40b638dd2460507c97ebeb7cc230"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/filiz/stage-5.svg",
+      "bytes": 5910,
+      "sha256": "5f4c675f5e2ea54db86f2a7b3bdd93f9c4efb89592e90d3a1e7b2638830a1717"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/filiz/stage-6.svg",
+      "bytes": 5893,
+      "sha256": "e1dc596e1bf90efb1a0359673a08ea8a4f4551fcbd8972e5bf8a6955fb019948"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/lexend-latin-400-normal.woff2",
+      "bytes": 14476,
+      "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/lexend-latin-600-normal.woff2",
+      "bytes": 14856,
+      "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/lexend-latin-700-normal.woff2",
+      "bytes": 14808,
+      "sha256": "52dcdaa127bac4a5ea4c39ee17a3f454ceacc18d9f2a45cc453eeab68d378588"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/lexend-latin-ext-400-normal.woff2",
+      "bytes": 13144,
+      "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/lexend-latin-ext-600-normal.woff2",
+      "bytes": 13680,
+      "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/lexend-latin-ext-700-normal.woff2",
+      "bytes": 13708,
+      "sha256": "5ae459b6dc29461eab9f02d0ff4395d3842d6bdf280e8224a79ab2667e65ee2f"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/assets/literata-latin-400-normal.woff2",
+      "bytes": 20420,
+      "sha256": "a60c193b55766b68b922e2327e15c2d8c145532f283a27c3411b9c47a8583d18"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/base.css",
+      "bytes": 10894,
+      "sha256": "9488c24a4c408b0a31afbd07f6a8278924702d474780bcaf7f9f902eed05e4a3"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/data.js",
+      "bytes": 1556,
+      "sha256": "a059ba32ed321050a85987ace98a5f4302cd3767908d7a0f3adb04d6f7592ab7"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/galeri.html",
+      "bytes": 1962,
+      "sha256": "d46c761fcafa41d03ac0bd5503fe6a22e8d401a2d2691dbf345c2076f243880d"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/icons.js",
+      "bytes": 786,
+      "sha256": "891cad5be070d87880a16b2c7d82c1e67da880b90706f85d424d683312fe5022"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/index.html",
+      "bytes": 2249,
+      "sha256": "d8ad74bd37bf09c9a8cfdd8c24f4d62693f8b0c72b0d76e8e9f3bccbda34af56"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/backlog-masaustu.png",
+      "bytes": 288780,
+      "sha256": "354b4b4005556e5452876681a4c6ed4b8ec3cb9aef76a9838091277f26b313a4"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/backlog-mobil.png",
+      "bytes": 166069,
+      "sha256": "abfcef31364cb8efded602bb863b7207b7a426137085cd671154f2a996e33a19"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/birikme-koyu-fr-ilk-ekran.png",
+      "bytes": 115135,
+      "sha256": "3f51f289ef226a5c3ca2d672a4e9418a9a00a636c219a7a88e998a22b31413fd"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/birikme-koyu-fr-mobil.png",
+      "bytes": 165276,
+      "sha256": "bbe6f48f7ab432e6df604c31e07717965b28ea8320ceeb6c9064d0b457679bf8"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/bugun-koyu-en.png",
+      "bytes": 264326,
+      "sha256": "8f065d00320d6ac3598b4de54c3f3b80d6f667e05e51608333499fdbc9d29fe0"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/bugun-masaustu.png",
+      "bytes": 270936,
+      "sha256": "130b605dd4d37c3c2ff46a04a471b8edd5f2fd5b80ef4bb6e10fbb3fd4222e40"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/done-masaustu.png",
+      "bytes": 256580,
+      "sha256": "2bdb6b2340459dbc4c8ddc76f45106f5c6e76250010fa4986b4a6422343d40fc"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/done-mobil.png",
+      "bytes": 135762,
+      "sha256": "372e401d7d1ef82e8a50304190cb82c1cfcbcc55aa6d382f89a59a099f8a7015"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/focus-masaustu.png",
+      "bytes": 272308,
+      "sha256": "c39faa109bdccaef85ba33763c638cdd73ff9b1db381a9561cd0dc85744ea13b"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/focus-mobil.png",
+      "bytes": 151662,
+      "sha256": "3ac0854ebd343ae0cd2fa5a2b904e0f5a9d63c76bdbb80bbd20258be95538988"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/focusEmpty-masaustu.png",
+      "bytes": 254547,
+      "sha256": "7e20f36c31154810e5c2fb03009dabca7da7f15ef41a9eaa8f00b39e682f8144"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/focusEmpty-mobil.png",
+      "bytes": 136266,
+      "sha256": "3dfeee5401352aa1fda4cddc86b360d7758a10e31ca563d581cf99a3ec96708a"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/hero-mobil.png",
+      "bytes": 105562,
+      "sha256": "68de042c2f9abed2842a57accb18c61abf15b91a2fc9418caf5a4d2f250dc356"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/new-masaustu.png",
+      "bytes": 239937,
+      "sha256": "82ef176fdfea28740e3f4fd438828bee7713553170881a460ce9acd1716b8fb3"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/new-mobil.png",
+      "bytes": 127469,
+      "sha256": "615c4f5cfd7bdee65259151c5998332a7f378f2218b73d170a30051ef8059909"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/none-masaustu.png",
+      "bytes": 273071,
+      "sha256": "366b30ebb6f1a6b865a971adf1beb3ed3ad02804994266ef45e2c065bd8fcda2"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/none-mobil.png",
+      "bytes": 140165,
+      "sha256": "9de4968fae97fb0354698f70050f23d0fbcbddc1c6f74d5689e60fd8245bb4fe"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/partial-mobil.png",
+      "bytes": 148488,
+      "sha256": "8c120842fb936c89b187ac368cb0dd3da01735a9370a31f4edbd5a16e51ef8be"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/ready-masaustu.png",
+      "bytes": 269906,
+      "sha256": "ee27461f0efc47cef96b97b514ae259a8bedcd973b64481fa5ef2f11f1e1b15f"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/ready-mobil.png",
+      "bytes": 148643,
+      "sha256": "8ce208afa44630ff0b5a77e9b245dc190b319ea158c6ff3bdc090c85890dadef"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/resume-masaustu.png",
+      "bytes": 250523,
+      "sha256": "db09964abc40920931a950843cb0e7a09099d3dffd81ff18b6da56407ccc82d8"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/resume-mobil.png",
+      "bytes": 131880,
+      "sha256": "96a05798fdfeec6d04a2ac97467dbe06ab64e5f47de2c6d95accf1a779d7611a"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/resumeDone-masaustu.png",
+      "bytes": 273785,
+      "sha256": "70ffb0b7991431ff1ae16c4142879d65b526ea71f700670c8e040c5c244dfd57"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/resumeDone-mobil.png",
+      "bytes": 149393,
+      "sha256": "0e17b9eeb5f94aed1bd559b89b71d075debf9585b1b88db91f59d8b6ed101ddf"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/onizlemeler/tasarim-panosu.png",
+      "bytes": 382776,
+      "sha256": "051ef9af63e35f3984d2a09b38fab7e234f36f421c4973802a14eb95543a35ff"
+    },
+    {
+      "packageId": "diloloji-bugun-deneyimi-01",
+      "path": "tasarim/bugun-deneyimi-01/style.css",
+      "bytes": 13246,
+      "sha256": "bc8669910c7add154691ed1bdae9723659b69f7e11773131922212458e1f3f22"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/CLAUDE-DEVIR.md",
+      "bytes": 4009,
+      "sha256": "60a4fbb63eee228c56232ba6d3e41d25d90f243339d327a7508b854a0fd283e9"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/PAKET.json",
+      "bytes": 1208,
+      "sha256": "e3a5665eb5066495a38fe054b5fd1ca66ee82fada9b6a46ed2b18040b59fc18d"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/README.md",
+      "bytes": 1428,
+      "sha256": "2b4811e2908d61a5cbab842c2caf79213e4b979d5c49426d9c3ebdb769994118"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/asamalar.jpg",
+      "bytes": 62960,
+      "sha256": "73e2aa8461c50a7d98f4e57cfdb374dd5b7487865d387f353a384f5bef142fa3"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/assets/cizim-yonu.png",
+      "bytes": 1189430,
+      "sha256": "6e5ed1e45df88033b594654be9dca8bd3c4b965c45cc0411989ea3eca193138b"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/filiz-buyume.gif",
+      "bytes": 149985,
+      "sha256": "54b75a6555bdbe0a4cb41764e2dd95d4c48ffaf1975a83956529268b1d4a6545"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/filiz-buyume.mp4",
+      "bytes": 44910,
+      "sha256": "8ed64681578d946a493b6945f07d43f48ad5f6eea46b60b0500a2d5ff2553743"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/filiz-buyume.webp",
+      "bytes": 383314,
+      "sha256": "5523d2c702aafa003cf3335395eee13afbb305f9613ffe3a3298bcb20f5ca94b"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/growth.js",
+      "bytes": 7996,
+      "sha256": "25ed9da4eaf5ab9c52d51a02d159fd4efeaf7396c434e582ccecaf8cdcd95492"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/index.html",
+      "bytes": 10116,
+      "sha256": "f774594a698a14c520235618cf83fa8e9303904ab06bcb01767798419a0e1431"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/manifest.json",
+      "bytes": 973,
+      "sha256": "9db08805760b542813d18adfc38af914df12583ea751e468a0407ad68ccad99c"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/mobil.png",
+      "bytes": 79941,
+      "sha256": "dbdf7d47b033c29227f787cc62af60725473049d2d74bb0deb958b4685f07d8a"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/plant-source.svg",
+      "bytes": 5893,
+      "sha256": "e1dc596e1bf90efb1a0359673a08ea8a4f4551fcbd8972e5bf8a6955fb019948"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-0.png",
+      "bytes": 44493,
+      "sha256": "8eea50e37a700ce00586253d46d846aeb38c6214c3742c744d97c0e0973989c4"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-0.svg",
+      "bytes": 5957,
+      "sha256": "5e3a1496cc08b0f2404470435cec13010afca24b22a19b23e5d00bbc4e144ab2"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-1.png",
+      "bytes": 46027,
+      "sha256": "358695112f01b846099cd2896b320eff12e7cf50451872eaf5afe6abc8d73173"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-1.svg",
+      "bytes": 6152,
+      "sha256": "a652f8a258d72c9f55f5a39ccfc0486a8a2f7c911dad09a27f57828cd03a9e9b"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-2.png",
+      "bytes": 54572,
+      "sha256": "111467f1b8677578f2f2ba1efe25468c4c1cabce5777c76c1c76ff8249865af7"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-2.svg",
+      "bytes": 6040,
+      "sha256": "d0a16377a602aa2721493e7554ce9f6231a2bf17a4a3d49539e14a0c1d723f04"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-3.png",
+      "bytes": 61232,
+      "sha256": "ed88071cf456b55c2da38b7932efd46edc1dd83a25a0fa6e45ac06d8215ad8e0"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-3.svg",
+      "bytes": 6143,
+      "sha256": "fbc7751800f05a13ffda46d95959f88e5959911c4e9cec9741561e7e9f08e803"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-4.png",
+      "bytes": 65336,
+      "sha256": "4941309aa34a873e79bcf107674d59dbd9411643dfe155341aa41ac64d55a135"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-4.svg",
+      "bytes": 6051,
+      "sha256": "ec450ada9b4e8b062a9da4ccc6eae8a68d1b40b638dd2460507c97ebeb7cc230"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-5.png",
+      "bytes": 68509,
+      "sha256": "a1dc623459ebef2c05e4b8dbb5666bd6921335a18beaa98dcaaa41001e42df1b"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-5.svg",
+      "bytes": 5910,
+      "sha256": "5f4c675f5e2ea54db86f2a7b3bdd93f9c4efb89592e90d3a1e7b2638830a1717"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-6.png",
+      "bytes": 77837,
+      "sha256": "f43c1e3e74e4d0543432d66b4ecd80cb9ebe207241233eba1065d012f5b7237c"
+    },
+    {
+      "packageId": "diloloji-filiz-buyume-01",
+      "path": "tasarim/filiz-buyume-01/stage-6.svg",
+      "bytes": 5893,
+      "sha256": "e1dc596e1bf90efb1a0359673a08ea8a4f4551fcbd8972e5bf8a6955fb019948"
+    },
+    {
+      "packageId": "diloloji-gorev-paketi-01",
+      "path": "tasarim/gorev-paketi-01/CLAUDE-TESLIM.md",
+      "bytes": 2675,
+      "sha256": "b6c66c32d436a3dc2113fae0c32a667dcef4901f19c13b8e7787305b19b9a2a7"
+    },
+    {
+      "packageId": "diloloji-gorev-paketi-01",
+      "path": "tasarim/gorev-paketi-01/PAKET.json",
+      "bytes": 839,
+      "sha256": "13905ee92ee7e3b407117b4ba8ade3e1c51d29ed6cdb62a6e0c3fcb36079ebc2"
+    },
+    {
+      "packageId": "diloloji-gorev-paketi-01",
+      "path": "tasarim/gorev-paketi-01/README.md",
+      "bytes": 1479,
+      "sha256": "d68b177cae9b8fbe89f2b554e868d03f4be4b22caf249350e3bd9773a4be1154"
+    },
+    {
+      "packageId": "diloloji-gorev-paketi-01",
+      "path": "tasarim/gorev-paketi-01/index.html",
+      "bytes": 4993,
+      "sha256": "67064e3f1da84ecd9c2e5ee35b45ce5bab0a82a92f0b8e6a8fb0f91763badd21"
+    },
+    {
+      "packageId": "diloloji-gorev-paketi-01",
+      "path": "tasarim/gorev-paketi-01/manifest.json",
+      "bytes": 5496,
+      "sha256": "f51a1712ee2d79216ec8f3534fc09914aacc142b4ba048baf38f4d856b8f14fe"
+    },
+    {
+      "packageId": "diloloji-gorev-paketi-01",
+      "path": "tasarim/gorev-paketi-01/toplu-onizleme.jpg",
+      "bytes": 370471,
+      "sha256": "3fbd7c752368cc01a17cd4276cd09fc09a61695cdb99a32a5d9e0a263c28e280"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/CLAUDE-DEVIR.md",
+      "bytes": 5116,
+      "sha256": "99c3044d9ab5b3a9e76d8e5aabc7ecbe2f3f502a3993a0d07cedd8f63fa70867"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/IconCandidates.tsx",
+      "bytes": 3601,
+      "sha256": "bef9fcca0c8da0d46e8de1add28a373788676fca206b0bb00654b5c5682b2675"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/PAKET.json",
+      "bytes": 1217,
+      "sha256": "31da8b6b075726d79888ce314052719ac06610178761845514e1260c6ad8a484"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/README.md",
+      "bytes": 1402,
+      "sha256": "31dc980ee5a8b6cdcc053c775e9b38011a0bc6b68282b363197b55bb3b2294cd"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/imagegen-kavram-panosu.png",
+      "bytes": 1161703,
+      "sha256": "ba47420cdbf710764f388ae8d2898b35f5bfa6ed14dde3f95f78dfef4d895ed0"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/index.html",
+      "bytes": 27056,
+      "sha256": "fcda77195e140a9c93389ff8c64156130e19d454ff1b818c98614b691e0c93ec"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/karsilastirma.png",
+      "bytes": 191431,
+      "sha256": "ba298e2bcb29f4e1151a88ed07f221e7a8015164bb5e46ebd8efd4f93e1ead1c"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/manifest.json",
+      "bytes": 2942,
+      "sha256": "5e02f7bd632049e060cb83bd530c1f4fe1897a5808491716fbe5228afd15488e"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/mevcut-set-inceleme.png",
+      "bytes": 157234,
+      "sha256": "96ecefe732e011321b06a0047f60432ebeeb2a6a5ddba4f95f23922785ac66f1"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/mevcut/listening-retry.svg",
+      "bytes": 683,
+      "sha256": "69edbd20fd2e5561f10576c18bdf64e4ccd8df39c7d922ea33c2e2a76e1485bb"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/mevcut/more.svg",
+      "bytes": 820,
+      "sha256": "778b373c13966dead188d443678c72c524076cf9716bd5c66f26fab92d47dd9f"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/mevcut/practice.svg",
+      "bytes": 555,
+      "sha256": "25fa9c952d4f5c38bec8318a2d97d2b6f8bcf5ce0e4dfd5d7efcf6a257346ff9"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/mevcut/progress.svg",
+      "bytes": 635,
+      "sha256": "b1c52d66389138e10e102823ae185230b87ca86ea7e560ae0da6187e6c5a7223"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/mevcut/reading.svg",
+      "bytes": 557,
+      "sha256": "222ca2b34d888a4bfe70ee53a499777ed9c17ad02d3116a010451ab43256767e"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/mevcut/shadowing.svg",
+      "bytes": 352,
+      "sha256": "c3688f659c6d69d5873bdc4019ae462b57dff9a092475bb840ce1f95cf6992b1"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/mobil-koyu.png",
+      "bytes": 211875,
+      "sha256": "274eed3ea8a315c1a739a86e49ddc6a287d746a559dde30f5afa8b3cd0980eaa"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/svg/listening-retry.svg",
+      "bytes": 532,
+      "sha256": "1dea492b181bfd2069103739ce17b3b6d0fc3191d7caa7097604db60d5b74d92"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/svg/more.svg",
+      "bytes": 409,
+      "sha256": "a07f38a6d6a96c7f04374d6b06b75eaa96688b2c45e450e1f2e2e328165714bf"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/svg/practice.svg",
+      "bytes": 551,
+      "sha256": "df37bb703382266f90f7b1436e429465c30b86f581789ebc641f2011b661924d"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/svg/progress.svg",
+      "bytes": 377,
+      "sha256": "c06d2609cf4c19c5e304c1285489c8b973cd258a2afa82d8a48c6dd207a3e7bf"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/svg/reading.svg",
+      "bytes": 531,
+      "sha256": "a7e9d24d10fc97254f10ac25089cd8802edbd23cf4c18eb5d20d3a75644f323a"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/svg/shadowing.svg",
+      "bytes": 683,
+      "sha256": "13b5d907795491d58a3612acd6ac3328eebadaa6f4bacb5c3a62a3126f381d2a"
+    },
+    {
+      "packageId": "diloloji-ikonlar-01",
+      "path": "tasarim/ikonlar-01/toplu-karsilastirma.png",
+      "bytes": 51770,
+      "sha256": "80203e42561ac9b57e8f4b05e1540fda785460fbda64da332d30da6386fa08e0"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01.zip",
+      "bytes": 2002912,
+      "sha256": "417474efa5206a758b86a793e322d62803af56b4429be3feaaefdf6b6eb67f5e"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/BILESEN-SOZLESMESI.md",
+      "bytes": 3391,
+      "sha256": "a9321405d8c66b561b74542bc7a45a22bf12ad7ac444543562e24340c4e5b5d1"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/CLAUDE-DEVIR.md",
+      "bytes": 3934,
+      "sha256": "5e0e420dcddd84e464c23367a1ce3ed99e1ae3c60c3d4d2e5336bdd9d72971f9"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/DOGRULAMA.json",
+      "bytes": 994,
+      "sha256": "59bcc1ff571b1cf20987da7b791361d637d7672d67dcad43fe31067b72d2924a"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/DOSYALAR.json",
+      "bytes": 7146,
+      "sha256": "456262a69edf01fa744baf77844ef7a16178814b850727ad279f292724070886"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/DURUMLAR.json",
+      "bytes": 952,
+      "sha256": "e20311ba736c250270d546fa74a0c26e553ceba5ea0afb7e623e29e9807808d8"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/KAYNAKLAR.json",
+      "bytes": 1002,
+      "sha256": "24c8d4b8aa3b3518068729f8a70f1f2c535ea07c48209449efe0d7e9fc70527c"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/PAKET.json",
+      "bytes": 391,
+      "sha256": "4022f24cf98c2d63d000e94b9fabfd6f9d1fff2712679dea56677fc5572090f9"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/README.md",
+      "bytes": 2090,
+      "sha256": "c51cce7646b5912f713a26780b40a0e59aae2e7fc459cad702acde00bed7c3b7"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/app.js",
+      "bytes": 11458,
+      "sha256": "af783ff8f2175b2273fbffc9465239edb2c442fa832ea2cfc43d9911095954ed"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/assets/LEXEND-LICENSE",
+      "bytes": 4384,
+      "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/assets/LITERATA-LICENSE",
+      "bytes": 4506,
+      "sha256": "9895ebc015226accf416b758ac1ca02a2fb4f83a89d316791ef697c3dc0852aa"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/assets/filiz/stage-0.svg",
+      "bytes": 5957,
+      "sha256": "5e3a1496cc08b0f2404470435cec13010afca24b22a19b23e5d00bbc4e144ab2"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/assets/filiz/stage-3.svg",
+      "bytes": 6143,
+      "sha256": "fbc7751800f05a13ffda46d95959f88e5959911c4e9cec9741561e7e9f08e803"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/assets/filiz/stage-6.svg",
+      "bytes": 5893,
+      "sha256": "e1dc596e1bf90efb1a0359673a08ea8a4f4551fcbd8972e5bf8a6955fb019948"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/assets/lexend-latin-400-normal.woff2",
+      "bytes": 14476,
+      "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/assets/lexend-latin-600-normal.woff2",
+      "bytes": 14856,
+      "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/assets/lexend-latin-700-normal.woff2",
+      "bytes": 14808,
+      "sha256": "52dcdaa127bac4a5ea4c39ee17a3f454ceacc18d9f2a45cc453eeab68d378588"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/assets/lexend-latin-ext-400-normal.woff2",
+      "bytes": 13144,
+      "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/assets/lexend-latin-ext-600-normal.woff2",
+      "bytes": 13680,
+      "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/assets/lexend-latin-ext-700-normal.woff2",
+      "bytes": 13708,
+      "sha256": "5ae459b6dc29461eab9f02d0ff4395d3842d6bdf280e8224a79ab2667e65ee2f"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/assets/literata-latin-400-normal.woff2",
+      "bytes": 20420,
+      "sha256": "a60c193b55766b68b922e2327e15c2d8c145532f283a27c3411b9c47a8583d18"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/base.css",
+      "bytes": 10894,
+      "sha256": "9488c24a4c408b0a31afbd07f6a8278924702d474780bcaf7f9f902eed05e4a3"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/galeri.html",
+      "bytes": 1818,
+      "sha256": "ca0a86fcd8ba6ae362f1ca9efac9fb8ee647201ed655df6d752cd37e37dae5ff"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/icons.js",
+      "bytes": 786,
+      "sha256": "891cad5be070d87880a16b2c7d82c1e67da880b90706f85d424d683312fe5022"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/index.html",
+      "bytes": 1395,
+      "sha256": "16c24e54c23fe90daf69b980e5fb974d777fc5aabdaf9832e84e94dcd97b8135"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/deferred-masaustu.png",
+      "bytes": 73224,
+      "sha256": "cab8b778148faa212a7fd68e68af9f566ad9b58a85139a11d7fdca0e49886b29"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/deferred-mobil.png",
+      "bytes": 61380,
+      "sha256": "fe469b07cfe62dd3287c317f2144179e4efebe421c83fb2a247ae3f8db2ac38d"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/dil-koyu-fr-mobil.png",
+      "bytes": 56442,
+      "sha256": "f346166bd59aa8194a5881ebbee0f4438aafc5d6df8e9da5d2e01e5e8c6ee3f4"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/firstsaved-masaustu.png",
+      "bytes": 66517,
+      "sha256": "148b247de81d139059e4aba776b32a53abace038219393010a2717d867a5b3c9"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/firstsaved-mobil.png",
+      "bytes": 54457,
+      "sha256": "ebb30174710891bd38d2d3c1802c5129956de9e87b4de4271802ea5ff201ef32"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/firstword-masaustu.png",
+      "bytes": 62771,
+      "sha256": "6686847a8008069e4b6c2590ffab8deaa6159f8e3a723f57f6ebef18b2c3a476"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/firstword-mobil.png",
+      "bytes": 50885,
+      "sha256": "840ddd74df7a6d3779a4114e795ffd9c945b2942ff5b279440c2f4fbc9ab1371"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/hedef-koyu-en-mobil.png",
+      "bytes": 72679,
+      "sha256": "e2b22eebe1475efa408b280b6f4209cadf945498cff4f982255854d67cdd8cf8"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/karsilama-ilk-ekran.png",
+      "bytes": 62696,
+      "sha256": "50edec8759df888d379f3e46e83c738bf7f8ae367f9ce6b2f2fb0c01a75e25c4"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/language-masaustu.png",
+      "bytes": 124427,
+      "sha256": "62a3c7637232dafd7fe6b4026dfa8aa108846c00c61e34d6f2e7bca6267c092f"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/language-mobil.png",
+      "bytes": 49481,
+      "sha256": "990518656197b79bfebc13cdf33ed142f21df05fb7e897a058b01548116d2c2c"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/noname-masaustu.png",
+      "bytes": 146018,
+      "sha256": "99618d6cb8451d0f70299a48c78ee334643749d8592e8943d09371cadb37d572"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/noname-mobil.png",
+      "bytes": 69033,
+      "sha256": "3198f7ad18e90728fc4973031bcc27a5866d3a4fdda9f2f0c1ae2aa318771c49"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/placement-masaustu.png",
+      "bytes": 81705,
+      "sha256": "c65cc639accc0b8d72843c4a887a097981699295d40c1c67e60689f653afca7e"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/placement-mobil.png",
+      "bytes": 68543,
+      "sha256": "ba67ef3b2ce4504feb305664124108cdcad691185ffc491794f2219ca91d011b"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/preselected-masaustu.png",
+      "bytes": 127800,
+      "sha256": "37828844e6714a336a4468bf2f83bf1c4964ebcda82865db26ed4cdb582ca2a7"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/preselected-mobil.png",
+      "bytes": 54172,
+      "sha256": "fd653ada8f41da90bab378601cea5fe7cf2626ae335aac4ea45d2e9dab4c4274"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/target-masaustu.png",
+      "bytes": 144689,
+      "sha256": "27d96f8b9a66a204c6b5477fa8600dfee434d12cf5d977f3f2aecd5b7a5d41f3"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/target-mobil.png",
+      "bytes": 68312,
+      "sha256": "0c03b9479fe104717b9de7d52be47d83d6d34911a5b2bd747f84e741747b45b2"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/tasarim-panosu.png",
+      "bytes": 247614,
+      "sha256": "d2ae52186a96ec55d9950c8d812d89a0c0fa2359297a43e2a13619c99a94a8ae"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/welcome-masaustu.png",
+      "bytes": 127876,
+      "sha256": "9bc5bf117cb45c3caf0c25674312e1ceb733c110eda73a89b48f724a916a0f89"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/onizlemeler/welcome-mobil.png",
+      "bytes": 76431,
+      "sha256": "1e562c2a72036a74f7dc34fb9df721462ddc31dcd3e63c352ed840311a69c66e"
+    },
+    {
+      "packageId": "diloloji-ilk-kullanim-01",
+      "path": "tasarim/ilk-kullanim-01/style.css",
+      "bytes": 10993,
+      "sha256": "0cc54f7cbe3a7931484b4dbf0727440887c64928ee704b1341d2a05994013aa2"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01.zip",
+      "bytes": 1471478,
+      "sha256": "c7d39658f316124ab09e4a15869b4d5a43b5453fce329a46481cacc7b26ae43a"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/BILESEN-SOZLESMESI.md",
+      "bytes": 4096,
+      "sha256": "79242e20945d1279bee3cf2471cb730cc6e3d2a4b8e951029a53ac28a2840452"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/CLAUDE-DEVIR.md",
+      "bytes": 4837,
+      "sha256": "cd4ee5d90f8be82b43a99bae2ac2b0a2b0d2ddf46abe2f0bfeaa300f5388560f"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/DOGRULAMA.json",
+      "bytes": 896,
+      "sha256": "ace00bb180f89ddfb10890b2f266a4cb717f6c1e84f1008855b3bf7981b1ee62"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/DOSYALAR.json",
+      "bytes": 5126,
+      "sha256": "e2020f1d17cac84e10c019deac75b6a84f6f62d5f4f0441af7e8141270400e9e"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/DURUMLAR.json",
+      "bytes": 3222,
+      "sha256": "0e0de79adca0556fcb5487240e30b78ae955e875368fb8e3517990b4a8f2cd3c"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/KAYNAKLAR.json",
+      "bytes": 920,
+      "sha256": "921457c4d62ffcb3bca9896c13278733dca3a7959103e235111696cc58843193"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/PAKET.json",
+      "bytes": 464,
+      "sha256": "9e965b151667c652417b8032e51ac68db2815945a3ea15829aa2cc2fbdc936b1"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/README.md",
+      "bytes": 3091,
+      "sha256": "af23ae8f5fbe3329f8f19a566baf7f16a4fc0586036b1d9ca265a529894c2cfe"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/app.js",
+      "bytes": 18271,
+      "sha256": "90fdedfb0e20b15b81a0723f25195f1381a8ce3bdadc164aa17c8371b7d4717b"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/assets/LEXEND-LICENSE",
+      "bytes": 4384,
+      "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/assets/LITERATA-LICENSE",
+      "bytes": 4506,
+      "sha256": "9895ebc015226accf416b758ac1ca02a2fb4f83a89d316791ef697c3dc0852aa"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/assets/lexend-latin-400-normal.woff2",
+      "bytes": 14476,
+      "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/assets/lexend-latin-600-normal.woff2",
+      "bytes": 14856,
+      "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/assets/lexend-latin-700-normal.woff2",
+      "bytes": 14808,
+      "sha256": "52dcdaa127bac4a5ea4c39ee17a3f454ceacc18d9f2a45cc453eeab68d378588"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/assets/lexend-latin-ext-400-normal.woff2",
+      "bytes": 13144,
+      "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/assets/lexend-latin-ext-600-normal.woff2",
+      "bytes": 13680,
+      "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/assets/lexend-latin-ext-700-normal.woff2",
+      "bytes": 13708,
+      "sha256": "5ae459b6dc29461eab9f02d0ff4395d3842d6bdf280e8224a79ab2667e65ee2f"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/assets/literata-latin-400-normal.woff2",
+      "bytes": 20420,
+      "sha256": "a60c193b55766b68b922e2327e15c2d8c145532f283a27c3411b9c47a8583d18"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/base.css",
+      "bytes": 10894,
+      "sha256": "9488c24a4c408b0a31afbd07f6a8278924702d474780bcaf7f9f902eed05e4a3"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/durumlar.html",
+      "bytes": 2038,
+      "sha256": "19c28f8914620508f9fc1ccea093dc48bf77eb29cf327ea8f1102d668c69a3dd"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/icons.js",
+      "bytes": 786,
+      "sha256": "891cad5be070d87880a16b2c7d82c1e67da880b90706f85d424d683312fe5022"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/index.html",
+      "bytes": 2467,
+      "sha256": "3d3edb5a506c20f6ebb733c8bfd06edbc29f8abc401ecf4c664fb9f5fd62c878"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/onizlemeler/dinleme-masaustu.png",
+      "bytes": 129657,
+      "sha256": "b51c660543799a66588c5c5245ae8e80beccd537274d9c36e89dfdc1dc7490c3"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/onizlemeler/dinleme-metin-mobil.png",
+      "bytes": 82628,
+      "sha256": "99e55cb53ed373c016d8ada55968447d3d7b8e76b28e453b968d51898fa4d040"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/onizlemeler/durum-panosu.png",
+      "bytes": 240469,
+      "sha256": "a7aeb4ac0fa754d7af96c3af42ef3cd60f551fc2c97202d5028d342ed5a46a40"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/onizlemeler/golgeleme-masaustu.png",
+      "bytes": 132713,
+      "sha256": "c466b43a74365f1600d4e4c7091b0acb4e42a8ee90dcfff6efe7caddcdb8d545"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/onizlemeler/kelime-kaydi-mobil.png",
+      "bytes": 69297,
+      "sha256": "1a3ba9b40d8777de1c9571b48afa3865111349c21f519aabee9bf19b2996bc8d"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/onizlemeler/mikrofon-engelli-mobil.png",
+      "bytes": 86571,
+      "sha256": "c24016ca24e97f53740c1d90648b074d4661c36196f6fae885d2daca6b2cf9bf"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/onizlemeler/telaffuz-hazir-masaustu.png",
+      "bytes": 127126,
+      "sha256": "32a72cd13b7fb517f2f98ca58459dcd76aba249269b84eb9a730667c0911c047"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/onizlemeler/telaffuz-koyu-en.png",
+      "bytes": 160151,
+      "sha256": "87dd52e5fbe3f607ffe4b255884ca6690a37ee509e998e0eb4abb046b6b42eeb"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/onizlemeler/telaffuz-koyu-fr-mobil.png",
+      "bytes": 107074,
+      "sha256": "8fe8847d3ca424ad4de6a7303b8d2cfe989e601cbe6031fe29b4a493ed853bc1"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/onizlemeler/telaffuz-mobil.png",
+      "bytes": 106486,
+      "sha256": "464b506be36b5eb2b5e9f9982dc03d6e02ea69d0f489aab9f6f4f0f1300dd381"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/onizlemeler/telaffuz-sonuc-masaustu.png",
+      "bytes": 153049,
+      "sha256": "8b76697895d3fb72e54d599762a7b86d05cf0b8be101871487d84a88ec7cc733"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/states.js",
+      "bytes": 2643,
+      "sha256": "c0ef7deab1e70b83b67500e4d193b793be3b7e9d7cea92e29183d769e2fb3ae8"
+    },
+    {
+      "packageId": "diloloji-konusma-dinleme-01",
+      "path": "tasarim/konusma-dinleme-01/style.css",
+      "bytes": 11049,
+      "sha256": "a0bccba3a60c1349fdb8964d3246978c714ee3689265210514024c475f048517"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/CLAUDE-DEVIR.md",
+      "bytes": 4436,
+      "sha256": "5fbec99d1fb24e6ca1cf6350adfd5801e092795593ed79145973803da154897d"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/PAKET.json",
+      "bytes": 1209,
+      "sha256": "8bbf92c531fbd5a62a06618002b9ad27914c3038aeec38c430ce45c5371100c2"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/README.md",
+      "bytes": 1399,
+      "sha256": "ba4729340d9cccd93fe4e571ca3376d68072aacfc851d3160847c8e5652bfa36"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/gorseller/01-aciklayan-monki.png",
+      "bytes": 1247361,
+      "sha256": "f9ae3d5cacc12910d30c8ef9c4e1089cba3cfe96b87aaabc38f09dcc104b3125"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/gorseller/02-dinleyen-monki.png",
+      "bytes": 1083023,
+      "sha256": "877f1232d74204ef304637dc4ac89b2d7db66bd7bc825ffc061993dd6cf9f616"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/gorseller/03-birlikte-tekrar.png",
+      "bytes": 1086324,
+      "sha256": "ab4815a3f51bc11ef8ca911fd8e023b0e5d0b97f492049a779382cdc37badd6d"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/gorseller/04-tekrar-hos-geldin.png",
+      "bytes": 1005636,
+      "sha256": "5f07c22ac8e8fa7bd95b8414bf7a2f70628409b7399d1f465e1ac3a711fe1671"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/gorseller/05-kelime-bahcesi.png",
+      "bytes": 1198550,
+      "sha256": "2e9f1a68436a4d949372a78d09c933ede4490d1fccb4b1df4518af1a59fb4f5c"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/gorseller/06-ilk-iletisim.png",
+      "bytes": 1134863,
+      "sha256": "3590f6de9cf325b85d51829da48ac5ca03fb7fcd689f6a94864828725d13ebbc"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/index.html",
+      "bytes": 6108,
+      "sha256": "d0ada93e55af7e7b216be505d7e8baf78d08f33aea901f502356049fd2a222fc"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/manifest.json",
+      "bytes": 2768,
+      "sha256": "fb98448729f253d45691c46f4fa35a553d0cf05a4168d71390033cf5b420acfd"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/toplu-onizleme.jpg",
+      "bytes": 257839,
+      "sha256": "ad4b146cfc4c731624628f54de1a24a03d93161e4b472ba69cbd713704be68c9"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/webp/01-aciklayan-monki.webp",
+      "bytes": 63620,
+      "sha256": "610571297dd45bbbf38569d0c6a9c01ad340ee722db28aac9b144b0c958000da"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/webp/02-dinleyen-monki.webp",
+      "bytes": 54660,
+      "sha256": "0d92b4b354333cba309c6c6ac367ed7e702be9aafe0bffa847a07cdf690c52c7"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/webp/03-birlikte-tekrar.webp",
+      "bytes": 51480,
+      "sha256": "a60c03f53c33433a202a83e94c2bf97c8c073594dbed2869b3b96a1d878bbfa6"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/webp/04-tekrar-hos-geldin.webp",
+      "bytes": 61784,
+      "sha256": "3c4f194a0662f107f528275c4b9d18a69be84e4d2fbc0fd8af9aba3f9c4aef3e"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/webp/05-kelime-bahcesi.webp",
+      "bytes": 68522,
+      "sha256": "e655e457b55dba6d2f5ca923b42eba9aedcd4f46d7b7eb5ac9ee3ad88c4ba2e4"
+    },
+    {
+      "packageId": "diloloji-monki-01",
+      "path": "tasarim/monki-01/webp/06-ilk-iletisim.webp",
+      "bytes": 49276,
+      "sha256": "592126392f8f3f901103b5b7b349a66b2b3866c73301ca4d8a2dc27e198e9590"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/CLAUDE-DEVIR.md",
+      "bytes": 2636,
+      "sha256": "8e90152f6d6e793313bff3092d9302346945eed7d38ad1e1e6b5abe33faaaaff"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/PAKET.json",
+      "bytes": 941,
+      "sha256": "614c9ea0231d4f18e5f3611c59ec21c4d354633de893f0cb7775c4508fa1c936"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/README.md",
+      "bytes": 1428,
+      "sha256": "c1d4add9e00c51c086362d69478f409a39d2f1eb8224ca43f286f280a54da3fd"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/animation.js",
+      "bytes": 2830,
+      "sha256": "dfe2612d7e3edcd474ed7d5dc87c61685167a8353157db81107ced569bf148b2"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/assets/arm.png",
+      "bytes": 461020,
+      "sha256": "1d6dd9b55f993255f72284a7d753cd2c207c056cf423411849d9c5b1a6519663"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/assets/body.png",
+      "bytes": 732016,
+      "sha256": "30945504dce3f916890f05565ab21fa6caadb01bca21cea629e0a111ab79c808"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/index.html",
+      "bytes": 2113,
+      "sha256": "3211e6929c0447ee06a7e0c05f5ee6c13292bb1124201394317cf7d5b543c907"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/left.png",
+      "bytes": 625880,
+      "sha256": "9f0a7ec23606c3ca963f58c9ae197e8fafdb9b68be858695693d80b4f4911771"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/monki-wave.gif",
+      "bytes": 244127,
+      "sha256": "ed23a3bba1ce8dd5c6cb5fd253e0ae166cbd5e3b3d3491c0047fb61bbb6e0d4b"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/monki-wave.mp4",
+      "bytes": 41341,
+      "sha256": "6d95ea076dca031c085e998aa2e4c8c8b24e25c32876060d630cac9dc73eecdf"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/monki-wave.webp",
+      "bytes": 273030,
+      "sha256": "3b073e488f09690c3088239714a47336c6b17af86b8399ac89aec6a5bf02aa9e"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/neutral.png",
+      "bytes": 612549,
+      "sha256": "2d5916d3e63c19dd36451553dcd834a93f0ec90508adb03c8f5ca35c0c5d505b"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/rig.json",
+      "bytes": 758,
+      "sha256": "28820b128d1dbd5c77038422b93d5711e6de4c86bd1d0af57c4dc033b021951e"
+    },
+    {
+      "packageId": "diloloji-monki-animasyon-01",
+      "path": "tasarim/monki-animasyon-01/right.png",
+      "bytes": 605457,
+      "sha256": "e94bcbd0583fe3b247da9d4f584f24e43966fd2c33b782fa7236c33c30d195e4"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/CLAUDE-DEVIR.md",
+      "bytes": 6268,
+      "sha256": "b3f79f5ba1c4ec88d58bbb859d5928aa667180adb54018f1df9959e7d73828ff"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/PAKET.json",
+      "bytes": 1734,
+      "sha256": "e69806b2947c238ed8fd81c86164b0b14950ddb97cb5fb178ab400372c5c2b24"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/README.md",
+      "bytes": 1436,
+      "sha256": "9a84455a37c769959fc742768d679943d77c32cabf6fdf862f6188f1dace3d3c"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/envanter.json",
+      "bytes": 95069,
+      "sha256": "26ac92b7b865ca5aa5f719e827f396a1c5392a10ef0aaa642b65f45cfd54caa6"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/inceleme/animasyon-kareleri.jpg",
+      "bytes": 173335,
+      "sha256": "2b9107e800efe7d17b3c283d3a8320787b7fa818956b0cf5babfa614247fd816"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/inceleme/sayfa-01.jpg",
+      "bytes": 595901,
+      "sha256": "ae2578c61bd1a94796ce602407b99bfff7d41d855c2387c37fd95b732fb2b1bb"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/inceleme/sayfa-02.jpg",
+      "bytes": 532006,
+      "sha256": "2ecfa316fe855d75698d1292ee400d41d4e7d086319fc5bb87add04210e2d762"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/inceleme/sayfa-03.jpg",
+      "bytes": 601600,
+      "sha256": "c0f2cea7ae2250c8978db1b79d86ba63c93b897c797c2706c6ae027a3630be23"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/inceleme/sayfa-04.jpg",
+      "bytes": 688513,
+      "sha256": "0e14e5cfbbf419dad130a85318c0b7fe9822f2d5cee6eebdd515c7a3a0155e3c"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/inceleme/sayfa-05.jpg",
+      "bytes": 560875,
+      "sha256": "3eef2781f8ccf7453d9b488fb03a4eb2a001be4cd62f1f27cb440c3bdae6a0ed"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/inceleme/sayfa-06.jpg",
+      "bytes": 589096,
+      "sha256": "8e90c3d6d4acd18aa71c073667e630ceabe621adee121f5133e514559ab17867"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/inceleme/sayfa-07.jpg",
+      "bytes": 77527,
+      "sha256": "1947ae8498ed66fa0f53111ff10156a90fecf300e160436c3f7225de0d9ff8d7"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/index.html",
+      "bytes": 13559,
+      "sha256": "509f297043a6d3f4dcd708dccef6548ec4b0e339c0530c3ccf009f9fb0aba70d"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/karsilastirma-01.jpg",
+      "bytes": 242750,
+      "sha256": "0a63beaea49e4498c64a7371e5401f0408bbb8f726a439c3b386139d08c52340"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/karsilastirma-02.jpg",
+      "bytes": 236887,
+      "sha256": "b35c1e4e9ee5bf00933667839c3f9330f4cc70feea38f3090f39302c295baf7d"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/karsilastirma-03.jpg",
+      "bytes": 266708,
+      "sha256": "7d0257412b1cae354aec7b67e1def12485fcafc89ee0d5cc544c6c989126975c"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/cefr-monki-a1.webp",
+      "bytes": 19964,
+      "sha256": "4563f1b9cc632bde452b712b2dd780b2fae9bc66567a6a3d0e895b08a79ffc6f"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/cefr-monki-a2.webp",
+      "bytes": 14286,
+      "sha256": "e99014e6e5978732dcd2f79a10f459b78c4cfced989630a02a6cca3d0883b3df"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/cefr-monki-b1.webp",
+      "bytes": 22504,
+      "sha256": "695ee6f8a03700b55cbf1c6a255bb1c5cb950d7df7ddfa9c9f432e43a7d7f875"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/cefr-monki-b2.webp",
+      "bytes": 14004,
+      "sha256": "0e1d90e807f100c066a5492a3717904b873da09463e1610f949c7376b5dfc30e"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/cefr-monki-c1.webp",
+      "bytes": 24122,
+      "sha256": "5d1ea6f8ec93374149454c0c326de0e88adaa3114c1acf7bc0a17b1096a2bd17"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/cefr-monki-c2.webp",
+      "bytes": 20392,
+      "sha256": "95301edc5ca2f817b8f9ac625fa1151f4f2e4bb4356ad1c455ef191a4507df94"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/empty-garden.webp",
+      "bytes": 20894,
+      "sha256": "df5d78fd4edf9dfcaba4a879be56a18bf6c677c164f7df0a85509aa494fbdfef"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/milestone-sprout.webp",
+      "bytes": 23674,
+      "sha256": "fc7bb7d56ea95e1c6f8c9934520223590db9d4b3c2e01e3571cd8e9e914af338"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/monki-animated-wave.webp",
+      "bytes": 45854,
+      "sha256": "f336af31886f5c6bb0c2ce0c53a14752031521c117d9ca6064997ae19493e4ff"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/monki-scanner.webp",
+      "bytes": 26738,
+      "sha256": "1bcd570aa8115fc15d0de6164e35d9f428bf56d3be931d002b97befdf9e5f678"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/onb-welcome.webp",
+      "bytes": 21932,
+      "sha256": "1620c4214a3ca6f3495ec7ea9927db7068586579e0668f5bb0ddde88777c6dbe"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/scene-journal.webp",
+      "bytes": 23880,
+      "sha256": "70744342759e3409bffc415304eeb3b34cd759b73824d31f8032fc38192dc264"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/scene-library.webp",
+      "bytes": 23194,
+      "sha256": "6d1a621568ab9cab4c1523e01dd5c2d0511f725bb08d37a1b95e8c4de0dbf67e"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/scene-search-empty.webp",
+      "bytes": 27916,
+      "sha256": "b851d2d0dbab4bbb39782e9c596bba7823cace59a5c000e0facbae353f04cd09"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/scene-sentences.webp",
+      "bytes": 25016,
+      "sha256": "4bd806996bec43bbb9292ffd9b835ca29a06f5f19491f559a0090d4b8f39d9f2"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/weather-rain.webp",
+      "bytes": 81736,
+      "sha256": "c0e2a43b0d7c58520d1d3d1391be4bc28c6a59cd6815cfff50d371bee61e58b6"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/weather-snow.webp",
+      "bytes": 87212,
+      "sha256": "dbeb1dd43430e5cf36f86608cef6fdd27f93397b07b3ad27a7c4319ef6c8ff15"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/mevcut/weather-thunder.webp",
+      "bytes": 71754,
+      "sha256": "62768af224c4f26fe198d3c1659ef429dcd6f5a7bad084a83d6f702149571ef7"
+    },
+    {
+      "packageId": "diloloji-monki-denetim-01",
+      "path": "tasarim/monki-denetim-01/yeniden-tasarimlar.json",
+      "bytes": 10285,
+      "sha256": "c7b89c41afd2e21c41080480312ebf53c8e882f83d3809bb1f9f25c2e133e67a"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/CLAUDE-DEVIR.md",
+      "bytes": 4815,
+      "sha256": "6c580bb9695b8b5831b1e2c6133c796f42b9a52bd3c0f66591360cecf404bd76"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/PAKET.json",
+      "bytes": 1849,
+      "sha256": "268ff015a4366e7471a1e5d3d0373582174b6384cebb6422ae43f39be75e289a"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/README.md",
+      "bytes": 1465,
+      "sha256": "8bda7f83dd26b3afc34dc056833355dd7b2876f307d11563d990e86efe9e5de9"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/anahtar-yok.png",
+      "bytes": 38044,
+      "sha256": "05436bf276768e3981668a33bc65b7fe0b7b0dd12a74b113630c2aa63407e1f2"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/LEXEND-LICENSE",
+      "bytes": 4384,
+      "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/LITERATA-LICENSE",
+      "bytes": 4506,
+      "sha256": "9895ebc015226accf416b758ac1ca02a2fb4f83a89d316791ef697c3dc0852aa"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/face-happy.webp",
+      "bytes": 13820,
+      "sha256": "8f6f518714a3c629fdd2d5718ae952dc686dcbd0be651652f621e6809aac8603"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/face-think.webp",
+      "bytes": 14844,
+      "sha256": "545d29406a392c48a8ad7df45326f102d069fcc449c98fc87f31bfb23d33d87f"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/lexend-latin-400-normal.woff2",
+      "bytes": 14476,
+      "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/lexend-latin-600-normal.woff2",
+      "bytes": 14856,
+      "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/lexend-latin-ext-400-normal.woff2",
+      "bytes": 13144,
+      "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/lexend-latin-ext-600-normal.woff2",
+      "bytes": 13680,
+      "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/literata-latin-400-normal.woff2",
+      "bytes": 20420,
+      "sha256": "a60c193b55766b68b922e2327e15c2d8c145532f283a27c3411b9c47a8583d18"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/literata-latin-ext-400-normal.woff2",
+      "bytes": 17616,
+      "sha256": "726e1239ef9ece4c26f06475f1d35419932e8b0ce0084451110a739dd36c7a14"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/monki-wave.webp",
+      "bytes": 26594,
+      "sha256": "f71ea39715e86c3b4751173ca283247c754a8a49dfe5289f83470251d9543323"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/role-cafe.webp",
+      "bytes": 19098,
+      "sha256": "a5b721b0c8afc9c9d4056deca07c436f95d2a9fdf465f75aee0fe34a371c09dc"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/role-directions.webp",
+      "bytes": 15600,
+      "sha256": "de2c29022dcc2aa5b7e213135334367341202c83248b022d3153f342f1d665f9"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/role-doctor.webp",
+      "bytes": 18372,
+      "sha256": "4d35fe27164ab98670547ebd29e990f0761aeea6b5f9de5ef123647e7e8e6bb0"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/role-hotel.webp",
+      "bytes": 15682,
+      "sha256": "b0481ac0d9b8c5e64deb0ab45336bd3559683c5ee8c84a8d986d17bb146bffa5"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/role-interview.webp",
+      "bytes": 15826,
+      "sha256": "ffbb189aeffa1cc555c475e7ba6b208ca2534e8ba29342e188a5615a57ea072e"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/assets/role-shopping.webp",
+      "bytes": 14742,
+      "sha256": "fbda1684f4753cda4cbd96671e81f24a54f5f5c67f4d821ef2e3657470e8a830"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/baseline-index.css",
+      "bytes": 362186,
+      "sha256": "a0633ba40c12b1ba8f53b66ebb6b2a421cb7fb54e69f402f5d4d8d355881aa84"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/baseline-lazy.css",
+      "bytes": 283243,
+      "sha256": "90634ac40aa9c4c2761fd6b2c09702b73bc3b634d2103f09671b28f7c4588ef4"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/baslangic.png",
+      "bytes": 44077,
+      "sha256": "f604125b4c9c10eea2ce58ba6506667bb710dc6a8ccec3a643b6c5b855bd900f"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/galeri.html",
+      "bytes": 3566,
+      "sha256": "22f03879b0f8b662791652647ebd447589c489823f3b53fbae501a1ca11d9f52"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/genel.png",
+      "bytes": 111157,
+      "sha256": "7553a1ab8a1be0b4bd5bc72064bfc192cf07ac07da911b47d49f0bb3c0fc2fc9"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/hata.png",
+      "bytes": 41434,
+      "sha256": "9b3412e32f258890df3018d13f6a1b5f138ec0248e64909ca7224365e85dba18"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/hatirladiklari.png",
+      "bytes": 46368,
+      "sha256": "b15dbbb9ffe69835e02e30057e4215eebf12afc1fe546e17ec6c907b2ad96458"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/icons.json",
+      "bytes": 51343,
+      "sha256": "d9e535c3726186346a67142abb018650f2ddc827a1785f420e4981f2759d8340"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/index.html",
+      "bytes": 5917,
+      "sha256": "39b68f354a3f22dc3cdbb5bcfb18322cbaefca801b042ae1fef4e68e35ac4c44"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/karsilastirma.jpg",
+      "bytes": 164724,
+      "sha256": "540831c582c5ee3c85e61da962262f9d39015846c575ed9f5cd223cbaa7e7166"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/kayit.png",
+      "bytes": 38803,
+      "sha256": "cd5a3175deffe4cf9d763ec5c92fd5908979187894146a799b14dfefa77badc9"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/koyu.png",
+      "bytes": 37763,
+      "sha256": "04e3e855241aef070610a5c89b50b72355401d59823e5a375b7b0b0c6064f5fd"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/masaustu.png",
+      "bytes": 36268,
+      "sha256": "a845982a992350d9ce7ebaa3a11498f45edb1b72cc0409fe473490956fac9ff1"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/mevcut-main.html",
+      "bytes": 4342,
+      "sha256": "be02558d960c7a45b25d91b35d8cdb578deed09e73f670048f303e3b295521ef"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/mevcut-main.png",
+      "bytes": 57826,
+      "sha256": "64c6c3a6d99999ef51433364f36854ee1f0dc587e34afd79dfdcc5975ade7b1b"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/prototype.css",
+      "bytes": 11138,
+      "sha256": "2f05f1df447c4970ded425fa9fe71e56aa11d4b582c160a885d0ac3268ec57b1"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/prototype.js",
+      "bytes": 11798,
+      "sha256": "528ee4a098559d01fdca7dd5f321334634360924eb6f18a832fd987fba21ca92"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/rol-yap.png",
+      "bytes": 94064,
+      "sha256": "a1dfc9a653d529f11e819f56fa35f1beb5d9e4bc06a70bd453dde4edd06e310c"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/sakin.png",
+      "bytes": 37691,
+      "sha256": "107f8719be435eaeb00d0fdf53f9608714f2a0c574bfe325683b63627977f574"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/sinir.png",
+      "bytes": 38999,
+      "sha256": "3232aecad3fea9a0db8a42a6ace5cf1adbe497cbe82da2792427e83710202909"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/sohbet.png",
+      "bytes": 36744,
+      "sha256": "be1b18fadbed1c39307a0bd74116328342051ab8c257e10e8fd7635d32e3e5c2"
+    },
+    {
+      "packageId": "diloloji-monki-panel-01",
+      "path": "tasarim/monki-panel-01/tur-secimi.png",
+      "bytes": 47311,
+      "sha256": "01afd4642e21f2353faf09b64c3601edae287dce4db2bf884c957ecfc3f7fc0f"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/CLAUDE-DEVIR.md",
+      "bytes": 3294,
+      "sha256": "999cb36ee565d9c0cf127c2c6dd8beb5d25e3d38e40b79d00b63618d6b0e33f1"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/PAKET.json",
+      "bytes": 840,
+      "sha256": "58220f9cdee5f9b4cb6f566643ecb2cd5c2d6bff1a11ea98c08bf3f09e37523e"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/README.md",
+      "bytes": 366,
+      "sha256": "def338108860853a2ab4aa9b0b48cd6bf97f2601afa70a25941c438d1b0b6931"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/assets/arm-rig.png",
+      "bytes": 461020,
+      "sha256": "1d6dd9b55f993255f72284a7d753cd2c207c056cf423411849d9c5b1a6519663"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/assets/body-rig.png",
+      "bytes": 677855,
+      "sha256": "1772ab2eec5a5eaae360d1e011d57013ebc975d4e6d70c6a53baa79a20a56227"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/assets/monki-animated-celebrate.webp",
+      "bytes": 47274,
+      "sha256": "5fcc4f908c22e5eb5259a531761f9f1e29e7d316abd25f1e284c3a901385592b"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/assets/monki-animated-wave.webp",
+      "bytes": 45854,
+      "sha256": "f336af31886f5c6bb0c2ce0c53a14752031521c117d9ca6064997ae19493e4ff"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/assets/monki-animated-wink.webp",
+      "bytes": 39884,
+      "sha256": "86ca1ffc19db37cfe4a0a9f915cf56986af5e0bcbee3bf57ded64aa82731debb"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/assets/monki-video-listen.webp",
+      "bytes": 22198,
+      "sha256": "f2cf7b80c991c3adacf19f16afe15c441656c0fa508363c8677933ba41ee559e"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/assets/rest-arm-source.png",
+      "bytes": 732016,
+      "sha256": "30945504dce3f916890f05565ab21fa6caadb01bca21cea629e0a111ab79c808"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/celebrate-active.png",
+      "bytes": 584292,
+      "sha256": "6464175db229cd8ad54d42795584d30754a1c5021173c4c168e37ff49d53507b"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/celebrate-neutral.png",
+      "bytes": 621502,
+      "sha256": "7f170ed285b74ff6e2235b2c5f63be23d4f79b335519a3b10480aab871666999"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/index.html",
+      "bytes": 3980,
+      "sha256": "b32ef16232d7f8b4ff72fc0f72850434525ac65f29193a7c61fc9849425d7931"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/monki-celebrate.gif",
+      "bytes": 302057,
+      "sha256": "4fc75206bf6e157710e49ebf03979c30dc623c2bbdf51337d03c737e3cf77662"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/monki-celebrate.mp4",
+      "bytes": 56383,
+      "sha256": "c491c4bbe3bf3f867cfd8a718f5b200d1215ca6cc41de2576a3e125903e4c71b"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/monki-celebrate.webp",
+      "bytes": 286146,
+      "sha256": "ca9828265da7d079254993c0fa376ec146d605a041ddac1d550b65dd4b56ce50"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/monki-wave-v2.gif",
+      "bytes": 218721,
+      "sha256": "dd969c0d7c10c127395e251de72c819563cf4e527622f5ed3372d4843e11ed92"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/monki-wave-v2.mp4",
+      "bytes": 40305,
+      "sha256": "d814b32bae7d4b56ab9fe25c117772742501b7c6f3192d03ff16c0af3bd71c81"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/monki-wave-v2.webp",
+      "bytes": 268268,
+      "sha256": "32929339cce823e9a7a016a129d6454bf672ce5bef95e96312ef0b69da1d0329"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/monki-wink.gif",
+      "bytes": 69755,
+      "sha256": "8907640723bbd7ec7e30f99aebc065cc570d6014f3d7b61f73e5c76e4ef71f85"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/monki-wink.mp4",
+      "bytes": 26268,
+      "sha256": "d093035e1242e819613907145d3e64702f36bd2c3867c37453b8abc4739bf2e9"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/monki-wink.webp",
+      "bytes": 42070,
+      "sha256": "2bafacbb80b89c7f905f55bc0513994a118645c98ad81e4ea296907045f94a00"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/motion.js",
+      "bytes": 5258,
+      "sha256": "893f6ee43859a6b678deea1638ecfaaa26ec180c483dde56fb6414239fe63961"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/toplu-onizleme.jpg",
+      "bytes": 104705,
+      "sha256": "8c68d090ed335f5840cdd2c68256c93a8791b9f898b4e1d823f92ed801940624"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/wave-active.png",
+      "bytes": 616123,
+      "sha256": "4310a693c65e687513f8878cd35c35d4941873a1b634ac5c0e6cce2a570f43e4"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/wave-neutral.png",
+      "bytes": 605589,
+      "sha256": "da700b555d61ccac41cab899b95b71500cf751d593de121e8311d4df3c99ec35"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/wink-active.png",
+      "bytes": 582221,
+      "sha256": "d4037d467608e2a95e6fa3ca0a5effcb3979d86f48a541a4eeca0bef943c487f"
+    },
+    {
+      "packageId": "diloloji-monki-son-rotuslar-01",
+      "path": "tasarim/monki-son-rotuslar-01/wink-neutral.png",
+      "bytes": 582936,
+      "sha256": "7c908af964fb80edc3482247bff17d073b881c973da96a8eea22e4aac4e94d9e"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01.zip",
+      "bytes": 5828400,
+      "sha256": "e22755836dbef4261f0edc518b195f55aebe327a69bc7f503802f96b4f9d8dc0"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/CIZIM-ENVANTERI.json",
+      "bytes": 3292,
+      "sha256": "cd0cd4e1bb835bb00b6ebbfcdca7193f74dfc7e04d29a235a30fe17441005b71"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/CLAUDE-DEVIR.md",
+      "bytes": 7046,
+      "sha256": "dc5f262cfb12fe1446b5a869b482437174f2a15b2a81a54e809557457bd0497e"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/DOGRULAMA.json",
+      "bytes": 818,
+      "sha256": "0c42580642d3ab8c5bf994fdeb2655b8cbb1b1c13a68857a0afe15c021538405"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/DOSYALAR.json",
+      "bytes": 11708,
+      "sha256": "03d9502cd01aca88a46c34b8aeb994c8d89dbb6186b590d008088d8632ef2e07"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/PAKET.json",
+      "bytes": 602,
+      "sha256": "b682aa81a000932e685ed99cd4d6ddd06123e1298a066f5f05662cbe2df82c5e"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/README.md",
+      "bytes": 2417,
+      "sha256": "3d58b7a4a4fb2a5566f4db78b4ec6c8a02b7df681df1302a57cf99b25ef4f831"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/app.js",
+      "bytes": 14832,
+      "sha256": "e3ef64b0f5dbd4729899df71597b1e863db30fc0b289c6528b2c137fa468a3b7"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/LEXEND-LICENSE",
+      "bytes": 4384,
+      "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/LITERATA-LICENSE",
+      "bytes": 4506,
+      "sha256": "9895ebc015226accf416b758ac1ca02a2fb4f83a89d316791ef697c3dc0852aa"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/badge-book.png",
+      "bytes": 159963,
+      "sha256": "87ae12efe2f6a12dcc54ba205422ae8801049350200a7e651aba2f89ca01e3b6"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/badge-book.webp",
+      "bytes": 25152,
+      "sha256": "6e345e0f35f7bd6d265febe2edee1dbc15b65cd3c15d29cdebbc2b5221ed19d6"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/badge-chat.png",
+      "bytes": 161203,
+      "sha256": "da2cd9e4989da2373e9975b3661e8ec0c6aeae9eeb784a7f7e93adc3ed367601"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/badge-chat.webp",
+      "bytes": 23570,
+      "sha256": "c4f9e3cefa6efc29863511614809add9c3319306ce19cf0208d627db774baf99"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/badge-compass.png",
+      "bytes": 178304,
+      "sha256": "151497b9023dd9ab81e5bdd7cb297481c7c85bfd9162e2511d85f566d1186185"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/badge-compass.webp",
+      "bytes": 29172,
+      "sha256": "a7998450d489c457d6b34dc7952536015d85db83f1cc6d5691c31b9cba2f817c"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/badge-flame.png",
+      "bytes": 150578,
+      "sha256": "0f693280e70e8ffe816c50802755ab56940804c83d563204114aee49b1e8985a"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/badge-flame.webp",
+      "bytes": 23488,
+      "sha256": "d5c117967c2147196eae81a9f2a978737c563dc5116d93bfd5843b3b2d093b86"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/badge-headphones.png",
+      "bytes": 168355,
+      "sha256": "6936fe4cb9a9a220ad25a02f8d775d5e50239c867bc462e2e014862bcd905f35"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/badge-headphones.webp",
+      "bytes": 26584,
+      "sha256": "47f41f1eef19062f301b47f87f8c17d47dc6ccb23191de6c847688d83e5177e5"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/badge-sprout.png",
+      "bytes": 158151,
+      "sha256": "ab2b0e7d492759fcc5595378f449d550ac6217507f54b1d5433481077f88a687"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/badge-sprout.webp",
+      "bytes": 24716,
+      "sha256": "36ac45c07767a9771e064fe52f5a8067ebfcbe370e4b0edc7d04c46c206d1eb4"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/empty-done.png",
+      "bytes": 139203,
+      "sha256": "6771a54ac569684f5e18e468e280aed0098b08c508172702113bdc2dee235de1"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/empty-done.webp",
+      "bytes": 23490,
+      "sha256": "78aab6bb9ee4f30e2a3b7e3bb464807c7be7e0678b78a79e46ef1e6c211e3d96"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/empty-error.png",
+      "bytes": 106504,
+      "sha256": "3a02bdbed78e53d87cf35c30956cc1d8d60e954170277f3a6c9ff705db95e5ec"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/empty-error.webp",
+      "bytes": 21614,
+      "sha256": "74adb5ea7bec392978ed02447235728c9425262c1c3258f7a75887f1edf903f5"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/empty-first.png",
+      "bytes": 127775,
+      "sha256": "7ae54dd32007e82b5c199c6bf845f1d3bb4873a8ed78da8bf779649ce354ba86"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/empty-first.webp",
+      "bytes": 25212,
+      "sha256": "45f344faf931348e4432ad6759d74ab9adbaee6a7b73ca04d218f2fe50a688e1"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/empty-offline.png",
+      "bytes": 106932,
+      "sha256": "2baf2d238f070845bb00489f04aadde7a11e4238f5088039e3d7d732c8b5f80c"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/empty-offline.webp",
+      "bytes": 22748,
+      "sha256": "a00af01933366b638da42fe157a7a190c4da7a708f51773367b9c25371b46ffb"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/empty-search.png",
+      "bytes": 124159,
+      "sha256": "3eec92440e31ba01dd57c6e8146267da5a7a8745d3121e85bb53734c9b18cb81"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/empty-search.webp",
+      "bytes": 21804,
+      "sha256": "dda506fb641a769a277294f6e08a5d067108922c4e33307efe143e5cbe08eed6"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/empty-sentences.png",
+      "bytes": 90938,
+      "sha256": "aeb7327bc977af638ed0daf74f0672d9ea7822a0aa33236709330e1d3d9f3989"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/cizimler/empty-sentences.webp",
+      "bytes": 15076,
+      "sha256": "1a3db511e1b876ae1bbd2dfbddc82da76c815f7448ab691ae9d8bb37b9a91e2f"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/filiz/stage-0.svg",
+      "bytes": 5957,
+      "sha256": "5e3a1496cc08b0f2404470435cec13010afca24b22a19b23e5d00bbc4e144ab2"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/filiz/stage-1.svg",
+      "bytes": 6152,
+      "sha256": "a652f8a258d72c9f55f5a39ccfc0486a8a2f7c911dad09a27f57828cd03a9e9b"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/filiz/stage-2.svg",
+      "bytes": 6040,
+      "sha256": "d0a16377a602aa2721493e7554ce9f6231a2bf17a4a3d49539e14a0c1d723f04"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/filiz/stage-3.svg",
+      "bytes": 6143,
+      "sha256": "fbc7751800f05a13ffda46d95959f88e5959911c4e9cec9741561e7e9f08e803"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/filiz/stage-4.svg",
+      "bytes": 6051,
+      "sha256": "ec450ada9b4e8b062a9da4ccc6eae8a68d1b40b638dd2460507c97ebeb7cc230"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/filiz/stage-5.svg",
+      "bytes": 5910,
+      "sha256": "5f4c675f5e2ea54db86f2a7b3bdd93f9c4efb89592e90d3a1e7b2638830a1717"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/filiz/stage-6.svg",
+      "bytes": 5893,
+      "sha256": "e1dc596e1bf90efb1a0359673a08ea8a4f4551fcbd8972e5bf8a6955fb019948"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/ikonlar/practice-idioms.svg",
+      "bytes": 228,
+      "sha256": "e59596519926e08d2e23c76ec3344a37ad9ad1ace7f35be633b2686de349249a"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/ikonlar/practice-listening.svg",
+      "bytes": 229,
+      "sha256": "8bcee53b51eebba8ce6cae0306d55a7f1aee09b0fab5f33ea925cb9bc5521589"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/ikonlar/practice-matching.svg",
+      "bytes": 294,
+      "sha256": "4c7ba2e0e2000a4cda45eeb37c454be00a58b89058cd170bafbe0056b443d589"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/ikonlar/practice-reading.svg",
+      "bytes": 246,
+      "sha256": "108a6b66bb61d2455b99ee1c05486cd524cf9c0e68bb818c4d628581929f921e"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/ikonlar/practice-review.svg",
+      "bytes": 215,
+      "sha256": "094aabf1ecbbce69e3ce992a5aafddb14e50992e07959cd5f2ac2d3fd8300031"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/ikonlar/practice-sound.svg",
+      "bytes": 240,
+      "sha256": "075e8685a62054d7224f02ca31baebdeef00980febd7e07a7965e7d8b807e116"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/ikonlar/practice-speaking.svg",
+      "bytes": 261,
+      "sha256": "cfd43b7ceb412820ae1ec19106aa867587deb7dea64ce9dfe606f21d12ef059d"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/ikonlar/practice-writing.svg",
+      "bytes": 219,
+      "sha256": "8ca6585be584cd9cbe1a5252d0a67994d105d44a996b073705ff6cf2bf0bcad7"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/kaynak/KAYNAK.md",
+      "bytes": 966,
+      "sha256": "164f11d451433ba8db45f8ff8e4f52eede042ed0acd389ff9e19eaff9867796e"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/kaynak/rozetler-ve-durumlar.png",
+      "bytes": 1523317,
+      "sha256": "785415996dfc3a5701e0b08c53c6b3c7c91c33fbe0a66a4a0708371f5b9975b4"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/lexend-latin-400-normal.woff2",
+      "bytes": 14476,
+      "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/lexend-latin-600-normal.woff2",
+      "bytes": 14856,
+      "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/lexend-latin-700-normal.woff2",
+      "bytes": 14808,
+      "sha256": "52dcdaa127bac4a5ea4c39ee17a3f454ceacc18d9f2a45cc453eeab68d378588"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/lexend-latin-ext-400-normal.woff2",
+      "bytes": 13144,
+      "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/lexend-latin-ext-600-normal.woff2",
+      "bytes": 13680,
+      "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/lexend-latin-ext-700-normal.woff2",
+      "bytes": 13708,
+      "sha256": "5ae459b6dc29461eab9f02d0ff4395d3842d6bdf280e8224a79ab2667e65ee2f"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/assets/literata-latin-400-normal.woff2",
+      "bytes": 20420,
+      "sha256": "a60c193b55766b68b922e2327e15c2d8c145532f283a27c3411b9c47a8583d18"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/galeri.html",
+      "bytes": 3266,
+      "sha256": "fd7395219b437b97b7db72b1e990e8d9134a024f6f096f71b6db15fd822471ea"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/icons.js",
+      "bytes": 786,
+      "sha256": "891cad5be070d87880a16b2c7d82c1e67da880b90706f85d424d683312fe5022"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/icons.json",
+      "bytes": 790,
+      "sha256": "43942953d1e6ca4207c7ba14a841b3077647fb04d3c612f2239b07b09ed6a064"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/index.html",
+      "bytes": 1443,
+      "sha256": "59af595d2739125ca4e49143359be4a0af2f555ee5341fde09656cad835b2545"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/bos-masaustu.png",
+      "bytes": 185770,
+      "sha256": "47ec7a625abd355e784b56f9d31e2a5b2cbcc2d3d03a5ab4ba202c58171e3971"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/bos-mobil.png",
+      "bytes": 189444,
+      "sha256": "9457a1236340125ce7f217000d53a702c0e559c2818ec1124ca37377de76015a"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/filiz-koyu-fr.png",
+      "bytes": 189730,
+      "sha256": "c8da7134a04447ea823837ff5c7ad29e1bbe957e41e81f55b957f30ca2ed7ebf"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/filiz-masaustu.png",
+      "bytes": 189030,
+      "sha256": "44a09332bbec52763e9698a763f7ce5afb5c7e2e91218de825d34c8a08b75a31"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/filiz-mobil.png",
+      "bytes": 127053,
+      "sha256": "a8229275b1815adf4ef702c18eeec8183c79edf264c6b672fbe6689e1360f56a"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/kart-koyu-fr.png",
+      "bytes": 120958,
+      "sha256": "cd0ab5969c608bcdb46ff63ddb9d77e9317225b1a68dd65907d78b1264e393d0"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/kart-masaustu.png",
+      "bytes": 108824,
+      "sha256": "9d53f96b110145a3dac1938a1fb08f8d9c6188e82e556df8cb588ecc0e2b7bcf"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/kart-mobil.png",
+      "bytes": 95375,
+      "sha256": "ff1ac247cb3ceab3569f37c1d1d66d01623ed0778e4c4531efc41b499cc792e7"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/pratik-masaustu.png",
+      "bytes": 90033,
+      "sha256": "fe944b24aaaa435cc7bea9feba5a01de895f036e032773418e525f3fdb21792a"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/pratik-mobil.png",
+      "bytes": 80983,
+      "sha256": "04708d885fe3920770d03567cb89400d4d95388e6af2dbe209267361117821d0"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/rozet-masaustu.png",
+      "bytes": 207364,
+      "sha256": "61f86b76908e164a9ae915db0764db850cefe11f43b5a3cef5f1d10e136813cd"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/rozet-mobil.png",
+      "bytes": 191422,
+      "sha256": "4597de4bdbcca2751a4e214e1a74307d537c5b00a21dc57878cb7fe79b795631"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/sonuc-masaustu.png",
+      "bytes": 102965,
+      "sha256": "2c13d19ce5957874257341514a9b256dbdc4201b44ba745a3d979be781782a3b"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/sonuc-mobil.png",
+      "bytes": 85692,
+      "sha256": "5be4fd18ddab61e0cab144fc3f663397fefbb4fe86dfc103cdc41da7d78a7767"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/onizlemeler/tasarim-panosu.png",
+      "bytes": 382771,
+      "sha256": "46d72395523114dbe0e106ebca4d4720c7153146e6eee5520407dde56d9ede58"
+    },
+    {
+      "packageId": "diloloji-ogrenme-deneyimi-01",
+      "path": "tasarim/ogrenme-deneyimi-01/style.css",
+      "bytes": 10894,
+      "sha256": "9488c24a4c408b0a31afbd07f6a8278924702d474780bcaf7f9f902eed05e4a3"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01.zip",
+      "bytes": 2373384,
+      "sha256": "3259a26d509d14c0d2d3c7b9561fd4bf774e3599158a25e2eff0def04f58ba31"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/BILESEN-SOZLESMESI.md",
+      "bytes": 4031,
+      "sha256": "706bc70b4bd6b573f3380f1064cea1063f79b113eea0c3f208a3156000adea73"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/CLAUDE-DEVIR.md",
+      "bytes": 4969,
+      "sha256": "b23dba141767416dc69e3682dcdaa71a47f67533f99d8494df54b518faa29ea1"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/DOGRULAMA.json",
+      "bytes": 1095,
+      "sha256": "1bef3f415abe3261296700814a7d8f3fd2e4cc8d6b4888078573940c4068d8ab"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/DOSYALAR.json",
+      "bytes": 6001,
+      "sha256": "c09c350007e9310a2ed1502f1704cd254db74462f594b9afb1c7318ec1add87f"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/DURUMLAR.json",
+      "bytes": 1389,
+      "sha256": "7ce50778116c7d61424d2c7bdd6a3fdf5a69796bb653fc42c699e8e10395eb31"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/KAYNAKLAR.json",
+      "bytes": 1207,
+      "sha256": "2ccd1b9df9716cbd5186fcb5717d19842bbcf763da437c410798ba144aedb1b4"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/METIN.json",
+      "bytes": 5301,
+      "sha256": "204d4e09d02838ba05be9e77b722e6a99e44651673cf423348c2435f2e738fdd"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/PAKET.json",
+      "bytes": 459,
+      "sha256": "b1d38e96f94f2c77f07cef284ab49c26b4ff09e99b42354e996cc5cbeaaf771a"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/README.md",
+      "bytes": 2728,
+      "sha256": "0e32d60b01e4825acc9c462296b960ba92e88885e41283cdd21b4a77383cb7bf"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/app.js",
+      "bytes": 28025,
+      "sha256": "b2705188c9fd7f5d5e589c147ea7b63c767131a6cf9f090553848c867f475c06"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/assets/LEXEND-LICENSE",
+      "bytes": 4384,
+      "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/assets/LITERATA-LICENSE",
+      "bytes": 4506,
+      "sha256": "9895ebc015226accf416b758ac1ca02a2fb4f83a89d316791ef697c3dc0852aa"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/assets/lexend-latin-400-normal.woff2",
+      "bytes": 14476,
+      "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/assets/lexend-latin-600-normal.woff2",
+      "bytes": 14856,
+      "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/assets/lexend-latin-700-normal.woff2",
+      "bytes": 14808,
+      "sha256": "52dcdaa127bac4a5ea4c39ee17a3f454ceacc18d9f2a45cc453eeab68d378588"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/assets/lexend-latin-ext-400-normal.woff2",
+      "bytes": 13144,
+      "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/assets/lexend-latin-ext-600-normal.woff2",
+      "bytes": 13680,
+      "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/assets/lexend-latin-ext-700-normal.woff2",
+      "bytes": 13708,
+      "sha256": "5ae459b6dc29461eab9f02d0ff4395d3842d6bdf280e8224a79ab2667e65ee2f"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/assets/literata-latin-400-normal.woff2",
+      "bytes": 20420,
+      "sha256": "a60c193b55766b68b922e2327e15c2d8c145532f283a27c3411b9c47a8583d18"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/base.css",
+      "bytes": 10894,
+      "sha256": "9488c24a4c408b0a31afbd07f6a8278924702d474780bcaf7f9f902eed05e4a3"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/data.js",
+      "bytes": 3834,
+      "sha256": "cae39329168e73e709b46b5997b93a65653bf455612ad8bc498af06279986c21"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/galeri.html",
+      "bytes": 1599,
+      "sha256": "dc6d281a649a7f98a9a87e29eba15afe187d6e84b53bde7aeaf74db1222ea591"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/icons.js",
+      "bytes": 786,
+      "sha256": "891cad5be070d87880a16b2c7d82c1e67da880b90706f85d424d683312fe5022"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/index.html",
+      "bytes": 1726,
+      "sha256": "cb2aaa83691ae0667af70a396343fae56bd8109306d8fbf53b212650c040e54c"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/buyuk-yazi-mobil.png",
+      "bytes": 402204,
+      "sha256": "11a67997ec1543f030d31515314f3f7aa18f2a19d37e79fbbb06b8b61f5d6154"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/complete-mobil.png",
+      "bytes": 51803,
+      "sha256": "ed287f823cd2347a5595a81c9a604b42e1492e9f8d12fa07b8c670c81a1c58bd"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/dictation-mobil.png",
+      "bytes": 82834,
+      "sha256": "537abc81e5284d0aa9b5931a5aa7a3a389d10b367f74c2e6fd174924c47d7202"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/dikte-masaustu.png",
+      "bytes": 133864,
+      "sha256": "9d6c9654fdac946c0c6d7ffb4b784d07a25ba8e637cd4658d765751c0cf1d85c"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/empty-mobil.png",
+      "bytes": 41843,
+      "sha256": "12e7189c7aa26afad69e2687ed26e46353eac16374e701a05b132676baa9b279"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/error-mobil.png",
+      "bytes": 39809,
+      "sha256": "d9c329fc688015e173e19182e44d4990398f0187bc47bd2b081cfad1c8ccf594"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/kelime-koyu-fr-mobil.png",
+      "bytes": 59039,
+      "sha256": "81a379a889f9458441b4f6debdcf90df3351338c8557dc399f1ba09b2f862a87"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/kelime-paneli-masaustu.png",
+      "bytes": 228030,
+      "sha256": "78ce6a8fb8588401cffaee44c96d6d76aa7ee3b18319533c21ebc42e75fae968"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/kutuphane-masaustu.png",
+      "bytes": 122278,
+      "sha256": "c5c1438acdda4cf5d834f6b7db79eba79ad454ab06d89ae99efcbf5ac1d3dda3"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/library-mobil.png",
+      "bytes": 153910,
+      "sha256": "5fbc054be68cd85d426b5e4ffe322450a90c01c8ceab4317ba71de59ee3c6ea3"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/longword-mobil.png",
+      "bytes": 66332,
+      "sha256": "2bbb3b39ca87aebc9d94041c2c7b615a87ef90ea4b06a2b8177e2adf6ef972b7"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/multi-mobil.png",
+      "bytes": 203940,
+      "sha256": "16751975c60fc635f9df27389acf3796b6974e14d07cea7871e44a79da1bd2f8"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/okuyucu-masaustu.png",
+      "bytes": 206902,
+      "sha256": "1fcfa8a7613c6f8274c75749c08f0a99c05998b43fcfa33dc6ffadf59d465e23"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/tasarim-panosu.png",
+      "bytes": 216435,
+      "sha256": "50381ad01190f7c4d8547caa8d48339ae106d367d1300dbe7ecf939785e86563"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/turkce-masaustu.png",
+      "bytes": 264843,
+      "sha256": "2bf88e99cad66439049b6819af63dd1cda6535fc7fbf78ecd187c9bb8d9373c7"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/onizlemeler/word-mobil.png",
+      "bytes": 64453,
+      "sha256": "edc64509006633e7872f56eb3abba2aa9df41e855264b553ab9a76f43f9ccf58"
+    },
+    {
+      "packageId": "diloloji-okuma-deneyimi-01",
+      "path": "tasarim/okuma-deneyimi-01/style.css",
+      "bytes": 15325,
+      "sha256": "7c2062ee359c4e77720f747426ce0170a7ecda9bac07ebec2acb6a63a1f5ffd5"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01.zip",
+      "bytes": 11598550,
+      "sha256": "6e763031e5473c968d12cfba76b27e4bd1bba5e2b48c328b1f0d8cccc34a5f10"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/CLAUDE-DEVIR.md",
+      "bytes": 4689,
+      "sha256": "a056e04fd6f508a05a5922c4d71f2a71f9046263c9832d765812a022e111bd13"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/DISA-AKTARIM.json",
+      "bytes": 3232,
+      "sha256": "97ab39052e4f78de195dec24354c87722395d355fcbbce6453573bfb02ace628"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/DOGRULAMA.json",
+      "bytes": 762,
+      "sha256": "cd26beb49ff3c74469bb646dc13dede1f3986af39635ee8a89d18dfeb29a8ff0"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/DOSYALAR.json",
+      "bytes": 16272,
+      "sha256": "6bf55bbfc6bd24e4c8deb33327fa2fc14ee8a279f4a77bf1bb08c4251e733cba"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/ENVANTER.json",
+      "bytes": 77241,
+      "sha256": "b3a5ec082b956717b7492fe2d6b56bd0c181e0e4ed345fcb33e07e6cc6eb19f3"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/PAKET.json",
+      "bytes": 483,
+      "sha256": "c8e2a2c12b10ca44340e3c8a98bc9276a177ee41d18ec1b640b8fc95ebdd4622"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/README.md",
+      "bytes": 2786,
+      "sha256": "81f932d63020d0f85707b6aa3435236e930c25b69f5aab4d0ced4ae2c52d203f"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/app.js",
+      "bytes": 3626,
+      "sha256": "dfdb8ef16b992c9b7a941c57486b99d8f2181ac36842069204f52761b103f2dd"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/LEXEND-LICENSE",
+      "bytes": 4384,
+      "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/LITERATA-LICENSE",
+      "bytes": 4506,
+      "sha256": "9895ebc015226accf416b758ac1ca02a2fb4f83a89d316791ef697c3dc0852aa"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/kaynak/KAYNAK.md",
+      "bytes": 769,
+      "sha256": "23f1fec3c78f835c6a9141d41cee5046d4e543f7e269815f82d2262a86019338"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/kaynak/rozetler-12-atlas.png",
+      "bytes": 1980871,
+      "sha256": "42512345622fe1f5f043b2a94be001b280234a92fb8c9b3d831ca5a250ca4616"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/lexend-latin-400-normal.woff2",
+      "bytes": 14476,
+      "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/lexend-latin-600-normal.woff2",
+      "bytes": 14856,
+      "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/lexend-latin-700-normal.woff2",
+      "bytes": 14808,
+      "sha256": "52dcdaa127bac4a5ea4c39ee17a3f454ceacc18d9f2a45cc453eeab68d378588"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/lexend-latin-ext-400-normal.woff2",
+      "bytes": 13144,
+      "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/lexend-latin-ext-600-normal.woff2",
+      "bytes": 13680,
+      "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/lexend-latin-ext-700-normal.woff2",
+      "bytes": 13708,
+      "sha256": "5ae459b6dc29461eab9f02d0ff4395d3842d6bdf280e8224a79ab2667e65ee2f"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/literata-latin-400-normal.woff2",
+      "bytes": 20420,
+      "sha256": "a60c193b55766b68b922e2327e15c2d8c145532f283a27c3411b9c47a8583d18"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/emblem-bolt.webp",
+      "bytes": 8710,
+      "sha256": "89f249eb5ef704b459cff472885102e12e0dc35ad58009dd8ce7a55ca71d50fd"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/emblem-book.webp",
+      "bytes": 11508,
+      "sha256": "d9fb0e9c8c871f152c1f66893a44cfc9622f5011081a5aa2d3f776da9a28a086"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/emblem-chat.webp",
+      "bytes": 8764,
+      "sha256": "61967bba379220c876f1bfa80f97767fedb157de9d6972a74616a4df7db6ae2b"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/emblem-flame.webp",
+      "bytes": 7538,
+      "sha256": "2c940fe3f955f2d9932042f52eb5a8d3dba3d156cdedaefd9d1816975df01bb7"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/emblem-mic.webp",
+      "bytes": 7860,
+      "sha256": "d34f9081e80d3bb1a48dc29743bd494465f0bc23ee96aacebea6bc1d6502e555"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/emblem-sprout.webp",
+      "bytes": 8174,
+      "sha256": "8c42609508de51658fe488364a936cc44882315d7e3ed5c8323cddcf727b7444"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/emblem-star.webp",
+      "bytes": 8568,
+      "sha256": "29983f8e2b818be58890c71b1dc463b1d9e6278e6b454ad6022d4f8abd55b3a5"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/emblem-trophy.webp",
+      "bytes": 8556,
+      "sha256": "37a10cecd03d4ce81215e6998c6dd419bd11766400343b889f4ab2f0e780ad27"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/guide-passed.webp",
+      "bytes": 17868,
+      "sha256": "5a2a76569fc27a9ac42b547980be9c8116bb62bbdca10d4b91eb792dafc764f8"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/guide-review.webp",
+      "bytes": 17460,
+      "sha256": "9a008c42ee0fc02c7cf8c5f6fbd72fbf64c3b16c9e821d45b389db3cfc58ecf2"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/guide-teach.webp",
+      "bytes": 15990,
+      "sha256": "02a14535e1cbccd9ad8dcd03766d33c887ca15e4a38147131b1012d18015e4a2"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-bandage.webp",
+      "bytes": 9104,
+      "sha256": "add47ac787e7568732dfcf798ee81aadaacaf588623cdb194e1821c1c51dc743"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-beach.webp",
+      "bytes": 8944,
+      "sha256": "8e2866ab77efc7dc976c01aeebd48853ee639a52a34a206a30653c11aafdb53a"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-bolt-watch.webp",
+      "bytes": 8910,
+      "sha256": "a1c1f5ca8655d8cb7f0dbc35419bd725dd31a45f66d855525794be3a8c4aef2d"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-books.webp",
+      "bytes": 10752,
+      "sha256": "5780cd3983b2a1844bbf6302fbc2755b5ac81511b0354440a4136ccbe1daa0f7"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-bulb-note.webp",
+      "bytes": 8630,
+      "sha256": "7206649afe798e76d65e7cb760f48138a7df081429e03ff16d9a7b3eab6a80c7"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-calendar-check.webp",
+      "bytes": 7892,
+      "sha256": "087c1e811f04e4ed021022b95df08ebf7ea2511253de1a87df03790b5f306809"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-cards-plus.webp",
+      "bytes": 8822,
+      "sha256": "097449435dbd3b4c7088154305f707378009e84486e8db3bf43feb30612b28fe"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-clock-loop.webp",
+      "bytes": 9220,
+      "sha256": "9606ed6e8194a2757412b53a689d976dc45bca02e142791c7340cc0daa161fb2"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-compass.webp",
+      "bytes": 10794,
+      "sha256": "bc99d51c429d4c435910150cd61f3c2badbe028c9bdd081c640c09ad49e7a6c0"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-daynight.webp",
+      "bytes": 10726,
+      "sha256": "b8a6d03b7d422090aea062040e1ccc920e860e79a3115bd1972323e8f8e9bb14"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-diamond.webp",
+      "bytes": 11520,
+      "sha256": "0a8eed0dbe7ac9f6d86c51e573b5045ce19f52c3d4996ad358af3696e141f5d0"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-dragon.webp",
+      "bytes": 9382,
+      "sha256": "e5892f99057d4958a634ed28efa1d42418cba372b09b102241b22244b91f27c6"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-finish-shoe.webp",
+      "bytes": 8770,
+      "sha256": "64eda969174c22ea4080d489ba9232bc873796cb24fbd6a1f2c5e2b4e382e106"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-flag-rock.webp",
+      "bytes": 8374,
+      "sha256": "380ffde5a29e5579d7ddd4b1f75b837660167e67d8ad7d762c0385658fb9a601"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-flame.webp",
+      "bytes": 9222,
+      "sha256": "34dc4e4532e604709cd0c6dd39c90676a3645f7a206ad08c0b73d3ac709162da"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-frame.webp",
+      "bytes": 7974,
+      "sha256": "69cd2f940dbd7134137b49b5c368ff8534164d427290d1b18a035ac8e236d3fe"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-gear-quill.webp",
+      "bytes": 9472,
+      "sha256": "36f387317d9b552fe6218f8069163d60e7b46eaebf2de5badcdf1611fe620a19"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-gem-check.webp",
+      "bytes": 8456,
+      "sha256": "c5236f3eddb7f5cf87ac74d8c3828a7ec7339d95fa9917cd8e09c093ca74e9e4"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-headphones.webp",
+      "bytes": 10374,
+      "sha256": "d0b855135adef8fe461128ec69485a130b812018988c0ecd204e5b3fe60d0ba6"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-hundred.webp",
+      "bytes": 10190,
+      "sha256": "7a502f2ad2f965c187cd40a8aec3a52f283280a575188ecaac73ff1e6edeb612"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-lifering.webp",
+      "bytes": 9182,
+      "sha256": "53aeb094c7393a909400c3b8ce9c48bef82808029851bbbebc0974baf678fba7"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-lotus.webp",
+      "bytes": 10552,
+      "sha256": "4d277d0fc925c45201ef84e66a7822eca89aebb5953ae6ddc8cecc0a8ee11317"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-mic.webp",
+      "bytes": 9402,
+      "sha256": "0879783ed2540ffc5004eeb0f82d4a6cf0dabaf7d898b00b154103aa011a51dd"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-notebook.webp",
+      "bytes": 7930,
+      "sha256": "313c7e4e4879d017b0504171a6ea780185820f08f94cd77c817f0104a1e19fef"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-peak-gear.webp",
+      "bytes": 8462,
+      "sha256": "f29cec733c8b6d0862be70961e0da25c3971e9e5b91bc5dd223b983669ef90b4"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-peak-pencil.webp",
+      "bytes": 8182,
+      "sha256": "7d34e845cf22dbd057ee2c03031e41fc2b78a988ed978305d66f5f836ad7696c"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-phoenix.webp",
+      "bytes": 9680,
+      "sha256": "d2d6355773b63705603cd39d8da32f3ae2b776268f5c766980d77dbe8f24442c"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-roots.webp",
+      "bytes": 9178,
+      "sha256": "9bb748cacbaee898fc0f3a4949944c1e79ab805de874f755ac5e18c5f799718f"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-sprout-book.webp",
+      "bytes": 8868,
+      "sha256": "480f48ae17da9ccdbc4313086311931c1ec435bfe1fbfe9e90cecc24470bcedf"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-stone-bolt.webp",
+      "bytes": 8082,
+      "sha256": "e831084ea6daa2a91553474b8946ab7f869fe100b44dbaef82dfe52b7dee78ea"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-sunflower.webp",
+      "bytes": 9504,
+      "sha256": "7569ac3171859fa53d7df3dac18717f1caf587c24c4aa442999fa50d1290daa4"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-tags.webp",
+      "bytes": 8504,
+      "sha256": "2e4870d575b5b5915751afc1c0156efd013bef70df6d22e98a348f119011723d"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-three-flames.webp",
+      "bytes": 8672,
+      "sha256": "d19bf0964543c6a9b50317ec1131bf62f2bbeca74ce74c33b80cf1518f1ea8f5"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-trophy-stars.webp",
+      "bytes": 9068,
+      "sha256": "ec67fc0f2722f7f04a8394c77563265290f6900503f56fa9792e314cfc5b2685"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-vine-pencil.webp",
+      "bytes": 9240,
+      "sha256": "e746f9921f08ecdc73cfab2442c1f5300dc659c60dd5340c28d4247315afba3c"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-voice.webp",
+      "bytes": 8862,
+      "sha256": "af5b94d6b9fd6341dee1bc58a671c1e424cf1b03f2122519f7a28ba53e748c35"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/mevcut/medal-week-flag.webp",
+      "bytes": 8416,
+      "sha256": "30d5d18fbac565def772161dd5c588ac8fd66beb8bf5d6004b736c405e57f183"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-combo.png",
+      "bytes": 204688,
+      "sha256": "d8e784120fa96b1455f5d91f5af3aacaf4f6bae4f85563b8f98470ef229cdb9c"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-combo.webp",
+      "bytes": 32716,
+      "sha256": "35d50f0aae2bd7f46b4ab7ae3ffeb2c6b4c7d0340cc766cead4e534eb06fd0f6"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-comeback.png",
+      "bytes": 198634,
+      "sha256": "a1061f451b5f55af71d6dd780f8afe647cde1df69ee56a046aca7a22f167faf0"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-comeback.webp",
+      "bytes": 31752,
+      "sha256": "8d73170325c2fda75b16ae70b6c13e528db7307e09d4bb402bba4a15d30653cd"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-conjugation.png",
+      "bytes": 188606,
+      "sha256": "712ca4dcb5968c093b90b37ceae27f0cf525691db4eafd3d398313a51b202a81"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-conjugation.webp",
+      "bytes": 29742,
+      "sha256": "4a06c7d13ae448e6eabcb7d2b8b31fbff85f188120a4121c66787f3212cd6fad"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-dawn.png",
+      "bytes": 179048,
+      "sha256": "ad51b3518fdb282bc74064c85c787d7611f1bf56cd426555729efcf4595a9cc6"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-dawn.webp",
+      "bytes": 26696,
+      "sha256": "9c5fdd6f624184862961ec1eaacc6713600de49a5c5a955bb13381930b46615a"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-forms.png",
+      "bytes": 203524,
+      "sha256": "8ecff2cdc973f90084f8f8dbcadb25d9e136b50dfad409262ce997d2215f1240"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-forms.webp",
+      "bytes": 32742,
+      "sha256": "dc048d3b5188cf60bf533a9dff7ed927e310947a244c889dd9db7cc8395801b7"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-guide-cert.png",
+      "bytes": 188463,
+      "sha256": "271a44e2e051a2bcc4861f7fcc4e85616a59f89d68210b42e7c094c47be7fb11"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-guide-cert.webp",
+      "bytes": 28898,
+      "sha256": "322602105995b447ddde5f00fd91e57353aadaa5741d7d1eb261d9f52110d7a7"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-guide-lessons.png",
+      "bytes": 193319,
+      "sha256": "c31212f4e5b20ee1f0a1603c2c5fd7c6dde5074bfd0444ed92ca21c4585bc687"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-guide-lessons.webp",
+      "bytes": 29798,
+      "sha256": "a123ad22012a6f5e21598c0ef405c35eff21722364961ca38875c3653d93c992"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-guide-placement.png",
+      "bytes": 188038,
+      "sha256": "eed628c44a6915d5f7901ba5bcdd350ed80a4decd90142a837fcb7444e33effa"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-guide-placement.webp",
+      "bytes": 29786,
+      "sha256": "7328dff757d229cdbf5962dd5b04af052720e1810a1b628959fdb7e6ad2df84b"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-night.png",
+      "bytes": 182212,
+      "sha256": "e8f7725512fb3653d07b1183697f0c1bc9f87494ff76ab0b82f014a25b4dfd62"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-night.webp",
+      "bytes": 29214,
+      "sha256": "c494adc2c81c159ddb643f1f22410b5adce217259240ef8001c2911c201431e7"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-sentences.png",
+      "bytes": 185654,
+      "sha256": "080e19f0ac355c4d2d8022712944e42dce3cafd2089d1bebc140e5919f99d23e"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-sentences.webp",
+      "bytes": 28868,
+      "sha256": "a7b4174ee25e38077b3fe3b4c469b910a6ba267ec1476957dd37f71c4d2924c4"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-typing.png",
+      "bytes": 178428,
+      "sha256": "d78c0192636a08fde2f24e3abc20b18ca3342909da0faf4dcd6aa74285cdbe94"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-typing.webp",
+      "bytes": 27360,
+      "sha256": "5973ceecfadb548201b4127bae8a45b4e7e3e96d8fef3cfe5286f6667e4e0e98"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-verbs.png",
+      "bytes": 197876,
+      "sha256": "98ef21c1b33b46cb7b8ce8a91a38df37fba358e4c56ffc4599c0bf314f20ac26"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/assets/yeni/medal-verbs.webp",
+      "bytes": 29598,
+      "sha256": "69642f389dcf53bee7b56049bc32be59f0707d7a685ca92887599142ba4b80bb"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/data.js",
+      "bytes": 56557,
+      "sha256": "062e47b33917d5703884e26b9d3888957abd56276459ebf4b5eb53471d841640"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/denetim.html",
+      "bytes": 662,
+      "sha256": "42892de790040d39191993b4d330946e2cb826d149b58f9cf53a6cfb97fcb079"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/galeri.html",
+      "bytes": 1033,
+      "sha256": "676910fa298e33d938385c16b7a415c7c7f235dd346150d775485f3a112faa19"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/index.html",
+      "bytes": 3394,
+      "sha256": "045f6ad7522899dd8abc49eb1eb88eddfa8b8ea6c6e1cb6d3a07992ce3911892"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/onizlemeler/93-basari-koyu.png",
+      "bytes": 1226836,
+      "sha256": "b8f31fd7428cdb8635de8df86e513f800fbcd6134b1e0ea80262775e9c66072e"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/onizlemeler/mevcut-48-varlik.png",
+      "bytes": 1090157,
+      "sha256": "7e1b0eec28392d648956f7fe3a9f5eba4e82c7e14d080b05c868477195bf53a6"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/onizlemeler/mobil-koyu.png",
+      "bytes": 551933,
+      "sha256": "5d34db3b782d4dfff861539e4cb4de3c8f0b31d7719fc7b9236a3745b90cfd0f"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/onizlemeler/mobil.png",
+      "bytes": 551689,
+      "sha256": "3f7aecb5f6cf8f975d89e52986002b58de239670145c3620ca76bd72e7e7a88e"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/onizlemeler/once-sonra-32px.png",
+      "bytes": 262467,
+      "sha256": "5fbfc4faf85f1d14afe3f2a4d487249b642bc85da545b081f4849f0b0662fbcb"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/onizlemeler/once-sonra-48px.png",
+      "bytes": 313217,
+      "sha256": "4dc10a447f0982e8174bccb4ba3d19ef1eb1d950360b16d527a11ed8b691ef73"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/onizlemeler/once-sonra-96px.png",
+      "bytes": 549786,
+      "sha256": "f1ca883511a4374bc70b6ae01a834a8be0b5962cf3aae5794ff81ea0995a5f72"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/onizlemeler/tum-48-inceleme.png",
+      "bytes": 1609999,
+      "sha256": "a04fd6ba8409a4d26bce8d7a9d395b914c33f2e7f5967922009f940ba3a70387"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/onizlemeler/yeni-12-rozet.png",
+      "bytes": 451858,
+      "sha256": "3b2fc2678f824121aec29b9c46f1c84f2c7e0d2bc76ed6a69c49d60c50e50470"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/rozet.css",
+      "bytes": 2755,
+      "sha256": "d3b2139dcdb345b705f0cb854dad2a15eccd0cf2d68c0b698b0c4f9f1964fde0"
+    },
+    {
+      "packageId": "diloloji-rozet-yenileme-01",
+      "path": "tasarim/rozet-yenileme-01/style.css",
+      "bytes": 10894,
+      "sha256": "9488c24a4c408b0a31afbd07f6a8278924702d474780bcaf7f9f902eed05e4a3"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01.zip",
+      "bytes": 22707,
+      "sha256": "83af44a8085bbd73e5075b9111ab0cbd0fc525afa518b751b59ebe159f578a9b"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/01-INCELEME.md",
+      "bytes": 2290,
+      "sha256": "39703b24660728b82606a1519f0e54590ab501110e0db49f0156dcd39348467e"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/02-INCELEME.md",
+      "bytes": 3028,
+      "sha256": "44679dd532e57c9d76a61c33174c208f7a6860868954a6dab805e3234b03e767"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/03-INCELEME.md",
+      "bytes": 2736,
+      "sha256": "d334634a1ef275c1c1bc53e8ba67c2f769c50a2ca2dce1d488e2070f602b6063"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/04-INCELEME.md",
+      "bytes": 2524,
+      "sha256": "de42387a2a91de50a90412cb7d7fba503d8c0841ce3dd81034657133402a9ff8"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/05-INCELEME.md",
+      "bytes": 3056,
+      "sha256": "4fc9f829a3899e078ca449b28fbdc375dabd13d0e2c0b734868f077ba03817ec"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/ALANLAR.json",
+      "bytes": 12983,
+      "sha256": "fddc381024c621d317b12d5878a30a3b62dc367b7baa27240bbe689e0a5feedc"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/BACKLOG.json",
+      "bytes": 9548,
+      "sha256": "081612f7ef673b27e91531d44108ae0c0642d6b8efd4700083df366594127587"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/CLAUDE-DEVIR.md",
+      "bytes": 1323,
+      "sha256": "7cdb45ebc3b7f24d5d616d0082bdbb133793d45bdc8e9eaa26bf711b136418fa"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/DOGRULAMA.json",
+      "bytes": 322,
+      "sha256": "aaff107eb6a3e7d880d48b7c2b78f56cf814ad2da70e81bdd4033f6e9754c4a7"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/IS-PLANI.md",
+      "bytes": 8625,
+      "sha256": "a35f57a864518ed790590bc7a0d2dc4ee35d2fd92117191fe7edbb8f37d51e94"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/KAYNAKLAR.json",
+      "bytes": 4098,
+      "sha256": "eb0ba86e718839576672c5642eb385ceb69271d1084b90342e868e3183044220"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/PAKET-ESLESTIRME.md",
+      "bytes": 1211,
+      "sha256": "03212c2c0f14b2dd45f66a497db0946521a8cb06eb42d9e3b5f68efa8644c190"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/PAKET.json",
+      "bytes": 250,
+      "sha256": "3cfe84188cfb7416a9ced285c17cd7fbda10daaab9d0752dc4680e37dcbd509e"
+    },
+    {
+      "packageId": "diloloji-tasarim-is-plani-01",
+      "path": "tasarim/tasarim-is-plani-01/README.md",
+      "bytes": 913,
+      "sha256": "e889cdf90847fabdc750e0c09271fdab4ac144646037487df824b50b2888a81d"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/BILESEN-SOZLESMESI.md",
+      "bytes": 1602,
+      "sha256": "3c1181d30527b2266ca15d51bb872d1a44139985911d0c484b2c7581e90960c4"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/galeri.html",
+      "bytes": 5576,
+      "sha256": "fe95cb25c841471ec27873a9e859ce5908abfb5f32b0eaebaf97d2143161d9f2"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/settings.css",
+      "bytes": 6320,
+      "sha256": "9d2fef6bf6556f5f021cafc4309de8f1246b14722de9b727ca0a66f6ae8782b1"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/DOSYALAR.json",
+      "bytes": 10093,
+      "sha256": "00a915e050036a83181c7d63754375b5d1e2dd697171f5e389acfc145887dc57"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/KAYNAKLAR.md",
+      "bytes": 1065,
+      "sha256": "bba0bb22c252d647cd3bf1869ac0ef503c447862f74f0036e65678319597c435"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/verify.cjs",
+      "bytes": 6173,
+      "sha256": "0591386337e3e31779b64c9e82d5d951b3af70cf8cbf1dc35eaf9da4e63f3438"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/base.css",
+      "bytes": 10894,
+      "sha256": "9488c24a4c408b0a31afbd07f6a8278924702d474780bcaf7f9f902eed05e4a3"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/DOGRULAMA.json",
+      "bytes": 1134,
+      "sha256": "85748e88971480a42e3e7ea9320e19477ddea558ff993da7fe8a180200109a8a"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/README.md",
+      "bytes": 2635,
+      "sha256": "d8ba734f341e4102ecd7a1ca04458fa94e55a74ba58b4fc6f73109afde867917"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/CLAUDE-DEVIR.md",
+      "bytes": 4256,
+      "sha256": "cc5e10f1765da371b2b822c31aa0c8497ef7e6c2ce451d8d2d5d9735a454efdf"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/verify-extra.cjs",
+      "bytes": 1693,
+      "sha256": "1b352bb4f457136b40b45ffeeeed23e605d1a3daf14640a8b941f1a4bf264b90"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/index.html",
+      "bytes": 2143,
+      "sha256": "c32b28501e3c7c5870479a162e9a61b1bad0ee4d4b9d997b52959852010255bd"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/PAKET.json",
+      "bytes": 573,
+      "sha256": "02f5ee90c53bc21f639ba1fd66518d069c144c961bf898aaa399fab3994b1c58"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/settings.js",
+      "bytes": 16035,
+      "sha256": "86670c0cc29567c1b99aa228189062b3c361b700a547aba5b1be49d8bf2abdc6"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/avatar-fox.webp",
+      "bytes": 22776,
+      "sha256": "41e7e7930aeea5e0fe4c42f39a45e929fe5d083adc8a81318a8c31ae95a6051a"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/lexend-latin-ext-400-normal.woff2",
+      "bytes": 13144,
+      "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/avatar-koala.webp",
+      "bytes": 19846,
+      "sha256": "27f2980e8b2872fcc5a583b3cfd54038bdf1091506ca346e54763de60e8f766a"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/literata-latin-400-normal.woff2",
+      "bytes": 20420,
+      "sha256": "a60c193b55766b68b922e2327e15c2d8c145532f283a27c3411b9c47a8583d18"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/lexend-latin-400-normal.woff2",
+      "bytes": 14476,
+      "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/avatar-panda.webp",
+      "bytes": 20384,
+      "sha256": "6b4822a9bb3069c4081b8c886f8f5c328f04ae434fdea644f37717897bc28d14"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/lexend-latin-ext-600-normal.woff2",
+      "bytes": 13680,
+      "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/avatar-cat.webp",
+      "bytes": 21396,
+      "sha256": "d93da75f10097003f8d8e164e369552d07f3c9e824ded6239b278acf1c3ff05c"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/LEXEND-LICENSE",
+      "bytes": 4384,
+      "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/avatar-owl.webp",
+      "bytes": 21830,
+      "sha256": "1b459f8e0caf05320014f45c49930680be3effce35638334f5ca16288fefe58a"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/avatar-penguin.webp",
+      "bytes": 20034,
+      "sha256": "81ac4ad8e1d134c80cad38e5efa12dba9deb7c829072656896b7f1f7fbe52846"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/lexend-latin-600-normal.woff2",
+      "bytes": 14856,
+      "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/avatar-frog.webp",
+      "bytes": 19110,
+      "sha256": "cbcb0fb8e81ced13ac614d3fda5c829c6b39b0316b910c66b2ea7bf0bd9e4238"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/lexend-latin-ext-700-normal.woff2",
+      "bytes": 13708,
+      "sha256": "5ae459b6dc29461eab9f02d0ff4395d3842d6bdf280e8224a79ab2667e65ee2f"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/avatar-rabbit.webp",
+      "bytes": 20444,
+      "sha256": "43a69c2a249ebdfc40ba53e0ed676fb818355d593a3c04d0b7f263fa6da6fc88"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/LITERATA-LICENSE",
+      "bytes": 4506,
+      "sha256": "9895ebc015226accf416b758ac1ca02a2fb4f83a89d316791ef697c3dc0852aa"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/assets/lexend-latin-700-normal.woff2",
+      "bytes": 14808,
+      "sha256": "52dcdaa127bac4a5ea4c39ee17a3f454ceacc18d9f2a45cc453eeab68d378588"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/search-mobile.png",
+      "bytes": 82566,
+      "sha256": "a8d6c19220619be9131f05bdf95182fc62a37f105a8b5322258e076ece7fceba"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/account-desktop.png",
+      "bytes": 85740,
+      "sha256": "a8dc4e92f5cfa20ef87c51e20c76cbdecc78501b4a406e523859c61f28601f89"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/help-mobile.png",
+      "bytes": 55597,
+      "sha256": "ea58b7fd2a205b5615a02f12fbc02d34f10a0c9fb17d683c060e92ea0f16e6f6"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/reset-mobile.png",
+      "bytes": 67691,
+      "sha256": "b5c4bcea06e0bfb5d9736a48a002ca884db3f41017ce0008d3495b1715547744"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/reset-desktop.png",
+      "bytes": 79315,
+      "sha256": "3b0a02a6abcc9f26dc1d384b1fd0ae7e8a7cd782c49989afb95511829334fbc3"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/look-desktop.png",
+      "bytes": 69655,
+      "sha256": "6b239c54d28161e08837b2e21e84e778ca100fbd5274a61c491809b402e3afdd"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/confirm-mobile.png",
+      "bytes": 41254,
+      "sha256": "d5f249dadd0ce8899bc7f3cd215caee6495557115eeb82ee6d5d62e6ac33dcc9"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/data-mobile.png",
+      "bytes": 70036,
+      "sha256": "883e9db2443c0d7f61b7f5f60410d4c3ec2c10523cea5c8236c0a32a263a0ddd"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/sound-desktop.png",
+      "bytes": 80799,
+      "sha256": "84c8dda5b59dc42458e26d52114b2b2dcc330c037525e8daecc8cfb1b017eb27"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/advanced-mobile.png",
+      "bytes": 74290,
+      "sha256": "00e667cf18675a55d525e3568a775646df483b4b82d0ab364604262fd3a40e39"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/remind-desktop.png",
+      "bytes": 66084,
+      "sha256": "5fab7d9c7665376d3265780ca1d02d81e5346b2a8297923d4e4a17dfb523fe93"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/answers-desktop.png",
+      "bytes": 70539,
+      "sha256": "9b85d11439216d4c8e574b9cc21d8d9399849c8a3f389ff8d8bf7584fbe263f6"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/confirm-desktop.png",
+      "bytes": 89160,
+      "sha256": "d354098e07584af96d9f6f78d6bfa696f52c98fbb63ae836494ccf585fadad3b"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/unsupported-mobile.png",
+      "bytes": 71032,
+      "sha256": "30c9ef9fc63cff2b670519ea445460d015f32baf35e43e4cc571272038d565e5"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/error-desktop.png",
+      "bytes": 89661,
+      "sha256": "70572de8c35e140143cb5123c4cf7c058509e5076b27c90f8a98a2958d452b78"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/sound-fr-dark-calm.png",
+      "bytes": 70875,
+      "sha256": "f1f838039af445e0559dad1922e6c97ea9f4c329df5a646d392847a56065ac42"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/help-desktop.png",
+      "bytes": 67572,
+      "sha256": "31082359ecf7efd7ac4e83df28ab66d0eb59ec1f9f77b6718a096b54eefaeb74"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/study-mobile.png",
+      "bytes": 65477,
+      "sha256": "020a2a2aa3582b3e0d9101b7b7df84493c5a2f8ca98c4fac6a7768e44c26fab5"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/noresults-desktop.png",
+      "bytes": 66748,
+      "sha256": "496aa06e963d42bcee1b8cac8355230ad3c767552bc7f05fe12c4ec2ef01f835"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/tools-mobile.png",
+      "bytes": 55146,
+      "sha256": "82cb5351a3b7e1a8d229533643d6cd5951cc7c22333aa9cbdf51b0a231d6c2b9"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/noresults-mobile.png",
+      "bytes": 54280,
+      "sha256": "432b37335732cf0897718a1969fc9ad356d6a1731740a211f9211863c4476ca1"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/sound-mobile.png",
+      "bytes": 68722,
+      "sha256": "cdffbf4d0ec31d2d2caf11529c6202cc6625ba1ed6d084da5cabde37f43f2740"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/study-desktop.png",
+      "bytes": 77236,
+      "sha256": "d5e0b5eac2b7bda9c183b7c56bd6b08dd6c21d140d824d7e22b8ffca0a44ec46"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/remind-mobile.png",
+      "bytes": 54271,
+      "sha256": "9ed009f7c6f052daa1c2dd62f46cf8822ba39ff3ceadb0b2feb51918fa978f64"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/profile-desktop.png",
+      "bytes": 168426,
+      "sha256": "546488020e890007f08e64cb27b05edfd4e5b2309cf144bb4e364b034190b1da"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/look-mobile.png",
+      "bytes": 58497,
+      "sha256": "dedca441b41f7811ed69401f9b64edf0dd8866bfa0a3c7fe2d8573e2b5af990c"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/profile-mobile.png",
+      "bytes": 126113,
+      "sha256": "de4ce73012a6513f0e29a20f49140ba00a6a80abb372d872d65cab50bb2412ff"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/account-mobile.png",
+      "bytes": 73564,
+      "sha256": "90f463c40a6dbef1293713b64adb17084587272691d968406527b8a8edf593f5"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/data-desktop.png",
+      "bytes": 80634,
+      "sha256": "c3f3f70a7d27157ef83923f3d84a7340bd363d8abbb88494d2fc9940cbb04f26"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/profile-es-dark-calm.png",
+      "bytes": 131213,
+      "sha256": "ff26bed5bccba3e1ed2addaeda1af99ede253a1be297f503735a32e560a3b625"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/search-desktop.png",
+      "bytes": 95692,
+      "sha256": "42ea0e89cf4ef69c56aa0dbf737c4406a8294aca38a0f757f2f85ddf234afcb9"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/unsupported-desktop.png",
+      "bytes": 82826,
+      "sha256": "b75100f6be2a6c185ede79c20aa20412475f8ef8095f69a69252fdae1a0a3257"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/advanced-desktop.png",
+      "bytes": 86530,
+      "sha256": "297a32c2c953f7762c2560216ad3569d40cfc67c5320e6c557383dddb89f12a5"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/answers-mobile.png",
+      "bytes": 59170,
+      "sha256": "62b75c7929367a4019d51d8b47267aa7065acae41de15eee6ffe2cdefc6007b4"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/study-en-dark-calm.png",
+      "bytes": 67378,
+      "sha256": "6242bd131af83c77c49435e56fbc5f853fb5494e4c73b07ed357a7724586ebe9"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/tools-desktop.png",
+      "bytes": 66667,
+      "sha256": "d37e6fadf6e85be627f9eac4cd9b306efc6b52b9f369e96e2fb4fc2a34dc90e3"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01/ekranlar/error-mobile.png",
+      "bytes": 79577,
+      "sha256": "7aa283423fc3f63b6536349a313b074f1d659183d94f6f8ea00d9582d40c2bbf"
+    },
+    {
+      "packageId": "diloloji-ayarlar-deneyimi-01",
+      "path": "tasarim/ayarlar-deneyimi-01.zip",
+      "bytes": 2989056,
+      "sha256": "d2484cf4f232c3a692a4fe951c7b26041695e15f1769a50b7b13f75ad4f943f9"
+    }
+  ]
+}

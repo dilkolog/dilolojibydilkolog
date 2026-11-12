@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-12",
+  "checks": [
+    "Sekiz grup ve ayrı Yardım",
+    "Arama gelişmiş satırı grup bağlamıyla bulur",
+    "Sonuç yok ve temizleyerek gruba dönme",
+    "Grup sıfırlama ve geri alma diğer grubu korur",
+    "Geri alma altı saniye sonra kapanır",
+    "Gelişmiş görünüm grup değişiminde korunur",
+    "Profil vazgeç / uygula ve odağa dönüş",
+    "Veri diyaloğu vazgeç, Escape, örnek hata",
+    "Desteksiz konuşma ayarı pasif ve açıklamalı",
+    "Kalıcı kayıt ve dış ağ isteği yok",
+    "Büyük metinde yatay taşma yok",
+    "17 senaryo × masaüstü/mobil taşma ve 34 ekran; 3 koyu/sakin dil varyantı; JS/HTTP hatası yok",
+    "Yedek araması Veriler grubuna yönlenir",
+    "Profil rengi uygulanıp yeniden açıldığında korunur",
+    "Tarayıcı oturumunda dış ağ isteği sıfır"
+  ],
+  "passed": true,
+  "notTested": [
+    "Gerçek ayar şeması ve kalıcı kayıt",
+    "Hesap, eşitleme ve bildirim izinleri",
+    "Gerçek ses desteği ve seslendirme",
+    "Yedekleme, veri silme veya geri yükleme",
+    "Canlı ekran eşliği ve ekran okuyucu testi"
+  ]
+}

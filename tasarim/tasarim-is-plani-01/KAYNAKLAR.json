@@ -1,0 +1,128 @@
+{
+  "reviewDate": "2026-11-11",
+  "reviewedRef": "origin/main",
+  "reviewedCommit": "b1c059bbedb911aa967e60759c1a46c801cde56b",
+  "liveVisualReview": false,
+  "sources": [
+    {
+      "path": "src/ui/account/AccountSettings.tsx",
+      "lines": 227,
+      "sha256": "ce8ecd9378505a7d675cafabfb5d244208f3606f79d871ad8e81593a8ac7f905"
+    },
+    {
+      "path": "src/ui/guide/GuidePlacementNudge.tsx",
+      "lines": 72,
+      "sha256": "73b0016f370c2727abf1426c0716a563ac095919e350bae1ecd494bb66b8c077"
+    },
+    {
+      "path": "src/ui/guide/PlacementView.tsx",
+      "lines": 291,
+      "sha256": "41f02a7ea29edb29d91eeebb05f9e7a9b69df89f4fee66294084114a696f3fdc"
+    },
+    {
+      "path": "src/ui/home/DayPlant.tsx",
+      "lines": 46,
+      "sha256": "6eb08e607ffd291b0ea639c34b0f0f8677c27540b77b292495495ea426450fa4"
+    },
+    {
+      "path": "src/ui/home/HomeParts.tsx",
+      "lines": 204,
+      "sha256": "0f4fdaddb597697dfedff7a6fae63979f404e69b3d29768843714488a6581cdd"
+    },
+    {
+      "path": "src/ui/home/Onboarding.tsx",
+      "lines": 219,
+      "sha256": "e0b47d49881032b34c9f012f02e5a2970333d4adf1c674bb60a0c5cebecbe497"
+    },
+    {
+      "path": "src/ui/home/Screens.tsx",
+      "lines": 777,
+      "sha256": "523e54961a6542f43477aec70692cfbefb5f846012eb30ffbcc9ff157de6fa2b"
+    },
+    {
+      "path": "src/ui/home/SessionResumeCard.tsx",
+      "lines": 25,
+      "sha256": "997c74257c9f85916931275ea7a24c061417c6a23af87f80e3a7c795d235863c"
+    },
+    {
+      "path": "src/ui/home/TodayTime.tsx",
+      "lines": 48,
+      "sha256": "127f62f4c03708ff7cf0c06a75f8daa03d8e2104cd7ae4ba523687c74f75f57f"
+    },
+    {
+      "path": "src/ui/practice/AudioRecorder.tsx",
+      "lines": 98,
+      "sha256": "7c3d9bbca7a99a89b0e98d5770e4f41d749f4fdf67cff71d83f7c38fb7ed434d"
+    },
+    {
+      "path": "src/ui/practice/Produce.tsx",
+      "lines": 713,
+      "sha256": "c023c1076e10e5dcb2f15cb55bb5d2680bb5a43c9d09d3b445b19539496df899"
+    },
+    {
+      "path": "src/ui/practice/PronunciationCheck.tsx",
+      "lines": 253,
+      "sha256": "09c7e7963d10db125d48cbdded884c40ca1f2b9e2b35df171165fe37f617772a"
+    },
+    {
+      "path": "src/ui/reading/Listening.tsx",
+      "lines": 362,
+      "sha256": "7de58864af7ff56212182b420bf69b785128ed197ab26ded20435c74833b405d"
+    },
+    {
+      "path": "src/ui/reading/ReaderAside.tsx",
+      "lines": 65,
+      "sha256": "642d4f989da6dcd336a5a6fc2cb1adc5313fc5f3a92fb98411b6f492199b8e64"
+    },
+    {
+      "path": "src/ui/reading/ReaderTools.tsx",
+      "lines": 106,
+      "sha256": "4905f3919f2f56e262ccf90de1a3864f234c48d6e4898c6bea32fe2ab918f114"
+    },
+    {
+      "path": "src/ui/reading/Reading.tsx",
+      "lines": 659,
+      "sha256": "812df0a1463ed29916d85bf970b6946578c34aefa2eae9645ab8c71b316fa693"
+    },
+    {
+      "path": "src/ui/reading/ReadingHome.tsx",
+      "lines": 174,
+      "sha256": "00bf7918e68e4de6c3bfd80ddd98223e6323df3b1e6b974c0898ff59a27af997"
+    },
+    {
+      "path": "src/ui/reading/Shadow.tsx",
+      "lines": 166,
+      "sha256": "6fbb8449095107293d56415c7cc6fa1e66ee90c708bb347c70e6b7d1c55140ef"
+    },
+    {
+      "path": "src/ui/settings/DataSettings.tsx",
+      "lines": 271,
+      "sha256": "43527010a518769dfe787bad1601e01c74fc475cdaebd23667e17545961a2b3f"
+    },
+    {
+      "path": "src/ui/settings/LookSettings.tsx",
+      "lines": 118,
+      "sha256": "cfd71066bc11b62f07ed2ea3167a5319377509e483595d823227fd17a6d2c033"
+    },
+    {
+      "path": "src/ui/settings/SettingsScreen.tsx",
+      "lines": 284,
+      "sha256": "ee392ce29fb3d7986da9faccbf7a0f9c844740ad254d088c74fc80e35ccdca5a"
+    },
+    {
+      "path": "src/ui/settings/SoundSettings.tsx",
+      "lines": 124,
+      "sha256": "f57edd681311eb366e764f2e40229fa9c08f864b815ebd95a946ee4a34c37a18"
+    },
+    {
+      "path": "src/ui/settings/StudySettings.tsx",
+      "lines": 142,
+      "sha256": "b0dcc255e8d6847c3e5ecf77aadc1ddf083e70df9a4d136e2f691e1dab9c46c5"
+    },
+    {
+      "path": "src/ui/words/WordCard.tsx",
+      "lines": 279,
+      "sha256": "18eac6c48410564054b39c81a8c3f45ab38efe0e76b13aa94eb7e515f6d4c456"
+    }
+  ]
+}

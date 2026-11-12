@@ -1,0 +1,337 @@
+[
+  {
+    "path": "BILESEN-SOZLESMESI.md",
+    "bytes": 1602,
+    "sha256": "3c1181d30527b2266ca15d51bb872d1a44139985911d0c484b2c7581e90960c4"
+  },
+  {
+    "path": "CLAUDE-DEVIR.md",
+    "bytes": 4256,
+    "sha256": "cc5e10f1765da371b2b822c31aa0c8497ef7e6c2ce451d8d2d5d9735a454efdf"
+  },
+  {
+    "path": "DOGRULAMA.json",
+    "bytes": 1134,
+    "sha256": "85748e88971480a42e3e7ea9320e19477ddea558ff993da7fe8a180200109a8a"
+  },
+  {
+    "path": "KAYNAKLAR.md",
+    "bytes": 1065,
+    "sha256": "bba0bb22c252d647cd3bf1869ac0ef503c447862f74f0036e65678319597c435"
+  },
+  {
+    "path": "PAKET.json",
+    "bytes": 573,
+    "sha256": "02f5ee90c53bc21f639ba1fd66518d069c144c961bf898aaa399fab3994b1c58"
+  },
+  {
+    "path": "README.md",
+    "bytes": 2635,
+    "sha256": "d8ba734f341e4102ecd7a1ca04458fa94e55a74ba58b4fc6f73109afde867917"
+  },
+  {
+    "path": "assets/LEXEND-LICENSE",
+    "bytes": 4384,
+    "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+  },
+  {
+    "path": "assets/LITERATA-LICENSE",
+    "bytes": 4506,
+    "sha256": "9895ebc015226accf416b758ac1ca02a2fb4f83a89d316791ef697c3dc0852aa"
+  },
+  {
+    "path": "assets/avatar-cat.webp",
+    "bytes": 21396,
+    "sha256": "d93da75f10097003f8d8e164e369552d07f3c9e824ded6239b278acf1c3ff05c"
+  },
+  {
+    "path": "assets/avatar-fox.webp",
+    "bytes": 22776,
+    "sha256": "41e7e7930aeea5e0fe4c42f39a45e929fe5d083adc8a81318a8c31ae95a6051a"
+  },
+  {
+    "path": "assets/avatar-frog.webp",
+    "bytes": 19110,
+    "sha256": "cbcb0fb8e81ced13ac614d3fda5c829c6b39b0316b910c66b2ea7bf0bd9e4238"
+  },
+  {
+    "path": "assets/avatar-koala.webp",
+    "bytes": 19846,
+    "sha256": "27f2980e8b2872fcc5a583b3cfd54038bdf1091506ca346e54763de60e8f766a"
+  },
+  {
+    "path": "assets/avatar-owl.webp",
+    "bytes": 21830,
+    "sha256": "1b459f8e0caf05320014f45c49930680be3effce35638334f5ca16288fefe58a"
+  },
+  {
+    "path": "assets/avatar-panda.webp",
+    "bytes": 20384,
+    "sha256": "6b4822a9bb3069c4081b8c886f8f5c328f04ae434fdea644f37717897bc28d14"
+  },
+  {
+    "path": "assets/avatar-penguin.webp",
+    "bytes": 20034,
+    "sha256": "81ac4ad8e1d134c80cad38e5efa12dba9deb7c829072656896b7f1f7fbe52846"
+  },
+  {
+    "path": "assets/avatar-rabbit.webp",
+    "bytes": 20444,
+    "sha256": "43a69c2a249ebdfc40ba53e0ed676fb818355d593a3c04d0b7f263fa6da6fc88"
+  },
+  {
+    "path": "assets/lexend-latin-400-normal.woff2",
+    "bytes": 14476,
+    "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+  },
+  {
+    "path": "assets/lexend-latin-600-normal.woff2",
+    "bytes": 14856,
+    "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+  },
+  {
+    "path": "assets/lexend-latin-700-normal.woff2",
+    "bytes": 14808,
+    "sha256": "52dcdaa127bac4a5ea4c39ee17a3f454ceacc18d9f2a45cc453eeab68d378588"
+  },
+  {
+    "path": "assets/lexend-latin-ext-400-normal.woff2",
+    "bytes": 13144,
+    "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+  },
+  {
+    "path": "assets/lexend-latin-ext-600-normal.woff2",
+    "bytes": 13680,
+    "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+  },
+  {
+    "path": "assets/lexend-latin-ext-700-normal.woff2",
+    "bytes": 13708,
+    "sha256": "5ae459b6dc29461eab9f02d0ff4395d3842d6bdf280e8224a79ab2667e65ee2f"
+  },
+  {
+    "path": "assets/literata-latin-400-normal.woff2",
+    "bytes": 20420,
+    "sha256": "a60c193b55766b68b922e2327e15c2d8c145532f283a27c3411b9c47a8583d18"
+  },
+  {
+    "path": "base.css",
+    "bytes": 10894,
+    "sha256": "9488c24a4c408b0a31afbd07f6a8278924702d474780bcaf7f9f902eed05e4a3"
+  },
+  {
+    "path": "ekranlar/account-desktop.png",
+    "bytes": 85740,
+    "sha256": "a8dc4e92f5cfa20ef87c51e20c76cbdecc78501b4a406e523859c61f28601f89"
+  },
+  {
+    "path": "ekranlar/account-mobile.png",
+    "bytes": 73564,
+    "sha256": "90f463c40a6dbef1293713b64adb17084587272691d968406527b8a8edf593f5"
+  },
+  {
+    "path": "ekranlar/advanced-desktop.png",
+    "bytes": 86530,
+    "sha256": "297a32c2c953f7762c2560216ad3569d40cfc67c5320e6c557383dddb89f12a5"
+  },
+  {
+    "path": "ekranlar/advanced-mobile.png",
+    "bytes": 74290,
+    "sha256": "00e667cf18675a55d525e3568a775646df483b4b82d0ab364604262fd3a40e39"
+  },
+  {
+    "path": "ekranlar/answers-desktop.png",
+    "bytes": 70539,
+    "sha256": "9b85d11439216d4c8e574b9cc21d8d9399849c8a3f389ff8d8bf7584fbe263f6"
+  },
+  {
+    "path": "ekranlar/answers-mobile.png",
+    "bytes": 59170,
+    "sha256": "62b75c7929367a4019d51d8b47267aa7065acae41de15eee6ffe2cdefc6007b4"
+  },
+  {
+    "path": "ekranlar/confirm-desktop.png",
+    "bytes": 89160,
+    "sha256": "d354098e07584af96d9f6f78d6bfa696f52c98fbb63ae836494ccf585fadad3b"
+  },
+  {
+    "path": "ekranlar/confirm-mobile.png",
+    "bytes": 41254,
+    "sha256": "d5f249dadd0ce8899bc7f3cd215caee6495557115eeb82ee6d5d62e6ac33dcc9"
+  },
+  {
+    "path": "ekranlar/data-desktop.png",
+    "bytes": 80634,
+    "sha256": "c3f3f70a7d27157ef83923f3d84a7340bd363d8abbb88494d2fc9940cbb04f26"
+  },
+  {
+    "path": "ekranlar/data-mobile.png",
+    "bytes": 70036,
+    "sha256": "883e9db2443c0d7f61b7f5f60410d4c3ec2c10523cea5c8236c0a32a263a0ddd"
+  },
+  {
+    "path": "ekranlar/error-desktop.png",
+    "bytes": 89661,
+    "sha256": "70572de8c35e140143cb5123c4cf7c058509e5076b27c90f8a98a2958d452b78"
+  },
+  {
+    "path": "ekranlar/error-mobile.png",
+    "bytes": 79577,
+    "sha256": "7aa283423fc3f63b6536349a313b074f1d659183d94f6f8ea00d9582d40c2bbf"
+  },
+  {
+    "path": "ekranlar/help-desktop.png",
+    "bytes": 67572,
+    "sha256": "31082359ecf7efd7ac4e83df28ab66d0eb59ec1f9f77b6718a096b54eefaeb74"
+  },
+  {
+    "path": "ekranlar/help-mobile.png",
+    "bytes": 55597,
+    "sha256": "ea58b7fd2a205b5615a02f12fbc02d34f10a0c9fb17d683c060e92ea0f16e6f6"
+  },
+  {
+    "path": "ekranlar/look-desktop.png",
+    "bytes": 69655,
+    "sha256": "6b239c54d28161e08837b2e21e84e778ca100fbd5274a61c491809b402e3afdd"
+  },
+  {
+    "path": "ekranlar/look-mobile.png",
+    "bytes": 58497,
+    "sha256": "dedca441b41f7811ed69401f9b64edf0dd8866bfa0a3c7fe2d8573e2b5af990c"
+  },
+  {
+    "path": "ekranlar/noresults-desktop.png",
+    "bytes": 66748,
+    "sha256": "496aa06e963d42bcee1b8cac8355230ad3c767552bc7f05fe12c4ec2ef01f835"
+  },
+  {
+    "path": "ekranlar/noresults-mobile.png",
+    "bytes": 54280,
+    "sha256": "432b37335732cf0897718a1969fc9ad356d6a1731740a211f9211863c4476ca1"
+  },
+  {
+    "path": "ekranlar/profile-desktop.png",
+    "bytes": 168426,
+    "sha256": "546488020e890007f08e64cb27b05edfd4e5b2309cf144bb4e364b034190b1da"
+  },
+  {
+    "path": "ekranlar/profile-es-dark-calm.png",
+    "bytes": 131213,
+    "sha256": "ff26bed5bccba3e1ed2addaeda1af99ede253a1be297f503735a32e560a3b625"
+  },
+  {
+    "path": "ekranlar/profile-mobile.png",
+    "bytes": 126113,
+    "sha256": "de4ce73012a6513f0e29a20f49140ba00a6a80abb372d872d65cab50bb2412ff"
+  },
+  {
+    "path": "ekranlar/remind-desktop.png",
+    "bytes": 66084,
+    "sha256": "5fab7d9c7665376d3265780ca1d02d81e5346b2a8297923d4e4a17dfb523fe93"
+  },
+  {
+    "path": "ekranlar/remind-mobile.png",
+    "bytes": 54271,
+    "sha256": "9ed009f7c6f052daa1c2dd62f46cf8822ba39ff3ceadb0b2feb51918fa978f64"
+  },
+  {
+    "path": "ekranlar/reset-desktop.png",
+    "bytes": 79315,
+    "sha256": "3b0a02a6abcc9f26dc1d384b1fd0ae7e8a7cd782c49989afb95511829334fbc3"
+  },
+  {
+    "path": "ekranlar/reset-mobile.png",
+    "bytes": 67691,
+    "sha256": "b5c4bcea06e0bfb5d9736a48a002ca884db3f41017ce0008d3495b1715547744"
+  },
+  {
+    "path": "ekranlar/search-desktop.png",
+    "bytes": 95692,
+    "sha256": "42ea0e89cf4ef69c56aa0dbf737c4406a8294aca38a0f757f2f85ddf234afcb9"
+  },
+  {
+    "path": "ekranlar/search-mobile.png",
+    "bytes": 82566,
+    "sha256": "a8d6c19220619be9131f05bdf95182fc62a37f105a8b5322258e076ece7fceba"
+  },
+  {
+    "path": "ekranlar/sound-desktop.png",
+    "bytes": 80799,
+    "sha256": "84c8dda5b59dc42458e26d52114b2b2dcc330c037525e8daecc8cfb1b017eb27"
+  },
+  {
+    "path": "ekranlar/sound-fr-dark-calm.png",
+    "bytes": 70875,
+    "sha256": "f1f838039af445e0559dad1922e6c97ea9f4c329df5a646d392847a56065ac42"
+  },
+  {
+    "path": "ekranlar/sound-mobile.png",
+    "bytes": 68722,
+    "sha256": "cdffbf4d0ec31d2d2caf11529c6202cc6625ba1ed6d084da5cabde37f43f2740"
+  },
+  {
+    "path": "ekranlar/study-desktop.png",
+    "bytes": 77236,
+    "sha256": "d5e0b5eac2b7bda9c183b7c56bd6b08dd6c21d140d824d7e22b8ffca0a44ec46"
+  },
+  {
+    "path": "ekranlar/study-en-dark-calm.png",
+    "bytes": 67378,
+    "sha256": "6242bd131af83c77c49435e56fbc5f853fb5494e4c73b07ed357a7724586ebe9"
+  },
+  {
+    "path": "ekranlar/study-mobile.png",
+    "bytes": 65477,
+    "sha256": "020a2a2aa3582b3e0d9101b7b7df84493c5a2f8ca98c4fac6a7768e44c26fab5"
+  },
+  {
+    "path": "ekranlar/tools-desktop.png",
+    "bytes": 66667,
+    "sha256": "d37e6fadf6e85be627f9eac4cd9b306efc6b52b9f369e96e2fb4fc2a34dc90e3"
+  },
+  {
+    "path": "ekranlar/tools-mobile.png",
+    "bytes": 55146,
+    "sha256": "82cb5351a3b7e1a8d229533643d6cd5951cc7c22333aa9cbdf51b0a231d6c2b9"
+  },
+  {
+    "path": "ekranlar/unsupported-desktop.png",
+    "bytes": 82826,
+    "sha256": "b75100f6be2a6c185ede79c20aa20412475f8ef8095f69a69252fdae1a0a3257"
+  },
+  {
+    "path": "ekranlar/unsupported-mobile.png",
+    "bytes": 71032,
+    "sha256": "30c9ef9fc63cff2b670519ea445460d015f32baf35e43e4cc571272038d565e5"
+  },
+  {
+    "path": "galeri.html",
+    "bytes": 5576,
+    "sha256": "fe95cb25c841471ec27873a9e859ce5908abfb5f32b0eaebaf97d2143161d9f2"
+  },
+  {
+    "path": "index.html",
+    "bytes": 2143,
+    "sha256": "c32b28501e3c7c5870479a162e9a61b1bad0ee4d4b9d997b52959852010255bd"
+  },
+  {
+    "path": "settings.css",
+    "bytes": 6320,
+    "sha256": "9d2fef6bf6556f5f021cafc4309de8f1246b14722de9b727ca0a66f6ae8782b1"
+  },
+  {
+    "path": "settings.js",
+    "bytes": 16035,
+    "sha256": "86670c0cc29567c1b99aa228189062b3c361b700a547aba5b1be49d8bf2abdc6"
+  },
+  {
+    "path": "verify-extra.cjs",
+    "bytes": 1693,
+    "sha256": "1b352bb4f457136b40b45ffeeeed23e605d1a3daf14640a8b941f1a4bf264b90"
+  },
+  {
+    "path": "verify.cjs",
+    "bytes": 6173,
+    "sha256": "0591386337e3e31779b64c9e82d5d951b3af70cf8cbf1dc35eaf9da4e63f3438"
+  }
+]

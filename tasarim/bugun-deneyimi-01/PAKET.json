@@ -1,0 +1,17 @@
+{
+  "id": "diloloji-bugun-deneyimi-01",
+  "date": "2026-11-12",
+  "status": "design-ready-integration-review-pending",
+  "stateCount": 10,
+  "newRasterArt": 0,
+  "reusedPlantStages": 7,
+  "reusedAvatar": 1,
+  "reusedEmptyArt": 1,
+  "reusedIcons": 8,
+  "entry": "index.html",
+  "gallery": "galeri.html",
+  "productionIntegrated": false,
+  "liveSiteVerified": false,
+  "realLearningOrScheduler": false,
+  "handoff": "CLAUDE-DEVIR.md"
+}

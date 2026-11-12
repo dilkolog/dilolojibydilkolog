@@ -1,0 +1,338 @@
+[
+  {
+    "file": "avatar-monki.webp",
+    "size": [
+      256,
+      256
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-fox.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-panda.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-owl.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-cat.webp",
+    "size": [
+      159,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-penguin.webp",
+    "size": [
+      159,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-rabbit.webp",
+    "size": [
+      155,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-octopus.webp",
+    "size": [
+      159,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-koala.webp",
+    "size": [
+      162,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-dog.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-bear.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-frog.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-lion.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-deer.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "avatar-tiger.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1
+  },
+  {
+    "file": "monki-wave.webp",
+    "size": [
+      285,
+      360
+    ],
+    "frames": 1
+  },
+  {
+    "file": "monki-lvl-1.webp",
+    "size": [
+      196,
+      240
+    ],
+    "frames": 1
+  },
+  {
+    "file": "monki-lvl-2.webp",
+    "size": [
+      185,
+      240
+    ],
+    "frames": 1
+  },
+  {
+    "file": "monki-lvl-3.webp",
+    "size": [
+      199,
+      240
+    ],
+    "frames": 1
+  },
+  {
+    "file": "monki-lvl-4.webp",
+    "size": [
+      185,
+      240
+    ],
+    "frames": 1
+  },
+  {
+    "file": "monki-lvl-5.webp",
+    "size": [
+      182,
+      240
+    ],
+    "frames": 1
+  },
+  {
+    "file": "monki-think.webp",
+    "size": [
+      282,
+      360
+    ],
+    "frames": 1
+  },
+  {
+    "file": "monki-hang.webp",
+    "size": [
+      319,
+      360
+    ],
+    "frames": 1
+  },
+  {
+    "file": "monki-sleep.webp",
+    "size": [
+      360,
+      238
+    ],
+    "frames": 1
+  },
+  {
+    "file": "monki-cheer.webp",
+    "size": [
+      313,
+      360
+    ],
+    "frames": 1
+  },
+  {
+    "file": "sticker-coffee.webp",
+    "size": [
+      176,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "sticker-music.webp",
+    "size": [
+      171,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "sticker-thumbs.webp",
+    "size": [
+      163,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "sticker-party.webp",
+    "size": [
+      181,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "sticker-read.webp",
+    "size": [
+      170,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "stat-sprout.webp",
+    "size": [
+      196,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "stat-star.webp",
+    "size": [
+      209,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "stat-book.webp",
+    "size": [
+      247,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "boss-blob.webp",
+    "size": [
+      208,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "boss-slime.webp",
+    "size": [
+      193,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "boss-ghost.webp",
+    "size": [
+      197,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "boss-dino.webp",
+    "size": [
+      174,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "boss-octopus.webp",
+    "size": [
+      203,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "boss-yeti.webp",
+    "size": [
+      201,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "boss-dragon.webp",
+    "size": [
+      197,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "boss-golem.webp",
+    "size": [
+      200,
+      200
+    ],
+    "frames": 1
+  },
+  {
+    "file": "boss-chronos.webp",
+    "size": [
+      240,
+      240
+    ],
+    "frames": 1
+  }
+]

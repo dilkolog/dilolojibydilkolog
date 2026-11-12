@@ -1,0 +1,5204 @@
+[
+  {
+    "file": "acct-door.webp",
+    "size": [
+      274,
+      240
+    ],
+    "frames": 1,
+    "bytes": 18034,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:83"
+    ]
+  },
+  {
+    "file": "acct-no.webp",
+    "size": [
+      196,
+      240
+    ],
+    "frames": 1,
+    "bytes": 16344,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:86"
+    ]
+  },
+  {
+    "file": "acct-ok.webp",
+    "size": [
+      249,
+      240
+    ],
+    "frames": 1,
+    "bytes": 17460,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:85"
+    ]
+  },
+  {
+    "file": "acct-wait.webp",
+    "size": [
+      223,
+      240
+    ],
+    "frames": 1,
+    "bytes": 17028,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:84"
+    ]
+  },
+  {
+    "file": "act-listen.webp",
+    "size": [
+      199,
+      240
+    ],
+    "frames": 1,
+    "bytes": 17184,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:3",
+      "src/ui/shared/PageHeader.tsx:2"
+    ]
+  },
+  {
+    "file": "act-look.webp",
+    "size": [
+      221,
+      240
+    ],
+    "frames": 1,
+    "bytes": 17938,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/PageHeader.tsx:3"
+    ]
+  },
+  {
+    "file": "act-read.webp",
+    "size": [
+      201,
+      240
+    ],
+    "frames": 1,
+    "bytes": 17080,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:4",
+      "src/ui/shared/PageHeader.tsx:4"
+    ]
+  },
+  {
+    "file": "act-speak.webp",
+    "size": [
+      196,
+      240
+    ],
+    "frames": 1,
+    "bytes": 16788,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:5",
+      "src/ui/shared/PageHeader.tsx:5"
+    ]
+  },
+  {
+    "file": "act-time.webp",
+    "size": [
+      210,
+      240
+    ],
+    "frames": 1,
+    "bytes": 16926,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/PageHeader.tsx:6"
+    ]
+  },
+  {
+    "file": "act-write.webp",
+    "size": [
+      192,
+      240
+    ],
+    "frames": 1,
+    "bytes": 16630,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:6",
+      "src/ui/shared/PageHeader.tsx:7",
+      "src/ui/shared/drawnArt.ts:87"
+    ]
+  },
+  {
+    "file": "avatar-bear.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 11550,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:11"
+    ]
+  },
+  {
+    "file": "avatar-cat.webp",
+    "size": [
+      159,
+      160
+    ],
+    "frames": 1,
+    "bytes": 7412,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/paletteArt.tsx:20",
+      "src/ui/profile/avatarArt.ts:5"
+    ]
+  },
+  {
+    "file": "avatar-deer.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 10516,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:14"
+    ]
+  },
+  {
+    "file": "avatar-dog.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 13334,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:10"
+    ]
+  },
+  {
+    "file": "avatar-fox.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8126,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:2"
+    ]
+  },
+  {
+    "file": "avatar-frog.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9834,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:12"
+    ]
+  },
+  {
+    "file": "avatar-koala.webp",
+    "size": [
+      162,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8234,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:9"
+    ]
+  },
+  {
+    "file": "avatar-lion.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 11946,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:13"
+    ]
+  },
+  {
+    "file": "avatar-monki.webp",
+    "size": [
+      256,
+      256
+    ],
+    "frames": 1,
+    "bytes": 12424,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:1"
+    ]
+  },
+  {
+    "file": "avatar-octopus.webp",
+    "size": [
+      159,
+      160
+    ],
+    "frames": 1,
+    "bytes": 7702,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:8"
+    ]
+  },
+  {
+    "file": "avatar-owl.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8346,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:4"
+    ]
+  },
+  {
+    "file": "avatar-panda.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 7440,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:3"
+    ]
+  },
+  {
+    "file": "avatar-penguin.webp",
+    "size": [
+      159,
+      160
+    ],
+    "frames": 1,
+    "bytes": 7608,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:6"
+    ]
+  },
+  {
+    "file": "avatar-rabbit.webp",
+    "size": [
+      155,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8522,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:7"
+    ]
+  },
+  {
+    "file": "avatar-tiger.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 11402,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:15"
+    ]
+  },
+  {
+    "file": "boss-blob.webp",
+    "size": [
+      208,
+      200
+    ],
+    "frames": 1,
+    "bytes": 12606,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:38",
+      "src/ui/shared/drawnArt.ts:180"
+    ]
+  },
+  {
+    "file": "boss-bookwyrm.webp",
+    "size": [
+      200,
+      198
+    ],
+    "frames": 1,
+    "bytes": 24032,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:189"
+    ]
+  },
+  {
+    "file": "boss-chronos.webp",
+    "size": [
+      240,
+      240
+    ],
+    "frames": 1,
+    "bytes": 26900,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:46",
+      "src/ui/shared/drawnArt.ts:190"
+    ]
+  },
+  {
+    "file": "boss-dino.webp",
+    "size": [
+      174,
+      200
+    ],
+    "frames": 1,
+    "bytes": 11384,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:41",
+      "src/ui/shared/drawnArt.ts:184"
+    ]
+  },
+  {
+    "file": "boss-dragon.webp",
+    "size": [
+      197,
+      200
+    ],
+    "frames": 1,
+    "bytes": 15524,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:44",
+      "src/ui/shared/drawnArt.ts:181"
+    ]
+  },
+  {
+    "file": "boss-ghost.webp",
+    "size": [
+      197,
+      200
+    ],
+    "frames": 1,
+    "bytes": 10140,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:40",
+      "src/ui/shared/drawnArt.ts:185"
+    ]
+  },
+  {
+    "file": "boss-golem.webp",
+    "size": [
+      200,
+      200
+    ],
+    "frames": 1,
+    "bytes": 13616,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:45",
+      "src/ui/shared/drawnArt.ts:187"
+    ]
+  },
+  {
+    "file": "boss-octopus.webp",
+    "size": [
+      203,
+      200
+    ],
+    "frames": 1,
+    "bytes": 14218,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:42",
+      "src/ui/shared/drawnArt.ts:186"
+    ]
+  },
+  {
+    "file": "boss-slime.webp",
+    "size": [
+      193,
+      200
+    ],
+    "frames": 1,
+    "bytes": 12194,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:39",
+      "src/ui/shared/drawnArt.ts:182"
+    ]
+  },
+  {
+    "file": "boss-thunder.webp",
+    "size": [
+      195,
+      200
+    ],
+    "frames": 1,
+    "bytes": 17754,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:188"
+    ]
+  },
+  {
+    "file": "boss-yeti.webp",
+    "size": [
+      201,
+      200
+    ],
+    "frames": 1,
+    "bytes": 16214,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:43",
+      "src/ui/shared/drawnArt.ts:183"
+    ]
+  },
+  {
+    "file": "cat-essay.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 7338,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:233"
+    ]
+  },
+  {
+    "file": "cat-feature.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 7128,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:234"
+    ]
+  },
+  {
+    "file": "cat-story.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6824,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:235"
+    ]
+  },
+  {
+    "file": "cefr-monki-a1.webp",
+    "size": [
+      198,
+      240
+    ],
+    "frames": 1,
+    "bytes": 19964,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:7",
+      "src/ui/shared/drawnArt.ts:194"
+    ]
+  },
+  {
+    "file": "cefr-monki-a2.webp",
+    "size": [
+      198,
+      240
+    ],
+    "frames": 1,
+    "bytes": 14286,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:195"
+    ]
+  },
+  {
+    "file": "cefr-monki-b1.webp",
+    "size": [
+      198,
+      240
+    ],
+    "frames": 1,
+    "bytes": 22504,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:8",
+      "src/ui/shared/drawnArt.ts:196"
+    ]
+  },
+  {
+    "file": "cefr-monki-b2.webp",
+    "size": [
+      198,
+      240
+    ],
+    "frames": 1,
+    "bytes": 14004,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:197"
+    ]
+  },
+  {
+    "file": "cefr-monki-c1.webp",
+    "size": [
+      198,
+      240
+    ],
+    "frames": 1,
+    "bytes": 24122,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:9",
+      "src/ui/shared/drawnArt.ts:198"
+    ]
+  },
+  {
+    "file": "cefr-monki-c2.webp",
+    "size": [
+      198,
+      240
+    ],
+    "frames": 1,
+    "bytes": 20392,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:199"
+    ]
+  },
+  {
+    "file": "celebration-confetti.webp",
+    "size": [
+      360,
+      330
+    ],
+    "frames": 1,
+    "bytes": 61464,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": []
+  },
+  {
+    "file": "confetti-1.webp",
+    "size": [
+      288,
+      285
+    ],
+    "frames": 1,
+    "bytes": 9710,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/Burst.tsx:2"
+    ]
+  },
+  {
+    "file": "confetti-2.webp",
+    "size": [
+      288,
+      285
+    ],
+    "frames": 1,
+    "bytes": 45498,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/Burst.tsx:3"
+    ]
+  },
+  {
+    "file": "confetti-3.webp",
+    "size": [
+      288,
+      285
+    ],
+    "frames": 1,
+    "bytes": 53058,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/Burst.tsx:4"
+    ]
+  },
+  {
+    "file": "confetti-4.webp",
+    "size": [
+      288,
+      285
+    ],
+    "frames": 1,
+    "bytes": 17820,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/Burst.tsx:5"
+    ]
+  },
+  {
+    "file": "cover-art.webp",
+    "size": [
+      162,
+      180
+    ],
+    "frames": 1,
+    "bytes": 20886,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:110"
+    ]
+  },
+  {
+    "file": "cover-city.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 6920,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:108"
+    ]
+  },
+  {
+    "file": "cover-family.webp",
+    "size": [
+      159,
+      160
+    ],
+    "frames": 1,
+    "bytes": 6340,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:99"
+    ]
+  },
+  {
+    "file": "cover-feelings.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 6024,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:107"
+    ]
+  },
+  {
+    "file": "cover-food.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 7516,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:97"
+    ]
+  },
+  {
+    "file": "cover-health.webp",
+    "size": [
+      159,
+      160
+    ],
+    "frames": 1,
+    "bytes": 6450,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:101"
+    ]
+  },
+  {
+    "file": "cover-history.webp",
+    "size": [
+      152,
+      180
+    ],
+    "frames": 1,
+    "bytes": 19336,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:114"
+    ]
+  },
+  {
+    "file": "cover-home.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 5492,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:102"
+    ]
+  },
+  {
+    "file": "cover-law.webp",
+    "size": [
+      149,
+      180
+    ],
+    "frames": 1,
+    "bytes": 18784,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:113"
+    ]
+  },
+  {
+    "file": "cover-literature.webp",
+    "size": [
+      180,
+      158
+    ],
+    "frames": 1,
+    "bytes": 15992,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:112"
+    ]
+  },
+  {
+    "file": "cover-nature.webp",
+    "size": [
+      159,
+      160
+    ],
+    "frames": 1,
+    "bytes": 7284,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:103"
+    ]
+  },
+  {
+    "file": "cover-school.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 11018,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:104"
+    ]
+  },
+  {
+    "file": "cover-shopping.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 6570,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:105"
+    ]
+  },
+  {
+    "file": "cover-sports.webp",
+    "size": [
+      150,
+      180
+    ],
+    "frames": 1,
+    "bytes": 19910,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:111"
+    ]
+  },
+  {
+    "file": "cover-tech.webp",
+    "size": [
+      171,
+      180
+    ],
+    "frames": 1,
+    "bytes": 17854,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:109"
+    ]
+  },
+  {
+    "file": "cover-travel.webp",
+    "size": [
+      159,
+      160
+    ],
+    "frames": 1,
+    "bytes": 6200,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:98"
+    ]
+  },
+  {
+    "file": "cover-weather.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 7294,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:106"
+    ]
+  },
+  {
+    "file": "cover-work.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 6608,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:100"
+    ]
+  },
+  {
+    "file": "emblem-bolt.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8710,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:40"
+    ]
+  },
+  {
+    "file": "emblem-book.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 11508,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:41"
+    ]
+  },
+  {
+    "file": "emblem-chat.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8764,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:43"
+    ]
+  },
+  {
+    "file": "emblem-flame.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 7538,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:39"
+    ]
+  },
+  {
+    "file": "emblem-mic.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 7860,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:44"
+    ]
+  },
+  {
+    "file": "emblem-sprout.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8174,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:38"
+    ]
+  },
+  {
+    "file": "emblem-star.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8568,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:42"
+    ]
+  },
+  {
+    "file": "emblem-trophy.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8556,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:45"
+    ]
+  },
+  {
+    "file": "empty-garden.webp",
+    "size": [
+      296,
+      320
+    ],
+    "frames": 1,
+    "bytes": 20894,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/shared/EmptyArt.tsx:8"
+    ]
+  },
+  {
+    "file": "empty-offline.webp",
+    "size": [
+      360,
+      333
+    ],
+    "frames": 1,
+    "bytes": 24254,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/EmptyArt.tsx:5"
+    ]
+  },
+  {
+    "file": "empty-rest.webp",
+    "size": [
+      360,
+      328
+    ],
+    "frames": 1,
+    "bytes": 26924,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/EmptyArt.tsx:6"
+    ]
+  },
+  {
+    "file": "empty-search.webp",
+    "size": [
+      360,
+      274
+    ],
+    "frames": 1,
+    "bytes": 28202,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": []
+  },
+  {
+    "file": "empty-shelf.webp",
+    "size": [
+      352,
+      360
+    ],
+    "frames": 1,
+    "bytes": 20434,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/EmptyArt.tsx:7"
+    ]
+  },
+  {
+    "file": "face-happy.webp",
+    "size": [
+      230,
+      240
+    ],
+    "frames": 1,
+    "bytes": 13820,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/monki/MonkiMascot.tsx:3"
+    ]
+  },
+  {
+    "file": "face-proud.webp",
+    "size": [
+      229,
+      240
+    ],
+    "frames": 1,
+    "bytes": 14200,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/monki/MonkiMascot.tsx:4"
+    ]
+  },
+  {
+    "file": "face-sleepy.webp",
+    "size": [
+      228,
+      240
+    ],
+    "frames": 1,
+    "bytes": 13678,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/monki/MonkiMascot.tsx:5"
+    ]
+  },
+  {
+    "file": "face-surprised.webp",
+    "size": [
+      230,
+      240
+    ],
+    "frames": 1,
+    "bytes": 14080,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/monki/MonkiMascot.tsx:6"
+    ]
+  },
+  {
+    "file": "face-think.webp",
+    "size": [
+      230,
+      240
+    ],
+    "frames": 1,
+    "bytes": 14844,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/monki/MonkiMascot.tsx:7"
+    ]
+  },
+  {
+    "file": "face-wink.webp",
+    "size": [
+      235,
+      240
+    ],
+    "frames": 1,
+    "bytes": 17356,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/monki/MonkiMascot.tsx:8"
+    ]
+  },
+  {
+    "file": "flash-done.webp",
+    "size": [
+      199,
+      240
+    ],
+    "frames": 1,
+    "bytes": 21318,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:224"
+    ]
+  },
+  {
+    "file": "friends-code.webp",
+    "size": [
+      229,
+      240
+    ],
+    "frames": 1,
+    "bytes": 16422,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:221"
+    ]
+  },
+  {
+    "file": "friends-together.webp",
+    "size": [
+      282,
+      240
+    ],
+    "frames": 1,
+    "bytes": 22084,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:10",
+      "src/ui/shared/drawnArt.ts:220"
+    ]
+  },
+  {
+    "file": "game-bolt.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4772,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:26",
+      "src/ui/shared/drawnArt.ts:173"
+    ]
+  },
+  {
+    "file": "game-book.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 5312,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:13"
+    ]
+  },
+  {
+    "file": "game-cards.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6094,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:14",
+      "src/ui/shared/drawnArt.ts:172"
+    ]
+  },
+  {
+    "file": "game-chat.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4938,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:15"
+    ]
+  },
+  {
+    "file": "game-collocations.webp",
+    "size": [
+      256,
+      256
+    ],
+    "frames": 1,
+    "bytes": 16518,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:38"
+    ]
+  },
+  {
+    "file": "game-confusables.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4546,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:42"
+    ]
+  },
+  {
+    "file": "game-dialogues.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 5442,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:41"
+    ]
+  },
+  {
+    "file": "game-drops.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 7380,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:2"
+    ]
+  },
+  {
+    "file": "game-duel.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6792,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:11",
+      "src/ui/practice/gameArt.ts:33"
+    ]
+  },
+  {
+    "file": "game-ear.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4324,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:24"
+    ]
+  },
+  {
+    "file": "game-gaps.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4598,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:32"
+    ]
+  },
+  {
+    "file": "game-gear.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 7404,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:29",
+      "src/ui/practice/paletteArt.tsx:19",
+      "src/ui/shared/drawnArt.ts:176"
+    ]
+  },
+  {
+    "file": "game-gifts.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 3104,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:31"
+    ]
+  },
+  {
+    "file": "game-headphones.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6502,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:16"
+    ]
+  },
+  {
+    "file": "game-hourglass.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4204,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:3"
+    ]
+  },
+  {
+    "file": "game-ladder.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 3456,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:30"
+    ]
+  },
+  {
+    "file": "game-magnifier.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6238,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:4"
+    ]
+  },
+  {
+    "file": "game-mask.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 7852,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:5"
+    ]
+  },
+  {
+    "file": "game-mic.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4494,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:6"
+    ]
+  },
+  {
+    "file": "game-monster.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4952,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:22"
+    ]
+  },
+  {
+    "file": "game-music.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 5524,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:23"
+    ]
+  },
+  {
+    "file": "game-numbers.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4004,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:39"
+    ]
+  },
+  {
+    "file": "game-paragraph.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 5228,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:7"
+    ]
+  },
+  {
+    "file": "game-picture.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4768,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:8"
+    ]
+  },
+  {
+    "file": "game-podcast.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6196,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:34"
+    ]
+  },
+  {
+    "file": "game-puzzle.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 5744,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:9"
+    ]
+  },
+  {
+    "file": "game-rewrite.webp",
+    "size": [
+      256,
+      256
+    ],
+    "frames": 1,
+    "bytes": 29852,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:37"
+    ]
+  },
+  {
+    "file": "game-shoe.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4472,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:27"
+    ]
+  },
+  {
+    "file": "game-song.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 5434,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:35"
+    ]
+  },
+  {
+    "file": "game-spelling.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4158,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:40"
+    ]
+  },
+  {
+    "file": "game-spot-error.webp",
+    "size": [
+      256,
+      256
+    ],
+    "frames": 1,
+    "bytes": 25992,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:36"
+    ]
+  },
+  {
+    "file": "game-stopwatch.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 5666,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:10"
+    ]
+  },
+  {
+    "file": "game-strip.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 1002,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:21",
+      "src/ui/shared/drawnArt.ts:174"
+    ]
+  },
+  {
+    "file": "game-swap.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 5512,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:175"
+    ]
+  },
+  {
+    "file": "game-swipe.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 5354,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:19"
+    ]
+  },
+  {
+    "file": "game-tags.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4242,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:28"
+    ]
+  },
+  {
+    "file": "game-target.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6346,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:11"
+    ]
+  },
+  {
+    "file": "game-tiles.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 3002,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:12"
+    ]
+  },
+  {
+    "file": "game-transform.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 10162,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:43"
+    ]
+  },
+  {
+    "file": "game-truefalse.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 3866,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:20"
+    ]
+  },
+  {
+    "file": "game-twins.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 5538,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": []
+  },
+  {
+    "file": "game-waves.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4056,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:25"
+    ]
+  },
+  {
+    "file": "garden-pot-0.webp",
+    "size": [
+      196,
+      240
+    ],
+    "frames": 1,
+    "bytes": 10086,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:66"
+    ]
+  },
+  {
+    "file": "garden-pot-1.webp",
+    "size": [
+      205,
+      240
+    ],
+    "frames": 1,
+    "bytes": 16324,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:67"
+    ]
+  },
+  {
+    "file": "garden-pot-2.webp",
+    "size": [
+      142,
+      240
+    ],
+    "frames": 1,
+    "bytes": 14420,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:68"
+    ]
+  },
+  {
+    "file": "garden-pot-3.webp",
+    "size": [
+      165,
+      240
+    ],
+    "frames": 1,
+    "bytes": 19534,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:69"
+    ]
+  },
+  {
+    "file": "garden-pot-4.webp",
+    "size": [
+      163,
+      240
+    ],
+    "frames": 1,
+    "bytes": 17834,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:70"
+    ]
+  },
+  {
+    "file": "garden-pot-5.webp",
+    "size": [
+      187,
+      240
+    ],
+    "frames": 1,
+    "bytes": 17968,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:71"
+    ]
+  },
+  {
+    "file": "guide-passed.webp",
+    "size": [
+      178,
+      240
+    ],
+    "frames": 1,
+    "bytes": 17868,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:218"
+    ]
+  },
+  {
+    "file": "guide-review.webp",
+    "size": [
+      181,
+      240
+    ],
+    "frames": 1,
+    "bytes": 17460,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:219"
+    ]
+  },
+  {
+    "file": "guide-teach.webp",
+    "size": [
+      249,
+      240
+    ],
+    "frames": 1,
+    "bytes": 15990,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:12",
+      "src/ui/practice/paletteArt.tsx:17",
+      "src/ui/shared/PageHeader.tsx:24",
+      "src/ui/shared/drawnArt.ts:217"
+    ]
+  },
+  {
+    "file": "head-admin.webp",
+    "size": [
+      230,
+      244
+    ],
+    "frames": 1,
+    "bytes": 26194,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/PageHeader.tsx:22",
+      "src/ui/shared/newArt.test.ts:108"
+    ]
+  },
+  {
+    "file": "head-back.webp",
+    "size": [
+      191,
+      244
+    ],
+    "frames": 1,
+    "bytes": 18148,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:17",
+      "src/ui/shared/PageHeader.tsx:18"
+    ]
+  },
+  {
+    "file": "head-dictionary.webp",
+    "size": [
+      224,
+      244
+    ],
+    "frames": 1,
+    "bytes": 16740,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/practice/paletteArt.tsx:5",
+      "src/ui/shared/PageHeader.tsx:8"
+    ]
+  },
+  {
+    "file": "head-earmiss.webp",
+    "size": [
+      163,
+      244
+    ],
+    "frames": 1,
+    "bytes": 14374,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/PageHeader.tsx:17"
+    ]
+  },
+  {
+    "file": "head-edit.webp",
+    "size": [
+      256,
+      256
+    ],
+    "frames": 1,
+    "bytes": 20876,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/practice/paletteArt.tsx:16",
+      "src/ui/session/QuickEdit.test.tsx:49",
+      "src/ui/session/QuickEdit.tsx:6",
+      "src/ui/shared/PageHeader.tsx:21"
+    ]
+  },
+  {
+    "file": "head-exam.webp",
+    "size": [
+      161,
+      244
+    ],
+    "frames": 1,
+    "bytes": 15702,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/practice/gameArt.ts:18",
+      "src/ui/practice/paletteArt.tsx:14",
+      "src/ui/shared/PageHeader.tsx:19"
+    ]
+  },
+  {
+    "file": "head-games.webp",
+    "size": [
+      184,
+      244
+    ],
+    "frames": 1,
+    "bytes": 13874,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/practice/paletteArt.tsx:6",
+      "src/ui/shared/PageHeader.tsx:9",
+      "src/ui/shared/drawnArt.ts:170"
+    ]
+  },
+  {
+    "file": "head-mistakes.webp",
+    "size": [
+      200,
+      244
+    ],
+    "frames": 1,
+    "bytes": 18156,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/practice/paletteArt.tsx:13",
+      "src/ui/shared/PageHeader.tsx:16",
+      "src/ui/shared/drawnArt.ts:171"
+    ]
+  },
+  {
+    "file": "head-produce.webp",
+    "size": [
+      248,
+      244
+    ],
+    "frames": 1,
+    "bytes": 14144,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/practice/paletteArt.tsx:7",
+      "src/ui/shared/PageHeader.tsx:10"
+    ]
+  },
+  {
+    "file": "head-sentences.webp",
+    "size": [
+      211,
+      244
+    ],
+    "frames": 1,
+    "bytes": 15364,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/practice/paletteArt.tsx:8",
+      "src/ui/shared/PageHeader.tsx:11"
+    ]
+  },
+  {
+    "file": "head-settings.webp",
+    "size": [
+      232,
+      244
+    ],
+    "frames": 1,
+    "bytes": 16582,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/practice/paletteArt.tsx:9",
+      "src/ui/shared/PageHeader.tsx:12"
+    ]
+  },
+  {
+    "file": "head-story.webp",
+    "size": [
+      242,
+      244
+    ],
+    "frames": 1,
+    "bytes": 19378,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/practice/paletteArt.tsx:10",
+      "src/ui/shared/PageHeader.tsx:13",
+      "src/ui/shared/drawnArt.ts:169"
+    ]
+  },
+  {
+    "file": "head-translate.webp",
+    "size": [
+      222,
+      244
+    ],
+    "frames": 1,
+    "bytes": 14888,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/practice/paletteArt.tsx:11",
+      "src/ui/shared/PageHeader.tsx:14"
+    ]
+  },
+  {
+    "file": "head-vocabtest.webp",
+    "size": [
+      204,
+      244
+    ],
+    "frames": 1,
+    "bytes": 21102,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/practice/paletteArt.tsx:15",
+      "src/ui/shared/PageHeader.tsx:20"
+    ]
+  },
+  {
+    "file": "head-words.webp",
+    "size": [
+      217,
+      244
+    ],
+    "frames": 1,
+    "bytes": 19652,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:13",
+      "src/ui/practice/paletteArt.tsx:12",
+      "src/ui/shared/PageHeader.tsx:15"
+    ]
+  },
+  {
+    "file": "hero-micro-news.webp",
+    "size": [
+      384,
+      384
+    ],
+    "frames": 1,
+    "bytes": 51698,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/reading/DailyNewsHero.tsx:8"
+    ]
+  },
+  {
+    "file": "lang-en.webp",
+    "size": [
+      223,
+      240
+    ],
+    "frames": 1,
+    "bytes": 17576,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": []
+  },
+  {
+    "file": "lang-es.webp",
+    "size": [
+      202,
+      240
+    ],
+    "frames": 1,
+    "bytes": 17338,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": []
+  },
+  {
+    "file": "lang-fr.webp",
+    "size": [
+      206,
+      240
+    ],
+    "frames": 1,
+    "bytes": 15334,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": []
+  },
+  {
+    "file": "lang-monki-en.webp",
+    "size": [
+      200,
+      240
+    ],
+    "frames": 1,
+    "bytes": 23502,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:191"
+    ]
+  },
+  {
+    "file": "lang-monki-es.webp",
+    "size": [
+      198,
+      240
+    ],
+    "frames": 1,
+    "bytes": 25366,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:193"
+    ]
+  },
+  {
+    "file": "lang-monki-fr.webp",
+    "size": [
+      199,
+      240
+    ],
+    "frames": 1,
+    "bytes": 26946,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:192"
+    ]
+  },
+  {
+    "file": "medal-bandage.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9104,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:31"
+    ]
+  },
+  {
+    "file": "medal-beach.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8944,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:25"
+    ]
+  },
+  {
+    "file": "medal-bolt-watch.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8910,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:30"
+    ]
+  },
+  {
+    "file": "medal-books.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 10752,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:1"
+    ]
+  },
+  {
+    "file": "medal-bulb-note.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8630,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:14"
+    ]
+  },
+  {
+    "file": "medal-calendar-check.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 7892,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:20"
+    ]
+  },
+  {
+    "file": "medal-cards-plus.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8822,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:13"
+    ]
+  },
+  {
+    "file": "medal-clock-loop.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9220,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:28"
+    ]
+  },
+  {
+    "file": "medal-compass.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 10794,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:9"
+    ]
+  },
+  {
+    "file": "medal-daynight.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 10726,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:8"
+    ]
+  },
+  {
+    "file": "medal-diamond.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 11520,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:10"
+    ]
+  },
+  {
+    "file": "medal-dragon.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9382,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:5"
+    ]
+  },
+  {
+    "file": "medal-finish-shoe.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8770,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:23"
+    ]
+  },
+  {
+    "file": "medal-flag-rock.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8374,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:18"
+    ]
+  },
+  {
+    "file": "medal-flame.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9222,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:2"
+    ]
+  },
+  {
+    "file": "medal-frame.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 7974,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:15"
+    ]
+  },
+  {
+    "file": "medal-gear-quill.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9472,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:33"
+    ]
+  },
+  {
+    "file": "medal-gem-check.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8456,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:21"
+    ]
+  },
+  {
+    "file": "medal-headphones.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 10374,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:6"
+    ]
+  },
+  {
+    "file": "medal-hundred.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 10190,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:3"
+    ]
+  },
+  {
+    "file": "medal-lifering.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9182,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:19"
+    ]
+  },
+  {
+    "file": "medal-lotus.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 10552,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:4"
+    ]
+  },
+  {
+    "file": "medal-mic.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9402,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:7"
+    ]
+  },
+  {
+    "file": "medal-notebook.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 7930,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:37"
+    ]
+  },
+  {
+    "file": "medal-peak-gear.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8462,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:36"
+    ]
+  },
+  {
+    "file": "medal-peak-pencil.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8182,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:29"
+    ]
+  },
+  {
+    "file": "medal-phoenix.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9680,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:24"
+    ]
+  },
+  {
+    "file": "medal-roots.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9178,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:12"
+    ]
+  },
+  {
+    "file": "medal-sprout-book.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8868,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:11"
+    ]
+  },
+  {
+    "file": "medal-stone-bolt.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8082,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:17"
+    ]
+  },
+  {
+    "file": "medal-sunflower.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9504,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:35"
+    ]
+  },
+  {
+    "file": "medal-tags.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8504,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:32"
+    ]
+  },
+  {
+    "file": "medal-three-flames.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8672,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:22"
+    ]
+  },
+  {
+    "file": "medal-trophy-stars.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9068,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:27"
+    ]
+  },
+  {
+    "file": "medal-vine-pencil.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 9240,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:34"
+    ]
+  },
+  {
+    "file": "medal-voice.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8862,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:16"
+    ]
+  },
+  {
+    "file": "medal-week-flag.webp",
+    "size": [
+      160,
+      160
+    ],
+    "frames": 1,
+    "bytes": 8416,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:26"
+    ]
+  },
+  {
+    "file": "milestone-bloom.webp",
+    "size": [
+      248,
+      320
+    ],
+    "frames": 1,
+    "bytes": 31042,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/progress/MilestoneMoment.tsx:11"
+    ]
+  },
+  {
+    "file": "milestone-crown.webp",
+    "size": [
+      320,
+      318
+    ],
+    "frames": 1,
+    "bytes": 38804,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/progress/MilestoneMoment.tsx:12"
+    ]
+  },
+  {
+    "file": "milestone-sprout.webp",
+    "size": [
+      286,
+      320
+    ],
+    "frames": 1,
+    "bytes": 23674,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/progress/MilestoneMoment.tsx:10"
+    ]
+  },
+  {
+    "file": "milestone-trophy.webp",
+    "size": [
+      355,
+      360
+    ],
+    "frames": 1,
+    "bytes": 50472,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/progress/MilestoneMoment.tsx:9"
+    ]
+  },
+  {
+    "file": "mission-luggage.webp",
+    "size": [
+      215,
+      200
+    ],
+    "frames": 1,
+    "bytes": 17206,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:206"
+    ]
+  },
+  {
+    "file": "mission-neighbour.webp",
+    "size": [
+      206,
+      200
+    ],
+    "frames": 1,
+    "bytes": 18840,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:207"
+    ]
+  },
+  {
+    "file": "mission-persuade.webp",
+    "size": [
+      238,
+      200
+    ],
+    "frames": 1,
+    "bytes": 23050,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:209"
+    ]
+  },
+  {
+    "file": "mission-rent.webp",
+    "size": [
+      215,
+      200
+    ],
+    "frames": 1,
+    "bytes": 20918,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:204"
+    ]
+  },
+  {
+    "file": "mission-restaurant.webp",
+    "size": [
+      238,
+      200
+    ],
+    "frames": 1,
+    "bytes": 23470,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:205"
+    ]
+  },
+  {
+    "file": "mission-return.webp",
+    "size": [
+      230,
+      200
+    ],
+    "frames": 1,
+    "bytes": 20016,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:208"
+    ]
+  },
+  {
+    "file": "monki-animated-celebrate.webp",
+    "size": [
+      192,
+      192
+    ],
+    "frames": 4,
+    "bytes": 47274,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/Confetti.tsx:2",
+      "src/ui/shared/drawnArt.ts:164"
+    ],
+    "note": "Dört kare ayrıca incelendi; yaka yaprakları ve kareler arası oranlar animasyon revizyonunda normalize edilebilir. Bu tur yeni animasyon üretilmedi."
+  },
+  {
+    "file": "monki-animated-wave.webp",
+    "size": [
+      192,
+      192
+    ],
+    "frames": 4,
+    "bytes": 45854,
+    "monkiRelated": true,
+    "review": "animasyon-icin-statik-ana-kare",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:163"
+    ]
+  },
+  {
+    "file": "monki-animated-wink.webp",
+    "size": [
+      192,
+      192
+    ],
+    "frames": 4,
+    "bytes": 39884,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:165"
+    ],
+    "note": "Dört kare ayrıca incelendi; yaka yaprakları ve kareler arası oranlar animasyon revizyonunda normalize edilebilir. Bu tur yeni animasyon üretilmedi."
+  },
+  {
+    "file": "monki-cheer.webp",
+    "size": [
+      313,
+      360
+    ],
+    "frames": 1,
+    "bytes": 26558,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:14",
+      "src/ui/monki/MonkiMascot.tsx:9",
+      "src/ui/profile/avatarArt.ts:26"
+    ]
+  },
+  {
+    "file": "monki-hang.webp",
+    "size": [
+      319,
+      360
+    ],
+    "frames": 1,
+    "bytes": 29668,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/monki/MonkiMascot.tsx:10",
+      "src/ui/profile/avatarArt.ts:24"
+    ]
+  },
+  {
+    "file": "monki-lvl-0.webp",
+    "size": [
+      198,
+      240
+    ],
+    "frames": 1,
+    "bytes": 14858,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:72"
+    ]
+  },
+  {
+    "file": "monki-lvl-1.webp",
+    "size": [
+      196,
+      240
+    ],
+    "frames": 1,
+    "bytes": 15018,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:18",
+      "src/ui/shared/drawnArt.ts:73"
+    ]
+  },
+  {
+    "file": "monki-lvl-2.webp",
+    "size": [
+      185,
+      240
+    ],
+    "frames": 1,
+    "bytes": 14678,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:19",
+      "src/ui/shared/drawnArt.ts:74"
+    ]
+  },
+  {
+    "file": "monki-lvl-3.webp",
+    "size": [
+      199,
+      240
+    ],
+    "frames": 1,
+    "bytes": 15924,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:20",
+      "src/ui/shared/drawnArt.ts:75"
+    ]
+  },
+  {
+    "file": "monki-lvl-4.webp",
+    "size": [
+      185,
+      240
+    ],
+    "frames": 1,
+    "bytes": 16518,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:21",
+      "src/ui/shared/drawnArt.ts:76"
+    ]
+  },
+  {
+    "file": "monki-lvl-5.webp",
+    "size": [
+      182,
+      240
+    ],
+    "frames": 1,
+    "bytes": 16106,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:22",
+      "src/ui/shared/drawnArt.ts:77"
+    ]
+  },
+  {
+    "file": "monki-review-empty.webp",
+    "size": [
+      256,
+      256
+    ],
+    "frames": 1,
+    "bytes": 21920,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:230"
+    ]
+  },
+  {
+    "file": "monki-sad.webp",
+    "size": [
+      276,
+      360
+    ],
+    "frames": 1,
+    "bytes": 26158,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/monki/MonkiMascot.tsx:11"
+    ]
+  },
+  {
+    "file": "monki-scanner.webp",
+    "size": [
+      256,
+      256
+    ],
+    "frames": 1,
+    "bytes": 26738,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/reading/PhotoText.tsx:6",
+      "src/ui/shared/drawnArt.ts:231"
+    ]
+  },
+  {
+    "file": "monki-sleep.webp",
+    "size": [
+      360,
+      238
+    ],
+    "frames": 1,
+    "bytes": 22186,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/monki/MonkiMascot.tsx:12",
+      "src/ui/profile/avatarArt.ts:25"
+    ]
+  },
+  {
+    "file": "monki-slips-cleared.webp",
+    "size": [
+      256,
+      256
+    ],
+    "frames": 1,
+    "bytes": 26750,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:229",
+      "src/ui/verbs/SlipsTab.tsx:11"
+    ]
+  },
+  {
+    "file": "monki-think.webp",
+    "size": [
+      282,
+      360
+    ],
+    "frames": 1,
+    "bytes": 26714,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/monki/MonkiMascot.tsx:13",
+      "src/ui/profile/avatarArt.ts:23"
+    ]
+  },
+  {
+    "file": "monki-video-listen.webp",
+    "size": [
+      256,
+      256
+    ],
+    "frames": 1,
+    "bytes": 22198,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/reading/WatchCheck.tsx:5",
+      "src/ui/shared/drawnArt.ts:232"
+    ]
+  },
+  {
+    "file": "monki-wave.webp",
+    "size": [
+      285,
+      360
+    ],
+    "frames": 1,
+    "bytes": 26594,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:15",
+      "src/ui/monki/MonkiMascot.tsx:14",
+      "src/ui/profile/avatarArt.ts:17"
+    ]
+  },
+  {
+    "file": "onb-flags.webp",
+    "size": [
+      270,
+      240
+    ],
+    "frames": 1,
+    "bytes": 24072,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Onboarding.tsx:3",
+      "src/ui/shared/drawnArt.ts:177"
+    ]
+  },
+  {
+    "file": "onb-goal.webp",
+    "size": [
+      242,
+      240
+    ],
+    "frames": 1,
+    "bytes": 20514,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Onboarding.tsx:2"
+    ]
+  },
+  {
+    "file": "onb-map.webp",
+    "size": [
+      258,
+      240
+    ],
+    "frames": 1,
+    "bytes": 20762,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": []
+  },
+  {
+    "file": "onb-plant.webp",
+    "size": [
+      235,
+      240
+    ],
+    "frames": 1,
+    "bytes": 19654,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": []
+  },
+  {
+    "file": "onb-welcome.webp",
+    "size": [
+      224,
+      256
+    ],
+    "frames": 1,
+    "bytes": 21932,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/home/Onboarding.tsx:4"
+    ]
+  },
+  {
+    "file": "pos-adjective.webp",
+    "size": [
+      222,
+      240
+    ],
+    "frames": 1,
+    "bytes": 21454,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:153"
+    ]
+  },
+  {
+    "file": "pos-adverb.webp",
+    "size": [
+      208,
+      240
+    ],
+    "frames": 1,
+    "bytes": 16768,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:154"
+    ]
+  },
+  {
+    "file": "pos-conjunction.webp",
+    "size": [
+      236,
+      240
+    ],
+    "frames": 1,
+    "bytes": 13986,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:158"
+    ]
+  },
+  {
+    "file": "pos-noun.webp",
+    "size": [
+      191,
+      240
+    ],
+    "frames": 1,
+    "bytes": 14272,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:151"
+    ]
+  },
+  {
+    "file": "pos-phrase.webp",
+    "size": [
+      223,
+      240
+    ],
+    "frames": 1,
+    "bytes": 19808,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:157"
+    ]
+  },
+  {
+    "file": "pos-preposition.webp",
+    "size": [
+      304,
+      240
+    ],
+    "frames": 1,
+    "bytes": 21426,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:155"
+    ]
+  },
+  {
+    "file": "pos-pronoun.webp",
+    "size": [
+      210,
+      240
+    ],
+    "frames": 1,
+    "bytes": 15718,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:156"
+    ]
+  },
+  {
+    "file": "pos-verb.webp",
+    "size": [
+      195,
+      240
+    ],
+    "frames": 1,
+    "bytes": 14198,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:152"
+    ]
+  },
+  {
+    "file": "pot-0.webp",
+    "size": [
+      132,
+      250
+    ],
+    "frames": 1,
+    "bytes": 5844,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:50",
+      "src/ui/shared/drawnArt.ts:66"
+    ]
+  },
+  {
+    "file": "pot-1.webp",
+    "size": [
+      133,
+      250
+    ],
+    "frames": 1,
+    "bytes": 7584,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:63",
+      "src/ui/shared/drawnArt.ts:67"
+    ]
+  },
+  {
+    "file": "pot-2.webp",
+    "size": [
+      132,
+      250
+    ],
+    "frames": 1,
+    "bytes": 12042,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:51",
+      "src/ui/shared/drawnArt.ts:68"
+    ]
+  },
+  {
+    "file": "pot-3.webp",
+    "size": [
+      132,
+      250
+    ],
+    "frames": 1,
+    "bytes": 14726,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:64",
+      "src/ui/shared/drawnArt.ts:69"
+    ]
+  },
+  {
+    "file": "pot-4.webp",
+    "size": [
+      156,
+      250
+    ],
+    "frames": 1,
+    "bytes": 14934,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:52",
+      "src/ui/shared/drawnArt.ts:70"
+    ]
+  },
+  {
+    "file": "pot-5.webp",
+    "size": [
+      149,
+      250
+    ],
+    "frames": 1,
+    "bytes": 17844,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:65",
+      "src/ui/shared/drawnArt.ts:71"
+    ]
+  },
+  {
+    "file": "progress-report.webp",
+    "size": [
+      191,
+      240
+    ],
+    "frames": 1,
+    "bytes": 16200,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/practice/paletteArt.tsx:18",
+      "src/ui/shared/drawnArt.ts:223"
+    ]
+  },
+  {
+    "file": "quest-answers.webp",
+    "size": [
+      121,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4866,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:116"
+    ]
+  },
+  {
+    "file": "quest-chain.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6646,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:126"
+    ]
+  },
+  {
+    "file": "quest-correct.webp",
+    "size": [
+      116,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6434,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:117"
+    ]
+  },
+  {
+    "file": "quest-dialogue.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6420,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:130"
+    ]
+  },
+  {
+    "file": "quest-dictation.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 7452,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:128"
+    ]
+  },
+  {
+    "file": "quest-ear.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 8486,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:129"
+    ]
+  },
+  {
+    "file": "quest-listen.webp",
+    "size": [
+      121,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6404,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:120"
+    ]
+  },
+  {
+    "file": "quest-newword.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6306,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:115"
+    ]
+  },
+  {
+    "file": "quest-nohint.webp",
+    "size": [
+      104,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6714,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:121"
+    ]
+  },
+  {
+    "file": "quest-read.webp",
+    "size": [
+      134,
+      112
+    ],
+    "frames": 1,
+    "bytes": 5898,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:122"
+    ]
+  },
+  {
+    "file": "quest-recall.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 7510,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:127"
+    ]
+  },
+  {
+    "file": "quest-speak.webp",
+    "size": [
+      108,
+      112
+    ],
+    "frames": 1,
+    "bytes": 5784,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:123"
+    ]
+  },
+  {
+    "file": "quest-speed.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 7656,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:131"
+    ]
+  },
+  {
+    "file": "quest-sprout.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6484,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:124"
+    ]
+  },
+  {
+    "file": "quest-streak.webp",
+    "size": [
+      92,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4754,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:118"
+    ]
+  },
+  {
+    "file": "quest-target.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 6168,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:125"
+    ]
+  },
+  {
+    "file": "quest-trophy.webp",
+    "size": [
+      112,
+      112
+    ],
+    "frames": 1,
+    "bytes": 7534,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:132"
+    ]
+  },
+  {
+    "file": "quest-typed.webp",
+    "size": [
+      129,
+      112
+    ],
+    "frames": 1,
+    "bytes": 4154,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:119"
+    ]
+  },
+  {
+    "file": "react-combo.webp",
+    "size": [
+      214,
+      204
+    ],
+    "frames": 1,
+    "bytes": 14702,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:159"
+    ]
+  },
+  {
+    "file": "react-correct.webp",
+    "size": [
+      224,
+      204
+    ],
+    "frames": 1,
+    "bytes": 13954,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:160"
+    ]
+  },
+  {
+    "file": "react-forgot.webp",
+    "size": [
+      200,
+      204
+    ],
+    "frames": 1,
+    "bytes": 12864,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:161"
+    ]
+  },
+  {
+    "file": "react-hello.webp",
+    "size": [
+      219,
+      204
+    ],
+    "frames": 1,
+    "bytes": 11088,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/PageHeader.tsx:23",
+      "src/ui/shared/drawnArt.ts:162"
+    ]
+  },
+  {
+    "file": "react-newword.webp",
+    "size": [
+      202,
+      204
+    ],
+    "frames": 1,
+    "bytes": 12050,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:166"
+    ]
+  },
+  {
+    "file": "react-oops.webp",
+    "size": [
+      198,
+      204
+    ],
+    "frames": 1,
+    "bytes": 11068,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:167"
+    ]
+  },
+  {
+    "file": "result-good.webp",
+    "size": [
+      229,
+      260
+    ],
+    "frames": 1,
+    "bytes": 17888,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:59"
+    ]
+  },
+  {
+    "file": "result-great.webp",
+    "size": [
+      240,
+      260
+    ],
+    "frames": 1,
+    "bytes": 21426,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:58"
+    ]
+  },
+  {
+    "file": "result-hard.webp",
+    "size": [
+      224,
+      260
+    ],
+    "frames": 1,
+    "bytes": 17912,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:60"
+    ]
+  },
+  {
+    "file": "result-perfect.webp",
+    "size": [
+      262,
+      260
+    ],
+    "frames": 1,
+    "bytes": 25020,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:57"
+    ]
+  },
+  {
+    "file": "result-record.webp",
+    "size": [
+      208,
+      260
+    ],
+    "frames": 1,
+    "bytes": 18230,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:62"
+    ]
+  },
+  {
+    "file": "result-streak.webp",
+    "size": [
+      234,
+      260
+    ],
+    "frames": 1,
+    "bytes": 19668,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:61"
+    ]
+  },
+  {
+    "file": "role-cafe.webp",
+    "size": [
+      213,
+      200
+    ],
+    "frames": 1,
+    "bytes": 19098,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:168"
+    ]
+  },
+  {
+    "file": "role-directions.webp",
+    "size": [
+      218,
+      200
+    ],
+    "frames": 1,
+    "bytes": 15600,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:211"
+    ]
+  },
+  {
+    "file": "role-doctor.webp",
+    "size": [
+      200,
+      200
+    ],
+    "frames": 1,
+    "bytes": 18372,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:212"
+    ]
+  },
+  {
+    "file": "role-hotel.webp",
+    "size": [
+      208,
+      200
+    ],
+    "frames": 1,
+    "bytes": 15682,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:210"
+    ]
+  },
+  {
+    "file": "role-interview.webp",
+    "size": [
+      204,
+      200
+    ],
+    "frames": 1,
+    "bytes": 15826,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:213"
+    ]
+  },
+  {
+    "file": "role-shopping.webp",
+    "size": [
+      221,
+      200
+    ],
+    "frames": 1,
+    "bytes": 14742,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:214"
+    ]
+  },
+  {
+    "file": "scene-cardbox.webp",
+    "size": [
+      248,
+      244
+    ],
+    "frames": 1,
+    "bytes": 14834,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/EmptyArt.tsx:9"
+    ]
+  },
+  {
+    "file": "scene-clean.webp",
+    "size": [
+      347,
+      244
+    ],
+    "frames": 1,
+    "bytes": 23522,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/EmptyArt.tsx:10"
+    ]
+  },
+  {
+    "file": "scene-journal.webp",
+    "size": [
+      256,
+      256
+    ],
+    "frames": 1,
+    "bytes": 23880,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/shared/EmptyArt.tsx:13"
+    ]
+  },
+  {
+    "file": "scene-labels.webp",
+    "size": [
+      331,
+      244
+    ],
+    "frames": 1,
+    "bytes": 22986,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/EmptyArt.tsx:11"
+    ]
+  },
+  {
+    "file": "scene-library.webp",
+    "size": [
+      256,
+      256
+    ],
+    "frames": 1,
+    "bytes": 23194,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/shared/EmptyArt.tsx:14"
+    ]
+  },
+  {
+    "file": "scene-search-empty.webp",
+    "size": [
+      256,
+      254
+    ],
+    "frames": 1,
+    "bytes": 27916,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/shared/EmptyArt.tsx:16"
+    ]
+  },
+  {
+    "file": "scene-sentences.webp",
+    "size": [
+      256,
+      252
+    ],
+    "frames": 1,
+    "bytes": 25016,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/ui/shared/EmptyArt.tsx:15"
+    ]
+  },
+  {
+    "file": "scene-together.webp",
+    "size": [
+      381,
+      244
+    ],
+    "frames": 1,
+    "bytes": 26590,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Landing.tsx:16",
+      "src/ui/shared/EmptyArt.tsx:12"
+    ]
+  },
+  {
+    "file": "set-account.webp",
+    "size": [
+      138,
+      128
+    ],
+    "frames": 1,
+    "bytes": 5928,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:88"
+    ]
+  },
+  {
+    "file": "set-bell.webp",
+    "size": [
+      124,
+      128
+    ],
+    "frames": 1,
+    "bytes": 6916,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:93"
+    ]
+  },
+  {
+    "file": "set-data.webp",
+    "size": [
+      145,
+      128
+    ],
+    "frames": 1,
+    "bytes": 7002,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:95"
+    ]
+  },
+  {
+    "file": "set-help.webp",
+    "size": [
+      128,
+      128
+    ],
+    "frames": 1,
+    "bytes": 6054,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:96"
+    ]
+  },
+  {
+    "file": "set-look.webp",
+    "size": [
+      116,
+      128
+    ],
+    "frames": 1,
+    "bytes": 6652,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:92"
+    ]
+  },
+  {
+    "file": "set-questions.webp",
+    "size": [
+      139,
+      128
+    ],
+    "frames": 1,
+    "bytes": 8962,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:90"
+    ]
+  },
+  {
+    "file": "set-sound.webp",
+    "size": [
+      154,
+      128
+    ],
+    "frames": 1,
+    "bytes": 8634,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:91"
+    ]
+  },
+  {
+    "file": "set-study.webp",
+    "size": [
+      125,
+      128
+    ],
+    "frames": 1,
+    "bytes": 10776,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:89"
+    ]
+  },
+  {
+    "file": "set-tools.webp",
+    "size": [
+      108,
+      128
+    ],
+    "frames": 1,
+    "bytes": 7500,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:94"
+    ]
+  },
+  {
+    "file": "share-card-square.webp",
+    "size": [
+      360,
+      353
+    ],
+    "frames": 1,
+    "bytes": 34036,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/social/shareCard.ts:5"
+    ]
+  },
+  {
+    "file": "share-card-story.webp",
+    "size": [
+      206,
+      360
+    ],
+    "frames": 1,
+    "bytes": 27428,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": []
+  },
+  {
+    "file": "share-card.webp",
+    "size": [
+      1200,
+      576
+    ],
+    "frames": 1,
+    "bytes": 30868,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/social/shareCard.ts:1"
+    ]
+  },
+  {
+    "file": "share-level.webp",
+    "size": [
+      1200,
+      307
+    ],
+    "frames": 1,
+    "bytes": 19120,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/social/shareCard.ts:2"
+    ]
+  },
+  {
+    "file": "share-streak.webp",
+    "size": [
+      1200,
+      298
+    ],
+    "frames": 1,
+    "bytes": 18948,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/social/shareCard.ts:3"
+    ]
+  },
+  {
+    "file": "share-week.webp",
+    "size": [
+      1200,
+      297
+    ],
+    "frames": 1,
+    "bytes": 20828,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/social/shareCard.ts:4"
+    ]
+  },
+  {
+    "file": "sky-dawn.webp",
+    "size": [
+      320,
+      285
+    ],
+    "frames": 1,
+    "bytes": 16260,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:200"
+    ]
+  },
+  {
+    "file": "sky-dusk.webp",
+    "size": [
+      320,
+      258
+    ],
+    "frames": 1,
+    "bytes": 14988,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:202"
+    ]
+  },
+  {
+    "file": "sky-night.webp",
+    "size": [
+      320,
+      317
+    ],
+    "frames": 1,
+    "bytes": 19820,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:203"
+    ]
+  },
+  {
+    "file": "sky-noon.webp",
+    "size": [
+      320,
+      303
+    ],
+    "frames": 1,
+    "bytes": 26488,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:201"
+    ]
+  },
+  {
+    "file": "src-audiobook.webp",
+    "size": [
+      128,
+      128
+    ],
+    "frames": 1,
+    "bytes": 8538,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/reading/SourceTitle.tsx:4"
+    ]
+  },
+  {
+    "file": "src-classic.webp",
+    "size": [
+      128,
+      128
+    ],
+    "frames": 1,
+    "bytes": 7520,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/reading/SourceTitle.tsx:5"
+    ]
+  },
+  {
+    "file": "src-ebook.webp",
+    "size": [
+      128,
+      128
+    ],
+    "frames": 1,
+    "bytes": 4038,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:47"
+    ]
+  },
+  {
+    "file": "src-news.webp",
+    "size": [
+      128,
+      128
+    ],
+    "frames": 1,
+    "bytes": 8736,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/reading/SourceTitle.tsx:3",
+      "src/ui/shared/drawnArt.ts:49"
+    ]
+  },
+  {
+    "file": "src-notes.webp",
+    "size": [
+      128,
+      128
+    ],
+    "frames": 1,
+    "bytes": 8512,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:48"
+    ]
+  },
+  {
+    "file": "src-podcast.webp",
+    "size": [
+      128,
+      128
+    ],
+    "frames": 1,
+    "bytes": 8012,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/guide/Guide.tsx:5",
+      "src/ui/reading/SourceTitle.tsx:7"
+    ]
+  },
+  {
+    "file": "src-storybook.webp",
+    "size": [
+      128,
+      128
+    ],
+    "frames": 1,
+    "bytes": 6146,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/guide/Guide.tsx:6",
+      "src/ui/reading/SourceTitle.tsx:2"
+    ]
+  },
+  {
+    "file": "src-video.webp",
+    "size": [
+      128,
+      128
+    ],
+    "frames": 1,
+    "bytes": 3688,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:46"
+    ]
+  },
+  {
+    "file": "src-wiki.webp",
+    "size": [
+      128,
+      128
+    ],
+    "frames": 1,
+    "bytes": 7660,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/guide/Guide.tsx:7",
+      "src/ui/reading/SourceTitle.tsx:6"
+    ]
+  },
+  {
+    "file": "stat-book.webp",
+    "size": [
+      247,
+      200
+    ],
+    "frames": 1,
+    "bytes": 19516,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:36",
+      "src/ui/shared/drawnArt.ts:227"
+    ]
+  },
+  {
+    "file": "stat-check.webp",
+    "size": [
+      200,
+      200
+    ],
+    "frames": 1,
+    "bytes": 13400,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:228"
+    ]
+  },
+  {
+    "file": "stat-sprout.webp",
+    "size": [
+      196,
+      200
+    ],
+    "frames": 1,
+    "bytes": 14762,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:34",
+      "src/ui/shared/drawnArt.ts:225"
+    ]
+  },
+  {
+    "file": "stat-star.webp",
+    "size": [
+      209,
+      200
+    ],
+    "frames": 1,
+    "bytes": 14472,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:35",
+      "src/ui/shared/drawnArt.ts:226"
+    ]
+  },
+  {
+    "file": "status-conflict.webp",
+    "size": [
+      266,
+      240
+    ],
+    "frames": 1,
+    "bytes": 26056,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/StatusArt.tsx:5"
+    ]
+  },
+  {
+    "file": "status-full.webp",
+    "size": [
+      303,
+      240
+    ],
+    "frames": 1,
+    "bytes": 24310,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/StatusArt.tsx:2"
+    ]
+  },
+  {
+    "file": "status-maint.webp",
+    "size": [
+      223,
+      240
+    ],
+    "frames": 1,
+    "bytes": 22766,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/StatusArt.tsx:6"
+    ]
+  },
+  {
+    "file": "status-nomic.webp",
+    "size": [
+      219,
+      240
+    ],
+    "frames": 1,
+    "bytes": 18752,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/StatusArt.tsx:3"
+    ]
+  },
+  {
+    "file": "status-offline.webp",
+    "size": [
+      234,
+      240
+    ],
+    "frames": 1,
+    "bytes": 20852,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/StatusArt.tsx:1"
+    ]
+  },
+  {
+    "file": "status-update.webp",
+    "size": [
+      230,
+      240
+    ],
+    "frames": 1,
+    "bytes": 19604,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/StatusArt.tsx:4"
+    ]
+  },
+  {
+    "file": "sticker-coffee.webp",
+    "size": [
+      176,
+      200
+    ],
+    "frames": 1,
+    "bytes": 11220,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:28",
+      "src/ui/shared/drawnArt.ts:142"
+    ]
+  },
+  {
+    "file": "sticker-cry.webp",
+    "size": [
+      171,
+      200
+    ],
+    "frames": 1,
+    "bytes": 10486,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:137"
+    ],
+    "note": "Çizim korunabilir; öğrenen hatasında yargılayıcı geri bildirim olarak kullanılmamalı."
+  },
+  {
+    "file": "sticker-detective.webp",
+    "size": [
+      200,
+      191
+    ],
+    "frames": 1,
+    "bytes": 19680,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:148"
+    ]
+  },
+  {
+    "file": "sticker-facepalm.webp",
+    "size": [
+      173,
+      200
+    ],
+    "frames": 1,
+    "bytes": 10264,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:143"
+    ],
+    "note": "Çizim korunabilir; öğrenen hatasında yargılayıcı geri bildirim olarak kullanılmamalı."
+  },
+  {
+    "file": "sticker-heart.webp",
+    "size": [
+      172,
+      200
+    ],
+    "frames": 1,
+    "bytes": 9538,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:144"
+    ]
+  },
+  {
+    "file": "sticker-hello.webp",
+    "size": [
+      165,
+      200
+    ],
+    "frames": 1,
+    "bytes": 10330,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:133"
+    ]
+  },
+  {
+    "file": "sticker-idea.webp",
+    "size": [
+      200,
+      192
+    ],
+    "frames": 1,
+    "bytes": 20396,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:145"
+    ]
+  },
+  {
+    "file": "sticker-laugh.webp",
+    "size": [
+      158,
+      200
+    ],
+    "frames": 1,
+    "bytes": 9896,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:136"
+    ]
+  },
+  {
+    "file": "sticker-magic.webp",
+    "size": [
+      198,
+      200
+    ],
+    "frames": 1,
+    "bytes": 26906,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:149"
+    ]
+  },
+  {
+    "file": "sticker-music.webp",
+    "size": [
+      171,
+      200
+    ],
+    "frames": 1,
+    "bytes": 10906,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:29",
+      "src/ui/shared/drawnArt.ts:141"
+    ]
+  },
+  {
+    "file": "sticker-party.webp",
+    "size": [
+      181,
+      200
+    ],
+    "frames": 1,
+    "bytes": 12218,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:31",
+      "src/ui/shared/drawnArt.ts:139"
+    ]
+  },
+  {
+    "file": "sticker-read.webp",
+    "size": [
+      170,
+      200
+    ],
+    "frames": 1,
+    "bytes": 10696,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:32",
+      "src/ui/shared/drawnArt.ts:140"
+    ]
+  },
+  {
+    "file": "sticker-shy.webp",
+    "size": [
+      184,
+      200
+    ],
+    "frames": 1,
+    "bytes": 21392,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:150"
+    ]
+  },
+  {
+    "file": "sticker-sleep.webp",
+    "size": [
+      224,
+      200
+    ],
+    "frames": 1,
+    "bytes": 11992,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:138"
+    ]
+  },
+  {
+    "file": "sticker-speed.webp",
+    "size": [
+      200,
+      189
+    ],
+    "frames": 1,
+    "bytes": 26924,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:147"
+    ]
+  },
+  {
+    "file": "sticker-star.webp",
+    "size": [
+      195,
+      200
+    ],
+    "frames": 1,
+    "bytes": 22702,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:146"
+    ]
+  },
+  {
+    "file": "sticker-think.webp",
+    "size": [
+      184,
+      200
+    ],
+    "frames": 1,
+    "bytes": 11732,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:135"
+    ]
+  },
+  {
+    "file": "sticker-thumbs.webp",
+    "size": [
+      163,
+      200
+    ],
+    "frames": 1,
+    "bytes": 10908,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/profile/avatarArt.ts:30",
+      "src/ui/shared/drawnArt.ts:134"
+    ]
+  },
+  {
+    "file": "streak-0.webp",
+    "size": [
+      141,
+      200
+    ],
+    "frames": 1,
+    "bytes": 7250,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:78"
+    ]
+  },
+  {
+    "file": "streak-1.webp",
+    "size": [
+      139,
+      200
+    ],
+    "frames": 1,
+    "bytes": 7662,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:79"
+    ]
+  },
+  {
+    "file": "streak-2.webp",
+    "size": [
+      155,
+      200
+    ],
+    "frames": 1,
+    "bytes": 8466,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:80"
+    ]
+  },
+  {
+    "file": "streak-3.webp",
+    "size": [
+      159,
+      200
+    ],
+    "frames": 1,
+    "bytes": 13466,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:81"
+    ]
+  },
+  {
+    "file": "streak-4.webp",
+    "size": [
+      152,
+      200
+    ],
+    "frames": 1,
+    "bytes": 11644,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:82"
+    ]
+  },
+  {
+    "file": "streak-repair.webp",
+    "size": [
+      232,
+      240
+    ],
+    "frames": 1,
+    "bytes": 19128,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:222"
+    ]
+  },
+  {
+    "file": "tile-duel.webp",
+    "size": [
+      200,
+      185
+    ],
+    "frames": 1,
+    "bytes": 33200,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:178"
+    ]
+  },
+  {
+    "file": "tile-shadowing.webp",
+    "size": [
+      199,
+      200
+    ],
+    "frames": 1,
+    "bytes": 31098,
+    "monkiRelated": false,
+    "review": "monki-disi",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:179"
+    ]
+  },
+  {
+    "file": "time-evening.webp",
+    "size": [
+      480,
+      402
+    ],
+    "frames": 1,
+    "bytes": 27700,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:55"
+    ]
+  },
+  {
+    "file": "time-morning.webp",
+    "size": [
+      480,
+      383
+    ],
+    "frames": 1,
+    "bytes": 30638,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:53"
+    ]
+  },
+  {
+    "file": "time-night.webp",
+    "size": [
+      480,
+      385
+    ],
+    "frames": 1,
+    "bytes": 21288,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/shared/drawnArt.ts:56"
+    ]
+  },
+  {
+    "file": "time-noon.webp",
+    "size": [
+      480,
+      397
+    ],
+    "frames": 1,
+    "bytes": 27742,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/data/weather.test.tsx:19",
+      "src/ui/shared/drawnArt.ts:54"
+    ]
+  },
+  {
+    "file": "weather-cloudy.webp",
+    "size": [
+      479,
+      479
+    ],
+    "frames": 1,
+    "bytes": 35610,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/data/weather.test.tsx:17",
+      "src/data/weather.ts:3"
+    ]
+  },
+  {
+    "file": "weather-rain.webp",
+    "size": [
+      480,
+      483
+    ],
+    "frames": 1,
+    "bytes": 81736,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/data/weather.test.tsx:15",
+      "src/data/weather.ts:1"
+    ]
+  },
+  {
+    "file": "weather-snow.webp",
+    "size": [
+      480,
+      479
+    ],
+    "frames": 1,
+    "bytes": 87212,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/data/weather.test.tsx:16",
+      "src/data/weather.ts:2"
+    ]
+  },
+  {
+    "file": "weather-thunder.webp",
+    "size": [
+      472,
+      480
+    ],
+    "frames": 1,
+    "bytes": 71754,
+    "monkiRelated": true,
+    "review": "yeniden-tasarlandi",
+    "staticReferences": [
+      "src/data/weather.test.tsx:18",
+      "src/data/weather.ts:4"
+    ]
+  },
+  {
+    "file": "welcome-banner.webp",
+    "size": [
+      900,
+      466
+    ],
+    "frames": 1,
+    "bytes": 33352,
+    "monkiRelated": true,
+    "review": "koru-baglami-dogrula",
+    "staticReferences": [
+      "src/ui/home/Screens.tsx:25"
+    ]
+  }
+]

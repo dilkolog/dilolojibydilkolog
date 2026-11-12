@@ -1,0 +1,34 @@
+{
+  "packageId": "diloloji-monki-son-rotuslar-01",
+  "date": "2026-11-10",
+  "status": "design-complete-integration-pending",
+  "preview": "index.html",
+  "implementationNotes": "CLAUDE-DEVIR.md",
+  "motions": [
+    {
+      "id": "wave",
+      "file": "monki-wave-v2",
+      "durationSeconds": 4.8,
+      "fps": 25
+    },
+    {
+      "id": "wink",
+      "file": "monki-wink",
+      "durationSeconds": 4.8,
+      "fps": 25
+    },
+    {
+      "id": "celebrate",
+      "file": "monki-celebrate",
+      "durationSeconds": 4.8,
+      "fps": 25
+    }
+  ],
+  "staticImage": "docs/gelen-gorseller/son-rotuslar-01/monki-video-listen.png",
+  "supersedes": [
+    "monki-animasyon-01/monki-wave.webp",
+    "src/assets/art/monki-animated-wink.webp",
+    "src/assets/art/monki-animated-celebrate.webp",
+    "src/assets/art/monki-video-listen.webp"
+  ]
+}

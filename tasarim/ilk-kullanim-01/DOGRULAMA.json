@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-12",
+  "passed": [
+    "3 başlangıç adımı,9 örnek durum",
+    "375px tüm durumlarda yatay taşma yok",
+    "10dk/5yeni varsayılanları; native radyo seçimleri",
+    "Dil ve hedefler geri/ileri korunuyor",
+    "Süre/yeni kelime tercihleri birbirini zorla değiştirmiyor",
+    "Adsız ve3dilde tamamlama",
+    "İlk kelime boş kaydedilemiyor;1kelimede test daveti yok",
+    "5kelimelik örnekte isteğe bağlı test daveti, erteleme",
+    "Dil değişiminde örnek kelime sayısı taşınmıyor",
+    "80karakter ad mobilde taşmıyor",
+    "Dokunmatik mobilde ad alanı otomatik odaklanmıyor",
+    "Native radyo ok tuşları, başlık odağı ve Escape",
+    "Gerçek localStorage anahtarı/kayıt değişmedi",
+    "Açık/koyu/sakin; JS ve HTTP hatası yok"
+  ],
+  "notTested": [
+    "Canlı üretim ekranı",
+    "Gerçek onDone/DB/seviye testi/sertifika akışı",
+    "Gerçek telefon sanal klavyesi ve ekran okuyucu"
+  ],
+  "productionIntegrated": false
+}

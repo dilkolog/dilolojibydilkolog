@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-11",
+  "passed": [
+    "4 akış ve 15 ortak durum",
+    "Telaffuz simülasyonu12sn sonunda değerlendirme bekler",
+    "Kelime kaydı simülasyonu8sn sonunda önizleme; puan üretmez",
+    "Gölgeleme puan üretmez",
+    "Üç dinleme turunda metin görünürlüğü doğru",
+    "İzin/hata çıkışları, servis yeniden deneme, detay ve Escape",
+    "375px tüm akış ve durumlarda yatay taşma yok",
+    "EN/FR/ES vurgu, açık/koyu",
+    "Sakin ve reduced-motion hareketi durduruyor",
+    "Mikrofon çağrısı0; sunucuya ses gönderilmedi",
+    "Yerel ses dosyası metadata yükleme, hız değiştirme ve kaldırma",
+    "JavaScript ve HTTP hatası yok"
+  ],
+  "notTested": [
+    "Canlı üretim ekranı",
+    "Gerçek mikrofon/kayıt/değerlendirme",
+    "Sesin işitilerek doğrulanması",
+    "Gerçek cihaz ve ekran okuyucu"
+  ],
+  "productionIntegrated": false
+}

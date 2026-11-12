@@ -1,0 +1,382 @@
+[
+  {
+    "path": "CIZIM-ENVANTERI.json",
+    "bytes": 3292,
+    "sha256": "cd0cd4e1bb835bb00b6ebbfcdca7193f74dfc7e04d29a235a30fe17441005b71"
+  },
+  {
+    "path": "CLAUDE-DEVIR.md",
+    "bytes": 7046,
+    "sha256": "dc5f262cfb12fe1446b5a869b482437174f2a15b2a81a54e809557457bd0497e"
+  },
+  {
+    "path": "DOGRULAMA.json",
+    "bytes": 818,
+    "sha256": "0c42580642d3ab8c5bf994fdeb2655b8cbb1b1c13a68857a0afe15c021538405"
+  },
+  {
+    "path": "PAKET.json",
+    "bytes": 602,
+    "sha256": "b682aa81a000932e685ed99cd4d6ddd06123e1298a066f5f05662cbe2df82c5e"
+  },
+  {
+    "path": "README.md",
+    "bytes": 2417,
+    "sha256": "3d58b7a4a4fb2a5566f4db78b4ec6c8a02b7df681df1302a57cf99b25ef4f831"
+  },
+  {
+    "path": "app.js",
+    "bytes": 14832,
+    "sha256": "e3ef64b0f5dbd4729899df71597b1e863db30fc0b289c6528b2c137fa468a3b7"
+  },
+  {
+    "path": "assets/LEXEND-LICENSE",
+    "bytes": 4384,
+    "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+  },
+  {
+    "path": "assets/LITERATA-LICENSE",
+    "bytes": 4506,
+    "sha256": "9895ebc015226accf416b758ac1ca02a2fb4f83a89d316791ef697c3dc0852aa"
+  },
+  {
+    "path": "assets/cizimler/badge-book.png",
+    "bytes": 159963,
+    "sha256": "87ae12efe2f6a12dcc54ba205422ae8801049350200a7e651aba2f89ca01e3b6"
+  },
+  {
+    "path": "assets/cizimler/badge-book.webp",
+    "bytes": 25152,
+    "sha256": "6e345e0f35f7bd6d265febe2edee1dbc15b65cd3c15d29cdebbc2b5221ed19d6"
+  },
+  {
+    "path": "assets/cizimler/badge-chat.png",
+    "bytes": 161203,
+    "sha256": "da2cd9e4989da2373e9975b3661e8ec0c6aeae9eeb784a7f7e93adc3ed367601"
+  },
+  {
+    "path": "assets/cizimler/badge-chat.webp",
+    "bytes": 23570,
+    "sha256": "c4f9e3cefa6efc29863511614809add9c3319306ce19cf0208d627db774baf99"
+  },
+  {
+    "path": "assets/cizimler/badge-compass.png",
+    "bytes": 178304,
+    "sha256": "151497b9023dd9ab81e5bdd7cb297481c7c85bfd9162e2511d85f566d1186185"
+  },
+  {
+    "path": "assets/cizimler/badge-compass.webp",
+    "bytes": 29172,
+    "sha256": "a7998450d489c457d6b34dc7952536015d85db83f1cc6d5691c31b9cba2f817c"
+  },
+  {
+    "path": "assets/cizimler/badge-flame.png",
+    "bytes": 150578,
+    "sha256": "0f693280e70e8ffe816c50802755ab56940804c83d563204114aee49b1e8985a"
+  },
+  {
+    "path": "assets/cizimler/badge-flame.webp",
+    "bytes": 23488,
+    "sha256": "d5c117967c2147196eae81a9f2a978737c563dc5116d93bfd5843b3b2d093b86"
+  },
+  {
+    "path": "assets/cizimler/badge-headphones.png",
+    "bytes": 168355,
+    "sha256": "6936fe4cb9a9a220ad25a02f8d775d5e50239c867bc462e2e014862bcd905f35"
+  },
+  {
+    "path": "assets/cizimler/badge-headphones.webp",
+    "bytes": 26584,
+    "sha256": "47f41f1eef19062f301b47f87f8c17d47dc6ccb23191de6c847688d83e5177e5"
+  },
+  {
+    "path": "assets/cizimler/badge-sprout.png",
+    "bytes": 158151,
+    "sha256": "ab2b0e7d492759fcc5595378f449d550ac6217507f54b1d5433481077f88a687"
+  },
+  {
+    "path": "assets/cizimler/badge-sprout.webp",
+    "bytes": 24716,
+    "sha256": "36ac45c07767a9771e064fe52f5a8067ebfcbe370e4b0edc7d04c46c206d1eb4"
+  },
+  {
+    "path": "assets/cizimler/empty-done.png",
+    "bytes": 139203,
+    "sha256": "6771a54ac569684f5e18e468e280aed0098b08c508172702113bdc2dee235de1"
+  },
+  {
+    "path": "assets/cizimler/empty-done.webp",
+    "bytes": 23490,
+    "sha256": "78aab6bb9ee4f30e2a3b7e3bb464807c7be7e0678b78a79e46ef1e6c211e3d96"
+  },
+  {
+    "path": "assets/cizimler/empty-error.png",
+    "bytes": 106504,
+    "sha256": "3a02bdbed78e53d87cf35c30956cc1d8d60e954170277f3a6c9ff705db95e5ec"
+  },
+  {
+    "path": "assets/cizimler/empty-error.webp",
+    "bytes": 21614,
+    "sha256": "74adb5ea7bec392978ed02447235728c9425262c1c3258f7a75887f1edf903f5"
+  },
+  {
+    "path": "assets/cizimler/empty-first.png",
+    "bytes": 127775,
+    "sha256": "7ae54dd32007e82b5c199c6bf845f1d3bb4873a8ed78da8bf779649ce354ba86"
+  },
+  {
+    "path": "assets/cizimler/empty-first.webp",
+    "bytes": 25212,
+    "sha256": "45f344faf931348e4432ad6759d74ab9adbaee6a7b73ca04d218f2fe50a688e1"
+  },
+  {
+    "path": "assets/cizimler/empty-offline.png",
+    "bytes": 106932,
+    "sha256": "2baf2d238f070845bb00489f04aadde7a11e4238f5088039e3d7d732c8b5f80c"
+  },
+  {
+    "path": "assets/cizimler/empty-offline.webp",
+    "bytes": 22748,
+    "sha256": "a00af01933366b638da42fe157a7a190c4da7a708f51773367b9c25371b46ffb"
+  },
+  {
+    "path": "assets/cizimler/empty-search.png",
+    "bytes": 124159,
+    "sha256": "3eec92440e31ba01dd57c6e8146267da5a7a8745d3121e85bb53734c9b18cb81"
+  },
+  {
+    "path": "assets/cizimler/empty-search.webp",
+    "bytes": 21804,
+    "sha256": "dda506fb641a769a277294f6e08a5d067108922c4e33307efe143e5cbe08eed6"
+  },
+  {
+    "path": "assets/cizimler/empty-sentences.png",
+    "bytes": 90938,
+    "sha256": "aeb7327bc977af638ed0daf74f0672d9ea7822a0aa33236709330e1d3d9f3989"
+  },
+  {
+    "path": "assets/cizimler/empty-sentences.webp",
+    "bytes": 15076,
+    "sha256": "1a3db511e1b876ae1bbd2dfbddc82da76c815f7448ab691ae9d8bb37b9a91e2f"
+  },
+  {
+    "path": "assets/filiz/stage-0.svg",
+    "bytes": 5957,
+    "sha256": "5e3a1496cc08b0f2404470435cec13010afca24b22a19b23e5d00bbc4e144ab2"
+  },
+  {
+    "path": "assets/filiz/stage-1.svg",
+    "bytes": 6152,
+    "sha256": "a652f8a258d72c9f55f5a39ccfc0486a8a2f7c911dad09a27f57828cd03a9e9b"
+  },
+  {
+    "path": "assets/filiz/stage-2.svg",
+    "bytes": 6040,
+    "sha256": "d0a16377a602aa2721493e7554ce9f6231a2bf17a4a3d49539e14a0c1d723f04"
+  },
+  {
+    "path": "assets/filiz/stage-3.svg",
+    "bytes": 6143,
+    "sha256": "fbc7751800f05a13ffda46d95959f88e5959911c4e9cec9741561e7e9f08e803"
+  },
+  {
+    "path": "assets/filiz/stage-4.svg",
+    "bytes": 6051,
+    "sha256": "ec450ada9b4e8b062a9da4ccc6eae8a68d1b40b638dd2460507c97ebeb7cc230"
+  },
+  {
+    "path": "assets/filiz/stage-5.svg",
+    "bytes": 5910,
+    "sha256": "5f4c675f5e2ea54db86f2a7b3bdd93f9c4efb89592e90d3a1e7b2638830a1717"
+  },
+  {
+    "path": "assets/filiz/stage-6.svg",
+    "bytes": 5893,
+    "sha256": "e1dc596e1bf90efb1a0359673a08ea8a4f4551fcbd8972e5bf8a6955fb019948"
+  },
+  {
+    "path": "assets/ikonlar/practice-idioms.svg",
+    "bytes": 228,
+    "sha256": "e59596519926e08d2e23c76ec3344a37ad9ad1ace7f35be633b2686de349249a"
+  },
+  {
+    "path": "assets/ikonlar/practice-listening.svg",
+    "bytes": 229,
+    "sha256": "8bcee53b51eebba8ce6cae0306d55a7f1aee09b0fab5f33ea925cb9bc5521589"
+  },
+  {
+    "path": "assets/ikonlar/practice-matching.svg",
+    "bytes": 294,
+    "sha256": "4c7ba2e0e2000a4cda45eeb37c454be00a58b89058cd170bafbe0056b443d589"
+  },
+  {
+    "path": "assets/ikonlar/practice-reading.svg",
+    "bytes": 246,
+    "sha256": "108a6b66bb61d2455b99ee1c05486cd524cf9c0e68bb818c4d628581929f921e"
+  },
+  {
+    "path": "assets/ikonlar/practice-review.svg",
+    "bytes": 215,
+    "sha256": "094aabf1ecbbce69e3ce992a5aafddb14e50992e07959cd5f2ac2d3fd8300031"
+  },
+  {
+    "path": "assets/ikonlar/practice-sound.svg",
+    "bytes": 240,
+    "sha256": "075e8685a62054d7224f02ca31baebdeef00980febd7e07a7965e7d8b807e116"
+  },
+  {
+    "path": "assets/ikonlar/practice-speaking.svg",
+    "bytes": 261,
+    "sha256": "cfd43b7ceb412820ae1ec19106aa867587deb7dea64ce9dfe606f21d12ef059d"
+  },
+  {
+    "path": "assets/ikonlar/practice-writing.svg",
+    "bytes": 219,
+    "sha256": "8ca6585be584cd9cbe1a5252d0a67994d105d44a996b073705ff6cf2bf0bcad7"
+  },
+  {
+    "path": "assets/kaynak/KAYNAK.md",
+    "bytes": 966,
+    "sha256": "164f11d451433ba8db45f8ff8e4f52eede042ed0acd389ff9e19eaff9867796e"
+  },
+  {
+    "path": "assets/kaynak/rozetler-ve-durumlar.png",
+    "bytes": 1523317,
+    "sha256": "785415996dfc3a5701e0b08c53c6b3c7c91c33fbe0a66a4a0708371f5b9975b4"
+  },
+  {
+    "path": "assets/lexend-latin-400-normal.woff2",
+    "bytes": 14476,
+    "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+  },
+  {
+    "path": "assets/lexend-latin-600-normal.woff2",
+    "bytes": 14856,
+    "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+  },
+  {
+    "path": "assets/lexend-latin-700-normal.woff2",
+    "bytes": 14808,
+    "sha256": "52dcdaa127bac4a5ea4c39ee17a3f454ceacc18d9f2a45cc453eeab68d378588"
+  },
+  {
+    "path": "assets/lexend-latin-ext-400-normal.woff2",
+    "bytes": 13144,
+    "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+  },
+  {
+    "path": "assets/lexend-latin-ext-600-normal.woff2",
+    "bytes": 13680,
+    "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+  },
+  {
+    "path": "assets/lexend-latin-ext-700-normal.woff2",
+    "bytes": 13708,
+    "sha256": "5ae459b6dc29461eab9f02d0ff4395d3842d6bdf280e8224a79ab2667e65ee2f"
+  },
+  {
+    "path": "assets/literata-latin-400-normal.woff2",
+    "bytes": 20420,
+    "sha256": "a60c193b55766b68b922e2327e15c2d8c145532f283a27c3411b9c47a8583d18"
+  },
+  {
+    "path": "galeri.html",
+    "bytes": 3266,
+    "sha256": "fd7395219b437b97b7db72b1e990e8d9134a024f6f096f71b6db15fd822471ea"
+  },
+  {
+    "path": "icons.js",
+    "bytes": 786,
+    "sha256": "891cad5be070d87880a16b2c7d82c1e67da880b90706f85d424d683312fe5022"
+  },
+  {
+    "path": "icons.json",
+    "bytes": 790,
+    "sha256": "43942953d1e6ca4207c7ba14a841b3077647fb04d3c612f2239b07b09ed6a064"
+  },
+  {
+    "path": "index.html",
+    "bytes": 1443,
+    "sha256": "59af595d2739125ca4e49143359be4a0af2f555ee5341fde09656cad835b2545"
+  },
+  {
+    "path": "onizlemeler/bos-masaustu.png",
+    "bytes": 185770,
+    "sha256": "47ec7a625abd355e784b56f9d31e2a5b2cbcc2d3d03a5ab4ba202c58171e3971"
+  },
+  {
+    "path": "onizlemeler/bos-mobil.png",
+    "bytes": 189444,
+    "sha256": "9457a1236340125ce7f217000d53a702c0e559c2818ec1124ca37377de76015a"
+  },
+  {
+    "path": "onizlemeler/filiz-koyu-fr.png",
+    "bytes": 189730,
+    "sha256": "c8da7134a04447ea823837ff5c7ad29e1bbe957e41e81f55b957f30ca2ed7ebf"
+  },
+  {
+    "path": "onizlemeler/filiz-masaustu.png",
+    "bytes": 189030,
+    "sha256": "44a09332bbec52763e9698a763f7ce5afb5c7e2e91218de825d34c8a08b75a31"
+  },
+  {
+    "path": "onizlemeler/filiz-mobil.png",
+    "bytes": 127053,
+    "sha256": "a8229275b1815adf4ef702c18eeec8183c79edf264c6b672fbe6689e1360f56a"
+  },
+  {
+    "path": "onizlemeler/kart-koyu-fr.png",
+    "bytes": 120958,
+    "sha256": "cd0ab5969c608bcdb46ff63ddb9d77e9317225b1a68dd65907d78b1264e393d0"
+  },
+  {
+    "path": "onizlemeler/kart-masaustu.png",
+    "bytes": 108824,
+    "sha256": "9d53f96b110145a3dac1938a1fb08f8d9c6188e82e556df8cb588ecc0e2b7bcf"
+  },
+  {
+    "path": "onizlemeler/kart-mobil.png",
+    "bytes": 95375,
+    "sha256": "ff1ac247cb3ceab3569f37c1d1d66d01623ed0778e4c4531efc41b499cc792e7"
+  },
+  {
+    "path": "onizlemeler/pratik-masaustu.png",
+    "bytes": 90033,
+    "sha256": "fe944b24aaaa435cc7bea9feba5a01de895f036e032773418e525f3fdb21792a"
+  },
+  {
+    "path": "onizlemeler/pratik-mobil.png",
+    "bytes": 80983,
+    "sha256": "04708d885fe3920770d03567cb89400d4d95388e6af2dbe209267361117821d0"
+  },
+  {
+    "path": "onizlemeler/rozet-masaustu.png",
+    "bytes": 207364,
+    "sha256": "61f86b76908e164a9ae915db0764db850cefe11f43b5a3cef5f1d10e136813cd"
+  },
+  {
+    "path": "onizlemeler/rozet-mobil.png",
+    "bytes": 191422,
+    "sha256": "4597de4bdbcca2751a4e214e1a74307d537c5b00a21dc57878cb7fe79b795631"
+  },
+  {
+    "path": "onizlemeler/sonuc-masaustu.png",
+    "bytes": 102965,
+    "sha256": "2c13d19ce5957874257341514a9b256dbdc4201b44ba745a3d979be781782a3b"
+  },
+  {
+    "path": "onizlemeler/sonuc-mobil.png",
+    "bytes": 85692,
+    "sha256": "5be4fd18ddab61e0cab144fc3f663397fefbb4fe86dfc103cdc41da7d78a7767"
+  },
+  {
+    "path": "onizlemeler/tasarim-panosu.png",
+    "bytes": 382771,
+    "sha256": "46d72395523114dbe0e106ebca4d4720c7153146e6eee5520407dde56d9ede58"
+  },
+  {
+    "path": "style.css",
+    "bytes": 10894,
+    "sha256": "9488c24a4c408b0a31afbd07f6a8278924702d474780bcaf7f9f902eed05e4a3"
+  }
+]

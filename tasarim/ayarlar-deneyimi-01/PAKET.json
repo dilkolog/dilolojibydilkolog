@@ -1,0 +1,30 @@
+{
+  "id": "diloloji-ayarlar-deneyimi-01",
+  "date": "2026-11-12",
+  "status": "local_preview_verified_live_integration_pending",
+  "entry": "index.html",
+  "gallery": "galeri.html",
+  "scenes": [
+    "account",
+    "study",
+    "answers",
+    "sound",
+    "look",
+    "remind",
+    "tools",
+    "data",
+    "help",
+    "advanced",
+    "search",
+    "noresults",
+    "unsupported",
+    "profile",
+    "reset",
+    "confirm",
+    "error"
+  ],
+  "screenshots": 37,
+  "canonicalAvatars": "tasarim/avatar-koleksiyonu-01",
+  "productionChanged": false,
+  "liveVerified": false
+}

@@ -1,0 +1,13 @@
+window.TODAY_CASES={
+new:{name:'Yeni hesap',kind:'new',answered:0,remaining:0,minutes:0,counts:{},focus:null,draft:0,waitingNew:0},
+ready:{name:'Bugün başlanmadı',kind:'active',answered:0,remaining:18,minutes:6,counts:{forgotten:4,due:10,new:4},focus:null,draft:0,waitingNew:8},
+partial:{name:'Kısmen tamamlandı',kind:'active',answered:6,remaining:12,minutes:4,counts:{forgotten:2,due:8,new:2},focus:null,draft:0,waitingNew:6},
+resume:{name:'Yarım kalan tur',kind:'active',answered:6,remaining:12,minutes:4,counts:{forgotten:2,due:8,new:2},focus:null,draft:5,waitingNew:6},
+backlog:{name:'Tekrar birikmesi',kind:'active',answered:0,remaining:96,minutes:32,counts:{forgotten:20,due:76},focus:null,draft:0,waitingNew:12},
+focus:{name:'Odak liste seçili',kind:'active',answered:0,remaining:8,minutes:3,counts:{due:5,new:3},focus:'travel',draft:0,waitingNew:4},
+focusEmpty:{name:'Seçili listede görev yok',kind:'focusEmpty',answered:0,remaining:0,minutes:0,counts:{},focus:'finished',draft:0,waitingNew:0},
+done:{name:'Gün tamamlandı',kind:'done',answered:18,remaining:0,minutes:0,counts:{},focus:null,draft:0,waitingNew:0},
+none:{name:'Bugün tekrar yok',kind:'none',answered:0,remaining:0,minutes:0,counts:{},focus:null,draft:0,waitingNew:0},
+resumeDone:{name:'Gün tamam, yarım tur var',kind:'done',answered:18,remaining:0,minutes:0,counts:{},focus:null,draft:3,waitingNew:0}
+};
+window.TODAY_LISTS=[{id:'travel',name:'Seyahat',count:48},{id:'everyday',name:'Gündelik hayat',count:72},{id:'finished',name:'Tanıştığım kelimeler',count:26}];

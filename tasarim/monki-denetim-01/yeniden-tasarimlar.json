@@ -1,0 +1,290 @@
+[
+  {
+    "id": "empty-garden",
+    "title": "Boş bahçe",
+    "group": "3B → 2B",
+    "issue": "3B oyuncak görünümü, önlük ve gerçekçi ışık ana çizim ailesinden ayrılıyor.",
+    "sourceAsset": "src/assets/art/empty-garden.webp",
+    "original": "mevcut/empty-garden.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/empty-garden.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-b0db4af3-e96f-4a51-a938-2ce139958b2a.png"
+  },
+  {
+    "id": "milestone-sprout",
+    "title": "İlk filiz",
+    "group": "3B → 2B",
+    "issue": "3B karakter ve parlayan parçacıklar; ana Monki konturuyla uyuşmuyor.",
+    "sourceAsset": "src/assets/art/milestone-sprout.webp",
+    "original": "mevcut/milestone-sprout.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/milestone-sprout.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-fb09f469-3857-4be4-86a9-f2d7f5ffbabb.png"
+  },
+  {
+    "id": "monki-scanner",
+    "title": "Kitap tarama",
+    "group": "Karakter rengi",
+    "issue": "Sarı gövde, başta çift filiz ve küçük harf kümeleri karakteri değiştiriyor.",
+    "sourceAsset": "src/assets/art/monki-scanner.webp",
+    "original": "mevcut/monki-scanner.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/monki-scanner.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-3b141d15-0ca5-4420-82c2-864f12fce6a8.png"
+  },
+  {
+    "id": "onb-welcome",
+    "title": "Karşılama",
+    "group": "Karakter rengi",
+    "issue": "Sarı gövde, farklı yüz oranları ve harfli kitap mevcut karakter ailesinden uzak.",
+    "sourceAsset": "src/assets/art/onb-welcome.webp",
+    "original": "mevcut/onb-welcome.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/onb-welcome.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-51a9564d-cd7d-4c0e-91df-be0af5e4b4cd.png"
+  },
+  {
+    "id": "scene-journal",
+    "title": "Günlük yazma",
+    "group": "Karakter rengi",
+    "issue": "Altın sarı karakter ve çok küçük sayfa detayları.",
+    "sourceAsset": "src/assets/art/scene-journal.webp",
+    "original": "mevcut/scene-journal.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/scene-journal.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-bb2b47f9-3e32-4f54-8c7b-dae165794254.png"
+  },
+  {
+    "id": "scene-library",
+    "title": "Kütüphane",
+    "group": "Karakter rengi",
+    "issue": "Sarı karakter, farklı gövde oranı ve ayrıntılı raf kompozisyonu.",
+    "sourceAsset": "src/assets/art/scene-library.webp",
+    "original": "mevcut/scene-library.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/scene-library.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-1a9417d0-79f4-4e6f-8cfc-9745c52492fa.png"
+  },
+  {
+    "id": "scene-search-empty",
+    "title": "Arama sonucu yok",
+    "group": "Karakter rengi",
+    "issue": "Sarı karakter, büyüteçte iri göz ve yoğun küçük simgeler.",
+    "sourceAsset": "src/assets/art/scene-search-empty.webp",
+    "original": "mevcut/scene-search-empty.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/scene-search-empty.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-8cf6726d-5694-4e1d-9804-709e437e4964.png"
+  },
+  {
+    "id": "scene-sentences",
+    "title": "Cümle kartları",
+    "group": "Karakter rengi",
+    "issue": "Sarı gövde ve kartların üstündeki yazılar küçük ölçekte tutarsız.",
+    "sourceAsset": "src/assets/art/scene-sentences.webp",
+    "original": "mevcut/scene-sentences.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/scene-sentences.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-9b6cb211-c1a3-4081-80c1-520ba5355932.png"
+  },
+  {
+    "id": "cefr-monki-a1",
+    "title": "A1 · İlk adım",
+    "group": "CEFR ailesi",
+    "issue": "Tek başına kullanılabilir; altılı CEFR ailesinde ortak oranları kurmak için yeniden çizildi.",
+    "sourceAsset": "src/assets/art/cefr-monki-a1.webp",
+    "original": "mevcut/cefr-monki-a1.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/cefr-monki-a1.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-6bb3443a-9de3-418f-bcbb-fb77b3d118fb.png"
+  },
+  {
+    "id": "cefr-monki-a2",
+    "title": "A2 · Keşif",
+    "group": "CEFR ailesi",
+    "issue": "Başta çift filiz, açık kahve gövde ve beyaz çıkartma kenarı.",
+    "sourceAsset": "src/assets/art/cefr-monki-a2.webp",
+    "original": "mevcut/cefr-monki-a2.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/cefr-monki-a2.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-13aef6e4-9e70-43eb-92c8-f4e5fdd3ba7f.png"
+  },
+  {
+    "id": "cefr-monki-b1",
+    "title": "B1 · İletişim",
+    "group": "CEFR ailesi",
+    "issue": "Tek başına kullanılabilir; diğer seviyelerle oran ve kontur eşleşmesi için yenilendi.",
+    "sourceAsset": "src/assets/art/cefr-monki-b1.webp",
+    "original": "mevcut/cefr-monki-b1.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/cefr-monki-b1.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-778171fa-10cf-4050-b395-33b2f72fb00d.png"
+  },
+  {
+    "id": "cefr-monki-b2",
+    "title": "B2 · Bağımsız okur",
+    "group": "CEFR ailesi",
+    "issue": "Farklı yüz/gövde oranı, başta çift filiz ve zemin gölgesi.",
+    "sourceAsset": "src/assets/art/cefr-monki-b2.webp",
+    "original": "mevcut/cefr-monki-b2.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/cefr-monki-b2.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-f0c11b00-073a-4f48-b329-fa94c3cc5b27.png"
+  },
+  {
+    "id": "cefr-monki-c1",
+    "title": "C1 · İleri düzey",
+    "group": "CEFR ailesi",
+    "issue": "Kitap sırtlarında yazı ve farklı aksesuar ağırlığı; aileyi sadeleştirme adayı.",
+    "sourceAsset": "src/assets/art/cefr-monki-c1.webp",
+    "original": "mevcut/cefr-monki-c1.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/cefr-monki-c1.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-2879b8cb-d119-494e-ac69-d512575e034c.png"
+  },
+  {
+    "id": "cefr-monki-c2",
+    "title": "C2 · Ustalık",
+    "group": "CEFR ailesi",
+    "issue": "Tüylü uzuvlar ve çift filiz; daha gerçekçi karakter oranları.",
+    "sourceAsset": "src/assets/art/cefr-monki-c2.webp",
+    "original": "mevcut/cefr-monki-c2.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/cefr-monki-c2.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-7501e7f8-3bce-4bfe-870c-0c1ba99eb055.png"
+  },
+  {
+    "id": "weather-rain",
+    "title": "Yağmur",
+    "group": "Hava durumu",
+    "issue": "Detaylı manzara, çerçeve ve resim dokusu küçük başlıkta Monki’yi geri plana atıyor.",
+    "sourceAsset": "src/assets/art/weather-rain.webp",
+    "original": "mevcut/weather-rain.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/weather-rain.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-afc86a7f-895f-4272-b557-72c84f0f3ff7.png"
+  },
+  {
+    "id": "weather-snow",
+    "title": "Kar",
+    "group": "Hava durumu",
+    "issue": "Dokulu kar/orman arka planı ve çok küçük ayrıntılar.",
+    "sourceAsset": "src/assets/art/weather-snow.webp",
+    "original": "mevcut/weather-snow.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/weather-snow.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-e9dc8f66-90dd-480e-84ea-115d814d6e58.png"
+  },
+  {
+    "id": "weather-thunder",
+    "title": "Fırtına",
+    "group": "Hava durumu",
+    "issue": "Boyama tarzı gece manzarası, ışık ve kalabalık çerçeve ana karakter dilinden farklı.",
+    "sourceAsset": "src/assets/art/weather-thunder.webp",
+    "original": "mevcut/weather-thunder.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/weather-thunder.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustration",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-2795e886-a5df-4b43-95d8-82698e300703.png"
+  },
+  {
+    "id": "monki-animated-wave",
+    "title": "El sallama · ana kare",
+    "group": "Animasyon ana karesi",
+    "issue": "Gerçekçi siyah tüylü şempanze, uzun uzuvlar ve yaprak yakalık farklı bir karakter gibi.",
+    "sourceAsset": "src/assets/art/monki-animated-wave.webp",
+    "original": "mevcut/monki-animated-wave.webp",
+    "candidate": "../../docs/gelen-gorseller/yeniden-tasarim-01/monki-animated-wave.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "kind": "static-animation-keyframe",
+    "integration": "pending-processing",
+    "sourceGeneration": "exec-97807247-4d71-4c54-a90e-5daae1cc50d8.png"
+  }
+]

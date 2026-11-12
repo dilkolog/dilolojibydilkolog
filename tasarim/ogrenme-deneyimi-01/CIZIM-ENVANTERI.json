@@ -1,0 +1,158 @@
+[
+  {
+    "id": "badge-sprout",
+    "cell": 0,
+    "row": 0,
+    "column": 0,
+    "png": "assets/cizimler/badge-sprout.png",
+    "webp": "assets/cizimler/badge-sprout.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-ve-durumlar.png"
+  },
+  {
+    "id": "badge-flame",
+    "cell": 1,
+    "row": 0,
+    "column": 1,
+    "png": "assets/cizimler/badge-flame.png",
+    "webp": "assets/cizimler/badge-flame.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-ve-durumlar.png"
+  },
+  {
+    "id": "badge-book",
+    "cell": 2,
+    "row": 0,
+    "column": 2,
+    "png": "assets/cizimler/badge-book.png",
+    "webp": "assets/cizimler/badge-book.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-ve-durumlar.png"
+  },
+  {
+    "id": "badge-headphones",
+    "cell": 3,
+    "row": 0,
+    "column": 3,
+    "png": "assets/cizimler/badge-headphones.png",
+    "webp": "assets/cizimler/badge-headphones.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-ve-durumlar.png"
+  },
+  {
+    "id": "badge-chat",
+    "cell": 4,
+    "row": 1,
+    "column": 0,
+    "png": "assets/cizimler/badge-chat.png",
+    "webp": "assets/cizimler/badge-chat.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-ve-durumlar.png"
+  },
+  {
+    "id": "badge-compass",
+    "cell": 5,
+    "row": 1,
+    "column": 1,
+    "png": "assets/cizimler/badge-compass.png",
+    "webp": "assets/cizimler/badge-compass.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-ve-durumlar.png"
+  },
+  {
+    "id": "empty-first",
+    "cell": 6,
+    "row": 1,
+    "column": 2,
+    "png": "assets/cizimler/empty-first.png",
+    "webp": "assets/cizimler/empty-first.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-ve-durumlar.png"
+  },
+  {
+    "id": "empty-search",
+    "cell": 7,
+    "row": 1,
+    "column": 3,
+    "png": "assets/cizimler/empty-search.png",
+    "webp": "assets/cizimler/empty-search.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-ve-durumlar.png"
+  },
+  {
+    "id": "empty-offline",
+    "cell": 8,
+    "row": 2,
+    "column": 0,
+    "png": "assets/cizimler/empty-offline.png",
+    "webp": "assets/cizimler/empty-offline.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-ve-durumlar.png"
+  },
+  {
+    "id": "empty-done",
+    "cell": 9,
+    "row": 2,
+    "column": 1,
+    "png": "assets/cizimler/empty-done.png",
+    "webp": "assets/cizimler/empty-done.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-ve-durumlar.png"
+  },
+  {
+    "id": "empty-sentences",
+    "cell": 10,
+    "row": 2,
+    "column": 2,
+    "png": "assets/cizimler/empty-sentences.png",
+    "webp": "assets/cizimler/empty-sentences.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-ve-durumlar.png"
+  },
+  {
+    "id": "empty-error",
+    "cell": 11,
+    "row": 2,
+    "column": 3,
+    "png": "assets/cizimler/empty-error.png",
+    "webp": "assets/cizimler/empty-error.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-ve-durumlar.png"
+  }
+]

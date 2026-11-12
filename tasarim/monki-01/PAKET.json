@@ -1,0 +1,29 @@
+{
+  "packageId": "diloloji-monki-01",
+  "title": "Yeni Monki pozları",
+  "handoffUpdated": "2026-11-10",
+  "status": "tasarim-tamam-entegrasyon-bekliyor",
+  "preview": "index.html",
+  "implementationNotes": "CLAUDE-DEVIR.md",
+  "completed": "Altı yeni Monki pozu; şeffaf PNG ve WebP adayları, toplu önizleme ve zemin kontrolleri hazır.",
+  "remaining": "Seçilen pozları ilgili bağlamlara ekle; mevcut pozları topluca değiştirme. Küçük boyut, koyu tema ve çizim kenarını kontrol et.",
+  "files": [
+    "CLAUDE-DEVIR.md",
+    "gorseller/01-aciklayan-monki.png",
+    "gorseller/02-dinleyen-monki.png",
+    "gorseller/03-birlikte-tekrar.png",
+    "gorseller/04-tekrar-hos-geldin.png",
+    "gorseller/05-kelime-bahcesi.png",
+    "gorseller/06-ilk-iletisim.png",
+    "index.html",
+    "manifest.json",
+    "toplu-onizleme.jpg",
+    "webp/01-aciklayan-monki.webp",
+    "webp/02-dinleyen-monki.webp",
+    "webp/03-birlikte-tekrar.webp",
+    "webp/04-tekrar-hos-geldin.webp",
+    "webp/05-kelime-bahcesi.webp",
+    "webp/06-ilk-iletisim.webp"
+  ],
+  "namingRule": "Paket kimliği + göreli dosya yolu tekil dosya kimliğidir. Mevcut uygulama hedefi ayrı devir notunda veya manifestte belirtilir."
+}

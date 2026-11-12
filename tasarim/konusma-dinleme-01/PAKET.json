@@ -1,0 +1,21 @@
+{
+  "id": "diloloji-konusma-dinleme-01",
+  "date": "2026-11-11",
+  "status": "design-ready-integration-review-pending",
+  "modes": [
+    "pronunciation",
+    "listening",
+    "shadow",
+    "word"
+  ],
+  "stateCount": 15,
+  "newRasterArt": 0,
+  "reusedIcons": 8,
+  "entry": "index.html",
+  "board": "durumlar.html",
+  "productionIntegrated": false,
+  "microphoneUsed": false,
+  "realAssessment": false,
+  "liveSiteVerified": false,
+  "handoff": "CLAUDE-DEVIR.md"
+}

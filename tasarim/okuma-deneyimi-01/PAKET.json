@@ -1,0 +1,18 @@
+{
+  "id": "diloloji-okuma-deneyimi-01",
+  "date": "2026-11-12",
+  "status": "design-ready-integration-review-pending",
+  "stateCount": 17,
+  "sampleTextWords": 138,
+  "sampleSentences": 10,
+  "sampleParagraphs": 5,
+  "sampleGlossary": 17,
+  "newRasterArt": 0,
+  "reusedIcons": 8,
+  "entry": "index.html",
+  "gallery": "galeri.html",
+  "productionIntegrated": false,
+  "liveSiteVerified": false,
+  "realDictionaryOrAi": false,
+  "handoff": "CLAUDE-DEVIR.md"
+}

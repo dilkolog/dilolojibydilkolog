@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-10",
+  "passed": [
+    "48 kaynak varlık yüklendi",
+    "10 yenilenen /38 korunan filtreleri",
+    "12 yeni çizim yüklendi",
+    "32 /48 /96px karşılaştırmalar kaydedildi",
+    "375px açık ve koyu, yatay taşma yok",
+    "93 başarı çizim eşlemesi eksiksiz",
+    "Erken ve gece ayrı alternatiflere bağlandı",
+    "Gerçek medalTier sırası korunarak seviye etiketleri",
+    "Arama, aile filtresi, örnek kilit durumu, detay ve Escape",
+    "JavaScript ve HTTP hatası yok"
+  ],
+  "limits": [
+    "Yerel origin/main incelendi, canlı hesap açılmadı",
+    "Gerçek veri, kazanım, senkronizasyon ve React entegrasyonu yapılmadı",
+    "32px görsel değerlendirme tasarım yargısıdır; kullanıcı testi değildir"
+  ]
+}

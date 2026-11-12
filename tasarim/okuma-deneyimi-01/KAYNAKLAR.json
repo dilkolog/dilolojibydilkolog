@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-12",
+  "reviewedCommit": "a41ab4c753a33372bf4faf97ca6f9a0f1e2cabc0",
+  "liveSiteVerified": false,
+  "files": [
+    {
+      "path": "src/ui/reading/Reading.tsx",
+      "sha256": "812df0a1463ed29916d85bf970b6946578c34aefa2eae9645ab8c71b316fa693"
+    },
+    {
+      "path": "src/ui/reading/ReaderTools.tsx",
+      "sha256": "4905f3919f2f56e262ccf90de1a3864f234c48d6e4898c6bea32fe2ab918f114"
+    },
+    {
+      "path": "src/ui/reading/ReaderAside.tsx",
+      "sha256": "642d4f989da6dcd336a5a6fc2cb1adc5313fc5f3a92fb98411b6f492199b8e64"
+    },
+    {
+      "path": "src/ui/reading/ReadingHome.tsx",
+      "sha256": "00bf7918e68e4de6c3bfd80ddd98223e6323df3b1e6b974c0898ff59a27af997"
+    },
+    {
+      "path": "src/ui/reading/readerSettings.ts",
+      "sha256": "0e5deb713e24ef10b3be4766fb73795fd5521ca4fe9fee61b872b38ae29a5bb0"
+    },
+    {
+      "path": "src/ui/words/WordCard.tsx",
+      "sha256": "18eac6c48410564054b39c81a8c3f45ab38efe0e76b13aa94eb7e515f6d4c456"
+    },
+    {
+      "path": "src/ui/reading/Listening.tsx",
+      "sha256": "7de58864af7ff56212182b420bf69b785128ed197ab26ded20435c74833b405d"
+    }
+  ],
+  "artwork": "No new raster artwork; reused prior UI icons and fonts"
+}

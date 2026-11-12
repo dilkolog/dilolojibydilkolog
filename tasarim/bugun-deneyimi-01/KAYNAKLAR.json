@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-12",
+  "reviewedCommit": "a41ab4c753a33372bf4faf97ca6f9a0f1e2cabc0",
+  "liveSiteVerified": false,
+  "files": [
+    {
+      "path": "src/ui/home/Screens.tsx",
+      "sha256": "523e54961a6542f43477aec70692cfbefb5f846012eb30ffbcc9ff157de6fa2b"
+    },
+    {
+      "path": "src/ui/home/HomeParts.tsx",
+      "sha256": "0f4fdaddb597697dfedff7a6fae63979f404e69b3d29768843714488a6581cdd"
+    },
+    {
+      "path": "src/ui/home/SessionResumeCard.tsx",
+      "sha256": "997c74257c9f85916931275ea7a24c061417c6a23af87f80e3a7c795d235863c"
+    },
+    {
+      "path": "src/ui/home/TodayTime.tsx",
+      "sha256": "127f62f4c03708ff7cf0c06a75f8daa03d8e2104cd7ae4ba523687c74f75f57f"
+    },
+    {
+      "path": "src/ui/home/DayPlant.tsx",
+      "sha256": "6eb08e607ffd291b0ea639c34b0f0f8677c27540b77b292495495ea426450fa4"
+    },
+    {
+      "path": "src/ui/home/dayPlantStage.ts",
+      "sha256": "794412a5a3901658968c722f3b3d0984f6565997b752b5b47630002e106b9d62"
+    },
+    {
+      "path": "src/engine/dailyPlan.ts",
+      "sha256": "a6089896793dc00f3c4428710b6b4e68afa87810fcce224d06df220b6c0fd371"
+    }
+  ],
+  "reusedAssets": {
+    "plantStages": "filiz-buyume-01",
+    "avatar": "avatar-koleksiyonu-01",
+    "firstWordArtAndIcons": "ogrenme-deneyimi-01"
+  }
+}

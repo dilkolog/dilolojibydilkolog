@@ -1,0 +1,15 @@
+{
+  "id": "diloloji-ilk-kullanim-01",
+  "date": "2026-11-12",
+  "status": "design-ready-integration-review-pending",
+  "setupSteps": 3,
+  "previewStates": 9,
+  "newRasterArt": 0,
+  "reusedPlantArt": 3,
+  "entry": "index.html",
+  "gallery": "galeri.html",
+  "productionIntegrated": false,
+  "liveSiteVerified": false,
+  "realSettingsWordsOrPlacement": false,
+  "handoff": "CLAUDE-DEVIR.md"
+}

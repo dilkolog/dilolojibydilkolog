@@ -1,0 +1,25 @@
+{
+  "id": "diloloji-rozet-yenileme-01",
+  "date": "2026-11-10",
+  "reviewedAssets": 48,
+  "achievementArt": 40,
+  "emblems": 8,
+  "achievementDefinitions": 93,
+  "statFamilies": 43,
+  "redesignedOriginals": 10,
+  "newIllustrations": 12,
+  "keptAssets": 38,
+  "formats": [
+    "png",
+    "webp"
+  ],
+  "size": [
+    384,
+    384
+  ],
+  "productionIntegrated": false,
+  "entry": "index.html",
+  "gallery": "galeri.html",
+  "inventory": "ENVANTER.json",
+  "handoff": "CLAUDE-DEVIR.md"
+}

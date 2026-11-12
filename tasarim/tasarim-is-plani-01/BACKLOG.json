@@ -1,0 +1,284 @@
+{
+  "date": "2026-11-11",
+  "taskCount": 17,
+  "scopeScale": "Göreli S/M/L; süre tahmini değil",
+  "tasks": [
+    {
+      "id": "ORT-01",
+      "priority": "P0",
+      "scope": "M",
+      "title": "Güncel site ve hazır paketleri uzlaştır",
+      "dependsOn": [],
+      "deliverable": "Mevcut/bağlanmamış/eksik matrisi ve başlangıç ekran kanıtları",
+      "status": "planned"
+    },
+    {
+      "id": "02-A",
+      "priority": "P1",
+      "scope": "M",
+      "title": "Konuşma–dinleme: durum ve hiyerarşi haritası",
+      "dependsOn": [
+        "ORT-01"
+      ],
+      "deliverable": "INCELEME dosyasındaki durumları güncel ekranla doğrulanmış akış panosuna çevir",
+      "status": "state_map_designed_live_baseline_pending",
+      "designPackage": "tasarim/konusma-dinleme-01",
+      "updated": "2026-11-11"
+    },
+    {
+      "id": "02-B",
+      "priority": "P1",
+      "scope": "L",
+      "title": "Konuşma–dinleme: maket ve etkileşim tasarımı",
+      "dependsOn": [
+        "02-A"
+      ],
+      "deliverable": [
+        "Kayıt kontrol bileşeni durum panosu",
+        "Telaffuz sonucu ve kelime ayrıntısı maketleri",
+        "Dinleme/gölgeleme kontrol düzeni",
+        "İzin/hata durumları için metin ve görsel eşleştirme"
+      ],
+      "status": "prototype_designed",
+      "designPackage": "tasarim/konusma-dinleme-01",
+      "updated": "2026-11-11"
+    },
+    {
+      "id": "02-C",
+      "priority": "P1",
+      "scope": "M",
+      "title": "Konuşma–dinleme: kabul kontrolü ve Claude devri",
+      "dependsOn": [
+        "02-B"
+      ],
+      "deliverable": "Açık/koyu/sakin, mobil/masaüstü, kabul listesi ve dosya eşleştirmesi",
+      "acceptance": [
+        "Her durumda tek ana eylem ve açık kayıt durumu var.",
+        "İzin reddinden çıkış ve mikrofonsuz devam anlaşılır.",
+        "Kaydetme, kaydı kullanma ve değerlendirme birbirinden ayrılır.",
+        "Dalgalar sessizde başarı izlenimi yaratmaz; reduced-motion çalışır.",
+        "Dinleme hızı, kaldığı yer ve gerçek ses desteği korunur."
+      ],
+      "status": "local_preview_verified_live_integration_pending",
+      "designPackage": "tasarim/konusma-dinleme-01",
+      "updated": "2026-11-11"
+    },
+    {
+      "id": "03-A",
+      "priority": "P1",
+      "scope": "M",
+      "title": "Okuma: durum ve hiyerarşi haritası",
+      "dependsOn": [
+        "ORT-01"
+      ],
+      "deliverable": "INCELEME dosyasındaki durumları güncel ekranla doğrulanmış akış panosuna çevir",
+      "status": "state_map_designed_live_baseline_pending",
+      "designPackage": "tasarim/okuma-deneyimi-01",
+      "updated": "2026-11-12"
+    },
+    {
+      "id": "03-B",
+      "priority": "P1",
+      "scope": "L",
+      "title": "Okuma: maket ve etkileşim tasarımı",
+      "dependsOn": [
+        "03-A",
+        "02-C"
+      ],
+      "deliverable": [
+        "Okuyucu araç çubuğu ve mod menüsü",
+        "Mobil kelime alt paneli + masaüstü yan panel",
+        "Kütüphane ve hata/boş görünüm eşleştirmesi"
+      ],
+      "status": "prototype_designed",
+      "designPackage": "tasarim/okuma-deneyimi-01",
+      "updated": "2026-11-12"
+    },
+    {
+      "id": "03-C",
+      "priority": "P1",
+      "scope": "M",
+      "title": "Okuma: kabul kontrolü ve Claude devri",
+      "dependsOn": [
+        "03-B"
+      ],
+      "deliverable": "Açık/koyu/sakin, mobil/masaüstü, kabul listesi ve dosya eşleştirmesi",
+      "acceptance": [
+        "375px araçlar metni yatay taşırmaz.",
+        "Panel kapatılınca seçili cümle ve okuma konumu bulunur.",
+        "Kelime ekleme bağlamı ve kaynak metin bilgisi korunur.",
+        "Uzun kelime/çeviri ve iki kat metin boyutu kontrol edilir.",
+        "Ses modu ile çeviri görünürlüğü çelişmez."
+      ],
+      "status": "local_preview_verified_live_integration_pending",
+      "designPackage": "tasarim/okuma-deneyimi-01",
+      "updated": "2026-11-12"
+    },
+    {
+      "id": "04-A",
+      "priority": "P1",
+      "scope": "M",
+      "title": "Bugün: durum ve hiyerarşi haritası",
+      "dependsOn": [
+        "ORT-01"
+      ],
+      "deliverable": "INCELEME dosyasındaki durumları güncel ekranla doğrulanmış akış panosuna çevir",
+      "status": "state_map_designed_live_baseline_pending",
+      "designPackage": "tasarim/bugun-deneyimi-01",
+      "updated": "2026-11-12"
+    },
+    {
+      "id": "04-B",
+      "priority": "P1",
+      "scope": "M",
+      "title": "Bugün: maket ve etkileşim tasarımı",
+      "dependsOn": [
+        "04-A",
+        "03-C"
+      ],
+      "deliverable": [
+        "9 durum için yerleşim matrisi",
+        "Ana görev kartı ve kısa tur hiyerarşisi",
+        "Odak listesi ve gün sonu maketleri"
+      ],
+      "status": "prototype_designed",
+      "designPackage": "tasarim/bugun-deneyimi-01",
+      "updated": "2026-11-12"
+    },
+    {
+      "id": "04-C",
+      "priority": "P1",
+      "scope": "M",
+      "title": "Bugün: kabul kontrolü ve Claude devri",
+      "dependsOn": [
+        "04-B"
+      ],
+      "deliverable": "Açık/koyu/sakin, mobil/masaüstü, kabul listesi ve dosya eşleştirmesi",
+      "acceptance": [
+        "Her durum tek açık başlangıç veya devam önerisi gösterir.",
+        "Kalan sayı ve süre gerçek plandan gelir.",
+        "Odak listesi açıkken kapsam anlaşılır ve tüm listelere dönüş bulunur.",
+        "Bugün görev yok durumu tamamlandı gibi yanlış gösterilmez."
+      ],
+      "status": "local_preview_verified_live_integration_pending",
+      "designPackage": "tasarim/bugun-deneyimi-01",
+      "updated": "2026-11-12"
+    },
+    {
+      "id": "01-A",
+      "priority": "P2",
+      "scope": "M",
+      "title": "İlk kullanım: durum ve hiyerarşi haritası",
+      "dependsOn": [
+        "ORT-01"
+      ],
+      "deliverable": "INCELEME dosyasındaki durumları güncel ekranla doğrulanmış akış panosuna çevir",
+      "status": "state_map_designed_live_baseline_pending",
+      "designPackage": "tasarim/ilk-kullanim-01",
+      "updated": "2026-11-12"
+    },
+    {
+      "id": "01-B",
+      "priority": "P2",
+      "scope": "M",
+      "title": "İlk kullanım: maket ve etkileşim tasarımı",
+      "dependsOn": [
+        "01-A",
+        "04-C"
+      ],
+      "deliverable": [
+        "3 adım için 375px ve masaüstü maket",
+        "Hedef seçimi açıklamaları ve ilk başarıya geçiş akışı",
+        "İsteğe bağlı seviye testi daveti"
+      ],
+      "status": "prototype_designed",
+      "designPackage": "tasarim/ilk-kullanim-01",
+      "updated": "2026-11-12"
+    },
+    {
+      "id": "01-C",
+      "priority": "P2",
+      "scope": "M",
+      "title": "İlk kullanım: kabul kontrolü ve Claude devri",
+      "dependsOn": [
+        "01-B"
+      ],
+      "deliverable": "Açık/koyu/sakin, mobil/masaüstü, kabul listesi ve dosya eşleştirmesi",
+      "acceptance": [
+        "İsimsiz ve her dille akış tamamlanır.",
+        "Geri/ileri seçimleri kaybetmez; başlık odak yönetimi korunur.",
+        "Mikrofon veya seviye testi ilk kullanımı engellemez.",
+        "Mobil klavye ana eylemi örtmez."
+      ],
+      "status": "local_preview_verified_live_integration_pending",
+      "designPackage": "tasarim/ilk-kullanim-01",
+      "updated": "2026-11-12"
+    },
+    {
+      "id": "05-A",
+      "priority": "P2",
+      "scope": "M",
+      "title": "Ayarlar ve profil bağlantısı: durum ve hiyerarşi haritası",
+      "dependsOn": [
+        "ORT-01"
+      ],
+      "deliverable": "INCELEME dosyasındaki durumları güncel ekranla doğrulanmış akış panosuna çevir",
+      "status": "state_map_designed_live_baseline_pending",
+      "designPackage": "tasarim/ayarlar-deneyimi-01",
+      "updated": "2026-11-12"
+    },
+    {
+      "id": "05-B",
+      "priority": "P2",
+      "scope": "M",
+      "title": "Ayarlar ve profil bağlantısı: maket ve etkileşim tasarımı",
+      "dependsOn": [
+        "05-A",
+        "01-C"
+      ],
+      "deliverable": [
+        "8 grup + Yardım için ortak satır/kart şablonu",
+        "Arama ve gelişmiş görünüm maketleri",
+        "Hesap → profil/avatar geçişi",
+        "Sıfırlama/geri al ve veri işlemi görsel ayrımı"
+      ],
+      "status": "prototype_designed",
+      "designPackage": "tasarim/ayarlar-deneyimi-01",
+      "updated": "2026-11-12"
+    },
+    {
+      "id": "05-C",
+      "priority": "P2",
+      "scope": "M",
+      "title": "Ayarlar ve profil bağlantısı: kabul kontrolü ve Claude devri",
+      "dependsOn": [
+        "05-B"
+      ],
+      "deliverable": "Açık/koyu/sakin, mobil/masaüstü, kabul listesi ve dosya eşleştirmesi",
+      "acceptance": [
+        "Arama gruplar arası bağlamı korur ve sonuç yoktan çıkış sunar.",
+        "Gelişmiş seçenekler keşfedilir ama ana tercihleri bastırmaz.",
+        "Sıfırlama ile veri silme birbirinden açıkça ayrılır.",
+        "Avatar ID/renk/kayıt geçmişi korunur."
+      ],
+      "status": "local_preview_verified_live_integration_pending",
+      "designPackage": "tasarim/ayarlar-deneyimi-01",
+      "updated": "2026-11-12"
+    },
+    {
+      "id": "ORT-02",
+      "priority": "P2",
+      "scope": "M",
+      "title": "Tüm teslimlerde tutarlılık ve entegrasyon sonrası son kontrol",
+      "dependsOn": [
+        "01-C",
+        "02-C",
+        "03-C",
+        "04-C",
+        "05-C"
+      ],
+      "deliverable": "Ortak kontrol raporu; üretime aktarılanlar ve kalanlar ayrı",
+      "status": "planned"
+    }
+  ]
+}

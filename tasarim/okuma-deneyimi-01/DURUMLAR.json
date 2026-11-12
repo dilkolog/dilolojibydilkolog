@@ -1,0 +1,87 @@
+[
+  {
+    "id": "reader",
+    "name": "Metin açık",
+    "sampleOnly": true
+  },
+  {
+    "id": "word",
+    "name": "Kelime seçili",
+    "sampleOnly": true
+  },
+  {
+    "id": "longword",
+    "name": "Uzun açıklama",
+    "sampleOnly": true
+  },
+  {
+    "id": "multi",
+    "name": "Çoklu seçim",
+    "sampleOnly": true
+  },
+  {
+    "id": "translation",
+    "name": "Türkçesi açık",
+    "sampleOnly": true
+  },
+  {
+    "id": "listen",
+    "name": "Sadece dinleme",
+    "sampleOnly": true
+  },
+  {
+    "id": "dictation",
+    "name": "Dikte",
+    "sampleOnly": true
+  },
+  {
+    "id": "shadow",
+    "name": "Gölgeleme",
+    "sampleOnly": true
+  },
+  {
+    "id": "forms",
+    "name": "Çekimler",
+    "sampleOnly": true
+  },
+  {
+    "id": "deduce",
+    "name": "Çıkarım",
+    "sampleOnly": true
+  },
+  {
+    "id": "together",
+    "name": "Birlikte okuma",
+    "sampleOnly": true
+  },
+  {
+    "id": "complete",
+    "name": "Okuma tamamlandı",
+    "sampleOnly": true
+  },
+  {
+    "id": "library",
+    "name": "Kütüphane",
+    "sampleOnly": true
+  },
+  {
+    "id": "empty",
+    "name": "Boş kütüphane",
+    "sampleOnly": true
+  },
+  {
+    "id": "error",
+    "name": "Yükleme hatası",
+    "sampleOnly": true
+  },
+  {
+    "id": "loading",
+    "name": "Yükleniyor",
+    "sampleOnly": true
+  },
+  {
+    "id": "search",
+    "name": "Arama sonucu yok",
+    "sampleOnly": true
+  }
+]

@@ -1,0 +1,202 @@
+[
+  {
+    "path": "BILESEN-SOZLESMESI.md",
+    "bytes": 4031,
+    "sha256": "706bc70b4bd6b573f3380f1064cea1063f79b113eea0c3f208a3156000adea73"
+  },
+  {
+    "path": "CLAUDE-DEVIR.md",
+    "bytes": 4969,
+    "sha256": "b23dba141767416dc69e3682dcdaa71a47f67533f99d8494df54b518faa29ea1"
+  },
+  {
+    "path": "DOGRULAMA.json",
+    "bytes": 1095,
+    "sha256": "1bef3f415abe3261296700814a7d8f3fd2e4cc8d6b4888078573940c4068d8ab"
+  },
+  {
+    "path": "DURUMLAR.json",
+    "bytes": 1389,
+    "sha256": "7ce50778116c7d61424d2c7bdd6a3fdf5a69796bb653fc42c699e8e10395eb31"
+  },
+  {
+    "path": "KAYNAKLAR.json",
+    "bytes": 1207,
+    "sha256": "2ccd1b9df9716cbd5186fcb5717d19842bbcf763da437c410798ba144aedb1b4"
+  },
+  {
+    "path": "METIN.json",
+    "bytes": 5301,
+    "sha256": "204d4e09d02838ba05be9e77b722e6a99e44651673cf423348c2435f2e738fdd"
+  },
+  {
+    "path": "PAKET.json",
+    "bytes": 459,
+    "sha256": "b1d38e96f94f2c77f07cef284ab49c26b4ff09e99b42354e996cc5cbeaaf771a"
+  },
+  {
+    "path": "README.md",
+    "bytes": 2728,
+    "sha256": "0e32d60b01e4825acc9c462296b960ba92e88885e41283cdd21b4a77383cb7bf"
+  },
+  {
+    "path": "app.js",
+    "bytes": 28025,
+    "sha256": "b2705188c9fd7f5d5e589c147ea7b63c767131a6cf9f090553848c867f475c06"
+  },
+  {
+    "path": "assets/LEXEND-LICENSE",
+    "bytes": 4384,
+    "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+  },
+  {
+    "path": "assets/LITERATA-LICENSE",
+    "bytes": 4506,
+    "sha256": "9895ebc015226accf416b758ac1ca02a2fb4f83a89d316791ef697c3dc0852aa"
+  },
+  {
+    "path": "assets/lexend-latin-400-normal.woff2",
+    "bytes": 14476,
+    "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+  },
+  {
+    "path": "assets/lexend-latin-600-normal.woff2",
+    "bytes": 14856,
+    "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+  },
+  {
+    "path": "assets/lexend-latin-700-normal.woff2",
+    "bytes": 14808,
+    "sha256": "52dcdaa127bac4a5ea4c39ee17a3f454ceacc18d9f2a45cc453eeab68d378588"
+  },
+  {
+    "path": "assets/lexend-latin-ext-400-normal.woff2",
+    "bytes": 13144,
+    "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+  },
+  {
+    "path": "assets/lexend-latin-ext-600-normal.woff2",
+    "bytes": 13680,
+    "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+  },
+  {
+    "path": "assets/lexend-latin-ext-700-normal.woff2",
+    "bytes": 13708,
+    "sha256": "5ae459b6dc29461eab9f02d0ff4395d3842d6bdf280e8224a79ab2667e65ee2f"
+  },
+  {
+    "path": "assets/literata-latin-400-normal.woff2",
+    "bytes": 20420,
+    "sha256": "a60c193b55766b68b922e2327e15c2d8c145532f283a27c3411b9c47a8583d18"
+  },
+  {
+    "path": "base.css",
+    "bytes": 10894,
+    "sha256": "9488c24a4c408b0a31afbd07f6a8278924702d474780bcaf7f9f902eed05e4a3"
+  },
+  {
+    "path": "data.js",
+    "bytes": 3834,
+    "sha256": "cae39329168e73e709b46b5997b93a65653bf455612ad8bc498af06279986c21"
+  },
+  {
+    "path": "galeri.html",
+    "bytes": 1599,
+    "sha256": "dc6d281a649a7f98a9a87e29eba15afe187d6e84b53bde7aeaf74db1222ea591"
+  },
+  {
+    "path": "icons.js",
+    "bytes": 786,
+    "sha256": "891cad5be070d87880a16b2c7d82c1e67da880b90706f85d424d683312fe5022"
+  },
+  {
+    "path": "index.html",
+    "bytes": 1726,
+    "sha256": "cb2aaa83691ae0667af70a396343fae56bd8109306d8fbf53b212650c040e54c"
+  },
+  {
+    "path": "onizlemeler/buyuk-yazi-mobil.png",
+    "bytes": 402204,
+    "sha256": "11a67997ec1543f030d31515314f3f7aa18f2a19d37e79fbbb06b8b61f5d6154"
+  },
+  {
+    "path": "onizlemeler/complete-mobil.png",
+    "bytes": 51803,
+    "sha256": "ed287f823cd2347a5595a81c9a604b42e1492e9f8d12fa07b8c670c81a1c58bd"
+  },
+  {
+    "path": "onizlemeler/dictation-mobil.png",
+    "bytes": 82834,
+    "sha256": "537abc81e5284d0aa9b5931a5aa7a3a389d10b367f74c2e6fd174924c47d7202"
+  },
+  {
+    "path": "onizlemeler/dikte-masaustu.png",
+    "bytes": 133864,
+    "sha256": "9d6c9654fdac946c0c6d7ffb4b784d07a25ba8e637cd4658d765751c0cf1d85c"
+  },
+  {
+    "path": "onizlemeler/empty-mobil.png",
+    "bytes": 41843,
+    "sha256": "12e7189c7aa26afad69e2687ed26e46353eac16374e701a05b132676baa9b279"
+  },
+  {
+    "path": "onizlemeler/error-mobil.png",
+    "bytes": 39809,
+    "sha256": "d9c329fc688015e173e19182e44d4990398f0187bc47bd2b081cfad1c8ccf594"
+  },
+  {
+    "path": "onizlemeler/kelime-koyu-fr-mobil.png",
+    "bytes": 59039,
+    "sha256": "81a379a889f9458441b4f6debdcf90df3351338c8557dc399f1ba09b2f862a87"
+  },
+  {
+    "path": "onizlemeler/kelime-paneli-masaustu.png",
+    "bytes": 228030,
+    "sha256": "78ce6a8fb8588401cffaee44c96d6d76aa7ee3b18319533c21ebc42e75fae968"
+  },
+  {
+    "path": "onizlemeler/kutuphane-masaustu.png",
+    "bytes": 122278,
+    "sha256": "c5c1438acdda4cf5d834f6b7db79eba79ad454ab06d89ae99efcbf5ac1d3dda3"
+  },
+  {
+    "path": "onizlemeler/library-mobil.png",
+    "bytes": 153910,
+    "sha256": "5fbc054be68cd85d426b5e4ffe322450a90c01c8ceab4317ba71de59ee3c6ea3"
+  },
+  {
+    "path": "onizlemeler/longword-mobil.png",
+    "bytes": 66332,
+    "sha256": "2bbb3b39ca87aebc9d94041c2c7b615a87ef90ea4b06a2b8177e2adf6ef972b7"
+  },
+  {
+    "path": "onizlemeler/multi-mobil.png",
+    "bytes": 203940,
+    "sha256": "16751975c60fc635f9df27389acf3796b6974e14d07cea7871e44a79da1bd2f8"
+  },
+  {
+    "path": "onizlemeler/okuyucu-masaustu.png",
+    "bytes": 206902,
+    "sha256": "1fcfa8a7613c6f8274c75749c08f0a99c05998b43fcfa33dc6ffadf59d465e23"
+  },
+  {
+    "path": "onizlemeler/tasarim-panosu.png",
+    "bytes": 216435,
+    "sha256": "50381ad01190f7c4d8547caa8d48339ae106d367d1300dbe7ecf939785e86563"
+  },
+  {
+    "path": "onizlemeler/turkce-masaustu.png",
+    "bytes": 264843,
+    "sha256": "2bf88e99cad66439049b6819af63dd1cda6535fc7fbf78ecd187c9bb8d9373c7"
+  },
+  {
+    "path": "onizlemeler/word-mobil.png",
+    "bytes": 64453,
+    "sha256": "edc64509006633e7872f56eb3abba2aa9df41e855264b553ab9a76f43f9ccf58"
+  },
+  {
+    "path": "style.css",
+    "bytes": 15325,
+    "sha256": "7c2062ee359c4e77720f747426ce0170a7ecda9bac07ebec2acb6a63a1f5ffd5"
+  }
+]

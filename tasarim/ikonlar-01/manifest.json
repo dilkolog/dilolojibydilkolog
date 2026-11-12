@@ -1,0 +1,62 @@
+[
+  {
+    "id": "reading",
+    "title": "Okuma",
+    "originalExport": "ReadIcon",
+    "proposedExport": "ReadingNavIcon",
+    "problem": "Dosya simgesi belgeyi anlatıyor; okuma bölümünün kitap ve metin içeriği daha belirgin olabilir.",
+    "solution": "Açık kitap, iki sayfa ve az sayıda satır. Kelimeler bölümündeki kapalı kitaptan ayrılıyor.",
+    "target": "src/appNav.ts: NAV içindeki reading; genel ReadIcon kullanımını topluca değiştirme.",
+    "svg": "svg/reading.svg"
+  },
+  {
+    "id": "practice",
+    "title": "Pratik",
+    "originalExport": "GameIcon",
+    "proposedExport": "PracticeNavIcon",
+    "problem": "Oyun kolu, Pratik bölümünü yalnızca oyunlardan ibaret gösteriyor.",
+    "solution": "Üst üste çalışma kartları ve onay işareti: tekrar ve alıştırma anlamı.",
+    "target": "src/appNav.ts: yalnızca practice girdisi; games girdisindeki GameIcon kalsın.",
+    "svg": "svg/practice.svg"
+  },
+  {
+    "id": "progress",
+    "title": "İlerleme",
+    "originalExport": "ChartIcon",
+    "proposedExport": "ProgressNavIcon",
+    "problem": "Mevcut sütunlar düzensiz yükseklikte; küçük boyutta finans grafiği gibi okunabiliyor.",
+    "solution": "Soldan sağa yükselen, daha açık aralıklı üç sütun. Küçük ölçekte kalabalığı önlemek için kavram panosundaki oku SVG’ye eklemedim.",
+    "target": "src/appNav.ts: progress girdisi; genel ChartIcon grafik etiketlerinde korunabilir.",
+    "svg": "svg/progress.svg"
+  },
+  {
+    "id": "more",
+    "title": "Diğer seçenekler",
+    "originalExport": "MoreIcon",
+    "proposedExport": "MoreOptionsIcon",
+    "problem": "Üç kare ve daire uygulama ızgarasını çağrıştırıyor; taşma menüsü anlamı zayıf.",
+    "solution": "Yatay üç nokta: yaygın ve sade taşma menüsü işareti.",
+    "target": "src/ui/verbs/LearnTab.tsx; src/ui/ListPage.tsx: menü tetikleyicileri.",
+    "svg": "svg/more.svg"
+  },
+  {
+    "id": "shadowing",
+    "title": "Gölgeleme",
+    "originalExport": "ShadowingIcon",
+    "proposedExport": "ShadowingIcon",
+    "problem": "İki kırık çizgi nabız/sağlık sinyaline benziyor; konuşmayı tekrar etme anlamı açık değil.",
+    "solution": "Birbirini izleyen iki konuşma balonu, öndekinde üç ses çizgisi. Etiketle birlikte kullanılmalı.",
+    "target": "src/ui/ReaderTools.tsx: Gölgele kontrolü.",
+    "svg": "svg/shadowing.svg"
+  },
+  {
+    "id": "listening-retry",
+    "title": "Dinlemeyi tekrar et",
+    "originalExport": "EarMissIcon",
+    "proposedExport": "ListeningRetryIcon",
+    "problem": "Kesik çember içindeki kulak fazla küçülüyor; küçük boyutta noktalı bir lekeye dönüşüyor.",
+    "solution": "Büyütülmüş kulak ve ayrı tekrar oku. Küçük kontrol boyutunda etiketsiz kullanma.",
+    "target": "EarMissIcon kullanılan dinleme hataları girişleri; alanın anlamı tekrar ise uygundur.",
+    "svg": "svg/listening-retry.svg"
+  }
+]

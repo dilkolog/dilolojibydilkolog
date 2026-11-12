@@ -1,0 +1,490 @@
+[
+  {
+    "id": "fox",
+    "name": "Tilki",
+    "sheet": 1,
+    "cell": 0,
+    "existing": true,
+    "src": "assets/portreler/avatar-fox.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-fox.webp"
+  },
+  {
+    "id": "panda",
+    "name": "Panda",
+    "sheet": 1,
+    "cell": 1,
+    "existing": true,
+    "src": "assets/portreler/avatar-panda.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-panda.webp"
+  },
+  {
+    "id": "owl",
+    "name": "Baykuş",
+    "sheet": 1,
+    "cell": 2,
+    "existing": true,
+    "src": "assets/portreler/avatar-owl.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-owl.webp"
+  },
+  {
+    "id": "cat",
+    "name": "Kedi",
+    "sheet": 1,
+    "cell": 3,
+    "existing": true,
+    "src": "assets/portreler/avatar-cat.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-cat.webp"
+  },
+  {
+    "id": "penguin",
+    "name": "Penguen",
+    "sheet": 1,
+    "cell": 4,
+    "existing": true,
+    "src": "assets/portreler/avatar-penguin.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-penguin.webp"
+  },
+  {
+    "id": "rabbit",
+    "name": "Tavşan",
+    "sheet": 1,
+    "cell": 5,
+    "existing": true,
+    "src": "assets/portreler/avatar-rabbit.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-rabbit.webp"
+  },
+  {
+    "id": "koala",
+    "name": "Koala",
+    "sheet": 1,
+    "cell": 6,
+    "existing": true,
+    "src": "assets/portreler/avatar-koala.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-koala.webp"
+  },
+  {
+    "id": "frog",
+    "name": "Kurbağa",
+    "sheet": 1,
+    "cell": 7,
+    "existing": true,
+    "src": "assets/portreler/avatar-frog.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-frog.webp"
+  },
+  {
+    "id": "dog",
+    "name": "Köpek",
+    "sheet": 2,
+    "cell": 0,
+    "existing": true,
+    "src": "assets/portreler/avatar-dog.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-dog.webp"
+  },
+  {
+    "id": "bear",
+    "name": "Ayı",
+    "sheet": 2,
+    "cell": 1,
+    "existing": true,
+    "src": "assets/portreler/avatar-bear.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-bear.webp"
+  },
+  {
+    "id": "lion",
+    "name": "Aslan",
+    "sheet": 2,
+    "cell": 2,
+    "existing": true,
+    "src": "assets/portreler/avatar-lion.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-lion.webp"
+  },
+  {
+    "id": "deer",
+    "name": "Geyik",
+    "sheet": 2,
+    "cell": 3,
+    "existing": true,
+    "src": "assets/portreler/avatar-deer.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-deer.webp"
+  },
+  {
+    "id": "tiger",
+    "name": "Kaplan",
+    "sheet": 2,
+    "cell": 4,
+    "existing": true,
+    "src": "assets/portreler/avatar-tiger.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-tiger.webp"
+  },
+  {
+    "id": "red-panda",
+    "name": "Kızıl Panda",
+    "sheet": 2,
+    "cell": 5,
+    "existing": false,
+    "src": "assets/portreler/avatar-red-panda.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "otter",
+    "name": "Su Samuru",
+    "sheet": 2,
+    "cell": 6,
+    "existing": false,
+    "src": "assets/portreler/avatar-otter.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "capybara",
+    "name": "Kapibara",
+    "sheet": 2,
+    "cell": 7,
+    "existing": false,
+    "src": "assets/portreler/avatar-capybara.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "hedgehog",
+    "name": "Kirpi",
+    "sheet": 3,
+    "cell": 0,
+    "existing": false,
+    "src": "assets/portreler/avatar-hedgehog.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "raccoon",
+    "name": "Rakun",
+    "sheet": 3,
+    "cell": 1,
+    "existing": false,
+    "src": "assets/portreler/avatar-raccoon.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "sloth",
+    "name": "Tembel Hayvan",
+    "sheet": 3,
+    "cell": 2,
+    "existing": false,
+    "src": "assets/portreler/avatar-sloth.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "squirrel",
+    "name": "Sincap",
+    "sheet": 3,
+    "cell": 3,
+    "existing": false,
+    "src": "assets/portreler/avatar-squirrel.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "elephant",
+    "name": "Fil",
+    "sheet": 3,
+    "cell": 4,
+    "existing": false,
+    "src": "assets/portreler/avatar-elephant.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "parrot",
+    "name": "Papağan",
+    "sheet": 3,
+    "cell": 5,
+    "existing": false,
+    "src": "assets/portreler/avatar-parrot.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "whale",
+    "name": "Balina",
+    "sheet": 3,
+    "cell": 6,
+    "existing": false,
+    "src": "assets/portreler/avatar-whale.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "seal",
+    "name": "Fok",
+    "sheet": 3,
+    "cell": 7,
+    "existing": false,
+    "src": "assets/portreler/avatar-seal.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "axolotl",
+    "name": "Aksolotl",
+    "sheet": 4,
+    "cell": 0,
+    "existing": false,
+    "src": "assets/portreler/avatar-axolotl.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "turtle",
+    "name": "Kaplumbağa",
+    "sheet": 4,
+    "cell": 1,
+    "existing": false,
+    "src": "assets/portreler/avatar-turtle.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "bee",
+    "name": "Arı",
+    "sheet": 4,
+    "cell": 2,
+    "existing": false,
+    "src": "assets/portreler/avatar-bee.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": null
+  },
+  {
+    "id": "boss-blob",
+    "name": "Mor Canavar",
+    "sheet": 4,
+    "cell": 3,
+    "existing": true,
+    "src": "assets/portreler/avatar-boss-blob.webp",
+    "category": "special",
+    "requirement": {
+      "metric": "bossesDefeated",
+      "target": 1,
+      "label": "1 bölüm sonu canavarı yen"
+    },
+    "oldSrc": "assets/mevcut/boss-blob.webp"
+  },
+  {
+    "id": "boss-ghost",
+    "name": "Hayalet",
+    "sheet": 4,
+    "cell": 4,
+    "existing": true,
+    "src": "assets/portreler/avatar-boss-ghost.webp",
+    "category": "special",
+    "requirement": {
+      "metric": "longestStreak",
+      "target": 7,
+      "label": "7 günlük seri yap"
+    },
+    "oldSrc": "assets/mevcut/boss-ghost.webp"
+  },
+  {
+    "id": "boss-slime",
+    "name": "Jöle",
+    "sheet": 4,
+    "cell": 5,
+    "existing": true,
+    "src": "assets/portreler/avatar-boss-slime.webp",
+    "category": "special",
+    "requirement": {
+      "metric": "bossesDefeated",
+      "target": 3,
+      "label": "3 bölüm sonu canavarı yen"
+    },
+    "oldSrc": "assets/mevcut/boss-slime.webp"
+  },
+  {
+    "id": "boss-dino",
+    "name": "Dino",
+    "sheet": 4,
+    "cell": 6,
+    "existing": true,
+    "src": "assets/portreler/avatar-boss-dino.webp",
+    "category": "special",
+    "requirement": {
+      "metric": "mastered",
+      "target": 50,
+      "label": "50 kelimede ustalaş"
+    },
+    "oldSrc": "assets/mevcut/boss-dino.webp"
+  },
+  {
+    "id": "boss-octopus",
+    "name": "Kral Ahtapot",
+    "sheet": 4,
+    "cell": 7,
+    "existing": true,
+    "src": "assets/portreler/avatar-boss-octopus.webp",
+    "category": "special",
+    "requirement": {
+      "metric": "longestStreak",
+      "target": 14,
+      "label": "14 günlük seri yap"
+    },
+    "oldSrc": "assets/mevcut/boss-octopus.webp"
+  },
+  {
+    "id": "octopus",
+    "name": "Ahtapot",
+    "sheet": 5,
+    "cell": 0,
+    "existing": true,
+    "src": "assets/portreler/avatar-octopus.webp",
+    "category": "animal",
+    "requirement": null,
+    "oldSrc": "assets/mevcut/avatar-octopus.webp"
+  },
+  {
+    "id": "boss-yeti",
+    "name": "Yeti",
+    "sheet": 5,
+    "cell": 1,
+    "existing": true,
+    "src": "assets/portreler/avatar-boss-yeti.webp",
+    "category": "special",
+    "requirement": {
+      "metric": "bossesDefeated",
+      "target": 10,
+      "label": "10 bölüm sonu canavarı yen"
+    },
+    "oldSrc": "assets/mevcut/boss-yeti.webp"
+  },
+  {
+    "id": "boss-chronos",
+    "name": "Kronos",
+    "sheet": 5,
+    "cell": 2,
+    "existing": true,
+    "src": "assets/portreler/avatar-boss-chronos.webp",
+    "category": "special",
+    "requirement": {
+      "metric": "bossesDefeated",
+      "target": 15,
+      "label": "15 bölüm sonu canavarı yen"
+    },
+    "oldSrc": "assets/mevcut/boss-chronos.webp"
+  },
+  {
+    "id": "boss-dragon",
+    "name": "Ejderha",
+    "sheet": 5,
+    "cell": 3,
+    "existing": true,
+    "src": "assets/portreler/avatar-boss-dragon.webp",
+    "category": "special",
+    "requirement": {
+      "metric": "longestStreak",
+      "target": 30,
+      "label": "30 günlük seri yap"
+    },
+    "oldSrc": "assets/mevcut/boss-dragon.webp"
+  },
+  {
+    "id": "boss-golem",
+    "name": "Taş Dev",
+    "sheet": 5,
+    "cell": 4,
+    "existing": true,
+    "src": "assets/portreler/avatar-boss-golem.webp",
+    "category": "special",
+    "requirement": {
+      "metric": "mastered",
+      "target": 200,
+      "label": "200 kelimede ustalaş"
+    },
+    "oldSrc": "assets/mevcut/boss-golem.webp"
+  },
+  {
+    "id": "stat-sprout",
+    "name": "Zihin Fidanı",
+    "sheet": 5,
+    "cell": 5,
+    "existing": true,
+    "src": "assets/portreler/avatar-stat-sprout.webp",
+    "category": "special",
+    "requirement": {
+      "metric": "mastered",
+      "target": 10,
+      "label": "10 kelimede ustalaş"
+    },
+    "oldSrc": "assets/mevcut/stat-sprout.webp"
+  },
+  {
+    "id": "stat-star",
+    "name": "Altın Yıldız",
+    "sheet": 5,
+    "cell": 6,
+    "existing": true,
+    "src": "assets/portreler/avatar-stat-star.webp",
+    "category": "special",
+    "requirement": {
+      "metric": "longestStreak",
+      "target": 10,
+      "label": "10 günlük seri yap"
+    },
+    "oldSrc": "assets/mevcut/stat-star.webp"
+  },
+  {
+    "id": "stat-book",
+    "name": "Büyülü Kitap",
+    "sheet": 5,
+    "cell": 7,
+    "existing": true,
+    "src": "assets/portreler/avatar-stat-book.webp",
+    "category": "special",
+    "requirement": {
+      "metric": "mastered",
+      "target": 300,
+      "label": "300 kelimede ustalaş"
+    },
+    "oldSrc": "assets/mevcut/stat-book.webp"
+  }
+]

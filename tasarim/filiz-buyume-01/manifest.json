@@ -1,0 +1,49 @@
+{
+  "durationSeconds": 9.6,
+  "nominalFps": 25,
+  "renderedFrames": 240,
+  "exportSize": [
+    512,
+    512
+  ],
+  "source": "hand-authored layered SVG, image-generation art direction in assets",
+  "stages": [
+    {
+      "stage": -1,
+      "key": "seed",
+      "label": "Tohum"
+    },
+    {
+      "stage": 0,
+      "key": "introduced",
+      "label": "Yeni tanıştı"
+    },
+    {
+      "stage": 1,
+      "key": "familiar",
+      "label": "Tanıdık"
+    },
+    {
+      "stage": 2,
+      "key": "recallable",
+      "label": "Hatırlanıyor"
+    },
+    {
+      "stage": 3,
+      "key": "strong",
+      "label": "Sağlam"
+    },
+    {
+      "stage": 4,
+      "key": "production_ready",
+      "label": "Kullanılabiliyor"
+    },
+    {
+      "stage": 5,
+      "key": "mastered",
+      "label": "Oturdu"
+    }
+  ],
+  "integrationStatus": "prototype-only",
+  "note": "The demo timeline compresses long-term mastery into seconds; production must use existing mastery stages."
+}

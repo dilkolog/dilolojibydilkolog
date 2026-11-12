@@ -1,0 +1,158 @@
+[
+  {
+    "id": "medal-typing",
+    "cell": 0,
+    "row": 0,
+    "column": 0,
+    "png": "assets/yeni/medal-typing.png",
+    "webp": "assets/yeni/medal-typing.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-12-atlas.png"
+  },
+  {
+    "id": "medal-sentences",
+    "cell": 1,
+    "row": 0,
+    "column": 1,
+    "png": "assets/yeni/medal-sentences.png",
+    "webp": "assets/yeni/medal-sentences.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-12-atlas.png"
+  },
+  {
+    "id": "medal-night",
+    "cell": 2,
+    "row": 0,
+    "column": 2,
+    "png": "assets/yeni/medal-night.png",
+    "webp": "assets/yeni/medal-night.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-12-atlas.png"
+  },
+  {
+    "id": "medal-dawn",
+    "cell": 3,
+    "row": 0,
+    "column": 3,
+    "png": "assets/yeni/medal-dawn.png",
+    "webp": "assets/yeni/medal-dawn.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-12-atlas.png"
+  },
+  {
+    "id": "medal-guide-lessons",
+    "cell": 4,
+    "row": 1,
+    "column": 0,
+    "png": "assets/yeni/medal-guide-lessons.png",
+    "webp": "assets/yeni/medal-guide-lessons.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-12-atlas.png"
+  },
+  {
+    "id": "medal-guide-cert",
+    "cell": 5,
+    "row": 1,
+    "column": 1,
+    "png": "assets/yeni/medal-guide-cert.png",
+    "webp": "assets/yeni/medal-guide-cert.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-12-atlas.png"
+  },
+  {
+    "id": "medal-guide-placement",
+    "cell": 6,
+    "row": 1,
+    "column": 2,
+    "png": "assets/yeni/medal-guide-placement.png",
+    "webp": "assets/yeni/medal-guide-placement.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-12-atlas.png"
+  },
+  {
+    "id": "medal-conjugation",
+    "cell": 7,
+    "row": 1,
+    "column": 3,
+    "png": "assets/yeni/medal-conjugation.png",
+    "webp": "assets/yeni/medal-conjugation.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-12-atlas.png"
+  },
+  {
+    "id": "medal-forms",
+    "cell": 8,
+    "row": 2,
+    "column": 0,
+    "png": "assets/yeni/medal-forms.png",
+    "webp": "assets/yeni/medal-forms.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-12-atlas.png"
+  },
+  {
+    "id": "medal-verbs",
+    "cell": 9,
+    "row": 2,
+    "column": 1,
+    "png": "assets/yeni/medal-verbs.png",
+    "webp": "assets/yeni/medal-verbs.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-12-atlas.png"
+  },
+  {
+    "id": "medal-combo",
+    "cell": 10,
+    "row": 2,
+    "column": 2,
+    "png": "assets/yeni/medal-combo.png",
+    "webp": "assets/yeni/medal-combo.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-12-atlas.png"
+  },
+  {
+    "id": "medal-comeback",
+    "cell": 11,
+    "row": 2,
+    "column": 3,
+    "png": "assets/yeni/medal-comeback.png",
+    "webp": "assets/yeni/medal-comeback.webp",
+    "size": [
+      384,
+      384
+    ],
+    "source": "assets/kaynak/rozetler-12-atlas.png"
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "sampleOnly": true,
+  "states": [
+    {
+      "id": "welcome",
+      "name": "İlk açılış"
+    },
+    {
+      "id": "language",
+      "name": "Dil seçimi"
+    },
+    {
+      "id": "preselected",
+      "name": "Önceden seçili Fransızca"
+    },
+    {
+      "id": "target",
+      "name": "Günlük hedef"
+    },
+    {
+      "id": "noname",
+      "name": "Adsız tamamlama"
+    },
+    {
+      "id": "firstword",
+      "name": "İlk kelime"
+    },
+    {
+      "id": "firstsaved",
+      "name": "İlk kelime sonrası"
+    },
+    {
+      "id": "placement",
+      "name": "5 kelime sonrası test daveti"
+    },
+    {
+      "id": "deferred",
+      "name": "Test daveti ertelendi"
+    }
+  ],
+  "placementScenarioAssumptions": {
+    "ownWords": 5,
+    "guideGoal": null,
+    "lessonsRead": 0,
+    "existingPlacement": null,
+    "hasTestContent": true
+  },
+  "firstSavedWordCount": 1,
+  "defaultLanguage": "en",
+  "preselectedScenarioLanguage": "fr"
+}

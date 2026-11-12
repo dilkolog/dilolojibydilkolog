@@ -1,0 +1,92 @@
+{
+  "hearing": {
+    "name": "Modeli dinleme",
+    "title": "Önce cümlenin ritmini dinle.",
+    "text": "Model ses tamamlandığında söyleme adımına geçilir. Bu durum seçicisinde yalnız görünüm gösterilir.",
+    "icon": "listening"
+  },
+  "ready": {
+    "name": "Hazır",
+    "title": "Hazır olduğunda başlayalım.",
+    "text": "Önce model sesi dinle. Sonra aynı cümleyi kendi hızında söyle.",
+    "icon": "speaking"
+  },
+  "permission": {
+    "name": "İzin isteniyor",
+    "title": "Mikrofon için söz sende.",
+    "text": "Gerçek uygulamada tarayıcının izin penceresi açılır. İstemiyorsan dinleyerek devam edebilirsin.",
+    "icon": "speaking"
+  },
+  "recording": {
+    "name": "Kayıt sürüyor",
+    "title": "Örnek kayıt sürüyor.",
+    "text": "Bu yalnızca durum simülasyonu. Mikrofonun kapalı.",
+    "icon": "speaking"
+  },
+  "review": {
+    "name": "Kayıt önizlemesi",
+    "title": "Bir kez de kendini dinle.",
+    "text": "Gerçek kayıtta önce dinleyebilir, istersen yeniden deneyebilirsin.",
+    "icon": "sound"
+  },
+  "checking": {
+    "name": "Değerlendiriliyor",
+    "title": "Örnek değerlendirme görünümü",
+    "text": "Gerçek uygulamada sonuç hazır olduğunda burada görünür. Bu prototip değerlendirme servisine bağlanmaz.",
+    "icon": "review"
+  },
+  "success": {
+    "name": "Başarılı sonuç",
+    "title": "Güzel ilerliyorsun.",
+    "text": "Örnek puan ve öneriler aşağıda. Bunlar sesinden hesaplanmadı.",
+    "icon": "speaking"
+  },
+  "needspractice": {
+    "name": "Tekrar çalışma",
+    "title": "Bir küçük parçayla başlayalım.",
+    "text": "Puan bir sonraki denemene yol göstersin. Önce zor gelen sözcüğü dinle.",
+    "icon": "review"
+  },
+  "blocked": {
+    "name": "Mikrofon engelli",
+    "title": "Mikrofona erişemiyoruz.",
+    "text": "İzni açabilir veya mikrofon kullanmadan dinleme çalışmasına geçebilirsin.",
+    "icon": "speaking"
+  },
+  "unsupported": {
+    "name": "Cihaz desteği yok",
+    "title": "Bu özellik burada desteklenmiyor.",
+    "text": "Uyumlu başka bir tarayıcıyla deneyebilir veya dinleme çalışmasına geçebilirsin.",
+    "icon": "listening"
+  },
+  "empty": {
+    "name": "Boş kayıt",
+    "title": "Bu kez ses gelmedi.",
+    "text": "Gerçek uygulamada mikrofon bağlantını kontrol edip yeniden deneyebilirsin.",
+    "icon": "speaking"
+  },
+  "serviceerror": {
+    "name": "Servis hatası",
+    "title": "Şu an değerlendiremedik.",
+    "text": "Bu, sesinin yanlış olduğu anlamına gelmez. Sonra yeniden deneyebilir veya modeli dinleyebilirsin.",
+    "icon": "review"
+  },
+  "audioloading": {
+    "name": "Ses yükleniyor",
+    "title": "Ses hazırlanıyor.",
+    "text": "Ses hazır olana kadar metne bakabilirsin.",
+    "icon": "listening"
+  },
+  "audioerror": {
+    "name": "Ses oynatılamıyor",
+    "title": "Ses bu kez açılamadı.",
+    "text": "Yeniden dene veya metinle devam et. İnternet ve cihaz sesi ayarlarını kontrol edebilirsin.",
+    "icon": "sound"
+  },
+  "saved": {
+    "name": "Kayıt seçildi",
+    "title": "Örnek kaydın seçildi.",
+    "text": "Bu tasarım önizlemesinde gerçek bir kelime kaydı saklanmadı.",
+    "icon": "sound"
+  }
+}

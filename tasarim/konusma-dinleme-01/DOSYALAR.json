@@ -1,0 +1,172 @@
+[
+  {
+    "path": "BILESEN-SOZLESMESI.md",
+    "bytes": 4096,
+    "sha256": "79242e20945d1279bee3cf2471cb730cc6e3d2a4b8e951029a53ac28a2840452"
+  },
+  {
+    "path": "CLAUDE-DEVIR.md",
+    "bytes": 4837,
+    "sha256": "cd4ee5d90f8be82b43a99bae2ac2b0a2b0d2ddf46abe2f0bfeaa300f5388560f"
+  },
+  {
+    "path": "DOGRULAMA.json",
+    "bytes": 896,
+    "sha256": "ace00bb180f89ddfb10890b2f266a4cb717f6c1e84f1008855b3bf7981b1ee62"
+  },
+  {
+    "path": "DURUMLAR.json",
+    "bytes": 3222,
+    "sha256": "0e0de79adca0556fcb5487240e30b78ae955e875368fb8e3517990b4a8f2cd3c"
+  },
+  {
+    "path": "KAYNAKLAR.json",
+    "bytes": 920,
+    "sha256": "921457c4d62ffcb3bca9896c13278733dca3a7959103e235111696cc58843193"
+  },
+  {
+    "path": "PAKET.json",
+    "bytes": 464,
+    "sha256": "9e965b151667c652417b8032e51ac68db2815945a3ea15829aa2cc2fbdc936b1"
+  },
+  {
+    "path": "README.md",
+    "bytes": 3091,
+    "sha256": "af23ae8f5fbe3329f8f19a566baf7f16a4fc0586036b1d9ca265a529894c2cfe"
+  },
+  {
+    "path": "app.js",
+    "bytes": 18271,
+    "sha256": "90fdedfb0e20b15b81a0723f25195f1381a8ce3bdadc164aa17c8371b7d4717b"
+  },
+  {
+    "path": "assets/LEXEND-LICENSE",
+    "bytes": 4384,
+    "sha256": "cdfed8f91b0660b004befb744757918b7c7d40dc2201b6c6d0a86b2fab9408f8"
+  },
+  {
+    "path": "assets/LITERATA-LICENSE",
+    "bytes": 4506,
+    "sha256": "9895ebc015226accf416b758ac1ca02a2fb4f83a89d316791ef697c3dc0852aa"
+  },
+  {
+    "path": "assets/lexend-latin-400-normal.woff2",
+    "bytes": 14476,
+    "sha256": "0601e0a909219a542cdd581e3f8f1ff8fb208978cbc9bca1c90df02fd8062bb1"
+  },
+  {
+    "path": "assets/lexend-latin-600-normal.woff2",
+    "bytes": 14856,
+    "sha256": "c3c291158a48c5172383ec8febb21ca64075b7c9d8413553683b254a247efdda"
+  },
+  {
+    "path": "assets/lexend-latin-700-normal.woff2",
+    "bytes": 14808,
+    "sha256": "52dcdaa127bac4a5ea4c39ee17a3f454ceacc18d9f2a45cc453eeab68d378588"
+  },
+  {
+    "path": "assets/lexend-latin-ext-400-normal.woff2",
+    "bytes": 13144,
+    "sha256": "b7289189cf6efefd520224a63a24bc02054f8566f33e39ce9d1a448ccd8a40a4"
+  },
+  {
+    "path": "assets/lexend-latin-ext-600-normal.woff2",
+    "bytes": 13680,
+    "sha256": "eb0ab817ca8a063e048a4724b7b649738f31b9f9ef1cd384457639fbb6b42fd9"
+  },
+  {
+    "path": "assets/lexend-latin-ext-700-normal.woff2",
+    "bytes": 13708,
+    "sha256": "5ae459b6dc29461eab9f02d0ff4395d3842d6bdf280e8224a79ab2667e65ee2f"
+  },
+  {
+    "path": "assets/literata-latin-400-normal.woff2",
+    "bytes": 20420,
+    "sha256": "a60c193b55766b68b922e2327e15c2d8c145532f283a27c3411b9c47a8583d18"
+  },
+  {
+    "path": "base.css",
+    "bytes": 10894,
+    "sha256": "9488c24a4c408b0a31afbd07f6a8278924702d474780bcaf7f9f902eed05e4a3"
+  },
+  {
+    "path": "durumlar.html",
+    "bytes": 2038,
+    "sha256": "19c28f8914620508f9fc1ccea093dc48bf77eb29cf327ea8f1102d668c69a3dd"
+  },
+  {
+    "path": "icons.js",
+    "bytes": 786,
+    "sha256": "891cad5be070d87880a16b2c7d82c1e67da880b90706f85d424d683312fe5022"
+  },
+  {
+    "path": "index.html",
+    "bytes": 2467,
+    "sha256": "3d3edb5a506c20f6ebb733c8bfd06edbc29f8abc401ecf4c664fb9f5fd62c878"
+  },
+  {
+    "path": "onizlemeler/dinleme-masaustu.png",
+    "bytes": 129657,
+    "sha256": "b51c660543799a66588c5c5245ae8e80beccd537274d9c36e89dfdc1dc7490c3"
+  },
+  {
+    "path": "onizlemeler/dinleme-metin-mobil.png",
+    "bytes": 82628,
+    "sha256": "99e55cb53ed373c016d8ada55968447d3d7b8e76b28e453b968d51898fa4d040"
+  },
+  {
+    "path": "onizlemeler/durum-panosu.png",
+    "bytes": 240469,
+    "sha256": "a7aeb4ac0fa754d7af96c3af42ef3cd60f551fc2c97202d5028d342ed5a46a40"
+  },
+  {
+    "path": "onizlemeler/golgeleme-masaustu.png",
+    "bytes": 132713,
+    "sha256": "c466b43a74365f1600d4e4c7091b0acb4e42a8ee90dcfff6efe7caddcdb8d545"
+  },
+  {
+    "path": "onizlemeler/kelime-kaydi-mobil.png",
+    "bytes": 69297,
+    "sha256": "1a3ba9b40d8777de1c9571b48afa3865111349c21f519aabee9bf19b2996bc8d"
+  },
+  {
+    "path": "onizlemeler/mikrofon-engelli-mobil.png",
+    "bytes": 86571,
+    "sha256": "c24016ca24e97f53740c1d90648b074d4661c36196f6fae885d2daca6b2cf9bf"
+  },
+  {
+    "path": "onizlemeler/telaffuz-hazir-masaustu.png",
+    "bytes": 127126,
+    "sha256": "32a72cd13b7fb517f2f98ca58459dcd76aba249269b84eb9a730667c0911c047"
+  },
+  {
+    "path": "onizlemeler/telaffuz-koyu-en.png",
+    "bytes": 160151,
+    "sha256": "87dd52e5fbe3f607ffe4b255884ca6690a37ee509e998e0eb4abb046b6b42eeb"
+  },
+  {
+    "path": "onizlemeler/telaffuz-koyu-fr-mobil.png",
+    "bytes": 107074,
+    "sha256": "8fe8847d3ca424ad4de6a7303b8d2cfe989e601cbe6031fe29b4a493ed853bc1"
+  },
+  {
+    "path": "onizlemeler/telaffuz-mobil.png",
+    "bytes": 106486,
+    "sha256": "464b506be36b5eb2b5e9f9982dc03d6e02ea69d0f489aab9f6f4f0f1300dd381"
+  },
+  {
+    "path": "onizlemeler/telaffuz-sonuc-masaustu.png",
+    "bytes": 153049,
+    "sha256": "8b76697895d3fb72e54d599762a7b86d05cf0b8be101871487d84a88ec7cc733"
+  },
+  {
+    "path": "states.js",
+    "bytes": 2643,
+    "sha256": "c0ef7deab1e70b83b67500e4d193b793be3b7e9d7cea92e29183d769e2fb3ae8"
+  },
+  {
+    "path": "style.css",
+    "bytes": 11049,
+    "sha256": "a0bccba3a60c1349fdb8964d3246978c714ee3689265210514024c475f048517"
+  }
+]

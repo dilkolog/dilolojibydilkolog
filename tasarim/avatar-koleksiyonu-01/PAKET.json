@@ -1,0 +1,18 @@
+{
+  "id": "diloloji-avatar-koleksiyonu-01",
+  "date": "2026-11-10",
+  "total": 40,
+  "redrawn": 26,
+  "new": 14,
+  "monkiAvatars": 0,
+  "size": [
+    384,
+    384
+  ],
+  "formats": [
+    "png",
+    "webp"
+  ],
+  "source": "ImageGen, 5 atlas sheets",
+  "productionIntegrated": false
+}

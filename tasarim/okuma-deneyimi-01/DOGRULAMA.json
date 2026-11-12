@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-12",
+  "passed": [
+    "17 durum 375px yatay taşma kontrolü",
+    "Masaüstü kelime yan paneli, ekleme ve örnek durum değişimi",
+    "Panel kapatınca kaynak sözcüğe odak dönüşü",
+    "Kütüphaneden metne dönüşte sekme içi okuma konumu",
+    "Mobil başlıktan aşağı sürükleyerek paneli kapatma",
+    "Sol/sağ ve Enter/Escape ile gezinme",
+    "Türkçe5paragraf; dinleme/dikte sırasında metin gizli",
+    "Çoklu seçim ve toplu örnek işaretleme",
+    "Çıkarımda önce açma, sonra anlam",
+    "Kütüphane araması, temizleme ve metin ekleme",
+    "Özel metinde HTML kaçışları; gerçek HTML çalıştırılmıyor",
+    "Mobil alt panel66dvh içinde ve ekran altına hizalı",
+    "42px yazı ve ferah satırda375px taşma yok",
+    "Açık/koyu, FR vurgu ve sakin hareket",
+    "JS ve HTTP hatası yok"
+  ],
+  "notTested": [
+    "Canlı üretim ekranı",
+    "Gerçek hesap/veri/çeviri/sözlük/ortak okuma servisleri",
+    "Gerçek cihaz ve ekran okuyucu",
+    "Sesin işitilerek doğrulanması"
+  ],
+  "productionIntegrated": false
+}

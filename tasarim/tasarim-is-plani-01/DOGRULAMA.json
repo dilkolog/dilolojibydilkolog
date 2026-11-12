@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-11",
+  "checks": [
+    "5 ayrı inceleme dosyası mevcut",
+    "17 benzersiz iş ve geçerli bağımlılıklar",
+    "Bağımlılık döngüsü yok",
+    "Markdown göreli bağlantıları geçerli",
+    "JSON dosyaları geçerli"
+  ],
+  "applicationTestsRun": false,
+  "productionCodeChanged": false
+}

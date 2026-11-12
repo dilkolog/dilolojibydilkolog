@@ -1,0 +1,25 @@
+{
+  "packageId": "diloloji-monki-animasyon-01",
+  "title": "Monki el sallama animasyonu",
+  "handoffUpdated": "2026-11-10",
+  "status": "tasarim-tamam-entegrasyon-bekliyor",
+  "preview": "index.html",
+  "implementationNotes": "CLAUDE-DEVIR.md",
+  "completed": "Ayrı gövde/kol katmanlarıyla 4,8 saniyelik el sallama denemesi, GIF/WebP/MP4 ve rig koordinatları hazır.",
+  "remaining": "192 px hedefi, omuz birleşimi ve koyu tema kenarlarını kontrol et. Üretimde reduced-motion sabit pozu ve oynatma sıklığını bağla.",
+  "files": [
+    "CLAUDE-DEVIR.md",
+    "animation.js",
+    "assets/arm.png",
+    "assets/body.png",
+    "index.html",
+    "left.png",
+    "monki-wave.gif",
+    "monki-wave.mp4",
+    "monki-wave.webp",
+    "neutral.png",
+    "rig.json",
+    "right.png"
+  ],
+  "namingRule": "Paket kimliği + göreli dosya yolu tekil dosya kimliğidir. Mevcut uygulama hedefi ayrı devir notunda veya manifestte belirtilir."
+}

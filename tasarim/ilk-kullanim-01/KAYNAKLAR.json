@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-12",
+  "reviewedCommit": "a41ab4c753a33372bf4faf97ca6f9a0f1e2cabc0",
+  "liveSiteVerified": false,
+  "files": [
+    {
+      "path": "src/ui/home/Onboarding.tsx",
+      "sha256": "e0b47d49881032b34c9f012f02e5a2970333d4adf1c674bb60a0c5cebecbe497"
+    },
+    {
+      "path": "src/ui/home/startLanguage.ts",
+      "sha256": "1ab06e302ceb43e2f9e4a548abce040e254ee07a51864ba9792af97e45b34901"
+    },
+    {
+      "path": "src/data/db.ts",
+      "sha256": "548eb606fba86034e6de6fe91014252be371662bd20bc83d80c1a4e8351cfd60"
+    },
+    {
+      "path": "src/ui/guide/GuidePlacementNudge.tsx",
+      "sha256": "73b0016f370c2727abf1426c0716a563ac095919e350bae1ecd494bb66b8c077"
+    },
+    {
+      "path": "src/ui/guide/PlacementView.tsx",
+      "sha256": "41f02a7ea29edb29d91eeebb05f9e7a9b69df89f4fee66294084114a696f3fdc"
+    }
+  ],
+  "defaults": {
+    "dailyMinutes": 10,
+    "newWordsPerDay": 5
+  },
+  "placementMinWords": 5,
+  "reusedArt": "filiz-buyume-01 stage0,3,6",
+  "newRasterArt": 0
+}

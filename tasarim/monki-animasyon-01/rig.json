@@ -1,0 +1,57 @@
+{
+  "durationSeconds": 4.8,
+  "nominalFps": 25,
+  "renderedFrames": 120,
+  "exportSize": [
+    512,
+    512
+  ],
+  "rigCoordinates": [
+    1024,
+    1024
+  ],
+  "shoulderPivot": [
+    400,
+    565
+  ],
+  "armLayerPivot": [
+    930,
+    940
+  ],
+  "armScale": 0.31,
+  "torsoForegroundStartsAtY": 540,
+  "angleKeys": [
+    [
+      0,
+      0
+    ],
+    [
+      0.24,
+      -12
+    ],
+    [
+      0.54,
+      10
+    ],
+    [
+      0.84,
+      -10
+    ],
+    [
+      1.14,
+      8
+    ],
+    [
+      1.5,
+      0
+    ],
+    [
+      4.8,
+      0
+    ]
+  ],
+  "easing": "cosine ease in/out",
+  "bodySource": "exec-c2610e30-46c1-4275-860f-703b39ac1d03.png",
+  "armSource": "exec-4801a292-dce5-492c-be95-1c26048076a2.png",
+  "status": "design-animation-prototype"
+}

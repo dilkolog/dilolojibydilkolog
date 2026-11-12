@@ -1,0 +1,218 @@
+[
+  {
+    "task": "1",
+    "file": "scene-story.png",
+    "title": "Hikâye başlangıcı",
+    "path": "docs/gelen-gorseller/scene-story.png",
+    "actualSize": [
+      1536,
+      1024
+    ],
+    "targetSize": [
+      1536,
+      1024
+    ],
+    "source": "exec-5f88849b-e2f3-4314-8ca2-70cc0c4fe429.png",
+    "smallEmblem": false,
+    "status": "uretildi-isleme-bekliyor",
+    "sha256": "b3fd986828530536bf32bbc5cb1049a7c375ba04f1a32d0ff0d3d11ed694b4ab"
+  },
+  {
+    "task": "2",
+    "file": "guide-placement.png",
+    "title": "Seviyeni bul",
+    "path": "docs/gelen-gorseller/guide-placement.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "targetSize": [
+      1024,
+      1024
+    ],
+    "source": "exec-5fe38c06-2222-4bab-942b-2d9d553d18ac.png",
+    "smallEmblem": false,
+    "status": "uretildi-isleme-bekliyor",
+    "sha256": "cbc7de645ce7bf574a986ed9d7e333b8ee89e1cbdbf9e13393fae14e04b7cea7"
+  },
+  {
+    "task": "3a",
+    "file": "progress-week-empty.png",
+    "title": "Boş hafta",
+    "path": "docs/gelen-gorseller/progress-week-empty.png",
+    "actualSize": [
+      1536,
+      1024
+    ],
+    "targetSize": [
+      1536,
+      1024
+    ],
+    "source": "exec-b71f209e-c6e5-400a-912f-edc122487472.png",
+    "smallEmblem": false,
+    "status": "uretildi-isleme-bekliyor",
+    "sha256": "591389edb428d684ac999f9698c2895911391f6a4eaa116e4c0cce0ebc3ebab9"
+  },
+  {
+    "task": "3b",
+    "file": "progress-note.png",
+    "title": "Haftanın yorumu",
+    "path": "docs/gelen-gorseller/progress-note.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "targetSize": [
+      1024,
+      1024
+    ],
+    "source": "exec-10e7280a-a098-4509-a664-29ac638f91f5.png",
+    "smallEmblem": false,
+    "status": "uretildi-isleme-bekliyor",
+    "sha256": "b373826881f19e9a5ecf6d90b90c2380f3758506a5c164b212c306b9011bf058"
+  },
+  {
+    "task": "4a",
+    "file": "role-weekend.png",
+    "title": "Hafta sonu planı",
+    "path": "docs/gelen-gorseller/role-weekend.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "targetSize": [
+      1024,
+      1024
+    ],
+    "source": "exec-cd3c0fd3-d609-4820-aeb9-7c5425b1ddb4.png",
+    "smallEmblem": false,
+    "status": "uretildi-isleme-bekliyor",
+    "sha256": "134509607a6fd0bbaf160c72fab65851c51ab355b49d896cb1bf979a699bd26d"
+  },
+  {
+    "task": "4b",
+    "file": "role-series.png",
+    "title": "Dizi ve film sohbeti",
+    "path": "docs/gelen-gorseller/role-series.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "targetSize": [
+      1024,
+      1024
+    ],
+    "source": "exec-9cf2a356-7a19-4547-bccf-ce12dc90e9ee.png",
+    "smallEmblem": false,
+    "status": "uretildi-isleme-bekliyor",
+    "sha256": "e92519e76237d1233debc9e270e262afcfbd52beb7d1d6ebb068645b0a227734"
+  },
+  {
+    "task": "5a",
+    "file": "emblem-mind-seed.png",
+    "title": "Zihin tohumu",
+    "path": "docs/gelen-gorseller/emblem-mind-seed.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "targetSize": [
+      1024,
+      1024
+    ],
+    "source": "exec-07269576-542e-4a6f-975b-b702738c1554.png",
+    "smallEmblem": true,
+    "status": "uretildi-isleme-bekliyor",
+    "sha256": "45d9ee22f996d4a58393aa1acd4153faca44b43c5483d4b11566d9ef04782818"
+  },
+  {
+    "task": "5b",
+    "file": "emblem-plan.png",
+    "title": "Çalışma planı",
+    "path": "docs/gelen-gorseller/emblem-plan.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "targetSize": [
+      1024,
+      1024
+    ],
+    "source": "exec-8bd03cf7-c93f-4f53-8046-f362e42af49b.png",
+    "smallEmblem": true,
+    "status": "uretildi-isleme-bekliyor",
+    "sha256": "2ff08696b863c9d698ebb51dbf06d33872d5f05ec9b782f214f28b765f50ae72"
+  },
+  {
+    "task": "6",
+    "file": "emblem-recall.png",
+    "title": "Aklında kalanları yaz",
+    "path": "docs/gelen-gorseller/emblem-recall.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "targetSize": [
+      1024,
+      1024
+    ],
+    "source": "exec-1e255b93-bc0c-44f4-a121-939fdb6f53b4.png",
+    "smallEmblem": true,
+    "status": "uretildi-isleme-bekliyor",
+    "sha256": "fdf898f84c2586df7cc2981dc668cd370f3404340b18be62ddf9fb61868fdd54"
+  },
+  {
+    "task": "7a",
+    "file": "page-privacy.png",
+    "title": "Gizlilik",
+    "path": "docs/gelen-gorseller/page-privacy.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "targetSize": [
+      1024,
+      1024
+    ],
+    "source": "exec-c0edc596-f32a-4afb-bf22-879965d378e9.png",
+    "smallEmblem": false,
+    "status": "uretildi-isleme-bekliyor",
+    "sha256": "a9b197815efac2ed7d96056b08856023d4ad99385b982f3380dba5d75ba95d8a"
+  },
+  {
+    "task": "7b",
+    "file": "page-terms.png",
+    "title": "Kullanım koşulları",
+    "path": "docs/gelen-gorseller/page-terms.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "targetSize": [
+      1024,
+      1024
+    ],
+    "source": "exec-1e0c89c6-e38e-4fc9-8a95-326a7f846c96.png",
+    "smallEmblem": false,
+    "status": "uretildi-isleme-bekliyor",
+    "sha256": "ed0c3b91eac8d64c0ce8e4f1554e900814935aa34891bf8ab36a08b5468bb97d"
+  },
+  {
+    "task": "7c",
+    "file": "page-delete.png",
+    "title": "Nazik veda",
+    "path": "docs/gelen-gorseller/page-delete.png",
+    "actualSize": [
+      1254,
+      1254
+    ],
+    "targetSize": [
+      1024,
+      1024
+    ],
+    "source": "exec-ab7871ab-be8a-4e5f-9e02-bb0693fd4543.png",
+    "smallEmblem": false,
+    "status": "uretildi-isleme-bekliyor",
+    "sha256": "e72afcdf25cce79a23344b5b220f04da6d0e17c208134d3ec350414c0a1558b5"
+  }
+]

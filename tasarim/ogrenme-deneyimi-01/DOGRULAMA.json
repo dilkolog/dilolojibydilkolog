@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-10",
+  "viewport": [
+    1440,
+    375
+  ],
+  "passed": [
+    "6 ekranın masaüstü ve mobil görüntüleri",
+    "375px yatay taşma yok",
+    "Tüm görseller yükleniyor, JS ve HTTP hatası yok",
+    "Sulama aşamayı değiştirmiyor, örnek büyüme değiştiriyor",
+    "3 sonuç varyantı",
+    "2 kazanılmış ve 4 kilitli rozet filtresi, detay ve Escape",
+    "Arama temizleme",
+    "6 pratik yönlendirmesi ve deyim kartı",
+    "Yerel kayıt düğmesi",
+    "Deyim geri bildirimi kelime cevabıyla karışmıyor",
+    "FR vurgu, koyu tema",
+    "Sakin ve prefers-reduced-motion hareketi durduruyor"
+  ],
+  "notTested": [
+    "Gerçek sunucu ve veri entegrasyonu",
+    "Sesin işitilerek doğrulanması",
+    "Ekran okuyucu ve gerçek mobil cihaz"
+  ],
+  "productionIntegrated": false
+}

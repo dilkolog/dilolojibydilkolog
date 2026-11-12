@@ -1,0 +1,17 @@
+{
+  "packageId": "diloloji-gorev-paketi-01",
+  "title": "Görev dosyasındaki 12 çizim",
+  "handoffUpdated": "2026-11-10",
+  "status": "tasarim-tamam-entegrasyon-bekliyor",
+  "preview": "index.html",
+  "implementationNotes": "CLAUDE-TESLIM.md",
+  "completed": "Main’deki GORSEL-GOREVLERI.md görevlerinin 12 ham PNG kaynağı üretildi, adlandırıldı ve önizlemeleri hazırlandı.",
+  "remaining": "Zemini temizle, kareleri hedef 1024×1024 boyutuna getir ve görev eşleştirmesine göre WebP üret. Mevcut main’de görevlerin zaten işlenip işlenmediğini kontrol et.",
+  "files": [
+    "CLAUDE-TESLIM.md",
+    "index.html",
+    "manifest.json",
+    "toplu-onizleme.jpg"
+  ],
+  "namingRule": "Paket kimliği + göreli dosya yolu tekil dosya kimliğidir. Mevcut uygulama hedefi ayrı devir notunda veya manifestte belirtilir."
+}

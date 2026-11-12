@@ -1,0 +1,92 @@
+[
+  {
+    "id": "01-aciklayan-monki",
+    "title": "Açıklayan Monki",
+    "png": "gorseller/01-aciklayan-monki.png",
+    "webp": "webp/01-aciklayan-monki.webp",
+    "use": "Dil bilgisi açıklaması veya ilk kullanım rehberi",
+    "copy": "Birlikte bakalım.",
+    "displayHeight": "160–220 px",
+    "integrationCandidates": "src/ui/monki/MonkiMascot.tsx; src/ui/Guide.tsx",
+    "status": "tasarim-onerisi",
+    "dimensions": [
+      1312,
+      1199
+    ]
+  },
+  {
+    "id": "02-dinleyen-monki",
+    "title": "Dinleyen Monki",
+    "png": "gorseller/02-dinleyen-monki.png",
+    "webp": "webp/02-dinleyen-monki.webp",
+    "use": "Konuşma turundan önceki hazır durumu",
+    "copy": "Seni dinlemeye hazırım.",
+    "displayHeight": "120–160 px",
+    "integrationCandidates": "src/ui/monki/Monki.tsx",
+    "status": "tasarim-onerisi",
+    "dimensions": [
+      1199,
+      1312
+    ]
+  },
+  {
+    "id": "03-birlikte-tekrar",
+    "title": "Birlikte yeniden deneyelim",
+    "png": "gorseller/03-birlikte-tekrar.png",
+    "webp": "webp/03-birlikte-tekrar.webp",
+    "use": "Zor gün desteği veya tekrar daveti",
+    "copy": "İstersen küçük bir adımla yeniden deneyelim.",
+    "displayHeight": "120–160 px",
+    "integrationCandidates": "src/ui/Session.tsx; src/engine/easyRound.ts",
+    "status": "tasarim-onerisi",
+    "dimensions": [
+      1209,
+      1301
+    ]
+  },
+  {
+    "id": "04-tekrar-hos-geldin",
+    "title": "Tekrar hoş geldin",
+    "png": "gorseller/04-tekrar-hos-geldin.png",
+    "webp": "webp/04-tekrar-hos-geldin.webp",
+    "use": "Uzun aradan sonra ilk çalışma daveti",
+    "copy": "Kaldığımız yerden, kendi hızında.",
+    "displayHeight": "180–240 px",
+    "integrationCandidates": "src/App.tsx; src/engine/easyRound.ts",
+    "status": "tasarim-onerisi",
+    "dimensions": [
+      1312,
+      1199
+    ]
+  },
+  {
+    "id": "05-kelime-bahcesi",
+    "title": "Kelime bahçesi",
+    "png": "gorseller/05-kelime-bahcesi.png",
+    "webp": "webp/05-kelime-bahcesi.webp",
+    "use": "Bahçe tanıtımı veya haftalık gelişim anlatısı",
+    "copy": "Küçük tekrarlar, büyüyen bir bahçe.",
+    "displayHeight": "180–240 px",
+    "integrationCandidates": "src/ui/Plant.tsx; src/ui/Progress.tsx",
+    "status": "tasarim-onerisi",
+    "dimensions": [
+      1312,
+      1199
+    ]
+  },
+  {
+    "id": "06-ilk-iletisim",
+    "title": "İlk iletişim başarısı",
+    "png": "gorseller/06-ilk-iletisim.png",
+    "webp": "webp/06-ilk-iletisim.webp",
+    "use": "Tamamlanmış ilk konuşma görevi özeti",
+    "copy": "Bir konuşmayı tamamladın.",
+    "displayHeight": "140–180 px",
+    "integrationCandidates": "src/ui/monki/Monki.tsx",
+    "status": "tasarim-onerisi",
+    "dimensions": [
+      1110,
+      1417
+    ]
+  }
+]

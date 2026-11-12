@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-12",
+  "passed": [
+    "10 durum, her birinde tek ana eylem",
+    "Her durumda soru dağılımı kalan soruya eşit",
+    "375px tüm durumlarda yatay taşma yok",
+    "Gün tamam olsa da yarım tur devam eylemi korunuyor",
+    "Liste kapsamı boşluğu ve liste görevini bitirme ile bütün günün sonu ayrılıyor",
+    "Liste seçimi ve tüm listelere dönüş",
+    "Kısa tur en çok15soru; yeni kelimeleri dışarıda bırakır; sayılar negatif olmuyor",
+    "Örnek günlük tur bittiğinde bitki6 görseline geçiyor",
+    "Önden tekrar simülasyonu bugünkü planı sahte tamamlamıyor",
+    "Yeni hesap örnek kelime ve kelime ekleme görünümü",
+    "FR/EN/ES vurgu ve açık/koyu/sakin",
+    "Dialog ve Escape çıkışı",
+    "JS ve HTTP hatası yok"
+  ],
+  "notTested": [
+    "Canlı üretim ekranı",
+    "Gerçek planlayıcı/FSRS/XP/seri/kayıt/eşitleme",
+    "Gerçek oturum taslağını devam ettirme",
+    "Ekran okuyucu ve gerçek cihaz"
+  ],
+  "productionIntegrated": false
+}
