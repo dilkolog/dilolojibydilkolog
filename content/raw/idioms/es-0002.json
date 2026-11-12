@@ -12,8 +12,8 @@
   "level": "B1",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/rat%C3%B3n_de_biblioteca",
-   "https://es.wikipedia.org/wiki/El_rat%C3%B3n_de_biblioteca"
+   "https://dle.rae.es/ratón",
+   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/"
   ]
  },
  {
@@ -29,8 +29,8 @@
   "level": "B1",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/memoria_de_elefante",
-   "https://es.wikipedia.org/wiki/Chicho_Ib%C3%A1%C3%B1ez_Serrador"
+   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+   "https://www.juegosdepalabras.com/animal/animal-3.html"
   ]
  },
  {
@@ -38,15 +38,15 @@
   "t": "kendi ortamında çok rahat hissetmek",
   "lit": "suda balık gibi hissetmek",
   "s": "En el escenario, la cantante se siente como pez en el agua.",
-  "form": "siente como pez en el agua",
+  "form": "se siente como pez en el agua",
   "tr": "Şarkıcı sahnede kendini suda balık gibi rahat hissediyor.",
   "reg": "neutral",
   "area": "genel",
   "level": "B1",
   "theme": "animals",
   "src": [
-   "https://es.wiktionary.org/wiki/como_pez_en_el_agua",
-   "https://es.wikipedia.org/wiki/Gran_Premio_de_B%C3%A9lgica_de_Motociclismo_de_1990"
+   "https://dle.rae.es/pez",
+   "https://www.juegosdepalabras.com/animal/animal-3.html"
   ]
  },
  {
@@ -62,8 +62,8 @@
   "level": "B1",
   "theme": "animals",
   "src": [
-   "https://es.wiktionary.org/wiki/oveja_negra",
-   "https://es.wikipedia.org/wiki/Oveja_Negra_(sello_discogr%C3%A1fico)"
+   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
   ]
  },
  {
@@ -73,15 +73,15 @@
   "lit": "tavuk derisi olmak",
   "eq": "tüyleri diken diken olmak",
   "s": "Al escuchar aquel coro en directo, se me puso la piel de gallina.",
-  "form": "puso la piel de gallina",
+  "form": "se me puso la piel de gallina",
   "tr": "O koroyu canlı dinleyince tüylerim diken diken oldu.",
   "reg": "neutral",
   "area": "genel",
   "level": "B1",
   "theme": "animals",
   "src": [
-   "https://es.wiktionary.org/wiki/piel_de_gallina",
-   "https://es.wikipedia.org/wiki/Piloerecci%C3%B3n"
+   "https://dle.rae.es/piel",
+   "https://www.diccionarios.com/diccionario/espanol/piel"
   ]
  },
  {
@@ -97,8 +97,8 @@
   "level": "B1",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/a_paso_de_tortuga",
-   "https://es.wikipedia.org/wiki/C%C3%B3nyuge"
+   "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/",
+   "https://www.juegosdepalabras.com/animal/animal-3.html"
   ]
  },
  {
@@ -114,8 +114,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://es.wiktionary.org/wiki/matar_dos_p%C3%A1jaros_de_un_tiro",
-   "https://es.wikipedia.org/wiki/Dos_p%C3%A1jaros_de_un_tiro"
+   "https://dle.rae.es/pájaro",
+   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/"
   ]
  },
  {
@@ -131,8 +131,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/haber_gato_encerrado",
-   "https://tatoeba.org/es/sentences/show/6536446"
+   "https://dle.rae.es/gato",
+   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/"
   ]
  },
  {
@@ -148,8 +148,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://es.wiktionary.org/wiki/dar_gato_por_liebre",
-   "https://es.wikipedia.org/wiki/Gato_por_liebre_(programa_de_televisi%C3%B3n)"
+   "https://dle.rae.es/gato",
+   "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/"
   ]
  },
  {
@@ -165,7 +165,7 @@
   "theme": "animals",
   "src": [
    "https://en.wiktionary.org/wiki/tomar_el_toro_por_los_cuernos",
-   "https://es.wikipedia.org/wiki/Elecciones_generales_de_Israel_de_1999"
+   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
   ]
  },
  {
@@ -180,13 +180,13 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://es.wiktionary.org/wiki/tener_p%C3%A1jaros_en_la_cabeza",
-   "https://es.wikipedia.org/wiki/P%C3%A1jaros_en_la_cabeza"
+   "https://dle.rae.es/pájaro",
+   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
   ]
  },
  {
   "w": "buscarle tres pies al gato",
-  "t": "öküz altında buzağı aramak, gereksiz bahane aramak",
+  "t": "gereksiz güçlük çıkarmak, basit bir işi karmaşıklaştırmak",
   "lit": "kedide üç ayak aramak",
   "eq": "öküz altında buzağı aramak",
   "s": "El asunto es muy sencillo, no hace falta buscarle tres pies al gato.",
@@ -197,8 +197,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/buscarle_tres_pies_al_gato",
-   "https://es.wikipedia.org/wiki/Pragma"
+   "https://www.juegosdepalabras.com/animal/animal-3.html",
+   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
   ]
  },
  {
@@ -214,8 +214,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://es.wiktionary.org/wiki/pagar_el_pato",
-   "https://es.wikipedia.org/wiki/Gabriela_Iribarren"
+   "https://dle.rae.es/pato",
+   "https://www.juegosdepalabras.com/animal/animal-3.html"
   ]
  },
  {
@@ -232,7 +232,7 @@
   "theme": "animals",
   "src": [
    "https://es.wiktionary.org/wiki/lobo_con_piel_de_cordero",
-   "https://es.wikipedia.org/wiki/Mimetismo_agresivo"
+   "https://www.newsinslowspanish.com/latino/series/expressions/5/55/lesson"
   ]
  },
  {
@@ -248,8 +248,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/como_una_cabra",
-   "https://es.wikipedia.org/wiki/Amaltea_(mitolog%C3%ADa)"
+   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
   ]
  },
  {
@@ -264,8 +264,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/vista_de_lince",
-   "https://es.wikipedia.org/wiki/Linceo_(hijo_de_Afareo)"
+   "https://dle.rae.es/vista",
+   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
   ]
  },
  {
@@ -273,16 +273,16 @@
   "t": "kütük gibi uyumak, deliksiz uyumak",
   "lit": "bir yediuyur gibi uyumak",
   "eq": "kütük gibi uyumak",
-  "s": "Después de la caminata por la montaña, los niños durmieron como un lirón.",
-  "form": "durmieron como un lirón",
-  "tr": "Dağ yürüyüşünden sonra çocuklar kütük gibi deliksiz uyudu.",
+  "s": "Después de la caminata, Marta durmió como un lirón hasta la mañana.",
+  "form": "durmió como un lirón",
+  "tr": "Yürüyüşten sonra Marta sabaha kadar deliksiz uyudu.",
   "reg": "neutral",
   "area": "genel",
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/dormir_como_un_lir%C3%B3n",
-   "https://es.wikipedia.org/wiki/El_cuento_de_Jengibre_y_Pepinillos"
+   "https://dle.rae.es/lirón",
+   "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/"
   ]
  },
  {
@@ -298,8 +298,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://es.wiktionary.org/wiki/l%C3%A1grimas_de_cocodrilo",
-   "https://es.wikipedia.org/wiki/L%C3%A1grimas_de_cocodrilo_(%C3%A1lbum)"
+   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+   "https://www.juegosdepalabras.com/animal/animal-3.html"
   ]
  },
  {
@@ -314,8 +314,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/ver_las_orejas_al_lobo",
-   "https://es.wikipedia.org/wiki/Odio%2C_amistad%2C_noviazgo%2C_amor%2C_matrimonio"
+   "https://dle.rae.es/oreja",
+   "https://www.diccionarios.com/diccionario/espanol-extranjeros/oreja"
   ]
  },
  {
@@ -331,8 +331,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/boca_del_lobo",
-   "https://es.wikipedia.org/wiki/En_la_boca_del_lobo"
+   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+   "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/"
   ]
  },
  {
@@ -340,15 +340,15 @@
   "t": "zoru başarmak, çetin bir yarışta galip gelmek",
   "lit": "kediyi suya götürmek",
   "s": "El partido estuvo muy reñido, pero el equipo local se llevó el gato al agua.",
-  "form": "llevó el gato al agua",
+  "form": "se llevó el gato al agua",
   "tr": "Maç çok çekişmeli geçti ama ev sahibi takım zoru başarıp galip geldi.",
   "reg": "neutral",
   "area": "İspanya",
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://es.wiktionary.org/wiki/llevarse_el_gato_al_agua",
-   "https://es.wikipedia.org/wiki/El_gato_al_agua"
+   "https://dle.rae.es/gato",
+   "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/"
   ]
  },
  {
@@ -364,29 +364,29 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/tener_la_mosca_detr%C3%A1s_de_la_oreja",
-   "https://es.wikipedia.org/wiki/Blanca_Rodr%C3%ADguez_(actriz)"
+   "https://dle.rae.es/mosca",
+   "https://www.revistaelobservador.com/opinion/122-escribir-desde-el-corazon/19533-de-animales-va-el-cuento"
   ]
  },
  {
-  "w": "ser un bicho raro",
-  "t": "tuhaf biri olmak, çevresine uymayan aykırı biri olmak",
-  "lit": "nadir bir böcek olmak",
-  "s": "En aquel pueblo tan tradicional, el pintor parecía ser un bicho raro.",
-  "form": "ser un bicho raro",
-  "tr": "O geleneksel kasabada ressam tuhaf biri gibi görünüyordu.",
+  "w": "hacer el ganso",
+  "t": "insanları güldürmek için şaklabanlık yapmak",
+  "lit": "kazı yapmak",
+  "s": "Durante el descanso, Pablo empezó a hacer el ganso para divertir al grupo.",
+  "form": "hacer el ganso",
+  "tr": "Molada Pablo grubu eğlendirmek için şaklabanlık yapmaya başladı.",
   "reg": "informal",
-  "area": "genel",
-  "level": "C1",
+  "area": "İspanya",
+  "level": "B2",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/bicho_raro",
-   "https://es.wikipedia.org/wiki/Bicho_raro"
+   "https://dle.rae.es/ganso",
+   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/"
   ]
  },
  {
   "w": "no ver tres en un burro",
-  "t": "çok uzağı görememek, gözü aşırı bozuk olmak",
+  "t": "gözleri çok az görmek, çok kötü görmek",
   "lit": "bir eşekte üç kişiyi görememek",
   "s": "Sin mis gafas graduadas no veo tres en un burro.",
   "form": "no veo tres en un burro",
@@ -396,8 +396,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/no_ver_tres_en_un_burro",
-   "https://es.wikipedia.org/wiki/Modismo"
+   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/",
+   "https://www.juegosdepalabras.com/animal/animal-3.html"
   ]
  },
  {
@@ -413,13 +413,13 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://es.wiktionary.org/wiki/marear_la_perdiz",
-   "https://es.wikipedia.org/wiki/Jordi_Bold%C3%B3"
+   "https://dle.rae.es/perdiz",
+   "https://www.revistaelobservador.com/opinion/122-escribir-desde-el-corazon/19533-de-animales-va-el-cuento"
   ]
  },
  {
   "w": "matar el gusanillo",
-  "t": "açlığını biraz bastırmak, nefsini köreltmek",
+  "t": "bir şeyler atıştırarak açlığını yatıştırmak",
   "lit": "kurtçuğu öldürmek",
   "eq": "açlığını bastırmak",
   "s": "Tomamos unas aceitunas para matar el gusanillo antes de la cena.",
@@ -430,8 +430,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/matar_el_gusanillo",
-   "https://es.wikipedia.org/wiki/Mike_Hansen"
+   "https://dle.rae.es/gusanillo",
+   "https://www.juegosdepalabras.com/animal/animal-3.html"
   ]
  },
  {
@@ -446,8 +446,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://en.wiktionary.org/wiki/tener_malas_pulgas",
-   "https://es.wikipedia.org/wiki/Malas_pulgas"
+   "https://dle.rae.es/pulga",
+   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
   ]
  },
  {
@@ -463,8 +463,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://es.wiktionary.org/wiki/perro_viejo",
-   "https://es.wikipedia.org/wiki/Jorge_Serrano_(m%C3%BAsico)"
+   "https://dle.rae.es/perro",
+   "https://www.diccionarios.com/diccionario/espanol/perro"
   ]
  },
  {
@@ -481,7 +481,7 @@
   "theme": "animals",
   "src": [
    "https://en.wiktionary.org/wiki/caer_como_moscas",
-   "https://es.wikipedia.org/wiki/Sen_Dog"
+   "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/"
   ]
  },
  {
@@ -496,8 +496,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://es.wiktionary.org/wiki/dormir_la_mona",
-   "https://es.wikipedia.org/wiki/Adriana_Ducret"
+   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+   "https://www.revistaelobservador.com/opinion/122-escribir-desde-el-corazon/19533-de-animales-va-el-cuento"
   ]
  },
  {
@@ -513,7 +513,7 @@
   "theme": "animals",
   "src": [
    "https://en.wiktionary.org/wiki/matar_moscas_a_ca%C3%B1onazos",
-   "https://es.wikipedia.org/wiki/Telegram_en_Espa%C3%B1a"
+   "https://cadenaser.com/navarra/2026/02/23/esto-es-lo-que-vemos-ahora-toca-la-respuesta-a-la-pregunta-de-si-de-verdad-hacia-falta-matar-moscas-a-canonazos-radio-pamplona/"
   ]
  }
 ]

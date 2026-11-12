@@ -1,0 +1,479 @@
+{
+  "collector": "Codex",
+  "independentReview": "Claude oturumu bekleniyor",
+  "scope": "Yalnız es-0002; iki bağımsız sayfada ifade veya belgelenmiş varyant görüldü. Kaynak sayfasındaki çekimli biçim mastara çevrilebilir; varyantlar aşağıda ayrıca belirtilir.",
+  "rejected": [
+    {
+      "w": "ser un bicho raro",
+      "reason": "Kişiyi küçümseyen niteleme; hakaret içeren deyimleri almama kuralı nedeniyle çıkarıldı.",
+      "replacement": "hacer el ganso"
+    }
+  ],
+  "checked": [
+    {
+      "w": "ser un ratón de biblioteca",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/ratón",
+          "observed": "ratón de biblioteca"
+        },
+        {
+          "url": "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+          "observed": "Ser un ratón de biblioteca"
+        }
+      ]
+    },
+    {
+      "w": "tener memoria de elefante",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+          "observed": "tener memoria de elefante"
+        },
+        {
+          "url": "https://www.juegosdepalabras.com/animal/animal-3.html",
+          "observed": "tener memoria de elefante"
+        }
+      ]
+    },
+    {
+      "w": "sentirse como pez en el agua",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pez",
+          "observed": "como (el) pez en el agua"
+        },
+        {
+          "url": "https://www.juegosdepalabras.com/animal/animal-3.html",
+          "observed": "Moverse como pez en el agua"
+        }
+      ]
+    },
+    {
+      "w": "ser la oveja negra",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+          "observed": "ser la oveja negra"
+        },
+        {
+          "url": "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/",
+          "observed": "ser la oveja negra"
+        }
+      ]
+    },
+    {
+      "w": "ponerse la piel de gallina",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/piel",
+          "observed": "ponen la piel de gallina"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/piel",
+          "observed": "tener o ponerse la piel de gallina"
+        }
+      ]
+    },
+    {
+      "w": "ir a paso de tortuga",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/",
+          "observed": "Andar a paso de tortuga"
+        },
+        {
+          "url": "https://www.juegosdepalabras.com/animal/animal-3.html",
+          "observed": "Ir/andar a paso de tortuga"
+        }
+      ]
+    },
+    {
+      "w": "matar dos pájaros de un tiro",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pájaro",
+          "observed": "matar dos pájaros de un tiro"
+        },
+        {
+          "url": "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+          "observed": "matar dos pájaros de un tiro"
+        }
+      ]
+    },
+    {
+      "w": "haber gato encerrado",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/gato",
+          "observed": "haber gato encerrado"
+        },
+        {
+          "url": "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+          "observed": "haber gato encerrado"
+        }
+      ]
+    },
+    {
+      "w": "dar gato por liebre",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/gato",
+          "observed": "dar gato por liebre"
+        },
+        {
+          "url": "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/",
+          "observed": "dar gato por liebre"
+        }
+      ]
+    },
+    {
+      "w": "tomar el toro por los cuernos",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/tomar_el_toro_por_los_cuernos",
+          "observed": "tomar el toro por los cuernos"
+        },
+        {
+          "url": "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/",
+          "observed": "Coger el toro por los cuernos"
+        }
+      ]
+    },
+    {
+      "w": "tener pájaros en la cabeza",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pájaro",
+          "observed": "Tiene pájaros en la cabeza"
+        },
+        {
+          "url": "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/",
+          "observed": "Tener pájaros en la cabeza"
+        }
+      ]
+    },
+    {
+      "w": "buscarle tres pies al gato",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://www.juegosdepalabras.com/animal/animal-3.html",
+          "observed": "buscarle tres pies al gato"
+        },
+        {
+          "url": "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/",
+          "observed": "buscarle tres pies al gato"
+        }
+      ]
+    },
+    {
+      "w": "pagar el pato",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pato",
+          "observed": "pagar el pato"
+        },
+        {
+          "url": "https://www.juegosdepalabras.com/animal/animal-3.html",
+          "observed": "pagar el pato"
+        }
+      ]
+    },
+    {
+      "w": "ser un lobo con piel de cordero",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/lobo_con_piel_de_cordero",
+          "observed": "lobo con piel de cordero"
+        },
+        {
+          "url": "https://www.newsinslowspanish.com/latino/series/expressions/5/55/lesson",
+          "observed": "lobo con piel de cordero"
+        }
+      ]
+    },
+    {
+      "w": "estar como una cabra",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+          "observed": "estar como una cabra"
+        },
+        {
+          "url": "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/",
+          "observed": "estar como una cabra"
+        }
+      ]
+    },
+    {
+      "w": "tener vista de lince",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/vista",
+          "observed": "vista de lince"
+        },
+        {
+          "url": "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/",
+          "observed": "Tener vista de lince"
+        }
+      ]
+    },
+    {
+      "w": "dormir como un lirón",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/lirón",
+          "observed": "dormir como un lirón"
+        },
+        {
+          "url": "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/",
+          "observed": "dormir como un lirón"
+        }
+      ]
+    },
+    {
+      "w": "llorar lágrimas de cocodrilo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+          "observed": "Llorar lágrimas de cocodrilo"
+        },
+        {
+          "url": "https://www.juegosdepalabras.com/animal/animal-3.html",
+          "observed": "Derramar lágrimas de cocodrilo"
+        }
+      ]
+    },
+    {
+      "w": "ver las orejas al lobo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/oreja",
+          "observed": "ver las orejas al lobo"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol-extranjeros/oreja",
+          "observed": "ver las orejas al lobo"
+        }
+      ]
+    },
+    {
+      "w": "entrar en la boca del lobo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+          "observed": "Meterse en la boca del lobo"
+        },
+        {
+          "url": "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/",
+          "observed": "Meterse en la boca del lobo"
+        }
+      ]
+    },
+    {
+      "w": "llevarse el gato al agua",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/gato",
+          "observed": "llevarse el gato al agua"
+        },
+        {
+          "url": "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/",
+          "observed": "llevarse el gato al agua"
+        }
+      ]
+    },
+    {
+      "w": "tener la mosca detrás de la oreja",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/mosca",
+          "observed": "tener la mosca detrás de la oreja"
+        },
+        {
+          "url": "https://www.revistaelobservador.com/opinion/122-escribir-desde-el-corazon/19533-de-animales-va-el-cuento",
+          "observed": "tenía la mosca detrás de la oreja"
+        }
+      ]
+    },
+    {
+      "w": "hacer el ganso",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/ganso",
+          "observed": "hacer el ganso"
+        },
+        {
+          "url": "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+          "observed": "hacer el ganso"
+        }
+      ]
+    },
+    {
+      "w": "no ver tres en un burro",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/",
+          "observed": "no ver tres en un burro"
+        },
+        {
+          "url": "https://www.juegosdepalabras.com/animal/animal-3.html",
+          "observed": "no ver tres en un burro"
+        }
+      ]
+    },
+    {
+      "w": "marear la perdiz",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/perdiz",
+          "observed": "marear la perdiz"
+        },
+        {
+          "url": "https://www.revistaelobservador.com/opinion/122-escribir-desde-el-corazon/19533-de-animales-va-el-cuento",
+          "observed": "marear la perdiz"
+        }
+      ]
+    },
+    {
+      "w": "matar el gusanillo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/gusanillo",
+          "observed": "matar el gusanillo"
+        },
+        {
+          "url": "https://www.juegosdepalabras.com/animal/animal-3.html",
+          "observed": "matar el gusanillo"
+        }
+      ]
+    },
+    {
+      "w": "tener malas pulgas",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pulga",
+          "observed": "tener malas pulgas"
+        },
+        {
+          "url": "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/",
+          "observed": "tener malas pulgas"
+        }
+      ]
+    },
+    {
+      "w": "ser perro viejo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/perro",
+          "observed": "perro viejo"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/perro",
+          "observed": "perro viejo"
+        }
+      ]
+    },
+    {
+      "w": "caer como moscas",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/caer_como_moscas",
+          "observed": "caer como moscas"
+        },
+        {
+          "url": "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/",
+          "observed": "caer como moscas"
+        }
+      ]
+    },
+    {
+      "w": "dormir la mona",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
+          "observed": "Dormir la mona"
+        },
+        {
+          "url": "https://www.revistaelobservador.com/opinion/122-escribir-desde-el-corazon/19533-de-animales-va-el-cuento",
+          "observed": "durmiendo la mona"
+        }
+      ]
+    },
+    {
+      "w": "matar moscas a cañonazos",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla ilgili bölüm açıldı/aranıp okundu; arama sonucu özeti tek başına kullanılmadı.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/matar_moscas_a_ca%C3%B1onazos",
+          "observed": "matar moscas a cañonazos"
+        },
+        {
+          "url": "https://cadenaser.com/navarra/2026/02/23/esto-es-lo-que-vemos-ahora-toca-la-respuesta-a-la-pregunta-de-si-de-verdad-hacia-falta-matar-moscas-a-canonazos-radio-pamplona/",
+          "observed": "matar moscas a cañonazos"
+        }
+      ]
+    }
+  ]
+}

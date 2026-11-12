@@ -13,8 +13,8 @@
   "level": "B1",
   "theme": "body",
   "src": [
-   "https://es.wiktionary.org/wiki/echar_un_ojo",
-   "https://es.wikipedia.org/wiki/Pintura_r%C3%A1pida"
+   "https://dem.colmex.mx/ver/echar",
+   "https://es.wiktionary.org/wiki/echar_un_ojo"
   ]
  },
  {
@@ -31,8 +31,8 @@
   "level": "B1",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/dar_la_espalda",
-   "https://es.wikipedia.org/wiki/Clarisse_McClellan"
+   "https://dle.rae.es/espalda",
+   "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -48,8 +48,8 @@
   "level": "B1",
   "theme": "body",
   "src": [
-   "https://es.wiktionary.org/wiki/perder_la_cabeza",
-   "https://es.wikipedia.org/wiki/Head_Over_Heels_(pel%C3%ADcula)"
+   "https://dle.rae.es/cabeza",
+   "https://www.diccionarios.com/diccionario/espanol/cabeza"
   ]
  },
  {
@@ -58,23 +58,23 @@
   "t": "dilinin ucunda olmak, hatırlayacak gibi olmak",
   "lit": "dilinin ucunda tutmak",
   "eq": "dilinin ucunda olmak",
-  "s": "Sé cómo se llama ese actor, lo tengo en la punta de la lengua.",
-  "form": "tengo en la punta de la lengua",
-  "tr": "O oyuncunun adını biliyorum, tam dilimin ucunda.",
+  "s": "Tengo en la punta de la lengua el nombre de aquella profesora.",
+  "form": "Tengo en la punta de la lengua",
+  "tr": "O öğretmenin adı dilimin ucunda.",
   "reg": "neutral",
   "area": "genel",
   "level": "B1",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/en_la_punta_de_la_lengua",
-   "https://es.wikipedia.org/wiki/Consonante_alveolar"
+   "https://dle.rae.es/punta",
+   "https://www.diccionarios.com/diccionario/espanol-extranjeros/lengua"
   ]
  },
  {
   "w": "seguir al pie de la letra",
   "pat": "seguir algo al pie de la letra",
   "t": "harfi harfine uymak, birebir uygulamak",
-  "lit": "harfin ayağında takip etmek",
+  "lit": "harfin ayağında izlemek",
   "eq": "harfi harfine uymak",
   "s": "El médico me pidió seguir al pie de la letra el tratamiento.",
   "form": "seguir al pie de la letra",
@@ -84,8 +84,8 @@
   "level": "B1",
   "theme": "body",
   "src": [
-   "https://es.wiktionary.org/wiki/al_pie_de_la_letra",
-   "https://es.wikipedia.org/wiki/Al_pie_de_la_letra_(programa_de_televisi%C3%B3n)"
+   "https://dle.rae.es/pie",
+   "https://www.newsinslowspanish.com/series/expressions/13/233/lesson"
   ]
  },
  {
@@ -102,8 +102,8 @@
   "level": "B1",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/codo_con_codo",
-   "https://es.wikipedia.org/wiki/Henk_Lubberding"
+   "https://dle.rae.es/codo",
+   "https://www.ecos-online.de/spanisch-ueben/expresiones-coloquiales-en-el-curro"
   ]
  },
  {
@@ -119,8 +119,8 @@
   "level": "B2",
   "theme": "body",
   "src": [
-   "https://es.wiktionary.org/wiki/hablar_por_los_codos",
-   "https://es.wikisource.org/wiki/Otelo_(Men%C3%A9ndez_y_Pelayo_tr.)%2FActo_II"
+   "https://dle.rae.es/codo",
+   "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -136,8 +136,8 @@
   "level": "B2",
   "theme": "body",
   "src": [
-   "https://es.wiktionary.org/wiki/dar_la_cara",
-   "https://tatoeba.org/es/sentences/show/2258372"
+   "https://www.wordreference.com/definicion/cara",
+   "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -152,13 +152,13 @@
   "level": "B2",
   "theme": "body",
   "src": [
-   "https://es.wiktionary.org/wiki/lavarse_las_manos",
-   "https://es.wikipedia.org/wiki/Higiene_de_manos"
+   "https://dle.rae.es/mano",
+   "https://www.wordreference.com/definicion/mano"
   ]
  },
  {
   "w": "morderse la lengua",
-  "t": "dilini ısırmak, söyleyeceğini yutmak",
+  "t": "söylemek istediğini tutmak, konuşmamak için kendini zorlamak",
   "lit": "dilini ısırmak",
   "eq": "dilini ısırmak",
   "s": "Tuve que morderme la lengua para no discutir en la cena.",
@@ -169,8 +169,8 @@
   "level": "B2",
   "theme": "body",
   "src": [
-   "https://es.wiktionary.org/wiki/morderse_la_lengua",
-   "https://es.wikipedia.org/wiki/Frase_hecha"
+   "https://dle.rae.es/lengua",
+   "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -186,8 +186,8 @@
   "level": "B2",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/romperse_la_cabeza",
-   "https://es.wikipedia.org/wiki/Terminal_punto_de_venta"
+   "https://dle.rae.es/cabeza",
+   "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -202,8 +202,8 @@
   "level": "B2",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/mano_izquierda",
-   "https://es.wikipedia.org/wiki/Magia_negra"
+   "https://dle.rae.es/mano",
+   "https://www.wordreference.com/definicion/mano"
   ]
  },
  {
@@ -220,8 +220,8 @@
   "level": "B2",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/irse_de_las_manos",
-   "https://es.wikipedia.org/wiki/The_Bridge_(The_Walking_Dead)"
+   "https://diccionario.reverso.net/espanol-definiciones/irse%2Bde%2Blas%2Bmanos",
+   "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -237,14 +237,14 @@
   "level": "B2",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/levantar_cabeza",
-   "https://es.wikipedia.org/wiki/Neferura"
+   "https://dle.rae.es/cabeza",
+   "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/"
   ]
  },
  {
   "w": "no mover un dedo",
   "pat": "no mover un dedo por alguien",
-  "t": "parmağını bile kıpırdatmamak, hiç yardım etmemek",
+  "t": "yardım için hiçbir çaba göstermemek",
   "lit": "bir parmak hareket ettirmemek",
   "eq": "parmağını bile kıpırdatmamak",
   "s": "Mientras limpiábamos toda la casa, él no movió un dedo.",
@@ -255,8 +255,8 @@
   "level": "B2",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/no_mover_un_dedo",
-   "https://es.wikipedia.org/wiki/Yordano_(%C3%A1lbum)"
+   "https://dle.rae.es/dedo",
+   "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -272,8 +272,8 @@
   "level": "B2",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/estar_en_los_huesos",
-   "https://es.wikipedia.org/wiki/Fear_Itself_(serie_de_televisi%C3%B3n)"
+   "https://dle.rae.es/hueso",
+   "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -288,8 +288,8 @@
   "level": "B2",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/dormir_a_pierna_suelta",
-   "https://es.wikipedia.org/wiki/Ya_es_hora"
+   "https://dle.rae.es/pierna",
+   "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -305,7 +305,7 @@
   "theme": "body",
   "src": [
    "https://en.wiktionary.org/wiki/comerse_la_cabeza",
-   "https://es.wikipedia.org/wiki/Billy_%26_Mandy%3A_Wrath_of_the_Spider_Queen"
+   "https://horchataypalomitas.com/comerse-la-cabeza/"
   ]
  },
  {
@@ -321,8 +321,8 @@
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://es.wiktionary.org/wiki/arrimar_el_hombro",
-   "https://es.wikipedia.org/wiki/Justinas_Olechnavicius"
+   "https://dle.rae.es/hombro",
+   "https://www.diccionarios.com/diccionario/espanol/hombro"
   ]
  },
  {
@@ -337,8 +337,8 @@
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/no_dar_pie_con_bola",
-   "https://es.wikipedia.org/wiki/Dicho"
+   "https://www.spanishdict.com/translate/no%20dar%20pie%20con%20bola",
+   "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -353,14 +353,14 @@
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/tener_dos_dedos_de_frente",
-   "https://es.wikipedia.org/wiki/Augusto_%C3%81lvarez_Rodrich"
+   "https://www.spanishdict.com/translate/tener%20dos%20dedos%20de%20frente",
+   "https://www.primerahora.com/opinion/prof-gabriel-paizy/columnas/tienes-dos-dedos-de-frente/"
   ]
  },
  {
   "w": "traer de cabeza",
   "pat": "traer de cabeza a alguien",
-  "t": "başını döndürmek, çok uğraştırmak",
+  "t": "çok uğraştırmak, sürekli kaygılandırmak",
   "lit": "kafadan getirmek",
   "s": "Este fallo informático nos trae de cabeza desde el lunes.",
   "form": "trae de cabeza",
@@ -370,8 +370,8 @@
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/traer_de_cabeza",
-   "https://es.wikipedia.org/wiki/Silvio_Jos%C3%A9%2C_el_buen_par%C3%A1sito"
+   "https://dle.rae.es/cabeza",
+   "https://espanol.lingolia.com/es/vocabulario/frases-hechas/las-partes-del-cuerpo/articles/cabeza-brazo-mano-7977"
   ]
  },
  {
@@ -388,8 +388,8 @@
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/mirar_por_encima_del_hombro",
-   "https://es.wikipedia.org/wiki/Mirar_por_encima_del_hombro"
+   "https://dle.rae.es/hombro",
+   "https://www.diccionarios.com/diccionario/espanol/hombro"
   ]
  },
  {
@@ -404,8 +404,8 @@
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/pies_de_plomo",
-   "https://es.wikipedia.org/wiki/Jerem%C3%ADas%2C_Pies_de_Plomo"
+   "https://dle.rae.es/pie",
+   "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -422,8 +422,8 @@
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://es.wiktionary.org/wiki/como_anillo_al_dedo",
-   "https://es.wikipedia.org/wiki/Como_anillo_al_dedo"
+   "https://dle.rae.es/anillo",
+   "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -439,8 +439,8 @@
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://es.wiktionary.org/wiki/no_tener_pies_ni_cabeza",
-   "https://es.wikipedia.org/wiki/Arzach"
+   "https://dle.rae.es/pie",
+   "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -448,16 +448,16 @@
   "t": "eldekine şükretmek, daha kötüsü olmadığına sevinmek",
   "lit": "dişlerine bir taşla vurmak",
   "eq": "öpüp başına koymak",
-  "s": "Con este tráfico, podemos darnos con un canto en los dientes si llegamos.",
+  "s": "Con esta avería, podremos darnos con un canto en los dientes si llegamos.",
   "form": "darnos con un canto en los dientes",
-  "tr": "Bu trafikte varabilirsek öpüp başımıza koyalım.",
+  "tr": "Bu arızayla, varabilirsek bile şükretmemiz gerekecek.",
   "reg": "informal",
   "area": "İspanya",
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/darse_con_un_canto_en_los_dientes",
-   "https://es.wikipedia.org/wiki/Tontxu"
+   "https://dle.rae.es/canto",
+   "https://www.diccionarios.com/diccionario/espanol/canto"
   ]
  },
  {
@@ -472,8 +472,8 @@
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/chuparse_el_dedo",
-   "https://es.wikipedia.org/wiki/Succi%C3%B3n_digital"
+   "https://dle.rae.es/dedo",
+   "https://www.coloquial.es/es/diccionario-del-espanol-coloquial/letra-c-99/chupar-.html"
   ]
  },
  {
@@ -482,16 +482,16 @@
   "t": "dünyası başına yıkılmak, büyük hayal kırıklığına uğramak",
   "lit": "ruhu ayaklarına düşmek",
   "eq": "dünyası başına yıkılmak",
-  "s": "Al ver su casa inundada, al vecino se le cayó el alma a los pies.",
+  "s": "Al descubrir la estafa, se le cayó el alma a los pies.",
   "form": "cayó el alma a los pies",
-  "tr": "Evini su bastığını görünce komşunun dünyası başına yıkıldı.",
+  "tr": "Dolandırıldığını öğrenince dünyası başına yıkıldı.",
   "reg": "neutral",
   "area": "genel",
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/ca%C3%A9rsele_el_alma_a_los_pies",
-   "https://es.wikipedia.org/wiki/Jos%C3%A9_de_Vicente_Mu%C3%B1oz"
+   "https://dle.rae.es/alma",
+   "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/"
   ]
  },
  {
@@ -508,8 +508,8 @@
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://en.wiktionary.org/wiki/ca%C3%A9rsele_la_venda_de_los_ojos",
-   "https://es.wikipedia.org/wiki/La_venda"
+   "https://dle.rae.es/venda",
+   "https://www.diccionarios.com/diccionario/espanol/venda"
   ]
  },
  {
@@ -524,8 +524,8 @@
   "level": "C1",
   "theme": "body",
   "src": [
-   "https://es.wiktionary.org/wiki/a_flor_de_piel",
-   "https://es.wikipedia.org/wiki/A_flor_de_piel_(telenovela)"
+   "https://www.collinsdictionary.com/dictionary/spanish-english/tener-los-nervios-a-flor-de-piel",
+   "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/"
   ]
  }
 ]

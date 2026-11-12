@@ -1,0 +1,472 @@
+{
+  "collector": "Codex",
+  "independentReview": "Claude oturumu bekleniyor",
+  "scope": "Yalnız es-0001; diğer partilerin eski kaynakları henüz yeniden doğrulanmadı.",
+  "checked": [
+    {
+      "w": "echar un ojo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dem.colmex.mx/ver/echar",
+          "observed": "echar un ojo"
+        },
+        {
+          "url": "https://es.wiktionary.org/wiki/echar_un_ojo",
+          "observed": "echar un ojo"
+        }
+      ]
+    },
+    {
+      "w": "dar la espalda",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/espalda",
+          "observed": "dar la espalda"
+        },
+        {
+          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
+          "observed": "dar la espalda"
+        }
+      ]
+    },
+    {
+      "w": "perder la cabeza",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/cabeza",
+          "observed": "perder la cabeza"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/cabeza",
+          "observed": "perder la cabeza"
+        }
+      ]
+    },
+    {
+      "w": "tener en la punta de la lengua",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/punta",
+          "observed": "tener en la punta de la lengua"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol-extranjeros/lengua",
+          "observed": "tener en la punta de la lengua"
+        }
+      ]
+    },
+    {
+      "w": "seguir al pie de la letra",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pie",
+          "observed": "al pie de la letra"
+        },
+        {
+          "url": "https://www.newsinslowspanish.com/series/expressions/13/233/lesson",
+          "observed": "seguir al pie de la letra"
+        }
+      ]
+    },
+    {
+      "w": "trabajar codo con codo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/codo",
+          "observed": "codo con codo; Trabajaron…"
+        },
+        {
+          "url": "https://www.ecos-online.de/spanisch-ueben/expresiones-coloquiales-en-el-curro",
+          "observed": "trabajar codo con codo"
+        }
+      ]
+    },
+    {
+      "w": "hablar por los codos",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/codo",
+          "observed": "hablar por los codos"
+        },
+        {
+          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
+          "observed": "hablar por los codos"
+        }
+      ]
+    },
+    {
+      "w": "dar la cara",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.wordreference.com/definicion/cara",
+          "observed": "dar la cara"
+        },
+        {
+          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
+          "observed": "dar la cara"
+        }
+      ]
+    },
+    {
+      "w": "lavarse las manos",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/mano",
+          "observed": "lavarse las manos"
+        },
+        {
+          "url": "https://www.wordreference.com/definicion/mano",
+          "observed": "lavarse las manos"
+        }
+      ]
+    },
+    {
+      "w": "morderse la lengua",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/lengua",
+          "observed": "morderse la lengua"
+        },
+        {
+          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
+          "observed": "morderse la lengua"
+        }
+      ]
+    },
+    {
+      "w": "romperse la cabeza",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/cabeza",
+          "observed": "romperse la cabeza"
+        },
+        {
+          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
+          "observed": "romperse la cabeza"
+        }
+      ]
+    },
+    {
+      "w": "tener mano izquierda",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/mano",
+          "observed": "mano izquierda; tener…"
+        },
+        {
+          "url": "https://www.wordreference.com/definicion/mano",
+          "observed": "tener mano izquierda"
+        }
+      ]
+    },
+    {
+      "w": "irse de las manos",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://diccionario.reverso.net/espanol-definiciones/irse%2Bde%2Blas%2Bmanos",
+          "observed": "irse de las manos"
+        },
+        {
+          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
+          "observed": "Írsele algo de las manos a alguien"
+        }
+      ]
+    },
+    {
+      "w": "levantar cabeza",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/cabeza",
+          "observed": "levantar cabeza"
+        },
+        {
+          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
+          "observed": "levantar cabeza"
+        }
+      ]
+    },
+    {
+      "w": "no mover un dedo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/dedo",
+          "observed": "no mover un dedo"
+        },
+        {
+          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
+          "observed": "No mover un dedo por nadie"
+        }
+      ]
+    },
+    {
+      "w": "estar en los huesos",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/hueso",
+          "observed": "en los huesos"
+        },
+        {
+          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
+          "observed": "estar en los huesos"
+        }
+      ]
+    },
+    {
+      "w": "dormir a pierna suelta",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pierna",
+          "observed": "a pierna suelta"
+        },
+        {
+          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
+          "observed": "dormir a pierna suelta"
+        }
+      ]
+    },
+    {
+      "w": "comerse la cabeza",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/comerse_la_cabeza",
+          "observed": "comerse la cabeza"
+        },
+        {
+          "url": "https://horchataypalomitas.com/comerse-la-cabeza/",
+          "observed": "comerse la cabeza"
+        }
+      ]
+    },
+    {
+      "w": "arrimar el hombro",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/hombro",
+          "observed": "arrimar el hombro"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/hombro",
+          "observed": "arrimar el hombro"
+        }
+      ]
+    },
+    {
+      "w": "no dar pie con bola",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.spanishdict.com/translate/no%20dar%20pie%20con%20bola",
+          "observed": "no dar pie con bola"
+        },
+        {
+          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
+          "observed": "no dar pie con bola"
+        }
+      ]
+    },
+    {
+      "w": "tener dos dedos de frente",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.spanishdict.com/translate/tener%20dos%20dedos%20de%20frente",
+          "observed": "tener dos dedos de frente"
+        },
+        {
+          "url": "https://www.primerahora.com/opinion/prof-gabriel-paizy/columnas/tienes-dos-dedos-de-frente/",
+          "observed": "tener dos dedos de frente"
+        }
+      ]
+    },
+    {
+      "w": "traer de cabeza",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/cabeza",
+          "observed": "traer de cabeza"
+        },
+        {
+          "url": "https://espanol.lingolia.com/es/vocabulario/frases-hechas/las-partes-del-cuerpo/articles/cabeza-brazo-mano-7977",
+          "observed": "traer de cabeza"
+        }
+      ]
+    },
+    {
+      "w": "mirar por encima del hombro",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/hombro",
+          "observed": "mirar por encima del hombro"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/hombro",
+          "observed": "mirar por encima del hombro"
+        }
+      ]
+    },
+    {
+      "w": "andar con pies de plomo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pie",
+          "observed": "con pie de plomo; Andar, ir con pies de plomo"
+        },
+        {
+          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
+          "observed": "andar con pies de plomo"
+        }
+      ]
+    },
+    {
+      "w": "venir como anillo al dedo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/anillo",
+          "observed": "como anillo al dedo"
+        },
+        {
+          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
+          "observed": "Viene algo como anillo al dedo"
+        }
+      ]
+    },
+    {
+      "w": "no tener pies ni cabeza",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pie",
+          "observed": "no tener pies ni cabeza"
+        },
+        {
+          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
+          "observed": "no tener pies ni cabeza"
+        }
+      ]
+    },
+    {
+      "w": "darse con un canto en los dientes",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/canto",
+          "observed": "darse con un canto en los dientes"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/canto",
+          "observed": "darse con un canto en los dientes"
+        }
+      ]
+    },
+    {
+      "w": "chuparse el dedo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/dedo",
+          "observed": "chuparse el dedo"
+        },
+        {
+          "url": "https://www.coloquial.es/es/diccionario-del-espanol-coloquial/letra-c-99/chupar-.html",
+          "observed": "chuparse el dedo"
+        }
+      ]
+    },
+    {
+      "w": "caérsele el alma a los pies",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/alma",
+          "observed": "caérsele el alma a los pies"
+        },
+        {
+          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
+          "observed": "caérsele el alma a los pies"
+        }
+      ]
+    },
+    {
+      "w": "caérsele la venda de los ojos",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/venda",
+          "observed": "caérsele la venda de los ojos"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/venda",
+          "observed": "caérsele la venda de los ojos"
+        }
+      ]
+    },
+    {
+      "w": "tener los nervios a flor de piel",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.collinsdictionary.com/dictionary/spanish-english/tener-los-nervios-a-flor-de-piel",
+          "observed": "tener los nervios a flor de piel"
+        },
+        {
+          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
+          "observed": "tener los nervios a flor de piel"
+        }
+      ]
+    }
+  ]
+}
