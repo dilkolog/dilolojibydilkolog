@@ -24,3 +24,20 @@ describe('introductory lexicon and recycling', () => {
     expect(sequenceErrors(changed).get(changed[24].id)?.some((e) => e.includes('next text 26'))).toBe(true)
   })
 })
+
+describe('Spanish first-step tense disambiguation', () => {
+  const texts = readFileSync('content/raw/es/reading/es-reading-0003.jsonl', 'utf8').trim().split('\n').map((line) => JSON.parse(line) as ReadingItem)
+  it('checks the entire introductory Spanish batch, including noun and function-word homographs', async () => {
+    const { firstStepErrors } = await import('./lib/firstSteps')
+    const ctx = loadContext('es')
+    for (const text of texts) expect(firstStepErrors(text, ctx), text.id).toEqual([])
+    expect(sequenceErrors(texts).size).toBe(0)
+  })
+  it('still refuses past, future, compounds and an explicit subjunctive clause', async () => {
+    const { firstStepErrors } = await import('./lib/firstSteps')
+    const ctx = loadContext('es')
+    for (const body of ['Ayer fui al mercado.', 'Mañana tendré trabajo.', 'He comido pan.', 'Quiero que él una las mesas.', 'Quiero que él calle.']) {
+      expect(firstStepErrors({ ...texts[0], paragraphs: [body] }, ctx).some((error) => error.includes('non-present')), body).toBe(true)
+    }
+  })
+})
