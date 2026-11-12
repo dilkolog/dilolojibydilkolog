@@ -219,6 +219,8 @@ SUPABASE_DB_URL='postgresql://…pooler.supabase.com:5432/postgres' SUPABASE_URL
 ```
 `~/Diloloji-yedek/<tarih>/schema.sql` (public tablolar, fonksiyonlar, politikalar) ve `data.dump` (public tabloların, `auth.users`/`auth.identities`'in ve `storage` kayıtlarının satırları), `~/Diloloji-yedek/media/` (medya kovasının aynası; yalnızca yeni/değişmiş dosya iner). En yeni 8 yedek kalır (`--keep N`), `--no-media` medyayı atlar, `--out DIR` başka yer. Son yedeğin zamanı `SON-YEDEK.txt`. **Yedekte herkesin verisi var:** şifreli diskte (FileVault) tut, buluta/paylaşılan klasöre koyma. Yerel Postgres 16'da döküm ve geri yükleme denendi (kişi, profil, eşitleme ve medya kayıtları aynen döndü).
 
+**Kendiliğinden (Mac, 2026-11-12):** `bash scripts/backup-mac.sh install` üç gizliyi bir kez sorar (oturum Anahtar Zinciri'nde, `diloloji-backup`), `~/Library/LaunchAgents/com.diloloji.backup.plist`'i kurar ve ilk yedeği alır. `launchd` her gün 03:30'da ve her oturum açılışında çağırır; son yedek 7 günden eskiyse yedek alınır (Mac kapalı kalan hafta sonraki açılışta tamamlanır). Hata olursa macOS bildirimi, ayrıntı `~/Diloloji-yedek/yedek.log`. `now` hemen yedek, `status` son yedek ve görev durumu, `remove` görevi ve gizlileri kaldırır (yedekler kalır). Depo klasörü taşınırsa `install` yeniden. Linux'ta sahte `security`/`osascript`/`node` ile denendi; gerçek Mac'te ilk `install` çıktısına bakılmalı.
+
 **Geri yükleme (yeni ya da boşaltılmış proje):** 1) `supabase/migrations/` dosyalarını sırayla SQL Editor'de çalıştır. 2) Satırları yükle:
 ```bash
 pg_restore --data-only -f data.sql ~/Diloloji-yedek/<tarih>/data.dump
