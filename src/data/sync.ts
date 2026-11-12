@@ -526,10 +526,23 @@ export class SyncTooLargeError extends Error {
   override name = 'SyncTooLargeError'
 }
 
-/** Another device wrote the file after this one read it (HTTP 412). */
+/** How a refused write was made: only if nobody had made the part yet, or only if it was still as read. */
+export type ConflictMode = 'create' | 'match' | 'any'
+
+/** Another device wrote the file after this one read it (HTTP 412, Postgres 40001). `part`: the one refused, when known. */
 export class SyncConflictError extends Error {
   override name = 'SyncConflictError'
+  readonly part?: string
+  readonly mode?: ConflictMode
+  constructor(message: string, part?: string, mode?: ConflictMode) {
+    super(part ? `${message}: ${part} (${mode ?? 'any'})` : message)
+    this.part = part
+    this.mode = mode
+  }
 }
+
+/** The mode a write was made in, for the conflict it may raise. */
+export const conflictMode = (opts: { ifMatch?: string; createOnly?: boolean } = {}): ConflictMode => (opts.createOnly ? 'create' : opts.ifMatch ? 'match' : 'any')
 
 /** Sends one sealed part; returns its size in bytes. `ifMatch`: only if the part is still as read; `createOnly`: only if nobody made it yet. */
 async function upload(id: string, part: string, data: Bytes, code: Credential, { ifMatch, createOnly }: { ifMatch?: string; createOnly?: boolean } = {}): Promise<number> {
@@ -537,7 +550,7 @@ async function upload(id: string, part: string, data: Bytes, code: Credential, {
   const headers = { 'content-type': 'application/octet-stream', ...authHeaders(code), ...(ifMatch ? { 'if-match': ifMatch } : {}), ...(createOnly ? { 'if-none-match': '*' } : {}) }
   const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { method: 'PUT', body: sealed, headers })
   if (res.status === 403) throw await refusal(res)
-  if (res.status === 412) throw new SyncConflictError('changed meanwhile')
+  if (res.status === 412) throw new SyncConflictError('changed meanwhile', part, conflictMode({ ifMatch, createOnly }))
   if (res.status === 413 && !part.startsWith('m-')) throw new SyncTooLargeError(`${part} too large`)
   if (!res.ok) throw await failure(res)
   return sealed.length
@@ -650,19 +663,32 @@ export async function accountStatus(account: Account): Promise<'new' | 'ok' | 'w
   }
 }
 
+/** Tries of one sync when a write is refused (another device wrote in between). */
+export const SYNC_ATTEMPTS = 4
+
 export async function syncNow(db: KelimeDB, code: Credential | PartStore): Promise<SyncResult> {
   const store = isStore(code) ? code : blobStore(code)
+  // A part whose write was refused is read again on the next try, whatever the core file says of it: the try merges
+  // with what the server really holds and writes against its version. Without it a device whose idea of a part went
+  // stale could be refused on every try, for good (2026-11-12: the live log showed 40001 every second).
+  const reread = new Set<string>()
   // Two devices syncing at once: the one that loses the race on the core file merges again with what the other wrote.
   for (let attempt = 1; ; attempt++) {
     try {
-      return await syncOnce(db, store)
+      return await syncOnce(db, store, reread)
     } catch (e) {
-      if (!(e instanceof SyncConflictError) || attempt >= 3) throw e
+      if (!(e instanceof SyncConflictError)) throw e
+      if (attempt >= SYNC_ATTEMPTS) {
+        // Still refused: say which part and how, so the log names it (a stuck sync is otherwise only "conflict").
+        void import('./errorReport').then(({ reportError }) => reportError(e, 'sync')).catch(() => undefined)
+        throw e
+      }
+      if (e.part && e.part !== 'core') reread.add(e.part)
     }
   }
 }
 
-async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
+async function syncOnce(db: KelimeDB, store: PartStore, reread: ReadonlySet<string> = new Set()): Promise<SyncResult> {
   const fetched = await store.fetch('core')
   const remoteText = fetched ? new TextDecoder().decode(fetched.bytes) : null
   if (remoteText && store.kind === 'blob' && MOVED.test(remoteText)) throw new SyncMovedError('moved to supabase')
@@ -695,7 +721,7 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
       localShards = await splitShards(local)
     }
     // The parts that differ between here and the server, or that the server's list does not know: fetch them to merge.
-    const differing = [...new Set([...Object.keys(manifest), ...localShards.keys()])].filter((n) => manifest[n] !== localShards.get(n)?.fp && !pulled.has(n))
+    const differing = [...new Set([...Object.keys(manifest), ...localShards.keys(), ...reread])].filter((n) => (reread.has(n) || manifest[n] !== localShards.get(n)?.fp) && !pulled.has(n))
     await pullShards(store, differing, pulled)
     const snapshot = remoteSnapshot()
     merged = snapshot ? mergeBackups(local, snapshot) : local
@@ -766,7 +792,10 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
   let biggest = 0
   await inBatches([...shards].filter(([name, shard]) => shard.fp !== manifest[name]), 6, async ([name, shard]) => {
     const was = pulled.get(name)
-    biggest = Math.max(biggest, await store.put(name, shardFile(shard), was?.exists ? { ifMatch: was.etag } : { createOnly: true }))
+    const opts = was?.exists ? { ifMatch: was.etag } : { createOnly: true }
+    biggest = Math.max(biggest, await store.put(name, shardFile(shard), opts).catch((e: unknown) => {
+      throw e instanceof SyncConflictError && !e.part ? new SyncConflictError('changed meanwhile', name, conflictMode(opts)) : e
+    }))
   })
   const listed = Object.fromEntries([...shards].map(([name, shard]) => [name, shard.fp]))
   const coreBytes = await store.put('core', new TextEncoder().encode(JSON.stringify({ ...withoutShards(merged), shards: listed, mediaIds })), fetched ? { ifMatch: fetched.etag } : { createOnly: true })

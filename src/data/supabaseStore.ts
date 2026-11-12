@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
-import { SyncApprovalError, SyncAuthError, SyncConflictError, SyncTooLargeError, type PartStore } from './sync'
+import { conflictMode, SyncApprovalError, SyncAuthError, SyncConflictError, SyncTooLargeError, type ConflictMode, type PartStore } from './sync'
 
 type Bytes = Uint8Array<ArrayBuffer>
 
@@ -31,10 +31,10 @@ export function parseForJsonb(text: string): unknown {
 }
 
 /** A database error as the sync knows them (codes raised by put_sync_part, supabase/migrations/0002_sync_data.sql). */
-function syncError(error: { code?: string; message?: string }): Error {
+function syncError(error: { code?: string; message?: string }, part?: string, mode?: ConflictMode): Error {
   switch (error.code) {
     case '40001':
-      return new SyncConflictError('changed meanwhile')
+      return new SyncConflictError('changed meanwhile', part, mode)
     case '42501':
       return new SyncApprovalError('approval required')
     case '54000':
@@ -75,7 +75,7 @@ export function supabaseStore(client: SupabaseClient, userId: string): PartStore
       }
       const value = parseForJsonb(new TextDecoder().decode(data))
       const { error } = await client.rpc('put_sync_part', { p_name: part, p_data: value, p_expect: opts.ifMatch ? Number(opts.ifMatch) : null, p_create: !!opts.createOnly })
-      if (error) throw syncError(error)
+      if (error) throw syncError(error, part, conflictMode(opts))
       return data.length
     },
     async history() {
