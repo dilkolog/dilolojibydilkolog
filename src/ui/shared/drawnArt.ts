@@ -1,11 +1,24 @@
 import books from '../../assets/art/medal-books.webp'
+// Badge medals redrawn by what they count (rozet-yenileme-01, 2026-11-12): the shared "hundred" and "day and night"
+// pictures split into one per stat, and the guide badges get medals of their own (the guide's Monki scenes stay
+// where the guide shows them).
+import mTyping from '../../assets/art/medal-typing.webp'
+import mSentences from '../../assets/art/medal-sentences.webp'
+import mNight from '../../assets/art/medal-night.webp'
+import mDawn from '../../assets/art/medal-dawn.webp'
+import mGuideLessons from '../../assets/art/medal-guide-lessons.webp'
+import mGuideCert from '../../assets/art/medal-guide-cert.webp'
+import mGuidePlacement from '../../assets/art/medal-guide-placement.webp'
+import mConjugation from '../../assets/art/medal-conjugation.webp'
+import mForms from '../../assets/art/medal-forms.webp'
+import mVerbs from '../../assets/art/medal-verbs.webp'
+import mCombo from '../../assets/art/medal-combo.webp'
+import mComeback from '../../assets/art/medal-comeback.webp'
 import flame from '../../assets/art/medal-flame.webp'
-import hundred from '../../assets/art/medal-hundred.webp'
 import lotus from '../../assets/art/medal-lotus.webp'
 import dragon from '../../assets/art/medal-dragon.webp'
 import headphones from '../../assets/art/medal-headphones.webp'
 import mic from '../../assets/art/medal-mic.webp'
-import daynight from '../../assets/art/medal-daynight.webp'
 import compass from '../../assets/art/medal-compass.webp'
 import diamond from '../../assets/art/medal-diamond.webp'
 import mSproutBook from '../../assets/art/medal-sprout-book.webp'
@@ -19,9 +32,7 @@ import mFlagRock from '../../assets/art/medal-flag-rock.webp'
 import mLifering from '../../assets/art/medal-lifering.webp'
 import mCalendarCheck from '../../assets/art/medal-calendar-check.webp'
 import mGemCheck from '../../assets/art/medal-gem-check.webp'
-import mThreeFlames from '../../assets/art/medal-three-flames.webp'
 import mFinishShoe from '../../assets/art/medal-finish-shoe.webp'
-import mPhoenix from '../../assets/art/medal-phoenix.webp'
 import mBeach from '../../assets/art/medal-beach.webp'
 import mWeekFlag from '../../assets/art/medal-week-flag.webp'
 import mTrophyStars from '../../assets/art/medal-trophy-stars.webp'
@@ -30,10 +41,7 @@ import mPeakPencil from '../../assets/art/medal-peak-pencil.webp'
 import mBoltWatch from '../../assets/art/medal-bolt-watch.webp'
 import mBandage from '../../assets/art/medal-bandage.webp'
 import mTags from '../../assets/art/medal-tags.webp'
-import mGearQuill from '../../assets/art/medal-gear-quill.webp'
-import mVinePencil from '../../assets/art/medal-vine-pencil.webp'
 import mSunflower from '../../assets/art/medal-sunflower.webp'
-import mPeakGear from '../../assets/art/medal-peak-gear.webp'
 import mNotebook from '../../assets/art/medal-notebook.webp'
 import emSprout from '../../assets/art/emblem-sprout.webp'
 import emFlame from '../../assets/art/emblem-flame.webp'
@@ -238,14 +246,14 @@ import catStory from '../../assets/art/cat-story.webp'
 const MEDAL_OF: Record<string, string> = {
   textsRead: books,
   longestStreak: flame,
-  typedCorrect: hundred,
-  freeSentencesCorrect: hundred,
+  typedCorrect: mTyping,
+  freeSentencesCorrect: mSentences,
   mastered: lotus,
   bossesDefeated: dragon,
   listeningCorrect: headphones,
   speakCorrect: mic,
-  nightDays: daynight,
-  earlyDays: daynight,
+  nightDays: mNight,
+  earlyDays: mDawn,
   languagesStudied: compass,
   level: diamond,
   totalXp: diamond,
@@ -260,9 +268,9 @@ const MEDAL_OF: Record<string, string> = {
   rescued: mLifering,
   daysStudied: mCalendarCheck,
   perfectDays: mGemCheck,
-  maxCombo: mThreeFlames,
+  maxCombo: mCombo,
   maxDayAnswers: mFinishShoe,
-  comebacks: mPhoenix,
+  comebacks: mComeback,
   weekendDays: mBeach,
   challengesDone: mWeekFlag,
   perfectWeeks: mTrophyStars,
@@ -271,14 +279,14 @@ const MEDAL_OF: Record<string, string> = {
   fastCorrect: mBoltWatch,
   mistakesFixed: mBandage,
   articleCorrect: mTags,
-  conjugationCorrect: mGearQuill,
-  formsPracticed: mVinePencil,
+  conjugationCorrect: mConjugation,
+  formsPracticed: mForms,
   formsMastered: mSunflower,
-  verbsMastered: mPeakGear,
+  verbsMastered: mVerbs,
   journalEntries: mNotebook,
-  guideLessonsLearned: guideTeach,
-  guideCertsEarned: guideLearned,
-  guidePlacementDone: guideReview,
+  guideLessonsLearned: mGuideLessons,
+  guideCertsEarned: mGuideCert,
+  guidePlacementDone: mGuidePlacement,
 }
 export const drawnMedal = (stat: string): string | undefined => MEDAL_OF[stat]
 
