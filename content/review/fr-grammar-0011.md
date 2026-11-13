@@ -18,7 +18,7 @@ Değerlendirme:
 
 ---
 
-## fr-g-000481 · choice · zorluk 1 · avoir : participes irréguliers
+## fr-g-000481 · choice · zorluk 3 · avoir : participes irréguliers
 
 > Hier, j'___ le bon numéro. (prendre)
 
