@@ -1,0 +1,511 @@
+{
+  "job": "fr-grammar-0010",
+  "count": 50,
+  "solver": {
+    "checked": 50,
+    "disagreements": 0,
+    "rate": 0
+  },
+  "rows": [
+    {
+      "id": "fr-g-000421",
+      "target": "petite",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au singulier"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000422",
+      "target": "grand",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au singulier"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000423",
+      "target": "contente",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au singulier"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000424",
+      "target": "propre",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au singulier"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000425",
+      "target": "chaude",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au singulier"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000426",
+      "target": "fermée",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au singulier"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000427",
+      "target": "long",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au singulier"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000428",
+      "target": "petite",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au singulier"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000429",
+      "target": "lourd",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au singulier"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000430",
+      "target": "jolie",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au singulier"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000431",
+      "target": "grandes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au pluriel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000432",
+      "target": "contents",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au pluriel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000433",
+      "target": "jolies",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au pluriel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000434",
+      "target": "blancs",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au pluriel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000435",
+      "target": "fatiguées",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au pluriel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000436",
+      "target": "faciles",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au pluriel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000437",
+      "target": "rondes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au pluriel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000438",
+      "target": "lourds",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au pluriel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000439",
+      "target": "ouvertes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au pluriel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000440",
+      "target": "petits",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "accord au pluriel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000441",
+      "target": "heureuse",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "féminins et pluriels irréguliers"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000442",
+      "target": "sportive",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "féminins et pluriels irréguliers"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000443",
+      "target": "chère",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "féminins et pluriels irréguliers"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000444",
+      "target": "bonne",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "féminins et pluriels irréguliers"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000445",
+      "target": "ancienne",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "féminins et pluriels irréguliers"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000446",
+      "target": "normaux",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "féminins et pluriels irréguliers"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000447",
+      "target": "heureux",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "féminins et pluriels irréguliers"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000448",
+      "target": "sportives",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "féminins et pluriels irréguliers"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000449",
+      "target": "anciennes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "féminins et pluriels irréguliers"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000450",
+      "target": "bonnes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "féminins et pluriels irréguliers"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000451",
+      "target": "bel",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "bel, nouvel et vieil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000452",
+      "target": "nouvel",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "bel, nouvel et vieil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000453",
+      "target": "vieil",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "bel, nouvel et vieil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000454",
+      "target": "bel",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "bel, nouvel et vieil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000455",
+      "target": "nouvel",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "bel, nouvel et vieil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000456",
+      "target": "vieil",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "bel, nouvel et vieil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000457",
+      "target": "nouvel",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "bel, nouvel et vieil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000458",
+      "target": "bel",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "bel, nouvel et vieil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000459",
+      "target": "nouvel",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "bel, nouvel et vieil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000460",
+      "target": "vieil",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "bel, nouvel et vieil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000461",
+      "target": "petite",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "place de l’adjectif et accord"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000462",
+      "target": "bleue",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "place de l’adjectif et accord"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000463",
+      "target": "bon",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "place de l’adjectif et accord"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000464",
+      "target": "chaude",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "place de l’adjectif et accord"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000465",
+      "target": "jolis",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "place de l’adjectif et accord"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000466",
+      "target": "vertes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "place de l’adjectif et accord"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000467",
+      "target": "vieille",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "place de l’adjectif et accord"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000468",
+      "target": "français",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "place de l’adjectif et accord"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000469",
+      "target": "grande",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "place de l’adjectif et accord"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000470",
+      "target": "noires",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_adjectifs",
+        "section": "place de l’adjectif et accord"
+      },
+      "independentSolver": "passed"
+    }
+  ]
+}
