@@ -1,4 +1,4 @@
-import { isOwnerSession, listReports, unpublishList } from './_owner.js'
+import { listReports, ownerSession, unpublishList } from './_owner.js'
 import { deletePerson, listPeople, pendingCount, updatePerson, type PeopleFilter } from './_adminPeople.js'
 import { checkHealth, problems } from './_health.js'
 import { addBlock, approveAll, listBlocks, personDetail, removeBlock, stats, usage } from './_adminStats.js'
@@ -17,8 +17,17 @@ import { StorageError } from './_account.js'
  */
 const json = (body: unknown, status = 200) => Response.json(body, { status, headers: { 'cache-control': 'no-store' } })
 
+/**
+ * The owner, with their code when a second factor is set up. `GET ?view=me` alone answers before the code: the app
+ * learns there is an admin screen and that it must ask for the code (or that a factor must be set up first).
+ */
 async function authorised(request: Request): Promise<Response | null> {
-  return (await isOwnerSession(request)) ? null : json({ error: 'forbidden' }, 403)
+  const who = await ownerSession(request)
+  if (who === 'owner') return null
+  if (!who) return json({ error: 'forbidden' }, 403)
+  const view = request.method === 'GET' ? new URL(request.url).searchParams.get('view') : null
+  if (view === 'me') return json({ owner: true, mfa: who })
+  return json({ error: who === 'code' ? 'mfa_required' : 'mfa_setup' }, 403)
 }
 
 /**

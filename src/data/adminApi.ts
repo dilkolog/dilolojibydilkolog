@@ -46,6 +46,17 @@ let askSecret: ((wrong: boolean) => Promise<string | null>) | null = null
 export const setOwnerSecretAsker = (ask: typeof askSecret) => void (askSecret = ask)
 export const forgetOwnerSecret = () => void (ownerSecret = '')
 
+/**
+ * The owner's authenticator code (ownerMfa.ts), asked when the server wants a session that gave it: the asker proves the
+ * session itself (Supabase refreshes it to aal2) and says whether it did.
+ */
+let askCode: (() => Promise<boolean>) | null = null
+export const setOwnerCodeAsker = (ask: typeof askCode) => void (askCode = ask)
+/** One question at a time: the screen's cards load together, and each would ask. */
+let codeAsked: Promise<boolean> | null = null
+const askForCode = () => (codeAsked ??= (askCode?.() ?? Promise.resolve(false)).finally(() => (codeAsked = null)))
+export const MFA_SETUP_TEXT = 'Önce iki adımlı doğrulamayı kur (Yönetim → Güvenlik).'
+
 /** Shown for a step the owner did not confirm with the second secret. */
 export const OWNER_SECRET_TEXT = 'Bu adım için ikinci gizli gerekiyor (OWNER_STEP_SECRET).'
 
@@ -61,6 +72,11 @@ async function adminFetch<T>(query: string, init: RequestInit = {}, asked = fals
     },
   })
   const body = (await res.json().catch(() => ({}))) as T & { error?: string }
+  if (res.status === 403 && body.error === 'mfa_required') {
+    if (asked || !askCode || !(await askForCode())) throw new AdminError('Doğrulama kodu gerekiyor.')
+    return adminFetch<T>(query, init, true)
+  }
+  if (res.status === 403 && body.error === 'mfa_setup') throw new AdminError(MFA_SETUP_TEXT)
   if (res.status === 403 && (body.error === 'owner_secret' || body.error === 'owner_secret_wrong')) {
     ownerSecret = ''
     const given = !asked && askSecret ? await askSecret(body.error === 'owner_secret_wrong') : null

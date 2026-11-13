@@ -42,6 +42,7 @@ Hepsi isteğe bağlıdır; eksik olan yalnızca ilgili özelliği kapatır. Anah
 | `DEEPL_AUTH_KEY` | Cümle çevirisi (`/api/translate`) | 503, çeviri kapalı |
 | `YOUTUBE_API_KEY` | YouTube altyazı arama | 501, YouTube kapalı |
 | `APPROVAL` | `off`: Supabase açıkken hesap onayını kapatır; `on`: Supabase'siz yerel geliştirmede açar (`ADMIN_TOKEN` ve `SYNC_ALLOWED` 2026-11-13'te kalktı) | Supabase açıkken onay açık, kapalıyken yok |
+| `OWNER_MFA` | `required`: yönetici ekranı iki adımlı doğrulama kurulmadan açılmaz (yalnızca kurulum) | Kod kurulduysa istenir, kurulmadıysa istenmez |
 | `OWNER_STEP_SECRET` | Yönetici ekranında silme, toplu onay ve sınırlar için ikinci gizli (en az 16 karakter) | Bu adımlar yalnızca sahibin oturumuyla açılır |
 | `CRON_SECRET` | Günlük bildirim cron'unun yetkisi | Cron 401 verir |
 | `VAPID_PRIVATE_KEY` | Web push gönderimi (genel anahtar kodda) | Cron yalnızca mail gönderir (o da yoksa 503) |

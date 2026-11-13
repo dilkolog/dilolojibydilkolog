@@ -75,16 +75,31 @@ export async function rest(path: string, init: RequestInit = {}): Promise<Respon
 }
 
 /** The request's sign-in, when its email is confirmed by Supabase (an unconfirmed address proves nothing). */
-export async function confirmedUser(request: Request): Promise<{ id: string; email: string } | null> {
+export async function confirmedUser(request: Request): Promise<{ id: string; email: string; aal2: boolean; factor: boolean } | null> {
   if (!supabaseOn()) return null
   const token = (request.headers.get('authorization') ?? '').replace(/^Bearer\s+/i, '').trim()
   if (!token || token.length > 4096) return null
   try {
     const res = await fetch(`${base()}/auth/v1/user`, { headers: { apikey: serviceKey(), authorization: `Bearer ${token}` } })
     if (!res.ok) return null
-    const u = (await res.json()) as { id?: unknown; email?: unknown; email_confirmed_at?: unknown }
+    const u = (await res.json()) as { id?: unknown; email?: unknown; email_confirmed_at?: unknown; factors?: unknown }
     if (typeof u.id !== 'string' || !UUID.test(u.id) || typeof u.email !== 'string' || !u.email_confirmed_at) return null
-    return { id: u.id, email: u.email }
+    // A verified second factor (TOTP), and whether this session proved it: Supabase writes the level into the token it
+    // just accepted (`aal`: aal1 a password or a link, aal2 the code as well).
+    const factor = Array.isArray(u.factors) && u.factors.some((f) => (f as { status?: unknown })?.status === 'verified')
+    return { id: u.id, email: u.email, aal2: tokenAal(token) === 'aal2', factor }
+  } catch {
+    return null
+  }
+}
+
+/** The `aal` claim of an access token Supabase has accepted (its payload, read; the signature was Supabase's to check). */
+export function tokenAal(token: string): string | null {
+  try {
+    const part = token.split('.')[1] ?? ''
+    const json = atob(part.replace(/-/g, '+').replace(/_/g, '/').padEnd(Math.ceil(part.length / 4) * 4, '='))
+    const aal = (JSON.parse(json) as { aal?: unknown }).aal
+    return typeof aal === 'string' ? aal : null
   } catch {
     return null
   }

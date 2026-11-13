@@ -33,6 +33,7 @@ import {
 import { ChevronRightIcon, SearchIcon } from '../shared/icons'
 import { ConfirmDialog } from '../shared/Dialog'
 import { OwnerSecretDialog } from './OwnerSecretDialog'
+import { OwnerCodeDialog, SecurityCard } from './OwnerMfa'
 import { PageHeader } from '../shared/PageHeader'
 import { Toggle } from '../settings/settingsWidgets'
 import { Sticker } from '../shared/Sticker'
@@ -934,7 +935,9 @@ export function AdminScreen() {
       <SettingsCard />
       <BlocksCard />
       <SystemCard tell={tell} />
+      <SecurityCard />
       <OwnerSecretDialog />
+      <OwnerCodeDialog />
     </div>
   )
 }
