@@ -124,3 +124,6 @@ export async function grammarForIds(language: ContentLanguage, m: ContentManifes
   const parts = await Promise.all([...needed.values()].map((s) => loadShard<PublishedGrammar>(language, s).catch(() => [] as PublishedGrammar[])))
   return parts.flat().filter((q) => want.has(q.id) && !out.has(q.id)).map(asExercise)
 }
+
+/** Where a text stands for a beginner (lower first): the first-step series in its order, then the rest. */
+export const beginnerRank = (r: Pick<PublishedReading, 'firstStep'>): number => (r.firstStep ? r.firstStep.position : 1000)

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import { loadManifest, readingPage, readingShards } from '../../data/content'
+import { beginnerRank, loadManifest, readingPage, readingShards } from '../../data/content'
 import { CONTENT_LEVELS, type ContentLanguage, type ContentLevel, type ContentManifest, type PublishedReading } from '../../engine/contentTypes'
-import { analyzeText, coverageLine, foundationSize, isStarterText } from '../../engine/reading'
+import { analyzeText, coverageLine, foundationSize, isStarterText, STARTER_WORDS } from '../../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../../engine/types'
 import { GENRE_TR, THEME_TR } from '../../data/contentNames'
 import { Select } from '../shared/Select'
@@ -12,6 +12,7 @@ import { SourceTitle } from './SourceTitle'
  * Diloloji's own texts (docs/ICERIK-FABRIKASI.md): written for the app, A1–C1, each with its Turkish and its
  * questions. The manifest says which levels have texts; a level's files are fetched one at a time when chosen.
  */
+
 export function ContentReadingsPicker({
   language,
   vocabulary,
@@ -92,6 +93,8 @@ export function ContentReadingsPicker({
   )
 
   const foundation = foundationSize(language, vocabulary, states, known)
+  // A beginner sees the first-step series first, in its order; the sort keeps the rest in order.
+  const ordered = foundation < STARTER_WORDS ? [...rated].sort((a, b) => beginnerRank(a.r) - beginnerRank(b.r)) : rated
 
   if (!manifest || !manifest.counts.reading.total) return null
   const themes = [...new Set(items.map((r) => r.theme))].sort()
@@ -131,7 +134,7 @@ export function ContentReadingsPicker({
       {failed && <p className="small note">Metinler getirilemedi; internet gerekiyor. Daha önce açtığın metinler kütüphanende duruyor.</p>}
       {loading && !items.length && <p className="small muted">Metinler yükleniyor…</p>}
       <ul className="library">
-        {rated.map(({ r, words, cov }) => (
+        {ordered.map(({ r, words, cov }) => (
           <li key={r.id}>
             <button type="button" className="word-link library-open" onClick={() => onRead(r)}>
               <div className="row justify-between items-baseline gap-2">

@@ -79,7 +79,20 @@ function variants(w: string, language: CheckContext['language']): string[] {
 
 const analyse = (text: string, ctx: CheckContext) => analyzeText(text, ctx.language, [], [], new Set())
 
-const wordTokens = (a: ReadingAnalysis) => a.paragraphs.flat().flatMap((s) => s.tokens.filter((t) => t.key && t.status !== 'name' && !/\d/.test(t.text)))
+/**
+ * The speakers of a dialogue: a capitalised word opening a line before a colon ("Lucía:", "Luc, au café :"). Always
+ * at a sentence start, a name there looks like any word, and some are words too (Lucía is a form of "lucir").
+ */
+export function speakers(text: string): Set<string> {
+  const out = new Set<string>()
+  for (const m of text.matchAll(/^(\p{Lu}[\p{L}'’-]*)(?:\s*:|,[^:\n]{1,30}:)/gmu)) out.add(m[1])
+  return out
+}
+
+const wordTokens = (a: ReadingAnalysis, text = '') => {
+  const named = speakers(text)
+  return a.paragraphs.flat().flatMap((s) => s.tokens.filter((t) => t.key && t.status !== 'name' && !named.has(t.text) && !/\d/.test(t.text)))
+}
 
 /** A capitalised word no list knows is a name (Léa, Lille), left out of the level count. */
 const isName = (text: string, ctx: CheckContext) => /^\p{Lu}/u.test(text) && !wordLevel(text, ctx)
@@ -94,7 +107,7 @@ export interface LevelFit {
 /** How much of a text is at or below a level, names and the listed new words aside. */
 export function levelFit(text: string, level: string, ctx: CheckContext, exclude: readonly string[] = []): LevelFit {
   const skip = new Set(exclude.flatMap((w) => [w.toLocaleLowerCase(ctx.language), readingKey(w, ctx.language)]))
-  const tokens = wordTokens(analyse(text, ctx)).filter((t) => !isName(t.text, ctx) && !skip.has(t.text.toLocaleLowerCase(ctx.language)) && !skip.has(t.key!))
+  const tokens = wordTokens(analyse(text, ctx), text).filter((t) => !isName(t.text, ctx) && !skip.has(t.text.toLocaleLowerCase(ctx.language)) && !skip.has(t.key!))
   const above = new Set<string>()
   let fit = 0
   for (const t of tokens) {
@@ -189,7 +202,7 @@ export function checkReading(item: ReadingItem, ctx: CheckContext, opts: Reading
 
   const level = plan.levels[item.level]
   const analysis = analyse(text, ctx)
-  const tokens = wordTokens(analysis)
+  const tokens = wordTokens(analysis, text)
   const count = analysis.paragraphs.flat().reduce((n, s) => n + s.tokens.filter((t) => t.key).length, 0)
   const bounds = item.firstStep ? [40, 80] : level.words
   if (count < bounds[0] || count > bounds[1]) errors.push(`${count} words, ${item.level} asks ${bounds[0]}–${bounds[1]}`)
