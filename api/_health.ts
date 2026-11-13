@@ -9,8 +9,8 @@ import { rest, supabaseOn } from './_supabase.js'
  * - GET /api/health (health.ts): the Worker answers, Supabase and R2 can be reached. An outside monitor (UptimeRobot or
  *   similar, set up by the owner) polls it every few minutes and mails when the site is down: a Worker that is down
  *   cannot say so itself.
- * - Every hour the scheduled job runs the same checks plus the settings the site needs (secrets present), and mails the
- *   owner when the set of problems changes: once when something breaks, once when it is fixed, never every hour.
+ * - Every hour the scheduled job runs the same checks plus the settings the site needs (secrets present) and how full
+ *   Supabase is (`fullness`, migration 0014), and mails the owner when the set of problems changes: once when something breaks, once when it is fixed, never every hour.
  */
 
 export type CheckState = 'ok' | 'down' | 'off'
@@ -60,6 +60,39 @@ const NEEDED: [string, string][] = [
   ['DEEPL_AUTH_KEY', 'çeviri'],
 ]
 
+/** The free plan's room (MB), unless the owner says otherwise (SUPABASE_DB_LIMIT_MB, SUPABASE_STORAGE_LIMIT_MB). */
+const roomMb = (name: string, free: number) => {
+  const n = Number(process.env[name])
+  return Number.isFinite(n) && n > 0 ? n : free
+}
+
+/**
+ * How full Supabase is, as lines for the owner: the database and the media bucket past 80% or 90% of the plan. The
+ * line names the step, not the exact share, so the hourly check mails once per step and not as the number moves.
+ * Nothing when storage_usage (migration 0014) is not there or cannot be read.
+ */
+export async function fullness(): Promise<string[]> {
+  if (!supabaseOn()) return []
+  try {
+    const res = await timed(rest('rpc/storage_usage', { method: 'POST', body: '{}' }))
+    if (!res.ok) return []
+    const raw = (await res.json()) as unknown
+    const row = (Array.isArray(raw) ? raw[0] : raw) as { db_bytes?: unknown; media_bytes?: unknown } | undefined
+    const out: string[] = []
+    const check = (bytes: unknown, limitMb: number, what: string) => {
+      const share = Number(bytes) / (limitMb * 1_000_000)
+      if (!Number.isFinite(share)) return
+      const step = share >= 0.9 ? 90 : share >= 0.8 ? 80 : 0
+      if (step) out.push(`Supabase ${what} %${step}’i geçti (${limitMb} MB sınır): eşitleme ve dosya yükleme durabilir; yönetici ekranında en çok yer tutanlara bak.`)
+    }
+    check(row?.db_bytes, roomMb('SUPABASE_DB_LIMIT_MB', 500), 'veritabanı')
+    check(row?.media_bytes, roomMb('SUPABASE_STORAGE_LIMIT_MB', 1000), 'dosya deposu')
+    return out
+  } catch {
+    return []
+  }
+}
+
 /** What is wrong right now, each a short Turkish line (empty when all is well). */
 export async function problems(health?: Health): Promise<string[]> {
   const h = health ?? (await checkHealth())
@@ -67,6 +100,7 @@ export async function problems(health?: Health): Promise<string[]> {
   if (h.supabase === 'down') out.push('Supabase’e ulaşılamıyor: giriş, eşitleme ve onay çalışmıyor olabilir.')
   if (h.storage === 'down') out.push('Cloudflare R2 depolamasına ulaşılamıyor.')
   for (const [name, what] of NEEDED) if (!process.env[name]?.trim()) out.push(`${name} tanımlı değil (${what}).`)
+  if (h.supabase === 'ok') out.push(...(await fullness()))
   return out
 }
 

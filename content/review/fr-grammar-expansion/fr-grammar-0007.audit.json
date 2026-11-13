@@ -1,0 +1,511 @@
+{
+  "job": "fr-grammar-0007",
+  "count": 50,
+  "solver": {
+    "checked": 50,
+    "disagreements": 0,
+    "rate": 0
+  },
+  "rows": [
+    {
+      "id": "fr-g-000271",
+      "target": "mon",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : tekil ve cinsiyet"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000272",
+      "target": "ta",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : tekil ve cinsiyet"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000273",
+      "target": "sa",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : tekil ve cinsiyet"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000274",
+      "target": "mon",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : tekil ve cinsiyet"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000275",
+      "target": "ta",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : tekil ve cinsiyet"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000276",
+      "target": "sa",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : tekil ve cinsiyet"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000277",
+      "target": "mon",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : tekil ve cinsiyet"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000278",
+      "target": "ta",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : tekil ve cinsiyet"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000279",
+      "target": "sa",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : tekil ve cinsiyet"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000280",
+      "target": "mon",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : tekil ve cinsiyet"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000281",
+      "target": "nos",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : çoğul ve sahipler"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000282",
+      "target": "votre",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : çoğul ve sahipler"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000283",
+      "target": "leurs",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : çoğul ve sahipler"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000284",
+      "target": "mes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : çoğul ve sahipler"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000285",
+      "target": "tes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : çoğul ve sahipler"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000286",
+      "target": "ses",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : çoğul ve sahipler"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000287",
+      "target": "nos",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : çoğul ve sahipler"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000288",
+      "target": "leur",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : çoğul ve sahipler"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000289",
+      "target": "vos",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : çoğul ve sahipler"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000290",
+      "target": "notre",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "iyelik : çoğul ve sahipler"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000291",
+      "target": "mon",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "sesli önünde mon, ton, son"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000292",
+      "target": "ton",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "sesli önünde mon, ton, son"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000293",
+      "target": "son",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "sesli önünde mon, ton, son"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000294",
+      "target": "mon",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "sesli önünde mon, ton, son"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000295",
+      "target": "ton",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "sesli önünde mon, ton, son"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000296",
+      "target": "son",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "sesli önünde mon, ton, son"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000297",
+      "target": "mon",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "sesli önünde mon, ton, son"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000298",
+      "target": "son",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "sesli önünde mon, ton, son"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000299",
+      "target": "ton",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "sesli önünde mon, ton, son"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000300",
+      "target": "mon",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "sesli önünde mon, ton, son"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000301",
+      "target": "ce",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "işaret : ce, cet, cette, ces"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000302",
+      "target": "cet",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "işaret : ce, cet, cette, ces"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000303",
+      "target": "cette",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "işaret : ce, cet, cette, ces"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000304",
+      "target": "ces",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "işaret : ce, cet, cette, ces"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000305",
+      "target": "cet",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "işaret : ce, cet, cette, ces"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000306",
+      "target": "cette",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "işaret : ce, cet, cette, ces"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000307",
+      "target": "ces",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "işaret : ce, cet, cette, ces"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000308",
+      "target": "cet",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "işaret : ce, cet, cette, ces"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000309",
+      "target": "cette",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "işaret : ce, cet, cette, ces"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000310",
+      "target": "ce",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "işaret : ce, cet, cette, ces"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000311",
+      "target": "ce",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "zaman ve bağlamda işaret"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000312",
+      "target": "cet",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "zaman ve bağlamda işaret"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000313",
+      "target": "cette",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "zaman ve bağlamda işaret"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000314",
+      "target": "ces",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "zaman ve bağlamda işaret"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000315",
+      "target": "ce",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "zaman ve bağlamda işaret"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000316",
+      "target": "cette",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "zaman ve bağlamda işaret"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000317",
+      "target": "ce",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "zaman ve bağlamda işaret"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000318",
+      "target": "cet",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "zaman ve bağlamda işaret"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000319",
+      "target": "cette",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "zaman ve bağlamda işaret"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000320",
+      "target": "ces",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_possessifs",
+        "section": "zaman ve bağlamda işaret"
+      },
+      "independentSolver": "passed"
+    }
+  ]
+}

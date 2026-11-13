@@ -34,6 +34,7 @@ import {
 } from '../../data/adminApi'
 import { CheckCircleIcon, ChevronRightIcon, SearchIcon } from '../shared/icons'
 import { ConfirmDialog } from '../shared/Dialog'
+import { OwnerSecretDialog } from './OwnerSecretDialog'
 import { PageHeader } from '../shared/PageHeader'
 import { Toggle } from '../settings/settingsWidgets'
 import { Sticker } from '../shared/Sticker'
@@ -639,6 +640,7 @@ const LIMIT_ROWS: { name: LimitName; label: string; unit: string; step: number }
   { name: 'aiDailyBudgetUsd', label: 'YZ harcaması', unit: '$', step: 0.05 },
   { name: 'translateChars', label: 'Çeviri', unit: 'karakter', step: 500 },
   { name: 'ttsChars', label: 'Doğal ses', unit: 'karakter', step: 500 },
+  { name: 'aiSiteBudgetUsd', label: 'Tüm sitenin YZ harcaması', unit: '$', step: 0.05 },
 ]
 
 function UsageTotalsList({ title, t }: { title: string; t: Usage['today'] }) {
@@ -754,8 +756,8 @@ function UsageCard() {
       )}
       {view && (
         <form className="stack admin-limits" onSubmit={submit}>
-          <h3 className="small admin-sub">Kişi başına günlük sınırlar</h3>
-          {LIMIT_ROWS.map((row) => (
+          <h3 className="small admin-sub">Günlük sınırlar (kişi başına; son satır tüm site)</h3>
+          {LIMIT_ROWS.filter((row) => view.effective[row.name] !== undefined).map((row) => (
             <label key={row.name} className="admin-limit">
               <span>
                 {row.label}
@@ -1008,6 +1010,7 @@ export function AdminScreen() {
       <SettingsCard />
       <BlocksCard />
       <SystemCard tell={tell} />
+      <OwnerSecretDialog />
     </div>
   )
 }

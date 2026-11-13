@@ -1,0 +1,73 @@
+{
+  "job": "es-reading-0003",
+  "language": "es",
+  "kind": "reading",
+  "total": 25,
+  "accepted": [
+    "es-r-000006",
+    "es-r-000007",
+    "es-r-000008",
+    "es-r-000009",
+    "es-r-000010",
+    "es-r-000011",
+    "es-r-000012",
+    "es-r-000013",
+    "es-r-000014",
+    "es-r-000015",
+    "es-r-000016",
+    "es-r-000017",
+    "es-r-000018",
+    "es-r-000019",
+    "es-r-000020",
+    "es-r-000021",
+    "es-r-000022",
+    "es-r-000023",
+    "es-r-000024",
+    "es-r-000025",
+    "es-r-000026",
+    "es-r-000027",
+    "es-r-000028",
+    "es-r-000029",
+    "es-r-000030"
+  ],
+  "rejected": [],
+  "warnings": [
+    {
+      "id": "es-r-000020",
+      "reasons": [
+        "above A1 or unlisted: derecha, izquierda"
+      ]
+    },
+    {
+      "id": "es-r-000026",
+      "reasons": [
+        "above A1 or unlisted: manzanas"
+      ]
+    },
+    {
+      "id": "es-r-000027",
+      "reasons": [
+        "above A1 or unlisted: manzanas, manzana"
+      ]
+    },
+    {
+      "id": "es-r-000028",
+      "reasons": [
+        "above A1 or unlisted: manzanas"
+      ]
+    },
+    {
+      "id": "es-r-000029",
+      "reasons": [
+        "above A1 or unlisted: manzanas, manzana"
+      ]
+    },
+    {
+      "id": "es-r-000030",
+      "reasons": [
+        "above A1 or unlisted: manzanas, manzana"
+      ]
+    }
+  ],
+  "rate": 1
+}

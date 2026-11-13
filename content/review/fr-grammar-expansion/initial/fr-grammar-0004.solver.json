@@ -1,0 +1,262 @@
+{
+  "job": "fr-grammar-0004",
+  "results": [
+    {
+      "id": "fr-g-000121",
+      "answer": "sommes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000122",
+      "answer": "es",
+      "single": true
+    },
+    {
+      "id": "fr-g-000123",
+      "answer": "sont",
+      "single": true
+    },
+    {
+      "id": "fr-g-000124",
+      "answer": "est",
+      "single": true
+    },
+    {
+      "id": "fr-g-000125",
+      "answer": "êtes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000126",
+      "answer": "suis",
+      "single": true
+    },
+    {
+      "id": "fr-g-000127",
+      "answer": "est",
+      "single": true
+    },
+    {
+      "id": "fr-g-000128",
+      "answer": "sommes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000129",
+      "answer": "ont",
+      "single": true,
+      "note": "Doğru düzeltme: sont."
+    },
+    {
+      "id": "fr-g-000130",
+      "answer": "a",
+      "single": true,
+      "note": "Doğru düzeltme: est."
+    },
+    {
+      "id": "fr-g-000131",
+      "answer": "ai",
+      "single": true
+    },
+    {
+      "id": "fr-g-000132",
+      "answer": "avez",
+      "single": true
+    },
+    {
+      "id": "fr-g-000133",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000134",
+      "answer": "avons",
+      "single": true
+    },
+    {
+      "id": "fr-g-000135",
+      "answer": "as",
+      "single": true
+    },
+    {
+      "id": "fr-g-000136",
+      "answer": "ont",
+      "single": true
+    },
+    {
+      "id": "fr-g-000137",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000138",
+      "answer": "avons",
+      "single": true
+    },
+    {
+      "id": "fr-g-000139",
+      "answer": "sont",
+      "single": true,
+      "note": "Doğru düzeltme: ont."
+    },
+    {
+      "id": "fr-g-000140",
+      "answer": "êtes",
+      "single": true,
+      "note": "Doğru düzeltme: avez."
+    },
+    {
+      "id": "fr-g-000141",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000142",
+      "answer": "avons",
+      "single": true
+    },
+    {
+      "id": "fr-g-000143",
+      "answer": "as",
+      "single": true
+    },
+    {
+      "id": "fr-g-000144",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000145",
+      "answer": "avez",
+      "single": true
+    },
+    {
+      "id": "fr-g-000146",
+      "answer": "ai",
+      "single": true
+    },
+    {
+      "id": "fr-g-000147",
+      "answer": "ont",
+      "single": true
+    },
+    {
+      "id": "fr-g-000148",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000149",
+      "answer": "avons",
+      "single": true
+    },
+    {
+      "id": "fr-g-000150",
+      "answer": "ont",
+      "single": true
+    },
+    {
+      "id": "fr-g-000151",
+      "answer": "est",
+      "single": true
+    },
+    {
+      "id": "fr-g-000152",
+      "answer": "sommes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000153",
+      "answer": "sont",
+      "single": true
+    },
+    {
+      "id": "fr-g-000154",
+      "answer": "suis",
+      "single": true
+    },
+    {
+      "id": "fr-g-000155",
+      "answer": "êtes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000156",
+      "answer": "est",
+      "single": true
+    },
+    {
+      "id": "fr-g-000157",
+      "answer": "es",
+      "single": true
+    },
+    {
+      "id": "fr-g-000158",
+      "answer": "sont",
+      "single": true
+    },
+    {
+      "id": "fr-g-000159",
+      "answer": "a",
+      "single": false,
+      "note": "Hedeflenen düzeltme: a → est. Ancak «fatiguer» geçişsiz de kullanılabilir; «a fatigué» (yoruldu) dilbilgisel bir passé composé biçimidir. Cümle tek başına zorunlu bir hata içermiyor."
+    },
+    {
+      "id": "fr-g-000160",
+      "answer": "sommes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000161",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000162",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000163",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000164",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000165",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000166",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000167",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000168",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000169",
+      "answer": "est",
+      "single": true,
+      "note": "Doğru düzeltme: a."
+    },
+    {
+      "id": "fr-g-000170",
+      "answer": "est",
+      "single": true,
+      "note": "Doğru düzeltme: a."
+    }
+  ]
+}

@@ -1,0 +1,861 @@
+{
+  "job": "fr-grammar-0004",
+  "count": 50,
+  "solver": {
+    "checked": 50,
+    "disagreements": 0,
+    "rate": 0
+  },
+  "rows": [
+    {
+      "id": "fr-g-000121",
+      "target": "sommes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : lieu et personne"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 3,
+          "form": "sommes"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000122",
+      "target": "es",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : lieu et personne"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 1,
+          "form": "es"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000123",
+      "target": "sont",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : lieu et personne"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 5,
+          "form": "sont"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000124",
+      "target": "est",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : lieu et personne"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 2,
+          "form": "est"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000125",
+      "target": "êtes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : lieu et personne"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 4,
+          "form": "êtes"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000126",
+      "target": "suis",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : lieu et personne"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 0,
+          "form": "suis"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000127",
+      "target": "est",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : lieu et personne"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 2,
+          "form": "est"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000128",
+      "target": "sommes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : lieu et personne"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 3,
+          "form": "sommes"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000129",
+      "target": "sont",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : lieu et personne"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 5,
+          "form": "sont"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000130",
+      "target": "est",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : lieu et personne"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 2,
+          "form": "est"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000131",
+      "target": "ai",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "avoir : possession"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 0,
+          "form": "ai"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000132",
+      "target": "avez",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "avoir : possession"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 4,
+          "form": "avez"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000133",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "avoir : possession"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000134",
+      "target": "avons",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "avoir : possession"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 3,
+          "form": "avons"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000135",
+      "target": "as",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "avoir : possession"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 1,
+          "form": "as"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000136",
+      "target": "ont",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "avoir : possession"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 5,
+          "form": "ont"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000137",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "avoir : possession"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000138",
+      "target": "avons",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "avoir : possession"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 3,
+          "form": "avons"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000139",
+      "target": "ont",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "avoir : possession"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 5,
+          "form": "ont"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000140",
+      "target": "avez",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "avoir : possession"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 4,
+          "form": "avez"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000141",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "âge et sensations"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000142",
+      "target": "avons",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "âge et sensations"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 3,
+          "form": "avons"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000143",
+      "target": "as",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "âge et sensations"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 1,
+          "form": "as"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000144",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "âge et sensations"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000145",
+      "target": "avez",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "âge et sensations"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 4,
+          "form": "avez"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000146",
+      "target": "ai",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "âge et sensations"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 0,
+          "form": "ai"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000147",
+      "target": "ont",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "âge et sensations"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 5,
+          "form": "ont"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000148",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "âge et sensations"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000149",
+      "target": "avons",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "âge et sensations"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 3,
+          "form": "avons"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000150",
+      "target": "ont",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "âge et sensations"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 5,
+          "form": "ont"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000151",
+      "target": "est",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : identité et état"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 2,
+          "form": "est"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000152",
+      "target": "sommes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : identité et état"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 3,
+          "form": "sommes"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000153",
+      "target": "sont",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : identité et état"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 5,
+          "form": "sont"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000154",
+      "target": "suis",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : identité et état"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 0,
+          "form": "suis"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000155",
+      "target": "êtes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : identité et état"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 4,
+          "form": "êtes"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000156",
+      "target": "est",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : identité et état"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 2,
+          "form": "est"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000157",
+      "target": "es",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : identité et état"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 1,
+          "form": "es"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000158",
+      "target": "sont",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : identité et état"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 5,
+          "form": "sont"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000159",
+      "target": "est",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : identité et état"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 2,
+          "form": "est"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000160",
+      "target": "sommes",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "être : identité et état"
+      },
+      "conjugation": [
+        {
+          "lemma": "être",
+          "person": 3,
+          "form": "sommes"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000161",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "il y a"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000162",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "il y a"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000163",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "il y a"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000164",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "il y a"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000165",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "il y a"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000166",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "il y a"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000167",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "il y a"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000168",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "il y a"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000169",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "il y a"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000170",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_etre_avoir",
+        "section": "il y a"
+      },
+      "conjugation": [
+        {
+          "lemma": "avoir",
+          "person": 2,
+          "form": "a"
+        }
+      ],
+      "independentSolver": "passed"
+    }
+  ]
+}

@@ -60,9 +60,12 @@ export const requestPath = (id: string) => `access/requests/${id}.json`
 export const approvedPath = (id: string) => `access/approved/${id}.json`
 export const rejectedPath = (id: string) => `access/rejected/${id}.json`
 
-export async function writeJson(path: string, value: unknown) {
-  if (isDocPath(path) && (await writeDoc(path, JSON.stringify(value)).catch(unlessMoved))) return
-  await put(path, JSON.stringify(value), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json' })
+export const writeJson = (path: string, value: unknown) => writeText(path, JSON.stringify(value))
+
+/** Writes the text over whatever was there (the table for a document path, else the file). */
+export async function writeText(path: string, text: string, contentType = 'application/json') {
+  if (isDocPath(path) && (await writeDoc(path, text).catch(unlessMoved))) return
+  await put(path, text, { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType })
 }
 
 /** Writes the text only if there is none yet (the table and, until the move finished, the old file); false when there was. */
@@ -109,8 +112,9 @@ export async function storedAuth(id: string): Promise<string | null> {
   const hit = remembered.get(key)
   if (hit && hit.until > Date.now()) return hit.value as string
   const stored = ((await readText(`sync/${id}/auth.txt`)) ?? '').trim() || null
-  // Only a claim is remembered (it never changes; every read of it is a billed Blob operation); "nobody yet" is asked again, a claim may be minutes old.
-  if (stored) remembered.set(key, { value: stored, until: Date.now() + 10 * 60_000 })
+  // Only a claim is remembered; "nobody yet" is asked again, a claim may be minutes old. Kept as short as an approval:
+  // a key the person renewed (replaceAuth) stops working on the other instances once this runs out.
+  if (stored) remembered.set(key, { value: stored, until: Date.now() + APPROVAL_CACHE_MS })
   return stored
 }
 
@@ -181,6 +185,15 @@ export async function requireApproved(request: Request): Promise<Response | null
     if (e instanceof StorageError) return Response.json({ error: 'storage unavailable' }, { status: 502 })
     throw e
   }
+}
+
+/**
+ * Gives a claimed account a new token (the person renewed their sync key): the old one stops working at once on this
+ * instance and within APPROVAL_CACHE_MS on the others. Throws when the store fails.
+ */
+export async function replaceAuth(id: string, token: string): Promise<void> {
+  await writeText(`sync/${id}/auth.txt`, await sha256(token), 'text/plain')
+  remembered.delete(`auth:${id}`)
 }
 
 /** Claims the id for the token when nobody has (like the first sync write); true when the account is the token's. */

@@ -1,0 +1,24 @@
+{
+  "id": "fr-grammar-0009",
+  "language": "fr",
+  "kind": "grammar",
+  "level": "A1",
+  "grammar": [
+    "basics_fr_questions"
+  ],
+  "count": 50,
+  "subskills": [
+    "soru sözcüğü ve cevap bilgisi",
+    "quel ailesinde uyum",
+    "qui, que et quoi",
+    "devrik soruda zamir ve liaison",
+    "combien de et parce que"
+  ],
+  "ids": {
+    "from": 371,
+    "to": 420
+  },
+  "createdAt": "2026-11-13T07:37:07.883Z",
+  "claimedBy": "Codex/diloloji-fr-grammar-3",
+  "claimedAt": "2026-11-13T07:42:49.258295+00:00"
+}

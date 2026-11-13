@@ -193,3 +193,15 @@ describe('plans', () => {
     expect(es.plan.themes.map((t) => t.id)).toEqual(fr.plan.themes.map((t) => t.id))
   })
 })
+
+describe('first-step reading profile', () => {
+  it('keeps the normal A1 minimums and accepts only the bounded introductory exception', () => {
+    const item = JSON.parse(readFileSync('content/raw/fr/reading/fr-reading-0003.jsonl', 'utf8').split('\n')[0]) as ReadingItem
+    expect(checkReading(item, fr).errors).toEqual([])
+    const normal = { ...item, firstStep: undefined }
+    expect(checkReading(normal, fr).errors.some((e) => e.includes('6–12'))).toBe(true)
+    expect(checkReading({ ...item, level: 'A2' }, fr).errors).toContain('first-step profile requires A1')
+    expect(checkReading({ ...item, paragraphs: [...item.paragraphs, 'Je suis à Xylophonie.'], tr: [...item.tr, 'Xylophonie’deyim.'] }, fr).errors.some((e) => e.includes('xylophonie'))).toBe(true)
+    expect(checkReading({ ...item, paragraphs: [...item.paragraphs, "Hier, nous avons mangé."], tr: [...item.tr, 'Dün yemek yedik.'] }, fr).errors.some((e) => e.includes('non-present'))).toBe(true)
+  })
+})

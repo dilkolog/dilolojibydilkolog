@@ -1,7 +1,7 @@
 # Diloloji — ajanlar için devir notu
 
 Bu dosya, projede çalışacak bir yapay zekâ ajanının (Claude Code'dan devralan) bilmesi gerekenleri toplar.
-Son güncelleme: 2026-11-08.
+Son güncelleme: 2026-11-12.
 
 **Bu dosya kısa tutulur** (her oturumda bağlama yüklenir): yalnızca çalışma kuralları, komutlar ve tuzaklar. Konuya özgü uzun notlar `docs/notlar/` altında; yeni uzun not oraya, ilgili konu dosyasına yazılır. Dizin için aşağıdaki "Notlar dizini" bölümü.
 
@@ -32,7 +32,7 @@ Sahibi şimdilik altyapıyla değil, **içerik ve eğitim tarafıyla** (dersler,
 - [ ] Gerçek cihaz denemeleri: Safari mikrofon, iki telefonla canlı düello, push ve e-posta hatırlatmaları.
 - [x] ~~**Eşitlemeyi Supabase'e taşımak**~~ (2026-11-09: `0002` + `0005` çalıştı, kontrol sorgusu üç `true`; sahibinin verisi `sync_parts`'ta, öbür iki hesabın R2'de eşitleme verisi yoktu).
 - [x] ~~**Arkadaşlar, listeler, hatırlatmalar**~~ (2026-11-09: `tables` işareti yazıldı; R2'deki 2 kart tabloda, takip/liste/hatırlatma dosyası yoktu). R2 artık bunlar için okunmuyor.
-- [ ] **Güvenlik incelemesi (2026-11-10), sahibinin yapacağı:** SQL Editor'de `0013_quota_media_limits.sql`'i çalıştırmak (kota iadesi, medya güncelleme sınırı ve silme politikası, kullanıcı adı 40 karakter; `docs/SUPABASE.md`). Ayrıntı ve açık kalanlar: `docs/notlar/sunucu-guvenlik-dagitim.md` "Güvenlik incelemesi (2026-11-10)".
+- [ ] **Güvenlik incelemesi (2026-11-10/12), sahibinin yapacağı:** ~~SQL Editor'de sırayla `0013`, `0005` (yeniden, 30/20/50 MB) ve `0014`~~ (çalıştırıldı — 2026-11-12, #783). ~~Worker gizlisi `OWNER_STEP_SECRET`~~ (tanımlı — 2026-11-12; yönetici silme/toplu onay/sınırlar ikinci gizliyi ister). ~~Anthropic Console'da aylık harcama sınırı~~ (5 $ — 2026-11-12; site günlük tavanı buna göre ~0,15 $ olmalı). Yedek: Mac'te bir kez `bash scripts/backup-mac.sh install` (haftalık kendiliğinden). Ayrıntı: `docs/GUVENLIK.md` "2026-11-12", `docs/notlar/sunucu-guvenlik-dagitim.md`.
 - Supabase güvenlik denetimi (2026-11-09): sızdırılmış şifre koruması (HaveIBeenPwned) yalnızca Pro planda, ücretsiz planda açılamıyor. ~~`handle_new_user` RPC ile çağrılabilir~~ (`0012_trigger_privileges.sql`, canlıya uygulandı ve testli — 2026-11-09).
 - [x] ~~Dış gözcü~~ (2026-11-09): UptimeRobot `diloloji.com`, `/api/health`, `/api/push?mail=status`, `/hakkinda` (5 dk).
 

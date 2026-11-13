@@ -74,3 +74,7 @@ Neden kötü: metin değil çekim tablosu; anlatı yok.
 ## 7. Öğrenilen kurallar
 
 (Örneklem incelemesinden gelen kurallar buraya tarihli olarak eklenir.)
+
+### İlk adım profili (2026-11-12, kullanıcının özel üretim talimatı)
+
+Yalnız `firstStep` işaretli A1 serilerinde 40–80 kelime ve en çok dört hedef sözcük kullanılır. Normal A1 sınırları değişmez. Temel sözcükler ilgili sıklık dosyasının ilk 300 satırı ve başlangıç listelerinin `w` alanlarıdır; bunların dışındaki her sözcük, özel adlar dahil, hedeflerde gösterilir. Çekimler mevcut sözlük/çekim verisiyle tanınır. Yalnız şimdiki zaman kullanılır. 25 metinlik seride yeni hedef, sonraki iki metnin her birinde tekrar eder; son iki metin yeni hedef tanıtmaz. `npm run content -- first-steps <iş>` ayrıntılı denetim tablosunu üretir. Temel listede olmak, gerçek öğrencinin o kelimeyi bildiğinin garantisi değildir.

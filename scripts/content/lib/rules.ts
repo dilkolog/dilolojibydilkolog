@@ -7,6 +7,7 @@ import { analyzeForm } from '../../../src/engine/tenses'
 import { textForms } from '../../../src/engine/textForms'
 import { cleanToken, STOP } from '../../../src/engine/extract'
 import { levelRank, type CheckContext } from './context'
+import { firstStepErrors } from './firstSteps'
 import type { SimilarityIndex } from './similarity'
 import type { ContentJob } from './types'
 
@@ -161,7 +162,9 @@ export function checkReading(item: ReadingItem, ctx: CheckContext, opts: Reading
   const text = paras.join('\n\n')
   const lower = text.toLocaleLowerCase(ctx.language).replace(/’/g, "'")
   const voc = Array.isArray(item.vocabulary) ? item.vocabulary : []
-  if (voc.length < 6 || voc.length > 12) errors.push(`vocabulary needs 6–12 words, has ${voc.length}`)
+  if (item.firstStep) {
+    errors.push(...firstStepErrors(item, ctx))
+  } else if (voc.length < 6 || voc.length > 12) errors.push(`vocabulary needs 6–12 words, has ${voc.length}`)
   const vw = new Set<string>()
   for (const v of voc) {
     if (!filled(v?.word) || !filled(v?.lemma) || !filled(v?.tr)) {
@@ -188,7 +191,8 @@ export function checkReading(item: ReadingItem, ctx: CheckContext, opts: Reading
   const analysis = analyse(text, ctx)
   const tokens = wordTokens(analysis)
   const count = analysis.paragraphs.flat().reduce((n, s) => n + s.tokens.filter((t) => t.key).length, 0)
-  if (count < level.words[0] || count > level.words[1]) errors.push(`${count} words, ${item.level} asks ${level.words[0]}–${level.words[1]}`)
+  const bounds = item.firstStep ? [40, 80] : level.words
+  if (count < bounds[0] || count > bounds[1]) errors.push(`${count} words, ${item.level} asks ${bounds[0]}–${bounds[1]}`)
   const sentences = analysis.paragraphs.flat().filter((s) => s.tokens.some((t) => t.key))
   const average = sentences.length ? count / sentences.length : 0
   if (average > level.sentenceWords) errors.push(`sentences average ${average.toFixed(1)} words, ${item.level} asks at most ${level.sentenceWords}`)

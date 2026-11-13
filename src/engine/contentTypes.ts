@@ -28,6 +28,8 @@ export interface ReadingItem {
   genre: string
   /** The grammar topics the text uses on purpose (TOPIC_NAME keys). */
   grammar: string[]
+  /** A bounded introductory series; ordinary A1 content keeps its existing rules. */
+  firstStep?: { series: string; position: number; length: number }
   title: string
   paragraphs: string[]
   /** Each paragraph's Turkish. */

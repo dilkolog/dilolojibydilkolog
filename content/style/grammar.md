@@ -76,3 +76,16 @@ Neden kötü: kuralı söylemiyor.
 ## 9. Öğrenilen kurallar
 
 (Çözücü ve örneklem incelemelerinden gelen kurallar buraya tarihli olarak eklenir.)
+
+### 2026-11-13 — bağımsız çözücü bulguları
+
+- Professeur gibi çağdaş kullanımda iki cinsiyetle görülebilen isimlerde yalnız sözlük etiketine dayanarak le/la sorusu kurma; açık bir cinsiyet bağlamı ya da tartışmasız bir isim kullan.
+- Rendez-vous gibi tekil ve çoğulu aynı yazılan isimlerde belirsiz artikel boşluğu sayıyı tek başına belirlemez; sayı veya sıfat uyumuyla sabitle.
+- Bir sözcüğün sıfat görünümü aynı zamanda fiil ortacı olabilir: a fatigué, geçişsiz fatiguer yorumuyla mümkün olduğundan est fatigué hedefinde güvenli bir hata şıkkı değildir. İkinci fiil okuması olmayan bağlam seç.
+
+- Après-midi iki cinsiyetle kullanılabilir; cet/cette arasında tek cevap gerektiren soruda bu kelimeyi kullanma veya açık bir sözlüksel tercih ver.
+- 00.00 için minuit ve zéro heure(s) ayrı okumalardır. Tek cevap isteniyorsa günlük/resmî biçimi ve tek sözcük beklentisini belirt.
+
+- Combien des… ifadesini otomatik olarak yanlış sayma; de + les ile belirli kümeden seçim yorumu mümkün olabilir. Genel sayım sorusunda yanlış şık açıkça uyumsuz olmalı.
+- Zamir ile dönüşlü zamirin arasına açıklayıcı parantez koymak cümle çözümlemesini bozabilir; cinsiyet/kişi bilgisini ipucuna taşı.
+- Çift yardımcı fiilli fiillerin bağlama göre doğru kullanımı, motorun tek varsayılan çekiminden farklı olabilir. Motor doğrulaması gereken başlangıç sorularında açıkça desteklenen örnek seç; doğru Fransızcayı araç yüzünden yanlış ilan etme.

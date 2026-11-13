@@ -413,6 +413,69 @@
       "quand + futur",
       "yakın gelecek ile fark",
       "varsayım"
+    ],
+    "basics_fr_articles": [
+      "belirli artikel",
+      "belirsiz artikel",
+      "sesli harf ve sessiz h",
+      "edat ve artikel birleşimi",
+      "çoğul artikeller"
+    ],
+    "basics_fr_etre_avoir": [
+      "être : lieu et personne",
+      "avoir : possession",
+      "âge et sensations",
+      "être : identité et état",
+      "il y a"
+    ],
+    "basics_fr_negation": [
+      "ne et pas à l’écrit",
+      "élision et place de pas",
+      "de après la négation",
+      "article conservé après être",
+      "réponse affirmative : si"
+    ],
+    "basics_fr_pronoms": [
+      "özne zamiri : tekil",
+      "özne zamiri : çoğul",
+      "tu, vous et on",
+      "edattan sonra vurgulu zamir",
+      "tek başına ve vurguda zamir"
+    ],
+    "basics_fr_possessifs": [
+      "iyelik : tekil ve cinsiyet",
+      "iyelik : çoğul ve sahipler",
+      "sesli önünde mon, ton, son",
+      "işaret : ce, cet, cette, ces",
+      "zaman ve bağlamda işaret"
+    ],
+    "basics_fr_nombres": [
+      "nombres de 1 à 16",
+      "nombres composés : France",
+      "cent et mille",
+      "heures quotidiennes et officielles",
+      "dates, mois et saisons"
+    ],
+    "basics_fr_questions": [
+      "soru sözcüğü ve cevap bilgisi",
+      "quel ailesinde uyum",
+      "qui, que et quoi",
+      "devrik soruda zamir ve liaison",
+      "combien de et parce que"
+    ],
+    "basics_fr_adjectifs": [
+      "accord au singulier",
+      "accord au pluriel",
+      "féminins et pluriels irréguliers",
+      "bel, nouvel et vieil",
+      "place de l’adjectif et accord"
+    ],
+    "basics_fr_passe_compose": [
+      "avoir : participes réguliers",
+      "avoir : participes irréguliers",
+      "être et accord du participe",
+      "verbes pronominaux",
+      "négation et interrogation"
     ]
   },
   "targets": {

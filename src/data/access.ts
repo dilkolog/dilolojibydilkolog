@@ -26,11 +26,71 @@ export async function getStoredAccount(): Promise<Account | null> {
 /** The headers that tell the server which account a request comes from. */
 export const accessHeaders = (account: Account | null): Record<string, string> => (account ? { 'x-sync-id': account.id, 'x-sync-auth': account.auth } : {})
 
-/** fetch, with the signed-in account's identity: for the endpoints that need an approved account. */
-export async function accessFetch(input: string, init: RequestInit = {}): Promise<Response> {
+const send = (input: string, init: RequestInit, account: Account | null) => {
   const headers = new Headers(init.headers)
-  for (const [k, v] of Object.entries(accessHeaders(await getStoredAccount().catch(() => null)))) headers.set(k, v)
+  for (const [k, v] of Object.entries(accessHeaders(account))) headers.set(k, v)
   return fetch(input, { ...init, headers })
+}
+
+/**
+ * fetch, with the signed-in account's identity: for the endpoints that need an approved account. A key the server no
+ * longer takes (renewed on another device: renewSyncKey) is fetched again with the Supabase sign-in, and the request
+ * sent once more.
+ */
+export async function accessFetch(input: string, init: RequestInit = {}): Promise<Response> {
+  const account = await getStoredAccount().catch(() => null)
+  const res = await send(input, init, account)
+  if (res.status !== 403 || !account || init.body instanceof ReadableStream) return res
+  const { error } = (await res.clone().json().catch(() => ({}))) as { error?: unknown }
+  if (error !== 'account_required') return res
+  const fresh = await refreshedAccount(account)
+  return fresh ? send(input, init, fresh) : res
+}
+
+let refreshing: Promise<Account | null> | null = null
+
+/** The account with the token the server holds now, saved on the device; null when it is the same (or cannot be read). */
+function refreshedAccount(stale: Account): Promise<Account | null> {
+  refreshing ??= (async () => {
+    try {
+      const { currentSession, hasStoredSession } = await import('./supabase')
+      if (!hasStoredSession()) return null
+      const session = await currentSession()
+      if (!session) return null
+      const { fetchVault } = await import('./vault')
+      const fresh = await fetchVault(session.access_token, stale.username)
+      if (!fresh || fresh.id !== stale.id || fresh.auth === stale.auth) return null
+      const now = await getStoredAccount()
+      if (now?.id !== stale.id) return null
+      const account = { ...now, auth: fresh.auth }
+      await db.meta.put({ key: 'syncAccount', value: account })
+      return account
+    } catch {
+      return null
+    }
+  })().finally(() => (refreshing = null))
+  return refreshing
+}
+
+/**
+ * Gives the person's sync account a new token (after a password change): a copied old key stops working. This device
+ * keeps working with the new one; the others fetch it with their sign-in on their next request. False when it could not
+ * be done (signed out, offline).
+ */
+export async function renewSyncKey(): Promise<boolean> {
+  try {
+    const { currentSession } = await import('./supabase')
+    const session = await currentSession()
+    if (!session) return false
+    const { rotateVault } = await import('./vault')
+    const fresh = await rotateVault(session.access_token)
+    if (!fresh) return false
+    const now = await getStoredAccount()
+    if (now?.id === fresh.id) await db.meta.put({ key: 'syncAccount', value: { ...now, auth: fresh.auth } })
+    return true
+  } catch {
+    return false
+  }
 }
 
 /** What the device last heard (kept so the app doesn't wait for the network to know). */
