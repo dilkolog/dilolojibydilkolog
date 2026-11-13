@@ -76,3 +76,9 @@ Neden kötü: kuralı söylemiyor.
 ## 9. Öğrenilen kurallar
 
 (Çözücü ve örneklem incelemelerinden gelen kurallar buraya tarihli olarak eklenir.)
+
+### 2026-11-13 — bağımsız çözücü bulguları
+
+- Professeur gibi çağdaş kullanımda iki cinsiyetle görülebilen isimlerde yalnız sözlük etiketine dayanarak le/la sorusu kurma; açık bir cinsiyet bağlamı ya da tartışmasız bir isim kullan.
+- Rendez-vous gibi tekil ve çoğulu aynı yazılan isimlerde belirsiz artikel boşluğu sayıyı tek başına belirlemez; sayı veya sıfat uyumuyla sabitle.
+- Bir sözcüğün sıfat görünümü aynı zamanda fiil ortacı olabilir: a fatigué, geçişsiz fatiguer yorumuyla mümkün olduğundan est fatigué hedefinde güvenli bir hata şıkkı değildir. İkinci fiil okuması olmayan bağlam seç.
