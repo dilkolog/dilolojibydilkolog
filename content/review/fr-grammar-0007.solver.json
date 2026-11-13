@@ -1,0 +1,262 @@
+{
+  "job": "fr-grammar-0007",
+  "results": [
+    {
+      "id": "fr-g-000271",
+      "answer": "mon",
+      "single": true
+    },
+    {
+      "id": "fr-g-000272",
+      "answer": "ta",
+      "single": true
+    },
+    {
+      "id": "fr-g-000273",
+      "answer": "sa",
+      "single": true
+    },
+    {
+      "id": "fr-g-000274",
+      "answer": "mon",
+      "single": true
+    },
+    {
+      "id": "fr-g-000275",
+      "answer": "ta",
+      "single": true
+    },
+    {
+      "id": "fr-g-000276",
+      "answer": "sa",
+      "single": true
+    },
+    {
+      "id": "fr-g-000277",
+      "answer": "mon",
+      "single": true
+    },
+    {
+      "id": "fr-g-000278",
+      "answer": "ta",
+      "single": true
+    },
+    {
+      "id": "fr-g-000279",
+      "answer": "ses",
+      "single": true,
+      "note": "sa: Carte tekil dişildir."
+    },
+    {
+      "id": "fr-g-000280",
+      "answer": "ma",
+      "single": true,
+      "note": "mon: Sac eril tekildir."
+    },
+    {
+      "id": "fr-g-000281",
+      "answer": "nos",
+      "single": true
+    },
+    {
+      "id": "fr-g-000282",
+      "answer": "votre",
+      "single": true
+    },
+    {
+      "id": "fr-g-000283",
+      "answer": "leurs",
+      "single": true
+    },
+    {
+      "id": "fr-g-000284",
+      "answer": "mes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000285",
+      "answer": "tes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000286",
+      "answer": "ses",
+      "single": true
+    },
+    {
+      "id": "fr-g-000287",
+      "answer": "nos",
+      "single": true
+    },
+    {
+      "id": "fr-g-000288",
+      "answer": "leur",
+      "single": true
+    },
+    {
+      "id": "fr-g-000289",
+      "answer": "votre",
+      "single": true,
+      "note": "vos: Billets çoğuldur."
+    },
+    {
+      "id": "fr-g-000290",
+      "answer": "nos",
+      "single": true,
+      "note": "notre: Maison tekildir."
+    },
+    {
+      "id": "fr-g-000291",
+      "answer": "mon",
+      "single": true
+    },
+    {
+      "id": "fr-g-000292",
+      "answer": "ton",
+      "single": true
+    },
+    {
+      "id": "fr-g-000293",
+      "answer": "son",
+      "single": true
+    },
+    {
+      "id": "fr-g-000294",
+      "answer": "mon",
+      "single": true
+    },
+    {
+      "id": "fr-g-000295",
+      "answer": "ton",
+      "single": true
+    },
+    {
+      "id": "fr-g-000296",
+      "answer": "son",
+      "single": true
+    },
+    {
+      "id": "fr-g-000297",
+      "answer": "mon",
+      "single": true
+    },
+    {
+      "id": "fr-g-000298",
+      "answer": "son",
+      "single": true
+    },
+    {
+      "id": "fr-g-000299",
+      "answer": "ton",
+      "single": true
+    },
+    {
+      "id": "fr-g-000300",
+      "answer": "mon",
+      "single": true
+    },
+    {
+      "id": "fr-g-000301",
+      "answer": "ce",
+      "single": true
+    },
+    {
+      "id": "fr-g-000302",
+      "answer": "cet",
+      "single": true
+    },
+    {
+      "id": "fr-g-000303",
+      "answer": "cette",
+      "single": true
+    },
+    {
+      "id": "fr-g-000304",
+      "answer": "ces",
+      "single": true
+    },
+    {
+      "id": "fr-g-000305",
+      "answer": "cet",
+      "single": true
+    },
+    {
+      "id": "fr-g-000306",
+      "answer": "cette",
+      "single": true
+    },
+    {
+      "id": "fr-g-000307",
+      "answer": "ces",
+      "single": true
+    },
+    {
+      "id": "fr-g-000308",
+      "answer": "cet",
+      "single": true
+    },
+    {
+      "id": "fr-g-000309",
+      "answer": "cet",
+      "single": true,
+      "note": "cette: Chemise dişil tekildir."
+    },
+    {
+      "id": "fr-g-000310",
+      "answer": "ce",
+      "single": true
+    },
+    {
+      "id": "fr-g-000311",
+      "answer": "ce",
+      "single": true
+    },
+    {
+      "id": "fr-g-000312",
+      "answer": "cet",
+      "single": true
+    },
+    {
+      "id": "fr-g-000313",
+      "answer": "cette",
+      "single": true
+    },
+    {
+      "id": "fr-g-000314",
+      "answer": "ces",
+      "single": true
+    },
+    {
+      "id": "fr-g-000315",
+      "answer": "ce",
+      "single": true
+    },
+    {
+      "id": "fr-g-000316",
+      "answer": "cette",
+      "single": true
+    },
+    {
+      "id": "fr-g-000317",
+      "answer": "ce",
+      "single": true
+    },
+    {
+      "id": "fr-g-000318",
+      "answer": "cet",
+      "single": true
+    },
+    {
+      "id": "fr-g-000319",
+      "answer": "ce",
+      "single": true,
+      "note": "cette: Soirée dişil tekildir."
+    },
+    {
+      "id": "fr-g-000320",
+      "answer": "ce",
+      "single": true,
+      "note": "ces: Fenêtres çoğuldur."
+    }
+  ]
+}
