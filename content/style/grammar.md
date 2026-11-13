@@ -85,3 +85,7 @@ Neden kötü: kuralı söylemiyor.
 
 - Après-midi iki cinsiyetle kullanılabilir; cet/cette arasında tek cevap gerektiren soruda bu kelimeyi kullanma veya açık bir sözlüksel tercih ver.
 - 00.00 için minuit ve zéro heure(s) ayrı okumalardır. Tek cevap isteniyorsa günlük/resmî biçimi ve tek sözcük beklentisini belirt.
+
+- Combien des… ifadesini otomatik olarak yanlış sayma; de + les ile belirli kümeden seçim yorumu mümkün olabilir. Genel sayım sorusunda yanlış şık açıkça uyumsuz olmalı.
+- Zamir ile dönüşlü zamirin arasına açıklayıcı parantez koymak cümle çözümlemesini bozabilir; cinsiyet/kişi bilgisini ipucuna taşı.
+- Çift yardımcı fiilli fiillerin bağlama göre doğru kullanımı, motorun tek varsayılan çekiminden farklı olabilir. Motor doğrulaması gereken başlangıç sorularında açıkça desteklenen örnek seç; doğru Fransızcayı araç yüzünden yanlış ilan etme.

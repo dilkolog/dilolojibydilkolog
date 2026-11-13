@@ -455,6 +455,27 @@
       "cent et mille",
       "heures quotidiennes et officielles",
       "dates, mois et saisons"
+    ],
+    "basics_fr_questions": [
+      "soru sözcüğü ve cevap bilgisi",
+      "quel ailesinde uyum",
+      "qui, que et quoi",
+      "devrik soruda zamir ve liaison",
+      "combien de et parce que"
+    ],
+    "basics_fr_adjectifs": [
+      "accord au singulier",
+      "accord au pluriel",
+      "féminins et pluriels irréguliers",
+      "bel, nouvel et vieil",
+      "place de l’adjectif et accord"
+    ],
+    "basics_fr_passe_compose": [
+      "avoir : participes réguliers",
+      "avoir : participes irréguliers",
+      "être et accord du participe",
+      "verbes pronominaux",
+      "négation et interrogation"
     ]
   },
   "targets": {

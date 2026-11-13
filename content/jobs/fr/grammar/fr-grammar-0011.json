@@ -1,0 +1,24 @@
+{
+  "id": "fr-grammar-0011",
+  "language": "fr",
+  "kind": "grammar",
+  "level": "A2",
+  "grammar": [
+    "basics_fr_passe_compose"
+  ],
+  "count": 50,
+  "subskills": [
+    "avoir : participes réguliers",
+    "avoir : participes irréguliers",
+    "être et accord du participe",
+    "verbes pronominaux",
+    "négation et interrogation"
+  ],
+  "ids": {
+    "from": 471,
+    "to": 520
+  },
+  "createdAt": "2026-11-13T07:37:08.967Z",
+  "claimedBy": "Codex/diloloji-fr-grammar-3",
+  "claimedAt": "2026-11-13T07:42:49.264859+00:00"
+}

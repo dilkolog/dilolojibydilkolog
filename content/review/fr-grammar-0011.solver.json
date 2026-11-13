@@ -1,0 +1,267 @@
+{
+  "job": "fr-grammar-0011",
+  "results": [
+    {
+      "id": "fr-g-000471",
+      "answer": "avons préparé",
+      "single": true
+    },
+    {
+      "id": "fr-g-000472",
+      "answer": "a rangé",
+      "single": true
+    },
+    {
+      "id": "fr-g-000473",
+      "answer": "as visité",
+      "single": true
+    },
+    {
+      "id": "fr-g-000474",
+      "answer": "ont écouté",
+      "single": true
+    },
+    {
+      "id": "fr-g-000475",
+      "answer": "avez travaillé",
+      "single": true
+    },
+    {
+      "id": "fr-g-000476",
+      "answer": "attendu",
+      "single": true
+    },
+    {
+      "id": "fr-g-000477",
+      "answer": "fini",
+      "single": true
+    },
+    {
+      "id": "fr-g-000478",
+      "answer": "vendu",
+      "single": true
+    },
+    {
+      "id": "fr-g-000479",
+      "answer": "regardaient",
+      "single": true,
+      "note": "regardé"
+    },
+    {
+      "id": "fr-g-000480",
+      "answer": "louiez",
+      "single": true,
+      "note": "loué"
+    },
+    {
+      "id": "fr-g-000481",
+      "answer": "ai pris",
+      "single": true
+    },
+    {
+      "id": "fr-g-000482",
+      "answer": "a écrit",
+      "single": true
+    },
+    {
+      "id": "fr-g-000483",
+      "answer": "avons mis",
+      "single": true
+    },
+    {
+      "id": "fr-g-000484",
+      "answer": "as vu",
+      "single": true
+    },
+    {
+      "id": "fr-g-000485",
+      "answer": "ont fait",
+      "single": true
+    },
+    {
+      "id": "fr-g-000486",
+      "answer": "lu",
+      "single": true
+    },
+    {
+      "id": "fr-g-000487",
+      "answer": "compris",
+      "single": true
+    },
+    {
+      "id": "fr-g-000488",
+      "answer": "pris",
+      "single": true
+    },
+    {
+      "id": "fr-g-000489",
+      "answer": "écrivais",
+      "single": true,
+      "note": "écrit"
+    },
+    {
+      "id": "fr-g-000490",
+      "answer": "disions",
+      "single": true,
+      "note": "dit"
+    },
+    {
+      "id": "fr-g-000491",
+      "answer": "est allée",
+      "single": true
+    },
+    {
+      "id": "fr-g-000492",
+      "answer": "est arrivé",
+      "single": true
+    },
+    {
+      "id": "fr-g-000493",
+      "answer": "sont partis",
+      "single": true
+    },
+    {
+      "id": "fr-g-000494",
+      "answer": "sont venues",
+      "single": true
+    },
+    {
+      "id": "fr-g-000495",
+      "answer": "êtes restés",
+      "single": true
+    },
+    {
+      "id": "fr-g-000496",
+      "answer": "entrée",
+      "single": true
+    },
+    {
+      "id": "fr-g-000497",
+      "answer": "arrivées",
+      "single": true,
+      "note": "Arriver être alır; les deux filles dişil çoğul olduğundan arrivées."
+    },
+    {
+      "id": "fr-g-000498",
+      "answer": "tombé",
+      "single": true
+    },
+    {
+      "id": "fr-g-000499",
+      "answer": "revenues",
+      "single": true
+    },
+    {
+      "id": "fr-g-000500",
+      "answer": "revenue",
+      "single": true,
+      "note": "Revenir être alır; elle dişil tekil olduğundan revenue."
+    },
+    {
+      "id": "fr-g-000501",
+      "answer": "est levée",
+      "single": true
+    },
+    {
+      "id": "fr-g-000502",
+      "answer": "sont réveillées",
+      "single": true
+    },
+    {
+      "id": "fr-g-000503",
+      "answer": "sommes promenés",
+      "single": true,
+      "note": "Nous ipucunda iki erkek olarak tanımlanmış; dönüşlü fiilde être, birinci çoğul sommes ve eril çoğul promenés gerekir."
+    },
+    {
+      "id": "fr-g-000504",
+      "answer": "es couchée",
+      "single": true
+    },
+    {
+      "id": "fr-g-000505",
+      "answer": "êtes préparées",
+      "single": true,
+      "note": "Vous ipucunda iki kadın olarak tanımlanmış; dönüşlü fiilde être, ikinci çoğul êtes ve dişil çoğul préparées gerekir."
+    },
+    {
+      "id": "fr-g-000506",
+      "answer": "installée",
+      "single": true
+    },
+    {
+      "id": "fr-g-000507",
+      "answer": "retrouvés",
+      "single": true
+    },
+    {
+      "id": "fr-g-000508",
+      "answer": "reposées",
+      "single": true,
+      "note": "Nous ipucunda iki kadın olarak tanımlanmış; yazılı sommes sonrasında dişil çoğul reposées gerekir."
+    },
+    {
+      "id": "fr-g-000509",
+      "answer": "habillés",
+      "single": true,
+      "note": "habillées"
+    },
+    {
+      "id": "fr-g-000510",
+      "answer": "reposé",
+      "single": true
+    },
+    {
+      "id": "fr-g-000511",
+      "answer": "a",
+      "single": true
+    },
+    {
+      "id": "fr-g-000512",
+      "answer": "avez",
+      "single": true
+    },
+    {
+      "id": "fr-g-000513",
+      "answer": "as",
+      "single": true
+    },
+    {
+      "id": "fr-g-000514",
+      "answer": "allées",
+      "single": true
+    },
+    {
+      "id": "fr-g-000515",
+      "answer": "est",
+      "single": true
+    },
+    {
+      "id": "fr-g-000516",
+      "answer": "écrit",
+      "single": true
+    },
+    {
+      "id": "fr-g-000517",
+      "answer": "lu",
+      "single": true
+    },
+    {
+      "id": "fr-g-000518",
+      "answer": "pris",
+      "single": true
+    },
+    {
+      "id": "fr-g-000519",
+      "answer": "faisait",
+      "single": true,
+      "note": "fait"
+    },
+    {
+      "id": "fr-g-000520",
+      "answer": "prenons",
+      "single": true,
+      "note": "pris"
+    }
+  ]
+}

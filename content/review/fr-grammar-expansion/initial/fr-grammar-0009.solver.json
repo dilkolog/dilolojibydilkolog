@@ -1,0 +1,262 @@
+{
+  "job": "fr-grammar-0009",
+  "results": [
+    {
+      "id": "fr-g-000371",
+      "answer": "Où",
+      "single": true
+    },
+    {
+      "id": "fr-g-000372",
+      "answer": "Quand",
+      "single": true
+    },
+    {
+      "id": "fr-g-000373",
+      "answer": "Qui",
+      "single": true
+    },
+    {
+      "id": "fr-g-000374",
+      "answer": "Comment",
+      "single": true
+    },
+    {
+      "id": "fr-g-000375",
+      "answer": "Pourquoi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000376",
+      "answer": "Quand",
+      "single": true
+    },
+    {
+      "id": "fr-g-000377",
+      "answer": "Où",
+      "single": true
+    },
+    {
+      "id": "fr-g-000378",
+      "answer": "Qui",
+      "single": true
+    },
+    {
+      "id": "fr-g-000379",
+      "answer": "Quand",
+      "single": true,
+      "note": "Comment"
+    },
+    {
+      "id": "fr-g-000380",
+      "answer": "Où",
+      "single": true,
+      "note": "Pourquoi"
+    },
+    {
+      "id": "fr-g-000381",
+      "answer": "Quelle",
+      "single": true
+    },
+    {
+      "id": "fr-g-000382",
+      "answer": "Quel",
+      "single": true
+    },
+    {
+      "id": "fr-g-000383",
+      "answer": "Quelles",
+      "single": true
+    },
+    {
+      "id": "fr-g-000384",
+      "answer": "Quels",
+      "single": true
+    },
+    {
+      "id": "fr-g-000385",
+      "answer": "Quel",
+      "single": true
+    },
+    {
+      "id": "fr-g-000386",
+      "answer": "quelle",
+      "single": true
+    },
+    {
+      "id": "fr-g-000387",
+      "answer": "Quels",
+      "single": true
+    },
+    {
+      "id": "fr-g-000388",
+      "answer": "Quelle",
+      "single": true
+    },
+    {
+      "id": "fr-g-000389",
+      "answer": "Quel",
+      "single": true,
+      "note": "Quelles"
+    },
+    {
+      "id": "fr-g-000390",
+      "answer": "Quelle",
+      "single": true,
+      "note": "Quel"
+    },
+    {
+      "id": "fr-g-000391",
+      "answer": "quoi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000392",
+      "answer": "Que",
+      "single": true
+    },
+    {
+      "id": "fr-g-000393",
+      "answer": "quoi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000394",
+      "answer": "Qui",
+      "single": true
+    },
+    {
+      "id": "fr-g-000395",
+      "answer": "qui",
+      "single": true
+    },
+    {
+      "id": "fr-g-000396",
+      "answer": "quoi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000397",
+      "answer": "Que",
+      "single": true
+    },
+    {
+      "id": "fr-g-000398",
+      "answer": "quoi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000399",
+      "answer": "Qui",
+      "single": true
+    },
+    {
+      "id": "fr-g-000400",
+      "answer": "quoi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000401",
+      "answer": "vous",
+      "single": true
+    },
+    {
+      "id": "fr-g-000402",
+      "answer": "tu",
+      "single": true
+    },
+    {
+      "id": "fr-g-000403",
+      "answer": "nous",
+      "single": true
+    },
+    {
+      "id": "fr-g-000404",
+      "answer": "il",
+      "single": true
+    },
+    {
+      "id": "fr-g-000405",
+      "answer": "elles",
+      "single": true
+    },
+    {
+      "id": "fr-g-000406",
+      "answer": "t",
+      "single": true
+    },
+    {
+      "id": "fr-g-000407",
+      "answer": "t",
+      "single": true
+    },
+    {
+      "id": "fr-g-000408",
+      "answer": "vous",
+      "single": true
+    },
+    {
+      "id": "fr-g-000409",
+      "answer": "tu",
+      "single": true,
+      "note": "vous"
+    },
+    {
+      "id": "fr-g-000410",
+      "answer": "t",
+      "single": true
+    },
+    {
+      "id": "fr-g-000411",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000412",
+      "answer": "Parce",
+      "single": true
+    },
+    {
+      "id": "fr-g-000413",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000414",
+      "answer": "Parce",
+      "single": true
+    },
+    {
+      "id": "fr-g-000415",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000416",
+      "answer": "Parce",
+      "single": true
+    },
+    {
+      "id": "fr-g-000417",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000418",
+      "answer": "Parce",
+      "single": true
+    },
+    {
+      "id": "fr-g-000419",
+      "answer": "des",
+      "single": false,
+      "note": "Hedef düzeltme: de. Ancak des, de + les olarak belirli bir kümenin kaç üyesi anlamında okunabilir; bu okumada zorunlu bir hata yoktur. Belirsiz toplam sayı bağlamı açıklaştırılmalı."
+    },
+    {
+      "id": "fr-g-000420",
+      "answer": "des",
+      "single": false,
+      "note": "Hedef düzeltme: de. Ancak des, de + les olarak belirli bir kümenin kaç üyesi anlamında okunabilir; bu okumada zorunlu bir hata yoktur. Belirsiz toplam sayı bağlamı açıklaştırılmalı."
+    }
+  ]
+}

@@ -1,0 +1,911 @@
+{
+  "job": "fr-grammar-0011",
+  "count": 50,
+  "solver": {
+    "checked": 50,
+    "disagreements": 0,
+    "rate": 0
+  },
+  "rows": [
+    {
+      "id": "fr-g-000471",
+      "target": "avons préparé",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes réguliers"
+      },
+      "conjugation": [
+        {
+          "form": "avons préparé",
+          "lemma": "préparer",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000472",
+      "target": "a rangé",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes réguliers"
+      },
+      "conjugation": [
+        {
+          "form": "a rangé",
+          "lemma": "ranger",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000473",
+      "target": "as visité",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes réguliers"
+      },
+      "conjugation": [
+        {
+          "form": "as visité",
+          "lemma": "visiter",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000474",
+      "target": "ont écouté",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes réguliers"
+      },
+      "conjugation": [
+        {
+          "form": "ont écouté",
+          "lemma": "écouter",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000475",
+      "target": "avez travaillé",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes réguliers"
+      },
+      "conjugation": [
+        {
+          "form": "avez travaillé",
+          "lemma": "travailler",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000476",
+      "target": "attendu",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes réguliers"
+      },
+      "conjugation": [
+        {
+          "form": "ai attendu",
+          "lemma": "attendre",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000477",
+      "target": "fini",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes réguliers"
+      },
+      "conjugation": [
+        {
+          "form": "avons fini",
+          "lemma": "finir",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000478",
+      "target": "vendu",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes réguliers"
+      },
+      "conjugation": [
+        {
+          "form": "a vendu",
+          "lemma": "vendre",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000479",
+      "target": "regardé",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes réguliers"
+      },
+      "conjugation": [
+        {
+          "form": "ont regardé",
+          "lemma": "regarder",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000480",
+      "target": "loué",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes réguliers"
+      },
+      "conjugation": [
+        {
+          "form": "avez loué",
+          "lemma": "louer",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000481",
+      "target": "ai pris",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes irréguliers"
+      },
+      "conjugation": [
+        {
+          "form": "ai pris",
+          "lemma": "prendre",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000482",
+      "target": "a écrit",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes irréguliers"
+      },
+      "conjugation": [
+        {
+          "form": "a écrit",
+          "lemma": "écrire",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000483",
+      "target": "avons mis",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes irréguliers"
+      },
+      "conjugation": [
+        {
+          "form": "avons mis",
+          "lemma": "mettre",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000484",
+      "target": "as vu",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes irréguliers"
+      },
+      "conjugation": [
+        {
+          "form": "as vu",
+          "lemma": "voir",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000485",
+      "target": "ont fait",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes irréguliers"
+      },
+      "conjugation": [
+        {
+          "form": "ont fait",
+          "lemma": "faire",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000486",
+      "target": "lu",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes irréguliers"
+      },
+      "conjugation": [
+        {
+          "form": "avez lu",
+          "lemma": "lire",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000487",
+      "target": "compris",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes irréguliers"
+      },
+      "conjugation": [
+        {
+          "form": "avons compris",
+          "lemma": "comprendre",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000488",
+      "target": "pris",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes irréguliers"
+      },
+      "conjugation": [
+        {
+          "form": "a pris",
+          "lemma": "prendre",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000489",
+      "target": "écrit",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes irréguliers"
+      },
+      "conjugation": [
+        {
+          "form": "as écrit",
+          "lemma": "écrire",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000490",
+      "target": "dit",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "avoir : participes irréguliers"
+      },
+      "conjugation": [
+        {
+          "form": "avons dit",
+          "lemma": "dire",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000491",
+      "target": "est allée",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "être et accord du participe"
+      },
+      "conjugation": [
+        {
+          "form": "est allée",
+          "lemma": "aller",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000492",
+      "target": "est arrivé",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "être et accord du participe"
+      },
+      "conjugation": [
+        {
+          "form": "est arrivé",
+          "lemma": "arriver",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000493",
+      "target": "sont partis",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "être et accord du participe"
+      },
+      "conjugation": [
+        {
+          "form": "sont partis",
+          "lemma": "partir",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000494",
+      "target": "sont venues",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "être et accord du participe"
+      },
+      "conjugation": [
+        {
+          "form": "sont venues",
+          "lemma": "venir",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000495",
+      "target": "êtes restés",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "être et accord du participe"
+      },
+      "conjugation": [
+        {
+          "form": "êtes restés",
+          "lemma": "rester",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000496",
+      "target": "entrée",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "être et accord du participe"
+      },
+      "conjugation": [
+        {
+          "form": "est entrée",
+          "lemma": "entrer",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000497",
+      "target": "arrivées",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "être et accord du participe"
+      },
+      "conjugation": [
+        {
+          "form": "sont arrivées",
+          "lemma": "arriver",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000498",
+      "target": "tombé",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "être et accord du participe"
+      },
+      "conjugation": [
+        {
+          "form": "est tombé",
+          "lemma": "tomber",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000499",
+      "target": "revenues",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "être et accord du participe"
+      },
+      "conjugation": [
+        {
+          "form": "sommes revenues",
+          "lemma": "revenir",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000500",
+      "target": "revenue",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "être et accord du participe"
+      },
+      "conjugation": [
+        {
+          "form": "est revenue",
+          "lemma": "revenir",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000501",
+      "target": "est levée",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "verbes pronominaux"
+      },
+      "conjugation": [
+        {
+          "form": "s'est levée",
+          "lemma": "lever",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000502",
+      "target": "sont réveillées",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "verbes pronominaux"
+      },
+      "conjugation": [
+        {
+          "form": "se sont réveillées",
+          "lemma": "réveiller",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000503",
+      "target": "sommes promenés",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "verbes pronominaux"
+      },
+      "conjugation": [
+        {
+          "form": "nous nous sommes promenés",
+          "lemma": "promener",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000504",
+      "target": "es couchée",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "verbes pronominaux"
+      },
+      "conjugation": [
+        {
+          "form": "t'es couchée",
+          "lemma": "coucher",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000505",
+      "target": "êtes préparées",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "verbes pronominaux"
+      },
+      "conjugation": [
+        {
+          "form": "vous vous êtes préparées",
+          "lemma": "préparer",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000506",
+      "target": "installée",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "verbes pronominaux"
+      },
+      "conjugation": [
+        {
+          "form": "s'est installée",
+          "lemma": "installer",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000507",
+      "target": "retrouvés",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "verbes pronominaux"
+      },
+      "conjugation": [
+        {
+          "form": "se sont retrouvés",
+          "lemma": "retrouver",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000508",
+      "target": "reposées",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "verbes pronominaux"
+      },
+      "conjugation": [
+        {
+          "form": "nous nous sommes reposées",
+          "lemma": "reposer",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000509",
+      "target": "habillées",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "verbes pronominaux"
+      },
+      "conjugation": [
+        {
+          "form": "se sont habillées",
+          "lemma": "habiller",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000510",
+      "target": "reposé",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "verbes pronominaux"
+      },
+      "conjugation": [
+        {
+          "form": "s'est reposé",
+          "lemma": "reposer",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000511",
+      "target": "a",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "négation et interrogation"
+      },
+      "conjugation": [
+        {
+          "form": "a choisi",
+          "lemma": "choisir",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000512",
+      "target": "avez",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "négation et interrogation"
+      },
+      "conjugation": [
+        {
+          "form": "avez-vous reçu",
+          "lemma": "recevoir",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000513",
+      "target": "as",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "négation et interrogation"
+      },
+      "conjugation": [
+        {
+          "form": "as trouvé",
+          "lemma": "trouver",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000514",
+      "target": "allées",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "négation et interrogation"
+      },
+      "conjugation": [
+        {
+          "form": "sont allées",
+          "lemma": "aller",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000515",
+      "target": "est",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "négation et interrogation"
+      },
+      "conjugation": [
+        {
+          "form": "est-elle partie",
+          "lemma": "partir",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000516",
+      "target": "écrit",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "négation et interrogation"
+      },
+      "conjugation": [
+        {
+          "form": "as écrit",
+          "lemma": "écrire",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000517",
+      "target": "lu",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "négation et interrogation"
+      },
+      "conjugation": [
+        {
+          "form": "ont-ils lu",
+          "lemma": "lire",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000518",
+      "target": "pris",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "négation et interrogation"
+      },
+      "conjugation": [
+        {
+          "form": "avez pris",
+          "lemma": "prendre",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000519",
+      "target": "fait",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "négation et interrogation"
+      },
+      "conjugation": [
+        {
+          "form": "a fait",
+          "lemma": "faire",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000520",
+      "target": "pris",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_passe_compose",
+        "section": "négation et interrogation"
+      },
+      "conjugation": [
+        {
+          "form": "avons-nous pris",
+          "lemma": "prendre",
+          "tense": "passe-compose",
+          "sentence": 0
+        }
+      ],
+      "independentSolver": "passed"
+    }
+  ]
+}

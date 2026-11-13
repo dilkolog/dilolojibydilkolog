@@ -4,7 +4,7 @@ Fransızca · dilbilgisi · A1 · Être ve avoir
 
 Partideki 50 öğeden 10 tanesi. Her öğenin altına **tamam** ya da **hata: …** yaz. Bulunan her hata türü stil rehberine kural olarak eklenir.
 
-## fr-g-000127 · cloze · zorluk 1 · être : lieu et personne
+## fr-g-000127 · cloze · zorluk 3 · être : lieu et personne
 
 > La bibliothèque ___ près du jardin public.
 
@@ -18,7 +18,7 @@ Değerlendirme:
 
 ---
 
-## fr-g-000131 · choice · zorluk 1 · avoir : possession
+## fr-g-000131 · choice · zorluk 3 · avoir : possession
 
 > J'___ une nouvelle carte de transport.
 

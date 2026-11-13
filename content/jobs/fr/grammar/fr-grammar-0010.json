@@ -1,0 +1,24 @@
+{
+  "id": "fr-grammar-0010",
+  "language": "fr",
+  "kind": "grammar",
+  "level": "A2",
+  "grammar": [
+    "basics_fr_adjectifs"
+  ],
+  "count": 50,
+  "subskills": [
+    "accord au singulier",
+    "accord au pluriel",
+    "féminins et pluriels irréguliers",
+    "bel, nouvel et vieil",
+    "place de l’adjectif et accord"
+  ],
+  "ids": {
+    "from": 421,
+    "to": 470
+  },
+  "createdAt": "2026-11-13T07:37:08.346Z",
+  "claimedBy": "Codex/diloloji-fr-grammar-3",
+  "claimedAt": "2026-11-13T07:42:49.262562+00:00"
+}
