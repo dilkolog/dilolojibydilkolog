@@ -1,0 +1,24 @@
+{
+  "id": "fr-grammar-0004",
+  "language": "fr",
+  "kind": "grammar",
+  "level": "A1",
+  "grammar": [
+    "basics_fr_etre_avoir"
+  ],
+  "count": 50,
+  "subskills": [
+    "être : lieu et personne",
+    "avoir : possession",
+    "âge et sensations",
+    "être : identité et état",
+    "il y a"
+  ],
+  "ids": {
+    "from": 121,
+    "to": 170
+  },
+  "createdAt": "2026-11-13T07:20:12.895Z",
+  "claimedBy": "Codex/diloloji-fr-grammar-1",
+  "claimedAt": "2026-11-13T07:23:25.164947+00:00"
+}

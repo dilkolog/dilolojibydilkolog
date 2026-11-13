@@ -1,0 +1,24 @@
+{
+  "id": "fr-grammar-0003",
+  "language": "fr",
+  "kind": "grammar",
+  "level": "A1",
+  "grammar": [
+    "basics_fr_articles"
+  ],
+  "count": 50,
+  "subskills": [
+    "belirli artikel",
+    "belirsiz artikel",
+    "sesli harf ve sessiz h",
+    "edat ve artikel birleşimi",
+    "çoğul artikeller"
+  ],
+  "ids": {
+    "from": 71,
+    "to": 120
+  },
+  "createdAt": "2026-11-13T07:20:12.415Z",
+  "claimedBy": "Codex/diloloji-fr-grammar-1",
+  "claimedAt": "2026-11-13T07:23:25.161993+00:00"
+}

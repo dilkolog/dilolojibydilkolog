@@ -413,6 +413,27 @@
       "quand + futur",
       "yakın gelecek ile fark",
       "varsayım"
+    ],
+    "basics_fr_articles": [
+      "belirli artikel",
+      "belirsiz artikel",
+      "sesli harf ve sessiz h",
+      "edat ve artikel birleşimi",
+      "çoğul artikeller"
+    ],
+    "basics_fr_etre_avoir": [
+      "être : lieu et personne",
+      "avoir : possession",
+      "âge et sensations",
+      "être : identité et état",
+      "il y a"
+    ],
+    "basics_fr_negation": [
+      "ne et pas à l’écrit",
+      "élision et place de pas",
+      "de après la négation",
+      "article conservé après être",
+      "réponse affirmative : si"
     ]
   },
   "targets": {
