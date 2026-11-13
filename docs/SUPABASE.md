@@ -101,7 +101,7 @@ Hesaplar artık Supabase'ten açılır: **e-posta + şifre**, **e-postaya giriş
   3. Eski depodaki çekirdeğe `movedTo: 'supabase'` yazar.
 
   Hâlâ eski yolla girişli bir cihaz eşitlemeye kalkınca durur ve "çıkış yapıp e-posta ya da Google ile gir" der (`SyncMovedError`). Tablo yoksa (SQL çalıştırılmadıysa) her şey eskisi gibi Blob'la sürer.
-- **Onay:** veritabanı yalnızca `profiles.approved` olan kişiye yazdırır. Yönetici kartından verilen onay, `SYNC_ALLOWED` ve `ADMIN_TOKEN` yokken herkesin onaylı sayılması profile kendiliğinden yansır:
+- **Onay:** veritabanı yalnızca `profiles.approved` olan kişiye yazdırır. Eski onay işaretleri (`access/approved/…`) profile kendiliğinden yansır (`ADMIN_TOKEN` ve `SYNC_ALLOWED` 2026-11-13'te kalktı):
   - girişte (`/api/access?vault=1`),
   - bağlarken,
   - Yönetici kartında onayla/reddet anında.

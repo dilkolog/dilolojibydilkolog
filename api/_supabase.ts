@@ -186,8 +186,7 @@ export async function deleteSupabaseUser(userId: string): Promise<void> {
 }
 
 /**
- * Carries the owner's word on a sync account (from the Yönetici card, SYNC_ALLOWED or before
- * ADMIN_TOKEN) to its person's profile: the database lets only approved people write their data.
+ * Carries the owner's word on a sync account (an old approval mark) to its person's profile: the database lets only approved people write their data.
  * Nothing happens when no person has this sync account. Never throws: the next sign-in tries again.
  */
 export async function mirrorApproval(syncId: string, status: 'approved' | 'rejected' | 'pending' | 'none'): Promise<void> {

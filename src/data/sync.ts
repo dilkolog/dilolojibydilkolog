@@ -74,7 +74,7 @@ export class SyncAuthError extends Error {
   override name = 'SyncAuthError'
 }
 
-/** The server only serves the accounts and codes on its list (SYNC_ALLOWED), and this isn't one. */
+/** The server refuses this account or code (an approval missing, or a code without an account where accounts are on). */
 export class SyncNotAllowedError extends Error {
   override name = 'SyncNotAllowedError'
 }

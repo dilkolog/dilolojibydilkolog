@@ -33,16 +33,6 @@ export interface OwnerReport {
 export interface SystemState {
   health: { ok: boolean; supabase: 'ok' | 'down' | 'off'; storage: 'ok' | 'down' | 'off' }
   problems: string[]
-  docs: 'on' | 'ready' | 'off'
-  tables: 'on' | 'moving' | 'ready' | 'missing' | 'off'
-}
-
-export interface MoveStep {
-  copied: number
-  next: { prefix: number; cursor?: string } | null
-  at: string
-  /** Milliseconds to wait before the next step (the table move, right after it started). */
-  wait?: number
 }
 
 export class AdminError extends Error {}
@@ -108,11 +98,6 @@ export const loadReports = (days = 7) => adminFetch<{ reports: OwnerReport[] }>(
 export const unpublishSet = (id: string) => adminFetch<{ ok: boolean }>('', { method: 'POST', body: JSON.stringify({ action: 'unpublish', id }) })
 
 export const loadSystem = () => adminFetch<SystemState>('?view=system')
-
-export const moveStep = (from?: MoveStep['next']) => adminFetch<MoveStep>('', { method: 'POST', body: JSON.stringify({ action: 'move-docs', ...(from ? { from } : {}) }) })
-
-/** One step of moving friends, shared lists and reminders to the tables (api/_moveTables.ts). */
-export const moveTablesStep = (from?: MoveStep['next']) => adminFetch<MoveStep>('', { method: 'POST', body: JSON.stringify({ action: 'move-tables', ...(from ? { from } : {}) }) })
 
 export interface Stats {
   total: number

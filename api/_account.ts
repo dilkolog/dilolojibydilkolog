@@ -1,13 +1,11 @@
 import { del, get, put } from './_blob'
-import { createDoc, DocsError, docsMoved, isDocPath, readDoc, removeDoc, writeDoc } from './_docs.js'
-import { allowedIds } from './_allow.js'
+import { createDoc, DocsError, isDocPath, readDoc, removeDoc, writeDoc } from './_docs.js'
 import { profileStatus, supabaseOn } from './_supabase.js'
 
 /**
  * Accounts and their approval. An account is an id (from the username) plus an access token whose
  * hash the first claim keeps (sync/<id>/auth.txt). The site's owner approves each account: only
- * approved accounts may sync, translate, search clips, fetch subtitles and news. Listing a
- * username in SYNC_ALLOWED approves it too (how the owner's own account starts).
+ * approved accounts may sync, translate, search clips, fetch subtitles and news.
  *
  * Requests identify the account with `x-sync-id` and `x-sync-auth`. Approval is a marker blob
  * (access/approved/<id>.json); a request waiting for it is access/requests/<id>.json; a refusal is
@@ -17,11 +15,14 @@ export const ID = /^[0-9a-f]{64}$/
 export const TOKEN = /^[0-9a-f]{64}$/
 
 /**
- * The approval is on when the owner decides who comes in: with Supabase sign-in the owner approves people in the
- * Supabase panel (profiles.approved), so the approval is on by itself (APPROVAL=off switches it off); without Supabase
- * (local development) it is on once ADMIN_TOKEN is set, the old way to approve. Otherwise nothing is withheld.
+ * The approval is on when the owner decides who comes in: with Supabase sign-in the owner approves people (the admin
+ * screen, profiles.approved), so it is on by itself (APPROVAL=off switches it off); without Supabase (local development,
+ * tests) only with APPROVAL=on. Otherwise nothing is withheld.
  */
-export const approvalOn = () => !!process.env.ADMIN_TOKEN?.trim() || (supabaseOn() && process.env.APPROVAL?.trim().toLowerCase() !== 'off')
+export const approvalOn = () => {
+  const set = process.env.APPROVAL?.trim().toLowerCase()
+  return set === 'on' || (supabaseOn() && set !== 'off')
+}
 
 export type AccessStatus = 'none' | 'pending' | 'approved' | 'rejected'
 
@@ -34,18 +35,12 @@ export class StorageError extends Error {}
 
 /**
  * A blob's text, or null when there is none. A failing store throws StorageError. The server's small documents (names,
- * requests, blocks, reports, approval marks, account keys) are read from Supabase once migration 0010 has run (_docs.ts).
+ * requests, blocks, reports, approval marks, account keys) are in Supabase when it is set up (_docs.ts).
  */
 export async function readText(path: string): Promise<string | null> {
   if (isDocPath(path)) {
-    try {
-      const doc = await readDoc(path)
-      if (doc !== undefined) return doc
-    } catch (e) {
-      if (!(e instanceof DocsError)) throw e
-      // Supabase unreachable: until the move has finished the old file still holds it (an older sign-up's key, a name).
-      if (await docsMoved()) throw new StorageError('storage unavailable')
-    }
+    const doc = await readDoc(path).catch(storageFailure)
+    if (doc !== undefined) return doc
   }
   try {
     const blob = await get(path, { access: 'private', useCache: false })
@@ -64,14 +59,14 @@ export const writeJson = (path: string, value: unknown) => writeText(path, JSON.
 
 /** Writes the text over whatever was there (the table for a document path, else the file). */
 export async function writeText(path: string, text: string, contentType = 'application/json') {
-  if (isDocPath(path) && (await writeDoc(path, text).catch(unlessMoved))) return
+  if (isDocPath(path) && (await writeDoc(path, text).catch(storageFailure))) return
   await put(path, text, { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType })
 }
 
-/** Writes the text only if there is none yet (the table and, until the move finished, the old file); false when there was. */
+/** Writes the text only if there is none yet; false when there was. */
 export async function createText(path: string, text: string, contentType = 'application/json'): Promise<boolean> {
   if (isDocPath(path)) {
-    const made = await createDoc(path, text).catch(unlessMoved)
+    const made = await createDoc(path, text).catch(storageFailure)
     if (made !== undefined) return made
   }
   try {
@@ -91,14 +86,10 @@ export async function removeBlob(path: string, strict = false) {
   await del(path).catch((error: unknown) => { if (strict) throw error })
 }
 
-/**
- * A Supabase failure on a document: until the move has finished the old file is still a valid place, so the caller
- * writes there (undefined); after it, a storage failure (the endpoints answer 502 and the app tries again).
- */
-async function unlessMoved(e: unknown): Promise<undefined> {
-  if (!(e instanceof DocsError)) throw e
-  if (await docsMoved()) throw new StorageError('storage unavailable')
-  return undefined
+/** A Supabase failure on a document is a storage failure (the endpoints answer 502 and the app tries again). */
+function storageFailure(e: unknown): never {
+  if (e instanceof DocsError) throw new StorageError('storage unavailable')
+  throw e
 }
 
 const remembered = new Map<string, { value: unknown; until: number }>()
@@ -124,11 +115,9 @@ export async function tokenMatches(id: string, token: string): Promise<boolean> 
   return !!stored && (await sha256(token)) === stored
 }
 
-/** The account's place in the owner's approval: listed in SYNC_ALLOWED counts as approved. */
+/** The account's place in the owner's approval. */
 export async function accessStatus(id: string): Promise<AccessStatus> {
   if (!approvalOn()) return 'approved'
-  const listed = await allowedIds()
-  if (listed?.has(id)) return 'approved'
   // An approval is remembered for a couple of minutes (every check is several billed reads), any other answer for a short
   // while so a decision shows soon. clearAccessCache only reaches this instance: a rejected or deleted account keeps what
   // it had on the others until its approval here runs out, so this stays short (APPROVAL_CACHE_MS).

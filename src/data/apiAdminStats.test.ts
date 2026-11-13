@@ -122,7 +122,6 @@ beforeEach(() => {
   vi.stubEnv('SUPABASE_URL', SB)
   vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
   vi.stubEnv('OWNER_EMAIL', 'sahip@example.com')
-  vi.stubEnv('ADMIN_TOKEN', '')
   vi.stubGlobal('fetch', async (input: string | URL | Request, init?: RequestInit) => fake(String(input), init))
 })
 afterEach(() => {
@@ -171,7 +170,7 @@ describe("the owner's admin screen: numbers and usage", () => {
   })
 
   it('approves everyone waiting at once, and only for the owner', async () => {
-    expect((await post({ action: 'approve-all' }, 'tok-other')).status).toBe(503)
+    expect((await post({ action: 'approve-all' }, 'tok-other')).status).toBe(403)
     expect(await (await post({ action: 'approve-all' })).json()).toEqual({ ok: true, approved: 2 })
     expect(tables.profiles.every((p) => p.approved)).toBe(true)
   })
@@ -200,7 +199,7 @@ describe("the owner's switches: limits, auto-approval, announcement", () => {
     expect((await post({ action: 'settings', settings: { facebookLogin: true } })).status).toBe(200)
     forgetSettings()
     expect(await ask()).toEqual({ facebook: true })
-    expect((await post({ action: 'settings', settings: { facebookLogin: 'yes' } }, 'tok-other')).status).toBe(503)
+    expect((await post({ action: 'settings', settings: { facebookLogin: 'yes' } }, 'tok-other')).status).toBe(403)
   })
 
   it('a stored value out of range or of the wrong kind is dropped', () => {

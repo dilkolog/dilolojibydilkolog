@@ -26,7 +26,7 @@ vi.mock('@vercel/blob', () => ({
 }))
 
 const access = await import('../../api/access')
-const admin = await import('../../api/admin')
+const { bytesBacking, fakeServerDocs, serveEmptyTables } = await import('../test/fakeServerDocs')
 const { clearAccessCache, accessStatus } = await import('../../api/_account')
 const { resetRate } = await import('../../api/_rate')
 const { forgetSettings } = await import('../../api/_settings')
@@ -47,10 +47,16 @@ let mediaFailure: 'list' | 'delete' | null = null
 let settingsValue: Record<string, unknown> | null = null
 let patchFailure = false
 
+// The server's documents (account keys, approval marks, requests) are in Supabase; kept in the same map as R2 here so a
+// test reads one place whichever store the code used.
+const { serveDocs } = fakeServerDocs(bytesBacking(blobs))
+
 function fakeSupabase(input: string, init: RequestInit = {}): Response {
   const url = new URL(input)
   const headers = Object.fromEntries(new Headers(init.headers).entries())
   seen.push({ url: input, headers })
+  const served = serveDocs(input, init) ?? serveEmptyTables(input, init)
+  if (served) return served
   if (url.pathname === '/storage/v1/object/list/media') {
     if (mediaFailure === 'list') return new Response('unavailable', { status: 503 })
     const { prefix } = JSON.parse(String(init.body)) as { prefix: string }
@@ -135,7 +141,7 @@ beforeEach(async () => {
   settingsValue = null
   patchFailure = false
   forgetSettings()
-  vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
+  vi.stubEnv('APPROVAL', 'on')
   vi.stubEnv('SUPABASE_URL', SB)
   vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
   vi.stubGlobal('fetch', async (input: string | URL | Request, init?: RequestInit) => fakeSupabase(String(input), init))
@@ -243,11 +249,12 @@ describe('/api/access: the Supabase vault', () => {
   it('carries the old approval to the profile, so the database lets the person write', async () => {
     await link('tok-ali', OLD)
     expect(profiles[0]).toMatchObject({ approved: true, rejected: false })
-    // Approved later on the Yönetici card: the profile follows.
+    // An old approval mark found later: the next vault read carries it to the profile.
     await link('tok-veli', NEW)
     expect(profiles.find((p) => p.user_id === USERS['tok-veli']!.id)).toMatchObject({ approved: false })
-    const res = await admin.POST(new Request('https://app.test/api/admin', { method: 'POST', headers: { authorization: 'Bearer owner-secret', 'content-type': 'application/json' }, body: JSON.stringify({ action: 'approve', id: NEW.id }) }))
-    expect(res.status).toBe(200)
+    blobs.set(`access/approved/${NEW.id}.json`, new TextEncoder().encode('{}'))
+    clearAccessCache()
+    expect((await vault('tok-veli')).status).toBe(200)
     expect(profiles.find((p) => p.user_id === USERS['tok-veli']!.id)).toMatchObject({ approved: true })
   })
 })

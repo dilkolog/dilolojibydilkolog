@@ -12,7 +12,7 @@ import { issueRoomTicket, roomTicketsOn } from './_roomTicket.js'
  *
  * GET  /api/access  (x-sync-id, x-sync-auth)
  *   → { status: 'none' | 'pending' | 'approved' | 'rejected', exists: boolean, match: boolean }
- *   Without the headers: { enabled } says whether approval is asked for (ADMIN_TOKEN is set).
+ *   Without the headers: { enabled } says whether approval is asked for (always with Supabase; APPROVAL=on without it).
  *   `exists`: someone has claimed this id; `match`: the token is theirs (sign-in checks both).
  * POST /api/access  { username, note? }  (same headers)
  *   claims the id when unclaimed and files a request the owner sees with the username and note.
@@ -139,7 +139,7 @@ export async function POST(request: Request): Promise<Response> {
   if (!/^[\p{L}\p{N}._-]{3,32}$/u.test(username)) return json({ error: 'bad username' }, 400)
   try {
     if (!(await claimAccount(id, token))) return json({ error: 'forbidden' }, 403)
-    // No approval to ask for until the owner has set ADMIN_TOKEN.
+    // No approval to ask for (local development without APPROVAL=on).
     if (!approvalOn()) return json({ status: 'approved' })
     const status = await accessStatus(id)
     // Approved or turned down: the answer stands; only a waiting request is (re)filed.

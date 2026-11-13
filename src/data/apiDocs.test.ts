@@ -28,7 +28,6 @@ const SB = 'https://proj.supabase.co'
 /** server_docs and server_flags, and who a bearer token is. */
 const table = new Map<string, string>()
 const flags = new Set<string>()
-let docsMissing = false
 const USERS: Record<string, { id: string; email: string; email_confirmed_at: string | null }> = {
   'tok-owner': { id: '11111111-1111-1111-1111-111111111111', email: 'Sahip@Example.com', email_confirmed_at: '2026-01-01T00:00:00Z' },
   'tok-unconfirmed': { id: '22222222-2222-2222-2222-222222222222', email: 'sahip@example.com', email_confirmed_at: null },
@@ -48,7 +47,6 @@ function fakeSupabase(input: string, init: RequestInit = {}): Response {
     return Response.json(wanted && flags.has(wanted) ? [{ name: wanted }] : [])
   }
   if (name !== 'server_docs') return new Response('not found', { status: 404 })
-  if (docsMissing) return Response.json({ code: 'PGRST205', message: 'Could not find the table' }, { status: 404 })
   const path = url.searchParams.get('path')
   if (init.method === 'POST') {
     const rows = [JSON.parse(String(init.body))].flat() as { path: string; body: string }[]
@@ -78,7 +76,6 @@ beforeEach(() => {
   blobs.clear()
   table.clear()
   flags.clear()
-  docsMissing = false
   docs.resetDocs()
   vi.stubEnv('SUPABASE_URL', SB)
   vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
@@ -101,15 +98,26 @@ describe('small server documents in Supabase (migration 0010)', () => {
     expect(table.has('share/x.json')).toBe(false)
   })
 
-  it('an old file the table does not have yet is still read, until the move has finished', async () => {
+  it('an old R2 file is not read once Supabase is set up; without Supabase the files are used', async () => {
     blobs.set(`sync/${ID}/auth.txt`, 'hash')
-    expect(await readText(`sync/${ID}/auth.txt`)).toBe('hash')
-    flags.add('docs')
-    docs.resetDocs()
     expect(await readText(`sync/${ID}/auth.txt`)).toBeNull()
+    vi.stubEnv('SUPABASE_URL', '')
+    expect(await readText(`sync/${ID}/auth.txt`)).toBe('hash')
+    await writeJson(`friends/requested/${ID}.json`, { X: 'now' })
+    expect(blobs.get(`friends/requested/${ID}.json`)).toBe('{"X":"now"}')
+    expect(await docs.listDocPaths('friends/requested/')).toEqual([`friends/requested/${ID}.json`])
   })
 
-  it('deleting takes both copies, so an old file cannot come back', async () => {
+  it('Supabase unreachable: a storage failure, never a silent fall back to the old files', async () => {
+    vi.stubGlobal('fetch', async () => {
+      throw new Error('down')
+    })
+    await expect(writeJson(`friends/requested/${ID}.json`, { X: 'now' })).rejects.toThrow('storage unavailable')
+    await expect(readText(`friends/requested/${ID}.json`)).rejects.toThrow('storage unavailable')
+    expect(blobs.has(`friends/requested/${ID}.json`)).toBe(false)
+  })
+
+  it('deleting takes the R2 copy the move left behind too, so a deleted account leaves nothing there', async () => {
     blobs.set('friends/blocked/x.json', '{"codes":[]}')
     table.set('friends/blocked/x.json', '{"codes":["ABCDEFGH"]}')
     await removeBlob('friends/blocked/x.json', true)
@@ -118,55 +126,14 @@ describe('small server documents in Supabase (migration 0010)', () => {
     expect(await readText('friends/blocked/x.json')).toBeNull()
   })
 
-  it('a name is created once: a name held in an old file or in the table is not free', async () => {
-    blobs.set('friends/handle/eski.json', '{"id":"b"}')
+  it('a name is created once: a name held in the table is not free', async () => {
+    table.set('friends/handle/eski.json', '{"id":"b"}')
     expect(await createText('friends/handle/eski.json', '{"id":"c"}')).toBe(false)
     expect(await createText('friends/handle/yeni.json', `{"id":"${ID}"}`)).toBe(true)
     expect(await createText('friends/handle/yeni.json', '{"id":"c"}')).toBe(false)
     expect(table.get('friends/handle/yeni.json')).toBe(`{"id":"${ID}"}`)
   })
 
-  it('before 0010 has run everything stays in R2 as it was', async () => {
-    docsMissing = true
-    await writeJson('reports/2026-11-04/r1.json', { id: 'r1' })
-    expect(blobs.get('reports/2026-11-04/r1.json')).toBe('{"id":"r1"}')
-    expect(await readText('reports/2026-11-04/r1.json')).toBe('{"id":"r1"}')
-  })
-
-  it('Supabase unreachable before the move: reads and writes use the old files instead of failing', async () => {
-    vi.stubGlobal('fetch', async () => {
-      throw new Error('down')
-    })
-    await writeJson(`friends/requested/${ID}.json`, { X: 'now' })
-    expect(blobs.get(`friends/requested/${ID}.json`)).toBe('{"X":"now"}')
-    expect(await readText(`friends/requested/${ID}.json`)).toBe('{"X":"now"}')
-  })
-
-  it('the move copies the old files in small steps, keeps what the table already has, and finishes with the flag', async () => {
-    for (let i = 0; i < docs.MOVE_BATCH + 5; i++) blobs.set(`reports/2026-11-04/r${String(i).padStart(3, '0')}.json`, `{"n":${i}}`)
-    blobs.set('friends/handle/ali.json', '{"id":"old"}')
-    table.set('friends/handle/ali.json', '{"id":"new"}')
-    blobs.set('share/not-a-doc.json', '{}')
-    let step = await docs.moveDocs()
-    let copied = step.copied
-    let steps = 1
-    while (step.next) {
-      step = await docs.moveDocs(step.next)
-      copied += step.copied
-      steps++
-    }
-    expect(copied).toBe(docs.MOVE_BATCH + 5)
-    expect(steps).toBeGreaterThan(docs.DOC_PREFIXES.length)
-    expect(table.get('friends/handle/ali.json')).toBe('{"id":"new"}')
-    expect(table.has('share/not-a-doc.json')).toBe(false)
-    expect(flags.has('docs')).toBe(true)
-    expect(await docs.listDocPaths('reports/2026-11-04/')).toHaveLength(docs.MOVE_BATCH + 5)
-  })
-
-  it('the move refuses to start before 0010', async () => {
-    docsMissing = true
-    await expect(docs.moveDocs()).rejects.toThrow(/0010/)
-  })
 })
 
 describe('the owner signed in', () => {
@@ -181,15 +148,8 @@ describe('the owner signed in', () => {
     expect(await isOwnerSession(req('tok-owner'))).toBe(false)
   })
 
-  it('opens the admin endpoint without ADMIN_TOKEN, and runs the move step', async () => {
-    vi.stubEnv('ADMIN_TOKEN', '')
-    expect((await admin.GET(req('tok-other'))).status).toBe(503)
-    const ok = await admin.GET(req('tok-owner'))
-    expect(ok.status).toBe(200)
-    expect(await ok.json()).toMatchObject({ docs: 'ready' })
-    blobs.set('errors/2026-11-02.json', '{"x":1}')
-    const step = await admin.POST(new Request('https://app.test/api/admin', { method: 'POST', headers: { authorization: 'Bearer tok-owner' }, body: JSON.stringify({ action: 'move-docs' }) }))
-    expect(step.status).toBe(200)
-    expect(await step.json()).toMatchObject({ at: 'friends/handle/', next: { prefix: 1 } })
+  it('is the only way into the admin endpoint', async () => {
+    expect((await admin.GET(new Request('https://app.test/api/admin?view=me', { headers: { authorization: 'Bearer tok-other' } }))).status).toBe(403)
+    expect((await admin.GET(new Request('https://app.test/api/admin?view=me', { headers: { authorization: 'Bearer tok-owner' } }))).status).toBe(200)
   })
 })

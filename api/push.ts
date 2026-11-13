@@ -1,4 +1,3 @@
-import { allowedIds } from './_allow.js'
 import { accountOf, requireApproved, sha256, StorageError } from './_account.js'
 import { landingPage } from './_mailLayout.js'
 import { confirmMail, EMAIL, mailConfigured, sendMail, siteFrom, usingSandboxSender, APP_URL } from './_mail.js'
@@ -22,8 +21,8 @@ import { supabaseOn } from './_supabase.js'
  * GET  /api/push?c=<token>     → a page whose button (POST) confirms the address
  * GET  /api/push?u=<token>     → a page whose button (POST ?u=…&page=1) turns the mails off; POST ?u= alone is the mail client's one-click unsubscribe
  *
- * `group` is the signed-in account (the page's own `group` only counts without accounts). When SYNC_ALLOWED is set
- * (see _allow.ts), only devices of a listed account or sync code may save a reminder, so strangers can't fill the store; removing one's own is always allowed.
+ * `group` is the signed-in account (the page's own `group` only counts without accounts). Removing one's own is
+ * always allowed.
  */
 export interface PushRecord {
   /** A browser's push subscription; a record kept for mail reminders has `email` instead. */
@@ -300,8 +299,6 @@ async function handlePost(request: Request): Promise<Response> {
   // name another account's and report "studied today" for it, so its reminder would not go). Only without accounts
   // (a sync code, local development) is the device's own word all there is.
   const group = owner ?? (typeof body.group === 'string' && /^[0-9a-f]{64}$/.test(body.group) ? body.group : null)
-  const allowed = await allowedIds()
-  if (allowed && !(group && allowed.has(group))) return new Response('not allowed', { status: 403 })
   const record: PushRecord = {
     subscription: { endpoint: sub.endpoint, keys: { p256dh: String(sub.keys.p256dh), auth: String(sub.keys.auth) } },
     ...stateFields(body),

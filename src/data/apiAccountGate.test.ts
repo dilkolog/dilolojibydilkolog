@@ -18,6 +18,11 @@ const { PUT } = await import('../../api/sync')
 
 const ID = 'a'.repeat(64)
 const TOKEN = 'c'.repeat(64)
+const { bytesBacking, fakeServerDocs } = await import('../test/fakeServerDocs')
+// With Supabase on, the account keys and approval marks are documents in Supabase (kept in the R2 map here); the rest
+// of Supabase (the people's profiles) cannot be reached from the test.
+const { serveDocs } = fakeServerDocs(bytesBacking(blobs))
+const supabaseFetch = async (input: string | URL | Request, init?: RequestInit) => serveDocs(String(input), init) ?? Response.json({}, { status: 503 })
 const account = { 'x-sync-id': ID, 'x-sync-auth': TOKEN }
 const ask = (headers: Record<string, string> = {}) => new Request('https://app.test/api/translate?text=hi', { headers })
 const write = (headers: Record<string, string>) =>
@@ -26,10 +31,13 @@ const write = (headers: Record<string, string>) =>
 beforeEach(() => {
   blobs.clear()
   clearAccessCache()
-  vi.stubEnv('ADMIN_TOKEN', '')
   vi.stubEnv('APPROVAL', 'off')
+  vi.stubGlobal('fetch', supabaseFetch)
 })
-afterEach(() => vi.unstubAllEnvs())
+afterEach(() => {
+  vi.unstubAllEnvs()
+  vi.unstubAllGlobals()
+})
 
 describe('without the owner approving accounts', () => {
   it('Supabase off (local development): nothing is withheld', async () => {
@@ -73,10 +81,8 @@ describe('with Supabase on and the owner approving people (the default)', () => 
     vi.stubEnv('APPROVAL', '')
     vi.stubEnv('SUPABASE_URL', 'https://x.supabase.co')
     vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
-    // The panel cannot be reached from the test: only the owner's marks in the store count.
-    vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('offline'))
+    // The people's profiles cannot be reached from the test: only the owner's marks count.
   })
-  afterEach(() => vi.restoreAllMocks())
 
   it('an account that exists but is not approved is refused with approval_required, an approved one passes', async () => {
     expect(await claimAccount(ID, TOKEN)).toBe(true)

@@ -1,5 +1,4 @@
 import { del, get, list, put } from './_blob'
-import { isAllowed } from './_allow.js'
 import { approvalOn, claimAccount, isApproved, storedAuth, StorageError as AccountStorageError, TOKEN as ACCOUNT_TOKEN } from './_account.js'
 import { overLimit, tooMany } from './_rate.js'
 import { supabaseOn } from './_supabase.js'
@@ -21,10 +20,9 @@ import { supabaseOn } from './_supabase.js'
  * and lets a sync send only what changed.
  *
  * Accounts (username + password) send an access token in `x-sync-auth` and need the owner's
- * approval first once ADMIN_TOKEN is set (_account.ts); a refusal for want of it is 403 "approval required". The first write keeps
+ * approval first when approval is on (_account.ts); a refusal for want of it is 403 "approval required". The first write keeps
  * its hash; from then on reads and writes without the matching token get 403, so a guessable
  * username can't be read or overwritten by others. Sync codes (random ids) send no token.
- * When SYNC_ALLOWED is set (see _allow.ts), ids not on it get 403 "not allowed".
  *
  * Restore points: before the day's first new core replaces the old one, the old one is kept as
  * that day's point (part "h-YYYY-MM-DD", read-only, the same access check); a week of them is kept.
@@ -77,8 +75,8 @@ async function checkAuth(request: Request, write: boolean): Promise<Response | n
 }
 
 /**
- * Who may use the store: an account (it sends a token) once the owner has approved it; a sync code
- * (random id, no token) as before, by the SYNC_ALLOWED list when there is one. null = allowed.
+ * Who may use the store: an account (it sends a token) once the owner has approved it; a sync code (random id, no
+ * token) only without Supabase (local development). null = allowed.
  */
 async function permitted(request: Request, id: string): Promise<Response | null> {
   const token = request.headers.get('x-sync-auth')
@@ -86,7 +84,7 @@ async function permitted(request: Request, id: string): Promise<Response | null>
   // Sync codes (no token) are gone with the sign-in: every request names an account.
   if (token === null && supabaseOn()) return new Response('account required', { status: 403 })
   if (token !== null && approvalOn()) return (await isApproved(id)) ? null : new Response('approval required', { status: 403 })
-  return (await isAllowed(id)) ? null : new Response('not allowed', { status: 403 })
+  return null
 }
 
 function target(request: Request): string | null {

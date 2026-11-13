@@ -8,7 +8,7 @@ import { shareStore, SHARE_ID } from './share.js'
 /**
  * The owner's way to see and act on what people reported, without a screen to build and guard: a read-only list
  * of the last days' reports and the site's social use, and taking a library list off the library. Open only with
- * REPORTS_TOKEN (a long random secret of its own, not ADMIN_TOKEN: that one switches the approval system on).
+ * REPORTS_TOKEN (a long random secret of its own).
  * Without the secret set the endpoints do not exist. Used by scripts/reports.mjs.
  */
 
