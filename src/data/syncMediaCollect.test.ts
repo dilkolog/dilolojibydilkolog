@@ -76,7 +76,7 @@ describe('pictures nothing names any more', () => {
     vi.setSystemTime(new Date('2026-11-13T10:00:00Z'))
     const onLaptop = (await laptop.vocabulary.get(going.id))!
     await laptop.media.delete(goingPic)
-    await laptop.vocabulary.put({ ...onLaptop, imageId: undefined, updatedAt: new Date().toISOString() })
+    await laptop.vocabulary.put({ ...onLaptop, imageId: undefined })
     await syncNow(laptop, store)
     expect(mediaFiles(store)).toHaveLength(1)
     expect(store.removed).toHaveLength(1)
