@@ -4361,3 +4361,10 @@ html:has(.lp) { scroll-behavior: smooth; }
 .idiom-facts > div { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .idiom-facts dt { min-width: 6.5rem; }
 .idiom-facts dd { margin: 0; }
+/* After a miss: the right answer typed once, while it is on screen (CopyStep). */
+.copy-step { display: grid; gap: 0.375rem; }
+.copy-step .input { width: 100%; font-family: var(--serif); font-size: var(--t-md); }
+.copy-step .input.is-correct { border-color: var(--ok); }
+.copy-step .input.is-near { border-color: var(--near); }
+.copy-step .input.is-wrong { border-color: var(--bad); }
+.copy-step .accent-bar { margin-top: 0; }

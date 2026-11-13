@@ -13,8 +13,8 @@ import { listeningRate } from '../../engine/listening'
 import { createRng } from '../../engine/rng'
 import type { Scheduler } from '../../engine/scheduler'
 import { AWAY_DAYS, daysAway, easiestWords, struggling } from '../../engine/easyRound'
-import { advanceLearning, attemptMode, sessionProgress, adaptExercise, completeItem, currentItem, honorOff, insertLater, isFinished, mixInTyping, skipRemaining, startSession, suggestBreak, summarize, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../../engine/session'
-import { independentAnswer } from '../../engine/learningProgress'
+import { advanceLearning, attemptMode, learningSteps, sessionProgress, adaptExercise, completeItem, currentItem, honorOff, insertLater, isFinished, mixInTyping, skipRemaining, startSession, suggestBreak, summarize, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../../engine/session'
+import { independentAnswer, learningDebts } from '../../engine/learningProgress'
 import { draftRecord, writeSessionDraft } from '../../data/sessionDraft'
 import { TARGET_LANGUAGES, timeOf, type Confidence, type EngineOptions, type ExerciseType, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry, type Verdict } from '../../engine/types'
 import type { KelimeDB, Settings } from '../../data/db'
@@ -104,6 +104,8 @@ export function SessionScreen(p: Props) {
   const [byId, setById] = useState(() => new Map(p.vocabulary.map((e) => [e.id, e])))
   /** The last answer, kept so "my answer was right too" can recompute it from the prior state. */
   const lastAnswer = useRef<{ before: UserWordState; hadState: boolean; bank: Mistake[]; input: AttemptInput; eventId: string } | null>(null)
+  /** The session as it will be once the answer on screen is taken in (on "Devam"): what the plant's ring shows meanwhile. */
+  const afterAnswer = useRef<{ index: number; session: import('../../engine/session').Session } | null>(null)
   const states = useRef(new Map(p.states.map((s) => [s.entryId, s])))
   const mistakes = useRef(p.mistakes)
   const introducing = useRef(false)
@@ -387,8 +389,8 @@ export function SessionScreen(p: Props) {
       stageBefore: masteryStage(before), stageAfter: masteryStage(result.state), xp: xp + bonus,
       independent: independentAnswer(input), responseMs, confidence,
     }
-    const checkpoint = p.mode === 'normal' ? draftRecord(draftLanguage, p.seed,
-      advanceLearning(session, log, entry, result.state, createRng(p.seed + session.index), { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss })) : undefined
+    const advanced = advanceLearning(session, log, entry, result.state, createRng(p.seed + session.index), { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss })
+    const checkpoint = p.mode === 'normal' ? draftRecord(draftLanguage, p.seed, advanced) : undefined
     // The saved answer and the next learning step commit together; reload never regrades it.
     try {
       await p.db.saveReview(result, checkpoint)
@@ -399,6 +401,7 @@ export function SessionScreen(p: Props) {
     states.current.set(entry.id, result.state)
     mistakes.current = result.mistakes
     lastAnswer.current = { before, hadState, bank, input, eventId: result.event.id }
+    afterAnswer.current = { index: session.index, session: advanced }
     if (bonus) {
       today.current.paid = true
       showToast(`Hoş geldin! Döndüğün için +${bonus} XP`)
@@ -425,9 +428,11 @@ export function SessionScreen(p: Props) {
     const stale = mistakes.current.filter((m) => m.entryId === entry.id && !keep.has(m.id)).map((m) => m.id)
     const xp = xpForAnswer({ exerciseType: input.exerciseType, verdict: 'correct', hintsUsed: input.hintsUsed, responseMs: input.responseMs, mode: input.mode ?? p.mode, combo: 0 })
     const log: Omit<SessionLogEntry, 'item'> = { entryId: entry.id, verdict: 'correct', stageBefore: masteryStage(last.before), stageAfter: masteryStage(result.state), xp, independent: independentAnswer(input), responseMs: input.responseMs, confidence: input.confidence }
-    const checkpoint = p.mode === 'normal' ? draftRecord(draftLanguage, p.seed, advanceLearning(session, log, entry, result.state, createRng(p.seed + session.index), { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss })) : undefined
+    const advanced = advanceLearning(session, log, entry, result.state, createRng(p.seed + session.index), { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss })
+    const checkpoint = p.mode === 'normal' ? draftRecord(draftLanguage, p.seed, advanced) : undefined
     await p.db.replaceReview(last.eventId, result, stale, checkpoint)
     states.current.set(entry.id, result.state)
+    afterAnswer.current = { index: session.index, session: advanced }
     mistakes.current = result.mistakes
     lastAnswer.current = { ...last, input, eventId: result.event.id }
     const given = last.input.given?.trim()
@@ -463,6 +468,7 @@ export function SessionScreen(p: Props) {
     else states.current.delete(entry.id)
     mistakes.current = last.bank
     lastAnswer.current = null
+    afterAnswer.current = null
     setAnsweredAt(null)
     return true
   }
@@ -488,6 +494,11 @@ export function SessionScreen(p: Props) {
     await p.db.vocabulary.put(updated)
     setById((m) => new Map(m).set(updated.id, updated))
     showToast(on ? 'Zor kelimelere eklendi: ayrı çalışmada toplanır.' : 'Zor işareti kaldırıldı.')
+  }
+  /** A word guided in this session: its steps, counting the answer on screen once it is given (display only). */
+  const stepsOf = (id: string, s = afterAnswer.current?.index === session.index ? afterAnswer.current.session : session) => {
+    const state = states.current.get(id)
+    return learningSteps(s, id, !!state && learningDebts(state).length > 0)
   }
   const combo = comboOf(session.log)
   const sessionXp = session.log.reduce((sum, l) => sum + (l.xp ?? 0), 0)
@@ -582,8 +593,12 @@ export function SessionScreen(p: Props) {
       {item.learningBatch !== undefined && (
         <p className="small muted" role="status">
           Öğrenme grubu {item.learningBatch + 1}/{Math.max(...session.items.map((it) => it.learningBatch ?? 0)) + 1}
+          {(() => {
+            // The step on screen, out of the word's steps this session (the plant's ring counts the ones done).
+            const steps = stepsOf(item.entryId, session)
+            return steps ? ` · Adım ${Math.min(steps.done + 1, steps.total)}/${steps.total}` : ''
+          })()}
           {' · '}{item.kind === 'introduce' ? 'Kelimeyi tanı' : item.exerciseType === 'typed_translation' ? 'Yazarak hatırla' : 'Anlamı pekiştir'}
-          {' · '}Bu grubun soruları bitince yeni kelimelere geçeceğiz.
         </p>
       )}
       {item.learningBatch !== undefined && (() => {
@@ -683,6 +698,8 @@ export function SessionScreen(p: Props) {
           onEntryUpdated={(updated) => setById((m) => new Map(m).set(updated.id, updated))}
           onToggleDifficult={() => void markDifficult(!isDifficult(entry))}
           onTypePref={p.settings && p.onSettings ? setTypePref : undefined}
+          steps={() => stepsOf(entry.id)}
+          copyStep={p.mode === 'normal' && prefs.copyAfterMiss && item.probe === undefined && typedAllowed(entry.id)}
         />
       )}
       </div>

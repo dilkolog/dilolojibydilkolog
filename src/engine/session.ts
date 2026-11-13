@@ -246,6 +246,42 @@ export function sessionProgress(s: Session): { completed: number; total: number;
   return { completed, total: all.size, percent: all.size ? completed / all.size * 100 : 100 }
 }
 
+export interface LearningSteps {
+  /** The introduction plus every independent right answer so far. */
+  done: number
+  /** Steps this session asks of the word as things stand (a miss adds retries, a fast first answer drops a reinforcement). */
+  total: number
+  /** Nothing more is asked this session, but learning debt remains: the word goes on next time (never shown as complete). */
+  carriesOver: boolean
+}
+
+/**
+ * Display only: where a word met for the first time in this session stands in its guided steps
+ * (introduction, meaning, reinforcement, typed recall, plus any retries). Successful repetitions
+ * deliberately leave the FSRS card alone, so the growth ring alone would sit still during first
+ * learning. Read from the session as it is; nothing here changes the plan or what is saved.
+ * Undefined for words that are not being guided in this session (reviews keep their usual ring).
+ * `debt`: the word's saved state still owes independent recalls (learningDebts).
+ */
+export function learningSteps(s: Session, entryId: string, debt = false): LearningSteps | undefined {
+  const mine = s.log.filter((l) => l.entryId === entryId)
+  const ahead = s.items.slice(s.index).filter((it) => it.entryId === entryId)
+  if (![...mine.map((l) => l.item), ...ahead].some((it) => it.learningBatch !== undefined)) return undefined
+  const done = mine.filter((l) => l.item.kind === 'introduce' || l.independent === true).length
+  const queuedTests = ahead.filter((it) => it.kind === 'exercise').length
+  const relearn = s.relearn[entryId] ?? 0
+  // A relearning word comes back once per right answer it still owes, while re-queues are left.
+  const moreRetries = relearn > 0 ? Math.max(0, Math.min(relearn - queuedTests, MAX_RETRIES - (s.retries[entryId] ?? 0))) : 0
+  // The graduated follow-ups a new word has not had yet. After a miss they are not added this
+  // session (completeItem), so they stand for what the next session still has to cover.
+  const isNew = mine.some((l) => l.item.kind === 'introduce') || ahead.some((it) => it.kind === 'introduce')
+  const moreFollowUps = isNew ? Math.max(0, (s.followUpTargets?.[entryId] ?? GRADUATED_GAPS.length) - (s.followUps?.[entryId] ?? 0)) : 0
+  const total = done + ahead.length + moreRetries + moreFollowUps
+  if (ahead.length || moreRetries) return { done, total, carriesOver: false }
+  // Nothing more this session: complete only when no debt is left; otherwise one step stays open for next time.
+  return relearn > 0 || debt ? { done, total: Math.max(total, done + 1), carriesOver: true } : { done, total: done, carriesOver: false }
+}
+
 /** Puts an extra item `gap` places after the current one (at the end when the session is shorter). */
 export function insertLater(s: Session, item: PlanItem, gap = RETRY_GAP): Session {
   const items = [...s.items]

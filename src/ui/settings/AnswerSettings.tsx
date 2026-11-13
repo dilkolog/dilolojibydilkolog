@@ -55,6 +55,12 @@ export function AnswerSettings({
           onChange={(v) => set('hideVosotros', v)}
         />
         <Toggle
+          label="Yanlıştan sonra doğrusunu yaz"
+          help="Yazarak cevapladığın bir soruda yanlış yapınca doğru cevap ekranda dururken onu bir kez yazarsın. Bakarak yazmak puan, XP ya da tekrar takvimi değiştirmez; kelime birazdan yine yardımsız sorulur. Boş bırakıp Enter'a basarak geçebilirsin."
+          checked={settings.copyAfterMiss !== false}
+          onChange={(v) => set('copyAfterMiss', v)}
+        />
+        <Toggle
           label="Aksanlarda katı ol"
           help="Açıkken 'decision' yerine 'décision' yazmamak yanlış sayılır; kapalıyken 'neredeyse'."
           checked={settings.accentStrict}
