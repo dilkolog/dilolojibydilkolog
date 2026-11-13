@@ -5,7 +5,7 @@ import { checkBatch } from './lib/batch'
 import { loadContext, type CheckContext } from './lib/context'
 import { derive } from './lib/derive'
 import { acceptedItems, emptiest, grammarCells, nextJobs, openJobs, readingCells } from './lib/plan'
-import { checkGrammarItem, checkReading, levelFit, topicUses, wordLevel } from './lib/rules'
+import { checkGrammarItem, checkReading, levelFit, speakers, topicUses, wordLevel } from './lib/rules'
 import { sampleMarkdown } from './lib/sample'
 import { buildContent, idRanges } from './lib/shards'
 import { jaccard, shingles, SimilarityIndex } from './lib/similarity'
@@ -54,6 +54,12 @@ describe('reading checks', () => {
   it('a good text passes', () => {
     expect(checkReading(frText, fr, { job: readingJob() }).errors).toEqual([])
     expect(checkReading(esText, es, { job: readingJob({ id: 'es-reading-0001', language: 'es', theme: 'aile', genre: 'email', grammar: ['basics_es_presente'] }) }).errors).toEqual([])
+  })
+
+  it('takes a dialogue’s speakers for names, not words', () => {
+    expect([...speakers('Lucía: Hola.\nLuc, au café : Bonjour.\nUne femme : Oui.')]).toEqual(['Lucía', 'Luc'])
+    // "Lucía" is also a form of "lucir": as a speaker it counts as a name, so the level check does not see it.
+    expect(levelFit('Lucía: Hola, mamá.\nMamá: Hola.', 'A1', es).above).toEqual([])
   })
 
   it('knows words by their forms, and names are left out', () => {

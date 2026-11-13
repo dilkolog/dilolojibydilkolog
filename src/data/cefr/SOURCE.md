@@ -32,6 +32,12 @@ word or its forms in `src/data/frequency/es.txt` (a subtitle-based list): rank b
 A few missing basics (numbers, weekdays, months) are placed at A1/A2 by hand. Frequency is a proxy for textbook
 level, so treat these two levels as a direction, not a grade (the app says so on the coverage card).
 
+**Spanish A1 basics by hand (2026-11-13, the owner's decision):** ELELex counts how often textbooks use a word, so
+some first-week words land late or nowhere: weekdays (martes–domingo at A2, lunes missing), numbers (dos, tres, seis,
+quince, veinte… missing; once, trece at A2; cero at B2), gracias (missing), por favor (favor at B1), gato, colours
+(amarillo, marrón) and everyday words (cumpleaños, pastel, delante, detrás, izquierda, derecha, doctor, ducha, té,
+manzana) at A2. These 40 are placed at A1, at the end of the A1 block; nothing else changed.
+
 Changes on FLELex / ELELex (`scripts/build-cefr.ts`): a word's level is the first level with a
 frequency of at least 10 per million (FLELex) or use in three or more documents (ELELex), the
 earliest of its parts of speech; tokenizer spacing undone (`c' est - à - dire` → `c'est-à-dire`,
