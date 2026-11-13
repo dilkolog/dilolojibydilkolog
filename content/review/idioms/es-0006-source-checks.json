@@ -1,0 +1,270 @@
+{
+  "collector": "Codex",
+  "independentReview": "Claude oturumu bekleniyor",
+  "status": "17 doğrulanmış kayıt; 31 hedefinden 14 eksik. İkmal araştırması sürüyor.",
+  "checked": [
+    {
+      "w": "echar de menos",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/menos",
+          "observed": "echar de menos"
+        },
+        {
+          "url": "https://www.wordreference.com/es/en/translation.asp?spen=echar%20de%20menos",
+          "observed": "echar de menos"
+        }
+      ]
+    },
+    {
+      "w": "morirse de risa",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/risa",
+          "observed": "morirse de risa"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/risa",
+          "observed": "morirse de risa"
+        }
+      ]
+    },
+    {
+      "w": "pasarlo bomba",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/bomba",
+          "observed": "pasarlo bomba"
+        },
+        {
+          "url": "https://www.wordreference.com/es/en/translation.asp?spen=pasarlo%20bomba",
+          "observed": "pasarlo bomba"
+        }
+      ]
+    },
+    {
+      "w": "andar de capa caída",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/capa",
+          "observed": "andar de capa caída"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/capa",
+          "observed": "andar de capa caída"
+        }
+      ]
+    },
+    {
+      "w": "perder los estribos",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/estribos",
+          "observed": "perder los estribos"
+        },
+        {
+          "url": "https://www.udep.edu.pe/castellanoactual/la-expresion-perder-los-estribos/",
+          "observed": "perder los estribos"
+        }
+      ]
+    },
+    {
+      "w": "sacar de quicio",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/quicio",
+          "observed": "sacar de quicio"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/quicio",
+          "observed": "sacar de quicio"
+        }
+      ]
+    },
+    {
+      "w": "estar hasta el gorro",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/gorro",
+          "observed": "estar hasta el gorro"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/gorro",
+          "observed": "estar hasta el gorro"
+        }
+      ]
+    },
+    {
+      "w": "estar hasta la coronilla",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/coronilla",
+          "observed": "estar hasta la coronilla"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/coronilla",
+          "observed": "estar hasta la coronilla"
+        }
+      ]
+    },
+    {
+      "w": "estar en su elemento",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/elemento",
+          "observed": "estar en su elemento"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/elemento",
+          "observed": "estar en su elemento"
+        }
+      ]
+    },
+    {
+      "w": "tomarse a la tremenda",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/tremenda",
+          "observed": "tomarse a la tremenda"
+        },
+        {
+          "url": "https://es.wiktionary.org/wiki/tremenda",
+          "observed": "tomarse a la tremenda"
+        }
+      ]
+    },
+    {
+      "w": "sacar de sus casillas",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/casillas",
+          "observed": "sacar de sus casillas"
+        },
+        {
+          "url": "https://www.wordreference.com/es/en/translation.asp?spen=sacar%20de%20sus%20casillas",
+          "observed": "sacar de sus casillas"
+        }
+      ]
+    },
+    {
+      "w": "rasgarse las vestiduras",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/vestiduras",
+          "observed": "rasgarse las vestiduras"
+        },
+        {
+          "url": "https://dictionary.cambridge.org/es/diccionario/espanol-ingles/rasgarse-las-vestiduras",
+          "observed": "rasgarse las vestiduras",
+          "note": "RAE ile aynı kurum çevresinden ikinci sayfa yerine bağımsız PASSWORD/Cambridge maddesi açıldı."
+        }
+      ]
+    },
+    {
+      "w": "tragar quina",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/quina",
+          "observed": "tragar quina"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/quina",
+          "observed": "tragar quina"
+        }
+      ]
+    },
+    {
+      "w": "llorar a moco tendido",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/moco",
+          "observed": "llorar a moco tendido"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/moco",
+          "observed": "llorar a moco tendido"
+        }
+      ]
+    },
+    {
+      "w": "dar rienda suelta",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/rienda",
+          "observed": "dar rienda suelta"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/rienda",
+          "observed": "dar rienda suelta"
+        }
+      ]
+    },
+    {
+      "w": "subirse por las paredes",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/paredes",
+          "observed": "subirse por las paredes"
+        },
+        {
+          "url": "https://www.wordreference.com/es/en/translation.asp?spen=subirse%20por%20las%20paredes",
+          "observed": "subirse por las paredes"
+        }
+      ]
+    },
+    {
+      "w": "venirse el mundo encima",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa gerçekten açıldı; locución ve anlamı okundu. Değişken zamir/iyelik doğal örnekte çekildi.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/mundo",
+          "observed": "venirse el mundo encima"
+        },
+        {
+          "url": "https://tureng.com/es/espanol-ingles/venirse%20el%20mundo%20encima",
+          "observed": "venirse el mundo encima"
+        }
+      ]
+    }
+  ],
+  "editorialNotes": [
+    "Andar de capa caída kaynaklardaki sözlük başlığına çekildi.",
+    "Sacar de las casillas yerine kaynaklarda belgelenmiş sacar de sus casillas yazıldı.",
+    "Estar que se sube por las paredes çekimli başlığı mastar subirse por las paredes olarak düzeltildi.",
+    "Ahogar las penas: eski yürüyüş örneği, sözlüğün içkiyle teselli bulmak anlamını karşılamıyor; ikinci doğrulanmış kaynakla yeniden yazılmadan alınmadı.",
+    "Seviyeler kotaya göre yükseltilmedi; yaygın ifadeler B1/B2 olarak değerlendirildi."
+  ]
+}

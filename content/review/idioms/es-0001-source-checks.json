@@ -1,7 +1,7 @@
 {
   "collector": "Codex",
   "independentReview": "Claude oturumu bekleniyor",
-  "scope": "Yalnız es-0001; diğer partilerin eski kaynakları henüz yeniden doğrulanmadı.",
+  "scope": "es-0001: 31 kayıt. Güncel main URL ön kontrolüyle çakışan kaynaklar yeniden açılmış ilgili sayfalarla değiştirildi. Toplayanın kontrolüdür; Claude denetimi değildir.",
   "checked": [
     {
       "w": "echar un ojo",
@@ -28,8 +28,9 @@
           "observed": "dar la espalda"
         },
         {
-          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
-          "observed": "dar la espalda"
+          "url": "https://www.spanishdict.com/translate/dar%20la%20espalda",
+          "observed": "dar la espalda",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -73,8 +74,9 @@
           "observed": "al pie de la letra"
         },
         {
-          "url": "https://www.newsinslowspanish.com/series/expressions/13/233/lesson",
-          "observed": "seguir al pie de la letra"
+          "url": "https://www.diccionarios.com/diccionario/espanol/letra",
+          "observed": "al pie de la letra",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -88,8 +90,9 @@
           "observed": "codo con codo; Trabajaron…"
         },
         {
-          "url": "https://www.ecos-online.de/spanisch-ueben/expresiones-coloquiales-en-el-curro",
-          "observed": "trabajar codo con codo"
+          "url": "https://www.diccionarios.com/diccionario/espanol/codo",
+          "observed": "codo a codo / codo con codo",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -99,12 +102,14 @@
       "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/codo",
-          "observed": "hablar por los codos"
+          "url": "https://dle.rae.es/codos",
+          "observed": "hablar por los codos",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         },
         {
-          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
-          "observed": "hablar por los codos"
+          "url": "https://www.diccionarios.com/diccionario/espanol/codos",
+          "observed": "hablar por los codos",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -118,8 +123,9 @@
           "observed": "dar la cara"
         },
         {
-          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
-          "observed": "dar la cara"
+          "url": "https://www.diccionarios.com/diccionario/espanol/cara",
+          "observed": "dar la cara",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -129,12 +135,14 @@
       "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/mano",
-          "observed": "lavarse las manos"
+          "url": "https://www.spanishdict.com/translate/lavarse%20las%20manos",
+          "observed": "lavarse las manos",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         },
         {
-          "url": "https://www.wordreference.com/definicion/mano",
-          "observed": "lavarse las manos"
+          "url": "https://www.wordreference.com/definicion/manos",
+          "observed": "lavarse las manos",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -148,8 +156,9 @@
           "observed": "morderse la lengua"
         },
         {
-          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
-          "observed": "morderse la lengua"
+          "url": "https://www.diccionarios.com/diccionario/espanol/lengua",
+          "observed": "morderse la lengua",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -163,8 +172,9 @@
           "observed": "romperse la cabeza"
         },
         {
-          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
-          "observed": "romperse la cabeza"
+          "url": "https://www.diccionarios.com/diccionario/espanol/cabeza",
+          "observed": "romperse la cabeza",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -193,8 +203,9 @@
           "observed": "irse de las manos"
         },
         {
-          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
-          "observed": "Írsele algo de las manos a alguien"
+          "url": "https://refranespopulares.com/irsele-de-las-manos/",
+          "observed": "irse de las manos",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -208,8 +219,9 @@
           "observed": "levantar cabeza"
         },
         {
-          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
-          "observed": "levantar cabeza"
+          "url": "https://www.diccionarios.com/diccionario/espanol/cabeza",
+          "observed": "levantar cabeza",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -223,8 +235,9 @@
           "observed": "no mover un dedo"
         },
         {
-          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
-          "observed": "No mover un dedo por nadie"
+          "url": "https://www.diccionarios.com/diccionario/espanol/dedo",
+          "observed": "no mover ni un dedo",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -234,12 +247,14 @@
       "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/hueso",
-          "observed": "en los huesos"
+          "url": "https://dle.rae.es/huesos",
+          "observed": "en los huesos",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         },
         {
-          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
-          "observed": "estar en los huesos"
+          "url": "https://tureng.com/en/spanish-english/huesos",
+          "observed": "estar en los huesos",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -253,8 +268,9 @@
           "observed": "a pierna suelta"
         },
         {
-          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
-          "observed": "dormir a pierna suelta"
+          "url": "https://www.diccionarios.com/diccionario/espanol/pierna",
+          "observed": "a pierna suelta; dormía a pierna suelta",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -298,8 +314,9 @@
           "observed": "no dar pie con bola"
         },
         {
-          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
-          "observed": "no dar pie con bola"
+          "url": "https://www.diccionarios.com/diccionario/espanol/pie",
+          "observed": "no dar pie con bola",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -354,12 +371,14 @@
       "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/pie",
-          "observed": "con pie de plomo; Andar, ir con pies de plomo"
+          "url": "https://www.diccionarios.com/diccionario/espanol/plomo",
+          "observed": "andar con pies de plomo",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         },
         {
-          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
-          "observed": "andar con pies de plomo"
+          "url": "https://dichosymas.com/dicho/andar-con-pies-de-plomo/",
+          "observed": "andar con pies de plomo",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -373,8 +392,9 @@
           "observed": "como anillo al dedo"
         },
         {
-          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
-          "observed": "Viene algo como anillo al dedo"
+          "url": "https://www.diccionarios.com/diccionario/espanol/anillo",
+          "observed": "venir una cosa como anillo al dedo",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -384,12 +404,14 @@
       "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/pie",
-          "observed": "no tener pies ni cabeza"
+          "url": "https://es.wiktionary.org/wiki/sin_pies_ni_cabeza",
+          "observed": "no tener pies ni cabeza",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         },
         {
-          "url": "https://borjaprofe.com/20-expresiones-en-espanol-con-partes-del-cuerpo/",
-          "observed": "no tener pies ni cabeza"
+          "url": "https://diccionario.reverso.net/espanol-definiciones/no%2Btener%2Bpies%2Bni%2Bcabeza",
+          "observed": "no tener pies ni cabeza",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -409,7 +431,7 @@
       ]
     },
     {
-      "w": "chuparse el dedo",
+      "w": "no chuparse el dedo",
       "checkedAt": "2026-11-13",
       "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
@@ -418,8 +440,9 @@
           "observed": "chuparse el dedo"
         },
         {
-          "url": "https://www.coloquial.es/es/diccionario-del-espanol-coloquial/letra-c-99/chupar-.html",
-          "observed": "chuparse el dedo"
+          "url": "https://www.diccionarios.com/diccionario/espanol/dedo",
+          "observed": "no chuparse o mamarse alguien el dedo",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -433,8 +456,9 @@
           "observed": "caérsele el alma a los pies"
         },
         {
-          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
-          "observed": "caérsele el alma a los pies"
+          "url": "https://www.diccionarios.com/diccionario/espanol/alma",
+          "observed": "caérsele el alma a los pies",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     },
@@ -463,8 +487,9 @@
           "observed": "tener los nervios a flor de piel"
         },
         {
-          "url": "https://estudiarespanol.wordpress.com/2018/01/09/expresiones-con-partes-del-cuerpo/",
-          "observed": "tener los nervios a flor de piel"
+          "url": "https://dle.rae.es/flor",
+          "observed": "a flor de piel",
+          "note": "2026-11-13: sayfa yeniden açıldı; tam ifade veya locución tabanı anlamıyla birlikte okundu. URL çoğul aramayı tekil maddeye yönlendiriyorsa içerikte deyimin kendisi ayrıca doğrulandı."
         }
       ]
     }

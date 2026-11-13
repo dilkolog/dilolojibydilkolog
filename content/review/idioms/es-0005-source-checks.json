@@ -1,0 +1,246 @@
+{
+  "collector": "Codex",
+  "independentReview": "Claude oturumu bekleniyor",
+  "status": "Toplama sürüyor; 16 doğrulanmış kayıt, 31 hedefinden 15 eksik.",
+  "checked": [
+    {
+      "w": "ganarse la vida",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/vida",
+          "observed": "ganarse la vida"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/vida",
+          "observed": "ganarse la vida"
+        }
+      ]
+    },
+    {
+      "w": "llevar a cabo",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/cabo",
+          "observed": "llevar a cabo"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/cabo",
+          "observed": "llevar a cabo"
+        }
+      ]
+    },
+    {
+      "w": "empezar de cero",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/cero",
+          "observed": "empezar de cero"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/cero",
+          "observed": "empezar de cero"
+        }
+      ]
+    },
+    {
+      "w": "hacer puente",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/puente",
+          "observed": "hacer puente"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/puente",
+          "observed": "hacer puente"
+        }
+      ]
+    },
+    {
+      "w": "sudar la camiseta",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/camiseta",
+          "observed": "sudar la camiseta"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/camiseta",
+          "observed": "sudar la camiseta"
+        }
+      ]
+    },
+    {
+      "w": "sudar la gota gorda",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/gota",
+          "observed": "sudar la gota gorda"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/gota",
+          "observed": "sudar la gota gorda"
+        }
+      ]
+    },
+    {
+      "w": "dar la talla",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/talla",
+          "observed": "dar la talla"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/talla",
+          "observed": "dar la talla"
+        }
+      ]
+    },
+    {
+      "w": "no dar abasto",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/abasto",
+          "observed": "no dar abasto"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/abasto",
+          "observed": "no dar abasto"
+        }
+      ]
+    },
+    {
+      "w": "sudar tinta",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/tinta",
+          "observed": "sudar tinta"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/tinta",
+          "observed": "sudar tinta"
+        }
+      ]
+    },
+    {
+      "w": "dar el callo",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/callo",
+          "observed": "dar el callo"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/callo",
+          "observed": "dar el callo"
+        }
+      ]
+    },
+    {
+      "w": "echar el resto",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/resto",
+          "observed": "echar el resto"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/resto",
+          "observed": "echar el resto"
+        }
+      ]
+    },
+    {
+      "w": "batirse el cobre",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/cobre",
+          "observed": "batirse el cobre"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/cobre",
+          "observed": "batirse el cobre"
+        }
+      ]
+    },
+    {
+      "w": "escurrir el bulto",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/bulto",
+          "observed": "escurrir el bulto"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/bulto",
+          "observed": "escurrir el bulto"
+        }
+      ]
+    },
+    {
+      "w": "poner una pica en Flandes",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pica",
+          "observed": "poner una pica en Flandes"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/pica",
+          "observed": "poner una pica en Flandes"
+        }
+      ]
+    },
+    {
+      "w": "gastar la pólvora en salvas",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pólvora",
+          "observed": "gastar la pólvora en salvas"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/pólvora",
+          "observed": "gastar la pólvora en salvas"
+        }
+      ]
+    },
+    {
+      "w": "no dar golpe",
+      "checkedAt": "2026-11-13",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/golpe",
+          "observed": "no dar (ni) golpe / no dar o pegar golpe o ni golpe"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/golpe",
+          "observed": "no dar (ni) golpe / no dar o pegar golpe o ni golpe"
+        }
+      ]
+    }
+  ]
+}

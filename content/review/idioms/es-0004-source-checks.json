@@ -1,0 +1,358 @@
+{
+  "collector": "Codex",
+  "independentReview": "Claude oturumu bekleniyor",
+  "status": "19 doğrulanmış kayıt; 31 hedefinden 12 eksik. İkmal araştırması sürüyor.",
+  "checked": [
+    {
+      "w": "apretarse el cinturón",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/cinturón",
+          "observed": "apretarse el cinturón"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/cinturón",
+          "observed": "apretarse el cinturón"
+        }
+      ]
+    },
+    {
+      "w": "estar en números rojos",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/números",
+          "observed": "estar en números rojos"
+        },
+        {
+          "url": "https://dichosymas.com/dicho/estar-en-numeros-rojos/",
+          "observed": "estar en números rojos"
+        }
+      ]
+    },
+    {
+      "w": "rascarse el bolsillo",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/bolsillo",
+          "observed": "rascarse el bolsillo"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/bolsillo",
+          "observed": "rascarse el bolsillo"
+        }
+      ]
+    },
+    {
+      "w": "hacer su agosto",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/agosto",
+          "observed": "hacer su agosto"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/agosto",
+          "observed": "hacer su agosto"
+        }
+      ]
+    },
+    {
+      "w": "pagar a pachas",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pachas",
+          "observed": "a pachas"
+        },
+        {
+          "url": "https://es.wiktionary.org/wiki/a_pachas",
+          "observed": "a pachas"
+        }
+      ]
+    },
+    {
+      "w": "hacerse de oro",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/oro",
+          "observed": "hacerse de oro"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/oro",
+          "observed": "hacerse de oro"
+        }
+      ]
+    },
+    {
+      "w": "costar un pico",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dem.colmex.mx/ver/pico",
+          "observed": "costar un pico"
+        },
+        {
+          "url": "https://dichosymas.com/dicho/salir-por-un-pico/",
+          "observed": "costar un pico"
+        }
+      ]
+    },
+    {
+      "w": "no tener donde caerse muerto",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/tener",
+          "observed": "no tener donde caerse muerto"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/tener",
+          "observed": "no tener donde caerse muerto"
+        }
+      ]
+    },
+    {
+      "w": "aflojar el bolsillo",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/bolsillo",
+          "observed": "aflojar el bolsillo"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/bolsillo",
+          "observed": "aflojar el bolsillo"
+        }
+      ]
+    },
+    {
+      "w": "estar a dos velas",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://www.fundacionlengua.com/es/estar-dos-velas/art/191/",
+          "observed": "estar a dos velas"
+        },
+        {
+          "url": "https://diccionarioactual.com/estar-a-dos-velas/",
+          "observed": "estar a dos velas"
+        }
+      ]
+    },
+    {
+      "w": "valer un potosí",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/potosí",
+          "observed": "valer un potosí"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/potosí",
+          "observed": "valer un potosí"
+        }
+      ]
+    },
+    {
+      "w": "pagar a escote",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/escote",
+          "observed": "a escote"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/escote",
+          "observed": "a escote"
+        }
+      ]
+    },
+    {
+      "w": "pagar a tocateja",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/tocateja",
+          "observed": "a tocateja"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/tocateja",
+          "observed": "a tocateja"
+        }
+      ]
+    },
+    {
+      "w": "vivir de gorra",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/gorra",
+          "observed": "vivir de gorra"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/gorra",
+          "observed": "vivir de gorra"
+        }
+      ]
+    },
+    {
+      "w": "pagar en dinero contante y sonante",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://www.spanishdict.com/translate/contante%20y%20sonante",
+          "observed": "dinero contante y sonante"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/contante",
+          "observed": "dinero contante y sonante"
+        }
+      ]
+    },
+    {
+      "w": "pedir el oro y el moro",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/oro",
+          "observed": "el oro y el moro"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/oro",
+          "observed": "el oro y el moro"
+        }
+      ]
+    },
+    {
+      "w": "estar sin blanca",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/blanca",
+          "observed": "estar sin blanca"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/blanca",
+          "observed": "estar sin blanca"
+        }
+      ]
+    },
+    {
+      "w": "ser un pozo sin fondo",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pozo",
+          "observed": "pozo sin fondo"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/pozo",
+          "observed": "pozo sin fondo"
+        }
+      ]
+    },
+    {
+      "w": "tirar la casa por la ventana",
+      "checkedAt": "2026-11-13",
+      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/casa",
+          "observed": "tirar la casa por la ventana"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/casa",
+          "observed": "tirar la casa por la ventana"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "w": "llegar a fin de mes",
+      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
+    },
+    {
+      "w": "andar mal de dinero",
+      "reason": "Şeffaf fiil + olağan anlamlı tamamlayıcı; deyim olarak alınmadı."
+    },
+    {
+      "w": "ir a medias",
+      "reason": "Şeffaf fiil + olağan anlamlı tamamlayıcı; deyim olarak alınmadı."
+    },
+    {
+      "w": "comprar a precio de saldo",
+      "reason": "Şeffaf fiil + olağan anlamlı tamamlayıcı; deyim olarak alınmadı."
+    },
+    {
+      "w": "nadar en la abundancia",
+      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
+    },
+    {
+      "w": "vivir al día",
+      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
+    },
+    {
+      "w": "ser una mina de oro",
+      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
+    },
+    {
+      "w": "salir a cuenta",
+      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
+    },
+    {
+      "w": "quedarse con lo puesto",
+      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
+    },
+    {
+      "w": "cobrar en dinero negro",
+      "reason": "Şeffaf fiil + olağan anlamlı tamamlayıcı; deyim olarak alınmadı."
+    },
+    {
+      "w": "quedar por puertas",
+      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
+    },
+    {
+      "w": "hacer caja",
+      "reason": "Şeffaf fiil + olağan anlamlı tamamlayıcı; deyim olarak alınmadı."
+    },
+    {
+      "w": "tirar de talonario",
+      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
+    },
+    {
+      "w": "pagar en dinero contante y sonante",
+      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
+    },
+    {
+      "w": "hacer un simpa",
+      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
+    },
+    {
+      "w": "no tener ni cobre",
+      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
+    }
+  ]
+}

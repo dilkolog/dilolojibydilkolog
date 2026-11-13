@@ -1,0 +1,264 @@
+[
+ {
+  "w": "ganarse la vida",
+  "t": "geçimini sağlamak, hayatını kazanmak",
+  "lit": "kendine hayatı kazanmak",
+  "eq": "hayatını kazanmak",
+  "s": "Desde muy joven se ganaba la vida reparando relojes antiguos.",
+  "form": "ganaba la vida",
+  "tr": "Çok genç yaşlardan beri eski saatleri tamir ederek geçimini sağlıyordu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/vida",
+   "https://www.diccionarios.com/diccionario/espanol/vida"
+  ]
+ },
+ {
+  "w": "llevar a cabo",
+  "t": "gerçekleştirmek, yürütüp tamamlamak",
+  "lit": "uca götürmek",
+  "s": "El laboratorio logró llevar a cabo el experimento sin ningún retraso.",
+  "form": "llevar a cabo",
+  "tr": "Laboratuvar deneyi hiçbir gecikme olmadan gerçekleştirmeyi başardı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/cabo",
+   "https://www.diccionarios.com/diccionario/espanol/cabo"
+  ]
+ },
+ {
+  "w": "empezar de cero",
+  "t": "her şeye baştan başlamak, yeniden kurmak",
+  "lit": "sıfırdan başlamak",
+  "eq": "sıfırdan başlamak",
+  "s": "Se mudó a otra ciudad para abrir su taller y empezar de cero.",
+  "form": "empezar de cero",
+  "tr": "Atölyesini açmak ve sıfırdan başlamak için başka bir şehre taşındı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/cero",
+   "https://www.diccionarios.com/diccionario/espanol/cero"
+  ]
+ },
+ {
+  "w": "hacer puente",
+  "t": "resmi tatili hafta sonuyla birleştirip izin yapmak",
+  "lit": "köprü yapmak",
+  "s": "Como el martes es festivo, media oficina piensa hacer puente el lunes.",
+  "form": "hacer puente",
+  "tr": "Salı günü resmi tatil olduğu için ofisin yarısı pazartesiyi birleştirip izin yapmayı düşünüyor.",
+  "reg": "neutral",
+  "area": "İspanya",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/puente",
+   "https://www.diccionarios.com/diccionario/espanol/puente"
+  ]
+ },
+ {
+  "w": "sudar la camiseta",
+  "t": "ter dökmek, bir iş için var gücüyle çalışmak",
+  "lit": "formayı terletmek",
+  "eq": "ter dökmek",
+  "s": "Para ganar la final, nuestro equipo tendrá que sudar la camiseta.",
+  "form": "sudar la camiseta",
+  "tr": "Finali kazanmak için takımımızın büyük çaba göstermesi gerekecek.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/camiseta",
+   "https://www.diccionarios.com/diccionario/espanol/camiseta"
+  ]
+ },
+ {
+  "w": "sudar la gota gorda",
+  "t": "kan ter içinde kalmak, çok zahmet çekmek",
+  "lit": "iri damlayı terletmek",
+  "eq": "kan ter içinde kalmak",
+  "s": "Subiendo aquellos muebles por la escalera sudamos la gota gorda.",
+  "form": "sudamos la gota gorda",
+  "tr": "O mobilyaları merdivenden çıkarırken kan ter içinde kaldık.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/gota",
+   "https://www.diccionarios.com/diccionario/espanol/gota"
+  ]
+ },
+ {
+  "w": "dar la talla",
+  "t": "beklentiyi karşılamak, işin altından kalkacak yeterlilikte olmak",
+  "lit": "boy ölçüsünü vermek",
+  "s": "La nueva arquitecta dio la talla desde su primer proyecto importante.",
+  "form": "dio la talla",
+  "tr": "Yeni mimar, daha ilk önemli projesinden itibaren beklentiyi fazlasıyla karşıladı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/talla",
+   "https://www.diccionarios.com/diccionario/espanol/talla"
+  ]
+ },
+ {
+  "w": "no dar abasto",
+  "t": "iş yoğunluğuna yetişememek, talebe güç yetirememek",
+  "lit": "yeterlilik verememek",
+  "s": "En época de cosecha los agricultores no dan abasto con tanto trabajo.",
+  "form": "no dan abasto",
+  "tr": "Hasat zamanında çiftçiler bu kadar çok işe yetişemiyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/abasto",
+   "https://www.diccionarios.com/diccionario/espanol/abasto"
+  ]
+ },
+ {
+  "w": "sudar tinta",
+  "t": "çok zorlanarak çalışmak, akla karayı seçmek",
+  "lit": "mürekkep terlemek",
+  "eq": "akla karayı seçmek",
+  "s": "Los técnicos sudaron tinta para recuperar los archivos del servidor dañado.",
+  "form": "sudaron tinta",
+  "tr": "Teknisyenler hasarlı sunucudaki dosyaları kurtarmak için akla karayı seçti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/tinta",
+   "https://www.diccionarios.com/diccionario/espanol/tinta"
+  ]
+ },
+ {
+  "w": "dar el callo",
+  "t": "çok çalışmak, büyük emek vermek",
+  "lit": "nasırı vermek",
+  "s": "Lleva treinta años dando el callo en la fábrica desde el amanecer.",
+  "form": "dando el callo",
+  "tr": "Otuz yıldır şafak vaktinden itibaren fabrikada ağır emek veriyor.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/callo",
+   "https://www.diccionarios.com/diccionario/espanol/callo"
+  ]
+ },
+ {
+  "w": "echar el resto",
+  "t": "bütün gücünü ve çabasını ortaya koymak",
+  "lit": "kalanı atmak",
+  "s": "En el último kilómetro de la etapa, la ciclista echó el resto.",
+  "form": "echó el resto",
+  "tr": "Etabın son kilometresinde bisikletçi bütün gücünü ortaya koydu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/resto",
+   "https://www.diccionarios.com/diccionario/espanol/resto"
+  ]
+ },
+ {
+  "w": "batirse el cobre",
+  "t": "kıyasıya emek vermek, zorlu bir işte yoğun çaba harcamak",
+  "lit": "bakırı dövmek",
+  "s": "Los abogados se batieron el cobre durante meses en aquel juicio laboral.",
+  "form": "batieron el cobre",
+  "tr": "Avukatlar o iş davasında aylarca kıyasıya çaba harcadı.",
+  "reg": "neutral",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/cobre",
+   "https://www.diccionarios.com/diccionario/espanol/cobre"
+  ]
+ },
+ {
+  "w": "escurrir el bulto",
+  "t": "işten veya sorumluluktan sıvışmak, yan çizmek",
+  "lit": "yükü kaydırmak",
+  "eq": "yan çizmek",
+  "s": "Cada vez que toca limpiar el almacén, intenta escurrir el bulto.",
+  "form": "escurrir el bulto",
+  "tr": "Ne zaman depoyu temizleme sırası gelse işten sıvışmaya çalışır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/bulto",
+   "https://www.diccionarios.com/diccionario/espanol/bulto"
+  ]
+ },
+ {
+  "w": "poner una pica en Flandes",
+  "t": "çok zor ve zahmetli bir işi başarmak",
+  "lit": "Flandre'ye bir mızrak dikmek",
+  "s": "Conseguir aquel permiso municipal fue como poner una pica en Flandes.",
+  "form": "poner una pica en Flandes",
+  "tr": "Belediyeden o izni koparmak deveye hendek atlatmak kadar zor bir başarıydı.",
+  "reg": "neutral",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/pica",
+   "https://www.diccionarios.com/diccionario/espanol/pica"
+  ]
+ },
+ {
+  "w": "gastar la pólvora en salvas",
+  "t": "işe yaramayan çabalara enerji harcamak",
+  "lit": "barutu selam atışlarına harcamak",
+  "s": "Discutir esos detalles menores antes del acuerdo es gastar la pólvora en salvas.",
+  "form": "gastar la pólvora en salvas",
+  "tr": "Anlaşmadan önce o küçük ayrıntıları tartışmak boşa çaba harcamaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/pólvora",
+   "https://www.diccionarios.com/diccionario/espanol/pólvora"
+  ]
+ },
+ {
+  "w": "no dar golpe",
+  "t": "hiç çalışmamak, iş yapmamak",
+  "lit": "darbe vurmamak",
+  "s": "Mientras arreglábamos el local, Pablo no dio golpe.",
+  "form": "no dio golpe",
+  "tr": "Biz dükkânı düzenlerken Pablo hiç iş yapmadı.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dle.rae.es/golpe",
+   "https://www.diccionarios.com/diccionario/espanol/golpe"
+  ]
+ }
+]

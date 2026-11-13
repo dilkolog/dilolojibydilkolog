@@ -1,0 +1,208 @@
+{
+  "collector": "Codex",
+  "independentReview": "Claude oturumu bekleniyor",
+  "status": "13 doğrulanmış kayıt; 31 hedefinden 18 eksik. İkmal araştırması sürüyor.",
+  "checked": [
+    {
+      "w": "dar la palabra",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/palabra",
+          "observed": "dar la palabra"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/palabra",
+          "observed": "dar la palabra"
+        }
+      ]
+    },
+    {
+      "w": "hablar por hablar",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/hablar",
+          "observed": "hablar por hablar"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/hablar",
+          "observed": "hablar por hablar"
+        }
+      ]
+    },
+    {
+      "w": "no decir ni pío",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pío",
+          "observed": "no decir ni pío"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/pío",
+          "observed": "no decir ni pío"
+        }
+      ]
+    },
+    {
+      "w": "correr la voz",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/voz",
+          "observed": "correr la voz"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/voz",
+          "observed": "correr la voz"
+        }
+      ]
+    },
+    {
+      "w": "sacar a colación",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/colación",
+          "observed": "sacar a colación"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/colación",
+          "observed": "sacar a colación"
+        }
+      ]
+    },
+    {
+      "w": "hablar como un libro abierto",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/libro",
+          "observed": "hablar como un libro abierto"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/libro",
+          "observed": "hablar como un libro abierto"
+        }
+      ]
+    },
+    {
+      "w": "quitar hierro",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/hierro",
+          "observed": "quitar hierro"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/hierro",
+          "observed": "quitar hierro"
+        }
+      ]
+    },
+    {
+      "w": "no soltar prenda",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/prenda",
+          "observed": "no soltar prenda"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/prenda",
+          "observed": "no soltar prenda"
+        }
+      ]
+    },
+    {
+      "w": "dejarse en el tintero",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/tintero",
+          "observed": "dejarse en el tintero"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/tintero",
+          "observed": "dejarse en el tintero"
+        }
+      ]
+    },
+    {
+      "w": "dar la tabarra",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/tabarra",
+          "observed": "dar la tabarra"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/tabarra",
+          "observed": "dar la tabarra"
+        }
+      ]
+    },
+    {
+      "w": "echar pestes",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/pestes",
+          "observed": "echar pestes"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/pestes",
+          "observed": "echar pestes"
+        }
+      ]
+    },
+    {
+      "w": "sacar con tirabuzón",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/tirabuzón",
+          "observed": "sacar con tirabuzón"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/tirabuzón",
+          "observed": "sacar con tirabuzón"
+        }
+      ]
+    },
+    {
+      "w": "estar de palique",
+      "checkedAt": "2026-11-13",
+      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "sources": [
+        {
+          "url": "https://dle.rae.es/palique",
+          "observed": "estar de palique"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/palique",
+          "observed": "estar de palique"
+        }
+      ]
+    }
+  ],
+  "editorialNotes": [
+    "Leer en voz alta, querer decir ve hablar claro gibi şeffaf adaylar alınmadı.",
+    "No decir ni mu ve no decir ni pío ayrı sayılar için aynı işlevin onomatopoetik varyantları olarak çoğaltılmadı; ikincisi seçildi.",
+    "Hablar como un libro başlığı, iki kaynakta ortak açık biçim ve anlama göre hablar como un libro abierto yapıldı.",
+    "Mentir como un bellaco kişi aşağılaması içerdiği için alınmadı."
+  ]
+}

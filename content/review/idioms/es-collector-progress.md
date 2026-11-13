@@ -1,83 +1,88 @@
-# İspanyolca toplayan ilerleme kaydı
+# İspanyolca deyim paketi — toplayan ilerleme kaydı
 
-Bu dosya bağımsız Claude denetimi değildir. PR #774 hâlâ taslaktır; bütün İspanyolca paketinin tamamlandığı veya yayıma hazır olduğu anlamına gelmez.
+13 Kasım 2026. **Çalışma tamamlanmadı. PR #774 taslak kalır. Bu rapor bağımsız Claude denetimi değildir.**
 
-## Geçerli plan
+## Mevcut durum
 
-16 × 31 parti + korunacak 16 çekirdek: toplam 512 olabilir. Kaynak/kalite koşulları sayı ve seviye kotasından önce gelir. İki gerçek kaynak bulunamayan veya şeffaf kalan ifade sırf sayı tamamlamak için alınmaz. Toplayan Codex; bağımsız denetleyen Claude oturumu. Kitap yalnız aday kaynağıdır; #775 kapatıldı, hazırlık klasörü bu PR'a alınmadı.
+Dalda 16 çekirdek + 158 yeni parti kaydı = **174 ham kayıt** var. Hedef 16 × 31 yeni kayıt + 16 çekirdek = 512. Eksik 338 kayıt tamamlanmış gibi gösterilmez. Main henüz dil başına 16 deyim yayımlıyor.
 
-## Bu ara kaydın kapsamı
+Güncel main dala birleştirildi. Yeni kaynak URL ön kontrolü ilk üç partinin daha önce açılıp kaydedilmiş bazı kaynaklarını da reddediyor: ilgili sayfada deyim bulunması URL yolunda içerik kelimesi bulunduğu anlamına gelmiyor. Hayvanlar ve yemek partilerinde **73 kaynak adresi** bu ön kontrolden geçmiyor. Kaynak/kelime kuralı gevşetilmedi; adreslere yapay sorgu sözcükleri eklenmedi.
 
-İlk üç partide toplam **93 kayıt**, **186 kaynak atfı** yeniden kuruldu. Her sayfada deyim, çekimli kullanımı veya açıklanan taban locución görüldü. Özellikle kaynakta farklı biçim varsa yanındaki JSON kaydında yazıldı. Kaynak tanımı/örneği kopyalanmadı; özgün Türkçe anlam ve örnekler düzenlendi.
+## Bu aşamada dosyaya geçirilenler
 
-| Parti | Tema | Kayıt | B1 | B2 | C1 |
-|---|---|---:|---:|---:|---:|
-| es-0001 | body | 31 | 6 | 12 | 13 |
-| es-0002 | animals | 31 | 6 | 13 | 12 |
-| es-0003 | food | 31 | 6 | 14 | 11 |
+- Para partisindeki kalan 30 Wikipedia sayfası açıldı; deyim ve çekimli kullanımları arandı. Sonuçlar `es-0004-wikipedia-audit.json` içinde. Bazı sayfalarda gerçek kullanım vardı; yer/grup/eser adı eşleşmeleri ayrıca ayrıldı. Güncel ham partilerde Wikipedia atfı kalmadı.
+- Para partisi 19 iki kaynaklı deyime indirildi/yenilendi. 16 eski aday elendi veya iki uygun kaynak bekleyen aday durumuna alındı; 3 yeni deyim eklendi. Gerekçeler kaynak kaydında.
+- Beden partisinin URL ön kontrolünü karşılamayan kaynakları, yeniden açılmış ilgili sayfalarla değiştirildi. `chuparse el dedo`, örnek ve iki kaynağın ortak anlamı uyarınca `no chuparse el dedo` olarak düzeltildi.
+- Çalışma ve çaba (0005): 16; duygular (0006): 17; konuşma ve sır (0007): 13 iki kaynaklı kayıt eklendi. Bunlar henüz 31’e tamamlanmış partiler değildir.
+- 0008–0016 kaynak araştırması ve parti üretimi henüz tamamlanmadı. Kitaptaki 151 adayın tam eleme/yerleştirme raporu da bekliyor. Hazırlık klasörü/ZIP eklenmedi.
 
-Seviye etiketleri editoryal tahmindir. Yemek ve hayvanlar partilerindeki değişikliklerden sonra başlangıçtaki 6/12/13 dağılımı birebir korunmuyor; kotayı tutturmak için zorluk etiketi yükseltilmedi. Seviyeler bağımsız incelemede ayrıca ele alınmalı.
+## Parti sayıları
 
-## Çıkarılan/değiştirilen eski adaylar
+| Parti | Tema | Kayıt | B1 | B2 | C1 | 31’e açık |
+|---|---|---:|---:|---:|---:|---:|
+| es-0001 | body | 31 | 6 | 13 | 12 | 0 |
+| es-0002 | animals | 31 | 6 | 13 | 12 | 0 |
+| es-0003 | food | 31 | 6 | 14 | 11 | 0 |
+| es-0004 | money | 19 | 2 | 10 | 7 | 12 |
+| es-0005 | work | 16 | 4 | 9 | 3 | 15 |
+| es-0006 | feelings | 17 | 2 | 13 | 2 | 14 |
+| es-0007 | talk | 13 | 3 | 9 | 1 | 18 |
 
-- **ser un bicho raro**: Kişiyi küçümseyen niteleme; hakaret içeren deyimleri almama kuralı nedeniyle çıkarıldı. Yerine: hacer el ganso.
-- **estar a pan y agua**: Mevcut anlam ve örnek doğrudan yiyeceklerle kıt geçinmeyi anlatıyordu; mecaz ayrımı zayıf. Yerine: estar en el ajo.
-- **comerse un marrón**: Marrón burada yiyecek değildir; yemek imgesi temasına uygun değil. Trouble partisi için yeniden doğrulanacak aday. Yerine: ponerse como un tomate.
-- **importar un pepino**: Çekirdekteki importar un pimiento ile aynı deyimin kelime varyantı; ayrı kayıtla sayı artırılmadı. Yerine: dejar con la miel en los labios.
-- **importar un comino**: Çekirdekteki importar un pimiento ile aynı deyimin kelime varyantı; ayrı kayıtla sayı artırılmadı. Yerine: volverse la tortilla.
+0008 mind, 0009 people, 0010 trouble, 0011 time, 0012 nature, 0013 luck, 0014 ease, 0015 decide ve 0016 move ham partileri yok; her birinin 31 hedefi açık. Toplamda seviye dağılımı (çekirdek dahil): B1 29, B2 97, C1 48.
 
-Deyim olmayan adayları eleme sayısı bu aşamada bütün dilin nihai sayısı değildir. Para partisi ve kitap adaylarının tamamı henüz elenip raporlanmadı. Kitaptaki “ponerse como un tomate” adayı iki internet kaynağıyla doğrulandı; kitap kaynak olarak yazılmadı.
+## Yenilenen kaynakların siteleri
 
-## Kaynak alan adları
-
-Aşağıdakiler yalnız yeniden doğrulanan es-0001–0003 içindir. Aynı sayfanın farklı deyimler için kullanılması her deyimde bir atıf sayılır; benzersiz sayfa sayısı değildir.
+Aşağıdaki tablo bu aşamada URL kuralına uygun hale getirilen 0001/0004/0005/0006/0007 partilerinin **96 kaydındaki 192 atfı** sayar. Bir sitenin farklı deyimlerde tekrarlanması ayrı atıftır; benzersiz sayfa sayısı değildir. 0002/0003’ün bekleyen adresleri bu tabloya katılmadı.
 
 | Site | Atıf |
 |---|---:|
-| dle.rae.es | 62 |
-| www.diccionarios.com | 20 |
-| spanishlessonsacademy.com | 10 |
-| estudiarespanol.wordpress.com | 9 |
-| fpnvalencia.es | 9 |
-| www.juegosdepalabras.com | 8 |
-| preparaeldele.com | 8 |
-| human.libretexts.org | 8 |
-| borjaprofe.com | 7 |
-| elblogdeidiomas.es | 7 |
-| aprenderespanholesfacil.wordpress.com | 6 |
-| en.wiktionary.org | 4 |
-| www.wordreference.com | 3 |
-| www.revistaelobservador.com | 3 |
+| dle.rae.es | 82 |
+| www.diccionarios.com | 75 |
+| www.wordreference.com | 7 |
+| www.spanishdict.com | 5 |
+| es.wiktionary.org | 4 |
+| dichosymas.com | 3 |
 | dem.colmex.mx | 2 |
-| es.wiktionary.org | 2 |
-| www.newsinslowspanish.com | 2 |
-| www.spanishdict.com | 2 |
-| aexgastronomia.es | 2 |
-| www.ecos-online.de | 1 |
-| diccionario.reverso.net | 1 |
+| diccionario.reverso.net | 2 |
+| tureng.com | 2 |
+| refranespopulares.com | 1 |
+| en.wiktionary.org | 1 |
 | horchataypalomitas.com | 1 |
 | www.primerahora.com | 1 |
 | espanol.lingolia.com | 1 |
-| www.coloquial.es | 1 |
 | www.collinsdictionary.com | 1 |
-| cadenaser.com | 1 |
-| espaniero.online | 1 |
-| www.speakinglatino.com | 1 |
-| diccet.com | 1 |
-| www.spanishschoolvalencia.com | 1 |
+| www.fundacionlengua.com | 1 |
+| diccionarioactual.com | 1 |
+| www.udep.edu.pe | 1 |
+| dictionary.cambridge.org | 1 |
 
-## Doğrulama
+## Kontroller
 
-- `node scripts/build-idioms.mjs`: geçti; mevcut dalda çekirdekle toplam 140 İspanyolca kayıt var. Bunun 31 kaydı es-0004'teki eski, henüz kaynakları tamamlanmamış verilerdir; 140 doğrulanmış deyim diye sunulmaz.
-- `npx vitest run src/data/idioms.test.ts`: 5/5 geçti.
+- `node scripts/build-idioms.mjs`: **başarısız**, çıkış 1; 0002/0003’te 73 URL reddi, 8 ortak URL uyarısı. Tam çıktı: `es-build-progress-2026-11-13.txt`. Betik çıktıları hata halinde değiştirmediği için `src/data/idioms/es.json` hâlâ önceki 140 kayıtlık derlemedir; güncel ham verinin yayımlanmış sürümü değildir.
+- `npx vitest run content/review/idioms/raw-progress.test.ts src/data/idioms.test.ts`: **15/15 geçti**. Ham 174 kaydın alan/form/tekrar kontrolü ve yenilenen beş partinin URL ön kontrolü dahil. Bu test sayfa içeriğinin doğruluğunu veya Claude onayını kanıtlamaz.
 - `npm run typecheck`: geçti.
-- `npx oxlint src api e2e`: çıkış kodu 0, ancak **temiz değil**: değişiklik kapsamı dışındaki `src/ui/shared/wordCounts.tsx:7:14` için `react(only-export-components)` uyarısı var. Uygulama kodu sahipliği sınırı nedeniyle bu içerik turunda değiştirilmedi.
+- `npx oxlint src api e2e`: çıkış 0; kapsam dışındaki `src/ui/shared/wordCounts.tsx:7:14` için mevcut `react(only-export-components)` uyarısı sürüyor. “Uyarısız temiz” denmiyor.
+- Tam test paketi ve CI yayıma hazırlık kontrolü bu ara aşamada tamamlandı diye raporlanmıyor. Derleyici ve bütün içerik/bağımsız denetim koşulları geçmeden taslak kaldırılmaz, birleştirilmez.
 
-## Henüz yapılmayanlar ve belirsizlikler
+## Main üzerinde gerçek derleyici çıktısı
 
-- **es-0004 para partisi**: eski kaynakları hâlâ güvenilir kabul edilmiyor. Açılan RAE/Larousse sayfaları bazı adayları doğruladı; nihai seçki henüz dosyaya geçirilmedi. “Andar mal de dinero”, “comprar a precio de saldo”, “cobrar en dinero negro” gibi şeffaf/kapsamı tartışmalı kayıtlar yeniden seçilmeli.
-- **es-0005–0016**: henüz yeniden doğrulanmış parti olarak eklenmedi. Tarihî aday dosyaları tamamlanmış veri sayılmaz.
-- Kitaptaki 151 adayın tamamının karşılaştırması ve eleme raporu bekliyor. PR hazırlık klasörü taşınmayacak.
-- Fransızca 260 kaydın dönüşümü ve İngilizce paket çalışması henüz tamamlanmadı.
-- Üç partinin de bağımsız Claude denetimi bekliyor. Kaynakların sayfada bulunması, bütün anlam/üslup/bölge kararlarının kesinleştiği anlamına gelmez. Özellikle yaygın deyimlerde eski C1 etiketlerinin yeniden değerlendirilmesi gerekiyor.
-- Dil bitmediği için hedefe göre nihai eksik sayısı ve tam dil raporu henüz çıkarılmadı; PR birleştirilmedi.
+13 Kasım 2026, main merge commit bab0b2ce üzerinde `node scripts/build-idioms.mjs`:
+
+```text
+en: 16 deyim (1 parti) · B2 16
+   talk 3, decide 3, body 1, work 3, trouble 1, time 1, people 2, mind 1, luck 1
+fr: 16 deyim (1 parti) · B2 16
+   people 1, feelings 1, body 2, money 1, trouble 2, work 1, mind 3, talk 1, decide 1, move 1, ease 1, animals 1
+es: 16 deyim (1 parti) · B2 16
+   trouble 1, people 2, money 1, talk 3, mind 1, body 1, work 1, feelings 2, decide 2, ease 1, animals 1
+```
+
+## İnceleme sınırları ve devam sırası
+
+Toplayan Codex; denetleyen Claude oturumudur. Eski `es-NNNN.md` denetimleri tarihî sürümleri anlatır; bu yeni veriye onay olarak sunulmaz. Yeni kaynak kayıtları `es-NNNN-source-checks.json` içinde. Seviye ve bölge etiketleri editoryal karardır; özellikle anlam varyantları ve sık ifadelerin eski C1 etiketleri bağımsız incelemede yeniden ele alınmalıdır.
+
+Önce 0002/0003 URL uyumu, sonra 0005–0016 ikmal ve kitap adayları; ardından Claude incelemesi, bütün kontroller ve yeşil CI. İspanyolca birleşmeden Fransızca veya İngilizce toplanmaya başlanmadı.
+
+## Kullanıcının sıraya eklediği sonraki iş
+
+Deyim paketinin ardından Fransızca dilbilgisi: B1 100, B2 110, C1 90 yeni soru; her seviye ayrı PR. Mevcut 450 A1–A2 sorusunda çift doğru cevap, şablon açıklama ve cevabı ele veren ipucu taraması ayrı dördüncü PR. Yalnız Rehber’de dersi olan konular; konu başına parti, soruya özgü Türkçe açıklama, karışık desteklenen soru tipleri, bağımsız solver ve yeşil CI zorunlu. Başlamadan AGENTS.md, docs/ICERIK-FABRIKASI.md ve content/style/grammar.md baştan sona okunacak. Bu iş henüz başlamadı.

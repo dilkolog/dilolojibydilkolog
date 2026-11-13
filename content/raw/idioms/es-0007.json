@@ -1,0 +1,225 @@
+[
+ {
+  "w": "dar la palabra",
+  "pat": "darle la palabra a alguien",
+  "t": "söz hakkı vermek, konuşma sırası tanımak",
+  "lit": "kelimeyi vermek",
+  "eq": "söz vermek",
+  "s": "La moderadora agradeció la pregunta y dio la palabra al ponente.",
+  "form": "dio la palabra",
+  "tr": "Moderatör soru için teşekkür etti ve konuşmacıya söz verdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/palabra",
+   "https://www.diccionarios.com/diccionario/espanol/palabra"
+  ]
+ },
+ {
+  "w": "hablar por hablar",
+  "t": "laf olsun diye konuşmak, boş konuşmak",
+  "lit": "konuşmak için konuşmak",
+  "eq": "laf olsun diye konuşmak",
+  "s": "No tiene pruebas de lo ocurrido, solo le gusta hablar por hablar.",
+  "form": "hablar por hablar",
+  "tr": "Olanlarla ilgili hiçbir kanıtı yok, sadece laf olsun diye konuşmayı seviyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/hablar",
+   "https://www.diccionarios.com/diccionario/espanol/hablar"
+  ]
+ },
+ {
+  "w": "no decir ni pío",
+  "t": "çıt çıkarmamak, hiç ses etmemek",
+  "lit": "cik bile dememek",
+  "eq": "çıt çıkarmamak",
+  "s": "Prometió guardar el secreto del regalo y no dijo ni pío.",
+  "form": "no dijo ni pío",
+  "tr": "Hediye sırrını saklamaya söz verdi ve kimseye çıt çıkarmadı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/pío",
+   "https://www.diccionarios.com/diccionario/espanol/pío"
+  ]
+ },
+ {
+  "w": "correr la voz",
+  "t": "haberi yaymak, kulaktan kulağa duyurmak",
+  "lit": "sesi koşturmak",
+  "s": "En cuanto anunciaron el concierto gratuito, corrió la voz por el barrio.",
+  "form": "corrió la voz",
+  "tr": "Ücretsiz konseri duyurdukları anda haber bütün mahalleye yayıldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/voz",
+   "https://www.diccionarios.com/diccionario/espanol/voz"
+  ]
+ },
+ {
+  "w": "sacar a colación",
+  "t": "söz arasında gündeme getirmek, konuyu açmak",
+  "lit": "karşılaştırmaya çıkarmak",
+  "s": "Durante la cena familiar prefirió no sacar a colación aquel antiguo pleito.",
+  "form": "sacar a colación",
+  "tr": "Aile yemeği sırasında o eski anlaşmazlığı gündeme getirmemeyi tercih etti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/colación",
+   "https://www.diccionarios.com/diccionario/espanol/colación"
+  ]
+ },
+ {
+  "w": "hablar como un libro abierto",
+  "t": "düzgün ve anlaşılır konuşmak",
+  "lit": "açık bir kitap gibi konuşmak",
+  "eq": "kitap gibi konuşmak",
+  "s": "Nuestra profesora habla como un libro abierto y todos entienden sus explicaciones.",
+  "form": "habla como un libro abierto",
+  "tr": "Öğretmenimiz düzgün ve anlaşılır konuşuyor; herkes açıklamalarını anlıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/libro",
+   "https://www.diccionarios.com/diccionario/espanol/libro"
+  ]
+ },
+ {
+  "w": "quitar hierro",
+  "pat": "quitarle hierro a algo",
+  "t": "bir konunun gerginliğini yumuşatarak anlatmak, büyütmemek",
+  "lit": "demiri çıkarmak",
+  "s": "Hizo una broma oportuna para quitar hierro a la discusión.",
+  "form": "quitar hierro",
+  "tr": "Tartışmanın gerginliğini yumuşatmak için yerinde bir şaka yaptı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/hierro",
+   "https://www.diccionarios.com/diccionario/espanol/hierro"
+  ]
+ },
+ {
+  "w": "no soltar prenda",
+  "t": "ser verip sır vermemek, ağzından tek laf kaçırmamak",
+  "lit": "rehin bırakmamak",
+  "eq": "ser verip sır vermemek",
+  "s": "Por más que le preguntaron sobre el fichaje, el portavoz no soltó prenda.",
+  "form": "no soltó prenda",
+  "tr": "Transfer hakkında ne kadar soru sorsalar da sözcü ser verip sır vermedi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/prenda",
+   "https://www.diccionarios.com/diccionario/espanol/prenda"
+  ]
+ },
+ {
+  "w": "dejarse en el tintero",
+  "pat": "dejarse algo en el tintero",
+  "t": "anlatırken veya yazarken bir noktayı unutmak, atlamak",
+  "lit": "mürekkep hokkasında bırakmak",
+  "s": "Revisé mis notas del discurso para no dejarme en el tintero ningún agradecimiento.",
+  "form": "dejarme en el tintero",
+  "tr": "Hiçbir teşekkürü atlamamak için konuşma notlarımı gözden geçirdim.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/tintero",
+   "https://www.diccionarios.com/diccionario/espanol/tintero"
+  ]
+ },
+ {
+  "w": "dar la tabarra",
+  "pat": "darle la tabarra a alguien",
+  "t": "ısrarlı konuşmalarla başını şişirmek, bunaltmak",
+  "lit": "at sineğini vermek",
+  "eq": "başını şişirmek",
+  "s": "Estuvo toda la tarde dándonos la tabarra con su nuevo coche.",
+  "form": "dándonos la tabarra",
+  "tr": "Bütün öğleden sonra yeni arabasıyla başımızı şişirdi.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/tabarra",
+   "https://www.diccionarios.com/diccionario/espanol/tabarra"
+  ]
+ },
+ {
+  "w": "echar pestes",
+  "pat": "echar pestes de alguien",
+  "t": "birinin arkasından ateş püskürmek, çok ağır konuşmak",
+  "lit": "vebalar atmak",
+  "eq": "ateş püskürmek",
+  "s": "Salió de la oficina echando pestes del nuevo sistema de turnos.",
+  "form": "echando pestes",
+  "tr": "Yeni vardiya sistemine ateş püskürerek ofisten çıktı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/pestes",
+   "https://www.diccionarios.com/diccionario/espanol/pestes"
+  ]
+ },
+ {
+  "w": "sacar con tirabuzón",
+  "pat": "sacarle las palabras con tirabuzón a alguien",
+  "t": "ağzından kerpetenle laf almak, zorla konuşturmak",
+  "lit": "tirbuşonla çıkarmak",
+  "eq": "ağzından kerpetenle laf almak",
+  "s": "Es tan reservado que a veces hay que sacarle con tirabuzón cada respuesta.",
+  "form": "sacarle con tirabuzón",
+  "tr": "O kadar ketumdur ki bazen her cevabı ağzından kerpetenle almak gerekir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/tirabuzón",
+   "https://www.diccionarios.com/diccionario/espanol/tirabuzón"
+  ]
+ },
+ {
+  "w": "estar de palique",
+  "t": "koyu bir sohbete dalmak, çene çalmak",
+  "lit": "küçük sopada olmak",
+  "eq": "çene çalmak",
+  "s": "Me encontré con la vecina en el portal y estuvimos de palique media hora.",
+  "form": "estuvimos de palique",
+  "tr": "Apartman girişinde komşuyla karşılaştım ve yarım saat çene çaldık.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dle.rae.es/palique",
+   "https://www.diccionarios.com/diccionario/espanol/palique"
+  ]
+ }
+]

@@ -1,0 +1,287 @@
+[
+ {
+  "w": "echar de menos",
+  "pat": "echar de menos a alguien",
+  "t": "özlemek, yokluğunu aramak",
+  "lit": "eksikten atmak",
+  "s": "Desde que vive en el extranjero, echa de menos la comida casera.",
+  "form": "echa de menos",
+  "tr": "Yurt dışında yaşadığından beri ev yemeklerini özlüyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "feelings",
+  "src": [
+   "https://www.diccionarios.com/diccionario/espanol/menos",
+   "https://www.wordreference.com/es/en/translation.asp?spen=echar%20de%20menos"
+  ]
+ },
+ {
+  "w": "morirse de risa",
+  "t": "gülmekten kırılmak, katıla katıla gülmek",
+  "lit": "gülüşten ölmek",
+  "eq": "gülmekten ölmek",
+  "s": "Con las anécdotas que contó el abuelo nos morimos de risa.",
+  "form": "nos morimos de risa",
+  "tr": "Dedemin anlattığı fıkra gibi anılarla gülmekten kırıldık.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/risa",
+   "https://www.diccionarios.com/diccionario/espanol/risa"
+  ]
+ },
+ {
+  "w": "pasarlo bomba",
+  "t": "çok eğlenmek, harika vakit geçirmek",
+  "lit": "onu bomba geçirmek",
+  "s": "Los niños lo pasaron bomba en el parque de atracciones.",
+  "form": "pasaron bomba",
+  "tr": "Çocuklar lunaparkta harika vakit geçirip çok eğlendi.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://www.diccionarios.com/diccionario/espanol/bomba",
+   "https://www.wordreference.com/es/en/translation.asp?spen=pasarlo%20bomba"
+  ]
+ },
+ {
+  "w": "andar de capa caída",
+  "t": "morali bozuk olmak, eski neşesini ve gücünü yitirmek",
+  "lit": "pelerini düşmüş dolaşmak",
+  "s": "Desde que perdió el campeonato, el tenista anda de capa caída.",
+  "form": "anda de capa caída",
+  "tr": "Şampiyonluğu kaybettiğinden beri tenisçinin morali bozuk.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/capa",
+   "https://www.diccionarios.com/diccionario/espanol/capa"
+  ]
+ },
+ {
+  "w": "perder los estribos",
+  "t": "öfkeden kontrolünü kaybetmek, çileden çıkmak",
+  "lit": "üzengileri kaybetmek",
+  "eq": "çileden çıkmak",
+  "s": "A pesar de las provocaciones del rival, procuró no perder los estribos.",
+  "form": "perder los estribos",
+  "tr": "Rakibin kışkırtmalarına rağmen öfkelenip kontrolünü kaybetmemeye çalıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/estribos",
+   "https://www.udep.edu.pe/castellanoactual/la-expresion-perder-los-estribos/"
+  ]
+ },
+ {
+  "w": "sacar de quicio",
+  "pat": "sacar de quicio a alguien",
+  "t": "çileden çıkarmak, sinirlerini bozmak",
+  "lit": "menteşeden çıkarmak",
+  "eq": "çileden çıkarmak",
+  "s": "El ruido constante de las obras está sacando de quicio al vecindario.",
+  "form": "sacando de quicio",
+  "tr": "İnşaatın aralıksız gürültüsü mahalleliyi çileden çıkarıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/quicio",
+   "https://www.diccionarios.com/diccionario/espanol/quicio"
+  ]
+ },
+ {
+  "w": "estar hasta el gorro",
+  "t": "bıkıp usanmak, sabrı taşmak",
+  "lit": "şapkaya kadar olmak",
+  "s": "Los viajeros están hasta el gorro de los retrasos del tren.",
+  "form": "están hasta el gorro",
+  "tr": "Yolcular tren rötarlarından artık bıkıp usandı.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/gorro",
+   "https://www.diccionarios.com/diccionario/espanol/gorro"
+  ]
+ },
+ {
+  "w": "estar hasta la coronilla",
+  "t": "canına tak etmek, sabrı tamamen tükenmek",
+  "lit": "başın tepesine kadar olmak",
+  "eq": "canına tak etmek",
+  "s": "Estoy hasta la coronilla de recibir llamadas publicitarias a la hora de comer.",
+  "form": "Estoy hasta la coronilla",
+  "tr": "Yemek saatinde reklam aramaları almaktan artık canıma tak etti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/coronilla",
+   "https://www.diccionarios.com/diccionario/espanol/coronilla"
+  ]
+ },
+ {
+  "w": "estar en su elemento",
+  "t": "sevdiği ortamda çok mutlu ve rahat olmak",
+  "lit": "kendi elementinde olmak",
+  "s": "Cuando dirige el taller de cerámica, Clara está en su elemento.",
+  "form": "está en su elemento",
+  "tr": "Seramik atölyesini yönetirken Clara tam sevdiği ortamda, çok mutludur.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/elemento",
+   "https://www.diccionarios.com/diccionario/espanol/elemento"
+  ]
+ },
+ {
+  "w": "tomarse a la tremenda",
+  "pat": "tomarse algo a la tremenda",
+  "t": "bir şeyi gereğinden fazla ciddiye almak, büyütmek",
+  "lit": "korkunç şekilde ele almak",
+  "s": "Mi hermano se toma a la tremenda cualquier comentario sobre su trabajo.",
+  "form": "toma a la tremenda",
+  "tr": "Kardeşim, işiyle ilgili her yorumu gereğinden fazla büyütüyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/tremenda",
+   "https://es.wiktionary.org/wiki/tremenda"
+  ]
+ },
+ {
+  "w": "sacar de sus casillas",
+  "pat": "sacar a alguien de sus casillas",
+  "t": "çileden çıkarmak, öfkeden deliye döndürmek",
+  "lit": "kendi karelerinden çıkarmak",
+  "eq": "çileden çıkarmak",
+  "s": "Tu insistencia me saca de mis casillas.",
+  "form": "saca de mis casillas",
+  "tr": "Israrın beni çileden çıkarıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/casillas",
+   "https://www.wordreference.com/es/en/translation.asp?spen=sacar%20de%20sus%20casillas"
+  ]
+ },
+ {
+  "w": "rasgarse las vestiduras",
+  "t": "öfke ve tepkiyi abartılı biçimde göstermek",
+  "lit": "giysilerini yırtmak",
+  "s": "Muchos críticos se rasgaron las vestiduras ante el cambio de reglamento.",
+  "form": "rasgaron las vestiduras",
+  "tr": "Birçok eleştirmen yönetmelik değişikliği karşısında aşırı tepki gösterdi.",
+  "reg": "formal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/vestiduras",
+   "https://dictionary.cambridge.org/es/diccionario/espanol-ingles/rasgarse-las-vestiduras"
+  ]
+ },
+ {
+  "w": "tragar quina",
+  "t": "öfkesini içine atıp katlanmak, sineye çekmek",
+  "lit": "kinin yutmak",
+  "eq": "sineye çekmek",
+  "s": "No estaba de acuerdo con el reparto, pero tuvo que tragar quina.",
+  "form": "tragar quina",
+  "tr": "Paylaşıma katılmıyordu ama öfkesini içine atıp sineye çekmek zorunda kaldı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/quina",
+   "https://www.diccionarios.com/diccionario/espanol/quina"
+  ]
+ },
+ {
+  "w": "llorar a moco tendido",
+  "t": "hüngür hüngür ağlamak, gözyaşlarını tutamamak",
+  "lit": "yayılmış sümükle ağlamak",
+  "eq": "hüngür hüngür ağlamak",
+  "s": "Con la escena final de la película terminamos llorando a moco tendido.",
+  "form": "llorando a moco tendido",
+  "tr": "Filmin son sahnesinde hepimiz hüngür hüngür ağladık.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/moco",
+   "https://www.diccionarios.com/diccionario/espanol/moco"
+  ]
+ },
+ {
+  "w": "dar rienda suelta",
+  "t": "duygularını veya hayal gücünü dizginlemeyip serbest bırakmak",
+  "lit": "gevşek dizgin vermek",
+  "s": "En sus lienzos de juventud el pintor daba rienda suelta a su entusiasmo.",
+  "form": "daba rienda suelta",
+  "tr": "Ressam gençlik tablolarında coşkusunu hiç dizginlemeden serbest bırakıyordu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/rienda",
+   "https://www.diccionarios.com/diccionario/espanol/rienda"
+  ]
+ },
+ {
+  "w": "subirse por las paredes",
+  "t": "öfkeden yerinde duramamak",
+  "lit": "duvarlara tırmanmak",
+  "s": "Al ver otra factura equivocada, el cliente empezó a subirse por las paredes.",
+  "form": "subirse por las paredes",
+  "tr": "Bir başka hatalı faturayı görünce müşteri öfkeden yerinde duramadı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/paredes",
+   "https://www.wordreference.com/es/en/translation.asp?spen=subirse%20por%20las%20paredes"
+  ]
+ },
+ {
+  "w": "venirse el mundo encima",
+  "pat": "venírsele el mundo encima a alguien",
+  "t": "dünyası başına yıkılmak, derin bir çaresizliğe kapılmak",
+  "lit": "dünya üstüne gelmek",
+  "eq": "dünyası başına yıkılmak",
+  "s": "Cuando cancelaron su beca de investigación, sintió venirse el mundo encima.",
+  "form": "venirse el mundo encima",
+  "tr": "Araştırma bursu iptal edilince dünyasının başına yıkıldığını hissetti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dle.rae.es/mundo",
+   "https://tureng.com/es/espanol-ingles/venirse%20el%20mundo%20encima"
+  ]
+ }
+]
