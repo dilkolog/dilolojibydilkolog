@@ -1,0 +1,262 @@
+{
+  "job": "fr-grammar-0006",
+  "results": [
+    {
+      "id": "fr-g-000221",
+      "answer": "Il",
+      "single": true
+    },
+    {
+      "id": "fr-g-000222",
+      "answer": "Elle",
+      "single": true
+    },
+    {
+      "id": "fr-g-000223",
+      "answer": "Je",
+      "single": true
+    },
+    {
+      "id": "fr-g-000224",
+      "answer": "Tu",
+      "single": true
+    },
+    {
+      "id": "fr-g-000225",
+      "answer": "Elle",
+      "single": true
+    },
+    {
+      "id": "fr-g-000226",
+      "answer": "Il",
+      "single": true
+    },
+    {
+      "id": "fr-g-000227",
+      "answer": "Je",
+      "single": true
+    },
+    {
+      "id": "fr-g-000228",
+      "answer": "Tu",
+      "single": true
+    },
+    {
+      "id": "fr-g-000229",
+      "answer": "Il",
+      "single": true,
+      "note": "Elle: Valise dişil tekildir."
+    },
+    {
+      "id": "fr-g-000230",
+      "answer": "Elle",
+      "single": true,
+      "note": "Il: Vélo eril tekildir."
+    },
+    {
+      "id": "fr-g-000231",
+      "answer": "Ils",
+      "single": true
+    },
+    {
+      "id": "fr-g-000232",
+      "answer": "Elles",
+      "single": true
+    },
+    {
+      "id": "fr-g-000233",
+      "answer": "nous",
+      "single": true
+    },
+    {
+      "id": "fr-g-000234",
+      "answer": "vous",
+      "single": true
+    },
+    {
+      "id": "fr-g-000235",
+      "answer": "Ils",
+      "single": true
+    },
+    {
+      "id": "fr-g-000236",
+      "answer": "Elles",
+      "single": true
+    },
+    {
+      "id": "fr-g-000237",
+      "answer": "Ils",
+      "single": true
+    },
+    {
+      "id": "fr-g-000238",
+      "answer": "Elles",
+      "single": true
+    },
+    {
+      "id": "fr-g-000239",
+      "answer": "Elles",
+      "single": true,
+      "note": "Ils: Karma cinsiyetli grup eril çoğul zamir alır."
+    },
+    {
+      "id": "fr-g-000240",
+      "answer": "Ils",
+      "single": true,
+      "note": "Elles: İki kadın için dişil çoğul zamir gerekir."
+    },
+    {
+      "id": "fr-g-000241",
+      "answer": "On",
+      "single": true
+    },
+    {
+      "id": "fr-g-000242",
+      "answer": "On",
+      "single": true
+    },
+    {
+      "id": "fr-g-000243",
+      "answer": "Vous",
+      "single": true
+    },
+    {
+      "id": "fr-g-000244",
+      "answer": "Tu",
+      "single": true
+    },
+    {
+      "id": "fr-g-000245",
+      "answer": "Vous",
+      "single": true
+    },
+    {
+      "id": "fr-g-000246",
+      "answer": "On",
+      "single": true
+    },
+    {
+      "id": "fr-g-000247",
+      "answer": "Tu",
+      "single": true
+    },
+    {
+      "id": "fr-g-000248",
+      "answer": "Vous",
+      "single": true
+    },
+    {
+      "id": "fr-g-000249",
+      "answer": "On",
+      "single": true
+    },
+    {
+      "id": "fr-g-000250",
+      "answer": "Vous",
+      "single": true
+    },
+    {
+      "id": "fr-g-000251",
+      "answer": "moi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000252",
+      "answer": "toi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000253",
+      "answer": "lui",
+      "single": true
+    },
+    {
+      "id": "fr-g-000254",
+      "answer": "elles",
+      "single": true
+    },
+    {
+      "id": "fr-g-000255",
+      "answer": "eux",
+      "single": true
+    },
+    {
+      "id": "fr-g-000256",
+      "answer": "nous",
+      "single": true
+    },
+    {
+      "id": "fr-g-000257",
+      "answer": "vous",
+      "single": true
+    },
+    {
+      "id": "fr-g-000258",
+      "answer": "elle",
+      "single": true
+    },
+    {
+      "id": "fr-g-000259",
+      "answer": "tu",
+      "single": true,
+      "note": "toi: Edat sonrası vurgulu zamir gerekir."
+    },
+    {
+      "id": "fr-g-000260",
+      "answer": "moi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000261",
+      "answer": "Moi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000262",
+      "answer": "lui",
+      "single": true
+    },
+    {
+      "id": "fr-g-000263",
+      "answer": "moi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000264",
+      "answer": "Toi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000265",
+      "answer": "eux",
+      "single": true
+    },
+    {
+      "id": "fr-g-000266",
+      "answer": "Moi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000267",
+      "answer": "toi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000268",
+      "answer": "Nous",
+      "single": true
+    },
+    {
+      "id": "fr-g-000269",
+      "answer": "Les",
+      "single": true,
+      "note": "Eux: Erkeklerden oluşan grupta vurgulu zamir eux olur."
+    },
+    {
+      "id": "fr-g-000270",
+      "answer": "je",
+      "single": true,
+      "note": "moi: C’est sonrası vurgulu zamir gerekir; appelle birinci tekille de uyumludur."
+    }
+  ]
+}

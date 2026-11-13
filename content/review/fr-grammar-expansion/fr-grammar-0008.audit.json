@@ -1,0 +1,511 @@
+{
+  "job": "fr-grammar-0008",
+  "count": 50,
+  "solver": {
+    "checked": 50,
+    "disagreements": 0,
+    "rate": 0
+  },
+  "rows": [
+    {
+      "id": "fr-g-000321",
+      "target": "trois",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres de 1 à 16"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000322",
+      "target": "huit",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres de 1 à 16"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000323",
+      "target": "douze",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres de 1 à 16"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000324",
+      "target": "seize",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres de 1 à 16"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000325",
+      "target": "quatre",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres de 1 à 16"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000326",
+      "target": "quinze",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres de 1 à 16"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000327",
+      "target": "onze",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres de 1 à 16"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000328",
+      "target": "quatorze",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres de 1 à 16"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000329",
+      "target": "neuf",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres de 1 à 16"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000330",
+      "target": "treize",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres de 1 à 16"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000331",
+      "target": "vingt et un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres composés : France"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000332",
+      "target": "soixante et onze",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres composés : France"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000333",
+      "target": "quatre-vingts",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres composés : France"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000334",
+      "target": "quatre-vingt-onze",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres composés : France"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000335",
+      "target": "soixante-deux",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres composés : France"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000336",
+      "target": "soixante-dix",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres composés : France"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000337",
+      "target": "quatre-vingt-un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres composés : France"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000338",
+      "target": "quatre-vingt-dix-neuf",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres composés : France"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000339",
+      "target": "trente et un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres composés : France"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000340",
+      "target": "cinquante et un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "nombres composés : France"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000341",
+      "target": "cents",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "cent et mille"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000342",
+      "target": "cent",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "cent et mille"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000343",
+      "target": "cents",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "cent et mille"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000344",
+      "target": "cent",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "cent et mille"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000345",
+      "target": "mille",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "cent et mille"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000346",
+      "target": "cents",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "cent et mille"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000347",
+      "target": "cent",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "cent et mille"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000348",
+      "target": "mille",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "cent et mille"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000349",
+      "target": "cent",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "cent et mille"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000350",
+      "target": "mille",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "cent et mille"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000351",
+      "target": "demie",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "heures quotidiennes et officielles"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000352",
+      "target": "quart",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "heures quotidiennes et officielles"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000353",
+      "target": "quart",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "heures quotidiennes et officielles"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000354",
+      "target": "heure",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "heures quotidiennes et officielles"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000355",
+      "target": "midi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "heures quotidiennes et officielles"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000356",
+      "target": "minuit",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "heures quotidiennes et officielles"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000357",
+      "target": "trente",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "heures quotidiennes et officielles"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000358",
+      "target": "dix",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "heures quotidiennes et officielles"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000359",
+      "target": "demie",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "heures quotidiennes et officielles"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000360",
+      "target": "dix-huit",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "heures quotidiennes et officielles"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000361",
+      "target": "premier",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "dates, mois et saisons"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000362",
+      "target": "deux",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "dates, mois et saisons"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000363",
+      "target": "au",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "dates, mois et saisons"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000364",
+      "target": "en",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "dates, mois et saisons"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000365",
+      "target": "en",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "dates, mois et saisons"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000366",
+      "target": "quatorze",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "dates, mois et saisons"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000367",
+      "target": "en",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "dates, mois et saisons"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000368",
+      "target": "en",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "dates, mois et saisons"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000369",
+      "target": "premier",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "dates, mois et saisons"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000370",
+      "target": "au",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_nombres",
+        "section": "dates, mois et saisons"
+      },
+      "independentSolver": "passed"
+    }
+  ]
+}
