@@ -1,5 +1,6 @@
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { numberWords } from '../src/engine/numbers'
+import type { RegisterItem } from '../src/engine/register'
 import type { FriendView } from '../src/data/friends'
 import { spellOut } from '../src/engine/spelling'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
@@ -2274,35 +2275,40 @@ test('compound tenses: reading card reveals full compound form and infinitive on
   await expect(formAnalysis).toContainText('passé composé')
 })
 
-test('register game: regional usage note shows for entries with notes and is absent otherwise', async ({ page }) => {
+test('register game: usage notes match their entries and are absent otherwise', async ({ page }) => {
+  const items: RegisterItem[] = fs.readdirSync('src/data/register').filter((name) => name.endsWith('.json')).sort()
+    .flatMap((name) => JSON.parse(fs.readFileSync(`src/data/register/${name}`, 'utf8')) as RegisterItem[])
   await startWithSamples(page)
-  // Switch to Spanish where es-job, es-eat, es-car etc. have regional notes
   await page.getByRole('button', { name: /İspanyolca/ }).click()
   await openScreen(page, 'Oyunlar')
-
   await (await gameCard(page, 'Resmî mi, günlük mü?')).click()
+  // This seed includes a non-regional idiom note and entries with no note.
+  await page.clock.setFixedTime(new Date('2026-11-13T09:00:00.008Z'))
   await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
 
   let seenNote = false
-  for (let round = 0; round < 4 && !seenNote; round++) {
-    for (let i = 0; i < 8; i++) {
-      const opt = page.locator('.option:not([disabled])').first()
-      await expect(opt).toBeVisible()
-      await opt.click()
-      const noteLocator = page.locator('.stack[role="status"] p.small.muted')
-      if (await noteLocator.count()) {
-        await expect(noteLocator).toBeVisible()
-        await expect(noteLocator).toContainText(/İspanya|Latin Amerika|Meksika|Arjantin|chamba|curro|papear|cacharro|pasta|guay|visto/i)
-        seenNote = true
-        break
-      }
-      await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  let seenWithoutNote = false
+  for (let index = 0; index < 8; index++) {
+    const options = page.locator('.register-card .option-serif')
+    await expect(options).toHaveCount(3)
+    const forms = await options.allTextContents()
+    const thought = await page.locator('.register-card h1.word').innerText()
+    const matches = items.filter((item) => item.language === 'es' && thought.includes(item.tr) && [item.informal, item.standard, item.formal].every((form) => forms.includes(form)))
+    expect(matches).toHaveLength(1)
+    const item = matches[0]
+    await page.locator('.option:not([disabled])').first().click()
+    const note = page.locator('.stack[role="status"] p.small.muted')
+    if (item.note) {
+      await expect(note).toHaveText(item.note)
+      seenNote = true
+    } else {
+      await expect(note).toHaveCount(0)
+      seenWithoutNote = true
     }
-    if (!seenNote && (await page.getByRole('button', { name: /Tekrar oyna|Yeniden oyna/ }).count()) > 0) {
-      await page.getByRole('button', { name: /Tekrar oyna|Yeniden oyna/ }).click()
-    }
+    await page.getByRole('button', { name: 'Devam', exact: true }).click()
   }
   expect(seenNote).toBe(true)
+  expect(seenWithoutNote).toBe(true)
 })
 
 

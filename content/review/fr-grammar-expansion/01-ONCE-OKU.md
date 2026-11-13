@@ -31,3 +31,9 @@ Açıkta kalan emin olunamayan kural yok. Çağdaş cinsiyet kullanımı ve geç
 Her iş için `npm run content -- check <iş>` ve `sample <iş>`; yayın için `npm run content -- build fr`. Raporlar `content/reports/` altında; öğe bazında kaynak/çekim hücresi kanıtı bu klasördeki `*.audit.json` dosyalarında. Özgün soru cümleleri yazıldı; başka sitelerden soru alınmadı.
 
 Veri testleri: `scripts/content/content.test.ts`, `src/data/contentPublished.test.ts`, `src/data/content.test.ts` — 28 test geçti. Yalnız içerik/plan/üslup/rapor değişir; uygulama kodu değişmez. CI yeşil olmadan birleştirilmez.
+
+## CI'da bulunan mevcut E2E beklentisi
+
+İlk CI koşusunda birim/typecheck/lint ve WebKit geçti; masaüstü kayıt farkı testi yalnız belirli bölge adlarını içeren notlara izin verdiği için, geçerli “más claro que el agua” deyim notunda başarısız oldu. Test artık ekrandaki üç söyleyiş ve Türkçe düşünceyle gerçek veri kaydını eşleştiriyor; notu veriyle birebir karşılaştırıyor ve notu olmayan kayıtta açıklamanın görünmediğini de denetliyor. Sabit saatle bir turda iki durum da kapsanıyor; ürün verisi veya uygulama davranışı değiştirilmedi. Yerel Chromium'da hedef E2E testi geçti. Test dosyası değiştiği için tam yerel kod kontrolleri de çalıştırıldı; CI yenilendi.
+
+Tam yerel doğrulama: typecheck geçti; oxlint sıfır hata (mevcut wordCounts.tsx uyarısı); Vitest 631 dosyada 3474 test geçti, 1 dosya/test atlandı. Üretim derlemesi ve düzeltilen masaüstü E2E testi (yerel Chromium) geçti.
