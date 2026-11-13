@@ -178,6 +178,16 @@ Uyuşmazlık oranı %5'in üstündeyse parti bütünüyle yeniden incelenir. Bu 
 - Çözücü uyuşmazlığı **%5**'in altında olmalı.
 - Sahibinin örneklemi (§5.4) sonucunda parti başına hata **%2**'nin altında olmalı; değilse kural düzeltilir, parti yeniden yazılır.
 
+### 5.3a Başlangıç metinleri (2026-11-13)
+
+A1'in içinde ayrı bir bant: ilk haftalardaki öğrenci için çok kısa metinler (`starter: true`).
+- Plan: `content/plan/<dil>.json` `starter` (30–70 sözcük, cümle başına ~8 sözcük, `rank` 300, `a1Rank` 2000, `fit` 0.95).
+- Kural: adlar dışında sözcüklerin %95'i ya sıklık listesinin ilk 300'ünde ya da ilk 2000'inde olan bir A1 sözcüğü olmalı. Anahtar sözcükler de bu sayıma dahil. Sıklık listeleri film altyazısından geldiği için "pain", "samedi" 1500'ün gerisinde; A1 payı bu yüzden var.
+- Her metin için ek kural: anahtar sözcüklerin en az yarısı metnin seviyesinin CEFR listesinde (ya da altında) olmalı.
+- İş emri: `npm run content -- jobs <dil> reading --starter [--count 25]` (konu ve tür serbest; işin bütün öğeleri `starter: true` olmalı).
+- Codex'in sıralı "ilk adım" serisinden (`firstStep`, `content/review/first-steps/`) farkı: başlangıç metinleri sırasız ve tek tek okunur. Okuma ekranında 500 sözcükten az bilen öğrenci önce ilk adım serisini (sırasıyla), sonra başlangıç metinlerini görür (`beginnerRank`).
+- Anahtar sözcüklerin yarısı kuralında adlar ve hiçbir listede olmayan sözcükler (riz, œuf: listenin boşlukları) sayılmaz.
+
 ### 5.4 İnsan örneklemi
 
 `scripts/content/sample.ts` her partiden rastgele 10 öğeyi bir sayfaya döker: `content/review/<iş-kimliği>.md`, metin, Türkçesi ve sorular.

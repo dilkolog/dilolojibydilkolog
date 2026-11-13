@@ -93,8 +93,8 @@ describe('content client', () => {
 })
 
 describe('beginner order', () => {
-  it('puts the first-step series first, in its order, and keeps the rest in place', () => {
-    const texts = [{ id: 'a' }, { id: 's3', firstStep: { series: 's', position: 3, length: 3 } }, { id: 'b' }, { id: 's1', firstStep: { series: 's', position: 1, length: 3 } }]
-    expect([...texts].sort((x, y) => beginnerRank(x) - beginnerRank(y)).map((t) => t.id)).toEqual(['s1', 's3', 'a', 'b'])
+  it('puts the first-step series first, in its order, then the starter texts, and keeps the rest in place', () => {
+    const texts = [{ id: 'a' }, { id: 'k', starter: true }, { id: 's3', firstStep: { series: 's', position: 3, length: 3 } }, { id: 'b' }, { id: 's1', firstStep: { series: 's', position: 1, length: 3 } }]
+    expect([...texts].sort((x, y) => beginnerRank(x) - beginnerRank(y)).map((t) => t.id)).toEqual(['s1', 's3', 'k', 'a', 'b'])
   })
 })

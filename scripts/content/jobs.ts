@@ -2,6 +2,7 @@
  * Job orders from the curriculum matrix (docs/ICERIK-FABRIKASI.md §3): the emptiest cells first.
  *
  *   npm run content -- jobs <fr|es> <reading|grammar> [--count 5] [--size N] [--level B1] [--theme sante] [--genre story] [--topic subjonctif] [--dry]
+ *   npm run content -- jobs <fr|es> reading --starter [--count 25] [--dry]   (one job of starter texts, any theme and genre)
  *   npm run content -- jobs claim <job-id> --by <agent/branch>
  *   npm run content -- jobs list <fr|es> [reading|grammar]
  */
@@ -11,7 +12,7 @@ import { isLang, parseArgs } from './lib/args'
 import { loadPlan } from './lib/context'
 import { acceptedItems, grammarCells, nextJobs, openJobs, readingCells } from './lib/plan'
 import { findJob, jobDir, loadJobs, loadRaw, loadReports, writeJson } from './lib/store'
-import type { ContentKind } from './lib/types'
+import type { ContentJob, ContentKind } from './lib/types'
 
 const { positional, flags } = parseArgs(process.argv.slice(2))
 const STALE_MS = 48 * 3600 * 1000
@@ -33,6 +34,17 @@ if (positional[0] === 'claim') {
       console.log(`${j.id}\t${j.level}\t${j.grammar.join(',')}\t${j.theme ?? ''}\t${j.genre ?? ''}\t${j.count}\tids ${j.ids.from}–${j.ids.to}\t${state}`)
     }
   }
+} else if (flags.starter) {
+  const lang = positional[0]
+  if (!isLang(lang) || positional[1] !== 'reading') throw new Error('usage: jobs <fr|es> reading --starter [--count 25]')
+  if (!loadPlan(lang).starter) throw new Error(`content/plan/${lang}.json has no starter band`)
+  const jobs = loadJobs(lang, 'reading')
+  const count = Number(flags.count ?? 25)
+  const seq = Math.max(0, ...jobs.map((j) => Number(j.id.slice(-4))).filter(Number.isFinite)) + 1
+  const from = Math.max(0, ...jobs.map((j) => j.ids.to), ...loadRaw(lang, 'reading').map((r) => Number(r.id.slice(-6))).filter(Number.isFinite)) + 1
+  const job: ContentJob = { id: `${lang}-reading-${String(seq).padStart(4, '0')}`, language: lang, kind: 'reading', level: 'A1', grammar: [lang === 'fr' ? 'basics_fr_present' : 'basics_es_presente'], count, starter: true, ids: { from, to: from + count - 1 }, createdAt: new Date().toISOString() }
+  if (!flags.dry) writeJson(join(jobDir(lang, 'reading'), `${job.id}.json`), job)
+  console.log(`${flags.dry ? '[dry] ' : ''}${job.id}: starter A1 × ${count} (ids ${from}–${job.ids.to})`)
 } else {
   const [lang, kind] = positional
   if (!isLang(lang) || (kind !== 'reading' && kind !== 'grammar')) throw new Error('usage: jobs <fr|es> <reading|grammar> [--count N] …')

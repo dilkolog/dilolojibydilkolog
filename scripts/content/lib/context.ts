@@ -16,6 +16,8 @@ export interface CheckContext {
   /** Inflected form → dictionary form (the word pack's table). */
   forms: Record<string, string>
   banned: string[]
+  /** Frequency rank (1 = most frequent) by reading key, from src/data/frequency/<lang>.txt. */
+  frequency: Map<string, number>
 }
 
 const RANK: Record<string, number> = { A1: 1, A2: 2, B1: 3, B2: 4, C1: 5, C2: 6 }
@@ -52,7 +54,16 @@ export function loadContext(language: ContentLanguage, root = '.'): CheckContext
   const pack = readJson<{ f: Record<string, string> }>(`${root}/src/data/wordpack/${language}.json`)
   const bannedPath = `${root}/content/style/banned.json`
   const banned = existsSync(bannedPath) ? (readJson<Record<string, string[]>>(bannedPath)[language] ?? []) : []
-  const ctx: CheckContext = { language, plan: loadPlan(language, root), cefr, stemLevel, forms: pack.f, banned }
+  const frequency = new Map<string, number>()
+  readFileSync(`${root}/src/data/frequency/${language}.txt`, 'utf8')
+    .split('\n')
+    .forEach((word, i) => {
+      const w = word.trim()
+      if (!w) return
+      const k = readingKey(w, language)
+      if (!frequency.has(k)) frequency.set(k, i + 1)
+    })
+  const ctx: CheckContext = { language, plan: loadPlan(language, root), cefr, stemLevel, forms: pack.f, banned, frequency }
   contexts.set(key, ctx)
   return ctx
 }

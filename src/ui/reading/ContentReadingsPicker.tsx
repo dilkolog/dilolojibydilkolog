@@ -93,7 +93,7 @@ export function ContentReadingsPicker({
   )
 
   const foundation = foundationSize(language, vocabulary, states, known)
-  // A beginner sees the first-step series first, in its order; the sort keeps the rest in order.
+  // A beginner sees the first-step series first, in its order, then the starter texts; the rest keep their order.
   const ordered = foundation < STARTER_WORDS ? [...rated].sort((a, b) => beginnerRank(a.r) - beginnerRank(b.r)) : rated
 
   if (!manifest || !manifest.counts.reading.total) return null

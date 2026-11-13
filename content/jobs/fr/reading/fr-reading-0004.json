@@ -1,0 +1,16 @@
+{
+  "id": "fr-reading-0004",
+  "language": "fr",
+  "kind": "reading",
+  "level": "A1",
+  "grammar": [
+    "basics_fr_present"
+  ],
+  "count": 25,
+  "starter": true,
+  "ids": {
+    "from": 31,
+    "to": 55
+  },
+  "createdAt": "2026-11-13T11:35:36.965Z"
+}
