@@ -640,7 +640,7 @@ const LIMIT_ROWS: { name: LimitName; label: string; unit: string; step: number }
   { name: 'aiDailyBudgetUsd', label: 'YZ harcaması', unit: '$', step: 0.05 },
   { name: 'translateChars', label: 'Çeviri', unit: 'karakter', step: 500 },
   { name: 'ttsChars', label: 'Doğal ses', unit: 'karakter', step: 500 },
-  { name: 'aiSiteBudgetUsd', label: 'Tüm sitenin YZ harcaması', unit: '$', step: 0.5 },
+  { name: 'aiSiteBudgetUsd', label: 'Tüm sitenin YZ harcaması', unit: '$', step: 0.05 },
 ]
 
 function UsageTotalsList({ title, t }: { title: string; t: Usage['today'] }) {

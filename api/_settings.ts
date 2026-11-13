@@ -34,7 +34,7 @@ export interface ServerSettings {
 export const LIMITS = {
   aiDailyCalls: { min: 1, max: 2000 },
   aiDailyBudgetUsd: { min: 0.01, max: 50 },
-  aiSiteBudgetUsd: { min: 0.5, max: 500 },
+  aiSiteBudgetUsd: { min: 0.1, max: 500 },
   translateChars: { min: 500, max: 500_000 },
   ttsChars: { min: 500, max: 500_000 },
 } as const
