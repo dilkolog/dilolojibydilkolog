@@ -33,36 +33,9 @@
   "rejected": [],
   "warnings": [
     {
-      "id": "es-r-000007",
-      "reasons": [
-        "above A1 or unlisted: tres",
-        "in no list (typo?): tres"
-      ]
-    },
-    {
       "id": "es-r-000008",
       "reasons": [
         "starter, outside (among the 300 most frequent or A1 within 2000): fútbol"
-      ]
-    },
-    {
-      "id": "es-r-000010",
-      "reasons": [
-        "above A1 or unlisted: tres",
-        "in no list (typo?): tres"
-      ]
-    },
-    {
-      "id": "es-r-000011",
-      "reasons": [
-        "starter, outside (among the 300 most frequent or A1 within 2000): delante"
-      ]
-    },
-    {
-      "id": "es-r-000012",
-      "reasons": [
-        "above A1 or unlisted: delante",
-        "starter, outside (among the 300 most frequent or A1 within 2000): delante"
       ]
     },
     {
@@ -85,51 +58,15 @@
       ]
     },
     {
-      "id": "es-r-000018",
-      "reasons": [
-        "above A1 or unlisted: seis",
-        "starter, outside (among the 300 most frequent or A1 within 2000): seis",
-        "in no list (typo?): seis"
-      ]
-    },
-    {
       "id": "es-r-000019",
       "reasons": [
-        "above A1 or unlisted: tres",
-        "starter, outside (among the 300 most frequent or A1 within 2000): temprano",
-        "in no list (typo?): tres"
-      ]
-    },
-    {
-      "id": "es-r-000020",
-      "reasons": [
-        "starter, outside (among the 300 most frequent or A1 within 2000): domingos"
-      ]
-    },
-    {
-      "id": "es-r-000021",
-      "reasons": [
-        "above A1 or unlisted: favor"
+        "starter, outside (among the 300 most frequent or A1 within 2000): temprano"
       ]
     },
     {
       "id": "es-r-000022",
       "reasons": [
-        "above A1 or unlisted: quince",
-        "starter, outside (among the 300 most frequent or A1 within 2000): quince, guitarra",
-        "in no list (typo?): quince"
-      ]
-    },
-    {
-      "id": "es-r-000023",
-      "reasons": [
-        "above A1 or unlisted: favor"
-      ]
-    },
-    {
-      "id": "es-r-000024",
-      "reasons": [
-        "starter, outside (among the 300 most frequent or A1 within 2000): gato"
+        "starter, outside (among the 300 most frequent or A1 within 2000): quince, guitarra"
       ]
     },
     {
@@ -141,22 +78,14 @@
     {
       "id": "es-r-000027",
       "reasons": [
-        "above A1 or unlisted: delante",
-        "starter, outside (among the 300 most frequent or A1 within 2000): delante"
-      ]
-    },
-    {
-      "id": "es-r-000028",
-      "reasons": [
-        "starter, outside (among the 300 most frequent or A1 within 2000): cumpleaños"
+        "starter, outside (among the 300 most frequent or A1 within 2000): veinte"
       ]
     },
     {
       "id": "es-r-000030",
       "reasons": [
-        "above A1 or unlisted: maría, doce",
-        "starter, outside (among the 300 most frequent or A1 within 2000): maría, doce",
-        "in no list (typo?): doce"
+        "above A1 or unlisted: maría",
+        "starter, outside (among the 300 most frequent or A1 within 2000): maría, doce"
       ]
     }
   ],
