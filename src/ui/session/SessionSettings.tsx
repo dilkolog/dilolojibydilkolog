@@ -144,6 +144,7 @@ export function SessionSettings({
             value={settings.autoAdvance ?? 0}
             onChange={(v) => set('autoAdvance', v)}
           />
+          <Switch label="Yanlıştan sonra doğrusunu yaz" help="Doğru cevap ekrandayken bir kez yazarsın; puanı ve takvimi değiştirmez." checked={settings.copyAfterMiss !== false} onChange={(v) => set('copyAfterMiss', v)} />
           <Switch label="Aksanları hata say" help="Kapalıyken eksik aksan “çok yakın” sayılır." checked={settings.accentStrict} onChange={(v) => set('accentStrict', v)} />
         </Group>
 

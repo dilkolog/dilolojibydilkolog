@@ -122,15 +122,17 @@ describe('Session: right answers go on by themselves when asked to', () => {
     ]
     await mount(finished, plan)
     expect(container.querySelector('.intro-card')).not.toBeNull()
-    expect(container.textContent).toContain('Öğrenme grubu 1/1')
+    expect(container.textContent).toContain('Öğrenme grubu 1/1 · Adım 1/4 · Kelimeyi tanı')
     await act(async () => [...container.querySelectorAll<HTMLButtonElement>('button')].find((b) => b.textContent?.includes('Tanıdım, şimdi dene'))!.click())
     const proceed = async () => {
       for (let i = 0; i < 75 && !container.querySelector('.sheet button.btn-lg:not([disabled])'); i++) await act(async () => void (await new Promise((r) => setTimeout(r, 40))))
       await act(async () => container.querySelector<HTMLButtonElement>('.sheet button.btn-lg:not([disabled])')!.click())
     }
     await choose(true)
+    // The answer on screen already counts on the ring: a fast unaided answer skips the reinforcement.
+    expect(container.querySelector('.word-plant')?.getAttribute('aria-label')).toContain('bu turda 2/3 adım')
     await proceed()
-    expect(container.textContent).toContain('Yazarak hatırla')
+    expect(container.textContent).toContain('Adım 3/3 · Yazarak hatırla')
     const input = container.querySelector<HTMLInputElement>('.answer-input')!
     await act(async () => {
       Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(input, 'la maison')

@@ -47,3 +47,16 @@ describe('AnswerSettings: question types', () => {
     expect(onChange).toHaveBeenCalledWith(expect.objectContaining({ exercisePrefs: {}, typedBlanks: true }))
   })
 })
+
+describe('AnswerSettings: typing the right answer after a miss', () => {
+  const toggle = (host: HTMLElement) =>
+    [...host.querySelectorAll<HTMLElement>('.toggle-row')].find((r) => r.textContent?.includes('Yanlıştan sonra doğrusunu yaz'))!.querySelector<HTMLButtonElement>('[role=switch]')!
+
+  it('is on when unset (old settings and backups) and can be switched off', async () => {
+    const onChange = vi.fn()
+    const host = await mount({ ...DEFAULT_SETTINGS }, onChange)
+    expect(toggle(host).getAttribute('aria-checked')).toBe('true')
+    await act(async () => toggle(host).click())
+    expect(onChange).toHaveBeenCalledWith(expect.objectContaining({ copyAfterMiss: false }))
+  })
+})

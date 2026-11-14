@@ -6,7 +6,7 @@ import { buildExercise, evaluateChoice, evaluateTyped, type Evaluation, type Exe
 import type { LeechHelp } from '../../engine/leechHelp'
 import { MASTERY_STAGES } from '../../engine/mastery'
 import type { Rng } from '../../engine/rng'
-import type { SessionLogEntry } from '../../engine/session'
+import type { LearningSteps, SessionLogEntry } from '../../engine/session'
 import type { Confidence, ExerciseType, UserWordState, VocabularyEntry } from '../../engine/types'
 import { LANGUAGE_NAME, PROMPT_TEXT } from '../shared/labels'
 import { AiError, evaluateSentence, evaluateTranslation } from '../../ai'
@@ -50,17 +50,29 @@ export interface RunnerProps {
   wordState: () => UserWordState | undefined
   onEntryUpdated: (entry: VocabularyEntry) => void
   onToggleDifficult: () => void
+  /** A word met for the first time in this session: its guided steps so far (shown on the plant's ring; read on each render). */
+  steps?: () => LearningSteps | undefined
+  /** After a miss, typing the shown answer once may be offered (normal session, setting on, typing allowed, no probe). */
+  copyStep?: boolean
 }
 
 /** With "strict accents" on, a missing accent is an error rather than a near miss. */
 const strictAccents = (ev: Evaluation): Evaluation => (prefs.accentStrict && ev.errorType === 'accent' ? { ...ev, verdict: 'wrong' } : ev)
+
+/**
+ * Typed questions whose answer is a word or a short form: copying it once after a miss is quick.
+ * Not dictation (a whole sentence), not spoken answers, not the AI-graded sentences.
+ */
+const COPY_TYPES: ReadonlySet<ExerciseType> = new Set(['typed_translation', 'cloze_typed', 'word_form', 'listen_type', 'conjugation'])
+/** A longer answer (a long phrase) is read, not copied. */
+const COPY_MAX_CHARS = 40
 
 /** A typed answer graded by the app (not the AI) can be counted as right by the learner. */
 const canOverride = (exercise: Exercise, ev: Evaluation) =>
   exercise.kind === 'typed' && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation' && ev.verdict !== 'correct'
 
 /** One question of the session: asks it, grades the answer, then shows the feedback and what can be done next. */
-export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDiscard, onContinue, helpFor, onRelearn, wordState, onEntryUpdated, onToggleDifficult, listenRate, intrusionSources, onTypePref, combo }: RunnerProps) {
+export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDiscard, onContinue, helpFor, onRelearn, wordState, onEntryUpdated, onToggleDifficult, listenRate, intrusionSources, onTypePref, combo, steps, copyStep }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
   const [relearn, setRelearn] = useState(false)
   const [editing, setEditing] = useState(false)
@@ -82,9 +94,13 @@ export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride
   const { apiKey } = useAi()
   const continueBtn = useRef<HTMLButtonElement>(null)
 
+  // A plain miss on a typed question: the shown answer may be typed once (CopyStep), unscored.
+  const offerCopy =
+    !!copyStep && !!result && result.ev.verdict === 'wrong' && exercise.kind === 'typed' && COPY_TYPES.has(exercise.type) && !!result.ev.expected && result.ev.expected.length <= COPY_MAX_CHARS
   useEffect(() => {
-    if (result) continueBtn.current?.focus()
-  }, [result])
+    // The copy field takes the focus itself.
+    if (result && !offerCopy) continueBtn.current?.focus()
+  }, [result, offerCopy])
   // The latest handler, so a re-render doesn't restart the wait below.
   const goOn = useRef(onContinue)
   goOn.current = onContinue
@@ -211,7 +227,7 @@ export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride
               ? `${LANGUAGE_NAME[entry.language]} karşılığını söyle`
               : PROMPT_TEXT[exercise.type]}
         </p>
-        <WordPlant state={wordState()} />
+        <WordPlant state={wordState()} steps={steps?.()} />
       </div>
       <Prompt exercise={exercise} entry={entry} listenRate={listenRate} />
       {(!result || slowable) && (
@@ -346,6 +362,11 @@ export function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride
             xp={result.log.xp}
             combo={combo}
             forgot={result.forgot}
+            copy={
+              offerCopy && exercise.kind === 'typed'
+                ? { language: entry.language, check: (text) => strictAccents(evaluateTyped(exercise, text, entry, catalog)).verdict }
+                : undefined
+            }
             history={(() => {
               const stats = wordState()?.stats
               return stats ? { wrong: stats.wrong, reviews: stats.reviews } : undefined
