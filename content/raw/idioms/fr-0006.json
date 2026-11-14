@@ -1,0 +1,602 @@
+[
+  {
+    "w": "avoir le moral dans les chaussettes",
+    "t": "morali çok bozuk olmak",
+    "lit": "morali çoraplarının içinde olmak",
+    "s": "Après son échec au concours, Jules avait le moral dans les chaussettes.",
+    "form": "avait le moral dans les chaussettes",
+    "tr": "Jules sınavdaki başarısızlığından sonra çok moralsizdi.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://fr.wiktionary.org/wiki/avoir_le_moral_dans_les_chaussettes",
+      "https://www.expressio.fr/expressions/avoir-le-moral-dans-les-chaussettes"
+    ],
+    "editorialId": "fr-idiom-000029",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_le_moral_dans_les_chaussettes",
+        "verification": "dictionary_entry_opened",
+        "locator": "avoir le moral dans les chaussettes : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-le-moral-dans-les-chaussettes",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_le_moral_dans_les_chaussettes",
+        "citation": "— (Connor Franta, Rêver sa vie, 2015)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "avoir le blues",
+    "t": "nedeni tam belirgin olmayan bir hüzün duymak",
+    "lit": "blues'a sahip olmak",
+    "s": "Tout allait bien, pourtant Maëlle avait le blues ce matin-là.",
+    "form": "avait le blues",
+    "tr": "Her şey yolundaydı ama o sabah Maëlle'nin içinde bir hüzün vardı.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "feelings",
+    "src": [
+      "https://fr.wiktionary.org/wiki/avoir_le_blues",
+      "https://www.lemonde.fr/realites-biomedicales/2020/03/12/dysphorie-post-coitale-avoir-le-blues-apres-lamour/"
+    ],
+    "editorialId": "fr-idiom-000030",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_le_blues",
+        "verification": "dictionary_entry_opened",
+        "locator": "avoir le blues : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/realites-biomedicales/2020/03/12/dysphorie-post-coitale-avoir-le-blues-apres-lamour/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Titre, emploi au sens de tristesse"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_le_blues",
+        "citation": "— (Richard Martineau, Les gestionnaires de CHSLD mangeraient-ils leur chnoute?, Le Journal de Québec, 9 décembre 2021)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "broyer du noir",
+    "t": "karamsar düşüncelere dalmak",
+    "lit": "siyahı öğütmek",
+    "s": "Seul dans sa chambre, il broyait du noir après cette déception.",
+    "form": "broyait du noir",
+    "tr": "Bu hayal kırıklığından sonra odasında yalnız başına karamsar düşüncelere dalmıştı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://fr.wiktionary.org/wiki/broyer_du_noir",
+      "https://www.expressio.fr/expressions/broyer-du-noir"
+    ],
+    "editorialId": "fr-idiom-000031",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/broyer_du_noir",
+        "verification": "dictionary_entry_opened",
+        "locator": "broyer du noir : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/broyer-du-noir",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/broyer_du_noir",
+        "citation": "— (Pierre Delaveau, Vademecum du vocabulaire de la santé, 2001)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "voir la vie en rose",
+    "t": "hayatın hep iyi tarafını görmek",
+    "lit": "hayatı pembe görmek",
+    "s": "Depuis son déménagement, elle voit la vie en rose.",
+    "form": "voit la vie en rose",
+    "tr": "Taşındığından beri hayatın hep iyi tarafını görüyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "feelings",
+    "src": [
+      "https://fr.wiktionary.org/wiki/voir_la_vie_en_rose",
+      "https://www.expressio.fr/expressions/voir-la-vie-en-rose"
+    ],
+    "editorialId": "fr-idiom-000032",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/voir_la_vie_en_rose",
+        "verification": "dictionary_entry_opened",
+        "locator": "voir la vie en rose : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/voir-la-vie-en-rose",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/voir_la_vie_en_rose",
+        "citation": "— (François Cavanna, Lune de miel, Gallimard, 2011, collection Folio, page 17)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "être aux anges",
+    "t": "sevinçten havalara uçmak",
+    "lit": "meleklerin yanında olmak",
+    "s": "Les enfants étaient aux anges en découvrant la cabane.",
+    "form": "étaient aux anges",
+    "tr": "Çocuklar kulübeyi görünce sevinçten havalara uçtu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://fr.wiktionary.org/wiki/%C3%AAtre_aux_anges",
+      "https://www.expressio.fr/expressions/etre-aux-anges"
+    ],
+    "editorialId": "fr-idiom-000033",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_aux_anges",
+        "verification": "dictionary_entry_opened",
+        "locator": "être aux anges : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/etre-aux-anges",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_aux_anges",
+        "citation": "— (journal 20 minutes, édition Paris-IDF, 25 novembre 2022, page 18)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "voir rouge",
+    "t": "bir anda öfkeye kapılmak",
+    "lit": "kırmızı görmek",
+    "s": "Quand on a insulté son frère, il a vu rouge.",
+    "form": "vu rouge",
+    "tr": "Kardeşine hakaret edilince bir anda öfkeye kapıldı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://fr.wiktionary.org/wiki/voir_rouge",
+      "https://www.expressio.fr/expressions/voir-rouge"
+    ],
+    "editorialId": "fr-idiom-000043",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/voir_rouge",
+        "verification": "dictionary_entry_opened",
+        "locator": "voir rouge : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/voir-rouge",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/voir_rouge",
+        "citation": "— (Bernadette Boissié-Dubus, Sous les pavés, la plage... est rouge, éd. Clair de Plume 34, 2015, page 40)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "sortir de ses gonds",
+    "t": "öfkeden kendini kaybetmek",
+    "lit": "menteşelerinden çıkmak",
+    "s": "D'habitude calme, il est sorti de ses gonds devant ce mensonge.",
+    "form": "sorti de ses gonds",
+    "tr": "Genellikle sakin olan adam bu yalan karşısında öfkeden kendini kaybetti.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://fr.wiktionary.org/wiki/sortir_de_ses_gonds",
+      "https://www.expressio.fr/expressions/sortir-de-ses-gonds"
+    ],
+    "editorialId": "fr-idiom-000044",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/sortir_de_ses_gonds",
+        "verification": "dictionary_entry_opened",
+        "locator": "sortir de ses gonds : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/sortir-de-ses-gonds",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/sortir_de_ses_gonds",
+        "citation": "— (Philippe Morvan, Les Fils du Ciel, Calmann-Lévy, 2021)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "être au bout du rouleau",
+    "t": "gücü ve dayanma kapasitesi tükenmiş olmak",
+    "lit": "rulonun sonunda olmak",
+    "s": "Après trois nuits sans repos, je suis au bout du rouleau.",
+    "form": "suis au bout du rouleau",
+    "tr": "Dinlenmeden geçen üç geceden sonra gücüm tükendi.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://fr.wiktionary.org/wiki/%C3%AAtre_au_bout_du_rouleau",
+      "https://www.expressio.fr/expressions/au-bout-du-rouleau"
+    ],
+    "editorialId": "fr-idiom-000050",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_au_bout_du_rouleau",
+        "verification": "dictionary_entry_opened",
+        "locator": "être au bout du rouleau : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/au-bout-du-rouleau",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "w": "être vert de rage",
+    "t": "öfkeden kuduracak hâle gelmek",
+    "lit": "öfkeden yeşil olmak",
+    "s": "En découvrant la tricherie, elle était verte de rage.",
+    "form": "était verte de rage",
+    "tr": "Hileyi fark edince öfkeden kuduracak hâle geldi.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://fr.wiktionary.org/wiki/%C3%AAtre_vert_de_rage",
+      "https://www.expressio.fr/expressions/etre-vert-de-rage"
+    ],
+    "editorialId": "fr-idiom-000052",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_vert_de_rage",
+        "verification": "dictionary_entry_opened",
+        "locator": "être vert de rage : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.decitre.fr/livres/meri-jaan-9782755671131.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Résumé du roman, colère du personnage Ola"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/etre-vert-de-rage",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_vert_de_rage",
+        "citation": "— (Matt Alexander, O.G.V.O.T. : le principe de la peur, Paris : éd. F. Massot, 1997, chapitre 5)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "avoir le diable au corps",
+    "t": "yerinde duramamak",
+    "lit": "bedeninde şeytan olmak",
+    "s": "Les enfants ont le diable au corps et courent partout depuis le matin.",
+    "form": "ont le diable au corps",
+    "tr": "Çocuklar yerinde duramıyor; sabahtan beri her yere koşturuyorlar.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://www.expressio.fr/expressions/avoir-le-diable-au-corps",
+      "https://fr.wiktionary.org/wiki/avoir_le_diable_au_corps"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-le-diable-au-corps",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_le_diable_au_corps",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "être dans ses petits souliers",
+    "t": "kendini mahcup ve rahatsız hissetmek",
+    "lit": "küçük ayakkabılarının içinde olmak",
+    "s": "Devant tous ces regards, il est dans ses petits souliers.",
+    "form": "est dans ses petits souliers",
+    "tr": "Bütün bu bakışların karşısında kendini mahcup ve rahatsız hissediyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://www.expressio.fr/expressions/etre-dans-ses-petits-souliers",
+      "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_ses_petits_souliers"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/etre-dans-ses-petits-souliers",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_ses_petits_souliers",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "être sur des charbons ardents",
+    "t": "kaygı ve sabırsızlık içinde beklemek",
+    "lit": "kor kömürlerin üstünde olmak",
+    "s": "Dans l'attente du verdict, les familles sont sur des charbons ardents.",
+    "form": "sont sur des charbons ardents",
+    "tr": "Kararı bekleyen aileler kaygı ve sabırsızlık içinde.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/charbon/14715",
+      "https://dictionnaire.lerobert.com/definition/charbon",
+      "https://www.expressio.fr/expressions/etre-sur-des-charbons-ardents"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/charbon/14715",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/charbon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/etre-sur-des-charbons-ardents",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "être au trente-sixième dessous",
+    "t": "morali dibe vurmuş olmak",
+    "lit": "otuz altıncı alt katta olmak",
+    "s": "Après cet échec, elle est au trente-sixième dessous.",
+    "form": "est au trente-sixième dessous",
+    "tr": "Bu başarısızlıktan sonra morali dibe vurdu.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://www.expressio.fr/expressions/tomber-dans-le-troisieme-trente-sixieme-dessous/page-3",
+      "https://dictionnaire.lerobert.com/dis-moi-robert/raconte-moi-robert/droles-expressions/etre-au-trente-sixieme-dessous.html"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/tomber-dans-le-troisieme-trente-sixieme-dessous/page-3",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/dis-moi-robert/raconte-moi-robert/droles-expressions/etre-au-trente-sixieme-dessous.html",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "être au septième ciel",
+    "t": "büyük bir mutluluk duymak",
+    "lit": "yedinci gökte olmak",
+    "s": "Depuis la naissance de sa fille, il est au septième ciel.",
+    "form": "est au septième ciel",
+    "tr": "Kızı doğduğundan beri büyük bir mutluluk yaşıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://www.expressio.fr/expressions/etre-ravi-au-septieme-ciel",
+      "https://fr.wiktionary.org/wiki/%C3%AAtre_au_septi%C3%A8me_ciel",
+      "https://www.larousse.fr/dictionnaires/college/septi%C3%A8me/36872"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/etre-ravi-au-septieme-ciel",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_au_septi%C3%A8me_ciel",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/college/septi%C3%A8me/36872",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "nager dans le bonheur",
+    "t": "mutluluk içinde olmak",
+    "lit": "mutluluğun içinde yüzmek",
+    "s": "Depuis leurs retrouvailles, ces deux amis nagent dans le bonheur.",
+    "form": "nagent dans le bonheur",
+    "tr": "Yeniden buluştuklarından beri bu iki arkadaş mutluluk içinde.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://www.expressio.fr/expressions/nager-dans-le-bonheur",
+      "https://fr.wiktionary.org/wiki/nager_dans_le_bonheur"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/nager-dans-le-bonheur",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/nager_dans_le_bonheur",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "péter les plombs",
+    "t": "sinirlerine hâkim olamayıp patlamak",
+    "lit": "sigortaları patlatmak",
+    "s": "Après trois heures de bruit, il a pété les plombs.",
+    "form": "pété les plombs",
+    "tr": "Üç saatlik gürültüden sonra sinirlerine hâkim olamayıp patladı.",
+    "reg": "slang",
+    "area": "genel",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://www.expressio.fr/expressions/peter-les-plombs-disjoncter",
+      "https://fr.wiktionary.org/wiki/p%C3%A9ter_les_plombs"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/peter-les-plombs-disjoncter",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/p%C3%A9ter_les_plombs",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "rire jaune",
+    "t": "istemeden zoraki gülmek",
+    "lit": "sarı gülmek",
+    "s": "Devant cette plaisanterie à ses dépens, il ne peut que rire jaune.",
+    "form": "rire jaune",
+    "tr": "Kendisiyle ilgili bu şaka karşısında ancak zoraki gülebiliyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "feelings",
+    "src": [
+      "https://www.expressio.fr/expressions/rire-jaune",
+      "https://fr.wiktionary.org/wiki/rire_jaune"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/rire-jaune",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rire_jaune",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "s'en payer une tranche",
+    "t": "çok eğlenmek",
+    "lit": "kendine bir dilim ısmarlamak",
+    "s": "Avec cette comédie, nous allons nous en payer une tranche.",
+    "form": "nous en payer une tranche",
+    "tr": "Bu komediyle çok eğleneceğiz.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "feelings",
+    "src": [
+      "https://www.expressio.fr/expressions/s-en-payer-une-bonne-tranche",
+      "https://www.larousse.fr/dictionnaires/francais/tranche/79020"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/s-en-payer-une-bonne-tranche",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/tranche/79020",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  }
+]

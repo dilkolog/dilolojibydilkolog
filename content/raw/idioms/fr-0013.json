@@ -1,0 +1,280 @@
+[
+  {
+    "w": "tenter le diable",
+    "t": "bile bile tehlikeyi davet etmek",
+    "lit": "şeytanı baştan çıkarmak",
+    "s": "Partir sans eau dans cette chaleur, c'est tenter le diable.",
+    "form": "tenter le diable",
+    "tr": "Bu sıcakta susuz yola çıkmak tehlikeyi bile bile davet etmektir.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://fr.wiktionary.org/wiki/tenter_le_diable",
+      "https://www.expressio.fr/expressions/tenter-le-diable"
+    ],
+    "editorialId": "fr-idiom-000126",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenter_le_diable",
+        "verification": "dictionary_entry_opened",
+        "locator": "tenter le diable : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/tenter-le-diable",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenter_le_diable",
+        "citation": "— (Julia Deck, Ann d’Angleterre, chapitre 16, Le Seuil, Paris, 2024, page 164)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "tenir le bon bout",
+    "t": "başarıya yakın ve avantajlı konumda olmak",
+    "lit": "iyi ucu tutmak",
+    "s": "Continue, tu tiens le bon bout !",
+    "form": "tiens le bon bout",
+    "tr": "Devam et; başarıya çok yaklaştın!",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://fr.wiktionary.org/wiki/tenir_le_bon_bout",
+      "https://www.expressio.fr/expressions/tenir-le-bon-bout"
+    ],
+    "editorialId": "fr-idiom-000212",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenir_le_bon_bout",
+        "verification": "dictionary_entry_opened",
+        "locator": "tenir le bon bout : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/tenir-le-bon-bout",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenir_le_bon_bout",
+        "citation": "— (San-Antonio (Frédéric Dard), Je le jure, Éditions J’ai Lu, 1975, page 108)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "toucher au but",
+    "t": "hedefe ulaşmak veya çok yaklaşmak",
+    "lit": "hedefe dokunmak",
+    "s": "Après des mois de recherche, nous touchons au but.",
+    "form": "touchons au but",
+    "tr": "Aylar süren araştırmadan sonra hedefe çok yaklaştık.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "luck",
+    "src": [
+      "https://fr.wiktionary.org/wiki/toucher_au_but",
+      "https://www.larousse.fr/dictionnaires/college/toucher/40339"
+    ],
+    "editorialId": "fr-idiom-000213",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/toucher_au_but",
+        "verification": "dictionary_entry_opened",
+        "locator": "toucher au but : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000213",
+        "url": "https://www.larousse.fr/dictionnaires/college/toucher/40339",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/toucher_au_but",
+        "citation": "— (Philippe Morvan, Les Fils du Ciel, Calmann-Lévy, 2021)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire un carton",
+    "t": "çok büyük ilgi ve başarı kazanmak",
+    "lit": "karton yapmak",
+    "s": "Le nouveau jeu fait un carton auprès des familles.",
+    "form": "fait un carton",
+    "tr": "Yeni oyun aileler arasında büyük ilgi görüyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://fr.wiktionary.org/wiki/faire_un_carton",
+      "https://www.expressio.fr/expressions/faire-un-carton-cartonner/page-7"
+    ],
+    "editorialId": "fr-idiom-000215",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_un_carton",
+        "verification": "dictionary_entry_opened",
+        "locator": "faire un carton : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/faire-un-carton-cartonner/page-7",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_un_carton",
+        "citation": "— (François-Xavier Ajavon, Vous n'en avez pas marre du \"Petit Grégory\"© ?, sur RING : News, culture & société (www.surlering.com), le 14 janvier 2013)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire un tabac",
+    "t": "seyirciden büyük başarı ve alkış almak",
+    "lit": "tütün yapmak",
+    "s": "La troupe a fait un tabac au festival.",
+    "form": "fait un tabac",
+    "tr": "Topluluk festivalde büyük başarı kazandı.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://fr.wiktionary.org/wiki/faire_un_tabac",
+      "https://www.expressio.fr/expressions/faire-un-tabac"
+    ],
+    "editorialId": "fr-idiom-000216",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_un_tabac",
+        "verification": "dictionary_entry_opened",
+        "locator": "faire un tabac : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/politique/article/2023/08/04/eelv-defend-son-invitation-au-rappeur-medine-a-ses-journees-d-ete_6184438_823448.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/faire-un-tabac",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_un_tabac",
+        "citation": "— (Lazzis sur la loi antiterro, Le Canard Enchaîné, 18 octobre 2017, page 2)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "prendre la balle au bond",
+    "t": "fırsatı anında değerlendirmek",
+    "lit": "topu sekerken almak",
+    "s": "Le poste se libère ; à toi de prendre la balle au bond.",
+    "form": "prendre la balle au bond",
+    "tr": "Kadro boşalıyor; fırsatı anında değerlendirmek sana kalmış.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://www.expressio.fr/expressions/prendre-la-balle-au-bond",
+      "https://fr.wiktionary.org/wiki/prendre_la_balle_au_bond"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/prendre-la-balle-au-bond",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_la_balle_au_bond",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "être né sous une bonne étoile",
+    "t": "doğuştan şanslı olmak",
+    "lit": "iyi bir yıldızın altında doğmuş olmak",
+    "s": "Avec tous ces heureux hasards, elle semble être née sous une bonne étoile.",
+    "form": "être née sous une bonne étoile",
+    "tr": "Bütün bu güzel rastlantılarla doğuştan şanslı biri gibi görünüyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "luck",
+    "src": [
+      "https://www.expressio.fr/expressions/naitre-sous-une-bonne-etoile",
+      "https://www.larousse.fr/dictionnaires/francais/%C3%A9toile/31493"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/naitre-sous-une-bonne-etoile",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/%C3%A9toile/31493",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "tenir la corde",
+    "t": "yarışta en avantajlı konumda olmak",
+    "lit": "ipi tutmak",
+    "s": "Pour ce poste, la candidate interne semble tenir la corde.",
+    "form": "tenir la corde",
+    "tr": "Bu görev için kurum içinden gelen aday en avantajlı konumda görünüyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "luck",
+    "src": [
+      "https://www.expressio.fr/expressions/tenir-la-corde",
+      "https://fr.wiktionary.org/wiki/tenir_la_corde"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/tenir-la-corde",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenir_la_corde",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  }
+]

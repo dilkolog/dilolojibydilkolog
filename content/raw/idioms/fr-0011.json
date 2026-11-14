@@ -1,0 +1,229 @@
+[
+  {
+    "w": "remettre les pendules à l'heure",
+    "t": "yanlış algıyı düzeltip durumu netleştirmek",
+    "lit": "saatleri doğru saate yeniden ayarlamak",
+    "s": "Il faut remettre les pendules à l'heure sur ce dossier.",
+    "form": "remettre les pendules à l'heure",
+    "tr": "Bu dosyayla ilgili yanlış algıları düzeltip durumu netleştirmek gerekiyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://fr.wiktionary.org/wiki/remettre_les_pendules_%C3%A0_l%E2%80%99heure",
+      "https://www.chga.fm/antecedents-judiciaires-le-csshbo-tient-a-remettre-les-pendules-a-lheure/",
+      "https://www.expressio.fr/expressions/remettre-les-pendules-a-l-heure"
+    ],
+    "editorialId": "fr-idiom-000076",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/remettre_les_pendules_%C3%A0_l%E2%80%99heure",
+        "verification": "dictionary_entry_opened",
+        "locator": "remettre les pendules à l'heure : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.chga.fm/antecedents-judiciaires-le-csshbo-tient-a-remettre-les-pendules-a-lheure/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/remettre-les-pendules-a-l-heure",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "w": "ne pas compter ses heures",
+    "t": "çalışırken saat hesabı yapmamak",
+    "lit": "saatlerini saymamak",
+    "s": "Pendant l'ouverture du café, elle ne comptait pas ses heures.",
+    "form": "ne comptait pas ses heures",
+    "tr": "Kafenin açılışı sırasında çalışırken saat hesabı yapmıyordu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://fr.wiktionary.org/wiki/ne_pas_compter_ses_heures",
+      "https://faculty.essec.edu/research/15816-surtravail-les-risques-derreurs-augmentent-de-maniere-demontree-lorsquon-ne-compte-pas-ses-heures/"
+    ],
+    "editorialId": "fr-idiom-000086",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/ne_pas_compter_ses_heures",
+        "verification": "dictionary_entry_opened",
+        "locator": "ne pas compter ses heures : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000086",
+        "url": "https://faculty.essec.edu/research/15816-surtravail-les-risques-derreurs-augmentent-de-maniere-demontree-lorsquon-ne-compte-pas-ses-heures/",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/ne_pas_compter_ses_heures",
+        "citation": "— (Marie-Anne Dujarier, Le management désincarné, Enquête sur les nouveaux cadres du travail, La Découverte, 2015.)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "être à la bourre",
+    "t": "geç kalmış olmak",
+    "lit": "dolgu malzemesinin içinde olmak",
+    "s": "Dépêchons-nous, nous sommes à la bourre.",
+    "form": "sommes à la bourre",
+    "tr": "Hızlanalım; geç kaldık.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://fr.wiktionary.org/wiki/%C3%AAtre_%C3%A0_la_bourre",
+      "https://www.europe1.fr/culture/dun-jeu-de-carte-aux-retardataires-les-origines-de-lexpression-etre-a-la-bourre-4025943"
+    ],
+    "editorialId": "fr-idiom-000186",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_%C3%A0_la_bourre",
+        "verification": "dictionary_entry_opened",
+        "locator": "être à la bourre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.europe1.fr/culture/dun-jeu-de-carte-aux-retardataires-les-origines-de-lexpression-etre-a-la-bourre-4025943",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "purpose": "meaning_and_usage",
+        "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+        "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_%C3%A0_la_bourre",
+        "citation": "— (Jean Dagueneau, Pas de danger qu'on t'oublie !, 1957)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "arriver à point nommé",
+    "t": "tam ihtiyaç duyulan anda gelmek",
+    "lit": "adı konmuş noktada gelmek",
+    "s": "Ton aide arrive à point nommé.",
+    "form": "arrive à point nommé",
+    "tr": "Yardımın tam ihtiyaç duyulan anda geliyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://fr.wiktionary.org/wiki/%C3%A0_point_nomm%C3%A9",
+      "https://dictionnaire.lerobert.com/definition/nomme"
+    ],
+    "editorialId": "fr-idiom-000187",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%A0_point_nomm%C3%A9",
+        "verification": "dictionary_entry_opened",
+        "locator": "arriver à point nommé : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000187",
+        "url": "https://dictionnaire.lerobert.com/definition/nomme",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      }
+    ]
+  },
+  {
+    "w": "tomber à pic",
+    "t": "tam zamanında işe yaramak",
+    "lit": "dikine düşmek",
+    "s": "Cette réduction tombe à pic pour notre départ.",
+    "form": "tombe à pic",
+    "tr": "Bu indirim yolculuğumuz için tam zamanında geldi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "time",
+    "src": [
+      "https://fr.wiktionary.org/wiki/tomber_%C3%A0_pic",
+      "https://www.expressio.fr/expressions/tomber-a-pic"
+    ],
+    "editorialId": "fr-idiom-000188",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/tomber_%C3%A0_pic",
+        "verification": "dictionary_entry_opened",
+        "locator": "tomber à pic : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/tomber-a-pic",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tomber_%C3%A0_pic",
+        "citation": "— (« Un budget qui dépouille les sans-logis », Le Canard Enchaîné, 14 février 2018, page 4.)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "remettre aux calendes grecques",
+    "t": "bir işi gerçekleşmeyecek bir tarihe ertelemek",
+    "lit": "Yunan kalendlerine ertelemek",
+    "s": "Ils ont remis la réforme aux calendes grecques.",
+    "form": "remis la réforme aux calendes grecques",
+    "tr": "Reformu gerçekleşmeyecek bir tarihe ertelediler.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "time",
+    "src": [
+      "https://fr.wiktionary.org/wiki/remettre_aux_calendes_grecques",
+      "https://www.lacsq.org/actualite/remettre-aux-calendes-grecques/",
+      "https://www.expressio.fr/expressions/remettre-aux-calendes-grecques"
+    ],
+    "editorialId": "fr-idiom-000193",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/remettre_aux_calendes_grecques",
+        "verification": "dictionary_entry_opened",
+        "locator": "remettre aux calendes grecques : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lacsq.org/actualite/remettre-aux-calendes-grecques/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/remettre-aux-calendes-grecques",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      }
+    ]
+  }
+]

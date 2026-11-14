@@ -1,0 +1,1229 @@
+[
+  {
+    "w": "couper l'herbe sous le pied",
+    "t": "birinden önce davranıp onun fırsatını elinden almak",
+    "lit": "ayağın altındaki otu biçmek",
+    "s": "En déposant son offre avant la nôtre, notre concurrent nous a coupé l'herbe sous le pied.",
+    "form": "coupé l'herbe sous le pied",
+    "tr": "Rakibimiz teklifini bizden önce vererek fırsatımızı elimizden aldı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/college/herbe/19563",
+      "https://www.expressio.fr/expressions/couper-l-herbe-sous-le-pied",
+      "https://fr.wiktionary.org/wiki/couper_l%E2%80%99herbe_sous_le_pied"
+    ],
+    "editorialId": "fr-idiom-000025",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/college/herbe/19563",
+        "locator": "Couper l'herbe sous le pied de qqn",
+        "checkedOn": "2026-11-10",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/economie/article/2023/03/17/dans-le-sillage-de-chatgpt-la-course-a-l-intelligence-artificielle_6165875_3234.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/couper-l-herbe-sous-le-pied",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/couper_l%E2%80%99herbe_sous_le_pied",
+        "citation": "— (Delphine de Vigan, Rien ne s’oppose à la nuit, J.-C. Lattès, 2011)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ],
+    "pat": "couper l'herbe sous le pied de quelqu'un"
+  },
+  {
+    "w": "être sur un petit nuage",
+    "t": "mutluluktan bulutların üzerinde olmak",
+    "lit": "küçük bir bulutun üzerinde olmak",
+    "s": "Depuis leurs retrouvailles, ils sont sur un petit nuage.",
+    "form": "sont sur un petit nuage",
+    "tr": "Yeniden buluştuklarından beri mutluluktan bulutların üzerindeler.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://fr.wiktionary.org/wiki/%C3%AAtre_sur_un_petit_nuage",
+      "https://www.expressio.fr/expressions/etre-sur-un-petit-nuage"
+    ],
+    "editorialId": "fr-idiom-000034",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_sur_un_petit_nuage",
+        "verification": "dictionary_entry_opened",
+        "locator": "être sur un petit nuage : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/etre-sur-un-petit-nuage",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_sur_un_petit_nuage",
+        "citation": null,
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "trembler comme une feuille",
+    "t": "korkudan çok titremek",
+    "lit": "yaprak gibi titremek",
+    "s": "Devant le chien qui grognait, l'enfant tremblait comme une feuille.",
+    "form": "tremblait comme une feuille",
+    "tr": "Hırlayan köpeğin karşısında çocuk yaprak gibi titriyordu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://fr.wiktionary.org/wiki/trembler_comme_une_feuille",
+      "https://www.expressio.fr/expressions/trembler-comme-une-feuille"
+    ],
+    "editorialId": "fr-idiom-000038",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/trembler_comme_une_feuille",
+        "verification": "dictionary_entry_opened",
+        "locator": "trembler comme une feuille : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/trembler-comme-une-feuille",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/trembler_comme_une_feuille",
+        "citation": "— (Georges Simenon, Un crime en Hollande, chapitre 4)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "prêcher dans le désert",
+    "t": "dinleyen olmadığı için boşuna konuşmak",
+    "lit": "çölde vaaz vermek",
+    "s": "Quand je demande le calme, j'ai l'impression de prêcher dans le désert.",
+    "form": "prêcher dans le désert",
+    "tr": "Sessizlik istediğimde kimse dinlemiyor, boşuna konuşuyormuşum gibi geliyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/d%C3%A9sert/24388",
+      "https://www.expressio.fr/expressions/precher-dans-le-desert",
+      "https://fr.wiktionary.org/wiki/pr%C3%AAcher_dans_le_d%C3%A9sert"
+    ],
+    "editorialId": "fr-idiom-000074",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/d%C3%A9sert/24388",
+        "verification": "dictionary_entry_opened",
+        "locator": "prêcher dans le désert : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/precher-dans-le-desert",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/pr%C3%AAcher_dans_le_d%C3%A9sert",
+        "citation": "— (Julie de Quérangal, Philippe de Morvelle, Revue des deux Mondes, T. 2,4, 1833)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "remuer ciel et terre",
+    "t": "amacına ulaşmak için her yolu denemek",
+    "lit": "göğü ve yeri hareket ettirmek",
+    "s": "Ils ont remué ciel et terre pour retrouver leur chien.",
+    "form": "remué ciel et terre",
+    "tr": "Köpeklerini bulmak için her yolu denediler.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://fr.wiktionary.org/wiki/remuer_ciel_et_terre",
+      "https://www.expressio.fr/expressions/remuer-ciel-et-terre"
+    ],
+    "editorialId": "fr-idiom-000089",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/remuer_ciel_et_terre",
+        "verification": "dictionary_entry_opened",
+        "locator": "remuer ciel et terre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/m-perso/article/2026/03/23/je-voulais-passer-plus-de-temps-avec-mes-patients-d-elle-meme-une-docteure-s-installe-dans-un-village-de-300-habitants-en-eure-et-loir_6673855_4497916.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/remuer-ciel-et-terre",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/remuer_ciel_et_terre",
+        "citation": "— (Nesrine Choucri, « La vache bleue (2) », Le progrès égyptien, 13 juin 2018)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "se jeter à l'eau",
+    "t": "çekinmesini yenip bir işe girişmek",
+    "lit": "kendini suya atmak",
+    "s": "Personne ne posait de question ; je me suis jeté à l'eau.",
+    "form": "me suis jeté à l'eau",
+    "tr": "Kimse soru sormuyordu; çekinmemi yenip ilk soruyu sordum.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/eau/27209",
+      "https://www.expressio.fr/expressions/se-jeter-a-l-eau",
+      "https://fr.wiktionary.org/wiki/se_jeter_%C3%A0_l%E2%80%99eau"
+    ],
+    "editorialId": "fr-idiom-000120",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/eau/27209",
+        "verification": "dictionary_entry_opened",
+        "locator": "se jeter à l'eau : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/se-jeter-a-l-eau",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_jeter_%C3%A0_l%E2%80%99eau",
+        "citation": "— (Madeleine Pelletier, La guerre est-elle naturelle ? — Le droit au travail pour la femme dans la bibliothèque Wikisource , Groupe de propagande par la brochure , 1931 , pages 3-14) ...   * France (Lyon) : écouter « se jeter à l’eau [Prononciation ?]",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "jouer avec le feu",
+    "t": "tehlikeyi küçümseyip riskli davranmak",
+    "lit": "ateşle oynamak",
+    "s": "En ignorant ces avertissements, vous jouez avec le feu.",
+    "form": "jouez avec le feu",
+    "tr": "Bu uyarıları görmezden gelerek tehlikeli risk alıyorsunuz.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://fr.wiktionary.org/wiki/jouer_avec_le_feu",
+      "https://www.expressio.fr/expressions/jouer-avec-le-feu"
+    ],
+    "editorialId": "fr-idiom-000125",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/jouer_avec_le_feu",
+        "verification": "dictionary_entry_opened",
+        "locator": "jouer avec le feu : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/jouer-avec-le-feu",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jouer_avec_le_feu",
+        "citation": "— (Mathilde Lemaire, Les époux Balkany \"ont voulu jouer avec le feu\", estime la procureure d'Evreux car \"ils n'ont jamais voulu respecter ce bracelet électronique\" sur FRANCE INFO, FRANCE TELEVISIONS. Mis en ligne le 4 février 2022)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "porter aux nues",
+    "t": "birini göklere çıkararak övmek",
+    "lit": "bulutlara taşımak",
+    "s": "Cette critique porte aux nues une actrice encore inconnue.",
+    "form": "porte aux nues",
+    "tr": "Bu eleştiri henüz tanınmayan bir oyuncuyu göklere çıkarıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://fr.wiktionary.org/wiki/porter_aux_nues",
+      "https://www.expressio.fr/expressions/porter-aux-nues"
+    ],
+    "editorialId": "fr-idiom-000139",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/porter_aux_nues",
+        "verification": "dictionary_entry_opened",
+        "locator": "porter quelqu'un aux nues : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/porter-aux-nues",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/porter_aux_nues",
+        "citation": "— (Patrick Tudoret, Juliette, Éditions Tallandier, 2020)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ],
+    "pat": "porter quelqu'un aux nues"
+  },
+  {
+    "w": "jeter de l'huile sur le feu",
+    "t": "gerginliği daha da artırmak",
+    "lit": "ateşe yağ atmak",
+    "s": "Cette moquerie ne fait que jeter de l'huile sur le feu.",
+    "form": "jeter de l'huile sur le feu",
+    "tr": "Bu alay yalnızca gerginliği artırıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "nature",
+    "src": [
+      "https://fr.wiktionary.org/wiki/jeter_de_l'huile_sur_le_feu",
+      "https://www.expressio.fr/expressions/jeter-de-l-huile-sur-le-feu"
+    ],
+    "editorialId": "fr-idiom-000150",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/jeter_de_l'huile_sur_le_feu",
+        "verification": "dictionary_entry_opened",
+        "locator": "jeter de l'huile sur le feu : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/jeter-de-l-huile-sur-le-feu",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jeter_de_l%27huile_sur_le_feu",
+        "citation": "— (Frédéric Lemaître, Comment la Chine va-t-elle réagir aux attaques des Etats-Unis ?, Le Monde. Mis en ligne le 5 octobre 2018)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "être fauché comme les blés",
+    "t": "tamamen parasız olmak",
+    "lit": "biçilmiş buğdaylar gibi olmak",
+    "s": "En fin de mois, nous sommes fauchés comme les blés.",
+    "form": "sommes fauchés comme les blés",
+    "tr": "Ay sonunda tamamen parasızız.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://fr.wiktionary.org/wiki/fauch%C3%A9_comme_les_bl%C3%A9s",
+      "https://www.expressio.fr/expressions/fauche-comme-les-bles"
+    ],
+    "editorialId": "fr-idiom-000163",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/fauch%C3%A9_comme_les_bl%C3%A9s",
+        "verification": "dictionary_entry_opened",
+        "locator": "être fauché comme les blés : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/fauche-comme-les-bles",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "w": "avoir le vent en poupe",
+    "t": "başarıyı destekleyen elverişli bir dönemde olmak",
+    "lit": "rüzgârı kıç tarafta olmak",
+    "s": "Avec ses nouveaux clients, l'atelier a le vent en poupe.",
+    "form": "a le vent en poupe",
+    "tr": "Yeni müşterileriyle atölye elverişli bir başarı döneminde.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://fr.wiktionary.org/wiki/avoir_le_vent_en_poupe",
+      "https://www.expressio.fr/expressions/avoir-le-vent-en-poupe"
+    ],
+    "editorialId": "fr-idiom-000209",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_le_vent_en_poupe",
+        "verification": "dictionary_entry_opened",
+        "locator": "avoir le vent en poupe : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.vbs.admin.ch/dam/fr/sd-web/DWJTsatJ6C-I/NDB_Sicherheit_Schweiz_2024_f.pdf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Rapport 2024, p. 27, avoir le vent en poupe au figuré"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-le-vent-en-poupe",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_le_vent_en_poupe",
+        "citation": "— (Sylvain Boulouque, Entrisme dans les médias et stratégie de Bardella : comprendre la montée de l'extrême droite, Slate, 8 juin 2024)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "décrocher la lune",
+    "t": "çok zor görünen büyük bir başarı elde etmek",
+    "lit": "ayı yerinden çıkarmak",
+    "s": "Avec ce prix international, elle a décroché la lune.",
+    "form": "décroché la lune",
+    "tr": "Bu uluslararası ödülle çok büyük bir başarı elde etti.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://fr.wiktionary.org/wiki/d%C3%A9crocher_la_lune",
+      "https://www.expressio.fr/expressions/decrocher-promettre-demander-la-lune"
+    ],
+    "editorialId": "fr-idiom-000218",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/d%C3%A9crocher_la_lune",
+        "verification": "dictionary_entry_opened",
+        "locator": "décrocher la lune : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/decrocher-promettre-demander-la-lune",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/d%C3%A9crocher_la_lune",
+        "citation": "— (Douglas Kennedy, Isabelle, l’après-midi, Belfond, 2020)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire des étincelles",
+    "t": "çok parlak bir performans göstermek",
+    "lit": "kıvılcımlar çıkarmak",
+    "s": "Cette jeune équipe promet de faire des étincelles.",
+    "form": "faire des étincelles",
+    "tr": "Bu genç ekip çok parlak bir performans vad ediyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://fr.wiktionary.org/wiki/faire_des_%C3%A9tincelles",
+      "https://www.expressio.fr/expressions/faire-des-etincelles"
+    ],
+    "editorialId": "fr-idiom-000219",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_des_%C3%A9tincelles",
+        "verification": "dictionary_entry_opened",
+        "locator": "faire des étincelles : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/faire-des-etincelles",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_des_%C3%A9tincelles",
+        "citation": "— (Jérôme Mérieux, Des filles, des magasins et des snack-bars, page 53, 2003)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "sentir le vent tourner",
+    "t": "durumun yön değiştirdiğini sezmek",
+    "lit": "rüzgârın döndüğünü hissetmek",
+    "s": "Après ces critiques, il sent le vent tourner.",
+    "form": "sent le vent tourner",
+    "tr": "Bu eleştirilerden sonra durumun yön değiştirdiğini seziyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://dictionnaire.lerobert.com/definition/vent-tourner",
+      "https://jaimelesmots.com/le-vent-tourne-ou-sentir-le-vent-tourner/"
+    ],
+    "editorialId": "fr-idiom-000238",
+    "sourceChecks": [
+      {
+        "url": "https://www.dictionnaire-academie.fr/article/A9S1258",
+        "verification": "dictionary_entry_opened",
+        "locator": "sentir le vent tourner : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000238",
+        "url": "https://dictionnaire.lerobert.com/definition/vent-tourner",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000238",
+        "url": "https://jaimelesmots.com/le-vent-tourne-ou-sentir-le-vent-tourner/",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      }
+    ]
+  },
+  {
+    "w": "tomber des nues",
+    "t": "beklenmedik haber karşısında çok şaşırmak",
+    "lit": "bulutlardan düşmek",
+    "s": "En apprenant son départ, je suis tombé des nues.",
+    "form": "tombé des nues",
+    "tr": "Gideceğini öğrenince büyük şaşkınlık yaşadım.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://fr.wiktionary.org/wiki/tomber_des_nues",
+      "https://www.expressio.fr/expressions/tomber-des-nues"
+    ],
+    "editorialId": "fr-idiom-000250",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/tomber_des_nues",
+        "verification": "dictionary_entry_opened",
+        "locator": "tomber des nues : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/tomber-des-nues",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tomber_des_nues",
+        "citation": "— (Romain Rolland, Jean-Christophe, 1904)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "être dans le brouillard",
+    "t": "durumu anlayamayıp zihni karışık olmak",
+    "lit": "sis içinde olmak",
+    "s": "Après ces instructions confuses, je suis dans le brouillard.",
+    "form": "suis dans le brouillard",
+    "tr": "Bu karışık talimatlardan sonra zihnim karıştı, durumu anlayamıyorum.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/brouillard/11411",
+      "https://jemenfiche.fr/expression/etre-dans-le-brouillard/"
+    ],
+    "editorialId": "fr-idiom-000259",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/brouillard/11411",
+        "verification": "dictionary_entry_opened",
+        "locator": "être dans le brouillard : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000259",
+        "url": "https://jemenfiche.fr/expression/etre-dans-le-brouillard/",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      }
+    ]
+  },
+  {
+    "w": "faire la pluie et le beau temps",
+    "t": "her şeyi kendi belirlemek",
+    "lit": "yağmuru ve güzel havayı yapmak",
+    "s": "Dans ce comité, un seul membre fait la pluie et le beau temps.",
+    "form": "fait la pluie et le beau temps",
+    "tr": "Bu komitede her şeyi tek bir üye belirliyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/faire-la-pluie-et-le-beau-temps",
+      "https://fr.wiktionary.org/wiki/faire_la_pluie_et_le_beau_temps"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/faire-la-pluie-et-le-beau-temps",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_la_pluie_et_le_beau_temps",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire des vagues",
+    "t": "huzursuzluk çıkarmak",
+    "lit": "dalgalar yapmak",
+    "s": "Cette décision risque de faire des vagues dans toute l'association.",
+    "form": "faire des vagues",
+    "tr": "Bu karar bütün dernekte huzursuzluk çıkarabilir.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/faire-des-vagues",
+      "https://fr.wiktionary.org/wiki/faire_des_vagues"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/faire-des-vagues",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_des_vagues",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire boule de neige",
+    "t": "giderek büyüyüp yayılmak",
+    "lit": "kar topu yapmak",
+    "s": "La rumeur commence à faire boule de neige malgré les démentis.",
+    "form": "faire boule de neige",
+    "tr": "Yalanlamalara rağmen söylenti giderek büyüyüp yayılmaya başlıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/faire-boule-de-neige",
+      "https://fr.wiktionary.org/wiki/faire_boule_de_neige"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/faire-boule-de-neige",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_boule_de_neige",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire la part du feu",
+    "t": "bütünü kurtarmak için bir kısmını feda etmek",
+    "lit": "ateşin payını ayırmak",
+    "s": "Pour sauver l'entreprise, les associés doivent faire la part du feu.",
+    "form": "faire la part du feu",
+    "tr": "Şirketi kurtarmak için ortaklar bazı şeyleri feda etmek zorunda.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/faire-la-part-du-feu",
+      "https://fr.wiktionary.org/wiki/faire_la_part_du_feu"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/faire-la-part-du-feu",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_la_part_du_feu",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire feu de tout bois",
+    "t": "elindeki her imkândan yararlanmak",
+    "lit": "her ağaçtan ateş yapmak",
+    "s": "Pour financer le spectacle, cette troupe doit faire feu de tout bois.",
+    "form": "faire feu de tout bois",
+    "tr": "Bu topluluk gösteriyi finanse etmek için elindeki her imkândan yararlanmak zorunda.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/faire-feu-de-tout-bois",
+      "https://fr.wiktionary.org/wiki/faire_feu_de_tout_bois"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/faire-feu-de-tout-bois",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_feu_de_tout_bois",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire florès",
+    "t": "büyük rağbet görmek",
+    "lit": "çiçeklenme yapmak",
+    "s": "Ce concept fait florès dans les débats sur l'éducation.",
+    "form": "fait florès",
+    "tr": "Bu kavram eğitim tartışmalarında büyük rağbet görüyor.",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/faire-flores",
+      "https://fr.wiktionary.org/wiki/faire_flor%C3%A8s"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/faire-flores",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_flor%C3%A8s",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire du foin",
+    "t": "yaygara koparmak",
+    "lit": "kuru ot yapmak",
+    "s": "Pour une erreur minime, il fait du foin devant toute l'équipe.",
+    "form": "fait du foin",
+    "tr": "Ufacık bir hata yüzünden bütün ekibin önünde yaygara koparıyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/faire-du-foin",
+      "https://fr.wiktionary.org/wiki/faire_du_foin"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/faire-du-foin",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_du_foin",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire une fleur",
+    "t": "birine özel bir kolaylık sağlamak",
+    "lit": "bir çiçek yapmak",
+    "s": "Le vendeur m'a fait une fleur en gardant ce livre jusqu'à demain.",
+    "form": "fait une fleur",
+    "tr": "Satıcı kitabı yarına kadar ayırarak bana özel bir kolaylık sağladı.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/faire-une-fleur",
+      "https://fr.wiktionary.org/wiki/faire_une_fleur"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/faire-une-fleur",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_une_fleur",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "briser la glace",
+    "t": "ortamdaki çekingenliği gidermek",
+    "lit": "buzu kırmak",
+    "s": "Une petite question sur le quartier a suffi pour briser la glace.",
+    "form": "briser la glace",
+    "tr": "Mahalle hakkında küçük bir soru ortamdaki çekingenliği gidermeye yetti.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/briser-la-glace",
+      "https://fr.wiktionary.org/wiki/briser_la_glace"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/briser-la-glace",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/briser_la_glace",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "découvrir le pot aux roses",
+    "t": "gizlenen gerçeği ortaya çıkarmak",
+    "lit": "güllerin saksısını keşfetmek",
+    "s": "En vérifiant les factures, la comptable a découvert le pot aux roses.",
+    "form": "découvert le pot aux roses",
+    "tr": "Muhasebeci faturaları incelerken gizlenen gerçeği ortaya çıkardı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/pot-aux-roses",
+      "https://fr.wiktionary.org/wiki/d%C3%A9couvrir_le_pot_aux_roses"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/pot-aux-roses",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/d%C3%A9couvrir_le_pot_aux_roses",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "envoyer sur les roses",
+    "t": "birini sertçe başından savmak",
+    "lit": "güllerin üstüne göndermek",
+    "s": "Le responsable l'a envoyé sur les roses sans même écouter sa demande.",
+    "form": "envoyé sur les roses",
+    "tr": "Sorumlu, talebini dinlemeden onu sertçe başından savdı.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/envoyer-sur-les-roses",
+      "https://fr.wiktionary.org/wiki/envoyer_sur_les_roses"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/envoyer-sur-les-roses",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/envoyer_sur_les_roses",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "jeter un froid",
+    "t": "ortamda bir soğukluk yaratmak",
+    "lit": "bir soğukluk atmak",
+    "s": "Sa plaisanterie maladroite a jeté un froid au milieu du repas.",
+    "form": "jeté un froid",
+    "tr": "Beceriksizce yaptığı şaka yemeğin ortasında bir soğukluk yarattı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/jeter-un-froid",
+      "https://fr.wiktionary.org/wiki/jeter_un_froid"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/jeter-un-froid",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jeter_un_froid",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "jeter un pavé dans la mare",
+    "t": "beklenmedik sözüyle ortalığı karıştırmak",
+    "lit": "gölete kaldırım taşı atmak",
+    "s": "Avec cette révélation, elle vient de jeter un pavé dans la mare.",
+    "form": "jeter un pavé dans la mare",
+    "tr": "Bu açıklamayla beklenmedik bir gerçeği ortaya atıp ortalığı karıştırdı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/un-pave-dans-la-mare",
+      "https://fr.wiktionary.org/wiki/jeter_un_pav%C3%A9_dans_la_mare"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/un-pave-dans-la-mare",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jeter_un_pav%C3%A9_dans_la_mare",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "jeter aux orties",
+    "t": "bir alışkanlığı veya inancı terk etmek",
+    "lit": "ısırganlara atmak",
+    "s": "Il a décidé de jeter aux orties ses vieilles certitudes.",
+    "form": "jeter aux orties",
+    "tr": "Eski kesin inançlarını terk etmeye karar verdi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://dictionnaire.lerobert.com/definition/orties",
+      "https://fr.wiktionary.org/wiki/jeter_aux_orties"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/orties",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jeter_aux_orties",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "marcher sur les plates-bandes",
+    "t": "başkasının yetki alanına girmek",
+    "lit": "çiçek tarhlarının üstünde yürümek",
+    "s": "Avec cette décision, vous allez marcher sur les plates-bandes de notre service.",
+    "form": "marcher sur les plates-bandes",
+    "tr": "Bu kararla bizim birimin yetki alanına gireceksiniz.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/marcher-sur-les-plates-bandes",
+      "https://fr.wiktionary.org/wiki/marcher_sur_les_plates-bandes"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/marcher-sur-les-plates-bandes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/marcher_sur_les_plates-bandes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "nager entre deux eaux",
+    "t": "iki taraf arasında açıkça tavır almamak",
+    "lit": "iki su arasında yüzmek",
+    "s": "Pendant le conflit, ce médiateur préfère nager entre deux eaux.",
+    "form": "nager entre deux eaux",
+    "tr": "Bu arabulucu çatışma boyunca iki taraf arasında açıkça tavır almamayı tercih ediyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/nager-entre-deux-eaux",
+      "https://fr.wiktionary.org/wiki/nager_entre_deux_eaux"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/nager-entre-deux-eaux",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/nager_entre_deux_eaux",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "nager à contre-courant",
+    "t": "genel eğilimin tersine hareket etmek",
+    "lit": "akıntının tersine yüzmek",
+    "s": "En maintenant les petits commerces, cette maire choisit de nager à contre-courant.",
+    "form": "nager à contre-courant",
+    "tr": "Bu belediye başkanı küçük dükkânları koruyarak genel eğilimin tersine hareket etmeyi seçiyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/college/contre-courant/9327",
+      "https://dictionnaire.lerobert.com/definition/contre-courant"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/college/contre-courant/9327",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/contre-courant",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "promettre monts et merveilles",
+    "t": "büyük ve göz alıcı vaatlerde bulunmak",
+    "lit": "dağlar ve harikalar vadetmek",
+    "s": "Ce vendeur nous promet monts et merveilles sans fournir aucune garantie.",
+    "form": "promet monts et merveilles",
+    "tr": "Bu satıcı hiçbir güvence vermeden bize büyük ve göz alıcı vaatlerde bulunuyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/promettre-monts-et-merveilles",
+      "https://fr.wiktionary.org/wiki/promettre_monts_et_merveilles"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/promettre-monts-et-merveilles",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/promettre_monts_et_merveilles",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "s'attirer les foudres",
+    "t": "birinin sert tepkisini üstüne çekmek",
+    "lit": "yıldırımları kendine çekmek",
+    "s": "Avec cette annonce, la mairie risque de s'attirer les foudres des commerçants.",
+    "form": "s'attirer les foudres",
+    "tr": "Bu duyuruyla belediye esnafın sert tepkisini üstüne çekebilir.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/s-attirer-les-foudres-de-quelqu-un",
+      "https://www.larousse.fr/dictionnaires/college/foudre/17002"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/s-attirer-les-foudres-de-quelqu-un",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/college/foudre/17002",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "s'endormir sur ses lauriers",
+    "t": "önceki başarısına güvenip çabalamayı bırakmak",
+    "lit": "defnelerinin üstünde uykuya dalmak",
+    "s": "Après ce premier succès, évitons de nous endormir sur nos lauriers.",
+    "form": "nous endormir sur nos lauriers",
+    "tr": "Bu ilk başarıdan sonra önceki başarımıza güvenip çabalamayı bırakmaktan kaçınalım.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/s-endormir-se-reposer-sur-ses-lauriers",
+      "https://www.larousse.fr/dictionnaires/francais/laurier/46425"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/s-endormir-se-reposer-sur-ses-lauriers",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/laurier/46425",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "scier la branche sur laquelle on est assis",
+    "t": "kendi dayanağını kendi eliyle yok etmek",
+    "lit": "üstünde oturduğu dalı kesmek",
+    "s": "En chassant ses meilleurs clients, ce magasin scie la branche sur laquelle il est assis.",
+    "form": "scie la branche sur laquelle il est assis",
+    "tr": "Bu dükkân en iyi müşterilerini kaçırarak kendi dayanağını kendi eliyle yok ediyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/scier-la-branche-sur-laquelle-on-est-assis",
+      "https://fr.wiktionary.org/wiki/scier_la_branche_sur_laquelle_on_est_assis"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/scier-la-branche-sur-laquelle-on-est-assis",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/scier_la_branche_sur_laquelle_on_est_assis",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "tomber à l'eau",
+    "t": "plan gerçekleşmeden bozulmak",
+    "lit": "suya düşmek",
+    "s": "Sans financement, notre voyage risque de tomber à l'eau.",
+    "form": "tomber à l'eau",
+    "tr": "Finansman olmadan yolculuk planımız gerçekleşmeden bozulabilir.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "nature",
+    "src": [
+      "https://www.expressio.fr/expressions/etre-tomber-a-l-eau-dans-le-lac",
+      "https://www.larousse.fr/dictionnaires/francais/eau/27209"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/etre-tomber-a-l-eau-dans-le-lac",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/eau/27209",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  }
+]

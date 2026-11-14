@@ -1,0 +1,1311 @@
+[
+  {
+    "w": "mener en bateau",
+    "t": "birini uydurma anlatımlarla kandırmak",
+    "lit": "tekneyle götürmek",
+    "s": "Il nous mène en bateau avec ses promesses impossibles.",
+    "form": "mène en bateau",
+    "tr": "İmkânsız vaatleriyle bizi kandırıyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://fr.wiktionary.org/wiki/mener_en_bateau",
+      "https://www.expressio.fr/expressions/mener-quelqu-un-en-bateau-monter-un-bateau-a-quelqu-un"
+    ],
+    "editorialId": "fr-idiom-000065",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/mener_en_bateau",
+        "verification": "dictionary_entry_opened",
+        "locator": "mener quelqu'un en bateau : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/mener-quelqu-un-en-bateau-monter-un-bateau-a-quelqu-un",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mener_en_bateau",
+        "citation": "— (Harlan Coben, Dans les bois, Belfond, 2008)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ],
+    "pat": "mener quelqu'un en bateau"
+  },
+  {
+    "w": "faire marcher",
+    "t": "birini şakayla kandırıp işletmek",
+    "lit": "yürümesini sağlamak",
+    "s": "Tu me fais marcher ? Ce prix est invraisemblable !",
+    "form": "fais marcher",
+    "tr": "Beni işletiyor musun? Bu fiyat inanılır gibi değil!",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/marcher/49395",
+      "https://fr.wiktionary.org/wiki/faire_marcher"
+    ],
+    "editorialId": "fr-idiom-000066",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/marcher/49395",
+        "verification": "dictionary_entry_opened",
+        "locator": "faire marcher quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_marcher",
+        "citation": "— (Daniel Boulanger, Le jardin d'Armide, 1969, réédition Le Livre de Poche, 1980, page 83)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ],
+    "pat": "faire marcher quelqu'un"
+  },
+  {
+    "w": "se plier en quatre",
+    "t": "birini memnun etmek için çok çabalamak",
+    "lit": "dörde katlanmak",
+    "s": "L'hôte se plie en quatre pour ses invités.",
+    "form": "se plie en quatre",
+    "tr": "Ev sahibi misafirlerini memnun etmek için çok çabalıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://fr.wiktionary.org/wiki/se_plier_en_quatre",
+      "https://www.expressio.fr/expressions/se-mettre-en-quatre"
+    ],
+    "editorialId": "fr-idiom-000090",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_plier_en_quatre",
+        "verification": "dictionary_entry_opened",
+        "locator": "se plier en quatre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/se-mettre-en-quatre",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_plier_en_quatre",
+        "citation": "— (Pierre Martin, Trump : patate chaude pour le Sénat américain, Le Journal de Québec, 26 janvier 2021) ...   * Somain (France) : écouter « se plier en quatre [Prononciation ?]",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "s'entendre comme larrons en foire",
+    "t": "birlikte yaramazlık yapacak kadar iyi anlaşmak",
+    "lit": "panayırdaki hırsızlar gibi anlaşmak",
+    "s": "Ces cousins s'entendent comme larrons en foire pour préparer leurs farces.",
+    "form": "s'entendent comme larrons en foire",
+    "tr": "Bu kuzenler şakalarını hazırlarken çok iyi anlaşıyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://fr.wiktionary.org/wiki/s%E2%80%99entendre_comme_larrons_en_foire",
+      "https://www.expressio.fr/expressions/s-entendre-comme-larrons-en-foire"
+    ],
+    "editorialId": "fr-idiom-000133",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/s%E2%80%99entendre_comme_larrons_en_foire",
+        "verification": "dictionary_entry_opened",
+        "locator": "s'entendre comme larrons en foire : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/s-entendre-comme-larrons-en-foire",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "w": "être sur la même longueur d'onde",
+    "t": "aynı düşünce çizgisinde olup iyi anlaşmak",
+    "lit": "aynı dalga boyunda olmak",
+    "s": "Sur ce projet, nous sommes sur la même longueur d'onde.",
+    "form": "sommes sur la même longueur d'onde",
+    "tr": "Bu projede aynı düşünce çizgisindeyiz.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://fr.wiktionary.org/wiki/%C3%AAtre_sur_la_m%C3%AAme_longueur_d'onde",
+      "https://www.expressio.fr/expressions/etre-sur-la-meme-longueur-d-onde"
+    ],
+    "editorialId": "fr-idiom-000134",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_sur_la_m%C3%AAme_longueur_d'onde",
+        "verification": "dictionary_entry_opened",
+        "locator": "être sur la même longueur d'onde : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/etre-sur-la-meme-longueur-d-onde",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_sur_la_m%C3%AAme_longueur_d%27onde",
+        "citation": "— (Pascale Le Garrec, Macron sur BFMTV. Les coulisses de l’interview de ce dimanche soir sur Ouest-France.fr, 15 avril 2018. Consulté le 16 avril 2018)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "passer de la pommade",
+    "t": "çıkar için birine yağ çekmek",
+    "lit": "merhem sürmek",
+    "s": "Il passe de la pommade au chef pour obtenir un avantage.",
+    "form": "passe de la pommade",
+    "tr": "Bir çıkar elde etmek için şefine yağ çekiyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://fr.wiktionary.org/wiki/passer_de_la_pommade",
+      "https://www.expressio.fr/expressions/passer-de-la-pommade"
+    ],
+    "editorialId": "fr-idiom-000140",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_de_la_pommade",
+        "verification": "dictionary_entry_opened",
+        "locator": "passer de la pommade à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/passer-de-la-pommade",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_de_la_pommade",
+        "citation": "— (Laurent Scalese, Le Sang de la mariée, Éditions Belfond, 2006, ISBN 978-2714448866)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ],
+    "pat": "passer de la pommade à quelqu'un"
+  },
+  {
+    "w": "mettre sur un piédestal",
+    "t": "birini kusursuz görüp aşırı yüceltmek",
+    "lit": "bir kaidenin üstüne koymak",
+    "s": "Il faut éviter de mettre sur un piédestal chaque nouveau champion.",
+    "form": "mettre sur un piédestal",
+    "tr": "Her yeni şampiyonu kusursuz biriymiş gibi yüceltmekten kaçınmak gerekir.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.cnrtl.fr/definition/pi%C3%A9destal",
+      "https://www.expressio.fr/expressions/mettre-sur-un-piedestal-tomber-de-son-piedestal",
+      "https://fr.wiktionary.org/wiki/pi%C3%A9destal"
+    ],
+    "editorialId": "fr-idiom-000142",
+    "sourceChecks": [
+      {
+        "url": "https://www.cnrtl.fr/definition/pi%C3%A9destal",
+        "verification": "dictionary_entry_opened",
+        "locator": "mettre quelqu'un sur un piédestal : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/mettre-sur-un-piedestal-tomber-de-son-piedestal",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/pi%C3%A9destal",
+        "citation": "— (Fortuné du Boisgobey, Double-Blanc, tome 2, Paris : chez Plon & Nourrit, 1889, p. ...   * mettre sur un piédestal, piédestaliser, dépiédestaliser ...   * France (Vosges) : écouter « piédestal [Prononciation ?]",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ],
+    "pat": "mettre quelqu'un sur un piédestal"
+  },
+  {
+    "w": "faire faux bond",
+    "t": "söz verdiği desteği vermeyip birini yarı yolda bırakmak",
+    "lit": "sahte bir sıçrayış yapmak",
+    "s": "Notre chauffeur nous a fait faux bond ce matin.",
+    "form": "fait faux bond",
+    "tr": "Şoförümüz bu sabah bizi yarı yolda bıraktı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://fr.wiktionary.org/wiki/faire_faux_bond",
+      "https://www.expressio.fr/expressions/faire-faux-bond"
+    ],
+    "editorialId": "fr-idiom-000144",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_faux_bond",
+        "verification": "dictionary_entry_opened",
+        "locator": "faire faux bond à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/faire-faux-bond",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_faux-bond",
+        "citation": null,
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ],
+    "pat": "faire faux bond à quelqu'un"
+  },
+  {
+    "w": "laisser tomber",
+    "t": "birini desteksiz bırakıp terk etmek",
+    "lit": "düşmesine izin vermek",
+    "s": "Tu peux compter sur moi : je refuse de te laisser tomber.",
+    "form": "laisser tomber",
+    "tr": "Bana güvenebilirsin; seni yarı yolda bırakmayı reddediyorum.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B1",
+    "theme": "people",
+    "src": [
+      "https://fr.wiktionary.org/wiki/laisser_tomber",
+      "https://www.cnrtl.fr/definition/academie9/laisser"
+    ],
+    "editorialId": "fr-idiom-000146",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/laisser_tomber",
+        "verification": "dictionary_entry_opened",
+        "locator": "laisser tomber quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000146",
+        "url": "https://www.cnrtl.fr/definition/academie9/laisser",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/laisser_tomber",
+        "citation": "— (Nicolas Mathieu, Leurs enfants après eux, Actes Sud, 2018)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ],
+    "pat": "laisser tomber quelqu'un"
+  },
+  {
+    "w": "être à couteaux tirés",
+    "t": "birbirine çok düşman olmak",
+    "lit": "çekilmiş bıçaklarla olmak",
+    "s": "Les deux associés sont à couteaux tirés.",
+    "form": "sont à couteaux tirés",
+    "tr": "İki ortak birbirine çok düşman.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://fr.wiktionary.org/wiki/%C3%A0_couteaux_tir%C3%A9s",
+      "https://www.expressio.fr/expressions/a-couteaux-tires"
+    ],
+    "editorialId": "fr-idiom-000148",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%A0_couteaux_tir%C3%A9s",
+        "verification": "dictionary_entry_opened",
+        "locator": "être à couteaux tirés : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/a-couteaux-tires",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "w": "mettre de l'huile dans les rouages",
+    "t": "ilişkilerin veya işleyişin pürüzlerini azaltmak",
+    "lit": "çarkların içine yağ koymak",
+    "s": "Un peu d'écoute met de l'huile dans les rouages.",
+    "form": "met de l'huile dans les rouages",
+    "tr": "Biraz dinlemek ilişkilerin pürüzlerini azaltır.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://usito.usherbrooke.ca/expressions/rouage",
+      "https://www.cnrtl.fr/definition/huile",
+      "https://www.expressio.fr/expressions/mettre-de-l-huile-dans-les-rouages"
+    ],
+    "editorialId": "fr-idiom-000151",
+    "sourceChecks": [
+      {
+        "url": "https://usito.usherbrooke.ca/expressions/rouage",
+        "verification": "dictionary_entry_opened",
+        "locator": "mettre de l'huile dans les rouages : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000151",
+        "url": "https://www.cnrtl.fr/definition/huile",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/mettre-de-l-huile-dans-les-rouages",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "w": "laver son linge sale en famille",
+    "t": "özel anlaşmazlıkları kendi içinde çözmek",
+    "lit": "kirli çamaşırını aile içinde yıkamak",
+    "s": "Réglons cela entre nous : lavons notre linge sale en famille.",
+    "form": "lavons notre linge sale en famille",
+    "tr": "Bunu aramızda çözelim; özel anlaşmazlığımızı dışarıya taşımayalım.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://fr.wiktionary.org/wiki/laver_son_linge_sale_en_famille",
+      "https://www.expressio.fr/expressions/laver-son-linge-sale-en-famille"
+    ],
+    "editorialId": "fr-idiom-000154",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/laver_son_linge_sale_en_famille",
+        "verification": "dictionary_entry_opened",
+        "locator": "laver son linge sale en famille : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/laver-son-linge-sale-en-famille",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/laver_son_linge_sale_en_famille",
+        "citation": "— (Hélène Pelletier-Baillargeon, Olivar Asselin et son temps, 1996)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "enterrer la hache de guerre",
+    "t": "husumeti bırakıp barışmak",
+    "lit": "savaş baltasını gömmek",
+    "s": "Après des années, ils ont enterré la hache de guerre.",
+    "form": "enterré la hache de guerre",
+    "tr": "Yıllar sonra husumeti bırakıp barıştılar.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://fr.wiktionary.org/wiki/enterrer_la_hache_de_guerre",
+      "https://dictionnaire.lerobert.com/definition/hache"
+    ],
+    "editorialId": "fr-idiom-000155",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/enterrer_la_hache_de_guerre",
+        "verification": "dictionary_entry_opened",
+        "locator": "enterrer la hache de guerre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000155",
+        "url": "https://dictionnaire.lerobert.com/definition/hache",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/enterrer_la_hache_de_guerre",
+        "citation": "— (L’Obs, lettre de réconciliation)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire cavalier seul",
+    "t": "başkalarına danışmadan tek başına hareket etmek",
+    "lit": "tek başına süvari olmak",
+    "s": "Notre partenaire préfère faire cavalier seul plutôt que consulter l'équipe.",
+    "form": "faire cavalier seul",
+    "tr": "Ortağımız ekibe danışmaktansa tek başına hareket etmeyi tercih ediyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/faire-cavalier-seul",
+      "https://fr.wiktionary.org/wiki/faire_cavalier_seul"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/faire-cavalier-seul",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_cavalier_seul",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire bande à part",
+    "t": "gruptan ayrı durmak",
+    "lit": "ayrı bir grup yapmak",
+    "s": "Pendant les pauses, ces deux collègues font bande à part.",
+    "form": "font bande à part",
+    "tr": "Molalarda bu iki iş arkadaşı gruptan ayrı duruyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/bande/7810",
+      "https://dictionnaire.lerobert.com/definition/bande",
+      "https://www.expressio.fr/expressions/faire-bande-a-part"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/bande/7810",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/bande",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/faire-bande-a-part",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "faire profil bas",
+    "t": "dikkat çekmeden sessiz kalmak",
+    "lit": "alçak profil yapmak",
+    "s": "Après son erreur, il préfère faire profil bas pendant quelques jours.",
+    "form": "faire profil bas",
+    "tr": "Hatasından sonra birkaç gün dikkat çekmeden sessiz kalmayı tercih ediyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/faire-profil-bas",
+      "https://fr.wiktionary.org/wiki/faire_profil_bas"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/faire-profil-bas",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_profil_bas",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "prendre des gants",
+    "t": "kimseyi incitmemek için özenli davranmak",
+    "lit": "eldivenler almak",
+    "s": "Avec ce sujet sensible, mieux vaut prendre des gants.",
+    "form": "prendre des gants",
+    "tr": "Bu hassas konuda kimseyi incitmemek için özenli davranmak daha iyi olur.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/prendre-des-gants",
+      "https://fr.wiktionary.org/wiki/prendre_des_gants"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/prendre-des-gants",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_des_gants",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "mettre dans le même sac",
+    "t": "farklı kişileri aynı kefeye koymak",
+    "lit": "aynı çuvala koymak",
+    "s": "Ces deux entreprises sont différentes : évite de les mettre dans le même sac.",
+    "form": "mettre dans le même sac",
+    "tr": "Bu iki şirket farklı; onları aynı kefeye koymaktan kaçın.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/mettre-dans-le-meme-sac",
+      "https://fr.wiktionary.org/wiki/mettre_dans_le_m%C3%AAme_sac"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/mettre-dans-le-meme-sac",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_dans_le_m%C3%AAme_sac",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "mettre en boîte",
+    "t": "biriyle dalga geçmek",
+    "lit": "kutuya koymak",
+    "s": "Ils adorent me mettre en boîte à cause de ma collection de chaussettes.",
+    "form": "mettre en boîte",
+    "tr": "Çorap koleksiyonum yüzünden benimle dalga geçmeye bayılıyorlar.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/mettre-en-boite",
+      "https://fr.wiktionary.org/wiki/mettre_en_bo%C3%AEte"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/mettre-en-boite",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_en_bo%C3%AEte",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "être dans le même bateau",
+    "t": "aynı güçlüğü paylaşmak",
+    "lit": "aynı teknede olmak",
+    "s": "Face à cette hausse des prix, nous sommes dans le même bateau.",
+    "form": "sommes dans le même bateau",
+    "tr": "Bu fiyat artışı karşısında aynı güçlüğü paylaşıyoruz.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/etre-dans-le-meme-bateau",
+      "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_m%C3%AAme_bateau"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/etre-dans-le-meme-bateau",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_m%C3%AAme_bateau",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "être logé à la même enseigne",
+    "t": "aynı muameleye maruz kalmak",
+    "lit": "aynı tabelanın altında konaklamak",
+    "s": "Pour les horaires, tous les employés sont logés à la même enseigne.",
+    "form": "sont logés à la même enseigne",
+    "tr": "Çalışma saatleri konusunda bütün çalışanlara aynı şekilde davranılıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/etre-loge-a-la-meme-enseigne",
+      "https://fr.wiktionary.org/wiki/%C3%AAtre_log%C3%A9_%C3%A0_la_m%C3%AAme_enseigne"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/etre-loge-a-la-meme-enseigne",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_log%C3%A9_%C3%A0_la_m%C3%AAme_enseigne",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "chercher des noises",
+    "t": "kavga çıkarmaya çalışmak",
+    "lit": "kavgalar aramak",
+    "s": "Ce client me cherche des noises depuis son arrivée au comptoir.",
+    "form": "cherche des noises",
+    "tr": "Bu müşteri tezgâha geldiğinden beri benimle kavga çıkarmaya çalışıyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/chercher-des-noises",
+      "https://fr.wiktionary.org/wiki/chercher_des_noises"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/chercher-des-noises",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/chercher_des_noises",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "couper les ponts",
+    "t": "bütün ilişkisini kesmek",
+    "lit": "köprüleri kesmek",
+    "s": "Après cette trahison, elle a préféré couper les ponts avec son associé.",
+    "form": "couper les ponts",
+    "tr": "Bu ihanetten sonra ortağıyla bütün ilişkisini kesmeyi tercih etti.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/couper-les-ponts",
+      "https://fr.wiktionary.org/wiki/couper_les_ponts"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/couper-les-ponts",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/couper_les_ponts",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "donner le change",
+    "t": "gerçek durumu gizleyen bir izlenim vermek",
+    "lit": "avın izini değiştirmek",
+    "s": "Pour donner le change, il sourit malgré sa profonde inquiétude.",
+    "form": "donner le change",
+    "tr": "Gerçek durumunu belli etmemek için derin kaygısına rağmen gülümsüyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/donner-le-change",
+      "https://fr.wiktionary.org/wiki/donner_le_change"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/donner-le-change",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/donner_le_change",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "filer doux",
+    "t": "itiraz etmeden boyun eğmek",
+    "lit": "yumuşakça iplik eğirmek",
+    "s": "Devant cette responsable exigeante, même les plus bavards filent doux.",
+    "form": "filent doux",
+    "tr": "Bu titiz sorumlunun karşısında en gevezeler bile itiraz etmeden boyun eğiyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/filer-doux",
+      "https://fr.wiktionary.org/wiki/filer_doux"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/filer-doux",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/filer_doux",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "jouer franc jeu",
+    "t": "açık ve dürüst davranmak",
+    "lit": "dürüst oyun oynamak",
+    "s": "Dans cette négociation, nous avons décidé de jouer franc jeu.",
+    "form": "jouer franc jeu",
+    "tr": "Bu pazarlıkta açık ve dürüst davranmaya karar verdik.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/jouer-franc-jeu",
+      "https://fr.wiktionary.org/wiki/jouer_franc-jeu"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/jouer-franc-jeu",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jouer_franc-jeu",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "laisser en plan",
+    "t": "birini beklenmedik biçimde ortada bırakmak",
+    "lit": "planda bırakmak",
+    "s": "Son collègue l'a laissé en plan au milieu de la préparation.",
+    "form": "laissé en plan",
+    "tr": "İş arkadaşı onu hazırlığın ortasında beklenmedik biçimde yalnız bıraktı.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/plan/61346",
+      "https://dictionnaire.lerobert.com/definition/laisser",
+      "https://fr.wiktionary.org/wiki/laisser_en_plan"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/plan/61346",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/laisser",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/laisser_en_plan",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "passer l'éponge",
+    "t": "geçmişteki bir hatayı affetmek",
+    "lit": "süngeri üzerinden geçirmek",
+    "s": "Après ses excuses sincères, nous avons décidé de passer l'éponge.",
+    "form": "passer l'éponge",
+    "tr": "İçten özründen sonra geçmişteki hatasını affetmeye karar verdik.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/%C3%A9ponge/30574",
+      "https://dictionnaire.lerobert.com/definition/eponge",
+      "https://www.expressio.fr/expressions/passer-l-eponge"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/%C3%A9ponge/30574",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/eponge",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/passer-l-eponge",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "passer un savon",
+    "t": "birini sertçe azarlamak",
+    "lit": "bir sabun geçirmek",
+    "s": "Le chef lui a passé un savon après cette livraison oubliée.",
+    "form": "passé un savon",
+    "tr": "Şef, unutulan teslimattan sonra onu sertçe azarladı.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/passer-un-savon",
+      "https://fr.wiktionary.org/wiki/passer_un_savon"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/passer-un-savon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_un_savon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "porter le chapeau",
+    "t": "bir işin sorumlusu sayılıp suçlanmak",
+    "lit": "şapkayı taşımak",
+    "s": "Le stagiaire refuse de porter le chapeau pour une décision de la direction.",
+    "form": "porter le chapeau",
+    "tr": "Stajyer, yönetimin bir kararı yüzünden suçlanmayı reddediyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/porter-le-chapeau",
+      "https://fr.wiktionary.org/wiki/porter_le_chapeau"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/porter-le-chapeau",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/porter_le_chapeau",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "pousser le bouchon trop loin",
+    "t": "ölçüyü kaçırmak",
+    "lit": "tıkacı çok uzağa itmek",
+    "s": "En exigeant une réponse en cinq minutes, vous poussez le bouchon trop loin.",
+    "form": "poussez le bouchon trop loin",
+    "tr": "Beş dakika içinde cevap isteyerek ölçüyü kaçırıyorsunuz.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://dictionnaire.lerobert.com/definition/pousser",
+      "https://www.expressio.fr/expressions/pousser-le-bouchon-un-peu-loin"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/pousser",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/pousser-le-bouchon-un-peu-loin",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "quitter le navire",
+    "t": "zor durumdaki bir topluluğu terk etmek",
+    "lit": "gemiyi terk etmek",
+    "s": "Face aux premières difficultés, plusieurs partenaires ont préféré quitter le navire.",
+    "form": "quitter le navire",
+    "tr": "İlk güçlükler karşısında bazı ortaklar topluluğu terk etmeyi tercih etti.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://fr.wiktionary.org/wiki/quitter_le_navire",
+      "https://www.swissinfo.ch/fre/le-directeur-de-la-lnm-doit-quitter-le-navire/91450692"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/quitter_le_navire",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "quitter le navire"
+      },
+      {
+        "url": "https://www.swissinfo.ch/fre/le-directeur-de-la-lnm-doit-quitter-le-navire/91450692",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "quitter le navire"
+      }
+    ]
+  },
+  {
+    "w": "rentrer dans le rang",
+    "t": "ayrı davranmayı bırakıp çoğunluğa uymak",
+    "lit": "sıraya geri girmek",
+    "s": "Après avoir protesté seul, il a fini par rentrer dans le rang.",
+    "form": "rentrer dans le rang",
+    "tr": "Tek başına itiraz ettikten sonra sonunda çoğunluğa uydu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/rentrer-dans-le-rang",
+      "https://fr.wiktionary.org/wiki/rentrer_dans_le_rang"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/rentrer-dans-le-rang",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rentrer_dans_le_rang",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "retourner sa veste",
+    "t": "çıkarı için taraf değiştirmek",
+    "lit": "ceketini ters çevirmek",
+    "s": "À l'approche des élections, ce conseiller a retourné sa veste.",
+    "form": "retourné sa veste",
+    "tr": "Seçimler yaklaşırken bu danışman çıkarı için taraf değiştirdi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/tourner-casaque-retourner-sa-veste",
+      "https://fr.wiktionary.org/wiki/retourner_sa_veste"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/tourner-casaque-retourner-sa-veste",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/retourner_sa_veste",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "se faire mousser",
+    "t": "kendini olduğundan önemli göstermeye çalışmak",
+    "lit": "kendini köpürtmek",
+    "s": "Pendant la réunion, il cherche surtout à se faire mousser.",
+    "form": "se faire mousser",
+    "tr": "Toplantıda asıl amacı kendini olduğundan önemli göstermek.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/se-faire-mousser",
+      "https://fr.wiktionary.org/wiki/se_faire_mousser"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/se-faire-mousser",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_faire_mousser",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "se mettre sur son trente-et-un",
+    "t": "en şık kıyafetlerini giymek",
+    "lit": "otuz birinin üstüne koyulmak",
+    "s": "Pour ce gala, chacun veut se mettre sur son trente-et-un.",
+    "form": "se mettre sur son trente-et-un",
+    "tr": "Bu gala için herkes en şık kıyafetlerini giymek istiyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/se-mettre-sur-son-trente-et-un",
+      "https://fr.wiktionary.org/wiki/se_mettre_sur_son_trente-et-un"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/se-mettre-sur-son-trente-et-un",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_mettre_sur_son_trente-et-un",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "sortir le grand jeu",
+    "t": "etkilemek için bütün imkânlarını kullanmak",
+    "lit": "büyük oyunu çıkarmak",
+    "s": "Pour convaincre ces visiteurs, le musée va sortir le grand jeu.",
+    "form": "sortir le grand jeu",
+    "tr": "Müze bu ziyaretçileri etkilemek için bütün imkânlarını kullanacak.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/sortir-le-grand-jeu",
+      "https://fr.wiktionary.org/wiki/sortir_le_grand_jeu"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/sortir-le-grand-jeu",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/sortir_le_grand_jeu",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "tenir la chandelle",
+    "t": "bir çiftin yanında fazlalık olmak",
+    "lit": "mumu tutmak",
+    "s": "Avec ces deux amoureux, je vais encore tenir la chandelle.",
+    "form": "tenir la chandelle",
+    "tr": "Bu iki âşığın yanında yine fazlalık olacağım.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/tenir-la-chandelle",
+      "https://fr.wiktionary.org/wiki/tenir_la_chandelle"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/tenir-la-chandelle",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenir_la_chandelle",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "tenir le haut du pavé",
+    "t": "üstün bir konuma sahip olmak",
+    "lit": "kaldırımın yüksek tarafını tutmak",
+    "s": "Dans ce secteur, quelques groupes continuent à tenir le haut du pavé.",
+    "form": "tenir le haut du pavé",
+    "tr": "Bu sektörde birkaç grup üstün konumunu korumayı sürdürüyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/le-haut-du-pave/page-2",
+      "https://fr.wiktionary.org/wiki/tenir_le_haut_du_pav%C3%A9"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/le-haut-du-pave/page-2",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenir_le_haut_du_pav%C3%A9",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "tirer le portrait",
+    "t": "fotoğrafını çekmek",
+    "lit": "portreyi çekmek",
+    "s": "Le photographe va nous tirer le portrait devant le café.",
+    "form": "tirer le portrait",
+    "tr": "Fotoğrafçı kafenin önünde fotoğrafımızı çekecek.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/tirer-le-portrait",
+      "https://fr.wiktionary.org/wiki/tirer_le_portrait"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/tirer-le-portrait",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_le_portrait",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "tirer son chapeau",
+    "t": "takdirini belirtmek",
+    "lit": "şapkasını çıkarmak",
+    "s": "Pour cette réparation ingénieuse, je te tire mon chapeau.",
+    "form": "tire mon chapeau",
+    "tr": "Bu zekice tamir için seni takdir ediyorum.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/tirer-son-chapeau",
+      "https://fr.wiktionary.org/wiki/tirer_son_chapeau"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/tirer-son-chapeau",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_son_chapeau",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  },
+  {
+    "w": "trouver chaussure à son pied",
+    "t": "kendine uygun kişiyi veya şeyi bulmak",
+    "lit": "ayağına uygun ayakkabı bulmak",
+    "s": "Après plusieurs essais, nous avons trouvé chaussure à notre pied avec ce logement.",
+    "form": "trouvé chaussure à notre pied",
+    "tr": "Birkaç denemeden sonra bu konutla kendimize uygun olanı bulduk.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "people",
+    "src": [
+      "https://www.expressio.fr/expressions/trouver-chaussure-a-son-pied",
+      "https://fr.wiktionary.org/wiki/trouver_chaussure_%C3%A0_son_pied"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/trouver-chaussure-a-son-pied",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/trouver_chaussure_%C3%A0_son_pied",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      }
+    ]
+  }
+]

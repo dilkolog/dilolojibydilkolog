@@ -1,5 +1,8 @@
 # Fransızca deyimler — Antigravity sonrası düzeltme
 
+> Güncel uygulama taslağı: **500 kayıt**. Bu dizinin 237 kayıtlık tarihsel editoryal seti ve kimlikleri korunur; aktarım, kaynak yöntemleri ve bekleyen denetim için [UYGULAMA-PAKETI.md](UYGULAMA-PAKETI.md).
+
+
 **237 aktif deyim · 474 özgün örnek/çeviri · 237 bağlam sorusu · 10 editoryal paket.** İlk 260 kimlikten 23’ü gerekçeleriyle emekliye ayrıldı; kalan kimlikler yeniden numaralanmadı.
 
 [63 düzeltme kararı](DENETIM-DUZELTMELERI.md) · [Makinece okunabilir kararlar](DENETIM-DUZELTMELERI.json) · [Çıkarılanlar](RETIRED.json) · [Toplu ZIP](arsivler/deyimler-fr-10-paket.zip) · [Devir](CLAUDE-DEVIR.md) · [Dizin](PAKET-DIZINI.json) · [Yapı kontrolü](DOGRULAMA.json)
@@ -29,7 +32,7 @@ Antigravity’nin `content/review/idioms/fr-*.md` raporları girdi alındı; rap
 
 Kaynakların kendi kontrol tarihleri ve erişim yöntemleri JSON ile kaynak tablolarında ayrı gösterilir. Arama özetinden okunan kullanım, tam sayfa açılmış gibi sunulmaz. 117 numaralı kayıtta Le Robert’ın 403 notu korunurken iki erişilebilir ek kaynak kaydedildi.
 
-Antigravity’nin temiz saydığı 197 kaydın öğretim içeriği korunmuştur. Düzeltilenlerin tekrar denetimi, bütün setin ikinci kaynak kapsamı, CEFR ataması, 31’lik tema düzeni ve uygulama şemasına geçiş bekler. Bu set hâlâ editoryal hazırlıktır; uygulamaya yayımlanmadı. İspanyolca deyimler Antigravity’dedir; İngilizce Codex’in sıradaki dilidir.
+Antigravity’nin temiz saydığı 197 kaydın öğretim içeriği korunmuştur. 237 kayıtlık tarihsel set yerinde korunurken 224 kayıt uygulama taslağına aktarıldı; 260 yeni deyim ve 16 çekirdekle 500 kayda ulaşıldı. Kaynak yöntemleri, editoryal CEFR atamaları ve gerçek tema dağılımı uygulama raporundadır. Antigravity tekrar denetimi ve insan örneklemi bekler; paket main'e yayımlanmadı. İspanyolca Antigravity'dedir.
 
 ## Yeniden üretim
 

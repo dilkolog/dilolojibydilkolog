@@ -1,5 +1,8 @@
 # Fransızca deyimler — düzeltme sonrası devir
 
+> Güncel uygulama taslağı: **500 kayıt**. Bu dizinin 237 kayıtlık tarihsel editoryal seti ve kimlikleri korunur; aktarım, kaynak yöntemleri ve bekleyen denetim için [UYGULAMA-PAKETI.md](UYGULAMA-PAKETI.md).
+
+
 Antigravity’nin 33 sorunlu ve 30 şüpheli kaydı içeren raporları alındı. Üretici Codex’in 63 kararı ana dizindeki `DENETIM-DUZELTMELERI.md` ve `.json` dosyalarındadır. Asıl girdi raporları depodaki `content/review/idioms/fr-*.md` dosyalarında değişmeden korunur.
 
 ## Güncel veri

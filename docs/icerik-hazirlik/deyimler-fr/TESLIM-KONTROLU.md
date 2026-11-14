@@ -1,5 +1,8 @@
 # Teslim kontrolü — 14 Kasım 2026
 
+> Güncel uygulama taslağı: **500 kayıt**. Bu dizinin 237 kayıtlık tarihsel editoryal seti ve kimlikleri korunur; aktarım, kaynak yöntemleri ve bekleyen denetim için [UYGULAMA-PAKETI.md](UYGULAMA-PAKETI.md).
+
+
 - 10 kaynak JSON’da 237 aktif deyim, 474 özgün örnek/çeviri ve 237 bağlam sorusu bulunur.
 - İlk 260 kimlik aktif veya RETIRED.json içinde açıkça kayıtlıdır; 23 kimlik çıkarılmış, hiçbiri başka ifadeye verilmemiştir.
 - Antigravity raporlarındaki 33 sorunlu ve 30 şüpheli kaydın her biri için gerekçeli karar vardır; bütün şüphelilerde ikinci kaynak kaydı bulunur.
