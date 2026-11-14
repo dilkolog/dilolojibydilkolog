@@ -1,0 +1,432 @@
+[
+ {
+  "w": "mantenerse firme",
+  "t": "baskıya rağmen verdiği karardan veya tutumundan hiç dönmemek",
+  "lit": "sağlam kalmak",
+  "eq": "dik durmak",
+  "s": "A pesar de las críticas, la directora se mantuvo firme.",
+  "form": "mantuvo firme",
+  "tr": "Eleştirilere rağmen müdür kararında dimdik durdu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/mantenerse-firme",
+   "https://en.wiktionary.org/wiki/firme"
+  ]
+ },
+ {
+  "w": "dar luz verde",
+  "pat": "dar luz verde a algo",
+  "t": "bir planın veya projenin başlaması için resmî izin ve onay vermek",
+  "lit": "yeşil ışık vermek",
+  "eq": "yeşil ışık yakmak",
+  "s": "El ayuntamiento por fin dio luz verde a la reforma del parque.",
+  "form": "dio luz verde",
+  "tr": "Belediye sonunda parkın yenilenmesi için yeşil ışık yaktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/luz-verde",
+   "https://en.wiktionary.org/wiki/verde"
+  ]
+ },
+ {
+  "w": "pensárselo dos veces",
+  "t": "acele karar vermeyip doğacak sonuçları iyice tartmak",
+  "lit": "onu iki kez düşünmek",
+  "eq": "iki kere düşünmek",
+  "s": "Antes de firmar esa hipoteca conviene pensárselo dos veces.",
+  "form": "pensárselo dos veces",
+  "tr": "O konut kredisini imzalamadan önce iki kere düşünmekte yarar var.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/pensarselo-dos-veces",
+   "https://es.wiktionary.org/wiki/veces"
+  ]
+ },
+ {
+  "w": "dar el primer paso",
+  "t": "tereddüdü bırakıp bir süreci başlatacak ilk adımı atmak",
+  "lit": "ilk adımı vermek",
+  "eq": "ilk adımı atmak",
+  "s": "Lo más difícil es dar el primer paso y pedir cita.",
+  "form": "dar el primer paso",
+  "tr": "En zoru tereddüdü aşarak ilk adımı atıp randevu almaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/paso",
+   "https://en.wiktionary.org/wiki/dar_el_primer_paso"
+  ]
+ },
+ {
+  "w": "echarse atrás",
+  "t": "önceden kabul ettiği bir karardan son anda vazgeçip caymak",
+  "lit": "geriye atılmak",
+  "eq": "caymak",
+  "s": "Habíamos reservado la sala, pero el ponente se echó atrás.",
+  "form": "echó atrás",
+  "tr": "Salonu ayırtmıştık ama konuşmacı son anda vazgeçti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/echarse-atras",
+   "https://en.wiktionary.org/wiki/echarse_atr%C3%A1s"
+  ]
+ },
+ {
+  "w": "dejarse llevar",
+  "t": "bilinçli direnç göstermeyip duygulara veya koşullara kendini bırakmak",
+  "lit": "kendini götürmeye bırakmak",
+  "eq": "akıntıya kapılmak",
+  "s": "En vez de planear cada minuto, prefiere dejarse llevar en vacaciones.",
+  "form": "dejarse llevar",
+  "tr": "Her dakikayı planlamak yerine tatilde kendini akışa bırakmayı seviyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/dejarse-llevar",
+   "https://en.wiktionary.org/wiki/dejarse_llevar"
+  ]
+ },
+ {
+  "w": "tener la última palabra",
+  "t": "bir tartışmada veya seçimde kesin nihai kararı verme yetkisine sahip olmak",
+  "lit": "son sözü tutmak",
+  "eq": "son sözü söylemek",
+  "s": "Aunque opinemos todos, el comité tiene la última palabra.",
+  "form": "tiene la última palabra",
+  "tr": "Hepimiz görüş bildirsek de son sözü komite söyler.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/la-ultima-palabra",
+   "https://es.wiktionary.org/wiki/palabra"
+  ]
+ },
+ {
+  "w": "tirar la toalla",
+  "t": "çabalamayı bırakıp yenilgiyi kabul ederek vazgeçmek",
+  "lit": "havluyu atmak",
+  "eq": "havlu atmak",
+  "s": "Falló dos veces el examen práctico, pero nunca tiró la toalla.",
+  "form": "tiró la toalla",
+  "tr": "Uygulamalı sınavda iki kez kaldı ama asla pes etmedi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/toalla",
+   "https://es.wiktionary.org/wiki/tirar_la_toalla"
+  ]
+ },
+ {
+  "w": "cortar por lo sano",
+  "t": "sorunu uzatmadan kökten ve kesin bir kararla sona erdirmek",
+  "lit": "sağlıklı yerden kesmek",
+  "eq": "kestirip atmak",
+  "s": "Viendo que no pagaban, decidió cortar por lo sano y cancelar.",
+  "form": "cortar por lo sano",
+  "tr": "Ödeme yapmadıklarını görünce kesin karar verip sözleşmeyi iptal etti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/sano",
+   "https://es.wiktionary.org/wiki/cortar_por_lo_sano"
+  ]
+ },
+ {
+  "w": "tirarse a la piscina",
+  "t": "sonucundan tam emin olmadan cesaret edip kararını uygulamak",
+  "lit": "havuza atlamak",
+  "eq": "gözü karartıp atılmak",
+  "s": "Dejó la oficina y se tiró a la piscina abriendo su panadería.",
+  "form": "tiró a la piscina",
+  "tr": "Ofis işini bıraktı ve cesaretini toplayıp kendi fırınını açtı.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/piscina",
+   "https://es.wiktionary.org/wiki/tirarse_a_la_piscina"
+  ]
+ },
+ {
+  "w": "tomar cartas en el asunto",
+  "t": "uzaktan izlemeyi bırakıp soruna bizzat müdahale etmek",
+  "lit": "konuda kartları almak",
+  "eq": "duruma el koymak",
+  "s": "La vecindad exigió a la alcaldía tomar cartas en el asunto.",
+  "form": "tomar cartas en el asunto",
+  "tr": "Mahalle sakinleri belediyenin konuya doğrudan el koymasını istedi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/asunto",
+   "https://es.wiktionary.org/wiki/tomar_cartas_en_el_asunto"
+  ]
+ },
+ {
+  "w": "tomar partido",
+  "pat": "tomar partido por alguien o algo",
+  "t": "tarafsız kalmayıp bir düşünceden veya gruptan yana tavır koymak",
+  "lit": "taraf almak",
+  "eq": "taraf tutmak",
+  "s": "Como mediadora imparcial, evitó tomar partido en la disputa.",
+  "form": "tomar partido",
+  "tr": "Tarafsız bir arabulucu olarak anlaşmazlıkta taraf tutmaktan kaçındı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/partido",
+   "https://en.wiktionary.org/wiki/tomar_partido"
+  ]
+ },
+ {
+  "w": "hacer borrón y cuenta nueva",
+  "t": "geçmişteki kırgınlık veya hataları tamamen silip sıfırdan başlamak",
+  "lit": "mürekkep lekesi ve yeni hesap yapmak",
+  "eq": "sünger çekmek",
+  "s": "Tras la reconciliación acordaron hacer borrón y cuenta nueva.",
+  "form": "hacer borrón y cuenta nueva",
+  "tr": "Barıştıktan sonra geçmişe sünger çekip yeni bir sayfa açmakta anlaştılar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/hacer-borron-y-cuenta-nueva",
+   "https://es.wiktionary.org/wiki/borr%C3%B3n_y_cuenta_nueva"
+  ]
+ },
+ {
+  "w": "dar el visto bueno",
+  "pat": "dar el visto bueno a algo",
+  "t": "incelenen bir işi uygun bulup geçerlilik onayı vermek",
+  "lit": "iyi görüldü vermek",
+  "eq": "olur vermek",
+  "s": "La editorial dio el visto bueno al capítulo final ayer.",
+  "form": "dio el visto bueno",
+  "tr": "Yayınevi dün son bölüme onay verdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/visto",
+   "https://en.wiktionary.org/wiki/dar_el_visto_bueno"
+  ]
+ },
+ {
+  "w": "plantar cara",
+  "pat": "plantar cara a alguien o algo",
+  "t": "korkup çekilmeden bir zorluğa veya haksızlığa açıkça karşı durmak",
+  "lit": "yüzünü dikmek",
+  "eq": "göğüs germek",
+  "s": "Los trabajadores decidieron plantar cara a los despidos injustificados.",
+  "form": "plantar cara",
+  "tr": "Çalışanlar haksız işten çıkarmalara açıkça karşı durmaya karar verdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/plantar-cara",
+   "https://es.wiktionary.org/wiki/plantar_cara"
+  ]
+ },
+ {
+  "w": "pisar fuerte",
+  "t": "kararlı, özgüvenli ve ağırlığını hissettiren bir tavırla ilerlemek",
+  "lit": "sert basmak",
+  "s": "La joven arquitecta llega al estudio pisando fuerte.",
+  "form": "pisando fuerte",
+  "tr": "Genç mimar stüdyoya ayak basar basmaz ağırlığını hissettiriyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/fuerte",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/pisar/214079"
+  ]
+ },
+ {
+  "w": "poner punto final",
+  "pat": "poner punto final a algo",
+  "t": "bir tartışmayı, ilişkiyi veya dönemi kesin olarak noktalamak",
+  "lit": "son nokta koymak",
+  "eq": "noktayı koymak",
+  "s": "Decidieron poner punto final al proyecto tras ocho temporadas.",
+  "form": "poner punto final",
+  "tr": "Sekiz sezonun ardından projeyi kesin olarak noktalamaya karar verdiler.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/poner-punto-final",
+   "https://en.wiktionary.org/wiki/final"
+  ]
+ },
+ {
+  "w": "dar su brazo a torcer",
+  "t": "başkalarının ısrarı karşısında inat etmekten vazgeçip razı olmak",
+  "lit": "kolunu bükülmeye vermek",
+  "eq": "yelkenleri suya indirmek",
+  "s": "Discutimos horas, pero él no dio su brazo a torcer.",
+  "form": "dio su brazo a torcer",
+  "tr": "Saatlerce tartıştık ama o kesinlikle geri adım atmadı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/brazo",
+   "https://es.wiktionary.org/wiki/torcer"
+  ]
+ },
+ {
+  "w": "mantenerse en sus trece",
+  "t": "kanıt veya uyarıya aldırmadan ilk fikrinde inatla diretmek",
+  "lit": "on üçünde kalmak",
+  "eq": "Nuh deyip peygamber dememek",
+  "s": "Le mostramos los datos reales, pero se mantuvo en sus trece.",
+  "form": "mantuvo en sus trece",
+  "tr": "Ona gerçek verileri gösterdik ama yine kendi bildiğinde diretti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/mantenerse-en-sus-trece",
+   "https://es.wiktionary.org/wiki/trece"
+  ]
+ },
+ {
+  "w": "quemar las naves",
+  "t": "geri dönüş yolunu tamamen kapatıp var gücüyle seçtiği yola bağlanmak",
+  "lit": "gemileri yakmak",
+  "eq": "gemileri yakmak",
+  "s": "Vendió su piso y quemó las naves al emigrar definitivamente.",
+  "form": "quemó las naves",
+  "tr": "Dairesini satıp temelli göç ederken tüm gemileri yaktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/quemar",
+   "https://es.wiktionary.org/wiki/quemar"
+  ]
+ },
+ {
+  "w": "liarse la manta a la cabeza",
+  "t": "olası sonuçları düşünmeyi bırakıp ani ve gözü kara karar almak",
+  "lit": "battaniyeyi başına sarmak",
+  "eq": "gözü karartmak",
+  "s": "Se lió la manta a la cabeza y compró la casa vieja.",
+  "form": "lió la manta a la cabeza",
+  "tr": "Gözünü karartıp o eski evi satın almaya karar verdi.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/manta/203730",
+   "https://es.wiktionary.org/wiki/manta"
+  ]
+ },
+ {
+  "w": "deshojar la margarita",
+  "t": "iki seçenek arasında karar veremeyip uzun süre tereddüt etmek",
+  "lit": "papatyanın yapraklarını koparmak",
+  "eq": "papatya falı bakmak",
+  "s": "Lleva meses deshojando la margarita sobre cambiar de carrera.",
+  "form": "deshojando la margarita",
+  "tr": "Meslek değiştirip değiştirmeme konusunda aylardır kararsızca bocalıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/margarita/204056",
+   "https://en.wiktionary.org/wiki/deshojar"
+  ]
+ },
+ {
+  "w": "inclinar la balanza",
+  "t": "kararsız bir durumda sonucu bir yöne doğru belirleyici biçimde ağırlaştırmak",
+  "lit": "teraziyi eğmek",
+  "eq": "terazinin kefesini ağırlaştırmak",
+  "s": "El voto del público inclinó la balanza a favor del corto.",
+  "form": "inclinó la balanza",
+  "tr": "Halk oylaması kısa filmden yana terazinin kefesini ağırlaştırdı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/balanza",
+   "https://en.wiktionary.org/wiki/balanza"
+  ]
+ },
+ {
+  "w": "echar el cierre",
+  "pat": "echar el cierre a algo",
+  "t": "bir işletmeyi, etkinliği veya dönemi kalıcı olarak kapatmak",
+  "lit": "kilidi atmak",
+  "eq": "kepenk indirmek",
+  "s": "Tras cuarenta años en el barrio, la librería echó el cierre.",
+  "form": "echó el cierre",
+  "tr": "Mahallede kırk yılın ardından kitabevi kepenklerini kapattı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/cierre",
+   "https://en.wiktionary.org/wiki/echar_el_cierre"
+  ]
+ },
+ {
+  "w": "jugarse el tipo",
+  "t": "kritik bir karar uğruna saygınlığını veya güvenliğini tehlikeye atmak",
+  "lit": "kendi tipini oynamak",
+  "eq": "kellesini ortaya koymak",
+  "s": "Se jugó el tipo denunciando las irregularidades ante la dirección.",
+  "form": "jugó el tipo",
+  "tr": "Usulsüzlükleri yönetime bildirerek kendini büyük riske attı.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/jugarse-el-tipo",
+   "https://en.wiktionary.org/wiki/jugarse_el_tipo"
+  ]
+ }
+]

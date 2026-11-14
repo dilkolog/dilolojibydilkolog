@@ -1,0 +1,360 @@
+[
+ {
+  "w": "tener buena estrella",
+  "t": "giriştiği işlerde hep şansının yaver gitmesi",
+  "lit": "iyi yıldızı olmak",
+  "eq": "talihi açık olmak",
+  "s": "Siempre logra trabajo enseguida porque tiene buena estrella.",
+  "form": "tiene buena estrella",
+  "tr": "Şansı hep açık olduğu için her seferinde hemen iş buluyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/estrella",
+   "https://en.wiktionary.org/wiki/buena_estrella"
+  ]
+ },
+ {
+  "w": "ir de perlas",
+  "pat": "irle de perlas algo a alguien",
+  "t": "tam zamana ve ihtiyaca cuk oturup harika denk gelmek",
+  "lit": "incilerle gitmek",
+  "eq": "ilaç gibi gelmek",
+  "s": "Tu ayuda con los paquetes nos va de perlas hoy.",
+  "form": "va de perlas",
+  "tr": "Paketler konusundaki yardımın bugün bize ilaç gibi geldi.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ir-de-perlas",
+   "https://en.wiktionary.org/wiki/de_perlas"
+  ]
+ },
+ {
+  "w": "tocar madera",
+  "t": "işlerin ters gitmemesi ve nazar değmemesi için uğur dilemek",
+  "lit": "ahşaba dokunmak",
+  "eq": "tahtaya vurmak",
+  "s": "Todavía no hemos tenido ningún retraso, crucemos y toquemos madera.",
+  "form": "toquemos madera",
+  "tr": "Henüz hiçbir gecikme yaşamadık, nazar değmesin diye tahtaya vuralım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/tocar-madera",
+   "https://es.wiktionary.org/wiki/tocar_madera"
+  ]
+ },
+ {
+  "w": "cruzar los dedos",
+  "t": "beklenen bir sonucun olumlu çıkmasını içtenlikle ummak",
+  "lit": "parmakları çaprazlamak",
+  "eq": "iyi şans dilemek",
+  "s": "Mañana sale la lista de becas, así que cruza los dedos.",
+  "form": "cruza los dedos",
+  "tr": "Yarın burs listesi açıklanıyor, o yüzden şans dile.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/cruzar-los-dedos",
+   "https://en.wiktionary.org/wiki/cruzar_los_dedos"
+  ]
+ },
+ {
+  "w": "probar suerte",
+  "t": "olup olmayacağını görmek için şansını denemeye kalkışmak",
+  "lit": "şansı tatmak",
+  "eq": "şansını denemek",
+  "s": "Decidió probar suerte en otra ciudad con un proyecto propio.",
+  "form": "probar suerte",
+  "tr": "Kendi projesiyle başka bir şehirde şansını denemeye karar verdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/suerte",
+   "https://en.wiktionary.org/wiki/probar_suerte"
+  ]
+ },
+ {
+  "w": "jugar a cara o cruz",
+  "t": "iki seçenek arasında yazı tura gibi tamamen tesadüfe bırakmak",
+  "lit": "yüz veya haç oynamak",
+  "eq": "yazı tura atmak",
+  "s": "Como no se ponían de acuerdo, jugaron a cara o cruz.",
+  "form": "jugaron a cara o cruz",
+  "tr": "Anlaşamadıkları için yazı tura atıp şansa bıraktılar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/jugar-a-cara-o-cruz",
+   "https://en.wiktionary.org/wiki/a_cara_o_cruz"
+  ]
+ },
+ {
+  "w": "salir ganando",
+  "t": "bir pazarlıktan veya durumdan karşı taraftan daha kazançlı çıkmak",
+  "lit": "kazanarak çıkmak",
+  "eq": "kârlı çıkmak",
+  "s": "Con el intercambio de horarios, tú también sales ganando.",
+  "form": "sales ganando",
+  "tr": "Saat değişikliğiyle birlikte sen de kârlı çıkıyorsun.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/salir-ganando",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/salir/223100"
+  ]
+ },
+ {
+  "w": "sacar provecho",
+  "pat": "sacar provecho de algo",
+  "t": "elindeki fırsattan veya imkândan en yüksek faydayı elde etmek",
+  "lit": "fayda çıkarmak",
+  "s": "Sabe sacar provecho de cada curso que hace en el trabajo.",
+  "form": "sacar provecho",
+  "tr": "İş yerinde katıldığı her eğitimden fayda çıkarmayı iyi biliyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/sacar-provecho",
+   "https://en.wiktionary.org/wiki/sacar_provecho"
+  ]
+ },
+ {
+  "w": "caer de pie",
+  "t": "zor veya riskli bir durumdan şans eseri hiç zarar görmeden kurtulmak",
+  "lit": "ayak üstü düşmek",
+  "eq": "dört ayak üstüne düşmek",
+  "s": "Aunque perdió ese contrato, cayó de pie en otro mejor.",
+  "form": "cayó de pie",
+  "tr": "O sözleşmeyi kaybetse de daha iyi bir işte dört ayak üstüne düştü.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/pie",
+   "https://es.wiktionary.org/wiki/caer_de_pie"
+  ]
+ },
+ {
+  "w": "salir a pedir de boca",
+  "t": "her şeyin tam hayal edildiği ve istendiği biçimde yolunda gitmesi",
+  "lit": "ağzın istemesine çıkmak",
+  "s": "Organizamos la feria en tres días y salió a pedir de boca.",
+  "form": "salió a pedir de boca",
+  "tr": "Fuarı üç günde hazırladık ve her şey tam istediğimiz gibi gitti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/salir-a-pedir-de-boca",
+   "https://es.wiktionary.org/wiki/salir_a_pedir_de_boca"
+  ]
+ },
+ {
+  "w": "dar en el blanco",
+  "t": "hedefi, tahmini veya çözümü tam isabetle tutturmak",
+  "lit": "hedefe vurmak",
+  "eq": "on ikiden vurmak",
+  "s": "A la primera pregunta del examen dio en el blanco.",
+  "form": "dio en el blanco",
+  "tr": "Sınavdaki ilk soruda tam on ikiden vurdu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/blanco",
+   "https://en.wiktionary.org/wiki/dar_en_el_blanco"
+  ]
+ },
+ {
+  "w": "echar a suertes",
+  "t": "tarafsız kalmak için seçimi kura çekerek talihine bırakmak",
+  "lit": "şanslara atmak",
+  "eq": "kura çekmek",
+  "s": "Echamos a suertes quién conducía en el viaje de vuelta.",
+  "form": "Echamos a suertes",
+  "tr": "Dönüş yolunda arabayı kimin kullanacağını kuraya bıraktık.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/echar-a-suertes",
+   "https://en.wiktionary.org/wiki/echar_a_suertes"
+  ]
+ },
+ {
+  "w": "tentar a la suerte",
+  "t": "tehlikeyi göze alıp şansının ne kadar süreceğini gereksizce sınamak",
+  "lit": "talihi kışkırtmak",
+  "eq": "şansını fazla zorlamak",
+  "s": "Con esa tormenta, salir al mar ahora es tentar a la suerte.",
+  "form": "tentar a la suerte",
+  "tr": "Bu fırtınada denize açılmak şansı gereksiz yere zorlamaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/suerte/226981",
+   "https://es.wiktionary.org/wiki/tentar_a_la_suerte"
+  ]
+ },
+ {
+  "w": "sacar partido",
+  "pat": "sacar partido de algo",
+  "t": "bir durumdan veya kaynaktan azami yarar ve avantaj sağlamak",
+  "lit": "pay çıkarmak",
+  "s": "Supo sacar partido de sus meses viviendo en Lisboa.",
+  "form": "sacar partido",
+  "tr": "Lizbon’da yaşadığı aylardan en iyi şekilde yararlanmayı bildi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/sacar-partido-de",
+   "https://en.wiktionary.org/wiki/sacar_partido"
+  ]
+ },
+ {
+  "w": "llegar a buen puerto",
+  "t": "uzun veya zahmetli bir girişimi başarıyla sonuca ulaştırmak",
+  "lit": "iyi limana varmak",
+  "s": "Después de meses de diálogo, el acuerdo llegó a buen puerto.",
+  "form": "llegó a buen puerto",
+  "tr": "Aylar süren görüşmelerden sonra anlaşma mutlu sona ulaştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/puerto",
+   "https://es.wiktionary.org/wiki/puerto"
+  ]
+ },
+ {
+  "w": "tener un as en la manga",
+  "t": "son anda çıkarabileceği gizli bir koz veya avantaj bulundurmak",
+  "lit": "kolunda bir as tutmak",
+  "eq": "kolunda gizli kozu olmak",
+  "s": "No te confíes en el debate porque siempre tiene un as en la manga.",
+  "form": "tiene un as en la manga",
+  "tr": "Tartışmada rehavete kapılma çünkü her zaman gizli bir kozu vardır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/as",
+   "https://es.wiktionary.org/wiki/tener_un_as_en_la_manga"
+  ]
+ },
+ {
+  "w": "salirse con la suya",
+  "t": "engellere rağmen kendi istediğini yaptırmayı başarmak",
+  "lit": "kendisininkiyle çıkmak",
+  "eq": "dediğini yaptırmak",
+  "s": "Insistió tanto durante la reunión que se salió con la suya.",
+  "form": "salió con la suya",
+  "tr": "Toplantıda o kadar üsteledi ki sonunda yine istediğini elde etti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/salirse-con-la-suya",
+   "https://en.wiktionary.org/wiki/salirse_con_la_suya"
+  ]
+ },
+ {
+  "w": "tener buena mano",
+  "pat": "tener buena mano para algo",
+  "t": "bir alanda doğal yeteneği ve eli uğurlu yatkınlığı olmak",
+  "lit": "iyi eli olmak",
+  "eq": "eli yatkın olmak",
+  "s": "Todas sus plantas florecen rápido; tiene buena mano para la jardinería.",
+  "form": "tiene buena mano",
+  "tr": "Bütün bitkileri çabucak çiçek açıyor; bahçeciliğe eli çok yatkın.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/tener-buena-mano-con",
+   "https://es.wiktionary.org/wiki/buena_mano"
+  ]
+ },
+ {
+  "w": "sacar tajada",
+  "pat": "sacar tajada de algo",
+  "t": "bölüşülen bir imkândan veya karışık durumdan kendi çıkarına pay kapmak",
+  "lit": "dilim çıkarmak",
+  "eq": "payını kapmak",
+  "s": "Apenas hubo subida de precios, algunos quisieron sacar tajada.",
+  "form": "sacar tajada",
+  "tr": "Fiyatlar artar artmaz bazıları hemen durumdan pay kapmaya çalıştı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/tajada",
+   "https://en.wiktionary.org/wiki/sacar_tajada"
+  ]
+ },
+ {
+  "w": "jugárselo todo a una carta",
+  "t": "tüm imkânı tek bir fırsata bağlayıp büyük risk almak",
+  "lit": "her şeyini tek bir karta oynamak",
+  "eq": "bütün yumurtaları aynı sepete koymak",
+  "s": "Vendió la tienda para jugárselo todo a una carta en su proyecto.",
+  "form": "jugárselo todo a una carta",
+  "tr": "Eski dükkânını kapattı ve her şeyini tek bir şansa bağladı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/jugarselo-todo-a-una-carta",
+   "https://en.wiktionary.org/wiki/jug%C3%A1rselo_todo_a_una_carta"
+  ]
+ },
+ {
+  "w": "matar la gallina de los huevos de oro",
+  "t": "kısa vadeli hırs uğruna sürekli kazanç sağlayan kaynağı yok etmek",
+  "lit": "altın yumurtlayan tavuğu öldürmek",
+  "eq": "altın yumurtlayan tavuğu kesmek",
+  "s": "Si subes demasiado las tarifas, matarás la gallina de los huevos de oro.",
+  "form": "gallina de los huevos de oro",
+  "tr": "Ücretleri gereğinden fazla artırırsan altın yumurtlayan tavuğu kesmiş olursun.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/gallina/192262",
+   "https://en.wiktionary.org/wiki/la_gallina_de_los_huevos_de_oro"
+  ]
+ }
+]

@@ -1,0 +1,359 @@
+[
+ {
+  "w": "ser un juego de niños",
+  "t": "hiç zorluk çıkarmayacak derecede çok kolay olmak",
+  "lit": "çocuk oyunu olmak",
+  "eq": "çocuk oyuncağı olmak",
+  "s": "Para alguien con tu práctica, instalar ese programa es un juego de niños.",
+  "form": "es un juego de niños",
+  "tr": "Senin gibi deneyimli biri için o programı kurmak çocuk oyuncağı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/juego",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/juego/200086"
+  ]
+ },
+ {
+  "w": "ir sobre ruedas",
+  "t": "aksamadan, pürüzsüz ve tam planlandığı gibi akıp gitmek",
+  "lit": "tekerlekler üstünde gitmek",
+  "eq": "tıkırında gitmek",
+  "s": "Desde que contrataron al nuevo coordinador, el taller va sobre ruedas.",
+  "form": "va sobre ruedas",
+  "tr": "Yeni koordinatör işe başladığından beri atölye tıkır tıkır işliyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ir-sobre-ruedas",
+   "https://en.wiktionary.org/wiki/sobre_ruedas"
+  ]
+ },
+ {
+  "w": "sacar adelante",
+  "pat": "sacar adelante algo o a alguien",
+  "t": "zor koşullara rağmen bir işi veya aileyi başarıyla ayakta tutup yürütmek",
+  "lit": "ileri çıkarmak",
+  "s": "Trabajó muy duro durante años para sacar adelante el negocio familiar.",
+  "form": "sacar adelante",
+  "tr": "Aile işletmesini ayakta tutup büyütmek için yıllarca çok sıkı çalıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "ease",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/sacar/222878",
+   "https://en.wiktionary.org/wiki/sacar_adelante"
+  ]
+ },
+ {
+  "w": "salir adelante",
+  "t": "güçlüklerin üstesinden gelip yaşamını veya durumunu toparlamak",
+  "lit": "ileri çıkmak",
+  "eq": "düzlüğe çıkmak",
+  "s": "Aunque el invierno fue difícil, todo el equipo logró salir adelante.",
+  "form": "salir adelante",
+  "tr": "Kış zorlu geçse de bütün ekip toparlanıp düzlüğe çıkmayı başardı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/salir-adelante",
+   "https://en.wiktionary.org/wiki/salir_adelante"
+  ]
+ },
+ {
+  "w": "dar guerra",
+  "t": "sürekli uğraştırıp yorucu sorun ve zahmet çıkarmak",
+  "lit": "savaş vermek",
+  "eq": "kök söktürmek",
+  "s": "Esta impresora vieja lleva toda la mañana dando guerra en la oficina.",
+  "form": "dando guerra",
+  "tr": "Bu eski yazıcı bütün sabah ofiste bizi epey uğraştırdı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "ease",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/guerra/193967",
+   "https://es.wiktionary.org/wiki/dar_guerra"
+  ]
+ },
+ {
+  "w": "quitarse un peso de encima",
+  "t": "büyük bir sorumluluk veya kaygıdan kurtulup derin bir oh çekmek",
+  "lit": "üzerinden bir ağırlık kaldırmak",
+  "eq": "üzerinden büyük yük kalkmak",
+  "s": "Cuando entregué la tesis doctoral, me quité un peso de encima.",
+  "form": "quité un peso de encima",
+  "tr": "Doktora tezimi teslim edince üzerimden büyük bir yük kalktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/quitarse-un-peso-de-encima",
+   "https://en.wiktionary.org/wiki/quitarse_un_peso_de_encima"
+  ]
+ },
+ {
+  "w": "ser coser y cantar",
+  "t": "hiç çaba gerektirmeyen aşırı basit ve zahmetsiz bir iş olmak",
+  "lit": "dikmek ve şarkı söylemek olmak",
+  "eq": "tereyağından kıl çekmek gibi",
+  "s": "Con esta guía ilustrada, montar la estantería será coser y cantar.",
+  "form": "coser y cantar",
+  "tr": "Bu resimli kılavuzla kitaplığı kurmak çocuk oyuncağı olacak.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ser-coser-y-cantar",
+   "https://en.wiktionary.org/wiki/coser_y_cantar"
+  ]
+ },
+ {
+  "w": "hacerse cuesta arriba",
+  "pat": "hacerse cuesta arriba algo a alguien",
+  "t": "bir görevin gitgide daha yorucu, zor ve çekilmez gelmesi",
+  "lit": "yokuş yukarı olmak",
+  "s": "Después de las vacaciones siempre se hace cuesta arriba madrugar.",
+  "form": "hace cuesta arriba",
+  "tr": "Tatilden sonra sabahları erken kalkmak her zaman çok zor geliyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/cuesta-arriba",
+   "https://en.wiktionary.org/wiki/cuesta_arriba"
+  ]
+ },
+ {
+  "w": "ahogarse en un vaso de agua",
+  "t": "küçük ve çözülebilir bir engeli büyütüp paniğe kapılmak",
+  "lit": "bir bardak suda boğulmak",
+  "eq": "bir kaşık suda boğulmak",
+  "s": "Mantén la calma y no te ahogues en un vaso de agua.",
+  "form": "ahogues en un vaso de agua",
+  "tr": "Sakin ol ve küçücük bir sorunda bir kaşık suda boğulma.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/vaso",
+   "https://es.wiktionary.org/wiki/ahogarse_en_un_vaso_de_agua"
+  ]
+ },
+ {
+  "w": "saltar a la vista",
+  "t": "hiç açıklama gerektirmeyecek kadar açıkça görünmek",
+  "lit": "bakışa sıçramak",
+  "eq": "gün gibi ortada olmak",
+  "s": "El error de cálculo en esa tabla salta a la vista.",
+  "form": "salta a la vista",
+  "tr": "O tablodaki hesaplama hatası hemen göze çarpıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/saltar",
+   "https://es.wiktionary.org/wiki/saltar_a_la_vista"
+  ]
+ },
+ {
+  "w": "dejarse la piel",
+  "t": "bir amacı başarmak için bütün gücünü tüketene kadar emek vermek",
+  "lit": "derisini bırakmak",
+  "eq": "canını dişine takmak",
+  "s": "La atleta se dejó la piel en la pista hasta cruzar primera.",
+  "form": "dejó la piel",
+  "tr": "Atlet birinci bitirene kadar pistte canını dişine taktı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/piel",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/piel/213737"
+  ]
+ },
+ {
+  "w": "ser miel sobre hojuelas",
+  "t": "zaten iyi giden bir işin üstüne gelen harika bir ek kolaylık olmak",
+  "lit": "katmer üstüne bal olmak",
+  "eq": "ballı börek olmak",
+  "s": "Si además nos pagan el hotel, el viaje será miel sobre hojuelas.",
+  "form": "miel sobre hojuelas",
+  "tr": "Bir de otelimizi öderlerse bu yolculuk tadından yenmez.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/miel/205667",
+   "https://es.wiktionary.org/wiki/miel_sobre_hojuelas"
+  ]
+ },
+ {
+  "w": "tener tela marinera",
+  "t": "göründüğünden çok daha karmaşık, güç veya şaşırtıcı yanları bulunmak",
+  "lit": "denizci bezi olmak",
+  "eq": "işi epey çetrefilli olmak",
+  "s": "Traducir ese tratado antiguo en verso tiene tela marinera.",
+  "form": "tiene tela marinera",
+  "tr": "O eski incelemeyi şiir halinde çevirmek gerçekten çetin bir iş.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/tela/228391",
+   "https://es.wiktionary.org/wiki/tela"
+  ]
+ },
+ {
+  "w": "hacer de tripas corazón",
+  "t": "korkuyu veya çekinceyi bastırıp zorlu bir duruma cesaretle katlanmak",
+  "lit": "bağırsaklardan kalp yapmak",
+  "eq": "dişini sıkmak",
+  "s": "Hizo de tripas corazón y defendió su proyecto ante todo el jurado.",
+  "form": "Hizo de tripas corazón",
+  "tr": "İçindeki çekinceyi bastırıp tüm jüri karşısında projesini savundu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/hacer-de-tripas-corazon",
+   "https://es.wiktionary.org/wiki/hacer_de_tripas_coraz%C3%B3n"
+  ]
+ },
+ {
+  "w": "no ser moco de pavo",
+  "t": "küçümsenemeyecek kadar ciddi, önemli veya zor bir şey olmak",
+  "lit": "hindi sümüğü olmamak",
+  "eq": "borusu öten iş olmamak / yabana atılmamak",
+  "s": "Dirigir un hospital universitario con mil empleados no es moco de pavo.",
+  "form": "es moco de pavo",
+  "tr": "Bin çalışanlı bir üniversite hastanesini yönetmek yabana atılır bir iş değil.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/moco",
+   "https://en.wiktionary.org/wiki/no_ser_moco_de_pavo"
+  ]
+ },
+ {
+  "w": "caer por su propio peso",
+  "t": "kanıt veya çaba gerektirmeden mantıken kendiliğinden açık hale gelmek",
+  "lit": "kendi ağırlığıyla düşmek",
+  "eq": "su götürmemek",
+  "s": "La conclusión de este informe cae por su propio peso.",
+  "form": "cae por su propio peso",
+  "tr": "Bu raporun vardığı sonuç zaten tartışmasız biçimde ortada.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/peso",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/peso/213437"
+  ]
+ },
+ {
+  "w": "tener manga ancha",
+  "t": "kuralları gevşek tutup hatalara karşı gereğinden fazla esnek davranmak",
+  "lit": "geniş kol yenine sahip olmak",
+  "eq": "ipi gevşek tutmak",
+  "s": "El nuevo inspector tiene manga ancha con los plazos de entrega.",
+  "form": "tiene manga ancha",
+  "tr": "Yeni müfettiş teslim süreleri konusunda oldukça müsamahalı davranıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/manga",
+   "https://en.wiktionary.org/wiki/manga_ancha"
+  ]
+ },
+ {
+  "w": "quemarse las pestañas",
+  "t": "gece geç saatlere kadar aşırı dikkatle çalışıp göz nuru dökmek",
+  "lit": "kirpiklerini yakmak",
+  "eq": "göz nuru dökmek",
+  "s": "Se quemó las pestañas todo el trimestre preparando la oposición.",
+  "form": "quemó las pestañas",
+  "tr": "Bütün dönem boyunca devlet sınavına hazırlanmak için göz nuru döktü.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/quemarse",
+   "https://es.wiktionary.org/wiki/quemarse_las_pesta%C3%B1as"
+  ]
+ },
+ {
+  "w": "sacar fuerzas de flaqueza",
+  "t": "en bitkin anında bile içinden direnç bulup zor işi başarmak",
+  "lit": "zayıflıktan güç çıkarmak",
+  "eq": "dişini tırnağına takmak",
+  "s": "En los últimos kilómetros sacó fuerzas de flaqueza para acabar la carrera.",
+  "form": "sacó fuerzas de flaqueza",
+  "tr": "Son kilometrelerde yarışmayı bitirmek için yoktan güç var etti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/fuerzas",
+   "https://en.wiktionary.org/wiki/sacar_fuerzas_de_flaqueza"
+  ]
+ },
+ {
+  "w": "limar asperezas",
+  "t": "anlaşmayı zorlaştıran pürüzleri ve gerginlikleri ortadan kaldırmak",
+  "lit": "pürüzleri törpülemek",
+  "eq": "buzları eritmek",
+  "s": "Los dos socios cenaron juntos para limar asperezas antes del congreso.",
+  "form": "limar asperezas",
+  "tr": "İki ortak kongre öncesinde aradaki pürüzleri gidermek için birlikte yemek yedi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/limar",
+   "https://es.wiktionary.org/wiki/limar_asperezas"
+  ]
+ },
+ {
+  "w": "ser duro de roer",
+  "t": "ikna edilmesi, aşılması veya çözülmesi çok güç bir kişi ya da sorun olmak",
+  "lit": "kemirmesi sert olmak",
+  "eq": "çetin ceviz olmak",
+  "s": "El capitán del equipo rival resultó duro de roer en defensa.",
+  "form": "duro de roer",
+  "tr": "Rakip takımın kaptanı savunmada gerçekten çetin ceviz çıktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/roer/222273",
+   "https://en.wiktionary.org/wiki/roer"
+  ]
+ }
+]
