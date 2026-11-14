@@ -306,6 +306,66 @@ export async function seedGuideMarks(page: Page, marks: Record<string, { read: s
   )
 }
 
+/**
+ * Answers in the app's database, as rounds leave them: `n` per language that has words (spread over the last hour), then
+ * a reload so the app reads them. For the checks of screens that show a learner's data: with no answers at all, Progress
+ * and Profile show one invitation instead (src/ui/progress/progressUnlocks.ts); 30 answers open every section.
+ */
+export async function seedAnswers(page: Page, n = 30) {
+  await page.evaluate(
+    (count) =>
+      new Promise<void>((resolve, reject) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onerror = () => reject(open.error)
+        open.onsuccess = () => {
+          const db = open.result
+          const read = db.transaction('vocabulary').objectStore('vocabulary').getAll()
+          read.onsuccess = () => {
+            const words = read.result as { id: string; language: string }[]
+            const tx = db.transaction('events', 'readwrite')
+            const now = Date.now()
+            for (const language of new Set(words.map((w) => w.language))) {
+              const mine = words.filter((w) => w.language === language)
+              for (let i = 0; i < count; i++) {
+                const correct = i % 4 !== 0
+                tx.objectStore('events').put({
+                  id: `seed-${language}-${i}`,
+                  entryId: mine[i % mine.length]!.id,
+                  language,
+                  skill: 'recognition',
+                  exerciseType: 'mc_meaning',
+                  direction: 'target_to_native',
+                  verdict: correct ? 'correct' : 'wrong',
+                  correct,
+                  ...(correct ? {} : { errorType: 'meaning' }),
+                  rating: correct ? 3 : 1,
+                  responseMs: 3000,
+                  hintsUsed: 0,
+                  retrievabilityBefore: 0.9,
+                  stabilityAfter: 2,
+                  scheduledDays: 1,
+                  mode: 'normal',
+                  timestamp: new Date(now - (count - i) * 60_000),
+                })
+              }
+            }
+            tx.oncomplete = () => resolve()
+            tx.onerror = () => reject(tx.error)
+          }
+        }
+      }),
+    n,
+  )
+  await page.reload()
+  // The answers earn a badge or a level: its moment opens on top once the app has read them. Closed, as after a round.
+  await page.locator(':is(.nav-btn, .tab):visible').first().waitFor()
+  await page.waitForTimeout(800)
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) {
+    await page.locator('.milestone-backdrop .milestone-close').first().click()
+    await page.waitForTimeout(250)
+  }
+}
+
 /** The topics the guide has marks for, as saved in the app's database (to wait for the save that follows a lesson's check). */
 export function guideMarkTopics(page: Page): Promise<string[]> {
   return page.evaluate(

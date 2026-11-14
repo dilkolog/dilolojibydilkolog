@@ -1,4 +1,4 @@
-import { selectWords } from './helpers'
+import { selectWords, seedAnswers } from './helpers'
 import { expect, test } from '@playwright/test'
 import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, guideMarkValues, seedGuideMarks, startWithSamples, gameCard } from './helpers'
 import { readdirSync, readFileSync } from 'node:fs'
@@ -141,13 +141,41 @@ test('the bedtime card keeps a readable text column on a phone', async ({ page }
   expect((await text.boundingBox())!.width).toBeGreaterThan(200)
 })
 
+test('a learner with no answers: Progress and Profile invite to the first round instead of rows of zeros', async ({ page }) => {
+  await startWithSamples(page)
+  await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^İlerleme\d*$/ }).first().click()
+  const invite = page.locator('.empty-state')
+  await expect(invite).toContainText('İlerlemen burada büyüyecek')
+  await expect(page.locator('.week-hero, .hero-stat, .group-toggle')).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+  // The picture stays in its box, above the title.
+  const [art, title] = await Promise.all([invite.locator('.empty-art').boundingBox(), invite.locator('h2').boundingBox()])
+  expect(art!.y + art!.height).toBeLessThanOrEqual(title!.y + 1)
+  await openScreen(page, 'Profil')
+  await expect(page.locator('.empty-state')).toContainText('Bahçen ilk turla başlar')
+  await expect(page.locator('.profile-stats')).toHaveCount(0)
+  // The button starts the day's round.
+  await page.locator('.empty-state').getByRole('button', { name: 'İlk turuna başla' }).click()
+  await expect(page.locator('.session-stage')).toBeVisible()
+})
+
 test('Progress starts with the overview and opens a group from the shortcut row', async ({ page }) => {
   await startWithSamples(page)
+  // A learner with answers: Progress and Profile show their sections (a learner with none sees one invitation).
+  await seedAnswers(page)
   await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^İlerleme\d*$/ }).first().click()
   const toggles = page.locator('.group-toggle')
   await expect(toggles.first()).toHaveAttribute('aria-expanded', 'true')
   await expect(toggles.nth(1)).toHaveAttribute('aria-expanded', 'false')
-  const closedHeight = await page.evaluate(() => document.documentElement.scrollHeight)
+  // With answers the overview fills in after its data loads: measure once the page has stopped growing.
+  let lastHeight = -1
+  await expect.poll(async () => {
+    const h = await page.evaluate(() => document.documentElement.scrollHeight)
+    const settled = h === lastHeight
+    lastHeight = h
+    return settled
+  }, { intervals: [300] }).toBe(true)
+  const closedHeight = lastHeight
   await page.locator('.settings-nav .chip', { hasText: 'Tekrarlar' }).click()
   await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'true')
   // It scrolled there, and the page grew by what it opened.
