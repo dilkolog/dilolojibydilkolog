@@ -78,6 +78,24 @@ export function supabaseStore(client: SupabaseClient, userId: string): PartStore
       if (error) throw syncError(error, part, conflictMode(opts))
       return data.length
     },
+    async listMedia() {
+      const files: { part: string; at: number }[] = []
+      for (let offset = 0; ; offset += 1000) {
+        const { data, error } = await client.storage.from(MEDIA_BUCKET).list(userId, { limit: 1000, offset })
+        if (error) throw new Error(`media list: ${error.message}`)
+        for (const f of data ?? []) {
+          if (!/^m-[0-9a-f]+\.json$/.test(f.name)) continue
+          const at = Date.parse(f.updated_at ?? f.created_at ?? '')
+          // A file with no date is treated as new (kept): only a known age lets it go.
+          files.push({ part: f.name.slice(0, -5), at: Number.isFinite(at) ? at : Date.now() })
+        }
+        if ((data ?? []).length < 1000) return files
+      }
+    },
+    async removeMedia(parts) {
+      const { error } = await client.storage.from(MEDIA_BUCKET).remove(parts.filter((p) => p.startsWith('m-')).map(mediaPath))
+      if (error) throw new Error(`media remove: ${error.message}`)
+    },
     async history() {
       const { data, error } = await client.from('sync_parts').select('name').eq('user_id', userId).like('name', 'h-%').order('name', { ascending: false })
       if (error) throw syncError(error)

@@ -448,8 +448,13 @@ test("the owner's admin screen: only the owner sees the entry; people, reports a
       }
       if (view === 'blocks') return r.fulfill({ json: { available: true, blocks: [{ kind: 'domain', value: 'spam.example', note: '', createdAt: '2026-11-03T10:00:00Z' }] } })
       if (view === 'reports') return r.fulfill({ json: { reports: [{ id: 'r1', at: '2026-11-04T09:00:00Z', kind: 'set', reason: 'spam', note: '', target: 'f'.repeat(32), content: 'Bir liste', about: { name: 'Biri' } }] } })
-      return r.fulfill({ json: { health: { ok: true, supabase: 'ok', storage: 'ok' }, problems: [], docs: 'ready', tables: 'off' } })
+      return r.fulfill({ json: { health: { ok: true, supabase: 'ok', storage: 'ok' }, problems: [] } })
     },
+  )
+  // The signed-in person as Supabase reads them back (the Güvenlik card lists their authenticator apps: none yet).
+  await page.route(
+    (u) => u.origin === SUPABASE && u.pathname === '/auth/v1/user',
+    (r) => r.fulfill({ headers: { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'access-control-allow-methods': 'GET,OPTIONS' }, json: { id: '33333333-3333-4333-8333-333333333333', aud: 'authenticated', email: 'sahip@example.com', factors: [] } }),
   )
   const toAccount = async () => {
     await openScreen(page, 'Ayarlar')
@@ -468,7 +473,9 @@ test("the owner's admin screen: only the owner sees the entry; people, reports a
   await expect(page.locator('.admin-figure', { hasText: 'Onay bekleyen' })).toContainText('1')
   await expect(page.locator('.admin-figure', { hasText: 'Sistem' })).toContainText('Sağlıklı')
   await expect(page.locator('.admin-report', { hasText: 'Spam ya da reklam' })).toContainText('Topluluk listesi')
-  await expect(page.getByRole('button', { name: 'Eski dosyaları taşı' })).toBeVisible()
+  // The Güvenlik card: no authenticator app yet, so it offers to turn two-step on.
+  await expect(page.locator('#admin-security-card')).toContainText('İki adımlı doğrulama kapalı')
+  await expect(page.getByRole('button', { name: 'İki adımlı doğrulamayı aç' })).toBeVisible()
   await expect(page.locator('.admin-numbers')).toContainText('42')
   await expect(page.locator('.admin-usage-cols')).toContainText('820 istek')
   await expect(page.locator('.admin-current')).toContainText('bakım')

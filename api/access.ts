@@ -1,14 +1,9 @@
-import { accessStatus, accountOf, approvalOn, claimAccount, clearAccessCache, ID, replaceAuth, requestPath, requireApproved, StorageError, storedAuth, tokenMatches, TOKEN, writeJson, type AccessStatus } from './_account.js'
-import { addFriend, blockedPeople, blockFriend, clearInbox, findFriend, friendsOf, handleOf, inboxOf, inviterCard, normalizeCode, publishCard, removeFriend, requestFriend, sendToFriend, setHandle, unblockFriend } from './_friends.js'
-import { friendMessage, pushToOwner } from './_notify.js'
+import { accessStatus, approvalOn, claimAccount, clearAccessCache, ID, requestPath, requireApproved, StorageError, storedAuth, tokenMatches, TOKEN, writeJson, type AccessStatus } from './_account.js'
 import { fromApp } from './_origin.js'
-import { deleteAccountData, timed } from './_deleteAccount.js'
-import { deleteSupabaseMedia, deleteSupabaseUser, ensureProfile, mirrorApproval, rest, saveVault, setVaultAuth, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
+import { supabaseOn } from './_supabase.js'
 import { overLimit, tooMany } from './_rate.js'
-import { noticeSignup } from './_signupNotice.js'
 import { currentAnnouncement, getSettings } from './_settings.js'
-import { fileReport } from './_reports.js'
-import { countUse, USE_NAMES, usageLast, type UseName } from './_usage.js'
+import { usageLast } from './_usage.js'
 import { listReports, ownerAuthorized, unpublishList } from './_owner.js'
 import { issueRoomTicket, roomTicketsOn } from './_roomTicket.js'
 
@@ -17,7 +12,7 @@ import { issueRoomTicket, roomTicketsOn } from './_roomTicket.js'
  *
  * GET  /api/access  (x-sync-id, x-sync-auth)
  *   → { status: 'none' | 'pending' | 'approved' | 'rejected', exists: boolean, match: boolean }
- *   Without the headers: { enabled } says whether approval is asked for (ADMIN_TOKEN is set).
+ *   Without the headers: { enabled } says whether approval is asked for (always with Supabase; APPROVAL=on without it).
  *   `exists`: someone has claimed this id; `match`: the token is theirs (sign-in checks both).
  * POST /api/access  { username, note? }  (same headers)
  *   claims the id when unclaimed and files a request the owner sees with the username and note.
@@ -54,109 +49,10 @@ import { issueRoomTicket, roomTicketsOn } from './_roomTicket.js'
  *   with the Supabase bearer (the person and their sync account) or the old x-sync-id/x-sync-auth
  *   (the account its password proves): deletes what the server keeps for it (_deleteAccount.ts).
  */
+import { friendsGet, friendsPost, report } from './_accessFriends.js'
+import { accountDelete, vaultGet, vaultLink, vaultRotate } from './_accessVault.js'
+
 const json = (body: unknown, status = 200) => Response.json(body, { status, headers: { 'cache-control': 'no-store' } })
-
-/** The reader's own date (their "today"), or the server's when it sends none. */
-const todayOf = (raw: unknown) => (typeof raw === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(raw) ? raw : new Date().toISOString().slice(0, 10))
-
-/** Friends need an account (its token checked) and, when approval is on, the owner's approval. */
-async function friendAccount(request: Request): Promise<string | Response> {
-  const refused = await requireApproved(request)
-  if (refused) return refused
-  const id = await accountOf(request)
-  return id ?? json({ error: 'account_required' }, 403)
-}
-
-async function friendsGet(request: Request): Promise<Response> {
-  if (overLimit(request, 'friends-read', 120)) return tooMany()
-  try {
-    const id = await friendAccount(request)
-    if (id instanceof Response) return id
-    const query = new URL(request.url).searchParams
-    if (query.has('inbox')) return json({ items: await inboxOf(id) })
-    if (query.has('blocked')) return json({ people: await blockedPeople(id) })
-    if (query.has('friend-handle')) return json((await handleOf(id)) ?? { handle: '', findable: false })
-    if (query.has('friend-invite')) {
-      if (overLimit(request, 'friends-find', 30)) return tooMany()
-      const inviter = await inviterCard(id, query.get('friend-invite') ?? '')
-      if (inviter === 'self') return json({ error: 'self' }, 400)
-      return inviter ? json({ inviter }) : json({ error: 'unknown' }, 404)
-    }
-    if (query.has('friend-find')) {
-      if (overLimit(request, 'friends-find', 30)) return tooMany()
-      const found = await findFriend(id, query.get('friend-find'))
-      return found ? json({ found }) : json({ error: 'unknown' }, 404)
-    }
-    return json(await friendsOf(id, todayOf(new URL(request.url).searchParams.get('today'))))
-  } catch (e) {
-    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
-    throw e
-  }
-}
-
-async function friendsPost(request: Request, body: Record<string, unknown>): Promise<Response> {
-  if (overLimit(request, 'friends-write', 60)) return tooMany()
-  try {
-    const id = await friendAccount(request)
-    if (id instanceof Response) return id
-    if (body.action === 'friends-publish') return json({ me: await publishCard(id, body, todayOf(body.today)) })
-    if (body.action === 'friends-inbox-clear') {
-      await clearInbox(id, body.ids)
-      return json({ ok: true })
-    }
-    if (body.action === 'friends-handle') {
-      const result = await setHandle(id, body.handle, body.findable)
-      if (result !== 'ok') return json({ error: result }, result === 'taken' || result === 'locked' ? 409 : 400)
-      return json((await handleOf(id)) ?? { handle: '', findable: false })
-    }
-    if (body.action === 'friends-request') {
-      if (overLimit(request, 'friends-send', 20)) return tooMany()
-      const sent = await requestFriend(id, body.handle, (recipient, item) => pushToOwner(recipient, friendMessage(item)))
-      if (sent === 'ok') void countUse('friend-request')
-      return sent === 'ok' ? json({ ok: true }) : json({ error: sent }, sent === 'unknown' ? 404 : 400)
-    }
-    const code = normalizeCode(body.code)
-    if (body.action === 'friends-send') {
-      if (overLimit(request, 'friends-send', 20)) return tooMany()
-      const sent = await sendToFriend(id, code, body.kind, body.payload, typeof body.today === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(body.today) ? body.today : undefined, (recipient, item) => pushToOwner(recipient, friendMessage(item)))
-      const kindUsed = `friend-${String(body.kind)}`
-      if (sent === 'ok' && (USE_NAMES as readonly string[]).includes(kindUsed)) void countUse(kindUsed as UseName)
-      return sent === 'ok' ? json({ ok: true }) : json({ error: sent }, sent === 'not_friends' ? 403 : 400)
-    }
-    if (body.action === 'friends-remove') {
-      await removeFriend(id, code)
-      return json({ ok: true })
-    }
-    if (body.action === 'friends-block' || body.action === 'friends-unblock') {
-      await (body.action === 'friends-block' ? blockFriend : unblockFriend)(id, code)
-      return json({ ok: true })
-    }
-    const result = await addFriend(id, code)
-    if (result === 'ok') void countUse('friend-add')
-    return result === 'ok' ? json({ ok: true }) : json({ error: result }, result === 'full' ? 409 : 400)
-  } catch (e) {
-    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
-    throw e
-  }
-}
-
-/** A report on what someone sent (_reports.ts): an account only, a few a minute. */
-async function report(request: Request, body: Record<string, unknown>): Promise<Response> {
-  if (overLimit(request, 'report', 10)) return tooMany()
-  try {
-    const id = await friendAccount(request)
-    if (id instanceof Response) return id
-    const result = await fileReport(id, body)
-    if (result === 'ok') {
-      void countUse('report')
-      return json({ ok: true })
-    }
-    return json({ error: result }, result === 'not_found' ? 404 : result === 'too_many' ? 429 : 400)
-  } catch (e) {
-    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
-    throw e
-  }
-}
 
 /** The owner's read-only view (REPORTS_TOKEN): `?owner=reports&days=N` → the last days' reports and the social use counters. */
 async function ownerGet(request: Request, q: URLSearchParams): Promise<Response> {
@@ -170,122 +66,6 @@ async function ownerGet(request: Request, q: URLSearchParams): Promise<Response>
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
     throw e
-  }
-}
-
-async function vaultGet(request: Request): Promise<Response> {
-  if (!supabaseOn()) return json({ error: 'not configured' }, 503)
-  if (overLimit(request, 'vault-read', 60)) return tooMany()
-  const user = await supabaseUser(request)
-  if (!user) return json({ error: 'signed_out' }, 401)
-  try {
-    const account = await vaultOf(user.id)
-    // The owner may have approved the sync account the old way: the profile follows, so its data may be written.
-    if (account) {
-      // A storage hiccup must not read as "not approved": the profile is only written when the status was really read.
-      const status = await accessStatus(account.id).catch(() => null)
-      if (status) await mirrorApproval(account.id, status)
-    }
-    return json({ account })
-  } catch {
-    return json({ error: 'supabase unavailable' }, 502)
-  }
-}
-
-async function vaultLink(request: Request, body: Record<string, unknown>): Promise<Response> {
-  if (!supabaseOn()) return json({ error: 'not configured' }, 503)
-  if (overLimit(request, 'vault-write', 10)) return tooMany()
-  const user = await supabaseUser(request)
-  if (!user) return json({ error: 'signed_out' }, 401)
-  // Only a confirmed address links an account (and so gets AI and translation, and goes to the owner as a new sign-up):
-  // Supabase's "Confirm email" makes this so today, this keeps it so if the setting is ever turned off.
-  if (!user.confirmed) return json({ error: 'email_unconfirmed' }, 403)
-  const { id, enc, auth } = body
-  if (typeof id !== 'string' || typeof enc !== 'string' || typeof auth !== 'string' || !ID.test(id) || !TOKEN.test(enc) || !TOKEN.test(auth)) return json({ error: 'bad request' }, 400)
-  const username = typeof body.username === 'string' && /^[\p{L}\p{N}._-]{3,32}$/u.test(body.username.trim()) ? body.username.trim() : ''
-  const note = typeof body.note === 'string' ? body.note.trim().slice(0, 200) : ''
-  try {
-    const had = await vaultOf(user.id)
-    if (had && had.id !== id) return json({ error: 'linked' }, 409)
-    // A new sync account is claimed for this token; an old one must be the token's (its password was right).
-    if (!(await claimAccount(id, auth))) return json({ error: 'wrong' }, 403)
-    await ensureProfile(user)
-    if ((await saveVault(user.id, { id, enc, auth, username })) === 'taken') return json({ error: 'taken' }, 409)
-    // A person's first sign-in (their account was just linked): the owner hears of it.
-    if (!had) await noticeSignup({ email: user.email, name: user.name, username })
-    // The owner chose to let new people in at once (admin screen → Ayarlar): approved at their first sign-in.
-    if (!had && approvalOn() && (await getSettings()).autoApprove) {
-      await rest(`profiles?user_id=eq.${user.id}`, { method: 'PATCH', headers: { prefer: 'return=minimal' }, body: JSON.stringify({ approved: true, rejected: false }) }).catch(() => null)
-    }
-    if (!approvalOn()) {
-      await mirrorApproval(id, 'approved')
-      return json({ status: 'approved' })
-    }
-    clearAccessCache()
-    const status = await accessStatus(id)
-    await mirrorApproval(id, status)
-    // The owner sees the person on the Yönetici card too, as with the old sign-up.
-    if (status !== 'approved' && status !== 'rejected') await writeJson(requestPath(id), { username: username || user.name, note: note || user.email, at: new Date().toISOString() })
-    return json({ status: status === 'none' ? 'pending' : status })
-  } catch (e) {
-    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
-    return json({ error: 'supabase unavailable' }, 502)
-  }
-}
-
-/**
- * A new random token for the person's sync account, with their Supabase sign-in: the old one (a copied key, an old
- * device's backup) stops working. The encryption key and the id stay, so the data and the other devices' copies do not
- * change; a signed-in device that sends the old token is refused and fetches the new one (src/data/access.ts).
- */
-async function vaultRotate(request: Request): Promise<Response> {
-  if (!supabaseOn()) return json({ error: 'not configured' }, 503)
-  if (overLimit(request, 'vault-write', 10)) return tooMany()
-  const user = await supabaseUser(request)
-  if (!user) return json({ error: 'signed_out' }, 401)
-  try {
-    const had = await vaultOf(user.id)
-    if (!had) return json({ account: null })
-    const auth = [...crypto.getRandomValues(new Uint8Array(32))].map((b) => b.toString(16).padStart(2, '0')).join('')
-    // The person's row first: a device that fetches it then gets the token the server is about to check. If the check's
-    // hash cannot be written, the row goes back, so the devices never hold a token the server refuses.
-    await setVaultAuth(user.id, had.id, auth)
-    try {
-      await replaceAuth(had.id, auth)
-    } catch (e) {
-      await setVaultAuth(user.id, had.id, had.auth).catch(() => undefined)
-      throw e
-    }
-    return json({ account: { ...had, auth } })
-  } catch (e) {
-    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
-    return json({ error: 'supabase unavailable' }, 502)
-  }
-}
-
-async function accountDelete(request: Request): Promise<Response> {
-  if (overLimit(request, 'account-delete', 5)) return tooMany()
-  try {
-    // With Supabase the person's own sign-in is what deletes them: the legacy token alone would leave their Supabase data behind.
-    if (supabaseOn() && !request.headers.has('authorization')) return json({ error: 'signed_out' }, 401)
-    const user = request.headers.has('authorization') ? await supabaseUser(request) : null
-    if (request.headers.has('authorization') && !user) return json({ error: 'signed_out' }, 401)
-    const id = user ? ((await vaultOf(user.id))?.id ?? null) : await accountOf(request)
-    if (!user && !id) return json({ error: 'account_required' }, 403)
-    // The server's stores and the person's Supabase files are separate: they go side by side. The person themselves
-    // go last, so a failure before that leaves the account to try again (nothing is orphaned without its sign-in).
-    const steps: Record<string, number> = {}
-    const [removed] = await Promise.all([
-      id ? timed(steps, 'data', () => deleteAccountData(id, steps)) : Promise.resolve(0),
-      user ? timed(steps, 'media', () => deleteSupabaseMedia(user.id)) : Promise.resolve(),
-    ])
-    if (user) await timed(steps, 'user', () => deleteSupabaseUser(user.id))
-    // Where the time went, in the Worker's logs: a slow deletion names its slow step.
-    console.log('[account-delete]', JSON.stringify(steps))
-    return json({ ok: true, removed })
-  } catch (e) {
-    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
-    return json({ error: 'delete failed' }, 502)
   }
 }
 
@@ -359,7 +139,7 @@ export async function POST(request: Request): Promise<Response> {
   if (!/^[\p{L}\p{N}._-]{3,32}$/u.test(username)) return json({ error: 'bad username' }, 400)
   try {
     if (!(await claimAccount(id, token))) return json({ error: 'forbidden' }, 403)
-    // No approval to ask for until the owner has set ADMIN_TOKEN.
+    // No approval to ask for (local development without APPROVAL=on).
     if (!approvalOn()) return json({ status: 'approved' })
     const status = await accessStatus(id)
     // Approved or turned down: the answer stands; only a waiting request is (re)filed.

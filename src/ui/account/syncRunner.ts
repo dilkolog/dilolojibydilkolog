@@ -11,7 +11,7 @@ import type { Account, Credential, SyncResult } from '../../data/sync'
 /** The sync code (encryption, merging) is loaded when a sync runs, not with the first screen. */
 const syncCode = () => import('../../data/sync')
 
-/** Shown when the server's SYNC_ALLOWED list doesn't include this account or code. */
+/** Shown when the server refuses this account or code outright. */
 export const NOT_ALLOWED = 'Bu hesap ya da kod sunucunun izin listesinde yok; eşitleme kapalı.'
 
 /** Shown when the account waits for (or was refused) the owner's approval. */

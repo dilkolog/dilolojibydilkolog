@@ -44,15 +44,19 @@ describe('media that cannot be synced', () => {
     approve(acc.id)
     const phone = new KelimeDB('t-media-phone')
     const laptop = new KelimeDB('t-media-laptop')
-    await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
     const small = await phone.addMedia('image', new Blob([new Uint8Array(1000)], { type: 'image/jpeg' }))
-    await phone.addMedia('image', new Blob([new Uint8Array(MAX_MEDIA_BYTES + 1)], { type: 'image/jpeg' }))
+    const big = await phone.addMedia('image', new Blob([new Uint8Array(MAX_MEDIA_BYTES + 1)], { type: 'image/jpeg' }))
+    // Only pictures the words name travel (a picture nothing names stays on its device).
+    await phone.vocabulary.bulkPut([
+      { ...createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()), imageId: small },
+      { ...createEntry({ word: 'chat', meaning: 'kedi' }, 'fr', new Date()), imageId: big },
+    ])
 
     const r = await syncNow(phone, acc)
     expect(r).toMatchObject({ sent: 1, skipped: 1 })
     const got = await syncNow(laptop, acc)
     expect(got).toMatchObject({ received: 1, skipped: 0 })
-    expect((await laptop.vocabulary.toArray()).map((v) => v.lemma)).toEqual(['maison'])
+    expect((await laptop.vocabulary.toArray()).map((v) => v.lemma).sort()).toEqual(['chat', 'maison'])
     expect((await laptop.media.toCollection().primaryKeys())).toEqual([small])
   }, 60_000)
 
@@ -60,8 +64,8 @@ describe('media that cannot be synced', () => {
     const acc = await deriveAccount('ali', 'correct horse')
     approve(acc.id)
     const phone = new KelimeDB('t-media-fail')
-    await phone.vocabulary.put(createEntry({ word: 'chat', meaning: 'kedi' }, 'fr', new Date()))
-    await phone.addMedia('image', new Blob([new Uint8Array(500)], { type: 'image/jpeg' }))
+    const pic = await phone.addMedia('image', new Blob([new Uint8Array(500)], { type: 'image/jpeg' }))
+    await phone.vocabulary.put({ ...createEntry({ word: 'chat', meaning: 'kedi' }, 'fr', new Date()), imageId: pic })
     const real = fetch
     vi.stubGlobal('fetch', async (url: string, init: RequestInit = {}) => (String(url).includes('part=m-') && init.method === 'PUT' ? new Response('', { status: 500 }) : real(url, init)))
     expect(await syncNow(phone, acc)).toMatchObject({ sent: 0, skipped: 1 })

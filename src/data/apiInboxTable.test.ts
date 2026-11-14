@@ -27,6 +27,9 @@ type Row = Record<string, unknown>
 const UNIQUE: Record<string, string[][]> = {
   server_flags: [['name']],
   friend_inbox: [['id']],
+  friend_cards: [['sync_id'], ['code']],
+  friend_follows: [['sync_id', 'code']],
+  sync_keys: [['sync_id']],
 }
 let tables: Record<string, Row[]> = {}
 const reset = (withTables = true) => {
@@ -46,7 +49,18 @@ function matches(row: Row, q: URLSearchParams): boolean {
 }
 const clash = (name: string, a: Row, b: Row, only?: string[]) => (only ? [only] : UNIQUE[name]!).some((cols) => cols.every((c) => a[c] === b[c]))
 
+// The account keys and approval marks are documents in Supabase; kept in the Blob map here.
+const docs = () =>
+  fakeServerDocs({
+    get: (p) => (blobs.has(p) ? new TextDecoder().decode(blobs.get(p)!.bytes) : undefined),
+    set: (p, body) => void blobs.set(p, { bytes: new TextEncoder().encode(body), etag: `"b${++blobVersion}"` }),
+    delete: (p) => void blobs.delete(p),
+    keys: () => blobs.keys(),
+  })
+
 async function fakeRest(input: string, init: RequestInit = {}): Promise<Response> {
+  const served = docs().serveDocs(input, init)
+  if (served) return served
   const url = new URL(input)
   if (!url.pathname.startsWith('/rest/v1/')) return new Response('not found', { status: 404 })
   const name = url.pathname.replace('/rest/v1/', '')
@@ -96,7 +110,7 @@ async function fakeRest(input: string, init: RequestInit = {}): Promise<Response
 const access = await import('../../api/access')
 const { clearAccessCache } = await import('../../api/_account')
 const { resetRate } = await import('../../api/_rate')
-const { forgetTablesFlag, forgetInboxFlag } = await import('../../api/_tables')
+const { fakeServerDocs } = await import('../test/fakeServerDocs')
 const { forgetLegacyChecks } = await import('../../api/_friends')
 
 const ALI = 'a'.repeat(64)
@@ -129,10 +143,8 @@ beforeEach(async () => {
   reset()
   clearAccessCache()
   resetRate()
-  forgetTablesFlag()
-  forgetInboxFlag()
   forgetLegacyChecks()
-  vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
+  vi.stubEnv('APPROVAL', 'on')
   vi.stubEnv('SUPABASE_URL', 'https://proj.supabase.co')
   vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
   vi.stubGlobal('fetch', (input: string | URL, init?: RequestInit) => fakeRest(String(input), init))
@@ -147,18 +159,6 @@ afterEach(() => {
 })
 
 describe('friends inbox in its table', () => {
-  it('before migration 0004 (no flag, or no table) the inbox stays in Blob', async () => {
-    await makeFriends()
-    expect((await post(ALI_P, { action: 'friends-send', code: veliCode, kind: 'cheer' })).status).toBe(200)
-    expect(inboxBlob(VELI)).toBe(true)
-    expect(tables.friend_inbox).toEqual([])
-    expect(await inbox(VELI_P)).toEqual([expect.objectContaining({ kind: 'cheer' })])
-    // No table at all (0004 never run): same.
-    reset(false)
-    forgetInboxFlag()
-    expect(await inbox(VELI_P)).toEqual([expect.objectContaining({ kind: 'cheer' })])
-  })
-
   it('with the flag on, messages are rows: sent, read, replaced and cleared there, and no Blob inbox is written', async () => {
     tables.server_flags!.push({ name: 'inbox', value: true })
     await makeFriends()
@@ -189,23 +189,6 @@ describe('friends inbox in its table', () => {
     expect(items.map((i) => i.kind).sort()).toEqual(['cheer', 'gift', 'text'])
     expect(items.find((i) => i.kind === 'gift')!.gift).toEqual(gift)
     expect(items.find((i) => i.kind === 'text')!.text!.title).toBe('Un jour')
-  })
-
-  it('what was waiting in a Blob inbox is carried over: read as before, moved into the table by the next change, the file removed', async () => {
-    await makeFriends()
-    await post(ALI_P, { action: 'friends-send', code: veliCode, kind: 'cheer' })
-    expect(inboxBlob(VELI)).toBe(true)
-    // 0004 is run now.
-    tables.server_flags!.push({ name: 'inbox', value: true })
-    forgetInboxFlag()
-    const before = await inbox(VELI_P)
-    expect(before.map((i) => i.kind)).toEqual(['cheer'])
-    // A new message arrives: both are there, the old one now in the table, the Blob file gone.
-    await post(ALI_P, { action: 'friends-send', code: veliCode, kind: 'nudge', today: '2026-10-15' })
-    const after = await inbox(VELI_P)
-    expect(after.map((i) => i.kind).sort()).toEqual(['cheer', 'nudge'])
-    expect(tables.friend_inbox).toHaveLength(2)
-    expect(inboxBlob(VELI)).toBe(false)
   })
 
   it('a message past its days is not read and is swept away by the next change', async () => {

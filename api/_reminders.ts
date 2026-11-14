@@ -26,8 +26,7 @@ export const KEY = /^(mail-)?[0-9a-f]{40}$/
 export const blobPath = (key: string) => `push/${key}.json`
 
 export async function reminderStore(): Promise<ReminderStore> {
-  const mode = await tablesMode()
-  return mode === 'table' ? tableReminders : mode === 'moving' ? movingReminders : blobReminders
+  return (await tablesMode()) === 'table' ? tableReminders : blobReminders
 }
 
 /** Records read at a time from Blob. */
@@ -209,26 +208,4 @@ export const tableReminders: ReminderStore = {
     const found = await rows<ReminderRow>(`reminders?kind=eq.push&owner=${eq(owner)}&select=key,record`)
     return found.filter((r) => r.record && KEY.test(r.key) && r.record.owner === owner).map((r) => ({ key: r.key, record: r.record }))
   },
-}
-
-/** The table's records and the old files' together, one per key: the table's is the newer. */
-function together(inTable: { key: string; record: PushRecord }[], inBlob: { key: string; record: PushRecord }[]) {
-  const keys = new Set(inTable.map((r) => r.key))
-  return [...inTable, ...inBlob.filter((r) => !keys.has(r.key))]
-}
-
-/**
- * While the owner's move is under way (_tables.ts 'moving'): saved to the table, read from the table first and then
- * from the old files, removed from both; the cron and the lookups see the two together.
- */
-export const movingReminders: ReminderStore = {
-  get: async (key) => (await tableReminders.get(key)) ?? (await blobReminders.get(key)),
-  put: (key, record) => tableReminders.put(key, record),
-  async remove(key, strict = false) {
-    await Promise.all([tableReminders.remove(key, strict), blobReminders.remove(key, strict)])
-  },
-  all: async (strict = false) => together(await tableReminders.all(strict), await blobReminders.all(strict)),
-  due: async (utcHour) => together(await tableReminders.due(utcHour), await blobReminders.due(utcHour)),
-  mailsOf: async (owner, complete = false) => [...new Set([...(await tableReminders.mailsOf(owner, complete)), ...(await blobReminders.mailsOf(owner, complete))])],
-  byOwner: async (owner, fresh = false) => together(await tableReminders.byOwner(owner, fresh), await blobReminders.byOwner(owner, fresh)),
 }
