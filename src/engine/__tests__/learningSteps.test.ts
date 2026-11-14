@@ -54,9 +54,10 @@ function learn(verdicts: Verdict[], responseMs = 5000): Step[] {
 const counts = (steps: Step[]) => steps.map((x) => x.after && `${x.after.done}/${x.after.total}${x.after.carriesOver ? ' next time' : ''}`)
 
 describe('the growth ring during a new word’s first learning', () => {
-  it('moves once, on the first meaning answer, then stands still through reinforcement and typed recall', () => {
+  it('moves once, on the first meaning answer, then stands still through the bridge step and typed recall', () => {
+    // A slow first answer (5 s, the meaning question's usual time is 4 s): the bridge picks the word from its meaning.
     const steps = learn([])
-    expect(steps.map((x) => x.what)).toEqual(['intro', 'mc_meaning correct', 'mc_meaning correct', 'typed_translation correct'])
+    expect(steps.map((x) => x.what)).toEqual(['intro', 'mc_meaning correct', 'mc_reverse correct', 'typed_translation correct'])
     // The verified finding: repetitions leave the FSRS card as it is, so the ring cannot show them.
     expect(steps.map((x) => x.ring)).toEqual([0, 0.5, 0.5, 0.5])
   })
@@ -77,11 +78,19 @@ describe('in-session learning steps', () => {
     expect(counts(steps)).toEqual(['1/4', '2/3', '3/3'])
   })
 
-  it('adds the retries a miss brings and never moves forward on it; without the typed recall the word goes on next time', () => {
+  it('adds the retries a miss brings and never moves forward on it; once recovered the word builds itself and is typed', () => {
     const steps = learn(['wrong'])
-    expect(counts(steps)).toEqual(['1/4', '1/5', '2/5', '3/5 next time'])
-    // The recall debt is still owed: the ring must not read as complete.
+    // bridge-v1: two recoveries, then the bridge (built from its pieces: it has just been recognised twice) and the
+    // typed recall, in this session. (heuristic-v1 stopped after the recoveries and left the typed recall to next time.)
+    expect(steps.map((x) => x.what)).toEqual(['intro', 'mc_meaning wrong', 'mc_meaning correct', 'mc_meaning correct', 'assemble correct', 'typed_translation correct'])
+    expect(counts(steps)).toEqual(['1/4', '1/5', '2/5', '3/5', '4/5', '5/5'])
+    expect(steps.at(-1)!.after?.carriesOver).toBe(false)
+  })
+
+  it('goes on to the next session when the miss is not recovered (the retries run out)', () => {
+    const steps = learn(['wrong', 'wrong', 'wrong'])
     const last = steps.at(-1)!.after!
+    expect(steps.some((x) => x.what.startsWith('typed_translation'))).toBe(false)
     expect(last.done).toBeLessThan(last.total)
   })
 

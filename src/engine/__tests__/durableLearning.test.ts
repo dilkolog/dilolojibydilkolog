@@ -55,7 +55,7 @@ describe('durable independent learning', () => {
 
   it('distinguishes fast recognition from slow recognition without skipping productive recall', () => {
     const intro: PlanItem = { ...test, kind: 'introduce' }
-    for (const [responseMs, expected] of [[1500, 'typed_translation'], [6000, 'mc_meaning']] as const) {
+    for (const [responseMs, expected] of [[1500, 'typed_translation'], [6000, 'mc_reverse']] as const) {
       let s = startSession([intro, test])
       s = { ...s, index: 1, log: [{ entryId: decision.id, item: intro }] }
       s = advanceLearning(s, { entryId: decision.id, verdict: 'correct', independent: true, responseMs }, decision, play(), createRng(1))

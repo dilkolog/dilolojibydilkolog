@@ -253,8 +253,14 @@ describe('screens render', () => {
       const input = el.querySelector<HTMLInputElement>('input.answer-input:not([disabled]), textarea.answer-input:not([disabled])')
       const go = buttons.find((b) => /^(Devam|Anladım|Kontrol et|Tamam|Başla|Sonraki|Tanıdım)/.test(b.textContent?.trim() ?? ''))
       if (option || input || go) waits = 0
+      // A word built from its pieces: the input is read-only, a piece is tapped instead.
+      const piece = el.querySelector<HTMLButtonElement>('.piece-bank .chip:not([disabled])')
       if (option) await click(option)
-      else if (input) {
+      else if (piece) {
+        await click(piece)
+        const check = [...el.querySelectorAll<HTMLButtonElement>('button')].find((b) => /Kontrol/.test(b.textContent ?? '') && !b.disabled)
+        if (check) await click(check)
+      } else if (input) {
         await act(async () => {
           const setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(input), 'value')!.set!
           setter.call(input, 'xyz')

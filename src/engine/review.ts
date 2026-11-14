@@ -49,7 +49,8 @@ export interface AttemptInput {
   plan?: { reason?: string; slot?: number; probe?: number }
 }
 
-export const POLICY = 'heuristic-v1'
+/** The rules that chose the questions (see ReviewContext.policy): 'heuristic-v1' before the bridge steps. */
+export const POLICY = 'bridge-v1'
 
 export interface ReviewResult {
   state: UserWordState
