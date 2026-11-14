@@ -68,10 +68,11 @@ export function validateFiles(root = fileURLToPath(new URL('.', import.meta.url)
   for (const kind of kinds) {
     const rows = JSON.parse(readFileSync(resolve(root, `${kind}.json`), 'utf8'))
     errors.push(...validateTask(kind, rows, ids, texts))
-    if (rows.length !== 20) errors.push(`${kind}: sample must contain 20 items`)
+    const target = { wfd: 150, rs: 150, ra: 80, fib: 80, asq: 120 }[kind]
+    if (rows.length !== target) errors.push(`${kind}: expected ${target} items`)
     const levels = Object.fromEntries(['A1', 'A2', 'B1'].map(l => [l, rows.filter(r => r.level === l).length]))
-    if (levels.A1 !== 4 || levels.A2 !== 10 || levels.B1 !== 6) errors.push(`${kind}: expected 4 A1, 10 A2, 6 B1`)
-    if (kind === 'fib' && (rows.filter(r => words(r.text) <= 90).length !== 10 || rows.filter(r => words(r.text) >= 120).length !== 10)) errors.push('fib: expected ten short and ten long paragraphs')
+    if (levels.A1 !== target * .2 || levels.A2 !== target * .5 || levels.B1 !== target * .3) errors.push(`${kind}: expected 20% A1, 50% A2, 30% B1`)
+    if (kind === 'fib' && (rows.filter(r => words(r.text) <= 90).length !== 40 || rows.filter(r => words(r.text) >= 120).length !== 40)) errors.push('fib: expected forty short and forty long paragraphs')
     const counts = rows.map(r => words(r.text ?? r.question))
     const distribution = Object.fromEntries(topics.map(t => [t, rows.filter(r => r.topic === t).length]).filter(([, n]) => n))
     report[kind] = { count: rows.length, levels, topics: ['rs', 'asq'].includes(kind) ? 'see README editorial topic map' : distribution, words: { min: Math.min(...counts), max: Math.max(...counts), mean: counts.reduce((a, b) => a + b, 0) / counts.length } }

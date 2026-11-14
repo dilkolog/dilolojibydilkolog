@@ -138,5 +138,915 @@
     "level": "B1",
     "topic": "work",
     "tr": "Çalışanlar müdürün izniyle çalışma saatlerini değiştirebilir."
+  },
+  {
+    "id": "pte-wfd-0021",
+    "text": "My father makes tea in the kitchen every morning.",
+    "level": "A1",
+    "topic": "daily_life",
+    "tr": "Babam her sabah mutfakta çay yapar."
+  },
+  {
+    "id": "pte-wfd-0022",
+    "text": "There are two big windows in our living room.",
+    "level": "A1",
+    "topic": "daily_life",
+    "tr": "Oturma odamızda iki büyük pencere var."
+  },
+  {
+    "id": "pte-wfd-0023",
+    "text": "Please write your name at the top of the page.",
+    "level": "A1",
+    "topic": "education",
+    "tr": "Lütfen adını sayfanın üstüne yaz."
+  },
+  {
+    "id": "pte-wfd-0024",
+    "text": "The children have their lunch at school every day.",
+    "level": "A1",
+    "topic": "education",
+    "tr": "Çocuklar her gün öğle yemeklerini okulda yer."
+  },
+  {
+    "id": "pte-wfd-0025",
+    "text": "I can see the sea from my hotel room.",
+    "level": "A1",
+    "topic": "travel",
+    "tr": "Otel odamdan denizi görebiliyorum."
+  },
+  {
+    "id": "pte-wfd-0026",
+    "text": "Our house is on the right after the shops.",
+    "level": "A1",
+    "topic": "daily_life",
+    "tr": "Evimiz dükkânlardan sonra sağda."
+  },
+  {
+    "id": "pte-wfd-0027",
+    "text": "She drinks a glass of water with her dinner.",
+    "level": "A1",
+    "topic": "health",
+    "tr": "Akşam yemeğinde bir bardak su içer."
+  },
+  {
+    "id": "pte-wfd-0028",
+    "text": "Your black coat is on the chair by the window.",
+    "level": "A1",
+    "topic": "daily_life",
+    "tr": "Siyah montun pencerenin yanındaki sandalyede."
+  },
+  {
+    "id": "pte-wfd-0029",
+    "text": "We have a short meeting at work this morning.",
+    "level": "A1",
+    "topic": "work",
+    "tr": "Bu sabah işte kısa bir toplantımız var."
+  },
+  {
+    "id": "pte-wfd-0030",
+    "text": "The dog sleeps under the table in the kitchen.",
+    "level": "A1",
+    "topic": "daily_life",
+    "tr": "Köpek mutfaktaki masanın altında uyur."
+  },
+  {
+    "id": "pte-wfd-0031",
+    "text": "Please bring your book and pen to class tomorrow.",
+    "level": "A1",
+    "topic": "education",
+    "tr": "Lütfen yarın derse kitabını ve kalemini getir."
+  },
+  {
+    "id": "pte-wfd-0032",
+    "text": "My phone is in my bag with my keys.",
+    "level": "A1",
+    "topic": "technology",
+    "tr": "Telefonum anahtarlarımla birlikte çantamda."
+  },
+  {
+    "id": "pte-wfd-0033",
+    "text": "You can buy bread at the shop near school.",
+    "level": "A1",
+    "topic": "daily_life",
+    "tr": "Okulun yakınındaki dükkândan ekmek alabilirsin."
+  },
+  {
+    "id": "pte-wfd-0034",
+    "text": "We eat breakfast before we leave home for work.",
+    "level": "A1",
+    "topic": "work",
+    "tr": "İşe gitmek için evden çıkmadan önce kahvaltı yaparız."
+  },
+  {
+    "id": "pte-wfd-0035",
+    "text": "The park has many trees and a small garden.",
+    "level": "A1",
+    "topic": "environment",
+    "tr": "Parkta pek çok ağaç ve küçük bir bahçe var."
+  },
+  {
+    "id": "pte-wfd-0036",
+    "text": "I like to read a book before I sleep.",
+    "level": "A1",
+    "topic": "daily_life",
+    "tr": "Uyumadan önce kitap okumayı severim."
+  },
+  {
+    "id": "pte-wfd-0037",
+    "text": "Please leave the light on in the living room.",
+    "level": "A1",
+    "topic": "daily_life",
+    "tr": "Lütfen oturma odasındaki ışığı açık bırak."
+  },
+  {
+    "id": "pte-wfd-0038",
+    "text": "The bus at night to town leaves after our dinner.",
+    "level": "A1",
+    "topic": "travel",
+    "tr": "Şehre giden gece otobüsü akşam yemeğimizden sonra kalkar."
+  },
+  {
+    "id": "pte-wfd-0039",
+    "text": "My mother works at a hotel near the station.",
+    "level": "A1",
+    "topic": "work",
+    "tr": "Annem istasyonun yakınındaki bir otelde çalışır."
+  },
+  {
+    "id": "pte-wfd-0040",
+    "text": "There is some cold milk in the glass bottle.",
+    "level": "A1",
+    "topic": "daily_life",
+    "tr": "Cam şişede biraz soğuk süt var."
+  },
+  {
+    "id": "pte-wfd-0041",
+    "text": "The students sit at their tables and open their books.",
+    "level": "A1",
+    "topic": "education",
+    "tr": "Öğrenciler masalarına oturup kitaplarını açar."
+  },
+  {
+    "id": "pte-wfd-0042",
+    "text": "We can walk to the shops after this class.",
+    "level": "A1",
+    "topic": "travel",
+    "tr": "Bu dersten sonra dükkânlara yürüyebiliriz."
+  },
+  {
+    "id": "pte-wfd-0043",
+    "text": "His sister has a new computer in her room.",
+    "level": "A1",
+    "topic": "technology",
+    "tr": "Kız kardeşinin odasında yeni bir bilgisayar var."
+  },
+  {
+    "id": "pte-wfd-0044",
+    "text": "I always wash my hands before I eat lunch.",
+    "level": "A1",
+    "topic": "health",
+    "tr": "Öğle yemeği yemeden önce her zaman ellerimi yıkarım."
+  },
+  {
+    "id": "pte-wfd-0045",
+    "text": "The teacher puts a picture of a tree on the wall.",
+    "level": "A1",
+    "topic": "education",
+    "tr": "Öğretmen duvara bir ağaç resmi koyar."
+  },
+  {
+    "id": "pte-wfd-0046",
+    "text": "This small bag is too heavy for the child.",
+    "level": "A1",
+    "topic": "travel",
+    "tr": "Bu küçük çanta çocuk için fazla ağır."
+  },
+  {
+    "id": "pte-wfd-0047",
+    "text": "The bread shop on our street opens early every morning.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Sokağımızdaki ekmek dükkânı her sabah erken açılır."
+  },
+  {
+    "id": "pte-wfd-0048",
+    "text": "Please keep the kitchen floor clean after cooking dinner.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Lütfen akşam yemeğini pişirdikten sonra mutfak zeminini temiz tut."
+  },
+  {
+    "id": "pte-wfd-0049",
+    "text": "Our neighbours are growing flowers in their front garden.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Komşularımız ön bahçelerinde çiçek yetiştiriyor."
+  },
+  {
+    "id": "pte-wfd-0050",
+    "text": "You need a ticket to enter the swimming pool.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Yüzme havuzuna girmek için bilete ihtiyacın var."
+  },
+  {
+    "id": "pte-wfd-0051",
+    "text": "The stairs is at the end of the hall.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Merdivenler koridorun sonunda."
+  },
+  {
+    "id": "pte-wfd-0052",
+    "text": "My brother borrowed a camera for his school work.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Erkek kardeşim okul çalışması için bir fotoğraf makinesi ödünç aldı."
+  },
+  {
+    "id": "pte-wfd-0053",
+    "text": "We should take an umbrella because it might rain.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Yağmur yağabileceği için şemsiye almalıyız."
+  },
+  {
+    "id": "pte-wfd-0054",
+    "text": "Please send the photo to my new email address.",
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Lütfen fotoğrafı yeni e-posta adresime gönder."
+  },
+  {
+    "id": "pte-wfd-0055",
+    "text": "The nurse asked me to sit in the waiting room.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Hemşire bekleme odasında oturmamı istedi."
+  },
+  {
+    "id": "pte-wfd-0056",
+    "text": "This bag can be used again instead of thrown away.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Bu çanta atılmak yerine tekrar kullanılabilir."
+  },
+  {
+    "id": "pte-wfd-0057",
+    "text": "The new cafe serves hot meals until late afternoon.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Yeni kafe öğleden sonra geç saatlere kadar sıcak yemek sunar."
+  },
+  {
+    "id": "pte-wfd-0058",
+    "text": "We moved the table so everyone could sit together.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Herkes birlikte oturabilsin diye masayı taşıdık."
+  },
+  {
+    "id": "pte-wfd-0059",
+    "text": "You can book a place on the school website.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Okulun internet sitesinden yer ayırtabilirsin."
+  },
+  {
+    "id": "pte-wfd-0060",
+    "text": "The driver stopped to help someone cross the street.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Sürücü birinin karşıya geçmesine yardım etmek için durdu."
+  },
+  {
+    "id": "pte-wfd-0061",
+    "text": "Please put the clean plates away in that cupboard.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Lütfen temiz tabakları o dolaba kaldır."
+  },
+  {
+    "id": "pte-wfd-0062",
+    "text": "My phone screen is difficult to read in sunlight.",
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Telefonumun ekranını güneş ışığında okumak zor."
+  },
+  {
+    "id": "pte-wfd-0063",
+    "text": "We spent the afternoon walking along the quiet beach.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Öğleden sonrayı sakin plaj boyunca yürüyerek geçirdik."
+  },
+  {
+    "id": "pte-wfd-0064",
+    "text": "The market sells fresh vegetables from farms near town.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Pazarda kasabanın yakınındaki çiftliklerden gelen taze sebzeler satılıyor."
+  },
+  {
+    "id": "pte-wfd-0065",
+    "text": "I forgot to take my shopping list with me.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Alışveriş listemi yanıma almayı unuttum."
+  },
+  {
+    "id": "pte-wfd-0066",
+    "text": "Your appointment is in the building opposite the bank.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Randevun bankanın karşısındaki binada."
+  },
+  {
+    "id": "pte-wfd-0067",
+    "text": "We will talk about the homework in our next lesson.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Bir sonraki derste ödev hakkında konuşacağız."
+  },
+  {
+    "id": "pte-wfd-0068",
+    "text": "The train was full so we had to stand.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Tren doluydu, bu yüzden ayakta durmak zorunda kaldık."
+  },
+  {
+    "id": "pte-wfd-0069",
+    "text": "Please check that all the windows are closed tonight.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Lütfen bu gece bütün pencerelerin kapalı olduğunu kontrol et."
+  },
+  {
+    "id": "pte-wfd-0070",
+    "text": "The kitchen staff wear special shoes when they work.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Mutfak çalışanları çalışırken özel ayakkabılar giyer."
+  },
+  {
+    "id": "pte-wfd-0071",
+    "text": "This box has paper that we can use again.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Bu kutuda tekrar kullanabileceğimiz kâğıtlar var."
+  },
+  {
+    "id": "pte-wfd-0072",
+    "text": "My phone needs more power before I can use it.",
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Telefonumu kullanabilmem için daha fazla güce ihtiyacı var."
+  },
+  {
+    "id": "pte-wfd-0073",
+    "text": "We are looking for a flat near the bus station.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Otobüs istasyonuna yakın bir ev arıyoruz."
+  },
+  {
+    "id": "pte-wfd-0074",
+    "text": "The college offers a cooking class on Thursday evenings.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Kolej perşembe akşamları bir yemek kursu sunuyor."
+  },
+  {
+    "id": "pte-wfd-0075",
+    "text": "Please tell the doctor how long you have felt ill.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Lütfen doktora ne kadar süredir kendini hasta hissettiğini söyle."
+  },
+  {
+    "id": "pte-wfd-0076",
+    "text": "The car park is behind the main shopping centre.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Otopark ana alışveriş merkezinin arkasında."
+  },
+  {
+    "id": "pte-wfd-0077",
+    "text": "Our team cleans the tables after the customers leave.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Ekibimiz müşteriler ayrıldıktan sonra masaları temizler."
+  },
+  {
+    "id": "pte-wfd-0078",
+    "text": "The online form asks for your name and address.",
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Çevrim içi formda adınız ve adresiniz isteniyor."
+  },
+  {
+    "id": "pte-wfd-0079",
+    "text": "We can save water by taking shorter showers every day.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Her gün daha kısa duş alarak su tasarrufu yapabiliriz."
+  },
+  {
+    "id": "pte-wfd-0080",
+    "text": "I usually prepare my lunch the night before work.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Öğle yemeğimi genellikle işten önceki gece hazırlarım."
+  },
+  {
+    "id": "pte-wfd-0081",
+    "text": "Please do not leave wet clothes on the bed.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Lütfen ıslak giysileri yatağın üzerinde bırakma."
+  },
+  {
+    "id": "pte-wfd-0082",
+    "text": "The library has books in several different languages now.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Kütüphanede artık birkaç farklı dilde kitap var."
+  },
+  {
+    "id": "pte-wfd-0083",
+    "text": "A short walk helps me feel better after work.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Kısa bir yürüyüş işten sonra daha iyi hissetmemi sağlar."
+  },
+  {
+    "id": "pte-wfd-0084",
+    "text": "The bus driver waited until everyone was safely inside.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Otobüs sürücüsü herkes güvenle içeri girene kadar bekledi."
+  },
+  {
+    "id": "pte-wfd-0085",
+    "text": "You must wear a hat while working in this kitchen.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Bu mutfakta çalışırken şapka takmalısın."
+  },
+  {
+    "id": "pte-wfd-0086",
+    "text": "I saved the new file in the wrong folder.",
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Yeni dosyayı yanlış klasöre kaydettim."
+  },
+  {
+    "id": "pte-wfd-0087",
+    "text": "Our school has started collecting old batteries for recycling.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Okulumuz geri dönüşüm için eski pilleri toplamaya başladı."
+  },
+  {
+    "id": "pte-wfd-0088",
+    "text": "Please ask before you take food from this shelf.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Lütfen bu raftan yiyecek almadan önce sor."
+  },
+  {
+    "id": "pte-wfd-0089",
+    "text": "The teacher explained the meaning of the new word.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Öğretmen yeni kelimenin anlamını açıkladı."
+  },
+  {
+    "id": "pte-wfd-0090",
+    "text": "We need more chairs for the meeting this afternoon.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Bu öğleden sonraki toplantı için daha fazla sandalyeye ihtiyacımız var."
+  },
+  {
+    "id": "pte-wfd-0091",
+    "text": "The doctor was busy so I spoke to the nurse.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Doktor meşguldü, bu yüzden hemşireyle konuştum."
+  },
+  {
+    "id": "pte-wfd-0092",
+    "text": "Our tickets are cheaper if we travel after breakfast.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Kahvaltıdan sonra seyahat edersek biletlerimiz daha ucuz oluyor."
+  },
+  {
+    "id": "pte-wfd-0093",
+    "text": "Please turn the computer off when you finish working.",
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Lütfen çalışmayı bitirdiğinde bilgisayarı kapat."
+  },
+  {
+    "id": "pte-wfd-0094",
+    "text": "The children planted small trees beside the school fence.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Çocuklar okul çitinin yanına küçük ağaçlar dikti."
+  },
+  {
+    "id": "pte-wfd-0095",
+    "text": "I left a note for you on the kitchen table.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Mutfak masasında sana bir not bıraktım."
+  },
+  {
+    "id": "pte-wfd-0096",
+    "text": "The shop needs someone to work on Saturday mornings.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Dükkânın cumartesi sabahları çalışacak birine ihtiyacı var."
+  },
+  {
+    "id": "pte-wfd-0097",
+    "text": "You can practise speaking with other students after class.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Dersten sonra diğer öğrencilerle konuşma alıştırması yapabilirsin."
+  },
+  {
+    "id": "pte-wfd-0098",
+    "text": "The path through the park is closed for repairs.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Parkın içinden geçen yol onarım için kapalı."
+  },
+  {
+    "id": "pte-wfd-0099",
+    "text": "Please bring a towel if you want to swim.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Yüzmek istiyorsan lütfen bir havlu getir."
+  },
+  {
+    "id": "pte-wfd-0100",
+    "text": "I use this app to check the bus times.",
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Otobüs saatlerine bakmak için bu uygulamayı kullanıyorum."
+  },
+  {
+    "id": "pte-wfd-0101",
+    "text": "We should use both sides of every piece of paper.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Her kâğıdın iki yüzünü de kullanmalıyız."
+  },
+  {
+    "id": "pte-wfd-0102",
+    "text": "The bread is still warm so please be careful.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Ekmek hâlâ sıcak, bu yüzden lütfen dikkatli ol."
+  },
+  {
+    "id": "pte-wfd-0103",
+    "text": "Our manager showed us where to keep our coats.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Müdürümüz montlarımızı nerede tutacağımızı gösterdi."
+  },
+  {
+    "id": "pte-wfd-0104",
+    "text": "The class visited a farm to learn about growing food.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Sınıf yiyecek yetiştirmeyi öğrenmek için bir çiftliği ziyaret etti."
+  },
+  {
+    "id": "pte-wfd-0105",
+    "text": "You can reach the station by walking across this bridge.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Bu köprüden yürüyerek geçip istasyona ulaşabilirsin."
+  },
+  {
+    "id": "pte-wfd-0106",
+    "text": "The small health centre is open every weekday morning.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Küçük sağlık merkezi hafta içi her sabah açık."
+  },
+  {
+    "id": "pte-wfd-0107",
+    "text": "Please type your name again and try signing in.",
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Lütfen adını tekrar yazıp giriş yapmayı dene."
+  },
+  {
+    "id": "pte-wfd-0108",
+    "text": "We found empty bottles along the path beside the river.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Nehir kenarındaki yol boyunca boş şişeler bulduk."
+  },
+  {
+    "id": "pte-wfd-0109",
+    "text": "The washing machine makes a strange noise when it starts.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Çamaşır makinesi çalışmaya başladığında tuhaf bir ses çıkarıyor."
+  },
+  {
+    "id": "pte-wfd-0110",
+    "text": "I asked the waiter for a glass of water.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Garsondan bir bardak su istedim."
+  },
+  {
+    "id": "pte-wfd-0111",
+    "text": "Please read the whole question before you write your answer.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Lütfen cevabını yazmadan önce sorunun tamamını oku."
+  },
+  {
+    "id": "pte-wfd-0112",
+    "text": "The council plans to improve lighting near the station.",
+    "level": "B1",
+    "topic": "environment",
+    "tr": "Belediye istasyonun yakınındaki aydınlatmayı iyileştirmeyi planlıyor."
+  },
+  {
+    "id": "pte-wfd-0113",
+    "text": "Staff should report any problems before leaving the building.",
+    "level": "B1",
+    "topic": "work",
+    "tr": "Çalışanlar binadan ayrılmadan önce her türlü sorunu bildirmelidir."
+  },
+  {
+    "id": "pte-wfd-0114",
+    "text": "The course includes practical activities as well as written exercises.",
+    "level": "B1",
+    "topic": "education",
+    "tr": "Kurs yazılı alıştırmaların yanı sıra uygulamalı etkinlikler de içeriyor."
+  },
+  {
+    "id": "pte-wfd-0115",
+    "text": "Our hotel is within walking distance of the beach.",
+    "level": "B1",
+    "topic": "travel",
+    "tr": "Otelimiz plaja yürüme mesafesinde."
+  },
+  {
+    "id": "pte-wfd-0116",
+    "text": "Please contact reception if you need to change your appointment.",
+    "level": "B1",
+    "topic": "health",
+    "tr": "Randevunuzu değiştirmeniz gerekiyorsa lütfen danışmayla iletişime geçin."
+  },
+  {
+    "id": "pte-wfd-0117",
+    "text": "The latest update allows people to share files more easily.",
+    "level": "B1",
+    "topic": "technology",
+    "tr": "Son güncelleme insanların dosyaları daha kolay paylaşmasını sağlıyor."
+  },
+  {
+    "id": "pte-wfd-0118",
+    "text": "Local volunteers collect rubbish from the beach every weekend.",
+    "level": "B1",
+    "topic": "environment",
+    "tr": "Yerel gönüllüler her hafta sonu plajdan çöp toplar."
+  },
+  {
+    "id": "pte-wfd-0119",
+    "text": "The landlord explained which bills were included in the rent.",
+    "level": "B1",
+    "topic": "daily_life",
+    "tr": "Ev sahibi kiraya hangi faturaların dâhil olduğunu açıkladı."
+  },
+  {
+    "id": "pte-wfd-0120",
+    "text": "We received clear instructions before using the equipment ourselves.",
+    "level": "B1",
+    "topic": "work",
+    "tr": "Ekipmanı kendimiz kullanmadan önce açık talimatlar aldık."
+  },
+  {
+    "id": "pte-wfd-0121",
+    "text": "Students are encouraged to compare their answers in small groups.",
+    "level": "B1",
+    "topic": "education",
+    "tr": "Öğrenciler cevaplarını küçük gruplarda karşılaştırmaya teşvik edilir."
+  },
+  {
+    "id": "pte-wfd-0122",
+    "text": "Passengers can request assistance when booking their train tickets.",
+    "level": "B1",
+    "topic": "travel",
+    "tr": "Yolcular tren bileti alırken yardım talep edebilir."
+  },
+  {
+    "id": "pte-wfd-0123",
+    "text": "Regular exercise can improve both physical health and general mood.",
+    "level": "B1",
+    "topic": "health",
+    "tr": "Düzenli egzersiz hem fiziksel sağlığı hem de genel ruh hâlini iyileştirebilir."
+  },
+  {
+    "id": "pte-wfd-0124",
+    "text": "The system automatically saves a copy of each completed form.",
+    "level": "B1",
+    "topic": "technology",
+    "tr": "Sistem tamamlanan her formun bir kopyasını otomatik olarak kaydeder."
+  },
+  {
+    "id": "pte-wfd-0125",
+    "text": "Our shared garden provides fresh food for local families.",
+    "level": "B1",
+    "topic": "environment",
+    "tr": "Ortak bahçemiz yerel ailelere taze yiyecek sağlar."
+  },
+  {
+    "id": "pte-wfd-0126",
+    "text": "The neighbours agreed to share responsibility for cleaning the entrance.",
+    "level": "B1",
+    "topic": "daily_life",
+    "tr": "Komşular girişin temizlenmesi sorumluluğunu paylaşmayı kabul etti."
+  },
+  {
+    "id": "pte-wfd-0127",
+    "text": "Please confirm your details before sending the application online.",
+    "level": "B1",
+    "topic": "work",
+    "tr": "Lütfen başvuruyu çevrim içi göndermeden önce bilgilerinizi teyit edin."
+  },
+  {
+    "id": "pte-wfd-0128",
+    "text": "The library offers extra support for students studying independently.",
+    "level": "B1",
+    "topic": "education",
+    "tr": "Kütüphane bağımsız çalışan öğrenciler için ek destek sunuyor."
+  },
+  {
+    "id": "pte-wfd-0129",
+    "text": "We decided to avoid travelling during the busiest holiday period.",
+    "level": "B1",
+    "topic": "travel",
+    "tr": "Tatilin en yoğun döneminde seyahat etmekten kaçınmaya karar verdik."
+  },
+  {
+    "id": "pte-wfd-0130",
+    "text": "The health centre has introduced a more convenient booking system.",
+    "level": "B1",
+    "topic": "health",
+    "tr": "Sağlık merkezi daha kullanışlı bir randevu sistemi uygulamaya koydu."
+  },
+  {
+    "id": "pte-wfd-0131",
+    "text": "This device uses less power than the previous model.",
+    "level": "B1",
+    "topic": "technology",
+    "tr": "Bu cihaz önceki modelden daha az güç kullanıyor."
+  },
+  {
+    "id": "pte-wfd-0132",
+    "text": "The plan aims to reduce waste without increasing costs.",
+    "level": "B1",
+    "topic": "environment",
+    "tr": "Plan maliyetleri artırmadan atığı azaltmayı amaçlıyor."
+  },
+  {
+    "id": "pte-wfd-0133",
+    "text": "The house would be warmer if the windows closed properly.",
+    "level": "B1",
+    "topic": "daily_life",
+    "tr": "Pencereler düzgün kapansaydı ev daha sıcak olurdu."
+  },
+  {
+    "id": "pte-wfd-0134",
+    "text": "The manager checked that everyone understood the safety instructions.",
+    "level": "B1",
+    "topic": "work",
+    "tr": "Müdür, herkesin güvenlik talimatlarını anladığını kontrol etti."
+  },
+  {
+    "id": "pte-wfd-0135",
+    "text": "Students must complete the introduction before joining the main course.",
+    "level": "B1",
+    "topic": "education",
+    "tr": "Öğrenciler ana kursa katılmadan önce giriş bölümünü tamamlamalıdır."
+  },
+  {
+    "id": "pte-wfd-0136",
+    "text": "Our return journey took longer because the main road was closed.",
+    "level": "B1",
+    "topic": "travel",
+    "tr": "Ana yol kapalı olduğu için dönüş yolculuğumuz daha uzun sürdü."
+  },
+  {
+    "id": "pte-wfd-0137",
+    "text": "The nurse explained how the information would be kept private.",
+    "level": "B1",
+    "topic": "health",
+    "tr": "Hemşire bilgilerin nasıl gizli tutulacağını açıkladı."
+  },
+  {
+    "id": "pte-wfd-0138",
+    "text": "Please ensure your internet connection is working before the interview.",
+    "level": "B1",
+    "topic": "technology",
+    "tr": "Lütfen görüşmeden önce internet bağlantınızın çalıştığından emin olun."
+  },
+  {
+    "id": "pte-wfd-0139",
+    "text": "Residents suggested creating more space for people cycling and walking.",
+    "level": "B1",
+    "topic": "environment",
+    "tr": "Bölge sakinleri bisiklete binen ve yürüyen insanlar için daha fazla alan oluşturulmasını önerdi."
+  },
+  {
+    "id": "pte-wfd-0140",
+    "text": "We reviewed our spending before agreeing on a monthly budget.",
+    "level": "B1",
+    "topic": "daily_life",
+    "tr": "Aylık bir bütçede anlaşmadan önce harcamalarımızı gözden geçirdik."
+  },
+  {
+    "id": "pte-wfd-0141",
+    "text": "The restaurant provides training for staff with no previous experience.",
+    "level": "B1",
+    "topic": "work",
+    "tr": "Restoran daha önce deneyimi olmayan çalışanlara eğitim verir."
+  },
+  {
+    "id": "pte-wfd-0142",
+    "text": "Each student receives individual comments on their progress every month.",
+    "level": "B1",
+    "topic": "education",
+    "tr": "Her öğrenci her ay ilerlemesi hakkında bireysel yorumlar alır."
+  },
+  {
+    "id": "pte-wfd-0143",
+    "text": "Passengers were advised to allow extra time for their journey.",
+    "level": "B1",
+    "topic": "travel",
+    "tr": "Yolculara yolculukları için fazladan zaman ayırmaları tavsiye edildi."
+  },
+  {
+    "id": "pte-wfd-0144",
+    "text": "The clinic offers appointments outside normal working hours on Thursdays.",
+    "level": "B1",
+    "topic": "health",
+    "tr": "Klinik perşembe günleri normal çalışma saatleri dışında randevu sunar."
+  },
+  {
+    "id": "pte-wfd-0145",
+    "text": "You should keep a separate copy of any important documents.",
+    "level": "B1",
+    "topic": "technology",
+    "tr": "Önemli belgelerin ayrı bir kopyasını saklamalısınız."
+  },
+  {
+    "id": "pte-wfd-0146",
+    "text": "The school encouraged families to walk instead of driving short distances.",
+    "level": "B1",
+    "topic": "environment",
+    "tr": "Okul aileleri kısa mesafeleri arabayla gitmek yerine yürümeye teşvik etti."
+  },
+  {
+    "id": "pte-wfd-0147",
+    "text": "Our flat has enough space for visitors to stay overnight.",
+    "level": "B1",
+    "topic": "daily_life",
+    "tr": "Evimizde misafirlerin gece kalmasına yetecek kadar yer var."
+  },
+  {
+    "id": "pte-wfd-0148",
+    "text": "The manager explained how extra work would be recorded and paid.",
+    "level": "B1",
+    "topic": "work",
+    "tr": "Müdür, ek çalışmanın nasıl kaydedilip ödeneceğini açıkladı."
+  },
+  {
+    "id": "pte-wfd-0149",
+    "text": "We discussed the advantages of learning through practical experience.",
+    "level": "B1",
+    "topic": "education",
+    "tr": "Uygulamalı deneyimle öğrenmenin avantajlarını tartıştık."
+  },
+  {
+    "id": "pte-wfd-0150",
+    "text": "The travel office recommended checking local transport before booking a hotel.",
+    "level": "B1",
+    "topic": "travel",
+    "tr": "Seyahat ofisi otel ayırtmadan önce yerel ulaşımın kontrol edilmesini önerdi."
   }
 ]

@@ -2,6 +2,7 @@ import { mergeLearning } from '../engine/learningProgress'
 import { mergeSeen, mergeSlips, type LabData } from '../engine/labProgress'
 import { mergeMarks } from '../engine/guideReview'
 import { mergeLedgers } from '../engine/xpLedger'
+import { mergePteLogs } from '../engine/pteScore'
 import { mergePrefs } from './devicePrefs'
 import { mergeTimeLogs } from '../engine/studyTime'
 import type { ReviewEvent, VocabularyEntry } from '../engine/types'
@@ -337,6 +338,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     affixes: mergeGrammarLogs(older.affixes, newer.affixes),
     enVerbs: mergeGrammarLogs(older.enVerbs, newer.enVerbs),
     examTasks: mergeGrammarLogs(older.examTasks, newer.examTasks),
+    pte: mergePteLogs(older.pte, newer.pte),
     prefs: mergePrefs(older.prefs, newer.prefs),
     media: [],
   }

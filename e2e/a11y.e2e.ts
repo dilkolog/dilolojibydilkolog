@@ -1701,3 +1701,19 @@ test('a tense lesson with every fine point open passes the accessibility and con
   }
   expect(problems).toEqual([])
 })
+
+test('PTE-style cards and tasks pass the accessibility check', async ({ page }) => {
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /İngilizce/ }).click()
+  await openScreen(page, 'Sınavlar')
+  await page.getByRole('group', { name: 'Sınav' }).getByRole('button', { name: 'PTE tarzı' }).click()
+  await expect(page.locator('.pte-section .examtask-item')).toHaveCount(5)
+  const problems = await scan(page, 'pte cards')
+  for (const task of ['Dikte', 'Cümle tekrarı', 'Sesli okuma', 'Boşluk doldurma', 'Kısa soru']) {
+    await page.locator('.pte-section .examtask-item', { hasText: task }).click()
+    await expect(page.locator('.pte-drill')).toBeVisible()
+    problems.push(...(await scan(page, `pte ${task}`)))
+    await page.getByRole('button', { name: '← Sınavlar' }).click()
+  }
+  expect(problems).toEqual([])
+})
