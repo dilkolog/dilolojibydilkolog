@@ -1,0 +1,21 @@
+{
+  "id": "es-reading-0003",
+  "language": "es",
+  "kind": "reading",
+  "level": "A1",
+  "genre": "story",
+  "grammar": [
+    "basics_es_presente",
+    "basics_es_posesivos",
+    "basics_es_hay_estar",
+    "basics_es_negacion"
+  ],
+  "count": 25,
+  "ids": {
+    "from": 6,
+    "to": 30
+  },
+  "createdAt": "2026-11-12T23:09:55.221Z",
+  "claimedBy": "Codex/icerik/ilk-adim-es",
+  "claimedAt": "2026-11-12T23:09:55.785Z"
+}

@@ -17,7 +17,7 @@ standart `Request`/`Response` olduğu için hâlâ Vercel biçimindeki gibi okun
 1. Cloudflare hesabı aç (ücretsiz). `npx wrangler login`.
 2. R2 kovası: `npx wrangler r2 bucket create diloloji-blobs` (R2 için kart bilgisi istenebilir; ücretsiz kota içinde ücret çıkmaz).
 3. Gizlileri ekle (Vercel'deki ortam değişkenlerinin aynıları), her biri için `npx wrangler secret put <AD>`:
-   `CRON_SECRET` (yeni, rastgele uzun), `ADMIN_TOKEN`, `SYNC_ALLOWED`, `DEEPL_AUTH_KEY`, `VAPID_PRIVATE_KEY`,
+   `CRON_SECRET` (yeni, rastgele uzun), `DEEPL_AUTH_KEY`, `VAPID_PRIVATE_KEY`,
    `RESEND_API_KEY`, `RESEND_FROM`, `RESEND_REPLY_TO` (varsa), `SUPABASE_URL` (ya da `VITE_SUPABASE_URL`),
    `SUPABASE_SECRET_KEY`, `YOUTUBE_API_KEY` (varsa). Düz değişkenler: `APP_URL` (ana adres:
    `https://diloloji.com`) ve `APP_HOSTS` (izinli adresler, virgülle: `diloloji.<hesap>.workers.dev,diloloji.com,www.diloloji.com`).

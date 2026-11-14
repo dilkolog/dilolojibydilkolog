@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { ClientMessage, LiveError, RoomView } from '../../engine/liveDuel'
+import { accessFetch } from '../../data/access'
 
 export type LiveStatus = 'connecting' | 'open' | 'lost'
 
@@ -10,9 +11,24 @@ const RETRIES = 4
 /** What a room is for: a live duel, or a reading club (its own rooms, src/engine/readingClub.ts). */
 export type RoomKind = 'duel' | 'club'
 
-/** The address of a room's WebSocket on the site the app is served from. */
-export const roomUrl = (code: string, loc: Pick<Location, 'protocol' | 'host'> = location, kind: RoomKind = 'duel') =>
-  `${loc.protocol === 'https:' ? 'wss' : 'ws'}://${loc.host}/api/room?code=${code}${kind === 'club' ? '&kind=club' : ''}`
+/** The address of a room's WebSocket on the site the app is served from (`ticket`: what the server gave this account for it). */
+export const roomUrl = (code: string, loc: Pick<Location, 'protocol' | 'host'> = location, kind: RoomKind = 'duel', ticket: string | null = null) =>
+  `${loc.protocol === 'https:' ? 'wss' : 'ws'}://${loc.host}/api/room?code=${code}${kind === 'club' ? '&kind=club' : ''}${ticket ? `&t=${ticket}` : ''}`
+
+/**
+ * The ticket a room asks for (api/_roomTicket.ts): a WebSocket cannot carry the account's headers, so the account asks
+ * first. Null when the server asks for none or cannot be asked: the connection is tried anyway and the server decides.
+ */
+export async function roomTicket(): Promise<string | null> {
+  try {
+    const res = await accessFetch('/api/access?room-ticket=1')
+    if (!res.ok) return null
+    const { ticket } = (await res.json()) as { ticket?: unknown }
+    return typeof ticket === 'string' && /^[0-9a-f.]{1,100}$/.test(ticket) ? ticket : null
+  } catch {
+    return null
+  }
+}
 
 /**
  * One connection to a live duel room (see engine/liveDuel.ts and worker/duelRoom.ts): joins by name when it opens,
@@ -43,8 +59,11 @@ export function useLiveRoom<View = RoomView, Message = ClientMessage, Error exte
     let tries = 0
     let ping: number | undefined
     let retry: number | undefined
-    const connect = () => {
-      const ws = new WebSocket(roomUrl(code, location, kind))
+    const connect = async () => {
+      // Each connection (a reconnect too) names a fresh ticket: one is good for a couple of minutes.
+      const ticket = await roomTicket()
+      if (closed) return
+      const ws = new WebSocket(roomUrl(code, location, kind, ticket))
       socket.current = ws
       ws.onopen = () => {
         tries = 0
@@ -78,11 +97,11 @@ export function useLiveRoom<View = RoomView, Message = ClientMessage, Error exte
         if (tries < RETRIES) {
           tries++
           setStatus('connecting')
-          retry = window.setTimeout(connect, 800 * tries)
+          retry = window.setTimeout(() => void connect(), 800 * tries)
         } else setStatus('lost')
       }
     }
-    connect()
+    void connect()
     return () => {
       closed = true
       window.clearInterval(ping)

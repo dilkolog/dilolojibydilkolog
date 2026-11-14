@@ -5,7 +5,7 @@ import { checkBatch } from './lib/batch'
 import { loadContext, type CheckContext } from './lib/context'
 import { derive } from './lib/derive'
 import { acceptedItems, emptiest, grammarCells, nextJobs, openJobs, readingCells } from './lib/plan'
-import { checkGrammarItem, checkReading, levelFit, topicUses, wordLevel } from './lib/rules'
+import { checkGrammarItem, checkReading, levelFit, speakers, topicUses, wordLevel } from './lib/rules'
 import { sampleMarkdown } from './lib/sample'
 import { buildContent, idRanges } from './lib/shards'
 import { jaccard, shingles, SimilarityIndex } from './lib/similarity'
@@ -54,6 +54,12 @@ describe('reading checks', () => {
   it('a good text passes', () => {
     expect(checkReading(frText, fr, { job: readingJob() }).errors).toEqual([])
     expect(checkReading(esText, es, { job: readingJob({ id: 'es-reading-0001', language: 'es', theme: 'aile', genre: 'email', grammar: ['basics_es_presente'] }) }).errors).toEqual([])
+  })
+
+  it('takes a dialogue’s speakers for names, not words', () => {
+    expect([...speakers('Lucía: Hola.\nLuc, au café : Bonjour.\nUne femme : Oui.')]).toEqual(['Lucía', 'Luc'])
+    // "Lucía" is also a form of "lucir": as a speaker it counts as a name, so the level check does not see it.
+    expect(levelFit('Lucía: Hola, mamá.\nMamá: Hola.', 'A1', es).above).toEqual([])
   })
 
   it('knows words by their forms, and names are left out', () => {
@@ -191,5 +197,17 @@ describe('plans', () => {
       for (const level of Object.values(ctx.plan.levels)) for (const topic of level.topics) expect(TOPIC_NAME[topic], topic).toBeTruthy()
     }
     expect(es.plan.themes.map((t) => t.id)).toEqual(fr.plan.themes.map((t) => t.id))
+  })
+})
+
+describe('first-step reading profile', () => {
+  it('keeps the normal A1 minimums and accepts only the bounded introductory exception', () => {
+    const item = JSON.parse(readFileSync('content/raw/fr/reading/fr-reading-0003.jsonl', 'utf8').split('\n')[0]) as ReadingItem
+    expect(checkReading(item, fr).errors).toEqual([])
+    const normal = { ...item, firstStep: undefined }
+    expect(checkReading(normal, fr).errors.some((e) => e.includes('6–12'))).toBe(true)
+    expect(checkReading({ ...item, level: 'A2' }, fr).errors).toContain('first-step profile requires A1')
+    expect(checkReading({ ...item, paragraphs: [...item.paragraphs, 'Je suis à Xylophonie.'], tr: [...item.tr, 'Xylophonie’deyim.'] }, fr).errors.some((e) => e.includes('xylophonie'))).toBe(true)
+    expect(checkReading({ ...item, paragraphs: [...item.paragraphs, "Hier, nous avons mangé."], tr: [...item.tr, 'Dün yemek yedik.'] }, fr).errors.some((e) => e.includes('non-present'))).toBe(true)
   })
 })

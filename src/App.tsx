@@ -360,12 +360,12 @@ export default function App() {
   // What is waiting where, shown as small counts in the menu.
   const navBadge: Partial<Record<NavScreen, number>> = useMemo(
     () => ({
-      home: plan?.items.filter((i) => i.kind === 'exercise').length ?? 0,
-      words: data ? new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size : 0,
+      home: plan?.items.some((i) => i.kind === 'exercise') ? plan.questions : 0,
+      progress: data ? new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size : 0,
     }),
     [plan, data],
   )
-  const badgeLabel: Partial<Record<NavScreen, string>> = { home: 'soru bekliyor', words: 'kelimede açık hata' }
+  const badgeLabel: Partial<Record<NavScreen, string>> = { home: 'soru bekliyor', progress: 'kelimede açık hata' }
   // Rest days and holidays: no reminder.
   const restToday = !!settings && isRestDay(new Date(), settings)
   // Words waiting for review today: the reminder names them, so it's a concrete, small ask.
@@ -624,7 +624,7 @@ export default function App() {
                 ).map((g) => (
                   <button key={g.screen} className="hub-tab" aria-current={g.screen === screen.name ? 'page' : undefined} onClick={go({ name: g.screen } as Screen)}>
                     {g.label}
-                    {g.screen === 'mistakes' && !!navBadge.words && <span className="hub-count">{navBadge.words}</span>}
+                    {g.screen === 'mistakes' && !!navBadge.progress && <span className="hub-count">{navBadge.progress}</span>}
                   </button>
                 ))}
               </nav>

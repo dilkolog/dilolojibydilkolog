@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { milestone, weeklyGrowth } from './knownMilestones'
-import { analyzeText, readingKey } from '../../engine/reading'
+import { analyzeText, BASICS_AT, readingKey } from '../../engine/reading'
 
 describe('known-word count', () => {
   it('sets the next milestone', () => {
@@ -20,7 +20,7 @@ describe('known-word count', () => {
 
 describe('ignored words while reading', () => {
   it('count like names, outside the coverage', () => {
-    const a = analyzeText('The zorbly cat sat.', 'en', [], [], new Set(['cat', 'sat'].map((w) => readingKey(w, 'en'))), new Set([readingKey('zorbly', 'en')]))
+    const a = analyzeText('The zorbly cat sat.', 'en', [], [], new Set([...['cat', 'sat'].map((w) => readingKey(w, 'en')), ...Array.from({ length: BASICS_AT }, (_, i) => `known${i}`)]), new Set([readingKey('zorbly', 'en')]))
     expect(a.counts.unseen).toBe(0)
     expect(a.counts.name).toBe(1)
   })

@@ -1,0 +1,511 @@
+{
+  "job": "fr-grammar-0005",
+  "count": 50,
+  "solver": {
+    "checked": 50,
+    "disagreements": 0,
+    "rate": 0
+  },
+  "rows": [
+    {
+      "id": "fr-g-000171",
+      "target": "ne",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "ne et pas à l’écrit"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000172",
+      "target": "ne",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "ne et pas à l’écrit"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000173",
+      "target": "ne",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "ne et pas à l’écrit"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000174",
+      "target": "ne",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "ne et pas à l’écrit"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000175",
+      "target": "ne",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "ne et pas à l’écrit"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000176",
+      "target": "ne",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "ne et pas à l’écrit"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000177",
+      "target": "ne",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "ne et pas à l’écrit"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000178",
+      "target": "ne",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "ne et pas à l’écrit"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000179",
+      "target": "pas",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "ne et pas à l’écrit"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000180",
+      "target": "pas",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "ne et pas à l’écrit"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000181",
+      "target": "n'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "élision et place de pas"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000182",
+      "target": "n'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "élision et place de pas"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000183",
+      "target": "n'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "élision et place de pas"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000184",
+      "target": "n'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "élision et place de pas"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000185",
+      "target": "n'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "élision et place de pas"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000186",
+      "target": "n'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "élision et place de pas"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000187",
+      "target": "n'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "élision et place de pas"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000188",
+      "target": "n'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "élision et place de pas"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000189",
+      "target": "pas",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "élision et place de pas"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000190",
+      "target": "pas",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "élision et place de pas"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000191",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "de après la négation"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000192",
+      "target": "d'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "de après la négation"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000193",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "de après la négation"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000194",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "de après la négation"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000195",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "de après la négation"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000196",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "de après la négation"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000197",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "de après la négation"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000198",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "de après la négation"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000199",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "de après la négation"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000200",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "de après la négation"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000201",
+      "target": "un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "article conservé après être"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000202",
+      "target": "une",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "article conservé après être"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000203",
+      "target": "des",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "article conservé après être"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000204",
+      "target": "un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "article conservé après être"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000205",
+      "target": "une",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "article conservé après être"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000206",
+      "target": "des",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "article conservé après être"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000207",
+      "target": "un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "article conservé après être"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000208",
+      "target": "des",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "article conservé après être"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000209",
+      "target": "une",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "article conservé après être"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000210",
+      "target": "un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "article conservé après être"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000211",
+      "target": "Si",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "réponse affirmative : si"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000212",
+      "target": "Si",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "réponse affirmative : si"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000213",
+      "target": "Si",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "réponse affirmative : si"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000214",
+      "target": "Si",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "réponse affirmative : si"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000215",
+      "target": "Si",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "réponse affirmative : si"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000216",
+      "target": "Si",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "réponse affirmative : si"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000217",
+      "target": "Si",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "réponse affirmative : si"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000218",
+      "target": "Si",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "réponse affirmative : si"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000219",
+      "target": "Si",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "réponse affirmative : si"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000220",
+      "target": "Si",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_negation",
+        "section": "réponse affirmative : si"
+      },
+      "independentSolver": "passed"
+    }
+  ]
+}

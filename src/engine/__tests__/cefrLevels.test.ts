@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { BASICS_AT } from '../reading'
 import { cefrOf, levelCoverage, parseCefrList, wordsAt } from '../cefrLevels'
 import type { VocabularyEntry } from '../types'
 
@@ -15,9 +16,12 @@ describe('CEFR levels', () => {
   })
   it('lists a level’s single words in order and counts what the learner has, level by level', () => {
     expect(wordsAt(list, 'A1')).toEqual(['le', 'chat', 'maison', 'lever'])
-    const cov = levelCoverage(list, 'fr', [entry('maison')], [], new Set(['chat']))
+    const foundation = new Set(['chat', ...Array.from({ length: BASICS_AT }, (_, i) => `known${i}`)])
+    const cov = levelCoverage(list, 'fr', [entry('maison')], [], foundation)
     // le: a function word; chat: marked known; maison: in the list, being learned; lever: not yet.
     expect(cov.find((c) => c.level === 'A1')).toEqual({ level: 'A1', total: 4, known: 2, learning: 1 })
+    // A learner who knows nothing yet knows no function word either: A1 starts at zero.
+    expect(levelCoverage(list, 'fr', [], [], new Set()).find((c) => c.level === 'A1')).toEqual({ level: 'A1', total: 4, known: 0, learning: 0 })
     expect(cov.find((c) => c.level === 'A2')).toEqual({ level: 'A2', total: 3, known: 0, learning: 0 })
   })
 })

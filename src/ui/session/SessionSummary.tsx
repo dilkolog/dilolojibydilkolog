@@ -32,6 +32,7 @@ import { MilestoneMoment, LevelUpBadge } from '../progress/MilestoneMoment'
 import { markLevelSeen } from '../profile/levelSeen'
 import { StreakPicture } from '../home/StreakFlame'
 import { FREE_RECALL_MIN, FreeRecall } from '../practice/FreeRecall'
+import { SentenceStep, sentenceWord } from './SentenceStep'
 import { SessionNote } from './SessionNote'
 import { RESULT_ART, STAT_ART, resultKind } from '../shared/drawnArt'
 import { Sticker } from '../shared/Sticker'
@@ -52,6 +53,8 @@ function headline(accuracy: number, practice?: boolean): string {
 
 /** Answers after which a session counts as long enough to suggest splitting it. */
 const LONG_SESSION = 40
+/** Below this many answers in all, a learner is just starting: a low score is not yet a reason to slow down. */
+export const EARLY_ANSWERS = 150
 
 export function Summary({
   summary,
@@ -62,6 +65,7 @@ export function Summary({
   before,
   after,
   firstSitting,
+  onOwnSentence,
   onDone,
 }: {
   summary: SessionSummary
@@ -74,6 +78,8 @@ export function Summary({
   after: GameState | null
   /** The first of a long day's two sittings: the rest waits on Today. */
   firstSitting?: boolean
+  /** Saves the learner's own sentence with a word of the round (the "Bir cümle yaz" step of a daily round). */
+  onOwnSentence?: (entryId: string, text: string) => Promise<void>
   onDone: () => void
 }) {
   const name = (id: string) => {
@@ -97,7 +103,10 @@ export function Summary({
   // A badge earned in this session gets its moment, after the level or milestone one.
   // Derived, not an initial value: the game state after the session may arrive a moment after the summary opens.
   const [badgeMomentDone, setBadgeMomentDone] = useState(false)
-  const badgeMoment = !practice && !badgeMomentDone && newBadges.length > 0
+  // One big moment a summary: after a level or milestone moment the badges are listed under "Kazandıkların", not given a
+  // second full-screen moment (the first session earned a badge, a level and a streak at once, each celebrated in turn).
+  const [hadMoment] = useState(() => !!milestone)
+  const badgeMoment = !practice && !badgeMomentDone && !hadMoment && newBadges.length > 0
   // The session's badges go into the log now, dated, so they are kept (and not celebrated again later).
   useEffect(() => {
     if (practice || !newBadges.length) return
@@ -131,8 +140,13 @@ export function Summary({
   // Free recall: the words studied, and while the learner writes them the lists stay hidden.
   const studied = summary.words.map((w) => byId.get(w.entryId)).filter((e): e is VocabularyEntry => !!e)
   const [recalling, setRecalling] = useState(false)
-  const tooEasyOrHard = !practice && !topic && summary.answered >= 12 && (accuracy > 0.93 || accuracy < 0.7)
+  // A low score while words are new is how learning starts, not a sign of too much: the "too hard" note waits until the
+  // learner has a history (EARLY_ANSWERS) and the session was not mostly new words (each new word asks about three questions).
+  const early = (before?.stats.totalAnswers ?? 0) < EARLY_ANSWERS || summary.introduced.length * 3 >= summary.answered / 2
+  const tooEasyOrHard = !practice && !topic && summary.answered >= 12 && (accuracy > 0.93 || (accuracy < 0.7 && !early))
   const [graduated, setGraduated] = useState<Set<string>>(() => new Set())
+  // Chosen once: saving the sentence reloads the words, and the step should not jump to another one.
+  const [sentenceEntry] = useState(() => (!practice && !topic && onOwnSentence ? sentenceWord(summary, byId) : undefined))
 
   return (
     <div className="summary-grid">
@@ -157,7 +171,7 @@ export function Summary({
             <BoltIcon size={15} /> Zor kelime çalışması
           </span>
         )}
-        <h1>{topic === 'difficult' ? hardHeadline(accuracy) : practice ? headline(accuracy, true) : 'Kelime turun tamamlandı'}</h1>
+        <h1>{topic === 'difficult' ? hardHeadline(accuracy) : practice ? headline(accuracy, true) : 'Tur bitti'}</h1>
         <p className="muted mt-2">
           {topic === 'difficult'
             ? `${summary.words.length} zor kelimeyle çalıştın: ${summary.answered} sorudan ${summary.correct} tanesini doğru bildin.`
@@ -167,10 +181,10 @@ export function Summary({
         </p>
         {!practice && (
           <p className="note">
-            Bu turdaki çalışma tamamlandı; bu, kelimelerin kalıcı olarak öğrenildiği anlamına gelmez.
+            {/* What comes next, not "done" beside "not learned": the words settle in the coming days' reviews. */}
             {summary.pendingLearning?.length
-              ? ` ${summary.pendingLearning.length} kelime ek pekiştirme bekliyor; sonraki turda öncelikli gelecek.`
-              : ' Hatırlaman, sonraki günlerdeki yardımsız tekrarlarla doğrulanacak.'}
+              ? `${summary.pendingLearning.length} kelimenin pekiştirmesi sırada: sonraki turda önce onlar gelecek.`
+              : 'Kelimeler önümüzdeki günlerin tekrarlarıyla kalıcılaşacak.'}
           </p>
         )}
         <p className="xp-gain">
@@ -180,7 +194,7 @@ export function Summary({
           <dl className="celebrate-stats">
             <div>
               <dd>
-                <StreakPicture streak={after.streak} size={40} ignite={!!before && after.streak > before.streak} /> {after.streak}
+                <StreakPicture streak={after.streak} size={40} ignite={!!before && after.streak > before.streak && after.streak >= 2} /> {after.streak}
               </dd>
               <dt>
                 günlük seri
@@ -222,6 +236,7 @@ export function Summary({
           </dl>
         )}
       </div>
+      {sentenceEntry && onOwnSentence && <SentenceStep entry={sentenceEntry} onSave={onOwnSentence} />}
       {studied.length >= FREE_RECALL_MIN && <FreeRecall entries={studied} onWriting={setRecalling} />}
       {((leveledUp && after) || newBadges.length > 0) && (
         // Level and badges side by side in one strip, instead of a column of separate blocks.

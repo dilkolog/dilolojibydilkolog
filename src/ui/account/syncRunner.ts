@@ -1,3 +1,4 @@
+import { automatedOnLive } from '../../data/automation'
 import { db } from '../../data/instance'
 import { ACCOUNT_EVENT, forgetAccess } from '../../data/access'
 import { showToast } from '../shared/toastFeed'
@@ -10,7 +11,7 @@ import type { Account, Credential, SyncResult } from '../../data/sync'
 /** The sync code (encryption, merging) is loaded when a sync runs, not with the first screen. */
 const syncCode = () => import('../../data/sync')
 
-/** Shown when the server's SYNC_ALLOWED list doesn't include this account or code. */
+/** Shown when the server refuses this account or code outright. */
 export const NOT_ALLOWED = 'Bu hesap ya da kod sunucunun izin listesinde yok; eşitleme kapalı.'
 
 /** Shown when the account waits for (or was refused) the owner's approval. */
@@ -106,9 +107,21 @@ export const isSyncing = () => running !== null
  * One sync runs at a time and whoever asks meanwhile shares it, with its failure too: a caller that wants errors
  * (signing out, which empties the device) must not take a background sync's silent failure for a success.
  */
+/** Said once to a driven browser on the live site, whose syncs are skipped. */
+const BOT = 'Otomasyonla açılan bir tarayıcı: eşitleme kapalı, bu cihazdaki cevaplar hesabına yazılmaz.'
+let botSaid = false
+
 export async function runSync(throwErrors = false, quiet = false): Promise<SyncResult | null> {
   running ??= (async (): Promise<Outcome> => {
     try {
+      // A bot on the live site keeps its answers on its own device: they never reach the account (automation.ts).
+      if (automatedOnLive()) {
+        if (!botSaid) {
+          botSaid = true
+          showToast(BOT, undefined, 10_000, 'info')
+        }
+        return { result: null, failed: false }
+      }
       const cred = await getCredential()
       if (!cred) return { result: null, failed: false }
       if (typeof cred !== 'string' && (await signOutOldAccount())) return { result: null, failed: false }

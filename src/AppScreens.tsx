@@ -149,6 +149,14 @@ export function AppScreens(props: AppScreensProps) {
           before={screen.gameBefore}
           after={game}
           firstSitting={screen.firstSitting}
+          onOwnSentence={async (entryId, text) => {
+            const e = byId.get(entryId)
+            if (!e) throw new Error('word not found')
+            // Loaded here: the word-input module stays out of the first screen's bundle.
+            const { addExample } = await import('./data/wordInput')
+            await db.vocabulary.put(addExample(e, text, '', true))
+            reload()
+          }}
           onDone={go({ name: 'home' })}
         />
       ) : screen.name === 'words' ? (

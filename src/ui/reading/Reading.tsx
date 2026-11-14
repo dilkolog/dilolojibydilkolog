@@ -6,7 +6,7 @@ import { KeyWordsCard } from './KeyWords'
 import { PrequestionsCard } from './Prequestions'
 import { ComprehensionCard } from './ComprehensionCard'
 import { saveSentence } from '../words/saveSentence'
-import { analyzeText, coverageLine, type ReadToken } from '../../engine/reading'
+import { analyzeText, coverageLine, foundationSize, isStarterText, type ReadToken } from '../../engine/reading'
 import { type TargetLanguage, type UserWordState, type VocabularyEntry } from '../../engine/types'
 import { type KelimeDB, type ReadingText } from '../../data/db'
 import { SameTopic } from './News'
@@ -16,6 +16,7 @@ import { WatchCheck, WatchMap } from './WatchCheck'
 import type { WatchRating } from '../../data/db'
 import { videoOf } from '../../engine/subtitles'
 import { wordKeys } from '../../data/wordInput'
+import { contentLevelOf } from '../../data/content'
 import { ConfirmDialog } from '../shared/Dialog'
 import { showToast } from '../shared/toastFeed'
 import { useTenses } from '../words/tenseGroups'
@@ -193,7 +194,8 @@ export function ReadingScreen({
     const out = new Map<string, string>()
     if (text) return out
     // Chapters of a book are rated when the book is opened (BookItem), not all at once here.
-    for (const t of library ?? []) if (!t.book) out.set(t.id, coverageLine(analyzeText(t.text, language, vocabulary, states, known, ignored)))
+    const foundation = foundationSize(language, vocabulary, states, known)
+    for (const t of library ?? []) if (!t.book) out.set(t.id, coverageLine(analyzeText(t.text, language, vocabulary, states, known, ignored), { starter: isStarterText(contentLevelOf(t), foundation) }))
     return out
   }, [text, library, language, vocabulary, states, known, ignored])
   const masks = useMemo(() => (deduce && !listenFirst && analysis ? maskPositions(analysis.paragraphs, language) : new Set<string>()), [deduce, listenFirst, analysis, language])
@@ -371,7 +373,7 @@ export function ReadingScreen({
         </button>
       </div>
 
-      <CoverageCard analysis={analysis} current={current} startCoverage={startCoverage} knownCount={known.size} expanded={covOpen} onToggle={() => setCovOpen((o) => !o)} />
+      <CoverageCard analysis={analysis} current={current} startCoverage={startCoverage} knownCount={known.size} starter={!!current && isStarterText(contentLevelOf(current), foundationSize(language, vocabulary, states, known))} expanded={covOpen} onToggle={() => setCovOpen((o) => !o)} />
 
       {current?.audio && (
         <AudioPanel

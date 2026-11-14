@@ -1,0 +1,262 @@
+{
+  "job": "fr-grammar-0010",
+  "results": [
+    {
+      "id": "fr-g-000421",
+      "answer": "petite",
+      "single": true
+    },
+    {
+      "id": "fr-g-000422",
+      "answer": "grand",
+      "single": true
+    },
+    {
+      "id": "fr-g-000423",
+      "answer": "contente",
+      "single": true
+    },
+    {
+      "id": "fr-g-000424",
+      "answer": "propre",
+      "single": true
+    },
+    {
+      "id": "fr-g-000425",
+      "answer": "chaude",
+      "single": true
+    },
+    {
+      "id": "fr-g-000426",
+      "answer": "fermée",
+      "single": true
+    },
+    {
+      "id": "fr-g-000427",
+      "answer": "long",
+      "single": true
+    },
+    {
+      "id": "fr-g-000428",
+      "answer": "petite",
+      "single": true
+    },
+    {
+      "id": "fr-g-000429",
+      "answer": "lourde",
+      "single": true,
+      "note": "lourd"
+    },
+    {
+      "id": "fr-g-000430",
+      "answer": "jolis",
+      "single": true,
+      "note": "jolie"
+    },
+    {
+      "id": "fr-g-000431",
+      "answer": "grandes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000432",
+      "answer": "contents",
+      "single": true
+    },
+    {
+      "id": "fr-g-000433",
+      "answer": "jolies",
+      "single": true
+    },
+    {
+      "id": "fr-g-000434",
+      "answer": "blancs",
+      "single": true
+    },
+    {
+      "id": "fr-g-000435",
+      "answer": "fatiguées",
+      "single": true
+    },
+    {
+      "id": "fr-g-000436",
+      "answer": "faciles",
+      "single": true
+    },
+    {
+      "id": "fr-g-000437",
+      "answer": "rondes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000438",
+      "answer": "lourds",
+      "single": true
+    },
+    {
+      "id": "fr-g-000439",
+      "answer": "ouverte",
+      "single": true,
+      "note": "ouvertes"
+    },
+    {
+      "id": "fr-g-000440",
+      "answer": "petite",
+      "single": true,
+      "note": "petits"
+    },
+    {
+      "id": "fr-g-000441",
+      "answer": "heureuse",
+      "single": true
+    },
+    {
+      "id": "fr-g-000442",
+      "answer": "sportive",
+      "single": true
+    },
+    {
+      "id": "fr-g-000443",
+      "answer": "chère",
+      "single": true
+    },
+    {
+      "id": "fr-g-000444",
+      "answer": "bonne",
+      "single": true
+    },
+    {
+      "id": "fr-g-000445",
+      "answer": "ancienne",
+      "single": true
+    },
+    {
+      "id": "fr-g-000446",
+      "answer": "normaux",
+      "single": true
+    },
+    {
+      "id": "fr-g-000447",
+      "answer": "heureux",
+      "single": true
+    },
+    {
+      "id": "fr-g-000448",
+      "answer": "sportives",
+      "single": true
+    },
+    {
+      "id": "fr-g-000449",
+      "answer": "anciennes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000450",
+      "answer": "bonnes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000451",
+      "answer": "bel",
+      "single": true
+    },
+    {
+      "id": "fr-g-000452",
+      "answer": "nouvel",
+      "single": true
+    },
+    {
+      "id": "fr-g-000453",
+      "answer": "vieil",
+      "single": true
+    },
+    {
+      "id": "fr-g-000454",
+      "answer": "bel",
+      "single": true
+    },
+    {
+      "id": "fr-g-000455",
+      "answer": "nouvel",
+      "single": true
+    },
+    {
+      "id": "fr-g-000456",
+      "answer": "vieil",
+      "single": true
+    },
+    {
+      "id": "fr-g-000457",
+      "answer": "nouvel",
+      "single": true
+    },
+    {
+      "id": "fr-g-000458",
+      "answer": "bel",
+      "single": true
+    },
+    {
+      "id": "fr-g-000459",
+      "answer": "nouvelle",
+      "single": true,
+      "note": "nouvel"
+    },
+    {
+      "id": "fr-g-000460",
+      "answer": "vieil",
+      "single": true
+    },
+    {
+      "id": "fr-g-000461",
+      "answer": "petite",
+      "single": true
+    },
+    {
+      "id": "fr-g-000462",
+      "answer": "bleue",
+      "single": true
+    },
+    {
+      "id": "fr-g-000463",
+      "answer": "bon",
+      "single": true
+    },
+    {
+      "id": "fr-g-000464",
+      "answer": "chaude",
+      "single": true
+    },
+    {
+      "id": "fr-g-000465",
+      "answer": "jolis",
+      "single": true
+    },
+    {
+      "id": "fr-g-000466",
+      "answer": "vertes",
+      "single": true
+    },
+    {
+      "id": "fr-g-000467",
+      "answer": "vieille",
+      "single": true
+    },
+    {
+      "id": "fr-g-000468",
+      "answer": "français",
+      "single": true
+    },
+    {
+      "id": "fr-g-000469",
+      "answer": "grands",
+      "single": true,
+      "note": "grande"
+    },
+    {
+      "id": "fr-g-000470",
+      "answer": "noire",
+      "single": true,
+      "note": "noires"
+    }
+  ]
+}

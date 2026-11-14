@@ -1,7 +1,7 @@
 # Diloloji — ajanlar için devir notu
 
 Bu dosya, projede çalışacak bir yapay zekâ ajanının (Claude Code'dan devralan) bilmesi gerekenleri toplar.
-Son güncelleme: 2026-11-08.
+Son güncelleme: 2026-11-12.
 
 **Bu dosya kısa tutulur** (her oturumda bağlama yüklenir): yalnızca çalışma kuralları, komutlar ve tuzaklar. Konuya özgü uzun notlar `docs/notlar/` altında; yeni uzun not oraya, ilgili konu dosyasına yazılır. Dizin için aşağıdaki "Notlar dizini" bölümü.
 
@@ -32,6 +32,7 @@ Sahibi şimdilik altyapıyla değil, **içerik ve eğitim tarafıyla** (dersler,
 - [ ] Gerçek cihaz denemeleri: Safari mikrofon, iki telefonla canlı düello, push ve e-posta hatırlatmaları.
 - [x] ~~**Eşitlemeyi Supabase'e taşımak**~~ (2026-11-09: `0002` + `0005` çalıştı, kontrol sorgusu üç `true`; sahibinin verisi `sync_parts`'ta, öbür iki hesabın R2'de eşitleme verisi yoktu).
 - [x] ~~**Arkadaşlar, listeler, hatırlatmalar**~~ (2026-11-09: `tables` işareti yazıldı; R2'deki 2 kart tabloda, takip/liste/hatırlatma dosyası yoktu). R2 artık bunlar için okunmuyor.
+- [ ] **Güvenlik incelemesi (2026-11-10/12), sahibinin yapacağı:** ~~SQL Editor'de sırayla `0013`, `0005` (yeniden, 30/20/50 MB) ve `0014`~~ (çalıştırıldı — 2026-11-12, #783). ~~Worker gizlisi `OWNER_STEP_SECRET`~~ (tanımlı — 2026-11-12; yönetici silme/toplu onay/sınırlar ikinci gizliyi ister). ~~Anthropic Console'da aylık harcama sınırı~~ (5 $ — 2026-11-12; site günlük tavanı buna göre ~0,15 $ olmalı). ~~Yedek: Mac'te `bash scripts/backup-mac.sh install`~~ (kuruldu, haftalık — 2026-11-13). Yönetim → Güvenlik'ten iki adımlı doğrulamayı açmak (ve bir yedek uygulama eklemek); isteğe bağlı `OWNER_MFA=required`. Cloudflare'de artık kullanılmayan `ADMIN_TOKEN`/`SYNC_ALLOWED` tanımlıysa silmek. Ayrıntı: `docs/GUVENLIK.md` "2026-11-12", `docs/notlar/sunucu-guvenlik-dagitim.md`.
 - Supabase güvenlik denetimi (2026-11-09): sızdırılmış şifre koruması (HaveIBeenPwned) yalnızca Pro planda, ücretsiz planda açılamıyor. ~~`handle_new_user` RPC ile çağrılabilir~~ (`0012_trigger_privileges.sql`, canlıya uygulandı ve testli — 2026-11-09).
 - [x] ~~Dış gözcü~~ (2026-11-09): UptimeRobot `diloloji.com`, `/api/health`, `/api/push?mail=status`, `/hakkinda` (5 dk).
 
@@ -80,7 +81,7 @@ Yerel WebKit indirmesi ağ politikası nedeniyle 403 veriyor; GitHub CI'da tam p
 - Komutlar:
   - `npm run typecheck` (= `tsc -b && tsc -p tsconfig.api.json && tsc -p tsconfig.scripts.json && tsc -p tsconfig.worker.json`; Worker tipleri dahil)
   - `npx oxlint src api e2e`
-  - `npx vitest run` (birim, ~2400 test)
+  - `npx vitest run` (birim, ~3400 test; ağ kapalı: `src/test/noNetwork.ts` taklit edilmemiş her `fetch`'i reddeder, gerçek servise istek gitmez)
   - `npm run build:cf` (statik build + dist/_headers üretimi) / `npm run deploy:cf` (Cloudflare Worker dağıtımı)
   - `npx vite build && npx playwright test e2e/phone.e2e.ts e2e/desktop.e2e.ts e2e/a11y.e2e.ts --workers=4` (E2E, ~3 dk; `E2E_PORT` için aşağıya bak)
   - Görsel testler: `e2e/visual.e2e.ts` — referanslar **yalnızca Linux** (`*-linux.png`). macOS'ta `--ignore-snapshots` ile çalıştır. **`*-darwin.png` dosyalarını asla commit etme.**

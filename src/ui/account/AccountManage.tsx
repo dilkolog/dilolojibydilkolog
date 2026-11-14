@@ -6,6 +6,7 @@ import { deleteAccount } from '../../data/vault'
 import { AccountDeleteDialog } from './AccountDeleteDialog'
 import { PasswordInput } from './PasswordInput'
 import { setAccount } from './syncRunner'
+import { renewSyncKey } from '../../data/access'
 import { showToast } from '../shared/toastFeed'
 import { ChevronRightIcon, LockIcon, LogoutIcon } from '../shared/icons'
 
@@ -44,6 +45,8 @@ export function AccountManage({
     setBusy(true)
     try {
       await setNewPassword(password, needsCurrent ? current : undefined)
+      // A key copied from before the change (another device, a backup) stops working; this one keeps going.
+      await renewSyncKey()
       showToast(hasPassword ? 'Yeni şifren kaydedildi.' : 'Şifren kaydedildi; artık e-posta ve şifreyle de girebilirsin.')
       setJustSet(true)
       setChanging(false)

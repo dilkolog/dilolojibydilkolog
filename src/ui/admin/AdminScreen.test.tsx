@@ -10,8 +10,6 @@ const api = vi.hoisted(() => ({
   loadReports: vi.fn(),
   unpublishSet: vi.fn(async () => ({ ok: true })),
   loadSystem: vi.fn(),
-  moveStep: vi.fn(),
-  moveTablesStep: vi.fn(),
   loadStats: vi.fn(),
   loadUsage: vi.fn(),
   loadPerson: vi.fn(),
@@ -50,9 +48,9 @@ const button = (text: string) => [...host.querySelectorAll('button')].find((b) =
 
 const VIEW = {
   settings: { aiDailyCalls: 100 },
-  effective: { aiDailyCalls: 100, aiDailyBudgetUsd: 0.75, translateChars: 20000, ttsChars: 8000 },
-  defaults: { aiDailyCalls: 150, aiDailyBudgetUsd: 0.75, translateChars: 20000, ttsChars: 8000 },
-  ranges: { aiDailyCalls: { min: 1, max: 2000 }, aiDailyBudgetUsd: { min: 0.01, max: 50 }, translateChars: { min: 500, max: 500000 }, ttsChars: { min: 500, max: 500000 } },
+  effective: { aiDailyCalls: 100, aiDailyBudgetUsd: 0.75, aiSiteBudgetUsd: 5, translateChars: 20000, ttsChars: 8000 },
+  defaults: { aiDailyCalls: 150, aiDailyBudgetUsd: 0.75, aiSiteBudgetUsd: 5, translateChars: 20000, ttsChars: 8000 },
+  ranges: { aiDailyCalls: { min: 1, max: 2000 }, aiDailyBudgetUsd: { min: 0.01, max: 50 }, aiSiteBudgetUsd: { min: 0.5, max: 500 }, translateChars: { min: 500, max: 500000 }, ttsChars: { min: 500, max: 500000 } },
 }
 const TOTALS = { aiCalls: 12, aiUsd: 0.4, translateChars: 900, ttsChars: 0, assessCalls: 1, people: 2 }
 
@@ -74,8 +72,7 @@ beforeEach(() => {
   api.loadBlocks.mockResolvedValue({ available: true, blocks: [{ kind: 'domain', value: 'spam.example', note: '', createdAt: '2026-11-03T10:00:00Z' }] })
   api.loadPeople.mockImplementation(async (filter: string) => ({ people: filter === 'approved' ? [APPROVED] : [PENDING], levels: true, pending: 1 }))
   api.loadReports.mockResolvedValue({ reports: [{ id: 'r1', at: '2026-11-04T09:00:00Z', kind: 'set', reason: 'spam', note: '', target: 'f'.repeat(32), content: 'Liste: kötü', about: { name: 'Biri' } }] })
-  api.loadSystem.mockResolvedValue({ health: { ok: true, supabase: 'ok', storage: 'ok' }, problems: ['DEEPL_AUTH_KEY tanımlı değil (çeviri).'], docs: 'ready', tables: 'off' })
-  api.moveStep.mockResolvedValueOnce({ copied: 30, next: { prefix: 0, cursor: '30' }, at: 'friends/handle/' }).mockResolvedValueOnce({ copied: 4, next: { prefix: 1 }, at: 'friends/handle/' }).mockResolvedValueOnce({ copied: 0, next: null, at: '' })
+  api.loadSystem.mockResolvedValue({ health: { ok: true, supabase: 'ok', storage: 'ok' }, problems: ['DEEPL_AUTH_KEY tanımlı değil (çeviri).'] })
 })
 afterEach(() => {
   act(() => root?.unmount())
@@ -116,38 +113,10 @@ describe('AdminScreen', () => {
     expect(host.textContent).toContain('Kütüphaneden kaldırıldı.')
   })
 
-  it('names what needs attention and runs the move step by step to the end', async () => {
+  it('names what needs attention, and offers no move any more (both finished)', async () => {
     await mount()
     expect(host.textContent).toContain('DEEPL_AUTH_KEY tanımlı değil')
-    await act(async () => button('Eski dosyaları taşı').click())
-    for (let i = 0; i < 6; i++) await flush()
-    expect(api.moveStep).toHaveBeenCalledTimes(3)
-    expect(api.moveStep.mock.calls[1][0]).toEqual({ prefix: 0, cursor: '30' })
-    expect(api.loadSystem).toHaveBeenCalledTimes(2)
-  })
-
-  it('moves friends, lists and reminders to the tables, waiting where the server asks', async () => {
-    api.loadSystem.mockResolvedValue({ health: { ok: true, supabase: 'ok', storage: 'ok' }, problems: [], docs: 'on', tables: 'ready' })
-    api.moveTablesStep.mockReset()
-    api.moveTablesStep
-      .mockResolvedValueOnce({ copied: 0, next: { prefix: 0 }, at: '', wait: 5 })
-      .mockResolvedValueOnce({ copied: 3, next: { prefix: 1 }, at: 'friends/card/' })
-      .mockResolvedValueOnce({ copied: 0, next: null, at: '' })
-    await mount()
-    expect(host.textContent).toContain('yarıda kalırsa hiçbir şey kaybolmaz')
-    await act(async () => button('Taşımayı başlat').click())
-    for (let i = 0; i < 20 && api.moveTablesStep.mock.calls.length < 3; i++) await act(() => new Promise((r) => setTimeout(r, 10)))
-    for (let i = 0; i < 4; i++) await flush()
-    expect(api.moveTablesStep).toHaveBeenCalledTimes(3)
-    expect(api.moveTablesStep.mock.calls[1][0]).toEqual({ prefix: 0 })
-    expect(api.moveTablesStep.mock.calls[2][0]).toEqual({ prefix: 1 })
-  })
-
-  it('a move under way says so and offers to go on', async () => {
-    api.loadSystem.mockResolvedValue({ health: { ok: true, supabase: 'ok', storage: 'ok' }, problems: [], docs: 'on', tables: 'moving' })
-    await mount()
-    expect(host.textContent).toContain('Taşıma başlamış ama bitmemiş')
-    expect(button('Taşımayı sürdür')).toBeTruthy()
+    expect(host.textContent).not.toContain('taşı')
   })
 
   it('deletes an account only after the e-mail is typed', async () => {

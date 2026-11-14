@@ -72,6 +72,12 @@ export const contentTextId = (id: string) => `content-${id}`
 export const CONTENT_SOURCE = 'Diloloji metinleri'
 
 /** A published text as a library text: the reader, word adding, dictation and shadowing then work as for any text. */
+/** The level of one of Diloloji's own texts saved in the library ("Diloloji metinleri (A1)"), else undefined. */
+export function contentLevelOf(text: Pick<ReadingText, 'source'>): string | undefined {
+  const prefix = `${CONTENT_SOURCE} (`
+  return text.source?.startsWith(prefix) && text.source.endsWith(')') ? text.source.slice(prefix.length, -1) : undefined
+}
+
 export function contentReadingText(r: PublishedReading, now = new Date()): ReadingText {
   return {
     id: contentTextId(r.id),
@@ -118,3 +124,6 @@ export async function grammarForIds(language: ContentLanguage, m: ContentManifes
   const parts = await Promise.all([...needed.values()].map((s) => loadShard<PublishedGrammar>(language, s).catch(() => [] as PublishedGrammar[])))
   return parts.flat().filter((q) => want.has(q.id) && !out.has(q.id)).map(asExercise)
 }
+
+/** Where a text stands for a beginner (lower first): the first-step series in its order, then the rest. */
+export const beginnerRank = (r: Pick<PublishedReading, 'firstStep'>): number => (r.firstStep ? r.firstStep.position : 1000)

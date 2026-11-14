@@ -1,3 +1,4 @@
+import { idiomInflectionMatcher } from './idiomInflection'
 import { normalize, stripDiacritics } from '../engine/answerCheck'
 import type { Register, TargetLanguage } from '../engine/types'
 
@@ -58,12 +59,15 @@ interface IdiomFile {
   items: Idiom[]
 }
 
+const PACK_LANGUAGES = new WeakMap<readonly Idiom[], TargetLanguage>()
 const FILES = import.meta.glob<IdiomFile>('./idioms/*.json', { import: 'default' })
 
 /** The idioms of a language (loaded when asked for: they are not part of the first screen). */
 export async function loadIdioms(language: TargetLanguage): Promise<Idiom[]> {
   const load = FILES[`./idioms/${language}.json`]
-  return load ? (await load()).items : []
+  const items = load ? (await load()).items : []
+  PACK_LANGUAGES.set(items, language)
+  return items
 }
 
 const fold = (s: string) => stripDiacritics(normalize(s)).replace(/['-]/g, ' ').replace(/\s+/g, ' ').trim()
@@ -72,10 +76,12 @@ const fold = (s: string) => stripDiacritics(normalize(s)).replace(/['-]/g, ' ').
  * The idioms a dictionary search finds: the one typed (in its dictionary form, or as it stands in its sentence),
  * and the others that hold the typed word or start as typed, or whose Turkish says it. Accents and case do not count.
  */
-export function findIdioms(idioms: readonly Idiom[], query: string, limit = 8): { exact?: Idiom; others: Idiom[] } {
+export function findIdioms(idioms: readonly Idiom[], query: string, limit = 8, language?: TargetLanguage): { exact?: Idiom; others: Idiom[] } {
   const q = fold(query)
   if (q.length < 2) return { others: [] }
-  const exact = idioms.find((i) => fold(i.w) === q || fold(i.form) === q || (i.pat && fold(i.pat) === q))
+  const languageOfPack = language ?? PACK_LANGUAGES.get(idioms)
+  const inflected = idiomInflectionMatcher(query, languageOfPack ? [languageOfPack] : ['es', 'fr', 'en'])
+  const exact = idioms.find((i) => fold(i.w) === q || fold(i.form) === q || (i.pat && fold(i.pat) === q)) ?? idioms.find((i) => inflected(i.w))
   if (q.length < 3) return { exact, others: [] }
   const turkish = query.trim().toLocaleLowerCase('tr')
   const holds = (i: Idiom) => {

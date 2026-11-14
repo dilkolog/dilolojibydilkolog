@@ -71,30 +71,46 @@ describe('/api/speech', () => {
   describe('speaking', () => {
     const ok = { text: 'Bonjour', language: 'fr', voice: 'fr-FR-Neural2-A', rate: 1 }
     const mp3 = btoa('ID3-fake-audio')
+    const offered = { voices: [{ name: 'fr-FR-Neural2-A', languageCodes: ['fr-FR'] }, { name: 'fr-FR-Standard-B', languageCodes: ['fr-FR'] }] }
+    /** Google: the voice list for /voices, `synth` for the speech itself. */
+    const google = (synth: () => Response) => (url: string) => (url.includes('/voices') ? Response.json(offered) : synth())
+    const spoken = () => calls.filter((c) => c.url.includes('text:synthesize'))
 
     it('sends the text to Google with the key in a header and answers the audio itself', async () => {
-      reply = () => Response.json({ audioContent: mp3 })
+      reply = google(() => Response.json({ audioContent: mp3 }))
       const res = await POST(post('?tts=1', { ...ok, rate: 9 }))
       expect(res.status).toBe(200)
       expect(res.headers.get('content-type')).toBe('audio/mpeg')
       expect(new TextDecoder().decode(await res.arrayBuffer())).toBe('ID3-fake-audio')
-      const sent = JSON.parse(String(calls[0].init?.body))
+      const sent = JSON.parse(String(spoken()[0].init?.body))
       expect(sent).toEqual({ input: { text: 'Bonjour' }, voice: { languageCode: 'fr-FR', name: 'fr-FR-Neural2-A' }, audioConfig: { audioEncoding: 'MP3', speakingRate: 2 } })
-      expect(calls[0].url).not.toContain('g-key')
+      expect(spoken()[0].url).not.toContain('g-key')
     })
 
     it('does not pass on a request that is not an ordinary sentence in a real voice of that language', async () => {
-      reply = () => Response.json({ audioContent: mp3 })
+      reply = google(() => Response.json({ audioContent: mp3 }))
       for (const body of [{ ...ok, text: '' }, { ...ok, text: 'a'.repeat(501) }, { ...ok, language: 'de' }, { ...ok, voice: 'es-ES-Neural2-A' }, { ...ok, voice: 'fr-FR-x; drop table' }, { ...ok, voice: undefined }]) {
         expect((await POST(post('?tts=1', body))).status).toBe(400)
       }
       expect(calls).toEqual([])
     })
 
-    it('says "unavailable" when the owner\'s key or project is what failed, and "busy" when Google asks to slow down', async () => {
-      reply = () => new Response('billing', { status: 403 })
+    it('speaks only in a voice the server offers: a dearer tier of the same language is refused', async () => {
+      reply = google(() => Response.json({ audioContent: mp3 }))
+      // Right language and shape, but not in the list (another, dearer tier).
+      expect((await POST(post('?tts=1', { ...ok, voice: 'fr-FR-Studio-A' }))).status).toBe(400)
+      expect((await POST(post('?tts=1', { ...ok, voice: 'fr-FR-Chirp3-HD-Aoede' }))).status).toBe(400)
+      expect(spoken()).toEqual([])
+      // The list itself cannot be had: nothing is spoken.
+      resetVoices()
+      reply = () => new Response('', { status: 500 })
       expect((await POST(post('?tts=1', ok))).status).toBe(502)
-      reply = () => new Response('', { status: 429 })
+    })
+
+    it('says "unavailable" when the owner\'s key or project is what failed, and "busy" when Google asks to slow down', async () => {
+      reply = google(() => new Response('billing', { status: 403 }))
+      expect((await POST(post('?tts=1', ok))).status).toBe(502)
+      reply = google(() => new Response('', { status: 429 }))
       expect((await POST(post('?tts=1', ok))).status).toBe(429)
     })
 

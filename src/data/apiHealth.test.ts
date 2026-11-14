@@ -19,6 +19,7 @@ const { resetDocs } = await import('../../api/_docs')
 
 const SB = 'https://proj.supabase.co'
 let supabaseDown = false
+let usage: unknown = null
 const mails: { to: string; subject: string; text: string }[] = []
 
 async function fakeFetch(input: string | URL | Request, init: RequestInit = {}): Promise<Response> {
@@ -30,6 +31,7 @@ async function fakeFetch(input: string | URL | Request, init: RequestInit = {}):
   if (supabaseDown) throw new Error('supabase down')
   // The documents table is not there in this test (state goes to the R2 files); flags read as none.
   if (url.includes('/rest/v1/server_docs')) return Response.json({ code: 'PGRST205' }, { status: 404 })
+  if (url.endsWith('/rest/v1/rpc/storage_usage')) return usage ? Response.json(usage) : Response.json({ code: 'PGRST202' }, { status: 404 })
   return Response.json([])
 }
 
@@ -39,6 +41,7 @@ beforeEach(() => {
   blobs.clear()
   mails.length = 0
   supabaseDown = false
+  usage = null
   storageDown = false
   resetRate()
   resetDocs()
@@ -104,5 +107,29 @@ describe('GET /api/health', () => {
     supabaseDown = false
     storageDown = true
     expect((await ask()).status).toBe(503)
+  })
+})
+
+describe('how full Supabase is', () => {
+  it('names the database or the media bucket past 80% and 90% of the plan, and nothing below or without 0014', async () => {
+    expect(await problems()).toEqual([])
+    usage = [{ db_bytes: 300_000_000, media_bytes: 100_000_000, media_files: 10 }]
+    expect(await problems()).toEqual([])
+    usage = [{ db_bytes: 410_000_000, media_bytes: 950_000_000, media_files: 10 }]
+    const lines = await problems()
+    expect(lines).toHaveLength(2)
+    expect(lines[0]).toContain('veritabanı %80')
+    expect(lines[1]).toContain('dosya deposu %90')
+    // The owner's plan may be larger.
+    vi.stubEnv('SUPABASE_DB_LIMIT_MB', '8000')
+    expect((await problems()).some((l) => l.includes('veritabanı'))).toBe(false)
+  })
+
+  it('mails once per step, not as the number moves', async () => {
+    usage = [{ db_bytes: 410_000_000, media_bytes: 0, media_files: 0 }]
+    expect(await healthAlert()).toBe('sent')
+    usage = [{ db_bytes: 420_000_000, media_bytes: 0, media_files: 0 }]
+    expect(await healthAlert()).toBe('same')
+    expect(mails).toHaveLength(1)
   })
 })

@@ -521,6 +521,9 @@ details[open] > summary { margin-bottom: 1rem; }
 .stat { background: var(--surface); border-radius: var(--r-lg); padding: 1rem; box-shadow: var(--shadow); display: grid; gap: 0.125rem; }
 .stat-value { display: flex; align-items: center; gap: 0.375rem; font-size: var(--t-xl); font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
 .stat-label { font-size: var(--t-sm); color: var(--ink-soft); }
+/* A word count's name opens its meaning (WordCountLabel): reads as the label, with a dotted line that says it has more. */
+.word-count-term { background: none; border: 0; padding: 0; font: inherit; font-size: var(--t-sm); color: var(--ink-soft); cursor: help; text-decoration: underline dotted; text-underline-offset: 3px; }
+.word-count-help { margin: 0; max-width: 18rem; }
 .icon-flame { color: var(--flame); }
 .icon-star { color: var(--gold-text); }
 .icon-book { color: var(--lang); }
@@ -2399,7 +2402,8 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 }
 .milestone-trophy-img {
   max-width: 100%; max-height: 100%; object-fit: contain;
-  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.12));
+  /* The drawn sprout (Monki) keeps its edge on dark and calm pages, under its own soft shadow. */
+  filter: var(--art-edge) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.12));
   animation: pop var(--dur) var(--ease-spring);
 }
 .milestone-emoji-badge {
@@ -4147,7 +4151,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
    them a thin light rim there. Not the confetti frames, the welcome banner (its own light card) or a game's watermark. */
 :is(.streak-picture, .streak-flame-img, .account-art, .monki-face, .monki-pose, .chip-art, .empty-picture, .cat-emblem, .page-header-art, .sheet-react,
   .settings-pane-art, .settings-menu-art, .grown-monki, .emoji-monki, .drawn-medal, .og-pot, .ob-art, .lang-card-art,
-  .pos-art, .session-hello img, .result-art, .game-art, .wl-cover, .sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img, .chat-scene img, .boss-face, .mission-art, .tile-art, .garden-pot, .nudge-art, .friends-art, .lesson-check-art, .flash-done-art, .auth-art, .stat-art-img, .daily-news-art, .goal-monki-art, .lp-art, .slips-cleared-art, .review-empty-art, .scanner-art, .video-listen-art) {
+  .pos-art, .session-hello img, .result-art, .game-art, .wl-cover, .sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img, .chat-scene img, .boss-face, .mission-art, .tile-art, .garden-pot, .nudge-art, .friends-art, .lesson-check-art, .flash-done-art, .auth-art, .stat-art-img, .daily-news-art, .goal-monki-art, .lp-art, .slips-cleared-art, .review-empty-art, .scanner-art, .video-listen-art, .inline-art) {
   filter: var(--art-edge);
 }
 

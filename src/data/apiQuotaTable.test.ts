@@ -9,7 +9,7 @@ vi.mock('@vercel/blob', () => ({
   del: async () => undefined,
 }))
 
-const { quotaLeft, quotaTake, quotaUsed, spendQuota, pruneCounters, resetQuota, resetCounterTable } = await import('../../api/_quota')
+const { quotaLeft, quotaTake, quotaUsed, spendQuota, pruneCounters, resetQuota, resetCounterTable, resetGiveBack, canGiveBack, quotaReserve, quotaGiveBack, QuotaUnavailable } = await import('../../api/_quota')
 
 const SB = 'https://proj.supabase.co'
 const ID = 'a'.repeat(64)
@@ -39,6 +39,10 @@ function fakeSupabase(input: string, init: RequestInit = {}): Response {
     counters.set(key, total)
     return Response.json(true)
   }
+  if (fn === 'counter_give') {
+    counters.set(key, Math.max(0, (counters.get(key) ?? 0) - Math.max(a.p_amount, 0)))
+    return Response.json(counters.get(key))
+  }
   if (fn === 'counter_prune') return Response.json(3)
   return new Response('not found', { status: 404 })
 }
@@ -50,6 +54,7 @@ beforeEach(() => {
   mode = 'ready'
   resetQuota()
   resetCounterTable()
+  resetGiveBack()
   vi.stubEnv('SUPABASE_URL', SB)
   vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
   vi.stubGlobal('fetch', async (input: string | URL | Request, init?: RequestInit) => fakeSupabase(String(input), init))
@@ -99,6 +104,40 @@ describe('daily counters in Supabase (migration 0009)', () => {
     await expect(spendQuota('ai-cost', ID, 5, undefined, NOON)).resolves.toBeUndefined()
     // A failure is not a missing table: nothing goes to the files.
     expect(blobs.size).toBe(0)
+  })
+
+  it('the AI’s reservation is closed when the store fails, and what it set aside can be given back', async () => {
+    expect(await quotaReserve('ai-cost', ID, 300, 1000, undefined, NOON)).toBe(true)
+    expect(await quotaReserve('ai-cost', ID, 800, 1000, undefined, NOON)).toBe(false)
+    await quotaGiveBack('ai-cost', ID, 250, undefined, NOON)
+    expect(counters.get(`ai-cost|2026-11-04|${ID}`)).toBe(50)
+    await quotaGiveBack('ai-cost', ID, 9999, undefined, NOON)
+    expect(counters.get(`ai-cost|2026-11-04|${ID}`)).toBe(0)
+    mode = 'down'
+    await expect(quotaReserve('ai', ID, 1, 150, undefined, NOON)).rejects.toBeInstanceOf(QuotaUnavailable)
+  })
+
+  it('a project without counter_give (0013) keeps counting in the table: giving back just does nothing', async () => {
+    await spendQuota('tts', ID, 100, undefined, NOON)
+    const real = fakeSupabase
+    vi.stubGlobal('fetch', async (input: string | URL | Request, init?: RequestInit) =>
+      String(input).endsWith('counter_give') ? Response.json({ code: 'PGRST202' }, { status: 404 }) : real(String(input), init),
+    )
+    expect(canGiveBack(NOON)).toBe(true)
+    await quotaGiveBack('tts', ID, 40, undefined, NOON)
+    await spendQuota('tts', ID, 1, undefined, NOON)
+    expect(counters.get(`tts|2026-11-04|${ID}`)).toBe(101)
+    expect(blobs.size).toBe(0)
+    // Known missing for a while: the AI then sets aside only what it expects to use.
+    expect(canGiveBack(NOON)).toBe(false)
+  })
+
+  it('in the files, a reservation and a give-back move the same count', async () => {
+    vi.stubEnv('SUPABASE_URL', '')
+    expect(await quotaReserve('ai-cost', ID, 600, 1000, undefined, NOON)).toBe(true)
+    expect(await quotaReserve('ai-cost', ID, 600, 1000, undefined, NOON)).toBe(false)
+    await quotaGiveBack('ai-cost', ID, 200, undefined, NOON)
+    expect(blobs.get(`quota/ai-cost/2026-11-04/${ID}.json`)).toBe('{"used":400}')
   })
 
   it('prunes old days through the table; nothing without Supabase', async () => {

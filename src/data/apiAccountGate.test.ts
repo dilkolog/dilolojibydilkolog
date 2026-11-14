@@ -18,6 +18,11 @@ const { PUT } = await import('../../api/sync')
 
 const ID = 'a'.repeat(64)
 const TOKEN = 'c'.repeat(64)
+const { bytesBacking, fakeServerDocs } = await import('../test/fakeServerDocs')
+// With Supabase on, the account keys and approval marks are documents in Supabase (kept in the R2 map here); the rest
+// of Supabase (the people's profiles) cannot be reached from the test.
+const { serveDocs } = fakeServerDocs(bytesBacking(blobs))
+const supabaseFetch = async (input: string | URL | Request, init?: RequestInit) => serveDocs(String(input), init) ?? Response.json({}, { status: 503 })
 const account = { 'x-sync-id': ID, 'x-sync-auth': TOKEN }
 const ask = (headers: Record<string, string> = {}) => new Request('https://app.test/api/translate?text=hi', { headers })
 const write = (headers: Record<string, string>) =>
@@ -26,10 +31,13 @@ const write = (headers: Record<string, string>) =>
 beforeEach(() => {
   blobs.clear()
   clearAccessCache()
-  vi.stubEnv('ADMIN_TOKEN', '')
   vi.stubEnv('APPROVAL', 'off')
+  vi.stubGlobal('fetch', supabaseFetch)
 })
-afterEach(() => vi.unstubAllEnvs())
+afterEach(() => {
+  vi.unstubAllEnvs()
+  vi.unstubAllGlobals()
+})
 
 describe('without the owner approving accounts', () => {
   it('Supabase off (local development): nothing is withheld', async () => {
@@ -50,15 +58,16 @@ describe('without the owner approving accounts', () => {
     expect((await requireApproved(ask({ ...account, 'x-sync-auth': 'd'.repeat(64) })))?.status).toBe(403)
   })
 
-  it('Supabase on: a first write does not open an account, with or without a token', async () => {
+  it('Supabase on: the old store takes no writes at all, not even from an account made through its sign-in', async () => {
     vi.stubEnv('SUPABASE_URL', 'https://x.supabase.co')
     vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
-    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(403)
-    expect((await PUT(write({}))).status).toBe(403)
-    expect(blobs.size).toBe(0)
-    // An account made through its sign-in writes as before.
+    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(410)
+    expect((await PUT(write({}))).status).toBe(410)
     expect(await claimAccount(ID, TOKEN)).toBe(true)
-    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(204)
+    const before = blobs.size
+    // Sync lives in Supabase now, with its limits; R2 only serves a device moving its old data over.
+    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(410)
+    expect(blobs.size).toBe(before)
   })
 
   it('Supabase off: the old first write still opens the account', async () => {
@@ -72,10 +81,8 @@ describe('with Supabase on and the owner approving people (the default)', () => 
     vi.stubEnv('APPROVAL', '')
     vi.stubEnv('SUPABASE_URL', 'https://x.supabase.co')
     vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
-    // The panel cannot be reached from the test: only the owner's marks in the store count.
-    vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('offline'))
+    // The people's profiles cannot be reached from the test: only the owner's marks count.
   })
-  afterEach(() => vi.restoreAllMocks())
 
   it('an account that exists but is not approved is refused with approval_required, an approved one passes', async () => {
     expect(await claimAccount(ID, TOKEN)).toBe(true)
@@ -87,8 +94,8 @@ describe('with Supabase on and the owner approving people (the default)', () => 
     expect(await requireApproved(ask(account))).toBeNull()
   })
 
-  it('a write is refused for an account the owner has not approved', async () => {
+  it('a write is refused, approved or not: sync is in Supabase', async () => {
     expect(await claimAccount(ID, TOKEN)).toBe(true)
-    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(403)
+    expect((await PUT(write({ 'x-sync-auth': TOKEN }))).status).toBe(410)
   })
 })

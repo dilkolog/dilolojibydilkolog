@@ -22,9 +22,7 @@ vi.mock('@vercel/blob', () => ({
 }))
 
 const { GET, PUT } = await import('../../api/sync')
-const { allowedIds } = await import('../../api/_allow')
 const { clearAccessCache } = await import('../../api/_account')
-const { deriveAccount, syncIdOf } = await import('./sync')
 
 const ID = 'a'.repeat(64)
 const OTHER = 'b'.repeat(64)
@@ -120,40 +118,6 @@ describe('/api/sync accounts', () => {
     const [a, b] = await Promise.all([PUT(req({ token: TOKEN, body: 'a' })), PUT(req({ token: WRONG, body: 'b' }))])
     expect([a.status, b.status].sort()).toEqual([204, 403])
   })
-})
-
-describe('/api/sync allowlist (SYNC_ALLOWED)', () => {
-  it('lets everyone in when the list is unset or empty', async () => {
-    expect(await allowedIds(undefined)).toBeNull()
-    expect(await allowedIds(' , ')).toBeNull()
-    vi.stubEnv('SYNC_ALLOWED', '')
-    expect((await PUT(req({ id: OTHER, body: 'x' }))).status).toBe(204)
-  })
-
-  it('turns usernames into the ids the app derives, in any case, and keeps hex ids as they are', async () => {
-    const ali = await deriveAccount('Ali', 'pw')
-    const code = await syncIdOf('ABCDE-FGHIJ')
-    const ids = await allowedIds(` ALİ,\n${code.toUpperCase()} `)
-    expect(ids).toEqual(new Set([ali.id, code]))
-    expect((await allowedIds('alı'))?.has(ali.id)).toBe(true)
-  })
-
-  it('refuses ids not on the list for reads and writes, with a reason the app can tell apart', async () => {
-    vi.stubEnv('SYNC_ALLOWED', `someone, ${ID}`)
-    expect(await read(await PUT(req({ id: OTHER, body: 'x' })))).toEqual({ status: 403, text: 'not allowed' })
-    expect(await read(await GET(req({ id: OTHER })))).toEqual({ status: 403, text: 'not allowed' })
-    expect([...blobs.keys()].filter((k) => k.startsWith('sync/'))).toEqual([])
-    expect((await PUT(req({ body: 'x' }))).status).toBe(204)
-    expect((await GET(req())).status).toBe(200)
-  })
-
-  it('still checks the token for an allowed account', async () => {
-    const ali = await deriveAccount('ali', 'pw')
-    vi.stubEnv('SYNC_ALLOWED', 'ali')
-    expect((await PUT(req({ id: ali.id, token: ali.auth, body: 'x' }))).status).toBe(204)
-    expect(await read(await GET(req({ id: ali.id, token: WRONG })))).toEqual({ status: 403, text: 'forbidden' })
-  })
-
 })
 
 describe('/api/sync restore points', () => {

@@ -33,4 +33,15 @@ describe('Avatar', () => {
     expect(el.textContent).toBe('')
     expect(el.style.background).toBe('')
   })
+
+  it('keeps showing an old profile\'s Monki outfit as a whole figure on its colour, and a new animal as a round portrait', () => {
+    const figure = show(profile({ emoji: 'monki-king' }))
+    expect(figure.classList.contains('avatar-figure')).toBe(true)
+    expect(figure.querySelector('img')).not.toBeNull()
+    host.remove()
+    const animal = show(profile({ emoji: 'capybara' }))
+    expect(animal.classList.contains('avatar-figure')).toBe(false)
+    expect(animal.querySelector('img')).not.toBeNull()
+    expect(animal.textContent).toBe('')
+  })
 })

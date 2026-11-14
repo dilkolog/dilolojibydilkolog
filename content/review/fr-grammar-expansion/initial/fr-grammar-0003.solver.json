@@ -1,0 +1,264 @@
+{
+  "job": "fr-grammar-0003",
+  "results": [
+    {
+      "id": "fr-g-000071",
+      "answer": "Le",
+      "single": true
+    },
+    {
+      "id": "fr-g-000072",
+      "answer": "la",
+      "single": true
+    },
+    {
+      "id": "fr-g-000073",
+      "answer": "le",
+      "single": true
+    },
+    {
+      "id": "fr-g-000074",
+      "answer": "La",
+      "single": true
+    },
+    {
+      "id": "fr-g-000075",
+      "answer": "le",
+      "single": true
+    },
+    {
+      "id": "fr-g-000076",
+      "answer": "la",
+      "single": true
+    },
+    {
+      "id": "fr-g-000077",
+      "answer": "La",
+      "single": true
+    },
+    {
+      "id": "fr-g-000078",
+      "answer": "le",
+      "single": false,
+      "note": "«le professeur» ve kadın öğretmen için kabul edilen «la professeur» mümkündür; kişinin cinsiyeti belirtilmemiş."
+    },
+    {
+      "id": "fr-g-000079",
+      "answer": "La",
+      "single": true,
+      "note": "Doğru düzeltme: Le."
+    },
+    {
+      "id": "fr-g-000080",
+      "answer": "le",
+      "single": true,
+      "note": "Doğru düzeltme: la."
+    },
+    {
+      "id": "fr-g-000081",
+      "answer": "un",
+      "single": true
+    },
+    {
+      "id": "fr-g-000082",
+      "answer": "une",
+      "single": true
+    },
+    {
+      "id": "fr-g-000083",
+      "answer": "un",
+      "single": true
+    },
+    {
+      "id": "fr-g-000084",
+      "answer": "une",
+      "single": true
+    },
+    {
+      "id": "fr-g-000085",
+      "answer": "un",
+      "single": true
+    },
+    {
+      "id": "fr-g-000086",
+      "answer": "une",
+      "single": true
+    },
+    {
+      "id": "fr-g-000087",
+      "answer": "un",
+      "single": false,
+      "note": "«un rendez-vous» ve «des rendez-vous» mümkündür; isim tekil ve çoğulda aynı yazılır."
+    },
+    {
+      "id": "fr-g-000088",
+      "answer": "une",
+      "single": true
+    },
+    {
+      "id": "fr-g-000089",
+      "answer": "une",
+      "single": true,
+      "note": "Doğru düzeltme: un."
+    },
+    {
+      "id": "fr-g-000090",
+      "answer": "un",
+      "single": true,
+      "note": "Doğru düzeltme: une."
+    },
+    {
+      "id": "fr-g-000091",
+      "answer": "L'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000092",
+      "answer": "l'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000093",
+      "answer": "L'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000094",
+      "answer": "l'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000095",
+      "answer": "l'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000096",
+      "answer": "L'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000097",
+      "answer": "l'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000098",
+      "answer": "L'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000099",
+      "answer": "l'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000100",
+      "answer": "L'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000101",
+      "answer": "au",
+      "single": true
+    },
+    {
+      "id": "fr-g-000102",
+      "answer": "aux",
+      "single": true
+    },
+    {
+      "id": "fr-g-000103",
+      "answer": "du",
+      "single": true
+    },
+    {
+      "id": "fr-g-000104",
+      "answer": "au",
+      "single": true
+    },
+    {
+      "id": "fr-g-000105",
+      "answer": "du",
+      "single": true
+    },
+    {
+      "id": "fr-g-000106",
+      "answer": "aux",
+      "single": true
+    },
+    {
+      "id": "fr-g-000107",
+      "answer": "des",
+      "single": true
+    },
+    {
+      "id": "fr-g-000108",
+      "answer": "au",
+      "single": true
+    },
+    {
+      "id": "fr-g-000109",
+      "answer": "des",
+      "single": true,
+      "note": "Doğru düzeltme: du."
+    },
+    {
+      "id": "fr-g-000110",
+      "answer": "aux",
+      "single": true
+    },
+    {
+      "id": "fr-g-000111",
+      "answer": "Les",
+      "single": true
+    },
+    {
+      "id": "fr-g-000112",
+      "answer": "les",
+      "single": true
+    },
+    {
+      "id": "fr-g-000113",
+      "answer": "Les",
+      "single": true
+    },
+    {
+      "id": "fr-g-000114",
+      "answer": "les",
+      "single": true
+    },
+    {
+      "id": "fr-g-000115",
+      "answer": "les",
+      "single": true
+    },
+    {
+      "id": "fr-g-000116",
+      "answer": "des",
+      "single": true
+    },
+    {
+      "id": "fr-g-000117",
+      "answer": "des",
+      "single": true
+    },
+    {
+      "id": "fr-g-000118",
+      "answer": "des",
+      "single": true
+    },
+    {
+      "id": "fr-g-000119",
+      "answer": "un",
+      "single": true,
+      "note": "Doğru düzeltme: des."
+    },
+    {
+      "id": "fr-g-000120",
+      "answer": "un",
+      "single": true,
+      "note": "Doğru düzeltme: des."
+    }
+  ]
+}

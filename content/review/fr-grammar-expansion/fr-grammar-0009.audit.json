@@ -1,0 +1,511 @@
+{
+  "job": "fr-grammar-0009",
+  "count": 50,
+  "solver": {
+    "checked": 50,
+    "disagreements": 0,
+    "rate": 0
+  },
+  "rows": [
+    {
+      "id": "fr-g-000371",
+      "target": "Où",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "soru sözcüğü ve cevap bilgisi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000372",
+      "target": "Quand",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "soru sözcüğü ve cevap bilgisi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000373",
+      "target": "Qui",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "soru sözcüğü ve cevap bilgisi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000374",
+      "target": "Comment",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "soru sözcüğü ve cevap bilgisi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000375",
+      "target": "Pourquoi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "soru sözcüğü ve cevap bilgisi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000376",
+      "target": "Quand",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "soru sözcüğü ve cevap bilgisi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000377",
+      "target": "Où",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "soru sözcüğü ve cevap bilgisi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000378",
+      "target": "Qui",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "soru sözcüğü ve cevap bilgisi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000379",
+      "target": "Comment",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "soru sözcüğü ve cevap bilgisi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000380",
+      "target": "Pourquoi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "soru sözcüğü ve cevap bilgisi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000381",
+      "target": "Quelle",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "quel ailesinde uyum"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000382",
+      "target": "Quel",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "quel ailesinde uyum"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000383",
+      "target": "Quelles",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "quel ailesinde uyum"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000384",
+      "target": "Quels",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "quel ailesinde uyum"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000385",
+      "target": "Quel",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "quel ailesinde uyum"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000386",
+      "target": "quelle",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "quel ailesinde uyum"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000387",
+      "target": "Quels",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "quel ailesinde uyum"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000388",
+      "target": "Quelle",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "quel ailesinde uyum"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000389",
+      "target": "Quelles",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "quel ailesinde uyum"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000390",
+      "target": "Quel",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "quel ailesinde uyum"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000391",
+      "target": "quoi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "qui, que et quoi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000392",
+      "target": "Que",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "qui, que et quoi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000393",
+      "target": "quoi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "qui, que et quoi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000394",
+      "target": "Qui",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "qui, que et quoi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000395",
+      "target": "qui",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "qui, que et quoi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000396",
+      "target": "quoi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "qui, que et quoi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000397",
+      "target": "Que",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "qui, que et quoi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000398",
+      "target": "quoi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "qui, que et quoi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000399",
+      "target": "Qui",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "qui, que et quoi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000400",
+      "target": "quoi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "qui, que et quoi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000401",
+      "target": "vous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "devrik soruda zamir ve liaison"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000402",
+      "target": "tu",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "devrik soruda zamir ve liaison"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000403",
+      "target": "nous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "devrik soruda zamir ve liaison"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000404",
+      "target": "il",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "devrik soruda zamir ve liaison"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000405",
+      "target": "elles",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "devrik soruda zamir ve liaison"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000406",
+      "target": "t",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "devrik soruda zamir ve liaison"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000407",
+      "target": "t",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "devrik soruda zamir ve liaison"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000408",
+      "target": "vous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "devrik soruda zamir ve liaison"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000409",
+      "target": "vous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "devrik soruda zamir ve liaison"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000410",
+      "target": "t",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "devrik soruda zamir ve liaison"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000411",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "combien de et parce que"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000412",
+      "target": "Parce",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "combien de et parce que"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000413",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "combien de et parce que"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000414",
+      "target": "Parce",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "combien de et parce que"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000415",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "combien de et parce que"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000416",
+      "target": "Parce",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "combien de et parce que"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000417",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "combien de et parce que"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000418",
+      "target": "Parce",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "combien de et parce que"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000419",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "combien de et parce que"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000420",
+      "target": "de",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_questions",
+        "section": "combien de et parce que"
+      },
+      "independentSolver": "passed"
+    }
+  ]
+}

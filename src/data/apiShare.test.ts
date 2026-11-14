@@ -55,7 +55,7 @@ beforeEach(async () => {
   clearAccessCache()
   hashes = new Map()
   await prepare()
-  vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
+  vi.stubEnv('APPROVAL', 'on')
   claim(ALI, ALI_TOKEN)
   claim(VELI, VELI_TOKEN)
   approve(ALI)

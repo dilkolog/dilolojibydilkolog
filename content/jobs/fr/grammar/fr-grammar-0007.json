@@ -1,0 +1,24 @@
+{
+  "id": "fr-grammar-0007",
+  "language": "fr",
+  "kind": "grammar",
+  "level": "A1",
+  "grammar": [
+    "basics_fr_possessifs"
+  ],
+  "count": 50,
+  "subskills": [
+    "iyelik : tekil ve cinsiyet",
+    "iyelik : çoğul ve sahipler",
+    "sesli önünde mon, ton, son",
+    "işaret : ce, cet, cette, ces",
+    "zaman ve bağlamda işaret"
+  ],
+  "ids": {
+    "from": 271,
+    "to": 320
+  },
+  "createdAt": "2026-11-13T07:27:29.694Z",
+  "claimedBy": "Codex/diloloji-fr-grammar-2",
+  "claimedAt": "2026-11-13T07:31:54.114399+00:00"
+}

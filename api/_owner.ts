@@ -8,7 +8,7 @@ import { shareStore, SHARE_ID } from './share.js'
 /**
  * The owner's way to see and act on what people reported, without a screen to build and guard: a read-only list
  * of the last days' reports and the site's social use, and taking a library list off the library. Open only with
- * REPORTS_TOKEN (a long random secret of its own, not ADMIN_TOKEN: that one switches the approval system on).
+ * REPORTS_TOKEN (a long random secret of its own).
  * Without the secret set the endpoints do not exist. Used by scripts/reports.mjs.
  */
 
@@ -27,15 +27,22 @@ export const ownerEmails = () =>
     .filter((e) => e.includes('@'))
 
 /**
- * Whether the request is the owner signed in: a Supabase session whose confirmed email is OWNER_EMAIL. This opens the
- * admin screen (approvals, AI levels, reports, the move to Supabase) without a secret to carry around.
+ * Whether the request is the owner signed in: a Supabase session whose confirmed email is OWNER_EMAIL. 'code' when the
+ * owner has a second factor (TOTP) and this session has not given its code yet (aal1): the admin screen then asks for it,
+ * so the mailbox or the Google account alone does not open it. With OWNER_MFA=required the code is asked even before
+ * one is set up (the screen then offers to set one up and nothing else).
  */
-export async function isOwnerSession(request: Request): Promise<boolean> {
+export async function ownerSession(request: Request): Promise<'owner' | 'code' | 'setup' | null> {
   const owners = ownerEmails()
-  if (!owners.length) return false
+  if (!owners.length) return null
   const user = await confirmedUser(request)
-  return !!user && owners.includes(user.email.trim().toLowerCase())
+  if (!user || !owners.includes(user.email.trim().toLowerCase())) return null
+  if (user.factor) return user.aal2 ? 'owner' : 'code'
+  return process.env.OWNER_MFA?.trim().toLowerCase() === 'required' ? 'setup' : 'owner'
 }
+
+/** Whether the request is the owner, with the second factor when one is set up. */
+export const isOwnerSession = async (request: Request): Promise<boolean> => (await ownerSession(request)) === 'owner'
 
 const MAX_REPORTS = 200
 

@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { ContentManifest, PublishedGrammar, PublishedReading } from '../engine/contentTypes'
-import { contentReadingText, contentTextId, grammarForIds, grammarForTopic, grammarTopics, loadManifest, readingPage, resetContentCache } from './content'
+import { beginnerRank, contentLevelOf, contentReadingText, contentTextId, grammarForIds, grammarForTopic, grammarTopics, loadManifest, readingPage, resetContentCache } from './content'
 
 const text: PublishedReading = {
   id: 'fr-r-000001',
@@ -67,6 +67,9 @@ describe('content client', () => {
     expect(r.turkish).toEqual(['Léa pazara gider.', 'Elma alır.'])
     expect(r.questions?.[0]).toEqual({ question: 'Léa nereye gider?', options: ['Pazara', 'Okula', 'Parka'], answer: 0, explanation: 'İlk cümle.' })
     expect(r.source).toContain('A1')
+    // The level is read back from the saved text (a beginner's A1 text is a starter text).
+    expect(contentLevelOf(r)).toBe('A1')
+    expect(contentLevelOf({ source: 'https://example.com' })).toBeUndefined()
   })
 
   it('a topic brings its files, without retired questions or factory fields', async () => {
@@ -86,5 +89,12 @@ describe('content client', () => {
     vi.stubGlobal('fetch', async () => new Response('', { status: 503 }))
     await expect(grammarForTopic('fr', manifest, 'futur_fr')).rejects.toThrow()
     expect(await grammarForIds('fr', manifest, ['fr-g-000003'])).toEqual([])
+  })
+})
+
+describe('beginner order', () => {
+  it('puts the first-step series first, in its order, and keeps the rest in place', () => {
+    const texts = [{ id: 'a' }, { id: 's3', firstStep: { series: 's', position: 3, length: 3 } }, { id: 'b' }, { id: 's1', firstStep: { series: 's', position: 1, length: 3 } }]
+    expect([...texts].sort((x, y) => beginnerRank(x) - beginnerRank(y)).map((t) => t.id)).toEqual(['s1', 's3', 'a', 'b'])
   })
 })

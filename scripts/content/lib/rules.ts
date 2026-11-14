@@ -7,6 +7,7 @@ import { analyzeForm } from '../../../src/engine/tenses'
 import { textForms } from '../../../src/engine/textForms'
 import { cleanToken, STOP } from '../../../src/engine/extract'
 import { levelRank, type CheckContext } from './context'
+import { firstStepErrors } from './firstSteps'
 import type { SimilarityIndex } from './similarity'
 import type { ContentJob } from './types'
 
@@ -78,7 +79,20 @@ function variants(w: string, language: CheckContext['language']): string[] {
 
 const analyse = (text: string, ctx: CheckContext) => analyzeText(text, ctx.language, [], [], new Set())
 
-const wordTokens = (a: ReadingAnalysis) => a.paragraphs.flat().flatMap((s) => s.tokens.filter((t) => t.key && t.status !== 'name' && !/\d/.test(t.text)))
+/**
+ * The speakers of a dialogue: a capitalised word opening a line before a colon ("Lucía:", "Luc, au café :"). Always
+ * at a sentence start, a name there looks like any word, and some are words too (Lucía is a form of "lucir").
+ */
+export function speakers(text: string): Set<string> {
+  const out = new Set<string>()
+  for (const m of text.matchAll(/^(\p{Lu}[\p{L}'’-]*)(?:\s*:|,[^:\n]{1,30}:)/gmu)) out.add(m[1])
+  return out
+}
+
+const wordTokens = (a: ReadingAnalysis, text = '') => {
+  const named = speakers(text)
+  return a.paragraphs.flat().flatMap((s) => s.tokens.filter((t) => t.key && t.status !== 'name' && !named.has(t.text) && !/\d/.test(t.text)))
+}
 
 /** A capitalised word no list knows is a name (Léa, Lille), left out of the level count. */
 const isName = (text: string, ctx: CheckContext) => /^\p{Lu}/u.test(text) && !wordLevel(text, ctx)
@@ -93,7 +107,7 @@ export interface LevelFit {
 /** How much of a text is at or below a level, names and the listed new words aside. */
 export function levelFit(text: string, level: string, ctx: CheckContext, exclude: readonly string[] = []): LevelFit {
   const skip = new Set(exclude.flatMap((w) => [w.toLocaleLowerCase(ctx.language), readingKey(w, ctx.language)]))
-  const tokens = wordTokens(analyse(text, ctx)).filter((t) => !isName(t.text, ctx) && !skip.has(t.text.toLocaleLowerCase(ctx.language)) && !skip.has(t.key!))
+  const tokens = wordTokens(analyse(text, ctx), text).filter((t) => !isName(t.text, ctx) && !skip.has(t.text.toLocaleLowerCase(ctx.language)) && !skip.has(t.key!))
   const above = new Set<string>()
   let fit = 0
   for (const t of tokens) {
@@ -161,7 +175,9 @@ export function checkReading(item: ReadingItem, ctx: CheckContext, opts: Reading
   const text = paras.join('\n\n')
   const lower = text.toLocaleLowerCase(ctx.language).replace(/’/g, "'")
   const voc = Array.isArray(item.vocabulary) ? item.vocabulary : []
-  if (voc.length < 6 || voc.length > 12) errors.push(`vocabulary needs 6–12 words, has ${voc.length}`)
+  if (item.firstStep) {
+    errors.push(...firstStepErrors(item, ctx))
+  } else if (voc.length < 6 || voc.length > 12) errors.push(`vocabulary needs 6–12 words, has ${voc.length}`)
   const vw = new Set<string>()
   for (const v of voc) {
     if (!filled(v?.word) || !filled(v?.lemma) || !filled(v?.tr)) {
@@ -186,9 +202,10 @@ export function checkReading(item: ReadingItem, ctx: CheckContext, opts: Reading
 
   const level = plan.levels[item.level]
   const analysis = analyse(text, ctx)
-  const tokens = wordTokens(analysis)
+  const tokens = wordTokens(analysis, text)
   const count = analysis.paragraphs.flat().reduce((n, s) => n + s.tokens.filter((t) => t.key).length, 0)
-  if (count < level.words[0] || count > level.words[1]) errors.push(`${count} words, ${item.level} asks ${level.words[0]}–${level.words[1]}`)
+  const bounds = item.firstStep ? [40, 80] : level.words
+  if (count < bounds[0] || count > bounds[1]) errors.push(`${count} words, ${item.level} asks ${bounds[0]}–${bounds[1]}`)
   const sentences = analysis.paragraphs.flat().filter((s) => s.tokens.some((t) => t.key))
   const average = sentences.length ? count / sentences.length : 0
   if (average > level.sentenceWords) errors.push(`sentences average ${average.toFixed(1)} words, ${item.level} asks at most ${level.sentenceWords}`)

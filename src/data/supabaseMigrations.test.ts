@@ -72,6 +72,30 @@ describe('Supabase migrations', () => {
     expect((await db.query<{ words: number }>(`select words from public.people`)).rows).toHaveLength(1)
   }, 60_000)
 
+  it('keeps a person within 30 MB of data and 20 MB of restore points (today\'s always stays)', async () => {
+    const { db } = await run(FILES)
+    const id = '33333333-3333-3333-3333-333333333333'
+    await db.exec(`insert into auth.users (id, email) values ('${id}', 'c@d.e'); update public.profiles set approved = true where user_id = '${id}'; select set_config('request.jwt.claim.sub', '${id}', false);`)
+    // Old restore points, 8 MB each (written as the server would have), then today's core.
+    for (const day of ['2099-01-01', '2099-01-02', '2099-01-03']) await db.exec(`insert into public.sync_parts (user_id, name, data, bytes) values ('${id}', 'h-${day}', '{}'::jsonb, 8000000)`)
+    await db.query(`select public.put_sync_part('core', '{"a":1}'::jsonb, null, true)`)
+    const history = (await db.query<{ name: string }>(`select name from public.sync_parts where user_id = '${id}' and name like 'h-%' order by name desc`)).rows.map((r) => r.name)
+    // The newest that fit within 20 MB stay (today's small one counts too); the oldest went.
+    expect(history.length).toBe(3)
+    expect(history).not.toContain('h-2099-01-01')
+    await db.exec(`insert into public.sync_parts (user_id, name, data, bytes) values ('${id}', 'ev-2026-01', '{}'::jsonb, 29999990)`)
+    await expect(db.query(`select public.put_sync_part('ev-2026-02', '{"aaaa":1}'::jsonb, null, true)`)).rejects.toMatchObject({ code: '54000' })
+  }, 60_000)
+
+  it('storage_usage is for the server only', async () => {
+    const { db } = await run(FILES)
+    const can = async (role: string) => (await db.query<{ ok: boolean }>(`select has_function_privilege('${role}', 'public.storage_usage()', 'execute') as ok`)).rows[0]!.ok
+    expect([await can('anon'), await can('authenticated'), await can('service_role')]).toEqual([false, false, true])
+    const row = (await db.query<{ db_bytes: number; media_bytes: number }>(`select * from public.storage_usage()`)).rows[0]!
+    expect(Number(row.db_bytes)).toBeGreaterThan(0)
+    expect(Number(row.media_bytes)).toBe(0)
+  }, 60_000)
+
   it('the sign-up trigger cannot be called through the API, and still makes the profile when a user is created', async () => {
     const { db } = await run(FILES)
     const can = async (role: string) => (await db.query<{ ok: boolean }>(`select has_function_privilege('${role}', 'public.handle_new_user()', 'execute') as ok`)).rows[0]!.ok
@@ -79,5 +103,32 @@ describe('Supabase migrations', () => {
     // As Supabase Auth does it: the auth role inserts the user, the trigger (security definer) writes the profile.
     await db.exec(`set role supabase_auth_admin; insert into auth.users (id, email) values ('22222222-2222-2222-2222-222222222222', 'b@c.d'); reset role;`)
     expect((await db.query<{ email: string }>(`select email from public.profiles where user_id = '22222222-2222-2222-2222-222222222222'`)).rows).toEqual([{ email: 'b@c.d' }])
+  }, 60_000)
+
+  it('0013: the sign-up name is cut to 40 characters and the trigger stays closed to the API', async () => {
+    const { db } = await run(FILES)
+    const can = async (role: string) => (await db.query<{ ok: boolean }>(`select has_function_privilege('${role}', 'public.handle_new_user()', 'execute') as ok`)).rows[0]!.ok
+    expect([await can('anon'), await can('authenticated'), await can('supabase_auth_admin')]).toEqual([false, false, true])
+    await db.exec(`set role supabase_auth_admin; insert into auth.users (id, email, raw_user_meta_data) values ('33333333-3333-3333-3333-333333333333', 'c@d.e', '{"username": "${'x'.repeat(5000)}"}'); reset role;`)
+    expect((await db.query<{ n: number }>(`select length(username) as n from public.profiles where user_id = '33333333-3333-3333-3333-333333333333'`)).rows).toEqual([{ n: 40 }])
+  }, 60_000)
+
+  it('0013: a counter can be given back, never below zero, by the server alone', async () => {
+    const { db } = await run(FILES)
+    const day = `'2026-11-10'::date`
+    await db.exec(`select public.counter_take('ai-cost', 'a', 300, 1000, ${day})`)
+    expect((await db.query<{ v: number }>(`select public.counter_give('ai-cost', 'a', 120, ${day}) as v`)).rows[0]!.v).toBe(180)
+    expect((await db.query<{ v: number }>(`select public.counter_give('ai-cost', 'a', 9999, ${day}) as v`)).rows[0]!.v).toBe(0)
+    const can = async (role: string) => (await db.query<{ ok: boolean }>(`select has_function_privilege('${role}', 'public.counter_give(text, text, bigint, date)', 'execute') as ok`)).rows[0]!.ok
+    expect([await can('anon'), await can('authenticated'), await can('service_role')]).toEqual([false, false, true])
+  }, 60_000)
+
+  it('0013: rewriting a media file is held to the same size limit as adding one, and one’s own files can be deleted', async () => {
+    for (const order of [FILES, [...without('0002'), '0002_sync_data.sql', '0005_storage_limits.sql']]) {
+      const { db } = await run(order)
+      const policy = async (name: string) => (await db.query<{ cmd: string; rule: string | null }>(`select cmd, coalesce(with_check, qual) as rule from pg_policies where tablename = 'objects' and policyname = '${name}'`)).rows[0]
+      expect((await policy('own media update'))?.rule).toMatch(/my_media_usage/)
+      expect(await policy('own media delete')).toMatchObject({ cmd: 'DELETE', rule: expect.stringMatching(/auth\.uid/) })
+    }
   }, 60_000)
 })

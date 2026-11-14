@@ -1,0 +1,263 @@
+{
+  "job": "fr-grammar-0008",
+  "results": [
+    {
+      "id": "fr-g-000321",
+      "answer": "trois",
+      "single": true
+    },
+    {
+      "id": "fr-g-000322",
+      "answer": "huit",
+      "single": true
+    },
+    {
+      "id": "fr-g-000323",
+      "answer": "douze",
+      "single": true
+    },
+    {
+      "id": "fr-g-000324",
+      "answer": "seize",
+      "single": true
+    },
+    {
+      "id": "fr-g-000325",
+      "answer": "quatre",
+      "single": true
+    },
+    {
+      "id": "fr-g-000326",
+      "answer": "quinze",
+      "single": true
+    },
+    {
+      "id": "fr-g-000327",
+      "answer": "onze",
+      "single": true
+    },
+    {
+      "id": "fr-g-000328",
+      "answer": "quatorze",
+      "single": true
+    },
+    {
+      "id": "fr-g-000329",
+      "answer": "huit",
+      "single": true,
+      "note": "neuf: Verilen sayı 9’dur."
+    },
+    {
+      "id": "fr-g-000330",
+      "answer": "trois",
+      "single": true,
+      "note": "treize: Verilen sayı 13’tür."
+    },
+    {
+      "id": "fr-g-000331",
+      "answer": "vingt et un",
+      "single": true
+    },
+    {
+      "id": "fr-g-000332",
+      "answer": "soixante et onze",
+      "single": true
+    },
+    {
+      "id": "fr-g-000333",
+      "answer": "quatre-vingts",
+      "single": true
+    },
+    {
+      "id": "fr-g-000334",
+      "answer": "quatre-vingt-onze",
+      "single": true
+    },
+    {
+      "id": "fr-g-000335",
+      "answer": "soixante-deux",
+      "single": true
+    },
+    {
+      "id": "fr-g-000336",
+      "answer": "soixante-dix",
+      "single": true
+    },
+    {
+      "id": "fr-g-000337",
+      "answer": "quatre-vingt-un",
+      "single": true
+    },
+    {
+      "id": "fr-g-000338",
+      "answer": "quatre-vingt-dix-neuf",
+      "single": true
+    },
+    {
+      "id": "fr-g-000339",
+      "answer": "trente et un",
+      "single": true
+    },
+    {
+      "id": "fr-g-000340",
+      "answer": "cinquante et un",
+      "single": true
+    },
+    {
+      "id": "fr-g-000341",
+      "answer": "cents",
+      "single": true
+    },
+    {
+      "id": "fr-g-000342",
+      "answer": "cent",
+      "single": true
+    },
+    {
+      "id": "fr-g-000343",
+      "answer": "cents",
+      "single": true
+    },
+    {
+      "id": "fr-g-000344",
+      "answer": "cent",
+      "single": true
+    },
+    {
+      "id": "fr-g-000345",
+      "answer": "mille",
+      "single": true
+    },
+    {
+      "id": "fr-g-000346",
+      "answer": "cents",
+      "single": true
+    },
+    {
+      "id": "fr-g-000347",
+      "answer": "cent",
+      "single": true
+    },
+    {
+      "id": "fr-g-000348",
+      "answer": "mille",
+      "single": true
+    },
+    {
+      "id": "fr-g-000349",
+      "answer": "cents",
+      "single": true,
+      "note": "cent: Ardından başka sayı gelen cent çoğul eki almaz."
+    },
+    {
+      "id": "fr-g-000350",
+      "answer": "milles",
+      "single": true,
+      "note": "mille: Sayı olarak mille değişmez."
+    },
+    {
+      "id": "fr-g-000351",
+      "answer": "demie",
+      "single": true
+    },
+    {
+      "id": "fr-g-000352",
+      "answer": "quart",
+      "single": true
+    },
+    {
+      "id": "fr-g-000353",
+      "answer": "quart",
+      "single": true
+    },
+    {
+      "id": "fr-g-000354",
+      "answer": "heure",
+      "single": true
+    },
+    {
+      "id": "fr-g-000355",
+      "answer": "midi",
+      "single": true
+    },
+    {
+      "id": "fr-g-000356",
+      "answer": "minuit",
+      "single": false,
+      "note": "Günlük/resmî biçim belirtilmiyor: minuit yanında zéro heure veya zéro heures de 00.00 saatini karşılar."
+    },
+    {
+      "id": "fr-g-000357",
+      "answer": "trente",
+      "single": true
+    },
+    {
+      "id": "fr-g-000358",
+      "answer": "dix",
+      "single": true
+    },
+    {
+      "id": "fr-g-000359",
+      "answer": "demi",
+      "single": true,
+      "note": "demie: Heures dişil olduğundan demie gerekir."
+    },
+    {
+      "id": "fr-g-000360",
+      "answer": "dix-huit",
+      "single": true
+    },
+    {
+      "id": "fr-g-000361",
+      "answer": "premier",
+      "single": true
+    },
+    {
+      "id": "fr-g-000362",
+      "answer": "deux",
+      "single": true
+    },
+    {
+      "id": "fr-g-000363",
+      "answer": "au",
+      "single": true
+    },
+    {
+      "id": "fr-g-000364",
+      "answer": "en",
+      "single": true
+    },
+    {
+      "id": "fr-g-000365",
+      "answer": "en",
+      "single": true
+    },
+    {
+      "id": "fr-g-000366",
+      "answer": "quatorze",
+      "single": true
+    },
+    {
+      "id": "fr-g-000367",
+      "answer": "en",
+      "single": true
+    },
+    {
+      "id": "fr-g-000368",
+      "answer": "en",
+      "single": true
+    },
+    {
+      "id": "fr-g-000369",
+      "answer": "un",
+      "single": true,
+      "note": "premier: Ayın ilk günü premier ile okunur."
+    },
+    {
+      "id": "fr-g-000370",
+      "answer": "en",
+      "single": true,
+      "note": "au: Printemps önünde au kullanılır."
+    }
+  ]
+}
