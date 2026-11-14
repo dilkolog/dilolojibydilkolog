@@ -1,0 +1,444 @@
+[
+ {
+  "w": "matar el tiempo",
+  "t": "beklerken can sıkıntısını geçirmek için bir şeyle oyalanmak",
+  "lit": "zamanı öldürmek",
+  "eq": "vakit öldürmek",
+  "s": "Mientras llega el tren, leo una revista para matar el tiempo.",
+  "form": "matar el tiempo",
+  "tr": "Tren gelene kadar vakit öldürmek için dergi okuyorum.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/matar-el-tiempo",
+   "https://en.wiktionary.org/wiki/matar_el_tiempo"
+  ]
+ },
+ {
+  "w": "hacer tiempo",
+  "t": "bir buluşma veya olay saatine kadar oyalanarak beklemek",
+  "lit": "zaman yapmak",
+  "eq": "vakit geçirmek",
+  "s": "Llegamos pronto al cine y dimos un paseo para hacer tiempo.",
+  "form": "hacer tiempo",
+  "tr": "Sinemaya erken geldik ve saat dolana kadar biraz yürüyüp oyalandık.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/hacer-tiempo",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/tiempo/229235"
+  ]
+ },
+ {
+  "w": "ganar tiempo",
+  "t": "bir işi geciktirerek hazırlanmak için ek süre elde etmek",
+  "lit": "zaman kazanmak",
+  "eq": "zaman kazanmak",
+  "s": "El abogado pidió otro informe solo para ganar tiempo antes del juicio.",
+  "form": "ganar tiempo",
+  "tr": "Avukat duruşmadan önce zaman kazanmak için ek bir rapor daha istedi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ganar-tiempo",
+   "https://en.wiktionary.org/wiki/ganar_tiempo"
+  ]
+ },
+ {
+  "w": "levantarse con el pie izquierdo",
+  "t": "güne ters ve aksiliklerle başlamış olmak",
+  "lit": "sol ayakla kalkmak",
+  "eq": "ters tarafından kalkmak",
+  "s": "Se le cayó el café encima; hoy se levantó con el pie izquierdo.",
+  "form": "levantó con el pie izquierdo",
+  "tr": "Üstüne kahve döküldü; bugün güne ters tarafından kalkmış.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/pie",
+   "https://en.wiktionary.org/wiki/levantarse_con_el_pie_izquierdo"
+  ]
+ },
+ {
+  "w": "tener los días contados",
+  "t": "varlığını veya görevini sürdürecek pek az ömrü kalmak",
+  "lit": "günleri sayılmış olmak",
+  "eq": "sayılı günleri kalmak",
+  "s": "Con el nuevo modelo digital, ese formato ya tiene los días contados.",
+  "form": "tiene los días contados",
+  "tr": "Yeni dijital modelle birlikte o formatın artık sayılı günleri kaldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/tener-los-dias-contados",
+   "https://en.wiktionary.org/wiki/tener_los_d%C3%ADas_contados"
+  ]
+ },
+ {
+  "w": "ponerse al día",
+  "t": "birikmiş işleri tamamlamak veya güncel gelişmeleri öğrenmek",
+  "lit": "güne kendini koymak",
+  "eq": "günceli yakalamak",
+  "s": "Pasé todo el domingo leyendo correos para ponerme al día.",
+  "form": "ponerme al día",
+  "tr": "Biriken işlere yetişmek için bütün pazar günü e-postaları okudum.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/al-dia",
+   "https://en.wiktionary.org/wiki/ponerse_al_d%C3%ADa"
+  ]
+ },
+ {
+  "w": "vivir al día",
+  "t": "geleceğe birikim ayırmadan o günkü kazancıyla yetinerek yaşamak",
+  "lit": "güne yaşamak",
+  "eq": "günübirlik yaşamak",
+  "s": "Con su sueldo actual apenas ahorra y prefiere vivir al día.",
+  "form": "vivir al día",
+  "tr": "Şimdiki maaşıyla pek birikim yapamıyor ve günü gününe yaşıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/dia",
+   "https://en.wiktionary.org/wiki/vivir_al_d%C3%ADa"
+  ]
+ },
+ {
+  "w": "dar tiempo al tiempo",
+  "t": "acele karar vermeyip bir durumun zamanla olgunlaşmasını beklemek",
+  "lit": "zamana zaman vermek",
+  "eq": "zamana bırakmak",
+  "s": "Aún es pronto para decidir; conviene dar tiempo al tiempo.",
+  "form": "dar tiempo al tiempo",
+  "tr": "Karar vermek için henüz erken; biraz zamana bırakmak en doğrusu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/tiempo/229235",
+   "https://en.wiktionary.org/wiki/dar_tiempo_al_tiempo"
+  ]
+ },
+ {
+  "w": "hacer memoria",
+  "t": "geçmişteki bir ayrıntıyı zihninde yeniden hatırlamaya çalışmak",
+  "lit": "hafıza yapmak",
+  "s": "Déjame hacer memoria para recordar dónde guardé las fotos.",
+  "form": "hacer memoria",
+  "tr": "Fotoğrafları nereye koyduğumu bulmak için biraz hafızamı yoklayayım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/memoria/204985",
+   "https://en.wiktionary.org/wiki/hacer_memoria"
+  ]
+ },
+ {
+  "w": "echar raíces",
+  "t": "bir yere uzun süreliğine yerleşip derin bağlar kurmak",
+  "lit": "kökler atmak",
+  "eq": "kök salmak",
+  "s": "Después de vivir en cuatro países, decidieron echar raíces en Valencia.",
+  "form": "echar raíces",
+  "tr": "Dört ülkede yaşadıktan sonra Valensiya’ya yerleşip kök salmaya karar verdiler.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/echar-raices",
+   "https://es.wiktionary.org/wiki/echar_ra%C3%ADces"
+  ]
+ },
+ {
+  "w": "no ver la hora",
+  "pat": "no ver la hora de algo",
+  "t": "bir şeyin gerçekleşmesini büyük bir sabırsızlıkla beklemek",
+  "lit": "saati görmemek",
+  "eq": "dört gözle beklemek",
+  "s": "No veo la hora de terminar el examen y descansar unos días.",
+  "form": "No veo la hora",
+  "tr": "Sınavı bitirip birkaç gün dinlenmeyi iple çekiyorum.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/hora",
+   "https://en.wiktionary.org/wiki/no_ver_la_hora"
+  ]
+ },
+ {
+  "w": "estar a la vuelta de la esquina",
+  "t": "hem mekân hem zaman olarak çok yaklaşmış olmak",
+  "lit": "köşenin dönüşünde olmak",
+  "eq": "kapıda olmak",
+  "s": "Prepara ya la maleta porque el verano está a la vuelta de la esquina.",
+  "form": "está a la vuelta de la esquina",
+  "tr": "Bavulunu şimdiden hazırla çünkü yaz artık kapıda.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/a-la-vuelta-de",
+   "https://es.wiktionary.org/wiki/a_la_vuelta_de_la_esquina"
+  ]
+ },
+ {
+  "w": "quemar etapas",
+  "t": "normal süreçten daha hızlı ilerleyip aşamaları çabucak geçmek",
+  "lit": "aşamaları yakmak",
+  "s": "Con tanto entrenamiento diario, la joven nadadora está quemando etapas.",
+  "form": "quemando etapas",
+  "tr": "Her gün yaptığı yoğun antrenmanla genç yüzücü basamakları hızla tırmanıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/quemar",
+   "https://es.wiktionary.org/wiki/quemar"
+  ]
+ },
+ {
+  "w": "pasar factura",
+  "pat": "pasar factura a alguien",
+  "t": "geçmişte yapılanların olumsuz etkisinin sonradan ortaya çıkması",
+  "lit": "faturayı geçirmek",
+  "eq": "acısı sonradan çıkmak",
+  "s": "Dormir tan poco durante años acaba pasando factura a la salud.",
+  "form": "pasando factura",
+  "tr": "Yıllarca bu kadar az uyumanın faturası er geç sağlığa çıkıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/pasar-factura",
+   "https://es.wiktionary.org/wiki/pasar_factura"
+  ]
+ },
+ {
+  "w": "pisar los talones",
+  "pat": "pisar los talones a alguien",
+  "t": "peşinden yetişecek kadar çok yakın mesafeden takip etmek",
+  "lit": "topuklarına basmak",
+  "eq": "ensesinde olmak",
+  "s": "La segunda clasificada le pisa los talones a la líder del torneo.",
+  "form": "pisa los talones",
+  "tr": "İkinci sıradaki sporcu turnuva liderinin hemen ensesinde.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/pisarle-los-talones-a-alguien",
+   "https://es.wiktionary.org/wiki/pisar_los_talones"
+  ]
+ },
+ {
+  "w": "dar marcha atrás",
+  "t": "aldığı karardan veya başlattığı yoldan vazgeçip geri dönmek",
+  "lit": "geri vitese vermek",
+  "eq": "geri adım atmak",
+  "s": "Una vez firmada la oferta, ya no puede dar marcha atrás.",
+  "form": "dar marcha atrás",
+  "tr": "Teklif bir kez imzalandıktan sonra artık geri adım atamaz.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/marcha",
+   "https://en.wiktionary.org/wiki/dar_marcha_atr%C3%A1s"
+  ]
+ },
+ {
+  "w": "esperar sentado",
+  "t": "bir şeyin kolay kolay gerçekleşmeyeceğini alaylı biçimde belirtmek",
+  "lit": "oturarak beklemek",
+  "eq": "çok beklemek",
+  "s": "Si crees que te pedirán disculpas hoy, puedes esperar sentado.",
+  "form": "esperar sentado",
+  "tr": "Bugün senden özür dileyeceklerini sanıyorsan çok beklersin.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/esperar",
+   "https://en.wiktionary.org/wiki/esperar_sentado"
+  ]
+ },
+ {
+  "w": "caer en el olvido",
+  "t": "zamanla herkes tarafından tamamen unutulup gitmek",
+  "lit": "unutulmaya düşmek",
+  "eq": "unutulup gitmek",
+  "s": "Aquel proyecto ambicioso cayó en el olvido tras las elecciones.",
+  "form": "cayó en el olvido",
+  "tr": "O iddialı proje seçimlerden sonra unutulup gitti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/olvido",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/olvido/209601"
+  ]
+ },
+ {
+  "w": "volver a las andadas",
+  "t": "bıraktığı sanılan eski kötü huya yeniden dönmek",
+  "lit": "eski gidişlere geri dönmek",
+  "eq": "eski tas eski hamam",
+  "s": "Prometió no llegar tarde más, pero hoy volvió a las andadas.",
+  "form": "volvió a las andadas",
+  "tr": "Bir daha geç kalmayacağına söz vermişti ama bugün yine eski huyuna döndü.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/andadas/161260",
+   "https://en.wiktionary.org/wiki/volver_a_las_andadas"
+  ]
+ },
+ {
+  "w": "tener cuerda para rato",
+  "t": "kolay kolay bitmeyip uzun süre daha devam edecek güce sahip olmak",
+  "lit": "bir süre için zembereği olmak",
+  "s": "Ese debate político todavía tiene cuerda para rato en el país.",
+  "form": "tiene cuerda para rato",
+  "tr": "O siyasi tartışma ülkede daha uzun süre gündemde kalacağa benziyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/cuerda",
+   "https://es.wiktionary.org/wiki/rato"
+  ]
+ },
+ {
+  "w": "quedar para vestir santos",
+  "t": "evlenmeden kalıp yaşlanmak",
+  "lit": "aziz heykellerini giydirmeye kalmak",
+  "eq": "evde kalmak",
+  "s": "En tono de broma le decían que iba a quedar para vestir santos.",
+  "form": "quedar para vestir santos",
+  "tr": "Şaka yollu ona hiç evlenemeyip evde kalacağını söylüyorlardı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/quedarse-para-vestir-santos",
+   "https://es.wiktionary.org/wiki/vestir"
+  ]
+ },
+ {
+  "w": "pasar la noche en blanco",
+  "t": "gece boyunca gözünü hiç kırpmadan uykusuz kalmak",
+  "lit": "geceyi beyazda geçirmek",
+  "eq": "sabahlamak",
+  "s": "Con los nervios de la mudanza, pasé la noche en blanco.",
+  "form": "pasé la noche en blanco",
+  "tr": "Taşınma heyecanından bütün gece gözümü hiç kırpmadım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/blanco/166772",
+   "https://es.wiktionary.org/wiki/noche"
+  ]
+ },
+ {
+  "w": "estar al caer",
+  "t": "her an gerçekleşmek veya gelmek üzere olmak",
+  "lit": "düşmek üzere olmak",
+  "eq": "eli kulağında olmak",
+  "s": "Ten paciencia, el pago del proyecto está al caer.",
+  "form": "está al caer",
+  "tr": "Sabırlı ol, projenin ödemesi eli kulağında.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/caer/168525",
+   "https://en.wiktionary.org/wiki/estar_al_caer"
+  ]
+ },
+ {
+  "w": "hacer época",
+  "t": "kendi dönemine damga vurup yıllarca hatırlanacak etki bırakmak",
+  "lit": "çağ yapmak",
+  "eq": "çığır açmak",
+  "s": "Aquel disco innovador hizo época en la música española.",
+  "form": "hizo época",
+  "tr": "O yenilikçi albüm İspanyol müziğinde dönemine damga vurdu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/epoca",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/%c3%a9poca/186302"
+  ]
+ },
+ {
+  "w": "pasar a mejor vida",
+  "t": "ölmek, dünyadan göçmek için kullanılan incelikli ifade",
+  "lit": "daha iyi hayata geçmek",
+  "eq": "öbür dünyaya göçmek",
+  "s": "El viejo reloj del abuelo pasó a mejor vida tras sesenta años.",
+  "form": "pasó a mejor vida",
+  "tr": "Dedemin eski saati altmış yılın ardından tamamen ömrünü tamamladı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/vida",
+   "https://es.wiktionary.org/wiki/pasar_a_mejor_vida"
+  ]
+ },
+ {
+  "w": "estar a punto de caramelo",
+  "t": "olgunlaşıp tam ideal zamana ve kıvama gelmiş olmak",
+  "lit": "karamel kıvamında olmak",
+  "eq": "tam kıvamına gelmek",
+  "s": "Las negociaciones llevan meses y por fin están a punto de caramelo.",
+  "form": "están a punto de caramelo",
+  "tr": "Görüşmeler aylardır sürüyor ve sonunda tam kıvamına geldi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/punto/217532",
+   "https://en.wiktionary.org/wiki/a_punto_de_caramelo"
+  ]
+ }
+]

@@ -207,24 +207,6 @@
   ]
  },
  {
-  "w": "irse de las manos",
-  "pat": "írsele algo de las manos a alguien",
-  "t": "çığırından çıkmak, kontrolden çıkmak",
-  "lit": "ellerden gitmek",
-  "eq": "çığırından çıkmak",
-  "s": "La broma empezó bien, pero pronto se nos fue de las manos.",
-  "form": "fue de las manos",
-  "tr": "Şaka güzel başladı ama kısa sürede elimizden kaçıp çığırından çıktı.",
-  "reg": "neutral",
-  "area": "genel",
-  "level": "B2",
-  "theme": "body",
-  "src": [
-   "https://en.wiktionary.org/wiki/irse_de_las_manos",
-   "https://www.spanishdict.com/translate/irse%20de%20las%20manos"
-  ]
- },
- {
   "w": "levantar cabeza",
   "t": "belini doğrultmak, toparlanmak",
   "lit": "baş kaldırmak",
@@ -424,23 +406,6 @@
   "src": [
    "https://www.diccionarios.com/diccionario/espanol/anillo",
    "https://dem.colmex.mx/ver/anillo"
-  ]
- },
- {
-  "w": "no tener pies ni cabeza",
-  "t": "ipe sapa gelmemek, baştan sona tutarsız olmak",
-  "lit": "ne ayağı ne başı olmak",
-  "eq": "ipe sapa gelmemek",
-  "s": "La excusa que inventó para justificarse no tenía pies ni cabeza.",
-  "form": "no tenía pies ni cabeza",
-  "tr": "Kendini haklı çıkarmak için uydurduğu bahane ipe sapa gelmiyordu.",
-  "reg": "neutral",
-  "area": "genel",
-  "level": "C1",
-  "theme": "body",
-  "src": [
-   "https://es.wiktionary.org/wiki/no_tener_pies_ni_cabeza",
-   "https://www.spanishdict.com/translate/no%20tener%20pies%20ni%20cabeza"
   ]
  },
  {

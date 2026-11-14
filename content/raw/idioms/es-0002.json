@@ -13,7 +13,7 @@
   "theme": "animals",
   "src": [
    "https://en.wiktionary.org/wiki/rat%C3%B3n_de_biblioteca",
-   "https://www.spanishdict.com/translate/ser%20un%20rat%C3%B3n%20de%20biblioteca"
+   "https://dem.colmex.mx/Ver/rat%C3%B3n"
   ]
  },
  {
@@ -46,7 +46,7 @@
   "theme": "animals",
   "src": [
    "https://www.diccionarios.com/diccionario/espanol/pez",
-   "https://www.spanishdict.com/translate/sentirse%20como%20pez%20en%20el%20agua"
+   "https://en.wiktionary.org/wiki/como_pez_en_el_agua"
   ]
  },
  {
@@ -98,7 +98,7 @@
   "theme": "animals",
   "src": [
    "https://www.diccionarios.com/diccionario/espanol/paso",
-   "https://www.spanishdict.com/translate/ir%20a%20paso%20de%20tortuga"
+   "https://en.wiktionary.org/wiki/a_paso_de_tortuga"
   ]
  },
  {
@@ -165,7 +165,7 @@
   "theme": "animals",
   "src": [
    "https://en.wiktionary.org/wiki/tomar_el_toro_por_los_cuernos",
-   "https://www.spanishdict.com/translate/tomar%20el%20toro%20por%20los%20cuernos"
+   "https://dem.colmex.mx/Ver/toro"
   ]
  },
  {
@@ -265,7 +265,7 @@
   "theme": "animals",
   "src": [
    "https://en.wiktionary.org/wiki/vista_de_lince",
-   "https://www.spanishdict.com/translate/tener%20vista%20de%20lince"
+   "https://es.pons.com/traducci%C3%B3n/espa%C3%B1ol-ingl%C3%A9s/vista"
   ]
  },
  {
@@ -435,22 +435,6 @@
   ]
  },
  {
-  "w": "tener malas pulgas",
-  "t": "çok huysuz olmak, çabuk öfkelenmek",
-  "lit": "kötü pireleri olmak",
-  "s": "No le hables antes del café porque por las mañanas tiene malas pulgas.",
-  "form": "tiene malas pulgas",
-  "tr": "Kahveden önce onunla konuşma çünkü sabahları çok huysuz olur.",
-  "reg": "informal",
-  "area": "genel",
-  "level": "C1",
-  "theme": "animals",
-  "src": [
-   "https://en.wiktionary.org/wiki/tener_malas_pulgas",
-   "https://www.spanishdict.com/translate/tener%20malas%20pulgas"
-  ]
- },
- {
   "w": "ser perro viejo",
   "t": "eski kurt olmak, çok deneyimli olup kolay kanmamak",
   "lit": "yaşlı köpek olmak",
@@ -513,7 +497,7 @@
   "theme": "animals",
   "src": [
    "https://en.wiktionary.org/wiki/matar_moscas_a_ca%C3%B1onazos",
-   "https://www.spanishdict.com/translate/matar%20moscas%20a%20ca%C3%B1onazos"
+   "https://es.pons.com/traducci%C3%B3n/espa%C3%B1ol-ingl%C3%A9s/matar"
   ]
  }
 ]

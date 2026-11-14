@@ -1,38 +1,5 @@
 [
  {
-  "w": "calentar motores",
-  "t": "işe başlamadan önce ısınma ve hazırlık yapmak",
-  "lit": "motorları ısıtmak",
-  "s": "Hicimos unos ejercicios breves para calentar motores antes del ensayo general.",
-  "form": "calentar motores",
-  "tr": "Genel provadan önce ısınmak için birkaç kısa alıştırma yaptık.",
-  "reg": "neutral",
-  "area": "genel",
-  "level": "B2",
-  "theme": "work",
-  "src": [
-   "https://en.wiktionary.org/wiki/calentar_motores",
-   "https://www.spanishdict.com/translate/calentar%20motores"
-  ]
- },
- {
-  "w": "entrar en faena",
-  "t": "işe koyulmak, asıl çalışmaya başlamak",
-  "lit": "mesaiye girmek",
-  "eq": "kolları sıvamak",
-  "s": "Tras revisar los planos de la obra, los albañiles entraron en faena.",
-  "form": "entraron en faena",
-  "tr": "İnşaat planlarını inceledikten sonra duvar ustaları işe koyuldu.",
-  "reg": "neutral",
-  "area": "genel",
-  "level": "B2",
-  "theme": "work",
-  "src": [
-   "https://es.wiktionary.org/wiki/entrar_en_faena",
-   "https://www.spanishdict.com/translate/entrar%20en%20faena"
-  ]
- },
- {
   "w": "empezar la casa por el tejado",
   "t": "işe sondan başlamak, yöntemsiz ve ters sırayla çalışmak",
   "lit": "eve çatıdan başlamak",
@@ -45,7 +12,7 @@
   "theme": "work",
   "src": [
    "https://en.wiktionary.org/wiki/empezar_la_casa_por_el_tejado",
-   "https://www.spanishdict.com/translate/empezar%20la%20casa%20por%20el%20tejado"
+   "https://es.pons.com/traducci%C3%B3n/espa%C3%B1ol-ingl%C3%A9s/tejado"
   ]
  },
  {

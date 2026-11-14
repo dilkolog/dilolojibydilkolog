@@ -1,0 +1,412 @@
+[
+ {
+  "w": "llover a cántaros",
+  "t": "çok şiddetli ve aralıksız yağmur yağmak",
+  "lit": "testilerle yağmur yağmak",
+  "eq": "bardaktan boşanırcasına yağmak",
+  "s": "No podemos salir sin paraguas porque está lloviendo a cántaros.",
+  "form": "lloviendo a cántaros",
+  "tr": "Şemsiyesiz çıkamayız çünkü bardaktan boşanırcasına yağmur yağıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/llover-a-cantaros",
+   "https://es.wiktionary.org/wiki/llover_a_c%C3%A1ntaros"
+  ]
+ },
+ {
+  "w": "estar en la luna",
+  "t": "çevreye dikkat etmeyip kendi hayallerine dalmış olmak",
+  "lit": "ayda olmak",
+  "eq": "aklı bir karış havada olmak",
+  "s": "Hoy no me has escuchado nada; estás en la luna.",
+  "form": "estás en la luna",
+  "tr": "Bugün beni hiç dinlemedin; aklın bambaşka yerlerde.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/luna",
+   "https://es.wiktionary.org/wiki/estar_en_la_luna"
+  ]
+ },
+ {
+  "w": "jugar con fuego",
+  "t": "sonuçları ağır olabilecek tehlikeli bir işin sınırında dolaşmak",
+  "lit": "ateşle oynamak",
+  "eq": "ateşle oynamak",
+  "s": "Conducir sin descanso toda la noche es jugar con fuego.",
+  "form": "jugar con fuego",
+  "tr": "Bütün gece hiç dinlenmeden araba sürmek ateşle oynamaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/jugar-con-fuego",
+   "https://es.wiktionary.org/wiki/jugar_con_fuego"
+  ]
+ },
+ {
+  "w": "hacer un frío que pela",
+  "t": "dışarıda insanı donduran çok sert soğuk olmak",
+  "lit": "soyan bir soğuk yapmak",
+  "eq": "soğuktan donmak",
+  "s": "Ponte la bufanda al salir porque hace un frío que pela.",
+  "form": "hace un frío que pela",
+  "tr": "Çıkarken atkını tak çünkü dışarıda dondurucu bir ayaz var.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "nature",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/fr%c3%ado/191668",
+   "https://es.wiktionary.org/wiki/hacer_un_fr%C3%ADo_que_pela"
+  ]
+ },
+ {
+  "w": "ver la luz",
+  "t": "uzun süren çalışma veya gizlilik sonunda ortaya çıkıp yayımlanmak",
+  "lit": "ışığı görmek",
+  "eq": "gün yüzüne çıkmak",
+  "s": "Tras cinco años de archivo, la novela vio la luz en otoño.",
+  "form": "vio la luz",
+  "tr": "Beş yıl çekmecede bekledikten sonra roman sonbaharda gün yüzüne çıktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ver-la-luz",
+   "https://es.wiktionary.org/wiki/luz"
+  ]
+ },
+ {
+  "w": "pedir la luna",
+  "t": "gerçekleşmesi imkânsız ve aşırı şeyler talep etmek",
+  "lit": "ayı istemek",
+  "eq": "olmayacak duaya amin demek",
+  "s": "Solo pido unas vacaciones cortas, tampoco estoy pidiendo la luna.",
+  "form": "pidiendo la luna",
+  "tr": "Sadece kısa bir tatil istiyorum, imkânsız bir şey talep etmiyorum.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/luna",
+   "https://es.wiktionary.org/wiki/pedir_la_luna"
+  ]
+ },
+ {
+  "w": "ir viento en popa",
+  "t": "her şeyin hiçbir engel olmadan son derece yolunda gitmesi",
+  "lit": "kıçtan rüzgârla gitmek",
+  "eq": "işleri tıkırında gitmek",
+  "s": "El nuevo restaurante abrió en marzo y ya va viento en popa.",
+  "form": "va viento en popa",
+  "tr": "Yeni restoran martta açıldı ve şimdiden işleri tıkırında gidiyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ir-viento-en-popa",
+   "https://es.wiktionary.org/wiki/viento_en_popa"
+  ]
+ },
+ {
+  "w": "ir contra viento y marea",
+  "t": "her türlü zorluğa ve muhalefete göğüs gererek kararlıca devam etmek",
+  "lit": "rüzgâra ve gelgite karşı gitmek",
+  "eq": "her şeye göğüs germek",
+  "s": "Sacaron adelante la librería familiar contra viento y marea.",
+  "form": "contra viento y marea",
+  "tr": "Aile kitabevini her türlü engele rağmen yaşatmayı başardılar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/contra-viento-y-marea",
+   "https://en.wiktionary.org/wiki/contra_viento_y_marea"
+  ]
+ },
+ {
+  "w": "hacer castillos en el aire",
+  "t": "gerçekçi temeli olmayan boş planlar ve hayaller kurmak",
+  "lit": "havada kaleler yapmak",
+  "eq": "boş hayaller kurmak",
+  "s": "Sin presupuesto fijo, solo estás haciendo castillos en el aire.",
+  "form": "haciendo castillos en el aire",
+  "tr": "Sabit bir bütçe olmadan sadece havaya şatolar kuruyorsun.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/castillos-en-el-aire",
+   "https://en.wiktionary.org/wiki/castillos_en_el_aire"
+  ]
+ },
+ {
+  "w": "aguar la fiesta",
+  "t": "ortamdaki sevinci veya neşeyi olumsuz bir şeyle bozmak",
+  "lit": "partiyi sulamak",
+  "eq": "keyfini kaçırmak",
+  "s": "No quería aguar la fiesta, pero tengo que marcharme pronto.",
+  "form": "aguar la fiesta",
+  "tr": "Keyfinizi kaçırmak istemezdim ama erken ayrılmam gerekiyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/fiesta",
+   "https://en.wiktionary.org/wiki/aguar_la_fiesta"
+  ]
+ },
+ {
+  "w": "mover cielo y tierra",
+  "t": "bir sonuca ulaşmak için akla gelebilecek her yolu zorlamak",
+  "lit": "göğü ve yeri oynatmak",
+  "eq": "yeri göğü oynatmak",
+  "s": "Movió cielo y tierra para conseguir esa entrada antes del concierto.",
+  "form": "Movió cielo y tierra",
+  "tr": "Konserden önce o bileti bulabilmek için yeri göğü oynattı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/cielo",
+   "https://en.wiktionary.org/wiki/mover_cielo_y_tierra"
+  ]
+ },
+ {
+  "w": "buscar una aguja en un pajar",
+  "t": "bulunması neredeyse imkânsız küçük bir şeyi büyük karmaşada aramak",
+  "lit": "samanlıkta bir iğne aramak",
+  "eq": "samanlıkta iğne aramak",
+  "s": "Encontrar ese recibo antiguo aquí es buscar una aguja en un pajar.",
+  "form": "buscar una aguja en un pajar",
+  "tr": "O eski makbuzu burada bulmak samanlıkta iğne aramaya benziyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/aguja",
+   "https://es.wiktionary.org/wiki/buscar_una_aguja_en_un_pajar"
+  ]
+ },
+ {
+  "w": "estar en el séptimo cielo",
+  "t": "büyük bir sevinçle ayakları yerden kesilmiş hissetmek",
+  "lit": "yedinci gökte olmak",
+  "eq": "mutluluktan havalara uçmak",
+  "s": "Desde que nació su primera hija, los dos están en el séptimo cielo.",
+  "form": "están en el séptimo cielo",
+  "tr": "İlk kızları doğduğundan beri ikisi de mutluluktan havalara uçuyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/cielo/172685",
+   "https://es.wiktionary.org/wiki/cielo"
+  ]
+ },
+ {
+  "w": "sacar a flote",
+  "pat": "sacar a flote algo",
+  "t": "batmak üzere olan bir işi veya kişiyi zor durumdan kurtarmak",
+  "lit": "su yüzüne çıkarmak",
+  "eq": "düzlüğe çıkarmak",
+  "s": "Con mucho esfuerzo lograron sacar a flote el taller familiar.",
+  "form": "sacar a flote",
+  "tr": "Büyük bir çabayla aile atölyesini yeniden düzlüğe çıkarmayı başardılar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/flote/190928",
+   "https://en.wiktionary.org/wiki/sacar_a_flote"
+  ]
+ },
+ {
+  "w": "poner la mano en el fuego",
+  "pat": "poner la mano en el fuego por alguien",
+  "t": "birinin dürüstlüğüne veya doğruluğuna gözü kapalı kefil olmak",
+  "lit": "elini ateşe koymak",
+  "eq": "kefil olmak",
+  "s": "Conozco bien a Diego y pongo la mano en el fuego por él.",
+  "form": "pongo la mano en el fuego",
+  "tr": "Diego’yu iyi tanırım ve onun adına elimi taşın altına koyarım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/poner-la-mano-en-el-fuego",
+   "https://es.wiktionary.org/wiki/mano"
+  ]
+ },
+ {
+  "w": "ser la gota que colma el vaso",
+  "t": "süregelen sabrı tamamen tüketen son küçük olay olmak",
+  "lit": "bardağı dolduran damla olmak",
+  "eq": "bardağı taşıran son damla olmak",
+  "s": "Ese retraso injustificado es la gota que colma el vaso para mí.",
+  "form": "la gota que colma el vaso",
+  "tr": "Bu haksız gecikme benim için artık bardağı taşıran son damla.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/gota",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/gota/193289"
+  ]
+ },
+ {
+  "w": "ver el cielo abierto",
+  "t": "sıkışık durumun ortasında beklenmedik bir kurtuluş fırsatı görmek",
+  "lit": "göğü açık görmek",
+  "eq": "kurtuluş kapısı görmek",
+  "s": "Cuando apareció aquel taxi vacío bajo la lluvia, vi el cielo abierto.",
+  "form": "vi el cielo abierto",
+  "tr": "Yağmurun altında o boş taksi çıkagelince gökte bir kurtuluş kapısı açılmış gibi oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/cielo/172685",
+   "https://en.wiktionary.org/wiki/ver_el_cielo_abierto"
+  ]
+ },
+ {
+  "w": "capear el temporal",
+  "t": "sert bir krizi veya zorlu dönemi fazla hasar almadan atlatmak",
+  "lit": "fırtınayı idare etmek",
+  "eq": "fırtınayı atlatmak",
+  "s": "La compañía redujo gastos para capear el temporal durante la crisis.",
+  "form": "capear el temporal",
+  "tr": "Şirket kriz boyunca fırtınayı atlatabilmek için harcamalarını kıstı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/temporal",
+   "https://en.wiktionary.org/wiki/capear_el_temporal"
+  ]
+ },
+ {
+  "w": "nadar entre dos aguas",
+  "t": "iki karşıt tarafı da idare edip kesin bir tavır almamak",
+  "lit": "iki su arasında yüzmek",
+  "eq": "iki tarafa da oynamak",
+  "s": "En vez de posicionarse claro, el portavoz prefiere nadar entre dos aguas.",
+  "form": "nadar entre dos aguas",
+  "tr": "Sözcü net bir tutum almak yerine iki tarafı da idare etmeyi yeğliyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/nadar-entre-dos-aguas",
+   "https://en.wiktionary.org/wiki/nadar_entre_dos_aguas"
+  ]
+ },
+ {
+  "w": "irse al garete",
+  "t": "planın veya işin kontrolden çıkıp tamamen boşa gitmesi",
+  "lit": "sürüklenmeye gitmek",
+  "eq": "suya düşmek",
+  "s": "Con el apagón general, nuestra presentación se fue al garete.",
+  "form": "fue al garete",
+  "tr": "Genel elektrik kesintisiyle birlikte sunumumuz tamamen suya düştü.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/garete/192450",
+   "https://es.wiktionary.org/wiki/irse_al_garete"
+  ]
+ },
+ {
+  "w": "tirar la piedra y esconder la mano",
+  "t": "gizlice zarar verip hiçbir şey yapmamış gibi masum görünmek",
+  "lit": "taşı atıp elini saklamak",
+  "eq": "hem suçlu hem masum görünmek",
+  "s": "Filtró el rumor y luego tiró la piedra y escondió la mano.",
+  "form": "tiró la piedra y escondió la mano",
+  "tr": "Dedikoduyu ortaya saldıktan sonra hiçbir şey olmamış gibi kenara çekildi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/piedra",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/piedra/213728"
+  ]
+ },
+ {
+  "w": "calar hasta los huesos",
+  "t": "soğuk veya ıslaklığın insanın içine işleyip iliklerine dek dondurması",
+  "lit": "kemiklere kadar sızmak",
+  "eq": "iliklerine kadar işlemek",
+  "s": "Aquel viento húmedo del norte nos caló hasta los huesos.",
+  "form": "caló hasta los huesos",
+  "tr": "Kuzeyden esen o nemli rüzgâr iliklerimize kadar işledi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/hasta-los-huesos",
+   "https://en.wiktionary.org/wiki/hasta_los_huesos"
+  ]
+ },
+ {
+  "w": "llevar agua a su molino",
+  "t": "ortak bir durumu veya konuşmayı kendi çıkarına çevirmek",
+  "lit": "kendi değirmenine su götürmek",
+  "eq": "kendi değirmenine su taşımak",
+  "s": "Cada departamento intenta llevar agua a su molino en los presupuestos.",
+  "form": "llevar agua a su molino",
+  "tr": "Bütçe görüşmelerinde her birim kendi değirmenine su taşımaya çalışıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/agua",
+   "https://es.wiktionary.org/wiki/molino"
+  ]
+ },
+ {
+  "w": "echar humo",
+  "t": "aşırı çalışmaktan veya öfkeden neredeyse duman çıkaracak hale gelmek",
+  "lit": "duman atmak",
+  "eq": "küplere binmek",
+  "s": "Tras corregir cien exámenes seguidos, la cabeza me echaba humo.",
+  "form": "echaba humo",
+  "tr": "Art arda yüz sınav kâğıdı okuyunca beynimden neredeyse dumanlar çıktı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/echar-humo",
+   "https://en.wiktionary.org/wiki/echar_humo"
+  ]
+ }
+]

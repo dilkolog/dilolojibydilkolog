@@ -1,0 +1,509 @@
+[
+ {
+  "w": "estar entre la espada y la pared",
+  "t": "her iki seçeceğin de zor olduğu çıkmazda kalmak",
+  "lit": "kılıç ile duvar arasında olmak",
+  "eq": "iki arada bir derede kalmak",
+  "s": "Sin ahorros ni otro empleo, estaba entre la espada y la pared.",
+  "form": "estaba entre la espada y la pared",
+  "tr": "Ne birikimi ne başka işi varken iki arada bir derede kalmıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/estar-entre-la-espada-y-la-pared",
+   "https://es.wiktionary.org/wiki/entre_la_espada_y_la_pared"
+  ]
+ },
+ {
+  "w": "ir de mal en peor",
+  "t": "zamanla düzelmek yerine sürekli daha kötüleşmek",
+  "lit": "kötüden daha kötüye gitmek",
+  "s": "Desde que cerraron la fábrica, la economía local va de mal en peor.",
+  "form": "va de mal en peor",
+  "tr": "Fabrika kapandığından beri yerel ekonomi gittikçe kötüleşiyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ir-de-mal-en-peor",
+   "https://es.wiktionary.org/wiki/ir_de_mal_en_peor"
+  ]
+ },
+ {
+  "w": "estar hecho polvo",
+  "t": "aşırı yorgunluktan veya üzüntüden bitkin düşmek",
+  "lit": "toz olmuş olmak",
+  "eq": "pestili çıkmak",
+  "s": "Después de doce horas de viaje sin parar, estoy hecho polvo.",
+  "form": "estoy hecho polvo",
+  "tr": "On iki saatlik aralıksız yolculuktan sonra pestilim çıktı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/hecho-polvo",
+   "https://en.wiktionary.org/wiki/hecho_polvo"
+  ]
+ },
+ {
+  "w": "tocar fondo",
+  "t": "düşebileceği en kötü noktaya ulaşmak",
+  "lit": "dibe dokunmak",
+  "eq": "dibe vurmak",
+  "s": "Tras perder el empleo y la casa, sintió que había tocado fondo.",
+  "form": "tocado fondo",
+  "tr": "İşini ve evini kaybettikten sonra dibe vurduğunu hissetti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/tocar-fondo",
+   "https://en.wiktionary.org/wiki/tocar_fondo"
+  ]
+ },
+ {
+  "w": "meterse en un lío",
+  "t": "çıkması güç karmaşık bir belaya bulaşmak",
+  "lit": "bir yığının içine girmek",
+  "eq": "başına iş açmak",
+  "s": "Por firmar sin leer el contrato, me metí en un lío enorme.",
+  "form": "metí en un lío",
+  "tr": "Sözleşmeyi okumadan imzaladığım için başıma büyük bir iş açtım.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/lio",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/l%c3%ado/202044"
+  ]
+ },
+ {
+  "w": "echar a perder",
+  "pat": "echar a perder algo",
+  "t": "bir planı, fırsatı veya ürünü tamamen bozmak",
+  "lit": "kayba atmak",
+  "s": "Un malentendido tonto echó a perder nuestra amistad de años.",
+  "form": "echó a perder",
+  "tr": "Saçma bir yanlış anlaşılma yıllardır süren dostluğumuzu mahvetti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/echar-a-perder",
+   "https://es.wiktionary.org/wiki/echar_a_perder"
+  ]
+ },
+ {
+  "w": "caer en la trampa",
+  "t": "kurulan düzene veya aldatmacaya kanıp yakalanmak",
+  "lit": "tuzağa düşmek",
+  "eq": "oltaya gelmek",
+  "s": "El correo parecía del banco y muchos usuarios cayeron en la trampa.",
+  "form": "cayeron en la trampa",
+  "tr": "E-posta bankadan gelmiş gibi görünüyordu ve birçok kullanıcı tuzağa düştü.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/trampa",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/trampa/230450"
+  ]
+ },
+ {
+  "w": "salir del paso",
+  "t": "kalıcı çözüm üretmeden günü kurtaracak kadar işi idare etmek",
+  "lit": "adımdan çıkmak",
+  "eq": "günü kurtarmak",
+  "s": "Improvisé una respuesta rápida solo para salir del paso en clase.",
+  "form": "salir del paso",
+  "tr": "Derste sadece durumu kurtarmak için hızlıca bir cevap uydurdum.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/paso",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/paso/211894"
+  ]
+ },
+ {
+  "w": "ir cuesta abajo",
+  "t": "hızla gerilemek, çöküş veya bozulma sürecine girmek",
+  "lit": "yokuş aşağı gitmek",
+  "eq": "inişe geçmek",
+  "s": "Sin inversión en nuevos proyectos, la empresa fue cuesta abajo.",
+  "form": "fue cuesta abajo",
+  "tr": "Yeni projelere yatırım yapılmayınca şirket hızla gerilemeye başladı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/cuesta-abajo",
+   "https://en.wiktionary.org/wiki/cuesta_abajo"
+  ]
+ },
+ {
+  "w": "estar con el agua al cuello",
+  "t": "borç veya sorunlar yüzünden nefes alamaz hale gelmek",
+  "lit": "su boyunda olmak",
+  "eq": "boğazına kadar borca batmak",
+  "s": "Con tantas deudas acumuladas, el negocio está con el agua al cuello.",
+  "form": "está con el agua al cuello",
+  "tr": "Bu kadar biriken borçla işletme gırtlağına kadar dertte.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/agua",
+   "https://es.wiktionary.org/wiki/con_el_agua_al_cuello"
+  ]
+ },
+ {
+  "w": "echar leña al fuego",
+  "t": "var olan kavgayı veya krizi daha da alevlendirmek",
+  "lit": "ateşe odun atmak",
+  "eq": "yangına körükle gitmek",
+  "s": "Con ese comentario irónico solo conseguiste echar leña al fuego.",
+  "form": "echar leña al fuego",
+  "tr": "O alaycı yorumla sadece yangına körükle gitmiş oldun.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/lena",
+   "https://en.wiktionary.org/wiki/echar_le%C3%B1a_al_fuego"
+  ]
+ },
+ {
+  "w": "pagar los platos rotos",
+  "t": "başkalarının yaptığı hatanın cezasını veya yükünü çekmek",
+  "lit": "kırık tabakları ödemek",
+  "eq": "kabak başına patlamak",
+  "s": "El gerente cometió el fallo, pero nosotros pagamos los platos rotos.",
+  "form": "pagamos los platos rotos",
+  "tr": "Hatayı müdür yaptı ama bedelini biz ödedik.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/lavar-los-platos",
+   "https://es.wiktionary.org/wiki/pagar_los_platos_rotos"
+  ]
+ },
+ {
+  "w": "poner el dedo en la llaga",
+  "t": "herkesin kaçındığı en hassas soruna doğrudan temas etmek",
+  "lit": "parmağı yaraya koymak",
+  "eq": "yaraya parmak basmak",
+  "s": "Su pregunta directa sobre los costes puso el dedo en la llaga.",
+  "form": "puso el dedo en la llaga",
+  "tr": "Maliyetlerle ilgili doğrudan sorusu tam yaraya parmak bastı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/dedo",
+   "https://en.wiktionary.org/wiki/poner_el_dedo_en_la_llaga"
+  ]
+ },
+ {
+  "w": "hacer una montaña de un grano de arena",
+  "t": "küçücük bir sorunu gereğinden katbekat büyütmek",
+  "lit": "bir kum tanesinden dağ yapmak",
+  "eq": "pireyi deve yapmak",
+  "s": "Solo olvidaste las llaves; no hagas una montaña de un grano de arena.",
+  "form": "una montaña de un grano de arena",
+  "tr": "Sadece anahtarları unuttun; pireyi deve yapma.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/hacer-una-montana-de-un-grano-de-arena",
+   "https://en.wiktionary.org/wiki/hacer_una_monta%C3%B1a_de_un_grano_de_arena"
+  ]
+ },
+ {
+  "w": "pillar con las manos en la masa",
+  "pat": "pillar a alguien con las manos en la masa",
+  "t": "birini suç veya kabahat işlerken tam o anda yakalamak",
+  "lit": "elleri hamurdayken yakalamak",
+  "eq": "suçüstü yakalamak",
+  "s": "Entró en la cocina y los pilló con las manos en la masa.",
+  "form": "pilló con las manos en la masa",
+  "tr": "Mutfağa girdi ve onları suçüstü yakaladı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/coger-pillar-con-las-manos-en-la-masa",
+   "https://es.wiktionary.org/wiki/con_las_manos_en_la_masa"
+  ]
+ },
+ {
+  "w": "estar en el ojo del huracán",
+  "t": "sert eleştirilerin ve büyük bir krizin tam odağında bulunmak",
+  "lit": "kasırganın gözünde olmak",
+  "s": "Tras la filtración, el ministro estuvo en el ojo del huracán.",
+  "form": "estuvo en el ojo del huracán",
+  "tr": "Sızıntıdan sonra bakan fırtınanın tam ortasında kaldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ojo",
+   "https://es.wiktionary.org/wiki/ojo"
+  ]
+ },
+ {
+  "w": "salir mal parado",
+  "t": "bir olaydan veya çatışmadan zararlı ve yıpranmış çıkmak",
+  "lit": "kötü durmuş çıkmak",
+  "s": "En aquella discusión laboral, el aprendiz salió mal parado.",
+  "form": "salió mal parado",
+  "tr": "O iş yeri tartışmasında en zararlı çıkan çırak oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/parado",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/parado/211264"
+  ]
+ },
+ {
+  "w": "tener mala pata",
+  "t": "üst üste şanssızlık ve aksilik yaşamak",
+  "lit": "kötü ayağı olmak",
+  "s": "Se estropeó el tren justo al llegar; hoy tengo mala pata.",
+  "form": "tengo mala pata",
+  "tr": "Tam vardığımızda tren bozuldu; bugün şanssızlık üstümde.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/mala-pata",
+   "https://es.wiktionary.org/wiki/mala_pata"
+  ]
+ },
+ {
+  "w": "meterse en camisa de once varas",
+  "t": "kendini ilgilendirmeyen, başa bela açacak karmaşık bir işe karışmak",
+  "lit": "on bir arşınlık gömleğin içine girmek",
+  "eq": "boyundan büyük işe kalkışmak",
+  "s": "No deberías meterte en camisa de once varas opinando sobre su divorcio.",
+  "form": "meterte en camisa de once varas",
+  "tr": "Boşanmaları hakkında yorum yapıp boyunu aşan işe burnunu sokmamalısın.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/camisa/169206",
+   "https://es.wiktionary.org/wiki/meterse_en_camisa_de_once_varas"
+  ]
+ },
+ {
+  "w": "pasar las de Caín",
+  "t": "uzun süre büyük sıkıntı, çile ve yokluk çekmek",
+  "lit": "Kabil’in çektiklerini geçmek",
+  "eq": "akla karayı seçmek",
+  "s": "Para sacar aquel permiso administrativo pasamos las de Caín.",
+  "form": "pasamos las de Caín",
+  "tr": "O resmî izni çıkarabilmek için akla karayı seçtik.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/pasar",
+   "https://es.wiktionary.org/wiki/pasar_las_de_Ca%C3%ADn"
+  ]
+ },
+ {
+  "w": "llover sobre mojado",
+  "t": "henüz eskisi bitmeden aynı türden yeni bir sorunun daha gelmesi",
+  "lit": "ıslak üstüne yağmur yağmak",
+  "eq": "derdin üstüne dert binmek",
+  "s": "Otro recorte de personal este mes ya es llover sobre mojado.",
+  "form": "llover sobre mojado",
+  "tr": "Bu ay bir personel kesintisi daha yapılması derdin üstüne dert eklemek olur.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/llover",
+   "https://es.wiktionary.org/wiki/llover_sobre_mojado"
+  ]
+ },
+ {
+  "w": "salir el tiro por la culata",
+  "pat": "salirle a alguien el tiro por la culata",
+  "t": "beklenen planın tam tersine dönüp yapanı zarara uğratması",
+  "lit": "atışın dipçikten çıkması",
+  "eq": "evdeki hesap çarşıya uymamak",
+  "s": "Intentó engañar al socio, pero le salió el tiro por la culata.",
+  "form": "salió el tiro por la culata",
+  "tr": "Ortağını kandırmaya çalıştı ama planı kendi aleyhine ters tepti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/salir-el-tiro-por-la-culata",
+   "https://es.wiktionary.org/wiki/salir_el_tiro_por_la_culata"
+  ]
+ },
+ {
+  "w": "cargar con el muerto",
+  "t": "başkalarının da karıştığı bir hatanın tüm sorumluluğunu tek başına sırtlamak",
+  "lit": "ölüyü sırtlamak",
+  "eq": "ihale üstüne kalmak",
+  "s": "Todos tomaron esa decisión, pero me tocó cargar con el muerto.",
+  "form": "cargar con el muerto",
+  "tr": "Kararı herkes birlikte aldı ama tüm suç benim üzerime yıkıldı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/muerto",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/muerto/207195"
+  ]
+ },
+ {
+  "w": "quedar en agua de borrajas",
+  "t": "büyük beklentiyle başlayıp hiçbir sonuç vermeden sönümlenmek",
+  "lit": "hodan suyunda kalmak",
+  "eq": "dağ fare doğurmak",
+  "s": "Prometieron grandes reformas, pero todo quedó en agua de borrajas.",
+  "form": "quedó en agua de borrajas",
+  "tr": "Büyük reformlar vaat ettiler ama hepsi boşa çıkıp unutuldu.",
+  "reg": "neutral",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/agua/159422",
+   "https://en.wiktionary.org/wiki/quedar_en_agua_de_borrajas"
+  ]
+ },
+ {
+  "w": "comerse un marrón",
+  "t": "hiç istemediği halde sıkıntılı ve angarya bir işi üstlenmek zorunda kalmak",
+  "lit": "kahverengi bir şey yemek",
+  "eq": "ihale üstüne patlamak",
+  "s": "El técnico se fue de vacaciones y yo me comí el marrón.",
+  "form": "comí el marrón",
+  "tr": "Teknisyen tatile çıktı ve bütün dert benim başıma patladı.",
+  "reg": "slang",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/marron",
+   "https://es.wiktionary.org/wiki/comerse_un_marr%C3%B3n"
+  ]
+ },
+ {
+  "w": "traer cola",
+  "t": "ardından uzun sürecek tartışma, tepki veya olumsuz sonuçlar doğurmak",
+  "lit": "kuyruk getirmek",
+  "s": "La expulsión del jugador en la final todavía traerá cola.",
+  "form": "traerá cola",
+  "tr": "Oyuncunun finalde oyundan atılması daha çok su kaldırır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/cola",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/cola/173809"
+  ]
+ },
+ {
+  "w": "tener la soga al cuello",
+  "t": "hiç hareket alanı kalmayacak biçimde köşeye sıkışmak",
+  "lit": "boynunda ipi olmak",
+  "eq": "bıçak kemiğe dayanmak",
+  "s": "Con la hipoteca atrasada, la familia tiene la soga al cuello.",
+  "form": "tiene la soga al cuello",
+  "tr": "Geciken konut kredisi yüzünden aile iyice köşeye sıkışmış durumda.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/soga",
+   "https://es.wiktionary.org/wiki/cuello"
+  ]
+ },
+ {
+  "w": "armarse la gorda",
+  "t": "büyük bir kavga, skandal veya karmaşa patlak vermek",
+  "lit": "kalın olanın kurulması",
+  "eq": "kıyamet kopmak",
+  "s": "Cuando se filtre ese informe secreto, se va a armar la gorda.",
+  "form": "armar la gorda",
+  "tr": "O gizli rapor sızdığında ortalık fena halde karışacak.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/hacer-la-vista-gorda",
+   "https://en.wiktionary.org/wiki/armarse_la_gorda"
+  ]
+ },
+ {
+  "w": "caer en saco roto",
+  "t": "yapılan uyarının veya verilen öğüdün tamamen boşa gitmesi",
+  "lit": "yırtık çuvala düşmek",
+  "eq": "bir kulağından girip öbüründen çıkmak",
+  "s": "Por desgracia, todos los consejos del médico cayeron en saco roto.",
+  "form": "cayeron en saco roto",
+  "tr": "Ne yazık ki doktorun bütün tavsiyeleri boşa gitti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/saco",
+   "https://es.wiktionary.org/wiki/caer_en_saco_roto"
+  ]
+ },
+ {
+  "w": "irse a pique",
+  "t": "bir işin, girişimin veya projenin tamamen çöküp batması",
+  "lit": "dibe gitmek",
+  "eq": "suya düşmek",
+  "s": "Tras perder a su inversor principal, la empresa se fue a pique.",
+  "form": "fue a pique",
+  "tr": "Ana yatırımcısını kaybedince şirket tamamen battı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/irse-a-pique",
+   "https://es.wiktionary.org/wiki/irse_a_pique"
+  ]
+ }
+]

@@ -29,7 +29,7 @@
   "theme": "money",
   "src": [
    "https://en.wiktionary.org/wiki/n%C3%BAmeros_rojos",
-   "https://www.spanishdict.com/translate/estar%20en%20n%C3%BAmeros%20rojos"
+   "https://dictionary.cambridge.org/dictionary/spanish-english/estar-en-numeros-rojos"
   ]
  },
  {
@@ -151,23 +151,6 @@
   ]
  },
  {
-  "w": "estar a dos velas",
-  "t": "beş parasız kalmak, cebinde tek kuruş olmamak",
-  "lit": "iki mumda olmak",
-  "eq": "beş parasız kalmak",
-  "s": "Tras pagar el seguro del coche, todo el mes estuve a dos velas.",
-  "form": "estuve a dos velas",
-  "tr": "Araba sigortasını ödedikten sonra bütün ay beş parasız kaldım.",
-  "reg": "informal",
-  "area": "İspanya",
-  "level": "C1",
-  "theme": "money",
-  "src": [
-   "https://en.wiktionary.org/wiki/a_dos_velas",
-   "https://www.spanishdict.com/translate/estar%20a%20dos%20velas"
-  ]
- },
- {
   "w": "valer un potosí",
   "t": "çok değerli olmak, bir servet etmek",
   "lit": "bir Potosí gümüş madenine değmek",
@@ -246,7 +229,7 @@
   "theme": "money",
   "src": [
    "https://en.wiktionary.org/wiki/contante_y_sonante",
-   "https://www.spanishdict.com/translate/pagar%20en%20dinero%20contante%20y%20sonante"
+   "https://www.diccionarios.com/diccionario/espanol/contante"
   ]
  },
  {

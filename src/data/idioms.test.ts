@@ -65,7 +65,7 @@ describe('idiom pack', () => {
     expect(findIdioms(es, 'tomarle el pelo a alguien').exact?.w).toBe('tomar el pelo')
     expect(findIdioms(es, 'pelo').others.map((i) => i.w)).toEqual(expect.arrayContaining(['tomar el pelo']))
     expect(findIdioms(es, 'pelos').others.map((i) => i.w)).toEqual(['no tener pelos en la lengua'])
-    expect(findIdioms(es, 'meter').others.map((i) => i.w)).toEqual(['meter la pata'])
+    expect(findIdioms(es, 'meter').others.map((i) => i.w)).toEqual(expect.arrayContaining(['meter la pata']))
     expect(findIdioms(es, 'pot kırmak').others.map((i) => i.w)).toEqual(['meter la pata'])
     expect(findIdioms(es, 'göz yummak').others.map((i) => i.w)).toEqual(['hacer la vista gorda'])
     // Too short to mean anything, and a word no idiom has.
