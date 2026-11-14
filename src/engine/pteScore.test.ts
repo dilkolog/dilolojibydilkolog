@@ -85,8 +85,12 @@ describe('short question: one of the answers', () => {
   it('case, an article, punctuation and spaces do not matter', () => {
     for (const a of ['Seven', ' seven. ', '7', 'the seven']) expect(scoreShortAnswer(a, item), a).toEqual({ got: 1, of: 1 })
   })
-  it('anything else, or nothing, is wrong', () => {
-    for (const a of ['six', '', 'seven days']) expect(scoreShortAnswer(a, item), a).toEqual({ got: 0, of: 1 })
+  it('said within a few words it still counts, as recognition hears a spoken answer', () => {
+    for (const a of ['seven days', "it's seven", 'I think 7']) expect(scoreShortAnswer(a, item), a).toEqual({ got: 1, of: 1 })
+    expect(scoreShortAnswer("it's a bedroom", { answers: ['bedroom', 'a bedroom'] })).toEqual({ got: 1, of: 1 })
+  })
+  it('anything else, a longer word holding it, or nothing, is wrong', () => {
+    for (const a of ['six', '', 'seventeen', '77']) expect(scoreShortAnswer(a, item), a).toEqual({ got: 0, of: 1 })
   })
 })
 

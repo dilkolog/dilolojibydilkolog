@@ -146,8 +146,10 @@ export const PTE_RULES = {
     listens: 1,
     /** Doc: no preparation, no tone. */
     prepSeconds: 0,
-    /** Doc: 10 s to answer (here typed: the 3 s silence rule of the spoken answer does not apply). */
+    /** Doc: 10 s to answer, said (typing is only the fallback without recognition). */
     answerSeconds: 10,
+    /** Doc: 3 s of silence closes the recording. */
+    silenceSeconds: 3,
     /** Doc: a 3–9 s question; 4–20 words (ours). */
     words: [4, 20],
   },

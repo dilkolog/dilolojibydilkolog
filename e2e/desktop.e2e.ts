@@ -519,9 +519,9 @@ test('PTE-style for English: a whole dictation round and a whole fill-in-the-bla
   await expect(page.locator('.pte-section .examtask-item', { hasText: 'Dikte' })).toContainText('son tur %')
 })
 
-test('PTE-style repeat sentence in exam mode: heard once, said back until 3 s of silence (recognition stood in for), or typed', async ({ page }) => {
-  // No microphone or recognition service in a test: a silent stream and a recogniser that hears the sentence.
-  await page.addInitScript(() => {
+/** No microphone or recognition service in a test: a silent stream and a recogniser that hears `window.saySentence`. */
+const fakeVoice = (page: Page) =>
+  page.addInitScript(() => {
     navigator.mediaDevices.getUserMedia = async () => {
       const ctx = new AudioContext()
       const out = ctx.createMediaStreamDestination()
@@ -555,6 +555,32 @@ test('PTE-style repeat sentence in exam mode: heard once, said back until 3 s of
     }
     Object.assign(window, { SpeechRecognition: FakeRecognition, webkitSpeechRecognition: FakeRecognition })
   })
+
+test('PTE-style short question in exam mode: the question heard once, the answer said, closed by 3 s of silence', async ({ page }) => {
+  await fakeVoice(page)
+  const pte = JSON.parse(fs.readFileSync('src/data/pte/en.json', 'utf8')) as { asq: { answers: string[]; tr: string }[] }
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /İngilizce/ }).click()
+  await openScreen(page, 'Sınavlar')
+  await page.getByRole('group', { name: 'Sınav' }).getByRole('button', { name: 'PTE tarzı' }).click()
+  await page.locator('.pte-section').getByRole('group', { name: 'Mod' }).getByRole('button', { name: 'Sınav' }).click()
+  await page.locator('.pte-section .examtask-item', { hasText: 'Kısa soru' }).click()
+  // Said within a few words, as people answer: it still counts.
+  await page.evaluate((s) => ((window as unknown as { saySentence: string }).saySentence = `I think it's ${s}`), pte.asq[0].answers[0])
+  await page.getByRole('button', { name: 'Dinle' }).click()
+  await expect(page.getByRole('timer')).toBeVisible({ timeout: 10_000 })
+  await expect(page.locator('.pte-feedback')).toContainText('Doğruluk %100', { timeout: 8000 })
+  await expect(page.locator('.pte-feedback')).toContainText(pte.asq[0].tr)
+  await page.getByRole('button', { name: 'Devam' }).click()
+  // Nothing right said: wrong, with the right answer shown.
+  await page.evaluate(() => ((window as unknown as { saySentence: string }).saySentence = 'I do not know'))
+  await page.getByRole('button', { name: 'Dinle' }).click()
+  await expect(page.locator('.pte-feedback')).toContainText('Doğruluk %0', { timeout: 12_000 })
+  await expect(page.locator('.pte-feedback')).toContainText(`Doğru cevap: ${pte.asq[1].answers[0]}`)
+})
+
+test('PTE-style repeat sentence in exam mode: heard once, said back until 3 s of silence (recognition stood in for), or typed', async ({ page }) => {
+  await fakeVoice(page)
   const pte = JSON.parse(fs.readFileSync('src/data/pte/en.json', 'utf8')) as { rs: { text: string; tr: string }[] }
   await startWithSamples(page)
   await page.getByRole('button', { name: /İngilizce/ }).click()

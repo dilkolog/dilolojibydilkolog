@@ -62,10 +62,13 @@ const answerForm = (s: string) =>
     .replace(/[^\p{L}\p{N}' ]/gu, '')
     .trim()
 
-/** Answer short question: right when it is one of the item's answers. */
+/**
+ * Answer short question: right when one of the item's answers is said, alone or within a few words ("it's a bedroom");
+ * whole words only, so "seventeen" is not "seven". Extra words earn nothing more, as on the exam.
+ */
 export function scoreShortAnswer(given: string, item: Pick<PteAsq, 'answers'>): PteScore {
-  const said = answerForm(given)
-  return { got: said && item.answers.some((a) => answerForm(a) === said) ? 1 : 0, of: 1 }
+  const said = ` ${answerForm(given)} `
+  return { got: said.trim() && item.answers.some((a) => answerForm(a) && said.includes(` ${answerForm(a)} `)) ? 1 : 0, of: 1 }
 }
 
 // ---------------------------------------------------------------------------

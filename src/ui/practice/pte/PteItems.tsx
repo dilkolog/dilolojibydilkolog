@@ -6,7 +6,6 @@ import { canRecord, recordingType } from '../audioRecord'
 import { assessPronunciation, azureEnabled } from '../pronunciation'
 import { KeyboardIcon, MicIcon } from '../../shared/icons'
 import { Select } from '../../shared/Select'
-import { canSpeak } from '../../shared/speech'
 import { canListen, listenContinuous } from '../../shared/speechInput'
 import { useCountdown, usePteAudio, watchSilence } from './pteHooks'
 import type { PteItemProps } from './pteMode'
@@ -403,28 +402,66 @@ export function PteBlanksAnswer({ item, chosen }: { item: PteFib; chosen: readon
 // Answer short question
 
 export function PteShort({ item, mode, onAnswer }: PteItemProps<PteAsq>) {
-  const [text, setText] = useState('')
-  const [heard, setHeard] = useState(mode !== 'exam' || !canSpeak())
-  const answer = useRef(text)
-  answer.current = text
-  const check = () => onAnswer({ score: scoreShortAnswer(answer.current, item), given: answer.current })
-  const audio = usePteAudio(item.question, mode, PTE_RULES.asq.listens, () => setHeard(true))
-  // Exam: the clock starts when the question has been heard; what is typed when it runs out is the answer.
-  const left = useCountdown(mode === 'exam' ? PTE_RULES.asq.answerSeconds : null, mode === 'exam' && heard, check)
+  const exam = mode === 'exam'
+  const [typing, setTyping] = useState(!canListen())
+  const [error, setError] = useState('')
+  const done = (said: string) => onAnswer({ score: scoreShortAnswer(said, item), given: said })
+  const speaking = useSpeaking(
+    (message) => {
+      setError(message)
+      setTyping(true)
+    },
+    exam ? PTE_RULES.asq.silenceSeconds : null,
+    done,
+  )
+  const startSaying = () => {
+    setError('')
+    speaking.start()
+  }
+  // The exam opens the microphone as soon as the question ends (no tone).
+  const audio = usePteAudio(item.question, mode, PTE_RULES.asq.listens, () => {
+    if (exam && !typing && !speaking.on) startSaying()
+  })
+  const left = useCountdown(exam ? PTE_RULES.asq.answerSeconds : null, speaking.on, () => done(speaking.finish()))
   return (
     <div className="stack">
-      <p className="small muted">Soruyu dinle ve tek kelimeyle ya da kısa bir ifadeyle cevapla.{mode === 'exam' ? ` Soru bitince ${PTE_RULES.asq.answerSeconds} saniyen var.` : ''}</p>
+      <p className="small muted">
+        Soruyu dinle ve tek kelimeyle ya da kısa bir ifadeyle söyle.{' '}
+        {exam ? `Soru bitince mikrofon açılır; ${PTE_RULES.asq.answerSeconds} saniyen var, ${PTE_RULES.asq.silenceSeconds} saniye sessiz kalırsan kayıt kapanır.` : ''}
+      </p>
       <PteListen audio={audio} mode={mode} />
       <p className="prompt-label pte-text" lang="en">
         {item.question}
       </p>
-      <AnswerLine value={text} onChange={setText} onSubmit={() => text.trim() && check()} label="Cevabın" placeholder="Cevabın" />
-      <div className="row">
-        <button type="button" className="btn" onClick={check} disabled={!text.trim()}>
-          Kontrol et
-        </button>
-        {mode === 'exam' && heard && <PteClock left={left} />}
-      </div>
+      {typing ? (
+        <>
+          {error && <p className="small cross-warn">{error}</p>}
+          <TypeInstead onDone={done} placeholder="Cevabın" />
+        </>
+      ) : (
+        <>
+          <div className="row">
+            {speaking.on ? (
+              <button type="button" className="btn btn-bad" onClick={() => done(speaking.finish())}>
+                <span className="rec-dot" aria-hidden /> Bitir
+              </button>
+            ) : (
+              <button type="button" className="btn btn-quiet" onClick={startSaying} disabled={audio.playing || (exam && audio.canPlay && audio.plays === 0)}>
+                <MicIcon size={16} className="inline-icon" /> Cevabı söyle
+              </button>
+            )}
+            {speaking.on && <PteClock left={left} />}
+            <button type="button" className="link small" onClick={() => setTyping(true)}>
+              <KeyboardIcon size={14} className="inline-icon" /> Yazarak dene
+            </button>
+          </div>
+          {speaking.on && (
+            <p className="small muted" aria-live="polite">
+              {speaking.heard ? <span lang="en">{speaking.heard}</span> : 'Dinliyorum…'}
+            </p>
+          )}
+        </>
+      )}
     </div>
   )
 }
