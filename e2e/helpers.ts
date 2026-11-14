@@ -63,6 +63,7 @@ const ROUTE: Record<string, [string, string?]> = {
   Okuma: ['Okuma', 'Metinler'],
   Hikaye: ['Okuma', 'Hikaye'],
   Oyunlar: ['Öğren', 'Oyunlar'],
+  Sınavlar: ['Öğren', 'Sınavlar'],
   Fiiller: ['Öğren', 'Fiiller'],
   'Yaz & konuş': ['Öğren', 'Yaz & konuş'],
   Rehber: ['Öğren', 'Rehber'],
@@ -99,7 +100,7 @@ export async function openScreen(page: Page, name: string) {
   for (let n = await page.locator('.group-toggle[aria-expanded=false]').count(); n > 0; n--) await page.locator('.group-toggle[aria-expanded=false]').first().click()
 }
 
-export const SCREENS = ['Bugün', 'Kelimeler', 'Hatalar', 'Çeviri', 'Okuma', 'Hikaye', 'Oyunlar', 'Fiiller', 'Yaz & konuş', 'Rehber', 'Topluluk', 'İlerleme', 'Profil', 'Ayarlar']
+export const SCREENS = ['Bugün', 'Kelimeler', 'Hatalar', 'Çeviri', 'Okuma', 'Hikaye', 'Oyunlar', 'Sınavlar', 'Fiiller', 'Yaz & konuş', 'Rehber', 'Topluluk', 'İlerleme', 'Profil', 'Ayarlar']
 
 /** Elements wider than the screen that make the page scroll sideways. */
 export const overflow = (page: Page) =>

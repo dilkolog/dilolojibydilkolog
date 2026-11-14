@@ -54,7 +54,7 @@ import { skeletonFor } from './ui/shared/skeletonFor'
 
 import { currentLevel, levelGroups } from './engine/lists'
 
-import { Summary, SessionScreen, GamesScreen, MistakesScreen, TranslateScreen, ProfileScreen, ProgressScreen, ReadingScreen, ProduceScreen, VocabTestScreen, ExamScreen, SettingsScreen, StoryScreen, WordDetail, WordsScreen, VerbLab, DictionaryScreen, AuthScreen, GuideScreen, CommunityScreen, AdminScreen } from './lazyScreens'
+import { Summary, SessionScreen, GamesScreen, MistakesScreen, TranslateScreen, ProfileScreen, ProgressScreen, ReadingScreen, ProduceScreen, ExamsScreen, VocabTestScreen, ExamScreen, SettingsScreen, StoryScreen, WordDetail, WordsScreen, VerbLab, DictionaryScreen, AuthScreen, GuideScreen, CommunityScreen, AdminScreen } from './lazyScreens'
 import { nextReviewAt } from './engine/review'
 import type { UserWordState } from './engine/types'
 import type { PushState } from './ui/settings/pushReminders'
@@ -256,13 +256,23 @@ export function AppScreens(props: AppScreensProps) {
         />
       ) : screen.name === 'produce' ? (
         <ProduceScreen
-          key={data.language}
+          key={`${data.language}|${screen.task ?? ''}`}
+          initialTask={screen.task}
           db={db}
           language={data.language}
           vocabulary={data.vocabulary}
           states={data.states}
           onChanged={reload}
           onOpenSettings={go({ name: 'settings' })}
+        />
+      ) : screen.name === 'exams' ? (
+        <ExamsScreen
+          key={data.language}
+          language={data.language}
+          passage={screen.passage}
+          onOpenSet={(id) => setScreen({ name: 'exams', passage: id })}
+          onCloseSet={() => setScreen({ name: 'exams' })}
+          onOpenTask={(id) => setScreen({ name: 'produce', task: id })}
         />
       ) : screen.name === 'exam' ? (
         <ExamScreen

@@ -9,7 +9,7 @@ import type { LabTab } from './ui/verbs/VerbLab'
 import type { AuthMode } from './ui/account/AuthScreen'
 import type { SharedRead } from './ui/incoming'
 import { authReturnPending } from './data/supabase'
-import { AlertIcon, BookIcon, ChartIcon, GameIcon, GearIcon, GlobeIcon, HomeIcon, PenIcon, ReadIcon, SchoolIcon, SearchIcon, StoryIcon, TenseIcon, UserIcon, UsersIcon } from './ui/shared/icons'
+import { AlertIcon, BookIcon, ChartIcon, ClipboardIcon, GameIcon, GearIcon, GlobeIcon, HomeIcon, PenIcon, ReadIcon, SchoolIcon, SearchIcon, StoryIcon, TenseIcon, UserIcon, UsersIcon } from './ui/shared/icons'
 
 /** Set when opened from a reminder ("?go=quick"): start a short review as soon as the plan is ready. */
 export const launch = { quick: false }
@@ -49,7 +49,9 @@ export type Screen =
   | { name: 'story' }
   | { name: 'reading'; shared?: SharedRead }
   | { name: 'vocabtest' }
-  | { name: 'produce' }
+  | { name: 'produce'; task?: string }
+  /** The exam-style practice of the language (DELF, DELE… style), or one of its reading sets opened. Not 'exam': that is the recall test. */
+  | { name: 'exams'; passage?: string }
   | { name: 'exam'; repair?: boolean }
   | { name: 'games'; game?: GameId; topic?: string }
   | { name: 'community' }
@@ -62,7 +64,7 @@ export type Screen =
 
 export const SCREEN_KEY = 'kelime-koc:screen'
 /** Screens worth returning to; sessions and summaries are not (answers are saved anyway). */
-export const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'dictionary', 'translate', 'word', 'reading', 'produce', 'story', 'games', 'verbs', 'guide', 'community', 'mistakes', 'progress', 'profile', 'settings'])
+export const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'dictionary', 'translate', 'word', 'reading', 'produce', 'exams', 'story', 'games', 'verbs', 'guide', 'community', 'mistakes', 'progress', 'profile', 'settings'])
 
 export function restoreScreen(): Screen {
   // Back from a sign-in link (email confirmation, magic link, Google, password reset): finish signing in.
@@ -98,7 +100,7 @@ export function restoreScreen(): Screen {
  * Screens that spread out on wide screens; the session and the forms keep a measure. The tabs of one place (GROUPS)
  * are all wide or all narrow: switching tabs must not make the page jump narrower (appNav.test.ts).
  */
-export const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'dictionary', 'translate', 'games', 'verbs', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings', 'guide', 'community', 'produce', 'story', 'admin'])
+export const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'dictionary', 'translate', 'games', 'verbs', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings', 'guide', 'community', 'produce', 'exams', 'story', 'admin'])
 
 /**
  * Five places in the menu (all of them fit the phone's tab bar). Related screens share one place
@@ -133,6 +135,7 @@ export const GROUPS: Partial<Record<NavScreen, { screen: ScreenName; label: stri
     { screen: 'verbs', label: 'Fiiller' },
     { screen: 'produce', label: 'Yaz & konuş' },
     { screen: 'games', label: 'Oyunlar' },
+    { screen: 'exams', label: 'Sınavlar' },
   ],
   // How it goes: the numbers, what goes wrong (the mistakes, beside the blind spots), and the others (league, friends).
   progress: [
@@ -162,6 +165,7 @@ export const ALL_SCREENS: { screen: ScreenName; label: string; icon: (p: { size?
   { screen: 'games', label: 'Oyunlar', icon: GameIcon },
   { screen: 'verbs', label: 'Fiil laboratuvarı', icon: TenseIcon },
   { screen: 'produce', label: 'Yaz & konuş', icon: PenIcon },
+  { screen: 'exams', label: 'Sınavlar', icon: ClipboardIcon },
   { screen: 'guide', label: 'Rehber', icon: SchoolIcon },
   { screen: 'community', label: 'Topluluk', icon: UsersIcon },
   { screen: 'progress', label: 'İlerleme', icon: ChartIcon },

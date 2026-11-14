@@ -6,6 +6,7 @@ import { examQuestionId, MAX_PLAYS, passageOrder, passageShare, shuffledQuestion
 import type { GrammarLog } from '../../engine/grammar'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
+import { readExamMode, saveExamMode } from './examMode'
 import { noteIn } from './logNote'
 import { Ring } from '../home/Ring'
 import { SpeakerIcon } from '../shared/icons'
@@ -14,35 +15,23 @@ import { sfx } from '../shared/sounds'
 import { canSpeak, speakAsync, stopSpeaking } from '../shared/speech'
 
 const note = noteIn(() => db.getExamLog(), (log) => db.saveExamLog(log))
-const MODE_KEY = 'diloloji:exam-mode'
 const LEVELS = ['A2', 'B1', 'B2', 'C1'] as const
-
-const readMode = (): ExamMode => {
-  try {
-    // Listening needs a voice: on a device without one the saved choice falls back to reading.
-    return localStorage.getItem(MODE_KEY) === 'listen' && canSpeak() ? 'listen' : 'read'
-  } catch {
-    return 'read'
-  }
-}
 
 /**
  * Exam-style reading and listening tasks: a text of the kind DELF, DELE or Cambridge gives and three questions
  * on it. In listening mode the text is only heard (device voice, twice at most) and shown with its Turkish after
  * the answers. Original texts; the screen says it is not an official paper.
  */
-export function ExamTasks({ language, onExit }: { language: TargetLanguage; onExit: () => void }) {
-  const [mode, setModeState] = useState<ExamMode>(readMode)
-  const [level, setLevel] = useState<(typeof LEVELS)[number] | ''>('')
+export function ExamTasks({ language, onExit, start, exitLabel = '← Oyunlar' }: { language: TargetLanguage; onExit: () => void; start?: string; exitLabel?: string }) {
+  // Opened on one set (from the exams screen): its level is the list's, and leaving the set goes back to where it came from.
+  const first = start ? examPassages.find((p) => p.id === start && p.language === language) : undefined
+  const [mode, setModeState] = useState<ExamMode>(readExamMode)
+  const [level, setLevel] = useState<(typeof LEVELS)[number] | ''>(first?.level ?? '')
   const [log, setLog] = useState<GrammarLog | null>(null)
-  const [open, setOpen] = useState<ExamPassage | null>(null)
+  const [open, setOpen] = useState<ExamPassage | null>(first ?? null)
   const setMode = (m: ExamMode) => {
     setModeState(m)
-    try {
-      localStorage.setItem(MODE_KEY, m)
-    } catch {
-      // Without storage the choice just is not kept.
-    }
+    saveExamMode(m)
   }
 
   useEffect(() => {
@@ -55,13 +44,13 @@ export function ExamTasks({ language, onExit }: { language: TargetLanguage; onEx
 
   const list = useMemo(() => (log ? passageOrder(examPassages, log, language, createRng(1), level || undefined) : []), [log, language, level])
 
-  if (open) return <Task key={open.id} passage={open} mode={mode} onBack={() => setOpen(null)} onNext={(p) => setOpen(p)} next={list.find((p) => p.id !== open.id)} />
+  if (open) return <Task key={open.id} passage={open} mode={mode} onBack={first ? onExit : () => setOpen(null)} backLabel={first ? exitLabel : undefined} onNext={(p) => setOpen(p)} next={list.find((p) => p.id !== open.id && (!first || p.exam === first.exam))} />
 
   return (
     <div className="stack examtask">
       <div className="game-top">
         <button className="link" onClick={onExit}>
-          ← Oyunlar
+          {exitLabel}
         </button>
         <span className="small muted" />
         <span className="small muted" />
@@ -112,7 +101,7 @@ export function ExamTasks({ language, onExit }: { language: TargetLanguage; onEx
   )
 }
 
-function Task({ passage, mode, onBack, onNext, next }: { passage: ExamPassage; mode: ExamMode; onBack: () => void; onNext: (p: ExamPassage) => void; next?: ExamPassage }) {
+function Task({ passage, mode, onBack, backLabel, onNext, next }: { passage: ExamPassage; mode: ExamMode; onBack: () => void; backLabel?: string; onNext: (p: ExamPassage) => void; next?: ExamPassage }) {
   const shuffled = useMemo(() => {
     const rng = createRng(Date.now())
     return passage.questions.map((q) => shuffledQuestion(q, rng))
@@ -155,7 +144,7 @@ function Task({ passage, mode, onBack, onNext, next }: { passage: ExamPassage; m
     <div className="stack examtask">
       <div className="game-top">
         <button className="link" onClick={onBack}>
-          ← Görevler
+          {backLabel ?? '← Görevler'}
         </button>
         <span className="small muted">
           {passage.exam} tarzı · {passage.level} · {mode === 'read' ? 'Okuma' : 'Dinleme'}
@@ -242,7 +231,7 @@ function Task({ passage, mode, onBack, onNext, next }: { passage: ExamPassage; m
                 </button>
               )}
               <button type="button" className="btn btn-quiet" onClick={onBack}>
-                Görevlere dön
+                {backLabel ? `${backLabel.replace(/^← /, '')}a dön` : 'Görevlere dön'}
               </button>
             </div>
           </div>
