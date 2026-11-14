@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "hang in there"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/horse-racing/race/p-1542854",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of hang in there",
+        "evidenceKind": "published_usage",
+        "expression": "hang in there",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get the ball rolling"
+      },
+      {
+        "url": "https://downloads.bbc.co.uk/writersroom/scripts/casualty-s26-ep8-charlies-angels.pdf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of get the ball rolling",
+        "evidenceKind": "published_usage",
+        "expression": "get the ball rolling",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "hit the ground running"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-the-ground-running",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; hit the ground running",
+        "evidenceKind": "corpus_examples",
+        "expression": "hit the ground running",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -116,6 +143,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go the extra mile"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-the-extra-mile",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; go the extra mile",
+        "evidenceKind": "corpus_examples",
+        "expression": "go the extra mile",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -146,6 +182,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "pull out all the stops"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pull-out-all-the-stops",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; pull out all the stops",
+        "evidenceKind": "corpus_examples",
+        "expression": "pull out all the stops",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -176,6 +221,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "learn the ropes"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/learn-the-ropes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; learn the ropes",
+        "evidenceKind": "corpus_examples",
+        "expression": "learn the ropes",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -207,6 +261,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "show someone the ropes"
+      },
+      {
+        "url": "https://www.theguardian.com/sport/2023/may/10/peter-spurrier-obituary",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of show the ropes",
+        "evidenceKind": "published_usage",
+        "expression": "show the ropes",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -237,6 +300,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep the ball rolling"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-the-ball-rolling",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; keep the ball rolling",
+        "evidenceKind": "corpus_examples",
+        "expression": "keep the ball rolling",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -267,6 +339,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a lot of irons in the fire"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/too_many_irons_in_the_fire",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 131; 2025.",
+        "evidenceKind": "dated_quotation",
+        "expression": "have a lot of irons in the fire",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -297,6 +378,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "burn the candle at both ends"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/burn_the_candle_at_both_ends",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 130; 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "burn the candle at both ends",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -327,6 +417,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have one's work cut out"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/have_one%27s_work_cut_out_for_one",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 119; 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "have one's work cut out",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -357,6 +456,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "climb the ladder"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/climb-the-ladder",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; climb the ladder",
+        "evidenceKind": "corpus_examples",
+        "expression": "climb the ladder",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -389,6 +497,15 @@
         "verification": "dictionary_search_excerpt",
         "locator": "be thrown in at the deep end",
         "noteTr": "Madde, throw someone in at the deep end varyantını açıkça tanımlar."
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/be-thrown-in-at-the-deep-end",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be thrown in at the deep end",
+        "evidenceKind": "corpus_examples",
+        "expression": "be thrown in at the deep end",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -419,6 +536,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a cog in the machine"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/cog",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 240; 2025.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be a cog in the machine",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -449,6 +575,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "carry the can"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/carry-the-can",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; carry the can",
+        "evidenceKind": "corpus_examples",
+        "expression": "carry the can",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -479,6 +614,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "pass the buck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pass-the-buck",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; pass the buck",
+        "evidenceKind": "corpus_examples",
+        "expression": "pass the buck",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -509,6 +653,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "pull one's weight"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pull-your-weight",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; pull one's weight",
+        "evidenceKind": "corpus_examples",
+        "expression": "pull one's weight",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -539,6 +692,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be back to square one"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/back-to-square-one",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be back to square one",
+        "evidenceKind": "corpus_examples",
+        "expression": "be back to square one",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -569,6 +731,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be back to the drawing board"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/back-to-the-drawing-board",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be back to the drawing board",
+        "evidenceKind": "corpus_examples",
+        "expression": "be back to the drawing board",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -600,6 +771,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "put something on the back burner"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/back_burner",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 126; 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "put on the back burner",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -630,6 +810,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have too many balls in the air"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/too_many_balls_in_the_air",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 126; 2004.",
+        "evidenceKind": "dated_quotation",
+        "expression": "have too many balls in the air",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -660,6 +849,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "drop the ball"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/drop-the-ball",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; drop the ball",
+        "evidenceKind": "corpus_examples",
+        "expression": "drop the ball",
+        "selectedUsageWitness": true
       }
     ]
   }

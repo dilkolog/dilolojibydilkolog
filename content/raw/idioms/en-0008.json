@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "read between the lines"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/read-between-the-lines",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; read between the lines",
+        "evidenceKind": "corpus_examples",
+        "expression": "read between the lines",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "put on one's thinking cap"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/football/articles/cn8qjvx9n4wo",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of put on one's thinking cap",
+        "evidenceKind": "published_usage",
+        "expression": "put on one's thinking cap",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a light-bulb moment"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/sentences/english/light-bulb",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a light-bulb moment",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a light-bulb moment",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -116,6 +143,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "put two and two together"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/put-two-and-two-together",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; put two and two together",
+        "evidenceKind": "corpus_examples",
+        "expression": "put two and two together",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -146,6 +182,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "miss the point"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/miss-a-point",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; miss the point",
+        "evidenceKind": "corpus_examples",
+        "expression": "miss the point",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -176,6 +221,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get the wrong end of the stick"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-the-wrong-end-of-the-stick",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; get the wrong end of the stick",
+        "evidenceKind": "corpus_examples",
+        "expression": "get the wrong end of the stick",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -206,6 +260,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "jump to conclusions"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/jump-to-conclusions",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; jump to conclusions",
+        "evidenceKind": "corpus_examples",
+        "expression": "jump to conclusions",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -236,6 +299,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "draw a blank"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/draw-a-blank",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; draw a blank",
+        "evidenceKind": "corpus_examples",
+        "expression": "draw a blank",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -266,6 +338,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "lose one's train of thought"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/rugby-union/articles/cj0dyrv2rv0o",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of lose one's train of thought",
+        "evidenceKind": "published_usage",
+        "expression": "lose one's train of thought",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -296,6 +377,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "jog someone's memory"
+      },
+      {
+        "url": "https://www.theguardian.com/politics/2024/apr/03/at-least-a-dozen-westminster-insiders-targeted-in-whatsapp-phishing-attack",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of jog someone's memory",
+        "evidenceKind": "published_usage",
+        "expression": "jog someone's memory",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -326,6 +416,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "ring a bell"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/ring-a-bell",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; ring a bell",
+        "evidenceKind": "corpus_examples",
+        "expression": "ring a bell",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -356,6 +455,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be second nature"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/second-nature",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be second nature",
+        "evidenceKind": "corpus_examples",
+        "expression": "be second nature",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -387,6 +495,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "know something inside out"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/football/articles/cvg1m9m4ye2o",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of know inside out",
+        "evidenceKind": "published_usage",
+        "expression": "know inside out",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -417,6 +534,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a mind like a sieve"
+      },
+      {
+        "url": "https://www.theguardian.com/theguardian/2002/jul/13/weekend7.weekend",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have a mind like a sieve",
+        "evidenceKind": "published_usage",
+        "expression": "have a mind like a sieve",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -447,6 +573,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in two minds"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-two-minds",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be in two minds",
+        "evidenceKind": "corpus_examples",
+        "expression": "be in two minds",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -477,6 +612,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "think outside the box"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/think_outside_the_box",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 135; 2026.",
+        "evidenceKind": "dated_quotation",
+        "expression": "think outside the box",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -507,6 +651,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a one-track mind"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/one-track-mind",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a one-track mind",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a one-track mind",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -537,6 +690,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep an open mind"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/coattail",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 148; 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "keep an open mind",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -567,6 +729,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "see the light"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/see-the-light",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; see the light",
+        "evidenceKind": "corpus_examples",
+        "expression": "see the light",
+        "selectedUsageWitness": true
       }
     ]
   }

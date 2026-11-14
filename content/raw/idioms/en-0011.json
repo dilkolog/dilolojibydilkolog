@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a race against time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-race-against-time",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a race against time",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a race against time",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "work against the clock"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/against-the-clock",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; work against the clock",
+        "evidenceKind": "corpus_examples",
+        "expression": "work against the clock",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "beat the clock"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/Oremite",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 132; 2004.",
+        "evidenceKind": "dated_quotation",
+        "expression": "beat the clock",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -117,6 +144,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "beat someone to the punch"
+      },
+      {
+        "url": "https://www.theguardian.com/film/article/2024/aug/02/un-oeuf-is-enough-have-we-had-our-fill-of-movie-easter-eggs",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of beat to the punch",
+        "evidenceKind": "published_usage",
+        "expression": "beat to the punch",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -147,6 +183,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "call it a night"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/late-night-call",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; call it a night",
+        "evidenceKind": "corpus_examples",
+        "expression": "call it a night",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -177,6 +222,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "kill time"
+      },
+      {
+        "url": "https://www.theguardian.com/technology/2014/aug/01/facebook-down-in-second-major-outage-in-two-months",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of kill time",
+        "evidenceKind": "published_usage",
+        "expression": "kill time",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -207,6 +261,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have the time of one's life"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/time-of-life",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have the time of one's life",
+        "evidenceKind": "corpus_examples",
+        "expression": "have the time of one's life",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -237,6 +300,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "turn back the clock"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/av/football/34822313",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of turn back the clock",
+        "evidenceKind": "published_usage",
+        "expression": "turn back the clock",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -267,6 +339,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be behind the times"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/behind-the-times",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be behind the times",
+        "evidenceKind": "corpus_examples",
+        "expression": "be behind the times",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -297,6 +378,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be ahead of one's time"
+      },
+      {
+        "url": "https://www.theguardian.com/film/2019/oct/04/giant-cookies-and-911-the-woman-who-recorded-the-news-24-hours-a-day",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be ahead of one's time",
+        "evidenceKind": "published_usage",
+        "expression": "be ahead of one's time",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -327,6 +417,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a ticking time bomb"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/ticking-time-bomb",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a ticking time bomb",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a ticking time bomb",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -357,6 +456,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be here today and gone tomorrow"
+      },
+      {
+        "url": "https://www.theguardian.com/music/musicblog/2016/mar/21/lee-scratch-perry-at-80-birthday-reggae-interview",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be here today and gone tomorrow",
+        "evidenceKind": "published_usage",
+        "expression": "be here today and gone tomorrow",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -387,6 +495,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be living on borrowed time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/living-on-borrowed-time",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be living on borrowed time",
+        "evidenceKind": "corpus_examples",
+        "expression": "be living on borrowed time",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -417,6 +534,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a matter of time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-matter-of-time",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a matter of time",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a matter of time",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -447,6 +573,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "stand the test of time"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/stand_the_test_of_time",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 112; 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "stand the test of time",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -477,6 +612,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "lose track of time"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/track",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 272; 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "lose track of time",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -507,6 +651,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make up for lost time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-make-up-for-lost-time",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; make up for lost time",
+        "evidenceKind": "corpus_examples",
+        "expression": "make up for lost time",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -537,6 +690,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "mark time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/mark-time",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; mark time",
+        "evidenceKind": "corpus_examples",
+        "expression": "mark time",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -567,6 +729,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be as regular as clockwork"
+      },
+      {
+        "url": "https://www.theguardian.com/media/2005/apr/25/mondaymediasection.broadcasting5",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be as regular as clockwork",
+        "evidenceKind": "published_usage",
+        "expression": "be as regular as clockwork",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -597,6 +768,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "come full circle"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/sentences/english/come-full-circle",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; come full circle",
+        "evidenceKind": "corpus_examples",
+        "expression": "come full circle",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -627,6 +807,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a thing of the past"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-thing-of-the-past",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a thing of the past",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a thing of the past",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -657,6 +846,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "kick the can down the road"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/kick_the_can_down_the_road",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 139; 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "kick the can down the road",
+        "selectedUsageWitness": true
       }
     ]
   }

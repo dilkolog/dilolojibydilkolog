@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a piece of cake"
+      },
+      {
+        "url": "https://www.theguardian.com/lifeandstyle/wordofmouth/2012/oct/17/foodie-figures-speech-world-edible-idioms",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be a piece of cake",
+        "evidenceKind": "published_usage",
+        "expression": "be a piece of cake",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be one's cup of tea"
+      },
+      {
+        "url": "https://downloads.bbc.co.uk/china/assets/pdf/bbc_the_teacher_13_tea_idioms.pdf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be one's cup of tea",
+        "evidenceKind": "published_usage",
+        "expression": "be one's cup of tea",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -87,6 +105,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "take something with a pinch of salt"
+      },
+      {
+        "url": "https://www.theguardian.com/business/2013/oct/23/supermarket-price-match-schemes-which-investigation",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of take with a pinch of salt",
+        "evidenceKind": "published_usage",
+        "expression": "take with a pinch of salt",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -117,6 +144,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "bring home the bacon"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/bring_home_the_bacon",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 130; 2005.",
+        "evidenceKind": "dated_quotation",
+        "expression": "bring home the bacon",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -147,6 +183,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a lot on one's plate"
+      },
+      {
+        "url": "https://downloads.bbc.co.uk/writersroom/scripts/line-of-duty-2-ep2.pdf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have a lot on one's plate",
+        "evidenceKind": "published_usage",
+        "expression": "have a lot on one's plate",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -177,6 +222,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "bite off more than one can chew"
+      },
+      {
+        "url": "https://www.theguardian.com/food/2026/jul/19/vieni-birmingham-a-happy-hubbub-you-cannot-pipe-this-in-restaurant-review",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of bite off more than one can chew",
+        "evidenceKind": "published_usage",
+        "expression": "bite off more than one can chew",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -207,6 +261,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have one's cake and eat it"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-ones-cake-and-eat-it",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have one's cake and eat it",
+        "evidenceKind": "corpus_examples",
+        "expression": "have one's cake and eat it",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -237,6 +300,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in a pickle"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/in_a_pickle",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 127; 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be in a pickle",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -267,6 +339,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be full of beans"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/full-of-beans",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be full of beans",
+        "evidenceKind": "corpus_examples",
+        "expression": "be full of beans",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -297,6 +378,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be as cool as a cucumber"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/cool_as_a_cucumber",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 144; 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be as cool as a cucumber",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -327,6 +417,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go bananas"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/go_bananas",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 138; 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "go bananas",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -357,6 +456,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be the icing on the cake"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-icing-on-the-cake",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be the icing on the cake",
+        "evidenceKind": "corpus_examples",
+        "expression": "be the icing on the cake",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -387,6 +495,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be the cream of the crop"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-cream-of-the-crop",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be the cream of the crop",
+        "evidenceKind": "corpus_examples",
+        "expression": "be the cream of the crop",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -417,6 +534,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "put all one's eggs in one basket"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/put_all_one%27s_eggs_in_one_basket",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 117; 2016.",
+        "evidenceKind": "dated_quotation",
+        "expression": "put all one's eggs in one basket",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -447,6 +573,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "walk on eggshells"
+      },
+      {
+        "url": "https://www.theguardian.com/uk-news/2026/may/07/annabel-rook-london-stoke-newington-murder-trial-court",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of walk on eggshells",
+        "evidenceKind": "published_usage",
+        "expression": "walk on eggshells",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -477,6 +612,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "cry over spilt milk"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/cry-over-spilt-milk",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; cry over spilt milk",
+        "evidenceKind": "corpus_examples",
+        "expression": "cry over spilt milk",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -507,6 +651,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "eat humble pie"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/eat_humble_pie",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 146; 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "eat humble pie",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -537,6 +690,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "eat one's words"
+      },
+      {
+        "url": "https://www.theguardian.com/books/2008/sep/14/3",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of eat one's words",
+        "evidenceKind": "published_usage",
+        "expression": "eat one's words",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -567,6 +729,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be hard to swallow"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/swallow-hard",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be hard to swallow",
+        "evidenceKind": "corpus_examples",
+        "expression": "be hard to swallow",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -597,6 +768,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "chew the fat"
+      },
+      {
+        "url": "https://www.theguardian.com/artanddesign/article/2024/jun/10/artist-hopes-to-reintroduce-cockney-rhyming-slang-to-young-londoners",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of chew the fat",
+        "evidenceKind": "published_usage",
+        "expression": "chew the fat",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -628,6 +808,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "butter someone up"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/butter-up",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; butter up",
+        "evidenceKind": "corpus_examples",
+        "expression": "butter up",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -658,6 +847,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be one's bread and butter"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bread-and-butter",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be one's bread and butter",
+        "evidenceKind": "corpus_examples",
+        "expression": "be one's bread and butter",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -688,6 +886,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "know which side one's bread is buttered on"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/know_which_side_of_the_bread_is_buttered",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 108; 2003.",
+        "evidenceKind": "dated_quotation",
+        "expression": "know which side one's bread is buttered on",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -718,6 +925,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a tough nut to crack"
+      },
+      {
+        "url": "https://www.theguardian.com/theobserver/2001/aug/05/life1.lifemagazine3",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be a tough nut to crack",
+        "evidenceKind": "published_usage",
+        "expression": "be a tough nut to crack",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -748,6 +964,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "separate the wheat from the chaff"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/separate_the_wheat_from_the_chaff",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 129; 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "separate the wheat from the chaff",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -778,6 +1003,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be the best thing since sliced bread"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-best-thing-since-sliced-bread",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be the best thing since sliced bread",
+        "evidenceKind": "corpus_examples",
+        "expression": "be the best thing since sliced bread",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -808,6 +1042,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "sell like hot cakes"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-sell-like-hot-cakes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; sell like hot cakes",
+        "evidenceKind": "corpus_examples",
+        "expression": "sell like hot cakes",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -838,6 +1081,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be out to lunch"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/out-to-lunch",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be out to lunch",
+        "evidenceKind": "corpus_examples",
+        "expression": "be out to lunch",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -868,6 +1120,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a finger in every pie"
+      },
+      {
+        "url": "https://www.theguardian.com/commentisfree/2019/jun/02/letters-bbc-wish-for-a-finger-in-every-pie",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have a finger in every pie",
+        "evidenceKind": "published_usage",
+        "expression": "have a finger in every pie",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -898,6 +1159,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a storm in a teacup"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-storm-in-a-teacup",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a storm in a teacup",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a storm in a teacup",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -928,6 +1198,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "pay peanuts"
+      },
+      {
+        "url": "https://www.theguardian.com/australia-news/2022/aug/25/growers-and-immigration-experts-slam-proposal-to-allow-workers-to-be-part-paid-in-fruit-and-veg",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of pay peanuts",
+        "evidenceKind": "published_usage",
+        "expression": "pay peanuts",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -958,6 +1237,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be small potatoes"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/small-potatoes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be small potatoes",
+        "evidenceKind": "corpus_examples",
+        "expression": "be small potatoes",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -988,6 +1276,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "spill the tea"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/spill_the_tea",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 125; 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "spill the tea",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1018,6 +1315,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be two peas in a pod"
+      },
+      {
+        "url": "https://www.theguardian.com/world/2013/jan/29/bristol-cycling-ivf-couple-killed",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be two peas in a pod",
+        "evidenceKind": "published_usage",
+        "expression": "be two peas in a pod",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1048,6 +1354,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be out of the frying pan into the fire"
+      },
+      {
+        "url": "https://www.theguardian.com/media/2024/oct/04/who-is-dovid-efune-leading-contender-daily-telegraph",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be out of the frying pan into the fire",
+        "evidenceKind": "published_usage",
+        "expression": "be out of the frying pan into the fire",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1078,6 +1393,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go pear-shaped"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-pear-shaped",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; go pear-shaped",
+        "evidenceKind": "corpus_examples",
+        "expression": "go pear-shaped",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1108,6 +1432,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a flash in the pan"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-flash-in-the-pan",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a flash in the pan",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a flash in the pan",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1138,6 +1471,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be as easy as pie"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/easy-as-pie",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be as easy as pie",
+        "evidenceKind": "corpus_examples",
+        "expression": "be as easy as pie",
+        "selectedUsageWitness": true
       }
     ]
   }

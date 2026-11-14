@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on the same page"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/on_the_same_page",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 121; 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be on the same page",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "hit it off"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-it-off",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; hit it off",
+        "evidenceKind": "corpus_examples",
+        "expression": "hit it off",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get on like a house on fire"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-on-like-a-house-on-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; get on like a house on fire",
+        "evidenceKind": "corpus_examples",
+        "expression": "get on like a house on fire",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -116,6 +143,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on the same wavelength"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/on_the_same_wavelength",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 118; 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be on the same wavelength",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -147,6 +183,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "rub someone up the wrong way"
+      },
+      {
+        "url": "https://www.theguardian.com/tv-and-radio/2013/sep/02/jamie-oliver-money-saving-meals-peston",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of rub up the wrong way",
+        "evidenceKind": "published_usage",
+        "expression": "rub up the wrong way",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -178,6 +223,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "leave someone in the lurch"
+      },
+      {
+        "url": "https://www.theguardian.com/money/2023/jun/15/measly-paternity-rights-mean-nearly-third-uk-fathers-take-no-leave-report",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of leave in the lurch",
+        "evidenceKind": "published_usage",
+        "expression": "leave in the lurch",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -209,6 +263,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "leave someone high and dry"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/leave-someone-high-and-dry",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; leave high and dry",
+        "evidenceKind": "corpus_examples",
+        "expression": "leave high and dry",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -239,6 +302,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be there through thick and thin"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/football/articles/cp9jvpl3m8go",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be there through thick and thin",
+        "evidenceKind": "published_usage",
+        "expression": "be there through thick and thin",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -269,6 +341,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "bury the hatchet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bury-the-hatchet",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; bury the hatchet",
+        "evidenceKind": "corpus_examples",
+        "expression": "bury the hatchet",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -299,6 +380,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "mend fences"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/mend-fences",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; mend fences",
+        "evidenceKind": "corpus_examples",
+        "expression": "mend fences",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -329,6 +419,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "build bridges"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/build-bridges",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; build bridges",
+        "evidenceKind": "corpus_examples",
+        "expression": "build bridges",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -360,6 +459,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "meet someone halfway"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/meet_somebody_halfway",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 119; 2005.",
+        "evidenceKind": "dated_quotation",
+        "expression": "meet halfway",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -390,6 +498,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a tower of strength"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/a-tower-of-strength",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a tower of strength",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a tower of strength",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -420,6 +537,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a soft spot for"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/soft-spot",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a soft spot for",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a soft spot for",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -450,6 +576,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in someone's good books"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/in_someone%27s_good_books",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 142; 2002.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be in someone's good books",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -480,6 +615,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in someone's bad books"
+      },
+      {
+        "url": "https://www.theguardian.com/world/2014/nov/20/-sp-north-korea-crime-fiction-black-market",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be in someone's bad books",
+        "evidenceKind": "published_usage",
+        "expression": "be in someone's bad books",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -510,6 +654,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get a taste of one's own medicine"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/tennis/44783078",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of get a taste of one's own medicine",
+        "evidenceKind": "published_usage",
+        "expression": "get a taste of one's own medicine",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -541,6 +694,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "throw someone under the bus"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/throw_under_a_bus",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 104; 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "throw under the bus",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -571,6 +733,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have an axe to grind"
+      },
+      {
+        "url": "https://www.theguardian.com/technology/blog/2009/jan/13/google-carbon-emissions",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have an axe to grind",
+        "evidenceKind": "published_usage",
+        "expression": "have an axe to grind",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -601,6 +772,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "throw one's weight around"
+      },
+      {
+        "url": "https://www.theguardian.com/sport/2000/jul/13/cricket5",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of throw one's weight around",
+        "evidenceKind": "published_usage",
+        "expression": "throw one's weight around",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -631,6 +811,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "jump on the bandwagon"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/jump-on-the-bandwagon",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; jump on the bandwagon",
+        "evidenceKind": "corpus_examples",
+        "expression": "jump on the bandwagon",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -661,6 +850,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "pull strings"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pull-strings",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; pull strings",
+        "evidenceKind": "corpus_examples",
+        "expression": "pull strings",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -692,6 +890,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "cut someone some slack"
+      },
+      {
+        "url": "https://www.theguardian.com/tv-and-radio/2021/oct/19/they-didnt-just-pick-us-up-off-the-street-meet-the-globally-derided-squid-game-vips?source=Snapzu",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of cut some slack",
+        "evidenceKind": "published_usage",
+        "expression": "cut some slack",
+        "selectedUsageWitness": true
       }
     ]
   }

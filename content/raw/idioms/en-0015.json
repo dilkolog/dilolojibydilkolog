@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have second thoughts"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/second-thoughts",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have second thoughts",
+        "evidenceKind": "corpus_examples",
+        "expression": "have second thoughts",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "sleep on it"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/sleep-on-it",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; sleep on it",
+        "evidenceKind": "corpus_examples",
+        "expression": "sleep on it",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "throw in the towel"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/throw-in-the-towel",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; throw in the towel",
+        "evidenceKind": "corpus_examples",
+        "expression": "throw in the towel",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -116,6 +143,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "take a leap of faith"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-take-a-leap-of-faith",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; take a leap of faith",
+        "evidenceKind": "corpus_examples",
+        "expression": "take a leap of faith",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -146,6 +182,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "take the plunge"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/take-the-plunge",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; take the plunge",
+        "evidenceKind": "corpus_examples",
+        "expression": "take the plunge",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -176,6 +221,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "draw the line"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/draw-the-line",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; draw the line",
+        "evidenceKind": "corpus_examples",
+        "expression": "draw the line",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -206,6 +260,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "stand one's ground"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/stand_one%27s_ground",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 123; 2017.",
+        "evidenceKind": "dated_quotation",
+        "expression": "stand one's ground",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -236,6 +299,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "stick to one's guns"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/stick_to_your_guns",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 139; 2004.",
+        "evidenceKind": "dated_quotation",
+        "expression": "stick to one's guns",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -266,6 +338,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep one's powder dry"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-powder-dry",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; keep one's powder dry",
+        "evidenceKind": "corpus_examples",
+        "expression": "keep one's powder dry",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -296,6 +377,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "play it safe"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/play-safe",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; play it safe",
+        "evidenceKind": "corpus_examples",
+        "expression": "play it safe",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -326,6 +416,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep one's options open"
+      },
+      {
+        "url": "https://www.theguardian.com/sport/ashes-2025---26/2025/nov/05/all",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of keep one's options open",
+        "evidenceKind": "published_usage",
+        "expression": "keep one's options open",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -356,6 +455,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "burn one's bridges"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/build_bridges",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 126; 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "burn one's bridges",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -386,6 +494,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "dance to someone's tune"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/dance_to_someone%27s_tune",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 110; 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "dance to someone's tune",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -416,6 +533,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "march to a different drummer"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/march-to-a-different-drummer",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; march to a different drummer",
+        "evidenceKind": "corpus_examples",
+        "expression": "march to a different drummer",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "march to the beat of one's own drum"
@@ -447,6 +573,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "call the shots"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/call_the_shots",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 133; 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "call the shots",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -477,6 +612,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "play devil's advocate"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/rugby-union/live/cy0y20knd7pt?page=2",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of play devil's advocate",
+        "evidenceKind": "published_usage",
+        "expression": "play devil's advocate",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -507,6 +651,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "take a back seat"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/take_a_back_seat",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 133; 2017.",
+        "evidenceKind": "dated_quotation",
+        "expression": "take a back seat",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -537,6 +690,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "sit tight"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/sit-tight",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; sit tight",
+        "evidenceKind": "corpus_examples",
+        "expression": "sit tight",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -567,6 +729,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "call someone's bluff"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/call_someone%27s_bluff",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 120; 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "call someone's bluff",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -597,6 +768,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be at a crossroads"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/snooker/51132224",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be at a crossroads",
+        "evidenceKind": "published_usage",
+        "expression": "be at a crossroads",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -627,6 +807,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "push the envelope"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/push-the-envelope",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; push the envelope",
+        "evidenceKind": "corpus_examples",
+        "expression": "push the envelope",
+        "selectedUsageWitness": true
       }
     ]
   }

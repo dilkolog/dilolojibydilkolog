@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get to the point"
+      },
+      {
+        "url": "https://downloads.bbc.co.uk/writersroom/scripts/the-responder-ep-2-31.03.21.pdf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of get to the point",
+        "evidenceKind": "published_usage",
+        "expression": "get to the point",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -57,6 +66,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "let something slip"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/let-slip",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; let slip",
+        "evidenceKind": "corpus_examples",
+        "expression": "let slip",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -87,6 +105,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep mum"
+      },
+      {
+        "url": "https://www.theguardian.com/world/live/2022/aug/10/russia-ukraine-war-live-news-moscow-plans-to-link-zaporzhzhia-nuclear-plant-to-crimea-operator-warns",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Reporting, 10 August 2022; official silence, not a film title or an old poster.",
+        "evidenceKind": "published_usage",
+        "expression": "keep mum",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -117,6 +144,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "preach to the converted"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/preach-to-the-converted",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; preach to the converted",
+        "evidenceKind": "corpus_examples",
+        "expression": "preach to the converted",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -147,6 +183,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "put one's cards on the table"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/put_one%27s_cards_on_the_table",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 143; 2003.",
+        "evidenceKind": "dated_quotation",
+        "expression": "put one's cards on the table",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -177,6 +222,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "call a spade a spade"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/call_a_spade_a_spade",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 142; 2005.",
+        "evidenceKind": "dated_quotation",
+        "expression": "call a spade a spade",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -207,6 +261,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "not mince one's words"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/mince_one%27s_words",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 121; 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "not mince one's words",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -237,6 +300,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "talk through one's hat"
+      },
+      {
+        "url": "https://www.theguardian.com/australia-news/2019/dec/04/whistleblower-lodges-complaint-about-peter-dutton-in-case-of-drug-trafficker-spared-deportation",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of talk through one's hat",
+        "evidenceKind": "published_usage",
+        "expression": "talk through one's hat",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -267,6 +339,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "speak volumes"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/speak_volumes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 159; 2025.",
+        "evidenceKind": "dated_quotation",
+        "expression": "speak volumes",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -297,6 +378,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "speak of the devil"
+      },
+      {
+        "url": "https://downloads.bbc.co.uk/writersroom/scripts/line-of-duty-s6-ep5-UK-TX-version.pdf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of speak of the devil",
+        "evidenceKind": "published_usage",
+        "expression": "speak of the devil",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -327,6 +417,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have the gift of the gab"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/gift_of_the_gab",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 132; 2014.",
+        "evidenceKind": "dated_quotation",
+        "expression": "have the gift of the gab",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -357,6 +456,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a way with words"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/have-a-way-with",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a way with words",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a way with words",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -387,6 +495,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get a word in edgeways"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-a-word-in-edgeways",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; get a word in edgeways",
+        "evidenceKind": "corpus_examples",
+        "expression": "get a word in edgeways",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -417,6 +534,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have the last word"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-last-word",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have the last word",
+        "evidenceKind": "corpus_examples",
+        "expression": "have the last word",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -447,6 +573,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make a long story short"
+      },
+      {
+        "url": "https://www.theguardian.com/us-news/2015/feb/19/rapper-afroman-charged-assault",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of make a long story short",
+        "evidenceKind": "published_usage",
+        "expression": "make a long story short",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -477,6 +612,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go off on a tangent"
+      },
+      {
+        "url": "https://www.theguardian.com/music/2024/mar/14/tierra-whack-rapper-beyonce-lego",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of go off on a tangent",
+        "evidenceKind": "published_usage",
+        "expression": "go off on a tangent",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -508,6 +652,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "bring up to speed"
+      },
+      {
+        "url": "https://www.theguardian.com/media/organgrinder/2008/oct/10/thexfactor-television",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of bring up to speed",
+        "evidenceKind": "published_usage",
+        "expression": "bring up to speed",
+        "selectedUsageWitness": true
       }
     ]
   }

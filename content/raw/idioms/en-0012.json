@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be snowed under"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/snowed-under",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be snowed under",
+        "evidenceKind": "corpus_examples",
+        "expression": "be snowed under",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on cloud nine"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-cloud-nine",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on cloud nine",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on cloud nine",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be over the moon"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/over-the-moon",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be over the moon",
+        "evidenceKind": "corpus_examples",
+        "expression": "be over the moon",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -117,6 +144,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "hear something through the grapevine"
+      },
+      {
+        "url": "https://www.theguardian.com/society/2004/jun/07/childrensservices.childprotection",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of hear through the grapevine",
+        "evidenceKind": "published_usage",
+        "expression": "hear through the grapevine",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -147,6 +183,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "clear the air"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/clear-the-air",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; clear the air",
+        "evidenceKind": "corpus_examples",
+        "expression": "clear the air",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -177,6 +222,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "break the ice"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/break-the-ice",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; break the ice",
+        "evidenceKind": "corpus_examples",
+        "expression": "break the ice",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -207,6 +261,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "not see the wood for the trees"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/see-the-wood-for-the-trees",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; not see the wood for the trees",
+        "evidenceKind": "corpus_examples",
+        "expression": "not see the wood for the trees",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -237,6 +300,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go out on a limb"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-out-on-a-limb",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; go out on a limb",
+        "evidenceKind": "corpus_examples",
+        "expression": "go out on a limb",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -267,6 +339,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on thin ice"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-thin-ice",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on thin ice",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on thin ice",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -297,6 +378,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in hot water"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-hot-water",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be in hot water",
+        "evidenceKind": "corpus_examples",
+        "expression": "be in hot water",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -327,6 +417,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in deep water"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-deep-water",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be in deep water",
+        "evidenceKind": "corpus_examples",
+        "expression": "be in deep water",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -357,6 +456,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be up the creek"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/up-the-creek",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be up the creek",
+        "evidenceKind": "corpus_examples",
+        "expression": "be up the creek",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -387,6 +495,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be between a rock and a hard place"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/between-a-rock-and-a-hard-place",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be between a rock and a hard place",
+        "evidenceKind": "corpus_examples",
+        "expression": "be between a rock and a hard place",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -417,6 +534,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "add fuel to the fire"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/add-fuel-to-the-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; add fuel to the fire",
+        "evidenceKind": "corpus_examples",
+        "expression": "add fuel to the fire",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -447,6 +573,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "weather the storm"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/weather-the-storm",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; weather the storm",
+        "evidenceKind": "corpus_examples",
+        "expression": "weather the storm",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -477,6 +612,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go down in flames"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/go_up_in_flames",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 119; 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "go down in flames",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -507,6 +651,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be the last straw"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/sentences/english/the-last-straw",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be the last straw",
+        "evidenceKind": "corpus_examples",
+        "expression": "be the last straw",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -537,6 +690,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make a mountain out of a molehill"
+      },
+      {
+        "url": "https://www.theguardian.com/australia-news/live/2026/sep/10/anthony-albanese-labor-uk-west-bank-trade-ban-kevin-rudd-diplomacy-one-nation-pauline-hanson-liberal-party-angus-taylor-ntwnfb?page=with%3Ablock-6aa1c35c8f08518e711dd855",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of make a mountain out of a molehill",
+        "evidenceKind": "published_usage",
+        "expression": "make a mountain out of a molehill",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -567,6 +729,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be out of the woods"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/out-of-the-woods",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be out of the woods",
+        "evidenceKind": "corpus_examples",
+        "expression": "be out of the woods",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -597,6 +768,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be as old as the hills"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/as-old-as-the-hills",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be as old as the hills",
+        "evidenceKind": "corpus_examples",
+        "expression": "be as old as the hills",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -627,6 +807,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be water under the bridge"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/water-under-the-bridge",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be water under the bridge",
+        "evidenceKind": "corpus_examples",
+        "expression": "be water under the bridge",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -657,6 +846,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "steal someone's thunder"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/steal_somebody%27s_thunder",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 134; 2001.",
+        "evidenceKind": "dated_quotation",
+        "expression": "steal someone's thunder",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -688,6 +886,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "take someone by storm"
+      },
+      {
+        "url": "https://www.theguardian.com/sport/2024/feb/22/antoine-duponts-olympic-sevens-adventure-begins-in-vancouver",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of take by storm",
+        "evidenceKind": "published_usage",
+        "expression": "take by storm",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -718,6 +925,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a breath of fresh air"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-breath-of-fresh-air",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a breath of fresh air",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a breath of fresh air",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -748,6 +964,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a ray of sunshine"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-ray-of-sunshine",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a ray of sunshine",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a ray of sunshine",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -778,6 +1003,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a bolt from the blue"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-bolt-from-the-blue",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a bolt from the blue",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a bolt from the blue",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -808,6 +1042,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be under a cloud"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/under-a-cloud",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be under a cloud",
+        "evidenceKind": "corpus_examples",
+        "expression": "be under a cloud",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -838,6 +1081,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a silver lining"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/silver-lining",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a silver lining",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a silver lining",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -868,6 +1120,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a perfect storm"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/perfect-storm",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a perfect storm",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a perfect storm",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -898,6 +1159,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "move heaven and earth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/move-heaven-and-earth",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; move heaven and earth",
+        "evidenceKind": "corpus_examples",
+        "expression": "move heaven and earth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -928,6 +1198,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go with the flow"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-with-the-flow",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; go with the flow",
+        "evidenceKind": "corpus_examples",
+        "expression": "go with the flow",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -958,6 +1237,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "swim against the tide"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/swim-against-the-tide",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; swim against the tide",
+        "evidenceKind": "corpus_examples",
+        "expression": "swim against the tide",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -988,6 +1276,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "break new ground"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/break-new-ground",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; break new ground",
+        "evidenceKind": "corpus_examples",
+        "expression": "break new ground",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1018,6 +1315,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on shaky ground"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/shaky-ground",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on shaky ground",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on shaky ground",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1048,6 +1354,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make waves"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/make-waves",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; make waves",
+        "evidenceKind": "corpus_examples",
+        "expression": "make waves",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1078,6 +1393,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be the tip of the iceberg"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-tip-of-the-iceberg",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be the tip of the iceberg",
+        "evidenceKind": "corpus_examples",
+        "expression": "be the tip of the iceberg",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1109,6 +1433,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "nip something in the bud"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/nip_in_the_bud",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 144; 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "nip in the bud",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1139,6 +1472,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "let the dust settle"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/boxing/live/c1mg0e1x81et",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of let the dust settle",
+        "evidenceKind": "published_usage",
+        "expression": "let the dust settle",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1169,6 +1511,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "come out of the blue"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-spanish/to-come-out-of-the-blue",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; come out of the blue",
+        "evidenceKind": "corpus_examples",
+        "expression": "come out of the blue",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1199,6 +1550,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a fair-weather friend"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/fair-weather-friend",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a fair-weather friend",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a fair-weather friend",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1229,6 +1589,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a rough diamond"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/rough_diamond",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 107; 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be a rough diamond",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1259,6 +1628,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be set in stone"
+      },
+      {
+        "url": "https://www.theguardian.com/world/2003/jun/15/israelandthepalestinians.features",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be set in stone",
+        "evidenceKind": "published_usage",
+        "expression": "be set in stone",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1289,6 +1667,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "leave no stone unturned"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/leave-no-stone-unturned",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; leave no stone unturned",
+        "evidenceKind": "corpus_examples",
+        "expression": "leave no stone unturned",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1319,6 +1706,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a bed of roses"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-bed-of-roses",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a bed of roses",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a bed of roses",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1349,6 +1745,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be down-to-earth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/down-to-earth",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be down-to-earth",
+        "evidenceKind": "corpus_examples",
+        "expression": "be down-to-earth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1379,6 +1784,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be no shrinking violet"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/shrinking_violet",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 141; 2026.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be no shrinking violet",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1409,6 +1823,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on the horizon"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-the-horizon",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on the horizon",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on the horizon",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1439,6 +1862,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "throw caution to the wind"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/throw-caution-to-the-wind",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; throw caution to the wind",
+        "evidenceKind": "corpus_examples",
+        "expression": "throw caution to the wind",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1469,6 +1901,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "skate on thin ice"
+      },
+      {
+        "url": "https://www.theguardian.com/uk-news/2016/dec/23/ice-accidents-london-cold-weather-1874",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of skate on thin ice",
+        "evidenceKind": "published_usage",
+        "expression": "skate on thin ice",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1499,6 +1940,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "play with fire"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/play-with-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; play with fire",
+        "evidenceKind": "corpus_examples",
+        "expression": "play with fire",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1529,6 +1979,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be as easy as falling off a log"
+      },
+      {
+        "url": "https://www.theguardian.com/commentisfree/2007/may/31/callofduty",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be as easy as falling off a log",
+        "evidenceKind": "published_usage",
+        "expression": "be as easy as falling off a log",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1559,6 +2018,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a breeze"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/breeze",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a breeze",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a breeze",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1589,6 +2057,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "take a leaf out of someone's book"
+      },
+      {
+        "url": "https://www.theguardian.com/education/2008/jan/29/highereducation.research1",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of take a leaf out of someone's book",
+        "evidenceKind": "published_usage",
+        "expression": "take a leaf out of someone's book",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1619,6 +2096,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go against the grain"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-against-the-grain",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; go against the grain",
+        "evidenceKind": "corpus_examples",
+        "expression": "go against the grain",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1649,6 +2135,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "turn over a new leaf"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/turn-over-a-new-leaf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; turn over a new leaf",
+        "evidenceKind": "corpus_examples",
+        "expression": "turn over a new leaf",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1680,6 +2175,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "leave someone in the dust"
+      },
+      {
+        "url": "https://www.theguardian.com/tone/features/2025/may/11/all",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of leave in the dust",
+        "evidenceKind": "published_usage",
+        "expression": "leave in the dust",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1710,6 +2214,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get a second wind"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-second-wind",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; get a second wind",
+        "evidenceKind": "corpus_examples",
+        "expression": "get a second wind",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1740,6 +2253,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be dead in the water"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/dead-in-the-water",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be dead in the water",
+        "evidenceKind": "corpus_examples",
+        "expression": "be dead in the water",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1770,6 +2292,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on a slippery slope"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/slippery_slope",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 135; 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be on a slippery slope",
+        "selectedUsageWitness": true
       }
     ]
   }

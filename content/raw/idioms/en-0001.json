@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep an eye on"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/keep-an-eye-on",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; keep an eye on",
+        "evidenceKind": "corpus_examples",
+        "expression": "keep an eye on",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "turn a blind eye"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/turn-a-blind-eye",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; turn a blind eye",
+        "evidenceKind": "corpus_examples",
+        "expression": "turn a blind eye",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -87,6 +105,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "give someone a hand"
+      },
+      {
+        "url": "https://www.theguardian.com/tv-and-radio/2023/dec/07/smothered-tv-romcom-sky-now-jon-pointing-danielle-vitalis-monica-heisey",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Interview, 7 December 2023; request for help with an audition, not applause or a literal limb.",
+        "evidenceKind": "published_usage",
+        "expression": "give a hand",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -117,6 +144,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a heart of gold"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-heart-of-gold",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a heart of gold",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a heart of gold",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -147,6 +183,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a change of heart"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-change-of-heart",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a change of heart",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a change of heart",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -177,6 +222,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a sweet tooth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-sweet-tooth",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a sweet tooth",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a sweet tooth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -207,6 +261,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get cold feet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/get-cold-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; get cold feet",
+        "evidenceKind": "corpus_examples",
+        "expression": "get cold feet",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -237,6 +300,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep one's chin up"
+      },
+      {
+        "url": "https://www.theguardian.com/world/2025/nov/04/judges-doing-politics-can-spanish-pm-survive-corruption-cases-against-family-and-allies",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of keep one's chin up",
+        "evidenceKind": "published_usage",
+        "expression": "keep one's chin up",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -267,6 +339,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep one's fingers crossed"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-fingers-crossed",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; keep one's fingers crossed",
+        "evidenceKind": "corpus_examples",
+        "expression": "keep one's fingers crossed",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -297,6 +378,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be all ears"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/all-ears",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be all ears",
+        "evidenceKind": "corpus_examples",
+        "expression": "be all ears",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -327,6 +417,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "bend someone's ear"
+      },
+      {
+        "url": "https://www.theguardian.com/football/2004/mar/15/match.sport5",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of bend someone's ear",
+        "evidenceKind": "published_usage",
+        "expression": "bend someone's ear",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -357,6 +456,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have one's hands full"
+      },
+      {
+        "url": "https://www.theguardian.com/food/2026/aug/21/jamie-oliver-pays-dividend-profits-halve-cookery-school",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have one's hands full",
+        "evidenceKind": "published_usage",
+        "expression": "have one's hands full",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -387,6 +495,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have one's hands tied"
+      },
+      {
+        "url": "https://www.theguardian.com/world/2025/apr/01/palestinian-paramedics-shot-by-israeli-forces-had-hands-tied-eyewitnesses-say?sfnsn=scwspmo",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have one's hands tied",
+        "evidenceKind": "published_usage",
+        "expression": "have one's hands tied",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -418,6 +535,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep someone at arm's length"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/keep_at_arm%27s_length",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 117; 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "keep at arm's length",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -449,6 +575,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get something off one's chest"
+      },
+      {
+        "url": "https://www.theguardian.com/football/2005/jul/15/thefiver.sport",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "The Fiver, 15 July 2005; invitation to express grievances in letters, not literal clothing.",
+        "evidenceKind": "published_usage",
+        "expression": "get off one's chest",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -479,6 +614,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a gut feeling"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/gut-feeling",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a gut feeling",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a gut feeling",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -509,6 +653,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a lump in one's throat"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/lump_in_one%27s_throat",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 125; 2017.",
+        "evidenceKind": "dated_quotation",
+        "expression": "have a lump in one's throat",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -539,6 +692,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have butterflies in one's stomach"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/butterflies-in-your-stomach",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have butterflies in one's stomach",
+        "evidenceKind": "corpus_examples",
+        "expression": "have butterflies in one's stomach",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -569,6 +731,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have one's heart in one's mouth"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/one%27s_heart_in_one%27s_mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 123; 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "have one's heart in one's mouth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -599,6 +770,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a chip on one's shoulder"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/chip_on_one%27s_shoulder",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 141; 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "have a chip on one's shoulder",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -629,6 +809,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "wear one's heart on one's sleeve"
+      },
+      {
+        "url": "https://www.theguardian.com/sport/2025/dec/15/cameron-menzies-darts-world-championship-alexandra-palace",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of wear one's heart on one's sleeve",
+        "evidenceKind": "published_usage",
+        "expression": "wear one's heart on one's sleeve",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -659,6 +848,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "put one's foot down"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/put_one%27s_foot_down_on",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 130; 2016.",
+        "evidenceKind": "dated_quotation",
+        "expression": "put one's foot down",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -689,6 +887,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "put one's foot in one's mouth"
+      },
+      {
+        "url": "https://www.theguardian.com/australia-news/2026/sep/15/pauline-hanson-says-shes-sorry-if-i-offended-people-with-indigenous-australians-remarks-ntwnfb",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of put one's foot in one's mouth",
+        "evidenceKind": "published_usage",
+        "expression": "put one's foot in one's mouth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -719,6 +926,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "stand on one's own two feet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/stand-on-your-own-two-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; stand on one's own two feet",
+        "evidenceKind": "corpus_examples",
+        "expression": "stand on one's own two feet",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -749,6 +965,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be head and shoulders above"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/head-and-shoulders-above",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be head and shoulders above",
+        "evidenceKind": "corpus_examples",
+        "expression": "be head and shoulders above",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -779,6 +1004,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "pay through the nose"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pay-through-the-nose",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; pay through the nose",
+        "evidenceKind": "corpus_examples",
+        "expression": "pay through the nose",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -809,6 +1043,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "cost an arm and a leg"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/cost-an-arm-and-a-leg",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; cost an arm and a leg",
+        "evidenceKind": "corpus_examples",
+        "expression": "cost an arm and a leg",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -839,6 +1082,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "twist someone's arm"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/twist_someone%27s_arm",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 113; 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "twist someone's arm",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -869,6 +1121,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have one's back to the wall"
+      },
+      {
+        "url": "https://downloads.bbc.co.uk/writersroom/scripts/casualty_s22e25.pdf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have one's back to the wall",
+        "evidenceKind": "published_usage",
+        "expression": "have one's back to the wall",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -899,6 +1160,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have one's head in the clouds"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-ones-head-in-the-clouds",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have one's head in the clouds",
+        "evidenceKind": "corpus_examples",
+        "expression": "have one's head in the clouds",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -929,6 +1199,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have one's head screwed on"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/mixed-martial-arts/49446595",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have one's head screwed on",
+        "evidenceKind": "published_usage",
+        "expression": "have one's head screwed on",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -959,6 +1238,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep one's nose to the grindstone"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-nose-to-the-grindstone",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; keep one's nose to the grindstone",
+        "evidenceKind": "corpus_examples",
+        "expression": "keep one's nose to the grindstone",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -989,6 +1277,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get one's foot in the door"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-a-foot-in-the-door",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; get one's foot in the door",
+        "evidenceKind": "corpus_examples",
+        "expression": "get one's foot in the door",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1019,6 +1316,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "cut one's teeth"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/cut_one%27s_teeth",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 120; 2026.",
+        "evidenceKind": "dated_quotation",
+        "expression": "cut one's teeth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1049,6 +1355,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "put one's shoulder to the wheel"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/put_one%27s_shoulder_to_the_wheel",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 119; 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "put one's shoulder to the wheel",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1079,6 +1394,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "work one's fingers to the bone"
+      },
+      {
+        "url": "https://downloads.bbc.co.uk/writersroom/scripts/Doctor-Who-S10-Ep1.pdf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of work one's fingers to the bone",
+        "evidenceKind": "published_usage",
+        "expression": "work one's fingers to the bone",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1109,6 +1433,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on the back foot"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-the-back-foot",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on the back foot",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on the back foot",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1139,6 +1472,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be down in the mouth"
+      },
+      {
+        "url": "https://www.theguardian.com/football/live/2016/jul/07/the-euro-2016-minute-for-a-date-with-portugal",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be down in the mouth",
+        "evidenceKind": "published_usage",
+        "expression": "be down in the mouth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1169,6 +1511,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "jump out of one's skin"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/jump-out-of-your-skin",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; jump out of one's skin",
+        "evidenceKind": "corpus_examples",
+        "expression": "jump out of one's skin",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1199,6 +1550,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make one's blood run cold"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/make-your-blood-run-cold",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; make one's blood run cold",
+        "evidenceKind": "corpus_examples",
+        "expression": "make one's blood run cold",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1229,6 +1589,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make one's blood boil"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/make-your-blood-boil",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; make one's blood boil",
+        "evidenceKind": "corpus_examples",
+        "expression": "make one's blood boil",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1259,6 +1628,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get hot under the collar"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-hot-under-the-collar",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; get hot under the collar",
+        "evidenceKind": "corpus_examples",
+        "expression": "get hot under the collar",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1289,6 +1667,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "hold one's tongue"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-hold-your-tongue",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; hold one's tongue",
+        "evidenceKind": "corpus_examples",
+        "expression": "hold one's tongue",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1319,6 +1706,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "bite one's tongue"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/bite_one%27s_tongue",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 116; 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "bite one's tongue",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1349,6 +1745,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "zip one's lip"
+      },
+      {
+        "url": "https://www.theguardian.com/higher-education-network/2016/apr/22/working-as-a-casual-zip-your-lip-and-do-as-youre-told",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of zip one's lip",
+        "evidenceKind": "published_usage",
+        "expression": "zip one's lip",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1379,6 +1784,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "put words into someone's mouth"
+      },
+      {
+        "url": "https://www.theguardian.com/uk-news/2026/oct/21/cabinet-split-shabana-mahmood-immigration-plans-labour-miatta-fahnbulleh",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of put words into someone's mouth",
+        "evidenceKind": "published_usage",
+        "expression": "put words into someone's mouth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1409,6 +1823,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "rack one's brains"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/rack_one%27s_brain",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 144; 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "rack one's brains",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1439,6 +1862,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a brainwave"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/brainwave",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a brainwave",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a brainwave",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1470,6 +1902,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have something on the tip of one's tongue"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/on_the_tip_of_one%27s_tongue",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 121; 2001.",
+        "evidenceKind": "dated_quotation",
+        "expression": "have on the tip of one's tongue",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1501,6 +1942,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "know something like the back of one's hand"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/know_like_the_back_of_one%27s_hand",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 130; 2024.",
+        "evidenceKind": "dated_quotation",
+        "expression": "know like the back of one's hand",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1531,6 +1981,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep one's eyes peeled"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-eyes-peeled",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; keep one's eyes peeled",
+        "evidenceKind": "corpus_examples",
+        "expression": "keep one's eyes peeled",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1561,6 +2020,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have eyes in the back of one's head"
+      },
+      {
+        "url": "https://www.theguardian.com/football/blog/2023/may/14/ilkay-gundogans-ruthless-genius-is-keeping-the-city-machine-in-tune",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Football report, 14 May 2023; awareness of players behind the subject, not literal tattooed eyes.",
+        "evidenceKind": "published_usage",
+        "expression": "have eyes in the back of one's head",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1591,6 +2059,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get under someone's skin"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/get_under_someone%27s_skin",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 133; 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "get under someone's skin",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1621,6 +2098,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "rub shoulders with"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/rub-shoulders-with",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; rub shoulders with",
+        "evidenceKind": "corpus_examples",
+        "expression": "rub shoulders with",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1651,6 +2137,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "bend over backwards"
+      },
+      {
+        "url": "https://www.theguardian.com/politics/live/2026/nov/09/polanski-greens-labour-andy-burnham-climate-crisis-ev-targets-uk-politics-latest-news?page=with%3Ablock-6af1a0968f08c30857a85434",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of bend over backwards",
+        "evidenceKind": "published_usage",
+        "expression": "bend over backwards",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1681,6 +2176,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "stick one's neck out"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/stick-your-neck-out",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; stick one's neck out",
+        "evidenceKind": "corpus_examples",
+        "expression": "stick one's neck out",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1712,6 +2216,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "give someone the cold shoulder"
+      },
+      {
+        "url": "https://www.theguardian.com/business/article/2024/may/20/uk-cannot-afford-to-give-cold-shoulder-to-china-says-city-minister",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of give the cold shoulder",
+        "evidenceKind": "published_usage",
+        "expression": "give the cold shoulder",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1742,6 +2255,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "turn one's back on"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/turn_one%27s_back",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 124; 2024.",
+        "evidenceKind": "dated_quotation",
+        "expression": "turn one's back on",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1772,6 +2294,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be an old hand"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/an-old-hand",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be an old hand",
+        "evidenceKind": "corpus_examples",
+        "expression": "be an old hand",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1802,6 +2333,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be wet behind the ears"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/wet-behind-the-ears",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be wet behind the ears",
+        "evidenceKind": "corpus_examples",
+        "expression": "be wet behind the ears",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1832,6 +2372,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a shoulder to cry on"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-shoulder-to-cry-on",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a shoulder to cry on",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a shoulder to cry on",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1862,6 +2411,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be joined at the hip"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/joined-at-the-hip",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be joined at the hip",
+        "evidenceKind": "corpus_examples",
+        "expression": "be joined at the hip",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1892,6 +2450,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "wash one's hands of"
+      },
+      {
+        "url": "https://www.theguardian.com/world/2011/jan/12/blood-libel-sarah-palin-arizona",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of wash one's hands of",
+        "evidenceKind": "published_usage",
+        "expression": "wash one's hands of",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1922,6 +2489,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "rub salt into the wound"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/rub_salt_in_the_wound",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 131; 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "rub salt into the wound",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1952,6 +2528,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "shoot oneself in the foot"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/shoot_oneself_in_the_foot",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 121; 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "shoot oneself in the foot",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1982,6 +2567,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get back on one's feet"
+      },
+      {
+        "url": "https://apnews.com/article/259be99a487afacecb811c01c46cbb94",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of get back on one's feet",
+        "evidenceKind": "published_usage",
+        "expression": "get back on one's feet",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2012,6 +2606,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have time on one's hands"
+      },
+      {
+        "url": "https://www.theguardian.com/news/2000/dec/15/guardianobituaries.filmnews1",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have time on one's hands",
+        "evidenceKind": "published_usage",
+        "expression": "have time on one's hands",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2042,6 +2645,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be long in the tooth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/long-in-the-tooth",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be long in the tooth",
+        "evidenceKind": "corpus_examples",
+        "expression": "be long in the tooth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2072,6 +2684,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on one's last legs"
+      },
+      {
+        "url": "https://www.theguardian.com/environment/2015/jun/13/all",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be on one's last legs",
+        "evidenceKind": "published_usage",
+        "expression": "be on one's last legs",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2102,6 +2723,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep one's head above water"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-head-above-water",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; keep one's head above water",
+        "evidenceKind": "corpus_examples",
+        "expression": "keep one's head above water",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2132,6 +2762,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a close shave"
+      },
+      {
+        "url": "https://www.theguardian.com/film/2026/jul/15/a-close-shavea-matter-of-loaf-and-death-review-wallace-and-gromit-knit-together-a-cracking-double-bill",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be a close shave",
+        "evidenceKind": "published_usage",
+        "expression": "be a close shave",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2162,6 +2801,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be like pulling teeth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/like-pulling-teeth",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be like pulling teeth",
+        "evidenceKind": "corpus_examples",
+        "expression": "be like pulling teeth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2192,6 +2840,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "win hands down"
+      },
+      {
+        "url": "https://www.theguardian.com/uk/2005/jun/16/technology.live8",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of win hands down",
+        "evidenceKind": "published_usage",
+        "expression": "win hands down",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2223,6 +2880,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have something at one's fingertips"
+      },
+      {
+        "url": "https://www.theguardian.com/film/2015/mar/29/adam-driver-lots-things-said-about-face-interview",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have at one's fingertips",
+        "evidenceKind": "published_usage",
+        "expression": "have at one's fingertips",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2253,6 +2919,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "dig one's heels in"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/dig-in-your-heels",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; dig one's heels in",
+        "evidenceKind": "corpus_examples",
+        "expression": "dig one's heels in",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2283,6 +2958,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep one's cards close to one's chest"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/keep_one%27s_cards_close_to_one%27s_chest",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 128; 2002.",
+        "evidenceKind": "dated_quotation",
+        "expression": "keep one's cards close to one's chest",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2313,6 +2997,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "follow in someone's footsteps"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/follow_in_someone%27s_footsteps",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 120; 2017.",
+        "evidenceKind": "dated_quotation",
+        "expression": "follow in someone's footsteps",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2343,6 +3036,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "throw one's hat into the ring"
+      },
+      {
+        "url": "https://www.theguardian.com/sport/2026/aug/17/georgia-hunter-bell-hodgkinson-werro-broeders-bol-800m-athletics-european-championship",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of throw one's hat into the ring",
+        "evidenceKind": "published_usage",
+        "expression": "throw one's hat into the ring",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2373,6 +3075,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "put one's heads together"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/put_heads_together",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 111; 2017.",
+        "evidenceKind": "dated_quotation",
+        "expression": "put heads together",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "put your heads together"
@@ -2404,6 +3115,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "sit on one's hands"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/sit-on-your-hands",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; sit on one's hands",
+        "evidenceKind": "corpus_examples",
+        "expression": "sit on one's hands",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2434,6 +3154,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "drag one's feet"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/drag_one%27s_feet",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 134; 2026.",
+        "evidenceKind": "dated_quotation",
+        "expression": "drag one's feet",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2464,6 +3193,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "find one's feet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/find-your-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; find one's feet",
+        "evidenceKind": "corpus_examples",
+        "expression": "find one's feet",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2494,6 +3232,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have green fingers"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/green-fingers",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have green fingers",
+        "evidenceKind": "corpus_examples",
+        "expression": "have green fingers",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2524,6 +3271,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep one's ear to the ground"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/keep_an_ear_to_the_ground",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 134; 2001.",
+        "evidenceKind": "dated_quotation",
+        "expression": "keep one's ear to the ground",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2554,6 +3310,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have one's finger on the pulse"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/finger-on-the-pulse",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have one's finger on the pulse",
+        "evidenceKind": "corpus_examples",
+        "expression": "have one's finger on the pulse",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2584,6 +3349,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a thorn in someone's side"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-thorn-in-someones-side",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a thorn in someone's side",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a thorn in someone's side",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2614,6 +3388,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a skeleton in the cupboard"
+      },
+      {
+        "url": "https://www.theguardian.com/music/2011/aug/28/pass-notes-katherine-jenkins",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have a skeleton in the cupboard",
+        "evidenceKind": "published_usage",
+        "expression": "have a skeleton in the cupboard",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -2644,6 +3427,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "pull the rug from under someone's feet"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/pull_the_rug_out_from_under",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 115; 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "pull the rug from under someone's feet",
+        "selectedUsageWitness": true
       }
     ]
   }

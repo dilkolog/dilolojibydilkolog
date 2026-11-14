@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a long shot"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-long-shot",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a long shot",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a long shot",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "carry the day"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/carry-the-day",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; carry the day",
+        "evidenceKind": "corpus_examples",
+        "expression": "carry the day",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "hit the jackpot"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-the-jackpot",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; hit the jackpot",
+        "evidenceKind": "corpus_examples",
+        "expression": "hit the jackpot",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -116,6 +143,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "strike gold"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/strike-gold",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; strike gold",
+        "evidenceKind": "corpus_examples",
+        "expression": "strike gold",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -146,6 +182,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "strike it lucky"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/strike-it-lucky",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; strike it lucky",
+        "evidenceKind": "corpus_examples",
+        "expression": "strike it lucky",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -176,6 +221,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in luck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be in luck",
+        "evidenceKind": "corpus_examples",
+        "expression": "be in luck",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -206,6 +260,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be down on one's luck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/down-on-your-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be down on one's luck",
+        "evidenceKind": "corpus_examples",
+        "expression": "be down on one's luck",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -236,6 +299,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "push one's luck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-push-your-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; push one's luck",
+        "evidenceKind": "corpus_examples",
+        "expression": "push one's luck",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -266,6 +338,15 @@
         "checkedOn": "2026-11-14",
         "verification": "usage_search_excerpt",
         "locator": "ride one's luck"
+      },
+      {
+        "url": "https://www.harrogateadvertiser.co.uk/sport/football/tadcaster-albion-rode-their-luck-during-victory-at-frickley-athletic-admits-mick-oconnell-4912195",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "ride one's luck",
+        "expression": "ride one's luck",
+        "evidenceKind": "published_usage",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -296,6 +377,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have the luck of the devil"
+      },
+      {
+        "url": "https://downloads.bbc.co.uk/writersroom/scripts/the_kings_coiner.pdf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have the luck of the devil",
+        "evidenceKind": "published_usage",
+        "expression": "have the luck of the devil",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -326,6 +416,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a stroke of luck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-chinese/a-stroke-of-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a stroke of luck",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a stroke of luck",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -356,6 +455,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a lucky break"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/lucky-break",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a lucky break",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a lucky break",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -386,6 +494,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have an ace up one's sleeve"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/ace_up_one%27s_sleeve",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 124; 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "have an ace up one's sleeve",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -416,6 +533,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "hold all the aces"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hold-all-the-aces",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; hold all the aces",
+        "evidenceKind": "corpus_examples",
+        "expression": "hold all the aces",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -446,6 +572,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "play one's cards right"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/play-your-cards-right",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; play one's cards right",
+        "evidenceKind": "corpus_examples",
+        "expression": "play one's cards right",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -476,6 +611,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have the cards stacked against one"
+      },
+      {
+        "url": "https://www.theguardian.com/theguardian/journal/opinion/2026/may/25/all",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have the cards stacked against one",
+        "evidenceKind": "published_usage",
+        "expression": "have the cards stacked against one",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -506,6 +650,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in the lap of the gods"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/cricket/articles/cwy6dxyyz54o",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be in the lap of the gods",
+        "evidenceKind": "published_usage",
+        "expression": "be in the lap of the gods",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -536,6 +689,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on a winning streak"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/winning-streak",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on a winning streak",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on a winning streak",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -566,6 +728,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a run of bad luck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-french/a-run-of-bad-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a run of bad luck",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a run of bad luck",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -596,6 +767,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in the right place at the right time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/right-time",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be in the right place at the right time",
+        "evidenceKind": "corpus_examples",
+        "expression": "be in the right place at the right time",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -626,6 +806,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "tempt fate"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/tempt-fate",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; tempt fate",
+        "evidenceKind": "corpus_examples",
+        "expression": "tempt fate",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -656,6 +845,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "dodge a bullet"
+      },
+      {
+        "url": "https://www.theguardian.com/world/2005/may/19/tomparfitt",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of dodge a bullet",
+        "evidenceKind": "published_usage",
+        "expression": "dodge a bullet",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -686,6 +884,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a narrow escape"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/narrow-escape",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a narrow escape",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a narrow escape",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -716,6 +923,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be touch and go"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/touch-and-go",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be touch and go",
+        "evidenceKind": "corpus_examples",
+        "expression": "be touch and go",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -746,6 +962,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "hedge one's bets"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/hedge_one%27s_bets",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 109; 2014.",
+        "evidenceKind": "dated_quotation",
+        "expression": "hedge one's bets",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -776,6 +1001,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go for gold"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/go_for_the_gold",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 147; 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "go for gold",
+        "selectedUsageWitness": true
       }
     ]
   }

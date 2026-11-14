@@ -2,7 +2,7 @@
 
 **500 kayıt**: değiştirilmemiş 16 çekirdek + 484 yeni deyim. `content/raw/idioms/en-0001.json`…`en-0016.json` temalı ham partilerdir. `src/data/idioms/en.json` fabrika ile üretilir. Anlam, kelimesi kelimesine çeviri ve örnek cümleler özgündür; kaynak örnekleri kopyalanmadı.
 
-Her yeni kayıt iki ayrı yayıncıdan gerçek kaynak adresi taşır. Çoğunlukla Cambridge + Collins, gerekli yerde Wiktionary, Oxford, Dictionary.com veya gerçek haber kullanıldı. Ana ifade, varyant ve seçilen anlam karşılaştırıldı; `sourceChecks` tarihli arama özeti erişimini açıkça belirtir. Bu kayıtların tam sayfalarının açıldığı veya her deyimin güncel sıklığının ölçüldüğü iddia edilmez. Sözlük/derlem sayfaları kullanım örnekleri içerir; her deyim için ayrıca tarihli gazete örneği henüz doğrulanmış değildir.
+484 çekirdek dışı kaydın tamamına seçilmiş gerçek kullanım tanığı eklendi (`sourceChecks.selectedUsageWitness`). Tanıklar derlem örnekleri, tarihli atıflı alıntılar veya yayımlanmış metinlerdir; `src` sözlük kaynaklarını korur. Her kullanım tanığının yayıncısından farklı en az bir sözlük kaynağı vardır. Erişim yöntemi, tarih, ifade ve metin içi konum kaydedildi: 372 sayfa açılarak, 112 arama özeti üzerinden doğrulandı. Arama özeti tam sayfa erişimi olarak sunulmaz. Sıklık ölçümü yapılmadı; kaynak kaydı bağımsız anlam/örnek incelemesinin yerine geçmez.
 
 ## Seçim düzeltmeleri
 
@@ -20,7 +20,7 @@ Her yeni kayıt iki ayrı yayıncıdan gerçek kaynak adresi taşır. Çoğunluk
 - `npx vitest run scripts/build-idioms.test.mjs src/data/idioms.test.ts`: 13/13 test.
 - Çekirdek 0000 değişmedi; 484 yeni kayıtta en az iki farklı yayıncı adresi var.
 
-**Paket taslaktır; Antigravity'nin bağımsız incelemesi ve sahibinin örneklemi bekler.** CEFR seviyeleri editoryal; resmî sıklık/CEFR sertifikası değildir. Temalar eşit 31'er kayıt ve seviyeler 6/12/13 düzeninde değildir. Güncel kullanım ve bütün anlam/örnek eşleşmeleri inceleme sırasında tekrar kontrol edilmelidir; 500 sayısı inceleme tamamlandı demek değildir.
+**Paket taslaktır; Antigravity'nin bağımsız incelemesi ve sahibinin örneklemi bekler.** CEFR seviyeleri editoryal; resmî sıklık/CEFR sertifikası değildir. Sahibinin 2026-11-14 kararıyla 500 yaygın deyim korunur; temaların eşit olması gerekmiyor. Güncel kullanım ve bütün anlam/örnek eşleşmeleri inceleme sırasında tekrar kontrol edilmelidir; 500 sayısı inceleme tamamlandı demek değildir.
 
 ## Gerçek dağılım
 
@@ -49,6 +49,6 @@ Her yeni kayıt iki ayrı yayıncıdan gerçek kaynak adresi taşır. Çoğunluk
 | decide | 24 |
 | move | 23 |
 
-Kaynak erişim yöntemleri, aynı kayıt içindeki tarihsel ek kanıtlar da sayılarak: dictionary_search_excerpt: 967, usage_search_excerpt: 1.
+Seçilmiş kullanım tanıkları: 372 `usage_page_opened`, 112 `usage_search_excerpt` (toplam 484). Tarihsel ek kanıtlar ayrıca korunur.
 
 Yeniden üretim: `node scripts/build-idioms.mjs` bütün dillerin çıktılarını yazar; yalnız kendi dilini teslim eden ajan geçici `out` dizini kullanıp kendi dilinin dosyasını kopyalamalıdır.

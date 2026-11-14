@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make ends meet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/sentences/english/make-ends-meet",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; make ends meet",
+        "evidenceKind": "corpus_examples",
+        "expression": "make ends meet",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "break the bank"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/break-the-bank",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; break the bank",
+        "evidenceKind": "corpus_examples",
+        "expression": "break the bank",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "tighten one's belt"
+      },
+      {
+        "url": "https://www.theguardian.com/politics/2009/aug/29/labour-spending-cuts-academy-programme",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of tighten one's belt",
+        "evidenceKind": "published_usage",
+        "expression": "tighten one's belt",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -116,6 +143,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "save for a rainy day"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/save-for-a-rainy-day",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; save for a rainy day",
+        "evidenceKind": "corpus_examples",
+        "expression": "save for a rainy day",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -146,6 +182,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in the red"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-the-red",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be in the red",
+        "evidenceKind": "corpus_examples",
+        "expression": "be in the red",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -176,6 +221,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in the black"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-the-black",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be in the black",
+        "evidenceKind": "corpus_examples",
+        "expression": "be in the black",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -206,6 +260,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "foot the bill"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/foot-the-bill",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; foot the bill",
+        "evidenceKind": "corpus_examples",
+        "expression": "foot the bill",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -236,6 +299,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "pick up the tab"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pick-up-the-tab",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; pick up the tab",
+        "evidenceKind": "corpus_examples",
+        "expression": "pick up the tab",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -266,6 +338,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "pay the price"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/pay-a-price",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; pay the price",
+        "evidenceKind": "corpus_examples",
+        "expression": "pay the price",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -296,6 +377,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "put one's money where one's mouth is"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/put_one%27s_money_where_one%27s_mouth_is",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 123; 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "put one's money where one's mouth is",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -326,6 +416,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "throw money down the drain"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/football/live/cy0p77j5xwrt?post=asset%3A7326c395-9129-44ed-84bf-3ab698bfdd57",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of throw money down the drain",
+        "evidenceKind": "published_usage",
+        "expression": "throw money down the drain",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -356,6 +455,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get one's money's worth"
+      },
+      {
+        "url": "https://www.theguardian.com/music/2012/jun/07/asap-rocky-review",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of get one's money's worth",
+        "evidenceKind": "published_usage",
+        "expression": "get one's money's worth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -386,6 +494,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be worth one's weight in gold"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/worth_one%27s_weight_in_gold",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 130; 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be worth one's weight in gold",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -416,6 +533,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have money to burn"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/money-to-burn",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have money to burn",
+        "evidenceKind": "corpus_examples",
+        "expression": "have money to burn",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -446,6 +572,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be rolling in money"
+      },
+      {
+        "url": "https://www.theguardian.com/books/2001/jan/20/1",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be rolling in money",
+        "evidenceKind": "published_usage",
+        "expression": "be rolling in money",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -476,6 +611,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on the breadline"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-the-breadline",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on the breadline",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on the breadline",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -506,6 +650,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "live from hand to mouth"
+      },
+      {
+        "url": "https://www.theguardian.com/world/live/2021/may/04/coronavirus-live-news-india-passes-20m-cases-us-average-daily-infections-fall-below-50000?page=with%3Ablock-609149e18f08ae30bfe03cd1",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of live from hand to mouth",
+        "evidenceKind": "published_usage",
+        "expression": "live from hand to mouth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -536,6 +689,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be born with a silver spoon in one's mouth"
+      },
+      {
+        "url": "https://www.theguardian.com/world/2012/feb/20/loreal-grandson-place-board",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be born with a silver spoon in one's mouth",
+        "evidenceKind": "published_usage",
+        "expression": "be born with a silver spoon in one's mouth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -566,6 +728,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a licence to print money"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/licence_to_print_money",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 139; 2003.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be a licence to print money",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -596,6 +767,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a money pit"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/money-pit",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a money pit",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a money pit",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -626,6 +806,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have deep pockets"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/deep-pockets",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have deep pockets",
+        "evidenceKind": "corpus_examples",
+        "expression": "have deep pockets",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -656,6 +845,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "cut one's losses"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/cut_one%27s_losses",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 112; 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "cut one's losses",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -686,6 +884,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on the money"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-the-money",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on the money",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on the money",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -716,6 +923,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go for broke"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-broke",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; go for broke",
+        "evidenceKind": "corpus_examples",
+        "expression": "go for broke",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -746,6 +962,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make a killing"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/make_a_killing",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 134; 2009.",
+        "evidenceKind": "dated_quotation",
+        "expression": "make a killing",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -776,6 +1001,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be worth every penny"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/worth-every-penny",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be worth every penny",
+        "evidenceKind": "corpus_examples",
+        "expression": "be worth every penny",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -806,6 +1040,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a drop in the ocean"
+      },
+      {
+        "url": "https://www.theguardian.com/lifeandstyle/2026/jul/17/a-pee-in-the-sea-is-a-drop-in-the-ocean",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be a drop in the ocean",
+        "evidenceKind": "published_usage",
+        "expression": "be a drop in the ocean",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -836,6 +1079,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "bet one's bottom dollar"
+      },
+      {
+        "url": "https://www.theguardian.com/profile/saliltripathi",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of bet one's bottom dollar",
+        "evidenceKind": "published_usage",
+        "expression": "bet one's bottom dollar",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -866,6 +1118,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a blank cheque"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-blank-cheque",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a blank cheque",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a blank cheque",
+        "selectedUsageWitness": true
       }
     ]
   }

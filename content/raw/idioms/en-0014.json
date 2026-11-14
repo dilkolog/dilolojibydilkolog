@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be out of one's depth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/out-of-your-depth",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be out of one's depth",
+        "evidenceKind": "corpus_examples",
+        "expression": "be out of one's depth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be plain sailing"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/plain-sailing",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be plain sailing",
+        "evidenceKind": "corpus_examples",
+        "expression": "be plain sailing",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a walk in the park"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-walk-in-the-park",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a walk in the park",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a walk in the park",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -116,6 +143,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be child's play"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/child%27s_play",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 152; 2025.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be child's play",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -146,6 +182,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be no picnic"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/no-picnic",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be no picnic",
+        "evidenceKind": "corpus_examples",
+        "expression": "be no picnic",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -176,6 +221,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a tall order"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/tall_order",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 149; 2002.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be a tall order",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -206,6 +260,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be an uphill battle"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/uphill-battle",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be an uphill battle",
+        "evidenceKind": "corpus_examples",
+        "expression": "be an uphill battle",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -236,6 +299,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a whole new ball game"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/football/61922723",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be a whole new ball game",
+        "evidenceKind": "published_usage",
+        "expression": "be a whole new ball game",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -266,6 +338,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be out of one's league"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/out_of_one%27s_league",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 124; 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be out of one's league",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -296,6 +377,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a level playing field"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/level_playing_field",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 109; 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be a level playing field",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -326,6 +416,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be streets ahead"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/streets-ahead-of",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be streets ahead",
+        "evidenceKind": "corpus_examples",
+        "expression": "be streets ahead",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -356,6 +455,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "run rings around"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/run-rings-around",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; run rings around",
+        "evidenceKind": "corpus_examples",
+        "expression": "run rings around",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -386,6 +494,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make light work of"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/make_light_work_of",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 113; 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "make light work of",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -417,6 +534,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "take something in one's stride"
+      },
+      {
+        "url": "https://www.reuters.com/legal/transactional/chime-surges-11-stride-deal-puts-fintech-path-bank-charter-2026-09-09/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of take in one's stride",
+        "evidenceKind": "published_usage",
+        "expression": "take in one's stride",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -447,6 +573,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "rise to the occasion"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/rise-to-the-occasion",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; rise to the occasion",
+        "evidenceKind": "corpus_examples",
+        "expression": "rise to the occasion",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -477,6 +612,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be up to scratch"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/up-to-scratch",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be up to scratch",
+        "evidenceKind": "corpus_examples",
+        "expression": "be up to scratch",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -508,6 +652,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on top of something"
+      },
+      {
+        "url": "https://www.theguardian.com/theguardian/2010/nov/14/exploring-with-recreational-trespassers",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be on top of",
+        "evidenceKind": "published_usage",
+        "expression": "be on top of",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -539,6 +692,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have something down to a fine art"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/ghost_gum",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 112; 2006.",
+        "evidenceKind": "dated_quotation",
+        "expression": "have down to a fine art",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -569,6 +731,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a stumbling block"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-stumbling-block",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a stumbling block",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a stumbling block",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -599,6 +770,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a double-edged sword"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/double-edged_sword",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 129; 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be a double-edged sword",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -629,6 +809,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a necessary evil"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/necessary-evil",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a necessary evil",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a necessary evil",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -659,6 +848,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a mixed blessing"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-mixed-blessing",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a mixed blessing",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a mixed blessing",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -689,6 +887,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be easier said than done"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/easier-said-than-done",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be easier said than done",
+        "evidenceKind": "corpus_examples",
+        "expression": "be easier said than done",
+        "selectedUsageWitness": true
       }
     ]
   }

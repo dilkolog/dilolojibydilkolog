@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "pick up the pieces"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pick-up-the-pieces",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; pick up the pieces",
+        "evidenceKind": "corpus_examples",
+        "expression": "pick up the pieces",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in a tight spot"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-a-tight-spot",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be in a tight spot",
+        "evidenceKind": "corpus_examples",
+        "expression": "be in a tight spot",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "throw a spanner in the works"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/throw-a-spanner-in-the-works",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; throw a spanner in the works",
+        "evidenceKind": "corpus_examples",
+        "expression": "throw a spanner in the works",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -116,6 +143,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "face the music"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/face-the-music",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; face the music",
+        "evidenceKind": "corpus_examples",
+        "expression": "face the music",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -146,6 +182,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "bite the dust"
+      },
+      {
+        "url": "https://www.theguardian.com/books/2000/nov/11/books.guardianreview11",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of bite the dust",
+        "evidenceKind": "published_usage",
+        "expression": "bite the dust",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -176,6 +221,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "come unstuck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/come-unstuck",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; come unstuck",
+        "evidenceKind": "corpus_examples",
+        "expression": "come unstuck",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -206,6 +260,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "hit a snag"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-a-snag",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; hit a snag",
+        "evidenceKind": "corpus_examples",
+        "expression": "hit a snag",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -236,6 +299,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "hit a brick wall"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-a-brick-wall",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; hit a brick wall",
+        "evidenceKind": "corpus_examples",
+        "expression": "hit a brick wall",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -266,6 +338,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "dig oneself into a hole"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/dig-a-hole",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; dig oneself into a hole",
+        "evidenceKind": "corpus_examples",
+        "expression": "dig oneself into a hole",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -296,6 +377,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "paint oneself into a corner"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/paint-yourself-into-a-corner",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; paint oneself into a corner",
+        "evidenceKind": "corpus_examples",
+        "expression": "paint oneself into a corner",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -326,6 +416,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "open Pandora's box"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/Pandora%27s_box",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 143; 2026.",
+        "evidenceKind": "dated_quotation",
+        "expression": "open Pandora's box",
+        "selectedUsageWitness": true
       }
     ]
   }

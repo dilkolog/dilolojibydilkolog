@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on top of the world"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-top-of-the-world",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on top of the world",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on top of the world",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be down in the dumps"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/down_in_the_dumps",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 136; 2009.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be down in the dumps",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "feel blue"
+      },
+      {
+        "url": "https://www.studenthealth.gov.hk/english/emotional_health_tips/txt_video_how_much_do_you_know_about_adolescent_depression_2_2.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Student Health Service video transcript; feeling blue contrasted with clinical depression.",
+        "evidenceKind": "published_usage",
+        "expression": "feel blue",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -116,6 +143,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in high spirits"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/high-spirits",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be in high spirits",
+        "evidenceKind": "corpus_examples",
+        "expression": "be in high spirits",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -146,6 +182,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be in low spirits"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/low-spirits",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be in low spirits",
+        "evidenceKind": "corpus_examples",
+        "expression": "be in low spirits",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -176,6 +221,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be walking on air"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/be-walking-on-air",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be walking on air",
+        "evidenceKind": "corpus_examples",
+        "expression": "be walking on air",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -206,6 +260,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "jump for joy"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/jump_for_joy",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 115; 2002.",
+        "evidenceKind": "dated_quotation",
+        "expression": "jump for joy",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -236,6 +299,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be tickled pink"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/tickled-pink",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be tickled pink",
+        "evidenceKind": "corpus_examples",
+        "expression": "be tickled pink",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -266,6 +338,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be beside oneself"
+      },
+      {
+        "url": "https://www.theguardian.com/books/2017/apr/15/the-peregrine-by-ja-baker-nature-writing",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be beside oneself",
+        "evidenceKind": "published_usage",
+        "expression": "be beside oneself",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -296,6 +377,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a sinking feeling"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/sinking-feeling",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have a sinking feeling",
+        "evidenceKind": "corpus_examples",
+        "expression": "have a sinking feeling",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -326,6 +416,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have mixed feelings"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/mixed-feelings",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; have mixed feelings",
+        "evidenceKind": "corpus_examples",
+        "expression": "have mixed feelings",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -356,6 +455,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on pins and needles"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-pins-and-needles",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on pins and needles",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on pins and needles",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -386,6 +494,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on tenterhooks"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-tenterhooks",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on tenterhooks",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on tenterhooks",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -416,6 +533,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be at one's wits' end"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/at_my_wits%27_end",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 139; 2010.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be at one's wits' end",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -446,6 +572,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be scared stiff"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/scared",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be scared stiff",
+        "evidenceKind": "corpus_examples",
+        "expression": "be scared stiff",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -476,6 +611,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "see red"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/see-red",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; see red",
+        "evidenceKind": "corpus_examples",
+        "expression": "see red",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -506,6 +650,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "hit the roof"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-the-roof",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; hit the roof",
+        "evidenceKind": "corpus_examples",
+        "expression": "hit the roof",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -536,6 +689,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "fly off the handle"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/fly-off-the-handle",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; fly off the handle",
+        "evidenceKind": "corpus_examples",
+        "expression": "fly off the handle",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -566,6 +728,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "lose one's cool"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/lose-your-cool",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; lose one's cool",
+        "evidenceKind": "corpus_examples",
+        "expression": "lose one's cool",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -596,6 +767,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep one's cool"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-cool",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; keep one's cool",
+        "evidenceKind": "corpus_examples",
+        "expression": "keep one's cool",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -626,6 +806,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be green with envy"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/green-with-envy",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be green with envy",
+        "evidenceKind": "corpus_examples",
+        "expression": "be green with envy",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -656,6 +845,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be at the end of one's tether"
+      },
+      {
+        "url": "https://www.ft.com/content/a1bcce14-c326-488f-b736-6e831b0fb6cf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be at the end of one's tether",
+        "evidenceKind": "published_usage",
+        "expression": "be at the end of one's tether",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -686,6 +884,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on edge"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-edge",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on edge",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on edge",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -716,6 +923,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "blow off steam"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/blow-off-steam",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; blow off steam",
+        "evidenceKind": "corpus_examples",
+        "expression": "blow off steam",
+        "selectedUsageWitness": true
       }
     ]
   }

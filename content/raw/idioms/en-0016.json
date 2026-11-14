@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "hit the road"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-the-road",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; hit the road",
+        "evidenceKind": "corpus_examples",
+        "expression": "hit the road",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get the show on the road"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-the-show-on-the-road",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; get the show on the road",
+        "evidenceKind": "corpus_examples",
+        "expression": "get the show on the road",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be off the beaten track"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/off-the-beaten-track",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be off the beaten track",
+        "evidenceKind": "corpus_examples",
+        "expression": "be off the beaten track",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -116,6 +143,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "come a long way"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-come-a-long-way",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; come a long way",
+        "evidenceKind": "corpus_examples",
+        "expression": "come a long way",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -146,6 +182,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go round in circles"
+      },
+      {
+        "url": "https://downloads.bbc.co.uk/writersroom/scripts/The-Passing-Bells-Episode-4-shooting.pdf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of go round in circles",
+        "evidenceKind": "published_usage",
+        "expression": "go round in circles",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -176,6 +221,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on the right track"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-the-right-track",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on the right track",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on the right track",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -206,6 +260,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "lose one's way"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/lose_one%27s_way",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 112; 2017.",
+        "evidenceKind": "dated_quotation",
+        "expression": "lose one's way",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -236,6 +299,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "find one's bearings"
+      },
+      {
+        "url": "https://www.reuters.com/business/bearings-maker-skf-q1-core-profit-beats-sees-sales-dip-q2-2024-04-26/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of find one's bearings",
+        "evidenceKind": "published_usage",
+        "expression": "find one's bearings",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -266,6 +338,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get into the swing of things"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-spanish/to-get-into-the-swing-of-things",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; get into the swing of things",
+        "evidenceKind": "corpus_examples",
+        "expression": "get into the swing of things",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -296,6 +377,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get into one's stride"
+      },
+      {
+        "url": "https://www.theguardian.com/politics/article/2024/sep/10/mel-stride-knocked-out-of-tory-leadership-contest",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of get into one's stride",
+        "evidenceKind": "published_usage",
+        "expression": "get into one's stride",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -326,6 +416,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make headway"
+      },
+      {
+        "url": "https://downloads.bbc.co.uk/rmhttp/radio4/transcripts/1974_reith1.pdf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of make headway",
+        "evidenceKind": "published_usage",
+        "expression": "make headway",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -356,6 +455,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get a move on"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-a-move-on",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; get a move on",
+        "evidenceKind": "corpus_examples",
+        "expression": "get a move on",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -386,6 +494,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "pull up stakes"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pull-up-stakes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; pull up stakes",
+        "evidenceKind": "corpus_examples",
+        "expression": "pull up stakes",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -416,6 +533,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make tracks"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/make-tracks",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; make tracks",
+        "evidenceKind": "corpus_examples",
+        "expression": "make tracks",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -446,6 +572,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make a move"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/make-a-move",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; make a move",
+        "evidenceKind": "corpus_examples",
+        "expression": "make a move",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -476,6 +611,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go places"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-places",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; go places",
+        "evidenceKind": "corpus_examples",
+        "expression": "go places",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -506,6 +650,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go from strength to strength"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-from-strength-to-strength",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; go from strength to strength",
+        "evidenceKind": "corpus_examples",
+        "expression": "go from strength to strength",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -536,6 +689,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be going nowhere"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/go_nowhere",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 129; 2025.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be going nowhere",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -566,6 +728,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "run out of steam"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/run-out-of-steam",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; run out of steam",
+        "evidenceKind": "corpus_examples",
+        "expression": "run out of steam",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -596,6 +767,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on the home straight"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/home-straight",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on the home straight",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on the home straight",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -626,6 +806,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "see light at the end of the tunnel"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/light-at-the-end-of-the-tunnel",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; see light at the end of the tunnel",
+        "evidenceKind": "corpus_examples",
+        "expression": "see light at the end of the tunnel",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -656,6 +845,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a step in the right direction"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-french/a-step-in-the-right-direction",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a step in the right direction",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a step in the right direction",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -687,6 +885,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "lead someone up the garden path"
+      },
+      {
+        "url": "https://www.theguardian.com/lifeandstyle/2000/oct/08/gardens",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of lead up the garden path",
+        "evidenceKind": "published_usage",
+        "expression": "lead up the garden path",
+        "selectedUsageWitness": true
       }
     ]
   }

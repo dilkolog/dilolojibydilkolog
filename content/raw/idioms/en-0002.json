@@ -26,6 +26,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "let the cat out of the bag"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/let-the-cat-out-of-the-bag",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; let the cat out of the bag",
+        "evidenceKind": "corpus_examples",
+        "expression": "let the cat out of the bag",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -56,6 +65,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "smell a rat"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/smell_a_rat",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 133; 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "smell a rat",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -86,6 +104,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "kill two birds with one stone"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/kill-two-birds-with-one-stone",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; kill two birds with one stone",
+        "evidenceKind": "corpus_examples",
+        "expression": "kill two birds with one stone",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -116,6 +143,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have bigger fish to fry"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/bigger_fish_to_fry",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 125; 2009.",
+        "evidenceKind": "dated_quotation",
+        "expression": "have bigger fish to fry",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -146,6 +182,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a fish out of water"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/fish_out",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 123; 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be a fish out of water",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -176,6 +221,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a dark horse"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/dark-horse",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a dark horse",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a dark horse",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -206,6 +260,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "put the cart before the horse"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/put-the-cart-before-the-horse",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; put the cart before the horse",
+        "evidenceKind": "corpus_examples",
+        "expression": "put the cart before the horse",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -236,6 +299,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get the lion's share"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/lions-share",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; get the lion's share",
+        "evidenceKind": "corpus_examples",
+        "expression": "get the lion's share",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -266,6 +338,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a fly on the wall"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-fly-on-the-wall",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a fly on the wall",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a fly on the wall",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -296,6 +377,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "open a can of worms"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-can-of-worms",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; open a can of worms",
+        "evidenceKind": "corpus_examples",
+        "expression": "open a can of worms",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -326,6 +416,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "stir up a hornet's nest"
+      },
+      {
+        "url": "https://www.theguardian.com/media/2006/jul/09/newmedia.comment",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of stir up a hornet's nest",
+        "evidenceKind": "published_usage",
+        "expression": "stir up a hornet's nest",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -356,6 +455,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "take the bull by the horns"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/take_the_bull_by_the_horns",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 142; 2002.",
+        "evidenceKind": "dated_quotation",
+        "expression": "take the bull by the horns",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -386,6 +494,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a frog in one's throat"
+      },
+      {
+        "url": "https://www.theguardian.com/politics/2017/dec/13/crush-brexit-saboteurs-maybot-p45-theresa-westminster",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of have a frog in one's throat",
+        "evidenceKind": "published_usage",
+        "expression": "have a frog in one's throat",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -416,6 +533,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "have a bee in one's bonnet"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/bee_in_one%27s_bonnet",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 120; 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "have a bee in one's bonnet",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -446,6 +572,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be the elephant in the room"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-elephant-in-the-room",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be the elephant in the room",
+        "evidenceKind": "corpus_examples",
+        "expression": "be the elephant in the room",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -476,6 +611,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a cash cow"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/cash_cow",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 136; 2004.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be a cash cow",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -506,6 +650,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a white elephant"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-white-elephant",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a white elephant",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a white elephant",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -536,6 +689,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "cry wolf"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/cry-wolf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; cry wolf",
+        "evidenceKind": "corpus_examples",
+        "expression": "cry wolf",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -566,6 +728,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "let sleeping dogs lie"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-let-sleeping-dogs-lie",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; let sleeping dogs lie",
+        "evidenceKind": "corpus_examples",
+        "expression": "let sleeping dogs lie",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -596,6 +767,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "make a beeline for"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/kindy",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 135; 2001.",
+        "evidenceKind": "dated_quotation",
+        "expression": "make a beeline for",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -626,6 +806,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be as busy as a bee"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-busy-bee",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be as busy as a bee",
+        "evidenceKind": "corpus_examples",
+        "expression": "be as busy as a bee",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -656,6 +845,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be as quiet as a mouse"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/quiet-as-a-mouse",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be as quiet as a mouse",
+        "evidenceKind": "corpus_examples",
+        "expression": "be as quiet as a mouse",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -686,6 +884,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be as stubborn as a mule"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/stubborn-as-a-mule",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be as stubborn as a mule",
+        "evidenceKind": "corpus_examples",
+        "expression": "be as stubborn as a mule",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -716,6 +923,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a lone wolf"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-lone-wolf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a lone wolf",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a lone wolf",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -746,6 +962,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a night owl"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-night-owl",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a night owl",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a night owl",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -776,6 +1001,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a sitting duck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-sitting-duck",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a sitting duck",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a sitting duck",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -806,6 +1040,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a guinea pig"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/guinea_pig",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 172; 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "be a guinea pig",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -836,6 +1079,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be on a wild goose chase"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/wild-goose-chase",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be on a wild goose chase",
+        "evidenceKind": "corpus_examples",
+        "expression": "be on a wild goose chase",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -866,6 +1118,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "keep the wolf from the door"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-the-wolf-from-the-door",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; keep the wolf from the door",
+        "evidenceKind": "corpus_examples",
+        "expression": "keep the wolf from the door",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -896,6 +1157,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "fight like cat and dog"
+      },
+      {
+        "url": "https://www.theguardian.com/commentisfree/2015/may/27/why-dont-dogs-like-cats-google",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of fight like cat and dog",
+        "evidenceKind": "published_usage",
+        "expression": "fight like cat and dog",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -926,6 +1196,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a red herring"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-red-herring",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be a red herring",
+        "evidenceKind": "corpus_examples",
+        "expression": "be a red herring",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -956,6 +1235,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get one's ducks in a row"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/get_one%27s_ducks_in_a_row",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 121; 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "get one's ducks in a row",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -987,6 +1275,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "get something straight from the horse's mouth"
+      },
+      {
+        "url": "https://www.theguardian.com/books/2002/jan/19/scienceandnature.highereducation",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of get straight from the horse's mouth",
+        "evidenceKind": "published_usage",
+        "expression": "get straight from the horse's mouth",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1017,6 +1314,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "flog a dead horse"
+      },
+      {
+        "url": "https://www.theguardian.com/tv-and-radio/2026/jul/28/harriet-dyer-patrick-brammall-interview-colin-from-accounts-real-love-story-inspiration",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of flog a dead horse",
+        "evidenceKind": "published_usage",
+        "expression": "flog a dead horse",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1047,6 +1353,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "bark up the wrong tree"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/bark_up_the_wrong_tree",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 142; 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "bark up the wrong tree",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1078,6 +1393,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "take someone under one's wing"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/take_under_one%27s_wing",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "English > attributed quotation, line 134; 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "take under one's wing",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1108,6 +1432,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be no spring chicken"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/no-spring-chicken",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Automatically selected examples / Collins Corpus; be no spring chicken",
+        "evidenceKind": "corpus_examples",
+        "expression": "be no spring chicken",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1138,6 +1471,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "be a different kettle of fish"
+      },
+      {
+        "url": "https://www.bbc.co.uk/sport/football/articles/czxr29y93q4o",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of be a different kettle of fish",
+        "evidenceKind": "published_usage",
+        "expression": "be a different kettle of fish",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1168,6 +1510,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "go cold turkey"
+      },
+      {
+        "url": "https://www.theguardian.com/commentisfree/2023/sep/18/social-media-addiction-quit-facebook-twitter",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Published article: use of go cold turkey",
+        "evidenceKind": "published_usage",
+        "expression": "go cold turkey",
+        "selectedUsageWitness": true
       }
     ]
   }
