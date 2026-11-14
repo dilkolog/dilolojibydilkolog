@@ -118,5 +118,785 @@
     "text": "Thank you for waiting while we check the details.",
     "level": "B1",
     "tr": "Ayrıntıları kontrol ederken beklediğiniz için teşekkür ederiz."
+  },
+  {
+    "id": "pte-rs-0021",
+    "text": "Can I have some water with my food?",
+    "level": "A1",
+    "tr": "Yemeğimin yanında biraz su alabilir miyim?"
+  },
+  {
+    "id": "pte-rs-0022",
+    "text": "Your book is under the big table.",
+    "level": "A1",
+    "tr": "Kitabın büyük masanın altında."
+  },
+  {
+    "id": "pte-rs-0023",
+    "text": "We have time for a cup of tea.",
+    "level": "A1",
+    "tr": "Bir fincan çay için zamanımız var."
+  },
+  {
+    "id": "pte-rs-0024",
+    "text": "I want to go home after class.",
+    "level": "A1",
+    "tr": "Dersten sonra eve gitmek istiyorum."
+  },
+  {
+    "id": "pte-rs-0025",
+    "text": "Please put the milk on the table.",
+    "level": "A1",
+    "tr": "Lütfen sütü masaya koy."
+  },
+  {
+    "id": "pte-rs-0026",
+    "text": "My father is at work this morning.",
+    "level": "A1",
+    "tr": "Babam bu sabah işte."
+  },
+  {
+    "id": "pte-rs-0027",
+    "text": "Do you like the food at school?",
+    "level": "A1",
+    "tr": "Okuldaki yemekleri seviyor musun?"
+  },
+  {
+    "id": "pte-rs-0028",
+    "text": "You can sit here with your friend.",
+    "level": "A1",
+    "tr": "Burada arkadaşınla oturabilirsin."
+  },
+  {
+    "id": "pte-rs-0029",
+    "text": "The children are playing in the garden.",
+    "level": "A1",
+    "tr": "Çocuklar bahçede oynuyor."
+  },
+  {
+    "id": "pte-rs-0030",
+    "text": "I need a pen to write this.",
+    "level": "A1",
+    "tr": "Bunu yazmak için kaleme ihtiyacım var."
+  },
+  {
+    "id": "pte-rs-0031",
+    "text": "Let us have breakfast before we go.",
+    "level": "A1",
+    "tr": "Gitmeden önce kahvaltı yapalım."
+  },
+  {
+    "id": "pte-rs-0032",
+    "text": "She has a small dog at home.",
+    "level": "A1",
+    "tr": "Evde küçük bir köpeği var."
+  },
+  {
+    "id": "pte-rs-0033",
+    "text": "Can you see the clock from here?",
+    "level": "A1",
+    "tr": "Buradan saati görebiliyor musun?"
+  },
+  {
+    "id": "pte-rs-0034",
+    "text": "Our teacher is in the room near us.",
+    "level": "A1",
+    "tr": "Öğretmenimiz yanımızdaki odada."
+  },
+  {
+    "id": "pte-rs-0035",
+    "text": "Please take your bag off the chair.",
+    "level": "A1",
+    "tr": "Lütfen çantanı sandalyeden al."
+  },
+  {
+    "id": "pte-rs-0036",
+    "text": "We live near a very big park.",
+    "level": "A1",
+    "tr": "Çok büyük bir parkın yakınında yaşıyoruz."
+  },
+  {
+    "id": "pte-rs-0037",
+    "text": "I can help you with your work.",
+    "level": "A1",
+    "tr": "İşinde sana yardım edebilirim."
+  },
+  {
+    "id": "pte-rs-0038",
+    "text": "There is a light above the door.",
+    "level": "A1",
+    "tr": "Kapının üzerinde bir ışık var."
+  },
+  {
+    "id": "pte-rs-0039",
+    "text": "What time do you have your lunch?",
+    "level": "A1",
+    "tr": "Öğle yemeğini saat kaçta yersin?"
+  },
+  {
+    "id": "pte-rs-0040",
+    "text": "I have my keys in my coat.",
+    "level": "A1",
+    "tr": "Anahtarlarım montumda."
+  },
+  {
+    "id": "pte-rs-0041",
+    "text": "Can we walk to school this morning?",
+    "level": "A1",
+    "tr": "Bu sabah okula yürüyebilir miyiz?"
+  },
+  {
+    "id": "pte-rs-0042",
+    "text": "Please tell me when you are ready.",
+    "level": "A1",
+    "tr": "Lütfen hazır olduğunda bana söyle."
+  },
+  {
+    "id": "pte-rs-0043",
+    "text": "The cat is sleeping on my bed.",
+    "level": "A1",
+    "tr": "Kedi yatağımda uyuyor."
+  },
+  {
+    "id": "pte-rs-0044",
+    "text": "We can read this book at home.",
+    "level": "A1",
+    "tr": "Bu kitabı evde okuyabiliriz."
+  },
+  {
+    "id": "pte-rs-0045",
+    "text": "His mother has a new red car.",
+    "level": "A1",
+    "tr": "Annesinin yeni kırmızı bir arabası var."
+  },
+  {
+    "id": "pte-rs-0046",
+    "text": "I am happy to see you today.",
+    "level": "A1",
+    "tr": "Bugün seni gördüğüme sevindim."
+  },
+  {
+    "id": "pte-rs-0047",
+    "text": "Could you wait outside for a moment?",
+    "level": "A2",
+    "tr": "Biraz dışarıda bekler misin?"
+  },
+  {
+    "id": "pte-rs-0048",
+    "text": "I think this is the wrong address.",
+    "level": "A2",
+    "tr": "Sanırım bu yanlış adres."
+  },
+  {
+    "id": "pte-rs-0049",
+    "text": "Please leave a message after the phone call.",
+    "level": "A2",
+    "tr": "Lütfen telefon görüşmesinden sonra bir mesaj bırak."
+  },
+  {
+    "id": "pte-rs-0050",
+    "text": "We need to buy some more bread.",
+    "level": "A2",
+    "tr": "Biraz daha ekmek almamız gerekiyor."
+  },
+  {
+    "id": "pte-rs-0051",
+    "text": "The bus was late again this morning.",
+    "level": "A2",
+    "tr": "Otobüs bu sabah yine gecikti."
+  },
+  {
+    "id": "pte-rs-0052",
+    "text": "Can you carry this box for me?",
+    "level": "A2",
+    "tr": "Bu kutuyu benim için taşır mısın?"
+  },
+  {
+    "id": "pte-rs-0053",
+    "text": "I forgot to bring my swimming clothes.",
+    "level": "A2",
+    "tr": "Yüzme kıyafetlerimi getirmeyi unuttum."
+  },
+  {
+    "id": "pte-rs-0054",
+    "text": "Please close the window before you leave.",
+    "level": "A2",
+    "tr": "Lütfen gitmeden önce pencereyi kapat."
+  },
+  {
+    "id": "pte-rs-0055",
+    "text": "This shop sells clothes for young children.",
+    "level": "A2",
+    "tr": "Bu dükkân küçük çocuklar için giysi satıyor."
+  },
+  {
+    "id": "pte-rs-0056",
+    "text": "I would like to book a table.",
+    "level": "A2",
+    "tr": "Bir masa ayırtmak istiyorum."
+  },
+  {
+    "id": "pte-rs-0057",
+    "text": "Do we have enough chairs for everyone?",
+    "level": "A2",
+    "tr": "Herkese yetecek kadar sandalyemiz var mı?"
+  },
+  {
+    "id": "pte-rs-0058",
+    "text": "You left your umbrella in my car.",
+    "level": "A2",
+    "tr": "Şemsiyeni arabamda bıraktın."
+  },
+  {
+    "id": "pte-rs-0059",
+    "text": "The doctor can see you after lunch.",
+    "level": "A2",
+    "tr": "Doktor sana öğle yemeğinden sonra bakabilir."
+  },
+  {
+    "id": "pte-rs-0060",
+    "text": "I am looking for the nearest station.",
+    "level": "A2",
+    "tr": "En yakın istasyonu arıyorum."
+  },
+  {
+    "id": "pte-rs-0061",
+    "text": "Let us check the answer together first.",
+    "level": "A2",
+    "tr": "Önce cevabı birlikte kontrol edelim."
+  },
+  {
+    "id": "pte-rs-0062",
+    "text": "We should leave before it gets dark.",
+    "level": "A2",
+    "tr": "Hava kararmadan gitmeliyiz."
+  },
+  {
+    "id": "pte-rs-0063",
+    "text": "Can you show me where to sign?",
+    "level": "A2",
+    "tr": "Nereye imza atacağımı gösterir misin?"
+  },
+  {
+    "id": "pte-rs-0064",
+    "text": "I sent the email to your sister.",
+    "level": "A2",
+    "tr": "E-postayı kız kardeşine gönderdim."
+  },
+  {
+    "id": "pte-rs-0065",
+    "text": "Please put these empty bottles over there.",
+    "level": "A2",
+    "tr": "Lütfen bu boş şişeleri şuraya koy."
+  },
+  {
+    "id": "pte-rs-0066",
+    "text": "The garden looks lovely in the sunshine.",
+    "level": "A2",
+    "tr": "Bahçe güneş ışığında çok güzel görünüyor."
+  },
+  {
+    "id": "pte-rs-0067",
+    "text": "I need a short break from work.",
+    "level": "A2",
+    "tr": "İşe kısa bir ara vermem gerekiyor."
+  },
+  {
+    "id": "pte-rs-0068",
+    "text": "Have you seen my blue shopping bag?",
+    "level": "A2",
+    "tr": "Mavi alışveriş çantamı gördün mü?"
+  },
+  {
+    "id": "pte-rs-0069",
+    "text": "We can get a cheaper ticket online.",
+    "level": "A2",
+    "tr": "Çevrim içi daha ucuz bilet alabiliriz."
+  },
+  {
+    "id": "pte-rs-0070",
+    "text": "Please speak slowly so I can understand.",
+    "level": "A2",
+    "tr": "Lütfen anlayabilmem için yavaş konuş."
+  },
+  {
+    "id": "pte-rs-0071",
+    "text": "There is a small cafe near here.",
+    "level": "A2",
+    "tr": "Buralarda küçük bir kafe var."
+  },
+  {
+    "id": "pte-rs-0072",
+    "text": "I can not find the key to this door.",
+    "level": "A2",
+    "tr": "Bu kapının anahtarını bulamıyorum."
+  },
+  {
+    "id": "pte-rs-0073",
+    "text": "Would you like some tea or coffee?",
+    "level": "A2",
+    "tr": "Çay mı kahve mi istersin?"
+  },
+  {
+    "id": "pte-rs-0074",
+    "text": "The meeting starts in half an hour.",
+    "level": "A2",
+    "tr": "Toplantı yarım saat sonra başlıyor."
+  },
+  {
+    "id": "pte-rs-0075",
+    "text": "You can borrow my bike this afternoon.",
+    "level": "A2",
+    "tr": "Bu öğleden sonra bisikletimi ödünç alabilirsin."
+  },
+  {
+    "id": "pte-rs-0076",
+    "text": "I have already washed the kitchen floor.",
+    "level": "A2",
+    "tr": "Mutfak zeminini çoktan yıkadım."
+  },
+  {
+    "id": "pte-rs-0077",
+    "text": "Please save a seat for me outside.",
+    "level": "A2",
+    "tr": "Lütfen dışarıda benim için bir yer ayır."
+  },
+  {
+    "id": "pte-rs-0078",
+    "text": "Where did you put the clean towels?",
+    "level": "A2",
+    "tr": "Temiz havluları nereye koydun?"
+  },
+  {
+    "id": "pte-rs-0079",
+    "text": "We are learning how to grow vegetables.",
+    "level": "A2",
+    "tr": "Sebze yetiştirmeyi öğreniyoruz."
+  },
+  {
+    "id": "pte-rs-0080",
+    "text": "I must call my brother before dinner.",
+    "level": "A2",
+    "tr": "Akşam yemeğinden önce erkek kardeşimi aramalıyım."
+  },
+  {
+    "id": "pte-rs-0081",
+    "text": "Can you help me move this table?",
+    "level": "A2",
+    "tr": "Bu masayı taşımama yardım eder misin?"
+  },
+  {
+    "id": "pte-rs-0082",
+    "text": "The water in the pool feels cold.",
+    "level": "A2",
+    "tr": "Havuzdaki su soğuk geliyor."
+  },
+  {
+    "id": "pte-rs-0083",
+    "text": "Please bring a copy of your letter.",
+    "level": "A2",
+    "tr": "Lütfen mektubunun bir kopyasını getir."
+  },
+  {
+    "id": "pte-rs-0084",
+    "text": "I think we should ask the teacher.",
+    "level": "A2",
+    "tr": "Sanırım öğretmene sormalıyız."
+  },
+  {
+    "id": "pte-rs-0085",
+    "text": "This room is quieter than the kitchen.",
+    "level": "A2",
+    "tr": "Bu oda mutfaktan daha sessiz."
+  },
+  {
+    "id": "pte-rs-0086",
+    "text": "We can try again after a break.",
+    "level": "A2",
+    "tr": "Moladan sonra tekrar deneyebiliriz."
+  },
+  {
+    "id": "pte-rs-0087",
+    "text": "Did you enjoy your trip to the beach?",
+    "level": "A2",
+    "tr": "Plaja yaptığın geziden hoşlandın mı?"
+  },
+  {
+    "id": "pte-rs-0088",
+    "text": "I will meet you at the entrance.",
+    "level": "A2",
+    "tr": "Seninle girişte buluşacağım."
+  },
+  {
+    "id": "pte-rs-0089",
+    "text": "Please check the price before you pay.",
+    "level": "A2",
+    "tr": "Lütfen ödeme yapmadan önce fiyatı kontrol et."
+  },
+  {
+    "id": "pte-rs-0090",
+    "text": "The stairs are closed at the moment.",
+    "level": "A2",
+    "tr": "Merdivenler şu anda kapalı."
+  },
+  {
+    "id": "pte-rs-0091",
+    "text": "You need to turn the sound up.",
+    "level": "A2",
+    "tr": "Sesi açman gerekiyor."
+  },
+  {
+    "id": "pte-rs-0092",
+    "text": "I am going to cook dinner tonight.",
+    "level": "A2",
+    "tr": "Bu akşam yemek pişireceğim."
+  },
+  {
+    "id": "pte-rs-0093",
+    "text": "Can I change the time of my visit?",
+    "level": "A2",
+    "tr": "Ziyaretimin saatini değiştirebilir miyim?"
+  },
+  {
+    "id": "pte-rs-0094",
+    "text": "We have not finished our homework yet.",
+    "level": "A2",
+    "tr": "Ödevimizi henüz bitirmedik."
+  },
+  {
+    "id": "pte-rs-0095",
+    "text": "Please keep your phone in your bag.",
+    "level": "A2",
+    "tr": "Lütfen telefonunu çantanda tut."
+  },
+  {
+    "id": "pte-rs-0096",
+    "text": "I could not hear the last word.",
+    "level": "A2",
+    "tr": "Son kelimeyi duyamadım."
+  },
+  {
+    "id": "pte-rs-0097",
+    "text": "The train station is across the street.",
+    "level": "A2",
+    "tr": "Tren istasyonu caddenin karşısında."
+  },
+  {
+    "id": "pte-rs-0098",
+    "text": "Do you know where the library is?",
+    "level": "A2",
+    "tr": "Kütüphanenin nerede olduğunu biliyor musun?"
+  },
+  {
+    "id": "pte-rs-0099",
+    "text": "I have a question about this form.",
+    "level": "A2",
+    "tr": "Bu form hakkında bir sorum var."
+  },
+  {
+    "id": "pte-rs-0100",
+    "text": "We should take something warm to wear.",
+    "level": "A2",
+    "tr": "Giymek için yanımıza sıcak tutan bir şey almalıyız."
+  },
+  {
+    "id": "pte-rs-0101",
+    "text": "Please tell the manager I am here.",
+    "level": "A2",
+    "tr": "Lütfen müdüre burada olduğumu söyle."
+  },
+  {
+    "id": "pte-rs-0102",
+    "text": "I left my lunch in the fridge.",
+    "level": "A2",
+    "tr": "Öğle yemeğimi buzdolabında bıraktım."
+  },
+  {
+    "id": "pte-rs-0103",
+    "text": "The website is much easier to use now.",
+    "level": "A2",
+    "tr": "İnternet sitesini kullanmak artık çok daha kolay."
+  },
+  {
+    "id": "pte-rs-0104",
+    "text": "Can you explain this word to me?",
+    "level": "A2",
+    "tr": "Bu kelimeyi bana açıklar mısın?"
+  },
+  {
+    "id": "pte-rs-0105",
+    "text": "We walked home because the weather was nice.",
+    "level": "A2",
+    "tr": "Hava güzel olduğu için eve yürüdük."
+  },
+  {
+    "id": "pte-rs-0106",
+    "text": "I need some help with this computer.",
+    "level": "A2",
+    "tr": "Bu bilgisayarla ilgili biraz yardıma ihtiyacım var."
+  },
+  {
+    "id": "pte-rs-0107",
+    "text": "Please do not forget your coat again.",
+    "level": "A2",
+    "tr": "Lütfen montunu yine unutma."
+  },
+  {
+    "id": "pte-rs-0108",
+    "text": "The new bus stop is near the bank.",
+    "level": "A2",
+    "tr": "Yeni otobüs durağı bankanın yakınında."
+  },
+  {
+    "id": "pte-rs-0109",
+    "text": "Could we sit somewhere a little quieter?",
+    "level": "A2",
+    "tr": "Biraz daha sessiz bir yerde oturabilir miyiz?"
+  },
+  {
+    "id": "pte-rs-0110",
+    "text": "I will call you when I arrive.",
+    "level": "A2",
+    "tr": "Vardığımda seni arayacağım."
+  },
+  {
+    "id": "pte-rs-0111",
+    "text": "We can share the food between us.",
+    "level": "A2",
+    "tr": "Yemeği aramızda paylaşabiliriz."
+  },
+  {
+    "id": "pte-rs-0112",
+    "text": "I would appreciate some advice before making a decision.",
+    "level": "B1",
+    "tr": "Karar vermeden önce biraz tavsiye almak isterim."
+  },
+  {
+    "id": "pte-rs-0113",
+    "text": "Could you explain exactly what the problem is?",
+    "level": "B1",
+    "tr": "Sorunun tam olarak ne olduğunu açıklar mısın?"
+  },
+  {
+    "id": "pte-rs-0114",
+    "text": "We have been waiting longer than we expected.",
+    "level": "B1",
+    "tr": "Beklediğimizden daha uzun süredir bekliyoruz."
+  },
+  {
+    "id": "pte-rs-0115",
+    "text": "I will let you know as soon as it is ready.",
+    "level": "B1",
+    "tr": "Hazır olur olmaz sana haber vereceğim."
+  },
+  {
+    "id": "pte-rs-0116",
+    "text": "The instructions say we should keep a copy.",
+    "level": "B1",
+    "tr": "Talimatlar bir kopya saklamamız gerektiğini söylüyor."
+  },
+  {
+    "id": "pte-rs-0117",
+    "text": "Would it be possible to arrange another appointment?",
+    "level": "B1",
+    "tr": "Başka bir randevu ayarlamak mümkün olur mu?"
+  },
+  {
+    "id": "pte-rs-0118",
+    "text": "We need to find a more practical solution.",
+    "level": "B1",
+    "tr": "Daha uygulanabilir bir çözüm bulmamız gerekiyor."
+  },
+  {
+    "id": "pte-rs-0119",
+    "text": "Please make sure everyone understands before we continue.",
+    "level": "B1",
+    "tr": "Lütfen devam etmeden önce herkesin anladığından emin ol."
+  },
+  {
+    "id": "pte-rs-0120",
+    "text": "I would prefer to discuss this in person.",
+    "level": "B1",
+    "tr": "Bunu yüz yüze konuşmayı tercih ederim."
+  },
+  {
+    "id": "pte-rs-0121",
+    "text": "The journey should be easier once the road opens again.",
+    "level": "B1",
+    "tr": "Yol yeniden açıldığında yolculuk daha kolay olmalı."
+  },
+  {
+    "id": "pte-rs-0122",
+    "text": "Could you confirm which documents I need to bring?",
+    "level": "B1",
+    "tr": "Hangi belgeleri getirmem gerektiğini teyit eder misin?"
+  },
+  {
+    "id": "pte-rs-0123",
+    "text": "I am not sure whether the price includes breakfast.",
+    "level": "B1",
+    "tr": "Fiyata kahvaltının dâhil olup olmadığından emin değilim."
+  },
+  {
+    "id": "pte-rs-0124",
+    "text": "We were told to arrive before the building opened.",
+    "level": "B1",
+    "tr": "Bina açılmadan önce gelmemiz söylendi."
+  },
+  {
+    "id": "pte-rs-0125",
+    "text": "It would help if you could send the details in advance.",
+    "level": "B1",
+    "tr": "Ayrıntıları önceden gönderebilirsen yardımcı olur."
+  },
+  {
+    "id": "pte-rs-0126",
+    "text": "I have been meaning to ask you about the course.",
+    "level": "B1",
+    "tr": "Bir süredir sana kurs hakkında soru sormak istiyordum."
+  },
+  {
+    "id": "pte-rs-0127",
+    "text": "The manager suggested taking a break before continuing.",
+    "level": "B1",
+    "tr": "Müdür devam etmeden önce mola vermeyi önerdi."
+  },
+  {
+    "id": "pte-rs-0128",
+    "text": "We should compare the options before booking anything.",
+    "level": "B1",
+    "tr": "Bir şey ayırtmadan önce seçenekleri karşılaştırmalıyız."
+  },
+  {
+    "id": "pte-rs-0129",
+    "text": "Please contact us if you experience any further difficulties.",
+    "level": "B1",
+    "tr": "Başka bir zorluk yaşarsanız lütfen bizimle iletişime geçin."
+  },
+  {
+    "id": "pte-rs-0130",
+    "text": "I would have called if I had known earlier.",
+    "level": "B1",
+    "tr": "Daha önce bilseydim arardım."
+  },
+  {
+    "id": "pte-rs-0131",
+    "text": "Could we agree on a time that suits everyone?",
+    "level": "B1",
+    "tr": "Herkese uygun bir saatte anlaşabilir miyiz?"
+  },
+  {
+    "id": "pte-rs-0132",
+    "text": "There has been a slight change to the schedule.",
+    "level": "B1",
+    "tr": "Programda küçük bir değişiklik oldu."
+  },
+  {
+    "id": "pte-rs-0133",
+    "text": "I understand why you would rather wait until tomorrow.",
+    "level": "B1",
+    "tr": "Neden yarına kadar beklemeyi tercih ettiğini anlıyorum."
+  },
+  {
+    "id": "pte-rs-0134",
+    "text": "We managed to finish despite starting later than planned.",
+    "level": "B1",
+    "tr": "Planlanandan geç başlamamıza rağmen bitirmeyi başardık."
+  },
+  {
+    "id": "pte-rs-0135",
+    "text": "The information you gave me was extremely useful.",
+    "level": "B1",
+    "tr": "Bana verdiğin bilgi son derece yararlıydı."
+  },
+  {
+    "id": "pte-rs-0136",
+    "text": "Please check whether the equipment has been switched off.",
+    "level": "B1",
+    "tr": "Lütfen ekipmanın kapatılıp kapatılmadığını kontrol et."
+  },
+  {
+    "id": "pte-rs-0137",
+    "text": "I had difficulty understanding what the speaker meant.",
+    "level": "B1",
+    "tr": "Konuşmacının ne demek istediğini anlamakta zorlandım."
+  },
+  {
+    "id": "pte-rs-0138",
+    "text": "We are considering moving somewhere closer to work.",
+    "level": "B1",
+    "tr": "İşe daha yakın bir yere taşınmayı düşünüyoruz."
+  },
+  {
+    "id": "pte-rs-0139",
+    "text": "Could you remind me how the system works?",
+    "level": "B1",
+    "tr": "Sistemin nasıl çalıştığını bana hatırlatır mısın?"
+  },
+  {
+    "id": "pte-rs-0140",
+    "text": "I am available any afternoon except next Thursday.",
+    "level": "B1",
+    "tr": "Gelecek perşembe dışında her öğleden sonra uygunum."
+  },
+  {
+    "id": "pte-rs-0141",
+    "text": "It is important to report problems as soon as possible.",
+    "level": "B1",
+    "tr": "Sorunları mümkün olduğunca çabuk bildirmek önemlidir."
+  },
+  {
+    "id": "pte-rs-0142",
+    "text": "We would like to hear your suggestions for improving the service.",
+    "level": "B1",
+    "tr": "Hizmeti iyileştirmeye yönelik önerilerinizi duymak isteriz."
+  },
+  {
+    "id": "pte-rs-0143",
+    "text": "I assumed the meeting would take place online.",
+    "level": "B1",
+    "tr": "Toplantının çevrim içi yapılacağını varsaymıştım."
+  },
+  {
+    "id": "pte-rs-0144",
+    "text": "Please remember that the offer is only temporary.",
+    "level": "B1",
+    "tr": "Lütfen bu teklifin yalnızca geçici olduğunu unutma."
+  },
+  {
+    "id": "pte-rs-0145",
+    "text": "We had already left by the time your message arrived.",
+    "level": "B1",
+    "tr": "Mesajın geldiğinde biz çoktan ayrılmıştık."
+  },
+  {
+    "id": "pte-rs-0146",
+    "text": "Could you tell me who is responsible for this area?",
+    "level": "B1",
+    "tr": "Bu alandan kimin sorumlu olduğunu söyler misin?"
+  },
+  {
+    "id": "pte-rs-0147",
+    "text": "I hope the new arrangements will make things easier.",
+    "level": "B1",
+    "tr": "Umarım yeni düzenlemeler işleri kolaylaştırır."
+  },
+  {
+    "id": "pte-rs-0148",
+    "text": "We have enough time provided we leave immediately.",
+    "level": "B1",
+    "tr": "Hemen çıkmamız koşuluyla yeterli zamanımız var."
+  },
+  {
+    "id": "pte-rs-0149",
+    "text": "The course was more demanding than I had imagined.",
+    "level": "B1",
+    "tr": "Kurs hayal ettiğimden daha zorluydu."
+  },
+  {
+    "id": "pte-rs-0150",
+    "text": "I appreciate you explaining the situation so clearly.",
+    "level": "B1",
+    "tr": "Durumu bu kadar açık anlattığın için teşekkür ederim."
   }
 ]
