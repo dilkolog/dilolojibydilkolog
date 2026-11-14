@@ -327,7 +327,7 @@ export function AppScreens(props: AppScreensProps) {
           onReading={go({ name: 'reading' })}
         />
       ) : screen.name === 'profile' ? (
-        <ProfileScreen settings={settings} onChange={updateSettings} onOpenSettings={() => setScreen({ name: 'settings' })} />
+        <ProfileScreen settings={settings} onChange={updateSettings} onOpenSettings={() => setScreen({ name: 'settings' })} onStartDay={startDay} />
       ) : screen.name === 'account' ? (
         <AuthScreen key={screen.mode} initialMode={screen.mode} onDone={() => setScreen({ name: 'settings' })} onBack={() => setScreen({ name: 'settings' })} />
       ) : screen.name === 'settings' ? (
