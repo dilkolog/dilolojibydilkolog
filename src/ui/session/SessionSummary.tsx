@@ -32,6 +32,7 @@ import { MilestoneMoment, LevelUpBadge } from '../progress/MilestoneMoment'
 import { markLevelSeen } from '../profile/levelSeen'
 import { StreakPicture } from '../home/StreakFlame'
 import { FREE_RECALL_MIN, FreeRecall } from '../practice/FreeRecall'
+import { SentenceStep, sentenceWord } from './SentenceStep'
 import { SessionNote } from './SessionNote'
 import { RESULT_ART, STAT_ART, resultKind } from '../shared/drawnArt'
 import { Sticker } from '../shared/Sticker'
@@ -64,6 +65,7 @@ export function Summary({
   before,
   after,
   firstSitting,
+  onOwnSentence,
   onDone,
 }: {
   summary: SessionSummary
@@ -76,6 +78,8 @@ export function Summary({
   after: GameState | null
   /** The first of a long day's two sittings: the rest waits on Today. */
   firstSitting?: boolean
+  /** Saves the learner's own sentence with a word of the round (the "Bir cümle yaz" step of a daily round). */
+  onOwnSentence?: (entryId: string, text: string) => Promise<void>
   onDone: () => void
 }) {
   const name = (id: string) => {
@@ -141,6 +145,8 @@ export function Summary({
   const early = (before?.stats.totalAnswers ?? 0) < EARLY_ANSWERS || summary.introduced.length * 3 >= summary.answered / 2
   const tooEasyOrHard = !practice && !topic && summary.answered >= 12 && (accuracy > 0.93 || (accuracy < 0.7 && !early))
   const [graduated, setGraduated] = useState<Set<string>>(() => new Set())
+  // Chosen once: saving the sentence reloads the words, and the step should not jump to another one.
+  const [sentenceEntry] = useState(() => (!practice && !topic && onOwnSentence ? sentenceWord(summary, byId) : undefined))
 
   return (
     <div className="summary-grid">
@@ -230,6 +236,7 @@ export function Summary({
           </dl>
         )}
       </div>
+      {sentenceEntry && onOwnSentence && <SentenceStep entry={sentenceEntry} onSave={onOwnSentence} />}
       {studied.length >= FREE_RECALL_MIN && <FreeRecall entries={studied} onWriting={setRecalling} />}
       {((leveledUp && after) || newBadges.length > 0) && (
         // Level and badges side by side in one strip, instead of a column of separate blocks.
