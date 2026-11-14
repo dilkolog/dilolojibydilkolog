@@ -4,10 +4,10 @@ import { readFileSync } from 'node:fs'
 import { validateTask, validateFiles, words } from './validate.mjs'
 const load = kind => JSON.parse(readFileSync(new URL(`./${kind}.json`, import.meta.url), 'utf8'))
 
-test('the five sample files meet their schema, count, balance and length requirements', () => {
+test('the five complete files meet their schema, count, balance and length requirements', () => {
   const result = validateFiles()
   assert.deepEqual(result.errors, [])
-  assert.equal(Object.values(result.report).reduce((n, r) => n + r.count, 0), 100)
+  assert.equal(Object.values(result.report).reduce((n, r) => n + r.count, 0), 580)
 })
 test('duplicate identifiers, unexpected fields and out-of-range sentences fail', () => {
   const row = load('wfd')[0]
@@ -43,4 +43,18 @@ test('research revision accepts five blanks, rejects B2 and the gap between FIB 
   assert.deepEqual(validateTask('fib', [five]), [])
   assert.match(validateTask('fib', [{ ...row, text: row.text + ' word'.repeat(100 - words(row.text)) }]).join(), /60–90 or 120–180/)
   assert.match(validateTask('wfd', [{ ...load('wfd')[0], level: 'B2' }]).join(), /invalid level/)
+})
+
+test('the approved first twenty items of every task remain byte-equivalent as JSON values', async () => {
+  const { createHash } = await import('node:crypto')
+  const hashes = {
+    wfd: '002aa6d12eb7d8993edf0b89660f2dacf3c3b475766d4a93172accb2120b1ec9',
+    rs: '895dec591fa734d806de1855d13f43a86dbf2bf6a12b640e2f1f57dc77dc77fe',
+    ra: 'b07c983c4bf5e0101acac9b9d6eea3c9a457fd2cc6b790375c52ed9035055aaa',
+    fib: '7c387abfd4a5e42695cf20bd06eee58d5f123f18368edc188fac2aae8bae736f',
+    asq: 'd5ba0deb02164ea22004a1e16f89c6c30873c7c9dc5454636e813e516efc1370',
+  }
+  for (const [kind, expected] of Object.entries(hashes)) {
+    assert.equal(createHash('sha256').update(JSON.stringify(load(kind).slice(0, 20))).digest('hex'), expected, kind)
+  }
 })

@@ -209,5 +209,1028 @@
     ],
     "level": "B1",
     "tr": "Bir şeyi iade ettiğimizde mağazanın geri verdiği paraya ne denir?"
+  },
+  {
+    "id": "pte-asq-0021",
+    "question": "What colour is an orange?",
+    "answers": [
+      "orange"
+    ],
+    "level": "A1",
+    "tr": "Bir portakal ne renktir?"
+  },
+  {
+    "id": "pte-asq-0022",
+    "question": "How many eyes do most people have?",
+    "answers": [
+      "two",
+      "2"
+    ],
+    "level": "A1",
+    "tr": "Çoğu insanın kaç gözü vardır?"
+  },
+  {
+    "id": "pte-asq-0023",
+    "question": "How many ears do most people have?",
+    "answers": [
+      "two",
+      "2"
+    ],
+    "level": "A1",
+    "tr": "Çoğu insanın kaç kulağı vardır?"
+  },
+  {
+    "id": "pte-asq-0024",
+    "question": "What colour is milk?",
+    "answers": [
+      "white"
+    ],
+    "level": "A1",
+    "tr": "Süt ne renktir?"
+  },
+  {
+    "id": "pte-asq-0025",
+    "question": "What colour is a red apple?",
+    "answers": [
+      "red"
+    ],
+    "level": "A1",
+    "tr": "Kırmızı bir elma ne renktir?"
+  },
+  {
+    "id": "pte-asq-0026",
+    "question": "How many hands do most people have?",
+    "answers": [
+      "two",
+      "2"
+    ],
+    "level": "A1",
+    "tr": "Çoğu insanın kaç eli vardır?"
+  },
+  {
+    "id": "pte-asq-0027",
+    "question": "How many days are in a weekend?",
+    "answers": [
+      "two",
+      "2"
+    ],
+    "level": "A1",
+    "tr": "Bir hafta sonunda kaç gün vardır?"
+  },
+  {
+    "id": "pte-asq-0028",
+    "question": "What day comes after Monday?",
+    "answers": [
+      "Tuesday"
+    ],
+    "level": "A1",
+    "tr": "Pazartesiden sonra hangi gün gelir?"
+  },
+  {
+    "id": "pte-asq-0029",
+    "question": "What day comes before Friday?",
+    "answers": [
+      "Thursday"
+    ],
+    "level": "A1",
+    "tr": "Cumadan önce hangi gün gelir?"
+  },
+  {
+    "id": "pte-asq-0030",
+    "question": "What do we call the day after today?",
+    "answers": [
+      "tomorrow"
+    ],
+    "level": "A1",
+    "tr": "Bugünden sonraki güne ne denir?"
+  },
+  {
+    "id": "pte-asq-0031",
+    "question": "What is your mother's sister called?",
+    "answers": [
+      "aunt",
+      "my aunt",
+      "an aunt",
+      "auntie"
+    ],
+    "level": "A1",
+    "tr": "Annenizin kız kardeşine ne denir?"
+  },
+  {
+    "id": "pte-asq-0032",
+    "question": "What is your father's brother called?",
+    "answers": [
+      "uncle",
+      "my uncle",
+      "an uncle"
+    ],
+    "level": "A1",
+    "tr": "Babanızın erkek kardeşine ne denir?"
+  },
+  {
+    "id": "pte-asq-0033",
+    "question": "Which word means not agreeing: yes or no?",
+    "answers": [
+      "no"
+    ],
+    "level": "A1",
+    "tr": "Hangi kelime aynı fikirde olmamak demektir: evet mi hayır mı?"
+  },
+  {
+    "id": "pte-asq-0034",
+    "question": "Which word means not big?",
+    "answers": [
+      "small",
+      "little"
+    ],
+    "level": "A1",
+    "tr": "Hangi kelime büyük olmayan demektir?"
+  },
+  {
+    "id": "pte-asq-0035",
+    "question": "What do we call the day before today?",
+    "answers": [
+      "yesterday"
+    ],
+    "level": "A1",
+    "tr": "Bugünden önceki güne ne denir?"
+  },
+  {
+    "id": "pte-asq-0036",
+    "question": "How many people are in a group of three?",
+    "answers": [
+      "three",
+      "3"
+    ],
+    "level": "A1",
+    "tr": "Üç kişilik bir grupta kaç kişi vardır?"
+  },
+  {
+    "id": "pte-asq-0037",
+    "question": "What do we call the place where teachers work with students?",
+    "answers": [
+      "school",
+      "a school",
+      "classroom",
+      "a classroom",
+      "college",
+      "a college"
+    ],
+    "level": "A1",
+    "tr": "Öğretmenlerin öğrencilerle çalıştığı yere ne denir?"
+  },
+  {
+    "id": "pte-asq-0038",
+    "question": "How many letters are there in the word cat?",
+    "answers": [
+      "three",
+      "3"
+    ],
+    "level": "A1",
+    "tr": "Cat kelimesinde kaç harf vardır?"
+  },
+  {
+    "id": "pte-asq-0039",
+    "question": "What do you use to write words on paper?",
+    "answers": [
+      "pen",
+      "a pen",
+      "pencil",
+      "a pencil"
+    ],
+    "level": "A1",
+    "tr": "Kâğıda kelime yazmak için ne kullanırsınız?"
+  },
+  {
+    "id": "pte-asq-0040",
+    "question": "What do you call the room where you cook?",
+    "answers": [
+      "kitchen",
+      "a kitchen",
+      "the kitchen"
+    ],
+    "level": "A1",
+    "tr": "Yemek pişirdiğiniz odaya ne denir?"
+  },
+  {
+    "id": "pte-asq-0041",
+    "question": "What is the opposite of expensive?",
+    "answers": [
+      "cheap",
+      "inexpensive"
+    ],
+    "level": "A2",
+    "tr": "Pahalının zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0042",
+    "question": "Which month comes after January?",
+    "answers": [
+      "February"
+    ],
+    "level": "A2",
+    "tr": "Ocaktan sonra hangi ay gelir?"
+  },
+  {
+    "id": "pte-asq-0043",
+    "question": "Which month comes before December?",
+    "answers": [
+      "November"
+    ],
+    "level": "A2",
+    "tr": "Aralıktan önce hangi ay gelir?"
+  },
+  {
+    "id": "pte-asq-0044",
+    "question": "How many minutes are in an hour?",
+    "answers": [
+      "sixty",
+      "60"
+    ],
+    "level": "A2",
+    "tr": "Bir saatte kaç dakika vardır?"
+  },
+  {
+    "id": "pte-asq-0045",
+    "question": "How many months are in a year?",
+    "answers": [
+      "twelve",
+      "12"
+    ],
+    "level": "A2",
+    "tr": "Bir yılda kaç ay vardır?"
+  },
+  {
+    "id": "pte-asq-0046",
+    "question": "What is half of ten?",
+    "answers": [
+      "five",
+      "5"
+    ],
+    "level": "A2",
+    "tr": "Onun yarısı kaçtır?"
+  },
+  {
+    "id": "pte-asq-0047",
+    "question": "How many sides does a square have?",
+    "answers": [
+      "four",
+      "4"
+    ],
+    "level": "A2",
+    "tr": "Bir karenin kaç kenarı vardır?"
+  },
+  {
+    "id": "pte-asq-0048",
+    "question": "What do we call a car with a driver that we pay to take us somewhere?",
+    "answers": [
+      "taxi",
+      "a taxi",
+      "cab",
+      "a cab"
+    ],
+    "level": "A2",
+    "tr": "Bizi bir yere götürmesi için para ödediğimiz sürücülü arabaya ne denir?"
+  },
+  {
+    "id": "pte-asq-0049",
+    "question": "What thing do you open to keep rain off your head?",
+    "answers": [
+      "umbrella",
+      "an umbrella"
+    ],
+    "level": "A2",
+    "tr": "Başınıza yağmur gelmesini engellemek için hangi eşyayı açarsınız?"
+  },
+  {
+    "id": "pte-asq-0050",
+    "question": "What clothes do you usually wear inside your shoes?",
+    "answers": [
+      "socks",
+      "some socks"
+    ],
+    "level": "A2",
+    "tr": "Ayakkabılarınızın içinde genellikle hangi giysiyi giyersiniz?"
+  },
+  {
+    "id": "pte-asq-0051",
+    "question": "What do we call the person who drives a bus?",
+    "answers": [
+      "driver",
+      "a driver",
+      "bus driver",
+      "a bus driver"
+    ],
+    "level": "A2",
+    "tr": "Otobüs süren kişiye ne denir?"
+  },
+  {
+    "id": "pte-asq-0052",
+    "question": "Which tool opens and closes like two knives to cut paper?",
+    "answers": [
+      "scissors",
+      "pair of scissors"
+    ],
+    "level": "A2",
+    "tr": "Hangi alet kâğıt kesmek için iki bıçak gibi açılıp kapanır?"
+  },
+  {
+    "id": "pte-asq-0053",
+    "question": "What do we call a woman who has a child?",
+    "answers": [
+      "mother",
+      "a mother",
+      "mum",
+      "mom"
+    ],
+    "level": "A2",
+    "tr": "Çocuğu olan kadına ne denir?"
+  },
+  {
+    "id": "pte-asq-0054",
+    "question": "What do we call the colour of grass?",
+    "answers": [
+      "green"
+    ],
+    "level": "A2",
+    "tr": "Çimin rengine ne denir?"
+  },
+  {
+    "id": "pte-asq-0055",
+    "question": "What is the opposite of wet?",
+    "answers": [
+      "dry"
+    ],
+    "level": "A2",
+    "tr": "Islağın zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0056",
+    "question": "What is the opposite of empty?",
+    "answers": [
+      "full",
+      "filled"
+    ],
+    "level": "A2",
+    "tr": "Boşun zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0057",
+    "question": "What is the opposite of north?",
+    "answers": [
+      "south"
+    ],
+    "level": "A2",
+    "tr": "Kuzeyin zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0058",
+    "question": "What is the opposite of east?",
+    "answers": [
+      "west"
+    ],
+    "level": "A2",
+    "tr": "Doğunun zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0059",
+    "question": "What do we call the meal usually eaten in the middle of the day?",
+    "answers": [
+      "lunch",
+      "dinner"
+    ],
+    "level": "A2",
+    "tr": "Genellikle günün ortasında yenen öğüne ne denir?"
+  },
+  {
+    "id": "pte-asq-0060",
+    "question": "What do you call a person who cooks food as their job?",
+    "answers": [
+      "cook",
+      "a cook",
+      "chef",
+      "a chef"
+    ],
+    "level": "A2",
+    "tr": "İşi yemek pişirmek olan kişiye ne denir?"
+  },
+  {
+    "id": "pte-asq-0061",
+    "question": "Which room usually has a bath or shower?",
+    "answers": [
+      "bathroom",
+      "a bathroom",
+      "the bathroom"
+    ],
+    "level": "A2",
+    "tr": "Genellikle hangi odada küvet veya duş bulunur?"
+  },
+  {
+    "id": "pte-asq-0062",
+    "question": "Which brush is used to clean your teeth?",
+    "answers": [
+      "toothbrush",
+      "a toothbrush"
+    ],
+    "level": "A2",
+    "tr": "Dişlerinizi temizlemek için hangi fırça kullanılır?"
+  },
+  {
+    "id": "pte-asq-0063",
+    "question": "What thing shows the hours and minutes on a wall?",
+    "answers": [
+      "clock",
+      "a clock",
+      "wall clock",
+      "a wall clock"
+    ],
+    "level": "A2",
+    "tr": "Duvarda saatleri ve dakikaları gösteren eşya nedir?"
+  },
+  {
+    "id": "pte-asq-0064",
+    "question": "What do we call the hot drink made from tea leaves?",
+    "answers": [
+      "tea",
+      "some tea"
+    ],
+    "level": "A2",
+    "tr": "Çay yapraklarından yapılan sıcak içeceğe ne denir?"
+  },
+  {
+    "id": "pte-asq-0065",
+    "question": "What do we call water that falls from clouds as drops?",
+    "answers": [
+      "rain"
+    ],
+    "level": "A2",
+    "tr": "Bulutlardan damlalar hâlinde düşen suya ne denir?"
+  },
+  {
+    "id": "pte-asq-0066",
+    "question": "What is the opposite of upstairs?",
+    "answers": [
+      "downstairs"
+    ],
+    "level": "A2",
+    "tr": "Üst katın zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0067",
+    "question": "What is the opposite of asleep?",
+    "answers": [
+      "awake"
+    ],
+    "level": "A2",
+    "tr": "Uykuda olmanın zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0068",
+    "question": "How many wheels does a car usually have?",
+    "answers": [
+      "four",
+      "4"
+    ],
+    "level": "A2",
+    "tr": "Bir arabanın genellikle kaç tekerleği vardır?"
+  },
+  {
+    "id": "pte-asq-0069",
+    "question": "What colour do you get when you mix blue and yellow paint?",
+    "answers": [
+      "green"
+    ],
+    "level": "A2",
+    "tr": "Mavi ve sarı boyayı karıştırınca hangi renk ortaya çıkar?"
+  },
+  {
+    "id": "pte-asq-0070",
+    "question": "Is the weather usually colder in summer or winter?",
+    "answers": [
+      "winter"
+    ],
+    "level": "A2",
+    "tr": "Hava genellikle yazın mı kışın mı daha soğuk olur?"
+  },
+  {
+    "id": "pte-asq-0071",
+    "question": "What is the opposite of push?",
+    "answers": [
+      "pull"
+    ],
+    "level": "A2",
+    "tr": "İtmenin zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0072",
+    "question": "What does a chicken usually lay?",
+    "answers": [
+      "egg",
+      "eggs",
+      "an egg"
+    ],
+    "level": "A2",
+    "tr": "Bir tavuk genellikle ne yumurtlar?"
+  },
+  {
+    "id": "pte-asq-0073",
+    "question": "What sweet food do bees make?",
+    "answers": [
+      "honey"
+    ],
+    "level": "A2",
+    "tr": "Arılar hangi tatlı yiyeceği yapar?"
+  },
+  {
+    "id": "pte-asq-0074",
+    "question": "What is the opposite of young?",
+    "answers": [
+      "old"
+    ],
+    "level": "A2",
+    "tr": "Gencin zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0075",
+    "question": "What is the female form of the word waiter?",
+    "answers": [
+      "waitress",
+      "a waitress"
+    ],
+    "level": "A2",
+    "tr": "Waiter kelimesinin kadın için kullanılan biçimi nedir?"
+  },
+  {
+    "id": "pte-asq-0076",
+    "question": "How many seconds are there in a minute?",
+    "answers": [
+      "sixty",
+      "60"
+    ],
+    "level": "A2",
+    "tr": "Bir dakikada kaç saniye vardır?"
+  },
+  {
+    "id": "pte-asq-0077",
+    "question": "What is the opposite of dangerous?",
+    "answers": [
+      "safe"
+    ],
+    "level": "A2",
+    "tr": "Tehlikelinin zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0078",
+    "question": "Which direction does the sun rise in?",
+    "answers": [
+      "east",
+      "the east"
+    ],
+    "level": "A2",
+    "tr": "Güneş hangi yönden doğar?"
+  },
+  {
+    "id": "pte-asq-0079",
+    "question": "Which direction does the sun set in?",
+    "answers": [
+      "west",
+      "the west"
+    ],
+    "level": "A2",
+    "tr": "Güneş hangi yönden batar?"
+  },
+  {
+    "id": "pte-asq-0080",
+    "question": "What do we call moving air that makes flags fly?",
+    "answers": [
+      "wind",
+      "the wind"
+    ],
+    "level": "A2",
+    "tr": "Bayrakları dalgalandıran hareketli havaya ne denir?"
+  },
+  {
+    "id": "pte-asq-0081",
+    "question": "What is the opposite of remember?",
+    "answers": [
+      "forget"
+    ],
+    "level": "A2",
+    "tr": "Hatırlamanın zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0082",
+    "question": "What is the opposite of buy?",
+    "answers": [
+      "sell"
+    ],
+    "level": "A2",
+    "tr": "Satın almanın zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0083",
+    "question": "What is the opposite of fast?",
+    "answers": [
+      "slow",
+      "slowly"
+    ],
+    "level": "A2",
+    "tr": "Hızlının zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0084",
+    "question": "What is the opposite of early?",
+    "answers": [
+      "late"
+    ],
+    "level": "A2",
+    "tr": "Erkenin zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0085",
+    "question": "What do we call the written work a teacher gives students to do at home?",
+    "answers": [
+      "homework"
+    ],
+    "level": "A2",
+    "tr": "Öğretmenin öğrencilere evde yapmaları için verdiği yazılı çalışmaya ne denir?"
+  },
+  {
+    "id": "pte-asq-0086",
+    "question": "What do we call the money paid to live in someone else's home?",
+    "answers": [
+      "rent",
+      "the rent"
+    ],
+    "level": "A2",
+    "tr": "Başkasının evinde yaşamak için ödenen paraya ne denir?"
+  },
+  {
+    "id": "pte-asq-0087",
+    "question": "What thing lets you see your own face by reflecting it?",
+    "answers": [
+      "mirror",
+      "a mirror"
+    ],
+    "level": "A2",
+    "tr": "Yüzünüzü yansıtarak görmenizi sağlayan eşya nedir?"
+  },
+  {
+    "id": "pte-asq-0088",
+    "question": "What is the opposite of clean?",
+    "answers": [
+      "dirty"
+    ],
+    "level": "A2",
+    "tr": "Temizin zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0089",
+    "question": "If someone will return tomorrow, are they coming back today or the next day?",
+    "answers": [
+      "the next day",
+      "next day",
+      "tomorrow"
+    ],
+    "level": "A2",
+    "tr": "Biri yarın dönecekse bugün mü yoksa ertesi gün mü geri gelecektir?"
+  },
+  {
+    "id": "pte-asq-0090",
+    "question": "What is the opposite of open when describing a door?",
+    "answers": [
+      "closed",
+      "shut"
+    ],
+    "level": "A2",
+    "tr": "Bir kapıyı anlatırken açığın zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0091",
+    "question": "What do we call the place where people buy food and other goods?",
+    "answers": [
+      "shop",
+      "a shop",
+      "store",
+      "a store",
+      "supermarket",
+      "a supermarket",
+      "market",
+      "a market"
+    ],
+    "level": "B1",
+    "tr": "İnsanların yiyecek ve başka mallar aldığı yere ne denir?"
+  },
+  {
+    "id": "pte-asq-0092",
+    "question": "Which part of a plant is usually under the ground?",
+    "answers": [
+      "root",
+      "roots",
+      "the root",
+      "the roots"
+    ],
+    "level": "B1",
+    "tr": "Bir bitkinin hangi bölümü genellikle toprağın altındadır?"
+  },
+  {
+    "id": "pte-asq-0093",
+    "question": "What do we call a person whose job is to design buildings?",
+    "answers": [
+      "architect",
+      "an architect"
+    ],
+    "level": "B1",
+    "tr": "İşi bina tasarlamak olan kişiye ne denir?"
+  },
+  {
+    "id": "pte-asq-0094",
+    "question": "What tool is used to measure the weight of something?",
+    "answers": [
+      "scales",
+      "weighing scales",
+      "balance",
+      "a balance"
+    ],
+    "level": "B1",
+    "tr": "Bir şeyin ağırlığını ölçmek için hangi alet kullanılır?"
+  },
+  {
+    "id": "pte-asq-0095",
+    "question": "How many minutes are there in half an hour?",
+    "answers": [
+      "thirty",
+      "30"
+    ],
+    "level": "B1",
+    "tr": "Yarım saatte kaç dakika vardır?"
+  },
+  {
+    "id": "pte-asq-0096",
+    "question": "How many days are there in two weeks?",
+    "answers": [
+      "fourteen",
+      "14"
+    ],
+    "level": "B1",
+    "tr": "İki haftada kaç gün vardır?"
+  },
+  {
+    "id": "pte-asq-0097",
+    "question": "What do we call a place where money is kept and customers have accounts?",
+    "answers": [
+      "bank",
+      "a bank"
+    ],
+    "level": "B1",
+    "tr": "Paranın tutulduğu ve müşterilerin hesaplarının bulunduğu yere ne denir?"
+  },
+  {
+    "id": "pte-asq-0098",
+    "question": "What is the opposite of permanent?",
+    "answers": [
+      "temporary"
+    ],
+    "level": "B1",
+    "tr": "Kalıcı olanın zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0099",
+    "question": "What is the opposite of accept?",
+    "answers": [
+      "refuse",
+      "reject",
+      "decline"
+    ],
+    "level": "B1",
+    "tr": "Kabul etmenin zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0100",
+    "question": "What do we call a meeting where someone answers questions to get a job?",
+    "answers": [
+      "interview",
+      "an interview",
+      "job interview",
+      "a job interview"
+    ],
+    "level": "B1",
+    "tr": "Birinin iş bulmak için soruları yanıtladığı görüşmeye ne denir?"
+  },
+  {
+    "id": "pte-asq-0101",
+    "question": "What do we call the time by which a task must be completed?",
+    "answers": [
+      "deadline",
+      "a deadline",
+      "the deadline",
+      "due date",
+      "the due date"
+    ],
+    "level": "B1",
+    "tr": "Bir işin bitirilmesi gereken son zamana ne denir?"
+  },
+  {
+    "id": "pte-asq-0102",
+    "question": "What do we call a written record of a meeting's discussions and decisions?",
+    "answers": [
+      "minutes",
+      "the minutes",
+      "meeting minutes"
+    ],
+    "level": "B1",
+    "tr": "Bir toplantıdaki konuşmaların ve kararların yazılı kaydına ne denir?"
+  },
+  {
+    "id": "pte-asq-0103",
+    "question": "Which is longer in a usual calendar: a month or a week?",
+    "answers": [
+      "month",
+      "a month",
+      "the month"
+    ],
+    "level": "B1",
+    "tr": "Normal bir takvimde hangisi daha uzundur: ay mı hafta mı?"
+  },
+  {
+    "id": "pte-asq-0104",
+    "question": "What do we call someone who does work without payment to help others?",
+    "answers": [
+      "volunteer",
+      "a volunteer"
+    ],
+    "level": "B1",
+    "tr": "Başkalarına yardım etmek için ücretsiz çalışan kişiye ne denir?"
+  },
+  {
+    "id": "pte-asq-0105",
+    "question": "What do we call the money charged for borrowing money?",
+    "answers": [
+      "interest",
+      "the interest",
+      "borrowing fee"
+    ],
+    "level": "B1",
+    "tr": "Borç alınan para için alınan ücrete ne denir?"
+  },
+  {
+    "id": "pte-asq-0106",
+    "question": "What do we call a person who lives next door to us?",
+    "answers": [
+      "neighbour",
+      "a neighbour",
+      "neighbor",
+      "a neighbor",
+      "next-door neighbour",
+      "next door neighbour",
+      "next-door neighbor",
+      "next door neighbor"
+    ],
+    "level": "B1",
+    "tr": "Bize bitişik evde yaşayan kişiye ne denir?"
+  },
+  {
+    "id": "pte-asq-0107",
+    "question": "What do we call a man who owns a home and rents it to other people?",
+    "answers": [
+      "landlord",
+      "a landlord"
+    ],
+    "level": "B1",
+    "tr": "Bir evin sahibi olup onu başkalarına kiralayan erkeğe ne denir?"
+  },
+  {
+    "id": "pte-asq-0108",
+    "question": "What do we call a list of things to discuss at a meeting?",
+    "answers": [
+      "agenda",
+      "an agenda",
+      "the agenda"
+    ],
+    "level": "B1",
+    "tr": "Bir toplantıda konuşulacak konuların listesine ne denir?"
+  },
+  {
+    "id": "pte-asq-0109",
+    "question": "What is the opposite of agree?",
+    "answers": [
+      "disagree"
+    ],
+    "level": "B1",
+    "tr": "Aynı fikirde olmanın zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0110",
+    "question": "What is the opposite of indoor?",
+    "answers": [
+      "outdoor"
+    ],
+    "level": "B1",
+    "tr": "İç mekâna ait olanın zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0111",
+    "question": "Which planet do humans live on?",
+    "answers": [
+      "Earth",
+      "the Earth",
+      "planet Earth"
+    ],
+    "level": "B1",
+    "tr": "İnsanlar hangi gezegende yaşar?"
+  },
+  {
+    "id": "pte-asq-0112",
+    "question": "What do we call a reduction in the usual price?",
+    "answers": [
+      "discount",
+      "a discount",
+      "price reduction"
+    ],
+    "level": "B1",
+    "tr": "Normal fiyatta yapılan indirime ne denir?"
+  },
+  {
+    "id": "pte-asq-0113",
+    "question": "What do we call money kept for future use instead of spent?",
+    "answers": [
+      "savings",
+      "money saved"
+    ],
+    "level": "B1",
+    "tr": "Harcanmayıp ileride kullanılmak üzere tutulan paraya ne denir?"
+  },
+  {
+    "id": "pte-asq-0114",
+    "question": "What do we call the person who controls the direction of a bus?",
+    "answers": [
+      "driver",
+      "bus driver",
+      "a driver",
+      "a bus driver"
+    ],
+    "level": "B1",
+    "tr": "Otobüsün yönünü kontrol eden kişiye ne denir?"
+  },
+  {
+    "id": "pte-asq-0115",
+    "question": "What is the opposite of possible?",
+    "answers": [
+      "impossible"
+    ],
+    "level": "B1",
+    "tr": "Mümkünün zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0116",
+    "question": "What shape has four equal sides and four right angles?",
+    "answers": [
+      "square",
+      "a square"
+    ],
+    "level": "B1",
+    "tr": "Dört eşit kenarı ve dört dik açısı olan şekil nedir?"
+  },
+  {
+    "id": "pte-asq-0117",
+    "question": "What do we call money paid for a journey by train?",
+    "answers": [
+      "fare",
+      "a fare",
+      "train fare",
+      "ticket price"
+    ],
+    "level": "B1",
+    "tr": "Tren yolculuğu için ödenen paraya ne denir?"
+  },
+  {
+    "id": "pte-asq-0118",
+    "question": "Which day of the week falls between Saturday and Monday?",
+    "answers": [
+      "Sunday"
+    ],
+    "level": "B1",
+    "tr": "Haftanın hangi günü cumartesi ile pazartesi arasındadır?"
+  },
+  {
+    "id": "pte-asq-0119",
+    "question": "How many hours are there in an ordinary day?",
+    "answers": [
+      "twenty-four",
+      "twenty four",
+      "24"
+    ],
+    "level": "B1",
+    "tr": "Sıradan bir günde kaç saat vardır?"
+  },
+  {
+    "id": "pte-asq-0120",
+    "question": "What do we call the end of a journey, where a traveller is going?",
+    "answers": [
+      "destination",
+      "the destination"
+    ],
+    "level": "B1",
+    "tr": "Bir yolculuğun sonunda yolcunun gideceği yere ne denir?"
   }
 ]
