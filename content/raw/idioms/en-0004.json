@@ -1,0 +1,872 @@
+[
+  {
+    "w": "make ends meet",
+    "t": "geliriyle giderlerini karşılamak",
+    "lit": "uçları birleştirmek",
+    "s": "With rising rent, we struggle to make ends meet.",
+    "form": "make ends meet",
+    "tr": "Artan kira yüzünden gelirimizle giderlerimizi karşılamakta zorlanıyoruz.",
+    "theme": "money",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/make-ends-meet",
+      "https://www.collinsdictionary.com/dictionary/english-thesaurus/make-ends-meet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/make-ends-meet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make ends meet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-thesaurus/make-ends-meet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make ends meet"
+      }
+    ]
+  },
+  {
+    "w": "break the bank",
+    "t": "bütçeyi aşırı zorlamak",
+    "lit": "bankayı kırmak",
+    "s": "A good family day out need not break the bank.",
+    "form": "break the bank",
+    "tr": "Ailece güzel bir gün geçirmek bütçeyi aşırı zorlamak zorunda değil.",
+    "theme": "money",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/break-the-bank",
+      "https://www.collinsdictionary.com/dictionary/english/break-the-bank"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/break-the-bank",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "break the bank"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/break-the-bank",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "break the bank"
+      }
+    ]
+  },
+  {
+    "w": "tighten one's belt",
+    "t": "masrafları kısmak",
+    "lit": "kemerini sıkmak",
+    "s": "After losing that contract, we had to tighten our belts.",
+    "form": "tighten our belts",
+    "tr": "O sözleşmeyi kaybettikten sonra masraflarımızı kısmak zorunda kaldık.",
+    "theme": "money",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/tighten-belt",
+      "https://www.collinsdictionary.com/dictionary/english/tighten-ones-belt"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/tighten-belt",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "tighten one's belt"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/tighten-ones-belt",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "tighten one's belt"
+      }
+    ]
+  },
+  {
+    "w": "save for a rainy day",
+    "t": "zor günler için para biriktirmek",
+    "lit": "yağmurlu bir gün için biriktirmek",
+    "s": "My grandmother taught me to save for a rainy day.",
+    "form": "save for a rainy day",
+    "tr": "Büyükannem bana zor günler için para biriktirmeyi öğretti.",
+    "theme": "money",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/save-keep-money-for-a-rainy-day?q=save-for-a-rainy-day",
+      "https://www.collinsdictionary.com/dictionary/english/save-for-a-rainy-day"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/save-keep-money-for-a-rainy-day?q=save-for-a-rainy-day",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "save for a rainy day"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/save-for-a-rainy-day",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "save for a rainy day"
+      }
+    ]
+  },
+  {
+    "w": "be in the red",
+    "t": "hesabı açık vermek",
+    "lit": "kırmızının içinde olmak",
+    "s": "After paying the deposit, our account was in the red.",
+    "form": "was in the red",
+    "tr": "Depozitoyu ödedikten sonra hesabımız açık verdi.",
+    "theme": "money",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/in-the-red",
+      "https://www.collinsdictionary.com/dictionary/english/in-the-red"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/in-the-red",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in the red"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-the-red",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in the red"
+      }
+    ]
+  },
+  {
+    "w": "be in the black",
+    "t": "hesabı artıda olmak",
+    "lit": "siyahın içinde olmak",
+    "s": "After a difficult year, the company is in the black again.",
+    "form": "is in the black",
+    "tr": "Zor bir yılın ardından şirketin hesabı yeniden artıda.",
+    "theme": "money",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/in-the-black",
+      "https://www.collinsdictionary.com/dictionary/english/in-the-black"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/in-the-black",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in the black"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-the-black",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in the black"
+      }
+    ]
+  },
+  {
+    "w": "foot the bill",
+    "t": "masrafı karşılamak",
+    "lit": "faturaya ayak olmak",
+    "s": "The organiser agreed to foot the bill for the extra transport.",
+    "form": "foot the bill",
+    "tr": "Organizatör ek ulaşım masrafını karşılamayı kabul etti.",
+    "theme": "money",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/foot-the-bill",
+      "https://www.collinsdictionary.com/dictionary/english/foot-the-bill"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/foot-the-bill",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "foot the bill"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/foot-the-bill",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "foot the bill"
+      }
+    ]
+  },
+  {
+    "w": "pick up the tab",
+    "t": "hesabı ödemek",
+    "lit": "hesap fişini yerden almak",
+    "s": "Our host offered to pick up the tab after dinner.",
+    "form": "pick up the tab",
+    "tr": "Ev sahibimiz yemekten sonra hesabı ödemeyi teklif etti.",
+    "theme": "money",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/pick-up-the-tab",
+      "https://www.collinsdictionary.com/dictionary/english/pick-up-the-tab"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/pick-up-the-tab",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pick up the tab"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pick-up-the-tab",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pick up the tab"
+      }
+    ]
+  },
+  {
+    "w": "pay the price",
+    "t": "kötü sonucuna katlanmak",
+    "lit": "bedeli ödemek",
+    "s": "Without regular maintenance, we will pay the price later.",
+    "form": "pay the price",
+    "tr": "Düzenli bakım yapmazsak daha sonra kötü sonucuna katlanacağız.",
+    "theme": "money",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/pay-the-price",
+      "https://www.collinsdictionary.com/us/dictionary/english/pay-a-price"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/pay-the-price",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pay the price"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/pay-a-price",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pay the price"
+      }
+    ]
+  },
+  {
+    "w": "put one's money where one's mouth is",
+    "t": "sözünü somut destekle kanıtlamak",
+    "lit": "parasını ağzının olduğu yere koymak",
+    "s": "If you support the library, put your money where your mouth is and donate.",
+    "form": "put your money where your mouth is",
+    "tr": "Kütüphaneyi destekliyorsan sözünü somut destekle kanıtla ve bağış yap.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/put-money-where-mouth-is?topic=acting-and-acts",
+      "https://www.collinsdictionary.com/dictionary/english/put-ones-money-where-ones-mouth-is"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/put-money-where-mouth-is?topic=acting-and-acts",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put one's money where one's mouth is"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/put-ones-money-where-ones-mouth-is",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put one's money where one's mouth is"
+      }
+    ]
+  },
+  {
+    "w": "throw money down the drain",
+    "t": "parayı boşa harcamak",
+    "lit": "parayı gidere atmak",
+    "s": "Replacing working equipment is throwing money down the drain.",
+    "form": "throwing money down the drain",
+    "tr": "Çalışan ekipmanı yenisiyle değiştirmek parayı boşa harcamaktır.",
+    "theme": "money",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english-spanish/to-throw-one-s-money-down-the-drain",
+      "https://dictionary.cambridge.org/dictionary/english/down-the-drain"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-spanish/to-throw-one-s-money-down-the-drain",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw money down the drain"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/down-the-drain",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw money down the drain"
+      }
+    ]
+  },
+  {
+    "w": "get one's money's worth",
+    "t": "ödediği paranın karşılığını almak",
+    "lit": "parasının değerini almak",
+    "s": "With free repairs included, we got our money's worth.",
+    "form": "got our money's worth",
+    "tr": "Ücretsiz tamirat da dahil olduğu için ödediğimiz paranın karşılığını aldık.",
+    "theme": "money",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-money-s-worth",
+      "https://www.collinsdictionary.com/dictionary/english/ones-moneys-worth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-money-s-worth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get one's money's worth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/ones-moneys-worth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get one's money's worth"
+      }
+    ]
+  },
+  {
+    "w": "be worth one's weight in gold",
+    "t": "çok değerli ve yararlı olmak",
+    "lit": "ağırlığı kadar altın değerinde olmak",
+    "s": "A patient local guide is worth their weight in gold on this route.",
+    "form": "is worth their weight in gold",
+    "tr": "Bu rotada sabırlı bir yerel rehber çok değerli ve yararlıdır.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-worth-weight-in-gold",
+      "https://www.collinsdictionary.com/dictionary/english/worth-your-weight-in-gold"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-worth-weight-in-gold",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be worth one's weight in gold"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/worth-your-weight-in-gold",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be worth one's weight in gold"
+      }
+    ]
+  },
+  {
+    "w": "have money to burn",
+    "t": "rahatça harcayacak bol parası olmak",
+    "lit": "yakacak parası olmak",
+    "s": "With that inheritance, they have money to burn on expensive holidays.",
+    "form": "have money to burn",
+    "tr": "O mirasla pahalı tatillere rahatça harcayacak bol paraları var.",
+    "theme": "money",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-money-to-burn?q=to%2Bburn",
+      "https://www.collinsdictionary.com/dictionary/english/money-to-burn"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-money-to-burn?q=to%2Bburn",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have money to burn"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/money-to-burn",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have money to burn"
+      }
+    ]
+  },
+  {
+    "w": "be rolling in money",
+    "t": "çok zengin olmak",
+    "lit": "paranın içinde yuvarlanmak",
+    "s": "They are rolling in money, but still repair their old furniture.",
+    "form": "are rolling in money",
+    "tr": "Çok zenginler; buna rağmen eski mobilyalarını hâlâ tamir ediyorlar.",
+    "theme": "money",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/rolling",
+      "https://www.collinsdictionary.com/dictionary/english/be-rolling-in-it"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/rolling",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be rolling in money"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/be-rolling-in-it",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be rolling in money"
+      }
+    ]
+  },
+  {
+    "w": "be on the breadline",
+    "t": "ancak temel ihtiyaçlarını karşılayabilmek",
+    "lit": "ekmek kuyruğunda olmak",
+    "s": "After months without work, the family was on the breadline.",
+    "form": "was on the breadline",
+    "tr": "Aylarca işsiz kaldıktan sonra aile ancak temel ihtiyaçlarını karşılayabiliyordu.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/breadline",
+      "https://www.collinsdictionary.com/dictionary/english/on-the-breadline"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/breadline",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the breadline"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-the-breadline",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the breadline"
+      }
+    ]
+  },
+  {
+    "w": "live from hand to mouth",
+    "t": "günlük geçinip hiç birikim yapamamak",
+    "lit": "elden ağza yaşamak",
+    "s": "With irregular wages, they live from hand to mouth.",
+    "form": "live from hand to mouth",
+    "tr": "Düzensiz ücretleriyle günlük geçiniyor ve hiç birikim yapamıyorlar.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/live-from-hand-to-mouth",
+      "https://dictionary.cambridge.org/dictionary/english/hand-to-mouth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/live-from-hand-to-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "live from hand to mouth"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hand-to-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "live from hand to mouth"
+      }
+    ]
+  },
+  {
+    "w": "be born with a silver spoon in one's mouth",
+    "t": "varlıklı bir ailede doğmak",
+    "lit": "ağzında gümüş kaşıkla doğmak",
+    "s": "He was born with a silver spoon in his mouth, unlike most classmates.",
+    "form": "was born with a silver spoon in his mouth",
+    "tr": "Çoğu sınıf arkadaşının aksine varlıklı bir ailede doğdu.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/dictionary/english/born-with-a-silver-spoon-in-mouth",
+      "https://www.collinsdictionary.com/dictionary/english/born-with-a-silver-spoon-in-ones-mouth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/born-with-a-silver-spoon-in-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be born with a silver spoon in one's mouth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/born-with-a-silver-spoon-in-ones-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be born with a silver spoon in one's mouth"
+      }
+    ]
+  },
+  {
+    "w": "be a licence to print money",
+    "t": "kolay ve yüksek kazanç sağlayan iş olmak",
+    "lit": "para basma ruhsatı olmak",
+    "s": "In this busy station, a coffee stall is a licence to print money.",
+    "form": "is a licence to print money",
+    "tr": "Bu işlek istasyonda kahve tezgâhı kolay ve yüksek kazanç sağlayan bir iştir.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-a-licence-to-print-money",
+      "https://www.collinsdictionary.com/dictionary/english/a-licence-to-print-money"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-a-licence-to-print-money",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a licence to print money"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-licence-to-print-money",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a licence to print money"
+      }
+    ]
+  },
+  {
+    "w": "be a money pit",
+    "t": "sürekli para tüketen bir yük olmak",
+    "lit": "bir para çukuru olmak",
+    "s": "With endless repairs, that old boat is a money pit.",
+    "form": "is a money pit",
+    "tr": "Bitmeyen tamiratlarıyla o eski tekne sürekli para tüketen bir yük.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/money-pit",
+      "https://www.collinsdictionary.com/dictionary/english/money-pit"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/money-pit",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a money pit"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/money-pit",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a money pit"
+      }
+    ]
+  },
+  {
+    "w": "have deep pockets",
+    "t": "yüksek harcama gücüne sahip olmak",
+    "lit": "derin cepleri olmak",
+    "s": "Only investors who have deep pockets can fund this research for years.",
+    "form": "have deep pockets",
+    "tr": "Bu araştırmayı yıllarca yalnızca yüksek harcama gücüne sahip yatırımcılar finanse edebilir.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/deep-pockets",
+      "https://www.collinsdictionary.com/dictionary/english/deep-pockets"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/deep-pockets",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have deep pockets"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/deep-pockets",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have deep pockets"
+      }
+    ]
+  },
+  {
+    "w": "cut one's losses",
+    "t": "daha fazla zarar etmeden vazgeçmek",
+    "lit": "zararlarını kesmek",
+    "s": "After three failed trials, we decided to cut our losses.",
+    "form": "cut our losses",
+    "tr": "Üç başarısız denemeden sonra daha fazla zarar etmeden vazgeçmeye karar verdik.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/cut-losses",
+      "https://www.collinsdictionary.com/dictionary/english/cut-ones-losses"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/cut-losses",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "cut one's losses"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/cut-ones-losses",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "cut one's losses"
+      }
+    ]
+  },
+  {
+    "w": "be on the money",
+    "t": "tam doğru olmak",
+    "lit": "paranın üstünde olmak",
+    "s": "Your estimate is on the money, according to the final accounts.",
+    "form": "is on the money",
+    "tr": "Son hesaplara göre tahminin tam doğru.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/on-the-money",
+      "https://en.wiktionary.org/wiki/on_the_money"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-the-money",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the money"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/on_the_money",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the money"
+      }
+    ]
+  },
+  {
+    "w": "go for broke",
+    "t": "her şeyi riske atarak şansını denemek",
+    "lit": "parasız kalmayı göze alarak gitmek",
+    "s": "For the final pitch, we decided to go for broke.",
+    "form": "go for broke",
+    "tr": "Son sunumda her şeyi riske atarak şansımızı denemeye karar verdik.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-for-broke",
+      "https://www.collinsdictionary.com/dictionary/english/go-broke"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-for-broke",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go for broke"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-broke",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go for broke"
+      }
+    ]
+  },
+  {
+    "w": "make a killing",
+    "t": "tek bir işten büyük kazanç elde etmek",
+    "lit": "bir öldürme yapmak",
+    "s": "They made a killing by selling their land before prices fell.",
+    "form": "made a killing",
+    "tr": "Fiyatlar düşmeden arsalarını satarak tek bir işten büyük kazanç elde ettiler.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/make-a-killing?q=make-a-killing_1",
+      "https://www.collinsdictionary.com/dictionary/english/make-a-killing"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/make-a-killing?q=make-a-killing_1",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make a killing"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/make-a-killing",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make a killing"
+      }
+    ]
+  },
+  {
+    "w": "be worth every penny",
+    "t": "verilen paraya tamamen değmek",
+    "lit": "her kuruşa değer olmak",
+    "s": "That reliable raincoat was worth every penny on our hiking trip.",
+    "form": "was worth every penny",
+    "tr": "Yürüyüş gezimizde o sağlam yağmurluk verdiğimiz paraya tamamen değdi.",
+    "theme": "money",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/worth-every-penny",
+      "https://dictionary.cambridge.org/dictionary/english/penny"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/worth-every-penny",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be worth every penny"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/penny",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be worth every penny"
+      }
+    ]
+  },
+  {
+    "w": "be a drop in the ocean",
+    "t": "gereksinime göre çok küçük kalmak",
+    "lit": "okyanusta bir damla olmak",
+    "s": "This donation is a drop in the ocean compared with the repair costs.",
+    "form": "is a drop in the ocean",
+    "tr": "Bu bağış tamirat masraflarına göre çok küçük kalıyor.",
+    "theme": "money",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/drop-in-the-ocean",
+      "https://www.collinsdictionary.com/dictionary/english/a-drop-in-the-ocean"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/drop-in-the-ocean",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a drop in the ocean"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-drop-in-the-ocean",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a drop in the ocean"
+      }
+    ]
+  },
+  {
+    "w": "bet one's bottom dollar",
+    "t": "bir şeyden tamamen emin olmak",
+    "lit": "son dolarını bahse koymak",
+    "s": "I'd bet my bottom dollar that she remembered everyone's birthday.",
+    "form": "bet my bottom dollar",
+    "tr": "Herkesin doğum gününü hatırladığından tamamen eminim.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/bet-ones-bottom-dollar",
+      "https://dictionary.cambridge.org/dictionary/english/you-can-bet-your-life?fallbackFrom=british-grammar&q=Bottom+dollar"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bet-ones-bottom-dollar",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bet one's bottom dollar"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/you-can-bet-your-life?fallbackFrom=british-grammar&q=Bottom+dollar",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bet one's bottom dollar"
+      }
+    ]
+  },
+  {
+    "w": "be a blank cheque",
+    "t": "sınırsız harcama veya hareket yetkisi olmak",
+    "lit": "boş bir çek olmak",
+    "s": "This agreement is a blank cheque for further spending.",
+    "form": "is a blank cheque",
+    "tr": "Bu anlaşma daha fazla harcama için sınırsız yetki veriyor.",
+    "theme": "money",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/blank-cheque?topic=payment-methods",
+      "https://www.collinsdictionary.com/dictionary/english/a-blank-cheque"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/blank-cheque?topic=payment-methods",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a blank cheque"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-blank-cheque",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a blank cheque"
+      }
+    ]
+  }
+]

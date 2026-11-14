@@ -1,0 +1,782 @@
+[
+  {
+    "w": "be a long shot",
+    "t": "gerçekleşmesi pek olası olmamak",
+    "lit": "uzak bir atış olmak",
+    "s": "Getting funding this month is a long shot.",
+    "form": "is a long shot",
+    "tr": "Bu ay finansman bulmak pek olası değil.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/dictionary/english/long-shot",
+      "https://www.collinsdictionary.com/dictionary/english/a-long-shot"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/long-shot",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a long shot"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-long-shot",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a long shot"
+      }
+    ]
+  },
+  {
+    "w": "carry the day",
+    "t": "sonunda üstün gelip kazanmak",
+    "lit": "günü taşımak",
+    "s": "In the debate, her clear argument carried the day.",
+    "form": "carried the day",
+    "tr": "Tartışmada açık savı sonunda üstün gelip kazandı.",
+    "theme": "luck",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/carry-the-day?topic=successful-things-or-people",
+      "https://www.collinsdictionary.com/dictionary/english/carry-the-day"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/carry-the-day?topic=successful-things-or-people",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "carry the day"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/carry-the-day",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "carry the day"
+      }
+    ]
+  },
+  {
+    "w": "hit the jackpot",
+    "t": "beklenmedik büyük kazanç veya başarı elde etmek",
+    "lit": "büyük ikramiyeye vurmak",
+    "s": "With that cheap studio, we hit the jackpot.",
+    "form": "hit the jackpot",
+    "tr": "O ucuz stüdyoyla beklenmedik büyük bir kazanç elde ettik.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/hit-the-jackpot",
+      "https://www.collinsdictionary.com/dictionary/english/hit-the-jackpot"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hit-the-jackpot",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit the jackpot"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-the-jackpot",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit the jackpot"
+      }
+    ]
+  },
+  {
+    "w": "strike gold",
+    "t": "çok değerli bir şey bulmak",
+    "lit": "altına vurmak",
+    "s": "In that archive, the historian struck gold.",
+    "form": "struck gold",
+    "tr": "Tarihçi o arşivde çok değerli bir şey buldu.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/strike-gold",
+      "https://www.collinsdictionary.com/dictionary/english/strike-gold"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/strike-gold",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "strike gold"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/strike-gold",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "strike gold"
+      }
+    ]
+  },
+  {
+    "w": "strike it lucky",
+    "t": "şans eseri başarılı olmak",
+    "lit": "ona şanslı vurmak",
+    "s": "We struck it lucky with our first tenant.",
+    "form": "struck it lucky",
+    "tr": "İlk kiracımız konusunda şans eseri başarılı olduk.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/strike-it-lucky",
+      "https://www.collinsdictionary.com/dictionary/english/strike-it-lucky"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/strike-it-lucky",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "strike it lucky"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/strike-it-lucky",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "strike it lucky"
+      }
+    ]
+  },
+  {
+    "w": "be in luck",
+    "t": "şansı yaver gitmek",
+    "lit": "şansın içinde olmak",
+    "s": "You are in luck; the last room is free.",
+    "form": "are in luck",
+    "tr": "Şansın yaver gidiyor; son oda boş.",
+    "theme": "luck",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/in-luck",
+      "https://www.collinsdictionary.com/dictionary/english/in-luck"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/in-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in luck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in luck"
+      }
+    ]
+  },
+  {
+    "w": "be down on one's luck",
+    "t": "uzun süredir talihsizlik yaşamak",
+    "lit": "şansının üstünde aşağıda olmak",
+    "s": "After several setbacks, she was down on her luck.",
+    "form": "was down on her luck",
+    "tr": "Birkaç aksilikten sonra uzun süredir talihsizlik yaşıyordu.",
+    "theme": "luck",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-down-on-luck?topic=good-luck-and-bad-luck",
+      "https://www.collinsdictionary.com/dictionary/english/down-on-your-luck"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-down-on-luck?topic=good-luck-and-bad-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be down on one's luck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/down-on-your-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be down on one's luck"
+      }
+    ]
+  },
+  {
+    "w": "push one's luck",
+    "t": "şansına fazla güvenip riski artırmak",
+    "lit": "şansını itmek",
+    "s": "Don't push your luck by asking for more.",
+    "form": "push your luck",
+    "tr": "Daha fazlasını isteyerek şansına fazla güvenip riski artırma.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/push-luck",
+      "https://www.collinsdictionary.com/dictionary/english/to-push-your-luck"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/push-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "push one's luck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-push-your-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "push one's luck"
+      }
+    ]
+  },
+  {
+    "w": "ride one's luck",
+    "t": "şansı yaver giderek güçlüğü atlatmak",
+    "lit": "şansına binmek",
+    "s": "Our team rode their luck in the closing minutes.",
+    "form": "rode their luck",
+    "tr": "Takımımız son dakikalarda şansa güvenerek tehlikeyi atlattı.",
+    "theme": "luck",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://www.oxfordlearnersdictionaries.com/definition/english/luck_1",
+      "https://www.harrogateadvertiser.co.uk/sport/football/tadcaster-albion-rode-their-luck-during-victory-at-frickley-athletic-admits-mick-oconnell-4912195"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.oxfordlearnersdictionaries.com/definition/english/luck_1",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "ride one's luck"
+      },
+      {
+        "url": "https://www.harrogateadvertiser.co.uk/sport/football/tadcaster-albion-rode-their-luck-during-victory-at-frickley-athletic-admits-mick-oconnell-4912195",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "ride one's luck"
+      }
+    ]
+  },
+  {
+    "w": "have the luck of the devil",
+    "t": "olağanüstü şanslı olmak",
+    "lit": "şeytanın şansına sahip olmak",
+    "s": "Finding that wallet, he had the luck of the devil.",
+    "form": "had the luck of the devil",
+    "tr": "O cüzdanı bulurken olağanüstü şanslıydı.",
+    "theme": "luck",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english-spanish/to-have-the-luck-of-the-devil",
+      "https://dictionary.cambridge.org/dictionary/english/luck"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-spanish/to-have-the-luck-of-the-devil",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have the luck of the devil"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/luck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have the luck of the devil"
+      }
+    ]
+  },
+  {
+    "w": "be a stroke of luck",
+    "t": "beklenmedik bir talih olmak",
+    "lit": "bir şans darbesi olmak",
+    "s": "Finding you here was a stroke of luck.",
+    "form": "was a stroke of luck",
+    "tr": "Seni burada bulmak beklenmedik bir talihti.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/stroke-of-luck-genius-etc?q=stroke+of+luck",
+      "https://www.collinsdictionary.com/dictionary/english-chinese/a-stroke-of-luck"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/stroke-of-luck-genius-etc?q=stroke+of+luck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a stroke of luck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-chinese/a-stroke-of-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a stroke of luck"
+      }
+    ]
+  },
+  {
+    "w": "be a lucky break",
+    "t": "iyi bir fırsat getiren rastlantı olmak",
+    "lit": "şanslı bir kırılma olmak",
+    "s": "That cancelled meeting was a lucky break for us.",
+    "form": "was a lucky break",
+    "tr": "O toplantının iptali bizim için iyi bir fırsat getiren rastlantıydı.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/example/english/lucky-break",
+      "https://www.collinsdictionary.com/dictionary/english/lucky-break"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/example/english/lucky-break",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a lucky break"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/lucky-break",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a lucky break"
+      }
+    ]
+  },
+  {
+    "w": "have an ace up one's sleeve",
+    "t": "gizli bir kozu olmak",
+    "lit": "yeninin içinde bir as kartı olmak",
+    "s": "In these negotiations, we have an ace up our sleeve.",
+    "form": "have an ace up our sleeve",
+    "tr": "Bu pazarlıkta gizli bir kozumuz var.",
+    "theme": "luck",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/ace-up-sleeve",
+      "https://www.collinsdictionary.com/dictionary/english/ace-up-ones-sleeve"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/ace-up-sleeve",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have an ace up one's sleeve"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/ace-up-ones-sleeve",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have an ace up one's sleeve"
+      }
+    ]
+  },
+  {
+    "w": "hold all the aces",
+    "t": "bütün avantajları elinde tutmak",
+    "lit": "bütün as kartlarını tutmak",
+    "s": "As the only supplier, she holds all the aces.",
+    "form": "holds all the aces",
+    "tr": "Tek tedarikçi olarak bütün avantajları elinde tutuyor.",
+    "theme": "luck",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-hold-all-the-aces",
+      "https://www.collinsdictionary.com/dictionary/english/hold-all-the-aces"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-hold-all-the-aces",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hold all the aces"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hold-all-the-aces",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hold all the aces"
+      }
+    ]
+  },
+  {
+    "w": "play one's cards right",
+    "t": "fırsatlarını akıllıca değerlendirmek",
+    "lit": "kartlarını doğru oynamak",
+    "s": "If you play your cards right, they'll offer training.",
+    "form": "play your cards right",
+    "tr": "Fırsatlarını akıllıca değerlendirirsen eğitim sunarlar.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/play-cards-right?topic=succeeding-achieving-and-fulfilling",
+      "https://www.collinsdictionary.com/dictionary/english/play-your-cards-right"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/play-cards-right?topic=succeeding-achieving-and-fulfilling",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "play one's cards right"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/play-your-cards-right",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "play one's cards right"
+      }
+    ]
+  },
+  {
+    "w": "have the cards stacked against one",
+    "t": "koşullar tamamen aleyhinde olmak",
+    "lit": "kartların kendisine karşı dizilmiş olması",
+    "s": "Without funding, we had the cards stacked against us.",
+    "form": "had the cards stacked against us",
+    "tr": "Finansman olmadan koşullar tamamen aleyhimizdeydi.",
+    "theme": "luck",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/cards-are-stacked-against",
+      "https://www.collinsdictionary.com/dictionary/english-spanish/the-cards-are-stacked-against-us"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/cards-are-stacked-against",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have the cards stacked against one"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-spanish/the-cards-are-stacked-against-us",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have the cards stacked against one"
+      }
+    ]
+  },
+  {
+    "w": "be in the lap of the gods",
+    "t": "sonucu artık kişinin elinde olmamak",
+    "lit": "tanrıların kucağında olmak",
+    "s": "After submitting, our chances are in the lap of the gods.",
+    "form": "are in the lap of the gods",
+    "tr": "Başvurduktan sonra sonuç artık bizim elimizde değil.",
+    "theme": "luck",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/in-the-lap-of-the-gods",
+      "https://www.collinsdictionary.com/dictionary/english/in-the-lap-of-the-gods"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/in-the-lap-of-the-gods",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in the lap of the gods"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-the-lap-of-the-gods",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in the lap of the gods"
+      }
+    ]
+  },
+  {
+    "w": "be on a winning streak",
+    "t": "art arda başarı kazanmak",
+    "lit": "bir kazanma çizgisinde olmak",
+    "s": "With three contracts, the firm is on a winning streak.",
+    "form": "is on a winning streak",
+    "tr": "Üç sözleşmeyle şirket art arda başarı kazanıyor.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/dictionary/english/winning-streak",
+      "https://www.collinsdictionary.com/dictionary/english/winning-streak"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/winning-streak",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on a winning streak"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/winning-streak",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on a winning streak"
+      }
+    ]
+  },
+  {
+    "w": "have a run of bad luck",
+    "t": "art arda talihsizlik yaşamak",
+    "lit": "bir kötü şans koşusu yaşamak",
+    "s": "This month, we have had a run of bad luck.",
+    "form": "have had a run of bad luck",
+    "tr": "Bu ay art arda talihsizlik yaşadık.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english-french/a-run-of-bad-luck",
+      "https://dictionary.cambridge.org/dictionary/english/bad-luck"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-french/a-run-of-bad-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a run of bad luck"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/bad-luck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a run of bad luck"
+      }
+    ]
+  },
+  {
+    "w": "be in the right place at the right time",
+    "t": "uygun fırsatın bulunduğu anda orada olmak",
+    "lit": "doğru zamanda doğru yerde olmak",
+    "s": "For that job, I was in the right place at the right time.",
+    "form": "was in the right place at the right time",
+    "tr": "O iş için uygun fırsatın bulunduğu anda oradaydım.",
+    "theme": "luck",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/in-the-right-place-at-the-right-time",
+      "https://www.collinsdictionary.com/dictionary/english/right-time"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/in-the-right-place-at-the-right-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in the right place at the right time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/right-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in the right place at the right time"
+      }
+    ]
+  },
+  {
+    "w": "tempt fate",
+    "t": "bile bile tehlikeyi davet etmek",
+    "lit": "kaderi ayartmak",
+    "s": "Driving with an empty tank is tempting fate.",
+    "form": "tempting fate",
+    "tr": "Boş depoyla araba kullanmak bile bile tehlikeyi davet etmektir.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/tempt-fate",
+      "https://www.collinsdictionary.com/dictionary/english/tempt-fate"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/tempt-fate",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "tempt fate"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/tempt-fate",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "tempt fate"
+      }
+    ]
+  },
+  {
+    "w": "dodge a bullet",
+    "t": "ciddi bir tehlikeyi atlatmak",
+    "lit": "bir kurşundan sıyrılmak",
+    "s": "By checking the contract, we dodged a bullet.",
+    "form": "dodged a bullet",
+    "tr": "Sözleşmeyi kontrol ederek ciddi bir tehlikeyi atlattık.",
+    "theme": "luck",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/dodge-a-bullet",
+      "https://www.collinsdictionary.com/dictionary/english/dodge"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/dodge-a-bullet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "dodge a bullet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/dodge",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "dodge a bullet"
+      }
+    ]
+  },
+  {
+    "w": "have a narrow escape",
+    "t": "bir tehlikeden az farkla kurtulmak",
+    "lit": "dar bir kaçış yaşamak",
+    "s": "The passengers had a narrow escape from the fire.",
+    "form": "had a narrow escape",
+    "tr": "Yolcular yangından az farkla kurtuldu.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/narrow-escape",
+      "https://www.collinsdictionary.com/dictionary/english/narrow-escape"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/narrow-escape",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a narrow escape"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/narrow-escape",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a narrow escape"
+      }
+    ]
+  },
+  {
+    "w": "be touch and go",
+    "t": "sonucun çok belirsiz olması",
+    "lit": "dokunup gitmek olmak",
+    "s": "For the first hour, his recovery was touch and go.",
+    "form": "was touch and go",
+    "tr": "İlk bir saat iyileşip iyileşmeyeceği çok belirsizdi.",
+    "theme": "luck",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/touch-and-go",
+      "https://www.collinsdictionary.com/dictionary/english/touch-and-go"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/touch-and-go",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be touch and go"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/touch-and-go",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be touch and go"
+      }
+    ]
+  },
+  {
+    "w": "hedge one's bets",
+    "t": "riski azaltmak için farklı seçenekleri açık tutmak",
+    "lit": "bahislerinin çevresine çit çekmek",
+    "s": "By applying twice, we hedged our bets.",
+    "form": "hedged our bets",
+    "tr": "İki yere başvurarak riski azaltmak için farklı seçenekleri açık tuttuk.",
+    "theme": "luck",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/hedge-bets",
+      "https://www.collinsdictionary.com/dictionary/english/hedge-your-bets"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hedge-bets",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hedge one's bets"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hedge-your-bets",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hedge one's bets"
+      }
+    ]
+  },
+  {
+    "w": "go for gold",
+    "t": "en yüksek başarıyı hedeflemek",
+    "lit": "altın için gitmek",
+    "s": "In this final, we are going for gold.",
+    "form": "are going for gold",
+    "tr": "Bu finalde en yüksek başarıyı hedefliyoruz.",
+    "theme": "luck",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-gold?topic=prizes-rewards-and-medals",
+      "https://www.collinsdictionary.com/submission/9339/Go%2Bfor%2Bthe%2BGold"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-gold?topic=prizes-rewards-and-medals",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go for gold"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/submission/9339/Go%2Bfor%2Bthe%2BGold",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go for gold"
+      }
+    ]
+  }
+]

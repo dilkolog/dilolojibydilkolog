@@ -1,0 +1,514 @@
+[
+  {
+    "w": "get to the point",
+    "t": "doğrudan asıl konuya girmek",
+    "lit": "noktaya gitmek",
+    "s": "Please get to the point; our train leaves soon.",
+    "form": "get to the point",
+    "tr": "Lütfen doğrudan asıl konuya gir; trenimiz yakında kalkıyor.",
+    "theme": "talk",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/point",
+      "https://www.collinsdictionary.com/dictionary/english/come-get-to-the-point"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/point",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get to the point"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/come-get-to-the-point",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get to the point"
+      }
+    ]
+  },
+  {
+    "w": "let slip",
+    "t": "bir şeyi istemeden ağzından kaçırmak",
+    "lit": "bir şeyin kaymasına izin vermek",
+    "s": "Dad let the date slip before the invitations arrived.",
+    "form": "let the date slip",
+    "tr": "Davetiyeler gelmeden babam tarihi istemeden ağzından kaçırdı.",
+    "theme": "talk",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "let something slip",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/let-slip",
+      "https://www.collinsdictionary.com/dictionary/english/let-slip"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/let-slip",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "let something slip"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/let-slip",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "let something slip"
+      }
+    ]
+  },
+  {
+    "w": "keep mum",
+    "t": "bir konuda sessiz kalmak",
+    "lit": "sessizi korumak",
+    "s": "Please keep mum about the surprise until Saturday.",
+    "form": "keep mum",
+    "tr": "Lütfen cumartesiye kadar sürpriz konusunda sessiz kal.",
+    "theme": "talk",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/dictionary/english/keep-mum",
+      "https://www.collinsdictionary.com/dictionary/english/keep-mum-stay-mum"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/keep-mum",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep mum"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-mum-stay-mum",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep mum"
+      }
+    ]
+  },
+  {
+    "w": "preach to the converted",
+    "t": "zaten aynı fikirde olanları ikna etmeye çalışmak",
+    "lit": "inanç değiştirmiş olanlara vaaz vermek",
+    "s": "Telling these volunteers to help is preaching to the converted.",
+    "form": "preaching to the converted",
+    "tr": "Bu gönüllülere yardım etmelerini söylemek zaten aynı fikirdekileri ikna etmeye çalışmaktır.",
+    "theme": "talk",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/preach-to-the-converted",
+      "https://www.collinsdictionary.com/dictionary/english/preach-to-the-converted"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/preach-to-the-converted",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "preach to the converted"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/preach-to-the-converted",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "preach to the converted"
+      }
+    ]
+  },
+  {
+    "w": "put one's cards on the table",
+    "t": "niyetini açıkça ortaya koymak",
+    "lit": "kartlarını masanın üstüne koymak",
+    "s": "Before negotiating, let's put our cards on the table.",
+    "form": "put our cards on the table",
+    "tr": "Pazarlıktan önce niyetimizi açıkça ortaya koyalım.",
+    "theme": "talk",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/put-lay-cards-on-the-table",
+      "https://www.collinsdictionary.com/dictionary/english/to-put-your-cards-on-the-table"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/put-lay-cards-on-the-table",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put one's cards on the table"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-put-your-cards-on-the-table",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put one's cards on the table"
+      }
+    ]
+  },
+  {
+    "w": "call a spade a spade",
+    "t": "gerçeği dolandırmadan açıkça söylemek",
+    "lit": "bir küreğe kürek demek",
+    "s": "Let's call a spade a spade: this plan failed.",
+    "form": "call a spade a spade",
+    "tr": "Gerçeği dolandırmadan açıkça söyleyelim; bu plan başarısız oldu.",
+    "theme": "talk",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/call-a-spade-a-spade",
+      "https://www.collinsdictionary.com/dictionary/english/call-a-spade-a-spade"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/call-a-spade-a-spade",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "call a spade a spade"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/call-a-spade-a-spade",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "call a spade a spade"
+      }
+    ]
+  },
+  {
+    "w": "not mince one's words",
+    "t": "sözünü yumuşatmadan açıkça söylemek",
+    "lit": "sözcüklerini kıymamak",
+    "s": "She did not mince her words about the poor service.",
+    "form": "did not mince her words",
+    "tr": "Kötü hizmet hakkındaki sözünü yumuşatmadan açıkça söyledi.",
+    "theme": "talk",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/not-mince-your-words",
+      "https://dictionary.cambridge.org/dictionary/english/not-mince-words"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/not-mince-your-words",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "not mince one's words"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/not-mince-words",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "not mince one's words"
+      }
+    ]
+  },
+  {
+    "w": "talk through one's hat",
+    "t": "bilmediği konuda saçmalamak",
+    "lit": "şapkasının içinden konuşmak",
+    "s": "He was talking through his hat about a subject he knew nothing about.",
+    "form": "was talking through his hat",
+    "tr": "Hiç bilmediği bir konuda saçmalıyordu.",
+    "theme": "talk",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/talk-through-hat",
+      "https://www.collinsdictionary.com/dictionary/english/talk-through-your-hat"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/talk-through-hat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "talk through one's hat"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/talk-through-your-hat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "talk through one's hat"
+      }
+    ]
+  },
+  {
+    "w": "speak volumes",
+    "t": "çok şey anlatmak",
+    "lit": "ciltler dolusu konuşmak",
+    "s": "Her silent refusal spoke volumes about their relationship.",
+    "form": "spoke volumes",
+    "tr": "Sessizce reddetmesi ilişkileri hakkında çok şey anlattı.",
+    "theme": "talk",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/speak-volumes?topic=showing-and-demonstrating",
+      "https://www.collinsdictionary.com/dictionary/english/speak-volumes"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/speak-volumes?topic=showing-and-demonstrating",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "speak volumes"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/speak-volumes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "speak volumes"
+      }
+    ]
+  },
+  {
+    "w": "speak of the devil",
+    "t": "adı anılan kişi çıkagelmek",
+    "lit": "şeytandan söz etmek",
+    "s": "Speak of the devil: we were just discussing your article.",
+    "form": "Speak of the devil",
+    "tr": "İyi insan lafının üstüne gelir; az önce yazını konuşuyorduk.",
+    "theme": "talk",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/speak-talk-of-the-devil?q=speak-of-the-devil",
+      "https://www.collinsdictionary.com/dictionary/english/speak-of-the-devil"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/speak-talk-of-the-devil?q=speak-of-the-devil",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "speak of the devil"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/speak-of-the-devil",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "speak of the devil"
+      }
+    ]
+  },
+  {
+    "w": "have the gift of the gab",
+    "t": "etkileyici ve akıcı konuşabilmek",
+    "lit": "gevezelik armağanına sahip olmak",
+    "s": "Our guide has the gift of the gab and entertains everyone.",
+    "form": "has the gift of the gab",
+    "tr": "Rehberimiz etkileyici ve akıcı konuşur; herkesi eğlendirir.",
+    "theme": "talk",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/gift-of-gab?q=the-gift-of-the-gab",
+      "https://www.collinsdictionary.com/dictionary/english/the-gift-of-the-gab"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/gift-of-gab?q=the-gift-of-the-gab",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have the gift of the gab"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-gift-of-the-gab",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have the gift of the gab"
+      }
+    ]
+  },
+  {
+    "w": "have a way with words",
+    "t": "sözcükleri etkileyici biçimde kullanmak",
+    "lit": "sözcüklerle bir yolu olmak",
+    "s": "You have a way with words; please write the invitation.",
+    "form": "have a way with words",
+    "tr": "Sözcükleri etkileyici biçimde kullanıyorsun; lütfen davetiyeyi sen yaz.",
+    "theme": "talk",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/way",
+      "https://www.collinsdictionary.com/us/dictionary/english/have-a-way-with"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/way",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a way with words"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/have-a-way-with",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a way with words"
+      }
+    ]
+  },
+  {
+    "w": "get a word in edgeways",
+    "t": "konuşmada söz alma fırsatı bulmak",
+    "lit": "bir sözcüğü kenarından içeri sokmak",
+    "s": "With everyone talking, I could barely get a word in edgeways.",
+    "form": "get a word in edgeways",
+    "tr": "Herkes konuşurken zar zor söz alma fırsatı bulabildim.",
+    "theme": "talk",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/not-get-a-word-in-edgeways",
+      "https://www.collinsdictionary.com/dictionary/english/get-a-word-in-edgeways"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/not-get-a-word-in-edgeways",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get a word in edgeways"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-a-word-in-edgeways",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get a word in edgeways"
+      }
+    ]
+  },
+  {
+    "w": "have the last word",
+    "t": "tartışmada son sözü söylemek",
+    "lit": "son sözcüğe sahip olmak",
+    "s": "He always wants to have the last word.",
+    "form": "have the last word",
+    "tr": "Tartışmada son sözü hep kendisi söylemek ister.",
+    "theme": "talk",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/last-word-in",
+      "https://www.collinsdictionary.com/dictionary/english/the-last-word"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/last-word-in",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have the last word"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-last-word",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have the last word"
+      }
+    ]
+  },
+  {
+    "w": "make a long story short",
+    "t": "uzun hikâyeyi kısaca özetlemek",
+    "lit": "uzun bir hikâyeyi kısa yapmak",
+    "s": "To make a long story short, we found another hotel.",
+    "form": "make a long story short",
+    "tr": "Uzun hikâyeyi kısaca özetlersek başka bir otel bulduk.",
+    "theme": "talk",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/to-make-a-long-story-short?topic=summaries-and-summarising",
+      "https://www.collinsdictionary.com/dictionary/english/to-cut-a-long-story-short"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/to-make-a-long-story-short?topic=summaries-and-summarising",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make a long story short"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-cut-a-long-story-short",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make a long story short"
+      }
+    ]
+  },
+  {
+    "w": "go off on a tangent",
+    "t": "ana konudan ilgisiz bir yöne sapmak",
+    "lit": "bir teğet boyunca uzaklaşmak",
+    "s": "During the budget discussion, he went off on a tangent.",
+    "form": "went off on a tangent",
+    "tr": "Bütçe görüşmesi sırasında ana konudan ilgisiz bir yöne saptı.",
+    "theme": "talk",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-off-on-a-tangent?topic=digressing-and-being-indirect-or-evasive",
+      "https://www.collinsdictionary.com/dictionary/english/go-off-on-a-tangent"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-off-on-a-tangent?topic=digressing-and-being-indirect-or-evasive",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go off on a tangent"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-off-on-a-tangent",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go off on a tangent"
+      }
+    ]
+  },
+  {
+    "w": "bring up to speed",
+    "t": "birini son gelişmelerden haberdar etmek",
+    "lit": "birini gereken hıza çıkarmak",
+    "s": "Could you bring me up to speed before the meeting?",
+    "form": "bring me up to speed",
+    "tr": "Toplantıdan önce beni son gelişmelerden haberdar edebilir misin?",
+    "theme": "talk",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "bring someone up to speed",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/bring-someone-up-to-speed",
+      "https://dictionary.cambridge.org/dictionary/english/up-to-speed"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bring-someone-up-to-speed",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bring up to speed"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/up-to-speed",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bring up to speed"
+      }
+    ]
+  }
+]

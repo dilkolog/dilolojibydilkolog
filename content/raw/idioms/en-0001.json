@@ -1,0 +1,2650 @@
+[
+  {
+    "w": "keep an eye on",
+    "t": "göz kulak olmak",
+    "lit": "bir gözünü üzerinde tutmak",
+    "s": "Can you keep an eye on my bag while I buy tickets?",
+    "form": "keep an eye on",
+    "tr": "Bilet alırken çantama göz kulak olabilir misin?",
+    "theme": "body",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/keep-an-eye-on",
+      "https://www.collinsdictionary.com/us/dictionary/english/keep-an-eye-on"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/keep-an-eye-on",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep an eye on"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/keep-an-eye-on",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep an eye on"
+      }
+    ]
+  },
+  {
+    "w": "turn a blind eye",
+    "t": "bilerek görmezden gelmek",
+    "lit": "kör bir göz çevirmek",
+    "s": "The manager chose to turn a blind eye to the missing receipts.",
+    "form": "turn a blind eye",
+    "tr": "Müdür eksik makbuzları bilerek görmezden gelmeyi seçti.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/turn-a-blind-eye",
+      "https://www.collinsdictionary.com/dictionary/english/turn-a-blind-eye"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/turn-a-blind-eye",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "turn a blind eye"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/turn-a-blind-eye",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "turn a blind eye"
+      }
+    ]
+  },
+  {
+    "w": "give a hand",
+    "t": "yardım etmek",
+    "lit": "birine bir el vermek",
+    "s": "Could you give me a hand with this heavy suitcase?",
+    "form": "give me a hand",
+    "tr": "Bu ağır bavulu taşımama yardım edebilir misin?",
+    "theme": "body",
+    "level": "B1",
+    "reg": "informal",
+    "area": "genel",
+    "pat": "give someone a hand",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/give-a-hand?topic=helping-and-co-operating",
+      "https://www.collinsdictionary.com/dictionary/english/to-give-someone-a-free-hand"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/give-a-hand?topic=helping-and-co-operating",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "give someone a hand"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-give-someone-a-free-hand",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "give someone a hand"
+      }
+    ]
+  },
+  {
+    "w": "have a heart of gold",
+    "t": "çok iyi kalpli olmak",
+    "lit": "altından bir kalbe sahip olmak",
+    "s": "Our neighbour has a heart of gold and helps everyone on our street.",
+    "form": "has a heart of gold",
+    "tr": "Komşumuz çok iyi kalplidir; sokağımızdaki herkese yardım eder.",
+    "theme": "body",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/heart-of-gold?q=Heart+of+Gold",
+      "https://www.collinsdictionary.com/dictionary/english/a-heart-of-gold"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/heart-of-gold?q=Heart+of+Gold",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a heart of gold"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-heart-of-gold",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a heart of gold"
+      }
+    ]
+  },
+  {
+    "w": "have a change of heart",
+    "t": "fikrini veya tutumunu değiştirmek",
+    "lit": "bir kalp değişikliği yaşamak",
+    "s": "After visiting the shelter, she had a change of heart about adopting a dog.",
+    "form": "had a change of heart",
+    "tr": "Barınağı ziyaret ettikten sonra köpek sahiplenme konusundaki fikri değişti.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/change-of-heart?topic=changing-your-mind",
+      "https://www.collinsdictionary.com/dictionary/english/a-change-of-heart"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/change-of-heart?topic=changing-your-mind",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a change of heart"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-change-of-heart",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a change of heart"
+      }
+    ]
+  },
+  {
+    "w": "have a sweet tooth",
+    "t": "tatlıya düşkün olmak",
+    "lit": "tatlı bir dişe sahip olmak",
+    "s": "I have a sweet tooth, so I always order dessert.",
+    "form": "have a sweet tooth",
+    "tr": "Tatlıya düşkünüm; bu yüzden hep tatlı sipariş ederim.",
+    "theme": "body",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/sweet-tooth",
+      "https://www.collinsdictionary.com/dictionary/english/a-sweet-tooth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/sweet-tooth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a sweet tooth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-sweet-tooth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a sweet tooth"
+      }
+    ]
+  },
+  {
+    "w": "get cold feet",
+    "t": "son anda cesaretini kaybetmek",
+    "lit": "soğuk ayaklara sahip olmak",
+    "s": "He got cold feet just before signing the contract.",
+    "form": "got cold feet",
+    "tr": "Sözleşmeyi imzalamadan hemen önce cesaretini kaybetti.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-cold-feet?q=cold-feet",
+      "https://www.collinsdictionary.com/us/dictionary/english/get-cold-feet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-cold-feet?q=cold-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get cold feet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/get-cold-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get cold feet"
+      }
+    ]
+  },
+  {
+    "w": "keep one's chin up",
+    "t": "moralini bozmamak",
+    "lit": "çenesini yukarıda tutmak",
+    "s": "Keep your chin up: one rejection does not end your career.",
+    "form": "Keep your chin up",
+    "tr": "Moralini bozma; bir ret cevabı kariyerini bitirmez.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/chin-up",
+      "https://www.collinsdictionary.com/dictionary/english/keep-ones-chin-up"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/chin-up",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's chin up"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-ones-chin-up",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's chin up"
+      }
+    ]
+  },
+  {
+    "w": "keep one's fingers crossed",
+    "t": "iyi sonuç çıkmasını dilemek",
+    "lit": "parmaklarını çapraz tutmak",
+    "s": "We kept our fingers crossed while she waited for the exam results.",
+    "form": "kept our fingers crossed",
+    "tr": "Sınav sonuçlarını beklerken onun için iyi bir sonuç çıkmasını diledik.",
+    "theme": "body",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/keep-fingers-crossed",
+      "https://www.collinsdictionary.com/dictionary/english/keep-your-fingers-crossed"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/keep-fingers-crossed",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's fingers crossed"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-fingers-crossed",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's fingers crossed"
+      }
+    ]
+  },
+  {
+    "w": "be all ears",
+    "t": "can kulağıyla dinlemek",
+    "lit": "tamamen kulak olmak",
+    "s": "Tell me what happened; I am all ears.",
+    "form": "am all ears",
+    "tr": "Ne olduğunu anlat; seni can kulağıyla dinliyorum.",
+    "theme": "body",
+    "level": "B1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-all-ears",
+      "https://www.collinsdictionary.com/dictionary/english/all-ears"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-all-ears",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be all ears"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/all-ears",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be all ears"
+      }
+    ]
+  },
+  {
+    "w": "bend someone's ear",
+    "t": "birini uzun uzun konuşarak meşgul etmek",
+    "lit": "birinin kulağını bükmek",
+    "s": "He bent my ear about his garden for an hour.",
+    "form": "bent my ear",
+    "tr": "Bir saat boyunca bahçesini uzun uzun anlatarak beni meşgul etti.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/bend-ear",
+      "https://www.collinsdictionary.com/dictionary/english/bend-someones-ear"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/bend-ear",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bend someone's ear"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bend-someones-ear",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bend someone's ear"
+      }
+    ]
+  },
+  {
+    "w": "have one's hands full",
+    "t": "uğraşacak çok işi olmak",
+    "lit": "elleri dolu olmak",
+    "s": "With twins and a new job, she has her hands full.",
+    "form": "has her hands full",
+    "tr": "İkizler ve yeni işiyle uğraşacak çok işi var.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-hands-full",
+      "https://www.collinsdictionary.com/dictionary/english/have-ones-hands-full"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-hands-full",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's hands full"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-ones-hands-full",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's hands full"
+      }
+    ]
+  },
+  {
+    "w": "have one's hands tied",
+    "t": "eli kolu bağlı olmak",
+    "lit": "elleri bağlanmış olmak",
+    "s": "Without written permission, we have our hands tied.",
+    "form": "have our hands tied",
+    "tr": "Yazılı izin olmadan elimiz kolumuz bağlı.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/hands-are-tied?topic=lack-of-freedom-to-act",
+      "https://www.collinsdictionary.com/dictionary/english/someones-hands-are-tied"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hands-are-tied?topic=lack-of-freedom-to-act",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's hands tied"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/someones-hands-are-tied",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's hands tied"
+      }
+    ]
+  },
+  {
+    "w": "keep at arm's length",
+    "t": "birine mesafeli davranmak",
+    "lit": "birini kol uzunluğunda tutmak",
+    "s": "After that betrayal, she keeps him at arm's length.",
+    "form": "keeps him at arm's length",
+    "tr": "Bu ihanetten sonra ona mesafeli davranıyor.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "keep someone at arm's length",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/keep-at-arm-s-length",
+      "https://www.collinsdictionary.com/dictionary/english/keep-someone-at-arms-length"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/keep-at-arm-s-length",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep someone at arm's length"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-someone-at-arms-length",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep someone at arm's length"
+      }
+    ]
+  },
+  {
+    "w": "get off one's chest",
+    "t": "içini dökmek",
+    "lit": "bir şeyi göğsünün üstünden indirmek",
+    "s": "I need to get something off my chest about yesterday's meeting.",
+    "form": "get something off my chest",
+    "tr": "Dünkü toplantı hakkında içimi dökmem gerekiyor.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "pat": "get something off one's chest",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-off-chest",
+      "https://www.collinsdictionary.com/dictionary/english/get-something-off-your-chest"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-off-chest",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get something off one's chest"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-something-off-your-chest",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get something off one's chest"
+      }
+    ]
+  },
+  {
+    "w": "have a gut feeling",
+    "t": "içine doğmak",
+    "lit": "bir bağırsak hissine sahip olmak",
+    "s": "I have a gut feeling that this offer hides extra costs.",
+    "form": "have a gut feeling",
+    "tr": "Bu teklifin ek masraflar gizlediği içime doğuyor.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/gut-feeling-reaction",
+      "https://www.collinsdictionary.com/dictionary/english/gut-feeling"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/gut-feeling-reaction",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a gut feeling"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/gut-feeling",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a gut feeling"
+      }
+    ]
+  },
+  {
+    "w": "have a lump in one's throat",
+    "t": "duygulanıp boğazı düğümlenmek",
+    "lit": "boğazında bir yumru olmak",
+    "s": "During her farewell speech, I had a lump in my throat.",
+    "form": "had a lump in my throat",
+    "tr": "Veda konuşması sırasında duygulanıp boğazım düğümlendi.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/lump-in-throat",
+      "https://www.collinsdictionary.com/dictionary/english/a-lump-in-ones-throat"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/lump-in-throat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a lump in one's throat"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-lump-in-ones-throat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a lump in one's throat"
+      }
+    ]
+  },
+  {
+    "w": "have butterflies in one's stomach",
+    "t": "heyecandan midesi kıpır kıpır olmak",
+    "lit": "midesinde kelebekler olmak",
+    "s": "Before my first performance, I had butterflies in my stomach.",
+    "form": "had butterflies in my stomach",
+    "tr": "İlk gösterimden önce heyecandan midem kıpır kıpırdı.",
+    "theme": "body",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/butterflies-in-stomach",
+      "https://www.collinsdictionary.com/dictionary/english/butterflies-in-your-stomach"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/butterflies-in-stomach",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have butterflies in one's stomach"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/butterflies-in-your-stomach",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have butterflies in one's stomach"
+      }
+    ]
+  },
+  {
+    "w": "have one's heart in one's mouth",
+    "t": "çok korkmak veya heyecanlanmak",
+    "lit": "kalbi ağzında olmak",
+    "s": "We had our hearts in our mouths as the climber slipped.",
+    "form": "had our hearts in our mouths",
+    "tr": "Tırmanıcı kayınca hepimiz çok korktuk.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/heart-is-in-mouth",
+      "https://www.collinsdictionary.com/dictionary/english/someones-heart-is-in-their-mouth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/heart-is-in-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's heart in one's mouth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/someones-heart-is-in-their-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's heart in one's mouth"
+      }
+    ]
+  },
+  {
+    "w": "have a chip on one's shoulder",
+    "t": "kendisine haksızlık yapıldığını düşünüp alıngan davranmak",
+    "lit": "omzunda bir yonga taşımak",
+    "s": "He has a chip on his shoulder about missing that promotion.",
+    "form": "has a chip on his shoulder",
+    "tr": "O terfiyi kaçırdığı için kendisine haksızlık yapıldığını düşünüp alıngan davranıyor.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/chip-on-shoulder",
+      "https://www.collinsdictionary.com/dictionary/english/a-chip-on-ones-shoulder"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/chip-on-shoulder",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a chip on one's shoulder"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-chip-on-ones-shoulder",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a chip on one's shoulder"
+      }
+    ]
+  },
+  {
+    "w": "wear one's heart on one's sleeve",
+    "t": "duygularını açıkça belli etmek",
+    "lit": "kalbini yeninin üstünde taşımak",
+    "s": "She wears her heart on her sleeve, so everyone knew she was disappointed.",
+    "form": "wears her heart on her sleeve",
+    "tr": "Duygularını açıkça belli ettiği için herkes hayal kırıklığına uğradığını anladı.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/wear-heart-on-sleeve",
+      "https://www.collinsdictionary.com/dictionary/english/wear-ones-heart-on-ones-sleeve"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/wear-heart-on-sleeve",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "wear one's heart on one's sleeve"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/wear-ones-heart-on-ones-sleeve",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "wear one's heart on one's sleeve"
+      }
+    ]
+  },
+  {
+    "w": "put one's foot down",
+    "t": "kesin tavır koymak",
+    "lit": "ayağını yere bastırmak",
+    "s": "The noise continued until our neighbour put her foot down.",
+    "form": "put her foot down",
+    "tr": "Komşumuz kesin tavır koyana kadar gürültü sürdü.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/put-foot-down?topic=moving-quickly",
+      "https://www.collinsdictionary.com/dictionary/english/put-ones-foot-down"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/put-foot-down?topic=moving-quickly",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put one's foot down"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/put-ones-foot-down",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put one's foot down"
+      }
+    ]
+  },
+  {
+    "w": "put one's foot in one's mouth",
+    "t": "düşünmeden uygunsuz bir şey söylemek",
+    "lit": "ayağını ağzına koymak",
+    "s": "I put my foot in my mouth by asking about his cancelled wedding.",
+    "form": "put my foot in my mouth",
+    "tr": "İptal olan düğününü sorarak düşünmeden uygunsuz bir şey söyledim.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/put-foot-in-mouth",
+      "https://www.collinsdictionary.com/dictionary/english/put-ones-foot-in-ones-mouth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/put-foot-in-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put one's foot in one's mouth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/put-ones-foot-in-ones-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put one's foot in one's mouth"
+      }
+    ]
+  },
+  {
+    "w": "stand on one's own two feet",
+    "t": "kendi ayakları üzerinde durmak",
+    "lit": "kendi iki ayağı üzerinde dikilmek",
+    "s": "After graduation, she wanted to stand on her own two feet.",
+    "form": "stand on her own two feet",
+    "tr": "Mezun olduktan sonra kendi ayakları üzerinde durmak istedi.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/learner-english/stand-on-your-own-two-feet",
+      "https://www.collinsdictionary.com/dictionary/english/stand-on-your-own-two-feet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/learner-english/stand-on-your-own-two-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "stand on one's own two feet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/stand-on-your-own-two-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "stand on one's own two feet"
+      }
+    ]
+  },
+  {
+    "w": "be head and shoulders above",
+    "t": "açık ara üstün olmak",
+    "lit": "baş ve omuzlar kadar yukarıda olmak",
+    "s": "This design is head and shoulders above the others.",
+    "form": "is head and shoulders above",
+    "tr": "Bu tasarım diğerlerinden açık ara üstün.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/head-and-shoulders-above",
+      "https://www.collinsdictionary.com/dictionary/english/head-and-shoulders-above"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/head-and-shoulders-above",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be head and shoulders above"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/head-and-shoulders-above",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be head and shoulders above"
+      }
+    ]
+  },
+  {
+    "w": "pay through the nose",
+    "t": "çok yüksek bedel ödemek",
+    "lit": "burun yoluyla ödemek",
+    "s": "We paid through the nose for a room during the festival.",
+    "form": "paid through the nose",
+    "tr": "Festival sırasında bir odaya çok yüksek bedel ödedik.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/pay-through-the-nose",
+      "https://www.collinsdictionary.com/dictionary/english/pay-through-the-nose"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/pay-through-the-nose",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pay through the nose"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pay-through-the-nose",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pay through the nose"
+      }
+    ]
+  },
+  {
+    "w": "cost an arm and a leg",
+    "t": "çok pahalıya mal olmak",
+    "lit": "bir kol ve bir bacağa mal olmak",
+    "s": "Repairing that rare engine will cost an arm and a leg.",
+    "form": "cost an arm and a leg",
+    "tr": "Bu nadir motoru tamir ettirmek çok pahalıya mal olacak.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/cost-an-arm-and-a-leg-a-small-fortune?topic=costs-expenses",
+      "https://www.collinsdictionary.com/dictionary/english/cost-an-arm-and-a-leg"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/cost-an-arm-and-a-leg-a-small-fortune?topic=costs-expenses",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "cost an arm and a leg"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/cost-an-arm-and-a-leg",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "cost an arm and a leg"
+      }
+    ]
+  },
+  {
+    "w": "twist someone's arm",
+    "t": "ikna etmek için baskı yapmak",
+    "lit": "birinin kolunu bükmek",
+    "s": "You won't need to twist my arm to join that picnic.",
+    "form": "twist my arm",
+    "tr": "O pikniğe katılmam için bana baskı yapmana gerek yok.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/dictionary/english/twist-arm",
+      "https://www.collinsdictionary.com/dictionary/english/twist-someones-arm"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/twist-arm",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "twist someone's arm"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/twist-someones-arm",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "twist someone's arm"
+      }
+    ]
+  },
+  {
+    "w": "have one's back to the wall",
+    "t": "kaçış yolu kalmamak",
+    "lit": "sırtı duvara dayanmış olmak",
+    "s": "With the deadline tomorrow, we have our backs to the wall.",
+    "form": "have our backs to the wall",
+    "tr": "Son tarih yarın olduğu için kaçış yolumuz kalmadı.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-back-to-against-the-wall?topic=experiencing-difficulties",
+      "https://www.collinsdictionary.com/us/dictionary/english/with-ones-back-to-the-wall"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-back-to-against-the-wall?topic=experiencing-difficulties",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's back to the wall"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/with-ones-back-to-the-wall",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's back to the wall"
+      }
+    ]
+  },
+  {
+    "w": "have one's head in the clouds",
+    "t": "gerçeklerden kopuk hayaller kurmak",
+    "lit": "başı bulutların içinde olmak",
+    "s": "He has his head in the clouds and forgets the actual budget.",
+    "form": "has his head in the clouds",
+    "tr": "Gerçeklerden kopuk hayaller kuruyor ve gerçek bütçeyi unutuyor.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-head-in-the-clouds",
+      "https://www.collinsdictionary.com/dictionary/english/have-ones-head-in-the-clouds"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-head-in-the-clouds",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's head in the clouds"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-ones-head-in-the-clouds",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's head in the clouds"
+      }
+    ]
+  },
+  {
+    "w": "have one's head screwed on",
+    "t": "sağduyulu olmak",
+    "lit": "kafası vidalanmış olmak",
+    "s": "She has her head screwed on and checked every condition before signing.",
+    "form": "has her head screwed on",
+    "tr": "Sağduyulu davranıp imzalamadan önce bütün koşulları kontrol etti.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-your-head-screwed-on-the-right-way",
+      "https://www.collinsdictionary.com/dictionary/english/have-ones-head-screwed-on"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-your-head-screwed-on-the-right-way",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's head screwed on"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-ones-head-screwed-on",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's head screwed on"
+      }
+    ]
+  },
+  {
+    "w": "keep one's nose to the grindstone",
+    "t": "ara vermeden sıkı çalışmak",
+    "lit": "burnunu bileği taşında tutmak",
+    "s": "Until Friday, we must keep our noses to the grindstone.",
+    "form": "keep our noses to the grindstone",
+    "tr": "Cumaya kadar ara vermeden sıkı çalışmalıyız.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/keep-nose-to-the-grindstone",
+      "https://www.collinsdictionary.com/dictionary/english/keep-your-nose-to-the-grindstone"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/keep-nose-to-the-grindstone",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's nose to the grindstone"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-nose-to-the-grindstone",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's nose to the grindstone"
+      }
+    ]
+  },
+  {
+    "w": "get one's foot in the door",
+    "t": "bir alana girmek için ilk fırsatı yakalamak",
+    "lit": "ayağını kapının içine sokmak",
+    "s": "That internship helped her get her foot in the door.",
+    "form": "get her foot in the door",
+    "tr": "O staj onun alana girmek için ilk fırsatı yakalamasına yardımcı oldu.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-a-foot-in-the-door",
+      "https://www.collinsdictionary.com/dictionary/english/get-a-foot-in-the-door"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-a-foot-in-the-door",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get one's foot in the door"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-a-foot-in-the-door",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get one's foot in the door"
+      }
+    ]
+  },
+  {
+    "w": "cut one's teeth",
+    "t": "ilk mesleki deneyimini kazanmak",
+    "lit": "dişlerini kesmek",
+    "s": "She cut her teeth on small local newspapers.",
+    "form": "cut her teeth",
+    "tr": "İlk mesleki deneyimini küçük yerel gazetelerde kazandı.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/cut-political-professional-etc-teeth",
+      "https://www.collinsdictionary.com/dictionary/english/cut-your-teeth-doing-something"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/cut-political-professional-etc-teeth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "cut one's teeth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/cut-your-teeth-doing-something",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "cut one's teeth"
+      }
+    ]
+  },
+  {
+    "w": "put one's shoulder to the wheel",
+    "t": "bir işe bütün gücüyle girişmek",
+    "lit": "omzunu tekerleğe dayamak",
+    "s": "We put our shoulders to the wheel to finish on time.",
+    "form": "put our shoulders to the wheel",
+    "tr": "Zamanında bitirmek için bütün gücümüzle işe giriştik.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/thesaurus/put-one-s-shoulder-to-the-wheel",
+      "https://www.collinsdictionary.com/dictionary/english/put-your-shoulder-to-the-wheel"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/thesaurus/put-one-s-shoulder-to-the-wheel",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put one's shoulder to the wheel"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/put-your-shoulder-to-the-wheel",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put one's shoulder to the wheel"
+      }
+    ]
+  },
+  {
+    "w": "work one's fingers to the bone",
+    "t": "çok ağır biçimde çalışmak",
+    "lit": "parmaklarını kemiğe kadar çalıştırmak",
+    "s": "They worked their fingers to the bone for that harvest.",
+    "form": "worked their fingers to the bone",
+    "tr": "O hasat için çok ağır biçimde çalıştılar.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/work-fingers-to-the-bone",
+      "https://www.collinsdictionary.com/dictionary/english/work-your-fingers-to-the-bone"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/work-fingers-to-the-bone",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "work one's fingers to the bone"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/work-your-fingers-to-the-bone",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "work one's fingers to the bone"
+      }
+    ]
+  },
+  {
+    "w": "be on the back foot",
+    "t": "savunmada ve dezavantajlı konumda olmak",
+    "lit": "arka ayağın üstünde olmak",
+    "s": "We were on the back foot after that unexpected question.",
+    "form": "were on the back foot",
+    "tr": "O beklenmedik sorudan sonra savunmada ve dezavantajlı konumdaydık.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-the-back-foot",
+      "https://www.collinsdictionary.com/dictionary/english/on-the-back-foot"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-the-back-foot",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the back foot"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-the-back-foot",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the back foot"
+      }
+    ]
+  },
+  {
+    "w": "be down in the mouth",
+    "t": "üzgün ve keyifsiz görünmek",
+    "lit": "ağız tarafında aşağıda olmak",
+    "s": "You are down in the mouth today; what happened?",
+    "form": "are down in the mouth",
+    "tr": "Üzgün ve keyifsiz görünüyorsun; bir şey mi oldu?",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-down-in-the-mouth?topic=feeling-sad-and-unhappy",
+      "https://www.collinsdictionary.com/dictionary/english/down-in-the-mouth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-down-in-the-mouth?topic=feeling-sad-and-unhappy",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be down in the mouth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/down-in-the-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be down in the mouth"
+      }
+    ]
+  },
+  {
+    "w": "jump out of one's skin",
+    "t": "korkudan sıçramak",
+    "lit": "derisinden dışarı sıçramak",
+    "s": "I nearly jumped out of my skin when the alarm sounded.",
+    "form": "jumped out of my skin",
+    "tr": "Alarm çalınca neredeyse korkudan sıçradım.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/jump-out-of-skin",
+      "https://www.collinsdictionary.com/dictionary/english/jump-out-of-your-skin"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/jump-out-of-skin",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "jump out of one's skin"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/jump-out-of-your-skin",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "jump out of one's skin"
+      }
+    ]
+  },
+  {
+    "w": "make one's blood run cold",
+    "t": "insanın içini korkuyla ürpertmek",
+    "lit": "kanını soğuk akıtmak",
+    "s": "That strange noise made my blood run cold.",
+    "form": "made my blood run cold",
+    "tr": "O garip ses içimi korkuyla ürpertti.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/make-blood-run-cold",
+      "https://www.collinsdictionary.com/dictionary/english/make-your-blood-run-cold"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/make-blood-run-cold",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make one's blood run cold"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/make-your-blood-run-cold",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make one's blood run cold"
+      }
+    ]
+  },
+  {
+    "w": "make one's blood boil",
+    "t": "birini çok öfkelendirmek",
+    "lit": "birinin kanını kaynatmak",
+    "s": "The deliberate waste made my blood boil.",
+    "form": "made my blood boil",
+    "tr": "O bilerek yapılan israf beni çok öfkelendirdi.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/make-blood-boil?topic=causing-feelings-of-anger-and-displeasure",
+      "https://www.collinsdictionary.com/dictionary/english/make-your-blood-boil"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/make-blood-boil?topic=causing-feelings-of-anger-and-displeasure",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make one's blood boil"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/make-your-blood-boil",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make one's blood boil"
+      }
+    ]
+  },
+  {
+    "w": "get hot under the collar",
+    "t": "kızıp gerilmek",
+    "lit": "yakanın altında ısınmak",
+    "s": "He got hot under the collar about the parking fine.",
+    "form": "got hot under the collar",
+    "tr": "Park cezası yüzünden kızıp gerildi.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/hot-under-the-collar",
+      "https://www.collinsdictionary.com/dictionary/english/get-hot-under-the-collar"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hot-under-the-collar",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get hot under the collar"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-hot-under-the-collar",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get hot under the collar"
+      }
+    ]
+  },
+  {
+    "w": "hold one's tongue",
+    "t": "söyleyeceğini söylemeyip susmak",
+    "lit": "dilini tutmak",
+    "s": "I held my tongue until the guests left.",
+    "form": "held my tongue",
+    "tr": "Konuklar gidene kadar söyleyeceğimi söylemeyip sustum.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/hold-tongue",
+      "https://www.collinsdictionary.com/dictionary/english/to-hold-your-tongue"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hold-tongue",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hold one's tongue"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-hold-your-tongue",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hold one's tongue"
+      }
+    ]
+  },
+  {
+    "w": "bite one's tongue",
+    "t": "söylemek istediğini bastırmak",
+    "lit": "dilini ısırmak",
+    "s": "She bit her tongue instead of criticising his gift.",
+    "form": "bit her tongue",
+    "tr": "Hediyesini eleştirmek yerine söylemek istediğini bastırdı.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/bite-tongue",
+      "https://www.collinsdictionary.com/dictionary/english/bite-your-tongue"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/bite-tongue",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bite one's tongue"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bite-your-tongue",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bite one's tongue"
+      }
+    ]
+  },
+  {
+    "w": "zip one's lip",
+    "t": "ağzını sıkı tutmak",
+    "lit": "dudağının fermuarını kapatmak",
+    "s": "Just zip your lip until we announce the result.",
+    "form": "zip your lip",
+    "tr": "Biz sonucu açıklayana kadar ağzını sıkı tut.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/zip-your-lip",
+      "https://www.collinsdictionary.com/de/submission/7987/Zip%2Bone%27s%2Blip"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/zip-your-lip",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "zip one's lip"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/de/submission/7987/Zip%2Bone%27s%2Blip",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "zip one's lip"
+      }
+    ]
+  },
+  {
+    "w": "put words into someone's mouth",
+    "t": "birine söylemediği sözleri söyletmiş gibi davranmak",
+    "lit": "birinin ağzına sözcükler koymak",
+    "s": "Don't put words into my mouth; I never promised that.",
+    "form": "put words into my mouth",
+    "tr": "Bana söylemediğim sözleri söyletmiş gibi davranma; bunu hiç vadetmedim.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/put-words-in-into-mouth",
+      "https://www.collinsdictionary.com/dictionary/english/to-put-words-into-someones-mouth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/put-words-in-into-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put words into someone's mouth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-put-words-into-someones-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put words into someone's mouth"
+      }
+    ]
+  },
+  {
+    "w": "rack one's brains",
+    "t": "bir şeyi çözmek için çok düşünmek",
+    "lit": "beynini işkence tezgâhına germek",
+    "s": "I racked my brains but couldn't remember her surname.",
+    "form": "racked my brains",
+    "tr": "Çok düşündüm ama soyadını hatırlayamadım.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/rack-brains?topic=solving-and-solutions",
+      "https://www.collinsdictionary.com/dictionary/english/rack-your-brains"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/rack-brains?topic=solving-and-solutions",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "rack one's brains"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/rack-your-brains",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "rack one's brains"
+      }
+    ]
+  },
+  {
+    "w": "have a brainwave",
+    "t": "aklına birden iyi bir fikir gelmek",
+    "lit": "bir beyin dalgasına sahip olmak",
+    "s": "I had a brainwave: why not reuse the old shelves?",
+    "form": "had a brainwave",
+    "tr": "Birden iyi bir fikir geldi; eski rafları neden kullanmıyoruz?",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/brainwave",
+      "https://www.collinsdictionary.com/dictionary/english/brainwave"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/brainwave",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a brainwave"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/brainwave",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a brainwave"
+      }
+    ]
+  },
+  {
+    "w": "have on the tip of one's tongue",
+    "t": "bildiği sözcüğü bir türlü hatırlayamamak",
+    "lit": "bir şeyi dilinin ucunda bulundurmak",
+    "s": "I have her name on the tip of my tongue.",
+    "form": "have her name on the tip of my tongue",
+    "tr": "Adını biliyorum ama bir türlü hatırlayamıyorum.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "have something on the tip of one's tongue",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-the-tip-of-tongue",
+      "https://www.collinsdictionary.com/dictionary/english/something-is-on-the-tip-of-your-tongue"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-the-tip-of-tongue",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have something on the tip of one's tongue"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/something-is-on-the-tip-of-your-tongue",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have something on the tip of one's tongue"
+      }
+    ]
+  },
+  {
+    "w": "know like the back of one's hand",
+    "t": "bir yeri veya şeyi çok iyi bilmek",
+    "lit": "bir şeyi elinin tersi gibi bilmek",
+    "s": "He knows this town like the back of his hand.",
+    "form": "knows this town like the back of his hand",
+    "tr": "Bu kasabayı çok iyi biliyor.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "know something like the back of one's hand",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/know-like-the-back-of-hand",
+      "https://www.collinsdictionary.com/dictionary/english/know-something-like-the-back-of-your-hand"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/know-like-the-back-of-hand",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "know something like the back of one's hand"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/know-something-like-the-back-of-your-hand",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "know something like the back of one's hand"
+      }
+    ]
+  },
+  {
+    "w": "keep one's eyes peeled",
+    "t": "gözünü dört açmak",
+    "lit": "gözlerinin kabuğunu soymak",
+    "s": "Keep your eyes peeled for the blue sign.",
+    "form": "Keep your eyes peeled",
+    "tr": "Mavi tabelayı bulmak için gözünü dört aç.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/keep-eyes-peeled-skinned?topic=using-the-eyes",
+      "https://www.collinsdictionary.com/dictionary/english/keep-your-eyes-peeled"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/keep-eyes-peeled-skinned?topic=using-the-eyes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's eyes peeled"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-eyes-peeled",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's eyes peeled"
+      }
+    ]
+  },
+  {
+    "w": "have eyes in the back of one's head",
+    "t": "görmediği yerde olanları bile fark etmek",
+    "lit": "kafasının arkasında gözleri olmak",
+    "s": "Our teacher seems to have eyes in the back of her head.",
+    "form": "have eyes in the back of her head",
+    "tr": "Öğretmenimiz görmediği yerde olanları bile fark ediyor gibi görünüyor.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-eyes-in-the-back-of-head",
+      "https://www.collinsdictionary.com/dictionary/english/have-eyes-in-the-back-of-your-head"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-eyes-in-the-back-of-head",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have eyes in the back of one's head"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-eyes-in-the-back-of-your-head",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have eyes in the back of one's head"
+      }
+    ]
+  },
+  {
+    "w": "get under someone's skin",
+    "t": "birini sürekli rahatsız etmek",
+    "lit": "birinin derisinin altına girmek",
+    "s": "Those repeated comments get under my skin.",
+    "form": "get under my skin",
+    "tr": "O tekrarlanan yorumlar beni sürekli rahatsız ediyor.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-under-skin",
+      "https://www.collinsdictionary.com/us/dictionary/english/get-under-someones-skin"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-under-skin",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get under someone's skin"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/get-under-someones-skin",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get under someone's skin"
+      }
+    ]
+  },
+  {
+    "w": "rub shoulders with",
+    "t": "önemli kişilerle aynı ortamlarda bulunmak",
+    "lit": "omuzlarını başkalarına sürtmek",
+    "s": "At the festival, students rubbed shoulders with famous directors.",
+    "form": "rubbed shoulders with",
+    "tr": "Festivalde öğrenciler ünlü yönetmenlerle aynı ortamlarda bulundu.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/rub-shoulders-with?topic=closeness-in-distance-and-time",
+      "https://www.collinsdictionary.com/dictionary/english/rub-shoulders-with"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/rub-shoulders-with?topic=closeness-in-distance-and-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "rub shoulders with"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/rub-shoulders-with",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "rub shoulders with"
+      }
+    ]
+  },
+  {
+    "w": "bend over backwards",
+    "t": "yardım etmek için aşırı çaba göstermek",
+    "lit": "geriye doğru bükülmek",
+    "s": "The staff bent over backwards to accommodate our group.",
+    "form": "bent over backwards",
+    "tr": "Personel grubumuza yer bulmak için aşırı çaba gösterdi.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/bend-over-backwards",
+      "https://www.collinsdictionary.com/dictionary/english/bend-over-backwards"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/bend-over-backwards",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bend over backwards"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bend-over-backwards",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bend over backwards"
+      }
+    ]
+  },
+  {
+    "w": "stick one's neck out",
+    "t": "kendini riske atmak",
+    "lit": "boynunu dışarı uzatmak",
+    "s": "I stuck my neck out by defending that unpopular proposal.",
+    "form": "stuck my neck out",
+    "tr": "O sevilmeyen öneriyi savunarak kendimi riske attım.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/stick-neck-out",
+      "https://www.collinsdictionary.com/dictionary/english/stick-your-neck-out"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/stick-neck-out",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "stick one's neck out"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/stick-your-neck-out",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "stick one's neck out"
+      }
+    ]
+  },
+  {
+    "w": "give the cold shoulder",
+    "t": "birine bilerek soğuk davranmak",
+    "lit": "birine soğuk omuz vermek",
+    "s": "After our argument, he gave me the cold shoulder.",
+    "form": "gave me the cold shoulder",
+    "tr": "Tartışmamızdan sonra bana bilerek soğuk davrandı.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "give someone the cold shoulder",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/give-the-cold-shoulder",
+      "https://www.collinsdictionary.com/dictionary/english/give-someone-the-cold-shoulder"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/give-the-cold-shoulder",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "give someone the cold shoulder"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/give-someone-the-cold-shoulder",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "give someone the cold shoulder"
+      }
+    ]
+  },
+  {
+    "w": "turn one's back on",
+    "t": "birini desteksiz bırakıp yüz çevirmek",
+    "lit": "sırtını dönmek",
+    "s": "Her friends refused to turn their backs on her.",
+    "form": "turn their backs on",
+    "tr": "Arkadaşları onu desteksiz bırakıp yüz çevirmeyi reddetti.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/turn-back-on",
+      "https://www.collinsdictionary.com/dictionary/english/to-turn-your-back-on-someone"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/turn-back-on",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "turn one's back on"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-turn-your-back-on-someone",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "turn one's back on"
+      }
+    ]
+  },
+  {
+    "w": "be an old hand",
+    "t": "bir işte çok deneyimli olmak",
+    "lit": "eski bir el olmak",
+    "s": "With twenty tours completed, she is an old hand.",
+    "form": "is an old hand",
+    "tr": "Yirmi tur tamamladığından bu işte çok deneyimlidir.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/old-hand",
+      "https://www.collinsdictionary.com/dictionary/english/an-old-hand"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/old-hand",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be an old hand"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/an-old-hand",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be an old hand"
+      }
+    ]
+  },
+  {
+    "w": "be wet behind the ears",
+    "t": "henüz deneyimsiz olmak",
+    "lit": "kulaklarının arkası ıslak olmak",
+    "s": "The new assistant is wet behind the ears but learns quickly.",
+    "form": "is wet behind the ears",
+    "tr": "Yeni asistan henüz deneyimsiz ama çabuk öğreniyor.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-wet-behind-the-ears",
+      "https://www.collinsdictionary.com/dictionary/english/wet-behind-the-ears"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-wet-behind-the-ears",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be wet behind the ears"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/wet-behind-the-ears",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be wet behind the ears"
+      }
+    ]
+  },
+  {
+    "w": "be a shoulder to cry on",
+    "t": "dertleşilecek güvenilir biri olmak",
+    "lit": "üstünde ağlanacak bir omuz olmak",
+    "s": "When work gets difficult, he is a shoulder to cry on.",
+    "form": "is a shoulder to cry on",
+    "tr": "İş zorlaştığında dertleşilecek güvenilir biridir.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/shoulder-to-cry-on?topic=sympathy-and-compassion",
+      "https://www.collinsdictionary.com/dictionary/english/a-shoulder-to-cry-on"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/shoulder-to-cry-on?topic=sympathy-and-compassion",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a shoulder to cry on"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-shoulder-to-cry-on",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a shoulder to cry on"
+      }
+    ]
+  },
+  {
+    "w": "be joined at the hip",
+    "t": "birbirinden hiç ayrılmamak",
+    "lit": "kalçadan birleşmiş olmak",
+    "s": "Those childhood friends are joined at the hip.",
+    "form": "are joined at the hip",
+    "tr": "O çocukluk arkadaşları birbirlerinden hiç ayrılmazlar.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/joined-at-the-hip",
+      "https://dictionary.cambridge.org/dictionary/english/joined"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/joined-at-the-hip",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be joined at the hip"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/joined",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be joined at the hip"
+      }
+    ]
+  },
+  {
+    "w": "wash one's hands of",
+    "t": "bir işle artık ilgilenmeyip sorumluluğunu reddetmek",
+    "lit": "ellerini bir şeyden yıkamak",
+    "s": "After repeated warnings, she washed her hands of the project.",
+    "form": "washed her hands of",
+    "tr": "Tekrarlanan uyarılardan sonra projeyle ilgilenmeyip sorumluluğunu reddetti.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/wash-hands-of",
+      "https://www.collinsdictionary.com/dictionary/english/to-wash-your-hands-of-something"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/wash-hands-of",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "wash one's hands of"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-wash-your-hands-of-something",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "wash one's hands of"
+      }
+    ]
+  },
+  {
+    "w": "rub salt into the wound",
+    "t": "acı veren durumu daha da kötüleştirmek",
+    "lit": "yaraya tuz sürtmek",
+    "s": "Mentioning her lost bonus rubbed salt into the wound.",
+    "form": "rubbed salt into the wound",
+    "tr": "Kaybettiği ikramiyeyi hatırlatmak acı veren durumu daha da kötüleştirdi.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/rub-salt-in-into-the-wound",
+      "https://www.collinsdictionary.com/dictionary/english/rub-salt-into-the-wound"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/rub-salt-in-into-the-wound",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "rub salt into the wound"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/rub-salt-into-the-wound",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "rub salt into the wound"
+      }
+    ]
+  },
+  {
+    "w": "shoot oneself in the foot",
+    "t": "kendi işine kendi eliyle zarar vermek",
+    "lit": "kendi ayağına ateş etmek",
+    "s": "By insulting customers, you shoot yourself in the foot.",
+    "form": "shoot yourself in the foot",
+    "tr": "Müşterilere hakaret ederek kendi işine kendi elinle zarar veriyorsun.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/shoot-in-the-foot",
+      "https://www.collinsdictionary.com/dictionary/english/shoot-yourself-in-the-foot"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/shoot-in-the-foot",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "shoot oneself in the foot"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/shoot-yourself-in-the-foot",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "shoot oneself in the foot"
+      }
+    ]
+  },
+  {
+    "w": "get back on one's feet",
+    "t": "zor dönemden sonra yeniden toparlanmak",
+    "lit": "yeniden ayaklarının üstüne kalkmak",
+    "s": "That grant helped us get back on our feet.",
+    "form": "get back on our feet",
+    "tr": "O hibe zor dönemden sonra yeniden toparlanmamıza yardımcı oldu.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/back-on-feet",
+      "https://www.collinsdictionary.com/dictionary/english-french/to-get-back-on-one-s-feet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/back-on-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get back on one's feet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-french/to-get-back-on-one-s-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get back on one's feet"
+      }
+    ]
+  },
+  {
+    "w": "have time on one's hands",
+    "t": "boş zamanı çok olmak",
+    "lit": "ellerinde zaman olmak",
+    "s": "During the delay, we had time on our hands.",
+    "form": "had time on our hands",
+    "tr": "Gecikme sırasında boş zamanımız çoktu.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/time-on-hands",
+      "https://www.collinsdictionary.com/dictionary/english/time-on-ones-hands"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/time-on-hands",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have time on one's hands"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/time-on-ones-hands",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have time on one's hands"
+      }
+    ]
+  },
+  {
+    "w": "be long in the tooth",
+    "t": "yaşlanmış olmak",
+    "lit": "dişi uzamış olmak",
+    "s": "That computer is long in the tooth but still works.",
+    "form": "is long in the tooth",
+    "tr": "O bilgisayar yaşlanmış ama hâlâ çalışıyor.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-long-in-the-tooth",
+      "https://www.collinsdictionary.com/dictionary/english/long-in-the-tooth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-long-in-the-tooth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be long in the tooth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/long-in-the-tooth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be long in the tooth"
+      }
+    ]
+  },
+  {
+    "w": "be on one's last legs",
+    "t": "artık ömrünün sonuna gelmek",
+    "lit": "son bacaklarının üstünde olmak",
+    "s": "That old tollbooth is on its last legs.",
+    "form": "is on its last legs",
+    "tr": "O eski gişe artık ömrünün sonuna gelmiş.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-last-legs",
+      "https://www.collinsdictionary.com/dictionary/english/on-ones-last-legs"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-last-legs",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on one's last legs"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-ones-last-legs",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on one's last legs"
+      }
+    ]
+  },
+  {
+    "w": "keep one's head above water",
+    "t": "güçlükler içinde ayakta kalabilmek",
+    "lit": "başını suyun üstünde tutmak",
+    "s": "With extra shifts, we kept our heads above water.",
+    "form": "kept our heads above water",
+    "tr": "Ek vardiyalarla güçlükler içinde ayakta kalabildik.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/keep-head-above-water",
+      "https://www.collinsdictionary.com/dictionary/english/keep-your-head-above-water"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/keep-head-above-water",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's head above water"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-head-above-water",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's head above water"
+      }
+    ]
+  },
+  {
+    "w": "be a close shave",
+    "t": "bir tehlikeden kıl payı kurtulmak",
+    "lit": "yakından bir tıraş olmak",
+    "s": "That falling branch was a close shave.",
+    "form": "was a close shave",
+    "tr": "Düşen o daldan kıl payı kurtulduk.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/close-shave",
+      "https://www.collinsdictionary.com/dictionary/english/a-close-shave"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/close-shave",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a close shave"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-close-shave",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a close shave"
+      }
+    ]
+  },
+  {
+    "w": "be like pulling teeth",
+    "t": "sonuç almak çok zor olmak",
+    "lit": "diş çekmek gibi olmak",
+    "s": "Getting a reply was like pulling teeth.",
+    "form": "was like pulling teeth",
+    "tr": "Cevap almak çok zor oldu.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/like-pulling-teeth",
+      "https://www.collinsdictionary.com/dictionary/english/like-pulling-teeth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/like-pulling-teeth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be like pulling teeth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/like-pulling-teeth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be like pulling teeth"
+      }
+    ]
+  },
+  {
+    "w": "win hands down",
+    "t": "rahatça açık farkla kazanmak",
+    "lit": "eller aşağıdayken kazanmak",
+    "s": "With that design, she won hands down.",
+    "form": "won hands down",
+    "tr": "O tasarımla rahatça açık farkla kazandı.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/win-hands-down",
+      "https://dictionary.cambridge.org/dictionary/english/hands-down"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/win-hands-down",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "win hands down"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hands-down",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "win hands down"
+      }
+    ]
+  },
+  {
+    "w": "have at one's fingertips",
+    "t": "bilgiye hemen erişebilmek",
+    "lit": "bir şeyi parmak uçlarında bulundurmak",
+    "s": "She has every timetable at her fingertips.",
+    "form": "has every timetable at her fingertips",
+    "tr": "Bütün sefer çizelgelerine hemen erişebiliyor.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "have something at one's fingertips",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/at-fingertips?topic=understanding-and-comprehending",
+      "https://www.collinsdictionary.com/dictionary/english/at-your-fingertips"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/at-fingertips?topic=understanding-and-comprehending",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have something at one's fingertips"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/at-your-fingertips",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have something at one's fingertips"
+      }
+    ]
+  },
+  {
+    "w": "dig one's heels in",
+    "t": "inatla tutumunu değiştirmemek",
+    "lit": "topuklarını yere saplamak",
+    "s": "Over the timetable, both sides dug their heels in.",
+    "form": "dug their heels in",
+    "tr": "Takvim konusunda iki taraf da inatla tutumunu değiştirmedi.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/dig-heels-in",
+      "https://www.collinsdictionary.com/dictionary/english/dig-in-your-heels"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/dig-heels-in",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "dig one's heels in"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/dig-in-your-heels",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "dig one's heels in"
+      }
+    ]
+  },
+  {
+    "w": "keep one's cards close to one's chest",
+    "t": "planlarını kimseye açıklamamak",
+    "lit": "kartlarını göğsüne yakın tutmak",
+    "s": "During negotiations, he kept his cards close to his chest.",
+    "form": "kept his cards close to his chest",
+    "tr": "Pazarlık sırasında planlarını kimseye açıklamadı.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/keep-hold-cards-close-to-chest?q=keep-close",
+      "https://www.collinsdictionary.com/dictionary/english/keep-your-cards-close-to-your-chest"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/keep-hold-cards-close-to-chest?q=keep-close",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's cards close to one's chest"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-cards-close-to-your-chest",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's cards close to one's chest"
+      }
+    ]
+  },
+  {
+    "w": "follow in someone's footsteps",
+    "t": "birinin yolunu izlemek",
+    "lit": "birinin ayak izlerini takip etmek",
+    "s": "She followed in her mother's footsteps and became a doctor.",
+    "form": "followed in her mother's footsteps",
+    "tr": "Annesinin yolunu izleyip doktor oldu.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/follow-in-footsteps",
+      "https://www.collinsdictionary.com/dictionary/english/follow-in-someones-footsteps"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/follow-in-footsteps",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "follow in someone's footsteps"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/follow-in-someones-footsteps",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "follow in someone's footsteps"
+      }
+    ]
+  },
+  {
+    "w": "throw one's hat into the ring",
+    "t": "bir görev için adaylığını açıklamak",
+    "lit": "şapkasını ringe atmak",
+    "s": "For the chairmanship, she threw her hat into the ring.",
+    "form": "threw her hat into the ring",
+    "tr": "Başkanlık için adaylığını açıkladı.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/throw-hat-into-the-ring?topic=taking-part-and-getting-involved",
+      "https://www.collinsdictionary.com/dictionary/english/throw-your-hat-into-the-ring"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/throw-hat-into-the-ring?topic=taking-part-and-getting-involved",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw one's hat into the ring"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/throw-your-hat-into-the-ring",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw one's hat into the ring"
+      }
+    ]
+  },
+  {
+    "w": "put heads together",
+    "t": "birlikte çözüm düşünmek",
+    "lit": "kafalarını bir araya koymak",
+    "s": "Let's put our heads together and redesign the entrance.",
+    "form": "put our heads together",
+    "tr": "Birlikte çözüm düşünüp girişi yeniden tasarlayalım.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/put-heads-together",
+      "https://www.collinsdictionary.com/dictionary/english/put-your-heads-together"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/put-heads-together",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put one's heads together"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/put-your-heads-together",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put one's heads together"
+      }
+    ],
+    "pat": "put your heads together"
+  },
+  {
+    "w": "sit on one's hands",
+    "t": "harekete geçmeyip beklemek",
+    "lit": "ellerinin üstünde oturmak",
+    "s": "During the crisis, the board sat on its hands.",
+    "form": "sat on its hands",
+    "tr": "Kriz sırasında kurul harekete geçmeyip bekledi.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/sit-on-hands",
+      "https://www.collinsdictionary.com/dictionary/english/sit-on-your-hands"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/sit-on-hands",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "sit on one's hands"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/sit-on-your-hands",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "sit on one's hands"
+      }
+    ]
+  },
+  {
+    "w": "drag one's feet",
+    "t": "işi isteksizce ağırdan almak",
+    "lit": "ayaklarını sürüklemek",
+    "s": "The supplier dragged its feet over the refund.",
+    "form": "dragged its feet",
+    "tr": "Tedarikçi geri ödeme işini isteksizce ağırdan aldı.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/drag-feet",
+      "https://www.collinsdictionary.com/dictionary/english/drag-your-feet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/drag-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "drag one's feet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/drag-your-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "drag one's feet"
+      }
+    ]
+  },
+  {
+    "w": "find one's feet",
+    "t": "yeni bir ortama alışıp güven kazanmak",
+    "lit": "ayaklarını bulmak",
+    "s": "In the new role, she's finding her feet.",
+    "form": "finding her feet",
+    "tr": "Yeni görevinde ortama alışıp güven kazanıyor.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/find-feet",
+      "https://www.collinsdictionary.com/dictionary/english/find-your-feet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/find-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "find one's feet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/find-your-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "find one's feet"
+      }
+    ]
+  },
+  {
+    "w": "have green fingers",
+    "t": "bitki yetiştirmekte becerikli olmak",
+    "lit": "yeşil parmakları olmak",
+    "s": "Our neighbour has green fingers; every seed grows.",
+    "form": "has green fingers",
+    "tr": "Komşumuz bitki yetiştirmekte becerikli; her tohumu büyüyor.",
+    "theme": "body",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/green-fingers?topic=gardening-general-words",
+      "https://www.collinsdictionary.com/dictionary/english/green-fingers"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/green-fingers?topic=gardening-general-words",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have green fingers"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/green-fingers",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have green fingers"
+      }
+    ]
+  },
+  {
+    "w": "keep one's ear to the ground",
+    "t": "gelişmeleri dikkatle izlemek",
+    "lit": "kulağını yere dayalı tutmak",
+    "s": "For new vacancies, keep your ear to the ground.",
+    "form": "keep your ear to the ground",
+    "tr": "Yeni boş kadrolar için gelişmeleri dikkatle izle.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/keep-ear-to-the-ground",
+      "https://www.collinsdictionary.com/dictionary/english/keep-your-ear-to-the-ground"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/keep-ear-to-the-ground",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's ear to the ground"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-ear-to-the-ground",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's ear to the ground"
+      }
+    ]
+  },
+  {
+    "w": "have one's finger on the pulse",
+    "t": "güncel gelişmeleri yakından takip etmek",
+    "lit": "parmağı nabzın üstünde olmak",
+    "s": "This reporter has her finger on the pulse.",
+    "form": "has her finger on the pulse",
+    "tr": "Bu muhabir güncel gelişmeleri yakından takip ediyor.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/dictionary/english/have-keep-finger-on-the-pulse",
+      "https://www.collinsdictionary.com/dictionary/english/finger-on-the-pulse"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/have-keep-finger-on-the-pulse",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's finger on the pulse"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/finger-on-the-pulse",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's finger on the pulse"
+      }
+    ]
+  },
+  {
+    "w": "be a thorn in someone's side",
+    "t": "birine sürekli sorun çıkarmak",
+    "lit": "birinin yan tarafında diken olmak",
+    "s": "Those leaks are a thorn in our side.",
+    "form": "are a thorn in our side",
+    "tr": "O sızıntılar bize sürekli sorun çıkarıyor.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/thorn-in-side",
+      "https://www.collinsdictionary.com/dictionary/english/a-thorn-in-someones-side"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/thorn-in-side",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a thorn in someone's side"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-thorn-in-someones-side",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a thorn in someone's side"
+      }
+    ]
+  },
+  {
+    "w": "have a skeleton in the cupboard",
+    "t": "geçmişinde gizlediği utanç verici olay olmak",
+    "lit": "dolabında bir iskelet olmak",
+    "s": "The novel's hero has a skeleton in the cupboard.",
+    "form": "has a skeleton in the cupboard",
+    "tr": "Romanın kahramanının geçmişinde gizlediği utanç verici bir olay var.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/learner-english/have-a-skeleton-in-the-cupboard",
+      "https://www.collinsdictionary.com/dictionary/english/a-skeleton-in-the-cupboard"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/learner-english/have-a-skeleton-in-the-cupboard",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a skeleton in the cupboard"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-skeleton-in-the-cupboard",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a skeleton in the cupboard"
+      }
+    ]
+  },
+  {
+    "w": "pull the rug from under someone's feet",
+    "t": "birinin desteğini aniden çekmek",
+    "lit": "halıyı birinin ayaklarının altından çekmek",
+    "s": "The cancelled grant pulled the rug from under our feet.",
+    "form": "pulled the rug from under our feet",
+    "tr": "İptal edilen hibe desteğimizi aniden çekti.",
+    "theme": "body",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/pull-the-rug-carpet-from-under-feet",
+      "https://www.collinsdictionary.com/dictionary/english/pull-the-rug-from-under-someone-pull-the-rug-from-under-someones-feet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/pull-the-rug-carpet-from-under-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pull the rug from under someone's feet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pull-the-rug-from-under-someone-pull-the-rug-from-under-someones-feet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pull the rug from under someone's feet"
+      }
+    ]
+  }
+]

@@ -1,0 +1,1174 @@
+[
+  {
+    "w": "let the cat out of the bag",
+    "t": "sırrı ağzından kaçırmak",
+    "lit": "kediyi çantadan dışarı bırakmak",
+    "s": "Tom let the cat out of the bag about our surprise trip.",
+    "form": "let the cat out of the bag",
+    "tr": "Tom sürpriz yolculuğumuzun sırrını ağzından kaçırdı.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/let-the-cat-out-of-the-bag",
+      "https://www.collinsdictionary.com/dictionary/english/let-the-cat-out-of-the-bag"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/let-the-cat-out-of-the-bag",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "let the cat out of the bag"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/let-the-cat-out-of-the-bag",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "let the cat out of the bag"
+      }
+    ]
+  },
+  {
+    "w": "smell a rat",
+    "t": "bir terslikten şüphelenmek",
+    "lit": "sıçan kokusu almak",
+    "s": "When the seller demanded cash upfront, I smelled a rat.",
+    "form": "smelled a rat",
+    "tr": "Satıcı peşin nakit isteyince bir terslikten şüphelendim.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/smell-a-rat",
+      "https://www.collinsdictionary.com/dictionary/english/smell-a-rat"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/smell-a-rat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "smell a rat"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/smell-a-rat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "smell a rat"
+      }
+    ]
+  },
+  {
+    "w": "kill two birds with one stone",
+    "t": "tek işle iki sonuç almak",
+    "lit": "tek taşla iki kuş öldürmek",
+    "s": "Walking to the market lets me kill two birds with one stone: exercise and shopping.",
+    "form": "kill two birds with one stone",
+    "tr": "Pazara yürümek tek işle iki sonuç almamı sağlıyor; egzersiz ve alışveriş.",
+    "theme": "animals",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/kill-two-birds-with-one-stone",
+      "https://www.collinsdictionary.com/dictionary/english/kill-two-birds-with-one-stone"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/kill-two-birds-with-one-stone",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "kill two birds with one stone"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/kill-two-birds-with-one-stone",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "kill two birds with one stone"
+      }
+    ]
+  },
+  {
+    "w": "have bigger fish to fry",
+    "t": "uğraşacak daha önemli işleri olmak",
+    "lit": "kızartacak daha büyük balıkları olmak",
+    "s": "Ignore that petty complaint; we have bigger fish to fry.",
+    "form": "have bigger fish to fry",
+    "tr": "O önemsiz şikâyeti boş ver; uğraşacak daha önemli işlerimiz var.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-bigger-other-fish-to-fry?topic=being-important-and-having-importance",
+      "https://www.collinsdictionary.com/dictionary/english/bigger-fish-to-fry"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-bigger-other-fish-to-fry?topic=being-important-and-having-importance",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have bigger fish to fry"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bigger-fish-to-fry",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have bigger fish to fry"
+      }
+    ]
+  },
+  {
+    "w": "be a fish out of water",
+    "t": "bulunduğu ortamda kendini yabancı hissetmek",
+    "lit": "sudan çıkmış balık olmak",
+    "s": "At that technical conference, I was a fish out of water.",
+    "form": "was a fish out of water",
+    "tr": "O teknik konferansta kendimi bulunduğum ortama yabancı hissettim.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/fish-out-of-water",
+      "https://www.collinsdictionary.com/dictionary/english/fish-out-of-water"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/fish-out-of-water",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a fish out of water"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/fish-out-of-water",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a fish out of water"
+      }
+    ]
+  },
+  {
+    "w": "be a dark horse",
+    "t": "yetenekleri pek bilinmeyen kişi olmak",
+    "lit": "koyu renkli bir at olmak",
+    "s": "She is a dark horse; nobody knows how well she plays.",
+    "form": "is a dark horse",
+    "tr": "Yetenekleri pek bilinmiyor; ne kadar iyi oynadığını kimse bilmiyor.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/dictionary/english/dark-horse",
+      "https://www.collinsdictionary.com/dictionary/english/dark-horse"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/dark-horse",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a dark horse"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/dark-horse",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a dark horse"
+      }
+    ]
+  },
+  {
+    "w": "put the cart before the horse",
+    "t": "işlerin sırasını tersine çevirmek",
+    "lit": "arabayı atın önüne koymak",
+    "s": "Buying furniture before finding a flat is putting the cart before the horse.",
+    "form": "putting the cart before the horse",
+    "tr": "Ev bulmadan mobilya almak işlerin sırasını tersine çevirmektir.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/put-the-cart-before-the-horse?topic=planning-expecting-and-arranging",
+      "https://www.collinsdictionary.com/dictionary/english/put-the-cart-before-the-horse"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/put-the-cart-before-the-horse?topic=planning-expecting-and-arranging",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put the cart before the horse"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/put-the-cart-before-the-horse",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put the cart before the horse"
+      }
+    ]
+  },
+  {
+    "w": "get the lion's share",
+    "t": "en büyük payı almak",
+    "lit": "aslanın payını almak",
+    "s": "The largest supplier gets the lion's share of these contracts.",
+    "form": "gets the lion's share",
+    "tr": "Bu sözleşmelerin en büyük payını en büyük tedarikçi alıyor.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/lion-s-share",
+      "https://www.collinsdictionary.com/dictionary/english/lions-share"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/lion-s-share",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get the lion's share"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/lions-share",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get the lion's share"
+      }
+    ]
+  },
+  {
+    "w": "be a fly on the wall",
+    "t": "fark edilmeden olanları izlemek",
+    "lit": "duvardaki bir sinek olmak",
+    "s": "I'd love to be a fly on the wall during that negotiation.",
+    "form": "be a fly on the wall",
+    "tr": "O pazarlık sırasında fark edilmeden olanları izlemek isterdim.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/fly-on-the-wall",
+      "https://www.collinsdictionary.com/dictionary/english/a-fly-on-the-wall"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/fly-on-the-wall",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a fly on the wall"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-fly-on-the-wall",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a fly on the wall"
+      }
+    ]
+  },
+  {
+    "w": "open a can of worms",
+    "t": "bir sürü yeni sorun çıkarmak",
+    "lit": "bir kutu solucan açmak",
+    "s": "Changing that rule now could open a can of worms.",
+    "form": "open a can of worms",
+    "tr": "O kuralı şimdi değiştirmek bir sürü yeni sorun çıkarabilir.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/open-a-can-of-worms?q=open%2Ba%2Bcan%2Bof%2Bworms",
+      "https://www.collinsdictionary.com/dictionary/english/a-can-of-worms"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/open-a-can-of-worms?q=open%2Ba%2Bcan%2Bof%2Bworms",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "open a can of worms"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-can-of-worms",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "open a can of worms"
+      }
+    ]
+  },
+  {
+    "w": "stir up a hornet's nest",
+    "t": "büyük tepki veya kargaşa yaratmak",
+    "lit": "eşekarısı yuvasını karıştırmak",
+    "s": "His accusation stirred up a hornet's nest at the council.",
+    "form": "stirred up a hornet's nest",
+    "tr": "Suçlaması mecliste büyük tepki ve kargaşa yarattı.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/stir-up-a-hornets-nest",
+      "https://dictionary.cambridge.org/dictionary/english/hornet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/stir-up-a-hornets-nest",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "stir up a hornet's nest"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hornet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "stir up a hornet's nest"
+      }
+    ]
+  },
+  {
+    "w": "take the bull by the horns",
+    "t": "sorunun üstüne kararlılıkla gitmek",
+    "lit": "boğayı boynuzlarından tutmak",
+    "s": "We must take the bull by the horns and discuss the unpaid bills.",
+    "form": "take the bull by the horns",
+    "tr": "Sorunun üstüne kararlılıkla gidip ödenmemiş faturaları konuşmalıyız.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/take-the-bull-by-the-horns",
+      "https://www.collinsdictionary.com/dictionary/english/take-the-bull-by-the-horns"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/take-the-bull-by-the-horns",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take the bull by the horns"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/take-the-bull-by-the-horns",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take the bull by the horns"
+      }
+    ]
+  },
+  {
+    "w": "have a frog in one's throat",
+    "t": "boğazından temiz ses çıkaramamak",
+    "lit": "boğazında bir kurbağa olmak",
+    "s": "I have a frog in my throat this morning.",
+    "form": "have a frog in my throat",
+    "tr": "Bu sabah boğazımdan temiz ses çıkaramıyorum.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/frog-in-throat",
+      "https://www.collinsdictionary.com/dictionary/english/have-a-frog-in-your-throat"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/frog-in-throat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a frog in one's throat"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-a-frog-in-your-throat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a frog in one's throat"
+      }
+    ]
+  },
+  {
+    "w": "have a bee in one's bonnet",
+    "t": "bir düşünceye takılıp kalmak",
+    "lit": "başlığının içinde bir arı olmak",
+    "s": "He has a bee in his bonnet about banning plastic cups.",
+    "form": "has a bee in his bonnet",
+    "tr": "Plastik bardakları yasaklama düşüncesine takılıp kalmış.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-a-bee-in-bonnet",
+      "https://www.collinsdictionary.com/dictionary/english/have-a-bee-in-ones-bonnet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-a-bee-in-bonnet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a bee in one's bonnet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-a-bee-in-ones-bonnet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a bee in one's bonnet"
+      }
+    ]
+  },
+  {
+    "w": "be the elephant in the room",
+    "t": "herkesin konuşmaktan kaçındığı bariz sorun olmak",
+    "lit": "odadaki fil olmak",
+    "s": "The unpaid wages are the elephant in the room at every meeting.",
+    "form": "are the elephant in the room",
+    "tr": "Ödenmeyen ücretler her toplantıda herkesin konuşmaktan kaçındığı bariz sorun.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/elephant-in-the-room",
+      "https://www.collinsdictionary.com/dictionary/english/the-elephant-in-the-room"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/elephant-in-the-room",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be the elephant in the room"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-elephant-in-the-room",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be the elephant in the room"
+      }
+    ]
+  },
+  {
+    "w": "be a cash cow",
+    "t": "sürekli yüksek kazanç getirmek",
+    "lit": "nakit ineği olmak",
+    "s": "Their old software is a cash cow that funds new research.",
+    "form": "is a cash cow",
+    "tr": "Eski yazılımları yeni araştırmaları finanse eden sürekli yüksek kazanç kaynağıdır.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/cash-cow",
+      "https://www.collinsdictionary.com/dictionary/english/a-cash-cow"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/cash-cow",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a cash cow"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-cash-cow",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a cash cow"
+      }
+    ]
+  },
+  {
+    "w": "be a white elephant",
+    "t": "masraflı ve işe yaramaz bir yük olmak",
+    "lit": "beyaz bir fil olmak",
+    "s": "Without public transport, the new stadium is a white elephant.",
+    "form": "is a white elephant",
+    "tr": "Toplu taşıma olmayınca yeni stadyum masraflı ve işe yaramaz bir yük oldu.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/white-elephant?q=white%2Belephant",
+      "https://www.collinsdictionary.com/dictionary/english/a-white-elephant"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/white-elephant?q=white%2Belephant",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a white elephant"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-white-elephant",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a white elephant"
+      }
+    ]
+  },
+  {
+    "w": "cry wolf",
+    "t": "asılsız alarm vermek",
+    "lit": "kurt diye bağırmak",
+    "s": "If you cry wolf again, nobody will trust your warnings.",
+    "form": "cry wolf",
+    "tr": "Yine asılsız alarm verirsen kimse uyarılarına güvenmez.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/cry-wolf?q=cry-wolf_1",
+      "https://www.collinsdictionary.com/dictionary/english/cry-wolf"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/cry-wolf?q=cry-wolf_1",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "cry wolf"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/cry-wolf",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "cry wolf"
+      }
+    ]
+  },
+  {
+    "w": "let sleeping dogs lie",
+    "t": "geçmişteki sorunu yeniden açmamak",
+    "lit": "uyuyan köpekleri yatmaya bırakmak",
+    "s": "The dispute is over; we should let sleeping dogs lie.",
+    "form": "let sleeping dogs lie",
+    "tr": "Tartışma sona erdi; geçmişteki sorunu yeniden açmamalıyız.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/let-sleeping-dogs-lie",
+      "https://www.collinsdictionary.com/dictionary/english/to-let-sleeping-dogs-lie"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/let-sleeping-dogs-lie",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "let sleeping dogs lie"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-let-sleeping-dogs-lie",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "let sleeping dogs lie"
+      }
+    ]
+  },
+  {
+    "w": "make a beeline for",
+    "t": "dosdoğru bir yere yönelmek",
+    "lit": "arı uçuşu çizgisi yapmak",
+    "s": "After the long walk, we made a beeline for the nearest café.",
+    "form": "made a beeline for",
+    "tr": "Uzun yürüyüşten sonra dosdoğru en yakın kafeye yöneldik.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/make-a-beeline-for",
+      "https://www.collinsdictionary.com/dictionary/english/make-a-beeline-for-something"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/make-a-beeline-for",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make a beeline for"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/make-a-beeline-for-something",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make a beeline for"
+      }
+    ]
+  },
+  {
+    "w": "be as busy as a bee",
+    "t": "arı gibi durmadan çalışmak",
+    "lit": "bir arı kadar meşgul olmak",
+    "s": "Before the opening, the owner was as busy as a bee.",
+    "form": "was as busy as a bee",
+    "tr": "Açılıştan önce işletme sahibi arı gibi durmadan çalışıyordu.",
+    "theme": "animals",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english-spanish/as-busy-as-a-bee",
+      "https://dictionary.cambridge.org/dictionary/english/bee?topic=busy-and-active"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-spanish/as-busy-as-a-bee",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as busy as a bee"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/bee?topic=busy-and-active",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as busy as a bee"
+      }
+    ]
+  },
+  {
+    "w": "be as quiet as a mouse",
+    "t": "sessiz sedasız durmak",
+    "lit": "bir fare kadar sessiz olmak",
+    "s": "During the recording, everyone was as quiet as a mouse.",
+    "form": "was as quiet as a mouse",
+    "tr": "Kayıt sırasında herkes sessiz sedasız durdu.",
+    "theme": "animals",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/quiet-as-a-mouse",
+      "https://dictionary.cambridge.org/dictionary/english/quiet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/quiet-as-a-mouse",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as quiet as a mouse"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/quiet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as quiet as a mouse"
+      }
+    ]
+  },
+  {
+    "w": "be as stubborn as a mule",
+    "t": "çok inatçı olmak",
+    "lit": "bir katır kadar inatçı olmak",
+    "s": "He is as stubborn as a mule about keeping that broken chair.",
+    "form": "is as stubborn as a mule",
+    "tr": "O kırık sandalyeyi saklama konusunda çok inatçı.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-as-stubborn-as-a-mule",
+      "https://www.collinsdictionary.com/dictionary/english/stubborn-as-a-mule"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-as-stubborn-as-a-mule",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as stubborn as a mule"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/stubborn-as-a-mule",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as stubborn as a mule"
+      }
+    ]
+  },
+  {
+    "w": "be a lone wolf",
+    "t": "tek başına hareket etmeyi tercih etmek",
+    "lit": "yalnız bir kurt olmak",
+    "s": "She is a lone wolf and prefers independent research.",
+    "form": "is a lone wolf",
+    "tr": "Tek başına hareket etmeyi tercih ediyor; bağımsız araştırmayı seviyor.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/lone-wolf?topic=alone",
+      "https://www.collinsdictionary.com/dictionary/english/a-lone-wolf"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/lone-wolf?topic=alone",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a lone wolf"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-lone-wolf",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a lone wolf"
+      }
+    ]
+  },
+  {
+    "w": "be a night owl",
+    "t": "geceleri uyanık ve etkin olmak",
+    "lit": "bir gece baykuşu olmak",
+    "s": "I am a night owl, so early meetings are difficult for me.",
+    "form": "am a night owl",
+    "tr": "Geceleri uyanık ve etkinim; bu yüzden erken toplantılar bana zor geliyor.",
+    "theme": "animals",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/night-owl",
+      "https://www.collinsdictionary.com/dictionary/english/a-night-owl"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/night-owl",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a night owl"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-night-owl",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a night owl"
+      }
+    ]
+  },
+  {
+    "w": "be a sitting duck",
+    "t": "savunmasız ve kolay hedef olmak",
+    "lit": "oturan bir ördek olmak",
+    "s": "Without a password, your account is a sitting duck for attackers.",
+    "form": "is a sitting duck",
+    "tr": "Parola olmadan hesabın saldırganlar için savunmasız ve kolay bir hedeftir.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/sitting-duck",
+      "https://www.collinsdictionary.com/dictionary/english/a-sitting-duck"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/sitting-duck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a sitting duck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-sitting-duck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a sitting duck"
+      }
+    ]
+  },
+  {
+    "w": "be a guinea pig",
+    "t": "yeni bir şeyin denendiği kişi olmak",
+    "lit": "kobay faresi olmak",
+    "s": "For the new booking system, our team was a guinea pig.",
+    "form": "was a guinea pig",
+    "tr": "Yeni rezervasyon sistemi ilk olarak bizim ekibimiz üzerinde denendi.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/guinea-pig",
+      "https://www.collinsdictionary.com/dictionary/english/a-guinea-pig"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/guinea-pig",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a guinea pig"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-guinea-pig",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a guinea pig"
+      }
+    ]
+  },
+  {
+    "w": "be on a wild goose chase",
+    "t": "sonuçsuz bir arayışın peşinde olmak",
+    "lit": "yaban kazı kovalamacasında olmak",
+    "s": "With that incorrect address, we were on a wild goose chase all afternoon.",
+    "form": "were on a wild goose chase",
+    "tr": "O yanlış adres yüzünden bütün öğleden sonra sonuçsuz bir arayışın peşindeydik.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/wild-goose-chase",
+      "https://www.collinsdictionary.com/dictionary/english/wild-goose-chase"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/wild-goose-chase",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on a wild goose chase"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/wild-goose-chase",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on a wild goose chase"
+      }
+    ]
+  },
+  {
+    "w": "keep the wolf from the door",
+    "t": "yoksulluktan kurtulacak kadar kazanmak",
+    "lit": "kurdu kapıdan uzak tutmak",
+    "s": "This temporary job helps us keep the wolf from the door.",
+    "form": "keep the wolf from the door",
+    "tr": "Bu geçici iş yoksulluğa düşmeden geçinmemize yardımcı oluyor.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/keep-the-wolf-from-the-door",
+      "https://www.collinsdictionary.com/dictionary/english/keep-the-wolf-from-the-door"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/keep-the-wolf-from-the-door",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep the wolf from the door"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-the-wolf-from-the-door",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep the wolf from the door"
+      }
+    ]
+  },
+  {
+    "w": "fight like cat and dog",
+    "t": "sürekli kavga etmek",
+    "lit": "kedi ve köpek gibi dövüşmek",
+    "s": "Those two colleagues fight like cat and dog over every small decision.",
+    "form": "fight like cat and dog",
+    "tr": "O iki iş arkadaşı her küçük karar yüzünden sürekli kavga ediyor.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/fight-like-cat-and-dog",
+      "https://www.collinsdictionary.com/dictionary/english/fight-like-cat-and-dog"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/fight-like-cat-and-dog",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "fight like cat and dog"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/fight-like-cat-and-dog",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "fight like cat and dog"
+      }
+    ]
+  },
+  {
+    "w": "be a red herring",
+    "t": "dikkati asıl konudan saptıran bir şey olmak",
+    "lit": "kırmızı bir ringa balığı olmak",
+    "s": "That detail is a red herring; the real issue is the missing signature.",
+    "form": "is a red herring",
+    "tr": "O ayrıntı dikkati asıl konudan saptırıyor; gerçek sorun eksik imza.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/red-herring",
+      "https://www.collinsdictionary.com/dictionary/english/a-red-herring"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/red-herring",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a red herring"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-red-herring",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a red herring"
+      }
+    ]
+  },
+  {
+    "w": "get one's ducks in a row",
+    "t": "hazırlıklarını düzenli biçimde tamamlamak",
+    "lit": "ördeklerini bir sıraya dizmek",
+    "s": "Before applying, we need to get our ducks in a row.",
+    "form": "get our ducks in a row",
+    "tr": "Başvurmadan önce hazırlıklarımızı düzenli biçimde tamamlamalıyız.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-have-your-ducks-in-a-row",
+      "https://www.collinsdictionary.com/dictionary/english/get-your-ducks-in-a-row"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-have-your-ducks-in-a-row",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get one's ducks in a row"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-your-ducks-in-a-row",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get one's ducks in a row"
+      }
+    ]
+  },
+  {
+    "w": "get straight from the horse's mouth",
+    "t": "bilgiyi doğrudan yetkili kişiden almak",
+    "lit": "bir şeyi doğrudan atın ağzından almak",
+    "s": "I got the news straight from the horse's mouth: the director called.",
+    "form": "got the news straight from the horse's mouth",
+    "tr": "Haberi doğrudan yetkili kişiden aldım; müdür aradı.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "pat": "get something straight from the horse's mouth",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english-spanish/i-heard-it-straight-from-the-horse-s-mouth",
+      "https://dictionary.cambridge.org/dictionary/english/straight-from-the-horse-s-mouth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-spanish/i-heard-it-straight-from-the-horse-s-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get something straight from the horse's mouth"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/straight-from-the-horse-s-mouth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get something straight from the horse's mouth"
+      }
+    ]
+  },
+  {
+    "w": "flog a dead horse",
+    "t": "artık sonuç vermeyecek işle boşuna uğraşmak",
+    "lit": "ölü bir atı kırbaçlamak",
+    "s": "Arguing after the final decision is flogging a dead horse.",
+    "form": "flogging a dead horse",
+    "tr": "Son karardan sonra tartışmak sonuç vermeyecek işle boşuna uğraşmaktır.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/flog-a-dead-horse",
+      "https://www.collinsdictionary.com/dictionary/english/flog-a-dead-horse"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/flog-a-dead-horse",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "flog a dead horse"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/flog-a-dead-horse",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "flog a dead horse"
+      }
+    ]
+  },
+  {
+    "w": "bark up the wrong tree",
+    "t": "yanlış kişinin veya çözümün peşine düşmek",
+    "lit": "yanlış ağaca havlamak",
+    "s": "Blaming the driver is barking up the wrong tree.",
+    "form": "barking up the wrong tree",
+    "tr": "Şoförü suçlamak yanlış kişinin peşine düşmektir.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/bark-up-the-wrong-tree",
+      "https://dictionary.cambridge.org/dictionary/english/barking-up-the-wrong-tree"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bark-up-the-wrong-tree",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bark up the wrong tree"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/barking-up-the-wrong-tree",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bark up the wrong tree"
+      }
+    ]
+  },
+  {
+    "w": "take under one's wing",
+    "t": "birini koruyup yetiştirmek",
+    "lit": "birini kanadının altına almak",
+    "s": "The senior engineer took me under her wing.",
+    "form": "took me under her wing",
+    "tr": "Kıdemli mühendis beni koruyup yetiştirdi.",
+    "theme": "animals",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "take someone under one's wing",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/take-under-wing",
+      "https://www.collinsdictionary.com/dictionary/english/take-someone-under-ones-wing"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/take-under-wing",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take someone under one's wing"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/take-someone-under-ones-wing",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take someone under one's wing"
+      }
+    ]
+  },
+  {
+    "w": "be no spring chicken",
+    "t": "artık genç olmamak",
+    "lit": "ilkbahar civcivi olmamak",
+    "s": "At seventy, he is no spring chicken but hikes regularly.",
+    "form": "is no spring chicken",
+    "tr": "Yetmiş yaşında artık genç değil ama düzenli yürüyüş yapıyor.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/spring-chicken",
+      "https://www.collinsdictionary.com/dictionary/english/no-spring-chicken"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/spring-chicken",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be no spring chicken"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/no-spring-chicken",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be no spring chicken"
+      }
+    ]
+  },
+  {
+    "w": "be a different kettle of fish",
+    "t": "bambaşka ve daha karmaşık bir mesele olmak",
+    "lit": "farklı bir balık kazanı olmak",
+    "s": "Organising thirty guests is a different kettle of fish.",
+    "form": "is a different kettle of fish",
+    "tr": "Otuz konuk ağırlamak bambaşka ve daha karmaşık bir mesele.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-another-a-different-kettle-of-fish",
+      "https://www.collinsdictionary.com/dictionary/english/a-different-kettle-of-fish"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-another-a-different-kettle-of-fish",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a different kettle of fish"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-different-kettle-of-fish",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a different kettle of fish"
+      }
+    ]
+  },
+  {
+    "w": "go cold turkey",
+    "t": "bir alışkanlığı birden bırakmak",
+    "lit": "soğuk hindiye gitmek",
+    "s": "She went cold turkey on social media.",
+    "form": "went cold turkey",
+    "tr": "Sosyal medya alışkanlığını birden bıraktı.",
+    "theme": "animals",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-cold-turkey?topic=drug-addiction",
+      "https://www.collinsdictionary.com/dictionary/english/go-cold-turkey"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-cold-turkey?topic=drug-addiction",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go cold turkey"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-cold-turkey",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go cold turkey"
+      }
+    ]
+  }
+]

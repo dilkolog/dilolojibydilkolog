@@ -1,0 +1,663 @@
+[
+  {
+    "w": "be a race against time",
+    "t": "zaman daralırken yetiştirme mücadelesi olmak",
+    "lit": "zamana karşı bir yarış olmak",
+    "s": "Finishing the repairs was a race against time.",
+    "form": "was a race against time",
+    "tr": "Tamiratı bitirmek zaman daralırken yetiştirme mücadelesiydi.",
+    "theme": "time",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/learner-english/a-race-against-time-the-clock",
+      "https://www.collinsdictionary.com/dictionary/english/a-race-against-time"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/learner-english/a-race-against-time-the-clock",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a race against time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-race-against-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a race against time"
+      }
+    ]
+  },
+  {
+    "w": "work against the clock",
+    "t": "zamanla yarışarak çalışmak",
+    "lit": "saate karşı çalışmak",
+    "s": "The rescuers worked against the clock before the storm.",
+    "form": "worked against the clock",
+    "tr": "Kurtarma ekipleri fırtınadan önce zamanla yarışarak çalıştı.",
+    "theme": "time",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english-chinese/to-work-against-the-clock",
+      "https://dictionary.cambridge.org/dictionary/english/against-the-clock"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-chinese/to-work-against-the-clock",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "work against the clock"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/against-the-clock",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "work against the clock"
+      }
+    ]
+  },
+  {
+    "w": "beat the clock",
+    "t": "süre dolmadan işi bitirmek",
+    "lit": "saati yenmek",
+    "s": "We beat the clock and submitted before midnight.",
+    "form": "beat the clock",
+    "tr": "Süre dolmadan işi bitirip gece yarısından önce teslim ettik.",
+    "theme": "time",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/beat-the-clock",
+      "https://www.collinsdictionary.com/dictionary/english/to-beat-the-clock"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/beat-the-clock",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "beat the clock"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-beat-the-clock",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "beat the clock"
+      }
+    ]
+  },
+  {
+    "w": "beat to the punch",
+    "t": "birinden önce davranmak",
+    "lit": "yumruğu birinden önce atmak",
+    "s": "Our rival beat us to the punch with an earlier offer.",
+    "form": "beat us to the punch",
+    "tr": "Rakibimiz daha erken bir teklifle bizden önce davrandı.",
+    "theme": "time",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "pat": "beat someone to the punch",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/beat-to-the-punch",
+      "https://dictionary.cambridge.org/dictionary/english/beat"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/beat-to-the-punch",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "beat someone to the punch"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/beat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "beat someone to the punch"
+      }
+    ]
+  },
+  {
+    "w": "call it a night",
+    "t": "gece yapılan işi veya eğlenceyi bitirmek",
+    "lit": "ona gece demek",
+    "s": "It's nearly midnight; let's call it a night.",
+    "form": "call it a night",
+    "tr": "Neredeyse gece yarısı; bu gecelik bitirelim.",
+    "theme": "time",
+    "level": "B1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/call-it-a-night",
+      "https://www.collinsdictionary.com/dictionary/english/late-night-call"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/call-it-a-night",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "call it a night"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/late-night-call",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "call it a night"
+      }
+    ]
+  },
+  {
+    "w": "kill time",
+    "t": "beklerken oyalanmak",
+    "lit": "zamanı öldürmek",
+    "s": "We read magazines to kill time before boarding.",
+    "form": "kill time",
+    "tr": "Uçağa binmeden önce oyalanmak için dergi okuduk.",
+    "theme": "time",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/kill-time-an-hour-etc",
+      "https://www.collinsdictionary.com/dictionary/english/kill-time"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/kill-time-an-hour-etc",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "kill time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/kill-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "kill time"
+      }
+    ]
+  },
+  {
+    "w": "have the time of one's life",
+    "t": "hayatının en eğlenceli zamanını geçirmek",
+    "lit": "hayatının zamanına sahip olmak",
+    "s": "At that summer camp, we had the time of our lives.",
+    "form": "had the time of our lives",
+    "tr": "O yaz kampında hayatımızın en eğlenceli zamanını geçirdik.",
+    "theme": "time",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/time-of-life",
+      "https://www.collinsdictionary.com/dictionary/english/time-of-life"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/time-of-life",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have the time of one's life"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/time-of-life",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have the time of one's life"
+      }
+    ]
+  },
+  {
+    "w": "turn back the clock",
+    "t": "geçmişteki bir duruma geri dönmek",
+    "lit": "saati geriye çevirmek",
+    "s": "Restoring the old shop would turn back the clock.",
+    "form": "turn back the clock",
+    "tr": "Eski dükkânı yenilemek geçmişteki bir duruma geri dönmek olurdu.",
+    "theme": "time",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/uk/dictionary/english/turn-back-the-clock",
+      "https://www.collinsdictionary.com/dictionary/english/turn-the-clock-back-put-the-clock-back"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/uk/dictionary/english/turn-back-the-clock",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "turn back the clock"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/turn-the-clock-back-put-the-clock-back",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "turn back the clock"
+      }
+    ]
+  },
+  {
+    "w": "be behind the times",
+    "t": "yeniliklerden geri kalmış olmak",
+    "lit": "zamanların gerisinde olmak",
+    "s": "That booking system is behind the times.",
+    "form": "is behind the times",
+    "tr": "O rezervasyon sistemi yeniliklerden geri kalmış.",
+    "theme": "time",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/behind-the-times",
+      "https://www.collinsdictionary.com/dictionary/english/behind-the-times"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/behind-the-times",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be behind the times"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/behind-the-times",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be behind the times"
+      }
+    ]
+  },
+  {
+    "w": "be ahead of one's time",
+    "t": "döneminin ilerisinde düşünmek",
+    "lit": "kendi zamanının önünde olmak",
+    "s": "This designer was ahead of her time.",
+    "form": "was ahead of her time",
+    "tr": "Bu tasarımcı döneminin ilerisinde düşünüyordu.",
+    "theme": "time",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/ahead-of-time?q=ahead-of-time_1",
+      "https://www.collinsdictionary.com/dictionary/english/ahead-of-your-time"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/ahead-of-time?q=ahead-of-time_1",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be ahead of one's time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/ahead-of-your-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be ahead of one's time"
+      }
+    ]
+  },
+  {
+    "w": "be a ticking time bomb",
+    "t": "ileride patlak verecek büyük bir tehlike olmak",
+    "lit": "tik tak eden zaman ayarlı bomba olmak",
+    "s": "These unpaid debts are a ticking time bomb.",
+    "form": "are a ticking time bomb",
+    "tr": "Bu ödenmeyen borçlar ileride patlak verecek büyük bir tehlike.",
+    "theme": "time",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/dictionary/english/ticking-time-bomb",
+      "https://www.collinsdictionary.com/us/dictionary/english/ticking-time-bomb"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/ticking-time-bomb",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a ticking time bomb"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/ticking-time-bomb",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a ticking time bomb"
+      }
+    ]
+  },
+  {
+    "w": "be here today and gone tomorrow",
+    "t": "çok kısa süre varlığını sürdürmek",
+    "lit": "bugün burada yarın gitmiş olmak",
+    "s": "Some trends are here today and gone tomorrow.",
+    "form": "are here today and gone tomorrow",
+    "tr": "Bazı eğilimler çok kısa süre varlığını sürdürür.",
+    "theme": "time",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/here-today-gone-tomorrow",
+      "https://www.collinsdictionary.com/dictionary/english/here-today-gone-tomorrow"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/here-today-gone-tomorrow",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be here today and gone tomorrow"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/here-today-gone-tomorrow",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be here today and gone tomorrow"
+      }
+    ]
+  },
+  {
+    "w": "be living on borrowed time",
+    "t": "beklenen sondan sonra fazladan süre kazanmış olmak",
+    "lit": "ödünç zamanda yaşıyor olmak",
+    "s": "Without repairs, this engine is living on borrowed time.",
+    "form": "is living on borrowed time",
+    "tr": "Tamir edilmezse bu motorun ömrü artık son anlarını yaşıyor.",
+    "theme": "time",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/living-on-borrowed-time",
+      "https://dictionary.cambridge.org/example/english/borrowed-time"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/living-on-borrowed-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be living on borrowed time"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/example/english/borrowed-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be living on borrowed time"
+      }
+    ]
+  },
+  {
+    "w": "be a matter of time",
+    "t": "gerçekleşmesi yalnızca zaman meselesi olmak",
+    "lit": "bir zaman meselesi olmak",
+    "s": "With those cracks, a breakdown is a matter of time.",
+    "form": "is a matter of time",
+    "tr": "O çatlaklarla arızanın gerçekleşmesi yalnızca zaman meselesi.",
+    "theme": "time",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/matter-question-of-time",
+      "https://www.collinsdictionary.com/dictionary/english/a-matter-of-time"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/matter-question-of-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a matter of time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-matter-of-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a matter of time"
+      }
+    ]
+  },
+  {
+    "w": "stand the test of time",
+    "t": "zaman geçse de değerini korumak",
+    "lit": "zamanın sınavına dayanmak",
+    "s": "This simple recipe has stood the test of time.",
+    "form": "has stood the test of time",
+    "tr": "Bu basit tarif zaman geçse de değerini korudu.",
+    "theme": "time",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/dictionary/english/stand-the-test-of-time",
+      "https://www.collinsdictionary.com/dictionary/english/stand-the-test-of-time"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/stand-the-test-of-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "stand the test of time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/stand-the-test-of-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "stand the test of time"
+      }
+    ]
+  },
+  {
+    "w": "lose track of time",
+    "t": "zamanın geçtiğini fark etmemek",
+    "lit": "zamanın izini kaybetmek",
+    "s": "In that bookshop, I lost track of time.",
+    "form": "lost track of time",
+    "tr": "O kitapçıda zamanın geçtiğini fark etmedim.",
+    "theme": "time",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/uk/dictionary/english/lose-track",
+      "https://www.collinsdictionary.com/dictionary/english/lose-track"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/uk/dictionary/english/lose-track",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "lose track of time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/lose-track",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "lose track of time"
+      }
+    ]
+  },
+  {
+    "w": "make up for lost time",
+    "t": "kaybedilen zamanı telafi etmek",
+    "lit": "kaybolmuş zamanın yerine koymak",
+    "s": "We hurried to make up for lost time.",
+    "form": "make up for lost time",
+    "tr": "Kaybedilen zamanı telafi etmek için acele ettik.",
+    "theme": "time",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/make-up-for-lost-time",
+      "https://www.collinsdictionary.com/dictionary/english/to-make-up-for-lost-time"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/make-up-for-lost-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make up for lost time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-make-up-for-lost-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make up for lost time"
+      }
+    ]
+  },
+  {
+    "w": "mark time",
+    "t": "ilerlemeden uygun zamanı beklemek",
+    "lit": "zamanı işaretlemek",
+    "s": "Until permission arrives, we are marking time.",
+    "form": "are marking time",
+    "tr": "İzin gelene kadar ilerlemeden uygun zamanı bekliyoruz.",
+    "theme": "time",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/mark-time",
+      "https://www.collinsdictionary.com/dictionary/english/mark-time"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/mark-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "mark time"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/mark-time",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "mark time"
+      }
+    ]
+  },
+  {
+    "w": "be as regular as clockwork",
+    "t": "hiç aksamadan düzenli olmak",
+    "lit": "saat mekanizması kadar düzenli olmak",
+    "s": "His morning visits are as regular as clockwork.",
+    "form": "are as regular as clockwork",
+    "tr": "Sabah ziyaretleri hiç aksamadan düzenlidir.",
+    "theme": "time",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/as-regular-as-clockwork",
+      "https://www.collinsdictionary.com/dictionary/english-italian/regular"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/as-regular-as-clockwork",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as regular as clockwork"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-italian/regular",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as regular as clockwork"
+      }
+    ]
+  },
+  {
+    "w": "come full circle",
+    "t": "bir gelişmeden sonra başlangıç noktasına dönmek",
+    "lit": "tam daire çizip gelmek",
+    "s": "With this return to teaching, her career has come full circle.",
+    "form": "has come full circle",
+    "tr": "Öğretmenliğe bu dönüşle kariyeri başlangıç noktasına döndü.",
+    "theme": "time",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/come-go-turn-full-circle",
+      "https://www.collinsdictionary.com/dictionary/english/come-full-circle"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/come-go-turn-full-circle",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "come full circle"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/come-full-circle",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "come full circle"
+      }
+    ]
+  },
+  {
+    "w": "be a thing of the past",
+    "t": "artık geçmişte kalmış olmak",
+    "lit": "geçmişin bir şeyi olmak",
+    "s": "Paper tickets are a thing of the past here.",
+    "form": "are a thing of the past",
+    "tr": "Burada kâğıt biletler artık geçmişte kaldı.",
+    "theme": "time",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/thing-of-the-past",
+      "https://www.collinsdictionary.com/dictionary/english/a-thing-of-the-past"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/thing-of-the-past",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a thing of the past"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-thing-of-the-past",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a thing of the past"
+      }
+    ]
+  },
+  {
+    "w": "kick the can down the road",
+    "t": "zor kararı sonraya bırakmak",
+    "lit": "tenekeyi yolun ilerisine tekmelemek",
+    "s": "We must stop kicking the can down the road.",
+    "form": "kicking the can down the road",
+    "tr": "Zor kararı sonraya bırakmayı bırakmalıyız.",
+    "theme": "time",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/kick-the-can-down-the-road",
+      "https://www.collinsdictionary.com/dictionary/english/kick-the-can-down-the-road"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/kick-the-can-down-the-road",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "kick the can down the road"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/kick-the-can-down-the-road",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "kick the can down the road"
+      }
+    ]
+  }
+]

@@ -1,0 +1,573 @@
+[
+  {
+    "w": "read between the lines",
+    "t": "açıkça söylenmeyeni anlamak",
+    "lit": "satırların arasını okumak",
+    "s": "Read between the lines: they want us to leave.",
+    "form": "Read between the lines",
+    "tr": "Açıkça söylenmeyeni anla; gitmemizi istiyorlar.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/read-between-the-lines",
+      "https://www.collinsdictionary.com/dictionary/english/read-between-the-lines"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/read-between-the-lines",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "read between the lines"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/read-between-the-lines",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "read between the lines"
+      }
+    ]
+  },
+  {
+    "w": "put on one's thinking cap",
+    "t": "bir sorun üzerine dikkatle düşünmeye başlamak",
+    "lit": "düşünme şapkasını takmak",
+    "s": "Let's put on our thinking caps and solve this puzzle.",
+    "form": "put on our thinking caps",
+    "tr": "Dikkatle düşünmeye başlayıp bu bulmacayı çözelim.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/put-thinking-cap-on",
+      "https://www.collinsdictionary.com/dictionary/english/put-your-thinking-cap-on"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/put-thinking-cap-on",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put on one's thinking cap"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/put-your-thinking-cap-on",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put on one's thinking cap"
+      }
+    ]
+  },
+  {
+    "w": "have a light-bulb moment",
+    "t": "bir şeyi birden kavramak",
+    "lit": "bir ampul anına sahip olmak",
+    "s": "During the demonstration, she had a light-bulb moment.",
+    "form": "had a light-bulb moment",
+    "tr": "Gösteri sırasında bir şeyi birden kavradı.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english-chinese-traditional/light-bulb-moment",
+      "https://www.collinsdictionary.com/sentences/english/light-bulb"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english-chinese-traditional/light-bulb-moment",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a light-bulb moment"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/sentences/english/light-bulb",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a light-bulb moment"
+      }
+    ]
+  },
+  {
+    "w": "put two and two together",
+    "t": "ipuçlarını birleştirip sonucu çıkarmak",
+    "lit": "ikiyle ikiyi bir araya koymak",
+    "s": "I put two and two together after seeing both signatures.",
+    "form": "put two and two together",
+    "tr": "İki imzayı gördükten sonra ipuçlarını birleştirip sonucu çıkardım.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/put-two-and-two-together",
+      "https://www.collinsdictionary.com/dictionary/english/put-two-and-two-together"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/put-two-and-two-together",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put two and two together"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/put-two-and-two-together",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put two and two together"
+      }
+    ]
+  },
+  {
+    "w": "miss the point",
+    "t": "asıl anlatılmak isteneni kaçırmak",
+    "lit": "noktayı ıskalamak",
+    "s": "That answer misses the point of my question.",
+    "form": "misses the point",
+    "tr": "O cevap sorumda asıl anlatmak istediğimi kaçırıyor.",
+    "theme": "mind",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/miss-the-point?topic=misunderstanding",
+      "https://www.collinsdictionary.com/us/dictionary/english/miss-a-point"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/miss-the-point?topic=misunderstanding",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "miss the point"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/miss-a-point",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "miss the point"
+      }
+    ]
+  },
+  {
+    "w": "get the wrong end of the stick",
+    "t": "bir şeyi yanlış anlamak",
+    "lit": "sopanın yanlış ucunu almak",
+    "s": "You've got the wrong end of the stick; I'm staying.",
+    "form": "got the wrong end of the stick",
+    "tr": "Yanlış anladın; ben kalıyorum.",
+    "theme": "mind",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-the-wrong-end-of-the-stick",
+      "https://www.collinsdictionary.com/dictionary/english/get-the-wrong-end-of-the-stick"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-the-wrong-end-of-the-stick",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get the wrong end of the stick"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-the-wrong-end-of-the-stick",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get the wrong end of the stick"
+      }
+    ]
+  },
+  {
+    "w": "jump to conclusions",
+    "t": "yeterince bilgi olmadan sonuca varmak",
+    "lit": "sonuçlara sıçramak",
+    "s": "Don't jump to conclusions before hearing her explanation.",
+    "form": "jump to conclusions",
+    "tr": "Onun açıklamasını dinlemeden yeterince bilgi olmadan sonuca varma.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/jump-to-conclusions?topic=guessing-supposing-and-suspecting",
+      "https://www.collinsdictionary.com/dictionary/english/jump-to-conclusions"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/jump-to-conclusions?topic=guessing-supposing-and-suspecting",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "jump to conclusions"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/jump-to-conclusions",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "jump to conclusions"
+      }
+    ]
+  },
+  {
+    "w": "draw a blank",
+    "t": "aradığını veya hatırlamak istediğini bulamamak",
+    "lit": "boş bir kura çekmek",
+    "s": "Asked for his number, I drew a blank.",
+    "form": "drew a blank",
+    "tr": "Numarasını sorunca bir türlü hatırlayamadım.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/draw-a-blank",
+      "https://www.collinsdictionary.com/dictionary/english/draw-a-blank"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/draw-a-blank",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "draw a blank"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/draw-a-blank",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "draw a blank"
+      }
+    ]
+  },
+  {
+    "w": "lose one's train of thought",
+    "t": "düşüncesinin akışını kaybetmek",
+    "lit": "düşünce trenini kaybetmek",
+    "s": "That interruption made me lose my train of thought.",
+    "form": "lose my train of thought",
+    "tr": "O kesinti düşüncemin akışını kaybetmeme neden oldu.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english-french/to-lose-one%E2%80%99s-train-of-thought",
+      "https://dictionary.cambridge.org/dictionary/english/train-of-thought-events"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-french/to-lose-one%E2%80%99s-train-of-thought",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "lose one's train of thought"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/train-of-thought-events",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "lose one's train of thought"
+      }
+    ]
+  },
+  {
+    "w": "jog someone's memory",
+    "t": "birinin hatırlamasına yardımcı olmak",
+    "lit": "birinin hafızasını hafifçe sarsmak",
+    "s": "This photo might jog your memory.",
+    "form": "jog your memory",
+    "tr": "Bu fotoğraf hatırlamana yardımcı olabilir.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/jog-memory",
+      "https://www.collinsdictionary.com/dictionary/english/jog-someones-memory"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/jog-memory",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "jog someone's memory"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/jog-someones-memory",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "jog someone's memory"
+      }
+    ]
+  },
+  {
+    "w": "ring a bell",
+    "t": "tanıdık gelmek",
+    "lit": "bir çan çalmak",
+    "s": "That name rings a bell, but I can't place it.",
+    "form": "rings a bell",
+    "tr": "O isim tanıdık geliyor ama nereden olduğunu çıkaramıyorum.",
+    "theme": "mind",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/ring-a-bell",
+      "https://www.collinsdictionary.com/dictionary/english/ring-a-bell"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/ring-a-bell",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "ring a bell"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/ring-a-bell",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "ring a bell"
+      }
+    ]
+  },
+  {
+    "w": "be second nature",
+    "t": "düşünmeden yapılacak kadar alışılmış olmak",
+    "lit": "ikinci doğa olmak",
+    "s": "After years of practice, this movement is second nature.",
+    "form": "is second nature",
+    "tr": "Yıllarca alıştırmadan sonra bu hareket düşünmeden yapılacak kadar alışılmıştır.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/second-nature",
+      "https://www.collinsdictionary.com/dictionary/english/second-nature"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/second-nature",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be second nature"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/second-nature",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be second nature"
+      }
+    ]
+  },
+  {
+    "w": "know inside out",
+    "t": "bir şeyi bütün ayrıntılarıyla bilmek",
+    "lit": "bir şeyin içini dışını bilmek",
+    "s": "She knows this engine inside out.",
+    "form": "knows this engine inside out",
+    "tr": "Bu motorun bütün ayrıntılarını biliyor.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "know something inside out",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/learner-english/know-sth-inside-out",
+      "https://www.collinsdictionary.com/dictionary/english/know-something-inside-out"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/learner-english/know-sth-inside-out",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "know something inside out"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/know-something-inside-out",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "know something inside out"
+      }
+    ]
+  },
+  {
+    "w": "have a mind like a sieve",
+    "t": "çok unutkan olmak",
+    "lit": "elek gibi bir zihni olmak",
+    "s": "I have a mind like a sieve about birthdays.",
+    "form": "have a mind like a sieve",
+    "tr": "Doğum günleri konusunda çok unutkanım.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/memory-mind-like-a-sieve?q=memory+like+a+sieve",
+      "https://www.collinsdictionary.com/dictionary/english-chinese/to-have-a-memory-mind-like-a-sieve"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/memory-mind-like-a-sieve?q=memory+like+a+sieve",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a mind like a sieve"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-chinese/to-have-a-memory-mind-like-a-sieve",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a mind like a sieve"
+      }
+    ]
+  },
+  {
+    "w": "be in two minds",
+    "t": "iki seçenek arasında kararsız olmak",
+    "lit": "iki zihnin içinde olmak",
+    "s": "I'm in two minds about accepting the offer.",
+    "form": "in two minds",
+    "tr": "Teklifi kabul etme konusunda iki seçenek arasında kararsızım.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-in-two-minds?topic=doubt-and-ambivalence",
+      "https://www.collinsdictionary.com/dictionary/english/in-two-minds"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-in-two-minds?topic=doubt-and-ambivalence",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in two minds"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-two-minds",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in two minds"
+      }
+    ]
+  },
+  {
+    "w": "think outside the box",
+    "t": "alışılmışın dışında düşünmek",
+    "lit": "kutunun dışında düşünmek",
+    "s": "For this unusual problem, we must think outside the box.",
+    "form": "think outside the box",
+    "tr": "Bu alışılmadık sorun için alışılmışın dışında düşünmeliyiz.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/think-outside-the-box?topic=inventing-designing-and-innovation",
+      "https://www.collinsdictionary.com/dictionary/english/think-outside-the-box"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/think-outside-the-box?topic=inventing-designing-and-innovation",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "think outside the box"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/think-outside-the-box",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "think outside the box"
+      }
+    ]
+  },
+  {
+    "w": "have a one-track mind",
+    "t": "hep aynı şeyi düşünmek",
+    "lit": "tek raylı bir zihni olmak",
+    "s": "About football, he has a one-track mind.",
+    "form": "has a one-track mind",
+    "tr": "Futbol konusunda hep aynı şeyi düşünüyor.",
+    "theme": "mind",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/one-track-mind",
+      "https://www.collinsdictionary.com/dictionary/english/one-track-mind"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/one-track-mind",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a one-track mind"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/one-track-mind",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a one-track mind"
+      }
+    ]
+  },
+  {
+    "w": "keep an open mind",
+    "t": "yeni fikirlere açık olmak",
+    "lit": "açık bir zihin tutmak",
+    "s": "Please keep an open mind during the demonstration.",
+    "form": "keep an open mind",
+    "tr": "Lütfen gösteri sırasında yeni fikirlere açık ol.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/open-mind",
+      "https://www.collinsdictionary.com/dictionary/english/an-open-mind"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/open-mind",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep an open mind"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/an-open-mind",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep an open mind"
+      }
+    ]
+  },
+  {
+    "w": "see the light",
+    "t": "gerçeği veya doğru yolu sonunda anlamak",
+    "lit": "ışığı görmek",
+    "s": "After the trial, he finally saw the light.",
+    "form": "saw the light",
+    "tr": "Denemeden sonra sonunda doğru yolu anladı.",
+    "theme": "mind",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/see-the-light",
+      "https://www.collinsdictionary.com/dictionary/english/see-the-light"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/see-the-light",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "see the light"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/see-the-light",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "see the light"
+      }
+    ]
+  }
+]

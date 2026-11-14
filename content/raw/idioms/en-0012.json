@@ -1,0 +1,1776 @@
+[
+  {
+    "w": "be snowed under",
+    "t": "işlerin altında ezilmek",
+    "lit": "karın altında kalmak",
+    "s": "With all these applications, we are snowed under.",
+    "form": "are snowed under",
+    "tr": "Bunca başvuru yüzünden işlerin altında eziliyoruz.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/snowed-under",
+      "https://www.collinsdictionary.com/dictionary/english/snowed-under"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/snowed-under",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be snowed under"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/snowed-under",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be snowed under"
+      }
+    ]
+  },
+  {
+    "w": "be on cloud nine",
+    "t": "çok mutlu olmak",
+    "lit": "dokuz numaralı bulutta olmak",
+    "s": "After getting the job, she was on cloud nine.",
+    "form": "was on cloud nine",
+    "tr": "İşe alındıktan sonra çok mutluydu.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-on-cloud-nine",
+      "https://www.collinsdictionary.com/dictionary/english/on-cloud-nine"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-on-cloud-nine",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on cloud nine"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-cloud-nine",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on cloud nine"
+      }
+    ]
+  },
+  {
+    "w": "be over the moon",
+    "t": "sevinçten havalara uçmak",
+    "lit": "ayın üstünde olmak",
+    "s": "We are over the moon about the new baby.",
+    "form": "are over the moon",
+    "tr": "Yeni bebek yüzünden sevinçten havalara uçuyoruz.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-over-the-moon?q=over-the-moon",
+      "https://www.collinsdictionary.com/dictionary/english/over-the-moon"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-over-the-moon?q=over-the-moon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be over the moon"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/over-the-moon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be over the moon"
+      }
+    ]
+  },
+  {
+    "w": "hear through the grapevine",
+    "t": "bir şeyi söylentilerden öğrenmek",
+    "lit": "bir şeyi asma ağı yoluyla duymak",
+    "s": "We heard it through the grapevine, rather than an official announcement.",
+    "form": "heard it through the grapevine",
+    "tr": "Bunu resmî duyurudan değil, söylentilerden öğrendik.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "pat": "hear something through the grapevine",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/learner-english/hear-sth-on-through-the-grapevine",
+      "https://www.collinsdictionary.com/dictionary/english/hear-something-through-the-grapevine"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/learner-english/hear-sth-on-through-the-grapevine",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hear something through the grapevine"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hear-something-through-the-grapevine",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hear something through the grapevine"
+      }
+    ]
+  },
+  {
+    "w": "clear the air",
+    "t": "aradaki gerginliği konuşarak gidermek",
+    "lit": "havayı temizlemek",
+    "s": "A frank conversation helped us clear the air.",
+    "form": "clear the air",
+    "tr": "Açık bir konuşma aramızdaki gerginliği gidermemize yardımcı oldu.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/clear-the-air",
+      "https://www.collinsdictionary.com/dictionary/english/clear-the-air"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/clear-the-air",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "clear the air"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/clear-the-air",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "clear the air"
+      }
+    ]
+  },
+  {
+    "w": "break the ice",
+    "t": "ilk tanışmadaki çekingenliği gidermek",
+    "lit": "buzu kırmak",
+    "s": "A simple question helped break the ice.",
+    "form": "break the ice",
+    "tr": "Basit bir soru ilk tanışmadaki çekingenliği gidermeye yardımcı oldu.",
+    "theme": "nature",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/break-the-ice?topic=calming-and-relaxing",
+      "https://www.collinsdictionary.com/dictionary/english/break-the-ice"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/break-the-ice?topic=calming-and-relaxing",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "break the ice"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/break-the-ice",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "break the ice"
+      }
+    ]
+  },
+  {
+    "w": "not see the wood for the trees",
+    "t": "ayrıntılar yüzünden bütünü görememek",
+    "lit": "ağaçlardan ormanı görememek",
+    "s": "With all these figures, I cannot see the wood for the trees.",
+    "form": "cannot see the wood for the trees",
+    "tr": "Bunca rakamla ayrıntılar yüzünden bütünü göremiyorum.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/not-see-the-wood-for-the-trees",
+      "https://www.collinsdictionary.com/dictionary/english/see-the-wood-for-the-trees"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/not-see-the-wood-for-the-trees",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "not see the wood for the trees"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/see-the-wood-for-the-trees",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "not see the wood for the trees"
+      }
+    ]
+  },
+  {
+    "w": "go out on a limb",
+    "t": "desteklemek için risk almak",
+    "lit": "bir dala doğru açılmak",
+    "s": "She went out on a limb to recommend an inexperienced candidate.",
+    "form": "went out on a limb",
+    "tr": "Deneyimsiz bir adayı önermek için risk aldı.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/go-out-on-a-limb",
+      "https://dictionary.cambridge.org/dictionary/english/out-on-a-limb"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-out-on-a-limb",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go out on a limb"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/out-on-a-limb",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go out on a limb"
+      }
+    ]
+  },
+  {
+    "w": "be on thin ice",
+    "t": "başını belaya sokabilecek durumda olmak",
+    "lit": "ince buzun üstünde olmak",
+    "s": "After two warnings, you are on thin ice.",
+    "form": "are on thin ice",
+    "tr": "İki uyarıdan sonra başını belaya sokabilecek durumdasın.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-skating-on-thin-ice",
+      "https://www.collinsdictionary.com/dictionary/english/on-thin-ice"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-skating-on-thin-ice",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on thin ice"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-thin-ice",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on thin ice"
+      }
+    ]
+  },
+  {
+    "w": "be in hot water",
+    "t": "bir hata yüzünden başı derde girmek",
+    "lit": "sıcak suyun içinde olmak",
+    "s": "After losing the keys, he was in hot water.",
+    "form": "was in hot water",
+    "tr": "Anahtarları kaybedince başı derde girdi.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/in-hot-water",
+      "https://www.collinsdictionary.com/dictionary/english/in-hot-water"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/in-hot-water",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in hot water"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-hot-water",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in hot water"
+      }
+    ]
+  },
+  {
+    "w": "be in deep water",
+    "t": "içinden çıkılması zor durumda olmak",
+    "lit": "derin suyun içinde olmak",
+    "s": "Without insurance, we were in deep water.",
+    "form": "were in deep water",
+    "tr": "Sigortasız olunca içinden çıkılması zor durumdaydık.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/deep-water",
+      "https://www.collinsdictionary.com/dictionary/english/in-deep-water"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/deep-water",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in deep water"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-deep-water",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in deep water"
+      }
+    ]
+  },
+  {
+    "w": "be up the creek",
+    "t": "çok zor durumda olmak",
+    "lit": "dere boyunca yukarıda olmak",
+    "s": "With no fuel or phone, we were up the creek.",
+    "form": "were up the creek",
+    "tr": "Yakıtımız ve telefonumuz olmayınca çok zor durumdaydık.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/up-the-creek",
+      "https://www.collinsdictionary.com/dictionary/english/up-the-creek"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/up-the-creek",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be up the creek"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/up-the-creek",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be up the creek"
+      }
+    ]
+  },
+  {
+    "w": "be between a rock and a hard place",
+    "t": "iki kötü seçenek arasında kalmak",
+    "lit": "bir kaya ile sert bir yer arasında olmak",
+    "s": "With both offers withdrawn, she was between a rock and a hard place.",
+    "form": "was between a rock and a hard place",
+    "tr": "İki teklif de geri çekilince iki kötü seçenek arasında kaldı.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/between-a-rock-and-a-hard-place",
+      "https://www.dictionary.com/browse/between-a-rock-and-a-hard-place"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/between-a-rock-and-a-hard-place",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be between a rock and a hard place"
+      },
+      {
+        "url": "https://www.dictionary.com/browse/between-a-rock-and-a-hard-place",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be between a rock and a hard place"
+      }
+    ]
+  },
+  {
+    "w": "add fuel to the fire",
+    "t": "gerginliği daha da artırmak",
+    "lit": "ateşe yakıt eklemek",
+    "s": "His sarcastic reply added fuel to the fire.",
+    "form": "added fuel to the fire",
+    "tr": "Alaycı cevabı gerginliği daha da artırdı.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/add-fuel-to-the-fire",
+      "https://www.collinsdictionary.com/dictionary/english/add-fuel-to-the-fire"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/add-fuel-to-the-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "add fuel to the fire"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/add-fuel-to-the-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "add fuel to the fire"
+      }
+    ]
+  },
+  {
+    "w": "weather the storm",
+    "t": "zor dönemi atlatmak",
+    "lit": "fırtınaya dayanmak",
+    "s": "Our savings helped us weather the storm.",
+    "form": "weather the storm",
+    "tr": "Birikimlerimiz zor dönemi atlatmamıza yardımcı oldu.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/weather-the-storm",
+      "https://www.collinsdictionary.com/dictionary/english/weather-the-storm"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/weather-the-storm",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "weather the storm"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/weather-the-storm",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "weather the storm"
+      }
+    ]
+  },
+  {
+    "w": "go down in flames",
+    "t": "büyük başarısızlığa uğramak",
+    "lit": "alevler içinde aşağı gitmek",
+    "s": "Without preparation, their proposal went down in flames.",
+    "form": "went down in flames",
+    "tr": "Hazırlık olmadığı için önerileri büyük başarısızlığa uğradı.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/go-down-in-flames",
+      "https://dictionary.cambridge.org/dictionary/english/go-down?topic=losing-and-being-defeated"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-down-in-flames",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go down in flames"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-down?topic=losing-and-being-defeated",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go down in flames"
+      }
+    ]
+  },
+  {
+    "w": "be the last straw",
+    "t": "sabrı taşıran son olay olmak",
+    "lit": "son saman sapı olmak",
+    "s": "The third cancelled train was the last straw.",
+    "form": "was the last straw",
+    "tr": "Üçüncü trenin de iptal edilmesi sabrımızı taşıran son olay oldu.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/last-straw",
+      "https://www.collinsdictionary.com/dictionary/english/the-last-straw"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/last-straw",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be the last straw"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-last-straw",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be the last straw"
+      }
+    ]
+  },
+  {
+    "w": "make a mountain out of a molehill",
+    "t": "küçük sorunu büyütmek",
+    "lit": "köstebek tepeciğinden dağ yapmak",
+    "s": "You're making a mountain out of a molehill over one typo.",
+    "form": "making a mountain out of a molehill",
+    "tr": "Tek bir yazım hatası yüzünden küçük sorunu büyütüyorsun.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/make-a-mountain-out-of-a-molehill?topic=exaggerating-and-playing-down",
+      "https://www.collinsdictionary.com/dictionary/english/make-a-mountain-out-of-a-molehill"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/make-a-mountain-out-of-a-molehill?topic=exaggerating-and-playing-down",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make a mountain out of a molehill"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/make-a-mountain-out-of-a-molehill",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make a mountain out of a molehill"
+      }
+    ]
+  },
+  {
+    "w": "be out of the woods",
+    "t": "tehlikeli dönemi geride bırakmak",
+    "lit": "ormanın dışına çıkmak",
+    "s": "With sales recovering, we are out of the woods at last.",
+    "form": "are out of the woods",
+    "tr": "Satışlar düzelirken sonunda tehlikeli dönemi geride bıraktık.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/out-of-the-woods",
+      "https://www.collinsdictionary.com/dictionary/english/out-of-the-woods"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/out-of-the-woods",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be out of the woods"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/out-of-the-woods",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be out of the woods"
+      }
+    ]
+  },
+  {
+    "w": "be as old as the hills",
+    "t": "çok eski olmak",
+    "lit": "tepeler kadar yaşlı olmak",
+    "s": "That excuse is as old as the hills.",
+    "form": "is as old as the hills",
+    "tr": "O bahane çok eskidir.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/as-old-as-the-hills?q=as-old-as-the-hills_1",
+      "https://www.collinsdictionary.com/dictionary/english/as-old-as-the-hills"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/as-old-as-the-hills?q=as-old-as-the-hills_1",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as old as the hills"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/as-old-as-the-hills",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as old as the hills"
+      }
+    ]
+  },
+  {
+    "w": "be water under the bridge",
+    "t": "artık geride kalmış bir mesele olmak",
+    "lit": "köprünün altındaki su olmak",
+    "s": "That old argument is water under the bridge.",
+    "form": "is water under the bridge",
+    "tr": "O eski tartışma artık geride kalmış bir mesele.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/water-under-the-bridge?q=water-under-the-bridge_1",
+      "https://www.collinsdictionary.com/dictionary/english/water-under-the-bridge"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/water-under-the-bridge?q=water-under-the-bridge_1",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be water under the bridge"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/water-under-the-bridge",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be water under the bridge"
+      }
+    ]
+  },
+  {
+    "w": "steal someone's thunder",
+    "t": "başkasının başarısını veya ilgisini gölgelemek",
+    "lit": "birinin gök gürültüsünü çalmak",
+    "s": "His surprise announcement stole her thunder.",
+    "form": "stole her thunder",
+    "tr": "Onun sürpriz duyurusu kadının başarısını gölgeledi.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/steal-thunder",
+      "https://www.collinsdictionary.com/dictionary/english/steal-someones-thunder"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/steal-thunder",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "steal someone's thunder"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/steal-someones-thunder",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "steal someone's thunder"
+      }
+    ]
+  },
+  {
+    "w": "take by storm",
+    "t": "bir topluluğu aniden çok etkilemek",
+    "lit": "birini fırtınayla ele geçirmek",
+    "s": "The young singer took the audience by storm.",
+    "form": "took the audience by storm",
+    "tr": "Genç şarkıcı izleyicileri aniden çok etkiledi.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "take someone by storm",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/take-by-storm",
+      "https://www.collinsdictionary.com/dictionary/english/take-something-by-storm"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/take-by-storm",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take someone by storm"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/take-something-by-storm",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take someone by storm"
+      }
+    ]
+  },
+  {
+    "w": "be a breath of fresh air",
+    "t": "ferahlatıcı bir yenilik olmak",
+    "lit": "bir nefes taze hava olmak",
+    "s": "Her practical approach is a breath of fresh air.",
+    "form": "is a breath of fresh air",
+    "tr": "Onun pratik yaklaşımı ferahlatıcı bir yenilik.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/dictionary/english/breath-of-fresh-air",
+      "https://www.collinsdictionary.com/dictionary/english/a-breath-of-fresh-air"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/breath-of-fresh-air",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a breath of fresh air"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-breath-of-fresh-air",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a breath of fresh air"
+      }
+    ]
+  },
+  {
+    "w": "be a ray of sunshine",
+    "t": "neşe ve umut kaynağı olmak",
+    "lit": "bir güneş ışını olmak",
+    "s": "That kind letter was a ray of sunshine.",
+    "form": "was a ray of sunshine",
+    "tr": "O nazik mektup neşe ve umut kaynağıydı.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/ray-of-sunshine",
+      "https://www.collinsdictionary.com/dictionary/english/a-ray-of-sunshine"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/ray-of-sunshine",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a ray of sunshine"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-ray-of-sunshine",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a ray of sunshine"
+      }
+    ]
+  },
+  {
+    "w": "be a bolt from the blue",
+    "t": "tamamen beklenmedik bir olay olmak",
+    "lit": "mavilikten gelen bir yıldırım olmak",
+    "s": "The closure was a bolt from the blue.",
+    "form": "was a bolt from the blue",
+    "tr": "Kapanma tamamen beklenmedik bir olaydı.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/bolt-from-the-blue",
+      "https://www.collinsdictionary.com/dictionary/english/a-bolt-from-the-blue"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/bolt-from-the-blue",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a bolt from the blue"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-bolt-from-the-blue",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a bolt from the blue"
+      }
+    ]
+  },
+  {
+    "w": "be under a cloud",
+    "t": "kuşku veya hoşnutsuzluk altında olmak",
+    "lit": "bir bulutun altında olmak",
+    "s": "After the inquiry, the director was under a cloud.",
+    "form": "was under a cloud",
+    "tr": "Soruşturmadan sonra müdür kuşku ve hoşnutsuzluk altındaydı.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/learner-english/be-under-a-cloud",
+      "https://www.collinsdictionary.com/dictionary/english/under-a-cloud"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/learner-english/be-under-a-cloud",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be under a cloud"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/under-a-cloud",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be under a cloud"
+      }
+    ]
+  },
+  {
+    "w": "have a silver lining",
+    "t": "kötü durumda iyi bir yan bulunmak",
+    "lit": "gümüş bir astarı olmak",
+    "s": "That cancellation had a silver lining: we met our neighbours.",
+    "form": "had a silver lining",
+    "tr": "O iptalin iyi bir yanı vardı; komşularımızla tanıştık.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/silver-lining",
+      "https://www.collinsdictionary.com/dictionary/english/silver-lining"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/silver-lining",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a silver lining"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/silver-lining",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a silver lining"
+      }
+    ]
+  },
+  {
+    "w": "be a perfect storm",
+    "t": "birçok olumsuz etkenin birleşmesi olmak",
+    "lit": "kusursuz bir fırtına olmak",
+    "s": "Rising costs and falling sales were a perfect storm.",
+    "form": "were a perfect storm",
+    "tr": "Artan giderler ve düşen satışlar birçok olumsuz etkenin birleşmesiydi.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/perfect-storm",
+      "https://www.collinsdictionary.com/dictionary/english/perfect-storm"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/perfect-storm",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a perfect storm"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/perfect-storm",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a perfect storm"
+      }
+    ]
+  },
+  {
+    "w": "move heaven and earth",
+    "t": "her türlü çabayı göstermek",
+    "lit": "göğü ve yeri hareket ettirmek",
+    "s": "We moved heaven and earth to find that medicine.",
+    "form": "moved heaven and earth",
+    "tr": "O ilacı bulmak için her türlü çabayı gösterdik.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/move-heaven-and-earth",
+      "https://www.collinsdictionary.com/dictionary/english/move-heaven-and-earth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/move-heaven-and-earth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "move heaven and earth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/move-heaven-and-earth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "move heaven and earth"
+      }
+    ]
+  },
+  {
+    "w": "go with the flow",
+    "t": "olayların akışına uyum sağlamak",
+    "lit": "akıntıyla birlikte gitmek",
+    "s": "On this holiday, let's go with the flow.",
+    "form": "go with the flow",
+    "tr": "Bu tatilde olayların akışına uyum sağlayalım.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-with-the-flow",
+      "https://www.collinsdictionary.com/dictionary/english/go-with-the-flow"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-with-the-flow",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go with the flow"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-with-the-flow",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go with the flow"
+      }
+    ]
+  },
+  {
+    "w": "swim against the tide",
+    "t": "genel eğilime karşı davranmak",
+    "lit": "gelgit akıntısının tersine yüzmek",
+    "s": "By repairing rather than replacing, she swims against the tide.",
+    "form": "swims against the tide",
+    "tr": "Yenilemek yerine tamir ederek genel eğilime karşı davranıyor.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-swim-against-the-tide",
+      "https://www.collinsdictionary.com/dictionary/english/swim-against-the-tide"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-swim-against-the-tide",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "swim against the tide"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/swim-against-the-tide",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "swim against the tide"
+      }
+    ]
+  },
+  {
+    "w": "break new ground",
+    "t": "yepyeni bir alanda öncü olmak",
+    "lit": "yeni toprağı kırmak",
+    "s": "This study breaks new ground in hearing research.",
+    "form": "breaks new ground",
+    "tr": "Bu çalışma işitme araştırmalarında yepyeni bir alanda öncü oluyor.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/learner-english/break-new-ground",
+      "https://www.collinsdictionary.com/dictionary/english/break-new-ground"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/learner-english/break-new-ground",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "break new ground"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/break-new-ground",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "break new ground"
+      }
+    ]
+  },
+  {
+    "w": "be on shaky ground",
+    "t": "dayanakları zayıf olmak",
+    "lit": "sallanan zemin üstünde olmak",
+    "s": "Without receipts, his claim is on shaky ground.",
+    "form": "is on shaky ground",
+    "tr": "Makbuz olmadan iddiasının dayanakları zayıf.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-shaky-ground",
+      "https://www.collinsdictionary.com/dictionary/english/shaky-ground"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-shaky-ground",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on shaky ground"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/shaky-ground",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on shaky ground"
+      }
+    ]
+  },
+  {
+    "w": "make waves",
+    "t": "yerleşik düzende dikkat çekici değişim yaratmak",
+    "lit": "dalgalar yapmak",
+    "s": "Their new policy made waves across the industry.",
+    "form": "made waves",
+    "tr": "Yeni politikaları bütün sektörde dikkat çekici değişim yarattı.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/make-waves?q=make%2Bwaves",
+      "https://www.collinsdictionary.com/dictionary/english/make-waves"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/make-waves?q=make%2Bwaves",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make waves"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/make-waves",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make waves"
+      }
+    ]
+  },
+  {
+    "w": "be the tip of the iceberg",
+    "t": "daha büyük sorunun görünen küçük kısmı olmak",
+    "lit": "yalnızca buzdağının ucu olmak",
+    "s": "Those missing files are the tip of the iceberg.",
+    "form": "are the tip of the iceberg",
+    "tr": "O eksik dosyalar daha büyük sorunun görünen küçük kısmı.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/tip-of-the-iceberg",
+      "https://www.collinsdictionary.com/dictionary/english/the-tip-of-the-iceberg"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/tip-of-the-iceberg",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be the tip of the iceberg"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-tip-of-the-iceberg",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be the tip of the iceberg"
+      }
+    ]
+  },
+  {
+    "w": "nip in the bud",
+    "t": "bir şeyi daha başlarken durdurmak",
+    "lit": "bir şeyi tomurcuktayken koparmak",
+    "s": "We nipped the rumour in the bud with a statement.",
+    "form": "nipped the rumour in the bud",
+    "tr": "Bir açıklamayla söylentiyi daha başlarken durdurduk.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "nip something in the bud",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/nip-in-the-bud",
+      "https://www.collinsdictionary.com/dictionary/english/nip-something-in-the-bud"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/nip-in-the-bud",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "nip something in the bud"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/nip-something-in-the-bud",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "nip something in the bud"
+      }
+    ]
+  },
+  {
+    "w": "let the dust settle",
+    "t": "ortalığın yatışmasını beklemek",
+    "lit": "tozun çökmesine izin vermek",
+    "s": "Before deciding, let's let the dust settle.",
+    "form": "let the dust settle",
+    "tr": "Karar vermeden önce ortalığın yatışmasını bekleyelim.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/dust-settles",
+      "https://www.collinsdictionary.com/dictionary/english/the-dust-settles"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/dust-settles",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "let the dust settle"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-dust-settles",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "let the dust settle"
+      }
+    ]
+  },
+  {
+    "w": "come out of the blue",
+    "t": "hiç beklenmedik biçimde ortaya çıkmak",
+    "lit": "mavilikten çıkıp gelmek",
+    "s": "That invitation came out of the blue.",
+    "form": "came out of the blue",
+    "tr": "O davet hiç beklenmedik biçimde geldi.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english-spanish/to-come-out-of-the-blue",
+      "https://dictionary.cambridge.org/dictionary/english/out-of-the-blue"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-spanish/to-come-out-of-the-blue",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "come out of the blue"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/out-of-the-blue",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "come out of the blue"
+      }
+    ]
+  },
+  {
+    "w": "be a fair-weather friend",
+    "t": "yalnızca iyi günlerde yanında olmak",
+    "lit": "güzel hava arkadaşı olmak",
+    "s": "He was a fair-weather friend who vanished during trouble.",
+    "form": "was a fair-weather friend",
+    "tr": "Zorlukta kaybolan, yalnızca iyi günlerde yanında olan bir arkadaştı.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/fair-weather-friend?topic=friends-acquaintances-and-contemporaries",
+      "https://www.collinsdictionary.com/dictionary/english/fair-weather-friend"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/fair-weather-friend?topic=friends-acquaintances-and-contemporaries",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a fair-weather friend"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/fair-weather-friend",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a fair-weather friend"
+      }
+    ]
+  },
+  {
+    "w": "be a rough diamond",
+    "t": "dış görünüşü kaba ama özü değerli olmak",
+    "lit": "işlenmemiş bir elmas olmak",
+    "s": "Our gruff neighbour is a rough diamond.",
+    "form": "is a rough diamond",
+    "tr": "Sert görünüşlü komşumuzun özü değerlidir.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/rough-diamond",
+      "https://www.collinsdictionary.com/dictionary/english/a-rough-diamond"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/rough-diamond",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a rough diamond"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-rough-diamond",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a rough diamond"
+      }
+    ]
+  },
+  {
+    "w": "be set in stone",
+    "t": "değiştirilemez biçimde belirlenmiş olmak",
+    "lit": "taşa yerleştirilmiş olmak",
+    "s": "These dates are set in stone because tickets are booked.",
+    "form": "are set in stone",
+    "tr": "Biletler alındığı için bu tarihler değiştirilemez biçimde belirlendi.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/set-in-stone",
+      "https://www.collinsdictionary.com/us/submission/9755/Set%2Bin%2Bstone"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/set-in-stone",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be set in stone"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/submission/9755/Set%2Bin%2Bstone",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be set in stone"
+      }
+    ]
+  },
+  {
+    "w": "leave no stone unturned",
+    "t": "her ihtimali araştırmak",
+    "lit": "çevrilmemiş taş bırakmamak",
+    "s": "The investigators left no stone unturned.",
+    "form": "left no stone unturned",
+    "tr": "Soruşturmacılar her ihtimali araştırdı.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/leave-no-stone-unturned",
+      "https://www.collinsdictionary.com/dictionary/english/leave-no-stone-unturned"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/leave-no-stone-unturned",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "leave no stone unturned"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/leave-no-stone-unturned",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "leave no stone unturned"
+      }
+    ]
+  },
+  {
+    "w": "be a bed of roses",
+    "t": "rahat ve sorunsuz bir durum olmak",
+    "lit": "güllerden bir yatak olmak",
+    "s": "She expected retirement to be a bed of roses.",
+    "form": "be a bed of roses",
+    "tr": "Emekliliğin rahat ve sorunsuz bir dönem olmasını bekliyordu.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/bed-of-roses",
+      "https://www.collinsdictionary.com/dictionary/english/a-bed-of-roses"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/bed-of-roses",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a bed of roses"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-bed-of-roses",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a bed of roses"
+      }
+    ]
+  },
+  {
+    "w": "be down-to-earth",
+    "t": "gerçekçi ve ayakları yere basan biri olmak",
+    "lit": "yere yakın olmak",
+    "s": "Our architect is down-to-earth and explains costs clearly.",
+    "form": "is down-to-earth",
+    "tr": "Mimarımız gerçekçidir ve masrafları açıkça anlatır.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/down-to-earth",
+      "https://www.collinsdictionary.com/dictionary/english/down-to-earth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/down-to-earth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be down-to-earth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/down-to-earth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be down-to-earth"
+      }
+    ]
+  },
+  {
+    "w": "be no shrinking violet",
+    "t": "çekingen biri olmamak",
+    "lit": "büzüşen bir menekşe olmamak",
+    "s": "She is no shrinking violet in meetings.",
+    "form": "is no shrinking violet",
+    "tr": "Toplantılarda çekingen biri değildir.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/shrinking-violet",
+      "https://www.collinsdictionary.com/dictionary/english/no-shrinking-violet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/shrinking-violet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be no shrinking violet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/no-shrinking-violet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be no shrinking violet"
+      }
+    ]
+  },
+  {
+    "w": "be on the horizon",
+    "t": "yaklaşmakta olmak",
+    "lit": "ufkun üstünde olmak",
+    "s": "A major change is on the horizon.",
+    "form": "is on the horizon",
+    "tr": "Büyük bir değişiklik yaklaşmakta.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-the-horizon",
+      "https://www.collinsdictionary.com/dictionary/english/on-the-horizon"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-the-horizon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the horizon"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-the-horizon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the horizon"
+      }
+    ]
+  },
+  {
+    "w": "throw caution to the wind",
+    "t": "tedbiri bir kenara bırakmak",
+    "lit": "tedbiri rüzgâra atmak",
+    "s": "On impulse, he threw caution to the wind.",
+    "form": "threw caution to the wind",
+    "tr": "Bir anlık hevesle tedbiri bir kenara bıraktı.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/throw-caution-to-the-wind-winds",
+      "https://www.collinsdictionary.com/dictionary/english/throw-caution-to-the-wind"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/throw-caution-to-the-wind-winds",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw caution to the wind"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/throw-caution-to-the-wind",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw caution to the wind"
+      }
+    ]
+  },
+  {
+    "w": "skate on thin ice",
+    "t": "tehlikeli bir sınırda davranmak",
+    "lit": "ince buz üstünde kaymak",
+    "s": "With that excuse, you're skating on thin ice.",
+    "form": "skating on thin ice",
+    "tr": "O bahaneyle tehlikeli bir sınırda davranıyorsun.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/skate-on-thin-ice",
+      "https://dictionary.cambridge.org/dictionary/english/be-skating-on-thin-ice?topic=taking-risks"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/skate-on-thin-ice",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "skate on thin ice"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-skating-on-thin-ice?topic=taking-risks",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "skate on thin ice"
+      }
+    ]
+  },
+  {
+    "w": "play with fire",
+    "t": "tehlikeyi bile bile risk almak",
+    "lit": "ateşle oynamak",
+    "s": "Ignoring those warnings is playing with fire.",
+    "form": "playing with fire",
+    "tr": "O uyarıları görmezden gelmek tehlikeyi bile bile risk almaktır.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/play-with-fire",
+      "https://www.collinsdictionary.com/dictionary/english/play-with-fire"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/play-with-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "play with fire"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/play-with-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "play with fire"
+      }
+    ]
+  },
+  {
+    "w": "be as easy as falling off a log",
+    "t": "son derece kolay olmak",
+    "lit": "bir kütükten düşmek kadar kolay olmak",
+    "s": "With that tool, the job was as easy as falling off a log.",
+    "form": "was as easy as falling off a log",
+    "tr": "O araçla iş son derece kolaydı.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/as-easy-as-falling-off-a-log",
+      "https://www.collinsdictionary.com/es/diccionario/ingles-espanol/it-s-as-easy-as-abc-or-falling-off-a-log-or-pie"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/as-easy-as-falling-off-a-log",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as easy as falling off a log"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/es/diccionario/ingles-espanol/it-s-as-easy-as-abc-or-falling-off-a-log-or-pie",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as easy as falling off a log"
+      }
+    ]
+  },
+  {
+    "w": "be a breeze",
+    "t": "kolayca yapılmak",
+    "lit": "bir esinti olmak",
+    "s": "With a map, the route was a breeze.",
+    "form": "was a breeze",
+    "tr": "Haritayla rota kolayca tamamlandı.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/breeze",
+      "https://www.collinsdictionary.com/dictionary/english/breeze"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/breeze",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a breeze"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/breeze",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a breeze"
+      }
+    ]
+  },
+  {
+    "w": "take a leaf out of someone's book",
+    "t": "birinin iyi örneğini izlemek",
+    "lit": "birinin kitabından bir yaprak almak",
+    "s": "We should take a leaf out of her book.",
+    "form": "take a leaf out of her book",
+    "tr": "Onun iyi örneğini izlemeliyiz.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/take-a-leaf-out-of-book?q=take-a-leaf-out-of-someone%27s-book",
+      "https://www.collinsdictionary.com/dictionary/english/take-a-leaf-out-of-someones-book"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/take-a-leaf-out-of-book?q=take-a-leaf-out-of-someone%27s-book",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take a leaf out of someone's book"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/take-a-leaf-out-of-someones-book",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take a leaf out of someone's book"
+      }
+    ]
+  },
+  {
+    "w": "go against the grain",
+    "t": "kişinin doğasına veya genel anlayışa ters gelmek",
+    "lit": "ahşap damarının tersine gitmek",
+    "s": "For her, ignoring a complaint goes against the grain.",
+    "form": "goes against the grain",
+    "tr": "Bir şikâyeti görmezden gelmek onun doğasına ters gelir.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-against-the-grain",
+      "https://www.collinsdictionary.com/dictionary/english/go-against-the-grain"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-against-the-grain",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go against the grain"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-against-the-grain",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go against the grain"
+      }
+    ]
+  },
+  {
+    "w": "turn over a new leaf",
+    "t": "davranışlarını düzeltip yeni başlangıç yapmak",
+    "lit": "yeni bir yaprağı çevirmek",
+    "s": "After that warning, he turned over a new leaf.",
+    "form": "turned over a new leaf",
+    "tr": "O uyarıdan sonra davranışlarını düzeltip yeni başlangıç yaptı.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/turn-over-a-new-leaf",
+      "https://www.collinsdictionary.com/dictionary/english/turn-over-a-new-leaf"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/turn-over-a-new-leaf",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "turn over a new leaf"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/turn-over-a-new-leaf",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "turn over a new leaf"
+      }
+    ]
+  },
+  {
+    "w": "leave in the dust",
+    "t": "birini çok geride bırakmak",
+    "lit": "birini tozun içinde bırakmak",
+    "s": "The new engine left its rivals in the dust.",
+    "form": "left its rivals in the dust",
+    "tr": "Yeni motor rakiplerini çok geride bıraktı.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "pat": "leave someone in the dust",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/leave-in-the-dust?topic=winning-and-defeating",
+      "https://www.collinsdictionary.com/dictionary/english/leave-someone-or-something-in-the-dust"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/leave-in-the-dust?topic=winning-and-defeating",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "leave someone in the dust"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/leave-someone-or-something-in-the-dust",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "leave someone in the dust"
+      }
+    ]
+  },
+  {
+    "w": "get a second wind",
+    "t": "yorulduktan sonra yeniden enerji bulmak",
+    "lit": "ikinci bir rüzgâr almak",
+    "s": "After a short rest, we got a second wind.",
+    "form": "got a second wind",
+    "tr": "Kısa bir dinlenmeden sonra yeniden enerji bulduk.",
+    "theme": "nature",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/second-wind",
+      "https://www.collinsdictionary.com/dictionary/english/a-second-wind"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/second-wind",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get a second wind"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-second-wind",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get a second wind"
+      }
+    ]
+  },
+  {
+    "w": "be dead in the water",
+    "t": "hiç ilerleyemez durumda olmak",
+    "lit": "suda ölü olmak",
+    "s": "Without a licence, the project is dead in the water.",
+    "form": "is dead in the water",
+    "tr": "Ruhsat olmadan proje hiç ilerleyemez durumda.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-dead-in-the-water",
+      "https://www.collinsdictionary.com/dictionary/english/dead-in-the-water"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-dead-in-the-water",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be dead in the water"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/dead-in-the-water",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be dead in the water"
+      }
+    ]
+  },
+  {
+    "w": "be on a slippery slope",
+    "t": "giderek kötüleşecek tehlikeli yola girmek",
+    "lit": "kaygan bir yamacın üstünde olmak",
+    "s": "By hiding small errors, you're on a slippery slope.",
+    "form": "on a slippery slope",
+    "tr": "Küçük hataları gizleyerek giderek kötüleşecek tehlikeli yola giriyorsun.",
+    "theme": "nature",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/slippery-slope?topic=deteriorating-and-making-worse",
+      "https://www.collinsdictionary.com/dictionary/english/on-a-slippery-slope"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/slippery-slope?topic=deteriorating-and-making-worse",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on a slippery slope"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-a-slippery-slope",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on a slippery slope"
+      }
+    ]
+  }
+]

@@ -1,0 +1,695 @@
+[
+  {
+    "w": "be out of one's depth",
+    "t": "bilgisini aşan bir durumda olmak",
+    "lit": "boyunu aşan derinlikte olmak",
+    "s": "In that advanced class, I was out of my depth.",
+    "form": "was out of my depth",
+    "tr": "O ileri düzey sınıfta bilgimi aşan bir durumdaydım.",
+    "theme": "ease",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/out-of-depth",
+      "https://www.collinsdictionary.com/dictionary/english/out-of-your-depth"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/out-of-depth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be out of one's depth"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/out-of-your-depth",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be out of one's depth"
+      }
+    ]
+  },
+  {
+    "w": "be plain sailing",
+    "t": "kolay ve sorunsuz ilerlemek",
+    "lit": "düz yelkencilik olmak",
+    "s": "After installation, everything was plain sailing.",
+    "form": "was plain sailing",
+    "tr": "Kurulumdan sonra her şey kolay ve sorunsuz ilerledi.",
+    "theme": "ease",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-plain-sailing",
+      "https://www.collinsdictionary.com/dictionary/english/plain-sailing"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-plain-sailing",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be plain sailing"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/plain-sailing",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be plain sailing"
+      }
+    ]
+  },
+  {
+    "w": "be a walk in the park",
+    "t": "çok kolay olmak",
+    "lit": "parkta bir yürüyüş olmak",
+    "s": "With this guide, the repair was a walk in the park.",
+    "form": "was a walk in the park",
+    "tr": "Bu rehberle tamirat çok kolaydı.",
+    "theme": "ease",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/walk-in-the-park?q=walk%2Bin%2Bthe%2Bpark",
+      "https://www.collinsdictionary.com/dictionary/english/a-walk-in-the-park"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/walk-in-the-park?q=walk%2Bin%2Bthe%2Bpark",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a walk in the park"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-walk-in-the-park",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a walk in the park"
+      }
+    ]
+  },
+  {
+    "w": "be child's play",
+    "t": "yapması çok kolay olmak",
+    "lit": "çocuk oyunu olmak",
+    "s": "For a trained chef, this dish is child's play.",
+    "form": "is child's play",
+    "tr": "Eğitimli bir aşçı için bu yemeği yapmak çok kolaydır.",
+    "theme": "ease",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/child-s-play",
+      "https://www.collinsdictionary.com/dictionary/english/childs-play"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/child-s-play",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be child's play"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/childs-play",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be child's play"
+      }
+    ]
+  },
+  {
+    "w": "be no picnic",
+    "t": "zor ve zahmetli olmak",
+    "lit": "piknik olmamak",
+    "s": "Moving in that heat was no picnic.",
+    "form": "was no picnic",
+    "tr": "O sıcakta taşınmak zor ve zahmetliydi.",
+    "theme": "ease",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-no-picnic",
+      "https://www.collinsdictionary.com/dictionary/english/no-picnic"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-no-picnic",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be no picnic"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/no-picnic",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be no picnic"
+      }
+    ]
+  },
+  {
+    "w": "be a tall order",
+    "t": "başarılması zor bir istek olmak",
+    "lit": "uzun bir sipariş olmak",
+    "s": "Finishing today is a tall order.",
+    "form": "is a tall order",
+    "tr": "Bugün bitirmek başarılması zor bir istek.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/tall-order",
+      "https://www.collinsdictionary.com/dictionary/english/a-tall-order"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/tall-order",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a tall order"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-tall-order",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a tall order"
+      }
+    ]
+  },
+  {
+    "w": "be an uphill battle",
+    "t": "sürekli çaba gerektiren zor bir mücadele olmak",
+    "lit": "yokuş yukarı bir savaş olmak",
+    "s": "Saving this building is an uphill battle.",
+    "form": "is an uphill battle",
+    "tr": "Bu binayı kurtarmak sürekli çaba gerektiren zor bir mücadeledir.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/uphill-battle",
+      "https://dictionary.cambridge.org/dictionary/english/uphill"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/uphill-battle",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be an uphill battle"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/uphill",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be an uphill battle"
+      }
+    ]
+  },
+  {
+    "w": "be a whole new ball game",
+    "t": "tamamen farklı koşullar içeren durum olmak",
+    "lit": "yepyeni bir top oyunu olmak",
+    "s": "Working abroad is a whole new ball game.",
+    "form": "is a whole new ball game",
+    "tr": "Yurt dışında çalışmak tamamen farklı koşullar içeren bir durumdur.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/learner-english/a-whole-new-ball-game",
+      "https://www.collinsdictionary.com/dictionary/english/a-new-ball-game"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/learner-english/a-whole-new-ball-game",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a whole new ball game"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-new-ball-game",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a whole new ball game"
+      }
+    ]
+  },
+  {
+    "w": "be out of one's league",
+    "t": "kişinin yetenek veya imkânlarını aşmak",
+    "lit": "kişinin liginin dışında olmak",
+    "s": "That advanced tournament is out of my league.",
+    "form": "is out of my league",
+    "tr": "O ileri düzey turnuva yeteneklerimi aşıyor.",
+    "theme": "ease",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/out-of-league",
+      "https://www.collinsdictionary.com/us/dictionary/english/out-of-someones-league"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/out-of-league",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be out of one's league"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/out-of-someones-league",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be out of one's league"
+      }
+    ]
+  },
+  {
+    "w": "be a level playing field",
+    "t": "herkese eşit koşullar sağlamak",
+    "lit": "düz bir oyun alanı olmak",
+    "s": "With the same equipment, this is a level playing field.",
+    "form": "is a level playing field",
+    "tr": "Aynı ekipmanla burada herkese eşit koşullar sağlanıyor.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/level-playing-field",
+      "https://www.collinsdictionary.com/dictionary/english/a-level-playing-field"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/level-playing-field",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a level playing field"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-level-playing-field",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a level playing field"
+      }
+    ]
+  },
+  {
+    "w": "be streets ahead",
+    "t": "diğerlerinden çok üstün olmak",
+    "lit": "sokaklar kadar önde olmak",
+    "s": "This version is streets ahead of the old one.",
+    "form": "is streets ahead",
+    "tr": "Bu sürüm eskisinden çok üstün.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-streets-ahead",
+      "https://www.collinsdictionary.com/dictionary/english/streets-ahead-of"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-streets-ahead",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be streets ahead"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/streets-ahead-of",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be streets ahead"
+      }
+    ]
+  },
+  {
+    "w": "run rings around",
+    "t": "birinden çok daha üstün performans göstermek",
+    "lit": "birinin etrafında daireler çizerek koşmak",
+    "s": "The younger team ran rings around their opponents.",
+    "form": "ran rings around",
+    "tr": "Genç takım rakiplerinden çok daha üstün performans gösterdi.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/run-rings-around",
+      "https://www.collinsdictionary.com/dictionary/english/run-rings-around"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/run-rings-around",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "run rings around"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/run-rings-around",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "run rings around"
+      }
+    ]
+  },
+  {
+    "w": "make light work of",
+    "t": "zor işi kolayca ve hızla bitirmek",
+    "lit": "bir şeyden hafif iş yapmak",
+    "s": "The new machine made light work of the thick wood.",
+    "form": "made light work of",
+    "tr": "Yeni makine kalın ahşabı kolayca ve hızla işledi.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/make-light-work-of",
+      "https://www.collinsdictionary.com/dictionary/english/to-make-short-light-quick-work-of-something"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/make-light-work-of",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make light work of"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-make-short-light-quick-work-of-something",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make light work of"
+      }
+    ]
+  },
+  {
+    "w": "take in one's stride",
+    "t": "bir zorluğu soğukkanlılıkla karşılamak",
+    "lit": "bir şeyi adımının içinde almak",
+    "s": "She took the delay in her stride.",
+    "form": "took the delay in her stride",
+    "tr": "Gecikmeyi soğukkanlılıkla karşıladı.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "take something in one's stride",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/take-in-stride",
+      "https://www.collinsdictionary.com/dictionary/english/take-something-in-your-stride"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/take-in-stride",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take something in one's stride"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/take-something-in-your-stride",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take something in one's stride"
+      }
+    ]
+  },
+  {
+    "w": "rise to the occasion",
+    "t": "zor anda gereken başarıyı göstermek",
+    "lit": "duruma doğru yükselmek",
+    "s": "When the cook fell ill, our apprentice rose to the occasion.",
+    "form": "rose to the occasion",
+    "tr": "Aşçı hastalanınca çırağımız zor anda gereken başarıyı gösterdi.",
+    "theme": "ease",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/rise-to-the-occasion-challenge",
+      "https://www.collinsdictionary.com/dictionary/english/rise-to-the-occasion"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/rise-to-the-occasion-challenge",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "rise to the occasion"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/rise-to-the-occasion",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "rise to the occasion"
+      }
+    ]
+  },
+  {
+    "w": "be up to scratch",
+    "t": "gereken düzeyde olmak",
+    "lit": "çizik seviyesine ulaşmış olmak",
+    "s": "After practice, her technique was up to scratch.",
+    "form": "was up to scratch",
+    "tr": "Alıştırmadan sonra tekniği gereken düzeye geldi.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/up-to-scratch",
+      "https://www.collinsdictionary.com/dictionary/english/up-to-scratch"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/up-to-scratch",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be up to scratch"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/up-to-scratch",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be up to scratch"
+      }
+    ]
+  },
+  {
+    "w": "be on top of",
+    "t": "bir işi kontrolü altında tutmak",
+    "lit": "bir şeyin üstünde olmak",
+    "s": "We are on top of the repairs now.",
+    "form": "are on top of the repairs",
+    "tr": "Artık tamiratı kontrolümüz altında tutuyoruz.",
+    "theme": "ease",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "be on top of something",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-top",
+      "https://www.collinsdictionary.com/dictionary/english/on-top-on-top-of-something"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-top",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on top of something"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-top-on-top-of-something",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on top of something"
+      }
+    ]
+  },
+  {
+    "w": "have down to a fine art",
+    "t": "bir işi çok ustaca yapar hâle gelmek",
+    "lit": "bir şeyi ince sanat düzeyine indirmiş olmak",
+    "s": "He has packing down to a fine art.",
+    "form": "has packing down to a fine art",
+    "tr": "Paketlemeyi çok ustaca yapar hâle gelmiş.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "have something down to a fine art",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-down-to-a-fine-art",
+      "https://www.collinsdictionary.com/dictionary/english/get-something-down-to-a-fine-art"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-down-to-a-fine-art",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have something down to a fine art"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-something-down-to-a-fine-art",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have something down to a fine art"
+      }
+    ]
+  },
+  {
+    "w": "be a stumbling block",
+    "t": "ilerlemeye engel olan sorun olmak",
+    "lit": "bir tökezleme bloğu olmak",
+    "s": "The missing permit is a stumbling block.",
+    "form": "is a stumbling block",
+    "tr": "Eksik izin ilerlemeye engel olan bir sorun.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/stumbling-block",
+      "https://www.collinsdictionary.com/dictionary/english/a-stumbling-block"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/stumbling-block",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a stumbling block"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-stumbling-block",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a stumbling block"
+      }
+    ]
+  },
+  {
+    "w": "be a double-edged sword",
+    "t": "hem yararı hem zararı olmak",
+    "lit": "iki ağızlı bir kılıç olmak",
+    "s": "Constant availability is a double-edged sword.",
+    "form": "is a double-edged sword",
+    "tr": "Sürekli ulaşılabilir olmanın hem yararı hem zararı vardır.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/dictionary/english/double-edged-sword",
+      "https://www.collinsdictionary.com/dictionary/english/a-double-edged-sword"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/double-edged-sword",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a double-edged sword"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-double-edged-sword",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a double-edged sword"
+      }
+    ]
+  },
+  {
+    "w": "be a necessary evil",
+    "t": "istenmese de gerekli olan şey olmak",
+    "lit": "gerekli bir kötülük olmak",
+    "s": "For this trip, the long transfer is a necessary evil.",
+    "form": "is a necessary evil",
+    "tr": "Bu yolculuk için uzun aktarma istenmese de gerekli olan bir şey.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/necessary-evil?topic=essential-or-necessary",
+      "https://www.collinsdictionary.com/dictionary/english/necessary-evil"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/necessary-evil?topic=essential-or-necessary",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a necessary evil"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/necessary-evil",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a necessary evil"
+      }
+    ]
+  },
+  {
+    "w": "be a mixed blessing",
+    "t": "hem iyi hem kötü yanları olmak",
+    "lit": "karışık bir kutsama olmak",
+    "s": "This new road is a mixed blessing for residents.",
+    "form": "is a mixed blessing",
+    "tr": "Bu yeni yolun mahalle sakinleri için hem iyi hem kötü yanları var.",
+    "theme": "ease",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/mixed-blessing",
+      "https://www.collinsdictionary.com/dictionary/english/a-mixed-blessing"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/mixed-blessing",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a mixed blessing"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-mixed-blessing",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a mixed blessing"
+      }
+    ]
+  },
+  {
+    "w": "be easier said than done",
+    "t": "söylemesi kolay yapması zor olmak",
+    "lit": "yapılmaktan daha kolay söylenmek",
+    "s": "Starting again is easier said than done.",
+    "form": "is easier said than done",
+    "tr": "Yeniden başlamanın söylemesi kolay ama yapması zor.",
+    "theme": "ease",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/easier-said-than-done",
+      "https://www.collinsdictionary.com/dictionary/english/easier-said-than-done"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/easier-said-than-done",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be easier said than done"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/easier-said-than-done",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be easier said than done"
+      }
+    ]
+  }
+]

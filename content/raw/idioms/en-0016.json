@@ -1,0 +1,693 @@
+[
+  {
+    "w": "hit the road",
+    "t": "yola çıkmak",
+    "lit": "yola vurmak",
+    "s": "After breakfast, we hit the road.",
+    "form": "hit the road",
+    "tr": "Kahvaltıdan sonra yola çıktık.",
+    "theme": "move",
+    "level": "B1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/hit-the-road",
+      "https://www.collinsdictionary.com/dictionary/english/hit-the-road"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hit-the-road",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit the road"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-the-road",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit the road"
+      }
+    ]
+  },
+  {
+    "w": "get the show on the road",
+    "t": "planlanan işi başlatmak",
+    "lit": "gösteriyi yola çıkarmak",
+    "s": "Let's get the show on the road before lunch.",
+    "form": "get the show on the road",
+    "tr": "Öğle yemeğinden önce planlanan işi başlatalım.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-this-show-on-the-road",
+      "https://www.collinsdictionary.com/dictionary/english/get-the-show-on-the-road"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-this-show-on-the-road",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get the show on the road"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-the-show-on-the-road",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get the show on the road"
+      }
+    ]
+  },
+  {
+    "w": "be off the beaten track",
+    "t": "alışılmış turist güzergâhından uzakta olmak",
+    "lit": "çiğnenmiş yolun dışında olmak",
+    "s": "This quiet village is off the beaten track.",
+    "form": "is off the beaten track",
+    "tr": "Bu sessiz köy alışılmış turist güzergâhından uzakta.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/off-the-beaten-track",
+      "https://www.collinsdictionary.com/dictionary/english/off-the-beaten-track"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/off-the-beaten-track",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be off the beaten track"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/off-the-beaten-track",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be off the beaten track"
+      }
+    ]
+  },
+  {
+    "w": "come a long way",
+    "t": "büyük ilerleme kaydetmek",
+    "lit": "uzun bir yoldan gelmek",
+    "s": "Since its first prototype, this tool has come a long way.",
+    "form": "has come a long way",
+    "tr": "İlk prototipinden beri bu araç büyük ilerleme kaydetti.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-come-a-long-way?topic=making-progress-and-advancing",
+      "https://www.collinsdictionary.com/dictionary/english/have-come-a-long-way"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-come-a-long-way?topic=making-progress-and-advancing",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "come a long way"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-come-a-long-way",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "come a long way"
+      }
+    ]
+  },
+  {
+    "w": "go round in circles",
+    "t": "ilerleme kaydetmeden aynı şeyleri tekrarlamak",
+    "lit": "daireler çizerek dönmek",
+    "s": "Without clear goals, we are going round in circles.",
+    "form": "are going round in circles",
+    "tr": "Açık hedefler olmadan ilerleme kaydetmeden aynı şeyleri tekrarlıyoruz.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-run-round-in-circles",
+      "https://www.collinsdictionary.com/dictionary/english/go-round-in-circles"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-run-round-in-circles",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go round in circles"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-round-in-circles",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go round in circles"
+      }
+    ]
+  },
+  {
+    "w": "be on the right track",
+    "t": "doğru yönde ilerlemek",
+    "lit": "doğru izin üstünde olmak",
+    "s": "These early results show we are on the right track.",
+    "form": "are on the right track",
+    "tr": "Bu ilk sonuçlar doğru yönde ilerlediğimizi gösteriyor.",
+    "theme": "move",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-the-right-track",
+      "https://www.collinsdictionary.com/dictionary/english/on-the-right-track"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-the-right-track",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the right track"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-the-right-track",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the right track"
+      }
+    ]
+  },
+  {
+    "w": "lose one's way",
+    "t": "doğru hedef veya yöntemi kaybetmek",
+    "lit": "kendi yolunu kaybetmek",
+    "s": "Without its founder, the project lost its way.",
+    "form": "lost its way",
+    "tr": "Kurucusu olmayınca proje doğru hedefini kaybetti.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/lose-way",
+      "https://www.collinsdictionary.com/dictionary/english/lose-ones-way"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/lose-way",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "lose one's way"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/lose-ones-way",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "lose one's way"
+      }
+    ]
+  },
+  {
+    "w": "find one's bearings",
+    "t": "yeni durumda yönünü belirlemek",
+    "lit": "yön noktalarını bulmak",
+    "s": "This introductory tour helped us find our bearings.",
+    "form": "find our bearings",
+    "tr": "Bu tanıtım turu yeni ortamda yönümüzü belirlememize yardımcı oldu.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-find-bearings",
+      "https://www.collinsdictionary.com/dictionary/english/get-ones-bearings-find-ones-bearings-lose-ones-bearings"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-find-bearings",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "find one's bearings"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-ones-bearings-find-ones-bearings-lose-ones-bearings",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "find one's bearings"
+      }
+    ]
+  },
+  {
+    "w": "get into the swing of things",
+    "t": "yeni işin temposuna alışmak",
+    "lit": "şeylerin salınımına girmek",
+    "s": "After a week, I got into the swing of things.",
+    "form": "got into the swing of things",
+    "tr": "Bir hafta sonra yeni işin temposuna alıştım.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-into-the-swing-of-it-things?q=swing%2Bof%2Bthings",
+      "https://www.collinsdictionary.com/dictionary/english-spanish/to-get-into-the-swing-of-things"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-into-the-swing-of-it-things?q=swing%2Bof%2Bthings",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get into the swing of things"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-spanish/to-get-into-the-swing-of-things",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get into the swing of things"
+      }
+    ]
+  },
+  {
+    "w": "get into one's stride",
+    "t": "alışıp verimli çalışmaya başlamak",
+    "lit": "kendi adım ritmine girmek",
+    "s": "By the second lesson, she got into her stride.",
+    "form": "got into her stride",
+    "tr": "İkinci derste alışıp verimli çalışmaya başladı.",
+    "theme": "move",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-into-stride",
+      "https://www.collinsdictionary.com/dictionary/english/get-into-ones-stride-hit-ones-stride"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-into-stride",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get into one's stride"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-into-ones-stride-hit-ones-stride",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get into one's stride"
+      }
+    ]
+  },
+  {
+    "w": "make headway",
+    "t": "bir işte ilerleme kaydetmek",
+    "lit": "baş ilerlemesi yapmak",
+    "s": "With the new evidence, we made headway.",
+    "form": "made headway",
+    "tr": "Yeni kanıtla işte ilerleme kaydettik.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/make-headway",
+      "https://www.collinsdictionary.com/dictionary/english/make-headway"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/make-headway",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make headway"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/make-headway",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make headway"
+      }
+    ]
+  },
+  {
+    "w": "get a move on",
+    "t": "daha hızlı davranmaya başlamak",
+    "lit": "bir hareket almak",
+    "s": "We must get a move on to catch that train.",
+    "form": "get a move on",
+    "tr": "O trene yetişmek için daha hızlı davranmalıyız.",
+    "theme": "move",
+    "level": "B1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-a-move-on",
+      "https://www.collinsdictionary.com/dictionary/english/get-a-move-on"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-a-move-on",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get a move on"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-a-move-on",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get a move on"
+      }
+    ]
+  },
+  {
+    "w": "pull up stakes",
+    "t": "yerleştiği yerden ayrılıp taşınmak",
+    "lit": "kazıkları yerinden çekmek",
+    "s": "After twenty years, they pulled up stakes.",
+    "form": "pulled up stakes",
+    "tr": "Yirmi yıl sonra yerleştikleri yerden ayrılıp taşındılar.",
+    "theme": "move",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "US",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/pull-up-stakes",
+      "https://www.collinsdictionary.com/dictionary/english/pull-up-stakes"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/pull-up-stakes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pull up stakes"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pull-up-stakes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pull up stakes"
+      }
+    ]
+  },
+  {
+    "w": "make tracks",
+    "t": "gecikmeden yola koyulmak",
+    "lit": "izler yapmak",
+    "s": "It's getting late; let's make tracks.",
+    "form": "make tracks",
+    "tr": "Geç oluyor; gecikmeden yola koyulalım.",
+    "theme": "move",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/dictionary/english/make-tracks",
+      "https://www.collinsdictionary.com/us/dictionary/english/make-tracks"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/make-tracks",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make tracks"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/make-tracks",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make tracks"
+      }
+    ]
+  },
+  {
+    "w": "make a move",
+    "t": "harekete geçip ayrılmak",
+    "lit": "bir hareket yapmak",
+    "s": "After the final song, we made a move.",
+    "form": "made a move",
+    "tr": "Son şarkıdan sonra harekete geçip ayrıldık.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/make-a-move",
+      "https://www.collinsdictionary.com/dictionary/english/make-a-move"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/make-a-move",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make a move"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/make-a-move",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "make a move"
+      }
+    ]
+  },
+  {
+    "w": "go places",
+    "t": "başarılı bir geleceğe ilerlemek",
+    "lit": "yerlere gitmek",
+    "s": "With her talent, she's going places.",
+    "form": "going places",
+    "tr": "Yeteneğiyle başarılı bir geleceğe ilerliyor.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-places",
+      "https://www.collinsdictionary.com/dictionary/english/go-places"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-places",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go places"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-places",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go places"
+      }
+    ]
+  },
+  {
+    "w": "go from strength to strength",
+    "t": "başarısını sürekli artırmak",
+    "lit": "güçten güce gitmek",
+    "s": "Since reopening, the café has gone from strength to strength.",
+    "form": "has gone from strength to strength",
+    "tr": "Yeniden açıldığından beri kafe başarısını sürekli artırıyor.",
+    "theme": "move",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-from-strength-to-strength",
+      "https://www.collinsdictionary.com/dictionary/english/go-from-strength-to-strength"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-from-strength-to-strength",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go from strength to strength"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-from-strength-to-strength",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go from strength to strength"
+      }
+    ]
+  },
+  {
+    "w": "be going nowhere",
+    "t": "bir türlü ilerleme sağlayamamak",
+    "lit": "hiçbir yere gitmiyor olmak",
+    "s": "Without an agreement, these talks are going nowhere.",
+    "form": "are going nowhere",
+    "tr": "Anlaşma olmadan bu görüşmeler bir türlü ilerleme sağlayamıyor.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/learner-english/get-go-nowhere",
+      "https://www.collinsdictionary.com/dictionary/english/be-getting-nowhere"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/learner-english/get-go-nowhere",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be going nowhere"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/be-getting-nowhere",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be going nowhere"
+      }
+    ]
+  },
+  {
+    "w": "run out of steam",
+    "t": "enerjisi veya ilerleme gücü tükenmek",
+    "lit": "buharı tükenmek",
+    "s": "By the final section, the debate ran out of steam.",
+    "form": "ran out of steam",
+    "tr": "Son bölümde tartışmanın ilerleme gücü tükendi.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/run-out-of-steam",
+      "https://www.collinsdictionary.com/dictionary/english/run-out-of-steam"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/run-out-of-steam",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "run out of steam"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/run-out-of-steam",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "run out of steam"
+      }
+    ]
+  },
+  {
+    "w": "be on the home straight",
+    "t": "işin son aşamasına gelmiş olmak",
+    "lit": "ev düzlüğünde olmak",
+    "s": "With only proofreading left, we are on the home straight.",
+    "form": "are on the home straight",
+    "tr": "Yalnızca son okuma kaldığı için işin son aşamasına geldik.",
+    "theme": "move",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-the-home-straight",
+      "https://www.collinsdictionary.com/dictionary/english/home-straight"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-the-home-straight",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the home straight"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/home-straight",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the home straight"
+      }
+    ]
+  },
+  {
+    "w": "see light at the end of the tunnel",
+    "t": "zor dönemin sonunun yaklaştığını görmek",
+    "lit": "tünelin sonunda ışık görmek",
+    "s": "After months of repairs, we see light at the end of the tunnel.",
+    "form": "see light at the end of the tunnel",
+    "tr": "Aylar süren tamirattan sonra zor dönemin sonunun yaklaştığını görüyoruz.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/light-at-the-end-of-the-tunnel",
+      "https://www.collinsdictionary.com/dictionary/english/light-at-the-end-of-the-tunnel"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/light-at-the-end-of-the-tunnel",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "see light at the end of the tunnel"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/light-at-the-end-of-the-tunnel",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "see light at the end of the tunnel"
+      }
+    ]
+  },
+  {
+    "w": "be a step in the right direction",
+    "t": "doğru yönde küçük bir ilerleme olmak",
+    "lit": "doğru yönde bir adım olmak",
+    "s": "This agreement is a step in the right direction.",
+    "form": "is a step in the right direction",
+    "tr": "Bu anlaşma doğru yönde küçük bir ilerleme.",
+    "theme": "move",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/step-in-the-right-direction",
+      "https://www.collinsdictionary.com/dictionary/english-french/a-step-in-the-right-direction"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/step-in-the-right-direction",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a step in the right direction"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-french/a-step-in-the-right-direction",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a step in the right direction"
+      }
+    ]
+  },
+  {
+    "w": "lead up the garden path",
+    "t": "birini yanlış yönlendirmek",
+    "lit": "birini bahçe yolunda yukarı götürmek",
+    "s": "That misleading ad led us up the garden path.",
+    "form": "led us up the garden path",
+    "tr": "O yanıltıcı reklam bizi yanlış yönlendirdi.",
+    "theme": "move",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "pat": "lead someone up the garden path",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/lead-up-the-garden-path",
+      "https://www.collinsdictionary.com/dictionary/english/lead-someone-up-the-garden-path"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/lead-up-the-garden-path",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "lead someone up the garden path"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/lead-someone-up-the-garden-path",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "lead someone up the garden path"
+      }
+    ]
+  }
+]

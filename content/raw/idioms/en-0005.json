@@ -1,0 +1,666 @@
+[
+  {
+    "w": "hang in there",
+    "t": "pes etmeden dayanmak",
+    "lit": "orada asılı kalmak",
+    "s": "Please hang in there; help is coming.",
+    "form": "hang in there",
+    "tr": "Lütfen pes etmeden dayan; yardım geliyor.",
+    "theme": "work",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/hang-in-there?q=hang-in",
+      "https://www.collinsdictionary.com/dictionary/english/hang-in-there-hang-on-in-there"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hang-in-there?q=hang-in",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hang in there"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hang-in-there-hang-on-in-there",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hang in there"
+      }
+    ]
+  },
+  {
+    "w": "get the ball rolling",
+    "t": "bir işi başlatmak",
+    "lit": "topu yuvarlamaya başlatmak",
+    "s": "Let's get the ball rolling with a short introduction.",
+    "form": "get the ball rolling",
+    "tr": "Kısa bir tanıtımla işi başlatalım.",
+    "theme": "work",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-start-the-ball-rolling?q=get-the-ball-rolling",
+      "https://www.collinsdictionary.com/dictionary/english/get-the-ball-rolling-set-the-ball-rolling"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-start-the-ball-rolling?q=get-the-ball-rolling",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get the ball rolling"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-the-ball-rolling-set-the-ball-rolling",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get the ball rolling"
+      }
+    ]
+  },
+  {
+    "w": "hit the ground running",
+    "t": "bir işe hemen verimli biçimde başlamak",
+    "lit": "yere koşarak basmak",
+    "s": "Thanks to training, our recruits hit the ground running.",
+    "form": "hit the ground running",
+    "tr": "Eğitim sayesinde yeni çalışanlarımız hemen verimli biçimde işe başladı.",
+    "theme": "work",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/hit-the-ground-running?topic=succeeding-achieving-and-fulfilling",
+      "https://www.collinsdictionary.com/dictionary/english/hit-the-ground-running"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hit-the-ground-running?topic=succeeding-achieving-and-fulfilling",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit the ground running"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-the-ground-running",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit the ground running"
+      }
+    ]
+  },
+  {
+    "w": "go the extra mile",
+    "t": "beklenenden fazlasını yapmak",
+    "lit": "fazladan bir mil gitmek",
+    "s": "This nurse always goes the extra mile for patients.",
+    "form": "goes the extra mile",
+    "tr": "Bu hemşire hastalar için hep beklenenden fazlasını yapar.",
+    "theme": "work",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-the-extra-mile?topic=trying-and-making-an-effort",
+      "https://www.collinsdictionary.com/dictionary/english/go-the-extra-mile"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-the-extra-mile?topic=trying-and-making-an-effort",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go the extra mile"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-the-extra-mile",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go the extra mile"
+      }
+    ]
+  },
+  {
+    "w": "pull out all the stops",
+    "t": "bütün imkânlarını seferber etmek",
+    "lit": "bütün org düğmelerini dışarı çekmek",
+    "s": "For the opening, we pulled out all the stops.",
+    "form": "pulled out all the stops",
+    "tr": "Açılış için bütün imkânlarımızı seferber ettik.",
+    "theme": "work",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/pull-out-all-the-stops",
+      "https://www.collinsdictionary.com/dictionary/english/pull-out-all-the-stops"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/pull-out-all-the-stops",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pull out all the stops"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pull-out-all-the-stops",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pull out all the stops"
+      }
+    ]
+  },
+  {
+    "w": "learn the ropes",
+    "t": "işin inceliklerini öğrenmek",
+    "lit": "halatları öğrenmek",
+    "s": "Give our apprentice time to learn the ropes.",
+    "form": "learn the ropes",
+    "tr": "Çırağımıza işin inceliklerini öğrenmesi için zaman ver.",
+    "theme": "work",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/learn-know-the-ropes",
+      "https://www.collinsdictionary.com/dictionary/english/learn-the-ropes"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/learn-know-the-ropes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "learn the ropes"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/learn-the-ropes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "learn the ropes"
+      }
+    ]
+  },
+  {
+    "w": "show the ropes",
+    "t": "işin inceliklerini öğretmek",
+    "lit": "birine halatları göstermek",
+    "s": "Maya will show you the ropes tomorrow.",
+    "form": "show you the ropes",
+    "tr": "Maya yarın sana işin inceliklerini öğretecek.",
+    "theme": "work",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "show someone the ropes",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/show-teach-the-ropes",
+      "https://www.collinsdictionary.com/dictionary/english/show-someone-the-ropes"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/show-teach-the-ropes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "show someone the ropes"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/show-someone-the-ropes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "show someone the ropes"
+      }
+    ]
+  },
+  {
+    "w": "keep the ball rolling",
+    "t": "işleyişin devamını sağlamak",
+    "lit": "topun yuvarlanmasını sürdürmek",
+    "s": "Our volunteers keep the ball rolling during holidays.",
+    "form": "keep the ball rolling",
+    "tr": "Gönüllülerimiz tatillerde işleyişin devamını sağlıyor.",
+    "theme": "work",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/keep-the-ball-rolling",
+      "https://en.wiktionary.org/wiki/keep_the_ball_rolling"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-the-ball-rolling",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep the ball rolling"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/keep_the_ball_rolling",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep the ball rolling"
+      }
+    ]
+  },
+  {
+    "w": "have a lot of irons in the fire",
+    "t": "aynı anda birçok işle uğraşmak",
+    "lit": "ateşte çok sayıda demiri olmak",
+    "s": "With three exhibitions, she has a lot of irons in the fire.",
+    "form": "has a lot of irons in the fire",
+    "tr": "Üç sergiyle aynı anda birçok işle uğraşıyor.",
+    "theme": "work",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/have-a-lot-of-irons-in-the-fire",
+      "https://dictionary.cambridge.org/dictionary/english/have-irons-in-the-fire"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-a-lot-of-irons-in-the-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a lot of irons in the fire"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-irons-in-the-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a lot of irons in the fire"
+      }
+    ]
+  },
+  {
+    "w": "burn the candle at both ends",
+    "t": "aşırı çalışıp eğlenerek kendini tüketmek",
+    "lit": "mumu iki ucundan yakmak",
+    "s": "With late parties and early shifts, you're burning the candle at both ends.",
+    "form": "burning the candle at both ends",
+    "tr": "Geç partiler ve erken vardiyalarla kendini tüketiyorsun.",
+    "theme": "work",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/burn-the-candle-at-both-ends?topic=work-working-and-the-workplace",
+      "https://www.collinsdictionary.com/dictionary/english/burn-the-candle-at-both-ends"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/burn-the-candle-at-both-ends?topic=work-working-and-the-workplace",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "burn the candle at both ends"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/burn-the-candle-at-both-ends",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "burn the candle at both ends"
+      }
+    ]
+  },
+  {
+    "w": "have one's work cut out",
+    "t": "zor bir işi başarması gerekmek",
+    "lit": "işi önceden kesilip hazırlanmış olmak",
+    "s": "With only two days, we have our work cut out.",
+    "form": "have our work cut out",
+    "tr": "Yalnızca iki günümüz olduğundan zor bir işi başarmamız gerekiyor.",
+    "theme": "work",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-work-cut-out-for",
+      "https://www.collinsdictionary.com/dictionary/english/to-have-your-work-cut-out"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-work-cut-out-for",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's work cut out"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-have-your-work-cut-out",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's work cut out"
+      }
+    ]
+  },
+  {
+    "w": "climb the ladder",
+    "t": "mesleğinde yükselmek",
+    "lit": "merdivene tırmanmak",
+    "s": "She wants to climb the ladder without leaving teaching.",
+    "form": "climb the ladder",
+    "tr": "Öğretmenliği bırakmadan mesleğinde yükselmek istiyor.",
+    "theme": "work",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/climb-the-ladder",
+      "https://dictionary.cambridge.org/dictionary/english/climb"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/climb-the-ladder",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "climb the ladder"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/climb",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "climb the ladder"
+      }
+    ]
+  },
+  {
+    "w": "be thrown in at the deep end",
+    "t": "hazırlıksız biçimde zor bir işe başlatılmak",
+    "lit": "derin taraftan suya atılmak",
+    "s": "On my first shift, I was thrown in at the deep end.",
+    "form": "was thrown in at the deep end",
+    "tr": "İlk vardiyamda hazırlıksız biçimde zor bir işe başlatıldım.",
+    "theme": "work",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/be-thrown-in-at-the-deep-end",
+      "https://dictionary.cambridge.org/dictionary/english/jump-in-at-the-deep-end"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/be-thrown-in-at-the-deep-end",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be thrown in at the deep end",
+        "noteTr": "Madde, throw someone in at the deep end varyantını açıkça tanımlar."
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/jump-in-at-the-deep-end",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be thrown in at the deep end",
+        "noteTr": "Madde, throw someone in at the deep end varyantını açıkça tanımlar."
+      }
+    ]
+  },
+  {
+    "w": "be a cog in the machine",
+    "t": "büyük bir düzenin küçük parçası olmak",
+    "lit": "makinenin bir dişlisi olmak",
+    "s": "There, I felt I was a cog in the machine.",
+    "form": "was a cog in the machine",
+    "tr": "Orada büyük bir düzenin küçük bir parçası olduğumu hissettim.",
+    "theme": "work",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/cog-in-a-the-machine",
+      "https://www.collinsdictionary.com/dictionary/english/cog-in-the-machine-wheel"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/cog-in-a-the-machine",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a cog in the machine"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/cog-in-the-machine-wheel",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a cog in the machine"
+      }
+    ]
+  },
+  {
+    "w": "carry the can",
+    "t": "başkalarının hatasının sorumluluğunu üstlenmek",
+    "lit": "tenekeyi taşımak",
+    "s": "The assistant refused to carry the can for management.",
+    "form": "carry the can",
+    "tr": "Asistan yönetimin hatasının sorumluluğunu üstlenmeyi reddetti.",
+    "theme": "work",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/carry-the-can",
+      "https://www.collinsdictionary.com/dictionary/english/carry-the-can"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/carry-the-can",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "carry the can"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/carry-the-can",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "carry the can"
+      }
+    ]
+  },
+  {
+    "w": "pass the buck",
+    "t": "sorumluluğu başkasına atmak",
+    "lit": "işaret taşını başkasına geçirmek",
+    "s": "Stop passing the buck and explain your decision.",
+    "form": "passing the buck",
+    "tr": "Sorumluluğu başkasına atmayı bırak ve kararını açıkla.",
+    "theme": "work",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/pass-the-buck",
+      "https://www.collinsdictionary.com/dictionary/english/pass-the-buck"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/pass-the-buck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pass the buck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pass-the-buck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pass the buck"
+      }
+    ]
+  },
+  {
+    "w": "pull one's weight",
+    "t": "üstüne düşen işi yapmak",
+    "lit": "kendi ağırlığını çekmek",
+    "s": "Everyone must pull their weight during the move.",
+    "form": "pull their weight",
+    "tr": "Taşınma sırasında herkes üstüne düşen işi yapmalı.",
+    "theme": "work",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/pull-weight?topic=helping-and-co-operating",
+      "https://www.collinsdictionary.com/dictionary/english/pull-your-weight"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/pull-weight?topic=helping-and-co-operating",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pull one's weight"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pull-your-weight",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pull one's weight"
+      }
+    ]
+  },
+  {
+    "w": "be back to square one",
+    "t": "yeniden başlangıç noktasına dönmek",
+    "lit": "yeniden birinci karede olmak",
+    "s": "After the failed test, we are back to square one.",
+    "form": "are back to square one",
+    "tr": "Başarısız denemeden sonra yeniden başlangıç noktasına döndük.",
+    "theme": "work",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/back-to-square-one",
+      "https://www.collinsdictionary.com/dictionary/english/back-to-square-one"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/back-to-square-one",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be back to square one"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/back-to-square-one",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be back to square one"
+      }
+    ]
+  },
+  {
+    "w": "be back to the drawing board",
+    "t": "planı baştan hazırlamak zorunda olmak",
+    "lit": "yeniden çizim tahtasında olmak",
+    "s": "After the prototype broke, we were back to the drawing board.",
+    "form": "were back to the drawing board",
+    "tr": "Prototip bozulunca planı baştan hazırlamak zorunda kaldık.",
+    "theme": "work",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/back-to-the-drawing-board",
+      "https://www.collinsdictionary.com/dictionary/english/back-to-the-drawing-board"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/back-to-the-drawing-board",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be back to the drawing board"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/back-to-the-drawing-board",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be back to the drawing board"
+      }
+    ]
+  },
+  {
+    "w": "put on the back burner",
+    "t": "bir işi sonraya bırakmak",
+    "lit": "bir şeyi arka ocak gözüne koymak",
+    "s": "We put the expansion on the back burner until sales recover.",
+    "form": "put the expansion on the back burner",
+    "tr": "Satışlar düzelene kadar büyüme işini sonraya bıraktık.",
+    "theme": "work",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "put something on the back burner",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-the-back-burner",
+      "https://www.collinsdictionary.com/dictionary/english/put-something-on-the-back-burner"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-the-back-burner",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put something on the back burner"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/put-something-on-the-back-burner",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put something on the back burner"
+      }
+    ]
+  },
+  {
+    "w": "have too many balls in the air",
+    "t": "aynı anda çok fazla işle uğraşmak",
+    "lit": "havada çok fazla topu olmak",
+    "s": "With four launches, we have too many balls in the air.",
+    "form": "have too many balls in the air",
+    "tr": "Dört açılışla aynı anda çok fazla işle uğraşıyoruz.",
+    "theme": "work",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/too-many",
+      "https://www.collinsdictionary.com/dictionary/english/keep-several-balls-in-the-air"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/too-many",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have too many balls in the air"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-several-balls-in-the-air",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have too many balls in the air"
+      }
+    ]
+  },
+  {
+    "w": "drop the ball",
+    "t": "dikkatsizlik yüzünden işi aksatmak",
+    "lit": "topu düşürmek",
+    "s": "We dropped the ball by forgetting the final inspection.",
+    "form": "dropped the ball",
+    "tr": "Son denetimi unutarak dikkatsizlik yüzünden işi aksattık.",
+    "theme": "work",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/drop-the-ball",
+      "https://www.collinsdictionary.com/dictionary/english/drop-the-ball"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/drop-the-ball",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "drop the ball"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/drop-the-ball",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "drop the ball"
+      }
+    ]
+  }
+]

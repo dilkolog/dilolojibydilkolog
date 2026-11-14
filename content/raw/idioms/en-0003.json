@@ -1,0 +1,1144 @@
+[
+  {
+    "w": "be a piece of cake",
+    "t": "çok kolay olmak",
+    "lit": "bir parça kek olmak",
+    "s": "After that training, the final test was a piece of cake.",
+    "form": "was a piece of cake",
+    "tr": "O eğitimden sonra son sınav çok kolaydı.",
+    "theme": "food",
+    "level": "B1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/piece-of-cake",
+      "https://www.collinsdictionary.com/dictionary/english/a-piece-of-cake"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/piece-of-cake",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a piece of cake"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-piece-of-cake",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a piece of cake"
+      }
+    ]
+  },
+  {
+    "w": "be one's cup of tea",
+    "t": "kişinin hoşlandığı şey olmak",
+    "lit": "kişinin çay fincanı olmak",
+    "s": "Quiet museums are my cup of tea, especially on rainy afternoons.",
+    "form": "are my cup of tea",
+    "tr": "Özellikle yağmurlu öğleden sonraları sessiz müzeler hoşuma gider.",
+    "theme": "food",
+    "level": "B1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/us/example/english/cup-of-tea",
+      "https://www.collinsdictionary.com/dictionary/english/ones-cup-of-tea"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/us/example/english/cup-of-tea",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be one's cup of tea"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/ones-cup-of-tea",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be one's cup of tea"
+      }
+    ]
+  },
+  {
+    "w": "take with a pinch of salt",
+    "t": "söyleneni ihtiyatla karşılamak",
+    "lit": "bir şeyi bir tutam tuzla almak",
+    "s": "I would take that claim with a pinch of salt until we see evidence.",
+    "form": "take that claim with a pinch of salt",
+    "tr": "Kanıt görene kadar o iddiayı ihtiyatla karşılardım.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "UK",
+    "pat": "take something with a pinch of salt",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/take-with-a-pinch-of-salt",
+      "https://www.collinsdictionary.com/dictionary/english/take-something-with-a-pinch-of-salt"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/take-with-a-pinch-of-salt",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take something with a pinch of salt"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/take-something-with-a-pinch-of-salt",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take something with a pinch of salt"
+      }
+    ]
+  },
+  {
+    "w": "bring home the bacon",
+    "t": "evin geçimini sağlamak",
+    "lit": "pastırmayı eve getirmek",
+    "s": "For years, her weekend shifts helped bring home the bacon.",
+    "form": "bring home the bacon",
+    "tr": "Yıllarca hafta sonu vardiyaları evin geçimini sağlamaya yardımcı oldu.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/bring-home-the-bacon",
+      "https://www.collinsdictionary.com/dictionary/english/bring-home-the-bacon"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/bring-home-the-bacon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bring home the bacon"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bring-home-the-bacon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bring home the bacon"
+      }
+    ]
+  },
+  {
+    "w": "have a lot on one's plate",
+    "t": "üstlenecek çok işi olmak",
+    "lit": "tabağında çok şey olmak",
+    "s": "With two deadlines tomorrow, I have a lot on my plate.",
+    "form": "have a lot on my plate",
+    "tr": "Yarın dolacak iki son tarihle üstlenecek çok işim var.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/have-enough-on-ones-plate-have-a-lot-on-ones-plate",
+      "https://dictionary.cambridge.org/dictionary/english/have-on-plate"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-enough-on-ones-plate-have-a-lot-on-ones-plate",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a lot on one's plate"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-on-plate",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a lot on one's plate"
+      }
+    ]
+  },
+  {
+    "w": "bite off more than one can chew",
+    "t": "altından kalkabileceğinden fazlasına girişmek",
+    "lit": "çiğneyebileceğinden büyük bir parça ısırmak",
+    "s": "By accepting five projects, we bit off more than we could chew.",
+    "form": "bit off more than we could chew",
+    "tr": "Beş proje kabul ederek altından kalkabileceğimizden fazlasına giriştik.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/bite-off-more-than-can-chew",
+      "https://www.collinsdictionary.com/dictionary/english/bite-off-more-than-one-can-chew"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/bite-off-more-than-can-chew",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bite off more than one can chew"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bite-off-more-than-one-can-chew",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bite off more than one can chew"
+      }
+    ]
+  },
+  {
+    "w": "have one's cake and eat it",
+    "t": "bağdaşmayan iki avantajı birden istemek",
+    "lit": "kekine sahip olup onu yemek",
+    "s": "You want to have your cake and eat it by keeping both jobs with conflicting hours.",
+    "form": "have your cake and eat it",
+    "tr": "Saatleri çakışan iki işi de tutarak bağdaşmayan iki avantajı birden istiyorsun.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-cake-and-eat-it-too",
+      "https://www.collinsdictionary.com/dictionary/english/have-ones-cake-and-eat-it"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-cake-and-eat-it-too",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's cake and eat it"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/have-ones-cake-and-eat-it",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have one's cake and eat it"
+      }
+    ]
+  },
+  {
+    "w": "be in a pickle",
+    "t": "zor durumda olmak",
+    "lit": "turşunun içinde olmak",
+    "s": "Without the spare key, we are in a pickle.",
+    "form": "are in a pickle",
+    "tr": "Yedek anahtar olmadan zor durumdayız.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/pickle?topic=difficult-situations-and-unpleasant-experiences",
+      "https://www.collinsdictionary.com/dictionary/english/pickle"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/pickle?topic=difficult-situations-and-unpleasant-experiences",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in a pickle"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pickle",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in a pickle"
+      }
+    ]
+  },
+  {
+    "w": "be full of beans",
+    "t": "enerji dolu olmak",
+    "lit": "fasulyeyle dolu olmak",
+    "s": "After the holiday, the children are full of beans.",
+    "form": "are full of beans",
+    "tr": "Tatilden sonra çocuklar enerji dolu.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-full-of-beans",
+      "https://www.collinsdictionary.com/dictionary/english/full-of-beans"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-full-of-beans",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be full of beans"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/full-of-beans",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be full of beans"
+      }
+    ]
+  },
+  {
+    "w": "be as cool as a cucumber",
+    "t": "çok sakin ve soğukkanlı olmak",
+    "lit": "bir salatalık kadar serin olmak",
+    "s": "During the emergency, our driver was as cool as a cucumber.",
+    "form": "was as cool as a cucumber",
+    "tr": "Acil durum sırasında şoförümüz çok sakin ve soğukkanlıydı.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/as-cool-as-a-cucumber",
+      "https://dictionary.cambridge.org/dictionary/english/cool"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/as-cool-as-a-cucumber",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as cool as a cucumber"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/cool",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as cool as a cucumber"
+      }
+    ]
+  },
+  {
+    "w": "go bananas",
+    "t": "heyecandan veya öfkeden kontrolünü kaybetmek",
+    "lit": "muzlara gitmek",
+    "s": "The crowd went bananas when their team scored.",
+    "form": "went bananas",
+    "tr": "Takımları gol atınca kalabalık heyecandan kontrolünü kaybetti.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-bananas",
+      "https://www.collinsdictionary.com/dictionary/english/go-bananas"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-bananas",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go bananas"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-bananas",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go bananas"
+      }
+    ]
+  },
+  {
+    "w": "be the icing on the cake",
+    "t": "güzel bir duruma eklenen son güzellik olmak",
+    "lit": "kekin üstündeki krema olmak",
+    "s": "Winning that prize was the icing on the cake after a wonderful year.",
+    "form": "was the icing on the cake",
+    "tr": "Harika bir yılın ardından o ödülü kazanmak son bir güzellik oldu.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/icing-on-the-cake",
+      "https://www.collinsdictionary.com/dictionary/english/the-icing-on-the-cake"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/icing-on-the-cake",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be the icing on the cake"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-icing-on-the-cake",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be the icing on the cake"
+      }
+    ]
+  },
+  {
+    "w": "be the cream of the crop",
+    "t": "bir grubun en iyileri olmak",
+    "lit": "ürünün kaymağı olmak",
+    "s": "These apprentices are the cream of the crop from several local colleges.",
+    "form": "are the cream of the crop",
+    "tr": "Bu çıraklar çevredeki birkaç yüksekokulun en iyileridir.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/cream-of-the-crop",
+      "https://www.collinsdictionary.com/dictionary/english/the-cream-of-the-crop"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/cream-of-the-crop",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be the cream of the crop"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-cream-of-the-crop",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be the cream of the crop"
+      }
+    ]
+  },
+  {
+    "w": "put all one's eggs in one basket",
+    "t": "bütün imkânlarını tek seçeneğe bağlamak",
+    "lit": "bütün yumurtalarını tek sepete koymak",
+    "s": "Investing every saving in one company means putting all your eggs in one basket.",
+    "form": "putting all your eggs in one basket",
+    "tr": "Bütün birikimini tek şirkete yatırmak bütün imkânlarını tek seçeneğe bağlamak demektir.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/put-all-eggs-in-one-basket",
+      "https://www.collinsdictionary.com/dictionary/english/put-all-your-eggs-in-one-basket"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/put-all-eggs-in-one-basket",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put all one's eggs in one basket"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/put-all-your-eggs-in-one-basket",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "put all one's eggs in one basket"
+      }
+    ]
+  },
+  {
+    "w": "walk on eggshells",
+    "t": "kimseyi kızdırmamak için çok dikkatli davranmak",
+    "lit": "yumurta kabuklarının üstünde yürümek",
+    "s": "After their argument, we walked on eggshells around both colleagues.",
+    "form": "walked on eggshells",
+    "tr": "Tartışmalarından sonra iki iş arkadaşının yanında da onları kızdırmamak için çok dikkatli davrandık.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/walk-be-on-eggshells?q=walk-on-eggshells",
+      "https://www.collinsdictionary.com/dictionary/english/walk-on-eggshells"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/walk-be-on-eggshells?q=walk-on-eggshells",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "walk on eggshells"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/walk-on-eggshells",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "walk on eggshells"
+      }
+    ]
+  },
+  {
+    "w": "cry over spilt milk",
+    "t": "geri alınamayacak bir şeye üzülmek",
+    "lit": "dökülmüş süt için ağlamak",
+    "s": "We missed the sale, but there is no point crying over spilt milk.",
+    "form": "crying over spilt milk",
+    "tr": "İndirimi kaçırdık; ancak geri alınamayacak bir şeye üzülmenin anlamı yok.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/cry-over-spilt-milk",
+      "https://dictionary.cambridge.org/dictionary/english/cry-over-spilled-milk"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/cry-over-spilt-milk",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "cry over spilt milk"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/cry-over-spilled-milk",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "cry over spilt milk"
+      }
+    ]
+  },
+  {
+    "w": "eat humble pie",
+    "t": "hatasını kabul edip özür dilemek",
+    "lit": "mütevazı turta yemek",
+    "s": "After blaming the wrong person, he had to eat humble pie.",
+    "form": "eat humble pie",
+    "tr": "Yanlış kişiyi suçladıktan sonra hatasını kabul edip özür dilemek zorunda kaldı.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/eat-humble-pie",
+      "https://www.collinsdictionary.com/dictionary/english/eat-humble-pie"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/eat-humble-pie",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "eat humble pie"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/eat-humble-pie",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "eat humble pie"
+      }
+    ]
+  },
+  {
+    "w": "eat one's words",
+    "t": "söylediğinin yanlışlığını kabul etmek",
+    "lit": "kendi sözlerini yemek",
+    "s": "She predicted failure, but the results made her eat her words.",
+    "form": "eat her words",
+    "tr": "Başarısızlık öngörmüştü; sonuçlar ona söylediğinin yanlışlığını kabul ettirdi.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/eat-words",
+      "https://www.collinsdictionary.com/dictionary/english/eat-ones-words"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/eat-words",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "eat one's words"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/eat-ones-words",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "eat one's words"
+      }
+    ]
+  },
+  {
+    "w": "be hard to swallow",
+    "t": "inanması veya kabul etmesi zor olmak",
+    "lit": "yutması zor olmak",
+    "s": "That sudden explanation is hard to swallow after months of silence.",
+    "form": "is hard to swallow",
+    "tr": "Aylar süren sessizlikten sonra bu ani açıklamayı kabul etmek zor.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/hard-to-swallow",
+      "https://www.collinsdictionary.com/dictionary/english/swallow-hard"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hard-to-swallow",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be hard to swallow"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/swallow-hard",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be hard to swallow"
+      }
+    ]
+  },
+  {
+    "w": "chew the fat",
+    "t": "rahatça sohbet etmek",
+    "lit": "yağı çiğnemek",
+    "s": "We stayed after lunch to chew the fat about our old neighbourhood.",
+    "form": "chew the fat",
+    "tr": "Öğle yemeğinden sonra eski mahallemiz hakkında rahatça sohbet etmek için kaldık.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/chew-the-fat?topic=informal-talking-and-conversation",
+      "https://www.collinsdictionary.com/dictionary/english/chew-the-fat"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/chew-the-fat?topic=informal-talking-and-conversation",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "chew the fat"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/chew-the-fat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "chew the fat"
+      }
+    ]
+  },
+  {
+    "w": "butter up",
+    "t": "birine yağ çekmek",
+    "lit": "birinin üstüne tereyağı sürmek",
+    "s": "He tried to butter her up before asking for another favour.",
+    "form": "butter her up",
+    "tr": "Başka bir iyilik istemeden önce ona yağ çekmeye çalıştı.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "pat": "butter someone up",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/butter-up",
+      "https://www.collinsdictionary.com/dictionary/english/butter-up"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/butter-up",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "butter someone up"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/butter-up",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "butter someone up"
+      }
+    ]
+  },
+  {
+    "w": "be one's bread and butter",
+    "t": "temel geçim kaynağı olmak",
+    "lit": "birinin ekmeği ve tereyağı olmak",
+    "s": "Repairs are this shop's bread and butter.",
+    "form": "are this shop's bread and butter",
+    "tr": "Tamirat bu dükkânın temel geçim kaynağıdır.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/bread-and-butter",
+      "https://www.collinsdictionary.com/dictionary/english/bread-and-butter"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/bread-and-butter",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be one's bread and butter"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bread-and-butter",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be one's bread and butter"
+      }
+    ]
+  },
+  {
+    "w": "know which side one's bread is buttered on",
+    "t": "çıkarının nerede olduğunu bilmek",
+    "lit": "ekmeğinin hangi tarafına tereyağı sürüldüğünü bilmek",
+    "s": "He knows which side his bread is buttered on and supports the winning team.",
+    "form": "knows which side his bread is buttered on",
+    "tr": "Çıkarının nerede olduğunu biliyor ve kazanan takımı destekliyor.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/know-which-side-your-bread-is-buttered-on",
+      "https://www.collinsdictionary.com/dictionary/english/know-which-side-ones-bread-is-buttered-on"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/know-which-side-your-bread-is-buttered-on",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "know which side one's bread is buttered on"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/know-which-side-ones-bread-is-buttered-on",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "know which side one's bread is buttered on"
+      }
+    ]
+  },
+  {
+    "w": "be a tough nut to crack",
+    "t": "çözmesi zor bir sorun olmak",
+    "lit": "kırması zor bir yemiş olmak",
+    "s": "This unexplained fault is a tough nut to crack.",
+    "form": "is a tough nut to crack",
+    "tr": "Bu açıklanamayan arıza çözmesi zor bir sorun.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/hard-tough-nut-to-crack",
+      "https://www.collinsdictionary.com/dictionary/english/a-tough-nut-to-crack"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hard-tough-nut-to-crack",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a tough nut to crack"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-tough-nut-to-crack",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a tough nut to crack"
+      }
+    ]
+  },
+  {
+    "w": "separate the wheat from the chaff",
+    "t": "değerliyi değersizden ayırmak",
+    "lit": "buğdayı samandan ayırmak",
+    "s": "A practical interview helps us separate the wheat from the chaff.",
+    "form": "separate the wheat from the chaff",
+    "tr": "Uygulamalı bir görüşme değerliyi değersizden ayırmamıza yardımcı olur.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/separate-the-wheat-from-the-chaff",
+      "https://www.collinsdictionary.com/dictionary/english/to-separate-the-wheat-from-the-chaff"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/separate-the-wheat-from-the-chaff",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "separate the wheat from the chaff"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-separate-the-wheat-from-the-chaff",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "separate the wheat from the chaff"
+      }
+    ]
+  },
+  {
+    "w": "be the best thing since sliced bread",
+    "t": "olağanüstü bir yenilik sayılmak",
+    "lit": "dilimlenmiş ekmekten beri en iyi şey olmak",
+    "s": "To her, this new tool is the best thing since sliced bread.",
+    "form": "is the best thing since sliced bread",
+    "tr": "Ona göre bu yeni araç olağanüstü bir yenilik.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-the-best-thing-since-sliced-bread",
+      "https://www.collinsdictionary.com/dictionary/english/the-best-thing-since-sliced-bread"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-the-best-thing-since-sliced-bread",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be the best thing since sliced bread"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/the-best-thing-since-sliced-bread",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be the best thing since sliced bread"
+      }
+    ]
+  },
+  {
+    "w": "sell like hot cakes",
+    "t": "çok hızlı ve çok miktarda satılmak",
+    "lit": "sıcak kekler gibi satılmak",
+    "s": "These handmade notebooks sell like hot cakes at the weekend market.",
+    "form": "sell like hot cakes",
+    "tr": "Bu el yapımı defterler hafta sonu pazarında çok hızlı ve çok miktarda satılıyor.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-sell-like-hot-cakes",
+      "https://www.collinsdictionary.com/dictionary/english/to-sell-like-hot-cakes"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-sell-like-hot-cakes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "sell like hot cakes"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-sell-like-hot-cakes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "sell like hot cakes"
+      }
+    ]
+  },
+  {
+    "w": "be out to lunch",
+    "t": "olanlardan habersiz veya dikkatsiz olmak",
+    "lit": "öğle yemeğine çıkmış olmak",
+    "s": "He is out to lunch if he thinks that tiny budget will work.",
+    "form": "is out to lunch",
+    "tr": "O minicik bütçenin yeteceğini düşünüyorsa olanlardan habersiz.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/out-to-lunch",
+      "https://www.collinsdictionary.com/dictionary/english/out-to-lunch"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/out-to-lunch",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be out to lunch"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/out-to-lunch",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be out to lunch"
+      }
+    ]
+  },
+  {
+    "w": "have a finger in every pie",
+    "t": "birçok işe aynı anda karışmak",
+    "lit": "her turtada bir parmağı olmak",
+    "s": "Our organiser has a finger in every pie, from publicity to ticket sales.",
+    "form": "has a finger in every pie",
+    "tr": "Organizatörümüz tanıtımdan bilet satışına kadar birçok işe aynı anda karışıyor.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-a-finger-in-every-pie",
+      "https://www.collinsdictionary.com/dictionary/english/a-finger-in-every-pie"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-a-finger-in-every-pie",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a finger in every pie"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-finger-in-every-pie",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a finger in every pie"
+      }
+    ]
+  },
+  {
+    "w": "be a storm in a teacup",
+    "t": "küçük bir olay yüzünden büyütülen tartışma olmak",
+    "lit": "çay fincanının içinde fırtına olmak",
+    "s": "That dispute over the chairs was a storm in a teacup.",
+    "form": "was a storm in a teacup",
+    "tr": "Sandalyeler yüzünden çıkan o tartışma küçük bir olayın gereksiz yere büyütülmesiydi.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/storm-in-a-teacup",
+      "https://www.collinsdictionary.com/dictionary/english/a-storm-in-a-teacup"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/storm-in-a-teacup",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a storm in a teacup"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-storm-in-a-teacup",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a storm in a teacup"
+      }
+    ]
+  },
+  {
+    "w": "pay peanuts",
+    "t": "çok az ücret ödemek",
+    "lit": "yerfıstığıyla ödemek",
+    "s": "They pay peanuts for such skilled work.",
+    "form": "pay peanuts",
+    "tr": "Bu kadar nitelikli işe çok az ücret ödüyorlar.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/pay-peanuts",
+      "https://www.collinsdictionary.com/dictionary/english/if-you-pay-peanuts-you-get-monkeys"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/pay-peanuts",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pay peanuts"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/if-you-pay-peanuts-you-get-monkeys",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pay peanuts"
+      }
+    ]
+  },
+  {
+    "w": "be small potatoes",
+    "t": "önemsiz bir miktar olmak",
+    "lit": "küçük patatesler olmak",
+    "s": "This refund is small potatoes compared with the damage.",
+    "form": "is small potatoes",
+    "tr": "Bu geri ödeme zarara kıyasla önemsiz bir miktar.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/small-potatoes?topic=things-of-little-importance",
+      "https://www.collinsdictionary.com/dictionary/english/small-potatoes"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/small-potatoes?topic=things-of-little-importance",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be small potatoes"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/small-potatoes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be small potatoes"
+      }
+    ]
+  },
+  {
+    "w": "spill the tea",
+    "t": "başkaları hakkındaki dedikoduları anlatmak",
+    "lit": "çayı dökmek",
+    "s": "During the break, she started to spill the tea.",
+    "form": "spill the tea",
+    "tr": "Molada başkaları hakkındaki dedikoduları anlatmaya başladı.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "slang",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/spill-the-tea",
+      "https://www.collinsdictionary.com/submission/26110/spill%2Bthe%2Btea"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/spill-the-tea",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "spill the tea"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/submission/26110/spill%2Bthe%2Btea",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "spill the tea"
+      }
+    ]
+  },
+  {
+    "w": "be two peas in a pod",
+    "t": "birbirine çok benzemek",
+    "lit": "bir kabuk içindeki iki bezelye olmak",
+    "s": "In their habits, the brothers are two peas in a pod.",
+    "form": "are two peas in a pod",
+    "tr": "Alışkanlıkları bakımından kardeşler birbirine çok benziyor.",
+    "theme": "food",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/like-two-peas-in-a-pod",
+      "https://www.collinsdictionary.com/submission/6770/Two%2Bpeas%2Bin%2Ba%2Bpod"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/like-two-peas-in-a-pod",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be two peas in a pod"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/submission/6770/Two%2Bpeas%2Bin%2Ba%2Bpod",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be two peas in a pod"
+      }
+    ]
+  },
+  {
+    "w": "be out of the frying pan into the fire",
+    "t": "kötü durumdan kaçarken daha kötüsüne düşmek",
+    "lit": "tavadan çıkıp ateşe girmek",
+    "s": "We were out of the frying pan into the fire after that transfer.",
+    "form": "were out of the frying pan into the fire",
+    "tr": "O nakilden sonra kötü durumdan kaçarken daha kötüsüne düştük.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/out-of-the-frying-pan-into-the-fire",
+      "https://www.collinsdictionary.com/dictionary/english/out-of-the-frying-pan-into-the-fire"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/out-of-the-frying-pan-into-the-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be out of the frying pan into the fire"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/out-of-the-frying-pan-into-the-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be out of the frying pan into the fire"
+      }
+    ]
+  },
+  {
+    "w": "go pear-shaped",
+    "t": "işler ters gitmek",
+    "lit": "armut biçimine girmek",
+    "s": "The launch went pear-shaped after the power cut.",
+    "form": "went pear-shaped",
+    "tr": "Elektrik kesintisinden sonra açılışta işler ters gitti.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/go-pear-shaped",
+      "https://www.collinsdictionary.com/dictionary/english/go-pear-shaped"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/go-pear-shaped",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go pear-shaped"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/go-pear-shaped",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "go pear-shaped"
+      }
+    ]
+  },
+  {
+    "w": "be a flash in the pan",
+    "t": "başarısı çok kısa sürmek",
+    "lit": "tavada bir parlama olmak",
+    "s": "The first hit proved to be a flash in the pan.",
+    "form": "be a flash in the pan",
+    "tr": "İlk başarılı işin başarısının çok kısa sürdüğü ortaya çıktı.",
+    "theme": "food",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/flash-in-the-pan",
+      "https://www.collinsdictionary.com/dictionary/english/a-flash-in-the-pan"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/flash-in-the-pan",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a flash in the pan"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-flash-in-the-pan",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a flash in the pan"
+      }
+    ]
+  },
+  {
+    "w": "be as easy as pie",
+    "t": "çok kolay olmak",
+    "lit": "turta kadar kolay olmak",
+    "s": "This simple booking form is as easy as pie.",
+    "form": "is as easy as pie",
+    "tr": "Bu basit rezervasyon formu çok kolay.",
+    "theme": "food",
+    "level": "B1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/easy-as-pie",
+      "https://dictionary.cambridge.org/dictionary/english/easy"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/easy-as-pie",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as easy as pie"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/easy",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be as easy as pie"
+      }
+    ]
+  }
+]

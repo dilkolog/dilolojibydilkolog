@@ -1,0 +1,722 @@
+[
+  {
+    "w": "be on top of the world",
+    "t": "kendini son derece mutlu hissetmek",
+    "lit": "dünyanın tepesinde olmak",
+    "s": "After finishing the marathon, he was on top of the world.",
+    "form": "was on top of the world",
+    "tr": "Maratonu bitirdikten sonra kendini son derece mutlu hissetti.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-top-of-the-world",
+      "https://www.collinsdictionary.com/dictionary/english/on-top-of-the-world"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-top-of-the-world",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on top of the world"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-top-of-the-world",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on top of the world"
+      }
+    ]
+  },
+  {
+    "w": "be down in the dumps",
+    "t": "keyfi çok kaçmış olmak",
+    "lit": "çöplüklerde aşağıda olmak",
+    "s": "Since the cancellation, I've been down in the dumps.",
+    "form": "been down in the dumps",
+    "tr": "İptalden beri keyfim çok kaçık.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/down-in-the-dumps",
+      "https://www.collinsdictionary.com/dictionary/english/down-in-the-dumps_1"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/down-in-the-dumps",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be down in the dumps"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/down-in-the-dumps_1",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be down in the dumps"
+      }
+    ]
+  },
+  {
+    "w": "feel blue",
+    "t": "hüzünlü olmak",
+    "lit": "mavi hissetmek",
+    "s": "On quiet Sundays, I sometimes feel blue.",
+    "form": "feel blue",
+    "tr": "Sessiz pazar günlerinde bazen hüzünlü olurum.",
+    "theme": "feelings",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/feel-blue?topic=feeling-sad-and-unhappy",
+      "https://www.collinsdictionary.com/dictionary/english/feel"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/feel-blue?topic=feeling-sad-and-unhappy",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "feel blue"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/feel",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "feel blue"
+      }
+    ]
+  },
+  {
+    "w": "be in high spirits",
+    "t": "keyfi yerinde olmak",
+    "lit": "yüksek ruhlarda olmak",
+    "s": "After the holiday, everyone was in high spirits.",
+    "form": "was in high spirits",
+    "tr": "Tatilden sonra herkesin keyfi yerindeydi.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/in-high-spirits",
+      "https://www.collinsdictionary.com/dictionary/english/high-spirits"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/in-high-spirits",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in high spirits"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/high-spirits",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in high spirits"
+      }
+    ]
+  },
+  {
+    "w": "be in low spirits",
+    "t": "morali bozuk olmak",
+    "lit": "alçak ruhlarda olmak",
+    "s": "After losing the match, the team was in low spirits.",
+    "form": "was in low spirits",
+    "tr": "Maçı kaybettikten sonra takımın morali bozuktu.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/low-spirits",
+      "https://dictionary.cambridge.org/us/dictionary/english/spirits"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/low-spirits",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in low spirits"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/us/dictionary/english/spirits",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in low spirits"
+      }
+    ]
+  },
+  {
+    "w": "be walking on air",
+    "t": "mutluluktan ayakları yere basmamak",
+    "lit": "havanın üstünde yürüyor olmak",
+    "s": "Since the engagement, she has been walking on air.",
+    "form": "has been walking on air",
+    "tr": "Nişandan beri mutluluktan ayakları yere basmıyor.",
+    "theme": "feelings",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/be-walking-floating-on-air",
+      "https://www.collinsdictionary.com/dictionary/english/be-walking-on-air"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/be-walking-floating-on-air",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be walking on air"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/be-walking-on-air",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be walking on air"
+      }
+    ]
+  },
+  {
+    "w": "jump for joy",
+    "t": "sevinçten zıplamak",
+    "lit": "sevinç için sıçramak",
+    "s": "The children jumped for joy when school closed early.",
+    "form": "jumped for joy",
+    "tr": "Okul erken kapanınca çocuklar sevinçten zıpladı.",
+    "theme": "feelings",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/jump-for-joy",
+      "https://www.collinsdictionary.com/dictionary/english/to-jump-for-joy"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/jump-for-joy",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "jump for joy"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-jump-for-joy",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "jump for joy"
+      }
+    ]
+  },
+  {
+    "w": "be tickled pink",
+    "t": "bir şeyden çok memnun olmak",
+    "lit": "pembe olana kadar gıdıklanmak",
+    "s": "Grandma was tickled pink with your handmade card.",
+    "form": "was tickled pink",
+    "tr": "Büyükannem el yapımı kartından çok memnun oldu.",
+    "theme": "feelings",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/tickled-pink",
+      "https://www.collinsdictionary.com/dictionary/english/tickled-pink"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/tickled-pink",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be tickled pink"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/tickled-pink",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be tickled pink"
+      }
+    ]
+  },
+  {
+    "w": "be beside oneself",
+    "t": "yoğun duygudan kontrolünü kaybetmek",
+    "lit": "kendi yanında olmak",
+    "s": "He was beside himself with worry until she called.",
+    "form": "was beside himself",
+    "tr": "Arayana kadar kaygıdan kontrolünü kaybetmişti.",
+    "theme": "feelings",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/beside-self",
+      "https://www.collinsdictionary.com/dictionary/english/beside-yourself"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/beside-self",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be beside oneself"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/beside-yourself",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be beside oneself"
+      }
+    ]
+  },
+  {
+    "w": "have a sinking feeling",
+    "t": "kötü bir şey olacağını sezmek",
+    "lit": "batan bir hisse sahip olmak",
+    "s": "I had a sinking feeling when nobody answered.",
+    "form": "had a sinking feeling",
+    "tr": "Kimse cevap vermeyince kötü bir şey olacağını sezdim.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/sinking-feeling",
+      "https://www.collinsdictionary.com/dictionary/english/sinking-feeling"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/sinking-feeling",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a sinking feeling"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/sinking-feeling",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a sinking feeling"
+      }
+    ]
+  },
+  {
+    "w": "have mixed feelings",
+    "t": "birbiriyle çelişen duygular taşımak",
+    "lit": "karışık hisleri olmak",
+    "s": "We have mixed feelings about leaving our old neighbourhood.",
+    "form": "have mixed feelings",
+    "tr": "Eski mahallemizden ayrılma konusunda birbiriyle çelişen duygular taşıyoruz.",
+    "theme": "feelings",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/mixed-feelings",
+      "https://www.collinsdictionary.com/dictionary/english/mixed-feelings"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/mixed-feelings",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have mixed feelings"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/mixed-feelings",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have mixed feelings"
+      }
+    ]
+  },
+  {
+    "w": "be on pins and needles",
+    "t": "kaygılı bir bekleyiş içinde olmak",
+    "lit": "toplu iğnelerin ve dikiş iğnelerinin üstünde olmak",
+    "s": "We were on pins and needles awaiting the hospital's call.",
+    "form": "were on pins and needles",
+    "tr": "Hastanenin aramasını kaygılı bir bekleyiş içinde bekliyorduk.",
+    "theme": "feelings",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-pins-and-needles",
+      "https://www.collinsdictionary.com/dictionary/english/on-pins-and-needles"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-pins-and-needles",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on pins and needles"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-pins-and-needles",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on pins and needles"
+      }
+    ]
+  },
+  {
+    "w": "be on tenterhooks",
+    "t": "endişeyle sonucu beklemek",
+    "lit": "kumaş germe kancalarının üstünde olmak",
+    "s": "The whole family was on tenterhooks during the operation.",
+    "form": "was on tenterhooks",
+    "tr": "Bütün aile ameliyat sırasında endişeyle sonucu bekliyordu.",
+    "theme": "feelings",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/tenterhooks",
+      "https://www.collinsdictionary.com/dictionary/english/on-tenterhooks"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/tenterhooks",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on tenterhooks"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-tenterhooks",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on tenterhooks"
+      }
+    ]
+  },
+  {
+    "w": "be at one's wits' end",
+    "t": "çaresizlikten ne yapacağını bilememek",
+    "lit": "zekâsının ucunda olmak",
+    "s": "With another leak, I was at my wits' end.",
+    "form": "was at my wits' end",
+    "tr": "Bir sızıntı daha çıkınca çaresizlikten ne yapacağımı bilemedim.",
+    "theme": "feelings",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/at-wits-end",
+      "https://www.collinsdictionary.com/dictionary/english/at-your-wits-end"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/at-wits-end",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be at one's wits' end"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/at-your-wits-end",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be at one's wits' end"
+      }
+    ]
+  },
+  {
+    "w": "be scared stiff",
+    "t": "korkudan donakalmak",
+    "lit": "kaskatı olacak kadar korkmak",
+    "s": "At that sudden crash, I was scared stiff.",
+    "form": "was scared stiff",
+    "tr": "O ani gürültüde korkudan donakaldım.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/scared-to-death-scared-stiff",
+      "https://dictionary.cambridge.org/dictionary/english/scared"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/scared-to-death-scared-stiff",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be scared stiff"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/scared",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be scared stiff"
+      }
+    ]
+  },
+  {
+    "w": "see red",
+    "t": "birden çok öfkelenmek",
+    "lit": "kırmızı görmek",
+    "s": "When he mocked my sister, I saw red.",
+    "form": "saw red",
+    "tr": "Kız kardeşimle alay edince birden çok öfkelendim.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/see-red",
+      "https://www.collinsdictionary.com/dictionary/english/see-red"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/see-red",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "see red"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/see-red",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "see red"
+      }
+    ]
+  },
+  {
+    "w": "hit the roof",
+    "t": "çok öfkelenip sert tepki vermek",
+    "lit": "çatıya çarpmak",
+    "s": "Mum hit the roof when she saw the damage.",
+    "form": "hit the roof",
+    "tr": "Annem hasarı görünce çok öfkelenip sert tepki verdi.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/hit-the-roof",
+      "https://www.collinsdictionary.com/dictionary/english/hit-the-roof"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hit-the-roof",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit the roof"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-the-roof",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit the roof"
+      }
+    ]
+  },
+  {
+    "w": "fly off the handle",
+    "t": "birden öfkesine kapılmak",
+    "lit": "saptan fırlayıp uçmak",
+    "s": "He flew off the handle over a tiny mistake.",
+    "form": "flew off the handle",
+    "tr": "Ufacık bir hata yüzünden birden öfkesine kapıldı.",
+    "theme": "feelings",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/fly-off-the-handle",
+      "https://www.collinsdictionary.com/dictionary/english/fly-off-the-handle"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/fly-off-the-handle",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "fly off the handle"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/fly-off-the-handle",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "fly off the handle"
+      }
+    ]
+  },
+  {
+    "w": "lose one's cool",
+    "t": "sakinliğini kaybetmek",
+    "lit": "serinliğini kaybetmek",
+    "s": "During the argument, she lost her cool.",
+    "form": "lost her cool",
+    "tr": "Tartışma sırasında sakinliğini kaybetti.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/learner-english/lose-your-cool",
+      "https://www.collinsdictionary.com/dictionary/english/lose-your-cool"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/learner-english/lose-your-cool",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "lose one's cool"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/lose-your-cool",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "lose one's cool"
+      }
+    ]
+  },
+  {
+    "w": "keep one's cool",
+    "t": "sakinliğini korumak",
+    "lit": "serinliğini korumak",
+    "s": "Even during the power cut, he kept his cool.",
+    "form": "kept his cool",
+    "tr": "Elektrik kesildiğinde bile sakinliğini korudu.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/cool?topic=cold",
+      "https://www.collinsdictionary.com/dictionary/english/keep-your-cool"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/cool?topic=cold",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's cool"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-cool",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's cool"
+      }
+    ]
+  },
+  {
+    "w": "be green with envy",
+    "t": "kıskançlıktan çatlamak",
+    "lit": "kıskançlıktan yeşil olmak",
+    "s": "I was green with envy when I saw her garden.",
+    "form": "was green with envy",
+    "tr": "Bahçesini görünce kıskançlıktan çatladım.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/green-with-envy",
+      "https://www.collinsdictionary.com/dictionary/english/green-with-envy"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/green-with-envy",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be green with envy"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/green-with-envy",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be green with envy"
+      }
+    ]
+  },
+  {
+    "w": "be at the end of one's tether",
+    "t": "dayanma gücü tükenmiş olmak",
+    "lit": "bağ ipinin sonunda olmak",
+    "s": "After three sleepless nights, we were at the end of our tether.",
+    "form": "were at the end of our tether",
+    "tr": "Üç uykusuz geceden sonra dayanma gücümüz tükendi.",
+    "theme": "feelings",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/at-the-end-of-tether",
+      "https://www.collinsdictionary.com/dictionary/english/at-the-end-of-your-tether"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/at-the-end-of-tether",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be at the end of one's tether"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/at-the-end-of-your-tether",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be at the end of one's tether"
+      }
+    ]
+  },
+  {
+    "w": "be on edge",
+    "t": "gergin ve huzursuz olmak",
+    "lit": "kenarın üstünde olmak",
+    "s": "Everyone was on edge as the deadline approached.",
+    "form": "was on edge",
+    "tr": "Son tarih yaklaşırken herkes gergin ve huzursuzdu.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-edge",
+      "https://www.collinsdictionary.com/dictionary/english/on-edge"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-edge",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on edge"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-edge",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on edge"
+      }
+    ]
+  },
+  {
+    "w": "blow off steam",
+    "t": "biriken stresi ve enerjiyi atmak",
+    "lit": "buharı dışarı üflemek",
+    "s": "After the exams, we blew off steam by dancing.",
+    "form": "blew off steam",
+    "tr": "Sınavlardan sonra dans ederek biriken stresi ve enerjimizi attık.",
+    "theme": "feelings",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/blow-off-steam?q=blow-off-steam_1",
+      "https://www.collinsdictionary.com/dictionary/english/blow-off-steam"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/blow-off-steam?q=blow-off-steam_1",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "blow off steam"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/blow-off-steam",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "blow off steam"
+      }
+    ]
+  }
+]

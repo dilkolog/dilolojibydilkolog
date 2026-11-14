@@ -1,0 +1,332 @@
+[
+  {
+    "w": "pick up the pieces",
+    "t": "kötü olaydan sonra düzeni yeniden kurmak",
+    "lit": "parçaları toplamak",
+    "s": "After the flood, neighbours helped us pick up the pieces.",
+    "form": "pick up the pieces",
+    "tr": "Selden sonra komşular düzenimizi yeniden kurmamıza yardımcı oldu.",
+    "theme": "trouble",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/pick-up-the-pieces",
+      "https://www.collinsdictionary.com/dictionary/english/pick-up-the-pieces"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/pick-up-the-pieces",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pick up the pieces"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pick-up-the-pieces",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pick up the pieces"
+      }
+    ]
+  },
+  {
+    "w": "be in a tight spot",
+    "t": "zor ve sıkışık durumda olmak",
+    "lit": "dar bir noktada olmak",
+    "s": "Your unexpected help saved us when we were in a tight spot.",
+    "form": "were in a tight spot",
+    "tr": "Zor ve sıkışık durumdayken beklenmedik yardımın bizi kurtardı.",
+    "theme": "trouble",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/in-a-tight-spot",
+      "https://dictionary.cambridge.org/dictionary/english/tight?topic=anxious-and-worried"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-a-tight-spot",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in a tight spot"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/tight?topic=anxious-and-worried",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in a tight spot"
+      }
+    ]
+  },
+  {
+    "w": "throw a spanner in the works",
+    "t": "işleyişi beklenmedik biçimde aksatmak",
+    "lit": "işleyen düzene bir somun anahtarı atmak",
+    "s": "The broken lift threw a spanner in the works.",
+    "form": "threw a spanner in the works",
+    "tr": "Bozulan asansör işleyişi beklenmedik biçimde aksattı.",
+    "theme": "trouble",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/put-throw-a-spanner-in-the-works",
+      "https://www.collinsdictionary.com/dictionary/english/throw-a-spanner-in-the-works"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/put-throw-a-spanner-in-the-works",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw a spanner in the works"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/throw-a-spanner-in-the-works",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw a spanner in the works"
+      }
+    ]
+  },
+  {
+    "w": "face the music",
+    "t": "hatasının sonuçlarıyla yüzleşmek",
+    "lit": "müzikle yüzleşmek",
+    "s": "After hiding the damage, he had to face the music.",
+    "form": "face the music",
+    "tr": "Hasarı gizledikten sonra hatasının sonuçlarıyla yüzleşmek zorunda kaldı.",
+    "theme": "trouble",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/face-the-music",
+      "https://www.collinsdictionary.com/dictionary/english/face-the-music"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/face-the-music",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "face the music"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/face-the-music",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "face the music"
+      }
+    ]
+  },
+  {
+    "w": "bite the dust",
+    "t": "başarısız olup ortadan kalkmak",
+    "lit": "tozu ısırmak",
+    "s": "Another unreliable device bit the dust during testing.",
+    "form": "bit the dust",
+    "tr": "Güvenilmez bir cihaz daha deneme sırasında bozulup kullanılamaz oldu.",
+    "theme": "trouble",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/bite-the-dust",
+      "https://www.collinsdictionary.com/dictionary/english/bite-the-dust"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/bite-the-dust",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bite the dust"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bite-the-dust",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bite the dust"
+      }
+    ]
+  },
+  {
+    "w": "come unstuck",
+    "t": "işleri ters gidip başarısız olmak",
+    "lit": "yapışmış durumdan kurtulmak",
+    "s": "Their plan came unstuck when the sponsor withdrew.",
+    "form": "came unstuck",
+    "tr": "Sponsor çekilince işleri ters gidip planları başarısız oldu.",
+    "theme": "trouble",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/come-unstuck",
+      "https://www.collinsdictionary.com/dictionary/english/come-unstuck"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/come-unstuck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "come unstuck"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/come-unstuck",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "come unstuck"
+      }
+    ]
+  },
+  {
+    "w": "hit a snag",
+    "t": "beklenmedik bir engelle karşılaşmak",
+    "lit": "bir çıkıntıya takılmak",
+    "s": "The renovation hit a snag over planning permission.",
+    "form": "hit a snag",
+    "tr": "Tadilat imar izni yüzünden beklenmedik bir engelle karşılaştı.",
+    "theme": "trouble",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/hit-a-snag",
+      "https://dictionary.cambridge.org/dictionary/english/snag?topic=difficult-things-and-people"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-a-snag",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit a snag"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/snag?topic=difficult-things-and-people",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit a snag"
+      }
+    ]
+  },
+  {
+    "w": "hit a brick wall",
+    "t": "ilerleyemediği bir engele takılmak",
+    "lit": "tuğla duvara çarpmak",
+    "s": "Our investigation hit a brick wall without those records.",
+    "form": "hit a brick wall",
+    "tr": "O kayıtlar olmadan araştırmamız ilerleyemediği bir engele takıldı.",
+    "theme": "trouble",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/hit-a-brick-wall",
+      "https://dictionary.cambridge.org/dictionary/english/hit-a-wall"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-a-brick-wall",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit a brick wall"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hit-a-wall",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit a brick wall"
+      }
+    ]
+  },
+  {
+    "w": "dig oneself into a hole",
+    "t": "durumunu kendi eliyle daha da kötüleştirmek",
+    "lit": "kendini bir çukurun içine kazmak",
+    "s": "Each new excuse dug him into a deeper hole.",
+    "form": "dug him into a deeper hole",
+    "tr": "Her yeni bahane durumunu kendi eliyle daha da kötüleştirdi.",
+    "theme": "trouble",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/dig-into-a-hole",
+      "https://www.collinsdictionary.com/dictionary/english/dig-a-hole"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/dig-into-a-hole",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "dig oneself into a hole"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/dig-a-hole",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "dig oneself into a hole"
+      }
+    ]
+  },
+  {
+    "w": "paint oneself into a corner",
+    "t": "kendi davranışıyla çıkış yolunu kapatmak",
+    "lit": "kendini bir köşeye boyamak",
+    "s": "By promising everything, she painted herself into a corner.",
+    "form": "painted herself into a corner",
+    "tr": "Her şeyi vadederek kendi davranışıyla çıkış yolunu kapattı.",
+    "theme": "trouble",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/paint-yourself-into-a-corner",
+      "https://en.wiktionary.org/wiki/paint_oneself_into_a_corner"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/paint-yourself-into-a-corner",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "paint oneself into a corner"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/paint_oneself_into_a_corner",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "paint oneself into a corner"
+      }
+    ]
+  },
+  {
+    "w": "open Pandora's box",
+    "t": "birçok öngörülemeyen sorun başlatmak",
+    "lit": "Pandora'nın kutusunu açmak",
+    "s": "Changing that rule could open Pandora's box.",
+    "form": "open Pandora's box",
+    "tr": "O kuralı değiştirmek birçok öngörülemeyen sorun başlatabilir.",
+    "theme": "trouble",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/open-a-pandora-s-box",
+      "https://www.collinsdictionary.com/dictionary/english/open-pandoras-box"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/open-a-pandora-s-box",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "open Pandora's box"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/open-pandoras-box",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "open Pandora's box"
+      }
+    ]
+  }
+]

@@ -1,0 +1,698 @@
+[
+  {
+    "w": "be on the same page",
+    "t": "aynı anlayışı paylaşmak",
+    "lit": "aynı sayfada olmak",
+    "s": "Before we begin, let's check we are on the same page.",
+    "form": "are on the same page",
+    "tr": "Başlamadan önce aynı anlayışı paylaştığımızı kontrol edelim.",
+    "theme": "people",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/on-the-same-page",
+      "https://dictionary.cambridge.org/dictionary/english/page?q=on-the-same-page"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-the-same-page",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the same page"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/page?q=on-the-same-page",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the same page"
+      }
+    ]
+  },
+  {
+    "w": "hit it off",
+    "t": "ilk karşılaşmada iyi anlaşmak",
+    "lit": "onu vurarak başlatmak",
+    "s": "We hit it off during the first rehearsal.",
+    "form": "hit it off",
+    "tr": "İlk provada iyi anlaştık.",
+    "theme": "people",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/hit-it-off-with",
+      "https://www.collinsdictionary.com/dictionary/english/hit-it-off"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/hit-it-off-with",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit it off"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/hit-it-off",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "hit it off"
+      }
+    ]
+  },
+  {
+    "w": "get on like a house on fire",
+    "t": "çok iyi anlaşmak",
+    "lit": "yanan bir ev gibi anlaşmak",
+    "s": "The two cousins get on like a house on fire.",
+    "form": "get on like a house on fire",
+    "tr": "İki kuzen çok iyi anlaşıyor.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/get-on-like-a-house-on-fire",
+      "https://www.collinsdictionary.com/dictionary/english/get-on-like-a-house-on-fire"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/get-on-like-a-house-on-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get on like a house on fire"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/get-on-like-a-house-on-fire",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get on like a house on fire"
+      }
+    ]
+  },
+  {
+    "w": "be on the same wavelength",
+    "t": "birbirini kolayca anlayıp aynı düşünmek",
+    "lit": "aynı dalga boyunda olmak",
+    "s": "With this editor, I am on the same wavelength.",
+    "form": "am on the same wavelength",
+    "tr": "Bu editörle birbirimizi kolayca anlıyor, aynı düşünüyoruz.",
+    "theme": "people",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/on-the-same-wavelength?q=on-the-same-wavelength_1",
+      "https://www.collinsdictionary.com/dictionary/english/on-the-same-wavelength"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/on-the-same-wavelength?q=on-the-same-wavelength_1",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the same wavelength"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/on-the-same-wavelength",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be on the same wavelength"
+      }
+    ]
+  },
+  {
+    "w": "rub up the wrong way",
+    "t": "birini davranışlarıyla rahatsız etmek",
+    "lit": "birini yanlış yönde ovalamak",
+    "s": "His dismissive tone rubbed me up the wrong way.",
+    "form": "rubbed me up the wrong way",
+    "tr": "Küçümseyici tonu beni rahatsız etti.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "pat": "rub someone up the wrong way",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/rub-up-the-wrong-way",
+      "https://www.collinsdictionary.com/dictionary/english/rub-someone-up-the-wrong-way"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/rub-up-the-wrong-way",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "rub someone up the wrong way"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/rub-someone-up-the-wrong-way",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "rub someone up the wrong way"
+      }
+    ]
+  },
+  {
+    "w": "leave in the lurch",
+    "t": "birini zor anda ortada bırakmak",
+    "lit": "birini zor durumda bırakıp gitmek",
+    "s": "Our driver left us in the lurch before dawn.",
+    "form": "left us in the lurch",
+    "tr": "Şoförümüz şafaktan önce bizi zor anda ortada bıraktı.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "leave someone in the lurch",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/leave-in-the-lurch",
+      "https://www.collinsdictionary.com/dictionary/english/leave-someone-in-the-lurch"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/leave-in-the-lurch",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "leave someone in the lurch"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/leave-someone-in-the-lurch",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "leave someone in the lurch"
+      }
+    ]
+  },
+  {
+    "w": "leave high and dry",
+    "t": "birini yardımsız zor durumda bırakmak",
+    "lit": "birini yüksekte ve kuruda bırakmak",
+    "s": "The cancelled bus left us high and dry.",
+    "form": "left us high and dry",
+    "tr": "İptal edilen otobüs bizi yardımsız zor durumda bıraktı.",
+    "theme": "people",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "leave someone high and dry",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/leave-high-and-dry",
+      "https://www.collinsdictionary.com/dictionary/english/leave-someone-high-and-dry"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/leave-high-and-dry",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "leave someone high and dry"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/leave-someone-high-and-dry",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "leave someone high and dry"
+      }
+    ]
+  },
+  {
+    "w": "be there through thick and thin",
+    "t": "iyi günde kötü günde yanında olmak",
+    "lit": "kalın ve ince boyunca orada olmak",
+    "s": "She was there through thick and thin during my recovery.",
+    "form": "was there through thick and thin",
+    "tr": "İyileşme sürecimde iyi günde kötü günde yanımdaydı.",
+    "theme": "people",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/through-thick-and-thin",
+      "https://www.collinsdictionary.com/dictionary/english/through-thick-and-thin"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/through-thick-and-thin",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be there through thick and thin"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/through-thick-and-thin",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be there through thick and thin"
+      }
+    ]
+  },
+  {
+    "w": "bury the hatchet",
+    "t": "kavgasını bitirip barışmak",
+    "lit": "baltayı gömmek",
+    "s": "After years of rivalry, they buried the hatchet.",
+    "form": "buried the hatchet",
+    "tr": "Yıllarca rekabet ettikten sonra kavgalarını bitirip barıştılar.",
+    "theme": "people",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/bury-the-hatchet",
+      "https://www.collinsdictionary.com/dictionary/english/bury-the-hatchet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/bury-the-hatchet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bury the hatchet"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/bury-the-hatchet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "bury the hatchet"
+      }
+    ]
+  },
+  {
+    "w": "mend fences",
+    "t": "bozulmuş ilişkileri düzeltmek",
+    "lit": "çitleri onarmak",
+    "s": "The visit helped both families mend fences.",
+    "form": "mend fences",
+    "tr": "Ziyaret iki ailenin de bozulmuş ilişkilerini düzeltmesine yardımcı oldu.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/mend-fences",
+      "https://www.collinsdictionary.com/dictionary/english/mend-fences"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/mend-fences",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "mend fences"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/mend-fences",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "mend fences"
+      }
+    ]
+  },
+  {
+    "w": "build bridges",
+    "t": "gruplar arasında yakınlaşma sağlamak",
+    "lit": "köprüler inşa etmek",
+    "s": "This exchange programme aims to build bridges between neighbours.",
+    "form": "build bridges",
+    "tr": "Bu değişim programı komşular arasında yakınlaşma sağlamayı amaçlıyor.",
+    "theme": "people",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/build-bridges?topic=getting-to-know-friends",
+      "https://www.collinsdictionary.com/dictionary/english/build-bridges"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/build-bridges?topic=getting-to-know-friends",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "build bridges"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/build-bridges",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "build bridges"
+      }
+    ]
+  },
+  {
+    "w": "meet halfway",
+    "t": "karşılıklı tavizle uzlaşmak",
+    "lit": "biriyle yolun yarısında buluşmak",
+    "s": "On the timetable, we can meet you halfway.",
+    "form": "meet you halfway",
+    "tr": "Takvim konusunda karşılıklı tavizle uzlaşabiliriz.",
+    "theme": "people",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "pat": "meet someone halfway",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/meet-halfway",
+      "https://www.collinsdictionary.com/dictionary/english/meet-someone-halfway"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/meet-halfway",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "meet someone halfway"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/meet-someone-halfway",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "meet someone halfway"
+      }
+    ]
+  },
+  {
+    "w": "be a tower of strength",
+    "t": "zor zamanda çok büyük destek olmak",
+    "lit": "bir güç kulesi olmak",
+    "s": "My sister was a tower of strength after the fire.",
+    "form": "was a tower of strength",
+    "tr": "Yangından sonra kız kardeşim çok büyük destek oldu.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/tower-of-strength",
+      "https://www.collinsdictionary.com/us/dictionary/english/a-tower-of-strength"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/tower-of-strength",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a tower of strength"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/a-tower-of-strength",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be a tower of strength"
+      }
+    ]
+  },
+  {
+    "w": "have a soft spot for",
+    "t": "birine veya şeye özel bir yakınlık duymak",
+    "lit": "içinde yumuşak bir nokta olmak",
+    "s": "I have a soft spot for old bookshops.",
+    "form": "have a soft spot for",
+    "tr": "Eski kitapçılara özel bir yakınlık duyarım.",
+    "theme": "people",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/soft-spot",
+      "https://www.collinsdictionary.com/dictionary/english/soft-spot"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/soft-spot",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a soft spot for"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/soft-spot",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have a soft spot for"
+      }
+    ]
+  },
+  {
+    "w": "be in someone's good books",
+    "t": "birinin takdirini kazanmış olmak",
+    "lit": "birinin iyi kitaplarında olmak",
+    "s": "After fixing the roof, we are in her good books.",
+    "form": "are in her good books",
+    "tr": "Çatıyı onardıktan sonra onun takdirini kazandık.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/in-good-books",
+      "https://www.collinsdictionary.com/dictionary/english/in-someones-good-books"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/in-good-books",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in someone's good books"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/in-someones-good-books",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in someone's good books"
+      }
+    ]
+  },
+  {
+    "w": "be in someone's bad books",
+    "t": "birinin hoşnutsuzluğunu üzerine çekmiş olmak",
+    "lit": "birinin kötü kitaplarında olmak",
+    "s": "After missing dinner, I was in his bad books.",
+    "form": "was in his bad books",
+    "tr": "Yemeği kaçırdıktan sonra onun hoşnutsuzluğunu üzerime çektim.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "informal",
+    "area": "UK",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/in-bad-books",
+      "https://www.collinsdictionary.com/dictionary/english/to-be-in-someones-bad-books"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/in-bad-books",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in someone's bad books"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-be-in-someones-bad-books",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be in someone's bad books"
+      }
+    ]
+  },
+  {
+    "w": "get a taste of one's own medicine",
+    "t": "başkalarına yaptığının aynısını yaşamak",
+    "lit": "kendi ilacının tadına bakmak",
+    "s": "The prankster got a taste of his own medicine.",
+    "form": "got a taste of his own medicine",
+    "tr": "Şakacı, başkalarına yaptığının aynısını yaşadı.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/give-a-dose-taste-of-own-medicine",
+      "https://www.collinsdictionary.com/dictionary/english/a-taste-of-ones-own-medicine"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/give-a-dose-taste-of-own-medicine",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get a taste of one's own medicine"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/a-taste-of-ones-own-medicine",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "get a taste of one's own medicine"
+      }
+    ]
+  },
+  {
+    "w": "throw under the bus",
+    "t": "kendini kurtarmak için başkasını suçlamak",
+    "lit": "birini otobüsün altına atmak",
+    "s": "The supervisor threw me under the bus to protect himself.",
+    "form": "threw me under the bus",
+    "tr": "Amir kendini korumak için beni suçladı.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "pat": "throw someone under the bus",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/throw-under-the-bus",
+      "https://www.collinsdictionary.com/dictionary/english/throw-someone-under-the-bus"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/throw-under-the-bus",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw someone under the bus"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/throw-someone-under-the-bus",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw someone under the bus"
+      }
+    ]
+  },
+  {
+    "w": "have an axe to grind",
+    "t": "kişisel çıkar veya gizli hesap taşımak",
+    "lit": "bilenecek bir baltası olmak",
+    "s": "This consultant has an axe to grind in that dispute.",
+    "form": "has an axe to grind",
+    "tr": "Bu danışman o anlaşmazlıkta kişisel çıkar taşıyor.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/have-an-axe-to-grind?q=an-axe-to-grind",
+      "https://www.collinsdictionary.com/dictionary/english/an-axe-to-grind"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/have-an-axe-to-grind?q=an-axe-to-grind",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have an axe to grind"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/an-axe-to-grind",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have an axe to grind"
+      }
+    ]
+  },
+  {
+    "w": "throw one's weight around",
+    "t": "nüfuzunu kullanarak insanlara baskı yapmak",
+    "lit": "ağırlığını etrafa fırlatmak",
+    "s": "The new director threw his weight around from day one.",
+    "form": "threw his weight around",
+    "tr": "Yeni müdür ilk günden nüfuzunu kullanarak insanlara baskı yaptı.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/throw-weight-around",
+      "https://www.collinsdictionary.com/dictionary/english/throw-ones-weight-around"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/throw-weight-around",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw one's weight around"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/throw-ones-weight-around",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw one's weight around"
+      }
+    ]
+  },
+  {
+    "w": "jump on the bandwagon",
+    "t": "yaygınlaşan akıma çıkar için katılmak",
+    "lit": "bando arabasına atlamak",
+    "s": "Several brands jumped on the bandwagon after its success.",
+    "form": "jumped on the bandwagon",
+    "tr": "Başarısından sonra birkaç marka bu akıma çıkar için katıldı.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/jump-on-the-bandwagon?q=jump-on-the-bandwagon_1",
+      "https://www.collinsdictionary.com/dictionary/english/jump-on-the-bandwagon"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/jump-on-the-bandwagon?q=jump-on-the-bandwagon_1",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "jump on the bandwagon"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/jump-on-the-bandwagon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "jump on the bandwagon"
+      }
+    ]
+  },
+  {
+    "w": "pull strings",
+    "t": "ilişkilerini kullanarak sonuç almak",
+    "lit": "ipleri çekmek",
+    "s": "He pulled strings to secure that appointment.",
+    "form": "pulled strings",
+    "tr": "O randevuyu ayarlamak için ilişkilerini kullandı.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/pull-strings",
+      "https://www.collinsdictionary.com/dictionary/english/pull-strings"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/pull-strings",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pull strings"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/pull-strings",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "pull strings"
+      }
+    ]
+  },
+  {
+    "w": "cut some slack",
+    "t": "birine anlayış göstermek",
+    "lit": "birine biraz ip gevşekliği vermek",
+    "s": "Please cut her some slack; she's learning.",
+    "form": "cut her some slack",
+    "tr": "Lütfen ona anlayış göster; öğreniyor.",
+    "theme": "people",
+    "level": "C1",
+    "reg": "informal",
+    "area": "genel",
+    "pat": "cut someone some slack",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/cut-some-slack",
+      "https://www.collinsdictionary.com/dictionary/english/cut-someone-some-slack"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/cut-some-slack",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "cut someone some slack"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/cut-someone-some-slack",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "cut someone some slack"
+      }
+    ]
+  }
+]

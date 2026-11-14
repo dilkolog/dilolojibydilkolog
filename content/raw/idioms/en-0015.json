@@ -1,0 +1,633 @@
+[
+  {
+    "w": "have second thoughts",
+    "t": "önceki kararından kuşkulanmaya başlamak",
+    "lit": "ikinci düşüncelere sahip olmak",
+    "s": "After reading the conditions, she had second thoughts.",
+    "form": "had second thoughts",
+    "tr": "Koşulları okuduktan sonra önceki kararından kuşkulanmaya başladı.",
+    "theme": "decide",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/second-thoughts",
+      "https://dictionary.cambridge.org/dictionary/english/second-thought"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/second-thoughts",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have second thoughts"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/second-thought",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "have second thoughts"
+      }
+    ]
+  },
+  {
+    "w": "sleep on it",
+    "t": "kararı ertesi güne bırakıp düşünmek",
+    "lit": "onun üstünde uyumak",
+    "s": "Before signing, I'd like to sleep on it.",
+    "form": "sleep on it",
+    "tr": "İmzalamadan önce kararı ertesi güne bırakıp düşünmek istiyorum.",
+    "theme": "decide",
+    "level": "B1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/sleep-on-it",
+      "https://www.collinsdictionary.com/dictionary/english/sleep-on-it"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/sleep-on-it",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "sleep on it"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/sleep-on-it",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "sleep on it"
+      }
+    ]
+  },
+  {
+    "w": "throw in the towel",
+    "t": "yenilgiyi kabul edip vazgeçmek",
+    "lit": "havluyu içeri atmak",
+    "s": "Despite three setbacks, we refused to throw in the towel.",
+    "form": "throw in the towel",
+    "tr": "Üç aksiliğe rağmen yenilgiyi kabul edip vazgeçmeyi reddettik.",
+    "theme": "decide",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/throw-in-the-towel",
+      "https://www.collinsdictionary.com/dictionary/english/throw-in-the-towel"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/throw-in-the-towel",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw in the towel"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/throw-in-the-towel",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "throw in the towel"
+      }
+    ]
+  },
+  {
+    "w": "take a leap of faith",
+    "t": "sonucu bilmeden güvenip adım atmak",
+    "lit": "bir inanç sıçraması yapmak",
+    "s": "To open the shop, we took a leap of faith.",
+    "form": "took a leap of faith",
+    "tr": "Dükkânı açmak için sonucu bilmeden güvenip adım attık.",
+    "theme": "decide",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english/to-take-a-leap-of-faith",
+      "https://dictionary.cambridge.org/dictionary/english/leap-of-faith"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-take-a-leap-of-faith",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take a leap of faith"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/leap-of-faith",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take a leap of faith"
+      }
+    ]
+  },
+  {
+    "w": "take the plunge",
+    "t": "tereddütten sonra cesurca işe girişmek",
+    "lit": "dalmayı göze almak",
+    "s": "After months of hesitation, she took the plunge.",
+    "form": "took the plunge",
+    "tr": "Aylar süren tereddütten sonra cesurca işe girişti.",
+    "theme": "decide",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/take-the-plunge",
+      "https://www.collinsdictionary.com/dictionary/english/take-the-plunge"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/take-the-plunge",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take the plunge"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/take-the-plunge",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take the plunge"
+      }
+    ]
+  },
+  {
+    "w": "draw the line",
+    "t": "kabul edeceği sınırı belirlemek",
+    "lit": "çizgiyi çizmek",
+    "s": "At personal insults, I draw the line.",
+    "form": "draw the line",
+    "tr": "Kişisel hakaretler konusunda kabul edeceğim sınırı belirlerim.",
+    "theme": "decide",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/draw-the-line?q=draw%2Bthe%2Bline",
+      "https://www.collinsdictionary.com/dictionary/english/draw-the-line"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/draw-the-line?q=draw%2Bthe%2Bline",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "draw the line"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/draw-the-line",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "draw the line"
+      }
+    ]
+  },
+  {
+    "w": "stand one's ground",
+    "t": "baskıya rağmen tutumunu korumak",
+    "lit": "kendi zemininde durmak",
+    "s": "Despite the criticism, she stood her ground.",
+    "form": "stood her ground",
+    "tr": "Eleştirilere rağmen tutumunu korudu.",
+    "theme": "decide",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/stand-ground",
+      "https://www.collinsdictionary.com/dictionary/english/to-stand-your-ground"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/stand-ground",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "stand one's ground"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-stand-your-ground",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "stand one's ground"
+      }
+    ]
+  },
+  {
+    "w": "stick to one's guns",
+    "t": "kararından veya görüşünden vazgeçmemek",
+    "lit": "silahlarına bağlı kalmak",
+    "s": "The committee stuck to its guns over safety.",
+    "form": "stuck to its guns",
+    "tr": "Kurul güvenlik konusundaki kararından vazgeçmedi.",
+    "theme": "decide",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/stick-to-guns",
+      "https://www.collinsdictionary.com/dictionary/english/stick-to-your-guns"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/stick-to-guns",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "stick to one's guns"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/stick-to-your-guns",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "stick to one's guns"
+      }
+    ]
+  },
+  {
+    "w": "keep one's powder dry",
+    "t": "uygun fırsat için hazırlıklı beklemek",
+    "lit": "barutunu kuru tutmak",
+    "s": "For now, the investors are keeping their powder dry.",
+    "form": "are keeping their powder dry",
+    "tr": "Yatırımcılar şimdilik uygun fırsat için hazırlıklı bekliyor.",
+    "theme": "decide",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/keep-powder-dry",
+      "https://www.collinsdictionary.com/dictionary/english/keep-your-powder-dry"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/keep-powder-dry",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's powder dry"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/keep-your-powder-dry",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's powder dry"
+      }
+    ]
+  },
+  {
+    "w": "play it safe",
+    "t": "risk almadan güvenli yolu seçmek",
+    "lit": "onu güvenli oynamak",
+    "s": "With the roads icy, we played it safe and stayed home.",
+    "form": "played it safe",
+    "tr": "Yollar buzlu olduğundan risk almadan evde kaldık.",
+    "theme": "decide",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/thesaurus/play-it-safe",
+      "https://www.collinsdictionary.com/dictionary/english/play-safe"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/thesaurus/play-it-safe",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "play it safe"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/play-safe",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "play it safe"
+      }
+    ]
+  },
+  {
+    "w": "keep one's options open",
+    "t": "seçeneklerini erken daraltmamak",
+    "lit": "seçeneklerini açık tutmak",
+    "s": "Until results arrive, I'll keep my options open.",
+    "form": "keep my options open",
+    "tr": "Sonuçlar gelene kadar seçeneklerimi erken daraltmayacağım.",
+    "theme": "decide",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/keep-options-open",
+      "https://www.collinsdictionary.com/dictionary/english/to-keep-your-options-open"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/keep-options-open",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's options open"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/to-keep-your-options-open",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "keep one's options open"
+      }
+    ]
+  },
+  {
+    "w": "burn one's bridges",
+    "t": "geri dönme imkânını yok etmek",
+    "lit": "köprülerini yakmak",
+    "s": "By publicly insulting them, he burned his bridges.",
+    "form": "burned his bridges",
+    "tr": "Onlara açıkça hakaret ederek geri dönme imkânını yok etti.",
+    "theme": "decide",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/burn-boats-bridges?q=burn+your+bridges",
+      "https://www.collinsdictionary.com/dictionary/english/burn-ones-bridges"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/burn-boats-bridges?q=burn+your+bridges",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "burn one's bridges"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/burn-ones-bridges",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "burn one's bridges"
+      }
+    ]
+  },
+  {
+    "w": "dance to someone's tune",
+    "t": "başkasının isteklerine göre davranmak",
+    "lit": "birinin ezgisine göre dans etmek",
+    "s": "The council refused to dance to the developer's tune.",
+    "form": "dance to the developer's tune",
+    "tr": "Meclis yatırımcının isteklerine göre davranmayı reddetti.",
+    "theme": "decide",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/dance-to-tune",
+      "https://www.collinsdictionary.com/dictionary/english/dance-to-someones-tune"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/dance-to-tune",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "dance to someone's tune"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/dance-to-someones-tune",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "dance to someone's tune"
+      }
+    ]
+  },
+  {
+    "w": "march to a different drummer",
+    "t": "başkalarına uymayıp kendi yolunu izlemek",
+    "lit": "farklı bir davulcunun temposuyla yürümek",
+    "s": "This artist marches to a different drummer.",
+    "form": "marches to a different drummer",
+    "tr": "Bu sanatçı başkalarına uymayıp kendi yolunu izler.",
+    "theme": "decide",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "US",
+    "src": [
+      "https://www.collinsdictionary.com/us/dictionary/english/march-to-a-different-drummer",
+      "https://en.wiktionary.org/wiki/march_to_the_beat_of_a_different_drum"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/us/dictionary/english/march-to-a-different-drummer",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "march to a different drummer"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/march_to_the_beat_of_a_different_drum",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "march to a different drummer"
+      }
+    ],
+    "pat": "march to the beat of one's own drum"
+  },
+  {
+    "w": "call the shots",
+    "t": "kararları veren kişi olmak",
+    "lit": "atışların komutunu vermek",
+    "s": "On this project, our engineer calls the shots.",
+    "form": "calls the shots",
+    "tr": "Bu projede kararları veren kişi mühendisimizdir.",
+    "theme": "decide",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/call-the-shots",
+      "https://www.collinsdictionary.com/dictionary/english/call-the-shots"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/call-the-shots",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "call the shots"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/call-the-shots",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "call the shots"
+      }
+    ]
+  },
+  {
+    "w": "play devil's advocate",
+    "t": "tartışmayı sınamak için karşı görüşü savunmak",
+    "lit": "şeytanın avukatını oynamak",
+    "s": "I'll play devil's advocate to test this proposal.",
+    "form": "play devil's advocate",
+    "tr": "Bu öneriyi sınamak için karşı görüşü savunacağım.",
+    "theme": "decide",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/english-french/to-play-devil%E2%80%99s-advocate",
+      "https://dictionary.cambridge.org/dictionary/english/devil-s-advocate"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english-french/to-play-devil%E2%80%99s-advocate",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "play devil's advocate"
+      },
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/devil-s-advocate",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "play devil's advocate"
+      }
+    ]
+  },
+  {
+    "w": "take a back seat",
+    "t": "kararlarda ikinci planda kalmak",
+    "lit": "arka koltuğa oturmak",
+    "s": "For this exhibition, I'll take a back seat.",
+    "form": "take a back seat",
+    "tr": "Bu sergide kararlarda ikinci planda kalacağım.",
+    "theme": "decide",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/take-a-back-seat",
+      "https://www.collinsdictionary.com/dictionary/english/take-a-back-seat"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/take-a-back-seat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take a back seat"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/take-a-back-seat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "take a back seat"
+      }
+    ]
+  },
+  {
+    "w": "sit tight",
+    "t": "sabırla yerinde beklemek",
+    "lit": "sıkı oturmak",
+    "s": "Until we hear back, sit tight.",
+    "form": "sit tight",
+    "tr": "Cevap gelene kadar sabırla yerinde bekle.",
+    "theme": "decide",
+    "level": "B2",
+    "reg": "informal",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/sit-tight",
+      "https://www.collinsdictionary.com/dictionary/english/sit-tight"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/sit-tight",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "sit tight"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/sit-tight",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "sit tight"
+      }
+    ]
+  },
+  {
+    "w": "call someone's bluff",
+    "t": "birinin tehdidinin blöf olduğunu sınamak",
+    "lit": "birinin blöfünü çağırmak",
+    "s": "The union called the employer's bluff over closure.",
+    "form": "called the employer's bluff",
+    "tr": "Sendika kapatma tehdidinin blöf olup olmadığını sınadı.",
+    "theme": "decide",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/call-bluff?topic=proving-and-disproving",
+      "https://www.collinsdictionary.com/dictionary/english/call-someones-bluff"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/call-bluff?topic=proving-and-disproving",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "call someone's bluff"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/call-someones-bluff",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "call someone's bluff"
+      }
+    ]
+  },
+  {
+    "w": "be at a crossroads",
+    "t": "önemli karar aşamasında olmak",
+    "lit": "bir kavşakta olmak",
+    "s": "After graduation, I was at a crossroads.",
+    "form": "was at a crossroads",
+    "tr": "Mezuniyetten sonra önemli bir karar aşamasındaydım.",
+    "theme": "decide",
+    "level": "B2",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/crossroads",
+      "https://www.collinsdictionary.com/dictionary/english/crossroads"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/crossroads",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be at a crossroads"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/crossroads",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "be at a crossroads"
+      }
+    ]
+  },
+  {
+    "w": "push the envelope",
+    "t": "alışılmış sınırları zorlamak",
+    "lit": "zarfı itmek",
+    "s": "This research pushes the envelope in battery design.",
+    "form": "pushes the envelope",
+    "tr": "Bu araştırma pil tasarımında alışılmış sınırları zorluyor.",
+    "theme": "decide",
+    "level": "C1",
+    "reg": "neutral",
+    "area": "genel",
+    "src": [
+      "https://dictionary.cambridge.org/dictionary/english/push-the-envelope",
+      "https://www.collinsdictionary.com/dictionary/english/push-the-envelope"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionary.cambridge.org/dictionary/english/push-the-envelope",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "push the envelope"
+      },
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/english/push-the-envelope",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "push the envelope"
+      }
+    ]
+  }
+]
